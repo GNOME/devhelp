@@ -197,21 +197,44 @@ bookshelf_read_books_dir (GnomeVFSURI *books_uri)
 }
 
 Bookshelf *
-bookshelf_new (const gchar* default_dir, FunctionDatabase *fd)
+bookshelf_new (FunctionDatabase *fd)
 {
 	Bookshelf       *bookshelf;
 	BookshelfPriv   *priv;
+	const gchar     *home_dir;
 	gchar           *filename;
+	gchar           *user_dir;
 	
 	bookshelf = gtk_type_new (TYPE_BOOKSHELF);
 	priv      = bookshelf->priv;
 	priv->fd  = fd;
 
-	filename = g_strdup_printf ("%s/books.xml", default_dir);
+	home_dir = g_get_home_dir ();
+
+	filename = g_strdup_printf ("%s/.devhelp/books.xml", home_dir);
 	priv->xml_books = bookshelf_read_xml (bookshelf, filename);
 	priv->filename = filename;
+
+        function_database_freeze (priv->fd);
+
+	/* First add user directory */
+        user_dir = g_strdup_printf ("%s/.devhelp", home_dir);
+	bookshelf_add_directory (bookshelf, user_dir);
+        g_free (user_dir);
+
+	/* Then add global directories */
 	
-	bookshelf_add_directory (bookshelf, default_dir);
+	/* If we have a non-standard datadir */
+	if (strcmp (DATA_DIR, "/usr/share") &&
+	    strcmp (DATA_DIR, "/usr/local/share")) {
+		g_message ("Adding %s", DATA_DIR);
+		bookshelf_add_directory (bookshelf, DATA_DIR"/devhelp");
+	}
+	
+	bookshelf_add_directory (bookshelf, "/usr/share/devhelp"); 
+	bookshelf_add_directory (bookshelf, "/usr/local/share/devhelp"); 
+
+        function_database_thaw (priv->fd);
 	
 	return bookshelf;
 }
@@ -316,8 +339,8 @@ bookshelf_show_book (Bookshelf *bookshelf, XMLBook *xml_book)
 	book_set_base_url (book, base_url);
 	g_free (dirname);
 	
-	bookshelf_add_book (bookshelf, book);
 	priv->xml_books = g_slist_remove (priv->xml_books, xml_book);
+	bookshelf_add_book (bookshelf, book);
 }
 
 
@@ -373,10 +396,15 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 				book->visible = TRUE;
 			}
 			xmlFree (visible);
-
-			list = g_slist_append (list, book);
+			
+			if (g_file_exists (book->spec_path)) {
+				list = g_slist_append (list, book);
+			} else {
+				g_message ("Hidden book %s does not exist",
+					   book->name);
+			}
 		}
-		
+
 		cur = cur->next;
 	}
 	
@@ -466,10 +494,14 @@ bookshelf_add_book (Bookshelf *bookshelf, Book* book)
 	priv = bookshelf->priv;
 
 	/* Is the book already installed? */
-	book2 = bookshelf_find_book_by_name (bookshelf, book_get_name (book));
-	if (book2 != NULL && version_strcmp (book, book2) == 0) {
+	if (bookshelf_have_book (bookshelf, book)) {
 		return FALSE;
 	}
+			
+//	book2 = bookshelf_find_book_by_name (bookshelf, book_get_name (book));
+//	if (book2 != NULL && version_strcmp (book, book2) == 0) {
+//		return FALSE;
+//	}
 
 	priv->books        = g_slist_prepend (priv->books, book);
 	priv->current_book = book;
@@ -529,6 +561,10 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	book_directory = g_strdup_printf ("%s/specs", directory);
 		
 	book_dir_uri = gnome_vfs_uri_new (book_directory);
+	if (!gnome_vfs_uri_exists (book_dir_uri)) {
+		return;
+	}
+	
 	books = bookshelf_read_books_dir (book_dir_uri);
         
 	skip = FALSE;
@@ -719,6 +755,43 @@ bookshelf_find_node (Bookshelf        *bookshelf,
 	return book_find_node (document_get_book (document), document, anchor);
 }
 
+gboolean
+bookshelf_have_book (Bookshelf *bookshelf,
+		     Book      *book)
+{
+	BookshelfPriv *priv;
+	GSList        *node;
+	
+	g_return_if_fail (bookshelf != NULL);
+	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (book != NULL);
+	g_return_if_fail (IS_BOOK (book));
+
+	priv = bookshelf->priv;
+	/* Does the bookshelf have the book in the visible part? */
+	for (node = priv->books; node; node = node->next) {
+		Book *tmp = BOOK (node->data);
+			
+		if (strcmp (book_get_name_full (tmp),
+			    book_get_name_full (book)) == 0) {
+			return TRUE;
+		}
+	}
+
+	/* ... or in the hidden? */
+	for (node = priv->xml_books; node; node = node->next) {
+		XMLBook *tmp = (XMLBook*) node->data;
+
+		if (strcmp (tmp->name, book_get_name (book)) == 0 &&
+		    strcmp (tmp->version, book_get_version (book)) == 0) {
+			return TRUE;
+		}
+	}
+	
+	return FALSE;
+}
+
+		     
 Document *
 bookshelf_find_document (Bookshelf      *bookshelf, 
 			 const gchar    *url, 

@@ -244,22 +244,14 @@ static void
 devhelp_controller_init (DevHelpController *controller)
 {
         DevHelpControllerPriv   *priv;
-        gchar                   *local_dir;
 	
         priv = g_new0 (DevHelpControllerPriv, 1);
 
 	priv->ui_component = NULL;
         priv->fd           = function_database_new ();
 	priv->history      = history_new ();
-
-        function_database_freeze (priv->fd);
-        local_dir       = g_strdup_printf ("%s/.devhelp", getenv ("HOME"));
-        priv->bookshelf = bookshelf_new (local_dir, priv->fd);
-        g_free (local_dir);
-        bookshelf_add_directory (priv->bookshelf, DATA_DIR"/devhelp");
-        function_database_thaw (priv->fd);
-
-        priv->index = BOOK_INDEX (book_index_new (priv->bookshelf));
+        priv->bookshelf    = bookshelf_new (priv->fd);
+        priv->index        = BOOK_INDEX (book_index_new (priv->bookshelf));
 
 	gtk_signal_connect_object (GTK_OBJECT (priv->history),
 				   "forward_exists_changed",
@@ -510,16 +502,15 @@ devhelp_controller_book_removed_cb (DevHelpController   *controller,
 	priv = controller->priv;
 	fd = priv->fd;
 	
-	for (functions = book_get_functions (book);
-	     functions;
-	     functions = functions->next) {
+	functions = book_get_functions (book);
+	while (functions) {
 		function = (Function*)functions->data;
-		
 		function_database_remove_function (fd, function);
+		
+		functions = functions->next;
 	}
 	
 	book_index_remove_book (priv->index, book);
-	
 }
 
 static void 

@@ -35,6 +35,8 @@
 
 #define MAX_HITS 250
 
+#define d(x)
+
 static void devhelp_search_class_init          (DevHelpSearchClass   *klass);
 static void devhelp_search_init                (DevHelpSearch        *index);
  
@@ -422,6 +424,8 @@ devhelp_search_function_removed_cb (FunctionDatabase  *fd,
 {
 	DevHelpSearchPriv   *priv;
 	gint                 row;
+
+	d(puts(__FUNCTION__));
 	
 	g_return_if_fail (fd != NULL);
 	g_return_if_fail (IS_FUNCTION_DATABASE (fd));
@@ -434,6 +438,8 @@ devhelp_search_function_removed_cb (FunctionDatabase  *fd,
 	row = gtk_clist_find_row_from_data (GTK_CLIST (priv->clist),
 					    function);
 	if (row != -1) {
+		d(g_print ("%s: remove from clist",
+			   __FUNCTION__));
 		gtk_clist_remove (GTK_CLIST (priv->clist), row);
 	}
 }

@@ -65,6 +65,9 @@ const gchar *       book_get_version           (Book                *book);
 
 const gchar *       book_get_spec_file         (Book                *book);
 
+void                book_set_spec_file         (Book                *book,
+						const gchar         *spec_file);
+
 gchar *             book_get_path              (Book                *book);
 
 void                book_set_visible           (Book                *book,

@@ -158,15 +158,13 @@ install_unpack_book (Bookshelf     *bookshelf,
 	}
 	g_free (cmd);
 	
-        /* Extract the bookname from the filename */
+	/* Create the book */
 	cmd = g_strdup_printf ("%s/tmp/book.devhelp", root);
 	uri = gnome_vfs_uri_new (cmd);
-	
 	book = book_new (uri, fd);
 	name = book_get_name (book);
-
 	g_free (cmd);
-	
+
 	if (name == NULL) {
 		gnome_message (_("Error, the book is corrupted or very old."));
 		g_free (dir);
@@ -204,6 +202,12 @@ install_unpack_book (Bookshelf     *bookshelf,
 		g_free (old_uri);
 	}
 	
+	/* Set the new path to the book */
+	cmd = g_strdup_printf ("%s/specs/%s.devhelp",
+			       root, book_get_name_full (book));
+	book_set_spec_file (book, cmd);
+	g_free (cmd);
+	
 	/* Install the book */
 	cmd = g_strdup_printf ("%s/books/%s", root, book_get_name_full (book));
 	if (g_file_exists (cmd)) {
@@ -221,7 +225,6 @@ install_unpack_book (Bookshelf     *bookshelf,
 		}
 	}
 	
-	book_set_base_url (book, cmd);
 	g_free (cmd);
 	g_free (old_uri);
 	
@@ -236,7 +239,6 @@ install_insert_book (Bookshelf *bookshelf, Book *book, const gchar *root)
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
 
-	/* Add to bookshelf */
 	bookshelf_add_book (bookshelf, book);
 
         bookshelf_write_xml (bookshelf);
@@ -297,7 +299,23 @@ install_book (Bookshelf *bookshelf, const gchar *filename, const gchar* root)
 		g_free (message);
 		return FALSE;
 	}
-	
+
+	if (bookshelf_have_book (bookshelf, book)) {
+		gchar *tmp;
+		
+		gnome_message (_("The book is already installed."));
+		tmp = g_strdup_printf ("rm -fr %s/books/%s",
+				       root, book_get_name_full (book));
+		system (tmp);
+		g_free (tmp);
+
+		tmp = g_strdup_printf ("rm -fr %s/specs/%s.devhelp",
+				       root, book_get_name_full (book));
+		system (tmp);
+		g_free (tmp);		
+		return FALSE;
+	}
+
 	install_insert_book (bookshelf, book, root);
 	
 	return TRUE;

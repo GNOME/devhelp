@@ -602,6 +602,19 @@ book_get_spec_file (Book *book)
 	return priv->spec_file;
 }
 
+void
+book_set_spec_file (Book *book, const gchar *spec_file)
+{
+	BookPriv   *priv;
+	
+	g_return_if_fail (book != NULL);
+	g_return_if_fail (IS_BOOK (book));
+	
+	priv = book->priv;
+
+	priv->spec_file = g_strdup (spec_file);
+}
+
 gchar *
 book_get_path (Book *book)
 {

@@ -63,8 +63,7 @@ struct _XMLBook {
 
 GtkType          bookshelf_get_type           (void);
 
-Bookshelf *      bookshelf_new                (const char          *default_dir,
-                                               FunctionDatabase    *fd);
+Bookshelf *      bookshelf_new                (FunctionDatabase    *fd);
 
 FunctionDatabase *
 bookshelf_get_function_database               (Bookshelf           *bookshelf);
@@ -72,6 +71,9 @@ bookshelf_get_function_database               (Bookshelf           *bookshelf);
 void             bookshelf_write_xml          (Bookshelf           *bookshelf);
 
 gboolean         bookshelf_add_book           (Bookshelf           *bookshelf,
+					       Book                *book);
+
+gboolean         bookshelf_have_book          (Bookshelf           *bookshelf,
 					       Book                *book);
 
 void             bookshelf_add_directory      (Bookshelf           *bookshelf,

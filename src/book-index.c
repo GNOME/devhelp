@@ -193,7 +193,8 @@ book_index_populate_tree (BookIndex *index)
 		book_index_insert_book_node (index, NULL,
                                              book_get_root (book));
 	}
-	gtk_clist_sort (GTK_CLIST (index));
+
+	gtk_ctree_sort_node (GTK_CTREE (index), NULL);	
 
 	gtk_clist_thaw (GTK_CLIST (index));
 

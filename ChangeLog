@@ -1,3 +1,31 @@
+2001-12-01  Johan Dahlin  <jdahlin@telia.com>
+
+	* src/install.c (install_unpack_book): Set the spec_path to book
+	when installing. This fixes a bug when installing a book and then
+	hide it.
+	(install_book): Check if the book is already instead one more time.
+
+	* src/devhelp-controller.c (devhelp_controller_init): Modify to
+	match bookshelf_new update.
+
+	* src/bookshelf.c (bookshelf_new): Clean up. Do
+	function_database_freeze/thaw here instead of elsewhere.
+	Add /usr/share/devhelp and /usr/local/share/devhelp to list
+	of directories.
+	(bookshelf_show_book): Call bookshelf_add_book after the book is
+	removed from xml_books.
+	(bookshelf_read_xml): Check if the book exist before we add it.
+	(bookshelf_add_book): Call bookshelf_have_book instead
+	bookshelf_find_book_by_name.
+	(bookshelf_add_directory): Make sure the directory exist before
+	parsing it.
+	(bookshelf_have_book): Impl.
+
+	* src/book.c (book_set_spec_file): Impl.
+
+	* src/book-index.c (book_index_populate_tree): Use
+	gtk_ctree_sort_node instead of gtk_clist_sort.
+
 2001-11-28  Johan Dahlin  <jdahlin@telia.com>
 
 	* src/devhelp-window.c: Style fixes.

@@ -410,9 +410,9 @@ function_database_remove_function (FunctionDatabase    *fd,
         
 	d(puts(__FUNCTION__));
         
-	priv     = fd->priv;
-	priv->functions = g_slist_remove (priv->functions, function);
+	priv = fd->priv;
 	
+	priv->functions = g_slist_remove (priv->functions, function);
 	if (!priv->frozen) {
 		list = g_list_append (NULL, function);
 		g_completion_remove_items (priv->function_completion, list);
