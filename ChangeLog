@@ -1,3 +1,7 @@
+2003-06-29  Mikael Hallendal  <micke@imendio.com>
+
+	* src/dh-main.c: include string.h, fixes warning on FreeBSD.
+
 2003-06-29  Richard Hult  <richard@imendio.com>
 
 	* misc/devhelp.el: 
