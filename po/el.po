@@ -1,236 +1,246 @@
 # devhelp Greek translation.
 # Copyright (C) Free Software Foundation, 2003
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the devhelp package.
 # Kostas Papadimas <pkst@gmx.net>, 2003.
+# Stylianos Papanastasiou <stelios@dcs.gla.ac.uk>, 2005.
 # kostas:22 messages, 28Jan2003, initial translation
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2003-01-28 19:24+0200\n"
-"Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-02-20 18:22+0200\n"
+"PO-Revision-Date: 2005-02-20 14:24+0000\n"
+"Last-Translator: Stylianos Papanastasiou <stelios@dcs.gla.ac.uk>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
 
-#: devhelp.desktop.in.h:1
-#, fuzzy
+#: devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
-msgstr "Πρόγραμμα βοήθειας για τους Developers"
+msgstr "Πρόγραμμα βοήθειας για προγραμματιστές"
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
-#, fuzzy
+#: devhelp.desktop.in.in.h:2 ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "DevHelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "DevHelp"
+msgstr "Βιβλίο DevHelp"
 
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
-
-#: src/dh-main.c:259
+#: src/dh-main.c:83
 msgid "Specify the size and location of the window"
-msgstr ""
+msgstr "Καθορίστε μέγεθος και τοποθεσία παραθύρου"
 
-#: src/dh-main.c:260
+#: src/dh-main.c:84
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgstr "WIDTHxHEIGHT+XOFF+YOFF"
 
-#: src/dh-main.c:268
+#: src/dh-main.c:92
 msgid "Search for a function"
 msgstr "Αναζήτηση για μια λειτουργία"
 
-#: src/dh-main.c:277
+#: src/dh-main.c:101
 msgid "Quit any running Devhelp"
-msgstr "Έξοδος από οποιαδήποτε εκτελούμενη Devhelp "
+msgstr "Έξοδος από οποιαδήποτε εκτελούμενο Devhelp "
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Αναμενόταν '%s' αναγνώστηκε '%s' στην γραμμή %d, στήλη %d"
 
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Μη έγκυρο namespace '%s' στην γραμμή %d, στήλη %d"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
+"Τίτλος, όνομα, και δεσμικό στοιχείο απαιτούνται στην γραμμή %d, στήλη %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
+"Όνομα και δεσμικό στοιχείο απαιτούνται στο <sub> στη γραμμή %d, στήλη %d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
+"Όνομα και δεσμικό στοιχείο απαιτούνται στο <function> στην γραμμή %d, στήλη %"
+"d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
-msgstr ""
+msgstr "Αδυναμία δημιουργίας διαβιβαστή βιβλίου"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Αδυναμία δημιουργίας διαβιβαστή markup"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Αδυναμία αποσυμπίεσης βιβλίου '%s': %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Αναζήτηση"
+msgstr "_Αναζήτηση"
 
 #: src/dh-search.c:461
 msgid "Section"
 msgstr "Ενότητα"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:120
 msgid "_File"
 msgstr "_Αρχείο"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:121
 msgid "_Edit"
-msgstr ""
+msgstr "_Επεξεργασία"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: src/dh-window.c:122 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Μετάβαση"
 
-#: src/dh-window.c:114
+#: src/dh-window.c:123
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: src/dh-window.c:292
+#: src/dh-window.c:307
 #, c-format
 msgid "Cannot set UI: %s"
-msgstr ""
+msgstr "Αδυναμία καθορισμού UI: %s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: src/dh-window.c:367 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Περιεχόμενα"
 
-#: src/dh-window.c:363
+#: src/dh-window.c:378
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:461
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ένα φυλλομετρητής βοήθειας για τους developers του GNOME 2"
 
-#: src/dh-window.c:462
+#: src/dh-window.c:477
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Σελίδα project Devhelp"
 
-#: src/dh-window.c:466
+#: src/dh-window.c:481
 msgid "Bug report Devhelp"
-msgstr ""
+msgstr "Αναφορά Προβλήματος Devhelp"
+
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Γραμματοσειρά σταθερού κειμένου"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Γραμματοσειρά κειμένου"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Γραμματοσειρά κειμένου σταθερού πλάτους."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Γραμματοσειρά κειμένου μεταβλητού πλάτους."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Ύψος κύριου παραθύρου"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Τοποθεσία του εσωτερικού"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Κατάσταση μεγιστοποίησης κύριου παραθύρου"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "Θέση Χ κύριου παραθύρου."
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "Θέση Y κύριου παραθύρου."
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "Ύψος κύριου παραθύρου."
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "Τοποθεσία εσωτερικού διαχωριστικού."
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "Πλάτος κύριου παραθύρου."
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Χρήση γραμματοσειρών συστήματος"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Χρήση προεπιλεγμένης γραμματοσειράς συστήματος."
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Αν αρχικά το κύριο παράθυρο θα εμφανίζεται μεγιστοποιημένο ή όχι"
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Το πλάτος του κυρίως παραθύρου."
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Θέση X του κυρίως παραθύρου"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Θέση Y του κυρίως παραθύρου"
 
 #: ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Γραμματοσειρές</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "Σταθερό πλάτος:"
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
-msgstr ""
+msgstr "Προτιμήσεις"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "Μεταβλητό πλάτος: "
 
 #: ui/devhelp.glade.h:8
 msgid "_Back"
-msgstr ""
+msgstr "_Πίσω"
 
 #: ui/devhelp.glade.h:9
 msgid "_Forward"
-msgstr ""
+msgstr "_Μπροστά"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Χρήση γραμματοσειρών συστήματος"
 
 #~ msgid "_Search for:"
 #~ msgstr "_Αναζήτηση για: "
