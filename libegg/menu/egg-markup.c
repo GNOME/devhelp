@@ -1,11 +1,13 @@
+#include <config.h>
 #include <string.h>
 #include "egg-markup.h"
 #include "../toolbar/eggtoolbar.h"
+#include "../util/eggintl.h"
 
-#ifndef _
-#  define _(String) (String)
-#  define N_(String) (String)
-#endif
+//#ifndef _
+//#  define _(String) (String)
+//#  define N_(String) (String)
+//#endif
 
 typedef enum {
   STATE_START,

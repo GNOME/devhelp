@@ -1,10 +1,12 @@
+#include <config.h>
 #include "egg-action-group.h"
 #include "egg-toggle-action.h"
 #include "egg-radio-action.h"
+#include "../util/eggintl.h"
 
-#ifndef _
-# define _(s) (s)
-#endif
+//#ifndef _
+//# define _(s) (s)
+//#endif
 
 static void egg_action_group_init       (EggActionGroup *self);
 static void egg_action_group_class_init (EggActionGroupClass *class);

@@ -1,10 +1,11 @@
+#include <config.h>
 #include "egg-action.h"
 #include "../toolbar/eggtoolbutton.h"
 #include "../util/eggintl.h"
 
-#ifndef _
-# define _(s) (s)
-#endif
+//#ifndef _
+//# define _(s) (s)
+//#endif
 
 /* some code for making arbitrary GtkButtons that act like toolbar
  * buttons */

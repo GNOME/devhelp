@@ -45,6 +45,17 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
+
+#ifndef AF_LOCAL
+#define AF_LOCAL AF_UNIX
+#endif
+
+#ifndef SUNLEN
+#define SUN_LEN(ptr) ((size_t) (((struct sockaddr_un *) 0)->sun_path)        \
+                      + strlen ((ptr)->sun_path))
+#endif
+
+
 gchar *geometry = NULL;
 
 static gchar *
