@@ -6,7 +6,7 @@ SCHEMAS_FILE = devhelp.schemas
 schemasdir = $(SCHEMAS_DIR)
 schemas_DATA = $(SCHEMAS_FILE)
 
-install-data-local:
+install-schemas:
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool --makefile-install-rule $(top_srcdir)/$(SCHEMAS_FILE)
 
 if INSTALL_SCHEMAS
