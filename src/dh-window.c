@@ -20,10 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <string.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtkhpaned.h>
@@ -556,7 +553,7 @@ dh_window_new (DhBase *base)
 	GdkPixbuf    *icon;
 	gint          width, height;
 	
-        window = gtk_type_new (DH_TYPE_WINDOW);
+        window = g_object_new (DH_TYPE_WINDOW, NULL);
         priv   = window->priv;
 
 	priv->base = g_object_ref (base);

@@ -19,11 +19,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
-#include <atk/atk.h>
+#include <string.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtkaccessible.h>
 #include <gtk/gtkcellrenderertext.h>
@@ -36,7 +33,6 @@
 #include <gtk/gtktreeview.h>
 #include <gtk/gtktreeselection.h>
 #include <libgnome/gnome-i18n.h>
-#include <string.h>
 
 #include "dh-marshal.h"
 #include "dh-keyword-model.h"

@@ -20,7 +20,6 @@
  */
 
 #include <config.h>
-
 #include <libgnomevfs/gnome-vfs.h>
 
 #include "dh-book-old.h"

@@ -19,6 +19,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#include <config.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -513,26 +514,28 @@ dh_html_new (void)
 {
         DhHtml     *html;
         DhHtmlPriv *priv;
-        
+	gchar      *text;
+
         d(puts(__FUNCTION__));
 
         html = g_object_new (DH_TYPE_HTML, NULL);
         priv = html->priv;
         
 	html_document_open_stream (priv->doc, "text/html");
-	{
-		int len; 
-		gchar *text = g_strdup_printf ("<html><head></head><body bgcolor=\"white\"><h1>DevHelp</h1><p>%s</p></body></html>",
-	                                       _("Select a subject in the contents to the left "
-						 "or switch to the search pane to find what you are looking for."
-						 "<p>Use <b>Shift Up/Down</b> to navigate the tree to the left, and "
-						 "<b>Shift Left/Right</b> to expand and collapse the books in the tree."));
-		len = strlen (text);
-                
-		html_document_write_stream (priv->doc, text, len);
+
+	text = g_strdup_printf ("<html>"
+				"<head>"
+				"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
+				"</head>"
+				"<body bgcolor=\"white\"><h1>Devhelp</h1><p>%s</p></body>"
+				"</html>",
+				_("Select a subject in the contents to the left "
+				  "or switch to the search tab to find what you "
+				  "are looking for."));
+	
+	html_document_write_stream (priv->doc, text, strlen (text));
 	   
-	        g_free (text);
-	}
+	g_free (text);
         
 	html_document_close_stream (priv->doc);
 

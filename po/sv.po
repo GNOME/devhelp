@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-27 19:11+0200\n"
+"POT-Creation-Date: 2003-06-28 00:22+0200\n"
 "PO-Revision-Date: 2003-05-15 18:41+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -29,31 +29,27 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp-bok"
 
-#: src/dh-html-gtkhtml2.c:526
+#: src/dh-html-gtkhtml2.c:529
 msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
 msgstr ""
-"Välj en rubrik i innehållet till vänster eller byt till sökpanelen för att "
-"finna det du söker.<p>Använd <b>Skift Upp/Ner</b> för att navigera i trädet "
-"till vänster, och <b>Skift Vänster/Höger</b> för att fälla in respektive "
-"fälla ut böckerna i trädet."
+"Välj en rubrik i innehållet till vänster eller byt till sökhäftet för "
+"att finna det du söker."
 
-#: src/dh-main.c:263
+#: src/dh-main.c:274
 msgid "Specify the size and location of the window"
 msgstr "Ange storlek och position för fönstret"
 
-#: src/dh-main.c:264
+#: src/dh-main.c:275
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "BREDDxHÖJD+XOFF+YOFF"
 
-#: src/dh-main.c:272
+#: src/dh-main.c:283
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: src/dh-main.c:281
+#: src/dh-main.c:292
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
@@ -96,34 +92,45 @@ msgstr "Kunde inte skapa markuptolk"
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan inte dekomprimera boken \"%s\": %s"
 
-#: src/dh-search.c:356
+#: src/dh-search.c:421
 msgid "_Search:"
 msgstr "_Sök:"
 
-#: src/dh-search.c:396
+#: src/dh-search.c:465
 msgid "Section"
 msgstr "Avsnitt"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:103
 msgid "_File"
 msgstr "_Arkiv"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:104
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:104
+#: src/dh-window.c:105
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: src/dh-window.c:300
+#: src/dh-window.c:341
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/dh-window.c:311
+#: src/dh-window.c:352
 msgid "Search"
 msgstr "Sök"
 
-#: src/dh-window.c:374
+#: src/dh-window.c:414
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search pane "
+#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
+#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
+#~ "the books in the tree."
+#~ msgstr ""
+#~ "Välj en rubrik i innehållet till vänster eller byt till sökpanelen för "
+#~ "att finna det du söker.<p>Använd <b>Skift Upp/Ner</b> för att navigera i "
+#~ "trädet till vänster, och <b>Skift Vänster/Höger</b> för att fälla in "
+#~ "respektive fälla ut böckerna i trädet."

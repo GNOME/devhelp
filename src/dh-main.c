@@ -20,15 +20,13 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <dirent.h>
-
+#include <sys/socket.h>
+#include <sys/un.h>
 #include <libxml/parser.h>
 #include <gconf/gconf.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -40,20 +38,6 @@
 
 #include "dh-base.h"
 #include "dh-window.h"
-
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/un.h>
-
-
-#ifndef AF_LOCAL
-#define AF_LOCAL AF_UNIX
-#endif
-
-#ifndef SUNLEN
-#define SUN_LEN(ptr) ((size_t) (((struct sockaddr_un *) 0)->sun_path)        \
-                      + strlen ((ptr)->sun_path))
-#endif
 
 
 gchar *geometry = NULL;
@@ -300,7 +284,7 @@ main (int argc, char **argv)
 	textdomain (PACKAGE);
 
 	g_thread_init (NULL);
-	
+
 	program = gnome_program_init (PACKAGE, VERSION,
 				      LIBGNOMEUI_MODULE,
                                       argc, argv,

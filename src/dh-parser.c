@@ -1,12 +1,22 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * See the file LICENSE for redistribution information. 
- * If you have not received a copy of the license, please contact CodeFactory
- * by email at info@imendio.com, or on the web at http://www.imendio.com/
- * You may also write to: CodeFactory AB, SE-903 47, Umeå, Sweden.
- *
  * Copyright (c) 2002-2003 Mikael Hallendal <micke@imendio.com>
- * Copyright (c) 2002-2003 CodeFactory AB.  All rights reserved.
+ * Copyright (c) 2002-2003 CodeFactory AB
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
  */
 
 #include <config.h>
@@ -364,9 +374,10 @@ dh_parse_file (const gchar  *path,
 	
 	while (TRUE) {
 		GIOStatus io_status;
-		gsize    bytes_read;
+		gsize     bytes_read;
+
 		io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
-					   &bytes_read, error);
+						     &bytes_read, error);
 		if (io_status == G_IO_STATUS_ERROR) {
 			result = FALSE;
 			goto exit;
@@ -400,9 +411,9 @@ dh_parse_gz_file (const gchar  *path,
 	       GList       **keywords,
 	       GError      **error)
 {
-	DhParser   *parser;
-	gchar       buf[BYTES_PER_READ];
-	gzFile file;
+	DhParser *parser;
+	gchar     buf[BYTES_PER_READ];
+	gzFile    file;
 
 	parser = g_new0 (DhParser, 1);
 	if (!parser) {

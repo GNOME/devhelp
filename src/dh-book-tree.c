@@ -19,10 +19,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <gdk/gdkkeysyms.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtkcellrenderertext.h>
@@ -133,12 +130,12 @@ book_tree_init (DhBookTree *tree)
 {
         DhBookTreePriv *priv;
         
-        priv            = g_new0 (DhBookTreePriv, 1);
-	priv->store     = gtk_tree_store_new (N_COLUMNS, 
-					      GDK_TYPE_PIXBUF,
-					      GDK_TYPE_PIXBUF,
-					      G_TYPE_STRING,
-					      G_TYPE_POINTER);
+        priv        = g_new0 (DhBookTreePriv, 1);
+	priv->store = gtk_tree_store_new (N_COLUMNS, 
+					  GDK_TYPE_PIXBUF,
+					  GDK_TYPE_PIXBUF,
+					  G_TYPE_STRING,
+					  G_TYPE_POINTER);
 
         tree->priv = priv;
 

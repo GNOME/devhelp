@@ -20,7 +20,6 @@
  */
 
 #include <config.h>
-
 #include <string.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <gtk/gtkmain.h>
@@ -28,6 +27,7 @@
 #include "dh-window.h"
 #include "dh-parser.h"
 #include "dh-base.h"
+#include "dh-link.h"
 
 #define d(x)
 
@@ -131,16 +131,83 @@ base_window_finalized_cb (DhBase *base, DhWindow *window)
 	}
 }
 
+static gint
+book_sort_func (gconstpointer a,
+		gconstpointer b)
+{
+	DhLink      *link_a, *link_b;
+	const gchar *name_a, *name_b;
+
+	link_a = ((GNode *) a)->data;
+	link_b = ((GNode *) b)->data;
+
+	name_a = link_a->name;
+	if (!name_a) {
+		name_a = "";
+	}
+
+	name_b = link_b->name;
+	if (!name_b) {
+		name_b = "";
+	}
+
+	if (g_ascii_strncasecmp (name_a, "the ", 4) == 0) {
+		name_a += 4;
+	}
+	if (g_ascii_strncasecmp (name_b, "the ", 4) == 0) {
+		name_b += 4;
+	}
+	
+	return g_utf8_collate (name_a, name_b);
+}
+
+static void
+base_sort_books (DhBase *base)
+{
+	DhBasePriv *priv;
+	GNode      *n;
+	DhLink     *link;
+	GList      *list = NULL, *l;
+
+	priv = base->priv;
+	
+	if (base->priv->book_tree) {
+		n = base->priv->book_tree->children;
+		
+		while (n) {
+			list = g_list_prepend (list, n);
+			n = n->next;
+		}
+		
+		list = g_list_sort (list, book_sort_func);
+	}
+
+	for (l = list; l; l = l->next) {
+		n = l->data;
+		link = n->data;
+		g_node_unlink (n);
+	}
+
+	for (l = list; l; l = l->next) {
+		n = l->data;
+		
+		g_node_append (base->priv->book_tree, n);
+	}
+
+	g_list_free (list);
+}
+
 static void
 base_init_books (DhBase *base)
 {
 	const gchar *env;
-	gchar *dir;
+	gchar       *dir;
 	
 	env = g_getenv ("DEVHELP_SEARCH_PATH");
 	if (env) {
 		gchar **paths, **p;
-		/* Insert all books from this path first */
+
+		/* Insert all books from this path first. */
 		paths = g_strsplit (env, ":", -1);
 		for (p = paths; *p != NULL; p++) {
 			base_add_books (base, *p);
@@ -153,15 +220,16 @@ base_init_books (DhBase *base)
 		base_add_books (base, env);
 	}
 	
-	/* Insert the books from default gtk-doc install path */
-	base_add_books (base, DATADIR"/gtk-doc/html");
+	/* Insert the books from default gtk-doc install path. */
+	base_add_books (base, DATADIR "/gtk-doc/html");
 	base_add_books (base, "/usr/share/gtk-doc/html");
-	base_add_books (base, DATADIR"/devhelp/books");
-	dir = g_strconcat (g_getenv ("HOME"), "/.devhelp/books", NULL);
+	base_add_books (base, DATADIR "/devhelp/books");
+	dir = g_build_filename (g_get_home_dir (), ".devhelp", "books", NULL);
 	base_add_books (base, dir);
 	g_free (dir);
-}
 
+	base_sort_books (base);
+}
 
 static void
 base_add_books (DhBase *base, const gchar *directory)
@@ -190,7 +258,7 @@ base_add_books (DhBase *base, const gchar *directory)
 	}
 
 	for (l = dir_list; l; l = l->next) {
-		gchar *book_path;
+		gchar  *book_path;
 		GError *error = NULL;
 		
 		info = (GnomeVFSFileInfo *) l->data;

@@ -1,3 +1,20 @@
+2003-06-28  Richard Hult  <richard@imendio.com>
+
+	* src/dh-base.c (base_init_books): Use g_get_home_dir and
+	g_build_filename.
+	(base_sort_books, book_sort_func): Sort the toplevel list of
+	books. Fixes bug #111535.
+
+	* src/*.c: Clean up includes.
+
+	* src/dh-main.c: Revert accidental commit. 
+
+	* src/dh-window.c (dh_window_new): s/gtk_type_new/g_object_new/.
+
+	* src/dh-html-gtkhtml2.c (dh_html_new): s/DevHelp/Devhelp/. Also
+	remove the part about shift-arrows, since that doesn't work and
+	kind of crack. Also specify the encoding to be UTF-8. 
+
 2003-06-27  Richard Hult  <richard@imendio.com>
 
 	* src/dh-search.c (search_entry_key_press_event_cb): Apply a
