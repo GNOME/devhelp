@@ -202,7 +202,6 @@ impl_DevHelp_Controller_openURI (PortableServer_Servant    servant,
 	priv       = controller->priv;
 
 	if (devhelp_controller_open (controller, str_uri)) {
-		d(g_print ("moving goto\n"));
 		history_goto (priv->history, str_uri);
 	}
 }
@@ -304,13 +303,14 @@ devhelp_controller_destroy (GtkObject *object)
 }
 
 static gboolean
-devhelp_controller_open (DevHelpController *controller, const gchar *str_uri)
+devhelp_controller_open (DevHelpController *controller, const gchar *url)
 {
 	DevHelpControllerPriv   *priv;
 	BookNode                *node;
 	GnomeVFSURI             *uri;
 	Document                *doc;
 	gchar                   *anchor;
+	gchar                   *str_uri;
 	
 	g_return_val_if_fail (controller != NULL, FALSE);
 	g_return_val_if_fail (IS_DEVHELP_CONTROLLER (controller), FALSE);
@@ -318,7 +318,7 @@ devhelp_controller_open (DevHelpController *controller, const gchar *str_uri)
 
 	priv = controller->priv;
 	
-	doc = bookshelf_find_document (priv->bookshelf, str_uri, &anchor);
+	doc = bookshelf_find_document (priv->bookshelf, url, &anchor);
 	
 	if (doc) { 
 		node = bookshelf_find_node (priv->bookshelf, doc, anchor);
@@ -339,7 +339,13 @@ devhelp_controller_open (DevHelpController *controller, const gchar *str_uri)
 				 controller);
 		
 			uri = book_node_get_uri (node, anchor);
+
+			str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+			
+			devhelp_controller_emit_uri (controller, str_uri);
 		
+			g_free (str_uri);
+
 			return TRUE;
 		}
 	}
@@ -401,21 +407,17 @@ cmd_back_cb (BonoboUIComponent *component, gpointer data, const gchar *cname)
 	DevHelpController       *controller;
 	DevHelpControllerPriv   *priv;
 	gchar                   *str_uri = NULL;
-	GnomeVFSURI             *uri;
 	
 	g_return_if_fail (data != NULL);
 	g_return_if_fail (IS_DEVHELP_CONTROLLER (data));
 	
 	controller = DEVHELP_CONTROLLER (data);
 	priv       = controller->priv;
-
+	
 	str_uri    = history_go_back (priv->history);
 
 	if (str_uri) {
 		devhelp_controller_open (controller, str_uri);
-		uri = gnome_vfs_uri_new (str_uri);
-		devhelp_controller_emit_uri (controller, str_uri);
-		gnome_vfs_uri_unref (uri);
 		g_free (str_uri);
 	}
 }
@@ -429,7 +431,6 @@ cmd_forward_cb (BonoboUIComponent   *component,
 	DevHelpController       *controller;
 	DevHelpControllerPriv   *priv;
 	gchar                   *str_uri = NULL;
-	GnomeVFSURI             *uri;
 	
 	g_return_if_fail (data != NULL);
 	g_return_if_fail (IS_DEVHELP_CONTROLLER (data));
@@ -441,9 +442,6 @@ cmd_forward_cb (BonoboUIComponent   *component,
 
 	if (str_uri) {
 		devhelp_controller_open (controller, str_uri);
-		uri = gnome_vfs_uri_new (str_uri);
-		devhelp_controller_emit_uri (controller, str_uri);
-		gnome_vfs_uri_unref (uri);
 		g_free (str_uri);
 	}
 }

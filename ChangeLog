@@ -1,5 +1,12 @@
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/devhelp-controller.c:
+	(devhelp_controller_open): call devhelp_controller_emit_uri from
+	  here. 
+	(cmd_back_cb): don't use no GnomeVFSURI. Don't emit signal, done
+	from devhelp_controller_open.
+	(cmd_forward_cb): dito.
+
 	* configure.in: bumped version to 0.1.99
 
 	* src/GNOME_DevHelp.oaf.in.in: 
