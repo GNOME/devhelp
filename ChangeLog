@@ -1,3 +1,8 @@
+2001-10-17  Richard Hult  <rhult@codefactory.se>
+
+	* src/devhelp-search.c (devhelp_search_entry_key_press_cb): Better
+	fix for the key navigation in the search entry.
+
 2001-10-17  Mikael Hallendal  <micke@codefactory.se>
 
 	* Makefile.am (EXTRA_DIST): added vim/devhelp.vim

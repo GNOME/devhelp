@@ -223,7 +223,6 @@ devhelp_search_entry_key_press_cb (GtkEditable     *editable,
 				   DevHelpSearch   *search)
 {
         DevHelpSearchPriv   *priv;
-	gint                 position;
 	
         g_return_if_fail (editable != NULL);
         g_return_if_fail (GTK_IS_EDITABLE (editable));
@@ -239,29 +238,17 @@ devhelp_search_entry_key_press_cb (GtkEditable     *editable,
                 return TRUE;
                 break;
 
-		/* Huge hack, needed to stop bonobo from messing with
-		 * the focus handling.
+		/* Hack, needed to stop the entry from losing focus when
+		 * arrow keys are pressed.
 		 */
 	case GDK_Left:
 	case GDK_KP_Left:
-		position = gtk_editable_get_position (GTK_EDITABLE (editable));
-		if (position > 0) {
-			gtk_editable_set_position (GTK_EDITABLE (editable), position - 1);
-		}
-		
-		gtk_signal_emit_stop_by_name (GTK_OBJECT (editable), "key_press_event");
-                return TRUE;
-		break;
-		
 	case GDK_Right:
 	case GDK_KP_Right:
-		position = gtk_editable_get_position (GTK_EDITABLE (editable));
-		gtk_editable_set_position (GTK_EDITABLE (editable), position + 1);
-		
 		gtk_signal_emit_stop_by_name (GTK_OBJECT (editable), "key_press_event");
                 return TRUE;
 		break;
-	
+		
 	default:
                 break;
         }
