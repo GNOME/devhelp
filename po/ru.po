@@ -1,0 +1,261 @@
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Valek Filippov <frob@df.ru>, 2001.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp\n"
+"POT-Creation-Date: 2001-08-14 13:43+0400\n"
+"PO-Revision-Date: 2001-08-14 13:49+0400\n"
+"Last-Translator: Valek Filippov <frob@df.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=KOI8-R\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/main.c:72
+msgid "searchInNewWindow not implemented."
+msgstr ""
+
+#: src/main.c:112
+#, c-format
+msgid "Could not activate devhelp: '%s'"
+msgstr ""
+
+#: src/main.c:121
+msgid "Could not search for string."
+msgstr "Поиск строки не возможен."
+
+#: src/main.c:161
+msgid "Search for a function"
+msgstr "Поиск функции"
+
+#: src/html-widget.c:213
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+
+#: src/html-widget.c:302
+#, c-format
+msgid "Couldn't open uri: %s"
+msgstr ""
+
+#: src/print.c:58
+msgid "Print Help"
+msgstr "Печати справки"
+
+#: src/print.c:103
+msgid "Print Preview"
+msgstr "Просмотр печати"
+
+#: src/print.c:114
+msgid "Printing failed."
+msgstr "Сбой печати."
+
+#: src/ui.c:223
+msgid "Choose a book..."
+msgstr "Выбрать книгу..."
+
+#: src/ui.c:366
+msgid "(C) Copyright 2001, Johan Dahlin"
+msgstr "Авторское право (C) 2001, Johan Dahlin"
+
+#: src/ui.c:367
+msgid "A developer's help browser"
+msgstr ""
+
+#: src/ui.c:507
+#, c-format
+msgid "Link to %s"
+msgstr "Ссылка на %s"
+
+#: src/ui.c:572
+#, c-format
+msgid "Cannot find clicked link (%s) in bookshelf\n"
+msgstr ""
+
+#: src/ui.c:906
+msgid "Zoom index out of range."
+msgstr ""
+
+#: ui/devhelp.glade.h:1
+msgid " "
+msgstr " "
+
+#: ui/devhelp.glade.h:2
+msgid "<< _Show"
+msgstr "<< Показать "
+
+#: ui/devhelp.glade.h:3
+msgid "Add book ..."
+msgstr "Добавить книгу ..."
+
+#: ui/devhelp.glade.h:4
+msgid "Author:"
+msgstr "Автор:"
+
+#: ui/devhelp.glade.h:5
+msgid "Back"
+msgstr "Назад"
+
+#: ui/devhelp.glade.h:6
+msgid "Book info"
+msgstr "Информация о книге"
+
+#: ui/devhelp.glade.h:7
+msgid "Bookmarks"
+msgstr "Закладки"
+
+#: ui/devhelp.glade.h:8
+msgid "DevHelp Book Manager"
+msgstr ""
+
+#: ui/devhelp.glade.h:9
+msgid "DevHelp Preferences"
+msgstr ""
+
+#: ui/devhelp.glade.h:10
+msgid "Devhelp"
+msgstr ""
+
+#: ui/devhelp.glade.h:11
+msgid "Fast"
+msgstr ""
+
+#: ui/devhelp.glade.h:12
+msgid "Forward"
+msgstr "Вперёд"
+
+#: ui/devhelp.glade.h:13
+msgid "Hidden"
+msgstr ""
+
+#: ui/devhelp.glade.h:14
+msgid "Huge"
+msgstr ""
+
+#: ui/devhelp.glade.h:15
+msgid "Install new book..."
+msgstr "Установить новую книгу..."
+
+#: ui/devhelp.glade.h:16
+msgid "Large"
+msgstr ""
+
+#: ui/devhelp.glade.h:17
+msgid "Medium"
+msgstr ""
+
+#: ui/devhelp.glade.h:18
+msgid "Move down"
+msgstr ""
+
+#: ui/devhelp.glade.h:19
+msgid "Move up"
+msgstr ""
+
+#: ui/devhelp.glade.h:20
+msgid "Name:"
+msgstr "Название:"
+
+#: ui/devhelp.glade.h:21
+msgid "Ny fil"
+msgstr ""
+
+#: ui/devhelp.glade.h:22
+msgid "Path:"
+msgstr "Путь:"
+
+#: ui/devhelp.glade.h:23
+msgid "Remove"
+msgstr "Удалить"
+
+#: ui/devhelp.glade.h:24
+msgid "Reset to defaults"
+msgstr ""
+
+#: ui/devhelp.glade.h:25
+msgid "Search"
+msgstr "Поиск"
+
+#: ui/devhelp.glade.h:26
+msgid "Show _sidebar"
+msgstr "Показать боковую панель"
+
+#: ui/devhelp.glade.h:27
+msgid "Show sidebar"
+msgstr "Показать боковую панель"
+
+#: ui/devhelp.glade.h:28
+msgid "Slow"
+msgstr ""
+
+#: ui/devhelp.glade.h:29
+msgid "Small"
+msgstr ""
+
+#: ui/devhelp.glade.h:30
+msgid "Tiny"
+msgstr ""
+
+#: ui/devhelp.glade.h:31
+msgid "Title:"
+msgstr "Заголовок:"
+
+#: ui/devhelp.glade.h:32
+msgid "Use auto_completion"
+msgstr ""
+
+#: ui/devhelp.glade.h:33
+msgid "Use autocompletion"
+msgstr ""
+
+#: ui/devhelp.glade.h:34
+msgid "Version:"
+msgstr "Версия:"
+
+#: ui/devhelp.glade.h:35
+msgid "View"
+msgstr "Просмотр"
+
+#: ui/devhelp.glade.h:36
+msgid "Visible"
+msgstr ""
+
+#: ui/devhelp.glade.h:37
+msgid "_Autocompletion speed: "
+msgstr ""
+
+#: ui/devhelp.glade.h:38
+msgid "_Book manager..."
+msgstr ""
+
+#: ui/devhelp.glade.h:39
+msgid "_Contents"
+msgstr "Содержание"
+
+#: ui/devhelp.glade.h:40
+msgid "_Edit book..."
+msgstr "Правка книги..."
+
+#: ui/devhelp.glade.h:41
+msgid "_Hide >>"
+msgstr "Скрыть >>"
+
+#: ui/devhelp.glade.h:42
+msgid "_Limit the number of hits to:"
+msgstr ""
+
+#: ui/devhelp.glade.h:43
+msgid "_Search"
+msgstr "Поиск"
+
+#: ui/devhelp.glade.h:44
+msgid "_Text size: "
+msgstr "Размер текста:"
+
+#: ui/devhelp.glade.h:45
+msgid "жppna fil"
+msgstr ""
