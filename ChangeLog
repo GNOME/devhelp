@@ -1,3 +1,8 @@
+2001-10-15  Richard Hult  <rhult@codefactory.se>
+
+	* devhelp.spec.in: Install libs, patch from 
+	mike@gtnorthern.demon.co.uk.
+
 2001-10-15  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/devhelp-controller.c (devhelp_controller_init): use
