@@ -1,3 +1,7 @@
+2003-04-05  Samúel Jón Gunnarsson <sammi@techattack.nu>
+
+	* configure.in: Added "is" to ALL_LINGUAS
+
 2003-03-14  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/Makefile.am: fix building of marshals.
@@ -652,7 +656,7 @@
 2002-04-27  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/install.c (install_create_directories): added memleak-fix
-	  from  Nils O. Sel�sdal.
+	  from  Nils O. Selåsdal.
 
 	* src/devhelp-view.c: moved debug-outputs into a debug-macro.
 
@@ -662,7 +666,7 @@
 	* merged devhelp-gnome-2 into HEAD.
 
 	* src/history.c (history_goto): 
-	- added patch from Nils O. Sel�sdal that limits history length to
+	- added patch from Nils O. Selåsdal that limits history length to
 	  20.
 	
 2002-04-26  Mikael Hallendal  <micke@codefactory.se>
