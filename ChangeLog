@@ -1,5 +1,7 @@
 2002-04-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/devhelp-view.c: moved debug-outputs into a debug-macro.
+
 	* src/Makefile.am (GNOME_DevHelp.server.in): use correct directory
 	  for library in server-file.
 

@@ -185,9 +185,9 @@ devhelp_view_async_read_cb (GnomeVFSAsyncHandle *handle,
 /* 		devhelp_view_free_stream_data (sdata, TRUE); */
 		g_free (buffer);
 	} else {
-                g_print ("Writing to html stream... ");
+                d(g_print ("Writing to html stream... "));
 		html_stream_write (sdata->stream, buffer, bytes_read);
-                g_print ("done\n");
+                d(g_print ("done\n"));
 		
 		gnome_vfs_async_read (handle, buffer, bytes_requested, 
 				      devhelp_view_async_read_cb, sdata);
@@ -312,7 +312,7 @@ devhelp_view_free_stream_data (StreamData *sdata, gboolean remove)
 		priv->connections = g_slist_remove (priv->connections, sdata);
 	}
 
-	g_print ("Out of stream_data\n");
+	d(g_print ("Out of stream_data\n"));
 
 	if (sdata->anchor) {
 		g_free (sdata->anchor);
@@ -334,9 +334,9 @@ devhelp_view_link_clicked_cb (HtmlDocument *doc, const gchar *url, gpointer data
         priv = view->priv;
 
 	if (priv->base_uri) {
-		g_print ("Link '%s' pressed relative to: %s\n", 
-			 url,
-			 priv->base_uri);
+		d(g_print ("Link '%s' pressed relative to: %s\n", 
+			   url,
+			   priv->base_uri));
         } else {
         }
 
