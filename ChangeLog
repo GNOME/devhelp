@@ -1,3 +1,13 @@
+2004-11-25  Christoffer Olsen  <co@deworks.net>
+
+	* configure.in: Added devhelp.desktop.in to AC_OUTPUT
+	* devhelp.desktop.in: Moved to devhelp.desktop.in.in
+	* devhelp.desktop.in.in: Added Bugzilla headers
+	* po/POTFILES.in: Now references devhelp.desktop.in.in instead
+
+	- Added Bug Buddy autocompletion support, filing bugs should
+	now work magically.
+
 2004-11-18  Christian Persch  <chpe@cvs.gnome.org>
 
 	* configure.in:	Remove some unnecessary checks.

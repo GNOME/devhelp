@@ -207,4 +207,5 @@ src/Makefile
 ui/Makefile
 misc/Makefile
 contrib/Makefile
+devhelp.desktop.in
 ])

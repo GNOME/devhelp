@@ -1,6 +1,6 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
-devhelp.desktop.in
+devhelp.desktop.in.in
 devhelp.keys.in
 src/dh-base.c
 src/dh-book-tree.c
