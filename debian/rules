@@ -35,13 +35,13 @@ install-stamp: build-stamp
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
-	$(MAKE) install 					\
-		prefix=`pwd`/debian/$(package)/usr		\
-		mandir=`pwd`/debian/$(package)/usr/share/man	\
-		datadir=`pwd`/debian/$(package)/usr/share	\
-		soundlistdir=`pwd`/debian/$(package)/etc/sound/events \
-		pixmapdir=`pwd`/debian/$(package)/usr/share/pixmaps \
-		desktopdir=`pwd`/debian/$(package)/usr/share/gnome/apps/Internet
+	$(MAKE) install 					        \
+		sysconfdir=`pwd`/debian/$(package)/etc                  \
+		prefix=`pwd`/debian/$(package)/usr		        \
+		mandir=`pwd`/debian/$(package)/usr/share/man	        \
+		datadir=`pwd`/debian/$(package)/usr/share	        \
+		pixmapdir=`pwd`/debian/$(package)/usr/share/pixmaps     \
+		desktopdir=`pwd`/debian/$(package)/usr/share/gnome/apps/Development
 	touch install-stamp
 
 
