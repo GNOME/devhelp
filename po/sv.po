@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-10-10 19:43+0200\n"
-"PO-Revision-Date: 2001-10-10 19:45+0200\n"
+"POT-Creation-Date: 2001-10-10 22:17+0200\n"
+"PO-Revision-Date: 2001-10-10 22:19+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -223,11 +223,11 @@ msgstr "Installera ny bok..."
 
 #: ui/devhelp.glade.h:17
 msgid "Move down"
-msgstr "Flytta upp"
+msgstr "Flytta ned"
 
 #: ui/devhelp.glade.h:18
 msgid "Move up"
-msgstr "Flytta ned"
+msgstr "Flytta upp"
 
 #: ui/devhelp.glade.h:19
 msgid "Name:"

@@ -1,5 +1,10 @@
 2001-10-10  Christian Rose  <menthos@menthos.com>
 
+	* sv.po: Fixed an error. Thanks to
+	Göran Uddeborg <goeran@uddeborg.pp.se> for finding this.
+
+2001-10-10  Christian Rose  <menthos@menthos.com>
+
 	* sv.po: Updated to reflect a suggestion from
 	Jan Djärv <Jan.Djarv@mbox200.swipnet.se>.
 
