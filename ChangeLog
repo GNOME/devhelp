@@ -1,5 +1,7 @@
 2003-03-02  Mikael Hallendal  <micke@codefactory.se>
 
+	* Relase 0.5
+
 	* NEWS: updated for 0.5
 
 	* configure.in: depend on GNOME 2.2
