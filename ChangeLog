@@ -1,5 +1,7 @@
 2001-07-31  Johan Dahlin  <zilch.am@home.se>
-        
+
+	* configure.in: s/AM_GNU_GETTEXT/AM_GNOME_GETTEXT/. Thanks goes to Yanko Kaneti.
+
 	0.1.0 Released.
 
 	Imported to GNOME CVS.
