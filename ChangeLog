@@ -1,3 +1,7 @@
+2001-08-02  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/bookshelf.c (bookshelf_write_xml): the path should be freed.
+
 2001-08-01  Johan Dahlin  <zilch.am@home.se>
 
 	* ui/devhelp.glade: Remove clist and ctree, but keep scrolled windows.

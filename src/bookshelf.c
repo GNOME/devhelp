@@ -125,7 +125,7 @@ bookshelf_write_xml (Bookshelf     *bookshelf,
 	GSList          *node;
 	const gchar     *name;
 	const gchar     *version;	
-	const gchar     *path;
+	gchar           *path;
 	gboolean         visible;
 	
 	g_return_if_fail (bookshelf != NULL);
@@ -165,6 +165,8 @@ bookshelf_write_xml (Bookshelf     *bookshelf,
 		fprintf (fp, "visible=\"%d\" path=\"%s\"/>\n",
 			 visible == TRUE ? 1 : 0,
 			 path);
+
+		g_free (path);
 	}
 	
 	fprintf (fp, "</booklist>\n");
