@@ -1,0 +1,36 @@
+I wanted to inform DevHelp developers and users that it's now possible
+to convert full books in CHM and HTB into DevHelp book format, by using
+a generic HTML Help book framework I wrote in Python:
+  
+http://htmlhelp.berlios.de/api/python/
+
+Basically, to convert a CHM book into a DevHelp is as simple as:
+
+  hhconvert /path/to/book.chm /path/to/book.tgz
+
+  The code is only available in the subversion repository - there is no
+  tarball as the code is not yet ready for prime time.
+
+  That said I also want to inform that I'll stop providing more books in
+  DevHelp format, i.e., I'll no longer update those in
+  http://htmlhelp.berlios.de/books/devhelp.php . There is no intention in
+  making DevHelp a full-fledge viewer. It has very limited functionality
+  compared e.g., with PHP+MySQL web interface as in
+  http://htmlhelp.berlios.de/web/php.php and something similar can be done
+  much more easily with Python as in http://gnochm.sourceforge.net . I
+  still would like to have a nice documentation browser in gnome, but I
+  think DevHelp is no longer the way to achieve it.
+
+  If anybody still wants DevHelp books they can make it themselves using
+  the above process.
+
+  In the near future I'll implement the opposite, i.e., allow convertion of
+  DevHelp books into CHM/HTB, to use with the GTK/GNOME documentation.
+
+  I hope you find this useful/interesting.
+
+José Fonseca
+
+Mail originally at:
+http://lists.gnome.org/archives/gnome-devtools/2004-January/msg00056.html
+

@@ -1,3 +1,14 @@
+2004-11-16  Mikael Hallendal  <micke@imendio.com>
+
+	* contrib/CHM_HTB2devhelp.README: José Fonseca, Bug #133110
+	* contrib/README:
+	* contrib/bulkman.pl:  Marc Britten, Bug #144917
+	* contrib/texi2devhelp.sh: Tobias Gruetzmacher, Bug #138847
+        * contrib/Makefile.am: Added
+        * configure.in:
+        * Makefile.am
+        - Added user contributed conversion scripts.
+
 2004-10-22  Mikael Hallendal  <micke@imendio.com>
 
 	* Release 0.9.3

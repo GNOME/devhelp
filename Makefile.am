@@ -1,4 +1,4 @@
-SUBDIRS = dtd po src ui misc
+SUBDIRS = dtd po src ui misc contrib
 
 @INTLTOOL_DESKTOP_RULE@
 
