@@ -16,6 +16,9 @@ KEYS_FILES = $(KEYS_IN_FILES:.keys.in=.keys)
 mimedir = $(datadir)/mime-info
 mime_DATA = $(KEYS_FILES) devhelp.mime
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = libdevhelp-1.0.pc
+
 EXTRA_DIST =			\
 	TODO 			\
 	$(DESKTOP_IN_FILES)	\
@@ -23,6 +26,7 @@ EXTRA_DIST =			\
 	$(mime_DATA)            \
 	devhelp.desktop.in 	\
 	devhelp.spec.in 	\
+	libdevhelp-1.0.pc.in    \
 	intltool-merge.in 	\
 	intltool-update.in 	\
 	intltool-extract.in	\

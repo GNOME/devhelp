@@ -1,3 +1,12 @@
+Devhelp 0.8:
+------------
+* Installs a library and header files to embed Devhelp widgets
+  into a program. Used by Anjuta.
+* Build fix for FreeBSD
+* New translations (tr, ca)
+* Updated translations 
+  (cs, sv, ja, sk, nl, de, es, pl, is, ms, pt, no, da, fr, az)
+
 Devhelp 0.7:
 ------------
 * Crash fix                                         (Ross)

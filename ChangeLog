@@ -1,14 +1,30 @@
+2004-02-13  Mikael Hallendal  <micke@imendio.com>
+
+	* Makefile.am: 
+	* configure.in:
+	* libdevhelp-1.0.pc.in:
+	- Moved the pc file and renamed it.
+	
+	* NEWS:
+	- Updated for 0.8
+	
+	* src/Makefile.am:
+	* src/devhelp.pc.in:
+	- Removed this pc file.
+
 2004-02-13  Naba Kumar  <naba@gnome.org>
-
-	* configure.in, src/Makefile.am, src/.cvsignore,
-	(new) src/devhelp.pc.in: Installs libdevhelp header files and
-	pkgconfig file, so that external programs can also use libdevhelp.
-
-	* configure.in: Bumped version to 0.8.
+ 
+	* configure.in: 
+	- Bumped version to 0.8
+	- Installs libdevhelp
+	
+	* src/Makefile.am, src/.cvsignore, (new) src/devhelp.pc.in:
+	- Installs libdevhelp header files and pkgconfig file, so that 
+	  external programs can also use libdevhelp.
 
 2004-02-01  Robert Sedak  <robert.sedak@sk.htnet.hr>
 
-        * configure.in: Added "hr" (Croatian) to ALL_LINGUAS.
+	* configure.in: Added "hr" (Croatian) to ALL_LINGUAS. 
 
 2004-01-13  Laurent Dhima  <laurenti@alblinux.net>
 

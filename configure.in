@@ -103,10 +103,10 @@ Makefile
 devhelp.spec
 devhelp.desktop
 devhelp.keys
+libdevhelp-1.0.pc
 dtd/Makefile
 po/Makefile.in
 src/Makefile
-src/devhelp.pc
 ui/Makefile
 misc/Makefile
 ])
