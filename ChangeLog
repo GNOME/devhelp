@@ -51,7 +51,6 @@
 	(impl_DevHelp_Controller_openURI): copy the CORBA_char *str_uri
 	before starting to use it. fixes bug #201 in CF-bugzilla.
 
->>>>>>> 1.62
 2001-10-15  Richard Hult  <rhult@codefactory.se>
 
 	* devhelp.spec.in: Install libs, patch from 
