@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-28 00:22+0200\n"
+"POT-Creation-Date: 2003-06-29 11:46+0200\n"
 "PO-Revision-Date: 2003-05-15 18:41+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -29,108 +29,106 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp-bok"
 
-#: src/dh-html-gtkhtml2.c:529
+#: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-"Välj en rubrik i innehållet till vänster eller byt till sökfliken för "
-"att finna det du söker."
+"Välj en rubrik i innehållet till vänster eller byt till sökfliken för att "
+"finna det du söker."
 
-#: src/dh-main.c:274
+#: src/dh-main.c:258
 msgid "Specify the size and location of the window"
 msgstr "Ange storlek och position för fönstret"
 
-#: src/dh-main.c:275
+#: src/dh-main.c:259
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "BREDDxHÖJD+XOFF+YOFF"
 
-#: src/dh-main.c:283
+#: src/dh-main.c:267
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: src/dh-main.c:292
+#: src/dh-main.c:276
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
-#: src/dh-parser.c:94 src/dh-parser.c:171 src/dh-parser.c:218
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "\"%s\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
 
-#: src/dh-parser.c:110
+#: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Ogiltig namnrymd \"%s\" vid rad %d, kolumn %d"
 
-#: src/dh-parser.c:139
+#: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "titel-, namn- och länkelement krävs vid rad %d, kolumn %d"
 
-#: src/dh-parser.c:192
+#: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr "namn- och länkelement krävs inuti <sub> på rad %d, kolumn %d"
 
-#: src/dh-parser.c:240
+#: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr "namn- och länkelement krävs inuti <function> på rad %d, kolumn %d"
 
-#: src/dh-parser.c:327 src/dh-parser.c:412
+#: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
 msgstr "Kunde inte skapa boktolk"
 
-#: src/dh-parser.c:337 src/dh-parser.c:422
+#: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
 msgstr "Kunde inte skapa markuptolk"
 
-#: src/dh-parser.c:468
+#: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan inte dekomprimera boken \"%s\": %s"
 
-#: src/dh-search.c:421
+#: src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Sök:"
 
-#: src/dh-search.c:465
+#: src/dh-search.c:461
 msgid "Section"
 msgstr "Avsnitt"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "_Arkiv"
 
-#: src/dh-window.c:104
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: src/dh-window.c:341
+#: src/dh-window.c:339
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/dh-window.c:352
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "Sök"
 
-#: src/dh-window.c:414
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Välj en rubrik i innehållet till vänster eller byt till sökpanelen för "
-#~ "att finna det du söker.<p>Använd <b>Skift Upp/Ner</b> för att navigera i "
-#~ "trädet till vänster, och <b>Skift Vänster/Höger</b> för att fälla in "
-#~ "respektive fälla ut böckerna i trädet."
+#: src/dh-window.c:430
+msgid "Devhelp project page"
+msgstr "Devhelps projektsida"
+
+#: src/dh-window.c:434
+msgid "Bug report Devhelp"
+msgstr "Buggrapportera Devhelp"
+

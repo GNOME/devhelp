@@ -566,7 +566,6 @@ dh_window_new (DhBase *base)
         DhWindow     *window;
         DhWindowPriv *priv;
 	GdkPixbuf    *icon;
-	gint          width, height;
 	
         window = g_object_new (DH_TYPE_WINDOW, NULL);
         priv   = window->priv;
@@ -580,13 +579,10 @@ dh_window_new (DhBase *base)
 	if (geometry) {
 		gtk_window_parse_geometry (GTK_WINDOW (window), geometry);
 	} else {
-		width = MAX (700.0 / 1024.0 * gdk_screen_width (), 640);
-		height = MAX (500.0 / 768.0 * gdk_screen_height (), 480);
-		
-		gtk_window_set_default_size (GTK_WINDOW (window), width, height);
+		gtk_window_set_default_size (GTK_WINDOW (window), 700, 500);
 	}
 
-	g_signal_connect (GTK_OBJECT (window), 
+	g_signal_connect (window, 
 			  "delete_event",
 			  G_CALLBACK (window_delete_cb),
 			  NULL);
