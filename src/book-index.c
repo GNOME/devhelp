@@ -118,12 +118,9 @@ book_index_class_init (BookIndexClass *klass)
 
 	
 	object_class->destroy         = book_index_destroy;
-
 	widget_class->key_press_event = book_index_key_press_event;
-
 	ctree_class->tree_select_row  = book_index_select_row;
 	
-
         signals[URI_SELECTED] =
                 gtk_signal_new ("uri_selected",
                                 GTK_RUN_LAST,
@@ -307,11 +304,12 @@ book_index_new (Bookshelf *bookshelf)
         index = gtk_type_new (TYPE_BOOK_INDEX);
 	
         gtk_ctree_construct (GTK_CTREE (index), 1, 0, NULL);
-	
+
         index->priv->bookshelf = bookshelf;
 
         book_index_populate_tree (index);
-        
+        gtk_clist_unselect_all (GTK_CLIST (index));
+	
         return GTK_WIDGET (index);
 }
 

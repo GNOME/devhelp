@@ -1,6 +1,8 @@
 2001-10-17  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/book-index.c: 
+	(book_index_new): unselect all, fixes bug #246 in CFB.
+	
 	- include gdk/gdkkeysyms.h
 	- fixes bug #245 in CFB.
 	(book_index_key_press_event): new function, impl.
