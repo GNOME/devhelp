@@ -112,7 +112,7 @@ base_window_finalized_cb (DhBase *base, DhWindow *window)
 	priv->windows = g_slist_remove (priv->windows, window);
 
 	if (g_slist_length (priv->windows) == 0) {
-		bonobo_main_quit ();
+		gtk_main_quit ();
 	}
 }
 
