@@ -49,7 +49,7 @@ AM_CONDITIONAL(HTML_WIDGET_MOZILLA, test x$with_html_widget = xmozilla)
 
 PKG_CHECK_MODULES(EGG, [gtk+-2.0 >= 2.0.0])
 
-ALL_LINGUAS="am az cs da de el es fr it ja kn lv ms no pl pt pt_BR ru sk sv vi zh_CN zh_TW"
+ALL_LINGUAS="am az be cs da de el es fr it ja kn lv ms no pl pt pt_BR ru sk sv vi zh_CN zh_TW"
 
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
