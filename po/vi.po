@@ -1,18 +1,17 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# This file is distributed under the same license as the devhelp package.
+# pclouds <pclouds@gmx.net>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2001-11-10 09:16-0500\n"
-"PO-Revision-Date: 2001-12-13 16:11GMT+0200\n"
-"Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
-"Language-Team: Azerbaijani Turkic <linuxaz@azerimail.net>\n"
+"POT-Creation-Date: 2002-05-24 17:33+0200\n"
+"PO-Revision-Date: 2002-05-15 23:36-0400\n"
+"Last-Translator: pclouds <pclouds@gmx.net>\n"
+"Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.5\n"
 
 #: devhelp.desktop.in.h:1
 msgid "DevHelp"
@@ -20,39 +19,53 @@ msgstr "DevHelp"
 
 #: devhelp.desktop.in.h:2
 msgid "Developers Help program"
-msgstr "İnkişafçıların Yardım proqramı"
+msgstr "Chương trình trợ giúp Nhà phát triển"
 
-#: src/books-dialog.c:323
+#: src/books-dialog.c:331
 msgid "Choose a book..."
-msgstr "Kitab seç..."
+msgstr "Chọn sách..."
 
-#: src/bookshelf.c:185
+#: src/bookshelf.c:186
 #, c-format
 msgid "Problems when reading books: %s\n"
-msgstr "Kitab oxunurkən problemlər oldu: %s\n"
+msgstr "Lỗi khi đọc sách: %s\n"
 
-#: src/bookshelf.c:326
+#: src/bookshelf.c:354
 #, c-format
 msgid "Empty document: %s"
-msgstr "Boş sənəd: %s"
+msgstr "Tài liệu rỗng: %s"
 
-#: src/bookshelf.c:332
+#: src/bookshelf.c:360
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
-msgstr "Yanlış sənəd növü, %s alındı, 'booklist' gözlənilirdi: %s"
+msgstr "Tài liệu sai kiểu, lấy được là %s, yêu cầu là 'booklist': %s"
 
-#: src/bookshelf.c:384
+#: src/bookshelf.c:394
+#, c-format
+msgid ""
+"I found an old version of your spec file (%s)\n"
+"I removed it, so you have to hide the books you want to be hidden again."
+msgstr ""
+"Tìm thấy phiên bản cũ của tập tin spec (%s)\n"
+"Sẽ loại bỏ nó, vì thể bạn sẽ phải giấu lại những cuốn sách bạn đã giấu trước "
+"đó."
+
+#: src/bookshelf.c:399
+msgid "Ok"
+msgstr "Đồng ý"
+
+#: src/bookshelf.c:440
 #, c-format
 msgid "Failed to open file %s for writing."
-msgstr "%s yazma üçün alıa bilmədi."
+msgstr "Lỗi mở tập tin %s để ghi"
 
 #: src/devhelp-window.c:402
 msgid "_Contents"
-msgstr "_Məzmun"
+msgstr "_Nội dung"
 
 #: src/devhelp-window.c:414
 msgid "_Search"
-msgstr "A_xtar"
+msgstr "_Tìm"
 
 #: src/devhelp-window.c:499
 msgid "(C) Copyright 2001, Johan Dahlin"
@@ -60,28 +73,28 @@ msgstr "(C) Copyright 2001, Johan Dahlin"
 
 #: src/devhelp-window.c:501
 msgid "A developer's help browser"
-msgstr "İnkişafçının yardım səyyahı"
+msgstr "Bộ duyệt trợ giúp dành cho nhà phát triển"
 
-#: src/devhelp-window.c:621
+#: src/devhelp-window.c:622
 #, c-format
 msgid "Open %s"
-msgstr "%s aç"
+msgstr "Mở %s"
 
 #: src/GNOME_DevHelp.oaf.in.in.h:1
 msgid "DevHelp Controller"
-msgstr "DevHelp İdarəçisi"
+msgstr "Bộ điều khiển DevHelp"
 
 #: src/GNOME_DevHelp.oaf.in.in.h:2
 msgid "DevHelp Controller Factory"
-msgstr "DevHelp İdarəçisi Emalatxanası"
+msgstr "Factory Bộ điều khiển DevHelp"
 
 #: src/GNOME_DevHelp.oaf.in.in.h:3
 msgid "DevHelp HelpBrowser"
-msgstr "DevHelp Yardım Səyyahı"
+msgstr "Bộ duyệt trợ giúp DevHelp"
 
 #: src/GNOME_DevHelp.oaf.in.in.h:4
 msgid "DevHelp HelpBrowser Factory"
-msgstr "DevHelp Yardım Səyyahı Emalatxanası"
+msgstr "Factory Trình duyệt trợ giúp DevHelp"
 
 #: src/html-widget.c:208
 msgid ""
@@ -90,85 +103,84 @@ msgid ""
 "tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
 "books in the tree."
 msgstr ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
+"Chọn một chủ để trong phần nội dung bên trái hoăc chuyển qua khung Tìm kiếm "
+"để tìm cái bạn cần.<p>Dùng <b>Dịch lên/xuống<b> để duyệt cây bên trái, và "
+"dùng <b>Dịch trái/phải<b> để bung cây hoặc thu hẹp cây trong cuốn sách."
 
 #: src/html-widget.c:294
 #, c-format
 msgid "Couldn't open uri: %s"
-msgstr "Uri açıla bilmir: %s"
+msgstr "Không thể mở URI: %s"
 
 #: src/html-widget.c:464
 msgid "Print Help"
-msgstr "Yardımı Çap Et"
+msgstr "In trợ giúp"
 
 #: src/html-widget.c:509
 msgid "Print Preview"
-msgstr "Çap Nümayişi"
+msgstr "Xem trước bản in"
 
 #: src/html-widget.c:520
 msgid "Printing failed."
-msgstr "Çap etmə bacarılmadı."
+msgstr "Quá trình in thất bại."
 
-#: src/install.c:101 src/install.c:192 src/install.c:210
+#: src/install.c:101 src/install.c:190 src/install.c:214 src/install.c:306
 msgid "The book is already installed."
-msgstr "Bu kitab onsuz da quruludur."
+msgstr "Sách này đã được cài đặt rồi."
 
-#: src/install.c:114 src/install.c:200 src/install.c:219
+#: src/install.c:114 src/install.c:198 src/install.c:223
 msgid "Failed to move book. This should never happen."
-msgstr "Kitab daşıma bacarılmadı. Bu, heç vaxt olmamalıdır."
+msgstr "Lỗi di chuyển sách. Điều này lẽ ra không bao giờ xảy ra."
 
 #: src/install.c:154
 msgid "Failed to extract spec file from book."
-msgstr "Kitabdakı spec faylı açıla bilmir."
+msgstr "Lỗi trích tập tin spec từ sách."
 
-#: src/install.c:171
+#: src/install.c:169
 msgid "Error, the book is corrupted or very old."
-msgstr "Xəta, kitab ya xəsərlidir ya da çox köhnədir."
+msgstr "Lỗi, sách bị hỏng hoặc quá cũ."
 
-#: src/install.c:182
+#: src/install.c:180
 msgid "Failed to extract the book."
-msgstr "Kitab içəridən çıxardıla bilmir."
+msgstr "Lỗi trích từ sách"
 
-#: src/install.c:285 src/install.c:295
+#: src/install.c:287 src/install.c:297
 #, c-format
 msgid "Wrong type (mime_type=%s)."
-msgstr "Səhv növ (mime_type=%s)."
+msgstr "Sai kiểu (Kiểu MIME là %s)"
 
 #: src/main.c:78
 #, c-format
 msgid "Could not activate devhelp: '%s'"
-msgstr "Devhelp fəallaşdırıla bilmir: '%s'"
+msgstr "Không thể kích hoạt DevHelp: '%s'"
 
 #: src/main.c:87
 msgid "Could not search for string."
-msgstr "Qatar axtarışı aparıla bilmir."
+msgstr "Không thể tìm chuỗi"
 
 #: src/main.c:125
 msgid "Search for a function"
-msgstr "Funksiya axtar"
+msgstr "Tìm hàm"
 
 #: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
 msgid "Tiny"
-msgstr "İncə"
+msgstr "Tí hon"
 
 #: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
 msgid "Small"
-msgstr "Kiçik"
+msgstr "Nhỏ"
 
 #: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
 msgid "Medium"
-msgstr "Orta"
+msgstr "Trung"
 
 #: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
 msgid "Large"
-msgstr "Enli"
+msgstr "Lớn"
 
 #: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
 msgid "Huge"
-msgstr "İri"
+msgstr "Khổng lồ"
 
 #: ui/devhelp.glade.h:1
 msgid " "
@@ -176,173 +188,172 @@ msgstr " "
 
 #: ui/devhelp.glade.h:2
 msgid "<< _Show"
-msgstr "<< _Göstər"
+msgstr "<< _Hiện"
 
 #: ui/devhelp.glade.h:3
 msgid "Author:"
-msgstr "Müəllif:"
+msgstr "Tác giả:"
 
 #: ui/devhelp.glade.h:4
 msgid "Book info"
-msgstr "Kitab haqqında"
+msgstr "Thông tin sách"
 
 #: ui/devhelp.glade.h:5
 msgid "Bookmarks"
-msgstr "Nişanlar"
+msgstr "Bookmark"
 
 #: ui/devhelp.glade.h:6
 msgid "DevHelp Book Manager"
-msgstr "DevHelp Kitab İdarəçisi"
+msgstr "Bộ quản lý sách DevHelp"
 
 #: ui/devhelp.glade.h:7
 msgid "DevHelp Preferences"
-msgstr "DevHelp Tərcihləri"
+msgstr "Thông số DevHelp"
 
 #: ui/devhelp.glade.h:8
 msgid "Hidden"
-msgstr "Gizli"
+msgstr "Ẩn"
 
 #: ui/devhelp.glade.h:10
 msgid "Install new book..."
-msgstr "Yeni kitab qur..."
+msgstr "Cài đặt sách mới..."
 
 #: ui/devhelp.glade.h:13
 msgid "Move down"
-msgstr "Aşağı daşı"
+msgstr "Chuyển xuống"
 
 #: ui/devhelp.glade.h:14
 msgid "Move up"
-msgstr "Yuxarı daşı"
+msgstr "Chuyển lên"
 
 #: ui/devhelp.glade.h:15
 msgid "Name:"
-msgstr "Ad:"
+msgstr "Tên:"
 
 #: ui/devhelp.glade.h:16
 msgid "Path:"
-msgstr "Cığır:"
+msgstr "Đường dẫn:"
 
 #: ui/devhelp.glade.h:17
 msgid "Remove"
-msgstr "Sil"
+msgstr "Loại bỏ"
 
 #: ui/devhelp.glade.h:18
 msgid "Reset to defaults"
-msgstr "Əsaslara keç"
+msgstr ""
 
 #: ui/devhelp.glade.h:19
 msgid "Search"
-msgstr "Axtar"
+msgstr "Tìm kiếm"
 
 #: ui/devhelp.glade.h:20
 msgid "Show _sidebar"
-msgstr "_Yan çubuğu göstər"
+msgstr "Hiện Thanh bên"
 
 #: ui/devhelp.glade.h:23
 msgid "Title:"
-msgstr "Başlıq:"
+msgstr "Tựa đề:"
 
 #: ui/devhelp.glade.h:24
 msgid "Version:"
-msgstr "Buraxılış:"
+msgstr "Phiên bản:"
 
 #: ui/devhelp.glade.h:25
 msgid "View"
-msgstr "Göstər"
+msgstr "Xem"
 
 #: ui/devhelp.glade.h:26
 msgid "Visible"
-msgstr "Görünə bilən"
+msgstr "Khả kiến"
 
 #: ui/devhelp.glade.h:27
 msgid "_Edit book..."
-msgstr "Kitabı _düzəlt..."
+msgstr "_Sửa sách..."
 
 #: ui/devhelp.glade.h:28
 msgid "_Hide >>"
-msgstr "_Gizlə >>"
+msgstr "Ẩ_n >>"
 
 #: ui/devhelp.glade.h:29
 msgid "_Limit the number of hits to:"
-msgstr "Vuruş miqdarını bununla _məhdudlaşdır:"
+msgstr "_Giới hạn số lần tìm trúng:"
 
 #: ui/devhelp.glade.h:30
 msgid "_Text size: "
-msgstr "_Mətn böyüklüyü: "
+msgstr "_Cỡ text: "
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
-msgstr "Bu proqram haqqında"
+msgstr "Nói về ứng dụng này"
 
 #: ui/GNOME_DevHelp.ui.h:2
 msgid "Font size"
-msgstr "Yazı növü böyüklüyü"
+msgstr "Cỡ font"
 
 #: ui/GNOME_DevHelp.ui.h:6
 msgid "Open preferences dialog"
-msgstr "Tərcihlər dialoqunu aç"
+msgstr "Mở hộp thoại thông số"
 
 #: ui/GNOME_DevHelp.ui.h:7
 msgid "Preferences..."
-msgstr "Tərcihlər..."
+msgstr "Thông số..."
 
 #: ui/GNOME_DevHelp.ui.h:8
 msgid "Print the html page"
-msgstr "html səhifəsini çap et"
+msgstr "In trang HTML"
 
 #: ui/GNOME_DevHelp.ui.h:9
 msgid "Show sidebar"
-msgstr "Yan çubuğu göstər"
+msgstr "Hiện Thanh bên"
 
 #: ui/GNOME_DevHelp.ui.h:12
 msgid "_About..."
-msgstr "_Haqqında..."
+msgstr "_Giới thiệu..."
 
 #: ui/GNOME_DevHelp.ui.h:13
 msgid "_Exit"
-msgstr "_Çıx"
+msgstr "T_hoát"
 
 #: ui/GNOME_DevHelp.ui.h:14
 msgid "_File"
-msgstr "_Fayl"
+msgstr "_Tập tin"
 
 #: ui/GNOME_DevHelp.ui.h:15
 msgid "_Help"
-msgstr "_Yardım"
+msgstr "Trợ _giúp"
 
 #: ui/GNOME_DevHelp.ui.h:16
 msgid "_Print"
-msgstr "_Çap Et"
+msgstr "_In"
 
 #: ui/GNOME_DevHelp.ui.h:17 ui/GNOME_DevHelp_Controller.ui.h:7
 msgid "_Settings"
-msgstr "_Qurğular"
+msgstr "_Thiết lập"
 
 #: ui/GNOME_DevHelp.ui.h:18
 msgid "_View"
-msgstr "_Göstər"
+msgstr "_Xem"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:1
 msgid "Back"
-msgstr "Geri"
+msgstr "Lùi"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:2
 msgid "Book Manager..."
-msgstr "Kitab İdarəçisi..."
+msgstr "Bộ quản lý sách..."
 
 #: ui/GNOME_DevHelp_Controller.ui.h:3
 msgid "Forward"
-msgstr "İrəli"
+msgstr "Tới"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:4
 msgid "Go to next page in the history"
-msgstr "Keçmişdə sonrakı səhifəyə get"
+msgstr "Đi tới trang kế trong lược sử"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:5
 msgid "Go to previous page in the history"
-msgstr "Keçmişdə əvvəlki səhifəyə get"
+msgstr "Đi tới trang trước trong lược sử"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
-msgstr "Kitab idarəçisi dialoqunu aç"
-
+msgstr "Mở hộp thoại Bộ quản lý sách"
