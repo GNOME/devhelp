@@ -1,0 +1,240 @@
+# English/Canada translation of devhelp.
+# Copyright (C) 2004 THE devhelp'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# Adam Weinberger <adamw@gnome.org>, 2004.
+# , fuzzy
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-04-30 21:59-0400\n"
+"PO-Revision-Date: 2004-04-30 22:00-0400\n"
+"Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
+"Language-Team: English/Canada <adamw@FreeBSD.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+#: devhelp.desktop.in.h:1
+msgid "Developer's Help program"
+msgstr "Developer's Help program"
+
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: devhelp.keys.in.h:1
+msgid "Devhelp Book"
+msgstr "Devhelp Book"
+
+#: src/dh-main.c:259
+msgid "Specify the size and location of the window"
+msgstr "Specify the size and location of the window"
+
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+
+#: src/dh-main.c:268
+msgid "Search for a function"
+msgstr "Search for a function"
+
+#: src/dh-main.c:277
+msgid "Quit any running Devhelp"
+msgstr "Quit any running Devhelp"
+
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Expected '%s' got '%s' at line %d, column %d"
+
+#: src/dh-parser.c:120
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Invalid namespace '%s' at line %d, column %d"
+
+#: src/dh-parser.c:149
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "title, name, and link elements are required at line %d, column %d"
+
+#: src/dh-parser.c:202
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "name and link elements are required inside <sub> on line %d, column %d"
+
+#: src/dh-parser.c:250
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"name and link elements are required inside <function> on line %d, column %d"
+
+#: src/dh-parser.c:337 src/dh-parser.c:423
+msgid "Could not create book parser"
+msgstr "Could not create book parser"
+
+#: src/dh-parser.c:347 src/dh-parser.c:433
+msgid "Could not create markup parser"
+msgstr "Could not create markup parser"
+
+#: src/dh-parser.c:479
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Cannot uncompress book '%s': %s"
+
+#: src/dh-search.c:417
+msgid "_Search:"
+msgstr "_Search:"
+
+#: src/dh-search.c:461
+msgid "Section"
+msgstr "Section"
+
+#: src/dh-window.c:112
+msgid "_File"
+msgstr "_File"
+
+#: src/dh-window.c:113
+msgid "_Edit"
+msgstr "_Edit"
+
+#: src/dh-window.c:114 ui/devhelp.glade.h:10
+msgid "_Go"
+msgstr "_Go"
+
+#: src/dh-window.c:115
+msgid "_Help"
+msgstr "_Help"
+
+#: src/dh-window.c:300
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Cannot set UI: %s"
+
+#: src/dh-window.c:355 ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Contents"
+
+#: src/dh-window.c:366
+msgid "Search"
+msgstr "Search"
+
+#: src/dh-window.c:449
+msgid "A developer's help browser for GNOME 2"
+msgstr "A developer's help browser for GNOME 2"
+
+#: src/dh-window.c:465
+msgid "Devhelp project page"
+msgstr "Devhelp project page"
+
+#: src/dh-window.c:469
+msgid "Bug report Devhelp"
+msgstr "Bug report Devhelp"
+
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Font for fixed text"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Font for text"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Font for text with fixed width."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Font for text with variable width."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Height of main window"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Location of the paned"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Main window maximized state"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "The X position of the main window."
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "The Y position of the main window."
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "The height of the main window."
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "The location of the paned separator."
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "The width of the main window."
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Use system fonts"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Use the systems default fonts."
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Whether the main window should start maximized or not."
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Width of the main window"
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "X position of main window"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Y position of main window"
+
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Fonts</b>"
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr "Fixed width:"
+
+#: ui/devhelp.glade.h:6
+msgid "Preferences"
+msgstr "Preferences"
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr "Variable width: "
+
+#: ui/devhelp.glade.h:8
+msgid "_Back"
+msgstr "_Back"
+
+#: ui/devhelp.glade.h:9
+msgid "_Forward"
+msgstr "_Forward"
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "_Use system fonts"
+

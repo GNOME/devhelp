@@ -1,3 +1,7 @@
+2004-04-30  Adam Weinberger  <adamw@gnome.org>
+
+	* configure.in: Added en_CA to ALL_LINGUAS.
+
 2004-04-30  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* src/Makefile.am: Add mozilla main include directory,
