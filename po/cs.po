@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-06-28 19:56+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-30 03:54+0200\n"
+"PO-Revision-Date: 2003-06-30 13:28+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -31,21 +31,21 @@ msgstr "Kniha Devhelp"
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
-msgstr ""
+msgstr "Vyberte téma v obsahu nalevo nebo hledejte přepnutím na kartu hledání."
 
-#: src/dh-main.c:258
+#: src/dh-main.c:259
 msgid "Specify the size and location of the window"
 msgstr "Určení velikosti a umístění okna"
 
-#: src/dh-main.c:259
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "ŠÍŘKAxVÝŠKA+XPOS+YPOS"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Hledat funkci"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Ukončit všechny běžící Devhelpy"
 
@@ -125,21 +125,11 @@ msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
 
 #: src/dh-window.c:430
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Stránka projektu Devhelp"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Zvolte téma v obsahu nalevo nebo najděte, co hledáte, přepnutím na panel "
-#~ "hledat.<p>Pro pohyb ve stromě vlevo použijte <b>Shift nahoru/dolů</b> a "
-#~ "pro rozbalování a sbalování knih ve stromě <b>Shift doleva/doprava</b>."
+msgstr "Ohlásit chybu v Devhelpu"
 
 #~ msgid "_About"
 #~ msgstr "_O programu"
