@@ -1,5 +1,7 @@
 2001-10-17  Mikael Hallendal  <micke@codefactory.se>
 
+	* Makefile.am (EXTRA_DIST): added vim/devhelp.vim
+
 	* configure.in: bumped version to 0.2.0.99
 
 	* src/devhelp-controller.c:

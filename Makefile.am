@@ -20,6 +20,7 @@ EXTRA_DIST =			\
 	misc/devhelp.el		\
 	misc/html2funcs.py	\
 	misc/html2xml.py	\
+	misc/devhelp.vim	\
 	idl/GNOME_DevHelp.idl
 
 Develdir = $(datadir)/gnome/apps/Development
