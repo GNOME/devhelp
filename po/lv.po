@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2002-12-22 04:40+0100\n"
-"PO-Revision-Date: 2002-12-23 00:08+0200\n"
-"Last-Translator: Artis Trops <hornet@navigators.lv>\n"
+"POT-Creation-Date: 2003-01-28 10:48+0100\n"
+"PO-Revision-Date: 2003-01-28 21:45+0200\n"
+"Last-Translator: Artis Trops <hornet@navigator.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,9 +31,6 @@ msgstr "'%s' nav derīga grāmata"
 #: src/dh-book.c:121
 #: src/dh-book.c:133
 #: src/dh-book.c:144
-#: src/dh-book-old.c:234
-#: src/dh-book-old.c:245
-#: src/dh-book-old.c:257
 #, c-format
 msgid "Book '%s' is malformed."
 msgstr "Grāmata '%s' ir izkropļota."
@@ -42,6 +39,21 @@ msgstr "Grāmata '%s' ir izkropļota."
 #, c-format
 msgid "Couldn't find file '%s'"
 msgstr "Nevarēju atrast failu '%s'"
+
+#: src/dh-book-old.c:249
+#, c-format
+msgid "Book '%s' is malformed, the parse context is invalid."
+msgstr "Grāmata '%s' ir izkropļota, parsējamais konteksts ir nederīgs."
+
+#: src/dh-book-old.c:260
+#, c-format
+msgid "Book '%s' is malformed, the XML is invalid."
+msgstr "Grāmata '%s' ir izkropļota, XML ir nederīgs."
+
+#: src/dh-book-old.c:274
+#, c-format
+msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
+msgstr "Grāmata '%s' ir izkropļota, tā neatbilst DTD (%s)."
 
 #: src/dh-html.c:517
 msgid "Select a subject in the contents to the left or switch to the search pane to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the tree to the left, and <b>Shift Left/Right</b> to expand and collapse the books in the tree."
@@ -80,19 +92,32 @@ msgstr "P_alīdzība"
 msgid "_About"
 msgstr "_Par"
 
-#: src/dh-window.c:284
+#: src/dh-window.c:281
+#, c-format
+msgid ""
+"<b>Cound not read all books</b>\n"
+"\n"
+"The following errors occured whilst reading the books:\n"
+"%s"
+msgstr ""
+"<b>Nevarēju nolasīt visas grāmatas</b>\n"
+"\n"
+"Lasot grāmatas, atgadījās sekojošas kļūdas:\n"
+"%s"
+
+#: src/dh-window.c:298
 msgid "Contents"
 msgstr "Saturs"
 
-#: src/dh-window.c:295
+#: src/dh-window.c:309
 msgid "Search"
 msgstr "Meklēt"
 
-#: src/dh-window.c:352
+#: src/dh-window.c:366
 msgid "A developer's help browser for GNOME 2"
 msgstr "Izstrādātāju palīdzības pārlūks GNOME 2 videi"
 
-#: src/dh-window.c:418
+#: src/dh-window.c:432
 #, c-format
 msgid "Open %s"
 msgstr "Atvērt %s"
