@@ -1,5 +1,8 @@
 2001-08-13  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/ui.c (main_window_key_press_event_cb): grab focus, had
+	  commented this out during testing before.
+
 	* ui/devhelp.glade: removed the search entry. Now created in
 	  devhelp-serach and referenced by devhelp_search_get_entry. 
 

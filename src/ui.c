@@ -150,7 +150,7 @@ main_window_key_press_event_cb (GtkWidget*   widget,
 			/* Select the search text and focus it, it the search tab is shown. */
 			if (gtk_notebook_get_current_page (devhelp->notebook) == 1) {
 				gtk_editable_select_region (GTK_EDITABLE (devhelp->entry), 0, -1);
-/* 				gtk_widget_grab_focus (devhelp->entry); */
+ 				gtk_widget_grab_focus (devhelp->entry); 
 			}
 		}
 	}
