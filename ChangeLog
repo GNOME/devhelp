@@ -1,4 +1,4 @@
-2004-07-25  Mikael Hallendal,,,  <micke@imendio.com>
+2004-07-25  Mikael Hallendal  <micke@imendio.com>
 
 	* src/dh-window.c:
 	(window_populate): Make sure that the paned isn't 0 wide.
