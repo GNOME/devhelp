@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Samúel Jón Gunnarsson  <sammi@techattack.nu>, 2003.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-07-22 21:32+0200\n"
-"PO-Revision-Date: 2003-07-22 21:38-0100\n"
+"POT-Creation-Date: 2003-08-20 19:22+0200\n"
+"PO-Revision-Date: 2003-08-20 18:18-0100\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
 "MIME-Version: 1.0\n"
@@ -27,12 +27,16 @@ msgid "Devhelp Book"
 msgstr "Devhelp Bók"
 
 #: src/dh-html-gtkhtml2.c:532
-msgid "Select a subject in the contents to the left or switch to the search tab to find what you are looking for."
-msgstr "Veldu viðfangsefni í innihaldsskrá hér til vinstri eða notaðu leitarflipan til að finna það sem þú leitar að."
+msgid ""
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
+msgstr ""
+"Veldu viðfangsefni í innihaldsskrá hér til vinstri eða notaðu leitarflipan "
+"til að finna það sem þú leitar að."
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
-msgstr ""
+msgstr "Tilgreindu stærð og staðsetningu glugga"
 
 #: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
@@ -46,12 +50,10 @@ msgstr "Leita eftir falli"
 msgid "Quit any running Devhelp"
 msgstr "Loka öllum opnum eintökum af DevHelp"
 
-#: src/dh-parser.c:104
-#: src/dh-parser.c:181
-#: src/dh-parser.c:228
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Gerði ráð fyrir '%s' en fékk '%s' í línu %d, dálk %d"
 
 #: src/dh-parser.c:120
 #, c-format
@@ -61,27 +63,26 @@ msgstr ""
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "titill, nafn og tenglaeinigar vantar í línu %d, dálk %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "nafn og tenglaeingar vantar undir <sub> í línu %d, dálk %d"
 
 #: src/dh-parser.c:250
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr "nafn og tenglaeiningar vantar undir <function> í línu %d, dálk %d"
 
-#: src/dh-parser.c:337
-#: src/dh-parser.c:423
+#: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
-msgstr ""
+msgstr "Ekki tókst að stofna greinir fyrir bók"
 
-#: src/dh-parser.c:347
-#: src/dh-parser.c:433
+#: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Ekki tókst að stofna merkjagreini"
 
 #: src/dh-parser.c:479
 #, c-format
@@ -110,7 +111,7 @@ msgstr "_Hjálp"
 
 #: src/dh-window.c:339
 msgid "Contents"
-msgstr "_Innihald"
+msgstr "Innihald"
 
 #: src/dh-window.c:350
 msgid "Search"
@@ -126,5 +127,4 @@ msgstr "Þróunarsíða DevHelp"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
-
+msgstr "Senda tilkynningu um lús í DevHelp"
