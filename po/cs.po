@@ -1,13 +1,13 @@
 # Czech translation of devhelp
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
-# Miloslav Trmac <mitr@volny.cz>, 2002.
+# Miloslav Trmac <mitr@volny.cz>, 2002, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2002-12-09 04:39+0100\n"
-"PO-Revision-Date: 2002-12-09 15:40+0100\n"
+"POT-Creation-Date: 2003-01-28 10:48+0100\n"
+"PO-Revision-Date: 2003-01-28 16:15+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,7 @@ msgstr "Program nápovědy pro vývojáře"
 msgid "'%s' is not a valid book"
 msgstr "'%s' není platná kniha"
 
-#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144 src/dh-book-old.c:234
-#: src/dh-book-old.c:245 src/dh-book-old.c:257
+#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144
 #, c-format
 msgid "Book '%s' is malformed."
 msgstr "Kniha '%s' není ve správném formátu."
@@ -37,6 +36,21 @@ msgstr "Kniha '%s' není ve správném formátu."
 #, c-format
 msgid "Couldn't find file '%s'"
 msgstr "Nemohu najít soubor '%s'"
+
+#: src/dh-book-old.c:249
+#, c-format
+msgid "Book '%s' is malformed, the parse context is invalid."
+msgstr "Kniha '%s' není ve správném formátu, kontext zpracování není platný."
+
+#: src/dh-book-old.c:260
+#, c-format
+msgid "Book '%s' is malformed, the XML is invalid."
+msgstr "Kniha '%s' není ve správném formátu, XML není platné."
+
+#: src/dh-book-old.c:274
+#, c-format
+msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
+msgstr "Kniha '%s' není ve správním formátu, nevyhovuje DTD (%s)."
 
 #: src/dh-html.c:517
 msgid ""
@@ -82,19 +96,32 @@ msgstr "_Nápověda"
 msgid "_About"
 msgstr "_O programu"
 
-#: src/dh-window.c:284
+#: src/dh-window.c:281
+#, c-format
+msgid ""
+"<b>Cound not read all books</b>\n"
+"\n"
+"The following errors occured whilst reading the books:\n"
+"%s"
+msgstr ""
+"<b>Nelze načíst všechny knihy</b>\n"
+"\n"
+"Při načítání knih došlo k následujícím chybám:\n"
+"%s"
+
+#: src/dh-window.c:298
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:295
+#: src/dh-window.c:309
 msgid "Search"
 msgstr "Hledat"
 
-#: src/dh-window.c:352
+#: src/dh-window.c:366
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
 
-#: src/dh-window.c:418
+#: src/dh-window.c:432
 #, c-format
 msgid "Open %s"
 msgstr "Otevřít %s"
