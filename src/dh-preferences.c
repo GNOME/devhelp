@@ -338,5 +338,5 @@ void
 dh_preferences_show_dialog (GtkWindow *parent)
 {
 	gtk_window_set_transient_for (GTK_WINDOW (prefs->dialog), parent); 
-	gtk_window_present (GTK_WINDOW (prefs->dialog));
+	gtk_widget_show_all (prefs->dialog);
 }

@@ -1,5 +1,12 @@
 2004-03-16  Mikael Hallendal  <micke@imendio.com>
 
+	* src/dh-preferences.c:
+	* ui/devhelp.glade:
+	- Really make the dialog transient.
+	* ui/window.ui: Hide Copy for now.
+
+2004-03-16  Mikael Hallendal  <micke@imendio.com>
+
 	* autogen.sh: Require automake 1.8
 
 2004-03-16  Mikael Hallendal  <micke@imendio.com>
