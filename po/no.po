@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.8\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2004-03-16 21:10+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-29 12:37+0200\n"
+"PO-Revision-Date: 2004-07-29 12:39+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk/Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -25,70 +25,6 @@ msgstr "Devhelp"
 #: devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Devhelp bok"
-
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Skrift for tekst med fast størrelse"
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Skrift for tekst"
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Skrift for tekst med fast bredde."
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Skrift for tekst med variabel bredde."
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "Høyde for hovedvinduet"
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr "Lokasjon for paned"
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -153,46 +89,118 @@ msgstr "_Søk:"
 msgid "Section"
 msgstr "Del"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:120
 msgid "_File"
 msgstr "_Fil"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:121
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: src/dh-window.c:122 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:114
+#: src/dh-window.c:123
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: src/dh-window.c:292
+#: src/dh-window.c:307
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Kan ikke sette brukergrensesnitt: %s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: src/dh-window.c:367 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Innhold"
 
-#: src/dh-window.c:363
+#: src/dh-window.c:378
 msgid "Search"
 msgstr "Søk"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:461
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjelpleser for utviklere for GNOME 2"
 
-#: src/dh-window.c:462
+#: src/dh-window.c:477
 msgid "Devhelp project page"
 msgstr "Nettside for Devhelp"
 
-#: src/dh-window.c:466
+#: src/dh-window.c:481
 msgid "Bug report Devhelp"
 msgstr "Feilrapport for Devhelp"
+
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Skrift for tekst med fast størrelse"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Skrift for tekst"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Skrift for tekst med fast bredde."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Skrift for tekst med variabel bredde."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Høyde for hovedvinduet"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Lokasjon for paned"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Maksimert tilstand for hovedvinduet"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "Horisontal posisjon for hovedvinduet."
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "Vertikal posisjon for hovedvinduet."
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "Høyde på hovedvinduet."
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "Plassering av separator."
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "Bredde på hovedvinduet."
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Bruk systemets skrifter"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Bruk systemets forvalgte skrifter."
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Om hovedvinduet skal startes maksimert eller ikke."
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Bredde på hovedvinduet"
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Horisontal posisjon for hovedvinduet"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Vertikal posisjon for hovedvinduet"
 
 #: ui/devhelp.glade.h:1
 msgid "    "
