@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-01-28 10:48+0100\n"
-"PO-Revision-Date: 2003-01-28 21:45+0200\n"
+"POT-Creation-Date: 2003-02-02 10:43+0100\n"
+"PO-Revision-Date: 2003-02-02 22:12--300\n"
 "Last-Translator: Artis Trops <hornet@navigator.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
 "MIME-Version: 1.0\n"
@@ -40,17 +40,17 @@ msgstr "Grāmata '%s' ir izkropļota."
 msgid "Couldn't find file '%s'"
 msgstr "Nevarēju atrast failu '%s'"
 
-#: src/dh-book-old.c:249
+#: src/dh-book-old.c:255
 #, c-format
 msgid "Book '%s' is malformed, the parse context is invalid."
 msgstr "Grāmata '%s' ir izkropļota, parsējamais konteksts ir nederīgs."
 
-#: src/dh-book-old.c:260
+#: src/dh-book-old.c:266
 #, c-format
 msgid "Book '%s' is malformed, the XML is invalid."
 msgstr "Grāmata '%s' ir izkropļota, XML ir nederīgs."
 
-#: src/dh-book-old.c:274
+#: src/dh-book-old.c:280
 #, c-format
 msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
 msgstr "Grāmata '%s' ir izkropļota, tā neatbilst DTD (%s)."
@@ -92,10 +92,10 @@ msgstr "P_alīdzība"
 msgid "_About"
 msgstr "_Par"
 
-#: src/dh-window.c:281
+#: src/dh-window.c:284
 #, c-format
 msgid ""
-"<b>Cound not read all books</b>\n"
+"<b>Could not read all books</b>\n"
 "\n"
 "The following errors occured whilst reading the books:\n"
 "%s"
@@ -105,19 +105,19 @@ msgstr ""
 "Lasot grāmatas, atgadījās sekojošas kļūdas:\n"
 "%s"
 
-#: src/dh-window.c:298
+#: src/dh-window.c:303
 msgid "Contents"
 msgstr "Saturs"
 
-#: src/dh-window.c:309
+#: src/dh-window.c:314
 msgid "Search"
 msgstr "Meklēt"
 
-#: src/dh-window.c:366
+#: src/dh-window.c:371
 msgid "A developer's help browser for GNOME 2"
 msgstr "Izstrādātāju palīdzības pārlūks GNOME 2 videi"
 
-#: src/dh-window.c:432
+#: src/dh-window.c:437
 #, c-format
 msgid "Open %s"
 msgstr "Atvērt %s"
