@@ -1,3 +1,7 @@
+2002-10-01  Peteris Krisjanis <peteris.krisjanis@os.lv>
+
+	* configure.in: Added Latvian (lv) to ALL_LINGUAS
+
 2002-09-19  Christian Neumair  <chris@gnome-de.org>
 
 	* ui/devhelp2.glade: Made info_dialog HIG-compliant.
