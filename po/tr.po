@@ -1,0 +1,129 @@
+# translation of devhelp.HEAD.po to Turkish
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Rıdvan CAN <ridvan@linuxdeneyimi.com>, 2003
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-09-11 11:24+0200\n"
+"PO-Revision-Date: 2003-09-13 04:17+0300\n"
+"Last-Translator: Rıdvan CAN <ridvan@linuxdeneyimi.com>\n"
+"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: devhelp.desktop.in.h:1
+msgid "Developer's Help program"
+msgstr "Geliştirici Yardım programı"
+
+#: devhelp.desktop.in.h:2
+msgid "Devhelp"
+msgstr "Geliştirici yardım"
+
+#: devhelp.keys.in.h:1
+msgid "Devhelp Book"
+msgstr "Geliştirici Yardım Kitabı"
+
+#: src/dh-html-gtkhtml2.c:532
+msgid ""
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
+msgstr "Soldaki içeriklerden bir konuyu seçiniz yada bulmada arama yaptığınız sekmeden anahtar bakınız."
+
+#: src/dh-main.c:259
+msgid "Specify the size and location of the window"
+msgstr "Pencere boyutunu ve konumunu belirt"
+
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+
+#: src/dh-main.c:268
+msgid "Search for a function"
+msgstr "İşlev için ara"
+
+#: src/dh-main.c:277
+msgid "Quit any running Devhelp"
+msgstr "Geliştirici yardımını çalıştırmayı bırakınız"
+
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Beklenen '%s' '%s' alındı %d satırı, %d sütunu"
+
+#: src/dh-parser.c:120
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "'%s' geçersiz isim alanı %d, %d sütunu"
+
+#: src/dh-parser.c:149
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "Başlık, ısim ve bağlantı öğeleri gerekli %d satırı, %d sütunu"
+
+#: src/dh-parser.c:202
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "İsim ve bağlantı öğeleri gerekli iç <sub> %d bağlı, %d sütunu"
+
+#: src/dh-parser.c:250
+#, c-format
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "İsim ve bağlantı öğeleri gerekli iç <function> %d bağlı, %d sütunu"
+
+#: src/dh-parser.c:337 src/dh-parser.c:423
+msgid "Could not create book parser"
+msgstr "Kitap ayrıştırıcısı oluşturulamadı"
+
+#: src/dh-parser.c:347 src/dh-parser.c:433
+msgid "Could not create markup parser"
+msgstr "Biçimleme ayrıştırıcısı oluşturulamadı"
+
+#: src/dh-parser.c:479
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "'%s' kitabı açılamadı: %s"
+
+#: src/dh-search.c:417
+msgid "_Search:"
+msgstr "_Ara:"
+
+#: src/dh-search.c:461
+msgid "Section"
+msgstr "Bölüm"
+
+#: src/dh-window.c:101
+msgid "_File"
+msgstr "_Dosya"
+
+#: src/dh-window.c:102
+msgid "_Go"
+msgstr "_Git"
+
+#: src/dh-window.c:103
+msgid "_Help"
+msgstr "_Yardım"
+
+#: src/dh-window.c:339
+msgid "Contents"
+msgstr "İçerikler"
+
+#: src/dh-window.c:350
+msgid "Search"
+msgstr "Ara"
+
+#: src/dh-window.c:415
+msgid "A developer's help browser for GNOME 2"
+msgstr "GNOME 2 için geliştiricinin yardım tarayıcısı"
+
+#: src/dh-window.c:430
+msgid "Devhelp project page"
+msgstr "Devhelp proje sayfası"
+
+#: src/dh-window.c:434
+msgid "Bug report Devhelp"
+msgstr "Devhelp hata raporu"
+
