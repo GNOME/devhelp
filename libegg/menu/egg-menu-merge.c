@@ -934,7 +934,7 @@ update_node (EggMenuMerge *self, GNode *node)
 
   info = NODE_INFO(node);
 
-  g_print("update_node name=%s dirty=%d (", info->name, info->dirty);
+  /*g_print("update_node name=%s dirty=%d (", info->name, info->dirty);
   for (tmp = info->uifiles; tmp != NULL; tmp = tmp->next)
     {
       NodeUIReference *ref = tmp->data;
@@ -942,7 +942,7 @@ update_node (EggMenuMerge *self, GNode *node)
       if (tmp->next)
 	g_print(", ");
     }
-  g_print(")\n");
+    g_print(")\n");*/
 
   if (NODE_INFO(node)->dirty)
     {

@@ -1,3 +1,7 @@
+2002-11-04  Richard Hult  <rhult@codefactory.se>
+
+	* egg-menu-merge.c (update_node): Shh.
+
 2002-10-05  Richard Hult  <rhult@codefactory.se>
 
 	* egg-menu-merge.c (update_node): Set the accel group on the menu,

@@ -6,6 +6,9 @@
 
 2002-11-04  Richard Hult  <rhult@codefactory.se>
 
+	* src/dh-window.c (window_merge_add_widget): Remove debug.
+	(window_init): Set accel group on window.
+
 	* src/dh-search.c (dh_search_new): Expand and fill when packing
 	search entry.
 

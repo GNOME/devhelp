@@ -173,6 +173,9 @@ window_init (DhWindow *window)
 	
 	priv->merge   = egg_menu_merge_new ();
 
+	gtk_window_add_accel_group (GTK_WINDOW (window),
+				    priv->merge->accel_group);
+	
 	priv->main_box = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (priv->main_box);
 	
@@ -436,8 +439,6 @@ window_merge_add_widget (EggMenuMerge *merge,
 
 	priv = window->priv;
 
-	g_print ("Fooooo\n");
-	
 	gtk_box_pack_start (GTK_BOX (priv->menu_box), widget,
 			    FALSE, FALSE, 0);
 	
