@@ -1,3 +1,7 @@
+2004-05-18  Mikael Hallendal  <micke@imendio.com>
+
+	* autogen.sh: Use automake 1.7
+
 2004-05-06  Mikael Hallendal  <micke@imendio.com>
 
 	* src/dh-keyword-model.c: (dh_keyword_model_filter):

@@ -3,8 +3,8 @@
 
 : ${AUTOCONF=autoconf}
 : ${AUTOHEADER=autoheader}
-: ${AUTOMAKE=automake-1.8}
-: ${ACLOCAL=aclocal-1.8}
+: ${AUTOMAKE=automake-1.7}
+: ${ACLOCAL=aclocal-1.7}
 : ${LIBTOOLIZE=libtoolize}
 : ${INTLTOOLIZE=intltoolize}
 : ${LIBTOOL=libtool}
