@@ -27,6 +27,7 @@ devhelp_2_LTLIBRARIES =				\
 	libdevhelp2.la
 
 libdevhelp2_la_SOURCES =			\
+	dh-marshal-main.c			\
 	dh-base.c				\
 	dh-base.h				\
 	dh-book-parser.c			\
@@ -41,8 +42,6 @@ libdevhelp2_la_SOURCES =			\
 	dh-keyword-model.h			\
 	dh-link.c				\
 	dh-link.h				\
-	dh-marshal.c				\
-	dh-marshal.h				\
 	dh-profile.c				\
 	dh-profile.h				\
 	dh-search.c				\
@@ -67,10 +66,7 @@ test_profile_LDADD =  				\
 	@DEVHELP_LIBS@   			\
 	libdevhelp2.la
 
-marshal_sources = 		\
-        dh-marshal.h 		\
-        dh-marshal.c  	 	\
-        $(NULL)
+dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
 dh-marshal.h: dh-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=dh_marshal > $@

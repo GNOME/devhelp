@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -26,24 +26,10 @@
 #include <glib.h>
 #include <libgnomevfs/gnome-vfs.h>
 
-#define URL_DELIM "../"
-#define URL_DELIM_LENGTH 3
-
-gchar *        dh_util_url_split             (const gchar          *url,
-					      gchar               **anchor);
-gchar *        dh_util_url_get_book_name     (const gchar          *url);
-
-gint           dh_util_url_get_un_depth      (const gchar          *url);
-
-gchar *        dh_util_url_get_anchor        (const gchar          *url);
-
-gchar *        dh_util_uri_get_anchor        (const GnomeVFSURI    *uri);
-
 /* Taken from gnome-vfs CVS. */
 gchar *        dh_util_uri_relative_new      (const gchar          *text_uri,
 					      const gchar          *base_uri);
 
 gboolean       dh_util_uri_is_relative       (const gchar          *uri);
-
 
 #endif /* __DH_UTIL_H__ */

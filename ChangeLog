@@ -1,5 +1,17 @@
 2002-11-03  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/dh-util.[ch]: 
+	(dh_util_url_split):
+	(dh_util_url_get_book_name):
+	(dh_util_url_get_un_depth):
+	(dh_util_url_get_anchor):
+	(dh_util_uri_get_anchor):
+	-Removed unused functions.
+	
+	* src/Makefile.am: Fix building of dh-marshal.[ch]
+
+	* src/dh-window.c (dh_window_search): silent warning
+
 	* ui/GNOME_DevHelp.ui:
 	* ui/GNOME_DevHelp_Controller.ui:
 	- Removed, not using BonoboUI anymore.
