@@ -1,6 +1,12 @@
+2001-10-20  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/bookshelf.c (version_strcmp): style fix
+	(bookshelf_read_books_dir): style fix.
+
 2001-10-20  Johan Dahlin  <zilch.am@home.se>
 
-	* src/main.c (main): Set wm icon by calling gnome_window_icon_set_default_from_file.
+	* src/main.c (main): Set wm icon by calling 
+	gnome_window_icon_set_default_from_file.
 
 	* debian/control (Depends): Remove dependency of libgnome-vfs-dev
 

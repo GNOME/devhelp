@@ -179,7 +179,8 @@ bookshelf_read_books_dir (GnomeVFSURI *books_uri)
 	/* If no books are found. */
 	if (result == GNOME_VFS_ERROR_NOT_FOUND) {
 		return NULL;
-	} else if (result != GNOME_VFS_OK) {
+	} 
+	else if (result != GNOME_VFS_OK) {
 		g_warning (_("Problems when reading books: %s\n"), 
 			   gnome_vfs_result_to_string (result));
 		return NULL;
@@ -353,7 +354,8 @@ version_strcmp (Book *book1, Book *book2)
 	
 	if (version1 == NULL && book2 == NULL) {
 		return 0;
-	} else if (version1 == NULL || version2 == NULL) {
+	} 
+	else if (version1 == NULL || version2 == NULL) {
 		return -1;
 	} else {
 		return strcmp (version1, version2);
