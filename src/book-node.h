@@ -23,6 +23,8 @@
 #ifndef __BOOK_NODE_H__
 #define __BOOK_NODE_H__
 
+#include <libgnomevfs/gnome-vfs.h>
+
 typedef struct _Document    Document;
 typedef struct _BookNode    BookNode;
 

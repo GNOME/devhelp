@@ -1,3 +1,12 @@
+2001-08-05  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/ui.c: just some style cleanups.
+
+	* src/bookmark-manager.c: fixed to work fine with Document/anchor
+	way of doing it.
+
+	* src/book-node.h: include libgnomevfs/gnome-vfs.h
+
 2001-08-04  Johan Dahlin  <zilch.am@home.se>
 
 	* misc/devhelp.vim: Added. Thanks goes to Gert.

@@ -67,19 +67,19 @@ devhelp_create_pixmaps (DevHelp *devhelp)
 	pixmaps = g_new0 (DevHelpPixmaps, 1);
 	style   = devhelp->window->style;
 	
-	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR"/images/devhelp/book_red.xpm");
+	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/book_red.xpm");
 	gdk_pixbuf_render_pixmap_and_mask (pixbuf,
 					   &pixmaps->pixmap_closed,
 					   &pixmaps->mask_closed,
 					   127);
 					   
-	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR"/images/devhelp/book_open.xpm");
+	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/book_open.xpm");
 	gdk_pixbuf_render_pixmap_and_mask (pixbuf,
 					   &pixmaps->pixmap_opened,
 					   &pixmaps->mask_opened,
 					   127);
 	
-	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR"/images/devhelp/helpdoc.xpm");
+	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/helpdoc.xpm");
 	gdk_pixbuf_render_pixmap_and_mask (pixbuf,
 					   &pixmaps->pixmap_helpdoc,
 					   &pixmaps->mask_helpdoc,
@@ -110,6 +110,7 @@ devhelp_insert_book_node (DevHelp          *devhelp,
 		/* Is the book hidden, then skip */
 		document = book_node_get_document (node);
 		book = document_get_book (document);
+
 		if (book_is_visible (book) == FALSE) {
 			return;
 		}
@@ -144,7 +145,7 @@ devhelp_insert_book_node (DevHelp          *devhelp,
 	
 	chapters = book_node_get_contents (node);
 	
-	for (;chapters; chapters = chapters->next) {
+	for (; chapters; chapters = chapters->next) {
 		devhelp_insert_book_node (devhelp, 
 					  ctree_node,
 					  (BookNode *) chapters->data,
@@ -193,9 +194,7 @@ gtk_ctree_goto (GtkCTree *ctree,
 	g_return_if_fail (ctree != NULL);
 	g_return_if_fail (GTK_IS_CTREE (ctree));
 	
-	node = gtk_ctree_find_by_row_data (ctree,
-					   NULL,
-					   book_node);
+	node = gtk_ctree_find_by_row_data (ctree, NULL, book_node);
 	
 	if (node) {
 		row = GTK_CTREE_ROW (node);
@@ -223,15 +222,16 @@ gtk_clist_if_exact_go_there (GtkCList    *clist,
 	
 	i = 0;
 	full_hit = FALSE;
+
 	while (gtk_clist_get_text (clist, i++, 0, &text)) {
 		if (strcmp (text, string) == 0) {
 			full_hit = TRUE;
-			gtk_clist_moveto (clist, i-1, 0, 0, 0);
-			gtk_clist_select_row (clist, i-1, 0);
+			gtk_clist_moveto (clist, i - 1, 0, 0, 0);
+			gtk_clist_select_row (clist, i - 1, 0);
 			break;
 		}
 	}
-
+	
 	return full_hit;
 }
 
@@ -855,11 +855,13 @@ html_link_clicked_cb (GtkWidget   *widget,
 			gtk_signal_handler_block_by_func (GTK_OBJECT (devhelp->ctree),
 							  ctree_select_row_cb,
 							  devhelp);
+
 			book_node = bookshelf_find_node (devhelp->bookshelf,
 							 document,
 							 anchor);
-
+			
 			gtk_ctree_goto (devhelp->ctree, book_node); 
+			
 			gtk_signal_handler_unblock_by_func (GTK_OBJECT (devhelp->ctree),
 							    ctree_select_row_cb,
 							    devhelp);

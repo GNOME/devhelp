@@ -25,6 +25,7 @@
 
 #include <gtk/gtkobject.h>
 #include <gtk/gtktypeutils.h>
+#include "book-node.h"
 
 #define TYPE_BOOKMARK_MANAGER        (bookmark_manager_get_type ())
 #define BOOKMARK_MANAGER(o)          (GTK_CHECK_CAST ((o), TYPE_BOOKMARK_MANAGER, BookmarkManager))
@@ -58,17 +59,18 @@ struct _BookmarkManagerClass
 
 struct _Bookmark 
 {
-	gchar   *name;
-	gchar   *url;
+	gchar            *name;
+	const Document   *document;
+	gchar            *anchor;
 };
-
 
 GtkType           bookmark_manager_get_type      (void);
 BookmarkManager * bookmark_manager_new           (void);
 
 const Bookmark *  bookmark_manager_add           (BookmarkManager   *bm,
 						  const gchar       *name,
-						  const gchar       *url);
+						  const Document    *document,
+						  const gchar       *anchor);
 
 void              bookmark_manager_remove        (BookmarkManager   *bm,
 						  Bookmark          *bookmark);

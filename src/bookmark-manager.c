@@ -146,7 +146,7 @@ bookmark_free (Bookmark *bookmark)
 	g_return_if_fail (bookmark != NULL);
 	
 	g_free (bookmark->name);
-	g_free (bookmark->url);
+	g_free (bookmark->anchor);
 	g_free (bookmark);
 }
 
@@ -181,7 +181,10 @@ bookmark_manager_new ()
 }
 
 const Bookmark *
-bookmark_manager_add (BookmarkManager *bm, const gchar *name, const gchar *url)
+bookmark_manager_add (BookmarkManager   *bm, 
+		      const gchar       *name, 
+		      const Document    *document,
+		      const gchar       *anchor)
 {
 	BookmarkManagerPriv   *priv;
 	Bookmark              *bookmark;
@@ -189,14 +192,15 @@ bookmark_manager_add (BookmarkManager *bm, const gchar *name, const gchar *url)
 	g_return_val_if_fail (bm != NULL, NULL);
 	g_return_val_if_fail (IS_BOOKMARK_MANAGER (bm), NULL);
 	g_return_val_if_fail (name != NULL, NULL);
-	g_return_val_if_fail (url != NULL, NULL);
+	g_return_val_if_fail (document != NULL, NULL);
 	
 	priv = bm->priv;
 	
 	bookmark = g_new0 (Bookmark, 1);
 
-	bookmark->name = g_strstrip (g_strdup (name));
-	bookmark->url  = g_strdup (url);
+	bookmark->name     = g_strstrip (g_strdup (name));
+	bookmark->document = document;
+	bookmark->anchor   = g_strdup (anchor);
 
 	g_hash_table_insert (priv->bookmarks, bookmark->name, bookmark);
 
