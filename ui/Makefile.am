@@ -4,9 +4,9 @@ image_DATA = \
 	book_closed.png \
 	helpdoc.png
 
-gladedir = $(datadir)/devhelp/glade
-glade_DATA = \
-	devhelp2.glade
+#gladedir = $(datadir)/devhelp/glade
+#glade_DATA = \
+#	devhelp2.glade
 
 appicondir = $(datadir)/pixmaps
 appicon_DATA = devhelp.png
@@ -17,6 +17,6 @@ ui_DATA = 				\
 	GNOME_DevHelp_Controller.ui
 
 EXTRA_DIST = $(image_DATA) 		\
-	     $(glade_DATA)		\
 	     $(appicon_DATA)		\
 	     $(ui_DATA)
+#	     $(glade_DATA)		\
