@@ -34,6 +34,8 @@
 static void book_index_class_init         (BookIndexClass     *klass);
 static void book_index_init               (BookIndex          *index);
 
+static void book_index_destroy            (GtkObject          *object);
+
 static void book_index_populate_tree      (BookIndex          *index);
 static void book_index_insert_book_node   (BookIndex          *index,
                                            GtkCTreeNode       *parent,
@@ -106,10 +108,13 @@ book_index_class_init (BookIndexClass *klass)
 
         object_class = (GtkObjectClass *) klass;
         ctree_class  = (GtkCTreeClass *)  klass;
-
         parent_class = gtk_type_class (gtk_ctree_get_type ());
 
-        ctree_class->tree_select_row = book_index_select_row;
+	
+	object_class->destroy        = book_index_destroy;
+
+	ctree_class->tree_select_row = book_index_select_row;
+
 
         signals[URI_SELECTED] =
                 gtk_signal_new ("uri_selected",
@@ -136,6 +141,27 @@ book_index_init (BookIndex *index)
         index->priv           = priv;
 
         book_index_create_pixmaps (index);
+}
+
+static void
+book_index_destroy (GtkObject *object)
+{
+	BookIndex       *index;
+	BookIndexPriv   *priv;
+	
+	g_return_if_fail (object != NULL);
+	g_return_if_fail (IS_BOOK_INDEX (object));
+	
+	index = BOOK_INDEX (object);
+	priv  = index->priv;
+	
+	if (priv->pixmaps) {
+		g_free (priv->pixmaps);
+	}
+
+	g_free (priv);
+	
+	index->priv = NULL;
 }
 
 static void

@@ -1,5 +1,6 @@
-/* gnome-BookIndex.c
- * Copyright (C) 2001  J. Arthur Random
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/*
+ * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -15,6 +16,8 @@
  * License along with this program; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
 #ifndef __BOOK_INDEX_H__

@@ -1,5 +1,12 @@
 2001-08-12  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/book-index.c (book_index_class_init): override
+	gtkobject->destroy. 
+
+	* src/book-index.h: fixed the header.
+
+	* src/book-index.c (book_index_destroy): added/impl.
+
 	* src/ui.c:
 	(gtk_ctree_goto): removed.
 	(ctree_select_row_cb): removed.
