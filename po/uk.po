@@ -1,105 +1,39 @@
 # Ukrainian translation of devhelp module.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
-# Yuriy Syrota <yuri@renome.rovno.ua>, 2003.
+# Yuriy Syrota <rasta@cvs.gnome.org>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.5.0\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-04-06 13:32+0300\n"
 "PO-Revision-Date: 2003-02-25 03:23--500\n"
-"Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
+"Last-Translator: Yuriy Syrota <rasta@cvs.gnome.org>\n"
 "Language-Team: Ukrainian <linux@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
-msgstr "Програма довідки для розробників"
+msgstr "Довідкова програма для розробників"
 
 #: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
-#, fuzzy
 msgid "Devhelp"
-msgstr "DevHelp"
+msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "DevHelp"
-
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
+msgstr "Книга Devhelp"
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
-msgstr ""
+msgstr "Вказати розмір і розміщення вікна"
 
 #: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgstr "ШИРИНАxВИСОТА+X-ЗМІЩЕННЯ+Y-ЗМІЩЕННЯ"
 
 #: src/dh-main.c:268
 msgid "Search for a function"
@@ -107,142 +41,196 @@ msgstr "Знайти функцію"
 
 #: src/dh-main.c:277
 msgid "Quit any running Devhelp"
-msgstr "Вийти зі всіх запущених екземплярів DevHelp"
+msgstr "Вийти зі всіх запущених екземплярів Devhelp"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Очікувалось \"%s\", а отримано \"%s\" в рядку %d, позиція %d"
 
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Неправильний простір назв \"%s\" в рядку %d, позиція %d"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "Необхідні елементи title, name і link в рядку line %d, позиція %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "Необхідні елементи name і link в <sub> в рядку %d, позиція %d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
+msgstr "Необхідні елементи name і link в <function> в рядку %d, позиція %d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
-msgstr ""
+msgstr "Не вдалось створити аналізатор книги"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Не вдалось створити аналізатор розмітки"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Не вдалось розтиснути книгу \"%s\": %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Пошук"
+msgstr "По_шук:"
 
 #: src/dh-search.c:461
 msgid "Section"
 msgstr "Розділ"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:112
 msgid "_File"
 msgstr "_Файл"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:113
 msgid "_Edit"
-msgstr ""
+msgstr "_Правка"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: src/dh-window.c:114 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Перейти"
 
-#: src/dh-window.c:114
+#: src/dh-window.c:115
 msgid "_Help"
 msgstr "_Довідка"
 
-#: src/dh-window.c:292
+#: src/dh-window.c:300
 #, c-format
 msgid "Cannot set UI: %s"
-msgstr ""
+msgstr "Не вдалось встановити ІК: %s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: src/dh-window.c:355 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Зміст"
 
-#: src/dh-window.c:363
+#: src/dh-window.c:366
 msgid "Search"
 msgstr "Пошук"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:449
 msgid "A developer's help browser for GNOME 2"
 msgstr "Переглядач довідки для розробників"
 
-#: src/dh-window.c:462
+#: src/dh-window.c:465
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Сторінка проекту Devhelp"
 
-#: src/dh-window.c:466
+#: src/dh-window.c:469
 msgid "Bug report Devhelp"
-msgstr ""
+msgstr "Звіт про помилку в Devhelp."
+
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Шрифт для фіксованого тексту"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Шрифт для тексту"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Шрифт для тексту із фіксованою шириною."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Шрифт для тексту із змінною шириною."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Висота вікна"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Розміщення розділювача"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Максимізоване головне вікно"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "Горизонтальна позиція головного вікна."
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "Вертикальна позиція головного вікна."
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "Висота головного вікна."
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "Розміщення розділювача вікна."
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "Ширина головного вікна"
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Використовувати системні шрифти"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Використовувати системні типові шрифти."
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Чи створювати головне вікно максимізованим."
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Ширина головного вікна"
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Горизонтальна позиція головного вікна"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Вертикальна позиція головного вікна"
 
 #: ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Шрифти</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "Фіксованої ширини:"
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
-msgstr ""
+msgstr "Вподобання"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "Змінної ширини:"
 
 #: ui/devhelp.glade.h:8
 msgid "_Back"
-msgstr ""
+msgstr "На_зад"
 
 #: ui/devhelp.glade.h:9
 msgid "_Forward"
-msgstr ""
+msgstr "В_перед"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
-
-#~ msgid "_Search for:"
-#~ msgstr "_Знайти:"
-
-#~ msgid "_About"
-#~ msgstr "_Про"
-
-#~ msgid ""
-#~ "<b>Could not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Не вдалося зчитати всі книги</b>\n"
-#~ "\n"
-#~ "Такі помилки сталися під час зчитування книг:\n"
-#~ "%s"
+msgstr "Використовувати системний _шрифт"
