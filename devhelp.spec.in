@@ -52,3 +52,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/devhelp
 %{_datadir}/locale/*/LC_MESSAGES/*.mo
 %{_datadir}/pixmaps/*
+%{_datadir}/mime-info/devhelp.mime
+%{_datadir}/mime-info/devhelp.keys
