@@ -58,6 +58,7 @@ dh_get_socket_filename (void)
 	return ret;
 }
 
+static gboolean
 dh_client_data_cb (GIOChannel   *source,
 		   GIOCondition  condition,
 		   gpointer      data)
@@ -314,10 +315,8 @@ main (int argc, char **argv)
 
 	/* Exit if we're already running. */
 	if (fd >= 0) {
-#if GTK_CHECK_VERSION(2,2,0)
 		gdk_notify_startup_complete ();
-#endif
-		dh_send_raise_msg ();
+		dh_send_raise_msg (fd);
 		return 0;
 	}
 
