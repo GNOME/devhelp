@@ -1,3 +1,9 @@
+2002-11-08  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/dh-html.c (html_get_full_uri): new function, used to check
+	  if url is relative and try to create a full uri from it.
+	(html_url_requested_cb): implemented, fixes #92179
+
 2002-11-04  Richard Hult  <rhult@codefactory.se>
 
 	* src/dh-window.c (dh_window_search): Switch to the search page

@@ -67,17 +67,17 @@ typedef struct {
 	gchar           *url;
 } ReaderQueueData;
 
-static void     html_init                  (DhHtml         *html);
-static void     html_class_init            (DhHtmlClass    *klass);
+static void     html_init                  (DhHtml              *html);
+static void     html_class_init            (DhHtmlClass         *klass);
 
 static gpointer html_reader_thread         (ReaderThreadData    *th_data);
-static void     html_change_read_stamp     (DhHtml         *html);
+static void     html_change_read_stamp     (DhHtml              *html);
 static void     html_url_requested_cb      (HtmlDocument        *doc,
 					    const gchar         *uri,
 					    HtmlStream          *stream,
 					    gpointer             data);
 static ReaderQueueData * 
-html_q_data_new                            (DhHtml         *html,
+html_q_data_new                            (DhHtml              *html,
 					    gint                 stamp, 
 					    const gchar         *url,
 					    const gchar         *anchor,
@@ -89,10 +89,12 @@ static void     html_q_data_free           (ReaderQueueData     *q_data);
 static void     html_link_clicked_cb       (HtmlDocument        *doc, 
 					    const gchar         *url, 
 					    gpointer             data);
-static gboolean html_check_read_cancelled  (DhHtml         *html,
+static gboolean html_check_read_cancelled  (DhHtml              *html,
 					    gint                 stamp);
 static gchar *  html_split_uri             (const gchar         *uri,
 					    gchar              **anchor);
+static gchar *  html_get_full_uri          (DhHtml              *html,
+					    const gchar         *url);
 
 #define BUFFER_SIZE 16384
 
@@ -352,13 +354,18 @@ html_idle_check_queue (ReaderThreadData *th_data)
 
 static void
 html_url_requested_cb (HtmlDocument *doc,
-		       const gchar  *uri,
+		       const gchar  *url,
 		       HtmlStream   *stream,
 		       gpointer      data)
 {
-        DhHtml     *html;
-        DhHtmlPriv *priv;
-
+        DhHtml           *html;
+        DhHtmlPriv       *priv;
+	GnomeVFSHandle   *handle;
+	GnomeVFSResult    result;
+	gchar             buffer[BUFFER_SIZE];
+	GnomeVFSFileSize  read_len;
+	gchar            *full_uri;
+	
         d(puts(__FUNCTION__));
 
         html = DH_HTML (data);
@@ -371,7 +378,25 @@ html_url_requested_cb (HtmlDocument *doc,
 				     html_stream_cancelled,
 				     html);
 	
-	/* Read this ... */
+	full_uri = html_get_full_uri (html, url);
+	
+	result = gnome_vfs_open (&handle, full_uri, GNOME_VFS_OPEN_READ);
+
+	if (result != GNOME_VFS_OK) {
+		g_warning ("Failed to open: %s", full_uri);
+		g_free (full_uri);
+
+		return;
+	}
+
+	g_free (full_uri);
+
+	while (gnome_vfs_read (handle, buffer, BUFFER_SIZE, &read_len) ==
+	       GNOME_VFS_OK) {
+		html_stream_write (stream, buffer, read_len);
+	}
+
+	gnome_vfs_close (handle);
 }
 
 static ReaderQueueData * 
@@ -420,25 +445,17 @@ html_link_clicked_cb (HtmlDocument *doc, const gchar *url, gpointer data)
 {
 	DhHtml     *html;
         DhHtmlPriv *priv;
-	gchar      *full_uri = NULL;
+	gchar      *full_uri;
 	
         html = DH_HTML (data);
         priv = html->priv;
 
-	if (priv->base_url) {
-		if (dh_util_uri_is_relative (url)) {
-			full_uri = dh_util_uri_relative_new (url, 
-							     priv->base_url);
-		}
-	}
-	
-	if (!full_uri) {
-		full_uri = g_strdup (url);
-	}
+	full_uri = html_get_full_uri (html, url);
 	
 	d(g_print ("Full URI: %s\n", full_uri));
 	
 	g_signal_emit (html, signals[URI_SELECTED], 0, full_uri);
+
 	g_free (full_uri);
 }
 
@@ -477,6 +494,22 @@ html_split_uri (const gchar *uri, gchar **anchor)
 	}
 
 	return ret_val;
+}
+
+static gchar *
+html_get_full_uri (DhHtml *html, const gchar *url)
+{
+	DhHtmlPriv *priv;
+	
+	priv = html->priv;
+	
+	if (priv->base_url) {
+		if (dh_util_uri_is_relative (url)) {
+			return dh_util_uri_relative_new (url, priv->base_url);
+		}
+	}
+	
+	return g_strdup (url);
 }
 
 GtkWidget *
