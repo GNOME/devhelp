@@ -252,7 +252,7 @@ html_widget_open_uri (HtmlWidget          *html_widget,
 		} else {
 			anchor = util_uri_get_anchor (uri);
 			if (anchor) {
-				g_print ("Jumping to %s\n", anchor);
+				d(g_print ("Jumping to %s\n", anchor));
 				
 				gtk_html_jump_to_anchor (GTK_HTML (html_widget),
 							 anchor + 1);

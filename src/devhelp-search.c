@@ -223,7 +223,8 @@ devhelp_search_entry_key_press_cb (GtkEditable     *editable,
 				   DevHelpSearch   *search)
 {
         DevHelpSearchPriv   *priv;
-        
+	gint                 position;
+	
         g_return_if_fail (editable != NULL);
         g_return_if_fail (GTK_IS_EDITABLE (editable));
         g_return_if_fail (search != NULL);
@@ -231,13 +232,37 @@ devhelp_search_entry_key_press_cb (GtkEditable     *editable,
         
         priv = search->priv;
 
-        switch (event->keyval) {
+	switch (event->keyval) {
  	case GDK_Tab:
                 gtk_editable_select_region (editable, 0, 0);
                 gtk_editable_set_position (editable, -1);
                 return TRUE;
                 break;
-        default:
+
+		/* Huge hack, needed to stop bonobo from messing with
+		 * the focus handling.
+		 */
+	case GDK_Left:
+	case GDK_KP_Left:
+		position = gtk_editable_get_position (GTK_EDITABLE (editable));
+		if (position > 0) {
+			gtk_editable_set_position (GTK_EDITABLE (editable), position - 1);
+		}
+		
+		gtk_signal_emit_stop_by_name (GTK_OBJECT (editable), "key_press_event");
+                return TRUE;
+		break;
+		
+	case GDK_Right:
+	case GDK_KP_Right:
+		position = gtk_editable_get_position (GTK_EDITABLE (editable));
+		gtk_editable_set_position (GTK_EDITABLE (editable), position + 1);
+		
+		gtk_signal_emit_stop_by_name (GTK_OBJECT (editable), "key_press_event");
+                return TRUE;
+		break;
+	
+	default:
                 break;
         }
 
@@ -416,7 +441,7 @@ devhelp_search_new (Bookshelf *bookshelf)
         priv->clist     = gtk_clist_new (1);
         priv->entry     = gtk_entry_new ();
 	priv->fd        = bookshelf_get_function_database (bookshelf);
-        
+
         gtk_signal_connect (GTK_OBJECT (priv->clist), 
                             "select_row",
                             GTK_SIGNAL_FUNC (devhelp_search_clist_select_row_cb),
@@ -426,7 +451,7 @@ devhelp_search_new (Bookshelf *bookshelf)
                             "activate",
                             GTK_SIGNAL_FUNC (devhelp_search_entry_activate_cb),
                             search);
-        
+
         gtk_signal_connect (GTK_OBJECT (priv->entry),
                             "changed",
                             GTK_SIGNAL_FUNC (devhelp_search_entry_changed_cb),

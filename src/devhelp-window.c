@@ -196,6 +196,77 @@ devhelp_window_destroy (GtkObject *object)
 }
 
 static void
+note_change_page (GtkWidget *child, GtkNotebook *notebook)
+{
+	gint page = gtk_notebook_page_num (notebook, child);
+
+	gtk_notebook_set_page (notebook, page);
+}
+
+static void
+note_page_mapped (GtkWidget *page, GtkAccelGroup *accel_group)
+{
+	GtkWidget *dialog = gtk_widget_get_toplevel (GTK_WIDGET (page));
+
+	gtk_window_add_accel_group (GTK_WINDOW (dialog), accel_group);
+}
+
+static void
+note_page_unmapped (GtkWidget *page, GtkAccelGroup *accel_group)
+{
+	GtkWidget *dialog = gtk_widget_get_toplevel (GTK_WIDGET (page));
+
+	gtk_window_remove_accel_group (GTK_WINDOW (dialog), accel_group);
+}
+
+static void
+note_page_setup_signals (GtkWidget *page, GtkAccelGroup *accel)
+{
+	gtk_accel_group_ref (accel);
+	gtk_signal_connect_full (GTK_OBJECT (page),
+			    "map",
+			    GTK_SIGNAL_FUNC (note_page_mapped), NULL, 
+			    accel, (GtkDestroyNotify) gtk_accel_group_unref,
+			    FALSE, FALSE);
+	gtk_accel_group_ref (accel);
+	gtk_signal_connect_full (GTK_OBJECT (page),
+			    "unmap",
+			    GTK_SIGNAL_FUNC (note_page_unmapped), NULL,
+			    accel, (GtkDestroyNotify) gtk_accel_group_unref,
+			    FALSE, FALSE);
+}
+
+static void
+notebook_append_page_with_accelerator (GtkNotebook   *notebook,
+				       GtkWidget     *page,
+				       gchar         *label_text,
+				       GtkAccelGroup *accel)
+{
+	GtkWidget     *label;
+	guint          key;
+
+	label = gtk_label_new (NULL);
+	key = gtk_label_parse_uline (GTK_LABEL (label), label_text);
+	gtk_widget_show (label);
+
+	note_page_setup_signals (page, accel);
+
+	gtk_notebook_append_page (notebook, page, label);
+	
+	if (key) {
+		gtk_widget_add_accelerator (page, "grab_focus",
+					    accel,
+					    key,
+					    GDK_MOD1_MASK,
+					    0);
+		gtk_signal_connect (GTK_OBJECT (page),
+				    "grab_focus",
+				    GTK_SIGNAL_FUNC (note_change_page),
+				    notebook);
+	}
+}
+
+static void
 devhelp_window_populate (DevHelpWindow *window)
 {
         DevHelpWindowPriv    *priv;
@@ -207,7 +278,8 @@ devhelp_window_populate (DevHelpWindow *window)
 	gint                  zoom_level;
 	GtkWidget            *html_sw;
 	GtkWidget            *frame;
-	
+	GtkAccelGroup        *accel;
+	 
         g_return_if_fail (window != NULL);
         g_return_if_fail (IS_DEVHELP_WINDOW (window));
         
@@ -303,9 +375,12 @@ devhelp_window_populate (DevHelpWindow *window)
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 
-	gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-				  priv->index, 
-				  gtk_label_new (_("Contents"))); 
+	accel = gtk_accel_group_new ();
+
+	notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
+					       priv->index,
+					       _("_Contents"),
+					       accel);
 
 	gtk_box_pack_start (GTK_BOX (priv->search_box), 
 			    priv->search_entry, 
@@ -314,10 +389,10 @@ devhelp_window_populate (DevHelpWindow *window)
 	gtk_box_pack_end_defaults (GTK_BOX (priv->search_box),
 				   priv->search_list); 
 
-
-	gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), 
-				  priv->search_box, 
-				  gtk_label_new (_("Search")));
+	notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
+					       priv->search_box,
+					       _("_Search"),
+					       accel);
 
 	gtk_widget_show_all (priv->hpaned);
 

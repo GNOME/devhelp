@@ -1,3 +1,20 @@
+2001-10-13  Richard Hult  <rhult@codefactory.se>
+
+	* devhelp.desktop.in: s/Devhelp/DevHelp/.
+
+	* src/html-widget.c (html_widget_open_uri): Comment out annoying
+	debugging message.
+
+	* src/devhelp-search.c (devhelp_search_entry_key_press_cb): 
+	Ugly hack to stop the entry to lose focus when using the
+	left/right arrows to navigate the text.
+
+	* src/devhelp-window.c (note_change_page, note_page_mapped,
+	note_page_unmapped, note_page_setup_signals,
+	notebook_append_page_with_accelerator): Added helper functions to
+	add accelerators to the notebook pages.
+	(devhelp_window_populate): Use them here.
+
 2001-10-11  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/Makefile.am (EXTRA_DIST): added GNOME_DevHelp.oaf.in.in

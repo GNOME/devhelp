@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-10-13 02:13+0200\n"
+"POT-Creation-Date: 2001-10-13 11:46+0200\n"
 "PO-Revision-Date: 2001-10-13 02:14+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -22,8 +22,8 @@ msgid "Developers Help program"
 msgstr "Hjälpprogram för utvecklare"
 
 #: devhelp.desktop.in.h:2 ui/devhelp.glade.h:10
-msgid "Devhelp"
-msgstr "Devhelp"
+msgid "DevHelp"
+msgstr "DevHelp"
 
 #: src/books-dialog.c:315
 msgid "Choose a book..."
@@ -49,23 +49,15 @@ msgstr "Dokumentet är av fel typ, fick %s, förväntade mig \"booklist\": %s"
 msgid "Failed to open file %s for writing."
 msgstr "Misslyckades med att öppna filen %s för skrivning."
 
-#: src/devhelp-window.c:308
-msgid "Contents"
-msgstr "Innehåll"
-
-#: src/devhelp-window.c:320 ui/devhelp.glade.h:24
-msgid "Search"
-msgstr "Sök"
-
-#: src/devhelp-window.c:443
+#: src/devhelp-window.c:519
 msgid "(C) Copyright 2001, Johan Dahlin"
 msgstr "© Copyright 2001, Johan Dahlin"
 
-#: src/devhelp-window.c:445
+#: src/devhelp-window.c:521
 msgid "A developer's help browser"
 msgstr "Ett hjälpprogram för utvecklare"
 
-#: src/devhelp-window.c:519
+#: src/devhelp-window.c:595
 #, c-format
 msgid "Open %s"
 msgstr "Öppna %s"
@@ -249,6 +241,10 @@ msgstr "Ta bort"
 msgid "Reset to defaults"
 msgstr "Återställ till standardalternativ"
 
+#: ui/devhelp.glade.h:24
+msgid "Search"
+msgstr "Sök"
+
 #: ui/devhelp.glade.h:25
 msgid "Show _sidebar"
 msgstr "Visa _sidopanel"
@@ -283,7 +279,7 @@ msgstr "_Bokhanterare..."
 
 #: ui/devhelp.glade.h:35
 msgid "_Contents"
-msgstr "_Innehåll"
+msgstr "I_nnehåll"
 
 #: ui/devhelp.glade.h:36
 msgid "_Edit book..."
@@ -372,6 +368,9 @@ msgstr "Gå till föregående sida i historiken"
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
 msgstr "Öppna bokhanterardialogen"
+
+#~ msgid "Contents"
+#~ msgstr "Innehåll"
 
 #~ msgid "DevHelp"
 #~ msgstr "DevHelp"
