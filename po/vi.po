@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2002-09-18 04:40+0200\n"
-"PO-Revision-Date: 2002-09-22 07:35+0700\n"
+"POT-Creation-Date: 2003-01-19 03:38+0100\n"
+"PO-Revision-Date: 2003-01-20 16:18+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,57 +21,23 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Chương trình trợ giúp Nhà phát triển"
 
-#: src/GNOME_DevHelp.server.in.in.h:1
-msgid "DevHelp Controller"
-msgstr "Bộ điều khiển DevHelp"
-
-#: src/GNOME_DevHelp.server.in.in.h:2
-msgid "DevHelp Controller Factory"
-msgstr "Factory Bộ điều khiển DevHelp"
-
-#: src/GNOME_DevHelp.server.in.in.h:3
-msgid "DevHelp HelpBrowser"
-msgstr "Bộ duyệt trợ giúp DevHelp"
-
-#: src/GNOME_DevHelp.server.in.in.h:4
-msgid "DevHelp HelpBrowser Factory"
-msgstr "Factory Trình duyệt trợ giúp DevHelp"
-
-#: src/dh-bookshelf.c:185
+#: src/dh-book.c:110 src/dh-book.c:216
 #, c-format
-msgid "Problems when reading books: %s\n"
-msgstr "Lỗi khi đọc sách: %s\n"
+msgid "'%s' is not a valid book"
+msgstr "'%s' không phải là sách hợp lệ"
 
-#: src/dh-bookshelf.c:233
+#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144 src/dh-book-old.c:234
+#: src/dh-book-old.c:245 src/dh-book-old.c:257
 #, c-format
-msgid "Empty document: %s"
-msgstr "Tài liệu rỗng: %s"
+msgid "Book '%s' is malformed."
+msgstr "Sách '%s' bị hỏng."
 
-#: src/dh-bookshelf.c:239
+#: src/dh-book.c:224
 #, c-format
-msgid "Document wrong type, got %s, expected 'booklist': %s"
-msgstr "Tài liệu sai kiểu, lấy được là %s, yêu cầu là 'booklist': %s"
+msgid "Couldn't find file '%s'"
+msgstr "Không thể mở tập tin: '%s'"
 
-#: src/dh-bookshelf.c:273
-#, c-format
-msgid ""
-"I found an old version of your spec file (%s)\n"
-"I removed it, so you have to hide the books you want to be hidden again."
-msgstr ""
-"Tìm thấy phiên bản cũ của tập tin spec (%s)\n"
-"Sẽ loại bỏ nó, vì thể bạn sẽ phải giấu lại những cuốn sách bạn đã giấu trước "
-"đó."
-
-#: src/dh-bookshelf.c:278
-msgid "Ok"
-msgstr "Đồng ý"
-
-#: src/dh-bookshelf.c:457
-#, c-format
-msgid "Failed to open file %s for writing."
-msgstr "Lỗi mở tập tin %s để ghi"
-
-#: src/dh-view.c:487
+#: src/dh-html.c:517
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
@@ -82,199 +48,207 @@ msgstr ""
 "để tìm cái bạn cần.<p>Dùng <b>Dịch lên/xuống<b> để duyệt cây bên trái, và "
 "dùng <b>Dịch trái/phải<b> để bung cây hoặc thu hẹp cây trong cuốn sách."
 
-#: src/dh-window.c:298
-msgid "_Contents"
-msgstr "_Nội dung"
+#: src/dh-main.c:243
+msgid "Search for a function"
+msgstr "Tìm hàm"
 
-#: src/dh-window.c:309
-msgid "_Search"
-msgstr "_Tìm"
+#: src/dh-main.c:252
+msgid "Quit any running Devhelp"
+msgstr "Thoát khỏi mọi chương trình Devhelp"
 
-#: src/dh-window.c:383
+#: src/dh-search.c:325
+msgid "_Search for:"
+msgstr "_Tìm:"
+
+#: src/dh-search.c:362
+msgid "Section"
+msgstr "Phần"
+
+#: src/dh-window.c:98
+msgid "_File"
+msgstr "_Tập tin"
+
+#: src/dh-window.c:99
+msgid "_Go"
+msgstr "Đ_i"
+
+#: src/dh-window.c:100
+msgid "_Help"
+msgstr "Trợ _giúp"
+
+#. About menu
+#: src/dh-window.c:113
+msgid "_About"
+msgstr "_Giới thiệu"
+
+#: src/dh-window.c:284
+msgid "Contents"
+msgstr "Nội dung"
+
+#: src/dh-window.c:295
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: src/dh-window.c:352
 msgid "A developer's help browser for GNOME 2"
 msgstr "Bộ duyệt trợ giúp dành cho nhà phát triển"
 
-#: src/dh-window.c:457
+#: src/dh-window.c:418
 #, c-format
 msgid "Open %s"
 msgstr "Mở %s"
 
-#: src/main.c:79
-#, c-format
-msgid "Could not activate devhelp: '%s'"
-msgstr "Không thể kích hoạt DevHelp: '%s'"
+#~ msgid "DevHelp Controller"
+#~ msgstr "Bộ điều khiển DevHelp"
 
-#: src/main.c:88
-msgid "Could not search for string."
-msgstr "Không thể tìm chuỗi"
+#~ msgid "DevHelp Controller Factory"
+#~ msgstr "Factory Bộ điều khiển DevHelp"
 
-#: src/main.c:128
-msgid "Search for a function"
-msgstr "Tìm hàm"
+#~ msgid "DevHelp HelpBrowser"
+#~ msgstr "Bộ duyệt trợ giúp DevHelp"
 
-#: ui/GNOME_DevHelp.ui.h:1
-msgid "About this application"
-msgstr "Nói về ứng dụng này"
+#~ msgid "DevHelp HelpBrowser Factory"
+#~ msgstr "Factory Trình duyệt trợ giúp DevHelp"
 
-#: ui/GNOME_DevHelp.ui.h:2
-msgid "Print the html page"
-msgstr "In trang HTML"
+#~ msgid "Problems when reading books: %s\n"
+#~ msgstr "Lỗi khi đọc sách: %s\n"
 
-#: ui/GNOME_DevHelp.ui.h:3
-msgid "_About..."
-msgstr "_Giới thiệu..."
+#~ msgid "Empty document: %s"
+#~ msgstr "Tài liệu rỗng: %s"
 
-#: ui/GNOME_DevHelp.ui.h:4
-msgid "_Exit"
-msgstr "T_hoát"
+#~ msgid "Document wrong type, got %s, expected 'booklist': %s"
+#~ msgstr "Tài liệu sai kiểu, lấy được là %s, yêu cầu là 'booklist': %s"
 
-#: ui/GNOME_DevHelp.ui.h:5
-msgid "_File"
-msgstr "_Tập tin"
+#~ msgid ""
+#~ "I found an old version of your spec file (%s)\n"
+#~ "I removed it, so you have to hide the books you want to be hidden again."
+#~ msgstr ""
+#~ "Tìm thấy phiên bản cũ của tập tin spec (%s)\n"
+#~ "Sẽ loại bỏ nó, vì thể bạn sẽ phải giấu lại những cuốn sách bạn đã giấu "
+#~ "trước đó."
 
-#: ui/GNOME_DevHelp.ui.h:6
-msgid "_Help"
-msgstr "Trợ _giúp"
+#~ msgid "Ok"
+#~ msgstr "Đồng ý"
 
-#: ui/GNOME_DevHelp.ui.h:7
-msgid "_Print"
-msgstr "_In"
+#~ msgid "Failed to open file %s for writing."
+#~ msgstr "Lỗi mở tập tin %s để ghi"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:1
-msgid "Back"
-msgstr "Lùi"
+#~ msgid "Could not activate devhelp: '%s'"
+#~ msgstr "Không thể kích hoạt DevHelp: '%s'"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:2
-msgid "Forward"
-msgstr "Tới"
+#~ msgid "Could not search for string."
+#~ msgstr "Không thể tìm chuỗi"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:3
-msgid "Go to next page in the history"
-msgstr "Đi tới trang kế trong lược sử"
+#~ msgid "About this application"
+#~ msgstr "Nói về ứng dụng này"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:4
-msgid "Go to previous page in the history"
-msgstr "Đi tới trang trước trong lược sử"
+#~ msgid "Print the html page"
+#~ msgstr "In trang HTML"
 
-#: ui/devhelp2.glade.h:1
-msgid " "
-msgstr " "
+#~ msgid "_Exit"
+#~ msgstr "T_hoát"
 
-#: ui/devhelp2.glade.h:2
-msgid "<< _Show"
-msgstr "<< _Hiện"
+#~ msgid "_Print"
+#~ msgstr "_In"
 
-#: ui/devhelp2.glade.h:3
-msgid "Author:"
-msgstr "Tác giả:"
+#~ msgid "Back"
+#~ msgstr "Lùi"
 
-#: ui/devhelp2.glade.h:4
-msgid "Book info"
-msgstr "Thông tin sách"
+#~ msgid "Forward"
+#~ msgstr "Tới"
 
-#: ui/devhelp2.glade.h:5
-msgid "Bookmarks"
-msgstr "Đánh dấu"
+#~ msgid "Go to next page in the history"
+#~ msgstr "Đi tới trang kế trong lược sử"
 
-#: ui/devhelp2.glade.h:6
-msgid "DevHelp Book Manager"
-msgstr "Bộ quản lý sách DevHelp"
+#~ msgid "Go to previous page in the history"
+#~ msgstr "Đi tới trang trước trong lược sử"
 
-#: ui/devhelp2.glade.h:7
-msgid "DevHelp Preferences"
-msgstr "Thông số DevHelp"
+#~ msgid " "
+#~ msgstr " "
 
-#: ui/devhelp2.glade.h:8
-msgid "Hidden"
-msgstr "Ẩn"
+#~ msgid "<< _Show"
+#~ msgstr "<< _Hiện"
 
-#: ui/devhelp2.glade.h:9
-msgid "Huge"
-msgstr "Khổng lồ"
+#~ msgid "Author:"
+#~ msgstr "Tác giả:"
 
-#: ui/devhelp2.glade.h:10
-msgid "Install new book..."
-msgstr "Cài đặt sách mới..."
+#~ msgid "Book info"
+#~ msgstr "Thông tin sách"
 
-#: ui/devhelp2.glade.h:11
-msgid "Large"
-msgstr "Lớn"
+#~ msgid "Bookmarks"
+#~ msgstr "Đánh dấu"
 
-#: ui/devhelp2.glade.h:12
-msgid "Medium"
-msgstr "Trung"
+#~ msgid "DevHelp Book Manager"
+#~ msgstr "Bộ quản lý sách DevHelp"
 
-#: ui/devhelp2.glade.h:13
-msgid "Move down"
-msgstr "Chuyển xuống"
+#~ msgid "DevHelp Preferences"
+#~ msgstr "Thông số DevHelp"
 
-#: ui/devhelp2.glade.h:14
-msgid "Move up"
-msgstr "Chuyển lên"
+#~ msgid "Hidden"
+#~ msgstr "Ẩn"
 
-#: ui/devhelp2.glade.h:15
-msgid "Name:"
-msgstr "Tên:"
+#~ msgid "Huge"
+#~ msgstr "Khổng lồ"
 
-#: ui/devhelp2.glade.h:16
-msgid "Path:"
-msgstr "Đường dẫn:"
+#~ msgid "Install new book..."
+#~ msgstr "Cài đặt sách mới..."
 
-#: ui/devhelp2.glade.h:17
-msgid "Remove"
-msgstr "Loại bỏ"
+#~ msgid "Large"
+#~ msgstr "Lớn"
 
-#: ui/devhelp2.glade.h:18
-msgid "Reset to defaults"
-msgstr "Đặt về mặc định"
+#~ msgid "Medium"
+#~ msgstr "Trung"
 
-#: ui/devhelp2.glade.h:19
-msgid "Search"
-msgstr "Tìm kiếm"
+#~ msgid "Move down"
+#~ msgstr "Chuyển xuống"
 
-#: ui/devhelp2.glade.h:20
-msgid "Show _sidebar"
-msgstr "Hiện Thanh bên"
+#~ msgid "Move up"
+#~ msgstr "Chuyển lên"
 
-#: ui/devhelp2.glade.h:21
-msgid "Small"
-msgstr "Nhỏ"
+#~ msgid "Name:"
+#~ msgstr "Tên:"
 
-#: ui/devhelp2.glade.h:22
-msgid "Tiny"
-msgstr "Tí hon"
+#~ msgid "Path:"
+#~ msgstr "Đường dẫn:"
 
-#: ui/devhelp2.glade.h:23
-msgid "Title:"
-msgstr "Tựa đề:"
+#~ msgid "Remove"
+#~ msgstr "Loại bỏ"
 
-#: ui/devhelp2.glade.h:24
-msgid "Version:"
-msgstr "Phiên bản:"
+#~ msgid "Reset to defaults"
+#~ msgstr "Đặt về mặc định"
 
-#: ui/devhelp2.glade.h:25
-msgid "View"
-msgstr "Xem"
+#~ msgid "Show _sidebar"
+#~ msgstr "Hiện Thanh bên"
 
-#: ui/devhelp2.glade.h:26
-msgid "Visible"
-msgstr "Khả kiến"
+#~ msgid "Small"
+#~ msgstr "Nhỏ"
 
-#: ui/devhelp2.glade.h:27
-msgid "_Edit book..."
-msgstr "_Sửa sách..."
+#~ msgid "Tiny"
+#~ msgstr "Tí hon"
 
-#: ui/devhelp2.glade.h:28
-msgid "_Hide >>"
-msgstr "Ẩ_n >>"
+#~ msgid "Title:"
+#~ msgstr "Tựa đề:"
 
-#: ui/devhelp2.glade.h:29
-msgid "_Limit the number of hits to:"
-msgstr "_Giới hạn số lần tìm trúng:"
+#~ msgid "Version:"
+#~ msgstr "Phiên bản:"
 
-#: ui/devhelp2.glade.h:30
-msgid "_Text size: "
-msgstr "_Cỡ text: "
+#~ msgid "View"
+#~ msgstr "Xem"
+
+#~ msgid "Visible"
+#~ msgstr "Khả kiến"
+
+#~ msgid "_Edit book..."
+#~ msgstr "_Sửa sách..."
+
+#~ msgid "_Hide >>"
+#~ msgstr "Ẩ_n >>"
+
+#~ msgid "_Limit the number of hits to:"
+#~ msgstr "_Giới hạn số lần tìm trúng:"
+
+#~ msgid "_Text size: "
+#~ msgstr "_Cỡ text: "
 
 #~ msgid "Choose a book..."
 #~ msgstr "Chọn sách..."
@@ -297,9 +271,6 @@ msgstr "_Cỡ text: "
 #~ msgid "Wrong type (mime_type=%s)."
 #~ msgstr "Sai kiểu (Kiểu MIME là %s)"
 
-#~ msgid "Couldn't open uri: %s"
-#~ msgstr "Không thể mở URI: %s"
-
 #~ msgid "Print Help"
 #~ msgstr "In trợ giúp"
 
@@ -320,9 +291,6 @@ msgstr "_Cỡ text: "
 
 #~ msgid "Show sidebar"
 #~ msgstr "Hiện Thanh bên"
-
-#~ msgid "_Settings"
-#~ msgstr "_Thiết lập"
 
 #~ msgid "_View"
 #~ msgstr "_Xem"
