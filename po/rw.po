@@ -1,0 +1,320 @@
+# translation of devhelp to Kinyarwanda.
+# Copyright (C) 2005 Free Software Foundation, Inc.
+# This file is distributed under the same license as the devhelp package.
+# Steve Murphy <murf@e-tools.com>, 2005
+# Steve performed initial rough translation from compendium built from translations provided by the following translators:
+# Philibert Ndandali  <ndandali@yahoo.fr>, 2005.
+# Viateur MUGENZI <muvia1@yahoo.fr>, 2005.
+# Noëlla Mupole <s24211045@tuks.co.za>, 2005.
+# Carole Karema <karemacarole@hotmail.com>, 2005.
+# JEAN BAPTISTE NGENDAHAYO <ngenda_denis@yahoo.co.uk>, 2005.
+# Augustin KIBERWA  <akiberwa@yahoo.co.uk>, 2005.
+# Donatien NSENGIYUMVA <ndonatienuk@yahoo.co.uk>, 2005..
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-04-01 10:35-0700\n"
+"PO-Revision-Date: 2005-03-31 20:55-0700\n"
+"Last-Translator: Steve Murphy <murf@e-tools.com>\n"
+"Language-Team: Kinyarwanda <translation-team-rw@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"ULL NAME <EMAIL@ADDRESS>\n"
+
+#: devhelp.desktop.in.in.h:1
+#, fuzzy
+msgid "Developer's Help program"
+msgstr "Porogaramu"
+
+#: devhelp.desktop.in.in.h:2 src/dh-window.c:449 ui/devhelp.glade.h:4
+msgid "Devhelp"
+msgstr ""
+
+#: devhelp.keys.in.h:1
+msgid "Devhelp Book"
+msgstr ""
+
+#: src/dh-main.c:89
+#, fuzzy
+msgid "Specify the size and location of the window"
+msgstr "i Ingano Na Ahantu Bya i Idirishya"
+
+#: src/dh-main.c:90
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr ""
+
+#: src/dh-main.c:98
+#, fuzzy
+msgid "Search for a function"
+msgstr "kugirango a Umumaro"
+
+#: src/dh-main.c:107
+msgid "Quit any running Devhelp"
+msgstr ""
+
+#: src/dh-parser.c:105 src/dh-parser.c:182 src/dh-parser.c:229
+#, fuzzy, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Itegerejwe ku Umurongo Inkingi"
+
+#: src/dh-parser.c:121
+#, fuzzy, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "ku Umurongo Inkingi"
+
+#: src/dh-parser.c:150
+#, fuzzy, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "Umutwe Izina: Na Ihuza Ibintu Bya ngombwa ku Umurongo Inkingi"
+
+#: src/dh-parser.c:203
+#, fuzzy, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "Izina: Na Ihuza Ibintu Bya ngombwa Mo Imbere ku Umurongo Inkingi"
+
+#: src/dh-parser.c:251
+#, fuzzy, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"Izina: Na Ihuza Ibintu Bya ngombwa Mo Imbere Umumaro ku Umurongo Inkingi"
+
+#: src/dh-parser.c:338 src/dh-parser.c:424
+#, fuzzy
+msgid "Could not create book parser"
+msgstr "OYA Kurema Igitabo"
+
+#: src/dh-parser.c:348 src/dh-parser.c:434
+#, fuzzy
+msgid "Could not create markup parser"
+msgstr "OYA Kurema"
+
+#: src/dh-parser.c:480
+#, fuzzy, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Igitabo"
+
+# #-#-#-#-#  so3.pot (PACKAGE VERSION)  #-#-#-#-#
+# so3/src\svuidlg.src:MD_INSERT_OLEOBJECT.BTN_FILEPATH.text
+# #-#-#-#-#  so3.pot (PACKAGE VERSION)  #-#-#-#-#
+# so3/src\svuidlg.src:MD_INSERT_OBJECT_APPLET.BTN_CLASS.text
+#: src/dh-search.c:418
+#, fuzzy
+msgid "_Search:"
+msgstr "Gushakisha..."
+
+# #-#-#-#-#  sw.pot (PACKAGE VERSION)  #-#-#-#-#
+# sw/source\ui\app\app.src:STR_REGION_DEFNAME.text
+# #-#-#-#-#  sw.pot (PACKAGE VERSION)  #-#-#-#-#
+# sw/source\ui\chrdlg\ccoll.src:TP_CONDCOLL.STR_REGIONS.4.text
+# #-#-#-#-#  sw.pot (PACKAGE VERSION)  #-#-#-#-#
+# sw/source\ui\dialog\regionsw.src:MD_EDIT_REGION.FL_NAME.text
+# #-#-#-#-#  sw.pot (PACKAGE VERSION)  #-#-#-#-#
+# sw/source\ui\dialog\regionsw.src:DLG_INSERT_SECTION.1.TP_INSERT_SECTION.text
+# #-#-#-#-#  sw.pot (PACKAGE VERSION)  #-#-#-#-#
+# sw/source\ui\ribbar\workctrl.src:RID_SCROLL_NAVIGATION_WIN.ST_REG.text
+# #-#-#-#-#  sw.pot (PACKAGE VERSION)  #-#-#-#-#
+# sw/source\ui\utlui\utlui.src:STR_CONTENT_TYPE_SINGLE_REGION.text
+#: src/dh-search.c:462
+msgid "Section"
+msgstr "Icyiciro"
+
+# sc/source\ui\src\globstr.src:RID_GLOBSTR.STR_HFCMD_FILE.text
+#: src/dh-window.c:110
+#, fuzzy
+msgid "_File"
+msgstr "IDOSIYE"
+
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\basidesh.src:RID_BASICMENU.MN_EDIT.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\basidesh.src:RID_BASICPLUGINMENU.MN_PLEDIT.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\macrodlg.src:RID_MACROCHOOSER.RID_PB_EDIT.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\moduldlg.src:RID_TP_MODULS.RID_PB_EDIT.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\moduldlg.src:RID_TP_LIBS.RID_PB_EDIT.text
+#: src/dh-window.c:111
+#, fuzzy
+msgid "_Edit"
+msgstr "Guhindura"
+
+#: src/dh-window.c:112 ui/devhelp.glade.h:10
+#, fuzzy
+msgid "_Go"
+msgstr "Gyayo"
+
+#: src/dh-window.c:113
+#, fuzzy
+msgid "_Help"
+msgstr "Ifashayobora"
+
+#: src/dh-window.c:297
+#, fuzzy, c-format
+msgid "Cannot set UI: %s"
+msgstr "Gushyiraho"
+
+# #-#-#-#-#  sc.pot (PACKAGE VERSION)  #-#-#-#-#
+# sc/source\ui\dbgui\validate.src:TP_VALIDATION_INPUTHELP.FL_CONTENT.text
+# #-#-#-#-#  sc.pot (PACKAGE VERSION)  #-#-#-#-#
+# sc/source\ui\dbgui\validate.src:TP_VALIDATION_ERROR.FL_CONTENT.text
+# #-#-#-#-#  sc.pot (PACKAGE VERSION)  #-#-#-#-#
+# sc/source\ui\navipi\navipi.src:RID_SCDLG_NAVIGATOR.TBX_CMD.IID_ZOOMOUT.text
+# #-#-#-#-#  sc.pot (PACKAGE VERSION)  #-#-#-#-#
+# sc/source\ui\navipi\navipi.src:SCSTR_CONTENT_ROOT.text
+#: src/dh-window.c:357 ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Ibigize"
+
+# #-#-#-#-#  offmgr.pot (PACKAGE VERSION)  #-#-#-#-#
+# offmgr/source\offapp\dialog\inetdlg.src:RID_OFADLG_INTERNET.1.RID_SVXPAGE_INET_SEARCH.text
+# #-#-#-#-#  offmgr.pot (PACKAGE VERSION)  #-#-#-#-#
+# offmgr/source\offapp\dialog\treeopt.src:RID_OFADLG_OPTIONS_TREE_PAGES.SID_INET_DLG.3.text
+#: src/dh-window.c:368
+msgid "Search"
+msgstr "Gushaka"
+
+#: src/dh-window.c:446
+msgid "translator_credits"
+msgstr ""
+
+#: src/dh-window.c:451
+#, fuzzy
+msgid "A developer's help browser for GNOME 2"
+msgstr "A Ifashayobora Mucukumbuzi kugirango 2."
+
+#: devhelp.schemas.in.h:1
+#, fuzzy
+msgid "Font for fixed text"
+msgstr "kugirango BIHAMYE Umwandiko"
+
+#: devhelp.schemas.in.h:2
+#, fuzzy
+msgid "Font for text"
+msgstr "kugirango Umwandiko"
+
+#: devhelp.schemas.in.h:3
+#, fuzzy
+msgid "Font for text with fixed width."
+msgstr "kugirango Umwandiko Na: BIHAMYE Ubugari"
+
+#: devhelp.schemas.in.h:4
+#, fuzzy
+msgid "Font for text with variable width."
+msgstr "kugirango Umwandiko Na: IMPINDURAGACIRO Ubugari"
+
+#: devhelp.schemas.in.h:5
+#, fuzzy
+msgid "Height of main window"
+msgstr "Bya Idirishya"
+
+#: devhelp.schemas.in.h:6
+#, fuzzy
+msgid "Location of the paned"
+msgstr "Bya i"
+
+#: devhelp.schemas.in.h:7
+#, fuzzy
+msgid "Main window maximized state"
+msgstr "Idirishya Leta"
+
+#: devhelp.schemas.in.h:8
+#, fuzzy
+msgid "The X position of the main window."
+msgstr "Ibirindiro Bya i Idirishya"
+
+#: devhelp.schemas.in.h:9
+#, fuzzy
+msgid "The Y position of the main window."
+msgstr "Ibirindiro Bya i Idirishya"
+
+#: devhelp.schemas.in.h:10
+#, fuzzy
+msgid "The height of the main window."
+msgstr "Ubuhagarike Bya i Idirishya"
+
+#: devhelp.schemas.in.h:11
+#, fuzzy
+msgid "The location of the paned separator."
+msgstr "Ahantu Bya i Mutandukanya"
+
+#: devhelp.schemas.in.h:12
+#, fuzzy
+msgid "The width of the main window."
+msgstr "Ubugari Bya i Idirishya"
+
+#: devhelp.schemas.in.h:13
+#, fuzzy
+msgid "Use system fonts"
+msgstr "Sisitemu Imyandikire"
+
+#: devhelp.schemas.in.h:14
+#, fuzzy
+msgid "Use the systems default fonts."
+msgstr "i Mburabuzi Imyandikire"
+
+#: devhelp.schemas.in.h:15
+#, fuzzy
+msgid "Whether the main window should start maximized or not."
+msgstr "i Idirishya Gutangira Cyangwa OYA"
+
+#: devhelp.schemas.in.h:16
+#, fuzzy
+msgid "Width of the main window"
+msgstr "Bya i Idirishya"
+
+#: devhelp.schemas.in.h:17
+#, fuzzy
+msgid "X position of main window"
+msgstr "Ibirindiro Bya Idirishya"
+
+#: devhelp.schemas.in.h:18
+#, fuzzy
+msgid "Y position of main window"
+msgstr "Ibirindiro Bya Idirishya"
+
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr ""
+
+#: ui/devhelp.glade.h:2
+#, fuzzy
+msgid "<b>Fonts</b>"
+msgstr "<B B"
+
+# sc/source\ui\dbgui\asciiopt.src:RID_SCDLG_ASCII.RB_FIXED.text
+#: ui/devhelp.glade.h:5
+#, fuzzy
+msgid "Fixed width:"
+msgstr "Ubugari budahinduka"
+
+# extracted from content/PrefsWindow.xul
+# LOCALIZATION NOTE : FILE UI for the outer parts of the Prefs dialog
+#: ui/devhelp.glade.h:6
+msgid "Preferences"
+msgstr "Ibyahisemo"
+
+#: ui/devhelp.glade.h:7
+#, fuzzy
+msgid "Variable width: "
+msgstr "Ubugari k'Impinduragaciro"
+
+#: ui/devhelp.glade.h:8
+#, fuzzy
+msgid "_Back"
+msgstr "Inyuma"
+
+# sch/sdi\schslots.src:SID_ROW_MOREFRONT.text
+#: ui/devhelp.glade.h:9
+#, fuzzy
+msgid "_Forward"
+msgstr "Imbere"
+
+#: ui/devhelp.glade.h:11
+#, fuzzy
+msgid "_Use system fonts"
+msgstr "Sisitemu Imyandikire"
