@@ -48,6 +48,8 @@ lib_LTLIBRARIES =					\
 	libdevhelp-1.la	
 
 libdevhelp_1_la_SOURCES =				\
+	bacon-message-connection.c                      \
+	bacon-message-connection.h                      \
 	dh-marshal-main.c				\
 	dh-base.c					\
 	dh-book-tree.c					\

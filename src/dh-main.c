@@ -1,8 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2001-2003 CodeFactory AB
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2001-2003 Richard Hult <richard@imendio.com>
+ * Copyright (C) 2001-2004 Imendio HB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -37,218 +36,41 @@
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 
+#include "bacon-message-connection.h"
 #include "dh-base.h"
 #include "dh-window.h"
 
+#define COMMAND_QUIT   "quit"
+#define COMMAND_SEARCH "search"
+#define COMMAND_RAISE  "raise"
 
 gchar *geometry = NULL;
 
-static gchar *
-dh_get_socket_filename (void)
-{
-	gchar *filename;
-	gchar *ret;
-	
-	filename = g_strdup_printf ("devhelp-%s", g_get_user_name ());
-	ret = g_build_filename (g_get_tmp_dir (), filename, NULL);
-	g_free (filename);
-
-	return ret;
-}
-
-static gboolean
-dh_client_data_cb (GIOChannel   *source,
-		   GIOCondition  condition,
-		   gpointer      data)
-{
-	if (condition & G_IO_ERR) {
-		return FALSE;
-	}
-	else if (condition & G_IO_HUP) {
-		return FALSE;
-	}
-	
-	if (condition & G_IO_IN) {
-		gint  fd;
-		gchar buf[256];
-		gint  bytes_read;
-		
-		fd = g_io_channel_unix_get_fd (source);
-		
-		bytes_read = read (fd, buf, 256);
-
-		if (bytes_read < 0) {
-			/* Error */
-			return FALSE;
-		}		
-		else if (bytes_read == 0) {
-			/* EOF */
-			return FALSE;
-		} else {
-			buf[bytes_read] = 0;
-          
-			if (buf[0] == 'S' && bytes_read > 1) {
-				dh_window_search (DH_WINDOW (data), buf + 1);
-				gtk_window_present (GTK_WINDOW (data));
-			}
-			else if (buf[0] == 'R') {
-				gtk_window_present (GTK_WINDOW (data));
-			}
-			else if (buf[0] == 'Q') {
-				gtk_main_quit ();
-			}
-		}
-	}
-	
-	return TRUE;
-}
-
-static gboolean
-dh_connection_cb (GIOChannel   *source,
-		  GIOCondition  condition,
-		  gpointer      data)
-{
-	GIOChannel *channel;
-
-	if (condition & G_IO_IN) {
-		gint listen_fd;
-		gint fd;
-		
-		listen_fd = g_io_channel_unix_get_fd (source);
-		fd = accept (listen_fd, NULL, NULL);
-		
-		if (fd < 0) {
-			g_warning ("Some error while connecting...");
-			return FALSE;
-		} else {
-
-			channel = g_io_channel_unix_new (fd);
-			g_io_add_watch (channel,
-					G_IO_IN | G_IO_ERR | G_IO_HUP,
-					dh_client_data_cb,
-					data);
-			g_io_channel_unref (channel);
-		}
-	}
-	
-	if (condition & G_IO_ERR)
-		g_warning ("Error on listen socket.");
-	
-	if (condition & G_IO_HUP)
-		g_warning ("Hangup on listen socket.");
-	
-	return TRUE;
-}
-
 static void
-dh_create_socket (DhWindow *window)
+message_received_cb (const gchar *message, DhWindow *window)
 {
-	gint                fd;
-	struct sockaddr_un  addr;
-	gchar              *path;
-	GIOChannel         *channel;	
-
-	fd = socket (AF_LOCAL, SOCK_STREAM, 0);
-	
-	if (fd < 0) {
-		g_warning ("Couldn't create socket.");
-		return;
+	if (strcmp (message, COMMAND_QUIT) == 0) {
+		gtk_main_quit ();
 	}
-
-	path = dh_get_socket_filename ();
-	
-	memset (&addr, sizeof (addr), 0);
-	addr.sun_family = AF_LOCAL;
-	strcpy (addr.sun_path, path);
-
-	g_free (path);
-	
-	if (bind (fd, (struct sockaddr*) &addr, SUN_LEN (&addr)) < 0) {
-		g_warning ("Couldn't bind socket.");
-		return;
+	else if (strncmp (message, COMMAND_SEARCH, strlen (COMMAND_SEARCH)) == 0) {
+		dh_window_search (window,
+				  message + strlen (COMMAND_SEARCH) + 1);
 	}
-	
-	if (listen (fd, 5) < 0) {
-		g_warning ("Couldn't listen to socket.");
-		return;
+	else if (strcmp (message, COMMAND_RAISE) == 0) {
+		gtk_window_present (GTK_WINDOW (window));
 	}
-	
-	channel = g_io_channel_unix_new (fd);
-	g_io_add_watch (channel,
-			G_IO_IN | G_IO_ERR | G_IO_HUP,
-			dh_connection_cb,
-			window);
-	g_io_channel_unref (channel);
-}
-
-static void
-dh_send_search_msg (gint fd, const gchar *msg)
-{
-	gchar *buf;
-
-	buf = g_strdup_printf ("S%s\n", msg);
-	write (fd, buf, strlen (buf) -1);
-	g_free (buf);
-}
-
-static void
-dh_send_quit_msg (gint fd)
-{
-	write (fd, "Q", 1);
-}
-
-static void
-dh_send_raise_msg (gint fd)
-{
-	write (fd, "R", 1);
-}
-
-static gint
-dh_try_to_connect (void)
-{
-	gint                fd;
-	struct sockaddr_un  addr;
-	gchar              *path;
-
-	path = dh_get_socket_filename ();
-	if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
-		g_free (path);
-		return -1;
-	}
-	
-	fd = socket (AF_LOCAL, SOCK_STREAM, 0);
-	if (fd < 0) {
-		goto fail;
-	}
-	
-	memset (&addr, sizeof (addr), 0);
-	addr.sun_family = AF_LOCAL;
-	strcpy (addr.sun_path, path);
-
-	if (connect (fd, (struct sockaddr*) &addr, sizeof (addr)) < 0) {
-		goto fail;
-	}
-
-	return fd;
-
- fail:
-	if (!g_file_test (path, G_FILE_TEST_IS_SYMLINK | G_FILE_TEST_IS_DIR)) {
-		unlink (path);
-	}
-	g_free (path);
-
-	return -1;
 }
 
 int 
 main (int argc, char **argv)
 {
-	DhBase            *base;
-	GtkWidget         *window;
-	gchar             *option_search = NULL;
-	gboolean           option_quit = FALSE;
-	GnomeProgram      *program;
-	gint               fd;
+	gchar                  *option_search = NULL;
+	gboolean                option_quit = FALSE;
+	GnomeProgram           *program;
+	BaconMessageConnection *message_conn;
+	DhBase                 *base;
+	GtkWidget              *window;
+	
 	struct poptOption  options[] = {
 		{
 			"geometry",
@@ -294,38 +116,44 @@ main (int argc, char **argv)
                                       NULL);
 	LIBXML_TEST_VERSION;
 
- 	fd = dh_try_to_connect ();
-	if (fd < 0) {
-		base = dh_base_new ();
-		window = dh_base_new_window (base);
-		
-		dh_create_socket (DH_WINDOW (window));
-	}
+	message_conn = bacon_message_connection_new ("Devhelp");
+	if (!bacon_message_connection_get_is_server (message_conn)) {
 
-	if (option_quit) {
-		if (fd < 0) {
-			return 0;
-		} else {
-			dh_send_quit_msg (fd);
+		if (option_quit) {
+			bacon_message_connection_send (message_conn, COMMAND_QUIT);
 			return 0;
 		}
-	}	
 
-	if (option_search) {
-		if (fd < 0) {
-			dh_window_search (DH_WINDOW (window), option_search);
-		} else {
-			dh_send_search_msg (fd, option_search);
+		if (option_search) {
+			gchar *command;
+
+			command = g_strdup_printf ("%s %s", COMMAND_SEARCH,
+						   option_search);
+			bacon_message_connection_send (message_conn, command);
+			g_free (command);
 		}
-	}
 
-	/* Exit if we're already running. */
-	if (fd >= 0) {
 		gdk_notify_startup_complete ();
-		dh_send_raise_msg (fd);
+		bacon_message_connection_send (message_conn, COMMAND_RAISE);
 		return 0;
 	}
+	
+	if (option_quit) {
+		/* No running Devhelps so just quit */
+		return 0;
+	}
+		
+	base = dh_base_new ();
+	window = dh_base_new_window (base);
 
+	bacon_message_connection_set_callback (message_conn,
+					       (BaconMessageReceivedFunc) message_received_cb,
+					       window);
+
+	if (option_search) {
+		dh_window_search (DH_WINDOW (window), option_search);
+	}
+	
 	gtk_widget_show (window);
 		
 	gtk_main ();

@@ -1,3 +1,10 @@
+2004-08-09  Mikael Hallendal  <micke@imendio.com>
+
+	* src/Makefile.am: Added bacon-message-connection.[ch]
+	* src/bacon-message-connection.[ch]: Copied from Hadess.
+	* src/dh-main.c: Rewritten to use bacon-message-connection instead of 
+	  own hack for unique app.
+
 2004-08-05  Richard Hult  <richard@imendio.com>
 
 	* src/dh-window.c: Add accelerators for back and forward. Patch
