@@ -1,13 +1,13 @@
 # Danish translation of DevHelp.
-# Copyright (C) 2001, 02, 03 Free Software Foundation, Inc.
-# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
+# Copyright (C) 2001, 02, 03, 04 Free Software Foundation, Inc.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-23 19:22+0200\n"
-"PO-Revision-Date: 2003-08-23 19:26+0200\n"
+"POT-Creation-Date: 2004-03-08 16:57+0100\n"
+"PO-Revision-Date: 2004-03-08 17:50+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,9 @@ msgstr "Udviklerhjælpbog"
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
-msgstr "Vælg et emne i indholdet til venstre eller skift til søgefanen for at finde hvad du leder efter."
+msgstr ""
+"Vælg et emne i indholdet til venstre eller skift til søgefanen for at finde "
+"hvad du leder efter."
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -66,13 +68,16 @@ msgstr "title, name og link-elementer er påkrævet ved linje %d, kolonne %d"
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "name og link-elementer er påkrævet inden i <sub> ved linje %d, kolonne %d"
+msgstr ""
+"name og link-elementer er påkrævet inden i <sub> ved linje %d, kolonne %d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr "name og link-elementer er påkrævet inden i <function> ved linje %d, kolonne %d"
+msgstr ""
+"name og link-elementer er påkrævet inden i <function> ved linje %d, kolonne %"
+"d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
@@ -95,35 +100,40 @@ msgstr "_Søg:"
 msgid "Section"
 msgstr "Sektion"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "_Fil"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "_Gå til"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:285
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Kan ikke anvende grænseflade: %s"
+
+#: src/dh-window.c:347
 msgid "Contents"
 msgstr "Indhold"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:358
 msgid "Search"
 msgstr "Søg"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:423
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjælpefremviser til udviklere"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:438
 msgid "Devhelp project page"
 msgstr "Udviklerhjælps projektside"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:442
 msgid "Bug report Devhelp"
 msgstr "Rapportér fejl i Udviklerhjælp"
 
