@@ -1,3 +1,9 @@
+2001-08-05  Johan Dahlin  <zilch.am@home.se>
+
+	* src/ui.c (devhelp_create_ui): gtk_clist_set_column_with &
+	gtk_clist_set_selection_mode added, this fixes click on link and
+	ctree will go empty bug.
+
 2001-08-05  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/ui.c: just some style cleanups.

@@ -1118,6 +1118,9 @@ devhelp_create_ui (void)
 
 	/* CTree */
 	devhelp->ctree = GTK_CTREE (gtk_ctree_new (1, 0));
+	gtk_clist_set_column_width (GTK_CLIST (devhelp->ctree), 0, 80);
+	gtk_clist_set_selection_mode (GTK_CLIST (devhelp->ctree), GTK_SELECTION_BROWSE);
+	
 	gtk_signal_connect (GTK_OBJECT (devhelp->ctree), "tree_select_row",
 			    GTK_SIGNAL_FUNC (ctree_select_row_cb), devhelp);
 	w = glade_xml_get_widget (gui, "browse_scrolledwindow");
