@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp cvs\n"
-"POT-Creation-Date: 2003-07-07 11:59+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-26 11:28+0200\n"
 "PO-Revision-Date: 2003-07-07 15:10+0100\n"
 "Last-Translator: Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -100,7 +101,7 @@ msgstr "_Zoeken:"
 
 #: src/dh-search.c:461
 msgid "Section"
-msgstr "Onderdeel"
+msgstr "Sectie"
 
 #: src/dh-window.c:101
 msgid "_File"
