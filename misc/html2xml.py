@@ -84,8 +84,13 @@ class BookParser (sgmllib.SGMLParser):
 	    dict = self.dict[self.parents[0]][self.parents[1]]
 	elif len (self.parents) == 3:
 	    dict = self.dict[self.parents[0]][self.parents[1]][self.parents[2]]
-
+	else:
+	    dict = None
+	    
 	if self.is_a:
+	    if dict == None:
+		return
+	    
 	    if not dict.has_key (data):
 		dict[data] = {}		    
 	    if not dict.has_key ('order'):
