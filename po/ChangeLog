@@ -1,34 +1,7 @@
-2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
+2001-08-01  Christian Meyer  <chrisime@gnome.org>
 
-	* Makefile.in.in: Upgrade to gettext-0.10.38.
-
-2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.38.
-	* stamp-cat-id: Remove file.
-
-2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.38.
-	* stamp-cat-id: Remove file.
-
-2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.38.
-
-2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.38.
-
-2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.38.
-
-2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.38.
-	* cat-id-tbl.c: Remove file.
-	* stamp-cat-id: Remove file.
+	* Changelog: Removed tons of gettext entries.
+	* de.po: Added German translation.
 
 2001-07-19  Johan Dahlin  <zilch.am@home.se>
 
