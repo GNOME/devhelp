@@ -4,7 +4,7 @@ devhelp.desktop.in
 devhelp.keys.in
 src/dh-base.c
 src/dh-book-tree.c
-src/dh-history.c
+src/dh-html.c
 src/dh-keyword-model.c
 src/dh-link.c
 src/dh-main.c
