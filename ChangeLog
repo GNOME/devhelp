@@ -1,3 +1,15 @@
+2003-02-24  Mikael Hallendal  <micke@codefactory.se>
+
+	* libegg/toolbar/Makefile.am: dist-check fixes.
+
+	* dtd/Makefile.am (dtddir): removed all the unused dtd-files from
+	  dtd_DATA 
+
+	* configure.in: bumped version to 0.5, soon gonna release, I
+	  promise
+
+	* Makefile.am (EXTRA_DIST): don't include idl/* in EXTRA_DIST.
+
 2003-02-19  James Henstridge  <james@daa.com.au>
 
 	* src/dh-html-gtkhtml2.c (html_init): put the html widget in a

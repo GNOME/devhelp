@@ -1,3 +1,7 @@
+2003-02-24  Mikael Hallendal  <micke@codefactory.se>
+
+	* Makefile.am: dist-check fixes
+
 2002-11-09  Mikael Hallendal  <micke@codefactory.se>
 
 	* egg-menu-merge.c: changed c++ comments into c comment and make

@@ -1,6 +1,8 @@
 
 INCLUDES = \
   @EGG_CFLAGS@ \
+  -I$(top_srdir) \
+  -I$(top_builddir) \
   -DEGG_COMPILATION \
   -DGTK_DISABLE_DEPRECATED \
   -DGDK_DISABLE_DEPRECATED \

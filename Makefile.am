@@ -35,7 +35,6 @@ EXTRA_DIST =			\
 	misc/html2funcs.py	\
 	misc/html2xml.py	\
 	misc/devhelp.vim	\
-	idl/GNOME_DevHelp.idl	\
 	$(NULL)
 
 Develdir = $(datadir)/applications
