@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD.be\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
+"POT-Creation-Date: 2003-06-03 11:50+0200\n"
 "PO-Revision-Date: 2003-02-21 20:26GMT+2\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: belarusian <i18n@mova.org>\n"
@@ -23,6 +23,22 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Праграма дапамогі распрацоўшчыкам"
 
+#: devhelp.keys.in.h:1
+#, fuzzy
+msgid "DevHelp Book"
+msgstr "DevHelp"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Выбярыце тэму са зьместа з левага боку ці пераключыцеся на панэль пошуку. "
+"<p>Выкарыстоўвайце <b>Shift Up/Down</b> для навігацыі па дрэве, і <b>Shift "
+"Left/Right</b> для згортваньня й разгортваньня кніг у дрэве."
+
 #: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Пошук для функцыі"
@@ -30,6 +46,55 @@ msgstr "Пошук для функцыі"
 #: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Выхад з запушчанага Devhelp"
+
+#: src/dh-parser.c:94
+#, c-format
+msgid "Expected 'book' got '%s' at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:110
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:139
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:171
+#, c-format
+msgid "Expected 'sub' got '%s' at line %d column %d"
+msgstr ""
+
+#: src/dh-parser.c:192
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:218
+#, c-format
+msgid "Expected 'function' got '%s' at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:240
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:326 src/dh-parser.c:410
+msgid "Could not create book parser"
+msgstr ""
+
+#: src/dh-parser.c:336 src/dh-parser.c:420
+msgid "Could not create markup parser"
+msgstr ""
+
+#: src/dh-parser.c:466
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr ""
 
 #: src/dh-search.c:349
 msgid "_Search for:"
@@ -67,17 +132,6 @@ msgstr "Пошук"
 #: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Праглядальнік даведкі распрацоўшчыка для GNOME 2"
-
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Выбярыце тэму са зьместа з левага боку ці пераключыцеся на панэль пошуку. "
-"<p>Выкарыстоўвайце <b>Shift Up/Down</b> для навігацыі па дрэве, і <b>Shift "
-"Left/Right</b> для згортваньня й разгортваньня кніг у дрэве."
 
 #~ msgid ""
 #~ "<b>Could not read all books</b>\n"
