@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-10-10 14:56+0200\n"
-"PO-Revision-Date: 2001-10-10 14:56+0200\n"
+"POT-Creation-Date: 2001-10-10 19:43+0200\n"
+"PO-Revision-Date: 2001-10-10 19:45+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgstr "Sök efter en funktion"
 
 #: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:28
 msgid "Tiny"
-msgstr "Jätteliten"
+msgstr "Pytteliten"
 
 #: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:27
 msgid "Small"
