@@ -1,5 +1,15 @@
 2004-02-13  Mikael Hallendal  <micke@imendio.com>
 
+	* configure.in: Fixed compile warning
+	
+	* devhelp.spec.in: Updated to include the devel package
+	
+	* libdevhelp-1.0.pc.in: Fixed paths
+	
+	* src/Makefile.am: Install headers and library in the correct places.
+
+2004-02-13  Mikael Hallendal  <micke@imendio.com>
+
 	* Makefile.am: 
 	* configure.in:
 	* libdevhelp-1.0.pc.in:

@@ -16,7 +16,7 @@ AM_PATH_GLIB_2_0
 dnl NOTE : it appears that some systems do not like it when you use line
 dnl        continuation charactes to split CFLAGS into readable chunks
 if test "x$GCC" = "xyes"; then
-   CFLAGS="$CFLAGS -Wall -Wno-uninitialized -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith	 -Wno-sign-compare -Wsign-promo"
+   CFLAGS="$CFLAGS -Wall -Wno-uninitialized -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith -Wno-sign-compare"
 fi
 
 AC_SUBST(CFLAGS)
