@@ -87,6 +87,8 @@ install_create_directories (const gchar *root)
 	if (g_file_test (cmd, G_FILE_TEST_EXISTS) == FALSE) {
 		install_create_directory (cmd);
 	}
+
+	g_free (real_root);
 	g_free (cmd);
 }
 

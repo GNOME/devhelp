@@ -1,5 +1,8 @@
 2002-04-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/install.c (install_create_directories): added memleak-fix
+	  from  Nils O. Selåsdal.
+
 	* src/devhelp-view.c: moved debug-outputs into a debug-macro.
 
 	* src/Makefile.am (GNOME_DevHelp.server.in): use correct directory
