@@ -56,4 +56,7 @@ struct _DevHelpWindowClass
 GtkType          devhelp_window_get_type        (void);
 GtkWidget *      devhelp_window_new             ();
 
+void             devhelp_window_search          (DevHelpWindow   *window,
+						 const gchar     *str);
+
 #endif /* __DEVHELP_WINDOW_H__ */

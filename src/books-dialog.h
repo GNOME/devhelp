@@ -24,17 +24,14 @@
 #define __BOOKS_DIALOG_H__
 
 #include <gtk/gtkmenuitem.h>
+#include "bookshelf.h"
 
 typedef struct _BookInfo        BookInfo;
 typedef struct _BooksDialog     BooksDialog;
 
-#include "main.h"
-
 #define BOOKS_DIALOG(x) ((BooksDialog *)(x))
 
-void menu_options_books_activate_cb (GtkMenuItem *menu_item,
-				     DevHelp     *devhelp);
-
+GtkWidget * books_dialog_new (Bookshelf   *bookshelf);
 
 #endif /* __BOOKS_DIALOG_H__ */
 

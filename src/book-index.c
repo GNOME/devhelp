@@ -26,28 +26,26 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtksignal.h>
+#include <gtk/gtkscrolledwindow.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include "book.h"
 #include "book-index.h"
 
-static void book_index_class_init         (BookIndexClass     *klass);
-static void book_index_init               (BookIndex          *index);
+static void book_index_class_init         (BookIndexClass       *klass);
+static void book_index_init               (BookIndex            *index);
 
-static void book_index_destroy            (GtkObject          *object);
+static void book_index_destroy            (GtkObject            *object);
 
-static void book_index_populate_tree      (BookIndex          *index);
-static void book_index_insert_book_node   (BookIndex          *index,
-                                           GtkCTreeNode       *parent,
-                                           BookNode           *book_node);
+static void book_index_populate_tree      (BookIndex            *index);
+static void book_index_insert_book_node   (BookIndex            *index,
+                                           GtkCTreeNode         *parent,
+                                           BookNode             *book_node);
 
-static void book_index_create_pixmaps     (BookIndex          *index);
+static void book_index_create_pixmaps     (BookIndex            *index);
 
-static void book_index_open_node          (BookIndex          *index,
-                                           BookNode           *node);
-
-static void book_index_select_row         (GtkCTree           *ctree,
-                                           GtkCTreeNode       *node,
-                                           gint                column);
+static void book_index_select_row         (GtkCTree             *ctree,
+                                           GtkCTreeNode         *node,
+                                           gint                  column);
 
 static GtkCTreeClass *parent_class = NULL;
 
@@ -68,11 +66,13 @@ typedef struct {
 } BookIndexPixmaps;
 
 struct _BookIndexPriv {
-        Bookshelf          *bookshelf;
+        Bookshelf           *bookshelf;
 
-	gboolean            emit_uri_select;
+	gboolean             emit_uri_select;
 
-        BookIndexPixmaps   *pixmaps;
+	GtkCTreeNode        *selected_node;
+
+        BookIndexPixmaps    *pixmaps;
 };
 
 GtkType
@@ -305,6 +305,47 @@ book_index_new (Bookshelf *bookshelf)
 }
 
 static void
+book_index_select_row (GtkCTree *ctree, GtkCTreeNode *node, gint column)
+{
+        BookIndex       *index;
+        BookIndexPriv   *priv;
+        BookNode        *book_node;
+        GnomeVFSURI     *uri;
+        
+        g_return_if_fail (ctree != NULL);
+        g_return_if_fail (IS_BOOK_INDEX (ctree));
+        g_return_if_fail (node != NULL);
+        
+        index = BOOK_INDEX (ctree);
+        priv  = index->priv;
+
+        /* Chaining up */
+        if (parent_class->tree_select_row) {
+                parent_class->tree_select_row (ctree, node, column);
+        }
+
+	priv->selected_node = node;
+
+	if (priv->emit_uri_select) {
+		book_node = (BookNode *) gtk_ctree_node_get_row_data (ctree, 
+								      node);
+        
+		if (book_node) {
+			bookshelf_open_document (priv->bookshelf, 
+						 book_node_get_document (book_node));
+
+			uri = book_node_get_uri (book_node, NULL);
+			
+			gtk_signal_emit (GTK_OBJECT (index),
+					 signals[URI_SELECTED],
+					 uri);
+
+			gnome_vfs_uri_unref (uri);
+		}
+	}
+}
+
+void
 book_index_open_node (BookIndex *index, BookNode *book_node)
 {
 	BookIndexPriv   *priv;
@@ -330,81 +371,11 @@ book_index_open_node (BookIndex *index, BookNode *book_node)
 		/* Have to do this workaround to only emit when user click */
 		priv->emit_uri_select = FALSE;
 		gtk_ctree_select (GTK_CTREE(index), node);
+		priv->selected_node   = node;
 		priv->emit_uri_select = TRUE;
-		
+
 		gtk_ctree_node_moveto (GTK_CTREE(index), node, 0, 0.5, 0.5);
 	}
-}
-
-static void
-book_index_select_row (GtkCTree *ctree, GtkCTreeNode *node, gint column)
-{
-        BookIndex       *index;
-        BookIndexPriv   *priv;
-        BookNode        *book_node;
-        GnomeVFSURI     *uri;
-        
-        g_return_if_fail (ctree != NULL);
-        g_return_if_fail (IS_BOOK_INDEX (ctree));
-        g_return_if_fail (node != NULL);
-        
-        index = BOOK_INDEX (ctree);
-        priv  = index->priv;
-
-        /* Chaining up */
-        if (parent_class->tree_select_row) {
-                parent_class->tree_select_row (ctree, node, column);
-        }
-
-	if (priv->emit_uri_select) {
-
-		book_node = (BookNode *) gtk_ctree_node_get_row_data (ctree, 
-								      node);
-        
-		if (book_node) {
-			bookshelf_open_document (priv->bookshelf, 
-						 book_node_get_document (book_node));
-
-			uri = book_node_get_uri (book_node);
-			
-			gtk_signal_emit (GTK_OBJECT (index),
-					 signals[URI_SELECTED],
-					 uri);
-                
-			gnome_vfs_uri_unref (uri);
-		}
-	}
-}
-
-void
-book_index_open (BookIndex *index, const gchar *uri)
-{
-        BookIndexPriv   *priv;
-        Document        *document;
-        BookNode        *node;
-        gchar           *anchor = NULL;
-
-        g_return_if_fail (index != NULL);
-        g_return_if_fail (IS_BOOK_INDEX (index));
-        
-        priv = index->priv;
-        
-        g_print ("Trying to find document for: [%s]\n", uri);
-
-        document = bookshelf_find_document (priv->bookshelf, uri, &anchor);
-        
-        if (document) {
-                g_print ("Flirp\n");
-                node = bookshelf_find_node (priv->bookshelf, document, anchor);
-
-                if (node) {
-                        book_index_open_node (index, node);
-                }
-        }
-        
-        if (anchor) {
-                g_free (anchor);
-        }
 }
 
 void
@@ -425,3 +396,26 @@ book_index_add_book (BookIndex *index, Book *book)
         
         gtk_clist_thaw (GTK_CLIST (index));
 }
+
+GtkWidget *
+book_index_get_scrolled (BookIndex *index)
+{
+	
+ 	GtkWidget           *sw;
+	
+ 	g_return_val_if_fail (index != NULL, NULL);
+ 	g_return_val_if_fail (IS_BOOK_INDEX (index), NULL);
+	
+	sw = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+					GTK_POLICY_NEVER,
+					GTK_POLICY_AUTOMATIC);
+
+ 	gtk_clist_set_column_width (GTK_CLIST (index), 0, 80);
+	gtk_clist_set_selection_mode (GTK_CLIST (index), GTK_SELECTION_BROWSE);
+	
+	gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (index));
+
+	return sw;
+}
+

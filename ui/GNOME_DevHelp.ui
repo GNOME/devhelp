@@ -1,0 +1,110 @@
+<Root>
+  <commands>
+    <cmd name="CmdPrint"
+         _label="_Print"
+         sensitive="1"
+         pixtype="stock"
+         pixname="Print" />
+
+    <cmd name="CmdExit"
+	 _label="_Exit"
+         sensitive="1"
+         pixtype="stock"
+         pixname="Quit" />
+
+    <cmd name="CmdViewSideBar"
+	 _label="Show sidebar"
+         sensitive="1" />
+
+    <cmd name="CmdSizeTiny"
+         _label="Tiny font"
+         sensitive="1" /> 
+
+    <cmd name="CmdSizeSmall"
+         _label="Small font"
+         sensitive="1" /> 
+
+    <cmd name="CmdSizeMedium"
+         _label="Medium font"
+         sensitive="1" /> 
+
+    <cmd name="CmdSizeLarge"
+         _label="Large font"
+         sensitive="1" /> 
+
+    <cmd name="CmdSizeHuge"
+         _label="Huge font"
+         sensitive="1" /> 
+
+    <cmd name="CmdPrefs" 
+         _label="Preferences..."
+         sensitive="1"
+         pixtype="stock"
+         pixname="Preferences" />
+
+<!--    
+    <cmd name="CmdBookManager"
+         _label="Book Manager..."
+         sensitive="1"
+         pixtype="stock"
+         pixname="Book Blue" /> 
+-->
+    <cmd name="CmdAbout"
+	 _label="_About..."
+	 sensitive="1" 
+         pixtype="stock" 
+         pixname="About" 
+         _tip="About this application" />
+
+    <cmd name="CmdHistoryForward" 
+         _label="Forward"
+         sensitive="1"
+         pixtype="stock"
+         pixname="Forward"
+         _tip="Forward in the history-list" />
+    
+    <cmd name="CmdHistoryBack"
+         _label="Back"
+         sensitive="1"
+         pixtype="stock"
+         pixname="Back"
+         _tip="Back in the history-list" />
+  </commands>
+
+  <menu>
+     <submenu name="File" _label="_File">
+        <menuitem name="FilePrint"    verb="CmdPrint"   />
+        <separator />
+        <menuitem name="FileExit"     verb="CmdExit"    accel="*Control*q"  />
+     </submenu>
+
+     <submenu name="Edit" _label="_Edit">
+     </submenu>
+
+     <submenu name="View" _label="_View">
+        <menuitem name="ViewSideBar"    verb="CmdViewSideBar" />
+        <separator />
+        <menuitem name="ViewSizeTiny"   verb="CmdSizeTiny" />
+        <menuitem name="ViewSizeSmall"  verb="CmdSizeSmall" />
+        <menuitem name="ViewSizeMedium" verb="CmdSizeMedium" />
+        <menuitem name="ViewSizeLarge"  verb="CmdSizeLarge" />
+        <menuitem name="ViewSizeHuge"   verb="CmdSizeHuge" />
+     </submenu>
+   
+     <submenu name="Settings" _label="_Settings">
+        <menuitem name="SettingsPrefs"       verb="CmdPrefs" />
+<!--        <menuitem name="SettingsBookManager" verb="CmdBookManager" /> -->
+     </submenu>
+
+     <submenu name="Help" _label="_Help">
+        <menuitem name="HelpAbout" verb="CmdAbout"      />
+     </submenu>
+   
+  </menu>
+
+  <dockitem name="toolbar" look="icons" homogeneous="0" relief="none" behavior="exclusive">
+     <toolitem name="ToolBack"    verb="HistoryBack"    />
+     <toolitem name="ToolForward" verb="HistoryForward" />
+  </dockitem>
+
+</Root>

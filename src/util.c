@@ -24,11 +24,10 @@
 #include <config.h>
 #endif
 
-/* #include <ctype.h> */
-/* #include <stdio.h> */
 #include <string.h>
-
 #include "util.h"
+
+#define d(x)
 
 gchar *
 util_url_split (const gchar *url, gchar **anchor)
@@ -51,6 +50,7 @@ util_url_split (const gchar *url, gchar **anchor)
 	
 	if (anchor) {
 		*anchor = local_anchor;
+		d(g_print ("Anchor %s\n", *anchor));
 	}
 		
 	return base;

@@ -1,4 +1,4 @@
-/* -*- Mode: IDL; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * Interface for DevHelp
  *
@@ -9,8 +9,22 @@
 module GNOME {
 	module DevHelp {
 		interface HelpBrowser : Bonobo::Unknown {
-			void search            (in string str);
-			void searchInNewWindow (in string str);
+			void   search            (in string str);
+			void   searchInNewWindow (in string str);
+		};
+
+		interface Controller : Bonobo::Unknown {
+			Bonobo::Control  getSearchEntry      ();
+			Bonobo::Control  getSearchResultList ();
+			Bonobo::Control  getBookIndex        ();
+
+			/* Can this be done better, like adding interface */
+			/* Bonobo_UIComponent in Controller               */
+			void   addMenus     (in Bonobo::UIContainer uic);
+			
+			void   openURI      (in string uri);
+
+			void   search       (in string str);
 		};
 	};
 };

@@ -25,12 +25,25 @@
 # include <config.h>
 #endif
 
+#include <time.h>
 #include <string.h>
 #include <glib.h>
+#include <gtkhtml/gtkhtml.h>
 #include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <gtkhtml/gtkhtml.h>
+#include <libgnome/gnome-defs.h>
+#include <libgnome/gnome-i18n.h>
+#include <libgnome/gnome-paper.h>
+#include <libgnomeui/gnome-dialog.h>
+#include <libgnomeui/gnome-stock.h>
+#include <libgnomeui/gnome-uidefs.h>
+#include <libgnomeui/gnome-paper-selector.h>
+#include <libgnomeprint/gnome-printer.h>
+#include <libgnomeprint/gnome-print.h>
+#include <libgnomeprint/gnome-printer-dialog.h>
+#include <libgnomeprint/gnome-print-master.h>
+#include <libgnomeprint/gnome-print-master-preview.h>
 #include "util.h"
 #include "html-widget.h"
 
@@ -79,9 +92,6 @@ struct _HtmlWidgetPriv {
 	HtmlReadData    *page_load_data;
 };
 
-/*
- *
- */
 GtkType
 html_widget_get_type (void)
 {
@@ -105,9 +115,6 @@ html_widget_get_type (void)
 	return html_widget_type;
 }
 
-/*
- *
- */
 static void
 html_widget_init (HtmlWidget *html_widget)
 {
@@ -119,9 +126,6 @@ html_widget_init (HtmlWidget *html_widget)
 	html_widget->priv = priv;
 }
 
-/*
- *
- */
 static void
 html_widget_destroy (GtkObject *object)
 {
@@ -147,9 +151,6 @@ html_widget_destroy (GtkObject *object)
 	html_widget->priv = NULL;
 }
 
-/*
- *
- */
 static void
 html_widget_class_init (GtkObjectClass *klass)
 {
@@ -162,9 +163,6 @@ html_widget_class_init (GtkObjectClass *klass)
 	
 }
 
-/*
- *
- */
 static gboolean
 html_widget_is_new_uri (HtmlWidget *html_widget, const GnomeVFSURI *uri)
 {
@@ -197,10 +195,7 @@ html_read_data_free (HtmlReadData *read_data)
 	g_free (read_data);
 }
 
-/* html_widget_new: Creates a new HtmlWidget*
- *
- */
-HtmlWidget *
+GtkWidget *
 html_widget_new (void)
 {
 	HtmlWidget *html_widget;
@@ -218,12 +213,9 @@ html_widget_new (void)
 	gtk_html_load_from_string (GTK_HTML (html_widget), str, strlen (str));
 	g_free (str);
 
-	return html_widget;
+	return GTK_WIDGET (html_widget);
 }
 
-/*
- *
- */
 void
 html_widget_open_uri (HtmlWidget          *html_widget,
 		      const GnomeVFSURI   *uri)
@@ -453,4 +445,83 @@ html_widget_url_requested (GtkHTML         *gtk_html,
 	html_widget_load_uri (html_widget, uri, handle, FALSE);
 
 	gnome_vfs_uri_unref (uri);
+}
+
+void
+html_widget_print (HtmlWidget *html_widget)
+{
+	GtkWidget         *dialog;
+	gchar             *paper_name;
+	GnomePrintMaster  *print_master;
+	GnomePrintContext *ctx;
+	const GnomePaper  *paper;
+	gboolean           preview, landscape;
+	int                btn;
+	
+	paper_name = NULL;
+
+	preview = FALSE;
+	dialog = gnome_print_dialog_new (_("Print Help"), 0);
+	gtk_window_set_wmclass (GTK_WINDOW (dialog),
+				"Print",
+				"DevHelp");
+	
+	btn = gnome_dialog_run (GNOME_DIALOG (dialog));
+	switch (btn) {
+	case -1:
+		return;
+		
+	case GNOME_PRINT_CANCEL:
+		gtk_widget_destroy (dialog);
+		return;
+		
+	case GNOME_PRINT_PREVIEW:
+		preview = TRUE;
+		break;
+	default:
+		break;
+	};
+
+	landscape = FALSE;
+	
+	print_master = gnome_print_master_new_from_dialog (
+		GNOME_PRINT_DIALOG (dialog));
+	
+	/* Get the paper metrics. */
+	if (paper_name) {
+		paper = gnome_paper_with_name (paper_name);
+	} else {
+		paper = gnome_paper_with_name (gnome_paper_name_default ());
+	}
+	
+	gnome_print_master_set_paper (print_master, paper);
+	
+	ctx = gnome_print_master_get_context (print_master);
+	
+	gtk_html_print (GTK_HTML (html_widget), ctx);
+	
+	gnome_print_master_close (print_master);
+	
+	if (preview) {
+		GnomePrintMasterPreview *preview;
+		
+		preview = gnome_print_master_preview_new_with_orientation (
+			print_master, _("Print Preview"), landscape);
+		gtk_window_set_wmclass (GTK_WINDOW (preview),
+					"PrintPreview",
+					"DevHelp");
+		gtk_widget_show (GTK_WIDGET (preview));
+	} else {
+		int result;
+		
+		result = gnome_print_master_print (print_master);
+		
+		if (result == -1) {
+			g_warning (_("Printing failed."));
+		}
+	}
+	
+	/* Done. */
+	gtk_object_unref (GTK_OBJECT (print_master));
+	gtk_widget_destroy (dialog);
 }

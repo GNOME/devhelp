@@ -1,3 +1,156 @@
+2001-08-25  Mikael Hallendal  <micke@codefactory.se>
+
+	* ui/Makefile.am (ui_DATA): added with:
+	- GNOME_DevHelp.ui (the DevHelp client's ui)
+	- GNOME_DevHelp_Controller.ui (UI that comes from the Controller).
+
+	* src/preferences.c: 
+	- Use GtkArgs instead of get/set-functions.
+	- Added signals for when arguments changes.
+	- Removed all autocompletion-prefs since they are not used any
+	  longer. Always autocompletion and it's done in an idle so
+	  therefor autocomp.-speed is removed aswell.
+	- Made into a object that inherits GtkObject.
+	- Removed dependency on ui.c
+	(preferences_get_type): added/impl.
+	(preferences_init): added/impl.
+	(preferences_class_init): added/impl.
+	(preferences_set_*): removed
+	(preferences_get_*): removed
+	(preferences_get_arg): added/impl.
+	(preferences_set_arg): added/impl.
+	(gconf_*_changed_cb): emit signal instead of calling 
+	 functions all over the place.
+
+	* src/preferences-dialog.c: 
+	- removed unused stuff from PreferenceDialog-struct. 
+	- removed all GConf-stuff. Listen to signals from Prefernces
+  	  instead.
+	- Removed all autocompletion-stuff.
+	- Use Preferences GtkArg's instead of get/set-functions
+	(pd_zoom_level_changed_cb): Preferences-cb instead of gconf-cb.
+	(pd_sidebar_visible_changed_cb): dito.
+	(gconf_autocompletion_changed_cb): removed	
+	(prefs_destroy_cb): don't remove listeners from gconf.
+	(preferences_dialog_new): renamed from
+	  menu_preferences_activate_cb and cleaned up.
+
+	* src/main.c: 
+	(corba_search_cb): removed.
+	(corba_search_in_new_window_cb): removed.
+	(devhelp_factory): don't listen to any help_browser signals.
+	(idle_activate_and_search_quit): don't return if data != NULL.
+	(main): call, glade_gnome_init, don't call g_thread_init.
+	
+	* src/install.c: 
+	- Don't use DevHelp struct, now removed.
+	(install_unpack_book): takes Bookshelf instead of DevHelp.
+	(install_insert_book): Dito.
+	(install_book): Dito.
+
+	* src/html-widget.h: added html_widget_print.
+
+	* src/html-widget.c: 
+	- removed unncessary comments.
+	- moved print (HtmlWidget *widget) here and renamed it
+	  html_widget_print. This comes from the now removed file print.c
+
+	* src/help-browser.c: 
+	- removed signals 'search' and 'search_in_new_window'.
+	- temporarly disable the windows-list. Currently only using one
+	  window.
+	(impl_HelpBrowser_search): call devhelp_window_search instead of
+	  emitting a signal.
+	(impl_HelpBrowser_searchInNewWindow): Do not emit, should create a
+	  new window and call devhelp_window_search on it. Not implemented
+	  yet though.
+	(help_browser_class_init): removed the signals mentioned above.
+
+	* src/devhelp-window.c: 
+	- Main window in the DevHelp app. This uses the so-lib exactly as
+	  any embedding app would. Therefor it should be a good place to
+	  look if you want to embed DevHelp inside your application using
+	  Bonobo. Look in devhelp_window_populate how to activate and use
+	  DevHelp. 
+	- A BonoboWindow using BonoboUI for menus and toolbar.
+
+	* src/devhelp-search.[ch]:
+	(devhelp_search_get_entry_widget): added/impl. returns the search
+	  entry.
+	(devhelp_search_set_search_string): added/impl. set's the search
+	  string in the entry.
+	(devhelp_search_get_result_widget): added/impl. returns the search
+	result list in a scrolled window.
+
+	* src/bookshelf.[ch]: 
+	- Added signals 'book_added' and 'book_removed'.
+	(bookshelf_add_book): emit 'book_added'
+	(bookshelf_remove_book): emit 'book_removed'
+
+	* src/books-dialog.[ch]:
+	- Removed everything that had todo with gconf. The gconf-stuff is
+	  now isolated in preferences.c. 
+	- Removed DevHelp references (that struct is removed). Instead use
+	  Bookshelf. 
+	- code cleanups.
+	(gconf_sidebar_visible_changed_cb): removed
+	(books_dialog_new): 
+	  - renamed from menu_options_books_activate_cb
+	    since it's a better name and the dialog knows nothing about
+	    any menu. 
+	  - Removed gconf-stuff. 
+
+	* src/book.c:
+	(book_node_get_uri): handle the extra 'anchor'-argument. 
+	(book_url_get_book_relative): removed a debug printout.
+
+	* src/book-node.h: book_node_get_uri takes an extra optional (set
+	  to NULL if not used) argument. This is a work around the problem
+	  that there are book_node's without the correct anchor set.
+
+	* src/book-index.[ch]: moved around functions to come in the same
+	  order as the declarations. Makes it easier to find the function.
+	(book_index_select_row): added argument to book_node_get_uri,
+	  somewhat work around.
+	(book_index_get_scrolled): added, returns the BookIndex widget in
+	  a scrolled window.
+
+	* src/Makefile.am:
+	(libdevhelp_la_SOURCES): 
+	- Build a so-lib which activates through OAF.
+	- Moved files into the so-lib instead of everything into the same
+	  binary. This includes all internal devhelp-stuff will be used by
+	  other clients then the DevHelp gui.
+	(devhelp_SOURCES): Removed:
+	- main.h
+	- ui.[ch]
+	- print.[ch]
+	
+	* src/GNOME_DevHelp.oaf.in: 
+	- Added GNOME_DevHelp_Controller factory.
+	- Added GNOME_DevHelp_Controller.
+
+	* idl/GNOME_DevHelp.idl:
+	- Added interface GNOME_DevHelp_Controller.
+	- This interface takes care of communication between "client" and
+	  the so-lib "server".
+
+	* devhelp.schemas: removed autocompletion schema.
+
+	* ui/GNOME_DevHelp.ui: Added.
+
+	* ui/GNOME_DevHelp_Controller.ui: Added.
+
+	* src/ui.[ch]: Removed.
+
+	* src/print.[ch]: Removed.
+
+	* src/main.h: Removed.
+	
+	* ui/devhelp.glade: updated.
+
+	* src/devhelp-controller.[ch]: Added.
+
 2001-08-22  Mikael Hallendal  <micke@codefactory.se>
 
 	* misc/devhelp.vim: remove -f here to.

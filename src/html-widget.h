@@ -27,7 +27,8 @@
 #include <gtk/gtkobject.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkmarshal.h>
-#include <gtkhtml/gtkhtml-types.h>
+#include <gtkhtml/gtkhtml.h>
+#include <libgnomevfs/gnome-vfs.h>
 
 #define HTML_WIDGET_TYPE        (html_widget_get_type ())
 #define HTML_WIDGET(o)          (GTK_CHECK_CAST ((o), HTML_WIDGET_TYPE, HtmlWidget))
@@ -50,10 +51,12 @@ struct _HtmlWidgetClass {
 };
 
 GtkType         html_widget_get_type  (void);
-HtmlWidget     *html_widget_new       ();
+GtkWidget      *html_widget_new       ();
 
 void            html_widget_open_uri  (HtmlWidget          *html_widget,
 				       const GnomeVFSURI   *uri);
+
+void            html_widget_print     (HtmlWidget          *html_widget);
 
 #endif /* __HTML_WIDGET_H__ */
 

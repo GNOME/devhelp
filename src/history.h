@@ -21,6 +21,8 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
+/* FIX: This has to work in the future too */
+
 #ifndef __HISTORY_H__
 #define __HISTORY_H__
 
@@ -28,6 +30,7 @@
 #include <gtk/gtktypeutils.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include "book.h"
+
 #define TYPE_HISTORY        (history_get_type ())
 #define HISTORY(o)          (GTK_CHECK_CAST ((o), TYPE_HISTORY, History))
 #define HISTORY_CLASS(k)    (GTK_CHECK_CLASS_CAST((k), TYPE_HISTORY, HistoryClass))

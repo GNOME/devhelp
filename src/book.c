@@ -433,8 +433,6 @@ book_url_get_book_relative (Book *book, const gchar *url)
 	priv     = book->priv;
 
 	if (!util_uri_is_relative (url)) {
-		g_print ("Not relative\n");
-		
 		base = gnome_vfs_uri_to_string (book->priv->base_uri,
 						GNOME_VFS_URI_HIDE_NONE);
 		
@@ -681,11 +679,13 @@ book_find_document (Book *book, const gchar *url, gchar **anchor)
 	g_return_val_if_fail (book != NULL, NULL);
 	g_return_val_if_fail (IS_BOOK (book), NULL);
 	g_return_val_if_fail (url != NULL, NULL);
+
+	d(g_print ("Trying to find document: %s\n", url));
 	
 	priv = book->priv;
 
 	book_rel_url = book_url_get_book_relative (book, url);
-
+	
 	doc_url = util_url_split (book_rel_url, anchor);
 	
 	document = g_hash_table_lookup (priv->documents, doc_url);
@@ -824,11 +824,20 @@ book_node_is_chapter (const BookNode *node)
 }
 
 GnomeVFSURI *
-book_node_get_uri (const BookNode *node)
+book_node_get_uri (const BookNode *node, const gchar *anchor)
 {
-	g_return_val_if_fail (node != NULL, NULL);
+	const gchar *local_anchor;
 	
-	return document_get_uri (node->document, node->anchor);
+	g_return_val_if_fail (node != NULL, NULL);
+
+	/* FIX: This is a work-around because of me being stupid /Hallski */
+	if (anchor) {
+		local_anchor = anchor;
+	} else {
+		local_anchor = node->anchor;
+	}
+	
+	return document_get_uri (node->document, local_anchor);
 }
 
 Document *
@@ -853,6 +862,7 @@ document_get_uri (const Document *document, const gchar *anchor)
 	BookPriv      *priv;
 	gchar         *url;
 	GnomeVFSURI   *uri;
+	gchar         *tst;
 	
 	g_return_val_if_fail (document != NULL, NULL);
 	
@@ -860,13 +870,15 @@ document_get_uri (const Document *document, const gchar *anchor)
 
 	if (anchor) {
 		url = g_strconcat (document->link, anchor, NULL);
-
+		
 		uri = gnome_vfs_uri_append_string (priv->base_uri, url);
 		g_free (url);
 	} else {
 		uri = gnome_vfs_uri_append_string (priv->base_uri, 
 						   document->link);
 	}
+	
+	tst = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
 	return uri;
 }

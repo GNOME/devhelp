@@ -28,12 +28,16 @@
 #include <gtk/gtkwidget.h>
 #include <gtk/gtktypeutils.h>
 #include "bookshelf.h"
+#include "book-node.h"
+
+#define DEVHELP_BOOK_INDEX_OAFIID "OAFIID:GNOME_DevHelp_BookIndex"
 
 #define TYPE_BOOK_INDEX			(book_index_get_type ())
 #define BOOK_INDEX(obj)			(GTK_CHECK_CAST ((obj), TYPE_BOOK_INDEX, BookIndex))
 #define BOOK_INDEX_CLASS(klass)		(GTK_CHECK_CLASS_CAST ((klass), TYPE_BOOK_INDEX, BookIndexClass))
 #define IS_BOOK_INDEX(obj)		(GTK_CHECK_TYPE ((obj), TYPE_BOOK_INDEX))
 #define IS_BOOK_INDEX_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), TYPE_BOOK_INDEX))
+
 
 typedef struct _BookIndex       BookIndex;
 typedef struct _BookIndexClass  BookIndexClass;
@@ -56,13 +60,15 @@ struct _BookIndexClass
                                const GnomeVFSURI   *uri);
 };
 
-GtkType      book_index_get_type      (void);
-GtkWidget *  book_index_new           (Bookshelf     *bookshelf);
+GtkType          book_index_get_type      (void);
+GtkWidget *      book_index_new           (Bookshelf     *bookshelf);
 
-void         book_index_open          (BookIndex     *index,
-                                       const gchar   *uri);
+void             book_index_open_node     (BookIndex     *index,
+					   BookNode      *node);
 
-void         book_index_add_book      (BookIndex     *index,
-                                       Book          *book);
+void             book_index_add_book      (BookIndex     *index,
+					   Book          *book);
+
+GtkWidget *      book_index_get_scrolled  (BookIndex     *index);
 
 #endif /* __BOOK_INDEX_H__ */

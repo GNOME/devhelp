@@ -29,6 +29,7 @@
 #include <gtk/gtkeditable.h>
 #include <gtk/gtkentry.h>
 #include <gtk/gtksignal.h>
+#include <gtk/gtkscrolledwindow.h>
 #include "function-database.h"
 #include "devhelp-search.h"
 
@@ -62,11 +63,10 @@ static void devhelp_search_clist_select_row_cb (GtkCList             *clist,
                                                 GdkEvent             *event,
                                                 DevHelpSearch        *search);
 
-static gint devhelp_search_complete_idle       (gpointer            user_data);
+static gint devhelp_search_complete_idle       (gpointer              data);
 
-static void devhelp_search_do_search           (DevHelpSearch        *search,
-                                                const gchar          *string);
-
+static void devhelp_search_do_search           (DevHelpSearch        *search, 
+						const gchar          *string);
 static gchar * 
 devhelp_search_get_search_string_cb            (FunctionDatabase     *fd,
                                                 DevHelpSearch        *search);
@@ -90,17 +90,14 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _DevHelpSearchPriv {
-        GtkWidget          *entry;
-        GtkWidget          *clist;
+	GtkWidget           *entry; 
+	GtkWidget           *clist; 
 
-        Bookshelf          *bookshelf;
-	FunctionDatabase   *fd;
+        Bookshelf           *bookshelf;
+	FunctionDatabase    *fd;
 
-	gboolean            emit_uri_select;
-
-        guint               complete;
+	guint                complete;
 };
-
 
 GtkType
 devhelp_search_get_type (void)
@@ -156,7 +153,6 @@ devhelp_search_init (DevHelpSearch *search)
         
         priv                  = g_new0 (DevHelpSearchPriv, 1);
         priv->bookshelf       = NULL;
-	priv->emit_uri_select = TRUE;
         search->priv          = priv;
 }
 
@@ -273,15 +269,13 @@ devhelp_search_clist_select_row_cb (GtkCList        *clist,
                 return;
         }
 
-        if (priv->emit_uri_select) {
-                uri = document_get_uri (function->document, function->anchor);
+	uri = document_get_uri (function->document, function->anchor);
         
-                gtk_signal_emit (GTK_OBJECT (search),
-                                 signals[URI_SELECTED],
-                                 uri);
+	gtk_signal_emit (GTK_OBJECT (search),
+			 signals[URI_SELECTED],
+			 uri);
 
-                gnome_vfs_uri_unref (uri);
-        }
+	gnome_vfs_uri_unref (uri);
 }
 
 static gint
@@ -464,20 +458,44 @@ devhelp_search_new (Bookshelf *bookshelf)
 }
 
 GtkWidget *
-devhelp_search_get_entry (DevHelpSearch *search)
+devhelp_search_get_result_widget (DevHelpSearch *search)
 {
+	DevHelpSearchPriv   *priv;
+	GtkWidget           *sw;
+	
         g_return_val_if_fail (search != NULL, NULL);
         g_return_val_if_fail (IS_DEVHELP_SEARCH (search), NULL);
 
-        return search->priv->entry;
+	priv     = search->priv;
+
+	sw = gtk_scrolled_window_new (NULL, NULL);
+
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+					GTK_POLICY_NEVER,
+					GTK_POLICY_AUTOMATIC);
+	
+	gtk_clist_set_column_width (GTK_CLIST (priv->clist), 0, 80);
+	gtk_container_add (GTK_CONTAINER (sw), priv->clist);
+
+	gtk_widget_show_all (sw);
+
+	return sw;
 }
 
 GtkWidget *
-devhelp_search_get_result_list (DevHelpSearch *search)
+devhelp_search_get_entry_widget (DevHelpSearch *search) 
 {
         g_return_val_if_fail (search != NULL, NULL);
         g_return_val_if_fail (IS_DEVHELP_SEARCH (search), NULL);
 
-        return search->priv->clist;
+	return search->priv->entry;
 }
 
+void
+devhelp_search_set_search_string (DevHelpSearch *search, const gchar *str)
+{
+        g_return_if_fail (search != NULL);
+        g_return_if_fail (IS_DEVHELP_SEARCH (search));
+
+	gtk_entry_set_text (GTK_ENTRY (search->priv->entry), str);
+}

@@ -24,15 +24,14 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <glib.h>
+#include <gtk/gtkwidget.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-i18n.h>
 
 #include "install.h"
-#include "main.h"
 #include "book.h"
-#include "ui.h"
 
 static void
 gnome_message (const gchar *message)
@@ -123,19 +122,25 @@ install_spec (const gchar *filename, const gchar *name, const gchar *root)
 }
 	
 static Book *
-install_unpack_book (DevHelp *devhelp, const gchar *filename, const gchar *root)
+install_unpack_book (Bookshelf     *bookshelf, 
+		     const gchar   *filename, 
+		     const gchar   *root)
 {
-	Book            *book;
-	GnomeVFSURI     *uri;
-	GnomeVFSResult   result;
-	const gchar     *name;
-	gchar           *cmd;
-	gchar           *old_uri;
-	gchar           *dir;
-	guint            retval;
-	gboolean         status;
-	
-	g_return_val_if_fail (devhelp != NULL, NULL);
+	Book             *book;
+	GnomeVFSURI      *uri;
+	GnomeVFSResult    result;
+	const gchar      *name;
+	gchar            *cmd;
+	gchar            *old_uri;
+	gchar            *dir;
+	guint             retval;
+	gboolean          status;
+	FunctionDatabase *fd;
+
+	g_return_val_if_fail (bookshelf != NULL, NULL);
+	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
+
+	fd = bookshelf_get_function_database (bookshelf);
 
 	/* Create temporary directory */
 	dir = g_strdup_printf ("%s/tmp", root);
@@ -157,7 +162,7 @@ install_unpack_book (DevHelp *devhelp, const gchar *filename, const gchar *root)
 	cmd = g_strdup_printf ("%s/tmp/book.devhelp", root);
 	uri = gnome_vfs_uri_new (cmd);
 	
-	book = book_new (uri, devhelp->function_database);
+	book = book_new (uri, fd);
 	name = book_get_name (book);
 
 	g_free (cmd);
@@ -224,16 +229,14 @@ install_unpack_book (DevHelp *devhelp, const gchar *filename, const gchar *root)
 }
 
 static void
-install_insert_book (DevHelp *devhelp, Book *book, const gchar *root)
+install_insert_book (Bookshelf *bookshelf, Book *book, const gchar *root)
 {
-	Bookshelf *bookshelf;
 	gchar *xml_path;
 	
-	g_return_if_fail (devhelp != NULL);
+	g_return_if_fail (bookshelf != NULL);
+	g_return_if_fail (IS_BOOKSHELF (bookshelf));
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
-
-	bookshelf = devhelp->bookshelf;
 
 	/* Add to bookshelf */
 	bookshelf_add_book (bookshelf, book);
@@ -241,9 +244,6 @@ install_insert_book (DevHelp *devhelp, Book *book, const gchar *root)
 	xml_path = g_strdup_printf ("%s/books.xml", root);
 	bookshelf_write_xml (bookshelf, xml_path);
 	g_free (xml_path);
-
-	/* Add to BookIndex */
-        book_index_add_book (BOOK_INDEX (devhelp->book_index), book);
 }
 
 static void
@@ -261,28 +261,30 @@ install_cleanup (const gchar *root)
 }
 
 gboolean
-install_book (DevHelp *devhelp, const gchar *filename, const gchar* root)
+install_book (Bookshelf *bookshelf, const gchar *filename, const gchar* root)
 {
-	Book        *book;
-	const gchar *mime_type;
-	const gchar *name;
-	gchar       *message;
-	gchar       *xml_path;
+	Book               *book;
+	const gchar        *mime_type;
+	const gchar        *name;
+	gchar              *message;
+	gchar              *xml_path;
+	FunctionDatabase   *fd;
 	
 	install_create_directories (root);
 	
 	mime_type = gnome_vfs_mime_type_from_name (filename);
-
+	fd = bookshelf_get_function_database (bookshelf);
+	
 	/* Is it a .tar.gz? */
 	if (strcmp (mime_type, "application/x-compressed-tar") == 0) {
-		book = install_unpack_book (devhelp, filename, root);
+		book = install_unpack_book (bookshelf, filename, root);
 	
 		if (book == NULL) {
 			install_cleanup (root);
 			return FALSE;
 		}
 	} else if (strcmp (mime_type, "application/octet-stream") == 0) {
-		book = book_new (gnome_vfs_uri_new (filename), devhelp->function_database);
+		book = book_new (gnome_vfs_uri_new (filename), fd);
 		if (book == NULL) {
 			message = g_strdup_printf (_("Wrong type (mime_type=%s)."), mime_type);
 			gnome_message (message);
@@ -300,7 +302,7 @@ install_book (DevHelp *devhelp, const gchar *filename, const gchar* root)
 		return FALSE;
 	}
 	
-	install_insert_book (devhelp, book, root);
+	install_insert_book (bookshelf, book, root);
 	
 	return TRUE;
 }

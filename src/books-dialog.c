@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2001 Richard Hult <rhult@codefactory.se>
  * Copyright (C) 2001 Johan Dahlin <zilch.am@home.se>
+ * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -37,33 +38,23 @@
 
 #include "books-dialog.h"
 #include "bookshelf.h"
-#include "main.h"
 #include "preferences.h"
 
 static void        update_clist (BooksDialog *dialog);
 
 struct _BooksDialog {
-	Preferences    *prefs;
-	GConfClient    *client;
-	DevHelp        *devhelp;
-	GtkWidget      *dialog;
-	GtkCList       *clist_hidden;
-	GtkCList       *clist_visible;
+	Bookshelf   *bookshelf;
+
+	GtkWidget   *dialog;
+	GtkCList    *clist_hidden;
+	GtkCList    *clist_visible;
 };
 
 struct _BookInfo {
-	Book           *book;
-	GtkWidget      *dialog;
-	GtkEntry       *path;
+	Book        *book;
+	GtkWidget   *dialog;
+	GtkEntry    *path;
 };
-
-static void
-gconf_sidebar_visible_changed_cb (GConfClient       *client,
-				  guint              notify_id,
-				  GConfEntry        *entry,
-				  gpointer           data)
-{
-}
 
 static void
 books_button_show_clicked_cb (GtkWidget *button,
@@ -179,9 +170,9 @@ books_button_edit_clicked_cb (GtkWidget *button,
 				   gtk_widget_destroy,
 				   (gpointer)book_info->dialog);
 
-	name = GTK_LABEL (glade_xml_get_widget (gui, "label_info_name"));
-	title = GTK_LABEL (glade_xml_get_widget (gui, "label_info_title"));
-	author = GTK_LABEL (glade_xml_get_widget (gui, "label_info_author"));
+	name    = GTK_LABEL (glade_xml_get_widget (gui, "label_info_name"));
+	title   = GTK_LABEL (glade_xml_get_widget (gui, "label_info_title"));
+	author  = GTK_LABEL (glade_xml_get_widget (gui, "label_info_author"));
 	version = GTK_LABEL (glade_xml_get_widget (gui, "label_info_version"));
 	book_info->path = GTK_ENTRY (glade_xml_get_widget (gui, "entry_info_path"));
 
@@ -221,7 +212,7 @@ update_clist (BooksDialog *dialog)
 
 	g_return_if_fail (dialog != NULL);
 	
-	bookshelf = dialog->devhelp->bookshelf;
+	bookshelf = dialog->bookshelf;
 	
 	list = bookshelf_get_books (bookshelf);
 
@@ -292,7 +283,7 @@ addbook_dialog_clicked_cb (GtkButton *button, GtkFileSelection *selector)
 		
 		/* Install the book in the users home directory */
 		root = g_strdup_printf ("%s/.devhelp", getenv ("HOME"));
-		install_book (dialog->devhelp, filename, root);
+		install_book (dialog->bookshelf, filename, root);
 		
 		update_clist (dialog);
 		g_free (root);
@@ -342,7 +333,6 @@ books_button_install_clicked_cb (GtkWidget *widget,
 static gboolean
 books_destroy_cb (GtkWidget *widget, BooksDialog *dialog)
 {
-	gconf_client_remove_dir (dialog->client, "/apps/devhelp", NULL);
 	g_free (dialog);
 }
 
@@ -357,7 +347,10 @@ books_button_close_clicked_cb (GtkWidget *button,
 	dialog = BOOKS_DIALOG (user_data);
 
 	gtk_widget_destroy (dialog->dialog);
-	dialog->dialog = NULL;
+	gtk_main_quit();
+
+/* 	gtk_widget_destroy (dialog->dialog); */
+/* 	dialog->dialog = NULL; */
 }
 
 static void
@@ -367,21 +360,19 @@ books_button_sidebar_toggled_cb (GtkToggleButton *tb, BooksDialog *dialog)
 //					 gtk_toggle_button_get_active (tb));
 }
 
-void
-menu_options_books_activate_cb (GtkMenuItem *menu_item,
-				DevHelp     *devhelp)
+GtkWidget *
+books_dialog_new (Bookshelf   *bookshelf)
 {
 	BooksDialog *dialog;
 	GladeXML    *gui;
 	GtkWidget   *w;
 
-	g_return_if_fail (devhelp != NULL);
+	g_return_if_fail (bookshelf != NULL);
+	g_return_if_fail (IS_BOOKSHELF (bookshelf));
 
 	dialog = g_new (BooksDialog, 1);
 
-	dialog->client = gconf_client_get_default ();
-	gconf_client_add_dir (dialog->client, "/apps/devhelp",
-			      GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
+	dialog->bookshelf = bookshelf;
 
 	gui = glade_xml_new (DATA_DIR "/devhelp/glade/devhelp.glade", "books_dialog");
 	
@@ -389,9 +380,6 @@ menu_options_books_activate_cb (GtkMenuItem *menu_item,
 	gtk_signal_connect (GTK_OBJECT (dialog->dialog), "destroy",
 			    GTK_SIGNAL_FUNC (books_destroy_cb), dialog);
 	
-	dialog->prefs = devhelp->preferences;
-	dialog->devhelp = devhelp;
-
 	dialog->clist_hidden = GTK_CLIST (glade_xml_get_widget (gui, "books_clist_hidden"));
 	dialog->clist_visible = GTK_CLIST (glade_xml_get_widget (gui, "books_clist_visible"));
 
@@ -417,12 +405,8 @@ menu_options_books_activate_cb (GtkMenuItem *menu_item,
 
 	gtk_object_unref (GTK_OBJECT (gui));
 
-/*	gconf_client_notify_add (
-		dialog->client, "/apps/devhelp/sidebar_visible",
-		gconf_sidebar_visible_changed_cb, dialog,
-		NULL, NULL);
-*/
 	update_clist (dialog);
-	gtk_widget_show_all (dialog->dialog);
+
+	return dialog->dialog;
 }
 

@@ -23,14 +23,12 @@
 #ifndef __PREFERENCES_DIALOG_H__
 #define __PREFERENCES_DIALOG_H__
 
-#include <gtk/gtkmenuitem.h>
+#include "preferences.h"
 
 typedef struct _PreferencesDialog PreferencesDialog;
 
-#include "main.h"
-
 #define PREFERENCES_DIALOG(x) ((PreferencesDialog *)(x))
 
-void menu_preferences_activate_cb         (GtkMenuItem *menu_item, DevHelp *devhelp);
+GtkWidget * preferences_dialog_new (Preferences   *prefs);
 
 #endif /* __PREFERENCES_DIALOG_H__ */

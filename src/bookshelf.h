@@ -48,8 +48,10 @@ struct _BookshelfClass
 {
 	GtkObjectClass    parent_class;
 	
-	/* FIX: Add book_added and book_removed signals */
-
+	void (*book_added)    (Bookshelf     *bookshelf,
+			       Book          *book);
+	void (*book_removed)  (Bookshelf     *bookshelf,
+			       Book          *book);
 };
 
 GtkType          bookshelf_get_type           (void);

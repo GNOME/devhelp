@@ -41,8 +41,6 @@
 #include <bonobo/bonobo-generic-factory.h>
 
 #include "GNOME_DevHelp.h"
-#include "main.h"
-#include "ui.h"
 #include "install.h"
 #include "help-browser.h"
 #include "devhelp-window.h"
@@ -52,45 +50,13 @@
 static BonoboObject *   devhelp_factory   (BonoboGenericFactory   *this, 
 					   void                   *data);
 
-static void
-corba_search_cb (HelpBrowser   *help_browser,
-		 const gchar   *search,
-		 DevHelp       *devhelp)
-{
-	g_return_if_fail (devhelp != NULL);
-		
-	gtk_entry_set_text (GTK_ENTRY (devhelp->entry), search);
-	gtk_notebook_set_page (devhelp->notebook, 1);
-	gdk_window_raise (devhelp->window->window);
-}
-
-static void
-corba_search_in_new_window_cb (HelpBrowser *help_browser,
-			       const gchar *search,
-			       DevHelp     *devhelp)
-{
-	g_warning (_("searchInNewWindow not implemented."));
-}
-
 static BonoboObject *
 devhelp_factory (BonoboGenericFactory *this, void *data)
 {
 	static HelpBrowser   *help_browser = NULL;
-	static DevHelp       *devhelp = NULL;
 	
 	if (help_browser == NULL) {
-		devhelp = devhelp_create_ui ();
 		help_browser = help_browser_new ();
-
-		gtk_signal_connect (GTK_OBJECT (help_browser),
-				    "search",
-				    corba_search_cb,
-				    devhelp);
-
-		gtk_signal_connect (GTK_OBJECT (help_browser),
-				    "search_in_new_window",
-				    corba_search_in_new_window_cb,
-				    devhelp);
 	} else {
 		bonobo_object_ref (BONOBO_OBJECT (help_browser));
 	}
@@ -127,8 +93,6 @@ activate_and_search (gpointer data, gboolean new_window)
 static gboolean
 idle_activate_and_search_quit (gpointer data)
 {
-	g_return_if_fail (data != NULL);
-	
 	activate_and_search (data, FALSE);
 	
 	gtk_main_quit ();
@@ -170,9 +134,7 @@ main (int argc, char **argv)
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 #endif
-	
-	g_thread_init (NULL);
-	
+
 	gnomelib_register_popt_table (oaf_popt_options,
 				      oaf_get_popt_table_name ());
 
@@ -186,7 +148,8 @@ main (int argc, char **argv)
 	gdk_rgb_init ();
 	gconf_init (argc, argv, NULL);
 	gnome_vfs_init ();
-
+	glade_gnome_init ();
+	
 	if (!bonobo_init (orb, CORBA_OBJECT_NIL, CORBA_OBJECT_NIL)) {
 		g_error ("Could not initialize Bonobo");
 	}

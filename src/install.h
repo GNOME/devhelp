@@ -23,13 +23,13 @@
 #ifndef __INSTALL_H__
 #define __INSTALL_H__
 
-#include "main.h"
+#include "bookshelf.h"
 
-gboolean  install_book               (DevHelp     *devhelp,
-				      const gchar *filename,
-				      const gchar *root);
+gboolean  install_book               (Bookshelf     *bookshelf,
+				      const gchar   *filename,
+				      const gchar   *root);
 
-void      install_create_directories (const gchar *directory);
+void      install_create_directories (const gchar   *directory);
 
 #endif /* __INSTALL_H__ */
 

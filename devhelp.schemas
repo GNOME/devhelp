@@ -22,17 +22,6 @@
      </locale>
    </schema>
      
-    <schema>
-    <key>/schemas/apps/devhelp/autocompletion</key>
-    <applyto>/apps/devhelp/autocompletion</applyto>
-    <owner>devhelp</owner>    
-    <type>bool</type>
-    <default>true</default>
-    <locale name="C">
-       <short>Auto completion</short>
-     </locale>
-   </schema>     
-
   </schemalist>
   
 </gconfschemafile>

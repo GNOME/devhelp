@@ -1,0 +1,21 @@
+<Root>
+  <commands>
+    <cmd name="CmdBookManager"
+         _label="Book Manager..."
+         sensitive="1"
+         pixtype="stock"
+         pixname="Book Blue" /> 
+  </commands>
+
+  <menu>
+     <submenu name="DevHelp" _label="_DevHelp">
+        <menuitem name="SettingsBookManager" verb="CmdBookManager" />
+     </submenu>
+  </menu>
+
+<!--
+  <dockitem name="toolbar" look="icons" homogeneous="0" relief="none" behavior="exclusive">
+  </dockitem>
+-->
+
+</Root>

@@ -36,22 +36,24 @@
 #define HELP_BROWSER_CLASS(k)    (GTK_CHECK_FOR_CAST((k), HELP_BROWSER_TYPE, HelpBrowserClass))
 #define IS_HELP_BROWSER(o)       (GTK_CHECK_TYPE ((o), HELP_BROWSER_TYPE))
 #define IS_HELP_BROWSER_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), HELP_BROWSER_TYPE))
-
-typedef struct _HelpBrowser HelpBrowser;
+typedef struct _HelpBrowser     HelpBrowser;
+typedef struct _HelpBrowserPriv HelpBrowserPriv;
 
 struct _HelpBrowser {
-	BonoboXObject        parent;
+	BonoboXObject      parent;
+
+	HelpBrowserPriv   *priv;
 };
 
 typedef struct {
-        BonoboXObjectClass                 parent_class;
-        POA_GNOME_DevHelp_HelpBrowser__epv epv;
+        BonoboXObjectClass                   parent_class;
+
+        POA_GNOME_DevHelp_HelpBrowser__epv   epv;
 } HelpBrowserClass;
 
 
 GtkType         help_browser_get_type (void);
 HelpBrowser    *help_browser_new      (void);
-
 
 #endif /* __HELP_BROWSER_H__ */
 

@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2001 Ricard Hult <rhult@codefactory.se>
+ * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -25,10 +26,36 @@
 
 #include <gconf/gconf-client.h>
 
-/* Work around circular includes. */
-typedef struct _Preferences Preferences;
+#define TYPE_PREFERENCES		(preferences_get_type ())
+#define PREFERENCES(obj)		(GTK_CHECK_CAST ((obj), TYPE_PREFERENCES, Preferences))
+#define PREFERENCES_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), TYPE_PREFERENCES, PreferencesClass))
+#define IS_PREFERENCES(obj)		(GTK_CHECK_TYPE ((obj), TYPE_PREFERENCES))
+#define IS_PREFERENCES_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), TYPE_PREFERENCES))
 
-#include "main.h"
+typedef struct _Preferences        Preferences;
+typedef struct _PreferencesClass   PreferencesClass;
+typedef struct _PreferencesPriv    PreferencesPriv;
+
+struct _Preferences {
+	GtkObject          parent;
+	
+	PreferencesPriv   *priv;
+};
+
+struct _PreferencesClass {
+	GtkObjectClass     parent_class;
+	
+	/* Signals */
+	
+	void (*sidebar_visible_changed)   (Preferences   *prefs,
+					   gboolean       visible);
+	
+	void (*sidebar_position_changed)  (Preferences   *prefs,
+					   gint           width);
+	
+	void (*zoom_level_changed)        (Preferences   *prefs,
+					   gint           value);
+};
 
 typedef struct {
 	const gchar *label;
@@ -41,25 +68,11 @@ typedef struct {
 #define	ZOOM_LARGE_INDEX  3
 #define	ZOOM_HUGE_INDEX   4
 
-#define AUTOCOMP_SLOW_INDEX   0
-#define AUTOCOMP_MEDIUM_INDEX 1
-#define AUTOCOMP_FAST_INDEX   2
-
 extern const OptionMenuData zoom_levels[];
-extern const OptionMenuData autocompletion_speeds[];
 
-Preferences *preferences_new (DevHelp *devhelp);
-void         preferences_set_sidebar_visible (Preferences *preferences, gboolean value);
-gboolean     preferences_get_sidebar_visible (Preferences *preferences);
-void         preferences_set_zoom_level (Preferences *preferences, gint value);
-gint         preferences_get_zoom_level (Preferences *preferences);
-void         preferences_set_sidebar_position (Preferences *preferences, gint width);
-gint         preferences_get_sidebar_position (Preferences *preferences);
-void         preferences_set_autocompletion (Preferences *preferences, gboolean value);
-gboolean     preferences_get_autocompletion (Preferences *preferences);
-void         preferences_set_autocompletion_speed (Preferences *preferences, gint value);
-gint         preferences_get_autocompletion_speed (Preferences *preferences);
-
+GtkType        preferences_get_type             (void);
+Preferences *  preferences_new                  (void);
+void           preferences_open_dialog          (Preferences   *prefs);
 
 #endif /* __PREFERENCES_H__ */
 

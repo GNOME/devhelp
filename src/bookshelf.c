@@ -26,11 +26,13 @@
 #endif
 
 #include <stdio.h>
+#include <glib.h>
+#include <libgnome/gnome-defs.h>
+#include <libgnome/gnome-i18n.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <gnome-xml/parser.h>
 #include <gnome-xml/xmlmemory.h>
-#include <libgnome/gnome-defs.h>
-#include <libgnome/gnome-i18n.h>
+#include <gtk/gtksignal.h>
 #include "function-database.h"
 #include "util.h"
 #include "bookshelf.h"
@@ -55,6 +57,14 @@ struct _XMLBook {
 	gchar    *path;
 	gboolean  visible;
 };
+
+enum {
+	BOOK_ADDED,
+	BOOK_REMOVED,
+	LAST_SIGNAL
+};
+
+static gint signals[LAST_SIGNAL] = { 0 };
 
 GtkType
 bookshelf_get_type (void)
@@ -94,6 +104,28 @@ static void
 bookshelf_class_init (GtkObjectClass *klass)
 {
 	klass->destroy = bookshelf_destroy;
+
+	signals[BOOK_ADDED] = 
+		gtk_signal_new ("book_added",
+				GTK_RUN_LAST,
+				klass->type,
+				GTK_SIGNAL_OFFSET (BookshelfClass,
+						   book_added),
+				gtk_marshal_NONE__POINTER,
+				GTK_TYPE_NONE,
+				1, GTK_TYPE_POINTER);
+
+	signals[BOOK_REMOVED] = 
+		gtk_signal_new ("book_removed",
+				GTK_RUN_LAST,
+				klass->type,
+				GTK_SIGNAL_OFFSET (BookshelfClass,
+						   book_removed),
+				gtk_marshal_NONE__POINTER,
+				GTK_TYPE_NONE,
+				1, GTK_TYPE_POINTER);
+
+	gtk_object_class_add_signals (klass, signals, LAST_SIGNAL);
 }
 
 static void
@@ -334,7 +366,11 @@ bookshelf_add_book (Bookshelf *bookshelf, Book* book)
 
 	priv->books        = g_slist_prepend (priv->books, book);
 	priv->current_book = book;
-	
+
+	gtk_signal_emit (GTK_OBJECT (bookshelf),
+			 signals[BOOK_ADDED],
+			 book);
+
 	return TRUE;
 }
 
@@ -483,7 +519,9 @@ bookshelf_remove_book (Bookshelf *bookshelf, Book *book)
 	
 	priv->books = g_slist_remove (priv->books, book);
 
-	/* FIX: Send book_removed signal */
+	gtk_signal_emit (GTK_OBJECT (bookshelf),
+			 signals[BOOK_REMOVED],
+			 book);
 }
 
 GSList *
@@ -571,6 +609,7 @@ bookshelf_find_document (Bookshelf      *bookshelf,
 		if (depth >= un_depth) {
 			document = book_find_document (priv->current_book, 
 						       url, anchor);
+
 		} else {
 			book_name = util_url_get_book_name (url);
 			

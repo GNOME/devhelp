@@ -14,21 +14,10 @@ bin_PROGRAMS = devhelp
 
 devhelp_SOURCES = 			\
 	$(GENERATED)                    \
-	book.c				\
-	book.h				\
-	book-index.c			\
-	book-index.h			\
-	book-node.h			\
 	bookmark-manager.c		\
 	bookmark-manager.h		\
-	bookshelf.c			\
-	bookshelf.h                     \
-	devhelp-search.c                \
-	devhelp-search.h		\
 	devhelp-window.c		\
 	devhelp-window.h		\
-	function-database.c		\
-	function-database.h		\
 	help-browser.c			\
 	help-browser.h			\
 	history.c			\
@@ -38,19 +27,12 @@ devhelp_SOURCES = 			\
 	install.c			\
 	install.h			\
 	main.c				\
-	main.h				\
-	print.c				\
-	print.h				\
 	preferences.c			\
 	preferences.h			\
 	preferences-dialog.c		\
 	preferences-dialog.h		\
 	books-dialog.c			\
-	books-dialog.h			\
-	ui.c				\
-	ui.h				\
-	util.c				\
-	util.h
+	books-dialog.h
 
 devhelp_LDADD = 			\
 	      $(GNOMEUI_LIBS) 		\
@@ -58,7 +40,34 @@ devhelp_LDADD = 			\
 	      $(BONOBO_LIBS)            \
 	      $(VFS_LIBS)		\
 	      $(GTKHTML_LIBS) 		\
-	      -lgtkhtml 		
+	      -lgtkhtml 		\
+              libdevhelp.la
+
+devhelpdir=$(libdir)
+
+devhelp_LTLIBRARIES =			\
+	libdevhelp.la
+
+libdevhelp_la_SOURCES =			\
+	$(GENERATED)                    \
+	book.c				\
+	book.h				\
+	book-index.c			\
+	book-index.h			\
+	book-node.h			\
+	bookshelf.c			\
+	bookshelf.h                     \
+	devhelp-controller.c		\
+	devhelp-controller.h		\
+	devhelp-search.c                \
+	devhelp-search.h		\
+	function-database.c		\
+	function-database.h		\
+	util.c				\
+	util.h
+
+libdevhelp_la_LIBADD =			\
+	$(BONOBO_LIBS)	
 
 GENERATED =				\
 	GNOME_DevHelp-skels.c		\

@@ -34,7 +34,8 @@ GSList *            book_node_get_contents     (const BookNode       *node);
 
 gboolean            book_node_is_chapter       (const BookNode       *node);
  
-GnomeVFSURI *       book_node_get_uri          (const BookNode       *node);
+GnomeVFSURI *       book_node_get_uri          (const BookNode       *node,
+						const gchar          *anchor);
 
 Document *          book_node_get_document     (const BookNode       *node);
 
