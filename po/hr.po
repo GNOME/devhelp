@@ -1,11 +1,11 @@
 # Translation of devhelp to Croatiann
 # Copyright (C) Croatiann team
-# Translators: Automatski Prijevod <>,
+# Translators: Automatski Prijevod <>,Robert Sedak <robert.sedak@sk.tel.hr>,
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2004-02-01 16:49+CET\n"
+"POT-Creation-Date: 2004-03-20 14:43+0100\n"
+"PO-Revision-Date: 2004-03-20 14:43+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
@@ -18,12 +18,107 @@ msgid "Developer's Help program"
 msgstr ""
 
 #: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
-#, fuzzy
 msgid "Devhelp"
-msgstr "DevPomoć"
+msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
 msgid "Devhelp Book"
+msgstr ""
+
+#: src/dh-main.c:259
+msgid "Specify the size and location of the window"
+msgstr ""
+
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "ŠIRINAxVISINA+VODORAVNO+HORIZONTALNO"
+
+#: src/dh-main.c:268
+msgid "Search for a function"
+msgstr ""
+
+#: src/dh-main.c:277
+msgid "Quit any running Devhelp"
+msgstr ""
+
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:120
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:149
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:202
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:250
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:337 src/dh-parser.c:423
+msgid "Could not create book parser"
+msgstr ""
+
+#: src/dh-parser.c:347 src/dh-parser.c:433
+msgid "Could not create markup parser"
+msgstr ""
+
+#: src/dh-parser.c:479
+msgid "Cannot uncompress book '%s': %s"
+msgstr ""
+
+#: src/dh-search.c:417
+msgid "_Search:"
+msgstr "Traži :"
+
+#: src/dh-search.c:461
+msgid "Section"
+msgstr "Odsječak"
+
+#: src/dh-window.c:112
+msgid "_File"
+msgstr "_Datoteka"
+
+#: src/dh-window.c:113
+msgid "_Edit"
+msgstr "_Uredi"
+
+#: src/dh-window.c:114 ui/devhelp.glade.h:10
+msgid "_Go"
+msgstr "_Idi"
+
+#: src/dh-window.c:115
+msgid "_Help"
+msgstr "_Pomoć"
+
+#: src/dh-window.c:300
+msgid "Cannot set UI: %s"
+msgstr ""
+
+#: src/dh-window.c:355 ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Sadržaj"
+
+#: src/dh-window.c:366
+msgid "Search"
+msgstr "&Traži"
+
+#: src/dh-window.c:449
+msgid "A developer's help browser for GNOME 2"
+msgstr ""
+
+#: src/dh-window.c:465
+msgid "Devhelp project page"
+msgstr ""
+
+#: src/dh-window.c:469
+msgid "Bug report Devhelp"
 msgstr ""
 
 #: devhelp.schemas.in.h:1
@@ -51,156 +146,60 @@ msgid "Location of the paned"
 msgstr ""
 
 #: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
+msgid "Main window maximized state"
 msgstr ""
 
 #: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
+msgid "The X position of the main window."
 msgstr ""
 
 #: devhelp.schemas.in.h:9
-msgid "The height of the main window."
+msgid "The Y position of the main window."
 msgstr ""
 
 #: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "Visina glavnog prozora."
+
+#: devhelp.schemas.in.h:11
 msgid "The location of the paned separator."
 msgstr ""
 
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
 #: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "Širina glavnog prozora."
+
+#: devhelp.schemas.in.h:13
 msgid "Use system fonts"
 msgstr ""
 
-#: devhelp.schemas.in.h:13
+#: devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
 msgstr ""
 
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
 #: devhelp.schemas.in.h:15
-msgid "X position of main window"
+msgid "Whether the main window should start maximized or not."
 msgstr ""
 
 #: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:18
 msgid "Y position of main window"
-msgstr ""
-
-#: src/dh-main.c:259
-msgid "Specify the size and location of the window"
-msgstr ""
-
-#: src/dh-main.c:260
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "ŠIRINAxVISINA+VODORAVNO+HORIZONTALNO"
-
-#: src/dh-main.c:268
-msgid "Search for a function"
-msgstr ""
-
-#: src/dh-main.c:277
-msgid "Quit any running Devhelp"
-msgstr ""
-
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-#, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:120
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:149
-#, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:202
-#, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:250
-#, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:337 src/dh-parser.c:423
-msgid "Could not create book parser"
-msgstr ""
-
-#: src/dh-parser.c:347 src/dh-parser.c:433
-msgid "Could not create markup parser"
-msgstr ""
-
-#: src/dh-parser.c:479
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr ""
-
-#: src/dh-search.c:417
-msgid "_Search:"
-msgstr "Traži :"
-
-#: src/dh-search.c:461
-msgid "Section"
-msgstr "Odsječak"
-
-#: src/dh-window.c:111
-msgid "_File"
-msgstr "_Datoteka"
-
-#: src/dh-window.c:112
-msgid "_Edit"
-msgstr ""
-
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
-msgid "_Go"
-msgstr "_Idi"
-
-#: src/dh-window.c:114
-msgid "_Help"
-msgstr "_Pomoć"
-
-#: src/dh-window.c:292
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr ""
-
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Sadržaj"
-
-#: src/dh-window.c:363
-msgid "Search"
-msgstr "&Traži"
-
-#: src/dh-window.c:446
-msgid "A developer's help browser for GNOME 2"
-msgstr ""
-
-#: src/dh-window.c:462
-msgid "Devhelp project page"
-msgstr ""
-
-#: src/dh-window.c:466
-msgid "Bug report Devhelp"
 msgstr ""
 
 #: ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Fontovi</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
@@ -208,7 +207,7 @@ msgstr ""
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
-msgstr ""
+msgstr "Podešenja"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
@@ -216,12 +215,13 @@ msgstr ""
 
 #: ui/devhelp.glade.h:8
 msgid "_Back"
-msgstr ""
+msgstr "_Nazad"
 
 #: ui/devhelp.glade.h:9
 msgid "_Forward"
-msgstr ""
+msgstr "_Naprijed"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr ""
+
