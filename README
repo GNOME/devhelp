@@ -1,84 +1,51 @@
 README for DevHelp.
 
-====================
-0: Table of contents
-====================
-
-1: Build & Installation
-2: Books
-3: Authors
-
-========================
-1: Build & Installations
-========================
-
 The following packages are required to compile DevHelp:
 
-Name            Version (at least)
-----            ------------------
-GLib            1.2.9
-GTK+            1.2.9
-LibXML          1.8.10
-GnomeVFS        1.0.0
-ORBit           0.5.7
-Gnome-libs      1.2.8
-GConf           0.12
-GtkHTML         0.10.0
-Gnome-print     0.29
+GTK+ 2.2.0 (or greater)
+gnome-vfs 2.0 (or greater)
+libgnomeui 2.2.0 (or greater)
 
-You could probably use older version of the packages, but
-it's untested.
+Also either gtkhtml2 (2.1.2 or greater) or a recent Mozilla (built
+with GTK+ 2). The default HTML viewer component in gtkhtml, to use
+Mozilla pass --with-html-widget=mozilla to configure.
 
-If you want to live on the bleeding edge, here is how you
-retrive the latest cvs:
+Book management has been totally rewritten since DevHelp 0.4.  From the user's
+point of view, the Add Book menu item has been removed as it is not needed any
+more.
 
-$ export CVSROOT=':pserver:anonymous@anoncvs.gnome.org:/cvs/gnome'
-(or setenv for csh/tcsh users)
+DevHelp's primary goal is to be an API documentation browser for GNOME.  When
+you build (or install) a GNOME library, it will build an API reference for you
+and install it into $PREFIX/gtk-doc/html/$PACKAGE.  Along with the HTML files, a
+.devhelp file is also generated automatically -- no post-processing has to be
+done.  Thus DevHelp can simply scan that folder for .devhelp files and display
+them.  For other documentation, there is also $PREFIX/share/devhelp/books and
+$HOME/.devhelp/books which are scanned. These locations are ideal for system-
+and user-wide non-GTK+ books.
 
-$ cvs -z3 co devhelp
+The complete list of locations searched for books is:
 
-Use autogen.sh to generate configure and use the configure script 
-to create Makefiles, if you pass the option --help you'll get 
-a list of supported paramters. 
+$DEVHELP_SEARCH_PATH
+   ex $DEVHELP_SEARCH_PATH/glib-2.0/glib-2.0.devhelp
 
-See the INSTALL file for futher instructions.
+$GNOME2_PATH:
+   ex $GNOME2_PATH/share/devhelp/books/glib-2.0/glib-2.0.devhelp
 
-Now type:
-make
-followed by
-make install
+$PREFIX/share/gtk-doc/html ($PREFIX=where you install devhelp),
+   ex /opt/gnome2/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp
 
-To start DevHelp just type:
-devhelp
+/usr/share/gtk-doc/html
+   ex /usr/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp
 
-==========================
-2: Books
-==========================
+$PREFIX/share/devhelp/books
+   ex /opt/gnome2/share/devhelp/books/glib-2.0/glib-2.0.devhelp
 
-So you want something to read?
+$HOME/.devhelp/books
+   ex /home/ross/.devhelp/books/glib-2.0/glib-2.0.devhelp
 
-Go to DevHelps homepage: http://devhelp.codefactory.se/
-and you'll find a list of books.
-
-Once you downloaded a book either a .devhelp (sometimes called spec) or a
-.tar.gz (full book).
-Start up DevHelp and choose File -> Add book.
-Tada.
-The book should pop up in the book list.
-
-==========================
-3: Authors
-==========================
-
-Johan Dahlin <zilch.am@home.se>
-Richard Hult <rhult@codefactory.se>
-Mikael Hallendal <micke@codefactory.se>
-
-The project was initially written by me (Johan Dahlin) in python
-and then ported to C.
-Later Mikael Hallendal and Richard Hult of Codefactory fame joined.
-Thanks goes to Marcus Leyman for the icon.
-
-If you have any questrions feel free to join #DevHelp on irc.gnome.org
-and we will glady help you.
-
+Note that the name of the directory the .devhelp file is in, and the name of the
+.devhelp file (minus the extension) must match.  There is a DTD available in
+dtd/devhelp-1.dtd which can be used to validate books.  Note that there have
+been several minor changes to the format which break the older books: the base
+attribute is actually respected, the only valid child of <chapters> is <sub>,
+and the author attribute has been removed.
