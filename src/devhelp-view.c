@@ -334,7 +334,7 @@ view_idle_check_queue (ReaderThreadData *th_data)
 		}
 
 		gdk_window_set_cursor (GTK_WIDGET (view)->window, NULL);
-		gtk_widget_grab_focus (GTK_WIDGET (view));
+/* 		gtk_widget_grab_focus (GTK_WIDGET (view)); */
 		break;
 	default:
 		g_assert_not_reached ();

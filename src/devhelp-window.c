@@ -34,7 +34,6 @@
 #include <libgnomeui/gnome-about.h>
 #include "devhelp-view.h"
 #include "GNOME_DevHelp.h"
-#include "preferences.h"
 #include "devhelp-window.h"
 
 #define DEVHELP_WINDOW_UI "GNOME_MrProject_Client.ui"
@@ -45,10 +44,6 @@ static void devhelp_window_init          (DevHelpWindow        *index);
 static void dw_destroy                   (GtkObject            *object);
 
 static void dw_populate                  (DevHelpWindow        *window);
-
-static void cmd_add_book_cb              (BonoboUIComponent    *component,
-					  gpointer              data,
-					  const gchar          *cname);
 
 static void cmd_print_cb                 (BonoboUIComponent    *component,
 					  gpointer              data,
@@ -62,19 +57,9 @@ static void cmd_view_side_bar_cb         (BonoboUIComponent    *component,
 					  gpointer              data,
 					  const gchar          *cname);
 
-static void cmd_preferences_cb           (BonoboUIComponent    *component,
-					  gpointer              data,
-					  const gchar          *cname);
-
 static void cmd_about_cb                 (BonoboUIComponent    *component,
 					  gpointer              data,
 					  const gchar          *cname);
-
-static void cmd_size_changed_cb          (BonoboUIComponent            *component,
-					  const char                   *path,
-					  Bonobo_UIComponent_EventType  type,
-					  const char                   *state,
-					  gpointer                      user_data);
 
 static void dw_uri_changed_cb            (BonoboListener       *listener,
 					  const gchar          *event_name,
@@ -93,10 +78,6 @@ static void dw_link_clicked_cb           (DevHelpWindow        *ignored,
 static void dw_on_url_cb                 (DevHelpWindow        *window,
 					  gchar                *url,
 					  gpointer              ignored);
-
-static void dw_zoom_level_changed_cb     (Preferences         *prefs,
-					  gint                 zoom_level,
-					  DevHelpWindow       *window);
 
 static void dw_note_change_page_cb       (GtkWidget            *child,
 					  GtkNotebook          *notebook);
@@ -133,8 +114,6 @@ struct _DevHelpWindowPriv {
 	GtkWidget                  *html_widget;
 	GtkWidget                  *statusbar;
 	GtkWidget                  *hpaned;
-	
-	Preferences                *prefs;
 };
 
 static BonoboUIVerb verbs[] = {
@@ -142,8 +121,6 @@ static BonoboUIVerb verbs[] = {
         BONOBO_UI_VERB ("CmdExit",           cmd_exit_cb),
 
         BONOBO_UI_VERB ("CmdViewSideBar",    cmd_view_side_bar_cb),
-
-	BONOBO_UI_VERB ("CmdPrefs",          cmd_preferences_cb),
 
         BONOBO_UI_VERB ("CmdAbout",          cmd_about_cb),
         BONOBO_UI_VERB_END
@@ -191,16 +168,6 @@ devhelp_window_init (DevHelpWindow *window)
         DevHelpWindowPriv   *priv;
 
         priv         = g_new0 (DevHelpWindowPriv, 1);
-        priv->prefs  = preferences_new ();
-	
-	g_signal_connect (G_OBJECT (priv->prefs),
-			  "zoom_level_changed",
-			  G_CALLBACK (dw_zoom_level_changed_cb),
-			  window);
-	
-	g_object_set (G_OBJECT (priv->prefs),
-		      "sidebar_visible", TRUE,
-		      NULL);
 	
         window->priv = priv;
 }
@@ -227,7 +194,6 @@ dw_populate (DevHelpWindow *window)
 	BonoboControlFrame   *cf;
 	Bonobo_EventSource    es;
 	Bonobo_Control        control_co;
-	gint                  zoom_level;
 	GtkWidget            *html_sw;
 	GtkWidget            *frame;
 	 
@@ -242,12 +208,6 @@ dw_populate (DevHelpWindow *window)
         priv->hpaned      = gtk_hpaned_new ();
 	priv->statusbar   = gtk_statusbar_new ();
 	html_sw           = gtk_scrolled_window_new (NULL, NULL);
-
-	g_object_get (G_OBJECT (priv->prefs),
-		      "zoom_level", &zoom_level,
-		      NULL);
-
-	dw_zoom_level_changed_cb (priv->prefs, zoom_level, window);
 
         CORBA_exception_init (&ev);
 
@@ -370,7 +330,6 @@ cmd_print_cb (BonoboUIComponent   *component,
 {
 	DevHelpWindow       *window;
 	DevHelpWindowPriv   *priv;
-	gint                 zoom_level;
 	
 	g_return_if_fail (data != NULL);
 	g_return_if_fail (IS_DEVHELP_WINDOW (data));
@@ -402,23 +361,6 @@ cmd_view_side_bar_cb (BonoboUIComponent   *component,
 }
 
 static void
-cmd_preferences_cb (BonoboUIComponent   *component,
-		    gpointer             data,
-		    const gchar         *cname)
-{
-	DevHelpWindow       *window;
-	DevHelpWindowPriv   *priv;
-	
-	g_return_if_fail (data != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (data));
-	
-	window = DEVHELP_WINDOW (data);
-	priv   = window->priv;
-	
-	preferences_open_dialog (priv->prefs);
-}
-
-static void
 cmd_about_cb (BonoboUIComponent    *component,
 	      gpointer              data,
 	      const gchar          *cname)
@@ -441,53 +383,6 @@ cmd_about_cb (BonoboUIComponent    *component,
                                  NULL);
                                 
         gtk_widget_show (about);
-}
-
-static void
-cmd_size_changed_cb (BonoboUIComponent            *component,
-		     const char                   *path,
-		     Bonobo_UIComponent_EventType  type,
-		     const char                   *state,
-		     gpointer                      user_data)
-{
-	
-	DevHelpWindow       *window;
-	DevHelpWindowPriv   *priv;
-	gint                 zoom_level;
-	
-	g_return_if_fail (user_data != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (user_data));
-	
-	window = DEVHELP_WINDOW (user_data);
-	priv   = window->priv;
-	
-	/* If it's not selected */
-	if (strcmp (state, "1") != 0) {
-		return;
-	}
-
-	if (!strcmp (path, "CmdSizeTiny")) {
-		zoom_level = ZOOM_TINY_INDEX;
-	}
-	else if (!strcmp (path, "CmdSizeSmall")) {
-		zoom_level = ZOOM_SMALL_INDEX;
-	}
-	else if (!strcmp (path, "CmdSizeMedium")) {
-		zoom_level = ZOOM_MEDIUM_INDEX;
-	}
-	else if (!strcmp (path, "CmdSizeLarge")) {
-		zoom_level = ZOOM_LARGE_INDEX;
-	}
-	else if (!strcmp (path, "CmdSizeHuge")) {
-		zoom_level = ZOOM_HUGE_INDEX;
-	} else {
-		zoom_level = ZOOM_MEDIUM_INDEX;
-		g_warning ("Unsupported size");
-	}
-
-	g_object_set (G_OBJECT (priv->prefs),
-		      "zoom_level", zoom_level,
-		      NULL);
 }
 
 static void
@@ -563,49 +458,6 @@ dw_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
 	}
 }
 
-static void
-dw_zoom_level_changed_cb (Preferences     *prefs,
-			  gint             zoom_level,
-			  DevHelpWindow   *window)
-{
-	BonoboUIComponent  *uic;
-	DevHelpWindowPriv  *priv;
-	gdouble             magnification;
-	gchar              *zoom_string;
-	
-	g_return_if_fail (window != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (window));
-	
-	priv = window->priv;
-	uic = priv->component;
-	
-	magnification = zoom_levels[zoom_level].data / 100.0;
-	magnification = CLAMP (magnification, 0.05, 20.0);
-
-	/* TODO: Look in gtkhtml2 code or ask jborg */
-//	gtk_html_set_magnification (GTK_HTML (priv->html_widget),
-//				    magnification);
-
-	if (zoom_level == ZOOM_TINY_INDEX) {
-		zoom_string = g_strdup ("/commands/CmdSizeTiny");
-	} 
-	else if (zoom_level == ZOOM_SMALL_INDEX) {
-		zoom_string = g_strdup ("/commands/CmdSizeSmall");
-	} 
-	else if (zoom_level == ZOOM_MEDIUM_INDEX) {
-		zoom_string = g_strdup ("/commands/CmdSizeMedium");
-	} 
-	else if (zoom_level == ZOOM_LARGE_INDEX) { 
-		zoom_string = g_strdup ("/commands/CmdSizeLarge");
-	} 
-	else if (zoom_level == ZOOM_HUGE_INDEX) {
-		zoom_string = g_strdup ("/commands/CmdSizeHuge");
-	}
-	
-	bonobo_ui_component_set_prop (uic, zoom_string, "state", "1", NULL);
-	g_free (zoom_string);
-}
-
 GtkWidget *
 devhelp_window_new (void)
 {
@@ -631,26 +483,6 @@ devhelp_window_new (void)
         bonobo_ui_engine_config_set_path (
                 bonobo_window_get_ui_engine (BONOBO_WINDOW (window)),
 		"/apps/devhelp/ui-config/bonobo");
-	
-	bonobo_ui_component_add_listener (priv->component, "CmdSizeTiny",
-					  cmd_size_changed_cb,
-					  window);
-	
-	bonobo_ui_component_add_listener (priv->component, "CmdSizeSmall",
-					  cmd_size_changed_cb,
-					  window);
-	
-	bonobo_ui_component_add_listener (priv->component, "CmdSizeMedium",
-					  cmd_size_changed_cb,
-					  window);
-	
-	bonobo_ui_component_add_listener (priv->component, "CmdSizeLarge",
-					  cmd_size_changed_cb,
-					  window);
-	
-	bonobo_ui_component_add_listener (priv->component, "CmdSizeHuge",
-					  cmd_size_changed_cb,
-					  window);	
 	
         bonobo_ui_component_set_container (priv->component, 
                                            BONOBO_OBJREF (ui_container),

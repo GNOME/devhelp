@@ -13,37 +13,6 @@
          pixtype="stock"
          pixname="Quit" />
 
-    <cmd name="CmdViewSideBar"
-	 _label="Show sidebar"
-         sensitive="1" />
-
-    <cmd name="CmdSizeTiny"
-         _label="Tiny"
-         sensitive="1" /> 
-
-    <cmd name="CmdSizeSmall"
-         _label="Small"
-         sensitive="1" /> 
-
-    <cmd name="CmdSizeMedium"
-         _label="Medium"
-         sensitive="1" /> 
-
-    <cmd name="CmdSizeLarge"
-         _label="Large"
-         sensitive="1" /> 
-
-    <cmd name="CmdSizeHuge"
-         _label="Huge"
-         sensitive="1" /> 
-
-    <cmd name="CmdPrefs" 
-         _label="Preferences..."
-         sensitive="1"
-         pixtype="stock"
-         pixname="Preferences"
-	 _tip="Open preferences dialog" />
-
     <cmd name="CmdAbout"
 	 _label="_About..."
 	 sensitive="1" 
@@ -55,25 +24,9 @@
 
   <menu>
      <submenu name="File" _label="_File">
-        <menuitem name="FilePrint"    verb="CmdPrint"   />
+<!--        <menuitem name="FilePrint"    verb="CmdPrint"   /> -->
         <separator />
         <menuitem name="FileExit"     verb="CmdExit"    accel="*Control*q"  />
-     </submenu>
-
-     <submenu name="View" _label="_View">
-        <menuitem name="ViewSideBar"    verb="CmdViewSideBar" />
-	<submenu name="FontSize" _label="Font size">
-           <menuitem name="ViewSizeTiny"   verb="CmdSizeTiny"   type="radio" group="fontsize" />
-           <menuitem name="ViewSizeSmall"  verb="CmdSizeSmall"  type="radio" group="fontsize" />
-           <menuitem name="ViewSizeMedium" verb="CmdSizeMedium" type="radio" group="fontsize" />
-           <menuitem name="ViewSizeLarge"  verb="CmdSizeLarge"  type="radio" group="fontsize" />
-           <menuitem name="ViewSizeHuge"   verb="CmdSizeHuge"   type="radio" group="fontsize" />
-        </submenu>
-     </submenu>
-   
-     <submenu name="Settings" _label="_Settings">
-        <menuitem name="SettingsPrefs"       verb="CmdPrefs" />
-<!--        <menuitem name="SettingsBookManager" verb="CmdBookManager" /> -->
      </submenu>
 
      <submenu name="Help" _label="_Help">

@@ -1,12 +1,5 @@
 <Root>
   <commands>
-    <cmd name="CmdBookManager"
-         _label="Book Manager..."
-         sensitive="1"
-         pixtype="stock"
-         pixname="gnome-stock-book-blue"
-	 _tip="Open the book manager dialog" /> 
-
     <cmd name="CmdBack"
          _label="Back"
          sensitive="0"
@@ -22,12 +15,6 @@
 	 _tip="Go to next page in the history" />
     
   </commands>
-
-  <menu>
-     <submenu name="Settings" _label="_Settings">
-        <menuitem name="SettingsBookManager" verb="CmdBookManager" />
-     </submenu>
-  </menu>
 
   <dockitem name="toolbar" look="icons" homogeneous="0" relief="none" behavior="exclusive">
      <toolitem name="ToolBack"    verb="CmdBack" />

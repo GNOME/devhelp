@@ -15,8 +15,6 @@ bin_PROGRAMS = devhelp-2
 
 devhelp_2_SOURCES = 				\
 	$(gnome_devhelp_idl_sources)		\
-	bookmark-manager.c			\
-	bookmark-manager.h			\
 	devhelp-view.c				\
 	devhelp-view.h				\
 	devhelp-window.c			\
@@ -25,11 +23,7 @@ devhelp_2_SOURCES = 				\
 	help-browser.h				\
 	install.c				\
 	install.h				\
-	main.c					\
-	preferences.c				\
-	preferences.h				\
-	preferences-dialog.c			\
-	preferences-dialog.h
+	main.c
 
 devhelp_2_LDADD = 				\
 	      $(DEVHELP_LIBS) 			\
@@ -47,8 +41,6 @@ libdevhelp2_la_SOURCES =			\
 	book-index.c				\
 	book-index.h				\
 	book-node.h				\
-	books-dialog.c				\
-	books-dialog.h                          \
 	bookshelf.c				\
 	bookshelf.h                     	\
 	devhelp-controller.c			\

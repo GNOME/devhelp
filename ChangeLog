@@ -1,5 +1,26 @@
 2002-08-08  Mikael Hallendal  <micke@codefactory.se>
 
+	* ui/GNOME_DevHelp_Controller.ui: removed book manager.
+
+	* ui/GNOME_DevHelp.ui: removed zoom, view-sidebar, preferences.
+
+	* src/devhelp-window.c: 
+	- Removed the zoom-stuff, the preferences stuff. Gtkhtml2 now
+	  follows theme settings.
+
+	* src/devhelp-view.c:
+	(view_idle_check_queue): don't grab focus. Doesn't work well with
+	  the search entry.
+
+	* src/Makefile.am: Don't build
+	- bookmark-manager.[ch]
+	- preferences.[ch]
+	- preferences-dialog.[ch]
+
+	* src/preferences.[ch]:
+	* src/preferences-dialog.[ch]:
+	- Removed
+	
 	* src/devhelp-window.c (cmd_about_cb): fixed jdahlin's email.
 
 	* src/devhelp-view.c: 
