@@ -150,9 +150,9 @@ dh_base_new_window (DhBase *base, DhProfile *profile)
 			   (GWeakNotify) base_window_finalized_cb,
 			   base);
 	
-	g_signal_connect (window, "new_window_requested",
+	/*g_signal_connect (window, "new_window_requested",
 			  G_CALLBACK (base_new_window_cb),
-			  base);
+			  base);*/
 
 	gtk_widget_show_all (window);
 
