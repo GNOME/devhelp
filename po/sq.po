@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-23 14:07+0200\n"
+"POT-Creation-Date: 2004-07-07 15:09+0200\n"
 "PO-Revision-Date: 2004-01-13 13:13+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -99,7 +99,6 @@ msgstr "Seksioni"
 msgid "_File"
 msgstr "_File"
 
-#. GRUT modified this item
 #: src/dh-window.c:113
 msgid "_Edit"
 msgstr "_Ndrysho"
@@ -153,9 +152,10 @@ msgstr ""
 msgid "Font for text with variable width."
 msgstr ""
 
+#. GRUT modified this item
 #: devhelp.schemas.in.h:5
 msgid "Height of main window"
-msgstr ""
+msgstr "Lartësia e dritares qendrore"
 
 #: devhelp.schemas.in.h:6
 msgid "Location of the paned"
@@ -165,15 +165,16 @@ msgstr ""
 msgid "Main window maximized state"
 msgstr ""
 
+#. GRUT modified this item
 #: devhelp.schemas.in.h:8
 msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The Y position of the main window."
-msgstr ""
+msgstr "Pozicioni X i dritares qendrore."
 
 #. GRUT modified this item
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "Pozicioni Y i dritares qendrore."
+
 #: devhelp.schemas.in.h:10
 msgid "The height of the main window."
 msgstr "Gjatësia e dritares kryesore."
@@ -182,7 +183,6 @@ msgstr "Gjatësia e dritares kryesore."
 msgid "The location of the paned separator."
 msgstr ""
 
-#. GRUT modified this item
 #: devhelp.schemas.in.h:12
 msgid "The width of the main window."
 msgstr "Gjerësia e dritares krysore."
@@ -199,24 +199,25 @@ msgstr ""
 msgid "Whether the main window should start maximized or not."
 msgstr ""
 
+#. GRUT modified this item
 #: devhelp.schemas.in.h:16
 msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:17
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:18
-msgid "Y position of main window"
-msgstr ""
+msgstr "Gjerësia e dritares qendrore"
 
 #. GRUT modified this item
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Pozicioni X i dritares qendrore"
+
+#. GRUT modified this item
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Pozicioni Y i dritares qendrore"
+
 #: ui/devhelp.glade.h:1
 msgid "    "
 msgstr "    "
 
-#. GRUT modified this item
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Gërmat</b>"
@@ -225,7 +226,6 @@ msgstr "<b>Gërmat</b>"
 msgid "Fixed width:"
 msgstr ""
 
-#. GRUT modified this item
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
 msgstr "Preferimet"
@@ -234,12 +234,10 @@ msgstr "Preferimet"
 msgid "Variable width: "
 msgstr ""
 
-#. GRUT modified this item
 #: ui/devhelp.glade.h:8
 msgid "_Back"
 msgstr "_Mbrapa"
 
-#. GRUT modified this item
 #: ui/devhelp.glade.h:9
 msgid "_Forward"
 msgstr "_Vazhdo"
