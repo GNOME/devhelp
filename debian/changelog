@@ -1,3 +1,9 @@
+devhelp (0.3-1) unstable; urgency=low
+  
+  * New upstream release.
+  
+ -- Johan Dahlin <jdahlin@telia.com>  Sun, 1 Dec 2001 20:20:13 -0400
+ 
 devhelp (0.2.0.99-1) unstable; urgency=low
 
   * Initial release.
