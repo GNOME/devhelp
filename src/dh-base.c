@@ -205,6 +205,10 @@ base_init_books (DhBase *base)
 	const gchar *env;
 	gchar       *dir;
 	
+	dir = g_build_filename (g_get_home_dir (), ".devhelp", "books", NULL);
+	base_add_books (base, dir);
+	g_free (dir);
+	
 	env = g_getenv ("DEVHELP_SEARCH_PATH");
 	if (env) {
 		gchar **paths, **p;
@@ -226,9 +230,6 @@ base_init_books (DhBase *base)
 	base_add_books (base, DATADIR "/gtk-doc/html");
 	base_add_books (base, "/usr/share/gtk-doc/html");
 	base_add_books (base, DATADIR "/devhelp/books");
-	dir = g_build_filename (g_get_home_dir (), ".devhelp", "books", NULL);
-	base_add_books (base, dir);
-	g_free (dir);
 
 	base_sort_books (base);
 }
