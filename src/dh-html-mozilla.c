@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2002 CodeFactory AB
+ * Copyright (C) 2002-2003 CodeFactory AB
  * Copyright (C) 2001-2003 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
@@ -27,6 +27,7 @@
 #include <gtkmozembed.h>
 
 #include "dh-util.h"
+#include "dh-marshal.h"
 #include "dh-html.h"
 
 #define d(x) 
@@ -105,7 +106,7 @@ html_class_init (DhHtmlClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (DhHtmlClass, uri_selected),
 			      NULL, NULL,
-			      g_cclosure_marshal_VOID__POINTER,
+			      dh_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
 }

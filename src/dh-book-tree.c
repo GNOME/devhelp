@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2003 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2003      CodeFactory AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -30,6 +31,7 @@
 #include <gtk/gtktreeselection.h>
 #include <gtk/gtktreestore.h>
 
+#include "dh-marshal.h"
 #include "dh-book-tree.h"
 
 #define d(x)
@@ -121,7 +123,7 @@ book_tree_class_init (DhBookTreeClass *klass)
 			      G_STRUCT_OFFSET (DhBookTreeClass,
 					       link_selected),
 			      NULL, NULL,
-			      g_cclosure_marshal_VOID__POINTER,
+			      dh_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
 }

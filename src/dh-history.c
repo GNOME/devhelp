@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 CodeFactory AB
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2003 CodeFactory AB
+ * Copyright (C) 2001-2003 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -25,6 +25,7 @@
 
 #include <stdio.h>
 
+#include "dh-marshal.h"
 #include "dh-history.h"
 
 #define d(x)
@@ -110,7 +111,7 @@ history_class_init (GObjectClass *klass)
 			      G_STRUCT_OFFSET (DhHistoryClass, 
 					       forward_exists_changed),
 			      NULL, NULL,
-			      g_cclosure_marshal_VOID__BOOLEAN,
+			      dh_marshal_VOID__BOOLEAN,
 			      G_TYPE_NONE,
 			      1, G_TYPE_BOOLEAN);
 
@@ -121,7 +122,7 @@ history_class_init (GObjectClass *klass)
 			      G_STRUCT_OFFSET (DhHistoryClass, 
 					       back_exists_changed),
 			      NULL, NULL,
-			      g_cclosure_marshal_VOID__BOOLEAN,
+			      dh_marshal_VOID__BOOLEAN,
 			      G_TYPE_NONE,
 			      1, G_TYPE_BOOLEAN);
 }

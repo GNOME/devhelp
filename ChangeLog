@@ -1,3 +1,13 @@
+2003-03-13  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/dh-marshal.list: updated
+
+	* src/dh-book-tree.c: use dh_marshals
+	* src/dh-html-mozilla.c: same
+	* src/dh-search.c: same
+	* src/dh-html-gtkhtml2.c: same
+	* src/dh-history.c: same
+
 2003-03-12  Ross Burton  <ross@burtonini.com>
 
 	* devhelp.keys.in, devhelp.mime: Added gnome-vfs MIME files to map
