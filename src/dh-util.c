@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 1999 Free Software Foundation
  * Copyright (C) 2000, 2001 Eazel, Inc.
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001 Mikael Hallendal <micke@imendio.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as

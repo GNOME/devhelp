@@ -2,10 +2,10 @@
 /*
  * See the file LICENSE for redistribution information. 
  * If you have not received a copy of the license, please contact CodeFactory
- * by email at info@codefactory.se, or on the web at http://www.codefactory.se/
+ * by email at info@imendio.com, or on the web at http://www.imendio.com/
  * You may also write to: CodeFactory AB, SE-903 47, Umeå, Sweden.
  *
- * Copyright (c) 2002-2003 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (c) 2002-2003 Mikael Hallendal <micke@imendio.com>
  * Copyright (c) 2002-2003 CodeFactory AB.  All rights reserved.
  */
 

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2002 CodeFactory AB
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -348,8 +348,8 @@ window_activate_action (EggAction *action, DhWindow *window)
 		GtkWidget *about;
 
 		const gchar *authors[] = {
-			"Mikael Hallendal <micke@codefactory.se>",
-			"Richard Hult <rhult@codefactory.se>",
+			"Mikael Hallendal <micke@imendio.com>",
+			"Richard Hult <richard@imendio.com>",
 			"Johan Dahlin <jdahlin@telia.com>",
 			"Ross Burton <ross@burtonini.com>",
 			NULL
