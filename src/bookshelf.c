@@ -29,6 +29,7 @@
 #include <glib.h>
 #include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-i18n.h>
+#include <libgnomeui/gnome-messagebox.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <gnome-xml/parser.h>
 #include <gnome-xml/xmlmemory.h>
@@ -396,8 +397,31 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 				book->visible = TRUE;
 			}
 			xmlFree (visible);
+
+			/* Okay, we found an old spec file.
+			 * Remove it and return NULL (no books)
+			 */
+			if (book->spec_path == NULL) {
+				gchar *tmp;
+				GtkWidget *dialog;
+				
+				tmp = g_strdup_printf ("rm -f %s", filename);
+				system (tmp);
+				g_free (tmp);
+
+				tmp = g_strdup_printf (_("I found an old version of your spec file (%s)\n"
+							 "I removed it, so you must hide your hidden books again."),
+						       filename);
+				
+				dialog = gnome_message_box_new (tmp, GNOME_MESSAGE_BOX_INFO,
+								_("Ok"), NULL);
+				gnome_dialog_run (GNOME_DIALOG (dialog));
+				g_free (tmp);
+
+				return NULL;
+			}
 			
-			if (g_file_exists (book->spec_path)) {
+			if (gnome_vfs_uri_exists (gnome_vfs_uri_new (book->spec_path))) {
 				list = g_slist_append (list, book);
 			} else {
 				g_message ("Hidden book %s does not exist",
@@ -498,11 +522,6 @@ bookshelf_add_book (Bookshelf *bookshelf, Book* book)
 		return FALSE;
 	}
 			
-//	book2 = bookshelf_find_book_by_name (bookshelf, book_get_name (book));
-//	if (book2 != NULL && version_strcmp (book, book2) == 0) {
-//		return FALSE;
-//	}
-
 	priv->books        = g_slist_prepend (priv->books, book);
 	priv->current_book = book;
 
@@ -525,11 +544,6 @@ xml_spec_get_book_uri (GSList *xml_books, const GnomeVFSURI *book_uri)
 	for (node = xml_books; node; node = node->next) {
 		xml_book = (XMLBook*) node->data;
 			
-		/* Workaround for old spec files */
-		if (xml_book->spec_path == NULL) {
-			continue;
-		}
-		
 		if (!strcmp (xml_book->spec_path, str_uri)) {
 			return xml_book;
 		}

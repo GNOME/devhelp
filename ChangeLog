@@ -1,5 +1,9 @@
 2001-12-01  Johan Dahlin  <jdahlin@telia.com>
 
+	* src/bookshelf.c (xml_spec_get_book_uri): Remove workaround.
+	(bookshelf_read_xml): If we found an old spec file (books.xml)
+	remove it and display an info dialog.
+
 	* src/install.c (install_unpack_book): Set the spec_path to book
 	when installing. This fixes a bug when installing a book and then
 	hide it.
