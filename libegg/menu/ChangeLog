@@ -1,15 +1,10 @@
-2003-02-24  Mikael Hallendal  <micke@codefactory.se>
+2003-01-11  Johan Dahlin  <jdahlin@async.com.br>
 
-	* Makefile.am: dist-check fixes
+	* egg-menu-merge.c (find_toolbar_position): Use
+	egg_toolbar_get_tool_items, instead of toolbar->items.
 
-2002-11-09  Mikael Hallendal  <micke@codefactory.se>
-
-	* egg-menu-merge.c: changed c++ comments into c comment and make
-	  it really silent.
-
-2002-11-04  Richard Hult  <rhult@codefactory.se>
-
-	* egg-menu-merge.c (update_node): Shh.
+	* egg-menu-merge.c, egg-markup.c: Replace all
+	egg_toolbar_insert_item with egg_toolbar_insert_tool_item.
 
 2002-10-05  Richard Hult  <rhult@codefactory.se>
 

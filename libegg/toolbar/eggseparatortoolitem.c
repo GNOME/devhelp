@@ -1,16 +1,19 @@
+#include <gtk/gtkseparatormenuitem.h>
 #include "eggseparatortoolitem.h"
 
 #ifndef _
 #  define _(s) (s)
 #endif
 
-enum {
-  SEPARATORD,
-  LAST_SIGNAL
-};
-
 static void egg_separator_tool_item_init       (EggSeparatorToolItem *self);
 static void egg_separator_tool_item_class_init (EggSeparatorToolItemClass*class);
+
+static void       egg_separator_tool_item_add               (GtkContainer *container,
+							     GtkWidget    *child);
+static GtkWidget *egg_separator_tool_item_create_menu_proxy (EggToolItem  *self);
+
+static GObjectClass *parent_class = NULL;
+
 
 GType
 egg_separator_tool_item_get_type (void)
@@ -38,11 +41,6 @@ egg_separator_tool_item_get_type (void)
   return type;
 }
 
-static GObjectClass *parent_class = NULL;
-
-static void egg_separator_tool_item_add (GtkContainer *container,
-					 GtkWidget *child);
-static GtkWidget *egg_separator_tool_item_create_menu_proxy(EggToolItem *self);
 
 static void
 egg_separator_tool_item_class_init (EggSeparatorToolItemClass *class)

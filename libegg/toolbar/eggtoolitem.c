@@ -1,4 +1,26 @@
+/* eggtoolitem.c
+ *
+ * Copyright (C) 2002 Anders Carlsson <andersca@codefactory.se>
+ * Copyright (C) 2002 James Henstridge <james@daa.com.au>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 #include "eggtoolitem.h"
+#include "eggmarshalers.h"
 
 #ifndef _
 #  define _(s) (s)
@@ -11,6 +33,7 @@ enum {
   SET_ICON_SIZE,
   SET_TOOLBAR_STYLE,
   SET_RELIEF_STYLE,
+  SET_TOOLTIP,
   LAST_SIGNAL
 };
 
@@ -34,10 +57,13 @@ static void egg_tool_item_get_property (GObject         *object,
 					GValue          *value,
 					GParamSpec      *pspec);
 
-static void egg_tool_item_size_request (GtkWidget *widget, GtkRequisition *requisition);
-static void egg_tool_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation);
+static void egg_tool_item_size_request  (GtkWidget      *widget,
+					 GtkRequisition *requisition);
+static void egg_tool_item_size_allocate (GtkWidget      *widget,
+					 GtkAllocation  *allocation);
 
 static GtkWidget *egg_tool_item_create_menu_proxy (EggToolItem *item);
+
 
 static GObjectClass *parent_class = NULL;
 static guint         toolitem_signals[LAST_SIGNAL] = { 0 };
@@ -85,44 +111,6 @@ create_proxy_accumulator (GSignalInvocationHint *hint,
 
   return continue_emission;
 }
-
-static void
-egg_cclosure_marshal_OBJECT__VOID (GClosure     *closure,
-				   GValue       *return_value,
-				   guint         n_param_values,
-				   const GValue *param_values,
-				   gpointer      invocation_hint,
-				   gpointer      marshal_data)
-{
-  typedef GObject* (*GMarshalFunc_OBJECT__VOID) (gpointer     data1,
-                                                 gpointer     data2);
-  register GMarshalFunc_OBJECT__VOID callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
-  GObject* v_return;
-
-  g_return_if_fail (return_value != NULL);
-  g_return_if_fail (n_param_values == 1);
-
-  if (G_CCLOSURE_SWAP_DATA (closure))
-    {
-      data1 = closure->data;
-      data2 = g_value_peek_pointer (param_values + 0);
-    }
-  else
-    {
-      data1 = g_value_peek_pointer (param_values + 0);
-      data2 = closure->data;
-    }
-  callback = (GMarshalFunc_OBJECT__VOID) (marshal_data ? marshal_data : cc->callback);
-
-  v_return = callback (data1,
-                       data2);
-
-  g_value_set_object_take_ownership (return_value, v_return);
-}
-
-
 
 static void
 egg_tool_item_class_init (EggToolItemClass *klass)
@@ -179,7 +167,7 @@ egg_tool_item_class_init (EggToolItemClass *klass)
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (EggToolItemClass, create_menu_proxy),
 		  create_proxy_accumulator, NULL,
-		  egg_cclosure_marshal_OBJECT__VOID,
+		  _egg_marshal_OBJECT__VOID,
 		  GTK_TYPE_WIDGET, 0);
   toolitem_signals[SET_ORIENTATION] =
     g_signal_new ("set_orientation",
@@ -190,6 +178,15 @@ egg_tool_item_class_init (EggToolItemClass *klass)
 		  g_cclosure_marshal_VOID__ENUM,
 		  G_TYPE_NONE, 1,
 		  GTK_TYPE_ORIENTATION);
+  toolitem_signals[SET_ICON_SIZE] =
+    g_signal_new ("set_icon_size",
+		  G_OBJECT_CLASS_TYPE (klass),
+		  G_SIGNAL_RUN_LAST,
+		  G_STRUCT_OFFSET (EggToolItemClass, set_icon_size),
+		  NULL, NULL,
+		  g_cclosure_marshal_VOID__ENUM,
+		  G_TYPE_NONE, 1,
+		  GTK_TYPE_ICON_SIZE);
   toolitem_signals[SET_TOOLBAR_STYLE] =
     g_signal_new ("set_toolbar_style",
 		  G_OBJECT_CLASS_TYPE (klass),
@@ -208,6 +205,18 @@ egg_tool_item_class_init (EggToolItemClass *klass)
 		  g_cclosure_marshal_VOID__ENUM,
 		  G_TYPE_NONE, 1, 
 		  GTK_TYPE_RELIEF_STYLE);
+  toolitem_signals[SET_TOOLTIP] =
+    g_signal_new ("set_tooltip",
+		  G_OBJECT_CLASS_TYPE (klass),
+		  G_SIGNAL_RUN_LAST,
+		  G_STRUCT_OFFSET (EggToolItemClass, set_tooltip),
+		  NULL, NULL,
+		  _egg_marshal_VOID__OBJECT_STRING_STRING,
+		  G_TYPE_NONE, 3,
+		  GTK_TYPE_TOOLTIPS,
+		  G_TYPE_STRING,
+		  G_TYPE_STRING);		  
+		  
 }
 
 static void
@@ -392,4 +401,16 @@ egg_tool_item_set_homogeneous (EggToolItem *tool_item,
 
   tool_item->homogeneous = homogeneous;
   gtk_widget_queue_resize (GTK_WIDGET (tool_item));
+}
+
+void
+egg_tool_item_set_tooltip (EggToolItem *tool_item,
+			   GtkTooltips *tooltips,
+			   const gchar *tip_text,
+			   const gchar *tip_private)
+{
+  g_return_if_fail (EGG_IS_TOOL_ITEM (tool_item));
+
+  g_signal_emit (tool_item, toolitem_signals[SET_TOOLTIP], 0,
+		 tooltips, tip_text, tip_private);
 }

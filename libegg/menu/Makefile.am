@@ -1,8 +1,6 @@
 
 INCLUDES = \
-  @EGG_CFLAGS@ \
-  -I$(top_srdir) \
-  -I$(top_builddir) \
+  $(EGG_CFLAGS) \
   -DEGG_COMPILATION \
   -DGTK_DISABLE_DEPRECATED \
   -DGDK_DISABLE_DEPRECATED \
@@ -11,7 +9,7 @@ INCLUDES = \
 
 noinst_LTLIBRARIES = libegg-menu.la
 
-libegg_menu_la_LIBADD = ../toolbar/libegg-toolbar.la @EGG_LIBS@
+libegg_menu_la_LIBADD = ../toolbar/libegg-toolbar.la $(EGG_LIBS)
 libegg_menu_la_SOURCES = \
   egg-action.c \
   egg-action-group.c \
@@ -31,12 +29,3 @@ noinst_HEADERS = \
   egg-menu-merge.h \
   egg-accel-dialog.h
 
-noinst_PROGRAMS = test-actions test-merge
-
-test_actions_SOURCES = test-actions.c
-test_actions_LDFLAGS = libegg-menu.la @EGG_LIBS@
-test_actions_DEPENDENCIES = libegg-menu.la
-
-test_merge_SOURCES = test-merge.c
-test_merge_LDFLAGS = libegg-menu.la @EGG_LIBS@
-test_merge_DEPENDENCIES = libegg-menu.la

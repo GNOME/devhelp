@@ -1,1 +1,1 @@
-SUBDIRS=toolbar menu
+SUBDIRS = util toolbar menu
