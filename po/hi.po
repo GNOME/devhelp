@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
+"POT-Creation-Date: 2004-02-13 12:37+0100\n"
 "PO-Revision-Date: 2003-04-09 14:30+0530\n"
 "Last-Translator: G Karunakar <karunakar@freedomink.org>\n"
 "Language-Team: Gnome Hindi Team <indlinux-hindi-gnome@lists.sourceforge."
@@ -36,19 +36,19 @@ msgid ""
 "find what you are looking for."
 msgstr ""
 
-#: src/dh-main.c:258
+#: src/dh-main.c:259
 msgid "Specify the size and location of the window"
 msgstr ""
 
-#: src/dh-main.c:259
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr ""
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "प्रकार्य ढूँढें"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "कोइ चालू डेवहेल्प बंद करें"
 

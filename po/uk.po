@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.5.0\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
+"POT-Creation-Date: 2004-02-13 12:37+0100\n"
 "PO-Revision-Date: 2003-02-25 03:23--500\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <linux@linux.org.ua>\n"
@@ -35,19 +35,19 @@ msgid ""
 "find what you are looking for."
 msgstr ""
 
-#: src/dh-main.c:258
+#: src/dh-main.c:259
 msgid "Specify the size and location of the window"
 msgstr ""
 
-#: src/dh-main.c:259
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr ""
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Знайти функцію"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Вийти зі всіх запущених екземплярів DevHelp"
 

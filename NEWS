@@ -1,3 +1,7 @@
+Devhelp 0.8.1:
+--------------
+* Fixed the pc file to referr to the correct library name
+
 Devhelp 0.8:
 ------------
 * Installs a library and header files to embed Devhelp widgets

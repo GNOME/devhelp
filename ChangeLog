@@ -1,3 +1,7 @@
+2004-02-13  Mikael Hallendal  <micke@imendio.com>
+
+	* Release 0.8.1
+
 2004-02-13  Naba Kumar  <naba@gnome.org>
 
 	* libdevhelp.pc.in: Fixed library name.

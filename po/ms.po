@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: besar\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
+"POT-Creation-Date: 2004-02-13 12:37+0100\n"
 "PO-Revision-Date: 2003-07-24 00:12+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Projek Gabai <gabai-penyumbang@lists.sourceforge.org>\n"
@@ -26,28 +26,30 @@ msgid "Devhelp Book"
 msgstr "Buku DevHelp"
 
 #: src/dh-html-gtkhtml2.c:532
-msgid "Select a subject in the contents to the left or switch to the search tab to find what you are looking for."
-msgstr "Pilih tajuk pada kandungan sebelah kiri atau bertukar ke tab carian untuk mencari apa yang anda ingin cari."
+msgid ""
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
+msgstr ""
+"Pilih tajuk pada kandungan sebelah kiri atau bertukar ke tab carian untuk "
+"mencari apa yang anda ingin cari."
 
-#: src/dh-main.c:258
+#: src/dh-main.c:259
 msgid "Specify the size and location of the window"
 msgstr "Nyatakan saiz dan lokasi bagi tetingkap"
 
-#: src/dh-main.c:259
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "WIDTHxHEIGHT+XOFF+YOFF"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Cari satu fungsi"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Hentikan semua Devhelp yg terlaksana"
 
-#: src/dh-parser.c:104
-#: src/dh-parser.c:181
-#: src/dh-parser.c:228
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Dijangka '%s' dapat '%s' pada baris %d, kolum %d"
@@ -65,20 +67,21 @@ msgstr "unsur tajuk, nama, dan pautan diperlukan pada baris %d, kolum %d"
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "unsur nama dan pautan diperlukan di dalam <sub> pada baris %d, kolum %d"
+msgstr ""
+"unsur nama dan pautan diperlukan di dalam <sub> pada baris %d, kolum %d"
 
 #: src/dh-parser.c:250
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr "unsur nama dan pautan diperlukan di dalam <function> pada baris %d, kolum %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"unsur nama dan pautan diperlukan di dalam <function> pada baris %d, kolum %d"
 
-#: src/dh-parser.c:337
-#: src/dh-parser.c:423
+#: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
 msgstr "Tak dapat mencipta penghantar buku"
 
-#: src/dh-parser.c:347
-#: src/dh-parser.c:433
+#: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
 msgstr "Tak dapat mencipta penghantar markup"
 
@@ -127,4 +130,3 @@ msgstr "Halaman projek devhelp"
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
 msgstr "Lapor pepijat Devhelp"
-

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
+"POT-Creation-Date: 2004-02-13 12:37+0100\n"
 "PO-Revision-Date: 2003-06-28 17:38+0400\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -32,19 +32,19 @@ msgstr ""
 "Выберите тему в содержании слева или переключитесь на закладку поиска, чтобы "
 "найти то что вам нужно."
 
-#: src/dh-main.c:258
+#: src/dh-main.c:259
 msgid "Specify the size and location of the window"
 msgstr "Указать размер и расположение окна"
 
-#: src/dh-main.c:259
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "ШИРИНАxВЫСОТА+X+Y"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Поиск функции"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Выйти из Devhelp"
 

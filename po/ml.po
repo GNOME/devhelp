@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version:devhelp\n"
-"POT-Creation-Date: 2003-06-06 03:56+0200\n"
+"POT-Creation-Date: 2004-02-13 12:37+0100\n"
 "PO-Revision-Date: 2003-07-05 10:29+0530\n"
 "Last-Translator: FSF-India <locale@gnu.org.in>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
