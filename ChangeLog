@@ -1,3 +1,9 @@
+2005-04-06  Christian Persch  <chpe@cvs.gnome.org>
+
+	* src/dh-gecko-utils.cpp:
+
+	Fix for mozilla API change. Fixes bug #172820.
+
 2005-04-05  Richard Hult  <richard@imendio.com>
 
 	* src/bacon-message-connection.c: Update.
