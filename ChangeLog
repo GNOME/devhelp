@@ -1,3 +1,33 @@
+2002-03-07  Richard Hult  <rhult@codefactory.se>
+
+	* src/devhelp-search.c (devhelp_search_complete_idle): Need to
+	select first, then set position, otherwise the selection will be
+	cleared.
+
+	* configure.in: Remove obsolete GNOME_PLATFORM_GNOME_2.
+
+	* src/function-database.c (fd_idle_search): Free the string result
+	of the signal.
+
+	* src/devhelp-search.c (devhelp_search_get_search_string_cb): Dup
+	the string here or we are freeing internal gtk memory later.
+
+	* src/*.c: Finish the half baked s/gtk_signal/g_signal/ job.
+
+	* src/devhelp-window.c (dw_populate): Remove accelerator hack for
+	notebook pages now that GTK+ has mnemonics.
+	
+2002-03-06  Richard Hult  <rhult@codefactory.se>
+
+	* src/bookshelf.c (bookshelf_new): Remove more spew.
+
+	* src/devhelp-window.c (cmd_about_cb): Please spell my name right
+	at least ;) And remove silly debug spew.
+	(devhelp_window_new): Use a proper name space for the gconf
+	bonobo-ui key.
+
+	* ui/GNOME_DevHelp_Controller.ui: Update stock name for GNOME 2. 
+
 2002-01-04  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/main.c (activate_and_search): free ev.

@@ -195,7 +195,7 @@ bookshelf_read_books_dir (GnomeVFSURI *books_uri)
 		} else if (strncmp (info->name + (strlen (info->name)-8), ".devhelp", 8) != 0) {
 			continue;
 		}
-		g_message ("info->name: %s", info->name);
+		d(g_print ("info->name: %s", info->name));
 		book_name = g_strdup (info->name);
 		list = g_slist_prepend (list, book_name);
 	}
@@ -234,7 +234,7 @@ bookshelf_new (FunctionDatabase *fd)
 	/* If we have a non-standard datadir */
 	if (strcmp (DATA_DIR, "/usr/share") &&
 	    strcmp (DATA_DIR, "/usr/local/share")) {
-		g_message ("Adding %s", DATA_DIR);
+		d(g_print ("Adding %s", DATA_DIR));
 		bookshelf_add_directory (bookshelf, DATA_DIR"/devhelp");
 	}
 	

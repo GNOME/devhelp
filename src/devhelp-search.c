@@ -68,7 +68,7 @@ static gint devhelp_search_complete_idle       (gpointer              data);
 
 static void devhelp_search_do_search           (DevHelpSearch        *search, 
 						const gchar          *string);
-static const gchar * 
+static gchar * 
 devhelp_search_get_search_string_cb            (FunctionDatabase     *fd,
                                                 DevHelpSearch        *search);
 
@@ -182,7 +182,7 @@ devhelp_search_entry_changed_cb (GtkEditable *editable, DevHelpSearch *search)
 {
         DevHelpSearchPriv   *priv;
         FunctionDatabase    *fd;
-        
+
         g_return_if_fail (editable != NULL);
         g_return_if_fail (GTK_IS_EDITABLE (editable));
         g_return_if_fail (search != NULL);
@@ -314,14 +314,15 @@ devhelp_search_complete_idle (gpointer user_data)
 	
 	if (completed) {
 		text_length = strlen (text);
-		
+
 		gtk_entry_set_text (GTK_ENTRY (priv->entry), completed);
-		
+
+		gtk_editable_set_position (GTK_EDITABLE (priv->entry), 
+					   text_length);
+
 		gtk_editable_select_region (GTK_EDITABLE (priv->entry),
 					    text_length, -1);
 		
-		gtk_editable_set_position (GTK_EDITABLE (priv->entry), 
-					   text_length);
 	}
 	
 	priv->complete = 0;
@@ -341,7 +342,7 @@ devhelp_search_do_search (DevHelpSearch *search, const gchar *string)
 	function_database_search (search->priv->fd, string);
 }
 
-static const gchar * 
+static gchar * 
 devhelp_search_get_search_string_cb (FunctionDatabase   *fd, 
                                      DevHelpSearch      *search)
 {
@@ -350,7 +351,7 @@ devhelp_search_get_search_string_cb (FunctionDatabase   *fd,
 	g_return_val_if_fail (search != NULL, NULL);
 	g_return_val_if_fail (IS_DEVHELP_SEARCH (search), NULL);
 	
-	return gtk_entry_get_text (GTK_ENTRY (search->priv->entry));
+	return g_strdup (gtk_entry_get_text (GTK_ENTRY (search->priv->entry)));
 }
 
 static void
@@ -457,47 +458,47 @@ devhelp_search_new (Bookshelf *bookshelf)
         priv->entry     = gtk_entry_new ();
 	priv->fd        = bookshelf_get_function_database (bookshelf);
 
-        gtk_signal_connect (GTK_OBJECT (priv->clist), 
-                            "select_row",
-                            GTK_SIGNAL_FUNC (devhelp_search_clist_select_row_cb),
-                            search);
+        g_signal_connect (priv->clist, 
+			  "select_row",
+			  G_CALLBACK (devhelp_search_clist_select_row_cb),
+			  search);
         
-        gtk_signal_connect (GTK_OBJECT (priv->entry),
-                            "activate",
-                            GTK_SIGNAL_FUNC (devhelp_search_entry_activate_cb),
-                            search);
+        g_signal_connect (priv->entry,
+			  "activate",
+			  G_CALLBACK (devhelp_search_entry_activate_cb),
+			  search);
 
-        gtk_signal_connect (GTK_OBJECT (priv->entry),
-                            "changed",
-                            GTK_SIGNAL_FUNC (devhelp_search_entry_changed_cb),
-                            search);
-        
-        gtk_signal_connect (GTK_OBJECT (priv->entry),
-                            "insert-text",
-                            GTK_SIGNAL_FUNC (devhelp_search_entry_insert_text_cb),
-                            search);
-        
-        gtk_signal_connect_after (GTK_OBJECT (priv->entry),
-                                  "key-press-event",
-                                  GTK_SIGNAL_FUNC (devhelp_search_entry_key_press_cb),
-                                  search);
+        g_signal_connect_after (priv->entry,
+				"changed",
+				G_CALLBACK (devhelp_search_entry_changed_cb),
+				search);
+       
+        g_signal_connect (priv->entry,
+			  "insert-text",
+			  G_CALLBACK (devhelp_search_entry_insert_text_cb),
+			  search);
+    
+        g_signal_connect_after (priv->entry,
+				"key-press-event",
+				G_CALLBACK (devhelp_search_entry_key_press_cb),
+				search);
 
-        g_signal_connect (G_OBJECT (priv->fd), 
+        g_signal_connect (priv->fd, 
 			  "get_search_string",
                           G_CALLBACK (devhelp_search_get_search_string_cb),
                           search);
         
-        g_signal_connect (G_OBJECT (priv->fd),
+        g_signal_connect (priv->fd,
 			  "exact_hit_found",
                           G_CALLBACK (devhelp_search_exact_hit_found_cb),
                           search);
         
-        g_signal_connect (G_OBJECT (priv->fd),
+        g_signal_connect (priv->fd,
 			  "hits_found",
                           G_CALLBACK (devhelp_search_hits_found_cb),
                           search);
 
-	g_signal_connect (G_OBJECT (priv->fd),
+	g_signal_connect (priv->fd,
 			  "function_removed",
 			  G_CALLBACK (devhelp_search_function_removed_cb),
 			  search);

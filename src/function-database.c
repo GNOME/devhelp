@@ -161,8 +161,6 @@ fd_class_init (GObjectClass *klass)
 			      g_cclosure_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);	
-
-//	gtk_object_class_add_signals (klass, signals, LAST_SIGNAL);
 }
 	
 static void
@@ -197,17 +195,19 @@ fd_idle_search (gpointer data)
 	gchar                  *search_string;
 	GSList                 *hits;
 	
-	g_return_val_if_fail (data != NULL, FALSE);
 	g_return_val_if_fail (IS_FUNCTION_DATABASE (data), FALSE);
 	
 	fd   = FUNCTION_DATABASE (data);
 	priv = fd->priv;
 	
 	d(puts(__FUNCTION__));
-        
-	gtk_signal_emit (G_OBJECT (fd),
-			 signals[GET_SEARCH_STRING],
-			 &search_string);
+
+        search_string = NULL;
+
+	g_signal_emit (fd,
+		       signals[GET_SEARCH_STRING],
+		       0,
+		       &search_string);
 
 	if (search_string) {
 		function_database_search (fd, search_string);
@@ -215,6 +215,8 @@ fd_idle_search (gpointer data)
 
 	priv->idle_search = 0;
 
+	g_free (search_string);
+	
 	return FALSE;
 }
 
@@ -327,15 +329,17 @@ function_database_search (FunctionDatabase *fd, const gchar *string)
 	list = g_slist_sort (list, function_compare);
 
 	if (list) {
-		gtk_signal_emit (G_OBJECT (fd),
-				 signals[HITS_FOUND],
-				 list);
+		g_signal_emit (G_OBJECT (fd),
+			       signals[HITS_FOUND],
+			       0,
+			       list);
 	}
 
 	if (exact_hit) {
-		gtk_signal_emit (G_OBJECT (fd),
-				 signals[EXACT_HIT_FOUND],
-				 exact_hit);
+		g_signal_emit (G_OBJECT (fd),
+			       signals[EXACT_HIT_FOUND],
+			       0,
+			       exact_hit);
 	}
 
         if (list) {
@@ -422,9 +426,10 @@ function_database_remove_function (FunctionDatabase    *fd,
 		g_list_free (list);
 	}
 	
-	gtk_signal_emit (G_OBJECT (fd),
-			 signals[FUNCTION_REMOVED],
-			 function);
+	g_signal_emit (G_OBJECT (fd),
+		       signals[FUNCTION_REMOVED],
+		       0,
+		       function);
 }
 
 void

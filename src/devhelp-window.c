@@ -219,75 +219,6 @@ dw_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
 }
 
 static void
-dw_note_page_mapped_cb (GtkWidget *page, GtkAccelGroup *accel_group)
-{
-	GtkWidget *dialog = gtk_widget_get_toplevel (GTK_WIDGET (page));
-
-	gtk_window_add_accel_group (GTK_WINDOW (dialog), accel_group);
-}
-
-static void
-dw_note_page_unmapped_cb (GtkWidget *page, GtkAccelGroup *accel_group)
-{
-	GtkWidget *dialog = gtk_widget_get_toplevel (GTK_WIDGET (page));
-
-	gtk_window_remove_accel_group (GTK_WINDOW (dialog), accel_group);
-}
-
-static void
-dw_note_page_setup_signals (GtkWidget *page, GtkAccelGroup *accel)
-{
-	gtk_accel_group_ref (accel);
-	gtk_signal_connect_full (GTK_OBJECT (page),
-				 "map",
-				 GTK_SIGNAL_FUNC (dw_note_page_mapped_cb), 
-				 NULL, 
-				 accel, 
-				 (GtkDestroyNotify) gtk_accel_group_unref,
-				 FALSE, FALSE);
-
-	gtk_accel_group_ref (accel);
-	gtk_signal_connect_full (GTK_OBJECT (page),
-				 "unmap",
-				 GTK_SIGNAL_FUNC (dw_note_page_unmapped_cb), 
-				 NULL,
-				 accel, 
-				 (GtkDestroyNotify) gtk_accel_group_unref,
-				 FALSE, FALSE);
-}
-
-static void
-dw_notebook_append_page_with_accelerator (GtkNotebook   *notebook,
-					  GtkWidget     *page,
-					  gchar         *label_text,
-					  GtkAccelGroup *accel)
-{
-	GtkWidget *label;
-	guint      key;
-
-	label = gtk_label_new (NULL);
-	key = gtk_label_parse_uline (GTK_LABEL (label), label_text);
-	gtk_widget_show (label);
-
-	dw_note_page_setup_signals (page, accel);
-
-	gtk_notebook_append_page (notebook, page, label);
-	
-	if (key) {
-		gtk_widget_add_accelerator (page, "grab_focus",
-					    accel,
-					    key,
-					    GDK_MOD1_MASK,
-					    0);
-
-		gtk_signal_connect (GTK_OBJECT (page),
-				    "grab_focus",
-				    GTK_SIGNAL_FUNC (dw_note_change_page_cb),
-				    notebook);
-	}
-}
-
-static void
 dw_populate (DevHelpWindow *window)
 {
         DevHelpWindowPriv    *priv;
@@ -299,7 +230,6 @@ dw_populate (DevHelpWindow *window)
 	gint                  zoom_level;
 	GtkWidget            *html_sw;
 	GtkWidget            *frame;
-	GtkAccelGroup        *accel;
 	 
         g_return_if_fail (window != NULL);
         g_return_if_fail (IS_DEVHELP_WINDOW (window));
@@ -399,12 +329,9 @@ dw_populate (DevHelpWindow *window)
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 
-	accel = gtk_accel_group_new ();
-
-	dw_notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
-						  priv->index,
-						  _("_Contents"),
-						  accel);
+	gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
+				  priv->index,
+				  gtk_label_new_with_mnemonic (_("_Contents")));
 
 	gtk_box_pack_start (GTK_BOX (priv->search_box), 
 			    priv->search_entry, 
@@ -413,10 +340,9 @@ dw_populate (DevHelpWindow *window)
 	gtk_box_pack_end_defaults (GTK_BOX (priv->search_box),
 				   priv->search_list); 
 
-	dw_notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
-						  priv->search_box,
-						  _("_Search"),
-						  accel);
+	gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
+				  priv->search_box,
+				  gtk_label_new_with_mnemonic (_("_Search")));
 
 	gtk_widget_show_all (priv->hpaned);
 
@@ -502,7 +428,7 @@ cmd_about_cb (BonoboUIComponent    *component,
         const gchar *authors[] = {
 		"Johan Dahlin <jdahlin@telia.com",
                 "Mikael Hallendal <micke@codefactory.se>",
-                "Rickard Hult <rhult@codefactory.se>",
+                "Richard Hult <rhult@codefactory.se>",
                 NULL
         };
 
@@ -515,7 +441,6 @@ cmd_about_cb (BonoboUIComponent    *component,
                                  NULL);
                                 
         gtk_widget_show (about);
-        g_print ("Show about\n");
 }
 
 static void
@@ -703,7 +628,7 @@ devhelp_window_new (void)
 
         bonobo_ui_engine_config_set_path (
                 bonobo_window_get_ui_engine (BONOBO_WINDOW (window)),
-                "DevHelp/UIConf/kvps");
+		"/apps/devhelp/ui-config/bonobo");
 	
 	bonobo_ui_component_add_listener (priv->component, "CmdSizeTiny",
 					  cmd_size_changed_cb,
@@ -752,10 +677,10 @@ devhelp_window_new (void)
 	
 	gtk_window_set_wmclass (GTK_WINDOW (window), "devhelp", "DevHelp");
 
-	gtk_signal_connect (GTK_OBJECT (window), 
-			    "delete_event",
-			    GTK_SIGNAL_FUNC (dw_delete_cb),
-			    NULL);
+	g_signal_connect (GTK_OBJECT (window), 
+			  "delete_event",
+			  G_CALLBACK (dw_delete_cb),
+			  NULL);
 
         dw_populate (window);
 
