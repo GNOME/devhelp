@@ -8,7 +8,7 @@ src/install.c
 src/main.c
 src/preferences.c
 src/preferences-dialog.c
-ui/devhelp.glade
+ui/devhelp2.glade
 ui/GNOME_DevHelp.ui
 ui/GNOME_DevHelp_Controller.ui
 

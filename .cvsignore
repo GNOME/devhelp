@@ -16,7 +16,7 @@ libtool
 config.status
 stamp-h
 stamp-h1
-xml-i18n-*
+intltool-*
 devhelp.desktop
 devhelp.spec
 intl
