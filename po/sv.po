@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2002-11-05 00:59+0100\n"
-"PO-Revision-Date: 2002-11-05 01:01+0100\n"
+"POT-Creation-Date: 2002-11-25 23:48+0100\n"
+"PO-Revision-Date: 2002-11-25 23:48+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,23 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: src/dh-html.c:497
+#: src/dh-book.c:110 src/dh-book.c:216
+#, c-format
+msgid "'%s' is not a valid book"
+msgstr "\"%s\" är inte en giltig bok"
+
+#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144 src/dh-book-old.c:234
+#: src/dh-book-old.c:245 src/dh-book-old.c:257
+#, c-format
+msgid "Book '%s' is malformed."
+msgstr "Boken \"%s\" är felaktig."
+
+#: src/dh-book.c:224
+#, c-format
+msgid "Couldn't find file '%s'"
+msgstr "Kunde inte hitta filen \"%s\""
+
+#: src/dh-html.c:517
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
@@ -37,32 +53,36 @@ msgstr ""
 "till vänster, och <b>Skift Vänster/Höger</b> för att fälla in respektive "
 "fälla ut böckerna i trädet."
 
-#: src/dh-main.c:59 src/main.c:128
+#: src/dh-main.c:243
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: src/dh-search.c:326
+#: src/dh-main.c:252
+msgid "Quit any running Devhelp"
+msgstr "Avsluta alla körande Devhelp"
+
+#: src/dh-search.c:325
 msgid "_Search for:"
 msgstr "_Sök efter:"
 
-#: src/dh-search.c:363
+#: src/dh-search.c:362
 msgid "Section"
 msgstr "Avsnitt"
 
-#: src/dh-window.c:100
+#: src/dh-window.c:98
 msgid "_File"
 msgstr "_Arkiv"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:99
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:100
 msgid "_Help"
 msgstr "_Hjälp"
 
 #. About menu
-#: src/dh-window.c:115
+#: src/dh-window.c:113
 msgid "_About"
 msgstr "_Om"
 
@@ -83,14 +103,11 @@ msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 msgid "Open %s"
 msgstr "Öppna %s"
 
-#: src/main.c:79
-#, c-format
-msgid "Could not activate devhelp: '%s'"
-msgstr "Kunde inte aktivera devhelp: \"%s\""
+#~ msgid "Could not activate devhelp: '%s'"
+#~ msgstr "Kunde inte aktivera devhelp: \"%s\""
 
-#: src/main.c:88
-msgid "Could not search for string."
-msgstr "Kunde inte söka efter sträng."
+#~ msgid "Could not search for string."
+#~ msgstr "Kunde inte söka efter sträng."
 
 #~ msgid "_About..."
 #~ msgstr "_Om..."
@@ -284,9 +301,6 @@ msgstr "Kunde inte söka efter sträng."
 
 #~ msgid "Open the book manager dialog"
 #~ msgstr "Öppna bokhanterardialogen"
-
-#~ msgid "Couldn't open uri: %s"
-#~ msgstr "Kunde inte öppna uri: %s"
 
 #~ msgid "Print Help"
 #~ msgstr "Skriv ut hjälp"
