@@ -1,15 +1,11 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
 devhelp.desktop.in
-src/books-dialog.c
-src/bookshelf.c
-src/devhelp-window.c
 src/GNOME_DevHelp.server.in.in
-src/devhelp-view.c
-src/install.c
+src/dh-bookshelf.c
+src/dh-view.c
+src/dh-window.c
 src/main.c
-src/preferences.c
-src/preferences-dialog.c
-src/html-widget.c
-ui/devhelp2.glade
 ui/GNOME_DevHelp.ui
 ui/GNOME_DevHelp_Controller.ui
-
+ui/devhelp2.glade

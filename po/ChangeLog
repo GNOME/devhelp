@@ -1,3 +1,7 @@
+2002-08-12  Christian Rose  <menthos@menthos.com>
+
+	* POTFILES.in: Removed missing files and added missing ones.
+
 2002-07-30 Hasbullah Bin Pit <sebol@ikhlas.com>
 
 	* ms.po: Added Malay translation.
@@ -27,7 +31,6 @@
 2002-05-30  Richard Hult  <rhult@codefactory.se>
 
 	* POTFILES.skip: Add server.in file.
-
 	* POTFILES.in: Add html-widget.c.
 
 2002-05-28  Ole Laursen  <olau@hardworking.dk>
