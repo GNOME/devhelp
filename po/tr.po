@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-11 11:24+0200\n"
+"POT-Creation-Date: 2003-12-28 21:35+0000\n"
 "PO-Revision-Date: 2003-09-13 04:17+0300\n"
 "Last-Translator: Rıdvan CAN <ridvan@linuxdeneyimi.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -31,7 +31,9 @@ msgstr "Geliştirici Yardım Kitabı"
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
-msgstr "Soldaki içeriklerden bir konuyu seçiniz yada bulmada arama yaptığınız sekmeden anahtar bakınız."
+msgstr ""
+"Soldaki içeriklerden bir konuyu seçiniz yada bulmada arama yaptığınız "
+"sekmeden anahtar bakınız."
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -71,7 +73,8 @@ msgstr "İsim ve bağlantı öğeleri gerekli iç <sub> %d bağlı, %d sütunu"
 
 #: src/dh-parser.c:250
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr "İsim ve bağlantı öğeleri gerekli iç <function> %d bağlı, %d sütunu"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
@@ -126,4 +129,3 @@ msgstr "Devhelp proje sayfası"
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
 msgstr "Devhelp hata raporu"
-
