@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2002-05-10 10:53+0200\n"
-"PO-Revision-Date: 2002-05-10 11:00+0100\n"
+"POT-Creation-Date: 2002-05-31 09:19+0200\n"
+"PO-Revision-Date: 2002-05-31 09:21+0200\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "Prehliadaè pomocníka DevHelp"
 msgid "DevHelp HelpBrowser Factory"
 msgstr "Továreò prehliadaèa pomocníka DevHelp"
 
-#: src/devhelp-view.c:361
+#: src/devhelp-view.c:361 src/html-widget.c:208
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
@@ -161,13 +161,30 @@ msgstr "Veµký"
 msgid "Huge"
 msgstr "Obrovský"
 
+#: src/html-widget.c:294
+#, c-format
+msgid "Couldn't open uri: %s"
+msgstr "Nemô¾em otvori» uri: %s"
+
+#: src/html-widget.c:464
+msgid "Print Help"
+msgstr "Vytlaèi» pomocníka"
+
+#: src/html-widget.c:509
+msgid "Print Preview"
+msgstr "Náhµad pred tlaèou"
+
+#: src/html-widget.c:520
+msgid "Printing failed."
+msgstr "Tlaè zlyhala."
+
 #: ui/devhelp2.glade.h:1
 msgid " "
 msgstr " "
 
 #: ui/devhelp2.glade.h:2
-msgid "&lt;&lt; _Show"
-msgstr "&lt;&lt; _Zobrazi»"
+msgid "<< _Show"
+msgstr "<< _Zobrazi»"
 
 #: ui/devhelp2.glade.h:3
 msgid "Author:"
@@ -250,8 +267,8 @@ msgid "_Edit book..."
 msgstr "_Upravi» knihu..."
 
 #: ui/devhelp2.glade.h:28
-msgid "_Hide &gt;&gt;"
-msgstr "_Skry» &gt;&gt;"
+msgid "_Hide >>"
+msgstr "_Skry» >>"
 
 #: ui/devhelp2.glade.h:29
 msgid "_Limit the number of hits to:"
@@ -260,18 +277,6 @@ msgstr "_Obmedzi» poèet zásahov na:"
 #: ui/devhelp2.glade.h:30
 msgid "_Text size: "
 msgstr "Veµkos» _textu: "
-
-#: ui/devhelp2.glade.h:31
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
-
-#: ui/devhelp2.glade.h:32
-msgid "gtk-close"
-msgstr "gtk-close"
-
-#: ui/devhelp2.glade.h:33
-msgid "gtk-ok"
-msgstr "gtk-ok"
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
