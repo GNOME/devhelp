@@ -1,3 +1,10 @@
+2001-08-01  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/bookshelf.c:
+	- cleaned up some code in bookshelf_write_xml and
+   	  bookshelf_read_xml.
+	(bookshelf_write_xml): fix leak.
+
 2001-07-31  Johan Dahlin  <zilch.am@home.se>
 
 	* src/book.c: 

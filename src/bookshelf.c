@@ -115,14 +115,15 @@ bookshelf_destroy (GtkObject *object)
 }
 
 void
-bookshelf_write_xml (Bookshelf *bookshelf, const gchar *filename, const gchar *root)
+bookshelf_write_xml (Bookshelf     *bookshelf, 
+		     const gchar   *filename, 
+		     const gchar   *root)
 {
 	BookshelfPriv   *priv;
 	Book            *book;
 	FILE            *fp;
 	const gchar     *name;
 	const gchar     *path;
-	const gchar     *version;	
 	GSList          *node;
 	
 	g_return_if_fail (bookshelf != NULL);
@@ -150,13 +151,15 @@ bookshelf_write_xml (Bookshelf *bookshelf, const gchar *filename, const gchar *r
 		
 		name = book_get_name (book);
 		path = g_strdup_printf ("%s/books/%s", root, book_get_name_full (book));
-		if (book_get_version (book) != NULL)
-			version = g_strdup_printf (" version=\"%s\"", book_get_version (book));
-		else
-			version = "";
-				
-		fprintf (fp, "  <book name=\"%s\"%s path=\"%s\"/>\n",
-			 name, version, path);
+
+		fprintf (fp, "  <book name=\"%s\" ", name);
+		
+		if (book_get_version (book) != NULL) {
+			fprintf (fp, "version=\"%s\" ", 
+				 book_get_version (book));
+		}
+
+		fprintf (fp, "path=\"%s\"/>\n", path);
 	}
 	
 	fprintf (fp, "</booklist>\n");
@@ -182,6 +185,7 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	priv = bookshelf->priv;
 		
 	doc = xmlParseFile (filename);
+
 	if (!doc) {
 		return NULL;
 	}
@@ -203,6 +207,7 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	
 	cur = root_node->xmlChildrenNode;
 	list = NULL;
+
  	while (cur) {
 		if (!xmlStrcmp (cur->name, (const xmlChar *) "book")) {
 			book = g_new (XMLBook, 1);
