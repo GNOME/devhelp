@@ -32,7 +32,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libxml/parser.h>
 #include "function-database.h"
-#include "util.h"
+#include "dh-util.h"
 #include "dh-bookshelf.h"
 
 #define d(x)
@@ -827,12 +827,12 @@ dh_bookshelf_find_document (DhBookshelf      *bookshelf,
 	
 	priv    = bookshelf->priv;
 
-	if (!util_uri_is_relative (url)) {
+	if (!dh_util_uri_is_relative (url)) {
  		uri = gnome_vfs_uri_new (url); 
 		book = dh_bookshelf_find_book_by_uri (bookshelf, uri);
 		
 		if (book) {
- 			doc_url = util_url_split (url, anchor);
+ 			doc_url = dh_util_url_split (url, anchor);
 			document = book_find_document (book, doc_url, NULL);
 			g_free (doc_url);
 		}
@@ -844,14 +844,14 @@ dh_bookshelf_find_document (DhBookshelf      *bookshelf,
 		}
 
 		depth    = book_get_current_depth (priv->current_book);
-		un_depth = util_url_get_un_depth (url);
+		un_depth = dh_util_url_get_un_depth (url);
 		
 		if (depth >= un_depth) {
 			document = book_find_document (priv->current_book, 
 						       url, anchor);
 
 		} else {
-			book_name = util_url_get_book_name (url);
+			book_name = dh_util_url_get_book_name (url);
 			
 			if (book_name) {
 				book = dh_bookshelf_find_book_by_name (bookshelf,

@@ -1,5 +1,13 @@
 2002-08-08  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/devhelp-marshal.*: Changed to dh-marshal.*
+
+	* src/devhelp-search.[ch]: Changed into dh-search.[ch]
+
+	* src/util.[ch]: Changed into dh-util.[ch]
+
+	* src/history.[ch]: Changed into dh-history.[ch]
+	
 	* src/devhelp-window.[ch]: Changed into dh-window.[ch]
 
 	* src/devhelp-view.[ch]: Changed into dh-view.[ch]

@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2002 CodeFactory AB
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -30,8 +31,8 @@
 #include "dh-bookshelf.h"
 #include "function-database.h"
 #include "book-index.h"
-#include "devhelp-search.h"
-#include "history.h"
+#include "dh-search.h"
+#include "dh-history.h"
 #include "devhelp-controller.h"
 
 #define d(x)
@@ -72,11 +73,11 @@ devhelp_controller_book_removed_cb         (DevHelpController      *controller,
 					    gpointer                user_data);
 
 static void
-devhelp_controller_forward_exists_changed_cb (History              *history,
+devhelp_controller_forward_exists_changed_cb (DhHistory              *history,
 					      gboolean              exists,
 					      DevHelpController    *controller);
 static void
-devhelp_controller_back_exists_changed_cb (History                 *history,
+devhelp_controller_back_exists_changed_cb (DhHistory                 *history,
 					   gboolean                 exists,
 					   DevHelpController       *controller);
 
@@ -88,9 +89,9 @@ struct _DevHelpControllerPriv {
         FunctionDatabase    *fd;
         
         BookIndex           *index;
-	DevHelpSearch       *search;
+	DhSearch            *search;
 
-	History             *history;
+	DhHistory             *history;
 	
 	BonoboEventSource   *event_source;
         BonoboUIComponent   *ui_component;
@@ -116,7 +117,7 @@ impl_DevHelp_Controller_getSearchEntry (PortableServer_Servant   servant,
 	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 	
-	w = devhelp_search_get_entry_widget (priv->search);
+	w = dh_search_get_entry_widget (priv->search);
 	gtk_widget_show_all (w);
 	control = bonobo_control_new (w);
 
@@ -135,7 +136,7 @@ impl_DevHelp_Controller_getSearchResultList (PortableServer_Servant    servant,
 	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 	
-	w = devhelp_search_get_result_widget (priv->search);
+	w = dh_search_get_result_widget (priv->search);
 	gtk_widget_show_all (w);
 	control = bonobo_control_new (w);
 
@@ -203,7 +204,7 @@ impl_DevHelp_Controller_openURI (PortableServer_Servant    servant,
 	str = g_strdup (str_uri);
 
 	if (devhelp_controller_open (controller, str)) {
-		history_goto (priv->history, str);
+		dh_history_goto (priv->history, str);
 	}
 
 	g_free (str);
@@ -220,7 +221,7 @@ impl_DevHelp_Controller_search (PortableServer_Servant    servant,
 	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 	
-	devhelp_search_set_search_string (priv->search, str);
+	dh_search_set_search_string (priv->search, str);
 }
 
 static void
@@ -247,7 +248,7 @@ devhelp_controller_init (DevHelpController *controller)
 
 	priv->ui_component = NULL;
         priv->fd           = function_database_new ();
-	priv->history      = history_new ();
+	priv->history      = dh_history_new ();
         priv->bookshelf    = dh_bookshelf_new (priv->fd);
         priv->index        = BOOK_INDEX (book_index_new (priv->bookshelf));
 
@@ -304,7 +305,7 @@ devhelp_controller_init (DevHelpController *controller)
 				 controller,
 				 0);
         
-        priv->search = devhelp_search_new (priv->bookshelf);
+        priv->search = dh_search_new (priv->bookshelf);
 
 	g_signal_connect (G_OBJECT (priv->search),
 			  "uri_selected",
@@ -417,18 +418,18 @@ cmd_back_cb (BonoboUIComponent *component, gpointer data, const gchar *cname)
 	controller = DEVHELP_CONTROLLER (data);
 	priv       = controller->priv;
 	
-	if (history_exist_back (priv->history)) {
+	if (dh_history_exist_back (priv->history)) {
 		bonobo_ui_component_set_prop (component, "/commands/CmdBack",
 					      "sensitive", "0", NULL);
 
-		str_uri = history_go_back (priv->history);
+		str_uri = dh_history_go_back (priv->history);
 
 		if (str_uri) {
 			devhelp_controller_open (controller, str_uri);
 			g_free (str_uri);
 		}
 		
-		if (history_exist_back (priv->history)) {
+		if (dh_history_exist_back (priv->history)) {
 			bonobo_ui_component_set_prop (component, "/commands/CmdBack",
 						      "sensitive", "1", NULL);
 		}
@@ -451,19 +452,19 @@ cmd_forward_cb (BonoboUIComponent   *component,
 	controller = DEVHELP_CONTROLLER (data);
 	priv       = controller->priv;
 
-	if (history_exist_forward (priv->history)) {
+	if (dh_history_exist_forward (priv->history)) {
 		bonobo_ui_component_set_prop (component,
 					      "/commands/CmdForward",
 					      "sensitive", "0", NULL);
 		
-		str_uri = history_go_forward (priv->history);
+		str_uri = dh_history_go_forward (priv->history);
 		
 		if (str_uri) {
 			devhelp_controller_open (controller, str_uri);
 			g_free (str_uri);
 		}
 		
-		if (history_exist_forward (priv->history)) {
+		if (dh_history_exist_forward (priv->history)) {
 			bonobo_ui_component_set_prop (component,
 						      "/commands/CmdForward",
 						      "sensitive", "1", NULL);
@@ -519,7 +520,7 @@ devhelp_controller_book_removed_cb (DevHelpController   *controller,
 }
 
 static void 
-devhelp_controller_forward_exists_changed_cb (History              *history,
+devhelp_controller_forward_exists_changed_cb (DhHistory           *history,
 					      gboolean             exists,
 					      DevHelpController   *controller)
 {
@@ -550,7 +551,7 @@ devhelp_controller_forward_exists_changed_cb (History              *history,
 }
 
 static void 
-devhelp_controller_back_exists_changed_cb (History             *history,
+devhelp_controller_back_exists_changed_cb (DhHistory           *history,
 					   gboolean             exists,
 					   DevHelpController   *controller)
 {
@@ -607,7 +608,7 @@ devhelp_controller_uri_cb (GObject             *unused,
 
 	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
-  	history_goto (priv->history, str_uri);
+  	dh_history_goto (priv->history, str_uri);
 	devhelp_controller_emit_uri (controller, str_uri);
 
 	g_free (str_uri);

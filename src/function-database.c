@@ -31,7 +31,7 @@
 #include <stdio.h>
 
 #include "function-database.h"
-#include "devhelp-marshal.h"
+#include "dh-marshal.h"
 
 #define d(x)
 
@@ -127,7 +127,7 @@ fd_class_init (GObjectClass *klass)
 			      G_STRUCT_OFFSET (FunctionDatabaseClass,
 					       get_search_string),
 			      NULL, NULL,
-			      devhelp_marshal_STRING__VOID,
+			      dh_marshal_STRING__VOID,
 			      G_TYPE_STRING,
 			      0);
 	
@@ -138,7 +138,7 @@ fd_class_init (GObjectClass *klass)
 			      G_STRUCT_OFFSET (FunctionDatabaseClass,
 					       exact_hit_found),
 			      NULL, NULL,				
-			      g_cclosure_marshal_VOID__POINTER,
+			      dh_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
 	signals[HITS_FOUND] =
@@ -148,7 +148,7 @@ fd_class_init (GObjectClass *klass)
 			      G_STRUCT_OFFSET (FunctionDatabaseClass,
 					       hits_found),
 			      NULL, NULL,			      
-			      g_cclosure_marshal_VOID__POINTER,
+			      dh_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
 	signals[FUNCTION_REMOVED] =
@@ -158,7 +158,7 @@ fd_class_init (GObjectClass *klass)
 			      G_STRUCT_OFFSET (FunctionDatabaseClass,
 					       function_removed),
 			      NULL, NULL,
-			      g_cclosure_marshal_VOID__POINTER,
+			      dh_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);	
 }

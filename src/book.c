@@ -28,7 +28,7 @@
 #include <string.h>
 #include <libxml/parser.h>
 #include "function-database.h"
-#include "util.h"
+#include "dh-util.h"
 #include "book.h"
 
 #define d(x)
@@ -403,7 +403,7 @@ document_new (Book *book, const gchar *link, gchar **anchor)
 	
 	document = g_new0 (Document, 1);
 	document->book = book;
-	document->link = util_url_split (link, anchor);
+	document->link = dh_util_url_split (link, anchor);
 
 	g_hash_table_insert (priv->documents, document->link, document);
 
@@ -448,7 +448,7 @@ book_url_get_book_relative (Book *book, const gchar *url)
 	
 	priv     = book->priv;
 
-	if (!util_uri_is_relative (url)) {
+	if (!dh_util_uri_is_relative (url)) {
 		base = gnome_vfs_uri_to_string (book->priv->base_uri,
 						GNOME_VFS_URI_HIDE_NONE);
 		
@@ -467,7 +467,7 @@ book_url_get_book_relative (Book *book, const gchar *url)
 		g_free (base);
 
 	} else {
-		un_depth = util_url_get_un_depth (url);
+		un_depth = dh_util_url_get_un_depth (url);
 		
 		ch = url;
 		ch += un_depth * URL_DELIM_LENGTH;
@@ -750,7 +750,7 @@ book_find_document (Book *book, const gchar *url, gchar **anchor)
 
 	book_rel_url = book_url_get_book_relative (book, url);
 	
-	doc_url = util_url_split (book_rel_url, anchor);
+	doc_url = dh_util_url_split (book_rel_url, anchor);
 	
 	document = g_hash_table_lookup (priv->documents, doc_url);
 	

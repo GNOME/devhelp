@@ -27,18 +27,18 @@
 
 #include <stdio.h>
 
-#include "history.h"
+#include "dh-history.h"
 
 #define d(x)
 
 #define HISTORY_LENGTH 20
 
-static void          history_init              (History         *history);
+static void          history_init              (DhHistory       *history);
 static void          history_class_init        (GObjectClass    *klass);
 static void          history_destroy           (GObject         *object);
 static void          history_free_history_list (GList           *history_list);
 
-static void          history_maybe_emit        (History         *history);
+static void          history_maybe_emit        (DhHistory       *history);
 					
 enum { 
 	FORWARD_EXISTS_CHANGED,
@@ -48,7 +48,7 @@ enum {
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
-struct _HistoryPriv {
+struct _DhHistoryPriv {
 	GList      *history_list;
 	GList      *current;
 
@@ -57,25 +57,25 @@ struct _HistoryPriv {
 };
 
 GType
-history_get_type (void)
+dh_history_get_type (void)
 {
 	static GType history_type = 0;
         
 	if (!history_type) {
 		static const GTypeInfo history_info = {
-			sizeof (HistoryClass),
+			sizeof (DhHistoryClass),
 			NULL,
 			NULL,
 			(GClassInitFunc) history_class_init,
 			NULL,
 			NULL,
-			sizeof (History),
+			sizeof (DhHistory),
 			0,
 			(GInstanceInitFunc) history_init,
 		};
                 
 		history_type = g_type_register_static (G_TYPE_OBJECT,
-						       "History",
+						       "DhHistory",
 						       &history_info, 0);
 	}
 
@@ -83,13 +83,13 @@ history_get_type (void)
 }
 
 static void
-history_init (History *history)
+history_init (DhHistory *history)
 {
-	HistoryPriv   *priv;
+	DhHistoryPriv   *priv;
 
 	d(puts(__FUNCTION__));
         
-	priv = g_new0 (HistoryPriv, 1);
+	priv = g_new0 (DhHistoryPriv, 1);
         
 	priv->history_list      = NULL;
 	priv->current           = NULL;
@@ -109,7 +109,7 @@ history_class_init (GObjectClass *klass)
 		g_signal_new ("forward_exists_changed",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (HistoryClass, 
+			      G_STRUCT_OFFSET (DhHistoryClass, 
 					       forward_exists_changed),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__BOOLEAN,
@@ -120,7 +120,7 @@ history_class_init (GObjectClass *klass)
 		g_signal_new ("back_exists_changed",
 			      G_TYPE_FROM_CLASS (klass),				
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (HistoryClass, 
+			      G_STRUCT_OFFSET (DhHistoryClass, 
 					       back_exists_changed),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__BOOLEAN,
@@ -131,12 +131,12 @@ history_class_init (GObjectClass *klass)
 static void
 history_destroy (GObject *object)
 {
-	History       *history;
-	HistoryPriv   *priv;
+	DhHistory       *history;
+	DhHistoryPriv   *priv;
 	GList         *node;
         
 	g_return_if_fail (object != NULL);
-	g_return_if_fail (IS_HISTORY (object));
+	g_return_if_fail (DH_IS_HISTORY (object));
         
 	d(puts(__FUNCTION__));
         
@@ -169,17 +169,17 @@ history_free_history_list (GList *history_list)
 }
 
 static void
-history_maybe_emit (History *history)
+history_maybe_emit (DhHistory *history)
 {
-	HistoryPriv   *priv;
+	DhHistoryPriv   *priv;
 		
 	g_return_if_fail (history != NULL);
-	g_return_if_fail (IS_HISTORY (history));
+	g_return_if_fail (DH_IS_HISTORY (history));
 	
 	priv = history->priv;
 	
-	if (priv->last_emit_forward != history_exist_forward (history)) {
-		priv->last_emit_forward = history_exist_forward (history);
+	if (priv->last_emit_forward != dh_history_exist_forward (history)) {
+		priv->last_emit_forward = dh_history_exist_forward (history);
 		
 		g_signal_emit (G_OBJECT (history),
 			       signals[FORWARD_EXISTS_CHANGED],
@@ -187,8 +187,8 @@ history_maybe_emit (History *history)
 			       priv->last_emit_forward);
 	}
 
-	if (priv->last_emit_back != history_exist_back (history)) {
-		priv->last_emit_back = history_exist_back (history);
+	if (priv->last_emit_back != dh_history_exist_back (history)) {
+		priv->last_emit_back = dh_history_exist_back (history);
 		
 		g_signal_emit (G_OBJECT (history),
 			       signals[BACK_EXISTS_CHANGED],
@@ -198,19 +198,19 @@ history_maybe_emit (History *history)
 }
 
 void
-history_goto (History *history, const gchar *str)
+dh_history_goto (DhHistory *history, const gchar *str)
 {
-	HistoryPriv   *priv;
+	DhHistoryPriv   *priv;
 	GList         *forward_list;
 	
 	g_return_if_fail (history != NULL);
-	g_return_if_fail (IS_HISTORY (history));
+	g_return_if_fail (DH_IS_HISTORY (history));
 
 	d(puts(__FUNCTION__));
 
 	priv = history->priv;
 	
-	if (history_exist_forward (history)) {
+	if (dh_history_exist_forward (history)) {
 		forward_list = priv->current->next;
 		priv->current->next = NULL;
 			
@@ -235,12 +235,12 @@ history_goto (History *history, const gchar *str)
 }
 
 gchar *
-history_go_forward (History *history)
+dh_history_go_forward (DhHistory *history)
 {
-	HistoryPriv   *priv;
+	DhHistoryPriv   *priv;
         
 	g_return_val_if_fail (history != NULL, NULL);
-	g_return_val_if_fail (IS_HISTORY (history), NULL);
+	g_return_val_if_fail (DH_IS_HISTORY (history), NULL);
 
 	d(puts(__FUNCTION__));
         
@@ -258,12 +258,12 @@ history_go_forward (History *history)
 }
 
 gchar *
-history_go_back (History *history)
+dh_history_go_back (DhHistory *history)
 {
-	HistoryPriv   *priv;
+	DhHistoryPriv   *priv;
 	
 	g_return_val_if_fail (history != NULL, NULL);
-	g_return_val_if_fail (IS_HISTORY (history), NULL);
+	g_return_val_if_fail (DH_IS_HISTORY (history), NULL);
 
 	d(puts(__FUNCTION__));
         
@@ -281,12 +281,12 @@ history_go_back (History *history)
 }
 
 gchar *
-history_get_current (History *history)
+dh_history_get_current (DhHistory *history)
 {
-	HistoryPriv   *priv;
+	DhHistoryPriv   *priv;
 	
 	g_return_val_if_fail (history != NULL, NULL);
-	g_return_val_if_fail (IS_HISTORY (history), NULL);
+	g_return_val_if_fail (DH_IS_HISTORY (history), NULL);
 
 	priv = history->priv;
 	
@@ -298,12 +298,12 @@ history_get_current (History *history)
 }
 
 gboolean
-history_exist_forward (History *history)
+dh_history_exist_forward (DhHistory *history)
 {
-	HistoryPriv   *priv;
+	DhHistoryPriv   *priv;
         
 	g_return_val_if_fail (history != NULL, FALSE);
-	g_return_val_if_fail (IS_HISTORY (history), FALSE);
+	g_return_val_if_fail (DH_IS_HISTORY (history), FALSE);
         
 	d(puts(__FUNCTION__));
         
@@ -321,12 +321,12 @@ history_exist_forward (History *history)
 }
 
 gboolean
-history_exist_back (History *history)
+dh_history_exist_back (DhHistory *history)
 {
-	HistoryPriv   *priv;
+	DhHistoryPriv   *priv;
         
 	g_return_val_if_fail (history != NULL, FALSE);
-	g_return_val_if_fail (IS_HISTORY (history), FALSE);
+	g_return_val_if_fail (DH_IS_HISTORY (history), FALSE);
 
 	d(puts(__FUNCTION__));
         
@@ -343,11 +343,11 @@ history_exist_back (History *history)
 	return FALSE;
 }
 
-History *
-history_new ()
+DhHistory *
+dh_history_new ()
 {
 	d(puts(__FUNCTION__));
         
-	return g_object_new (TYPE_HISTORY, NULL);
+	return g_object_new (DH_TYPE_HISTORY, NULL);
 }
 

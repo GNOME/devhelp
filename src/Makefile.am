@@ -43,16 +43,16 @@ libdevhelp2_la_SOURCES =			\
 	dh-bookshelf.h                     	\
 	devhelp-controller.c			\
 	devhelp-controller.h			\
-	devhelp-marshal.c			\
-	devhelp-marshal.h			\
-	devhelp-search.c                	\
-	devhelp-search.h			\
+	dh-marshal.c				\
+	dh-marshal.h				\
+	dh-search.c     	           	\
+	dh-search.h				\
 	function-database.c			\
 	function-database.h			\
-	history.c                               \
-	history.h                               \
-	util.c					\
-	util.h
+	dh-history.c                            \
+	dh-history.h                            \
+	dh-util.c				\
+	dh-util.h
 
 libdevhelp2_la_LIBADD =				\
 	$(LIBDEVHELP_LIBS)	
@@ -65,15 +65,15 @@ gnome_devhelp_idl_sources =          \
 	GNOME_DevHelp.h              \
 	GNOME_DevHelp-common.c
 
-marshal_sources = \
-        devhelp-marshal.h \
-        devhelp-marshal-guts.c \
+marshal_sources = 		\
+        dh-marshal.h 		\
+        dh-marshal.c  	 	\
         $(NULL)
 
-devhelp-marshal.h: devhelp-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --header --prefix=devhelp_marshal > $@
-devhelp-marshal-guts.c: devhelp-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --body --prefix=devhelp_marshal > $@
+dh-marshal.h: dh-marshal.list $(GLIB_GENMARSHAL)
+	$(GLIB_GENMARSHAL) $< --header --prefix=dh_marshal > $@
+dh-marshal.c: dh-marshal.list $(GLIB_GENMARSHAL)
+	$(GLIB_GENMARSHAL) $< --body --prefix=dh_marshal > $@
 
 $(gnome_devhelp_idl_sources): gnome_devhelp_idl_stamp
 gnome_devhelp_idl_stamp: $(top_srcdir)/idl/GNOME_DevHelp.idl $(ORBIT_IDL)
@@ -101,7 +101,7 @@ CLEANFILES  = 					\
 EXTRA_DIST =                            	\
 	$(server_in_files)			\
 	$(server_DATA)				\
-	devhelp-marshal.list			\
+	dh-marshal.list			\
 	$(NULL)
 
 BUILT_SOURCES = \

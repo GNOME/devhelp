@@ -20,8 +20,8 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __UTILS_H__
-#define __UTILS_H__
+#ifndef __DH_UTIL_H__
+#define __DH_UTIL_H__
 
 #include <glib.h>
 #include <libgnomevfs/gnome-vfs.h>
@@ -29,21 +29,21 @@
 #define URL_DELIM "../"
 #define URL_DELIM_LENGTH 3
 
-gchar *        util_url_split             (const gchar          *url,
-					   gchar               **anchor);
-gchar *        util_url_get_book_name     (const gchar          *url);
+gchar *        dh_util_url_split             (const gchar          *url,
+					      gchar               **anchor);
+gchar *        dh_util_url_get_book_name     (const gchar          *url);
 
-gint           util_url_get_un_depth      (const gchar          *url);
+gint           dh_util_url_get_un_depth      (const gchar          *url);
 
-gchar *        util_url_get_anchor        (const gchar          *url);
+gchar *        dh_util_url_get_anchor        (const gchar          *url);
 
-gchar *        util_uri_get_anchor        (const GnomeVFSURI    *uri);
+gchar *        dh_util_uri_get_anchor        (const GnomeVFSURI    *uri);
 
 /* Taken from gnome-vfs CVS. */
-GnomeVFSURI *  util_uri_relative_new      (const gchar          *text_uri,
+GnomeVFSURI *  dh_util_uri_relative_new      (const gchar          *text_uri,
 					   const GnomeVFSURI    *base);
 
-gboolean       util_uri_is_relative       (const gchar          *uri);
+gboolean       dh_util_uri_is_relative       (const gchar          *uri);
 
 
-#endif /* GNOME_VFS_URI_H */
+#endif /* __DH_UTIL_H__ */

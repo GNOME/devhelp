@@ -25,12 +25,12 @@
 #endif
 
 #include <string.h>
-#include "util.h"
+#include "dh-util.h"
 
 #define d(x)
 
 gchar *
-util_url_split (const gchar *url, gchar **anchor)
+dh_util_url_split (const gchar *url, gchar **anchor)
 {
 	gchar   *ch;
 	gchar   *base;
@@ -57,7 +57,7 @@ util_url_split (const gchar *url, gchar **anchor)
 }
 
 gchar *
-util_url_get_book_name (const gchar *url)
+dh_util_url_get_book_name (const gchar *url)
 {
 	gchar   **dirs;
 	gchar   **dir;
@@ -81,7 +81,7 @@ util_url_get_book_name (const gchar *url)
 }
 
 gint
-util_url_get_un_depth (const gchar *url)
+dh_util_url_get_un_depth (const gchar *url)
 {
 	const gchar   *ch;
 	gint           un_depth;
@@ -100,7 +100,7 @@ util_url_get_un_depth (const gchar *url)
 }
 
 gchar *
-util_url_get_anchor (const gchar *url) 
+dh_util_url_get_anchor (const gchar *url) 
 {
 	gchar   *ch;
 	
@@ -112,14 +112,14 @@ util_url_get_anchor (const gchar *url)
 }
 
 gchar *
-util_uri_get_anchor (const GnomeVFSURI *uri)
+dh_util_uri_get_anchor (const GnomeVFSURI *uri)
 {
 	gchar   *str_uri;
 	gchar   *anchor;
 	
 	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
-	anchor = util_url_get_anchor (str_uri);
+	anchor = dh_util_url_get_anchor (str_uri);
 
 	g_free (str_uri);
 	
@@ -200,7 +200,7 @@ remove_internal_relative_components (char *uri_current)
 }
 
 gboolean
-util_uri_is_relative (const char *uri)
+dh_util_uri_is_relative (const char *uri)
 {
 	const char *current;
 
@@ -236,7 +236,7 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
 	 * functionality differs from what Mozilla itself would do.
 	 */
 
-	if (util_uri_is_relative (uri)) {
+	if (dh_util_uri_is_relative (uri)) {
 		char *mutable_base_uri;
 		char *mutable_uri;
 
@@ -368,7 +368,7 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
  * Return value: The new URI.
  **/
 GnomeVFSURI *
-util_uri_relative_new (const gchar         *text_uri,
+dh_util_uri_relative_new (const gchar         *text_uri,
 		       const GnomeVFSURI   *base)
 {
 	char *text_base;
