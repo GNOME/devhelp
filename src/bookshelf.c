@@ -51,8 +51,9 @@ struct _BookshelfPriv {
 };
 
 struct _XMLBook {
-	gchar *name;
-	gchar *path;
+	gchar    *name;
+	gchar    *path;
+	gboolean  visible;
 };
 
 GtkType
@@ -116,19 +117,19 @@ bookshelf_destroy (GtkObject *object)
 
 void
 bookshelf_write_xml (Bookshelf     *bookshelf, 
-		     const gchar   *filename, 
-		     const gchar   *root)
+		     const gchar   *filename)
 {
 	BookshelfPriv   *priv;
 	Book            *book;
 	FILE            *fp;
-	const gchar     *name;
-	const gchar     *path;
 	GSList          *node;
+	const gchar     *name;
+	const gchar     *version;	
+	const gchar     *path;
+	gboolean         visible;
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
-	g_return_if_fail (root != NULL);
 	
 	priv = bookshelf->priv;
 
@@ -149,17 +150,21 @@ bookshelf_write_xml (Bookshelf     *bookshelf,
 	for (node = priv->books; node; node = node->next) {
 		book = BOOK (node->data);
 		
-		name = book_get_name (book);
-		path = g_strdup_printf ("%s/books/%s", root, book_get_name_full (book));
-
+		name    = book_get_name (book);
+		version = book_get_version (book);		
+		path    = book_get_path (book);
+		visible = book_is_visible (book);
+		
 		fprintf (fp, "  <book name=\"%s\" ", name);
 		
-		if (book_get_version (book) != NULL) {
+		if (version != NULL) {
 			fprintf (fp, "version=\"%s\" ", 
-				 book_get_version (book));
+				 version);
 		}
-
-		fprintf (fp, "path=\"%s\"/>\n", path);
+		
+		fprintf (fp, "visible=\"%d\" path=\"%s\"/>\n",
+			 visible == TRUE ? 1 : 0,
+			 path);
 	}
 	
 	fprintf (fp, "</booklist>\n");
@@ -178,6 +183,7 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	xmlDocPtr        doc;
 	xmlNode         *root_node, *cur;
 	gchar           *xml_str;
+	gchar           *visible;
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
@@ -207,12 +213,18 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	
 	cur = root_node->xmlChildrenNode;
 	list = NULL;
-
  	while (cur) {
 		if (!xmlStrcmp (cur->name, (const xmlChar *) "book")) {
 			book = g_new (XMLBook, 1);
 			book->name = xmlGetProp (cur, "name");
 			book->path = xmlGetProp (cur, "path");
+			visible = xmlGetProp (cur, "visible");
+			if (visible != NULL) {
+				book->visible = atoi (visible);
+			} else {
+				book->visible = TRUE;
+			}
+			xmlFree (visible);
 			list = g_list_append (list, book);
 		}
 		
@@ -287,10 +299,12 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 		/* if book in xml-list */
 		for (node2 = xml_books; node2; node2 = node2->next) {
 			xml_book = (XMLBook*) node2->data;
-			if (strcmp (xml_book->name, (gchar*)book_get_name (book)) == 0)
-			    book_set_base_url (book, xml_book->path);
+			if (strcmp (xml_book->name, (gchar*)book_get_name (book)) == 0) {
+				book_set_base_url (book, xml_book->path);
+				book_set_visible (book, xml_book->visible);
+			}
 		}
-			
+
 		bookshelf_add_book (bookshelf, book);
 
 		g_free (node->data);

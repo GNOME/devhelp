@@ -40,6 +40,8 @@
 #include "main.h"
 #include "preferences.h"
 
+static void        update_clist (BooksDialog *dialog);
+
 struct _BooksDialog {
 	Preferences    *prefs;
 	GConfClient    *client;
@@ -67,29 +69,38 @@ static void
 books_button_show_clicked_cb (GtkWidget *button,
 			      gpointer   user_data)
 {
-	BooksDialog *dialog;
+	BooksDialog   *dialog;
+	Book          *book;
+	gint           row;
 	
 	g_return_if_fail (user_data != NULL);
 	
 	dialog = BOOKS_DIALOG (user_data);
-	puts (__FUNCTION__);
+	
+	row = dialog->clist_hidden->focus_row;
+	book = BOOK (gtk_clist_get_row_data (dialog->clist_hidden, row));
+	book_set_visible (book, TRUE);
+
+	update_clist (dialog);
 }
 
 static void
 books_button_hide_clicked_cb (GtkWidget *button,
 			      gpointer   user_data)
 {
-	BooksDialog *dialog;
-	gint         row;
-	gchar      **text;
+	BooksDialog   *dialog;
+	Book          *book;
+	gint           row;
 	
 	g_return_if_fail (user_data != NULL);
 
 	dialog = BOOKS_DIALOG (user_data);
-	puts (__FUNCTION__);
 
 	row = dialog->clist_visible->focus_row;
-	gtk_clist_get_text (dialog->clist_visible, row, 0, text);
+	book = BOOK (gtk_clist_get_row_data (dialog->clist_visible, row));
+	book_set_visible (book, FALSE);
+
+	update_clist (dialog);
 }
 
 static gboolean
@@ -180,7 +191,7 @@ books_button_edit_clicked_cb (GtkWidget *button,
 	book_info->book = BOOK (gtk_clist_get_row_data (dialog->clist_visible, row));
 
 	if (book_info->book == NULL) {
-		return NULL;
+		return;
 	}
 	
 	/* Set info in lables */
@@ -205,8 +216,8 @@ update_clist (BooksDialog *dialog)
 	GtkCList     *clist;
 	GSList       *list;
 	gchar        *tmp[1];
+	gchar        *xml_path;
 	gint          row;
-	gboolean      visible;
 
 	g_return_if_fail (dialog != NULL);
 	
@@ -220,24 +231,24 @@ update_clist (BooksDialog *dialog)
 	for (; list; list = list->next) {
 		book = BOOK (list->data);
 		
-		tmp[0] = (gchar*)book_get_name_full (book);
-
-		/* TODO: Fix-li-fix */
-		visible = TRUE;
-		
 		/* Put it in the correct clist */
-		if (visible) {
+		if (book_is_visible (book) == TRUE) {
 			clist = dialog->clist_visible;
 		} else {
 			clist = dialog->clist_hidden;
 		}
-		
+
+		tmp[0] = (gchar*)book_get_name_full (book);
 		row = gtk_clist_append (clist, tmp);
 		gtk_clist_set_row_data (clist, row, book);
 	}
 	
 	gtk_clist_sort (dialog->clist_visible);
-	gtk_clist_sort (dialog->clist_hidden);	
+	gtk_clist_sort (dialog->clist_hidden);
+	
+	xml_path = g_strdup_printf ("%s/.devhelp/books.xml", getenv ("HOME"));
+	bookshelf_write_xml (bookshelf, xml_path);
+	g_free (xml_path);
 }
 
 static void

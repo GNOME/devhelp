@@ -67,7 +67,8 @@ struct _BookPriv {
 	gchar         *title;
 	gchar         *author;
 	gchar         *version;
-
+	gboolean       visible;
+	
 	GnomeVFSURI   *base_uri;
 	
 	GHashTable    *documents;
@@ -123,6 +124,7 @@ book_init (Book *book)
 	priv->title     = NULL;
 	priv->author    = NULL;
 	priv->version   = NULL;
+	priv->visible   = TRUE;
 	priv->base_uri  = NULL;
 	priv->root      = NULL;
 	priv->documents = g_hash_table_new (g_str_hash, g_str_equal);
@@ -569,6 +571,32 @@ book_get_path (Book *book)
 	priv = book->priv;
 
 	return gnome_vfs_uri_to_string (priv->base_uri, 0);
+}
+
+void
+book_set_visible (Book *book, gboolean visible)
+{
+	BookPriv   *priv;
+	
+	g_return_if_fail (book != NULL);
+	g_return_if_fail (IS_BOOK (book));
+	
+	priv = book->priv;
+
+	priv->visible = visible;
+}
+
+gboolean
+book_is_visible (Book *book)
+{
+	BookPriv   *priv;
+	
+	g_return_if_fail (book != NULL);
+	g_return_if_fail (IS_BOOK (book));
+	
+	priv = book->priv;
+
+	return priv->visible;
 }
 
 gboolean

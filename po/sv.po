@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DevHelp 0.1.0\n"
-"POT-Creation-Date: 2001-07-31 19:41+0200\n"
+"POT-Creation-Date: 2001-08-02 00:29+0200\n"
 "PO-Revision-Date: 2001-07-06 15:34+0200\n"
 "Last-Translator: Johan Dahlin <zilch.am@home.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -43,8 +43,8 @@ msgid ""
 msgstr ""
 "Välj en rubrik i innehållet till vänster eller byt till sökpanelen för att "
 "ta reda på vad du söker på.<p>Använd <b>Skift Upp/Ner</b> för att navigera "
-"trädet till vänster, och <b>Skift Vänster/Höger</b> för att fälla in"
-"respektive fälla ut böckerna i trädet."
+"trädet till vänster, och <b>Skift Vänster/Höger</b> för att fälla "
+"inrespektive fälla ut böckerna i trädet."
 
 #: src/html-widget.c:302
 #, c-format
@@ -63,30 +63,34 @@ msgstr "Förhandsgranska"
 msgid "Printing failed."
 msgstr "Utskrift misslyckades."
 
-#: src/ui.c:419
+#: src/ui.c:428
 msgid "Choose a book..."
 msgstr "Välj en bok..."
 
-#: src/ui.c:563
+#: src/ui.c:571
+msgid "(C) Copyright 2001, Johan Dahlin"
+msgstr ""
+
+#: src/ui.c:572
 msgid "A developer's help browser"
 msgstr "Ett hjälpprogram för utvecklare"
 
-#: src/ui.c:700
+#: src/ui.c:709
 #, c-format
 msgid "Couldn't find book_node for function '%s'\n"
 msgstr "Kan inte hitta book_node för funktionen \"%s\"\n"
 
-#: src/ui.c:808
+#: src/ui.c:817
 #, c-format
 msgid "Link to %s"
 msgstr "Länk till %s"
 
-#: src/ui.c:863
+#: src/ui.c:872
 #, c-format
 msgid "Cannot find clicked link (%s) in bookshelf\n"
 msgstr "Kan inte hitta klickad länk (%s) i bokhyllan\n"
 
-#: src/ui.c:1242
+#: src/ui.c:1262
 msgid "Zoom index out of range."
 msgstr "Zoomindex är för stort/litet."
 

@@ -366,34 +366,14 @@
 
 	  <widget>
 	    <class>GtkScrolledWindow</class>
-	    <name>scrolledwindow2</name>
+	    <name>browse_scrolledwindow</name>
 	    <hscrollbar_policy>GTK_POLICY_NEVER</hscrollbar_policy>
 	    <vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
 	    <hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
 	    <vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
 
 	    <widget>
-	      <class>GtkCTree</class>
-	      <name>index_ctree</name>
-	      <can_focus>True</can_focus>
-	      <columns>1</columns>
-	      <column_widths>80</column_widths>
-	      <selection_mode>GTK_SELECTION_BROWSE</selection_mode>
-	      <show_titles>False</show_titles>
-	      <shadow_type>GTK_SHADOW_IN</shadow_type>
-
-	      <widget>
-		<class>GtkLabel</class>
-		<child_name>CTree:title</child_name>
-		<name>label5</name>
-		<label>label5</label>
-		<justify>GTK_JUSTIFY_CENTER</justify>
-		<wrap>False</wrap>
-		<xalign>0.5</xalign>
-		<yalign>0.5</yalign>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-	      </widget>
+	      <class>Placeholder</class>
 	    </widget>
 	  </widget>
 
@@ -488,7 +468,7 @@
 
 	    <widget>
 	      <class>GtkScrolledWindow</class>
-	      <name>scrolledwindow3</name>
+	      <name>search_scrolledwindow</name>
 	      <hscrollbar_policy>GTK_POLICY_AUTOMATIC</hscrollbar_policy>
 	      <vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
 	      <hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
@@ -500,27 +480,7 @@
 	      </child>
 
 	      <widget>
-		<class>GtkCList</class>
-		<name>search_clist</name>
-		<can_focus>True</can_focus>
-		<columns>1</columns>
-		<column_widths>80</column_widths>
-		<selection_mode>GTK_SELECTION_BROWSE</selection_mode>
-		<show_titles>False</show_titles>
-		<shadow_type>GTK_SHADOW_IN</shadow_type>
-
-		<widget>
-		  <class>GtkLabel</class>
-		  <child_name>CList:title</child_name>
-		  <name>label6</name>
-		  <label>label6</label>
-		  <justify>GTK_JUSTIFY_CENTER</justify>
-		  <wrap>False</wrap>
-		  <xalign>0.5</xalign>
-		  <yalign>0.5</yalign>
-		  <xpad>0</xpad>
-		  <ypad>0</ypad>
-		</widget>
+		<class>Placeholder</class>
 	      </widget>
 	    </widget>
 	  </widget>
@@ -1126,7 +1086,6 @@ Fast
 	      <widget>
 		<class>GtkButton</class>
 		<name>books_button_add</name>
-		<sensitive>False</sensitive>
 		<can_default>True</can_default>
 		<can_focus>True</can_focus>
 		<label>&lt;&lt; _Show</label>
@@ -1136,7 +1095,6 @@ Fast
 	      <widget>
 		<class>GtkButton</class>
 		<name>books_button_remove</name>
-		<sensitive>False</sensitive>
 		<can_default>True</can_default>
 		<can_focus>True</can_focus>
 		<label>_Hide &gt;&gt;</label>
@@ -1175,7 +1133,6 @@ Fast
 	  <class>GtkCList</class>
 	  <name>books_clist_hidden</name>
 	  <border_width>3</border_width>
-	  <sensitive>False</sensitive>
 	  <can_focus>True</can_focus>
 	  <columns>1</columns>
 	  <column_widths>80</column_widths>

@@ -98,13 +98,22 @@ devhelp_insert_book_node (DevHelp          *devhelp,
 	gchar          *text;
 	GtkCTreeNode   *ctree_node = NULL;
 	GnomeVFSURI    *uri;
+	Book           *book;
+	Document       *document;
 	
 	g_return_if_fail (devhelp != NULL);
 	g_return_if_fail (node != NULL);
-	
+
 	text = (gchar *) book_node_get_title (node);
-	
+
 	if (book_node_is_chapter (node)) {
+		/* Is the book hidden, then skip */
+		document = book_node_get_document (node);
+		book = document_get_book (document);
+		if (book_is_visible (book) == FALSE) {
+			return;
+		}
+	
 		ctree_node = gtk_ctree_insert_node (GTK_CTREE (devhelp->ctree),
 						    parent,
 						    NULL,
@@ -1106,14 +1115,25 @@ devhelp_create_ui (void)
 			    GTK_SIGNAL_FUNC (toolbar_button_forward_clicked_cb), devhelp);
 
 	/* CTree */
-	devhelp->ctree = GTK_CTREE (glade_xml_get_widget (gui, "index_ctree"));
+	devhelp->ctree = GTK_CTREE (gtk_ctree_new (1, 0));
 	gtk_signal_connect (GTK_OBJECT (devhelp->ctree), "tree_select_row",
 			    GTK_SIGNAL_FUNC (ctree_select_row_cb), devhelp);
-
+	w = glade_xml_get_widget (gui, "browse_scrolledwindow");
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
+					GTK_POLICY_NEVER,
+					GTK_POLICY_AUTOMATIC);
+	gtk_container_add (GTK_CONTAINER (w), GTK_WIDGET (devhelp->ctree));
+	
 	/* CList */
-	devhelp->clist = GTK_CLIST (glade_xml_get_widget (gui, "search_clist"));
+	devhelp->clist = GTK_CLIST (gtk_clist_new (1)); 
 	gtk_signal_connect (GTK_OBJECT (devhelp->clist), "select_row", 
 			    GTK_SIGNAL_FUNC (clist_select_row_cb), devhelp);
+
+	w = glade_xml_get_widget (gui, "search_scrolledwindow");
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
+					GTK_POLICY_NEVER,
+					GTK_POLICY_AUTOMATIC);
+	gtk_container_add (GTK_CONTAINER (w), GTK_WIDGET (devhelp->clist));
 
 	/* Search entry */
 	devhelp->entry = GTK_ENTRY (glade_xml_get_widget (GLADE_XML (gui), "search_entry"));

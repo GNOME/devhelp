@@ -1,3 +1,29 @@
+2001-08-01  Johan Dahlin  <zilch.am@home.se>
+
+	* ui/devhelp.glade: Remove clist and ctree, but keep scrolled windows.
+
+	* src/ui.c (devhelp_insert_book_node): Added visible check.
+	(devhelp_create_ui): Create ctree and clist here instead of in glade.
+
+	* src/bookshelf.h: Fix bookshelf_write_xml.
+
+	* src/bookshelf.c: Added visible here too.
+	(bookshelf_write_xml): Remove root from arguments, and add visible check.
+	(bookshelf_read_xml): Dito.
+
+	* src/books-dialog.c (books_button_show_clicked_cb): Updated
+	(books_button_hide_clicked_cb): Dito.
+	(update_clist): Dito.
+
+	* src/book.h: added book_set/is_visible here too.
+
+	* src/book.c: Added visible.
+	(book_set_visible): New function.
+	(book_is_visible): New function.
+
+	* src/bookshelf.c (bookshelf_write_xml): Use book_get_path to get
+	the path.
+
 2001-08-01  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/books-dialog.c 

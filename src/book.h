@@ -65,6 +65,11 @@ const gchar *       book_get_version           (Book                *book);
 
 gchar *             book_get_path              (Book                *book);
 
+void                book_set_visible           (Book                *book,
+						gboolean             visible);
+
+gboolean            book_is_visible            (Book                *book);
+
 gboolean            book_contains              (Book                *book,
 						const GnomeVFSURI   *uri);
 

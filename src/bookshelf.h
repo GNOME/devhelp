@@ -59,8 +59,7 @@ GList *          bookshelf_read_xml           (Bookshelf           *bookshelf,
 					       const gchar         *filename);
 
 void             bookshelf_write_xml          (Bookshelf           *bookshelf,
-					       const gchar         *xml_filename,
-					       const gchar         *book_root);
+					       const gchar         *xml_filename);
 
 gboolean         bookshelf_add_book           (Bookshelf           *bookshelf,
 					       Book                *book);

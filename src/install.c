@@ -241,7 +241,7 @@ install_insert_book (DevHelp *devhelp, Book *book, const gchar *root)
 	bookshelf_add_book (bookshelf, book);
 	
 	xml_path = g_strdup_printf ("%s/books.xml", root);
-	bookshelf_write_xml (bookshelf, xml_path, root);
+	bookshelf_write_xml (bookshelf, xml_path);
 	g_free (xml_path);
 
 	/* Add to ctree */
@@ -249,8 +249,10 @@ install_insert_book (DevHelp *devhelp, Book *book, const gchar *root)
 	
 	gtk_clist_freeze (GTK_CLIST (devhelp->ctree));
 		
-	devhelp_insert_book_node (devhelp, NULL, 
-				  book_get_root (book), pixmaps);
+	devhelp_insert_book_node (devhelp,
+				  NULL, 
+				  book_get_root (book),
+				  pixmaps);
 
 	/* Eek? This sort is not good enough, FIX */
 	/* gtk_clist_sort (GTK_CLIST (devhelp->ctree)); */
