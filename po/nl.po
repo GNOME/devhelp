@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp cvs\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
-"PO-Revision-Date: 2003-03-04 11:19--100\n"
+"POT-Creation-Date: 2003-05-28 03:51+0200\n"
+"PO-Revision-Date: 2003-05-28 11:08+0100\n"
 "Last-Translator: Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,21 @@ msgstr "DevHulp"
 msgid "Developers Help program"
 msgstr "Hulpprogramma voor ontwikkelaars"
 
+#: devhelp.keys.in.h:1
+msgid "DevHelp Book"
+msgstr "DevHulp Boek"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Kies een onderwerp uit de inhoud of gebruik het zoekpaneel.<p>Gebruik "
+"<b>shift omhoog/omlaag</b> om langs de boom te navigeren en <b>shift links/"
+"rechts</b> om de boeken in of uit te klappen."
+
 #: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Functie opzoeken"
@@ -29,6 +44,61 @@ msgstr "Functie opzoeken"
 #: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Alle actieve DevHulp-processen afsluiten"
+
+#: src/dh-parser.c:94
+#, c-format
+msgid "Expected 'book' got '%s' at line %d, column %d"
+msgstr "Ik vond '%s' in plaats van de verwachte 'book' op regel %d, kolom %d"
+
+#: src/dh-parser.c:110
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Ongeldige context '%s' op regel %d, kolom %d"
+
+#: src/dh-parser.c:139
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr ""
+"titel, naam en verwijzingselementen zijn verplicht op regel %d, kolom %d"
+
+#: src/dh-parser.c:171
+#, c-format
+msgid "Expected 'sub' got '%s' at line %d column %d"
+msgstr "Ik vond '%s' in plaats van de verwachte 'sub' op regel %d, kolom %d"
+
+#: src/dh-parser.c:192
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+"naam en verwijzingselementen zijn verplicht in een <sub> op regel %d, kolom %"
+"d"
+
+#: src/dh-parser.c:218
+#, c-format
+msgid "Expected 'function' got '%s' at line %d, column %d"
+msgstr ""
+"Ik vond '%s' in plaats van de verwachte 'function' op regel %d, kolom %d"
+
+#: src/dh-parser.c:240
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"naam en verwijzingselementen zijn verplicht in een <function> op regel %d, "
+"kolom %d"
+
+#: src/dh-parser.c:326 src/dh-parser.c:410
+msgid "Could not create book parser"
+msgstr "Kon book-analyse niet aanmaken"
+
+#: src/dh-parser.c:336 src/dh-parser.c:420
+msgid "Could not create markup parser"
+msgstr "Kon markup-analyse niet aanmaken"
+
+#: src/dh-parser.c:466
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Kan boek '%s' niet uitpakken: %s"
 
 #: src/dh-search.c:349
 msgid "_Search for:"
@@ -66,25 +136,3 @@ msgstr "Zoeken"
 #: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Een GNOME 2 hulpprogramma voor ontwikkelaars"
-
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Kies een onderwerp uit de inhoud of gebruik het zoekpaneel.<p>Gebruik "
-"<b>shift omhoog/omlaag</b> om langs de boom te navigeren en <b>shift links/"
-"rechts</b> om de boeken in of uit te klappen."
-
-#~ msgid ""
-#~ "<b>Could not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Niet alle boeken zijn ingelezen</b>\n"
-#~ "\n"
-#~ "Er is een fout opgetreden bij het inlezen:\n"
-#~ "%s"
