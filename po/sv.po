@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-10-13 11:46+0200\n"
-"PO-Revision-Date: 2001-10-13 02:14+0200\n"
+"POT-Creation-Date: 2001-10-15 17:03+0200\n"
+"PO-Revision-Date: 2001-10-15 17:06+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-msgid "Developers Help program"
-msgstr "Hjälpprogram för utvecklare"
-
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:10
 msgid "DevHelp"
 msgstr "DevHelp"
+
+#: devhelp.desktop.in.h:2
+msgid "Developers Help program"
+msgstr "Hjälpprogram för utvecklare"
 
 #: src/books-dialog.c:315
 msgid "Choose a book..."
@@ -49,15 +49,23 @@ msgstr "Dokumentet är av fel typ, fick %s, förväntade mig \"booklist\": %s"
 msgid "Failed to open file %s for writing."
 msgstr "Misslyckades med att öppna filen %s för skrivning."
 
-#: src/devhelp-window.c:519
+#: src/devhelp-window.c:382 ui/devhelp.glade.h:35
+msgid "_Contents"
+msgstr "I_nnehåll"
+
+#: src/devhelp-window.c:394 ui/devhelp.glade.h:39
+msgid "_Search"
+msgstr "_Sök"
+
+#: src/devhelp-window.c:518
 msgid "(C) Copyright 2001, Johan Dahlin"
 msgstr "© Copyright 2001, Johan Dahlin"
 
-#: src/devhelp-window.c:521
+#: src/devhelp-window.c:520
 msgid "A developer's help browser"
 msgstr "Ett hjälpprogram för utvecklare"
 
-#: src/devhelp-window.c:595
+#: src/devhelp-window.c:594
 #, c-format
 msgid "Open %s"
 msgstr "Öppna %s"
@@ -201,6 +209,10 @@ msgstr "DevHelp-bokhanterare"
 msgid "DevHelp Preferences"
 msgstr "Inställningar för DevHelp"
 
+#: ui/devhelp.glade.h:10
+msgid "Devhelp"
+msgstr "Devhelp"
+
 #: ui/GNOME_DevHelp_Controller.ui.h:3 ui/devhelp.glade.h:11
 msgid "Forward"
 msgstr "Framåt"
@@ -277,10 +289,6 @@ msgstr "Synliga"
 msgid "_Book manager..."
 msgstr "_Bokhanterare..."
 
-#: ui/devhelp.glade.h:35
-msgid "_Contents"
-msgstr "I_nnehåll"
-
 #: ui/devhelp.glade.h:36
 msgid "_Edit book..."
 msgstr "_Redigera bok..."
@@ -292,10 +300,6 @@ msgstr "_Göm >>"
 #: ui/devhelp.glade.h:38
 msgid "_Limit the number of hits to:"
 msgstr "_Begränsa antalet träffar till:"
-
-#: ui/devhelp.glade.h:39
-msgid "_Search"
-msgstr "_Sök"
 
 #: ui/devhelp.glade.h:40
 msgid "_Text size: "
@@ -371,9 +375,6 @@ msgstr "Öppna bokhanterardialogen"
 
 #~ msgid "Contents"
 #~ msgstr "Innehåll"
-
-#~ msgid "DevHelp"
-#~ msgstr "DevHelp"
 
 #~ msgid "New file"
 #~ msgstr "Ny fil"
