@@ -63,6 +63,14 @@ struct _DhWindowPriv {
 	GtkActionGroup *action_group;
 };
 
+/* People have reported problems with the default values in GConf so I'm
+ * adding this to make sure that the window isn't started 1x1 pixels or the
+ * paned having size 0
+ */
+#define DEFAULT_WIDTH     700
+#define DEFAULT_HEIGHT    500
+#define DEFAULT_PANED_LOC 250 
+
 static void window_class_init                (DhWindowClass      *klass);
 static void window_init                      (DhWindow           *window);
  
@@ -338,6 +346,10 @@ window_populate (DhWindow *window)
 	hpaned_position = gconf_client_get_int (gconf_client,
 						GCONF_PANED_LOCATION,
 						NULL);
+
+	if (hpaned_position <= 0) {
+		hpaned_position = DEFAULT_PANED_LOC;
+	}
 	
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), hpaned_position);
 
@@ -528,30 +540,39 @@ window_restore_state (DhWindow *window)
 	int      width, height;
 	int      x, y;
 
+	width = gconf_client_get_int (gconf_client,
+				      GCONF_MAIN_WINDOW_WIDTH,
+				      NULL);
+
+	if (width <= 0) {
+		width = DEFAULT_WIDTH;
+	}
+
+	height = gconf_client_get_int (gconf_client,
+				       GCONF_MAIN_WINDOW_HEIGHT,
+				       NULL);
+
+	if (height <= 0) {
+		height = DEFAULT_HEIGHT;
+	}
+
+	gtk_window_set_default_size (GTK_WINDOW (window), 
+				     width, height);
+
+	x = gconf_client_get_int (gconf_client,
+				  GCONF_MAIN_WINDOW_POS_X,
+				  NULL);
+	y = gconf_client_get_int (gconf_client,
+				  GCONF_MAIN_WINDOW_POS_Y,
+				  NULL);
+
+	gtk_window_move (GTK_WINDOW (window), x, y);
+
 	maximized = gconf_client_get_bool (gconf_client,
 					   GCONF_MAIN_WINDOW_MAXIMIZED,
 					   NULL);
 	if (maximized) {
 		gtk_window_maximize (GTK_WINDOW (window));
-	} else {
-		width = gconf_client_get_int (gconf_client,
-					      GCONF_MAIN_WINDOW_WIDTH,
-					      NULL);
-		height = gconf_client_get_int (gconf_client,
-					       GCONF_MAIN_WINDOW_HEIGHT,
-					       NULL);
-
-		gtk_window_set_default_size (GTK_WINDOW (window), 
-					     width, height);
-
-		x = gconf_client_get_int (gconf_client,
-					  GCONF_MAIN_WINDOW_POS_X,
-					  NULL);
-		y = gconf_client_get_int (gconf_client,
-					  GCONF_MAIN_WINDOW_POS_Y,
-					  NULL);
-
-		gtk_window_move (GTK_WINDOW (window), x, y);
 	}
 }
 
@@ -703,6 +724,13 @@ void
 dh_window_show (DhWindow *window)
 {
 	gtk_widget_show_all (GTK_WIDGET (window));
+
+	/* Make sure that the HTML widget is realized before trying to 
+	 * clear it. Solves bug #147343.
+	 */
+	while (g_main_context_pending (NULL)) {
+		g_main_context_iteration (NULL, FALSE);
+	}
 
 	dh_html_clear (window->priv->html);
 }

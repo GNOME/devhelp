@@ -181,7 +181,7 @@ dh_html_clear (DhHtml *html)
 	g_return_if_fail (DH_IS_HTML (html));
 
 	priv = html->priv;
-	
+
 	gtk_moz_embed_render_data (priv->gecko, data, strlen (data),
 				   "file:///", "text/html");
 }
