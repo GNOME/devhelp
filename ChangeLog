@@ -1,5 +1,10 @@
 2004-02-13  Mikael Hallendal  <micke@imendio.com>
 
+	* configure.in: bumped to 0.8.99
+	* libdevhelp-1.0.pc.in: Fixed the correct library name
+
+2004-02-13  Mikael Hallendal  <micke@imendio.com>
+
 	* devhelp.spec.in: Fixed to actually work
 	
 	* src/Makefile.am: Version library
