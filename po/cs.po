@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2004-01-06 16:49+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-17 14:08+0100\n"
+"PO-Revision-Date: 2004-03-17 21:29+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -27,70 +27,6 @@ msgstr "Devhelp"
 #: devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Kniha Devhelp"
-
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -164,7 +100,7 @@ msgstr "_Soubor"
 
 #: src/dh-window.c:112
 msgid "_Edit"
-msgstr ""
+msgstr "_Upravit"
 
 #: src/dh-window.c:113 ui/devhelp.glade.h:10
 msgid "_Go"
@@ -199,37 +135,101 @@ msgstr "Stránka projektu Devhelp"
 msgid "Bug report Devhelp"
 msgstr "Ohlásit chybu v Devhelpu"
 
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Písmo pro neproporcionální text"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Písmo pro text"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Písmo pro text s pevnou šířkou."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Písmo pro text s proměnnou šířkou."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Výška hlavního okna"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Umístění panelu"
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr "Pozice X hlavního okna."
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr "Pozice Y hlavního okna."
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr "Výška hlavního okna."
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr "Umístění oddělovače panelu."
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr "Šířka hlavního okna."
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr "Používat písma systému"
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr "Používat implicitní písma systému"
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr "Šířka hlavního okna"
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr "Pozice X hlavního okna"
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
+msgstr "Pozice Y hlavního okna"
+
 #: ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Písma</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "Pevná šířka:"
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
-msgstr ""
+msgstr "Nastavení"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "Proměnná šířka:"
 
 #: ui/devhelp.glade.h:8
 msgid "_Back"
-msgstr ""
+msgstr "_Zpět"
 
 #: ui/devhelp.glade.h:9
 msgid "_Forward"
-msgstr ""
+msgstr "_Vpřed"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Používat písma systému"
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search tab "
