@@ -1,34 +1,30 @@
 DevHelp 0.4: 
 
 * Raise minimized window (Richard)
-
 * Bug fixes              (Mikael, Richard)
-
 * Limit history length   (Nils O. Selåsdal)
+* Saner installdirs      (Mikael)
+
 
 DevHelp 0.3:
 
 * Lots of bugfixes. (Johan, Mikael, Richard)
-
 * Debian and Red Hat packages now availible. (Johan)
-
 * DevHelp can now handle different versions of the same book
   much better. (Johan)
-  
 * New and updated translations, Thanks goes to Ismael Olea, 
   Joe Man, Marcel Telka, Alessio Frusciante, Kjartan Maraas, 
   Christophe Fergeau, Zbigniew Chyla, Ole Laursen and
   Christian Rose.
+
   
 DevHelp 0.2:
 
 * New maintainer: Mikael Hallendal <micke@codefactory.se> is now
   maintainer DevHelp.
-
 * Bonobization: To make it easier to embedd DevHelp in IDE's (like
   gIDE and Anjuta) DevHelp now consists of a couple of controlls which
   can be used in other applications. (Mikael Hallendal)
-
 * Code-cleanups, Cleaned up the code to make it more
   maintainable. (Mikael Hallendal).
 
@@ -36,7 +32,6 @@ DevHelp 0.2:
 DevHelp 0.1.1: 
 
 * A few bugfixes. Should compile with non cvs version of libxml now.
-
 
 DevHelp 0.1.0:
 
