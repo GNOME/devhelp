@@ -359,8 +359,8 @@ dh_base_new_window (DhBase *base)
 	/*g_signal_connect (window, "new_window_requested",
 			  G_CALLBACK (base_new_window_cb),
 			  base);*/
-
-	gtk_widget_show_all (window);
+	
+	dh_window_show (DH_WINDOW (window));
 
 	return window;
 }

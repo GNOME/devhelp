@@ -1,5 +1,12 @@
 2004-03-16  Mikael Hallendal  <micke@imendio.com>
 
+	* src/dh-base.c:
+	* src/dh-html.c:
+	* src/dh-window.c:
+	- Make the HTML view white for now.
+
+2004-03-16  Mikael Hallendal  <micke@imendio.com>
+
 	* src/Makefile.am:
 	* src/dh-history.c:
 	* src/dh-history.h:

@@ -47,7 +47,8 @@ struct _DhHtmlClass {
 
 GType           dh_html_get_type       (void);
 DhHtml         *dh_html_new            (void);
- 
+
+void            dh_html_clear          (DhHtml        *html);
 void            dh_html_open_uri       (DhHtml        *html,
 					const gchar   *uri);
 GtkWidget *     dh_html_get_widget     (DhHtml        *html);

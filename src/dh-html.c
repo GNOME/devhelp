@@ -163,13 +163,27 @@ html_location_cb (GtkMozEmbed *embed, DhHtml *html)
 DhHtml *
 dh_html_new (void)
 {
-        DhHtml     *html;
+        DhHtml *html;
 
         d(puts(__FUNCTION__));
 
         html = g_object_new (DH_TYPE_HTML, NULL);
-        
+ 
         return html;
+}
+
+void
+dh_html_clear (DhHtml *html)
+{
+	DhHtmlPriv  *priv;
+	static const char *data = "<html><body bgcolor=\"white\"></body></html>";
+	
+	g_return_if_fail (DH_IS_HTML (html));
+
+	priv = html->priv;
+	
+	gtk_moz_embed_render_data (priv->gecko, data, strlen (data),
+				   "file:///", "text/html");
 }
 
 void

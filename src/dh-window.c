@@ -164,10 +164,10 @@ static void
 window_class_init (DhWindowClass *klass)
 {
         GObjectClass *object_class;
-        
+	
         parent_class = g_type_class_peek_parent (klass);
         
-        object_class = (GObjectClass *) klass;
+        object_class = G_OBJECT_CLASS (klass);
         
         object_class->finalize = window_finalize;
 }
@@ -448,6 +448,7 @@ static void window_activate_about            (GtkAction          *action,
 				 NULL,
 				 NULL,
 				 NULL);
+
 	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
 
 	g_signal_connect (about,
@@ -661,6 +662,14 @@ dh_window_new (DhBase *base)
 	}
 	
 	return GTK_WIDGET (window);
+}
+
+void
+dh_window_show (DhWindow *window)
+{
+	gtk_widget_show_all (GTK_WIDGET (window));
+
+	dh_html_clear (window->priv->html);
 }
 
 void
