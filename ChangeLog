@@ -1,3 +1,8 @@
+2001-08-22  Richard Hult  <rhult@codefactory.se>
+
+	* misc/devhelp.el (devhelp-word-at-point): Don't use -f, it's
+	removed.
+
 2001-08-14  Fatih Demir <kabalak@gtranslator.org>
 
 	* .cvsignore & xml-i18n*: The xml-i18n-tools are to be ignored,

@@ -2,7 +2,7 @@
   "runs devhelp"
   (interactive)
   (setq w (current-word))
-  (start-process-shell-command "devhelp" nil "devhelp" "-f" "-s" w)
+  (start-process-shell-command "devhelp" nil "devhelp" "-s" w)
   )
 
 ; Example: bind F7 to start devhelp and search for the word at the point.
