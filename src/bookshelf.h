@@ -94,7 +94,7 @@ Document *       bookshelf_find_document      (Bookshelf           *bookshelf,
 					       gchar              **anchor);
 
 BookNode *       bookshelf_find_node          (Bookshelf           *bookshelf,
-					       Document            *document,
+					       const Document      *document,
 					       const gchar         *anchor);
 
 void             bookshelf_open_document      (Bookshelf          *bookshelf,

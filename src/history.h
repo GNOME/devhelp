@@ -28,7 +28,6 @@
 
 #include <gtk/gtkobject.h>
 #include <gtk/gtktypeutils.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include "book.h"
 
 #define TYPE_HISTORY        (history_get_type ())
@@ -62,17 +61,13 @@ GtkType               history_get_type      (void);
 History *             history_new           (void);
 
 void                  history_goto          (History             *history,
-					     const Document      *document,
-					     const gchar         *anchor);
+					     const gchar         *str);
 
-const Document *      history_go_forward    (History             *history,
-					     gchar              **anchor);
+gchar *               history_go_forward    (History             *history);
 
-const Document *      history_go_back       (History             *history,
-					     gchar              **anchor);
+gchar *               history_go_back       (History             *history);
 
-const Document *      history_get_current   (History             *history,
-					     gchar              **anchor);
+gchar *               history_get_current   (History             *history);
 
 gboolean              history_exist_forward (History             *history);
 gboolean              history_exist_back    (History             *history);

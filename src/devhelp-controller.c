@@ -31,6 +31,7 @@
 #include "book-index.h"
 #include "books-dialog.h"
 #include "devhelp-search.h"
+#include "history.h"
 #include "devhelp-controller.h"
 
 #define d(x) x
@@ -46,21 +47,42 @@ static void devhelp_controller_uri_cb      (DevHelpController      *controller,
 					    const GnomeVFSURI      *uri,
 					    gpointer                user_data);
 
-static void 
-devhelp_controller_books_dialog_destroy_cb (GtkObject              *object,
-					    DevHelpController      *controller);
+static gboolean devhelp_controller_open    (DevHelpController      *controller,
+					    const gchar            *str_uri);
+
+static void devhelp_controller_emit_uri    (DevHelpController      *controller,
+					    const gchar            *str_uri);
+
 static void cmd_book_manager_cb            (BonoboUIComponent      *component,
 					    gpointer                data,
 					    const gchar            *cname);
 
-static void devhelp_controller_book_added_cb (DevHelpController    *controller,
-					      Book                 *book,
-					      gpointer              user_data);
+static void cmd_back_cb                    (BonoboUIComponent      *component,
+					    gpointer                data,
+					    const gchar            *cname);
 
-static void devhelp_controller_book_removed_cb (DevHelpController  *controller,
-						Book               *book,
-						gpointer            user_data);
+static void cmd_forward_cb                 (BonoboUIComponent      *component,
+					    gpointer                data,
+					    const gchar            *cname);
 
+static void
+devhelp_controller_book_added_cb           (DevHelpController      *controller,
+					    Book                   *book,
+					    gpointer                user_data);
+
+static void
+devhelp_controller_book_removed_cb         (DevHelpController      *controller,
+					    Book                   *book,
+					    gpointer                user_data);
+
+static void 
+devhelp_controller_forward_exists_changed_cb (DevHelpController    *controller,
+					      gboolean              exists,
+					      gpointer              history);
+static void 
+devhelp_controller_back_exists_changed_cb  (DevHelpController      *controller,
+					    gboolean                exists,
+					    gpointer                history);
 
 #define PARENT_TYPE BONOBO_X_OBJECT_TYPE
 static BonoboXObjectClass *parent_class;
@@ -71,6 +93,8 @@ struct _DevHelpControllerPriv {
         
         BookIndex           *index;
 	DevHelpSearch       *search;
+
+	History             *history;
 	
 	BonoboEventSource   *event_source;
         BonoboUIComponent   *ui_component;
@@ -80,10 +104,10 @@ struct _DevHelpControllerPriv {
 
 static BonoboUIVerb verbs[] = {
 	BONOBO_UI_VERB ("CmdBookManager",    cmd_book_manager_cb),
+	BONOBO_UI_VERB ("CmdBack",           cmd_back_cb),
+	BONOBO_UI_VERB ("CmdForward",        cmd_forward_cb),
         BONOBO_UI_VERB_END
 };
-
-
 
 static Bonobo_Control
 impl_DevHelp_Controller_getSearchEntry (PortableServer_Servant   servant,
@@ -149,18 +173,17 @@ impl_DevHelp_Controller_addMenus (PortableServer_Servant    servant,
 {
 	DevHelpController       *controller;
 	DevHelpControllerPriv   *priv;
-	BonoboUIComponent       *ui_component;
 
 	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 
-	ui_component = bonobo_ui_component_new ("DevHelpController");
+	priv->ui_component = bonobo_ui_component_new ("DevHelpController");
 	
-	bonobo_ui_component_set_container (ui_component, ui_container);
-	bonobo_ui_component_add_verb_list_with_data (ui_component,
+	bonobo_ui_component_set_container (priv->ui_component, ui_container);
+	bonobo_ui_component_add_verb_list_with_data (priv->ui_component,
 						     verbs,
 						     controller);
-	bonobo_ui_util_set_ui (ui_component, DATA_DIR,
+	bonobo_ui_util_set_ui (priv->ui_component, DATA_DIR,
 			       "GNOME_DevHelp_Controller.ui",
 			       "devhelp");
 }
@@ -173,38 +196,14 @@ impl_DevHelp_Controller_openURI (PortableServer_Servant    servant,
 	DevHelpController       *controller;
 	DevHelpControllerPriv   *priv;
 	Document                *document;
-	BookNode                *node;
 	gchar                   *anchor;
-	GnomeVFSURI             *uri;
 	
 	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
-	
-	document = bookshelf_find_document (priv->bookshelf, str_uri, &anchor);
 
-	if (document) { 
-		node = bookshelf_find_node (priv->bookshelf,
-					    document, anchor);
-
-		if (node) {
-			priv->current_node = node;
-				
-			gtk_signal_handler_block_by_func 
-				(GTK_OBJECT (priv->index),
-				 GTK_SIGNAL_FUNC (devhelp_controller_uri_cb),
-				 controller); 
-	
-			book_index_open_node (priv->index, node);
-			
-			gtk_signal_handler_unblock_by_func 
-				(GTK_OBJECT (priv->index), 
-				 GTK_SIGNAL_FUNC (devhelp_controller_uri_cb), 
-				 controller);
-			
-			uri = book_node_get_uri (node, anchor);
-
-			devhelp_controller_uri_cb (controller, uri, NULL);
-		}
+	if (devhelp_controller_open (controller, str_uri)) {
+		d(g_print ("moving goto\n"));
+		history_goto (priv->history, str_uri);
 	}
 }
 
@@ -245,17 +244,28 @@ devhelp_controller_init (DevHelpController *controller)
 	
         priv = g_new0 (DevHelpControllerPriv, 1);
 
-        priv->fd  = function_database_new ();
-        local_dir = g_strdup_printf ("%s/.devhelp", getenv ("HOME"));
+	priv->ui_component = NULL;
+        priv->fd           = function_database_new ();
+	priv->history      = history_new ();
 
         function_database_freeze (priv->fd);
         priv->bookshelf = bookshelf_new (DATA_DIR "/devhelp/specs", priv->fd);
+        local_dir       = g_strdup_printf ("%s/.devhelp", getenv ("HOME"));
         bookshelf_add_directory (priv->bookshelf, local_dir);
+        g_free (local_dir);
         function_database_thaw (priv->fd);
 
-        g_free (local_dir);
-
         priv->index  = BOOK_INDEX (book_index_new (priv->bookshelf));
+
+	gtk_signal_connect_object (GTK_OBJECT (priv->history),
+				   "forward_exists_changed",
+				   GTK_SIGNAL_FUNC (devhelp_controller_forward_exists_changed_cb),
+				   GTK_OBJECT (controller));
+	
+	gtk_signal_connect_object (GTK_OBJECT (priv->history),
+				   "back_exists_changed",
+				   GTK_SIGNAL_FUNC (devhelp_controller_back_exists_changed_cb),
+				   GTK_OBJECT (controller));
 
 	gtk_signal_connect_object (GTK_OBJECT (priv->bookshelf),
 				   "book_added",
@@ -266,7 +276,6 @@ devhelp_controller_init (DevHelpController *controller)
 				   "book_removed",
 				   GTK_SIGNAL_FUNC (devhelp_controller_book_removed_cb),
 				   GTK_OBJECT (controller));
-	
 	
 	gtk_signal_connect_object (GTK_OBJECT (priv->index),
 				   "uri_selected",
@@ -282,9 +291,9 @@ devhelp_controller_init (DevHelpController *controller)
 
 	priv->event_source = bonobo_event_source_new ();
 
-
 	bonobo_object_add_interface (BONOBO_OBJECT (controller),
 				     BONOBO_OBJECT (priv->event_source));
+
 
         controller->priv = priv;
 }
@@ -292,6 +301,78 @@ devhelp_controller_init (DevHelpController *controller)
 static void
 devhelp_controller_destroy (GtkObject *object)
 {
+}
+
+static gboolean
+devhelp_controller_open (DevHelpController *controller, const gchar *str_uri)
+{
+	DevHelpControllerPriv   *priv;
+	BookNode                *node;
+	GnomeVFSURI             *uri;
+	Document                *doc;
+	gchar                   *anchor;
+	
+	g_return_val_if_fail (controller != NULL, FALSE);
+	g_return_val_if_fail (IS_DEVHELP_CONTROLLER (controller), FALSE);
+	g_return_val_if_fail (doc != NULL, FALSE);
+
+	priv = controller->priv;
+	
+	doc = bookshelf_find_document (priv->bookshelf, str_uri, &anchor);
+	
+	if (doc) { 
+		node = bookshelf_find_node (priv->bookshelf, doc, anchor);
+
+		if (node) {
+			priv->current_node = node;
+			
+			gtk_signal_handler_block_by_func 
+				(GTK_OBJECT (priv->index),
+				 GTK_SIGNAL_FUNC (devhelp_controller_uri_cb),
+				 controller); 
+			
+			book_index_open_node (priv->index, node);
+			
+			gtk_signal_handler_unblock_by_func 
+				(GTK_OBJECT (priv->index), 
+				 GTK_SIGNAL_FUNC (devhelp_controller_uri_cb), 
+				 controller);
+		
+			uri = book_node_get_uri (node, anchor);
+		
+/* 			devhelp_controller_uri_cb (controller, uri, NULL); */
+
+			return TRUE;
+		}
+	}
+	
+	return FALSE;
+}
+
+static void
+devhelp_controller_emit_uri (DevHelpController   *controller, 
+			     const gchar         *str_uri)
+{
+	DevHelpControllerPriv   *priv;
+	CORBA_any               *any;
+
+	g_return_if_fail (controller != NULL);
+	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
+	g_return_if_fail (str_uri != NULL);
+
+	priv = controller->priv;
+	
+	any         = CORBA_any__alloc ();
+	any->_type  = TC_CORBA_string;
+	any->_value = CORBA_string_dup (str_uri);
+	CORBA_any_set_release (any, CORBA_TRUE);
+
+	bonobo_event_source_notify_listeners (priv->event_source,
+					      "GNOME/DevHelp:URI:changed",
+					      any,
+					      NULL);
+	
+ 	CORBA_free (any);
 }
 
 static void
@@ -313,6 +394,60 @@ cmd_book_manager_cb (BonoboUIComponent   *component,
 	gtk_widget_show_all (widget);
 	
 	gtk_main ();
+}
+
+static void
+cmd_back_cb (BonoboUIComponent *component, gpointer data, const gchar *cname)
+{
+	
+	DevHelpController       *controller;
+	DevHelpControllerPriv   *priv;
+	gchar                   *str_uri = NULL;
+	GnomeVFSURI             *uri;
+	
+	g_return_if_fail (data != NULL);
+	g_return_if_fail (IS_DEVHELP_CONTROLLER (data));
+	
+	controller = DEVHELP_CONTROLLER (data);
+	priv       = controller->priv;
+
+	str_uri    = history_go_back (priv->history);
+
+	if (str_uri) {
+		devhelp_controller_open (controller, str_uri);
+		uri = gnome_vfs_uri_new (str_uri);
+		devhelp_controller_emit_uri (controller, str_uri);
+		gnome_vfs_uri_unref (uri);
+		g_free (str_uri);
+	}
+}
+
+
+static void
+cmd_forward_cb (BonoboUIComponent   *component, 
+		gpointer             data, 
+		const gchar         *cname)
+{
+	DevHelpController       *controller;
+	DevHelpControllerPriv   *priv;
+	gchar                   *str_uri = NULL;
+	GnomeVFSURI             *uri;
+	
+	g_return_if_fail (data != NULL);
+	g_return_if_fail (IS_DEVHELP_CONTROLLER (data));
+	
+	controller = DEVHELP_CONTROLLER (data);
+	priv       = controller->priv;
+
+	str_uri    = history_go_forward (priv->history);
+
+	if (str_uri) {
+		devhelp_controller_open (controller, str_uri);
+		uri = gnome_vfs_uri_new (str_uri);
+		devhelp_controller_emit_uri (controller, str_uri);
+		gnome_vfs_uri_unref (uri);
+		g_free (str_uri);
+	}
 }
 
 static void
@@ -349,6 +484,69 @@ devhelp_controller_book_removed_cb (DevHelpController   *controller,
 	/* FIX: Not impl. yet */
 }
 
+static void 
+devhelp_controller_forward_exists_changed_cb (DevHelpController   *controller,
+					      gboolean             exists,
+					      gpointer             history)
+{
+	DevHelpControllerPriv   *priv;
+	gchar                   *sensitive;
+	
+	g_return_if_fail (controller != NULL);
+	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
+
+	priv = controller->priv;
+
+	sensitive = exists ? "1" : "0";
+	
+	d(g_print ("Setting forward sensitivity to: %s\n", sensitive));
+
+	if (priv->ui_component) {
+		bonobo_ui_component_freeze (priv->ui_component, NULL);
+		
+		bonobo_ui_component_set_prop (priv->ui_component,
+					      "/commands/CmdForward",
+					      "sensitive", sensitive,
+					      NULL);
+
+		bonobo_ui_component_thaw (priv->ui_component, NULL);
+	} else {
+		g_warning ("No ui_component");
+	}
+}
+
+static void 
+devhelp_controller_back_exists_changed_cb (DevHelpController   *controller,
+					   gboolean             exists,
+					   gpointer             history)
+{
+	DevHelpControllerPriv   *priv;
+	gchar                   *sensitive;
+	
+	g_return_if_fail (controller != NULL);
+	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
+
+	priv = controller->priv;
+
+	sensitive = exists ? "1" : "0";
+
+	d(g_print ("Setting back sensitivity to: %s\n", sensitive));
+	
+	if (priv->ui_component) {
+		bonobo_ui_component_freeze (priv->ui_component, NULL);
+		
+		bonobo_ui_component_set_prop (priv->ui_component,
+					      "/commands/CmdBack",
+					      "sensitive", sensitive,
+					      NULL);
+
+		bonobo_ui_component_thaw (priv->ui_component, NULL);
+	} else {
+		g_warning ("No ui_component");
+	}
+	
+}
+
 DevHelpController *
 devhelp_controller_new ()
 {
@@ -365,8 +563,6 @@ devhelp_controller_uri_cb (DevHelpController   *controller,
 			   gpointer             ignored)
 {
 	DevHelpControllerPriv   *priv;
-	CORBA_any               *any;
-	BonoboArg               *arg;
 	gchar                   *str_uri;
 		
 	g_return_if_fail (controller != NULL);
@@ -374,20 +570,13 @@ devhelp_controller_uri_cb (DevHelpController   *controller,
 	g_return_if_fail (uri != NULL);
 	
 	priv    = controller->priv;
-	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
-	
-	any         = CORBA_any__alloc ();
-	any->_type  = TC_CORBA_string;
-	any->_value = CORBA_string_dup (str_uri);
-	CORBA_any_set_release (any, CORBA_TRUE);
 
-	bonobo_event_source_notify_listeners (priv->event_source,
-					      "GNOME/DevHelp:URI:changed",
-					      any,
-					      NULL);
+	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+
+  	history_goto (priv->history, str_uri);
+	devhelp_controller_emit_uri (controller, str_uri);
 
 	g_free (str_uri);
-	CORBA_free (any);
 }
 
 BONOBO_X_TYPE_FUNC_FULL (DevHelpController,

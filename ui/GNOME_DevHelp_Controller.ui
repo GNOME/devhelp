@@ -5,6 +5,19 @@
          sensitive="1"
          pixtype="stock"
          pixname="Book Blue" /> 
+
+    <cmd name="CmdBack"
+         _label="Back"
+         sensitive="0"
+         pixtype="stock"
+         pixname="Back" />
+
+    <cmd name="CmdForward"
+	 _label="Forward"
+         sensitive="0"
+         pixtype="stock"
+         pixname="Forward" />
+    
   </commands>
 
   <menu>
@@ -13,9 +26,9 @@
      </submenu>
   </menu>
 
-<!--
   <dockitem name="toolbar" look="icons" homogeneous="0" relief="none" behavior="exclusive">
+     <toolitem name="ToolBack"    verb="CmdBack" />
+     <toolitem name="ToolForward" verb="CmdForward" />
   </dockitem>
--->
 
 </Root>

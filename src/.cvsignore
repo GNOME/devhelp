@@ -9,3 +9,4 @@ stamp-idl
 .libs
 devhelp
 GNOME_DevHelp.oaf
+GNOME_DevHelp.oaf.in

@@ -557,9 +557,9 @@ bookshelf_open_document (Bookshelf *bookshelf, const Document *document)
 }
 
 BookNode *
-bookshelf_find_node (Bookshelf     *bookshelf, 
-		     Document      *document, 
-		     const gchar   *anchor)
+bookshelf_find_node (Bookshelf        *bookshelf, 
+		     const Document   *document, 
+		     const gchar      *anchor)
 {
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));

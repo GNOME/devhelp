@@ -32,19 +32,12 @@
 
 #define d(x)
 
-typedef struct {
-	const Document   *document;
-	gchar            *anchor;
-} HistoryData;
-
 static void          history_init              (History         *history);
 static void          history_class_init        (GtkObjectClass  *klass);
 static void          history_destroy           (GtkObject       *object);
 static void          history_free_history_list (GList           *history_list);
 
 static void          history_maybe_emit        (History         *history);
-static HistoryData * history_data_new          (const Document  *document,
-						const gchar     *anchor);
 					
 enum { 
 	FORWARD_EXISTS_CHANGED,
@@ -148,7 +141,7 @@ history_destroy (GtkObject *object)
 	priv    = history->priv;
         
 	for (node = priv->history_list; node; node = node->next) {
-		gnome_vfs_uri_unref (node->data);
+		g_free (node->data);
 	}
 
 	g_list_free (priv->history_list);
@@ -166,7 +159,7 @@ history_free_history_list (GList *history_list)
 	d(puts(__FUNCTION__));
         
 	for (node = history_list; node; node = node->next) {
-		gnome_vfs_uri_unref (node->data);
+		g_free (node->data);
 	}
 
 	g_list_free (history_list);
@@ -199,29 +192,11 @@ history_maybe_emit (History *history)
 	}
 }
 
-static HistoryData *
-history_data_new (const Document *document, const gchar *anchor)
-{
-	HistoryData   *history_data;
-	
-	g_return_if_fail (document != NULL);
-
-	history_data            = g_new0 (HistoryData, 1);
-	history_data->document = document;
-
-	if (anchor) {
-		history_data->anchor = g_strdup (anchor);
-	}
-
-	return history_data;
-}
-
 void
-history_goto (History *history, const Document *document, const gchar *anchor)
+history_goto (History *history, const gchar *str)
 {
 	HistoryPriv   *priv;
 	GList         *forward_list;
-	HistoryData   *history_data;
 	
 	g_return_if_fail (history != NULL);
 	g_return_if_fail (IS_HISTORY (history));
@@ -237,21 +212,18 @@ history_goto (History *history, const Document *document, const gchar *anchor)
 		history_free_history_list (forward_list);
 	}
 
-	history_data = history_data_new (document, anchor);
-
  	priv->history_list = g_list_append (priv->history_list, 
-					    history_data);
+					    g_strdup (str));
 	
 	priv->current      = g_list_last (priv->history_list);
 	
 	history_maybe_emit (history);
 }
 
-const Document *
-history_go_forward (History *history, gchar **anchor)
+gchar *
+history_go_forward (History *history)
 {
 	HistoryPriv   *priv;
-	HistoryData   *history_data;
         
 	g_return_val_if_fail (history != NULL, NULL);
 	g_return_val_if_fail (IS_HISTORY (history), NULL);
@@ -264,24 +236,17 @@ history_go_forward (History *history, gchar **anchor)
 		priv->current = priv->current->next;
 
 		history_maybe_emit (history);
-
-		history_data = (HistoryData *) priv->current->data;
-
-		if (anchor && history_data->anchor) {
-			*anchor = g_strdup (history_data->anchor);
-		}
 		
-		return history_data->document;
+		return g_strdup ((gchar *)priv->current->data);
 	}
 
 	return NULL;
 }
 
-const Document *
-history_go_back (History *history, gchar **anchor)
+gchar *
+history_go_back (History *history)
 {
 	HistoryPriv   *priv;
-        HistoryData   *history_data;
 	
 	g_return_val_if_fail (history != NULL, NULL);
 	g_return_val_if_fail (IS_HISTORY (history), NULL);
@@ -295,23 +260,16 @@ history_go_back (History *history, gchar **anchor)
 
 		history_maybe_emit (history);
 
-		history_data = (HistoryData *) priv->current->data;
-		
-		if (anchor && history_data->anchor) {
-			*anchor = g_strdup (history_data->anchor);
-		}
-		
-		return history_data->document;
+		return g_strdup ((gchar *) priv->current->data);
 	}
         
 	return NULL;
 }
 
-const Document *
-history_get_current (History *history, gchar **anchor)
+gchar *
+history_get_current (History *history)
 {
 	HistoryPriv   *priv;
-	HistoryData   *history_data;
 	
 	g_return_val_if_fail (history != NULL, NULL);
 	g_return_val_if_fail (IS_HISTORY (history), NULL);
@@ -322,13 +280,7 @@ history_get_current (History *history, gchar **anchor)
 		return NULL;
 	}
 
-	history_data = (HistoryData *) priv->current->data;
-	
-	if (anchor && history_data->anchor) {
-		*anchor = g_strdup (history_data->anchor);
-	}
-	
-	return history_data->document;
+	return g_strdup ((gchar *) priv->current->data);
 }
 
 gboolean

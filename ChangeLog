@@ -1,3 +1,50 @@
+2001-08-26  Mikael Hallendal  <micke@codefactory.se>
+
+	* ui/GNOME_DevHelp_Controller.ui: 
+	- added CmdBack and CmdForward. Added toolbar items.
+
+	* src/history.[ch]: 
+	- Again changed. This time to use strings instead of
+	  Document+anchor. First it used URI's. Now it is very general.
+	- Removed HistoryData struct.
+	(history_data_new): removed.
+	(history_goto): changed inargs.
+	(history_go_forward): changed in/returns
+	(history_go_back): dito.
+	(history_get_current): dito.
+
+	* src/devhelp-controller.c:
+	- Added history support.
+	(devhelp_controller_open): added/impl. broke out code from
+	  impl_DevHelp_Controller_openURI. This is now also used in
+	  callbacks from cmdForward and cmdBack. 
+	(devhelp_controller_emit_uri): added/impl. broke out code from
+	  devhelp_controller_uri_cb. This is now also used in callbacks
+	  from cmdForward and cmdBack.
+	(cmd_back_cb): added/impl. Handles when user presses toolbar
+	  button Back. 
+	(cmd_forward_cb): added/impl. Handles when user presses toolbar
+	  button forward.
+	(devhelp_controller_init): connect to history signals.
+	(devhelp_controller_forward_exists_changed_cb):
+	  added/impl. changes sensitivity of forward button whether there
+	  are any entries in the forward list or not. Callback from
+	  History signal 'forward_exists_changed'.
+	(devhelp_controller_back_exists_changed_cb): added/impl. changes
+	  sensitivity of back button in toolbar depending on whether there
+	  are any entries in the back list. Callback from History signal
+	  'back_exists_changed'  
+	(devhelp_controller_uri_cb): call history_goto and
+	  devhelp_controller_emit_uri.
+	(impl_DevHelp_Controller_openURI): call history_goto and
+	  devhelp_controller_open. 
+
+	* src/bookshelf.[ch] (bookshelf_find_node): take document as a
+	  const. 
+
+	* src/GNOME_DevHelp.oaf.in: removed from CVS. generated from
+	  GNOME_DevHelp.oaf.in.in
+
 2001-08-25  Mikael Hallendal  <micke@codefactory.se>
 
 	* ui/GNOME_DevHelp_Controller.ui: moved BookManager to Settings
