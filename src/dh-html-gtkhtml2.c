@@ -569,7 +569,8 @@ dh_html_open_uri (DhHtml      *html,
  				html_view_jump_to_anchor (HTML_VIEW (priv->widget),
  							  anchor);
  			} else {
-				gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (html)),
+				g_message("crash?");
+				gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (priv->widget)),
 							  0);
 			}
 
