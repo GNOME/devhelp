@@ -3,20 +3,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: punlinux\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-04 15:31+0530\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2004-01-31 07:45+0530\n"
 "Last-Translator: Amanpreet Singh Alam <amanlinux@netscape.net>\n"
 "Language-Team: KBST Punjab <kbstpunjab@netscape.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
 msgstr "ਵਿਕਾਸਵਾਦੀਆਂ·ਲਈ·ਸਹਾਈ·ਕਾਰਜ"
 
-#: devhelp.desktop.in.h:2
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "ਵਿਕਾਸਸਹਾਈ"
 
@@ -24,11 +24,69 @@ msgstr "ਵਿਕਾਸਸਹਾਈ"
 msgid "Devhelp Book"
 msgstr "ਵਿਕਾਸਸਹਾਈ·ਕਿਤਾਬ"
 
-#: src/dh-html-gtkhtml2.c:532
-msgid ""
-"Select a subject in the contents to the left or switch to the search tab to "
-"find what you are looking for."
-msgstr "ਜਿਸ·ਦੀ·ਖੋਜ·ਤੁਸੀ·ਕਰ·ਰਹੇ·ਹੋ·ਉਸ·ਲਈ·ਜਾਂ·ਤਾਂ·ਖਬਿਉ·ਸੰਖੇਪ·ਵਿਚੋਂ·ਵਿਸ਼ਾ·ਚੁਣੋ·ਜਾਂ·ਖੋਜ·ਪਟੀ·ਖੋਲੋ"
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr ""
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
+msgstr ""
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -93,39 +151,80 @@ msgstr "ਖੋਜ·:"
 msgid "Section"
 msgstr "ਵਿਭਾਗ"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:111
 msgid "_File"
 msgstr "ਫਾਇਲ"
 
-#: src/dh-window.c:106
+#: src/dh-window.c:112
+msgid "_Edit"
+msgstr ""
+
+#: src/dh-window.c:113 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "ਜਾਉ"
 
-#: src/dh-window.c:107
+#: src/dh-window.c:114
 msgid "_Help"
 msgstr "ਸਹਾਇਤਾ"
 
-#: src/dh-window.c:285
+#: src/dh-window.c:292
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "ਯੂਆਈ·ਨਿਸ਼ਚਿਤ·ਨਹੀ·ਕੀਤਾ·ਜਾ·ਸਕਦਾ·ਹੈ: %s"
 
-#: src/dh-window.c:347
+#: src/dh-window.c:352 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "ਸੰਖੇਪ"
 
-#: src/dh-window.c:358
+#: src/dh-window.c:363
 msgid "Search"
 msgstr "ਖੋਜ"
 
-#: src/dh-window.c:423
+#: src/dh-window.c:446
 msgid "A developer's help browser for GNOME 2"
 msgstr "ਗਨੋਮ·੨·ਲਈ·ਵਿਕਾਸ਼ਵਾਦੀ·ਲਈ·ਸਹਾਇਤਾ·ਦਰਸ਼ਕ"
 
-#: src/dh-window.c:438
+#: src/dh-window.c:462
 msgid "Devhelp project page"
 msgstr "ਵਿਕਾਸ·ਸਹਾਈ·ਪੋਜੈਕਟ·ਸਫ਼ਾ"
 
-#: src/dh-window.c:442
+#: src/dh-window.c:466
 msgid "Bug report Devhelp"
 msgstr "ਵਿਕਾਸ·ਸਹਾਈ·ਬਗ··ਰਿਪੋਰਟ·"
+
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr ""
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr ""
+
+#: ui/devhelp.glade.h:6
+msgid "Preferences"
+msgstr ""
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr ""
+
+#: ui/devhelp.glade.h:8
+msgid "_Back"
+msgstr ""
+
+#: ui/devhelp.glade.h:9
+msgid "_Forward"
+msgstr ""
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr ""
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search tab "
+#~ "to find what you are looking for."
+#~ msgstr "ਜਿਸ·ਦੀ·ਖੋਜ·ਤੁਸੀ·ਕਰ·ਰਹੇ·ਹੋ·ਉਸ·ਲਈ·ਜਾਂ·ਤਾਂ·ਖਬਿਉ·ਸੰਖੇਪ·ਵਿਚੋਂ·ਵਿਸ਼ਾ·ਚੁਣੋ·ਜਾਂ·ਖੋਜ·ਪਟੀ·ਖੋਲੋ"

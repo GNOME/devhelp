@@ -1,3 +1,15 @@
+Devhelp 0.9:
+------------
+* Depending on Mozilla for HTML rendering
+* Depending on GTK 2.3/2.4
+* Fixed History support
+* Fixed a number of bugs related to Gtkhtml2
+* Added support for customized fonts
+* Saves window layout/geometry/location
+* New translations (pa)
+* Updated translations
+  (ja, hi, fr, nl, it, da, no, pt_BR, zh_CN, sv)
+
 Devhelp 0.8:
 ------------
 * Installs a library and header files to embed Devhelp widgets

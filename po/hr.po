@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0\n"
-"POT-Creation-Date: 2004-02-01 16:49+0100\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2004-02-01 16:49+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr ""
 
-#: devhelp.desktop.in.h:2
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
 #, fuzzy
 msgid "Devhelp"
 msgstr "DevPomoć"
@@ -26,10 +26,68 @@ msgstr "DevPomoć"
 msgid "Devhelp Book"
 msgstr ""
 
-#: src/dh-html-gtkhtml2.c:532
-msgid ""
-"Select a subject in the contents to the left or switch to the search tab to "
-"find what you are looking for."
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr ""
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
 msgstr ""
 
 #: src/dh-main.c:259
@@ -49,23 +107,29 @@ msgid "Quit any running Devhelp"
 msgstr ""
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr ""
 
 #: src/dh-parser.c:120
+#, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr ""
 
 #: src/dh-parser.c:149
+#, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
 
 #: src/dh-parser.c:202
+#, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 
 #: src/dh-parser.c:250
-msgid "name and link elements are required inside <function> on line %d, column %d"
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
@@ -77,6 +141,7 @@ msgid "Could not create markup parser"
 msgstr ""
 
 #: src/dh-parser.c:479
+#, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr ""
 
@@ -88,39 +153,75 @@ msgstr "Traži :"
 msgid "Section"
 msgstr "Odsječak"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:111
 msgid "_File"
 msgstr "_Datoteka"
 
-#: src/dh-window.c:106
+#: src/dh-window.c:112
+msgid "_Edit"
+msgstr ""
+
+#: src/dh-window.c:113 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Idi"
 
-#: src/dh-window.c:107
+#: src/dh-window.c:114
 msgid "_Help"
 msgstr "_Pomoć"
 
-#: src/dh-window.c:283
+#: src/dh-window.c:292
+#, c-format
 msgid "Cannot set UI: %s"
 msgstr ""
 
-#: src/dh-window.c:343
+#: src/dh-window.c:352 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: src/dh-window.c:354
+#: src/dh-window.c:363
 msgid "Search"
 msgstr "&Traži"
 
-#: src/dh-window.c:419
+#: src/dh-window.c:446
 msgid "A developer's help browser for GNOME 2"
 msgstr ""
 
-#: src/dh-window.c:434
+#: src/dh-window.c:462
 msgid "Devhelp project page"
 msgstr ""
 
-#: src/dh-window.c:438
+#: src/dh-window.c:466
 msgid "Bug report Devhelp"
 msgstr ""
 
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr ""
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr ""
+
+#: ui/devhelp.glade.h:6
+msgid "Preferences"
+msgstr ""
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr ""
+
+#: ui/devhelp.glade.h:8
+msgid "_Back"
+msgstr ""
+
+#: ui/devhelp.glade.h:9
+msgid "_Forward"
+msgstr ""
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr ""

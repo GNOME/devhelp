@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.6.0\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2003-06-18 19:30+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "適用於程式開發者的說明書瀏覽程式"
 
-#: devhelp.desktop.in.h:2
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
 #, fuzzy
 msgid "Devhelp"
 msgstr "說明書瀏覽程式"
@@ -29,25 +29,83 @@ msgstr "說明書瀏覽程式"
 msgid "Devhelp Book"
 msgstr "DevHelp 說明書"
 
-#: src/dh-html-gtkhtml2.c:532
-msgid ""
-"Select a subject in the contents to the left or switch to the search tab to "
-"find what you are looking for."
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
 msgstr ""
 
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr ""
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
 msgstr ""
 
 #: src/dh-main.c:259
+msgid "Specify the size and location of the window"
+msgstr ""
+
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr ""
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "搜尋函式"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "結束所有執行中的 Devhelp 進程"
 
@@ -99,36 +157,80 @@ msgstr "搜尋"
 msgid "Section"
 msgstr "章節"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:111
 msgid "_File"
 msgstr "檔案(_F)"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:112
+msgid "_Edit"
+msgstr ""
+
+#: src/dh-window.c:113 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "前往(_G)"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:114
 msgid "_Help"
 msgstr "求助(_H)"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:292
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr ""
+
+#: src/dh-window.c:352 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "內容"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:363
 msgid "Search"
 msgstr "搜尋"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:446
 msgid "A developer's help browser for GNOME 2"
 msgstr "適合程式開發者的說明書瀏覽程式，適用於 GNOME 2 環境"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:462
 msgid "Devhelp project page"
 msgstr ""
 
-#: src/dh-window.c:434
+#: src/dh-window.c:466
 msgid "Bug report Devhelp"
+msgstr ""
+
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr ""
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr ""
+
+#: ui/devhelp.glade.h:6
+#, fuzzy
+msgid "Preferences"
+msgstr "偏好設定..."
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr ""
+
+#: ui/devhelp.glade.h:8
+#, fuzzy
+msgid "_Back"
+msgstr "上一頁"
+
+#: ui/devhelp.glade.h:9
+#, fuzzy
+msgid "_Forward"
+msgstr "下一頁"
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
 msgstr ""
 
 #~ msgid ""
@@ -263,20 +365,11 @@ msgstr ""
 #~ msgid "Font size"
 #~ msgstr "字型大小"
 
-#~ msgid "Preferences..."
-#~ msgstr "偏好設定..."
-
 #~ msgid "_Print"
 #~ msgstr "列印(_P)"
 
-#~ msgid "Back"
-#~ msgstr "上一頁"
-
 #~ msgid "Book Manager..."
 #~ msgstr "說明書總管..."
-
-#~ msgid "Forward"
-#~ msgstr "下一頁"
 
 #~ msgid "Go to next page in the history"
 #~ msgstr "前往下一個紀錄"

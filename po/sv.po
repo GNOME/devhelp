@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2004-03-17 00:00+0100\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2004-01-17 14:25+0100\n"
 "Last-Translator: Richard Hult <richard@imendio.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -28,6 +28,70 @@ msgstr "Devhelp"
 #: devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Devhelp-bok"
+
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Typsnitt för text"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr ""
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
+msgstr ""
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -132,70 +196,6 @@ msgstr "Devhelps projektsida"
 #: src/dh-window.c:466
 msgid "Bug report Devhelp"
 msgstr "Buggrapportera Devhelp"
-
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Typsnitt för text"
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
 
 #: ui/devhelp.glade.h:1
 msgid "    "

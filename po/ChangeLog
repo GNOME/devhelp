@@ -1,3 +1,47 @@
+2004-03-17  Mikael Hallendal  <micke@imendio.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	* am.po:
+	* az.po:
+	* be.po:
+	* ca.po:
+	* cs.po:
+	* da.po:
+	* de.po:
+	* el.po:
+	* es.po:
+	* fi.po:
+	* fr.po:
+	* he.po:
+	* hi.po:
+	* hr.po:
+	* is.po:
+	* it.po:
+	* ja.po:
+	* kn.po:
+	* ko.po:
+	* lv.po:
+	* ml.po:
+	* ms.po:
+	* nl.po:
+	* no.po:
+	* pa.po:
+	* pl.po:
+	* pt.po:
+	* pt_BR.po:
+	* ru.po:
+	* sk.po:
+	* sq.po:
+	* sr.po:
+	* sr@Latn.po:
+	* sv.po:
+	* tr.po:
+	* uk.po:
+	* vi.po:
+	* zh_CN.po:
+	* zh_TW.po:
+
 2004-03-17  Richard Hult  <richard@imendio.com>
 
 	* sv.po: Update.

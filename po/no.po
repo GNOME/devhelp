@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.8\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-16 21:08+0100\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2004-03-16 21:10+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk/Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -25,110 +25,6 @@ msgstr "Devhelp"
 #: devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Devhelp bok"
-
-#: src/dh-main.c:259
-msgid "Specify the size and location of the window"
-msgstr "Oppgi størrelse og lokasjon for vinduet"
-
-#: src/dh-main.c:260
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "BREDDExHØYDExXAVxYAV"
-
-#: src/dh-main.c:268
-msgid "Search for a function"
-msgstr "Søk etter en funksjon"
-
-#: src/dh-main.c:277
-msgid "Quit any running Devhelp"
-msgstr "Avslutt Devhelp"
-
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-#, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Forventet «%s» fikk «%s» ved linje %d, kolonne %d"
-
-#: src/dh-parser.c:120
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Ugyldig navneområde «%s» ved linje %d, kolonne %d"
-
-#: src/dh-parser.c:149
-#, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "tittel, navn og lenkeelementer kreves ved linje %d, kolonne %d"
-
-#: src/dh-parser.c:202
-#, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "navn og lenkeelementer kreves inne i <sub> på linje %d, kolonne %d"
-
-#: src/dh-parser.c:250
-#, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
-msgstr "navn og lenkeelementer kreves inne i <function> på linje %d, kolone %d"
-
-#: src/dh-parser.c:337 src/dh-parser.c:423
-msgid "Could not create book parser"
-msgstr "Kunne ikke opprette bokleser"
-
-#: src/dh-parser.c:347 src/dh-parser.c:433
-msgid "Could not create markup parser"
-msgstr "Kunne ikke opprette leser for tagger"
-
-#: src/dh-parser.c:479
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "Kan ikke dekomprimere bok «%s»: %s"
-
-#: src/dh-search.c:417
-msgid "_Search:"
-msgstr "_Søk:"
-
-#: src/dh-search.c:461
-msgid "Section"
-msgstr "Del"
-
-#: src/dh-window.c:117
-msgid "_File"
-msgstr "_Fil"
-
-#: src/dh-window.c:118
-msgid "_Edit"
-msgstr "R_ediger"
-
-#: src/dh-window.c:119 ui/devhelp.glade.h:10
-msgid "_Go"
-msgstr "_Gå"
-
-#: src/dh-window.c:120
-msgid "_Help"
-msgstr "_Hjelp"
-
-#: src/dh-window.c:304
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Kan ikke sette brukergrensesnitt: %s"
-
-#: src/dh-window.c:362 ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Innhold"
-
-#: src/dh-window.c:373
-msgid "Search"
-msgstr "Søk"
-
-#: src/dh-window.c:472
-msgid "A developer's help browser for GNOME 2"
-msgstr "En hjelpleser for utviklere for GNOME 2"
-
-#: src/dh-window.c:487
-msgid "Devhelp project page"
-msgstr "Nettside for Devhelp"
-
-#: src/dh-window.c:491
-msgid "Bug report Devhelp"
-msgstr "Feilrapport for Devhelp"
 
 #: devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -193,6 +89,110 @@ msgstr ""
 #: devhelp.schemas.in.h:16
 msgid "Y position of main window"
 msgstr ""
+
+#: src/dh-main.c:259
+msgid "Specify the size and location of the window"
+msgstr "Oppgi størrelse og lokasjon for vinduet"
+
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "BREDDExHØYDExXAVxYAV"
+
+#: src/dh-main.c:268
+msgid "Search for a function"
+msgstr "Søk etter en funksjon"
+
+#: src/dh-main.c:277
+msgid "Quit any running Devhelp"
+msgstr "Avslutt Devhelp"
+
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Forventet «%s» fikk «%s» ved linje %d, kolonne %d"
+
+#: src/dh-parser.c:120
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Ugyldig navneområde «%s» ved linje %d, kolonne %d"
+
+#: src/dh-parser.c:149
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "tittel, navn og lenkeelementer kreves ved linje %d, kolonne %d"
+
+#: src/dh-parser.c:202
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "navn og lenkeelementer kreves inne i <sub> på linje %d, kolonne %d"
+
+#: src/dh-parser.c:250
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr "navn og lenkeelementer kreves inne i <function> på linje %d, kolone %d"
+
+#: src/dh-parser.c:337 src/dh-parser.c:423
+msgid "Could not create book parser"
+msgstr "Kunne ikke opprette bokleser"
+
+#: src/dh-parser.c:347 src/dh-parser.c:433
+msgid "Could not create markup parser"
+msgstr "Kunne ikke opprette leser for tagger"
+
+#: src/dh-parser.c:479
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Kan ikke dekomprimere bok «%s»: %s"
+
+#: src/dh-search.c:417
+msgid "_Search:"
+msgstr "_Søk:"
+
+#: src/dh-search.c:461
+msgid "Section"
+msgstr "Del"
+
+#: src/dh-window.c:111
+msgid "_File"
+msgstr "_Fil"
+
+#: src/dh-window.c:112
+msgid "_Edit"
+msgstr "R_ediger"
+
+#: src/dh-window.c:113 ui/devhelp.glade.h:10
+msgid "_Go"
+msgstr "_Gå"
+
+#: src/dh-window.c:114
+msgid "_Help"
+msgstr "_Hjelp"
+
+#: src/dh-window.c:292
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Kan ikke sette brukergrensesnitt: %s"
+
+#: src/dh-window.c:352 ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Innhold"
+
+#: src/dh-window.c:363
+msgid "Search"
+msgstr "Søk"
+
+#: src/dh-window.c:446
+msgid "A developer's help browser for GNOME 2"
+msgstr "En hjelpleser for utviklere for GNOME 2"
+
+#: src/dh-window.c:462
+msgid "Devhelp project page"
+msgstr "Nettside for Devhelp"
+
+#: src/dh-window.c:466
+msgid "Bug report Devhelp"
+msgstr "Feilrapport for Devhelp"
 
 #: ui/devhelp.glade.h:1
 msgid "    "

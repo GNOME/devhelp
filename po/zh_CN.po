@@ -6,20 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-14 03:09+0100\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2004-03-14 15:55+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
 msgstr "开发者帮助程序"
 
-#: devhelp.desktop.in.h:2
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -27,10 +27,68 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp 书籍"
 
-#: src/dh-html-gtkhtml2.c:532
-msgid ""
-"Select a subject in the contents to the left or switch to the search tab to "
-"find what you are looking for."
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr ""
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
 msgstr ""
 
 #: src/dh-main.c:259
@@ -96,40 +154,75 @@ msgstr "搜索(_S)："
 msgid "Section"
 msgstr "节"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:111
 msgid "_File"
 msgstr "文件(_F)"
 
-#: src/dh-window.c:106
+#: src/dh-window.c:112
+msgid "_Edit"
+msgstr ""
+
+#: src/dh-window.c:113 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "转到(_G)"
 
-#: src/dh-window.c:107
+#: src/dh-window.c:114
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: src/dh-window.c:285
+#: src/dh-window.c:292
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "无法设定 UI：%s"
 
-#: src/dh-window.c:347
+#: src/dh-window.c:352 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "目录"
 
-#: src/dh-window.c:358
+#: src/dh-window.c:363
 msgid "Search"
 msgstr "搜索"
 
-#: src/dh-window.c:423
+#: src/dh-window.c:446
 msgid "A developer's help browser for GNOME 2"
 msgstr "用于 GNOME 2 的开发者帮助浏览器"
 
-#: src/dh-window.c:438
+#: src/dh-window.c:462
 msgid "Devhelp project page"
 msgstr "Devhelp 项目页"
 
-#: src/dh-window.c:442
+#: src/dh-window.c:466
 msgid "Bug report Devhelp"
 msgstr "错误报告 Devhelp"
 
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr ""
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr ""
+
+#: ui/devhelp.glade.h:6
+msgid "Preferences"
+msgstr ""
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr ""
+
+#: ui/devhelp.glade.h:8
+msgid "_Back"
+msgstr ""
+
+#: ui/devhelp.glade.h:9
+msgid "_Forward"
+msgstr ""
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr ""

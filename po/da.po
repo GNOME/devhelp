@@ -5,20 +5,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 16:57+0100\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2004-03-08 17:50+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
 msgstr "Hjælpeprogram til udviklere"
 
-#: devhelp.desktop.in.h:2
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Udviklerhjælp"
 
@@ -26,13 +26,69 @@ msgstr "Udviklerhjælp"
 msgid "Devhelp Book"
 msgstr "Udviklerhjælpbog"
 
-#: src/dh-html-gtkhtml2.c:532
-msgid ""
-"Select a subject in the contents to the left or switch to the search tab to "
-"find what you are looking for."
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
 msgstr ""
-"Vælg et emne i indholdet til venstre eller skift til søgefanen for at finde "
-"hvad du leder efter."
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr ""
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
+msgstr ""
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -100,42 +156,89 @@ msgstr "_Søg:"
 msgid "Section"
 msgstr "Sektion"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:111
 msgid "_File"
 msgstr "_Fil"
 
-#: src/dh-window.c:106
+#: src/dh-window.c:112
+#, fuzzy
+msgid "_Edit"
+msgstr "_Afslut"
+
+#: src/dh-window.c:113 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Gå til"
 
-#: src/dh-window.c:107
+#: src/dh-window.c:114
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: src/dh-window.c:285
+#: src/dh-window.c:292
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Kan ikke anvende grænseflade: %s"
 
-#: src/dh-window.c:347
+#: src/dh-window.c:352 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Indhold"
 
-#: src/dh-window.c:358
+#: src/dh-window.c:363
 msgid "Search"
 msgstr "Søg"
 
-#: src/dh-window.c:423
+#: src/dh-window.c:446
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjælpefremviser til udviklere"
 
-#: src/dh-window.c:438
+#: src/dh-window.c:462
 msgid "Devhelp project page"
 msgstr "Udviklerhjælps projektside"
 
-#: src/dh-window.c:442
+#: src/dh-window.c:466
 msgid "Bug report Devhelp"
 msgstr "Rapportér fejl i Udviklerhjælp"
+
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr ""
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr ""
+
+#: ui/devhelp.glade.h:6
+#, fuzzy
+msgid "Preferences"
+msgstr "Indstillinger..."
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr ""
+
+#: ui/devhelp.glade.h:8
+#, fuzzy
+msgid "_Back"
+msgstr "Tilbage"
+
+#: ui/devhelp.glade.h:9
+#, fuzzy
+msgid "_Forward"
+msgstr "Fremad"
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr ""
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search tab "
+#~ "to find what you are looking for."
+#~ msgstr ""
+#~ "Vælg et emne i indholdet til venstre eller skift til søgefanen for at "
+#~ "finde hvad du leder efter."
 
 #~ msgid "_About"
 #~ msgstr "_Om"
@@ -313,17 +416,11 @@ msgstr "Rapportér fejl i Udviklerhjælp"
 #~ msgid "Open preferences dialog"
 #~ msgstr "Åbn vinduet med indstillinger"
 
-#~ msgid "Preferences..."
-#~ msgstr "Indstillinger..."
-
 #~ msgid "Print the html page"
 #~ msgstr "Udskriv html-siden"
 
 #~ msgid "Show sidebar"
 #~ msgstr "Vis sidepanel"
-
-#~ msgid "_Exit"
-#~ msgstr "_Afslut"
 
 #~ msgid "_Print"
 #~ msgstr "_Udskriv"
@@ -331,14 +428,8 @@ msgstr "Rapportér fejl i Udviklerhjælp"
 #~ msgid "_View"
 #~ msgstr "_Vis"
 
-#~ msgid "Back"
-#~ msgstr "Tilbage"
-
 #~ msgid "Book Manager..."
 #~ msgstr "Boghåndtering..."
-
-#~ msgid "Forward"
-#~ msgstr "Fremad"
 
 #~ msgid "Go to next page in the history"
 #~ msgstr "Gå til næste side i historikken"

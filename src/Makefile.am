@@ -1,7 +1,4 @@
-NULL =
 INCLUDES = 						  \
-	-I$(top_srcdir) 				  \
-	-I$(top_builddir) 				  \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	  \
 	-DDATA_DIR=\"$(datadir)\"			  \
 	-DPREFIX="\"$(prefix)"\"		 	  \
@@ -19,8 +16,7 @@ INCLUDES = 						  \
 	-I$(MOZILLA_INCLUDE_ROOT)/string		  \
 	-I$(MOZILLA_INCLUDE_ROOT)/pref                    \
 	-I$(MOZILLA_INCLUDE_ROOT)/gfx                     \
-	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h \
-	$(NULL)
+	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h 
 
 bin_PROGRAMS = devhelp-bin
 
@@ -70,21 +66,26 @@ libdevhelp_1_la_LIBADD =				\
 	@LIBDEVHELP_LIBS@				\
 	$(MOZILLA_COMPONENT_LIBS)
 
+dh-marshal.h: dh-marshal.list
+	(cd $(srcdir) && \
+	@GLIB_GENMARSHAL@ --prefix=dh_marshal dh-marshal.list --header) > xgen-gmh \
+	&& (cmp -s xgen-gmh dh-marshal.h || cp xgen-gmh dh-marshal.h) \
+	&& rm -f xgen-gmh xgen-gmh~
+
+dh-marshal.c: dh-marshal.list
+	(cd $(srcdir) && \
+	@GLIB_GENMARSHAL@ --prefix=dh_marshal dh-marshal.list --body) > xgen-gmc \
+	&& cp xgen-gmc dh-marshal.c \
+	&& rm -f xgen-gmc xgen-gmc~
+
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
-dh-marshal.h: dh-marshal.list
-	cd $(srcdir) && \
-	( @GLIB_GENMARSHAL@ --prefix=dh_marshal dh-marshal.list --header > dh-marshal1.tmp \
-	&& mv dh-marshal1.tmp dh-marshal.h ) \
-	|| ( rm -f dh-marshal1.tmp && exit 1 )
-
-dh-marshal.c: dh-marshal.h
-	cd $(srcdir) && \
-	( @GLIB_GENMARSHAL@ --prefix=dh_marshal dh-marshal.list --body > dh-marshal2.tmp \
-	&& mv dh-marshal2.tmp dh-marshal.c ) \
-	|| ( rm -f dh-marshal2.tmp && exit 1 )
+BUILT_SOURCES =                                 \
+	dh-marshal.h                            \
+	dh-marshal.c
 
 EXTRA_DIST =                            	\
 	dh-marshal.list				\
-	$(devhelph_HEADERS)			\
-	$(NULL)
+	$(devhelph_HEADERS)
+
+CLEANFILES = $(BUILT_SOURCES)

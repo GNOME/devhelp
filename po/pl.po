@@ -9,20 +9,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-28 00:04+0200\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2003-07-27 23:58+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
 msgstr "Program pomocy dla programistów"
 
-#: devhelp.desktop.in.h:2
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -30,13 +30,69 @@ msgstr "DevHelp"
 msgid "Devhelp Book"
 msgstr "Książka DevHelpa"
 
-#: src/dh-html-gtkhtml2.c:532
-msgid ""
-"Select a subject in the contents to the left or switch to the search tab to "
-"find what you are looking for."
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
 msgstr ""
-"Wybierz temat z listy po lewej stronie lub przełącz się na zakładkę "
-"wyszukiwania aby znaleźć to czego szukasz."
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr ""
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
+msgstr ""
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -105,37 +161,89 @@ msgstr "_Znajdź:"
 msgid "Section"
 msgstr "Sekcja"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:111
 msgid "_File"
 msgstr "_Plik"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:112
+#, fuzzy
+msgid "_Edit"
+msgstr "Za_kończ"
+
+#: src/dh-window.c:113 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "P_rzejdź"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:114
 msgid "_Help"
 msgstr "Pomo_c"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:292
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr ""
+
+#: src/dh-window.c:352 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Zawartość"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:363
 msgid "Search"
 msgstr "Wyszukiwanie"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:446
 msgid "A developer's help browser for GNOME 2"
 msgstr "Przeglądarka pomocy dla programistów GNOME"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:462
 msgid "Devhelp project page"
 msgstr "Witryna projektu DevHelp"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:466
 msgid "Bug report Devhelp"
 msgstr "Zgłaszanie błędów DevHelp"
+
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr ""
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr ""
+
+#: ui/devhelp.glade.h:6
+#, fuzzy
+msgid "Preferences"
+msgstr "Preferencje..."
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr ""
+
+#: ui/devhelp.glade.h:8
+#, fuzzy
+msgid "_Back"
+msgstr "Wstecz"
+
+#: ui/devhelp.glade.h:9
+#, fuzzy
+msgid "_Forward"
+msgstr "Naprzód"
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr ""
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search tab "
+#~ "to find what you are looking for."
+#~ msgstr ""
+#~ "Wybierz temat z listy po lewej stronie lub przełącz się na zakładkę "
+#~ "wyszukiwania aby znaleźć to czego szukasz."
 
 #~ msgid "_Search for:"
 #~ msgstr "_Wyszukiwanie:"
@@ -333,17 +441,11 @@ msgstr "Zgłaszanie błędów DevHelp"
 #~ msgid "Open preferences dialog"
 #~ msgstr "Otwiera okno preferencji"
 
-#~ msgid "Preferences..."
-#~ msgstr "Preferencje..."
-
 #~ msgid "Print the html page"
 #~ msgstr "Drukuje stronę w HTML-u"
 
 #~ msgid "Show sidebar"
 #~ msgstr "Wyświetlanie paska bocznego"
-
-#~ msgid "_Exit"
-#~ msgstr "Za_kończ"
 
 #~ msgid "_Print"
 #~ msgstr "Wy_drukuj"
@@ -351,14 +453,8 @@ msgstr "Zgłaszanie błędów DevHelp"
 #~ msgid "_View"
 #~ msgstr "_Widok"
 
-#~ msgid "Back"
-#~ msgstr "Wstecz"
-
 #~ msgid "Book Manager..."
 #~ msgstr "Menedżer książek..."
-
-#~ msgid "Forward"
-#~ msgstr "Naprzód"
 
 #~ msgid "Go to next page in the history"
 #~ msgstr "Przechodzi do następnej strony w historii"

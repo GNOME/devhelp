@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2003-01-20 16:18+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Chương trình trợ giúp Nhà phát triển"
 
-#: devhelp.desktop.in.h:2
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
 #, fuzzy
 msgid "Devhelp"
 msgstr "DevHelp"
@@ -28,25 +28,83 @@ msgstr "DevHelp"
 msgid "Devhelp Book"
 msgstr "Bộ quản lý sách DevHelp"
 
-#: src/dh-html-gtkhtml2.c:532
-msgid ""
-"Select a subject in the contents to the left or switch to the search tab to "
-"find what you are looking for."
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
 msgstr ""
 
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr ""
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
 msgstr ""
 
 #: src/dh-main.c:259
+msgid "Specify the size and location of the window"
+msgstr ""
+
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr ""
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Tìm hàm"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Thoát khỏi mọi chương trình Devhelp"
 
@@ -99,37 +157,82 @@ msgstr "Tìm kiếm"
 msgid "Section"
 msgstr "Phần"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:111
 msgid "_File"
 msgstr "_Tập tin"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:112
+#, fuzzy
+msgid "_Edit"
+msgstr "T_hoát"
+
+#: src/dh-window.c:113 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "Đ_i"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:114
 msgid "_Help"
 msgstr "Trợ _giúp"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:292
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr ""
+
+#: src/dh-window.c:352 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Nội dung"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:363
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:446
 msgid "A developer's help browser for GNOME 2"
 msgstr "Bộ duyệt trợ giúp dành cho nhà phát triển"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:462
 #, fuzzy
 msgid "Devhelp project page"
 msgstr "Bộ quản lý sách DevHelp"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:466
 msgid "Bug report Devhelp"
+msgstr ""
+
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr ""
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr ""
+
+#: ui/devhelp.glade.h:6
+#, fuzzy
+msgid "Preferences"
+msgstr "Thông số..."
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr ""
+
+#: ui/devhelp.glade.h:8
+#, fuzzy
+msgid "_Back"
+msgstr "Lùi"
+
+#: ui/devhelp.glade.h:9
+#, fuzzy
+msgid "_Forward"
+msgstr "Tới"
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
 msgstr ""
 
 #~ msgid "_Search for:"
@@ -205,17 +308,8 @@ msgstr ""
 #~ msgid "Print the html page"
 #~ msgstr "In trang HTML"
 
-#~ msgid "_Exit"
-#~ msgstr "T_hoát"
-
 #~ msgid "_Print"
 #~ msgstr "_In"
-
-#~ msgid "Back"
-#~ msgstr "Lùi"
-
-#~ msgid "Forward"
-#~ msgstr "Tới"
 
 #~ msgid "Go to next page in the history"
 #~ msgstr "Đi tới trang kế trong lược sử"
@@ -342,9 +436,6 @@ msgstr ""
 
 #~ msgid "Open preferences dialog"
 #~ msgstr "Mở hộp thoại thông số"
-
-#~ msgid "Preferences..."
-#~ msgstr "Thông số..."
 
 #~ msgid "Show sidebar"
 #~ msgstr "Hiện Thanh bên"

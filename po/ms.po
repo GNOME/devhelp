@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: besar\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
+"POT-Creation-Date: 2004-03-16 23:25+0100\n"
 "PO-Revision-Date: 2003-07-24 00:12+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Projek Gabai <gabai-penyumbang@lists.sourceforge.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Program Bantuan Pembangun"
 
-#: devhelp.desktop.in.h:2
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -25,29 +25,87 @@ msgstr "DevHelp"
 msgid "Devhelp Book"
 msgstr "Buku DevHelp"
 
-#: src/dh-html-gtkhtml2.c:532
-msgid "Select a subject in the contents to the left or switch to the search tab to find what you are looking for."
-msgstr "Pilih tajuk pada kandungan sebelah kiri atau bertukar ke tab carian untuk mencari apa yang anda ingin cari."
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr ""
 
-#: src/dh-main.c:258
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr ""
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr ""
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr ""
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr ""
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
+msgstr ""
+
+#: src/dh-main.c:259
 msgid "Specify the size and location of the window"
 msgstr "Nyatakan saiz dan lokasi bagi tetingkap"
 
-#: src/dh-main.c:259
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "WIDTHxHEIGHT+XOFF+YOFF"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Cari satu fungsi"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Hentikan semua Devhelp yg terlaksana"
 
-#: src/dh-parser.c:104
-#: src/dh-parser.c:181
-#: src/dh-parser.c:228
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Dijangka '%s' dapat '%s' pada baris %d, kolum %d"
@@ -65,20 +123,21 @@ msgstr "unsur tajuk, nama, dan pautan diperlukan pada baris %d, kolum %d"
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "unsur nama dan pautan diperlukan di dalam <sub> pada baris %d, kolum %d"
+msgstr ""
+"unsur nama dan pautan diperlukan di dalam <sub> pada baris %d, kolum %d"
 
 #: src/dh-parser.c:250
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr "unsur nama dan pautan diperlukan di dalam <function> pada baris %d, kolum %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"unsur nama dan pautan diperlukan di dalam <function> pada baris %d, kolum %d"
 
-#: src/dh-parser.c:337
-#: src/dh-parser.c:423
+#: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
 msgstr "Tak dapat mencipta penghantar buku"
 
-#: src/dh-parser.c:347
-#: src/dh-parser.c:433
+#: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
 msgstr "Tak dapat mencipta penghantar markup"
 
@@ -96,35 +155,82 @@ msgstr "_Cari:"
 msgid "Section"
 msgstr "Seksyen"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:111
 msgid "_File"
 msgstr "_Fail"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:112
+msgid "_Edit"
+msgstr ""
+
+#: src/dh-window.c:113 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Pergi"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:114
 msgid "_Help"
 msgstr "_Bantuan"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:292
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr ""
+
+#: src/dh-window.c:352 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Kandungan"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:363
 msgid "Search"
 msgstr "Cari"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:446
 msgid "A developer's help browser for GNOME 2"
 msgstr "Pelungsur bantuan pembangun untuk GNOME 2"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:462
 msgid "Devhelp project page"
 msgstr "Halaman projek devhelp"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:466
 msgid "Bug report Devhelp"
 msgstr "Lapor pepijat Devhelp"
 
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr ""
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr ""
+
+#: ui/devhelp.glade.h:6
+msgid "Preferences"
+msgstr ""
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr ""
+
+#: ui/devhelp.glade.h:8
+msgid "_Back"
+msgstr ""
+
+#: ui/devhelp.glade.h:9
+msgid "_Forward"
+msgstr ""
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr ""
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search tab "
+#~ "to find what you are looking for."
+#~ msgstr ""
+#~ "Pilih tajuk pada kandungan sebelah kiri atau bertukar ke tab carian untuk "
+#~ "mencari apa yang anda ingin cari."
