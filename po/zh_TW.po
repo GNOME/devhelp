@@ -1,364 +1,253 @@
-# Traditional Chinese translation for devhelp.
-# Copyright (C) 2001 Free Software Foundation, Inc.
+# traditional Chinese translation for devhelp.
+# Copyright (C) 2001,2003 Free Software Foundation, Inc.
 # Joe Man <trmetal@yahoo.com.hk>, 2001.
+# Abel Cheung <maddog@linux.org.hk>, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.2\n"
-"POT-Creation-Date: 2001-10-17 05:11+0800\n"
-"PO-Revision-Date: 2001-10-16 10:50+0800\n"
+"Project-Id-Version: devhelp 0.4.99\n"
+"POT-Creation-Date: 2003-02-05 02:53+0800\n"
+"PO-Revision-Date: 2003-02-05 18:23+0800\n"
 "Last-Translator: Joe Man <trmetal@yahoo.com.hk>\n"
-"Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
+"Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
 msgid "DevHelp"
-msgstr "說明瀏覽程式"
+msgstr "說明書瀏覽程式"
 
 #: devhelp.desktop.in.h:2
 msgid "Developers Help program"
-msgstr "程式開發者的說明瀏覽程式"
+msgstr "適用於程式開發者的說明書瀏覽程式"
 
-#: src/books-dialog.c:315
-msgid "Choose a book..."
-msgstr "選取一本說明書..."
-
-#: src/bookshelf.c:183
+#: src/dh-book.c:110 src/dh-book.c:216
 #, c-format
-msgid "Problems when reading books: %s\n"
-msgstr "讀取說明書時發生錯誤：%s\n"
+msgid "'%s' is not a valid book"
+msgstr "‘%s’不是有效的說明書"
 
-#: src/bookshelf.c:250
+#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144
 #, c-format
-msgid "Empty document: %s"
-msgstr "沒有內容的說明書：%s"
+msgid "Book '%s' is malformed."
+msgstr "說明書‘%s’格式不正確。"
 
-#: src/bookshelf.c:256
+#: src/dh-book.c:224
 #, c-format
-msgid "Document wrong type, got %s, expected 'booklist': %s"
-msgstr "不正確的說明書類別，讀取到 %s，但應該是 'booklist'：%s"
+msgid "Couldn't find file '%s'"
+msgstr "找不到檔案‘%s’"
 
-#: src/bookshelf.c:310
+#: src/dh-book-old.c:255
 #, c-format
-msgid "Failed to open file %s for writing."
-msgstr "開啟檔案 %s 作寫入動作時發生錯誤。"
+msgid "Book '%s' is malformed, the parse context is invalid."
+msgstr "說明書‘%s’格式不正確，準備分析的內容無效。"
 
-#: src/devhelp-window.c:382
-msgid "_Contents"
-msgstr "內容 (_C)"
-
-#: src/devhelp-window.c:394
-msgid "_Search"
-msgstr "尋找 (_S)"
-
-#: src/devhelp-window.c:518
-msgid "(C) Copyright 2001, Johan Dahlin"
-msgstr "(C) 版權所有 2001, Johan Dahlin"
-
-#: src/devhelp-window.c:520
-msgid "A developer's help browser"
-msgstr "程式開發者的說明瀏覽程式"
-
-#: src/devhelp-window.c:594
+#: src/dh-book-old.c:266
 #, c-format
-msgid "Open %s"
-msgstr "開啟 %s"
+msgid "Book '%s' is malformed, the XML is invalid."
+msgstr "說明書‘%s’格式不正確，XML 內容無效。"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:1
-msgid "DevHelp Controller"
-msgstr "說明瀏覽控制元件"
+#: src/dh-book-old.c:280
+#, c-format
+msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
+msgstr "說明書‘%s’格式不正確，它不符合 DTD 指定的規格 (%s)。"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:2
-msgid "DevHelp Controller Factory"
-msgstr "說明瀏覽控制元件的元件工廠"
-
-#: src/GNOME_DevHelp.oaf.in.in.h:3
-msgid "DevHelp HelpBrowser"
-msgstr "說明瀏覽器"
-
-#: src/GNOME_DevHelp.oaf.in.in.h:4
-msgid "DevHelp HelpBrowser Factory"
-msgstr "說明瀏覽器的元件工廠"
-
-#: src/html-widget.c:208
-#, fuzzy
+#: src/dh-html.c:517
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
 "tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
 "books in the tree."
 msgstr ""
-"在內容標簽頁下選取一個標題或在尋找標簽頁下輸入尋找目標。<p>使用<b>Shift 上/"
-"下 鍵 </b>在內容標簽頁下的標題間移動，及<b>Shift 左/右 鍵</b> 去展開或摺疊說"
-"明書。"
+"請在內容標簽頁下選取標題或在搜尋標簽頁下輸入搜尋目標。<p>使用 <b>Shift ↑/↓鍵"
+"</b> 可在內容標簽頁下的標題間移動，而 <b>Shift ←/→ 鍵</b> 可展開或摺疊說明"
+"書。"
 
-#: src/html-widget.c:294
-#, c-format
-msgid "Couldn't open uri: %s"
-msgstr "無法開啟 uri：%s"
-
-#: src/html-widget.c:464
-msgid "Print Help"
-msgstr "列印說明"
-
-#: src/html-widget.c:509
-msgid "Print Preview"
-msgstr "預覽列印"
-
-#: src/html-widget.c:520
-msgid "Printing failed."
-msgstr "列印失敗。"
-
-#: src/install.c:101 src/install.c:192 src/install.c:210
-msgid "The book is already installed."
-msgstr "這本說明書之前已經安裝了。"
-
-#: src/install.c:114 src/install.c:200 src/install.c:219
-msgid "Failed to move book. This should never happen."
-msgstr "移動說明書時發生錯誤。"
-
-#: src/install.c:154
-msgid "Failed to extract spec file from book."
-msgstr "無法讀取說明書的目錄索引。"
-
-#: src/install.c:171
-msgid "Error, the book is corrupted or very old."
-msgstr "錯誤，這本說明書已損毀或過時。"
-
-#: src/install.c:182
-msgid "Failed to extract the book."
-msgstr "無法讀取說明書。"
-
-#: src/install.c:289 src/install.c:299
-#, c-format
-msgid "Wrong type (mime_type=%s)."
-msgstr "錯誤的類別 (mime 類別 = %s)。"
-
-#: src/main.c:78
-#, c-format
-msgid "Could not activate devhelp: '%s'"
-msgstr "無法啟動說明瀏覽程式：'%s'"
-
-#: src/main.c:87
-msgid "Could not search for string."
-msgstr "無法找到目標句子。"
-
-#: src/main.c:125
+#: src/dh-main.c:243
 msgid "Search for a function"
-msgstr "尋找一個函式"
+msgstr "搜尋函式"
 
-#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
-msgid "Tiny"
-msgstr "最小"
+#: src/dh-main.c:252
+msgid "Quit any running Devhelp"
+msgstr "結束所有己開啟的 Devhelp 程序"
 
-#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
-msgid "Small"
-msgstr "小"
+#: src/dh-search.c:325
+msgid "_Search for:"
+msgstr "搜尋字串(_S)："
 
-#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
-msgid "Medium"
-msgstr "中"
+#: src/dh-search.c:362
+msgid "Section"
+msgstr "章節"
 
-#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
-msgid "Large"
-msgstr "大"
-
-#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
-msgid "Huge"
-msgstr "最大"
-
-#: ui/devhelp.glade.h:1
-msgid " "
-msgstr " "
-
-#: ui/devhelp.glade.h:2
-msgid "<< _Show"
-msgstr "<< 加入 (_S)"
-
-#: ui/devhelp.glade.h:3
-msgid "Author:"
-msgstr "作者："
-
-#: ui/devhelp.glade.h:4
-msgid "Book info"
-msgstr "說明書資訊"
-
-#: ui/devhelp.glade.h:5
-msgid "Bookmarks"
-msgstr "書籤"
-
-#: ui/devhelp.glade.h:6
-msgid "DevHelp Book Manager"
-msgstr "說明書總管"
-
-#: ui/devhelp.glade.h:7
-msgid "DevHelp Preferences"
-msgstr "偏好設定"
-
-#: ui/devhelp.glade.h:8
-msgid "Hidden"
-msgstr "可用說明書"
-
-#: ui/devhelp.glade.h:10
-msgid "Install new book..."
-msgstr "新增說明書..."
-
-#: ui/devhelp.glade.h:13
-msgid "Move down"
-msgstr "下移"
-
-#: ui/devhelp.glade.h:14
-msgid "Move up"
-msgstr "上移"
-
-#: ui/devhelp.glade.h:15
-msgid "Name:"
-msgstr "名稱："
-
-#: ui/devhelp.glade.h:16
-msgid "Path:"
-msgstr "路徑："
-
-#: ui/devhelp.glade.h:17
-msgid "Remove"
-msgstr "移除"
-
-#: ui/devhelp.glade.h:18
-msgid "Reset to defaults"
-msgstr "重設"
-
-#: ui/devhelp.glade.h:19
-msgid "Search"
-msgstr "尋找"
-
-#: ui/devhelp.glade.h:20
-msgid "Show _sidebar"
-msgstr "目錄索引 (_S)"
-
-#: ui/devhelp.glade.h:23
-msgid "Title:"
-msgstr "標題："
-
-#: ui/devhelp.glade.h:24
-msgid "Version:"
-msgstr "版本："
-
-#: ui/devhelp.glade.h:25
-msgid "View"
-msgstr "檢視"
-
-#: ui/devhelp.glade.h:26
-msgid "Visible"
-msgstr "已用說明書"
-
-#: ui/devhelp.glade.h:27
-msgid "_Edit book..."
-msgstr "編輯 (_E)..."
-
-#: ui/devhelp.glade.h:28
-msgid "_Hide >>"
-msgstr "移除 (_H) >>"
-
-#: ui/devhelp.glade.h:29
-msgid "_Limit the number of hits to:"
-msgstr "尋找結果數目限制為 (_L)："
-
-#: ui/devhelp.glade.h:30
-msgid "_Text size: "
-msgstr "字型大小 (_T)："
-
-#: ui/GNOME_DevHelp.ui.h:1
-msgid "About this application"
-msgstr "關於本程式的資訊"
-
-#: ui/GNOME_DevHelp.ui.h:2
-msgid "Font size"
-msgstr "字型大小"
-
-#: ui/GNOME_DevHelp.ui.h:6
-msgid "Open preferences dialog"
-msgstr "編輯本程式的一些基本設定"
-
-#: ui/GNOME_DevHelp.ui.h:7
-msgid "Preferences..."
-msgstr "偏好設定..."
-
-#: ui/GNOME_DevHelp.ui.h:8
-msgid "Print the html page"
-msgstr "列印目前頁面"
-
-#: ui/GNOME_DevHelp.ui.h:9
-msgid "Show sidebar"
-msgstr "目錄索引"
-
-#: ui/GNOME_DevHelp.ui.h:12
-msgid "_About..."
-msgstr "關於 (_A)..."
-
-#: ui/GNOME_DevHelp.ui.h:13
-msgid "_Exit"
-msgstr "結束 (_E)"
-
-#: ui/GNOME_DevHelp.ui.h:14
+#: src/dh-window.c:98
 msgid "_File"
-msgstr "檔案 (_F)"
+msgstr "檔案(_F)"
 
-#: ui/GNOME_DevHelp.ui.h:15
+#: src/dh-window.c:99
+msgid "_Go"
+msgstr "進入(_G)"
+
+#: src/dh-window.c:100
 msgid "_Help"
-msgstr "說明 (_H)"
+msgstr "求助(_H)"
 
-#: ui/GNOME_DevHelp.ui.h:16
-msgid "_Print"
-msgstr "列印 (_P)"
+#. About menu
+#: src/dh-window.c:113
+msgid "_About"
+msgstr "關於(_A)"
 
-#: ui/GNOME_DevHelp.ui.h:17 ui/GNOME_DevHelp_Controller.ui.h:7
-msgid "_Settings"
-msgstr "設定 (_S)"
+#: src/dh-window.c:284
+#, c-format
+msgid ""
+"<b>Could not read all books</b>\n"
+"\n"
+"The following errors occured whilst reading the books:\n"
+"%s"
+msgstr ""
+"<b>無法讀取全部說明書</b>\n"
+"\n"
+"當讀取說明書時發生以下的錯誤：\n"
+"%s"
 
-#: ui/GNOME_DevHelp.ui.h:18
-msgid "_View"
-msgstr "檢視 (_V)"
+#: src/dh-window.c:303
+msgid "Contents"
+msgstr "內容"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:1
-msgid "Back"
-msgstr "上一頁"
+#: src/dh-window.c:314
+msgid "Search"
+msgstr "搜尋"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:2
-msgid "Book Manager..."
-msgstr "說明書總管..."
+#: src/dh-window.c:371
+msgid "A developer's help browser for GNOME 2"
+msgstr "適合程式開發者的說明書瀏覽程式，適用於 GNOME 2 環境"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:3
-msgid "Forward"
-msgstr "下一頁"
+#: src/dh-window.c:437
+#, c-format
+msgid "Open %s"
+msgstr "開啟 %s"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:4
-msgid "Go to next page in the history"
-msgstr "移至下一個紀錄"
+#~ msgid "Problems when reading books: %s\n"
+#~ msgstr "讀取說明書時發生錯誤：%s\n"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:5
-msgid "Go to previous page in the history"
-msgstr "移至上一個紀錄"
+#~ msgid "Empty document: %s"
+#~ msgstr "沒有內容的說明書：%s"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:6
-msgid "Open the book manager dialog"
-msgstr "安裝及管理說明書"
+#~ msgid "Document wrong type, got %s, expected 'booklist': %s"
+#~ msgstr "不正確的說明書類別，讀取到 %s，但應該是 'booklist'：%s"
+
+#~ msgid "Failed to open file %s for writing."
+#~ msgstr "開啟檔案 %s 作寫入動作時發生錯誤。"
+
+#~ msgid "Print Help"
+#~ msgstr "列印說明"
+
+#~ msgid "Print Preview"
+#~ msgstr "預覽列印"
+
+#~ msgid "Printing failed."
+#~ msgstr "列印失敗。"
+
+#~ msgid "The book is already installed."
+#~ msgstr "這本說明書之前已經安裝了。"
+
+#~ msgid "Failed to move book. This should never happen."
+#~ msgstr "移動說明書時發生錯誤。"
+
+#~ msgid "Failed to extract spec file from book."
+#~ msgstr "無法讀取說明書的目錄索引。"
+
+#~ msgid "Error, the book is corrupted or very old."
+#~ msgstr "錯誤，這本說明書已損毀或過時。"
+
+#~ msgid "Wrong type (mime_type=%s)."
+#~ msgstr "錯誤的類別 (mime 類別 = %s)。"
+
+#~ msgid "Author:"
+#~ msgstr "作者："
+
+#~ msgid "Book info"
+#~ msgstr "說明書資訊"
+
+#~ msgid "Bookmarks"
+#~ msgstr "書籤"
+
+#~ msgid "DevHelp Book Manager"
+#~ msgstr "說明書總管"
+
+#~ msgid "DevHelp Preferences"
+#~ msgstr "偏好設定"
+
+#~ msgid "Install new book..."
+#~ msgstr "新增說明書..."
+
+#~ msgid "Move down"
+#~ msgstr "下移"
+
+#~ msgid "Move up"
+#~ msgstr "上移"
+
+#~ msgid "Name:"
+#~ msgstr "名稱："
+
+#~ msgid "Path:"
+#~ msgstr "路徑："
+
+#~ msgid "Remove"
+#~ msgstr "移除"
+
+#~ msgid "Title:"
+#~ msgstr "標題："
+
+#~ msgid "Version:"
+#~ msgstr "版本："
+
+#~ msgid "_Limit the number of hits to:"
+#~ msgstr "搜尋結果數目限制為(_L)："
+
+#~ msgid "_Text size: "
+#~ msgstr "字型大小(_T)："
+
+#~ msgid "About this application"
+#~ msgstr "關於本程式的資訊"
+
+#~ msgid "Font size"
+#~ msgstr "字型大小"
+
+#~ msgid "Preferences..."
+#~ msgstr "偏好設定..."
+
+#~ msgid "_Exit"
+#~ msgstr "結束(_E)"
+
+#~ msgid "_Print"
+#~ msgstr "列印(_P)"
+
+#~ msgid "_View"
+#~ msgstr "檢視(_V)"
+
+#~ msgid "Back"
+#~ msgstr "上一頁"
+
+#~ msgid "Book Manager..."
+#~ msgstr "說明書總管..."
+
+#~ msgid "Forward"
+#~ msgstr "下一頁"
+
+#~ msgid "Go to next page in the history"
+#~ msgstr "移至下一個紀錄"
+
+#~ msgid "Go to previous page in the history"
+#~ msgstr "移至上一個紀錄"
+
+#~ msgid "Open the book manager dialog"
+#~ msgstr "安裝及管理說明書"
 
 #~ msgid "Add book ..."
 #~ msgstr "新增說明書 ..."
-
-#~ msgid "Devhelp"
-#~ msgstr "說明瀏覽程式"
-
-#~ msgid "Ny fil"
-#~ msgstr "Ny fil"
 
 #~ msgid "Use autocompletion"
 #~ msgstr "使用自動完成"
 
 #~ msgid "_Book manager..."
-#~ msgstr "說明書總管 (_B)..."
-
-#~ msgid "珽pna fil"
-#~ msgstr "珽pna fil"
+#~ msgstr "說明書總管(_B)..."
