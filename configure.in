@@ -37,6 +37,10 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
 	libglade-2.0 >= 2.0.0
 ])
 
+dnl ******************
+dnl Mozilla name check
+dnl ******************
+
 AC_MSG_CHECKING([which mozilla to use])
 
 MOZILLA=
@@ -60,10 +64,20 @@ elif test "x$with_mozilla" != "xmozilla" -a "x$with_mozilla" != "xfirefox" -a "x
   AC_MSG_ERROR([unknown mozilla name ($MOZILLA)])
 fi
 
-AC_MSG_RESULT([$MOZILLA])
 AC_SUBST(MOZILLA)
 
-PKG_CHECK_MODULES(MOZILLA_COMPONENT, $MOZILLA-gtkmozembed)
+AC_MSG_RESULT([$MOZILLA])
+
+case "$MOZILLA" in
+mozilla) min_version=1.7 flavour=mozilla ;;
+firefox) min_version=0.10 flavour=toolkit ;;
+thunderbird) min_version=0.8 flavour=toolkit ;;
+esac
+
+MOZILLA_FLAVOUR=$flavour
+AC_SUBST(MOZILLA_FLAVOUR)
+
+PKG_CHECK_MODULES(MOZILLA_COMPONENT, $MOZILLA-gtkmozembed >= $min_version $MOZILLA-xpcom >= $min_version)
 AC_SUBST(MOZILLA_COMPONENT_CFLAGS)
 AC_SUBST(MOZILLA_COMPONENT_LIBS)
 
@@ -72,6 +86,102 @@ AC_SUBST(MOZILLA_INCLUDE_ROOT)
 
 MOZILLA_HOME="`$PKG_CONFIG --variable=libdir $MOZILLA-gtkmozembed`"
 AC_SUBST(MOZILLA_HOME)
+
+MOZILLA_PREFIX="`$PKG_CONFIG --variable=prefix $MOZILLA-gtkmozembed`"
+AC_SUBST(MOZILLA_PREFIX)
+
+dnl *************************************************************************
+dnl This is from Mozilla's configure.in. They set almost all the config stuff
+dnl they need in mozilla-config.h Except for this compiler flag, which can't
+dnl go in mozilla-config.h So we check the flag too and now we can include
+dnl mozilla-config.h without breaking epiphany.
+dnl This is really gcc-only
+dnl Do this test using CXX only since some versions of gcc
+dnl 2.95-2.97 have a signed wchar_t in c++ only and some versions
+dnl only have short-wchar support for c++.
+AC_LANG_PUSH(C++)
+_SAVE_CXXFLAGS=$CXXFLAGS
+_SAVE_AM_CXXFLAGS=$AM_CXXFLAGS
+AM_CXXFLAGS="$AM_CXXFLAGS -fshort-wchar"
+CXXFLAGS="$CXXFLAGS $AM_CXXFLAGS"
+
+AC_CACHE_CHECK(for compiler -fshort-wchar option,
+    ac_cv_have_usable_wchar_option,
+    [AC_TRY_RUN([#include <stddef.h>
+                 int main () {
+                   return (sizeof(wchar_t) != 2) ||
+                          (wchar_t)-1 < (wchar_t) 0 ; } ],
+                ac_cv_have_usable_wchar_option="yes",
+                ac_cv_have_usable_wchar_option="no",
+                ac_cv_have_usable_wchar_option="maybe")])
+
+if test "$ac_cv_have_usable_wchar_option" != "yes"; then
+    AM_CXXFLAGS=$_SAVE_AM_CXXFLAGS
+fi
+
+dnl **********************************
+dnl now tests for mozilla API variance
+dnl **********************************
+
+dnl FIXME find a m4/autoconf guru who can distill this into a nice macro
+
+CXXFLAGS="$_SAVE_CXXFLAGS $AM_CXXFLAGS -I$MOZILLA_INCLUDE_ROOT `pkg-config --cflags $MOZILLA-xpcom`"
+
+dnl Changed from PRUnichar* to nsAString& in 1.8a1 and on aviary branch
+
+AC_MSG_CHECKING([whether nsIFilePicker methods expect nsAString&])
+
+AC_COMPILE_IFELSE(
+	[AC_LANG_PROGRAM(
+		[[#include <nsEmbedString.h>
+		  #include <widget/nsIFilePicker.h>]],
+		[[nsIFilePicker *p;
+		  p->SetDefaultString (nsEmbedString());]]
+	)],
+	[AC_DEFINE([MOZ_NSIFILEPICKER_NSASTRING_],[1],[Define if nsIFilePicker uses nsAString&]) result=yes],
+	[result=no])
+
+AC_MSG_RESULT([$result])
+
+dnl Changed from char* to nsAString& in 1.8a1
+
+AC_MSG_CHECKING([whether nsIMIMEInfo methods expect nsAString&])
+
+AC_COMPILE_IFELSE(
+	[AC_LANG_PROGRAM(
+		[[#include <nsEmbedString.h>
+		  #include <mimetype/nsIMIMEInfo.h>]],
+		[[nsIMIMEInfo *p;
+		  p->SetDescription (nsEmbedString());]]
+	)],
+	[AC_DEFINE([MOZ_NSIMIMEINFO_NSACSTRING_],[1],[Define if nsIMIMEInfo uses nsAString&]) result=yes],
+	[result=no])
+
+AC_MSG_RESULT([$result])
+
+dnl Firefox doesn't have this API (?)
+
+AC_MSG_CHECKING([for nsIXULChromeRegistry API])
+
+AC_COMPILE_IFELSE(
+	[AC_LANG_PROGRAM(
+		[[#include <nsEmbedString.h>
+		  #include <content/nsIChromeRegistry.h>]],
+		[[nsIXULChromeRegistry *p;
+		  p->SelectSkin (nsEmbedCString(), PR_FALSE);]]
+	)],
+	[AC_DEFINE([MOZ_NSIXULCHROMEREGISTRY_SELECTSKIN],[1],[dummy]) result=yes],
+	[result=no])
+
+AC_MSG_RESULT([$result])
+
+dnl changed from nsIXULChromeRegistry in 1.8a4
+
+AC_CHECK_FILE([$MOZILLA_INCLUDE_ROOT/chrome/nsIChromeRegistrySea.h],
+	[AC_DEFINE([HAVE_CHROME_NSICHROMEREGISTRYSEA_H], [1], [Define if nsIChromeRegistrySea.h exists])])
+
+MOZILLA_WARN_CXXFLAGS="-Wall -Wconversion -Wpointer-arith -Wcast-align -Woverloaded-virtual -Wsynth -Wno-ctor-dtor-privacy -Wno-non-virtual-dtor"
+AC_SUBST(MOZILLA_WARN_CXXFLAGS)
 
 dnl Checks for zlib library.
 _cppflags="${CPPFLAGS}"

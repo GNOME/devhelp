@@ -115,17 +115,17 @@ html_init (DhHtml *html)
 	gchar      *profile_path;
         
 	priv = g_new0 (DhHtmlPriv, 1);
-
+#if 0
 	profile_path = g_build_filename (dh_dot_dir (),
 					 "mozilla",
 					 NULL);
 	
         gtk_moz_embed_set_profile_path (profile_path, "Devhelp");
 	g_free (profile_path);
-
+#endif
 	priv->gecko = (GtkMozEmbed *) gtk_moz_embed_new ();
 
-        dh_gecko_utils_set_font_unit ("pt");
+	//dh_gecko_utils_init_services ();
 
 	g_signal_connect (priv->gecko, "title",
 			  G_CALLBACK (html_title_cb),

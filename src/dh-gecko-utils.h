@@ -30,9 +30,9 @@ enum {
 	DH_GECKO_PREF_FONT_FIXED
 };
 
-void            dh_gecko_utils_set_font_unit (const gchar  *unit);
 void            dh_gecko_utils_set_font      (gint          font_type,
 					      const gchar  *fontname);
+void            dh_gecko_utils_init_services (void);
 
 /*
 gboolean        dh_gecko_find           (GtkMozEmbed  *html,

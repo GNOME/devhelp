@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2004 Imendio HB
+ * Copyright (C) 2004 Imendio AB
  * Copyright (C) 2004 Marco Pesenti Gritti
  *
  * This program is free software; you can redistribute it and/or
@@ -20,17 +20,33 @@
  *
  */
 
+#include <config.h>
+
 #include <gtkmozembed.h>
-#include <gtkmozembed_internal.h>
-#include <nsIWebBrowser.h>
-#include <nsIWebBrowserFind.h>
+
 #include <nsCOMPtr.h>
-#include <nsIInterfaceRequestorUtils.h>
-#include <nsReadableUtils.h>
-#include <nsString.h>
+#include <nsMemory.h>
+#include <nsEmbedString.h>
 #include <nsIPrefService.h>
 #include <nsIServiceManager.h>
+#include <nsIWindowWatcher.h>
+#include <nsIIOService.h>
+#include <nsISupportsPrimitives.h>
+#include <nsILocalFile.h>
+#include <nsIURI.h>
+
 #include <stdlib.h>
+
+#if defined (HAVE_CHROME_NSICHROMEREGISTRYSEA_H)
+#include <chrome/nsIChromeRegistrySea.h>
+#elif defined(MOZ_NSIXULCHROMEREGISTRY_SELECTSKIN)
+#include <nsIChromeRegistry.h>
+#endif
+
+#ifdef ALLOW_PRIVATE_API
+// FIXME: For setting the locale. hopefully gtkmozembed will do itself soon
+#include <nsILocaleService.h>
+#endif
 
 #include "dh-util.h"
 #include "dh-gecko-utils.h"
@@ -87,14 +103,9 @@ gecko_prefs_set_int (const gchar *key, gint value)
 	
 	return FALSE;
 }
-extern "C" void
-dh_gecko_utils_set_font_unit (const gchar *unit)
-{
-        gecko_prefs_set_string ("font.size.unit", unit);
-}
 
 extern "C" void 
-dh_gecko_utils_set_font (gint         type, const gchar *fontname)
+dh_gecko_utils_set_font (gint type, const gchar *fontname)
 {
 	gchar *name;
 	gint   size;
@@ -123,32 +134,82 @@ dh_gecko_utils_set_font (gint         type, const gchar *fontname)
 	g_free (name);
 }		   
 
-#if 0
-extern "C" gboolean
-dh_gecko_find (GtkMozEmbed  *embed,
-	       const gchar  *str,
-	       gboolean      match_case,
-	       gboolean      wrap,
-	       gboolean      forward)
+static nsresult
+getUILang (nsAString& aUILang)
 {
-    PRBool didFind;
-    nsCString matchString;
+	nsresult rv;
 
-    matchString.Assign (str);
+	nsCOMPtr<nsILocaleService> localeService = do_GetService (NS_LOCALESERVICE_CONTRACTID);
+	if (!localeService)
+	{
+		g_warning ("Could not get locale service!\n");
+		return NS_ERROR_FAILURE;
+	}
 
-    nsCOMPtr<nsIWebBrowser> webBrowser;
-    gtk_moz_embed_get_nsIWebBrowser (embed, getter_AddRefs(webBrowser));
+	rv = localeService->GetLocaleComponentForUserAgent (aUILang);
 
-    nsCOMPtr<nsIWebBrowserFind> finder (do_GetInterface(webBrowser));
-    NS_ENSURE_TRUE (finder, NS_ERROR_FAILURE);
+	if (NS_FAILED (rv))
+	{
+		g_warning ("Could not determine locale!\n");
+		return NS_ERROR_FAILURE;
+	}
 
-    finder->SetFindBackwards (!forward);
-    finder->SetSearchString (ToNewUnicode (matchString));
-    finder->SetMatchCase (match_case);
-    finder->SetWrapFind (wrap);
-
-    finder->FindNext (&didFind);
-
-    return didFind;
+	return NS_OK;
 }
+
+static nsresult 
+gecko_utils_init_chrome (void)
+{
+/* FIXME: can we just omit this on new-toolkit ? */
+#if defined(MOZ_NSIXULCHROMEREGISTRY_SELECTSKIN) || defined(HAVE_CHROME_NSICHROMEREGISTRYSEA_H)
+        nsresult rv;
+        nsEmbedString uiLang;
+
+#ifdef HAVE_CHROME_NSICHROMEREGISTRYSEA_H
+        nsCOMPtr<nsIChromeRegistrySea> chromeRegistry = do_GetService (NS_CHROMEREGISTRY_CONTRACTID);
+#else
+        nsCOMPtr<nsIXULChromeRegistry> chromeRegistry = do_GetService (NS_CHROMEREGISTRY_CONTRACTID);
 #endif
+        NS_ENSURE_TRUE (chromeRegistry, NS_ERROR_FAILURE);
+
+        // Set skin to 'classic' so we get native scrollbars.
+        rv = chromeRegistry->SelectSkin (nsEmbedCString("classic/1.0"), PR_FALSE);
+        NS_ENSURE_SUCCESS (rv, NS_ERROR_FAILURE);
+
+        // set locale
+        rv = chromeRegistry->SetRuntimeProvider(PR_TRUE);
+        NS_ENSURE_SUCCESS (rv, NS_ERROR_FAILURE);
+
+        rv = getUILang(uiLang);
+        NS_ENSURE_SUCCESS (rv, NS_ERROR_FAILURE);
+
+        nsEmbedCString cUILang;
+        NS_UTF16ToCString (uiLang, NS_CSTRING_ENCODING_UTF8, cUILang);
+
+        return chromeRegistry->SelectLocale (cUILang, PR_FALSE);
+#else
+        return NS_OK;
+#endif
+}
+
+extern "C" void
+dh_gecko_utils_init_services (void)
+{
+	gchar *profile_dir;
+	
+	gtk_moz_embed_set_comp_path (MOZILLA_HOME);
+	
+	profile_dir = g_build_filename (g_getenv ("HOME"), 
+					".gnome2",
+					"devhelp",
+					"mozilla", NULL);
+
+	gtk_moz_embed_set_profile_path (profile_dir, "Devhelp");
+	g_free (profile_dir);
+
+	gtk_moz_embed_push_startup ();
+        
+	gecko_prefs_set_string ("font.size.unit", "pt");
+	gecko_utils_init_chrome ();
+}
+

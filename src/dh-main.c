@@ -39,6 +39,7 @@
 
 #include "bacon-message-connection.h"
 #include "dh-base.h"
+#include "dh-gecko-utils.h"
 #include "dh-window.h"
 
 #define COMMAND_QUIT   "quit"
@@ -117,7 +118,8 @@ main (int argc, char **argv)
                                       NULL);
 	LIBXML_TEST_VERSION;
 
-	gtk_moz_embed_set_comp_path (MOZILLA_HOME);
+	dh_gecko_utils_init_services ();
+	//gtk_moz_embed_set_comp_path (MOZILLA_HOME);
 
 	message_conn = bacon_message_connection_new ("Devhelp");
 	if (!bacon_message_connection_get_is_server (message_conn)) {

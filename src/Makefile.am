@@ -11,12 +11,15 @@ INCLUDES = 						  \
 	@LIBDEVHELP_CFLAGS@ 		 	  	  \
 	$(MOZILLA_COMPONENT_CFLAGS)                       \
 	-I$(MOZILLA_INCLUDE_ROOT)	                  \
+	-I$(MOZILLA_INCLUDE_ROOT)/content		  \
 	-I$(MOZILLA_INCLUDE_ROOT)/dom                     \
 	-I$(MOZILLA_INCLUDE_ROOT)/find                    \
+	-I$(MOZILLA_INCLUDE_ROOT)/locale		\
 	-I$(MOZILLA_INCLUDE_ROOT)/webbrwsr		  \
 	-I$(MOZILLA_INCLUDE_ROOT)/string		  \
 	-I$(MOZILLA_INCLUDE_ROOT)/pref                    \
 	-I$(MOZILLA_INCLUDE_ROOT)/gfx                     \
+	-DALLOW_PRIVATE_API                               \
 	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""              \
 	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h 
 

@@ -1,5 +1,16 @@
 2004-10-21  Mikael Hallendal  <micke@imendio.com>
 
+	* configure.in:
+	* src/Makefile.am:
+	* src/dh-gecko-utils.cpp:
+	* src/dh-gecko-utils.h:
+	* src/dh-html.c: (html_init):
+	* src/dh-main.c: (main):
+	- Copied and pasted cluelesly from Epiphany, seems to use the correct
+	  theme for scrollbars now at least...
+
+2004-10-21  Mikael Hallendal  <micke@imendio.com>
+
 	* src/dh-gecko-utils.cpp:
 	* src/dh-gecko-utils.h:
 	* src/dh-html.c: (html_init):
