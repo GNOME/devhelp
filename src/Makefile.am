@@ -19,52 +19,52 @@ else
 html_widget_impl=dh-html-gtkhtml2.c
 endif
 
-bin_PROGRAMS = devhelp-2 
+bin_PROGRAMS = devhelp
 
-devhelp_2_SOURCES = 				\
+devhelp_SOURCES = 					\
 	dh-main.c
 
-devhelp_2_LDADD = 				\
-        @DEVHELP_LIBS@ 				\
-        libdevhelp2.la				\
+devhelp_LDADD = 					\
+        @DEVHELP_LIBS@ 					\
+        libdevhelp.la					\
 	$(top_builddir)/libegg/menu/libegg-menu.la
 
-devhelp_2dir=$(libdir)/devhelp-2
+devhelpdir=$(libdir)/devhelp
 
-devhelp_2_LTLIBRARIES =				\
-	libdevhelp2.la
+devhelp_LTLIBRARIES =					\
+	libdevhelp.la	
 
-libdevhelp2_la_SOURCES =			\
-	dh-marshal-main.c			\
-	dh-base.c				\
-	dh-base.h				\
-	dh-book-tree.c				\
-	dh-book-tree.h				\
-	dh-error.c				\
-	dh-error.h				\
-	dh-history.c                            \
-	dh-history.h                            \
-	$(html_widget_impl) 			\
-	dh-html.h				\
-	dh-keyword-model.c			\
-	dh-keyword-model.h			\
-	dh-link.c				\
-	dh-link.h				\
-	dh-search.c				\
-	dh-search.h				\
-	dh-parser.c				\
-	dh-parser.h				\
-	dh-util.c				\
-	dh-util.h				\
-	dh-window.c				\
+libdevhelp_la_SOURCES =					\
+	dh-marshal-main.c				\
+	dh-base.c					\
+	dh-base.h					\
+	dh-book-tree.c					\
+	dh-book-tree.h					\
+	dh-error.c					\
+	dh-error.h					\
+	dh-history.c                            	\
+	dh-history.h    	                        \
+	$(html_widget_impl) 				\
+	dh-html.h					\
+	dh-keyword-model.c				\
+	dh-keyword-model.h				\
+	dh-link.c					\
+	dh-link.h					\
+	dh-search.c					\
+	dh-search.h					\
+	dh-parser.c					\
+	dh-parser.h					\
+	dh-util.c					\
+	dh-util.h					\
+	dh-window.c					\
 	dh-window.h			
 
-libdevhelp2_la_LIBADD =				\
-	@LIBDEVHELP_LIBS@			\
-	@HTML_WIDGET_LIBS@			\
+libdevhelp_la_LIBADD =					\
+	@LIBDEVHELP_LIBS@				\
+	@HTML_WIDGET_LIBS@				\
 	$(top_builddir)/libegg/menu/libegg-menu.la
 
-libdevhelp2_la_LDFLAGS = -avoid-version -module
+libdevhelp_la_LDFLAGS = -avoid-version -module
 
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 

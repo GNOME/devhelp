@@ -1,108 +1,54 @@
-# Note that this is NOT a relocatable package
-%define ver      @VERSION@
-%define rel      1
-
-Summary:             Devhelp
+Summary:             API document browser
 Name:                devhelp
-Version:             %ver
-Release:             %rel
-Copyright:           GPL
-Group:               Applications/Development
-Source:              devhelp-%{PACKAGE_VERSION}.tar.gz
-BuildRoot:           /tmp/devhelp-%{PACKAGE_VERSION}-root
+Version:             @VERSION@
+Release:             cf1
+License:             GPL
+Group:               Development/Tools
+Url:                 http://devhelp.codefactory.se/
+Source:              %{name}-%{version}.tar.gz
+BuildRoot:           %{_tmppath}/%{name}-%{version}-root
 Packager:            Mikael Hallendal <micke@codefactory.se>
-Autoreq:             0
 
-BuildRequires:       gettext >= 0.10.35
-BuildRequires:       glib-devel >= @GLIB_REQUIRED@
-BuildRequires:       gtk+-devel >= @GTK_REQUIRED@
-BuildRequires:       gnome-libs-devel >= @GNOME_LIBS_REQUIRED@
-BuildRequires:       gnome-print-devel >= @GNOME_PRINT_REQUIRED@
-BuildRequires:       gnome-vfs-devel >= @GNOME_VFS_REQUIRED@
-BuildRequires:       gdk-pixbuf-devel >= @GDK_PIXBUF_REQUIRED@
-BuildRequires:       libxml-devel >= @LIBXML_REQUIRED@
-BuildRequires:       libglade-devel >= @LIBGLADE_REQUIRED@
-BuildRequires:       gtkhtml-devel >= @GTKHTML_REQUIRED@
-BuildRequires:       ORBit-devel >= @ORBIT_REQUIRED@
-BuildRequires:       oaf-devel >= @OAF_REQUIRED@
-BuildRequires:       bonobo-devel >= @BONOBO_REQUIRED@ 
-BuildRequires:       GConf-devel >= @GCONF_REQUIRED@
-Requires:            glib >= @GLIB_REQUIRED@
-Requires:            gtk+ >= @GTK_REQUIRED@
-Requires:            gnome-libs >= @GNOME_LIBS_REQUIRED@ 
-Requires:            gnome-print >= @GNOME_PRINT_REQUIRED@
-Requires:            gnome-vfs >= @GNOME_VFS_REQUIRED@
-Requires:            gdk-pixbuf >= @GDK_PIXBUF_REQUIRED@
-Requires:            libxml >= @LIBXML_REQUIRED@
-Requires:            libglade >= @LIBGLADE_REQUIRED@
-Requires:            gtkhtml >= @GTKHTML_REQUIRED@
-Requires:            ORBit >= @ORBIT_REQUIRED@
-Requires:            oaf >= @OAF_REQUIRED@
-Requires:            bonobo >= @BONOBO_REQUIRED@ 
-Requires:            GConf >= @GCONF_REQUIRED@
+Requires:            gtk2 >= 2.0.0
+Requires:            libgnomeui >= 2.0.0
+Requires:            gtkhtml2 >= 2.0.0
+Requires:            gnome-vfs2 >= 2.0.0
+
+BuildRequires:       gtk2-devel >= 2.0.0
+BuildRequires:       libgnomeui-devel >= 2.0.0
+BuildRequires:       gtkhtml2-devel >= 2.0.0
+BuildRequires:       gnome-vfs2-devel >= 2.0.0
+BuildRequires:       intltool
 
 %description
-A developers help program
+A API document browser for GNOME 2.
+
 %prep
-%setup
+%setup -q
 
 %build
 
-if [ ! -f configure ]; then
-	CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%{_prefix} \
-		--sysconfdir=%{_sysconfdir} --without-debug \
-		--disable-install-schemas
-else
-	CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} \
-		--sysconfdir=%{_sysconfdir} --without-debug \
-		--disable-install-schemas
-fi
+intltoolize
+%configure --with-html-widget=gtkhtml2
 
-if [ "$SMP" != "" ]; then
-  (make "MAKE=make -k -j $SMP"; exit 0)
-  make
-else
-  make
-fi
+make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT%{_prefix} sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} install
+%makeinstall PREFIX=$RPM_BUILD_ROOT%{_prefix} install 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-, root, root)
-
 %doc AUTHORS COPYING ChangeLog NEWS README INSTALL
 
 %{_bindir}/devhelp
 %{_libdir}/devhelp/libdevhelp.*
 
-%config %{_sysconfdir}/gconf/schemas/devhelp.schemas
-%{_datadir}/gnome/apps/Development/*.desktop
+%{_datadir}/applications/devhelp.desktop
 %{_datadir}/devhelp
 %{_datadir}/locale/*/LC_MESSAGES/*.mo
-%{_datadir}/oaf/GNOME_DevHelp.oaf
-%{_datadir}/gnome/ui/GNOME_DevHelp.ui
-%{_datadir}/gnome/ui/GNOME_DevHelp_Controller.ui
 %{_datadir}/pixmaps/*
-%{_datadir}/images/*
-
-%post
-# Fix gconf permissions
-killall gconfd-1 2>/dev/null >/dev/null
-chmod o+rX /etc/gconf -R
-
-# Install schemas
-gconftool-1 --shutdown
-SOURCE=xml::/etc/gconf/gconf.xml.defaults
-GCONF_CONFIG_SOURCE=$SOURCE \
-    gconftool-1 --makefile-install-rule \
-    /etc/gconf/schemas/devhelp.schemas \
-    2>/dev/null >/dev/null || exit 1
-		
-
-	

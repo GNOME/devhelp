@@ -30,11 +30,8 @@ PKG_CHECK_MODULES(DEVHELP, [
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
         gtk+-2.0 >= 2.0.0
-	libgsf-1 >= 1.4.0
 	libgnomeui-2.0 >= 2.0.0
 	gnome-vfs-2.0 >= 2.0.0
-	libxml-2.0 >= 2.4.10
-	libglade-2.0 >= 2.0.0
 ])
 
 

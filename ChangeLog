@@ -1,3 +1,11 @@
+2003-03-02  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/Makefile.am: Installed as binary devhelp.
+	
+	* devhelp.spec.in: fixes.
+
+	* configure.in: fixed deps.
+
 2003-03-02  Ross Burton  <ross@burtonini.com>
  
  	* configure.in, acconfig.h: Added a zlib check.
