@@ -1,8 +1,0 @@
-Add menus for toolbar buttons (Back, Forward) like galeon.
-Man & Info support (gnome-man2html2 & gnome-info2html2).
-Look at scrollkeeper.
-More books (glib2, gtk2, pango).
-More info in books, author, version, language, category etc.
-Search in documents
-Index
-Cache httpdata
