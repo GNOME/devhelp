@@ -1,5 +1,10 @@
 2001-07-31  Johan Dahlin  <zilch.am@home.se>
 
+	* src/book.c: 
+	* src/bookshelf.c: 
+	* src/main.c: #include s/libxml/gnome-xml/ beacause it seems to
+	work better for a lot of peoples.
+
 	* src/books-dialog.c (books_button_edit_clicked_cb): If no books
 	is installed and Edit book is clicked, return;
 	(info_button_ok_clicked_cb): check if book is null. Fixes segfault.

@@ -26,8 +26,8 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <libxml/parser.h>
-#include <libxml/xmlmemory.h>
+#include <gnome-xml/parser.h>
+#include <gnome-xml/xmlmemory.h>
 #include "function-database.h"
 #include "util.h"
 #include "book.h"

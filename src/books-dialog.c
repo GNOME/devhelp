@@ -116,7 +116,6 @@ info_button_ok_clicked_cb (GtkButton *button,
 	}
 	
 	/* FIXME: g_free (new) ? */
-	
 	gtk_widget_destroy (book_info->dialog);
 	book_info->dialog = NULL;
 }

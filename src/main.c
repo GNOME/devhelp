@@ -30,8 +30,8 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-#include <libxml/parser.h>
-#include <libxml/xmlmemory.h>
+#include <gnome-xml/parser.h>
+#include <gnome-xml/xmlmemory.h>
 #include <gconf/gconf.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libgnome/gnome-defs.h>
