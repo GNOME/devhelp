@@ -27,7 +27,7 @@
 #include <gtk/gtkwidget.h>
 #include <gtk/gtkwindow.h>
 
-#include "dh-profile.h"
+#include "dh-base.h"
 
 #define DH_TYPE_WINDOW		  (dh_window_get_type ())
 #define DH_WINDOW(obj)		  (GTK_CHECK_CAST ((obj), DH_TYPE_WINDOW, DhWindow))
@@ -55,8 +55,8 @@ struct _DhWindowClass
 
 };
 
-GType            dh_window_get_type        (void);
-GtkWidget *      dh_window_new             (DhProfile   *profile);
+GType            dh_window_get_type        (void) G_GNUC_CONST;
+GtkWidget *      dh_window_new             (DhBase      *base);
 
 void             dh_window_search          (DhWindow    *window,
 					    const gchar *str);

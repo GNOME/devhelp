@@ -272,7 +272,7 @@ main (int argc, char **argv)
  	fd = dh_try_to_connect ();
 	if (fd < 0) {
 		base = dh_base_new ();
-		window = dh_base_new_window (base, NULL);
+		window = dh_base_new_window (base);
 		
 		dh_create_socket (DH_WINDOW (window));
 	}

@@ -1,3 +1,20 @@
+2003-02-13  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/dh-parser.[ch]: Added, new GMarkup-based parser.
+
+	* src/dh-book.[ch]:
+	* src/dh-book-old.[ch]: Removed.
+
+	* src/dh-base.c: 
+	- initiate the book tree and keywords here instead of in the
+	  profile. (will probably be some kind of profiles later on).
+	(base_init_books): added.
+	(base_add_books): added.
+
+	* src/Makefile.am (libdevhelp2_la_SOURCES): 
+	- updated for removed/added files.
+	- Don't build the test-profile binary (disabled profiles for now).
+
 2003-02-09  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "kn" to ALL_LINGUAS.

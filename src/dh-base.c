@@ -22,15 +22,21 @@
 #include <config.h>
 
 #include <string.h>
+#include <libgnomevfs/gnome-vfs.h>
 
 #include "dh-window.h"
-#include "dh-profile.h"
+#include "dh-parser.h"
 #include "dh-base.h"
 
-struct _DhBasePriv {
-	GSList *profiles;
+#define d(x)
 
+struct _DhBasePriv {
 	GSList *windows;
+
+	GNode  *book_tree;
+	GList  *keywords;
+	
+	GHashTable *books;
 };
 
 static void        base_init                  (DhBase         *base);
@@ -39,6 +45,9 @@ static void        base_new_window_cb         (DhWindow       *window,
 					       DhBase         *base);
 static void        base_window_finalized_cb   (DhBase         *base,
 					       DhWindow       *window);
+static void        base_init_books            (DhBase         *base);
+static void        base_add_books             (DhBase         *base,
+					       const gchar    *directory);
 
 static GObjectClass *parent_class;
 
@@ -55,13 +64,12 @@ dh_base_get_type (void)
 			(GClassInitFunc) base_class_init,
 			NULL,
 			NULL,
-			sizeof (DhProfile),
+			sizeof (DhBase),
 			0,
 			(GInstanceInitFunc) base_init,
 		};
                 
-		type = g_type_register_static (G_TYPE_OBJECT,
-					       "DhBase",
+		type = g_type_register_static (G_TYPE_OBJECT, "DhBase",
 					       &info, 0);
 	}
 
@@ -70,14 +78,17 @@ dh_base_get_type (void)
 
 static void
 base_init (DhBase *base)
-{
+{ 
         DhBasePriv *priv;
 
         priv = g_new0 (DhBasePriv, 1);
         
-	priv->profiles = NULL;
-	priv->windows  = NULL;
-        base->priv     = priv;
+	priv->windows   = NULL;
+	priv->book_tree = g_node_new (NULL);
+	priv->keywords  = NULL;
+	priv->books     = g_hash_table_new_full (g_str_hash, g_str_equal, 
+						 g_free, g_free);
+        base->priv      = priv;
 }
 
 static void
@@ -94,7 +105,7 @@ base_new_window_cb (DhWindow *window, DhBase *base)
 	g_return_if_fail (DH_IS_WINDOW (window));
 	g_return_if_fail (DH_IS_BASE (base));
 	
-	new_window = dh_base_new_window (base, NULL);
+	new_window = dh_base_new_window (base);
 	
 	gtk_widget_show_all (new_window);
 }
@@ -115,6 +126,91 @@ base_window_finalized_cb (DhBase *base, DhWindow *window)
 	}
 }
 
+static void
+base_init_books (DhBase *base)
+{
+	gchar       *dir;
+	const gchar *env;
+	
+	env = g_getenv ("DEVHELP_SEARCH_PATH");
+	if (env) {
+		gchar **paths;
+		
+		paths = g_strsplit (env, ":", -1);
+		
+		
+		/* Insert all books from this path first */
+	}
+	
+	env = g_getenv ("GNOME2_PATH");
+	if (env) {
+		base_add_books (base, env);
+	}
+	
+	/* Insert the books from default gtk-doc install path */
+	base_add_books (base, DATADIR"/gtk-doc/html");
+}
+
+
+static void
+base_add_books (DhBase *base, const gchar *directory)
+{
+	DhBasePriv       *priv;
+	GList            *dir_list;
+	GList            *l;
+	GnomeVFSFileInfo *info;
+	GnomeVFSResult    result;
+	
+	priv = base->priv;
+
+	d(g_print ("Adding books from %s\n", directory));
+ 
+	result  = gnome_vfs_directory_list_load (&dir_list, directory,
+						 GNOME_VFS_FILE_INFO_DEFAULT);
+
+	if (result != GNOME_VFS_OK) {
+		return;
+	}
+
+	for (l = dir_list; l; l = l->next) {
+		int    len;
+		gchar *book_path;
+		
+
+		info = (GnomeVFSFileInfo *) l->data;
+		
+		if (g_hash_table_lookup (priv->books, info->name)) {
+			gnome_vfs_file_info_unref (info);
+			continue;
+		}
+		
+		book_path = g_strdup_printf ("%s/%s/%s.devhelp",
+					     directory, 
+					     info->name, info->name);
+		
+		if (!g_file_test (book_path, G_FILE_TEST_EXISTS)) {
+			gnome_vfs_file_info_unref (info);
+			g_free (book_path);
+			continue;
+		}
+		
+		g_hash_table_insert (priv->books, 
+				     g_strdup (info->name), 
+				     book_path);
+
+		d(g_print ("Found book: '%s'\n", book_path));
+
+		if (!dh_parse_file  (book_path,
+				     priv->book_tree,
+				     &priv->keywords,
+				     NULL)) {
+			g_warning ("Failed to read '%s'", book_path);
+		}
+	}
+
+	g_list_free (dir_list);
+}
+ 
 DhBase *
 dh_base_new (void)
 {
@@ -124,13 +220,13 @@ dh_base_new (void)
         base = g_object_new (DH_TYPE_BASE, NULL);
 	priv = base->priv;
 	
-	priv->profiles = dh_profiles_init ();
+	base_init_books (base);
 
-        return base;
+	return base;
 }
 
 GtkWidget *
-dh_base_new_window (DhBase *base, DhProfile *profile)
+dh_base_new_window (DhBase *base)
 {
 	DhBasePriv *priv;
 	GtkWidget  *window;
@@ -139,8 +235,7 @@ dh_base_new_window (DhBase *base, DhProfile *profile)
 
 	priv = base->priv;
         
-	/* FIXME: Send in the profile submitted */
-        window = dh_window_new (DH_PROFILE (priv->profiles->data));
+        window = dh_window_new (base);
         
 	priv->windows = g_slist_prepend (priv->windows, window);
 
@@ -155,6 +250,22 @@ dh_base_new_window (DhBase *base, DhProfile *profile)
 	gtk_widget_show_all (window);
 
 	return window;
+}
+
+GNode *
+dh_base_get_book_tree (DhBase *base)
+{
+	g_return_val_if_fail (DH_IS_BASE (base), NULL);
+	
+	return base->priv->book_tree;
+}
+
+GList *
+dh_base_get_keywords (DhBase *base)
+{
+	g_return_val_if_fail (DH_IS_BASE (base), NULL);
+	
+	return base->priv->keywords;
 }
 
 GSList *

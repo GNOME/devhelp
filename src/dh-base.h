@@ -25,8 +25,6 @@
 #include <glib-object.h>
 #include <gtk/gtkwidget.h>
 
-#include <dh-profile.h>
-
 typedef struct _DhBase      DhBase;
 typedef struct _DhBaseClass DhBaseClass;
 typedef struct _DhBasePriv  DhBasePriv;
@@ -52,10 +50,11 @@ struct _DhBaseClass {
 GType            dh_base_get_type       (void);
 DhBase *         dh_base_new            (void);
 
-GtkWidget *      dh_base_new_window     (DhBase      *base,
-                                         DhProfile   *profile);
+GtkWidget *      dh_base_new_window     (DhBase      *base);
 
-GSList *         dh_get_profiles        (DhBase      *base);
+GNode *          dh_base_get_book_tree  (DhBase      *base);
+GList *          dh_base_get_keywords   (DhBase      *base);
+
 GSList *         dh_get_windows         (DhBase      *base);
 
 #endif /* __DH_BASE_H__ */

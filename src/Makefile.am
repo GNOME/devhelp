@@ -32,10 +32,6 @@ libdevhelp2_la_SOURCES =			\
 	dh-marshal-main.c			\
 	dh-base.c				\
 	dh-base.h				\
-	dh-book.c				\
-	dh-book.h				\
-	dh-book-old.c				\
-	dh-book-old.h				\
 	dh-book-tree.c				\
 	dh-book-tree.h				\
 	dh-error.c				\
@@ -48,10 +44,10 @@ libdevhelp2_la_SOURCES =			\
 	dh-keyword-model.h			\
 	dh-link.c				\
 	dh-link.h				\
-	dh-profile.c				\
-	dh-profile.h				\
 	dh-search.c				\
 	dh-search.h				\
+	dh-parser.c				\
+	dh-parser.h				\
 	dh-util.c				\
 	dh-util.h				\
 	dh-window.c				\
@@ -62,15 +58,6 @@ libdevhelp2_la_LIBADD =				\
 	$(top_builddir)/libegg/menu/libegg-menu.la
 
 libdevhelp2_la_LDFLAGS = -avoid-version -module
-
-noinst_PROGRAMS = test-profile
-
-test_profile_SOURCES = 				\
-	test-profile.c
-
-test_profile_LDADD =  				\
-	@DEVHELP_LIBS@   			\
-	libdevhelp2.la
 
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 

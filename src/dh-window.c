@@ -40,8 +40,8 @@
 
 
 struct _DhWindowPriv {
+	DhBase         *base;
 	DhHistory      *history;
-	DhProfile      *profile;
 
 	GtkWidget      *main_box;
 	GtkWidget      *menu_box;
@@ -274,7 +274,9 @@ window_populate (DhWindow *window)
 
 	error = NULL;
 
-	contents_tree = dh_profile_open (priv->profile, &keywords, &error);
+	contents_tree = dh_base_get_book_tree (priv->base);
+	keywords      = dh_base_get_keywords  (priv->base);
+	
 	if (error) {
 		GtkWidget *dialog;
 		dialog = gtk_message_dialog_new (NULL,
@@ -503,7 +505,7 @@ window_forward_exists_changed_cb (DhHistory *history,
 }
 
 GtkWidget *
-dh_window_new (DhProfile *profile)
+dh_window_new (DhBase *base)
 {
         DhWindow     *window;
         DhWindowPriv *priv;
@@ -512,7 +514,7 @@ dh_window_new (DhProfile *profile)
         window = gtk_type_new (DH_TYPE_WINDOW);
         priv   = window->priv;
 
-	priv->profile = g_object_ref (profile);
+	priv->base = g_object_ref (base);
 
         gtk_window_set_policy (GTK_WINDOW (window), TRUE, TRUE, FALSE);
         

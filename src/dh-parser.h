@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2002 CodeFactory AB
- * Copyright (C) 2002 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2003 CodeFactory AB
+ * Copyright (C) 2003 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -19,23 +19,14 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef __DH_BOOK_H__
-#define __DH_BOOK_H__
+#ifndef __DH_PARSER_H__
+#define __DH_PARSER_H__
 
 #include <glib.h>
 
-typedef struct {
-        gchar *title;
-        gchar *author;
-} DhBook;
+gboolean  dh_parse_file (const gchar  *path,
+			 GNode        *book_tree,
+			 GList       **keywords,
+			 GError      **error);
 
-gboolean dh_book_read (const gchar  *uri, 
-                       DhBook       *book,
-                       GNode        *contents,
-                       GList       **keywords,
-                       GError      **error);
-
-#endif /* __DH_BOOK_H__ */
-       
-
-
+#endif /* __DH_PARSER_H__ */
