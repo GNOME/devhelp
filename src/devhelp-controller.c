@@ -254,7 +254,7 @@ devhelp_controller_init (DevHelpController *controller)
         g_free (local_dir);
         function_database_thaw (priv->fd);
 
-        priv->index  = BOOK_INDEX (book_index_new (priv->bookshelf));
+        priv->index = BOOK_INDEX (book_index_new (priv->bookshelf));
 
 	gtk_signal_connect_object (GTK_OBJECT (priv->history),
 				   "forward_exists_changed",

@@ -291,10 +291,10 @@ book_index_create_pixmaps (BookIndex *index)
 GtkWidget *
 book_index_new (Bookshelf *bookshelf)
 {
-        BookIndex   *index;
-        
+        BookIndex       *index;
+	
         index = gtk_type_new (TYPE_BOOK_INDEX);
-        
+	
         gtk_ctree_construct (GTK_CTREE (index), 1, 0, NULL);
         
         index->priv->bookshelf = bookshelf;
@@ -400,11 +400,13 @@ book_index_add_book (BookIndex *index, Book *book)
 GtkWidget *
 book_index_get_scrolled (BookIndex *index)
 {
-	
- 	GtkWidget           *sw;
-	
+	BookIndexPriv   *priv;
+ 	GtkWidget       *sw;
+
  	g_return_val_if_fail (index != NULL, NULL);
  	g_return_val_if_fail (IS_BOOK_INDEX (index), NULL);
+
+	priv = index->priv;
 	
 	sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -412,8 +414,11 @@ book_index_get_scrolled (BookIndex *index)
 					GTK_POLICY_AUTOMATIC);
 
  	gtk_clist_set_column_width (GTK_CLIST (index), 0, 80);
+
+	priv->emit_uri_select = FALSE;
 	gtk_clist_set_selection_mode (GTK_CLIST (index), GTK_SELECTION_BROWSE);
-	
+	priv->emit_uri_select = TRUE;
+
 	gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (index));
 
 	return sw;

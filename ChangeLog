@@ -1,5 +1,9 @@
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/book-index.c:
+	(book_index_get_scrolled): don't want to emit signal when setting
+	  selection mode. fixes bug #200.
+
 	* ui/GNOME_DevHelp.ui: removed Edit-menu
 
 	* src/devhelp-controller.c:
