@@ -217,24 +217,28 @@ bookshelf_new (FunctionDatabase *fd)
 	priv->filename = filename;
 
         function_database_freeze (priv->fd);
-
-	/* First add user directory */
+	
+        /* First add user directory */
         user_dir = g_strdup_printf ("%s/.devhelp", home_dir);
 	bookshelf_add_directory (bookshelf, user_dir);
         g_free (user_dir);
-
-	/* Then add global directories */
 	
+	/* Then add global directories */
 	/* If we have a non-standard datadir */
 	if (strcmp (DATA_DIR, "/usr/share") &&
 	    strcmp (DATA_DIR, "/usr/local/share")) {
 		g_message ("Adding %s", DATA_DIR);
 		bookshelf_add_directory (bookshelf, DATA_DIR"/devhelp");
 	}
-	
-	bookshelf_add_directory (bookshelf, "/usr/share/devhelp"); 
-	bookshelf_add_directory (bookshelf, "/usr/local/share/devhelp"); 
 
+        if (strcmp (DATA_DIR, "/usr/share") != 0) {
+	        bookshelf_add_directory (bookshelf, "/usr/share/devhelp");
+	}
+   
+        if (strcmp (DATA_DIR, "/usr/local/share") != 0) {	   
+	        bookshelf_add_directory (bookshelf, "/usr/local/share/devhelp"); 
+	}
+	
         function_database_thaw (priv->fd);
 	
 	return bookshelf;
@@ -388,7 +392,7 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 				book->visible = TRUE;
 			}
 			xmlFree (visible);
-
+		        
 			/* Okay, we found an old spec file.
 			 * Remove it and return NULL (no books)
 			 */
@@ -557,6 +561,7 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	GSList          *node2;
 	XMLBook         *xml_book;
 	gboolean         skip;
+	gchar           *new_baseurl;
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
@@ -573,14 +578,13 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	books = bookshelf_read_books_dir (book_dir_uri);
         
 	skip = FALSE;
+	new_baseurl = NULL;
 	for (node = books; node; node = node->next) {
 		book_file_name = g_strdup_printf (node->data);
 		
 		book_uri = gnome_vfs_uri_append_path (book_dir_uri,
 						      book_file_name);
 		
-		book = book_new (book_uri, priv->fd);
-
 		xml_book = xml_spec_get_book_uri (priv->xml_books, book_uri);
 		if (xml_book != NULL) {
 			gchar *basename_str;
@@ -589,27 +593,34 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 			basename_str = (gchar*)basename (xml_book->spec_path);
 			book_uri_str = gnome_vfs_uri_get_basename (book_uri);
 			if (!strcmp (basename_str, book_uri_str)) {
-				book_set_base_url (book, xml_book->spec_path);
+				new_baseurl = (gchar*)xml_book->spec_path;
 			}
 			
 			if (xml_book->visible == FALSE) {
 				skip = TRUE;
 			}
-		} else {
+		}
+		g_free (book_file_name);
+
+		if (skip == TRUE) {
+			skip = FALSE;
+			new_baseurl = NULL;
+			continue;
+		}
+		
+		book = book_new (book_uri, priv->fd);
+
+		if (new_baseurl == NULL) {
 			gchar *book_dir = g_strdup_printf ("file://%s/books/%s",
 							   directory,
 							   book_get_name_full (book));
 			book_set_base_url (book, book_dir);
 			g_free (book_dir);
+		} else {
+			book_set_base_url (book, new_baseurl);
+			new_baseurl = NULL;
 		}
-		g_free (book_file_name);
 
-		if (skip == TRUE) {
-			/* TODO: g_free (book) ? */
-			skip = FALSE;
-			continue;
-		}
-		
 		bookshelf_add_book (bookshelf, book);
 		
 		g_free (node->data);

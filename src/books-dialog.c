@@ -86,6 +86,7 @@ books_button_hide_clicked_cb (GtkWidget *button,
 	BooksDialog   *dialog;
 	Bookshelf     *bookshelf;
 	gint           row;
+	gpointer       row_data;
 	Book          *book;
 	
 	g_return_if_fail (user_data != NULL);
@@ -94,7 +95,12 @@ books_button_hide_clicked_cb (GtkWidget *button,
 	bookshelf = dialog->bookshelf;
 	
 	row = dialog->clist_visible->focus_row;
-	book = BOOK (gtk_clist_get_row_data (dialog->clist_visible, row));
+	row_data = gtk_clist_get_row_data (dialog->clist_visible, row);
+	if (row_data == NULL) {
+		return;
+	}
+	
+	book = BOOK (row_data);
 
 	if (book) {
 		bookshelf_hide_book (bookshelf, book);

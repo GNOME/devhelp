@@ -1,3 +1,13 @@
+2001-12-04  Johan Dahlin  <jdahlin@telia.com>
+
+	* src/books-dialog.c (books_button_hide_clicked_cb): Fix a
+	Gtk-Warning. (make sure the row_data from the clist row isn't NULL)
+
+	* src/bookshelf.c (bookshelf_add_directory): Some reconstructing,
+	to fix a bug with visible functions when they're where supposed to
+	be hidden.
+	(bookshelf_new): Read global books in a more logic way.
+
 2001-12-03  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/books-dialog.c (books_button_hide_clicked_cb): only update
