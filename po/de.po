@@ -1,14 +1,14 @@
 # German translation for devhelper.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Christian Meyer <chrisime@gnome.org>, 2001.
-# Christian Neumair <chris@gnome-de.org>, 2002.
+# Christian Neumair <chris@gnome-de.org>, 2002, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelper HEAD\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
-"PO-Revision-Date: 2002-11-27 08:56+0100\n"
-"Last-Translator: Christian Meyer <chrisime@gnome-de.org>\n"
+"POT-Creation-Date: 2003-06-08 11:59+0200\n"
+"PO-Revision-Date: 2003-06-08 11:52+0200\n"
+"Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,11 +16,27 @@ msgstr ""
 
 #: devhelp.desktop.in.h:1
 msgid "DevHelp"
-msgstr "Hilfe-Browser für Entwickler"
+msgstr "DevHelp"
 
 #: devhelp.desktop.in.h:2
 msgid "Developers Help program"
-msgstr "DevHelp - Ein Browser, der Entwickler bei der Arbeit unterstützt"
+msgstr "Ein Browser, der Entwickler bei der Arbeit unterstützt"
+
+#: devhelp.keys.in.h:1
+msgid "DevHelp Book"
+msgstr "DevHelp-Buch"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Wählen Sie ein Thema aus der linken Fläche oder wechseln Sie zur Suchfläche, "
+"um zu finden, wonach Sie suchen.<p>Verwenden Sie <b>Umschalt + Rauf/Runter</"
+"b> um durch den Baum in der linken Fläche zu navigieren und <b>Umschalt + "
+"Links/Rechts</b>, um die Bücher im Baum ein- bzw. auszuklappen."
 
 #: src/dh-main.c:261
 msgid "Search for a function"
@@ -28,11 +44,63 @@ msgstr "Nach einer Funktion suchen"
 
 #: src/dh-main.c:270
 msgid "Quit any running Devhelp"
-msgstr "Alle laufenden Entwickler-Hilfe-Browser beenden"
+msgstr "Alle laufenden Devhelp-Anwendungen beenden"
+
+#: src/dh-parser.c:94
+#, c-format
+msgid "Expected 'book' got '%s' at line %d, column %d"
+msgstr "»book« erwartet, »%s« erhalten - Zeile %d, Spalte %d"
+
+#: src/dh-parser.c:110
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Ungültiger Namensraum »%s« - Zeile %d, Spalte %d"
+
+#: src/dh-parser.c:139
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr ""
+"»title«-, »name«- sowie »link«-Elemente erforderlich - Zeile %d, Spalte %d"
+
+#: src/dh-parser.c:171
+#, c-format
+msgid "Expected 'sub' got '%s' at line %d column %d"
+msgstr "»sub« erwartet, »%s« erhalten - Zeile %d, Spalte %d"
+
+#: src/dh-parser.c:192
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+"»name« sowie »link«-Elemente in <sub> erforderlich - Zeile %d, Spalte %d"
+
+#: src/dh-parser.c:218
+#, c-format
+msgid "Expected 'function' got '%s' at line %d, column %d"
+msgstr "»function« erwartet, »%s« erhalten - Zeile %d, Spalte %d"
+
+#: src/dh-parser.c:240
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"»name« sowie »link«-Elemente in <function> erforderlich - Zeile %d, Spalte %d"
+
+#: src/dh-parser.c:326 src/dh-parser.c:410
+msgid "Could not create book parser"
+msgstr "Buchverarbeiter konnte nicht angelegt werden"
+
+#: src/dh-parser.c:336 src/dh-parser.c:420
+msgid "Could not create markup parser"
+msgstr "Markup-Verarbeiter konnte nicht angelegt werden"
+
+#: src/dh-parser.c:466
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Buch »%s« konnte nicht entpackt werden: %s"
 
 #: src/dh-search.c:349
 msgid "_Search for:"
-msgstr "_Suchen:"
+msgstr "_Suche:"
 
 #: src/dh-search.c:390
 msgid "Section"
@@ -44,7 +112,7 @@ msgstr "_Datei"
 
 #: src/dh-window.c:96
 msgid "_Go"
-msgstr "_Gehe"
+msgstr "_Gehe zu"
 
 #: src/dh-window.c:97
 msgid "_Help"
@@ -61,55 +129,8 @@ msgstr "Inhalt"
 
 #: src/dh-window.c:298
 msgid "Search"
-msgstr "Suchen"
+msgstr "Suche"
 
 #: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
-
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Wählen Sie ein Thema auf der linken Fläche oder wechseln Sie zur Suchfläche, "
-"um zu finden, wonach Sie suchen.<p>Verwenden Sie <b>Umschalt + Rauf/Runter</"
-"b> um durch den Baum in der linken Fläche zu navigieren und <b>Umschalt + "
-"Links/Rechts</b>, um die Bücher im Baum ein- bzw. auszuklappen."
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "»%s« ist kein gültiges Buch"
-
-#~ msgid "Book '%s' is malformed."
-#~ msgstr "Format des Buchs »%s« ist fehlerhaft."
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Datei »%s« konnte nicht gefunden werden"
-
-#~ msgid "Book '%s' is malformed, the parse context is invalid."
-#~ msgstr ""
-#~ "Format des Buchs »%s« ist fehlerhaft. Der Parse-Kontext ist ungültig."
-
-#~ msgid "Book '%s' is malformed, the XML is invalid."
-#~ msgstr "Format des Buchs »%s« ist fehlerhaft. Das XML ist ungültig."
-
-#~ msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
-#~ msgstr ""
-#~ "Format des Buchs »%s« ist fehlerhaft. Es stimmt mit keiner DTD überein (%"
-#~ "s)"
-
-#~ msgid ""
-#~ "<b>Could not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Es konnten nicht alle Bücher eingelesen werden</b>\n"
-#~ "\n"
-#~ "Die folgenden Fehler traten beim Einlesen der Bücher auf:\n"
-#~ "%s"
-
-#~ msgid "Open %s"
-#~ msgstr "%s öffnen"
