@@ -310,7 +310,6 @@ books_button_install_clicked_cb (GtkWidget *widget,
 	g_return_if_fail (user_data != NULL);
 	
 	dialog = BOOKS_DIALOG (user_data);
-	puts (__FUNCTION__);
 	
 	selector = gtk_file_selection_new (_("Choose a book..."));
 	gtk_window_set_wmclass (GTK_WINDOW (selector), "FileSel", "DevHelp"); 
