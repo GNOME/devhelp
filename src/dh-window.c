@@ -1,8 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2002      CodeFactory AB
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2003      Richard Hult <richard@imendio.com>
+ * Copyright (C) 2001-2004 Imendio HB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -41,6 +39,7 @@
 #include "dh-book-tree.h"
 #include "dh-history.h"
 #include "dh-html.h"
+#include "dh-preferences.h"
 #include "dh-search.h"
 #include "dh-window.h"
 
@@ -71,7 +70,17 @@ static void window_finalize                  (GObject            *object);
 
 static void window_populate                  (DhWindow           *window);
 
-static void window_activate_action           (GtkAction          *action,
+static void window_activate_quit             (GtkAction          *action,
+					      DhWindow           *window);
+static void window_activate_copy             (GtkAction          *action,
+					      DhWindow           *window);
+static void window_activate_preferences      (GtkAction          *action,
+					      DhWindow           *window);
+static void window_activate_back             (GtkAction          *action,
+					      DhWindow           *window);
+static void window_activate_forward          (GtkAction          *action,
+					      DhWindow           *window);
+static void window_activate_about            (GtkAction          *action,
 					      DhWindow           *window);
 static void window_delete_cb                 (GtkWidget          *widget,
 					      GdkEventAny        *event,
@@ -103,22 +112,29 @@ static GtkWindowClass *parent_class = NULL;
 
 static GtkActionEntry actions[] = {
 	{ "FileMenu", NULL, N_("_File") },
+	{ "EditMenu", NULL, N_("_Edit") },
 	{ "GoMenu", NULL, N_("_Go") },
 	{ "HelpMenu", NULL, N_("_Help") },
 
 	/* File menu */
 	{ "Quit", GTK_STOCK_QUIT, NULL, "<control>Q", NULL,
-	  G_CALLBACK (window_activate_action) },
+	  G_CALLBACK (window_activate_quit) },
 
+	/* Edit menu */
+	{ "Copy", GTK_STOCK_COPY, NULL, "<control>C", NULL,
+	  G_CALLBACK (window_activate_copy) },
+	{ "Preferences", GTK_STOCK_PREFERENCES, NULL, NULL, NULL,
+	  G_CALLBACK (window_activate_preferences) },
+	 
 	/* Go menu */
 	{ "Back", GTK_STOCK_GO_BACK, NULL, NULL, NULL,
-	  G_CALLBACK (window_activate_action) },
+	  G_CALLBACK (window_activate_back) },
 	{ "Forward", GTK_STOCK_GO_FORWARD, NULL, NULL, NULL,
-	  G_CALLBACK (window_activate_action) },
+	  G_CALLBACK (window_activate_forward) },
 
 	/* About menu */
 	{ "About", GNOME_STOCK_ABOUT, NULL, NULL, NULL,
-	  G_CALLBACK (window_activate_action) }
+	  G_CALLBACK (window_activate_about) }
 };
 
 GType
@@ -318,7 +334,7 @@ window_populate (DhWindow *window)
 	
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), priv->html_view);
-	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
 
 	gtk_paned_add2 (GTK_PANED(priv->hpaned), frame);
 
@@ -367,80 +383,105 @@ window_populate (DhWindow *window)
 }
 
 static void
-window_activate_action (GtkAction *action, DhWindow *window)
+window_activate_quit (GtkAction *action, DhWindow *window)
 {
 	DhWindowPriv *priv;
-	const gchar  *name = gtk_action_get_name (action);
 	
 	g_return_if_fail (DH_IS_WINDOW (window));
 
 	priv = window->priv;
 	
-	if (strcmp (name, "Quit") == 0) {
-		gtk_main_quit ();
-		/* Quit */
-	}
-	else if (strcmp (name, "Back") == 0) {
-		gchar *uri = dh_history_go_back (priv->history);
-		if (uri) {
-			dh_html_open_uri (priv->html, uri);
-			g_free (uri);
-		}
-	}
-	else if (strcmp (name, "Forward") == 0) {
-		gchar *uri = dh_history_go_forward (priv->history);
-		if (uri) {
-			dh_html_open_uri (priv->html, uri);
-			g_free (uri);
-		}
-	}
-	else if (strcmp (name, "About") == 0) {
-		static GtkWidget *about = NULL;
+	gtk_main_quit ();
+}
 
-		const gchar *authors[] = {
-			"Mikael Hallendal <micke@imendio.com>",
-			"Richard Hult <richard@imendio.com>",
-			"Johan Dahlin <jdahlin@telia.com>",
-			"Ross Burton <ross@burtonini.com>",
-			NULL
-		};
+static void
+window_activate_copy (GtkAction *action, DhWindow *window)
+{
+	g_print ("Copy\n");
+}
 
-		if (!about) {
-			GtkWidget *hbox;
-			GtkWidget *href;
-			
-			about = gnome_about_new ("Devhelp", VERSION,
-						 "",
-						 _("A developer's help browser for GNOME 2"),
-						 authors,
-						 NULL,
-						 NULL,
-						 NULL);
-			gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
-					
-			g_signal_connect (about,
-					  "destroy",
-					  G_CALLBACK (gtk_widget_destroyed),
-					  &about);
-			hbox = gtk_hbox_new (FALSE, 0);
-			gtk_box_pack_start (GTK_BOX (GTK_DIALOG (about)->vbox),
-					    hbox, FALSE, FALSE, 0);
-			href = gnome_href_new ("http://www.imendio.com/projects/devhelp/",
-					       _("Devhelp project page"));
-			gtk_box_pack_start (GTK_BOX (hbox), href, 
-					    TRUE, TRUE, 0);
-			href = gnome_href_new ("http://bugzilla.gnome.org/",
-					       _("Bug report Devhelp"));
-			gtk_box_pack_start (GTK_BOX (hbox), href,
-					    TRUE, TRUE, 0);
-			
-			gtk_widget_show_all (about);
-		} else {
-			gtk_window_present (GTK_WINDOW (about));
-		}
-	} else {
-		g_message ("Unhandled action '%s'", name);
+static void
+window_activate_preferences (GtkAction *action, DhWindow *window)
+{
+	dh_preferences_show_dialog ();
+}
+
+static void window_activate_back             (GtkAction          *action,
+					      DhWindow           *window)
+{
+	DhWindowPriv *priv;
+	gchar        *uri;
+
+	priv = window->priv;
+
+	uri = dh_history_go_back (priv->history);
+	if (uri) {
+		dh_html_open_uri (priv->html, uri);
+		g_free (uri);
 	}
+}
+
+static void window_activate_forward          (GtkAction          *action,
+					      DhWindow           *window)
+{
+	DhWindowPriv *priv;
+	gchar        *uri;
+
+	priv = window->priv;
+
+	uri = dh_history_go_forward (priv->history);
+	if (uri) {
+		dh_html_open_uri (priv->html, uri);
+		g_free (uri);
+	}
+}
+
+static void window_activate_about            (GtkAction          *action,
+					      DhWindow           *window)
+{
+	static GtkWidget *about = NULL;
+	GtkWidget        *hbox;
+	GtkWidget        *href;
+
+	const gchar *authors[] = {
+		"Mikael Hallendal <micke@imendio.com>",
+		"Richard Hult <richard@imendio.com>",
+		"Johan Dahlin <jdahlin@telia.com>",
+		"Ross Burton <ross@burtonini.com>",
+		NULL
+	};
+	
+	if (about != NULL) {
+		gtk_window_present (GTK_WINDOW (about));
+		return;
+	}
+	
+	about = gnome_about_new ("Devhelp", VERSION,
+				 "",
+				 _("A developer's help browser for GNOME 2"),
+				 authors,
+				 NULL,
+				 NULL,
+				 NULL);
+	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
+
+	g_signal_connect (about,
+			  "destroy",
+			  G_CALLBACK (gtk_widget_destroyed),
+			  &about);
+	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (about)->vbox),
+			    hbox, FALSE, FALSE, 0);
+	href = gnome_href_new ("http://www.imendio.com/projects/devhelp/",
+			       _("Devhelp project page"));
+	gtk_box_pack_start (GTK_BOX (hbox), href, 
+			    TRUE, TRUE, 0);
+	href = gnome_href_new ("http://bugzilla.gnome.org/",
+			       _("Bug report Devhelp"));
+	gtk_box_pack_start (GTK_BOX (hbox), href,
+			    TRUE, TRUE, 0);
+
+	gtk_widget_show_all (about);
 }
 
 static void

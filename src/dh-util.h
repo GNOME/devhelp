@@ -23,10 +23,19 @@
 #define __DH_UTIL_H__
 
 #include <glib.h>
+#include <glade/glade.h>
 #include <libgnomevfs/gnome-vfs.h>
 
 const gchar *  dh_dot_dir                    (void);
-
+GladeXML *     dh_glade_get_file             (const gchar *filename,
+					      const gchar *root,
+					      const gchar *domain,
+					      const gchar *first_required_widget,
+					      ...);
+void           dh_glade_connect              (GladeXML    *gui,
+					      gpointer     user_data,
+					      gchar       *first_widget,
+					      ...);
 /* Taken from gnome-vfs CVS. */
 gchar *        dh_util_uri_relative_new      (const gchar          *text_uri,
 					      const gchar          *base_uri);

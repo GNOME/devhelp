@@ -1,3 +1,27 @@
+2004-03-16  Mikael Hallendal  <micke@imendio.com>
+
+	* configure.in: Added libglade dependency
+	* src/Makefile.am: Added includes and dh-preferences.[ch]
+	* src/dh-base.c: (dh_base_new): initialize preferences
+	* src/dh-gecko-utils.cpp: 
+	- fixed set_font to work with both variable and fixed font width.
+	* src/dh-preferences.c: 
+	* src/dh-preferences.h:
+	- Added, starting of a preference dialog and gconf storage.
+	* src/dh-util.c:
+	(tagify_bold_labels), (get_glade_file),
+	(dh_glade_get_file), (dh_glade_connect): Copied from Gossip.
+	* src/dh-window.c:
+	(window_populate), (window_activate_quit),
+	(window_activate_copy), (window_activate_preferences),
+	(window_activate_back), (window_activate_forward),
+	(window_activate_about): 
+	- Splitted out action callbacks into their own functions instead of 
+	  one.
+	* ui/Makefile.am: Install glade
+	* ui/devhelp.glade: Glade for preferences dialog
+	* ui/window.ui: Added an edit menu.
+
 2004-03-15  Mikael Hallendal  <micke@imendio.com>
 
 	* Makefile.am: Added devhelp.in

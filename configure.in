@@ -29,6 +29,7 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
         gtk+-2.0 >= 2.3.1
 	libgnomeui-2.0 >= 2.2.0
 	gnome-vfs-2.0 >= 2.2.0
+	libglade-2.0 >= 2.0.0
 ])
 
 PKG_CHECK_MODULES(MOZILLA_COMPONENT, mozilla-gtkmozembed)

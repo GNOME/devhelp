@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2004 Imendio HB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -25,9 +26,10 @@
 #include <gtk/gtkmain.h>
 
 #include "dh-window.h"
-#include "dh-parser.h"
-#include "dh-base.h"
 #include "dh-link.h"
+#include "dh-parser.h"
+#include "dh-preferences.h"
+#include "dh-base.h"
 
 #define d(x)
 
@@ -330,6 +332,8 @@ dh_base_new (void)
 	priv = base->priv;
 	
 	base_init_books (base);
+
+	dh_preferences_init ();
 
 	return base;
 }

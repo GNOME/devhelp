@@ -127,7 +127,7 @@ html_init (DhHtml *html)
 
 	g_free (profile_path);
 					
-	dh_gecko_set_font (priv->gecko, "Bitstream Vera Sans", 10);
+	dh_gecko_utils_set_font (DH_GECKO_PREF_FONT_VARIABLE, "Sans", 10);
 	g_signal_connect (priv->gecko, "title",
 			  G_CALLBACK (html_title_cb),
 			  html);

@@ -3,6 +3,7 @@
  * Copyright (C) 1999 Free Software Foundation
  * Copyright (C) 2000, 2001 Eazel, Inc.
  * Copyright (C) 2001 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2004 Imendio HB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,11 +24,80 @@
 #include <config.h>
 #include <string.h>
 #include <libgnome/gnome-init.h>
+#include <gtk/gtklabel.h>
 #include "dh-util.h"
 
 #define d(x)
 
 static gchar *dot_dir = NULL;
+
+static void        tagify_bold_labels (GladeXML    *xml);
+static GladeXML *  get_glade_file     (const gchar *filename,
+				       const gchar *root,
+				       const gchar *domain,
+				       const gchar *first_required_widget,
+				       va_list      args);
+
+static void
+tagify_bold_labels (GladeXML *xml)
+{
+        const gchar *str;
+        gchar       *s;
+        GtkWidget   *label;
+        GList       *labels, *l;
+ 
+        labels = glade_xml_get_widget_prefix (xml, "boldlabel");
+ 
+        for (l = labels; l; l = l->next) {
+                label = l->data;
+ 
+                if (!GTK_IS_LABEL (label)) {
+                        g_warning ("Not a label, check your glade file.");
+                        continue;
+                }
+  
+                str = gtk_label_get_text (GTK_LABEL (label));
+ 
+                s = g_strdup_printf ("<b>%s</b>", str);
+                gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
+                gtk_label_set_label (GTK_LABEL (label), s);
+                g_free (s);
+        }
+ 
+        g_list_free (labels);
+}
+
+static GladeXML *
+get_glade_file (const gchar *filename,
+                const gchar *root,
+                const gchar *domain,
+                const gchar *first_required_widget,
+		va_list args)
+{
+        GladeXML   *gui;
+        const char *name;
+        GtkWidget **widget_ptr;
+ 
+        gui = glade_xml_new (filename, root, domain);
+        if (!gui) {
+                g_warning ("Couldn't find necessary glade file '%s'", filename);                return NULL;
+        }
+ 
+        for (name = first_required_widget; name; name = va_arg (args, char *)) {                widget_ptr = va_arg (args, void *);
+                 
+                *widget_ptr = glade_xml_get_widget (gui, name);
+                 
+                if (!*widget_ptr) {
+                        g_warning ("Glade file '%s' is missing widget '%s'.",
+                                   filename, name);
+                        continue;
+                }
+        }
+ 
+        tagify_bold_labels (gui);
+         
+        return gui;
+}
 
 const gchar *
 dh_dot_dir (void)
@@ -40,6 +110,68 @@ dh_dot_dir (void)
 	}
 
 	return dot_dir;
+}
+
+
+GladeXML *
+dh_glade_get_file (const gchar *filename,
+		   const gchar *root,
+		   const gchar *domain,
+		   const gchar *first_required_widget,
+		   ...)
+{
+        va_list   args;
+        GladeXML *gui;
+ 
+        va_start (args, first_required_widget);
+ 
+        gui = get_glade_file (filename,
+                              root,
+                              domain,
+                              first_required_widget,
+                              args);
+                                                                                
+        va_end (args);
+                                                                                
+        if (!gui) {
+                return NULL;
+        }
+                                                                                
+        return gui;
+}
+
+void
+dh_glade_connect (GladeXML *gui,
+		  gpointer  user_data,
+		  gchar    *first_widget,
+		  ...)
+{
+        va_list      args;
+        const gchar *name;
+        const gchar *signal;
+        GtkWidget   *widget;
+        gpointer    *callback;
+                                                                                
+        va_start (args, first_widget);
+                                                                                
+        for (name = first_widget; name; name = va_arg (args, char *)) {
+                signal = va_arg (args, void *);
+                callback = va_arg (args, void *);
+                                                                                
+                widget = glade_xml_get_widget (gui, name);
+                if (!widget) {
+                        g_warning ("Glade file is missing widget '%s', aborting",
+                                   name);
+                        continue;
+                }
+                                                                                
+                g_signal_connect (widget,
+                                  signal,
+                                  G_CALLBACK (callback),
+                                  user_data);
+        }
+                                                                                
+        va_end (args);
 }
 
 /* ----------------------------------------------------------------- */

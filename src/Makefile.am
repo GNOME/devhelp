@@ -9,6 +9,7 @@ INCLUDES = 						  \
 	-DDATADIR=\""$(datadir)"\"                        \
 	-DLIBDIR=\""$(libdir)"\"			  \
 	-DDTD_DIR="\"$(datadir)/devhelp/dtd"\"		  \
+	-DGLADEDIR=\"$(datadir)/devhelp\"                 \
 	@DEVHELP_CFLAGS@ 				  \
 	@LIBDEVHELP_CFLAGS@ 		 	  	  \
 	$(MOZILLA_COMPONENT_CFLAGS)                       \
@@ -17,6 +18,7 @@ INCLUDES = 						  \
 	-I$(MOZILLA_INCLUDE_ROOT)/webbrwsr		  \
 	-I$(MOZILLA_INCLUDE_ROOT)/string		  \
 	-I$(MOZILLA_INCLUDE_ROOT)/pref                    \
+	-I$(MOZILLA_INCLUDE_ROOT)/gfx                     \
 	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h \
 	$(NULL)
 
@@ -42,6 +44,7 @@ devhelph_HEADERS = 					\
 	dh-link.h					\
 	dh-search.h					\
 	dh-parser.h					\
+	dh-preferences.h                                \
 	dh-util.h					\
 	dh-window.h
 
@@ -61,6 +64,7 @@ libdevhelp_1_la_SOURCES =				\
 	dh-link.c					\
 	dh-search.c					\
 	dh-parser.c					\
+	dh-preferences.c                                \
 	dh-util.c					\
 	dh-window.c
 

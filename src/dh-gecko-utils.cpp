@@ -1,5 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
+ * Copyright (C) 2004 Imendio HB
  * Copyright (C) 2004 Marco Pesenti Gritti
  *
  * This program is free software; you can redistribute it and/or
@@ -17,7 +18,6 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Marco Pesenti Gritti <marco@gnome.org>
  */
 
 #include <gtkmozembed.h>
@@ -30,6 +30,8 @@
 #include <nsString.h>
 #include <nsIPrefService.h>
 #include <nsIServiceManager.h>
+
+#include "dh-gecko-utils.h"
 
 static gboolean
 gecko_prefs_set_string (const gchar *key, const gchar *value)
@@ -64,13 +66,28 @@ gecko_prefs_set_int (const gchar *key, gint value)
 	return FALSE;
 }
 
-extern "C" gboolean
-dh_gecko_set_font (GtkMozEmbed *embed, const gchar *fontname, gint fontsize)
+extern "C" void 
+dh_gecko_utils_set_font (gint         type,
+			 const gchar *fontname,
+			 gint         fontsize)
 {
-	gecko_prefs_set_string ("font.name.variable.x-western", fontname);
-	gecko_prefs_set_int ("font.size.variable.x-western", fontsize);
+	switch (type) {
+	case DH_GECKO_PREF_FONT_VARIABLE:
+		gecko_prefs_set_string ("font.name.variable.x-western", 
+					fontname);
+		gecko_prefs_set_int ("font.size.variable.x-western", 
+				     fontsize);
+		break;
+	case DH_GECKO_PREF_FONT_FIXED:
+		gecko_prefs_set_string ("font.name.fixed.x-western", 
+					fontname);
+		gecko_prefs_set_int ("font.size.fixed.x-western", 
+				     fontsize);
+		break;
+	}
 }		   
 
+#if 0
 extern "C" gboolean
 dh_gecko_find (GtkMozEmbed  *embed,
 	       const gchar  *str,
@@ -98,3 +115,4 @@ dh_gecko_find (GtkMozEmbed  *embed,
 
     return didFind;
 }
+#endif

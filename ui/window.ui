@@ -4,6 +4,10 @@
     <menu action="FileMenu">
       <menuitem action="Quit"/>
     </menu>
+    <menu action="EditMenu">
+      <menuitem action="Copy"/>
+      <menuitem action="Preferences"/>
+    </menu>
     <menu action="GoMenu">
       <menuitem action="Back"/>
       <menuitem action="Forward"/>

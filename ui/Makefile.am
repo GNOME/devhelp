@@ -11,6 +11,11 @@ uidir = $(datadir)/devhelp/ui
 ui_DATA = 				\
 	window.ui
 
+gladedir = $(datadir)/devhelp
+glade_DATA =                            \
+	devhelp.glade
+
 EXTRA_DIST = $(image_DATA) 		\
 	     $(appicon_DATA)		\
-	     $(ui_DATA)
+	     $(ui_DATA)                 \
+	     $(glade_DATA)
