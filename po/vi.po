@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2002-05-08 13:15+0200\n"
+"POT-Creation-Date: 2002-06-04 20:17+0200\n"
 "PO-Revision-Date: 2002-05-08 23:03-0400\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
@@ -92,7 +92,7 @@ msgstr "Bộ duyệt trợ giúp DevHelp"
 msgid "DevHelp HelpBrowser Factory"
 msgstr "Factory Trình duyệt trợ giúp DevHelp"
 
-#: src/devhelp-view.c:361
+#: src/devhelp-view.c:361 src/html-widget.c:208
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
@@ -141,25 +141,142 @@ msgstr "Không thể tìm chuỗi"
 msgid "Search for a function"
 msgstr "Tìm hàm"
 
-#: src/preferences.c:85 ui/GNOME_DevHelp.ui.h:11
+#: src/preferences.c:85 ui/GNOME_DevHelp.ui.h:11 ui/devhelp2.glade.h:22
 msgid "Tiny"
 msgstr "Tí hon"
 
-#: src/preferences.c:86 ui/GNOME_DevHelp.ui.h:10
+#: src/preferences.c:86 ui/GNOME_DevHelp.ui.h:10 ui/devhelp2.glade.h:21
 msgid "Small"
 msgstr "Nhỏ"
 
-#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:5
+#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:5 ui/devhelp2.glade.h:12
 msgid "Medium"
 msgstr "Trung"
 
-#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:4
+#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:4 ui/devhelp2.glade.h:11
 msgid "Large"
 msgstr "Lớn"
 
-#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:3
+#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:3 ui/devhelp2.glade.h:9
 msgid "Huge"
 msgstr "Khổng lồ"
+
+#: src/html-widget.c:294
+#, c-format
+msgid "Couldn't open uri: %s"
+msgstr "Không thể mở URI: %s"
+
+#: src/html-widget.c:464
+msgid "Print Help"
+msgstr "In trợ giúp"
+
+#: src/html-widget.c:509
+msgid "Print Preview"
+msgstr "Xem trước bản in"
+
+#: src/html-widget.c:520
+msgid "Printing failed."
+msgstr "Quá trình in thất bại."
+
+#: ui/devhelp2.glade.h:1
+msgid " "
+msgstr " "
+
+#: ui/devhelp2.glade.h:2
+msgid "<< _Show"
+msgstr "<< _Hiện"
+
+#: ui/devhelp2.glade.h:3
+msgid "Author:"
+msgstr "Tác giả:"
+
+#: ui/devhelp2.glade.h:4
+msgid "Book info"
+msgstr "Thông tin sách"
+
+#: ui/devhelp2.glade.h:5
+msgid "Bookmarks"
+msgstr "Bookmark"
+
+#: ui/devhelp2.glade.h:6
+msgid "DevHelp Book Manager"
+msgstr "Bộ quản lý sách DevHelp"
+
+#: ui/devhelp2.glade.h:7
+msgid "DevHelp Preferences"
+msgstr "Thông số DevHelp"
+
+#: ui/devhelp2.glade.h:8
+msgid "Hidden"
+msgstr "Ẩn"
+
+#: ui/devhelp2.glade.h:10
+msgid "Install new book..."
+msgstr "Cài đặt sách mới..."
+
+#: ui/devhelp2.glade.h:13
+msgid "Move down"
+msgstr "Chuyển xuống"
+
+#: ui/devhelp2.glade.h:14
+msgid "Move up"
+msgstr "Chuyển lên"
+
+#: ui/devhelp2.glade.h:15
+msgid "Name:"
+msgstr "Tên:"
+
+#: ui/devhelp2.glade.h:16
+msgid "Path:"
+msgstr "Đường dẫn:"
+
+#: ui/devhelp2.glade.h:17
+msgid "Remove"
+msgstr "Loại bỏ"
+
+#: ui/devhelp2.glade.h:18
+msgid "Reset to defaults"
+msgstr ""
+
+#: ui/devhelp2.glade.h:19
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: ui/devhelp2.glade.h:20
+msgid "Show _sidebar"
+msgstr "Hiện Thanh bên"
+
+#: ui/devhelp2.glade.h:23
+msgid "Title:"
+msgstr "Tựa đề:"
+
+#: ui/devhelp2.glade.h:24
+msgid "Version:"
+msgstr "Phiên bản:"
+
+#: ui/devhelp2.glade.h:25
+msgid "View"
+msgstr "Xem"
+
+#: ui/devhelp2.glade.h:26
+msgid "Visible"
+msgstr "Khả kiến"
+
+#: ui/devhelp2.glade.h:27
+msgid "_Edit book..."
+msgstr "_Sửa sách..."
+
+#: ui/devhelp2.glade.h:28
+msgid "_Hide >>"
+msgstr "Ẩ_n >>"
+
+#: ui/devhelp2.glade.h:29
+msgid "_Limit the number of hits to:"
+msgstr "_Giới hạn số lần tìm trúng:"
+
+#: ui/devhelp2.glade.h:30
+msgid "_Text size: "
+msgstr "_Cỡ text: "
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
@@ -239,87 +356,3 @@ msgstr "Mở hộp thoại Bộ quản lý sách"
 
 #~ msgid "(C) Copyright 2001, Johan Dahlin"
 #~ msgstr "(C) Copyright 2001, Johan Dahlin"
-
-#~ msgid "Couldn't open uri: %s"
-#~ msgstr "Không thể mở URI: %s"
-
-#~ msgid "Print Help"
-#~ msgstr "In trợ giúp"
-
-#~ msgid "Print Preview"
-#~ msgstr "Xem trước bản in"
-
-#~ msgid "Printing failed."
-#~ msgstr "Quá trình in thất bại."
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "<< _Show"
-#~ msgstr "<< _Hiện"
-
-#~ msgid "Author:"
-#~ msgstr "Tác giả:"
-
-#~ msgid "Book info"
-#~ msgstr "Thông tin sách"
-
-#~ msgid "Bookmarks"
-#~ msgstr "Bookmark"
-
-#~ msgid "DevHelp Book Manager"
-#~ msgstr "Bộ quản lý sách DevHelp"
-
-#~ msgid "DevHelp Preferences"
-#~ msgstr "Thông số DevHelp"
-
-#~ msgid "Hidden"
-#~ msgstr "Ẩn"
-
-#~ msgid "Install new book..."
-#~ msgstr "Cài đặt sách mới..."
-
-#~ msgid "Move down"
-#~ msgstr "Chuyển xuống"
-
-#~ msgid "Move up"
-#~ msgstr "Chuyển lên"
-
-#~ msgid "Name:"
-#~ msgstr "Tên:"
-
-#~ msgid "Path:"
-#~ msgstr "Đường dẫn:"
-
-#~ msgid "Remove"
-#~ msgstr "Loại bỏ"
-
-#~ msgid "Search"
-#~ msgstr "Tìm kiếm"
-
-#~ msgid "Show _sidebar"
-#~ msgstr "Hiện Thanh bên"
-
-#~ msgid "Title:"
-#~ msgstr "Tựa đề:"
-
-#~ msgid "Version:"
-#~ msgstr "Phiên bản:"
-
-#~ msgid "View"
-#~ msgstr "Xem"
-
-#~ msgid "Visible"
-#~ msgstr "Khả kiến"
-
-#~ msgid "_Edit book..."
-#~ msgstr "_Sửa sách..."
-
-#~ msgid "_Hide >>"
-#~ msgstr "Ẩ_n >>"
-
-#~ msgid "_Limit the number of hits to:"
-#~ msgstr "_Giới hạn số lần tìm trúng:"
-
-#~ msgid "_Text size: "
-#~ msgstr "_Cỡ text: "
