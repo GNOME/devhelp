@@ -33,6 +33,7 @@
 
 struct _DhHtmlPriv {
 	GtkWidget    *widget;
+	GtkWidget    *scrolled_window;
 	
         HtmlDocument *doc;
 	gchar        *base_url;
@@ -139,15 +140,19 @@ html_init (DhHtml *html)
         
         priv = g_new0 (DhHtmlPriv, 1);
 
-	priv->widget       = html_view_new ();
+	priv->widget          = html_view_new ();
+	priv->scrolled_window = gtk_scrolled_window_new(NULL, NULL);
 
-        priv->doc          = html_document_new ();
-        priv->base_url     = NULL;
-	priv->active       = FALSE;
-	priv->first        = TRUE;
-	priv->stamp_mutex  = g_mutex_new ();
-	priv->thread_queue = g_async_queue_new ();
-	
+        priv->doc             = html_document_new ();
+        priv->base_url        = NULL;
+	priv->active          = FALSE;
+	priv->first           = TRUE;
+	priv->stamp_mutex     = g_mutex_new ();
+	priv->thread_queue    = g_async_queue_new ();
+
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(priv->scrolled_window),
+				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_container_add(GTK_CONTAINER(priv->scrolled_window), priv->widget);
         html_view_set_document (HTML_VIEW (priv->widget), priv->doc);
         
         g_signal_connect (G_OBJECT (priv->doc), "link_clicked",
@@ -623,5 +628,5 @@ dh_html_get_widget (DhHtml *html)
 {
 	g_return_val_if_fail (DH_IS_HTML (html), NULL);
 	
-	return html->priv->widget;
+	return html->priv->scrolled_window;
 }

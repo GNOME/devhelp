@@ -1,3 +1,10 @@
+2003-02-19  James Henstridge  <james@daa.com.au>
+
+	* src/dh-html-gtkhtml2.c (html_init): put the html widget in a
+	scrolled window, so that the GtkHTML2 view will be scrollable.
+	(dh_html_get_widget): return the scrolled window instead of the
+	html widget.
+
 2003-02-19  Dmitry G. Mastrukov  <dmitry@taurussoft.org>
 
 	* configure.in: Added Belarusian to ALL_LINGUAS.
