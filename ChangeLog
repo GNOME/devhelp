@@ -1,5 +1,7 @@
 2002-11-04  Mikael Hallendal  <micke@codefactory.se>
 
+	* configure.in: style fixes, thanks rhult.
+
 	* hack-macros/*: Removed, not used anymore.
 
 2002-11-04  Richard Hult  <rhult@codefactory.se>
