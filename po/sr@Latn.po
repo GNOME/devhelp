@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 2.2\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-05-05 21:30+0100\n"
+"POT-Creation-Date: 2003-08-13 14:08+0200\n"
+"PO-Revision-Date: 2003-08-13 14:07+0200\n"
 "Last-Translator: Branko Ivanović <popeye@one.ekof.bg.ac.yu>\n"
 "Language-Team: Serbian (sr)  <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,85 +19,84 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
-msgstr "Program pomoći programerima "
+msgstr "Program za pomoć programerima"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
-msgstr "Devhelp"
+msgstr "DevHelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "Devhelp"
+msgstr "DevHelp knjiga"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
+"Izaberite temu iz sadržaja sa leve strane ili prebacite na list za pretragu "
+"da biste našli ono što tražite."
 
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "Odredite veličinu i mesto prozora"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "ŠIRINAxVISINA+VODORAVNO+HORIZONTALNO"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Traži funkciju"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
-msgstr "Zatvori sve Devhelp prozore"
+msgstr "Zatvori sve DevHelp prozore"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Očekivao je „%s“, a dobio „%s“ u liniji %d, koloni %d"
 
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Neispravan prostor imena „%s“ u liniji %d, koloni %d"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "elementi za naslov, ime i vezu su obavezni u liniji %d, koloni %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "elementi za ime i vezu su obavezni unutar <sub> u liniji %d, koloni %d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
+"elementi za ime i vezu su obavezni unutar <function> u liniji %d, koloni %d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
-msgstr ""
+msgstr "Ne može da obrazuje obrađivača knjige"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Ne može da obrazuje obrađivača oznaka"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Ne može da dekompresuje knjigu „%s“: %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Traži"
+msgstr "_Traži:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -109,7 +108,7 @@ msgstr "_Datoteka"
 
 #: src/dh-window.c:102
 msgid "_Go"
-msgstr "_Kreni"
+msgstr "_Idi"
 
 #: src/dh-window.c:103
 msgid "_Help"
@@ -125,15 +124,15 @@ msgstr "Traži"
 
 #: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
-msgstr "Gnom 2 pretraživač pomoćne dokumentacije namenjen programere"
+msgstr "Čitač pomoći za programere u okruženju Gnom 2"
 
 #: src/dh-window.c:430
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Stranica projekta DevHelp"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
+msgstr "Prijava greške u DevHelpu"
 
 #~ msgid "_Search for:"
 #~ msgstr "Traži:"
@@ -149,5 +148,5 @@ msgstr ""
 #~ msgstr ""
 #~ "Izaberi temu iz sadržaja na levoj strani ili pređi u deo za pretragu kako "
 #~ "bi našao ono što tražiš. <p>Koristi <b>Shift+gore/dole</b> za kretanje po "
-#~ "stablu na levoj strani <b>Shift+levo/desno</b> za proširivanje i "
-#~ "skupljanje liste u okviru stabla."
+#~ "stablu na levoj strani <b>Shift+levo/desno</b> za proširivanje i skupljanje "
+#~ "liste u okviru stabla."
