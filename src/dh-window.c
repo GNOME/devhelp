@@ -30,6 +30,7 @@
 #include <gtk/gtkvbox.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
+#include <libgnomeui/gnome-href.h>
 #include <libgnomeui/gnome-stock-icons.h>
 #include <libegg/menu/egg-menu-merge.h>
 
@@ -406,6 +407,9 @@ window_activate_action (EggAction *action, DhWindow *window)
 		};
 
 		if (!about) {
+			GtkWidget *hbox;
+			GtkWidget *href;
+			
 			about = gnome_about_new ("Devhelp", VERSION,
 						 "",
 						 _("A developer's help browser for GNOME 2"),
@@ -419,8 +423,19 @@ window_activate_action (EggAction *action, DhWindow *window)
 					  "destroy",
 					  G_CALLBACK (gtk_widget_destroyed),
 					  &about);
-
-			gtk_widget_show (about);
+			hbox = gtk_hbox_new (FALSE, 0);
+			gtk_box_pack_start (GTK_BOX (GTK_DIALOG (about)->vbox),
+					    hbox, FALSE, FALSE, 0);
+			href = gnome_href_new ("http://www.imendio.com/projects/devhelp/",
+					       _("Devhelp project page"));
+			gtk_box_pack_start (GTK_BOX (hbox), href, 
+					    TRUE, TRUE, 0);
+			href = gnome_href_new ("http://bugzilla.gnome.org/",
+					       _("Bug report Devhelp"));
+			gtk_box_pack_start (GTK_BOX (hbox), href,
+					    TRUE, TRUE, 0);
+			
+			gtk_widget_show_all (about);
 		} else {
 			gtk_window_present (GTK_WINDOW (about));
 		}

@@ -1,3 +1,8 @@
+2003-06-28  Mikael Hallendal  <micke@imendio.com>
+
+	* src/dh-window.c: 
+	* (window_activate_action): Added link to project page in about dialog.
+
 2003-06-28  Richard Hult  <richard@imendio.com>
 
 	* src/dh-base.c (base_init_books): Use g_get_home_dir and
