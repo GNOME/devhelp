@@ -78,9 +78,6 @@
         <menuitem name="FileExit"     verb="CmdExit"    accel="*Control*q"  />
      </submenu>
 
-     <submenu name="Edit" _label="_Edit">
-     </submenu>
-
      <submenu name="View" _label="_View">
         <menuitem name="ViewSideBar"    verb="CmdViewSideBar" />
         <separator />

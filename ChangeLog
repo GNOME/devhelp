@@ -1,5 +1,7 @@
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
+	* ui/GNOME_DevHelp.ui: removed Edit-menu
+
 	* src/devhelp-controller.c:
 	(devhelp_controller_open): call devhelp_controller_emit_uri from
 	  here. 
