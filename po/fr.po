@@ -1,23 +1,24 @@
 # French translation of devhelp.
 # Copyright (C) 2001-2004 Free Software Foundation, Inc.
-# This file is under the same license as the devhelp package.
+# This file is distributed under the GNU General Public License Version 2.
 #
 # maintainer: Christophe Fergeau <christophe.fergeau@laposte.net>, 2001.
 # Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2002-2004.
 # Laurent RICHARD <laurent.richard@lilit.be>, 2003.
 # Sebastien Bacher <seb128@debian.org>, 2003.
+# Thierry Moisan <thierryn@videotron.ca>
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.8.99\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2004-02-29 00:56+0100\n"
-"Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
+"Project-Id-Version: devhelp 0.9.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-09-11 00:45+0200\n"
+"PO-Revision-Date: 2004-09-11 00:29+0200\n"
+"Last-Translator: Thierry Moisan <thierryn@videotron.ca>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -31,83 +32,19 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Gestionnaire de livres Devhelp"
 
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
-
-#: src/dh-main.c:259
+#: src/dh-main.c:81
 msgid "Specify the size and location of the window"
 msgstr "Spécifier la taille et la position de la fenêtre"
 
-#: src/dh-main.c:260
+#: src/dh-main.c:82
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "LARGEURxHAUTEUR+POSX+POSY"
 
-#: src/dh-main.c:268
+#: src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Rechercher une fonction"
 
-#: src/dh-main.c:277
+#: src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Quitter tous les Devhelp en cours de fonctionnement"
 
@@ -164,82 +101,147 @@ msgstr "_Rechercher :"
 msgid "Section"
 msgstr "Section"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:120
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:121
 msgid "_Edit"
-msgstr ""
+msgstr "_Édition"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: src/dh-window.c:122 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "A_ller"
 
-#: src/dh-window.c:114
+#: src/dh-window.c:123
 msgid "_Help"
 msgstr "_Aide"
 
-#: src/dh-window.c:292
+#: src/dh-window.c:307
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Impossible de définir l'UI : %s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: src/dh-window.c:367 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Sommaire"
 
-#: src/dh-window.c:363
+#: src/dh-window.c:378
 msgid "Search"
 msgstr "Rechercher"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:461
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un navigateur d'aide pour les développeurs GNOME 2"
 
-#: src/dh-window.c:462
+#: src/dh-window.c:477
 msgid "Devhelp project page"
 msgstr "Page du projet Devhelp"
 
-#: src/dh-window.c:466
+#: src/dh-window.c:481
 msgid "Bug report Devhelp"
 msgstr "Signaler une anomalie sur Devhelp "
 
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Police de caratères pour texte fixe"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Police de caratères pour texte"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Police de caractères à largeur fixe."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Police de caractères à largeur vraiable."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "La hauteur de la fenêtre principale"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Emplacement de la fenêtre"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "État maximisée de la fenêtre principale"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "La position X the la fenêtre principale."
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "La position Y de la fenêtre principale."
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "La hauteur de la fenêtre principale."
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "L'emplacement du séparateur de fenêtre."
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "La largeur de la fenêtre principale."
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Utiliser les polices de caractères du système"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Utiliser les polices de caractères par défaut du système."
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Si la fenêtre principale devrait démarrer maximisée ou non."
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Largeur de la fenêtre principale"
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Position X de la fenêtre principale"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Position Y the la fenêtre principale"
+
 #: ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Polices de caractères</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "Largeur fixe :"
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
-msgstr ""
+msgstr "Préférences"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "Largeur variable :"
 
 #: ui/devhelp.glade.h:8
 msgid "_Back"
-msgstr ""
+msgstr "_Retour"
 
 #: ui/devhelp.glade.h:9
 msgid "_Forward"
-msgstr ""
+msgstr "_Suivant"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search tab "
-#~ "to find what you are looking for."
-#~ msgstr ""
-#~ "Choisissez un sujet dans la table des matières à gauche, ou bien utilisez "
-#~ "le panneau de recherche pour trouver ce dont vous avez besoin."
+msgstr "_Utiliser les polices du système"
