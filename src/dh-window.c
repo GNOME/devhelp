@@ -23,6 +23,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <gtk/gtkhpaned.h>
 #include <gtk/gtklabel.h>
 #include <gtk/gtknotebook.h>
@@ -77,12 +78,6 @@ static void window_link_selected_cb          (GObject            *ignored,
 					      DhLink             *link,
 					      DhWindow           *window);
 
-static void window_on_url_cb                 (DhWindow           *window,
-					      gchar              *url,
-					      gpointer            ignored);
-
-static void window_note_change_page_cb       (GtkWidget          *child,
-					      GtkNotebook        *notebook);
 static void window_merge_add_widget          (EggMenuMerge       *merge,
 					      GtkWidget          *widget,
 					      DhWindow           *window);
@@ -338,14 +333,6 @@ window_populate (DhWindow *window)
 				  G_CALLBACK (window_open_url),
 				  window);
 
-	/* TODO: Look in gtkhtml2 code or ask jborg */
-#if 0
-	g_signal_connect_object (G_OBJECT (priv->html),
-				 "on_url",
-				 G_CALLBACK (window_on_url_cb),
-				 G_OBJECT (window),
-				 0);
-#endif
 }
 
 static void
@@ -355,14 +342,26 @@ window_activate_action (EggAction *action, DhWindow *window)
 	const gchar  *name = action->name;
 	
 	g_return_if_fail (DH_IS_WINDOW (window));
+
+	priv = window->priv;
 	
 	if (strcmp (name, "QuitAction") == 0) {
 		gtk_main_quit ();
 		/* Quit */
 	}
 	else if (strcmp (name, "BackAction") == 0) {
+		gchar *uri = dh_history_go_back (priv->history);
+		if (uri) {
+			dh_html_open_uri (priv->html, uri);
+			g_free (uri);
+		}
 	}
 	else if (strcmp (name, "ForwardAction") == 0) {
+		gchar *uri = dh_history_go_forward (priv->history);
+		if (uri) {
+			dh_html_open_uri (priv->html, uri);
+			g_free (uri);
+		}
 	}
 	else if (strcmp (name, "AboutAction") == 0) {
 		GtkWidget *about;
@@ -428,31 +427,6 @@ window_link_selected_cb (GObject *ignored, DhLink *link, DhWindow *window)
 	if (window_open_url (window, link->uri)) {
 		dh_history_goto (priv->history, link->uri);
 	}
-}
-
-static void
-window_on_url_cb (DhWindow *window, gchar *url, gpointer ignored)
-{
-	DhWindowPriv *priv;
-	gchar        *status_text;
-	
-	g_return_if_fail (window != NULL);
-	g_return_if_fail (DH_IS_WINDOW (window));
-	
-	priv = window->priv;
-
-	if (url) {
-		status_text = g_strdup_printf (_("Open %s"), url);
-		g_free (status_text);
-	}
-}
-
-static void
-window_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
-{
-	gint page = gtk_notebook_page_num (notebook, child);
-
-	gtk_notebook_set_page (notebook, page);
 }
 
 static void

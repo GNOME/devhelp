@@ -1,5 +1,10 @@
 2003-02-15  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/dh-window.c:
+	- Fixed a number of compile warnings.
+	(window_activate_action): 
+	- actually do something when forward/back are pressed.
+
 	* configure.in: added warnings
 
 	* src/dh-search.c (search_filter_idle): 
