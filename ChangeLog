@@ -1,5 +1,8 @@
 2002-02-25  José Fonseca  <j_r_fonseca@yahoo.co.uk>
 
+	* src/book.c (book_parse_sub): check to see if correct node before
+	  start parsing sub-chapter.
+
 	* src/Makefile.am: added BONOBOX_CFLAGS/LIBS
 
 	* configure.in (BONOBOX_LIBS): added.
