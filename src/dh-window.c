@@ -201,6 +201,8 @@ window_init (DhWindow *window)
 			  window);
 
 	priv->action_group = gtk_action_group_new ("MainWindow");
+
+	gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
 	
 	gtk_action_group_add_actions (priv->action_group,
 				      actions,
@@ -284,6 +286,8 @@ window_populate (DhWindow *window)
 		g_error_free (error);
 	}
 
+	gtk_ui_manager_ensure_update (priv->manager);
+	
         priv->hpaned    = gtk_hpaned_new ();
         priv->notebook  = gtk_notebook_new ();
 	priv->html      = dh_html_new ();
