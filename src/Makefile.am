@@ -1,6 +1,6 @@
 NULL =
 INCLUDES = 						\
-	-I$(top_srdir) 					\
+	-I$(top_srcdir) 				\
 	-I$(top_builddir) 				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DDATA_DIR=\"$(datadir)\"			\
