@@ -37,7 +37,7 @@ EXTRA_DIST =			\
 	idl/GNOME_DevHelp.idl	\
 	$(NULL)
 
-Develdir = $(datadir)/gnome/apps/Development
+Develdir = $(datadir)/applications
 Devel_DATA = $(DESKTOP_FILES)
 
 dist-hook: devhelp.spec

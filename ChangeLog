@@ -1,3 +1,9 @@
+2002-10-16  Ross Burton  <ross@burtonini.com>
+
+	* Makefile.am (Develdir): Use the new location for .desktop files.
+
+	* devhelp.desktop.in: Add Encoding and Categories tags.
+
 2002-10-01  Peteris Krisjanis <peteris.krisjanis@os.lv>
 
 	* configure.in: Added Latvian (lv) to ALL_LINGUAS
