@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2002 CodeFactory AB
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2003 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,6 +24,7 @@
 
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
+#include <libgtkhtml/gtkhtml.h>
 
 #include "dh-util.h"
 #include "dh-html.h"
@@ -31,6 +32,8 @@
 #define d(x) 
 
 struct _DhHtmlPriv {
+	GtkWidget    *widget;
+	
         HtmlDocument *doc;
 	gchar        *base_url;
 	
@@ -121,7 +124,7 @@ dh_html_get_type (void)
                                 (GInstanceInitFunc) html_init,
                         };
                 
-                type = g_type_register_static (HTML_TYPE_VIEW,
+                type = g_type_register_static (G_TYPE_OBJECT,
 					       "DhHtml", 
 					       &info, 0);
         }
@@ -136,6 +139,8 @@ html_init (DhHtml *html)
         
         priv = g_new0 (DhHtmlPriv, 1);
 
+	priv->widget       = html_view_new ();
+
         priv->doc          = html_document_new ();
         priv->base_url     = NULL;
 	priv->active       = FALSE;
@@ -143,7 +148,7 @@ html_init (DhHtml *html)
 	priv->stamp_mutex  = g_mutex_new ();
 	priv->thread_queue = g_async_queue_new ();
 	
-        html_view_set_document (HTML_VIEW (html), priv->doc);
+        html_view_set_document (HTML_VIEW (priv->widget), priv->doc);
         
         g_signal_connect (G_OBJECT (priv->doc), "link_clicked",
                           G_CALLBACK (html_link_clicked_cb), html);
@@ -316,19 +321,18 @@ html_idle_check_queue (ReaderThreadData *th_data)
 	case READER_QUEUE_TYPE_FINISHED:
 		if (!priv->first) {
 			html_document_close_stream (priv->doc);
-			gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (html)),
+			gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (priv->widget)),
 						  0);
 		}
 
 		if (q_data->anchor) {
 			d(g_print ("Jumping to anchor: %s\n", q_data->anchor));
 			
-			html_view_jump_to_anchor (HTML_VIEW (q_data->html),
+			html_view_jump_to_anchor (HTML_VIEW (q_data->html->priv->widget),
 						  q_data->anchor);
 		}
 
-		gdk_window_set_cursor (GTK_WIDGET (html)->window, NULL);
-/* 		gtk_widget_grab_focus (GTK_WIDGET (html)); */
+		gdk_window_set_cursor (priv->widget->window, NULL);
 		break;
 	default:
 		g_assert_not_reached ();
@@ -499,7 +503,7 @@ html_get_full_uri (DhHtml *html, const gchar *url)
 	return g_strdup (url);
 }
 
-GtkWidget *
+DhHtml *
 dh_html_new (void)
 {
         DhHtml     *html;
@@ -527,7 +531,7 @@ dh_html_new (void)
         
 	html_document_close_stream (priv->doc);
 
-        return GTK_WIDGET (html);
+        return html;
 }
 
 void
@@ -557,7 +561,7 @@ dh_html_open_uri (DhHtml      *html,
  		if (g_ascii_strcasecmp (priv->base_url, url) == 0 &&
  		    priv->first != TRUE) {
  			if (anchor) {
- 				html_view_jump_to_anchor (HTML_VIEW (html),
+ 				html_view_jump_to_anchor (HTML_VIEW (priv->widget),
  							  anchor);
  			} else {
 				gtk_adjustment_set_value (gtk_layout_get_vadjustment (GTK_LAYOUT (html)),
@@ -604,7 +608,7 @@ dh_html_open_uri (DhHtml      *html,
 
 	cursor = gdk_cursor_new (GDK_WATCH);
 	
-	gdk_window_set_cursor (GTK_WIDGET (html)->window, cursor);
+	gdk_window_set_cursor (priv->widget->window, cursor);
 	gdk_cursor_unref (cursor);
 	
 	g_thread_create_full ((GThreadFunc) html_reader_thread, th_data,
@@ -612,4 +616,12 @@ dh_html_open_uri (DhHtml      *html,
 			      TRUE,
 			      FALSE, G_THREAD_PRIORITY_NORMAL,
 			      NULL);
+}
+
+GtkWidget *
+dh_html_get_widget (DhHtml *html)
+{
+	g_return_val_if_fail (DH_IS_HTML (html), NULL);
+	
+	return html->priv->widget;
 }

@@ -12,6 +12,8 @@ AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
 
+AC_ARG_WITH(html-widget, [  --with-html-widget=[gtkhtml2/mozilla] html widget to use])
+
 
 PKG_CHECK_MODULES(DEVHELP, [
 	gtk+-2.0 >= 2.0.0])
@@ -23,7 +25,17 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
 	gnome-vfs-2.0 >= 2.0.0
 	libxml-2.0 >= 2.4.10
 	libglade-2.0 >= 2.0.0
-	libgtkhtml-2.0 >= 2.0.0])
+])
+
+
+if test x$with_html_widget = xmozilla; then
+	PKG_CHECK_MODULES(HTML_WIDGET, mozilla-gtkmozembed)
+else
+	PKG_CHECK_MODULES(HTML_WIDGET, libgtkhtml-2.0 >= 2.1.2)
+fi
+
+CFLAGS="$HTML_WIDGET_CFLAGS $CFLAGS"
+AM_CONDITIONAL(HTML_WIDGET_MOZILLA, test x$with_html_widget = xmozilla)
 
 PKG_CHECK_MODULES(EGG, [gtk+-2.0 >= 2.0.0])
 

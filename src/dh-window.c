@@ -51,6 +51,8 @@ struct _DhWindowPriv {
 	GtkWidget      *search;
 	GtkWidget      *html_view;
 
+	DhHtml         *html;
+
 	EggMenuMerge   *merge;
 	EggActionGroup *action_group;
 };
@@ -245,7 +247,9 @@ window_populate (DhWindow *window)
 
         priv->hpaned    = gtk_hpaned_new ();
         priv->notebook  = gtk_notebook_new ();
-	priv->html_view = dh_html_new ();
+	priv->html      = dh_html_new ();
+	priv->html_view = dh_html_get_widget (priv->html);
+	
 	html_sw         = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (html_sw),
 					GTK_POLICY_AUTOMATIC,
@@ -262,8 +266,10 @@ window_populate (DhWindow *window)
 
 	gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
 	
- 	gtk_container_add (GTK_CONTAINER (html_sw), priv->html_view);
-
+/*  	gtk_container_add (GTK_CONTAINER (html_sw), priv->html_view); */
+	gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (html_sw),
+					       priv->html_view);
+	
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
@@ -327,14 +333,14 @@ window_populate (DhWindow *window)
 
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 0);
 
- 	g_signal_connect_swapped (HTML_VIEW (priv->html_view),
+ 	g_signal_connect_swapped (priv->html, 
 				  "uri_selected", 
 				  G_CALLBACK (window_open_url),
 				  window);
 
 	/* TODO: Look in gtkhtml2 code or ask jborg */
 #if 0
-	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_view)->document),
+	g_signal_connect_object (G_OBJECT (priv->html),
 				 "on_url",
 				 G_CALLBACK (window_on_url_cb),
 				 G_OBJECT (window),
@@ -403,7 +409,7 @@ window_open_url (DhWindow *window, const gchar *url)
 
 	priv = window->priv;
 
-	dh_html_open_uri (DH_HTML (priv->html_view), url);
+	dh_html_open_uri (priv->html, url);
 	dh_book_tree_show_uri (DH_BOOK_TREE (priv->book_tree), url);
 
 	return TRUE;
@@ -553,3 +559,4 @@ dh_window_search (DhWindow *window, const gchar *str)
 
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 1);
 }
+

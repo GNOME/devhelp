@@ -1,5 +1,22 @@
 2003-02-15  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/dh-window.c: 
+	- updated to changes when DhHtml is no longer a subclass of
+	  HtmlView.
+
+	* src/dh-html-mozilla.c: 
+	- added
+	- used when compiled with --with-html-widget=mozilla
+
+	* src/dh-html-gtkhtml2.c: 
+	- The old dh-html.c
+	- Don't subclass HtmlView
+	- Added dh_html_get_widget
+	- This is used if not compiled with --with-html-widget=mozilla
+
+	* configure.in: added support to compile
+	  --with-html-widget=mozilla (works great with this!)
+
 	* src/dh-search.c (search_entry_key_press_event_cb): 
 	- Added, don't move focus when hitting tab in search entry.
 	- Move to hit list when Ctrl+tab.

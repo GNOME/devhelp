@@ -13,6 +13,12 @@ INCLUDES = 						\
 	@LIBDEVHELP_CFLAGS@ 				\
 	$(NULL)
 
+if HTML_WIDGET_MOZILLA
+html_widget_impl=dh-html-mozilla.c
+else
+html_widget_impl=dh-html-gtkhtml2.c
+endif
+
 bin_PROGRAMS = devhelp-2 
 
 devhelp_2_SOURCES = 				\
@@ -38,7 +44,7 @@ libdevhelp2_la_SOURCES =			\
 	dh-error.h				\
 	dh-history.c                            \
 	dh-history.h                            \
-	dh-html.c				\
+	$(html_widget_impl) 			\
 	dh-html.h				\
 	dh-keyword-model.c			\
 	dh-keyword-model.h			\
@@ -55,6 +61,7 @@ libdevhelp2_la_SOURCES =			\
 
 libdevhelp2_la_LIBADD =				\
 	@LIBDEVHELP_LIBS@			\
+	@HTML_WIDGET_LIBS@			\
 	$(top_builddir)/libegg/menu/libegg-menu.la
 
 libdevhelp2_la_LDFLAGS = -avoid-version -module

@@ -22,10 +22,8 @@
 #ifndef __DH_HTML_H__
 #define __DH_HTML_H__
 
-#include <gtk/gtkobject.h>
-#include <gtk/gtktypeutils.h>
-#include <gtk/gtkmarshal.h>
-#include <libgtkhtml/gtkhtml.h>
+#include <glib-object.h>
+#include <gtk/gtkwidget.h>
 
 #define DH_TYPE_HTML        (dh_html_get_type ())
 #define DH_HTML(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_HTML, DhHtml))
@@ -38,13 +36,13 @@ typedef struct _DhHtmlClass   DhHtmlClass;
 typedef struct _DhHtmlPriv    DhHtmlPriv;
 
 struct _DhHtml {
-	HtmlView       parent;
-	
+	GObject        parent;
+
 	DhHtmlPriv    *priv;
 };
 
 struct _DhHtmlClass {
-        HtmlViewClass    parent_class;
+        GObjectClass   parent_class;
 
 	/* Signals */
 	void (*uri_selected) (DhHtml *html,
@@ -52,10 +50,11 @@ struct _DhHtmlClass {
 };
 
 GType           dh_html_get_type       (void);
-GtkWidget      *dh_html_new            (void);
+DhHtml         *dh_html_new            (void);
  
 void            dh_html_open_uri       (DhHtml        *html,
 					const gchar   *uri);
+GtkWidget *     dh_html_get_widget     (DhHtml        *html);
 
 #endif /* __DH_HTML_H__ */
 
