@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp cvs\n"
-"POT-Creation-Date: 2003-02-25 19:34+0100\n"
-"PO-Revision-Date: 2003-02-25 22:04--100\n"
+"POT-Creation-Date: 2003-03-04 04:31+0100\n"
+"PO-Revision-Date: 2003-03-04 11:19--100\n"
 "Last-Translator: Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,11 +22,11 @@ msgstr "DevHulp"
 msgid "Developers Help program"
 msgstr "Hulpprogramma voor ontwikkelaars"
 
-#: src/dh-main.c:242
+#: src/dh-main.c:262
 msgid "Search for a function"
 msgstr "Functie opzoeken"
 
-#: src/dh-main.c:251
+#: src/dh-main.c:271
 msgid "Quit any running Devhelp"
 msgstr "Alle actieve DevHulp-processen afsluiten"
 
@@ -79,3 +79,14 @@ msgstr "Zoeken"
 #: src/dh-window.c:378
 msgid "A developer's help browser for GNOME 2"
 msgstr "Een GNOME 2 hulpprogramma voor ontwikkelaars"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Kies een onderwerp uit de inhoud of gebruik het zoekpaneel.<p>Gebruik "
+"<b>shift omhoog/omlaag</b> om langs de boom te navigeren en <b>shift links/"
+"rechts</b> om de boeken in of uit te klappen."
