@@ -1,3 +1,7 @@
+2001-08-22  Mikael Hallendal  <micke@codefactory.se>
+
+	* misc/devhelp.vim: remove -f here to.
+
 2001-08-22  Richard Hult  <rhult@codefactory.se>
 
 	* misc/devhelp.el (devhelp-word-at-point): Don't use -f, it's

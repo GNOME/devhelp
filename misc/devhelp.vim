@@ -3,7 +3,7 @@
 " -- Gert
 function! DevHelpCurrentWord()
 	let word = expand("<cword>")
-	exe "!devhelp -f -s " . word
+	exe "!devhelp -s " . word
 endfunction
 
 " Example: bind <ESC>h to start devhelp and search for the word under the
