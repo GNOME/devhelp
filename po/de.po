@@ -1,12 +1,13 @@
 # German translation for devhelper.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Christian Meyer <chrisime@gnome.org>, 2001.
+# Christian Neumair <chris@gnome-de.org>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelper HEAD\n"
-"POT-Creation-Date: 2002-09-19 19:53+0200\n"
-"PO-Revision-Date: 2002-09-19 19:53+0100\n"
+"POT-Creation-Date: 2002-11-28 14:17+0100\n"
+"PO-Revision-Date: 2002-11-27 08:56+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,56 +22,39 @@ msgstr "Hilfe-Browser für Entwickler"
 msgid "Developers Help program"
 msgstr "DevHelp - Ein Browser, der Entwickler bei der Arbeit unterstützt"
 
-#: src/GNOME_DevHelp.server.in.in.h:1
+#: src/GNOME_DevHelp.server.in.h:1
 msgid "DevHelp Controller"
 msgstr "DevHelp-Steuerung"
 
-#: src/GNOME_DevHelp.server.in.in.h:2
+#: src/GNOME_DevHelp.server.in.h:2
 msgid "DevHelp Controller Factory"
 msgstr "DevHelp-Steuerungsfabrik"
 
-#: src/GNOME_DevHelp.server.in.in.h:3
+#: src/GNOME_DevHelp.server.in.h:3
 msgid "DevHelp HelpBrowser"
-msgstr "DevHelp-Hilfe-Browser"
+msgstr "DevHelp Hilfe-Browser"
 
-#: src/GNOME_DevHelp.server.in.in.h:4
+#: src/GNOME_DevHelp.server.in.h:4
 msgid "DevHelp HelpBrowser Factory"
-msgstr "DevHelp-Hilfe-Browser-Fabrik"
+msgstr "DevHelp Hilfe-Browser-Fabrik"
 
-#: src/dh-bookshelf.c:185
+#: src/dh-book.c:110 src/dh-book.c:216
 #, c-format
-msgid "Problems when reading books: %s\n"
-msgstr "Probleme beim Einlesen der Bücher: %s\n"
+msgid "'%s' is not a valid book"
+msgstr "»%s« ist kein gültiges Buch"
 
-#: src/dh-bookshelf.c:233
+#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144 src/dh-book-old.c:234
+#: src/dh-book-old.c:245 src/dh-book-old.c:257
 #, c-format
-msgid "Empty document: %s"
-msgstr "Leeres Dokument: %s"
+msgid "Book '%s' is malformed."
+msgstr "Format des Buchs »%s« ist fehlerhaft."
 
-#: src/dh-bookshelf.c:239
+#: src/dh-book.c:224
 #, c-format
-msgid "Document wrong type, got %s, expected 'booklist': %s"
-msgstr "Falscher Dokumenttyp %s erhalten, »booklist« erwartet: %s"
+msgid "Couldn't find file '%s'"
+msgstr "Datei »%s« konnte nicht gefunden werden"
 
-#: src/dh-bookshelf.c:273
-#, c-format
-msgid ""
-"I found an old version of your spec file (%s)\n"
-"I removed it, so you have to hide the books you want to be hidden again."
-msgstr ""
-"Es wurde eine alte Version Ihrer .spec-Datei »%s« gefunden.\n"
-"Sie wurde entfernt. Sie müssen die zu verbergenden Bücher nochmals verbergen."
-
-#: src/dh-bookshelf.c:278
-msgid "Ok"
-msgstr "OK"
-
-#: src/dh-bookshelf.c:457
-#, c-format
-msgid "Failed to open file %s for writing."
-msgstr "Datei »%s« konnte nicht zum Schreiben geöffnet werden"
-
-#: src/dh-view.c:487
+#: src/dh-html.c:517
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
@@ -82,196 +66,52 @@ msgstr ""
 "b> um durch den Baum in der linken Fläche zu navigieren und <b>Umschalt + "
 "Links/Rechts</b>, um die Bücher im Baum ein- bzw. auszuklappen."
 
-#: src/dh-window.c:298
-msgid "_Contents"
-msgstr "I_nhalt"
-
-#: src/dh-window.c:309
-msgid "_Search"
-msgstr "_Suchen"
-
-#: src/dh-window.c:383
-msgid "A developer's help browser for GNOME 2"
-msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
-
-#: src/dh-window.c:457
-#, c-format
-msgid "Open %s"
-msgstr "%s öffnen"
-
-#: src/main.c:79
-#, c-format
-msgid "Could not activate devhelp: '%s'"
-msgstr "DevHelp konnte nicht aktiviert werden: »%s«"
-
-#: src/main.c:88
-msgid "Could not search for string."
-msgstr "Nach Zeichenkette konnte nicht gesucht werden."
-
-#: src/main.c:128
+#: src/dh-main.c:243
 msgid "Search for a function"
 msgstr "Nach einer Funktion suchen"
 
-#: ui/GNOME_DevHelp.ui.h:1
-msgid "About this application"
-msgstr "IInfo zu dieser Anwendung"
+#: src/dh-main.c:252
+msgid "Quit any running Devhelp"
+msgstr "Alle laufenden Entwickler-Hilfe-Browser beenden"
 
-#: ui/GNOME_DevHelp.ui.h:2
-msgid "Print the html page"
-msgstr "Die HTML-Seite drucken"
+#: src/dh-search.c:325
+msgid "_Search for:"
+msgstr "_Suchen:"
 
-#: ui/GNOME_DevHelp.ui.h:3
-msgid "_About..."
-msgstr "_Info..."
+#: src/dh-search.c:362
+msgid "Section"
+msgstr "Abschnitt"
 
-#: ui/GNOME_DevHelp.ui.h:4
-msgid "_Exit"
-msgstr "_Beenden"
-
-#: ui/GNOME_DevHelp.ui.h:5
+#: src/dh-window.c:98
 msgid "_File"
 msgstr "_Datei"
 
-#: ui/GNOME_DevHelp.ui.h:6
+#: src/dh-window.c:99
+msgid "_Go"
+msgstr "_Gehe"
+
+#: src/dh-window.c:100
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: ui/GNOME_DevHelp.ui.h:7
-msgid "_Print"
-msgstr "_Drucken"
+#. About menu
+#: src/dh-window.c:113
+msgid "_About"
+msgstr "_Info"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:1
-msgid "Back"
-msgstr "Zurück"
+#: src/dh-window.c:284
+msgid "Contents"
+msgstr "Inhalt"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:2
-msgid "Forward"
-msgstr "Vorwärts"
-
-#: ui/GNOME_DevHelp_Controller.ui.h:3
-msgid "Go to next page in the history"
-msgstr "Zur nächsten Seite in der Chronik gehen"
-
-#: ui/GNOME_DevHelp_Controller.ui.h:4
-msgid "Go to previous page in the history"
-msgstr "Zur vorherigen Seite in der Chronik gehen"
-
-#: ui/devhelp2.glade.h:1
-msgid " "
-msgstr " "
-
-#: ui/devhelp2.glade.h:2
-msgid "<< _Show"
-msgstr " << _Zeigen"
-
-#: ui/devhelp2.glade.h:3
-msgid "Author:"
-msgstr "Autor:"
-
-#: ui/devhelp2.glade.h:4
-msgid "Book info"
-msgstr "Infos zum Buch"
-
-#: ui/devhelp2.glade.h:5
-msgid "Bookmarks"
-msgstr "Lesezeichen"
-
-#: ui/devhelp2.glade.h:6
-msgid "DevHelp Book Manager"
-msgstr "DevHelp - Buchverwaltung"
-
-#: ui/devhelp2.glade.h:7
-msgid "DevHelp Preferences"
-msgstr "DevHelp - Einstellungen"
-
-#: ui/devhelp2.glade.h:8
-msgid "Hidden"
-msgstr "Verborgen"
-
-#: ui/devhelp2.glade.h:9
-msgid "Huge"
-msgstr "Sehr Groß"
-
-#: ui/devhelp2.glade.h:10
-msgid "Install new book..."
-msgstr "Neues Buch installieren..."
-
-#: ui/devhelp2.glade.h:11
-msgid "Large"
-msgstr "Groß"
-
-#: ui/devhelp2.glade.h:12
-msgid "Medium"
-msgstr "Mittelgroß"
-
-#: ui/devhelp2.glade.h:13
-msgid "Move down"
-msgstr "Runter"
-
-#: ui/devhelp2.glade.h:14
-msgid "Move up"
-msgstr "Rauf"
-
-#: ui/devhelp2.glade.h:15
-msgid "Name:"
-msgstr "Name:"
-
-#: ui/devhelp2.glade.h:16
-msgid "Path:"
-msgstr "Pfad:"
-
-#: ui/devhelp2.glade.h:17
-msgid "Remove"
-msgstr "Entfernen"
-
-#: ui/devhelp2.glade.h:18
-msgid "Reset to defaults"
-msgstr "Auf Vorgaben zurücksetzen"
-
-#: ui/devhelp2.glade.h:19
+#: src/dh-window.c:295
 msgid "Search"
 msgstr "Suchen"
 
-#: ui/devhelp2.glade.h:20
-msgid "Show _sidebar"
-msgstr "_Seitenleiste zeigen"
+#: src/dh-window.c:352
+msgid "A developer's help browser for GNOME 2"
+msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
 
-#: ui/devhelp2.glade.h:21
-msgid "Small"
-msgstr "Klein"
-
-#: ui/devhelp2.glade.h:22
-msgid "Tiny"
-msgstr "Sehr Klein"
-
-#: ui/devhelp2.glade.h:23
-msgid "Title:"
-msgstr "Titel:"
-
-#: ui/devhelp2.glade.h:24
-msgid "Version:"
-msgstr "Version:"
-
-#: ui/devhelp2.glade.h:25
-msgid "View"
-msgstr "Ansicht"
-
-#: ui/devhelp2.glade.h:26
-msgid "Visible"
-msgstr "Sichtbar"
-
-#: ui/devhelp2.glade.h:27
-msgid "_Edit book..."
-msgstr "Buch _bearbeiten..."
-
-#: ui/devhelp2.glade.h:28
-msgid "_Hide >>"
-msgstr "_Verbergen >>"
-
-#: ui/devhelp2.glade.h:29
-msgid "_Limit the number of hits to:"
-msgstr "Treffer _begrenzen auf:"
-
-#: ui/devhelp2.glade.h:30
-msgid "_Text size: "
-msgstr "_Textgröße: "
+#: src/dh-window.c:418
+#, c-format
+msgid "Open %s"
+msgstr "%s öffnen"
