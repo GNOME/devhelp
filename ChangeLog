@@ -1,5 +1,7 @@
 2003-02-13  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/dh-book-tree.c (book_tree_insert_node): speeeeeeeeeeedup!
+
 	* src/dh-parser.[ch]: Added, new GMarkup-based parser.
 
 	* src/dh-book.[ch]:

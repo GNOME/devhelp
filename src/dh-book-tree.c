@@ -251,7 +251,6 @@ book_tree_insert_node (DhBookTree  *tree,
         DhBookTreePriv      *priv;
 	GtkTreeIter          iter;
 	GtkTreePath         *path;
-	GtkTreeRowReference *row;
 	DhLink              *link;
 	GNode               *child;
         
@@ -287,13 +286,6 @@ book_tree_insert_node (DhBookTree  *tree,
 				    -1);
 	}
 	
-	path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->store), &iter);
-	row = gtk_tree_row_reference_new (GTK_TREE_MODEL (priv->store), path);
-	gtk_tree_path_free (path);
-
-	/* FIXME: Do we need this? */
-/* 	g_hash_table_insert (priv->node_rows, book_node, row); */
-
 	for (child = g_node_first_child (node);
 	     child;
 	     child = g_node_next_sibling (child)) {
