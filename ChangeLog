@@ -1,3 +1,12 @@
+2002-03-27  Richard Hult  <rhult@codefactory.se>
+
+	* configure.in: Bump to 0.3.99.
+
+	* src/help-browser.c (eel_gdk_window_focus) 
+	(eel_gdk_window_bring_to_front): Stolen from eel.
+	(impl_HelpBrowser_search): Use eel_gdk_window_bring_to_front
+	instead of gdk_window_raise.
+
 2002-03-26  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/install.c (install_unpack_book): applied patch from

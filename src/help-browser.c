@@ -22,6 +22,11 @@
  * Author: Richard Hult <rhult@codefactory.se>
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <gdk/gdkx.h>
 #include "devhelp-window.h"
 #include "help-browser.h"
 
@@ -37,6 +42,38 @@ struct _HelpBrowserPriv {
 	GtkWidget       *window;
 };
 
+static void
+eel_gdk_window_focus (GdkWindow *window, guint32 timestamp)
+{
+	gdk_error_trap_push ();
+	XSetInputFocus (GDK_DISPLAY (),
+			GDK_WINDOW_XWINDOW (window),
+			RevertToNone,
+			timestamp);
+	gdk_flush();
+	gdk_error_trap_pop ();
+}
+
+/**
+ * eel_gdk_window_bring_to_front:
+ * 
+ * Raise window and give it focus.
+ */
+static void 
+eel_gdk_window_bring_to_front (GdkWindow *window)
+{
+	/* This takes care of un-iconifying the window and
+	 * raising it if needed.
+	 */
+	gdk_window_show (window);
+
+	/* If the window was already showing, it would not have
+	 * the focus at this point. Do a little X trickery to
+	 * ensure it is focused.
+	 */
+	eel_gdk_window_focus (window, GDK_CURRENT_TIME);
+}
+
 /* GNOME::DevHelp::search (in string) impl
  *
  */
@@ -51,11 +88,10 @@ impl_HelpBrowser_search (PortableServer_Servant   servant,
 	browser = HELP_BROWSER (bonobo_x_object (servant));
 
 	priv = browser->priv;
-	
 		
 	if (priv->window) {
 		devhelp_window_search (DEVHELP_WINDOW (priv->window), str);
-		gdk_window_raise (priv->window->window);
+		eel_gdk_window_bring_to_front (priv->window->window);
 	}
 }
 
