@@ -1,3 +1,9 @@
+2002-11-09  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/dh-html.c (dh_html_open_uri): try to open the URI here
+	  before starting a thread. Only start thread if the file opening 
+	  was succesful.
+
 2002-11-09  Richard Hult  <rhult@codefactory.se>
 
 	* src/dh-base.c (base_window_finalized_cb): Use gtk_main_quit

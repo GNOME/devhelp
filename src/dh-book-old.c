@@ -325,7 +325,7 @@ dh_book_old_read (GsfInput  *input,
 
 	for (root_node = root_node->xmlChildrenNode;
 	     root_node && xmlIsBlankNode (root_node);
-	     root_node = root_node->next) { 
+	     root_node = root_node->next) {
 		;;
 	}
 	

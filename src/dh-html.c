@@ -28,7 +28,7 @@
 #include "dh-util.h"
 #include "dh-html.h"
 
-#define d(x)
+#define d(x) 
 
 struct _DhHtmlPriv {
         HtmlDocument *doc;
@@ -43,10 +43,10 @@ struct _DhHtmlPriv {
 };
 
 typedef struct {
-	DhHtml *html;
-	gint    stamp;
-	gchar  *url;
-	gchar  *anchor;
+	DhHtml         *html;
+	gint            stamp;
+	GnomeVFSHandle *handle;
+	gchar          *anchor;
 } ReaderThreadData;
 
 typedef enum {
@@ -62,7 +62,6 @@ typedef struct {
 	gint             len;
 	ReaderQueueType  type;
 	gchar           *anchor;
-	gchar           *url;
 } ReaderQueueData;
 
 static void     html_init                  (DhHtml              *html);
@@ -77,7 +76,6 @@ static void     html_url_requested_cb      (HtmlDocument        *doc,
 static ReaderQueueData * 
 html_q_data_new                            (DhHtml              *html,
 					    gint                 stamp, 
-					    const gchar         *url,
 					    const gchar         *anchor,
 					    ReaderQueueType      type);
 static void     html_stream_cancelled      (HtmlStream          *stream, 
@@ -201,14 +199,7 @@ html_reader_thread (ReaderThreadData *th_data)
 
 	g_mutex_unlock (priv->stamp_mutex);
 
-	result = gnome_vfs_open (&handle, 
-				 th_data->url,
-				 GNOME_VFS_OPEN_READ);
-	
-	if (result != GNOME_VFS_OK) {
-		/* FIXME: Signal error */
-		return;
-	}
+	handle = th_data->handle;
 
 	while (TRUE) {
 		result = gnome_vfs_read (handle, buffer, BUFFER_SIZE, &n);
@@ -219,7 +210,7 @@ html_reader_thread (ReaderThreadData *th_data)
 		}
 		
 		q_data = html_q_data_new (html, stamp, 
-					  th_data->url, th_data->anchor,
+					  th_data->anchor,
 					  READER_QUEUE_TYPE_DATA);
 
 		q_data->data = g_strdup (buffer);
@@ -240,7 +231,7 @@ html_reader_thread (ReaderThreadData *th_data)
 	}
 	
 	q_data = html_q_data_new (html, stamp, 
-				  th_data->url, th_data->anchor,
+				  th_data->anchor,
 				  READER_QUEUE_TYPE_FINISHED);
 
 	g_async_queue_push (priv->thread_queue, q_data);
@@ -398,9 +389,8 @@ html_url_requested_cb (HtmlDocument *doc,
 }
 
 static ReaderQueueData * 
-html_q_data_new (DhHtml     *html,
+html_q_data_new (DhHtml          *html,
 		 gint             stamp, 
-		 const gchar     *url,
 		 const gchar     *anchor,
 		 ReaderQueueType  type)
 {
@@ -411,7 +401,6 @@ html_q_data_new (DhHtml     *html,
 	q_data->stamp  = stamp;
 	q_data->type   = type;
 	q_data->data   = NULL;
-	q_data->url    = g_strdup (url);
 	
 	if (anchor) {
 		q_data->anchor = g_strdup (anchor);
@@ -545,11 +534,13 @@ void
 dh_html_open_uri (DhHtml      *html, 
 		  const gchar *str_uri)
 {
-        DhHtmlPriv  *priv;
+        DhHtmlPriv       *priv;
 	ReaderThreadData *th_data;
 	GdkCursor        *cursor;
 	gchar            *url;
 	gchar            *anchor = NULL;
+	GnomeVFSResult    result;
+	GnomeVFSHandle   *handle;
 	
         d(puts(__FUNCTION__));
 	
@@ -561,7 +552,7 @@ dh_html_open_uri (DhHtml      *html,
 	d(g_print ("Opening URI: %s\n", str_uri));
 
 	url = html_split_uri (str_uri, &anchor);
-	
+
 	if (priv->base_url) {
  		if (g_ascii_strcasecmp (priv->base_url, url) == 0 &&
  		    priv->first != TRUE) {
@@ -575,10 +566,17 @@ dh_html_open_uri (DhHtml      *html,
 
 			return;
  		}
-
-		g_free (priv->base_url);
 	}
 
+	result = gnome_vfs_open (&handle, url, GNOME_VFS_OPEN_READ);
+
+	if (result != GNOME_VFS_OK) {
+		g_print ("Error opening url '%s'\n", url);
+		g_free (url);
+		return;
+	}
+	
+	g_free (priv->base_url);
         priv->base_url = url;
 
 	g_mutex_lock (priv->stamp_mutex);
@@ -594,7 +592,7 @@ dh_html_open_uri (DhHtml      *html,
 	priv->first = TRUE;
 	
 	th_data->html   = g_object_ref (html);
-	th_data->url    = g_strdup (url);
+	th_data->handle = handle;
 	
 	if (anchor) {
 		th_data->anchor = anchor;
