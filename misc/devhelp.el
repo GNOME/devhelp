@@ -1,3 +1,5 @@
+; Emacs integration by Richard Hult <richard@imendio.com>
+
 (defun devhelp-word-at-point ()
   "runs devhelp"
   (interactive)
@@ -6,4 +8,7 @@
   )
 
 ; Example: bind F7 to start devhelp and search for the word at the point.
-;;(global-set-key [f7] 'devhelp-word-at-point)
+; (global-set-key [f7] 'devhelp-word-at-point)
+
+; Tips: use -g WIDTHxHEIGHT+XOFF+YOFF to set the size and position of
+; the window
