@@ -127,38 +127,6 @@ dnl FIXME find a m4/autoconf guru who can distill this into a nice macro
 
 CXXFLAGS="$_SAVE_CXXFLAGS $AM_CXXFLAGS -I$MOZILLA_INCLUDE_ROOT `pkg-config --cflags $MOZILLA-xpcom`"
 
-dnl Changed from PRUnichar* to nsAString& in 1.8a1 and on aviary branch
-
-AC_MSG_CHECKING([whether nsIFilePicker methods expect nsAString&])
-
-AC_COMPILE_IFELSE(
-	[AC_LANG_PROGRAM(
-		[[#include <nsEmbedString.h>
-		  #include <widget/nsIFilePicker.h>]],
-		[[nsIFilePicker *p;
-		  p->SetDefaultString (nsEmbedString());]]
-	)],
-	[AC_DEFINE([MOZ_NSIFILEPICKER_NSASTRING_],[1],[Define if nsIFilePicker uses nsAString&]) result=yes],
-	[result=no])
-
-AC_MSG_RESULT([$result])
-
-dnl Changed from char* to nsAString& in 1.8a1
-
-AC_MSG_CHECKING([whether nsIMIMEInfo methods expect nsAString&])
-
-AC_COMPILE_IFELSE(
-	[AC_LANG_PROGRAM(
-		[[#include <nsEmbedString.h>
-		  #include <mimetype/nsIMIMEInfo.h>]],
-		[[nsIMIMEInfo *p;
-		  p->SetDescription (nsEmbedString());]]
-	)],
-	[AC_DEFINE([MOZ_NSIMIMEINFO_NSACSTRING_],[1],[Define if nsIMIMEInfo uses nsAString&]) result=yes],
-	[result=no])
-
-AC_MSG_RESULT([$result])
-
 dnl Firefox doesn't have this API (?)
 
 AC_MSG_CHECKING([for nsIXULChromeRegistry API])
