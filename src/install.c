@@ -148,7 +148,7 @@ install_unpack_book (Bookshelf     *bookshelf,
 		install_create_directory (dir);
 	}
 	
-	cmd = g_strdup_printf ("cd %s && gzip -dc -f \"%s\" | tar -xf - book.devhelp >& /dev/null", dir, filename);
+	cmd = g_strdup_printf ("cd %s && gzip -dc -f \"%s\" | tar -xf - book.devhelp > /dev/null 2>&1 ", dir, filename);
 	retval = system (cmd);
 	if (retval != 0 && g_file_exists ("book.devhelp") != FALSE) {
 		gnome_message (_("Failed to extract spec file from book."));

@@ -1,3 +1,9 @@
+2002-03-26  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/install.c (install_unpack_book): applied patch from
+	  kov@debian.org to make book installation work on non-bash
+	  /bin/sh.
+
 2002-02-25  José Fonseca  <j_r_fonseca@yahoo.co.uk>
 
 	* src/book.c (book_parse_sub): check to see if correct node before
