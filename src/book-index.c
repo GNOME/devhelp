@@ -187,8 +187,10 @@ book_index_populate_tree (BookIndex *index)
 		book_index_insert_book_node (index, NULL,
                                              book_get_root (book));
 	}
+	gtk_clist_sort (GTK_CLIST (index));
 
 	gtk_clist_thaw (GTK_CLIST (index));
+
 }
 
 static void
@@ -296,7 +298,7 @@ book_index_new (Bookshelf *bookshelf)
         index = gtk_type_new (TYPE_BOOK_INDEX);
 	
         gtk_ctree_construct (GTK_CTREE (index), 1, 0, NULL);
-        
+
         index->priv->bookshelf = bookshelf;
 
         book_index_populate_tree (index);
@@ -393,7 +395,8 @@ book_index_add_book (BookIndex *index, Book *book)
         gtk_clist_freeze (GTK_CLIST (index));
 
         book_index_insert_book_node (index, NULL, book_get_root (book));
-        
+        gtk_clist_sort (GTK_CLIST (index));
+	
         gtk_clist_thaw (GTK_CLIST (index));
 }
 

@@ -1,5 +1,9 @@
 2001-10-16  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/book-index.c:
+	(book_index_add_book): gtk_clist_sort, fixes bug #203 in CFB.
+	(book_index_populate_tree): Call gtk_clist_sort just to make sure.
+
 	* ui/devhelp.glade: 
 	- removed mainapp, uses BonoboWindow now. Fixes bug #236 in
 	  CF-bugzilla.
