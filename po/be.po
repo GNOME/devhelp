@@ -1,235 +1,240 @@
 # translation of devhelp.HEAD.be.po to belarusian
 # This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
 # Vital Khilko <dojlid@mova.org>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD.be\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2003-02-21 20:26GMT+2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-17 11:04+0200\n"
+"PO-Revision-Date: 2004-08-17 13:10+0300\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
 msgstr "Праграма дапамогі распрацоўшчыкам"
 
 #: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
-#, fuzzy
 msgid "Devhelp"
 msgstr "DevHelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "DevHelp"
+msgstr "Кніга DevHelp"
 
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
-
-#: src/dh-main.c:259
+#: src/dh-main.c:81
 msgid "Specify the size and location of the window"
-msgstr ""
+msgstr "Пазначце памер і разьмяшчэньне акна"
 
-#: src/dh-main.c:260
+#: src/dh-main.c:82
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgstr "WIDTHxHEIGHT+XOFF+YOFF"
 
-#: src/dh-main.c:268
+#: src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Пошук для функцыі"
 
-#: src/dh-main.c:277
+#: src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Выхад з запушчанага Devhelp"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Чакалася '%s' атрымана '%s' у радку %d, слупка %d"
 
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Памылковая прастора назваў '%s' у радку %d, слупка %d"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "элемэнты загалоўку, назвы і спасылкі патрэбныя ў радку %d,·слупка·%d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "элемэнты назвы і спасылкі патрэбныя у <sub>·у радку·%d,·слупка·%d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
+"элемэнты назвы і спасылкі патрэбныя у <function>·у радку·%d,·слупка·%d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
-msgstr ""
+msgstr "Не магчыма разабраць кнігу"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Не магчыма разабраць разьметку"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Не магчыма распакаваць кнігу '%s':·%s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Пошук"
+msgstr "Пошук:"
 
 #: src/dh-search.c:461
 msgid "Section"
 msgstr "Параграфы"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:120
 msgid "_File"
 msgstr "_Файл"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:121
 msgid "_Edit"
-msgstr ""
+msgstr "_Рэдагаваньне"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: src/dh-window.c:122 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Пераход"
 
-#: src/dh-window.c:114
+#: src/dh-window.c:123
 msgid "_Help"
 msgstr "_Дапамога"
 
-#: src/dh-window.c:292
+#: src/dh-window.c:307
 #, c-format
 msgid "Cannot set UI: %s"
-msgstr ""
+msgstr "Не магчыма усталяваць UI:·%s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: src/dh-window.c:367 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Зьмест"
 
-#: src/dh-window.c:363
+#: src/dh-window.c:378
 msgid "Search"
 msgstr "Пошук"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:461
 msgid "A developer's help browser for GNOME 2"
 msgstr "Праглядальнік даведкі распрацоўшчыка для GNOME 2"
 
-#: src/dh-window.c:462
+#: src/dh-window.c:477
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Старонка праекта Devhelp"
 
-#: src/dh-window.c:466
+#: src/dh-window.c:481
 msgid "Bug report Devhelp"
-msgstr ""
+msgstr "Справаздача аб памылцы у Devhelp"
+
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Шрыфт фіксаванага тэксту"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Шрыфт тэксту"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Шрыфт тэксту з фіксаванай шырынёй."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Шрыфт тэксту з пераменнай шырынёй."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Вышыня асноўнага акна"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Разьмяшчэньне падзяляльніка"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Максымальны памер акна"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "Пазыцыя асноўнага акна па X."
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "Пазыцыя асноўнага акна па Y."
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "Вышыня асноўнага акна."
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "Разьмяшчэньне падзяляльніка."
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "Шырыня асноўнага акна."
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Выкарыстоўваць сыстэмныя шрыфты"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Выкарыстоўваць дапомныя сыстэмныя шрыфты."
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Ці мусіць стартаваць акно ў найбольшаны стане."
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Шырыня асноўнага акна"
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Пазыцыя асноўнага акна па X"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Пазыцыя асноўнага акна па Y"
 
 #: ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Шрыфты</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "Фіксаваная шырыня:"
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
-msgstr ""
+msgstr "Перавагі"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "Пераменная шырыня: "
 
 #: ui/devhelp.glade.h:8
 msgid "_Back"
-msgstr ""
+msgstr "_Назад"
 
 #: ui/devhelp.glade.h:9
 msgid "_Forward"
-msgstr ""
+msgstr "На_перад"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
+msgstr "Выкарыстоўваць сыстэмныя шрыфты"
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search pane "
