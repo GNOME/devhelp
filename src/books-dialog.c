@@ -106,6 +106,10 @@ info_button_ok_clicked_cb (GtkButton *button,
 	
 	g_return_if_fail (book_info != NULL);
 
+	if (book_info->book == NULL) {
+		return;
+	}
+	
 	new = gtk_entry_get_text (book_info->path);
 	if (strcmp (new, book_get_path (book_info->book)) == 0) {
 		g_message ("New path; %s", new);

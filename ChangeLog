@@ -2,6 +2,7 @@
 
 	* src/books-dialog.c (books_button_edit_clicked_cb): If no books
 	is installed and Edit book is clicked, return;
+	(info_button_ok_clicked_cb): check if book is null. Fixes segfault.
 
 	* configure.in: s/AM_GNU_GETTEXT/AM_GNOME_GETTEXT/. Thanks goes to Yanko Kaneti.
 
