@@ -2,18 +2,19 @@
 # Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003.
+# Daniel van Eeden <daniel_e@dds.nl>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-04 03:11+0100\n"
-"PO-Revision-Date: 2003-07-07 15:10+0100\n"
-"Last-Translator: Vincent van Adrighem <adrighem@gnome.org>\n"
+"POT-Creation-Date: 2004-02-29 03:08+0100\n"
+"PO-Revision-Date: 2004-02-29 11:38+0100\n"
+"Last-Translator: Daniel van Eeden <daniel_e@dds.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -103,34 +104,40 @@ msgstr "_Zoeken:"
 msgid "Section"
 msgstr "Sectie"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "_Bestand"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "_Ga naar"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "_Hulp"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:285
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Kan UI niet instellen: %s"
+
+#: src/dh-window.c:347
 msgid "Contents"
 msgstr "Inhoud"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:358
 msgid "Search"
 msgstr "Zoeken"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:423
 msgid "A developer's help browser for GNOME 2"
 msgstr "Een GNOME 2 hulpprogramma voor ontwikkelaars"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:438
 msgid "Devhelp project page"
 msgstr "Devhulp projectpagina"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:442
 msgid "Bug report Devhelp"
 msgstr "Bug rapporteren voor Devhulp"
+
