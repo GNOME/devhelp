@@ -23,6 +23,8 @@ devhelp_SOURCES = 			\
 	bookmark-manager.h		\
 	bookshelf.c			\
 	bookshelf.h                     \
+	devhelp-search.c                \
+	devhelp-search.h		\
 	function-database.c		\
 	function-database.h		\
 	help-browser.c			\

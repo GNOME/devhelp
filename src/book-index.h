@@ -24,9 +24,9 @@
 #define __BOOK_INDEX_H__
 
 #include <glib.h>
+#include <gtk/gtkctree.h>
 #include <gtk/gtkwidget.h>
 #include <gtk/gtktypeutils.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include "bookshelf.h"
 
 #define TYPE_BOOK_INDEX			(book_index_get_type ())

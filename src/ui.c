@@ -50,72 +50,6 @@
 
 static GtkWidget      *get_menu_item_from_index (DevHelp *devhelp, gint index);
 
-gboolean
-gtk_clist_if_exact_go_there (GtkCList    *clist,
-			     const gchar *string)
-{
-	gint        i;
-	gboolean    full_hit;
-	gchar      *text;
-
-	g_return_if_fail (clist != NULL);
-	g_return_if_fail (GTK_IS_CLIST (clist));
-	
-	i = 0;
-	full_hit = FALSE;
-
-	while (gtk_clist_get_text (clist, i++, 0, &text)) {
-		if (strcmp (text, string) == 0) {
-			full_hit = TRUE;
-			gtk_clist_moveto (clist, i - 1, 0, 0, 0);
-			gtk_clist_select_row (clist, i - 1, 0);
-			break;
-		}
-	}
-	
-	return full_hit;
-}
-
-#define MAX_HITS 250
-
-/* Prepends contents of a GSList to a GtkCList
- *
- */
-void
-gtk_clist_set_contents (GtkCList *clist,
-			GSList   *list)
-{
-	Function   *function;
-	GSList     *node;
-	gchar      *tmp[1];
-	gint        row;
-	gchar      *data;
-	gint        hits;
-	
-	g_return_if_fail (clist != NULL);
-	g_return_if_fail (GTK_IS_CLIST (clist));
-	g_return_if_fail (list != NULL);
-
-	gtk_clist_clear (clist);
-	gtk_clist_freeze (clist);
-
-	hits = 0;
-
-	for (node = list; node; node = node->next) {
-		if (hits++ >= MAX_HITS)
-			break;
-		
-		function = (Function *) node->data;
-		
-		tmp[0] = function->name;
-
-		row = gtk_clist_append (clist, tmp);
-		gtk_clist_set_row_data (clist, row, function);
-	}
-
-	gtk_clist_thaw (clist);
-}
-
 static void
 main_window_realize_cb (GtkWidget *widget,
 			DevHelp   *devhelp)
@@ -184,7 +118,7 @@ main_window_key_press_event_cb (GtkWidget*   widget,
 			if (gtk_notebook_get_current_page (devhelp->notebook) == 0) {
  				clist = GTK_CLIST (devhelp->book_index);
 			} else {
-				clist = devhelp->clist;
+				clist = GTK_CLIST (devhelp->clist);
 			}
 
 			/* Move up or down? */
@@ -512,139 +446,41 @@ scrolled_size_allocate_cb (GtkWidget     *widget,
 }
 
 static void
-book_index_uri_selected_cb (BookIndex     *index, 
-			    GnomeVFSURI   *uri, 
-			    gpointer       user_data)
+index_uri_selected_cb (BookIndex     *index,
+		       GnomeVFSURI   *uri, 
+		       gpointer       user_data)
 {
 	DevHelp   *devhelp;
 	
 	g_return_if_fail (index != NULL);
 	g_return_if_fail (IS_BOOK_INDEX (index));
-	g_return_if_fail (uri != NULL);
 	g_return_if_fail (user_data != NULL);
-	
-	devhelp = (DevHelp *) user_data;
+	g_return_if_fail (uri != NULL);
 
-	g_print ("URI Selected call back\n");
+	devhelp = (DevHelp *) user_data;
+	
+	g_print ("URI selected in BookIndex call back\n");
 
 	html_widget_open_uri (devhelp->html_widget, uri);
 }
 
 static void
-clist_select_row_cb (GtkCList   *clist,
-		     gint        row,
-		     gint        column,
-		     GdkEvent   *event,
-		     DevHelp    *devhelp)
+search_uri_selected_cb (DevHelpSearch   *search,
+			GnomeVFSURI     *uri, 
+			gpointer         user_data)
 {
-	Function      *function;
-	BookNode      *book_node;
-	GnomeVFSURI   *uri;
+	DevHelp   *devhelp;
 	
-
-	function = (Function *) gtk_clist_get_row_data (GTK_CLIST (devhelp->clist), row);
-	
-	if (!function) {
-		return;
-	}
-	
-	bookshelf_open_document (devhelp->bookshelf, function->document);
-	
-	history_goto (devhelp->history, function->document, function->anchor);
-
-	uri = document_get_uri (function->document, function->anchor);
-	
-	if (uri) {
-		html_widget_open_uri (devhelp->html_widget, uri);
-		gnome_vfs_uri_unref (uri);
-	} else {
-		g_print (_("Couldn't find book_node for function '%s'\n"), 
-			 function->name);
-	}
-}
-
-static void
-search_entry_changed_cb (GtkEditable *editable,
-			 DevHelp     *devhelp)
-{
-	g_return_if_fail (devhelp != NULL);
-	
-	function_database_idle_search (devhelp->function_database);
-}
-
-static gint
-complete_idle (gpointer user_data) 
-{
-	DevHelp      *devhelp;
-	gchar        *text, *completed;
-	gint          text_length;
-
+	g_return_if_fail (search != NULL);
+	g_return_if_fail (IS_DEVHELP_SEARCH (search));
 	g_return_if_fail (user_data != NULL);
-	devhelp = (DevHelp*)user_data;
-		
-	text = gtk_entry_get_text (GTK_ENTRY (devhelp->entry));
-	
-	completed = function_database_get_completion (devhelp->function_database, text);
+	g_return_if_fail (uri != NULL);
 
-	if (completed) {
-		text_length = strlen (text);
-		
-		gtk_entry_set_text (GTK_ENTRY (devhelp->entry), completed);
+	devhelp = (DevHelp *) user_data;
+	
+	g_print ("URI selected in DevHelpSearch call back\n");
 
-		gtk_editable_select_region (GTK_EDITABLE (devhelp->entry), text_length, -1);
-		gtk_editable_set_position (GTK_EDITABLE (devhelp->entry), text_length);
-	}
-	
-	devhelp->complete = 0;
-	return 0;
-}
-
-static void
-search_entry_insert_text_cb (GtkEditable   *editable,
-                             gchar         *new_text,
-                             gint           new_text_length,
-                             gint          *position,
-                             DevHelp       *devhelp)
-{
-	g_return_if_fail (devhelp != NULL);
-	
-	if (!devhelp->complete) {
-		g_print ("FLERP\n");
-		devhelp->complete = gtk_idle_add (complete_idle, devhelp);
-	}
-}
-
-gboolean
-search_entry_key_press_cb (GtkWidget     *widget, 
-			   GdkEventKey   *event)
-{
-	gchar *txt;
-	
-	g_return_val_if_fail (widget != NULL, FALSE);
-	g_return_val_if_fail (GTK_IS_EDITABLE (widget), FALSE);
-
-	d(puts(__FUNCTION__));
-	
-	switch (event->keyval) {
-	case GDK_Tab:
-		gtk_editable_select_region (GTK_EDITABLE (widget), 0, 0);
-		gtk_editable_set_position (GTK_EDITABLE (widget), -1);
-		return TRUE;
-		break;
-        default:
-		break;
-	}
-	
-	return FALSE;
-}
-
-static void
-search_entry_activate_cb (GtkEditable *editable,
-			  DevHelp     *devhelp)
-{
-	g_return_if_fail (devhelp != NULL);
-	
-	devhelp_search (devhelp, gtk_entry_get_text (GTK_ENTRY (editable)));
+	html_widget_open_uri (devhelp->html_widget, uri);
 }
 
 static void
@@ -653,7 +489,8 @@ search_button_clicked_cb (GtkButton *button,
 {
 	g_return_if_fail (devhelp != NULL);
 	
-	devhelp_search (devhelp, gtk_entry_get_text (devhelp->entry));
+/* 	devhelp_search (devhelp,  */
+/* 			gtk_entry_get_text (GTK_ENTRY (devhelp->entry))); */
 }
 
 static void
@@ -714,7 +551,7 @@ html_link_clicked_cb (GtkWidget   *widget,
 							   GNOME_VFS_URI_HIDE_NONE);
 			
 			gtk_signal_handler_block_by_func (GTK_OBJECT (devhelp->book_index),
-							  book_index_uri_selected_cb,
+							  index_uri_selected_cb,
 							  devhelp);
 			
 			book_index_open (BOOK_INDEX (devhelp->book_index), 
@@ -722,7 +559,7 @@ html_link_clicked_cb (GtkWidget   *widget,
 			
 			
 			gtk_signal_handler_unblock_by_func (GTK_OBJECT (devhelp->book_index),
-							    book_index_uri_selected_cb,
+							    index_uri_selected_cb,
 							    devhelp);
 			g_free (str_uri);
 			
@@ -790,65 +627,6 @@ bookmark_add_cb (GtkMenuItem *menuitem, DevHelp *devhelp)
 /* 			      history_get_current (devhelp->history)); */
 }
 
-gchar *
-get_search_string_cb (FunctionDatabase *fd,
-		      DevHelp *devhelp) 
-{
-	g_return_if_fail (fd != NULL);
-	g_return_if_fail (IS_FUNCTION_DATABASE (fd));
-	g_return_if_fail (devhelp != NULL);
-	
-	g_return_val_if_fail (devhelp != NULL, NULL);
-
-	return gtk_entry_get_text (devhelp->entry);
-}
-
-void
-exact_hit_found_cb (FunctionDatabase   *fd, 
-		    Function           *function, 
-		    DevHelp            *devhelp)
-{
-	
-	g_return_if_fail (fd != NULL);
-	g_return_if_fail (IS_FUNCTION_DATABASE (fd));
-	g_return_if_fail (devhelp != NULL);
-
-	gtk_clist_if_exact_go_there (devhelp->clist, function->name);
-}
-
-/* devhelp_search: Highlevel search function
- *
- */
-void
-devhelp_search (DevHelp *devhelp,
-		const gchar *string)
-{
-	GSList   *list;
-
-	g_return_if_fail (string != NULL);
-
-	function_database_search (devhelp->function_database, string);
-}
-
-void 
-hits_found_cb (FunctionDatabase *fd,
-	       GSList *hits,
-	       gpointer user_data)
-{
-	DevHelp   *devhelp;
-	
-	d(puts(__FUNCTION__));
-
-	g_return_if_fail (fd != NULL);
-	g_return_if_fail (IS_FUNCTION_DATABASE (fd));
-	g_return_if_fail (hits != NULL);
-	g_return_if_fail (user_data != NULL);
-	
-	devhelp = (DevHelp *) user_data;
-
-	gtk_clist_set_contents (devhelp->clist, hits);
-}
-
 /* create_ui: create ui components, or load them with glade
  *
  */
@@ -874,18 +652,8 @@ devhelp_create_ui (void)
 
 	/* Function database */
 	devhelp->function_database = function_database_new ();
-	gtk_signal_connect (GTK_OBJECT (devhelp->function_database), "get_search_string",
-			    GTK_SIGNAL_FUNC (get_search_string_cb), devhelp);
-
-	gtk_signal_connect (GTK_OBJECT (devhelp->function_database), "exact_hit_found",
-			    GTK_SIGNAL_FUNC (exact_hit_found_cb), devhelp);
-
-	gtk_signal_connect (GTK_OBJECT (devhelp->function_database), "hits_found",
-			    GTK_SIGNAL_FUNC (hits_found_cb), devhelp);
-
 
 	/* Bookshelf */
-	 
 	function_database_freeze (devhelp->function_database);
 	local_dir = g_strdup_printf ("%s/.devhelp", getenv ("HOME"));
 	devhelp->bookshelf = bookshelf_new (DATA_DIR"/devhelp/specs", 
@@ -999,7 +767,7 @@ devhelp_create_ui (void)
 	gtk_signal_connect (GTK_OBJECT (toolbar_button_forward), "clicked",
 			    GTK_SIGNAL_FUNC (toolbar_button_forward_clicked_cb), devhelp);
 
-	/* CTree */
+	/* BookIndex */
 	devhelp->book_index = book_index_new (devhelp->bookshelf);
 
 	gtk_clist_set_column_width (GTK_CLIST (devhelp->book_index), 0, 80);
@@ -1008,7 +776,7 @@ devhelp_create_ui (void)
 
 	gtk_signal_connect (GTK_OBJECT (devhelp->book_index), 
 			    "uri_selected",
-			    GTK_SIGNAL_FUNC (book_index_uri_selected_cb),
+			    GTK_SIGNAL_FUNC (index_uri_selected_cb),
 			    devhelp);
 	
 	w = glade_xml_get_widget (gui, "browse_scrolledwindow");
@@ -1018,28 +786,29 @@ devhelp_create_ui (void)
 
 	gtk_container_add (GTK_CONTAINER (w), devhelp->book_index);
 	
+	/* DevHelpSearch */
+	devhelp->search = devhelp_search_new (devhelp->bookshelf);
+
+	gtk_signal_connect (GTK_OBJECT (devhelp->search),
+			    "uri_selected",
+			    GTK_SIGNAL_FUNC (search_uri_selected_cb),
+			    devhelp);
 	/* CList */
-	devhelp->clist = GTK_CLIST (gtk_clist_new (1)); 
-	gtk_signal_connect (GTK_OBJECT (devhelp->clist), "select_row", 
-			    GTK_SIGNAL_FUNC (clist_select_row_cb), devhelp);
+	devhelp->clist = devhelp_search_get_result_list (devhelp->search);
 
 	w = glade_xml_get_widget (gui, "search_scrolledwindow");
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
 					GTK_POLICY_NEVER,
 					GTK_POLICY_AUTOMATIC);
 
-	gtk_container_add (GTK_CONTAINER (w), GTK_WIDGET (devhelp->clist));
+	gtk_container_add (GTK_CONTAINER (w), devhelp->clist);
 
 	/* Search entry */
-	devhelp->entry = GTK_ENTRY (glade_xml_get_widget (GLADE_XML (gui), "search_entry"));
-	gtk_signal_connect (GTK_OBJECT (devhelp->entry), "activate",
-			    GTK_SIGNAL_FUNC (search_entry_activate_cb), devhelp);
-	gtk_signal_connect (GTK_OBJECT (devhelp->entry), "changed",
-			    GTK_SIGNAL_FUNC (search_entry_changed_cb), devhelp);
-	gtk_signal_connect (GTK_OBJECT (devhelp->entry), "insert-text",
-			    GTK_SIGNAL_FUNC (search_entry_insert_text_cb), devhelp);
-	gtk_signal_connect_after (GTK_OBJECT (devhelp->entry), "key-press-event",
-				  GTK_SIGNAL_FUNC (search_entry_key_press_cb), NULL);
+	devhelp->entry = devhelp_search_get_entry (devhelp->search);
+
+	w = glade_xml_get_widget (gui, "search_hbox");
+	
+	gtk_box_pack_start_defaults (GTK_BOX (w), devhelp->entry);
 
 	/* Search button */
 	devhelp->search_button = glade_xml_get_widget (gui, "search_button");

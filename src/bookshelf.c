@@ -115,65 +115,79 @@ bookshelf_destroy (GtkObject *object)
 	bookshelf->priv = NULL;
 }
 
-void
-bookshelf_write_xml (Bookshelf     *bookshelf, 
-		     const gchar   *filename)
+static GSList *
+bookshelf_read_books_dir (GnomeVFSURI *books_uri)
+{
+	GSList                    *list;
+	gchar                     *book_name;
+	GList                     *dir_list, *node;
+	GnomeVFSFileInfo          *info;
+	GnomeVFSDirectoryFilter   *filter;
+	GnomeVFSResult             result;
+	gchar                     *str_uri;
+	
+	g_return_val_if_fail (books_uri != NULL, NULL);
+
+	list = NULL;
+
+	filter = gnome_vfs_directory_filter_new (GNOME_VFS_DIRECTORY_FILTER_NONE,
+						 GNOME_VFS_DIRECTORY_FILTER_DEFAULT &
+						 GNOME_VFS_DIRECTORY_FILTER_NODIRS |
+						 GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR | 
+						 GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR,
+						 NULL);
+	
+	str_uri = gnome_vfs_uri_to_string (books_uri, GNOME_VFS_URI_HIDE_NONE);
+	result  = gnome_vfs_directory_list_load (&dir_list, str_uri,
+						 GNOME_VFS_FILE_INFO_DEFAULT,
+						 filter);
+	g_free (str_uri);
+	gnome_vfs_directory_filter_destroy (filter);
+
+	/* If no books are found. */
+	if (result == GNOME_VFS_ERROR_NOT_FOUND) {
+		return NULL;
+	} else if (result != GNOME_VFS_OK) {
+		g_warning (_("Problems when reading books: %s\n"), 
+			   gnome_vfs_result_to_string (result));
+		return NULL;
+	}
+
+	for (node = dir_list; node; node = node->next) {
+		info = (GnomeVFSFileInfo *) node->data;
+		book_name = g_strdup (info->name);
+		list = g_slist_prepend (list, book_name);
+	}
+
+	return list;
+}
+
+Bookshelf *
+bookshelf_new (const gchar* default_dir, FunctionDatabase *fd)
+{
+	Bookshelf       *bookshelf;
+	BookshelfPriv   *priv;
+
+	bookshelf = gtk_type_new (TYPE_BOOKSHELF);
+	priv      = bookshelf->priv;
+	priv->fd  = fd;
+
+	bookshelf_add_directory (bookshelf, default_dir);
+	
+	return bookshelf;
+}
+
+FunctionDatabase * 
+bookshelf_get_function_database (Bookshelf *bookshelf)
 {
 	BookshelfPriv   *priv;
-	Book            *book;
-	FILE            *fp;
-	GSList          *node;
-	const gchar     *name;
-	const gchar     *version;	
-	gchar           *path;
-	gboolean         visible;
 	
-	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_val_if_fail (bookshelf != NULL, NULL);
+	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
 	
 	priv = bookshelf->priv;
-
-	if (filename == NULL) {
-		fp = stdout;
-	} else {
-		fp = fopen (filename, "w");
-
-		if (fp == NULL) {
-			g_warning (_("Failed to open file %s for writing."), filename);
-			return;
-		}
-	}
 	
-	fprintf (fp, "<?xml version=\"1.0\"?>\n\n");
-	fprintf (fp, "<booklist>\n");
-
-	for (node = priv->books; node; node = node->next) {
-		book = BOOK (node->data);
-		
-		name    = book_get_name (book);
-		version = book_get_version (book);		
-		path    = book_get_path (book);
-		visible = book_is_visible (book);
-		
-		fprintf (fp, "  <book name=\"%s\" ", name);
-		
-		if (version != NULL) {
-			fprintf (fp, "version=\"%s\" ", 
-				 version);
-		}
-		
-		fprintf (fp, "visible=\"%d\" path=\"%s\"/>\n",
-			 visible == TRUE ? 1 : 0,
-			 path);
-
-		g_free (path);
-	}
-	
-	fprintf (fp, "</booklist>\n");
-
-	if (fp != stdout) {
-		fclose (fp);
-	}
+	return priv->fd;
 }
 
 GList*
@@ -235,6 +249,67 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	
 	/* TODO: lot's of free() in this func */
 	return list;
+}
+
+void
+bookshelf_write_xml (Bookshelf     *bookshelf, 
+		     const gchar   *filename)
+{
+	BookshelfPriv   *priv;
+	Book            *book;
+	FILE            *fp;
+	GSList          *node;
+	const gchar     *name;
+	const gchar     *version;	
+	gchar           *path;
+	gboolean         visible;
+	
+	g_return_if_fail (bookshelf != NULL);
+	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	
+	priv = bookshelf->priv;
+
+	if (filename == NULL) {
+		fp = stdout;
+	} else {
+		fp = fopen (filename, "w");
+
+		if (fp == NULL) {
+			g_warning (_("Failed to open file %s for writing."), filename);
+			return;
+		}
+	}
+	
+	fprintf (fp, "<?xml version=\"1.0\"?>\n\n");
+	fprintf (fp, "<booklist>\n");
+
+	for (node = priv->books; node; node = node->next) {
+		book = BOOK (node->data);
+		
+		name    = book_get_name (book);
+		version = book_get_version (book);		
+		path    = book_get_path (book);
+		visible = book_is_visible (book);
+		
+		fprintf (fp, "  <book name=\"%s\" ", name);
+		
+		if (version != NULL) {
+			fprintf (fp, "version=\"%s\" ", 
+				 version);
+		}
+		
+		fprintf (fp, "visible=\"%d\" path=\"%s\"/>\n",
+			 visible == TRUE ? 1 : 0,
+			 path);
+
+		g_free (path);
+	}
+	
+	fprintf (fp, "</booklist>\n");
+
+	if (fp != stdout) {
+		fclose (fp);
+	}
 }
 
 gboolean
@@ -317,67 +392,6 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	g_slist_free (books);
 }
 
-static GSList *
-bookshelf_read_books_dir (GnomeVFSURI *books_uri)
-{
-	GSList                    *list;
-	gchar                     *book_name;
-	GList                     *dir_list, *node;
-	GnomeVFSFileInfo          *info;
-	GnomeVFSDirectoryFilter   *filter;
-	GnomeVFSResult             result;
-	gchar                     *str_uri;
-	
-	g_return_val_if_fail (books_uri != NULL, NULL);
-
-	list = NULL;
-
-	filter = gnome_vfs_directory_filter_new (GNOME_VFS_DIRECTORY_FILTER_NONE,
-						 GNOME_VFS_DIRECTORY_FILTER_DEFAULT &
-						 GNOME_VFS_DIRECTORY_FILTER_NODIRS |
-						 GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR | 
-						 GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR,
-						 NULL);
-	
-	str_uri = gnome_vfs_uri_to_string (books_uri, GNOME_VFS_URI_HIDE_NONE);
-	result  = gnome_vfs_directory_list_load (&dir_list, str_uri,
-						 GNOME_VFS_FILE_INFO_DEFAULT,
-						 filter);
-	g_free (str_uri);
-	gnome_vfs_directory_filter_destroy (filter);
-
-	/* If no books are found. */
-	if (result == GNOME_VFS_ERROR_NOT_FOUND) {
-		return NULL;
-	} else if (result != GNOME_VFS_OK) {
-		g_warning (_("Problems when reading books: %s\n"), 
-			   gnome_vfs_result_to_string (result));
-		return NULL;
-	}
-
-	for (node = dir_list; node; node = node->next) {
-		info = (GnomeVFSFileInfo *) node->data;
-		book_name = g_strdup (info->name);
-		list = g_slist_prepend (list, book_name);
-	}
-
-	return list;
-}
-
-Bookshelf *
-bookshelf_new (const gchar* default_dir, FunctionDatabase *fd)
-{
-	Bookshelf       *bookshelf;
-	BookshelfPriv   *priv;
-
-	bookshelf = gtk_type_new (TYPE_BOOKSHELF);
-	priv      = bookshelf->priv;
-	priv->fd  = fd;
-
-	bookshelf_add_directory (bookshelf, default_dir);
-	
-	return bookshelf;
-}
 
 Book *
 bookshelf_find_book_by_title (Bookshelf *bookshelf, const gchar *title)

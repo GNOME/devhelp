@@ -57,6 +57,9 @@ GtkType          bookshelf_get_type           (void);
 Bookshelf *      bookshelf_new                (const char          *default_dir,
                                                FunctionDatabase    *fd);
 
+FunctionDatabase * 
+bookshelf_get_function_database               (Bookshelf           *bookshelf);
+
 GList *          bookshelf_read_xml           (Bookshelf           *bookshelf,
 					       const gchar         *filename);
 

@@ -1,3 +1,49 @@
+2001-08-13  Mikael Hallendal  <micke@codefactory.se>
+
+	* ui/devhelp.glade: removed the search entry. Now created in
+	  devhelp-serach and referenced by devhelp_search_get_entry. 
+
+	* src/main.h: added DevHelpSearch and made references to clist and
+	  entry pointers to GtkWidget * instead.
+
+	* src/main.c (corba_search_cb): cast devhelp->entry (now a
+	  GtkWidget * instead of a GtkEntry *.
+	(devhelp_normal_main): dito.
+
+	* src/bookshelf.c: moved around some functions to reflect the
+	  order they are declared, makes it easier to find in the file.
+	(bookshelf_get_function_database): added, returns a reference to
+	  the function database.
+
+	* src/book-index.[ch]: some include-fixes.
+
+	* src/Makefile.am (devhelp_SOURCES): added devhelp-search.[ch].
+
+	* src/devhelp-search.[ch]: added/impl. 
+	- This is a GtkObject which initialize and hides all the work
+	  between the GtkCList and the GtkEntry. 
+	- A reference to the entry is returned from
+	  devhelp_search_get_entry. and to the clist with 
+	  devhelp_search_get_result_list.
+	- A signal uri_selected is emmited when a hit is clicked in the
+	  CList.
+
+	* src/ui.c:
+	- much code moved into devhelp-search.
+	(gtk_clist_if_exact_go_there): removed.
+	(gtk_clist_set_contents): removed
+	(clist_select_row_cb): removed
+	(search_entry_changed_cb): removed.
+	(complete_idle): removed.
+	(search_entry_insert_text_cb): removed.
+	(search_entry_key_press_cb): removed.
+	(search_entry_activate_cb): removed.
+	(get_search_string_cb): removed.
+	(exact_hit_found_cb): removed.
+	(devhelp_search): removed.
+	(hits_found_cb): removed.
+	(search_button_clicked_cb): removed.
+
 2001-08-12  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/book-index.c (book_index_class_init): override

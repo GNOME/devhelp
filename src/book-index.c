@@ -20,14 +20,13 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-/* FIXES:
- * 
- * Destroy
- */
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <gtk/gtkctree.h>
 #include <gtk/gtksignal.h>
+#include <libgnomevfs/gnome-vfs.h>
 #include "book.h"
 #include "book-index.h"
 

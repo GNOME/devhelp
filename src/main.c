@@ -53,7 +53,7 @@ corba_search_cb (HelpBrowser *help_browser,
 {
 	g_return_if_fail (devhelp != NULL);
 		
-	gtk_entry_set_text (devhelp->entry, search);
+	gtk_entry_set_text (GTK_ENTRY (devhelp->entry), search);
 	gtk_notebook_set_page (devhelp->notebook, 1);
 	gdk_window_raise (devhelp->window->window);
 }
@@ -167,7 +167,7 @@ devhelp_normal_main (const gchar *search_string)
 	devhelp = devhelp_create_ui ();
 
 	if (search_string != NULL) {
-		gtk_entry_set_text (devhelp->entry, search_string);
+		gtk_entry_set_text (GTK_ENTRY (devhelp->entry), search_string);
 		gtk_notebook_set_page (devhelp->notebook, 1);
 	}
 
