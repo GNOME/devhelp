@@ -6,5 +6,4 @@ libegg/menu/test-merge.c
 libegg/toolbar/eggtoolbar.c
 libegg/toolbar/eggtoolbutton.c
 libegg/toolbar/eggtoolitem.c
-src/GNOME_DevHelp.server.in
-
+src/test-profile.c
