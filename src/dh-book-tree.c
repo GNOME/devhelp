@@ -31,7 +31,6 @@
 #include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtktreeselection.h>
 #include <gtk/gtktreestore.h>
-#include <libgnomevfs/gnome-vfs.h>
 
 #include "dh-book-tree.h"
 
