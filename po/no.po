@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-10 17:16+0100\n"
-"PO-Revision-Date: 2004-03-10 17:19+0100\n"
+"POT-Creation-Date: 2004-03-16 21:08+0100\n"
+"PO-Revision-Date: 2004-03-16 21:10+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk/Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -18,21 +18,13 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Hjelpleser for utviklere"
 
-#: devhelp.desktop.in.h:2
+#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Devhelp bok"
-
-#: src/dh-html-gtkhtml2.c:532
-msgid ""
-"Select a subject in the contents to the left or switch to the search tab to "
-"find what you are looking for."
-msgstr ""
-"Velg et emne i innholdet til venstre eller bytt til søkefanen for å finne "
-"det du leter etter."
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -97,39 +89,139 @@ msgstr "_Søk:"
 msgid "Section"
 msgstr "Del"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:117
 msgid "_File"
 msgstr "_Fil"
 
-#: src/dh-window.c:106
+#: src/dh-window.c:118
+msgid "_Edit"
+msgstr "R_ediger"
+
+#: src/dh-window.c:119 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:107
+#: src/dh-window.c:120
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: src/dh-window.c:285
+#: src/dh-window.c:304
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Kan ikke sette brukergrensesnitt: %s"
 
-#: src/dh-window.c:347
+#: src/dh-window.c:362 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Innhold"
 
-#: src/dh-window.c:358
+#: src/dh-window.c:373
 msgid "Search"
 msgstr "Søk"
 
-#: src/dh-window.c:423
+#: src/dh-window.c:472
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjelpleser for utviklere for GNOME 2"
 
-#: src/dh-window.c:438
+#: src/dh-window.c:487
 msgid "Devhelp project page"
 msgstr "Nettside for Devhelp"
 
-#: src/dh-window.c:442
+#: src/dh-window.c:491
 msgid "Bug report Devhelp"
 msgstr "Feilrapport for Devhelp"
+
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Skrift for tekst med fast størrelse"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Skrift for tekst"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Skrift for tekst med fast bredde."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Skrift for tekst med variabel bredde."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Høyde for hovedvinduet"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Lokasjon for paned"
+
+#: devhelp.schemas.in.h:7
+msgid "The X position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:8
+msgid "The Y position of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:9
+msgid "The height of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:10
+msgid "The location of the paned separator."
+msgstr ""
+
+#: devhelp.schemas.in.h:11
+msgid "The width of the main window."
+msgstr ""
+
+#: devhelp.schemas.in.h:12
+msgid "Use system fonts"
+msgstr ""
+
+#: devhelp.schemas.in.h:13
+msgid "Use the systems default fonts."
+msgstr ""
+
+#: devhelp.schemas.in.h:14
+msgid "Width of the main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:15
+msgid "X position of main window"
+msgstr ""
+
+#: devhelp.schemas.in.h:16
+msgid "Y position of main window"
+msgstr ""
+
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Skrifter</b>"
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr "Fast bredde:"
+
+#: ui/devhelp.glade.h:6
+msgid "Preferences"
+msgstr "Brukervalg"
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr "Variabel bredde: "
+
+#: ui/devhelp.glade.h:8
+msgid "_Back"
+msgstr "Til_bake"
+
+#: ui/devhelp.glade.h:9
+msgid "_Forward"
+msgstr "_Fremover"
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "Br_uk systemskrifter"

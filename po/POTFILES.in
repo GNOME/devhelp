@@ -5,7 +5,6 @@ devhelp.keys.in
 src/dh-base.c
 src/dh-book-tree.c
 src/dh-history.c
-src/dh-html-gtkhtml2.c
 src/dh-keyword-model.c
 src/dh-link.c
 src/dh-main.c
@@ -14,3 +13,5 @@ src/dh-profile.c
 src/dh-search.c
 src/dh-util.c
 src/dh-window.c
+devhelp.schemas.in
+ui/devhelp.glade
