@@ -9,7 +9,7 @@ msgstr ""
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=KOI8-R\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
@@ -18,26 +18,26 @@ msgstr "DevHelp"
 
 #: devhelp.desktop.in.h:2
 msgid "Developers Help program"
-msgstr "Программа справки для разработчиков"
+msgstr "п÷я─п╬пЁя─п╟п╪п╪п╟ я│п©я─п╟п╡п╨п╦ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌я┤п╦п╨п╬п╡"
 
 #: src/books-dialog.c:331
 msgid "Choose a book..."
-msgstr "Выбрать книгу..."
+msgstr "п▓я▀п╠я─п╟я┌я▄ п╨п╫п╦пЁя┐..."
 
 #: src/bookshelf.c:186
 #, c-format
 msgid "Problems when reading books: %s\n"
-msgstr "Проблемы при чтении книг: %s\n"
+msgstr "п÷я─п╬п╠п╩п╣п╪я▀ п©я─п╦ я┤я┌п╣п╫п╦п╦ п╨п╫п╦пЁ: %s\n"
 
 #: src/bookshelf.c:367
 #, c-format
 msgid "Empty document: %s"
-msgstr "Пустой документ: %s"
+msgstr "п÷я┐я│я┌п╬п╧ п╢п╬п╨я┐п╪п╣п╫я┌: %s"
 
 #: src/bookshelf.c:373
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
-msgstr "Документь неправильного типа, получено %s, ожидалось \"booklist\": %s"
+msgstr "п■п╬п╨я┐п╪п╣п╫я┌я▄ п╫п╣п©я─п╟п╡п╦п╩я▄п╫п╬пЁп╬ я┌п╦п©п╟, п©п╬п╩я┐я┤п╣п╫п╬ %s, п╬п╤п╦п╢п╟п╩п╬я│я▄ \"booklist\": %s"
 
 #: src/bookshelf.c:407
 #, c-format
@@ -45,8 +45,8 @@ msgid ""
 "I found an old version of your spec file (%s)\n"
 "I removed it, so you have to hide the books you want to be hidden again."
 msgstr ""
-"Найдена старая версия файла spec (%s)\n"
-"Она удалена, поэтому необходимо снова скрыть книги, которые вы хотите скрыть."
+"п²п╟п╧п╢п╣п╫п╟ я│я┌п╟я─п╟я▐ п╡п╣я─я│п╦я▐ я└п╟п╧п╩п╟ spec (%s)\n"
+"п·п╫п╟ я┐п╢п╟п╩п╣п╫п╟, п©п╬я█я┌п╬п╪я┐ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬ я│п╫п╬п╡п╟ я│п╨я─я▀я┌я▄ п╨п╫п╦пЁп╦, п╨п╬я┌п╬я─я▀п╣ п╡я▀ я┘п╬я┌п╦я┌п╣ я│п╨я─я▀я┌я▄."
 
 #: src/bookshelf.c:412
 msgid "Ok"
@@ -55,44 +55,44 @@ msgstr "Ok"
 #: src/bookshelf.c:453
 #, c-format
 msgid "Failed to open file %s for writing."
-msgstr "Не удалось открыть файл %s для записи."
+msgstr "п²п╣ я┐п╢п╟п╩п╬я│я▄ п╬я┌п╨я─я▀я┌я▄ я└п╟п╧п╩ %s п╢п╩я▐ п╥п╟п©п╦я│п╦."
 
 #: src/devhelp-window.c:402
 msgid "_Contents"
-msgstr "Содержание"
+msgstr "п║п╬п╢п╣я─п╤п╟п╫п╦п╣"
 
 #: src/devhelp-window.c:414
 msgid "_Search"
-msgstr "Поиск"
+msgstr "п÷п╬п╦я│п╨"
 
 #: src/devhelp-window.c:499
 msgid "(C) Copyright 2001, Johan Dahlin"
-msgstr "Авторское право (C) 2001, Johan Dahlin"
+msgstr "п░п╡я┌п╬я─я│п╨п╬п╣ п©я─п╟п╡п╬ (C) 2001, Johan Dahlin"
 
 #: src/devhelp-window.c:501
 msgid "A developer's help browser"
-msgstr "Программа просмотра справки для разработчиков"
+msgstr "п÷я─п╬пЁя─п╟п╪п╪п╟ п©я─п╬я│п╪п╬я┌я─п╟ я│п©я─п╟п╡п╨п╦ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌я┤п╦п╨п╬п╡"
 
 #: src/devhelp-window.c:621
 #, c-format
 msgid "Open %s"
-msgstr "Открыть %s"
+msgstr "п·я┌п╨я─я▀я┌я▄ %s"
 
 #: src/GNOME_DevHelp.oaf.in.in.h:1
 msgid "DevHelp Controller"
-msgstr "Контроллер DevHelp"
+msgstr "п п╬п╫я┌я─п╬п╩п╩п╣я─ DevHelp"
 
 #: src/GNOME_DevHelp.oaf.in.in.h:2
 msgid "DevHelp Controller Factory"
-msgstr "Фабрика контроллера DevHelp"
+msgstr "п╓п╟п╠я─п╦п╨п╟ п╨п╬п╫я┌я─п╬п╩п╩п╣я─п╟ DevHelp"
 
 #: src/GNOME_DevHelp.oaf.in.in.h:3
 msgid "DevHelp HelpBrowser"
-msgstr "Просмотр справки DevHelp"
+msgstr "п÷я─п╬я│п╪п╬я┌я─ я│п©я─п╟п╡п╨п╦ DevHelp"
 
 #: src/GNOME_DevHelp.oaf.in.in.h:4
 msgid "DevHelp HelpBrowser Factory"
-msgstr "Фабрика просмотра справки DevHelp"
+msgstr "п╓п╟п╠я─п╦п╨п╟ п©я─п╬я│п╪п╬я┌я─п╟ я│п©я─п╟п╡п╨п╦ DevHelp"
 
 #: src/html-widget.c:208
 msgid ""
@@ -100,82 +100,86 @@ msgid ""
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
 "tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
 "books in the tree."
-msgstr "Выберите тему в содержании слева или переключитесь в панель поиска, чтобы найти нужный текст. <p>Используйте <b>Shift Up/Down</b> для перемещения по дереву слева и <b>Shift Left/Right</b> сворачивания и разворачивания книг в дереве."
+msgstr ""
+"п▓я▀п╠п╣я─п╦я┌п╣ я┌п╣п╪я┐ п╡ я│п╬п╢п╣я─п╤п╟п╫п╦п╦ я│п╩п╣п╡п╟ п╦п╩п╦ п©п╣я─п╣п╨п╩я▌я┤п╦я┌п╣я│я▄ п╡ п©п╟п╫п╣п╩я▄ п©п╬п╦я│п╨п╟, я┤я┌п╬п╠я▀ "
+"п╫п╟п╧я┌п╦ п╫я┐п╤п╫я▀п╧ я┌п╣п╨я│я┌. <p>п≤я│п©п╬п╩я▄п╥я┐п╧я┌п╣ <b>Shift Up/Down</b> п╢п╩я▐ п©п╣я─п╣п╪п╣я┴п╣п╫п╦я▐ п©п╬ "
+"п╢п╣я─п╣п╡я┐ я│п╩п╣п╡п╟ п╦ <b>Shift Left/Right</b> я│п╡п╬я─п╟я┤п╦п╡п╟п╫п╦я▐ п╦ я─п╟п╥п╡п╬я─п╟я┤п╦п╡п╟п╫п╦я▐ п╨п╫п╦пЁ п╡ "
+"п╢п╣я─п╣п╡п╣."
 
 #: src/html-widget.c:294
 #, c-format
 msgid "Couldn't open uri: %s"
-msgstr "Не удалось открыть URI: %s"
+msgstr "п²п╣ я┐п╢п╟п╩п╬я│я▄ п╬я┌п╨я─я▀я┌я▄ URI: %s"
 
 #: src/html-widget.c:464
 msgid "Print Help"
-msgstr "Печати справки"
+msgstr "п÷п╣я┤п╟я┌п╦ я│п©я─п╟п╡п╨п╦"
 
 #: src/html-widget.c:509
 msgid "Print Preview"
-msgstr "Просмотр печати"
+msgstr "п÷я─п╬я│п╪п╬я┌я─ п©п╣я┤п╟я┌п╦"
 
 #: src/html-widget.c:520
 msgid "Printing failed."
-msgstr "Сбой печати."
+msgstr "п║п╠п╬п╧ п©п╣я┤п╟я┌п╦."
 
 #: src/install.c:101 src/install.c:190 src/install.c:214 src/install.c:306
 msgid "The book is already installed."
-msgstr "Книга уже установлена."
+msgstr "п п╫п╦пЁп╟ я┐п╤п╣ я┐я│я┌п╟п╫п╬п╡п╩п╣п╫п╟."
 
 #: src/install.c:114 src/install.c:198 src/install.c:223
 msgid "Failed to move book. This should never happen."
-msgstr "Не удалось переместить книгу. Этого не должно было случиться."
+msgstr "п²п╣ я┐п╢п╟п╩п╬я│я▄ п©п╣я─п╣п╪п╣я│я┌п╦я┌я▄ п╨п╫п╦пЁя┐. п╜я┌п╬пЁп╬ п╫п╣ п╢п╬п╩п╤п╫п╬ п╠я▀п╩п╬ я│п╩я┐я┤п╦я┌я▄я│я▐."
 
 #: src/install.c:154
 msgid "Failed to extract spec file from book."
-msgstr "Не удалось извлечь файл spec из книги."
+msgstr "п²п╣ я┐п╢п╟п╩п╬я│я▄ п╦п╥п╡п╩п╣я┤я▄ я└п╟п╧п╩ spec п╦п╥ п╨п╫п╦пЁп╦."
 
 #: src/install.c:169
 msgid "Error, the book is corrupted or very old."
-msgstr "Ошибка, книга испорчена или слишком стара."
+msgstr "п·я┬п╦п╠п╨п╟, п╨п╫п╦пЁп╟ п╦я│п©п╬я─я┤п╣п╫п╟ п╦п╩п╦ я│п╩п╦я┬п╨п╬п╪ я│я┌п╟я─п╟."
 
 #: src/install.c:180
 msgid "Failed to extract the book."
-msgstr "Не удалось извлечь книгу."
+msgstr "п²п╣ я┐п╢п╟п╩п╬я│я▄ п╦п╥п╡п╩п╣я┤я▄ п╨п╫п╦пЁя┐."
 
 #: src/install.c:287 src/install.c:297
 #, c-format
 msgid "Wrong type (mime_type=%s)."
-msgstr "Неправильный тип (mime_type=%s)."
+msgstr "п²п╣п©я─п╟п╡п╦п╩я▄п╫я▀п╧ я┌п╦п© (mime_type=%s)."
 
 #: src/main.c:78
 #, c-format
 msgid "Could not activate devhelp: '%s'"
-msgstr "Не удалось активировать devhelp: \"%s\""
+msgstr "п²п╣ я┐п╢п╟п╩п╬я│я▄ п╟п╨я┌п╦п╡п╦я─п╬п╡п╟я┌я▄ devhelp: \"%s\""
 
 #: src/main.c:87
 msgid "Could not search for string."
-msgstr "Поиск строки не возможен."
+msgstr "п÷п╬п╦я│п╨ я│я┌я─п╬п╨п╦ п╫п╣ п╡п╬п╥п╪п╬п╤п╣п╫."
 
 #: src/main.c:125
 msgid "Search for a function"
-msgstr "Поиск функции"
+msgstr "п÷п╬п╦я│п╨ я└я┐п╫п╨я├п╦п╦"
 
 #: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
 msgid "Tiny"
-msgstr "Малюсенький"
+msgstr "п°п╟п╩я▌я│п╣п╫я▄п╨п╦п╧"
 
 #: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
 msgid "Small"
-msgstr "Маленький"
+msgstr "п°п╟п╩п╣п╫я▄п╨п╦п╧"
 
 #: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
 msgid "Medium"
-msgstr "Средний"
+msgstr "п║я─п╣п╢п╫п╦п╧"
 
 #: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
 msgid "Large"
-msgstr "Большой"
+msgstr "п▒п╬п╩я▄я┬п╬п╧"
 
 #: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
 msgid "Huge"
-msgstr "Огромный"
+msgstr "п·пЁя─п╬п╪п╫я▀п╧"
 
 #: ui/devhelp.glade.h:1
 msgid " "
@@ -183,172 +187,172 @@ msgstr " "
 
 #: ui/devhelp.glade.h:2
 msgid "&lt;&lt; _Show"
-msgstr "&lt;&lt; Показать"
+msgstr "&lt;&lt; п÷п╬п╨п╟п╥п╟я┌я▄"
 
 #: ui/devhelp.glade.h:3
 msgid "Author:"
-msgstr "Автор:"
+msgstr "п░п╡я┌п╬я─:"
 
 #: ui/devhelp.glade.h:4
 msgid "Book info"
-msgstr "Информация о книге"
+msgstr "п≤п╫я└п╬я─п╪п╟я├п╦я▐ п╬ п╨п╫п╦пЁп╣"
 
 #: ui/devhelp.glade.h:5
 msgid "Bookmarks"
-msgstr "Закладки"
+msgstr "п≈п╟п╨п╩п╟п╢п╨п╦"
 
 #: ui/devhelp.glade.h:6
 msgid "DevHelp Book Manager"
-msgstr "Диспетчер книг DevHelp"
+msgstr "п■п╦я│п©п╣я┌я┤п╣я─ п╨п╫п╦пЁ DevHelp"
 
 #: ui/devhelp.glade.h:7
 msgid "DevHelp Preferences"
-msgstr "Настройки DevHelp"
+msgstr "п²п╟я│я┌я─п╬п╧п╨п╦ DevHelp"
 
 #: ui/devhelp.glade.h:8
 msgid "Hidden"
-msgstr "Скрытый"
+msgstr "п║п╨я─я▀я┌я▀п╧"
 
 #: ui/devhelp.glade.h:10
 msgid "Install new book..."
-msgstr "Установить новую книгу..."
+msgstr "пёя│я┌п╟п╫п╬п╡п╦я┌я▄ п╫п╬п╡я┐я▌ п╨п╫п╦пЁя┐..."
 
 #: ui/devhelp.glade.h:13
 msgid "Move down"
-msgstr "Переместить вниз"
+msgstr "п÷п╣я─п╣п╪п╣я│я┌п╦я┌я▄ п╡п╫п╦п╥"
 
 #: ui/devhelp.glade.h:14
 msgid "Move up"
-msgstr "Переместить вверх"
+msgstr "п÷п╣я─п╣п╪п╣я│я┌п╦я┌я▄ п╡п╡п╣я─я┘"
 
 #: ui/devhelp.glade.h:15
 msgid "Name:"
-msgstr "Название:"
+msgstr "п²п╟п╥п╡п╟п╫п╦п╣:"
 
 #: ui/devhelp.glade.h:16
 msgid "Path:"
-msgstr "Путь:"
+msgstr "п÷я┐я┌я▄:"
 
 #: ui/devhelp.glade.h:17
 msgid "Remove"
-msgstr "Удалить"
+msgstr "пёп╢п╟п╩п╦я┌я▄"
 
 #: ui/devhelp.glade.h:18
 msgid "Reset to defaults"
-msgstr "Сбросить в исходные"
+msgstr "п║п╠я─п╬я│п╦я┌я▄ п╡ п╦я│я┘п╬п╢п╫я▀п╣"
 
 #: ui/devhelp.glade.h:19
 msgid "Search"
-msgstr "Поиск"
+msgstr "п÷п╬п╦я│п╨"
 
 #: ui/devhelp.glade.h:20
 msgid "Show _sidebar"
-msgstr "Показать боковую панель"
+msgstr "п÷п╬п╨п╟п╥п╟я┌я▄ п╠п╬п╨п╬п╡я┐я▌ п©п╟п╫п╣п╩я▄"
 
 #: ui/devhelp.glade.h:23
 msgid "Title:"
-msgstr "Заголовок:"
+msgstr "п≈п╟пЁп╬п╩п╬п╡п╬п╨:"
 
 #: ui/devhelp.glade.h:24
 msgid "Version:"
-msgstr "Версия:"
+msgstr "п▓п╣я─я│п╦я▐:"
 
 #: ui/devhelp.glade.h:25
 msgid "View"
-msgstr "Просмотр"
+msgstr "п÷я─п╬я│п╪п╬я┌я─"
 
 #: ui/devhelp.glade.h:26
 msgid "Visible"
-msgstr "Видимый"
+msgstr "п▓п╦п╢п╦п╪я▀п╧"
 
 #: ui/devhelp.glade.h:27
 msgid "_Edit book..."
-msgstr "Правка книги..."
+msgstr "п÷я─п╟п╡п╨п╟ п╨п╫п╦пЁп╦..."
 
 #: ui/devhelp.glade.h:28
 msgid "_Hide &gt;&gt;"
-msgstr "Скрыть &gt;&gt;"
+msgstr "п║п╨я─я▀я┌я▄ &gt;&gt;"
 
 #: ui/devhelp.glade.h:29
 msgid "_Limit the number of hits to:"
-msgstr "Ограничить количество результатов до:"
+msgstr "п·пЁя─п╟п╫п╦я┤п╦я┌я▄ п╨п╬п╩п╦я┤п╣я│я┌п╡п╬ я─п╣п╥я┐п╩я▄я┌п╟я┌п╬п╡ п╢п╬:"
 
 #: ui/devhelp.glade.h:30
 msgid "_Text size: "
-msgstr "Размер текста:"
+msgstr "п═п╟п╥п╪п╣я─ я┌п╣п╨я│я┌п╟:"
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
-msgstr "Об этой программе"
+msgstr "п·п╠ я█я┌п╬п╧ п©я─п╬пЁя─п╟п╪п╪п╣"
 
 #: ui/GNOME_DevHelp.ui.h:2
 msgid "Font size"
-msgstr "Размер шрифта"
+msgstr "п═п╟п╥п╪п╣я─ я┬я─п╦я└я┌п╟"
 
 #: ui/GNOME_DevHelp.ui.h:6
 msgid "Open preferences dialog"
-msgstr "Открыть диалог настроек"
+msgstr "п·я┌п╨я─я▀я┌я▄ п╢п╦п╟п╩п╬пЁ п╫п╟я│я┌я─п╬п╣п╨"
 
 #: ui/GNOME_DevHelp.ui.h:7
 msgid "Preferences..."
-msgstr "Настройки..."
+msgstr "п²п╟я│я┌я─п╬п╧п╨п╦..."
 
 #: ui/GNOME_DevHelp.ui.h:8
 msgid "Print the html page"
-msgstr "Печать страницы html"
+msgstr "п÷п╣я┤п╟я┌я▄ я│я┌я─п╟п╫п╦я├я▀ html"
 
 #: ui/GNOME_DevHelp.ui.h:9
 msgid "Show sidebar"
-msgstr "Показать боковую панель"
+msgstr "п÷п╬п╨п╟п╥п╟я┌я▄ п╠п╬п╨п╬п╡я┐я▌ п©п╟п╫п╣п╩я▄"
 
 #: ui/GNOME_DevHelp.ui.h:12
 msgid "_About..."
-msgstr "О программе..."
+msgstr "п· п©я─п╬пЁя─п╟п╪п╪п╣..."
 
 #: ui/GNOME_DevHelp.ui.h:13
 msgid "_Exit"
-msgstr "Выйти"
+msgstr "п▓я▀п╧я┌п╦"
 
 #: ui/GNOME_DevHelp.ui.h:14
 msgid "_File"
-msgstr "Файл"
+msgstr "п╓п╟п╧п╩"
 
 #: ui/GNOME_DevHelp.ui.h:15
 msgid "_Help"
-msgstr "Справка"
+msgstr "п║п©я─п╟п╡п╨п╟"
 
 #: ui/GNOME_DevHelp.ui.h:16
 msgid "_Print"
-msgstr "Печать"
+msgstr "п÷п╣я┤п╟я┌я▄"
 
 #: ui/GNOME_DevHelp.ui.h:17 ui/GNOME_DevHelp_Controller.ui.h:7
 msgid "_Settings"
-msgstr "Установки"
+msgstr "пёя│я┌п╟п╫п╬п╡п╨п╦"
 
 #: ui/GNOME_DevHelp.ui.h:18
 msgid "_View"
-msgstr "Просмотр"
+msgstr "п÷я─п╬я│п╪п╬я┌я─"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:1
 msgid "Back"
-msgstr "Назад"
+msgstr "п²п╟п╥п╟п╢"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:2
 msgid "Book Manager..."
-msgstr "Диспетчер книг..."
+msgstr "п■п╦я│п©п╣я┌я┤п╣я─ п╨п╫п╦пЁ..."
 
 #: ui/GNOME_DevHelp_Controller.ui.h:3
 msgid "Forward"
-msgstr "Вперёд"
+msgstr "п▓п©п╣я─я▒п╢"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:4
 msgid "Go to next page in the history"
-msgstr "Перейти к следующей странице из просмотренных"
+msgstr "п÷п╣я─п╣п╧я┌п╦ п╨ я│п╩п╣п╢я┐я▌я┴п╣п╧ я│я┌я─п╟п╫п╦я├п╣ п╦п╥ п©я─п╬я│п╪п╬я┌я─п╣п╫п╫я▀я┘"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:5
 msgid "Go to previous page in the history"
-msgstr "Перейти к предыдущей странице из просмотренных"
+msgstr "п÷п╣я─п╣п╧я┌п╦ п╨ п©я─п╣п╢я▀п╢я┐я┴п╣п╧ я│я┌я─п╟п╫п╦я├п╣ п╦п╥ п©я─п╬я│п╪п╬я┌я─п╣п╫п╫я▀я┘"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
-msgstr "Открыть диалог диспетчера книг"
+msgstr "п·я┌п╨я─я▀я┌я▄ п╢п╦п╟п╩п╬пЁ п╢п╦я│п©п╣я┌я┤п╣я─п╟ п╨п╫п╦пЁ"

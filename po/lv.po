@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: Peteris Krisjanis <peteris.krisjanis@ttc.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
@@ -40,12 +40,8 @@ msgstr "DevHelp palīdzības pārlūka ražotne"
 
 #: src/dh-bookshelf.c:185
 #, c-format
-msgid ""
-"Problems when reading books: %s\n"
-""
-msgstr ""
-"Problēmas ar grāmatu nolasīšanu: %s\n"
-""
+msgid "Problems when reading books: %s\n"
+msgstr "Problēmas ar grāmatu nolasīšanu: %s\n"
 
 #: src/dh-bookshelf.c:233
 #, c-format
@@ -64,7 +60,8 @@ msgid ""
 "I removed it, so you have to hide the books you want to be hidden again."
 msgstr ""
 "Es atradu vecu versiju jūsu specifikāciju failam [%s]\n"
-"Es to izdzēsu, tāpēc jums atkal jāpaslēpj grāmatas, kuras gribat, lai būtu paslēptas."
+"Es to izdzēsu, tāpēc jums atkal jāpaslēpj grāmatas, kuras gribat, lai būtu "
+"paslēptas."
 
 #: src/dh-bookshelf.c:278
 msgid "Ok"
@@ -76,8 +73,16 @@ msgid "Failed to open file %s for writing."
 msgstr "Nevarēju atvērt failu %s ierakstam."
 
 #: src/dh-view.c:487
-msgid "Select a subject in the contents to the left or switch to the search pane to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the tree to the left, and <b>Shift Left/Right</b> to expand and collapse the books in the tree."
-msgstr "Izvēlieties subjektu kreisajā pusē vai arī pārslēdzaties uz meklēšanas skaldni, lai sameklētu, ko jūs meklējiet.<p>Izmantojiet <b>Shift+uz augšu/leju</b> lai pārvietotos pa koku kreisajā pusē, un <b>Shift+pa kreisi/labi</b> lai izplestu un savilktu grāmatas kokā."
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Izvēlieties subjektu kreisajā pusē vai arī pārslēdzaties uz meklēšanas "
+"skaldni, lai sameklētu, ko jūs meklējiet.<p>Izmantojiet <b>Shift+uz augšu/"
+"leju</b> lai pārvietotos pa koku kreisajā pusē, un <b>Shift+pa kreisi/labi</"
+"b> lai izplestu un savilktu grāmatas kokā."
 
 #: src/dh-window.c:298
 msgid "_Contents"
@@ -272,4 +277,3 @@ msgstr "_Limitēt rezultātu skaitu uz:"
 #: ui/devhelp2.glade.h:30
 msgid "_Text size: "
 msgstr "_Teksta izmērs:"
-

@@ -10,7 +10,7 @@ msgstr ""
 "Last-Translator: Alessio Frusciante <algol@firenze.linux.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
@@ -109,7 +109,7 @@ msgstr "Stampa non riuscita."
 
 #: src/install.c:101 src/install.c:192 src/install.c:210
 msgid "The book is already installed."
-msgstr "Il libro è già installato."
+msgstr "Il libro Ã¨ giÃ  installato."
 
 #: src/install.c:114 src/install.c:200 src/install.c:219
 msgid "Failed to move book. This should never happen."
@@ -121,7 +121,7 @@ msgstr "Impossibile estrarre il file delle specifice dal libro."
 
 #: src/install.c:171
 msgid "Error, the book is corrupted or very old."
-msgstr "Errore, il libro è danneggiato o molto vecchio."
+msgstr "Errore, il libro Ã¨ danneggiato o molto vecchio."
 
 #: src/install.c:182
 msgid "Failed to extract the book."
@@ -203,7 +203,7 @@ msgstr "Installa nuovo libro..."
 
 #: ui/devhelp.glade.h:13
 msgid "Move down"
-msgstr "Muovi giù"
+msgstr "Muovi giÃ¹"
 
 #: ui/devhelp.glade.h:14
 msgid "Move up"
