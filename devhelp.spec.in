@@ -1,8 +1,6 @@
 # Note that this is NOT a relocatable package
-%define ver          @VERSION@
-%define rel          1
-%define prefix       /usr
-%define sysconfdir   /etc
+%define ver      @VERSION@
+%define rel      1
 
 Summary:             Devhelp
 Name:                devhelp
@@ -51,12 +49,12 @@ A developers help program
 %build
 
 if [ ! -f configure ]; then
-	CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%{prefix} \
-		--sysconfdir=${sysconfdir} --without-debug \
+	CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%{_prefix} \
+		--sysconfdir=${_sysconfdir} --without-debug \
 		--disable-install-schemas
 else
-	CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{prefix} \
-		--sysconfdir=${sysconfdir} --without-debug \
+	CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} \
+		--sysconfdir=${_sysconfdir} --without-debug \
 		--disable-install-schemas
 fi
 
@@ -70,7 +68,7 @@ fi
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT%{prefix} install
+make prefix=$RPM_BUILD_ROOT%{_prefix} sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -84,20 +82,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libdevhelp.*
 
 %config %{_sysconfdir}/gconf/schemas/devhelp.schemas
-%{_datadir}/gnome/apps/Internet/*.desktop
-%{_datadir}/share/devhelp
-%(_datadir}/locale/*/LC_MESSAGES/*.mo
+%{_datadir}/gnome/apps/Development/*.desktop
+%{_datadir}/devhelp
+%{_datadir}/locale/*/LC_MESSAGES/*.mo
 %{_datadir}/oaf/GNOME_DevHelp.oaf
 %{_datadir}/gnome/ui/GNOME_DevHelp.ui
 %{_datadir}/gnome/ui/GNOME_DevHelp_Controller.ui
-%{_datadir}/share/pixmaps/*
-%{_datadir}/share/images/*
+%{_datadir}/pixmaps/*
+%{_datadir}/images/*
 
-%postinst
+%post
 # Fix gconf permissions
 killall gconfd-1 2>/dev/null >/dev/null
 chmod o+rX /etc/gconf -R
+
 # Install schemas
+gconftool --shutdown
 SOURCE=xml::/etc/gconf/gconf.xml.defaults
 GCONF_CONFIG_SOURCE=$SOURCE \
     gconftool --makefile-install-rule \

@@ -1,3 +1,12 @@
+2001-10-19  Johan Dahlin  <zilch.am@home.se>
+
+	* Makefile.am (install-data-local): Remove gconftool --shutdown.
+
+	* devhelp.spec.in: Make it non b0rked.
+
+	* src/devhelp-window.c (dw_zoom_level_changed_cb): Set menus
+	correctly.
+
 2001-10-19  Christophe Merlet  <redfox@eikonex.org>
 
 	* configure.in: Added "fr" to ALL_LINGUAS.

@@ -631,21 +631,37 @@ dw_zoom_level_changed_cb (Preferences     *prefs,
 			  gint             zoom_level,
 			  DevHelpWindow   *window)
 {
-	DevHelpWindowPriv   *priv;
-	gdouble              magnification;
-
+	BonoboUIComponent  *uic;
+	DevHelpWindowPriv  *priv;
+	gdouble             magnification;
+	gchar              *zoom_string;
+	
 	g_return_if_fail (window != NULL);
 	g_return_if_fail (IS_DEVHELP_WINDOW (window));
 	
 	priv = window->priv;
-
+	uic = priv->component;
+	
 	magnification = zoom_levels[zoom_level].data / 100.0;
 	magnification = CLAMP (magnification, 0.05, 20.0);
 	
 	gtk_html_set_magnification (GTK_HTML (priv->html_widget),
 				    magnification);
 
-	/* FIX: Show this in the menu somehow */
+	if (zoom_level == ZOOM_TINY_INDEX) {
+		zoom_string = g_strdup ("/commands/CmdSizeTiny");
+	} else if (zoom_level == ZOOM_SMALL_INDEX) {
+		zoom_string = g_strdup ("/commands/CmdSizeSmall");
+	} else if (zoom_level == ZOOM_MEDIUM_INDEX) {
+		zoom_string = g_strdup ("/commands/CmdSizeMedium");
+	} else if (zoom_level == ZOOM_LARGE_INDEX) { 
+		zoom_string = g_strdup ("/commands/CmdSizeLarge");
+	} else if (zoom_level == ZOOM_HUGE_INDEX) {
+		zoom_string = g_strdup ("/commands/CmdSizeHuge");
+	}
+	
+	bonobo_ui_component_set_prop (uic, zoom_string, "state", "1", NULL);
+	g_free (zoom_string);
 }
 
 GtkWidget *

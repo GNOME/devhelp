@@ -3,9 +3,14 @@ SUBDIRS = intl po src ui
 SCHEMAS_DIR = $(sysconfdir)/gconf/schemas
 SCHEMAS_FILE = devhelp.schemas
 
-if INSTALL_SCHEMAS
 schemasdir = $(SCHEMAS_DIR)
 schemas_DATA = $(SCHEMAS_FILE)
+
+install-data-local:
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool --makefile-install-rule $(top_srcdir)/$(SCHEMAS_FILE)
+
+if INSTALL_SCHEMAS
+install-data-local: install-schemas
 endif
 
 EXTRA_DIST =			\
@@ -28,10 +33,4 @@ Devel_in_files = devhelp.desktop.in
 Devel_DATA = $(Devel_in_files:.desktop.in=.desktop)
 
 @XML_I18N_MERGE_DESKTOP_RULE@
-
-if INSTALL_SCHEMAS
-install-data-local:
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool --shutdown
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool --makefile-install-rule $(top_srcdir)/$(SCHEMAS_FILE)
-endif
 
