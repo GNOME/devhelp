@@ -1,5 +1,9 @@
 2003-06-27  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c (window_populate, window_switch_page_after_cb)
+	(window_switch_page_cb): Hack to workaround weird selection
+	problem with the book tree.
+
 	* devhelp.keys.in: 
 	* devhelp.desktop.in: Fix name.
 

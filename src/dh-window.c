@@ -232,6 +232,36 @@ window_finalize (GObject *object)
 	}
 }
 
+/* The ugliest hack. When switching tabs, the selection and cursor is changed
+ * for the tree view so the html content is changed. Block the signal during
+ * switch.
+ */
+static void
+window_switch_page_cb (GtkWidget       *notebook,
+		       GtkNotebookPage *page,
+		       guint            page_num,
+		       DhWindow        *window)
+{
+	DhWindowPriv *priv;
+
+	priv = window->priv;
+
+	g_signal_handlers_block_by_func (priv->book_tree, window_link_selected_cb, window);
+}
+
+static void
+window_switch_page_after_cb (GtkWidget       *notebook,
+			     GtkNotebookPage *page,
+			     guint            page_num,
+			     DhWindow        *window)
+{
+	DhWindowPriv *priv;
+
+	priv = window->priv;
+	
+	g_signal_handlers_unblock_by_func (priv->book_tree, window_link_selected_cb, window);
+}
+
 static void
 window_populate (DhWindow *window)
 {
@@ -256,7 +286,17 @@ window_populate (DhWindow *window)
         priv->notebook  = gtk_notebook_new ();
 	priv->html      = dh_html_new ();
 	priv->html_view = dh_html_get_widget (priv->html);
-	
+
+	g_signal_connect (priv->notebook,
+			  "switch_page",
+			  G_CALLBACK (window_switch_page_cb),
+			  window);
+
+	g_signal_connect_after (priv->notebook,
+				"switch_page",
+				G_CALLBACK (window_switch_page_after_cb),
+				window);
+
 	html_sw         = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (html_sw),
 					GTK_POLICY_AUTOMATIC,
@@ -327,7 +367,6 @@ window_populate (DhWindow *window)
 				  "uri_selected", 
 				  G_CALLBACK (window_open_url),
 				  window);
-
 }
 
 static void
