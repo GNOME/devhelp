@@ -1,3 +1,14 @@
+2003-03-12  Ross Burton  <ross@burtonini.com>
+
+	* devhelp.keys.in, devhelp.mime: Added gnome-vfs MIME files to map
+	.devhelp to application/x-devhelp.
+
+	* Makefile.am: Cleanup, and install the MIME files.
+
+	* devhelp.schemas: Removed, not used any more.
+
+	* debian/: Removed, very out of date.
+
 2003-03-07  Ross Burton  <ross@burtonini.com>
 
 	* AUTHORS: Add myself.

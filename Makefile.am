@@ -1,5 +1,3 @@
-NULL = 
-
 SUBDIRS = dtd libegg po src ui
 
 @INTLTOOL_DESKTOP_RULE@
@@ -7,39 +5,34 @@ SUBDIRS = dtd libegg po src ui
 DESKTOP_IN_FILES = devhelp.desktop.in
 DESKTOP_FILES =$(DESKTOP_IN_FILES:.desktop.in=.desktop)
 
+desktopdir = $(datadir)/applications
+desktop_DATA = $(DESKTOP_FILES)
 
-#SCHEMAS_DIR = $(sysconfdir)/gconf/schemas
-#SCHEMAS_FILE = devhelp.schemas
+@INTLTOOL_KEYS_RULE@
 
-#schemasdir = $(SCHEMAS_DIR)
-#schemas_DATA = $(SCHEMAS_FILE)
+KEYS_IN_FILES=devhelp.keys.in
+KEYS_FILES = $(KEYS_IN_FILES:.keys.in=.keys)
 
-#install-schemas: devhelp.schemas
-#	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool-1 --shutdown
-#	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool-1 --makefile-install-rule $(top_srcdir)/$(SCHEMAS_FILE)
-
-#if INSTALL_SCHEMAS
-#install-data-local: install-schemas
-#endif
+mimedir = $(datadir)/mime-info
+mime_DATA = $(KEYS_FILES) devhelp.mime
 
 EXTRA_DIST =			\
 	TODO 			\
-	$(DESKTOP_IN_FILES)     \
-	$(DESKTOP_FILES)        \
+	$(DESKTOP_IN_FILES)	\
+	$(KEYS_IN_FILES)	\
 	devhelp.desktop.in 	\
 	devhelp.spec.in 	\
 	intltool-merge.in 	\
 	intltool-update.in 	\
 	intltool-extract.in	\
-	misc/devhelp.el		\
+	misc/devhelp.el	\
 	misc/html2funcs.py	\
 	misc/html2xml.py	\
-	misc/devhelp.vim	\
-	$(NULL)
-
-Develdir = $(datadir)/applications
-Devel_DATA = $(DESKTOP_FILES)
+	misc/devhelp.vim
 
 dist-hook: devhelp.spec
 	cp devhelp.spec $(distdir)
 
+CLEANFILES = $(KEYS_FILES) $(DESKTOP_FILES)
+
+DISTCLEANFILES = intltool-extract intltool-merge intltool-update
