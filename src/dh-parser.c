@@ -225,6 +225,7 @@ parser_end_node_cb (GMarkupParseContext  *context,
 	parser = DH_PARSER (user_data);
 	
 	if (parser->parsing_chapters) {
+		g_node_reverse_children(parser->parent);
 		if (g_ascii_strcasecmp (node_name, "sub") == 0) {
 			parser->parent = parser->parent->parent;
 			/* Move up in the tree */

@@ -131,6 +131,7 @@ static void
 base_init_books (DhBase *base)
 {
 	const gchar *env;
+	gchar *dir;
 	
 	env = g_getenv ("DEVHELP_SEARCH_PATH");
 	if (env) {
@@ -150,6 +151,10 @@ base_init_books (DhBase *base)
 	
 	/* Insert the books from default gtk-doc install path */
 	base_add_books (base, DATADIR"/gtk-doc/html");
+	base_add_books (base, "/usr/share/gtk-doc/html");
+	dir = g_strconcat (g_getenv ("HOME"), "/.devhelp2/books", NULL);
+	base_add_books (base, dir);
+	g_free (dir);
 }
 
 
