@@ -1,7 +1,7 @@
 [Desktop Entry]
 _Name=DevHelp
 _Comment=Developers Help program
-Exec=devhelp
+Exec=devhelp-2
 Terminal=0
 Type=Application
 Icon=devhelp.png

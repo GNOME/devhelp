@@ -1,3 +1,7 @@
+2002-08-20  James Henstridge  <james@daa.com.au>
+
+	* devhelp.desktop.in (Exec): fix up desktop file.
+
 2002-08-12  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/dh-window.c (window_cmd_about_cb): cleaned up about dialog.
