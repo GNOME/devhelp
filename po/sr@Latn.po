@@ -1,23 +1,22 @@
 # Serbian translation of devhelp
-# Courtesy of Prevod.org team (http://www.prevod.org/) -- 2003.
-# 
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004.
+#
 # This file is distributed under the same license as the devhelp package.
-# 
+#
 # Maintainer: Branko Ivanović <popeye@one.ekof.bg.ac.yu>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2004-01-10 03:15+0100\n"
-"Last-Translator: Branko Ivanović <popeye@one.ekof.bg.ac.yu>\n"
-"Language-Team: Serbian (sr)  <serbiangnome-lista@nongnu.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-26 17:00+0100\n"
+"PO-Revision-Date: 2004-03-26 17:03+0100\n"
+"Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
+"Language-Team: Serbian (sr)  <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
-"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -30,70 +29,6 @@ msgstr "DevHelp"
 #: devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "DevHelp knjiga"
-
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -159,78 +94,150 @@ msgstr "_Traži:"
 msgid "Section"
 msgstr "Odeljak"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:112
 msgid "_File"
 msgstr "_Datoteka"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:113
 msgid "_Edit"
-msgstr ""
+msgstr "_Uređivanje"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: src/dh-window.c:114 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Idi"
 
-#: src/dh-window.c:114
+#: src/dh-window.c:115
 msgid "_Help"
 msgstr "_Pomoć"
 
-#: src/dh-window.c:292
+#: src/dh-window.c:300
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Ne mogu da postavim sučelje: %s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: src/dh-window.c:355 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: src/dh-window.c:363
+#: src/dh-window.c:366
 msgid "Search"
 msgstr "Traži"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:449
 msgid "A developer's help browser for GNOME 2"
 msgstr "Čitač pomoći za programere u okruženju Gnom 2"
 
-#: src/dh-window.c:462
+#: src/dh-window.c:465
 msgid "Devhelp project page"
 msgstr "Stranica projekta DevHelp"
 
-#: src/dh-window.c:466
+#: src/dh-window.c:469
 msgid "Bug report Devhelp"
 msgstr "Prijava greške u DevHelpu"
 
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Font za tekst utvrđene širine"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Font za tekst"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Font za tekst utvrđene širine."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Font za tekst promenljive širine."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Visina glavnog prozora"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Položaj ploče"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Stanje uvećanja glavnog prozora"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "X (vodoravan) položaj glavnog prozora."
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "Y (uspravan) položaj glavnog prozora."
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "Visina glavnog prozora."
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "Položaj razdvajača ploča."
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "Širina glavnog prozora."
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Koristi fontove okruženja"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Koristi podrazumevane fontove iz okruženja."
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Da li se glavni prozor pokreće uvećan ili ne."
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Širina glavnog prozora"
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Vodoravni položaj glavnog prozora"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Uspravni položaj glavnog prozora"
+
 #: ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Fontovi</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "Utvrđene širine:"
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
-msgstr ""
+msgstr "Postavke"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "Promenljive širine:"
 
 #: ui/devhelp.glade.h:8
 msgid "_Back"
-msgstr ""
+msgstr "_Nazad"
 
 #: ui/devhelp.glade.h:9
 msgid "_Forward"
-msgstr ""
+msgstr "N_apred"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Koristi fontove okruženja"
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search tab "
@@ -253,5 +260,5 @@ msgstr ""
 #~ msgstr ""
 #~ "Izaberi temu iz sadržaja na levoj strani ili pređi u deo za pretragu kako "
 #~ "bi našao ono što tražiš. <p>Koristi <b>Shift+gore/dole</b> za kretanje po "
-#~ "stablu na levoj strani <b>Shift+levo/desno</b> za proširivanje i "
-#~ "skupljanje liste u okviru stabla."
+#~ "stablu na levoj strani <b>Shift+levo/desno</b> za proširivanje i skupljanje "
+#~ "liste u okviru stabla."
