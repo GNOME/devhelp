@@ -650,13 +650,17 @@ dw_zoom_level_changed_cb (Preferences     *prefs,
 
 	if (zoom_level == ZOOM_TINY_INDEX) {
 		zoom_string = g_strdup ("/commands/CmdSizeTiny");
-	} else if (zoom_level == ZOOM_SMALL_INDEX) {
+	} 
+	else if (zoom_level == ZOOM_SMALL_INDEX) {
 		zoom_string = g_strdup ("/commands/CmdSizeSmall");
-	} else if (zoom_level == ZOOM_MEDIUM_INDEX) {
+	} 
+	else if (zoom_level == ZOOM_MEDIUM_INDEX) {
 		zoom_string = g_strdup ("/commands/CmdSizeMedium");
-	} else if (zoom_level == ZOOM_LARGE_INDEX) { 
+	} 
+	else if (zoom_level == ZOOM_LARGE_INDEX) { 
 		zoom_string = g_strdup ("/commands/CmdSizeLarge");
-	} else if (zoom_level == ZOOM_HUGE_INDEX) {
+	} 
+	else if (zoom_level == ZOOM_HUGE_INDEX) {
 		zoom_string = g_strdup ("/commands/CmdSizeHuge");
 	}
 	

@@ -1,3 +1,7 @@
+2001-10-19  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/devhelp-window.c (dw_zoom_level_changed_cb): style fix
+
 2001-10-19  Johan Dahlin  <zilch.am@home.se>
 
 	* Makefile.am (install-data-local): Remove gconftool --shutdown.
