@@ -1,21 +1,22 @@
 <?xml version ="1.0" ?>
 
-<!ELEMENT book (contents,keywords?>
+<!ELEMENT book (contents,keywords?)>
 
 <!ATTLIST book format-version CDATA #REQUIRED
                title          CDATA #REQUIRED
                author         CDATA #IMPLIED
-               main-section   CDATA #REQUIRED
+               index-file     CDATA #REQUIRED
                base-url       CDATA #IMPLIED>
 
 <!ELEMENT contents (section+)>
 
 <!ELEMENT section (section*)>
 <!ATTLIST section title CDATA #REQUIRED
-                  url   CDATA #REQUIRED>
+                  link  CDATA #REQUIRED>
 
 <!ELEMENT keywords (keyword+)>
 
 <!ELEMENT keyword EMPTY>
 <!ATTLIST keyword name CDATA #REQUIRED
-                  url  CDATA #REQUIRED>
+                  link CDATA #REQUIRED>
+
