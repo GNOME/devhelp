@@ -1,5 +1,10 @@
-src/main.c
+devhelp.desktop.in
+src/books-dialog.c
+src/bookshelf.c
+src/devhelp-window.c
+src/GNOME_DevHelp.oaf.in
 src/html-widget.c
-src/print.c
-src/ui.c
+src/install.c
+src/main.c
+src/preferences.c
 ui/devhelp.glade
