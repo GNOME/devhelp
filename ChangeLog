@@ -1,3 +1,7 @@
+2001-11-15  Ross Golder  <ross@golder.org>
+
+	* devhelp.spec.in: Changed ${_sysconfdir} to %{_sysconfdir}
+
 2001-10-25  Johan Dahlin  <zilch.am@home.se>
 
 	* src/devhelp-controller.c (devhelp_controller_init): Use

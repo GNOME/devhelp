@@ -50,11 +50,11 @@ A developers help program
 
 if [ ! -f configure ]; then
 	CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%{_prefix} \
-		--sysconfdir=${_sysconfdir} --without-debug \
+		--sysconfdir=%{_sysconfdir} --without-debug \
 		--disable-install-schemas
 else
 	CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} \
-		--sysconfdir=${_sysconfdir} --without-debug \
+		--sysconfdir=%{_sysconfdir} --without-debug \
 		--disable-install-schemas
 fi
 
