@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
-"POT-Creation-Date: 2003-01-15 19:53-0200\n"
-"PO-Revision-Date: 2003-01-15 01:00-0300\n"
+"POT-Creation-Date: 2003-01-31 11:29-0200\n"
+"PO-Revision-Date: 2003-01-31 03:00-0300\n"
 "Last-Translator: Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -29,8 +29,7 @@ msgstr "Programa de Ajuda para Programadores"
 msgid "'%s' is not a valid book"
 msgstr "'%s' não é um livro válido"
 
-#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144 src/dh-book-old.c:234
-#: src/dh-book-old.c:245 src/dh-book-old.c:257
+#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144
 #, c-format
 msgid "Book '%s' is malformed."
 msgstr "Livro '%s' é inválido."
@@ -39,6 +38,21 @@ msgstr "Livro '%s' é inválido."
 #, c-format
 msgid "Couldn't find file '%s'"
 msgstr "Impossível encontrar o arquivo '%s'"
+
+#: src/dh-book-old.c:249
+#, c-format
+msgid "Book '%s' is malformed, the parse context is invalid."
+msgstr "Livro '%s' é inválido, o contexto de análise é inválido."
+
+#: src/dh-book-old.c:260
+#, c-format
+msgid "Book '%s' is malformed, the XML is invalid."
+msgstr "Livro '%s' é inválido, o XML é inválido."
+
+#: src/dh-book-old.c:274
+#, c-format
+msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
+msgstr "Livro '%s' é inválido, não é conformante com o DTD (%s)."
 
 #: src/dh-html.c:517
 msgid ""
@@ -85,19 +99,32 @@ msgstr "_Ajuda"
 msgid "_About"
 msgstr "_Sobre"
 
-#: src/dh-window.c:284
+#: src/dh-window.c:281
+#, c-format
+msgid ""
+"<b>Cound not read all books</b>\n"
+"\n"
+"The following errors occured whilst reading the books:\n"
+"%s"
+msgstr ""
+"<b>Impossível ler todos os livros</b>\n"
+"\n"
+"Os seguintes erros ocorreram durante a leitura dos livros:\n"
+"%s"
+
+#: src/dh-window.c:298
 msgid "Contents"
 msgstr "Conteúdo"
 
-#: src/dh-window.c:295
+#: src/dh-window.c:309
 msgid "Search"
 msgstr "Buscar"
 
-#: src/dh-window.c:352
+#: src/dh-window.c:366
 msgid "A developer's help browser for GNOME 2"
 msgstr "Um navegador de ajuda para programadores para o GNOME 2"
 
-#: src/dh-window.c:418
+#: src/dh-window.c:432
 #, c-format
 msgid "Open %s"
 msgstr "Abrir %s"
