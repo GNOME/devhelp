@@ -1,5 +1,15 @@
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/devhelp-window.c:
+	- Fixes bug #202.
+	(devhelp_window_link_clicked_cb): changed argument order.
+	(devhelp_window_on_url_cb): added/impl. Sets the statusbar when
+	  mouse over a link.
+	(devhelp_window_populate): 
+	- Moved a couple of containers from priv-struct to local. 
+	- Added statusbar
+	- Connect to "on_url" from html_widget.
+
 	* ui/GNOME_DevHelp_Controller.ui: added tip for forward/back.
 
 	* src/devhelp-controller.c:

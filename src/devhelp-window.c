@@ -86,10 +86,13 @@ static void devhelp_window_delete_cb         (GtkWidget            *widget,
 					      GdkEventAny          *event,
 					      gpointer              user_data);
 
-static void devhelp_window_link_clicked_cb   (GtkWidget            *widget,
+static void devhelp_window_link_clicked_cb   (DevHelpWindow        *window,
 					      gchar                *url,
-					      DevHelpWindow        *window);
+					      gpointer              ignored);
 
+static void devhelp_window_on_url_cb         (DevHelpWindow        *window,
+					      gchar                *url,
+					      gpointer              ignored);
 static void
 devhelp_window_zoom_level_changed_cb         (Preferences         *prefs,
 					      gint                 zoom_level,
@@ -102,14 +105,14 @@ struct _DevHelpWindowPriv {
 
 	GNOME_DevHelp_Controller    controller;
 
-        GtkWidget                  *hpaned;
         GtkWidget                  *notebook;
         GtkWidget                  *search_box;
         GtkWidget                  *index;
         GtkWidget                  *search_list;
         GtkWidget                  *search_entry;
-	GtkWidget                  *html_sw;
 	GtkWidget                  *html_widget;
+	GtkWidget                  *statusbar;
+	GtkWidget                  *hpaned;
 	
 	Preferences                *prefs;
 };
@@ -202,17 +205,21 @@ devhelp_window_populate (DevHelpWindow *window)
 	Bonobo_EventSource    es;
 	Bonobo_Control        control_co;
 	gint                  zoom_level;
-
+	GtkWidget            *vbox;
+	GtkWidget            *html_sw;
+	
         g_return_if_fail (window != NULL);
         g_return_if_fail (IS_DEVHELP_WINDOW (window));
         
         priv = window->priv;
         
-        priv->hpaned      = gtk_hpaned_new ();
         priv->notebook    = gtk_notebook_new ();
         priv->search_box  = gtk_vbox_new (FALSE, 0);
-	priv->html_sw     = gtk_scrolled_window_new (NULL, NULL);
 	priv->html_widget = html_widget_new ();
+        priv->hpaned      = gtk_hpaned_new ();
+	priv->statusbar   = gtk_statusbar_new ();
+	vbox              = gtk_vbox_new (FALSE, 0);
+	html_sw           = gtk_scrolled_window_new (NULL, NULL);
 
 	gtk_object_get (GTK_OBJECT (priv->prefs),
 			"zoom_level", &zoom_level,
@@ -278,14 +285,17 @@ devhelp_window_populate (DevHelpWindow *window)
 	if (!control_co || BONOBO_EX (&ev)) {
 		g_error ("Argggh");
 	}
-	
+
+	gtk_box_pack_start_defaults (GTK_BOX (vbox), priv->hpaned);
+	gtk_box_pack_end (GTK_BOX (vbox), priv->statusbar, FALSE, TRUE, 0);
+
 	priv->search_list = bonobo_widget_new_control_from_objref (control_co,
 								   uic);
 	gtk_paned_add1 (GTK_PANED (priv->hpaned), priv->notebook);
 	
- 	gtk_container_add (GTK_CONTAINER (priv->html_sw), priv->html_widget);
+ 	gtk_container_add (GTK_CONTAINER (html_sw), priv->html_widget);
 
- 	gtk_paned_add2 (GTK_PANED(priv->hpaned), priv->html_sw);
+ 	gtk_paned_add2 (GTK_PANED(priv->hpaned), html_sw);
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 
@@ -305,14 +315,19 @@ devhelp_window_populate (DevHelpWindow *window)
 				  priv->search_box, 
 				  gtk_label_new (_("Search")));
 
-	gtk_widget_show_all (priv->hpaned);
+	gtk_widget_show_all (vbox);
 
-	bonobo_window_set_contents (BONOBO_WINDOW (window), priv->hpaned);
+	bonobo_window_set_contents (BONOBO_WINDOW (window), vbox);
 
- 	gtk_signal_connect (GTK_OBJECT (priv->html_widget),
- 			    "link_clicked", 
- 			    GTK_SIGNAL_FUNC (devhelp_window_link_clicked_cb),
- 			    window);
+ 	gtk_signal_connect_object (GTK_OBJECT (priv->html_widget),
+				   "link_clicked", 
+				   GTK_SIGNAL_FUNC (devhelp_window_link_clicked_cb),
+				   GTK_OBJECT (window));
+	
+	gtk_signal_connect_object (GTK_OBJECT (priv->html_widget),
+				   "on_url",
+				   GTK_SIGNAL_FUNC (devhelp_window_on_url_cb),
+				   GTK_OBJECT (window));
 }
 
 static void
@@ -469,20 +484,39 @@ devhelp_window_delete_cb (GtkWidget     *widget,
 }
 
 static void
-devhelp_window_link_clicked_cb (GtkWidget       *widget,
+devhelp_window_link_clicked_cb (DevHelpWindow   *window,
 				gchar           *url,
-				DevHelpWindow   *window)
+				gpointer         ignored)
 {
 	DevHelpWindowPriv   *priv;
 
-	g_return_if_fail (widget != NULL);
-	g_return_if_fail (IS_HTML_WIDGET (widget));
 	g_return_if_fail (window != NULL);
 	g_return_if_fail (IS_DEVHELP_WINDOW (window));
 	
 	priv = window->priv;
 
 	GNOME_DevHelp_Controller_openURI (priv->controller, url, NULL);
+}
+
+static void
+devhelp_window_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
+{
+	DevHelpWindowPriv   *priv;
+	gchar               *status_text;
+	
+	g_return_if_fail (window != NULL);
+	g_return_if_fail (IS_DEVHELP_WINDOW (window));
+	
+	priv = window->priv;
+
+	if (url) {
+		status_text = g_strdup_printf (_("Open %s"), url);
+		gtk_statusbar_push (priv->statusbar, 0, status_text);
+		g_free (status_text);
+	} else {
+		gtk_statusbar_pop (priv->statusbar, 0);
+	}
+	
 }
 
 static void
