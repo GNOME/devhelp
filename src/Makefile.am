@@ -16,6 +16,8 @@ devhelp_SOURCES = 			\
 	$(GENERATED)                    \
 	book.c				\
 	book.h				\
+	book-index.c			\
+	book-index.h			\
 	book-node.h			\
 	bookmark-manager.c		\
 	bookmark-manager.h		\

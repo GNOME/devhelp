@@ -1,5 +1,40 @@
 2001-08-12  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/ui.c:
+	(gtk_ctree_goto): removed.
+	(ctree_select_row_cb): removed.
+	(book_index_uri_selected_cb): added, called when user clicks in
+	BookIndex. 
+	(devhelp_create_pixmaps): removed.
+	- removed DevhelpPixmap-struct.
+	(devhelp_insert_book_node): removed.
+	(devhelp_create_book_tree): removed.
+	- Use BookIndex instead of GtkCTree directly., much of the
+	functionality has been moved into BookIndex internals. Much
+	cleanups in ui.c
+	(devhelp_create_ui): moved around to initialize Bookshelf before
+	the BookIndex.
+	- removed DevHelpPixmaps.
+	
+	* src/main.h: changed the DevHelp->ctree for a DevHelp->book_index.
+
+	* src/install.c (install_insert_book): call book_index_add_book
+	instead of doing all the dirty work yourself.
+
+	* src/bookshelf.c:
+	(bookshelf_find_document): also handles absolute url's.
+
+	* src/book.c:
+	(book_url_get_book_relative): now also handles absolute url's.
+
+	* src/book-index.[ch]: 
+	- Added
+	- This is a subclass of GtkCTree which is used to display the
+	  book-index. It will later be available as a BonoboControl which
+	  is used with BonoboPropertyBag.
+
+	* src/Makefile.am (devhelp_SOURCES): added book-index.[ch]
+
 	* devhelp.spec.in: added sysconfdir by request of YupaSD.
 
 2001-08-09  Richard Hult  <rhult@codefactory.se>

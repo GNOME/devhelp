@@ -48,166 +48,7 @@
 #include "preferences-dialog.h"
 #include "books-dialog.h"
 
-typedef enum {
-	DEVHELP_PIXMAP_NONE,
-	DEVHELP_PIXMAP_BOOK,
-	DEVHELP_PIXMAP_DOC
-} DevhelpPixmap;
-
-static void            devhelp_destroy_pixmaps (DevHelpPixmaps   *pixmaps);
 static GtkWidget      *get_menu_item_from_index (DevHelp *devhelp, gint index);
-
-DevHelpPixmaps *
-devhelp_create_pixmaps (DevHelp *devhelp)
-{
-	DevHelpPixmaps   *pixmaps;
-	GtkStyle         *style;
-	GdkPixbuf        *pixbuf;
-	
-	pixmaps = g_new0 (DevHelpPixmaps, 1);
-	style   = devhelp->window->style;
-	
-	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/book_red.xpm");
-	gdk_pixbuf_render_pixmap_and_mask (pixbuf,
-					   &pixmaps->pixmap_closed,
-					   &pixmaps->mask_closed,
-					   127);
-					   
-	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/book_open.xpm");
-	gdk_pixbuf_render_pixmap_and_mask (pixbuf,
-					   &pixmaps->pixmap_opened,
-					   &pixmaps->mask_opened,
-					   127);
-	
-	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/helpdoc.xpm");
-	gdk_pixbuf_render_pixmap_and_mask (pixbuf,
-					   &pixmaps->pixmap_helpdoc,
-					   &pixmaps->mask_helpdoc,
-					   127);
-
-	return pixmaps;
-}
-
-void  
-devhelp_insert_book_node (DevHelp          *devhelp, 
-			  GtkCTreeNode     *parent, 
-			  BookNode         *node,
-			  DevHelpPixmaps   *pixmaps)
-{
-	GSList         *chapters;
-	gchar          *text;
-	GtkCTreeNode   *ctree_node = NULL;
-	GnomeVFSURI    *uri;
-	Book           *book;
-	Document       *document;
-	
-	g_return_if_fail (devhelp != NULL);
-	g_return_if_fail (node != NULL);
-
-	text = (gchar *) book_node_get_title (node);
-
-	if (book_node_is_chapter (node)) {
-		/* Is the book hidden, then skip */
-		document = book_node_get_document (node);
-		book = document_get_book (document);
-
-		if (book_is_visible (book) == FALSE) {
-			return;
-		}
-	
-		ctree_node = gtk_ctree_insert_node (GTK_CTREE (devhelp->ctree),
-						    parent,
-						    NULL,
-						    &text,
-						    5,
-						    pixmaps->pixmap_closed, 
-						    pixmaps->mask_closed,
-						    pixmaps->pixmap_opened, 
-						    pixmaps->mask_opened, 
-						    FALSE,
-						    FALSE);
-	} else {
-		ctree_node = gtk_ctree_insert_node (GTK_CTREE (devhelp->ctree),
-						    parent,
-						    NULL,
-						    &text,
-						    5,
-						    pixmaps->pixmap_helpdoc, 
-						    pixmaps->mask_helpdoc,
-						    pixmaps->pixmap_helpdoc, 
-						    pixmaps->mask_helpdoc,
-						    FALSE,
-						    FALSE);
-	}
-	
-	gtk_ctree_node_set_row_data (GTK_CTREE (devhelp->ctree), 
-				     ctree_node, node);
-	
-	chapters = book_node_get_contents (node);
-	
-	for (; chapters; chapters = chapters->next) {
-		devhelp_insert_book_node (devhelp, 
-					  ctree_node,
-					  (BookNode *) chapters->data,
-					  pixmaps);
-	}
-}
-
-void 
-devhelp_create_book_tree (DevHelp *devhelp) 
-{
-	GSList           *books;
-	Book             *book;
-	GSList           *chapters;
-	DevHelpPixmaps   *pixmaps;
-	gchar            *text[1];
-	GtkCTreeNode     *ctree_node;
-	
-	g_return_if_fail (devhelp != NULL);
-
-	pixmaps = devhelp_create_pixmaps (devhelp);
-	
-	books = bookshelf_get_books (devhelp->bookshelf);
-	
-	gtk_clist_freeze (GTK_CLIST (devhelp->ctree));
-	
-	for (; books; books = books->next) {
-		book = BOOK (books->data);
-
-		devhelp_insert_book_node (devhelp, NULL, 
-					  book_get_root (book), pixmaps);
-	}
-
-	gtk_clist_thaw (GTK_CLIST (devhelp->ctree));
-	
-	g_free (pixmaps);
-}
-
-void
-gtk_ctree_goto (GtkCTree *ctree,
-		BookNode *book_node)
-{
-	GtkCTreeNode   *node;
-	GtkCTreeRow    *row;
-	GtkCTreeNode   *parent;
-	
-	g_return_if_fail (ctree != NULL);
-	g_return_if_fail (GTK_IS_CTREE (ctree));
-	
-	node = gtk_ctree_find_by_row_data (ctree, NULL, book_node);
-	
-	if (node) {
-		row = GTK_CTREE_ROW (node);
-
-		while (parent = row->parent) {
-			gtk_ctree_expand (ctree, row->parent);
-			row = GTK_CTREE_ROW (parent);
-		}
-
-		gtk_ctree_select (ctree, node);
-		gtk_ctree_node_moveto (ctree, node, 0, 0.5, 0.5);
-	}
-}
 
 gboolean
 gtk_clist_if_exact_go_there (GtkCList    *clist,
@@ -320,21 +161,31 @@ main_window_key_press_event_cb (GtkWidget*   widget,
 				break;
 			
 			/* Expand/Collapse the CTree */
-			node = gtk_ctree_node_nth (devhelp->ctree, GTK_CLIST (devhelp->ctree)->focus_row);
-			if (event->keyval == GDK_Left)
-				gtk_ctree_collapse (devhelp->ctree, node);
-			else if (event->keyval == GDK_Right)
-				gtk_ctree_expand (devhelp->ctree, node);				
+ 			node = gtk_ctree_node_nth (GTK_CTREE (devhelp->book_index),
+						   GTK_CLIST (devhelp->book_index)->focus_row);
+			if (event->keyval == GDK_Left) {
+				
+ 				gtk_ctree_collapse (GTK_CTREE (devhelp->book_index),
+						    node);
+			}
+			
+			else if (event->keyval == GDK_Right) {
+				
+ 				gtk_ctree_expand (GTK_CTREE (devhelp->book_index),
+						  node);
+			}
+			
 				
 		case GDK_Up:
 		case GDK_Down:
 			/* Up/Down moves up down */
 
 			/* Check which page that is focused, and get the correct clist */
-			if (gtk_notebook_get_current_page (devhelp->notebook) == 0)
-				clist = GTK_CLIST (devhelp->ctree);
-			else
+			if (gtk_notebook_get_current_page (devhelp->notebook) == 0) {
+ 				clist = GTK_CLIST (devhelp->book_index);
+			} else {
 				clist = devhelp->clist;
+			}
 
 			/* Move up or down? */
 			pos = clist->focus_row;
@@ -349,7 +200,7 @@ main_window_key_press_event_cb (GtkWidget*   widget,
 
 			clist->focus_row = pos;
 			
-			gtk_widget_draw_focus (GTK_WIDGET (devhelp->ctree));
+ 			gtk_widget_draw_focus (GTK_WIDGET (devhelp->book_index)); 
 			
 			gtk_clist_select_row (clist, pos, 0);
 			/* Is the current row visible, if not, scroll (with gtk_clist_moveto) */
@@ -365,7 +216,7 @@ main_window_key_press_event_cb (GtkWidget*   widget,
 			/* Select the search text and focus it, it the search tab is shown. */
 			if (gtk_notebook_get_current_page (devhelp->notebook) == 1) {
 				gtk_editable_select_region (GTK_EDITABLE (devhelp->entry), 0, -1);
-				gtk_widget_grab_focus (devhelp->entry);
+/* 				gtk_widget_grab_focus (devhelp->entry); */
 			}
 		}
 	}
@@ -661,31 +512,22 @@ scrolled_size_allocate_cb (GtkWidget     *widget,
 }
 
 static void
-ctree_select_row_cb (GtkCTree       *ctree,
-		     GtkCTreeNode   *node,
-		     gint            column,
-		     DevHelp        *devhelp)
+book_index_uri_selected_cb (BookIndex     *index, 
+			    GnomeVFSURI   *uri, 
+			    gpointer       user_data)
 {
-	BookNode      *book_node;
-	GnomeVFSURI   *uri;
-	gchar         *str_uri;
+	DevHelp   *devhelp;
 	
-	g_return_if_fail (devhelp != NULL);
+	g_return_if_fail (index != NULL);
+	g_return_if_fail (IS_BOOK_INDEX (index));
+	g_return_if_fail (uri != NULL);
+	g_return_if_fail (user_data != NULL);
 	
-	book_node = (BookNode *) gtk_ctree_node_get_row_data (GTK_CTREE (devhelp->ctree), node);
+	devhelp = (DevHelp *) user_data;
 
-	if (book_node) {
-		bookshelf_open_document (devhelp->bookshelf, 
-					 book_node_get_document (book_node));
-		history_goto (devhelp->history, 
-			      book_node_get_document (book_node), 
-			      book_node_get_anchor (book_node));
+	g_print ("URI Selected call back\n");
 
-		uri = book_node_get_uri (book_node);
- 		html_widget_open_uri (devhelp->html_widget, uri);
-
-		gnome_vfs_uri_unref (uri);
-	}
+	html_widget_open_uri (devhelp->html_widget, uri);
 }
 
 static void
@@ -767,6 +609,7 @@ search_entry_insert_text_cb (GtkEditable   *editable,
 	g_return_if_fail (devhelp != NULL);
 	
 	if (!devhelp->complete) {
+		g_print ("FLERP\n");
 		devhelp->complete = gtk_idle_add (complete_idle, devhelp);
 	}
 }
@@ -847,10 +690,11 @@ html_link_clicked_cb (GtkWidget   *widget,
 		      gchar       *url,
 		      DevHelp     *devhelp)
 {
-	BookNode       *book_node;
-	GnomeVFSURI    *uri;
-	Document       *document;
-	gchar          *anchor;
+	BookNode      *book_node;
+	GnomeVFSURI   *uri;
+	gchar         *str_uri;
+	Document      *document;
+	gchar         *anchor;
 		
 	g_return_if_fail (devhelp != NULL);
 	
@@ -861,25 +705,32 @@ html_link_clicked_cb (GtkWidget   *widget,
 		
 		history_goto (devhelp->history, document, anchor);
 		
-		if (gtk_notebook_get_current_page (devhelp->notebook) == 0) {
-			gtk_signal_handler_block_by_func (GTK_OBJECT (devhelp->ctree),
-							  ctree_select_row_cb,
-							  devhelp);
-
-			book_node = bookshelf_find_node (devhelp->bookshelf,
-							 document,
-							 anchor);
-			
-			gtk_ctree_goto (devhelp->ctree, book_node); 
-			
-			gtk_signal_handler_unblock_by_func (GTK_OBJECT (devhelp->ctree),
-							    ctree_select_row_cb,
-							    devhelp);
-		}
+		g_print ("Getting document with anchor: %s\n", anchor);
 		
 		uri = document_get_uri (document, anchor);
+
+		if (gtk_notebook_get_current_page (devhelp->notebook) == 0) {
+			str_uri = gnome_vfs_uri_to_string (uri,
+							   GNOME_VFS_URI_HIDE_NONE);
+			
+			gtk_signal_handler_block_by_func (GTK_OBJECT (devhelp->book_index),
+							  book_index_uri_selected_cb,
+							  devhelp);
+			
+			book_index_open (BOOK_INDEX (devhelp->book_index), 
+					 str_uri);
+			
+			
+			gtk_signal_handler_unblock_by_func (GTK_OBJECT (devhelp->book_index),
+							    book_index_uri_selected_cb,
+							    devhelp);
+			g_free (str_uri);
+			
+		}
+		
 		html_widget_open_uri (devhelp->html_widget, uri);
 		gnome_vfs_uri_unref (uri);
+
 	} else {
 		g_warning (_("Cannot find clicked link (%s) in bookshelf\n"), 
 			   url);
@@ -1021,6 +872,28 @@ devhelp_create_ui (void)
 
 	gui = glade_xml_new (DATA_DIR "/devhelp/glade/devhelp.glade", "main_app");
 
+	/* Function database */
+	devhelp->function_database = function_database_new ();
+	gtk_signal_connect (GTK_OBJECT (devhelp->function_database), "get_search_string",
+			    GTK_SIGNAL_FUNC (get_search_string_cb), devhelp);
+
+	gtk_signal_connect (GTK_OBJECT (devhelp->function_database), "exact_hit_found",
+			    GTK_SIGNAL_FUNC (exact_hit_found_cb), devhelp);
+
+	gtk_signal_connect (GTK_OBJECT (devhelp->function_database), "hits_found",
+			    GTK_SIGNAL_FUNC (hits_found_cb), devhelp);
+
+
+	/* Bookshelf */
+	 
+	function_database_freeze (devhelp->function_database);
+	local_dir = g_strdup_printf ("%s/.devhelp", getenv ("HOME"));
+	devhelp->bookshelf = bookshelf_new (DATA_DIR"/devhelp/specs", 
+					    devhelp->function_database);
+	bookshelf_add_directory (devhelp->bookshelf, local_dir);
+	g_free (local_dir);
+	function_database_thaw (devhelp->function_database);
+
 	/* Main window */
 	devhelp->window = glade_xml_get_widget (gui, "main_app");
 	gtk_signal_connect (GTK_OBJECT (devhelp->window), "key_press_event",
@@ -1127,17 +1000,23 @@ devhelp_create_ui (void)
 			    GTK_SIGNAL_FUNC (toolbar_button_forward_clicked_cb), devhelp);
 
 	/* CTree */
-	devhelp->ctree = GTK_CTREE (gtk_ctree_new (1, 0));
-	gtk_clist_set_column_width (GTK_CLIST (devhelp->ctree), 0, 80);
-	gtk_clist_set_selection_mode (GTK_CLIST (devhelp->ctree), GTK_SELECTION_BROWSE);
+	devhelp->book_index = book_index_new (devhelp->bookshelf);
+
+	gtk_clist_set_column_width (GTK_CLIST (devhelp->book_index), 0, 80);
+	gtk_clist_set_selection_mode (GTK_CLIST (devhelp->book_index), 
+				      GTK_SELECTION_BROWSE);
+
+	gtk_signal_connect (GTK_OBJECT (devhelp->book_index), 
+			    "uri_selected",
+			    GTK_SIGNAL_FUNC (book_index_uri_selected_cb),
+			    devhelp);
 	
-	gtk_signal_connect (GTK_OBJECT (devhelp->ctree), "tree_select_row",
-			    GTK_SIGNAL_FUNC (ctree_select_row_cb), devhelp);
 	w = glade_xml_get_widget (gui, "browse_scrolledwindow");
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
 					GTK_POLICY_NEVER,
 					GTK_POLICY_AUTOMATIC);
-	gtk_container_add (GTK_CONTAINER (w), GTK_WIDGET (devhelp->ctree));
+
+	gtk_container_add (GTK_CONTAINER (w), devhelp->book_index);
 	
 	/* CList */
 	devhelp->clist = GTK_CLIST (gtk_clist_new (1)); 
@@ -1148,6 +1027,7 @@ devhelp_create_ui (void)
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
 					GTK_POLICY_NEVER,
 					GTK_POLICY_AUTOMATIC);
+
 	gtk_container_add (GTK_CONTAINER (w), GTK_WIDGET (devhelp->clist));
 
 	/* Search entry */
@@ -1194,17 +1074,6 @@ devhelp_create_ui (void)
 	gtk_signal_connect (GTK_OBJECT (devhelp->history), "back_exists_changed",
 			    GTK_SIGNAL_FUNC (toolbar_buttons_update_cb), toolbar_button_back);
 	
-	/* Function database */
-	devhelp->function_database = function_database_new ();
-	gtk_signal_connect (GTK_OBJECT (devhelp->function_database), "get_search_string",
-			    GTK_SIGNAL_FUNC (get_search_string_cb), devhelp);
-
-	gtk_signal_connect (GTK_OBJECT (devhelp->function_database), "exact_hit_found",
-			    GTK_SIGNAL_FUNC (exact_hit_found_cb), devhelp);
-
-	gtk_signal_connect (GTK_OBJECT (devhelp->function_database), "hits_found",
-			    GTK_SIGNAL_FUNC (hits_found_cb), devhelp);
-
 	/* ScrolledWindow */
 	devhelp->scrolled = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (devhelp->scrolled),
@@ -1221,16 +1090,7 @@ devhelp_create_ui (void)
 	gtk_paned_pack2 (GTK_PANED (devhelp->hpaned),
 			 devhelp->right_frame,
 			 FALSE, FALSE);
-	
-	function_database_freeze (devhelp->function_database);
-	local_dir = g_strdup_printf ("%s/.devhelp", getenv ("HOME"));
-	devhelp->bookshelf = bookshelf_new (DATA_DIR"/devhelp/specs", devhelp->function_database);
-	bookshelf_add_directory (devhelp->bookshelf, local_dir);
-	g_free (local_dir);
-	function_database_thaw (devhelp->function_database);
 
-	devhelp_create_book_tree (devhelp);
-	
 	gtk_widget_show_all (GTK_WIDGET (devhelp->window));
 
 	/* Connect settings after everything is shown so that we don't get lots of

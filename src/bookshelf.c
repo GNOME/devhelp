@@ -526,8 +526,9 @@ bookshelf_find_document (Bookshelf      *bookshelf,
 	Document         *document = NULL;
 	gint              depth;
 	gint              un_depth;
-	GnomeVFSURI      *uri;
+ 	GnomeVFSURI      *uri;
 	gchar            *book_name;
+	gchar            *doc_url;
 	
 	g_return_val_if_fail (bookshelf != NULL, NULL);
 	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
@@ -535,15 +536,16 @@ bookshelf_find_document (Bookshelf      *bookshelf,
 	priv    = bookshelf->priv;
 
 	if (!util_uri_is_relative (url)) {
-		uri = gnome_vfs_uri_new (url);
+ 		uri = gnome_vfs_uri_new (url); 
 		book = bookshelf_find_book_by_uri (bookshelf, uri);
 		
 		if (book) {
-			
-/* 			book_node = book_find_node_by_uri (book, uri); */
+ 			doc_url = util_url_split (url, anchor);
+			document = book_find_document (book, doc_url, NULL);
+			g_free (doc_url);
 		}
 		
-		gnome_vfs_uri_unref (uri);
+ 		gnome_vfs_uri_unref (uri);
 	} else {
 		if (!priv->current_book) {
 			return NULL;

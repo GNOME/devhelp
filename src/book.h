@@ -85,7 +85,7 @@ void                book_open_document         (Book                *book,
 						const Document      *document);
 
 Document *          book_find_document         (Book                *book,
-						const gchar         *rel_url,
+						const gchar         *url,
 						gchar              **anchor);
 
 BookNode *          book_find_node             (Book                *book,

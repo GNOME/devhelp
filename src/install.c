@@ -229,13 +229,11 @@ install_insert_book (DevHelp *devhelp, Book *book, const gchar *root)
 	Bookshelf *bookshelf;
 	gchar *xml_path;
 	
-	DevHelpPixmaps *pixmaps;
-
-	bookshelf = devhelp->bookshelf;
-	
 	g_return_if_fail (devhelp != NULL);
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
+
+	bookshelf = devhelp->bookshelf;
 
 	/* Add to bookshelf */
 	bookshelf_add_book (bookshelf, book);
@@ -244,19 +242,8 @@ install_insert_book (DevHelp *devhelp, Book *book, const gchar *root)
 	bookshelf_write_xml (bookshelf, xml_path);
 	g_free (xml_path);
 
-	/* Add to ctree */
-	pixmaps = devhelp_create_pixmaps (devhelp);
-	
-	gtk_clist_freeze (GTK_CLIST (devhelp->ctree));
-		
-	devhelp_insert_book_node (devhelp,
-				  NULL, 
-				  book_get_root (book),
-				  pixmaps);
-
-	/* Eek? This sort is not good enough, FIX */
-	/* gtk_clist_sort (GTK_CLIST (devhelp->ctree)); */
-	gtk_clist_thaw (GTK_CLIST (devhelp->ctree));		
+	/* Add to BookIndex */
+        book_index_add_book (BOOK_INDEX (devhelp->book_index), book);
 }
 
 static void

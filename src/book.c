@@ -422,7 +422,8 @@ static const gchar *
 book_url_get_book_relative (Book *book, const gchar *url) 
 {
 	BookPriv      *priv;
-	const gchar   *ch;
+	const gchar   *ch, *ch2;
+	gchar         *base;
 	gint           un_depth;
 	 
 	g_return_val_if_fail (book != NULL, NULL);
@@ -430,20 +431,43 @@ book_url_get_book_relative (Book *book, const gchar *url)
 	g_return_val_if_fail (url != NULL, NULL);
 	
 	priv     = book->priv;
-	un_depth = util_url_get_un_depth (url);
-	
-	ch = url;
-	ch += un_depth * URL_DELIM_LENGTH;
 
-	if (priv->name) {
-		if (strstr (ch, priv->name) == ch && 
-		    *(ch + strlen (priv->name)) == '/') {
-			ch += strlen (priv->name) + 1;
+	if (!util_uri_is_relative (url)) {
+		g_print ("Not relative\n");
+		
+		base = gnome_vfs_uri_to_string (book->priv->base_uri,
+						GNOME_VFS_URI_HIDE_NONE);
+		
+		ch = url;
+		ch2 = base;
+		
+		while (*ch == *ch2) {
+			++ch;
+			++ch2;
 		}
-	}
 
-	if (ch - url > strlen (url)) {
-		return url;
+		if (*ch == '/') {
+			++ch;
+		}
+		
+		g_free (base);
+
+	} else {
+		un_depth = util_url_get_un_depth (url);
+		
+		ch = url;
+		ch += un_depth * URL_DELIM_LENGTH;
+		
+		if (priv->name) {
+			if (strstr (ch, priv->name) == ch && 
+			    *(ch + strlen (priv->name)) == '/') {
+				ch += strlen (priv->name) + 1;
+			}
+		}
+		
+		if (ch - url > strlen (url)) {
+			return url;
+		}
 	}
 	
 	return ch;
@@ -647,26 +671,26 @@ book_open_document (Book *book, const Document *document)
 }
 
 Document *
-book_find_document (Book *book, const gchar *rel_url, gchar **anchor)
+book_find_document (Book *book, const gchar *url, gchar **anchor)
 {
 	BookPriv      *priv;
 	Document      *document;
-	gchar         *url;
+	gchar         *doc_url;
 	const gchar   *book_rel_url;
 	
 	g_return_val_if_fail (book != NULL, NULL);
 	g_return_val_if_fail (IS_BOOK (book), NULL);
-	g_return_val_if_fail (rel_url != NULL, NULL);
+	g_return_val_if_fail (url != NULL, NULL);
 	
 	priv = book->priv;
 
-	book_rel_url = book_url_get_book_relative (book, rel_url);
+	book_rel_url = book_url_get_book_relative (book, url);
 
-	url = util_url_split (book_rel_url, anchor);
+	doc_url = util_url_split (book_rel_url, anchor);
 	
-	document = g_hash_table_lookup (priv->documents, url);
+	document = g_hash_table_lookup (priv->documents, doc_url);
 	
-	g_free (url);
+	g_free (doc_url);
 	
 	return document;
 }

@@ -7,11 +7,10 @@
 #include <Bonobo.idl>
 
 module GNOME {
-    module Devhelp {
-        interface HelpBrowser : Bonobo::Unknown {
-            void search            (in string str);
-            void searchInNewWindow (in string str);
-        };
-    };
+	module Devhelp {
+		interface HelpBrowser : Bonobo::Unknown {
+			void search            (in string str);
+			void searchInNewWindow (in string str);
+		};
+	};
 };
-

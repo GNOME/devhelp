@@ -26,25 +26,7 @@
 #include "main.h"
 #include "book-node.h"
 
-typedef struct {
-	GdkPixmap   *pixmap_opened;
-	GdkPixmap   *pixmap_closed;
-	GdkPixmap   *pixmap_helpdoc;
-	GdkBitmap   *mask_opened;
-	GdkBitmap   *mask_closed;
-	GdkBitmap   *mask_helpdoc;
-} DevHelpPixmaps;
-
 DevHelp*          devhelp_create_ui             (void);
-
-void              devhelp_create_book_tree      (DevHelp          *devhelp);
-
-DevHelpPixmaps*   devhelp_create_pixmaps        (DevHelp          *devhelp);
-
-void              devhelp_insert_book_node      (DevHelp          *devhelp, 
-						 GtkCTreeNode     *parent, 
-						 BookNode         *node,
-						 DevHelpPixmaps   *pixmaps);
 
 void              devhelp_search                (DevHelp          *devhelp, 
 						 const gchar      *string);
@@ -64,9 +46,6 @@ void              gtk_clist_set_contents        (GtkCList         *clist,
 
 gboolean          gtk_clist_if_exact_go_there   (GtkCList         *clist, 
 						 const gchar      *filename);
-
-void              gtk_ctree_goto                (GtkCTree         *ctree, 
-						 BookNode         *book_node);
 
 #endif /* __UI_H__ */
 

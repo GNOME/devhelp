@@ -32,6 +32,7 @@
 #include "function-database.h"
 #include "html-widget.h"
 #include "history.h"
+#include "book-index.h"
 
 typedef struct _DevHelp DevHelp;
 
@@ -48,7 +49,7 @@ struct _DevHelp {
 	GtkWidget          *hbox;
 	GtkWidget          *hpaned;
 	GtkWidget          *right_frame;
-	GtkCTree           *ctree;                /* Index ctree */
+	GtkWidget          *book_index;
 	GtkCList           *clist;                /* Search clist */
 	GtkEntry           *entry;                /* Search entry */
 	GtkWidget          *search_button;
