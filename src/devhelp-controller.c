@@ -414,6 +414,10 @@ cmd_back_cb (BonoboUIComponent *component, gpointer data, const gchar *cname)
 	controller = DEVHELP_CONTROLLER (data);
 	priv       = controller->priv;
 	
+	if (!history_exist_back (priv->history)) {
+		return;
+	}
+	
 	str_uri    = history_go_back (priv->history);
 
 	if (str_uri) {
@@ -437,6 +441,10 @@ cmd_forward_cb (BonoboUIComponent   *component,
 	
 	controller = DEVHELP_CONTROLLER (data);
 	priv       = controller->priv;
+
+	if (!history_exist_forward (priv->history)) {
+		return;
+	}
 
 	str_uri    = history_go_forward (priv->history);
 

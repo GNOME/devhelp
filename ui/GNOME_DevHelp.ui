@@ -17,23 +17,23 @@
          sensitive="1" />
 
     <cmd name="CmdSizeTiny"
-         _label="Tiny font"
+         _label="Tiny"
          sensitive="1" /> 
 
     <cmd name="CmdSizeSmall"
-         _label="Small font"
+         _label="Small"
          sensitive="1" /> 
 
     <cmd name="CmdSizeMedium"
-         _label="Medium font"
+         _label="Medium"
          sensitive="1" /> 
 
     <cmd name="CmdSizeLarge"
-         _label="Large font"
+         _label="Large"
          sensitive="1" /> 
 
     <cmd name="CmdSizeHuge"
-         _label="Huge font"
+         _label="Huge"
          sensitive="1" /> 
 
     <cmd name="CmdPrefs" 
@@ -56,19 +56,6 @@
          pixname="About" 
          _tip="About this application" />
 
-    <cmd name="CmdHistoryForward" 
-         _label="Forward"
-         sensitive="1"
-         pixtype="stock"
-         pixname="Forward"
-         _tip="Forward in the history-list" />
-    
-    <cmd name="CmdHistoryBack"
-         _label="Back"
-         sensitive="1"
-         pixtype="stock"
-         pixname="Back"
-         _tip="Back in the history-list" />
   </commands>
 
   <menu>
@@ -80,12 +67,13 @@
 
      <submenu name="View" _label="_View">
         <menuitem name="ViewSideBar"    verb="CmdViewSideBar" />
-        <separator />
-        <menuitem name="ViewSizeTiny"   verb="CmdSizeTiny" />
-        <menuitem name="ViewSizeSmall"  verb="CmdSizeSmall" />
-        <menuitem name="ViewSizeMedium" verb="CmdSizeMedium" />
-        <menuitem name="ViewSizeLarge"  verb="CmdSizeLarge" />
-        <menuitem name="ViewSizeHuge"   verb="CmdSizeHuge" />
+	<submenu name="FontSize" _label="Font size">
+           <menuitem name="ViewSizeTiny"   verb="CmdSizeTiny" />
+           <menuitem name="ViewSizeSmall"  verb="CmdSizeSmall" />
+           <menuitem name="ViewSizeMedium" verb="CmdSizeMedium" />
+           <menuitem name="ViewSizeLarge"  verb="CmdSizeLarge" />
+           <menuitem name="ViewSizeHuge"   verb="CmdSizeHuge" />
+        </submenu>
      </submenu>
    
      <submenu name="Settings" _label="_Settings">

@@ -1,5 +1,13 @@
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
+	* ui/GNOME_DevHelp_Controller.ui: added tip for forward/back.
+
+	* src/devhelp-controller.c:
+	(cmd_forward_cb): check if forward list exists.
+	(cmd_back_cb): check if prev list exists.
+
+	* ui/GNOME_DevHelp.ui: added submenu for font size.
+
 	* src/book-index.c:
 	(book_index_get_scrolled): don't want to emit signal when setting
 	  selection mode. fixes bug #200.

@@ -10,13 +10,15 @@
          _label="Back"
          sensitive="0"
          pixtype="stock"
-         pixname="Back" />
+         pixname="Back"
+	 _tip="Go to previous page in the history" />
 
     <cmd name="CmdForward"
 	 _label="Forward"
          sensitive="0"
          pixtype="stock"
-         pixname="Forward" />
+         pixname="Forward"
+	 _tip="Go to next page in the history" />
     
   </commands>
 
