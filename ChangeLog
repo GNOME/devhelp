@@ -1,5 +1,11 @@
 2004-07-02  Mikael Hallendal  <micke@imendio.com>
 
+	* src/dh-base.c: (base_add_books):
+	- Don't build and check for books "." and "..".
+	- Patch from Russel Shaw.
+
+2004-07-02  Mikael Hallendal  <micke@imendio.com>
+
 	* src/dh-base.c: (base_init_books):
 	- Read books from home directory first to always make sure that user 
 	  installed documentation is shown if there are duplicates.

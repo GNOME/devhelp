@@ -270,6 +270,14 @@ base_add_books (DhBase *base, const gchar *directory)
 			gnome_vfs_file_info_unref (info);
 			continue;
 		}
+	
+		if (strcmp (info->name, ".") == 0) {
+			continue;
+		}
+
+		if (strcmp (info->name, "..") == 0) {
+			continue;
+		}
 		
 		book_path = g_strdup_printf ("%s/%s/%s.devhelp",
 					     directory, 
