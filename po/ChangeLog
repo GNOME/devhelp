@@ -1,3 +1,10 @@
+2001-08-26  Mikael Hallendal  <micke@codefactory.se>
+
+	* POTFILES.in:
+	- added ui/GNOME_DevHelp.ui
+	- added ui/GNOME_DevHelp_Controller.ui
+	- changed to src/GNOME_DevHelp.oaf.in.in
+
 2001-08-26  Yanko Kaneti <yaneti@declera.com>
 
 	* POTFILES.in: update, according to recent changes

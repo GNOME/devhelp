@@ -2,9 +2,13 @@ devhelp.desktop.in
 src/books-dialog.c
 src/bookshelf.c
 src/devhelp-window.c
-src/GNOME_DevHelp.oaf.in
+src/GNOME_DevHelp.oaf.in.in
 src/html-widget.c
 src/install.c
 src/main.c
 src/preferences.c
+src/preferences-dialog.c
 ui/devhelp.glade
+ui/GNOME_DevHelp.ui
+ui/GNOME_DevHelp_Controller.ui
+
