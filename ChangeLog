@@ -1,3 +1,8 @@
+2003-02-17  Ross Burton  <ross@burtonini.com>
+
+	* src/dh-base.c (base_init_books): Search DEVHELP_SEARCH_PATH for
+	books.
+
 2003-02-15  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/dh-window.c:

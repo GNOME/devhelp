@@ -134,12 +134,13 @@ base_init_books (DhBase *base)
 	
 	env = g_getenv ("DEVHELP_SEARCH_PATH");
 	if (env) {
-		gchar **paths;
-		
-		paths = g_strsplit (env, ":", -1);
-		
-		
+		gchar **paths, **p;
 		/* Insert all books from this path first */
+		paths = g_strsplit (env, ":", -1);
+		for (p = paths; *p != NULL; p++) {
+			base_add_books (base, *p);
+		}
+		g_strfreev (paths);
 	}
 	
 	env = g_getenv ("GNOME2_PATH");
@@ -210,7 +211,7 @@ base_add_books (DhBase *base, const gchar *directory)
 
 	g_list_free (dir_list);
 }
- 
+
 DhBase *
 dh_base_new (void)
 {
