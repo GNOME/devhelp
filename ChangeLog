@@ -1,3 +1,8 @@
+2002-07-30 Hasbullah Bin Pit <sebol@ikhlas.com>
+
+	* configure.in: Added "ms" to LINGUAS for Malay.
+        * po/ms.po: Added Malay translation.
+
 2002-07-09  Wang Jian  <lark@linux.net.cn>
 
 	* configure.in: Added "zh_CN" to LINGUAS for Simplified Chinese.
