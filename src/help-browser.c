@@ -55,7 +55,7 @@ impl_HelpBrowser_search (PortableServer_Servant   servant,
 		
 	if (priv->window) {
 		devhelp_window_search (DEVHELP_WINDOW (priv->window), str);
-		gdk_window_raise (priv->window->window);
+		gtk_window_present (priv->window);
 	}
 }
 

@@ -614,6 +614,7 @@ devhelp_window_new (void)
         BonoboUIContainer   *ui_container;
 	BonoboUIEngine      *ui_engine;
 	CORBA_Environment    ev;
+	GdkPixbuf           *icon;
 	
         window = gtk_type_new (TYPE_DEVHELP_WINDOW);
         priv   = window->priv;
@@ -684,6 +685,12 @@ devhelp_window_new (void)
 
         dw_populate (window);
 
+	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png", NULL);
+	if (icon) {
+		gtk_window_set_icon (GTK_WINDOW (window), icon);
+		g_object_unref (icon);
+	}
+	
         bonobo_ui_component_thaw (priv->component, NULL);
 
 	CORBA_exception_free (&ev);

@@ -32,7 +32,7 @@
 
 #include <libxml/parser.h>
 #include <gconf/gconf.h>
-//#include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
@@ -98,7 +98,7 @@ static gboolean
 idle_activate_and_search_quit (gpointer data)
 {
 	activate_and_search (data, FALSE);
-	
+
 	bonobo_main_quit ();
 	
 	return FALSE;
@@ -134,13 +134,9 @@ main (int argc, char **argv)
 
 	CORBA_exception_init (&ev);
 
-#ifdef ENABLE_NLS
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (PACKAGE);
-#endif
-
-	setlocale (LC_ALL, "");
 
 	g_thread_init (NULL);
 
@@ -148,21 +144,10 @@ main (int argc, char **argv)
 				      LIBGNOMEUI_MODULE,
                                       argc, argv,
                                       GNOME_PROGRAM_STANDARD_PROPERTIES,
+				      GNOME_PARAM_POPT_TABLE, options,
                                       NULL);
 	LIBXML_TEST_VERSION;
 
-	gnome_vfs_init ();
-
-	gdk_rgb_init ();
-	gconf_init (argc, argv, NULL);
-	glade_init ();
-	
-//	if (!bonobo_init (orb, CORBA_OBJECT_NIL, CORBA_OBJECT_NIL)) {
-//		g_error ("Could not initialize Bonobo");
-//	}
-	
-//	gnome_window_icon_set_default_from_file (DATA_DIR "/pixmaps/devhelp.png");
-	   
 	install_create_directories (NULL);
 	
 	factory = bonobo_activation_activate_from_id (DEVHELP_FACTORY_OAFIID,
