@@ -1,3 +1,7 @@
+2001-10-18  Johan Dahlin  <zilch.am@home.se>
+
+	* src/bookshelf.c (bookshelf_add_book): Use a 'better' strcmp.
+
 2001-10-17  Johan Dahlin  <zilch.am@home.se>
 
 	* debian/.cvsignore: s/debian//.

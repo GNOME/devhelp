@@ -264,15 +264,16 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
  	while (cur) {
 		if (!xmlStrcmp (cur->name, (const xmlChar *) "book")) {
 			book = g_new (XMLBook, 1);
-			book->name = xmlGetProp (cur, "name");
-			book->path = xmlGetProp (cur, "path");
-			visible = xmlGetProp (cur, "visible");
+			book->name    = xmlGetProp (cur, "name");
+			book->path    = xmlGetProp (cur, "path");
+			visible       = xmlGetProp (cur, "visible");
 			if (visible != NULL) {
 				book->visible = atoi (visible);
 			} else {
 				book->visible = TRUE;
 			}
 			xmlFree (visible);
+
 			list = g_list_append (list, book);
 		}
 		
@@ -344,6 +345,21 @@ bookshelf_write_xml (Bookshelf     *bookshelf,
 	}
 }
 
+static guint
+version_strcmp (Book *book1, Book *book2)
+{
+	const gchar *version1 = book_get_version (book1);
+	const gchar *version2 = book_get_version (book2);
+	
+	if (version1 == NULL && book2 == NULL) {
+		return 0;
+	} else if (version1 == NULL || version2 == NULL) {
+		return -1;
+	} else {
+		return strcmp (version1, version2);
+	}
+}
+		
 gboolean
 bookshelf_add_book (Bookshelf *bookshelf, Book* book)
 {
@@ -359,8 +375,7 @@ bookshelf_add_book (Bookshelf *bookshelf, Book* book)
 
 	/* Is the book already installed? */
 	book2 = bookshelf_find_book_by_name (bookshelf, book_get_name (book));
-	if (book2 != NULL && strcmp (book_get_version (book),
-				     book_get_version (book2)) == 0) {
+	if (book2 != NULL && version_strcmp (book, book2) == 0) {
 		return FALSE;
 	}
 
@@ -406,6 +421,7 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 		
 		book_uri = gnome_vfs_uri_append_path (book_dir_uri,
 						      book_file_name);
+		
 		g_free (book_file_name);
 		
 		book = book_new (book_uri, priv->fd);
@@ -426,8 +442,8 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	
 	home_dir = g_getenv ("HOME");
 	if (strncmp (directory, home_dir, strlen (home_dir)) == 0) {
-		for (node = xml_books; node; node = node->next) {
-			xml_book = (XMLBook*) node->data;
+		for (node2 = xml_books; node2; node2 = node2->next) {
+			xml_book = (XMLBook*) node2->data;
 			
 			book = bookshelf_find_book_by_name (bookshelf, xml_book->name);
 			if (book != NULL && book_is_visible (book) != xml_book->visible) {
