@@ -413,7 +413,7 @@ dh_keyword_model_set_words (DhKeywordModel *model, GList *keyword_words)
 	priv->original_list = g_list_copy (keyword_words);
 }
 
-void
+DhLink *
 dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 {
 	DhKeywordModelPriv *priv;
@@ -426,8 +426,8 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
  	GtkTreeIter         iter;
 	gint                hits = 0;
       
-	g_return_if_fail (DH_IS_KEYWORD_MODEL (model));
-	g_return_if_fail (string != NULL);
+	g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
+	g_return_val_if_fail (string != NULL, NULL);
 
 	priv = model->priv;
 
@@ -445,7 +445,7 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 		     node = node->next) {
 			link = DH_LINK (node->data);
 			
-			if (!strncmp (link->name, string, strlen (string))) {
+			if (strstr (link->name, string)) {
 				/* Include in the new list */
 				new_list = g_list_prepend (new_list, link);
 				hits++;
@@ -504,5 +504,11 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 		}
 		
 	}
+
+	if (hits == 1) {
+		return DH_LINK(priv->keyword_words->data);
+	}
+
+	return NULL;
 }
 

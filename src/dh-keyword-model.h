@@ -26,6 +26,8 @@
 #include <gtk/gtktreemodel.h>
 #include <gtk/gtktreesortable.h>
 
+#include "dh-link.h"
+
 #define DH_TYPE_KEYWORD_MODEL	          (dh_keyword_model_get_type ())
 #define DH_KEYWORD_MODEL(obj)	          (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModel))
 #define DH_KEYWORD_MODEL_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
@@ -60,10 +62,10 @@ enum {
 GtkType            dh_keyword_model_get_type     (void);
 
 DhKeywordModel *   dh_keyword_model_new          (void);
-void               dh_keyword_model_set_keywords (DhKeywordModel  *model,
+void               dh_keyword_model_set_words    (DhKeywordModel  *model,
 						  GList           *keywords);
 
-void               dh_keyword_model_filter       (DhKeywordModel  *model,
+DhLink *           dh_keyword_model_filter       (DhKeywordModel  *model,
 						  const gchar     *string);
 
 #endif /* __DH_KEYWORD_MODEL_H__ */

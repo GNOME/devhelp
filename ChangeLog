@@ -1,5 +1,14 @@
 2003-02-15  Mikael Hallendal  <micke@codefactory.se>
 
+	* configure.in: added warnings
+
+	* src/dh-search.c (search_filter_idle): 
+	- Emit link selected if exact match was returned form keyword
+	  model.
+
+	* src/dh-keyword-model.c (dh_keyword_model_filter): 
+	- Return Link if exact hit (one item in hit list).
+
 	* src/dh-window.c: 
 	- updated to changes when DhHtml is no longer a subclass of
 	  HtmlView.

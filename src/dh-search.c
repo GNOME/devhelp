@@ -121,7 +121,6 @@ static void
 search_class_init (DhSearchClass *klass)
 {
         GObjectClass   *object_class;
-	GtkWidgetClass *widget_class;
 	
         object_class = (GObjectClass *) klass;
         parent_class = g_type_class_peek_parent (klass);
@@ -302,7 +301,8 @@ static gboolean
 search_filter_idle (DhSearch *search)
 {
 	DhSearchPriv *priv;
-	gchar             *str;
+	gchar        *str;
+	DhLink       *link;
 	
 	g_return_val_if_fail (DH_IS_SEARCH (search), FALSE);
 
@@ -311,10 +311,13 @@ search_filter_idle (DhSearch *search)
 	d(g_print ("Filter idle\n"));
 	
 	str = (gchar *) gtk_entry_get_text (GTK_ENTRY (priv->entry));
-	
-	dh_keyword_model_filter (priv->model, str);
 
+	link = dh_keyword_model_filter (priv->model, str);
 	priv->idle_filter = 0;
+
+	if (link) {
+		g_signal_emit (search, signals[LINK_SELECTED], 0, link);
+	}
 
 	return FALSE;
 }
@@ -334,7 +337,6 @@ dh_search_new (GList *keywords)
 	GtkTreeSelection  *selection;
         GtkWidget         *list_sw;
 	GtkWidget         *frame;
-	GtkWidget         *box;
 	GtkWidget         *hbox;
 	GtkWidget         *label;
 		
@@ -415,17 +417,14 @@ void
 dh_search_set_search_string (DhSearch *search, const gchar *str)
 {
 	DhSearchPriv *priv;
-	gint          str_len;
 	
 	g_return_if_fail (DH_IS_SEARCH (search));
 
 	priv = search->priv;
 
-	str_len = strlen (str);
-
 	gtk_entry_set_text (GTK_ENTRY (priv->entry), str);
 	
-	gtk_editable_set_position (GTK_EDITABLE (priv->entry), str_len);
-	gtk_editable_select_region (GTK_EDITABLE (priv->entry), str_len, -1);
+	gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
+	gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
 }
 
