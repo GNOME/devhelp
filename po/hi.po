@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-23 19:56+0530\n"
 "PO-Revision-Date: 2003-04-09 14:30+0530\n"
 "Last-Translator: G Karunakar <karunakar@freedomink.org>\n"
 "Language-Team: Gnome Hindi Team <indlinux-hindi-gnome@lists.sourceforge."
@@ -36,19 +37,19 @@ msgid ""
 "find what you are looking for."
 msgstr ""
 
-#: src/dh-main.c:258
+#: src/dh-main.c:259
 msgid "Specify the size and location of the window"
 msgstr ""
 
-#: src/dh-main.c:259
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr ""
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "प्रकार्य ढूँढें"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "कोइ चालू डेवहेल्प बंद करें"
 
@@ -100,35 +101,40 @@ msgstr "खोज"
 msgid "Section"
 msgstr "भाग"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "फाइल (_F)"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "जाना (_G)"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "सहायता (_H)"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:285
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr ""
+
+#: src/dh-window.c:347
 msgid "Contents"
 msgstr "घटक"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:358
 msgid "Search"
 msgstr "खोज"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:423
 msgid "A developer's help browser for GNOME 2"
 msgstr "गनोम विकासकर्ता के लिए सहायता"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:438
 msgid "Devhelp project page"
 msgstr ""
 
-#: src/dh-window.c:434
+#: src/dh-window.c:442
 msgid "Bug report Devhelp"
 msgstr ""
 
