@@ -1,3 +1,9 @@
+2001-08-31  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/devhelp-window.c:
+	(devhelp_window_populate): added frames around the stuff in the
+	paned.
+
 2001-08-26  Yanko Kaneti  <yaneti@declera.com>
 
 	* Makefile.am: fix schemas_DATA when --disable-install-schemas 

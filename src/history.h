@@ -21,8 +21,6 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-/* FIX: This has to work in the future too */
-
 #ifndef __HISTORY_H__
 #define __HISTORY_H__
 

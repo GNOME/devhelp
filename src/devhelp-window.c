@@ -206,6 +206,7 @@ devhelp_window_populate (DevHelpWindow *window)
 	Bonobo_Control        control_co;
 	gint                  zoom_level;
 	GtkWidget            *html_sw;
+	GtkWidget            *frame;
 	
         g_return_if_fail (window != NULL);
         g_return_if_fail (IS_DEVHELP_WINDOW (window));
@@ -286,11 +287,19 @@ devhelp_window_populate (DevHelpWindow *window)
 
 	priv->search_list = bonobo_widget_new_control_from_objref (control_co,
 								   uic);
-	gtk_paned_add1 (GTK_PANED (priv->hpaned), priv->notebook);
+	frame = gtk_frame_new (NULL);
+	gtk_container_add (GTK_CONTAINER (frame), priv->notebook);
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
+
+	gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
 	
  	gtk_container_add (GTK_CONTAINER (html_sw), priv->html_widget);
 
- 	gtk_paned_add2 (GTK_PANED(priv->hpaned), html_sw);
+	frame = gtk_frame_new (NULL);
+	gtk_container_add (GTK_CONTAINER (frame), html_sw);
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
+
+ 	gtk_paned_add2 (GTK_PANED(priv->hpaned), frame);
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 
