@@ -568,7 +568,7 @@ book_get_path (Book *book)
 	
 	priv = book->priv;
 
-	return gnome_vfs_uri_get_path (priv->base_uri);
+	return gnome_vfs_uri_to_string (priv->base_uri, 0);
 }
 
 

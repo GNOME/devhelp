@@ -559,7 +559,7 @@ menu_help_about_activate_cb (GtkMenuItem *menu_item)
 	};
 	 
 	about = gnome_about_new ("DevHelp", VERSION,
-				 "(C) Copyright 2001, Johan Dahlin", authors,
+				 _("(C) Copyright 2001, Johan Dahlin"), authors,
 				 _("A developer's help browser"), NULL);
 	gtk_widget_show (GTK_WIDGET (about));
 }

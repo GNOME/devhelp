@@ -286,7 +286,7 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 
 		/* if book in xml-list */
 		for (node2 = xml_books; node2; node2 = node2->next) {
-			xml_book = (XMLBook*)node2->data;
+			xml_book = (XMLBook*) node2->data;
 			if (strcmp (xml_book->name, (gchar*)book_get_name (book)) == 0)
 			    book_set_base_url (book, xml_book->path);
 		}

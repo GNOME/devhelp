@@ -118,7 +118,7 @@ install_spec (const gchar *filename, const gchar *name, const gchar *root)
 		}
 		g_free (url);
 	}
-	
+       
 	return TRUE;
 }
 	
@@ -226,19 +226,22 @@ install_unpack_book (DevHelp *devhelp, const gchar *filename, const gchar *root)
 static void
 install_insert_book (DevHelp *devhelp, Book *book, const gchar *root)
 {
+	Bookshelf *bookshelf;
 	gchar *xml_path;
 	
 	DevHelpPixmaps *pixmaps;
 
+	bookshelf = devhelp->bookshelf;
+	
 	g_return_if_fail (devhelp != NULL);
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
 
 	/* Add to bookshelf */
-	bookshelf_add_book (devhelp->bookshelf, book);
+	bookshelf_add_book (bookshelf, book);
 	
 	xml_path = g_strdup_printf ("%s/books.xml", root);
-	bookshelf_write_xml (devhelp->bookshelf, xml_path, root);
+	bookshelf_write_xml (bookshelf, xml_path, root);
 	g_free (xml_path);
 
 	/* Add to ctree */
@@ -292,15 +295,19 @@ install_book (DevHelp *devhelp, const gchar *filename, const gchar* root)
 	} else if (strcmp (mime_type, "application/octet-stream") == 0) {
 		book = book_new (gnome_vfs_uri_new (filename), devhelp->function_database);
 		if (book == NULL) {
-			g_message (_("Wrong filetype."), mime_type);
+			message = g_strdup_printf (_("Wrong type (mime_type=%s)."), mime_type);
+			gnome_message (message);
+			g_free (message);
 			return FALSE;
 		}
 		name = book_get_name (book);
-		if (install_spec (filename, name, root) == FALSE)
+		if (install_spec (filename, name, root) == FALSE) {
 			return FALSE;
+		}
 	} else {
 		message = g_strdup_printf (_("Wrong type (mime_type=%s)."), mime_type);
 		gnome_message (message);
+		g_free (message);
 		return FALSE;
 	}
 	

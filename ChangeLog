@@ -1,3 +1,14 @@
+2001-08-01  Johan Dahlin  <zilch.am@home.se>
+
+	* src/ui.c (menu_help_about_activate_cb): Make the copyright
+	string translatable.
+
+	* src/install.c (install_insert_book): make it look prettier.
+	(install_book): Show mime_type with error messages
+
+	* src/book.c (book_get_path): Use gnome_vfs_uri_to_string instead
+	of gnome_vfs_uri_get_path.
+
 2001-08-01  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/install.c (install_insert_book): don't freeze/thaw function
@@ -13,7 +24,7 @@
 	* src/book.c: 
 	* src/bookshelf.c: 
 	* src/main.c: #include s/libxml/gnome-xml/ beacause it seems to
-	work better for a lot of peoples.
+	work better for a lot of peoples, Thanks goes to Alfons Hoogervorst.
 
 	* src/books-dialog.c (books_button_edit_clicked_cb): If no books
 	is installed and Edit book is clicked, return;
