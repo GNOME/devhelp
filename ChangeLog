@@ -1,5 +1,12 @@
 2001-10-17  Johan Dahlin  <zilch.am@home.se>
 
+	* debian/.cvsignore: s/debian//.
+
+	* src/bookshelf.c (bookshelf_add_directory): Fix so global books
+	can be hidden.
+
+2001-10-17  Johan Dahlin  <zilch.am@home.se>
+
 	* debian/*: Added files for debian package.
 	
 	* devhelp.spec.in: Big update.

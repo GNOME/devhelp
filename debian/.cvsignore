@@ -1,4 +1,4 @@
-debian/devhelp
-debian/devhelp.postinst.debhelper
-debian/devhelp.prerm.debhelper
-debian/devhelp.substvars
+devhelp
+devhelp.postinst.debhelper
+devhelp.prerm.debhelper
+devhelp.substvars

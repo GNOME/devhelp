@@ -385,6 +385,7 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	gchar           *book_file_name;
 	gchar           *book_directory;
 	gchar           *xml_filename;
+	gchar           *home_dir;
 	GList           *xml_books, *node2;
 	XMLBook         *xml_book;
 	
@@ -422,7 +423,19 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 
 		g_free (node->data);
 	}
-
+	
+	home_dir = g_getenv ("HOME");
+	if (strncmp (directory, home_dir, strlen (home_dir)) == 0) {
+		for (node = xml_books; node; node = node->next) {
+			xml_book = (XMLBook*) node->data;
+			
+			book = bookshelf_find_book_by_name (bookshelf, xml_book->name);
+			if (book_is_visible (book) != xml_book->visible) {
+				book_set_visible (book, xml_book->visible);
+			}
+		}		
+	}
+	
 	priv->books = g_slist_sort (priv->books, book_compare_func);
 	gnome_vfs_uri_unref (book_dir_uri);
 	g_slist_free (books);
