@@ -16,7 +16,7 @@ module GNOME {
 		interface Controller : Bonobo::Unknown {
 			Bonobo::Control  getSearchEntry      ();
 			Bonobo::Control  getSearchResultList ();
-			Bonobo::Control  getBookIndex        ();
+			Bonobo::Control  getBookTree         ();
 
 			/* Can this be done better, like adding interface */
 			/* Bonobo_UIComponent in Controller               */

@@ -36,15 +36,19 @@ libdevhelp2_la_SOURCES =			\
 	$(gnome_devhelp_idl_sources)		\
 	book.c					\
 	book.h					\
-	book-index.c				\
-	book-index.h				\
 	book-node.h				\
+	dh-book-parser.c			\
+	dh-book-parser.h			\
+	dh-book-tree.c				\
+	dh-book-tree.h				\
 	dh-bookshelf.c				\
 	dh-bookshelf.h                     	\
 	dh-controller.c				\
 	dh-controller.h				\
 	dh-marshal.c				\
 	dh-marshal.h				\
+	dh-profile.c				\
+	dh-profile.h				\
 	dh-search.c     	           	\
 	dh-search.h				\
 	function-database.c			\

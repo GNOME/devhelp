@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2002 CodeFactory AB
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -102,27 +103,27 @@ window_notebook_append_page_with_accelerator (GtkNotebook        *notebook,
 static BonoboWindowClass *parent_class = NULL;
 
 struct _DhWindowPriv {
-        BonoboUIComponent          *component;
+        BonoboUIComponent        *component;
 
-	GNOME_DevHelp_Controller    controller;
+	GNOME_DevHelp_Controller  controller;
 
-        GtkWidget                  *notebook;
-        GtkWidget                  *search_box;
-        GtkWidget                  *index;
-        GtkWidget                  *search_list;
-        GtkWidget                  *search_entry;
-	GtkWidget                  *html_widget;
-	GtkWidget                  *statusbar;
-	GtkWidget                  *hpaned;
+        GtkWidget                *notebook;
+        GtkWidget                *search_box;
+        GtkWidget                *index;
+        GtkWidget                *search_list;
+        GtkWidget                *search_entry;
+	GtkWidget                *html_widget;
+	GtkWidget                *statusbar;
+	GtkWidget                *hpaned;
 };
 
 static BonoboUIVerb verbs[] = {
-        BONOBO_UI_VERB ("CmdPrint",          window_cmd_print_cb),
-        BONOBO_UI_VERB ("CmdExit",           window_cmd_exit_cb),
+        BONOBO_UI_VERB ("CmdPrint",       window_cmd_print_cb),
+        BONOBO_UI_VERB ("CmdExit",        window_cmd_exit_cb),
 
-        BONOBO_UI_VERB ("CmdViewSideBar",    window_cmd_view_side_bar_cb),
+        BONOBO_UI_VERB ("CmdViewSideBar", window_cmd_view_side_bar_cb),
 
-        BONOBO_UI_VERB ("CmdAbout",          window_cmd_about_cb),
+        BONOBO_UI_VERB ("CmdAbout",       window_cmd_about_cb),
         BONOBO_UI_VERB_END
 };
 
@@ -153,7 +154,7 @@ dh_window_get_type (void)
 static void
 window_class_init (DhWindowClass *klass)
 {
-        GtkObjectClass   *object_class;
+        GtkObjectClass *object_class;
         
         parent_class = gtk_type_class (bonobo_window_get_type ());
 
@@ -165,7 +166,7 @@ window_class_init (DhWindowClass *klass)
 static void
 window_init (DhWindow *window)
 {
-        DhWindowPriv   *priv;
+        DhWindowPriv *priv;
 
         priv         = g_new0 (DhWindowPriv, 1);
 	
@@ -188,14 +189,14 @@ window_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
 static void
 window_populate (DhWindow *window)
 {
-        DhWindowPriv    *priv;
-        CORBA_Environment     ev;
-        Bonobo_UIContainer    uic;
-	BonoboControlFrame   *cf;
-	Bonobo_EventSource    es;
-	Bonobo_Control        control_co;
-	GtkWidget            *html_sw;
-	GtkWidget            *frame;
+        DhWindowPriv       *priv;
+        CORBA_Environment   ev;
+        Bonobo_UIContainer  uic;
+	BonoboControlFrame *cf;
+	Bonobo_EventSource  es;
+	Bonobo_Control      control_co;
+	GtkWidget          *html_sw;
+	GtkWidget          *frame;
 	 
         g_return_if_fail (window != NULL);
         g_return_if_fail (IS_DH_WINDOW (window));
@@ -246,8 +247,8 @@ window_populate (DhWindow *window)
 		g_warning ("Couldn't register component");
 	}
 
-	control_co = GNOME_DevHelp_Controller_getBookIndex (priv->controller,
-							    &ev);
+	control_co = GNOME_DevHelp_Controller_getBookTree (priv->controller,
+							   &ev);
 	
 	if (!control_co || BONOBO_EX (&ev)) {
 		g_error ("Argggh");
@@ -324,9 +325,9 @@ window_populate (DhWindow *window)
 }
 
 static void
-window_cmd_print_cb (BonoboUIComponent   *component,
-	      gpointer             data,
-	      const gchar         *cname)
+window_cmd_print_cb (BonoboUIComponent *component,
+		     gpointer           data,
+		     const gchar       *cname)
 {
 	DhWindow       *window;
 	DhWindowPriv   *priv;
@@ -368,14 +369,14 @@ window_cmd_about_cb (BonoboUIComponent    *component,
         GtkWidget *about;
 
         const gchar *authors[] = {
-		"Johan Dahlin <jdahlin@telia.com>",
                 "Mikael Hallendal <micke@codefactory.se>",
                 "Richard Hult <rhult@codefactory.se>",
+		"Johan Dahlin <jdahlin@telia.com>",
                 NULL
         };
-
+	
         about = gnome_about_new (PACKAGE, VERSION,
-				 "(C) 2001 Johan Dahlin <jdahlin@telia.com>", 
+				 "",
 				 _("A developer's help browser for GNOME 2"),
                                  authors,
                                  NULL,
@@ -386,11 +387,11 @@ window_cmd_about_cb (BonoboUIComponent    *component,
 }
 
 static void
-window_uri_changed_cb (BonoboListener      *listener,
-		   const gchar         *event_name,
-		   const CORBA_any     *any,
-		   CORBA_Environment   *ev,
-		   gpointer             user_data)
+window_uri_changed_cb (BonoboListener    *listener,
+		       const gchar       *event_name,
+		       const CORBA_any   *any,
+		       CORBA_Environment *ev,
+		       gpointer           user_data)
 {
 	DhWindow       *window;
 	DhWindowPriv   *priv;
@@ -411,9 +412,9 @@ window_uri_changed_cb (BonoboListener      *listener,
 }
 
 static void
-window_delete_cb (GtkWidget     *widget,
-	      GdkEventAny   *event,
-	      gpointer       user_data)
+window_delete_cb (GtkWidget   *widget,
+		  GdkEventAny *event,
+		  gpointer     user_data)
 {
 	g_return_if_fail (widget != NULL);
 	g_return_if_fail (IS_DH_WINDOW (widget));
@@ -461,13 +462,13 @@ window_on_url_cb (DhWindow *window, gchar *url, gpointer ignored)
 GtkWidget *
 dh_window_new (void)
 {
-        DhWindow       *window;
-        DhWindowPriv   *priv;
-        GtkWidget           *widget;
-        BonoboUIContainer   *ui_container;
-	BonoboUIEngine      *ui_engine;
-	CORBA_Environment    ev;
-	GdkPixbuf           *icon;
+        DhWindow          *window;
+        DhWindowPriv      *priv;
+        GtkWidget         *widget;
+        BonoboUIContainer *ui_container;
+	BonoboUIEngine    *ui_engine;
+	CORBA_Environment  ev;
+	GdkPixbuf         *icon;
 	
         window = gtk_type_new (TYPE_DH_WINDOW);
         priv   = window->priv;
@@ -534,8 +535,8 @@ dh_window_new (void)
 void
 dh_window_search (DhWindow *window, const gchar *str)
 {
-	DhWindowPriv   *priv;
-	CORBA_Environment    ev;
+	DhWindowPriv      *priv;
+	CORBA_Environment  ev;
 	
 	g_return_if_fail (window != NULL);
 	g_return_if_fail (IS_DH_WINDOW (window));

@@ -37,9 +37,7 @@ static void help_browser_init       (HelpBrowser *browser);
 static BonoboXObjectClass *parent_class;
 
 struct _HelpBrowserPriv {
-/*  	GSList          *windows;  */
-
-	GtkWidget       *window;
+	GtkWidget *window;
 };
 
 static void
@@ -82,8 +80,8 @@ impl_HelpBrowser_search (PortableServer_Servant   servant,
 			 const CORBA_char        *str,
 			 CORBA_Environment       *ev)
 {
-	HelpBrowser       *browser;
-	HelpBrowserPriv   *priv;
+	HelpBrowser     *browser;
+	HelpBrowserPriv *priv;
 	
 	browser = HELP_BROWSER (bonobo_x_object (servant));
 
@@ -114,8 +112,8 @@ impl_HelpBrowser_searchInNewWindow (PortableServer_Servant  servant,
 static void
 help_browser_class_init (HelpBrowserClass *klass)
 {
-	GtkObjectClass                       *object_class;
-	POA_GNOME_DevHelp_HelpBrowser__epv   *epv = &klass->epv;
+	GtkObjectClass                     *object_class;
+	POA_GNOME_DevHelp_HelpBrowser__epv *epv = &klass->epv;
 
 	object_class = (GtkObjectClass *) klass;
 	parent_class = gtk_type_class (PARENT_TYPE);
@@ -127,7 +125,7 @@ help_browser_class_init (HelpBrowserClass *klass)
 static void
 help_browser_init (HelpBrowser *browser)
 {
-	HelpBrowserPriv   *priv;
+	HelpBrowserPriv *priv;
 	
 	priv          = g_new0 (HelpBrowserPriv, 1);
 	priv->window  = NULL;
@@ -137,8 +135,8 @@ help_browser_init (HelpBrowser *browser)
 HelpBrowser*
 help_browser_new (void)
 {
-	HelpBrowser       *browser;
-	HelpBrowserPriv   *priv;
+	HelpBrowser     *browser;
+	HelpBrowserPriv *priv;
 
 	browser      = g_object_new (HELP_BROWSER_TYPE, NULL);
 	priv         = browser->priv;

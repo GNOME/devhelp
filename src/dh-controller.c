@@ -30,7 +30,7 @@
 
 #include "dh-bookshelf.h"
 #include "function-database.h"
-#include "book-index.h"
+#include "dh-book-tree.h"
 #include "dh-search.h"
 #include "dh-history.h"
 #include "dh-controller.h"
@@ -40,7 +40,7 @@
 #define DH_CONTROLLER_FACTORY_OAFIID "OAFIID:GNOME_DevHelp_Controller_Factory"
 
 static void dh_controller_class_init  (DhControllerClass      *klass);
-static void dh_controller_init        (DhController           *index);
+static void dh_controller_init        (DhController           *controller);
  
 static void controller_destroy        (GtkObject              *object);
 
@@ -85,18 +85,18 @@ controller_back_exists_changed_cb     (DhHistory              *history,
 static BonoboXObjectClass *parent_class;
 
 struct _DhControllerPriv {
-        DhBookshelf         *bookshelf;
-        FunctionDatabase    *fd;
+        DhBookshelf       *bookshelf;
+        FunctionDatabase  *fd;
         
-        BookIndex           *index;
-	DhSearch            *search;
+        DhBookTree        *book_tree;
+	DhSearch          *search;
 
-	DhHistory             *history;
+	DhHistory         *history;
 	
-	BonoboEventSource   *event_source;
-        BonoboUIComponent   *ui_component;
+	BonoboEventSource *event_source;
+        BonoboUIComponent *ui_component;
 
-	BookNode            *current_node;
+	BookNode          *current_node;
 };
 
 static BonoboUIVerb verbs[] = {
@@ -144,8 +144,8 @@ impl_Dh_Controller_getSearchResultList (PortableServer_Servant    servant,
 }
 
 static Bonobo_Control
-impl_Dh_Controller_getBookIndex (PortableServer_Servant    servant,
-				      CORBA_Environment        *ev)
+impl_Dh_Controller_getBookTree (PortableServer_Servant    servant,
+				CORBA_Environment        *ev)
 {
 	DhController       *controller;
 	DhControllerPriv   *priv;
@@ -155,7 +155,7 @@ impl_Dh_Controller_getBookIndex (PortableServer_Servant    servant,
 	controller = DH_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 	
-	w = book_index_get_scrolled (priv->index);
+	w = dh_book_tree_get_scrolled (priv->book_tree);
 	gtk_widget_show_all (w);
 	control = bonobo_control_new (w);
 
@@ -233,7 +233,7 @@ dh_controller_class_init (DhControllerClass *klass)
 	
 	epv->getSearchEntry      = impl_Dh_Controller_getSearchEntry;
 	epv->getSearchResultList = impl_Dh_Controller_getSearchResultList;
-	epv->getBookIndex        = impl_Dh_Controller_getBookIndex;
+	epv->getBookTree         = impl_Dh_Controller_getBookTree;
 	epv->addMenus            = impl_Dh_Controller_addMenus;
 	epv->openURI             = impl_Dh_Controller_openURI;
 	epv->search              = impl_Dh_Controller_search;
@@ -250,7 +250,7 @@ dh_controller_init (DhController *controller)
         priv->fd           = function_database_new ();
 	priv->history      = dh_history_new ();
         priv->bookshelf    = dh_bookshelf_new (priv->fd);
-        priv->index        = BOOK_INDEX (book_index_new (priv->bookshelf));
+        priv->book_tree    = DH_BOOK_TREE (dh_book_tree_new (priv->bookshelf));
 
 	g_signal_connect (priv->history,
 			  "forward_exists_changed",
@@ -299,7 +299,7 @@ dh_controller_init (DhController *controller)
 				 G_OBJECT (controller),
 				 G_CONNECT_AFTER);
 	
-	g_signal_connect_object (G_OBJECT (priv->index),
+	g_signal_connect_object (G_OBJECT (priv->book_tree),
 				 "uri_selected",
 				 G_CALLBACK (controller_uri_cb),
 				 controller,
@@ -352,14 +352,14 @@ controller_open (DhController *controller, const gchar *url)
 			priv->current_node = node;
 			
 			gtk_signal_handler_block_by_func 
-				(GTK_OBJECT (priv->index),
+				(GTK_OBJECT (priv->book_tree),
 				 GTK_SIGNAL_FUNC (controller_uri_cb),
 				 controller); 
 			
-			book_index_open_node (priv->index, node);
+			dh_book_tree_open_node (priv->book_tree, node);
 			
 			gtk_signal_handler_unblock_by_func 
-				(GTK_OBJECT (priv->index), 
+				(GTK_OBJECT (priv->book_tree), 
 				 GTK_SIGNAL_FUNC (controller_uri_cb), 
 				 controller);
 		
@@ -487,7 +487,7 @@ controller_book_added_cb (DhController   *controller,
 
 	priv = controller->priv;
 
-	book_index_add_book (priv->index, book);
+	dh_book_tree_add_book (priv->book_tree, book);
 }
 
 static void
@@ -516,7 +516,7 @@ controller_book_removed_cb (DhController   *controller,
 		functions = functions->next;
 	}
 	
-	book_index_remove_book (priv->index, book);
+	dh_book_tree_remove_book (priv->book_tree, book);
 }
 
 static void 

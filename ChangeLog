@@ -1,3 +1,23 @@
+2002-08-12  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/dh-window.c (window_cmd_about_cb): cleaned up about dialog.
+
+	* src/dh-controller.c: book-index -> dh-book-tree.
+
+	* src/dh-book-parser.[ch]: Added
+
+	* src/dh-profile.[ch]: Added
+	
+	* src/dh-book-tree.[ch]: 
+	* src/book-index.[ch]: book-index.[ch] moved to dh-book-tree.[ch]
+
+	* src/Makefile.am: 
+	- book-index -> dh-book-tree.
+	- added dh-book-parser.[ch]
+	- added dh-profile.[ch]
+
+	* idl/GNOME_DevHelp.idl: BookIndex -> BookTree
+
 2002-08-08  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/devhelp-controller.[ch]: changed to dh-controller.[ch]
