@@ -22,3 +22,4 @@ devhelp.spec
 intl
 build-stamp
 install-stamp
+autom4te.cache
