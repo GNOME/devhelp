@@ -28,5 +28,11 @@ gboolean  dh_parse_file (const gchar  *path,
 			 GNode        *book_tree,
 			 GList       **keywords,
 			 GError      **error);
+#ifdef HAVE_LIBZ
+gboolean  dh_parse_gz_file (const gchar  *path,
+			 GNode        *book_tree,
+			 GList       **keywords,
+			 GError      **error);
+#endif
 
 #endif /* __DH_PARSER_H__ */

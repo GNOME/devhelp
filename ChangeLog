@@ -1,4 +1,19 @@
+2003-03-02  Ross Burton  <ross@burtonini.com>
+ 
+ 	* configure.in, acconfig.h: Added a zlib check.
+ 
+ 	* src/dh-base.c: Also check for .devhelp.gz files, if we have zlib.
+ 
+ 	* src/dh-parser.h: Added dh_parse_gz_file(), for parsing gzipped
+ 	.devhelp files.
+ 
+ 	* src/dh-parser.c: Implement dh_parse_gz_file().
+
 2003-03-02  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/Makefile.am (INCLUDES): fix dist-check
+
+	* libegg/toolbar/Makefile.am (INCLUDES): fix dist-check
 
 	* configure.in: export EGG_CFLAGS, EGG_LIBS
 

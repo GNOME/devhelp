@@ -12,6 +12,10 @@
 #include <config.h>
 #include <string.h>
 
+#ifdef HAVE_LIBZ
+#include "zlib.h"
+#endif
+
 #include "dh-link.h"
 #include "dh-parser.h"
 
@@ -339,3 +343,86 @@ dh_parse_file (const gchar  *path,
 	
 	return TRUE;
 }
+
+#ifdef HAVE_LIBZ
+gboolean
+dh_parse_gz_file (const gchar  *path,
+	       GNode        *book_tree,
+	       GList       **keywords,
+	       GError      **error)
+{
+	DhParser   *parser;
+	gchar       buf[BYTES_PER_READ];
+	gzFile file;
+
+	parser = g_new0 (DhParser, 1);
+	if (!parser) {
+		/* Set error */
+		g_print ("1\n");
+		return FALSE;
+	}
+	
+	parser->m_parser = g_new0 (GMarkupParser, 1);
+	if (!parser->m_parser) {
+		g_free (parser);
+		/* Set error */
+		g_print ("2\n");
+		return FALSE;
+	}
+
+	parser->m_parser->start_element = parser_start_node_cb;
+	parser->m_parser->end_element   = parser_end_node_cb;
+	parser->m_parser->error         = parser_error_cb;
+
+	parser->context = g_markup_parse_context_new (parser->m_parser, 0,
+						      parser, NULL);
+
+	parser->parent = NULL;
+
+	parser->parsing_functions = FALSE;
+	parser->parsing_chapters  = FALSE;
+
+	parser->path      = path;
+	parser->book_tree = book_tree;
+	parser->keywords  = keywords;
+
+	/* Parse the string */
+	file = gzopen (path, "r");
+	
+	if (!file) {
+		g_markup_parse_context_free (parser->context);
+		g_free (parser);
+		g_print ("3\n");
+		return FALSE;
+	}
+	
+	while (TRUE) {
+		gsize bytes_read;
+
+		bytes_read = gzread(file, buf, BYTES_PER_READ);
+		if (bytes_read == -1) {
+			const char *message;
+			int err;
+			g_markup_parse_context_free (parser->context);
+			g_free (parser);
+			/* Set error */
+			gzerror (file, &err);
+			g_print ("zlib error %d: %s\n", err, message);
+			return FALSE;
+		}
+		
+		g_markup_parse_context_parse (parser->context, buf,
+					      bytes_read, error);
+		if (bytes_read < BYTES_PER_READ) {
+			break;
+		}
+	}
+
+	gzclose(file);
+
+	g_markup_parse_context_free (parser->context);
+	g_free (parser);
+	
+	return TRUE;
+}
+#endif

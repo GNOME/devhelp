@@ -196,25 +196,46 @@ base_add_books (DhBase *base, const gchar *directory)
 		book_path = g_strdup_printf ("%s/%s/%s.devhelp",
 					     directory, 
 					     info->name, info->name);
-		
-		if (!g_file_test (book_path, G_FILE_TEST_EXISTS)) {
-			gnome_vfs_file_info_unref (info);
-			g_free (book_path);
-			continue;
-		}
-		
-		g_hash_table_insert (priv->books, 
-				     g_strdup (info->name), 
-				     book_path);
 
-		d(g_print ("Found book: '%s'\n", book_path));
-
-		if (!dh_parse_file  (book_path,
-				     priv->book_tree,
-				     &priv->keywords,
-				     NULL)) {
-			g_warning ("Failed to read '%s'", book_path);
+		if (g_file_test (book_path, G_FILE_TEST_EXISTS)) {
+			g_hash_table_insert (priv->books,
+					     g_strdup (info->name),
+					     book_path);
+			d(g_print ("Found book: '%s'\n", book_path));
+			
+			if (!dh_parse_file  (book_path,
+					     priv->book_tree,
+					     &priv->keywords,
+					     NULL)) {
+				g_warning ("Failed to read '%s'", book_path);
+			}
+			goto next;
 		}
+
+#ifdef HAVE_LIBZ
+		g_free (book_path);
+		book_path = g_strdup_printf ("%s/%s/%s.devhelp.gz",
+					     directory, 
+					     info->name, info->name);
+
+		if (g_file_test (book_path, G_FILE_TEST_EXISTS)) {
+			g_hash_table_insert (priv->books,
+					     g_strdup (info->name),
+					     book_path);
+			d(g_print ("Found book: '%s'\n", book_path));
+			
+			if (!dh_parse_gz_file  (book_path,
+					     priv->book_tree,
+					     &priv->keywords,
+					     NULL)) {
+				g_warning ("Failed to read '%s'", book_path);
+			}
+			goto next;
+		}
+#endif
+	next:
+		gnome_vfs_file_info_unref (info);
+		g_free (book_path);
 	}
 
 	g_list_free (dir_list);

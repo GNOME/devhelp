@@ -51,6 +51,44 @@ PKG_CHECK_MODULES(EGG, [gtk+-2.0 >= 2.0.0])
 AC_SUBST(EGG_CFLAGS)
 AC_SUBST(EGG_LIBS)
 
+
+dnl Checks for zlib library.
+_cppflags="${CPPFLAGS}"
+_ldflags="${LDFLAGS}"
+ 
+AC_ARG_WITH(zlib,
+[  --with-zlib[=DIR]       use libz in DIR],[
+        if test "$withval" != "no" -a "$withval" != "yes"; then
+                Z_DIR=$withval
+                CPPFLAGS="${CPPFLAGS} -I$withval/include"
+                LDFLAGS="${LDFLAGS} -L$withval/lib"
+        fi
+])
+if test "$with_zlib" = "no"; then
+        echo "Disabling compression support"
+else
+        AC_CHECK_HEADERS(zlib.h,
+                AC_CHECK_LIB(z, gzread,[
+                        AC_DEFINE(HAVE_LIBZ)
+                        if test "x${Z_DIR}" != "x"; then
+                                Z_CFLAGS="-I${Z_DIR}/include"
+                                Z_LIBS="-L${Z_DIR}/lib -lz"
+                                [case ${host} in
+                                        *-*-solaris*)
+                                                Z_LIBS="-L${Z_DIR}/lib -R${Z_DIR}/lib -lz"
+                                                ;;
+                                esac]
+                        else
+                                Z_LIBS="-lz"
+                        fi]))
+fi
+
+AC_SUBST(Z_CFLAGS)
+AC_SUBST(Z_LIBS)
+
+CPPFLAGS=${_cppflags}
+LDFLAGS=${_ldflags}
+
 ALL_LINGUAS="am az be cs da de el es fr it ja kn lv ms nl no pl pt pt_BR ru sk sv uk vi zh_CN zh_TW"
 
 GETTEXT_PACKAGE=devhelp

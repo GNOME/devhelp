@@ -1,3 +1,7 @@
+2003-03-02  Mikael Hallendal  <micke@codefactory.se>
+
+	* Makefile.am (INCLUDES): fix dist-check
+
 2003-01-11  Johan Dahlin  <jdahlin@async.com.br>
 
 	* egg-menu-merge.c (find_toolbar_position): Use
