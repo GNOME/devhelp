@@ -410,7 +410,7 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 				g_free (tmp);
 
 				tmp = g_strdup_printf (_("I found an old version of your spec file (%s)\n"
-							 "I removed it, so you must hide your hidden books again."),
+							 "I removed it, so you have to hide the books you want to be hidden again."),
 						       filename);
 				
 				dialog = gnome_message_box_new (tmp, GNOME_MESSAGE_BOX_INFO,
