@@ -1,3 +1,8 @@
+2002-11-04  Richard Hult  <rhult@codefactory.se>
+
+	* src/dh-window.c (dh_window_search): Switch to the search page
+	when a search is done.
+
 2002-11-04  Mikael Hallendal  <micke@codefactory.se>
 
 	* configure.in: style fixes, thanks rhult.

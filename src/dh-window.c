@@ -529,4 +529,6 @@ dh_window_search (DhWindow *window, const gchar *str)
 	priv = window->priv;
 
 	dh_search_set_search_string (DH_SEARCH (priv->search), str);
+
+	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 1);
 }
