@@ -414,11 +414,11 @@ book_index_open_node (BookIndex *index, BookNode *book_node)
 
 		/* Have to do this workaround to only emit when user click */
 		priv->emit_uri_select = FALSE;
-		gtk_ctree_select (GTK_CTREE(index), node);
+		gtk_ctree_select (GTK_CTREE (index), node);
 		priv->selected_node   = node;
 		priv->emit_uri_select = TRUE;
 
-		gtk_ctree_node_moveto (GTK_CTREE(index), node, 0, 0.5, 0.5);
+		gtk_ctree_node_moveto (GTK_CTREE (index), node, 0, 0.5, 0.5);
 	}
 }
 

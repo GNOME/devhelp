@@ -54,19 +54,22 @@ struct _BookshelfClass
 			       Book          *book);
 };
 
+struct _XMLBook {
+	const gchar    *spec_path;
+	const gchar    *name;
+	const gchar    *version;
+	gboolean  visible;
+};
+
 GtkType          bookshelf_get_type           (void);
 
 Bookshelf *      bookshelf_new                (const char          *default_dir,
                                                FunctionDatabase    *fd);
 
-FunctionDatabase * 
+FunctionDatabase *
 bookshelf_get_function_database               (Bookshelf           *bookshelf);
 
-GList *          bookshelf_read_xml           (Bookshelf           *bookshelf,
-					       const gchar         *filename);
-
-void             bookshelf_write_xml          (Bookshelf           *bookshelf,
-					       const gchar         *xml_filename);
+void             bookshelf_write_xml          (Bookshelf           *bookshelf);
 
 gboolean         bookshelf_add_book           (Bookshelf           *bookshelf,
 					       Book                *book);
@@ -76,6 +79,13 @@ void             bookshelf_add_directory      (Bookshelf           *bookshelf,
 
 GSList *         bookshelf_get_books          (Bookshelf           *bookshelf);
 
+GSList *         bookshelf_get_hidden_books   (Bookshelf           *bookshelf);
+
+void             bookshelf_show_book          (Bookshelf           *bookshelf,
+					       XMLBook             *xml_book);
+
+void             bookshelf_hide_book          (Bookshelf           *bookshelf,
+					       Book                *book);
 
 Book *           bookshelf_find_book_by_title (Bookshelf           *bookshelf,
 					       const gchar         *title);

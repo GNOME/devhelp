@@ -45,17 +45,18 @@ static void      bookshelf_destroy           (GtkObject        *object);
 
 static GSList *  bookshelf_read_books_dir    (GnomeVFSURI      *books_uri);
 
+static GSList *  bookshelf_read_xml          (Bookshelf        *bookshelf,
+					      const gchar      *filename);
+
+
 struct _BookshelfPriv {
 	GSList             *books;
 	FunctionDatabase   *fd;
 
 	Book               *current_book;
-};
-
-struct _XMLBook {
-	gchar    *name;
-	gchar    *path;
-	gboolean  visible;
+	
+	const gchar        *filename;
+	GSList             *xml_books;
 };
 
 enum {
@@ -141,7 +142,7 @@ bookshelf_destroy (GtkObject *object)
 	priv      = bookshelf->priv;
 
 	/* FIX: Free priv data */
-        
+	
 	g_free (priv);
         
 	bookshelf->priv = NULL;
@@ -200,11 +201,16 @@ bookshelf_new (const gchar* default_dir, FunctionDatabase *fd)
 {
 	Bookshelf       *bookshelf;
 	BookshelfPriv   *priv;
-
+	gchar           *filename;
+	
 	bookshelf = gtk_type_new (TYPE_BOOKSHELF);
 	priv      = bookshelf->priv;
 	priv->fd  = fd;
 
+	filename = g_strdup_printf ("%s/books.xml", default_dir);
+	priv->xml_books = bookshelf_read_xml (bookshelf, filename);
+	priv->filename = filename;
+	
 	bookshelf_add_directory (bookshelf, default_dir);
 	
 	return bookshelf;
@@ -223,12 +229,81 @@ bookshelf_get_function_database (Bookshelf *bookshelf)
 	return priv->fd;
 }
 
-GList*
+GSList * 
+bookshelf_get_hidden_books (Bookshelf *bookshelf)
+{
+	BookshelfPriv   *priv;
+	GSList          *list;
+	GSList          *hidden;
+	XMLBook         *book;
+	
+	g_return_val_if_fail (bookshelf != NULL, NULL);
+	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
+	
+	priv = bookshelf->priv;
+
+	hidden = NULL;
+	for (list = priv->xml_books; list; list = list->next) {
+		book = (XMLBook*)list->data;
+		if (book->visible == FALSE) {
+			hidden = g_slist_append (hidden, book);
+		}
+	}
+	
+	return hidden;
+}
+
+void 
+bookshelf_hide_book (Bookshelf *bookshelf, Book *book)
+{
+	BookshelfPriv   *priv;
+	XMLBook         *xml_book;
+	
+	g_return_if_fail (bookshelf != NULL);
+	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+
+	g_return_if_fail (book != NULL);
+	g_return_if_fail (IS_BOOK (book));
+	
+	priv = bookshelf->priv;
+
+	xml_book = g_new (XMLBook, 1);
+	xml_book->name      = book_get_name (book);
+	xml_book->version   = book_get_version (book);	
+	xml_book->spec_path = book_get_spec_file (book);
+	xml_book->visible   = FALSE;
+			
+	bookshelf_remove_book (bookshelf, book);
+	priv->xml_books = g_slist_append (priv->xml_books, xml_book);
+}
+
+void
+bookshelf_show_book (Bookshelf *bookshelf, XMLBook *xml_book)
+{
+	BookshelfPriv *priv;
+	Book          *book;
+	GnomeVFSURI     *book_uri;
+
+	g_return_if_fail (bookshelf != NULL);
+	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+
+	priv = bookshelf->priv;
+
+	book_uri = gnome_vfs_uri_new (xml_book->spec_path); 
+	book = book_new (book_uri, priv->fd);
+	book_set_visible (book, TRUE);
+	
+	bookshelf_add_book (bookshelf, book);
+	priv->xml_books = g_slist_remove (priv->xml_books, xml_book);
+}
+
+
+static GSList *
 bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 {
 	BookshelfPriv   *priv;
 	XMLBook         *book;
-	GList           *list;
+	GSList          *list;
 	xmlDocPtr        doc;
 	xmlNode         *root_node, *cur;
 	gchar           *xml_str;
@@ -238,7 +313,7 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
 	
 	priv = bookshelf->priv;
-		
+	
 	doc = xmlParseFile (filename);
 
 	if (!doc) {
@@ -265,8 +340,10 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
  	while (cur) {
 		if (!xmlStrcmp (cur->name, (const xmlChar *) "book")) {
 			book = g_new (XMLBook, 1);
-			book->name    = xmlGetProp (cur, "name");
-			book->path    = xmlGetProp (cur, "path");
+			book->spec_path = xmlGetProp (cur, "spec");
+			book->name      = xmlGetProp (cur, "name");
+			book->version   = xmlGetProp (cur, "version");
+			//book->book_path = xmlGetProp (cur, "path");
 			visible       = xmlGetProp (cur, "visible");
 			if (visible != NULL) {
 				book->visible = atoi (visible);
@@ -275,7 +352,7 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 			}
 			xmlFree (visible);
 
-			list = g_list_append (list, book);
+			list = g_slist_append (list, book);
 		}
 		
 		cur = cur->next;
@@ -286,30 +363,25 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 }
 
 void
-bookshelf_write_xml (Bookshelf     *bookshelf, 
-		     const gchar   *filename)
+bookshelf_write_xml (Bookshelf *bookshelf)
 {
 	BookshelfPriv   *priv;
-	Book            *book;
+	XMLBook         *book;
 	FILE            *fp;
 	GSList          *node;
-	const gchar     *name;
-	const gchar     *version;	
-	gchar           *path;
-	gboolean         visible;
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
 	
 	priv = bookshelf->priv;
 
-	if (filename == NULL) {
+	if (priv->filename == NULL) {
 		fp = stdout;
 	} else {
-		fp = fopen (filename, "w");
+		fp = fopen (priv->filename, "w");
 
 		if (fp == NULL) {
-			g_warning (_("Failed to open file %s for writing."), filename);
+			g_warning (_("Failed to open file %s for writing."), priv->filename);
 			return;
 		}
 	}
@@ -317,26 +389,22 @@ bookshelf_write_xml (Bookshelf     *bookshelf,
 	fprintf (fp, "<?xml version=\"1.0\"?>\n\n");
 	fprintf (fp, "<booklist>\n");
 
-	for (node = priv->books; node; node = node->next) {
-		book = BOOK (node->data);
-		
-		name    = book_get_name (book);
-		version = book_get_version (book);		
-		path    = book_get_path (book);
-		visible = book_is_visible (book);
-		
-		fprintf (fp, "  <book name=\"%s\" ", name);
-		
-		if (version != NULL) {
-			fprintf (fp, "version=\"%s\" ", 
-				 version);
+	for (node = priv->xml_books; node; node = node->next) {
+		book = (XMLBook*)node->data;
+
+		if (book->visible == TRUE) {
+			continue;
 		}
 		
-		fprintf (fp, "visible=\"%d\" path=\"%s\"/>\n",
-			 visible == TRUE ? 1 : 0,
-			 path);
+		fprintf (fp, "  <book ");
 
-		g_free (path);
+		fprintf (fp, "name=\"%s\" ", book->name);
+		fprintf (fp, "spec=\"%s\" ", book->spec_path);
+
+		if (book->version != NULL) {
+			fprintf (fp, "version=\"%s\" ", book->version);
+		}
+		fprintf (fp, "visible=\"0\"/>\n");
 	}
 	
 	fprintf (fp, "</booklist>\n");
@@ -401,57 +469,52 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	GSList          *books, *node;
 	gchar           *book_file_name;
 	gchar           *book_directory;
-	gchar           *xml_filename;
 	gchar           *home_dir;
-	GList           *xml_books, *node2;
+	GSList          *node2;
 	XMLBook         *xml_book;
+	gboolean         skip;
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
 	
 	priv = bookshelf->priv;
 	
-	xml_filename = g_strdup_printf ("%s/books.xml", directory);
-	xml_books = bookshelf_read_xml (bookshelf, xml_filename);
 	book_directory = g_strdup_printf ("%s/specs", directory);
 		
 	book_dir_uri = gnome_vfs_uri_new (book_directory);
 	books = bookshelf_read_books_dir (book_dir_uri);
         
+	skip = FALSE;
 	for (node = books; node; node = node->next) {
 		book_file_name = g_strdup_printf (node->data);
 		
 		book_uri = gnome_vfs_uri_append_path (book_dir_uri,
 						      book_file_name);
 		
+		/* if book in xml-list */
+		for (node2 = priv->xml_books; node2; node2 = node2->next) {
+			xml_book = (XMLBook*) node2->data;
+			if (strcmp (xml_book->spec_path,
+				    gnome_vfs_uri_to_string (book_uri, 0)) == 0) {
+				/* TODO: base_url */
+				/* book_set_base_url (book, xml_book->path); */
+				if (xml_book->visible == FALSE) {
+					skip = TRUE;
+				}
+			}
+		}
 		g_free (book_file_name);
+
+		if (skip == TRUE) {
+			skip = FALSE;
+			continue;
+		}
 		
 		book = book_new (book_uri, priv->fd);
 
-		/* if book in xml-list */
-		for (node2 = xml_books; node2; node2 = node2->next) {
-			xml_book = (XMLBook*) node2->data;
-			if (strcmp (xml_book->name, (gchar*)book_get_name (book)) == 0) {
-				book_set_base_url (book, xml_book->path);
-				book_set_visible (book, xml_book->visible);
-			}
-		}
-
 		bookshelf_add_book (bookshelf, book);
-
+		
 		g_free (node->data);
-	}
-	
-	home_dir = g_getenv ("HOME");
-	if (strncmp (directory, home_dir, strlen (home_dir)) == 0) {
-		for (node2 = xml_books; node2; node2 = node2->next) {
-			xml_book = (XMLBook*) node2->data;
-			
-			book = bookshelf_find_book_by_name (bookshelf, xml_book->name);
-			if (book != NULL && book_is_visible (book) != xml_book->visible) {
-				book_set_visible (book, xml_book->visible);
-			}
-		}		
 	}
 	
 	priv->books = g_slist_sort (priv->books, book_compare_func);

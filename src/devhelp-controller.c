@@ -253,10 +253,10 @@ devhelp_controller_init (DevHelpController *controller)
 	priv->history      = history_new ();
 
         function_database_freeze (priv->fd);
-        priv->bookshelf = bookshelf_new (DATA_DIR "/devhelp", priv->fd);
         local_dir       = g_strdup_printf ("%s/.devhelp", getenv ("HOME"));
-        bookshelf_add_directory (priv->bookshelf, local_dir);
+        priv->bookshelf = bookshelf_new (local_dir, priv->fd);
         g_free (local_dir);
+        bookshelf_add_directory (priv->bookshelf, DATA_DIR"/devhelp");
         function_database_thaw (priv->fd);
 
         priv->index = BOOK_INDEX (book_index_new (priv->bookshelf));

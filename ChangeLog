@@ -1,3 +1,24 @@
+2001-10-25  Johan Dahlin  <zilch.am@home.se>
+
+	* src/devhelp-controller.c (devhelp_controller_init): Use
+	~/.devhelp as constructor and add DATA_DIR/devhelp later.
+
+	* src/bookshelf.h: Added XMLBook, since it's used in books-dialog.c.
+	Removed bookshelf_read_xml, added bookshelf_get_hidden_books,
+	show/hide_book
+
+	* src/bookshelf.c (bookshelf_new): Read ~/.devhelp/books.xml here.
+	(bookshelf_get_hidden_books): New function
+	(bookshelf_hide_book): New function
+	(bookshelf_show_book): New function
+	(bookshelf_read_xml): Updated.
+	(bookshelf_write_xml): Updated.
+	(bookshelf_add_directory): Updated, much cleaner now.
+
+	* src/books-dialog.c: Changed to match bookshelf updates.
+
+	* src/book-index.c (book_index_open_node): Style fix.
+
 2001-10-22  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/book.c (book_new): copy spec-file uri.

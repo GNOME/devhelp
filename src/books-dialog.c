@@ -40,7 +40,7 @@
 #include "bookshelf.h"
 #include "preferences.h"
 
-static void        update_clist (BooksDialog *dialog);
+static void        update_clists (BooksDialog *dialog);
 
 struct _BooksDialog {
 	Bookshelf   *bookshelf;
@@ -61,37 +61,43 @@ books_button_show_clicked_cb (GtkWidget *button,
 			      gpointer   user_data)
 {
 	BooksDialog   *dialog;
-	Book          *book;
+	Bookshelf     *bookshelf;
 	gint           row;
+	XMLBook       *book;
 	
 	g_return_if_fail (user_data != NULL);
 	
 	dialog = BOOKS_DIALOG (user_data);
+	bookshelf = dialog->bookshelf;
 	
 	row = dialog->clist_hidden->focus_row;
-	book = BOOK (gtk_clist_get_row_data (dialog->clist_hidden, row));
-	book_set_visible (book, TRUE);
+	book = (XMLBook*)gtk_clist_get_row_data (dialog->clist_hidden, row);
+	bookshelf_show_book (bookshelf, book);
 
-	update_clist (dialog);
+	update_clists (dialog);
 }
+
+	
 
 static void
 books_button_hide_clicked_cb (GtkWidget *button,
 			      gpointer   user_data)
 {
 	BooksDialog   *dialog;
-	Book          *book;
+	Bookshelf     *bookshelf;
 	gint           row;
+	Book          *book;
 	
 	g_return_if_fail (user_data != NULL);
 
 	dialog = BOOKS_DIALOG (user_data);
-
+	bookshelf = dialog->bookshelf;
+	
 	row = dialog->clist_visible->focus_row;
 	book = BOOK (gtk_clist_get_row_data (dialog->clist_visible, row));
-	book_set_visible (book, FALSE);
+	bookshelf_hide_book (bookshelf, book);
 
-	update_clist (dialog);
+	update_clists (dialog);
 }
 
 static gboolean
@@ -200,46 +206,49 @@ books_button_edit_clicked_cb (GtkWidget *button,
 }
 
 static void
-update_clist (BooksDialog *dialog)
+update_clists (BooksDialog *dialog)
 {
 	Book         *book;
 	Bookshelf    *bookshelf;
 	GtkCList     *clist;
 	GSList       *list;
 	gchar        *tmp[1];
-	gchar        *xml_path;
 	gint          row;
 
 	g_return_if_fail (dialog != NULL);
 	
 	bookshelf = dialog->bookshelf;
-	
-	list = bookshelf_get_books (bookshelf);
 
-	gtk_clist_clear (dialog->clist_visible);
-	gtk_clist_clear (dialog->clist_hidden);
-	
-	for (; list; list = list->next) {
+	/* Visible */
+	clist = dialog->clist_visible;
+	gtk_clist_clear (clist);
+	for (list = bookshelf_get_books (bookshelf);
+	     list; list = list->next) {
 		book = BOOK (list->data);
-		
-		/* Put it in the correct clist */
-		if (book_is_visible (book) == TRUE) {
-			clist = dialog->clist_visible;
-		} else {
-			clist = dialog->clist_hidden;
-		}
 
 		tmp[0] = (gchar*)book_get_name_full (book);
 		row = gtk_clist_append (clist, tmp);
 		gtk_clist_set_row_data (clist, row, book);
 	}
-	
-	gtk_clist_sort (dialog->clist_visible);
-	gtk_clist_sort (dialog->clist_hidden);
-	
-	xml_path = g_strdup_printf ("%s/.devhelp/books.xml", getenv ("HOME"));
-	bookshelf_write_xml (bookshelf, xml_path);
-	g_free (xml_path);
+	gtk_clist_sort (clist);
+
+	/* Hidden */
+	clist = dialog->clist_hidden;
+	gtk_clist_clear (clist);
+	for (list = bookshelf_get_hidden_books (bookshelf);
+	     list; list = list->next) {
+		XMLBook *xml_book = (XMLBook* )list->data;
+		if (xml_book->version != NULL) {
+			tmp[0] = g_strdup_printf ("%s-%s",
+						  xml_book->name,
+						  xml_book->version);
+		} else {
+			tmp[0] = (gchar*)xml_book->name;
+		}
+		row = gtk_clist_append (clist, tmp);
+		gtk_clist_set_row_data (clist, row, xml_book);
+	}
+	gtk_clist_sort (clist);
 }
 
 static void
@@ -285,7 +294,7 @@ addbook_dialog_clicked_cb (GtkButton *button, GtkFileSelection *selector)
 		root = g_strdup_printf ("%s/.devhelp", getenv ("HOME"));
 		install_book (dialog->bookshelf, filename, root);
 		
-		update_clist (dialog);
+		update_clists (dialog);
 		g_free (root);
 	}
 }
@@ -344,6 +353,8 @@ books_button_close_clicked_cb (GtkWidget *button,
 	g_return_if_fail (user_data != NULL);
 
 	dialog = BOOKS_DIALOG (user_data);
+	
+	bookshelf_write_xml (dialog->bookshelf);
 
 	gtk_widget_destroy (dialog->dialog);
 	gtk_main_quit();
@@ -404,7 +415,7 @@ books_dialog_new (Bookshelf   *bookshelf)
 
 	gtk_object_unref (GTK_OBJECT (gui));
 
-	update_clist (dialog);
+	update_clists (dialog);
 
 	return dialog->dialog;
 }

@@ -231,8 +231,6 @@ install_unpack_book (Bookshelf     *bookshelf,
 static void
 install_insert_book (Bookshelf *bookshelf, Book *book, const gchar *root)
 {
-	gchar *xml_path;
-	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
 	g_return_if_fail (book != NULL);
@@ -240,10 +238,8 @@ install_insert_book (Bookshelf *bookshelf, Book *book, const gchar *root)
 
 	/* Add to bookshelf */
 	bookshelf_add_book (bookshelf, book);
-	
-	xml_path = g_strdup_printf ("%s/books.xml", root);
-	bookshelf_write_xml (bookshelf, xml_path);
-	g_free (xml_path);
+
+        bookshelf_write_xml (bookshelf);
 }
 
 static void
