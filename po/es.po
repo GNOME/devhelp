@@ -7,8 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD.es\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-05-24 12:30+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-07-09 11:59+0200\n"
+"PO-Revision-Date: 2003-07-09 17:56+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@arrakis.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,17 +18,14 @@ msgstr ""
 "X-Generator: KBabel 1.0.1\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
-msgstr "Programa de ayuda para el desarrollador"
+msgstr "Programa de ayuda del desarrollador"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
 msgstr "DevHelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
 msgstr "Libro DevHelp"
 
@@ -36,27 +34,29 @@ msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
+"Seleccione un tema en los contenidos de la izquierda o cambia a la solapa de búsqueda para "
+"encontrar lo que busca."
 
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "Especifique el tamaño y ubicación de la ventana"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Buscar una función"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Salir"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-#, fuzzy, c-format
+#, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "El sub esperado obtuvo '%s' en lal línea %d columna %d"
+msgstr "Se esperaba «%s» pero se obtuvo «%s» en la línea %d, columna %d"
 
 #: src/dh-parser.c:120
 #, c-format
@@ -77,8 +77,7 @@ msgstr ""
 
 #: src/dh-parser.c:250
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "los elementos nombre y enlace se requieren dentro de <funcion> en la línea %"
 "d, columna %d"
@@ -97,9 +96,8 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "No se pudo descomprimir el libro '%s': %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Buscar"
+msgstr "_Búsqueda:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -131,11 +129,11 @@ msgstr "Un visor de ayuda para GNOME 2"
 
 #: src/dh-window.c:430
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Página del proyecto DevHelp"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
+msgstr "Informe de errores de DevHelp"
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search pane "
@@ -196,3 +194,4 @@ msgstr ""
 
 #~ msgid "Open %s"
 #~ msgstr "Abrir %s"
+
