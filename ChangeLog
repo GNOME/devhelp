@@ -1,3 +1,7 @@
+2003-05-07  Danilo Šegan  <dsegan@gmx.net>
+
+	* configure.in: Added "sr" and "sr@Latn" to ALL_LINGUAS.
+
 2003-04-24  Mikael Hallendal <micke@codefactory.se>
 
         * Release 0.6.0
