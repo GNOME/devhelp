@@ -244,7 +244,6 @@ install_insert_book (DevHelp *devhelp, Book *book, const gchar *root)
 	/* Add to ctree */
 	pixmaps = devhelp_create_pixmaps (devhelp);
 	
-	function_database_freeze (devhelp->function_database);		
 	gtk_clist_freeze (GTK_CLIST (devhelp->ctree));
 		
 	devhelp_insert_book_node (devhelp, NULL, 
@@ -253,7 +252,6 @@ install_insert_book (DevHelp *devhelp, Book *book, const gchar *root)
 	/* Eek? This sort is not good enough, FIX */
 	/* gtk_clist_sort (GTK_CLIST (devhelp->ctree)); */
 	gtk_clist_thaw (GTK_CLIST (devhelp->ctree));		
-	function_database_thaw (devhelp->function_database);
 }
 
 static void

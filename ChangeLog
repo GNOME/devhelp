@@ -1,5 +1,8 @@
 2001-08-01  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/install.c (install_insert_book): don't freeze/thaw function
+	database since it's not changed between the freeze and the thaw.
+
 	* src/bookshelf.c:
 	- cleaned up some code in bookshelf_write_xml and
    	  bookshelf_read_xml.
