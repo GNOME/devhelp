@@ -9,8 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-03-10 02:43+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-07-16 09:01+0200\n"
+"PO-Revision-Date: 2003-07-03 02:43+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,86 +19,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
 msgstr "Program pomocy dla programistów"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
-msgstr "DevHelp"
+msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "Menedżer książek DevHelpa"
+msgstr "Książka DevHelpa"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
+"Wybierz temat z listy po lewej stronie lub przełącz się na zakładkę "
+"wyszukiwania aby znaleźć to czego szukasz."
 
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "Określ rozmiar oraz położenie okna"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "SZEROKOŚĆxWYSOKOŚĆ+X0FF+YOFF"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Wyszukuje funkcję"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Kończy wszystkie uruchomione kopie programu devhelp"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Spodziewano się \"%s\" otrzymano \"%s\" w wierszu %d, kolumnie %d"
 
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Niepoprawna przestrzeń nazw \"%s\" w wierszu %d, kolumnie %d"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "tytuł, nazwa i elementy dowiązań są wymagane w wierszu %d, kolumnie %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
+"nazwa i elementy dowiązań są wymagane wewnątrz <sub> w wierszu %d, kolumnie %"
+"d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
+"nazwa i elementy dowiązań są wymagane wewnątrz <function> w wierszu %d, "
+"kolumnie %d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
-#, fuzzy
 msgid "Could not create book parser"
-msgstr "Nie można wyszukać napisu"
+msgstr "Nie można utworzyć analizatora książki"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Nie można utworzyć analizatora znaczników"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Nie można zdekompresować książki \"%s\": %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Wyszukiwanie"
+msgstr "_Znajdź:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -128,13 +130,12 @@ msgid "A developer's help browser for GNOME 2"
 msgstr "Przeglądarka pomocy dla programistów GNOME"
 
 #: src/dh-window.c:430
-#, fuzzy
 msgid "Devhelp project page"
-msgstr "Menedżer książek DevHelpa"
+msgstr "Witryna projektu DevHelp"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
+msgstr "Zgłaszanie błędów DevHelp"
 
 #~ msgid "_Search for:"
 #~ msgstr "_Wyszukiwanie:"
