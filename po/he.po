@@ -1,0 +1,95 @@
+# translation of sss.txt.po to Hebrew
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2003
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: sss.txt\n"
+"POT-Creation-Date: 2003-03-06 19:39+0100\n"
+"PO-Revision-Date: 2003-03-06 22:19+0200\n"
+"Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
+"Language-Team: Hebrew <he@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0\n"
+
+#: devhelp.desktop.in.h:1
+msgid "DevHelp"
+msgstr "DevHelp"
+
+#: devhelp.desktop.in.h:2
+msgid "Developers Help program"
+msgstr "תוכנת עזרה למפתחים"
+
+#: src/dh-main.c:262
+msgid "Search for a function"
+msgstr "חפש פונקציה"
+
+#: src/dh-main.c:271
+msgid "Quit any running Devhelp"
+msgstr "צא מכל Devhelp מופעל"
+
+#: src/dh-search.c:349
+msgid "_Search for:"
+msgstr "_חפש בעבור:"
+
+#: src/dh-search.c:390
+msgid "Section"
+msgstr "חלק"
+
+#: src/dh-window.c:95
+msgid "_File"
+msgstr "_קובץ"
+
+#: src/dh-window.c:96
+msgid "_Go"
+msgstr "_מעבר"
+
+#: src/dh-window.c:97
+msgid "_Help"
+msgstr "_עזרה"
+
+#. About menu
+#: src/dh-window.c:110
+msgid "_About"
+msgstr "_אודות"
+
+#: src/dh-window.c:287
+#, c-format
+msgid ""
+"<b>Could not read all books</b>\n"
+"\n"
+"The following errors occured whilst reading the books:\n"
+"%s"
+msgstr ""
+"<b>לא ניתן לקרוא את כל הספרים</b>\n"
+"\n"
+"השגיאות הבאות ארעו בזמן קריאת הספרים:\n"
+"%s"
+
+#: src/dh-window.c:306
+msgid "Contents"
+msgstr "תכנים"
+
+#: src/dh-window.c:317
+msgid "Search"
+msgstr "חיפוש"
+
+#: src/dh-window.c:378
+msgid "A developer's help browser for GNOME 2"
+msgstr "דפדפן עזרה למפתחים בעבור Gnome 2"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"בחר נושא בתכנים בצד שמאל או החלף לחלונית החיפוש "
+"כדי למצוא את מה שאתה מחפש.<p>השתמש ב <b>Shift Up/Down</b> כדי לנווט "
+"בעץ בצד שמאל, ו <b>Shift Left/Right</b> כדי להרחיב או לצמצם את "
+"הספרים בעץ."
+
