@@ -1,3 +1,8 @@
+2003-05-15  Abel Cheung  <maddog@linux.org.hk>
+
+	* POTFILES.in: Add src/dh-parser.c and devhelp.keys.in.
+	* zh_TW.po: Updated traditional Chinese translation.
+
 2003-05-07  Danilo Šegan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Added Serbian translation by 

@@ -1,14 +1,14 @@
 # traditional Chinese translation for devhelp.
-# Copyright (C) 2001,2003 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2003 Free Software Foundation, Inc.
 # Joe Man <trmetal@yahoo.com.hk>, 2001.
 # Abel Cheung <maddog@linux.org.hk>, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.4.99\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
-"PO-Revision-Date: 2003-02-05 18:23+0800\n"
-"Last-Translator: Joe Man <trmetal@yahoo.com.hk>\n"
+"Project-Id-Version: devhelp 0.5.0\n"
+"POT-Creation-Date: 2003-04-24 16:03+0800\n"
+"PO-Revision-Date: 2003-05-15 09:23+0800\n"
+"Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,13 +22,77 @@ msgstr "說明書瀏覽程式"
 msgid "Developers Help program"
 msgstr "適用於程式開發者的說明書瀏覽程式"
 
+#: devhelp.keys.in.h:1
+msgid "DevHelp Book"
+msgstr "DevHelp 說明書"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"請在左面的目錄中選取標題，或者在搜尋窗格中尋找您想要的內容。<p>使用 "
+"<b>Shift ↑/↓鍵</b> 可在內容的標題之間移動，而 <b>Shift ←/→ 鍵</b> 可"
+"展開或摺疊說明書。"
+
 #: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "搜尋函式"
 
 #: src/dh-main.c:270
 msgid "Quit any running Devhelp"
-msgstr "結束所有己開啟的 Devhelp 程序"
+msgstr "結束所有執行中的 Devhelp 進程"
+
+#: src/dh-parser.c:94
+#, c-format
+msgid "Expected 'book' got '%s' at line %d, column %d"
+msgstr "第 %2$d 行第 %3$d 字應該是‘book’，但實際是‘%1$s’"
+
+#: src/dh-parser.c:110
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:139
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:171
+#, c-format
+msgid "Expected 'sub' got '%s' at line %d column %d"
+msgstr "第 %2$d 行第 %3$d 字應該是‘sub’，但實際是‘%1$s’"
+
+#: src/dh-parser.c:192
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:218
+#, c-format
+msgid "Expected 'function' got '%s' at line %d, column %d"
+msgstr "第 %2$d 行第 %3$d 字應該是‘function’，但實際是‘%1$s’"
+
+#: src/dh-parser.c:240
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:326 src/dh-parser.c:410
+msgid "Could not create book parser"
+msgstr "無法分析說明書內容"
+
+#: src/dh-parser.c:336 src/dh-parser.c:420
+msgid "Could not create markup parser"
+msgstr ""
+
+#: src/dh-parser.c:466
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "無法將說明書‘%s’解壓：%s"
 
 #: src/dh-search.c:349
 msgid "_Search for:"
@@ -44,7 +108,7 @@ msgstr "檔案(_F)"
 
 #: src/dh-window.c:96
 msgid "_Go"
-msgstr "進入(_G)"
+msgstr "前往(_G)"
 
 #: src/dh-window.c:97
 msgid "_Help"
@@ -66,17 +130,6 @@ msgstr "搜尋"
 #: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "適合程式開發者的說明書瀏覽程式，適用於 GNOME 2 環境"
-
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"請在內容標簽頁下選取標題或在搜尋標簽頁下輸入搜尋目標。<p>使用 <b>Shift ↑/↓鍵"
-"</b> 可在內容標簽頁下的標題間移動，而 <b>Shift ←/→ 鍵</b> 可展開或摺疊說明"
-"書。"
 
 #~ msgid "'%s' is not a valid book"
 #~ msgstr "‘%s’不是有效的說明書"
@@ -119,9 +172,6 @@ msgstr ""
 #~ msgid "Document wrong type, got %s, expected 'booklist': %s"
 #~ msgstr "不正確的說明書類別，讀取到 %s，但應該是 'booklist'：%s"
 
-#~ msgid "Failed to open file %s for writing."
-#~ msgstr "開啟檔案 %s 作寫入動作時發生錯誤。"
-
 #~ msgid "Print Help"
 #~ msgstr "列印說明"
 
@@ -154,12 +204,6 @@ msgstr ""
 
 #~ msgid "Bookmarks"
 #~ msgstr "書籤"
-
-#~ msgid "DevHelp Book Manager"
-#~ msgstr "說明書總管"
-
-#~ msgid "DevHelp Preferences"
-#~ msgstr "偏好設定"
 
 #~ msgid "Install new book..."
 #~ msgstr "新增說明書..."
@@ -200,14 +244,8 @@ msgstr ""
 #~ msgid "Preferences..."
 #~ msgstr "偏好設定..."
 
-#~ msgid "_Exit"
-#~ msgstr "結束(_E)"
-
 #~ msgid "_Print"
 #~ msgstr "列印(_P)"
-
-#~ msgid "_View"
-#~ msgstr "檢視(_V)"
 
 #~ msgid "Back"
 #~ msgstr "上一頁"
@@ -219,10 +257,10 @@ msgstr ""
 #~ msgstr "下一頁"
 
 #~ msgid "Go to next page in the history"
-#~ msgstr "移至下一個紀錄"
+#~ msgstr "前往下一個紀錄"
 
 #~ msgid "Go to previous page in the history"
-#~ msgstr "移至上一個紀錄"
+#~ msgstr "前往上一個紀錄"
 
 #~ msgid "Open the book manager dialog"
 #~ msgstr "安裝及管理說明書"
