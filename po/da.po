@@ -1,12 +1,13 @@
 # Danish translation of DevHelp.
-# Copyright (C) 2001, 02 Free Software Foundation, Inc.
-# Ole Laursen <olau@hardworking.dk>, 2001, 02.
+# Copyright (C) 2001, 02, 03 Free Software Foundation, Inc.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2002-11-17 18:38+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-23 19:22+0200\n"
+"PO-Revision-Date: 2003-08-23 19:26+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -14,86 +15,81 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
 msgstr "Hjælpeprogram til udviklere"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
 msgstr "Udviklerhjælp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "Boghåndtering til Udviklerhjælp"
+msgstr "Udviklerhjælpbog"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
-msgstr ""
-
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
+msgstr "Vælg et emne i indholdet til venstre eller skift til søgefanen for at finde hvad du leder efter."
 
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "Angiv størrelsen og placeringen af vinduet"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "BREDDExHØJDE+XOFF+YOFF"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Søg efter en funktion"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Afslut alle kørende udviklerhjælp"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Forventede '%s', modtog '%s' ved linje %d, kolonne %d"
 
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Ugyldigt navnerum '%s' ved linje %d, kolonne %d"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "title, name og link-elementer er påkrævet ved linje %d, kolonne %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "name og link-elementer er påkrævet inden i <sub> ved linje %d, kolonne %d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
+msgstr "name og link-elementer er påkrævet inden i <function> ved linje %d, kolonne %d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
-#, fuzzy
 msgid "Could not create book parser"
-msgstr "Kunne ikke søge efter tekst."
+msgstr "Kunne ikke oprette bogfortolker"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Kunne ikke oprette opmærkningsfortolker"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Kan ikke udpakke bogen '%s': %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Søg"
+msgstr "_Søg:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -124,16 +120,12 @@ msgid "A developer's help browser for GNOME 2"
 msgstr "En hjælpefremviser til udviklere"
 
 #: src/dh-window.c:430
-#, fuzzy
 msgid "Devhelp project page"
-msgstr "Boghåndtering til Udviklerhjælp"
+msgstr "Udviklerhjælps projektside"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
-
-#~ msgid "_Search for:"
-#~ msgstr "_Søg efter:"
+msgstr "Rapportér fejl i Udviklerhjælp"
 
 #~ msgid "_About"
 #~ msgstr "_Om"
