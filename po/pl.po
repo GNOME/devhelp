@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-16 09:01+0200\n"
-"PO-Revision-Date: 2003-07-03 02:43+0100\n"
+"POT-Creation-Date: 2003-07-28 00:04+0200\n"
+"PO-Revision-Date: 2003-07-27 23:58+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Program pomocy dla programistów"
 
 #: devhelp.desktop.in.h:2
 msgid "Devhelp"
-msgstr "Devhelp"
+msgstr "DevHelp"
 
 #: devhelp.keys.in.h:1
 msgid "Devhelp Book"
