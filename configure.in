@@ -48,6 +48,8 @@ CFLAGS="$HTML_WIDGET_CFLAGS $CFLAGS"
 AM_CONDITIONAL(HTML_WIDGET_MOZILLA, test x$with_html_widget = xmozilla)
 
 PKG_CHECK_MODULES(EGG, [gtk+-2.0 >= 2.0.0])
+AC_SUBST(EGG_CFLAGS)
+AC_SUBST(EGG_LIBS)
 
 ALL_LINGUAS="am az be cs da de el es fr it ja kn lv ms nl no pl pt pt_BR ru sk sv uk vi zh_CN zh_TW"
 
