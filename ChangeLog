@@ -1,5 +1,7 @@
 2002-11-09  Mikael Hallendal  <micke@codefactory.se>
 
+	* dtd/devhelp-1.dtd: added version attribute to book element.
+
 	* src/dh-html.c (dh_html_open_uri): try to open the URI here
 	  before starting a thread. Only start thread if the file opening 
 	  was succesful.
