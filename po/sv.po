@@ -34,7 +34,7 @@ msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-"Välj en rubrik i innehållet till vänster eller byt till sökhäftet för "
+"Välj en rubrik i innehållet till vänster eller byt till sökfliken för "
 "att finna det du söker."
 
 #: src/dh-main.c:274
