@@ -84,12 +84,16 @@ stamp-idl: $(top_srcdir)/idl/GNOME_DevHelp.idl
 # Work around automake brokenness.
 $(srcdir)/GNOME_DevHelp.h: stamp-idl
 
-CLEANFILES  += $(GENERATED) + stamp-idl
-
 oafdir = $(datadir)/oaf
 oaf_in_files = GNOME_DevHelp.oaf.in
 
 oaf_DATA = $(oaf_in_files:.oaf.in=.oaf)
+
+GNOME_DevHelp.oaf.in: $(srcdir)/GNOME_DevHelp.oaf.in.in $(top_builddir)/config.status
+	sed -e "s|\@COMPONENT_LIBDIR\@|$(devhelpdir)|" \
+	 $(srcdir)/GNOME_DevHelp.oaf.in.in > GNOME_DevHelp.oaf.in
+
+CLEANFILES  += $(GENERATED) + stamp-idl GNOME_DevHelp.oaf GNOME_DevHelp.oaf.in
 
 @XML_I18N_MERGE_OAF_RULE@
 

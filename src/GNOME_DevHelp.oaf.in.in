@@ -1,0 +1,59 @@
+<oaf_info>
+   <oaf_server iid="OAFIID:GNOME_DevHelp_Factory" 
+               type="exe"
+               location="devhelp">
+
+      <oaf_attribute  name="repo_ids" 
+                      type="stringv">
+         <item value="IDL:GNOME/GenericFactory:1.0"/>
+      </oaf_attribute>
+
+      <oaf_attribute  name="name" 
+                      type="string" 
+                      value="DevHelp HelpBrowser Factory" />
+  </oaf_server>
+
+  <oaf_server iid="OAFIID:GNOME_DevHelp" 
+              type="factory"
+ 	      location="OAFIID:GNOME_DevHelp_Factory">
+
+     <oaf_attribute name="repo_ids" type="stringv">
+        <item value="IDL:Bonobo/Unknown:1.0"/>
+        <item value="IDL:GNOME/DevHelp/HelpBrowser:1.0" /> 
+     </oaf_attribute>
+
+     <oaf_attribute name="name" type="string" value="DevHelp HelpBrowser" />
+
+     <oaf_attribute name="bonobo:moniker" type="stringv">
+        <item value="help:"/>
+     </oaf_attribute>
+   </oaf_server>
+
+   <oaf_server iid="OAFIID:GNOME_DevHelp_Controller_Factory" 
+               type="shlib"
+	       location="@COMPONENT_LIBDIR@/libdevhelp.so">
+
+      <oaf_attribute name="repo_ids" type="stringv">
+         <item value="IDL:GNOME/GenericFactory:1.0" />
+      </oaf_attribute>
+
+      <oaf_attribute  name="name" 
+                      type="string" 
+                      _value="DevHelp Controller Factory" />
+   </oaf_server>
+
+   <oaf_server iid="OAFIID:GNOME_DevHelp_Controller"
+               type="factory"
+               location="OAFIID:GNOME_DevHelp_Controller_Factory">
+      
+      <oaf_attribute name="repo_ids" type="stringv">
+         <item value="IDL:Bonobo/Unknown:1.0" />
+	 <item value="IDL:GNOME/DevHelp/Controller:1.0" />
+      </oaf_attribute>
+
+      <oaf_attribute name="name" 
+                     type="string" 
+                     _value="DevHelp Controller" />
+   </oaf_server>
+
+</oaf_info>

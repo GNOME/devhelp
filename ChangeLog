@@ -1,3 +1,13 @@
+2001-08-25  Richard Hult  <rhult@codefactory.se>
+
+	* src/Makefile.am: Generate the oaf.in from oaf.in.in and add the
+	oaf and oaf.in to CLEANFILES.
+
+	* src/GNOME_DevHelp.oaf.in.in: Move from oaf.in to oaf.in.in and
+	don't hard code the library path for the shlib component. Also
+	remove Moniker from the list of supported interfaces since we
+	don't have a moniker.  
+
 2001-08-25  Mikael Hallendal  <micke@codefactory.se>
 
 	* ui/Makefile.am (ui_DATA): added with:
