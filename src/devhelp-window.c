@@ -71,11 +71,11 @@ static void cmd_about_cb                 (BonoboUIComponent    *component,
 					  gpointer              data,
 					  const gchar          *cname);
 
-static void cmd_size_changed_cb      (BonoboUIComponent            *component,
-				      const char                   *path,
-				      Bonobo_UIComponent_EventType  type,
-				      const char                   *state,
-				      gpointer                      user_data);
+static void cmd_size_changed_cb          (BonoboUIComponent            *component,
+					  const char                   *path,
+					  Bonobo_UIComponent_EventType  type,
+					  const char                   *state,
+					  gpointer                      user_data);
 
 static void dw_uri_changed_cb            (BonoboListener       *listener,
 					  gchar                *event_name,
@@ -483,8 +483,8 @@ cmd_preferences_cb (BonoboUIComponent   *component,
 
 static void
 cmd_about_cb (BonoboUIComponent    *component,
-               gpointer              data,
-               const gchar          *cname)
+	      gpointer              data,
+	      const gchar          *cname)
 {
 	GtkWidget    *about;
 	const gchar  *authors[] = {
@@ -552,10 +552,10 @@ cmd_size_changed_cb (BonoboUIComponent            *component,
 
 static void
 dw_uri_changed_cb (BonoboListener      *listener,
-			       gchar               *event_name,
-			       CORBA_any           *any,
-			       CORBA_Environment   *ev,
-			       gpointer             user_data)
+		   gchar               *event_name,
+		   CORBA_any           *any,
+		   CORBA_Environment   *ev,
+		   gpointer             user_data)
 {
 	DevHelpWindow       *window;
 	DevHelpWindowPriv   *priv;
@@ -580,8 +580,8 @@ dw_uri_changed_cb (BonoboListener      *listener,
 
 static void
 dw_delete_cb (GtkWidget     *widget,
-			  GdkEventAny   *event,
-			  gpointer       user_data)
+	      GdkEventAny   *event,
+	      gpointer       user_data)
 {
 	g_return_if_fail (widget != NULL);
 	g_return_if_fail (IS_DEVHELP_WINDOW (widget));
@@ -591,8 +591,8 @@ dw_delete_cb (GtkWidget     *widget,
 
 static void
 dw_link_clicked_cb (DevHelpWindow   *window,
-				gchar           *url,
-				gpointer         ignored)
+		    gchar           *url,
+		    gpointer         ignored)
 {
 	DevHelpWindowPriv   *priv;
 

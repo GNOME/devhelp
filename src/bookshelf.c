@@ -232,10 +232,11 @@ bookshelf_get_function_database (Bookshelf *bookshelf)
 GSList * 
 bookshelf_get_hidden_books (Bookshelf *bookshelf)
 {
-	BookshelfPriv   *priv;
-	GSList          *list;
-	GSList          *hidden;
-	XMLBook         *book;
+	BookshelfPriv     *priv;
+	GSList            *list;
+	GSList            *hidden;
+	XMLBook           *book;
+	const GnomeVFSURI *book_uri;
 	
 	g_return_val_if_fail (bookshelf != NULL, NULL);
 	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
@@ -245,9 +246,20 @@ bookshelf_get_hidden_books (Bookshelf *bookshelf)
 	hidden = NULL;
 	for (list = priv->xml_books; list; list = list->next) {
 		book = (XMLBook*)list->data;
-		if (book->visible == FALSE) {
-			hidden = g_slist_append (hidden, book);
+		/* Is the book visible? */
+		if (book->visible == TRUE) {
+			continue;
 		}
+#if 0
+		/* Skip hidden books that's not installed */
+		book_uri = gnome_vfs_uri_new (book->spec_path);
+		if (bookshelf_find_book_by_uri (bookshelf,
+						book_uri) == NULL) {
+			/* Should we remove the book from priv->xml_books? */
+			continue;
+		}
+#endif 		
+		hidden = g_slist_append (hidden, book);
 	}
 	
 	return hidden;
@@ -281,9 +293,12 @@ void
 bookshelf_show_book (Bookshelf *bookshelf, XMLBook *xml_book)
 {
 	BookshelfPriv *priv;
+	GnomeVFSURI   *book_uri;
 	Book          *book;
-	GnomeVFSURI     *book_uri;
-
+	gchar         *tmp;
+	gchar         *dirname;	
+	gchar         *base_url;
+	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
 
@@ -292,6 +307,14 @@ bookshelf_show_book (Bookshelf *bookshelf, XMLBook *xml_book)
 	book_uri = gnome_vfs_uri_new (xml_book->spec_path); 
 	book = book_new (book_uri, priv->fd);
 	book_set_visible (book, TRUE);
+	
+	tmp = gnome_vfs_uri_extract_dirname (book_uri);
+	dirname = g_strndup (tmp, strlen (tmp)-6);
+	base_url = g_strdup_printf ("%s/books/%s",
+				    dirname,
+				    book_get_name_full (book));
+	book_set_base_url (book, base_url);
+	g_free (dirname);
 	
 	bookshelf_add_book (bookshelf, book);
 	priv->xml_books = g_slist_remove (priv->xml_books, xml_book);
@@ -458,6 +481,31 @@ bookshelf_add_book (Bookshelf *bookshelf, Book* book)
 	return TRUE;
 }
 
+static XMLBook*
+xml_spec_get_book_uri (GSList *xml_books, const GnomeVFSURI *book_uri)
+{
+	const gchar *str_uri;
+	GSList      *node;
+	XMLBook     *xml_book;
+	
+	str_uri = gnome_vfs_uri_to_string (book_uri, GNOME_VFS_URI_HIDE_NONE);
+	
+	for (node = xml_books; node; node = node->next) {
+		xml_book = (XMLBook*) node->data;
+			
+		/* Workaround for old spec files */
+		if (xml_book->spec_path == NULL) {
+			continue;
+		}
+		
+		if (!strcmp (xml_book->spec_path, str_uri)) {
+			return xml_book;
+		}
+	}
+	
+	return NULL;
+}
+
 void
 bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 {
@@ -490,27 +538,37 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 		book_uri = gnome_vfs_uri_append_path (book_dir_uri,
 						      book_file_name);
 		
-		/* if book in xml-list */
-		for (node2 = priv->xml_books; node2; node2 = node2->next) {
-			xml_book = (XMLBook*) node2->data;
+		book = book_new (book_uri, priv->fd);
 
-			if (xml_book->spec_path && !strcmp (xml_book->spec_path, gnome_vfs_uri_to_string (book_uri, GNOME_VFS_URI_HIDE_NONE))) {
-				/* TODO: base_url */
-				/* book_set_base_url (book, xml_book->path); */
-				if (xml_book->visible == FALSE) {
-					skip = TRUE;
-				}
+		xml_book = xml_spec_get_book_uri (priv->xml_books, book_uri);
+		if (xml_book != NULL) {
+			gchar *basename_str;
+			const gchar *book_uri_str;
+
+			basename_str = (gchar*)basename (xml_book->spec_path);
+			book_uri_str = gnome_vfs_uri_get_basename (book_uri);
+			if (!strcmp (basename_str, book_uri_str)) {
+				book_set_base_url (book, xml_book->spec_path);
 			}
+			
+			if (xml_book->visible == FALSE) {
+				skip = TRUE;
+			}
+		} else {
+			gchar *book_dir = g_strdup_printf ("file://%s/books/%s",
+							   directory,
+							   book_get_name_full (book));
+			book_set_base_url (book, book_dir);
+			g_free (book_dir);
 		}
 		g_free (book_file_name);
 
 		if (skip == TRUE) {
+			/* TODO: g_free (book) ? */
 			skip = FALSE;
 			continue;
 		}
 		
-		book = book_new (book_uri, priv->fd);
-
 		bookshelf_add_book (bookshelf, book);
 		
 		g_free (node->data);
