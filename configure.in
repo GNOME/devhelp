@@ -1,6 +1,6 @@
 AC_INIT(src/Makefile.am)
 
-AM_INIT_AUTOMAKE(devhelp, 0.9)
+AM_INIT_AUTOMAKE(devhelp, 0.9.1)
 AM_CONFIG_HEADER(config.h)
 
 AM_SANITY_CHECK
@@ -96,7 +96,6 @@ AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
 AC_OUTPUT([
 Makefile
-devhelp.spec
 devhelp
 libdevhelp-1.0.pc
 dtd/Makefile

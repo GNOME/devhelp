@@ -1,5 +1,11 @@
 2004-07-25  Mikael Hallendal  <micke@imendio.com>
 
+	* NEWS: Updated for 0.9.1
+	* configure.in: Bumped to 0.9.1 and removed the spec-file.
+	* devhelp.spec.in: Removed.
+
+2004-07-25  Mikael Hallendal  <micke@imendio.com>
+
 	* src/dh-window.c:
 	(window_populate): Make sure that the paned isn't 0 wide.
 	(window_restore_state): Make sure that the window isn't 0x0 pixels

@@ -1,3 +1,14 @@
+Devhelp 0.9.1:
+--------------
+* Save maximized state
+* Support for Mozilla 1.7
+* Show direct hits directly.
+* Make sure that the window has a minimum width even if GConf setup isn't 
+  working properly.
+* Make sure user installed documentation is shown before system installed.
+* New translations (en_GB, en_CA)
+* Updated translations ()
+
 Devhelp 0.9:
 ------------
 * Depending on Mozilla for HTML rendering
