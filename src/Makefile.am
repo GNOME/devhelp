@@ -65,8 +65,6 @@ libdevhelp_1_la_LIBADD =				\
 	@LIBDEVHELP_LIBS@				\
 	@HTML_WIDGET_LIBS@
 
-libdevhelp_1_la_LDFLAGS = -avoid-version -module
-
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
 dh-marshal.h: dh-marshal.list
