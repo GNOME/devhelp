@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-12-01 21:20+0100\n"
+"POT-Creation-Date: 2002-04-27 00:43+0200\n"
 "PO-Revision-Date: 2001-12-01 21:20+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -25,7 +25,7 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: src/books-dialog.c:323
+#: src/books-dialog.c:331
 msgid "Choose a book..."
 msgstr "Välj en bok..."
 
@@ -34,17 +34,17 @@ msgstr "Välj en bok..."
 msgid "Problems when reading books: %s\n"
 msgstr "Problem vid inläsning av böcker: %s\n"
 
-#: src/bookshelf.c:372
+#: src/bookshelf.c:354
 #, c-format
 msgid "Empty document: %s"
 msgstr "Tomt dokument: %s"
 
-#: src/bookshelf.c:378
+#: src/bookshelf.c:360
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
 msgstr "Dokumentet är av fel typ, fick %s, förväntade mig \"booklist\": %s"
 
-#: src/bookshelf.c:412
+#: src/bookshelf.c:394
 #, c-format
 msgid ""
 "I found an old version of your spec file (%s)\n"
@@ -53,11 +53,11 @@ msgstr ""
 "Jag hittade en gammal version av din spec-fil (%s).\n"
 "Jag tog bort den, så du måste dölja böckerna som du vill ska döljas igen."
 
-#: src/bookshelf.c:417
+#: src/bookshelf.c:399
 msgid "Ok"
 msgstr "Ok"
 
-#: src/bookshelf.c:458
+#: src/bookshelf.c:440
 #, c-format
 msgid "Failed to open file %s for writing."
 msgstr "Misslyckades med att öppna filen %s för skrivning."
@@ -78,7 +78,7 @@ msgstr "© Copyright 2001, Johan Dahlin"
 msgid "A developer's help browser"
 msgstr "Ett hjälpprogram för utvecklare"
 
-#: src/devhelp-window.c:621
+#: src/devhelp-window.c:622
 #, c-format
 msgid "Open %s"
 msgstr "Öppna %s"
@@ -191,8 +191,8 @@ msgid " "
 msgstr " "
 
 #: ui/devhelp.glade.h:2
-msgid "<< _Show"
-msgstr "<< _Visa"
+msgid "&lt;&lt; _Show"
+msgstr "&lt;&lt; _Visa"
 
 #: ui/devhelp.glade.h:3
 msgid "Author:"
@@ -275,8 +275,8 @@ msgid "_Edit book..."
 msgstr "_Redigera bok..."
 
 #: ui/devhelp.glade.h:28
-msgid "_Hide >>"
-msgstr "_Göm >>"
+msgid "_Hide &gt;&gt;"
+msgstr "_Göm &gt;&gt;"
 
 #: ui/devhelp.glade.h:29
 msgid "_Limit the number of hits to:"
@@ -361,6 +361,12 @@ msgstr "Gå till föregående sida i historiken"
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
 msgstr "Öppna bokhanterardialogen"
+
+#~ msgid "<< _Show"
+#~ msgstr "<< _Visa"
+
+#~ msgid "_Hide >>"
+#~ msgstr "_Göm >>"
 
 #~ msgid "Add book ..."
 #~ msgstr "Lägg till bok..."
