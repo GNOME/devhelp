@@ -1,5 +1,8 @@
 2002-04-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/Makefile.am (GNOME_DevHelp.server.in): use correct directory
+	  for library in server-file.
+
 	* merged devhelp-gnome-2 into HEAD.
 
 	* src/history.c (history_goto): 

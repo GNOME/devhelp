@@ -98,7 +98,7 @@ server_in_files = GNOME_DevHelp.server.in
 server_DATA = $(server_in_files:.server.in=.server)
 
 GNOME_DevHelp.server.in: $(srcdir)/GNOME_DevHelp.server.in.in $(top_builddir)/config.status
-	sed -e "s|\@COMPONENT_LIBDIR\@|$(libdir)|" \
+	sed -e "s|\@COMPONENT_LIBDIR\@|$(devhelp_2dir)|" \
 	$(srcdir)/GNOME_DevHelp.server.in.in > GNOME_DevHelp.server.in
 
 @INTLTOOL_SERVER_RULE@
