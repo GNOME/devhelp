@@ -1,5 +1,7 @@
 2001-10-17  Mikael Hallendal  <micke@codefactory.se>
 
+	* configure.in: bumped version to 0.2.0.99
+
 	* src/devhelp-controller.c:
 	- fixes bug #195 in CFB.
 	(devhelp_controller_open): call bookshelf_open_document.
