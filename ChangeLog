@@ -1,5 +1,13 @@
 2004-03-17  Mikael Hallendal  <micke@imendio.com>
 
+	* devhelp.schemas.in:
+	* src/dh-preferences.h:
+	* src/dh-window.c: 
+	- Save state regarding maximized or not.
+	- Patch by Paolo Borelli.
+
+2004-03-17  Mikael Hallendal  <micke@imendio.com>
+
 	* devhelp.in: 
 	- Export LD_LIBRARY_PATH, thanks Michel Galle for reporting.
 

@@ -25,6 +25,7 @@
 
 #define GCONF_PATH "/apps/devhelp"
 
+#define GCONF_MAIN_WINDOW_STATE    "/apps/devhelp/ui/main_window_state"
 #define GCONF_MAIN_WINDOW_WIDTH    "/apps/devhelp/ui/main_window_width"
 #define GCONF_MAIN_WINDOW_HEIGHT   "/apps/devhelp/ui/main_window_height"
 #define GCONF_MAIN_WINDOW_POS_X    "/apps/devhelp/ui/main_window_position_x"

@@ -225,7 +225,8 @@ window_init (DhWindow *window)
 	action = gtk_action_group_get_action (priv->action_group,
 					      "Forward");
 	g_object_set (action, "sensitive", FALSE, NULL);
-	
+
+
         window->priv = priv;
 }
 
@@ -297,6 +298,7 @@ window_populate (DhWindow *window)
 	
         priv->hpaned    = gtk_hpaned_new ();
         priv->notebook  = gtk_notebook_new ();
+
 	priv->html      = dh_html_new ();
 	priv->html_view = dh_html_get_widget (priv->html);
 
@@ -474,26 +476,36 @@ static void
 window_save_state (DhWindow *window)
 {
 	DhWindowPriv *priv;
-	int           width, height;
-	int           x, y;
+	GdkWindowState state;
 
 	priv = window->priv;
 
-	gtk_window_get_size (GTK_WINDOW (window), &width, &height);
-	gconf_client_set_int (gconf_client, 
-			      GCONF_MAIN_WINDOW_WIDTH,
-			      width, NULL);
+	state = gdk_window_get_state (GTK_WIDGET (window)->window);
 	gconf_client_set_int (gconf_client,
-			      GCONF_MAIN_WINDOW_HEIGHT,
-			      height, NULL);
+			      GCONF_MAIN_WINDOW_STATE,
+			      state, NULL);
 
-	gtk_window_get_position (GTK_WINDOW (window), &x, &y);
-	gconf_client_set_int (gconf_client, 
-			      GCONF_MAIN_WINDOW_POS_X,
-			      x, NULL);
-	gconf_client_set_int (gconf_client,
-			      GCONF_MAIN_WINDOW_POS_Y,
-			      y, NULL);
+	/* If maximized don't save the size and position */
+	if (!(state & GDK_WINDOW_STATE_MAXIMIZED)) {
+		int width, height;
+		int x, y;
+
+		gtk_window_get_size (GTK_WINDOW (window), &width, &height);
+		gconf_client_set_int (gconf_client,
+				      GCONF_MAIN_WINDOW_WIDTH,
+				      width, NULL);
+		gconf_client_set_int (gconf_client,
+				      GCONF_MAIN_WINDOW_HEIGHT,
+				      height, NULL);
+
+		gtk_window_get_position (GTK_WINDOW (window), &x, &y);
+		gconf_client_set_int (gconf_client,
+				      GCONF_MAIN_WINDOW_POS_X,
+				      x, NULL);
+		gconf_client_set_int (gconf_client,
+				      GCONF_MAIN_WINDOW_POS_Y,
+				      y, NULL);
+	}
 
 	gconf_client_set_int (gconf_client,
 			      GCONF_PANED_LOCATION,
@@ -508,7 +520,9 @@ window_delete_cb (GtkWidget   *widget,
 {
 	g_return_if_fail (widget != NULL);
 	g_return_if_fail (DH_IS_WINDOW (widget));
-	
+
+	window_save_state (DH_WINDOW (widget));
+
 	gtk_main_quit ();
 }
 
@@ -619,40 +633,47 @@ dh_window_new (DhBase *base)
 
         gtk_window_set_policy (GTK_WINDOW (window), TRUE, TRUE, FALSE);
 	gtk_window_set_title (GTK_WINDOW (window), "Devhelp");
-	gtk_window_set_wmclass (GTK_WINDOW (window), "devhelp", "devhelp");
 
 	if (geometry) {
 		gtk_window_parse_geometry (GTK_WINDOW (window), geometry);
 	} else {
+		GdkWindowState state;
 		int width, height;
 		int x, y;
 
-		width = gconf_client_get_int (gconf_client,
-					      GCONF_MAIN_WINDOW_WIDTH,
+		state = gconf_client_get_int (gconf_client,
+					      GCONF_MAIN_WINDOW_STATE,
 					      NULL);
-		height = gconf_client_get_int (gconf_client,
-					       GCONF_MAIN_WINDOW_HEIGHT,
-					       NULL);
-		
-		gtk_window_set_default_size (GTK_WINDOW (window), 
-					     width, height);
+		if (state & GDK_WINDOW_STATE_MAXIMIZED) {
+			gtk_window_maximize (GTK_WINDOW (window));
+		} else {
+			width = gconf_client_get_int (gconf_client,
+						      GCONF_MAIN_WINDOW_WIDTH,
+						      NULL);
+			height = gconf_client_get_int (gconf_client,
+						       GCONF_MAIN_WINDOW_HEIGHT,
+						       NULL);
+	
+			gtk_window_set_default_size (GTK_WINDOW (window), 
+						     width, height);
 
-		x = gconf_client_get_int (gconf_client,
-					  GCONF_MAIN_WINDOW_POS_X,
-					  NULL);
-		y = gconf_client_get_int (gconf_client,
-					  GCONF_MAIN_WINDOW_POS_Y,
-					  NULL);
+			x = gconf_client_get_int (gconf_client,
+						  GCONF_MAIN_WINDOW_POS_X,
+						  NULL);
+			y = gconf_client_get_int (gconf_client,
+						  GCONF_MAIN_WINDOW_POS_Y,
+						  NULL);
 
-		gtk_window_move (GTK_WINDOW (window), x, y);
+			gtk_window_move (GTK_WINDOW (window), x, y);
+		}
 	}
 
 	g_signal_connect (window, 
 			  "delete_event",
 			  G_CALLBACK (window_delete_cb),
 			  NULL);
-	
-        window_populate (window);
+
+	window_populate (window);
 
 	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png", 
 					 NULL);
@@ -660,7 +681,7 @@ dh_window_new (DhBase *base)
 		gtk_window_set_icon (GTK_WINDOW (window), icon);
 		g_object_unref (icon);
 	}
-	
+
 	return GTK_WIDGET (window);
 }
 
