@@ -1,0 +1,4 @@
+debian/devhelp
+debian/devhelp.postinst.debhelper
+debian/devhelp.prerm.debhelper
+debian/devhelp.substvars

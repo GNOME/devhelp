@@ -8,12 +8,12 @@ Package: devhelp
 Architecture: any
 Depends: ${shlibs:Depends}, libgnome-vfs-dev (>=1.0.3-1), libgconf11 (>=1.0.4-1)
 Description: a developers help program.
-A developers help program. Browse and search GNOME API & GNU Manuals
-Features
-  * Full indexing of books in XML.
-  * HTML viewer (GtkHTML).
-  * Search by function, struct, macro etc.
-  * Transparent HTTP support with GnomeVFS.
-  * Commandline search powered by bonobo, with nice emacs integration.
-  * Simple installer for books.
-  * 5 zoom levels.
+ A developers help program. Browse and search GNOME API and GNU Manuals
+ Features
+   * Full indexing of books in XML.
+   * HTML viewer (GtkHTML).
+   * Search by function, struct, macro etc.
+   * Transparent HTTP support with GnomeVFS.
+   * Commandline search powered by bonobo, with nice emacs integration.
+   * Simple installer for books.
+   * 5 zoom levels.

@@ -19,3 +19,5 @@ xml-i18n-*
 devhelp.desktop
 devhelp.spec
 intl
+build-stamp
+install-stamp
