@@ -184,6 +184,11 @@ window_init (DhWindow *window)
 	g_signal_connect (window, "key_press_event",
 			  G_CALLBACK (window_key_press_event_cb),
 			  window);
+
+	priv->html = dh_html_new ();
+	g_signal_connect (priv->html, "location-changed",
+			  G_CALLBACK (window_location_changed_cb),
+			  window);
 	
 	priv->manager = gtk_ui_manager_new ();
 
@@ -208,7 +213,8 @@ window_init (DhWindow *window)
 
 	priv->action_group = gtk_action_group_new ("MainWindow");
 
-	gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
+	gtk_action_group_set_translation_domain (priv->action_group,
+						 GETTEXT_PACKAGE);
 	
 	gtk_action_group_add_actions (priv->action_group,
 				      actions,
@@ -226,13 +232,6 @@ window_init (DhWindow *window)
 	action = gtk_action_group_get_action (priv->action_group,
 					      "Forward");
 	g_object_set (action, "sensitive", FALSE, NULL);
-
-	priv->html      = dh_html_new ();
-	priv->html_view = dh_html_get_widget (priv->html);
-
-	g_signal_connect (priv->html, "location-changed",
-			  G_CALLBACK (window_location_changed_cb),
-			  window);
 
         window->priv = priv;
 }
@@ -306,7 +305,6 @@ window_populate (DhWindow *window)
         priv->hpaned    = gtk_hpaned_new ();
         priv->notebook  = gtk_notebook_new ();
 
-				      
 	g_signal_connect (priv->notebook, "switch_page",
 			  G_CALLBACK (window_switch_page_cb),
 			  window);
@@ -328,6 +326,8 @@ window_populate (DhWindow *window)
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
 
 	gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
+	
+	priv->html_view = dh_html_get_widget (priv->html);
 	
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), priv->html_view);

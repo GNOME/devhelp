@@ -417,7 +417,7 @@ DhLink *
 dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 {
 	DhKeywordModelPriv *priv;
-	DhLink           *link;
+	DhLink             *link;
 	GList              *node;
 	GList              *new_list = NULL;
 	gint                new_length, old_length;
@@ -425,7 +425,8 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	GtkTreePath        *path;
  	GtkTreeIter         iter;
 	gint                hits = 0;
-      
+	DhLink             *exactlink = NULL;
+
 	g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
 	g_return_val_if_fail (string != NULL, NULL);
 
@@ -449,6 +450,10 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 				/* Include in the new list */
 				new_list = g_list_prepend (new_list, link);
 				hits++;
+
+				if(strcmp(link->name, string) == 0) {
+					exactlink = link;
+				}
 			}
 		}
 		
@@ -509,6 +514,6 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 		return DH_LINK(priv->keyword_words->data);
 	}
 
-	return NULL;
+	return exactlink;
 }
 
