@@ -1,3 +1,9 @@
+2001-10-15  Mikael Hallendal  <micke@codefactory.se>
+
+	* configure.in: bumped version to 0.2
+
+	* NEWS: updated for 0.2
+
 2001-10-13  Richard Hult  <rhult@codefactory.se>
 
 	* devhelp.desktop.in: s/Devhelp/DevHelp/.
