@@ -203,9 +203,8 @@ impl_DevHelp_Controller_openURI (PortableServer_Servant    servant,
 	priv       = controller->priv;
 
 	str = g_strdup (str_uri);
-	
+
 	if (devhelp_controller_open (controller, str)) {
-		
 		history_goto (priv->history, str);
 	}
 
@@ -330,6 +329,7 @@ devhelp_controller_open (DevHelpController *controller, const gchar *url)
 		node = bookshelf_find_node (priv->bookshelf, doc, anchor);
 
 		if (node) {
+			bookshelf_open_document (priv->bookshelf, doc);
 			priv->current_node = node;
 			
 			gtk_signal_handler_block_by_func 
@@ -420,15 +420,21 @@ cmd_back_cb (BonoboUIComponent *component, gpointer data, const gchar *cname)
 	controller = DEVHELP_CONTROLLER (data);
 	priv       = controller->priv;
 	
-	if (!history_exist_back (priv->history)) {
-		return;
-	}
-	
-	str_uri    = history_go_back (priv->history);
+	if (history_exist_back (priv->history)) {
+		bonobo_ui_component_set_prop (component, "/commands/CmdBack",
+					      "sensitive", "0", NULL);
 
-	if (str_uri) {
-		devhelp_controller_open (controller, str_uri);
-		g_free (str_uri);
+		str_uri = history_go_back (priv->history);
+
+		if (str_uri) {
+			devhelp_controller_open (controller, str_uri);
+			g_free (str_uri);
+		}
+		
+		if (history_exist_back (priv->history)) {
+			bonobo_ui_component_set_prop (component, "/commands/CmdBack",
+						      "sensitive", "1", NULL);
+		}
 	}
 }
 
@@ -448,16 +454,25 @@ cmd_forward_cb (BonoboUIComponent   *component,
 	controller = DEVHELP_CONTROLLER (data);
 	priv       = controller->priv;
 
-	if (!history_exist_forward (priv->history)) {
-		return;
+	if (history_exist_forward (priv->history)) {
+		bonobo_ui_component_set_prop (component,
+					      "/commands/CmdForward",
+					      "sensitive", "0", NULL);
+		
+		str_uri = history_go_forward (priv->history);
+		
+		if (str_uri) {
+			devhelp_controller_open (controller, str_uri);
+			g_free (str_uri);
+		}
+		
+		if (history_exist_forward (priv->history)) {
+			bonobo_ui_component_set_prop (component,
+						      "/commands/CmdForward",
+						      "sensitive", "1", NULL);
+		}
 	}
 
-	str_uri    = history_go_forward (priv->history);
-
-	if (str_uri) {
-		devhelp_controller_open (controller, str_uri);
-		g_free (str_uri);
-	}
 }
 
 static void
