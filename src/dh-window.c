@@ -38,7 +38,6 @@
 #include <libgnomeui/gnome-stock-icons.h>
 
 #include "dh-book-tree.h"
-#include "dh-history.h"
 #include "dh-html.h"
 #include "dh-preferences.h"
 #include "dh-search.h"
@@ -49,7 +48,6 @@ extern GConfClient *gconf_client;
 
 struct _DhWindowPriv {
 	DhBase         *base;
-	DhHistory      *history;
 
 	GtkWidget      *main_box;
 	GtkWidget      *menu_box;
@@ -99,17 +97,13 @@ static void window_link_selected_cb          (GObject            *ignored,
 static void window_manager_add_widget          (GtkUIManager        *manager,
 					      GtkWidget          *widget,
 					      DhWindow           *window);
-static void window_back_exists_changed_cb    (DhHistory          *history,
-					      gboolean            exists,
-					      DhWindow           *window);
-static void window_forward_exists_changed_cb (DhHistory          *history,
-					      gboolean            exists,
-					      DhWindow           *window);
 static gboolean window_key_press_event_cb    (GtkWidget          *widget,
 					      GdkEventKey        *event,
 					      DhWindow           *window);
-
-
+static void window_check_history             (DhWindow           *window);
+static void window_location_changed_cb       (DhHtml             *html,
+					      const gchar        *location,
+					      DhWindow           *window);
 
 static GtkWindowClass *parent_class = NULL;
 
@@ -185,14 +179,6 @@ window_init (DhWindow *window)
 	GtkAction    *action;
 	
 	priv = g_new0 (DhWindowPriv, 1);
-	priv->history = dh_history_new ();
-
-	g_signal_connect (priv->history, "forward_exists_changed",
-			  G_CALLBACK (window_forward_exists_changed_cb),
-			  window);
-	g_signal_connect (priv->history, "back_exists_changed",
-			  G_CALLBACK (window_back_exists_changed_cb),
-			  window);
 
 	g_signal_connect (window, "key_press_event",
 			  G_CALLBACK (window_key_press_event_cb),
@@ -265,7 +251,8 @@ window_switch_page_cb (GtkWidget       *notebook,
 
 	priv = window->priv;
 
-	g_signal_handlers_block_by_func (priv->book_tree, window_link_selected_cb, window);
+	g_signal_handlers_block_by_func (priv->book_tree, 
+					 window_link_selected_cb, window);
 }
 
 static void
@@ -278,7 +265,8 @@ window_switch_page_after_cb (GtkWidget       *notebook,
 
 	priv = window->priv;
 	
-	g_signal_handlers_unblock_by_func (priv->book_tree, window_link_selected_cb, window);
+	g_signal_handlers_unblock_by_func (priv->book_tree, 
+					   window_link_selected_cb, window);
 }
 
 static void
@@ -312,13 +300,15 @@ window_populate (DhWindow *window)
 	priv->html      = dh_html_new ();
 	priv->html_view = dh_html_get_widget (priv->html);
 
-	g_signal_connect (priv->notebook,
-			  "switch_page",
+	g_signal_connect (priv->html, "location-changed",
+			  G_CALLBACK (window_location_changed_cb),
+			  window);
+				      
+	g_signal_connect (priv->notebook, "switch_page",
 			  G_CALLBACK (window_switch_page_cb),
 			  window);
 
-	g_signal_connect_after (priv->notebook,
-				"switch_page",
+	g_signal_connect_after (priv->notebook, "switch_page",
 				G_CALLBACK (window_switch_page_after_cb),
 				window);
 
@@ -384,10 +374,6 @@ window_populate (DhWindow *window)
 
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 0);
 
- 	g_signal_connect_swapped (priv->html, 
-				  "uri_selected", 
-				  G_CALLBACK (window_open_url),
-				  window);
 	dh_preferences_setup_fonts ();
 }
 
@@ -417,34 +403,22 @@ window_activate_preferences (GtkAction *action, DhWindow *window)
 	dh_preferences_show_dialog (GTK_WINDOW (window));
 }
 
-static void window_activate_back             (GtkAction          *action,
-					      DhWindow           *window)
+static void window_activate_back (GtkAction *action, DhWindow *window)
 {
 	DhWindowPriv *priv;
-	gchar        *uri;
 
 	priv = window->priv;
 
-	uri = dh_history_go_back (priv->history);
-	if (uri) {
-		dh_html_open_uri (priv->html, uri);
-		g_free (uri);
-	}
+	dh_html_go_back (priv->html);
 }
 
-static void window_activate_forward          (GtkAction          *action,
-					      DhWindow           *window)
+static void window_activate_forward (GtkAction *action, DhWindow *window)
 {
 	DhWindowPriv *priv;
-	gchar        *uri;
 
 	priv = window->priv;
 
-	uri = dh_history_go_forward (priv->history);
-	if (uri) {
-		dh_html_open_uri (priv->html, uri);
-		g_free (uri);
-	}
+	dh_html_go_forward (priv->html);
 }
 
 static void window_activate_about            (GtkAction          *action,
@@ -550,6 +524,8 @@ window_open_url (DhWindow *window, const gchar *url)
 	dh_html_open_uri (priv->html, url);
 	dh_book_tree_show_uri (DH_BOOK_TREE (priv->book_tree), url);
 
+	window_check_history (window);
+	
 	return TRUE;
 }
 
@@ -563,9 +539,7 @@ window_link_selected_cb (GObject *ignored, DhLink *link, DhWindow *window)
 	
 	priv = window->priv;
 
-	if (window_open_url (window, link->uri)) {
-		dh_history_goto (priv->history, link->uri);
-	}
+	window_open_url (window, link->uri);
 }
 
 static void
@@ -582,44 +556,6 @@ window_manager_add_widget (GtkUIManager *manager,
 			    FALSE, FALSE, 0);
 	
 	gtk_widget_show (widget);
-}
-
-static void
-window_back_exists_changed_cb (DhHistory *history, 
-			       gboolean   exists,
-			       DhWindow  *window)
-{
-	DhWindowPriv *priv;
-	GtkAction *action;
-		
-	g_return_if_fail (DH_IS_HISTORY (history));
-	g_return_if_fail (DH_IS_WINDOW (window));
-	
-	priv = window->priv;
-	
-	action = gtk_action_group_get_action (priv->action_group, 
-					      "Back");
-	
-	g_object_set (action, "sensitive", exists, NULL);
-}
-
-static void
-window_forward_exists_changed_cb (DhHistory *history, 
-				  gboolean   exists, 
-				  DhWindow  *window)
-{
-	DhWindowPriv *priv;
-	GtkAction *action;
-		
-	g_return_if_fail (DH_IS_HISTORY (history));
-	g_return_if_fail (DH_IS_WINDOW (window));
-	
-	priv = window->priv;
-	
-	action = gtk_action_group_get_action (priv->action_group, 
-					      "Forward");
-	
-	g_object_set (action, "sensitive", exists, NULL);
 }
 
 static gboolean
@@ -639,6 +575,33 @@ window_key_press_event_cb (GtkWidget   *widget,
 	}
 	
 	return FALSE;
+}
+
+static void
+window_check_history (DhWindow *window)
+{
+	DhWindowPriv *priv;
+	GtkAction *action;
+		
+	priv = window->priv;
+	
+	action = gtk_action_group_get_action (priv->action_group, 
+					      "Forward");
+	
+	g_object_set (action, "sensitive", 
+		      dh_html_can_go_forward (priv->html), NULL);
+	action = gtk_action_group_get_action (priv->action_group,
+					      "Back");
+	g_object_set (action, "sensitive",
+		      dh_html_can_go_back (priv->html), NULL);
+}
+
+static void
+window_location_changed_cb (DhHtml      *html,
+			    const gchar *location, 
+			    DhWindow    *window)
+{
+	window_check_history (window);
 }
 
 GtkWidget *

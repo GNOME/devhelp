@@ -44,15 +44,12 @@ static void     html_class_init               (DhHtmlClass         *klass);
 static void     html_init                     (DhHtml              *html);
 static void     html_title_cb                 (GtkMozEmbed         *embed,
 					       DhHtml              *html);
-#if 0
-static gint     html_open_uri_cb           (GtkMozEmbed         *embed,
-					    const gchar         *uri,
-					    DhHtml              *html);
-#endif
+static void     html_location_cb              (GtkMozEmbed         *embed, 
+					       DhHtml              *html);
 
 enum {
-	URI_SELECTED,
 	TITLE_CHANGED,
+	LOCATION_CHANGED,
 	LAST_SIGNAL
 };
 
@@ -88,26 +85,28 @@ dh_html_get_type (void)
 static void
 html_class_init (DhHtmlClass *klass)
 {
-	signals[URI_SELECTED] = 
-		g_signal_new ("uri-selected",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (DhHtmlClass, uri_selected),
-			      NULL, NULL,
-			      dh_marshal_VOID__POINTER,
-			      G_TYPE_NONE,
-			      1, G_TYPE_POINTER);
-
 	signals[TITLE_CHANGED] = 
 		g_signal_new ("title-changed",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (DhHtmlClass, title_changed),
+			      0,
+			      NULL, NULL,
+			      dh_marshal_VOID__STRING,
+			      G_TYPE_NONE,
+			      1, G_TYPE_STRING);
+
+	signals[LOCATION_CHANGED] =
+		g_signal_new ("location-changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      0,
 			      NULL, NULL,
 			      dh_marshal_VOID__STRING,
 			      G_TYPE_NONE,
 			      1, G_TYPE_STRING);
 }
+
+
 
 static void
 html_init (DhHtml *html)
@@ -129,12 +128,10 @@ html_init (DhHtml *html)
 	g_signal_connect (priv->gecko, "title",
 			  G_CALLBACK (html_title_cb),
 			  html);
-#if 0
-        g_signal_connect (priv->widget, "open_uri",
-                          G_CALLBACK (html_open_uri_cb),
+	g_signal_connect (priv->gecko, "location",
+			  G_CALLBACK (html_location_cb),
 			  html);
 
-#endif
         html->priv = priv;
 }
 
@@ -147,23 +144,21 @@ html_title_cb (GtkMozEmbed *embed, DhHtml *html)
 	if (new_title && *new_title != '\0') {
 		g_signal_emit (html, signals[TITLE_CHANGED], 0, new_title);
 	}
-	
 	g_free (new_title);
 }
 
-#if 0
-static gint
-html_open_uri_cb (GtkMozEmbed *embed, const gchar *uri, DhHtml *html)
+static void
+html_location_cb (GtkMozEmbed *embed, DhHtml *html)
 {
-        DhHtmlPriv *priv;
+	DhHtmlPriv *priv;
+	char       *location;
 
-        priv = html->priv;
+	priv = html->priv;
 	
-	g_print ("Open URI: %s\n", uri);
-	
-	return FALSE;
+	location = gtk_moz_embed_get_location (embed);
+	g_signal_emit (html, signals[LOCATION_CHANGED], 0, location);
+	g_free (location);
 }
-#endif
 
 DhHtml *
 dh_html_new (void)
@@ -212,3 +207,54 @@ dh_html_get_widget (DhHtml *html)
 
 	return GTK_WIDGET (html->priv->gecko);
 }
+
+gboolean
+dh_html_can_go_forward (DhHtml *html)
+{
+	DhHtmlPriv *priv;
+	
+	g_return_val_if_fail (DH_IS_HTML (html), FALSE);
+
+	priv = html->priv;
+
+	return gtk_moz_embed_can_go_forward (priv->gecko);
+}
+
+gboolean
+dh_html_can_go_back (DhHtml *html)
+{
+	DhHtmlPriv *priv;
+	
+	g_return_val_if_fail (DH_IS_HTML (html), FALSE);
+
+	priv = html->priv;
+
+	return gtk_moz_embed_can_go_back (priv->gecko);
+}
+
+void
+dh_html_go_forward (DhHtml *html)
+{
+	DhHtmlPriv *priv;
+	
+	g_return_if_fail (DH_IS_HTML (html));
+
+	priv = html->priv;
+
+	gtk_moz_embed_go_forward (priv->gecko);
+}
+
+void
+dh_html_go_back (DhHtml *html)
+{
+	DhHtmlPriv *priv;
+	
+	g_return_if_fail (DH_IS_HTML (html));
+
+	priv = html->priv;
+	
+	gtk_moz_embed_go_back (priv->gecko);
+}
+
+
+

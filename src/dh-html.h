@@ -43,12 +43,6 @@ struct _DhHtml {
 
 struct _DhHtmlClass {
         GObjectClass   parent_class;
-
-	/* Signals */
-	void (*title_changed) (DhHtml      *html,
-			       const gchar *new_title);
-	void (*uri_selected)  (DhHtml      *html,
-			       const gchar *uri);
 };
 
 GType           dh_html_get_type       (void);
@@ -57,6 +51,10 @@ DhHtml         *dh_html_new            (void);
 void            dh_html_open_uri       (DhHtml        *html,
 					const gchar   *uri);
 GtkWidget *     dh_html_get_widget     (DhHtml        *html);
+gboolean        dh_html_can_go_forward (DhHtml        *html);
+gboolean        dh_html_can_go_back    (DhHtml        *html);
+void            dh_html_go_forward     (DhHtml        *html);
+void            dh_html_go_back        (DhHtml        *html);
 
 #endif /* __DH_HTML_H__ */
 

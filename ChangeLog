@@ -1,5 +1,16 @@
 2004-03-16  Mikael Hallendal  <micke@imendio.com>
 
+	* src/Makefile.am:
+	* src/dh-history.c:
+	* src/dh-history.h:
+	- Removed
+	* src/dh-html.c:
+	- Added support for gecko's builtin history list.
+	* src/dh-window.c:
+	- Make history work again.
+
+2004-03-16  Mikael Hallendal  <micke@imendio.com>
+
 	* src/dh-preferences.c:
 	* ui/devhelp.glade:
 	- Really make the dialog transient.

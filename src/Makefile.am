@@ -2,7 +2,7 @@ NULL =
 INCLUDES = 						  \
 	-I$(top_srcdir) 				  \
 	-I$(top_builddir) 				  \
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	  \ 
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	  \
 	-DDATA_DIR=\"$(datadir)\"			  \
 	-DPREFIX="\"$(prefix)"\"		 	  \
 	-DSYSCONFDIR=\""$(sysconfdir)"\"                  \
@@ -38,7 +38,6 @@ devhelph_HEADERS = 					\
 	dh-base.h					\
 	dh-book-tree.h					\
 	dh-error.h					\
-	dh-history.h    	                        \
 	dh-html.h					\
 	dh-keyword-model.h				\
 	dh-link.h					\
@@ -56,7 +55,6 @@ libdevhelp_1_la_SOURCES =				\
 	dh-base.c					\
 	dh-book-tree.c					\
 	dh-error.c					\
-	dh-history.c                            	\
 	dh-html.c                                       \
 	dh-gecko-utils.cpp                              \
 	dh-gecko-utils.h                                \
@@ -71,8 +69,6 @@ libdevhelp_1_la_SOURCES =				\
 libdevhelp_1_la_LIBADD =				\
 	@LIBDEVHELP_LIBS@				\
 	$(MOZILLA_COMPONENT_LIBS)
-
-libdevhelp_1_la_LDFLAGS = -avoid-version -module
 
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
