@@ -1,5 +1,11 @@
 2001-10-17  Johan Dahlin  <zilch.am@home.se>
 
+	* debian/*: Added files for debian package.
+	
+	* devhelp.spec.in: Big update.
+
+	* configure.in: Added a few *_REQUIRED and bumped another few.
+
 	* src/devhelp-window.c (cmd_size_change_cb): Removed.
 	(size_ui_listener): Added.
 	(devhelp_window_new): Add 4 listeners.
