@@ -89,6 +89,3 @@ EXTRA_DIST =                            	\
 	dh-html-gtkhtml2.c			\
 	$(devhelph_HEADERS)			\
 	$(NULL)
-
-pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = devhelp.pc

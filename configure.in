@@ -101,6 +101,7 @@ AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 AC_OUTPUT([
 Makefile
 devhelp.spec
+libdevhelp-1.0.pc
 dtd/Makefile
 libegg/Makefile
 libegg/menu/Makefile
@@ -108,7 +109,6 @@ libegg/toolbar/Makefile
 libegg/util/Makefile
 po/Makefile.in
 src/Makefile
-src/devhelp.pc
 ui/Makefile
 misc/Makefile
 ])
