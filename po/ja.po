@@ -1,0 +1,376 @@
+# devhelp ja.po.
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Takeshi Aihana <aihana@gnome.gr.jp>, 2001.
+# 
+#, no-wrap
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp 0.3\n"
+"POT-Creation-Date: 2001-12-03 14:43+0900\n"
+"PO-Revision-Date: 2001-12-03 18:16+0900\n"
+"Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
+"Language-Team: Japanese <translation@gnome.gr.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=euc-jp\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: devhelp.desktop.in.h:1
+msgid "DevHelp"
+msgstr "DevHelp"
+
+#: devhelp.desktop.in.h:2
+msgid "Developers Help program"
+msgstr "開発者向けのヘルププログラム"
+
+#: src/books-dialog.c:323
+msgid "Choose a book..."
+msgstr "ブックの選択..."
+
+#: src/bookshelf.c:186
+#, c-format
+msgid "Problems when reading books: %s\n"
+msgstr "ブックの読み込み中に問題が発生: %s\n"
+
+#: src/bookshelf.c:363
+#, c-format
+msgid "Empty document: %s"
+msgstr "空のドキュメント: %s"
+
+#: src/bookshelf.c:369
+#, c-format
+msgid "Document wrong type, got %s, expected 'booklist': %s"
+msgstr ""
+"ドキュメントの種類が間違っています。(\"booklist\" なのに %s を取得しました): "
+"%s"
+
+#: src/bookshelf.c:403
+#, c-format
+msgid ""
+"I found an old version of your spec file (%s)\n"
+"I removed it, so you have to hide the books you want to be hidden again."
+msgstr ""
+"仕様ファイル (%s) のバージョンが古いようです。\n"
+"そのファイルを削除するので、全てのブック・ツリーを一度畳んで下さい。"
+
+#: src/bookshelf.c:408
+msgid "Ok"
+msgstr "OK"
+
+#: src/bookshelf.c:449
+#, c-format
+msgid "Failed to open file %s for writing."
+msgstr "ファイル %s を書き込みモードで開けませんでした。"
+
+#: src/devhelp-window.c:402
+msgid "_Contents"
+msgstr "内容(_C)"
+
+#: src/devhelp-window.c:414
+msgid "_Search"
+msgstr "検索(_S)"
+
+#: src/devhelp-window.c:499
+msgid "(C) Copyright 2001, Johan Dahlin"
+msgstr "(C) Copyright 2001, Johan Dahlin"
+
+#: src/devhelp-window.c:501
+msgid "A developer's help browser"
+msgstr "開発者向けのヘルプブラウザ"
+
+#: src/devhelp-window.c:621
+#, c-format
+msgid "Open %s"
+msgstr "%s を開く"
+
+#: src/GNOME_DevHelp.oaf.in.in.h:1
+msgid "DevHelp Controller"
+msgstr "DevHelp コントローラ"
+
+#: src/GNOME_DevHelp.oaf.in.in.h:2
+msgid "DevHelp Controller Factory"
+msgstr "DevHelp コントロール・ファクトリ"
+
+#: src/GNOME_DevHelp.oaf.in.in.h:3
+msgid "DevHelp HelpBrowser"
+msgstr "DevHelp ヘルプブラウザ"
+
+#: src/GNOME_DevHelp.oaf.in.in.h:4
+msgid "DevHelp HelpBrowser Factory"
+msgstr "DevHelp HelpBrowser ファクトリ"
+
+#: src/html-widget.c:208
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr "Select a subject in the contents to the left or switch to the search pane to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the tree to the left, and <b>Shift Left/Right</b> to expand and collapse the books in the tree."
+
+#: src/html-widget.c:294
+#, c-format
+msgid "Couldn't open uri: %s"
+msgstr "URI を開けませんでした: %s"
+
+#: src/html-widget.c:464
+msgid "Print Help"
+msgstr "ヘルプを印刷する"
+
+#: src/html-widget.c:509
+msgid "Print Preview"
+msgstr "プレビューを印刷する"
+
+#: src/html-widget.c:520
+msgid "Printing failed."
+msgstr "印刷に失敗しました。"
+
+#: src/install.c:101 src/install.c:190 src/install.c:214 src/install.c:306
+msgid "The book is already installed."
+msgstr "このブックは既にインストールされています。"
+
+#: src/install.c:114 src/install.c:198 src/install.c:223
+msgid "Failed to move book. This should never happen."
+msgstr "ブックの移動に失敗しました。これは深刻な問題です。"
+
+#: src/install.c:154
+msgid "Failed to extract spec file from book."
+msgstr "ブックから SPEC ファイルを展開するのに失敗しました。"
+
+#: src/install.c:169
+msgid "Error, the book is corrupted or very old."
+msgstr "エラーです。ブックがおかしいかまたはとても古いです。"
+
+#: src/install.c:180
+msgid "Failed to extract the book."
+msgstr "ブックの展開に失敗しました。"
+
+#: src/install.c:287 src/install.c:297
+#, c-format
+msgid "Wrong type (mime_type=%s)."
+msgstr "間違った種類 (MIME=%s) です。"
+
+#: src/main.c:78
+#, c-format
+msgid "Could not activate devhelp: '%s'"
+msgstr "devhelp を有効にすることが出来ませんでした: '%s'"
+
+#: src/main.c:87
+msgid "Could not search for string."
+msgstr "文字列を検索することが出来ませんでした。"
+
+#: src/main.c:125
+msgid "Search for a function"
+msgstr "関数の検索"
+
+#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
+msgid "Tiny"
+msgstr "極小"
+
+#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
+msgid "Small"
+msgstr "小さい"
+
+#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
+msgid "Medium"
+msgstr "中ぐらい"
+
+#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
+msgid "Large"
+msgstr "大きい"
+
+#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
+msgid "Huge"
+msgstr "巨大"
+
+#: ui/devhelp.glade.h:1
+msgid " "
+msgstr " "
+
+#: ui/devhelp.glade.h:2
+msgid "<< _Show"
+msgstr "<< 表示(_S)"
+
+#: ui/devhelp.glade.h:3
+msgid "Author:"
+msgstr "作者:"
+
+#: ui/devhelp.glade.h:4
+msgid "Book info"
+msgstr "ブック情報"
+
+#: ui/devhelp.glade.h:5
+msgid "Bookmarks"
+msgstr "ブックマーク"
+
+#: ui/devhelp.glade.h:6
+msgid "DevHelp Book Manager"
+msgstr "DevHelp ブックマネージャ"
+
+#: ui/devhelp.glade.h:7
+msgid "DevHelp Preferences"
+msgstr "DevHelp 設定"
+
+#: ui/devhelp.glade.h:8
+msgid "Hidden"
+msgstr "隠す"
+
+#: ui/devhelp.glade.h:10
+msgid "Install new book..."
+msgstr "ブックを新規にインストール..."
+
+#: ui/devhelp.glade.h:13
+msgid "Move down"
+msgstr "下に移動"
+
+#: ui/devhelp.glade.h:14
+msgid "Move up"
+msgstr "上に移動"
+
+#: ui/devhelp.glade.h:15
+msgid "Name:"
+msgstr "名前:"
+
+#: ui/devhelp.glade.h:16
+msgid "Path:"
+msgstr "パス名:"
+
+#: ui/devhelp.glade.h:17
+msgid "Remove"
+msgstr "削除"
+
+#: ui/devhelp.glade.h:18
+msgid "Reset to defaults"
+msgstr "デフォルトに戻す"
+
+#: ui/devhelp.glade.h:19
+msgid "Search"
+msgstr "検索"
+
+#: ui/devhelp.glade.h:20
+msgid "Show _sidebar"
+msgstr "サイドバーを表示する(_S)"
+
+#: ui/devhelp.glade.h:23
+msgid "Title:"
+msgstr "タイトル:"
+
+#: ui/devhelp.glade.h:24
+msgid "Version:"
+msgstr "バージョン:"
+
+#: ui/devhelp.glade.h:25
+msgid "View"
+msgstr "表示"
+
+#: ui/devhelp.glade.h:26
+msgid "Visible"
+msgstr "可視"
+
+#: ui/devhelp.glade.h:27
+msgid "_Edit book..."
+msgstr "ブックの編集(_E)..."
+
+#: ui/devhelp.glade.h:28
+msgid "_Hide >>"
+msgstr "隠す(_H) >>"
+
+#: ui/devhelp.glade.h:29
+msgid "_Limit the number of hits to:"
+msgstr "一致する数の最大数(_L):"
+
+#: ui/devhelp.glade.h:30
+msgid "_Text size: "
+msgstr "テキストのサイズ(_T):"
+
+#: ui/GNOME_DevHelp.ui.h:1
+msgid "About this application"
+msgstr "このアプリケーションについて"
+
+#: ui/GNOME_DevHelp.ui.h:2
+msgid "Font size"
+msgstr "フォントサイズ"
+
+#: ui/GNOME_DevHelp.ui.h:6
+msgid "Open preferences dialog"
+msgstr "設定ダイアログを開きます"
+
+#: ui/GNOME_DevHelp.ui.h:7
+msgid "Preferences..."
+msgstr "設定..."
+
+#: ui/GNOME_DevHelp.ui.h:8
+msgid "Print the html page"
+msgstr "HTML ページを印刷します"
+
+#: ui/GNOME_DevHelp.ui.h:9
+msgid "Show sidebar"
+msgstr "サイドバーの表示"
+
+#: ui/GNOME_DevHelp.ui.h:12
+msgid "_About..."
+msgstr "情報(_A)..."
+
+#: ui/GNOME_DevHelp.ui.h:13
+msgid "_Exit"
+msgstr "終了(_E)"
+
+#: ui/GNOME_DevHelp.ui.h:14
+msgid "_File"
+msgstr "ファイル(_F)"
+
+#: ui/GNOME_DevHelp.ui.h:15
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: ui/GNOME_DevHelp.ui.h:16
+msgid "_Print"
+msgstr "印刷(_P)"
+
+#: ui/GNOME_DevHelp.ui.h:17 ui/GNOME_DevHelp_Controller.ui.h:7
+msgid "_Settings"
+msgstr "設定(_S)"
+
+#: ui/GNOME_DevHelp.ui.h:18
+msgid "_View"
+msgstr "表示(_V)"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:1
+msgid "Back"
+msgstr "戻る"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:2
+msgid "Book Manager..."
+msgstr "ブックマネージャ..."
+
+#: ui/GNOME_DevHelp_Controller.ui.h:3
+msgid "Forward"
+msgstr "進む"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:4
+msgid "Go to next page in the history"
+msgstr "履歴中の次のページにジャンプします"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:5
+msgid "Go to previous page in the history"
+msgstr "履歴中の前のページにジャンプします"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:6
+msgid "Open the book manager dialog"
+msgstr "ブック管理ダイアログを開きます"
+
+#~ msgid "Add book ..."
+#~ msgstr "ブックの追加 ..."
+
+#~ msgid "Devhelp"
+#~ msgstr "DevHelp"
+
+#~ msgid "Ny fil"
+#~ msgstr "Ny fil"
+
+#~ msgid "Use autocompletion"
+#~ msgstr "自動補完を有効にする"
+
+#~ msgid "_Book manager..."
+#~ msgstr "ブックマネージャ(_B)..."
+
+#~ msgid "ppna fil"
+#~ msgstr "ppna fil"

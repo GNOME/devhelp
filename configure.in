@@ -184,7 +184,7 @@ EXPANDED_SYSCONFDIR=`eval echo $SYSCONFDIR_TMP`
 prefix=$old_prefix
 AC_SUBST(EXPANDED_SYSCONFDIR)
 
-ALL_LINGUAS="de es fr it no pl ru sk sv zh_TW"
+ALL_LINGUAS="de es fr it ja no pl ru sk sv zh_TW"
 AM_GNOME_GETTEXT
 
 AC_SUBST(CFLAGS)
