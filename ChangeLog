@@ -1,5 +1,9 @@
 2004-03-16  Mikael Hallendal  <micke@imendio.com>
 
+	* autogen.sh: Require automake 1.8
+
+2004-03-16  Mikael Hallendal  <micke@imendio.com>
+
 	* Makefile.am: Added schemas
 	* configure.in: Added gconf tools
 	* devhelp.schemas.in: Added
