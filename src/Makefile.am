@@ -35,7 +35,7 @@ devhelp_2_LDADD = 				\
 	      $(DEVHELP_LIBS) 			\
               libdevhelp2.la
 
-devhelp_2dir=$(libdir)
+devhelp_2dir=$(libdir)/devhelp-2
 
 devhelp_2_LTLIBRARIES =				\
 	libdevhelp2.la
@@ -66,6 +66,8 @@ libdevhelp2_la_SOURCES =			\
 
 libdevhelp2_la_LIBADD =				\
 	$(LIBDEVHELP_LIBS)	
+
+libdevhelp2_la_LDFLAGS = -avoid-version -module
 
 gnome_devhelp_idl_sources =          \
 	GNOME_DevHelp-stubs.c        \
