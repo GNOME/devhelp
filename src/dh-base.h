@@ -21,17 +21,4 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __DH_PROFILE_H__
-#define __DH_PROFILE_H__
-
-#include <glib.h>
-
-typedef struct _DhProfile DhProfile;
-
-DhProfile *  dh_profile_new      (void);
-
-GNode *      dh_profile_open     (DhProfile     *profile,
-				  GList         *keyword,
-				  GError       **error);
-
-#endif /* __DH_PROFILE_H__ */
+/* Base, will load the books and stuff */

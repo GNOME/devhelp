@@ -11,7 +11,7 @@ INCLUDES = 						\
 	$(DEVHELP_CFLAGS) 				\
 	$(NULL)
 
-bin_PROGRAMS = devhelp-2
+bin_PROGRAMS = devhelp-2 
 
 devhelp_2_SOURCES = 				\
 	$(gnome_devhelp_idl_sources)		\
@@ -62,6 +62,15 @@ libdevhelp2_la_LIBADD =				\
 	$(LIBDEVHELP_LIBS)	
 
 libdevhelp2_la_LDFLAGS = -avoid-version -module
+
+noinst_PROGRAMS = test-profile
+
+test_profile_SOURCES = 				\
+	test-profile.c
+
+test_profile_LDADD =  				\
+	$(DEVHELP_LIBS)   			\
+	libdevhelp2.la
 
 gnome_devhelp_idl_sources =          \
 	GNOME_DevHelp-stubs.c        \
