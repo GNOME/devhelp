@@ -1,3 +1,7 @@
+2001-10-19  Christophe Merlet  <redfox@eikonex.org>
+
+	* configure.in: Added "fr" to ALL_LINGUAS.
+
 2001-10-19  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* configure.in: Added "no" to ALL_LINGUAS.
