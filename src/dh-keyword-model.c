@@ -36,6 +36,7 @@ struct _DhKeywordModelPriv {
 };
 
 #define G_LIST(x) ((GList *) x)
+#define MAX_HITS 100
 
 static void     keyword_model_init              (DhKeywordModel       *list_store);
 static void     keyword_model_class_init        (DhKeywordModelClass  *class);
@@ -424,6 +425,7 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	gint                i;
 	GtkTreePath        *path;
  	GtkTreeIter         iter;
+	gint                hits = 0;
       
 	g_return_if_fail (DH_IS_KEYWORD_MODEL (model));
 	g_return_if_fail (string != NULL);
@@ -439,12 +441,15 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	if (!strcmp ("", string)) {
 		new_list = NULL;
 	} else {
-		for (node = priv->original_list; node; node = node->next) {
+		for (node = priv->original_list; 
+		     node && hits < MAX_HITS; 
+		     node = node->next) {
 			link = DH_LINK (node->data);
 			
 			if (!strncmp (link->name, string, strlen (string))) {
 				/* Include in the new list */
 				new_list = g_list_prepend (new_list, link);
+				hits++;
 			}
 		}
 		

@@ -1,5 +1,8 @@
 2002-11-08  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/dh-keyword-model.c: added a max number of hits, makes the
+	  searching snappier.
+
 	* src/dh-html.c (html_get_full_uri): new function, used to check
 	  if url is relative and try to create a full uri from it.
 	(html_url_requested_cb): implemented, fixes #92179

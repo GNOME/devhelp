@@ -50,12 +50,12 @@ struct _DhSearchPriv {
 	GtkWidget      *entry;
 	GtkWidget      *hitlist;
 
-	GCompletion  *completion;
+	GCompletion    *completion;
 
-	guint         idle_complete;
-	guint         idle_filter;
+	guint           idle_complete;
+	guint           idle_filter;
 
-	gboolean      first;
+	gboolean        first;
 };
 
 
