@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-04-05 13:40--100\n"
+"POT-Creation-Date: 2003-07-22 21:32+0200\n"
+"PO-Revision-Date: 2003-07-22 21:38-0100\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
 "MIME-Version: 1.0\n"
@@ -15,43 +15,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
-msgstr "Hjálparforrit fyrir þróendur"
+msgstr "Hjálparvafri fyrir þróendur"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
-msgstr "ÞróunarHjálp"
+msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "ÞróunarHjálp"
+msgstr "Devhelp Bók"
 
 #: src/dh-html-gtkhtml2.c:532
-msgid ""
-"Select a subject in the contents to the left or switch to the search tab to "
-"find what you are looking for."
-msgstr ""
+msgid "Select a subject in the contents to the left or switch to the search tab to find what you are looking for."
+msgstr "Veldu viðfangsefni í innihaldsskrá hér til vinstri eða notaðu leitarflipan til að finna það sem þú leitar að."
 
-#: src/dh-main.c:258
+#: src/dh-main.c:259
 msgid "Specify the size and location of the window"
 msgstr ""
 
-#: src/dh-main.c:259
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgstr "BREIDDxHÆÐ+XOFF+YOFF"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Leita eftir falli"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
-msgstr "Hætta keyrlu á öllum DevHelp forritum"
+msgstr "Loka öllum opnum eintökum af DevHelp"
 
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#: src/dh-parser.c:104
+#: src/dh-parser.c:181
+#: src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr ""
@@ -73,27 +70,27 @@ msgstr ""
 
 #: src/dh-parser.c:250
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
+#: src/dh-parser.c:337
+#: src/dh-parser.c:423
 msgid "Could not create book parser"
 msgstr ""
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
+#: src/dh-parser.c:347
+#: src/dh-parser.c:433
 msgid "Could not create markup parser"
 msgstr ""
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Ekki tókst að afþjappa bók '%s': %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Leita"
+msgstr "_Leita:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -125,26 +122,9 @@ msgstr "Hjálparvafri fyrir þróendur í GNOME2"
 
 #: src/dh-window.c:430
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Þróunarsíða DevHelp"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
 msgstr ""
 
-#~ msgid "_Search for:"
-#~ msgstr "_Leita eftir:"
-
-#  About menu
-#~ msgid "_About"
-#~ msgstr "_Um"
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Veldu efni í innihaldsvafra á vinstihönd eða í leitarflipanum eftir því "
-#~ "sem þú leitar að.<p>Notaðu <b>Shift Upp/Niður</b> til að flakka í gegnum "
-#~ "hjálpartréð hér til vinstri, og <b>Shift Hægri/Vinstri</b> til að opna/"
-#~ "loka bókum í hjálpartrénu."
