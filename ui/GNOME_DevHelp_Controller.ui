@@ -8,7 +8,7 @@
   </commands>
 
   <menu>
-     <submenu name="DevHelp" _label="_DevHelp">
+     <submenu name="Settings" _label="_Settings">
         <menuitem name="SettingsBookManager" verb="CmdBookManager" />
      </submenu>
   </menu>

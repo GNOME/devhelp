@@ -1,3 +1,8 @@
+2001-08-25  Mikael Hallendal  <micke@codefactory.se>
+
+	* ui/GNOME_DevHelp_Controller.ui: moved BookManager to Settings
+	  menu. Will discuss this with campd later.
+
 2001-08-25  Yanko Kaneti  <yaneti@declera.com>
 
 	* devhelp.spec.in:
