@@ -1,3 +1,7 @@
+2003-12-06  Mikael Hallendal  <micke@imendio.com>
+
+	* egg-action.c: undef GTK_DISABLE_DEPRICATED
+
 Fri May  9 17:08:07 2003  Soeren Sandmann  <sandmann@daimi.au.dk>
 
 	* egg-action.c (egg_action_create_menu_proxy): update for new
