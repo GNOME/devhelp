@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
-"PO-Revision-Date: 2003-02-07 17:01+0100\n"
+"POT-Creation-Date: 2003-05-16 03:57+0200\n"
+"PO-Revision-Date: 2003-05-16 12:02+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,21 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Program nápovědy pro vývojáře"
 
+#: devhelp.keys.in.h:1
+msgid "DevHelp Book"
+msgstr "Kniha DevHelp"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Zvolte téma v obsahu nalevo nebo najděte, co hledáte, přepnutím na panel "
+"hledat.<p>Pro pohyb ve stromě vlevo použijte <b>Shift nahoru/dolů</b> a pro "
+"rozbalování a sbalování knih ve stromě <b>Shift doleva/doprava</b>."
+
 #: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Hledat funkci"
@@ -29,6 +44,58 @@ msgstr "Hledat funkci"
 #: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Ukončit všechny běžící Devhelpy"
+
+#: src/dh-parser.c:94
+#, c-format
+msgid "Expected 'book' got '%s' at line %d, column %d"
+msgstr "Očekával jsem 'book', dostal jsem '%s' na řádku %d, sloupci %d"
+
+#: src/dh-parser.c:110
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Neplatné namespace '%s' na řádku %d, sloupci %d"
+
+#: src/dh-parser.c:139
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "Na řádku %d, sloupci %d jsou vyžadovány elementy title, name a link"
+
+#: src/dh-parser.c:171
+#, c-format
+msgid "Expected 'sub' got '%s' at line %d column %d"
+msgstr "Očekával jsem 'sub', dostal jsem '%s' na řádku %d, sloupci %d"
+
+#: src/dh-parser.c:192
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+"Na řádku %d, sloupci %d jsou uvnitř <sub> vyžadovány elementy name a link"
+
+#: src/dh-parser.c:218
+#, c-format
+msgid "Expected 'function' got '%s' at line %d, column %d"
+msgstr "Očekával jsem 'function', dostal jsem '%s' na řádku %d, sloupci %d"
+
+#: src/dh-parser.c:240
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"Na řádku %d, sloupci %d jsou uvnitř <function> vyžadovány elementy name a "
+"link"
+
+#: src/dh-parser.c:326 src/dh-parser.c:410
+msgid "Could not create book parser"
+msgstr "Nemohu vytvořit parser knihy"
+
+#: src/dh-parser.c:336 src/dh-parser.c:420
+msgid "Could not create markup parser"
+msgstr "Nemohu vytvořit parser značení"
+
+#: src/dh-parser.c:466
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Nemohu dekomprimovat knihu '%s': %s"
 
 #: src/dh-search.c:349
 msgid "_Search for:"
@@ -66,47 +133,3 @@ msgstr "Hledat"
 #: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
-
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Zvolte téma v obsahu nalevo nebo najděte, co hledáte, přepnutím na panel "
-"hledat.<p>Pro pohyb ve stromě vlevo použijte <b>Shift nahoru/dolů</b> a pro "
-"rozbalování a sbalování knih ve stromě <b>Shift doleva/doprava</b>."
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "'%s' není platná kniha"
-
-#~ msgid "Book '%s' is malformed."
-#~ msgstr "Kniha '%s' není ve správném formátu."
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Nemohu najít soubor '%s'"
-
-#~ msgid "Book '%s' is malformed, the parse context is invalid."
-#~ msgstr ""
-#~ "Kniha '%s' není ve správném formátu, kontext zpracování není platný."
-
-#~ msgid "Book '%s' is malformed, the XML is invalid."
-#~ msgstr "Kniha '%s' není ve správném formátu, XML není platné."
-
-#~ msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
-#~ msgstr "Kniha '%s' není ve správním formátu, nevyhovuje DTD (%s)."
-
-#~ msgid ""
-#~ "<b>Could not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Nemohu načíst všechny knihy</b>\n"
-#~ "\n"
-#~ "Při načítání knih došlo k následujícím chybám:\n"
-#~ "%s"
-
-#~ msgid "Open %s"
-#~ msgstr "Otevřít %s"
