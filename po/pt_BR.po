@@ -8,8 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.2\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-02-28 02:00-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-10 16:39-0500\n"
+"PO-Revision-Date: 2004-03-10 16:38-0500\n"
 "Last-Translator: Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -17,84 +18,81 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
 msgstr "Programa de Ajuda para Programadores"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
 msgstr "DevHelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "Gerenciador de Livros DevHelp"
+msgstr "Livros DevHelp"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
+"Selecione um assunto entre os conteúdos à esquerda ou vá para a aba de busca "
+"para encontrar o que você está procurando"
 
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "Especifique o tamanho e posição da janela"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Buscar por uma função"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Encerrar qualquer Devhelp rodando"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Esperado:'%s' Recebido: '%s' na linha %d, coluna %d  "
 
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Namespace inválido '%s' na linha %d, coluna %d"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "Título, nome e atalhos são requeridos na linha %d, coluna %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "Nome e atalho são requeridos em <function> na linha %d, coluna %d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
+msgstr "Nome e atalho são requeridos em <function> na linha %d, coluna %d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
-#, fuzzy
 msgid "Could not create book parser"
-msgstr "Impossível buscar pela expressão."
+msgstr "Impossível criar analisador de livro"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Impossĩvel criar analisador de marcação"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Impossível descomprimir livro '%s': %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
 msgstr "Buscar"
 
@@ -102,230 +100,39 @@ msgstr "Buscar"
 msgid "Section"
 msgstr "Seção"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "_Arquivo"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "_Ir"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "_Ajuda"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:285
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Impossível definir UI: %s"
+
+#: src/dh-window.c:347
 msgid "Contents"
 msgstr "Conteúdo"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:358
 msgid "Search"
 msgstr "Buscar"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:423
 msgid "A developer's help browser for GNOME 2"
 msgstr "Um navegador de ajuda para programadores para o GNOME 2"
 
-#: src/dh-window.c:430
-#, fuzzy
+#: src/dh-window.c:438
 msgid "Devhelp project page"
-msgstr "Gerenciador de Livros DevHelp"
+msgstr "Página do Projeto Devhelp"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:442
 msgid "Bug report Devhelp"
-msgstr ""
-
-#~ msgid "_Search for:"
-#~ msgstr "_Buscar por:"
-
-#~ msgid "_About"
-#~ msgstr "_Sobre"
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Selecione um assunto nos conteúdos à esquerda, ou vá para o painel de "
-#~ "buscapara procurar o que deseja.<p>Use <b>Shift Cima/Baixo</b> para "
-#~ "navegar naárvore à esquerda, e <b>Shift Esquerda/Direita</b> para "
-#~ "expandir e recolheros livros na árvore."
-
-#~ msgid ""
-#~ "<b>Could not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Impossível ler todos os livros</b>\n"
-#~ "\n"
-#~ "Os seguintes erros ocorreram durante a leitura dos livros:\n"
-#~ "%s"
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "'%s' não é um livro válido"
-
-#~ msgid "Book '%s' is malformed."
-#~ msgstr "Livro '%s' é inválido."
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Impossível encontrar o arquivo '%s'"
-
-#~ msgid "Book '%s' is malformed, the parse context is invalid."
-#~ msgstr "Livro '%s' é inválido, o contexto de análise é inválido."
-
-#~ msgid "Book '%s' is malformed, the XML is invalid."
-#~ msgstr "Livro '%s' é inválido, o XML é inválido."
-
-#~ msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
-#~ msgstr "Livro '%s' é inválido, não é conformante com o DTD (%s)."
-
-#~ msgid "Open %s"
-#~ msgstr "Abrir %s"
-
-#~ msgid "DevHelp Controller"
-#~ msgstr "Controlador DevHelp"
-
-#~ msgid "DevHelp Controller Factory"
-#~ msgstr "Fábrica de Controladores DevHelp"
-
-#~ msgid "DevHelp HelpBrowser"
-#~ msgstr "DevHelp HelpBrowser"
-
-#~ msgid "DevHelp HelpBrowser Factory"
-#~ msgstr "Fábrica de HelpBrowser DevHelp"
-
-#~ msgid "Problems when reading books: %s\n"
-#~ msgstr "Problemas ao ler livros: %s\n"
-
-#~ msgid "Empty document: %s"
-#~ msgstr "Documento vazio: %s"
-
-#~ msgid "Document wrong type, got %s, expected 'booklist': %s"
-#~ msgstr "Documento do tipo errado, obteve %s, esperava 'booklist': %s"
-
-#~ msgid ""
-#~ "I found an old version of your spec file (%s)\n"
-#~ "I removed it, so you have to hide the books you want to be hidden again."
-#~ msgstr ""
-#~ "Foi encontrada uma versão antiga do seu arquivo de especificação (%s)\n"
-#~ "Foi removido, será necessário esconder novamente os livros que devem ser\n"
-#~ "escondidos."
-
-#~ msgid "Ok"
-#~ msgstr "Ok"
-
-#~ msgid "Failed to open file %s for writing."
-#~ msgstr "Falha ao abrir o arquivo %s para escrita."
-
-#~ msgid "Could not activate devhelp: '%s'"
-#~ msgstr "Impossível ativar devhelp: '%s'"
-
-#~ msgid "About this application"
-#~ msgstr "Sobre esta aplicação"
-
-#~ msgid "Print the html page"
-#~ msgstr "Imprimir a página html"
-
-#~ msgid "_Exit"
-#~ msgstr "_Sair"
-
-#~ msgid "_Print"
-#~ msgstr "Im_primir"
-
-#~ msgid "Back"
-#~ msgstr "Voltar"
-
-#~ msgid "Forward"
-#~ msgstr "Avançar"
-
-#~ msgid "Go to next page in the history"
-#~ msgstr "Ir para a próxima página no histórico"
-
-#~ msgid "Go to previous page in the history"
-#~ msgstr "Ir para a página anterior no histórico"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "<< _Show"
-#~ msgstr "<< Mo_strar"
-
-#~ msgid "Author:"
-#~ msgstr "Autor:"
-
-#~ msgid "Book info"
-#~ msgstr "Informações do livro"
-
-#~ msgid "Bookmarks"
-#~ msgstr "Marcadores"
-
-#~ msgid "DevHelp Preferences"
-#~ msgstr "Preferências DevHelp"
-
-#~ msgid "Hidden"
-#~ msgstr "Escondido"
-
-#~ msgid "Huge"
-#~ msgstr "Enorme"
-
-#~ msgid "Install new book..."
-#~ msgstr "Instalar novo livro..."
-
-#~ msgid "Large"
-#~ msgstr "Grande"
-
-#~ msgid "Medium"
-#~ msgstr "Médio"
-
-#~ msgid "Move down"
-#~ msgstr "Mover para baixo"
-
-#~ msgid "Move up"
-#~ msgstr "Mover para cima"
-
-#~ msgid "Name:"
-#~ msgstr "Nome:"
-
-#~ msgid "Path:"
-#~ msgstr "Caminho:"
-
-#~ msgid "Remove"
-#~ msgstr "Remover"
-
-#~ msgid "Reset to defaults"
-#~ msgstr "Restaurar para o padrão"
-
-#~ msgid "Show _sidebar"
-#~ msgstr "Mo_strar barra lateral"
-
-#~ msgid "Small"
-#~ msgstr "Pequeno"
-
-#~ msgid "Tiny"
-#~ msgstr "Minúsculo"
-
-#~ msgid "Title:"
-#~ msgstr "Título:"
-
-#~ msgid "Version:"
-#~ msgstr "Versão:"
-
-#~ msgid "View"
-#~ msgstr "Ver"
-
-#~ msgid "Visible"
-#~ msgstr "Visível"
-
-#~ msgid "_Edit book..."
-#~ msgstr "_Editar livro..."
-
-#~ msgid "_Hide >>"
-#~ msgstr "_Esconder >>"
-
-#~ msgid "_Limit the number of hits to:"
-#~ msgstr "_Limitar o número de acessos a:"
-
-#~ msgid "_Text size: "
-#~ msgstr "_Tamanho do texto: "
+msgstr "Relatório de erros Devhelp"
