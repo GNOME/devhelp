@@ -1,12 +1,13 @@
 # devhelp's Portuguese Translation
-# Copyright (C) 2001 Free Software Foundation, Inc.
+# Copyright (C) 2001 devhelp
+# Diatributed under the same licence as the devhelp package
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.2\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
-"PO-Revision-Date: 2003-03-09 05:50+0000\n"
+"Project-Id-Version: 2.4\n"
+"POT-Creation-Date: 2003-05-24 16:07+0000\n"
+"PO-Revision-Date: 2003-05-24 16:10+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +22,22 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Aplicação de Ajuda Programadores"
 
+#: devhelp.keys.in.h:1
+msgid "DevHelp Book"
+msgstr "Livro DevHelp"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Seleccione um assunto nos conteudos à esquerda ou vá para o painel de "
+"procura para procurar o que deseja.<p>Utilize <b>Shift Cima/Baixo</b> para "
+"navegar na árvore à esquerda, e <b>Shift Esquerda/Direita</b> para expandir "
+"e recolher os livros na árvore."
+
 #: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Procurar uma função"
@@ -28,6 +45,56 @@ msgstr "Procurar uma função"
 #: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Sair de qualquer Devhelp em execução"
+
+#: src/dh-parser.c:94
+#, c-format
+msgid "Expected 'book' got '%s' at line %d, column %d"
+msgstr "Esperado 'book' obtido '%s' na linha %d, coluna %d"
+
+#: src/dh-parser.c:110
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Nome de espaço '%s' inválido na linha %d, coluna %d"
+
+#: src/dh-parser.c:139
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "elementos título, nome e atalho são requeridos na linha %d, coluna %d"
+
+#: src/dh-parser.c:171
+#, c-format
+msgid "Expected 'sub' got '%s' at line %d column %d"
+msgstr "Esperado 'sub', obtido '%s' na linha %d, coluna %d"
+
+#: src/dh-parser.c:192
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "elementos nome e atalho são requeridos dentro de <sub> na linha %d, coluna %d"
+
+#: src/dh-parser.c:218
+#, c-format
+msgid "Expected 'function' got '%s' at line %d, column %d"
+msgstr "Esperada 'function', obtido '%s' na linha %d, coluna %d"
+
+#: src/dh-parser.c:240
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"elementos nome e atalho são requeridos dentro de <function> na linha %d, coluna %d"
+
+#: src/dh-parser.c:326 src/dh-parser.c:410
+msgid "Could not create book parser"
+msgstr "Incapaz de criar parseador de livro"
+
+#: src/dh-parser.c:336 src/dh-parser.c:420
+msgid "Could not create markup parser"
+msgstr "Incapaz de criar parseador de markup"
+
+#: src/dh-parser.c:466
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Incapaz de descomprimir livro '%s': %s"
 
 #: src/dh-search.c:349
 msgid "_Search for:"
@@ -65,18 +132,6 @@ msgstr "Procurar"
 #: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Um navegador de ajuda de programadores para o GNOME 2"
-
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Seleccione um assunto nos conteudos à esquerda ou vá para o painel de "
-"procura para procurar o que deseja.<p>Utilize <b>Shift Cima/Baixo</b> para "
-"navegar na árvore à esquerda, e <b>Shift Esquerda/Direita</b> para expandir "
-"e recolher os livros na árvore."
 
 #~ msgid ""
 #~ "<b>Could not read all books</b>\n"
@@ -166,9 +221,6 @@ msgstr ""
 #~ msgid "Could not activate devhelp: '%s'"
 #~ msgstr "Incapaz de activar devhelp: '%s'"
 
-#~ msgid "Could not search for string."
-#~ msgstr "Incapaz de procurar expressão."
-
 #~ msgid "Tiny"
 #~ msgstr "Minúsculo"
 
@@ -198,9 +250,6 @@ msgstr ""
 
 #~ msgid "Bookmarks"
 #~ msgstr "Marcadores"
-
-#~ msgid "DevHelp Book Manager"
-#~ msgstr "Gestor de Livros DevHelp"
 
 #~ msgid "DevHelp Preferences"
 #~ msgstr "Preferências DevHelp"
