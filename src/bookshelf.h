@@ -23,15 +23,14 @@
 #ifndef __BOOKSHELF_H__
 #define __BOOKSHELF_H__
 
-#include <gtk/gtkobject.h>
-#include <gtk/gtktypeutils.h>
+#include <glib-object.h>
 #include "book.h"
 
 #define TYPE_BOOKSHELF        (bookshelf_get_type ())
-#define BOOKSHELF(o)          (GTK_CHECK_CAST ((o), TYPE_BOOKSHELF, Bookshelf))
-#define BOOKSHELF_CLASS(k)    (GTK_CHECK_CLASS_CAST((k), TYPE_BOOKSHELF, BookshelfClass))
-#define IS_BOOKSHELF(o)       (GTK_CHECK_TYPE ((o), TYPE_BOOKSHELF))
-#define IS_BOOKSHELF_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), TYPE_BOOKSHELF))
+#define BOOKSHELF(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), TYPE_BOOKSHELF, Bookshelf))
+#define BOOKSHELF_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), TYPE_BOOKSHELF, BookshelfClass))
+#define IS_BOOKSHELF(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), TYPE_BOOKSHELF))
+#define IS_BOOKSHELF_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), TYPE_BOOKSHELF))
 
 typedef struct _Bookshelf      Bookshelf;
 typedef struct _BookshelfClass BookshelfClass;
@@ -39,14 +38,14 @@ typedef struct _BookshelfPriv  BookshelfPriv;
 typedef struct _XMLBook        XMLBook;
 
 struct _Bookshelf {
-	GtkObject         parent;
+	GObject         parent;
 	
 	BookshelfPriv    *priv;
 };
 
 struct _BookshelfClass 
 {
-	GtkObjectClass    parent_class;
+	GObjectClass    parent_class;
 	
 	void (*book_added)    (Bookshelf     *bookshelf,
 			       Book          *book);
@@ -61,7 +60,7 @@ struct _XMLBook {
 	gboolean  visible;
 };
 
-GtkType          bookshelf_get_type           (void);
+GType            bookshelf_get_type           (void);
 
 Bookshelf *      bookshelf_new                (FunctionDatabase    *fd);
 

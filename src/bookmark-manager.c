@@ -102,8 +102,8 @@ bm_class_init (GtkObjectClass *klass)
 
 	signals[BOOKMARK_ADDED] = 
 		gtk_signal_new ("bookmark_added",
+				G_TYPE_FROM_CLASS (klass),
 				GTK_RUN_LAST,
-				klass->type,
 				GTK_SIGNAL_OFFSET (BookmarkManagerClass, 
 						   bookmark_added),
 				gtk_marshal_NONE__POINTER,
@@ -112,15 +112,15 @@ bm_class_init (GtkObjectClass *klass)
 	
 	signals[BOOKMARK_REMOVED] =
 		gtk_signal_new ("bookmark_removed",
+				G_TYPE_FROM_CLASS (klass),				
 				GTK_RUN_LAST,
-				klass->type,
 				GTK_SIGNAL_OFFSET (BookmarkManagerClass,
 						   bookmark_removed),
 				gtk_marshal_NONE__POINTER,
 				GTK_TYPE_NONE,
 				1, GTK_TYPE_POINTER);
 	
-	gtk_object_class_add_signals (klass, signals, LAST_SIGNAL);
+//	gtk_object_class_add_signals (klass, signals, LAST_SIGNAL);
 }
 
 static void

@@ -11,14 +11,14 @@
          _label="Back"
          sensitive="0"
          pixtype="stock"
-         pixname="Back"
+         pixname="gtk-go-back"
 	 _tip="Go to previous page in the history" />
 
     <cmd name="CmdForward"
 	 _label="Forward"
          sensitive="0"
          pixtype="stock"
-         pixname="Forward"
+         pixname="gtk-go-forward"
 	 _tip="Go to next page in the history" />
     
   </commands>

@@ -28,7 +28,6 @@
 #include <gtk/gtkclist.h>
 #include <gtk/gtkeditable.h>
 #include <gtk/gtkentry.h>
-#include <gtk/gtksignal.h>
 #include <gtk/gtkscrolledwindow.h>
 #include "function-database.h"
 #include "devhelp-search.h"
@@ -40,7 +39,7 @@
 static void devhelp_search_class_init          (DevHelpSearchClass   *klass);
 static void devhelp_search_init                (DevHelpSearch        *index);
  
-static void devhelp_search_destroy             (GtkObject            *object);
+static void devhelp_search_destroy             (GObject              *object);
 
 static void devhelp_search_entry_activate_cb   (GtkEditable          *editable,
                                                 DevHelpSearch        *search);
@@ -69,7 +68,7 @@ static gint devhelp_search_complete_idle       (gpointer              data);
 
 static void devhelp_search_do_search           (DevHelpSearch        *search, 
 						const gchar          *string);
-static gchar * 
+static const gchar * 
 devhelp_search_get_search_string_cb            (FunctionDatabase     *fd,
                                                 DevHelpSearch        *search);
 
@@ -81,8 +80,6 @@ static void devhelp_search_hits_found_cb       (FunctionDatabase     *fd,
                                                 GSList               *hits,
                                                 DevHelpSearch        *search);
 
-
-static GtkObjectClass *parent_class = NULL;
 
 enum {
         URI_SELECTED,
@@ -101,25 +98,27 @@ struct _DevHelpSearchPriv {
 	guint                complete;
 };
 
-GtkType
+GType
 devhelp_search_get_type (void)
 {
-        static GtkType devhelp_search_type = 0;
+        static GType devhelp_search_type = 0;
 
         if (!devhelp_search_type) {
-                static const GtkTypeInfo devhelp_search_info = {
-                        "DevHelpSearch",
-                        sizeof (DevHelpSearch),
+                static const GTypeInfo devhelp_search_info = {
                         sizeof (DevHelpSearchClass),
-                        (GtkClassInitFunc)  devhelp_search_class_init,
-                        (GtkObjectInitFunc) devhelp_search_init,
-                        /* reserved_1 */ NULL,
-                        /* reserved_2 */ NULL,
-                        (GtkClassInitFunc) NULL,
+			NULL,
+			NULL,
+			(GClassInitFunc)  devhelp_search_class_init,
+			NULL,
+			NULL,
+			sizeof (DevHelpSearch),
+			0,
+			(GInstanceInitFunc) devhelp_search_init
                 };
-
-                devhelp_search_type = gtk_type_unique (gtk_object_get_type (), 
-                                                       &devhelp_search_info);
+		devhelp_search_type = g_type_register_static (G_TYPE_OBJECT,
+							      "DevHelpSearch",
+							      &devhelp_search_info,
+							      0);
         }
 
         return devhelp_search_type;
@@ -128,24 +127,22 @@ devhelp_search_get_type (void)
 static void
 devhelp_search_class_init (DevHelpSearchClass *klass)
 {
-        GtkObjectClass *object_class;
+        GObjectClass *object_class;
 
-        object_class = (GtkObjectClass *) klass;
-        parent_class = gtk_type_class (gtk_object_get_type ());
+        object_class = (GObjectClass *) klass;
 
-	object_class->destroy = devhelp_search_destroy;
+	object_class->finalize = devhelp_search_destroy;
 
         signals[URI_SELECTED] =
-                gtk_signal_new ("uri_selected",
-                                GTK_RUN_LAST,
-                                object_class->type,
-                                GTK_SIGNAL_OFFSET (DevHelpSearchClass,
-                                                   uri_selected),
-                                gtk_marshal_NONE__POINTER,
-                                GTK_TYPE_NONE,
-                                1, GTK_TYPE_POINTER);
-        
-        gtk_object_class_add_signals (object_class, signals, LAST_SIGNAL);
+                g_signal_new ("uri_selected",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (DevHelpSearchClass,
+					       uri_selected),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);
 }
 
 static void
@@ -159,7 +156,7 @@ devhelp_search_init (DevHelpSearch *search)
 }
 
 static void
-devhelp_search_destroy (GtkObject *object)
+devhelp_search_destroy (GObject *object)
 {
         /* FIX: Do something */
 }
@@ -288,9 +285,10 @@ devhelp_search_clist_select_row_cb (GtkCList        *clist,
 	
 	uri = document_get_uri (function->document, function->anchor);
         
-	gtk_signal_emit (GTK_OBJECT (search),
-			 signals[URI_SELECTED],
-			 uri);
+	g_signal_emit (G_OBJECT (search),
+		       signals[URI_SELECTED],
+		       0,
+		       uri);
 
 	gnome_vfs_uri_unref (uri);
 }
@@ -300,7 +298,8 @@ devhelp_search_complete_idle (gpointer user_data)
 {
 	DevHelpSearch       *search;
 	DevHelpSearchPriv   *priv;
-	gchar               *text, *completed;
+	const gchar         *text;
+	gchar               *completed;
 	gint                 text_length;
 	
         g_return_if_fail (user_data != NULL);
@@ -342,7 +341,7 @@ devhelp_search_do_search (DevHelpSearch *search, const gchar *string)
 	function_database_search (search->priv->fd, string);
 }
 
-static gchar * 
+static const gchar * 
 devhelp_search_get_search_string_cb (FunctionDatabase   *fd, 
                                      DevHelpSearch      *search)
 {
@@ -450,7 +449,7 @@ devhelp_search_new (Bookshelf *bookshelf)
         DevHelpSearch       *search;
         DevHelpSearchPriv   *priv;
 
-        search = gtk_type_new (TYPE_DEVHELP_SEARCH);
+        search = g_object_new (TYPE_DEVHELP_SEARCH, NULL);
         priv   = search->priv;
         
         priv->bookshelf = bookshelf;
@@ -483,25 +482,25 @@ devhelp_search_new (Bookshelf *bookshelf)
                                   GTK_SIGNAL_FUNC (devhelp_search_entry_key_press_cb),
                                   search);
 
-        gtk_signal_connect (GTK_OBJECT (priv->fd), 
-			    "get_search_string",
-                            GTK_SIGNAL_FUNC (devhelp_search_get_search_string_cb),
-                            search);
+        g_signal_connect (G_OBJECT (priv->fd), 
+			  "get_search_string",
+                          G_CALLBACK (devhelp_search_get_search_string_cb),
+                          search);
         
-        gtk_signal_connect (GTK_OBJECT (priv->fd),
-			    "exact_hit_found",
-                            GTK_SIGNAL_FUNC (devhelp_search_exact_hit_found_cb),
-                            search);
+        g_signal_connect (G_OBJECT (priv->fd),
+			  "exact_hit_found",
+                          G_CALLBACK (devhelp_search_exact_hit_found_cb),
+                          search);
         
-        gtk_signal_connect (GTK_OBJECT (priv->fd),
-			    "hits_found",
-                            GTK_SIGNAL_FUNC (devhelp_search_hits_found_cb),
-                            search);
+        g_signal_connect (G_OBJECT (priv->fd),
+			  "hits_found",
+                          G_CALLBACK (devhelp_search_hits_found_cb),
+                          search);
 
-	gtk_signal_connect (GTK_OBJECT (priv->fd),
-			    "function_removed",
-			    GTK_SIGNAL_FUNC (devhelp_search_function_removed_cb),
-			    search);
+	g_signal_connect (G_OBJECT (priv->fd),
+			  "function_removed",
+			  G_CALLBACK (devhelp_search_function_removed_cb),
+			  search);
         return search;
 }
 

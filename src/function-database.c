@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2001 CodeFactory AB
  * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001 Johan Dahlin <jdahlin@home.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -18,7 +19,9 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Author: Mikael Hallendal <micke@codefactory.se>
+ * Author: Mikael Hallendal
+ *
+ * GNOME2 port by Johan Dahlin 
  */
 
 #ifdef HAVE_CONFIG_H
@@ -26,15 +29,15 @@
 #endif
 
 #include <stdio.h>
-#include <gtk/gtksignal.h>
 
 #include "function-database.h"
+#include "devhelp-marshal.h"
 
 #define d(x)
 
 static void     fd_init                 (FunctionDatabase   *history);
-static void     fd_class_init           (GtkObjectClass     *klass);
-static void     fd_destroy              (GtkObject          *object);
+static void     fd_class_init           (GObjectClass       *klass);
+static void     fd_destroy              (GObject            *object);
 
 static gint     fd_idle_search          (gpointer            data);
 static gchar *  fd_function_complete    (gpointer            data);
@@ -43,12 +46,6 @@ static void     fd_function_free        (gpointer            data,
 					 gpointer            user_data);
 
 static void     fd_function_list_free   (GSList             *function_list);
-
-static void     fd_marshal_STRING__NONE (GtkObject          *object,
-					 GtkSignalFunc       func,
-					 gpointer            func_data,
-					 GtkArg             *args);
-
 
 enum {  
 	GET_SEARCH_STRING,  
@@ -69,25 +66,28 @@ struct _FunctionDatabasePriv {
 	gboolean       frozen;
 };
 
-GtkType
+GType
 function_database_get_type (void)
 {
-	static GtkType function_database_type = 0;
+	static GType function_database_type = 0;
         
 	if (!function_database_type) {
-		static const GtkTypeInfo function_database_info = {
-			"FunctionDatabase",
+                static const GTypeInfo function_database_info = {
+                	sizeof (FunctionDatabaseClass),
+			NULL,
+			NULL,
+			(GClassInitFunc)  fd_class_init,
+			NULL,
+			NULL,
 			sizeof (FunctionDatabase),
-			sizeof (FunctionDatabaseClass),
-			(GtkClassInitFunc) fd_class_init,
-			(GtkObjectInitFunc) fd_init,
-			NULL, /* -- Reserved -- */
-			NULL, /* -- Reserved -- */
-			(GtkClassInitFunc) NULL,
-		};
-                
-		function_database_type = gtk_type_unique (GTK_TYPE_OBJECT, 
-							  &function_database_info);
+			0,
+			(GInstanceInitFunc) fd_init,
+                };
+		
+		function_database_type = g_type_register_static (G_TYPE_OBJECT,
+								 "FunctionDatabase",
+								 &function_database_info, 0);
+
 	}
 
 	return function_database_type;
@@ -110,60 +110,63 @@ fd_init (FunctionDatabase *fd)
 }
 
 static void
-fd_class_init (GtkObjectClass *klass)
+fd_class_init (GObjectClass *klass)
 {
 	FunctionDatabaseClass   *fdc;
-	
+
 	d(puts(__FUNCTION__));
 
 	fdc = (FunctionDatabaseClass *) klass;
         
-	klass->destroy = fd_destroy;
-
-	fdc->get_search_string = NULL;
+//	klass->finalize = fd_destroy;
 
 	signals[GET_SEARCH_STRING] =
-		gtk_signal_new ("get_search_string",
-				GTK_RUN_LAST,
-				klass->type,
-				GTK_SIGNAL_OFFSET (FunctionDatabaseClass,
-						   get_search_string),
-				fd_marshal_STRING__NONE,
-				GTK_TYPE_STRING,
-				0);
+		g_signal_new ("get_search_string",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (FunctionDatabaseClass,
+					       get_search_string),
+			      NULL, NULL,
+			      devhelp_marshal_STRING__VOID,
+			      G_TYPE_STRING,
+			      0);
+	
 	signals[EXACT_HIT_FOUND] =
-		gtk_signal_new ("exact_hit_found",
-				GTK_RUN_LAST,
-				klass->type,
-				GTK_SIGNAL_OFFSET (FunctionDatabaseClass,
-						   exact_hit_found),
-				gtk_marshal_NONE__POINTER,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_POINTER);
+		g_signal_new ("exact_hit_found",
+			      G_TYPE_FROM_CLASS (klass),				
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (FunctionDatabaseClass,
+					       exact_hit_found),
+			      NULL, NULL,				
+			      g_cclosure_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);
 	signals[HITS_FOUND] =
-		gtk_signal_new ("hits_found",
-				GTK_RUN_LAST,
-				klass->type,
-				GTK_SIGNAL_OFFSET (FunctionDatabaseClass,
-						   hits_found),
-				gtk_marshal_NONE__POINTER,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_POINTER);
+		g_signal_new ("hits_found",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (FunctionDatabaseClass,
+					       hits_found),
+			      NULL, NULL,			      
+			      g_cclosure_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);
 	signals[FUNCTION_REMOVED] =
-		gtk_signal_new ("function_removed",
-				GTK_RUN_LAST,
-				klass->type,
-				GTK_SIGNAL_OFFSET (FunctionDatabaseClass,
-						   function_removed),
-				gtk_marshal_NONE__POINTER,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_POINTER);	
+		g_signal_new ("function_removed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (FunctionDatabaseClass,
+					       function_removed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);	
 
-	gtk_object_class_add_signals (klass, signals, LAST_SIGNAL);
+//	gtk_object_class_add_signals (klass, signals, LAST_SIGNAL);
 }
 	
 static void
-fd_destroy (GtkObject *object)
+fd_destroy (GObject *object)
 {
 	FunctionDatabase       *fd;
 	FunctionDatabasePriv   *priv;
@@ -202,7 +205,7 @@ fd_idle_search (gpointer data)
 	
 	d(puts(__FUNCTION__));
         
-	gtk_signal_emit (GTK_OBJECT (fd),
+	gtk_signal_emit (G_OBJECT (fd),
 			 signals[GET_SEARCH_STRING],
 			 &search_string);
 
@@ -258,7 +261,7 @@ function_database_new (void)
 {
 	d(puts(__FUNCTION__));
         
-	return gtk_type_new (TYPE_FUNCTION_DATABASE);
+	return g_object_new (TYPE_FUNCTION_DATABASE, NULL);
 }
 
 void
@@ -324,13 +327,13 @@ function_database_search (FunctionDatabase *fd, const gchar *string)
 	list = g_slist_sort (list, function_compare);
 
 	if (list) {
-		gtk_signal_emit (GTK_OBJECT (fd),
+		gtk_signal_emit (G_OBJECT (fd),
 				 signals[HITS_FOUND],
 				 list);
 	}
 
 	if (exact_hit) {
-		gtk_signal_emit (GTK_OBJECT (fd),
+		gtk_signal_emit (G_OBJECT (fd),
 				 signals[EXACT_HIT_FOUND],
 				 exact_hit);
 	}
@@ -419,7 +422,7 @@ function_database_remove_function (FunctionDatabase    *fd,
 		g_list_free (list);
 	}
 	
-	gtk_signal_emit (GTK_OBJECT (fd),
+	gtk_signal_emit (G_OBJECT (fd),
 			 signals[FUNCTION_REMOVED],
 			 function);
 }
@@ -462,23 +465,3 @@ function_database_thaw (FunctionDatabase *fd)
 	
 	priv->frozen = FALSE;
 }
-
-typedef gchar * (*GtkSignal_STRING__NONE) (GtkObject *, gpointer user_data);
-
-void
-fd_marshal_STRING__NONE (GtkObject       *object,
-			 GtkSignalFunc    func,
-			 gpointer         func_data,
-			 GtkArg          *args)
-{
-	GtkSignal_STRING__NONE     rfunc;
-	gchar                    **return_val;
-
-	d(puts(__FUNCTION__));
-		
-	rfunc = (GtkSignal_STRING__NONE) func;
-	return_val = GTK_RETLOC_STRING (args[0]);
-	
-	*return_val = (*rfunc) (object, func_data);
-}
-

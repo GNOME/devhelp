@@ -26,15 +26,14 @@
 #endif
 
 #include <stdio.h>
-#include <gtk/gtksignal.h>
 
 #include "history.h"
 
 #define d(x)
 
 static void          history_init              (History         *history);
-static void          history_class_init        (GtkObjectClass  *klass);
-static void          history_destroy           (GtkObject       *object);
+static void          history_class_init        (GObjectClass    *klass);
+static void          history_destroy           (GObject         *object);
 static void          history_free_history_list (GList           *history_list);
 
 static void          history_maybe_emit        (History         *history);
@@ -55,25 +54,27 @@ struct _HistoryPriv {
 	gboolean    last_emit_back;
 };
 
-GtkType
+GType
 history_get_type (void)
 {
-	static GtkType history_type = 0;
+	static GType history_type = 0;
         
 	if (!history_type) {
-		static const GtkTypeInfo history_info = {
-			"History",
-			sizeof (History),
+		static const GTypeInfo history_info = {
 			sizeof (HistoryClass),
-			(GtkClassInitFunc) history_class_init,
-			(GtkObjectInitFunc) history_init,
-			NULL, /* -- Reserved -- */
-			NULL, /* -- Reserved -- */
-			(GtkClassInitFunc) NULL,
+			NULL,
+			NULL,
+			(GClassInitFunc) history_class_init,
+			NULL,
+			NULL,
+			sizeof (History),
+			0,
+			(GInstanceInitFunc) history_init,
 		};
                 
-		history_type = gtk_type_unique (GTK_TYPE_OBJECT, 
-						&history_info);
+		history_type = g_type_register_static (G_TYPE_OBJECT,
+						       "History",
+						       &history_info, 0);
 	}
 
 	return history_type;
@@ -96,37 +97,37 @@ history_init (History *history)
 }
 
 static void
-history_class_init (GtkObjectClass *klass)
+history_class_init (GObjectClass *klass)
 {
 	d(puts(__FUNCTION__));
 
-	klass->destroy = history_destroy;
+	klass->finalize = history_destroy;
 
 	signals[FORWARD_EXISTS_CHANGED] =
-		gtk_signal_new ("forward_exists_changed",
-				GTK_RUN_LAST,
-				klass->type,
-				GTK_SIGNAL_OFFSET (HistoryClass, 
-						   forward_exists_changed),
-				gtk_marshal_NONE__BOOL,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_BOOL);
+		g_signal_new ("forward_exists_changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (HistoryClass, 
+					       forward_exists_changed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__BOOLEAN,
+			      G_TYPE_NONE,
+			      1, G_TYPE_BOOLEAN);
 
 	signals[BACK_EXISTS_CHANGED] =
-		gtk_signal_new ("back_exists_changed",
-				GTK_RUN_LAST,
-				klass->type,
-				GTK_SIGNAL_OFFSET (HistoryClass, 
-						   back_exists_changed),
-				gtk_marshal_NONE__BOOL,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_BOOL);
-	
-	gtk_object_class_add_signals (klass, signals, LAST_SIGNAL);
+		g_signal_new ("back_exists_changed",
+			      G_TYPE_FROM_CLASS (klass),				
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (HistoryClass, 
+					       back_exists_changed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__BOOLEAN,
+			      G_TYPE_NONE,
+			      1, G_TYPE_BOOLEAN);
 }
 
 static void
-history_destroy (GtkObject *object)
+history_destroy (GObject *object)
 {
 	History       *history;
 	HistoryPriv   *priv;
@@ -178,17 +179,17 @@ history_maybe_emit (History *history)
 	if (priv->last_emit_forward != history_exist_forward (history)) {
 		priv->last_emit_forward = history_exist_forward (history);
 		
-		gtk_signal_emit (GTK_OBJECT (history),
-				 signals[FORWARD_EXISTS_CHANGED],
-				 priv->last_emit_forward);
+		g_signal_emit (G_OBJECT (history),
+			       signals[FORWARD_EXISTS_CHANGED],
+			       priv->last_emit_forward);
 	}
 
 	if (priv->last_emit_back != history_exist_back (history)) {
 		priv->last_emit_back = history_exist_back (history);
 		
-		gtk_signal_emit (GTK_OBJECT (history),
-				 signals[BACK_EXISTS_CHANGED],
-				 priv->last_emit_back);
+		g_signal_emit (G_OBJECT (history),
+			       signals[BACK_EXISTS_CHANGED],
+			       priv->last_emit_back);
 	}
 }
 
@@ -334,6 +335,6 @@ history_new ()
 {
 	d(puts(__FUNCTION__));
         
-	return gtk_type_new (TYPE_HISTORY);
+	return g_object_new (TYPE_HISTORY, NULL);
 }
 

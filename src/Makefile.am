@@ -1,104 +1,118 @@
+NULL =
 INCLUDES = 						\
-	  -I$(top_srdir) 				\
-	  -I$(top_builddir) 				\
-          -DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
-	  -DDATA_DIR=\"$(datadir)\"			\
-	  $(GNOMEUI_CFLAGS) 				\
-	  $(GCONF_CFLAGS) 				\
-	  $(BONOBO_CFLAGS) 				\
-	  $(LIBXML_CFLAGS) 				\
-	  $(GTKHTML_CFLAGS) 				\
-	  $(VFS_CFLAGS)					\
-	  $(LIBGLADE_CFLAGS)
+	-I$(top_srdir) 					\
+	-I$(top_builddir) 				\
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
+	-DDATA_DIR=\"$(datadir)\"			\
+	-DPREFIX="\"$(prefix)"\"			\
+        -DSYSCONFDIR=\""$(sysconfdir)"\"                \
+        -DDATADIR=\""$(datadir)"\"                      \
+        -DLIBDIR=\""$(libdir)"\"			\
+	$(DEVHELP_CFLAGS) 				\
+	$(NULL)
 
+bin_PROGRAMS = devhelp-2
 
-bin_PROGRAMS = devhelp
-
-devhelp_SOURCES = 			\
-	$(GENERATED)                    \
-	bookmark-manager.c		\
-	bookmark-manager.h		\
-	devhelp-window.c		\
-	devhelp-window.h		\
-	help-browser.c			\
-	help-browser.h			\
-	history.c			\
-	history.h			\
-	html-widget.c			\
-	html-widget.h			\
-	install.c			\
-	install.h			\
-	main.c				\
-	preferences.c			\
-	preferences.h			\
-	preferences-dialog.c		\
-	preferences-dialog.h		\
-	books-dialog.c			\
+devhelp_2_SOURCES = 				\
+	$(gnome_devhelp_idl_sources)		\
+	bookmark-manager.c			\
+	bookmark-manager.h			\
+	devhelp-view.c				\
+	devhelp-view.h				\
+	devhelp-window.c			\
+	devhelp-window.h			\
+	help-browser.c				\
+	help-browser.h				\
+	history.c				\
+	history.h				\
+	install.c				\
+	install.h				\
+	main.c					\
+	preferences.c				\
+	preferences.h				\
+	preferences-dialog.c			\
+	preferences-dialog.h			\
+	books-dialog.c				\
 	books-dialog.h
 
-devhelp_LDADD = 			\
-	      $(GNOMEUI_LIBS) 		\
-	      $(GCONF_LIBS) 		\
-	      $(BONOBO_LIBS)            \
-	      $(VFS_LIBS)		\
-	      $(GTKHTML_LIBS) 		\
-	      -lgtkhtml 		\
-              libdevhelp.la
+devhelp_2_LDADD = 				\
+	      $(DEVHELP_LIBS) 			\
+              libdevhelp2.la
 
-devhelpdir=$(libdir)
+devhelp_2dir=$(libdir)
 
-devhelp_LTLIBRARIES =			\
-	libdevhelp.la
+devhelp_2_LTLIBRARIES =				\
+	libdevhelp2.la
 
-libdevhelp_la_SOURCES =			\
-	$(GENERATED)                    \
-	book.c				\
-	book.h				\
-	book-index.c			\
-	book-index.h			\
-	book-node.h			\
-	bookshelf.c			\
-	bookshelf.h                     \
-	devhelp-controller.c		\
-	devhelp-controller.h		\
-	devhelp-search.c                \
-	devhelp-search.h		\
-	function-database.c		\
-	function-database.h		\
-	util.c				\
+libdevhelp2_la_SOURCES =			\
+	$(gnome_devhelp_idl_sources)		\
+	book.c					\
+	book.h					\
+	book-index.c				\
+	book-index.h				\
+	book-node.h				\
+	bookshelf.c				\
+	bookshelf.h                     	\
+	devhelp-controller.c			\
+	devhelp-controller.h			\
+	devhelp-marshal.c			\
+	devhelp-marshal.h			\
+	devhelp-search.c                	\
+	devhelp-search.h			\
+	function-database.c			\
+	function-database.h			\
+	util.c					\
 	util.h
 
-libdevhelp_la_LIBADD =			\
-	$(BONOBO_LIBS)	
+libdevhelp2_la_LIBADD =				\
+	$(LIBDEVHELP_LIBS)	
 
-GENERATED =				\
-	GNOME_DevHelp-skels.c		\
-	GNOME_DevHelp-stubs.c		\
-	GNOME_DevHelp-common.c		\
-	GNOME_DevHelp.h
+gnome_devhelp_idl_sources =          \
+	GNOME_DevHelp-stubs.c        \
+	GNOME_DevHelp-skels.c        \
+	GNOME_DevHelp.h              \
+	GNOME_DevHelp-common.c
 
-$(GENERATED): $(top_srcdir)/idl/GNOME_DevHelp.idl stamp-idl
+marshal_sources = \
+        devhelp-marshal.h \
+        devhelp-marshal-guts.c \
+        $(NULL)
 
-stamp-idl: $(top_srcdir)/idl/GNOME_DevHelp.idl
-	orbit-idl $(IDL_FLAGS) -I$(srcdir) $(IDL_FLAGS) $(top_srcdir)/idl/GNOME_DevHelp.idl
-	touch stamp-idl
+devhelp-marshal.h: devhelp-marshal.list $(GLIB_GENMARSHAL)
+	$(GLIB_GENMARSHAL) $< --header --prefix=devhelp_marshal > $@
+devhelp-marshal-guts.c: devhelp-marshal.list $(GLIB_GENMARSHAL)
+	$(GLIB_GENMARSHAL) $< --body --prefix=devhelp_marshal > $@
 
-# Work around automake brokenness.
-$(srcdir)/GNOME_DevHelp.h: stamp-idl
+$(gnome_devhelp_idl_sources): gnome_devhelp_idl_stamp
+gnome_devhelp_idl_stamp: $(top_srcdir)/idl/GNOME_DevHelp.idl $(ORBIT_IDL)
+	$(ORBIT_IDL) $(DEVHELP_IDL_INCLUDES) -I$(top_srcdir) $<
+	touch $@
 
-oafdir = $(datadir)/oaf
-oaf_in_files = GNOME_DevHelp.oaf.in
+$(devhelp_OBJECTS): gnome_devhelp_idl_stamp
+$(libdevhelp2_la_OBJECTS): gnome_devhelp_idl_stamp $(marshal_sources)
 
-oaf_DATA = $(oaf_in_files:.oaf.in=.oaf)
+serverdir = $(libdir)/bonobo/servers
+server_in_files = GNOME_DevHelp.server.in
+server_DATA = $(server_in_files:.server.in=.server)
 
-GNOME_DevHelp.oaf.in: $(srcdir)/GNOME_DevHelp.oaf.in.in $(top_builddir)/config.status
-	sed -e "s|\@COMPONENT_LIBDIR\@|$(devhelpdir)|" \
-	 $(srcdir)/GNOME_DevHelp.oaf.in.in > GNOME_DevHelp.oaf.in
+GNOME_DevHelp.server.in: $(srcdir)/GNOME_DevHelp.server.in.in $(top_builddir)/config.status
+	sed -e "s|\@COMPONENT_LIBDIR\@|$(libdir)|" \
+	$(srcdir)/GNOME_DevHelp.server.in.in > GNOME_DevHelp.server.in
 
-CLEANFILES  += $(GENERATED) + stamp-idl GNOME_DevHelp.oaf GNOME_DevHelp.oaf.in
+@INTLTOOL_SERVER_RULE@
 
-@XML_I18N_MERGE_OAF_RULE@
+CLEANFILES  = 					\
+	$(gnome_devhelp_idl_sources)		\
+	gnome_devhelp_idl_stamp			\
+	$(NULL)
 
-EXTRA_DIST =                            \
-        $(oaf_in_files)			\
-	GNOME_DevHelp.oaf.in.in
+EXTRA_DIST =                            	\
+	$(server_in_files)			\
+	$(server_DATA)				\
+	devhelp-marshal.list			\
+	$(NULL)
+
+BUILT_SOURCES = \
+	$(gnome_devhelp_idl_sources)
+	$(NULL)
+

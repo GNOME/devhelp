@@ -30,16 +30,15 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-#include <gnome-xml/parser.h>
-#include <gnome-xml/xmlmemory.h>
+#include <libxml/parser.h>
 #include <gconf/gconf.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
-#include <libgnome/gnome-defs.h>
+//#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libgnome/gnome-i18n.h>
+#include <libgnome/gnome-program.h>
+#include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs-init.h>
-#include <bonobo/bonobo-exception.h>
 #include <bonobo/bonobo-generic-factory.h>
-
+#include <bonobo/bonobo-exception.h>
 #include "GNOME_DevHelp.h"
 #include "install.h"
 #include "help-browser.h"
@@ -47,11 +46,14 @@
 
 #define DEVHELP_FACTORY_OAFIID "OAFIID:GNOME_DevHelp_Factory"
 
-static BonoboObject *   devhelp_factory   (BonoboGenericFactory   *this, 
-					   void                   *data);
+static BonoboObject *   devhelp_factory   (BonoboGenericFactory *factory,
+					   const char           *component_id,
+					   gpointer              closure);
 
 static BonoboObject *
-devhelp_factory (BonoboGenericFactory *this, void *data)
+devhelp_factory (BonoboGenericFactory *factory,
+		 const gchar          *component_id,
+		 gpointer              closure)
 {
 	static HelpBrowser   *help_browser = NULL;
 	
@@ -72,7 +74,7 @@ activate_and_search (gpointer data, gboolean new_window)
 
 	CORBA_exception_init (&ev);
 
-	devhelp = oaf_activate_from_id ("OAFIID:GNOME_DevHelp", 0, NULL, &ev);
+	devhelp = bonobo_activation_activate_from_id ("OAFIID:GNOME_DevHelp", 0, NULL, &ev);
 
 	if (BONOBO_EX (&ev) || devhelp == CORBA_OBJECT_NIL) {
 		g_warning (_("Could not activate devhelp: '%s'"),
@@ -111,9 +113,9 @@ idle_activate_and_search (gpointer data)
 int 
 main (int argc, char **argv)
 {
-	CORBA_ORB            orb;
 	CORBA_Environment    ev;
 	gchar               *option_search = NULL;
+	GnomeProgram        *program;
 	CORBA_Object         factory;
 	struct poptOption    options[] = {
 		{ 
@@ -135,31 +137,33 @@ main (int argc, char **argv)
 	textdomain (PACKAGE);
 #endif
 
-	gnomelib_register_popt_table (oaf_popt_options,
-				      oaf_get_popt_table_name ());
+	setlocale (LC_ALL, "");
 
-	orb = oaf_init (argc, argv);
-	gnome_init_with_popt_table (PACKAGE, VERSION, argc, argv, 
-				    options, 0, NULL);
+	g_thread_init (NULL);
 
+	program = gnome_program_init (PACKAGE, VERSION,
+				      LIBGNOMEUI_MODULE,
+                                      argc, argv,
+                                      GNOME_PROGRAM_STANDARD_PROPERTIES,
+                                      NULL);
 	LIBXML_TEST_VERSION;
-	g_atexit (xmlCleanupParser);
-	
+
+	gnome_vfs_init ();
+
 	gdk_rgb_init ();
 	gconf_init (argc, argv, NULL);
-	gnome_vfs_init ();
-	glade_gnome_init ();
+	glade_init ();
 	
-	if (!bonobo_init (orb, CORBA_OBJECT_NIL, CORBA_OBJECT_NIL)) {
-		g_error ("Could not initialize Bonobo");
-	}
+//	if (!bonobo_init (orb, CORBA_OBJECT_NIL, CORBA_OBJECT_NIL)) {
+//		g_error ("Could not initialize Bonobo");
+//	}
 	
-	gnome_window_icon_set_default_from_file (DATA_DIR "/pixmaps/devhelp.png");
+//	gnome_window_icon_set_default_from_file (DATA_DIR "/pixmaps/devhelp.png");
 	   
 	install_create_directories (NULL);
 	
-	factory = oaf_activate_from_id (DEVHELP_FACTORY_OAFIID,
-					OAF_FLAG_EXISTING_ONLY, NULL, NULL);
+	factory = bonobo_activation_activate_from_id (DEVHELP_FACTORY_OAFIID,
+						      Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, NULL, NULL);
 	
 	if (!factory) {
 		BonoboGenericFactory   *factory;

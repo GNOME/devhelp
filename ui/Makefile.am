@@ -6,12 +6,12 @@ image_DATA = \
 
 gladedir = $(datadir)/devhelp/glade
 glade_DATA = \
-	devhelp.glade
+	devhelp2.glade
 
 appicondir = $(datadir)/pixmaps
 appicon_DATA = devhelp.png
 
-uidir = $(datadir)/gnome/ui
+uidir = $(datadir)/gnome-2.0/ui
 ui_DATA = 				\
 	GNOME_DevHelp.ui		\
 	GNOME_DevHelp_Controller.ui

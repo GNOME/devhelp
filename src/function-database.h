@@ -24,16 +24,16 @@
 #ifndef __FUNCTION_DATABASE_H__
 #define __FUNCTION_DATABASE_H__
 
-#include <gtk/gtkobject.h>
-#include <gtk/gtktypeutils.h>
+#include <glib-object.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include "book-node.h"
 
-#define TYPE_FUNCTION_DATABASE        (function_database_get_type ())
-#define FUNCTION_DATABASE(o)          (GTK_CHECK_CAST ((o), TYPE_FUNCTION_DATABASE, FunctionDatabase))
-#define FUNCTION_DATABASE_CLASS(k)    (GTK_CHECK_CLASS_CAST((k), TYPE_FUNCTION_DATABASE, FunctionDatabaseClass))
-#define IS_FUNCTION_DATABASE(o)       (GTK_CHECK_TYPE ((o), TYPE_FUNCTION_DATABASE))
-#define IS_FUNCTION_DATABASE_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), TYPE_FUNCTION_DATABASE))
+#define TYPE_FUNCTION_DATABASE         (function_database_get_type ())
+#define FUNCTION_DATABASE(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), TYPE_FUNCTION_DATABASE, FunctionDatabase))
+#define FUNCTION_DATABASE_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), TYPE_FUNCTION_DATABASE, FunctionDatabaseClass))
+#define IS_FUNCTION_DATABASE(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), TYPE_FUNCTION_DATABASE))
+#define IS_FUNCTION_DATABASE_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), TYPE_FUNCTION_DATABASE))
+#define FUNCTION_DATABASE_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS((o), TYPE_FUNCTION_DATABASE, FunctionDatabaseClass))
 
 typedef struct _FunctionDatabase      FunctionDatabase;
 typedef struct _FunctionDatabaseClass FunctionDatabaseClass;
@@ -42,13 +42,13 @@ typedef struct _FunctionDatabasePriv  FunctionDatabasePriv;
 typedef struct _Function              Function;
 
 struct _FunctionDatabase {
-	GtkObject               parent;
+	GObject               parent;
 	
 	FunctionDatabasePriv   *priv;
 };
 
 struct _FunctionDatabaseClass {
-	GtkObjectClass          parent_class;
+	GObjectClass          parent_class;
 
 	/* Signals */
 	gchar *       (*get_search_string)    (FunctionDatabase   *fd);
@@ -69,8 +69,8 @@ struct _Function {
 	gchar            *anchor;
 };
 
-GtkType             function_database_get_type      (void);
-FunctionDatabase *  function_database_new           (void);
+GType               function_database_get_type (void);
+FunctionDatabase *  function_database_new      (void);
 
 void       function_database_idle_search       (FunctionDatabase    *fd);
  

@@ -1,37 +1,45 @@
-SUBDIRS = intl po src ui
+NULL = 
 
-SCHEMAS_DIR = $(sysconfdir)/gconf/schemas
-SCHEMAS_FILE = devhelp.schemas
+@INTLTOOL_DESKTOP_RULE@
 
-schemasdir = $(SCHEMAS_DIR)
-schemas_DATA = $(SCHEMAS_FILE)
+DESKTOP_IN_FILES = devhelp.desktop.in
+DESKTOP_FILES =$(DESKTOP_IN_FILES:.desktop.in=.desktop)
 
-install-schemas: devhelp.schemas
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool-1 --shutdown
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool-1 --makefile-install-rule $(top_srcdir)/$(SCHEMAS_FILE)
+SUBDIRS = po src ui
 
-if INSTALL_SCHEMAS
-install-data-local: install-schemas
-endif
+#SCHEMAS_DIR = $(sysconfdir)/gconf/schemas
+#SCHEMAS_FILE = devhelp.schemas
+
+#schemasdir = $(SCHEMAS_DIR)
+#schemas_DATA = $(SCHEMAS_FILE)
+
+#install-schemas: devhelp.schemas
+#	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool-1 --shutdown
+#	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool-1 --makefile-install-rule $(top_srcdir)/$(SCHEMAS_FILE)
+
+#if INSTALL_SCHEMAS
+#install-data-local: install-schemas
+#endif
 
 EXTRA_DIST =			\
 	TODO 			\
+	$(DESKTOP_IN_FILES)     \
+	$(DESKTOP_FILES)        \
 	devhelp.desktop.in 	\
-	devhelp.spec 		\
 	devhelp.spec.in 	\
-	$(SCHEMAS_FILE)		\
-	xml-i18n-merge.in 	\
-	xml-i18n-update.in 	\
-	xml-i18n-extract.in	\
+	intltool-merge.in 	\
+	intltool-update.in 	\
+	intltool-extract.in	\
 	misc/devhelp.el		\
 	misc/html2funcs.py	\
 	misc/html2xml.py	\
 	misc/devhelp.vim	\
-	idl/GNOME_DevHelp.idl
+	idl/GNOME_DevHelp.idl	\
+	$(NULL)
 
 Develdir = $(datadir)/gnome/apps/Development
-Devel_in_files = devhelp.desktop.in
-Devel_DATA = $(Devel_in_files:.desktop.in=.desktop)
+Devel_DATA = $(DESKTOP_FILES)
 
-@XML_I18N_MERGE_DESKTOP_RULE@
+dist-hook: devhelp.spec
+	cp devhelp.spec $(distdir)
 

@@ -122,16 +122,16 @@ book_index_class_init (BookIndexClass *klass)
 	ctree_class->tree_select_row  = book_index_select_row;
 	
         signals[URI_SELECTED] =
-                gtk_signal_new ("uri_selected",
-                                GTK_RUN_LAST,
-                                object_class->type,
-                                GTK_SIGNAL_OFFSET (BookIndexClass,
-                                                   uri_selected),
-                                gtk_marshal_NONE__POINTER,
-                                GTK_TYPE_NONE,
-                                1, GTK_TYPE_POINTER);
+                g_signal_new ("uri_selected",
+			      G_TYPE_FROM_CLASS (object_class),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (BookIndexClass,
+					       uri_selected),
+			      NULL, NULL,
+			      gtk_marshal_VOID__VOID,
+			      G_TYPE_NONE, 0);
         
-        gtk_object_class_add_signals (object_class, signals, LAST_SIGNAL);
+//        gtk_object_class_add_signals (object_class, signals, LAST_SIGNAL);
 }
 
 static void
@@ -277,19 +277,19 @@ book_index_create_pixmaps (BookIndex *index)
 	
 	pixmaps = g_new0 (BookIndexPixmaps, 1);
 	
-	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/book_red.xpm");
+	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/book_red.xpm", NULL);
 	gdk_pixbuf_render_pixmap_and_mask (pixbuf,
 					   &pixmaps->pixmap_closed,
 					   &pixmaps->mask_closed,
 					   127);
 					   
-	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/book_open.xpm");
+	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/book_open.xpm", NULL);
 	gdk_pixbuf_render_pixmap_and_mask (pixbuf,
 					   &pixmaps->pixmap_opened,
 					   &pixmaps->mask_opened,
 					   127);
 	
-	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/helpdoc.xpm");
+	pixbuf = gdk_pixbuf_new_from_file (DATA_DIR "/images/devhelp/helpdoc.xpm", NULL);
 	gdk_pixbuf_render_pixmap_and_mask (pixbuf,
 					   &pixmaps->pixmap_helpdoc,
 					   &pixmaps->mask_helpdoc,
@@ -302,9 +302,9 @@ book_index_new (Bookshelf *bookshelf)
 {
         BookIndex       *index;
 	
-        index = gtk_type_new (TYPE_BOOK_INDEX);
-	
-        gtk_ctree_construct (GTK_CTREE (index), 1, 0, NULL);
+	index = g_object_new (TYPE_BOOK_INDEX, "n-columns", 1, NULL);
+//        index = gtk_type_new (TYPE_BOOK_INDEX);
+//        gtk_ctree_construct (GTK_CTREE (index), 1, 0, NULL);
 
         index->priv->bookshelf = bookshelf;
 
@@ -346,11 +346,12 @@ book_index_select_row (GtkCTree *ctree, GtkCTreeNode *node, gint column)
 
 			uri = book_node_get_uri (book_node, NULL);
 			
-			gtk_signal_emit (GTK_OBJECT (index),
-					 signals[URI_SELECTED],
-					 uri);
+			g_signal_emit (G_OBJECT (index),
+				       signals[URI_SELECTED], 
+				       0,
+				       uri);
 
-			gnome_vfs_uri_unref (uri);
+//			gnome_vfs_uri_unref (uri);
 		}
 	}
 }

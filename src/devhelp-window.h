@@ -23,8 +23,8 @@
 #ifndef __DEVHELP_WINDOW_H__
 #define __DEVHELP_WINDOW_H__
 
-#include <glib.h>
-#include <bonobo/bonobo-win.h>
+#include <glib-object.h>
+#include <bonobo/bonobo-window.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkwidget.h>
 #include "bookshelf.h"

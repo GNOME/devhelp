@@ -2,8 +2,8 @@ devhelp.desktop.in
 src/books-dialog.c
 src/bookshelf.c
 src/devhelp-window.c
-src/GNOME_DevHelp.oaf.in.in
-src/html-widget.c
+src/GNOME_DevHelp.server.in.in
+src/devhelp-view.c
 src/install.c
 src/main.c
 src/preferences.c

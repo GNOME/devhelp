@@ -179,13 +179,16 @@ impl_DevHelp_Controller_addMenus (PortableServer_Servant    servant,
 
 	priv->ui_component = bonobo_ui_component_new ("DevHelpController");
 	
-	bonobo_ui_component_set_container (priv->ui_component, ui_container);
+	bonobo_ui_component_set_container (priv->ui_component,
+					   ui_container,
+					   ev);
 	bonobo_ui_component_add_verb_list_with_data (priv->ui_component,
 						     verbs,
 						     controller);
 	bonobo_ui_util_set_ui (priv->ui_component, DATA_DIR,
 			       "GNOME_DevHelp_Controller.ui",
-			       "devhelp");
+			       "devhelp",
+			       ev);
 }
 
 static void
@@ -253,37 +256,43 @@ devhelp_controller_init (DevHelpController *controller)
         priv->bookshelf    = bookshelf_new (priv->fd);
         priv->index        = BOOK_INDEX (book_index_new (priv->bookshelf));
 
-	gtk_signal_connect_object (GTK_OBJECT (priv->history),
-				   "forward_exists_changed",
-				   GTK_SIGNAL_FUNC (devhelp_controller_forward_exists_changed_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect_object (G_OBJECT (priv->history),
+				 "forward_exists_changed",
+				 G_CALLBACK (devhelp_controller_forward_exists_changed_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
 	
-	gtk_signal_connect_object (GTK_OBJECT (priv->history),
-				   "back_exists_changed",
-				   GTK_SIGNAL_FUNC (devhelp_controller_back_exists_changed_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect_object (G_OBJECT (priv->history),
+				 "back_exists_changed",
+				 G_CALLBACK (devhelp_controller_back_exists_changed_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
 
-	gtk_signal_connect_object (GTK_OBJECT (priv->bookshelf),
-				   "book_added",
-				   GTK_SIGNAL_FUNC (devhelp_controller_book_added_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect_object (G_OBJECT (priv->bookshelf),
+				 "book_added",
+				 G_CALLBACK (devhelp_controller_book_added_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
 	
-	gtk_signal_connect_object (GTK_OBJECT (priv->bookshelf),
-				   "book_removed",
-				   GTK_SIGNAL_FUNC (devhelp_controller_book_removed_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect_object (G_OBJECT (priv->bookshelf),
+				 "book_removed",
+				 G_CALLBACK (devhelp_controller_book_removed_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
 	
-	gtk_signal_connect_object (GTK_OBJECT (priv->index),
-				   "uri_selected",
-				   GTK_SIGNAL_FUNC (devhelp_controller_uri_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect_object (G_OBJECT (priv->index),
+				 "uri_selected",
+				 G_CALLBACK (devhelp_controller_uri_cb),
+				 controller,
+				 0);
         
         priv->search = devhelp_search_new (priv->bookshelf);
 
-	gtk_signal_connect_object (GTK_OBJECT (priv->search),
-				   "uri_selected",
-				   GTK_SIGNAL_FUNC (devhelp_controller_uri_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect_object (G_OBJECT (priv->search),
+				 "uri_selected",
+				 G_CALLBACK (devhelp_controller_uri_cb),
+				 controller,
+				 0);
 
 	priv->event_source = bonobo_event_source_new ();
 
@@ -581,7 +590,8 @@ devhelp_controller_new ()
 {
         DevHelpController   *controller;
         
-        controller = gtk_type_new (TYPE_DEVHELP_CONTROLLER);
+//        controller = gtk_type_new (TYPE_DEVHELP_CONTROLLER);
+	controller = g_object_new (TYPE_DEVHELP_CONTROLLER, NULL);
         
         return controller;
 }

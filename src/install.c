@@ -24,10 +24,10 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <glib.h>
+#include <glib/gfileutils.h>
 #include <gtk/gtkwidget.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <libgnomevfs/gnome-vfs-mime.h>
-#include <libgnome/gnome-defs.h>
+#include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnome/gnome-i18n.h>
 
 #include "install.h"
@@ -73,18 +73,18 @@ install_create_directories (const gchar *root)
 	
 	/* Check so all directories are created ...
 	   ~/.devhelp */
-	if (g_file_exists (real_root) == FALSE) {
+	if (g_file_test (real_root, G_FILE_TEST_EXISTS) == FALSE) {
 		install_create_directory (real_root);
 	}		
 	
 	cmd = g_strdup_printf ("%s/books", real_root);
-	if (g_file_exists (cmd) == FALSE) {
+	if (g_file_test (cmd, G_FILE_TEST_EXISTS) == FALSE) {
 		install_create_directory (cmd);
 	}
 	g_free (cmd);
 	
 	cmd = g_strdup_printf ("%s/specs", real_root);
-	if (g_file_exists (cmd) == FALSE) {
+	if (g_file_test (cmd, G_FILE_TEST_EXISTS) == FALSE) {
 		install_create_directory (cmd);
 	}
 	g_free (cmd);
@@ -97,7 +97,7 @@ install_spec (const gchar *filename, const gchar *name, const gchar *root)
 	gchar           *url;
 	
 	url = g_strdup_printf ("%s/specs/%s.devhelp", root, name);
-	if (g_file_exists (url)) {
+	if (g_file_test (url, G_FILE_TEST_EXISTS)) {
 		gnome_message (_("The book is already installed."));
 		g_free (url);
 		return FALSE;
@@ -144,13 +144,13 @@ install_unpack_book (Bookshelf     *bookshelf,
 
 	/* Create temporary directory */
 	dir = g_strdup_printf ("%s/tmp", root);
-	if (g_file_exists (dir) == FALSE) {
+	if (g_file_test (dir, G_FILE_TEST_EXISTS) == FALSE) {
 		install_create_directory (dir);
 	}
 	
 	cmd = g_strdup_printf ("cd %s && gzip -dc -f \"%s\" | tar -xf - book.devhelp >& /dev/null", dir, filename);
 	retval = system (cmd);
-	if (retval != 0 && g_file_exists ("book.devhelp") != FALSE) {
+	if (retval != 0 && g_file_test ("book.devhelp", G_FILE_TEST_EXISTS) != FALSE) {
 		gnome_message (_("Failed to extract spec file from book."));
 		g_free (cmd);
 		g_free (dir);
@@ -176,7 +176,7 @@ install_unpack_book (Bookshelf     *bookshelf,
 	/* Extract the book */
 	cmd = g_strdup_printf ("cd %s && gzip -dc -f \"%s\" | tar -xf - book >& /dev/null", dir, filename);
 	retval = system (cmd);
-	if (retval != 0 && g_file_exists ("book") != FALSE) {
+	if (retval != 0 && g_file_test ("book", G_FILE_TEST_EXISTS) != FALSE) {
 		gnome_message (_("Failed to extract the book."));
 		g_free (dir);
 		return NULL;
@@ -186,7 +186,7 @@ install_unpack_book (Bookshelf     *bookshelf,
 
 	/* Install the spec */
 	cmd = g_strdup_printf ("%s/specs/%s.devhelp", root, book_get_name_full (book));
-	if (g_file_exists (cmd)) {
+	if (g_file_test (cmd, G_FILE_TEST_EXISTS)) {
 		gnome_message (_("The book is already installed."));
 		g_free (cmd);
 		return NULL;
@@ -210,7 +210,7 @@ install_unpack_book (Bookshelf     *bookshelf,
 	
 	/* Install the book */
 	cmd = g_strdup_printf ("%s/books/%s", root, book_get_name_full (book));
-	if (g_file_exists (cmd)) {
+	if (g_file_test (cmd, G_FILE_TEST_EXISTS)) {
 		gnome_message (_("The book is already installed."));
 		g_free (cmd);
 		
@@ -270,7 +270,7 @@ install_book (Bookshelf *bookshelf, const gchar *filename, const gchar* root)
 	
 	install_create_directories (root);
 	
-	mime_type = gnome_vfs_mime_type_from_name (filename);
+	mime_type = gnome_vfs_get_mime_type (filename);
 	fd = bookshelf_get_function_database (bookshelf);
 	
 	/* Is it a .tar.gz? */

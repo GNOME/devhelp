@@ -106,7 +106,7 @@ help_browser_new (void)
 	HelpBrowserPriv   *priv;
 /* 	GtkWidget         *window; */
 
-	browser = gtk_type_new (HELP_BROWSER_TYPE);
+	browser = g_object_new (HELP_BROWSER_TYPE, NULL);
 	priv    = browser->priv;
 	priv->window  = devhelp_window_new ();
 	

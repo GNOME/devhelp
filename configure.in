@@ -2,100 +2,43 @@ AC_INIT(src/Makefile.am)
 
 DEVHELP_VERSION=0.3
 
-GLIB_REQUIRED=1.2.9
-GTK_REQUIRED=1.2.9
-GNOME_REQUIRED=1.2.8
-GNOME_LIBS_REQUIRED=1.2.8
-GNOME_PRINT_REQUIRED=0.29
-GNOME_VFS_REQUIRED=1.0.1
-GDK_PIXBUF_REQUIRED=0.11.0
-LIBXML_REQUIRED=1.8.14
-LIBGLADE_REQUIRED=0.16
-GTKHTML_REQUIRED=0.10.0
-ORBIT_REQUIRED=0.5.7
-OAF_REQUIRED=0.6.5
-BONOBO_REQUIRED=1.0.6
-GCONF_REQUIRED=1.0.4
+GLIB_REQUIRED=1.3.10
+GTK_REQUIRED=1.3.10
+GNOME_REQUIRED=1.105
+GNOME_UI_REQUIRED=1.105
+#GNOME_PRINT_REQUIRED=
+GNOME_VFS_REQUIRED=1.9.4
+LIBXML_REQUIRED=2.4.10
+LIBGLADE_REQUIRED=1.99.4
+LIBGTKHTML2_REQUIRED=1.99.2
+ORBIT_REQUIRED=2.3.99
+LIBIDL_REQUIRED=0.7.1
+BONOBO_ACTIVATION_REQUIRED=0.9.3
+LIBBONOBO_REQUIRED=1.107.0
+LIBBONOBOUI_REQUIRED=1.107.0
+GCONF_REQUIRED=1.1.5
 
 AC_SUBST(GLIB_REQUIRED)
 AC_SUBST(GTK_REQUIRED)
 AC_SUBST(GNOME_REQUIRED)
-AC_SUBST(GNOME_LIBS_REQUIRED)
-AC_SUBST(GNOME_PRINT_REQUIRED)
+AC_SUBST(GNOME_UI_REQUIRED)
+#AC_SUBST(GNOME_PRINT_REQUIRED)
 AC_SUBST(GNOME_VFS_REQUIRED)
-AC_SUBST(GDK_PIXBUF_REQUIRED)
 AC_SUBST(LIBXML_REQUIRED)
 AC_SUBST(LIBGLADE_REQUIRED)
-AC_SUBST(GTKHTML_REQUIRED)
+AC_SUBST(LIBGTKHTML2_REQUIRED)
 AC_SUBST(ORBIT_REQUIRED)
-AC_SUBST(OAF_REQUIRED)
-AC_SUBST(BONOBO_REQUIRED)
+AC_SUBST(LIBIDL_REQUIRED)
+AC_SUBST(BONOBO_ACTIVATION_REQUIRED)
+AC_SUBST(LIBBONOBO_REQUIRED)
+AC_SUBST(LIBUIBONOBO_REQUIRED)
 AC_SUBST(GCONF_REQUIRED)
-
-dnl VERSION_CANON(version)
-dnl                     1
-
-AC_DEFUN(VERSION_CANON, [`
-
-	dnl Assumes that there are no more than 999 revisions at a level,
-	dnl no more than three levels of revision.
-	dnl
-	dnl Any more than that, and test starts messing up the numeric
-	dnl comparisons because its integers overflow, and there's no
-	dnl way to do string comparisons in the shell.  Grr.
-	dnl
-	dnl Must come up with some way to fix this.
-
-	echo "$1" |
-	tr . '\012' |
-	sed -e 's/^/000/' -e 's/^.*\(...\)/\1/' |
-	tr -d '\012' |
-	sed 's/$/000000000/
-	     s/^\(.........\).*/\1/'
-`])
-
-dnl VERSION_INSIST(package, get-version-cmd, operator, want-version-var)
-dnl                1        2                3         4
-
-AC_DEFUN(VERSION_INSIST, [
-	want_version=[$]$4
-
-	case "$3" in
-		">")	g_operator=-gt ;;
-		">=")	g_operator=-ge ;;
-		"<")	g_operator=-lt ;;
-		"<=")	g_operator=-le ;;
-		"=")	g_operator=-eq ;;
-		"!=")	g_operator=-ne ;;
-		*)	AC_ERROR(Unknown operator $3 in configure script) ;;
-	esac
-
-	AC_MSG_CHECKING(for $1 $3 [$want_version])
-
-	if installed_version="`$2`"
-	then
-		AC_MSG_RESULT([$installed_version])
-	else
-		AC_ERROR($2 failed)
-	fi
-
-	if test "VERSION_CANON([$installed_version])" "$g_operator" \
-		"VERSION_CANON([$want_version])"
-	then
-		:
-		AC_SUBST($4)
-	else
-		AC_ERROR($1 version [$want_version] is required.)
-	fi
-])
 
 AM_INIT_AUTOMAKE(devhelp, $DEVHELP_VERSION)
 AM_CONFIG_HEADER(config.h)
-AM_MAINTAINER_MODE
-
-AM_PROG_XML_I18N_TOOLS
 
 AM_SANITY_CHECK
+AM_MAINTAINER_MODE
 
 AC_PROG_CC
 AC_PROG_CPP
@@ -104,100 +47,56 @@ AC_HEADER_STDC
 AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
 
-#AM_ACLOCAL_INCLUDE(macros)
+AM_PATH_ORBIT2
 
-dnl ** GLIB **
-dnl
-AM_PATH_GLIB($GLIB_REQUIRED,,
-AC_MSG_ERROR([
-*** GLIB $GLIB_REQUIRED or better is required. The latest version of GLIB
-*** is always available from ftp://ftp.gtk.org/.]))
+GNOME_COMMON_INIT
+GNOME_PLATFORM_GNOME_2(yes)
 
-dnl ** GTK **
-dnl
-AM_PATH_GTK($GTK_REQUIRED,,
-AC_MSG_ERROR([
-*** Gtk+ $GTK_REQUIRED or better is required. The latest version of GTK
-*** is always available from ftp://ftp.gtk.org/.]))
-
-AC_SUBST(GTK_REQUIRED)
-
-dnl ** GNOME **
-dnl
-AM_PATH_GNOME($GNOME_REQUIRED,,AC_MSG_ERROR([*** GNOME $GNOME_REQUIRED or better is required.]), gtkhtml xml vfs bonobo print libglade)
-AC_SUBST(GNOME_REQUIRED)
-
-AC_PATH_PROG(GNOME_CONFIG,gnome-config,no)
-if test x$GNOME_CONFIG = xno; then
-  AC_MSG_ERROR(Couldn't find gnome-config. Please install the GNOME package)
-fi
-  
-VERSION_INSIST(gnome-libs, $GNOME_CONFIG --version | awk '{print $2}', >=, GNOME_LIBS_REQUIRED)
-VERSION_INSIST(xml, $GNOME_CONFIG --modversion xml | awk -F- '{print $2}', >=, LIBXML_REQUIRED)
-VERSION_INSIST(gtkhtml, $GNOME_CONFIG --modversion gtkhtml | awk -F- '{print $2}', >=, GTKHTML_REQUIRED)
-VERSION_INSIST(oaf, $GNOME_CONFIG --modversion oaf | awk -F- '{print $2}', >=, OAF_REQUIRED)
-VERSION_INSIST(bonobo, $GNOME_CONFIG --modversion bonobo | awk -F- '{print $2}', >=, BONOBO_REQUIRED)
-VERSION_INSIST(libglade, $GNOME_CONFIG --modversion libglade | awk -F- '{print $2}', >=, LIBGLADE_REQUIRED)
-
-AC_SUBST(VFS_CFLAGS)
-AC_SUBST(VFS_LIBS)
-AC_SUBST(BONOBO_CFLAGS)
-AC_SUBST(BONOBO_LIBS)
-AC_SUBST(LIBXML_CFLAGS)
-AC_SUBST(LIBXML_LIBS)
-AC_SUBST(GTKHTML_CFLAGS)
-AC_SUBST(GTKHTML_LIBS)
-AC_SUBST(LIBGLADE_CFLAGS)
-AC_SUBST(LIBGLADE_LIBS)
-
-AM_PATH_ORBIT($ORBIT_REQUIRED,,AC_MSG_ERROR([ORBit $ORBIT_REQUIRED+ not installed or installation problem]))
-
-IDL_FLAGS=`gnome-config --cflags idl`
-AC_SUBST(IDL_FLAGS)
-
-dnl GCONF
-dnl 
-AM_PATH_GCONF($GCONF_REQUIRED,,AC_MSG_ERROR([
-*** gconf >= $GCONF_REQUIRED is required]),
-gconf-gtk)
-
-AC_ARG_ENABLE(install_schemas,
-	[  --disable-install-schemas        Disable installation of the gconf schemas])
-AM_CONDITIONAL(INSTALL_SCHEMAS, test x$enable_install_schemas != xno)
-
-if test x$enable_install_schemas != xno; then
-	AM_GCONF_SOURCE
-fi
-				 
-# find the actual value for $prefix that we'll end up with
-REAL_PREFIX=
-if test "x$prefix" = "xNONE"; then
-  REAL_PREFIX=$ac_default_prefix
-else
-  REAL_PREFIX=$prefix
-fi
-
-SYSCONFDIR_TMP="$sysconfdir"
-old_prefix=$prefix
-prefix=$REAL_PREFIX
-EXPANDED_SYSCONFDIR=`eval echo $SYSCONFDIR_TMP`
-prefix=$old_prefix
-AC_SUBST(EXPANDED_SYSCONFDIR)
-
+PKG_CHECK_MODULES(ALL, \
+	glib-2.0 >= $GLIB_REQUIRED \
+	gtk+-2.0 >= $GTK_REQUIRED \
+	libgnome-2.0 >= $GNOME_REQUIRED \
+	libgnomeui-2.0 >= $GNOME_UI_REQUIRED \
+	gnome-vfs-2.0 >= $GNOME_VFS_REQUIRED \
+	libxml-2.0 >= $LIBXML_REQUIRED \
+	libglade-2.0 >= $LIBGLADE_REQUIRED \
+	libgtkhtml-2.0 >= $LIBGTKHTML2_REQUIRED \
+	libIDL-2.0 >= $LIBIDL_REQUIRED \
+	ORBit-2.0 >= $ORBIT_REQUIRED \
+        bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED \
+	libbonobo-2.0 >= $LIBBONOBO_REQUIRED \
+	libbonoboui-2.0 >= $LIBBONOBOUI_REQUIRED \
+	gconf-2.0 >= $GCONF_REQUIRED)
+	
 ALL_LINGUAS="de es fr it no pl ru sk sv zh_TW"
-AM_GNOME_GETTEXT
 
-AC_SUBST(CFLAGS)
-AC_SUBST(CPPFLAGS)
-AC_SUBST(LDFLAGS)
+#GETTEXT_PACKAGE=devhelp
+#AC_SUBST(GETTEXT_PACKAGE)
+#AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
-PREFIX=$prefix
-AC_SUBST(PREFIX)
+AM_GLIB_GNU_GETTEXT
+
+AC_PROG_INTLTOOL
+
+AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
+
+DEVHELP_MODULES="bonobo-activation-2.0 libbonobo-2.0 libbonoboui-2.0 libgnome-2.0 libgnomeui-2.0 libxml-2.0 libgtkhtml-2.0 gnome-vfs-2.0 libglade-2.0 gconf-2.0"
+DEVHELP_CFLAGS="`$PKG_CONFIG --cflags $DEVHELP_MODULES`"
+AC_SUBST(DEVHELP_CFLAGS)
+DEVHELP_LIBS="`$PKG_CONFIG --libs $DEVHELP_MODULES`"
+AC_SUBST(DEVHELP_LIBS)
+DEVHELP_IDL_INCLUDES="`$PKG_CONFIG --variable=idldir $DEVHELP_MODULES | sed -e 's/^/ /' -e 's/ \+$//' -e 's/ \+/ -I /g' -e 's/^ \+//'`"
+AC_SUBST(DEVHELP_IDL_INCLUDES)
+
+LIBDEVHELP_MODULES="libbonoboui-2.0"
+LIBDEVHELP_CFLAGS="`$PKG_CONFIG --cflags $LIBDEVHELP_MODULES`"
+AC_SUBST(LIBDEVHELP_CFLAGS)
+LIBDEVHELP_LIBS="`$PKG_CONFIG --libs $LIBDEVHELP_MODULES`"
+AC_SUBST(LIBDEVHELP_LIBS)
 
 AC_OUTPUT([
 Makefile
 devhelp.spec
-intl/Makefile
 po/Makefile.in
 src/Makefile
 ui/Makefile

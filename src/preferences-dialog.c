@@ -30,7 +30,6 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <gtk/gtk.h>
-#include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-i18n.h>
 #include <glade/glade-xml.h>
 #include "preferences-dialog.h"
@@ -46,7 +45,7 @@ struct _PreferencesDialog {
 
 static void setup_hack_option_menu (GtkOptionMenu        *option_menu,
 				    const OptionMenuData *items,
-				    GtkSignalFunc         func,
+				    GCallback             func,
 				    gpointer              user_data);
 
 
@@ -75,9 +74,10 @@ pd_sidebar_visible_changed_cb (Preferences         *prefs,
 static gboolean
 prefs_destroy_cb (GtkWidget *widget, PreferencesDialog *dialog)
 {
-	gtk_signal_disconnect_by_data (GTK_OBJECT (dialog->prefs),
-				       dialog);
-
+#if GNOME2_CONVERSION_COMPLETE   
+	g_signal_handlers_disconnect_by_data (G_OBJECT (dialog->prefs),
+			                      dialog);
+#endif
 	gtk_widget_destroy (dialog->dialog);
 
 	g_free (dialog);
@@ -102,9 +102,9 @@ prefs_button_sidebar_toggled_cb (GtkToggleButton     *tb,
 {
 	g_return_if_fail (dialog != NULL);
 	
-	gtk_object_set (GTK_OBJECT (dialog->prefs), 
-			"sidebar_visible", gtk_toggle_button_get_active (tb),
-			NULL);
+	g_object_set (G_OBJECT (dialog->prefs), 
+		      "sidebar_visible", gtk_toggle_button_get_active (tb),
+		      NULL);
 }
 
 static void
@@ -112,12 +112,12 @@ prefs_menu_zoom_activate_cb (GtkMenuItem *item, PreferencesDialog *dialog)
 {
 	gint index;
 	
-	index = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (item), 
-						      "index"));
+	index = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (item), 
+						    "index"));
 
-	gtk_object_set (GTK_OBJECT (dialog->prefs),
-			"zoom_level", index,
-			NULL);
+	g_object_set (G_OBJECT (dialog->prefs),
+		      "zoom_level", index,
+		      NULL);
 }
 
 static void
@@ -139,7 +139,7 @@ prefs_button_maxhits_changed_cb (GtkWidget *widget, PreferencesDialog *dialog)
 static void
 setup_hack_option_menu (GtkOptionMenu          *option_menu,
 			const OptionMenuData   *items,
-			GtkSignalFunc           func,
+			GCallback               func,
 			gpointer                user_data)
 {
 	GtkWidget *menu, *menu_item;
@@ -161,14 +161,14 @@ setup_hack_option_menu (GtkOptionMenu          *option_menu,
 		gtk_widget_show (menu_item);
 		gtk_menu_append (GTK_MENU (menu), menu_item);
 
-		gtk_object_set_data (GTK_OBJECT (menu_item),
-				     "index",
-				     GINT_TO_POINTER (i));
+		g_object_set_data (G_OBJECT (menu_item),
+				   "index",
+				   GINT_TO_POINTER (i));
 
-		gtk_signal_connect (GTK_OBJECT (menu_item),
-				    "activate",
-				    func,
-				    user_data);
+		g_signal_connect (G_OBJECT (menu_item),
+				  "activate",
+				  func,
+				  user_data);
 	}		
 
 	gtk_widget_show (menu);
@@ -189,38 +189,39 @@ preferences_dialog_new (Preferences *prefs)
 	dialog = g_new (PreferencesDialog, 1);
 	dialog->prefs = prefs;
 
-	gui = glade_xml_new (DATA_DIR "/devhelp/glade/devhelp.glade", 
-			     "prefs_dialog");
+	gui = glade_xml_new (DATA_DIR "/devhelp/glade/devhelp2.glade", 
+			     "prefs_dialog",
+			     NULL);
 	
 	dialog->dialog = glade_xml_get_widget (gui, "prefs_dialog");
 
-	gtk_signal_connect (GTK_OBJECT (dialog->dialog),
-			    "destroy",
-			    GTK_SIGNAL_FUNC (prefs_destroy_cb), 
-			    dialog);
+	g_signal_connect (G_OBJECT (dialog->dialog),
+			  "destroy",
+			  G_CALLBACK (prefs_destroy_cb), 
+			  dialog);
 
-	gtk_signal_connect (GTK_OBJECT (prefs),
-			    "sidebar_visible_changed",
-			    GTK_SIGNAL_FUNC (pd_sidebar_visible_changed_cb),
-			    dialog);
+	g_signal_connect (G_OBJECT (prefs),
+			  "sidebar_visible_changed",
+			  G_CALLBACK (pd_sidebar_visible_changed_cb),
+			  dialog);
 
-	gtk_signal_connect (GTK_OBJECT (prefs),
-			    "zoom_level_changed",
-			    GTK_SIGNAL_FUNC (pd_zoom_level_changed_cb),
-			    dialog);
+	g_signal_connect (G_OBJECT (prefs),
+			  "zoom_level_changed",
+			  G_CALLBACK (pd_zoom_level_changed_cb),
+			  dialog);
 	
 	w = glade_xml_get_widget (gui, "prefs_button_close");
 
-	gtk_signal_connect (GTK_OBJECT (w),
-			    "clicked",
-			    GTK_SIGNAL_FUNC (prefs_button_close_clicked_cb),
-			    dialog);
+	g_signal_connect (G_OBJECT (w),
+			  "clicked",
+			  G_CALLBACK (prefs_button_close_clicked_cb),
+			  dialog);
 
-	gtk_object_get (GTK_OBJECT (dialog->prefs), 
-			"sidebar_visible", &sb_visible,
-			"sidebar_position", &sb_position,
-			"zoom_level", &zoom_level,
-			NULL);
+	g_object_get (G_OBJECT (dialog->prefs), 
+		      "sidebar_visible", &sb_visible,
+		      "sidebar_position", &sb_position,
+		      "zoom_level", &zoom_level,
+		      NULL);
 	
 	dialog->sidebar_button = 
 		glade_xml_get_widget (gui, "prefs_checkbutton_sidebar");
@@ -228,16 +229,16 @@ preferences_dialog_new (Preferences *prefs)
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->sidebar_button),
 				      sb_visible);
 
-	gtk_signal_connect (GTK_OBJECT (dialog->sidebar_button), 
-			    "toggled",
-			    GTK_SIGNAL_FUNC (prefs_button_sidebar_toggled_cb), 
-			    dialog);
+	g_signal_connect (G_OBJECT (dialog->sidebar_button), 
+			  "toggled",
+			  G_CALLBACK (prefs_button_sidebar_toggled_cb), 
+			  dialog);
 
 	dialog->zoom_menu = glade_xml_get_widget (gui, "prefs_menu_zoom");
 
 	setup_hack_option_menu (GTK_OPTION_MENU (dialog->zoom_menu),
 				zoom_levels,
-				GTK_SIGNAL_FUNC (prefs_menu_zoom_activate_cb),
+				G_CALLBACK (prefs_menu_zoom_activate_cb),
 				dialog);
 
 	gtk_option_menu_set_history (GTK_OPTION_MENU (dialog->zoom_menu), 
@@ -246,20 +247,20 @@ preferences_dialog_new (Preferences *prefs)
 	dialog->maxhits_button = glade_xml_get_widget (gui, 
 						       "prefs_button_maxhits");
 
-	gtk_signal_connect (GTK_OBJECT (dialog->maxhits_button), 
-			    "toggled",
-			    GTK_SIGNAL_FUNC (prefs_button_maxhits_toggled_cb), 
-			    dialog);
+	g_signal_connect (G_OBJECT (dialog->maxhits_button), 
+			  "toggled",
+			  G_CALLBACK (prefs_button_maxhits_toggled_cb), 
+			  dialog);
 
 	dialog->maxhits_spinbutton = 
 		glade_xml_get_widget (gui, "prefs_spinbutton_maxhits");
 
-	gtk_signal_connect (GTK_OBJECT (dialog->maxhits_spinbutton), 
-			    "changed",
-			    GTK_SIGNAL_FUNC (prefs_button_maxhits_changed_cb), 
-			    dialog);
+	g_signal_connect (G_OBJECT (dialog->maxhits_spinbutton), 
+			  "changed",
+			  G_CALLBACK (prefs_button_maxhits_changed_cb), 
+			  dialog);
 		
-	gtk_object_unref (GTK_OBJECT (gui));
+	g_object_unref (G_OBJECT (gui));
 
 	return dialog->dialog;
 }
