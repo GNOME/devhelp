@@ -1,5 +1,9 @@
 2003-05-12  Ross Burton  <ross@burtonini.com>
 
+	* src/dh-base.c: Print an error message instead of ignoring errors.
+
+2003-05-12  Ross Burton  <ross@burtonini.com>
+
 	* README: New and improved README file.
 
 2003-05-09  Ross Burton  <ross@burtonini.com>

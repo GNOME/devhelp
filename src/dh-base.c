@@ -180,7 +180,12 @@ base_add_books (DhBase *base, const gchar *directory)
 						 GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (result != GNOME_VFS_OK) {
-		/* TODO: print message */
+		if (result == GNOME_VFS_ERROR_NOT_FOUND) {
+			d(g_print ("Cannot find %s\n", directory));
+			return;
+		}
+		g_print ("Cannot read directory %s: %s",
+			directory, gnome_vfs_result_to_string (result));
 		return;
 	}
 
