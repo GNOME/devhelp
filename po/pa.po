@@ -1,0 +1,131 @@
+# KBST Punjab translation of punlinux.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: punlinux\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-04 15:31+0530\n"
+"PO-Revision-Date: 2004-01-31 07:45+0530\n"
+"Last-Translator: Amanpreet Singh Alam <amanlinux@netscape.net>\n"
+"Language-Team: KBST Punjab <kbstpunjab@netscape.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: devhelp.desktop.in.h:1
+msgid "Developer's Help program"
+msgstr "ਵਿਕਾਸਵਾਦੀਆਂ·ਲਈ·ਸਹਾਈ·ਕਾਰਜ"
+
+#: devhelp.desktop.in.h:2
+msgid "Devhelp"
+msgstr "ਵਿਕਾਸਸਹਾਈ"
+
+#: devhelp.keys.in.h:1
+msgid "Devhelp Book"
+msgstr "ਵਿਕਾਸਸਹਾਈ·ਕਿਤਾਬ"
+
+#: src/dh-html-gtkhtml2.c:532
+msgid ""
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
+msgstr "ਜਿਸ·ਦੀ·ਖੋਜ·ਤੁਸੀ·ਕਰ·ਰਹੇ·ਹੋ·ਉਸ·ਲਈ·ਜਾਂ·ਤਾਂ·ਖਬਿਉ·ਸੰਖੇਪ·ਵਿਚੋਂ·ਵਿਸ਼ਾ·ਚੁਣੋ·ਜਾਂ·ਖੋਜ·ਪਟੀ·ਖੋਲੋ"
+
+#: src/dh-main.c:259
+msgid "Specify the size and location of the window"
+msgstr "ਝਰੋਖੇ·ਦਾ·ਅਕਾਰ·ਅਤੇ·ਥਾਂ·ਨਿਰਧਾਰਿਤ·ਕਰੋ"
+
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "ਚੌਡ਼ਾਈ·xਉਚਾਈ+··XOFF+YOFF"
+
+#: src/dh-main.c:268
+msgid "Search for a function"
+msgstr "ਫੰਕਸ਼ਨ·ਲਈ·ਖੋਜ·ਕਰੋ"
+
+#: src/dh-main.c:277
+msgid "Quit any running Devhelp"
+msgstr "ਕੋਈ·ਵੀ·ਚਲ·ਰਹੀ·ਵਿਕਾਸਸਹਾਈ·ਬੰਦ·ਕਰੋ"
+
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "ਉਮੀਦ·ਕੀਤੀ·ਗਈ·ਹੈ·ਕਿ·'%s' ਮਿਲ·ਗਿਆ·ਹੈ· '%s' ਇਸ·ਸਤਰ·ਤੇ %d, ਕਾਲਮ·%d·ਤੇ"
+
+#: src/dh-parser.c:120
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "ਨਾਜ਼ਾਇਜ਼·ਨਾਉਥਾਂ·'%s' ਇਸ·ਸਤਰ·ਤੇ %d, ਕਾਲਮ %d·ਤੇ"
+
+#: src/dh-parser.c:149
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "ਸਤਰ·%d, ਕਾਲਮ %d·ਉਪਰ·ਸਿਰਲੇਖ,·ਨਾਉ·ਅਤੇ·ਸੰਬੰਧਿਤ·ਚੀਜ਼ਾਂ·ਚਾਹੀਦੀਆਂ·ਹਨ"
+
+#: src/dh-parser.c:202
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "ਸਤਰ·%d, ਕਾਲਮ %d·ਉਪਰ··<sub> ਵਿਚ·ਨਾਉ·ਅਤੇ·ਸੰਬੰਧਿਤ·ਚੀਜ਼ਾਂ·ਚਾਹੀਦੀਆਂ·ਹਨ"
+
+#: src/dh-parser.c:250
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr "ਸਤਰ·%d, ਕਾਲਮ %d·ਉਪਰ··<function> ਵਿਚ·ਨਾਉ·ਅਤੇ·ਸੰਬੰਧਿਤ·ਚੀਜ਼ਾਂ·ਚਾਹੀਦੀਆਂ·ਹਨ"
+
+#: src/dh-parser.c:337 src/dh-parser.c:423
+msgid "Could not create book parser"
+msgstr "ਕਿਤਾਬ·ਪਾਰਸਰ·ਨਹੀ·ਬਣਾਇਆ·ਜਾ·ਸਕਦਾ·ਹੈ"
+
+#: src/dh-parser.c:347 src/dh-parser.c:433
+msgid "Could not create markup parser"
+msgstr "ਮਾਰਕਅਪ·ਪਾਰਸਰ·ਨਹੀ·ਬਣਾਇਆ·ਜਾ·ਸਕਦਾ·ਹੈ"
+
+#: src/dh-parser.c:479
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "ਕਿਤਾਬ·'%s': %s·ਖੋਲੀ·ਨਹੀ·ਜਾ·ਸਕਦੀ·ਹੈ"
+
+#: src/dh-search.c:417
+msgid "_Search:"
+msgstr "ਖੋਜ·:"
+
+#: src/dh-search.c:461
+msgid "Section"
+msgstr "ਵਿਭਾਗ"
+
+#: src/dh-window.c:105
+msgid "_File"
+msgstr "ਫਾਇਲ"
+
+#: src/dh-window.c:106
+msgid "_Go"
+msgstr "ਜਾਉ"
+
+#: src/dh-window.c:107
+msgid "_Help"
+msgstr "ਸਹਾਇਤਾ"
+
+#: src/dh-window.c:285
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "ਯੂਆਈ·ਨਿਸ਼ਚਿਤ·ਨਹੀ·ਕੀਤਾ·ਜਾ·ਸਕਦਾ·ਹੈ: %s"
+
+#: src/dh-window.c:347
+msgid "Contents"
+msgstr "ਸੰਖੇਪ"
+
+#: src/dh-window.c:358
+msgid "Search"
+msgstr "ਖੋਜ"
+
+#: src/dh-window.c:423
+msgid "A developer's help browser for GNOME 2"
+msgstr "ਗਨੋਮ·੨·ਲਈ·ਵਿਕਾਸ਼ਵਾਦੀ·ਲਈ·ਸਹਾਇਤਾ·ਦਰਸ਼ਕ"
+
+#: src/dh-window.c:438
+msgid "Devhelp project page"
+msgstr "ਵਿਕਾਸ·ਸਹਾਈ·ਪੋਜੈਕਟ·ਸਫ਼ਾ"
+
+#: src/dh-window.c:442
+msgid "Bug report Devhelp"
+msgstr "ਵਿਕਾਸ·ਸਹਾਈ·ਬਗ··ਰਿਪੋਰਟ·"
