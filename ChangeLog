@@ -1,3 +1,13 @@
+2003-04-24  Mikael Hallendal <micke@codefactory.se>
+
+        * Release 0.6.0
+
+        * Makefile.am: Added mime_DATA to EXTRA_DIST.
+
+        * configure.in: Updated to version 0.6.0
+	
+	* NEWS: Updated with news for version 0.6.0
+
 2003-04-09  Guntupalli Karunakar  <karunakar@freedomink.org>
 
 	* configure.in: Added "hi" to ALL_LINGUAS

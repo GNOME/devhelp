@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.2\n"
-"POT-Creation-Date: 2003-03-09 05:44+0000\n"
+"POT-Creation-Date: 2003-04-24 22:06+0200\n"
 "PO-Revision-Date: 2003-03-09 05:50+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
@@ -55,27 +55,14 @@ msgid "_About"
 msgstr "_Sobre"
 
 #: src/dh-window.c:287
-#, c-format
-msgid ""
-"<b>Could not read all books</b>\n"
-"\n"
-"The following errors occured whilst reading the books:\n"
-"%s"
-msgstr ""
-"<b>Incapaz de ler todos os livros</b>\n"
-"\n"
-"Ocorreram os seguintes erros ao ler os livros:\n"
-"%s"
-
-#: src/dh-window.c:306
 msgid "Contents"
 msgstr "Conteudos"
 
-#: src/dh-window.c:317
+#: src/dh-window.c:298
 msgid "Search"
 msgstr "Procurar"
 
-#: src/dh-window.c:379
+#: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Um navegador de ajuda de programadores para o GNOME 2"
 
@@ -90,6 +77,17 @@ msgstr ""
 "procura para procurar o que deseja.<p>Utilize <b>Shift Cima/Baixo</b> para "
 "navegar na árvore à esquerda, e <b>Shift Esquerda/Direita</b> para expandir "
 "e recolher os livros na árvore."
+
+#~ msgid ""
+#~ "<b>Could not read all books</b>\n"
+#~ "\n"
+#~ "The following errors occured whilst reading the books:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>Incapaz de ler todos os livros</b>\n"
+#~ "\n"
+#~ "Ocorreram os seguintes erros ao ler os livros:\n"
+#~ "%s"
 
 #~ msgid "Choose a book..."
 #~ msgstr "Seleccione um livro..."

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
-"POT-Creation-Date: 2003-03-06 19:39+0100\n"
+"POT-Creation-Date: 2003-04-24 22:06+0200\n"
 "PO-Revision-Date: 2003-03-06 22:19+0200\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -23,11 +23,11 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "תוכנת עזרה למפתחים"
 
-#: src/dh-main.c:262
+#: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "חפש פונקציה"
 
-#: src/dh-main.c:271
+#: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "צא מכל Devhelp מופעל"
 
@@ -57,27 +57,14 @@ msgid "_About"
 msgstr "_אודות"
 
 #: src/dh-window.c:287
-#, c-format
-msgid ""
-"<b>Could not read all books</b>\n"
-"\n"
-"The following errors occured whilst reading the books:\n"
-"%s"
-msgstr ""
-"<b>לא ניתן לקרוא את כל הספרים</b>\n"
-"\n"
-"השגיאות הבאות ארעו בזמן קריאת הספרים:\n"
-"%s"
-
-#: src/dh-window.c:306
 msgid "Contents"
 msgstr "תכנים"
 
-#: src/dh-window.c:317
+#: src/dh-window.c:298
 msgid "Search"
 msgstr "חיפוש"
 
-#: src/dh-window.c:378
+#: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "דפדפן עזרה למפתחים בעבור Gnome 2"
 
@@ -88,8 +75,17 @@ msgid ""
 "tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
 "books in the tree."
 msgstr ""
-"בחר נושא בתכנים בצד שמאל או החלף לחלונית החיפוש "
-"כדי למצוא את מה שאתה מחפש.<p>השתמש ב <b>Shift Up/Down</b> כדי לנווט "
-"בעץ בצד שמאל, ו <b>Shift Left/Right</b> כדי להרחיב או לצמצם את "
-"הספרים בעץ."
+"בחר נושא בתכנים בצד שמאל או החלף לחלונית החיפוש כדי למצוא את מה שאתה מחפש."
+"<p>השתמש ב <b>Shift Up/Down</b> כדי לנווט בעץ בצד שמאל, ו <b>Shift Left/"
+"Right</b> כדי להרחיב או לצמצם את הספרים בעץ."
 
+#~ msgid ""
+#~ "<b>Could not read all books</b>\n"
+#~ "\n"
+#~ "The following errors occured whilst reading the books:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>לא ניתן לקרוא את כל הספרים</b>\n"
+#~ "\n"
+#~ "השגיאות הבאות ארעו בזמן קריאת הספרים:\n"
+#~ "%s"

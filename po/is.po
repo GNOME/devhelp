@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-04-05 13:29+0200\n"
+"POT-Creation-Date: 2003-04-24 22:06+0200\n"
 "PO-Revision-Date: 2003-04-05 13:40--100\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
@@ -51,6 +51,7 @@ msgid "_Help"
 msgstr "_Hjálp"
 
 #  About menu
+#. About menu
 #: src/dh-window.c:110
 msgid "_About"
 msgstr "_Um"
@@ -68,6 +69,13 @@ msgid "A developer's help browser for GNOME 2"
 msgstr "Hjálparvafri fyrir þróendur í GNOME2"
 
 #: src/dh-html-gtkhtml2.c:526
-msgid "Select a subject in the contents to the left or switch to the search pane to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the tree to the left, and <b>Shift Left/Right</b> to expand and collapse the books in the tree."
-msgstr "Veldu efni í innihaldsvafra á vinstihönd eða í leitarflipanum eftir því sem þú leitar að.<p>Notaðu <b>Shift Upp/Niður</b> til að flakka í gegnum hjálpartréð hér til vinstri, og <b>Shift Hægri/Vinstri</b> til að opna/loka bókum í hjálpartrénu."
-
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Veldu efni í innihaldsvafra á vinstihönd eða í leitarflipanum eftir því sem "
+"þú leitar að.<p>Notaðu <b>Shift Upp/Niður</b> til að flakka í gegnum "
+"hjálpartréð hér til vinstri, og <b>Shift Hægri/Vinstri</b> til að opna/loka "
+"bókum í hjálpartrénu."

@@ -1,3 +1,13 @@
+Devhelp 0.6:
+------------
+* Added both html widget implementations to tarball (Mikael)
+* Lots of work on error handling                    (Ross)
+* Fixes to searched paths                           (Ross)
+* Added gnome-vfs MIME support                      (Ross)
+* New and updated translations, thanks to Kang Jeong-Hee, Vincent van Adrighem,
+  Duarte Loreto, Zbigniew Chyla, Takeshi AIHANA, Metin Amiroff, 
+  Samúel Jón Gunnarsson, Guntupalli Karunakar.
+
 Devhelp 0.5:
 ------------
 * GNOME 2 port             (Mikael, Richard)

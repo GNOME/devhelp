@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.5\n"
-"POT-Creation-Date: 2003-03-04 09:26+0900\n"
+"POT-Creation-Date: 2003-04-24 22:06+0200\n"
 "PO-Revision-Date: 2003-03-02 10:14+0900\n"
 "Last-Translator: Kang Jeong-Hee <Keizi@mail.co.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -22,11 +22,11 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "개발자를 도와주는 프로그램"
 
-#: src/dh-main.c:262
+#: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "함수 찾기"
 
-#: src/dh-main.c:271
+#: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr ""
 
@@ -56,27 +56,14 @@ msgid "_About"
 msgstr "정보(_A)"
 
 #: src/dh-window.c:287
-#, c-format
-msgid ""
-"<b>Could not read all books</b>\n"
-"\n"
-"The following errors occured whilst reading the books:\n"
-"%s"
-msgstr ""
-"<b>책을 하나도 못 읽겠습니다</b>\n"
-"\n"
-"책을 읽다가 이런 오류가 났습니다:\n"
-"%s"
-
-#: src/dh-window.c:306
 msgid "Contents"
 msgstr "내용"
 
-#: src/dh-window.c:317
+#: src/dh-window.c:298
 msgid "Search"
 msgstr "검색"
 
-#: src/dh-window.c:378
+#: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "그놈 2 개발자를 도와주는 브라우저"
 
@@ -87,7 +74,17 @@ msgid ""
 "tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
 "books in the tree."
 msgstr ""
-"왼쪽의 내용 칸에서 고르거나 검색 칸에서 찾아보세요.<p>"
-"<b>쉬프트 키를 누르고 위나 아래 화살표 누르면</b> 왼쪽의 트리에서 움직이고"
-"<b>쉬프트 키를 누르고 왼쪽이나 오른쪽 화살표를 누르면</b> 트리의 책을"
-"접거나 폅니다."
+"왼쪽의 내용 칸에서 고르거나 검색 칸에서 찾아보세요.<p><b>쉬프트 키를 누르고 "
+"위나 아래 화살표 누르면</b> 왼쪽의 트리에서 움직이고<b>쉬프트 키를 누르고 왼"
+"쪽이나 오른쪽 화살표를 누르면</b> 트리의 책을접거나 폅니다."
+
+#~ msgid ""
+#~ "<b>Could not read all books</b>\n"
+#~ "\n"
+#~ "The following errors occured whilst reading the books:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>책을 하나도 못 읽겠습니다</b>\n"
+#~ "\n"
+#~ "책을 읽다가 이런 오류가 났습니다:\n"
+#~ "%s"

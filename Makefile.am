@@ -20,6 +20,7 @@ EXTRA_DIST =			\
 	TODO 			\
 	$(DESKTOP_IN_FILES)	\
 	$(KEYS_IN_FILES)	\
+	$(mime_DATA)            \
 	devhelp.desktop.in 	\
 	devhelp.spec.in 	\
 	intltool-merge.in 	\

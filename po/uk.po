@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.5.0\n"
-"POT-Creation-Date: 2003-02-25 14:13+0200\n"
+"POT-Creation-Date: 2003-04-24 22:06+0200\n"
 "PO-Revision-Date: 2003-02-25 03:23--500\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <linux@linux.org.ua>\n"
@@ -22,11 +22,11 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Програма довідки для розробників"
 
-#: src/dh-main.c:242
+#: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Знайти функцію"
 
-#: src/dh-main.c:251
+#: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Вийти зі всіх запущених екземплярів DevHelp"
 
@@ -56,27 +56,32 @@ msgid "_About"
 msgstr "_Про"
 
 #: src/dh-window.c:287
-#, c-format
-msgid ""
-"<b>Could not read all books</b>\n"
-"\n"
-"The following errors occured whilst reading the books:\n"
-"%s"
-msgstr ""
-"<b>Не вдалося зчитати всі книги</b>\n"
-"\n"
-"Такі помилки сталися під час зчитування книг:\n"
-"%s"
-
-#: src/dh-window.c:306
 msgid "Contents"
 msgstr "Зміст"
 
-#: src/dh-window.c:317
+#: src/dh-window.c:298
 msgid "Search"
 msgstr "Пошук"
 
-#: src/dh-window.c:378
+#: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Переглядач довідки для розробників"
 
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+
+#~ msgid ""
+#~ "<b>Could not read all books</b>\n"
+#~ "\n"
+#~ "The following errors occured whilst reading the books:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>Не вдалося зчитати всі книги</b>\n"
+#~ "\n"
+#~ "Такі помилки сталися під час зчитування книг:\n"
+#~ "%s"

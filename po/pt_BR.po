@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.2\n"
-"POT-Creation-Date: 2003-02-28 04:30+0100\n"
+"POT-Creation-Date: 2003-04-24 22:06+0200\n"
 "PO-Revision-Date: 2003-02-28 02:00-0300\n"
 "Last-Translator: Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
@@ -24,11 +24,11 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Programa de Ajuda para Programadores"
 
-#: src/dh-main.c:242
+#: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Buscar por uma função"
 
-#: src/dh-main.c:251
+#: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Encerrar qualquer Devhelp rodando"
 
@@ -58,29 +58,39 @@ msgid "_About"
 msgstr "_Sobre"
 
 #: src/dh-window.c:287
-#, c-format
-msgid ""
-"<b>Could not read all books</b>\n"
-"\n"
-"The following errors occured whilst reading the books:\n"
-"%s"
-msgstr ""
-"<b>Impossível ler todos os livros</b>\n"
-"\n"
-"Os seguintes erros ocorreram durante a leitura dos livros:\n"
-"%s"
-
-#: src/dh-window.c:306
 msgid "Contents"
 msgstr "Conteúdo"
 
-#: src/dh-window.c:317
+#: src/dh-window.c:298
 msgid "Search"
 msgstr "Buscar"
 
-#: src/dh-window.c:378
+#: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Um navegador de ajuda para programadores para o GNOME 2"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Selecione um assunto nos conteúdos à esquerda, ou vá para o painel de "
+"buscapara procurar o que deseja.<p>Use <b>Shift Cima/Baixo</b> para navegar "
+"naárvore à esquerda, e <b>Shift Esquerda/Direita</b> para expandir e "
+"recolheros livros na árvore."
+
+#~ msgid ""
+#~ "<b>Could not read all books</b>\n"
+#~ "\n"
+#~ "The following errors occured whilst reading the books:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>Impossível ler todos os livros</b>\n"
+#~ "\n"
+#~ "Os seguintes erros ocorreram durante a leitura dos livros:\n"
+#~ "%s"
 
 #~ msgid "'%s' is not a valid book"
 #~ msgstr "'%s' não é um livro válido"
@@ -99,17 +109,6 @@ msgstr "Um navegador de ajuda para programadores para o GNOME 2"
 
 #~ msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
 #~ msgstr "Livro '%s' é inválido, não é conformante com o DTD (%s)."
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Selecione um assunto nos conteúdos à esquerda, ou vá para o painel de "
-#~ "buscapara procurar o que deseja.<p>Use <b>Shift Cima/Baixo</b> para "
-#~ "navegar naárvore à esquerda, e <b>Shift Esquerda/Direita</b> para "
-#~ "expandir e recolheros livros na árvore."
 
 #~ msgid "Open %s"
 #~ msgstr "Abrir %s"

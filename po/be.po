@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD.be\n"
-"POT-Creation-Date: 2003-02-20 19:32+0100\n"
+"POT-Creation-Date: 2003-04-24 22:06+0200\n"
 "PO-Revision-Date: 2003-02-21 20:26GMT+2\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: belarusian <i18n@mova.org>\n"
@@ -23,11 +23,11 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Праграма дапамогі распрацоўшчыкам"
 
-#: src/dh-main.c:242
+#: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Пошук для функцыі"
 
-#: src/dh-main.c:251
+#: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Выхад з запушчанага Devhelp"
 
@@ -57,29 +57,38 @@ msgid "_About"
 msgstr "_Пра праграму"
 
 #: src/dh-window.c:287
-#, c-format
-msgid ""
-"<b>Could not read all books</b>\n"
-"\n"
-"The following errors occured whilst reading the books:\n"
-"%s"
-msgstr ""
-"<b>Немагчыма прачытаць усе кнігі</b>\n"
-"\n"
-"Адбылася памылка пад час чытаньня кніг:\n"
-"%s"
-
-#: src/dh-window.c:306
 msgid "Contents"
 msgstr "Зьмест"
 
-#: src/dh-window.c:317
+#: src/dh-window.c:298
 msgid "Search"
 msgstr "Пошук"
 
-#: src/dh-window.c:378
+#: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Праглядальнік даведкі распрацоўшчыка для GNOME 2"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Выбярыце тэму са зьместа з левага боку ці пераключыцеся на панэль пошуку. "
+"<p>Выкарыстоўвайце <b>Shift Up/Down</b> для навігацыі па дрэве, і <b>Shift "
+"Left/Right</b> для згортваньня й разгортваньня кніг у дрэве."
+
+#~ msgid ""
+#~ "<b>Could not read all books</b>\n"
+#~ "\n"
+#~ "The following errors occured whilst reading the books:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>Немагчыма прачытаць усе кнігі</b>\n"
+#~ "\n"
+#~ "Адбылася памылка пад час чытаньня кніг:\n"
+#~ "%s"
 
 #~ msgid "'%s' is not a valid book"
 #~ msgstr "'%s' - не зьяўляецца кнігай DevHelp"
@@ -90,16 +99,5 @@ msgstr "Праглядальнік даведкі распрацоўшчыка �
 #~ msgid "Couldn't find file '%s'"
 #~ msgstr "Файл '%s' не адшуканы"
 
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Выбярыце тэму са зьместа з левага боку ці пераключыцеся на панэль пошуку. "
-#~ "<p>Выкарыстоўвайце <b>Shift Up/Down</b> для навігацыі па дрэве, і "
-#~ "<b>Shift Left/Right</b> для згортваньня й разгортваньня кніг у дрэве."
-
 #~ msgid "Open %s"
 #~ msgstr "Адчыніць %s"
-
