@@ -1,9 +1,7 @@
 # French translation of devhelp.
-# Copyright (C) 2001-2004 Free Software Foundation, Inc.
-# This file is under the same license as the devhelp package.
-#
+# Copyright (C) 2001-2003 Free Software Foundation, Inc.
 # maintainer: Christophe Fergeau <christophe.fergeau@laposte.net>, 2001.
-# Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2002-2004.
+# Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2002-2003.
 # Laurent RICHARD <laurent.richard@lilit.be>, 2003.
 # Sebastien Bacher <seb128@debian.org>, 2003.
 # 
@@ -11,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-17 13:18+0100\n"
-"PO-Revision-Date: 2004-01-17 13:14+0100\n"
-"Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
+"POT-Creation-Date: 2003-10-07 23:00+0200\n"
+"PO-Revision-Date: 2003-10-07 21:08+0200\n"
+"Last-Translator: Sebastien Bacher <seb128@debian.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,12 +51,12 @@ msgstr "Rechercher une fonction"
 
 #: src/dh-main.c:277
 msgid "Quit any running Devhelp"
-msgstr "Quitter tous les Devhelp en cours de fonctionnement"
+msgstr "Quitter tous les Devhelp fonctionnant"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Attendu « %s » reçu « %s » à la ligne %d, colonne %d"
+msgstr "Attendu « %s » reçu « %s » à la ligne %s, colonne %d"
 
 #: src/dh-parser.c:120
 #, c-format
@@ -89,7 +87,7 @@ msgstr ""
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
-msgstr "Impossible de créer l'analyseur de livres"
+msgstr "Impossible de créer l'analyseur de livre"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
@@ -108,40 +106,35 @@ msgstr "_Rechercher :"
 msgid "Section"
 msgstr "Section"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/dh-window.c:106
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "A_ller"
 
-#: src/dh-window.c:107
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "_Aide"
 
-#: src/dh-window.c:283
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Impossible de définir l'UI : %s"
-
-#: src/dh-window.c:343
+#: src/dh-window.c:339
 msgid "Contents"
 msgstr "Sommaire"
 
-#: src/dh-window.c:354
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "Rechercher"
 
-#: src/dh-window.c:419
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un navigateur d'aide pour les développeurs GNOME 2"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:430
 msgid "Devhelp project page"
 msgstr "Page du projet Devhelp"
 
-#: src/dh-window.c:438
+#: src/dh-window.c:434
 msgid "Bug report Devhelp"
 msgstr "Signaler une anomalie sur Devhelp "
 

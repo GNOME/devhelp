@@ -26,7 +26,8 @@ devhelp_SOURCES = 					\
 
 devhelp_LDADD = 					\
         @DEVHELP_LIBS@ 					\
-        libdevhelp.la
+        libdevhelp.la					\
+	$(top_builddir)/libegg/menu/libegg-menu.la
 
 devhelpdir=$(libdir)/devhelp
 
@@ -63,7 +64,8 @@ libdevhelp_la_SOURCES =					\
 
 libdevhelp_la_LIBADD =					\
 	@LIBDEVHELP_LIBS@				\
-	@HTML_WIDGET_LIBS@
+	@HTML_WIDGET_LIBS@				\
+	$(top_builddir)/libegg/menu/libegg-menu.la
 
 libdevhelp_la_LDFLAGS = -avoid-version -module
 

@@ -1,1 +1,9 @@
+libegg/menu/egg-action.c
+libegg/menu/egg-markup.c
+libegg/menu/egg-menu-merge.c
+libegg/menu/test-actions.c
+libegg/menu/test-merge.c
+libegg/toolbar/eggtoolbar.c
+libegg/toolbar/eggtoolbutton.c
+libegg/toolbar/eggtoolitem.c
 src/test-profile.c

@@ -23,20 +23,16 @@
 #include <config.h>
 #include <string.h>
 #include <gdk/gdkkeysyms.h>
-#include <gtk/gtkactiongroup.h>
-#include <gtk/gtkframe.h>
-#include <gtk/gtkhbox.h>
 #include <gtk/gtkhpaned.h>
 #include <gtk/gtklabel.h>
-#include <gtk/gtkmain.h>
 #include <gtk/gtknotebook.h>
 #include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtkvbox.h>
-#include <gtk/gtkuimanager.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
 #include <libgnomeui/gnome-href.h>
 #include <libgnomeui/gnome-stock-icons.h>
+#include <libegg/menu/egg-menu-merge.h>
 
 #include "dh-book-tree.h"
 #include "dh-history.h"
@@ -60,8 +56,8 @@ struct _DhWindowPriv {
 
 	DhHtml         *html;
 
-	GtkUIManager   *manager;
-	GtkActionGroup *action_group;
+	EggMenuMerge   *merge;
+	EggActionGroup *action_group;
 };
 
 static void window_class_init                (DhWindowClass      *klass);
@@ -71,7 +67,7 @@ static void window_finalize                  (GObject            *object);
 
 static void window_populate                  (DhWindow           *window);
 
-static void window_activate_action           (GtkAction          *action,
+static void window_activate_action           (EggAction          *action,
 					      DhWindow           *window);
 static void window_delete_cb                 (GtkWidget          *widget,
 					      GdkEventAny        *event,
@@ -84,7 +80,7 @@ static void window_link_selected_cb          (GObject            *ignored,
 					      DhLink             *link,
 					      DhWindow           *window);
 
-static void window_manager_add_widget          (GtkUIManager        *manager,
+static void window_merge_add_widget          (EggMenuMerge       *merge,
 					      GtkWidget          *widget,
 					      DhWindow           *window);
 static void window_back_exists_changed_cb    (DhHistory          *history,
@@ -101,24 +97,24 @@ static gboolean window_key_press_event_cb    (GtkWidget          *widget,
 
 static GtkWindowClass *parent_class = NULL;
 
-static GtkActionEntry actions[] = {
-	{ "FileMenu", NULL, N_("_File") },
-	{ "GoMenu", NULL, N_("_Go") },
-	{ "HelpMenu", NULL, N_("_Help") },
+static EggActionGroupEntry actions[] = {
+	{ "StockFileMenuAction", N_("_File"), NULL, NULL, NULL, NULL, NULL },
+	{ "StockGoMenuAction", N_("_Go"), NULL, NULL, NULL, NULL, NULL },
+	{ "StockHelpMenuAction", N_("_Help"), NULL, NULL, NULL, NULL, NULL },
 
 	/* File menu */
-	{ "Quit", GTK_STOCK_QUIT, NULL, "<control>Q", NULL,
-	  G_CALLBACK (window_activate_action) },
+	{ "QuitAction", NULL, GTK_STOCK_QUIT, "<control>Q", NULL,
+	  G_CALLBACK (window_activate_action), NULL },
 
 	/* Go menu */
-	{ "Back", GTK_STOCK_GO_BACK, NULL, NULL, NULL,
-	  G_CALLBACK (window_activate_action) },
-	{ "Forward", GTK_STOCK_GO_FORWARD, NULL, NULL, NULL,
-	  G_CALLBACK (window_activate_action) },
+	{ "BackAction", NULL, GTK_STOCK_GO_BACK, NULL, NULL,
+	  G_CALLBACK (window_activate_action), NULL },
+	{ "ForwardAction", NULL, GTK_STOCK_GO_FORWARD, NULL, NULL,
+	  G_CALLBACK (window_activate_action), NULL },
 
 	/* About menu */
-	{ "About", GNOME_STOCK_ABOUT, NULL, NULL, NULL,
-	  G_CALLBACK (window_activate_action) }
+	{ "AboutAction", NULL, GNOME_STOCK_ABOUT, NULL, NULL,
+	  G_CALLBACK (window_activate_action), NULL }
 };
 
 GType
@@ -162,10 +158,11 @@ window_class_init (DhWindowClass *klass)
 static void
 window_init (DhWindow *window)
 {
-	DhWindowPriv *priv;
-	GtkAction    *action;
+        DhWindowPriv *priv;
+	gint          i;
+	EggAction    *action;
 	
-	priv = g_new0 (DhWindowPriv, 1);
+        priv          = g_new0 (DhWindowPriv, 1);
 	priv->history = dh_history_new ();
 
 	g_signal_connect (priv->history, "forward_exists_changed",
@@ -179,10 +176,10 @@ window_init (DhWindow *window)
 			  G_CALLBACK (window_key_press_event_cb),
 			  window);
 	
-	priv->manager = gtk_ui_manager_new ();
+	priv->merge = egg_menu_merge_new ();
 
 	gtk_window_add_accel_group (GTK_WINDOW (window),
-				    gtk_ui_manager_get_accel_group (priv->manager));
+				    priv->merge->accel_group);
 	
 	priv->main_box = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (priv->main_box);
@@ -195,28 +192,31 @@ window_init (DhWindow *window)
 	
 	gtk_container_add (GTK_CONTAINER (window), priv->main_box);
 
-	g_signal_connect (priv->manager,
+	g_signal_connect (priv->merge,
 			  "add_widget",
-			  G_CALLBACK (window_manager_add_widget),
+			  G_CALLBACK (window_merge_add_widget),
 			  window);
 
-	priv->action_group = gtk_action_group_new ("MainWindow");
-	
-	gtk_action_group_add_actions (priv->action_group,
-				      actions,
-				      G_N_ELEMENTS (actions),
-				      window);
+	for (i = 0; i < G_N_ELEMENTS (actions); ++i) {
+		actions[i].user_data = window;
+	}
 
-	gtk_ui_manager_insert_action_group (priv->manager,
+	priv->action_group = egg_action_group_new ("MainWindow");
+	
+	egg_action_group_add_actions (priv->action_group,
+				      actions,
+				      G_N_ELEMENTS (actions));
+
+	egg_menu_merge_insert_action_group (priv->merge,
 					    priv->action_group,
 					    0);
 
-	action = gtk_action_group_get_action (priv->action_group, 
-					      "Back");
+	action = egg_action_group_get_action (priv->action_group, 
+					      "BackAction");
 	g_object_set (action, "sensitive", FALSE, NULL);
 	
-	action = gtk_action_group_get_action (priv->action_group,
-					      "Forward");
+	action = egg_action_group_get_action (priv->action_group,
+					      "ForwardAction");
 	g_object_set (action, "sensitive", FALSE, NULL);
 	
         window->priv = priv;
@@ -276,13 +276,9 @@ window_populate (DhWindow *window)
         
         priv = window->priv;
 	
-	gtk_ui_manager_add_ui_from_file (priv->manager,
+	egg_menu_merge_add_ui_from_file (priv->merge,
 					 DATADIR "/devhelp/ui/window.ui",
 					 &error);
-	if (error) {
-		g_warning (_("Cannot set UI: %s"), error->message);
-		g_error_free (error);
-	}
 
         priv->hpaned    = gtk_hpaned_new ();
         priv->notebook  = gtk_notebook_new ();
@@ -372,34 +368,34 @@ window_populate (DhWindow *window)
 }
 
 static void
-window_activate_action (GtkAction *action, DhWindow *window)
+window_activate_action (EggAction *action, DhWindow *window)
 {
 	DhWindowPriv *priv;
-	const gchar  *name = gtk_action_get_name (action);
+	const gchar  *name = action->name;
 	
 	g_return_if_fail (DH_IS_WINDOW (window));
 
 	priv = window->priv;
 	
-	if (strcmp (name, "Quit") == 0) {
+	if (strcmp (name, "QuitAction") == 0) {
 		gtk_main_quit ();
 		/* Quit */
 	}
-	else if (strcmp (name, "Back") == 0) {
+	else if (strcmp (name, "BackAction") == 0) {
 		gchar *uri = dh_history_go_back (priv->history);
 		if (uri) {
 			dh_html_open_uri (priv->html, uri);
 			g_free (uri);
 		}
 	}
-	else if (strcmp (name, "Forward") == 0) {
+	else if (strcmp (name, "ForwardAction") == 0) {
 		gchar *uri = dh_history_go_forward (priv->history);
 		if (uri) {
 			dh_html_open_uri (priv->html, uri);
 			g_free (uri);
 		}
 	}
-	else if (strcmp (name, "About") == 0) {
+	else if (strcmp (name, "AboutAction") == 0) {
 		static GtkWidget *about = NULL;
 
 		const gchar *authors[] = {
@@ -421,7 +417,7 @@ window_activate_action (GtkAction *action, DhWindow *window)
 						 NULL,
 						 NULL,
 						 NULL);
-			gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
+
 					
 			g_signal_connect (about,
 					  "destroy",
@@ -491,13 +487,14 @@ window_link_selected_cb (GObject *ignored, DhLink *link, DhWindow *window)
 }
 
 static void
-window_manager_add_widget (GtkUIManager *manager,
+window_merge_add_widget (EggMenuMerge *merge,
 			 GtkWidget    *widget,
 			 DhWindow     *window)
 {
 	DhWindowPriv *priv;
 	
 	g_return_if_fail (DH_IS_WINDOW (window));
+
 	priv = window->priv;
 
 	gtk_box_pack_start (GTK_BOX (priv->menu_box), widget,
@@ -512,15 +509,15 @@ window_back_exists_changed_cb (DhHistory *history,
 			       DhWindow  *window)
 {
 	DhWindowPriv *priv;
-	GtkAction *action;
+	EggAction *action;
 		
 	g_return_if_fail (DH_IS_HISTORY (history));
 	g_return_if_fail (DH_IS_WINDOW (window));
 	
 	priv = window->priv;
 	
-	action = gtk_action_group_get_action (priv->action_group, 
-					      "Back");
+	action = egg_action_group_get_action (priv->action_group, 
+					      "BackAction");
 	
 	g_object_set (action, "sensitive", exists, NULL);
 }
@@ -531,15 +528,15 @@ window_forward_exists_changed_cb (DhHistory *history,
 				  DhWindow  *window)
 {
 	DhWindowPriv *priv;
-	GtkAction *action;
+	EggAction *action;
 		
 	g_return_if_fail (DH_IS_HISTORY (history));
 	g_return_if_fail (DH_IS_WINDOW (window));
 	
 	priv = window->priv;
 	
-	action = gtk_action_group_get_action (priv->action_group, 
-					      "Forward");
+	action = egg_action_group_get_action (priv->action_group, 
+					      "ForwardAction");
 	
 	g_object_set (action, "sensitive", exists, NULL);
 }

@@ -1,6 +1,6 @@
 AC_INIT(src/Makefile.am)
 
-AM_INIT_AUTOMAKE(devhelp, 0.7)
+AM_INIT_AUTOMAKE(devhelp, 0.8)
 AM_CONFIG_HEADER(config.h)
 
 AM_SANITY_CHECK
@@ -29,7 +29,7 @@ PKG_CHECK_MODULES(DEVHELP, [
 	gtk+-2.0 >= 2.2.0])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-        gtk+-2.0 >= 2.3.1
+        gtk+-2.0 >= 2.2.0
 	libgnomeui-2.0 >= 2.2.0
 	gnome-vfs-2.0 >= 2.2.0
 ])
@@ -86,7 +86,7 @@ AC_SUBST(Z_LIBS)
 CPPFLAGS=${_cppflags}
 LDFLAGS=${_ldflags}
 
-ALL_LINGUAS="am az be ca cs da de el es fi fr he hi hr is it ja kn ko lv ml ms nl no pl pt pt_BR ru sk sq sr sr@Latn sv tr uk vi zh_CN zh_TW"
+ALL_LINGUAS="am az be ca cs da de el es fr he hi is it ja kn ko lv ml ms nl no pl pt pt_BR ru sk sr sr@Latn sv tr uk vi zh_CN zh_TW"
 
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
@@ -101,9 +101,11 @@ AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 AC_OUTPUT([
 Makefile
 devhelp.spec
-devhelp.desktop
-devhelp.keys
 dtd/Makefile
+libegg/Makefile
+libegg/menu/Makefile
+libegg/toolbar/Makefile
+libegg/util/Makefile
 po/Makefile.in
 src/Makefile
 src/devhelp.pc

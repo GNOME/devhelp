@@ -1,15 +1,14 @@
 # Czech translation of devhelp
-# Copyright (C) 2002, 2003, 2004 devhelp'S COPYRIGHT HOLDER
-# Copyright (C) 2004 Miloslav Trmac <mitr@volny.cz>
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
-# Miloslav Trmac <mitr@volny.cz>, 2002, 2003, 2004.
+# Miloslav Trmac <mitr@volny.cz>, 2002, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-06 14:23+0100\n"
-"PO-Revision-Date: 2004-01-06 16:49+0100\n"
+"POT-Creation-Date: 2003-06-30 03:54+0200\n"
+"PO-Revision-Date: 2003-06-30 13:28+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -100,39 +99,37 @@ msgstr "_Hledat:"
 msgid "Section"
 msgstr "Oddíl"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "_Soubor"
 
-#: src/dh-window.c:106
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "_Jít"
 
-#: src/dh-window.c:107
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: src/dh-window.c:283
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Nemohu nastavit UI: %s"
-
-#: src/dh-window.c:343
+#: src/dh-window.c:339
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:354
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "Hledat"
 
-#: src/dh-window.c:419
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:430
 msgid "Devhelp project page"
 msgstr "Stránka projektu Devhelp"
 
-#: src/dh-window.c:438
+#: src/dh-window.c:434
 msgid "Bug report Devhelp"
 msgstr "Ohlásit chybu v Devhelpu"
+
+#~ msgid "_About"
+#~ msgstr "_O programu"

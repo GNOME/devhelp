@@ -1,13 +1,12 @@
 # devhelp sk.po
-# Copyright (C) 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
-# Marcel Telka <marcel@telka.sk>, 2001, 2002, 2003, 2004.
+# Copyright (C) 2001, 2002, 2003 Free Software Foundation, Inc.
+# Marcel Telka <marcel@telka.sk>, 2001, 2002, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-07 23:14+0100\n"
-"PO-Revision-Date: 2004-01-07 23:15+0100\n"
+"POT-Creation-Date: 2003-06-30 16:04+0200\n"
+"PO-Revision-Date: 2003-06-30 16:08+0200\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -31,8 +30,8 @@ msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-"Zvoľte predmet v obsahu vľavo alebo sa prepnite na kartu hľadania a "
-"vyhľadajte čo potrebujete."
+"Zvoľte predmet v obsahu vľavo alebo sa prepnite na kartu hľadania a vyhľadajte "
+"čo potrebujete."
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -100,39 +99,34 @@ msgstr "_Hľadať:"
 msgid "Section"
 msgstr "Časť"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "_Súbor"
 
-#: src/dh-window.c:106
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "_Ísť"
 
-#: src/dh-window.c:107
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: src/dh-window.c:283
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Nepodarilo sa nastaviť používateľské rozhranie: %s"
-
-#: src/dh-window.c:343
+#: src/dh-window.c:339
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:354
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "Hľadať"
 
-#: src/dh-window.c:419
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prehliadač pomocníka pre vývojárov pre GNOME 2"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:430
 msgid "Devhelp project page"
 msgstr "Stránka projektu Devhelp"
 
-#: src/dh-window.c:438
+#: src/dh-window.c:434
 msgid "Bug report Devhelp"
 msgstr "Hlásenie o chybe Devhelp"
