@@ -1,3 +1,17 @@
+2004-01-04  Ross Burton  <ross@burtonini.com>
+
+	* configure.in:
+	Depend on GTK+ 2.3.1.
+	
+	* Makefile.am:
+	* libegg/:
+	Remove libegg!
+
+	* src/dh-window.c:
+	* ui/window.ui:
+	* src/Makefile.am:
+	Switch from EggAction to GtkAction.
+
 2003-12-14  Jordi Mallach  <jordi@sindominio.net>
 
 	* configure.in (ALL_LINGUAS): Added "ca" (Catalan).

@@ -1,19 +1,20 @@
 <!--*- xml -*-->
-<Root>
-  <menu>
-    <submenu name="FileMenu"       verb="StockFileMenuAction">
-      <menuitem name="Quit"        verb="QuitAction"/>
-    </submenu>
-    <submenu name="GoMenu"         verb="StockGoMenuAction">
-      <menuitem name="Back"        verb="BackAction"/>
-      <menuitem name="Forward"     verb="ForwardAction"/>
-    </submenu>
-    <submenu name="HelpMenu"       verb="StockHelpMenuAction">
-      <menuitem name="About"       verb="AboutAction"/>
-    </submenu>
-  </menu>
-  <dockitem name="MainToolbar">
-    <toolitem name="BackButton"    verb="BackAction"/>
-    <toolitem name="ForwardButton" verb="ForwardAction"/>
-  </dockitem>
-</Root>
+<ui>
+  <menubar name="MenuBar">
+    <menu action="FileMenu">
+      <menuitem action="Quit"/>
+    </menu>
+    <menu action="GoMenu">
+      <menuitem action="Back"/>
+      <menuitem action="Forward"/>
+    </menu>
+    <menu action="HelpMenu">
+      <menuitem action="About"/>
+    </menu>
+  </menubar>
+
+  <toolbar name="Toolbar">
+    <toolitem action="Back"/>
+    <toolitem action="Forward"/>
+  </toolbar>
+</ui>
