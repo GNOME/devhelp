@@ -48,9 +48,9 @@ static gboolean   book_old_validate          (xmlDoc        *doc,
 
 static gboolean
 book_old_parse_chapter (GNode        *parent,
-			   xmlNode      *node, 
-			   const gchar  *base_uri,
-			   GError      **error)
+			xmlNode      *node, 
+			const gchar  *base_uri,
+			GError      **error)
 {
 	GNode   *new_parent;
 	xmlNode *child;
@@ -150,8 +150,8 @@ book_old_parse_function (GList       **keywords,
 
 static gchar *
 book_old_get_base_uri (const gchar *spec_path, 
-			  const gchar *name,
-			  xmlChar     *read_base)
+		       const gchar *name,
+		       xmlChar     *read_base)
 {
 	gchar *ret_val;
 	gchar *tmp_url;
@@ -223,7 +223,8 @@ dh_book_old_read (GsfInput  *input,
 	gchar         *uri;
 	DhLink        *link;
 	GNode         *parent;
-
+	gchar         *name;
+	
 	ctxt = gsf_xml_parser_context (input);
 	
 	if (!ctxt) {
@@ -279,6 +280,14 @@ dh_book_old_read (GsfInput  *input,
 	}
 	title = g_strdup (xml_str);
 	xmlFree (xml_str);
+
+	xml_str = xmlGetProp (root_node, "name");
+	if (!xml_str) {
+		g_warning ("Book doesn't have a name, fix the book file");
+		return FALSE;
+	}
+	name = g_strdup (xml_str);
+	xmlFree (xml_str);
 	
 	xml_str = xmlGetProp (root_node, "base");
 	if (!xml_str) {
@@ -287,7 +296,8 @@ dh_book_old_read (GsfInput  *input,
 		g_free (title);
 		return FALSE;
 	}
-	base = book_old_get_base_uri (uri, title, xml_str);
+	
+	base = book_old_get_base_uri (gsf_input_name (input), name, xml_str);
 	xmlFree (xml_str);
 	
 	xml_str = xmlGetProp (root_node, "link");
@@ -301,6 +311,7 @@ dh_book_old_read (GsfInput  *input,
 	xmlFree (xml_str);
 
 	link = dh_link_new (DH_LINK_TYPE_BOOK, title, uri);
+
 	g_free (uri);
 
 	if (book) {

@@ -1,5 +1,7 @@
 2002-11-09  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/dh-book-old.c (dh_book_old_read): set correct base url.
+
 	* src/*.[ch]: Removed the author part of the header. Pointless
 	  information to now who started the file, look at the Copyright
 	  to see who actually wrote the code.
