@@ -1,5 +1,9 @@
 2002-04-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* devhelp.spec.in:
+	- updated for moving libs-stuff
+	- changed package maintainer to me.
+
 	* NEWS: updated for 0.4
 
 	* configure.in: bumped to 0.4

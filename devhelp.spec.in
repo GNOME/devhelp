@@ -10,7 +10,7 @@ Copyright:           GPL
 Group:               Applications/Development
 Source:              devhelp-%{PACKAGE_VERSION}.tar.gz
 BuildRoot:           /tmp/devhelp-%{PACKAGE_VERSION}-root
-Packager:            Johan Dahlin <zilch.am@home.se>
+Packager:            Mikael Hallendal <micke@codefactory.se>
 Autoreq:             0
 
 BuildRequires:       gettext >= 0.10.35
@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING ChangeLog NEWS README INSTALL
 
 %{_bindir}/devhelp
-%{_libdir}/libdevhelp.*
+%{_libdir}/devhelp/libdevhelp.*
 
 %config %{_sysconfdir}/gconf/schemas/devhelp.schemas
 %{_datadir}/gnome/apps/Development/*.desktop
