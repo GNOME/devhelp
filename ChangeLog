@@ -1,3 +1,11 @@
+2001-10-17  Johan Dahlin  <zilch.am@home.se>
+
+	* src/devhelp-window.c (cmd_size_change_cb): Removed.
+	(size_ui_listener): Added.
+	(devhelp_window_new): Add 4 listeners.
+
+	* ui/GNOME_DevHelp.ui: Updated to use radio style on font size.
+	
 2001-10-17  Richard Hult  <rhult@codefactory.se>
 
 	* src/devhelp-search.c (devhelp_search_entry_key_press_cb): Better
@@ -43,6 +51,7 @@
 	(impl_DevHelp_Controller_openURI): copy the CORBA_char *str_uri
 	before starting to use it. fixes bug #201 in CF-bugzilla.
 
+>>>>>>> 1.62
 2001-10-15  Richard Hult  <rhult@codefactory.se>
 
 	* devhelp.spec.in: Install libs, patch from 

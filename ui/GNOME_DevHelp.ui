@@ -63,11 +63,11 @@
      <submenu name="View" _label="_View">
         <menuitem name="ViewSideBar"    verb="CmdViewSideBar" />
 	<submenu name="FontSize" _label="Font size">
-           <menuitem name="ViewSizeTiny"   verb="CmdSizeTiny" />
-           <menuitem name="ViewSizeSmall"  verb="CmdSizeSmall" />
-           <menuitem name="ViewSizeMedium" verb="CmdSizeMedium" />
-           <menuitem name="ViewSizeLarge"  verb="CmdSizeLarge" />
-           <menuitem name="ViewSizeHuge"   verb="CmdSizeHuge" />
+           <menuitem name="ViewSizeTiny"   verb="CmdSizeTiny"   type="radio" group="fontsize" />
+           <menuitem name="ViewSizeSmall"  verb="CmdSizeSmall"  type="radio" group="fontsize" />
+           <menuitem name="ViewSizeMedium" verb="CmdSizeMedium" type="radio" group="fontsize" />
+           <menuitem name="ViewSizeLarge"  verb="CmdSizeLarge"  type="radio" group="fontsize" />
+           <menuitem name="ViewSizeHuge"   verb="CmdSizeHuge"   type="radio" group="fontsize" />
         </submenu>
      </submenu>
    

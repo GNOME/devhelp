@@ -64,10 +64,6 @@ static void cmd_view_side_bar_cb             (BonoboUIComponent    *component,
                                               gpointer              data,
                                               const gchar          *cname);
 
-static void cmd_size_change_cb               (BonoboUIComponent    *component,
-                                              gpointer              data,
-                                              const gchar          *cname);
-
 static void cmd_preferences_cb               (BonoboUIComponent    *component,
                                               gpointer              data,
                                               const gchar          *cname);
@@ -75,6 +71,12 @@ static void cmd_preferences_cb               (BonoboUIComponent    *component,
 static void cmd_about_cb                     (BonoboUIComponent    *component,
                                               gpointer              data,
                                               const gchar          *cname);
+
+static void size_ui_listener                 (BonoboUIComponent            *component,
+					      const char                   *path,
+					      Bonobo_UIComponent_EventType  type,
+					      const char                   *state,
+					      gpointer                      user_data);
 
 static void devhelp_window_uri_changed_cb    (BonoboListener       *listener,
 					      gchar                *event_name,
@@ -122,11 +124,6 @@ static BonoboUIVerb verbs[] = {
         BONOBO_UI_VERB ("CmdExit",           cmd_exit_cb),
 
         BONOBO_UI_VERB ("CmdViewSideBar",    cmd_view_side_bar_cb),
-        BONOBO_UI_VERB ("CmdSizeTiny",       cmd_size_change_cb),
-        BONOBO_UI_VERB ("CmdSizeSmall",      cmd_size_change_cb),
-        BONOBO_UI_VERB ("CmdSizeMedium",     cmd_size_change_cb),
-        BONOBO_UI_VERB ("CmdSizeLarge",      cmd_size_change_cb),
-        BONOBO_UI_VERB ("CmdSizeHuge",       cmd_size_change_cb),
 
 	BONOBO_UI_VERB ("CmdPrefs",          cmd_preferences_cb),
 
@@ -445,45 +442,6 @@ cmd_view_side_bar_cb (BonoboUIComponent   *component,
 }
 
 static void
-cmd_size_change_cb (BonoboUIComponent   *component,
-		    gpointer             data,
-		    const gchar         *cname)
-{
-	DevHelpWindow       *window;
-	DevHelpWindowPriv   *priv;
-	gint                 zoom_level;
-	
-	g_return_if_fail (data != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (data));
-	
-	window = DEVHELP_WINDOW (data);
-	priv   = window->priv;
-	
-	
-	if (!strcmp (cname, "CmdSizeTiny")) {
-		zoom_level = ZOOM_TINY_INDEX;
-	}
-	else if (!strcmp (cname, "CmdSizeSmall")) {
-		zoom_level = ZOOM_SMALL_INDEX;
-	}
-	else if (!strcmp (cname, "CmdSizeMedium")) {
-		zoom_level = ZOOM_MEDIUM_INDEX;
-	}
-	else if (!strcmp (cname, "CmdSizeLarge")) {
-		zoom_level = ZOOM_LARGE_INDEX;
-	}
-	else if (!strcmp (cname, "CmdSizeHuge")) {
-		zoom_level = ZOOM_HUGE_INDEX;
-	} else {
-		g_warning ("Unsupported size");
-	}
-
-	gtk_object_set (GTK_OBJECT (priv->prefs),
-			"zoom_level", zoom_level,
-			NULL);
-}
-
-static void
 cmd_preferences_cb (BonoboUIComponent   *component,
 		    gpointer             data,
 		    const gchar         *cname)
@@ -521,6 +479,52 @@ cmd_about_cb (BonoboUIComponent    *component,
                                  NULL);
 
 	gtk_widget_show (GTK_WIDGET (about));
+}
+
+static void
+size_ui_listener (BonoboUIComponent            *component,
+		  const char                   *path,
+		  Bonobo_UIComponent_EventType  type,
+		  const char                   *state,
+		  gpointer                      user_data)
+{
+	
+	DevHelpWindow       *window;
+	DevHelpWindowPriv   *priv;
+	gint                 zoom_level;
+	
+	g_return_if_fail (user_data != NULL);
+	g_return_if_fail (IS_DEVHELP_WINDOW (user_data));
+	
+	window = DEVHELP_WINDOW (user_data);
+	priv   = window->priv;
+	
+	/* If it's not selected */
+	if (strcmp (state, "1") != 0) {
+		return;
+	}
+
+	if (!strcmp (path, "CmdSizeTiny")) {
+		zoom_level = ZOOM_TINY_INDEX;
+	}
+	else if (!strcmp (path, "CmdSizeSmall")) {
+		zoom_level = ZOOM_SMALL_INDEX;
+	}
+	else if (!strcmp (path, "CmdSizeMedium")) {
+		zoom_level = ZOOM_MEDIUM_INDEX;
+	}
+	else if (!strcmp (path, "CmdSizeLarge")) {
+		zoom_level = ZOOM_LARGE_INDEX;
+	}
+	else if (!strcmp (path, "CmdSizeHuge")) {
+		zoom_level = ZOOM_HUGE_INDEX;
+	} else {
+		g_warning ("Unsupported size");
+	}
+
+	gtk_object_set (GTK_OBJECT (priv->prefs),
+			"zoom_level", zoom_level,
+			NULL);
 }
 
 static void
@@ -641,11 +645,27 @@ devhelp_window_new (void)
                 "DevHelp/UIConf/kvps");
 	
         priv->component = bonobo_ui_component_new ("DevHelp");
+
+	bonobo_ui_component_add_listener (priv->component, "CmdSizeTiny",
+					  size_ui_listener, window);
+	
+	bonobo_ui_component_add_listener (priv->component, "CmdSizeSmall",
+					  size_ui_listener, window);
+	
+	bonobo_ui_component_add_listener (priv->component, "CmdSizeMedium",
+					  size_ui_listener, window);
+	
+	bonobo_ui_component_add_listener (priv->component, "CmdSizeLarge",
+					  size_ui_listener, window);
+	
+	bonobo_ui_component_add_listener (priv->component, "CmdSizeHuge",
+					  size_ui_listener, window);	
+	
         bonobo_ui_component_set_container (priv->component, 
                                            BONOBO_OBJREF (ui_container));
         
         bonobo_ui_component_freeze (priv->component, NULL);
-        
+
         bonobo_ui_util_set_ui (priv->component, DATA_DIR,
                                "GNOME_DevHelp.ui", "devhelp");
 
