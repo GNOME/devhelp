@@ -75,4 +75,6 @@ dh-marshal.c: dh-marshal.list $(GLIB_GENMARSHAL)
 
 EXTRA_DIST =                            	\
 	dh-marshal.list				\
+	dh-html-mozilla.c			\
+	dh-html-gtkhtml2.c			\
 	$(NULL)

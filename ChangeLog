@@ -1,3 +1,9 @@
+2003-03-04  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/Makefile.am (EXTRA_DIST): 
+	- Fixes #107536 reported by Tommi Komulainen.
+	- added dh-html-mozilla.c and dh-html-gtkhtml2.c to EXTRA_DIST.
+
 2003-03-03  Ross Burton  <ross@burtonini.com>
 
 	* configure.in: Add descriptions to the AC_DEFINE calls.
