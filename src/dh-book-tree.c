@@ -225,7 +225,6 @@ book_tree_populate_tree (DhBookTree *tree)
 {
         DhBookTreePriv *priv;
 	GNode          *node;
-	DhLink         *link;
 	
 	g_return_if_fail (tree != NULL);
         g_return_if_fail (DH_IS_BOOK_TREE (tree));
@@ -250,7 +249,6 @@ book_tree_insert_node (DhBookTree  *tree,
 {
         DhBookTreePriv      *priv;
 	GtkTreeIter          iter;
-	GtkTreePath         *path;
 	DhLink              *link;
 	GNode               *child;
         
@@ -312,7 +310,6 @@ book_tree_create_pixbufs (DhBookTree *tree)
 static void
 book_tree_selection_changed_cb (GtkTreeSelection *selection, DhBookTree *tree)
 {
-	GtkTreeModel *model;
 	GtkTreeIter   iter;
 	DhLink       *link;
 	
@@ -346,8 +343,8 @@ dh_book_tree_new (GNode *books)
 void
 dh_book_tree_show_uri (DhBookTree *tree, const gchar *uri)
 {
-	GtkTreeSelection    *selection;
 #if 0
+	GtkTreeSelection    *selection;
 	GtkTreeRowReference *row;
 	GtkTreePath         *path;
 

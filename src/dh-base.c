@@ -42,8 +42,10 @@ struct _DhBasePriv {
 
 static void        base_init                  (DhBase         *base);
 static void        base_class_init            (DhBaseClass    *klass);
+#if 0
 static void        base_new_window_cb         (DhWindow       *window,
 					       DhBase         *base);
+#endif
 static void        base_window_finalized_cb   (DhBase         *base,
 					       DhWindow       *window);
 static void        base_init_books            (DhBase         *base);
@@ -98,6 +100,7 @@ base_class_init (DhBaseClass *klass)
 	parent_class = g_type_class_peek_parent (klass);
 }
 
+#if 0
 static void
 base_new_window_cb (DhWindow *window, DhBase *base)
 {
@@ -110,6 +113,7 @@ base_new_window_cb (DhWindow *window, DhBase *base)
 	
 	gtk_widget_show_all (new_window);
 }
+#endif
 
 static void
 base_window_finalized_cb (DhBase *base, DhWindow *window)
