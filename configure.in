@@ -109,4 +109,5 @@ libegg/util/Makefile
 po/Makefile.in
 src/Makefile
 ui/Makefile
+misc/Makefile
 ])

@@ -45,6 +45,8 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
+gchar *geometry = NULL;
+
 static gchar *
 dh_get_socket_filename (void)
 {
@@ -252,6 +254,15 @@ main (int argc, char **argv)
 	GnomeProgram      *program;
 	gint               fd;
 	struct poptOption  options[] = {
+		{
+			"geometry",
+			'g',
+			POPT_ARG_STRING,
+			&geometry,
+			0,
+			N_("Specify the size and location of the window"),
+			N_("WIDTHxHEIGHT+XOFF+YOFF")
+		},
 		{ 
 			"search",      
 			's',  

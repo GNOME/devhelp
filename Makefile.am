@@ -1,4 +1,4 @@
-SUBDIRS = dtd libegg po src ui
+SUBDIRS = dtd libegg po src ui misc
 
 @INTLTOOL_DESKTOP_RULE@
 

@@ -224,7 +224,7 @@ html_reader_thread (ReaderThreadData *th_data)
 					  th_data->anchor,
 					  READER_QUEUE_TYPE_DATA);
 
-		q_data->data = g_strdup (buffer);
+		q_data->data = g_memdup (buffer, n);
 		q_data->len = n;
 		
 		g_async_queue_push (priv->thread_queue, q_data);

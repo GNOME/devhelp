@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-05-15 18:41+0200\n"
+"POT-Creation-Date: 2003-06-27 13:22+0200\n"
 "PO-Revision-Date: 2003-05-15 18:41+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -41,11 +41,19 @@ msgstr ""
 "till vänster, och <b>Skift Vänster/Höger</b> för att fälla in respektive "
 "fälla ut böckerna i trädet."
 
-#: src/dh-main.c:261
+#: src/dh-main.c:263
+msgid "Specify the size and location of the window"
+msgstr "Ange storlek och position för fönstret"
+
+#: src/dh-main.c:264
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "BREDDxHÖJD+XOFF+YOFF"
+
+#: src/dh-main.c:272
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: src/dh-main.c:270
+#: src/dh-main.c:281
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
@@ -85,364 +93,53 @@ msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr "namn- och länkelement krävs inuti <function> på rad %d, kolumn %d"
 
-#: src/dh-parser.c:326 src/dh-parser.c:410
+#: src/dh-parser.c:327 src/dh-parser.c:412
 msgid "Could not create book parser"
 msgstr "Kunde inte skapa boktolk"
 
-#: src/dh-parser.c:336 src/dh-parser.c:420
+#: src/dh-parser.c:337 src/dh-parser.c:422
 msgid "Could not create markup parser"
 msgstr "Kunde inte skapa markuptolk"
 
-#: src/dh-parser.c:466
+#: src/dh-parser.c:468
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan inte dekomprimera boken \"%s\": %s"
 
-#: src/dh-search.c:349
-msgid "_Search for:"
-msgstr "_Sök efter:"
+#: src/dh-search.c:356
+msgid "_Search:"
+msgstr "_Sök:"
 
-#: src/dh-search.c:390
+#: src/dh-search.c:396
 msgid "Section"
 msgstr "Avsnitt"
 
-#: src/dh-window.c:95
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "_Arkiv"
 
-#: src/dh-window.c:96
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:97
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "_Hjälp"
 
 #. About menu
-#: src/dh-window.c:110
+#: src/dh-window.c:116
 msgid "_About"
 msgstr "_Om"
 
-#: src/dh-window.c:287
+#: src/dh-window.c:299
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/dh-window.c:298
+#: src/dh-window.c:310
 msgid "Search"
 msgstr "Sök"
 
-#: src/dh-window.c:360
+#: src/dh-window.c:372
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
-#~ msgid "Expected '%s' got '%s' at line %d, column %d"
-#~ msgstr "\"%s\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
-
-#~ msgid "Expected '%s', got '%s' at line %d, column %d"
-#~ msgstr "\"%s\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
-
-#~ msgid ""
-#~ "<b>Could not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Kunde inte läsa alla böcker</b>\n"
-#~ "\n"
-#~ "Följande fel inträffade vid läsande av böckerna:\n"
-#~ "%s"
-
-#~ msgid "The following errors occured whilst reading the books:\n"
-#~ msgstr "Följande fel inträffade vid läsande av böckerna:\n"
-
-#~ msgid "The following errors occured whilst reading the books:"
-#~ msgstr "Följande fel inträffade vid läsande av böckerna:"
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "\"%s\" är inte en giltig bok"
-
-#~ msgid "Book '%s' is malformed."
-#~ msgstr "Boken \"%s\" är felaktig."
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Kunde inte hitta filen \"%s\""
-
-#~ msgid "Open %s"
-#~ msgstr "Öppna %s"
-
-#~ msgid "Could not activate devhelp: '%s'"
-#~ msgstr "Kunde inte aktivera devhelp: \"%s\""
-
-#~ msgid "Could not search for string."
-#~ msgstr "Kunde inte söka efter sträng."
-
-#~ msgid "_About..."
-#~ msgstr "_Om..."
-
-#~ msgid "Choose a book..."
-#~ msgstr "Välj en bok..."
-
-#~ msgid "Problems when reading books: %s\n"
-#~ msgstr "Problem vid inläsning av böcker: %s\n"
-
-#~ msgid "Empty document: %s"
-#~ msgstr "Tomt dokument: %s"
-
-#~ msgid "Document wrong type, got %s, expected 'booklist': %s"
-#~ msgstr "Dokumentet är av fel typ, fick %s, förväntade mig \"booklist\": %s"
-
-#~ msgid ""
-#~ "I found an old version of your spec file (%s)\n"
-#~ "I removed it, so you have to hide the books you want to be hidden again."
-#~ msgstr ""
-#~ "Jag hittade en gammal version av din spec-fil (%s).\n"
-#~ "Jag tog bort den, så du måste dölja böckerna som du vill ska döljas igen."
-
-#~ msgid "Ok"
-#~ msgstr "Ok"
-
-#~ msgid "Failed to open file %s for writing."
-#~ msgstr "Misslyckades med att öppna filen %s för skrivning."
-
-#~ msgid "_Contents"
-#~ msgstr "I_nnehåll"
-
-#~ msgid "DevHelp Controller"
-#~ msgstr "DevHelp-kontroll"
-
-#~ msgid "DevHelp Controller Factory"
-#~ msgstr "DevHelp-kontrollfabrik"
-
-#~ msgid "DevHelp HelpBrowser"
-#~ msgstr "Hjälpläsaren DevHelp"
-
-#~ msgid "DevHelp HelpBrowser Factory"
-#~ msgstr "DevHelp-hjälpläsarfabriken"
-
-#~ msgid "The book is already installed."
-#~ msgstr "Boken är redan installerad."
-
-#~ msgid "Failed to move book. This should never happen."
-#~ msgstr "Misslyckades med att flytta bok. Detta borde aldrig inträffa."
-
-#~ msgid "Failed to extract spec file from book."
-#~ msgstr "Misslyckades med att extrahera specifikationsfil från bok."
-
-#~ msgid "Error, the book is corrupted or very old."
-#~ msgstr "Fel, boken är trasig eller mycket gammal."
-
-#~ msgid "Failed to extract the book."
-#~ msgstr "Misslyckades med att extrahera boken."
-
-#~ msgid "Wrong type (mime_type=%s)."
-#~ msgstr "Fel typ (mime_type=%s)."
-
-#~ msgid "Tiny"
-#~ msgstr "Pytteliten"
-
-#~ msgid "Small"
-#~ msgstr "Liten"
-
-#~ msgid "Medium"
-#~ msgstr "Mellan"
-
-#~ msgid "Large"
-#~ msgstr "Stor"
-
-#~ msgid "Huge"
-#~ msgstr "Enorm"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "<< _Show"
-#~ msgstr "<< _Visa"
-
-#~ msgid "Author:"
-#~ msgstr "Författare:"
-
-#~ msgid "Book info"
-#~ msgstr "Bokinformation"
-
-#~ msgid "Bookmarks"
-#~ msgstr "Bokmärken"
-
-#~ msgid "DevHelp Preferences"
-#~ msgstr "Inställningar för DevHelp"
-
-#~ msgid "Hidden"
-#~ msgstr "Gömda"
-
-#~ msgid "Install new book..."
-#~ msgstr "Installera ny bok..."
-
-#~ msgid "Move down"
-#~ msgstr "Flytta ned"
-
-#~ msgid "Move up"
-#~ msgstr "Flytta upp"
-
-#~ msgid "Name:"
-#~ msgstr "Namn:"
-
-#~ msgid "Path:"
-#~ msgstr "Sökväg:"
-
-#~ msgid "Remove"
-#~ msgstr "Ta bort"
-
-#~ msgid "Reset to defaults"
-#~ msgstr "Återställ till standardalternativ"
-
-#~ msgid "Show _sidebar"
-#~ msgstr "Visa _sidopanel"
-
-#~ msgid "Title:"
-#~ msgstr "Titel:"
-
-#~ msgid "Version:"
-#~ msgstr "Version:"
-
-#~ msgid "View"
-#~ msgstr "Visa"
-
-#~ msgid "Visible"
-#~ msgstr "Synliga"
-
-#~ msgid "_Edit book..."
-#~ msgstr "_Redigera bok..."
-
-#~ msgid "_Hide >>"
-#~ msgstr "_Göm >>"
-
-#~ msgid "_Limit the number of hits to:"
-#~ msgstr "_Begränsa antalet träffar till:"
-
-#~ msgid "_Text size: "
-#~ msgstr "_Textstorlek: "
-
-#~ msgid "About this application"
-#~ msgstr "Om detta program"
-
-#~ msgid "Font size"
-#~ msgstr "Typsnittsstorlek"
-
-#~ msgid "Open preferences dialog"
-#~ msgstr "Öppna inställningsdialogen"
-
-#~ msgid "Preferences..."
-#~ msgstr "Inställningar..."
-
-#~ msgid "Print the html page"
-#~ msgstr "Skriv ut html-sidan"
-
-#~ msgid "Show sidebar"
-#~ msgstr "Visa sidopanel"
-
-#~ msgid "_Exit"
-#~ msgstr "_Avsluta"
-
-#~ msgid "_Print"
-#~ msgstr "Skriv _ut"
-
-#~ msgid "_View"
-#~ msgstr "_Visa"
-
-#~ msgid "Back"
-#~ msgstr "Bakåt"
-
-#~ msgid "Book Manager..."
-#~ msgstr "Bokhanterare..."
-
-#~ msgid "Forward"
-#~ msgstr "Framåt"
-
-#~ msgid "Go to next page in the history"
-#~ msgstr "Gå till nästa sida i historiken"
-
-#~ msgid "Go to previous page in the history"
-#~ msgstr "Gå till föregående sida i historiken"
-
-#~ msgid "Open the book manager dialog"
-#~ msgstr "Öppna bokhanterardialogen"
-
-#~ msgid "Print Help"
-#~ msgstr "Skriv ut hjälp"
-
-#~ msgid "Print Preview"
-#~ msgstr "Förhandsgranska"
-
-#~ msgid "Printing failed."
-#~ msgstr "Utskrift misslyckades."
-
-#~ msgid "(C) Copyright 2001, Johan Dahlin"
-#~ msgstr "© Copyright 2001, Johan Dahlin"
-
-#~ msgid "&lt;&lt; _Show"
-#~ msgstr "&lt;&lt; _Visa"
-
-#~ msgid "_Hide &gt;&gt;"
-#~ msgstr "_Göm &gt;&gt;"
-
-#~ msgid "Add book ..."
-#~ msgstr "Lägg till bok..."
-
-#~ msgid "Devhelp"
-#~ msgstr "Devhelp"
-
-#~ msgid "Ny fil"
-#~ msgstr "Ny fil"
-
-#~ msgid "Use autocompletion"
-#~ msgstr "Använd automatisk ifyllning"
-
-#~ msgid "_Book manager..."
-#~ msgstr "_Bokhanterare..."
-
-#~ msgid "New file"
-#~ msgstr "Ny fil"
-
-#~ msgid "Open file"
-#~ msgstr "Öppna fil"
-
-#~ msgid "searchInNewWindow not implemented."
-#~ msgstr "searchInNewWindow är inte implementerat."
-
-#~ msgid "Couldn't find book_node for function '%s'\n"
-#~ msgstr "Kan inte hitta book_node för funktionen \"%s\"\n"
-
-#~ msgid "Link to %s"
-#~ msgstr "Länk till %s"
-
-#~ msgid "Cannot find clicked link (%s) in bookshelf\n"
-#~ msgstr "Kan inte hitta klickad länk (%s) i bokhyllan\n"
-
-#~ msgid "Zoom index out of range."
-#~ msgstr "Zoomindex är för stort/litet."
-
-#~ msgid "Fast"
-#~ msgstr "Snabb"
-
-#~ msgid "Slow"
-#~ msgstr "Långsam"
-
-#~ msgid "Use auto_completion"
-#~ msgstr "Använd automatisk ifyllning"
-
-#~ msgid "_Autocompletion speed: "
-#~ msgstr "_Automatisk ifyllningshastighet: "
-
-#~ msgid "_Books"
-#~ msgstr "_Böcker"
-
-#~ msgid "_General"
-#~ msgstr "_Allmänt"
-
-#~ msgid "_Remove bookmark"
-#~ msgstr "_Ta bort bokmärke"
-
-#~ msgid "ERROR: Document of wrong type. root node != book\n"
-#~ msgstr "FEL: Dokumentet är av fel typ. rootnod != book\n"
-
-#~ msgid "_Index"
-#~ msgstr "_Index"

@@ -216,7 +216,7 @@ book_tree_setup_selection (DhBookTree *tree)
 	GtkTreeSelection *selection;
 	
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
-	
+
 	g_signal_connect (selection, "changed",
 			  G_CALLBACK (book_tree_selection_changed_cb),
 			  tree);
@@ -312,8 +312,8 @@ book_tree_create_pixbufs (DhBookTree *tree)
 static void
 book_tree_selection_changed_cb (GtkTreeSelection *selection, DhBookTree *tree)
 {
-	GtkTreeIter   iter;
-	DhLink       *link;
+	GtkTreeIter  iter;
+	DhLink      *link;
 	
 	g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
 	g_return_if_fail (DH_IS_BOOK_TREE (tree));

@@ -32,6 +32,7 @@
 #include <gtk/gtkvbox.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
+#include <libgnomeui/gnome-stock-icons.h>
 #include <libegg/menu/egg-menu-merge.h>
 
 #include "dh-book-tree.h"
@@ -40,6 +41,7 @@
 #include "dh-search.h"
 #include "dh-window.h"
 
+extern gchar *geometry;
 
 struct _DhWindowPriv {
 	DhBase         *base;
@@ -112,7 +114,7 @@ static EggActionGroupEntry actions[] = {
 	  G_CALLBACK (window_activate_action), NULL },
 
 	/* About menu */
-	{ "AboutAction", N_("_About"), NULL, NULL, NULL,
+	{ "AboutAction", NULL, GNOME_STOCK_ABOUT, NULL, NULL,
 	  G_CALLBACK (window_activate_action), NULL }
 };
 
@@ -264,9 +266,11 @@ window_populate (DhWindow *window)
 					GTK_POLICY_AUTOMATIC);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (book_tree_sw),
 					     GTK_SHADOW_IN);
+	gtk_container_set_border_width (GTK_CONTAINER (book_tree_sw), 2);
+
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), priv->notebook);
-	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
 
 	gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
 	
@@ -276,14 +280,14 @@ window_populate (DhWindow *window)
 	
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
-	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
 
  	gtk_paned_add2 (GTK_PANED(priv->hpaned), frame);
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 
 	contents_tree = dh_base_get_book_tree (priv->base);
-	keywords      = dh_base_get_keywords  (priv->base);
+	keywords      = dh_base_get_keywords (priv->base);
 	
 	if (contents_tree) {
 		priv->book_tree = dh_book_tree_new (contents_tree);
@@ -364,7 +368,7 @@ window_activate_action (EggAction *action, DhWindow *window)
 			NULL
 		};
 		
-		about = gnome_about_new (PACKAGE, VERSION,
+		about = gnome_about_new ("Devhelp", VERSION,
 					 "",
 					 _("A developer's help browser for GNOME 2"),
 					 authors,
@@ -500,6 +504,7 @@ dh_window_new (DhBase *base)
         DhWindow     *window;
         DhWindowPriv *priv;
 	GdkPixbuf    *icon;
+	gint          width, height;
 	
         window = gtk_type_new (DH_TYPE_WINDOW);
         priv   = window->priv;
@@ -507,10 +512,17 @@ dh_window_new (DhBase *base)
 	priv->base = g_object_ref (base);
 
         gtk_window_set_policy (GTK_WINDOW (window), TRUE, TRUE, FALSE);
-        
-        gtk_window_set_default_size (GTK_WINDOW (window), 700, 500);
-	gtk_window_set_title (GTK_WINDOW (window), "DevHelp");
-	gtk_window_set_wmclass (GTK_WINDOW (window), "devhelp", "DevHelp");
+	gtk_window_set_title (GTK_WINDOW (window), "Devhelp");
+	gtk_window_set_wmclass (GTK_WINDOW (window), "devhelp", "devhelp");
+
+	if (geometry) {
+		gtk_window_parse_geometry (GTK_WINDOW (window), geometry);
+	} else {
+		width = MAX (700.0 / 1024.0 * gdk_screen_width (), 640);
+		height = MAX (500.0 / 768.0 * gdk_screen_height (), 480);
+		
+		gtk_window_set_default_size (GTK_WINDOW (window), width, height);
+	}
 
 	g_signal_connect (GTK_OBJECT (window), 
 			  "delete_event",
@@ -532,7 +544,7 @@ dh_window_new (DhBase *base)
 void
 dh_window_search (DhWindow *window, const gchar *str)
 {
-	DhWindowPriv      *priv;
+	DhWindowPriv *priv;
 	
 	g_return_if_fail (window != NULL);
 	g_return_if_fail (DH_IS_WINDOW (window));

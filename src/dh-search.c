@@ -157,12 +157,16 @@ search_init (DhSearch *search)
 
 	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->hitlist),
 				 GTK_TREE_MODEL (priv->model));
+
+	gtk_box_set_spacing (GTK_BOX (search), 2);
 }
 
 static void
 search_finalize (GObject *object)
 {
-	
+	if (G_OBJECT_CLASS (parent_class)->finalize) {
+		G_OBJECT_CLASS (parent_class)->finalize (object);
+	}
 }
 
 static void
@@ -341,12 +345,15 @@ dh_search_new (GList *keywords)
 	GtkWidget         *label;
 		
 	search = g_object_new (DH_TYPE_SEARCH, NULL);
+
 	priv = search->priv;
 
+	gtk_container_set_border_width (GTK_CONTAINER (search), 2);
+	
 	/* Setup the keyword box */
 	hbox = gtk_hbox_new (FALSE, 0);
 	
-	label = gtk_label_new_with_mnemonic (_("_Search for:"));
+	label = gtk_label_new_with_mnemonic (_("_Search:"));
 
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 4);
 
@@ -354,7 +361,7 @@ dh_search_new (GList *keywords)
 
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->entry);
 
-	g_signal_connect (priv->entry, "key-press-event",
+	g_signal_connect (priv->entry, "key_press_event",
 			  G_CALLBACK (search_entry_key_press_event_cb),
 			  search);
 			  
@@ -368,12 +375,11 @@ dh_search_new (GList *keywords)
 			  G_CALLBACK (search_entry_activated_cb),
 			  search);
 	
-	g_signal_connect (priv->entry, "insert-text",
+	g_signal_connect (priv->entry, "insert_text",
 			  G_CALLBACK (search_entry_text_inserted_cb),
 			  search);
 
-	gtk_box_pack_start (GTK_BOX (search), hbox, 
-			    FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (search), hbox, FALSE, FALSE, 0);
 
 	frame = gtk_frame_new (NULL);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);

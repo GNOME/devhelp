@@ -1,5 +1,30 @@
 2003-06-27  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c (window_activate_action): Set the name to
+	"Devhelp" instead of using PACKAGE.
+	Use stock item for Help->About.
+
+	* src/dh-html-gtkhtml2.c (html_reader_thread): Don't use g_strdup,
+	use g_memdup and copy the number of bytes we actually read. Fixes
+	read of uninitialized data.
+
+	* misc/Makefile.am: Dist the files here.
+	* Makefile.am (SUBDIRS): 
+	* configure.in: Add misc directory.
+
+	* src/dh-main.c (main): Add --geometry to options.
+
+	* src/dh-window.c (window_populate): Set border widths, and use
+	SHADOW_IN.
+	(dh_window_new): Try to set a better default size and use
+	--geometry if that is available.
+
+	* src/dh-search.c (search_finalize): Chain up.
+	(search_init): Set spacing.
+	(dh_search_new): Set border width, shorten the search label.
+
+2003-06-27  Richard Hult  <richard@imendio.com>
+
 	* src/dh-search.c (dh_search_grab_focus): Add.
 
 	* src/dh-window.c (window_init, window_key_press_event_cb): Make
