@@ -106,7 +106,33 @@ html_class_init (DhHtmlClass *klass)
 			      1, G_TYPE_STRING);
 }
 
+static void
+html_child_grab_focus_cb (GtkWidget *widget, DhHtml *html)
+{
+        GdkEvent *event;
 
+        event = gtk_get_current_event ();
+
+        if (!event) {
+                g_signal_stop_emission_by_name (widget, "grab-focus");
+        } else {
+                gdk_event_free (event);
+        }
+}
+
+static void
+html_child_add_cb (GtkMozEmbed *embed, GtkWidget *child, DhHtml *html)
+{
+	g_signal_connect (child, "grab-focus",
+			  G_CALLBACK (html_child_grab_focus_cb),
+			  html);
+}
+
+static void
+html_child_remove_cb (GtkMozEmbed *embed, GtkWidget *child, DhHtml *html)
+{
+	g_signal_handlers_disconnect_by_func (child, html_child_grab_focus_cb, html);
+}
 
 static void
 html_init (DhHtml *html)
@@ -122,6 +148,12 @@ html_init (DhHtml *html)
 			  html);
 	g_signal_connect (priv->gecko, "location",
 			  G_CALLBACK (html_location_cb),
+			  html);
+	g_signal_connect (priv->gecko, "add",
+			  G_CALLBACK (html_child_add_cb),
+			  html);
+	g_signal_connect (priv->gecko, "remove",
+			  G_CALLBACK (html_child_remove_cb),
 			  html);
 
         html->priv = priv;

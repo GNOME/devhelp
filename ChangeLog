@@ -1,3 +1,11 @@
+2004-12-01  Mikael Hallendal  <micke@imendio.com>
+
+	* src/dh-html.c: 
+	(html_child_grab_focus_cb), (html_child_add_cb),
+	(html_child_remove_cb), (html_init):
+	- Patch from Tommi Komulainen to avoid the HTML widget from stealing
+	  focus after loading a page (taken from Galeon).
+
 2004-11-25  Christoffer Olsen  <co@deworks.net>
 
 	* configure.in: Added devhelp.desktop.in to AC_OUTPUT
