@@ -47,7 +47,7 @@ fi
 ($AUTOMAKE --version) < /dev/null > /dev/null 2>&1 || {
 	echo
 	echo "You must have automake installed to compile $PROJECT."
-	echo "Get ftp://sourceware.cygnus.com/pub/automake/automake-1.4.tar.gz"
+	echo "Get ftp://sourceware.cygnus.com/pub/automake/automake-1.8.tar.gz"
 	echo "(or a newer version if it is available)"
 	DIE=1
 }
