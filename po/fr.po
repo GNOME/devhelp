@@ -1,13 +1,14 @@
 # galeon fr.po
-# Copyright (C) 2001 Free Software Foundation, Inc.
-# Christophe Fergeau <christophe.fergeau@laposte.net>, 2001.
+# Copyright (C) 2001-2002 Free Software Foundation, Inc.
+# maintainer: Christophe Fergeau <christophe.fergeau@laposte.net>, 2001.
+# Christophe Merlet (RedFox) <christophe@merlet.net>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.2.0.99\n"
-"POT-Creation-Date: 2001-10-19 11:47+0200\n"
-"PO-Revision-Date: 2001-10-19 11:47+0200\n"
-"Last-Translator: Christophe Fergeau <teuf@users.sourceforge.net>\n"
+"Project-Id-Version: devhelp 0.4\n"
+"POT-Creation-Date: 2002-07-19 09:33+0200\n"
+"PO-Revision-Date: 2002-07-19 09:30+0200\n"
+"Last-Translator: Christophe Merlet (RedFox) <christophe@merlet.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -21,27 +22,41 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Programme d'aide pour les développeurs"
 
-#: src/books-dialog.c:314
+#: src/books-dialog.c:331
 msgid "Choose a book..."
 msgstr "Choisissez un livre..."
 
-#: src/bookshelf.c:183
+#: src/bookshelf.c:186
 #, c-format
 msgid "Problems when reading books: %s\n"
-msgstr "Problèmes rencontrés lors de la lecture des livres : %s\n"
+msgstr "Problèmes rencontrés lors de la lecture des livres : %s\n"
 
-#: src/bookshelf.c:250
+#: src/bookshelf.c:354
 #, c-format
 msgid "Empty document: %s"
-msgstr "Document vide : %s"
+msgstr "Document vide : %s"
 
-#: src/bookshelf.c:256
+#: src/bookshelf.c:360
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
 msgstr ""
-"Mauvais type de document, obtention du type %s au lieu de « booklist » : %s"
+"Mauvais type de document, obtention du type %s au lieu de « booklist » : %s"
 
-#: src/bookshelf.c:311
+#: src/bookshelf.c:394
+#, c-format
+msgid ""
+"I found an old version of your spec file (%s)\n"
+"I removed it, so you have to hide the books you want to be hidden again."
+msgstr ""
+"J'ai trouvé une vieille version de votre fichier spec (%s)\n"
+"Je l'ai supprimé, vous devez donc cacher de nouveau les livres que vous ne "
+"souhaitez pas voir."
+
+#: src/bookshelf.c:399
+msgid "Ok"
+msgstr "Ok"
+
+#: src/bookshelf.c:440
 #, c-format
 msgid "Failed to open file %s for writing."
 msgstr "Impossible d'ouvrir le fichier %s en écriture."
@@ -62,7 +77,7 @@ msgstr "© Copyright 2001, Johan Dahlin"
 msgid "A developer's help browser"
 msgstr "Un navigateur d'aide pour les développeurs"
 
-#: src/devhelp-window.c:621
+#: src/devhelp-window.c:622
 #, c-format
 msgid "Open %s"
 msgstr "Ouvrir %s"
@@ -112,11 +127,11 @@ msgstr "Aperçu avant impression"
 msgid "Printing failed."
 msgstr "Échec lors de l'impression."
 
-#: src/install.c:101 src/install.c:192 src/install.c:210
+#: src/install.c:101 src/install.c:190 src/install.c:214 src/install.c:306
 msgid "The book is already installed."
 msgstr "Ce livre est déjà installé."
 
-#: src/install.c:114 src/install.c:200 src/install.c:219
+#: src/install.c:114 src/install.c:198 src/install.c:223
 msgid "Failed to move book. This should never happen."
 msgstr "Impossible de déplacer le livre. Cela ne devrait jamais arriver."
 
@@ -124,15 +139,15 @@ msgstr "Impossible de déplacer le livre. Cela ne devrait jamais arriver."
 msgid "Failed to extract spec file from book."
 msgstr "Impossible d'extraire le fichier de spécification du livre."
 
-#: src/install.c:171
+#: src/install.c:169
 msgid "Error, the book is corrupted or very old."
 msgstr "Erreur, le livre est corrompu ou très vieux."
 
-#: src/install.c:182
+#: src/install.c:180
 msgid "Failed to extract the book."
 msgstr "Erreur lors de l'extraction du livre."
 
-#: src/install.c:289 src/install.c:299
+#: src/install.c:287 src/install.c:297
 #, c-format
 msgid "Wrong type (mime_type=%s)."
 msgstr "Mauvais type (mime_type=%s)"
@@ -140,7 +155,7 @@ msgstr "Mauvais type (mime_type=%s)"
 #: src/main.c:78
 #, c-format
 msgid "Could not activate devhelp: '%s'"
-msgstr "Impossible d'activer DevHelp : « %s »"
+msgstr "Impossible d'activer DevHelp : « %s »"
 
 #: src/main.c:87
 msgid "Could not search for string."
@@ -150,23 +165,23 @@ msgstr "Impossible de rechercher cette chaîne."
 msgid "Search for a function"
 msgstr "Rechercher une fonction"
 
-#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
+#: src/preferences.c:87 ui/devhelp.glade.h:22 ui/GNOME_DevHelp.ui.h:11
 msgid "Tiny"
 msgstr "Très petit"
 
-#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
+#: src/preferences.c:88 ui/devhelp.glade.h:21 ui/GNOME_DevHelp.ui.h:10
 msgid "Small"
 msgstr "Petit"
 
-#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
+#: src/preferences.c:89 ui/devhelp.glade.h:12 ui/GNOME_DevHelp.ui.h:5
 msgid "Medium"
 msgstr "Moyen"
 
-#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
+#: src/preferences.c:90 ui/devhelp.glade.h:11 ui/GNOME_DevHelp.ui.h:4
 msgid "Large"
 msgstr "Grand"
 
-#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
+#: src/preferences.c:91 ui/devhelp.glade.h:9 ui/GNOME_DevHelp.ui.h:3
 msgid "Huge"
 msgstr "Très grand"
 
@@ -180,7 +195,7 @@ msgstr "<< _Afficher"
 
 #: ui/devhelp.glade.h:3
 msgid "Author:"
-msgstr "Auteur :"
+msgstr "Auteur :"
 
 #: ui/devhelp.glade.h:4
 msgid "Book info"
@@ -216,11 +231,11 @@ msgstr "Monter"
 
 #: ui/devhelp.glade.h:15
 msgid "Name:"
-msgstr "Nom :"
+msgstr "Nom :"
 
 #: ui/devhelp.glade.h:16
 msgid "Path:"
-msgstr "Chemin :"
+msgstr "Chemin :"
 
 #: ui/devhelp.glade.h:17
 msgid "Remove"
@@ -240,11 +255,11 @@ msgstr "Afficher le _panneau latéral"
 
 #: ui/devhelp.glade.h:23
 msgid "Title:"
-msgstr "Titre :"
+msgstr "Titre :"
 
 #: ui/devhelp.glade.h:24
 msgid "Version:"
-msgstr "Version :"
+msgstr "Version :"
 
 #: ui/devhelp.glade.h:25
 msgid "View"
@@ -256,7 +271,7 @@ msgstr "Visible"
 
 #: ui/devhelp.glade.h:27
 msgid "_Edit book..."
-msgstr "É_diter le livre..."
+msgstr "_Éditer le livre..."
 
 #: ui/devhelp.glade.h:28
 msgid "_Hide >>"
@@ -264,11 +279,11 @@ msgstr "_Cacher >>"
 
 #: ui/devhelp.glade.h:29
 msgid "_Limit the number of hits to:"
-msgstr "_Nombre maximum de réponses :"
+msgstr "_Nombre maximum de réponses :"
 
 #: ui/devhelp.glade.h:30
 msgid "_Text size: "
-msgstr "_Taille du texte :"
+msgstr "_Taille du texte :"
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
