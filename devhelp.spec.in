@@ -97,10 +97,10 @@ killall gconfd-1 2>/dev/null >/dev/null
 chmod o+rX /etc/gconf -R
 
 # Install schemas
-gconftool --shutdown
+gconftool-1 --shutdown
 SOURCE=xml::/etc/gconf/gconf.xml.defaults
 GCONF_CONFIG_SOURCE=$SOURCE \
-    gconftool --makefile-install-rule \
+    gconftool-1 --makefile-install-rule \
     /etc/gconf/schemas/devhelp.schemas \
     2>/dev/null >/dev/null || exit 1
 		
