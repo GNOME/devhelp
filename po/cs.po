@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2003-05-16 03:57+0200\n"
-"PO-Revision-Date: 2003-05-16 12:02+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-28 12:02+0200\n"
+"PO-Revision-Date: 2003-06-28 19:56+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,16 +16,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-msgid "DevHelp"
-msgstr "DevHelp"
-
-#: devhelp.desktop.in.h:2
-msgid "Developers Help program"
+msgid "Developer's Help program"
 msgstr "Program nápovědy pro vývojáře"
 
+#: devhelp.desktop.in.h:2
+msgid "Devhelp"
+msgstr "Devhelp"
+
 #: devhelp.keys.in.h:1
-msgid "DevHelp Book"
-msgstr "Kniha DevHelp"
+msgid "Devhelp Book"
+msgstr "Kniha Devhelp"
 
 #: src/dh-html-gtkhtml2.c:526
 msgid ""
@@ -37,18 +38,26 @@ msgstr ""
 "hledat.<p>Pro pohyb ve stromě vlevo použijte <b>Shift nahoru/dolů</b> a pro "
 "rozbalování a sbalování knih ve stromě <b>Shift doleva/doprava</b>."
 
-#: src/dh-main.c:261
+#: src/dh-main.c:274
+msgid "Specify the size and location of the window"
+msgstr "Určení velikosti a umístění okna"
+
+#: src/dh-main.c:275
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "ŠÍŘKAxVÝŠKA+XPOS+YPOS"
+
+#: src/dh-main.c:283
 msgid "Search for a function"
 msgstr "Hledat funkci"
 
-#: src/dh-main.c:270
+#: src/dh-main.c:292
 msgid "Quit any running Devhelp"
 msgstr "Ukončit všechny běžící Devhelpy"
 
-#: src/dh-parser.c:94
+#: src/dh-parser.c:94 src/dh-parser.c:171 src/dh-parser.c:218
 #, c-format
-msgid "Expected 'book' got '%s' at line %d, column %d"
-msgstr "Očekával jsem 'book', dostal jsem '%s' na řádku %d, sloupci %d"
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Očekával jsem '%s', dostal jsem '%s' na řádku %d, sloupci %d"
 
 #: src/dh-parser.c:110
 #, c-format
@@ -60,21 +69,11 @@ msgstr "Neplatné namespace '%s' na řádku %d, sloupci %d"
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Na řádku %d, sloupci %d jsou vyžadovány elementy title, name a link"
 
-#: src/dh-parser.c:171
-#, c-format
-msgid "Expected 'sub' got '%s' at line %d column %d"
-msgstr "Očekával jsem 'sub', dostal jsem '%s' na řádku %d, sloupci %d"
-
 #: src/dh-parser.c:192
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <sub> vyžadovány elementy name a link"
-
-#: src/dh-parser.c:218
-#, c-format
-msgid "Expected 'function' got '%s' at line %d, column %d"
-msgstr "Očekával jsem 'function', dostal jsem '%s' na řádku %d, sloupci %d"
 
 #: src/dh-parser.c:240
 #, c-format
@@ -84,52 +83,50 @@ msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <function> vyžadovány elementy name a "
 "link"
 
-#: src/dh-parser.c:326 src/dh-parser.c:410
+#: src/dh-parser.c:327 src/dh-parser.c:412
 msgid "Could not create book parser"
 msgstr "Nemohu vytvořit parser knihy"
 
-#: src/dh-parser.c:336 src/dh-parser.c:420
+#: src/dh-parser.c:337 src/dh-parser.c:422
 msgid "Could not create markup parser"
 msgstr "Nemohu vytvořit parser značení"
 
-#: src/dh-parser.c:466
+#: src/dh-parser.c:468
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nemohu dekomprimovat knihu '%s': %s"
 
-#: src/dh-search.c:349
-msgid "_Search for:"
+#: src/dh-search.c:421
+msgid "_Search:"
 msgstr "_Hledat:"
 
-#: src/dh-search.c:390
+#: src/dh-search.c:465
 msgid "Section"
 msgstr "Oddíl"
 
-#: src/dh-window.c:95
+#: src/dh-window.c:103
 msgid "_File"
 msgstr "_Soubor"
 
-#: src/dh-window.c:96
+#: src/dh-window.c:104
 msgid "_Go"
 msgstr "_Jít"
 
-#: src/dh-window.c:97
+#: src/dh-window.c:105
 msgid "_Help"
 msgstr "_Nápověda"
 
-#. About menu
-#: src/dh-window.c:110
-msgid "_About"
-msgstr "_O programu"
-
-#: src/dh-window.c:287
+#: src/dh-window.c:341
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:298
+#: src/dh-window.c:352
 msgid "Search"
 msgstr "Hledat"
 
-#: src/dh-window.c:360
+#: src/dh-window.c:414
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
+
+#~ msgid "_About"
+#~ msgstr "_O programu"
