@@ -9,10 +9,10 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.7\n"
+"Project-Id-Version: devhelp 0.8.99\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-17 13:18+0100\n"
-"PO-Revision-Date: 2004-01-17 13:14+0100\n"
+"POT-Creation-Date: 2004-02-29 00:58+0100\n"
+"PO-Revision-Date: 2004-02-29 00:56+0100\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -120,279 +120,27 @@ msgstr "A_ller"
 msgid "_Help"
 msgstr "_Aide"
 
-#: src/dh-window.c:283
+#: src/dh-window.c:285
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Impossible de définir l'UI : %s"
 
-#: src/dh-window.c:343
+#: src/dh-window.c:347
 msgid "Contents"
 msgstr "Sommaire"
 
-#: src/dh-window.c:354
+#: src/dh-window.c:358
 msgid "Search"
 msgstr "Rechercher"
 
-#: src/dh-window.c:419
+#: src/dh-window.c:423
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un navigateur d'aide pour les développeurs GNOME 2"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:438
 msgid "Devhelp project page"
 msgstr "Page du projet Devhelp"
 
-#: src/dh-window.c:438
+#: src/dh-window.c:442
 msgid "Bug report Devhelp"
 msgstr "Signaler une anomalie sur Devhelp "
-
-#~ msgid "_Search for:"
-#~ msgstr "_Rechercher :"
-
-#~ msgid "_About"
-#~ msgstr "À _propos..."
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Choisissez un sujet dans la table des matières à gauche, ou bien utilisez "
-#~ "le panneau de recherche pour trouver ce dont vous avez besoin. "
-#~ "<p>Utilisez <b>Shift+Haut/Bas</b> pour vous déplacer dans l'arbre à "
-#~ "gauche, et <b>Shift+Gauche/Droite</b> pour étendre et réduire les livres "
-#~ "dans l'arbre."
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "« %s » n'est pas un livre valide"
-
-#~ msgid "Book '%s' is malformed."
-#~ msgstr "Le livre « %s » est malformé."
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Impossible de trouver le fichier « %s »"
-
-#~ msgid "Book '%s' is malformed, the parse context is invalid."
-#~ msgstr "Le livre « %s » est malformé."
-
-#~ msgid "Book '%s' is malformed, the XML is invalid."
-#~ msgstr "Le livre « %s » est malformé, le XML est invalide."
-
-#~ msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
-#~ msgstr "Le livre « %s » est malformé, cela n'est pas conforme au DTD (%s). "
-
-#~ msgid ""
-#~ "<b>Could not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Impossible de lire tous les livres</b>\n"
-#~ "\n"
-#~ "L'erreur suivante s'est produite durant la lecture des livres :\n"
-#~ "%s"
-
-#~ msgid "Open %s"
-#~ msgstr "Ouvrir %s"
-
-#~ msgid "Choose a book..."
-#~ msgstr "Choisissez un livre..."
-
-#~ msgid "Problems when reading books: %s\n"
-#~ msgstr "Problèmes rencontrés lors de la lecture des livres : %s\n"
-
-#~ msgid "Empty document: %s"
-#~ msgstr "Document vide : %s"
-
-#~ msgid "Document wrong type, got %s, expected 'booklist': %s"
-#~ msgstr ""
-#~ "Mauvais type de document, obtention du type %s au lieu de « booklist » : %"
-#~ "s"
-
-#~ msgid ""
-#~ "I found an old version of your spec file (%s)\n"
-#~ "I removed it, so you have to hide the books you want to be hidden again."
-#~ msgstr ""
-#~ "J'ai trouvé une vieille version de votre fichier spec (%s)\n"
-#~ "Je l'ai supprimé, vous devez donc cacher de nouveau les livres que vous "
-#~ "ne souhaitez pas voir."
-
-#~ msgid "Ok"
-#~ msgstr "Ok"
-
-#~ msgid "Failed to open file %s for writing."
-#~ msgstr "Impossible d'ouvrir le fichier %s en écriture."
-
-#~ msgid "DevHelp Controller"
-#~ msgstr "Contrôleur pour DevHelp"
-
-#~ msgid "DevHelp Controller Factory"
-#~ msgstr "Fabrique de contrôleurs pour DevHelp"
-
-#~ msgid "DevHelp HelpBrowser"
-#~ msgstr "Navigateur d'aide DevHelp"
-
-#~ msgid "DevHelp HelpBrowser Factory"
-#~ msgstr "Fabrique de navigateurs d'aide DevHelp"
-
-#~ msgid "The book is already installed."
-#~ msgstr "Ce livre est déjà installé."
-
-#~ msgid "Failed to move book. This should never happen."
-#~ msgstr "Impossible de déplacer le livre. Cela ne devrait jamais arriver."
-
-#~ msgid "Failed to extract spec file from book."
-#~ msgstr "Impossible d'extraire le fichier de spécification du livre."
-
-#~ msgid "Error, the book is corrupted or very old."
-#~ msgstr "Erreur, le livre est corrompu ou très vieux."
-
-#~ msgid "Failed to extract the book."
-#~ msgstr "Erreur lors de l'extraction du livre."
-
-#~ msgid "Wrong type (mime_type=%s)."
-#~ msgstr "Mauvais type (mime_type=%s)"
-
-#~ msgid "Could not activate devhelp: '%s'"
-#~ msgstr "Impossible d'activer DevHelp : « %s »"
-
-#~ msgid "Tiny"
-#~ msgstr "Très petit"
-
-#~ msgid "Small"
-#~ msgstr "Petit"
-
-#~ msgid "Medium"
-#~ msgstr "Moyen"
-
-#~ msgid "Large"
-#~ msgstr "Grand"
-
-#~ msgid "Huge"
-#~ msgstr "Très grand"
-
-#~ msgid "Print Help"
-#~ msgstr "Imprimer l'aide"
-
-#~ msgid "Print Preview"
-#~ msgstr "Aperçu avant impression"
-
-#~ msgid "Printing failed."
-#~ msgstr "Échec lors de l'impression."
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "<< _Show"
-#~ msgstr "<< _Afficher"
-
-#~ msgid "Author:"
-#~ msgstr "Auteur :"
-
-#~ msgid "Book info"
-#~ msgstr "Informations sur le livre"
-
-#~ msgid "Bookmarks"
-#~ msgstr "Signets"
-
-#~ msgid "DevHelp Preferences"
-#~ msgstr "Préférences pour DevHelp"
-
-#~ msgid "Hidden"
-#~ msgstr "Caché"
-
-#~ msgid "Install new book..."
-#~ msgstr "Installer un nouveau livre..."
-
-#~ msgid "Move down"
-#~ msgstr "Descendre"
-
-#~ msgid "Move up"
-#~ msgstr "Monter"
-
-#~ msgid "Name:"
-#~ msgstr "Nom :"
-
-#~ msgid "Path:"
-#~ msgstr "Chemin :"
-
-#~ msgid "Remove"
-#~ msgstr "Supprimer"
-
-#~ msgid "Reset to defaults"
-#~ msgstr "Valeurs pas défaut"
-
-#~ msgid "Show _sidebar"
-#~ msgstr "Afficher le _panneau latéral"
-
-#~ msgid "Title:"
-#~ msgstr "Titre :"
-
-#~ msgid "Version:"
-#~ msgstr "Version :"
-
-#~ msgid "View"
-#~ msgstr "Voir"
-
-#~ msgid "Visible"
-#~ msgstr "Visible"
-
-#~ msgid "_Edit book..."
-#~ msgstr "É_diter le livre..."
-
-#~ msgid "_Hide >>"
-#~ msgstr "_Cacher >>"
-
-#~ msgid "_Limit the number of hits to:"
-#~ msgstr "_Nombre maximum de réponses :"
-
-#~ msgid "_Text size: "
-#~ msgstr "_Taille du texte :"
-
-#~ msgid "About this application"
-#~ msgstr "À propos de cette application"
-
-#~ msgid "Font size"
-#~ msgstr "Taille de la police"
-
-#~ msgid "Open preferences dialog"
-#~ msgstr "Ouvrir la fenêtre des préférences"
-
-#~ msgid "Preferences..."
-#~ msgstr "Préférences..."
-
-#~ msgid "Print the html page"
-#~ msgstr "Imprimer la page HTML"
-
-#~ msgid "Show sidebar"
-#~ msgstr "Afficher le panneau latéral"
-
-#~ msgid "_Exit"
-#~ msgstr "_Quitter"
-
-#~ msgid "_Print"
-#~ msgstr "_Imprimer"
-
-#~ msgid "_View"
-#~ msgstr "_Vue"
-
-#~ msgid "Back"
-#~ msgstr "Arrière"
-
-#~ msgid "Book Manager..."
-#~ msgstr "Gestionnaire de livres..."
-
-#~ msgid "Forward"
-#~ msgstr "Avant"
-
-#~ msgid "Go to next page in the history"
-#~ msgstr "Afficher la page suivante de l'historique"
-
-#~ msgid "Go to previous page in the history"
-#~ msgstr "Afficher la page précédente de l'historique"
-
-#~ msgid "Open the book manager dialog"
-#~ msgstr "Afficher la fenêtre de gestion des livres"
-
-#~ msgid "(C) Copyright 2001, Johan Dahlin"
-#~ msgstr "© Copyright 2001, Johan Dahlin"
