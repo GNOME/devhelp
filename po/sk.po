@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
-"PO-Revision-Date: 2003-01-28 13:25+0100\n"
+"POT-Creation-Date: 2003-05-15 18:44+0200\n"
+"PO-Revision-Date: 2003-05-215 18:53+0200\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,22 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Program pomocníka pre vývojárov"
 
+#: devhelp.keys.in.h:1
+msgid "DevHelp Book"
+msgstr "DevHelp kniha"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Vyberte si predmet v obsahu vľaho, alebo sa prepnite na vyhľadávací panel, "
+"aby ste našli to, čo potrebujete.<p>Použite <b>shift+hore/dole</b> na "
+"prechádzanie po strome vľavo a <b>shift+vľavo/vpravo</b> na rozbalenie a "
+"zabalenie kníh v strome."
+
 #: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Vyhľadať funkciu"
@@ -28,6 +44,55 @@ msgstr "Vyhľadať funkciu"
 #: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Ukončiť všetky bežiace kópie Devhelp"
+
+#: src/dh-parser.c:94
+#, c-format
+msgid "Expected 'book' got '%s' at line %d, column %d"
+msgstr "Očakávané 'book', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
+
+#: src/dh-parser.c:110
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Neplatný menný priestor '%s' na riadku %d, stĺpec %d"
+
+#: src/dh-parser.c:139
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "Elementy title, name a link sú vyžadované na riadku %d, stĺpec %d"
+
+#: src/dh-parser.c:171
+#, c-format
+msgid "Expected 'sub' got '%s' at line %d column %d"
+msgstr "Očakávané 'sub', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
+
+#: src/dh-parser.c:192
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "Elementy name a link sú vyžadované vo vnútri <sub> na riadku %d, stĺpec %d"
+
+#: src/dh-parser.c:218
+#, c-format
+msgid "Expected 'function' got '%s' at line %d, column %d"
+msgstr "Očakávané 'function', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
+
+#: src/dh-parser.c:240
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr "Elementy name a link sú vyžadované vo vnútri <function> na riadku %d, stĺpec %d"
+
+#: src/dh-parser.c:326 src/dh-parser.c:410
+msgid "Could not create book parser"
+msgstr "Nepodarilo sa vytvoriť analyzátor pre knihu"
+
+#: src/dh-parser.c:336 src/dh-parser.c:420
+msgid "Could not create markup parser"
+msgstr "Nepodarilo sa vytvoriť analyzátor pre značky"
+
+#: src/dh-parser.c:466
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Nepodarilo sa rozbaliť knihu '%s': %s"
 
 #: src/dh-search.c:349
 msgid "_Search for:"
@@ -65,47 +130,3 @@ msgstr "Hľadať"
 #: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prehliadač pomocníka pre vývojárov pre GNOME 2"
-
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Vyberte si predmet v obsahu vľaho, alebo sa prepnite na vyhľadávací panel, "
-"aby ste našli to, čo potrebujete.<p>Použite <b>shift+hore/dole</b> na "
-"prechádzanie po strome vľavo a <b>shift+vľavo/vpravo</b> na rozbalenie a "
-"zabalenie kníh v strome."
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "'%s' je neplatná kniha"
-
-#~ msgid "Book '%s' is malformed."
-#~ msgstr "Kniha '%s' je chybná."
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Nepodarilo sa nájsť súbor '%s'"
-
-#~ msgid "Book '%s' is malformed, the parse context is invalid."
-#~ msgstr "Kniha '%s' je chybná, kontext analýzy je neplatný."
-
-#~ msgid "Book '%s' is malformed, the XML is invalid."
-#~ msgstr "Kniha '%s' je chybná, XML je neplatné."
-
-#~ msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
-#~ msgstr "Kniha '%s' je chybná, nevyhovuje DTD (%s)."
-
-#~ msgid ""
-#~ "<b>Cound not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Nepodarilo sa načítať všetky knihy</b>\n"
-#~ "\n"
-#~ "Nasledujúce chyby sa vyskytli počas čítanie kníh:\n"
-#~ "%s"
-
-#~ msgid "Open %s"
-#~ msgstr "Otvoriť %s"
