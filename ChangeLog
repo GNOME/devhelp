@@ -1,5 +1,9 @@
 2003-06-27  Richard Hult  <richard@imendio.com>
 
+	* src/dh-search.c (search_entry_key_press_event_cb): Apply a
+	variation of a patch from Mike Hearn to go to the first hit when
+	enter is pressed. Fixes bug #114558.
+
 	* src/dh-window.c (window_populate, window_switch_page_after_cb)
 	(window_switch_page_cb): Hack to workaround weird selection
 	problem with the book tree.

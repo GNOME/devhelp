@@ -199,15 +199,44 @@ search_entry_key_press_event_cb (GtkEntry    *entry,
 				 GdkEventKey *event,
 				 DhSearch    *search)
 {
+	DhSearchPriv *priv;
+
+	priv = search->priv;
+	
 	if (event->keyval == GDK_Tab) {
 		if (event->state & GDK_CONTROL_MASK) {
-			gtk_widget_grab_focus (search->priv->hitlist);
+			gtk_widget_grab_focus (priv->hitlist);
 		} else {
 			gtk_editable_set_position (GTK_EDITABLE (entry), -1);
-			gtk_editable_select_region (GTK_EDITABLE (entry), 
-						    -1, -1);
+			gtk_editable_select_region (GTK_EDITABLE (entry), -1, -1);
 		}
 		return TRUE;
+	}
+
+	if (event->keyval == GDK_Return ||
+	    event->keyval == GDK_KP_Enter) {
+		GtkTreeIter  iter;
+		DhLink      *link;
+		gchar       *name;
+		
+		/* Get the first entry found. */
+		if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->model), &iter)) {
+			gtk_tree_model_get (GTK_TREE_MODEL (priv->model),
+					    &iter,
+					    DH_KEYWORD_MODEL_COL_LINK, &link,
+					    DH_KEYWORD_MODEL_COL_NAME, &name,
+					    -1);
+			
+			gtk_entry_set_text (GTK_ENTRY (entry), name);
+			g_free (name);
+			
+			gtk_editable_set_position (GTK_EDITABLE (entry), -1);
+			gtk_editable_select_region (GTK_EDITABLE (entry), -1, -1);
+			
+			g_signal_emit (search, signals[LINK_SELECTED], 0, link);
+			
+			return TRUE;
+		}
 	}
 	
 	return FALSE;
