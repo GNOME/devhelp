@@ -454,6 +454,24 @@ bookshelf_find_book_by_name (Bookshelf *bookshelf, const gchar *name)
 	return NULL;
 }
 
+void
+bookshelf_remove_book (Bookshelf *bookshelf, Book *book)
+{
+	BookshelfPriv   *priv;
+	GSList          *node;
+	
+	g_return_if_fail (bookshelf != NULL);
+	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (book != NULL);
+	g_return_if_fail (IS_BOOK (book));
+
+	priv = bookshelf->priv;
+	
+	priv->books = g_slist_remove (priv->books, book);
+
+	/* FIX: Send book_removed signal */
+}
+
 GSList *
 bookshelf_get_books (Bookshelf *bookshelf)
 {

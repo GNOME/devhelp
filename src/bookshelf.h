@@ -47,6 +47,8 @@ struct _Bookshelf {
 struct _BookshelfClass 
 {
 	GtkObjectClass    parent_class;
+	
+	/* FIX: Add book_added and book_removed signals */
 
 };
 
@@ -78,6 +80,9 @@ Book *           bookshelf_find_book_by_uri   (Bookshelf           *bookshelf,
 
 Book *           bookshelf_find_book_by_name  (Bookshelf           *bookshelf,
 					       const gchar         *name);
+
+void             bookshelf_remove_book        (Bookshelf           *bookshelf,
+					       Book                *book);
 
 Document *       bookshelf_find_document      (Bookshelf           *bookshelf,
 					       const gchar         *url,

@@ -1,3 +1,7 @@
+2001-08-07  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/bookshelf.[ch]: added bookshelf_remove book.
+
 2001-08-05  Johan Dahlin  <zilch.am@home.se>
 
 	* src/ui.c (devhelp_create_ui): gtk_clist_set_column_with &
