@@ -20,22 +20,12 @@
 
 #include <config.h>
 #include <string.h>
+#include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
-#include <gtk/gtkactiongroup.h>
-#include <gtk/gtkframe.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkhpaned.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkmain.h>
-#include <gtk/gtknotebook.h>
-#include <gtk/gtkscrolledwindow.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkuimanager.h>
+#include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
-#include <libgnome/gnome-i18n.h>
-#include <libgnomeui/gnome-about.h>
-#include <libgnomeui/gnome-href.h>
-#include <libgnomeui/gnome-stock-icons.h>
+
+
 
 #include "dh-book-tree.h"
 #include "dh-html.h"
@@ -139,7 +129,7 @@ static GtkActionEntry actions[] = {
 	  G_CALLBACK (window_activate_forward) },
 
 	/* About menu */
-	{ "About", GNOME_STOCK_ABOUT, NULL, NULL, NULL,
+	{ "About", GTK_STOCK_ABOUT, NULL, NULL, NULL,
 	  G_CALLBACK (window_activate_about) }
 };
 
@@ -439,10 +429,8 @@ static void window_activate_forward (GtkAction *action, DhWindow *window)
 static void window_activate_about            (GtkAction          *action,
 					      DhWindow           *window)
 {
-	static GtkWidget *about = NULL;
-	GtkWidget        *hbox;
-	GtkWidget        *href;
-
+	
+	
 	const gchar *authors[] = {
 		"Mikael Hallendal <micke@imendio.com>",
 		"Richard Hult <richard@imendio.com>",
@@ -450,39 +438,23 @@ static void window_activate_about            (GtkAction          *action,
 		"Ross Burton <ross@burtonini.com>",
 		NULL
 	};
+
+	const gchar *documenters[] = {
+            NULL
+    };
+
+    const gchar *translator_credits = _("translator_credits");
 	
-	if (about != NULL) {
-		gtk_window_present (GTK_WINDOW (about));
-		return;
-	}
-	
-	about = gnome_about_new ("Devhelp", VERSION,
-				 "",
-				 _("A developer's help browser for GNOME 2"),
-				 authors,
-				 NULL,
-				 NULL,
-				 NULL);
+	gtk_show_about_dialog(GTK_WINDOW (window),
+        					"name",_("Devhelp"),
+        					"version", VERSION,
+        					"comments", _("A developer's help browser for GNOME 2"),
+        					"authors", authors,
+        					"documenters", documenters,
+        					"translator-credits", strcmp(translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
+        					"website", "http://www.imendio.com/projects/devhelp/",
+        					NULL);
 
-	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
-
-	g_signal_connect (about,
-			  "destroy",
-			  G_CALLBACK (gtk_widget_destroyed),
-			  &about);
-	hbox = gtk_hbox_new (FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (about)->vbox),
-			    hbox, FALSE, FALSE, 0);
-	href = gnome_href_new ("http://www.imendio.com/projects/devhelp/",
-			       _("Devhelp project page"));
-	gtk_box_pack_start (GTK_BOX (hbox), href, 
-			    TRUE, TRUE, 0);
-	href = gnome_href_new ("http://bugzilla.gnome.org/",
-			       _("Bug report Devhelp"));
-	gtk_box_pack_start (GTK_BOX (hbox), href,
-			    TRUE, TRUE, 0);
-
-	gtk_widget_show_all (about);
 }
 
 static void

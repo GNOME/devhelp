@@ -1,6 +1,6 @@
 AC_INIT(src/Makefile.am)
 
-AM_INIT_AUTOMAKE(devhelp, 0.9.3)
+AM_INIT_AUTOMAKE(devhelp, 0.10)
 AM_CONFIG_HEADER(config.h)
 
 AM_SANITY_CHECK
@@ -31,8 +31,7 @@ PKG_CHECK_MODULES(DEVHELP, [
 	gtk+-2.0 >= 2.2.0])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-        gtk+-2.0 >= 2.3.1
-	libgnomeui-2.0 >= 2.2.0
+        gtk+-2.0 >= 2.6.0
 	gnome-vfs-2.0 >= 2.2.0
 	libglade-2.0 >= 2.0.0
 ])

@@ -23,11 +23,12 @@
 #include <string.h>
 #include <errno.h>
 
+#include <glib/gi18n.h>
+
 #ifdef HAVE_LIBZ
 #include "zlib.h"
 #endif
 
-#include <libgnome/gnome-i18n.h>
 
 #include "dh-error.h"
 #include "dh-link.h"

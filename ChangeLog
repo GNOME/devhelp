@@ -1,3 +1,21 @@
+2005-03-25  Kristof Vansant  <de_lupus@pandora.be>
+
+	reviewed by: Mikael Hallendal
+
+	* autogen.sh:
+	* configure.in:
+	- Depend on GTK+ 2.6
+	- Remove dependency on libgnome(ui).
+	* src/dh-html.c:
+	* src/dh-keyword-model.c:
+	* src/dh-main.c: (main):
+	* src/dh-parser.c:
+	* src/dh-search.c:
+	* src/dh-util.c: (dh_dot_dir):
+	* src/dh-window.c: (window_activate_about):
+	- Use GTK+ for about box instead of libgnomeui.
+	- Fixed #167213.
+
 2004-12-01  Mikael Hallendal  <micke@imendio.com>
 
 	* src/dh-html.c: 

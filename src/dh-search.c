@@ -21,6 +21,7 @@
 
 #include <config.h>
 #include <string.h>
+#include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtkaccessible.h>
 #include <gtk/gtkcellrenderertext.h>
@@ -32,7 +33,7 @@
 #include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtktreeview.h>
 #include <gtk/gtktreeselection.h>
-#include <libgnome/gnome-i18n.h>
+
 
 #include "dh-marshal.h"
 #include "dh-keyword-model.h"

@@ -24,8 +24,6 @@
 #include <string.h>
 
 #include <libgnomevfs/gnome-vfs.h>
-#include <libgnome/gnome-i18n.h>
-#include <libgnome/gnome-init.h>
 #include <gtkmozembed.h>
 
 #include "dh-util.h"

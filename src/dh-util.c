@@ -24,7 +24,6 @@
 #include <config.h>
 #include <string.h>
 #include <stdlib.h>
-#include <libgnome/gnome-init.h>
 #include <gtk/gtklabel.h>
 #include "dh-util.h"
 
@@ -105,7 +104,7 @@ dh_dot_dir (void)
 {
 	if (!dot_dir) {
 		dot_dir = g_build_filename (g_get_home_dir (),
-					    GNOME_DOT_GNOME,
+					    ".gnome2",
 					    "devhelp",
 					    NULL);
 	}

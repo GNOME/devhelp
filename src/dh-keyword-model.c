@@ -20,7 +20,6 @@
  */
 
 #include <gtk/gtktreemodel.h>
-#include <libgnome/gnome-i18n.h>
 #include <string.h>
 
 #include "dh-link.h"

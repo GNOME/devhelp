@@ -29,11 +29,9 @@
 #include <sys/un.h>
 #include <libxml/parser.h>
 #include <gconf/gconf.h>
+#include <glib/gi18n.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtkmain.h>
-#include <libgnome/gnome-i18n.h>
-#include <libgnome/gnome-program.h>
-#include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <gtkmozembed.h>
 
@@ -68,55 +66,53 @@ main (int argc, char **argv)
 {
 	gchar                  *option_search = NULL;
 	gboolean                option_quit = FALSE;
-	GnomeProgram           *program;
+	/*GnomeProgram           *program;*/
 	BaconMessageConnection *message_conn;
 	DhBase                 *base;
 	GtkWidget              *window;
 	
-	struct poptOption  options[] = {
+	GOptionEntry  options[] = {
 		{
 			"geometry",
 			'g',
-			POPT_ARG_STRING,
-			&geometry,
 			0,
+			G_OPTION_ARG_STRING,
+			&geometry,
 			N_("Specify the size and location of the window"),
 			N_("WIDTHxHEIGHT+XOFF+YOFF")
 		},
 		{ 
 			"search",      
-			's',  
-			POPT_ARG_STRING, 
+			's',
+			0,
+			G_OPTION_ARG_STRING, 
 			&option_search,    
-			0, 
 			_("Search for a function"),      
 			NULL 
 		},
 		{ 
 			"quit",      
 			'q',  
-			POPT_ARG_NONE, 
+			0,
+			G_OPTION_ARG_NONE, 
 			&option_quit,    
-			0, 
 			_("Quit any running Devhelp"),      
 			NULL 
 		},
-		{ NULL, '\0', 0, NULL, 0, NULL, NULL }
+		{ NULL, '\0', 0, 0, NULL, NULL, NULL }
 	};
 	
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain (PACKAGE);
+	/* Initialize i18n support */
+    gtk_set_locale ();
+
+    /* Initialize the widget set */
+    gtk_init_with_args (&argc, &argv,NULL,options,NULL,NULL);
 
 	g_thread_init (NULL);
 
-	program = gnome_program_init (PACKAGE, VERSION,
-				      LIBGNOMEUI_MODULE,
-                                      argc, argv,
-                                      GNOME_PROGRAM_STANDARD_PROPERTIES,
-				      GNOME_PARAM_POPT_TABLE, options,
-                                      NULL);
 	LIBXML_TEST_VERSION;
+
+	gnome_vfs_init ();
 
 	dh_gecko_utils_init_services ();
 	//gtk_moz_embed_set_comp_path (MOZILLA_HOME);
@@ -158,6 +154,7 @@ main (int argc, char **argv)
 	if (option_search) {
 		dh_window_search (DH_WINDOW (window), option_search);
 	}
+	
 	
 	gtk_widget_show (window);
 		
