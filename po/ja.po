@@ -1,17 +1,17 @@
 # devhelp ja.po.
-# Copyright (C) 2001 Free Software Foundation, Inc.
-# Takeshi Aihana <aihana@gnome.gr.jp>, 2001.
+# Copyright (C) 2001-2002 Free Software Foundation, Inc.
+# Takeshi Aihana <aihana@gnome.gr.jp>, 2001-2002.
 # 
 #, no-wrap
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.3\n"
-"POT-Creation-Date: 2001-12-03 14:43+0900\n"
-"PO-Revision-Date: 2001-12-03 18:16+0900\n"
+"Project-Id-Version: devhelp 0.4.99\n"
+"POT-Creation-Date: 2002-04-28 00:13+0900\n"
+"PO-Revision-Date: 2002-04-28 00:09+0900\n"
 "Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=euc-jp\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
@@ -20,357 +20,334 @@ msgstr "DevHelp"
 
 #: devhelp.desktop.in.h:2
 msgid "Developers Help program"
-msgstr "³«È¯¼Ô¸ş¤±¤Î¥Ø¥ë¥×¥×¥í¥°¥é¥à"
+msgstr "é–‹ç™ºè€…å‘ã‘ã®ãƒ˜ãƒ«ãƒ—ãƒ—ãƒ­ã‚°ãƒ©ãƒ "
 
-#: src/books-dialog.c:323
+#: src/books-dialog.c:327
 msgid "Choose a book..."
-msgstr "¥Ö¥Ã¥¯¤ÎÁªÂò..."
+msgstr "ãƒ–ãƒƒã‚¯ã®é¸æŠ..."
 
-#: src/bookshelf.c:186
+#: src/bookshelf.c:185
 #, c-format
 msgid "Problems when reading books: %s\n"
-msgstr "¥Ö¥Ã¥¯¤ÎÆÉ¤ß¹ş¤ßÃæ¤ËÌäÂê¤¬È¯À¸: %s\n"
+msgstr "ãƒ–ãƒƒã‚¯ã®èª­ã¿è¾¼ã¿ä¸­ã«å•é¡ŒãŒç™ºç”Ÿ: %s\n"
 
-#: src/bookshelf.c:363
+#: src/bookshelf.c:372
 #, c-format
 msgid "Empty document: %s"
-msgstr "¶õ¤Î¥É¥­¥å¥á¥ó¥È: %s"
+msgstr "ç©ºã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ: %s"
 
-#: src/bookshelf.c:369
+#: src/bookshelf.c:378
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
 msgstr ""
-"¥É¥­¥å¥á¥ó¥È¤Î¼ïÎà¤¬´Ö°ã¤Ã¤Æ¤¤¤Ş¤¹¡£(\"booklist\" ¤Ê¤Î¤Ë %s ¤ò¼èÆÀ¤·¤Ş¤·¤¿): "
+"ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã®ç¨®é¡ãŒé–“é•ã£ã¦ã„ã¾ã™ã€‚(\"booklist\" ãªã®ã« %s ã‚’å–å¾—ã—ã¾ã—ãŸ): "
 "%s"
 
-#: src/bookshelf.c:403
+#: src/bookshelf.c:412
 #, c-format
 msgid ""
 "I found an old version of your spec file (%s)\n"
 "I removed it, so you have to hide the books you want to be hidden again."
 msgstr ""
-"»ÅÍÍ¥Õ¥¡¥¤¥ë (%s) ¤Î¥Ğ¡¼¥¸¥ç¥ó¤¬¸Å¤¤¤è¤¦¤Ç¤¹¡£\n"
-"¤½¤Î¥Õ¥¡¥¤¥ë¤òºï½ü¤¹¤ë¤Î¤Ç¡¢Á´¤Æ¤Î¥Ö¥Ã¥¯¡¦¥Ä¥ê¡¼¤ò°ìÅÙ¾ö¤ó¤Ç²¼¤µ¤¤¡£"
+"ä»•æ§˜ãƒ•ã‚¡ã‚¤ãƒ« (%s) ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒå¤ã„ã‚ˆã†ã§ã™ã€‚\n"
+"ãã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã®ã§ã€å…¨ã¦ã®ãƒ–ãƒƒã‚¯ãƒ»ãƒ„ãƒªãƒ¼ã‚’ä¸€åº¦ç•³ã‚“ã§ä¸‹ã•ã„ã€‚"
 
-#: src/bookshelf.c:408
+#: src/bookshelf.c:417
 msgid "Ok"
 msgstr "OK"
 
-#: src/bookshelf.c:449
+#: src/bookshelf.c:458
 #, c-format
 msgid "Failed to open file %s for writing."
-msgstr "¥Õ¥¡¥¤¥ë %s ¤ò½ñ¤­¹ş¤ß¥â¡¼¥É¤Ç³«¤±¤Ş¤»¤ó¤Ç¤·¤¿¡£"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚"
 
-#: src/devhelp-window.c:402
+#: src/devhelp-window.c:334
 msgid "_Contents"
-msgstr "ÆâÍÆ(_C)"
+msgstr "å†…å®¹(_C)"
 
-#: src/devhelp-window.c:414
+#: src/devhelp-window.c:345
 msgid "_Search"
-msgstr "¸¡º÷(_S)"
+msgstr "æ¤œç´¢(_S)"
 
-#: src/devhelp-window.c:499
-msgid "(C) Copyright 2001, Johan Dahlin"
-msgstr "(C) Copyright 2001, Johan Dahlin"
+#: src/devhelp-window.c:437
+msgid "A developer's help browser for GNOME 2"
+msgstr "GNOME 2 å¯¾å¿œã®é–‹ç™ºè€…å‘ã‘ã®ãƒ˜ãƒ«ãƒ—ãƒ–ãƒ©ã‚¦ã‚¶"
 
-#: src/devhelp-window.c:501
-msgid "A developer's help browser"
-msgstr "³«È¯¼Ô¸ş¤±¤Î¥Ø¥ë¥×¥Ö¥é¥¦¥¶"
-
-#: src/devhelp-window.c:621
+#: src/devhelp-window.c:558
 #, c-format
 msgid "Open %s"
-msgstr "%s ¤ò³«¤¯"
+msgstr "%s ã‚’é–‹ã"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:1
+#: src/GNOME_DevHelp.server.in.in.h:1
 msgid "DevHelp Controller"
-msgstr "DevHelp ¥³¥ó¥È¥í¡¼¥é"
+msgstr "DevHelp ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:2
+#: src/GNOME_DevHelp.server.in.in.h:2
 msgid "DevHelp Controller Factory"
-msgstr "DevHelp ¥³¥ó¥È¥í¡¼¥ë¡¦¥Õ¥¡¥¯¥È¥ê"
+msgstr "DevHelp ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ»ãƒ•ã‚¡ã‚¯ãƒˆãƒª"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:3
+#: src/GNOME_DevHelp.server.in.in.h:3
 msgid "DevHelp HelpBrowser"
-msgstr "DevHelp ¥Ø¥ë¥×¥Ö¥é¥¦¥¶"
+msgstr "DevHelp ãƒ˜ãƒ«ãƒ—ãƒ–ãƒ©ã‚¦ã‚¶"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:4
+#: src/GNOME_DevHelp.server.in.in.h:4
 msgid "DevHelp HelpBrowser Factory"
-msgstr "DevHelp HelpBrowser ¥Õ¥¡¥¯¥È¥ê"
+msgstr "DevHelp HelpBrowser ãƒ•ã‚¡ã‚¯ãƒˆãƒª"
 
-#: src/html-widget.c:208
+#: src/devhelp-view.c:361
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
 "tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
 "books in the tree."
-msgstr "Select a subject in the contents to the left or switch to the search pane to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the tree to the left, and <b>Shift Left/Right</b> to expand and collapse the books in the tree."
-
-#: src/html-widget.c:294
-#, c-format
-msgid "Couldn't open uri: %s"
-msgstr "URI ¤ò³«¤±¤Ş¤»¤ó¤Ç¤·¤¿: %s"
-
-#: src/html-widget.c:464
-msgid "Print Help"
-msgstr "¥Ø¥ë¥×¤ò°õºş¤¹¤ë"
-
-#: src/html-widget.c:509
-msgid "Print Preview"
-msgstr "¥×¥ì¥Ó¥å¡¼¤ò°õºş¤¹¤ë"
-
-#: src/html-widget.c:520
-msgid "Printing failed."
-msgstr "°õºş¤Ë¼ºÇÔ¤·¤Ş¤·¤¿¡£"
+msgstr ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
 
 #: src/install.c:101 src/install.c:190 src/install.c:214 src/install.c:306
 msgid "The book is already installed."
-msgstr "¤³¤Î¥Ö¥Ã¥¯¤Ï´û¤Ë¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤Ş¤¹¡£"
+msgstr "ã“ã®ãƒ–ãƒƒã‚¯ã¯æ—¢ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã¾ã™ã€‚"
 
 #: src/install.c:114 src/install.c:198 src/install.c:223
 msgid "Failed to move book. This should never happen."
-msgstr "¥Ö¥Ã¥¯¤Î°ÜÆ°¤Ë¼ºÇÔ¤·¤Ş¤·¤¿¡£¤³¤ì¤Ï¿¼¹ï¤ÊÌäÂê¤Ç¤¹¡£"
+msgstr "ãƒ–ãƒƒã‚¯ã®ç§»å‹•ã«å¤±æ•—ã—ã¾ã—ãŸã€‚ã“ã‚Œã¯æ·±åˆ»ãªå•é¡Œã§ã™ã€‚"
 
 #: src/install.c:154
 msgid "Failed to extract spec file from book."
-msgstr "¥Ö¥Ã¥¯¤«¤é SPEC ¥Õ¥¡¥¤¥ë¤òÅ¸³«¤¹¤ë¤Î¤Ë¼ºÇÔ¤·¤Ş¤·¤¿¡£"
+msgstr "ãƒ–ãƒƒã‚¯ã‹ã‚‰ SPEC ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å±•é–‹ã™ã‚‹ã®ã«å¤±æ•—ã—ã¾ã—ãŸã€‚"
 
 #: src/install.c:169
 msgid "Error, the book is corrupted or very old."
-msgstr "¥¨¥é¡¼¤Ç¤¹¡£¥Ö¥Ã¥¯¤¬¤ª¤«¤·¤¤¤«¤Ş¤¿¤Ï¤È¤Æ¤â¸Å¤¤¤Ç¤¹¡£"
+msgstr "ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚ãƒ–ãƒƒã‚¯ãŒãŠã‹ã—ã„ã‹ã¾ãŸã¯ã¨ã¦ã‚‚å¤ã„ã§ã™ã€‚"
 
 #: src/install.c:180
 msgid "Failed to extract the book."
-msgstr "¥Ö¥Ã¥¯¤ÎÅ¸³«¤Ë¼ºÇÔ¤·¤Ş¤·¤¿¡£"
+msgstr "ãƒ–ãƒƒã‚¯ã®å±•é–‹ã«å¤±æ•—ã—ã¾ã—ãŸã€‚"
 
 #: src/install.c:287 src/install.c:297
 #, c-format
 msgid "Wrong type (mime_type=%s)."
-msgstr "´Ö°ã¤Ã¤¿¼ïÎà (MIME=%s) ¤Ç¤¹¡£"
+msgstr "é–“é•ã£ãŸç¨®é¡ (MIME=%s) ã§ã™ã€‚"
 
-#: src/main.c:78
+#: src/main.c:80
 #, c-format
 msgid "Could not activate devhelp: '%s'"
-msgstr "devhelp ¤òÍ­¸ú¤Ë¤¹¤ë¤³¤È¤¬½ĞÍè¤Ş¤»¤ó¤Ç¤·¤¿: '%s'"
+msgstr "devhelp ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸ: '%s'"
 
-#: src/main.c:87
+#: src/main.c:89
 msgid "Could not search for string."
-msgstr "Ê¸»úÎó¤ò¸¡º÷¤¹¤ë¤³¤È¤¬½ĞÍè¤Ş¤»¤ó¤Ç¤·¤¿¡£"
+msgstr "æ–‡å­—åˆ—ã‚’æ¤œç´¢ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸã€‚"
 
-#: src/main.c:125
+#: src/main.c:129
 msgid "Search for a function"
-msgstr "´Ø¿ô¤Î¸¡º÷"
+msgstr "é–¢æ•°ã®æ¤œç´¢"
 
-#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
+#: src/preferences.c:85 ui/devhelp2.glade.h:22 ui/GNOME_DevHelp.ui.h:11
 msgid "Tiny"
-msgstr "¶Ë¾®"
+msgstr "æ¥µå°"
 
-#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
+#: src/preferences.c:86 ui/devhelp2.glade.h:21 ui/GNOME_DevHelp.ui.h:10
 msgid "Small"
-msgstr "¾®¤µ¤¤"
+msgstr "å°ã•ã„"
 
-#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
+#: src/preferences.c:87 ui/devhelp2.glade.h:12 ui/GNOME_DevHelp.ui.h:5
 msgid "Medium"
-msgstr "Ãæ¤°¤é¤¤"
+msgstr "ä¸­ãã‚‰ã„"
 
-#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
+#: src/preferences.c:88 ui/devhelp2.glade.h:11 ui/GNOME_DevHelp.ui.h:4
 msgid "Large"
-msgstr "Âç¤­¤¤"
+msgstr "å¤§ãã„"
 
-#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
+#: src/preferences.c:89 ui/devhelp2.glade.h:9 ui/GNOME_DevHelp.ui.h:3
 msgid "Huge"
-msgstr "µğÂç"
+msgstr "å·¨å¤§"
 
-#: ui/devhelp.glade.h:1
+#: ui/devhelp2.glade.h:1
 msgid " "
 msgstr " "
 
-#: ui/devhelp.glade.h:2
-msgid "<< _Show"
-msgstr "<< É½¼¨(_S)"
+#: ui/devhelp2.glade.h:2
+msgid "&lt;&lt; _Show"
+msgstr "&lt;&lt; è¡¨ç¤º(_S)"
 
-#: ui/devhelp.glade.h:3
+#: ui/devhelp2.glade.h:3
 msgid "Author:"
-msgstr "ºî¼Ô:"
+msgstr "ä½œè€…:"
 
-#: ui/devhelp.glade.h:4
+#: ui/devhelp2.glade.h:4
 msgid "Book info"
-msgstr "¥Ö¥Ã¥¯¾ğÊó"
+msgstr "ãƒ–ãƒƒã‚¯æƒ…å ±"
 
-#: ui/devhelp.glade.h:5
+#: ui/devhelp2.glade.h:5
 msgid "Bookmarks"
-msgstr "¥Ö¥Ã¥¯¥Ş¡¼¥¯"
+msgstr "ãƒ–ãƒƒã‚¯ãƒãƒ¼ã‚¯"
 
-#: ui/devhelp.glade.h:6
+#: ui/devhelp2.glade.h:6
 msgid "DevHelp Book Manager"
-msgstr "DevHelp ¥Ö¥Ã¥¯¥Ş¥Í¡¼¥¸¥ã"
+msgstr "DevHelp ãƒ–ãƒƒã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£"
 
-#: ui/devhelp.glade.h:7
+#: ui/devhelp2.glade.h:7
 msgid "DevHelp Preferences"
-msgstr "DevHelp ÀßÄê"
+msgstr "DevHelp è¨­å®š"
 
-#: ui/devhelp.glade.h:8
+#: ui/devhelp2.glade.h:8
 msgid "Hidden"
-msgstr "±£¤¹"
+msgstr "éš ã™"
 
-#: ui/devhelp.glade.h:10
+#: ui/devhelp2.glade.h:10
 msgid "Install new book..."
-msgstr "¥Ö¥Ã¥¯¤ò¿·µ¬¤Ë¥¤¥ó¥¹¥È¡¼¥ë..."
+msgstr "ãƒ–ãƒƒã‚¯ã‚’æ–°è¦ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«..."
 
-#: ui/devhelp.glade.h:13
+#: ui/devhelp2.glade.h:13
 msgid "Move down"
-msgstr "²¼¤Ë°ÜÆ°"
+msgstr "ä¸‹ã«ç§»å‹•"
 
-#: ui/devhelp.glade.h:14
+#: ui/devhelp2.glade.h:14
 msgid "Move up"
-msgstr "¾å¤Ë°ÜÆ°"
+msgstr "ä¸Šã«ç§»å‹•"
 
-#: ui/devhelp.glade.h:15
+#: ui/devhelp2.glade.h:15
 msgid "Name:"
-msgstr "Ì¾Á°:"
+msgstr "åå‰:"
 
-#: ui/devhelp.glade.h:16
+#: ui/devhelp2.glade.h:16
 msgid "Path:"
-msgstr "¥Ñ¥¹Ì¾:"
+msgstr "ãƒ‘ã‚¹å:"
 
-#: ui/devhelp.glade.h:17
+#: ui/devhelp2.glade.h:17
 msgid "Remove"
-msgstr "ºï½ü"
+msgstr "å‰Šé™¤"
 
-#: ui/devhelp.glade.h:18
+#: ui/devhelp2.glade.h:18
 msgid "Reset to defaults"
-msgstr "¥Ç¥Õ¥©¥ë¥È¤ËÌá¤¹"
+msgstr "ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™"
 
-#: ui/devhelp.glade.h:19
+#: ui/devhelp2.glade.h:19
 msgid "Search"
-msgstr "¸¡º÷"
+msgstr "æ¤œç´¢"
 
-#: ui/devhelp.glade.h:20
+#: ui/devhelp2.glade.h:20
 msgid "Show _sidebar"
-msgstr "¥µ¥¤¥É¥Ğ¡¼¤òÉ½¼¨¤¹¤ë(_S)"
+msgstr "ã‚µã‚¤ãƒ‰ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹(_S)"
 
-#: ui/devhelp.glade.h:23
+#: ui/devhelp2.glade.h:23
 msgid "Title:"
-msgstr "¥¿¥¤¥È¥ë:"
+msgstr "ã‚¿ã‚¤ãƒˆãƒ«:"
 
-#: ui/devhelp.glade.h:24
+#: ui/devhelp2.glade.h:24
 msgid "Version:"
-msgstr "¥Ğ¡¼¥¸¥ç¥ó:"
+msgstr "ãƒãƒ¼ã‚¸ãƒ§ãƒ³:"
 
-#: ui/devhelp.glade.h:25
+#: ui/devhelp2.glade.h:25
 msgid "View"
-msgstr "É½¼¨"
+msgstr "è¡¨ç¤º"
 
-#: ui/devhelp.glade.h:26
+#: ui/devhelp2.glade.h:26
 msgid "Visible"
-msgstr "²Ä»ë"
+msgstr "å¯è¦–"
 
-#: ui/devhelp.glade.h:27
+#: ui/devhelp2.glade.h:27
 msgid "_Edit book..."
-msgstr "¥Ö¥Ã¥¯¤ÎÊÔ½¸(_E)..."
+msgstr "ãƒ–ãƒƒã‚¯ã®ç·¨é›†(_E)..."
 
-#: ui/devhelp.glade.h:28
-msgid "_Hide >>"
-msgstr "±£¤¹(_H) >>"
+#: ui/devhelp2.glade.h:28
+msgid "_Hide &gt;&gt;"
+msgstr "éš ã™(_H) &gt;&gt;"
 
-#: ui/devhelp.glade.h:29
+#: ui/devhelp2.glade.h:29
 msgid "_Limit the number of hits to:"
-msgstr "°ìÃ×¤¹¤ë¿ô¤ÎºÇÂç¿ô(_L):"
+msgstr "ä¸€è‡´ã™ã‚‹æ•°ã®æœ€å¤§æ•°(_L):"
 
-#: ui/devhelp.glade.h:30
+#: ui/devhelp2.glade.h:30
 msgid "_Text size: "
-msgstr "¥Æ¥­¥¹¥È¤Î¥µ¥¤¥º(_T):"
+msgstr "ãƒ†ã‚­ã‚¹ãƒˆã®ã‚µã‚¤ã‚º(_T):"
+
+#: ui/devhelp2.glade.h:31
+msgid "gtk-cancel"
+msgstr "gtk-cancel"
+
+#: ui/devhelp2.glade.h:32
+msgid "gtk-close"
+msgstr "gtk-close"
+
+#: ui/devhelp2.glade.h:33
+msgid "gtk-ok"
+msgstr "gtk-ok"
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
-msgstr "¤³¤Î¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤Ë¤Ä¤¤¤Æ"
+msgstr "ã“ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã«ã¤ã„ã¦"
 
 #: ui/GNOME_DevHelp.ui.h:2
 msgid "Font size"
-msgstr "¥Õ¥©¥ó¥È¥µ¥¤¥º"
+msgstr "ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º"
 
 #: ui/GNOME_DevHelp.ui.h:6
 msgid "Open preferences dialog"
-msgstr "ÀßÄê¥À¥¤¥¢¥í¥°¤ò³«¤­¤Ş¤¹"
+msgstr "è¨­å®šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ãã¾ã™"
 
 #: ui/GNOME_DevHelp.ui.h:7
 msgid "Preferences..."
-msgstr "ÀßÄê..."
+msgstr "è¨­å®š..."
 
 #: ui/GNOME_DevHelp.ui.h:8
 msgid "Print the html page"
-msgstr "HTML ¥Ú¡¼¥¸¤ò°õºş¤·¤Ş¤¹"
+msgstr "HTML ãƒšãƒ¼ã‚¸ã‚’å°åˆ·ã—ã¾ã™"
 
 #: ui/GNOME_DevHelp.ui.h:9
 msgid "Show sidebar"
-msgstr "¥µ¥¤¥É¥Ğ¡¼¤ÎÉ½¼¨"
+msgstr "ã‚µã‚¤ãƒ‰ãƒãƒ¼ã®è¡¨ç¤º"
 
 #: ui/GNOME_DevHelp.ui.h:12
 msgid "_About..."
-msgstr "¾ğÊó(_A)..."
+msgstr "æƒ…å ±(_A)..."
 
 #: ui/GNOME_DevHelp.ui.h:13
 msgid "_Exit"
-msgstr "½ªÎ»(_E)"
+msgstr "çµ‚äº†(_E)"
 
 #: ui/GNOME_DevHelp.ui.h:14
 msgid "_File"
-msgstr "¥Õ¥¡¥¤¥ë(_F)"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«(_F)"
 
 #: ui/GNOME_DevHelp.ui.h:15
 msgid "_Help"
-msgstr "¥Ø¥ë¥×(_H)"
+msgstr "ãƒ˜ãƒ«ãƒ—(_H)"
 
 #: ui/GNOME_DevHelp.ui.h:16
 msgid "_Print"
-msgstr "°õºş(_P)"
+msgstr "å°åˆ·(_P)"
 
 #: ui/GNOME_DevHelp.ui.h:17 ui/GNOME_DevHelp_Controller.ui.h:7
 msgid "_Settings"
-msgstr "ÀßÄê(_S)"
+msgstr "è¨­å®š(_S)"
 
 #: ui/GNOME_DevHelp.ui.h:18
 msgid "_View"
-msgstr "É½¼¨(_V)"
+msgstr "è¡¨ç¤º(_V)"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:1
 msgid "Back"
-msgstr "Ìá¤ë"
+msgstr "æˆ»ã‚‹"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:2
 msgid "Book Manager..."
-msgstr "¥Ö¥Ã¥¯¥Ş¥Í¡¼¥¸¥ã..."
+msgstr "ãƒ–ãƒƒã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£..."
 
 #: ui/GNOME_DevHelp_Controller.ui.h:3
 msgid "Forward"
-msgstr "¿Ê¤à"
+msgstr "é€²ã‚€"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:4
 msgid "Go to next page in the history"
-msgstr "ÍúÎòÃæ¤Î¼¡¤Î¥Ú¡¼¥¸¤Ë¥¸¥ã¥ó¥×¤·¤Ş¤¹"
+msgstr "å±¥æ­´ä¸­ã®æ¬¡ã®ãƒšãƒ¼ã‚¸ã«ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¾ã™"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:5
 msgid "Go to previous page in the history"
-msgstr "ÍúÎòÃæ¤ÎÁ°¤Î¥Ú¡¼¥¸¤Ë¥¸¥ã¥ó¥×¤·¤Ş¤¹"
+msgstr "å±¥æ­´ä¸­ã®å‰ã®ãƒšãƒ¼ã‚¸ã«ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¾ã™"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
-msgstr "¥Ö¥Ã¥¯´ÉÍı¥À¥¤¥¢¥í¥°¤ò³«¤­¤Ş¤¹"
-
-#~ msgid "Add book ..."
-#~ msgstr "¥Ö¥Ã¥¯¤ÎÄÉ²Ã ..."
-
-#~ msgid "Devhelp"
-#~ msgstr "DevHelp"
-
-#~ msgid "Ny fil"
-#~ msgstr "Ny fil"
-
-#~ msgid "Use autocompletion"
-#~ msgstr "¼«Æ°Êä´°¤òÍ­¸ú¤Ë¤¹¤ë"
-
-#~ msgid "_Book manager..."
-#~ msgstr "¥Ö¥Ã¥¯¥Ş¥Í¡¼¥¸¥ã(_B)..."
-
-#~ msgid "ppna fil"
-#~ msgstr "ppna fil"
+msgstr "ãƒ–ãƒƒã‚¯ç®¡ç†ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ãã¾ã™"
