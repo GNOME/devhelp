@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
-"POT-Creation-Date: 2003-03-02 23:03+0900\n"
-"PO-Revision-Date: 2003-03-02 23:00+0900\n"
+"POT-Creation-Date: 2003-03-22 20:49+0900\n"
+"PO-Revision-Date: 2003-03-22 20:47+0900\n"
 "Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "開発者向けのヘルププログラム"
 
-#: src/dh-main.c:252
+#: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "関数の検索"
 
-#: src/dh-main.c:261
+#: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Devhelp を終了します"
 
@@ -55,26 +55,24 @@ msgid "_About"
 msgstr "情報(_A)"
 
 #: src/dh-window.c:287
-#, c-format
-msgid ""
-"<b>Could not read all books</b>\n"
-"\n"
-"The following errors occured whilst reading the books:\n"
-"%s"
-msgstr ""
-"<b>全てのブックを読み込めませんでした</b>\n"
-"\n"
-"ブックを読み込む際に次のエラーが発生しました:\n"
-"%s"
-
-#: src/dh-window.c:306
 msgid "Contents"
 msgstr "内容"
 
-#: src/dh-window.c:317
+#: src/dh-window.c:298
 msgid "Search"
 msgstr "検索"
 
-#: src/dh-window.c:378
+#: src/dh-window.c:360
 msgid "A developer's help browser for GNOME 2"
 msgstr "GNOME 2 対応の開発者向けのヘルプブラウザ"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"左側の目次にあるタイトルを選択するか、検索ペインに切り替えて検索して下さい。"
+"<p>SHIFT + ↑/↓</p> を押すと、左側にあるツリーをナビゲートでき、<p>SHIFT + ←/"
+"→</p> するとツリーの中のブックを展開したり畳むことができます。"
