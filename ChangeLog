@@ -1,3 +1,7 @@
+2001-12-27  Duarte Loreto <happyguy_pt@hotmail.com>
+
+        * configure.in: Added portuguese to ALL_LINGUAS
+
 2001-12-05  Johan Dahlin  <jdahlin@telia.com>
 	    
 	* configure.in (ALL_LINGUAS): Added ja.
