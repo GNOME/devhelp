@@ -1,16 +1,16 @@
 # Swedish messages for DevHelp.
-# Copyright (C) 2001 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2002, 2003 Free Software Foundation, Inc.
 # Richard Hult <rhult@codefactory.se>, 2001.
 # Johan Dahlin <zilch.am@home.se>, 2001.
-# Christian Rose <menthos@menthos.com>, 2001.
+# Christian Rose <menthos@menthos.com>, 2001, 2002, 2003.
 #
 # $Id$
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2002-11-25 23:48+0100\n"
-"PO-Revision-Date: 2002-11-25 23:48+0100\n"
+"POT-Creation-Date: 2003-02-25 20:03+0100\n"
+"PO-Revision-Date: 2003-02-25 20:04+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,83 +25,95 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: src/dh-book.c:110 src/dh-book.c:216
-#, c-format
-msgid "'%s' is not a valid book"
-msgstr "\"%s\" är inte en giltig bok"
-
-#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144 src/dh-book-old.c:234
-#: src/dh-book-old.c:245 src/dh-book-old.c:257
-#, c-format
-msgid "Book '%s' is malformed."
-msgstr "Boken \"%s\" är felaktig."
-
-#: src/dh-book.c:224
-#, c-format
-msgid "Couldn't find file '%s'"
-msgstr "Kunde inte hitta filen \"%s\""
-
-#: src/dh-html.c:517
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Välj en rubrik i innehållet till vänster eller byt till sökpanelen för att "
-"finna det du söker.<p>Använd <b>Skift Upp/Ner</b> för att navigera i trädet "
-"till vänster, och <b>Skift Vänster/Höger</b> för att fälla in respektive "
-"fälla ut böckerna i trädet."
-
-#: src/dh-main.c:243
+#: src/dh-main.c:242
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: src/dh-main.c:252
+#: src/dh-main.c:251
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
-#: src/dh-search.c:325
+#: src/dh-search.c:349
 msgid "_Search for:"
 msgstr "_Sök efter:"
 
-#: src/dh-search.c:362
+#: src/dh-search.c:390
 msgid "Section"
 msgstr "Avsnitt"
 
-#: src/dh-window.c:98
+#: src/dh-window.c:95
 msgid "_File"
 msgstr "_Arkiv"
 
-#: src/dh-window.c:99
+#: src/dh-window.c:96
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:100
+#: src/dh-window.c:97
 msgid "_Help"
 msgstr "_Hjälp"
 
 #. About menu
-#: src/dh-window.c:113
+#: src/dh-window.c:110
 msgid "_About"
 msgstr "_Om"
 
-#: src/dh-window.c:284
+#: src/dh-window.c:287
+#, c-format
+msgid ""
+"<b>Could not read all books</b>\n"
+"\n"
+"The following errors occured whilst reading the books:\n"
+"%s"
+msgstr ""
+"<b>Kunde inte läsa alla böcker</b>\n"
+"\n"
+"Följande fel inträffade vid läsande av böckerna:\n"
+"%s"
+
+#: src/dh-window.c:306
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/dh-window.c:295
+#: src/dh-window.c:317
 msgid "Search"
 msgstr "Sök"
 
-#: src/dh-window.c:352
+#: src/dh-window.c:378
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
-#: src/dh-window.c:418
-#, c-format
-msgid "Open %s"
-msgstr "Öppna %s"
+#~ msgid "Could not read all books"
+#~ msgstr "Kunde inte läsa alla böcker"
+
+#~ msgid "The following errors occured whilst reading the books:\n"
+#~ msgstr "Följande fel inträffade vid läsande av böckerna:\n"
+
+#~ msgid "The following errors occured whilst reading the books:"
+#~ msgstr "Följande fel inträffade vid läsande av böckerna:"
+
+#~ msgid "'%s' is not a valid book"
+#~ msgstr "\"%s\" är inte en giltig bok"
+
+#~ msgid "Book '%s' is malformed."
+#~ msgstr "Boken \"%s\" är felaktig."
+
+#~ msgid "Couldn't find file '%s'"
+#~ msgstr "Kunde inte hitta filen \"%s\""
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search pane "
+#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
+#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
+#~ "the books in the tree."
+#~ msgstr ""
+#~ "Välj en rubrik i innehållet till vänster eller byt till sökpanelen för "
+#~ "att finna det du söker.<p>Använd <b>Skift Upp/Ner</b> för att navigera i "
+#~ "trädet till vänster, och <b>Skift Vänster/Höger</b> för att fälla in "
+#~ "respektive fälla ut böckerna i trädet."
+
+#~ msgid "Open %s"
+#~ msgstr "Öppna %s"
 
 #~ msgid "Could not activate devhelp: '%s'"
 #~ msgstr "Kunde inte aktivera devhelp: \"%s\""
