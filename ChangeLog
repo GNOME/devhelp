@@ -1,3 +1,7 @@
+2001-08-04  Johan Dahlin  <zilch.am@home.se>
+
+	* misc/devhelp.vim: Added. Thanks goes to Gert.
+
 2001-08-02  Johan Dahlin  <zilch.am@home.se>
 
 	* configure.in (DEVHELP_VERSION): Bumped version to 0.1.1
