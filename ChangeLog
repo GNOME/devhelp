@@ -1,3 +1,10 @@
+2004-09-27  Mikael Hallendal  <micke@imendio.com>
+
+	* Release 0.9.2
+	
+	* NEWS: Updated for 0.9.2
+	* configure.in: Bumped version to 0.9.2
+
 2004-09-27  Nickolay V. Shmyrev  <nshmyrev@yandex.ru>
 
 	* src/dh-keyword-model.c: (dh_keyword_model_filter):
