@@ -1,18 +1,20 @@
+# translation of devhelp.HEAD.es.po to Spanish
 # Spanish/Spain translation of devhelp.
-# Copyright (C) 2001 Free Software Foundation, Inc.
+# Copyright (C) 2001,2003 Free Software Foundation, Inc.
 # Ismael Olea <ismael@olea.org>, 2001.
+# Francisco Javier F. Serrador <serrador@arrakis.es>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.2.1\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
-"PO-Revision-Date: 2003-01-07 11:50GMT\n"
-"Last-Translator: Germán Poo Caamaño <gpoo@ubiobio.cl>\n"
+"Project-Id-Version: devhelp.HEAD.es\n"
+"POT-Creation-Date: 2003-05-24 03:47+0200\n"
+"PO-Revision-Date: 2003-05-24 12:30+0000\n"
+"Last-Translator: Francisco Javier F. Serrador <serrador@arrakis.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.5\n"
+"X-Generator: KBabel 1.0.1\n"
 
 #: devhelp.desktop.in.h:1
 msgid "DevHelp"
@@ -22,6 +24,22 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Programa de ayuda para el desarrollador"
 
+#: devhelp.keys.in.h:1
+msgid "DevHelp Book"
+msgstr "Libro DevHelp"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Seleccione un tema en los contenidos de la izquierda o cambie al panel de "
+"búsquedas para encontrar lo que está buscando.<p> Utilice <b>Shift arriba/"
+"abajo</b> para navegar a través del árbol de la izquierda, y <b>Shift "
+"izquierda/derecha</b> para expandir o contraer los libros en el árbol."
+
 #: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Buscar una función"
@@ -29,6 +47,54 @@ msgstr "Buscar una función"
 #: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Salir"
+
+#: src/dh-parser.c:94
+#, c-format
+msgid "Expected 'book' got '%s' at line %d, column %d"
+msgstr "El 'libro' esperado obtubo «%s» en la línea %d, columna %d"
+
+#: src/dh-parser.c:110
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Espacio de nombres inválido '%s' en la línea %d, columna %d"
+
+#: src/dh-parser.c:139
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "título,nombre y enlace se requieren en la línea %d, columna %d"
+
+#: src/dh-parser.c:171
+#, c-format
+msgid "Expected 'sub' got '%s' at line %d column %d"
+msgstr "El sub esperado obtuvo '%s' en lal línea %d columna %d"
+
+#: src/dh-parser.c:192
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "los elementos nombre y enlacese requieren dentro de <sub>en la línea %d, columna %d"
+
+#: src/dh-parser.c:218
+#, c-format
+msgid "Expected 'function' got '%s' at line %d, column %d"
+msgstr "La 'funcion' esperada obtuvo '%s' en la línea %d, columna %d"
+
+#: src/dh-parser.c:240
+#, c-format
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "los elementos nombre y enlace se requieren dentro de <funcion> en la línea %d, columna %d"
+
+#: src/dh-parser.c:326 src/dh-parser.c:410
+msgid "Could not create book parser"
+msgstr "No se pudo crear el parser del libro"
+
+#: src/dh-parser.c:336 src/dh-parser.c:420
+msgid "Could not create markup parser"
+msgstr "No se pudo crear el parser del marco"
+
+#: src/dh-parser.c:466
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "No se pudo descomprimir el libro '%s': %s"
 
 #: src/dh-search.c:349
 msgid "_Search for:"
@@ -67,18 +133,6 @@ msgstr "Buscar"
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un visor de ayuda para GNOME 2"
 
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Seleccione un tema en los contenidos de la izquierda o cambie al panel de "
-"búsquedas para encontrar lo que está buscando.<p> Utilice <b>Shift arriba/"
-"abajo</b> para navegar a través del árbol de la izquierda, y <b>Shift "
-"izquierda/derecha</b> para expandir o contraer los libros en el árbol."
-
 #~ msgid "'%s' is not a valid book"
 #~ msgstr "'%s' no es un libro válido"
 
@@ -115,3 +169,4 @@ msgstr ""
 
 #~ msgid "Open %s"
 #~ msgstr "Abrir %s"
+
