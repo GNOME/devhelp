@@ -1,0 +1,11 @@
+.deps
+.libs
+devhelp
+Makefile
+Makefile.in
+GNOME_Devhelp-common.c
+GNOME_Devhelp.h
+GNOME_Devhelp-skels.c
+GNOME_Devhelp-stubs.c
+GNOME_Devhelp.oaf
+stamp-idl
