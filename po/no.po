@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.2\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2002-11-22 21:51+0100\n"
+"POT-Creation-Date: 2003-08-18 14:42+0200\n"
+"PO-Revision-Date: 2003-08-18 14:45+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk/Bokmål <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,85 +14,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
 msgstr "Hjelpleser for utviklere"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
-msgstr "DevHelp"
+msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "DevHelp"
+msgstr "Devhelp bok"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
+"Velg et emne i innholdet til venstre eller bytt til søkefanen for å finne "
+"det du leter etter."
 
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "Oppgi størrelse og lokasjon for vinduet"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "BREDDExHØYDExXAVxYAV"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Søk etter en funksjon"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Avslutt Devhelp"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Forventet «%s» fikk «%s» ved linje %d, kolonne %d"
 
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Ugyldig navneområde «%s» ved linje %d, kolonne %d"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "tittel, navn og lenkeelementer kreves ved linje %d, kolonne %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "navn og lenkeelementer kreves inne i <sub> på linje %d, kolonne %d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
+msgstr "navn og lenkeelementer kreves inne i <function> på linje %d, kolone %d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
-msgstr ""
+msgstr "Kunne ikke opprette bokleser"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Kunne ikke opprette leser for tagger"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Kan ikke dekomprimere bok «%s»: %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Søk"
+msgstr "_Søk:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -124,37 +122,8 @@ msgstr "En hjelpleser for utviklere for GNOME 2"
 
 #: src/dh-window.c:430
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Nettside for Devhelp"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
-
-#~ msgid "_Search for:"
-#~ msgstr "_Søk etter:"
-
-#~ msgid "_About"
-#~ msgstr "_Om"
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Velg et emne i innholdet til venstre eller bytt til søkefanen for å finne "
-#~ "det du leter etter.<p>Bruk <b>Shift-opp/ned</b> for å navigere i treet "
-#~ "til venstre, og <b>Shift-venstre/høyre</b> for å utvide og trekke sammen "
-#~ "bøkene i treet."
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "«%s» er ikke en gyldig bok"
-
-#~ msgid "Book '%s' is malformed."
-#~ msgstr "Boken «%s» er feilutformet."
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Kunne ikke finne filen «%s»"
-
-#~ msgid "Open %s"
-#~ msgstr "Åpne %s"
+msgstr "Feilrapport for Devhelp"
