@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-05-215 18:53+0200\n"
+"POT-Creation-Date: 2003-06-30 16:04+0200\n"
+"PO-Revision-Date: 2003-06-30 16:08+0200\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -14,46 +14,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
 msgstr "Program pomocníka pre vývojárov"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
-msgstr "DevHelp"
+msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "DevHelp kniha"
+msgstr "Devhelp kniha"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
+"Zvoľte predmet v obsahu vľavo alebo sa prepnite na kartu hľadania a vyhľadajte "
+"čo potrebujete."
 
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "Zadajte veľkosť a umiestnenie okna"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "ŠÍRKAxVÝŠKA+XPOS+YPOS"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Vyhľadať funkciu"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Ukončiť všetky bežiace kópie Devhelp"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-#, fuzzy, c-format
+#, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Očakávané 'sub', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
+msgstr "Očakávané '%s', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
 
 #: src/dh-parser.c:120
 #, c-format
@@ -93,9 +92,8 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Nepodarilo sa rozbaliť knihu '%s': %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Hľadať"
+msgstr "_Hľadať:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -127,31 +125,8 @@ msgstr "Prehliadač pomocníka pre vývojárov pre GNOME 2"
 
 #: src/dh-window.c:430
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Stránka projektu Devhelp"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Vyberte si predmet v obsahu vľaho, alebo sa prepnite na vyhľadávací "
-#~ "panel, aby ste našli to, čo potrebujete.<p>Použite <b>shift+hore/dole</b> "
-#~ "na prechádzanie po strome vľavo a <b>shift+vľavo/vpravo</b> na rozbalenie "
-#~ "a zabalenie kníh v strome."
-
-#~ msgid "Expected 'book' got '%s' at line %d, column %d"
-#~ msgstr "Očakávané 'book', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
-
-#~ msgid "Expected 'function' got '%s' at line %d, column %d"
-#~ msgstr "Očakávané 'function', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Hľadať:"
-
-#~ msgid "_About"
-#~ msgstr "O progr_ame"
+msgstr "Hlásenie o chybe Devhelp"
