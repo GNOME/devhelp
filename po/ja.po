@@ -5,42 +5,42 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-03-22 20:47+0900\n"
-"Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
-"Language-Team: Japanese <translation@gnome.gr.jp>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-29 23:23+0900\n"
+"PO-Revision-Date: 2003-06-29 23:16+0900\n"
+"Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
+"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
-msgstr "開発者向けのヘルププログラム"
+msgstr "開発者向けのヘルプ・プログラム"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
-msgstr "DevHelp"
+msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "DevHelp"
+msgstr "Devhelp ブック"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
+"左にある \"目次\" タブから対象となるドキュメントを選択するか、あるいは\"検索"
+"\" タブに切り替えて検索したいエントリを捜してみて下さい。"
 
 #: src/dh-main.c:258
 msgid "Specify the size and location of the window"
-msgstr ""
+msgstr "表示するウィンドウのサイズと位置を指定する"
 
 #: src/dh-main.c:259
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgstr "幅x高さ+X座標+Y座標"
 
 #: src/dh-main.c:267
 msgid "Search for a function"
@@ -53,46 +53,45 @@ msgstr "Devhelp を終了します"
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "'%s' を期待しましたが '%s' を受け取りました (%d 行 %d 桁)"
 
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "名前空間 '%s' が正しくありません (%d 行 %d 桁)"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "タイトル、名前とリンク要素が %d 行 %d 桁で要求されました"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "名前とリンク要素が <sub> の中の %d 行 %d 桁で要求されました"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
+msgstr "名前とリンク要素が <function> の中の %d 行 %d 桁で要求されました"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
-msgstr ""
+msgstr "ブック・パーサを生成できませんでした"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "マークアップ・パーサを生成できませんでした"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "ブック '%s': %s を展開できません"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "検索"
+msgstr "検索(_S):"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -112,7 +111,7 @@ msgstr "ヘルプ(_H)"
 
 #: src/dh-window.c:339
 msgid "Contents"
-msgstr "内容"
+msgstr "目次"
 
 #: src/dh-window.c:350
 msgid "Search"
@@ -124,25 +123,8 @@ msgstr "GNOME 2 対応の開発者向けのヘルプブラウザ"
 
 #: src/dh-window.c:430
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Devhelp プロジェクト・ページ"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
-
-#~ msgid "_Search for:"
-#~ msgstr "検索(_S):"
-
-#~ msgid "_About"
-#~ msgstr "情報(_A)"
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "左側の目次にあるタイトルを選択するか、検索ペインに切り替えて検索して下さ"
-#~ "い。<p>SHIFT + ↑/↓</p> を押すと、左側にあるツリーをナビゲートでき、"
-#~ "<p>SHIFT + ←/→</p> するとツリーの中のブックを展開したり畳むことができま"
-#~ "す。"
+msgstr "Devhelp バグ報告"
