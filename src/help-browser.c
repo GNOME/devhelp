@@ -130,7 +130,6 @@ help_browser_init (HelpBrowser *browser)
 	HelpBrowserPriv   *priv;
 	
 	priv          = g_new0 (HelpBrowserPriv, 1);
-/* 	priv->windows = NULL; */
 	priv->window  = NULL;
 	browser->priv = priv;
 }
@@ -140,13 +139,10 @@ help_browser_new (void)
 {
 	HelpBrowser       *browser;
 	HelpBrowserPriv   *priv;
-/* 	GtkWidget         *window; */
 
-	browser = g_object_new (HELP_BROWSER_TYPE, NULL);
-	priv    = browser->priv;
-	priv->window  = dh_window_new ();
-	
-/* 	priv->windows = g_slist_prepend (priv->windows, window); */
+	browser      = g_object_new (HELP_BROWSER_TYPE, NULL);
+	priv         = browser->priv;
+	priv->window = dh_window_new ();
 	
 	gtk_widget_show (priv->window);
 	

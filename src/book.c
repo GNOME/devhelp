@@ -544,7 +544,7 @@ book_get_name (Book *book)
 	return priv->name;
 }
 
-const gchar *
+gchar *
 book_get_name_full (Book *book)
 {
 	BookPriv    *priv;

@@ -1,5 +1,7 @@
 2002-08-08  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/devhelp-controller.[ch]: changed to dh-controller.[ch]
+
 	* src/devhelp-marshal.*: Changed to dh-marshal.*
 
 	* src/devhelp-search.[ch]: Changed into dh-search.[ch]

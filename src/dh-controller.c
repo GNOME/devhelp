@@ -33,58 +33,58 @@
 #include "book-index.h"
 #include "dh-search.h"
 #include "dh-history.h"
-#include "devhelp-controller.h"
+#include "dh-controller.h"
 
 #define d(x)
 
-#define DEVHELP_CONTROLLER_FACTORY_OAFIID "OAFIID:GNOME_DevHelp_Controller_Factory"
+#define DH_CONTROLLER_FACTORY_OAFIID "OAFIID:GNOME_DevHelp_Controller_Factory"
 
-static void devhelp_controller_class_init  (DevHelpControllerClass *klass);
-static void devhelp_controller_init        (DevHelpController      *index);
+static void dh_controller_class_init  (DhControllerClass      *klass);
+static void dh_controller_init        (DhController           *index);
  
-static void devhelp_controller_destroy     (GtkObject              *object);
+static void controller_destroy        (GtkObject              *object);
 
-static void devhelp_controller_uri_cb      (GObject                *unused,
-					    const GnomeVFSURI      *uri,
-					    DevHelpController      *controller);
+static void controller_uri_cb         (GObject                *unused,
+				       const GnomeVFSURI      *uri,
+				       DhController           *controller);
 
-static gboolean devhelp_controller_open    (DevHelpController      *controller,
-					    const gchar            *str_uri);
+static gboolean controller_open       (DhController           *controller,
+				       const gchar            *str_uri);
 
-static void devhelp_controller_emit_uri    (DevHelpController      *controller,
-					    const gchar            *str_uri);
+static void controller_emit_uri       (DhController           *controller,
+				       const gchar            *str_uri);
 
-static void cmd_back_cb                    (BonoboUIComponent      *component,
-					    gpointer                data,
-					    const gchar            *cname);
+static void cmd_back_cb               (BonoboUIComponent      *component,
+				       gpointer                data,
+				       const gchar            *cname);
 
-static void cmd_forward_cb                 (BonoboUIComponent      *component,
-					    gpointer                data,
-					    const gchar            *cname);
-
-static void
-devhelp_controller_book_added_cb           (DevHelpController      *controller,
-					    Book                   *book,
-					    gpointer                user_data);
+static void cmd_forward_cb            (BonoboUIComponent      *component,
+				       gpointer                data,
+				       const gchar            *cname);
 
 static void
-devhelp_controller_book_removed_cb         (DevHelpController      *controller,
-					    Book                   *book,
-					    gpointer                user_data);
+controller_book_added_cb              (DhController           *controller,
+				       Book                   *book,
+				       gpointer                user_data);
 
 static void
-devhelp_controller_forward_exists_changed_cb (DhHistory              *history,
-					      gboolean              exists,
-					      DevHelpController    *controller);
+controller_book_removed_cb            (DhController           *controller,
+				       Book                   *book,
+				       gpointer                user_data);
+
 static void
-devhelp_controller_back_exists_changed_cb (DhHistory                 *history,
-					   gboolean                 exists,
-					   DevHelpController       *controller);
+controller_forward_exists_changed_cb  (DhHistory              *history,
+				       gboolean                exists,
+				       DhController           *controller);
+static void
+controller_back_exists_changed_cb     (DhHistory              *history,
+				       gboolean                exists,
+				       DhController           *controller);
 
 #define PARENT_TYPE BONOBO_X_OBJECT_TYPE
 static BonoboXObjectClass *parent_class;
 
-struct _DevHelpControllerPriv {
+struct _DhControllerPriv {
         DhBookshelf         *bookshelf;
         FunctionDatabase    *fd;
         
@@ -106,15 +106,15 @@ static BonoboUIVerb verbs[] = {
 };
 
 static Bonobo_Control
-impl_DevHelp_Controller_getSearchEntry (PortableServer_Servant   servant,
+impl_Dh_Controller_getSearchEntry (PortableServer_Servant   servant,
 					CORBA_Environment       *ev)
 {
-	DevHelpController       *controller;
-	DevHelpControllerPriv   *priv;
+	DhController       *controller;
+	DhControllerPriv   *priv;
 	GtkWidget               *w;
 	BonoboControl           *control;
 
-	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
+	controller = DH_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 	
 	w = dh_search_get_entry_widget (priv->search);
@@ -125,15 +125,15 @@ impl_DevHelp_Controller_getSearchEntry (PortableServer_Servant   servant,
 }
 
 static Bonobo_Control
-impl_DevHelp_Controller_getSearchResultList (PortableServer_Servant    servant,
+impl_Dh_Controller_getSearchResultList (PortableServer_Servant    servant,
 					     CORBA_Environment        *ev)
 {
-	DevHelpController       *controller;
-	DevHelpControllerPriv   *priv;
+	DhController       *controller;
+	DhControllerPriv   *priv;
 	GtkWidget               *w;
 	BonoboControl           *control;
 
-	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
+	controller = DH_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 	
 	w = dh_search_get_result_widget (priv->search);
@@ -144,15 +144,15 @@ impl_DevHelp_Controller_getSearchResultList (PortableServer_Servant    servant,
 }
 
 static Bonobo_Control
-impl_DevHelp_Controller_getBookIndex (PortableServer_Servant    servant,
+impl_Dh_Controller_getBookIndex (PortableServer_Servant    servant,
 				      CORBA_Environment        *ev)
 {
-	DevHelpController       *controller;
-	DevHelpControllerPriv   *priv;
+	DhController       *controller;
+	DhControllerPriv   *priv;
 	GtkWidget               *w;
 	BonoboControl           *control;
 
-	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
+	controller = DH_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 	
 	w = book_index_get_scrolled (priv->index);
@@ -163,17 +163,17 @@ impl_DevHelp_Controller_getBookIndex (PortableServer_Servant    servant,
 }
 
 static void
-impl_DevHelp_Controller_addMenus (PortableServer_Servant    servant,
+impl_Dh_Controller_addMenus (PortableServer_Servant    servant,
 				  Bonobo_UIContainer        ui_container,
 				  CORBA_Environment        *ev)
 {
-	DevHelpController       *controller;
-	DevHelpControllerPriv   *priv;
+	DhController       *controller;
+	DhControllerPriv   *priv;
 
-	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
+	controller = DH_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 
-	priv->ui_component = bonobo_ui_component_new ("DevHelpController");
+	priv->ui_component = bonobo_ui_component_new ("DhController");
 	
 	bonobo_ui_component_set_container (priv->ui_component,
 					   ui_container,
@@ -188,22 +188,22 @@ impl_DevHelp_Controller_addMenus (PortableServer_Servant    servant,
 }
 
 static void
-impl_DevHelp_Controller_openURI (PortableServer_Servant    servant,
+impl_Dh_Controller_openURI (PortableServer_Servant    servant,
 				 const CORBA_char         *str_uri,
 				 CORBA_Environment        *ev)
 {
-	DevHelpController       *controller;
-	DevHelpControllerPriv   *priv;
+	DhController       *controller;
+	DhControllerPriv   *priv;
 	Document                *document;
 	gchar                   *anchor;
 	gchar                   *str;
 	
-	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
+	controller = DH_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 
 	str = g_strdup (str_uri);
 
-	if (devhelp_controller_open (controller, str)) {
+	if (controller_open (controller, str)) {
 		dh_history_goto (priv->history, str);
 	}
 
@@ -211,40 +211,40 @@ impl_DevHelp_Controller_openURI (PortableServer_Servant    servant,
 }
 
 static void
-impl_DevHelp_Controller_search (PortableServer_Servant    servant,
+impl_Dh_Controller_search (PortableServer_Servant    servant,
 				const CORBA_char         *str,
 				CORBA_Environment        *ev)
 {
-	DevHelpController       *controller;
-	DevHelpControllerPriv   *priv;
+	DhController       *controller;
+	DhControllerPriv   *priv;
 
-	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
+	controller = DH_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 	
 	dh_search_set_search_string (priv->search, str);
 }
 
 static void
-devhelp_controller_class_init (DevHelpControllerClass *klass)
+dh_controller_class_init (DhControllerClass *klass)
 {
 	POA_GNOME_DevHelp_Controller__epv *epv = &klass->epv;
 
 	parent_class = gtk_type_class (PARENT_TYPE);
 	
-	epv->getSearchEntry      = impl_DevHelp_Controller_getSearchEntry;
-	epv->getSearchResultList = impl_DevHelp_Controller_getSearchResultList;
-	epv->getBookIndex        = impl_DevHelp_Controller_getBookIndex;
-	epv->addMenus            = impl_DevHelp_Controller_addMenus;
-	epv->openURI             = impl_DevHelp_Controller_openURI;
-	epv->search              = impl_DevHelp_Controller_search;
+	epv->getSearchEntry      = impl_Dh_Controller_getSearchEntry;
+	epv->getSearchResultList = impl_Dh_Controller_getSearchResultList;
+	epv->getBookIndex        = impl_Dh_Controller_getBookIndex;
+	epv->addMenus            = impl_Dh_Controller_addMenus;
+	epv->openURI             = impl_Dh_Controller_openURI;
+	epv->search              = impl_Dh_Controller_search;
 }
 
 static void
-devhelp_controller_init (DevHelpController *controller)
+dh_controller_init (DhController *controller)
 {
-        DevHelpControllerPriv   *priv;
+        DhControllerPriv   *priv;
 	
-        priv = g_new0 (DevHelpControllerPriv, 1);
+        priv = g_new0 (DhControllerPriv, 1);
 
 	priv->ui_component = NULL;
         priv->fd           = function_database_new ();
@@ -254,54 +254,54 @@ devhelp_controller_init (DevHelpController *controller)
 
 	g_signal_connect (priv->history,
 			  "forward_exists_changed",
-			  G_CALLBACK (devhelp_controller_forward_exists_changed_cb),
+			  G_CALLBACK (controller_forward_exists_changed_cb),
 			  controller);
 	
 	g_signal_connect (priv->history,
 			  "back_exists_changed",
-			  G_CALLBACK (devhelp_controller_back_exists_changed_cb),
+			  G_CALLBACK (controller_back_exists_changed_cb),
 			  controller);
 
 	/* TODO: Convert from connect_object to connect */
 	g_signal_connect_object (G_OBJECT (priv->bookshelf),
 				 "book_added",
-				 G_CALLBACK (devhelp_controller_book_added_cb),
+				 G_CALLBACK (controller_book_added_cb),
 				 G_OBJECT (controller),
 				 G_CONNECT_AFTER);
 	
 	g_signal_connect_object (G_OBJECT (priv->bookshelf),
 				 "book_removed",
-				 G_CALLBACK (devhelp_controller_book_removed_cb),
+				 G_CALLBACK (controller_book_removed_cb),
 				 G_OBJECT (controller),
 				 G_CONNECT_AFTER);
 	
 	g_signal_connect_object (G_OBJECT (priv->history),
 				 "forward_exists_changed",
-				 G_CALLBACK (devhelp_controller_forward_exists_changed_cb),
+				 G_CALLBACK (controller_forward_exists_changed_cb),
 				 G_OBJECT (controller),
 				 G_CONNECT_AFTER);
 	
 	g_signal_connect_object (G_OBJECT (priv->history),
 				 "back_exists_changed",
-				 G_CALLBACK (devhelp_controller_back_exists_changed_cb),
+				 G_CALLBACK (controller_back_exists_changed_cb),
 				 G_OBJECT (controller),
 				 G_CONNECT_AFTER);
 
 	g_signal_connect_object (G_OBJECT (priv->bookshelf),
 				 "book_added",
-				 G_CALLBACK (devhelp_controller_book_added_cb),
+				 G_CALLBACK (controller_book_added_cb),
 				 G_OBJECT (controller),
 				 G_CONNECT_AFTER);
 	
 	g_signal_connect_object (G_OBJECT (priv->bookshelf),
 				 "book_removed",
-				 G_CALLBACK (devhelp_controller_book_removed_cb),
+				 G_CALLBACK (controller_book_removed_cb),
 				 G_OBJECT (controller),
 				 G_CONNECT_AFTER);
 	
 	g_signal_connect_object (G_OBJECT (priv->index),
 				 "uri_selected",
-				 G_CALLBACK (devhelp_controller_uri_cb),
+				 G_CALLBACK (controller_uri_cb),
 				 controller,
 				 0);
         
@@ -309,7 +309,7 @@ devhelp_controller_init (DevHelpController *controller)
 
 	g_signal_connect (G_OBJECT (priv->search),
 			  "uri_selected",
-			  G_CALLBACK (devhelp_controller_uri_cb),
+			  G_CALLBACK (controller_uri_cb),
 			  controller);
 
 	priv->event_source = bonobo_event_source_new ();
@@ -322,14 +322,14 @@ devhelp_controller_init (DevHelpController *controller)
 }
 
 static void
-devhelp_controller_destroy (GtkObject *object)
+controller_destroy (GtkObject *object)
 {
 }
 
 static gboolean
-devhelp_controller_open (DevHelpController *controller, const gchar *url)
+controller_open (DhController *controller, const gchar *url)
 {
-	DevHelpControllerPriv   *priv;
+	DhControllerPriv   *priv;
 	BookNode                *node;
 	GnomeVFSURI             *uri;
 	Document                *doc;
@@ -337,7 +337,7 @@ devhelp_controller_open (DevHelpController *controller, const gchar *url)
 	gchar                   *str_uri;
 	
 	g_return_val_if_fail (controller != NULL, FALSE);
-	g_return_val_if_fail (IS_DEVHELP_CONTROLLER (controller), FALSE);
+	g_return_val_if_fail (DH_IS_CONTROLLER (controller), FALSE);
 	g_return_val_if_fail (doc != NULL, FALSE);
 
 	priv = controller->priv;
@@ -353,21 +353,21 @@ devhelp_controller_open (DevHelpController *controller, const gchar *url)
 			
 			gtk_signal_handler_block_by_func 
 				(GTK_OBJECT (priv->index),
-				 GTK_SIGNAL_FUNC (devhelp_controller_uri_cb),
+				 GTK_SIGNAL_FUNC (controller_uri_cb),
 				 controller); 
 			
 			book_index_open_node (priv->index, node);
 			
 			gtk_signal_handler_unblock_by_func 
 				(GTK_OBJECT (priv->index), 
-				 GTK_SIGNAL_FUNC (devhelp_controller_uri_cb), 
+				 GTK_SIGNAL_FUNC (controller_uri_cb), 
 				 controller);
 		
 			uri = book_node_get_uri (node, anchor);
 
 			str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 			
-			devhelp_controller_emit_uri (controller, str_uri);
+			controller_emit_uri (controller, str_uri);
 		
 			g_free (str_uri);
 
@@ -379,14 +379,14 @@ devhelp_controller_open (DevHelpController *controller, const gchar *url)
 }
 
 static void
-devhelp_controller_emit_uri (DevHelpController   *controller, 
+controller_emit_uri (DhController   *controller, 
 			     const gchar         *str_uri)
 {
-	DevHelpControllerPriv   *priv;
+	DhControllerPriv   *priv;
 	CORBA_any               *any;
 
 	g_return_if_fail (controller != NULL);
-	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
+	g_return_if_fail (DH_IS_CONTROLLER (controller));
 	g_return_if_fail (str_uri != NULL);
 
 	priv = controller->priv;
@@ -408,14 +408,14 @@ static void
 cmd_back_cb (BonoboUIComponent *component, gpointer data, const gchar *cname)
 {
 	
-	DevHelpController       *controller;
-	DevHelpControllerPriv   *priv;
+	DhController       *controller;
+	DhControllerPriv   *priv;
 	gchar                   *str_uri = NULL;
 	
 	g_return_if_fail (data != NULL);
-	g_return_if_fail (IS_DEVHELP_CONTROLLER (data));
+	g_return_if_fail (DH_IS_CONTROLLER (data));
 	
-	controller = DEVHELP_CONTROLLER (data);
+	controller = DH_CONTROLLER (data);
 	priv       = controller->priv;
 	
 	if (dh_history_exist_back (priv->history)) {
@@ -425,7 +425,7 @@ cmd_back_cb (BonoboUIComponent *component, gpointer data, const gchar *cname)
 		str_uri = dh_history_go_back (priv->history);
 
 		if (str_uri) {
-			devhelp_controller_open (controller, str_uri);
+			controller_open (controller, str_uri);
 			g_free (str_uri);
 		}
 		
@@ -442,14 +442,14 @@ cmd_forward_cb (BonoboUIComponent   *component,
 		gpointer             data, 
 		const gchar         *cname)
 {
-	DevHelpController       *controller;
-	DevHelpControllerPriv   *priv;
+	DhController       *controller;
+	DhControllerPriv   *priv;
 	gchar                   *str_uri = NULL;
 	
 	g_return_if_fail (data != NULL);
-	g_return_if_fail (IS_DEVHELP_CONTROLLER (data));
+	g_return_if_fail (DH_IS_CONTROLLER (data));
 	
-	controller = DEVHELP_CONTROLLER (data);
+	controller = DH_CONTROLLER (data);
 	priv       = controller->priv;
 
 	if (dh_history_exist_forward (priv->history)) {
@@ -460,7 +460,7 @@ cmd_forward_cb (BonoboUIComponent   *component,
 		str_uri = dh_history_go_forward (priv->history);
 		
 		if (str_uri) {
-			devhelp_controller_open (controller, str_uri);
+			controller_open (controller, str_uri);
 			g_free (str_uri);
 		}
 		
@@ -474,14 +474,14 @@ cmd_forward_cb (BonoboUIComponent   *component,
 }
 
 static void
-devhelp_controller_book_added_cb (DevHelpController   *controller,
+controller_book_added_cb (DhController   *controller,
 				  Book                *book,
 				  gpointer             user_data)
 {
-	DevHelpControllerPriv   *priv;
+	DhControllerPriv   *priv;
 	
 	g_return_if_fail (controller != NULL);
-	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
+	g_return_if_fail (DH_IS_CONTROLLER (controller));
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
 
@@ -491,17 +491,17 @@ devhelp_controller_book_added_cb (DevHelpController   *controller,
 }
 
 static void
-devhelp_controller_book_removed_cb (DevHelpController   *controller,
+controller_book_removed_cb (DhController   *controller,
 				    Book                *book,
 				    gpointer             user_data)
 {
-	DevHelpControllerPriv   *priv;
+	DhControllerPriv   *priv;
 	FunctionDatabase        *fd;
 	GSList                  *functions;
 	Function                *function;
 	
 	g_return_if_fail (controller != NULL);
-	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
+	g_return_if_fail (DH_IS_CONTROLLER (controller));
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
 	
@@ -520,15 +520,15 @@ devhelp_controller_book_removed_cb (DevHelpController   *controller,
 }
 
 static void 
-devhelp_controller_forward_exists_changed_cb (DhHistory           *history,
+controller_forward_exists_changed_cb (DhHistory           *history,
 					      gboolean             exists,
-					      DevHelpController   *controller)
+					      DhController   *controller)
 {
-	DevHelpControllerPriv   *priv;
+	DhControllerPriv   *priv;
 	gchar                   *sensitive;
 	
 	g_return_if_fail (controller != NULL);
-	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
+	g_return_if_fail (DH_IS_CONTROLLER (controller));
 
 	priv = controller->priv;
 
@@ -551,15 +551,15 @@ devhelp_controller_forward_exists_changed_cb (DhHistory           *history,
 }
 
 static void 
-devhelp_controller_back_exists_changed_cb (DhHistory           *history,
+controller_back_exists_changed_cb (DhHistory           *history,
 					   gboolean             exists,
-					   DevHelpController   *controller)
+					   DhController   *controller)
 {
-	DevHelpControllerPriv   *priv;
+	DhControllerPriv   *priv;
 	gchar                   *sensitive;
 	
 	g_return_if_fail (controller != NULL);
-	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
+	g_return_if_fail (DH_IS_CONTROLLER (controller));
 
 	priv = controller->priv;
 
@@ -582,26 +582,16 @@ devhelp_controller_back_exists_changed_cb (DhHistory           *history,
 	
 }
 
-DevHelpController *
-devhelp_controller_new ()
-{
-        DevHelpController   *controller;
-        
-	controller = g_object_new (TYPE_DEVHELP_CONTROLLER, NULL);
-        
-        return controller;
-}
-
 static void
-devhelp_controller_uri_cb (GObject             *unused,
+controller_uri_cb (GObject             *unused,
 			   const GnomeVFSURI   *uri,
-			   DevHelpController   *controller)
+			   DhController   *controller)
 {
-	DevHelpControllerPriv   *priv;
+	DhControllerPriv   *priv;
 	gchar                   *str_uri;
 	
 	g_return_if_fail (controller != NULL);
-	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
+	g_return_if_fail (DH_IS_CONTROLLER (controller));
 	g_return_if_fail (uri != NULL);
 	
 	priv    = controller->priv;
@@ -609,34 +599,44 @@ devhelp_controller_uri_cb (GObject             *unused,
 	str_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
   	dh_history_goto (priv->history, str_uri);
-	devhelp_controller_emit_uri (controller, str_uri);
+	controller_emit_uri (controller, str_uri);
 
 	g_free (str_uri);
 }
 
-BONOBO_X_TYPE_FUNC_FULL (DevHelpController,
-			GNOME_DevHelp_Controller,
-			PARENT_TYPE,
-			devhelp_controller);
+DhController *
+dh_controller_new ()
+{
+        DhController   *controller;
+        
+	controller = g_object_new (DH_TYPE_CONTROLLER, NULL);
+        
+        return controller;
+}
+
+
+BONOBO_X_TYPE_FUNC_FULL (DhController,
+			 GNOME_DevHelp_Controller,
+			 PARENT_TYPE,
+			 dh_controller);
 
 
 static BonoboObject *
-devhelp_controller_factory (BonoboGenericFactory   *factory,
+controller_factory (BonoboGenericFactory   *factory,
 			    const gchar            *object_id,
 			    void                   *data)
 {
-	static GSList           *controllers = NULL;
-        DevHelpController       *controller  = NULL;
+	static GSList *controllers = NULL;
+        DhController  *controller  = NULL;
 
-	controller = devhelp_controller_new ();
+	controller = dh_controller_new ();
 	
 	controllers = g_slist_prepend (controllers, controller);
 	
 	return BONOBO_OBJECT (controller);
 }
 
-
-BONOBO_OAF_SHLIB_FACTORY_MULTI (DEVHELP_CONTROLLER_FACTORY_OAFIID,
-                                "DevHelp controller factory",
-                                devhelp_controller_factory,
+BONOBO_OAF_SHLIB_FACTORY_MULTI (DH_CONTROLLER_FACTORY_OAFIID,
+                                "Devhelp controller factory",
+                                controller_factory,
                                 NULL);

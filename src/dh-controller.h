@@ -21,8 +21,8 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __DEVHELP_CONTROLLER_H__
-#define __DEVHELP_CONTROLLER_H__
+#ifndef __DH_CONTROLLER_H__
+#define __DH_CONTROLLER_H__
 
 #include <glib.h>
 #include <gtk/gtkobject.h>
@@ -31,31 +31,31 @@
 #include "GNOME_DevHelp.h"
 #include "dh-bookshelf.h"
 
-#define TYPE_DEVHELP_CONTROLLER		   (devhelp_controller_get_type ())
-#define DEVHELP_CONTROLLER(obj)		   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_DEVHELP_CONTROLLER, DevHelpController))
-#define DEVHELP_CONTROLLER_CLASS(klass)	   (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_DEVHELP_CONTROLLER, DevHelpControllerClass))
-#define IS_DEVHELP_CONTROLLER(obj)	   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_DEVHELP_CONTROLLER))
-#define IS_DEVHELP_CONTROLLER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_DEVHELP_CONTROLLER))
+#define DH_TYPE_CONTROLLER		   (dh_controller_get_type ())
+#define DH_CONTROLLER(obj)		   (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_CONTROLLER, DhController))
+#define DH_CONTROLLER_CLASS(klass)	   (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_CONTROLLER, DhControllerClass))
+#define DH_IS_CONTROLLER(obj)              (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_CONTROLLER))
+#define DH_IS_CONTROLLER_CLASS(klass)      (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_CONTROLLER))
 
-typedef struct _DevHelpController       DevHelpController;
-typedef struct _DevHelpControllerClass  DevHelpControllerClass;
-typedef struct _DevHelpControllerPriv   DevHelpControllerPriv;
+typedef struct _DhController       DhController;
+typedef struct _DhControllerClass  DhControllerClass;
+typedef struct _DhControllerPriv   DhControllerPriv;
 
-struct _DevHelpController
+struct _DhController
 {
 	BonoboXObject            parent;
         
-        DevHelpControllerPriv   *priv;
+        DhControllerPriv   *priv;
 };
 
-struct _DevHelpControllerClass
+struct _DhControllerClass
 {
-        BonoboXObjectClass                  parent_class;
+        BonoboXObjectClass             parent_class;
 	
 	POA_GNOME_DevHelp_Controller__epv   epv;
 };
 
-GtkType                  devhelp_controller_get_type    (void);
-DevHelpController *      devhelp_controller_new         ();
+GtkType             dh_controller_get_type    (void);
+DhController *      dh_controller_new         ();
 
-#endif /* __DEVHELP_CONTROLLER_H__ */
+#endif /* __DH_CONTROLLER_H__ */

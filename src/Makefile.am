@@ -41,8 +41,8 @@ libdevhelp2_la_SOURCES =			\
 	book-node.h				\
 	dh-bookshelf.c				\
 	dh-bookshelf.h                     	\
-	devhelp-controller.c			\
-	devhelp-controller.h			\
+	dh-controller.c				\
+	dh-controller.h				\
 	dh-marshal.c				\
 	dh-marshal.h				\
 	dh-search.c     	           	\
