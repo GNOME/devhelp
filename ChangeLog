@@ -1,3 +1,8 @@
+2005-03-25  Mikael Hallendal  <micke@imendio.com>
+
+	* src/dh-main.c: (devhelp_init_i18n), (main):
+	- Setup i18n stuff which happened to get lost in the patch.
+
 2005-03-25  Kristof Vansant  <de_lupus@pandora.be>
 
 	reviewed by: Mikael Hallendal

@@ -61,6 +61,14 @@ message_received_cb (const gchar *message, DhWindow *window)
 	}
 }
 
+static void
+devhelp_init_i18n (void)
+{
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain (PACKAGE);
+}
+
 int 
 main (int argc, char **argv)
 {
@@ -101,12 +109,11 @@ main (int argc, char **argv)
 		},
 		{ NULL, '\0', 0, 0, NULL, NULL, NULL }
 	};
-	
-	/* Initialize i18n support */
-    gtk_set_locale ();
 
-    /* Initialize the widget set */
-    gtk_init_with_args (&argc, &argv,NULL,options,NULL,NULL);
+	devhelp_init_i18n ();
+
+	/* Initialize the widget set */
+	gtk_init_with_args (&argc, &argv, NULL, options, NULL, NULL);
 
 	g_thread_init (NULL);
 
