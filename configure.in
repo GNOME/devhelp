@@ -1,6 +1,6 @@
 AC_INIT(src/Makefile.am)
 
-AM_INIT_AUTOMAKE(devhelp, 0.7)
+AM_INIT_AUTOMAKE(devhelp, 0.8)
 AM_CONFIG_HEADER(config.h)
 
 AM_SANITY_CHECK
