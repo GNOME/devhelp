@@ -2,15 +2,15 @@
   <schemalist>
 
     <schema>
-      <key>/schemas/apps/devhelp/ui/main_window_state</key>
-      <applyto>/apps/devhelp/ui/main_window_state</applyto>
+      <key>/schemas/apps/devhelp/ui/main_window_maximized</key>
+      <applyto>/apps/devhelp/ui/main_window_maximized</applyto>
       <owner>devhelp</owner>
-      <type>int</type>
-      <default>0</default>
+      <type>bool</type>
+      <default>false</default>
       <locale name="C">
-         <short>State of the main window</short>
+         <short>Main window maximized state</short>
          <long>
-           The state of the main window.
+           Whether the main window should start maximized or not.
          </long>
       </locale>
     </schema>

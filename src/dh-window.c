@@ -83,6 +83,7 @@ static void window_activate_forward          (GtkAction          *action,
 static void window_activate_about            (GtkAction          *action,
 					      DhWindow           *window);
 static void window_save_state                (DhWindow           *window);
+static void window_restore_state             (DhWindow           *window);
 static void window_delete_cb                 (GtkWidget          *widget,
 					      GdkEventAny        *event,
 					      gpointer            user_data);
@@ -226,6 +227,12 @@ window_init (DhWindow *window)
 					      "Forward");
 	g_object_set (action, "sensitive", FALSE, NULL);
 
+	priv->html      = dh_html_new ();
+	priv->html_view = dh_html_get_widget (priv->html);
+
+	g_signal_connect (priv->html, "location-changed",
+			  G_CALLBACK (window_location_changed_cb),
+			  window);
 
         window->priv = priv;
 }
@@ -299,12 +306,6 @@ window_populate (DhWindow *window)
         priv->hpaned    = gtk_hpaned_new ();
         priv->notebook  = gtk_notebook_new ();
 
-	priv->html      = dh_html_new ();
-	priv->html_view = dh_html_get_widget (priv->html);
-
-	g_signal_connect (priv->html, "location-changed",
-			  G_CALLBACK (window_location_changed_cb),
-			  window);
 				      
 	g_signal_connect (priv->notebook, "switch_page",
 			  G_CALLBACK (window_switch_page_cb),
@@ -477,16 +478,23 @@ window_save_state (DhWindow *window)
 {
 	DhWindowPriv *priv;
 	GdkWindowState state;
+	gboolean       maximized;
 
 	priv = window->priv;
 
 	state = gdk_window_get_state (GTK_WIDGET (window)->window);
-	gconf_client_set_int (gconf_client,
-			      GCONF_MAIN_WINDOW_STATE,
-			      state, NULL);
+	if (state & GDK_WINDOW_STATE_MAXIMIZED) {
+		maximized = TRUE;
+	} else {
+		maximized = FALSE;
+	}
+
+	gconf_client_set_bool (gconf_client,
+			       GCONF_MAIN_WINDOW_MAXIMIZED,
+			       maximized, NULL);
 
 	/* If maximized don't save the size and position */
-	if (!(state & GDK_WINDOW_STATE_MAXIMIZED)) {
+	if (!maximized) {
 		int width, height;
 		int x, y;
 
@@ -511,6 +519,40 @@ window_save_state (DhWindow *window)
 			      GCONF_PANED_LOCATION,
 			      gtk_paned_get_position (GTK_PANED (priv->hpaned)),
 			      NULL);
+}
+
+static void
+window_restore_state (DhWindow *window)
+{
+	gboolean maximized;
+	int      width, height;
+	int      x, y;
+
+	maximized = gconf_client_get_bool (gconf_client,
+					   GCONF_MAIN_WINDOW_MAXIMIZED,
+					   NULL);
+	if (maximized) {
+		gtk_window_maximize (GTK_WINDOW (window));
+	} else {
+		width = gconf_client_get_int (gconf_client,
+					      GCONF_MAIN_WINDOW_WIDTH,
+					      NULL);
+		height = gconf_client_get_int (gconf_client,
+					       GCONF_MAIN_WINDOW_HEIGHT,
+					       NULL);
+
+		gtk_window_set_default_size (GTK_WINDOW (window), 
+					     width, height);
+
+		x = gconf_client_get_int (gconf_client,
+					  GCONF_MAIN_WINDOW_POS_X,
+					  NULL);
+		y = gconf_client_get_int (gconf_client,
+					  GCONF_MAIN_WINDOW_POS_Y,
+					  NULL);
+
+		gtk_window_move (GTK_WINDOW (window), x, y);
+	}
 }
 
 static void
@@ -637,35 +679,7 @@ dh_window_new (DhBase *base)
 	if (geometry) {
 		gtk_window_parse_geometry (GTK_WINDOW (window), geometry);
 	} else {
-		GdkWindowState state;
-		int width, height;
-		int x, y;
-
-		state = gconf_client_get_int (gconf_client,
-					      GCONF_MAIN_WINDOW_STATE,
-					      NULL);
-		if (state & GDK_WINDOW_STATE_MAXIMIZED) {
-			gtk_window_maximize (GTK_WINDOW (window));
-		} else {
-			width = gconf_client_get_int (gconf_client,
-						      GCONF_MAIN_WINDOW_WIDTH,
-						      NULL);
-			height = gconf_client_get_int (gconf_client,
-						       GCONF_MAIN_WINDOW_HEIGHT,
-						       NULL);
-	
-			gtk_window_set_default_size (GTK_WINDOW (window), 
-						     width, height);
-
-			x = gconf_client_get_int (gconf_client,
-						  GCONF_MAIN_WINDOW_POS_X,
-						  NULL);
-			y = gconf_client_get_int (gconf_client,
-						  GCONF_MAIN_WINDOW_POS_Y,
-						  NULL);
-
-			gtk_window_move (GTK_WINDOW (window), x, y);
-		}
+		window_restore_state (window);
 	}
 
 	g_signal_connect (window, 

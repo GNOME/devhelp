@@ -25,17 +25,17 @@
 
 #define GCONF_PATH "/apps/devhelp"
 
-#define GCONF_MAIN_WINDOW_STATE    "/apps/devhelp/ui/main_window_state"
-#define GCONF_MAIN_WINDOW_WIDTH    "/apps/devhelp/ui/main_window_width"
-#define GCONF_MAIN_WINDOW_HEIGHT   "/apps/devhelp/ui/main_window_height"
-#define GCONF_MAIN_WINDOW_POS_X    "/apps/devhelp/ui/main_window_position_x"
-#define GCONF_MAIN_WINDOW_POS_Y    "/apps/devhelp/ui/main_window_position_y"
-#define GCONF_PANED_LOCATION       "/apps/devhelp/ui/paned_location"
-#define GCONF_USE_SYSTEM_FONTS     "/apps/devhelp/ui/use_system_fonts"
-#define GCONF_VARIABLE_FONT        "/apps/devhelp/ui/variable_font"
-#define GCONF_FIXED_FONT           "/apps/devhelp/ui/fixed_font"
-#define GCONF_SYSTEM_VARIABLE_FONT "/desktop/gnome/interface/font_name"
-#define GCONF_SYSTEM_FIXED_FONT    "/desktop/gnome/interface/monospace_font_name"
+#define GCONF_MAIN_WINDOW_MAXIMIZED "/apps/devhelp/ui/main_window_maximized"
+#define GCONF_MAIN_WINDOW_WIDTH     "/apps/devhelp/ui/main_window_width"
+#define GCONF_MAIN_WINDOW_HEIGHT    "/apps/devhelp/ui/main_window_height"
+#define GCONF_MAIN_WINDOW_POS_X     "/apps/devhelp/ui/main_window_position_x"
+#define GCONF_MAIN_WINDOW_POS_Y     "/apps/devhelp/ui/main_window_position_y"
+#define GCONF_PANED_LOCATION        "/apps/devhelp/ui/paned_location"
+#define GCONF_USE_SYSTEM_FONTS      "/apps/devhelp/ui/use_system_fonts"
+#define GCONF_VARIABLE_FONT         "/apps/devhelp/ui/variable_font"
+#define GCONF_FIXED_FONT            "/apps/devhelp/ui/fixed_font"
+#define GCONF_SYSTEM_VARIABLE_FONT  "/desktop/gnome/interface/font_name"
+#define GCONF_SYSTEM_FIXED_FONT     "/desktop/gnome/interface/monospace_font_name"
 
 void dh_preferences_init        (void);
 void dh_preferences_setup_fonts (void);
