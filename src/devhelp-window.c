@@ -86,9 +86,9 @@ static void dw_delete_cb                 (GtkWidget            *widget,
 					  GdkEventAny          *event,
 					  gpointer              user_data);
 
-static void dw_link_clicked_cb           (DevHelpWindow        *window,
+static void dw_link_clicked_cb           (DevHelpWindow        *ignored,
 					  gchar                *url,
-					  gpointer              ignored);
+					  DevHelpWindow        *window);
 
 static void dw_on_url_cb                 (DevHelpWindow        *window,
 					  gchar                *url,
@@ -601,9 +601,9 @@ dw_delete_cb (GtkWidget     *widget,
 }
 
 static void
-dw_link_clicked_cb (DevHelpWindow   *window,
+dw_link_clicked_cb (DevHelpWindow   *ignored,
 		    gchar           *url,
-		    gpointer         ignored)
+		    DevHelpWindow   *window)
 {
 	DevHelpWindowPriv   *priv;
 

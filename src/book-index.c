@@ -132,14 +132,6 @@ book_index_class_init (BookIndexClass *klass)
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
 
-                g_signal_new ("uri_selected",
-			      G_TYPE_FROM_CLASS (object_class),
-			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (BookIndexClass,
-					       uri_selected),
-			      NULL, NULL,
-			      gtk_marshal_VOID__VOID,
-			      G_TYPE_NONE, 0);
 }
 
 static void
