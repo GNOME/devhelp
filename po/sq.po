@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-18 11:04+0200\n"
+"POT-Creation-Date: 2004-08-19 11:04+0200\n"
 "PO-Revision-Date: 2004-07-29 11:02+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -172,7 +172,6 @@ msgstr "Pozicioni X i dritares qendrore."
 msgid "The Y position of the main window."
 msgstr "Pozicioni Y i dritares qendrore."
 
-#. GRUT modified this item
 #: devhelp.schemas.in.h:10
 msgid "The height of the main window."
 msgstr "Lartësia e dritares kryesore."
@@ -181,7 +180,6 @@ msgstr "Lartësia e dritares kryesore."
 msgid "The location of the paned separator."
 msgstr "Vendodhja e ndarësit të panelit."
 
-#. GRUT modified this item
 #: devhelp.schemas.in.h:12
 msgid "The width of the main window."
 msgstr "Gjerësia e dritares kryesore."
@@ -241,4 +239,3 @@ msgstr "_Vazhdo"
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Përdor gërmat e sistemit"
-
