@@ -1,3 +1,8 @@
+2003-06-18  Abel Cheung  <maddog@linux.org.hk>
+
+	* zh_TW.po: Updated traditional Chinese translation.
+	* el.po: Fix header (msgfmt check failed).
+
 2003-06-08  Christian Neumair  <chris@gnome-de.org>
 
 	* de.po: Updated German translation.
