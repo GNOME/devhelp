@@ -1,3 +1,7 @@
+2003-01-28  Kostas Papadimas <pkst@gmx.net>
+
+	* el.po: Added Greek translation.
+
 2003-01-28  Miloslav Trmac  <mitr@volny.cz>
 
 	* cs.po: Updated Czech translation.
@@ -56,7 +60,7 @@
 	
 2002-11-22  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokm�l) translation.
+	* no.po: Updated Norwegian (bokmål) translation.
 	
 2002-11-17  Ole Laursen  <olau@hardworking.dk>
 
@@ -160,7 +164,7 @@
 
 2002-05-18  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokm�l) translation.
+	* no.po: Updated Norwegian (bokmål) translation.
 	
 2002-05-14  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
@@ -194,11 +198,11 @@
 
         * pt.po: Added portuguese translation
 
-2001-12-17  Germán Poo-Caamaño  <gpoo@ubiobio.cl>
+2001-12-17  GermÃ¡n Poo-CaamaÃ±o  <gpoo@ubiobio.cl>
 
 	* es.po: Updated spanish translation.
 	
-2001-12-17  Germán Poo-Caamaño  <gpoo@ubiobio.cl>
+2001-12-17  GermÃ¡n Poo-CaamaÃ±o  <gpoo@ubiobio.cl>
 
 	* es.po: Updated spanish translation from Alfredo 
 		<asan@euskalnet.net>.
@@ -209,7 +213,7 @@
 
 2001-12-10  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokmÃ¥l) translation.
 	
 2001-12-05  Christian Meyer  <chrisime@gnome.org>
 
@@ -231,7 +235,7 @@
 
 2001-10-19  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Added Norwegian (bokmål) translation.
+	* no.po: Added Norwegian (bokmÃ¥l) translation.
 	
 2001-10-18  Christopher R. Gabriel  <cgabriel@cgabriel.org>
 
@@ -275,12 +279,12 @@
 2001-10-10  Christian Rose  <menthos@menthos.com>
 
 	* sv.po: Fixed an error. Thanks to
-	Göran Uddeborg <goeran@uddeborg.pp.se> for finding this.
+	GÃ¶ran Uddeborg <goeran@uddeborg.pp.se> for finding this.
 
 2001-10-10  Christian Rose  <menthos@menthos.com>
 
 	* sv.po: Updated to reflect a suggestion from
-	Jan Djärv <Jan.Djarv@mbox200.swipnet.se>.
+	Jan DjÃ€rv <Jan.Djarv@mbox200.swipnet.se>.
 
 2001-10-10  Christian Rose  <menthos@menthos.com>
 
