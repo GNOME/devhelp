@@ -1,3 +1,7 @@
+2002-10-28  Christian Rose  <menthos@menthos.com>
+
+	* .cvsignore: Added files.
+
 2002-10-27  Christian Rose  <menthos@menthos.com>
 
 	* POTFILES.in: Removed file that no longer exists.

@@ -5,7 +5,9 @@ Makefile.in.in
 cat-id-tbl.c
 *.pot
 *.gmo
+*.mo
 messages
+missing
 po2tbl.sed
 po2tbl.sed.in
 stamp-cat-id
