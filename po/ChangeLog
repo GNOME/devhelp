@@ -1,7 +1,11 @@
+2002-11-05  Christian Rose  <menthos@menthos.com>
+
+	* POTFILES.in: Added missing file.
+	* sv.po: Updated Swedish translation.
+
 2002-11-03  Mikael Hallendal  <micke@codefactory.se>
 
 	* POTFILES.skip: removed file that no longer exists
-
 	* POTFILES.in: Removed removed files and added new ones.
 
 2002-10-28  Christian Rose  <menthos@menthos.com>
