@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2002-05-10 11:05+0200\n"
-"PO-Revision-Date: 2002-05-10 11:07+0100\n"
+"POT-Creation-Date: 2002-05-30 17:52+0200\n"
+"PO-Revision-Date: 2002-05-30 17:54+0200\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -187,8 +187,8 @@ msgid " "
 msgstr " "
 
 #: ui/devhelp.glade.h:2
-msgid "&lt;&lt; _Show"
-msgstr "&lt;&lt; _Zobrazi»"
+msgid "<< _Show"
+msgstr "<< _Zobrazi»"
 
 #: ui/devhelp.glade.h:3
 msgid "Author:"
@@ -271,8 +271,8 @@ msgid "_Edit book..."
 msgstr "_Upravi» knihu..."
 
 #: ui/devhelp.glade.h:28
-msgid "_Hide &gt;&gt;"
-msgstr "_Skry» &gt;&gt;"
+msgid "_Hide >>"
+msgstr "_Skry» >>"
 
 #: ui/devhelp.glade.h:29
 msgid "_Limit the number of hits to:"
