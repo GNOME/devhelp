@@ -66,7 +66,7 @@ PKG_CHECK_MODULES(ALL, \
 	libbonoboui-2.0 >= $LIBBONOBOUI_REQUIRED \
 	gconf-2.0 >= $GCONF_REQUIRED)
 	
-ALL_LINGUAS="az da de es fr it ja no pl pt ru sk sv vi zh_TW"
+ALL_LINGUAS="az da de es fr it ja no pl pt ru sk sv vi zh_CN zh_TW"
 
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
