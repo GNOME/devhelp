@@ -1,3 +1,11 @@
+Devhelp 0.9.3:
+--------------
+* Compiling against firefox (Christian Persch)
+* Get rid of startup script (Christian Persch)
+* Fixed font sizes
+* Render scrollbars with GTK theme
+* Updated translations (de)
+
 Devhelp 0.9.2:
 --------------
 * Added accelerators for back and forward    (Johan Svedberg)

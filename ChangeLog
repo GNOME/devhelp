@@ -1,3 +1,10 @@
+2004-10-22  Mikael Hallendal  <micke@imendio.com>
+
+	* Release 0.9.3
+
+	* configure.in: Bumped version 
+        * NEWS: Updated for 0.9.3
+
 2004-10-21  Richard Hult  <richard@imendio.com>
 
 	* src/dh-html.c (dh_html_open_uri): Fix compiler warning.
