@@ -32,6 +32,8 @@
 
 #define d(x)
 
+#define HISTORY_LENGTH 20
+
 static void          history_init              (History         *history);
 static void          history_class_init        (GtkObjectClass  *klass);
 static void          history_destroy           (GtkObject       *object);
@@ -216,6 +218,15 @@ history_goto (History *history, const gchar *str)
 					    g_strdup (str));
 	
 	priv->current      = g_list_last (priv->history_list);
+
+	if (g_list_length (priv->history_list) > HISTORY_LENGTH) {
+		GList *l = g_list_first (priv->history_list);
+		g_free (l->data);
+		priv->history_list = g_list_remove_link (priv->history_list, 
+							 l);
+		
+		g_list_free (l);
+	}	
 	
 	history_maybe_emit (history);
 }
