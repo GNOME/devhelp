@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-02 01:58+0200\n"
-"PO-Revision-Date: 2004-04-02 02:06+0200\n"
+"POT-Creation-Date: 2004-06-12 20:14+0200\n"
+"PO-Revision-Date: 2004-06-12 20:20+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Buscar una función"
 
 #: src/dh-main.c:277
 msgid "Quit any running Devhelp"
-msgstr "Salir"
+msgstr "Termina cualquier DevHelp en ejecución"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
@@ -56,26 +56,22 @@ msgstr "Se esperaba «%s» pero se obtuvo «%s» en la línea %d, columna %d"
 #: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Espacio de nombres inválido '%s' en la línea %d, columna %d"
+msgstr "Espacio de nombres inválido «%s» en la línea %d, columna %d"
 
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "título,nombre y enlace se requieren en la línea %d, columna %d"
+msgstr "los elementos título, nombre y enlace se requieren en la línea %d, columna %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"los elementos nombre y enlacese requieren dentro de <sub>en la línea %d, "
-"columna %d"
+msgstr "los elementos nombre y enlace se requieren dentro de <sub> en la línea %d, columna %d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
-"los elementos nombre y enlace se requieren dentro de <funcion> en la línea %"
-"d, columna %d"
+msgstr "los elementos nombre y enlace se requieren dentro de <function> en la línea %d, columna %d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
@@ -88,11 +84,11 @@ msgstr "No se pudo crear el parser del marco"
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "No se pudo descomprimir el libro '%s': %s"
+msgstr "No se pudo descomprimir el libro «%s»: %s"
 
 #: src/dh-search.c:417
 msgid "_Search:"
-msgstr "_Búsqueda:"
+msgstr "_Buscar:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -114,14 +110,14 @@ msgstr "_Ir"
 msgid "_Help"
 msgstr "A_yuda"
 
-#: src/dh-window.c:300
+#: src/dh-window.c:299
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "No se puede establecer IU: %s"
 
 #: src/dh-window.c:355 ui/devhelp.glade.h:3
 msgid "Contents"
-msgstr "Contenidos"
+msgstr "Índice"
 
 #: src/dh-window.c:366
 msgid "Search"
@@ -129,7 +125,7 @@ msgstr "Buscar"
 
 #: src/dh-window.c:449
 msgid "A developer's help browser for GNOME 2"
-msgstr "Un visor de ayuda para GNOME 2"
+msgstr "Un visor de ayuda para desarrolladores para GNOME 2"
 
 #: src/dh-window.c:465
 msgid "Devhelp project page"
@@ -137,7 +133,7 @@ msgstr "Página del proyecto DevHelp"
 
 #: src/dh-window.c:469
 msgid "Bug report Devhelp"
-msgstr "Informe de errores de DevHelp"
+msgstr "Informar de errores de DevHelp"
 
 #: devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -149,11 +145,11 @@ msgstr "Tipografía para el texto"
 
 #: devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "Tipograia para el texto con ancho fijo."
+msgstr "Tipografía para el texto con ancho fijo."
 
 #: devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "Tipograia para el texto con ancho variable."
+msgstr "Tipografía para el texto con ancho variable."
 
 #: devhelp.schemas.in.h:5
 msgid "Height of main window"
@@ -193,7 +189,7 @@ msgstr "Usar tipografía del sistema"
 
 #: devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
-msgstr "Usar la tipografía predeterminada del sistema"
+msgstr "Usar la tipografía predeterminada del sistema."
 
 #: devhelp.schemas.in.h:15
 msgid "Whether the main window should start maximized or not."
@@ -221,7 +217,7 @@ msgstr "<b>Tipografías</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr "Anchura constante:"
+msgstr "Anchura fija:"
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
