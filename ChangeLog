@@ -1,3 +1,7 @@
+2001-08-02  Johan Dahlin  <zilch.am@home.se>
+
+	* configure.in (DEVHELP_VERSION): Bumped version to 0.1.1
+
 2001-08-02  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/bookshelf.c (bookshelf_write_xml): the path should be freed.
