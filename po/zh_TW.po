@@ -83,6 +83,7 @@ msgid "DevHelp HelpBrowser Factory"
 msgstr "說明瀏覽器的元件工廠"
 
 #: src/html-widget.c:208
+#, fuzzy
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
