@@ -274,15 +274,6 @@ bookshelf_get_hidden_books (Bookshelf *bookshelf)
 		if (book->visible == TRUE) {
 			continue;
 		}
-#if 0
-		/* Skip hidden books that's not installed */
-		book_uri = gnome_vfs_uri_new (book->spec_path);
-		if (bookshelf_find_book_by_uri (bookshelf,
-						book_uri) == NULL) {
-			/* Should we remove the book from priv->xml_books? */
-			continue;
-		}
-#endif 		
 		hidden = g_slist_append (hidden, book);
 	}
 	

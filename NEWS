@@ -1,3 +1,17 @@
+DevHelp 0.3:
+
+* Lots of bugfixes. (Johan, Mikael, Richard)
+
+* Debian and Red Hat packages now availible. (Johan)
+
+* DevHelp can now handle different versions of the same book
+  much better. (Johan)
+  
+* New and updated translations, Thanks goes to Ismael Olea, 
+  Joe Man, Marcel Telka, Alessio Frusciante, Kjartan Maraas, 
+  Christophe Fergeau, Zbigniew Chyla, Ole Laursen and
+  Christian Rose.
+  
 DevHelp 0.2:
 
 * New maintainer: Mikael Hallendal <micke@codefactory.se> is now

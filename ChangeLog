@@ -1,3 +1,11 @@
+2001-12-02  Johan Dahlin  <jdahlin@telia.com>
+
+	* configure.in (DEVHELP_VERSION): Bumped to 0.3
+
+	* NEWS: Updated.
+
+	* src/bookshelf.c (bookshelf_get_hidden_books): Remove unused code.
+
 2001-12-02  Richard Hult  <rhult@codefactory.se>
 
 	* devhelp.spec.in: s/gconftool/gconftool-1/
