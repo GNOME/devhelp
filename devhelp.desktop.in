@@ -7,3 +7,4 @@ Terminal=false
 Type=Application
 Icon=devhelp.png
 Categories=GNOME;Application;Development;
+StartupNotify=true

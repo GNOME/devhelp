@@ -92,6 +92,9 @@ dh_client_data_cb (GIOChannel   *source,
 				dh_window_search (DH_WINDOW (data), buf + 1);
 				gtk_window_present (GTK_WINDOW (data));
 			}
+			else if (buf[0] == 'R') {
+				gtk_window_present (GTK_WINDOW (data));
+			}
 			else if (buf[0] == 'Q') {
 				gtk_main_quit ();
 			}
@@ -194,6 +197,12 @@ static void
 dh_send_quit_msg (gint fd)
 {
 	write (fd, "Q", 1);
+}
+
+static void
+dh_send_raise_msg (gint fd)
+{
+	write (fd, "R", 1);
 }
 
 static gint
@@ -305,6 +314,10 @@ main (int argc, char **argv)
 
 	/* Exit if we're already running. */
 	if (fd >= 0) {
+#if GTK_CHECK_VERSION(2,2,0)
+		gdk_notify_startup_complete ();
+#endif
+		dh_send_raise_msg ();
 		return 0;
 	}
 
