@@ -1,3 +1,8 @@
+2004-04-30  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* src/Makefile.am: Add mozilla main include directory,
+	needed for Mozilla 1.7 (headers changed location).
+
 2004-04-07  Christian Neumair  <chris@gnome-de.org>
 
 	* autogen.sh: automake 1.8 is required, but error message suggested
