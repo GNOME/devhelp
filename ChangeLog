@@ -1,3 +1,7 @@
+2003-02-25  Yuriy Syrota  <rasta renome.rovno.ua>
+
+	* configure.in: Added "uk" (Ukrainian) to ALL_LINGUAS.
+
 2003-02-24  Mikael Hallendal  <micke@codefactory.se>
 
 	* libegg/toolbar/Makefile.am: dist-check fixes.
