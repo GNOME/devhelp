@@ -24,14 +24,35 @@
 #ifndef __DH_PROFILE_H__
 #define __DH_PROFILE_H__
 
-#include <glib.h>
+#include <glib-object.h>
 
-typedef struct _DhProfile DhProfile;
+typedef struct _DhProfile      DhProfile;
+typedef struct _DhProfileClass DhProfileClass;
+typedef struct _DhProfilePriv  DhProfilePriv;
 
-DhProfile *  dh_profile_new      (void);
+#define DH_TYPE_PROFILE         (dh_profile_get_type ())
+#define DH_PROFILE(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_PROFILE, DhProfile))
+#define DH_PROFILE_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), DH_TYPE_PROFILE, DhProfileClass))
+#define DH_IS_PROFILE(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), DH_TYPE_PROFILE))
+#define DH_IS_PROFILE_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), DH_TYPE_PROFILE))
+#define DH_PROFILE_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), DH_TYPE_PROFILE, DhProfileClass))
 
-GNode *      dh_profile_open     (DhProfile     *profile,
-				  GList         *keyword,
-				  GError       **error);
+
+struct _DhProfile {
+        GObject        parent;
+        
+        DhProfilePriv *priv;
+};
+
+struct _DhProfileClass {
+        GObjectClass parent_class;
+};
+
+GType        dh_profile_get_type       (void);
+DhProfile *  dh_profile_new            (void);
+GNode *      dh_profile_open           (DhProfile     *profile,
+					GList        **keywords,
+					GError       **error);
+GSList *     dh_profiles_init          (void);
 
 #endif /* __DH_PROFILE_H__ */

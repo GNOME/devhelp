@@ -40,8 +40,8 @@ gchar *        dh_util_url_get_anchor        (const gchar          *url);
 gchar *        dh_util_uri_get_anchor        (const GnomeVFSURI    *uri);
 
 /* Taken from gnome-vfs CVS. */
-GnomeVFSURI *  dh_util_uri_relative_new      (const gchar          *text_uri,
-					   const GnomeVFSURI    *base);
+gchar *        dh_util_uri_relative_new      (const gchar          *text_uri,
+					      const gchar          *base_uri);
 
 gboolean       dh_util_uri_is_relative       (const gchar          *uri);
 

@@ -50,8 +50,7 @@ struct _DhHtmlClass {
 
 	/* Signals */
 	void (*uri_selected) (DhHtml *html,
-			      const gchar *uri,
-			      const gchar *anchor);
+			      const gchar *uri);
 };
 
 GType           dh_html_get_type       (void);

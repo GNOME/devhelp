@@ -1,22 +1,16 @@
-imagedir = $(datadir)/images/devhelp
-image_DATA = \
-	book_open.png \
+imagedir = $(datadir)/devhelp/images
+image_DATA = 		\
+	book_open.png   \
 	book_closed.png \
 	helpdoc.png
-
-#gladedir = $(datadir)/devhelp/glade
-#glade_DATA = \
-#	devhelp2.glade
 
 appicondir = $(datadir)/pixmaps
 appicon_DATA = devhelp.png
 
-uidir = $(datadir)/gnome-2.0/ui
+uidir = $(datadir)/devhelp/ui
 ui_DATA = 				\
-	GNOME_DevHelp.ui		\
-	GNOME_DevHelp_Controller.ui
+	window.ui
 
 EXTRA_DIST = $(image_DATA) 		\
 	     $(appicon_DATA)		\
 	     $(ui_DATA)
-#	     $(glade_DATA)		\

@@ -25,29 +25,96 @@
 
 #include <libgnomevfs/gnome-vfs.h>
 
+#include "dh-book-parser.h"
 #include "dh-profile.h"
 
 #define d(x) x
 
-struct _DhProfile {
-        gchar  *name;
-        
-        GSList *books;
+struct _DhProfilePriv {
+        gchar    *name;
+	GSList   *books;
+        GNode    *book_tree;
+	GList    *keywords;
+
+	gboolean  open;
 };
 
-static gboolean   profile_find_books (GSList        **books, 
-				      const gchar    *directory);
+static gboolean   profile_find_books    (DhProfile      *profile,
+					 const gchar    *directory);
+
+static void       profile_init          (DhProfile      *profile);
+static void       profile_class_init    (GObjectClass   *klass);
+static void       profile_destroy       (GObject        *object);
+
+GType
+dh_profile_get_type (void)
+{
+	static GType type = 0;
+        
+	if (!type) {
+		static const GTypeInfo info = {
+			sizeof (DhProfileClass),
+			NULL,
+			NULL,
+			(GClassInitFunc) profile_class_init,
+			NULL,
+			NULL,
+			sizeof (DhProfile),
+			0,
+			(GInstanceInitFunc) profile_init,
+		};
+                
+		type = g_type_register_static (G_TYPE_OBJECT,
+					       "DhProfile",
+					       &info, 0);
+	}
+
+	return type;
+}
+
+static void
+profile_init (DhProfile *profile)
+{
+	DhProfilePriv *priv;
+
+	d(puts(__FUNCTION__));
+        
+	priv = g_new0 (DhProfilePriv, 1);
+        
+	priv->name      = NULL;
+	priv->book_tree = NULL;
+	priv->keywords  = NULL;
+	priv->open      = FALSE;
+	
+	profile->priv   = priv;
+}
+
+static void
+profile_class_init (GObjectClass *klass)
+{
+	klass->finalize = profile_destroy;
+}
+
+static void
+profile_destroy (GObject *object)
+{
+	g_print ("FIXME: Free profile\n");
+}
 
 static gboolean
-profile_find_books (GSList **books, const gchar *directory)
+profile_find_books (DhProfile *profile, const gchar *directory)
 {
+	DhProfilePriv    *priv;
 	GList            *dir_list;
 	GList            *l;
 	GnomeVFSFileInfo *info;
 	GnomeVFSResult    result;
 	gchar            *book_file;
 	
+	g_return_val_if_fail (DH_IS_PROFILE (profile), FALSE);
 	g_return_val_if_fail (directory != NULL, FALSE);
+
+	priv = profile->priv;
 
 	result  = gnome_vfs_directory_list_load (&dir_list, directory,
 						 GNOME_VFS_FILE_INFO_DEFAULT);
@@ -73,7 +140,7 @@ profile_find_books (GSList **books, const gchar *directory)
 		book_file = g_strconcat (directory, "/", info->name, NULL);
 		d(g_print ("Found book: '%s'\n", book_file));
 		
-		*books = g_slist_prepend (*books, book_file);
+		priv->books = g_slist_prepend (priv->books, book_file);
 
 		gnome_vfs_file_info_unref (info);
 	}
@@ -87,44 +154,73 @@ profile_find_books (GSList **books, const gchar *directory)
 DhProfile *
 dh_profile_new (void)
 {
-	DhProfile *profile;
-	gchar     *dir;
+	DhProfile     *profile;
+	DhProfilePriv *priv;
+	gchar         *dir;	
 	
-	profile = g_new0 (DhProfile, 1);
-	profile->books = NULL;
+
+	profile = g_object_new (DH_TYPE_PROFILE, NULL);
+	priv    = profile->priv;
+	
+	priv->name = g_strdup ("Default");
 
 	/* Fill profile->books with $(home)/.devhelp/specs and   *
 	 * $(prefix)/share/devhelp/specs                         */
 
 	dir = g_strconcat (g_getenv ("HOME"), "/.devhelp2/books", NULL);
-	profile_find_books (&profile->books, dir);
+	profile_find_books (profile, dir);
 	g_free (dir);
 
 	dir = g_strconcat (g_getenv ("HOME"), "/.devhelp/specs", NULL);
-	profile_find_books (&profile->books, dir);
+	profile_find_books (profile, dir);
 	g_free (dir);
 	
-	profile_find_books (&profile->books, DATADIR"/devhelp/specs");
-	profile_find_books (&profile->books, "/usr/share/devhelp/specs");
+	profile_find_books (profile, DATADIR"/devhelp/specs");
+	profile_find_books (profile, "/usr/share/devhelp/specs");
 
 	return profile;
 }
 
 GNode *   
-dh_profile_open (DhProfile *profile, GList *keyword, GError **error)
+dh_profile_open (DhProfile *profile, GList **keywords, GError **error)
 {
-	GNode *root;
-	GList *keywords;
+	DhProfilePriv *priv;
 
-	root = g_node_new (NULL);
+	g_return_val_if_fail (DH_IS_PROFILE (profile), NULL);
 
-	if (!dh_book_parser_read_books (profile->books,
-					root,
-					&keywords,
+	priv = profile->priv;
+
+	if (priv->open) {
+		*keywords = priv->keywords;
+		return priv->book_tree;
+	}
+
+	priv->book_tree = g_node_new (NULL);
+	
+	if (!dh_book_parser_read_books (priv->books,
+					priv->book_tree,
+					&priv->keywords,
 					error)) {
 		return NULL;
 	}
 
-	return root;
+	priv->open = TRUE;
+	*keywords = priv->keywords;
+
+	return priv->book_tree;
+}
+
+GSList *
+dh_profiles_init (void)
+{
+	GSList    *profiles = NULL;
+	DhProfile *profile;
+	
+	profile = dh_profile_new ();
+	profile->priv->name = g_strdup ("Default");
+
+	profiles = g_slist_prepend (profiles, profile);
+	
+	return profiles;
 }
 

@@ -27,8 +27,8 @@
 #include <gtk/gtktreeview.h>
 #include <gtk/gtkwidget.h>
 #include <gtk/gtktypeutils.h>
-#include "dh-bookshelf.h"
-#include "book-node.h"
+
+#include "dh-link.h"
 
 #define DH_BOOK_TREE_OAFIID "OAFIID:GNOME_DevHelp_DhBookTree"
 
@@ -44,9 +44,9 @@ typedef struct _DhBookTreePriv   DhBookTreePriv;
 
 struct _DhBookTree
 {
-	GtkTreeView parent;
-        
-        DhBookTreePriv   *priv;
+	GtkTreeView     parent;
+         
+        DhBookTreePriv *priv;
 };
 
 struct _DhBookTreeClass
@@ -55,22 +55,12 @@ struct _DhBookTreeClass
 
         /* Signals */
         
-        void (*uri_selected)  (DhBookTree           *index,
-                               const GnomeVFSURI   *uri);
+        void (*link_selected) (DhBookTree *book_tree,
+			       DhLink     *link);
 };
 
 GType            dh_book_tree_get_type      (void);
-GtkWidget *      dh_book_tree_new           (DhBookshelf    *bookshelf);
-
-void             dh_book_tree_open_node     (DhBookTree     *index,
-					     BookNode       *node);
-
-void             dh_book_tree_add_book      (DhBookTree     *index,
-					     Book           *book);
-
-void             dh_book_tree_remove_book   (DhBookTree     *index,
-					     Book           *book);
-
-GtkWidget *      dh_book_tree_get_scrolled  (DhBookTree     *index);
-
+GtkWidget *      dh_book_tree_new           (GNode       *books);
+void             dh_book_tree_show_uri      (DhBookTree  *book_tree,
+					     const gchar *uri);
 #endif /* __DH_BOOK_TREE_H__ */

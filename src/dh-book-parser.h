@@ -29,6 +29,6 @@
 gboolean  dh_book_parser_read_books (GSList       *books,
 				     GNode        *book_tree,
 				     GList       **keywords,
-				    GError       **error);
+				     GError      **error);
 
 #endif /* __DH_BOOKS_PARSER_H__ */

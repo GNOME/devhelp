@@ -24,7 +24,9 @@
 #include <config.h>
 
 #include <libxml/parser.h>
+#include <string.h>
 
+#include "dh-link.h"
 #include "dh-book-parser.h"
 
 static gboolean   book_parser_parse_book        (GNode         *book_tree,
@@ -33,12 +35,15 @@ static gboolean   book_parser_parse_book        (GNode         *book_tree,
 						 GError       **error);
 static gboolean   book_parser_parse_chapter     (GNode         *root,
 						 xmlNode       *node,
+						 const gchar   *base_uri,
 						 GError       **error);
 static gboolean   book_parser_parse_function    (GList        **keywords,
 						 xmlNode       *node,
+						 const gchar   *base_uri,
 						 GError       **error);
-
-					 
+static gchar *    book_parser_get_base_uri      (const gchar   *spec_path,
+						 const gchar   *name,
+						 xmlChar       *read_base);
 
 static gboolean
 book_parser_parse_book (GNode        *book_tree,
@@ -47,12 +52,14 @@ book_parser_parse_book (GNode        *book_tree,
 			GError      **error)
 {
 	xmlDoc  *doc;
-	xmlNode *root_node, *node;
+	xmlNode *root_node;
+	xmlNode *node;
 	xmlChar *xml_str;
-	gchar   *name;
 	gchar   *base;
-	gchar   *link;
-	gchar   *title;
+	gchar   *name;
+	gchar   *uri;
+	DhLink  *link;
+	GNode   *parent;
 
 	doc = xmlParseFile (path);
 	
@@ -69,6 +76,36 @@ book_parser_parse_book (GNode        *book_tree,
 		g_print ("ROOT NODE: %s != book\n", root_node->name);
 		return FALSE;
 	}
+
+	xml_str = xmlGetProp (root_node, "name");
+	if (!xml_str) {
+		g_warning ("Book doesn't have a name, fix the book file");
+		return FALSE;
+	}
+	name = g_strdup (xml_str);
+	xmlFree (xml_str);
+	
+	xml_str = xmlGetProp (root_node, "base");
+	if (!xml_str) {
+		g_warning ("Book '%s' misses the base URL, fix the book file",
+			   name);
+		return FALSE;
+	}
+	base = book_parser_get_base_uri (path, name, xml_str);
+	xmlFree (xml_str);
+	
+	xml_str = xmlGetProp (root_node, "link");
+	if (!xml_str) {
+		g_warning ("Book '%s' misses link, fix the book file", name);
+		return FALSE;
+	}
+	uri = g_strconcat (base, "/", xml_str, NULL);
+	xmlFree (xml_str);
+
+	link = dh_link_new (DH_LINK_TYPE_BOOK, name, uri);
+	g_free (uri);
+
+	parent = g_node_append_data (book_tree, link);
 
 	for (root_node = root_node->xmlChildrenNode;
 	     root_node && xmlIsBlankNode (root_node);
@@ -91,8 +128,9 @@ book_parser_parse_book (GNode        *book_tree,
 
 	for (node = root_node->xmlChildrenNode; node; node = node->next) {
 		if (xmlStrcmp (node->name, "sub") == 0) {
-			if (!book_parser_parse_chapter (book_tree, 
-							node, error)) {
+			if (!book_parser_parse_chapter (parent,
+							node, base, 
+							error)) {
 				return FALSE;
 			}
 		}
@@ -120,7 +158,8 @@ book_parser_parse_book (GNode        *book_tree,
 	for (node = root_node->xmlChildrenNode; node; node = node->next) {
 		if (xmlStrcmp (node->name, "function") == 0) {
 			if (!book_parser_parse_function (keywords, 
-							 node, error)) {
+							 node, base, 
+							 error)) {
 				return FALSE;
 			}
 		}
@@ -128,13 +167,17 @@ book_parser_parse_book (GNode        *book_tree,
 }
 
 static gboolean
-book_parser_parse_chapter (GNode *root, xmlNode *node, GError **error)
+book_parser_parse_chapter (GNode        *parent,
+			   xmlNode      *node, 
+			   const gchar  *base_uri,
+			   GError      **error)
 {
-	GNode   *new_root;
+	GNode   *new_parent;
 	xmlNode *child;
-	gchar   *name;
-	gchar   *link;
+	xmlChar *name;
+	gchar   *uri;
 	xmlChar *xml_str;
+	DhLink  *link;
 	
 	if (xmlStrcmp (node->name, "sub") != 0) {
 		/* Set error */
@@ -143,29 +186,35 @@ book_parser_parse_chapter (GNode *root, xmlNode *node, GError **error)
 		return FALSE;
 	}
 
-	xml_str = xmlGetProp (node, "name");
-	if (xml_str) {
-		name = g_strdup (xml_str);
-		xmlFree (xml_str);
-	} else {
-		name = g_strdup ("");
+	name = xmlGetProp (node, "name");
+	if (!name) {
+		g_warning ("Error in book file");
+		return FALSE;
 	}
 	
 	xml_str = xmlGetProp (node, "link");
-	if (xml_str) {
-		link = g_strdup (xml_str);
-		xmlFree (xml_str);
+	if (!xml_str) {
+		g_warning ("Chapter '%s' doesn't have a URI, fix the book",
+			   name);
+		return FALSE;
 	}
+	uri = g_strconcat (base_uri, "/", xml_str, NULL);
+	xmlFree (xml_str);
 
-	g_print ("FIXME: Insert chapter '%s' into tree\n", name);
-	/* Insert */
+	link = dh_link_new (DH_LINK_TYPE_PAGE, name, uri);
+
+	xmlFree (name);
+	g_free (uri);
+
+	new_parent = g_node_append_data (parent, link);
 
 	for (child = node->xmlChildrenNode; child; child = child->next) {
 
 		if (xmlStrcmp (child->name, "sub") == 0) {
 			gboolean success;
-			success = book_parser_parse_chapter (new_root, 
-							     child, error);
+			success = book_parser_parse_chapter (new_parent, 
+							     child, base_uri,
+							     error);
 		
 			if (!success) {
 				return FALSE;
@@ -177,13 +226,17 @@ book_parser_parse_chapter (GNode *root, xmlNode *node, GError **error)
 }
 
 static gboolean
-book_parser_parse_function (GList **keywords, xmlNode *node, GError **error)
+book_parser_parse_function (GList       **keywords, 
+			    xmlNode      *node, 
+			    const gchar  *base_uri,
+			    GError      **error)
 {
 	GNode   *new_root;
 	xmlNode *child;
-	gchar   *name;
-	gchar   *link;
+	xmlChar *name;
+	gchar   *uri;
 	xmlChar *xml_str;
+	DhLink  *link;
 	
 	if (xmlStrcmp (node->name, "function") != 0) {
 		g_print ("NODE: %s != function\n", node->name);
@@ -191,26 +244,62 @@ book_parser_parse_function (GList **keywords, xmlNode *node, GError **error)
 		return FALSE;
 	}
 
-	xml_str = xmlGetProp (node, "name");
-	if (xml_str) {
-		name = g_strdup (xml_str);
-		xmlFree (xml_str);
-	} else {
-		name = g_strdup ("");
+	name = xmlGetProp (node, "name");
+	if (!name) {
+		g_warning ("Keyword without name, fix the book file");
+		return FALSE;
 	}
-	
 	
 	xml_str = xmlGetProp (node, "link");
-	if (xml_str) {
-		link = g_strdup (xml_str);
-		xmlFree (xml_str);
+	if (!xml_str) {
+		g_warning ("Keyword '%s' didn't have a URI", name);
+		return FALSE;
 	}
+	uri = g_strconcat (base_uri, "/", xml_str, NULL);
+	xmlFree (xml_str);
 
-	g_print ("FIXME: Insert function '%s' into list\n", name);
-
-	/* Insert */
+	link = dh_link_new (DH_LINK_TYPE_KEYWORD, name, uri);
+	g_free (uri);
+	xmlFree (name);
+	
+	*keywords = g_list_prepend (*keywords, link);
 
 	return TRUE;
+}
+
+static gchar *
+book_parser_get_base_uri (const gchar *spec_path, 
+			  const gchar *name,
+			  xmlChar     *read_base)
+{
+	gchar *ret_val;
+	gchar *tmp_url;
+	gchar *ch;
+
+	tmp_url = g_strdup (spec_path);
+	
+	ch = strrchr (tmp_url, '/');
+	if (!ch) {
+		return g_strdup (read_base);
+	}
+	
+	*ch = '\0';
+
+	ch = strrchr (tmp_url, '/');
+	if (!ch) {
+		return g_strdup (read_base);
+	}
+	*ch = '\0';
+
+	ret_val = g_build_filename (tmp_url, "books", name, NULL);
+	g_free (tmp_url);
+	
+	if (!ret_val || !g_file_test (ret_val, 
+				      G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR)) {
+		return g_strdup (read_base);
+	}
+	
+	return ret_val;
 }
 
 gboolean

@@ -22,3 +22,44 @@
  */
 
 /* Base, will load the books and stuff */
+
+#ifndef __DH_BASE_H__
+#define __DH_BASE_H__
+
+#include <glib-object.h>
+#include <gtk/gtkwidget.h>
+
+#include <dh-profile.h>
+
+typedef struct _DhBase      DhBase;
+typedef struct _DhBaseClass DhBaseClass;
+typedef struct _DhBasePriv  DhBasePriv;
+
+#define DH_TYPE_BASE         (dh_base_get_type ())
+#define DH_BASE(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_BASE, DhBase))
+#define DH_BASE_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), DH_TYPE_BASE, DhBaseClass))
+#define DH_IS_BASE(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), DH_TYPE_BASE))
+#define DH_IS_BASE_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), DH_TYPE_BASE))
+#define DH_BASE_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), DH_TYPE_BASE, DhBaseClass))
+
+
+struct _DhBase {
+        GObject     parent;
+        
+        DhBasePriv *priv;
+};
+
+struct _DhBaseClass {
+        GObjectClass parent_class;
+};
+
+GType            dh_base_get_type       (void);
+DhBase *         dh_base_new            (void);
+
+GtkWidget *      dh_base_new_window     (DhBase      *base,
+                                         DhProfile   *profile);
+
+GSList *         dh_get_profiles        (DhBase      *base);
+GSList *         dh_get_windows         (DhBase      *base);
+
+#endif /* __DH_BASE_H__ */

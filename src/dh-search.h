@@ -26,7 +26,8 @@
 
 #include <glib-object.h>
 #include <gtk/gtkwidget.h>
-#include "dh-bookshelf.h"
+
+#include "dh-link.h"
 
 #define DH_SEARCH_ENTRY_OAFIID "OAFIID:GNOME_Dh_SearchEntry"
 #define DH_SEARCH_RESULT_OAFIID "OAFIID:GNOME_Dh_SearchResult"
@@ -41,32 +42,22 @@ typedef struct _DhSearch       DhSearch;
 typedef struct _DhSearchClass  DhSearchClass;
 typedef struct _DhSearchPriv   DhSearchPriv;
 
-struct _DhSearch
-{
-        GObject             parent;
+struct _DhSearch {
+        GtkVBox        parent;
         
         DhSearchPriv  *priv;
 };
 
-struct _DhSearchClass
-{
-        GObjectClass        parent_class;
+struct _DhSearchClass {
+        GtkVBoxClass   parent_class;
 
         /* Signals */
-        void (*search_match)  (DhSearch       *search,
-                               const gchar         *string);
-        
-        void (*uri_selected)  (DhSearch       *search,
-                               const GnomeVFSURI   *uri);
-       
-        
+        void (*link_selected) (DhSearch          *search,
+			       DhLink            *link);
 };
 
 GType            dh_search_get_type           (void);
-DhSearch *       dh_search_new                (DhBookshelf    *bookshelf);
-
-GtkWidget *      dh_search_get_entry_widget   (DhSearch       *search);
-GtkWidget *      dh_search_get_result_widget  (DhSearch       *search);
+GtkWidget *      dh_search_new                (GList          *keywords);
 
 void             dh_search_set_search_string  (DhSearch       *search,
 					       const gchar    *str);

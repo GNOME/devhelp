@@ -30,260 +30,220 @@
 #include <gtk/gtknotebook.h>
 #include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtkvbox.h>
-#include <bonobo.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
-#include "dh-view.h"
-#include "GNOME_DevHelp.h"
+#include <libegg/menu/egg-menu-merge.h>
+
+#include "dh-book-tree.h"
+#include "dh-history.h"
+#include "dh-html.h"
+#include "dh-search.h"
 #include "dh-window.h"
 
-#define DH_WINDOW_UI "GNOME_MrProject_Client.ui"
 
-static void window_class_init                (DhWindowClass *klass);
-static void window_init                      (DhWindow      *index);
+struct _DhWindowPriv {
+	DhHistory      *history;
+	DhProfile      *profile;
+
+	GtkWidget      *main_box;
+	GtkWidget      *menu_box;
+	GtkWidget      *hpaned;
+        GtkWidget      *notebook;
+        GtkWidget      *book_tree;
+	GtkWidget      *search;
+	GtkWidget      *html_view;
+
+	EggMenuMerge   *merge;
+	EggActionGroup *action_group;
+};
+
+static void window_class_init                (DhWindowClass      *klass);
+static void window_init                      (DhWindow           *window);
  
-static void window_destroy                   (GtkObject          *object);
+static void window_finalize                  (GObject            *object);
 
-static void window_populate                  (DhWindow      *window);
+static void window_populate                  (DhWindow           *window);
 
-static void window_cmd_print_cb              (BonoboUIComponent  *component,
-					      gpointer            data,
-					      const gchar        *cname);
-
-static void window_cmd_exit_cb               (BonoboUIComponent  *component,
-					      gpointer            data,
-					      const gchar        *cname);
-
-static void window_cmd_view_side_bar_cb      (BonoboUIComponent  *component,
-					      gpointer            data,
-					      const gchar        *cname);
-
-static void window_cmd_about_cb              (BonoboUIComponent  *component,
-					      gpointer            data,
-					      const gchar        *cname);
-
+static void window_activate_action           (EggAction          *action,
+					      DhWindow           *window);
+#if 0
 static void window_uri_changed_cb            (BonoboListener     *listener,
 					      const gchar        *event_name,
 					      const CORBA_any    *arg,
 					      CORBA_Environment  *ev,
 					      gpointer            user_data);
 
+#endif
 static void window_delete_cb                 (GtkWidget          *widget,
 					      GdkEventAny        *event,
 					      gpointer            user_data);
 
-static void window_link_clicked_cb           (DhWindow      *ignored,
-					      gchar              *url,
-					      DhWindow      *window);
+static gboolean window_open_url              (DhWindow           *window,
+					      const gchar        *url);
 
-static void window_on_url_cb                 (DhWindow      *window,
+static void window_link_selected_cb          (GObject            *ignored,
+					      DhLink             *link,
+					      DhWindow           *window);
+
+static void window_on_url_cb                 (DhWindow           *window,
 					      gchar              *url,
 					      gpointer            ignored);
 
 static void window_note_change_page_cb       (GtkWidget          *child,
 					      GtkNotebook        *notebook);
+static void window_merge_add_widget          (EggMenuMerge       *merge,
+					      GtkWidget          *widget,
+					      DhWindow           *window);
 
-static void window_note_page_mapped_cb       (GtkWidget          *page, 
-					      GtkAccelGroup      *accel_group);
+static GtkWindowClass *parent_class = NULL;
 
-static void window_note_page_unmapped_cb     (GtkWidget          *page, 
-					      GtkAccelGroup      *accel_group);
+static EggActionGroupEntry actions[] = {
+	{ "StockFileMenuAction", N_("_File"), NULL, NULL, NULL, NULL, NULL },
+	{ "StockGoMenuAction", N_("_Go"), NULL, NULL, NULL, NULL, NULL },
+	{ "StockHelpMenuAction", N_("_Help"), NULL, NULL, NULL, NULL, NULL },
 
+	/* File menu */
+	{ "QuitAction", NULL, GTK_STOCK_QUIT, "<control>Q", NULL,
+	  G_CALLBACK (window_activate_action), NULL },
 
-static void window_note_page_setup_signals   (GtkWidget          *page, 
-					      GtkAccelGroup      *accel);
+	/* Go menu */
+	{ "BackAction", NULL, GTK_STOCK_GO_BACK, NULL, NULL,
+	  G_CALLBACK (window_activate_action), NULL },
+	{ "ForwardAction", NULL, GTK_STOCK_GO_FORWARD, NULL, NULL,
+	  G_CALLBACK (window_activate_action), NULL },
 
-static void 
-window_notebook_append_page_with_accelerator (GtkNotebook        *notebook,
-					      GtkWidget          *page,
-					      gchar              *label_text,
-					      GtkAccelGroup      *accel);
-
-
-static BonoboWindowClass *parent_class = NULL;
-
-struct _DhWindowPriv {
-        BonoboUIComponent        *component;
-
-	GNOME_DevHelp_Controller  controller;
-
-        GtkWidget                *notebook;
-        GtkWidget                *search_box;
-        GtkWidget                *index;
-        GtkWidget                *search_list;
-        GtkWidget                *search_entry;
-	GtkWidget                *html_widget;
-	GtkWidget                *statusbar;
-	GtkWidget                *hpaned;
+	/* About menu */
+	{ "AboutAction", N_("_About"), NULL, NULL, NULL,
+	  G_CALLBACK (window_activate_action), NULL }
 };
 
-static BonoboUIVerb verbs[] = {
-        BONOBO_UI_VERB ("CmdPrint",       window_cmd_print_cb),
-        BONOBO_UI_VERB ("CmdExit",        window_cmd_exit_cb),
-
-        BONOBO_UI_VERB ("CmdViewSideBar", window_cmd_view_side_bar_cb),
-
-        BONOBO_UI_VERB ("CmdAbout",       window_cmd_about_cb),
-        BONOBO_UI_VERB_END
-};
-
-GtkType
+GType
 dh_window_get_type (void)
 {
-        static GtkType dh_window_type = 0;
+        static GType type = 0;
 
-        if (!dh_window_type) {
-                static const GtkTypeInfo dh_window_info = {
-                        "DhWindow",
-                        sizeof (DhWindow),
-                        sizeof (DhWindowClass),
-                        (GtkClassInitFunc)  window_class_init,
-                        (GtkObjectInitFunc) window_init,
-                        /* reserved_1 */ NULL,
-                        /* reserved_2 */ NULL,
-                        (GtkClassInitFunc) NULL,
-                };
-
-                dh_window_type = gtk_type_unique (bonobo_window_get_type (), 
-                                                       &dh_window_info);
+        if (!type) {
+                static const GTypeInfo info = {
+			sizeof (DhWindowClass),
+			NULL, 
+			NULL,
+			(GClassInitFunc) window_class_init,
+			NULL,
+			NULL,
+			sizeof (DhWindow),
+			0,
+			(GInstanceInitFunc) window_init
+		};
+		
+                type = g_type_register_static (GTK_TYPE_WINDOW, 
+					       "DhWIndow",
+					       &info, 0);
         }
 
-        return dh_window_type;
+        return type;
 }
 
 static void
 window_class_init (DhWindowClass *klass)
 {
-        GtkObjectClass *object_class;
+        GObjectClass *object_class;
         
-        parent_class = gtk_type_class (bonobo_window_get_type ());
+        parent_class = gtk_type_class (GTK_TYPE_WINDOW);
 
-        object_class = (GtkObjectClass *) klass;
+        object_class = (GObjectClass *) klass;
         
-        object_class->destroy = window_destroy;
+        object_class->finalize = window_finalize;
 }
 
 static void
 window_init (DhWindow *window)
 {
         DhWindowPriv *priv;
+	gint          i;
 
-        priv         = g_new0 (DhWindowPriv, 1);
+        priv          = g_new0 (DhWindowPriv, 1);
+	priv->history = dh_history_new ();
 	
+	priv->merge   = egg_menu_merge_new ();
+
+	priv->main_box = gtk_vbox_new (FALSE, 0);
+	gtk_widget_show (priv->main_box);
+	
+	priv->menu_box = gtk_vbox_new (FALSE, 0);
+	gtk_widget_show (priv->menu_box);
+	gtk_container_set_border_width (GTK_CONTAINER (priv->menu_box), 0);
+	gtk_box_pack_start (GTK_BOX (priv->main_box), priv->menu_box, 
+			    FALSE, TRUE, 0);
+	
+	gtk_container_add (GTK_CONTAINER (window), priv->main_box);
+
+	g_signal_connect (priv->merge,
+			  "add_widget",
+			  G_CALLBACK (window_merge_add_widget),
+			  window);
+
+	for (i = 0; i < G_N_ELEMENTS (actions); ++i) {
+		actions[i].user_data = window;
+	}
+
+	priv->action_group = egg_action_group_new ("MainWindow");
+	
+	egg_action_group_add_actions (priv->action_group,
+				      actions,
+				      G_N_ELEMENTS (actions));
+
+	egg_menu_merge_insert_action_group (priv->merge,
+					    priv->action_group,
+					    0);
+
         window->priv = priv;
 }
 
 static void
-window_destroy (GtkObject *object)
+window_finalize (GObject *object)
 {
-}
-
-static void
-window_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
-{
-	gint page = gtk_notebook_page_num (notebook, child);
-
-	gtk_notebook_set_page (notebook, page);
 }
 
 static void
 window_populate (DhWindow *window)
 {
-        DhWindowPriv       *priv;
-        CORBA_Environment   ev;
-        Bonobo_UIContainer  uic;
-	BonoboControlFrame *cf;
-	Bonobo_EventSource  es;
-	Bonobo_Control      control_co;
-	GtkWidget          *html_sw;
-	GtkWidget          *frame;
+        DhWindowPriv *priv;
+	GtkWidget    *html_sw;
+	GtkWidget    *frame;
+	GtkWidget    *book_tree_sw;
+	GNode        *contents_tree;
+	GList        *keywords = NULL;
+	GError       *error = NULL;
 	 
         g_return_if_fail (window != NULL);
-        g_return_if_fail (IS_DH_WINDOW (window));
+        g_return_if_fail (DH_IS_WINDOW (window));
         
         priv = window->priv;
-        
-        priv->notebook    = gtk_notebook_new ();
-        priv->search_box  = gtk_vbox_new (FALSE, 0);
-	priv->html_widget = dh_view_new ();
-        priv->hpaned      = gtk_hpaned_new ();
-	priv->statusbar   = gtk_statusbar_new ();
-	html_sw           = gtk_scrolled_window_new (NULL, NULL);
+	
+	egg_menu_merge_add_ui_from_file (priv->merge,
+					 DATADIR "/devhelp/ui/window.ui",
+					 &error);
+
+        priv->hpaned    = gtk_hpaned_new ();
+        priv->notebook  = gtk_notebook_new ();
+	priv->html_view = dh_html_new ();
+	html_sw         = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (html_sw),
 					GTK_POLICY_AUTOMATIC,
 					GTK_POLICY_AUTOMATIC);
-
-        CORBA_exception_init (&ev);
-
-	priv->controller = bonobo_get_object ("OAFIID:GNOME_DevHelp_Controller",
-					      "IDL:GNOME/DevHelp/Controller:1.0",
-					      &ev);
-
-	if (!priv->controller || BONOBO_EX (&ev)) {
-		gchar *exception_as_text = bonobo_exception_get_text (&ev);
-		
-		g_error ("Couldn't get interface GNOME/DevHelp/Controller:1.0 (%s)",
-			 exception_as_text);
-		g_free (exception_as_text);
-		priv->controller = CORBA_OBJECT_NIL;
-	}
-
-	es = Bonobo_Unknown_queryInterface (priv->controller,
-					    "IDL:Bonobo/EventSource:1.0",
-					    &ev);
-	
-	if (!es || BONOBO_EX (&ev)) {
-		g_error ("Couldn't get EventSource");
-	}
-	
- 	bonobo_event_source_client_add_listener (es,
- 						 window_uri_changed_cb,
- 						 "GNOME/DevHelp:URI:changed",
- 						 NULL, 
- 						 window);
-
-        uic = bonobo_ui_component_get_container (priv->component);
-
-	GNOME_DevHelp_Controller_addMenus (priv->controller, uic, &ev);
-	
-	if (BONOBO_EX (&ev)) {
-		g_warning ("Couldn't register component");
-	}
-
-	control_co = GNOME_DevHelp_Controller_getBookTree (priv->controller,
-							   &ev);
-	
-	if (!control_co || BONOBO_EX (&ev)) {
-		g_error ("Argggh");
-	}
-	
-	priv->index = bonobo_widget_new_control_from_objref (control_co, uic);
-	
-	control_co = GNOME_DevHelp_Controller_getSearchEntry (priv->controller,
-							      &ev);
-	
-	if (!control_co || BONOBO_EX (&ev)) {
-		g_error ("Argggh");
-	}
-	
-	priv->search_entry = bonobo_widget_new_control_from_objref (control_co,
-								    uic);
-	control_co = GNOME_DevHelp_Controller_getSearchResultList (priv->controller,
-								   &ev);
-	
-	if (!control_co || BONOBO_EX (&ev)) {
-		g_error ("Argggh");
-	}
-
-	priv->search_list = bonobo_widget_new_control_from_objref (control_co,
-								   uic);
+	book_tree_sw      = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (book_tree_sw),
+					GTK_POLICY_AUTOMATIC,
+					GTK_POLICY_AUTOMATIC);
+	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (book_tree_sw),
+					     GTK_SHADOW_IN);
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), priv->notebook);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
 
 	gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
 	
- 	gtk_container_add (GTK_CONTAINER (html_sw), priv->html_widget);
+ 	gtk_container_add (GTK_CONTAINER (html_sw), priv->html_view);
 
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), html_sw);
@@ -293,33 +253,61 @@ window_populate (DhWindow *window)
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 
-	gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-				  priv->index,
-				  gtk_label_new_with_mnemonic (_("_Contents")));
+	contents_tree = dh_profile_open (priv->profile, &keywords, NULL);
+	
+	if (contents_tree) {
+		priv->book_tree = dh_book_tree_new (contents_tree);
+	
+		gtk_container_add (GTK_CONTAINER (book_tree_sw), 
+				   priv->book_tree);
 
+		gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
+					  book_tree_sw,
+					  gtk_label_new_with_mnemonic (_("_Contents")));
+		g_signal_connect (priv->book_tree, "link_selected", 
+				  G_CALLBACK (window_link_selected_cb),
+				  window);
+	}
+	
+	if (keywords) {
+		priv->search = dh_search_new (keywords);
+		
+		gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
+					  priv->search,
+					  gtk_label_new_with_mnemonic (_("_Search")));
+
+		g_signal_connect (priv->search, "link_selected",
+				  G_CALLBACK (window_link_selected_cb),
+				  window);
+	}
+
+#if 0
 	gtk_box_pack_start (GTK_BOX (priv->search_box), 
 			    priv->search_entry, 
 			    FALSE, FALSE, 0); 
 
 	gtk_box_pack_end_defaults (GTK_BOX (priv->search_box),
 				   priv->search_list); 
-
 	gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
 				  priv->search_box,
 				  gtk_label_new_with_mnemonic (_("_Search")));
 
+
+
+#endif
 	gtk_widget_show_all (priv->hpaned);
 
-	bonobo_window_set_contents (BONOBO_WINDOW (window), priv->hpaned);
+	gtk_box_pack_start (GTK_BOX (priv->main_box), priv->hpaned,
+			    TRUE, TRUE, 0);
 
- 	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_widget)->document),
-				 "link_clicked", 
-				 G_CALLBACK (window_link_clicked_cb),
-				 G_OBJECT (window),
-				 0);
+ 	g_signal_connect_swapped (HTML_VIEW (priv->html_view),
+				  "uri_selected", 
+				  G_CALLBACK (window_open_url),
+				  window);
+
 	/* TODO: Look in gtkhtml2 code or ask jborg */
 #if GNOME2_PORT_COMPLETE	
-	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_widget)->document),
+	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_view)->document),
 				 "on_url",
 				 G_CALLBACK (window_on_url_cb),
 				 G_OBJECT (window),
@@ -328,67 +316,46 @@ window_populate (DhWindow *window)
 }
 
 static void
-window_cmd_print_cb (BonoboUIComponent *component,
-		     gpointer           data,
-		     const gchar       *cname)
+window_activate_action (EggAction *action, DhWindow *window)
 {
-	DhWindow       *window;
-	DhWindowPriv   *priv;
+	DhWindowPriv *priv;
+	const gchar  *name = action->name;
 	
-	g_return_if_fail (data != NULL);
-	g_return_if_fail (IS_DH_WINDOW (data));
+	g_return_if_fail (DH_IS_WINDOW (window));
 	
-	window = DH_WINDOW (data);
-	priv   = window->priv;
-
-	g_message ("%s: FIXME!", __FUNCTION__);
-#if 0	
-	if (priv->html_widget) {
-		html_widget_print (DH_VIEW (priv->html_widget));
+	if (strcmp (name, "QuitAction") == 0) {
+		gtk_main_quit ();
+		/* Quit */
 	}
-#endif	
+	else if (strcmp (name, "BackAction") == 0) {
+	}
+	else if (strcmp (name, "ForwardAction") == 0) {
+	}
+	else if (strcmp (name, "AboutAction") == 0) {
+		GtkWidget *about;
+
+		const gchar *authors[] = {
+			"Mikael Hallendal <micke@codefactory.se>",
+			"Richard Hult <rhult@codefactory.se>",
+			"Johan Dahlin <jdahlin@telia.com>",
+			NULL
+		};
+		
+		about = gnome_about_new (PACKAGE, VERSION,
+					 "",
+					 _("A developer's help browser for GNOME 2"),
+					 authors,
+					 NULL,
+					 NULL,
+					 NULL);
+		
+		gtk_widget_show (about);
+	} else {
+		g_message ("Unhandled action '%s'", name);
+	}
 }
 
-static void
-window_cmd_exit_cb (BonoboUIComponent   *component,
-	     gpointer             data,
-	     const gchar         *cname)
-{
-	bonobo_main_quit ();
-}
-
-static void
-window_cmd_view_side_bar_cb (BonoboUIComponent   *component,
-		      gpointer             data,
-		      const gchar         *cname)
-{
-}
-
-static void
-window_cmd_about_cb (BonoboUIComponent    *component,
-	      gpointer              data,
-	      const gchar          *cname)
-{
-        GtkWidget *about;
-
-        const gchar *authors[] = {
-                "Mikael Hallendal <micke@codefactory.se>",
-                "Richard Hult <rhult@codefactory.se>",
-		"Johan Dahlin <jdahlin@telia.com>",
-                NULL
-        };
-	
-        about = gnome_about_new (PACKAGE, VERSION,
-				 "",
-				 _("A developer's help browser for GNOME 2"),
-                                 authors,
-                                 NULL,
-                                 NULL,
-                                 NULL);
-                                
-        gtk_widget_show (about);
-}
-
+#if 0
 static void
 window_uri_changed_cb (BonoboListener    *listener,
 		       const gchar       *event_name,
@@ -401,18 +368,19 @@ window_uri_changed_cb (BonoboListener    *listener,
 	gchar               *uri;
 	
 	g_return_if_fail (user_data != NULL);
-	g_return_if_fail (IS_DH_WINDOW (user_data));
+	g_return_if_fail (DH_IS_WINDOW (user_data));
 	
 	window = DH_WINDOW (user_data);
 	priv   = window->priv;
 	uri  = g_strdup (any->_value);
 
 	if (uri) {
-		dh_view_open_uri (DH_VIEW (priv->html_widget), uri);
+		dh_html_open_uri (DH_HTML (priv->html_view), uri);
 	}
 	
 	g_free (uri);
 }
+#endif 
 
 static void
 window_delete_cb (GtkWidget   *widget,
@@ -420,98 +388,101 @@ window_delete_cb (GtkWidget   *widget,
 		  gpointer     user_data)
 {
 	g_return_if_fail (widget != NULL);
-	g_return_if_fail (IS_DH_WINDOW (widget));
+	g_return_if_fail (DH_IS_WINDOW (widget));
 	
-	bonobo_main_quit ();
+	gtk_main_quit ();
+}
+
+static gboolean 
+window_open_url (DhWindow *window, const gchar *url)
+{
+	DhWindowPriv *priv;
+	
+	g_return_val_if_fail (DH_IS_WINDOW (window), FALSE);
+	g_return_val_if_fail (url != NULL, FALSE);
+
+	priv = window->priv;
+
+	dh_html_open_uri (DH_HTML (priv->html_view), url);
+	dh_book_tree_show_uri (DH_BOOK_TREE (priv->book_tree), url);
+
+	return TRUE;
 }
 
 static void
-window_link_clicked_cb (DhWindow   *ignored,
-		    gchar           *url,
-		    DhWindow   *window)
+window_link_selected_cb (GObject *ignored, DhLink *link, DhWindow *window)
 {
 	DhWindowPriv   *priv;
 
-	g_return_if_fail (window != NULL);
-	g_return_if_fail (IS_DH_WINDOW (window));
+	g_return_if_fail (link != NULL);
+	g_return_if_fail (DH_IS_WINDOW (window));
 	
 	priv = window->priv;
 
-	GNOME_DevHelp_Controller_openURI (priv->controller, url, NULL);
+	if (window_open_url (window, link->uri)) {
+		dh_history_goto (priv->history, link->uri);
+	}
 }
 
 static void
 window_on_url_cb (DhWindow *window, gchar *url, gpointer ignored)
 {
-	DhWindowPriv   *priv;
-	gchar               *status_text;
+	DhWindowPriv *priv;
+	gchar        *status_text;
 	
 	g_return_if_fail (window != NULL);
-	g_return_if_fail (IS_DH_WINDOW (window));
+	g_return_if_fail (DH_IS_WINDOW (window));
 	
 	priv = window->priv;
 
-	bonobo_ui_component_set_status (priv->component, "", NULL);
-
 	if (url) {
 		status_text = g_strdup_printf (_("Open %s"), url);
-		bonobo_ui_component_set_status (priv->component,
-						status_text,
-						NULL);
 		g_free (status_text);
 	}
 }
 
-GtkWidget *
-dh_window_new (void)
+static void
+window_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
 {
-        DhWindow          *window;
-        DhWindowPriv      *priv;
-        GtkWidget         *widget;
-        BonoboUIContainer *ui_container;
-	BonoboUIEngine    *ui_engine;
-	CORBA_Environment  ev;
-	GdkPixbuf         *icon;
+	gint page = gtk_notebook_page_num (notebook, child);
+
+	gtk_notebook_set_page (notebook, page);
+}
+
+static void
+window_merge_add_widget (EggMenuMerge *merge,
+			 GtkWidget    *widget,
+			 DhWindow     *window)
+{
+	DhWindowPriv *priv;
 	
-        window = gtk_type_new (TYPE_DH_WINDOW);
+	g_return_if_fail (DH_IS_WINDOW (window));
+
+	priv = window->priv;
+
+	g_print ("Fooooo\n");
+	
+	gtk_box_pack_start (GTK_BOX (priv->menu_box), widget,
+			    FALSE, FALSE, 0);
+	
+	gtk_widget_show (widget);
+}
+
+GtkWidget *
+dh_window_new (DhProfile *profile)
+{
+        DhWindow     *window;
+        DhWindowPriv *priv;
+	GdkPixbuf    *icon;
+	
+        window = gtk_type_new (DH_TYPE_WINDOW);
         priv   = window->priv;
 
-	CORBA_exception_init (&ev);
-	
-        ui_container = bonobo_ui_container_new ();
-        bonobo_ui_container_set_engine (BONOBO_UI_CONTAINER (ui_container),
-                                        bonobo_window_get_ui_engine (BONOBO_WINDOW (window)));
+	priv->profile = g_object_ref (profile);
 
-        priv->component = bonobo_ui_component_new ("DevHelp");
-
-        bonobo_ui_engine_config_set_path (
-                bonobo_window_get_ui_engine (BONOBO_WINDOW (window)),
-		"/apps/devhelp/ui-config/bonobo");
-	
-        bonobo_ui_component_set_container (priv->component, 
-                                           BONOBO_OBJREF (ui_container),
-					   &ev);
+        gtk_window_set_policy (GTK_WINDOW (window), TRUE, TRUE, FALSE);
         
-        bonobo_ui_component_freeze (priv->component, NULL);
-
-        bonobo_ui_util_set_ui (priv->component,
-			       DATA_DIR,
-                               "GNOME_DevHelp.ui",
-			       "devhelp",
-			       &ev);
-
-        bonobo_ui_component_add_verb_list_with_data (priv->component,
-                                                     verbs,
-                                                     window);
-
-        widget = bonobo_window_construct (BONOBO_WINDOW (window),
-					  BONOBO_UI_CONTAINER (ui_container),
-                                          "DevHelp",
-					  "DevHelp");
-
-        gtk_window_set_policy (GTK_WINDOW (widget), TRUE, TRUE, FALSE);
-        
-        gtk_window_set_default_size (GTK_WINDOW (widget), 700, 500);
+        gtk_window_set_default_size (GTK_WINDOW (window), 700, 500);
 	
 	gtk_window_set_wmclass (GTK_WINDOW (window), "devhelp", "DevHelp");
 
@@ -519,44 +490,28 @@ dh_window_new (void)
 			  "delete_event",
 			  G_CALLBACK (window_delete_cb),
 			  NULL);
-
+	
         window_populate (window);
 
-	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png", NULL);
+	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png", 
+					 NULL);
 	if (icon) {
 		gtk_window_set_icon (GTK_WINDOW (window), icon);
 		g_object_unref (icon);
 	}
 	
-        bonobo_ui_component_thaw (priv->component, NULL);
-
-	CORBA_exception_free (&ev);
-	
-	return widget;
+	return GTK_WIDGET (window);
 }
 
 void
 dh_window_search (DhWindow *window, const gchar *str)
 {
 	DhWindowPriv      *priv;
-	CORBA_Environment  ev;
 	
 	g_return_if_fail (window != NULL);
-	g_return_if_fail (IS_DH_WINDOW (window));
+	g_return_if_fail (DH_IS_WINDOW (window));
 	
 	priv = window->priv;
-	
-	CORBA_exception_init (&ev);
-	
-	if (priv->controller) {
-		GNOME_DevHelp_Controller_search (priv->controller, str, &ev);
-	}
 
-	if (BONOBO_EX (&ev)) {
-		g_warning ("Error while sending search request");
-	}
- 
- 	gtk_notebook_set_page (GTK_NOTEBOOK (priv->notebook), 1);
-
-	CORBA_exception_free (&ev);
+	dh_search_set_search_string (priv->search, str);
 }

@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2002 CodeFactory AB
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,15 +25,17 @@
 #define __DH_WINDOW_H__
 
 #include <glib-object.h>
-#include <bonobo/bonobo-window.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkwidget.h>
+#include <gtk/gtkwindow.h>
 
-#define TYPE_DH_WINDOW		(dh_window_get_type ())
-#define DH_WINDOW(obj)		(GTK_CHECK_CAST ((obj), TYPE_DH_WINDOW, DhWindow))
-#define DH_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), TYPE_DH_WINDOW, DhWindowClass))
-#define IS_DH_WINDOW(obj)		(GTK_CHECK_TYPE ((obj), TYPE_DH_WINDOW))
-#define IS_DH_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), TYPE_DH_WINDOW))
+#include "dh-profile.h"
+
+#define DH_TYPE_WINDOW		  (dh_window_get_type ())
+#define DH_WINDOW(obj)		  (GTK_CHECK_CAST ((obj), DH_TYPE_WINDOW, DhWindow))
+#define DH_WINDOW_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), DH_TYPE_WINDOW, DhWindowClass))
+#define DH_IS_WINDOW(obj)	  (GTK_CHECK_TYPE ((obj), DH_TYPE_WINDOW))
+#define DH_IS_WINDOW_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((obj), DH_TYPE_WINDOW))
 
 typedef struct _DhWindow       DhWindow;
 typedef struct _DhWindowClass  DhWindowClass;
@@ -40,22 +43,24 @@ typedef struct _DhWindowPriv   DhWindowPriv;
 
 struct _DhWindow
 {
-        BonoboWindow         parent;
+        GtkWindow         parent;
         
         DhWindowPriv   *priv;
 };
 
 struct _DhWindowClass
 {
-        BonoboWindowClass    parent_class;
+        GtkWindowClass    parent_class;
 
         /* Signals */
+	void (*new_window_requested) (DhWindow *window);
+
 };
 
-GtkType          dh_window_get_type        (void);
-GtkWidget *      dh_window_new             ();
+GType            dh_window_get_type        (void);
+GtkWidget *      dh_window_new             (DhProfile   *profile);
 
-void             dh_window_search          (DhWindow   *window,
-					    const gchar     *str);
+void             dh_window_search          (DhWindow    *window,
+					    const gchar *str);
 
 #endif /* __DH_WINDOW_H__ */

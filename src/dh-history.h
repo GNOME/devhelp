@@ -25,7 +25,6 @@
 #define __DH_HISTORY_H__
 
 #include <glib-object.h>
-#include "book.h"
 
 #define DH_TYPE_HISTORY        (dh_history_get_type ())
 #define HISTORY(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_HISTORY, DhHistory))

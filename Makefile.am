@@ -1,11 +1,12 @@
 NULL = 
 
+SUBDIRS = libegg po src ui
+
 @INTLTOOL_DESKTOP_RULE@
 
 DESKTOP_IN_FILES = devhelp.desktop.in
 DESKTOP_FILES =$(DESKTOP_IN_FILES:.desktop.in=.desktop)
 
-SUBDIRS = po src ui idl
 
 #SCHEMAS_DIR = $(sysconfdir)/gconf/schemas
 #SCHEMAS_FILE = devhelp.schemas

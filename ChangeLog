@@ -1,3 +1,95 @@
+2002-11-03  Mikael Hallendal  <micke@codefactory.se>
+
+	* ui/GNOME_DevHelp.ui:
+	* ui/GNOME_DevHelp_Controller.ui:
+	- Removed, not using BonoboUI anymore.
+
+	* ui/window.ui: EggMenu UI file. 
+	- Added and now includes all the UI-stuff.
+
+	* ui/Makefile.am: Updated to remove the BonoboUI stuff and add the
+	  EggMenu stuff.
+
+	* src/dh-main.c: 
+	- Needs to locate already running process and ask it to open a new
+	  window instead of always start a new process. 
+	- Removed all the bonobo deps.
+
+	* src/dh-window.[ch]: Main window
+	- Now using EggMenu instead of BonoboUI.
+	- Still needs some work and attaching accellerators and such.
+	- Removed all the bonobo dependencies.
+	
+	* src/dh-util.c (dh_util_uri_relative_new): 
+	- Don't use GnomeVFSURI.
+
+	* src/dh-search.[ch]: Search entry + hitlist
+	- Currently doesn't export the different widgets in the API.
+	- A vbox with an entry and a tree view in it.
+	- link-selected signal added.
+	- No more function-database deps.
+	- Rewritten to not use GtkCList any more.
+	- Still needs some work to speed it up.
+
+	* src/dh-proile.[ch]: The beginning of a profile system.
+	- These will make it possible to create several profiles and
+	  choose which books should be part of each profile.
+	- Not finished yet and currently there is only a default profile
+	  which does the same as the old Devhelp.
+
+	* src/dh-html.[ch]: The HTML rendering widget. 
+	- Renamed from dh-view.
+
+	* src/dh-book-tree.[ch]: The tree widget showing viewable books. 
+	- Removed dependency on dh-bookshelf/dh-book and instead just use
+	  a GNode tree for creating the GtkTreeView.
+	- Renamed the uri-selected signal to link-selected.
+	- The tree icons is now located in $prefix/share/devhelp/images.
+	
+	* src/dh-book-parser.[ch]: Reads the books and inserts them into a
+	  GNode tree and a keyword GList. This will later be replaced by
+	  a SAX-parser for the new book format.
+
+	* src/dh-base.[ch]: Starts up Devhelp and reads the different
+	  books. Also keeping track of open windows.
+
+	* src/dh-link.[ch]: Using this internally instead of book-nodes
+	  which was kinda stupid. Also using strings for URI's instead of
+	  GnomeVFSURI.
+	
+	* src/dh-keyword-model.[ch]: Added, taken from Yelp and is used
+	  for searching in the search tree. 
+
+	* src/book-node.[ch]:
+	* src/book.[ch]:
+	* src/bookmark-manager.[ch]: 
+	* src/dh-book.h: 
+	* src/dh-bookshelf.[ch]:
+	* src/dh-controller.[ch]:
+	* src/dh-index-model.[ch]:
+	* src/dh-view.[ch]:
+	* src/function-database.[ch]:
+	* src/help-browser.[ch]:
+	- Removed, these have been replaced in a much saner way.
+
+	* src/Makefile.am: 
+	- Updated to use the right files after the cleanup.
+	- Don't build idl
+	- Don't generate .server file
+
+	* src/GNOME_DevHelp.server.in.in: Removed, not used anymore.
+
+	* libegg/.cvsignore: silence cvs.
+
+	* idl/*: removed. Not used anymore.
+
+	* configure.in: 
+	- Cleaned up the configure script that had lots of left-overs from
+	  the GNOME 1 version.  
+	- Make full use of pkg-config
+
+	* Makefile.am (SUBDIRS): removed idl
+
 2002-10-23  Richard Hult  <rhult@codefactory.se>
 
 	* src/book.c (book_parse): Don't set the base url to an empty

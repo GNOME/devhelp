@@ -218,11 +218,8 @@ dh_util_uri_is_relative (const char *uri)
 	return  !(':' == *current);
 }
 
-/* If I had known this relative uri code would have ended up this long, I would
- * have done it a different way
- */
-static char *
-make_full_uri_from_relative (const char *base_uri, const char *uri)
+gchar *
+dh_util_uri_relative_new (const gchar *uri, const gchar *base_uri)
 {
 	char *result = NULL;
 
@@ -356,32 +353,4 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
 	}
 	
 	return result;
-}
-
-/**
- * gnome_vfs_uri_relative_new:
- * @text_uri: A string representing a URI.
- * @base: The base URI.
- * 
- * Create a new URI from @text_uri relative to @base.
- *
- * Return value: The new URI.
- **/
-GnomeVFSURI *
-dh_util_uri_relative_new (const gchar         *text_uri,
-		       const GnomeVFSURI   *base)
-{
-	char *text_base;
-	char *text_new;
-	GnomeVFSURI *uri;
-
-	text_base = gnome_vfs_uri_to_string (base, 0);
-	text_new  = make_full_uri_from_relative (text_base, text_uri);
-
-	uri = gnome_vfs_uri_new (text_new);
-
-	g_free (text_base);
-	g_free (text_new);
-
-	return uri;
 }

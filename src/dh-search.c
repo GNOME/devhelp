@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
@@ -25,121 +24,113 @@
 #include <config.h>
 #endif
 
-#include <gdk/gdkkeysyms.h>
-#include <gtk/gtkclist.h>
-#include <gtk/gtkeditable.h>
+#include <atk/atk.h>
+#include <gtk/gtkaccessible.h>
+#include <gtk/gtkcellrenderertext.h>
 #include <gtk/gtkentry.h>
+#include <gtk/gtkframe.h>
+#include <gtk/gtkhbox.h>
+#include <gtk/gtkvbox.h>
+#include <gtk/gtklabel.h>
 #include <gtk/gtkscrolledwindow.h>
-#include "function-database.h"
-#include "dh-search.h"
+#include <gtk/gtktreeview.h>
+#include <gtk/gtktreeselection.h>
+#include <libgnome/gnome-i18n.h>
+#include <string.h>
 
-#define MAX_HITS 250
+#include "dh-marshal.h"
+#include "dh-keyword-model.h"
+#include "dh-search.h"
 
 #define d(x)
 
-static void dh_search_class_init          (DhSearchClass   *klass);
-static void dh_search_init                (DhSearch        *index);
- 
-static void dh_search_destroy             (GObject              *object);
+struct _DhSearchPriv {
+	DhKeywordModel *model;
 
-static void dh_search_entry_activate_cb   (GtkEditable          *editable,
-					   DhSearch        *search);
+	GtkWidget      *entry;
+	GtkWidget      *hitlist;
 
-static void dh_search_entry_changed_cb    (GtkEditable          *editable,
-					   DhSearch        *search);
+	GCompletion  *completion;
 
-static void dh_search_entry_insert_text_cb(GtkEditable          *editable,
-					   gchar                *new_text,
-					   gint                  length,
-					   gint                 *pos,
-					   DhSearch        *search);
+	guint         idle_complete;
+	guint         idle_filter;
 
-static gboolean
-dh_search_entry_key_press_cb              (GtkEditable          *editable,
-					   GdkEventKey          *event,
-					   DhSearch        *search);
+	gboolean      first;
+};
 
-static void dh_search_clist_select_row_cb (GtkCList             *clist,
-					   gint                  row,
-					   gint                  col,
-					   GdkEvent             *event,
-					   DhSearch        *search);
 
-static gint dh_search_complete_idle       (gpointer              data);
+static void  search_init                       (DhSearch       *search);
+static void  search_class_init                 (DhSearchClass  *klass);
+static void  search_finalize                   (GObject        *object);
 
-static void dh_search_do_search           (DhSearch        *search, 
-					   const gchar          *string);
-static gchar * 
-dh_search_get_search_string_cb            (FunctionDatabase     *fd,
-					   DhSearch        *search);
-
-static void dh_search_exact_hit_found_cb  (FunctionDatabase     *fd,
-					   Function             *function,
-					   DhSearch        *search);
-
-static void dh_search_hits_found_cb       (FunctionDatabase     *fd,
-					   GSList               *hits,
-					   DhSearch        *search);
+static void  search_selection_changed_cb       (GtkTreeSelection    *selection,
+						DhSearch       *content);
+static void  search_entry_changed_cb           (GtkEntry            *entry,
+						DhSearch       *search);
+static void  search_entry_activated_cb         (GtkEntry            *entry,
+						DhSearch       *search);
+static void  search_entry_text_inserted_cb     (GtkEntry            *entry,
+						const gchar         *text,
+						gint                 length,
+						gint                *position,
+						DhSearch       *search);
+static gboolean search_complete_idle           (DhSearch       *search);
+static gboolean search_filter_idle             (DhSearch       *search);
+static gchar *  search_complete_func           (DhLink         *link);
 
 
 enum {
-        URI_SELECTED,
+        LINK_SELECTED,
         LAST_SIGNAL
 };
 
-static gint signals[LAST_SIGNAL] = { 0 };
-
-struct _DhSearchPriv {
-	GtkWidget           *entry; 
-	GtkWidget           *clist; 
-
-        DhBookshelf         *bookshelf;
-	FunctionDatabase    *fd;
-
-	guint                complete;
-};
+static GtkVBox *parent_class;
+static gint     signals[LAST_SIGNAL] = { 0 };
 
 GType
 dh_search_get_type (void)
 {
-        static GType dh_search_type = 0;
+        static GType type = 0;
 
-        if (!dh_search_type) {
-                static const GTypeInfo dh_search_info = {
-                        sizeof (DhSearchClass),
-			NULL,
-			NULL,
-			(GClassInitFunc)  dh_search_class_init,
-			NULL,
-			NULL,
-			sizeof (DhSearch),
-			0,
-			(GInstanceInitFunc) dh_search_init
-                };
-		dh_search_type = g_type_register_static (G_TYPE_OBJECT,
-							      "DhSearch",
-							      &dh_search_info,
-							      0);
+        if (!type)
+        {
+                static const GTypeInfo info =
+                        {
+                                sizeof (DhSearchClass),
+                                NULL,
+                                NULL,
+                                (GClassInitFunc) search_class_init,
+                                NULL,
+                                NULL,
+                                sizeof (DhSearch),
+                                0,
+                                (GInstanceInitFunc) search_init,
+                        };
+                
+                type = g_type_register_static (GTK_TYPE_VBOX,
+					       "DhSearch", 
+					       &info, 0);
         }
-
-        return dh_search_type;
+        
+        return type;
 }
 
 static void
-dh_search_class_init (DhSearchClass *klass)
+search_class_init (DhSearchClass *klass)
 {
-        GObjectClass *object_class;
-
+        GObjectClass   *object_class;
+	GtkWidgetClass *widget_class;
+	
         object_class = (GObjectClass *) klass;
-
-	object_class->finalize = dh_search_destroy;
-
-        signals[URI_SELECTED] =
-                g_signal_new ("uri_selected",
+        parent_class = g_type_class_peek_parent (klass);
+	
+	object_class->finalize = search_finalize;
+	
+        signals[LINK_SELECTED] =
+                g_signal_new ("link_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (DhSearchClass,
-					       uri_selected),
+			      G_STRUCT_OFFSET (DhSearchClass, link_selected),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
@@ -147,404 +138,269 @@ dh_search_class_init (DhSearchClass *klass)
 }
 
 static void
-dh_search_init (DhSearch *search)
+search_init (DhSearch *search)
 {
-        DhSearchPriv   *priv;
-        
-        priv                  = g_new0 (DhSearchPriv, 1);
-        priv->bookshelf       = NULL;
-        search->priv          = priv;
+	DhSearchPriv *priv;
+
+	priv = g_new0 (DhSearchPriv, 1);
+	search->priv = priv;
+	
+	priv->idle_complete = 0;
+	priv->idle_filter   = 0;
+
+	priv->completion = 
+		g_completion_new ((GCompletionFunc) search_complete_func);
+
+	priv->hitlist = gtk_tree_view_new ();
+	priv->model   = dh_keyword_model_new ();
+
+	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->hitlist),
+				 GTK_TREE_MODEL (priv->model));
 }
 
 static void
-dh_search_destroy (GObject *object)
+search_finalize (GObject *object)
 {
-        /* FIX: Do something */
+	
 }
 
 static void
-dh_search_entry_activate_cb (GtkEditable *editable, DhSearch *search)
+search_selection_changed_cb (GtkTreeSelection *selection, DhSearch *search)
 {
-        DhSearchPriv   *priv;
-        
-        g_return_if_fail (editable != NULL);
-        g_return_if_fail (GTK_IS_EDITABLE (editable));
-        g_return_if_fail (search != NULL);
-        g_return_if_fail (DH_IS_SEARCH (search));
-        
-        priv = search->priv;
+	DhSearchPriv *priv;
+ 	GtkTreeIter   iter;
+	
+	g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
+	g_return_if_fail (DH_IS_SEARCH (search));
 
-        dh_search_do_search (search, 
-				  gtk_entry_get_text (GTK_ENTRY (priv->entry)));
+	priv = search->priv;
+
+	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
+		DhLink *link;
+		
+		gtk_tree_model_get (GTK_TREE_MODEL (priv->model), &iter,
+				    DH_KEYWORD_MODEL_COL_LINK, &link,
+				    -1);
+
+ 		d(g_print ("Emiting signal with link to: %s (%s)\n",
+			   link->name, link->uri));
+		
+		g_signal_emit (search, signals[LINK_SELECTED], 0, link);
+	}
 }
 
 static void
-dh_search_entry_changed_cb (GtkEditable *editable, DhSearch *search)
+search_entry_changed_cb (GtkEntry *entry, DhSearch *search)
 {
-        DhSearchPriv   *priv;
-        FunctionDatabase    *fd;
+	DhSearchPriv *priv;
+	
+	g_return_if_fail (GTK_IS_ENTRY (entry));
+	g_return_if_fail (DH_IS_SEARCH (search));
+	
+	priv = search->priv;
+ 
+	d(g_print ("Entry changed\n"));
 
-        g_return_if_fail (editable != NULL);
-        g_return_if_fail (GTK_IS_EDITABLE (editable));
-        g_return_if_fail (search != NULL);
-        g_return_if_fail (DH_IS_SEARCH (search));
-        
-        priv = search->priv;
-        fd   = dh_bookshelf_get_function_database (priv->bookshelf);
-
-        function_database_idle_search (fd);
+	if (!priv->idle_filter) {
+		priv->idle_filter =
+			g_idle_add ((GSourceFunc) search_filter_idle, search);
+	}
 }
 
 static void
-dh_search_entry_insert_text_cb (GtkEditable     *editable,
-                                     gchar           *new_text,
-                                     gint             length,
-                                     gint            *pos,
-                                     DhSearch   *search)
+search_entry_activated_cb (GtkEntry *entry, DhSearch *search)
 {
-        DhSearchPriv   *priv;
-        
-        g_return_if_fail (editable != NULL);
-        g_return_if_fail (GTK_IS_EDITABLE (editable));
-        g_return_if_fail (search != NULL);
-        g_return_if_fail (DH_IS_SEARCH (search));
-        
-        priv = search->priv;
+	DhSearchPriv *priv;
+	gchar             *str;
+	
+	g_return_if_fail (GTK_IS_ENTRY (entry));
+	g_return_if_fail (DH_IS_SEARCH (search));
 
-        if (!priv->complete) {
-                priv->complete = gtk_idle_add (dh_search_complete_idle, 
-                                               search);
-        }
+	priv = search->priv;
+	
+	str = (gchar *) gtk_entry_get_text (GTK_ENTRY (priv->entry));
+	
+	dh_keyword_model_filter (priv->model, str);
+}
+
+static void
+search_entry_text_inserted_cb (GtkEntry    *entry,
+			       const gchar *text,
+			       gint         length,
+			       gint        *position,
+			       DhSearch    *search)
+{
+	DhSearchPriv *priv;
+	
+ 	g_return_if_fail (DH_IS_SEARCH (search));
+	
+	priv = search->priv;
+	
+	if (!priv->idle_complete) {
+		priv->idle_complete = 
+			g_idle_add ((GSourceFunc) search_complete_idle, 
+				    search);
+	}
 }
 
 static gboolean
-dh_search_entry_key_press_cb (GtkEditable     *editable, 
-				   GdkEventKey     *event,
-				   DhSearch   *search)
+search_complete_idle (DhSearch *search)
 {
-        DhSearchPriv   *priv;
+	DhSearchPriv *priv;
+	const gchar       *text;
+	gchar             *completed = NULL;
+	GList             *list;
+	gint               text_length;
 	
-        g_return_if_fail (editable != NULL);
-        g_return_if_fail (GTK_IS_EDITABLE (editable));
-        g_return_if_fail (search != NULL);
-        g_return_if_fail (DH_IS_SEARCH (search));
-        
-        priv = search->priv;
-
-	switch (event->keyval) {
- 	case GDK_Tab:
-                gtk_editable_select_region (editable, 0, 0);
-                gtk_editable_set_position (editable, -1);
-                return TRUE;
-                break;
-
-		/* Hack, needed to stop the entry from losing focus when
-		 * arrow keys are pressed.
-		 */
-	case GDK_Left:
-	case GDK_KP_Left:
-	case GDK_Right:
-	case GDK_KP_Right:
-		gtk_signal_emit_stop_by_name (GTK_OBJECT (editable), "key_press_event");
-                return TRUE;
-		break;
-		
-	default:
-                break;
-        }
-
-        return FALSE;
-}
-
-static void
-dh_search_clist_select_row_cb (GtkCList        *clist,
-                                    gint             row,
-                                    gint             col,
-                                    GdkEvent        *event,
-                                    DhSearch   *search)
-{
-        DhSearchPriv   *priv;
-        Function            *function;
-        BookNode            *book_node;
-        GnomeVFSURI         *uri;
-	Book                *book;
+	g_return_val_if_fail (DH_IS_SEARCH (search), FALSE);
 	
-        g_return_if_fail (clist != NULL);
-        g_return_if_fail (GTK_IS_CLIST (clist));
-        g_return_if_fail (search != NULL);
-        g_return_if_fail (DH_IS_SEARCH (search));
-        
-        priv = search->priv;
-
-        function = (Function *) gtk_clist_get_row_data (clist, row);
-        
-        if (!function) {
-                return;
-        }
-
-	dh_bookshelf_open_document (priv->bookshelf, function->document);
+	priv = search->priv;
 	
-	uri = document_get_uri (function->document, function->anchor);
-        
-	g_signal_emit (G_OBJECT (search),
-		       signals[URI_SELECTED],
-		       0,
-		       uri);
+	text = gtk_entry_get_text (GTK_ENTRY (priv->entry));
 
-	gnome_vfs_uri_unref (uri);
-}
+	list = g_completion_complete (priv->completion, 
+				      (gchar *)text,
+				      &completed);
 
-static gint
-dh_search_complete_idle (gpointer user_data)
-{
-	DhSearch       *search;
-	DhSearchPriv   *priv;
-	const gchar         *text;
-	gchar               *completed;
-	gint                 text_length;
-	
-        g_return_if_fail (user_data != NULL);
-        g_return_if_fail (DH_IS_SEARCH (user_data));
-
-	search = DH_SEARCH (user_data);
-	priv   = search->priv;
-	
-	text   = gtk_entry_get_text (GTK_ENTRY (priv->entry));
-	
-	completed = function_database_get_completion (priv->fd, text);
-	
 	if (completed) {
 		text_length = strlen (text);
-
+		
 		gtk_entry_set_text (GTK_ENTRY (priv->entry), completed);
-
-		gtk_editable_set_position (GTK_EDITABLE (priv->entry), 
-					   text_length);
-
+ 		gtk_editable_set_position (GTK_EDITABLE (priv->entry),
+ 					   text_length);
 		gtk_editable_select_region (GTK_EDITABLE (priv->entry),
 					    text_length, -1);
-		
 	}
 	
-	priv->complete = 0;
-	
-	return 0;
+	priv->idle_complete = 0;
+
+	return FALSE;
 }
 
-static void
-dh_search_do_search (DhSearch *search, const gchar *string)
+static gboolean
+search_filter_idle (DhSearch *search)
 {
-	GSList   *list;
+	DhSearchPriv *priv;
+	gchar             *str;
 	
-	g_return_if_fail (search != NULL);
-	g_return_if_fail (DH_IS_SEARCH (search));
-	g_return_if_fail (string != NULL);
-	
-	function_database_search (search->priv->fd, string);
-}
-
-static gchar * 
-dh_search_get_search_string_cb (FunctionDatabase   *fd, 
-                                     DhSearch      *search)
-{
-	g_return_val_if_fail (fd != NULL, NULL);
-	g_return_val_if_fail (IS_FUNCTION_DATABASE (fd), NULL);
-	g_return_val_if_fail (search != NULL, NULL);
-	g_return_val_if_fail (DH_IS_SEARCH (search), NULL);
-	
-	return g_strdup (gtk_entry_get_text (GTK_ENTRY (search->priv->entry)));
-}
-
-static void
-dh_search_exact_hit_found_cb (FunctionDatabase   *fd,
-                                   Function           *function,
-                                   DhSearch      *search)
-{
-	DhSearchPriv   *priv;
-	gint                 i = 0;
-	gchar               *text;
-
-	g_return_if_fail (fd != NULL);
-	g_return_if_fail (IS_FUNCTION_DATABASE (fd));
-	g_return_if_fail (search != NULL);
-	g_return_if_fail (DH_IS_SEARCH (search));
-	g_return_if_fail (function != NULL);
-	
-	priv = search->priv;
-
-	while (gtk_clist_get_text (GTK_CLIST (priv->clist), i++, 0, &text)) {
-		if (!strcmp (text, function->name)) {
-			gtk_clist_moveto (GTK_CLIST (priv->clist), 
-					  i - 1, 0, 0, 0);
-			gtk_clist_select_row (GTK_CLIST (priv->clist),
-					      i - 1, 0);
-			break;
-		}
-	}
-}
-
-static void
-dh_search_hits_found_cb (FunctionDatabase   *fd,
-                              GSList             *hits,
-                              DhSearch      *search)
-{
-	DhSearchPriv   *priv;
-	GSList              *node;
-	gint                 row;
-	gint                 nr_hits = 0;
-	Function            *function;
-
-	g_return_if_fail (fd != NULL);
-	g_return_if_fail (IS_FUNCTION_DATABASE (fd));
-	g_return_if_fail (search != NULL);
-	g_return_if_fail (DH_IS_SEARCH (search));
-	g_return_if_fail (hits != NULL);
+	g_return_val_if_fail (DH_IS_SEARCH (search), FALSE);
 
 	priv = search->priv;
 
-	gtk_clist_clear (GTK_CLIST (priv->clist));
-	gtk_clist_freeze (GTK_CLIST (priv->clist));
-
-	for (node = hits; node && nr_hits < MAX_HITS; (node = node->next) && nr_hits++) {
-		function = (Function *) node->data;
-		
-		row = gtk_clist_append (GTK_CLIST (priv->clist),
-					&function->name);
-
-		gtk_clist_set_row_data (GTK_CLIST (priv->clist), 
-					row, function);
-	}
+	d(g_print ("Filter idle\n"));
 	
-	gtk_clist_thaw (GTK_CLIST (priv->clist));
+	str = (gchar *) gtk_entry_get_text (GTK_ENTRY (priv->entry));
+	
+	dh_keyword_model_filter (priv->model, str);
+
+	priv->idle_filter = 0;
+
+	return FALSE;
 }
 
-void
-dh_search_function_removed_cb (FunctionDatabase  *fd,
-				    Function          *function,
-				    DhSearch     *search)
+static gchar *
+search_complete_func (DhLink *link)
 {
-	DhSearchPriv   *priv;
-	gint                 row;
-
-	d(puts(__FUNCTION__));
-	
-	g_return_if_fail (fd != NULL);
-	g_return_if_fail (IS_FUNCTION_DATABASE (fd));
-	g_return_if_fail (search != NULL);
-	g_return_if_fail (DH_IS_SEARCH (search));
-	g_return_if_fail (function != NULL);
-
-	priv = search->priv;
-	
-	row = gtk_clist_find_row_from_data (GTK_CLIST (priv->clist),
-					    function);
-	if (row != -1) {
-		d(g_print ("%s: remove from clist",
-			   __FUNCTION__));
-		gtk_clist_remove (GTK_CLIST (priv->clist), row);
-	}
+	return link->name;
 }
 
-DhSearch *
-dh_search_new (DhBookshelf *bookshelf)
-{
-        DhSearch       *search;
-        DhSearchPriv   *priv;
-
-        search = g_object_new (DH_TYPE_SEARCH, NULL);
-        priv   = search->priv;
-        
-        priv->bookshelf = bookshelf;
-        priv->clist     = gtk_clist_new (1);
-        priv->entry     = gtk_entry_new ();
-	priv->fd        = dh_bookshelf_get_function_database (bookshelf);
-
-        g_signal_connect (priv->clist, 
-			  "select_row",
-			  G_CALLBACK (dh_search_clist_select_row_cb),
-			  search);
-        
-        g_signal_connect (priv->entry,
-			  "activate",
-			  G_CALLBACK (dh_search_entry_activate_cb),
-			  search);
-
-        g_signal_connect_after (priv->entry,
-				"changed",
-				G_CALLBACK (dh_search_entry_changed_cb),
-				search);
-       
-        g_signal_connect (priv->entry,
-			  "insert-text",
-			  G_CALLBACK (dh_search_entry_insert_text_cb),
-			  search);
-    
-        g_signal_connect_after (priv->entry,
-				"key-press-event",
-				G_CALLBACK (dh_search_entry_key_press_cb),
-				search);
-
-        g_signal_connect (priv->fd, 
-			  "get_search_string",
-                          G_CALLBACK (dh_search_get_search_string_cb),
-                          search);
-        
-        g_signal_connect (priv->fd,
-			  "exact_hit_found",
-                          G_CALLBACK (dh_search_exact_hit_found_cb),
-                          search);
-        
-        g_signal_connect (priv->fd,
-			  "hits_found",
-                          G_CALLBACK (dh_search_hits_found_cb),
-                          search);
-
-	g_signal_connect (priv->fd,
-			  "function_removed",
-			  G_CALLBACK (dh_search_function_removed_cb),
-			  search);
-        return search;
-}
 
 GtkWidget *
-dh_search_get_result_widget (DhSearch *search)
+dh_search_new (GList *keywords)
 {
-	DhSearchPriv   *priv;
-	GtkWidget           *sw;
+	DhSearch          *search;
+	DhSearchPriv      *priv;
+	GtkTreeSelection  *selection;
+        GtkWidget         *list_sw;
+	GtkWidget         *frame;
+	GtkWidget         *box;
+	GtkWidget         *hbox;
+	GtkWidget         *label;
+		
+	search = g_object_new (DH_TYPE_SEARCH, NULL);
+	priv = search->priv;
+
+	/* Setup the keyword box */
+	hbox = gtk_hbox_new (FALSE, 0);
 	
-        g_return_val_if_fail (search != NULL, NULL);
-        g_return_val_if_fail (DH_IS_SEARCH (search), NULL);
+	label = gtk_label_new_with_mnemonic (_("_Search for:"));
 
-	priv     = search->priv;
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 4);
 
-	sw = gtk_scrolled_window_new (NULL, NULL);
+	priv->entry = gtk_entry_new ();
 
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
-					GTK_POLICY_NEVER,
-					GTK_POLICY_AUTOMATIC);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->entry);
+
+	g_signal_connect (priv->entry, "changed", 
+			  G_CALLBACK (search_entry_changed_cb),
+			  search);
+
+	gtk_box_pack_end (GTK_BOX (hbox), priv->entry, FALSE, FALSE, 0);
 	
-	gtk_clist_set_column_width (GTK_CLIST (priv->clist), 0, 80);
-	gtk_container_add (GTK_CONTAINER (sw), priv->clist);
+	g_signal_connect (priv->entry, "activate",
+			  G_CALLBACK (search_entry_activated_cb),
+			  search);
+	
+	g_signal_connect (priv->entry, "insert-text",
+			  G_CALLBACK (search_entry_text_inserted_cb),
+			  search);
 
-	gtk_widget_show_all (sw);
+	gtk_box_pack_start (GTK_BOX (search), hbox, 
+			    FALSE, FALSE, 0);
 
-	return sw;
-}
+	frame = gtk_frame_new (NULL);
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
+	
+        list_sw = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (list_sw),
+                                        GTK_POLICY_AUTOMATIC, 
+                                        GTK_POLICY_AUTOMATIC);
 
-GtkWidget *
-dh_search_get_entry_widget (DhSearch *search) 
-{
-        g_return_val_if_fail (search != NULL, NULL);
-        g_return_val_if_fail (DH_IS_SEARCH (search), NULL);
+	gtk_container_add (GTK_CONTAINER (frame), list_sw);
+	
+	gtk_tree_view_insert_column_with_attributes (
+		GTK_TREE_VIEW (priv->hitlist), -1,
+		_("Section"), gtk_cell_renderer_text_new (),
+		"text", 0,
+		NULL);
 
-	return search->priv->entry;
+	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->hitlist),
+					   FALSE);
+
+	selection = gtk_tree_view_get_selection (
+		GTK_TREE_VIEW (priv->hitlist));
+
+	g_signal_connect (selection, "changed",
+			  G_CALLBACK (search_selection_changed_cb),
+			  search);
+	
+	gtk_container_add (GTK_CONTAINER (list_sw), priv->hitlist);
+
+	gtk_box_pack_end_defaults (GTK_BOX (search), frame);
+
+	g_completion_add_items (priv->completion, keywords);
+	dh_keyword_model_set_words (priv->model, keywords);
+
+	gtk_widget_show_all (GTK_WIDGET (search));
+
+	return GTK_WIDGET (search);
 }
 
 void
 dh_search_set_search_string (DhSearch *search, const gchar *str)
 {
-        g_return_if_fail (search != NULL);
-        g_return_if_fail (DH_IS_SEARCH (search));
+	DhSearchPriv *priv;
+	gint          str_len;
+	
+	g_return_if_fail (DH_IS_SEARCH (search));
 
-	gtk_entry_set_text (GTK_ENTRY (search->priv->entry), str);
+	priv = search->priv;
+
+	str_len = strlen (str);
+
+	gtk_entry_set_text (GTK_ENTRY (priv->entry), str);
+	
+	gtk_editable_set_position (GTK_EDITABLE (priv->entry), str_len);
+	gtk_editable_select_region (GTK_EDITABLE (priv->entry), str_len, -1);
 }
+

@@ -12,3 +12,4 @@ GNOME_DevHelp.server.in
 dh-marshal.c
 dh-marshal.h
 gnome_devhelp_idl_stamp
+test-profile

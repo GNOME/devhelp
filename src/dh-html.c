@@ -27,6 +27,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
 
+#include "dh-util.h"
 #include "dh-html.h"
 
 #define d(x)
@@ -357,7 +358,6 @@ html_url_requested_cb (HtmlDocument *doc,
 {
         DhHtml     *html;
         DhHtmlPriv *priv;
-	GnomeVFSURI  *vfs_uri;
 
         d(puts(__FUNCTION__));
 
@@ -420,18 +420,26 @@ html_link_clicked_cb (HtmlDocument *doc, const gchar *url, gpointer data)
 {
 	DhHtml     *html;
         DhHtmlPriv *priv;
+	gchar      *full_uri = NULL;
 	
         html = DH_HTML (data);
         priv = html->priv;
 
 	if (priv->base_url) {
-		d(g_print ("Link '%s' pressed relative to: %s\n", 
-			   url,
-			   priv->base_url));
-        } else {
-        }
-
-	g_signal_emit (html, signals[URI_SELECTED], 0, GPOINTER_TO_INT (url));
+		if (dh_util_uri_is_relative (url)) {
+			full_uri = dh_util_uri_relative_new (url, 
+							     priv->base_url);
+		}
+	}
+	
+	if (!full_uri) {
+		full_uri = g_strdup (url);
+	}
+	
+	d(g_print ("Full URI: %s\n", full_uri));
+	
+	g_signal_emit (html, signals[URI_SELECTED], 0, full_uri);
+	g_free (full_uri);
 }
 
 static gboolean
@@ -519,7 +527,7 @@ dh_html_open_uri (DhHtml      *html,
 
         priv = html->priv;
 
-	g_print ("Opening URI: %s\n", str_uri);
+	d(g_print ("Opening URI: %s\n", str_uri));
 
 	url = html_split_uri (str_uri, &anchor);
 	
