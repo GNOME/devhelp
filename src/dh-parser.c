@@ -73,7 +73,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		      GError              **error)
 {	
 	DhParser *parser;
-	gint      i;
+	gint      i, line, col;
 	DhLink   *dh_link;
 	gchar    *full_link;
 	
@@ -87,11 +87,12 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		const gchar *link  = NULL;
 		
 		if (g_ascii_strcasecmp (node_name, "book") != 0) {
+			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected 'book' got '%s'"), 
-				     node_name);
+				     _("Expected 'book' got '%s' at line %d, column %d"), 
+				     node_name, line, col);
 			return;
 		}
 
@@ -102,11 +103,12 @@ parser_start_node_cb (GMarkupParseContext  *context,
 				if (g_ascii_strcasecmp (xmlns, 
 							"http://www.devhelp.net/book") != 0) {
 					/* Set error */
+					g_markup_parse_context_get_position (context, &line, &col);
 					g_set_error (error,
 						     DH_ERROR,
 						     DH_ERROR_MALFORMED_BOOK,
-						     _("Invalid namespace '%s'"), 
-						     xmlns);
+						     _("Invalid namespace '%s' at line %d, column %d"), 
+						     xmlns, line, col);
 					return;
 				}
 			}
@@ -130,10 +132,12 @@ parser_start_node_cb (GMarkupParseContext  *context,
 
 		if (!title || !name || !link) {
 			/* Required attributes */
+			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("title, name, and link elements are required"));
+				     _("title, name, and link elements are required at line %d, column %d"),
+				     line, col);
 			return;
 		}
 
@@ -160,11 +164,12 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		GNode       *node;
 
 		if (g_ascii_strcasecmp (node_name, "sub") != 0) {
+			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected 'sub' got '%s'"), 
-				     node_name);
+				     _("Expected 'sub' got '%s' at line %d column %d"), 
+				     node_name, line, col);
 			return;
 		}
 
@@ -180,10 +185,12 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		}
 
 		if (!name || !link) {
+			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("name and link elements are required inside <sub>"));
+				     _("name and link elements are required inside <sub> on line %d, column %d"),
+				     line, col);
 			return;
 		}
 
@@ -204,11 +211,12 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		const gchar *link = NULL;
 
 		if (g_ascii_strcasecmp (node_name, "function") != 0) {
+			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected 'function' got '%s'"), 
-				     node_name);
+				     _("Expected 'function' got '%s' at line %d, column %d"),
+				     node_name, line, col);
 			return;
 		}
 
@@ -225,10 +233,12 @@ parser_start_node_cb (GMarkupParseContext  *context,
 
 		if (!name || !link) {
 			/* Required */
+			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("name and link elements are required inside <function>"));
+				     _("name and link elements are required inside <function> on line %d, column %d"),
+				     line, col);
 			return;
 		}
 

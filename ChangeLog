@@ -1,3 +1,11 @@
+2003-03-13  Ross Burton  <ross@burtonini.com>
+
+	* src/dh-window.c: Removed dead code. Will add it again in the
+	correct location later.
+
+	* src/dh-parser.c: Display the line and column numbers in error
+	messages.
+
 2003-03-13  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/dh-marshal.list: updated

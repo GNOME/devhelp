@@ -273,28 +273,9 @@ window_populate (DhWindow *window)
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 
-	error = NULL;
-
 	contents_tree = dh_base_get_book_tree (priv->base);
 	keywords      = dh_base_get_keywords  (priv->base);
 	
-	if (error) {
-		GtkWidget *dialog;
-		dialog = gtk_message_dialog_new (NULL,
-						 GTK_DIALOG_MODAL,
-						 GTK_MESSAGE_WARNING,
-						 GTK_BUTTONS_OK,
-						 _("<b>Could not read all books</b>\n\n"
-						   "The following errors occured whilst reading the books:\n%s"),
-						error->message);
-		g_object_set (GTK_MESSAGE_DIALOG (dialog)->label, "use-markup", TRUE, NULL);
-		gtk_dialog_run (GTK_DIALOG (dialog));
-		gtk_widget_destroy (dialog);
-
-		/* TODO: would like to get GTK+ to do an event loop to
-		   hide the dialog */
-	}
-
 	if (contents_tree) {
 		priv->book_tree = dh_book_tree_new (contents_tree);
 	
