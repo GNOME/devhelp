@@ -10,10 +10,10 @@
 	(window_init): Set accel group on window.
 
 	* src/dh-search.c (dh_search_new): Expand and fill when packing
-	search entry.
+	  search entry.
 
 	* src/dh-window.c (window_populate): HIGify, i.e. don't use
-	mnemonics for notebook page tabs.
+	  mnemonics for notebook page tabs.
 
 2002-11-04  Mikael Hallendal  <micke@codefactory.se>
 

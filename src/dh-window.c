@@ -171,7 +171,7 @@ window_init (DhWindow *window)
 			  G_CALLBACK (window_back_exists_changed_cb),
 			  window);
 	
-	priv->merge   = egg_menu_merge_new ();
+	priv->merge = egg_menu_merge_new ();
 
 	gtk_window_add_accel_group (GTK_WINDOW (window),
 				    priv->merge->accel_group);
