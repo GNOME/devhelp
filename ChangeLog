@@ -1,3 +1,8 @@
+2001-11-17  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/bookshelf.c (bookshelf_add_directory): DON'T SEGFAULT ON
+	STARTUP.
+
 2001-11-15  Ross Golder  <ross@golder.org>
 
 	* devhelp.spec.in: Changed ${_sysconfdir} to %{_sysconfdir}

@@ -306,7 +306,6 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	GSList          *list;
 	xmlDocPtr        doc;
 	xmlNode         *root_node, *cur;
-	gchar           *xml_str;
 	gchar           *visible;
 	
 	g_return_if_fail (bookshelf != NULL);
@@ -494,8 +493,8 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 		/* if book in xml-list */
 		for (node2 = priv->xml_books; node2; node2 = node2->next) {
 			xml_book = (XMLBook*) node2->data;
-			if (strcmp (xml_book->spec_path,
-				    gnome_vfs_uri_to_string (book_uri, 0)) == 0) {
+
+			if (xml_book->spec_path && !strcmp (xml_book->spec_path, gnome_vfs_uri_to_string (book_uri, GNOME_VFS_URI_HIDE_NONE))) {
 				/* TODO: base_url */
 				/* book_set_base_url (book, xml_book->path); */
 				if (xml_book->visible == FALSE) {
