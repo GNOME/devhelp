@@ -1,273 +1,278 @@
 # Danish translation of DevHelp.
-# Copyright (C) 2001 Free Software Foundation, Inc.
-# Ole Laursen <olau@hardworking.dk>, 2001
+# Copyright (C) 2001, 02 Free Software Foundation, Inc.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-10-17 21:51+0200\n"
-"PO-Revision-Date: 2001-10-17 21:52+0200\n"
+"POT-Creation-Date: 2002-05-11 11:39+0200\n"
+"PO-Revision-Date: 2002-05-11 11:38+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
 msgid "DevHelp"
-msgstr "Udviklerhjælp"
+msgstr "UdviklerhjÃ¦lp"
 
 #: devhelp.desktop.in.h:2
 msgid "Developers Help program"
-msgstr "Hjælpeprogram til udviklere"
+msgstr "HjÃ¦lpeprogram til udviklere"
 
-#: src/books-dialog.c:315
+#: src/books-dialog.c:327
 msgid "Choose a book..."
-msgstr "Vælg en bog..."
+msgstr "VÃ¦lg en bog..."
 
-#: src/bookshelf.c:183
+#: src/bookshelf.c:185
 #, c-format
 msgid "Problems when reading books: %s\n"
-msgstr "Problem ved indlæsning af bøger: %s\n"
+msgstr "Problem ved indlÃ¦sning af bÃ¸ger: %s\n"
 
-#: src/bookshelf.c:250
+#: src/bookshelf.c:372
 #, c-format
 msgid "Empty document: %s"
 msgstr "Tomt dokument: %s"
 
-#: src/bookshelf.c:256
+#: src/bookshelf.c:378
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
 msgstr "Dokumentet er af en forkert type, modtog %s, forventede 'booklist': %s"
 
-#: src/bookshelf.c:310
+#: src/bookshelf.c:412
+#, c-format
+msgid ""
+"I found an old version of your spec file (%s)\n"
+"I removed it, so you have to hide the books you want to be hidden again."
+msgstr ""
+"En gammel version af specifikationsfilen (%s) blev fundet.\n"
+"Den er nu fjernet sÃ¥ du bliver nÃ¸dt til at skjule de bÃ¸ger du vil have "
+"skjult, igen."
+
+#: src/bookshelf.c:417
+msgid "Ok"
+msgstr "O.k."
+
+#: src/bookshelf.c:458
 #, c-format
 msgid "Failed to open file %s for writing."
-msgstr "Det mislykkedes at åbne filen %s til skrivning."
+msgstr "Det mislykkedes at Ã¥bne filen %s til skrivning."
 
-#: src/devhelp-window.c:402
+#: src/devhelp-window.c:334
 msgid "_Contents"
 msgstr "_Indhold"
 
-#: src/devhelp-window.c:414
+#: src/devhelp-window.c:345
 msgid "_Search"
-msgstr "_Søg"
+msgstr "_SÃ¸g"
 
-#: src/devhelp-window.c:499
-msgid "(C) Copyright 2001, Johan Dahlin"
-msgstr "© Copyright 2001, Johan Dahlin"
+#: src/devhelp-window.c:437
+msgid "A developer's help browser for GNOME 2"
+msgstr "En hjÃ¦lpefremviser til udviklere"
 
-#: src/devhelp-window.c:501
-msgid "A developer's help browser"
-msgstr "Et hjælpeprogram til udviklere"
-
-#: src/devhelp-window.c:621
+#: src/devhelp-window.c:558
 #, c-format
 msgid "Open %s"
-msgstr "Åbn %s"
+msgstr "Ã…bn %s"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:1
+#: src/GNOME_DevHelp.server.in.in.h:1
 msgid "DevHelp Controller"
-msgstr "Udviklerhjælpkontroller"
+msgstr "UdviklerhjÃ¦lpkontroller"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:2
+#: src/GNOME_DevHelp.server.in.in.h:2
 msgid "DevHelp Controller Factory"
-msgstr "Udviklerhjælpkontrolfabrik"
+msgstr "UdviklerhjÃ¦lpkontrolfabrik"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:3
+#: src/GNOME_DevHelp.server.in.in.h:3
 msgid "DevHelp HelpBrowser"
-msgstr "Udviklerhjælp-hjælpelæser"
+msgstr "UdviklerhjÃ¦lp-hjÃ¦lpelÃ¦ser"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:4
+#: src/GNOME_DevHelp.server.in.in.h:4
 msgid "DevHelp HelpBrowser Factory"
-msgstr "Udviklerhjælp-hjælpelæserfabrik"
+msgstr "UdviklerhjÃ¦lp-hjÃ¦lpelÃ¦serfabrik"
 
-#: src/html-widget.c:208
+#: src/devhelp-view.c:361
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
 "tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
 "books in the tree."
 msgstr ""
-"Vælg et emne i indholdet til venstre eller skift over til søgepanelet for at "
+"VÃ¦lg et emne i indholdet til venstre eller skift over til sÃ¸gepanelet for at "
 "finde hvad du leder efter.<p>Brug <b>skift + op/ned</b> for at navigere i "
-"træet til venstre og <b>skift + venstre/højre</b> for at udfolde eller "
-"sammenklappe bøgerne i træet."
+"trÃ¦et til venstre og <b>skift + venstre/hÃ¸jre</b> for at udfolde eller "
+"sammenklappe bÃ¸gerne i trÃ¦et."
 
-#: src/html-widget.c:294
-#, c-format
-msgid "Couldn't open uri: %s"
-msgstr "Kunne ikke åbne URI: %s"
-
-#: src/html-widget.c:464
-msgid "Print Help"
-msgstr "Udskriv hjælp"
-
-#: src/html-widget.c:509
-msgid "Print Preview"
-msgstr "Vis udskrift"
-
-#: src/html-widget.c:520
-msgid "Printing failed."
-msgstr "Udskift mislykkedes."
-
-#: src/install.c:101 src/install.c:192 src/install.c:210
+#: src/install.c:103 src/install.c:192 src/install.c:216 src/install.c:308
 msgid "The book is already installed."
 msgstr "Bogen er allerede installeret."
 
-#: src/install.c:114 src/install.c:200 src/install.c:219
+#: src/install.c:116 src/install.c:200 src/install.c:225
 msgid "Failed to move book. This should never happen."
 msgstr "Det mislykkedes at flytte bogen. Dette burde aldrig ske."
 
-#: src/install.c:154
+#: src/install.c:156
 msgid "Failed to extract spec file from book."
-msgstr "Det mislykkedes at udtrække specifikationsfilen fra bogen."
+msgstr "Det mislykkedes at udtrÃ¦kke specifikationsfilen fra bogen."
 
 #: src/install.c:171
 msgid "Error, the book is corrupted or very old."
-msgstr "Fejl, bogen er ødelagt eller meget gammel."
+msgstr "Fejl, bogen er Ã¸delagt eller meget gammel."
 
 #: src/install.c:182
 msgid "Failed to extract the book."
-msgstr "Det mislykkedes at udtrække bogen."
+msgstr "Det mislykkedes at udtrÃ¦kke bogen."
 
 #: src/install.c:289 src/install.c:299
 #, c-format
 msgid "Wrong type (mime_type=%s)."
 msgstr "Forkert type (mime_type=%s)."
 
-#: src/main.c:78
+#: src/main.c:80
 #, c-format
 msgid "Could not activate devhelp: '%s'"
-msgstr "Kunne ikke aktivere Udviklerhjælp: \"%s\""
+msgstr "Kunne ikke aktivere UdviklerhjÃ¦lp: \"%s\""
 
-#: src/main.c:87
+#: src/main.c:89
 msgid "Could not search for string."
-msgstr "Kunne ikke søge efter tekst."
+msgstr "Kunne ikke sÃ¸ge efter tekst."
 
-#: src/main.c:125
+#: src/main.c:129
 msgid "Search for a function"
-msgstr "Søg efter en funktion"
+msgstr "SÃ¸g efter en funktion"
 
-#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
+#: src/preferences.c:85 ui/GNOME_DevHelp.ui.h:11 ui/devhelp2.glade.h:22
 msgid "Tiny"
 msgstr "Bitte"
 
-#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
+#: src/preferences.c:86 ui/GNOME_DevHelp.ui.h:10 ui/devhelp2.glade.h:21
 msgid "Small"
 msgstr "Lille"
 
-#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
+#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:5 ui/devhelp2.glade.h:12
 msgid "Medium"
 msgstr "Mellem"
 
-#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
+#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:4 ui/devhelp2.glade.h:11
 msgid "Large"
 msgstr "Stor"
 
-#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
+#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:3 ui/devhelp2.glade.h:9
 msgid "Huge"
 msgstr "Enorm"
 
-#: ui/devhelp.glade.h:1
+#: ui/devhelp2.glade.h:1
 msgid " "
 msgstr " "
 
-#: ui/devhelp.glade.h:2
-msgid "<< _Show"
-msgstr "<< _Vis"
+#: ui/devhelp2.glade.h:2
+msgid "&lt;&lt; _Show"
+msgstr "&lt;&lt; _Vis"
 
-#: ui/devhelp.glade.h:3
+#: ui/devhelp2.glade.h:3
 msgid "Author:"
 msgstr "Forfatter:"
 
-#: ui/devhelp.glade.h:4
+#: ui/devhelp2.glade.h:4
 msgid "Book info"
 msgstr "Boginfo"
 
-#: ui/devhelp.glade.h:5
+#: ui/devhelp2.glade.h:5
 msgid "Bookmarks"
-msgstr "Bogmærker"
+msgstr "BogmÃ¦rker"
 
-#: ui/devhelp.glade.h:6
+#: ui/devhelp2.glade.h:6
 msgid "DevHelp Book Manager"
-msgstr "Boghåndtering til Udviklerhjælp"
+msgstr "BoghÃ¥ndtering til UdviklerhjÃ¦lp"
 
-#: ui/devhelp.glade.h:7
+#: ui/devhelp2.glade.h:7
 msgid "DevHelp Preferences"
-msgstr "Udviklerhjælp-indstillinger"
+msgstr "UdviklerhjÃ¦lp-indstillinger"
 
-#: ui/devhelp.glade.h:8
+#: ui/devhelp2.glade.h:8
 msgid "Hidden"
 msgstr "Skjult"
 
-#: ui/devhelp.glade.h:10
+#: ui/devhelp2.glade.h:10
 msgid "Install new book..."
-msgstr "Installér ny bog..."
+msgstr "InstallÃ©r ny bog..."
 
-#: ui/devhelp.glade.h:13
+#: ui/devhelp2.glade.h:13
 msgid "Move down"
 msgstr "Flyt ned"
 
-#: ui/devhelp.glade.h:14
+#: ui/devhelp2.glade.h:14
 msgid "Move up"
 msgstr "Flyt upp"
 
-#: ui/devhelp.glade.h:15
+#: ui/devhelp2.glade.h:15
 msgid "Name:"
 msgstr "Navn:"
 
-#: ui/devhelp.glade.h:16
+#: ui/devhelp2.glade.h:16
 msgid "Path:"
 msgstr "Sti:"
 
-#: ui/devhelp.glade.h:17
+#: ui/devhelp2.glade.h:17
 msgid "Remove"
 msgstr "Fjern"
 
-#: ui/devhelp.glade.h:18
+#: ui/devhelp2.glade.h:18
 msgid "Reset to defaults"
-msgstr "Gendan standardværdier"
+msgstr "Gendan standardvÃ¦rdier"
 
-#: ui/devhelp.glade.h:19
+#: ui/devhelp2.glade.h:19
 msgid "Search"
-msgstr "Søg"
+msgstr "SÃ¸g"
 
-#: ui/devhelp.glade.h:20
+#: ui/devhelp2.glade.h:20
 msgid "Show _sidebar"
 msgstr "Vis _sidepanel"
 
-#: ui/devhelp.glade.h:23
+#: ui/devhelp2.glade.h:23
 msgid "Title:"
 msgstr "Titel:"
 
-#: ui/devhelp.glade.h:24
+#: ui/devhelp2.glade.h:24
 msgid "Version:"
 msgstr "Version:"
 
-#: ui/devhelp.glade.h:25
+#: ui/devhelp2.glade.h:25
 msgid "View"
 msgstr "Vis"
 
-#: ui/devhelp.glade.h:26
+#: ui/devhelp2.glade.h:26
 msgid "Visible"
 msgstr "Synlig"
 
-#: ui/devhelp.glade.h:27
+#: ui/devhelp2.glade.h:27
 msgid "_Edit book..."
 msgstr "_Rediger bog..."
 
-#: ui/devhelp.glade.h:28
-msgid "_Hide >>"
-msgstr "_Skjul >>"
+#: ui/devhelp2.glade.h:28
+msgid "_Hide &gt;&gt;"
+msgstr "_Skjul &gt;&gt;"
 
-#: ui/devhelp.glade.h:29
+#: ui/devhelp2.glade.h:29
 msgid "_Limit the number of hits to:"
-msgstr "_Begræns antallet af træffere til:"
+msgstr "_BegrÃ¦ns antallet af trÃ¦ffere til:"
 
-#: ui/devhelp.glade.h:30
+#: ui/devhelp2.glade.h:30
 msgid "_Text size: "
-msgstr "_Tekststørrelse:"
+msgstr "_TekststÃ¸rrelse:"
+
+#: ui/devhelp2.glade.h:31
+msgid "gtk-cancel"
+msgstr "gtk-cancel"
+
+#: ui/devhelp2.glade.h:32
+msgid "gtk-close"
+msgstr "gtk-close"
+
+#: ui/devhelp2.glade.h:33
+msgid "gtk-ok"
+msgstr "gtk-ok"
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
@@ -275,11 +280,11 @@ msgstr "Om dette program"
 
 #: ui/GNOME_DevHelp.ui.h:2
 msgid "Font size"
-msgstr "Skifttypestørrelse"
+msgstr "SkifttypestÃ¸rrelse"
 
 #: ui/GNOME_DevHelp.ui.h:6
 msgid "Open preferences dialog"
-msgstr "Åbn vinduet med indstillinger"
+msgstr "Ã…bn vinduet med indstillinger"
 
 #: ui/GNOME_DevHelp.ui.h:7
 msgid "Preferences..."
@@ -307,7 +312,7 @@ msgstr "_Fil"
 
 #: ui/GNOME_DevHelp.ui.h:15
 msgid "_Help"
-msgstr "_Hjælp"
+msgstr "_HjÃ¦lp"
 
 #: ui/GNOME_DevHelp.ui.h:16
 msgid "_Print"
@@ -327,7 +332,7 @@ msgstr "Tilbage"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:2
 msgid "Book Manager..."
-msgstr "Boghåndtering..."
+msgstr "BoghÃ¥ndtering..."
 
 #: ui/GNOME_DevHelp_Controller.ui.h:3
 msgid "Forward"
@@ -335,21 +340,36 @@ msgstr "Fremad"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:4
 msgid "Go to next page in the history"
-msgstr "Gå til næste side i historikken"
+msgstr "GÃ¥ til nÃ¦ste side i historikken"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:5
 msgid "Go to previous page in the history"
-msgstr "Gå til foregående side i historikken"
+msgstr "GÃ¥ til foregÃ¥ende side i historikken"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
-msgstr "Åbn boghåndteringsvinduet"
+msgstr "Ã…bn boghÃ¥ndteringsvinduet"
+
+#~ msgid "(C) Copyright 2001, Johan Dahlin"
+#~ msgstr "Â© Copyright 2001, Johan Dahlin"
+
+#~ msgid "Couldn't open uri: %s"
+#~ msgstr "Kunne ikke Ã¥bne URI: %s"
+
+#~ msgid "Print Help"
+#~ msgstr "Udskriv hjÃ¦lp"
+
+#~ msgid "Print Preview"
+#~ msgstr "Vis udskrift"
+
+#~ msgid "Printing failed."
+#~ msgstr "Udskift mislykkedes."
 
 #~ msgid "Add book ..."
-#~ msgstr "Tilføj bog..."
+#~ msgstr "TilfÃ¸j bog..."
 
 #~ msgid "Use autocompletion"
-#~ msgstr "Brug automatisk fuldførelse"
+#~ msgstr "Brug automatisk fuldfÃ¸relse"
 
 #~ msgid "_Book manager..."
-#~ msgstr "_Boghåndtering..."
+#~ msgstr "_BoghÃ¥ndtering..."
