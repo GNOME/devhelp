@@ -1,5 +1,8 @@
 2002-03-27  Richard Hult  <rhult@codefactory.se>
 
+	* src/bookshelf.c (bookshelf_new): Not sure what this crack was
+	supposed to do, but it didn't work anyway.
+
 	* configure.in: Bump to 0.3.99.
 
 	* src/help-browser.c (eel_gdk_window_focus) 

@@ -224,20 +224,7 @@ bookshelf_new (FunctionDatabase *fd)
         g_free (user_dir);
 	
 	/* Then add global directories */
-	/* If we have a non-standard datadir */
-	if (strcmp (DATA_DIR, "/usr/share") &&
-	    strcmp (DATA_DIR, "/usr/local/share")) {
-		g_message ("Adding %s", DATA_DIR);
-		bookshelf_add_directory (bookshelf, DATA_DIR"/devhelp");
-	}
-
-        if (strcmp (DATA_DIR, "/usr/share") != 0) {
-	        bookshelf_add_directory (bookshelf, "/usr/share/devhelp");
-	}
-   
-        if (strcmp (DATA_DIR, "/usr/local/share") != 0) {	   
-	        bookshelf_add_directory (bookshelf, "/usr/local/share/devhelp"); 
-	}
+	bookshelf_add_directory (bookshelf, DATA_DIR"/devhelp");
 	
         function_database_thaw (priv->fd);
 	
