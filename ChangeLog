@@ -1,6 +1,12 @@
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
-	* ui/GNOME_DevHelp.ui: use BonoboUI statusbar.
+	* ui/GNOME_DevHelp_Controller.ui: 
+	- added tooltip for CmdBookManager.
+
+	* ui/GNOME_DevHelp.ui:
+	- added tooltips
+	- removed moved command.
+	- use BonoboUI statusbar.
 
 	* src/devhelp-window.c:
 	- RHult informed me that I should use the statusbar API from

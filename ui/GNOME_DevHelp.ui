@@ -4,7 +4,8 @@
          _label="_Print"
          sensitive="1"
          pixtype="stock"
-         pixname="Print" />
+         pixname="Print"
+	 _tip="Print the html page" />
 
     <cmd name="CmdExit"
 	 _label="_Exit"
@@ -40,15 +41,9 @@
          _label="Preferences..."
          sensitive="1"
          pixtype="stock"
-         pixname="Preferences" />
+         pixname="Preferences"
+	 _tip="Open preferences dialog" />
 
-<!--    
-    <cmd name="CmdBookManager"
-         _label="Book Manager..."
-         sensitive="1"
-         pixtype="stock"
-         pixname="Book Blue" /> 
--->
     <cmd name="CmdAbout"
 	 _label="_About..."
 	 sensitive="1" 
