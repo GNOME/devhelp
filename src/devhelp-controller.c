@@ -498,6 +498,9 @@ devhelp_controller_book_removed_cb (DevHelpController   *controller,
 				    gpointer             user_data)
 {
 	DevHelpControllerPriv   *priv;
+	FunctionDatabase        *fd;
+	GSList                  *functions;
+	Function                *function;
 	
 	g_return_if_fail (controller != NULL);
 	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
@@ -505,8 +508,18 @@ devhelp_controller_book_removed_cb (DevHelpController   *controller,
 	g_return_if_fail (IS_BOOK (book));
 	
 	priv = controller->priv;
+	fd = priv->fd;
 	
-	/* FIX: Not impl. yet */
+	for (functions = book_get_functions (book);
+	     functions;
+	     functions = functions->next) {
+		function = (Function*)functions->data;
+		
+		function_database_remove_function (fd, function);
+	}
+	
+	book_index_remove_book (priv->index, book);
+	
 }
 
 static void 

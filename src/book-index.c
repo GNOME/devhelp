@@ -442,6 +442,32 @@ book_index_add_book (BookIndex *index, Book *book)
         gtk_clist_thaw (GTK_CLIST (index));
 }
 
+void
+book_index_remove_book (BookIndex *index, Book *book)
+{
+        BookIndexPriv   *priv;
+        GtkCTreeNode    *node;
+   
+	g_return_if_fail (index != NULL);
+        g_return_if_fail (IS_BOOK_INDEX (index));
+        g_return_if_fail (book != NULL);
+        g_return_if_fail (IS_BOOK (book));
+
+        priv = index->priv;
+        
+        gtk_clist_freeze (GTK_CLIST (index));
+   
+        node = gtk_ctree_find_by_row_data (GTK_CTREE (index),
+					   NULL,
+					   book_get_root (book));
+   
+        gtk_ctree_remove_node (GTK_CTREE (index), node);
+					
+        gtk_clist_sort (GTK_CLIST (index));
+	
+        gtk_clist_thaw (GTK_CLIST (index));
+}
+
 GtkWidget *
 book_index_get_scrolled (BookIndex *index)
 {

@@ -69,6 +69,9 @@ void             book_index_open_node     (BookIndex     *index,
 void             book_index_add_book      (BookIndex     *index,
 					   Book          *book);
 
+void             book_index_remove_book   (BookIndex     *index,
+					   Book          *book);
+
 GtkWidget *      book_index_get_scrolled  (BookIndex     *index);
 
 #endif /* __BOOK_INDEX_H__ */

@@ -351,7 +351,7 @@ function_database_get_completion (FunctionDatabase *fd, const gchar *string)
 	return text;
 }
 
-void
+Function *
 function_database_add_function (FunctionDatabase    *fd,
 				const gchar         *name,
 				const Document      *document,
@@ -385,6 +385,27 @@ function_database_add_function (FunctionDatabase    *fd,
 	if (!priv->frozen) {
 		list = g_list_append (NULL, function);
 		g_completion_add_items (priv->function_completion, list);
+		g_list_free (list);
+	}
+	
+	return function;
+}
+
+void
+function_database_remove_function (FunctionDatabase    *fd,
+				   Function            *function)
+{
+	FunctionDatabasePriv   *priv;
+	GList                  *list;
+        
+	d(puts(__FUNCTION__));
+        
+	priv     = fd->priv;
+	priv->functions = g_slist_remove (priv->functions, function);
+	
+	if (!priv->frozen) {
+		list = g_list_append (NULL, function);
+		g_completion_remove_items (priv->function_completion, list);
 		g_list_free (list);
 	}
 }

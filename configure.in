@@ -124,7 +124,7 @@ AC_SUBST(GTK_REQUIRED)
 
 dnl ** GNOME **
 dnl
-AM_PATH_GNOME($GNOME_REQUIRED,,AC_MSG_ERROR([*** GNOME $GNOME_REQUIRED or better is required.]), gtkhtml xml vfs bonobo print)
+AM_PATH_GNOME($GNOME_REQUIRED,,AC_MSG_ERROR([*** GNOME $GNOME_REQUIRED or better is required.]), gtkhtml xml vfs bonobo print libglade)
 AC_SUBST(GNOME_REQUIRED)
 
 AC_PATH_PROG(GNOME_CONFIG,gnome-config,no)
@@ -137,6 +137,7 @@ VERSION_INSIST(xml, $GNOME_CONFIG --modversion xml | awk -F- '{print $2}', >=, L
 VERSION_INSIST(gtkhtml, $GNOME_CONFIG --modversion gtkhtml | awk -F- '{print $2}', >=, GTKHTML_REQUIRED)
 VERSION_INSIST(oaf, $GNOME_CONFIG --modversion oaf | awk -F- '{print $2}', >=, OAF_REQUIRED)
 VERSION_INSIST(bonobo, $GNOME_CONFIG --modversion bonobo | awk -F- '{print $2}', >=, BONOBO_REQUIRED)
+VERSION_INSIST(libglade, $GNOME_CONFIG --modversion libglade | awk -F- '{print $2}', >=, LIBGLADE_REQUIRED)
 
 AC_SUBST(VFS_CFLAGS)
 AC_SUBST(VFS_LIBS)
@@ -146,6 +147,8 @@ AC_SUBST(LIBXML_CFLAGS)
 AC_SUBST(LIBXML_LIBS)
 AC_SUBST(GTKHTML_CFLAGS)
 AC_SUBST(GTKHTML_LIBS)
+AC_SUBST(LIBGLADE_CFLAGS)
+AC_SUBST(LIBGLADE_LIBS)
 
 AM_PATH_ORBIT($ORBIT_REQUIRED,,AC_MSG_ERROR([ORBit $ORBIT_REQUIRED+ not installed or installation problem]))
 

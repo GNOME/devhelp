@@ -78,6 +78,8 @@ gboolean            book_contains              (Book                *book,
 void                book_set_base_url          (Book                *book,
 						const gchar         *url);
 
+GSList *            book_get_functions         (Book                *book);
+
 BookNode *          book_get_root              (Book                *book);
 
 void                book_set_current_document  (Book                *book,

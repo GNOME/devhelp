@@ -69,21 +69,24 @@ struct _Function {
 GtkType             function_database_get_type      (void);
 FunctionDatabase *  function_database_new           (void);
 
-void      function_database_idle_search       (FunctionDatabase    *fd);
-
-gboolean  function_database_search            (FunctionDatabase    *fd,
+void       function_database_idle_search       (FunctionDatabase    *fd);
+ 
+gboolean   function_database_search            (FunctionDatabase    *fd,
 					       const gchar         *func_name);
-gchar *   function_database_get_completion    (FunctionDatabase    *fd,
+gchar *    function_database_get_completion    (FunctionDatabase    *fd,
 					       const gchar         *string);
 
-void      function_database_add_function      (FunctionDatabase    *fd,
+Function * function_database_add_function      (FunctionDatabase    *fd,
 					       const gchar         *name,
 					       const Document      *document,
 					       const gchar         *anchor);
 
-void      function_database_freeze            (FunctionDatabase    *fd);
-void      function_database_thaw              (FunctionDatabase    *fd);
+void       function_database_remove_function   (FunctionDatabase    *fd,
+						Function            *function);
 
-void      function_free                       (Function            *function);
+void       function_database_freeze            (FunctionDatabase    *fd);
+void       function_database_thaw              (FunctionDatabase    *fd);
+
+void       function_free                       (Function            *function);
 
 #endif /* __FUNCTION_DATABASE_H__ */

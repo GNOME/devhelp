@@ -1,3 +1,20 @@
+2001-11-25  Johan Dahlin  <jdahlin@telia.com>
+
+	* src/devhelp-controller.c (devhelp_controller_book_removed_cb):
+	Remove all functions in book from function_database.
+
+	* src/function-database.c (function_database_remove_function): Impl.
+
+	* src/book.c: Added functions to _BookPriv.
+	(book_parse_function): Add function to priv->functions.
+	(book_get_functions): Impl.
+
+	* src/book-index.c (book_index_remove_book): Impl.
+
+	* configure.in: Added libglade check. Added LIBGLADE_CFLAGS.
+	
+	* src/Makefile.am (INCLDES): Added LIBGLADE_CFLAGS.
+
 2001-11-17  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/bookshelf.c (bookshelf_add_directory): DON'T SEGFAULT ON

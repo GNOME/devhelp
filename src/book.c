@@ -75,6 +75,7 @@ struct _BookPriv {
 	GHashTable    *documents;
 	BookNode      *root;
 	Document      *current_document;
+	GSList        *functions;
 };
 
 struct _Document {
@@ -345,6 +346,7 @@ book_parse_function (Book               *book,
 	gchar         *url;
 	Document      *document;
 	gchar         *anchor;
+	Function      *function;
 	
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
@@ -352,7 +354,7 @@ book_parse_function (Book               *book,
 	g_return_if_fail (IS_FUNCTION_DATABASE (fd));
 
 	priv = book->priv;
-
+	
 	xml_str = xmlGetProp (node, "name");
 	
 	if (xml_str) {
@@ -371,7 +373,9 @@ book_parse_function (Book               *book,
 		document = document_new (book, url, NULL);
 	}
 	
-	function_database_add_function (fd, name, document, anchor);
+	function = function_database_add_function (fd, name, document, anchor);
+
+	priv->functions = g_slist_append (priv->functions, function);
 }
 
 static Document *
@@ -649,6 +653,19 @@ book_contains (Book *book, const GnomeVFSURI *uri)
 	priv = book->priv;
 	
 	return gnome_vfs_uri_is_parent (priv->base_uri, uri, TRUE);
+}
+
+GSList *
+book_get_functions (Book *book)
+{
+	BookPriv   *priv;
+	
+	g_return_if_fail (book != NULL);
+	g_return_if_fail (IS_BOOK (book));
+	
+	priv = book->priv;
+
+	return priv->functions;
 }
 
 BookNode *

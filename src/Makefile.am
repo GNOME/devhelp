@@ -8,7 +8,9 @@ INCLUDES = 						\
 	  $(BONOBO_CFLAGS) 				\
 	  $(LIBXML_CFLAGS) 				\
 	  $(GTKHTML_CFLAGS) 				\
-	  $(VFS_CFLAGS)
+	  $(VFS_CFLAGS)					\
+	  $(LIBGLADE_CFLAGS)
+
 
 bin_PROGRAMS = devhelp
 
