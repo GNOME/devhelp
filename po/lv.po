@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp for Latvian\n"
-"POT-Creation-Date: 2002-09-23 04:38+0200\n"
-"PO-Revision-Date: 2002-09-23 20:27+0200\n"
-"Last-Translator: Peteris Krisjanis <peteris.krisjanis@ttc.lv>\n"
+"Project-Id-Version: devhelp\n"
+"POT-Creation-Date: 2002-12-22 04:40+0100\n"
+"PO-Revision-Date: 2002-12-23 00:08+0200\n"
+"Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,258 +22,78 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Veidotāju Palīdzības programma"
 
-#: src/GNOME_DevHelp.server.in.in.h:1
-msgid "DevHelp Controller"
-msgstr "DevHelp kontrolieris"
-
-#: src/GNOME_DevHelp.server.in.in.h:2
-msgid "DevHelp Controller Factory"
-msgstr "DevHelp kontroliera ražotne"
-
-#: src/GNOME_DevHelp.server.in.in.h:3
-msgid "DevHelp HelpBrowser"
-msgstr "DevHelp palīdzības pārlūks"
-
-#: src/GNOME_DevHelp.server.in.in.h:4
-msgid "DevHelp HelpBrowser Factory"
-msgstr "DevHelp palīdzības pārlūka ražotne"
-
-#: src/dh-bookshelf.c:185
+#: src/dh-book.c:110
+#: src/dh-book.c:216
 #, c-format
-msgid "Problems when reading books: %s\n"
-msgstr "Problēmas ar grāmatu nolasīšanu: %s\n"
+msgid "'%s' is not a valid book"
+msgstr "'%s' nav derīga grāmata"
 
-#: src/dh-bookshelf.c:233
+#: src/dh-book.c:121
+#: src/dh-book.c:133
+#: src/dh-book.c:144
+#: src/dh-book-old.c:234
+#: src/dh-book-old.c:245
+#: src/dh-book-old.c:257
 #, c-format
-msgid "Empty document: %s"
-msgstr "Tukšs dokuments: %s"
+msgid "Book '%s' is malformed."
+msgstr "Grāmata '%s' ir izkropļota."
 
-#: src/dh-bookshelf.c:239
+#: src/dh-book.c:224
 #, c-format
-msgid "Document wrong type, got %s, expected 'booklist': %s"
-msgstr "Nepareiza tipa dokuments, ir %s, gaidīju 'grāmatsarakstu': %s"
+msgid "Couldn't find file '%s'"
+msgstr "Nevarēju atrast failu '%s'"
 
-#: src/dh-bookshelf.c:273
-#, c-format
-msgid ""
-"I found an old version of your spec file (%s)\n"
-"I removed it, so you have to hide the books you want to be hidden again."
-msgstr ""
-"Es atradu vecu versiju jūsu specifikāciju failam [%s]\n"
-"Es to izdzēsu, tāpēc jums atkal jāpaslēpj grāmatas, kuras gribat, lai būtu "
-"paslēptas."
+#: src/dh-html.c:517
+msgid "Select a subject in the contents to the left or switch to the search pane to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the tree to the left, and <b>Shift Left/Right</b> to expand and collapse the books in the tree."
+msgstr "Izvēlieties subjektu kreisajā pusē vai arī pārslēdzaties uz meklēšanas skaldni, lai sameklētu, ko jūs meklējiet.<p>Izmantojiet <b>Shift+uz augšu/leju</b> lai pārvietotos pa koku kreisajā pusē, un <b>Shift+pa kreisi/labi</b> lai izplestu un savilktu grāmatas kokā."
 
-#: src/dh-bookshelf.c:278
-msgid "Ok"
-msgstr "Labi"
+#: src/dh-main.c:243
+msgid "Search for a function"
+msgstr "Meklēt funkciju"
 
-#: src/dh-bookshelf.c:457
-#, c-format
-msgid "Failed to open file %s for writing."
-msgstr "Nevarēju atvērt failu %s ierakstam."
+#: src/dh-main.c:252
+msgid "Quit any running Devhelp"
+msgstr "Iziet no jebkura darbojamies Devhelp"
 
-#: src/dh-view.c:487
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Izvēlieties subjektu kreisajā pusē vai arī pārslēdzaties uz meklēšanas "
-"skaldni, lai sameklētu, ko jūs meklējiet.<p>Izmantojiet <b>Shift+uz augšu/"
-"leju</b> lai pārvietotos pa koku kreisajā pusē, un <b>Shift+pa kreisi/labi</"
-"b> lai izplestu un savilktu grāmatas kokā."
+#: src/dh-search.c:325
+msgid "_Search for:"
+msgstr "_Meklēt:"
 
-#: src/dh-window.c:298
-msgid "_Contents"
-msgstr "_Saturs"
+#: src/dh-search.c:362
+msgid "Section"
+msgstr "Sekcija"
 
-#: src/dh-window.c:309
-msgid "_Search"
-msgstr "_Meklēt"
+#: src/dh-window.c:98
+msgid "_File"
+msgstr "_Fails"
 
-#: src/dh-window.c:383
+#: src/dh-window.c:99
+msgid "_Go"
+msgstr "_Iet"
+
+#: src/dh-window.c:100
+msgid "_Help"
+msgstr "P_alīdzība"
+
+#. About menu
+#: src/dh-window.c:113
+msgid "_About"
+msgstr "_Par"
+
+#: src/dh-window.c:284
+msgid "Contents"
+msgstr "Saturs"
+
+#: src/dh-window.c:295
+msgid "Search"
+msgstr "Meklēt"
+
+#: src/dh-window.c:352
 msgid "A developer's help browser for GNOME 2"
-msgstr "Veidotāju palīdzības pārlūks GNOME 2 videi"
+msgstr "Izstrādātāju palīdzības pārlūks GNOME 2 videi"
 
-#: src/dh-window.c:457
+#: src/dh-window.c:418
 #, c-format
 msgid "Open %s"
 msgstr "Atvērt %s"
 
-#: src/main.c:79
-#, c-format
-msgid "Could not activate devhelp: '%s'"
-msgstr "Nevarēju aktivizēt devhelp: '%s'"
-
-#: src/main.c:88
-msgid "Could not search for string."
-msgstr "Nevarēju meklēt virkni."
-
-#: src/main.c:128
-msgid "Search for a function"
-msgstr "Meklēt funkciju"
-
-#: ui/GNOME_DevHelp.ui.h:1
-msgid "About this application"
-msgstr "Par šo aplikāciju"
-
-#: ui/GNOME_DevHelp.ui.h:2
-msgid "Print the html page"
-msgstr "Izdrukāt html lapu"
-
-#: ui/GNOME_DevHelp.ui.h:3
-msgid "_About..."
-msgstr "_Par..."
-
-#: ui/GNOME_DevHelp.ui.h:4
-msgid "_Exit"
-msgstr "_Iziet"
-
-#: ui/GNOME_DevHelp.ui.h:5
-msgid "_File"
-msgstr "_Fails"
-
-#: ui/GNOME_DevHelp.ui.h:6
-msgid "_Help"
-msgstr "P_alīdzība"
-
-#: ui/GNOME_DevHelp.ui.h:7
-msgid "_Print"
-msgstr "_Drukāt"
-
-#: ui/GNOME_DevHelp_Controller.ui.h:1
-msgid "Back"
-msgstr "Atpakaļ"
-
-#: ui/GNOME_DevHelp_Controller.ui.h:2
-msgid "Forward"
-msgstr "Uz priekšu"
-
-#: ui/GNOME_DevHelp_Controller.ui.h:3
-msgid "Go to next page in the history"
-msgstr "Iet uz nākamo lapu vēsturē"
-
-#: ui/GNOME_DevHelp_Controller.ui.h:4
-msgid "Go to previous page in the history"
-msgstr "Iet uz iepriekšējo lapu vēsturē"
-
-#: ui/devhelp2.glade.h:1
-msgid " "
-msgstr " "
-
-#: ui/devhelp2.glade.h:2
-msgid "<< _Show"
-msgstr "<< _Parādīt"
-
-#: ui/devhelp2.glade.h:3
-msgid "Author:"
-msgstr "Autors:"
-
-#: ui/devhelp2.glade.h:4
-msgid "Book info"
-msgstr "Grāmatas info"
-
-#: ui/devhelp2.glade.h:5
-msgid "Bookmarks"
-msgstr "Grāmatzīmes"
-
-#: ui/devhelp2.glade.h:6
-msgid "DevHelp Book Manager"
-msgstr "DevHelp Grāmatas Pārvaldnieks"
-
-#: ui/devhelp2.glade.h:7
-msgid "DevHelp Preferences"
-msgstr "DevHelp Preferences"
-
-#: ui/devhelp2.glade.h:8
-msgid "Hidden"
-msgstr "Slēpts"
-
-#: ui/devhelp2.glade.h:9
-msgid "Huge"
-msgstr "Milzīgs"
-
-#: ui/devhelp2.glade.h:10
-msgid "Install new book..."
-msgstr "Uzstādīt jaunu grāmatu..."
-
-#: ui/devhelp2.glade.h:11
-msgid "Large"
-msgstr "Liels"
-
-#: ui/devhelp2.glade.h:12
-msgid "Medium"
-msgstr "Vidējs"
-
-#: ui/devhelp2.glade.h:13
-msgid "Move down"
-msgstr "Pārvietot uz leju"
-
-#: ui/devhelp2.glade.h:14
-msgid "Move up"
-msgstr "Pārvietot uz augšu"
-
-#: ui/devhelp2.glade.h:15
-msgid "Name:"
-msgstr "Nosaukums:"
-
-#: ui/devhelp2.glade.h:16
-msgid "Path:"
-msgstr "Ceļš:"
-
-#: ui/devhelp2.glade.h:17
-msgid "Remove"
-msgstr "Izņemt"
-
-#: ui/devhelp2.glade.h:18
-msgid "Reset to defaults"
-msgstr "Pāruzstādīt uz noklusējumiem"
-
-#: ui/devhelp2.glade.h:19
-msgid "Search"
-msgstr "Meklēt"
-
-#: ui/devhelp2.glade.h:20
-msgid "Show _sidebar"
-msgstr "Parādīt _sānjoslu"
-
-#: ui/devhelp2.glade.h:21
-msgid "Small"
-msgstr "Mazs"
-
-#: ui/devhelp2.glade.h:22
-msgid "Tiny"
-msgstr "Maziņš"
-
-#: ui/devhelp2.glade.h:23
-msgid "Title:"
-msgstr "Virsraksts:"
-
-#: ui/devhelp2.glade.h:24
-msgid "Version:"
-msgstr "Versija:"
-
-#: ui/devhelp2.glade.h:25
-msgid "View"
-msgstr "Skats"
-
-#: ui/devhelp2.glade.h:26
-msgid "Visible"
-msgstr "Redzams"
-
-#: ui/devhelp2.glade.h:27
-msgid "_Edit book..."
-msgstr "_Rediģēt grāmatu..."
-
-#: ui/devhelp2.glade.h:28
-msgid "_Hide >>"
-msgstr "_Slēpt >>"
-
-#: ui/devhelp2.glade.h:29
-msgid "_Limit the number of hits to:"
-msgstr "_Limitēt rezultātu skaitu uz:"
-
-#: ui/devhelp2.glade.h:30
-msgid "_Text size: "
-msgstr "_Teksta izmērs:"
