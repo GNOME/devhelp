@@ -46,6 +46,55 @@
 
 gchar *geometry = NULL;
 
+static gboolean
+window_get_is_on_current_workspace (GtkWindow *window)
+{
+	GdkWindow *gdk_window;
+
+	gdk_window = GTK_WIDGET (window)->window;
+	if (gdk_window) {
+		return !(gdk_window_get_state (gdk_window) &
+			 GDK_WINDOW_STATE_ICONIFIED);
+	} else {
+		return FALSE;
+	}
+}
+
+/* Takes care of moving the window to the current workspace. */
+static void
+window_present (GtkWindow *window)
+{
+	gboolean visible;
+	gboolean on_current;
+	gboolean show;
+
+	/* There are three cases: hidden, visible, visible on another
+	 * workspace.
+	 */
+
+	g_object_get (window,
+		      "visible", &visible,
+		      NULL);
+
+	on_current = window_get_is_on_current_workspace (
+		GTK_WINDOW (window));
+
+	if (!visible) {
+		show = TRUE;
+	}
+	else if (on_current) {
+		show = FALSE;
+	} else {
+		/* Hide it so present brings it to the current workspace. */
+		gtk_widget_hide (GTK_WIDGET (window));
+		show = TRUE;
+	}
+
+	if (show) {
+		gtk_window_present (window);
+	}
+}
+
 static void
 message_received_cb (const gchar *message, DhWindow *window)
 {
@@ -57,7 +106,7 @@ message_received_cb (const gchar *message, DhWindow *window)
 				  message + strlen (COMMAND_SEARCH) + 1);
 	}
 	else if (strcmp (message, COMMAND_RAISE) == 0) {
-		gtk_window_present (GTK_WINDOW (window));
+		window_present (GTK_WINDOW (window));
 	}
 }
 
@@ -74,7 +123,6 @@ main (int argc, char **argv)
 {
 	gchar                  *option_search = NULL;
 	gboolean                option_quit = FALSE;
-	/*GnomeProgram           *program;*/
 	BaconMessageConnection *message_conn;
 	DhBase                 *base;
 	GtkWidget              *window;
@@ -115,6 +163,8 @@ main (int argc, char **argv)
 	/* Initialize the widget set */
 	gtk_init_with_args (&argc, &argv, NULL, options, NULL, NULL);
 
+	g_set_application_name ("Devhelp");
+	
 	g_thread_init (NULL);
 
 	LIBXML_TEST_VERSION;
@@ -122,11 +172,10 @@ main (int argc, char **argv)
 	gnome_vfs_init ();
 
 	dh_gecko_utils_init_services ();
-	//gtk_moz_embed_set_comp_path (MOZILLA_HOME);
+	/*gtk_moz_embed_set_comp_path (MOZILLA_HOME);*/
 
 	message_conn = bacon_message_connection_new ("Devhelp");
 	if (!bacon_message_connection_get_is_server (message_conn)) {
-
 		if (option_quit) {
 			bacon_message_connection_send (message_conn, COMMAND_QUIT);
 			return 0;
@@ -161,7 +210,6 @@ main (int argc, char **argv)
 	if (option_search) {
 		dh_window_search (DH_WINDOW (window), option_search);
 	}
-	
 	
 	gtk_widget_show (window);
 		

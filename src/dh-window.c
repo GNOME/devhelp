@@ -408,7 +408,8 @@ window_activate_preferences (GtkAction *action, DhWindow *window)
 	dh_preferences_show_dialog (GTK_WINDOW (window));
 }
 
-static void window_activate_back (GtkAction *action, DhWindow *window)
+static void
+window_activate_back (GtkAction *action, DhWindow *window)
 {
 	DhWindowPriv *priv;
 
@@ -417,7 +418,9 @@ static void window_activate_back (GtkAction *action, DhWindow *window)
 	dh_html_go_back (priv->html);
 }
 
-static void window_activate_forward (GtkAction *action, DhWindow *window)
+static void
+window_activate_forward (GtkAction *action,
+			 DhWindow  *window)
 {
 	DhWindowPriv *priv;
 
@@ -426,43 +429,40 @@ static void window_activate_forward (GtkAction *action, DhWindow *window)
 	dh_html_go_forward (priv->html);
 }
 
-static void window_activate_about            (GtkAction          *action,
-					      DhWindow           *window)
+static void
+window_activate_about (GtkAction *action,
+		       DhWindow  *window)
 {
-	
-	
 	const gchar *authors[] = {
 		"Mikael Hallendal <micke@imendio.com>",
 		"Richard Hult <richard@imendio.com>",
-		"Johan Dahlin <jdahlin@telia.com>",
+		"Johan Dahlin <johan@gnome.org>",
 		"Ross Burton <ross@burtonini.com>",
 		NULL
 	};
-
-	const gchar *documenters[] = {
-            NULL
-    };
-
-    const gchar *translator_credits = _("translator_credits");
+	const gchar **documenters = NULL;
+	const gchar *translator_credits = _("translator_credits");
 	
-	gtk_show_about_dialog(GTK_WINDOW (window),
-        					"name",_("Devhelp"),
-        					"version", VERSION,
-        					"comments", _("A developer's help browser for GNOME 2"),
-        					"authors", authors,
-        					"documenters", documenters,
-        					"translator-credits", strcmp(translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
-        					"website", "http://www.imendio.com/projects/devhelp/",
-        					NULL);
-
+	gtk_show_about_dialog (GTK_WINDOW (window),
+			       "name",_("Devhelp"),
+			       "version", VERSION,
+			       "comments", _("A developer's help browser for GNOME 2"),
+			       "authors", authors,
+			       "documenters", documenters,
+			       "translator-credits",
+			       strcmp (translator_credits, "translator_credits") != 0 ?
+			       translator_credits : NULL,
+			       "website", "http://www.imendio.com/projects/devhelp/",
+			       NULL);
+	
 }
 
 static void
 window_save_state (DhWindow *window)
 {
-	DhWindowPriv *priv;
-	GdkWindowState state;
-	gboolean       maximized;
+	DhWindowPriv   *priv;
+	GdkWindowState  state;
+	gboolean        maximized;
 
 	priv = window->priv;
 
@@ -479,8 +479,8 @@ window_save_state (DhWindow *window)
 
 	/* If maximized don't save the size and position */
 	if (!maximized) {
-		int width, height;
-		int x, y;
+		gint width, height;
+		gint x, y;
 
 		gtk_window_get_size (GTK_WINDOW (window), &width, &height);
 		gconf_client_set_int (gconf_client,
