@@ -1,5 +1,7 @@
 2002-04-27  Mikael Hallendal  <micke@codefactory.se>
 
+	* NEWS: updated for 0.4
+
 	* configure.in: bumped to 0.4
 
 	* src/history.c (history_goto): 

@@ -1,3 +1,11 @@
+DevHelp 0.4: 
+
+* Raise minimized window (Richard)
+
+* Bug fixes              (Mikael, Richard)
+
+* Limit history length   (Nils O. Selåsdal)
+
 DevHelp 0.3:
 
 * Lots of bugfixes. (Johan, Mikael, Richard)
