@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-10-18 08:28+0200\n"
-"PO-Revision-Date: 2001-10-18 08:33+0200\n"
+"POT-Creation-Date: 2001-12-15 14:45+0100\n"
+"PO-Revision-Date: 2001-12-15 14:52+0100\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
-"Language-Team: LANGUAGE <sk-i18n@lists.linux.sk>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,47 +21,60 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Program pomocníka pre vývojárov"
 
-#: src/books-dialog.c:315
+#: src/books-dialog.c:331
 msgid "Choose a book..."
 msgstr "Vybra» knihu..."
 
-#: src/bookshelf.c:183
+#: src/bookshelf.c:186
 #, c-format
 msgid "Problems when reading books: %s\n"
 msgstr "Problémy pri èítaní kníh: %s\n"
 
-#: src/bookshelf.c:250
+#: src/bookshelf.c:367
 #, c-format
 msgid "Empty document: %s"
 msgstr "Prázdny dokument: %s"
 
-#: src/bookshelf.c:256
+#: src/bookshelf.c:373
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
 msgstr "Zlý typ dokumentu %s, oèakávaný zoznam kníh: %s"
 
-#: src/bookshelf.c:310
+#: src/bookshelf.c:407
+#, c-format
+msgid ""
+"I found an old version of your spec file (%s)\n"
+"I removed it, so you have to hide the books you want to be hidden again."
+msgstr ""
+"Na¹iel som starú verziu vá¹ho spec súboru (%s)\n"
+"Vymazal som ju. Ak chcete ma» skryté nejaké knihy, musíte ich skry» znova."
+
+#: src/bookshelf.c:412
+msgid "Ok"
+msgstr "Ok"
+
+#: src/bookshelf.c:453
 #, c-format
 msgid "Failed to open file %s for writing."
 msgstr "Zlyhalo otvorenie súboru %s pre zápis."
 
-#: src/devhelp-window.c:382
+#: src/devhelp-window.c:402
 msgid "_Contents"
 msgstr "_Obsah"
 
-#: src/devhelp-window.c:394
+#: src/devhelp-window.c:414
 msgid "_Search"
 msgstr "_Hµada»"
 
-#: src/devhelp-window.c:518
+#: src/devhelp-window.c:499
 msgid "(C) Copyright 2001, Johan Dahlin"
 msgstr "(C) Autorské práva 2001, Johan Dahlin"
 
-#: src/devhelp-window.c:520
+#: src/devhelp-window.c:501
 msgid "A developer's help browser"
 msgstr "Prehliadaè pomocníka pre vývojárov"
 
-#: src/devhelp-window.c:594
+#: src/devhelp-window.c:621
 #, c-format
 msgid "Open %s"
 msgstr "Otvori» %s"
@@ -111,11 +124,11 @@ msgstr "Náhµad pred tlaèou"
 msgid "Printing failed."
 msgstr "Tlaè zlyhala."
 
-#: src/install.c:101 src/install.c:192 src/install.c:210
+#: src/install.c:101 src/install.c:190 src/install.c:214 src/install.c:306
 msgid "The book is already installed."
 msgstr "Kniha je u¾ nain¹talovaná."
 
-#: src/install.c:114 src/install.c:200 src/install.c:219
+#: src/install.c:114 src/install.c:198 src/install.c:223
 msgid "Failed to move book. This should never happen."
 msgstr "Zlyhalo presunutie knihy. Toto by sa nemalo nikdy sta»."
 
@@ -123,15 +136,15 @@ msgstr "Zlyhalo presunutie knihy. Toto by sa nemalo nikdy sta»."
 msgid "Failed to extract spec file from book."
 msgstr "Zlyhalo extrahovanie súboru spec z knihy."
 
-#: src/install.c:171
+#: src/install.c:169
 msgid "Error, the book is corrupted or very old."
 msgstr "Chyba. Kniha je po¹kodená alebo veµmi stará."
 
-#: src/install.c:182
+#: src/install.c:180
 msgid "Failed to extract the book."
 msgstr "Zlyhalo extrahovanie knihy."
 
-#: src/install.c:289 src/install.c:299
+#: src/install.c:287 src/install.c:297
 #, c-format
 msgid "Wrong type (mime_type=%s)."
 msgstr "Zlý typ (mime_type=%s)."
