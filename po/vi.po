@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
 "POT-Creation-Date: 2002-09-18 04:40+0200\n"
-"PO-Revision-Date: 2002-09-19 21:45+0700\n"
+"PO-Revision-Date: 2002-09-22 07:35+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -174,7 +174,7 @@ msgstr "Thông tin sách"
 
 #: ui/devhelp2.glade.h:5
 msgid "Bookmarks"
-msgstr "Bookmark"
+msgstr "Đánh dấu"
 
 #: ui/devhelp2.glade.h:6
 msgid "DevHelp Book Manager"
