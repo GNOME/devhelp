@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-29 11:03+0200\n"
+"POT-Creation-Date: 2004-08-18 11:04+0200\n"
 "PO-Revision-Date: 2004-07-29 11:02+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -27,19 +27,19 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Libri i Devhelp"
 
-#: src/dh-main.c:259
+#: src/dh-main.c:81
 msgid "Specify the size and location of the window"
 msgstr "Specifiko madhësinë dhe pozicionin e dritares"
 
-#: src/dh-main.c:260
+#: src/dh-main.c:82
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "GJERËSIxLARTËSI+XOFF+YOFF"
 
-#: src/dh-main.c:268
+#: src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Kërko për një funksion"
 
-#: src/dh-main.c:277
+#: src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Përfundo çdo Devhelp në ekzekutim"
 
@@ -56,7 +56,8 @@ msgstr "Emërhapësire i pavlefshëm '%s' tek rreshti %d, kollona %d"
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "titulli, emri, dhe elementët e lidhur nevoiten tek rreshti %d, kollona %d"
+msgstr ""
+"titulli, emri, dhe elementët e lidhur nevoiten tek rreshti %d, kollona %d"
 
 #: src/dh-parser.c:202
 #, c-format
@@ -67,7 +68,8 @@ msgstr ""
 
 #: src/dh-parser.c:250
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "emri dhe elementët e lidhur kërkohen në brendësi <function> tek rreshti %d, "
 "kollona %d"
@@ -170,17 +172,19 @@ msgstr "Pozicioni X i dritares qendrore."
 msgid "The Y position of the main window."
 msgstr "Pozicioni Y i dritares qendrore."
 
+#. GRUT modified this item
 #: devhelp.schemas.in.h:10
 msgid "The height of the main window."
-msgstr "Gjatësia e dritares kryesore."
+msgstr "Lartësia e dritares kryesore."
 
 #: devhelp.schemas.in.h:11
 msgid "The location of the paned separator."
 msgstr "Vendodhja e ndarësit të panelit."
 
+#. GRUT modified this item
 #: devhelp.schemas.in.h:12
 msgid "The width of the main window."
-msgstr "Gjerësia e dritares krysore."
+msgstr "Gjerësia e dritares kryesore."
 
 #: devhelp.schemas.in.h:13
 msgid "Use system fonts"
