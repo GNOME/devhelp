@@ -66,7 +66,7 @@ if test "$with_zlib" = "no"; then
 else
         AC_CHECK_HEADERS(zlib.h,
                 AC_CHECK_LIB(z, gzread,[
-                        AC_DEFINE(HAVE_LIBZ)
+                        AC_DEFINE(HAVE_LIBZ,1,[zlib is available])
                         if test "x${Z_DIR}" != "x"; then
                                 Z_CFLAGS="-I${Z_DIR}/include"
                                 Z_LIBS="-L${Z_DIR}/lib -lz"
@@ -90,7 +90,7 @@ ALL_LINGUAS="am az be cs da de el es fr it ja kn ko lv ms nl no pl pt pt_BR ru s
 
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Package name for gettext])
 
 AM_GLIB_GNU_GETTEXT
 

@@ -1,5 +1,11 @@
 2003-03-03  Ross Burton  <ross@burtonini.com>
 
+	* configure.in: Add descriptions to the AC_DEFINE calls.
+
+	* acconfig.h: Remove thanks to above change.
+
+2003-03-03  Ross Burton  <ross@burtonini.com>
+
 	* src/dh-main.c: Fix the prototype on dh_client_data_cb, and
 	remove the GTK+ 2.2.0 check as that is assumed.
 
