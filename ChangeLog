@@ -1,3 +1,7 @@
+2002-10-23  Mikael Hallendal  <micke@codefactory.se>
+
+	* autogen.sh: don't use gnome-common.
+
 2002-10-16  Ross Burton  <ross@burtonini.com>
 
 	* Makefile.am (Develdir): Use the new location for .desktop files.
