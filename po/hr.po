@@ -1,11 +1,11 @@
-# Translation of devhelp to Croatian
-# Copyright (C) Croatian team
+# Translation of devhelp to Croatiann
+# Copyright (C) Croatiann team
 # Translators: Automatski Prijevod <>,
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0\n"
-"POT-Creation-Date: 2003-11-06 18:06+0100\n"
-"PO-Revision-Date: 2003-11-10 16:48+CET\n"
+"POT-Creation-Date: 2004-02-01 16:49+0100\n"
+"PO-Revision-Date: 2004-02-01 16:49+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr ""
 
 #: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgstr "ŠIRINAxVISINA+VODORAVNO+HORIZONTALNO"
 
 #: src/dh-main.c:268
 msgid "Search for a function"
@@ -49,27 +49,22 @@ msgid "Quit any running Devhelp"
 msgstr ""
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-#, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr ""
 
 #: src/dh-parser.c:120
-#, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr ""
 
 #: src/dh-parser.c:149
-#, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
 
 #: src/dh-parser.c:202
-#, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 
 #: src/dh-parser.c:250
-#, c-format
 msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 
@@ -82,7 +77,6 @@ msgid "Could not create markup parser"
 msgstr ""
 
 #: src/dh-parser.c:479
-#, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr ""
 
@@ -94,35 +88,39 @@ msgstr "Traži :"
 msgid "Section"
 msgstr "Odsječak"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "_Datoteka"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "_Idi"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "_Pomoć"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:283
+msgid "Cannot set UI: %s"
+msgstr ""
+
+#: src/dh-window.c:343
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:354
 msgid "Search"
 msgstr "&Traži"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:419
 msgid "A developer's help browser for GNOME 2"
 msgstr ""
 
-#: src/dh-window.c:430
+#: src/dh-window.c:434
 msgid "Devhelp project page"
 msgstr ""
 
-#: src/dh-window.c:434
+#: src/dh-window.c:438
 msgid "Bug report Devhelp"
 msgstr ""
 
