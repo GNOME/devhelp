@@ -209,6 +209,9 @@ window_populate (DhWindow *window)
         priv->hpaned      = gtk_hpaned_new ();
 	priv->statusbar   = gtk_statusbar_new ();
 	html_sw           = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (html_sw),
+					GTK_POLICY_AUTOMATIC,
+					GTK_POLICY_AUTOMATIC);
 
         CORBA_exception_init (&ev);
 
