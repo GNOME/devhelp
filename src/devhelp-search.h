@@ -23,9 +23,7 @@
 #ifndef __DEVHELP_SEARCH_H__
 #define __DEVHELP_SEARCH_H__
 
-#include <glib.h>
-#include <gtk/gtkobject.h>
-#include <gtk/gtktypeutils.h>
+#include <glib-object.h>
 #include <gtk/gtkwidget.h>
 #include "bookshelf.h"
 
@@ -33,10 +31,10 @@
 #define DEVHELP_SEARCH_RESULT_OAFIID "OAFIID:GNOME_DevHelp_SearchResult"
 
 #define TYPE_DEVHELP_SEARCH		(devhelp_search_get_type ())
-#define DEVHELP_SEARCH(obj)		(GTK_CHECK_CAST ((obj), TYPE_DEVHELP_SEARCH, DevHelpSearch))
-#define DEVHELP_SEARCH_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), TYPE_DEVHELP_SEARCH, DevHelpSearchClass))
-#define IS_DEVHELP_SEARCH(obj)		(GTK_CHECK_TYPE ((obj), TYPE_DEVHELP_SEARCH))
-#define IS_DEVHELP_SEARCH_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), TYPE_DEVHELP_SEARCH))
+#define DEVHELP_SEARCH(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_DEVHELP_SEARCH, DevHelpSearch))
+#define DEVHELP_SEARCH_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_DEVHELP_SEARCH, DevHelpSearchClass))
+#define IS_DEVHELP_SEARCH(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_DEVHELP_SEARCH))
+#define IS_DEVHELP_SEARCH_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_DEVHELP_SEARCH))
 
 typedef struct _DevHelpSearch       DevHelpSearch;
 typedef struct _DevHelpSearchClass  DevHelpSearchClass;
@@ -44,14 +42,14 @@ typedef struct _DevHelpSearchPriv   DevHelpSearchPriv;
 
 struct _DevHelpSearch
 {
-        GtkObject            parent;
+        GObject             parent;
         
-        DevHelpSearchPriv   *priv;
+        DevHelpSearchPriv  *priv;
 };
 
 struct _DevHelpSearchClass
 {
-        GtkObjectClass       parent_class;
+        GObjectClass        parent_class;
 
         /* Signals */
         void (*search_match)  (DevHelpSearch       *search,
@@ -63,7 +61,7 @@ struct _DevHelpSearchClass
         
 };
 
-GtkType          devhelp_search_get_type           (void);
+GType            devhelp_search_get_type           (void);
 DevHelpSearch *  devhelp_search_new                (Bookshelf      *bookshelf);
 
 GtkWidget *      devhelp_search_get_entry_widget   (DevHelpSearch  *search);

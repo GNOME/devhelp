@@ -4,21 +4,21 @@
          _label="Book Manager..."
          sensitive="1"
          pixtype="stock"
-         pixname="Book Blue"
+         pixname="gnome-stock-book-blue"
 	 _tip="Open the book manager dialog" /> 
 
     <cmd name="CmdBack"
          _label="Back"
          sensitive="0"
          pixtype="stock"
-         pixname="Back"
+         pixname="gtk-go-back"
 	 _tip="Go to previous page in the history" />
 
     <cmd name="CmdForward"
 	 _label="Forward"
          sensitive="0"
          pixtype="stock"
-         pixname="Forward"
+         pixname="gtk-go-forward"
 	 _tip="Go to next page in the history" />
     
   </commands>

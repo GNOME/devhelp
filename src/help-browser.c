@@ -91,7 +91,7 @@ impl_HelpBrowser_search (PortableServer_Servant   servant,
 		
 	if (priv->window) {
 		devhelp_window_search (DEVHELP_WINDOW (priv->window), str);
-		eel_gdk_window_bring_to_front (priv->window->window);
+		gtk_window_present (priv->window);
 	}
 }
 
@@ -142,7 +142,7 @@ help_browser_new (void)
 	HelpBrowserPriv   *priv;
 /* 	GtkWidget         *window; */
 
-	browser = gtk_type_new (HELP_BROWSER_TYPE);
+	browser = g_object_new (HELP_BROWSER_TYPE, NULL);
 	priv    = browser->priv;
 	priv->window  = devhelp_window_new ();
 	

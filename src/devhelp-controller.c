@@ -43,9 +43,9 @@ static void devhelp_controller_init        (DevHelpController      *index);
  
 static void devhelp_controller_destroy     (GtkObject              *object);
 
-static void devhelp_controller_uri_cb      (DevHelpController      *controller,
+static void devhelp_controller_uri_cb      (GObject                *unused,
 					    const GnomeVFSURI      *uri,
-					    gpointer                user_data);
+					    DevHelpController      *controller);
 
 static gboolean devhelp_controller_open    (DevHelpController      *controller,
 					    const gchar            *str_uri);
@@ -75,14 +75,14 @@ devhelp_controller_book_removed_cb         (DevHelpController      *controller,
 					    Book                   *book,
 					    gpointer                user_data);
 
-static void 
-devhelp_controller_forward_exists_changed_cb (DevHelpController    *controller,
+static void
+devhelp_controller_forward_exists_changed_cb (History              *history,
 					      gboolean              exists,
-					      gpointer              history);
-static void 
-devhelp_controller_back_exists_changed_cb  (DevHelpController      *controller,
-					    gboolean                exists,
-					    gpointer                history);
+					      DevHelpController    *controller);
+static void
+devhelp_controller_back_exists_changed_cb (History                 *history,
+					   gboolean                 exists,
+					   DevHelpController       *controller);
 
 #define PARENT_TYPE BONOBO_X_OBJECT_TYPE
 static BonoboXObjectClass *parent_class;
@@ -179,13 +179,16 @@ impl_DevHelp_Controller_addMenus (PortableServer_Servant    servant,
 
 	priv->ui_component = bonobo_ui_component_new ("DevHelpController");
 	
-	bonobo_ui_component_set_container (priv->ui_component, ui_container);
+	bonobo_ui_component_set_container (priv->ui_component,
+					   ui_container,
+					   ev);
 	bonobo_ui_component_add_verb_list_with_data (priv->ui_component,
 						     verbs,
 						     controller);
 	bonobo_ui_util_set_ui (priv->ui_component, DATA_DIR,
 			       "GNOME_DevHelp_Controller.ui",
-			       "devhelp");
+			       "devhelp",
+			       ev);
 }
 
 static void
@@ -253,37 +256,70 @@ devhelp_controller_init (DevHelpController *controller)
         priv->bookshelf    = bookshelf_new (priv->fd);
         priv->index        = BOOK_INDEX (book_index_new (priv->bookshelf));
 
-	gtk_signal_connect_object (GTK_OBJECT (priv->history),
-				   "forward_exists_changed",
-				   GTK_SIGNAL_FUNC (devhelp_controller_forward_exists_changed_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect (priv->history,
+			  "forward_exists_changed",
+			  G_CALLBACK (devhelp_controller_forward_exists_changed_cb),
+			  controller);
 	
-	gtk_signal_connect_object (GTK_OBJECT (priv->history),
-				   "back_exists_changed",
-				   GTK_SIGNAL_FUNC (devhelp_controller_back_exists_changed_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect (priv->history,
+			  "back_exists_changed",
+			  G_CALLBACK (devhelp_controller_back_exists_changed_cb),
+			  controller);
 
-	gtk_signal_connect_object (GTK_OBJECT (priv->bookshelf),
-				   "book_added",
-				   GTK_SIGNAL_FUNC (devhelp_controller_book_added_cb),
-				   GTK_OBJECT (controller));
+	/* TODO: Convert from connect_object to connect */
+	g_signal_connect_object (G_OBJECT (priv->bookshelf),
+				 "book_added",
+				 G_CALLBACK (devhelp_controller_book_added_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
 	
-	gtk_signal_connect_object (GTK_OBJECT (priv->bookshelf),
-				   "book_removed",
-				   GTK_SIGNAL_FUNC (devhelp_controller_book_removed_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect_object (G_OBJECT (priv->bookshelf),
+				 "book_removed",
+				 G_CALLBACK (devhelp_controller_book_removed_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
 	
-	gtk_signal_connect_object (GTK_OBJECT (priv->index),
-				   "uri_selected",
-				   GTK_SIGNAL_FUNC (devhelp_controller_uri_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect (G_OBJECT (priv->index),
+			  "uri_selected",
+			  G_CALLBACK (devhelp_controller_uri_cb),
+			  controller);
+
+	g_signal_connect_object (G_OBJECT (priv->history),
+				 "forward_exists_changed",
+				 G_CALLBACK (devhelp_controller_forward_exists_changed_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
+	
+	g_signal_connect_object (G_OBJECT (priv->history),
+				 "back_exists_changed",
+				 G_CALLBACK (devhelp_controller_back_exists_changed_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
+
+	g_signal_connect_object (G_OBJECT (priv->bookshelf),
+				 "book_added",
+				 G_CALLBACK (devhelp_controller_book_added_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
+	
+	g_signal_connect_object (G_OBJECT (priv->bookshelf),
+				 "book_removed",
+				 G_CALLBACK (devhelp_controller_book_removed_cb),
+				 G_OBJECT (controller),
+				 G_CONNECT_AFTER);
+	
+	g_signal_connect_object (G_OBJECT (priv->index),
+				 "uri_selected",
+				 G_CALLBACK (devhelp_controller_uri_cb),
+				 controller,
+				 0);
         
         priv->search = devhelp_search_new (priv->bookshelf);
 
-	gtk_signal_connect_object (GTK_OBJECT (priv->search),
-				   "uri_selected",
-				   GTK_SIGNAL_FUNC (devhelp_controller_uri_cb),
-				   GTK_OBJECT (controller));
+	g_signal_connect (G_OBJECT (priv->search),
+			  "uri_selected",
+			  G_CALLBACK (devhelp_controller_uri_cb),
+			  controller);
 
 	priv->event_source = bonobo_event_source_new ();
 
@@ -514,9 +550,9 @@ devhelp_controller_book_removed_cb (DevHelpController   *controller,
 }
 
 static void 
-devhelp_controller_forward_exists_changed_cb (DevHelpController   *controller,
+devhelp_controller_forward_exists_changed_cb (History              *history,
 					      gboolean             exists,
-					      gpointer             history)
+					      DevHelpController   *controller)
 {
 	DevHelpControllerPriv   *priv;
 	gchar                   *sensitive;
@@ -545,9 +581,9 @@ devhelp_controller_forward_exists_changed_cb (DevHelpController   *controller,
 }
 
 static void 
-devhelp_controller_back_exists_changed_cb (DevHelpController   *controller,
+devhelp_controller_back_exists_changed_cb (History             *history,
 					   gboolean             exists,
-					   gpointer             history)
+					   DevHelpController   *controller)
 {
 	DevHelpControllerPriv   *priv;
 	gchar                   *sensitive;
@@ -581,19 +617,19 @@ devhelp_controller_new ()
 {
         DevHelpController   *controller;
         
-        controller = gtk_type_new (TYPE_DEVHELP_CONTROLLER);
+	controller = g_object_new (TYPE_DEVHELP_CONTROLLER, NULL);
         
         return controller;
 }
 
 static void
-devhelp_controller_uri_cb (DevHelpController   *controller,
+devhelp_controller_uri_cb (GObject             *unused,
 			   const GnomeVFSURI   *uri,
-			   gpointer             ignored)
+			   DevHelpController   *controller)
 {
 	DevHelpControllerPriv   *priv;
 	gchar                   *str_uri;
-		
+	
 	g_return_if_fail (controller != NULL);
 	g_return_if_fail (IS_DEVHELP_CONTROLLER (controller));
 	g_return_if_fail (uri != NULL);

@@ -26,8 +26,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <gnome-xml/parser.h>
-#include <gnome-xml/xmlmemory.h>
+#include <libxml/parser.h>
 #include "function-database.h"
 #include "util.h"
 #include "book.h"
@@ -175,7 +174,7 @@ book_parse (Book *book, GnomeVFSURI *uri, FunctionDatabase *fd)
 	}
 	
 	if (xmlStrcmp (root_node->name, (const xmlChar *) "book")) {
-		g_warning ("Document wrong type, got %s, expected 'book': %s", 
+		g_warning ("Document wrong type, got '%s', expected 'book': %s", 
 			   root_node->name, file_name);
 		xmlFreeDoc (doc);
 		return;
@@ -249,7 +248,7 @@ book_parse (Book *book, GnomeVFSURI *uri, FunctionDatabase *fd)
 	}
 
 	if (xmlStrcmp (root_node->name, (const xmlChar *) "chapters")) {
-		g_warning ("Document wrong type, got %s, expected 'chapters': %s", 
+		g_warning ("Document wrong type, got '%s', expected 'chapters': %s", 
 			   root_node->name, file_name);
 		xmlFreeDoc (doc);
 		return;
@@ -266,15 +265,24 @@ book_parse (Book *book, GnomeVFSURI *uri, FunctionDatabase *fd)
 		cur = cur->next;
 	}
 	
-	root_node = root_node->next;
+        while (1) 
+        {
+	        root_node = root_node->next;
+	        
+	        if (!root_node) {
+		       xmlFreeDoc (doc);
+		       return;
+	        }
 
-	if (!root_node) {
-		xmlFreeDoc (doc);
-		return;
+	        if (xmlStrcmp (root_node->name, (const xmlChar*) "text")) {
+		       break;
+		}
 	}
+   
 	
+
 	if (xmlStrcmp (root_node->name, (const xmlChar *) "functions")) {
-		g_warning ("Document wrong type, got %s, expected 'functions': %s", 
+		g_warning ("Document wrong type, got '%s', expected 'functions': %s", 
 			   root_node->name, file_name);
 		xmlFreeDoc (doc);
 		return;
@@ -330,8 +338,7 @@ book_parse_sub (Book *book, BookNode *parent, xmlNode *xml_node)
 	cur = xml_node->xmlChildrenNode;
 	
 	while (cur != NULL) {
-		if (!xmlStrcmp (cur->name, (const xmlChar *) "sub") ||
-		    !xmlStrcmp (cur->name, (const xmlChar *) "chapter")) {
+	        if (!xmlStrcmp (cur->name, (const xmlChar*) "sub")) {
 			book_parse_sub (book, book_node, cur);
 		}
 		
@@ -927,8 +934,6 @@ document_get_uri (const Document *document, const gchar *anchor)
 		uri = gnome_vfs_uri_append_string (priv->base_uri, 
 						   document->link);
 	}
-	
-	tst = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
 	return uri;
 }

@@ -30,11 +30,11 @@
 #include "GNOME_DevHelp.h"
 #include "bookshelf.h"
 
-#define TYPE_DEVHELP_CONTROLLER		(devhelp_controller_get_type ())
-#define DEVHELP_CONTROLLER(obj)		(GTK_CHECK_CAST ((obj), TYPE_DEVHELP_CONTROLLER, DevHelpController))
-#define DEVHELP_CONTROLLER_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), TYPE_DEVHELP_CONTROLLER, DevHelpControllerClass))
-#define IS_DEVHELP_CONTROLLER(obj)		(GTK_CHECK_TYPE ((obj), TYPE_DEVHELP_CONTROLLER))
-#define IS_DEVHELP_CONTROLLER_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), TYPE_DEVHELP_CONTROLLER))
+#define TYPE_DEVHELP_CONTROLLER		   (devhelp_controller_get_type ())
+#define DEVHELP_CONTROLLER(obj)		   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_DEVHELP_CONTROLLER, DevHelpController))
+#define DEVHELP_CONTROLLER_CLASS(klass)	   (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_DEVHELP_CONTROLLER, DevHelpControllerClass))
+#define IS_DEVHELP_CONTROLLER(obj)	   (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_DEVHELP_CONTROLLER))
+#define IS_DEVHELP_CONTROLLER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_DEVHELP_CONTROLLER))
 
 typedef struct _DevHelpController       DevHelpController;
 typedef struct _DevHelpControllerClass  DevHelpControllerClass;

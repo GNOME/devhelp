@@ -27,13 +27,10 @@
 
 #include <stdio.h>
 #include <glib.h>
-#include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-messagebox.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <gnome-xml/parser.h>
-#include <gnome-xml/xmlmemory.h>
-#include <gtk/gtksignal.h>
+#include <libxml/parser.h>
 #include "function-database.h"
 #include "util.h"
 #include "bookshelf.h"
@@ -41,8 +38,8 @@
 #define d(x)
 
 static void      bookshelf_init              (Bookshelf        *bookshelf);
-static void      bookshelf_class_init        (GtkObjectClass   *klass);
-static void      bookshelf_destroy           (GtkObject        *object);
+static void      bookshelf_class_init        (GObjectClass     *klass);
+static void      bookshelf_destroy           (GObject          *object);
 
 static GSList *  bookshelf_read_books_dir    (GnomeVFSURI      *books_uri);
 
@@ -68,25 +65,27 @@ enum {
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
-GtkType
+GType
 bookshelf_get_type (void)
 {
-	static GtkType bookshelf_type = 0;
+	static GType bookshelf_type = 0;
         
 	if (!bookshelf_type) {
-		static const GtkTypeInfo bookshelf_info = {
-			"Bookshelf",
-			sizeof (Bookshelf),
+		static const GTypeInfo bookshelf_info = {
 			sizeof (BookshelfClass),
-			(GtkClassInitFunc)  bookshelf_class_init,
-			(GtkObjectInitFunc) bookshelf_init,
-			NULL, /* -- Reserved -- */
-			NULL, /* -- Reserved -- */
-			(GtkClassInitFunc) NULL,
+			NULL,
+			NULL,
+			(GClassInitFunc)  bookshelf_class_init,
+			NULL,
+			NULL,
+			sizeof (Bookshelf),
+			0,
+			(GInstanceInitFunc) bookshelf_init,
 		};
                 
-		bookshelf_type = gtk_type_unique (GTK_TYPE_OBJECT,
-						  &bookshelf_info);
+		bookshelf_type = g_type_register_static (G_TYPE_OBJECT,
+							 "Bookshelf",
+							 &bookshelf_info, 0);
 	}
 
 	return bookshelf_type;
@@ -103,35 +102,35 @@ bookshelf_init (Bookshelf *bookshelf)
 }
 
 static void
-bookshelf_class_init (GtkObjectClass *klass)
+bookshelf_class_init (GObjectClass *klass)
 {
-	klass->destroy = bookshelf_destroy;
+	klass->finalize = bookshelf_destroy;
 
 	signals[BOOK_ADDED] = 
-		gtk_signal_new ("book_added",
-				GTK_RUN_LAST,
-				klass->type,
-				GTK_SIGNAL_OFFSET (BookshelfClass,
-						   book_added),
-				gtk_marshal_NONE__POINTER,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_POINTER);
+		g_signal_new ("book_added",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (BookshelfClass,
+						book_added),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);
 
 	signals[BOOK_REMOVED] = 
-		gtk_signal_new ("book_removed",
-				GTK_RUN_LAST,
-				klass->type,
-				GTK_SIGNAL_OFFSET (BookshelfClass,
-						   book_removed),
-				gtk_marshal_NONE__POINTER,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_POINTER);
-
-	gtk_object_class_add_signals (klass, signals, LAST_SIGNAL);
+		g_signal_new ("book_removed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (BookshelfClass,
+					       book_removed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);
 }
 
 static void
-bookshelf_destroy (GtkObject *object)
+bookshelf_destroy (GObject *object)
 {
 	Bookshelf       *bookshelf;
 	BookshelfPriv   *priv;
@@ -156,27 +155,27 @@ bookshelf_read_books_dir (GnomeVFSURI *books_uri)
 	gchar                     *book_name;
 	GList                     *dir_list, *node;
 	GnomeVFSFileInfo          *info;
-	GnomeVFSDirectoryFilter   *filter;
+//	GnomeVFSDirectoryFilter   *filter;
 	GnomeVFSResult             result;
 	gchar                     *str_uri;
 	
 	g_return_val_if_fail (books_uri != NULL, NULL);
 
 	list = NULL;
-
+#if 0
 	filter = gnome_vfs_directory_filter_new (GNOME_VFS_DIRECTORY_FILTER_NONE,
 						 GNOME_VFS_DIRECTORY_FILTER_DEFAULT &
 						 GNOME_VFS_DIRECTORY_FILTER_NODIRS |
 						 GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR | 
 						 GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR,
 						 NULL);
-	
+#endif	
 	str_uri = gnome_vfs_uri_to_string (books_uri, GNOME_VFS_URI_HIDE_NONE);
 	result  = gnome_vfs_directory_list_load (&dir_list, str_uri,
-						 GNOME_VFS_FILE_INFO_DEFAULT,
-						 filter);
+						 GNOME_VFS_FILE_INFO_DEFAULT);
+//						 filter);
 	g_free (str_uri);
-	gnome_vfs_directory_filter_destroy (filter);
+//	gnome_vfs_directory_filter_destroy (filter);
 
 	/* If no books are found. */
 	if (result == GNOME_VFS_ERROR_NOT_FOUND) {
@@ -189,7 +188,14 @@ bookshelf_read_books_dir (GnomeVFSURI *books_uri)
 	}
 
 	for (node = dir_list; node; node = node->next) {
+		int len;
 		info = (GnomeVFSFileInfo *) node->data;
+		if (strlen (info->name) <= 8) {
+			continue;
+		} else if (strncmp (info->name + (strlen (info->name)-8), ".devhelp", 8) != 0) {
+			continue;
+		}
+		d(g_print ("info->name: %s", info->name));
 		book_name = g_strdup (info->name);
 		list = g_slist_prepend (list, book_name);
 	}
@@ -206,7 +212,7 @@ bookshelf_new (FunctionDatabase *fd)
 	gchar           *filename;
 	gchar           *user_dir;
 	
-	bookshelf = gtk_type_new (TYPE_BOOKSHELF);
+	bookshelf = g_object_new (TYPE_BOOKSHELF, NULL);
 	priv      = bookshelf->priv;
 	priv->fd  = fd;
 
@@ -217,15 +223,24 @@ bookshelf_new (FunctionDatabase *fd)
 	priv->filename = filename;
 
         function_database_freeze (priv->fd);
-	
-        /* First add user directory */
+
+	/* First add user directory */
         user_dir = g_strdup_printf ("%s/.devhelp", home_dir);
 	bookshelf_add_directory (bookshelf, user_dir);
         g_free (user_dir);
-	
+
 	/* Then add global directories */
-	bookshelf_add_directory (bookshelf, DATA_DIR"/devhelp");
 	
+	/* If we have a non-standard datadir */
+	if (strcmp (DATA_DIR, "/usr/share") &&
+	    strcmp (DATA_DIR, "/usr/local/share")) {
+		d(g_print ("Adding %s", DATA_DIR));
+		bookshelf_add_directory (bookshelf, DATA_DIR"/devhelp");
+	}
+	
+	bookshelf_add_directory (bookshelf, "/usr/share/devhelp"); 
+	bookshelf_add_directory (bookshelf, "/usr/local/share/devhelp"); 
+
         function_database_thaw (priv->fd);
 	
 	return bookshelf;
@@ -279,9 +294,10 @@ bookshelf_hide_book (Bookshelf *bookshelf, Book *book)
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
-
+	
 	priv = bookshelf->priv;
 
 	xml_book = g_new (XMLBook, 1);
@@ -306,7 +322,6 @@ bookshelf_show_book (Bookshelf *bookshelf, XMLBook *xml_book)
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
-	g_return_if_fail (xml_book != NULL);
 
 	priv = bookshelf->priv;
 
@@ -341,7 +356,10 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
 	
 	priv = bookshelf->priv;
-	
+
+	if (g_file_test (filename, G_FILE_TEST_EXISTS) == FALSE) {
+		return NULL;
+	}
 	doc = xmlParseFile (filename);
 
 	if (!doc) {
@@ -379,7 +397,7 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 				book->visible = TRUE;
 			}
 			xmlFree (visible);
-		        
+
 			/* Okay, we found an old spec file.
 			 * Remove it and return NULL (no books)
 			 */
@@ -491,7 +509,7 @@ bookshelf_add_book (Bookshelf *bookshelf, Book* book)
 {
 	BookshelfPriv   *priv;
 	Book            *book2;
-	
+   
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
 	g_return_if_fail (book != NULL);
@@ -506,10 +524,11 @@ bookshelf_add_book (Bookshelf *bookshelf, Book* book)
 			
 	priv->books        = g_slist_prepend (priv->books, book);
 	priv->current_book = book;
-
-	gtk_signal_emit (GTK_OBJECT (bookshelf),
-			 signals[BOOK_ADDED],
-			 book);
+      
+	g_signal_emit (G_OBJECT (bookshelf),
+		       signals[BOOK_ADDED],
+		       0,
+                       book);
 
 	return TRUE;
 }
@@ -548,7 +567,6 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	GSList          *node2;
 	XMLBook         *xml_book;
 	gboolean         skip;
-	gchar           *new_baseurl;
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
@@ -565,49 +583,44 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	books = bookshelf_read_books_dir (book_dir_uri);
         
 	skip = FALSE;
-	new_baseurl = NULL;
 	for (node = books; node; node = node->next) {
 		book_file_name = g_strdup_printf (node->data);
 		
 		book_uri = gnome_vfs_uri_append_path (book_dir_uri,
 						      book_file_name);
 		
+		book = book_new (book_uri, priv->fd);
+
 		xml_book = xml_spec_get_book_uri (priv->xml_books, book_uri);
 		if (xml_book != NULL) {
 			gchar *basename_str;
-			const gchar *book_uri_str;
+			gchar *book_uri_str;
 
 			basename_str = (gchar*)basename (xml_book->spec_path);
-			book_uri_str = gnome_vfs_uri_get_basename (book_uri);
+			book_uri_str = (gchar*)basename (gnome_vfs_uri_to_string (book_uri,
+										  GNOME_VFS_URI_HIDE_NONE));
 			if (!strcmp (basename_str, book_uri_str)) {
-				new_baseurl = (gchar*)xml_book->spec_path;
+				book_set_base_url (book, xml_book->spec_path);
 			}
 			
 			if (xml_book->visible == FALSE) {
 				skip = TRUE;
 			}
-		}
-		g_free (book_file_name);
-
-		if (skip == TRUE) {
-			skip = FALSE;
-			new_baseurl = NULL;
-			continue;
-		}
-		
-		book = book_new (book_uri, priv->fd);
-
-		if (new_baseurl == NULL) {
+		} else {
 			gchar *book_dir = g_strdup_printf ("file://%s/books/%s",
 							   directory,
 							   book_get_name_full (book));
 			book_set_base_url (book, book_dir);
 			g_free (book_dir);
-		} else {
-			book_set_base_url (book, new_baseurl);
-			new_baseurl = NULL;
 		}
+		g_free (book_file_name);
 
+		if (skip == TRUE) {
+			/* TODO: g_free (book) ? */
+			skip = FALSE;
+			continue;
+		}
+		
 		bookshelf_add_book (bookshelf, book);
 		
 		g_free (node->data);
@@ -709,9 +722,9 @@ bookshelf_remove_book (Bookshelf *bookshelf, Book *book)
 	
 	priv->books = g_slist_remove (priv->books, book);
 
-	gtk_signal_emit (GTK_OBJECT (bookshelf),
-			 signals[BOOK_REMOVED],
-			 book);
+	g_signal_emit (G_OBJECT (bookshelf),
+		       signals[BOOK_REMOVED],
+		       GPOINTER_TO_INT (book));
 }
 
 GSList *

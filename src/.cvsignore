@@ -5,8 +5,10 @@ GNOME_DevHelp-stubs.c
 GNOME_DevHelp-skels.c
 GNOME_DevHelp-common.c
 GNOME_DevHelp.h
-stamp-idl
 .libs
-devhelp
-GNOME_DevHelp.oaf
-GNOME_DevHelp.oaf.in
+devhelp-2
+GNOME_DevHelp.server
+GNOME_DevHelp.server.in
+devhelp-marshal-guts.c
+devhelp-marshal.h
+gnome_devhelp_idl_stamp

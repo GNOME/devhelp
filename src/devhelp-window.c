@@ -30,10 +30,9 @@
 #include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtkvbox.h>
 #include <bonobo.h>
-#include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
-#include "html-widget.h"
+#include "devhelp-view.h"
 #include "GNOME_DevHelp.h"
 #include "preferences.h"
 #include "devhelp-window.h"
@@ -78,8 +77,8 @@ static void cmd_size_changed_cb          (BonoboUIComponent            *componen
 					  gpointer                      user_data);
 
 static void dw_uri_changed_cb            (BonoboListener       *listener,
-					  gchar                *event_name,
-					  CORBA_any            *arg,
+					  const gchar          *event_name,
+					  const CORBA_any      *arg,
 					  CORBA_Environment    *ev,
 					  gpointer              user_data);
 
@@ -87,9 +86,9 @@ static void dw_delete_cb                 (GtkWidget            *widget,
 					  GdkEventAny          *event,
 					  gpointer              user_data);
 
-static void dw_link_clicked_cb           (DevHelpWindow        *window,
+static void dw_link_clicked_cb           (DevHelpWindow        *ignored,
 					  gchar                *url,
-					  gpointer              ignored);
+					  DevHelpWindow        *window);
 
 static void dw_on_url_cb                 (DevHelpWindow        *window,
 					  gchar                *url,
@@ -194,14 +193,14 @@ devhelp_window_init (DevHelpWindow *window)
         priv         = g_new0 (DevHelpWindowPriv, 1);
         priv->prefs  = preferences_new ();
 	
-	gtk_signal_connect (GTK_OBJECT (priv->prefs),
-			    "zoom_level_changed",
-			    GTK_SIGNAL_FUNC (dw_zoom_level_changed_cb),
-			    window);
+	g_signal_connect (G_OBJECT (priv->prefs),
+			  "zoom_level_changed",
+			  G_CALLBACK (dw_zoom_level_changed_cb),
+			  window);
 	
-	gtk_object_set (GTK_OBJECT (priv->prefs),
-			"sidebar_visible", TRUE,
-			NULL);
+	g_object_set (G_OBJECT (priv->prefs),
+		      "sidebar_visible", TRUE,
+		      NULL);
 	
         window->priv = priv;
 }
@@ -220,75 +219,6 @@ dw_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
 }
 
 static void
-dw_note_page_mapped_cb (GtkWidget *page, GtkAccelGroup *accel_group)
-{
-	GtkWidget *dialog = gtk_widget_get_toplevel (GTK_WIDGET (page));
-
-	gtk_window_add_accel_group (GTK_WINDOW (dialog), accel_group);
-}
-
-static void
-dw_note_page_unmapped_cb (GtkWidget *page, GtkAccelGroup *accel_group)
-{
-	GtkWidget *dialog = gtk_widget_get_toplevel (GTK_WIDGET (page));
-
-	gtk_window_remove_accel_group (GTK_WINDOW (dialog), accel_group);
-}
-
-static void
-dw_note_page_setup_signals (GtkWidget *page, GtkAccelGroup *accel)
-{
-	gtk_accel_group_ref (accel);
-	gtk_signal_connect_full (GTK_OBJECT (page),
-				 "map",
-				 GTK_SIGNAL_FUNC (dw_note_page_mapped_cb), 
-				 NULL, 
-				 accel, 
-				 (GtkDestroyNotify) gtk_accel_group_unref,
-				 FALSE, FALSE);
-
-	gtk_accel_group_ref (accel);
-	gtk_signal_connect_full (GTK_OBJECT (page),
-				 "unmap",
-				 GTK_SIGNAL_FUNC (dw_note_page_unmapped_cb), 
-				 NULL,
-				 accel, 
-				 (GtkDestroyNotify) gtk_accel_group_unref,
-				 FALSE, FALSE);
-}
-
-static void
-dw_notebook_append_page_with_accelerator (GtkNotebook   *notebook,
-					  GtkWidget     *page,
-					  gchar         *label_text,
-					  GtkAccelGroup *accel)
-{
-	GtkWidget *label;
-	guint      key;
-
-	label = gtk_label_new (NULL);
-	key = gtk_label_parse_uline (GTK_LABEL (label), label_text);
-	gtk_widget_show (label);
-
-	dw_note_page_setup_signals (page, accel);
-
-	gtk_notebook_append_page (notebook, page, label);
-	
-	if (key) {
-		gtk_widget_add_accelerator (page, "grab_focus",
-					    accel,
-					    key,
-					    GDK_MOD1_MASK,
-					    0);
-
-		gtk_signal_connect (GTK_OBJECT (page),
-				    "grab_focus",
-				    GTK_SIGNAL_FUNC (dw_note_change_page_cb),
-				    notebook);
-	}
-}
-
-static void
 dw_populate (DevHelpWindow *window)
 {
         DevHelpWindowPriv    *priv;
@@ -300,7 +230,6 @@ dw_populate (DevHelpWindow *window)
 	gint                  zoom_level;
 	GtkWidget            *html_sw;
 	GtkWidget            *frame;
-	GtkAccelGroup        *accel;
 	 
         g_return_if_fail (window != NULL);
         g_return_if_fail (IS_DEVHELP_WINDOW (window));
@@ -309,14 +238,14 @@ dw_populate (DevHelpWindow *window)
         
         priv->notebook    = gtk_notebook_new ();
         priv->search_box  = gtk_vbox_new (FALSE, 0);
-	priv->html_widget = html_widget_new ();
+	priv->html_widget = devhelp_view_new ();
         priv->hpaned      = gtk_hpaned_new ();
 	priv->statusbar   = gtk_statusbar_new ();
 	html_sw           = gtk_scrolled_window_new (NULL, NULL);
 
-	gtk_object_get (GTK_OBJECT (priv->prefs),
-			"zoom_level", &zoom_level,
-			NULL);
+	g_object_get (G_OBJECT (priv->prefs),
+		      "zoom_level", &zoom_level,
+		      NULL);
 
 	dw_zoom_level_changed_cb (priv->prefs, zoom_level, window);
 
@@ -327,7 +256,12 @@ dw_populate (DevHelpWindow *window)
 					      &ev);
 
 	if (!priv->controller || BONOBO_EX (&ev)) {
-		g_error ("Couldn't get interface GNOME/DevHelp/Controller:1.0");
+		gchar *exception_as_text = bonobo_exception_get_text (&ev);
+		
+		g_error ("Couldn't get interface GNOME/DevHelp/Controller:1.0 (%s)",
+			 exception_as_text);
+		g_free (exception_as_text);
+		priv->controller = CORBA_OBJECT_NIL;
 	}
 
 	es = Bonobo_Unknown_queryInterface (priv->controller,
@@ -395,12 +329,9 @@ dw_populate (DevHelpWindow *window)
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 
-	accel = gtk_accel_group_new ();
-
-	dw_notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
-						  priv->index,
-						  _("_Contents"),
-						  accel);
+	gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
+				  priv->index,
+				  gtk_label_new_with_mnemonic (_("_Contents")));
 
 	gtk_box_pack_start (GTK_BOX (priv->search_box), 
 			    priv->search_entry, 
@@ -409,24 +340,27 @@ dw_populate (DevHelpWindow *window)
 	gtk_box_pack_end_defaults (GTK_BOX (priv->search_box),
 				   priv->search_list); 
 
-	dw_notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
-						  priv->search_box,
-						  _("_Search"),
-						  accel);
+	gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
+				  priv->search_box,
+				  gtk_label_new_with_mnemonic (_("_Search")));
 
 	gtk_widget_show_all (priv->hpaned);
 
 	bonobo_window_set_contents (BONOBO_WINDOW (window), priv->hpaned);
 
- 	gtk_signal_connect_object (GTK_OBJECT (priv->html_widget),
-				   "link_clicked", 
-				   GTK_SIGNAL_FUNC (dw_link_clicked_cb),
-				   GTK_OBJECT (window));
-	
-	gtk_signal_connect_object (GTK_OBJECT (priv->html_widget),
-				   "on_url",
-				   GTK_SIGNAL_FUNC (dw_on_url_cb),
-				   GTK_OBJECT (window));
+ 	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_widget)->document),
+				 "link_clicked", 
+				 G_CALLBACK (dw_link_clicked_cb),
+				 G_OBJECT (window),
+				 0);
+	/* TODO: Look in gtkhtml2 code or ask jborg */
+#if GNOME2_PORT_COMPLETE	
+	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_widget)->document),
+				 "on_url",
+				 G_CALLBACK (dw_on_url_cb),
+				 G_OBJECT (window),
+				 0);
+#endif	
 }
 
 static void
@@ -444,9 +378,12 @@ cmd_print_cb (BonoboUIComponent   *component,
 	window = DEVHELP_WINDOW (data);
 	priv   = window->priv;
 
+	g_message ("%s: FIXME!", __FUNCTION__);
+#if 0	
 	if (priv->html_widget) {
-		html_widget_print (HTML_WIDGET (priv->html_widget));
+		html_widget_print (DEVHELP_VIEW (priv->html_widget));
 	}
+#endif	
 }
 
 static void
@@ -454,7 +391,7 @@ cmd_exit_cb (BonoboUIComponent   *component,
 	     gpointer             data,
 	     const gchar         *cname)
 {
-	gtk_main_quit ();
+	bonobo_main_quit ();
 }
 
 static void
@@ -486,22 +423,24 @@ cmd_about_cb (BonoboUIComponent    *component,
 	      gpointer              data,
 	      const gchar          *cname)
 {
-	GtkWidget    *about;
-	const gchar  *authors[] = {
-		"Johan Dahlin <zilch.am@home.se>",
-		"Mikael Hallendal <micke@codefactory.se>",
-		"Rickard Hult <rhult@codefactory.se>",
-		NULL
-	};
-	 
-	about = gnome_about_new ("DevHelp", 
-                                 VERSION,
-				 _("(C) Copyright 2001, Johan Dahlin"), 
-                                 authors,
-				 _("A developer's help browser"), 
-                                 NULL);
+        GtkWidget *about;
 
-	gtk_widget_show (GTK_WIDGET (about));
+        const gchar *authors[] = {
+		"Johan Dahlin <jdahlin@telia.com",
+                "Mikael Hallendal <micke@codefactory.se>",
+                "Richard Hult <rhult@codefactory.se>",
+                NULL
+        };
+
+        about = gnome_about_new (PACKAGE, VERSION,
+				 "(C) 2001 Johan Dahlin <jdahlin@telia.com>", 
+				 _("A developer's help browser for GNOME 2"),
+                                 authors,
+                                 NULL,
+                                 NULL,
+                                 NULL);
+                                
+        gtk_widget_show (about);
 }
 
 static void
@@ -546,37 +485,34 @@ cmd_size_changed_cb (BonoboUIComponent            *component,
 		g_warning ("Unsupported size");
 	}
 
-	gtk_object_set (GTK_OBJECT (priv->prefs),
-			"zoom_level", zoom_level,
-			NULL);
+	g_object_set (G_OBJECT (priv->prefs),
+		      "zoom_level", zoom_level,
+		      NULL);
 }
 
 static void
 dw_uri_changed_cb (BonoboListener      *listener,
-		   gchar               *event_name,
-		   CORBA_any           *any,
+		   const gchar         *event_name,
+		   const CORBA_any     *any,
 		   CORBA_Environment   *ev,
 		   gpointer             user_data)
 {
 	DevHelpWindow       *window;
 	DevHelpWindowPriv   *priv;
-	gchar               *value;
-	GnomeVFSURI         *uri;
+	gchar               *uri;
 	
 	g_return_if_fail (user_data != NULL);
 	g_return_if_fail (IS_DEVHELP_WINDOW (user_data));
 	
 	window = DEVHELP_WINDOW (user_data);
 	priv   = window->priv;
-	value  = g_strdup (any->_value);
-	uri    = gnome_vfs_uri_new (value);
+	uri  = g_strdup (any->_value);
 
 	if (uri) {
-		html_widget_open_uri (HTML_WIDGET (priv->html_widget), uri);
-		gnome_vfs_uri_unref (uri);
+		devhelp_view_open_uri (DEVHELP_VIEW (priv->html_widget), uri, NULL);
 	}
 	
-	g_free (value);
+	g_free (uri);
 }
 
 static void
@@ -587,13 +523,13 @@ dw_delete_cb (GtkWidget     *widget,
 	g_return_if_fail (widget != NULL);
 	g_return_if_fail (IS_DEVHELP_WINDOW (widget));
 	
-	gtk_main_quit ();
+	bonobo_main_quit ();
 }
 
 static void
-dw_link_clicked_cb (DevHelpWindow   *window,
+dw_link_clicked_cb (DevHelpWindow   *ignored,
 		    gchar           *url,
-		    gpointer         ignored)
+		    DevHelpWindow   *window)
 {
 	DevHelpWindowPriv   *priv;
 
@@ -645,9 +581,10 @@ dw_zoom_level_changed_cb (Preferences     *prefs,
 	
 	magnification = zoom_levels[zoom_level].data / 100.0;
 	magnification = CLAMP (magnification, 0.05, 20.0);
-	
-	gtk_html_set_magnification (GTK_HTML (priv->html_widget),
-				    magnification);
+
+	/* TODO: Look in gtkhtml2 code or ask jborg */
+//	gtk_html_set_magnification (GTK_HTML (priv->html_widget),
+//				    magnification);
 
 	if (zoom_level == ZOOM_TINY_INDEX) {
 		zoom_string = g_strdup ("/commands/CmdSizeTiny");
@@ -676,20 +613,25 @@ devhelp_window_new (void)
         DevHelpWindowPriv   *priv;
         GtkWidget           *widget;
         BonoboUIContainer   *ui_container;
+	BonoboUIEngine      *ui_engine;
+	CORBA_Environment    ev;
+	GdkPixbuf           *icon;
 	
         window = gtk_type_new (TYPE_DEVHELP_WINDOW);
         priv   = window->priv;
 
+	CORBA_exception_init (&ev);
+	
         ui_container = bonobo_ui_container_new ();
+        bonobo_ui_container_set_engine (BONOBO_UI_CONTAINER (ui_container),
+                                        bonobo_window_get_ui_engine (BONOBO_WINDOW (window)));
 
-        bonobo_ui_container_set_win (ui_container, BONOBO_WINDOW (window));
+        priv->component = bonobo_ui_component_new ("DevHelp");
 
         bonobo_ui_engine_config_set_path (
                 bonobo_window_get_ui_engine (BONOBO_WINDOW (window)),
-                "DevHelp/UIConf/kvps");
+		"/apps/devhelp/ui-config/bonobo");
 	
-        priv->component = bonobo_ui_component_new ("DevHelp");
-
 	bonobo_ui_component_add_listener (priv->component, "CmdSizeTiny",
 					  cmd_size_changed_cb,
 					  window);
@@ -711,19 +653,25 @@ devhelp_window_new (void)
 					  window);	
 	
         bonobo_ui_component_set_container (priv->component, 
-                                           BONOBO_OBJREF (ui_container));
+                                           BONOBO_OBJREF (ui_container),
+					   &ev);
         
         bonobo_ui_component_freeze (priv->component, NULL);
 
-        bonobo_ui_util_set_ui (priv->component, DATA_DIR,
-                               "GNOME_DevHelp.ui", "devhelp");
+        bonobo_ui_util_set_ui (priv->component,
+			       DATA_DIR,
+                               "GNOME_DevHelp.ui",
+			       "devhelp",
+			       &ev);
 
         bonobo_ui_component_add_verb_list_with_data (priv->component,
                                                      verbs,
                                                      window);
 
-        widget = bonobo_window_construct (BONOBO_WINDOW (window), 
-                                          "DevHelp", "DevHelp");
+        widget = bonobo_window_construct (BONOBO_WINDOW (window),
+					  BONOBO_UI_CONTAINER (ui_container),
+                                          "DevHelp",
+					  "DevHelp");
 
         gtk_window_set_policy (GTK_WINDOW (widget), TRUE, TRUE, FALSE);
         
@@ -731,14 +679,22 @@ devhelp_window_new (void)
 	
 	gtk_window_set_wmclass (GTK_WINDOW (window), "devhelp", "DevHelp");
 
-	gtk_signal_connect (GTK_OBJECT (window), 
-			    "delete_event",
-			    GTK_SIGNAL_FUNC (dw_delete_cb),
-			    NULL);
+	g_signal_connect (GTK_OBJECT (window), 
+			  "delete_event",
+			  G_CALLBACK (dw_delete_cb),
+			  NULL);
 
         dw_populate (window);
 
+	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png", NULL);
+	if (icon) {
+		gtk_window_set_icon (GTK_WINDOW (window), icon);
+		g_object_unref (icon);
+	}
+	
         bonobo_ui_component_thaw (priv->component, NULL);
+
+	CORBA_exception_free (&ev);
 	
 	return widget;
 }

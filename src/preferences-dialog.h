@@ -23,6 +23,7 @@
 #ifndef __PREFERENCES_DIALOG_H__
 #define __PREFERENCES_DIALOG_H__
 
+#include <gtk/gtkwidget.h>
 #include "preferences.h"
 
 typedef struct _PreferencesDialog PreferencesDialog;

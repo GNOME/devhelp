@@ -24,26 +24,28 @@
 #ifndef __PREFERENCES_H__
 #define __PREFERENCES_H__
 
+#include <glib-object.h>
 #include <gconf/gconf-client.h>
 
 #define TYPE_PREFERENCES		(preferences_get_type ())
-#define PREFERENCES(obj)		(GTK_CHECK_CAST ((obj), TYPE_PREFERENCES, Preferences))
-#define PREFERENCES_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), TYPE_PREFERENCES, PreferencesClass))
-#define IS_PREFERENCES(obj)		(GTK_CHECK_TYPE ((obj), TYPE_PREFERENCES))
-#define IS_PREFERENCES_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), TYPE_PREFERENCES))
+#define PREFERENCES(o)  		(G_TYPE_CHECK_INSTANCE_CAST ((o), TYPE_PREFERENCES, Preferences))
+#define PREFERENCES_CLASS(k)    	(G_TYPE_CHECK_CLASS_CAST ((k), TYPE_PREFERENCES, PreferencesClass))
+#define IS_PREFERENCES(o)		(G_TYPE_CHECK_INSTANCE_TYPE ((o), TYPE_PREFERENCES))
+#define IS_PREFERENCES_CLASS(k) 	(G_TYPE_CHECK_CLASS_TYPE ((k), TYPE_PREFERENCES))
+#define PREFERENCES_GET_CLASS(o)        (G_TYPE_INSTANCE_GET_CLASS ((o), TYPE_PREFERENCES, PreferencesClass))
 
 typedef struct _Preferences        Preferences;
 typedef struct _PreferencesClass   PreferencesClass;
 typedef struct _PreferencesPriv    PreferencesPriv;
 
 struct _Preferences {
-	GtkObject          parent;
+	GObject          parent;
 	
-	PreferencesPriv   *priv;
+	PreferencesPriv *priv;
 };
 
 struct _PreferencesClass {
-	GtkObjectClass     parent_class;
+	GObjectClass     parent_class;
 	
 	/* Signals */
 	
@@ -70,7 +72,7 @@ typedef struct {
 
 extern const OptionMenuData zoom_levels[];
 
-GtkType        preferences_get_type             (void);
+GType          preferences_get_type             (void);
 Preferences *  preferences_new                  (void);
 void           preferences_open_dialog          (Preferences   *prefs);
 

@@ -27,9 +27,7 @@
 
 #include <stdio.h>
 #include <gconf/gconf-client.h>
-#include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-i18n.h>
-#include <gtk/gtksignal.h>
 #include "preferences-dialog.h"
 #include "preferences.h"
 
@@ -39,27 +37,29 @@
 #define	ZOOM_LEVEL_LARGE  125
 #define	ZOOM_LEVEL_HUGE   150
 
-static void   preferences_init                  (Preferences        *prefs);
-static void   preferences_class_init            (PreferencesClass   *klass);
-static void   preferences_destroy               (GtkObject          *object);
-static void   preferences_get_arg               (GtkObject          *object, 
-						 GtkArg             *arg, 
-						 guint               arg_id);
-static void   preferences_set_arg               (GtkObject          *object, 
-						 GtkArg             *arg, 
-						 guint               arg_id);
-static void   gconf_sidebar_visible_changed_cb  (GConfClient        *client,
-						 guint               notify_id,
-						 GConfEntry         *entry,
-						 gpointer            data);
-static void   gconf_sidebar_position_changed_cb (GConfClient        *client,
-						 guint               notify_id,
-						 GConfEntry         *entry,
-						 gpointer            data);
-static void   gconf_zoom_level_changed_cb       (GConfClient        *client,
-						 guint               notify_id,
-						 GConfEntry         *entry,
-						 gpointer            data);
+static void   preferences_init                  (Preferences      *prefs);
+static void   preferences_class_init            (PreferencesClass *klass);
+static void   preferences_destroy               (GObject          *object);
+static void   preferences_get_property          (GObject          *object,
+						 guint             property_id,
+						 GValue           *value,
+						 GParamSpec       *pspec);
+static void   preferences_set_property          (GObject          *object,
+						 guint             property_id,
+						 const GValue     *value,
+						 GParamSpec       *pspec);
+static void   gconf_sidebar_visible_changed_cb  (GConfClient      *client,
+						 guint             notify_id,
+						 GConfEntry       *entry,
+						 gpointer          data);
+static void   gconf_sidebar_position_changed_cb (GConfClient      *client,
+						 guint             notify_id,
+						 GConfEntry       *entry,
+						 gpointer          data);
+static void   gconf_zoom_level_changed_cb       (GConfClient      *client,
+						 guint             notify_id,
+						 GConfEntry       *entry,
+						 gpointer          data);
 
 enum {
 	ARG_0,
@@ -81,8 +81,6 @@ struct _PreferencesPriv {
 	GConfClient   *client;
 };
 
-static GtkObjectClass *parent_class = NULL;
-
 const OptionMenuData zoom_levels[] = {
 	{ N_("Tiny"),   ZOOM_LEVEL_TINY },
 	{ N_("Small"),  ZOOM_LEVEL_SMALL },
@@ -92,27 +90,30 @@ const OptionMenuData zoom_levels[] = {
 	{ NULL,         0 }
 };
 
-GtkType
+GType
 preferences_get_type (void)
 {
-        static GtkType type = 0;
+        static GType prefs_type = 0;
 
-        if (!type) {
-                static const GtkTypeInfo info = {
-                        "Preferences",
-                        sizeof (Preferences),
+        if (!prefs_type) {
+                static const GTypeInfo prefs_info = {
                         sizeof (PreferencesClass),
-                        (GtkClassInitFunc)  preferences_class_init,
-                        (GtkObjectInitFunc) preferences_init,
-                        /* reserved_1 */ NULL,
-                        /* reserved_2 */ NULL,
-                        (GtkClassInitFunc) NULL,
+			NULL,
+			NULL,
+			(GClassInitFunc)  preferences_class_init,
+			NULL,
+			NULL,
+			sizeof (Preferences),
+			0,
+			(GInstanceInitFunc) preferences_init,
                 };
-
-                type = gtk_type_unique (gtk_object_get_type (), &info);
+		
+		prefs_type = g_type_register_static (G_TYPE_OBJECT,
+						     "Preferences",
+						     &prefs_info, 0);
         }
 
-        return type;
+        return prefs_type;
 }
 
 static void
@@ -126,7 +127,7 @@ preferences_init (Preferences *prefs)
 	
 	gconf_client_add_dir (priv->client, "/apps/devhelp",
 			      GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
-
+#if 0
 	gconf_client_notify_add (priv->client, 
 				 "/apps/devhelp/sidebar_position",
 				 gconf_sidebar_position_changed_cb, 
@@ -144,120 +145,135 @@ preferences_init (Preferences *prefs)
 				 gconf_zoom_level_changed_cb, 
 				 prefs,
 				 NULL, NULL);
-
+#endif
 	prefs->priv = priv;
 }
 
 static void
 preferences_class_init (PreferencesClass *klass)
 {
-	GtkObjectClass   *object_class;
+	GObjectClass   *gobject_class;
 	
-	object_class = (GtkObjectClass *) klass;
+	gobject_class = G_OBJECT_CLASS (klass);
 	
-	parent_class = gtk_type_class (gtk_object_get_type ());
-
 /* 	object_class->destroy = preferences_destroy; */
-	object_class->get_arg = preferences_get_arg;
-	object_class->set_arg = preferences_set_arg;
+	gobject_class->get_property = preferences_get_property;
+	gobject_class->set_property = preferences_set_property;
 
-	/* Arguments */
+	g_object_class_install_property (gobject_class,
+					 ARG_SIDEBAR_VISIBLE,
+					 g_param_spec_boolean ("sidebar_visible",
+							       "Sidebar visibility",
+							       "Sidebar visibility",
+							       FALSE,
+							       G_PARAM_READWRITE));
+	g_object_class_install_property (gobject_class,
+					 ARG_SIDEBAR_POSITION,
+					 g_param_spec_int ("sidebar_position",
+							   "Sidebar position",
+							   "Sidebar position",
+							   0,
+							   1<<16,
+							   300,
+							   G_PARAM_READWRITE));
+	g_object_class_install_property (gobject_class,
+					 ARG_ZOOM_LEVEL,
+					 g_param_spec_int ("zoom_level",
+							   "Zoom Level",
+							   "Zoom level",
+							   0,
+							   4,
+							   2,
+							   G_PARAM_READWRITE));
 	
-	gtk_object_add_arg_type ("Preferences::sidebar_visible",
-				 GTK_TYPE_BOOL,
-				 GTK_ARG_READWRITE,
-				 ARG_SIDEBAR_VISIBLE);
-	
-	gtk_object_add_arg_type ("Preferences::sidebar_position",
-				 GTK_TYPE_INT,
-				 GTK_ARG_READWRITE,
-				 ARG_SIDEBAR_POSITION);
-	
-	gtk_object_add_arg_type ("Preferences::zoom_level",
-				 GTK_TYPE_INT,
-				 GTK_ARG_READWRITE,
-				 ARG_ZOOM_LEVEL);
-
 	/* Signals */
-	
 	signals[SIDEBAR_VISIBLE_CHANGED] = 
-		gtk_signal_new ("sidebar_visible_changed",
-				GTK_RUN_LAST,
-				object_class->type,
-				GTK_SIGNAL_OFFSET (PreferencesClass,
-						   sidebar_visible_changed),
-				gtk_marshal_NONE__BOOL,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_BOOL);
+		g_signal_new ("sidebar_visible_changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (PreferencesClass,
+					       sidebar_visible_changed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__BOOLEAN,
+			      G_TYPE_NONE,
+			      1, G_TYPE_BOOLEAN);
 
 	signals[SIDEBAR_POSITION_CHANGED] = 
-		gtk_signal_new ("sidebar_position_changed",
-				GTK_RUN_LAST,
-				object_class->type,
-				GTK_SIGNAL_OFFSET (PreferencesClass,
-						   sidebar_position_changed),
-				gtk_marshal_NONE__INT,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_INT);
-
+		g_signal_new ("sidebar_position_changed",
+			      G_TYPE_FROM_CLASS (klass),				
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (PreferencesClass,
+					       sidebar_position_changed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__INT,
+			      G_TYPE_NONE,
+			      1, G_TYPE_INT);
+	
 	signals[ZOOM_LEVEL_CHANGED] = 
-		gtk_signal_new ("zoom_level_changed",
-				GTK_RUN_LAST,
-				object_class->type,
-				GTK_SIGNAL_OFFSET (PreferencesClass,
-						   zoom_level_changed),
-				gtk_marshal_NONE__INT,
-				GTK_TYPE_NONE,
-				1, GTK_TYPE_INT);
+		g_signal_new ("zoom_level_changed",
+			      G_TYPE_FROM_CLASS (klass),				
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (PreferencesClass,
+					       zoom_level_changed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__INT,
+			      G_TYPE_NONE,
+			      1, G_TYPE_INT);
 
-	gtk_object_class_add_signals (object_class, signals, LAST_SIGNAL);
 }
 
 static void
-preferences_destroy (GtkObject *object)
+preferences_destroy (GObject *object)
 {
 	/* FIX: Free up stuff and disconnect from GConf */
 }
 
 static void
-preferences_get_arg (GtkObject *object, GtkArg *arg, guint arg_id)
+preferences_get_property (GObject        *object,
+			  guint           property_id,
+			  GValue         *value,
+			  GParamSpec     *pspec)
 {
 	Preferences       *prefs;
 	PreferencesPriv   *priv;
-	
+
 	g_return_if_fail (object != NULL);
 	g_return_if_fail (IS_PREFERENCES (object));
-	
+
 	prefs = PREFERENCES (object);
 	priv  = prefs->priv;
-	
-	switch (arg_id) {
+
+	switch (property_id) {
 	case ARG_SIDEBAR_VISIBLE:
-		GTK_VALUE_BOOL (*arg) = 
-			gconf_client_get_bool (priv->client,
-					       "/apps/devhelp/sidebar_visible",
-					       NULL);
+		g_value_set_boolean (value,
+				     gconf_client_get_bool (priv->client,
+							    "/apps/devhelp/sidebar_visible",
+							    NULL));
 
 		break;
 	case ARG_SIDEBAR_POSITION:
-		GTK_VALUE_INT (*arg) = 
-			gconf_client_get_int (priv->client,
-					      "/apps/devhelp/sidebar_position",
-					      NULL);
+		g_value_set_int (value,
+				 gconf_client_get_int (priv->client,
+						       "/apps/devhelp/sidebar_position",
+						       NULL));
 		break;
 	case ARG_ZOOM_LEVEL:
-		GTK_VALUE_INT (*arg) = 
-			gconf_client_get_int (priv->client,
-					      "/apps/devhelp/zoom_level",
-					      NULL);
+		g_value_set_int (value,
+				 gconf_client_get_int (priv->client,
+						       "/apps/devhelp/zoom_level",
+						       NULL));
 		break;
 	default:
-		arg->type = GTK_TYPE_INVALID;
+		value->g_type = G_TYPE_INVALID;
+
 	}
 }
 
 static void
-preferences_set_arg (GtkObject *object, GtkArg *arg, guint arg_id)
+preferences_set_property (GObject        *object,
+			  guint           property_id,
+			  const GValue   *value,
+			  GParamSpec     *pspec)
 {
 	Preferences       *prefs;
 	PreferencesPriv   *priv;
@@ -268,23 +284,23 @@ preferences_set_arg (GtkObject *object, GtkArg *arg, guint arg_id)
 	prefs = PREFERENCES (object);
 	priv  = prefs->priv;
 	
-	switch (arg_id) {
+	switch (property_id) {
 	case ARG_SIDEBAR_VISIBLE:
 		gconf_client_set_bool (priv->client,
 				       "/apps/devhelp/sidebar_visible",
-				       GTK_VALUE_BOOL (*arg),
+				       g_value_get_boolean (value),
 				       NULL);
 		break;
 	case ARG_SIDEBAR_POSITION:
 		gconf_client_set_int (priv->client,
 				      "/apps/devhelp/sidebar_position",
-				      GTK_VALUE_INT (*arg),
+				      g_value_get_int (value),
 				      NULL);
 		break;
 	case ARG_ZOOM_LEVEL:
 		gconf_client_set_int (priv->client,
 				      "/apps/devhelp/zoom_level",
-				      GTK_VALUE_INT (*arg),
+				      g_value_get_int (value),
 				      NULL);
 		break;
 	default:
@@ -299,11 +315,11 @@ gconf_sidebar_visible_changed_cb (GConfClient *client,
 				  gpointer     data)
 {
 	g_return_if_fail (data != NULL);
-	g_return_if_fail (GTK_OBJECT (data));
+	g_return_if_fail (G_OBJECT (data));
 
-	gtk_signal_emit (GTK_OBJECT (data), 
-			 signals[SIDEBAR_VISIBLE_CHANGED],
-			 gconf_value_get_bool (entry->value));
+	g_signal_emit (G_OBJECT (data), 
+		       signals[SIDEBAR_VISIBLE_CHANGED],
+		       gconf_value_get_bool (entry->value));
 }
 
 static void
@@ -313,11 +329,11 @@ gconf_sidebar_position_changed_cb (GConfClient *client,
 				   gpointer     data)
 {
 	g_return_if_fail (data != NULL);
-	g_return_if_fail (GTK_OBJECT (data));
+	g_return_if_fail (G_OBJECT (data));
 
-	gtk_signal_emit (GTK_OBJECT (data), 
-			 signals[SIDEBAR_POSITION_CHANGED],
-			 gconf_value_get_int (entry->value));
+	g_signal_emit (G_OBJECT (data), 
+		       signals[SIDEBAR_POSITION_CHANGED],
+		       gconf_value_get_int (entry->value));
 }
 
 static void
@@ -327,21 +343,11 @@ gconf_zoom_level_changed_cb (GConfClient *client,
 			     gpointer     data)
 {
 	g_return_if_fail (data != NULL);
-	g_return_if_fail (GTK_OBJECT (data));
+	g_return_if_fail (G_OBJECT (data));
 
-	gtk_signal_emit (GTK_OBJECT (data), 
-			 signals[ZOOM_LEVEL_CHANGED],
-			 gconf_value_get_int (entry->value));
-}
-
-Preferences *
-preferences_new (void)
-{
-	Preferences   *prefs;
-	
-	prefs = gtk_type_new (TYPE_PREFERENCES);
-
-	return prefs;
+	g_signal_emit (G_OBJECT (data), 
+		       signals[ZOOM_LEVEL_CHANGED],
+		       gconf_value_get_int (entry->value));
 }
 
 void
@@ -354,4 +360,8 @@ preferences_open_dialog (Preferences   *prefs)
 	gtk_widget_show_all (widget);
 }
 
-
+Preferences *
+preferences_new (void)
+{
+	return g_object_new (TYPE_PREFERENCES, NULL);
+}

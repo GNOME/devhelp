@@ -3,6 +3,9 @@ Makefile
 Makefile.in
 Makefile.in.in
 cat-id-tbl.c
-devhelp.pot
+*.pot
 *.gmo
 messages
+po2tbl.sed
+po2tbl.sed.in
+stamp-cat-id

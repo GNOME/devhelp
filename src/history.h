@@ -24,29 +24,28 @@
 #ifndef __HISTORY_H__
 #define __HISTORY_H__
 
-#include <gtk/gtkobject.h>
-#include <gtk/gtktypeutils.h>
+#include <glib-object.h>
 #include "book.h"
 
 #define TYPE_HISTORY        (history_get_type ())
-#define HISTORY(o)          (GTK_CHECK_CAST ((o), TYPE_HISTORY, History))
-#define HISTORY_CLASS(k)    (GTK_CHECK_CLASS_CAST((k), TYPE_HISTORY, HistoryClass))
-#define IS_HISTORY(o)       (GTK_CHECK_TYPE ((o), TYPE_HISTORY))
-#define IS_HISTORY_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), TYPE_HISTORY))
+#define HISTORY(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), TYPE_HISTORY, History))
+#define HISTORY_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), TYPE_HISTORY, HistoryClass))
+#define IS_HISTORY(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), TYPE_HISTORY))
+#define IS_HISTORY_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), TYPE_HISTORY))
 
 typedef struct _History      History;
 typedef struct _HistoryClass HistoryClass;
 typedef struct _HistoryPriv  HistoryPriv;
 
 struct _History {
-	GtkObject         parent;
+	GObject         parent;
 	
 	HistoryPriv      *priv;
 };
 
 struct _HistoryClass 
 {
-	GtkObjectClass    parent_class;
+	GObjectClass    parent_class;
 
 	/* Signals */
 	void   (*forward_exists_changed)     (History    *history,
@@ -55,7 +54,7 @@ struct _HistoryClass
 					      gboolean    exists);
 };
 
-GtkType               history_get_type      (void);
+GType                 history_get_type      (void);
 History *             history_new           (void);
 
 void                  history_goto          (History             *history,

@@ -1,85 +1,90 @@
 2002-04-27  Mikael Hallendal  <micke@codefactory.se>
 
-	* NEWS: updated.
-
-	* devhelp.spec.in:
-	- updated for moving libs-stuff
-	- changed package maintainer to me.
-
-	* NEWS: updated for 0.4
-
-	* configure.in: bumped to 0.4
+	* merged devhelp-gnome-2 into HEAD.
 
 	* src/history.c (history_goto): 
 	- added patch from Nils O. Selåsdal that limits history length to
 	  20.
-
+	
 2002-04-26  Mikael Hallendal  <micke@codefactory.se>
 
-	* src/Makefile.am (libdevhelp_la_LDFLAGS): 
-	- put private library in $(libdir)/devhelp
+	* src/Makefile.am:
+ 	- put private library in $(libdir)/devhelp-2
 	- add -avoid-version -module to libdevhelp_la_LDFLAGS
 	- Fixes #78495
-	
+
 	* src/devhelp-window.c (cmd_size_changed_cb): 
-	- added patch from kov@debian.org to default to medium size.
+	- added patch from kov@debian.org to default to medium size. 
 	  Fixes #78498
 
-2002-03-27  Richard Hult  <rhult@codefactory.se>
+2002-04-26  Dave Camp  <dave@ximian.com>
 
-	* src/bookshelf.c (bookshelf_new): Not sure what this crack was
-	supposed to do, but it didn't work anyway.
+	* idl/Makefile.am (idldir): Install the idl file.
 
-	* configure.in: Bump to 0.3.99.
+	* Makefile.am: Include idl in the subdirs.
+	* configure.in: Include idl in AC_OUTPUT.
+	* src/Makefile.am: Move history.[ch] and books-dialog.[ch] into
+	libdevhelp2.la
+	* src/book-index.c: 
+	* src/book-index.h: Begin converting the book index to GtkTreeView.
+	* ui/Makefile.am: Install the new book icons.
+	* ui/book_closed.png:
+	* ui/book_open.png:
+	* ui/book_helpdoc.png: New pixmaps.
 
-	* src/help-browser.c (eel_gdk_window_focus) 
-	(eel_gdk_window_bring_to_front): Stolen from eel.
-	(impl_HelpBrowser_search): Use eel_gdk_window_bring_to_front
-	instead of gdk_window_raise.
+2002-03-07  Richard Hult  <rhult@codefactory.se>
 
-2002-03-26  Mikael Hallendal  <micke@codefactory.se>
+	* src/main.c (main): Remove unnecessary init calls.
+	Add back popt parsing.
 
-	* src/install.c (install_unpack_book): applied patch from
-	  kov@debian.org to make book installation work on non-bash
-	  /bin/sh.
+	* src/devhelp-window.c (devhelp_window_new): Set window icon.
 
-2002-02-25  José Fonseca  <j_r_fonseca@yahoo.co.uk>
+	* src/help-browser.c (impl_HelpBrowser_search): Use
+	gtk_window_present to show the window.
 
-	* src/book.c (book_parse_sub): check to see if correct node before
-	  start parsing sub-chapter.
+	* src/devhelp-search.c (devhelp_search_complete_idle): Need to
+	select first, then set position, otherwise the selection will be
+	cleared.
 
-	* src/Makefile.am: added BONOBOX_CFLAGS/LIBS
+	* configure.in: Remove obsolete GNOME_PLATFORM_GNOME_2.
 
-	* configure.in (BONOBOX_LIBS): added.
+	* src/function-database.c (fd_idle_search): Free the string result
+	of the signal.
 
-2001-12-27  Duarte Loreto <happyguy_pt@hotmail.com>
+	* src/devhelp-search.c (devhelp_search_get_search_string_cb): Dup
+	the string here or we are freeing internal gtk memory later.
 
-        * configure.in: Added portuguese to ALL_LINGUAS
+	* src/*.c: Finish the half baked s/gtk_signal/g_signal/ job.
 
-2001-12-05  Johan Dahlin  <jdahlin@telia.com>
-	    
-	* configure.in (ALL_LINGUAS): Added ja.
+	* src/devhelp-window.c (dw_populate): Remove accelerator hack for
+	notebook pages now that GTK+ has mnemonics.
 	
-2001-12-04  Johan Dahlin  <jdahlin@telia.com>
+2002-03-06  Richard Hult  <rhult@codefactory.se>
 
-	* src/books-dialog.c (books_button_hide_clicked_cb): Fix a
-	Gtk-Warning. (make sure the row_data from the clist row isn't NULL)
+	* src/bookshelf.c (bookshelf_new): Remove more spew.
 
-	* src/bookshelf.c (bookshelf_add_directory): Some reconstructing,
-	to fix a bug with visible functions when they're where supposed to
-	be hidden.
-	(bookshelf_new): Read global books in a more logic way.
+	* src/devhelp-window.c (cmd_about_cb): Please spell my name right
+	at least ;) And remove silly debug spew.
+	(devhelp_window_new): Use a proper name space for the gconf
+	bonobo-ui key.
 
-2001-12-03  Mikael Hallendal  <micke@codefactory.se>
+	* ui/GNOME_DevHelp_Controller.ui: Update stock name for GNOME 2. 
 
-	* src/books-dialog.c (books_button_hide_clicked_cb): only update
-	  and hide book if a book was actually selected.
-	(books_button_show_clicked_cb): only update and show book if a
-	  book was actually selected. 
+2002-01-04  Mikael Hallendal  <micke@codefactory.se>
 
-	* src/bookshelf.c (bookshelf_show_book): check if xml_book is
-	  NULL.
+	* src/main.c (activate_and_search): free ev.
 
+2002-01-04  Johan Dahlin  <jdahlin@telia.com>
+
+	* src/devhelp-window.c: fix dw_link_clicked prototype.
+
+	* src/book-index.c (book_index_class_init): Only create uri-selected
+	signal once. (doh)
+
+2002-01-01  Johan Dahlin  <jdahlin@telia.com>
+
+	Lots of files, ported to GNOME2
+	
 2001-12-02  Johan Dahlin  <jdahlin@telia.com>
 
 	* configure.in (DEVHELP_VERSION): Bumped to 0.3

@@ -1,7 +1,7 @@
 <oaf_info>
    <oaf_server iid="OAFIID:GNOME_DevHelp_Factory" 
                type="exe"
-               location="devhelp">
+               location="devhelp-2">
 
       <oaf_attribute  name="repo_ids" 
                       type="stringv">
@@ -27,7 +27,7 @@
 
    <oaf_server iid="OAFIID:GNOME_DevHelp_Controller_Factory" 
                type="shlib"
-	       location="@COMPONENT_LIBDIR@/libdevhelp.so">
+	       location="@COMPONENT_LIBDIR@/libdevhelp2.so">
 
       <oaf_attribute name="repo_ids" type="stringv">
          <item value="IDL:GNOME/GenericFactory:1.0" />
