@@ -1,3 +1,8 @@
+2001-10-18  Abel Cheung  <maddog@linux.org.hk>
+
+	* configure.in: Forced to disable traditional Chinese translation
+	  temporarily, it was not shown at all on right pane.
+
 2001-10-18  Stanislav Visnovsky  <visnovsky@nenya.ms.mff.cuni.cz>
 
 	* configure.in: Added "sk" to ALL_LINGUAS.
