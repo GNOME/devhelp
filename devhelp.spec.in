@@ -9,15 +9,15 @@ Source:              %{name}-%{version}.tar.gz
 BuildRoot:           %{_tmppath}/%{name}-%{version}-root
 Packager:            Mikael Hallendal <micke@codefactory.se>
 
-Requires:            gtk2 >= 2.0.0
-Requires:            libgnomeui >= 2.0.0
+Requires:            gtk2 >= 2.2.0
+Requires:            libgnomeui >= 2.2.0
 Requires:            gtkhtml2 >= 2.0.0
-Requires:            gnome-vfs2 >= 2.0.0
+Requires:            gnome-vfs2 >= 2.2.0
 
-BuildRequires:       gtk2-devel >= 2.0.0
-BuildRequires:       libgnomeui-devel >= 2.0.0
+BuildRequires:       gtk2-devel >= 2.2.0
+BuildRequires:       libgnomeui-devel >= 2.2.0
 BuildRequires:       gtkhtml2-devel >= 2.0.0
-BuildRequires:       gnome-vfs2-devel >= 2.0.0
+BuildRequires:       gnome-vfs2-devel >= 2.2.0
 BuildRequires:       intltool
 
 %description

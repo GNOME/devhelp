@@ -26,12 +26,12 @@ AC_ARG_WITH(html-widget, [  --with-html-widget=[gtkhtml2/mozilla] html widget to
 
 
 PKG_CHECK_MODULES(DEVHELP, [
-	gtk+-2.0 >= 2.0.0])
+	gtk+-2.0 >= 2.2.0])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-        gtk+-2.0 >= 2.0.0
-	libgnomeui-2.0 >= 2.0.0
-	gnome-vfs-2.0 >= 2.0.0
+        gtk+-2.0 >= 2.2.0
+	libgnomeui-2.0 >= 2.2.0
+	gnome-vfs-2.0 >= 2.2.0
 ])
 
 
