@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-10-15 17:03+0200\n"
-"PO-Revision-Date: 2001-10-15 17:06+0200\n"
+"POT-Creation-Date: 2001-12-01 21:20+0100\n"
+"PO-Revision-Date: 2001-12-01 21:20+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,47 +25,60 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: src/books-dialog.c:315
+#: src/books-dialog.c:323
 msgid "Choose a book..."
 msgstr "Välj en bok..."
 
-#: src/bookshelf.c:183
+#: src/bookshelf.c:186
 #, c-format
 msgid "Problems when reading books: %s\n"
 msgstr "Problem vid inläsning av böcker: %s\n"
 
-#: src/bookshelf.c:250
+#: src/bookshelf.c:372
 #, c-format
 msgid "Empty document: %s"
 msgstr "Tomt dokument: %s"
 
-#: src/bookshelf.c:256
+#: src/bookshelf.c:378
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
 msgstr "Dokumentet är av fel typ, fick %s, förväntade mig \"booklist\": %s"
 
-#: src/bookshelf.c:310
+#: src/bookshelf.c:412
+#, c-format
+msgid ""
+"I found an old version of your spec file (%s)\n"
+"I removed it, so you have to hide the books you want to be hidden again."
+msgstr ""
+"Jag hittade en gammal version av din spec-fil (%s).\n"
+"Jag tog bort den, så du måste dölja böckerna som du vill ska döljas igen."
+
+#: src/bookshelf.c:417
+msgid "Ok"
+msgstr "Ok"
+
+#: src/bookshelf.c:458
 #, c-format
 msgid "Failed to open file %s for writing."
 msgstr "Misslyckades med att öppna filen %s för skrivning."
 
-#: src/devhelp-window.c:382 ui/devhelp.glade.h:35
+#: src/devhelp-window.c:402
 msgid "_Contents"
 msgstr "I_nnehåll"
 
-#: src/devhelp-window.c:394 ui/devhelp.glade.h:39
+#: src/devhelp-window.c:414
 msgid "_Search"
 msgstr "_Sök"
 
-#: src/devhelp-window.c:518
+#: src/devhelp-window.c:499
 msgid "(C) Copyright 2001, Johan Dahlin"
 msgstr "© Copyright 2001, Johan Dahlin"
 
-#: src/devhelp-window.c:520
+#: src/devhelp-window.c:501
 msgid "A developer's help browser"
 msgstr "Ett hjälpprogram för utvecklare"
 
-#: src/devhelp-window.c:594
+#: src/devhelp-window.c:621
 #, c-format
 msgid "Open %s"
 msgstr "Öppna %s"
@@ -115,11 +128,11 @@ msgstr "Förhandsgranska"
 msgid "Printing failed."
 msgstr "Utskrift misslyckades."
 
-#: src/install.c:101 src/install.c:192 src/install.c:210
+#: src/install.c:101 src/install.c:190 src/install.c:214 src/install.c:306
 msgid "The book is already installed."
 msgstr "Boken är redan installerad."
 
-#: src/install.c:114 src/install.c:200 src/install.c:219
+#: src/install.c:114 src/install.c:198 src/install.c:223
 msgid "Failed to move book. This should never happen."
 msgstr "Misslyckades med att flytta bok. Detta borde aldrig inträffa."
 
@@ -127,15 +140,15 @@ msgstr "Misslyckades med att flytta bok. Detta borde aldrig inträffa."
 msgid "Failed to extract spec file from book."
 msgstr "Misslyckades med att extrahera specifikationsfil från bok."
 
-#: src/install.c:171
+#: src/install.c:169
 msgid "Error, the book is corrupted or very old."
 msgstr "Fel, boken är trasig eller mycket gammal."
 
-#: src/install.c:182
+#: src/install.c:180
 msgid "Failed to extract the book."
 msgstr "Misslyckades med att extrahera boken."
 
-#: src/install.c:289 src/install.c:299
+#: src/install.c:287 src/install.c:297
 #, c-format
 msgid "Wrong type (mime_type=%s)."
 msgstr "Fel typ (mime_type=%s)."
@@ -153,23 +166,23 @@ msgstr "Kunde inte söka efter sträng."
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:28
+#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
 msgid "Tiny"
 msgstr "Pytteliten"
 
-#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:27
+#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
 msgid "Small"
 msgstr "Liten"
 
-#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:16
+#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
 msgid "Medium"
 msgstr "Mellan"
 
-#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:15
+#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
 msgid "Large"
 msgstr "Stor"
 
-#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:13
+#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
 msgid "Huge"
 msgstr "Enorm"
 
@@ -182,132 +195,96 @@ msgid "<< _Show"
 msgstr "<< _Visa"
 
 #: ui/devhelp.glade.h:3
-msgid "Add book ..."
-msgstr "Lägg till bok..."
-
-#: ui/devhelp.glade.h:4
 msgid "Author:"
 msgstr "Författare:"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:1 ui/devhelp.glade.h:5
-msgid "Back"
-msgstr "Bakåt"
-
-#: ui/devhelp.glade.h:6
+#: ui/devhelp.glade.h:4
 msgid "Book info"
 msgstr "Bokinformation"
 
-#: ui/devhelp.glade.h:7
+#: ui/devhelp.glade.h:5
 msgid "Bookmarks"
 msgstr "Bokmärken"
 
-#: ui/devhelp.glade.h:8
+#: ui/devhelp.glade.h:6
 msgid "DevHelp Book Manager"
 msgstr "DevHelp-bokhanterare"
 
-#: ui/devhelp.glade.h:9
+#: ui/devhelp.glade.h:7
 msgid "DevHelp Preferences"
 msgstr "Inställningar för DevHelp"
 
-#: ui/devhelp.glade.h:10
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ui/GNOME_DevHelp_Controller.ui.h:3 ui/devhelp.glade.h:11
-msgid "Forward"
-msgstr "Framåt"
-
-#: ui/devhelp.glade.h:12
+#: ui/devhelp.glade.h:8
 msgid "Hidden"
 msgstr "Gömda"
 
-#: ui/devhelp.glade.h:14
+#: ui/devhelp.glade.h:10
 msgid "Install new book..."
 msgstr "Installera ny bok..."
 
-#: ui/devhelp.glade.h:17
+#: ui/devhelp.glade.h:13
 msgid "Move down"
 msgstr "Flytta ned"
 
-#: ui/devhelp.glade.h:18
+#: ui/devhelp.glade.h:14
 msgid "Move up"
 msgstr "Flytta upp"
 
-#: ui/devhelp.glade.h:19
+#: ui/devhelp.glade.h:15
 msgid "Name:"
 msgstr "Namn:"
 
-#: ui/devhelp.glade.h:20
-msgid "Ny fil"
-msgstr "Ny fil"
-
-#: ui/devhelp.glade.h:21
+#: ui/devhelp.glade.h:16
 msgid "Path:"
 msgstr "Sökväg:"
 
-#: ui/devhelp.glade.h:22
+#: ui/devhelp.glade.h:17
 msgid "Remove"
 msgstr "Ta bort"
 
-#: ui/devhelp.glade.h:23
+#: ui/devhelp.glade.h:18
 msgid "Reset to defaults"
 msgstr "Återställ till standardalternativ"
 
-#: ui/devhelp.glade.h:24
+#: ui/devhelp.glade.h:19
 msgid "Search"
 msgstr "Sök"
 
-#: ui/devhelp.glade.h:25
+#: ui/devhelp.glade.h:20
 msgid "Show _sidebar"
 msgstr "Visa _sidopanel"
 
-#: ui/GNOME_DevHelp.ui.h:9 ui/devhelp.glade.h:26
-msgid "Show sidebar"
-msgstr "Visa sidopanel"
-
-#: ui/devhelp.glade.h:29
+#: ui/devhelp.glade.h:23
 msgid "Title:"
 msgstr "Titel:"
 
-#: ui/devhelp.glade.h:30
-msgid "Use autocompletion"
-msgstr "Använd automatisk ifyllning"
-
-#: ui/devhelp.glade.h:31
+#: ui/devhelp.glade.h:24
 msgid "Version:"
 msgstr "Version:"
 
-#: ui/devhelp.glade.h:32
+#: ui/devhelp.glade.h:25
 msgid "View"
 msgstr "Visa"
 
-#: ui/devhelp.glade.h:33
+#: ui/devhelp.glade.h:26
 msgid "Visible"
 msgstr "Synliga"
 
-#: ui/devhelp.glade.h:34
-msgid "_Book manager..."
-msgstr "_Bokhanterare..."
-
-#: ui/devhelp.glade.h:36
+#: ui/devhelp.glade.h:27
 msgid "_Edit book..."
 msgstr "_Redigera bok..."
 
-#: ui/devhelp.glade.h:37
+#: ui/devhelp.glade.h:28
 msgid "_Hide >>"
 msgstr "_Göm >>"
 
-#: ui/devhelp.glade.h:38
+#: ui/devhelp.glade.h:29
 msgid "_Limit the number of hits to:"
 msgstr "_Begränsa antalet träffar till:"
 
-#: ui/devhelp.glade.h:40
+#: ui/devhelp.glade.h:30
 msgid "_Text size: "
 msgstr "_Textstorlek: "
-
-#: ui/devhelp.glade.h:41
-msgid "Öppna fil"
-msgstr "Öppna fil"
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
@@ -328,6 +305,10 @@ msgstr "Inställningar..."
 #: ui/GNOME_DevHelp.ui.h:8
 msgid "Print the html page"
 msgstr "Skriv ut html-sidan"
+
+#: ui/GNOME_DevHelp.ui.h:9
+msgid "Show sidebar"
+msgstr "Visa sidopanel"
 
 #: ui/GNOME_DevHelp.ui.h:12
 msgid "_About..."
@@ -357,9 +338,17 @@ msgstr "_Inställningar"
 msgid "_View"
 msgstr "_Visa"
 
+#: ui/GNOME_DevHelp_Controller.ui.h:1
+msgid "Back"
+msgstr "Bakåt"
+
 #: ui/GNOME_DevHelp_Controller.ui.h:2
 msgid "Book Manager..."
 msgstr "Bokhanterare..."
+
+#: ui/GNOME_DevHelp_Controller.ui.h:3
+msgid "Forward"
+msgstr "Framåt"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:4
 msgid "Go to next page in the history"
@@ -372,6 +361,24 @@ msgstr "Gå till föregående sida i historiken"
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
 msgstr "Öppna bokhanterardialogen"
+
+#~ msgid "Add book ..."
+#~ msgstr "Lägg till bok..."
+
+#~ msgid "Devhelp"
+#~ msgstr "Devhelp"
+
+#~ msgid "Ny fil"
+#~ msgstr "Ny fil"
+
+#~ msgid "Use autocompletion"
+#~ msgstr "Använd automatisk ifyllning"
+
+#~ msgid "_Book manager..."
+#~ msgstr "_Bokhanterare..."
+
+#~ msgid "Öppna fil"
+#~ msgstr "Öppna fil"
 
 #~ msgid "Contents"
 #~ msgstr "Innehåll"
