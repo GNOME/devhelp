@@ -7,16 +7,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 2.2\n"
-"POT-Creation-Date: 2003-08-13 14:08+0200\n"
-"PO-Revision-Date: 2003-08-13 14:07+0200\n"
+"Project-Id-Version: devhelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-10 03:14+0100\n"
+"PO-Revision-Date: 2004-01-10 03:15+0100\n"
 "Last-Translator: Бранко Ивановић <popeye@one.ekof.bg.ac.yu>\n"
 "Language-Team: Serbian (sr)  <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -102,35 +102,40 @@ msgstr "_Тражи:"
 msgid "Section"
 msgstr "Одељак"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "_Датотека"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "_Иди"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "_Помоћ"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:283
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Не могу да поставим сучеље: %s"
+
+#: src/dh-window.c:343
 msgid "Contents"
 msgstr "Садржај"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:354
 msgid "Search"
 msgstr "Тражи"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:419
 msgid "A developer's help browser for GNOME 2"
 msgstr "Читач помоћи за програмере у окружењу Гном 2"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:434
 msgid "Devhelp project page"
 msgstr "Страница пројекта ДевХелп"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:438
 msgid "Bug report Devhelp"
 msgstr "Пријава грешке у ДевХелпу"
 
