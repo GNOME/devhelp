@@ -20,42 +20,42 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __DEVHELP_WINDOW_H__
-#define __DEVHELP_WINDOW_H__
+#ifndef __DH_WINDOW_H__
+#define __DH_WINDOW_H__
 
 #include <glib-object.h>
 #include <bonobo/bonobo-window.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkwidget.h>
 
-#define TYPE_DEVHELP_WINDOW		(devhelp_window_get_type ())
-#define DEVHELP_WINDOW(obj)		(GTK_CHECK_CAST ((obj), TYPE_DEVHELP_WINDOW, DevHelpWindow))
-#define DEVHELP_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), TYPE_DEVHELP_WINDOW, DevHelpWindowClass))
-#define IS_DEVHELP_WINDOW(obj)		(GTK_CHECK_TYPE ((obj), TYPE_DEVHELP_WINDOW))
-#define IS_DEVHELP_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), TYPE_DEVHELP_WINDOW))
+#define TYPE_DH_WINDOW		(dh_window_get_type ())
+#define DH_WINDOW(obj)		(GTK_CHECK_CAST ((obj), TYPE_DH_WINDOW, DhWindow))
+#define DH_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), TYPE_DH_WINDOW, DhWindowClass))
+#define IS_DH_WINDOW(obj)		(GTK_CHECK_TYPE ((obj), TYPE_DH_WINDOW))
+#define IS_DH_WINDOW_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), TYPE_DH_WINDOW))
 
-typedef struct _DevHelpWindow       DevHelpWindow;
-typedef struct _DevHelpWindowClass  DevHelpWindowClass;
-typedef struct _DevHelpWindowPriv   DevHelpWindowPriv;
+typedef struct _DhWindow       DhWindow;
+typedef struct _DhWindowClass  DhWindowClass;
+typedef struct _DhWindowPriv   DhWindowPriv;
 
-struct _DevHelpWindow
+struct _DhWindow
 {
         BonoboWindow         parent;
         
-        DevHelpWindowPriv   *priv;
+        DhWindowPriv   *priv;
 };
 
-struct _DevHelpWindowClass
+struct _DhWindowClass
 {
         BonoboWindowClass    parent_class;
 
         /* Signals */
 };
 
-GtkType          devhelp_window_get_type        (void);
-GtkWidget *      devhelp_window_new             ();
+GtkType          dh_window_get_type        (void);
+GtkWidget *      dh_window_new             ();
 
-void             devhelp_window_search          (DevHelpWindow   *window,
-						 const gchar     *str);
+void             dh_window_search          (DhWindow   *window,
+					    const gchar     *str);
 
-#endif /* __DEVHELP_WINDOW_H__ */
+#endif /* __DH_WINDOW_H__ */

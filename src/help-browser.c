@@ -27,7 +27,7 @@
 #endif
 
 #include <gdk/gdkx.h>
-#include "devhelp-window.h"
+#include "dh-window.h"
 #include "help-browser.h"
 
 static void help_browser_class_init (HelpBrowserClass *klass);
@@ -90,7 +90,7 @@ impl_HelpBrowser_search (PortableServer_Servant   servant,
 	priv = browser->priv;
 		
 	if (priv->window) {
-		devhelp_window_search (DEVHELP_WINDOW (priv->window), str);
+		dh_window_search (DH_WINDOW (priv->window), str);
 		gtk_window_present (GTK_WINDOW (priv->window));
 	}
 }
@@ -144,7 +144,7 @@ help_browser_new (void)
 
 	browser = g_object_new (HELP_BROWSER_TYPE, NULL);
 	priv    = browser->priv;
-	priv->window  = devhelp_window_new ();
+	priv->window  = dh_window_new ();
 	
 /* 	priv->windows = g_slist_prepend (priv->windows, window); */
 	

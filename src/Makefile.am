@@ -15,10 +15,10 @@ bin_PROGRAMS = devhelp-2
 
 devhelp_2_SOURCES = 				\
 	$(gnome_devhelp_idl_sources)		\
-	devhelp-view.c				\
-	devhelp-view.h				\
-	devhelp-window.c			\
-	devhelp-window.h			\
+	dh-view.c				\
+	dh-view.h				\
+	dh-window.c				\
+	dh-window.h				\
 	help-browser.c				\
 	help-browser.h				\
 	main.c

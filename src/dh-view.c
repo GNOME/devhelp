@@ -27,11 +27,11 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
 
-#include "devhelp-view.h"
+#include "dh-view.h"
 
 #define d(x)
 
-struct _DevHelpViewPriv {
+struct _DhViewPriv {
         HtmlDocument *doc;
 	gchar        *base_url;
 	
@@ -44,7 +44,7 @@ struct _DevHelpViewPriv {
 };
 
 typedef struct {
-	DevHelpView *view;
+	DhView *view;
 	gint         stamp;
 	gchar       *url;
 	gchar       *anchor;
@@ -57,7 +57,7 @@ typedef enum {
 } ReaderQueueType;
 
 typedef struct {
-	DevHelpView     *view;
+	DhView     *view;
 	gint             stamp;
 	gchar           *data;
 	ReaderQueueType  type;
@@ -65,17 +65,17 @@ typedef struct {
 	gchar           *url;
 } ReaderQueueData;
 
-static void     view_init                  (DevHelpView         *html);
-static void     view_class_init            (DevHelpViewClass    *klass);
+static void     view_init                  (DhView         *html);
+static void     view_class_init            (DhViewClass    *klass);
 
 static gpointer view_reader_thread         (ReaderThreadData    *th_data);
-static void     view_change_read_stamp     (DevHelpView         *view);
+static void     view_change_read_stamp     (DhView         *view);
 static void     view_url_requested_cb      (HtmlDocument        *doc,
 					    const gchar         *uri,
 					    HtmlStream          *stream,
 					    gpointer             data);
 static ReaderQueueData * 
-view_q_data_new                            (DevHelpView         *view,
+view_q_data_new                            (DhView         *view,
 					    gint                 stamp, 
 					    const gchar         *url,
 					    const gchar         *anchor,
@@ -87,7 +87,7 @@ static void     view_q_data_free           (ReaderQueueData     *q_data);
 static void     view_link_clicked_cb       (HtmlDocument        *doc, 
 					    const gchar         *url, 
 					    gpointer             data);
-static gboolean view_check_read_cancelled  (DevHelpView         *view,
+static gboolean view_check_read_cancelled  (DhView         *view,
 					    gint                 stamp);
 static gchar *  view_split_uri             (const gchar         *uri,
 					    gchar              **anchor);
@@ -102,7 +102,7 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 GType
-devhelp_view_get_type (void)
+dh_view_get_type (void)
 {
         static GType view_type = 0;
 
@@ -110,19 +110,19 @@ devhelp_view_get_type (void)
         {
                 static const GTypeInfo view_info =
                         {
-                                sizeof (DevHelpViewClass),
+                                sizeof (DhViewClass),
                                 NULL,
                                 NULL,
                                 (GClassInitFunc) view_class_init,
                                 NULL,
                                 NULL,
-                                sizeof (DevHelpView),
+                                sizeof (DhView),
                                 0,
                                 (GInstanceInitFunc) view_init,
                         };
                 
                 view_type = g_type_register_static (HTML_TYPE_VIEW,
-                                                    "DevHelpView", 
+                                                    "DhView", 
                                                     &view_info, 0);
         }
         
@@ -130,11 +130,11 @@ devhelp_view_get_type (void)
 }
 
 static void
-view_init (DevHelpView *view)
+view_init (DhView *view)
 {
-        DevHelpViewPriv *priv;
+        DhViewPriv *priv;
         
-        priv = g_new0 (DevHelpViewPriv, 1);
+        priv = g_new0 (DhViewPriv, 1);
 
         priv->doc          = html_document_new ();
         priv->base_url     = NULL;
@@ -155,13 +155,13 @@ view_init (DevHelpView *view)
 }
 
 static void
-view_class_init (DevHelpViewClass *klass)
+view_class_init (DhViewClass *klass)
 {
 	signals[URI_SELECTED] = 
 		g_signal_new ("uri_selected",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (DevHelpViewClass, uri_selected),
+			      G_STRUCT_OFFSET (DhViewClass, uri_selected),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
@@ -171,8 +171,8 @@ view_class_init (DevHelpViewClass *klass)
 static gpointer
 view_reader_thread (ReaderThreadData *th_data)
 {
-	DevHelpView      *view;
-	DevHelpViewPriv  *priv;
+	DhView      *view;
+	DhViewPriv  *priv;
 	gint              stamp;
 	GnomeVFSHandle   *handle;
 	GnomeVFSResult    result;
@@ -246,11 +246,11 @@ view_reader_thread (ReaderThreadData *th_data)
 }
 
 static void
-view_change_read_stamp (DevHelpView *view)
+view_change_read_stamp (DhView *view)
 {
-	DevHelpViewPriv *priv;
+	DhViewPriv *priv;
 	
-	g_return_if_fail (DEVHELP_IS_VIEW (view));
+	g_return_if_fail (DH_IS_VIEW (view));
 	
 	priv = view->priv;
 
@@ -262,8 +262,8 @@ view_change_read_stamp (DevHelpView *view)
 static gboolean
 view_idle_check_queue (ReaderThreadData *th_data)
 {
-	DevHelpView     *view;
-	DevHelpViewPriv *priv;
+	DhView     *view;
+	DhViewPriv *priv;
 	ReaderQueueData *q_data = NULL;
 	gint             len;
 	
@@ -353,13 +353,13 @@ view_url_requested_cb (HtmlDocument *doc,
 		       HtmlStream   *stream,
 		       gpointer      data)
 {
-        DevHelpView     *view;
-        DevHelpViewPriv *priv;
+        DhView     *view;
+        DhViewPriv *priv;
 	GnomeVFSURI  *vfs_uri;
 
         d(puts(__FUNCTION__));
 
-        view = DEVHELP_VIEW (data);
+        view = DH_VIEW (data);
         priv = view->priv;
 
 	g_return_if_fail (HTML_IS_DOCUMENT(doc));
@@ -373,7 +373,7 @@ view_url_requested_cb (HtmlDocument *doc,
 }
 
 static ReaderQueueData * 
-view_q_data_new (DevHelpView     *view,
+view_q_data_new (DhView     *view,
 		 gint             stamp, 
 		 const gchar     *url,
 		 const gchar     *anchor,
@@ -409,17 +409,17 @@ view_stream_cancel (HtmlStream *stream,
 static void
 view_q_data_free (ReaderQueueData *q_data)
 {
-        DevHelpViewPriv *priv;
+        DhViewPriv *priv;
         
 }
 
 static void
 view_link_clicked_cb (HtmlDocument *doc, const gchar *url, gpointer data)
 {
-	DevHelpView     *view;
-        DevHelpViewPriv *priv;
+	DhView     *view;
+        DhViewPriv *priv;
 	
-        view = DEVHELP_VIEW (data);
+        view = DH_VIEW (data);
         priv = view->priv;
 
 	if (priv->base_url) {
@@ -433,11 +433,11 @@ view_link_clicked_cb (HtmlDocument *doc, const gchar *url, gpointer data)
 }
 
 static gboolean
-view_check_read_cancelled (DevHelpView *view, gint stamp)
+view_check_read_cancelled (DhView *view, gint stamp)
 {
-	DevHelpViewPriv *priv;
+	DhViewPriv *priv;
 	
-	g_return_val_if_fail (DEVHELP_IS_VIEW (view), TRUE);
+	g_return_val_if_fail (DH_IS_VIEW (view), TRUE);
 	
 	priv = view->priv;
 
@@ -470,14 +470,14 @@ view_split_uri (const gchar *uri, gchar **anchor)
 }
 
 GtkWidget *
-devhelp_view_new (void)
+dh_view_new (void)
 {
-        DevHelpView     *view;
-        DevHelpViewPriv *priv;
+        DhView     *view;
+        DhViewPriv *priv;
         
         d(puts(__FUNCTION__));
 
-        view = g_object_new (DEVHELP_TYPE_VIEW, NULL);
+        view = g_object_new (DH_TYPE_VIEW, NULL);
         priv = view->priv;
         
 	html_document_open_stream (priv->doc, "text/html");
@@ -501,10 +501,10 @@ devhelp_view_new (void)
 }
 
 void
-devhelp_view_open_uri (DevHelpView *view, 
-		       const gchar *str_uri)
+dh_view_open_uri (DhView      *view, 
+		  const gchar *str_uri)
 {
-        DevHelpViewPriv  *priv;
+        DhViewPriv  *priv;
 	ReaderThreadData *th_data;
 	GdkCursor        *cursor;
 	gchar            *url;
@@ -512,7 +512,7 @@ devhelp_view_open_uri (DevHelpView *view,
 	
         d(puts(__FUNCTION__));
 	
-	g_return_if_fail (DEVHELP_IS_VIEW (view));
+	g_return_if_fail (DH_IS_VIEW (view));
 	g_return_if_fail (str_uri != NULL);
 
         priv = view->priv;

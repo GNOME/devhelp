@@ -32,18 +32,18 @@
 #include <bonobo.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
-#include "devhelp-view.h"
+#include "dh-view.h"
 #include "GNOME_DevHelp.h"
-#include "devhelp-window.h"
+#include "dh-window.h"
 
-#define DEVHELP_WINDOW_UI "GNOME_MrProject_Client.ui"
+#define DH_WINDOW_UI "GNOME_MrProject_Client.ui"
 
-static void window_class_init                (DevHelpWindowClass *klass);
-static void window_init                      (DevHelpWindow      *index);
+static void window_class_init                (DhWindowClass *klass);
+static void window_init                      (DhWindow      *index);
  
 static void window_destroy                   (GtkObject          *object);
 
-static void window_populate                  (DevHelpWindow      *window);
+static void window_populate                  (DhWindow      *window);
 
 static void window_cmd_print_cb              (BonoboUIComponent  *component,
 					      gpointer            data,
@@ -71,11 +71,11 @@ static void window_delete_cb                 (GtkWidget          *widget,
 					      GdkEventAny        *event,
 					      gpointer            user_data);
 
-static void window_link_clicked_cb           (DevHelpWindow      *ignored,
+static void window_link_clicked_cb           (DhWindow      *ignored,
 					      gchar              *url,
-					      DevHelpWindow      *window);
+					      DhWindow      *window);
 
-static void window_on_url_cb                 (DevHelpWindow      *window,
+static void window_on_url_cb                 (DhWindow      *window,
 					      gchar              *url,
 					      gpointer            ignored);
 
@@ -101,7 +101,7 @@ window_notebook_append_page_with_accelerator (GtkNotebook        *notebook,
 
 static BonoboWindowClass *parent_class = NULL;
 
-struct _DevHelpWindowPriv {
+struct _DhWindowPriv {
         BonoboUIComponent          *component;
 
 	GNOME_DevHelp_Controller    controller;
@@ -127,15 +127,15 @@ static BonoboUIVerb verbs[] = {
 };
 
 GtkType
-devhelp_window_get_type (void)
+dh_window_get_type (void)
 {
-        static GtkType devhelp_window_type = 0;
+        static GtkType dh_window_type = 0;
 
-        if (!devhelp_window_type) {
-                static const GtkTypeInfo devhelp_window_info = {
-                        "DevHelpWindow",
-                        sizeof (DevHelpWindow),
-                        sizeof (DevHelpWindowClass),
+        if (!dh_window_type) {
+                static const GtkTypeInfo dh_window_info = {
+                        "DhWindow",
+                        sizeof (DhWindow),
+                        sizeof (DhWindowClass),
                         (GtkClassInitFunc)  window_class_init,
                         (GtkObjectInitFunc) window_init,
                         /* reserved_1 */ NULL,
@@ -143,15 +143,15 @@ devhelp_window_get_type (void)
                         (GtkClassInitFunc) NULL,
                 };
 
-                devhelp_window_type = gtk_type_unique (bonobo_window_get_type (), 
-                                                       &devhelp_window_info);
+                dh_window_type = gtk_type_unique (bonobo_window_get_type (), 
+                                                       &dh_window_info);
         }
 
-        return devhelp_window_type;
+        return dh_window_type;
 }
 
 static void
-window_class_init (DevHelpWindowClass *klass)
+window_class_init (DhWindowClass *klass)
 {
         GtkObjectClass   *object_class;
         
@@ -163,11 +163,11 @@ window_class_init (DevHelpWindowClass *klass)
 }
 
 static void
-window_init (DevHelpWindow *window)
+window_init (DhWindow *window)
 {
-        DevHelpWindowPriv   *priv;
+        DhWindowPriv   *priv;
 
-        priv         = g_new0 (DevHelpWindowPriv, 1);
+        priv         = g_new0 (DhWindowPriv, 1);
 	
         window->priv = priv;
 }
@@ -186,9 +186,9 @@ window_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
 }
 
 static void
-window_populate (DevHelpWindow *window)
+window_populate (DhWindow *window)
 {
-        DevHelpWindowPriv    *priv;
+        DhWindowPriv    *priv;
         CORBA_Environment     ev;
         Bonobo_UIContainer    uic;
 	BonoboControlFrame   *cf;
@@ -198,13 +198,13 @@ window_populate (DevHelpWindow *window)
 	GtkWidget            *frame;
 	 
         g_return_if_fail (window != NULL);
-        g_return_if_fail (IS_DEVHELP_WINDOW (window));
+        g_return_if_fail (IS_DH_WINDOW (window));
         
         priv = window->priv;
         
         priv->notebook    = gtk_notebook_new ();
         priv->search_box  = gtk_vbox_new (FALSE, 0);
-	priv->html_widget = devhelp_view_new ();
+	priv->html_widget = dh_view_new ();
         priv->hpaned      = gtk_hpaned_new ();
 	priv->statusbar   = gtk_statusbar_new ();
 	html_sw           = gtk_scrolled_window_new (NULL, NULL);
@@ -328,19 +328,19 @@ window_cmd_print_cb (BonoboUIComponent   *component,
 	      gpointer             data,
 	      const gchar         *cname)
 {
-	DevHelpWindow       *window;
-	DevHelpWindowPriv   *priv;
+	DhWindow       *window;
+	DhWindowPriv   *priv;
 	
 	g_return_if_fail (data != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (data));
+	g_return_if_fail (IS_DH_WINDOW (data));
 	
-	window = DEVHELP_WINDOW (data);
+	window = DH_WINDOW (data);
 	priv   = window->priv;
 
 	g_message ("%s: FIXME!", __FUNCTION__);
 #if 0	
 	if (priv->html_widget) {
-		html_widget_print (DEVHELP_VIEW (priv->html_widget));
+		html_widget_print (DH_VIEW (priv->html_widget));
 	}
 #endif	
 }
@@ -392,19 +392,19 @@ window_uri_changed_cb (BonoboListener      *listener,
 		   CORBA_Environment   *ev,
 		   gpointer             user_data)
 {
-	DevHelpWindow       *window;
-	DevHelpWindowPriv   *priv;
+	DhWindow       *window;
+	DhWindowPriv   *priv;
 	gchar               *uri;
 	
 	g_return_if_fail (user_data != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (user_data));
+	g_return_if_fail (IS_DH_WINDOW (user_data));
 	
-	window = DEVHELP_WINDOW (user_data);
+	window = DH_WINDOW (user_data);
 	priv   = window->priv;
 	uri  = g_strdup (any->_value);
 
 	if (uri) {
-		devhelp_view_open_uri (DEVHELP_VIEW (priv->html_widget), uri);
+		dh_view_open_uri (DH_VIEW (priv->html_widget), uri);
 	}
 	
 	g_free (uri);
@@ -416,20 +416,20 @@ window_delete_cb (GtkWidget     *widget,
 	      gpointer       user_data)
 {
 	g_return_if_fail (widget != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (widget));
+	g_return_if_fail (IS_DH_WINDOW (widget));
 	
 	bonobo_main_quit ();
 }
 
 static void
-window_link_clicked_cb (DevHelpWindow   *ignored,
+window_link_clicked_cb (DhWindow   *ignored,
 		    gchar           *url,
-		    DevHelpWindow   *window)
+		    DhWindow   *window)
 {
-	DevHelpWindowPriv   *priv;
+	DhWindowPriv   *priv;
 
 	g_return_if_fail (window != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (window));
+	g_return_if_fail (IS_DH_WINDOW (window));
 	
 	priv = window->priv;
 
@@ -437,13 +437,13 @@ window_link_clicked_cb (DevHelpWindow   *ignored,
 }
 
 static void
-window_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
+window_on_url_cb (DhWindow *window, gchar *url, gpointer ignored)
 {
-	DevHelpWindowPriv   *priv;
+	DhWindowPriv   *priv;
 	gchar               *status_text;
 	
 	g_return_if_fail (window != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (window));
+	g_return_if_fail (IS_DH_WINDOW (window));
 	
 	priv = window->priv;
 
@@ -459,17 +459,17 @@ window_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
 }
 
 GtkWidget *
-devhelp_window_new (void)
+dh_window_new (void)
 {
-        DevHelpWindow       *window;
-        DevHelpWindowPriv   *priv;
+        DhWindow       *window;
+        DhWindowPriv   *priv;
         GtkWidget           *widget;
         BonoboUIContainer   *ui_container;
 	BonoboUIEngine      *ui_engine;
 	CORBA_Environment    ev;
 	GdkPixbuf           *icon;
 	
-        window = gtk_type_new (TYPE_DEVHELP_WINDOW);
+        window = gtk_type_new (TYPE_DH_WINDOW);
         priv   = window->priv;
 
 	CORBA_exception_init (&ev);
@@ -532,13 +532,13 @@ devhelp_window_new (void)
 }
 
 void
-devhelp_window_search (DevHelpWindow *window, const gchar *str)
+dh_window_search (DhWindow *window, const gchar *str)
 {
-	DevHelpWindowPriv   *priv;
+	DhWindowPriv   *priv;
 	CORBA_Environment    ev;
 	
 	g_return_if_fail (window != NULL);
-	g_return_if_fail (IS_DEVHELP_WINDOW (window));
+	g_return_if_fail (IS_DH_WINDOW (window));
 	
 	priv = window->priv;
 	

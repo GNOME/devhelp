@@ -41,7 +41,7 @@
 #include <bonobo/bonobo-exception.h>
 #include "GNOME_DevHelp.h"
 #include "help-browser.h"
-#include "devhelp-window.h"
+#include "dh-window.h"
 
 #define DEVHELP_FACTORY_OAFIID "OAFIID:GNOME_DevHelp_Factory"
 

@@ -20,49 +20,44 @@
  * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
-#ifndef __DEVHELP_VIEW_H__
-#define __DEVHELP_VIEW_H__
+#ifndef __DH_VIEW_H__
+#define __DH_VIEW_H__
 
 #include <gtk/gtkobject.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkmarshal.h>
 #include <libgtkhtml/gtkhtml.h>
 
-#define DEVHELP_TYPE_VIEW        (devhelp_view_get_type ())
-#define DEVHELP_VIEW(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), DEVHELP_TYPE_VIEW, DevHelpView))
-#define DEVHELP_VIEW_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), DEVHELP_TYPE_VIEW, DevHelpViewClass))
-#define DEVHELP_IS_VIEW(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), DEVHELP_TYPE_VIEW))
-#define DEVHELP_IS_VIEW_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), DEVHELP_TYPE_VIEW))
+#define DH_TYPE_VIEW        (dh_view_get_type ())
+#define DH_VIEW(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_VIEW, DhView))
+#define DH_VIEW_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), DH_TYPE_VIEW, DhViewClass))
+#define DH_IS_VIEW(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), DH_TYPE_VIEW))
+#define DH_IS_VIEW_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), DH_TYPE_VIEW))
 
-typedef struct _DevHelpView        DevHelpView;
-typedef struct _DevHelpViewClass   DevHelpViewClass;
-typedef struct _DevHelpViewPriv    DevHelpViewPriv;
+typedef struct _DhView        DhView;
+typedef struct _DhViewClass   DhViewClass;
+typedef struct _DhViewPriv    DhViewPriv;
 
-struct _DevHelpView {
+struct _DhView {
 	HtmlView         parent;
 	
-	DevHelpViewPriv    *priv;
+	DhViewPriv    *priv;
 };
 
-struct _DevHelpViewClass {
+struct _DhViewClass {
         HtmlViewClass    parent_class;
 
 	/* Signals */
-	void (*uri_selected) (DevHelpView *view,
+	void (*uri_selected) (DhView *view,
 			      const gchar *uri,
 			      const gchar *anchor);
 };
 
-GType           devhelp_view_get_type       (void);
-GtkWidget      *devhelp_view_new            (void);
+GType           dh_view_get_type       (void);
+GtkWidget      *dh_view_new            (void);
  
-#if 0
-void            devhelp_view_open_uri       (DevHelpView   *view, 
-					     GnomeVFSURI   *uri); 
-#endif
+void            dh_view_open_uri       (DhView        *view,
+					const gchar   *uri);
 
-void            devhelp_view_open_uri       (DevHelpView   *view,
-					     const gchar   *uri);
-
-#endif /* __DEVHELP_VIEW_H__ */
+#endif /* __DH_VIEW_H__ */
 

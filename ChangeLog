@@ -1,5 +1,9 @@
 2002-08-08  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/devhelp-window.[ch]: Changed into dh-window.[ch]
+
+	* src/devhelp-view.[ch]: Changed into dh-view.[ch]
+
 	* src/dh-bookshelf.[ch]: 
 	- Changed name from bookshelf.[ch]
 	- Bookshelf -> DhBookshelf
