@@ -1,3 +1,9 @@
+2001-08-26  Yanko Kaneti  <yaneti@declera.com>
+
+	* configure.in:
+	* Makefile.am: add --disable-install-schemas to the available 
+	configure flags. When used skips all install gconf schemas steps.
+
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
 	* ui/GNOME_DevHelp_Controller.ui: 

@@ -1,21 +1,26 @@
 SUBDIRS = intl po src ui
 
-schemadir = $(sysconfdir)/gconf/schemas
-schema_DATA = devhelp.schemas
+SCHEMAS_DIR = $(sysconfdir)/gconf/schemas
+SCHEMAS_FILE = devhelp.schemas
+
+if INSTALL_SCHEMAS
+	schemadir = $(SCHEMAS_DIR)
+	schema_DATA = $(SCHEMAS_FILE)
+endif
 
 EXTRA_DIST =			\
 	TODO 			\
 	devhelp.desktop.in 	\
 	devhelp.spec 		\
 	devhelp.spec.in 	\
-	$(schema_DATA) 		\
+	$(SCHEMAS_FILE)		\
 	xml-i18n-merge.in 	\
 	xml-i18n-update.in 	\
 	xml-i18n-extract.in	\
 	misc/devhelp.el		\
 	misc/html2funcs.py	\
 	misc/html2xml.py	\
-	idl/GNOME_Devhelp.idl
+	idl/GNOME_DevHelp.idl
 
 Develdir = $(datadir)/gnome/apps/Development
 Devel_in_files = devhelp.desktop.in
@@ -23,7 +28,9 @@ Devel_DATA = $(Devel_in_files:.desktop.in=.desktop)
 
 @XML_I18N_MERGE_DESKTOP_RULE@
 
+if INSTALL_SCHEMAS
 install-data-local:
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool --shutdown
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool --makefile-install-rule $(top_srcdir)/$(schema_DATA)
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool --makefile-install-rule $(top_srcdir)/$(SCHEMAS_FILE)
+endif
 
