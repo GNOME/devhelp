@@ -1,19 +1,19 @@
 # translation of devhelp.HEAD to Albanian
 # This file is distributed under the same license as the devhelp package.
+# Copyright (C) 2004 Free Software Foundation, Inc.
 # Laurent Dhima <laurenti@alblinux.net>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp.HEAD\n"
+"Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-07 15:09+0200\n"
-"PO-Revision-Date: 2004-01-13 13:13+0100\n"
+"POT-Creation-Date: 2004-07-29 11:03+0200\n"
+"PO-Revision-Date: 2004-07-29 11:02+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3\n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -56,8 +56,7 @@ msgstr "Emërhapësire i pavlefshëm '%s' tek rreshti %d, kollona %d"
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
-"titulli, emri, dhe elementët e lidhur nevoiten tek rreshti %d, kollona %d"
+msgstr "titulli, emri, dhe elementët e lidhur nevoiten tek rreshti %d, kollona %d"
 
 #: src/dh-parser.c:202
 #, c-format
@@ -68,8 +67,7 @@ msgstr ""
 
 #: src/dh-parser.c:250
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "emri dhe elementët e lidhur kërkohen në brendësi <function> tek rreshti %d, "
 "kollona %d"
@@ -95,82 +93,79 @@ msgstr "_Kërko:"
 msgid "Section"
 msgstr "Seksioni"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:120
 msgid "_File"
 msgstr "_File"
 
-#: src/dh-window.c:113
+#: src/dh-window.c:121
 msgid "_Edit"
 msgstr "_Ndrysho"
 
-#: src/dh-window.c:114 ui/devhelp.glade.h:10
+#: src/dh-window.c:122 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Shko"
 
-#: src/dh-window.c:115
+#: src/dh-window.c:123
 msgid "_Help"
 msgstr "_Ndihmë"
 
-#: src/dh-window.c:299
+#: src/dh-window.c:307
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "E pamundur vendosja e UI: %s"
 
-#: src/dh-window.c:355 ui/devhelp.glade.h:3
+#: src/dh-window.c:367 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Përmbajtja"
 
-#: src/dh-window.c:366
+#: src/dh-window.c:378
 msgid "Search"
 msgstr "Kërko"
 
-#: src/dh-window.c:449
+#: src/dh-window.c:461
 msgid "A developer's help browser for GNOME 2"
 msgstr "Një shletues i ndihmës për zhvilluesit i GNOME 2"
 
-#: src/dh-window.c:465
+#: src/dh-window.c:477
 msgid "Devhelp project page"
 msgstr "Faqja e projektit devhelp"
 
-#: src/dh-window.c:469
+#: src/dh-window.c:481
 msgid "Bug report Devhelp"
 msgstr "Njoftimi i mangësive të Devhelp"
 
 #: devhelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Gërmat për tekstin e fiksuar"
 
 #: devhelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Gërmat për tekstin"
 
 #: devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Gërmat për tekstin me gjerësi të fiksuar."
 
 #: devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Gërmat për tekstin me gjerësi të ndryshueshme."
 
-#. GRUT modified this item
 #: devhelp.schemas.in.h:5
 msgid "Height of main window"
 msgstr "Lartësia e dritares qendrore"
 
 #: devhelp.schemas.in.h:6
 msgid "Location of the paned"
-msgstr ""
+msgstr "Pozicioni i panelit"
 
 #: devhelp.schemas.in.h:7
 msgid "Main window maximized state"
-msgstr ""
+msgstr "Gjendja e dritares qendrore të maksimizuar"
 
-#. GRUT modified this item
 #: devhelp.schemas.in.h:8
 msgid "The X position of the main window."
 msgstr "Pozicioni X i dritares qendrore."
 
-#. GRUT modified this item
 #: devhelp.schemas.in.h:9
 msgid "The Y position of the main window."
 msgstr "Pozicioni Y i dritares qendrore."
@@ -181,7 +176,7 @@ msgstr "Gjatësia e dritares kryesore."
 
 #: devhelp.schemas.in.h:11
 msgid "The location of the paned separator."
-msgstr ""
+msgstr "Vendodhja e ndarësit të panelit."
 
 #: devhelp.schemas.in.h:12
 msgid "The width of the main window."
@@ -189,27 +184,24 @@ msgstr "Gjerësia e dritares krysore."
 
 #: devhelp.schemas.in.h:13
 msgid "Use system fonts"
-msgstr ""
+msgstr "Përdor gërmat e sistemit"
 
 #: devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "Përdor gërmat e prezgjedhura të sistemit."
 
 #: devhelp.schemas.in.h:15
 msgid "Whether the main window should start maximized or not."
-msgstr ""
+msgstr "Nëse dritarja qendrore duhet të hapet e maksimizuar apo jo."
 
-#. GRUT modified this item
 #: devhelp.schemas.in.h:16
 msgid "Width of the main window"
 msgstr "Gjerësia e dritares qendrore"
 
-#. GRUT modified this item
 #: devhelp.schemas.in.h:17
 msgid "X position of main window"
 msgstr "Pozicioni X i dritares qendrore"
 
-#. GRUT modified this item
 #: devhelp.schemas.in.h:18
 msgid "Y position of main window"
 msgstr "Pozicioni Y i dritares qendrore"
@@ -224,7 +216,7 @@ msgstr "<b>Gërmat</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "Gjerësia fikse:"
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
@@ -232,7 +224,7 @@ msgstr "Preferimet"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "Gjerësia e ndryshueshme:"
 
 #: ui/devhelp.glade.h:8
 msgid "_Back"
@@ -244,11 +236,5 @@ msgstr "_Vazhdo"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Përdor gërmat e sistemit"
 
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search tab "
-#~ "to find what you are looking for."
-#~ msgstr ""
-#~ "Zgjidhni një nga subjektet tek përmbajtja majtas ose kalo tek skeda e "
-#~ "kërkimit për të gjetur çfarë jeni duke kërkuar."
