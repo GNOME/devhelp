@@ -19,5 +19,18 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* This file will take care of loading the documents */
+#ifndef __DH_BOOK_OLD_H__
+#define __DH_BOOK_OLD_H__
 
+#include <glib.h>
+#include <gsf/gsf-input.h>
+
+#include "dh-book.h"
+
+gboolean  dh_book_old_read       (GsfInput     *input,
+				  DhBook       *book,
+				  GNode        *book_tree,
+				  GList       **keywords,
+				  GError      **error);
+
+#endif /* __DH_BOOK_OLD_H__ */

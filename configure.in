@@ -14,15 +14,16 @@ AM_PROG_LIBTOOL
 
 
 PKG_CHECK_MODULES(DEVHELP, [
-	gtk+-2.0 >= 2.0.0
+	gtk+-2.0 >= 2.0.0])
+
+PKG_CHECK_MODULES(LIBDEVHELP, [
+        gtk+-2.0 >= 2.0.0
+	libgsf-1 >= 1.4.0
 	libgnomeui-2.0 >= 2.0.0
 	gnome-vfs-2.0 >= 2.0.0
 	libxml-2.0 >= 2.4.10
 	libglade-2.0 >= 2.0.0
-	libgtkhtml-2.0 >= 2.0.0
-	gconf-2.0 >= 1.1.5])
-
-PKG_CHECK_MODULES(LIBDEVHELP, [gtk+-2.0 >= 2.0.0])
+	libgtkhtml-2.0 >= 2.0.0])
 
 PKG_CHECK_MODULES(EGG, [gtk+-2.0 >= 2.0.0])
 
@@ -41,6 +42,7 @@ AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 AC_OUTPUT([
 Makefile
 devhelp.spec
+dtd/Makefile
 libegg/Makefile
 libegg/menu/Makefile
 libegg/toolbar/Makefile

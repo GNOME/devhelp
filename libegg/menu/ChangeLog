@@ -1,3 +1,8 @@
+2002-11-09  Mikael Hallendal  <micke@codefactory.se>
+
+	* egg-menu-merge.c: changed c++ comments into c comment and make
+	  it really silent.
+
 2002-11-04  Richard Hult  <rhult@codefactory.se>
 
 	* egg-menu-merge.c (update_node): Shh.

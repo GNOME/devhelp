@@ -17,23 +17,21 @@
  * License along with this program; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
- *
- * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
 #include <config.h>
 
 #include <libgnomevfs/gnome-vfs.h>
 
-#include "dh-book-parser.h"
+#include "dh-book-old.h"
 #include "dh-profile.h"
 
-#define d(x) x
+#define d(x)
 
 struct _DhProfilePriv {
         gchar    *name;
 	GSList   *books;
-        GNode    *book_tree;
+        GNode    *contents;
 	GList    *keywords;
 
 	gboolean  open;
@@ -82,7 +80,7 @@ profile_init (DhProfile *profile)
 	priv = g_new0 (DhProfilePriv, 1);
         
 	priv->name      = NULL;
-	priv->book_tree = NULL;
+	priv->contents  = NULL;
 	priv->keywords  = NULL;
 	priv->open      = FALSE;
 	
@@ -185,29 +183,34 @@ GNode *
 dh_profile_open (DhProfile *profile, GList **keywords, GError **error)
 {
 	DhProfilePriv *priv;
-
+	GSList        *l;
+	
 	g_return_val_if_fail (DH_IS_PROFILE (profile), NULL);
 
 	priv = profile->priv;
 
 	if (priv->open) {
 		*keywords = priv->keywords;
-		return priv->book_tree;
+		return priv->contents;
 	}
 
-	priv->book_tree = g_node_new (NULL);
-	
-	if (!dh_book_parser_read_books (priv->books,
-					priv->book_tree,
-					&priv->keywords,
-					error)) {
-		return NULL;
+	priv->contents = g_node_new (NULL);
+
+	for (l = priv->books; l; l = l->next) {
+		if (!dh_book_read ((const gchar *) l->data,
+				   NULL,
+				   priv->contents,
+				   &priv->keywords,
+				   error)) {
+			g_print ("Reading book '%s' failed with error message\n",
+				 (*error)->message);
+		}
 	}
 
 	priv->open = TRUE;
 	*keywords = priv->keywords;
 
-	return priv->book_tree;
+	return priv->contents;
 }
 
 GSList *

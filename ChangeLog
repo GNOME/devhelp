@@ -1,3 +1,46 @@
+2002-11-09  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/*.[ch]: Removed the author part of the header. Pointless
+	  information to now who started the file, look at the Copyright
+	  to see who actually wrote the code.
+
+	* src/dh-window.c (window_populate): pass the error argument to
+	  dh_profile.
+
+	* src/dh-profile.c: 
+	(dh_profile_open): handle looping through the books and call
+	  dh_book_read on each of them.
+
+	* src/dh-main.c: Copyright-cleanups.
+
+	* src/dh-error.[ch]: Added, needed to provide better error
+	  messages to the user.
+
+	* src/dh-book.[ch]: 
+	- Added, this will handle parsing of Devhelp2 books. 
+	- Uses libgsf for reading zip files.
+	- Currently only support the old book format which is passed to
+	  dh-book-old.c
+
+	* src/dh-book-old.[ch]: Renamed from dh-book-parser.[ch].
+	- Using libgsf now.
+	- Validates the books before trying to read it.
+	
+	* src/Makefile.am:
+	(INCLUDES): 
+	- include DTD_DIR
+	(libdevhelp2_la_SOURCES): 
+	- Added dh-book.[ch], dh-error.[ch]
+	- Renamed dh-book-parser.[ch] -> dh-book-old.[ch]
+
+	* dtd/*: added
+
+	* configure.in: 
+	- cleaned up the compile flags somewhat
+	- added dtd/Makefile to AC_OUTPUT
+
+	* Makefile.am (SUBDIRS): added dtd
+
 2002-11-09  Richard Hult  <rhult@codefactory.se>
 
 	* src/dh-main.c (dh_client_data_cb): Present the window when doing
@@ -8,11 +51,11 @@
 	* src/dh-main.c: Put username in socket filename.
 	
 	* src/dh-main.c (main): Reimplement searching in an already
-	running devhelp process and add a -q option to quit the running
-	process.
-	
+	  running devhelp process and add a -q option to quit the running 
+	  process.
+
 	* src/dh-base.c (dh_base_new_window): Comment out connection to
-	new_window_requested signal.
+	  new_window_requested signal.
 
 2002-11-08  Mikael Hallendal  <micke@codefactory.se>
 

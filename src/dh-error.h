@@ -19,5 +19,19 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* This file will take care of loading the documents */
+#ifndef __DH_ERROR_H__
+#define __DH_ERROR_H__
 
+#include <glib.h>
+
+#define DH_ERROR dh_error_quark ()
+
+typedef enum {
+        DH_ERROR_FILE_NOT_FOUND,
+        DH_ERROR_MALFORMED_BOOK,
+        DH_ERROR_INVALID_BOOK_TYPE
+} DhError;
+
+GQuark dh_error_quark (void) G_GNUC_CONST;
+
+#endif /* __DH_ERROR_H__ */

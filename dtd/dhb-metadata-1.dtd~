@@ -1,0 +1,10 @@
+<?xml version ="1.0" ?>
+
+<!ELEMENT book (contents?,keywords?>
+
+<!ATTLIST book format-version CDATA #REQUIRED
+               title          CDATA #REQUIRED
+               author         CDATA #IMPLIED
+               main-section   CDATA #REQUIRED
+               base-url       CDATA #IMPLIED>
+

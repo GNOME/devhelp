@@ -19,5 +19,23 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* This file will take care of loading the documents */
+#ifndef __DH_BOOK_H__
+#define __DH_BOOK_H__
+
+#include <glib.h>
+
+typedef struct {
+        gchar *title;
+        gchar *author;
+} DhBook;
+
+gboolean dh_book_read (const gchar  *uri, 
+                       DhBook       *book,
+                       GNode        *contents,
+                       GList       **keywords,
+                       GError      **error);
+
+#endif /* __DH_BOOK_H__ */
+       
+
 

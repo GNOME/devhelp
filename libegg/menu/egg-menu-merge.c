@@ -378,7 +378,7 @@ start_element_handler (GMarkupParseContext *context,
   gboolean raise_error = TRUE;
   gchar *error_attr = NULL;
 
-  //g_message("starting element %s", element_name);
+  /* g_message("starting element %s", element_name); */
 
   /* work out a name for this node.  Either the name attribute, or
    * element name */
@@ -618,7 +618,7 @@ end_element_handler (GMarkupParseContext *context,
   ParseContext *ctx = user_data;
   EggMenuMerge *self = ctx->self;
 
-  //g_message("ending element %s (state=%d)", element_name, ctx->state);
+  /* g_message("ending element %s (state=%d)", element_name, ctx->state); */
 
   switch (ctx->state)
     {
@@ -1275,7 +1275,7 @@ do_updates(EggMenuMerge *self)
    *    is created and added to the parent container).
    */
 
-  g_message("do_updates");
+  /* g_message("do_updates"); */
 
   update_node (self, self->root_node);
 

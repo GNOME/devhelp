@@ -5,10 +5,12 @@ INCLUDES = 						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DDATA_DIR=\"$(datadir)\"			\
 	-DPREFIX="\"$(prefix)"\"			\
-        -DSYSCONFDIR=\""$(sysconfdir)"\"                \
-        -DDATADIR=\""$(datadir)"\"                      \
-        -DLIBDIR=\""$(libdir)"\"			\
+	-DSYSCONFDIR=\""$(sysconfdir)"\"                \
+	-DDATADIR=\""$(datadir)"\"                      \
+	-DLIBDIR=\""$(libdir)"\"			\
+	-DDTD_DIR="\"$(datadir)/devhelp/dtd"\"		\
 	@DEVHELP_CFLAGS@ 				\
+	@LIBDEVHELP_CFLAGS@ 				\
 	$(NULL)
 
 bin_PROGRAMS = devhelp-2 
@@ -30,10 +32,14 @@ libdevhelp2_la_SOURCES =			\
 	dh-marshal-main.c			\
 	dh-base.c				\
 	dh-base.h				\
-	dh-book-parser.c			\
-	dh-book-parser.h			\
+	dh-book.c				\
+	dh-book.h				\
+	dh-book-old.c				\
+	dh-book-old.h				\
 	dh-book-tree.c				\
 	dh-book-tree.h				\
+	dh-error.c				\
+	dh-error.h				\
 	dh-history.c                            \
 	dh-history.h                            \
 	dh-html.c				\

@@ -19,5 +19,18 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* This file will take care of loading the documents */
+#include <config.h>
 
+#include "dh-error.h"
+
+GQuark
+dh_error_quark (void) 
+{
+        static GQuark q = 0;
+        
+        if (q == 0) {
+                q = g_quark_from_static_string ("dh-error-quark");
+        }
+        
+        return q;
+}

@@ -17,11 +17,7 @@
  * License along with this program; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
- *
- * Author: Mikael Hallendal <micke@codefactory.se>
  */
-
-/* Base, will load the books and stuff */
 
 #ifndef __DH_BASE_H__
 #define __DH_BASE_H__

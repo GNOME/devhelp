@@ -1,0 +1,8 @@
+<?xml version ="1.0" ?>
+
+<!ELEMENT contents (section+)>
+
+<!ELEMENT section (section*)>
+
+<!ATTLIST section title CDATA #REQUIRED
+                  url   CDATA #REQUIRED>

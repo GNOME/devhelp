@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2002 CodeFactory AB
+ * Copyright (C) 2001-2002 CodeFactory AB
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
@@ -17,8 +17,6 @@
  * License along with this program; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
- *
- * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
 #ifdef HAVE_CONFIG_H

@@ -1,6 +1,6 @@
 NULL = 
 
-SUBDIRS = libegg po src ui
+SUBDIRS = dtd libegg po src ui
 
 @INTLTOOL_DESKTOP_RULE@
 

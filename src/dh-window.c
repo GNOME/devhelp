@@ -17,8 +17,6 @@
  * License along with this program; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
- *
- * Author: Mikael Hallendal <micke@codefactory.se>
  */
 
 #ifdef HAVE_CONFIG_H
@@ -271,7 +269,9 @@ window_populate (DhWindow *window)
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 
-	contents_tree = dh_profile_open (priv->profile, &keywords, NULL);
+	error = NULL;
+
+	contents_tree = dh_profile_open (priv->profile, &keywords, &error);
 	
 	if (contents_tree) {
 		priv->book_tree = dh_book_tree_new (contents_tree);
