@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
+"POT-Creation-Date: 2003-06-29 12:53+0200\n"
 "PO-Revision-Date: 2002-07-10 00:13+0800\n"
 "Last-Translator: Zipeco <Zipeco@btamail.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -14,71 +14,143 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-msgid "DevHelp"
-msgstr "DevHelp"
-
-#: devhelp.desktop.in.h:2
-msgid "Developers Help program"
+#, fuzzy
+msgid "Developer's Help program"
 msgstr "开发者帮助程序"
 
-#: src/dh-main.c:261
+#: devhelp.desktop.in.h:2
+#, fuzzy
+msgid "Devhelp"
+msgstr "DevHelp"
+
+#: devhelp.keys.in.h:1
+#, fuzzy
+msgid "Devhelp Book"
+msgstr "DevHelp书管理器"
+
+#: src/dh-html-gtkhtml2.c:532
+msgid ""
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
+msgstr ""
+
+#: src/dh-main.c:258
+msgid "Specify the size and location of the window"
+msgstr ""
+
+#: src/dh-main.c:259
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr ""
+
+#: src/dh-main.c:267
 msgid "Search for a function"
 msgstr "搜索一个函数"
 
-#: src/dh-main.c:270
+#: src/dh-main.c:276
 msgid "Quit any running Devhelp"
 msgstr ""
 
-#: src/dh-search.c:349
-#, fuzzy
-msgid "_Search for:"
-msgstr "搜索(_S)"
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr ""
 
-#: src/dh-search.c:390
+#: src/dh-parser.c:120
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:149
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:202
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:250
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:337 src/dh-parser.c:423
+#, fuzzy
+msgid "Could not create book parser"
+msgstr "无法搜索字符串。"
+
+#: src/dh-parser.c:347 src/dh-parser.c:433
+msgid "Could not create markup parser"
+msgstr ""
+
+#: src/dh-parser.c:479
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr ""
+
+#: src/dh-search.c:417
+#, fuzzy
+msgid "_Search:"
+msgstr "搜索"
+
+#: src/dh-search.c:461
 #, fuzzy
 msgid "Section"
 msgstr "设置(_S)"
 
-#: src/dh-window.c:95
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "文件(_F)"
 
-#: src/dh-window.c:96
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr ""
 
-#: src/dh-window.c:97
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#. About menu
-#: src/dh-window.c:110
-#, fuzzy
-msgid "_About"
-msgstr "关于...(_A)"
-
-#: src/dh-window.c:287
+#: src/dh-window.c:339
 #, fuzzy
 msgid "Contents"
 msgstr "目录(_C)"
 
-#: src/dh-window.c:298
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "搜索"
 
-#: src/dh-window.c:360
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "开发者用于GNOME2的帮助浏览器"
 
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
+#: src/dh-window.c:430
+#, fuzzy
+msgid "Devhelp project page"
+msgstr "DevHelp书管理器"
+
+#: src/dh-window.c:434
+msgid "Bug report Devhelp"
 msgstr ""
-"在目录左侧选择一个主题或者切换到搜索栏以查找你要找的。<p>用<b>Shift Up/Down</"
-"b>在左侧目录树浏览，用<b>Shift Left/Right</b>展开或折叠目录树中的书。"
+
+#, fuzzy
+#~ msgid "_Search for:"
+#~ msgstr "搜索(_S)"
+
+#, fuzzy
+#~ msgid "_About"
+#~ msgstr "关于...(_A)"
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search pane "
+#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
+#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
+#~ "the books in the tree."
+#~ msgstr ""
+#~ "在目录左侧选择一个主题或者切换到搜索栏以查找你要找的。<p>用<b>Shift Up/"
+#~ "Down</b>在左侧目录树浏览，用<b>Shift Left/Right</b>展开或折叠目录树中的"
+#~ "书。"
 
 #~ msgid "Choose a book..."
 #~ msgstr "选择一本书..."
@@ -143,9 +215,6 @@ msgstr ""
 #~ msgid "Could not activate devhelp: '%s'"
 #~ msgstr "无法激活devhelp：“%s”"
 
-#~ msgid "Could not search for string."
-#~ msgstr "无法搜索字符串。"
-
 #~ msgid "Tiny"
 #~ msgstr "微小"
 
@@ -187,9 +256,6 @@ msgstr ""
 
 #~ msgid "Bookmarks"
 #~ msgstr "书签"
-
-#~ msgid "DevHelp Book Manager"
-#~ msgstr "DevHelp书管理器"
 
 #~ msgid "DevHelp Preferences"
 #~ msgstr "DevHelp首选项"

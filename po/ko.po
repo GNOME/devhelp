@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.6\n"
-"POT-Creation-Date: 2003-04-25 14:08+0900\n"
+"POT-Creation-Date: 2003-06-29 12:53+0200\n"
 "PO-Revision-Date: 2003-04-25 14:14+0900\n"
 "Last-Translator: Kang Jeong-Hee <Keizi@mail.co.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -15,68 +15,137 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-msgid "DevHelp"
-msgstr "DevHelp"
-
-#: devhelp.desktop.in.h:2
-msgid "Developers Help program"
+#, fuzzy
+msgid "Developer's Help program"
 msgstr "개발자를 도와주는 프로그램"
 
-#: src/dh-main.c:261
+#: devhelp.desktop.in.h:2
+#, fuzzy
+msgid "Devhelp"
+msgstr "DevHelp"
+
+#: devhelp.keys.in.h:1
+#, fuzzy
+msgid "Devhelp Book"
+msgstr "DevHelp"
+
+#: src/dh-html-gtkhtml2.c:532
+msgid ""
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
+msgstr ""
+
+#: src/dh-main.c:258
+msgid "Specify the size and location of the window"
+msgstr ""
+
+#: src/dh-main.c:259
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr ""
+
+#: src/dh-main.c:267
 msgid "Search for a function"
 msgstr "함수 찾기"
 
-#: src/dh-main.c:270
+#: src/dh-main.c:276
 msgid "Quit any running Devhelp"
 msgstr "실행중인 Devhelp를 마칩니다"
 
-#: src/dh-search.c:349
-msgid "_Search for:"
-msgstr "검색어(_S):"
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr ""
 
-#: src/dh-search.c:390
+#: src/dh-parser.c:120
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:149
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:202
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:250
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+
+#: src/dh-parser.c:337 src/dh-parser.c:423
+msgid "Could not create book parser"
+msgstr ""
+
+#: src/dh-parser.c:347 src/dh-parser.c:433
+msgid "Could not create markup parser"
+msgstr ""
+
+#: src/dh-parser.c:479
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr ""
+
+#: src/dh-search.c:417
+#, fuzzy
+msgid "_Search:"
+msgstr "검색"
+
+#: src/dh-search.c:461
 msgid "Section"
 msgstr "영역"
 
-#: src/dh-window.c:95
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "파일(_F)"
 
-#: src/dh-window.c:96
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "가기(_G)"
 
-#: src/dh-window.c:97
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "(_H)"
 
-#. About menu
-#: src/dh-window.c:110
-msgid "_About"
-msgstr "정보(_A)"
-
-#: src/dh-window.c:287
+#: src/dh-window.c:339
 msgid "Contents"
 msgstr "내용"
 
-#: src/dh-window.c:298
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "검색"
 
-#: src/dh-window.c:360
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "그놈 2 개발자를 도와주는 브라우저"
 
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
+#: src/dh-window.c:430
+msgid "Devhelp project page"
 msgstr ""
-"왼쪽의 내용 칸에서 고르거나 검색 칸에서 찾아보세요.<p><b>쉬프트 키를 누르고 "
-"위나 아래 화살표 누르면</b> 왼쪽의 트리에서 움직이고<b>쉬프트 키를 누르고 왼"
-"쪽이나 오른쪽 화살표를 누르면</b> 트리의 책을접거나 폅니다."
+
+#: src/dh-window.c:434
+msgid "Bug report Devhelp"
+msgstr ""
+
+#~ msgid "_Search for:"
+#~ msgstr "검색어(_S):"
+
+#~ msgid "_About"
+#~ msgstr "정보(_A)"
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search pane "
+#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
+#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
+#~ "the books in the tree."
+#~ msgstr ""
+#~ "왼쪽의 내용 칸에서 고르거나 검색 칸에서 찾아보세요.<p><b>쉬프트 키를 누르"
+#~ "고 위나 아래 화살표 누르면</b> 왼쪽의 트리에서 움직이고<b>쉬프트 키를 누르"
+#~ "고 왼쪽이나 오른쪽 화살표를 누르면</b> 트리의 책을접거나 폅니다."
 
 #~ msgid ""
 #~ "<b>Could not read all books</b>\n"

@@ -1,3 +1,17 @@
+Devhelp 0.7:
+------------
+* Crash fix                                         (Ross)
+* Better error handling                             (Ross)
+* Plug memory leak                                  (Mikael)
+* Usability fixes                                   (Richard)
+* Dist the emacs and vim scripts                    (Richard)
+* Added --geometry                                  (Richard)
+* UI fixes                                          (Richard)
+* Listen to GConf toolbar and menu settings         (Richard)
+* Fixed bug #114558                                 (Mike Harn,
+                                                     Richard)
+
+
 Devhelp 0.6:
 ------------
 * Added both html widget implementations to tarball (Mikael)

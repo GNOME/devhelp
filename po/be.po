@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD.be\n"
-"POT-Creation-Date: 2003-06-03 11:50+0200\n"
+"POT-Creation-Date: 2003-06-29 12:53+0200\n"
 "PO-Revision-Date: 2003-02-21 20:26GMT+2\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: belarusian <i18n@mova.org>\n"
@@ -16,122 +16,137 @@ msgstr ""
 "X-Generator: KBabel 1.0\n"
 
 #: devhelp.desktop.in.h:1
-msgid "DevHelp"
-msgstr "DevHelp"
+#, fuzzy
+msgid "Developer's Help program"
+msgstr "Праграма дапамогі распрацоўшчыкам"
 
 #: devhelp.desktop.in.h:2
-msgid "Developers Help program"
-msgstr "Праграма дапамогі распрацоўшчыкам"
+#, fuzzy
+msgid "Devhelp"
+msgstr "DevHelp"
 
 #: devhelp.keys.in.h:1
 #, fuzzy
-msgid "DevHelp Book"
+msgid "Devhelp Book"
 msgstr "DevHelp"
 
-#: src/dh-html-gtkhtml2.c:526
+#: src/dh-html-gtkhtml2.c:532
 msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
 msgstr ""
-"Выбярыце тэму са зьместа з левага боку ці пераключыцеся на панэль пошуку. "
-"<p>Выкарыстоўвайце <b>Shift Up/Down</b> для навігацыі па дрэве, і <b>Shift "
-"Left/Right</b> для згортваньня й разгортваньня кніг у дрэве."
 
-#: src/dh-main.c:261
+#: src/dh-main.c:258
+msgid "Specify the size and location of the window"
+msgstr ""
+
+#: src/dh-main.c:259
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr ""
+
+#: src/dh-main.c:267
 msgid "Search for a function"
 msgstr "Пошук для функцыі"
 
-#: src/dh-main.c:270
+#: src/dh-main.c:276
 msgid "Quit any running Devhelp"
 msgstr "Выхад з запушчанага Devhelp"
 
-#: src/dh-parser.c:94
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
-msgid "Expected 'book' got '%s' at line %d, column %d"
+msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:110
+#: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:139
+#: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:171
-#, c-format
-msgid "Expected 'sub' got '%s' at line %d column %d"
-msgstr ""
-
-#: src/dh-parser.c:192
+#: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:218
-#, c-format
-msgid "Expected 'function' got '%s' at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:240
+#: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:326 src/dh-parser.c:410
+#: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
 msgstr ""
 
-#: src/dh-parser.c:336 src/dh-parser.c:420
+#: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
 msgstr ""
 
-#: src/dh-parser.c:466
+#: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr ""
 
-#: src/dh-search.c:349
-msgid "_Search for:"
-msgstr "Ад_шукаць па:"
+#: src/dh-search.c:417
+#, fuzzy
+msgid "_Search:"
+msgstr "Пошук"
 
-#: src/dh-search.c:390
+#: src/dh-search.c:461
 msgid "Section"
 msgstr "Параграфы"
 
-#: src/dh-window.c:95
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "_Файл"
 
-#: src/dh-window.c:96
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "_Пераход"
 
-#: src/dh-window.c:97
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "_Дапамога"
 
-#. About menu
-#: src/dh-window.c:110
-msgid "_About"
-msgstr "_Пра праграму"
-
-#: src/dh-window.c:287
+#: src/dh-window.c:339
 msgid "Contents"
 msgstr "Зьмест"
 
-#: src/dh-window.c:298
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "Пошук"
 
-#: src/dh-window.c:360
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "Праглядальнік даведкі распрацоўшчыка для GNOME 2"
+
+#: src/dh-window.c:430
+msgid "Devhelp project page"
+msgstr ""
+
+#: src/dh-window.c:434
+msgid "Bug report Devhelp"
+msgstr ""
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search pane "
+#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
+#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
+#~ "the books in the tree."
+#~ msgstr ""
+#~ "Выбярыце тэму са зьместа з левага боку ці пераключыцеся на панэль пошуку. "
+#~ "<p>Выкарыстоўвайце <b>Shift Up/Down</b> для навігацыі па дрэве, і "
+#~ "<b>Shift Left/Right</b> для згортваньня й разгортваньня кніг у дрэве."
+
+#~ msgid "_Search for:"
+#~ msgstr "Ад_шукаць па:"
+
+#~ msgid "_About"
+#~ msgstr "_Пра праграму"
 
 #~ msgid ""
 #~ "<b>Could not read all books</b>\n"

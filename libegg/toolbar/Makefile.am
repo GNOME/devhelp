@@ -5,7 +5,7 @@ INCLUDES = \
   -DGTK_DISABLE_DEPRECATED \
   -DGDK_DISABLE_DEPRECATED \
   -DG_DISABLE_DEPRECATED \
-  -I$(top_builddir)/libegg/util \
+  -I$(top_srcdir)/libegg/util \
   -Wmissing-prototypes
 
 noinst_LTLIBRARIES = libegg-toolbar.la

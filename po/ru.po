@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-28 17:33+0400\n"
+"POT-Creation-Date: 2003-06-29 12:53+0200\n"
 "PO-Revision-Date: 2003-06-28 17:38+0400\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -28,7 +28,9 @@ msgstr "Книга Devhelp"
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
-msgstr "Выберите тему в содержании слева или переключитесь на закладку поиска, чтобы найти то что вам нужно."
+msgstr ""
+"Выберите тему в содержании слева или переключитесь на закладку поиска, чтобы "
+"найти то что вам нужно."
 
 #: src/dh-main.c:258
 msgid "Specify the size and location of the window"
@@ -93,26 +95,34 @@ msgstr "Поиск:"
 msgid "Section"
 msgstr "Раздел"
 
-#: src/dh-window.c:100
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "Файл"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "Перейти"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "Справка"
 
-#: src/dh-window.c:338
+#: src/dh-window.c:339
 msgid "Contents"
 msgstr "Содержание"
 
-#: src/dh-window.c:349
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "Поиск"
 
-#: src/dh-window.c:411
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "Программа просмотра справки для разработчиков"
+
+#: src/dh-window.c:430
+msgid "Devhelp project page"
+msgstr ""
+
+#: src/dh-window.c:434
+msgid "Bug report Devhelp"
+msgstr ""

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-29 11:46+0200\n"
+"POT-Creation-Date: 2003-06-29 12:53+0200\n"
 "PO-Revision-Date: 2003-05-15 18:41+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -131,4 +131,3 @@ msgstr "Devhelps projektsida"
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
 msgstr "Buggrapportera Devhelp"
-

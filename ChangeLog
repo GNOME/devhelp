@@ -1,5 +1,9 @@
 2003-06-29  Mikael Hallendal  <micke@imendio.com>
 
+        * NEWS: Updated, missed this in the 0.7 tarball.
+
+        * Release 0.7
+
 	* configure.in: Bumped to 0.7
 	
 	* devhelp.spec.in: Updated for 0.7 and new web site.

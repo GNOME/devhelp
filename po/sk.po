@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-05-15 18:44+0200\n"
+"POT-Creation-Date: 2003-06-29 12:53+0200\n"
 "PO-Revision-Date: 2003-05-215 18:53+0200\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -14,119 +14,144 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-msgid "DevHelp"
-msgstr "DevHelp"
-
-#: devhelp.desktop.in.h:2
-msgid "Developers Help program"
+#, fuzzy
+msgid "Developer's Help program"
 msgstr "Program pomocníka pre vývojárov"
 
+#: devhelp.desktop.in.h:2
+#, fuzzy
+msgid "Devhelp"
+msgstr "DevHelp"
+
 #: devhelp.keys.in.h:1
-msgid "DevHelp Book"
+#, fuzzy
+msgid "Devhelp Book"
 msgstr "DevHelp kniha"
 
-#: src/dh-html-gtkhtml2.c:526
+#: src/dh-html-gtkhtml2.c:532
 msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
 msgstr ""
-"Vyberte si predmet v obsahu vľaho, alebo sa prepnite na vyhľadávací panel, "
-"aby ste našli to, čo potrebujete.<p>Použite <b>shift+hore/dole</b> na "
-"prechádzanie po strome vľavo a <b>shift+vľavo/vpravo</b> na rozbalenie a "
-"zabalenie kníh v strome."
 
-#: src/dh-main.c:261
+#: src/dh-main.c:258
+msgid "Specify the size and location of the window"
+msgstr ""
+
+#: src/dh-main.c:259
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr ""
+
+#: src/dh-main.c:267
 msgid "Search for a function"
 msgstr "Vyhľadať funkciu"
 
-#: src/dh-main.c:270
+#: src/dh-main.c:276
 msgid "Quit any running Devhelp"
 msgstr "Ukončiť všetky bežiace kópie Devhelp"
 
-#: src/dh-parser.c:94
-#, c-format
-msgid "Expected 'book' got '%s' at line %d, column %d"
-msgstr "Očakávané 'book', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#, fuzzy, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Očakávané 'sub', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
 
-#: src/dh-parser.c:110
+#: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neplatný menný priestor '%s' na riadku %d, stĺpec %d"
 
-#: src/dh-parser.c:139
+#: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Elementy title, name a link sú vyžadované na riadku %d, stĺpec %d"
 
-#: src/dh-parser.c:171
-#, c-format
-msgid "Expected 'sub' got '%s' at line %d column %d"
-msgstr "Očakávané 'sub', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
-
-#: src/dh-parser.c:192
+#: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "Elementy name a link sú vyžadované vo vnútri <sub> na riadku %d, stĺpec %d"
+msgstr ""
+"Elementy name a link sú vyžadované vo vnútri <sub> na riadku %d, stĺpec %d"
 
-#: src/dh-parser.c:218
-#, c-format
-msgid "Expected 'function' got '%s' at line %d, column %d"
-msgstr "Očakávané 'function', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
-
-#: src/dh-parser.c:240
+#: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr "Elementy name a link sú vyžadované vo vnútri <function> na riadku %d, stĺpec %d"
+msgstr ""
+"Elementy name a link sú vyžadované vo vnútri <function> na riadku %d, stĺpec "
+"%d"
 
-#: src/dh-parser.c:326 src/dh-parser.c:410
+#: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
 msgstr "Nepodarilo sa vytvoriť analyzátor pre knihu"
 
-#: src/dh-parser.c:336 src/dh-parser.c:420
+#: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
 msgstr "Nepodarilo sa vytvoriť analyzátor pre značky"
 
-#: src/dh-parser.c:466
+#: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nepodarilo sa rozbaliť knihu '%s': %s"
 
-#: src/dh-search.c:349
-msgid "_Search for:"
-msgstr "_Hľadať:"
+#: src/dh-search.c:417
+#, fuzzy
+msgid "_Search:"
+msgstr "Hľadať"
 
-#: src/dh-search.c:390
+#: src/dh-search.c:461
 msgid "Section"
 msgstr "Časť"
 
-#: src/dh-window.c:95
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "_Súbor"
 
-#: src/dh-window.c:96
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "_Ísť"
 
-#: src/dh-window.c:97
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "_Pomocník"
 
-#. About menu
-#: src/dh-window.c:110
-msgid "_About"
-msgstr "O progr_ame"
-
-#: src/dh-window.c:287
+#: src/dh-window.c:339
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:298
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "Hľadať"
 
-#: src/dh-window.c:360
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prehliadač pomocníka pre vývojárov pre GNOME 2"
+
+#: src/dh-window.c:430
+msgid "Devhelp project page"
+msgstr ""
+
+#: src/dh-window.c:434
+msgid "Bug report Devhelp"
+msgstr ""
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search pane "
+#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
+#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
+#~ "the books in the tree."
+#~ msgstr ""
+#~ "Vyberte si predmet v obsahu vľaho, alebo sa prepnite na vyhľadávací "
+#~ "panel, aby ste našli to, čo potrebujete.<p>Použite <b>shift+hore/dole</b> "
+#~ "na prechádzanie po strome vľavo a <b>shift+vľavo/vpravo</b> na rozbalenie "
+#~ "a zabalenie kníh v strome."
+
+#~ msgid "Expected 'book' got '%s' at line %d, column %d"
+#~ msgstr "Očakávané 'book', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
+
+#~ msgid "Expected 'function' got '%s' at line %d, column %d"
+#~ msgstr "Očakávané 'function', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
+
+#~ msgid "_Search for:"
+#~ msgstr "_Hľadať:"
+
+#~ msgid "_About"
+#~ msgstr "O progr_ame"

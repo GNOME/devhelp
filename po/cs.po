@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-28 12:02+0200\n"
+"POT-Creation-Date: 2003-06-29 12:53+0200\n"
 "PO-Revision-Date: 2003-06-28 19:56+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -27,55 +27,50 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Kniha Devhelp"
 
-#: src/dh-html-gtkhtml2.c:526
+#: src/dh-html-gtkhtml2.c:532
 msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
+"Select a subject in the contents to the left or switch to the search tab to "
+"find what you are looking for."
 msgstr ""
-"Zvolte téma v obsahu nalevo nebo najděte, co hledáte, přepnutím na panel "
-"hledat.<p>Pro pohyb ve stromě vlevo použijte <b>Shift nahoru/dolů</b> a pro "
-"rozbalování a sbalování knih ve stromě <b>Shift doleva/doprava</b>."
 
-#: src/dh-main.c:274
+#: src/dh-main.c:258
 msgid "Specify the size and location of the window"
 msgstr "Určení velikosti a umístění okna"
 
-#: src/dh-main.c:275
+#: src/dh-main.c:259
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "ŠÍŘKAxVÝŠKA+XPOS+YPOS"
 
-#: src/dh-main.c:283
+#: src/dh-main.c:267
 msgid "Search for a function"
 msgstr "Hledat funkci"
 
-#: src/dh-main.c:292
+#: src/dh-main.c:276
 msgid "Quit any running Devhelp"
 msgstr "Ukončit všechny běžící Devhelpy"
 
-#: src/dh-parser.c:94 src/dh-parser.c:171 src/dh-parser.c:218
+#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Očekával jsem '%s', dostal jsem '%s' na řádku %d, sloupci %d"
 
-#: src/dh-parser.c:110
+#: src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neplatné namespace '%s' na řádku %d, sloupci %d"
 
-#: src/dh-parser.c:139
+#: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Na řádku %d, sloupci %d jsou vyžadovány elementy title, name a link"
 
-#: src/dh-parser.c:192
+#: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <sub> vyžadovány elementy name a link"
 
-#: src/dh-parser.c:240
+#: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -83,50 +78,68 @@ msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <function> vyžadovány elementy name a "
 "link"
 
-#: src/dh-parser.c:327 src/dh-parser.c:412
+#: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
 msgstr "Nemohu vytvořit parser knihy"
 
-#: src/dh-parser.c:337 src/dh-parser.c:422
+#: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
 msgstr "Nemohu vytvořit parser značení"
 
-#: src/dh-parser.c:468
+#: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nemohu dekomprimovat knihu '%s': %s"
 
-#: src/dh-search.c:421
+#: src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Hledat:"
 
-#: src/dh-search.c:465
+#: src/dh-search.c:461
 msgid "Section"
 msgstr "Oddíl"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:101
 msgid "_File"
 msgstr "_Soubor"
 
-#: src/dh-window.c:104
+#: src/dh-window.c:102
 msgid "_Go"
 msgstr "_Jít"
 
-#: src/dh-window.c:105
+#: src/dh-window.c:103
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: src/dh-window.c:341
+#: src/dh-window.c:339
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:352
+#: src/dh-window.c:350
 msgid "Search"
 msgstr "Hledat"
 
-#: src/dh-window.c:414
+#: src/dh-window.c:415
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
+
+#: src/dh-window.c:430
+msgid "Devhelp project page"
+msgstr ""
+
+#: src/dh-window.c:434
+msgid "Bug report Devhelp"
+msgstr ""
+
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search pane "
+#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
+#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
+#~ "the books in the tree."
+#~ msgstr ""
+#~ "Zvolte téma v obsahu nalevo nebo najděte, co hledáte, přepnutím na panel "
+#~ "hledat.<p>Pro pohyb ve stromě vlevo použijte <b>Shift nahoru/dolů</b> a "
+#~ "pro rozbalování a sbalování knih ve stromě <b>Shift doleva/doprava</b>."
 
 #~ msgid "_About"
 #~ msgstr "_O programu"
