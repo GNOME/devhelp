@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
 "POT-Creation-Date: 2002-05-08 13:15+0200\n"
-"PO-Revision-Date: 2002-05-03 17:34-0400\n"
+"PO-Revision-Date: 2002-05-08 23:03-0400\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -68,9 +68,8 @@ msgid "_Search"
 msgstr "_Tìm"
 
 #: src/devhelp-window.c:437
-#, fuzzy
 msgid "A developer's help browser for GNOME 2"
-msgstr "Bộ duyệt trợ giúp của nhà phát triển"
+msgstr "Bộ duyệt trợ giúp dành cho nhà phát triển"
 
 #: src/devhelp-window.c:558
 #, c-format
@@ -83,7 +82,7 @@ msgstr "Bộ điều khiển DevHelp"
 
 #: src/GNOME_DevHelp.server.in.in.h:2
 msgid "DevHelp Controller Factory"
-msgstr ""
+msgstr "Factory Bộ điều khiển DevHelp"
 
 #: src/GNOME_DevHelp.server.in.in.h:3
 msgid "DevHelp HelpBrowser"
@@ -91,7 +90,7 @@ msgstr "Bộ duyệt trợ giúp DevHelp"
 
 #: src/GNOME_DevHelp.server.in.in.h:4
 msgid "DevHelp HelpBrowser Factory"
-msgstr ""
+msgstr "Factory Trình duyệt trợ giúp DevHelp"
 
 #: src/devhelp-view.c:361
 msgid ""
@@ -188,7 +187,7 @@ msgstr "Hiện Thanh bên"
 
 #: ui/GNOME_DevHelp.ui.h:12
 msgid "_About..."
-msgstr ""
+msgstr "_Giới thiệu..."
 
 #: ui/GNOME_DevHelp.ui.h:13
 msgid "_Exit"
