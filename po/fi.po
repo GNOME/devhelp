@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2004-06-10 06:59+0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-02-19 07:02+0200\n"
 "PO-Revision-Date: 2004-06-10 07:08+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -14,229 +15,226 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: devhelp.desktop.in.h:1
+#: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Kehittäjän Ohje"
 
-#: devhelp.desktop.in.h:2
-#: ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: devhelp.keys.in.h:1
+#: ../devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Devhelp-kirja"
 
-#: src/dh-main.c:259
+#: ../src/dh-main.c:83
 msgid "Specify the size and location of the window"
 msgstr "Määrittele ikkunan koko ja sijainti"
 
-#: src/dh-main.c:260
+#: ../src/dh-main.c:84
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "LEVEYSxKORKEUS+XOFF+YOFF"
 
-#: src/dh-main.c:268
+#: ../src/dh-main.c:92
 msgid "Search for a function"
 msgstr "Etsi funktiota"
 
-#: src/dh-main.c:277
+#: ../src/dh-main.c:101
 msgid "Quit any running Devhelp"
 msgstr "Sulje suoritettavana olevat Devhelp-ohjelmat"
 
-#: src/dh-parser.c:104
-#: src/dh-parser.c:181
-#: src/dh-parser.c:228
+#: ../src/dh-parser.c:104 ../src/dh-parser.c:181 ../src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Oletettiin '%s', saatiin '%s' rivillä %d, sarakkeessa %d"
 
-#: src/dh-parser.c:120
+#: ../src/dh-parser.c:120
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Virheellinen nimiavaruus '%s' rivillä %d, sarakkeessa %d"
 
-#: src/dh-parser.c:149
+#: ../src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Elementit otsikko, nimi ja linkki vaaditaan rivillä %d, sarakkeessa %d"
 
-#: src/dh-parser.c:202
+#: ../src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "Elementit nimi ja linkki vaaditaan <sub>:in sisällä rivillä %d, sarakkeessa %d"
+msgstr ""
+"Elementit nimi ja linkki vaaditaan <sub>:in sisällä rivillä %d, sarakkeessa %"
+"d"
 
-#: src/dh-parser.c:250
+#: ../src/dh-parser.c:250
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr "Elementit nimi ja linkki vaaditaan <function>:in sisällä rivillä %d, sarakkeessa %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"Elementit nimi ja linkki vaaditaan <function>:in sisällä rivillä %d, "
+"sarakkeessa %d"
 
-#: src/dh-parser.c:337
-#: src/dh-parser.c:423
+#: ../src/dh-parser.c:337 ../src/dh-parser.c:423
 msgid "Could not create book parser"
 msgstr "Kirjan tulkkia ei voitu luoda"
 
-#: src/dh-parser.c:347
-#: src/dh-parser.c:433
+#: ../src/dh-parser.c:347 ../src/dh-parser.c:433
 msgid "Could not create markup parser"
 msgstr "Merkintöjen tulkkia ei voitu luoda"
 
-#: src/dh-parser.c:479
+#: ../src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kirjan '%s' pakkausta ei voitu avata: %s"
 
-#: src/dh-search.c:417
+#: ../src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Etsi:"
 
-#: src/dh-search.c:461
+#: ../src/dh-search.c:461
 msgid "Section"
 msgstr "Osa"
 
-#: src/dh-window.c:112
+#: ../src/dh-window.c:120
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: src/dh-window.c:113
+#: ../src/dh-window.c:121
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: src/dh-window.c:114
-#: ui/devhelp.glade.h:10
+#: ../src/dh-window.c:122 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "Siirry"
 
-#: src/dh-window.c:115
+#: ../src/dh-window.c:123
 msgid "_Help"
-msgstr "_Ohje"
+msgstr "O_hje"
 
-#: src/dh-window.c:299
+#: ../src/dh-window.c:307
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Käyttöliittymää ei voida asettaa: %s"
 
-#: src/dh-window.c:355
-#: ui/devhelp.glade.h:3
+#: ../src/dh-window.c:367 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Sisältö"
 
-#: src/dh-window.c:366
+#: ../src/dh-window.c:378
 msgid "Search"
 msgstr "Hae"
 
-#: src/dh-window.c:449
+#: ../src/dh-window.c:461
 msgid "A developer's help browser for GNOME 2"
 msgstr "Kehittäjän avusteselain Gnome 2:een"
 
-#: src/dh-window.c:465
+#: ../src/dh-window.c:477
 msgid "Devhelp project page"
 msgstr "Devhelpin projektisivu"
 
-#: src/dh-window.c:469
+#: ../src/dh-window.c:481
 msgid "Bug report Devhelp"
 msgstr "Ilmoita virheestä Devhelpissä"
 
-#: devhelp.schemas.in.h:1
+#: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
 msgstr "Tasalevyisen tekstin kirjasin"
 
-#: devhelp.schemas.in.h:2
+#: ../devhelp.schemas.in.h:2
 msgid "Font for text"
 msgstr "Tekstin kirjasin"
 
-#: devhelp.schemas.in.h:3
+#: ../devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
 msgstr "Kirjasin tekstille tasalevyisillä kirjasimilla."
 
-#: devhelp.schemas.in.h:4
+#: ../devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Kirjasin tekstille vaihtelevan levyisillä kirjasimilla."
 
-#: devhelp.schemas.in.h:5
+#: ../devhelp.schemas.in.h:5
 msgid "Height of main window"
 msgstr "Pääikkunan korkeus"
 
-#: devhelp.schemas.in.h:6
+#: ../devhelp.schemas.in.h:6
 msgid "Location of the paned"
 msgstr "Panelien sijainti"
 
-#: devhelp.schemas.in.h:7
+#: ../devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Pääikkunan suurennettu tila"
 
-#: devhelp.schemas.in.h:8
+#: ../devhelp.schemas.in.h:8
 msgid "The X position of the main window."
 msgstr "Pääikkunan X-koordinaatti."
 
-#: devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:9
 msgid "The Y position of the main window."
 msgstr "Pääikkunan Y-koordinaatti."
 
-#: devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:10
 msgid "The height of the main window."
 msgstr "Pääikkunan korkeus."
 
-#: devhelp.schemas.in.h:11
+#: ../devhelp.schemas.in.h:11
 msgid "The location of the paned separator."
 msgstr "Panelien erottimen sijainti."
 
-#: devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:12
 msgid "The width of the main window."
 msgstr "Pääikkunan leveys."
 
-#: devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:13
 msgid "Use system fonts"
 msgstr "Käytä järjestelmän kirjasimia"
 
-#: devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
 msgstr "Käytä järjestelmän oletuskirjasimia."
 
-#: devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:15
 msgid "Whether the main window should start maximized or not."
 msgstr "Näytetäänkö pääikkuna käynnistettäessä suurennettuna."
 
-#: devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:16
 msgid "Width of the main window"
 msgstr "Pääikkunan leveys"
 
-#: devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:17
 msgid "X position of main window"
 msgstr "Pääikkunan X-koordinaatti"
 
-#: devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:18
 msgid "Y position of main window"
 msgstr "Pääikkunan Y-koordinaatti"
 
-#: ui/devhelp.glade.h:1
+#: ../ui/devhelp.glade.h:1
 msgid "    "
 msgstr " "
 
-#: ui/devhelp.glade.h:2
+#: ../ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Kirjasimet</b>"
 
-#: ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:5
 msgid "Fixed width:"
 msgstr "Tasalevyinen:"
 
-#: ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:6
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:7
 msgid "Variable width: "
 msgstr "Vaihtelevan levyinen:"
 
-#: ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:8
 msgid "_Back"
 msgstr "_Takaisin"
 
-#: ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:9
 msgid "_Forward"
 msgstr "_Eteenpäin"
 
-#: ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Käytä järjestelmän kirjasimia"
-
