@@ -1,6 +1,20 @@
-2003-03-02  Mikael Hallendal  <micke@codefactory.se>
+Fri May  9 17:08:07 2003  Soeren Sandmann  <sandmann@daimi.au.dk>
 
-	* Makefile.am (INCLUDES): fix dist-check
+	* egg-action.c (egg_action_create_menu_proxy): update for new
+	EggToolItem API.
+
+Sun Apr 20 16:04:28 2003  Soeren Sandmann  <sandmann@daimi.au.dk>
+
+	* egg-menu-merge.c (find_toolbar_position): update for EggToolbar
+	changes (use egg_toolbar_get_item_index() instead of
+	egg_toolbar_get_tool_items())
+
+Sat Apr  5 14:43:04 2003  Soeren Sandmann  <sandmann@daimi.au.dk>
+
+	* egg-markup.c (start_element_handler):
+	s/egg_toolbar_insert_tool_item/egg_toolbar_insert/
+
+	* egg-menu-merge.c (update_node): ditto
 
 2003-01-11  Johan Dahlin  <jdahlin@async.com.br>
 

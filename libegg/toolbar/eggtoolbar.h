@@ -35,9 +35,13 @@
 
 #include "eggtoolitem.h"
 
+#ifndef GTK_DISABLE_DEPRECATED
+
 /* Not needed, retained for compatibility -Yosh */
 #include <gtk/gtkpixmap.h>
 #include <gtk/gtksignal.h>
+
+#endif
 
 G_BEGIN_DECLS
 
@@ -68,7 +72,14 @@ struct _EggToolbarChild
   GtkWidget *label;
 };
 
+typedef enum
+{
+  EGG_TOOLBAR_SPACE_EMPTY,
+  EGG_TOOLBAR_SPACE_LINE
+} EggToolbarSpaceStyle;
+
 #endif /* EGG_DISABLE_DEPRECATED */
+
 typedef struct _EggToolbar           EggToolbar;
 typedef struct _EggToolbarClass      EggToolbarClass;
 
@@ -84,12 +95,12 @@ struct _EggToolbar
 
   GtkTooltips     *tooltips;
   
-  gint             button_maxw;
-  gint             button_maxh;
+  gint             button_maxw;		/* maximum width of homogeneous children */
+  gint             button_maxh;		/* maximum height of homogeneous children */
 
   guint            style_set_connection;
   guint            icon_size_connection;
-  
+
   guint            style_set : 1;
   guint            icon_size_set : 1;
 };
@@ -98,53 +109,60 @@ struct _EggToolbarClass
 {
   GtkContainerClass parent_class;
 
-  void (* orientation_changed) (EggToolbar      *toolbar,
-				GtkOrientation   orientation);
-  void (* style_changed)       (EggToolbar      *toolbar,
-				GtkToolbarStyle  style);
-  void (* popup_context_menu)  (EggToolbar      *toolbar);
+  void (* orientation_changed) (EggToolbar       *toolbar,
+				GtkOrientation    orientation);
+  void (* style_changed)       (EggToolbar       *toolbar,
+				GtkToolbarStyle   style);
+  void (* popup_context_menu)  (EggToolbar       *toolbar);
+
+  /* these should go away/become padding when we become part of gtk+ */
+  gboolean (* move_focus)          (EggToolbar       *toolbar,
+				    GtkDirectionType  dir);
+  gboolean (* focus_home)          (EggToolbar       *toolbar);
+  gboolean (* focus_end)           (EggToolbar       *toolbar);
 
   /* Padding for future expansion */
   void (*_gtk_reserved1) (void);
-  void (*_gtk_reserved2) (void);
-  void (*_gtk_reserved3) (void);
-  void (*_gtk_reserved4) (void);
 };
 
-GType      egg_toolbar_get_type        (void) G_GNUC_CONST;
-GtkWidget* egg_toolbar_new             (void);
+GType           egg_toolbar_get_type        (void) G_GNUC_CONST;
+GtkWidget*      egg_toolbar_new             (void);
 
-void egg_toolbar_append_tool_item  (EggToolbar  *toolbar,
-				    EggToolItem *item);
-void egg_toolbar_prepend_tool_item (EggToolbar  *toolbar,
-				    EggToolItem *item);
-void egg_toolbar_insert_tool_item  (EggToolbar  *toolbar,
-				    EggToolItem *item,
-				    gint         pos);
-void egg_toolbar_remove_tool_item  (EggToolbar  *toolbar,
-				    EggToolItem *item);
-
-/* Style functions */
-void            egg_toolbar_set_show_arrow  (EggToolbar      *toolbar,
-					     gboolean         show_arrow);
-void            egg_toolbar_set_orientation (EggToolbar      *toolbar,
-					     GtkOrientation   orientation);
-void            egg_toolbar_set_style       (EggToolbar      *toolbar,
-					     GtkToolbarStyle  style);
-void            egg_toolbar_set_icon_size   (EggToolbar      *toolbar,
-					     GtkIconSize      icon_size);
-void            egg_toolbar_set_tooltips    (EggToolbar      *toolbar,
-					     gboolean         enable);
-void            egg_toolbar_unset_style     (EggToolbar      *toolbar);
-void            egg_toolbar_unset_icon_size (EggToolbar      *toolbar);
-gboolean        egg_toolbar_get_show_arrow  (EggToolbar      *toolbar);
-GtkOrientation  egg_toolbar_get_orientation (EggToolbar      *toolbar);
-GtkToolbarStyle egg_toolbar_get_style       (EggToolbar      *toolbar);
-GtkIconSize     egg_toolbar_get_icon_size   (EggToolbar      *toolbar);
-gboolean        egg_toolbar_get_tooltips    (EggToolbar      *toolbar);
-GList*          egg_toolbar_get_tool_items  (EggToolbar      *toolbar);
-
-
+void            egg_toolbar_append           (EggToolbar      *toolbar,
+					      EggToolItem     *item);
+void            egg_toolbar_prepend          (EggToolbar      *toolbar,
+					      EggToolItem     *item);
+void            egg_toolbar_insert           (EggToolbar      *toolbar,
+					      EggToolItem     *item,
+					      gint             pos);
+gint            egg_toolbar_get_item_index   (EggToolbar      *toolbar,
+					      EggToolItem     *item);
+gint		egg_toolbar_get_n_items      (EggToolbar      *toolbar);
+EggToolItem *   egg_toolbar_get_nth_item     (EggToolbar      *toolbar,
+					      gint             n);
+gint            egg_toolbar_get_drop_index   (EggToolbar      *toolbar,
+					      gint             x,
+					      gint             y);
+void            egg_toolbar_set_show_arrow   (EggToolbar      *toolbar,
+					      gboolean         show_arrow);
+void            egg_toolbar_set_orientation  (EggToolbar      *toolbar,
+					      GtkOrientation   orientation);
+/* FIXME: shouldn't these be deprecated? */
+void            egg_toolbar_set_style        (EggToolbar      *toolbar,
+					      GtkToolbarStyle  style);
+void            egg_toolbar_set_icon_size    (EggToolbar      *toolbar,
+					      GtkIconSize      icon_size);
+void            egg_toolbar_unset_style      (EggToolbar      *toolbar);
+/* -------- */
+void            egg_toolbar_set_tooltips     (EggToolbar      *toolbar,
+					      gboolean         enable);
+void            egg_toolbar_unset_icon_size  (EggToolbar      *toolbar);
+gboolean        egg_toolbar_get_show_arrow   (EggToolbar      *toolbar);
+GtkOrientation  egg_toolbar_get_orientation  (EggToolbar      *toolbar);
+GtkToolbarStyle egg_toolbar_get_style        (EggToolbar      *toolbar);
+GtkIconSize     egg_toolbar_get_icon_size    (EggToolbar      *toolbar);
+gboolean        egg_toolbar_get_tooltips     (EggToolbar      *toolbar);
+GtkReliefStyle  egg_toolbar_get_relief_style (EggToolbar      *toolbar);
 
 #ifndef EGG_DISABLE_DEPRECATED
 /* Simple button items */
@@ -185,7 +203,6 @@ void       egg_toolbar_append_space    (EggToolbar      *toolbar);
 void       egg_toolbar_prepend_space   (EggToolbar      *toolbar);
 void       egg_toolbar_insert_space    (EggToolbar      *toolbar,
 					gint             position);
-/* FIXME: Write this function */
 void       egg_toolbar_remove_space    (EggToolbar      *toolbar,
                                         gint             position);
 /* Any element type */

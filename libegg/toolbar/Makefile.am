@@ -1,14 +1,12 @@
 
 INCLUDES = \
   $(EGG_CFLAGS) \
-  -I$(top_srcdir) \
-  -I$(top_srcdir)/libegg/util \
   -DEGG_COMPILATION \
   -DGTK_DISABLE_DEPRECATED \
   -DGDK_DISABLE_DEPRECATED \
   -DG_DISABLE_DEPRECATED \
-  -I$(top_builddir)/libegg/util
-
+  -I$(top_builddir)/libegg/util \
+  -Wmissing-prototypes
 
 noinst_LTLIBRARIES = libegg-toolbar.la
 
@@ -28,3 +26,4 @@ noinst_HEADERS = \
   eggradiotoolbutton.h \
   eggtoolbutton.h \
   eggtoggletoolbutton.h
+

@@ -42,13 +42,14 @@ struct _EggToolButton
 
   /*< private >*/
   GtkWidget *button;
-  GtkWidget *box;
-  GtkWidget *label;
-  GtkWidget *icon;
 
   gchar *stock_id;
-  guint label_set : 1;
-  guint icon_set : 1;
+  gchar *label_text;
+  GtkWidget *label_widget;
+  GtkWidget *icon_widget;
+  GtkIconSet *icon_set;
+  
+  guint use_underline : 1;
 };
 
 struct _EggToolButtonClass
@@ -56,18 +57,35 @@ struct _EggToolButtonClass
   EggToolItemClass parent_class;
 
   GType button_type;
+
+  void       (* clicked)             (EggToolButton    *tool_item);
 };
 
 GType        egg_tool_button_get_type       (void);
 EggToolItem *egg_tool_button_new            (void);
 EggToolItem *egg_tool_button_new_from_stock (const gchar *stock_id);
 
+void                  egg_tool_button_set_label       (EggToolButton *button,
+						       const gchar   *label);
+G_CONST_RETURN gchar *egg_tool_button_get_label       (EggToolButton *button);
+void                  egg_tool_button_set_use_underline (EggToolButton *button,
+							 gboolean       use_underline);
+gboolean              egg_tool_button_get_use_underline (EggToolButton *button);
+void		      egg_tool_button_set_stock_id      (EggToolButton *button,
+							 const gchar   *stock_id);
+G_CONST_RETURN gchar *egg_tool_button_get_stock_id      (EggToolButton *button);
+void		      egg_tool_button_set_icon_set      (EggToolButton *button,
+							 GtkIconSet    *icon_set);
+GtkIconSet *          egg_tool_button_get_icon_set      (EggToolButton *button);
+void                  egg_tool_button_set_icon_set      (EggToolButton *button,
+							 GtkIconSet    *icon_set);
+void                  egg_tool_button_set_icon_widget (EggToolButton *button,
+						       GtkWidget     *icon);
+GtkWidget *           egg_tool_button_get_icon_widget (EggToolButton *button);
 
-void egg_tool_button_set_icon_widget (EggToolButton *button,
-				      GtkWidget     *icon);
-void egg_tool_button_set_label       (EggToolButton *button,
-				      const gchar   *label);
-
+void                  egg_tool_button_set_label_widget (EggToolButton *button,
+							GtkWidget     *label_widget);
+GtkWidget *           egg_tool_button_get_label_widget (EggToolButton *button);
 
 G_END_DECLS
 

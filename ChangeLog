@@ -1,5 +1,10 @@
 2003-06-27  Richard Hult  <richard@imendio.com>
 
+	* libegg/: Update eggmenu to fix bug #107390, follow toolbar/menu
+	preferences.
+	
+2003-06-27  Richard Hult  <richard@imendio.com>
+
 	* src/dh-window.c (window_activate_action): Set the name to
 	"Devhelp" instead of using PACKAGE.
 	Use stock item for Help->About.

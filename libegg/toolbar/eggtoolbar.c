@@ -25,6 +25,8 @@
  * GTK+ at ftp://ftp.gtk.org/pub/gtk/. 
  */
 
+#undef GTK_DISABLE_DEPRECATED
+
 #include <gtk/gtkarrow.h>
 #include "eggtoolbar.h"
 #include "eggradiotoolbutton.h"
@@ -32,6 +34,14 @@
 #include <gtk/gtkmenu.h>
 #include <gtk/gtkradiobutton.h>
 #include <gtk/gtktoolbar.h>
+#include <gtk/gtkbindings.h>
+#include <gdk/gdkkeysyms.h>
+#include "../util/eggmarshalers.h"
+#include <gtk/gtkmain.h>
+#include <gtk/gtkstock.h>
+#include <gtk/gtklabel.h>
+#include <gtk/gtkprivate.h>
+#include <string.h>
 
 #define DEFAULT_IPADDING 0
 #define DEFAULT_SPACE_SIZE  5
@@ -43,11 +53,6 @@
 #define SPACE_LINE_DIVISION 10
 #define SPACE_LINE_START    3
 #define SPACE_LINE_END      7
-
-#define TOOLBAR_ITEM_VISIBLE(item) \
-(GTK_WIDGET_VISIBLE (item) && \
-((toolbar->orientation == GTK_ORIENTATION_HORIZONTAL && item->visible_horizontal) || \
- (toolbar->orientation == GTK_ORIENTATION_VERTICAL && item->visible_vertical)))
 
 #ifndef _
 #  define _(s) (s)
@@ -61,9 +66,19 @@ enum {
 };
 
 enum {
+  CHILD_PROP_0,
+  CHILD_PROP_EXPAND,
+  CHILD_PROP_HOMOGENEOUS,
+  CHILD_PROP_PACK_END,
+};
+
+enum {
   ORIENTATION_CHANGED,
   STYLE_CHANGED,
   POPUP_CONTEXT_MENU,
+  MOVE_FOCUS,
+  FOCUS_HOME,
+  FOCUS_END,
   LAST_SIGNAL
 };
 
@@ -82,6 +97,7 @@ static void egg_toolbar_get_property (GObject      *object,
 static gint     egg_toolbar_expose         (GtkWidget        *widget,
 					    GdkEventExpose   *event);
 static void     egg_toolbar_realize        (GtkWidget        *widget);
+static void     egg_toolbar_unrealize      (GtkWidget        *widget);
 static void     egg_toolbar_size_request   (GtkWidget        *widget,
 					    GtkRequisition   *requisition);
 static void     egg_toolbar_size_allocate  (GtkWidget        *widget,
@@ -90,11 +106,31 @@ static void     egg_toolbar_style_set      (GtkWidget        *widget,
 					    GtkStyle         *prev_style);
 static void     egg_toolbar_direction_changed (GtkWidget        *widget,
                                                GtkTextDirection  previous_direction);
-
 static gboolean egg_toolbar_focus          (GtkWidget        *widget,
 					    GtkDirectionType  dir);
 static void     egg_toolbar_screen_changed (GtkWidget        *widget,
 					    GdkScreen        *previous_screen);
+static void     egg_toolbar_map            (GtkWidget        *widget);
+static void     egg_toolbar_unmap          (GtkWidget        *widget);
+
+static void     egg_toolbar_drag_leave  (GtkWidget      *widget,
+					 GdkDragContext *context,
+					 guint           time_);
+static gboolean egg_toolbar_drag_motion (GtkWidget      *widget,
+					 GdkDragContext *context,
+					 gint            x,
+					 gint            y,
+					 guint           time_);
+static void     egg_toolbar_set_child_property (GtkContainer    *container,
+						GtkWidget       *child,
+						guint            property_id,
+						const GValue    *value,
+						GParamSpec      *pspec);
+static void    egg_toolbar_get_child_property (GtkContainer    *container,
+					       GtkWidget       *child,
+					       guint            property_id,
+					       GValue          *value,
+					       GParamSpec      *pspec);
 
 static void  egg_toolbar_add        (GtkContainer *container,
 				     GtkWidget    *widget);
@@ -106,22 +142,30 @@ static void  egg_toolbar_forall     (GtkContainer *container,
 				     gpointer      callback_data);
 static GType egg_toolbar_child_type (GtkContainer *container);
 
-
 static void egg_toolbar_real_orientation_changed (EggToolbar      *toolbar,
 						  GtkOrientation   orientation);
 static void egg_toolbar_real_style_changed       (EggToolbar      *toolbar,
 						  GtkToolbarStyle  style);
 
+static gboolean egg_toolbar_move_focus     (EggToolbar       *toolbar,
+					    GtkDirectionType  dir);
+static gboolean egg_toolbar_focus_home     (EggToolbar       *toolbar);
+static gboolean egg_toolbar_focus_end      (EggToolbar       *toolbar);
+
 static gboolean             egg_toolbar_button_press         (GtkWidget      *button,
 							      GdkEventButton *event,
 							      EggToolbar     *toolbar);
-static void                 egg_toolbar_arrow_button_press   (GtkWidget      *button,
+static gboolean             egg_toolbar_arrow_button_press (GtkWidget      *button,
 							      GdkEventButton *event,
 							      EggToolbar     *toolbar);
+static void                 egg_toolbar_arrow_button_clicked (GtkWidget      *button,
+							       EggToolbar     *toolbar);
 static void                 egg_toolbar_update_button_relief (EggToolbar     *toolbar);
 static GtkReliefStyle       get_button_relief                (EggToolbar     *toolbar);
 static gint                 get_space_size                   (EggToolbar     *toolbar);
-static GtkToolbarSpaceStyle get_space_style                  (EggToolbar     *toolbar);
+static EggToolbarSpaceStyle get_space_style                  (EggToolbar     *toolbar);
+static void                 egg_toolbar_remove_tool_item     (EggToolbar     *toolbar,
+							      EggToolItem    *item);
 
 static GtkWidget *egg_toolbar_internal_insert_element (EggToolbar          *toolbar,
 						       EggToolbarChildType  type,
@@ -140,18 +184,27 @@ static GtkWidget *egg_toolbar_internal_insert_element (EggToolbar          *tool
 
 #define EGG_TOOLBAR_GET_PRIVATE(toolbar) (g_object_get_data (G_OBJECT (toolbar), PRIVATE_KEY))
 
+typedef enum {
+  DONT_KNOW,
+  OLD_API,
+  NEW_API
+} ApiMode;
+
 typedef struct
 {
   GList     *items;
-  GList     *first_non_fitting_item;
   
-  gint       total_button_maxw;
-  gint       total_button_maxh;
-
-  GtkWidget *button;
   GtkWidget *arrow;
+  GtkWidget *arrow_button;
   
   gboolean   show_arrow;
+
+  gint       drop_index;
+  GdkWindow *drag_highlight;
+  GtkMenu   *menu;
+
+  GdkWindow *event_window;
+  ApiMode    api_mode;
 } EggToolbarPrivate;
 
 static GtkContainerClass *parent_class = NULL;
@@ -171,7 +224,7 @@ egg_toolbar_get_type (void)
 	  (GBaseFinalizeFunc) NULL,
 	  (GClassInitFunc) egg_toolbar_class_init,
 	  (GClassFinalizeFunc) NULL,
-	  NULL,        
+	  NULL,
 	  sizeof (EggToolbar),
 	  0, /* n_preallocs */
 	  (GInstanceInitFunc) egg_toolbar_init,
@@ -186,11 +239,42 @@ egg_toolbar_get_type (void)
 }
 
 static void
+add_arrow_bindings (GtkBindingSet   *binding_set,
+		    guint            keysym,
+		    GtkDirectionType dir)
+{
+  guint keypad_keysym = keysym - GDK_Left + GDK_KP_Left;
+  
+  gtk_binding_entry_add_signal (binding_set, keysym, 0,
+                                "move_focus", 1,
+                                GTK_TYPE_DIRECTION_TYPE, dir);
+  gtk_binding_entry_add_signal (binding_set, keypad_keysym, 0,
+                                "move_focus", 1,
+                                GTK_TYPE_DIRECTION_TYPE, dir);
+}
+
+static void
+add_ctrl_tab_bindings (GtkBindingSet    *binding_set,
+		       GdkModifierType   modifiers,
+		       GtkDirectionType  direction)
+{
+  gtk_binding_entry_add_signal (binding_set,
+				GDK_Tab, GDK_CONTROL_MASK | modifiers,
+				"move_focus", 1,
+				GTK_TYPE_DIRECTION_TYPE, direction);
+  gtk_binding_entry_add_signal (binding_set,
+				GDK_KP_Tab, GDK_CONTROL_MASK | modifiers,
+				"move_focus", 1,
+				GTK_TYPE_DIRECTION_TYPE, direction);
+}
+
+static void
 egg_toolbar_class_init (EggToolbarClass *klass)
 {
   GObjectClass *gobject_class;
   GtkWidgetClass *widget_class;
   GtkContainerClass *container_class;
+  GtkBindingSet *binding_set;
 
   parent_class = g_type_class_peek_parent (klass);
   
@@ -209,15 +293,26 @@ egg_toolbar_class_init (EggToolbarClass *klass)
   widget_class->focus = egg_toolbar_focus;
   widget_class->screen_changed = egg_toolbar_screen_changed;
   widget_class->realize = egg_toolbar_realize;
+  widget_class->unrealize = egg_toolbar_unrealize;
+  widget_class->map = egg_toolbar_map;
+  widget_class->unmap = egg_toolbar_unmap;
+  
+  widget_class->drag_leave = egg_toolbar_drag_leave;
+  widget_class->drag_motion = egg_toolbar_drag_motion;
   
   container_class->add    = egg_toolbar_add;
   container_class->remove = egg_toolbar_remove;
   container_class->forall = egg_toolbar_forall;
   container_class->child_type = egg_toolbar_child_type;
+  container_class->get_child_property = egg_toolbar_get_child_property;
+  container_class->set_child_property = egg_toolbar_set_child_property;
   
   klass->orientation_changed = egg_toolbar_real_orientation_changed;
   klass->style_changed = egg_toolbar_real_style_changed;
-
+  klass->move_focus = egg_toolbar_move_focus;
+  klass->focus_home = egg_toolbar_focus_home;
+  klass->focus_end = egg_toolbar_focus_end;
+  
   toolbar_signals[ORIENTATION_CHANGED] =
     g_signal_new ("orientation_changed",
 		  G_OBJECT_CLASS_TYPE (klass),
@@ -236,7 +331,6 @@ egg_toolbar_class_init (EggToolbarClass *klass)
 		  g_cclosure_marshal_VOID__ENUM,
 		  G_TYPE_NONE, 1,
 		  GTK_TYPE_TOOLBAR_STYLE);
-
   toolbar_signals[POPUP_CONTEXT_MENU] =
     g_signal_new ("popup_context_menu",
 		  G_OBJECT_CLASS_TYPE (klass),
@@ -245,7 +339,33 @@ egg_toolbar_class_init (EggToolbarClass *klass)
 		  NULL, NULL,
 		  g_cclosure_marshal_VOID__VOID,
 		  G_TYPE_NONE, 0);
-  
+  toolbar_signals[MOVE_FOCUS] =
+    g_signal_new ("move_focus",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (EggToolbarClass, move_focus),
+                  NULL, NULL,
+                  _egg_marshal_BOOLEAN__ENUM,
+                  G_TYPE_BOOLEAN, 1,
+                  GTK_TYPE_DIRECTION_TYPE);
+  toolbar_signals[FOCUS_HOME] =
+    g_signal_new ("focus_home",
+		  G_OBJECT_CLASS_TYPE (klass),
+		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		  G_STRUCT_OFFSET (EggToolbarClass, focus_home),
+		  NULL, NULL,
+		  _egg_marshal_BOOLEAN__VOID,
+		  G_TYPE_BOOLEAN, 0);
+  toolbar_signals[FOCUS_END] =
+    g_signal_new ("focus_end",
+		  G_OBJECT_CLASS_TYPE (klass),
+		  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		  G_STRUCT_OFFSET (EggToolbarClass, focus_end),
+		  NULL, NULL,
+		  _egg_marshal_BOOLEAN__VOID,
+		  G_TYPE_BOOLEAN, 0);
+
+  /* properties */
   g_object_class_install_property (gobject_class,
 				   PROP_ORIENTATION,
 				   g_param_spec_enum ("orientation",
@@ -271,6 +391,32 @@ egg_toolbar_class_init (EggToolbarClass *klass)
 							 FALSE,
 							 G_PARAM_READWRITE));
 
+  /* child properties */
+  gtk_container_class_install_child_property (container_class,
+					      CHILD_PROP_EXPAND,
+					      g_param_spec_boolean ("expand", 
+								    _("Expand"), 
+								    _("Whether the item should receive extra space when the toolbar grows"),
+								    TRUE,
+								    G_PARAM_READWRITE));
+
+  gtk_container_class_install_child_property (container_class,
+					      CHILD_PROP_HOMOGENEOUS,
+					      g_param_spec_boolean ("homogeneous", 
+								    _("Homogeneous"), 
+								    _("Whether the item should be the same size as other homogeneous items"),
+								    TRUE,
+								    G_PARAM_READWRITE));
+
+  gtk_container_class_install_child_property (container_class,
+					      CHILD_PROP_PACK_END,
+					      g_param_spec_uint ("pack_end", 
+								 _("Pack End"), 
+								 _("Whether the item is positioned at the end of the toolbar"),
+								 0, G_MAXINT, 0,
+								 G_PARAM_READWRITE));
+
+  /* style properties */
   gtk_widget_class_install_style_property (widget_class,
 					   g_param_spec_int ("space_size",
 							     _("Spacer size"),
@@ -325,6 +471,25 @@ egg_toolbar_class_init (EggToolbarClass *klass)
                                                     GTK_TYPE_ICON_SIZE,
                                                     DEFAULT_ICON_SIZE,
                                                     G_PARAM_READWRITE));  
+
+  binding_set = gtk_binding_set_by_class (klass);
+
+  add_arrow_bindings (binding_set, GDK_Left, GTK_DIR_LEFT);
+  add_arrow_bindings (binding_set, GDK_Right, GTK_DIR_RIGHT);
+  add_arrow_bindings (binding_set, GDK_Up, GTK_DIR_UP);
+  add_arrow_bindings (binding_set, GDK_Down, GTK_DIR_DOWN);
+
+  gtk_binding_entry_add_signal (binding_set, GDK_KP_Home, 0,
+                                "focus_home", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_Home, 0,
+                                "focus_home", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_KP_End, 0,
+                                "focus_end", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_End, 0,
+                                "focus_end", 0);
+
+  add_ctrl_tab_bindings (binding_set, 0, GTK_DIR_RIGHT);
+  add_ctrl_tab_bindings (binding_set, GDK_SHIFT_MASK, GTK_DIR_LEFT);
 }
 
 static void
@@ -333,31 +498,74 @@ egg_toolbar_init (EggToolbar *toolbar)
   EggToolbarPrivate *priv;
   
   GTK_WIDGET_UNSET_FLAGS (toolbar, GTK_CAN_FOCUS);
+  GTK_WIDGET_SET_FLAGS (toolbar, GTK_NO_WINDOW);
 
   priv = g_new0 (EggToolbarPrivate, 1);
   g_object_set_data (G_OBJECT (toolbar), PRIVATE_KEY, priv);
   
   toolbar->orientation = GTK_ORIENTATION_HORIZONTAL;
-  toolbar->style = GTK_TOOLBAR_ICONS;
+  toolbar->style = DEFAULT_TOOLBAR_STYLE;
+  toolbar->icon_size = DEFAULT_ICON_SIZE;
   toolbar->tooltips = gtk_tooltips_new ();
   g_object_ref (toolbar->tooltips);
   gtk_object_sink (GTK_OBJECT (toolbar->tooltips));
   
-  priv->button = gtk_toggle_button_new ();
-  g_signal_connect (priv->button, "button_press_event",
+  priv->arrow_button = gtk_toggle_button_new ();
+  g_signal_connect (priv->arrow_button, "button_press_event",
 		    G_CALLBACK (egg_toolbar_arrow_button_press), toolbar);
-  gtk_button_set_relief (GTK_BUTTON (priv->button),
+  g_signal_connect (priv->arrow_button, "clicked",
+		    G_CALLBACK (egg_toolbar_arrow_button_clicked), toolbar);
+  gtk_button_set_relief (GTK_BUTTON (priv->arrow_button),
 			 get_button_relief (toolbar));
-  GTK_WIDGET_UNSET_FLAGS (priv->button, GTK_CAN_FOCUS);
+
+  priv->api_mode = DONT_KNOW;
+  
+#if 0
+  /* FIXME: enable this when we can depend on gtk+ 2.3.0 */
+  gtk_button_set_focus_on_click (GTK_BUTTON (priv->arrow_button), FALSE);
+#endif
   
   priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
   gtk_widget_show (priv->arrow);
-  gtk_container_add (GTK_CONTAINER (priv->button), priv->arrow);
+  gtk_container_add (GTK_CONTAINER (priv->arrow_button), priv->arrow);
   
-  gtk_widget_set_parent (priv->button, GTK_WIDGET (toolbar));  
+  gtk_widget_set_parent (priv->arrow_button, GTK_WIDGET (toolbar));
 
   g_signal_connect (GTK_WIDGET (toolbar), "button_press_event",
       		    G_CALLBACK (egg_toolbar_button_press), toolbar);
+
+  /* which child position a drop will occur at */
+  priv->drop_index = -1;
+  priv->drag_highlight = NULL;
+
+  priv->menu = NULL;
+}
+
+static gboolean
+toolbar_item_visible (EggToolbar *toolbar, EggToolItem *item)
+{
+    if (GTK_WIDGET_VISIBLE (item) &&
+	((toolbar->orientation == GTK_ORIENTATION_HORIZONTAL && item->visible_horizontal) ||
+	 (toolbar->orientation == GTK_ORIENTATION_VERTICAL && item->visible_vertical)))
+      {
+	EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+	
+	/* With the old toolbar you could hide a button by calling gtk_widget_hide()
+	 * on it. This doesn't work with the new API because the EggToolItem will not be
+	 * hidden.
+	 */
+	if (priv->api_mode == OLD_API)
+	  {
+	    GtkWidget *bin_child = GTK_BIN (item)->child;
+	    
+	    if (!bin_child || !GTK_WIDGET_VISIBLE (bin_child))
+	      return FALSE;
+	  }
+	
+	return TRUE;
+      }
+    
+    return FALSE;
 }
 
 static void
@@ -412,6 +620,28 @@ egg_toolbar_get_property (GObject    *object,
 }
 
 static void
+egg_toolbar_map (GtkWidget *widget)
+{
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (widget);
+
+  GTK_WIDGET_CLASS (parent_class)->map (widget);
+
+  if (priv->event_window)
+    gdk_window_show_unraised (priv->event_window);
+}
+
+static void
+egg_toolbar_unmap (GtkWidget *widget)
+{
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (widget);
+
+  if (priv->event_window)
+    gdk_window_hide (priv->event_window);
+
+  GTK_WIDGET_CLASS (parent_class)->unmap (widget);
+}
+
+static void
 egg_toolbar_paint_space_line (GtkWidget    *widget,
 			      GdkRectangle *area,
 			      EggToolItem  *item)
@@ -451,6 +681,8 @@ static void
 egg_toolbar_realize (GtkWidget *widget)
 {
   EggToolbar *toolbar = EGG_TOOLBAR (widget);
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+
   GdkWindowAttr attributes;
   gint attributes_mask;
   gint border_width;
@@ -459,30 +691,54 @@ egg_toolbar_realize (GtkWidget *widget)
 
   border_width = GTK_CONTAINER (widget)->border_width;
 
-  attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.visual = gtk_widget_get_visual (widget);
-  attributes.colormap = gtk_widget_get_colormap (widget);
+  attributes.wclass = GDK_INPUT_ONLY;
   attributes.window_type = GDK_WINDOW_CHILD;
   attributes.x = widget->allocation.x + border_width;
   attributes.y = widget->allocation.y + border_width;
   attributes.width = widget->allocation.width - border_width * 2;
   attributes.height = widget->allocation.height - border_width * 2;
   attributes.event_mask = gtk_widget_get_events (widget);
-  attributes.event_mask |= (GDK_VISIBILITY_NOTIFY_MASK |
-      			    GDK_EXPOSURE_MASK |
+  /* FIXME: does GDK_EXPOSURE_MASK make sense for an input-only window?
+   * If it doesn't, then it should be removed here and in gtkbutton.c,
+   * gtkmenuitem.c, and maybe other places
+   */
+  attributes.event_mask |= (GDK_EXPOSURE_MASK |
 			    GDK_BUTTON_PRESS_MASK |
 			    GDK_BUTTON_RELEASE_MASK |
 			    GDK_ENTER_NOTIFY_MASK |
 			    GDK_LEAVE_NOTIFY_MASK);
 
-  attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
+  attributes_mask = GDK_WA_X | GDK_WA_Y;
 
-  widget->window = gdk_window_new (gtk_widget_get_parent_window (widget),
-      				   &attributes, attributes_mask);
-  gdk_window_set_user_data (widget->window, toolbar);
-  gdk_window_set_background (widget->window, &widget->style->bg[GTK_WIDGET_STATE (widget)]);
+  widget->window = gtk_widget_get_parent_window (widget);
+  g_object_ref (widget->window);
+  
+  priv->event_window = gdk_window_new (gtk_widget_get_parent_window (widget),
+				       &attributes, attributes_mask);
+  gdk_window_set_user_data (priv->event_window, toolbar);
+}
 
-  widget->style = gtk_style_attach (widget->style, widget->window);
+static void
+egg_toolbar_unrealize (GtkWidget *widget)
+{
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (widget);
+
+  if (priv->drag_highlight)
+    {
+      gdk_window_set_user_data (priv->drag_highlight, NULL);
+      gdk_window_destroy (priv->drag_highlight);
+      priv->drag_highlight = NULL;
+    }
+
+  if (priv->event_window)
+    {
+      gdk_window_set_user_data (priv->event_window, NULL);
+      gdk_window_destroy (priv->event_window);
+      priv->event_window = NULL;
+    }
+
+  if (GTK_WIDGET_CLASS (parent_class)->unrealize)
+    (* GTK_WIDGET_CLASS (parent_class)->unrealize) (widget);
 }
 
 static gint
@@ -502,16 +758,16 @@ egg_toolbar_expose (GtkWidget      *widget,
       GtkShadowType shadow_type;
 
       gtk_widget_style_get (widget, "shadow_type", &shadow_type, NULL);
-
+      
       gtk_paint_box (widget->style,
 		     widget->window,
                      GTK_WIDGET_STATE (widget),
                      shadow_type,
 		     &event->area, widget, "toolbar",
-		     widget->allocation.x + border_width,
-                     border_width,
-		     widget->allocation.width - border_width,
-                     widget->allocation.height - border_width);
+		     border_width + widget->allocation.x,
+                     border_width + widget->allocation.y,
+		     widget->allocation.width - 2 * border_width,
+                     widget->allocation.height - 2 * border_width);
     }
 
   items = priv->items;
@@ -530,9 +786,9 @@ egg_toolbar_expose (GtkWidget      *widget,
     }
 
   gtk_container_propagate_expose (GTK_CONTAINER (widget),
-				  priv->button,
+				  priv->arrow_button,
 				  event);
-  
+
   return FALSE;
 }
 
@@ -542,155 +798,171 @@ egg_toolbar_size_request (GtkWidget      *widget,
 {
   EggToolbar *toolbar = EGG_TOOLBAR (widget);
   EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
-  GList *items;
-  gint nbuttons, ipadding;
-  gint button_maxw, button_maxh;
-  gint total_button_maxw, total_button_maxh;
-  gint space_size;
-  GtkRequisition child_requisition;
+  gint space_size = get_space_size (toolbar);
+  GList *list;
+  gint max_child_height;
+  gint max_child_width;
+  gint max_homogeneous_child_width;
+  gint max_homogeneous_child_height;
+  gint homogeneous_size;
+  gint long_req;
+  gint pack_end_size;
+  gint pack_front_size;
+  gint ipadding;
+  GtkRequisition arrow_requisition;
 
-  requisition->width = GTK_CONTAINER (toolbar)->border_width * 2;
-  requisition->height = GTK_CONTAINER (toolbar)->border_width * 2;
-  nbuttons = 0;
-  button_maxw = 0;
-  button_maxh = 0;
-  total_button_maxw = 0;
-  total_button_maxh = 0;
-  items = priv->items;
-  space_size = get_space_size (toolbar);
-  
-  if (priv->show_arrow)
+  max_homogeneous_child_width = 0;
+  max_homogeneous_child_height = 0;
+  max_child_width = 0;
+  max_child_height = 0;
+  for (list = priv->items; list != NULL; list = list->next)
     {
-      /* When we enable the arrow we only want to be the
-       * size of the arrows plus the size of any items that
-       * are pack-end.
-       */
-
-      items = priv->items;
-
-      while (items)
-	{
-	  EggToolItem *item = EGG_TOOL_ITEM (items->data);
-	  
-	  if (TOOLBAR_ITEM_VISIBLE (item))
-	    {
-	      gtk_widget_size_request (GTK_WIDGET (item), &child_requisition);
-
-	      total_button_maxw = MAX (total_button_maxw, child_requisition.width);
-	      total_button_maxh = MAX (total_button_maxh, child_requisition.height);
-
-	      if (item->homogeneous)
-		{
-		  if (item->pack_end)
-		    nbuttons++;
-		  button_maxw = MAX (button_maxw, child_requisition.width);
-		  button_maxh = MAX (button_maxh, child_requisition.height);
-		}
-	      else if (item->pack_end)
-		{
-		  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-		    requisition->width += child_requisition.width;
-		  else
-		    requisition->height += child_requisition.height;
-		}
-	      if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-		requisition->height = MAX (requisition->height, child_requisition.height);
-	      else
-		requisition->width = MAX (requisition->width, child_requisition.width);
-	    }
-
-	  items = items->next;
-	}
-
-      /* Add the arrow */
-      gtk_widget_size_request (priv->button, &child_requisition);
+      GtkRequisition requisition;
+      EggToolItem *item = list->data;
       
-      if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-	{
-	  requisition->width += child_requisition.width;
-	  requisition->height = MAX (requisition->height, child_requisition.height);	  
-	}
-      else
-	{
-	  requisition->height += child_requisition.height;
-	  requisition->width = MAX (requisition->width, child_requisition.width);
-	}
-    }
-  else
-    {
-      items = priv->items;
+      if (!toolbar_item_visible (toolbar, item))
+	continue;
 
-      while (items)
-	{
-	  EggToolItem *item = EGG_TOOL_ITEM (items->data);
-	  
-	  if (!TOOLBAR_ITEM_VISIBLE (item))
-	    {
-	      items = items->next;
-	      continue;
-	    }
-	  
-	  if (!GTK_BIN (item)->child)
-	    {
-	      if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-		requisition->width += space_size;
-	      else
-		requisition->height += space_size;
-	    }
-	  else
-	    {
-	      gtk_widget_size_request (GTK_WIDGET (item), &child_requisition);
-	      
-	      total_button_maxw = MAX (total_button_maxw, child_requisition.width);
-	      total_button_maxh = MAX (total_button_maxh, child_requisition.height);
-	      
-	      if (item->homogeneous)
-		{
-		  nbuttons++;
-		  button_maxw = MAX (button_maxw, child_requisition.width);
-		  button_maxh = MAX (button_maxh, child_requisition.height);
-		}
-	      else
-		{
-		  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-		    {
-		      requisition->width += child_requisition.width;
-		      requisition->height = MAX (requisition->height, child_requisition.height);
-		    }
-		  else
-		    {
-		      requisition->height += child_requisition.height;
-		      requisition->width = MAX (requisition->width, child_requisition.width);
-		    }
-		}
-	    }
+      gtk_widget_size_request (GTK_WIDGET (item), &requisition);
+      
+      max_child_width = MAX (max_child_width, requisition.width);
+      max_child_height = MAX (max_child_height, requisition.height);
 
-	  items = items->next;
+      if (EGG_TOOL_ITEM (item)->homogeneous && GTK_BIN (item)->child)
+	{
+	  max_homogeneous_child_width = MAX (max_homogeneous_child_width, requisition.width);
+	  max_homogeneous_child_height = MAX (max_homogeneous_child_height, requisition.height);
 	}
     }
   
   if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
+    homogeneous_size = max_homogeneous_child_width;
+  else
+    homogeneous_size = max_homogeneous_child_height;
+  
+  pack_end_size = 0;
+  pack_front_size = 0;
+  for (list = priv->items; list != NULL; list = list->next)
     {
-      requisition->width += nbuttons * button_maxw;
-      requisition->height = MAX (requisition->height, button_maxh);
+      EggToolItem *item = list->data;
+      guint size;
+      
+      if (!toolbar_item_visible (toolbar, item))
+	continue;
+      
+      if (!GTK_BIN (item)->child)
+	{
+	  size = space_size;
+	}
+      else if (item->homogeneous)
+	{
+	  size = homogeneous_size;
+	}
+      else
+	{
+	  GtkRequisition requisition;
+	  
+	  gtk_widget_size_request (GTK_WIDGET (item), &requisition);
+
+	  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
+	    size = requisition.width;
+	  else
+	    size = requisition.height;
+	}
+      
+      if (item->pack_end)
+	pack_end_size += size;
+      else
+	pack_front_size += size;
+    }
+  
+  long_req = pack_end_size;
+  
+  if (priv->show_arrow)
+    {
+      gtk_widget_size_request (priv->arrow_button, &arrow_requisition);
+      
+      if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
+	long_req = pack_end_size + MIN (pack_front_size, arrow_requisition.width);
+      else
+	long_req = pack_end_size + MIN (pack_front_size, arrow_requisition.height);
     }
   else
     {
-      requisition->width = MAX (requisition->width, button_maxw);
-      requisition->height += nbuttons * button_maxh;
+      arrow_requisition.height = 0;
+      arrow_requisition.width = 0;
+      
+      long_req = pack_end_size + pack_front_size;
     }
-
+  
+  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
+    {
+      requisition->width = long_req;
+      requisition->height = MAX (max_child_height, arrow_requisition.height);
+    }
+  else
+    {
+      requisition->height = long_req;
+      requisition->width = MAX (max_child_width, arrow_requisition.width);
+    }
+  
   /* Extra spacing */
   gtk_widget_style_get (widget, "internal_padding", &ipadding, NULL);
-  
-  requisition->width += 2 * ipadding;
-  requisition->height += 2 * ipadding;
 
-  priv->total_button_maxw = total_button_maxw;
-  priv->total_button_maxh = total_button_maxh;
+  requisition->width += 2 * (ipadding + GTK_CONTAINER (toolbar)->border_width);
+  requisition->height += 2 * (ipadding + GTK_CONTAINER (toolbar)->border_width);
   
-  toolbar->button_maxw = button_maxw;
-  toolbar->button_maxh = button_maxh;
+  toolbar->button_maxw = max_homogeneous_child_width;
+  toolbar->button_maxh = max_homogeneous_child_height;
+}
+
+static void
+fixup_allocation_for_rtl (gint           total_size,
+			  GtkAllocation *allocation)
+{
+  allocation->x += (total_size - (2 * allocation->x + allocation->width));
+}
+
+static void
+fixup_allocation_for_vertical (GtkAllocation *allocation)
+{
+  gint tmp;
+  
+  tmp = allocation->x;
+  allocation->x = allocation->y;
+  allocation->y = tmp;
+  
+  tmp = allocation->width;
+  allocation->width = allocation->height;
+  allocation->height = tmp;
+}
+
+static gint
+get_item_size (EggToolbar *toolbar,
+	       GtkWidget  *child)
+{
+  GtkRequisition requisition;
+  EggToolItem *item = EGG_TOOL_ITEM (child);
+
+  if (!GTK_BIN (item)->child)
+    return get_space_size (toolbar);
+
+  gtk_widget_get_child_requisition (child, &requisition);
+  
+  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
+    {
+      if (item->homogeneous)
+	return toolbar->button_maxw;
+      else
+	return requisition.width;
+    }
+  else
+    {
+      if (item->homogeneous)
+	return toolbar->button_maxh;
+      else
+	return requisition.height;
+    }
 }
 
 static void
@@ -699,346 +971,280 @@ egg_toolbar_size_allocate (GtkWidget     *widget,
 {
   EggToolbar *toolbar = EGG_TOOLBAR (widget);
   EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  gint space_size;
+  GtkAllocation *allocations;
+  GtkAllocation arrow_allocation;
+  gint arrow_size;
+  gint size, pos, short_size;
+  GList *list;
+  gint i;
+  gboolean need_arrow;
+  gint n_expand_items;
+  gint border_width, internal_padding;
+  gint available_size;
+  gint n_items;
+  gint needed_size;
   GList *items;
-  GtkAllocation child_allocation;
-  gint ipadding, space_size;
-  gint border_width, edge_position;
-  gint available_width, available_height;
-  gint available_size, total_size;
-  GtkRequisition child_requisition;
-  gint remaining_size;
-  gint number_expandable, expandable_size;
-  gboolean first_expandable;
-  gint child_x; 
+  GtkRequisition arrow_requisition;
 
   widget->allocation = *allocation;
-  border_width = GTK_CONTAINER (widget)->border_width;
-  total_size = 0;
-  number_expandable = 0;
+
   space_size = get_space_size (toolbar);
-  
-  gtk_widget_style_get (widget, "internal_padding", &ipadding, NULL);
-  border_width += ipadding;
-  
-  available_width  = allocation->width  - 2 * border_width;
-  available_height = allocation->height - 2 * border_width;
-  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-    {
-      edge_position = allocation->x + allocation->width - border_width;
-      available_size = available_width;
-    }
-  else
-    {
-      edge_position = allocation->height - border_width;
-      available_size = available_height;
-    }
+
+  border_width = GTK_CONTAINER (toolbar)->border_width;
 
   if (GTK_WIDGET_REALIZED (widget))
     {
-      gdk_window_move_resize (widget->window,
-			      allocation->x + border_width,
-			      allocation->y + border_width,
-			      allocation->width - border_width * 2,
-			      allocation->height - border_width * 2);
+      gdk_window_move_resize (priv->event_window,
+                              allocation->x + border_width,
+                              allocation->y + border_width,
+                              allocation->width - border_width * 2,
+                              allocation->height - border_width * 2);
     }
-
   
-  items = g_list_last (priv->items);
+  gtk_widget_style_get (widget, "internal_padding", &internal_padding, NULL);
+  border_width += internal_padding;
   
-  while (items)
+  gtk_widget_get_child_requisition (GTK_WIDGET (priv->arrow_button),
+				    &arrow_requisition);
+  
+  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
     {
-      EggToolItem *item = EGG_TOOL_ITEM (items->data);
-      
-      if (!item->pack_end || !TOOLBAR_ITEM_VISIBLE (item))
-	{
-	  items = items->prev;
-	  continue;
-	}
-
-      if (!GTK_BIN (item)->child)
-	{
-	  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-	    {
-	      child_allocation.width = space_size;
-	      child_allocation.height = available_height;
-	      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) 
-		child_allocation.x = edge_position - child_allocation.width;
-	      else
-		child_allocation.x = allocation->x + allocation->width - edge_position;
-		  
-	      child_allocation.y = (allocation->height - child_allocation.height) / 2;
-
-
-	      gtk_widget_size_allocate (GTK_WIDGET (item), &child_allocation);
-
-	      edge_position -= child_allocation.width;
-	      available_size -= child_allocation.width; 
-	    }
-	  else
-	    {
-	      child_allocation.width = available_width;
-	      child_allocation.height = space_size;
-	      child_allocation.x = allocation->x + (allocation->width - child_allocation.width) / 2;
-	      child_allocation.y = edge_position - child_allocation.height;
-
-	      gtk_widget_size_allocate (GTK_WIDGET (item), &child_allocation);
-
-	      edge_position -= child_allocation.height;
-	      available_size -= child_allocation.height; 
-	    }
-	}
-      else
-	{
-	  gtk_widget_get_child_requisition (GTK_WIDGET (item), &child_requisition);
-	  
-	  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-	    {
-	      if (item->homogeneous)
-		child_allocation.width = toolbar->button_maxw;
-	      else
-		child_allocation.width = child_requisition.width;
-	      child_allocation.height = available_height;
-	      child_allocation.y = (allocation->height - child_allocation.height) / 2;
-	      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) 
-		child_allocation.x = edge_position - child_allocation.width;
-	      else
-		child_allocation.x = allocation->x + allocation->width - edge_position;
-	      
-	      gtk_widget_size_allocate (GTK_WIDGET (item), &child_allocation);
-	      
-	      edge_position -= child_allocation.width;
-	      available_size -= child_allocation.width; 
-	    }
-	  else
-	    {
-	      if (item->homogeneous)
-		child_allocation.height = toolbar->button_maxh;
-	      else
-		child_allocation.height = child_requisition.height;
-
-	      child_allocation.width = available_width;
-	      child_allocation.x = allocation->x + (allocation->width - child_allocation.width) / 2;
-	      child_allocation.y = edge_position - child_allocation.height;
-	      
-	      gtk_widget_size_allocate (GTK_WIDGET (item), &child_allocation);
-	      
-	      edge_position -= child_allocation.height;
-	      available_size -= child_allocation.height;
-	    }
-	}
-
-      items = items->prev;
-    }
-
-  /* Now go through the items and see if they fit */
-  items = priv->items;
-
-  while (items)
-    {
-      EggToolItem *item = EGG_TOOL_ITEM (items->data);
-
-      if (item->pack_end || !TOOLBAR_ITEM_VISIBLE (item))
-	{
-	  items = items->next;
-	  continue;
-	}
-
-      if (item->expandable)
-	number_expandable += 1;
-
-      if (!GTK_BIN (item)->child)
-	{
-	  total_size += space_size;
-	}
-      else
-	{
-	  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-	    {
-	      gtk_widget_get_child_requisition (GTK_WIDGET (item), &child_requisition);
-	      
-	      if (item->homogeneous)
-		total_size += toolbar->button_maxw;
-	      else
-		total_size += child_requisition.width;
-	    }
-	  else
-	    {
-	      gtk_widget_get_child_requisition (GTK_WIDGET (item), &child_requisition);
-	      
-	      if (item->homogeneous)
-		total_size += toolbar->button_maxh;
-	      else
-		total_size += child_requisition.height;
-	    }
-	}
-      items = items->next;
-    }
-
-  /* Check if we need to allocate and show the arrow */
-  if (available_size < total_size)
-    {
-      if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-	{
-	  gtk_widget_get_child_requisition (priv->button, &child_requisition);
-	  available_size -= child_requisition.width;
-
-	  child_allocation.width = child_requisition.width;
-	  child_allocation.height = priv->total_button_maxh;
-	  child_allocation.y = (allocation->height - child_allocation.height) / 2;
-	  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) 
-	    child_allocation.x = edge_position - child_allocation.width;
-	  else
-	    child_allocation.x = allocation->x + allocation->width - edge_position;
-	}
-      else
-	{
-	  gtk_widget_get_child_requisition (priv->button, &child_requisition); 	  
-	  available_size -= child_requisition.width;
-
-	  child_allocation.height = child_requisition.height;
-	  child_allocation.width = priv->total_button_maxw;
-	  child_allocation.x = allocation->x + (allocation->width - child_allocation.width) / 2;
-	  child_allocation.y = edge_position - child_allocation.height;
-	}
-
-      gtk_widget_size_allocate (priv->button, &child_allocation);      
-      gtk_widget_show (priv->button);
+      available_size = size = allocation->width - 2 * border_width;
+      short_size = allocation->height - 2 * border_width;
+      arrow_size = arrow_requisition.width;
     }
   else
-    gtk_widget_hide (priv->button);
-  
-  /* Finally allocate the remaining items */
-  items = priv->items;
-  child_x = allocation->x + border_width;
-  child_allocation.y = border_width;
-  remaining_size = MAX (0, available_size - total_size);
-  total_size = 0;
-  first_expandable = TRUE;
-  
-  while (items)
     {
-      EggToolItem *item = EGG_TOOL_ITEM (items->data);
+      available_size = size = allocation->height - 2 * border_width;
+      short_size = allocation->width - 2 * border_width;
+      arrow_size = arrow_requisition.height;
+    }
 
-      if (item->pack_end || !TOOLBAR_ITEM_VISIBLE (item))
-	{
-	  items = items->next;
-	  continue;
-	}
+  n_items = g_list_length (priv->items);
+  allocations = g_new0 (GtkAllocation, n_items);
+
+  needed_size = 0;
+  for (list = priv->items; list != NULL; list = list->next)
+    {
+      EggToolItem *item = list->data;
       
-      if (!GTK_BIN (item)->child)
+      if (toolbar_item_visible (toolbar, item))
+	needed_size += get_item_size (toolbar, GTK_WIDGET (item));
+    }
+
+  need_arrow = (needed_size > available_size) && priv->show_arrow;
+
+  if (need_arrow)
+    size = available_size - arrow_size;
+  else
+    size = available_size;
+
+  items = g_list_copy (priv->items);
+
+  /* calculate widths of pack end items */
+  items = g_list_reverse (items);
+  for (list = items, i = 0; list != NULL; list = list->next, ++i)
+    {
+      EggToolItem *item = list->data;
+      GtkAllocation *allocation = &(allocations[n_items - i - 1]);
+      gint item_size;
+      
+      if (!item->pack_end || !toolbar_item_visible (toolbar, item))
+	continue;
+
+      item_size = get_item_size (toolbar, GTK_WIDGET (item));
+      if (item_size <= size)
 	{
-	  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-	    {
-	      child_allocation.width = space_size;
-	      child_allocation.height = available_height;
-	      child_allocation.y = (allocation->height - child_allocation.height) / 2;
-	      total_size += child_allocation.width;
-
-	      if (total_size > available_size)
-		break;
-	      
-	      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) 
-		child_allocation.x = child_x;
-	      else
-		child_allocation.x = allocation->x + allocation->width 
-		  - child_x - child_allocation.width;
-
-	      gtk_widget_size_allocate (GTK_WIDGET (item), &child_allocation);
-	      gtk_widget_map (GTK_WIDGET (item));
-	      
-	      child_x += child_allocation.width;
-	    }
-	  else
-	    {
-	      child_allocation.width = available_width;
-	      child_allocation.height = space_size;
-	      child_allocation.x = allocation->x + (allocation->width - child_allocation.width) / 2;
-	      total_size += child_allocation.height;
-
-	      if (total_size > available_size)
-		break;
-	      
-	      gtk_widget_size_allocate (GTK_WIDGET (item), &child_allocation);
-	      gtk_widget_map (GTK_WIDGET (item));
-	  
-	      child_allocation.y += child_allocation.height;
-	    }
+	  size -= item_size;
+	  allocation->width = item_size;
+	  item->overflow_item = FALSE;
 	}
       else
 	{
-	  gtk_widget_get_child_requisition (GTK_WIDGET (item), &child_requisition);
-	  
-	  if (item->expandable)
+	  while (list)
 	    {
-	      expandable_size = remaining_size / number_expandable;
+	      item = list->data;
+	      if (item->pack_end)
+		item->overflow_item = TRUE;
 	      
-	      if (first_expandable)
-		{
-		  expandable_size += remaining_size % number_expandable;
-		  first_expandable = FALSE;
-		}
+	      list = list->next;
 	    }
-	  else
-	    expandable_size = 0;
-	  
-	  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-	    {
-	      if (item->homogeneous)
-		child_allocation.width = toolbar->button_maxw;
-	      else
-		child_allocation.width = child_requisition.width;
-	      
-	      child_allocation.height = available_height;
-	      child_allocation.width += expandable_size;
-	      child_allocation.y = (allocation->height - child_allocation.height) / 2;
-	      total_size += child_allocation.width;
-
-	      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
-		child_allocation.x = child_x;
-	      else
-		child_allocation.x = allocation->x + allocation->width 
-		  - child_x - child_allocation.width;
-
-	    }
-	  else
-	    {
-	      if (item->homogeneous)
-		child_allocation.height = toolbar->button_maxh;
-	      else
-		child_allocation.height = child_requisition.height;
-	      
-	      child_allocation.width = available_width;
-	      child_allocation.height += expandable_size;
-	      child_allocation.x = allocation->x + (allocation->width - child_allocation.width) / 2;
-	      total_size += child_allocation.height;
-
-	    }
-	  
-	  if (total_size > available_size)
-	    break;
-	  
-	  gtk_widget_size_allocate (GTK_WIDGET (item), &child_allocation);
-	  gtk_widget_map (GTK_WIDGET (item));
-	  
-	  if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
-	    child_x += child_allocation.width;
-	  else
-	    child_allocation.y += child_allocation.height;
-	  
+	  break;
 	}
-      
-      items = items->next;
+    }
+  items = g_list_reverse (items);
+
+  /* calculate widths of pack front items */
+  for (list = items, i = 0; list != NULL; list = list->next, ++i)
+    {
+      EggToolItem *item = list->data;
+      gint item_size;
+
+      if (item->pack_end || !toolbar_item_visible (toolbar, item))
+	continue;
+
+      item_size = get_item_size (toolbar, GTK_WIDGET (item));
+      if (item_size <= size)
+	{
+	  size -= item_size;
+	  allocations[i].width = item_size;
+	  item->overflow_item = FALSE;
+	}
+      else
+	{
+	  while (list)
+	    {
+	      item = list->data;
+	      if (!item->pack_end)
+		item->overflow_item = TRUE;
+	      list = list->next;
+	    }
+	  break;
+	}
+    }
+
+  if (need_arrow)
+    {
+      arrow_allocation.width = arrow_size;
+      arrow_allocation.height = short_size;
     }
   
-  /* Unmap the remaining items */
-  priv->first_non_fitting_item = items;
-  while (items)
+  /* expand expandable items */
+  n_expand_items = 0;
+  for (list = priv->items; list != NULL; list = list->next)
     {
-      EggToolItem *item = EGG_TOOL_ITEM (items->data);
-
-      gtk_widget_unmap (GTK_WIDGET (item));
-      items = items->next;      
+      EggToolItem *item = list->data;
+      
+      if (toolbar_item_visible (toolbar, item) && item->expand &&
+	  !item->overflow_item && GTK_BIN (item)->child)
+	{
+	  n_expand_items++;
+	}
     }
+  
+  for (list = items, i = 0; list != NULL; list = list->next, ++i)
+    {
+      EggToolItem *item = list->data;
+      
+      if (toolbar_item_visible (toolbar, item) && item->expand &&
+	  !item->overflow_item && GTK_BIN (item)->child)
+	{
+	  gint extra = size / n_expand_items;
+	  if (size % n_expand_items != 0)
+	    extra++;
+
+	  allocations[i].width += extra;
+	  size -= extra;
+	  n_expand_items--;
+	}
+    }
+
+  g_assert (n_expand_items == 0);
+  
+  /* position pack front items */
+  pos = border_width;
+  for (list = items, i = 0; list != NULL; list = list->next, ++i)
+    {
+      EggToolItem *item = list->data;
+      
+      if (toolbar_item_visible (toolbar, item) && !item->overflow_item && !item->pack_end)
+	{
+	  allocations[i].x = pos;
+	  allocations[i].y = border_width;
+	  allocations[i].height = short_size;
+
+	  pos += allocations[i].width;
+	}
+    }
+
+  /* position pack end items */
+  pos = available_size + border_width;
+  items = g_list_reverse (items);
+  for (list = items, i = 0; list != NULL; list = list->next, ++i)
+    {
+      EggToolItem *item = list->data;
+      
+      if (toolbar_item_visible (toolbar, item) && !item->overflow_item && item->pack_end)
+	{
+	  GtkAllocation *allocation = &(allocations[n_items - i - 1]);
+
+	  allocation->x = pos - allocation->width;
+	  allocation->y = border_width;
+	  allocation->height = short_size;
+	  
+	  pos -= allocation->width;
+	}
+    }
+  items = g_list_reverse (items);
+
+  /* position arrow */
+  if (need_arrow)
+    {
+      arrow_allocation.x = pos - arrow_allocation.width;
+      arrow_allocation.y = border_width;
+    }
+  
+  /* fix up allocations in the vertical or RTL cases */
+  if (toolbar->orientation == GTK_ORIENTATION_VERTICAL)
+    {
+      for (i = 0; i < n_items; ++i)
+	fixup_allocation_for_vertical (&(allocations[i]));
+      
+      if (need_arrow)
+	fixup_allocation_for_vertical (&arrow_allocation);
+    }
+  else if (gtk_widget_get_direction (GTK_WIDGET (toolbar)) == GTK_TEXT_DIR_RTL)
+    {
+      for (i = 0; i < n_items; ++i)
+	fixup_allocation_for_rtl (available_size, &(allocations[i]));
+
+      if (need_arrow)
+	fixup_allocation_for_rtl (available_size, &arrow_allocation);
+    }
+  
+  /* translate the items by allocation->(x,y) */
+  for (i = 0; i < n_items; ++i)
+    {
+      allocations[i].x += allocation->x;
+      allocations[i].y += allocation->y;
+    }
+
+  if (need_arrow)
+    {
+      arrow_allocation.x += allocation->x;
+      arrow_allocation.y += allocation->y;
+    }
+  
+  /* finally allocate the items */
+  for (list = items, i = 0; list != NULL; list = list->next, i++)
+    {
+      EggToolItem *item = list->data;
+      
+      if (toolbar_item_visible (toolbar, item) && !item->overflow_item)
+	{
+	  gtk_widget_size_allocate (GTK_WIDGET (item), &(allocations[i]));
+	  gtk_widget_set_child_visible (GTK_WIDGET (item), TRUE);
+	}
+      else
+	{
+	  gtk_widget_set_child_visible (GTK_WIDGET (item), FALSE);
+	}
+    }
+
+  if (need_arrow)
+    {
+      gtk_widget_size_allocate (GTK_WIDGET (priv->arrow_button),
+				&arrow_allocation);
+      gtk_widget_show (GTK_WIDGET (priv->arrow_button));
+    }
+  else
+    {
+      gtk_widget_hide (GTK_WIDGET (priv->arrow_button));
+    }
+  
+  g_free (allocations);
+  g_list_free (items);
 }
 
 static void
@@ -1046,7 +1252,7 @@ egg_toolbar_style_set (GtkWidget *widget,
 		       GtkStyle  *prev_style)
 {
   if (GTK_WIDGET_REALIZED (widget))
-      gtk_style_set_background (widget->style, widget->window, widget->state);
+    gtk_style_set_background (widget->style, widget->window, widget->state);
 
   if (prev_style)
     egg_toolbar_update_button_relief (EGG_TOOLBAR (widget));
@@ -1070,13 +1276,145 @@ egg_toolbar_direction_changed (GtkWidget        *widget,
   GTK_WIDGET_CLASS (parent_class)->direction_changed (widget, previous_dir);
 }
 
+static GList *
+egg_toolbar_list_children_in_focus_order (EggToolbar       *toolbar,
+					  GtkDirectionType  dir)
+{
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  GList *result = NULL;
+  GList *list;
+
+  for (list = priv->items; list != NULL; list = list->next)
+    {
+      EggToolItem *item = list->data;
+      if (!item->pack_end)
+	result = g_list_prepend (result, item);
+    }
+
+  for (list = priv->items; list != NULL; list = list->next)
+    {
+      EggToolItem *item = list->data;
+
+      if (item->pack_end)
+	result = g_list_prepend (result, item);
+    }
+
+  result = g_list_prepend (result, priv->arrow_button);
+  
+  if (dir == GTK_DIR_RIGHT || dir == GTK_DIR_DOWN || dir == GTK_DIR_TAB_FORWARD)
+    result = g_list_reverse (result);
+
+  if (gtk_widget_get_direction (GTK_WIDGET (toolbar)) == GTK_TEXT_DIR_RTL)
+    result = g_list_reverse (result);
+
+  return result;
+}
+
+static gboolean
+egg_toolbar_move_focus (EggToolbar       *toolbar,
+			GtkDirectionType  dir)
+{
+  GList *list;
+  gboolean try_focus = FALSE;
+  GList *children = egg_toolbar_list_children_in_focus_order (toolbar, dir);
+
+  for (list = children; list != NULL; list = list->next)
+    {
+      GtkWidget *child = list->data;
+      
+      if (try_focus && GTK_WIDGET_MAPPED (child) && gtk_widget_child_focus (child, dir))
+	break;
+
+      if (child == GTK_CONTAINER (toolbar)->focus_child)
+	try_focus = TRUE;
+    }
+
+  g_list_free (children);
+
+  return TRUE;
+}
+
+static gboolean
+egg_toolbar_focus_home (EggToolbar *toolbar)
+{
+  GList *children, *list;
+  GtkTextDirection direction = gtk_widget_get_direction (GTK_WIDGET (toolbar));
+
+  if (direction == GTK_TEXT_DIR_RTL)
+    children = egg_toolbar_list_children_in_focus_order (toolbar, GTK_DIR_LEFT);
+  else
+    children = egg_toolbar_list_children_in_focus_order (toolbar, GTK_DIR_RIGHT);
+  
+  for (list = children; list != NULL; list = list->next)
+    {
+      GtkWidget *child = list->data;
+      
+      if (GTK_CONTAINER (toolbar)->focus_child == child)
+	break;
+
+      if (GTK_WIDGET_MAPPED (child) && gtk_widget_child_focus (child, GTK_DIR_RIGHT))
+	break;
+    }
+
+  g_list_free (children);
+  
+  return TRUE;
+}
+
+static gboolean
+egg_toolbar_focus_end (EggToolbar *toolbar)
+{
+  GList *children, *list;
+  GtkTextDirection direction = gtk_widget_get_direction (GTK_WIDGET (toolbar));
+
+  if (direction == GTK_TEXT_DIR_RTL)
+    children = egg_toolbar_list_children_in_focus_order (toolbar, GTK_DIR_RIGHT);
+  else
+    children = egg_toolbar_list_children_in_focus_order (toolbar, GTK_DIR_LEFT);
+
+  for (list = children; list != NULL; list = list->next)
+    {
+      GtkWidget *child = list->data;
+      
+      if (GTK_CONTAINER (toolbar)->focus_child == child)
+	break;
+
+      if (GTK_WIDGET_MAPPED (child) && gtk_widget_child_focus (child, GTK_DIR_RIGHT))
+	break;
+    }
+
+  g_list_free (children);
+  
+  return TRUE;
+}   
+
 static gboolean
 egg_toolbar_focus (GtkWidget        *widget,
 		   GtkDirectionType  dir)
 {
-  /* Focus can't go in toolbars */
+  EggToolbar *toolbar = EGG_TOOLBAR (widget);
+  GList *children, *list;
+  gboolean retval = FALSE;
+
+  if (GTK_CONTAINER (widget)->focus_child)
+    return FALSE;
+
+  children = egg_toolbar_list_children_in_focus_order (toolbar, dir);
+
+  for (list = children; list != NULL; list = list->next)
+    {
+      GtkWidget *child = list->data;
+      
+      if (GTK_WIDGET_MAPPED (child))
+	{
+	  retval = gtk_widget_child_focus (child, dir);
+	  break;
+	}
+    }
+
+  g_list_free (children);
   
-  return FALSE;
+  return retval;
 }
 
 static void
@@ -1092,7 +1430,7 @@ style_change_notify (EggToolbar *toolbar)
 
 static void
 icon_size_change_notify (EggToolbar *toolbar)
-{
+{ 
   if (!toolbar->icon_size_set)
     {
       /* pretend it was set, then unset, thus reverting to new default */
@@ -1154,27 +1492,286 @@ egg_toolbar_screen_changed (GtkWidget *widget,
   icon_size_change_notify (toolbar);
 }
 
+static void
+find_drop_pos (EggToolbar *toolbar,
+	       gint        x,
+	       gint        y,
+	       gint       *drop_index,
+	       gint       *drop_pos)
+{
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  GtkOrientation orientation;
+  GtkTextDirection direction;
+  GList *items;
+  EggToolItem *item;
+  gint border_width, ipadding;
+  gint best_distance, best_pos, best_index, index;
+
+  orientation = toolbar->orientation;
+  direction = gtk_widget_get_direction (GTK_WIDGET (toolbar));
+  border_width = GTK_CONTAINER (toolbar)->border_width;
+  gtk_widget_style_get (GTK_WIDGET (toolbar), "internal_padding",
+			&ipadding, NULL);
+  border_width += ipadding;
+
+  items = priv->items;
+  if (!items)
+    {
+      *drop_index = 0;
+      if (orientation == GTK_ORIENTATION_HORIZONTAL)
+	{
+	  if (direction == GTK_TEXT_DIR_LTR) 
+	    *drop_pos = border_width;
+	  else
+	    *drop_pos = GTK_WIDGET (toolbar)->allocation.width - border_width;
+	}
+      else
+	{
+	  *drop_pos = border_width;
+	}
+      return;
+    }
+
+  /* initial conditions */
+  item = EGG_TOOL_ITEM (items->data);
+  best_index = 0;
+  if (orientation == GTK_ORIENTATION_HORIZONTAL)
+    {
+      if (direction == GTK_TEXT_DIR_LTR)
+	best_pos = GTK_WIDGET (item)->allocation.x;
+      else
+	best_pos = GTK_WIDGET (item)->allocation.x +
+	  GTK_WIDGET (item)->allocation.width;
+      best_distance = ABS (best_pos - x);
+    }
+  else
+    {
+      best_pos = GTK_WIDGET (item)->allocation.y;
+      best_distance = ABS (best_pos - y);
+    }
+
+  index = 0;
+  while (items)
+    {
+      item = EGG_TOOL_ITEM (items->data);
+      index++;
+      if (GTK_WIDGET_DRAWABLE (item) && !item->pack_end)
+	{
+	  gint pos, distance;
+
+	  if (orientation == GTK_ORIENTATION_HORIZONTAL)
+	    {
+	      if (direction == GTK_TEXT_DIR_LTR)
+		pos = GTK_WIDGET (item)->allocation.x +
+		  GTK_WIDGET (item)->allocation.width;
+	      else
+		pos = GTK_WIDGET (item)->allocation.x;
+	      distance = ABS (pos - x);
+	    }
+	  else
+	    {
+	      pos = GTK_WIDGET (item)->allocation.y +
+		GTK_WIDGET (item)->allocation.height;
+	      distance = ABS (pos - y);
+	    }
+	  if (distance < best_distance)
+	    {
+	      best_index = index;
+	      best_pos = pos;
+	      best_distance = distance;
+	    }
+	}
+      items = items->next;
+    }
+  *drop_index = best_index;
+  *drop_pos = best_pos;
+}
+
+static void
+egg_toolbar_drag_leave (GtkWidget      *widget,
+			GdkDragContext *context,
+			guint           time_)
+{
+  EggToolbar *toolbar = EGG_TOOLBAR (widget);
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+
+  if (priv->drag_highlight)
+    {
+      gdk_window_set_user_data (priv->drag_highlight, NULL);
+      gdk_window_destroy (priv->drag_highlight);
+      priv->drag_highlight = NULL;
+    }
+
+  priv->drop_index = -1;
+}
+
+static gboolean
+egg_toolbar_drag_motion (GtkWidget      *widget,
+			 GdkDragContext *context,
+			 gint            x,
+			 gint            y,
+			 guint           time_)
+{
+  EggToolbar *toolbar = EGG_TOOLBAR (widget);
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  gint new_index, new_pos;
+
+  find_drop_pos(toolbar, x, y, &new_index, &new_pos);
+
+  if (!priv->drag_highlight)
+    {
+      GdkWindowAttr attributes;
+      guint attributes_mask;
+
+      attributes.window_type = GDK_WINDOW_CHILD;
+      attributes.wclass = GDK_INPUT_OUTPUT;
+      attributes.visual = gtk_widget_get_visual (widget);
+      attributes.colormap = gtk_widget_get_colormap (widget);
+      attributes.event_mask = GDK_VISIBILITY_NOTIFY_MASK | GDK_EXPOSURE_MASK | GDK_POINTER_MOTION_MASK;
+      attributes.width = 1;
+      attributes.height = 1;
+      attributes_mask = GDK_WA_VISUAL | GDK_WA_COLORMAP;
+      priv->drag_highlight = gdk_window_new (widget->window,
+					     &attributes, attributes_mask);
+      gdk_window_set_user_data (priv->drag_highlight, widget);
+      gdk_window_set_background (priv->drag_highlight,
+      				 &widget->style->fg[widget->state]);
+    }
+
+  if (priv->drop_index < 0 ||
+      priv->drop_index != new_index)
+    {
+      gint border_width = GTK_CONTAINER (toolbar)->border_width;
+      priv->drop_index = new_index;
+      if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
+	{
+	  gdk_window_move_resize (priv->drag_highlight,
+				  widget->allocation.x + new_pos - 1,
+				  widget->allocation.y + border_width,
+				  2, widget->allocation.height-border_width*2);
+	}
+      else
+	{
+	  gdk_window_move_resize (priv->drag_highlight,
+				  widget->allocation.x + border_width,
+				  widget->allocation.y + new_pos - 1,
+				  widget->allocation.width-border_width*2, 2);
+	}
+    }
+
+  gdk_window_show (priv->drag_highlight);
+
+  gdk_drag_status (context, context->suggested_action, time_);
+
+  return TRUE;
+}
+
+static void
+egg_toolbar_get_child_property (GtkContainer *container,
+				GtkWidget    *child,
+				guint         property_id,
+				GValue       *value,
+				GParamSpec   *pspec)
+{
+  EggToolItem *item = EGG_TOOL_ITEM (child);
+  
+  switch (property_id)
+    {
+    case CHILD_PROP_PACK_END:
+      g_value_set_boolean (value, item->pack_end);
+      break;
+
+    case CHILD_PROP_HOMOGENEOUS:
+      g_value_set_boolean (value, item->homogeneous);
+      break;
+
+    case CHILD_PROP_EXPAND:
+      g_value_set_boolean (value, item->expand);
+      break;
+
+    default:
+      GTK_CONTAINER_WARN_INVALID_CHILD_PROPERTY_ID (container, property_id, pspec);
+      break;
+    }
+}
+
+static void
+egg_toolbar_set_child_property (GtkContainer *container,
+				GtkWidget    *child,
+				guint         property_id,
+				const GValue *value,
+				GParamSpec   *pspec)
+{
+  switch (property_id)
+    {
+    case CHILD_PROP_PACK_END:
+      egg_tool_item_set_pack_end (EGG_TOOL_ITEM (child), g_value_get_boolean (value));
+      break;
+
+    case CHILD_PROP_HOMOGENEOUS:
+      egg_tool_item_set_homogeneous (EGG_TOOL_ITEM (child), g_value_get_boolean (value));
+      break;
+
+    case CHILD_PROP_EXPAND:
+      egg_tool_item_set_homogeneous (EGG_TOOL_ITEM (child), g_value_get_boolean (value));
+      break;
+      
+    default:
+      GTK_CONTAINER_WARN_INVALID_CHILD_PROPERTY_ID (container, property_id, pspec);
+      break;
+    }
+}
 
 static void
 egg_toolbar_add (GtkContainer *container,
-		 GtkWidget *widget)
+		 GtkWidget    *widget)
 {
+  EggToolbar *toolbar;
+  
   g_return_if_fail (EGG_IS_TOOLBAR (container));
-  g_return_if_fail (EGG_IS_TOOL_ITEM (widget));
+  g_return_if_fail (widget != NULL);
 
-  egg_toolbar_append_tool_item (EGG_TOOLBAR (container),
-				EGG_TOOL_ITEM (widget));
+  toolbar = EGG_TOOLBAR (container);
+  
+  if (EGG_IS_TOOL_ITEM (widget))
+    egg_toolbar_append (toolbar, EGG_TOOL_ITEM (widget));
+  else
+    egg_toolbar_append_widget (toolbar, widget, NULL, NULL);
 }
 
 static void
 egg_toolbar_remove (GtkContainer *container,
 		    GtkWidget    *widget)
 {
-  g_return_if_fail (EGG_IS_TOOLBAR (container));
-  g_return_if_fail (EGG_IS_TOOL_ITEM (widget));
+  EggToolbar *toolbar;
+  EggToolItem *item = NULL;
   
-  egg_toolbar_remove_tool_item (EGG_TOOLBAR (container),
-				EGG_TOOL_ITEM (widget));
+  g_return_if_fail (EGG_IS_TOOLBAR (container));
+
+  toolbar = EGG_TOOLBAR (container);
+
+  if (EGG_IS_TOOL_ITEM (widget))
+    {
+      item = EGG_TOOL_ITEM (widget);
+    }
+  else
+    {
+      EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+      GList *list;
+      
+      for (list = priv->items; list != NULL; list = list->next)
+	{
+	  if (GTK_BIN (list->data)->child == widget)
+	    {
+	      item = list->data;
+	      break;
+	    }
+	}
+    }
+
+  g_return_if_fail (item != NULL);
+
+  egg_toolbar_remove_tool_item (EGG_TOOLBAR (container), item);
 }
 
 static void
@@ -1190,17 +1787,18 @@ egg_toolbar_forall (GtkContainer *container,
   g_return_if_fail (callback != NULL);
 
   items = priv->items;
-
+      
   while (items)
     {
       EggToolItem *item = EGG_TOOL_ITEM (items->data);
       
       items = items->next;
+      
       (*callback) (GTK_WIDGET (item), callback_data);
     }
-
+  
   if (include_internals)
-    (* callback) (priv->button, callback_data);
+    (* callback) (priv->arrow_button, callback_data);
 }
 
 static GType
@@ -1210,26 +1808,30 @@ egg_toolbar_child_type (GtkContainer *container)
 }
 
 static void
+egg_toolbar_reconfigured (EggToolbar *toolbar)
+{
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  GList *items;
+
+  items = priv->items;
+  while (items)
+    {
+      EggToolItem *item = EGG_TOOL_ITEM (items->data);
+      
+      egg_tool_item_toolbar_reconfigured (item);
+      
+      items = items->next;
+    }
+}
+
+static void
 egg_toolbar_real_orientation_changed (EggToolbar    *toolbar,
 				      GtkOrientation orientation)
 {
   EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
-  
-  GList *items;
-  
   if (toolbar->orientation != orientation)
     {
       toolbar->orientation = orientation;
-
-      items = priv->items;
-      while (items)
-	{
-	  EggToolItem *item = EGG_TOOL_ITEM (items->data);
-
-	  egg_tool_item_set_orientation (item, orientation);
-
-	  items = items->next;
-	}
 
       if (orientation == GTK_ORIENTATION_HORIZONTAL)
 	gtk_arrow_set (GTK_ARROW (priv->arrow), GTK_ARROW_DOWN, GTK_SHADOW_NONE);
@@ -1237,7 +1839,9 @@ egg_toolbar_real_orientation_changed (EggToolbar    *toolbar,
 	gtk_arrow_set (GTK_ARROW (priv->arrow), GTK_ARROW_RIGHT, GTK_SHADOW_NONE);
       else 
 	gtk_arrow_set (GTK_ARROW (priv->arrow), GTK_ARROW_LEFT, GTK_SHADOW_NONE);
-      
+
+      egg_toolbar_reconfigured (toolbar);
+
       gtk_widget_queue_resize (GTK_WIDGET (toolbar));
       g_object_notify (G_OBJECT (toolbar), "orientation");
     }
@@ -1247,26 +1851,12 @@ static void
 egg_toolbar_real_style_changed (EggToolbar     *toolbar,
 				GtkToolbarStyle style)
 {
-  EggToolbarPrivate *priv;
-  GList *items;
-
-  priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
-  
   if (toolbar->style != style)
     {
       toolbar->style = style;
 
-      items = priv->items;
-      
-      while (items)
-	{
-	  EggToolItem *item = EGG_TOOL_ITEM (items->data);
-	  
-	  egg_tool_item_set_toolbar_style (item, style);
-	  
-	  items = items->next;
-	}
-      
+      egg_toolbar_reconfigured (toolbar);
+
       gtk_widget_queue_resize (GTK_WIDGET (toolbar));
       g_object_notify (G_OBJECT (toolbar), "toolbar_style");
     }
@@ -1284,74 +1874,111 @@ menu_position_func (GtkMenu  *menu,
   GtkRequisition req;
   GtkRequisition menu_req;
   
-  gdk_window_get_origin (GTK_BUTTON (priv->button)->event_window, x, y);
-  gtk_widget_size_request (priv->button, &req);
+  gdk_window_get_origin (GTK_BUTTON (priv->arrow_button)->event_window, x, y);
+  gtk_widget_size_request (priv->arrow_button, &req);
   gtk_widget_size_request (GTK_WIDGET (menu), &menu_req);
   
   if (toolbar->orientation == GTK_ORIENTATION_HORIZONTAL)
     {
-      *y += priv->button->allocation.height;
+      *y += priv->arrow_button->allocation.height;
       if (gtk_widget_get_direction (GTK_WIDGET (toolbar)) == GTK_TEXT_DIR_LTR) 
-	*x += priv->button->allocation.width - req.width;
+	*x += priv->arrow_button->allocation.width - req.width;
       else 
 	*x += req.width - menu_req.width;
     }
   else 
     {
       if (gtk_widget_get_direction (GTK_WIDGET (toolbar)) == GTK_TEXT_DIR_LTR) 
-	*x += priv->button->allocation.width;
+	*x += priv->arrow_button->allocation.width;
       else 
 	*x -= menu_req.width;
-      *y += priv->button->allocation.height - req.height;      
+      *y += priv->arrow_button->allocation.height - req.height;      
     }
   
   *push_in = TRUE;
 }
 
 static void
-menu_deactivated (GtkWidget *menu, GtkWidget *button)
+menu_deactivated (GtkWidget  *menu,
+		  EggToolbar *toolbar)
 {
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), FALSE);
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->arrow_button), FALSE);
 }
 
 static void
-egg_toolbar_arrow_button_press (GtkWidget      *button,
-    				GdkEventButton *event,
-				EggToolbar     *toolbar)
+remove_item (GtkWidget *menu_item,
+	     gpointer   data)
 {
-  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);  
-  GtkWidget *menu;
-  GtkWidget *menu_item;
-  GList *items;
-  
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), TRUE);
-  
-  menu = gtk_menu_new ();
-  g_signal_connect (menu, "deactivate", G_CALLBACK (menu_deactivated), button);
+  gtk_container_remove (GTK_CONTAINER (menu_item->parent), menu_item);
+}
 
-  items = priv->first_non_fitting_item;
-  while (items)
+static void
+show_menu (EggToolbar     *toolbar,
+	   GdkEventButton *event)
+{
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  GList *list;
+  
+  if (priv->menu)
     {
-      EggToolItem *item = EGG_TOOL_ITEM (items->data);
-
-      if (TOOLBAR_ITEM_VISIBLE (item) && !item->pack_end)
-	{
-	  menu_item = NULL;
-	  g_signal_emit_by_name (item, "create_menu_proxy", &menu_item);
-	  
-	  if (menu_item)
-	    {
-	      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
-	    }
-	}
-      items = items->next;
+      gtk_container_foreach (GTK_CONTAINER (priv->menu), remove_item, NULL);
+      gtk_widget_destroy (GTK_WIDGET (priv->menu));
     }
 
-  gtk_widget_show_all (menu);
+  priv->menu = GTK_MENU (gtk_menu_new ());
+  g_signal_connect (priv->menu, "deactivate", G_CALLBACK (menu_deactivated), toolbar);
 
-  gtk_menu_popup (GTK_MENU (menu), NULL, NULL,
+  for (list = priv->items; list != NULL; list = list->next)
+    {
+      EggToolItem *item = list->data;
+
+      if (toolbar_item_visible (toolbar, item) && item->overflow_item)
+	{
+	  GtkWidget *menu_item = egg_tool_item_retrieve_proxy_menu_item (item);
+
+	  if (menu_item)
+	    {
+	      g_assert (GTK_IS_MENU_ITEM (menu_item));
+	      gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), menu_item);
+	    }
+	}
+    }
+
+  gtk_widget_show_all (GTK_WIDGET (priv->menu));
+
+  gtk_menu_popup (GTK_MENU (priv->menu), NULL, NULL,
 		  menu_position_func, toolbar,
-		  event->button, event->time);
+		  event? event->button : 0, event? event->time : gtk_get_current_event_time());
+}
+
+static void
+egg_toolbar_arrow_button_clicked (GtkWidget  *button,
+				  EggToolbar *toolbar)
+{
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);  
+
+  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->arrow_button)) &&
+      (!priv->menu || !GTK_WIDGET_VISIBLE (GTK_WIDGET (priv->menu))))
+    {
+      /* We only get here when the button is clicked with the keybaord,
+       * because mouse button presses result in the menu being shown.
+       */
+      show_menu (toolbar, NULL);
+      gtk_menu_shell_select_first (GTK_MENU_SHELL (priv->menu), FALSE);
+    }
+}
+
+static gboolean
+egg_toolbar_arrow_button_press (GtkWidget      *button,
+				GdkEventButton *event,
+				EggToolbar     *toolbar)
+{
+  show_menu (toolbar, event);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), TRUE);
+ 
+  return TRUE;
 }
 
 static gboolean
@@ -1372,22 +1999,10 @@ static void
 egg_toolbar_update_button_relief (EggToolbar *toolbar)
 {
   EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
-  GtkReliefStyle relief;
-  GList *items;
-  
-  relief = get_button_relief (toolbar);
 
-  items = priv->items;
-  while (items)
-    {
-      EggToolItem *item = EGG_TOOL_ITEM (items->data);
+  egg_toolbar_reconfigured (toolbar);
 
-      egg_tool_item_set_relief_style (item, relief);
-      
-      items = items->next;
-    }
-
-  gtk_button_set_relief (GTK_BUTTON (priv->button), relief);
+  gtk_button_set_relief (GTK_BUTTON (priv->arrow_button), get_button_relief (toolbar));
 }
 
 static GtkReliefStyle
@@ -1416,10 +2031,10 @@ get_space_size (EggToolbar *toolbar)
   return space_size;
 }
 
-static GtkToolbarSpaceStyle
+static EggToolbarSpaceStyle
 get_space_style (EggToolbar *toolbar)
 {
-  GtkToolbarSpaceStyle space_style = DEFAULT_SPACE_STYLE;
+  EggToolbarSpaceStyle space_style = DEFAULT_SPACE_STYLE;
 
   gtk_widget_style_get (GTK_WIDGET (toolbar),
                         "space_style", &space_style,
@@ -1429,37 +2044,42 @@ get_space_style (EggToolbar *toolbar)
   return space_style;  
 }
 
-GtkWidget *
-egg_toolbar_new (void)
+static void
+egg_toolbar_use_old_api (EggToolbar *toolbar)
 {
-  EggToolbar *toolbar;
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
 
-  toolbar = g_object_new (EGG_TYPE_TOOLBAR, NULL);
-
-  return GTK_WIDGET (toolbar);
+  if (priv->api_mode == NEW_API)
+    g_warning ("mixing deprecated and non-deprecated EggToolbar API is not allowed");
+  else if (priv->api_mode == DONT_KNOW)
+    priv->api_mode = OLD_API;
 }
 
-void
-egg_toolbar_append_tool_item (EggToolbar  *toolbar,
-			      EggToolItem *item)
+static void
+egg_toolbar_use_new_api (EggToolbar *toolbar)
 {
-  g_return_if_fail (EGG_IS_TOOLBAR (toolbar));
-  g_return_if_fail (EGG_IS_TOOL_ITEM (item));
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
 
-  egg_toolbar_insert_tool_item (toolbar, item, toolbar->num_children);
+  if (priv->api_mode == OLD_API)
+    g_warning ("mixing deprecated and non-deprecated EggToolbar API is not allowed");
+  else if (priv->api_mode == DONT_KNOW)
+    priv->api_mode = NEW_API;
 }
 
-void
-egg_toolbar_prepend_tool_item (EggToolbar  *toolbar,
-			       EggToolItem *item)
+static void
+egg_toolbar_insert_tool_item (EggToolbar  *toolbar,
+			      EggToolItem *item,
+			      gint         pos)
 {
-  g_return_if_fail (EGG_IS_TOOLBAR (toolbar));
-  g_return_if_fail (EGG_IS_TOOL_ITEM (item));
+  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  
+  priv->items = g_list_insert (priv->items, item, pos);
+  toolbar->num_children++;
 
-  egg_toolbar_insert_tool_item (toolbar, item, 0);
+  gtk_widget_set_parent (GTK_WIDGET (item), GTK_WIDGET (toolbar));
 }
 
-void
+static void
 egg_toolbar_remove_tool_item (EggToolbar  *toolbar,
 			      EggToolItem *item)
 {
@@ -1493,27 +2113,71 @@ egg_toolbar_remove_tool_item (EggToolbar  *toolbar,
     }
 }
 
-void
-egg_toolbar_insert_tool_item (EggToolbar  *toolbar,
-			      EggToolItem *item,
-			      gint pos)
+#define apin egg_toolbar_use_new_api (toolbar)
+#define apio egg_toolbar_use_old_api (toolbar)
+
+GtkWidget *
+egg_toolbar_new (void)
 {
-  EggToolbarPrivate *priv;
-  
+  EggToolbar *toolbar;
+
+  toolbar = g_object_new (EGG_TYPE_TOOLBAR, NULL);
+
+  return GTK_WIDGET (toolbar);
+}
+
+void
+egg_toolbar_append (EggToolbar  *toolbar,
+		    EggToolItem *item)
+{
   g_return_if_fail (EGG_IS_TOOLBAR (toolbar));
   g_return_if_fail (EGG_IS_TOOL_ITEM (item));
 
-  priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  apin;
   
-  priv->items = g_list_insert (priv->items, item, pos);
-  toolbar->num_children++;
+  egg_toolbar_insert (toolbar, item, toolbar->num_children);
+}
 
-  egg_tool_item_set_orientation (item, toolbar->orientation);
-  egg_tool_item_set_toolbar_style (item, toolbar->style);
-  egg_tool_item_set_relief_style (item, get_button_relief (toolbar));
+void
+egg_toolbar_prepend (EggToolbar  *toolbar,
+		     EggToolItem *item)
+{
+  g_return_if_fail (EGG_IS_TOOLBAR (toolbar));
+  g_return_if_fail (EGG_IS_TOOL_ITEM (item));
+
+  apin;
   
-  gtk_widget_set_parent (GTK_WIDGET (item), GTK_WIDGET (toolbar));
-  GTK_WIDGET_UNSET_FLAGS (item, GTK_CAN_FOCUS);  
+  egg_toolbar_insert (toolbar, item, 0);
+}
+
+void
+egg_toolbar_insert (EggToolbar  *toolbar,
+		    EggToolItem *item,
+		    gint         pos)
+{
+  g_return_if_fail (EGG_IS_TOOLBAR (toolbar));
+  g_return_if_fail (EGG_IS_TOOL_ITEM (item));
+
+  apin;
+  
+  egg_toolbar_insert_tool_item (toolbar, item, pos);
+}
+
+gint
+egg_toolbar_get_item_index (EggToolbar  *toolbar,
+			    EggToolItem *item)
+{
+  EggToolbarPrivate *priv;
+
+  g_return_val_if_fail (EGG_IS_TOOLBAR (toolbar), -1);
+  g_return_val_if_fail (EGG_IS_TOOL_ITEM (item), -1);
+
+  apin;
+  
+  priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  g_return_val_if_fail (g_list_find (priv->items, item) != NULL, -1);
+
+  return g_list_index (priv->items, item);
 }
 
 void
@@ -1596,23 +2260,42 @@ egg_toolbar_get_tooltips (EggToolbar *toolbar)
   return toolbar->tooltips->enabled;
 }
 
-GList*
-egg_toolbar_get_tool_items (EggToolbar *toolbar)
+gint
+egg_toolbar_get_n_items (EggToolbar *toolbar)
 {
-  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  EggToolbarPrivate *priv;
 
-  g_return_val_if_fail (EGG_IS_TOOLBAR (toolbar), FALSE);
+  g_return_val_if_fail (EGG_IS_TOOLBAR (toolbar), -1);
 
-  return priv->items;
+  apin;
+  
+  priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  
+  return g_list_length (priv->items);
+}
+
+/*
+ * returns NULL if n is out of range
+ */
+EggToolItem *
+egg_toolbar_get_nth_item (EggToolbar *toolbar,
+			  gint        n)
+{
+  EggToolbarPrivate *priv;
+
+  g_return_val_if_fail (EGG_IS_TOOLBAR (toolbar), NULL);
+
+  apin;
+  
+  priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
+  
+  return g_list_nth_data (priv->items, n);
 }
 
 void
 egg_toolbar_set_icon_size (EggToolbar  *toolbar,
 			   GtkIconSize  icon_size)
 {
-  GList *items;
-  EggToolbarPrivate *priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
-  
   g_return_if_fail (EGG_IS_TOOLBAR (toolbar));
 
   toolbar->icon_size_set = TRUE;
@@ -1622,16 +2305,7 @@ egg_toolbar_set_icon_size (EggToolbar  *toolbar,
 
   toolbar->icon_size = icon_size;
 
-  items = priv->items;
-
-  while (items)
-    {
-      EggToolItem *item = EGG_TOOL_ITEM (items->data);
-	  
-      egg_tool_item_set_icon_size (item, icon_size);
-      
-      items = items->next;
-    }
+  egg_toolbar_reconfigured (toolbar);
 
   gtk_widget_queue_resize (GTK_WIDGET (toolbar));
 }
@@ -1644,19 +2318,31 @@ egg_toolbar_get_icon_size (EggToolbar *toolbar)
   return toolbar->icon_size;
 }
 
+GtkReliefStyle
+egg_toolbar_get_relief_style (EggToolbar *toolbar)
+{
+  g_return_val_if_fail (EGG_IS_TOOLBAR (toolbar), GTK_RELIEF_NONE);
+
+  return get_button_relief (toolbar);
+}
+
 void
 egg_toolbar_unset_icon_size (EggToolbar *toolbar)
 {
   GtkIconSize size;
 
+  g_return_if_fail (EGG_IS_TOOLBAR (toolbar));
+  
   if (toolbar->icon_size_set)
     {
       GtkSettings *settings = toolbar_get_settings (toolbar);
 
       if (settings)
-	g_object_get (settings,
-		      "gtk-toolbar-icon-size", &size,
-		      NULL);
+	{
+	  g_object_get (settings,
+			"gtk-toolbar-icon-size", &size,
+			NULL);
+	}
       else
 	size = DEFAULT_ICON_SIZE;
 
@@ -1666,7 +2352,6 @@ egg_toolbar_unset_icon_size (EggToolbar *toolbar)
       toolbar->icon_size_set = FALSE;
     }
 }
-
 
 void
 egg_toolbar_set_show_arrow (EggToolbar *toolbar,
@@ -1684,7 +2369,7 @@ egg_toolbar_set_show_arrow (EggToolbar *toolbar,
       priv->show_arrow = show_arrow;
       
       if (!priv->show_arrow)
-	gtk_widget_hide (priv->button);
+	gtk_widget_hide (priv->arrow_button);
       
       gtk_widget_queue_resize (GTK_WIDGET (toolbar));      
       g_object_notify (G_OBJECT (toolbar), "show_arrow");
@@ -1698,9 +2383,27 @@ egg_toolbar_get_show_arrow (EggToolbar *toolbar)
 
   g_return_val_if_fail (EGG_IS_TOOLBAR (toolbar), FALSE);
 
+  apin;
+  
   priv = EGG_TOOLBAR_GET_PRIVATE (toolbar);
   
   return priv->show_arrow;
+}
+
+gint
+egg_toolbar_get_drop_index (EggToolbar *toolbar,
+			    gint        x,
+			    gint        y)
+{
+  gint drop_index, drop_pos;
+
+  g_return_val_if_fail (EGG_IS_TOOLBAR (toolbar), FALSE);
+
+  apin;
+  
+  find_drop_pos (toolbar, x, y, &drop_index, &drop_pos);
+
+  return drop_index;
 }
 
 GtkWidget *
@@ -1800,6 +2503,32 @@ egg_toolbar_insert_space (EggToolbar *toolbar,
 }
 
 void
+egg_toolbar_remove_space (EggToolbar *toolbar,
+			  gint        position)
+{
+  EggToolItem *item;
+
+  g_return_if_fail (EGG_IS_TOOLBAR (toolbar));
+
+  apio;
+  
+  item = g_list_nth_data (toolbar->children, position);
+
+  if (!item)
+    {
+      g_warning ("Toolbar position %d doesn't exist", position);
+      return;
+    }
+
+  if (GTK_BIN (item)->child)
+    {
+      g_warning ("Toolbar position %d is not a space", position);
+    }
+
+  egg_toolbar_remove_tool_item (toolbar, item);
+}
+
+void
 egg_toolbar_append_widget (EggToolbar  *toolbar,
 			   GtkWidget   *widget,
 			   const gchar *tooltip_text,
@@ -1889,6 +2618,32 @@ egg_toolbar_insert_element (EggToolbar          *toolbar,
 					      icon, callback, user_data, position, FALSE);
 }
 
+static gchar *
+elide_underscores (const gchar *original)
+{
+  gchar *q, *result;
+  const gchar *p;
+  gboolean last_underscore;
+
+  q = result = g_malloc (strlen (original) + 1);
+  last_underscore = FALSE;
+  
+  for (p = original; *p; p++)
+    {
+      if (!last_underscore && *p == '_')
+	last_underscore = TRUE;
+      else
+	{
+	  last_underscore = FALSE;
+	  *q++ = *p;
+	}
+    }
+  
+  *q = '\0';
+  
+  return result;
+}
+
 static GtkWidget *
 egg_toolbar_internal_insert_element (EggToolbar          *toolbar,
 				     EggToolbarChildType  type,
@@ -1906,6 +2661,8 @@ egg_toolbar_internal_insert_element (EggToolbar          *toolbar,
   EggToolItem *item = NULL;
   
   g_return_val_if_fail (EGG_IS_TOOLBAR (toolbar), NULL);
+  
+  apio;
   
   if (type == EGG_TOOLBAR_CHILD_WIDGET)
     g_return_val_if_fail (GTK_IS_WIDGET (widget), NULL);
@@ -1929,7 +2686,6 @@ egg_toolbar_internal_insert_element (EggToolbar          *toolbar,
       item = egg_tool_item_new ();
       child->widget = widget;
       gtk_container_add (GTK_CONTAINER (item), child->widget);
-      
       break;
 
     case EGG_TOOLBAR_CHILD_BUTTON:
@@ -1950,13 +2706,7 @@ egg_toolbar_internal_insert_element (EggToolbar          *toolbar,
       break;
     }
 
-  /*
-   * We need to connect to the button's clicked callback because some
-   * programs may rely on that the widget in the callback is a GtkButton
-   */
-  if (callback)
-    g_signal_connect (child->widget, "clicked",
-		      callback, user_data);
+  gtk_widget_show (GTK_WIDGET (item));
   
   if (type == EGG_TOOLBAR_CHILD_BUTTON ||
       type == EGG_TOOLBAR_CHILD_RADIOBUTTON ||
@@ -1964,20 +2714,42 @@ egg_toolbar_internal_insert_element (EggToolbar          *toolbar,
     {
       if (text)
 	{
-	  child->label = EGG_TOOL_BUTTON (item)->label;
-
 	  if (use_stock)
-	    g_object_set (G_OBJECT (item), "stock_id", text, NULL);
+	    {
+	      GtkStockItem stock_item;
+	      gchar *label_text;
+
+	      egg_tool_button_set_stock_id (EGG_TOOL_BUTTON (item), text);
+
+	      gtk_stock_lookup (text, &stock_item);
+	      label_text = elide_underscores (stock_item.label);
+	      child->label = GTK_WIDGET (gtk_label_new (label_text));
+	      g_free (label_text);
+	    }
 	  else
-	    egg_tool_button_set_label (EGG_TOOL_BUTTON (item), text);	    
+	    {
+	      child->label = gtk_label_new (text);
+	    }
+	  egg_tool_button_set_label_widget (EGG_TOOL_BUTTON (item), child->label);
+	  gtk_widget_show (child->label);
 	}
 
       if (icon)
 	{
 	  child->icon = icon;
 	  egg_tool_button_set_icon_widget (EGG_TOOL_BUTTON (item), icon);
+
+	  /* Applications depend on the toolbar showing the widget for them */
+	  gtk_widget_show (GTK_WIDGET (icon));
 	}
 
+      /*
+       * We need to connect to the button's clicked callback because some
+       * programs may rely on that the widget in the callback is a GtkButton
+       */
+      if (callback)
+	g_signal_connect (child->widget, "clicked",
+			  callback, user_data);
     }
 
   if ((type != GTK_TOOLBAR_CHILD_SPACE) && tooltip_text)
@@ -1985,6 +2757,7 @@ egg_toolbar_internal_insert_element (EggToolbar          *toolbar,
 			       tooltip_text, tooltip_private_text);
   
   toolbar->children = g_list_insert (toolbar->children, child, position);
+
   egg_toolbar_insert_tool_item (toolbar, item, position);
 
   return child->widget;

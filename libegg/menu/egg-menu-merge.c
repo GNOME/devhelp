@@ -886,8 +886,8 @@ find_toolbar_position (GNode *node, GtkWidget **toolbar_p, gint *pos_p)
 	case EGG_MENU_MERGE_TOOLBAR_PLACEHOLDER:
 	  toolbar = gtk_widget_get_parent(NODE_INFO(parent)->proxy);
 	  g_return_val_if_fail(EGG_IS_TOOLBAR(toolbar), FALSE);
-	  pos = g_list_index(egg_toolbar_get_tool_items(EGG_TOOLBAR(toolbar)),
-			     NODE_INFO(parent)->proxy) + 1;
+	  pos = egg_toolbar_get_item_index (EGG_TOOLBAR(toolbar),
+					    EGG_TOOL_ITEM (NODE_INFO(parent)->proxy)) + 1;
 	  break;
 	default:
 	  g_warning("%s: bad parent node type %d", G_STRLOC,
@@ -910,8 +910,8 @@ find_toolbar_position (GNode *node, GtkWidget **toolbar_p, gint *pos_p)
       toolbar = gtk_widget_get_parent(prev_child);
       g_return_val_if_fail(EGG_IS_TOOLBAR(toolbar), FALSE);
 
-      pos = g_list_index(egg_toolbar_get_tool_items(EGG_TOOLBAR(toolbar)),
-                         prev_child) + 1;
+      pos = egg_toolbar_get_item_index (EGG_TOOLBAR(toolbar),
+					EGG_TOOL_ITEM (prev_child)) + 1;
     }
 
   if (toolbar_p)
@@ -935,15 +935,15 @@ update_node (EggMenuMerge *self, GNode *node)
 
   info = NODE_INFO(node);
 
-/*   g_print("update_node name=%s dirty=%d (", info->name, info->dirty); */
+  g_print("update_node name=%s dirty=%d (", info->name, info->dirty);
   for (tmp = info->uifiles; tmp != NULL; tmp = tmp->next)
     {
       NodeUIReference *ref = tmp->data;
-/*       g_print("%s:%u", g_quark_to_string(ref->action_quark), ref->merge_id); */
-/*       if (tmp->next) */
-/* 	g_print(", "); */
+      g_print("%s:%u", g_quark_to_string(ref->action_quark), ref->merge_id);
+      if (tmp->next)
+	g_print(", ");
     }
-/*   g_print(")\n"); */
+  g_print(")\n");
 
   if (NODE_INFO(node)->dirty)
     {
@@ -1116,12 +1116,12 @@ update_node (EggMenuMerge *self, GNode *node)
 		  EggToolItem *item;
 
 		  item = egg_separator_tool_item_new();
-		  egg_toolbar_insert_tool_item(EGG_TOOLBAR(toolbar), item, pos);
+		  egg_toolbar_insert(EGG_TOOLBAR(toolbar), item, pos);
 		  NODE_INFO(node)->proxy = GTK_WIDGET (item);
 		  //gtk_widget_show(NODE_INFO(node)->proxy);
 
 		  item = egg_separator_tool_item_new();
-		  egg_toolbar_insert_tool_item(EGG_TOOLBAR(toolbar), item, pos+1);
+		  egg_toolbar_insert(EGG_TOOLBAR(toolbar), item, pos+1);
 		  NODE_INFO(node)->extra = GTK_WIDGET (item);
 		  //gtk_widget_show(NODE_INFO(node)->extra);
 		}
@@ -1177,7 +1177,7 @@ update_node (EggMenuMerge *self, GNode *node)
 		{
 		  info->proxy = egg_action_create_tool_item (info->action);
 
-		  egg_toolbar_insert_tool_item (EGG_TOOLBAR (toolbar),
+		  egg_toolbar_insert (EGG_TOOLBAR (toolbar),
 					        EGG_TOOL_ITEM (info->proxy), pos);
 		}
 	    }
@@ -1203,7 +1203,7 @@ update_node (EggMenuMerge *self, GNode *node)
 	      if (find_toolbar_position(node, &toolbar, &pos))
 		{
 		  EggToolItem *item = egg_separator_tool_item_new();
-		  egg_toolbar_insert_tool_item (EGG_TOOLBAR (toolbar), item, pos);
+		  egg_toolbar_insert (EGG_TOOLBAR (toolbar), item, pos);
 		  info->proxy = GTK_WIDGET (item);
 		  gtk_widget_show(info->proxy);
 		}
@@ -1276,7 +1276,7 @@ do_updates(EggMenuMerge *self)
    *    is created and added to the parent container).
    */
 
-/*   g_message("do_updates"); */
+  g_message("do_updates");
 
   update_node (self, self->root_node);
 

@@ -23,10 +23,13 @@
 #include <gtk/gtkcheckmenuitem.h>
 #include <gtk/gtklabel.h>
 #include <gtk/gtktogglebutton.h>
+#include <gtk/gtkstock.h>
 
 #ifndef _
 #  define _(s) (s)
 #endif
+
+#define MENU_ID "egg-toggle-tool-button-menu-id"
 
 enum {
   TOGGLED,
@@ -35,14 +38,14 @@ enum {
 
 static void egg_toggle_tool_button_init       (EggToggleToolButton      *button);
 static void egg_toggle_tool_button_class_init (EggToggleToolButtonClass *klass);
+static void egg_toggle_tool_button_finalize   (GObject                  *object);
 
-static GtkWidget *egg_toggle_tool_button_create_menu_proxy (EggToolItem *button);
+static gboolean egg_toggle_tool_button_create_menu_proxy (EggToolItem *button);
 
-
-static void button_toggled (GtkWidget           *widget,
-			    EggToggleToolButton *button);
-
-
+static void button_toggled      (GtkWidget           *widget,
+				 EggToggleToolButton *button);
+static void menu_item_activated (GtkWidget           *widget,
+				 EggToggleToolButton *button);
 
 static GObjectClass *parent_class = NULL;
 static guint         toggle_signals[LAST_SIGNAL] = { 0 };
@@ -77,17 +80,20 @@ egg_toggle_tool_button_get_type (void)
 static void
 egg_toggle_tool_button_class_init (EggToggleToolButtonClass *klass)
 {
+  GObjectClass *object_class;
   EggToolItemClass *toolitem_class;
   EggToolButtonClass *toolbutton_class;
 
   parent_class = g_type_class_peek_parent (klass);
-  
+
+  object_class = (GObjectClass *)klass;
   toolitem_class = (EggToolItemClass *)klass;
   toolbutton_class = (EggToolButtonClass *)klass;
 
+  object_class->finalize = egg_toggle_tool_button_finalize;
   toolitem_class->create_menu_proxy = egg_toggle_tool_button_create_menu_proxy;
   toolbutton_class->button_type = GTK_TYPE_TOGGLE_BUTTON;
-
+  
   toggle_signals[TOGGLED] =
     g_signal_new ("toggled",
 		  G_OBJECT_CLASS_TYPE (klass),
@@ -105,37 +111,100 @@ egg_toggle_tool_button_init (EggToggleToolButton *button)
 			   G_CALLBACK (button_toggled), button, 0);
 }
 
-static GtkWidget *
+static void
+egg_toggle_tool_button_finalize (GObject *object)
+{
+  EggToggleToolButton *button = EGG_TOGGLE_TOOL_BUTTON (object);
+  
+  if (button->menu_item)
+    g_object_remove_weak_pointer (G_OBJECT (button->menu_item),
+				  (gpointer *)&(button->menu_item));
+
+  (* G_OBJECT_CLASS (parent_class)->finalize) (object);
+}
+
+static gboolean
 egg_toggle_tool_button_create_menu_proxy (EggToolItem *item)
 {
-  EggToggleToolButton *button = EGG_TOGGLE_TOOL_BUTTON (item);
-  GtkWidget *menu_item;
-  const char *label;
+  EggToolButton *tool_button = EGG_TOOL_BUTTON (item);
+  EggToggleToolButton *toggle_tool_button = EGG_TOGGLE_TOOL_BUTTON (item);
+  GtkWidget *menu_item = NULL;
+  GtkStockItem stock_item;
+  gboolean use_mnemonic = TRUE;
+  const char *label = "";
 
-  label = gtk_label_get_text (GTK_LABEL (EGG_TOOL_BUTTON (button)->label));
+  if (tool_button->label_widget && GTK_IS_LABEL (tool_button->label_widget))
+    label = gtk_label_get_label (GTK_LABEL (tool_button->label_widget));
+  else if (tool_button->label_text)
+    {
+      label = tool_button->label_text;
+      use_mnemonic = tool_button->use_underline;
+    }
+  else if (tool_button->stock_id && gtk_stock_lookup (tool_button->stock_id, &stock_item))
+    label = stock_item.label;
   
-  menu_item = gtk_check_menu_item_new_with_mnemonic (label);
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item),
-				  button->active);
-  g_signal_connect_object (menu_item, "activate",
-			   G_CALLBACK (gtk_button_clicked),
-			   EGG_TOOL_BUTTON (button)->button,
-			   G_CONNECT_SWAPPED);
+  if (use_mnemonic)
+    menu_item = gtk_check_menu_item_new_with_mnemonic (label);
+  else
+    menu_item = gtk_check_menu_item_new_with_label (label);
 
-  return menu_item;
+  g_object_ref (menu_item);
+  gtk_object_sink (GTK_OBJECT (menu_item));
+  
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item),
+				  toggle_tool_button->active);
+
+  g_signal_connect_closure_by_id (menu_item,
+				  g_signal_lookup ("activate", G_OBJECT_TYPE (menu_item)), 0,
+				  g_cclosure_new_object (G_CALLBACK (menu_item_activated),
+							 G_OBJECT (toggle_tool_button)),
+				  FALSE);
+
+  egg_tool_item_set_proxy_menu_item (item, MENU_ID, menu_item);
+
+  g_object_unref (menu_item);
+  
+  return TRUE;
+}
+
+static void
+menu_item_activated (GtkWidget           *menu_item,
+		     EggToggleToolButton *toggle_tool_button)
+{
+  EggToolButton *tool_button = EGG_TOOL_BUTTON (toggle_tool_button);
+  gboolean menu_active = GTK_CHECK_MENU_ITEM (menu_item)->active;
+
+  if (toggle_tool_button->active != menu_active)
+    {
+      toggle_tool_button->active = menu_active;
+
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tool_button->button),
+				    toggle_tool_button->active);
+
+      g_signal_emit (G_OBJECT (toggle_tool_button), toggle_signals[TOGGLED], 0);
+    }
 }
 
 static void
 button_toggled (GtkWidget           *widget,
-		EggToggleToolButton *button)
+		EggToggleToolButton *toggle_tool_button)
 {
-  gboolean toggle_active;
+  gboolean toggle_active = GTK_TOGGLE_BUTTON (widget)->active;
 
-  toggle_active = GTK_TOGGLE_BUTTON (widget)->active;
-  if (toggle_active != button->active)
+  if (toggle_tool_button->active != toggle_active)
     {
-      button->active = toggle_active;
-      g_signal_emit (G_OBJECT (button), toggle_signals[TOGGLED], 0);
+      GtkWidget *menu_item;
+      
+      toggle_tool_button->active = toggle_active;
+       
+      if ((menu_item =
+	   egg_tool_item_get_proxy_menu_item (EGG_TOOL_ITEM (toggle_tool_button), MENU_ID)))
+	{
+	  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item),
+					  toggle_tool_button->active);
+	}
+
+      g_signal_emit (G_OBJECT (toggle_tool_button), toggle_signals[TOGGLED], 0);
     }
 }
 
@@ -155,20 +224,13 @@ egg_toggle_tool_button_new_from_stock (const gchar *stock_id)
 {
   EggToolButton *button;
 
+  g_return_val_if_fail (stock_id != NULL, NULL);
+  
   button = g_object_new (EGG_TYPE_TOGGLE_TOOL_BUTTON,
 			 "stock_id", stock_id,
-			 "use_underline", TRUE,
 			 NULL);
   
   return EGG_TOOL_ITEM (button);
-}
-
-void
-egg_toggle_tool_button_toggled (EggToggleToolButton *button)
-{
-  g_return_if_fail (EGG_IS_TOGGLE_TOOL_BUTTON (button));
-
-  gtk_toggle_button_toggled (GTK_TOGGLE_BUTTON(EGG_TOOL_BUTTON(button)->button));
 }
 
 void

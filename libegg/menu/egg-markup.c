@@ -211,7 +211,7 @@ start_element_handler (GMarkupParseContext *context,
 	  else /* toolbar */
 	    {
 	      EggToolItem *item = egg_tool_item_new ();
-	      egg_toolbar_insert_tool_item (EGG_TOOLBAR(ctx->current), item, -1);
+	      egg_toolbar_insert (EGG_TOOLBAR(ctx->current), item, -1);
 	      gtk_widget_show (GTK_WIDGET (item));
 	    }
 

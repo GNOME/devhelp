@@ -1,8 +1,6 @@
 
 INCLUDES = \
   $(EGG_CFLAGS) \
-  -I$(top_srcdir) \
-  -I$(top_srcdir)/libegg/util \
   -DEGG_COMPILATION \
   -DGTK_DISABLE_DEPRECATED \
   -DGDK_DISABLE_DEPRECATED \
@@ -31,3 +29,12 @@ noinst_HEADERS = \
   egg-menu-merge.h \
   egg-accel-dialog.h
 
+noinst_PROGRAMS = test-actions test-merge
+
+test_actions_SOURCES = test-actions.c
+test_actions_LDFLAGS = libegg-menu.la $(EGG_LIBS)
+test_actions_DEPENDENCIES = libegg-menu.la
+
+test_merge_SOURCES = test-merge.c
+test_merge_LDFLAGS = libegg-menu.la $(EGG_LIBS)
+test_merge_DEPENDENCIES = libegg-menu.la
