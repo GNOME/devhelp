@@ -1,5 +1,7 @@
 2004-02-13  Mikael Hallendal  <micke@imendio.com>
 
+	* Release 0.8
+
 	* devhelp.spec.in: Fixed to actually work
 	
 	* src/Makefile.am: Version library
