@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp cvs\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-05-28 11:08+0100\n"
+"POT-Creation-Date: 2003-07-07 11:59+0200\n"
+"PO-Revision-Date: 2003-07-07 15:10+0100\n"
 "Last-Translator: Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,46 +15,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
 msgstr "Hulpprogramma voor ontwikkelaars"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
 msgstr "DevHulp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "DevHulp Boek"
+msgstr "DevHulp boek"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
+"Kies een onderwerp in de inhoud aan de linker kant, of ga naar het tabblad "
+"\"Zoeken\" om te vinden wat u zoekt."
 
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "Geef de grootte en plaats van het venster"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Functie opzoeken"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Alle actieve DevHulp-processen afsluiten"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-#, fuzzy, c-format
+#, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Ik vond '%s' in plaats van de verwachte 'sub' op regel %d, kolom %d"
+msgstr "In plaats van de verwachte '%s' kreeg ik '%s' op regel %d, kolom %d"
 
 #: src/dh-parser.c:120
 #, c-format
@@ -96,9 +95,8 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan boek '%s' niet uitpakken: %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Zoeken"
+msgstr "_Zoeken:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -130,32 +128,8 @@ msgstr "Een GNOME 2 hulpprogramma voor ontwikkelaars"
 
 #: src/dh-window.c:430
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Devhulp projectpagina"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Kies een onderwerp uit de inhoud of gebruik het zoekpaneel.<p>Gebruik "
-#~ "<b>shift omhoog/omlaag</b> om langs de boom te navigeren en <b>shift "
-#~ "links/rechts</b> om de boeken in of uit te klappen."
-
-#~ msgid "Expected 'book' got '%s' at line %d, column %d"
-#~ msgstr ""
-#~ "Ik vond '%s' in plaats van de verwachte 'book' op regel %d, kolom %d"
-
-#~ msgid "Expected 'function' got '%s' at line %d, column %d"
-#~ msgstr ""
-#~ "Ik vond '%s' in plaats van de verwachte 'function' op regel %d, kolom %d"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Zoek naar:"
-
-#~ msgid "_About"
-#~ msgstr "_Info"
+msgstr "Bug rapporteren voor Devhulp"
