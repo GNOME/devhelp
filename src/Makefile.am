@@ -68,10 +68,17 @@ libdevhelp_la_LDFLAGS = -avoid-version -module
 
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
-dh-marshal.h: dh-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --header --prefix=dh_marshal > $@
-dh-marshal.c: dh-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --body --prefix=dh_marshal > $@
+dh-marshal.h: dh-marshal.list
+	cd $(srcdir) && \
+	( @GLIB_GENMARSHAL@ --prefix=dh_marshal dh-marshal.list --header > dh-marshal1.tmp \
+	&& mv dh-marshal1.tmp dh-marshal.h ) \
+	|| ( rm -f dh-marshal1.tmp && exit 1 )
+
+dh-marshal.c: dh-marshal.h
+	cd $(srcdir) && \
+	( @GLIB_GENMARSHAL@ --prefix=dh_marshal dh-marshal.list --body > dh-marshal2.tmp \
+	&& mv dh-marshal2.tmp dh-marshal.c ) \
+	|| ( rm -f dh-marshal2.tmp && exit 1 )
 
 EXTRA_DIST =                            	\
 	dh-marshal.list				\
