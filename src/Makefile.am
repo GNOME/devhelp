@@ -98,4 +98,5 @@ CLEANFILES  += $(GENERATED) + stamp-idl GNOME_DevHelp.oaf GNOME_DevHelp.oaf.in
 @XML_I18N_MERGE_OAF_RULE@
 
 EXTRA_DIST =                            \
-        $(oaf_in_files)
+        $(oaf_in_files)			\
+	GNOME_DevHelp.oaf.in.in

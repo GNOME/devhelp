@@ -16,4 +16,7 @@ ui_DATA = 				\
 	GNOME_DevHelp.ui		\
 	GNOME_DevHelp_Controller.ui
 
-EXTRA_DIST = $(image_DATA) $(glade_DATA) $(appicon_DATA)
+EXTRA_DIST = $(image_DATA) 		\
+	     $(glade_DATA)		\
+	     $(appicon_DATA)		\
+	     $(ui_DATA)
