@@ -1,0 +1,111 @@
+<gconfschemafile>
+  <schemalist>
+ 
+    <schema>
+      <key>/schemas/apps/devhelp/ui/main_window_width</key>
+      <applyto>/apps/devhelp/ui/main_window_width</applyto>
+      <owner>devhelp</owner>
+      <type>int</type>
+      <default>700</default>
+      <locale name="C">
+         <short>Width of the main window</short>
+         <long>
+           The width of the main window.
+         </long>
+      </locale>
+    </schema>
+                                                                                
+    <schema>
+      <key>/schemas/apps/devhelp/ui/main_window_height</key>
+      <applyto>/apps/devhelp/ui/main_window_height</applyto>
+      <owner>devhelp</owner>
+      <type>int</type>
+      <default>500</default>
+      <locale name="C">
+         <short>Height of main window</short>
+         <long>
+           The height of the main window.
+         </long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/devhelp/ui/main_window_position_x</key>
+      <applyto>/apps/devhelp/ui/main_window_position_x</applyto>
+      <owner>devhelp</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+         <short>X position of main window</short>
+         <long>
+           The X position of the main window.
+         </long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/devhelp/ui/main_window_position_y</key>
+      <applyto>/apps/devhelp/ui/main_window_position_y</applyto>
+      <owner>devhelp</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+         <short>Y position of main window</short>
+         <long>
+           The Y position of the main window.
+         </long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/devhelp/ui/paned_location</key>
+      <applyto>/apps/devhelp/ui/paned_location</applyto>
+      <owner>devhelp</owner>
+      <type>int</type>
+      <default>250</default>
+      <locale name="C">
+         <short>Location of the paned</short>
+         <long>
+           The location of the paned separator.
+         </long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/devhelp/ui/use_system_fonts</key>
+      <applyto>/apps/devhelp/ui/use_system_fonts</applyto>
+      <owner>devhelp</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Use system fonts</short>
+	<long>
+	  Use the systems default fonts.
+	</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/devhelp/ui/variable_font</key>
+      <applyto>/apps/devhelp/ui/variable_font</applyto>
+      <owner>devhelp</owner>
+      <type>string</type>
+      <default>Sans 12</default>
+      <locale name="C">
+         <short>Font for text</short>
+         <long>
+	   Font for text with variable width.
+         </long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/devhelp/ui/fixed_font</key>
+      <applyto>/apps/devhelp/ui/fixed_font</applyto>
+      <owner>devhelp</owner>
+      <type>string</type>
+      <default>Monospace 12</default>
+      <locale name="C">
+         <short>Font for fixed text</short>
+         <long>
+	   Font for text with fixed width.
+         </long>
+      </locale>
+    </schema>
+   </schemalist>
+</gconfschemafile>
+

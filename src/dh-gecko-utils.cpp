@@ -30,8 +30,30 @@
 #include <nsString.h>
 #include <nsIPrefService.h>
 #include <nsIServiceManager.h>
+#include <stdlib.h>
 
+#include "dh-util.h"
 #include "dh-gecko-utils.h"
+
+static gboolean
+dh_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
+{
+	gchar *tmp_name, *ch;
+	
+	tmp_name = g_strdup (font_name);
+
+	ch = g_utf8_strrchr (tmp_name, -1, ' ');
+	if (!ch || ch == tmp_name) {
+		return FALSE;
+	}
+
+	*ch = '\0';
+
+	*name = g_strdup (tmp_name);
+	*size = strtol (ch + 1, (char **) NULL, 10);
+	
+	return TRUE;
+}
 
 static gboolean
 gecko_prefs_set_string (const gchar *key, const gchar *value)
@@ -67,24 +89,33 @@ gecko_prefs_set_int (const gchar *key, gint value)
 }
 
 extern "C" void 
-dh_gecko_utils_set_font (gint         type,
-			 const gchar *fontname,
-			 gint         fontsize)
+dh_gecko_utils_set_font (gint         type, const gchar *fontname)
 {
+	gchar *name;
+	gint   size;
+
+	name = NULL;
+	if (!dh_util_split_font_string (fontname, &name, &size)) {
+		g_free (name);
+		return;
+	}
+	
 	switch (type) {
 	case DH_GECKO_PREF_FONT_VARIABLE:
 		gecko_prefs_set_string ("font.name.variable.x-western", 
-					fontname);
+					name);
 		gecko_prefs_set_int ("font.size.variable.x-western", 
-				     fontsize);
+				     size);
 		break;
 	case DH_GECKO_PREF_FONT_FIXED:
 		gecko_prefs_set_string ("font.name.fixed.x-western", 
-					fontname);
+					name);
 		gecko_prefs_set_int ("font.size.fixed.x-western", 
-				     fontsize);
+				     size);
 		break;
 	}
+
+	g_free (name);
 }		   
 
 #if 0

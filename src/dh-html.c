@@ -31,6 +31,7 @@
 #include "dh-util.h"
 #include "dh-marshal.h"
 #include "dh-gecko-utils.h"
+#include "dh-preferences.h"
 #include "dh-html.h"
 
 #define d(x) 
@@ -39,11 +40,10 @@ struct _DhHtmlPriv {
 	GtkMozEmbed *gecko;
 };
 
-static void     html_class_init            (DhHtmlClass         *klass);
-static void     html_init                  (DhHtml              *html);
-static void     html_title_cb              (GtkMozEmbed         *embed,
-					    DhHtml              *html);
-
+static void     html_class_init               (DhHtmlClass         *klass);
+static void     html_init                     (DhHtml              *html);
+static void     html_title_cb                 (GtkMozEmbed         *embed,
+					       DhHtml              *html);
 #if 0
 static gint     html_open_uri_cb           (GtkMozEmbed         *embed,
 					    const gchar         *uri,
@@ -124,10 +124,8 @@ html_init (DhHtml *html)
 					 NULL);
 	
 	gtk_moz_embed_set_profile_path (profile_path, "Devhelp");
-
 	g_free (profile_path);
-					
-	dh_gecko_utils_set_font (DH_GECKO_PREF_FONT_VARIABLE, "Sans", 10);
+
 	g_signal_connect (priv->gecko, "title",
 			  G_CALLBACK (html_title_cb),
 			  html);

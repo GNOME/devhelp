@@ -1,5 +1,22 @@
 2004-03-16  Mikael Hallendal  <micke@imendio.com>
 
+	* Makefile.am: Added schemas
+	* configure.in: Added gconf tools
+	* devhelp.schemas.in: Added
+	* src/dh-gecko-utils.cpp:
+	* src/dh-gecko-utils.h: 
+	- Split a gtk font string
+	* src/dh-html.c: (html_init): Don't set the font here.
+	* src/dh-preferences.c:
+	- Set fonts, supports using system fonts or override for devhelp.
+	- Close button works
+	- Setting transient to main window.
+	* src/dh-window.c:
+	- Set prefs window to be transient.
+	* ui/devhelp.glade: Added Use system default button to prefs dialog.
+
+2004-03-16  Mikael Hallendal  <micke@imendio.com>
+
 	* configure.in: Added libglade dependency
 	* src/Makefile.am: Added includes and dh-preferences.[ch]
 	* src/dh-base.c: (dh_base_new): initialize preferences

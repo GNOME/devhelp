@@ -23,6 +23,7 @@
 
 #include <config.h>
 #include <string.h>
+#include <stdlib.h>
 #include <libgnome/gnome-init.h>
 #include <gtk/gtklabel.h>
 #include "dh-util.h"
@@ -173,6 +174,8 @@ dh_glade_connect (GladeXML *gui,
                                                                                 
         va_end (args);
 }
+
+
 
 /* ----------------------------------------------------------------- */
 /*                          From GNOME VFS                           */
@@ -402,3 +405,5 @@ dh_util_uri_relative_new (const gchar *uri, const gchar *base_uri)
 	
 	return result;
 }
+
+

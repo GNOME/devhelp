@@ -31,6 +31,7 @@
 #include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtkvbox.h>
 #include <gtk/gtkuimanager.h>
+#include <gconf/gconf-client.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
 #include <libgnomeui/gnome-href.h>
@@ -44,6 +45,7 @@
 #include "dh-window.h"
 
 extern gchar *geometry;
+extern GConfClient *gconf_client;
 
 struct _DhWindowPriv {
 	DhBase         *base;
@@ -82,6 +84,7 @@ static void window_activate_forward          (GtkAction          *action,
 					      DhWindow           *window);
 static void window_activate_about            (GtkAction          *action,
 					      DhWindow           *window);
+static void window_save_state                (DhWindow           *window);
 static void window_delete_cb                 (GtkWidget          *widget,
 					      GdkEventAny        *event,
 					      gpointer            user_data);
@@ -287,7 +290,8 @@ window_populate (DhWindow *window)
 	GNode        *contents_tree;
 	GList        *keywords = NULL;
 	GError       *error = NULL;
-	 
+	gint          hpaned_position;
+	
         g_return_if_fail (window != NULL);
         g_return_if_fail (DH_IS_WINDOW (window));
         
@@ -338,7 +342,11 @@ window_populate (DhWindow *window)
 
 	gtk_paned_add2 (GTK_PANED(priv->hpaned), frame);
 
- 	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
+	hpaned_position = gconf_client_get_int (gconf_client,
+						GCONF_PANED_LOCATION,
+						NULL);
+	
+ 	gtk_paned_set_position (GTK_PANED (priv->hpaned), hpaned_position);
 
 	contents_tree = dh_base_get_book_tree (priv->base);
 	keywords      = dh_base_get_keywords (priv->base);
@@ -380,6 +388,7 @@ window_populate (DhWindow *window)
 				  "uri_selected", 
 				  G_CALLBACK (window_open_url),
 				  window);
+	dh_preferences_setup_fonts ();
 }
 
 static void
@@ -390,6 +399,8 @@ window_activate_quit (GtkAction *action, DhWindow *window)
 	g_return_if_fail (DH_IS_WINDOW (window));
 
 	priv = window->priv;
+
+	window_save_state (window);
 	
 	gtk_main_quit ();
 }
@@ -403,7 +414,7 @@ window_activate_copy (GtkAction *action, DhWindow *window)
 static void
 window_activate_preferences (GtkAction *action, DhWindow *window)
 {
-	dh_preferences_show_dialog ();
+	dh_preferences_show_dialog (GTK_WINDOW (window));
 }
 
 static void window_activate_back             (GtkAction          *action,
@@ -482,6 +493,37 @@ static void window_activate_about            (GtkAction          *action,
 			    TRUE, TRUE, 0);
 
 	gtk_widget_show_all (about);
+}
+
+static void
+window_save_state (DhWindow *window)
+{
+	DhWindowPriv *priv;
+	int           width, height;
+	int           x, y;
+
+	priv = window->priv;
+
+	gtk_window_get_size (GTK_WINDOW (window), &width, &height);
+	gconf_client_set_int (gconf_client, 
+			      GCONF_MAIN_WINDOW_WIDTH,
+			      width, NULL);
+	gconf_client_set_int (gconf_client,
+			      GCONF_MAIN_WINDOW_HEIGHT,
+			      height, NULL);
+
+	gtk_window_get_position (GTK_WINDOW (window), &x, &y);
+	gconf_client_set_int (gconf_client, 
+			      GCONF_MAIN_WINDOW_POS_X,
+			      x, NULL);
+	gconf_client_set_int (gconf_client,
+			      GCONF_MAIN_WINDOW_POS_Y,
+			      y, NULL);
+
+	gconf_client_set_int (gconf_client,
+			      GCONF_PANED_LOCATION,
+			      gtk_paned_get_position (GTK_PANED (priv->hpaned)),
+			      NULL);
 }
 
 static void
@@ -618,7 +660,27 @@ dh_window_new (DhBase *base)
 	if (geometry) {
 		gtk_window_parse_geometry (GTK_WINDOW (window), geometry);
 	} else {
-		gtk_window_set_default_size (GTK_WINDOW (window), 700, 500);
+		int width, height;
+		int x, y;
+
+		width = gconf_client_get_int (gconf_client,
+					      GCONF_MAIN_WINDOW_WIDTH,
+					      NULL);
+		height = gconf_client_get_int (gconf_client,
+					       GCONF_MAIN_WINDOW_HEIGHT,
+					       NULL);
+		
+		gtk_window_set_default_size (GTK_WINDOW (window), 
+					     width, height);
+
+		x = gconf_client_get_int (gconf_client,
+					  GCONF_MAIN_WINDOW_POS_X,
+					  NULL);
+		y = gconf_client_get_int (gconf_client,
+					  GCONF_MAIN_WINDOW_POS_Y,
+					  NULL);
+
+		gtk_window_move (GTK_WINDOW (window), x, y);
 	}
 
 	g_signal_connect (window, 

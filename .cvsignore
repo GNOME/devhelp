@@ -26,3 +26,4 @@ autom4te.cache
 devhelp.keys
 libdevhelp-1.0.pc
 devhelp
+*.schemas

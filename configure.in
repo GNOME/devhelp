@@ -13,6 +13,11 @@ AC_HEADER_STDC
 AM_PROG_LIBTOOL
 AM_PATH_GLIB_2_0
 
+AC_PROG_INTLTOOL
+AC_PATH_PROG(GCONFTOOL, gconftool-2)
+
+AM_GCONF_SOURCE_2
+
 dnl NOTE : it appears that some systems do not like it when you use line
 dnl        continuation charactes to split CFLAGS into readable chunks
 if test "x$GCC" = "xyes"; then
@@ -87,15 +92,13 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Package name for gettext
 
 AM_GLIB_GNU_GETTEXT
 
-AC_PROG_INTLTOOL
+
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
 AC_OUTPUT([
 Makefile
 devhelp.spec
-devhelp.desktop
-devhelp.keys
 devhelp
 libdevhelp-1.0.pc
 dtd/Makefile
@@ -103,5 +106,4 @@ po/Makefile.in
 src/Makefile
 ui/Makefile
 misc/Makefile
-
 ])

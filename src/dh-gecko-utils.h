@@ -31,8 +31,7 @@ enum {
 };
 
 void            dh_gecko_utils_set_font      (gint          font_type,
-					      const gchar  *fontname, 
-					      gint          fontsize);
+					      const gchar  *fontname);
 
 /*
 gboolean        dh_gecko_find           (GtkMozEmbed  *html,
