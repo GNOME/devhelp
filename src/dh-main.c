@@ -46,6 +46,8 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
+#define SOCKET_PATH "/tmp/devhelp-%s-socket"
+
 static gboolean
 dh_client_data_cb (GIOChannel   *source,
 		   GIOCondition  condition,
@@ -133,7 +135,7 @@ dh_create_socket (DhWindow *window)
 {
 	gint                fd;
 	struct sockaddr_un  addr;
-	const gchar        *path = "/tmp/devhelp-socket";
+	gchar              *path;
 	GIOChannel         *channel;	
 
 	fd = socket (AF_LOCAL, SOCK_STREAM, 0);
@@ -142,11 +144,15 @@ dh_create_socket (DhWindow *window)
 		g_warning ("Couldn't create socket.");
 		return;
 	}
+
+	path = g_strdup_printf (SOCKET_PATH, g_get_user_name ());
 	
 	memset (&addr, sizeof (addr), 0);
 	addr.sun_family = AF_LOCAL;
 	strcpy (addr.sun_path, path);
-  
+
+	g_free (path);
+	
 	if (bind (fd, (struct sockaddr*) &addr, SUN_LEN (&addr)) < 0) {
 		g_warning ("Couldn't bind socket.");
 		return;
@@ -186,10 +192,13 @@ dh_try_to_connect (void)
 {
 	gint                fd;
 	struct sockaddr_un  addr;
-	const gchar        *path = "/tmp/devhelp-socket";
+	gchar              *path;
 	gchar              *buf;
 
+	path = g_strdup_printf (SOCKET_PATH, g_get_user_name ());
+
 	if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
+		g_free (path);
 		return -1;
 	}
 	
@@ -212,6 +221,7 @@ dh_try_to_connect (void)
 	if (!g_file_test (path, G_FILE_TEST_IS_SYMLINK | G_FILE_TEST_IS_DIR)) {
 		unlink (path);
 	}
+	g_free (path);
 
 	return -1;
 }

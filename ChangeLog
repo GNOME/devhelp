@@ -1,9 +1,11 @@
 2002-11-08  Richard Hult  <rhult@codefactory.se>
 
+	* src/dh-main.c: Put username in socket filename.
+	
 	* src/dh-main.c (main): Reimplement searching in an already
 	running devhelp process and add a -q option to quit the running
 	process.
-
+	
 	* src/dh-base.c (dh_base_new_window): Comment out connection to
 	new_window_requested signal.
 
