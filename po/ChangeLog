@@ -1,0 +1,51 @@
+2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.38.
+	* stamp-cat-id: Remove file.
+
+2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.38.
+	* stamp-cat-id: Remove file.
+
+2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.38.
+
+2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.38.
+
+2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.38.
+
+2001-07-31  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.38.
+	* cat-id-tbl.c: Remove file.
+	* stamp-cat-id: Remove file.
+
+2001-07-19  Johan Dahlin  <zilch.am@home.se>
+
+	* sv.po: Updated swedish translation.
+	
+2001-07-15  Johan Dahlin  <zilch.am@home.se>
+
+	* sv.po: Updated swedish translation.
+
+2001-07-12  Johan Dahlin  <zilch.am@home.se>
+
+	* sv.po: Updated swedish translation.
+
+	* POTFILES.in: Added src/print.c src/ui.c.
+	
+2001-07-09  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.38.
+	* stamp-cat-id: Remove file.
+
+2001-07-09  Richard Hult  <rhult@codefactory.se>
+
+	* .cvsignore: Add devhelp.pot.
+

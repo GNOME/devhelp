@@ -1,0 +1,65 @@
+# Note that this is NOT a relocatable package
+%define ver      @VERSION@
+%define rel      1
+%define prefix   /usr
+
+Summary:   Devhelp
+Name:      devhelp
+Version:   %ver
+Release:   %rel
+Copyright: GPL
+Group:     Applications/Development
+Source:    devhelp-%{PACKAGE_VERSION}.tar.gz
+BuildRoot: /tmp/devhelp-%{PACKAGE_VERSION}-root
+Packager:  Johan Dahlin <zilch.am@home.se>
+Autoreq: 0
+BuildRequires: gettext >= 0.10.35
+Requires: glib >= 1.2.8
+Requires: gtk+ >= 1.2.8
+Requires: gnome-libs >= 1.2.0
+Requires: gnome-vfs >= 1.0.0
+Requires: gdk-pixbuf >= 0.11.0
+Requires: libxml >= 1.8.11
+Requires: libglade >= 0.16
+Requires: gtkhtml >= 0.6
+Requires: oaf >= 0.6.2
+Requires: bonobo >= 0.37
+Requires: GConf >= 0.12
+
+%description
+A developers help program
+%prep
+%setup
+
+%build
+
+if [ ! -f configure ]; then
+	CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%{prefix} \
+		--without-debug 
+else
+	CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{prefix} \
+		--without-debug 
+fi
+
+if [ "$SMP" != "" ]; then
+  (make "MAKE=make -k -j $SMP"; exit 0)
+  make
+else
+  make
+fi
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make prefix=$RPM_BUILD_ROOT%{prefix} install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-, root, root)
+
+%doc AUTHORS COPYING ChangeLog NEWS README INSTALL
+%{prefix}/bin/*
+%{prefix}/share/*
+

@@ -1,0 +1,8 @@
+POTFILES
+Makefile
+Makefile.in
+Makefile.in.in
+cat-id-tbl.c
+devhelp.pot
+*.gmo
+messages

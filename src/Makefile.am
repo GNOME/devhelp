@@ -1,0 +1,82 @@
+INCLUDES = 						\
+	  -I$(top_srdir) 				\
+	  -I$(top_builddir) 				\
+          -DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
+	  -DDATA_DIR=\"$(datadir)\"			\
+	  $(GNOMEUI_CFLAGS) 				\
+	  $(GCONF_CFLAGS) 				\
+	  $(BONOBO_CFLAGS) 				\
+	  $(LIBXML_CFLAGS) 				\
+	  $(GTKHTML_CFLAGS) 				\
+	  $(VFS_CFLAGS)
+
+bin_PROGRAMS = devhelp
+
+devhelp_SOURCES = 			\
+	$(GENERATED)                    \
+	book.c				\
+	book.h				\
+	book-node.h			\
+	bookmark-manager.c		\
+	bookmark-manager.h		\
+	bookshelf.c			\
+	bookshelf.h                     \
+	function-database.c		\
+	function-database.h		\
+	help-browser.c			\
+	help-browser.h			\
+	history.c			\
+	history.h			\
+	html-widget.c			\
+	html-widget.h			\
+	install.c			\
+	install.h			\
+	main.c				\
+	main.h				\
+	print.c				\
+	print.h				\
+	preferences.c			\
+	preferences.h			\
+	preferences-dialog.c		\
+	preferences-dialog.h		\
+	books-dialog.c			\
+	books-dialog.h			\
+	ui.c				\
+	ui.h				\
+	util.c				\
+	util.h
+
+devhelp_LDADD = 			\
+	      $(GNOMEUI_LIBS) 		\
+	      $(GCONF_LIBS) 		\
+	      $(BONOBO_LIBS)            \
+	      $(VFS_LIBS)		\
+	      $(GTKHTML_LIBS) 		\
+	      -lgtkhtml 		
+
+GENERATED =				\
+	GNOME_Devhelp-skels.c		\
+	GNOME_Devhelp-stubs.c		\
+	GNOME_Devhelp-common.c		\
+	GNOME_Devhelp.h
+
+$(GENERATED): $(top_srcdir)/idl/GNOME_Devhelp.idl stamp-idl
+
+stamp-idl: $(top_srcdir)/idl/GNOME_Devhelp.idl
+	orbit-idl $(IDL_FLAGS) -I$(srcdir) $(IDL_FLAGS) $(top_srcdir)/idl/GNOME_Devhelp.idl
+	touch stamp-idl
+
+# Work around automake brokenness.
+$(srcdir)/GNOME_Devhelp.h: stamp-idl
+
+CLEANFILES  += $(GENERATED) + stamp-idl
+
+oafdir = $(datadir)/oaf
+oaf_in_files = GNOME_Devhelp.oaf.in
+
+oaf_DATA = $(oaf_in_files:.oaf.in=.oaf)
+
+@XML_I18N_MERGE_OAF_RULE@
+
+EXTRA_DIST =                            \
+        $(oaf_in_files)

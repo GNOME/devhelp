@@ -1,0 +1,575 @@
+2001-07-31  Richard Hult  <rhult@codefactory.se>
+
+	* src/main.c (idle_activate_and_search): Eek, data is allowed to
+	be NULL so don't g_return_fail.
+	(activate_and_search): Only search if search string =! NULL.
+
+	* src/html-widget.c: Include config.h to get i18n working.
+
+	* src/main.c: Clean up a bit and init threads for gnome-vfs.
+
+	* src/main.h: Add search_button to devhelp struct.
+
+	Commented-out code that will be used when the non-autocompletion
+	case works:
+	* src/ui.c (autocompletion_toggled_cb): Make the search button
+	sensitivite if autocompetion is not on.
+	(devhelp_create_ui): Set initial sensitivity correctly as well.
+
+2001-07-31  Johan Dahlin  <zilch.am@home.se>
+
+	* configure.in: GTKHTML 0.9.1 & GNOME_VFS 1.0.0 is now reqired.
+
+	* src/install.c (install_book): Remove message.
+
+	* src/bookshelf.c (bookshelf_add_book): Check if the book is
+	installed correctly.
+
+	* src/book.c (book_parse): s/name/priv->name/
+
+	* ui/devhelp.png: New version, Thanks Marcus Leyman.
+	
+2001-07-30  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/book.c (book_node_find): take document as const.
+
+	* src/install.c: include gnome-vfs-mime.h
+
+	* src/bookshelf.c (bookshelf_add_book): fixed error that caused
+	non-compile issue.
+
+	* src/book.c: moved book_set_base_url to reside with the other
+	non-static functions.
+	(book_set_base_url): don't destroy the url argument.
+	(book_parse): no need to check for base_url since it's no longer
+	used. free the xml_str only if it's not NULL.
+	(book_url_get_book_relative): moved to be with the other static
+	functions. 
+
+2001-07-30  Johan Dahlin  <zilch.am@home.se>
+
+	* src/book.c (book_parse): Removed gconf code.
+
+	* src/ui.c (addbook_dialog_clicked_cb): New function, stolen
+	from books-dialog.c (change one or two lines).
+	(addbook_key_event): Dito.
+	(menu_file_addbook_activate_cb): Dito.
+	(devhelp_create_ui): Load menu_file_addbook item.
+
+	* src/install.c (gnome_message): New function.
+	(install_create_directory): static for now.
+	(install_create_directories): Remove gconf code.
+	(install_is_book_installed): Remove.
+	(install_register_book): Remove.	
+	(install_insert_book): Add bookshelf_write_xml, since it makes
+	most sense here.
+
+	* src/html-widget.c (html_widget_new): Make intro html page translatable.
+	(html_widget_async_open_cb): Make error message translatable.
+
+	* src/bookshelf.h: Add prototypes for bookshelf_read_xml,
+	bookshelf_write_xml.
+
+	* src/bookshelf.c: include libgnome/gnome-defs.h & gnome-i18n.h
+	XMLBook, new struct.
+	(bookshelf_write_xml): New function.
+	(bookshelf_read_xml): New function.
+	(bookshelf_add_book): Check to see if the book is already installed.
+
+	* src/books-dialog.c (books_button_hide_clicked_cb): remove a g_message.
+	(update_clist): Remove gconf code and add xml code.
+
+	* src/book.h: Added prototype for book_set_base_url.
+
+	* src/book.c (book_set_base_url): New function.
+	(book_parse): Use book_set_base_url here.
+	(book_get_path): Use gnome_vfs_uri_get_path here.
+
+2001-07-28  Johan Dahlin  <zilch.am@home.se>
+
+	* src/install.c (install_book): Can now install .spec files correctly.
+
+	* src/bookshelf.[ch] (bookshelf_write_xml): Added (unused for now).
+
+2001-07-24  Johan Dahlin  <zilch.am@home.se>
+
+	* src/preferences.c (preferences_new): Don't watch /apps/devhelp/books.
+
+	* src/install.c (install_is_book_installed): 
+	(install_register_book): Use book_get_name instead of book_get_full_name.
+	(install_register_book): Update Path.
+
+	* src/books-dialog.c (update_clist): Dito.
+
+	* src/book.c (book_parse): Update path.
+
+2001-07-23  Johan Dahlin  <zilch.am@home.se>
+
+	* ui/devhelp.glade: A few changes here to, can't remember exactly
+	what i changed ;)
+	
+	* src/html-widget.c (READ_BUFFER_SIZE): Increase buffer size to 8192.
+
+	* src/main.c (main): Create directories here.
+
+	* src/books-dialog.[ch]: Lots and lots of changes in here.
+
+	* src/install.[ch]: Lots and lots of changes in here.	
+
+	* src/book.c (book_get_name_full): New function.
+	(book_get_path): New function.
+	
+	* src/book.h: Dito.
+
+	* src/bookshelf.h: Make bookshelf_add_book and
+	bookshelf_add_directory public.
+
+	* src/bookshelf.c: Renamed bookshelf_fill_with_books to 
+	bookshelf_add_directory.
+	BookshelfPriv: Removed books_uri.
+	(bookshelf_add_book): New function.
+	
+	* src/ui.c (devhelp_create_pixmaps): 
+	(devhelp_insert_book_node): 
+	(devhelp_create_book_tree): Make functions non-static.
+	(devhelp_create_ui): Change bookshelf init.
+
+	* src/ui.h: Moved here from ui.c
+	Renamed a few functions, added a few functions.
+
+2001-07-21  Johan Dahlin  <zilch.am@home.se>
+
+	* Makefile.am: Add gconf-schema support
+
+	* configure.in: Rewrite gconf support totaly (stole it from eog)
+
+	* src/function-database.c (function_database_thaw): Fix a warning
+	if no book are found.
+
+2001-07-20  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/book.c: removed debug printouts
+
+	* src/ui.c: removed debug printouts
+
+	* books/libc/libc.xml: updated, set link correctly.
+
+	* src/*: New book/bookshelf-structure. Too much to list.
+
+2001-07-19  Richard Hult  <rhult@codefactory.se>
+
+	* src/ui.c: Remove book installation stuff from here.
+
+	* src/books-dialog.[ch]: New files to handle book management.
+	
+	* src/books-dialog.c: Move install book stuff from ui.c to here.
+
+	* configure.in: Revert weird name change I did.
+
+	* autogen.sh: Ditto. 
+
+	* src/ui.c (menu_file_addbook_cb): Set wmclass/name on dialog.
+	(addbook_dialog_clicked_cb): If a directory is selected when ok is
+	pressed, go into that directory instead of trying to install it as
+	a book.
+	(addbook_key_event): Close the dialog on Escape.
+
+	* src/html-widget.c (html_widget_new): Add a little note about
+	tree navigation.
+
+	* src/main.c (main): Comment out the gnome_shutdown call.
+
+	* src/ui.c (menu_help_about_activate_cb): add (C) to copyright.
+
+	* autogen.sh: Change name to DevHelp.
+
+	* configure.in: Change name to DevHelp.
+
+2001-07-19  Johan Dahlin  <zilch.am@home.se>
+
+	* src/install.c (install_book): Remove #ifdef 0
+
+	* ui/devhelp.glade: Add File->Add book.
+
+	* src/ui.c (menu_file_addbook_cb): New callback.
+	(addbook_dialog_clicked_cb): Dito.
+	(devhelp_create_ui): Add here too.
+
+	* src/preferences.c (preferences_new): Create '/app/devhelp/books'.
+
+	* src/install.h: 
+	* src/install.c: New files
+
+	* src/Makefile.am (devhelp_SOURCES): Add install.[ch]
+
+2001-07-19  Richard Hult  <rhult@codefactory.se>
+
+	* src/ui.c (devhelp_create_ui): Rearranged a bit in the menu structure.
+
+	* src/preferences-dialog.c: Hook up autocompetion speed settings.
+
+	* src/preferences.c: Ditto.
+
+	* src/ui.c: Hook up zoom level. Change when gconf tells us to, set
+	the right initial value.
+
+	* src/preferences-dialog.c: Ditto with show/hide sidebar and zoom level.
+
+	* src/ui.c: Move things from main.h to here, as they have nothing
+	to do with anything outside ui.c
+
+	* src/html-widget.c (html_widget_new): Load an initial page into
+	the html widget.
+
+	* src/ui.c (devhelp_ui_show_sidebar): The html widget is in a
+	frame now.
+	(devhelp_create_ui): Put the html widget in a frame with "in" shadow.
+
+2001-07-19  Richard Hult  <rhult@codefactory.se>
+
+	* src/ui.c: Make functions public so that the preference code can
+	set stuff.
+	(devhelp_insert_book_node): Remove unneccessary g_strdup/g_free
+	pair that gets called a lot.
+
+	* src/main.h: Make zoom levels an enum.
+
+	* src/ui.c (menu_help_about_activate_cb): Fix typo.
+
+2001-07-19  Johan Dahlin  <zilch.am@home.se>
+
+	* src/html-widget.c: s/gpointer user_data/HtmlReadData *read_data/
+	+ a little bit more
+
+	* src/main.c (main): Reorganize a bit a fix --help bug.
+
+	* src/ui.c: s/gpointer user_data/DevHelp *devhelp/ in a few
+	places.
+
+	* src/book.c (book_parse): Removed a g_print
+
+2001-07-18  Richard Hult  <rhult@codefactory.se>
+
+	* src/preferences-dialog.c (menu_preferences_activate_cb): Load
+	and ditch the glade tree here.
+
+	* src/ui.c (devhelp_create_ui): Don't keep the glade tree around.
+
+	* src/main.h: Remove the glade widget tree from here.
+
+	* src/preferences.c (preferences_new): Remove C++ comment.
+
+	* src/preferences-dialog.h (__PREFERENCES_DIALOG_H__): Don't
+	define this to 1, just define it.
+
+	* src/main.c (main): Init gconf before vfs.
+
+2001-07-18  Johan Dahlin  <zilch.am@home.se>
+
+	* src/Makefile.am (devhelp_SOURCES): Added preferences-dialog.[ch]
+
+	* src/preferences-dialog.h: New file
+
+	* src/preferences-dialog.c: New file
+
+	* src/ui.c (devhelp_create_ui): Dito
+
+	* src/main.h (Devhelp struct): Added wtree.
+
+2001-07-18  Richard Hult  <rhult@codefactory.se>
+
+	* src/main.c (main): Shut down gnomevfs when we're done.
+
+2001-07-18  Johan Dahlin  <zilch.am@home.se>
+
+	* src/ui.c (menu_preferences_activate_cb): New function ..
+	(devhelp_create_ui): .. and new here too.
+
+	* ui/devhelp.glade: Change name for prefs menu entry to menu_preferences.
+
+	* src/ui.c (devhelp_create_pixmaps): Load images from 
+	DATA_DIR"/images/devhelp".
+
+	* ui/Makefile.am: Remove devhelp.png from ui_DATA since it's only
+	used as icon and not in the program itself.
+	Change uidir to $(datadir)/images/devhelp.
+	+ a few more changes :)
+
+2001-07-17  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/ui.c (gtk_ctree_goto): updated.
+
+	* books/GGAD/GGAD.xml: updated book-link.
+
+	* src/html-widget.c: use async read.
+	(html_widget_open_uri): changed name from load_uri. 
+	(html_widget_async_close_cb): added/impl.
+	(html_widget_async_read_cb): added/impl.
+	(html_widget_async_open_cb): added/impl.
+	(html_widget_load_uri): changed from write_uri.
+
+	* src/book.c (book_node_compare_func): made extern to be used from
+	ui.c
+
+	* src/ui.c (html_link_clicked_cb): call gtk_ctree_goto to show the
+	correct row.
+	(gtk_ctree_goto): fixed, now works correctly when having to expand
+	more than one depth.
+	(tree_compare_func): removed. use book_node_compare_func instead.
+
+	* src/html-widget.c 
+	(html_widget_url_requested): use base_uri instead of baseurl.
+	- fixes url_request-errors.
+
+	* src/book.c:
+	(book_contains): added/impl.
+
+	* src/book.c (book_node_new): append instead, not to many nodes,
+	if we need speed we can fix this.
+
+	* src/html-widget.c 
+	(html_widget_url_requested): changed name from ..._cb. Make this
+	override url_requested from gtkhtml instead of connecting to
+	signal.
+	(html_widget_parse_and_split_url): removed.
+	- removed some debug printouts.
+
+2001-07-17  Johan Dahlin  <zilch.am@home.se>
+
+	* src/ui.c (devhelp_create_pixmaps): Added gdk-pixbuf support
+	again.
+
+2001-07-17  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/util.c (util_uri_get_anchor): added/impl.
+
+	* src/ui.c (devhelp_create_pixmaps): added/impl.
+	(devhelp_insert_book_node): added/impl.
+	(devhelp_create_book_tree): added/impl.
+	- various fixes for using bookshelf/book.
+	(bookmark_add_cb): commented out some stuff, doesn't work with
+	Bookshelf/Book. 
+
+	* src/main.c: removed all parsing stuff and such, now in
+	bookshelf/book. 
+
+	* src/html-widget.c 
+	(html_widget_load_uri): changed name from ..._load_url. takes a
+	uri now.
+	(html_widget_write_uri): same.
+
+	* src/function-database.c: changed for using GnomeVFSURI instead
+	of urls
+	- fixed the searchstuff.
+
+	* src/history.c: same.
+
+2001-07-17  Johan Dahlin  <zilch.am@home.se>
+
+	* ui/devhelp.glade: Added preferences dialog.
+
+2001-07-17  Mikael Hallendal  <micke@codefactory.se>
+
+	* books/gnomeui/gnomeui.xml: fixed default_url.
+
+2001-07-17  Johan Dahlin  <zilch.am@home.se>
+
+	* ui/devhelp.glade: Use GTK_SELECTION_BROWSE instead of
+	GTK_SELECTION_SINGLE (both CTree and CList)
+
+	* src/ui.c (main_window_key_press_event_cb): New function. Use
+	Ctrl-Arrows to navigate through the Index and Search list, even if
+	they aren't focused.
+
+2001-07-16  Mikael Hallendal  <micke@codefactory.se>
+
+	* xml-i18n-merge.in: removed
+	
+	* src/book.c: updated
+
+	* src/bookshelf.[ch]: updated
+
+	* src/util.[ch]: added.
+
+2001-07-16  Johan Dahlin  <zilch.am@home.se>
+
+	* src/ui.c (devhelp_create_ui): clist_freeze/thaw not needed since
+	the windows is now hidden.
+	Rename nav_buttons to toolbar_buttons.
+
+	* src/html-widget.c (html_widget_write_url): We don't need to
+	reset read_bytes for every read.
+
+	* ui/devhelp.glade: Allow shrink and removed an unused placeholder.
+
+	* devhelp.spec.in (Requires): Added more dependencies.
+
+2001-07-15  Johan Dahlin  <zilch.am@home.se>
+
+	* ui/devhelp.glade: s/_Index/_Search/
+
+	* src/main.c (main): Cleanup.
+	(devhelp_normal_main): New function
+	(devhelp_factory_main): Dito.
+	(parse_books): Be a little bit more verbose.
+
+2001-07-13  Johan Dahlin  <zilch.am@home.se>
+
+	* src/main.c: 
+	* src/preferences.c: 
+	* src/preferences.h: 
+	* src/ui.c: 
+	* src/ui.h: s/DevhelpPriv/DevHelp/.
+
+2001-07-13  Richard Hult  <rhult@codefactory.se>
+
+	Initial cut at preferences.
+	* src/ui.c: Use preferences.
+
+	* src/preference.[ch: Preferences code.
+
+2001-07-13  Johan Dahlin  <zilch.am@home.se>
+
+	* src/html-widget.c (html_widget_load_url): Small (hackish) fixage.
+
+2001-07-13  Richard Hult  <rhult@codefactory.se>
+
+	* src/function-database.c: s/freezed/frozen/.
+
+	* src/function-database.c (function_compare): Use a correct
+	compare function for sorting the list (take two GSList *  and
+	return the right values for less than/equal to/greater than).
+
+	* src/html-widget.c (html_widget_load_url): Don't try to access
+	freed memory (solve by duplicating it).
+
+2001-07-13  Johan Dahlin  <zilch.am@home.se>
+
+	* src/main.c (my_gtk_ctree_insert_node): Use
+	gdk_pixbuf_new_from_file.
+
+2001-07-12  Johan Dahlin  <zilch.am@home.se>
+
+	* src/main.h (struct): Remove html.
+
+	* src/html-widget.c: Include gnome-vfs-types.h & gnome-vfs-uri.h
+	instead of gnome-vfs.h
+
+	* src/main.c (parse_and_split_url): Fix stupid bug.
+
+	* src/print.c: Include glib.h, gnome-defs.h, gnome-i18n.h
+
+	* src/html-widget.h: 
+	* src/print.h: Include gtkhtml-types.h instead of gtkhtml.h
+
+2001-07-12  Richard Hult  <rhult@codefactory.se>
+
+	* src/ui.c (html_on_url_cb): The app bar is not a GtkStatusBar
+	but a GnomeAppbar.
+
+2001-07-12  Johan Dahlin  <zilch.am@home.se>
+
+	* src/ui.c, src/ui.h: Include main.h instead of main.h.
+
+	* src/Makefile.am (devhelp_SOURCES): Added html-widget.[ch].
+
+	* src/html-widget.c, src/html-widget.h: New files.
+
+	* src/main.c, src/main.h: New files (renamed devhelp.[ch]).
+
+	* src/ui.c (create_ui): A few more cleanups.
+
+	* src/devhelp.c (corba_search_cb): 
+	(main): Remove two type casts.
+
+	* src/devhelp.h (DevhelpPriv struct): change GtkWidget to
+	GtkNotebook.
+	
+	* src/Makefile.am (-DGNOMELOCALEDIR): Add this one too :)
+
+2001-07-12  Richard Hult  <rhult@codefactory.se>
+
+	* src/ui.c (menu_view_show_sidebar_activate_cb): Add the
+	show/hide sidebar thing again.
+
+2001-07-12  Johan Dahlin  <zilch.am@home.se>
+
+	* src/devhelp.c, src/ui.c: Removed the d() macro.
+	(main): Init gettext.
+
+	* src/devhelp.h: Added d() macro.
+	
+	* src/Makefile.am (devhelp_SOURCES): Added ui.[ch]
+
+	* src/ui.h: Added (just protdecl create_ui for now)
+
+	* src/ui.c: Moved a lot of functions from devhelp.c *_cb &
+	create_ui
+	(bookmark_added_cb): Added two more g_return_if_fail checks.
+
+	* src/devhelp.[ch]: renamed tree_goto to gtk_ctree_goto and
+	changed so you send a GtkCTree instead of the whole priv struct,
+	same with set_clist_contents -> gtk_clist_set_contents
+	
+	* src/devhelp.h: Added prototyp declaration for a few functions
+	also used in ui.c, renamed fd in priv struct to function_database
+	
+	* src/devhelp.c (create_ui): moved glade_gnome_init here from
+	main, so we don't have to include glade.h in devhelp.c
+	
+2001-07-12  Richard Hult  <rhult@codefactory.se>
+
+	* src/devhelp.c (menu_view_show_sidebar_activate_cb): Reparenting
+	action to hide/show the sidebar correctly.
+
+2001-07-09  Richard Hult  <rhult@codefactory.se>
+
+	* src/devhelp.c (menu_view_show_sidebar_activate_cb): Remove C++
+	comments.
+	(create_ui): Set zoom to medium as active.
+
+2001-07-09  Johan Dahlin  <zilch.am@home.se>
+
+	* src/help-browser.h: 
+	* src/devhelp.h: 
+	* src/devhelp.c: Header cleanup.
+	
+	* src/devhelp.c: Cleanup.
+
+	* src/devhelp.h: Cleanup.	
+
+2001-07-09  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/devhelp.c: defines for zooms
+
+	* src/function-database.c 
+	(function_database_freeze): added/impl.
+	(function_database_thaw): added/impl.
+
+	* src/bookshelf.[ch]: added
+
+	* src/book.[ch]: added
+
+2001-07-09  Johan Dahlin  <zilch.am@home.se>
+
+	* ui/devhelp.png: Updated. Use gnome-help.png instead of
+	galeon.png.
+
+	* misc/html2xml.py: Added
+	
+	* misc/html2book2.py: Removed
+
+	* misc/man2xml.py: Added
+
+	* misc/Makefile: Removed
+
+2001-07-09  Richard Hult <rhult@codefactory.se>
+
+	* Imported into selma CVS.
+
+2001-07-06  Johan Dahlin  <zilch.am@home.se>
+
+	* devhelp.desktop.in: Added
+
+	* src/devhelp.h: include config.h and removed VERSION from devhelp.h
+
