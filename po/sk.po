@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-01-25 09:37+0100\n"
-"PO-Revision-Date: 2003-01-25 09:50+0100\n"
+"POT-Creation-Date: 2003-01-28 13:17+0100\n"
+"PO-Revision-Date: 2003-01-28 13:25+0100\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -26,8 +26,7 @@ msgstr "Program pomocníka pre vývojárov"
 msgid "'%s' is not a valid book"
 msgstr "'%s' je neplatná kniha"
 
-#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144 src/dh-book-old.c:234
-#: src/dh-book-old.c:245 src/dh-book-old.c:257
+#: src/dh-book.c:121 src/dh-book.c:133 src/dh-book.c:144
 #, c-format
 msgid "Book '%s' is malformed."
 msgstr "Kniha '%s' je chybná."
@@ -36,6 +35,21 @@ msgstr "Kniha '%s' je chybná."
 #, c-format
 msgid "Couldn't find file '%s'"
 msgstr "Nepodarilo sa nájsť súbor '%s'"
+
+#: src/dh-book-old.c:249
+#, c-format
+msgid "Book '%s' is malformed, the parse context is invalid."
+msgstr "Kniha '%s' je chybná, kontext analýzy je neplatný."
+
+#: src/dh-book-old.c:260
+#, c-format
+msgid "Book '%s' is malformed, the XML is invalid."
+msgstr "Kniha '%s' je chybná, XML je neplatné."
+
+#: src/dh-book-old.c:274
+#, c-format
+msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
+msgstr "Kniha '%s' je chybná, nevyhovuje DTD (%s)."
 
 #: src/dh-html.c:517
 msgid ""
@@ -82,19 +96,32 @@ msgstr "_Pomocník"
 msgid "_About"
 msgstr "O progr_ame"
 
-#: src/dh-window.c:284
+#: src/dh-window.c:281
+#, c-format
+msgid ""
+"<b>Cound not read all books</b>\n"
+"\n"
+"The following errors occured whilst reading the books:\n"
+"%s"
+msgstr ""
+"<b>Nepodarilo sa načítať všetky knihy</b>\n"
+"\n"
+"Nasledujúce chyby sa vyskytli počas čítanie kníh:\n"
+"%s"
+
+#: src/dh-window.c:298
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:295
+#: src/dh-window.c:309
 msgid "Search"
 msgstr "Hľadať"
 
-#: src/dh-window.c:352
+#: src/dh-window.c:366
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prehliadač pomocníka pre vývojárov pre GNOME 2"
 
-#: src/dh-window.c:418
+#: src/dh-window.c:432
 #, c-format
 msgid "Open %s"
 msgstr "Otvoriť %s"
