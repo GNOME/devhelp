@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DevHelp 0.1.0\n"
-"POT-Creation-Date: 2001-07-31 13:17+0200\n"
+"POT-Creation-Date: 2001-07-31 19:41+0200\n"
 "PO-Revision-Date: 2001-07-06 15:34+0200\n"
 "Last-Translator: Johan Dahlin <zilch.am@home.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #: src/main.c:66
 msgid "searchInNewWindow not implemented."
-msgstr "searchInNewWindow är inte implenterat."
+msgstr "searchInNewWindow är inte implementerat."
 
 #: src/main.c:106
 #, c-format
