@@ -1,3 +1,14 @@
+2001-10-16  Mikael Hallendal  <micke@codefactory.se>
+
+	* ui/devhelp.glade: 
+	- removed mainapp, uses BonoboWindow now. Fixes bug #236 in
+	  CF-bugzilla.
+	- Changed Devhelp -> DevHelp, fixes #237 in CFB.
+
+	* src/devhelp-controller.c:
+	(impl_DevHelp_Controller_openURI): copy the CORBA_char *str_uri
+	before starting to use it. fixes bug #201 in CF-bugzilla.
+
 2001-10-15  Richard Hult  <rhult@codefactory.se>
 
 	* devhelp.spec.in: Install libs, patch from 

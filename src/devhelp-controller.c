@@ -197,13 +197,19 @@ impl_DevHelp_Controller_openURI (PortableServer_Servant    servant,
 	DevHelpControllerPriv   *priv;
 	Document                *document;
 	gchar                   *anchor;
+	gchar                   *str;
 	
 	controller = DEVHELP_CONTROLLER (bonobo_x_object (servant));
 	priv       = controller->priv;
 
-	if (devhelp_controller_open (controller, str_uri)) {
-		history_goto (priv->history, str_uri);
+	str = g_strdup (str_uri);
+	
+	if (devhelp_controller_open (controller, str)) {
+		
+		history_goto (priv->history, str);
 	}
+
+	g_free (str);
 }
 
 static void

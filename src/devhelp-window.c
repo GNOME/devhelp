@@ -670,9 +670,8 @@ devhelp_window_new (void)
         devhelp_window_populate (window);
 
         bonobo_ui_component_thaw (priv->component, NULL);
-
-
-        return widget;
+	
+	return widget;
 }
 
 void
