@@ -169,6 +169,10 @@ books_button_edit_clicked_cb (GtkWidget *button,
 	row = dialog->clist_visible->focus_row;
 	book_info->book = BOOK (gtk_clist_get_row_data (dialog->clist_visible, row));
 
+	if (book_info->book == NULL) {
+		return NULL;
+	}
+	
 	/* Set info in lables */
 	gtk_label_set_text (title, book_get_title (book_info->book));
 	gtk_label_set_text (name, book_get_name (book_info->book));
