@@ -86,7 +86,7 @@ AC_SUBST(Z_LIBS)
 CPPFLAGS=${_cppflags}
 LDFLAGS=${_ldflags}
 
-ALL_LINGUAS="am az be cs da de el es fr he hi is it ja kn ko lv ms nl no pl pt pt_BR ru sk sr sr@Latn sv uk vi zh_CN zh_TW"
+ALL_LINGUAS="am az be cs da de el es fr he hi is it ja kn ko lv ml ms nl no pl pt pt_BR ru sk sr sr@Latn sv uk vi zh_CN zh_TW"
 
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
