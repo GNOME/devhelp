@@ -430,7 +430,7 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 			xml_book = (XMLBook*) node->data;
 			
 			book = bookshelf_find_book_by_name (bookshelf, xml_book->name);
-			if (book_is_visible (book) != xml_book->visible) {
+			if (book != NULL && book_is_visible (book) != xml_book->visible) {
 				book_set_visible (book, xml_book->visible);
 			}
 		}		
