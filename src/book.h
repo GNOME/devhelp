@@ -55,7 +55,7 @@ Book *              book_new                   (GnomeVFSURI         *book_uri,
 
 const gchar *       book_get_name              (Book                *book);
 
-const gchar *       book_get_name_full         (Book                *book);
+gchar *             book_get_name_full         (Book                *book);
 
 const gchar *       book_get_title             (Book                *book);
 
