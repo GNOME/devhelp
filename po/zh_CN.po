@@ -1,32 +1,31 @@
 # devhelp simplified chinese translation
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Zipeco <Zipeco@btamail.net.cn>, 2002.
+# Funda Wang <fundawang@linux.net.cn>, 2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2002-07-10 00:13+0800\n"
-"Last-Translator: Zipeco <Zipeco@btamail.net.cn>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-14 03:09+0100\n"
+"PO-Revision-Date: 2004-03-14 15:55+0800\n"
+"Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
 msgstr "开发者帮助程序"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
-msgstr "DevHelp"
+msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "DevHelp书管理器"
+msgstr "Devhelp 书籍"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
@@ -34,21 +33,21 @@ msgid ""
 "find what you are looking for."
 msgstr ""
 
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
-
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "指定窗口的大小和位置"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "搜索一个函数"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
-msgstr ""
+msgstr "退出正在运行的 Devhelp"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
@@ -77,281 +76,60 @@ msgid ""
 msgstr ""
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
-#, fuzzy
 msgid "Could not create book parser"
-msgstr "无法搜索字符串。"
+msgstr "无法创建书籍分析器"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "无法创建标记分析器"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "无法解压缩书籍“%s”：%s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "搜索"
+msgstr "搜索(_S)："
 
 #: src/dh-search.c:461
-#, fuzzy
 msgid "Section"
-msgstr "设置(_S)"
+msgstr "节"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "文件(_F)"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
-msgstr ""
+msgstr "转到(_G)"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: src/dh-window.c:339
-#, fuzzy
-msgid "Contents"
-msgstr "目录(_C)"
+#: src/dh-window.c:285
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "无法设定 UI：%s"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:347
+msgid "Contents"
+msgstr "目录"
+
+#: src/dh-window.c:358
 msgid "Search"
 msgstr "搜索"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:423
 msgid "A developer's help browser for GNOME 2"
-msgstr "开发者用于GNOME2的帮助浏览器"
+msgstr "用于 GNOME 2 的开发者帮助浏览器"
 
-#: src/dh-window.c:430
-#, fuzzy
+#: src/dh-window.c:438
 msgid "Devhelp project page"
-msgstr "DevHelp书管理器"
+msgstr "Devhelp 项目页"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:442
 msgid "Bug report Devhelp"
-msgstr ""
+msgstr "错误报告 Devhelp"
 
-#, fuzzy
-#~ msgid "_Search for:"
-#~ msgstr "搜索(_S)"
-
-#, fuzzy
-#~ msgid "_About"
-#~ msgstr "关于...(_A)"
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "在目录左侧选择一个主题或者切换到搜索栏以查找你要找的。<p>用<b>Shift Up/"
-#~ "Down</b>在左侧目录树浏览，用<b>Shift Left/Right</b>展开或折叠目录树中的"
-#~ "书。"
-
-#~ msgid "Choose a book..."
-#~ msgstr "选择一本书..."
-
-#~ msgid "Problems when reading books: %s\n"
-#~ msgstr "读书时出错：%s\n"
-
-#~ msgid "Empty document: %s"
-#~ msgstr "空文档：%s"
-
-#~ msgid "Document wrong type, got %s, expected 'booklist': %s"
-#~ msgstr "文档类型错误，得到的是%s，期望的是“booklist”：%s"
-
-#~ msgid ""
-#~ "I found an old version of your spec file (%s)\n"
-#~ "I removed it, so you have to hide the books you want to be hidden again."
-#~ msgstr ""
-#~ "发现老版本的参数文件（%s）\n"
-#~ "已经移除，你必须再次隐藏希望隐藏的书。"
-
-#~ msgid "Ok"
-#~ msgstr "确定"
-
-#~ msgid "Failed to open file %s for writing."
-#~ msgstr "无法打开文件 %s 写入。"
-
-#~ msgid "Open %s"
-#~ msgstr "打开 %s"
-
-#~ msgid "DevHelp Controller"
-#~ msgstr "DevHelp控制器"
-
-#, fuzzy
-#~ msgid "DevHelp Controller Factory"
-#~ msgstr "DevHelp控制器工作组"
-
-#~ msgid "DevHelp HelpBrowser"
-#~ msgstr "DevHelp帮助浏览器"
-
-#, fuzzy
-#~ msgid "DevHelp HelpBrowser Factory"
-#~ msgstr "DevHelp帮助浏览器工作组"
-
-#~ msgid "The book is already installed."
-#~ msgstr "该书已经被安装。"
-
-#~ msgid "Failed to move book. This should never happen."
-#~ msgstr "移动书失败。这绝不应该发生。"
-
-#~ msgid "Failed to extract spec file from book."
-#~ msgstr "从书中获取参数文件时失败。"
-
-#~ msgid "Error, the book is corrupted or very old."
-#~ msgstr "错误，书是坏的或者是旧的。"
-
-#~ msgid "Failed to extract the book."
-#~ msgstr "获取书失败。"
-
-#~ msgid "Wrong type (mime_type=%s)."
-#~ msgstr "类型错误(mime类型=%s)。"
-
-#~ msgid "Could not activate devhelp: '%s'"
-#~ msgstr "无法激活devhelp：“%s”"
-
-#~ msgid "Tiny"
-#~ msgstr "微小"
-
-#~ msgid "Small"
-#~ msgstr "小"
-
-#~ msgid "Medium"
-#~ msgstr "中等"
-
-#~ msgid "Large"
-#~ msgstr "大"
-
-#~ msgid "Huge"
-#~ msgstr "巨大"
-
-#~ msgid "Couldn't open uri: %s"
-#~ msgstr "无法打开uri：%s"
-
-#~ msgid "Print Help"
-#~ msgstr "打印帮助"
-
-#~ msgid "Print Preview"
-#~ msgstr "打印预览"
-
-#~ msgid "Printing failed."
-#~ msgstr "打印失败。"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "<< _Show"
-#~ msgstr "<< 显示(_S)"
-
-#~ msgid "Author:"
-#~ msgstr "作者："
-
-#~ msgid "Book info"
-#~ msgstr "书的信息"
-
-#~ msgid "Bookmarks"
-#~ msgstr "书签"
-
-#~ msgid "DevHelp Preferences"
-#~ msgstr "DevHelp首选项"
-
-#~ msgid "Hidden"
-#~ msgstr "隐藏"
-
-#~ msgid "Install new book..."
-#~ msgstr "安装新书..."
-
-#~ msgid "Move down"
-#~ msgstr "下移"
-
-#~ msgid "Move up"
-#~ msgstr "上移"
-
-#~ msgid "Name:"
-#~ msgstr "名称："
-
-#~ msgid "Path:"
-#~ msgstr "路径："
-
-#~ msgid "Remove"
-#~ msgstr "移除"
-
-#~ msgid "Reset to defaults"
-#~ msgstr "重设为默认值"
-
-#~ msgid "Show _sidebar"
-#~ msgstr "显示侧栏(_s)"
-
-#~ msgid "Title:"
-#~ msgstr "标题："
-
-#~ msgid "Version:"
-#~ msgstr "版本："
-
-#~ msgid "View"
-#~ msgstr "察看"
-
-#~ msgid "Visible"
-#~ msgstr "可见"
-
-#~ msgid "_Edit book..."
-#~ msgstr "编辑书...(_E)"
-
-#~ msgid "_Hide >>"
-#~ msgstr "隐藏(_H) >>"
-
-#~ msgid "_Limit the number of hits to:"
-#~ msgstr "限定命中数为(_L)："
-
-#~ msgid "_Text size: "
-#~ msgstr "文本大小(_T)："
-
-#~ msgid "About this application"
-#~ msgstr "关于本程序"
-
-#~ msgid "Font size"
-#~ msgstr "字体大小"
-
-#~ msgid "Open preferences dialog"
-#~ msgstr "打开首选项对话框"
-
-#~ msgid "Preferences..."
-#~ msgstr "首选项..."
-
-#~ msgid "Print the html page"
-#~ msgstr "打印该网页"
-
-#~ msgid "Show sidebar"
-#~ msgstr "显示侧栏"
-
-#~ msgid "_Exit"
-#~ msgstr "退出(_E)"
-
-#~ msgid "_Print"
-#~ msgstr "打印(_P)"
-
-#~ msgid "_View"
-#~ msgstr "查看(_V)"
-
-#~ msgid "Back"
-#~ msgstr "返回"
-
-#~ msgid "Book Manager..."
-#~ msgstr "书管理器..."
-
-#~ msgid "Forward"
-#~ msgstr "向前"
-
-#~ msgid "Go to next page in the history"
-#~ msgstr "转到历史纪录中的下一页"
-
-#~ msgid "Go to previous page in the history"
-#~ msgstr "转到历史纪录中的上一页"
-
-#~ msgid "Open the book manager dialog"
-#~ msgstr "打开书管理器对话框"
