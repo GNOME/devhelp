@@ -1,13 +1,14 @@
 # devhelp's Portuguese Translation
-# Copyright (C) 2001 devhelp
+# Copyright (C) 2001, 2004 devhelp
 # Diatributed under the same licence as the devhelp package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2003
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.4\n"
-"POT-Creation-Date: 2003-07-27 14:58+0100\n"
-"PO-Revision-Date: 2003-07-27 15:00+0000\n"
+"Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
+"POT-Creation-Date: 2004-01-11 14:52+0000\n"
+"PO-Revision-Date: 2004-01-11 14:55+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -31,8 +32,8 @@ msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-"Seleccione um assunto nos conteudos à esquerda ou alterne para a aba de procura "
-"para encontrar o que está à procura."
+"Seleccione um assunto nos conteudos à esquerda ou alterne para a aba de "
+"procura para encontrar o que está à procura."
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -100,35 +101,40 @@ msgstr "_Procurar:"
 msgid "Section"
 msgstr "Secção"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "_Ir"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "_Ajuda"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:283
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Incapaz de definir UI: %s"
+
+#: src/dh-window.c:343
 msgid "Contents"
 msgstr "Conteudos"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:354
 msgid "Search"
 msgstr "Procurar"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:419
 msgid "A developer's help browser for GNOME 2"
 msgstr "Um navegador de ajuda de programadores para o GNOME 2"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:434
 msgid "Devhelp project page"
 msgstr "Página do projecto Devhelp"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:438
 msgid "Bug report Devhelp"
 msgstr "Relatório de erro Devhelp"
 
