@@ -416,16 +416,18 @@ dh_keyword_model_set_words (DhKeywordModel *model, GList *keyword_words)
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 {
-	DhKeywordModelPriv *priv;
-	DhLink             *link;
-	GList              *node;
-	GList              *new_list = NULL;
-	gint                new_length, old_length;
-	gint                i;
-	GtkTreePath        *path;
- 	GtkTreeIter         iter;
-	gint                hits = 0;
-	DhLink             *exactlink = NULL;
+	DhKeywordModelPriv  *priv;
+	DhLink              *link;
+	GList               *node;
+	GList               *new_list = NULL;
+	gint                 new_length, old_length;
+	gint                 i;
+	GtkTreePath         *path;
+ 	GtkTreeIter          iter;
+	gint                 hits = 0;
+	DhLink              *exactlink = NULL;
+	gboolean	     found;
+	gchar              **stringv;
 
 	g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
 	g_return_val_if_fail (string != NULL, NULL);
@@ -441,23 +443,35 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	if (!strcmp ("", string)) {
 		new_list = NULL;
 	} else {
+	        stringv = g_strsplit (string, " ", -1);
+
 		for (node = priv->original_list; 
 		     node && hits < MAX_HITS; 
 		     node = node->next) {
+
 			link = DH_LINK (node->data);
 			
-			if (strstr (link->name, string)) {
+			found = TRUE;
+			for (i = 0; stringv[i] != NULL; i++) {
+                                if (!g_strrstr (link->name, stringv[i])) {
+	    				found = FALSE;
+					break;
+				}
+                        }
+				
+			if (found) {
 				/* Include in the new list */
 				new_list = g_list_prepend (new_list, link);
 				hits++;
-
-				if(strcmp(link->name, string) == 0) {
-					exactlink = link;
-				}
+			}
+			
+			if (strcmp (link->name, string) == 0) {
+				exactlink = link;
 			}
 		}
 		
 		new_list = g_list_sort (new_list, dh_link_compare);
+		g_strfreev (stringv);
 	}
 
 	new_length = g_list_length (new_list);
