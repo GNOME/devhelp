@@ -150,14 +150,14 @@ devhelp_search_class_init (DevHelpSearchClass *klass)
 }
 
 static void
-devhelp_search_init (DevHelpSearch *index)
+devhelp_search_init (DevHelpSearch *search)
 {
         DevHelpSearchPriv   *priv;
         
         priv                  = g_new0 (DevHelpSearchPriv, 1);
         priv->bookshelf       = NULL;
 	priv->emit_uri_select = TRUE;
-        index->priv           = priv;
+        search->priv          = priv;
 }
 
 static void

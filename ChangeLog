@@ -1,5 +1,23 @@
 2001-08-13  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/main.c: 
+	- added DEVHELP_FACTORY_OAFIID.
+	- renamed factory_fn to devhelp_factory.
+        - removed following two functions, it's done in the main-function
+	  now. It will always be started by a factory now.
+	(devhelp_factory_main): removed
+	(devhelp_normal_main): removed
+	(main): removed the use-factory argument, always use factory now.
+
+	* src/devhelp-window.[ch]: 
+	- Added
+	- This is a BonoboWindow which will be used to put the different
+	  controls in.
+
+	* src/devhelp-search.c (devhelp_search_init): fixed c&p error.
+
+	* src/Makefile.am (devhelp_SOURCES): added devhelp-window.[ch]
+
 	* src/main.c: Devhelp -> DevHelp.
 
 	* src/help-browser.[ch]: Devhelp -> DevHelp.

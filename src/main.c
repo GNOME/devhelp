@@ -45,11 +45,17 @@
 #include "ui.h"
 #include "install.h"
 #include "help-browser.h"
+#include "devhelp-window.h"
+
+#define DEVHELP_FACTORY_OAFIID "OAFIID:GNOME_DevHelp_Factory"
+
+static BonoboObject *   devhelp_factory   (BonoboGenericFactory   *this, 
+					   void                   *data);
 
 static void
-corba_search_cb (HelpBrowser *help_browser,
-		 const gchar *search,
-		 DevHelp     *devhelp)
+corba_search_cb (HelpBrowser   *help_browser,
+		 const gchar   *search,
+		 DevHelp       *devhelp)
 {
 	g_return_if_fail (devhelp != NULL);
 		
@@ -67,19 +73,20 @@ corba_search_in_new_window_cb (HelpBrowser *help_browser,
 }
 
 static BonoboObject *
-factory_fn (BonoboGenericFactory *this,
-	    void                 *data)
+devhelp_factory (BonoboGenericFactory *this, void *data)
 {
-	static HelpBrowser *help_browser = NULL;
-	static DevHelp *devhelp = NULL;
+	static HelpBrowser   *help_browser = NULL;
+	static DevHelp       *devhelp = NULL;
 	
 	if (help_browser == NULL) {
 		devhelp = devhelp_create_ui ();
 		help_browser = help_browser_new ();
+
 		gtk_signal_connect (GTK_OBJECT (help_browser),
 				    "search",
 				    corba_search_cb,
 				    devhelp);
+
 		gtk_signal_connect (GTK_OBJECT (help_browser),
 				    "search_in_new_window",
 				    corba_search_in_new_window_cb,
@@ -98,10 +105,9 @@ activate_and_search (gpointer data, gboolean new_window)
 	CORBA_Object      devhelp;
 
 	CORBA_exception_init (&ev);
-	devhelp = oaf_activate_from_id ("OAFIID:GNOME_DevHelp",
-					0,
-					NULL,
-					&ev);
+
+	devhelp = oaf_activate_from_id ("OAFIID:GNOME_DevHelp", 0, NULL, &ev);
+
 	if (BONOBO_EX (&ev) || devhelp == CORBA_OBJECT_NIL) {
 		g_warning (_("Could not activate devhelp: '%s'"),
 			   bonobo_exception_get_text (&ev));
@@ -110,6 +116,7 @@ activate_and_search (gpointer data, gboolean new_window)
 
 	if (data) {
 		GNOME_DevHelp_HelpBrowser_search (devhelp, data, &ev);
+
 		if (BONOBO_EX (&ev)) {
 			g_warning (_("Could not search for string."));
 			exit (1);
@@ -137,93 +144,74 @@ idle_activate_and_search (gpointer data)
 	return FALSE;
 }
 
-static void
-devhelp_factory_main (const gchar *search_string)
+int 
+main (int argc, char **argv)
 {
-	CORBA_Object factory;
-	
-	factory = oaf_activate_from_id ("OAFIID:GNOME_DevHelp_Factory",
-					OAF_FLAG_EXISTING_ONLY,
-					NULL, NULL);
-	if (factory == NULL) {
-		BonoboGenericFactory *factory;
-			
-		factory = bonobo_generic_factory_new ("OAFIID:GNOME_DevHelp_Factory", factory_fn, NULL);
-		bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
-		g_idle_add (idle_activate_and_search, (gpointer)search_string);
-	} else {
-		g_idle_add (idle_activate_and_search_quit, (gpointer)search_string);
-	}
-		
-	bonobo_main ();
-}
-
-/* No factory, be a normal app. */
-static void
-devhelp_normal_main (const gchar *search_string)
-{
-	DevHelp *devhelp;
-		
-	devhelp = devhelp_create_ui ();
-
-	if (search_string != NULL) {
-		gtk_entry_set_text (GTK_ENTRY (devhelp->entry), search_string);
-		gtk_notebook_set_page (devhelp->notebook, 1);
-	}
-
-	gtk_main ();
-}
-
-int
-main (int argc, char *argv[])
-{
-	CORBA_ORB          orb;
-	poptContext        popt_context;
-	gchar             *option_search;
-	gboolean           option_factory;
-	struct poptOption  options[] = {
-		{ "search",      's',  POPT_ARG_STRING, &option_search,    0, _("Search for a function"),      NULL },
-		{ "use-factory", 'f',  POPT_ARG_NONE,   &option_factory,   0, _("Use devhelp factory server"), NULL },
-		{ NULL,         '\0',  0,               NULL,              0, NULL,                            NULL }
+	CORBA_ORB            orb;
+	CORBA_Environment    ev;
+	gchar               *option_search = NULL;
+	CORBA_Object         factory;
+	struct poptOption    options[] = {
+		{ 
+			"search",      
+			's',  
+			POPT_ARG_STRING, 
+			&option_search,    
+			0, 
+			_("Search for a function"),      
+			NULL 
+		},
+		{ NULL, '\0', 0, NULL, 0, NULL, NULL }
 	};
+
+	CORBA_exception_init (&ev);
 
 #ifdef ENABLE_NLS
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 #endif
-
-	option_search = NULL;
-	option_factory = FALSE;
-
+	
 	g_thread_init (NULL);
+	
+	gnomelib_register_popt_table (oaf_popt_options,
+				      oaf_get_popt_table_name ());
 
-	gnomelib_register_popt_table (oaf_popt_options, oaf_get_popt_table_name ());
-	orb = oaf_init (argc, argv);	
-	gnome_init_with_popt_table (PACKAGE, VERSION,
-				    argc, argv, options,
-				    0, &popt_context);
+	orb = oaf_init (argc, argv);
+	gnome_init_with_popt_table (PACKAGE, VERSION, argc, argv, 
+				    options, 0, NULL);
 
 	LIBXML_TEST_VERSION;
 	g_atexit (xmlCleanupParser);
-
+	
 	gdk_rgb_init ();
 	gconf_init (argc, argv, NULL);
 	gnome_vfs_init ();
-	bonobo_init (orb, CORBA_OBJECT_NIL, CORBA_OBJECT_NIL);
+
+	if (!bonobo_init (orb, CORBA_OBJECT_NIL, CORBA_OBJECT_NIL)) {
+		g_error ("Could not initialize Bonobo");
+	}
 
 	install_create_directories (NULL);
+	
+	factory = oaf_activate_from_id (DEVHELP_FACTORY_OAFIID,
+					OAF_FLAG_EXISTING_ONLY, NULL, NULL);
+	
+	if (!factory) {
+		BonoboGenericFactory   *factory;
+		/* Not started, start now */
 
-	if (option_factory) {
-		devhelp_factory_main (option_search);
+		factory = bonobo_generic_factory_new (DEVHELP_FACTORY_OAFIID,
+						      devhelp_factory,
+						      NULL);
+		bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
+		g_idle_add (idle_activate_and_search, 
+			    (gpointer) option_search);
 	} else {
-		devhelp_normal_main (option_search);
-	}		
+		g_idle_add (idle_activate_and_search_quit,
+			    (gpointer) option_search);
+	}
 
-	/*g_print ("Trying to shut down GnomeVFS, jobs: %d\n",
-		 gnome_vfs_backend_get_job_count ());
-		 gnome_vfs_shutdown ();
-		 g_print ("Done.\n");*/
+	bonobo_main ();
+
 	return 0;
 }
-
-

@@ -25,6 +25,8 @@ devhelp_SOURCES = 			\
 	bookshelf.h                     \
 	devhelp-search.c                \
 	devhelp-search.h		\
+	devhelp-window.c		\
+	devhelp-window.h		\
 	function-database.c		\
 	function-database.h		\
 	help-browser.c			\
