@@ -1,3 +1,7 @@
+2001-10-18  Christopher R. Gabriel  <cgabriel@cgabriel.org>
+
+	* configure.in (ALL_LINGUAS): Added 'it'
+
 2001-10-18  Abel Cheung  <maddog@linux.org.hk>
 
 	* configure.in: Forced to disable traditional Chinese translation
