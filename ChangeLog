@@ -3,6 +3,9 @@
 	* src/dh-search.c (search_entry_key_press_event_cb): Apply a
 	variation of a patch from Mike Hearn to go to the first hit when
 	enter is pressed. Fixes bug #114558.
+	(search_tree_button_press_cb, dh_search_new): Handle clicks in the
+	tree, fixes bug #114567. Patch from Mike Hearn
+	<mike@theoretic.com>.
 
 	* src/dh-window.c (window_populate, window_switch_page_after_cb)
 	(window_switch_page_cb): Hack to workaround weird selection

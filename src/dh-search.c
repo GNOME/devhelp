@@ -59,27 +59,29 @@ struct _DhSearchPriv {
 };
 
 
-static void  search_init                       (DhSearch       *search);
-static void  search_class_init                 (DhSearchClass  *klass);
-static void  search_finalize                   (GObject        *object);
-
-static void  search_selection_changed_cb       (GtkTreeSelection    *selection,
-						DhSearch       *content);
-static gboolean search_entry_key_press_event_cb   (GtkEntry            *entry,
-						GdkEventKey         *event,
-						DhSearch            *search);
-static void  search_entry_changed_cb           (GtkEntry            *entry,
-						DhSearch       *search);
-static void  search_entry_activated_cb         (GtkEntry            *entry,
-						DhSearch       *search);
-static void  search_entry_text_inserted_cb     (GtkEntry            *entry,
-						const gchar         *text,
-						gint                 length,
-						gint                *position,
-						DhSearch       *search);
-static gboolean search_complete_idle           (DhSearch       *search);
-static gboolean search_filter_idle             (DhSearch       *search);
-static gchar *  search_complete_func           (DhLink         *link);
+static void  search_init                       (DhSearch         *search);
+static void  search_class_init                 (DhSearchClass    *klass);
+static void  search_finalize                   (GObject          *object);
+static void  search_selection_changed_cb       (GtkTreeSelection *selection,
+						DhSearch         *content);
+static gboolean search_tree_button_press_cb    (GtkTreeView      *view,
+						GdkEventButton   *event,
+						DhSearch         *search);
+static gboolean search_entry_key_press_event_cb (GtkEntry        *entry,
+						 GdkEventKey     *event,
+						 DhSearch        *search);
+static void  search_entry_changed_cb           (GtkEntry         *entry,
+						DhSearch         *search);
+static void  search_entry_activated_cb         (GtkEntry         *entry,
+						DhSearch         *search);
+static void  search_entry_text_inserted_cb     (GtkEntry         *entry,
+						const gchar      *text,
+						gint              length,
+						gint             *position,
+						DhSearch         *search);
+static gboolean search_complete_idle           (DhSearch         *search);
+static gboolean search_filter_idle             (DhSearch         *search);
+static gchar *  search_complete_func           (DhLink           *link);
 
 
 enum {
@@ -195,12 +197,46 @@ search_selection_changed_cb (GtkTreeSelection *selection, DhSearch *search)
 }
 
 static gboolean
+search_tree_button_press_cb (GtkTreeView    *view,
+			     GdkEventButton *event,
+			     DhSearch       *search)
+{
+	GtkTreePath  *path = NULL;
+	GtkTreeIter   iter;
+	DhSearchPriv *priv;
+	DhLink       *link = NULL;
+
+	priv = search->priv;
+	
+	gtk_tree_view_get_path_at_pos (view, event->x, event->y, &path,
+				       NULL, NULL, NULL);
+	if (!path) {
+		return FALSE;
+	}
+	
+	gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->model), &iter, path);
+	gtk_tree_path_free (path);
+	
+	gtk_tree_model_get (GTK_TREE_MODEL (priv->model),
+			    &iter,
+			    DH_KEYWORD_MODEL_COL_LINK, &link,
+			    -1);
+	
+	g_signal_emit (search, signals[LINK_SELECTED], 0, link);
+	
+	/* Always return FALSE so the tree view gets the event and can update
+	 * the selection etc.
+	 */
+	return FALSE;
+}
+
+static gboolean
 search_entry_key_press_event_cb (GtkEntry    *entry,
 				 GdkEventKey *event,
 				 DhSearch    *search)
 {
 	DhSearchPriv *priv;
-
+	
 	priv = search->priv;
 	
 	if (event->keyval == GDK_Tab) {
@@ -393,7 +429,11 @@ dh_search_new (GList *keywords)
 	g_signal_connect (priv->entry, "key_press_event",
 			  G_CALLBACK (search_entry_key_press_event_cb),
 			  search);
-			  
+
+	g_signal_connect (priv->hitlist, "button_press_event",
+			  G_CALLBACK (search_tree_button_press_cb),
+			  search);
+
 	g_signal_connect (priv->entry, "changed", 
 			  G_CALLBACK (search_entry_changed_cb),
 			  search);
