@@ -45,9 +45,19 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
-#define SOCKET_PATH "/tmp/devhelp-%s-socket"
+static gchar *
+dh_get_socket_filename (void)
+{
+	gchar *filename;
+	gchar *ret;
+	
+	filename = g_strdup_printf ("devhelp-%s", g_get_user_name ());
+	ret = g_build_filename (g_get_tmp_dir (), filename, NULL);
+	g_free (filename);
 
-static gboolean
+	return ret;
+}
+
 dh_client_data_cb (GIOChannel   *source,
 		   GIOCondition  condition,
 		   gpointer      data)
@@ -133,6 +143,7 @@ dh_create_socket (DhWindow *window)
 {
 	gint                fd;
 	struct sockaddr_un  addr;
+	gchar              *filename;
 	gchar              *path;
 	GIOChannel         *channel;	
 
@@ -143,7 +154,7 @@ dh_create_socket (DhWindow *window)
 		return;
 	}
 
-	path = g_strdup_printf (SOCKET_PATH, g_get_user_name ());
+	path = dh_get_socket_filename ();
 	
 	memset (&addr, sizeof (addr), 0);
 	addr.sun_family = AF_LOCAL;
@@ -192,8 +203,7 @@ dh_try_to_connect (void)
 	struct sockaddr_un  addr;
 	gchar              *path;
 
-	path = g_strdup_printf (SOCKET_PATH, g_get_user_name ());
-
+	path = dh_get_socket_filename ();
 	if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
 		g_free (path);
 		return -1;

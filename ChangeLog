@@ -1,3 +1,8 @@
+2003-03-01  Richard Hult  <rhult@codefactory.se>
+
+	* src/dh-main.c (dh_get_socket_filename, dh_create_socket) 
+	(dh_try_to_connect): Fix path.
+
 2003-02-25  Yuriy Syrota  <rasta renome.rovno.ua>
 
 	* configure.in: Added "uk" (Ukrainian) to ALL_LINGUAS.
