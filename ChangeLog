@@ -1,3 +1,13 @@
+2002-10-23  Richard Hult  <rhult@codefactory.se>
+
+	* src/book.c (book_parse): Don't set the base url to an empty
+	string, use the parent uri instead.
+	(book_set_base_url): Don't let url be NULL or an empty string.
+
+	* src/dh-view.c (view_reader_thread): Keep the len we got from
+	gnome-vfs so we don't need to do lots of strlen on 16k strings.
+	(view_idle_check_queue): ...and use it here.
+
 2002-10-23  Mikael Hallendal  <micke@codefactory.se>
 
 	* autogen.sh: don't use gnome-common.

@@ -166,7 +166,7 @@ book_parse (Book *book, GnomeVFSURI *uri, FunctionDatabase *fd)
 	file_name    = gnome_vfs_uri_get_path (uri);
 	doc          = xmlParseFile (file_name);
 	root_node    = xmlDocGetRootElement (doc);
-	
+
 	if (!root_node) {
 		g_warning ("Empty document: %s", file_name);
 		xmlFreeDoc (doc);
@@ -213,11 +213,14 @@ book_parse (Book *book, GnomeVFSURI *uri, FunctionDatabase *fd)
 	/* Get default uri */
 	xml_str = xmlGetProp (root_node, "base");
 	
-	if (xml_str) {
+	if (xml_str && strlen (xml_str) > 0) {
 		book_set_base_url (book, xml_str);			
-		xmlFree (xml_str);
 	} else {
 		priv->base_uri = gnome_vfs_uri_get_parent (uri);
+	}
+
+	if (xml_str) {
+		xmlFree (xml_str);
 	}
 
 	xml_str = xmlGetProp (root_node, "link");
@@ -827,6 +830,7 @@ book_set_base_url (Book        *book,
 	
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
+	g_return_if_fail (url && url[0]);
 	
 	priv = book->priv;
 
@@ -834,7 +838,7 @@ book_set_base_url (Book        *book,
 		priv->base_uri = gnome_vfs_uri_new (url);
 		return;
 	}
-		
+
 	tmp_url = g_strndup (url, strlen (url) - 1);
 	priv->base_uri = gnome_vfs_uri_new (tmp_url);
 	g_free (tmp_url);

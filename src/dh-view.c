@@ -57,9 +57,10 @@ typedef enum {
 } ReaderQueueType;
 
 typedef struct {
-	DhView     *view;
+	DhView          *view;
 	gint             stamp;
 	gchar           *data;
+	gint             len;
 	ReaderQueueType  type;
 	gchar           *anchor;
 	gchar           *url;
@@ -221,6 +222,7 @@ view_reader_thread (ReaderThreadData *th_data)
 					  READER_QUEUE_TYPE_DATA);
 
 		q_data->data = g_strdup (buffer);
+		q_data->len = n;
 		
 		g_async_queue_push (priv->thread_queue, q_data);
 
@@ -310,7 +312,7 @@ view_idle_check_queue (ReaderThreadData *th_data)
 			d(g_print ("Adding data to open document\n"));
 		}
 
-		len = strlen (q_data->data);
+		len = q_data->len;
 		
 		if (len > 0) {
 			html_document_write_stream (priv->doc, 
