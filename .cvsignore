@@ -15,6 +15,7 @@ config.cache
 libtool
 config.status
 stamp-h
+stamp-h1
 xml-i18n-*
 devhelp.desktop
 devhelp.spec
