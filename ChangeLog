@@ -1,5 +1,11 @@
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
+	* configure.in: bumped version to 0.1.99
+
+	* src/GNOME_DevHelp.oaf.in.in: 
+	- tagged names for translation.
+	- removed moniker attribute.
+
 	* src/devhelp-controller.c: removed debug printouts and an
 	  outcommented line.
 

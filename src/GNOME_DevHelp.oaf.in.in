@@ -10,7 +10,7 @@
 
       <oaf_attribute  name="name" 
                       type="string" 
-                      value="DevHelp HelpBrowser Factory" />
+                      _value="DevHelp HelpBrowser Factory" />
   </oaf_server>
 
   <oaf_server iid="OAFIID:GNOME_DevHelp" 
@@ -22,11 +22,7 @@
         <item value="IDL:GNOME/DevHelp/HelpBrowser:1.0" /> 
      </oaf_attribute>
 
-     <oaf_attribute name="name" type="string" value="DevHelp HelpBrowser" />
-
-     <oaf_attribute name="bonobo:moniker" type="stringv">
-        <item value="help:"/>
-     </oaf_attribute>
+     <oaf_attribute name="name" type="string" _value="DevHelp HelpBrowser" />
    </oaf_server>
 
    <oaf_server iid="OAFIID:GNOME_DevHelp_Controller_Factory" 
@@ -51,9 +47,7 @@
 	 <item value="IDL:GNOME/DevHelp/Controller:1.0" />
       </oaf_attribute>
 
-      <oaf_attribute name="name" 
-                     type="string" 
-                     _value="DevHelp Controller" />
+      <oaf_attribute name="name" type="string" _value="DevHelp Controller" />
    </oaf_server>
 
 </oaf_info>
