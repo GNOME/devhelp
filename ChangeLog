@@ -1,3 +1,8 @@
+2001-08-09  Richard Hult  <rhult@codefactory.se>
+
+	* src/ui.c (main_window_key_press_event_cb): Make control-l focus
+	the search entry and select the contents of the entry.
+
 2001-08-07  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/bookshelf.[ch]: added bookshelf_remove book.
