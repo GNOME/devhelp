@@ -428,3 +428,15 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 	gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
 }
 
+void
+dh_search_grab_focus (DhSearch *search)
+{
+	DhSearchPriv *priv;
+	
+	g_return_if_fail (DH_IS_SEARCH (search));
+
+	priv = search->priv;
+
+	gtk_widget_grab_focus (priv->entry);
+}
+

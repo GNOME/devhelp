@@ -24,6 +24,7 @@
 #endif
 
 #include <string.h>
+#include <gdk/gdkkeysyms.h>
 #include <gtk/gtkhpaned.h>
 #include <gtk/gtklabel.h>
 #include <gtk/gtknotebook.h>
@@ -87,6 +88,10 @@ static void window_back_exists_changed_cb    (DhHistory          *history,
 static void window_forward_exists_changed_cb (DhHistory          *history,
 					      gboolean            exists,
 					      DhWindow           *window);
+static gboolean window_key_press_event_cb    (GtkWidget          *widget,
+					      GdkEventKey        *event,
+					      DhWindow           *window);
+
 
 
 static GtkWindowClass *parent_class = NULL;
@@ -164,6 +169,10 @@ window_init (DhWindow *window)
 			  window);
 	g_signal_connect (priv->history, "back_exists_changed",
 			  G_CALLBACK (window_back_exists_changed_cb),
+			  window);
+
+	g_signal_connect (window, "key_press_event",
+			  G_CALLBACK (window_key_press_event_cb),
 			  window);
 	
 	priv->merge = egg_menu_merge_new ();
@@ -464,6 +473,25 @@ window_forward_exists_changed_cb (DhHistory *history,
 					      "ForwardAction");
 	
 	g_object_set (action, "sensitive", exists, NULL);
+}
+
+static gboolean
+window_key_press_event_cb (GtkWidget   *widget,
+			   GdkEventKey *event,
+			   DhWindow    *window)
+{
+	DhWindowPriv *priv;
+
+	priv = window->priv;
+	
+	if ((event->state & GDK_CONTROL_MASK) &&
+	    (event->keyval == GDK_l) &&
+	    (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)) == 1)) {
+		dh_search_grab_focus (DH_SEARCH (priv->search));
+		return TRUE;
+	}
+	
+	return FALSE;
 }
 
 GtkWidget *
