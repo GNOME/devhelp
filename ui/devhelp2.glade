@@ -648,22 +648,22 @@
             <property name="visible">yes</property>
 
             <child>
-              <widget class="GtkButton" id="button_info_ok">
+              <widget class="GtkButton" id="button_info_cancel">
                 <property name="can_default">yes</property>
                 <property name="can_focus">yes</property>
                 <property name="visible">yes</property>
-                <property name="label">gtk-ok</property>
+                <property name="label">gtk-cancel</property>
                 <property name="use_stock">yes</property>
                 <property name="use_underline">yes</property>
               </widget>
             </child>
 
             <child>
-              <widget class="GtkButton" id="button_info_cancel">
+              <widget class="GtkButton" id="button_info_ok">
                 <property name="can_default">yes</property>
                 <property name="can_focus">yes</property>
                 <property name="visible">yes</property>
-                <property name="label">gtk-cancel</property>
+                <property name="label">gtk-ok</property>
                 <property name="use_stock">yes</property>
                 <property name="use_underline">yes</property>
               </widget>
