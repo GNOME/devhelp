@@ -1,5 +1,8 @@
 2001-10-15  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/devhelp-controller.c (devhelp_controller_init): use
+	DATA_DIR/devhelp instead of of DATA_DIR/devhelp/spec.
+
 	* configure.in: bumped version to 0.2
 
 	* NEWS: updated for 0.2
