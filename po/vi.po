@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2002-06-04 20:17+0200\n"
-"PO-Revision-Date: 2002-05-08 23:03-0400\n"
+"POT-Creation-Date: 2002-09-18 04:40+0200\n"
+"PO-Revision-Date: 2002-09-19 21:45+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -20,61 +20,6 @@ msgstr "DevHelp"
 #: devhelp.desktop.in.h:2
 msgid "Developers Help program"
 msgstr "Chương trình trợ giúp Nhà phát triển"
-
-#: src/books-dialog.c:327
-msgid "Choose a book..."
-msgstr "Chọn sách..."
-
-#: src/bookshelf.c:185
-#, c-format
-msgid "Problems when reading books: %s\n"
-msgstr "Lỗi khi đọc sách: %s\n"
-
-#: src/bookshelf.c:372
-#, c-format
-msgid "Empty document: %s"
-msgstr "Tài liệu rỗng: %s"
-
-#: src/bookshelf.c:378
-#, c-format
-msgid "Document wrong type, got %s, expected 'booklist': %s"
-msgstr "Tài liệu sai kiểu, lấy được là %s, yêu cầu là 'booklist': %s"
-
-#: src/bookshelf.c:412
-#, c-format
-msgid ""
-"I found an old version of your spec file (%s)\n"
-"I removed it, so you have to hide the books you want to be hidden again."
-msgstr ""
-"Tìm thấy phiên bản cũ của tập tin spec (%s)\n"
-"Sẽ loại bỏ nó, vì thể bạn sẽ phải giấu lại những cuốn sách bạn đã giấu trước "
-"đó."
-
-#: src/bookshelf.c:417
-msgid "Ok"
-msgstr "Đồng ý"
-
-#: src/bookshelf.c:458
-#, c-format
-msgid "Failed to open file %s for writing."
-msgstr "Lỗi mở tập tin %s để ghi"
-
-#: src/devhelp-window.c:334
-msgid "_Contents"
-msgstr "_Nội dung"
-
-#: src/devhelp-window.c:345
-msgid "_Search"
-msgstr "_Tìm"
-
-#: src/devhelp-window.c:437
-msgid "A developer's help browser for GNOME 2"
-msgstr "Bộ duyệt trợ giúp dành cho nhà phát triển"
-
-#: src/devhelp-window.c:558
-#, c-format
-msgid "Open %s"
-msgstr "Mở %s"
 
 #: src/GNOME_DevHelp.server.in.in.h:1
 msgid "DevHelp Controller"
@@ -92,7 +37,41 @@ msgstr "Bộ duyệt trợ giúp DevHelp"
 msgid "DevHelp HelpBrowser Factory"
 msgstr "Factory Trình duyệt trợ giúp DevHelp"
 
-#: src/devhelp-view.c:361 src/html-widget.c:208
+#: src/dh-bookshelf.c:185
+#, c-format
+msgid "Problems when reading books: %s\n"
+msgstr "Lỗi khi đọc sách: %s\n"
+
+#: src/dh-bookshelf.c:233
+#, c-format
+msgid "Empty document: %s"
+msgstr "Tài liệu rỗng: %s"
+
+#: src/dh-bookshelf.c:239
+#, c-format
+msgid "Document wrong type, got %s, expected 'booklist': %s"
+msgstr "Tài liệu sai kiểu, lấy được là %s, yêu cầu là 'booklist': %s"
+
+#: src/dh-bookshelf.c:273
+#, c-format
+msgid ""
+"I found an old version of your spec file (%s)\n"
+"I removed it, so you have to hide the books you want to be hidden again."
+msgstr ""
+"Tìm thấy phiên bản cũ của tập tin spec (%s)\n"
+"Sẽ loại bỏ nó, vì thể bạn sẽ phải giấu lại những cuốn sách bạn đã giấu trước "
+"đó."
+
+#: src/dh-bookshelf.c:278
+msgid "Ok"
+msgstr "Đồng ý"
+
+#: src/dh-bookshelf.c:457
+#, c-format
+msgid "Failed to open file %s for writing."
+msgstr "Lỗi mở tập tin %s để ghi"
+
+#: src/dh-view.c:487
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
@@ -103,80 +82,79 @@ msgstr ""
 "để tìm cái bạn cần.<p>Dùng <b>Dịch lên/xuống<b> để duyệt cây bên trái, và "
 "dùng <b>Dịch trái/phải<b> để bung cây hoặc thu hẹp cây trong cuốn sách."
 
-#: src/install.c:103 src/install.c:192 src/install.c:216 src/install.c:308
-msgid "The book is already installed."
-msgstr "Sách này đã được cài đặt rồi."
+#: src/dh-window.c:298
+msgid "_Contents"
+msgstr "_Nội dung"
 
-#: src/install.c:116 src/install.c:200 src/install.c:225
-msgid "Failed to move book. This should never happen."
-msgstr "Lỗi di chuyển sách. Điều này lẽ ra không bao giờ xảy ra."
+#: src/dh-window.c:309
+msgid "_Search"
+msgstr "_Tìm"
 
-#: src/install.c:156
-msgid "Failed to extract spec file from book."
-msgstr "Lỗi trích tập tin spec từ sách."
+#: src/dh-window.c:383
+msgid "A developer's help browser for GNOME 2"
+msgstr "Bộ duyệt trợ giúp dành cho nhà phát triển"
 
-#: src/install.c:171
-msgid "Error, the book is corrupted or very old."
-msgstr "Lỗi, sách bị hỏng hoặc quá cũ."
-
-#: src/install.c:182
-msgid "Failed to extract the book."
-msgstr "Lỗi trích từ sách"
-
-#: src/install.c:289 src/install.c:299
+#: src/dh-window.c:457
 #, c-format
-msgid "Wrong type (mime_type=%s)."
-msgstr "Sai kiểu (Kiểu MIME là %s)"
+msgid "Open %s"
+msgstr "Mở %s"
 
-#: src/main.c:80
+#: src/main.c:79
 #, c-format
 msgid "Could not activate devhelp: '%s'"
 msgstr "Không thể kích hoạt DevHelp: '%s'"
 
-#: src/main.c:89
+#: src/main.c:88
 msgid "Could not search for string."
 msgstr "Không thể tìm chuỗi"
 
-#: src/main.c:129
+#: src/main.c:128
 msgid "Search for a function"
 msgstr "Tìm hàm"
 
-#: src/preferences.c:85 ui/GNOME_DevHelp.ui.h:11 ui/devhelp2.glade.h:22
-msgid "Tiny"
-msgstr "Tí hon"
+#: ui/GNOME_DevHelp.ui.h:1
+msgid "About this application"
+msgstr "Nói về ứng dụng này"
 
-#: src/preferences.c:86 ui/GNOME_DevHelp.ui.h:10 ui/devhelp2.glade.h:21
-msgid "Small"
-msgstr "Nhỏ"
+#: ui/GNOME_DevHelp.ui.h:2
+msgid "Print the html page"
+msgstr "In trang HTML"
 
-#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:5 ui/devhelp2.glade.h:12
-msgid "Medium"
-msgstr "Trung"
+#: ui/GNOME_DevHelp.ui.h:3
+msgid "_About..."
+msgstr "_Giới thiệu..."
 
-#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:4 ui/devhelp2.glade.h:11
-msgid "Large"
-msgstr "Lớn"
+#: ui/GNOME_DevHelp.ui.h:4
+msgid "_Exit"
+msgstr "T_hoát"
 
-#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:3 ui/devhelp2.glade.h:9
-msgid "Huge"
-msgstr "Khổng lồ"
+#: ui/GNOME_DevHelp.ui.h:5
+msgid "_File"
+msgstr "_Tập tin"
 
-#: src/html-widget.c:294
-#, c-format
-msgid "Couldn't open uri: %s"
-msgstr "Không thể mở URI: %s"
+#: ui/GNOME_DevHelp.ui.h:6
+msgid "_Help"
+msgstr "Trợ _giúp"
 
-#: src/html-widget.c:464
-msgid "Print Help"
-msgstr "In trợ giúp"
+#: ui/GNOME_DevHelp.ui.h:7
+msgid "_Print"
+msgstr "_In"
 
-#: src/html-widget.c:509
-msgid "Print Preview"
-msgstr "Xem trước bản in"
+#: ui/GNOME_DevHelp_Controller.ui.h:1
+msgid "Back"
+msgstr "Lùi"
 
-#: src/html-widget.c:520
-msgid "Printing failed."
-msgstr "Quá trình in thất bại."
+#: ui/GNOME_DevHelp_Controller.ui.h:2
+msgid "Forward"
+msgstr "Tới"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:3
+msgid "Go to next page in the history"
+msgstr "Đi tới trang kế trong lược sử"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:4
+msgid "Go to previous page in the history"
+msgstr "Đi tới trang trước trong lược sử"
 
 #: ui/devhelp2.glade.h:1
 msgid " "
@@ -210,9 +188,21 @@ msgstr "Thông số DevHelp"
 msgid "Hidden"
 msgstr "Ẩn"
 
+#: ui/devhelp2.glade.h:9
+msgid "Huge"
+msgstr "Khổng lồ"
+
 #: ui/devhelp2.glade.h:10
 msgid "Install new book..."
 msgstr "Cài đặt sách mới..."
+
+#: ui/devhelp2.glade.h:11
+msgid "Large"
+msgstr "Lớn"
+
+#: ui/devhelp2.glade.h:12
+msgid "Medium"
+msgstr "Trung"
 
 #: ui/devhelp2.glade.h:13
 msgid "Move down"
@@ -236,7 +226,7 @@ msgstr "Loại bỏ"
 
 #: ui/devhelp2.glade.h:18
 msgid "Reset to defaults"
-msgstr ""
+msgstr "Đặt về mặc định"
 
 #: ui/devhelp2.glade.h:19
 msgid "Search"
@@ -245,6 +235,14 @@ msgstr "Tìm kiếm"
 #: ui/devhelp2.glade.h:20
 msgid "Show _sidebar"
 msgstr "Hiện Thanh bên"
+
+#: ui/devhelp2.glade.h:21
+msgid "Small"
+msgstr "Nhỏ"
+
+#: ui/devhelp2.glade.h:22
+msgid "Tiny"
+msgstr "Tí hon"
 
 #: ui/devhelp2.glade.h:23
 msgid "Title:"
@@ -278,81 +276,62 @@ msgstr "_Giới hạn số lần tìm trúng:"
 msgid "_Text size: "
 msgstr "_Cỡ text: "
 
-#: ui/GNOME_DevHelp.ui.h:1
-msgid "About this application"
-msgstr "Nói về ứng dụng này"
+#~ msgid "Choose a book..."
+#~ msgstr "Chọn sách..."
 
-#: ui/GNOME_DevHelp.ui.h:2
-msgid "Font size"
-msgstr "Cỡ font"
+#~ msgid "The book is already installed."
+#~ msgstr "Sách này đã được cài đặt rồi."
 
-#: ui/GNOME_DevHelp.ui.h:6
-msgid "Open preferences dialog"
-msgstr "Mở hộp thoại thông số"
+#~ msgid "Failed to move book. This should never happen."
+#~ msgstr "Lỗi di chuyển sách. Điều này lẽ ra không bao giờ xảy ra."
 
-#: ui/GNOME_DevHelp.ui.h:7
-msgid "Preferences..."
-msgstr "Thông số..."
+#~ msgid "Failed to extract spec file from book."
+#~ msgstr "Lỗi trích tập tin spec từ sách."
 
-#: ui/GNOME_DevHelp.ui.h:8
-msgid "Print the html page"
-msgstr "In trang HTML"
+#~ msgid "Error, the book is corrupted or very old."
+#~ msgstr "Lỗi, sách bị hỏng hoặc quá cũ."
 
-#: ui/GNOME_DevHelp.ui.h:9
-msgid "Show sidebar"
-msgstr "Hiện Thanh bên"
+#~ msgid "Failed to extract the book."
+#~ msgstr "Lỗi trích từ sách"
 
-#: ui/GNOME_DevHelp.ui.h:12
-msgid "_About..."
-msgstr "_Giới thiệu..."
+#~ msgid "Wrong type (mime_type=%s)."
+#~ msgstr "Sai kiểu (Kiểu MIME là %s)"
 
-#: ui/GNOME_DevHelp.ui.h:13
-msgid "_Exit"
-msgstr "T_hoát"
+#~ msgid "Couldn't open uri: %s"
+#~ msgstr "Không thể mở URI: %s"
 
-#: ui/GNOME_DevHelp.ui.h:14
-msgid "_File"
-msgstr "_Tập tin"
+#~ msgid "Print Help"
+#~ msgstr "In trợ giúp"
 
-#: ui/GNOME_DevHelp.ui.h:15
-msgid "_Help"
-msgstr "Trợ _giúp"
+#~ msgid "Print Preview"
+#~ msgstr "Xem trước bản in"
 
-#: ui/GNOME_DevHelp.ui.h:16
-msgid "_Print"
-msgstr "_In"
+#~ msgid "Printing failed."
+#~ msgstr "Quá trình in thất bại."
 
-#: ui/GNOME_DevHelp.ui.h:17 ui/GNOME_DevHelp_Controller.ui.h:7
-msgid "_Settings"
-msgstr "_Thiết lập"
+#~ msgid "Font size"
+#~ msgstr "Cỡ font"
 
-#: ui/GNOME_DevHelp.ui.h:18
-msgid "_View"
-msgstr "_Xem"
+#~ msgid "Open preferences dialog"
+#~ msgstr "Mở hộp thoại thông số"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:1
-msgid "Back"
-msgstr "Lùi"
+#~ msgid "Preferences..."
+#~ msgstr "Thông số..."
 
-#: ui/GNOME_DevHelp_Controller.ui.h:2
-msgid "Book Manager..."
-msgstr "Bộ quản lý sách..."
+#~ msgid "Show sidebar"
+#~ msgstr "Hiện Thanh bên"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:3
-msgid "Forward"
-msgstr "Tới"
+#~ msgid "_Settings"
+#~ msgstr "_Thiết lập"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:4
-msgid "Go to next page in the history"
-msgstr "Đi tới trang kế trong lược sử"
+#~ msgid "_View"
+#~ msgstr "_Xem"
 
-#: ui/GNOME_DevHelp_Controller.ui.h:5
-msgid "Go to previous page in the history"
-msgstr "Đi tới trang trước trong lược sử"
+#~ msgid "Book Manager..."
+#~ msgstr "Bộ quản lý sách..."
 
-#: ui/GNOME_DevHelp_Controller.ui.h:6
-msgid "Open the book manager dialog"
-msgstr "Mở hộp thoại Bộ quản lý sách"
+#~ msgid "Open the book manager dialog"
+#~ msgstr "Mở hộp thoại Bộ quản lý sách"
 
 #~ msgid "(C) Copyright 2001, Johan Dahlin"
 #~ msgstr "(C) Copyright 2001, Johan Dahlin"
