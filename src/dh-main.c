@@ -83,6 +83,7 @@ dh_client_data_cb (GIOChannel   *source,
           
 			if (buf[0] == 'S' && bytes_read > 1) {
 				dh_window_search (DH_WINDOW (data), buf + 1);
+				gtk_window_present (GTK_WINDOW (data));
 			}
 			else if (buf[0] == 'Q') {
 				gtk_main_quit ();

@@ -1,3 +1,8 @@
+2002-11-09  Richard Hult  <rhult@codefactory.se>
+
+	* src/dh-main.c (dh_client_data_cb): Present the window when doing
+	a search.
+
 2002-11-08  Richard Hult  <rhult@codefactory.se>
 
 	* src/dh-main.c: Put username in socket filename.
