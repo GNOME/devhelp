@@ -103,6 +103,7 @@ info_button_ok_clicked_cb (GtkButton *button,
 			   BookInfo  *book_info)
 {
 	gchar *new;
+	gchar *path;
 	
 	g_return_if_fail (book_info != NULL);
 
@@ -111,10 +112,15 @@ info_button_ok_clicked_cb (GtkButton *button,
 	}
 	
 	new = gtk_entry_get_text (book_info->path);
-	if (strcmp (new, book_get_path (book_info->book)) == 0) {
+
+	path = book_get_path (book_info->book);
+	
+	if (strcmp (new, path)) {
 		g_message ("New path; %s", new);
 	}
 	
+	g_free (path);
+
 	/* FIXME: g_free (new) ? */
 	gtk_widget_destroy (book_info->dialog);
 	book_info->dialog = NULL;
@@ -134,6 +140,7 @@ books_button_edit_clicked_cb (GtkWidget *button,
 	BooksDialog    *dialog;
 	BookInfo       *book_info;
 	gint            row;
+	gchar          *path;
 	
 	g_return_if_fail (user_data != NULL);
 
@@ -181,8 +188,12 @@ books_button_edit_clicked_cb (GtkWidget *button,
 	gtk_label_set_text (name, book_get_name (book_info->book));
 	gtk_label_set_text (author, book_get_author (book_info->book));
 	gtk_label_set_text (version, book_get_version (book_info->book));	
-	gtk_entry_set_text (book_info->path, book_get_path (book_info->book));
+	path = book_get_path (book_info->book);
 	
+	gtk_entry_set_text (book_info->path, path);
+	
+	g_free (path);
+
 	gtk_widget_show (book_info->dialog);
 }
 

@@ -1,3 +1,12 @@
+2001-08-01  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/books-dialog.c 
+	(books_button_edit_clicked_cb): free the path.
+	(info_button_ok_clicked_cb): free the path.
+
+	* src/book.c (book_get_path): don't return const gchar since it
+	has to be freed.
+
 2001-08-01  Johan Dahlin  <zilch.am@home.se>
 
 	* src/ui.c (menu_help_about_activate_cb): Make the copyright

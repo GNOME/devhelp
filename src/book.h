@@ -63,7 +63,7 @@ const gchar *       book_get_author            (Book                *book);
 
 const gchar *       book_get_version           (Book                *book);
 
-const gchar *       book_get_path              (Book                *book);
+gchar *             book_get_path              (Book                *book);
 
 gboolean            book_contains              (Book                *book,
 						const GnomeVFSURI   *uri);

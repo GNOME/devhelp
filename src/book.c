@@ -558,7 +558,7 @@ book_get_version (Book *book)
 	return priv->version;
 }
 
-const gchar *
+gchar *
 book_get_path (Book *book)
 {
 	BookPriv   *priv;
@@ -570,7 +570,6 @@ book_get_path (Book *book)
 
 	return gnome_vfs_uri_to_string (priv->base_uri, 0);
 }
-
 
 gboolean
 book_contains (Book *book, const GnomeVFSURI *uri)
