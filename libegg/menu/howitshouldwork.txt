@@ -1,0 +1,172 @@
+Actions
+=======
+
+Actions are used to represent each operation that can be performed with a
+menu item or toolbar button.  As well as the callback that gets called
+when the action gets activated, the following also gets associated
+with the action:
+  - a name (not translated)
+  - text label
+  - whether label indicates a stock id
+  - tooltip (optional)
+  - icon (optional, ignored with stock_id)
+  - toolbar label (optional, shorter than label)
+
+The action will also have some state information:
+  - visible (shown/hidden)
+  - sensitive (enabled/disabled)
+
+We can have different types of actions:
+  - check actions (can be toggled between two states)
+  - radio actions (only one in a group can be in the "active" state)
+
+Each action can have one or more proxy menu item, toolbar button or
+other proxy widgets.  Proxies mirror the state of the action (text
+label, tooltip, icon, visible, sensitive, etc), and should change when
+the action's state changes.  When the proxy is activated, it should
+activate its action.
+
+=> Actions are GObjects.
+=> proxies all share the same accel path, so accels are consistent.
+=> Action state is exported through properties, and should probably be
+   propagated to proxies through the "notify::xxx" signal.
+
+
+Action Groups
+=============
+
+Actions are organised into groups.  An action group is essentially a
+map from names to Action objects.
+
+All actions that would make sense to use in a particular context
+should be in a single group.  Multiple action groups may be used for a
+particular user interface.  In fact, it is expected that most non
+trivial apps will make use of multiple groups.  For example:
+
+  - In an application that can edit multiple documents, one group
+    holding global actions (eg. quit, about, new), and one group per
+    document holding actions that act on that document (eg. save,
+    cut/copy/paste, etc).  Each window's menus would be constructed
+    from a combination of two action groups
+
+  - Embedded components.  The merged menus would use two action
+    groups: one from the embedded component, the other for the
+    containing application.
+
+
+=> currently GMenuActionGroup is an interface, so that bonobo could
+   hook into the action lookup (to look them up over a CORBA
+   connection).
+
+   It might be easier to get rid of the interface if bonobo could just
+   subclass the local action group implementation -- if no action is
+   found in the hash table, check for the remote action, and create a
+   proxy action object to return (cache in the hash table).
+
+
+Merged UI
+=========
+
+The user interface (menus and toolbars) is constructed from one or
+more UI definitions, which reference actions from one or more action
+groups.
+
+
+User Interface Definitions
+--------------------------
+
+As there is already a file format for UI definitions used in Bonobo, I
+decided to reuse it.  A number of elements and attributes in this
+format are not needed for our purposes, so we only use a subset of the
+file format.
+
+The <commands> section is ommitted, as that information comes from the
+action objects instead.  Similarly, the <keybindings> section is
+omitted, as accelerators are to be handled by GtkAccelMap.
+
+For <menuitem>, <submenu> and <toolitem> elements, only the name and
+verb attributes will be used.  Labels and icons, etc come from the
+action that the widget proxies for.
+
+See the documentation in libbonoboui for details on the structure.
+
+
+Loading Interface Definitions
+-----------------------------
+
+Interface definitions are parsed with a GMarkup based parser.  A tree
+is built up from the elements in the UI tree.  The nodes in the tree
+hold the name of the node, an (action, UI file) pair, a pointer to the
+widget representing this node and a tag identifying which UI file it
+came from.
+
+When parsing subsequent UI files, the following rules are used for
+merging:
+
+ 1. if a particular node already exists, add another (action, UI file)
+    pair to the node.
+ 2. if it doesn't exist, create a new node, and append it to the list
+    of children for the parent node.
+
+More complex ordering of merged UI elements should be handled through
+the use of <placeholder> elements (placeholders are essentially like
+<submenu>, except that their children get pasted into the parent menu
+directly).
+
+The actual widgets are not constructed immediately.  Instead the new
+nodes are marked "dirty", and an idle function is queued to update the
+UI.  This should speed things up a bit.
+
+To remove a UI file, we simply walk the tree and remove the (action,
+UI file) pairs from all nodes that match.  If a node is not referenced
+anywhere else, it is marked dirty (will get removed in the idle).  The
+same if the node's controlling action would change due to the removal.
+
+
+Registering and Unregistering Action Groups
+-------------------------------------------
+
+A list of action groups are used as the source for actions referenced
+in the UI definitions.  When adding or removing action groups, diffent
+actions may be exposed (adding a group may shadow existing actions of
+the same name.  removing a group may expose different actions).
+Therefore, all nodes in the tree are marked dirty when this sort of
+change occurs, and the idle is scheduled.
+
+
+Idle handler
+------------
+
+The idle handler should be fairly high priority (it is merely to speed
+up multiple changes performed in a row).  It walks the tree doing the
+following:
+
+ 1. is this node dirty, and do any UI defs reference it?  If so:
+
+      a. if there is no widget constructed ask the action to create a
+         proxy, and store it on the node.  This widget should also be
+         added to the parent node's widget (for placeholders,
+         recursively ascend the tree finding a non placeholder
+         parent).
+
+      b. if there is a widget, but it is associated with a different
+         action than the correct one, destroy the widget and create a
+         new one (or if possible, disconnect the proxy from the old
+         action and reconnect it to the new action).
+
+ 2. if there are any child nodes, recurse down to them.
+
+ 3. if this node is not referenced by any UI defs, destroy its widget
+    (if any exists), and remove the node.
+
+
+Extra Notes
+-----------
+
+=> should probably offer an API to call an action on the merged UI
+   object, which uses the same lookup as done when building the user
+   interface.  This could be used for scripting purposes, or maybe for
+   accessibility.
+
+=> maybe make the merge object implement GtkTreeModel?  This could be
+   useful for a keybindings editor or UI customisation tool.

@@ -1,0 +1,99 @@
+
+class ToolItem(GtkItem):
+    - can hold an arbitrary widget (as it is a bin)
+
+    signal create_menu_proxy(self):
+        - returns a GtkMenuItem that represents the tool item
+
+    # make these signals, or just connect handlers to toolbar signals
+    # on parent_set?
+    signal orientation_changed(self, orientation)
+    signal style_changed(self, style)
+    signal icon_size_changed(self, size)
+
+    # flags ...
+    visible_when_horizontal
+    visible_when_vertical
+    homogeneous_size  # should this item be included when calculating
+                      # button size
+
+class SeparatorToolItem(ToolItem):
+    - overrides add(), and warns if you try to add a child
+    - displays as a separator, based on the style properties of the
+      toolbar.
+    - non focusable.
+    - homogeneous_size is set to false.
+
+class ToolButton(ToolItem):
+    - base class for toolbar buttons
+    
+    property "text"
+    property "icon"
+    property "important_text" # display text in "important text" toolbar style
+        - homogeneous_size set if !important_text
+
+    signal clicked
+
+class ToggleToolButton(ToolButton):
+    - adds toggle behaviour to ToolButton
+    property active
+    signal toggled
+
+class RadioToolButton(ToggleToolButton):
+    - adds radio behaviour to ToggleToolButton
+
+    property group
+
+class Toolbar(GtkContainer):
+      - try to keep compatible with GtkToolbar layout ...
+      - attach a private struct with g_object_set_data? (ugh)
+      - children are all toolitems
+
+      signal orientation_changed(self, orientation)
+          - emit orientation_changed on each child tool item.
+      signal style_changed(self, style)
+      signal icon_size_changed(self, style)
+
+      sizing policy:
+        size request (assume horizontal bar):
+          - ignore any items without the visible_when_horizontal flag set.
+          - calculate size box that can hold all tool items with
+            homogeneous_size set.
+          - add widths of all tool items, using the homogeneous width
+            for that flag set.
+          - use maximum requested height of all items.
+        size allocate (assume horizontal bar):
+         if allocated width > requested width:
+          - allocate same height to all items.
+          - allocate homogeneous width to all items with that flag.
+          - allocate requested width to other items without expand
+            flag set.
+          - distribute remaining space between items with expand flag
+            set.
+         else:
+          - allocate space for a little arrow button on the right.
+          - allocate space for as many items as will fit in available
+            space.
+          - create menu proxies for remaining items, and put them in a
+            menu that pops up when the arrow at the end is clicked.
+
+      key nav: ????
+
+backward compat:
+ gtk_toolbar_append/prepend/insert_item:
+   - create EggToolButton and add to toolbar.
+ gtk_toolbar_insert_stock:
+   - same as above.
+ gtk_toolbar_append/prepend/insert_space:
+   - create EggSeparatorItem and add to toolbar.
+ gtk_toolbar_remove_space:
+   - remove item at given position.
+ gtk_toolbar_append/prepend/insert_element:
+   - for GTK_TOOLBAR_CHILD_SPACE, add EggSeparatorItem.
+   - for GTK_TOOLBAR_CHILD_BUTTON, add EggToolButton.
+   - for GTK_TOOLBAR_CHILD_TOGGLEBUTTON, add EggToggleToolButton.
+   - for GTK_TOOLBAR_CHILD_RADIOBUTTON, add EggRadioToolButton.
+   - for GTK_TOOLBAR_CHILD_WIDGET, add EggToolItem with widget packed
+     inside.
+ gtk_toolbar_append/prepend/insert_widget
+   - create EggToolItem with widget inside and add to toolbar.

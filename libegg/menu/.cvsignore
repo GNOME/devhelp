@@ -1,0 +1,10 @@
+.libs
+.deps
+*.lo
+*.la
+Makefile
+Makefile.in
+test-actions
+accels
+test-merge
+
