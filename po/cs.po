@@ -8,19 +8,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-18 03:07+0100\n"
-"PO-Revision-Date: 2004-03-18 19:27+0100\n"
+"POT-Creation-Date: 2005-03-25 18:50+0100\n"
+"PO-Revision-Date: 2005-03-26 01:08+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: devhelp.desktop.in.h:1
+#: devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Program nápovědy pro vývojáře"
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
+#: devhelp.desktop.in.in.h:2 src/dh-window.c:449 ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -28,44 +28,44 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Kniha Devhelp"
 
-#: src/dh-main.c:259
+#: src/dh-main.c:89
 msgid "Specify the size and location of the window"
 msgstr "Určení velikosti a umístění okna"
 
-#: src/dh-main.c:260
+#: src/dh-main.c:90
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "ŠÍŘKAxVÝŠKA+XPOS+YPOS"
 
-#: src/dh-main.c:268
+#: src/dh-main.c:98
 msgid "Search for a function"
 msgstr "Hledat funkci"
 
-#: src/dh-main.c:277
+#: src/dh-main.c:107
 msgid "Quit any running Devhelp"
 msgstr "Ukončit všechny běžící Devhelpy"
 
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#: src/dh-parser.c:105 src/dh-parser.c:182 src/dh-parser.c:229
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Očekával jsem '%s', dostal jsem '%s' na řádku %d, sloupci %d"
 
-#: src/dh-parser.c:120
+#: src/dh-parser.c:121
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neplatné namespace '%s' na řádku %d, sloupci %d"
 
-#: src/dh-parser.c:149
+#: src/dh-parser.c:150
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Na řádku %d, sloupci %d jsou vyžadovány elementy title, name a link"
 
-#: src/dh-parser.c:202
+#: src/dh-parser.c:203
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <sub> vyžadovány elementy name a link"
 
-#: src/dh-parser.c:250
+#: src/dh-parser.c:251
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -73,67 +73,63 @@ msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <function> vyžadovány elementy name a "
 "link"
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
+#: src/dh-parser.c:338 src/dh-parser.c:424
 msgid "Could not create book parser"
 msgstr "Nemohu vytvořit parser knihy"
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
+#: src/dh-parser.c:348 src/dh-parser.c:434
 msgid "Could not create markup parser"
 msgstr "Nemohu vytvořit parser značení"
 
-#: src/dh-parser.c:479
+#: src/dh-parser.c:480
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nemohu dekomprimovat knihu '%s': %s"
 
-#: src/dh-search.c:417
+#: src/dh-search.c:418
 msgid "_Search:"
 msgstr "_Hledat:"
 
-#: src/dh-search.c:461
+#: src/dh-search.c:462
 msgid "Section"
 msgstr "Oddíl"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:110
 msgid "_File"
 msgstr "_Soubor"
 
-#: src/dh-window.c:113
+#: src/dh-window.c:111
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: src/dh-window.c:114 ui/devhelp.glade.h:10
+#: src/dh-window.c:112 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Jít"
 
-#: src/dh-window.c:115
+#: src/dh-window.c:113
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: src/dh-window.c:300
+#: src/dh-window.c:297
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Nemohu nastavit UI: %s"
 
-#: src/dh-window.c:355 ui/devhelp.glade.h:3
+#: src/dh-window.c:357 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:366
+#: src/dh-window.c:368
 msgid "Search"
 msgstr "Hledat"
 
-#: src/dh-window.c:449
+#: src/dh-window.c:446
+msgid "translator_credits"
+msgstr "Miloslav Trmač <mitr@volny.cz>"
+
+#: src/dh-window.c:451
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
-
-#: src/dh-window.c:465
-msgid "Devhelp project page"
-msgstr "Stránka projektu Devhelp"
-
-#: src/dh-window.c:469
-msgid "Bug report Devhelp"
-msgstr "Ohlásit chybu v Devhelpu"
 
 #: devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -238,6 +234,12 @@ msgstr "_Vpřed"
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Používat písma systému"
+
+#~ msgid "Devhelp project page"
+#~ msgstr "Stránka projektu Devhelp"
+
+#~ msgid "Bug report Devhelp"
+#~ msgstr "Ohlásit chybu v Devhelpu"
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search tab "
