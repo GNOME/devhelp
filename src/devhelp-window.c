@@ -481,6 +481,7 @@ cmd_size_changed_cb (BonoboUIComponent            *component,
 	else if (!strcmp (path, "CmdSizeHuge")) {
 		zoom_level = ZOOM_HUGE_INDEX;
 	} else {
+		zoom_level = ZOOM_MEDIUM_INDEX;
 		g_warning ("Unsupported size");
 	}
 
