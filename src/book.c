@@ -547,17 +547,24 @@ book_get_name (Book *book)
 const gchar *
 book_get_name_full (Book *book)
 {
-	BookPriv   *priv;
+	BookPriv    *priv;
+	const gchar *book_name;
 	
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
 	
 	priv = book->priv;
 
+	if (priv->name) {
+		book_name = priv->name;
+	} else {
+		book_name = "";
+	}
+
 	if (priv->version == NULL)
-		return g_strdup (priv->name);
+		return g_strdup (book_name);
 	else {
-		return g_strdup_printf ("%s-%s", priv->name, priv->version);
+		return g_strdup_printf ("%s-%s", book_name, priv->version);
 	}
 }
 

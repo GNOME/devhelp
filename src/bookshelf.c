@@ -798,7 +798,8 @@ bookshelf_have_book (Bookshelf *bookshelf,
 	for (node = priv->xml_books; node; node = node->next) {
 		XMLBook *tmp = (XMLBook*) node->data;
 
-		if (strcmp (tmp->name, book_get_name (book)) == 0 &&
+		if (tmp->name &&
+		    strcmp (tmp->name, book_get_name (book)) == 0 &&
 		    strcmp (tmp->version, book_get_version (book)) == 0) {
 			return TRUE;
 		}
