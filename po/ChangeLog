@@ -1,3 +1,9 @@
+2002-11-29  Christian Rose  <menthos@menthos.com>
+
+	* POTFILES.in: Reverted previous change. It added a file
+	not present in CVS, thus breaking the build and the i18n
+	status.
+
 2002-11-28  Christian Neumair  <chris@gnome-de.org>
 
 	* POTFILES.in: Added missing file.
