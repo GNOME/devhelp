@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-17 14:08+0100\n"
-"PO-Revision-Date: 2004-03-17 21:29+0100\n"
+"POT-Creation-Date: 2004-03-18 03:07+0100\n"
+"PO-Revision-Date: 2004-03-18 19:27+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -94,44 +94,44 @@ msgstr "_Hledat:"
 msgid "Section"
 msgstr "Oddíl"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:112
 msgid "_File"
 msgstr "_Soubor"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:113
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: src/dh-window.c:114 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Jít"
 
-#: src/dh-window.c:114
+#: src/dh-window.c:115
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: src/dh-window.c:292
+#: src/dh-window.c:300
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Nemohu nastavit UI: %s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: src/dh-window.c:355 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:363
+#: src/dh-window.c:366
 msgid "Search"
 msgstr "Hledat"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:449
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
 
-#: src/dh-window.c:462
+#: src/dh-window.c:465
 msgid "Devhelp project page"
 msgstr "Stránka projektu Devhelp"
 
-#: src/dh-window.c:466
+#: src/dh-window.c:469
 msgid "Bug report Devhelp"
 msgstr "Ohlásit chybu v Devhelpu"
 
@@ -160,42 +160,50 @@ msgid "Location of the paned"
 msgstr "Umístění panelu"
 
 #: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Stav maximalizace hlavního okna"
+
+#: devhelp.schemas.in.h:8
 msgid "The X position of the main window."
 msgstr "Pozice X hlavního okna."
 
-#: devhelp.schemas.in.h:8
+#: devhelp.schemas.in.h:9
 msgid "The Y position of the main window."
 msgstr "Pozice Y hlavního okna."
 
-#: devhelp.schemas.in.h:9
+#: devhelp.schemas.in.h:10
 msgid "The height of the main window."
 msgstr "Výška hlavního okna."
 
-#: devhelp.schemas.in.h:10
+#: devhelp.schemas.in.h:11
 msgid "The location of the paned separator."
 msgstr "Umístění oddělovače panelu."
 
-#: devhelp.schemas.in.h:11
+#: devhelp.schemas.in.h:12
 msgid "The width of the main window."
 msgstr "Šířka hlavního okna."
 
-#: devhelp.schemas.in.h:12
+#: devhelp.schemas.in.h:13
 msgid "Use system fonts"
 msgstr "Používat písma systému"
 
-#: devhelp.schemas.in.h:13
+#: devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
 msgstr "Používat implicitní písma systému"
 
-#: devhelp.schemas.in.h:14
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Jestli má hlavní okno být po spuštění maximalizované."
+
+#: devhelp.schemas.in.h:16
 msgid "Width of the main window"
 msgstr "Šířka hlavního okna"
 
-#: devhelp.schemas.in.h:15
+#: devhelp.schemas.in.h:17
 msgid "X position of main window"
 msgstr "Pozice X hlavního okna"
 
-#: devhelp.schemas.in.h:16
+#: devhelp.schemas.in.h:18
 msgid "Y position of main window"
 msgstr "Pozice Y hlavního okna"
 
