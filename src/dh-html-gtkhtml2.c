@@ -185,7 +185,7 @@ html_reader_thread (ReaderThreadData *th_data)
 	gchar             buffer[BUFFER_SIZE];
 	GnomeVFSFileSize  n;
 	
-	g_return_if_fail (th_data != NULL);
+	g_return_val_if_fail (th_data != NULL, NULL);
 
 	html  = th_data->html;
 	priv  = html->priv;
@@ -199,7 +199,7 @@ html_reader_thread (ReaderThreadData *th_data)
 		
 		g_mutex_unlock (priv->stamp_mutex);
 
-		return;
+		return NULL;
 	}
 
 	g_mutex_unlock (priv->stamp_mutex);
@@ -229,7 +229,7 @@ html_reader_thread (ReaderThreadData *th_data)
 		
 			g_mutex_unlock (priv->stamp_mutex);
 
-			return;
+			return NULL;
 		}
 		
 		g_mutex_unlock (priv->stamp_mutex);

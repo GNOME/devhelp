@@ -3,6 +3,14 @@
 	* src/dh-base.c (base_init_books): Search DEVHELP_SEARCH_PATH for
 	books.
 
+	* src/dh-html-gtkhtml2.c (html_reader_thread): Return NULLs.
+
+	* src/dh-main.c: Remove unused variables and add more includes.
+
+	* src/dh-base.c: Ditto.
+
+	* src/dh-base.h: Rename a method so it matches the implementation.
+
 2003-02-15  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/dh-window.c:

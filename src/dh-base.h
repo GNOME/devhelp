@@ -55,6 +55,6 @@ GtkWidget *      dh_base_new_window     (DhBase      *base);
 GNode *          dh_base_get_book_tree  (DhBase      *base);
 GList *          dh_base_get_keywords   (DhBase      *base);
 
-GSList *         dh_get_windows         (DhBase      *base);
+GSList *         dh_base_get_windows    (DhBase      *base);
 
 #endif /* __DH_BASE_H__ */

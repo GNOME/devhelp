@@ -25,12 +25,14 @@
 #endif
 
 #include <stdio.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <dirent.h>
 
 #include <libxml/parser.h>
 #include <gconf/gconf.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gtk/gtkmain.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
@@ -50,8 +52,6 @@ dh_client_data_cb (GIOChannel   *source,
 		   GIOCondition  condition,
 		   gpointer      data)
 {
-	GIOChannel *channel;
-
 	if (condition & G_IO_ERR) {
 		return FALSE;
 	}
@@ -191,7 +191,6 @@ dh_try_to_connect (void)
 	gint                fd;
 	struct sockaddr_un  addr;
 	gchar              *path;
-	gchar              *buf;
 
 	path = g_strdup_printf (SOCKET_PATH, g_get_user_name ());
 

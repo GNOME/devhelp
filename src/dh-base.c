@@ -23,6 +23,7 @@
 
 #include <string.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include <gtk/gtkmain.h>
 
 #include "dh-window.h"
 #include "dh-parser.h"
@@ -129,7 +130,6 @@ base_window_finalized_cb (DhBase *base, DhWindow *window)
 static void
 base_init_books (DhBase *base)
 {
-	gchar       *dir;
 	const gchar *env;
 	
 	env = g_getenv ("DEVHELP_SEARCH_PATH");
@@ -174,7 +174,6 @@ base_add_books (DhBase *base, const gchar *directory)
 	}
 
 	for (l = dir_list; l; l = l->next) {
-		int    len;
 		gchar *book_path;
 		
 
