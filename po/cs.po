@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2003-01-28 10:48+0100\n"
-"PO-Revision-Date: 2003-01-28 16:15+0100\n"
+"POT-Creation-Date: 2003-02-03 10:44+0100\n"
+"PO-Revision-Date: 2003-02-03 16:44+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,17 +37,17 @@ msgstr "Kniha '%s' není ve správném formátu."
 msgid "Couldn't find file '%s'"
 msgstr "Nemohu najít soubor '%s'"
 
-#: src/dh-book-old.c:249
+#: src/dh-book-old.c:255
 #, c-format
 msgid "Book '%s' is malformed, the parse context is invalid."
 msgstr "Kniha '%s' není ve správném formátu, kontext zpracování není platný."
 
-#: src/dh-book-old.c:260
+#: src/dh-book-old.c:266
 #, c-format
 msgid "Book '%s' is malformed, the XML is invalid."
 msgstr "Kniha '%s' není ve správném formátu, XML není platné."
 
-#: src/dh-book-old.c:274
+#: src/dh-book-old.c:280
 #, c-format
 msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
 msgstr "Kniha '%s' není ve správním formátu, nevyhovuje DTD (%s)."
@@ -96,32 +96,32 @@ msgstr "_Nápověda"
 msgid "_About"
 msgstr "_O programu"
 
-#: src/dh-window.c:281
+#: src/dh-window.c:284
 #, c-format
 msgid ""
-"<b>Cound not read all books</b>\n"
+"<b>Could not read all books</b>\n"
 "\n"
 "The following errors occured whilst reading the books:\n"
 "%s"
 msgstr ""
-"<b>Nelze načíst všechny knihy</b>\n"
+"<b>Nemohu načíst všechny knihy</b>\n"
 "\n"
 "Při načítání knih došlo k následujícím chybám:\n"
 "%s"
 
-#: src/dh-window.c:298
+#: src/dh-window.c:303
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/dh-window.c:309
+#: src/dh-window.c:314
 msgid "Search"
 msgstr "Hledat"
 
-#: src/dh-window.c:366
+#: src/dh-window.c:371
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
 
-#: src/dh-window.c:432
+#: src/dh-window.c:437
 #, c-format
 msgid "Open %s"
 msgstr "Otevřít %s"
