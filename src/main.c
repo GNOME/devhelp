@@ -40,7 +40,7 @@
 #include <bonobo/bonobo-exception.h>
 #include <bonobo/bonobo-generic-factory.h>
 
-#include "GNOME_Devhelp.h"
+#include "GNOME_DevHelp.h"
 #include "main.h"
 #include "ui.h"
 #include "install.h"
@@ -98,7 +98,7 @@ activate_and_search (gpointer data, gboolean new_window)
 	CORBA_Object      devhelp;
 
 	CORBA_exception_init (&ev);
-	devhelp = oaf_activate_from_id ("OAFIID:GNOME_Devhelp",
+	devhelp = oaf_activate_from_id ("OAFIID:GNOME_DevHelp",
 					0,
 					NULL,
 					&ev);
@@ -109,7 +109,7 @@ activate_and_search (gpointer data, gboolean new_window)
 	}
 
 	if (data) {
-		GNOME_Devhelp_HelpBrowser_search (devhelp, data, &ev);
+		GNOME_DevHelp_HelpBrowser_search (devhelp, data, &ev);
 		if (BONOBO_EX (&ev)) {
 			g_warning (_("Could not search for string."));
 			exit (1);
@@ -142,13 +142,13 @@ devhelp_factory_main (const gchar *search_string)
 {
 	CORBA_Object factory;
 	
-	factory = oaf_activate_from_id ("OAFIID:GNOME_Devhelp_Factory",
+	factory = oaf_activate_from_id ("OAFIID:GNOME_DevHelp_Factory",
 					OAF_FLAG_EXISTING_ONLY,
 					NULL, NULL);
 	if (factory == NULL) {
 		BonoboGenericFactory *factory;
 			
-		factory = bonobo_generic_factory_new ("OAFIID:GNOME_Devhelp_Factory", factory_fn, NULL);
+		factory = bonobo_generic_factory_new ("OAFIID:GNOME_DevHelp_Factory", factory_fn, NULL);
 		bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
 		g_idle_add (idle_activate_and_search, (gpointer)search_string);
 	} else {

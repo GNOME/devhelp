@@ -1,5 +1,17 @@
 2001-08-13  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/main.c: Devhelp -> DevHelp.
+
+	* src/help-browser.[ch]: Devhelp -> DevHelp.
+
+	* src/Makefile.am: Devhelp -> DevHelp
+
+	* src/GNOME_DevHelp.oaf.in: Devhelp -> DevHelp.
+
+	* src/.cvsignore: Devhelp -> DevHelp.
+
+	* idl/GNOME_DevHelp.idl: renamed from GNOME_DevHelp.idl.
+
 	* src/ui.c (main_window_key_press_event_cb): grab focus, had
 	  commented this out during testing before.
 

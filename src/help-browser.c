@@ -22,7 +22,6 @@
  */
 
 #include "help-browser.h"
-#include "GNOME_Devhelp.h"
 
 static void help_browser_class_init (HelpBrowserClass *klass);
 static void help_browser_init       (HelpBrowser *browser);
@@ -42,9 +41,9 @@ static gint signals[LAST_SIGNAL] = { 0 };
  *
  */
 static void
-impl_HelpBrowser_search (PortableServer_Servant  servant,
-			 const CORBA_char      *str,
-			 CORBA_Environment     *ev)
+impl_HelpBrowser_search (PortableServer_Servant   servant,
+			 const CORBA_char        *str,
+			 CORBA_Environment       *ev)
 {
 	HelpBrowser *browser;
 
@@ -73,7 +72,7 @@ impl_HelpBrowser_searchInNewWindow (PortableServer_Servant  servant,
 static void
 help_browser_class_init (HelpBrowserClass *klass)
 {
-	POA_GNOME_Devhelp_HelpBrowser__epv *epv = &klass->epv;
+	POA_GNOME_DevHelp_HelpBrowser__epv *epv = &klass->epv;
 	GtkObjectClass *object_class = (GtkObjectClass *) klass;
 
 	parent_class = gtk_type_class (PARENT_TYPE);
@@ -114,7 +113,7 @@ help_browser_new (void)
 }
                                      
 BONOBO_X_TYPE_FUNC_FULL (HelpBrowser,
-                         GNOME_Devhelp_HelpBrowser,
+                         GNOME_DevHelp_HelpBrowser,
                          PARENT_TYPE,
                          help_browser);
 

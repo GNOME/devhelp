@@ -1,13 +1,13 @@
 /* -*- Mode: IDL; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Interface for Devhelp
+ * Interface for DevHelp
  *
  */
 
 #include <Bonobo.idl>
 
 module GNOME {
-	module Devhelp {
+	module DevHelp {
 		interface HelpBrowser : Bonobo::Unknown {
 			void search            (in string str);
 			void searchInNewWindow (in string str);

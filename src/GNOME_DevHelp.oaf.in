@@ -1,6 +1,6 @@
 <oaf_info>
 
-<oaf_server iid="OAFIID:GNOME_Devhelp_Factory" 
+<oaf_server iid="OAFIID:GNOME_DevHelp_Factory" 
             type="exe"
             location="devhelp">
   <oaf_attribute name="repo_ids" type="stringv">
@@ -10,9 +10,9 @@
 
 </oaf_server>
 
-<oaf_server iid="OAFIID:GNOME_Devhelp" 
+<oaf_server iid="OAFIID:GNOME_DevHelp" 
             type="factory"
- 	    location="OAFIID:GNOME_Devhelp_Factory">
+ 	    location="OAFIID:GNOME_DevHelp_Factory">
   <oaf_attribute name="repo_ids" type="stringv">
     <item value="IDL:Bonobo/Moniker:1.0"/>
     <item value="IDL:Bonobo/Unknown:1.0"/>

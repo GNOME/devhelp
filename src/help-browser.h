@@ -29,7 +29,7 @@
 #include <gtk/gtkmarshal.h>
 #include <bonobo/bonobo-xobject.h>
 
-#include "GNOME_Devhelp.h"
+#include "GNOME_DevHelp.h"
 
 #define HELP_BROWSER_TYPE        (help_browser_get_type ())
 #define HELP_BROWSER(o)          (GTK_CHECK_CAST ((o), HELP_BROWSER_TYPE, HelpBrowser))
@@ -45,7 +45,7 @@ struct _HelpBrowser {
 
 typedef struct {
         BonoboXObjectClass                 parent_class;
-        POA_GNOME_Devhelp_HelpBrowser__epv epv;
+        POA_GNOME_DevHelp_HelpBrowser__epv epv;
 } HelpBrowserClass;
 
 

@@ -1,11 +1,11 @@
 Makefile
 Makefile.in
 .deps
-GNOME_Devhelp-stubs.c
-GNOME_Devhelp-skels.c
-GNOME_Devhelp-common.c
-GNOME_Devhelp.h
+GNOME_DevHelp-stubs.c
+GNOME_DevHelp-skels.c
+GNOME_DevHelp-common.c
+GNOME_DevHelp.h
 stamp-idl
 .libs
 devhelp
-GNOME_Devhelp.oaf
+GNOME_DevHelp.oaf

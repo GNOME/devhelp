@@ -59,24 +59,24 @@ devhelp_LDADD = 			\
 	      -lgtkhtml 		
 
 GENERATED =				\
-	GNOME_Devhelp-skels.c		\
-	GNOME_Devhelp-stubs.c		\
-	GNOME_Devhelp-common.c		\
-	GNOME_Devhelp.h
+	GNOME_DevHelp-skels.c		\
+	GNOME_DevHelp-stubs.c		\
+	GNOME_DevHelp-common.c		\
+	GNOME_DevHelp.h
 
-$(GENERATED): $(top_srcdir)/idl/GNOME_Devhelp.idl stamp-idl
+$(GENERATED): $(top_srcdir)/idl/GNOME_DevHelp.idl stamp-idl
 
-stamp-idl: $(top_srcdir)/idl/GNOME_Devhelp.idl
-	orbit-idl $(IDL_FLAGS) -I$(srcdir) $(IDL_FLAGS) $(top_srcdir)/idl/GNOME_Devhelp.idl
+stamp-idl: $(top_srcdir)/idl/GNOME_DevHelp.idl
+	orbit-idl $(IDL_FLAGS) -I$(srcdir) $(IDL_FLAGS) $(top_srcdir)/idl/GNOME_DevHelp.idl
 	touch stamp-idl
 
 # Work around automake brokenness.
-$(srcdir)/GNOME_Devhelp.h: stamp-idl
+$(srcdir)/GNOME_DevHelp.h: stamp-idl
 
 CLEANFILES  += $(GENERATED) + stamp-idl
 
 oafdir = $(datadir)/oaf
-oaf_in_files = GNOME_Devhelp.oaf.in
+oaf_in_files = GNOME_DevHelp.oaf.in
 
 oaf_DATA = $(oaf_in_files:.oaf.in=.oaf)
 
