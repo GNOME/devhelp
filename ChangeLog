@@ -1,5 +1,10 @@
 2004-03-17  Mikael Hallendal  <micke@imendio.com>
 
+	* devhelp.in: 
+	- Export LD_LIBRARY_PATH, thanks Michel Galle for reporting.
+
+2004-03-17  Mikael Hallendal  <micke@imendio.com>
+
 	* Release 0.9
 
 	* NEWS: Updated for 0.9
