@@ -27,7 +27,7 @@
 #include <gtk/gtktreeview.h>
 #include <gtk/gtkwidget.h>
 #include <gtk/gtktypeutils.h>
-#include "bookshelf.h"
+#include "dh-bookshelf.h"
 #include "book-node.h"
 
 #define DEVHELP_BOOK_INDEX_OAFIID "OAFIID:GNOME_DevHelp_BookIndex"
@@ -61,7 +61,7 @@ struct _BookIndexClass
 };
 
 GType            book_index_get_type      (void);
-GtkWidget *      book_index_new           (Bookshelf     *bookshelf);
+GtkWidget *      book_index_new           (DhBookshelf     *bookshelf);
 
 void             book_index_open_node     (BookIndex     *index,
 					   BookNode      *node);

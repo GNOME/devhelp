@@ -40,7 +40,6 @@
 #include <bonobo/bonobo-generic-factory.h>
 #include <bonobo/bonobo-exception.h>
 #include "GNOME_DevHelp.h"
-#include "install.h"
 #include "help-browser.h"
 #include "devhelp-window.h"
 
@@ -148,8 +147,6 @@ main (int argc, char **argv)
                                       NULL);
 	LIBXML_TEST_VERSION;
 
-	install_create_directories (NULL);
-	
 	factory = bonobo_activation_activate_from_id (DEVHELP_FACTORY_OAFIID,
 						      Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, NULL, NULL);
 	

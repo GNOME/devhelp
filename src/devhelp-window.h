@@ -27,7 +27,6 @@
 #include <bonobo/bonobo-window.h>
 #include <gtk/gtktypeutils.h>
 #include <gtk/gtkwidget.h>
-#include "bookshelf.h"
 
 #define TYPE_DEVHELP_WINDOW		(devhelp_window_get_type ())
 #define DEVHELP_WINDOW(obj)		(GTK_CHECK_CAST ((obj), TYPE_DEVHELP_WINDOW, DevHelpWindow))

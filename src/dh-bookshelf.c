@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@codefactory.se>
+ * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
  * Copyright (C) 2001 Johan Dahlin <zilch.am@home.se>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,21 +33,21 @@
 #include <libxml/parser.h>
 #include "function-database.h"
 #include "util.h"
-#include "bookshelf.h"
+#include "dh-bookshelf.h"
 
 #define d(x)
 
-static void      bookshelf_init              (Bookshelf        *bookshelf);
+static void      bookshelf_init              (DhBookshelf        *bookshelf);
 static void      bookshelf_class_init        (GObjectClass     *klass);
 static void      bookshelf_destroy           (GObject          *object);
 
 static GSList *  bookshelf_read_books_dir    (GnomeVFSURI      *books_uri);
 
-static GSList *  bookshelf_read_xml          (Bookshelf        *bookshelf,
+static GSList *  bookshelf_read_xml          (DhBookshelf        *bookshelf,
 					      const gchar      *filename);
 
 
-struct _BookshelfPriv {
+struct _DhBookshelfPriv {
 	GSList             *books;
 	FunctionDatabase   *fd;
 
@@ -66,25 +66,25 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 GType
-bookshelf_get_type (void)
+dh_bookshelf_get_type (void)
 {
 	static GType bookshelf_type = 0;
         
 	if (!bookshelf_type) {
 		static const GTypeInfo bookshelf_info = {
-			sizeof (BookshelfClass),
+			sizeof (DhBookshelfClass),
 			NULL,
 			NULL,
 			(GClassInitFunc)  bookshelf_class_init,
 			NULL,
 			NULL,
-			sizeof (Bookshelf),
+			sizeof (DhBookshelf),
 			0,
 			(GInstanceInitFunc) bookshelf_init,
 		};
                 
 		bookshelf_type = g_type_register_static (G_TYPE_OBJECT,
-							 "Bookshelf",
+							 "DhBookshelf",
 							 &bookshelf_info, 0);
 	}
 
@@ -92,11 +92,11 @@ bookshelf_get_type (void)
 }
 
 static void
-bookshelf_init (Bookshelf *bookshelf)
+bookshelf_init (DhBookshelf *bookshelf)
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
         
-	priv            = g_new0 (BookshelfPriv, 1);
+	priv            = g_new0 (DhBookshelfPriv, 1);
 	priv->books     = NULL;
 	bookshelf->priv = priv;
 }
@@ -110,7 +110,7 @@ bookshelf_class_init (GObjectClass *klass)
 		g_signal_new ("book_added",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (BookshelfClass,
+			      G_STRUCT_OFFSET (DhBookshelfClass,
 						book_added),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__POINTER,
@@ -121,7 +121,7 @@ bookshelf_class_init (GObjectClass *klass)
 		g_signal_new ("book_removed",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (BookshelfClass,
+			      G_STRUCT_OFFSET (DhBookshelfClass,
 					       book_removed),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__POINTER,
@@ -132,13 +132,13 @@ bookshelf_class_init (GObjectClass *klass)
 static void
 bookshelf_destroy (GObject *object)
 {
-	Bookshelf       *bookshelf;
-	BookshelfPriv   *priv;
+	DhBookshelf       *bookshelf;
+	DhBookshelfPriv   *priv;
         
 	g_return_if_fail (object != NULL);
-	g_return_if_fail (IS_BOOKSHELF (object));
+	g_return_if_fail (DH_IS_BOOKSHELF (object));
         
-	bookshelf = BOOKSHELF (object);
+	bookshelf = DH_BOOKSHELF (object);
 	priv      = bookshelf->priv;
 
 	/* FIX: Free priv data */
@@ -203,149 +203,10 @@ bookshelf_read_books_dir (GnomeVFSURI *books_uri)
 	return list;
 }
 
-Bookshelf *
-bookshelf_new (FunctionDatabase *fd)
-{
-	Bookshelf       *bookshelf;
-	BookshelfPriv   *priv;
-	const gchar     *home_dir;
-	gchar           *filename;
-	gchar           *user_dir;
-	
-	bookshelf = g_object_new (TYPE_BOOKSHELF, NULL);
-	priv      = bookshelf->priv;
-	priv->fd  = fd;
-
-	home_dir = g_get_home_dir ();
-
-	filename = g_strdup_printf ("%s/.devhelp/books.xml", home_dir);
-	priv->xml_books = bookshelf_read_xml (bookshelf, filename);
-	priv->filename = filename;
-
-        function_database_freeze (priv->fd);
-
-	/* First add user directory */
-        user_dir = g_strdup_printf ("%s/.devhelp", home_dir);
-	bookshelf_add_directory (bookshelf, user_dir);
-        g_free (user_dir);
-
-	/* Then add global directories */
-	
-	/* If we have a non-standard datadir */
-	if (strcmp (DATA_DIR, "/usr/share") &&
-	    strcmp (DATA_DIR, "/usr/local/share")) {
-		d(g_print ("Adding %s", DATA_DIR));
-		bookshelf_add_directory (bookshelf, DATA_DIR"/devhelp");
-	}
-	
-	bookshelf_add_directory (bookshelf, "/usr/share/devhelp"); 
-	bookshelf_add_directory (bookshelf, "/usr/local/share/devhelp"); 
-
-        function_database_thaw (priv->fd);
-	
-	return bookshelf;
-}
-
-FunctionDatabase * 
-bookshelf_get_function_database (Bookshelf *bookshelf)
-{
-	BookshelfPriv   *priv;
-	
-	g_return_val_if_fail (bookshelf != NULL, NULL);
-	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
-	
-	priv = bookshelf->priv;
-	
-	return priv->fd;
-}
-
-GSList * 
-bookshelf_get_hidden_books (Bookshelf *bookshelf)
-{
-	BookshelfPriv     *priv;
-	GSList            *list;
-	GSList            *hidden;
-	XMLBook           *book;
-	const GnomeVFSURI *book_uri;
-	
-	g_return_val_if_fail (bookshelf != NULL, NULL);
-	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
-	
-	priv = bookshelf->priv;
-
-	hidden = NULL;
-	for (list = priv->xml_books; list; list = list->next) {
-		book = (XMLBook*)list->data;
-		/* Is the book visible? */
-		if (book->visible == TRUE) {
-			continue;
-		}
-		hidden = g_slist_append (hidden, book);
-	}
-	
-	return hidden;
-}
-
-void 
-bookshelf_hide_book (Bookshelf *bookshelf, Book *book)
-{
-	BookshelfPriv   *priv;
-	XMLBook         *xml_book;
-	
-	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
-
-	g_return_if_fail (book != NULL);
-	g_return_if_fail (IS_BOOK (book));
-	
-	priv = bookshelf->priv;
-
-	xml_book = g_new (XMLBook, 1);
-	xml_book->name      = book_get_name (book);
-	xml_book->version   = book_get_version (book);	
-	xml_book->spec_path = book_get_spec_file (book);
-	xml_book->visible   = FALSE;
-			
-	bookshelf_remove_book (bookshelf, book);
-	priv->xml_books = g_slist_append (priv->xml_books, xml_book);
-}
-
-void
-bookshelf_show_book (Bookshelf *bookshelf, XMLBook *xml_book)
-{
-	BookshelfPriv *priv;
-	GnomeVFSURI   *book_uri;
-	Book          *book;
-	gchar         *tmp;
-	gchar         *dirname;	
-	gchar         *base_url;
-	
-	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
-
-	priv = bookshelf->priv;
-
-	book_uri = gnome_vfs_uri_new (xml_book->spec_path); 
-	book = book_new (book_uri, priv->fd);
-	book_set_visible (book, TRUE);
-	
-	tmp = gnome_vfs_uri_extract_dirname (book_uri);
-	dirname = g_strndup (tmp, strlen (tmp)-6);
-	base_url = g_strdup_printf ("%s/books/%s",
-				    dirname,
-				    book_get_name_full (book));
-	book_set_base_url (book, base_url);
-	g_free (dirname);
-	
-	priv->xml_books = g_slist_remove (priv->xml_books, xml_book);
-	bookshelf_add_book (bookshelf, book);
-}
-
-
 static GSList *
-bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
+bookshelf_read_xml (DhBookshelf *bookshelf, const gchar *filename)
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
 	XMLBook         *book;
 	GSList          *list;
 	xmlDocPtr        doc;
@@ -353,7 +214,7 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	gchar           *visible;
 	
 	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
 	
 	priv = bookshelf->priv;
 
@@ -436,16 +297,154 @@ bookshelf_read_xml (Bookshelf *bookshelf, const gchar *filename)
 	return list;
 }
 
-void
-bookshelf_write_xml (Bookshelf *bookshelf)
+DhBookshelf *
+dh_bookshelf_new (FunctionDatabase *fd)
 {
-	BookshelfPriv   *priv;
+	DhBookshelf       *bookshelf;
+	DhBookshelfPriv   *priv;
+	const gchar     *home_dir;
+	gchar           *filename;
+	gchar           *user_dir;
+	
+	bookshelf = g_object_new (DH_TYPE_BOOKSHELF, NULL);
+	priv      = bookshelf->priv;
+	priv->fd  = fd;
+
+	home_dir = g_get_home_dir ();
+
+	filename = g_strdup_printf ("%s/.devhelp/books.xml", home_dir);
+	priv->xml_books = bookshelf_read_xml (bookshelf, filename);
+	priv->filename = filename;
+
+        function_database_freeze (priv->fd);
+
+	/* First add user directory */
+        user_dir = g_strdup_printf ("%s/.devhelp", home_dir);
+	dh_bookshelf_add_directory (bookshelf, user_dir);
+        g_free (user_dir);
+
+	/* Then add global directories */
+	
+	/* If we have a non-standard datadir */
+	if (strcmp (DATA_DIR, "/usr/share") &&
+	    strcmp (DATA_DIR, "/usr/local/share")) {
+		d(g_print ("Adding %s", DATA_DIR));
+		dh_bookshelf_add_directory (bookshelf, DATA_DIR"/devhelp");
+	}
+	
+	dh_bookshelf_add_directory (bookshelf, "/usr/share/devhelp"); 
+	dh_bookshelf_add_directory (bookshelf, "/usr/local/share/devhelp"); 
+
+        function_database_thaw (priv->fd);
+	
+	return bookshelf;
+}
+
+FunctionDatabase * 
+dh_bookshelf_get_function_database (DhBookshelf *bookshelf)
+{
+	DhBookshelfPriv   *priv;
+	
+	g_return_val_if_fail (bookshelf != NULL, NULL);
+	g_return_val_if_fail (DH_IS_BOOKSHELF (bookshelf), NULL);
+	
+	priv = bookshelf->priv;
+	
+	return priv->fd;
+}
+
+GSList * 
+dh_bookshelf_get_hidden_books (DhBookshelf *bookshelf)
+{
+	DhBookshelfPriv     *priv;
+	GSList            *list;
+	GSList            *hidden;
+	XMLBook           *book;
+	const GnomeVFSURI *book_uri;
+	
+	g_return_val_if_fail (bookshelf != NULL, NULL);
+	g_return_val_if_fail (DH_IS_BOOKSHELF (bookshelf), NULL);
+	
+	priv = bookshelf->priv;
+
+	hidden = NULL;
+	for (list = priv->xml_books; list; list = list->next) {
+		book = (XMLBook*)list->data;
+		/* Is the book visible? */
+		if (book->visible == TRUE) {
+			continue;
+		}
+		hidden = g_slist_append (hidden, book);
+	}
+	
+	return hidden;
+}
+
+void 
+dh_bookshelf_hide_book (DhBookshelf *bookshelf, Book *book)
+{
+	DhBookshelfPriv   *priv;
+	XMLBook         *xml_book;
+	
+	g_return_if_fail (bookshelf != NULL);
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
+
+	g_return_if_fail (book != NULL);
+	g_return_if_fail (IS_BOOK (book));
+	
+	priv = bookshelf->priv;
+
+	xml_book = g_new (XMLBook, 1);
+	xml_book->name      = book_get_name (book);
+	xml_book->version   = book_get_version (book);	
+	xml_book->spec_path = book_get_spec_file (book);
+	xml_book->visible   = FALSE;
+			
+	dh_bookshelf_remove_book (bookshelf, book);
+	priv->xml_books = g_slist_append (priv->xml_books, xml_book);
+}
+
+void
+dh_bookshelf_show_book (DhBookshelf *bookshelf, XMLBook *xml_book)
+{
+	DhBookshelfPriv *priv;
+	GnomeVFSURI   *book_uri;
+	Book          *book;
+	gchar         *tmp;
+	gchar         *dirname;	
+	gchar         *base_url;
+	
+	g_return_if_fail (bookshelf != NULL);
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
+
+	priv = bookshelf->priv;
+
+	book_uri = gnome_vfs_uri_new (xml_book->spec_path); 
+	book = book_new (book_uri, priv->fd);
+	book_set_visible (book, TRUE);
+	
+	tmp = gnome_vfs_uri_extract_dirname (book_uri);
+	dirname = g_strndup (tmp, strlen (tmp)-6);
+	base_url = g_strdup_printf ("%s/books/%s",
+				    dirname,
+				    book_get_name_full (book));
+	book_set_base_url (book, base_url);
+	g_free (dirname);
+	
+	priv->xml_books = g_slist_remove (priv->xml_books, xml_book);
+	dh_bookshelf_add_book (bookshelf, book);
+}
+
+void
+dh_bookshelf_write_xml (DhBookshelf *bookshelf)
+{
+	DhBookshelfPriv   *priv;
 	XMLBook         *book;
 	FILE            *fp;
 	GSList          *node;
 	
 	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
 	
 	priv = bookshelf->priv;
 
@@ -505,20 +504,20 @@ version_strcmp (Book *book1, Book *book2)
 }
 		
 gboolean
-bookshelf_add_book (Bookshelf *bookshelf, Book* book)
+dh_bookshelf_add_book (DhBookshelf *bookshelf, Book* book)
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
 	Book            *book2;
    
 	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));	
 	
 	priv = bookshelf->priv;
 
 	/* Is the book already installed? */
-	if (bookshelf_have_book (bookshelf, book)) {
+	if (dh_bookshelf_have_book (bookshelf, book)) {
 		return FALSE;
 	}
 			
@@ -554,9 +553,9 @@ xml_spec_get_book_uri (GSList *xml_books, const GnomeVFSURI *book_uri)
 }
 
 void
-bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
+dh_bookshelf_add_directory (DhBookshelf *bookshelf, const gchar *directory)
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
 	GnomeVFSURI     *book_uri;
 	GnomeVFSURI     *book_dir_uri;
 	Book            *book;
@@ -569,7 +568,7 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 	gboolean         skip;
 	
 	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
 	
 	priv = bookshelf->priv;
 	
@@ -621,7 +620,7 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 			continue;
 		}
 		
-		bookshelf_add_book (bookshelf, book);
+		dh_bookshelf_add_book (bookshelf, book);
 		
 		g_free (node->data);
 	}
@@ -633,14 +632,14 @@ bookshelf_add_directory (Bookshelf *bookshelf, const gchar *directory)
 
 
 Book *
-bookshelf_find_book_by_title (Bookshelf *bookshelf, const gchar *title)
+dh_bookshelf_find_book_by_title (DhBookshelf *bookshelf, const gchar *title)
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
 	Book            *book;
 	GSList          *node;
 
 	g_return_val_if_fail (bookshelf != NULL, NULL);
-	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
+	g_return_val_if_fail (DH_IS_BOOKSHELF (bookshelf), NULL);
 	g_return_val_if_fail (title != NULL, NULL);
 
 	priv = bookshelf->priv;
@@ -657,14 +656,14 @@ bookshelf_find_book_by_title (Bookshelf *bookshelf, const gchar *title)
 }
 
 Book *
-bookshelf_find_book_by_uri (Bookshelf *bookshelf, const GnomeVFSURI *uri)
+dh_bookshelf_find_book_by_uri (DhBookshelf *bookshelf, const GnomeVFSURI *uri)
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
 	Book            *book;
 	GSList          *node;
 
 	g_return_val_if_fail (bookshelf != NULL, NULL);
-	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
+	g_return_val_if_fail (DH_IS_BOOKSHELF (bookshelf), NULL);
 	g_return_val_if_fail (uri != NULL, NULL);
 
 	priv = bookshelf->priv;
@@ -681,15 +680,15 @@ bookshelf_find_book_by_uri (Bookshelf *bookshelf, const GnomeVFSURI *uri)
 }
 
 Book *
-bookshelf_find_book_by_name (Bookshelf *bookshelf, const gchar *name) 
+dh_bookshelf_find_book_by_name (DhBookshelf *bookshelf, const gchar *name) 
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
 	Book            *book;
 	GSList          *node;
 	const gchar     *book_name;
 
 	g_return_val_if_fail (bookshelf != NULL, NULL);
-	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
+	g_return_val_if_fail (DH_IS_BOOKSHELF (bookshelf), NULL);
 	g_return_val_if_fail (name != NULL, NULL);
 
 	priv = bookshelf->priv;
@@ -708,13 +707,13 @@ bookshelf_find_book_by_name (Bookshelf *bookshelf, const gchar *name)
 }
 
 void
-bookshelf_remove_book (Bookshelf *bookshelf, Book *book)
+dh_bookshelf_remove_book (DhBookshelf *bookshelf, Book *book)
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
 	GSList          *node;
 	
 	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
 
@@ -728,12 +727,12 @@ bookshelf_remove_book (Bookshelf *bookshelf, Book *book)
 }
 
 GSList *
-bookshelf_get_books (Bookshelf *bookshelf)
+dh_bookshelf_get_books (DhBookshelf *bookshelf)
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
         
 	g_return_val_if_fail (bookshelf != NULL, NULL);
-	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
+	g_return_val_if_fail (DH_IS_BOOKSHELF (bookshelf), NULL);
         
 	priv = bookshelf->priv;
         
@@ -741,13 +740,13 @@ bookshelf_get_books (Bookshelf *bookshelf)
 }
 
 void
-bookshelf_open_document (Bookshelf *bookshelf, const Document *document)
+dh_bookshelf_open_document (DhBookshelf *bookshelf, const Document *document)
 {
-	BookshelfPriv   *priv;
+	DhBookshelfPriv   *priv;
 	Book            *book;
 	
 	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
 	g_return_if_fail (document != NULL);
         
 	priv = bookshelf->priv;
@@ -760,26 +759,26 @@ bookshelf_open_document (Bookshelf *bookshelf, const Document *document)
 }
 
 BookNode *
-bookshelf_find_node (Bookshelf        *bookshelf, 
+dh_bookshelf_find_node (DhBookshelf        *bookshelf, 
 		     const Document   *document, 
 		     const gchar      *anchor)
 {
 	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
 	g_return_if_fail (document != NULL);
 
 	return book_find_node (document_get_book (document), document, anchor);
 }
 
 gboolean
-bookshelf_have_book (Bookshelf *bookshelf,
+dh_bookshelf_have_book (DhBookshelf *bookshelf,
 		     Book      *book)
 {
-	BookshelfPriv *priv;
+	DhBookshelfPriv *priv;
 	GSList        *node;
 	
 	g_return_if_fail (bookshelf != NULL);
-	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (DH_IS_BOOKSHELF (bookshelf));
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
 
@@ -810,11 +809,11 @@ bookshelf_have_book (Bookshelf *bookshelf,
 
 		     
 Document *
-bookshelf_find_document (Bookshelf      *bookshelf, 
+dh_bookshelf_find_document (DhBookshelf      *bookshelf, 
 			 const gchar    *url, 
 			 gchar         **anchor)
 {
-	BookshelfPriv    *priv;
+	DhBookshelfPriv    *priv;
 	Book             *book;
 	Document         *document = NULL;
 	gint              depth;
@@ -824,13 +823,13 @@ bookshelf_find_document (Bookshelf      *bookshelf,
 	gchar            *doc_url;
 	
 	g_return_val_if_fail (bookshelf != NULL, NULL);
-	g_return_val_if_fail (IS_BOOKSHELF (bookshelf), NULL);
+	g_return_val_if_fail (DH_IS_BOOKSHELF (bookshelf), NULL);
 	
 	priv    = bookshelf->priv;
 
 	if (!util_uri_is_relative (url)) {
  		uri = gnome_vfs_uri_new (url); 
-		book = bookshelf_find_book_by_uri (bookshelf, uri);
+		book = dh_bookshelf_find_book_by_uri (bookshelf, uri);
 		
 		if (book) {
  			doc_url = util_url_split (url, anchor);
@@ -855,7 +854,7 @@ bookshelf_find_document (Bookshelf      *bookshelf,
 			book_name = util_url_get_book_name (url);
 			
 			if (book_name) {
-				book = bookshelf_find_book_by_name (bookshelf,
+				book = dh_bookshelf_find_book_by_name (bookshelf,
 								    book_name);
 				g_free (book_name);
 				

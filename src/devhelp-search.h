@@ -25,7 +25,7 @@
 
 #include <glib-object.h>
 #include <gtk/gtkwidget.h>
-#include "bookshelf.h"
+#include "dh-bookshelf.h"
 
 #define DEVHELP_SEARCH_ENTRY_OAFIID "OAFIID:GNOME_DevHelp_SearchEntry"
 #define DEVHELP_SEARCH_RESULT_OAFIID "OAFIID:GNOME_DevHelp_SearchResult"
@@ -62,7 +62,7 @@ struct _DevHelpSearchClass
 };
 
 GType            devhelp_search_get_type           (void);
-DevHelpSearch *  devhelp_search_new                (Bookshelf      *bookshelf);
+DevHelpSearch *  devhelp_search_new                (DhBookshelf    *bookshelf);
 
 GtkWidget *      devhelp_search_get_entry_widget   (DevHelpSearch  *search);
 GtkWidget *      devhelp_search_get_result_widget  (DevHelpSearch  *search);

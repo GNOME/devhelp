@@ -1,5 +1,13 @@
 2002-08-08  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/dh-bookshelf.[ch]: 
+	- Changed name from bookshelf.[ch]
+	- Bookshelf -> DhBookshelf
+
+	* src/Makefile.am:
+	- Don't build install.[ch]
+	- bookshelf.[ch] -> dh-bookshelf.[ch]
+
 	* ui/GNOME_DevHelp_Controller.ui: removed book manager.
 
 	* ui/GNOME_DevHelp.ui: removed zoom, view-sidebar, preferences.
@@ -85,7 +93,7 @@
 	* Makefile.am: Include idl in the subdirs.
 	* configure.in: Include idl in AC_OUTPUT.
 	* src/Makefile.am: Move history.[ch] and books-dialog.[ch] into
-	libdevhelp2.la
+	  libdevhelp2.la
 	* src/book-index.c: 
 	* src/book-index.h: Begin converting the book index to GtkTreeView.
 	* ui/Makefile.am: Install the new book icons.

@@ -21,8 +21,6 @@ devhelp_2_SOURCES = 				\
 	devhelp-window.h			\
 	help-browser.c				\
 	help-browser.h				\
-	install.c				\
-	install.h				\
 	main.c
 
 devhelp_2_LDADD = 				\
@@ -41,8 +39,8 @@ libdevhelp2_la_SOURCES =			\
 	book-index.c				\
 	book-index.h				\
 	book-node.h				\
-	bookshelf.c				\
-	bookshelf.h                     	\
+	dh-bookshelf.c				\
+	dh-bookshelf.h                     	\
 	devhelp-controller.c			\
 	devhelp-controller.h			\
 	devhelp-marshal.c			\

@@ -33,7 +33,9 @@
 #include <gtk/gtktreestore.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include "book.h"
+#include "dh-bookshelf.h"
 #include "book-index.h"
+
 
 static void book_index_class_init         (BookIndexClass       *klass);
 static void book_index_init               (BookIndex            *index);
@@ -71,7 +73,7 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 struct _BookIndexPriv {
-        Bookshelf           *bookshelf;
+        DhBookshelf         *bookshelf;
 
 	GtkTreeStore        *store;
 
@@ -235,7 +237,7 @@ book_index_populate_tree (BookIndex *index)
         g_return_if_fail (IS_BOOK_INDEX (index));
 
         priv  = index->priv;
-	books = bookshelf_get_books (priv->bookshelf);
+	books = dh_bookshelf_get_books (priv->bookshelf);
 
 	for (; books; books = books->next) {
 		book = BOOK (books->data);
@@ -333,7 +335,7 @@ book_index_create_pixbufs (BookIndex *index)
 }
 
 GtkWidget *
-book_index_new (Bookshelf *bookshelf)
+book_index_new (DhBookshelf *bookshelf)
 {
         BookIndex       *index;
 	index = g_object_new (TYPE_BOOK_INDEX, NULL);
@@ -368,8 +370,8 @@ book_index_selection_changed_cb (GtkTreeSelection *selection,
 				 book_index_selection_changed_cb,
 				 index);
  
-			bookshelf_open_document (index->priv->bookshelf, 
-						 book_node_get_document (book_node));
+			dh_bookshelf_open_document (index->priv->bookshelf, 
+						    book_node_get_document (book_node));
 
 			uri = book_node_get_uri (book_node, NULL);
 

@@ -26,10 +26,10 @@
 
 #include <bonobo.h>
 #include <bonobo/bonobo-shlib-factory.h>
-#include "bookshelf.h"
+
+#include "dh-bookshelf.h"
 #include "function-database.h"
 #include "book-index.h"
-#include "books-dialog.h"
 #include "devhelp-search.h"
 #include "history.h"
 #include "devhelp-controller.h"
@@ -52,10 +52,6 @@ static gboolean devhelp_controller_open    (DevHelpController      *controller,
 
 static void devhelp_controller_emit_uri    (DevHelpController      *controller,
 					    const gchar            *str_uri);
-
-static void cmd_book_manager_cb            (BonoboUIComponent      *component,
-					    gpointer                data,
-					    const gchar            *cname);
 
 static void cmd_back_cb                    (BonoboUIComponent      *component,
 					    gpointer                data,
@@ -88,7 +84,7 @@ devhelp_controller_back_exists_changed_cb (History                 *history,
 static BonoboXObjectClass *parent_class;
 
 struct _DevHelpControllerPriv {
-        Bookshelf           *bookshelf;
+        DhBookshelf         *bookshelf;
         FunctionDatabase    *fd;
         
         BookIndex           *index;
@@ -103,7 +99,6 @@ struct _DevHelpControllerPriv {
 };
 
 static BonoboUIVerb verbs[] = {
-	BONOBO_UI_VERB ("CmdBookManager",    cmd_book_manager_cb),
 	BONOBO_UI_VERB ("CmdBack",           cmd_back_cb),
 	BONOBO_UI_VERB ("CmdForward",        cmd_forward_cb),
         BONOBO_UI_VERB_END
@@ -253,7 +248,7 @@ devhelp_controller_init (DevHelpController *controller)
 	priv->ui_component = NULL;
         priv->fd           = function_database_new ();
 	priv->history      = history_new ();
-        priv->bookshelf    = bookshelf_new (priv->fd);
+        priv->bookshelf    = dh_bookshelf_new (priv->fd);
         priv->index        = BOOK_INDEX (book_index_new (priv->bookshelf));
 
 	g_signal_connect (priv->history,
@@ -346,13 +341,13 @@ devhelp_controller_open (DevHelpController *controller, const gchar *url)
 
 	priv = controller->priv;
 	
-	doc = bookshelf_find_document (priv->bookshelf, url, &anchor);
+	doc = dh_bookshelf_find_document (priv->bookshelf, url, &anchor);
 	
 	if (doc) { 
-		node = bookshelf_find_node (priv->bookshelf, doc, anchor);
+		node = dh_bookshelf_find_node (priv->bookshelf, doc, anchor);
 
 		if (node) {
-			bookshelf_open_document (priv->bookshelf, doc);
+			dh_bookshelf_open_document (priv->bookshelf, doc);
 			priv->current_node = node;
 			
 			gtk_signal_handler_block_by_func 
@@ -406,27 +401,6 @@ devhelp_controller_emit_uri (DevHelpController   *controller,
 					      NULL);
 	
  	CORBA_free (any);
-}
-
-static void
-cmd_book_manager_cb (BonoboUIComponent   *component,
-		     gpointer             data,
-		     const gchar         *cname)
-{
-	DevHelpController       *controller;
-	DevHelpControllerPriv   *priv;
-	GtkWidget               *widget;
-	
-	g_return_if_fail (data != NULL);
-	g_return_if_fail (IS_DEVHELP_CONTROLLER (data));
-	
-	controller = DEVHELP_CONTROLLER (data);
-	priv       = controller->priv;
-
-	widget = books_dialog_new (priv->bookshelf);
-	gtk_widget_show_all (widget);
-	
-	gtk_main ();
 }
 
 static void

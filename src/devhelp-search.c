@@ -92,7 +92,7 @@ struct _DevHelpSearchPriv {
 	GtkWidget           *entry; 
 	GtkWidget           *clist; 
 
-        Bookshelf           *bookshelf;
+        DhBookshelf         *bookshelf;
 	FunctionDatabase    *fd;
 
 	guint                complete;
@@ -189,7 +189,7 @@ devhelp_search_entry_changed_cb (GtkEditable *editable, DevHelpSearch *search)
         g_return_if_fail (IS_DEVHELP_SEARCH (search));
         
         priv = search->priv;
-        fd   = bookshelf_get_function_database (priv->bookshelf);
+        fd   = dh_bookshelf_get_function_database (priv->bookshelf);
 
         function_database_idle_search (fd);
 }
@@ -281,7 +281,7 @@ devhelp_search_clist_select_row_cb (GtkCList        *clist,
                 return;
         }
 
-	bookshelf_open_document (priv->bookshelf, function->document);
+	dh_bookshelf_open_document (priv->bookshelf, function->document);
 	
 	uri = document_get_uri (function->document, function->anchor);
         
@@ -445,7 +445,7 @@ devhelp_search_function_removed_cb (FunctionDatabase  *fd,
 }
 
 DevHelpSearch *
-devhelp_search_new (Bookshelf *bookshelf)
+devhelp_search_new (DhBookshelf *bookshelf)
 {
         DevHelpSearch       *search;
         DevHelpSearchPriv   *priv;
@@ -456,7 +456,7 @@ devhelp_search_new (Bookshelf *bookshelf)
         priv->bookshelf = bookshelf;
         priv->clist     = gtk_clist_new (1);
         priv->entry     = gtk_entry_new ();
-	priv->fd        = bookshelf_get_function_database (bookshelf);
+	priv->fd        = dh_bookshelf_get_function_database (bookshelf);
 
         g_signal_connect (priv->clist, 
 			  "select_row",

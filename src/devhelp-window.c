@@ -38,65 +38,65 @@
 
 #define DEVHELP_WINDOW_UI "GNOME_MrProject_Client.ui"
 
-static void devhelp_window_class_init    (DevHelpWindowClass   *klass);
-static void devhelp_window_init          (DevHelpWindow        *index);
+static void window_class_init                (DevHelpWindowClass *klass);
+static void window_init                      (DevHelpWindow      *index);
  
-static void dw_destroy                   (GtkObject            *object);
+static void window_destroy                   (GtkObject          *object);
 
-static void dw_populate                  (DevHelpWindow        *window);
+static void window_populate                  (DevHelpWindow      *window);
 
-static void cmd_print_cb                 (BonoboUIComponent    *component,
-					  gpointer              data,
-					  const gchar          *cname);
+static void window_cmd_print_cb              (BonoboUIComponent  *component,
+					      gpointer            data,
+					      const gchar        *cname);
 
-static void cmd_exit_cb                  (BonoboUIComponent    *component,
-					  gpointer              data,
-					  const gchar          *cname);
+static void window_cmd_exit_cb               (BonoboUIComponent  *component,
+					      gpointer            data,
+					      const gchar        *cname);
 
-static void cmd_view_side_bar_cb         (BonoboUIComponent    *component,
-					  gpointer              data,
-					  const gchar          *cname);
+static void window_cmd_view_side_bar_cb      (BonoboUIComponent  *component,
+					      gpointer            data,
+					      const gchar        *cname);
 
-static void cmd_about_cb                 (BonoboUIComponent    *component,
-					  gpointer              data,
-					  const gchar          *cname);
+static void window_cmd_about_cb              (BonoboUIComponent  *component,
+					      gpointer            data,
+					      const gchar        *cname);
 
-static void dw_uri_changed_cb            (BonoboListener       *listener,
-					  const gchar          *event_name,
-					  const CORBA_any      *arg,
-					  CORBA_Environment    *ev,
-					  gpointer              user_data);
+static void window_uri_changed_cb            (BonoboListener     *listener,
+					      const gchar        *event_name,
+					      const CORBA_any    *arg,
+					      CORBA_Environment  *ev,
+					      gpointer            user_data);
 
-static void dw_delete_cb                 (GtkWidget            *widget,
-					  GdkEventAny          *event,
-					  gpointer              user_data);
+static void window_delete_cb                 (GtkWidget          *widget,
+					      GdkEventAny        *event,
+					      gpointer            user_data);
 
-static void dw_link_clicked_cb           (DevHelpWindow        *ignored,
-					  gchar                *url,
-					  DevHelpWindow        *window);
+static void window_link_clicked_cb           (DevHelpWindow      *ignored,
+					      gchar              *url,
+					      DevHelpWindow      *window);
 
-static void dw_on_url_cb                 (DevHelpWindow        *window,
-					  gchar                *url,
-					  gpointer              ignored);
+static void window_on_url_cb                 (DevHelpWindow      *window,
+					      gchar              *url,
+					      gpointer            ignored);
 
-static void dw_note_change_page_cb       (GtkWidget            *child,
-					  GtkNotebook          *notebook);
+static void window_note_change_page_cb       (GtkWidget          *child,
+					      GtkNotebook        *notebook);
 
-static void dw_note_page_mapped_cb       (GtkWidget            *page, 
-					  GtkAccelGroup        *accel_group);
+static void window_note_page_mapped_cb       (GtkWidget          *page, 
+					      GtkAccelGroup      *accel_group);
 
-static void dw_note_page_unmapped_cb     (GtkWidget            *page, 
-					  GtkAccelGroup        *accel_group);
+static void window_note_page_unmapped_cb     (GtkWidget          *page, 
+					      GtkAccelGroup      *accel_group);
 
 
-static void dw_note_page_setup_signals   (GtkWidget            *page, 
-					  GtkAccelGroup        *accel);
+static void window_note_page_setup_signals   (GtkWidget          *page, 
+					      GtkAccelGroup      *accel);
 
 static void 
-dw_notebook_append_page_with_accelerator (GtkNotebook          *notebook,
-					  GtkWidget            *page,
-					  gchar                *label_text,
-					  GtkAccelGroup        *accel);
+window_notebook_append_page_with_accelerator (GtkNotebook        *notebook,
+					      GtkWidget          *page,
+					      gchar              *label_text,
+					      GtkAccelGroup      *accel);
 
 
 static BonoboWindowClass *parent_class = NULL;
@@ -117,12 +117,12 @@ struct _DevHelpWindowPriv {
 };
 
 static BonoboUIVerb verbs[] = {
-        BONOBO_UI_VERB ("CmdPrint",          cmd_print_cb),
-        BONOBO_UI_VERB ("CmdExit",           cmd_exit_cb),
+        BONOBO_UI_VERB ("CmdPrint",          window_cmd_print_cb),
+        BONOBO_UI_VERB ("CmdExit",           window_cmd_exit_cb),
 
-        BONOBO_UI_VERB ("CmdViewSideBar",    cmd_view_side_bar_cb),
+        BONOBO_UI_VERB ("CmdViewSideBar",    window_cmd_view_side_bar_cb),
 
-        BONOBO_UI_VERB ("CmdAbout",          cmd_about_cb),
+        BONOBO_UI_VERB ("CmdAbout",          window_cmd_about_cb),
         BONOBO_UI_VERB_END
 };
 
@@ -136,8 +136,8 @@ devhelp_window_get_type (void)
                         "DevHelpWindow",
                         sizeof (DevHelpWindow),
                         sizeof (DevHelpWindowClass),
-                        (GtkClassInitFunc)  devhelp_window_class_init,
-                        (GtkObjectInitFunc) devhelp_window_init,
+                        (GtkClassInitFunc)  window_class_init,
+                        (GtkObjectInitFunc) window_init,
                         /* reserved_1 */ NULL,
                         /* reserved_2 */ NULL,
                         (GtkClassInitFunc) NULL,
@@ -151,7 +151,7 @@ devhelp_window_get_type (void)
 }
 
 static void
-devhelp_window_class_init (DevHelpWindowClass *klass)
+window_class_init (DevHelpWindowClass *klass)
 {
         GtkObjectClass   *object_class;
         
@@ -159,11 +159,11 @@ devhelp_window_class_init (DevHelpWindowClass *klass)
 
         object_class = (GtkObjectClass *) klass;
         
-        object_class->destroy = dw_destroy;
+        object_class->destroy = window_destroy;
 }
 
 static void
-devhelp_window_init (DevHelpWindow *window)
+window_init (DevHelpWindow *window)
 {
         DevHelpWindowPriv   *priv;
 
@@ -173,12 +173,12 @@ devhelp_window_init (DevHelpWindow *window)
 }
 
 static void
-dw_destroy (GtkObject *object)
+window_destroy (GtkObject *object)
 {
 }
 
 static void
-dw_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
+window_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
 {
 	gint page = gtk_notebook_page_num (notebook, child);
 
@@ -186,7 +186,7 @@ dw_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
 }
 
 static void
-dw_populate (DevHelpWindow *window)
+window_populate (DevHelpWindow *window)
 {
         DevHelpWindowPriv    *priv;
         CORBA_Environment     ev;
@@ -233,7 +233,7 @@ dw_populate (DevHelpWindow *window)
 	}
 	
  	bonobo_event_source_client_add_listener (es,
- 						 dw_uri_changed_cb,
+ 						 window_uri_changed_cb,
  						 "GNOME/DevHelp:URI:changed",
  						 NULL, 
  						 window);
@@ -310,21 +310,21 @@ dw_populate (DevHelpWindow *window)
 
  	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_widget)->document),
 				 "link_clicked", 
-				 G_CALLBACK (dw_link_clicked_cb),
+				 G_CALLBACK (window_link_clicked_cb),
 				 G_OBJECT (window),
 				 0);
 	/* TODO: Look in gtkhtml2 code or ask jborg */
 #if GNOME2_PORT_COMPLETE	
 	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_widget)->document),
 				 "on_url",
-				 G_CALLBACK (dw_on_url_cb),
+				 G_CALLBACK (window_on_url_cb),
 				 G_OBJECT (window),
 				 0);
 #endif	
 }
 
 static void
-cmd_print_cb (BonoboUIComponent   *component,
+window_cmd_print_cb (BonoboUIComponent   *component,
 	      gpointer             data,
 	      const gchar         *cname)
 {
@@ -346,7 +346,7 @@ cmd_print_cb (BonoboUIComponent   *component,
 }
 
 static void
-cmd_exit_cb (BonoboUIComponent   *component,
+window_cmd_exit_cb (BonoboUIComponent   *component,
 	     gpointer             data,
 	     const gchar         *cname)
 {
@@ -354,14 +354,14 @@ cmd_exit_cb (BonoboUIComponent   *component,
 }
 
 static void
-cmd_view_side_bar_cb (BonoboUIComponent   *component,
+window_cmd_view_side_bar_cb (BonoboUIComponent   *component,
 		      gpointer             data,
 		      const gchar         *cname)
 {
 }
 
 static void
-cmd_about_cb (BonoboUIComponent    *component,
+window_cmd_about_cb (BonoboUIComponent    *component,
 	      gpointer              data,
 	      const gchar          *cname)
 {
@@ -386,7 +386,7 @@ cmd_about_cb (BonoboUIComponent    *component,
 }
 
 static void
-dw_uri_changed_cb (BonoboListener      *listener,
+window_uri_changed_cb (BonoboListener      *listener,
 		   const gchar         *event_name,
 		   const CORBA_any     *any,
 		   CORBA_Environment   *ev,
@@ -411,7 +411,7 @@ dw_uri_changed_cb (BonoboListener      *listener,
 }
 
 static void
-dw_delete_cb (GtkWidget     *widget,
+window_delete_cb (GtkWidget     *widget,
 	      GdkEventAny   *event,
 	      gpointer       user_data)
 {
@@ -422,7 +422,7 @@ dw_delete_cb (GtkWidget     *widget,
 }
 
 static void
-dw_link_clicked_cb (DevHelpWindow   *ignored,
+window_link_clicked_cb (DevHelpWindow   *ignored,
 		    gchar           *url,
 		    DevHelpWindow   *window)
 {
@@ -437,7 +437,7 @@ dw_link_clicked_cb (DevHelpWindow   *ignored,
 }
 
 static void
-dw_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
+window_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
 {
 	DevHelpWindowPriv   *priv;
 	gchar               *status_text;
@@ -513,10 +513,10 @@ devhelp_window_new (void)
 
 	g_signal_connect (GTK_OBJECT (window), 
 			  "delete_event",
-			  G_CALLBACK (dw_delete_cb),
+			  G_CALLBACK (window_delete_cb),
 			  NULL);
 
-        dw_populate (window);
+        window_populate (window);
 
 	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png", NULL);
 	if (icon) {

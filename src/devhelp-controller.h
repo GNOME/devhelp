@@ -28,7 +28,7 @@
 #include <gtk/gtktypeutils.h>
 #include <bonobo/bonobo-xobject.h>
 #include "GNOME_DevHelp.h"
-#include "bookshelf.h"
+#include "dh-bookshelf.h"
 
 #define TYPE_DEVHELP_CONTROLLER		   (devhelp_controller_get_type ())
 #define DEVHELP_CONTROLLER(obj)		   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_DEVHELP_CONTROLLER, DevHelpController))
