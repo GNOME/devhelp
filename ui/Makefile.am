@@ -1,8 +1,8 @@
 imagedir = $(datadir)/images/devhelp
 image_DATA = \
-	book_open.xpm \
-	book_red.xpm \
-	helpdoc.xpm
+	book_open.png \
+	book_closed.png \
+	helpdoc.png
 
 gladedir = $(datadir)/devhelp/glade
 glade_DATA = \

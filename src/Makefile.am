@@ -23,17 +23,13 @@ devhelp_2_SOURCES = 				\
 	devhelp-window.h			\
 	help-browser.c				\
 	help-browser.h				\
-	history.c				\
-	history.h				\
 	install.c				\
 	install.h				\
 	main.c					\
 	preferences.c				\
 	preferences.h				\
 	preferences-dialog.c			\
-	preferences-dialog.h			\
-	books-dialog.c				\
-	books-dialog.h
+	preferences-dialog.h
 
 devhelp_2_LDADD = 				\
 	      $(DEVHELP_LIBS) 			\
@@ -51,6 +47,8 @@ libdevhelp2_la_SOURCES =			\
 	book-index.c				\
 	book-index.h				\
 	book-node.h				\
+	books-dialog.c				\
+	books-dialog.h                          \
 	bookshelf.c				\
 	bookshelf.h                     	\
 	devhelp-controller.c			\
@@ -61,6 +59,8 @@ libdevhelp2_la_SOURCES =			\
 	devhelp-search.h			\
 	function-database.c			\
 	function-database.h			\
+	history.c                               \
+	history.h                               \
 	util.c					\
 	util.h
 

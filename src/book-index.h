@@ -24,7 +24,7 @@
 #define __BOOK_INDEX_H__
 
 #include <glib.h>
-#include <gtk/gtkctree.h>
+#include <gtk/gtktreeview.h>
 #include <gtk/gtkwidget.h>
 #include <gtk/gtktypeutils.h>
 #include "bookshelf.h"
@@ -45,14 +45,14 @@ typedef struct _BookIndexPriv   BookIndexPriv;
 
 struct _BookIndex
 {
-        GtkCTree         parent;
+	GtkTreeView parent;
         
         BookIndexPriv   *priv;
 };
 
 struct _BookIndexClass
 {
-        GtkCTreeClass parent_class;
+        GtkTreeViewClass parent_class;
 
         /* Signals */
         

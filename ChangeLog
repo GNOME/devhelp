@@ -1,3 +1,18 @@
+2002-04-26  Dave Camp  <dave@ximian.com>
+
+	* idl/Makefile.am (idldir): Install the idl file.
+
+	* Makefile.am: Include idl in the subdirs.
+	* configure.in: Include idl in AC_OUTPUT.
+	* src/Makefile.am: Move history.[ch] and books-dialog.[ch] into
+	libdevhelp2.la
+	* src/book-index.c: 
+	* src/book-index.h: Begin converting the book index to GtkTreeView.
+	* ui/Makefile.am: Install the new book icons.
+	* ui/book_closed.png:
+	* ui/book_open.png:
+	* ui/book_helpdoc.png: New pixmaps.
+
 2002-03-07  Richard Hult  <rhult@codefactory.se>
 
 	* src/main.c (main): Remove unnecessary init calls.
