@@ -91,8 +91,8 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected 'book' got '%s' at line %d, column %d"), 
-				     node_name, line, col);
+				     _("Expected '%s' got '%s' at line %d, column %d"), 
+				     "book", node_name, line, col);
 			return;
 		}
 
@@ -168,8 +168,8 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected 'sub' got '%s' at line %d column %d"), 
-				     node_name, line, col);
+				     _("Expected '%s' got '%s' at line %d, column %d"), 
+				     "sub", node_name, line, col);
 			return;
 		}
 
@@ -215,8 +215,8 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected 'function' got '%s' at line %d, column %d"),
-				     node_name, line, col);
+				     _("Expected '%s' got '%s' at line %d, column %d"),
+				     "function", node_name, line, col);
 			return;
 		}
 

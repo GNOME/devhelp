@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
-_Name=DevHelp
-_Comment=Developers Help program
+_Name=Devhelp
+_Comment=Developer's Help program
 Exec=devhelp
 Terminal=false
 Type=Application

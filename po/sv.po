@@ -1,6 +1,6 @@
-# Swedish messages for DevHelp.
+# Swedish messages for Devhelp.
 # Copyright (C) 2001, 2002, 2003 Free Software Foundation, Inc.
-# Richard Hult <rhult@codefactory.se>, 2001.
+# Richard Hult <richard@imendio.com>, 2001.
 # Johan Dahlin <zilch.am@home.se>, 2001.
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003.
 #
@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-27 13:22+0200\n"
+"POT-Creation-Date: 2003-06-27 19:11+0200\n"
 "PO-Revision-Date: 2003-05-15 18:41+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -18,16 +18,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-msgid "DevHelp"
-msgstr "DevHelp"
-
-#: devhelp.desktop.in.h:2
-msgid "Developers Help program"
+msgid "Developer's Help program"
 msgstr "Hjälpprogram för utvecklare"
 
+#: devhelp.desktop.in.h:2
+msgid "Devhelp"
+msgstr "Devhelp"
+
 #: devhelp.keys.in.h:1
-msgid "DevHelp Book"
-msgstr "DevHelp-bok"
+msgid "Devhelp Book"
+msgstr "Devhelp-bok"
 
 #: src/dh-html-gtkhtml2.c:526
 msgid ""
@@ -57,10 +57,10 @@ msgstr "Sök efter en funktion"
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
-#: src/dh-parser.c:94
+#: src/dh-parser.c:94 src/dh-parser.c:171 src/dh-parser.c:218
 #, c-format
-msgid "Expected 'book' got '%s' at line %d, column %d"
-msgstr "\"book\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "\"%s\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
 
 #: src/dh-parser.c:110
 #, c-format
@@ -72,20 +72,10 @@ msgstr "Ogiltig namnrymd \"%s\" vid rad %d, kolumn %d"
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "titel-, namn- och länkelement krävs vid rad %d, kolumn %d"
 
-#: src/dh-parser.c:171
-#, c-format
-msgid "Expected 'sub' got '%s' at line %d column %d"
-msgstr "\"sub\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
-
 #: src/dh-parser.c:192
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr "namn- och länkelement krävs inuti <sub> på rad %d, kolumn %d"
-
-#: src/dh-parser.c:218
-#, c-format
-msgid "Expected 'function' got '%s' at line %d, column %d"
-msgstr "\"function\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
 
 #: src/dh-parser.c:240
 #, c-format
@@ -114,32 +104,26 @@ msgstr "_Sök:"
 msgid "Section"
 msgstr "Avsnitt"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:102
 msgid "_File"
 msgstr "_Arkiv"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:103
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:104
 msgid "_Help"
 msgstr "_Hjälp"
 
-#. About menu
-#: src/dh-window.c:116
-msgid "_About"
-msgstr "_Om"
-
-#: src/dh-window.c:299
+#: src/dh-window.c:300
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/dh-window.c:310
+#: src/dh-window.c:311
 msgid "Search"
 msgstr "Sök"
 
-#: src/dh-window.c:372
+#: src/dh-window.c:374
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
-

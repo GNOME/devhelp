@@ -1,5 +1,13 @@
 2003-06-27  Richard Hult  <richard@imendio.com>
 
+	* devhelp.keys.in: 
+	* devhelp.desktop.in: Fix name.
+
+	* src/dh-parser.c (parser_start_node_cb): Fix bug #113065, make
+	messages more generic to help translators.
+
+	* libegg/menu/egg-action.c: Patch to get translated menus.
+
 	* libegg/menu/egg-menu-merge.c: Disable some debug output.
 
 	* src/dh-window.c (window_activate_action): Apply a variant of the

@@ -1,5 +1,6 @@
 #include "egg-action.h"
 #include "../toolbar/eggtoolbutton.h"
+#include "../util/eggintl.h"
 
 #ifndef _
 # define _(s) (s)

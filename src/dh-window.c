@@ -1,7 +1,8 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2002 CodeFactory AB
+ * Copyright (C) 2002      CodeFactory AB
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2003      Richard Hult <richard@imendio.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
