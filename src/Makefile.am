@@ -6,6 +6,7 @@ INCLUDES = 						\
 	  $(GNOMEUI_CFLAGS) 				\
 	  $(GCONF_CFLAGS) 				\
 	  $(BONOBO_CFLAGS) 				\
+	  $(BONOBOX_CFLAGS) 				\
 	  $(LIBXML_CFLAGS) 				\
 	  $(GTKHTML_CFLAGS) 				\
 	  $(VFS_CFLAGS)					\
@@ -40,6 +41,7 @@ devhelp_LDADD = 			\
 	      $(GNOMEUI_LIBS) 		\
 	      $(GCONF_LIBS) 		\
 	      $(BONOBO_LIBS)            \
+	      $(BONOBOX_LIBS)            \
 	      $(VFS_LIBS)		\
 	      $(GTKHTML_LIBS) 		\
 	      -lgtkhtml 		\
