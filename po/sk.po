@@ -1,12 +1,12 @@
 # devhelp sk.po
-# Copyright (C) 2001 Free Software Foundation, Inc.
-# Marcel Telka <marcel@telka.sk>, 2001.
+# Copyright (C) 2001, 2002 Free Software Foundation, Inc.
+# Marcel Telka <marcel@telka.sk>, 2001, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-12-15 14:45+0100\n"
-"PO-Revision-Date: 2001-12-15 14:52+0100\n"
+"POT-Creation-Date: 2002-05-10 11:05+0200\n"
+"PO-Revision-Date: 2002-05-10 11:07+0100\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -30,17 +30,17 @@ msgstr "Vybra» knihu..."
 msgid "Problems when reading books: %s\n"
 msgstr "Problémy pri èítaní kníh: %s\n"
 
-#: src/bookshelf.c:367
+#: src/bookshelf.c:354
 #, c-format
 msgid "Empty document: %s"
 msgstr "Prázdny dokument: %s"
 
-#: src/bookshelf.c:373
+#: src/bookshelf.c:360
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
 msgstr "Zlý typ dokumentu %s, oèakávaný zoznam kníh: %s"
 
-#: src/bookshelf.c:407
+#: src/bookshelf.c:394
 #, c-format
 msgid ""
 "I found an old version of your spec file (%s)\n"
@@ -49,11 +49,11 @@ msgstr ""
 "Na¹iel som starú verziu vá¹ho spec súboru (%s)\n"
 "Vymazal som ju. Ak chcete ma» skryté nejaké knihy, musíte ich skry» znova."
 
-#: src/bookshelf.c:412
+#: src/bookshelf.c:399
 msgid "Ok"
 msgstr "Ok"
 
-#: src/bookshelf.c:453
+#: src/bookshelf.c:440
 #, c-format
 msgid "Failed to open file %s for writing."
 msgstr "Zlyhalo otvorenie súboru %s pre zápis."
@@ -74,7 +74,7 @@ msgstr "(C) Autorské práva 2001, Johan Dahlin"
 msgid "A developer's help browser"
 msgstr "Prehliadaè pomocníka pre vývojárov"
 
-#: src/devhelp-window.c:621
+#: src/devhelp-window.c:622
 #, c-format
 msgid "Open %s"
 msgstr "Otvori» %s"
@@ -187,8 +187,8 @@ msgid " "
 msgstr " "
 
 #: ui/devhelp.glade.h:2
-msgid "<< _Show"
-msgstr "<< _Ukáza»"
+msgid "&lt;&lt; _Show"
+msgstr "&lt;&lt; _Zobrazi»"
 
 #: ui/devhelp.glade.h:3
 msgid "Author:"
@@ -271,8 +271,8 @@ msgid "_Edit book..."
 msgstr "_Upravi» knihu..."
 
 #: ui/devhelp.glade.h:28
-msgid "_Hide >>"
-msgstr "_Skry» >>"
+msgid "_Hide &gt;&gt;"
+msgstr "_Skry» &gt;&gt;"
 
 #: ui/devhelp.glade.h:29
 msgid "_Limit the number of hits to:"
