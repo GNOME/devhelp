@@ -11,17 +11,23 @@
 
 #include <config.h>
 #include <string.h>
+#include <errno.h>
 
 #ifdef HAVE_LIBZ
 #include "zlib.h"
 #endif
 
+#include <libgnome/gnome-i18n.h>
+
+#include "dh-error.h"
 #include "dh-link.h"
 #include "dh-parser.h"
 
 #define d(x)
 #define DH_PARSER(o) ((DhParser *) o)
 #define BYTES_PER_READ 4096
+
+extern int errno;
 
 typedef struct { 
 	GMarkupParser       *m_parser;
@@ -81,7 +87,11 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		const gchar *link  = NULL;
 		
 		if (g_ascii_strcasecmp (node_name, "book") != 0) {
-			/* Set error */
+			g_set_error (error,
+				     DH_ERROR,
+				     DH_ERROR_MALFORMED_BOOK,
+				     _("Expected 'book' got '%s'"), 
+				     node_name);
 			return;
 		}
 
@@ -92,6 +102,11 @@ parser_start_node_cb (GMarkupParseContext  *context,
 				if (g_ascii_strcasecmp (xmlns, 
 							"http://www.devhelp.net/book") != 0) {
 					/* Set error */
+					g_set_error (error,
+						     DH_ERROR,
+						     DH_ERROR_MALFORMED_BOOK,
+						     _("Invalid namespace '%s'"), 
+						     xmlns);
 					return;
 				}
 			}
@@ -115,7 +130,10 @@ parser_start_node_cb (GMarkupParseContext  *context,
 
 		if (!title || !name || !link) {
 			/* Required attributes */
-			/* Set error */
+			g_set_error (error,
+				     DH_ERROR,
+				     DH_ERROR_MALFORMED_BOOK,
+				     _("title, name, and link elements are required"));
 			return;
 		}
 
@@ -142,8 +160,11 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		GNode       *node;
 
 		if (g_ascii_strcasecmp (node_name, "sub") != 0) {
-			/* Set error */
-			g_print ("foo: %s\n", node_name);
+			g_set_error (error,
+				     DH_ERROR,
+				     DH_ERROR_MALFORMED_BOOK,
+				     _("Expected 'sub' got '%s'"), 
+				     node_name);
 			return;
 		}
 
@@ -159,7 +180,10 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		}
 
 		if (!name || !link) {
-			/* Required */
+			g_set_error (error,
+				     DH_ERROR,
+				     DH_ERROR_MALFORMED_BOOK,
+				     _("name and link elements are required inside <sub>"));
 			return;
 		}
 
@@ -180,7 +204,11 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		const gchar *link = NULL;
 
 		if (g_ascii_strcasecmp (node_name, "function") != 0) {
-			/* Set error */ 
+			g_set_error (error,
+				     DH_ERROR,
+				     DH_ERROR_MALFORMED_BOOK,
+				     _("Expected 'function' got '%s'"), 
+				     node_name);
 			return;
 		}
 
@@ -197,6 +225,10 @@ parser_start_node_cb (GMarkupParseContext  *context,
 
 		if (!name || !link) {
 			/* Required */
+			g_set_error (error,
+				     DH_ERROR,
+				     DH_ERROR_MALFORMED_BOOK,
+				     _("name and link elements are required inside <function>"));
 			return;
 		}
 
@@ -229,7 +261,7 @@ parser_end_node_cb (GMarkupParseContext  *context,
 	parser = DH_PARSER (user_data);
 	
 	if (parser->parsing_chapters) {
-		g_node_reverse_children(parser->parent);
+		g_node_reverse_children (parser->parent);
 		if (g_ascii_strcasecmp (node_name, "sub") == 0) {
 			parser->parent = parser->parent->parent;
 			/* Move up in the tree */
@@ -263,7 +295,7 @@ parser_error_cb (GMarkupParseContext *context,
 	parser = DH_PARSER (user_data);
 
 	g_markup_parse_context_free (parser->context);
-	parser->context = NULL;
+ 	parser->context = NULL;
 }
 
 gboolean
@@ -278,16 +310,20 @@ dh_parse_file (const gchar  *path,
 	
 	parser = g_new0 (DhParser, 1);
 	if (!parser) {
-		/* Set error */
-		g_print ("1\n");
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_INTERNAL_ERROR,
+			     _("Could not create book parser"));
 		return FALSE;
 	}
 	
 	parser->m_parser = g_new0 (GMarkupParser, 1);
 	if (!parser->m_parser) {
 		g_free (parser);
-		/* Set error */
-		g_print ("2\n");
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_INTERNAL_ERROR,
+			     _("Could not create markup parser"));
 		return FALSE;
 	}
 
@@ -313,26 +349,27 @@ dh_parse_file (const gchar  *path,
 	if (!io) {
 		g_markup_parse_context_free (parser->context);
 		g_free (parser);
-		g_print ("3\n");
 		return FALSE;
 	}
 	
 	while (TRUE) {
-		GIOError io_error;
+		GIOStatus io_status;
 		gsize    bytes_read;
-		
-		io_error = g_io_channel_read (io, buf, BYTES_PER_READ,
-					   &bytes_read);
-		if (io_error != G_IO_ERROR_NONE) {
+		io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
+					   &bytes_read, error);
+		if (io_status == G_IO_STATUS_ERROR) {
 			g_markup_parse_context_free (parser->context);
 			g_free (parser);
-			/* Set error */
-			g_print ("4\n");
 			return FALSE;
 		}
-		
+		if (io_status != G_IO_STATUS_NORMAL) break;
+
 		g_markup_parse_context_parse (parser->context, buf,
 					      bytes_read, error);
+		if (error != NULL && *error != NULL) {
+			return FALSE;
+		}
+
 		if (bytes_read < BYTES_PER_READ) {
 			break;
 		}
@@ -357,16 +394,20 @@ dh_parse_gz_file (const gchar  *path,
 
 	parser = g_new0 (DhParser, 1);
 	if (!parser) {
-		/* Set error */
-		g_print ("1\n");
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_INTERNAL_ERROR,
+			     _("Could not create book parser"));
 		return FALSE;
 	}
 	
 	parser->m_parser = g_new0 (GMarkupParser, 1);
 	if (!parser->m_parser) {
 		g_free (parser);
-		/* Set error */
-		g_print ("2\n");
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_INTERNAL_ERROR,
+			     _("Could not create markup parser"));
 		return FALSE;
 	}
 
@@ -392,33 +433,42 @@ dh_parse_gz_file (const gchar  *path,
 	if (!file) {
 		g_markup_parse_context_free (parser->context);
 		g_free (parser);
-		g_print ("3\n");
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_FILE_NOT_FOUND,
+			     g_strerror (errno));
 		return FALSE;
 	}
 	
 	while (TRUE) {
 		gsize bytes_read;
 
-		bytes_read = gzread(file, buf, BYTES_PER_READ);
+		bytes_read = gzread (file, buf, BYTES_PER_READ);
 		if (bytes_read == -1) {
 			const char *message;
 			int err;
 			g_markup_parse_context_free (parser->context);
 			g_free (parser);
-			/* Set error */
-			gzerror (file, &err);
-			g_print ("zlib error %d: %s\n", err, message);
+			message = gzerror (file, &err);
+			g_set_error (error,
+				     DH_ERROR,
+				     DH_ERROR_INTERNAL_ERROR,
+				     _("Cannot uncompress book '%s': %s"), 
+				     path, message);
 			return FALSE;
 		}
 		
 		g_markup_parse_context_parse (parser->context, buf,
 					      bytes_read, error);
+		if (error != NULL && *error != NULL) {
+			return FALSE;
+		}
 		if (bytes_read < BYTES_PER_READ) {
 			break;
 		}
 	}
 
-	gzclose(file);
+	gzclose (file);
 
 	g_markup_parse_context_free (parser->context);
 	g_free (parser);

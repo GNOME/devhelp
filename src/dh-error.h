@@ -29,7 +29,8 @@
 typedef enum {
         DH_ERROR_FILE_NOT_FOUND,
         DH_ERROR_MALFORMED_BOOK,
-        DH_ERROR_INVALID_BOOK_TYPE
+        DH_ERROR_INVALID_BOOK_TYPE,
+        DH_ERROR_INTERNAL_ERROR
 } DhError;
 
 GQuark dh_error_quark (void) G_GNUC_CONST;

@@ -147,7 +147,6 @@ dh_create_socket (DhWindow *window)
 {
 	gint                fd;
 	struct sockaddr_un  addr;
-	gchar              *filename;
 	gchar              *path;
 	GIOChannel         *channel;	
 

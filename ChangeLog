@@ -1,3 +1,26 @@
+2003-03-07  Ross Burton  <ross@burtonini.com>
+
+	* AUTHORS: Add myself.
+
+	* src/dh-window.c: Ditto
+
+	* src/dh-base.c (base_init_books): Scan $PREFIX/share/devhelp/books
+	and ~/.devhelp/books (instead of ~/.devhelp2).
+
+	* src/dh-main.c (dh_create_socket): Remove an unused variable.
+
+	* src/dh-parser.c: Add lots and lots of error messages. Also use
+	the non-deprecated GIOChannel read API.
+
+	* src/dh-base.c (base_add_books): Pass a GError to the parse
+	functions, and display warnings if it gets set. Will give this a
+	nice UI at some point.
+
+	* src/dh-error.h: Added an "internal error" error message, for
+	when constructing parsers etc fails.
+
+	* src/.cvsignore: Update for the new executable name.
+
 2003-03-06  Gil "Dolfin" Osher <dolfin@rpg.org.il>
 
 	* configure.in: Added "he" to ALL_LINGUAS.

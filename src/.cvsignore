@@ -6,7 +6,7 @@ GNOME_DevHelp-skels.c
 GNOME_DevHelp-common.c
 GNOME_DevHelp.h
 .libs
-devhelp-2
+devhelp
 GNOME_DevHelp.server
 GNOME_DevHelp.server.in
 dh-marshal.c

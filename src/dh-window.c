@@ -370,6 +370,7 @@ window_activate_action (EggAction *action, DhWindow *window)
 			"Mikael Hallendal <micke@codefactory.se>",
 			"Richard Hult <rhult@codefactory.se>",
 			"Johan Dahlin <jdahlin@telia.com>",
+			"Ross Burton <ross@burtonini.com>",
 			NULL
 		};
 		

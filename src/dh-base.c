@@ -156,7 +156,8 @@ base_init_books (DhBase *base)
 	/* Insert the books from default gtk-doc install path */
 	base_add_books (base, DATADIR"/gtk-doc/html");
 	base_add_books (base, "/usr/share/gtk-doc/html");
-	dir = g_strconcat (g_getenv ("HOME"), "/.devhelp2/books", NULL);
+	base_add_books (base, DATADIR"/devhelp/books");
+	dir = g_strconcat (g_getenv ("HOME"), "/.devhelp/books", NULL);
 	base_add_books (base, dir);
 	g_free (dir);
 }
@@ -179,13 +180,14 @@ base_add_books (DhBase *base, const gchar *directory)
 						 GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (result != GNOME_VFS_OK) {
+		/* TODO: print message */
 		return;
 	}
 
 	for (l = dir_list; l; l = l->next) {
 		gchar *book_path;
+		GError *error = NULL;
 		
-
 		info = (GnomeVFSFileInfo *) l->data;
 		
 		if (g_hash_table_lookup (priv->books, info->name)) {
@@ -206,8 +208,10 @@ base_add_books (DhBase *base, const gchar *directory)
 			if (!dh_parse_file  (book_path,
 					     priv->book_tree,
 					     &priv->keywords,
-					     NULL)) {
-				g_warning ("Failed to read '%s'", book_path);
+					     &error)) {
+				g_warning ("Failed to read '%s': %s", book_path, error->message);
+				g_error_free (error);
+				error = NULL;
 			}
 			goto next;
 		}
@@ -227,8 +231,10 @@ base_add_books (DhBase *base, const gchar *directory)
 			if (!dh_parse_gz_file  (book_path,
 					     priv->book_tree,
 					     &priv->keywords,
-					     NULL)) {
-				g_warning ("Failed to read '%s'", book_path);
+					     &error)) {
+				g_warning ("Failed to read '%s': %s", book_path, error->message);
+				g_error_free (error);
+				error = NULL;
 			}
 			goto next;
 		}
