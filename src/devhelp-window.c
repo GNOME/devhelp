@@ -426,7 +426,7 @@ cmd_about_cb (BonoboUIComponent    *component,
         GtkWidget *about;
 
         const gchar *authors[] = {
-		"Johan Dahlin <jdahlin@telia.com",
+		"Johan Dahlin <jdahlin@telia.com>",
                 "Mikael Hallendal <micke@codefactory.se>",
                 "Richard Hult <rhult@codefactory.se>",
                 NULL
@@ -509,7 +509,7 @@ dw_uri_changed_cb (BonoboListener      *listener,
 	uri  = g_strdup (any->_value);
 
 	if (uri) {
-		devhelp_view_open_uri (DEVHELP_VIEW (priv->html_widget), uri, NULL);
+		devhelp_view_open_uri (DEVHELP_VIEW (priv->html_widget), uri);
 	}
 	
 	g_free (uri);

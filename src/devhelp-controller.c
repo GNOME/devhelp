@@ -279,11 +279,6 @@ devhelp_controller_init (DevHelpController *controller)
 				 G_OBJECT (controller),
 				 G_CONNECT_AFTER);
 	
-	g_signal_connect (G_OBJECT (priv->index),
-			  "uri_selected",
-			  G_CALLBACK (devhelp_controller_uri_cb),
-			  controller);
-
 	g_signal_connect_object (G_OBJECT (priv->history),
 				 "forward_exists_changed",
 				 G_CALLBACK (devhelp_controller_forward_exists_changed_cb),

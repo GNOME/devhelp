@@ -62,8 +62,7 @@ void            devhelp_view_open_uri       (DevHelpView   *view,
 #endif
 
 void            devhelp_view_open_uri       (DevHelpView   *view,
-					     const gchar   *uri,
-					     const gchar   *anchor);
+					     const gchar   *uri);
 
 #endif /* __DEVHELP_VIEW_H__ */
 

@@ -1,5 +1,16 @@
 2002-08-08  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/devhelp-window.c (cmd_about_cb): fixed jdahlin's email.
+
+	* src/devhelp-view.c: 
+	- Don't read with gnome_vfs_async. Read in a thread passing data
+	  by a async queue. (same as in Yelp).
+	- Work with anchor.
+	- Probably leaking like **** while reading.
+
+	* src/devhelp-controller.c (devhelp_controller_init): 
+	- only connect to uri_selected once.
+
 	* src/book.c (book_get_name_full): never return NULL. Fixes #84444
 
 2002-07-30 Hasbullah Bin Pit <sebol@ikhlas.com>

@@ -383,7 +383,6 @@ book_index_selection_changed_cb (GtkTreeSelection *selection,
 				 book_index_selection_changed_cb,
 				 index);
 		}
-		
 	}
 }
 
