@@ -1,16 +1,16 @@
 # Swedish messages for Devhelp.
-# Copyright (C) 2001, 2002, 2003 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
 # Richard Hult <richard@imendio.com>, 2001.
 # Johan Dahlin <zilch.am@home.se>, 2001.
-# Christian Rose <menthos@menthos.com>, 2001, 2002, 2003.
+# Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004.
 #
 # $Id$
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-05-15 18:41+0200\n"
+"POT-Creation-Date: 2004-01-17 14:25+0100\n"
+"PO-Revision-Date: 2004-01-17 14:25+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,19 +37,19 @@ msgstr ""
 "Välj en rubrik i innehållet till vänster eller byt till sökfliken för att "
 "finna det du söker."
 
-#: src/dh-main.c:258
+#: src/dh-main.c:259
 msgid "Specify the size and location of the window"
 msgstr "Ange storlek och position för fönstret"
 
-#: src/dh-main.c:259
+#: src/dh-main.c:260
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "BREDDxHÖJD+XOFF+YOFF"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
@@ -100,34 +100,45 @@ msgstr "_Sök:"
 msgid "Section"
 msgstr "Avsnitt"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "_Arkiv"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:283
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Kan inte ställa in användargränssnitt: %s"
+
+#: src/dh-window.c:343
 msgid "Contents"
 msgstr "Innehåll"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:354
 msgid "Search"
 msgstr "Sök"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:419
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:434
 msgid "Devhelp project page"
 msgstr "Devhelps projektsida"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:438
 msgid "Bug report Devhelp"
 msgstr "Buggrapportera Devhelp"
+
+#~ msgid "_Contents"
+#~ msgstr "_Innehåll"
+
+#~ msgid "_Search"
+#~ msgstr "_Sök"
