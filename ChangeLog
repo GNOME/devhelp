@@ -1,3 +1,9 @@
+2001-10-20  Johan Dahlin  <zilch.am@home.se>
+
+	* src/main.c (main): Set wm icon by calling gnome_window_icon_set_default_from_file.
+
+	* debian/control (Depends): Remove dependency of libgnome-vfs-dev
+
 2001-10-20  Abel Cheung  <maddog@linux.org.hk>
 
 	* configure.in: Add zh_TW to ALL_LINGUAS once again, after discussing

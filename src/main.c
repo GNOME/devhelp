@@ -153,7 +153,9 @@ main (int argc, char **argv)
 	if (!bonobo_init (orb, CORBA_OBJECT_NIL, CORBA_OBJECT_NIL)) {
 		g_error ("Could not initialize Bonobo");
 	}
-
+	
+	gnome_window_icon_set_default_from_file (DATA_DIR "/pixmaps/devhelp.png");
+	   
 	install_create_directories (NULL);
 	
 	factory = oaf_activate_from_id (DEVHELP_FACTORY_OAFIID,
