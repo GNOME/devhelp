@@ -1,3 +1,9 @@
+2001-10-22  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/book.c (book_new): copy spec-file uri.
+	(book_get_spec_file): added/impl, returns the uri to the
+	spec-file.
+
 2001-10-20  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/bookshelf.c (version_strcmp): style fix

@@ -67,6 +67,7 @@ struct _BookPriv {
 	gchar         *title;
 	gchar         *author;
 	gchar         *version;
+	gchar         *spec_file;
 	gboolean       visible;
 	
 	GnomeVFSURI   *base_uri;
@@ -507,7 +508,9 @@ book_new (GnomeVFSURI *book_uri, FunctionDatabase *fd)
 	g_return_val_if_fail (book_uri != NULL, NULL);
 	
 	book = gtk_type_new (TYPE_BOOK);
-	
+	book->priv->spec_file = 
+		gnome_vfs_uri_to_string (book_uri, GNOME_VFS_URI_HIDE_NONE);
+
 	book_parse (book, book_uri, fd);
 
 	return book;
@@ -580,6 +583,19 @@ book_get_version (Book *book)
 	priv = book->priv;
 
 	return priv->version;
+}
+
+const gchar *
+book_get_spec_file (Book *book)
+{
+	BookPriv   *priv;
+	
+	g_return_if_fail (book != NULL);
+	g_return_if_fail (IS_BOOK (book));
+	
+	priv = book->priv;
+
+	return priv->spec_file;
 }
 
 gchar *
