@@ -1,3 +1,8 @@
+2001-08-26  Yanko Kaneti  <yaneti@declera.com>
+
+	* Makefile.am: fix schemas_DATA when --disable-install-schemas 
+	was not used.
+
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
 	* ui/GNOME_DevHelp_Controller.ui: 

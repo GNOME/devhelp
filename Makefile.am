@@ -4,8 +4,8 @@ SCHEMAS_DIR = $(sysconfdir)/gconf/schemas
 SCHEMAS_FILE = devhelp.schemas
 
 if INSTALL_SCHEMAS
-	schemadir = $(SCHEMAS_DIR)
-	schema_DATA = $(SCHEMAS_FILE)
+schemasdir = $(SCHEMAS_DIR)
+schemas_DATA = $(SCHEMAS_FILE)
 endif
 
 EXTRA_DIST =			\
