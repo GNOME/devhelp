@@ -58,6 +58,9 @@ struct _FunctionDatabaseClass {
 					       Function           *function);
 	void          (*hits_found)           (FunctionDatabase   *fd,
 					       GSList             *hits);
+
+	void          (*function_removed)     (FunctionDatabase   *fd,
+					       Function           *function);
 };
 
 struct _Function {
@@ -72,14 +75,14 @@ FunctionDatabase *  function_database_new           (void);
 void       function_database_idle_search       (FunctionDatabase    *fd);
  
 gboolean   function_database_search            (FunctionDatabase    *fd,
-					       const gchar         *func_name);
+						const gchar         *func_name);
 gchar *    function_database_get_completion    (FunctionDatabase    *fd,
-					       const gchar         *string);
+						const gchar         *string);
 
 Function * function_database_add_function      (FunctionDatabase    *fd,
-					       const gchar         *name,
-					       const Document      *document,
-					       const gchar         *anchor);
+						const gchar         *name,
+						const Document      *document,
+						const gchar         *anchor);
 
 void       function_database_remove_function   (FunctionDatabase    *fd,
 						Function            *function);

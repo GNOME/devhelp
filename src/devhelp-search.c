@@ -415,6 +415,29 @@ devhelp_search_hits_found_cb (FunctionDatabase   *fd,
 	gtk_clist_thaw (GTK_CLIST (priv->clist));
 }
 
+void
+devhelp_search_function_removed_cb (FunctionDatabase  *fd,
+				    Function          *function,
+				    DevHelpSearch     *search)
+{
+	DevHelpSearchPriv   *priv;
+	gint                 row;
+	
+	g_return_if_fail (fd != NULL);
+	g_return_if_fail (IS_FUNCTION_DATABASE (fd));
+	g_return_if_fail (search != NULL);
+	g_return_if_fail (IS_DEVHELP_SEARCH (search));
+	g_return_if_fail (function != NULL);
+
+	priv = search->priv;
+	
+	row = gtk_clist_find_row_from_data (GTK_CLIST (priv->clist),
+					    function);
+	if (row != -1) {
+		gtk_clist_remove (GTK_CLIST (priv->clist), row);
+	}
+}
+
 DevHelpSearch *
 devhelp_search_new (Bookshelf *bookshelf)
 {
@@ -469,6 +492,10 @@ devhelp_search_new (Bookshelf *bookshelf)
                             GTK_SIGNAL_FUNC (devhelp_search_hits_found_cb),
                             search);
 
+	gtk_signal_connect (GTK_OBJECT (priv->fd),
+			    "function_removed",
+			    GTK_SIGNAL_FUNC (devhelp_search_function_removed_cb),
+			    search);
         return search;
 }
 

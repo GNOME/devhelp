@@ -54,6 +54,7 @@ enum {
 	GET_SEARCH_STRING,  
 	EXACT_HIT_FOUND,
 	HITS_FOUND,
+	FUNCTION_REMOVED,
 	LAST_SIGNAL  
 };  
 
@@ -148,10 +149,19 @@ fd_class_init (GtkObjectClass *klass)
 				gtk_marshal_NONE__POINTER,
 				GTK_TYPE_NONE,
 				1, GTK_TYPE_POINTER);
+	signals[FUNCTION_REMOVED] =
+		gtk_signal_new ("function_removed",
+				GTK_RUN_LAST,
+				klass->type,
+				GTK_SIGNAL_OFFSET (FunctionDatabaseClass,
+						   function_removed),
+				gtk_marshal_NONE__POINTER,
+				GTK_TYPE_NONE,
+				1, GTK_TYPE_POINTER);	
 
 	gtk_object_class_add_signals (klass, signals, LAST_SIGNAL);
 }
-
+	
 static void
 fd_destroy (GtkObject *object)
 {
@@ -408,6 +418,10 @@ function_database_remove_function (FunctionDatabase    *fd,
 		g_completion_remove_items (priv->function_completion, list);
 		g_list_free (list);
 	}
+	
+	gtk_signal_emit (GTK_OBJECT (fd),
+			 signals[FUNCTION_REMOVED],
+			 function);
 }
 
 void

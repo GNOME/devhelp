@@ -1,3 +1,14 @@
+2001-11-26  Johan Dahlin  <jdahlin@telia.com>
+
+	* src/function-database.h: Added function_removed here too.
+	A few style fixes i forgot to do yesterday.
+
+	* src/function-database.c (fd_class_init): Added function_removed signal.
+	(fd_idle_search): Call it.
+
+	* src/devhelp-search.c (devhelp_search_function_removed_cb): Impl.
+	(devhelp_search_new): connect signal function_removed.
+
 2001-11-25  Johan Dahlin  <jdahlin@telia.com>
 
 	* src/devhelp-controller.c (devhelp_controller_book_removed_cb):
