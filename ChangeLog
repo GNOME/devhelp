@@ -1,3 +1,12 @@
+2001-10-17  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/book-index.c: 
+	- include gdk/gdkkeysyms.h
+	- fixes bug #245 in CFB.
+	(book_index_key_press_event): new function, impl.
+	(book_index_get_scrolled): selection_mode = GTK_SELECTION_SINGLE.
+	(book_index_class_init): override key_press_event.
+
 2001-10-17  Abel Cheung  <maddog@linux.org.hk>
 
 	* configure.in: Added es and zh_TW to ALL_LINGUAS.

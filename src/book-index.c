@@ -24,6 +24,7 @@
 #include <config.h>
 #endif
 
+#include <gdk/gdkkeysyms.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtksignal.h>
 #include <gtk/gtkscrolledwindow.h>
@@ -46,6 +47,9 @@ static void book_index_create_pixmaps     (BookIndex            *index);
 static void book_index_select_row         (GtkCTree             *ctree,
                                            GtkCTreeNode         *node,
                                            gint                  column);
+
+static gint book_index_key_press_event    (GtkWidget            *widget,
+					   GdkEventKey          *event);
 
 static GtkCTreeClass *parent_class = NULL;
 
@@ -103,17 +107,22 @@ static void
 book_index_class_init (BookIndexClass *klass)
 {
         GtkObjectClass *object_class;
+	GtkWidgetClass *widget_class;
         GtkCTreeClass  *ctree_class;
-
+	
         object_class = (GtkObjectClass *) klass;
+	widget_class = (GtkWidgetClass *) klass;
         ctree_class  = (GtkCTreeClass *)  klass;
+	
         parent_class = gtk_type_class (gtk_ctree_get_type ());
 
 	
-	object_class->destroy        = book_index_destroy;
+	object_class->destroy         = book_index_destroy;
 
-	ctree_class->tree_select_row = book_index_select_row;
+	widget_class->key_press_event = book_index_key_press_event;
 
+	ctree_class->tree_select_row  = book_index_select_row;
+	
 
         signals[URI_SELECTED] =
                 gtk_signal_new ("uri_selected",
@@ -298,7 +307,7 @@ book_index_new (Bookshelf *bookshelf)
         index = gtk_type_new (TYPE_BOOK_INDEX);
 	
         gtk_ctree_construct (GTK_CTREE (index), 1, 0, NULL);
-
+	
         index->priv->bookshelf = bookshelf;
 
         book_index_populate_tree (index);
@@ -345,6 +354,41 @@ book_index_select_row (GtkCTree *ctree, GtkCTreeNode *node, gint column)
 			gnome_vfs_uri_unref (uri);
 		}
 	}
+}
+
+static gint
+book_index_key_press_event (GtkWidget *widget, GdkEventKey *event)
+{
+	GtkCTreeNode *node;
+	guint         pos;
+	
+	g_return_if_fail (widget != NULL);
+
+	pos  = GTK_CLIST (widget)->focus_row;
+	node = gtk_ctree_node_nth (GTK_CTREE (widget), pos);
+
+	switch (event->keyval) { 
+	case GDK_Left:
+	case GDK_Right:
+		if (event->keyval == GDK_Left) {
+			gtk_ctree_collapse (GTK_CTREE (widget), node);
+		} else {
+			gtk_ctree_expand (GTK_CTREE (widget), node);
+		}
+		
+		return TRUE;
+		break;
+	default:
+		break;
+	};
+	
+	/* Chaining up */
+	if (((GtkWidgetClass *)parent_class)->key_press_event) {
+		return ((GtkWidgetClass *) parent_class)->key_press_event (widget,
+									   event);
+	}
+	
+	return FALSE;
 }
 
 void
@@ -419,7 +463,7 @@ book_index_get_scrolled (BookIndex *index)
  	gtk_clist_set_column_width (GTK_CLIST (index), 0, 80);
 
 	priv->emit_uri_select = FALSE;
-	gtk_clist_set_selection_mode (GTK_CLIST (index), GTK_SELECTION_BROWSE);
+	gtk_clist_set_selection_mode (GTK_CLIST (index), GTK_SELECTION_SINGLE);
 	priv->emit_uri_select = TRUE;
 
 	gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (index));
