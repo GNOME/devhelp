@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2004-02-15 00:23+0900\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-19 00:40+0900\n"
+"PO-Revision-Date: 2004-03-19 00:39+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -25,70 +25,6 @@ msgstr "Devhelp"
 #: devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Devhelp ブック"
-
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -153,82 +89,147 @@ msgstr "検索(_S):"
 msgid "Section"
 msgstr "セクション"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:112
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: src/dh-window.c:112
+#: src/dh-window.c:113
 msgid "_Edit"
-msgstr ""
+msgstr "編集(_E)"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: src/dh-window.c:114 ui/devhelp.glade.h:10
 msgid "_Go"
-msgstr "ジャンプ(_G)"
+msgstr "移動(_G)"
 
-#: src/dh-window.c:114
+#: src/dh-window.c:115
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: src/dh-window.c:292
+#: src/dh-window.c:300
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "ユーザ・インタフェースをセットできません: %s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: src/dh-window.c:355 ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "目次"
 
-#: src/dh-window.c:363
+#: src/dh-window.c:366
 msgid "Search"
 msgstr "検索"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:449
 msgid "A developer's help browser for GNOME 2"
-msgstr "GNOME 2 対応の開発者向けのヘルプブラウザ"
+msgstr "GNOME 2 対応の開発者向けのヘルプブラウザです。"
 
-#: src/dh-window.c:462
+#: src/dh-window.c:465
 msgid "Devhelp project page"
 msgstr "Devhelp プロジェクト・ページ"
 
-#: src/dh-window.c:466
+#: src/dh-window.c:469
 msgid "Bug report Devhelp"
 msgstr "Devhelp バグ報告"
 
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "等幅テキスト用のフォント"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "テキストのフォント"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "等幅 (固定幅) のテキスト表示に使用フォントです。"
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "可変幅のテキスト表示に使用するフォントです。"
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "メイン・ウィンドウの高さ"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "目次ウィンドウの位置"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "メイン・ウィンドウの最大化"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "メイン・ウィンドウを表示する X 座標です。"
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "メイン・ウィンドウを表示する Y 座標です。"
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "メイン・ウィンドウの高さです。"
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "目次ウィンドウの位置です。"
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "メイン・ウィンドウの幅です。"
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "システム・フォントの利用可否"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "デスクトップで設定したデフォルトのフォントを使用します。"
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "メイン・ウィンドウを最大サイズで起動するかどうかです。"
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "メイン・ウィンドウの幅"
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "メイン・ウィンドウの位置 X"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "メイン・ウィンドウの位置 Y"
+
 #: ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>フォント</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "等幅:"
 
 #: ui/devhelp.glade.h:6
 msgid "Preferences"
-msgstr ""
+msgstr "設定"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "可変幅:"
 
 #: ui/devhelp.glade.h:8
 msgid "_Back"
-msgstr ""
+msgstr "戻る(_B)"
 
 #: ui/devhelp.glade.h:9
 msgid "_Forward"
-msgstr ""
+msgstr "進む(_F)"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search tab "
-#~ "to find what you are looking for."
-#~ msgstr ""
-#~ "左にある \"目次\" タブから対象となるドキュメントを選択するか、あるいは\"検"
-#~ "索\" タブに切り替えて検索したいエントリを捜してみて下さい。"
+msgstr "システムのフォントを使用する(_U)"
