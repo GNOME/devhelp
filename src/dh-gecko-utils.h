@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2004 Imendio HB
+ * Copyright (C) 2004 Imendio AB
  * Copyright (C) 2004 Marco Pesenti Gritti
  *
  * This program is free software; you can redistribute it and/or
