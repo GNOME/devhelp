@@ -40,65 +40,84 @@
 
 #define DEVHELP_WINDOW_UI "GNOME_MrProject_Client.ui"
 
-static void devhelp_window_class_init        (DevHelpWindowClass   *klass);
-static void devhelp_window_init              (DevHelpWindow        *index);
+static void devhelp_window_class_init    (DevHelpWindowClass   *klass);
+static void devhelp_window_init          (DevHelpWindow        *index);
  
-static void devhelp_window_destroy           (GtkObject            *object);
+static void dw_destroy                   (GtkObject            *object);
+
+static void dw_populate                  (DevHelpWindow        *window);
+
+static void cmd_add_book_cb              (BonoboUIComponent    *component,
+					  gpointer              data,
+					  const gchar          *cname);
+
+static void cmd_print_cb                 (BonoboUIComponent    *component,
+					  gpointer              data,
+					  const gchar          *cname);
+
+static void cmd_exit_cb                  (BonoboUIComponent    *component,
+					  gpointer              data,
+					  const gchar          *cname);
+
+static void cmd_view_side_bar_cb         (BonoboUIComponent    *component,
+					  gpointer              data,
+					  const gchar          *cname);
+
+static void cmd_preferences_cb           (BonoboUIComponent    *component,
+					  gpointer              data,
+					  const gchar          *cname);
+
+static void cmd_about_cb                 (BonoboUIComponent    *component,
+					  gpointer              data,
+					  const gchar          *cname);
+
+static void cmd_size_changed_cb      (BonoboUIComponent            *component,
+				      const char                   *path,
+				      Bonobo_UIComponent_EventType  type,
+				      const char                   *state,
+				      gpointer                      user_data);
+
+static void dw_uri_changed_cb            (BonoboListener       *listener,
+					  gchar                *event_name,
+					  CORBA_any            *arg,
+					  CORBA_Environment    *ev,
+					  gpointer              user_data);
+
+static void dw_delete_cb                 (GtkWidget            *widget,
+					  GdkEventAny          *event,
+					  gpointer              user_data);
+
+static void dw_link_clicked_cb           (DevHelpWindow        *window,
+					  gchar                *url,
+					  gpointer              ignored);
+
+static void dw_on_url_cb                 (DevHelpWindow        *window,
+					  gchar                *url,
+					  gpointer              ignored);
+
+static void dw_zoom_level_changed_cb     (Preferences         *prefs,
+					  gint                 zoom_level,
+					  DevHelpWindow       *window);
+
+static void dw_note_change_page_cb       (GtkWidget            *child,
+					  GtkNotebook          *notebook);
+
+static void dw_note_page_mapped_cb       (GtkWidget            *page, 
+					  GtkAccelGroup        *accel_group);
+
+static void dw_note_page_unmapped_cb     (GtkWidget            *page, 
+					  GtkAccelGroup        *accel_group);
 
 
-static void devhelp_window_populate          (DevHelpWindow        *window);
+static void dw_note_page_setup_signals   (GtkWidget            *page, 
+					  GtkAccelGroup        *accel);
 
-static void cmd_add_book_cb                  (BonoboUIComponent    *component,
-                                              gpointer              data,
-                                              const gchar          *cname);
+static void 
+dw_notebook_append_page_with_accelerator (GtkNotebook          *notebook,
+					  GtkWidget            *page,
+					  gchar                *label_text,
+					  GtkAccelGroup        *accel);
 
-static void cmd_print_cb                     (BonoboUIComponent    *component,
-                                              gpointer              data,
-                                              const gchar          *cname);
-
-static void cmd_exit_cb                      (BonoboUIComponent    *component,
-                                              gpointer              data,
-                                              const gchar          *cname);
-
-static void cmd_view_side_bar_cb             (BonoboUIComponent    *component,
-                                              gpointer              data,
-                                              const gchar          *cname);
-
-static void cmd_preferences_cb               (BonoboUIComponent    *component,
-                                              gpointer              data,
-                                              const gchar          *cname);
-
-static void cmd_about_cb                     (BonoboUIComponent    *component,
-                                              gpointer              data,
-                                              const gchar          *cname);
-
-static void size_ui_listener                 (BonoboUIComponent            *component,
-					      const char                   *path,
-					      Bonobo_UIComponent_EventType  type,
-					      const char                   *state,
-					      gpointer                      user_data);
-
-static void devhelp_window_uri_changed_cb    (BonoboListener       *listener,
-					      gchar                *event_name,
-					      CORBA_any            *arg,
-					      CORBA_Environment    *ev,
-					      gpointer              user_data);
-
-static void devhelp_window_delete_cb         (GtkWidget            *widget,
-					      GdkEventAny          *event,
-					      gpointer              user_data);
-
-static void devhelp_window_link_clicked_cb   (DevHelpWindow        *window,
-					      gchar                *url,
-					      gpointer              ignored);
-
-static void devhelp_window_on_url_cb         (DevHelpWindow        *window,
-					      gchar                *url,
-					      gpointer              ignored);
-static void
-devhelp_window_zoom_level_changed_cb         (Preferences         *prefs,
-					      gint                 zoom_level,
-					      DevHelpWindow       *window);
 
 static BonoboWindowClass *parent_class = NULL;
 
@@ -164,7 +183,7 @@ devhelp_window_class_init (DevHelpWindowClass *klass)
 
         object_class = (GtkObjectClass *) klass;
         
-        object_class->destroy = devhelp_window_destroy;
+        object_class->destroy = dw_destroy;
 }
 
 static void
@@ -177,7 +196,7 @@ devhelp_window_init (DevHelpWindow *window)
 	
 	gtk_signal_connect (GTK_OBJECT (priv->prefs),
 			    "zoom_level_changed",
-			    GTK_SIGNAL_FUNC (devhelp_window_zoom_level_changed_cb),
+			    GTK_SIGNAL_FUNC (dw_zoom_level_changed_cb),
 			    window);
 	
 	gtk_object_set (GTK_OBJECT (priv->prefs),
@@ -188,12 +207,12 @@ devhelp_window_init (DevHelpWindow *window)
 }
 
 static void
-devhelp_window_destroy (GtkObject *object)
+dw_destroy (GtkObject *object)
 {
 }
 
 static void
-note_change_page (GtkWidget *child, GtkNotebook *notebook)
+dw_note_change_page_cb (GtkWidget *child, GtkNotebook *notebook)
 {
 	gint page = gtk_notebook_page_num (notebook, child);
 
@@ -201,7 +220,7 @@ note_change_page (GtkWidget *child, GtkNotebook *notebook)
 }
 
 static void
-note_page_mapped (GtkWidget *page, GtkAccelGroup *accel_group)
+dw_note_page_mapped_cb (GtkWidget *page, GtkAccelGroup *accel_group)
 {
 	GtkWidget *dialog = gtk_widget_get_toplevel (GTK_WIDGET (page));
 
@@ -209,7 +228,7 @@ note_page_mapped (GtkWidget *page, GtkAccelGroup *accel_group)
 }
 
 static void
-note_page_unmapped (GtkWidget *page, GtkAccelGroup *accel_group)
+dw_note_page_unmapped_cb (GtkWidget *page, GtkAccelGroup *accel_group)
 {
 	GtkWidget *dialog = gtk_widget_get_toplevel (GTK_WIDGET (page));
 
@@ -217,36 +236,41 @@ note_page_unmapped (GtkWidget *page, GtkAccelGroup *accel_group)
 }
 
 static void
-note_page_setup_signals (GtkWidget *page, GtkAccelGroup *accel)
+dw_note_page_setup_signals (GtkWidget *page, GtkAccelGroup *accel)
 {
 	gtk_accel_group_ref (accel);
 	gtk_signal_connect_full (GTK_OBJECT (page),
-			    "map",
-			    GTK_SIGNAL_FUNC (note_page_mapped), NULL, 
-			    accel, (GtkDestroyNotify) gtk_accel_group_unref,
-			    FALSE, FALSE);
+				 "map",
+				 GTK_SIGNAL_FUNC (dw_note_page_mapped_cb), 
+				 NULL, 
+				 accel, 
+				 (GtkDestroyNotify) gtk_accel_group_unref,
+				 FALSE, FALSE);
+
 	gtk_accel_group_ref (accel);
 	gtk_signal_connect_full (GTK_OBJECT (page),
-			    "unmap",
-			    GTK_SIGNAL_FUNC (note_page_unmapped), NULL,
-			    accel, (GtkDestroyNotify) gtk_accel_group_unref,
-			    FALSE, FALSE);
+				 "unmap",
+				 GTK_SIGNAL_FUNC (dw_note_page_unmapped_cb), 
+				 NULL,
+				 accel, 
+				 (GtkDestroyNotify) gtk_accel_group_unref,
+				 FALSE, FALSE);
 }
 
 static void
-notebook_append_page_with_accelerator (GtkNotebook   *notebook,
-				       GtkWidget     *page,
-				       gchar         *label_text,
-				       GtkAccelGroup *accel)
+dw_notebook_append_page_with_accelerator (GtkNotebook   *notebook,
+					  GtkWidget     *page,
+					  gchar         *label_text,
+					  GtkAccelGroup *accel)
 {
-	GtkWidget     *label;
-	guint          key;
+	GtkWidget *label;
+	guint      key;
 
 	label = gtk_label_new (NULL);
 	key = gtk_label_parse_uline (GTK_LABEL (label), label_text);
 	gtk_widget_show (label);
 
-	note_page_setup_signals (page, accel);
+	dw_note_page_setup_signals (page, accel);
 
 	gtk_notebook_append_page (notebook, page, label);
 	
@@ -256,15 +280,16 @@ notebook_append_page_with_accelerator (GtkNotebook   *notebook,
 					    key,
 					    GDK_MOD1_MASK,
 					    0);
+
 		gtk_signal_connect (GTK_OBJECT (page),
 				    "grab_focus",
-				    GTK_SIGNAL_FUNC (note_change_page),
+				    GTK_SIGNAL_FUNC (dw_note_change_page_cb),
 				    notebook);
 	}
 }
 
 static void
-devhelp_window_populate (DevHelpWindow *window)
+dw_populate (DevHelpWindow *window)
 {
         DevHelpWindowPriv    *priv;
         CORBA_Environment     ev;
@@ -293,9 +318,7 @@ devhelp_window_populate (DevHelpWindow *window)
 			"zoom_level", &zoom_level,
 			NULL);
 
-	devhelp_window_zoom_level_changed_cb (priv->prefs, 
-					      zoom_level,
-					      window);
+	dw_zoom_level_changed_cb (priv->prefs, zoom_level, window);
 
         CORBA_exception_init (&ev);
 
@@ -316,7 +339,7 @@ devhelp_window_populate (DevHelpWindow *window)
 	}
 	
  	bonobo_event_source_client_add_listener (es,
- 						 devhelp_window_uri_changed_cb,
+ 						 dw_uri_changed_cb,
  						 "GNOME/DevHelp:URI:changed",
  						 NULL, 
  						 window);
@@ -374,10 +397,10 @@ devhelp_window_populate (DevHelpWindow *window)
 
 	accel = gtk_accel_group_new ();
 
-	notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
-					       priv->index,
-					       _("_Contents"),
-					       accel);
+	dw_notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
+						  priv->index,
+						  _("_Contents"),
+						  accel);
 
 	gtk_box_pack_start (GTK_BOX (priv->search_box), 
 			    priv->search_entry, 
@@ -386,10 +409,10 @@ devhelp_window_populate (DevHelpWindow *window)
 	gtk_box_pack_end_defaults (GTK_BOX (priv->search_box),
 				   priv->search_list); 
 
-	notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
-					       priv->search_box,
-					       _("_Search"),
-					       accel);
+	dw_notebook_append_page_with_accelerator (GTK_NOTEBOOK (priv->notebook),
+						  priv->search_box,
+						  _("_Search"),
+						  accel);
 
 	gtk_widget_show_all (priv->hpaned);
 
@@ -397,12 +420,12 @@ devhelp_window_populate (DevHelpWindow *window)
 
  	gtk_signal_connect_object (GTK_OBJECT (priv->html_widget),
 				   "link_clicked", 
-				   GTK_SIGNAL_FUNC (devhelp_window_link_clicked_cb),
+				   GTK_SIGNAL_FUNC (dw_link_clicked_cb),
 				   GTK_OBJECT (window));
 	
 	gtk_signal_connect_object (GTK_OBJECT (priv->html_widget),
 				   "on_url",
-				   GTK_SIGNAL_FUNC (devhelp_window_on_url_cb),
+				   GTK_SIGNAL_FUNC (dw_on_url_cb),
 				   GTK_OBJECT (window));
 }
 
@@ -482,11 +505,11 @@ cmd_about_cb (BonoboUIComponent    *component,
 }
 
 static void
-size_ui_listener (BonoboUIComponent            *component,
-		  const char                   *path,
-		  Bonobo_UIComponent_EventType  type,
-		  const char                   *state,
-		  gpointer                      user_data)
+cmd_size_changed_cb (BonoboUIComponent            *component,
+		     const char                   *path,
+		     Bonobo_UIComponent_EventType  type,
+		     const char                   *state,
+		     gpointer                      user_data)
 {
 	
 	DevHelpWindow       *window;
@@ -528,7 +551,7 @@ size_ui_listener (BonoboUIComponent            *component,
 }
 
 static void
-devhelp_window_uri_changed_cb (BonoboListener      *listener,
+dw_uri_changed_cb (BonoboListener      *listener,
 			       gchar               *event_name,
 			       CORBA_any           *any,
 			       CORBA_Environment   *ev,
@@ -556,7 +579,7 @@ devhelp_window_uri_changed_cb (BonoboListener      *listener,
 }
 
 static void
-devhelp_window_delete_cb (GtkWidget     *widget,
+dw_delete_cb (GtkWidget     *widget,
 			  GdkEventAny   *event,
 			  gpointer       user_data)
 {
@@ -567,7 +590,7 @@ devhelp_window_delete_cb (GtkWidget     *widget,
 }
 
 static void
-devhelp_window_link_clicked_cb (DevHelpWindow   *window,
+dw_link_clicked_cb (DevHelpWindow   *window,
 				gchar           *url,
 				gpointer         ignored)
 {
@@ -582,7 +605,7 @@ devhelp_window_link_clicked_cb (DevHelpWindow   *window,
 }
 
 static void
-devhelp_window_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
+dw_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
 {
 	DevHelpWindowPriv   *priv;
 	gchar               *status_text;
@@ -604,9 +627,9 @@ devhelp_window_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
 }
 
 static void
-devhelp_window_zoom_level_changed_cb (Preferences     *prefs,
-				      gint             zoom_level,
-				      DevHelpWindow   *window)
+dw_zoom_level_changed_cb (Preferences     *prefs,
+			  gint             zoom_level,
+			  DevHelpWindow   *window)
 {
 	DevHelpWindowPriv   *priv;
 	gdouble              magnification;
@@ -647,19 +670,24 @@ devhelp_window_new (void)
         priv->component = bonobo_ui_component_new ("DevHelp");
 
 	bonobo_ui_component_add_listener (priv->component, "CmdSizeTiny",
-					  size_ui_listener, window);
+					  cmd_size_changed_cb,
+					  window);
 	
 	bonobo_ui_component_add_listener (priv->component, "CmdSizeSmall",
-					  size_ui_listener, window);
+					  cmd_size_changed_cb,
+					  window);
 	
 	bonobo_ui_component_add_listener (priv->component, "CmdSizeMedium",
-					  size_ui_listener, window);
+					  cmd_size_changed_cb,
+					  window);
 	
 	bonobo_ui_component_add_listener (priv->component, "CmdSizeLarge",
-					  size_ui_listener, window);
+					  cmd_size_changed_cb,
+					  window);
 	
 	bonobo_ui_component_add_listener (priv->component, "CmdSizeHuge",
-					  size_ui_listener, window);	
+					  cmd_size_changed_cb,
+					  window);	
 	
         bonobo_ui_component_set_container (priv->component, 
                                            BONOBO_OBJREF (ui_container));
@@ -684,10 +712,10 @@ devhelp_window_new (void)
 
 	gtk_signal_connect (GTK_OBJECT (window), 
 			    "delete_event",
-			    GTK_SIGNAL_FUNC (devhelp_window_delete_cb),
+			    GTK_SIGNAL_FUNC (dw_delete_cb),
 			    NULL);
 
-        devhelp_window_populate (window);
+        dw_populate (window);
 
         bonobo_ui_component_thaw (priv->component, NULL);
 	
@@ -719,4 +747,3 @@ devhelp_window_search (DevHelpWindow *window, const gchar *str)
 
 	CORBA_exception_free (&ev);
 }
-
