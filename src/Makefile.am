@@ -67,8 +67,6 @@ libdevhelp_1_la_LIBADD =				\
 	@HTML_WIDGET_LIBS@				\
 	$(top_builddir)/libegg/menu/libegg-menu.la
 
-libdevhelp_1_la_LDFLAGS = -avoid-version -module
-
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
 dh-marshal.h: dh-marshal.list

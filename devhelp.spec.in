@@ -48,19 +48,21 @@ intltoolize
 make
 
 %install
-[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
+%makeinstall 
 
-%makeinstall PREFIX=$RPM_BUILD_ROOT%{_prefix} install 
+# remove, not shipped
+rm -f $RPM_BUILD_ROOT%{_libdir}/libdevhelp-1.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-, root, root)
+%defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog NEWS README INSTALL
 
 %{_bindir}/devhelp
-%{_libdir}/devhelp/libdevhelp.*
+%{_libdir}/libdevhelp*.so.*
 
 %{_datadir}/applications/devhelp.desktop
 %{_datadir}/devhelp
@@ -71,9 +73,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(-,root,root)
-%{_prefix}/include/devhelp/*
+%{_prefix}/include/devhelp-1.0
 %{_libdir}/libdevhelp*.a
 %{_libdir}/libdevhelp*.so
+%{_libdir}/pkgconfig/*
 
 %changelog
 * Sun Jun 29 2003 Mikael Hallendal <micke@imendio.com>

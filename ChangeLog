@@ -1,5 +1,11 @@
 2004-02-13  Mikael Hallendal  <micke@imendio.com>
 
+	* devhelp.spec.in: Fixed to actually work
+	
+	* src/Makefile.am: Version library
+
+2004-02-13  Mikael Hallendal  <micke@imendio.com>
+
 	* configure.in: Fixed compile warning
 	
 	* devhelp.spec.in: Updated to include the devel package
