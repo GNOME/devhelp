@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-09 11:59+0200\n"
-"PO-Revision-Date: 2003-07-09 17:56+0200\n"
+"POT-Creation-Date: 2004-01-26 02:05+0100\n"
+"PO-Revision-Date: 2004-01-26 02:05+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@arrakis.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,8 @@ msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-"Seleccione un tema en los contenidos de la izquierda o cambia a la solapa de búsqueda para "
-"encontrar lo que busca."
+"Seleccione un tema en los contenidos de la izquierda o cambia a la solapa de "
+"búsqueda para encontrar lo que busca."
 
 #: src/dh-main.c:259
 msgid "Specify the size and location of the window"
@@ -77,7 +77,8 @@ msgstr ""
 
 #: src/dh-parser.c:250
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "los elementos nombre y enlace se requieren dentro de <funcion> en la línea %"
 "d, columna %d"
@@ -103,35 +104,40 @@ msgstr "_Búsqueda:"
 msgid "Section"
 msgstr "Sección"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "_Archivo"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "_Ir"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "A_yuda"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:283
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "No se puede establecer IU: %s"
+
+#: src/dh-window.c:343
 msgid "Contents"
 msgstr "Contenidos"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:354
 msgid "Search"
 msgstr "Buscar"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:419
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un visor de ayuda para GNOME 2"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:434
 msgid "Devhelp project page"
 msgstr "Página del proyecto DevHelp"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:438
 msgid "Bug report Devhelp"
 msgstr "Informe de errores de DevHelp"
 
@@ -194,4 +200,3 @@ msgstr "Informe de errores de DevHelp"
 
 #~ msgid "Open %s"
 #~ msgstr "Abrir %s"
-
