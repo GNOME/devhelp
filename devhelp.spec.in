@@ -25,7 +25,7 @@ Requires: libglade >= 0.16
 Requires: gtkhtml >= 0.6
 Requires: oaf >= 0.6.2
 Requires: bonobo >= 0.37
-Requires: GConf >= 0.12
+Requires: GConf >= 1.0.4
 
 %description
 A developers help program

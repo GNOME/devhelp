@@ -24,12 +24,6 @@ Devel_DATA = $(Devel_in_files:.desktop.in=.desktop)
 @XML_I18N_MERGE_DESKTOP_RULE@
 
 install-data-local:
-	GCONF_CONFIG_SOURCE=$(GCONF_CONFIG_SOURCE) gconftool --shutdown
-	GCONF_CONFIG_SOURCE=$(GCONF_CONFIG_SOURCE) gconftool --makefile-install-rule $(top_srcdir)/$(schema_DATA)
-
-
-
-
-
-
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool --shutdown
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) gconftool --makefile-install-rule $(top_srcdir)/$(schema_DATA)
 

@@ -1,3 +1,9 @@
+2001-08-25  Yanko Kaneti  <yaneti@declera.com>
+
+	* devhelp.spec.in:
+	* Makefile.am
+	* configure.in: rely on GConf (1.0.4) to get the default schema source
+
 2001-08-25  Richard Hult  <rhult@codefactory.se>
 
 	* src/Makefile.am: Generate the oaf.in from oaf.in.in and add the
