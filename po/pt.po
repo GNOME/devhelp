@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.4\n"
-"POT-Creation-Date: 2003-06-29 12:53+0200\n"
-"PO-Revision-Date: 2003-05-24 16:10+0000\n"
+"POT-Creation-Date: 2003-07-27 14:58+0100\n"
+"PO-Revision-Date: 2003-07-27 15:00+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -15,46 +15,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
-msgstr "Aplicação de Ajuda Programadores"
+msgstr "Aplicação de Ajuda aos Programadores"
 
 #: devhelp.desktop.in.h:2
-#, fuzzy
 msgid "Devhelp"
-msgstr "DevHelp"
+msgstr "Devhelp"
 
 #: devhelp.keys.in.h:1
-#, fuzzy
 msgid "Devhelp Book"
-msgstr "Livro DevHelp"
+msgstr "Livro Devhelp"
 
 #: src/dh-html-gtkhtml2.c:532
 msgid ""
 "Select a subject in the contents to the left or switch to the search tab to "
 "find what you are looking for."
 msgstr ""
-
-#: src/dh-main.c:258
-msgid "Specify the size and location of the window"
-msgstr ""
+"Seleccione um assunto nos conteudos à esquerda ou alterne para a aba de procura "
+"para encontrar o que está à procura."
 
 #: src/dh-main.c:259
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgid "Specify the size and location of the window"
+msgstr "Especifique o tamanho e localização da janela"
 
-#: src/dh-main.c:267
+#: src/dh-main.c:260
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "LARGURAxALTURA+DESLX+DESLY"
+
+#: src/dh-main.c:268
 msgid "Search for a function"
 msgstr "Procurar uma função"
 
-#: src/dh-main.c:276
+#: src/dh-main.c:277
 msgid "Quit any running Devhelp"
 msgstr "Sair de qualquer Devhelp em execução"
 
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-#, fuzzy, c-format
+#, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Esperado 'sub', obtido '%s' na linha %d, coluna %d"
+msgstr "Esperado '%s', obtido '%s' na linha %d, coluna %d"
 
 #: src/dh-parser.c:120
 #, c-format
@@ -94,9 +93,8 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Incapaz de descomprimir livro '%s': %s"
 
 #: src/dh-search.c:417
-#, fuzzy
 msgid "_Search:"
-msgstr "Procurar"
+msgstr "_Procurar:"
 
 #: src/dh-search.c:461
 msgid "Section"
@@ -128,11 +126,11 @@ msgstr "Um navegador de ajuda de programadores para o GNOME 2"
 
 #: src/dh-window.c:430
 msgid "Devhelp project page"
-msgstr ""
+msgstr "Página do projecto Devhelp"
 
 #: src/dh-window.c:434
 msgid "Bug report Devhelp"
-msgstr ""
+msgstr "Relatório de erro Devhelp"
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search pane "
