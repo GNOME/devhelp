@@ -133,9 +133,9 @@ static GtkActionEntry actions[] = {
 	  G_CALLBACK (window_activate_preferences) },
 	 
 	/* Go menu */
-	{ "Back", GTK_STOCK_GO_BACK, NULL, NULL, NULL,
+	{ "Back", GTK_STOCK_GO_BACK, NULL, "<alt>Left", NULL,
 	  G_CALLBACK (window_activate_back) },
-	{ "Forward", GTK_STOCK_GO_FORWARD, NULL, NULL, NULL,
+	{ "Forward", GTK_STOCK_GO_FORWARD, NULL, "<alt>Right", NULL,
 	  G_CALLBACK (window_activate_forward) },
 
 	/* About menu */
