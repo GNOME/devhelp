@@ -1,14 +1,13 @@
 Summary:             API document browser
 Name:                devhelp
 Version:             @VERSION@
-Release:             cf1
+Release:             imendio.1 
 License:             GPL
 Group:               Development/Tools
-Url:                 http://devhelp.codefactory.se/
+Url:                 http://www.imendio.com/projects/devhelp
 Source:              %{name}-%{version}.tar.gz
 BuildRoot:           %{_tmppath}/%{name}-%{version}-root
-Packager:            Mikael Hallendal <micke@codefactory.se>
-
+Packager:            Mikael Hallendal <micke@imendio.com>
 Requires:            gtk2 >= 2.2.0
 Requires:            libgnomeui >= 2.2.0
 Requires:            gtkhtml2 >= 2.0.0
@@ -21,7 +20,7 @@ BuildRequires:       gnome-vfs2-devel >= 2.2.0
 BuildRequires:       intltool
 
 %description
-A API document browser for GNOME 2.
+An API document browser for GNOME 2.
 
 %prep
 %setup -q
@@ -54,3 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 %{_datadir}/mime-info/devhelp.mime
 %{_datadir}/mime-info/devhelp.keys
+
+%changelog
+* Sun Jun 29 2003 Mikael Hallendal <micke@imendio.com>
+- Released 0.7

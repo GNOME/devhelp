@@ -1,3 +1,9 @@
+2003-06-29  Mikael Hallendal  <micke@imendio.com>
+
+	* configure.in: Bumped to 0.7
+	
+	* devhelp.spec.in: Updated for 0.7 and new web site.
+
 2003-06-29  Richard Hult  <richard@imendio.com>
 
 	* src/dh-window.c (dh_window_new): Don't make the size relative to
