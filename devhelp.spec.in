@@ -1,7 +1,8 @@
 # Note that this is NOT a relocatable package
-%define ver      @VERSION@
-%define rel      1
-%define prefix   /usr
+%define ver          @VERSION@
+%define rel          1
+%define prefix       /usr
+%define sysconfdir   /etc
 
 Summary:   Devhelp
 Name:      devhelp
@@ -35,10 +36,10 @@ A developers help program
 
 if [ ! -f configure ]; then
 	CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%{prefix} \
-		--without-debug 
+		--sysconfdir=${sysconfdir} --without-debug 
 else
 	CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{prefix} \
-		--without-debug 
+		--sysconfdir=${sysconfdir} --without-debug 
 fi
 
 if [ "$SMP" != "" ]; then

@@ -1,3 +1,7 @@
+2001-08-12  Mikael Hallendal  <micke@codefactory.se>
+
+	* devhelp.spec.in: added sysconfdir by request of YupaSD.
+
 2001-08-09  Richard Hult  <rhult@codefactory.se>
 
 	* src/ui.c (main_window_key_press_event_cb): Make control-l focus
