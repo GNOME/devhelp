@@ -34,7 +34,7 @@
 #include "history.h"
 #include "devhelp-controller.h"
 
-#define d(x) x
+#define d(x)
 
 #define DEVHELP_CONTROLLER_FACTORY_OAFIID "OAFIID:GNOME_DevHelp_Controller_Factory"
 
@@ -340,8 +340,6 @@ devhelp_controller_open (DevHelpController *controller, const gchar *str_uri)
 		
 			uri = book_node_get_uri (node, anchor);
 		
-/* 			devhelp_controller_uri_cb (controller, uri, NULL); */
-
 			return TRUE;
 		}
 	}
