@@ -1,3 +1,7 @@
+2002-10-27  Christian Rose  <menthos@menthos.com>
+
+	* POTFILES.in: Removed file that no longer exists.
+
 2002-10-24  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* vi.po: Updated Vietnamese file

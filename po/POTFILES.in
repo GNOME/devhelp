@@ -8,4 +8,3 @@ src/dh-window.c
 src/main.c
 ui/GNOME_DevHelp.ui
 ui/GNOME_DevHelp_Controller.ui
-ui/devhelp2.glade
