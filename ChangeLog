@@ -1,3 +1,9 @@
+2004-01-05  Mikael Hallendal  <micke@imendio.com>
+
+	* configure.in: 
+	- Don't try to output removed Makefiles in libegg/*
+	- Output .desktop and .keys files.
+
 2004-01-04  Ross Burton  <ross@burtonini.com>
 
 	* configure.in:
