@@ -1,3 +1,7 @@
+2001-10-18  Abel Cheung  <maddog@linux.org.hk>
+
+	* configure.in: gnome-print version was not checked properly.
+
 2001-10-18  Johan Dahlin  <zilch.am@home.se>
 
 	* src/bookshelf.c (bookshelf_add_book): Use a 'better' strcmp.

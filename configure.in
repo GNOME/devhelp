@@ -133,7 +133,7 @@ if test x$GNOME_CONFIG = xno; then
 fi
   
 VERSION_INSIST(gnome-libs, $GNOME_CONFIG --version | awk '{print $2}', >=, GNOME_LIBS_REQUIRED)
-VERSION_INSIST(print, $GNOME_CONFIG --modversion bonobo | awk -F- '{print $2}', >=, GNOME_PRINT_REQUIRED)
+VERSION_INSIST(print, $GNOME_CONFIG --modversion print | awk -F- '{print $2}', >=, GNOME_PRINT_REQUIRED)
 VERSION_INSIST(xml, $GNOME_CONFIG --modversion xml | awk -F- '{print $2}', >=, LIBXML_REQUIRED)
 VERSION_INSIST(gtkhtml, $GNOME_CONFIG --modversion gtkhtml | awk -F- '{print $2}', >=, GTKHTML_REQUIRED)
 VERSION_INSIST(oaf, $GNOME_CONFIG --modversion oaf | awk -F- '{print $2}', >=, OAF_REQUIRED)
