@@ -1,19 +1,19 @@
 # devhelp's Portuguese Translation
-# Copyright (C) 2001, 2004 devhelp
+# Copyright © 2001, 2002, 2003, 2004 devhelp
 # Diatributed under the same licence as the devhelp package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2004.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.4\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2004-01-11 14:55+0000\n"
+"Project-Id-Version: 2.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-16 00:38+0100\n"
+"PO-Revision-Date: 2004-08-16 00:45+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 
 #: devhelp.desktop.in.h:1
 msgid "Developer's Help program"
@@ -27,83 +27,19 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Livro Devhelp"
 
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
-
-#: src/dh-main.c:259
+#: src/dh-main.c:81
 msgid "Specify the size and location of the window"
-msgstr "Especifique o tamanho e localização da janela"
+msgstr "Especificar o tamanho e localização da janela"
 
-#: src/dh-main.c:260
+#: src/dh-main.c:82
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "LARGURAxALTURA+DESLX+DESLY"
 
-#: src/dh-main.c:268
+#: src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Procurar uma função"
 
-#: src/dh-main.c:277
+#: src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Sair de qualquer Devhelp em execução"
 
@@ -120,34 +56,34 @@ msgstr "Nome de espaço '%s' inválido na linha %d, coluna %d"
 #: src/dh-parser.c:149
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "elementos título, nome e atalho são requeridos na linha %d, coluna %d"
+msgstr "elementos título, nome e link são requeridos na linha %d, coluna %d"
 
 #: src/dh-parser.c:202
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
-"elementos nome e atalho são requeridos dentro de <sub> na linha %d, coluna %d"
+"elementos nome e link são requeridos dentro de <sub> na linha %d, coluna %d"
 
 #: src/dh-parser.c:250
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
-"elementos nome e atalho são requeridos dentro de <function> na linha %d, "
+"elementos nome e link são requeridos dentro de <function> na linha %d, "
 "coluna %d"
 
 #: src/dh-parser.c:337 src/dh-parser.c:423
 msgid "Could not create book parser"
-msgstr "Incapaz de criar parseador de livro"
+msgstr "Incapaz de criar um parseador de livro"
 
 #: src/dh-parser.c:347 src/dh-parser.c:433
 msgid "Could not create markup parser"
-msgstr "Incapaz de criar parseador de markup"
+msgstr "Incapaz de criar um parseador de markup"
 
 #: src/dh-parser.c:479
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "Incapaz de descomprimir livro '%s': %s"
+msgstr "Incapaz de descomprimir o livro '%s': %s"
 
 #: src/dh-search.c:417
 msgid "_Search:"
@@ -157,314 +93,147 @@ msgstr "_Procurar:"
 msgid "Section"
 msgstr "Secção"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:120
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: src/dh-window.c:112
-#, fuzzy
+#: src/dh-window.c:121
 msgid "_Edit"
-msgstr "_Sair"
+msgstr "_Editar"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: src/dh-window.c:122 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Ir"
 
-#: src/dh-window.c:114
+#: src/dh-window.c:123
 msgid "_Help"
 msgstr "_Ajuda"
 
-#: src/dh-window.c:292
+#: src/dh-window.c:307
 #, c-format
 msgid "Cannot set UI: %s"
-msgstr "Incapaz de definir UI: %s"
+msgstr "Incapaz de definir o UI: %s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: src/dh-window.c:367 ui/devhelp.glade.h:3
 msgid "Contents"
-msgstr "Conteudos"
+msgstr "Conteúdo"
 
-#: src/dh-window.c:363
+#: src/dh-window.c:378
 msgid "Search"
 msgstr "Procurar"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:461
 msgid "A developer's help browser for GNOME 2"
-msgstr "Um navegador de ajuda de programadores para o GNOME 2"
+msgstr "Um navegador de ajuda para programadores do GNOME 2"
 
-#: src/dh-window.c:462
+#: src/dh-window.c:477
 msgid "Devhelp project page"
 msgstr "Página do projecto Devhelp"
 
-#: src/dh-window.c:466
+#: src/dh-window.c:481
 msgid "Bug report Devhelp"
 msgstr "Relatório de erro Devhelp"
 
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Fonte para o texto de largura fixa"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Fonte para o texto"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Fonte para o texto de largura fixa."
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Fonte para o texto de largura variável."
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Altura da janela principal"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Localização do painel"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Estado de maximização da janela principal"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "A posição X da janela principal."
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "A posição Y da janela principal."
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "A altura da janela principal."
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "A localização do separador de painel."
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "A largura da janela principal."
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Utilizar as fontes do sistema"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Utilizar as fontes por omissão do sistema."
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Se a janela principal deverá ou não iniciar maximizada."
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Largura da janela principal"
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Posição X da janela principal"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Posição Y da janela principal"
+
 #: ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Fontes</b>"
 
 #: ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "Largura fixa:"
 
 #: ui/devhelp.glade.h:6
-#, fuzzy
 msgid "Preferences"
-msgstr "Preferências..."
+msgstr "Preferências"
 
 #: ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "Largura variável: "
 
 #: ui/devhelp.glade.h:8
-#, fuzzy
 msgid "_Back"
-msgstr "Regressar"
+msgstr "_Retroceder"
 
 #: ui/devhelp.glade.h:9
-#, fuzzy
 msgid "_Forward"
-msgstr "Avançar"
+msgstr "_Avançar"
 
 #: ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search tab "
-#~ "to find what you are looking for."
-#~ msgstr ""
-#~ "Seleccione um assunto nos conteudos à esquerda ou alterne para a aba de "
-#~ "procura para encontrar o que está à procura."
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Seleccione um assunto nos conteudos à esquerda ou vá para o painel de "
-#~ "procura para procurar o que deseja.<p>Utilize <b>Shift Cima/Baixo</b> "
-#~ "para navegar na árvore à esquerda, e <b>Shift Esquerda/Direita</b> para "
-#~ "expandir e recolher os livros na árvore."
-
-#~ msgid "Expected 'book' got '%s' at line %d, column %d"
-#~ msgstr "Esperado 'book' obtido '%s' na linha %d, coluna %d"
-
-#~ msgid "Expected 'function' got '%s' at line %d, column %d"
-#~ msgstr "Esperada 'function', obtido '%s' na linha %d, coluna %d"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Procurar por:"
-
-#~ msgid "_About"
-#~ msgstr "_Sobre"
-
-#~ msgid ""
-#~ "<b>Could not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Incapaz de ler todos os livros</b>\n"
-#~ "\n"
-#~ "Ocorreram os seguintes erros ao ler os livros:\n"
-#~ "%s"
-
-#~ msgid "Choose a book..."
-#~ msgstr "Seleccione um livro..."
-
-#~ msgid "Problems when reading books: %s\n"
-#~ msgstr "Problemas ao ler livros: %s\n"
-
-#~ msgid "Empty document: %s"
-#~ msgstr "Documento vazio: %s"
-
-#~ msgid "Document wrong type, got %s, expected 'booklist': %s"
-#~ msgstr "Documento do tipo errado, obteve %s, esperava 'booklist': %s"
-
-#~ msgid ""
-#~ "I found an old version of your spec file (%s)\n"
-#~ "I removed it, so you have to hide the books you want to be hidden again."
-#~ msgstr ""
-#~ "Foi encontrada uma versão antiga do seu ficheiro spec (%s)\n"
-#~ "Foi removido, pelo que terá de esconder novamente os livros que quiser "
-#~ "escondidos."
-
-#~ msgid "Ok"
-#~ msgstr "Ok"
-
-#~ msgid "Failed to open file %s for writing."
-#~ msgstr "Falha ao abrir o ficheiro %s para escrita."
-
-#~ msgid "(C) Copyright 2001, Johan Dahlin"
-#~ msgstr "(C) Copyright 2001, Johan Dahlin"
-
-#~ msgid "Open %s"
-#~ msgstr "Abrir %s"
-
-#~ msgid "DevHelp Controller"
-#~ msgstr "Controlador DevHelp"
-
-#~ msgid "DevHelp Controller Factory"
-#~ msgstr "Fábrica de Controlador DevHelp"
-
-#~ msgid "DevHelp HelpBrowser"
-#~ msgstr "DevHelp HelpBrowser"
-
-#~ msgid "DevHelp HelpBrowser Factory"
-#~ msgstr "Fábrica HelpBrowser DevHelp"
-
-#~ msgid "Couldn't open uri: %s"
-#~ msgstr "Incapaz de abrir uri: %s"
-
-#~ msgid "Print Help"
-#~ msgstr "Imprimir Ajuda"
-
-#~ msgid "Print Preview"
-#~ msgstr "Antever Impressão"
-
-#~ msgid "Printing failed."
-#~ msgstr "Falhou a impressão."
-
-#~ msgid "The book is already installed."
-#~ msgstr "O livro já está instalado."
-
-#~ msgid "Failed to move book. This should never happen."
-#~ msgstr "Falha ao mover o livro. Isto nunca deveria acontecer."
-
-#~ msgid "Failed to extract spec file from book."
-#~ msgstr "Falha ao extrair ficheiro spec do livro."
-
-#~ msgid "Error, the book is corrupted or very old."
-#~ msgstr "Erro, o livro está corrompido ou é muito velho."
-
-#~ msgid "Failed to extract the book."
-#~ msgstr "Falha ao extrair o livro."
-
-#~ msgid "Wrong type (mime_type=%s)."
-#~ msgstr "Tipo errado (mime_type=%s)."
-
-#~ msgid "Could not activate devhelp: '%s'"
-#~ msgstr "Incapaz de activar devhelp: '%s'"
-
-#~ msgid "Tiny"
-#~ msgstr "Minúsculo"
-
-#~ msgid "Small"
-#~ msgstr "Pequeno"
-
-#~ msgid "Medium"
-#~ msgstr "Médio"
-
-#~ msgid "Large"
-#~ msgstr "Grande"
-
-#~ msgid "Huge"
-#~ msgstr "Enorme"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "<< _Show"
-#~ msgstr "<< Mo_strar"
-
-#~ msgid "Author:"
-#~ msgstr "Autor:"
-
-#~ msgid "Book info"
-#~ msgstr "Info livro"
-
-#~ msgid "Bookmarks"
-#~ msgstr "Marcadores"
-
-#~ msgid "DevHelp Preferences"
-#~ msgstr "Preferências DevHelp"
-
-#~ msgid "Hidden"
-#~ msgstr "Escondido"
-
-#~ msgid "Install new book..."
-#~ msgstr "Instalar novo livro..."
-
-#~ msgid "Move down"
-#~ msgstr "Mover abaixo"
-
-#~ msgid "Move up"
-#~ msgstr "Mover acima"
-
-#~ msgid "Name:"
-#~ msgstr "Nome:"
-
-#~ msgid "Path:"
-#~ msgstr "Caminho:"
-
-#~ msgid "Remove"
-#~ msgstr "Remover"
-
-#~ msgid "Reset to defaults"
-#~ msgstr "Repor omissões"
-
-#~ msgid "Show _sidebar"
-#~ msgstr "Mo_strar barra lateral"
-
-#~ msgid "Title:"
-#~ msgstr "Título:"
-
-#~ msgid "Version:"
-#~ msgstr "Versão:"
-
-#~ msgid "View"
-#~ msgstr "Ver"
-
-#~ msgid "Visible"
-#~ msgstr "Visível"
-
-#~ msgid "_Edit book..."
-#~ msgstr "_Editar livro..."
-
-#~ msgid "_Hide >>"
-#~ msgstr "_Esconder >>"
-
-#~ msgid "_Limit the number of hits to:"
-#~ msgstr "_Limitar o número de acessos a:"
-
-#~ msgid "_Text size: "
-#~ msgstr "_Tamanho texto: "
-
-#~ msgid "About this application"
-#~ msgstr "Sobre esta aplicação"
-
-#~ msgid "Font size"
-#~ msgstr "Tamanho fonte"
-
-#~ msgid "Open preferences dialog"
-#~ msgstr "Abrir diálogo de preferências"
-
-#~ msgid "Print the html page"
-#~ msgstr "Imprimir a página html"
-
-#~ msgid "Show sidebar"
-#~ msgstr "Mostrar barra lateral"
-
-#~ msgid "_Print"
-#~ msgstr "Im_primir"
-
-#~ msgid "_View"
-#~ msgstr "_Ver"
-
-#~ msgid "Book Manager..."
-#~ msgstr "Gestor de Livros..."
-
-#~ msgid "Go to next page in the history"
-#~ msgstr "Ir para a próxima página no histórico"
-
-#~ msgid "Go to previous page in the history"
-#~ msgstr "Ir para a página anterior no histórico"
-
-#~ msgid "Open the book manager dialog"
-#~ msgstr "Abrir o diálogo de gestor de livros"
+msgstr "_Utilizar as fontes do sistema"
