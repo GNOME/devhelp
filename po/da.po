@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2002-05-11 11:39+0200\n"
-"PO-Revision-Date: 2002-05-11 11:38+0200\n"
+"POT-Creation-Date: 2002-05-28 13:03+0200\n"
+"PO-Revision-Date: 2002-05-28 13:03+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -167,8 +167,8 @@ msgid " "
 msgstr " "
 
 #: ui/devhelp2.glade.h:2
-msgid "&lt;&lt; _Show"
-msgstr "&lt;&lt; _Vis"
+msgid "<< _Show"
+msgstr "<< _Vis"
 
 #: ui/devhelp2.glade.h:3
 msgid "Author:"
@@ -251,8 +251,8 @@ msgid "_Edit book..."
 msgstr "_Rediger bog..."
 
 #: ui/devhelp2.glade.h:28
-msgid "_Hide &gt;&gt;"
-msgstr "_Skjul &gt;&gt;"
+msgid "_Hide >>"
+msgstr "_Skjul >>"
 
 #: ui/devhelp2.glade.h:29
 msgid "_Limit the number of hits to:"
@@ -261,18 +261,6 @@ msgstr "_Begræns antallet af træffere til:"
 #: ui/devhelp2.glade.h:30
 msgid "_Text size: "
 msgstr "_Tekststørrelse:"
-
-#: ui/devhelp2.glade.h:31
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
-
-#: ui/devhelp2.glade.h:32
-msgid "gtk-close"
-msgstr "gtk-close"
-
-#: ui/devhelp2.glade.h:33
-msgid "gtk-ok"
-msgstr "gtk-ok"
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
@@ -349,6 +337,21 @@ msgstr "Gå til foregående side i historikken"
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
 msgstr "Åbn boghåndteringsvinduet"
+
+#~ msgid "&lt;&lt; _Show"
+#~ msgstr "&lt;&lt; _Vis"
+
+#~ msgid "_Hide &gt;&gt;"
+#~ msgstr "_Skjul &gt;&gt;"
+
+#~ msgid "gtk-cancel"
+#~ msgstr "gtk-cancel"
+
+#~ msgid "gtk-close"
+#~ msgstr "gtk-close"
+
+#~ msgid "gtk-ok"
+#~ msgstr "gtk-ok"
 
 #~ msgid "(C) Copyright 2001, Johan Dahlin"
 #~ msgstr "© Copyright 2001, Johan Dahlin"
