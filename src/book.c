@@ -115,7 +115,7 @@ book_get_type (void)
 }
 
 static void
-book_init (Book *book)
+book_init (Book *book) 
 {
 	BookPriv   *priv;
 	

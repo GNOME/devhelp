@@ -585,6 +585,8 @@ devhelp_window_new (void)
         
         gtk_window_set_default_size (GTK_WINDOW (widget), 700, 500);
 	
+	gtk_window_set_wmclass (GTK_WINDOW (window), "devhelp", "DevHelp");
+
 	gtk_signal_connect (GTK_OBJECT (window), 
 			    "delete_event",
 			    GTK_SIGNAL_FUNC (devhelp_window_delete_cb),
@@ -593,6 +595,7 @@ devhelp_window_new (void)
         devhelp_window_populate (window);
 
         bonobo_ui_component_thaw (priv->component, NULL);
+
 
         return widget;
 }
