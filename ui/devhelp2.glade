@@ -9,10 +9,6 @@
     <property name="modal">no</property>
     <property name="allow_shrink">no</property>
     <property name="allow_grow">yes</property>
-    <property name="wmclass_name">PrefsDialog</property>
-    <property name="wmclass_class">DevHelp</property>
-    <property name="auto_close">no</property>
-    <property name="hide_on_close">no</property>
     <property name="window-position">GTK_WIN_POS_NONE</property>
 
     <child internal-child="vbox">
@@ -123,7 +119,6 @@
                                       <widget class="GtkAccelLabel" id="convertwidget7">
                                         <property name="label" translatable="yes">Tiny</property>
                                         <property name="xalign">0.0</property>
-                                        <property name="accel-object">convertwidget2</property>
                                         <property name="use-underline">yes</property>
                                         <property name="visible">yes</property>
                                       </widget>
@@ -139,7 +134,6 @@
                                       <widget class="GtkAccelLabel" id="convertwidget8">
                                         <property name="label" translatable="yes">Small</property>
                                         <property name="xalign">0.0</property>
-                                        <property name="accel-object">convertwidget3</property>
                                         <property name="use-underline">yes</property>
                                         <property name="visible">yes</property>
                                       </widget>
@@ -155,7 +149,6 @@
                                       <widget class="GtkAccelLabel" id="convertwidget9">
                                         <property name="label" translatable="yes">Medium</property>
                                         <property name="xalign">0.0</property>
-                                        <property name="accel-object">convertwidget4</property>
                                         <property name="use-underline">yes</property>
                                         <property name="visible">yes</property>
                                       </widget>
@@ -171,7 +164,6 @@
                                       <widget class="GtkAccelLabel" id="convertwidget10">
                                         <property name="label" translatable="yes">Large</property>
                                         <property name="xalign">0.0</property>
-                                        <property name="accel-object">convertwidget5</property>
                                         <property name="use-underline">yes</property>
                                         <property name="visible">yes</property>
                                       </widget>
@@ -187,7 +179,6 @@
                                       <widget class="GtkAccelLabel" id="convertwidget11">
                                         <property name="label" translatable="yes">Huge</property>
                                         <property name="xalign">0.0</property>
-                                        <property name="accel-object">convertwidget6</property>
                                         <property name="use-underline">yes</property>
                                         <property name="visible">yes</property>
                                       </widget>
@@ -372,10 +363,6 @@
     <property name="modal">no</property>
     <property name="allow_shrink">no</property>
     <property name="allow_grow">yes</property>
-    <property name="wmclass_name">BooksDialog</property>
-    <property name="wmclass_class">DevHelp</property>
-    <property name="auto_close">no</property>
-    <property name="hide_on_close">no</property>
     <property name="window-position">GTK_WIN_POS_NONE</property>
 
     <child internal-child="vbox">

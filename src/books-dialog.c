@@ -47,6 +47,8 @@ struct _BooksDialog {
 	GtkWidget   *dialog;
 	GtkCList    *clist_hidden;
 	GtkCList    *clist_visible;
+	GtkTreeView *treeview_hidden;
+	GtkTreeView *treeview_visible;	
 };
 
 struct _BookInfo {
@@ -183,7 +185,7 @@ books_button_edit_clicked_cb (GtkWidget *button,
 	version = GTK_LABEL (glade_xml_get_widget (gui, "label_info_version"));
 	book_info->path = GTK_ENTRY (glade_xml_get_widget (gui, "entry_info_path"));
 
-	gtk_object_unref (GTK_OBJECT (gui));
+	g_object_unref (G_OBJECT (gui));
 
 	row = dialog->clist_visible->focus_row;
 	book_info->book = BOOK (gtk_clist_get_row_data (dialog->clist_visible, row));
@@ -217,6 +219,7 @@ update_clists (BooksDialog *dialog)
 	gint          row;
 
 	g_return_if_fail (dialog != NULL);
+	return;
 	
 	bookshelf = dialog->bookshelf;
 
@@ -393,8 +396,8 @@ books_dialog_new (Bookshelf   *bookshelf)
 	gtk_signal_connect (GTK_OBJECT (dialog->dialog), "destroy",
 			    GTK_SIGNAL_FUNC (books_destroy_cb), dialog);
 	
-	dialog->clist_hidden = GTK_CLIST (glade_xml_get_widget (gui, "books_clist_hidden"));
-	dialog->clist_visible = GTK_CLIST (glade_xml_get_widget (gui, "books_clist_visible"));
+	dialog->treeview_hidden = GTK_TREE_VIEW (glade_xml_get_widget (gui, "books_clist_hidden"));
+	dialog->treeview_visible = GTK_TREE_VIEW (glade_xml_get_widget (gui, "books_clist_visible"));
 
 	w = glade_xml_get_widget (gui, "books_button_add");
 	gtk_signal_connect (GTK_OBJECT (w), "clicked",
@@ -416,7 +419,7 @@ books_dialog_new (Bookshelf   *bookshelf)
 	gtk_signal_connect (GTK_OBJECT (w), "clicked",
 			    GTK_SIGNAL_FUNC (books_button_close_clicked_cb), dialog);
 
-	gtk_object_unref (GTK_OBJECT (gui));
+	g_object_unref (G_OBJECT (gui));
 
 	update_clists (dialog);
 

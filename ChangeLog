@@ -1,3 +1,7 @@
+2002-01-01  Johan Dahlin  <jdahlin@telia.com>
+
+	Lots of files, ported to GNOME2
+	
 2001-12-02  Johan Dahlin  <jdahlin@telia.com>
 
 	* configure.in (DEVHELP_VERSION): Bumped to 0.3

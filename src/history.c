@@ -181,6 +181,7 @@ history_maybe_emit (History *history)
 		
 		g_signal_emit (G_OBJECT (history),
 			       signals[FORWARD_EXISTS_CHANGED],
+			       0,
 			       priv->last_emit_forward);
 	}
 
@@ -189,6 +190,7 @@ history_maybe_emit (History *history)
 		
 		g_signal_emit (G_OBJECT (history),
 			       signals[BACK_EXISTS_CHANGED],
+			       0,
 			       priv->last_emit_back);
 	}
 }

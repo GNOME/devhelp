@@ -29,10 +29,10 @@
 #include <libgtkhtml/gtkhtml.h>
 
 #define DEVHELP_TYPE_VIEW        (devhelp_view_get_type ())
-#define DEVHELP_VIEW(o)          (GTK_CHECK_CAST ((o), DEVHELP_TYPE_VIEW, DevHelpView))
-#define DEVHELP_VIEW_CLASS(k)    (GTK_CHECK_FOR_CAST((k), DEVHELP_TYPE_VIEW, DevHelpViewClass))
-#define DEVHELP_IS_VIEW(o)       (GTK_CHECK_TYPE ((o), DEVHELP_TYPE_VIEW))
-#define DEVHELP_IS_VIEW_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), DEVHELP_TYPE_VIEW))
+#define DEVHELP_VIEW(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), DEVHELP_TYPE_VIEW, DevHelpView))
+#define DEVHELP_VIEW_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), DEVHELP_TYPE_VIEW, DevHelpViewClass))
+#define DEVHELP_IS_VIEW(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), DEVHELP_TYPE_VIEW))
+#define DEVHELP_IS_VIEW_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), DEVHELP_TYPE_VIEW))
 
 typedef struct _DevHelpView        DevHelpView;
 typedef struct _DevHelpViewClass   DevHelpViewClass;

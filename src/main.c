@@ -97,7 +97,7 @@ idle_activate_and_search_quit (gpointer data)
 {
 	activate_and_search (data, FALSE);
 	
-	gtk_main_quit ();
+	bonobo_main_quit ();
 	
 	return FALSE;
 }

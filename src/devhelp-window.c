@@ -422,17 +422,19 @@ dw_populate (DevHelpWindow *window)
 
 	bonobo_window_set_contents (BONOBO_WINDOW (window), priv->hpaned);
 
- 	g_signal_connect_object (G_OBJECT (priv->html_widget),
+ 	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_widget)->document),
 				 "link_clicked", 
 				 G_CALLBACK (dw_link_clicked_cb),
 				 G_OBJECT (window),
 				 0);
-	
-	g_signal_connect_object (G_OBJECT (priv->html_widget),
+	/* TODO: Look in gtkhtml2 code or ask jborg */
+#if GNOME2_PORT_COMPLETE	
+	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_widget)->document),
 				 "on_url",
 				 G_CALLBACK (dw_on_url_cb),
 				 G_OBJECT (window),
 				 0);
+#endif	
 }
 
 static void
@@ -463,7 +465,7 @@ cmd_exit_cb (BonoboUIComponent   *component,
 	     gpointer             data,
 	     const gchar         *cname)
 {
-	gtk_main_quit ();
+	bonobo_main_quit ();
 }
 
 static void
@@ -496,6 +498,7 @@ cmd_about_cb (BonoboUIComponent    *component,
 	      const gchar          *cname)
 {
         GtkWidget *about;
+
         const gchar *authors[] = {
 		"Johan Dahlin <jdahlin@telia.com",
                 "Mikael Hallendal <micke@codefactory.se>",
@@ -504,7 +507,7 @@ cmd_about_cb (BonoboUIComponent    *component,
         };
 
         about = gnome_about_new (PACKAGE, VERSION,
-                                 "(C) 2001 Johan Dahlin <jdahlin@telia.com",
+				 "(C) 2001 Johan Dahlin <jdahlin@telia.com>", 
 				 _("A developer's help browser for GNOME 2"),
                                  authors,
                                  NULL,
@@ -594,7 +597,7 @@ dw_delete_cb (GtkWidget     *widget,
 	g_return_if_fail (widget != NULL);
 	g_return_if_fail (IS_DEVHELP_WINDOW (widget));
 	
-	gtk_main_quit ();
+	bonobo_main_quit ();
 }
 
 static void
@@ -652,7 +655,8 @@ dw_zoom_level_changed_cb (Preferences     *prefs,
 	
 	magnification = zoom_levels[zoom_level].data / 100.0;
 	magnification = CLAMP (magnification, 0.05, 20.0);
-	
+
+	/* TODO: Look in gtkhtml2 code or ask jborg */
 //	gtk_html_set_magnification (GTK_HTML (priv->html_widget),
 //				    magnification);
 
@@ -684,7 +688,7 @@ devhelp_window_new (void)
         GtkWidget           *widget;
         BonoboUIContainer   *ui_container;
 	BonoboUIEngine      *ui_engine;
-	CORBA_Environment   ev;
+	CORBA_Environment    ev;
 	
         window = gtk_type_new (TYPE_DEVHELP_WINDOW);
         priv   = window->priv;

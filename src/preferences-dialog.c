@@ -74,6 +74,13 @@ pd_sidebar_visible_changed_cb (Preferences         *prefs,
 static gboolean
 prefs_destroy_cb (GtkWidget *widget, PreferencesDialog *dialog)
 {
+	g_signal_handlers_disconnect_matched (G_OBJECT (dialog->prefs),
+					      G_SIGNAL_MATCH_DATA,
+					      0,
+					      0,
+					      NULL,
+					      0,
+					      dialog);
 #if GNOME2_CONVERSION_COMPLETE   
 	g_signal_handlers_disconnect_by_data (G_OBJECT (dialog->prefs),
 			                      dialog);

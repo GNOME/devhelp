@@ -338,7 +338,10 @@ book_parse_sub (Book *book, BookNode *parent, xmlNode *xml_node)
 	cur = xml_node->xmlChildrenNode;
 	
 	while (cur != NULL) {
-		book_parse_sub (book, book_node, cur);
+	        if (!xmlStrcmp (cur->name, (const xmlChar*) "sub")) {
+			book_parse_sub (book, book_node, cur);
+		}
+		
 		cur = cur->next;
 	}
 }
@@ -931,7 +934,7 @@ document_get_uri (const Document *document, const gchar *anchor)
 		uri = gnome_vfs_uri_append_string (priv->base_uri, 
 						   document->link);
 	}
-	
+
 	return uri;
 }
 

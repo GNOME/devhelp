@@ -26,7 +26,6 @@
 
 #include <gdk/gdkkeysyms.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <gtk/gtksignal.h>
 #include <gtk/gtkscrolledwindow.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include "book.h"
@@ -79,25 +78,27 @@ struct _BookIndexPriv {
         BookIndexPixmaps    *pixmaps;
 };
 
-GtkType
+GType
 book_index_get_type (void)
 {
-        static GtkType book_index_type = 0;
+        static GType book_index_type = 0;
 
         if (!book_index_type) {
-                static const GtkTypeInfo book_index_info = {
-                        "BookIndex",
-                        sizeof (BookIndex),
+                static const GTypeInfo book_index_info = {
                         sizeof (BookIndexClass),
-                        (GtkClassInitFunc) book_index_class_init,
-                        (GtkObjectInitFunc) book_index_init,
-                        /* reserved_1 */ NULL,
-                        /* reserved_2 */ NULL,
-                        (GtkClassInitFunc) NULL,
+			NULL,
+			NULL,
+                        (GClassInitFunc) book_index_class_init,
+			NULL,
+			NULL,
+                        sizeof (BookIndex),
+			0,
+                        (GInstanceInitFunc) book_index_init,
                 };
-
-                book_index_type = gtk_type_unique (gtk_ctree_get_type (), 
-                                                   &book_index_info);
+		
+		book_index_type = g_type_register_static (GTK_TYPE_CTREE,
+							  "BookIndex",
+							  &book_index_info, 0);
         }
 
         return book_index_type;
@@ -114,8 +115,7 @@ book_index_class_init (BookIndexClass *klass)
 	widget_class = (GtkWidgetClass *) klass;
         ctree_class  = (GtkCTreeClass *)  klass;
 	
-        parent_class = gtk_type_class (gtk_ctree_get_type ());
-
+        parent_class = g_type_class_ref (GTK_TYPE_CTREE);
 	
 	object_class->destroy         = book_index_destroy;
 	widget_class->key_press_event = book_index_key_press_event;
@@ -128,10 +128,18 @@ book_index_class_init (BookIndexClass *klass)
 			      G_STRUCT_OFFSET (BookIndexClass,
 					       uri_selected),
 			      NULL, NULL,
+			      g_cclosure_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);
+
+                g_signal_new ("uri_selected",
+			      G_TYPE_FROM_CLASS (object_class),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (BookIndexClass,
+					       uri_selected),
+			      NULL, NULL,
 			      gtk_marshal_VOID__VOID,
 			      G_TYPE_NONE, 0);
-        
-//        gtk_object_class_add_signals (object_class, signals, LAST_SIGNAL);
 }
 
 static void
@@ -301,10 +309,7 @@ GtkWidget *
 book_index_new (Bookshelf *bookshelf)
 {
         BookIndex       *index;
-	
 	index = g_object_new (TYPE_BOOK_INDEX, "n-columns", 1, NULL);
-//        index = gtk_type_new (TYPE_BOOK_INDEX);
-//        gtk_ctree_construct (GTK_CTREE (index), 1, 0, NULL);
 
         index->priv->bookshelf = bookshelf;
 
@@ -315,7 +320,9 @@ book_index_new (Bookshelf *bookshelf)
 }
 
 static void
-book_index_select_row (GtkCTree *ctree, GtkCTreeNode *node, gint column)
+book_index_select_row (GtkCTree     *ctree,
+		       GtkCTreeNode *node,
+		       gint          column)
 {
         BookIndex       *index;
         BookIndexPriv   *priv;
@@ -331,7 +338,7 @@ book_index_select_row (GtkCTree *ctree, GtkCTreeNode *node, gint column)
 
         /* Chaining up */
         if (parent_class->tree_select_row) {
-                parent_class->tree_select_row (ctree, node, column);
+                GTK_CTREE_CLASS (parent_class)->tree_select_row (ctree, node, column);
         }
 
 	priv->selected_node = node;
@@ -345,12 +352,11 @@ book_index_select_row (GtkCTree *ctree, GtkCTreeNode *node, gint column)
 						 book_node_get_document (book_node));
 
 			uri = book_node_get_uri (book_node, NULL);
-			
+
 			g_signal_emit (G_OBJECT (index),
 				       signals[URI_SELECTED], 
 				       0,
 				       uri);
-
 //			gnome_vfs_uri_unref (uri);
 		}
 	}
