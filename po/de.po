@@ -4,13 +4,13 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelper 0.3.x\n"
+"Project-Id-Version: devhelper HEAD\n"
 "POT-Creation-Date: 2001-12-05 20:59+0100\n"
-"PO-Revision-Date: 2001-12-05 20:56+0100\n"
-"Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
+"PO-Revision-Date: 2002-08-17 23:29+0100\n"
+"Last-Translator: Christian Neumair <christian-neumair@web.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: devhelp.desktop.in.h:1
@@ -19,16 +19,16 @@ msgstr "DevHelp"
 
 #: devhelp.desktop.in.h:2
 msgid "Developers Help program"
-msgstr "Hilfe-Programm für Entwickler"
+msgstr "Hilfe-Programm fÃ¼r Entwickler"
 
 #: src/books-dialog.c:331
 msgid "Choose a book..."
-msgstr "Ein Buch auswählen..."
+msgstr "Ein Buch auswÃ¤hlen..."
 
 #: src/bookshelf.c:186
 #, c-format
 msgid "Problems when reading books: %s\n"
-msgstr "Probleme beim Lesen der Bücher: %s\n"
+msgstr "Probleme beim Lesen der BÃ¼cher: %s\n"
 
 #: src/bookshelf.c:367
 #, c-format
@@ -38,29 +38,27 @@ msgstr "Leeres Dokument: %s"
 #: src/bookshelf.c:373
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
-msgstr "Falscher Dokumenttyp. %s erhalten, Bücherliste erwartet: %s"
+msgstr "Falscher Dokumenttyp %s erhalten, BÃ¼cherliste erwartet: %s"
 
 #: src/bookshelf.c:407
 #, c-format
-msgid ""
-"I found an old version of your spec file (%s)\n"
+msgid "I found an old version of your spec file (%s)\n"
 "I removed it, so you have to hide the books you want to be hidden again."
-msgstr ""
-"Es wurde eine alte Version Ihrer spec-Datei (%s) gefunden.\n"
-"Sie wurde entfernt. Sie müssen die zu Bücher nochmals verbergen."
+msgstr "Es wurde eine alte Version Ihrer spec-Datei (%s) gefunden.\n"
+"Sie wurde entfernt. Sie mÃ¼ssen die zu verbergenden BÃ¼cher nochmals verbergen."
 
 #: src/bookshelf.c:412
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 #: src/bookshelf.c:453
 #, c-format
 msgid "Failed to open file %s for writing."
-msgstr "Datei %s konnte nicht zum Schreiben geöffnet werden"
+msgstr "Datei %s konnte nicht zum Schreiben geÃ¶ffnet werden"
 
 #: src/devhelp-window.c:402
 msgid "_Contents"
-msgstr "_Inhalte"
+msgstr "_Inhalt"
 
 #: src/devhelp-window.c:414
 msgid "_Search"
@@ -72,12 +70,12 @@ msgstr "(C) Copyright 2001, Johan Dahlin"
 
 #: src/devhelp-window.c:501
 msgid "A developer's help browser"
-msgstr "Ein Hilfe-Browser für Entwickler"
+msgstr "Ein Hilfe-Browser fÃ¼r Entwickler"
 
 #: src/devhelp-window.c:621
 #, c-format
 msgid "Open %s"
-msgstr "%s öffnen"
+msgstr "%s Ã¶ffnen"
 
 #: src/GNOME_DevHelp.oaf.in.in.h:1
 msgid "DevHelp Controller"
@@ -96,21 +94,13 @@ msgid "DevHelp HelpBrowser Factory"
 msgstr "DevHelp-Hilfe-Browser-Fabrik"
 
 #: src/html-widget.c:208
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Wählen Sie auf der linken Seite ein Thema aus oder wechseln Sie zur "
-"Suchfläche um zu finden was Sie benötogen.<p>Benutzen Sie <b>Umschalt Rauf/"
-"Runter</b> um durch den Baum auf der linken Seite zu navigieren und "
-"<b>Umschalt Links/Rechts</b>, um die Bücher im Baum ein- bzw. auszuklappen."
+msgid "Select a subject in the contents to the left or switch to the search pane to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the tree to the left, and <b>Shift Left/Right</b> to expand and collapse the books in the tree."
+msgstr "WÃ¤hlen Sie auf der linken Seite ein Thema aus oder wechseln Sie zur SuchflÃ¤che, um zu finden was Sie benÃ¶tigen.<p>Verwenden Sie <b>Umschalt + Rauf/Runter</b> um durch den Baum auf der linken Seite zu navigieren und <b>Umschalt + Links/Rechts</b>, um die BÃ¼cher im Baum ein- bzw. auszuklappen."
 
 #: src/html-widget.c:294
 #, c-format
 msgid "Couldn't open uri: %s"
-msgstr "URI konnte nicht geöffnet werden: %s"
+msgstr "Adresse konnte nicht geÃ¶ffnet werden: %s"
 
 #: src/html-widget.c:464
 msgid "Print Help"
@@ -124,11 +114,16 @@ msgstr "Druckvorschau"
 msgid "Printing failed."
 msgstr "Drucken fehlgeschlagen."
 
-#: src/install.c:101 src/install.c:190 src/install.c:214 src/install.c:306
+#: src/install.c:101
+#: src/install.c:190
+#: src/install.c:214
+#: src/install.c:306
 msgid "The book is already installed."
-msgstr "Das Buch ist bereist installiert."
+msgstr "Das Buch ist bereits installiert."
 
-#: src/install.c:114 src/install.c:198 src/install.c:223
+#: src/install.c:114
+#: src/install.c:198
+#: src/install.c:223
 msgid "Failed to move book. This should never happen."
 msgstr "Buch konnte nicht verschoben werden. Dies sollte nie passieren."
 
@@ -138,16 +133,17 @@ msgstr "spec-Datei konnte nicht vom Buch entnommen werden."
 
 #: src/install.c:169
 msgid "Error, the book is corrupted or very old."
-msgstr "Fehler. Das Buch ist defekt oder sehr alt."
+msgstr "Fehler. Das Buch ist fehlerhaft oder sehr alt."
 
 #: src/install.c:180
 msgid "Failed to extract the book."
 msgstr "Das Buch konnte nicht entnommen werden."
 
-#: src/install.c:287 src/install.c:297
+#: src/install.c:287
+#: src/install.c:297
 #, c-format
 msgid "Wrong type (mime_type=%s)."
-msgstr "Falscger Typ (mime_type=%s)"
+msgstr "Falscher Typ (mime_type=%s)"
 
 #: src/main.c:78
 #, c-format
@@ -162,23 +158,33 @@ msgstr "Nach Zeichenkette konnte nicht gesucht werden."
 msgid "Search for a function"
 msgstr "Nach einer Funktion suchen"
 
-#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
+#: src/preferences.c:87
+#: ui/GNOME_DevHelp.ui.h:11
+#: ui/devhelp.glade.h:22
 msgid "Tiny"
 msgstr "Winzig"
 
-#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
+#: src/preferences.c:88
+#: ui/GNOME_DevHelp.ui.h:10
+#: ui/devhelp.glade.h:21
 msgid "Small"
 msgstr "Klein"
 
-#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
+#: src/preferences.c:89
+#: ui/GNOME_DevHelp.ui.h:5
+#: ui/devhelp.glade.h:12
 msgid "Medium"
 msgstr "Mittel"
 
-#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
+#: src/preferences.c:90
+#: ui/GNOME_DevHelp.ui.h:4
+#: ui/devhelp.glade.h:11
 msgid "Large"
-msgstr "Groß"
+msgstr "GroÃŸ"
 
-#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
+#: src/preferences.c:91
+#: ui/GNOME_DevHelp.ui.h:3
+#: ui/devhelp.glade.h:9
 msgid "Huge"
 msgstr "Riesig"
 
@@ -192,7 +198,7 @@ msgstr " << _Zeigen"
 
 #: ui/devhelp.glade.h:3
 msgid "Author:"
-msgstr "Autor"
+msgstr "Autor:"
 
 #: ui/devhelp.glade.h:4
 msgid "Book info"
@@ -208,11 +214,11 @@ msgstr "DevHelp-Buchverwalter"
 
 #: ui/devhelp.glade.h:7
 msgid "DevHelp Preferences"
-msgstr "DevHelp-Vorlieben"
+msgstr "DevHelp-Einstellungen"
 
 #: ui/devhelp.glade.h:8
 msgid "Hidden"
-msgstr "Versteckt"
+msgstr "Verborgen"
 
 #: ui/devhelp.glade.h:10
 msgid "Install new book..."
@@ -240,7 +246,7 @@ msgstr "Entfernen"
 
 #: ui/devhelp.glade.h:18
 msgid "Reset to defaults"
-msgstr "Auf Vorgaben zurücksetzen"
+msgstr "Auf Vorgaben zurÃ¼cksetzen"
 
 #: ui/devhelp.glade.h:19
 msgid "Search"
@@ -272,31 +278,31 @@ msgstr "Buch _bearbeiten..."
 
 #: ui/devhelp.glade.h:28
 msgid "_Hide >>"
-msgstr "Verbergen >>"
+msgstr "_Verbergen >>"
 
 #: ui/devhelp.glade.h:29
 msgid "_Limit the number of hits to:"
-msgstr "Die Anzahl der Treffer begrenzen auf:"
+msgstr "Die Anzahl der Treffer _begrenzen auf:"
 
 #: ui/devhelp.glade.h:30
 msgid "_Text size: "
-msgstr "_Textgröße: "
+msgstr "_TextgrÃ¶ÃŸe: "
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
-msgstr "Über diese Anwendung"
+msgstr "IInfo zu dieser Anwendung"
 
 #: ui/GNOME_DevHelp.ui.h:2
 msgid "Font size"
-msgstr "Schriftgröße"
+msgstr "SchriftgrÃ¶ÃŸe"
 
 #: ui/GNOME_DevHelp.ui.h:6
 msgid "Open preferences dialog"
-msgstr "Vorliebendialog öffnen"
+msgstr "Einstellungsdialog Ã¶ffnen"
 
 #: ui/GNOME_DevHelp.ui.h:7
 msgid "Preferences..."
-msgstr "Vorlieben..."
+msgstr "Einstellungen..."
 
 #: ui/GNOME_DevHelp.ui.h:8
 msgid "Print the html page"
@@ -326,7 +332,8 @@ msgstr "_Hilfe"
 msgid "_Print"
 msgstr "_Drucken"
 
-#: ui/GNOME_DevHelp.ui.h:17 ui/GNOME_DevHelp_Controller.ui.h:7
+#: ui/GNOME_DevHelp.ui.h:17
+#: ui/GNOME_DevHelp_Controller.ui.h:7
 msgid "_Settings"
 msgstr "E_instellungen"
 
@@ -336,24 +343,25 @@ msgstr "_Ansicht"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:1
 msgid "Back"
-msgstr "Zurück"
+msgstr "ZurÃ¼ck"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:2
 msgid "Book Manager..."
-msgstr "Buchverwalter..."
+msgstr "Buchverwaltung..."
 
 #: ui/GNOME_DevHelp_Controller.ui.h:3
 msgid "Forward"
-msgstr "Vorwärts"
+msgstr "VorwÃ¤rts"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:4
 msgid "Go to next page in the history"
-msgstr "Zur nächsten Seite in der Chronik gehen"
+msgstr "Zur nÃ¤chsten Seite in der Chronik gehen"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:5
 msgid "Go to previous page in the history"
-msgstr "Zur vorherigen Seite in der Chronik gehen"
+msgstr "Zur vorigen Seite in der Chronik gehen"
 
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
-msgstr "Den Buchverwalter-Dialog öffnen"
+msgstr "Den Buchverwaltungs-Dialog Ã¶ffnen"
+
