@@ -205,7 +205,6 @@ devhelp_window_populate (DevHelpWindow *window)
 	Bonobo_EventSource    es;
 	Bonobo_Control        control_co;
 	gint                  zoom_level;
-	GtkWidget            *vbox;
 	GtkWidget            *html_sw;
 	
         g_return_if_fail (window != NULL);
@@ -218,7 +217,6 @@ devhelp_window_populate (DevHelpWindow *window)
 	priv->html_widget = html_widget_new ();
         priv->hpaned      = gtk_hpaned_new ();
 	priv->statusbar   = gtk_statusbar_new ();
-	vbox              = gtk_vbox_new (FALSE, 0);
 	html_sw           = gtk_scrolled_window_new (NULL, NULL);
 
 	gtk_object_get (GTK_OBJECT (priv->prefs),
@@ -286,9 +284,6 @@ devhelp_window_populate (DevHelpWindow *window)
 		g_error ("Argggh");
 	}
 
-	gtk_box_pack_start_defaults (GTK_BOX (vbox), priv->hpaned);
-	gtk_box_pack_end (GTK_BOX (vbox), priv->statusbar, FALSE, TRUE, 0);
-
 	priv->search_list = bonobo_widget_new_control_from_objref (control_co,
 								   uic);
 	gtk_paned_add1 (GTK_PANED (priv->hpaned), priv->notebook);
@@ -315,9 +310,9 @@ devhelp_window_populate (DevHelpWindow *window)
 				  priv->search_box, 
 				  gtk_label_new (_("Search")));
 
-	gtk_widget_show_all (vbox);
+	gtk_widget_show_all (priv->hpaned);
 
-	bonobo_window_set_contents (BONOBO_WINDOW (window), vbox);
+	bonobo_window_set_contents (BONOBO_WINDOW (window), priv->hpaned);
 
  	gtk_signal_connect_object (GTK_OBJECT (priv->html_widget),
 				   "link_clicked", 
@@ -509,14 +504,15 @@ devhelp_window_on_url_cb (DevHelpWindow *window, gchar *url, gpointer ignored)
 	
 	priv = window->priv;
 
+	bonobo_ui_component_set_status (priv->component, "", NULL);
+
 	if (url) {
 		status_text = g_strdup_printf (_("Open %s"), url);
-		gtk_statusbar_push (priv->statusbar, 0, status_text);
+		bonobo_ui_component_set_status (priv->component,
+						status_text,
+						NULL);
 		g_free (status_text);
-	} else {
-		gtk_statusbar_pop (priv->statusbar, 0);
 	}
-	
 }
 
 static void

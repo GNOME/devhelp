@@ -1,5 +1,14 @@
 2001-08-26  Mikael Hallendal  <micke@codefactory.se>
 
+	* ui/GNOME_DevHelp.ui: use BonoboUI statusbar.
+
+	* src/devhelp-window.c:
+	- RHult informed me that I should use the statusbar API from
+	  BonoboUI instead. Here we go...
+	(devhelp_window_on_url_cb): updated to use BonoboUI statusbar
+	  instead.
+	(devhelp_window_populate): no need for using GtkStatusbar. 
+
 	* src/devhelp-window.c:
 	- Fixes bug #202.
 	(devhelp_window_link_clicked_cb): changed argument order.

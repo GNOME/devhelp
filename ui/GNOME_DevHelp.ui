@@ -92,4 +92,8 @@
      <toolitem name="ToolForward" verb="HistoryForward" />
   </dockitem>
 
+  <status>
+     <item name="main" />	
+  </status>
+
 </Root>
