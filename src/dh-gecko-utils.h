@@ -30,6 +30,7 @@ enum {
 	DH_GECKO_PREF_FONT_FIXED
 };
 
+void            dh_gecko_utils_set_font_unit (const gchar  *unit);
 void            dh_gecko_utils_set_font      (gint          font_type,
 					      const gchar  *fontname);
 

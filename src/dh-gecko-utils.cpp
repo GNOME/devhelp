@@ -87,6 +87,11 @@ gecko_prefs_set_int (const gchar *key, gint value)
 	
 	return FALSE;
 }
+extern "C" void
+dh_gecko_utils_set_font_unit (const gchar *unit)
+{
+        gecko_prefs_set_string ("font.size.unit", unit);
+}
 
 extern "C" void 
 dh_gecko_utils_set_font (gint         type, const gchar *fontname)
