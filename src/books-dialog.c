@@ -71,13 +71,13 @@ books_button_show_clicked_cb (GtkWidget *button,
 	bookshelf = dialog->bookshelf;
 	
 	row = dialog->clist_hidden->focus_row;
-	book = (XMLBook*)gtk_clist_get_row_data (dialog->clist_hidden, row);
-	bookshelf_show_book (bookshelf, book);
+	book = (XMLBook*) gtk_clist_get_row_data (dialog->clist_hidden, row);
 
-	update_clists (dialog);
+	if (book) {
+		bookshelf_show_book (bookshelf, book);
+		update_clists (dialog);
+	}
 }
-
-	
 
 static void
 books_button_hide_clicked_cb (GtkWidget *button,
@@ -95,9 +95,11 @@ books_button_hide_clicked_cb (GtkWidget *button,
 	
 	row = dialog->clist_visible->focus_row;
 	book = BOOK (gtk_clist_get_row_data (dialog->clist_visible, row));
-	bookshelf_hide_book (bookshelf, book);
 
-	update_clists (dialog);
+	if (book) {
+		bookshelf_hide_book (bookshelf, book);
+		update_clists (dialog);
+	}
 }
 
 static gboolean
@@ -384,7 +386,8 @@ books_dialog_new (Bookshelf   *bookshelf)
 
 	dialog->bookshelf = bookshelf;
 
-	gui = glade_xml_new (DATA_DIR "/devhelp/glade/devhelp.glade", "books_dialog");
+	gui = glade_xml_new (DATA_DIR "/devhelp/glade/devhelp.glade", 
+			     "books_dialog");
 	
 	dialog->dialog = glade_xml_get_widget (gui, "books_dialog");
 	gtk_signal_connect (GTK_OBJECT (dialog->dialog), "destroy",
@@ -395,23 +398,28 @@ books_dialog_new (Bookshelf   *bookshelf)
 
 	w = glade_xml_get_widget (gui, "books_button_add");
 	gtk_signal_connect (GTK_OBJECT (w), "clicked",
-			    GTK_SIGNAL_FUNC (books_button_show_clicked_cb), dialog);
+			    GTK_SIGNAL_FUNC (books_button_show_clicked_cb), 
+			    dialog);
 
 	w = glade_xml_get_widget (gui, "books_button_remove");
 	gtk_signal_connect (GTK_OBJECT (w), "clicked",
-			    GTK_SIGNAL_FUNC (books_button_hide_clicked_cb), dialog);
+			    GTK_SIGNAL_FUNC (books_button_hide_clicked_cb), 
+			    dialog);
 
 	w = glade_xml_get_widget (gui, "books_button_edit");
 	gtk_signal_connect (GTK_OBJECT (w), "clicked",
-			    GTK_SIGNAL_FUNC (books_button_edit_clicked_cb), dialog);
+			    GTK_SIGNAL_FUNC (books_button_edit_clicked_cb), 
+			    dialog);
 
 	w = glade_xml_get_widget (gui, "books_button_install");
 	gtk_signal_connect (GTK_OBJECT (w), "clicked",
-			    GTK_SIGNAL_FUNC (books_button_install_clicked_cb), dialog);
+			    GTK_SIGNAL_FUNC (books_button_install_clicked_cb), 
+			    dialog);
 
 	w = glade_xml_get_widget (gui, "books_button_close");
 	gtk_signal_connect (GTK_OBJECT (w), "clicked",
-			    GTK_SIGNAL_FUNC (books_button_close_clicked_cb), dialog);
+			    GTK_SIGNAL_FUNC (books_button_close_clicked_cb), 
+			    dialog);
 
 	gtk_object_unref (GTK_OBJECT (gui));
 

@@ -1,3 +1,13 @@
+2001-12-03  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/books-dialog.c (books_button_hide_clicked_cb): only update
+	  and hide book if a book was actually selected.
+	(books_button_show_clicked_cb): only update and show book if a
+	  book was actually selected. 
+
+	* src/bookshelf.c (bookshelf_show_book): check if xml_book is
+	  NULL.
+
 2001-12-02  Johan Dahlin  <jdahlin@telia.com>
 
 	* configure.in (DEVHELP_VERSION): Bumped to 0.3

@@ -288,10 +288,9 @@ bookshelf_hide_book (Bookshelf *bookshelf, Book *book)
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
-
 	g_return_if_fail (book != NULL);
 	g_return_if_fail (IS_BOOK (book));
-	
+
 	priv = bookshelf->priv;
 
 	xml_book = g_new (XMLBook, 1);
@@ -316,6 +315,7 @@ bookshelf_show_book (Bookshelf *bookshelf, XMLBook *xml_book)
 	
 	g_return_if_fail (bookshelf != NULL);
 	g_return_if_fail (IS_BOOKSHELF (bookshelf));
+	g_return_if_fail (xml_book != NULL);
 
 	priv = bookshelf->priv;
 
