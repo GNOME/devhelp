@@ -1,5 +1,12 @@
 2004-07-25  Mikael Hallendal  <micke@imendio.com>
 
+	* Release 0.9.1
+	
+	* Makefile.am: Don't try to add spec file to tarball
+	* NEWS: Added updated translations
+
+2004-07-25  Mikael Hallendal  <micke@imendio.com>
+
 	* NEWS: Updated for 0.9.1
 	* configure.in: Bumped to 0.9.1 and removed the spec-file.
 	* devhelp.spec.in: Removed.

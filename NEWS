@@ -7,7 +7,8 @@ Devhelp 0.9.1:
   working properly.
 * Make sure user installed documentation is shown before system installed.
 * New translations (en_GB, en_CA)
-* Updated translations ()
+* Updated translations 
+  (ja, cs, nl, hr, sk, sr, es, en_GB, uk, is, pt_BR, sv,fi, es, sq)
 
 Devhelp 0.9:
 ------------

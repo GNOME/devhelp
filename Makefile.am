@@ -49,9 +49,6 @@ EXTRA_DIST =			\
 	misc/html2xml.py	\
 	misc/devhelp.vim
 
-dist-hook: devhelp.spec
-	cp devhelp.spec $(distdir)
-
 if GCONF_SCHEMAS_INSTALL
 install-data-local:
 	if test -z "$(DESTDIR)" ; then \
