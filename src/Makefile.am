@@ -30,33 +30,36 @@ devhelp_LDADD = 					\
 
 devhelpdir=$(libdir)/devhelp
 
+devhelphdir = $(includedir)/devhelp
+devhelph_HEADERS = 					\
+	dh-base.h					\
+	dh-book-tree.h					\
+	dh-error.h					\
+	dh-history.h    	                        \
+	dh-html.h					\
+	dh-keyword-model.h				\
+	dh-link.h					\
+	dh-search.h					\
+	dh-parser.h					\
+	dh-util.h					\
+	dh-window.h
+
 devhelp_LTLIBRARIES =					\
 	libdevhelp.la	
 
 libdevhelp_la_SOURCES =					\
 	dh-marshal-main.c				\
 	dh-base.c					\
-	dh-base.h					\
 	dh-book-tree.c					\
-	dh-book-tree.h					\
 	dh-error.c					\
-	dh-error.h					\
 	dh-history.c                            	\
-	dh-history.h    	                        \
 	$(html_widget_impl) 				\
-	dh-html.h					\
 	dh-keyword-model.c				\
-	dh-keyword-model.h				\
 	dh-link.c					\
-	dh-link.h					\
 	dh-search.c					\
-	dh-search.h					\
 	dh-parser.c					\
-	dh-parser.h					\
 	dh-util.c					\
-	dh-util.h					\
-	dh-window.c					\
-	dh-window.h			
+	dh-window.c
 
 libdevhelp_la_LIBADD =					\
 	@LIBDEVHELP_LIBS@				\
@@ -82,4 +85,8 @@ EXTRA_DIST =                            	\
 	dh-marshal.list				\
 	dh-html-mozilla.c			\
 	dh-html-gtkhtml2.c			\
+	$(devhelph_HEADERS)			\
 	$(NULL)
+
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = devhelp.pc

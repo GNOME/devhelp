@@ -1,3 +1,9 @@
+2004-02-13  Naba Kumar  <naba@gnome.org>
+
+	* configure.in, src/Makefile.am, src/.cvsignore,
+	(new) src/devhelp.pc.in: Installs libdevhelp header files and
+	pkgconfig file, so that external programs can also use libdevhelp.
+
 2004-02-01  Robert Sedak  <robert.sedak@sk.htnet.hr>
 
         * configure.in: Added "hr" (Croatian) to ALL_LINGUAS.

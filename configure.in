@@ -106,6 +106,7 @@ devhelp.keys
 dtd/Makefile
 po/Makefile.in
 src/Makefile
+src/devhelp.pc
 ui/Makefile
 misc/Makefile
 ])
