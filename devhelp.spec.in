@@ -1,6 +1,10 @@
+%define ver @VERSION@
+%define name @PACKAGE@
+
 Summary:             API document browser
-Name:                devhelp
-Version:             @VERSION@
+Name:                %name
+Version:             %ver
+Vendor:              Imendio
 Release:             imendio.1 
 License:             GPL
 Group:               Development/Tools
@@ -21,6 +25,17 @@ BuildRequires:       intltool
 
 %description
 An API document browser for GNOME 2.
+
+%package devel
+Summary:             Library to embed Devhelp in other applications.
+Group:               Development/Libraries
+Requires:            %name = %{PACKAGE_VERSION}
+Requires:            gtk2-devel >= 2.2.0
+Requires:            libgnomeui-devel >= 2.2.0
+Requires:            gnome-vfs2-devel >= 2.2.0
+
+%description devel
+Library of Devhelp for embedding into other applications.
 
 %prep
 %setup -q
@@ -53,6 +68,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 %{_datadir}/mime-info/devhelp.mime
 %{_datadir}/mime-info/devhelp.keys
+
+%files devel
+%defattr(-,root,root)
+%{_prefix}/include/devhelp/*
+%{_libdir}/libdevhelp*.a
+%{_libdir}/libdevhelp*.so
 
 %changelog
 * Sun Jun 29 2003 Mikael Hallendal <micke@imendio.com>

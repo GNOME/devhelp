@@ -26,12 +26,12 @@ devhelp_SOURCES = 					\
 
 devhelp_LDADD = 					\
         @DEVHELP_LIBS@ 					\
-        libdevhelp.la					\
+        libdevhelp-1.la					\
 	$(top_builddir)/libegg/menu/libegg-menu.la
 
-devhelpdir=$(libdir)/devhelp
+devhelpdir=$(libdir)
 
-devhelphdir = $(includedir)/devhelp
+devhelphdir = $(includedir)/devhelp-1.0/devhelp
 devhelph_HEADERS = 					\
 	dh-base.h					\
 	dh-book-tree.h					\
@@ -45,10 +45,10 @@ devhelph_HEADERS = 					\
 	dh-util.h					\
 	dh-window.h
 
-devhelp_LTLIBRARIES =					\
-	libdevhelp.la	
+lib_LTLIBRARIES =					\
+	libdevhelp-1.la	
 
-libdevhelp_la_SOURCES =					\
+libdevhelp_1_la_SOURCES =				\
 	dh-marshal-main.c				\
 	dh-base.c					\
 	dh-book-tree.c					\
@@ -62,12 +62,12 @@ libdevhelp_la_SOURCES =					\
 	dh-util.c					\
 	dh-window.c
 
-libdevhelp_la_LIBADD =					\
+libdevhelp_1_la_LIBADD =				\
 	@LIBDEVHELP_LIBS@				\
 	@HTML_WIDGET_LIBS@				\
 	$(top_builddir)/libegg/menu/libegg-menu.la
 
-libdevhelp_la_LDFLAGS = -avoid-version -module
+libdevhelp_1_la_LDFLAGS = -avoid-version -module
 
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
