@@ -1,14 +1,15 @@
 # Norwegian/Bokmaal translation of devhelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 2001.
+# Kjartan Maraas <kmaraas@gnome.org>, 2001-2004.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.2\n"
-"POT-Creation-Date: 2003-08-18 14:42+0200\n"
-"PO-Revision-Date: 2003-08-18 14:45+0200\n"
+"Project-Id-Version: devhelp 0.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-10 17:16+0100\n"
+"PO-Revision-Date: 2004-03-10 17:19+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
-"Language-Team: Norsk/Bokmål <no@li.org>\n"
+"Language-Team: Norsk/Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -96,34 +97,39 @@ msgstr "_Søk:"
 msgid "Section"
 msgstr "Del"
 
-#: src/dh-window.c:101
+#: src/dh-window.c:105
 msgid "_File"
 msgstr "_Fil"
 
-#: src/dh-window.c:102
+#: src/dh-window.c:106
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:103
+#: src/dh-window.c:107
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: src/dh-window.c:339
+#: src/dh-window.c:285
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Kan ikke sette brukergrensesnitt: %s"
+
+#: src/dh-window.c:347
 msgid "Contents"
 msgstr "Innhold"
 
-#: src/dh-window.c:350
+#: src/dh-window.c:358
 msgid "Search"
 msgstr "Søk"
 
-#: src/dh-window.c:415
+#: src/dh-window.c:423
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjelpleser for utviklere for GNOME 2"
 
-#: src/dh-window.c:430
+#: src/dh-window.c:438
 msgid "Devhelp project page"
 msgstr "Nettside for Devhelp"
 
-#: src/dh-window.c:434
+#: src/dh-window.c:442
 msgid "Bug report Devhelp"
 msgstr "Feilrapport for Devhelp"
