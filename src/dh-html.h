@@ -45,8 +45,10 @@ struct _DhHtmlClass {
         GObjectClass   parent_class;
 
 	/* Signals */
-	void (*uri_selected) (DhHtml *html,
-			      const gchar *uri);
+	void (*title_changed) (DhHtml      *html,
+			       const gchar *new_title);
+	void (*uri_selected)  (DhHtml      *html,
+			       const gchar *uri);
 };
 
 GType           dh_html_get_type       (void);

@@ -1,3 +1,24 @@
+2004-03-15  Mikael Hallendal  <micke@imendio.com>
+
+	* Makefile.am: Added devhelp.in
+	* autogen.sh: Updated from Gossip
+	* configure.in: Removed html widget check, always use Gecko
+	* devhelp.in: New script that sets MOZILLA_HOME
+	* src/Makefile.am: Updated for file changes
+	* src/dh-gecko-utils.cpp: Added, based on patch for yelp by Marco.
+	* src/dh-gecko-utils.h: same
+	* src/dh-html-gtkhtml2.c: Removed
+	* src/dh-html-mozilla.c: Removed
+	* src/dh-html.c: 
+	* src/dh-html.h:
+	- Only support Gecko now.
+	* src/dh-marshal.list: Added marshaller for title-changed
+	* src/dh-util.c:
+	* src/dh-util.h:
+	(dh_dot_dir): Added
+	* src/dh-window.c: (window_populate): Don't put the html widget in a 
+	  scrolled window, gecko provides it's own.
+
 2004-03-04  Guntupalli Karunakar  <karunakar@freedomink.org>
 
 	* configure.in: Added "pa" for Punjabi to ALL_LINGUAS.

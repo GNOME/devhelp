@@ -19,11 +19,14 @@ mime_DATA = $(KEYS_FILES) devhelp.mime
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libdevhelp-1.0.pc
 
+bin_SCRIPTS = devhelp
+
 EXTRA_DIST =			\
 	TODO 			\
 	$(DESKTOP_IN_FILES)	\
 	$(KEYS_IN_FILES)	\
 	$(mime_DATA)            \
+	devhelp.in              \
 	devhelp.desktop.in 	\
 	devhelp.spec.in 	\
 	libdevhelp-1.0.pc.in    \

@@ -266,7 +266,6 @@ static void
 window_populate (DhWindow *window)
 {
         DhWindowPriv *priv;
-	GtkWidget    *html_sw;
 	GtkWidget    *frame;
 	GtkWidget    *book_tree_sw;
 	GNode        *contents_tree;
@@ -303,11 +302,7 @@ window_populate (DhWindow *window)
 				G_CALLBACK (window_switch_page_after_cb),
 				window);
 
-	html_sw         = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (html_sw),
-					GTK_POLICY_AUTOMATIC,
-					GTK_POLICY_AUTOMATIC);
-	book_tree_sw      = gtk_scrolled_window_new (NULL, NULL);
+	book_tree_sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (book_tree_sw),
 					GTK_POLICY_AUTOMATIC,
 					GTK_POLICY_AUTOMATIC);
@@ -321,15 +316,11 @@ window_populate (DhWindow *window)
 
 	gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
 	
-/*  	gtk_container_add (GTK_CONTAINER (html_sw), priv->html_view); */
-	gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (html_sw),
-					       priv->html_view);
-	
 	frame = gtk_frame_new (NULL);
-	gtk_container_add (GTK_CONTAINER (frame), html_sw);
+	gtk_container_add (GTK_CONTAINER (frame), priv->html_view);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
 
- 	gtk_paned_add2 (GTK_PANED(priv->hpaned), frame);
+	gtk_paned_add2 (GTK_PANED(priv->hpaned), frame);
 
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), 250);
 

@@ -1,26 +1,32 @@
 #!/bin/sh
 # Run this to generate all the initial makefiles, etc.
 
+: ${AUTOCONF=autoconf}
+: ${AUTOHEADER=autoheader}
+: ${AUTOMAKE=automake}
+: ${ACLOCAL=aclocal}
+: ${LIBTOOLIZE=libtoolize}
+: ${INTLTOOLIZE=intltoolize}
+: ${LIBTOOL=libtool}
+
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
 ORIGDIR=`pwd`
 cd $srcdir
-PROJECT=Devhelp
+PROJECT=devhelp
 TEST_TYPE=-f
-FILE=src/dh-window.c
+FILE=src/dh-main.c
+CONFIGURE=configure.in
 
 DIE=0
 
-AUTOMAKE=automake-1.4
-ACLOCAL=aclocal-1.4
-
-($AUTOMAKE --version) < /dev/null > /dev/null 2>&1 || {
-        AUTOMAKE=automake
-        ACLOCAL=aclocal
-}
-
-(autoconf --version) < /dev/null > /dev/null 2>&1 || {
+# if GNOME2_DIR set, modify ACLOCAL_FLAGS ...
+if [ -n "$GNOME2_DIR" ]; then
+    ACLOCAL_FLAGS="-I $GNOME2_DIR/share/aclocal $ACLOCAL_FLAGS"
+fi
+		    
+($AUTOCONF --version) < /dev/null > /dev/null 2>&1 || {
 	echo
 	echo "You must have autoconf installed to compile $PROJECT."
 	echo "Download the appropriate package for your distribution,"
@@ -28,44 +34,56 @@ ACLOCAL=aclocal-1.4
 	DIE=1
 }
 
+(grep "^AC_PROG_INTLTOOL" $srcdir/configure.in >/dev/null) && {
+  ($INTLTOOLIZE --version) < /dev/null > /dev/null 2>&1 || {
+    echo
+    echo "You must have \`intltoolize' installed to compile $PROJECT."
+    echo "Get ftp://ftp.gnome.org/pub/GNOME/stable/sources/intltool/intltool-0.22.tar.gz"
+    echo "(or a newer version if it is available)"
+    DIE=1
+  }
+}
+
 ($AUTOMAKE --version) < /dev/null > /dev/null 2>&1 || {
 	echo
 	echo "You must have automake installed to compile $PROJECT."
-	echo "Get ftp://sourceware.cygnus.com/pub/automake/automake-1.4-p6.tar.gz"
+	echo "Get ftp://sourceware.cygnus.com/pub/automake/automake-1.4.tar.gz"
 	echo "(or a newer version if it is available)"
 	DIE=1
 }
 
 (grep "^AM_PROG_LIBTOOL" configure.in >/dev/null) && {
-  (libtool --version) < /dev/null > /dev/null 2>&1 || {
+  ($LIBTOOL --version) < /dev/null > /dev/null 2>&1 || {
     echo
     echo "**Error**: You must have \`libtool' installed to compile $PROJECT."
-    echo "Get ftp://ftp.gnu.org/pub/gnu/libtool/libtool-1.4.2.tar.gz"
+    echo "Get ftp://ftp.gnu.org/pub/gnu/libtool-1.2d.tar.gz"
     echo "(or a newer version if it is available)"
     DIE=1
   }
 }
 
-grep "^AM_GLIB_GNU_GETTEXT" configure.in >/dev/null && {
-  grep "sed.*POTFILES" $srcdir/configure.in >/dev/null || \
-  (gettext --version) < /dev/null > /dev/null 2>&1 || {
-    echo
-    echo "**Error**: You must have \`gettext' installed to compile $PROJECT."
-    echo "Get ftp://alpha.gnu.org/gnu/gettext-0.10.35.tar.gz"
-    echo "(or a newer version if it is available)"
-    DIE=1
-  }
-}
-
-(grep "^AC_PROG_INTLTOOL" $srcdir/configure.in >/dev/null) && {
-  (intltoolize --version) < /dev/null > /dev/null 2>&1 || {
-    echo
-    echo "**Error**: You must have \`intltoolize' installed to compile $PKG_NAME."
-    echo "Get ftp://ftp.gnome.org/pub/GNOME/stable/sources/intltool/intltool-0.15.tar.gz"
-    echo "(or a newer version if it is available)"
-    DIE=1
-  }
-}
+if grep "^AM_[A-Z0-9_]\{1,\}_GETTEXT" "$CONFIGURE" >/dev/null; then
+  if grep "sed.*POTFILES" "$CONFIGURE" >/dev/null; then
+    GETTEXTIZE=""
+  else
+    if grep "^AM_GLIB_GNU_GETTEXT" "$CONFIGURE" >/dev/null; then
+      GETTEXTIZE="glib-gettextize"
+      GETTEXTIZE_URL="ftp://ftp.gtk.org/pub/gtk/v2.0/glib-2.0.0.tar.gz"
+    else
+      GETTEXTIZE="gettextize"
+      GETTEXTIZE_URL="ftp://alpha.gnu.org/gnu/gettext-0.10.35.tar.gz"
+    fi
+                                                                                                          
+    $GETTEXTIZE --version < /dev/null > /dev/null 2>&1
+    if test $? -ne 0; then
+      echo
+      echo "**Error**: You must have \`$GETTEXTIZE' installed to compile $PKG_NAME."
+      echo "Get $GETTEXTIZE_URL"
+      echo "(or a newer version if it is available)"
+      DIE=1
+    fi
+  fi
+fi
 
 if test "$DIE" -eq 1; then
 	exit 1
@@ -119,19 +137,19 @@ do
 	intltoolize --copy --force --automake
       fi
       if grep "^AM_PROG_LIBTOOL" configure.in >/dev/null; then
-	echo "Running libtoolize..."
-	libtoolize --force --copy
+	echo "Running $LIBTOOLIZE..."
+	$LIBTOOLIZE --force --copy
       fi
-      echo "Running aclocal $aclocalinclude ..."
+      echo "Running $ACLOCAL $aclocalinclude ..."
       $ACLOCAL $aclocalinclude
       if grep "^AM_CONFIG_HEADER" configure.in >/dev/null; then
-	echo "Running autoheader..."
-	autoheader
+	echo "Running $AUTOHEADER..."
+	$AUTOHEADER
       fi
-      echo "Running automake --gnu $am_opt ..."
+      echo "Running $AUTOMAKE --gnu $am_opt ..."
       $AUTOMAKE --add-missing --gnu $am_opt
-      echo "Running autoconf ..."
-      autoconf
+      echo "Running $AUTOCONF ..."
+      $AUTOCONF
     )
   fi
 done
@@ -147,4 +165,3 @@ if test x$NOCONFIGURE = x; then
 else
   echo Skipping configure process.
 fi
-

@@ -1,7 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2004 Imendio hB
+ * Copyright (C) 2004 Marco Pesenti Gritti
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,20 +16,31 @@
  * License along with this program; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Author: Marco Pesenti Gritti <marco@gnome.org>
  */
 
-#ifndef __DH_UTIL_H__
-#define __DH_UTIL_H__
+#ifndef __DH_GECKO_UTILS_H__
+#define __DH_GECKO_UTILS_H__
 
-#include <glib.h>
-#include <libgnomevfs/gnome-vfs.h>
+G_BEGIN_DECLS
 
-const gchar *  dh_dot_dir                    (void);
+void            dh_gecko_set_font       (GtkMozEmbed  *html,
+					 const gchar  *fontname, 
+					 guint         fontsize);
 
-/* Taken from gnome-vfs CVS. */
-gchar *        dh_util_uri_relative_new      (const gchar          *text_uri,
-					      const gchar          *base_uri);
+gboolean        dh_set_font             (GtkMozEmbed  *html,
+					 const gchar  *font_name);
 
-gboolean       dh_util_uri_is_relative       (const gchar          *uri);
+/*
+gboolean        dh_gecko_find           (GtkMozEmbed  *html,
+					 const gchar  *str,
+					 gboolean      match_case,
+					 gboolean      wrap,
+					 gboolean      forward);
+*/
 
-#endif /* __DH_UTIL_H__ */
+G_END_DECLS
+
+#endif /* __DH_HTML_H__ */
+

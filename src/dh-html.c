@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2002-2003 CodeFactory AB
  * Copyright (C) 2001-2003 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2004 Imendio hB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,20 +25,24 @@
 
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnome/gnome-i18n.h>
+#include <libgnome/gnome-init.h>
 #include <gtkmozembed.h>
 
 #include "dh-util.h"
 #include "dh-marshal.h"
+#include "dh-gecko-utils.h"
 #include "dh-html.h"
 
 #define d(x) 
 
 struct _DhHtmlPriv {
-	GtkWidget *widget;
+	GtkMozEmbed *gecko;
 };
 
-static void     html_init                  (DhHtml              *html);
 static void     html_class_init            (DhHtmlClass         *klass);
+static void     html_init                  (DhHtml              *html);
+static void     html_title_cb              (GtkMozEmbed         *embed,
+					    DhHtml              *html);
 
 #if 0
 static gint     html_open_uri_cb           (GtkMozEmbed         *embed,
@@ -47,6 +52,7 @@ static gint     html_open_uri_cb           (GtkMozEmbed         *embed,
 
 enum {
 	URI_SELECTED,
+	TITLE_CHANGED,
 	LAST_SIGNAL
 };
 
@@ -63,7 +69,7 @@ dh_html_get_type (void)
                                 sizeof (DhHtmlClass),
                                 NULL,
                                 NULL,
-                                (GClassInitFunc) html_class_init,
+				(GClassInitFunc) html_class_init,
                                 NULL,
                                 NULL,
                                 sizeof (DhHtml),
@@ -80,14 +86,51 @@ dh_html_get_type (void)
 }
 
 static void
+html_class_init (DhHtmlClass *klass)
+{
+	signals[URI_SELECTED] = 
+		g_signal_new ("uri-selected",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (DhHtmlClass, uri_selected),
+			      NULL, NULL,
+			      dh_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);
+
+	signals[TITLE_CHANGED] = 
+		g_signal_new ("title-changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (DhHtmlClass, title_changed),
+			      NULL, NULL,
+			      dh_marshal_VOID__STRING,
+			      G_TYPE_NONE,
+			      1, G_TYPE_STRING);
+}
+
+static void
 html_init (DhHtml *html)
 {
         DhHtmlPriv *priv;
+	gchar      *profile_path;
         
-        priv = g_new0 (DhHtmlPriv, 1);
+	priv = g_new0 (DhHtmlPriv, 1);
 
-	priv->widget = gtk_moz_embed_new ();
+	priv->gecko = (GtkMozEmbed *) gtk_moz_embed_new ();
 
+	profile_path = g_build_filename (dh_dot_dir (),
+					 "mozilla",
+					 NULL);
+	
+	gtk_moz_embed_set_profile_path (profile_path, "Devhelp");
+
+	g_free (profile_path);
+					
+	dh_gecko_set_font (priv->gecko, "Bitstream Vera Sans", 10);
+	g_signal_connect (priv->gecko, "title",
+			  G_CALLBACK (html_title_cb),
+			  html);
 #if 0
         g_signal_connect (priv->widget, "open_uri",
                           G_CALLBACK (html_open_uri_cb),
@@ -98,17 +141,16 @@ html_init (DhHtml *html)
 }
 
 static void
-html_class_init (DhHtmlClass *klass)
+html_title_cb (GtkMozEmbed *embed, DhHtml *html)
 {
-	signals[URI_SELECTED] = 
-		g_signal_new ("uri_selected",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (DhHtmlClass, uri_selected),
-			      NULL, NULL,
-			      dh_marshal_VOID__POINTER,
-			      G_TYPE_NONE,
-			      1, G_TYPE_POINTER);
+	char *new_title;
+
+	new_title = gtk_moz_embed_get_title (embed);
+	if (new_title && *new_title != '\0') {
+		g_signal_emit (html, signals[TITLE_CHANGED], 0, new_title);
+	}
+	
+	g_free (new_title);
 }
 
 #if 0
@@ -129,13 +171,10 @@ DhHtml *
 dh_html_new (void)
 {
         DhHtml     *html;
-        DhHtmlPriv *priv;
 
         d(puts(__FUNCTION__));
 
         html = g_object_new (DH_TYPE_HTML, NULL);
-        priv = html->priv;
-        
         
         return html;
 }
@@ -145,7 +184,6 @@ dh_html_open_uri (DhHtml *html, const gchar *str_uri)
 {
         DhHtmlPriv *priv;
 	gchar      *full_uri;
-	
 	
         d(puts(__FUNCTION__));
 	
@@ -160,7 +198,7 @@ dh_html_open_uri (DhHtml *html, const gchar *str_uri)
 		full_uri = (gchar *) str_uri;
 	}
 	
-	gtk_moz_embed_load_url (GTK_MOZ_EMBED (priv->widget), full_uri);
+	gtk_moz_embed_load_url (priv->gecko, full_uri);
 
 	if (full_uri != str_uri) {
 		g_free (full_uri);
@@ -172,7 +210,7 @@ dh_html_get_widget (DhHtml *html)
 {
 	g_return_val_if_fail (DH_IS_HTML (html), NULL);
 	
-	gtk_widget_show (html->priv->widget);
+	gtk_widget_show (GTK_WIDGET (html->priv->gecko));
 
-	return html->priv->widget;
+	return GTK_WIDGET (html->priv->gecko);
 }

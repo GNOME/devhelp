@@ -1,30 +1,31 @@
 NULL =
-INCLUDES = 						\
-	-I$(top_srcdir) 				\
-	-I$(top_builddir) 				\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
-	-DDATA_DIR=\"$(datadir)\"			\
-	-DPREFIX="\"$(prefix)"\"			\
-	-DSYSCONFDIR=\""$(sysconfdir)"\"                \
-	-DDATADIR=\""$(datadir)"\"                      \
-	-DLIBDIR=\""$(libdir)"\"			\
-	-DDTD_DIR="\"$(datadir)/devhelp/dtd"\"		\
-	@DEVHELP_CFLAGS@ 				\
-	@LIBDEVHELP_CFLAGS@ 				\
+INCLUDES = 						  \
+	-I$(top_srcdir) 				  \
+	-I$(top_builddir) 				  \
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	  \ 
+	-DDATA_DIR=\"$(datadir)\"			  \
+	-DPREFIX="\"$(prefix)"\"		 	  \
+	-DSYSCONFDIR=\""$(sysconfdir)"\"                  \
+	-DDATADIR=\""$(datadir)"\"                        \
+	-DLIBDIR=\""$(libdir)"\"			  \
+	-DDTD_DIR="\"$(datadir)/devhelp/dtd"\"		  \
+	@DEVHELP_CFLAGS@ 				  \
+	@LIBDEVHELP_CFLAGS@ 		 	  	  \
+	$(MOZILLA_COMPONENT_CFLAGS)                       \
+	-I$(MOZILLA_INCLUDE_ROOT)/dom                     \
+	-I$(MOZILLA_INCLUDE_ROOT)/find                    \
+	-I$(MOZILLA_INCLUDE_ROOT)/webbrwsr		  \
+	-I$(MOZILLA_INCLUDE_ROOT)/string		  \
+	-I$(MOZILLA_INCLUDE_ROOT)/pref                    \
+	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h \
 	$(NULL)
 
-if HTML_WIDGET_MOZILLA
-html_widget_impl=dh-html-mozilla.c
-else
-html_widget_impl=dh-html-gtkhtml2.c
-endif
+bin_PROGRAMS = devhelp-bin
 
-bin_PROGRAMS = devhelp
-
-devhelp_SOURCES = 					\
+devhelp_bin_SOURCES = 					\
 	dh-main.c
 
-devhelp_LDADD = 					\
+devhelp_bin_LDADD = 					\
         @DEVHELP_LIBS@ 					\
         libdevhelp-1.la
 
@@ -53,7 +54,9 @@ libdevhelp_1_la_SOURCES =				\
 	dh-book-tree.c					\
 	dh-error.c					\
 	dh-history.c                            	\
-	$(html_widget_impl) 				\
+	dh-html.c                                       \
+	dh-gecko-utils.cpp                              \
+	dh-gecko-utils.h                                \
 	dh-keyword-model.c				\
 	dh-link.c					\
 	dh-search.c					\
@@ -63,7 +66,9 @@ libdevhelp_1_la_SOURCES =				\
 
 libdevhelp_1_la_LIBADD =				\
 	@LIBDEVHELP_LIBS@				\
-	@HTML_WIDGET_LIBS@
+	$(MOZILLA_COMPONENT_LIBS)
+
+libdevhelp_1_la_LDFLAGS = -avoid-version -module
 
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
@@ -81,7 +86,5 @@ dh-marshal.c: dh-marshal.h
 
 EXTRA_DIST =                            	\
 	dh-marshal.list				\
-	dh-html-mozilla.c			\
-	dh-html-gtkhtml2.c			\
 	$(devhelph_HEADERS)			\
 	$(NULL)
