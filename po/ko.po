@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.5\n"
-"POT-Creation-Date: 2003-03-02 22:13+0900\n"
+"POT-Creation-Date: 2003-03-04 09:26+0900\n"
 "PO-Revision-Date: 2003-03-02 10:14+0900\n"
 "Last-Translator: Kang Jeong-Hee <Keizi@mail.co.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -22,11 +22,11 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "개발자를 도와주는 프로그램"
 
-#: src/dh-main.c:252
+#: src/dh-main.c:262
 msgid "Search for a function"
 msgstr "함수 찾기"
 
-#: src/dh-main.c:261
+#: src/dh-main.c:271
 msgid "Quit any running Devhelp"
 msgstr ""
 
@@ -79,3 +79,15 @@ msgstr "검색"
 #: src/dh-window.c:378
 msgid "A developer's help browser for GNOME 2"
 msgstr "그놈 2 개발자를 도와주는 브라우저"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"왼쪽의 내용 칸에서 고르거나 검색 칸에서 찾아보세요.<p>"
+"<b>쉬프트 키를 누르고 위나 아래 화살표 누르면</b> 왼쪽의 트리에서 움직이고"
+"<b>쉬프트 키를 누르고 왼쪽이나 오른쪽 화살표를 누르면</b> 트리의 책을"
+"접거나 폅니다."

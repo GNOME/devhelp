@@ -11,3 +11,4 @@ src/dh-profile.c
 src/dh-search.c
 src/dh-util.c
 src/dh-window.c
+src/dh-html-gtkhtml2.c 
