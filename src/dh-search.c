@@ -24,6 +24,7 @@
 #endif
 
 #include <atk/atk.h>
+#include <gdk/gdkkeysyms.h>
 #include <gtk/gtkaccessible.h>
 #include <gtk/gtkcellrenderertext.h>
 #include <gtk/gtkentry.h>
@@ -64,6 +65,9 @@ static void  search_finalize                   (GObject        *object);
 
 static void  search_selection_changed_cb       (GtkTreeSelection    *selection,
 						DhSearch       *content);
+static gboolean search_entry_key_press_event_cb   (GtkEntry            *entry,
+						GdkEventKey         *event,
+						DhSearch            *search);
 static void  search_entry_changed_cb           (GtkEntry            *entry,
 						DhSearch       *search);
 static void  search_entry_activated_cb         (GtkEntry            *entry,
@@ -91,8 +95,7 @@ dh_search_get_type (void)
 {
         static GType type = 0;
 
-        if (!type)
-        {
+        if (!type) {
                 static const GTypeInfo info =
                         {
                                 sizeof (DhSearchClass),
@@ -188,6 +191,25 @@ search_selection_changed_cb (GtkTreeSelection *selection, DhSearch *search)
 	}
 }
 
+static gboolean
+search_entry_key_press_event_cb (GtkEntry    *entry,
+				 GdkEventKey *event,
+				 DhSearch    *search)
+{
+	if (event->keyval == GDK_Tab) {
+		if (event->state & GDK_CONTROL_MASK) {
+			gtk_widget_grab_focus (search->priv->hitlist);
+		} else {
+			gtk_editable_set_position (GTK_EDITABLE (entry), -1);
+			gtk_editable_select_region (GTK_EDITABLE (entry), 
+						    -1, -1);
+		}
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
 static void
 search_entry_changed_cb (GtkEntry *entry, DhSearch *search)
 {
@@ -257,7 +279,7 @@ search_complete_idle (DhSearch *search)
 	
 	text = gtk_entry_get_text (GTK_ENTRY (priv->entry));
 
-	list = g_completion_complete (priv->completion, 
+	list = g_completion_complete (priv->completion,
 				      (gchar *)text,
 				      &completed);
 
@@ -330,6 +352,10 @@ dh_search_new (GList *keywords)
 
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->entry);
 
+	g_signal_connect (priv->entry, "key-press-event",
+			  G_CALLBACK (search_entry_key_press_event_cb),
+			  search);
+			  
 	g_signal_connect (priv->entry, "changed", 
 			  G_CALLBACK (search_entry_changed_cb),
 			  search);
