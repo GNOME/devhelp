@@ -21,6 +21,7 @@
 
 #include "eggtoolitem.h"
 #include "eggmarshalers.h"
+#include <gtk/gtkseparatormenuitem.h>
 
 #ifndef _
 #  define _(s) (s)
