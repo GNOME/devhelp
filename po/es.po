@@ -1,0 +1,343 @@
+# Spanish/Spain translation of devhelp.
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Ismael Olea <ismael@olea.org>, 2001.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp 0.2.1\n"
+"POT-Creation-Date: 2001-10-16 19:49+0200\n"
+"PO-Revision-Date: 2001-10-16 19:57+0200\n"
+"Last-Translator: Ismael Olea <ismael@olea.org>\n"
+"Language-Team: Spanish/Spain <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: devhelp.desktop.in.h:1
+msgid "DevHelp"
+msgstr ""
+
+#: devhelp.desktop.in.h:2
+msgid "Developers Help program"
+msgstr ""
+
+#: src/books-dialog.c:315
+msgid "Choose a book..."
+msgstr ""
+
+#: src/bookshelf.c:183
+#, c-format
+msgid "Problems when reading books: %s\n"
+msgstr ""
+
+#: src/bookshelf.c:250
+#, c-format
+msgid "Empty document: %s"
+msgstr ""
+
+#: src/bookshelf.c:256
+#, c-format
+msgid "Document wrong type, got %s, expected 'booklist': %s"
+msgstr ""
+
+#: src/bookshelf.c:310
+#, c-format
+msgid "Failed to open file %s for writing."
+msgstr ""
+
+#: src/devhelp-window.c:382
+msgid "_Contents"
+msgstr ""
+
+#: src/devhelp-window.c:394
+msgid "_Search"
+msgstr "_Buscar"
+
+#: src/devhelp-window.c:518
+msgid "(C) Copyright 2001, Johan Dahlin"
+msgstr "© Copyright 2001, Johan Dahlin"
+
+#: src/devhelp-window.c:520
+msgid "A developer's help browser"
+msgstr ""
+
+#: src/devhelp-window.c:594
+#, c-format
+msgid "Open %s"
+msgstr "Abrir %s"
+
+#: src/GNOME_DevHelp.oaf.in.in.h:1
+msgid "DevHelp Controller"
+msgstr ""
+
+#: src/GNOME_DevHelp.oaf.in.in.h:2
+msgid "DevHelp Controller Factory"
+msgstr ""
+
+#: src/GNOME_DevHelp.oaf.in.in.h:3
+msgid "DevHelp HelpBrowser"
+msgstr ""
+
+#: src/GNOME_DevHelp.oaf.in.in.h:4
+msgid "DevHelp HelpBrowser Factory"
+msgstr ""
+
+#: src/html-widget.c:208
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+
+#: src/html-widget.c:294
+#, c-format
+msgid "Couldn't open uri: %s"
+msgstr ""
+
+#: src/html-widget.c:464
+msgid "Print Help"
+msgstr ""
+
+#: src/html-widget.c:509
+msgid "Print Preview"
+msgstr "Vista previa"
+
+#: src/html-widget.c:520
+msgid "Printing failed."
+msgstr "La impresión a fallado."
+
+#: src/install.c:101 src/install.c:192 src/install.c:210
+msgid "The book is already installed."
+msgstr ""
+
+#: src/install.c:114 src/install.c:200 src/install.c:219
+msgid "Failed to move book. This should never happen."
+msgstr ""
+
+#: src/install.c:154
+msgid "Failed to extract spec file from book."
+msgstr ""
+
+#: src/install.c:171
+msgid "Error, the book is corrupted or very old."
+msgstr ""
+
+#: src/install.c:182
+msgid "Failed to extract the book."
+msgstr ""
+
+#: src/install.c:289 src/install.c:299
+#, c-format
+msgid "Wrong type (mime_type=%s)."
+msgstr ""
+
+#: src/main.c:78
+#, c-format
+msgid "Could not activate devhelp: '%s'"
+msgstr ""
+
+#: src/main.c:87
+msgid "Could not search for string."
+msgstr ""
+
+#: src/main.c:125
+msgid "Search for a function"
+msgstr ""
+
+#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
+msgid "Tiny"
+msgstr "Pequeñísimo"
+
+#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
+msgid "Small"
+msgstr "Pequeño"
+
+#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
+msgid "Medium"
+msgstr "Medio"
+
+#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
+msgid "Large"
+msgstr "Rango"
+
+#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
+msgid "Huge"
+msgstr "Enorme"
+
+#: ui/devhelp.glade.h:1
+msgid " "
+msgstr " "
+
+#: ui/devhelp.glade.h:2
+msgid "<< _Show"
+msgstr ""
+
+#: ui/devhelp.glade.h:3
+msgid "Author:"
+msgstr "Autor:"
+
+#: ui/devhelp.glade.h:4
+msgid "Book info"
+msgstr ""
+
+#: ui/devhelp.glade.h:5
+msgid "Bookmarks"
+msgstr "Marcadores"
+
+#: ui/devhelp.glade.h:6
+msgid "DevHelp Book Manager"
+msgstr ""
+
+#: ui/devhelp.glade.h:7
+msgid "DevHelp Preferences"
+msgstr ""
+
+#: ui/devhelp.glade.h:8
+msgid "Hidden"
+msgstr "Oculta"
+
+#: ui/devhelp.glade.h:10
+msgid "Install new book..."
+msgstr ""
+
+#: ui/devhelp.glade.h:13
+msgid "Move down"
+msgstr "Mover abajo"
+
+#: ui/devhelp.glade.h:14
+msgid "Move up"
+msgstr "Mover arriba"
+
+#: ui/devhelp.glade.h:15
+msgid "Name:"
+msgstr "Nombre:"
+
+#: ui/devhelp.glade.h:16
+msgid "Path:"
+msgstr "Ruta:"
+
+#: ui/devhelp.glade.h:17
+msgid "Remove"
+msgstr "Quitar"
+
+#: ui/devhelp.glade.h:18
+msgid "Reset to defaults"
+msgstr ""
+
+#: ui/devhelp.glade.h:19
+msgid "Search"
+msgstr "Buscar"
+
+#: ui/devhelp.glade.h:20
+msgid "Show _sidebar"
+msgstr ""
+
+#: ui/devhelp.glade.h:23
+msgid "Title:"
+msgstr "Título:"
+
+#: ui/devhelp.glade.h:24
+msgid "Version:"
+msgstr "Versión:"
+
+#: ui/devhelp.glade.h:25
+msgid "View"
+msgstr "Ver"
+
+#: ui/devhelp.glade.h:26
+msgid "Visible"
+msgstr "Visible"
+
+#: ui/devhelp.glade.h:27
+msgid "_Edit book..."
+msgstr ""
+
+#: ui/devhelp.glade.h:28
+msgid "_Hide >>"
+msgstr ""
+
+#: ui/devhelp.glade.h:29
+msgid "_Limit the number of hits to:"
+msgstr ""
+
+#: ui/devhelp.glade.h:30
+msgid "_Text size: "
+msgstr ""
+
+#: ui/GNOME_DevHelp.ui.h:1
+msgid "About this application"
+msgstr "Sobre esta aplicación"
+
+#: ui/GNOME_DevHelp.ui.h:2
+msgid "Font size"
+msgstr "Tamaño de la fuente"
+
+#: ui/GNOME_DevHelp.ui.h:6
+msgid "Open preferences dialog"
+msgstr ""
+
+#: ui/GNOME_DevHelp.ui.h:7
+msgid "Preferences..."
+msgstr "Preferencias..."
+
+#: ui/GNOME_DevHelp.ui.h:8
+msgid "Print the html page"
+msgstr ""
+
+#: ui/GNOME_DevHelp.ui.h:9
+msgid "Show sidebar"
+msgstr ""
+
+#: ui/GNOME_DevHelp.ui.h:12
+msgid "_About..."
+msgstr "_Acerca..."
+
+#: ui/GNOME_DevHelp.ui.h:13
+msgid "_Exit"
+msgstr "Salir"
+
+#: ui/GNOME_DevHelp.ui.h:14
+msgid "_File"
+msgstr "_Archivo"
+
+#: ui/GNOME_DevHelp.ui.h:15
+msgid "_Help"
+msgstr "A_yuda"
+
+#: ui/GNOME_DevHelp.ui.h:16
+msgid "_Print"
+msgstr "Im_primir"
+
+#: ui/GNOME_DevHelp.ui.h:17 ui/GNOME_DevHelp_Controller.ui.h:7
+msgid "_Settings"
+msgstr "_Configuracion"
+
+#: ui/GNOME_DevHelp.ui.h:18
+msgid "_View"
+msgstr "_Vista"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:1
+msgid "Back"
+msgstr "Atrás"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:2
+msgid "Book Manager..."
+msgstr ""
+
+#: ui/GNOME_DevHelp_Controller.ui.h:3
+msgid "Forward"
+msgstr "Reenviar"
+
+#: ui/GNOME_DevHelp_Controller.ui.h:4
+msgid "Go to next page in the history"
+msgstr ""
+
+#: ui/GNOME_DevHelp_Controller.ui.h:5
+msgid "Go to previous page in the history"
+msgstr ""
+
+#: ui/GNOME_DevHelp_Controller.ui.h:6
+msgid "Open the book manager dialog"
+msgstr ""
+
