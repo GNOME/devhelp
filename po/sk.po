@@ -1,12 +1,12 @@
 # devhelp sk.po
-# Copyright (C) 2001 Free Software Foundation, Inc.
-# Marcel Telka <marcel@telka.sk>, 2001.
+# Copyright (C) 2001, 2002 Free Software Foundation, Inc.
+# Marcel Telka <marcel@telka.sk>, 2001, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-12-15 14:45+0100\n"
-"PO-Revision-Date: 2001-12-15 14:52+0100\n"
+"POT-Creation-Date: 2002-05-10 10:53+0200\n"
+"PO-Revision-Date: 2002-05-10 11:00+0100\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -21,26 +21,26 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Program pomocníka pre vývojárov"
 
-#: src/books-dialog.c:331
+#: src/books-dialog.c:327
 msgid "Choose a book..."
 msgstr "Vybra» knihu..."
 
-#: src/bookshelf.c:186
+#: src/bookshelf.c:185
 #, c-format
 msgid "Problems when reading books: %s\n"
 msgstr "Problémy pri èítaní kníh: %s\n"
 
-#: src/bookshelf.c:367
+#: src/bookshelf.c:372
 #, c-format
 msgid "Empty document: %s"
 msgstr "Prázdny dokument: %s"
 
-#: src/bookshelf.c:373
+#: src/bookshelf.c:378
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
 msgstr "Zlý typ dokumentu %s, oèakávaný zoznam kníh: %s"
 
-#: src/bookshelf.c:407
+#: src/bookshelf.c:412
 #, c-format
 msgid ""
 "I found an old version of your spec file (%s)\n"
@@ -49,53 +49,49 @@ msgstr ""
 "Na¹iel som starú verziu vá¹ho spec súboru (%s)\n"
 "Vymazal som ju. Ak chcete ma» skryté nejaké knihy, musíte ich skry» znova."
 
-#: src/bookshelf.c:412
+#: src/bookshelf.c:417
 msgid "Ok"
 msgstr "Ok"
 
-#: src/bookshelf.c:453
+#: src/bookshelf.c:458
 #, c-format
 msgid "Failed to open file %s for writing."
 msgstr "Zlyhalo otvorenie súboru %s pre zápis."
 
-#: src/devhelp-window.c:402
+#: src/devhelp-window.c:334
 msgid "_Contents"
 msgstr "_Obsah"
 
-#: src/devhelp-window.c:414
+#: src/devhelp-window.c:345
 msgid "_Search"
 msgstr "_Hµada»"
 
-#: src/devhelp-window.c:499
-msgid "(C) Copyright 2001, Johan Dahlin"
-msgstr "(C) Autorské práva 2001, Johan Dahlin"
+#: src/devhelp-window.c:437
+msgid "A developer's help browser for GNOME 2"
+msgstr "Prehliadaè pomocníka pre vývojárov pre GNOME 2"
 
-#: src/devhelp-window.c:501
-msgid "A developer's help browser"
-msgstr "Prehliadaè pomocníka pre vývojárov"
-
-#: src/devhelp-window.c:621
+#: src/devhelp-window.c:558
 #, c-format
 msgid "Open %s"
 msgstr "Otvori» %s"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:1
+#: src/GNOME_DevHelp.server.in.in.h:1
 msgid "DevHelp Controller"
 msgstr "Ovládaè DevHelp"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:2
+#: src/GNOME_DevHelp.server.in.in.h:2
 msgid "DevHelp Controller Factory"
 msgstr "Továreò ovládaèa DevHelp"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:3
+#: src/GNOME_DevHelp.server.in.in.h:3
 msgid "DevHelp HelpBrowser"
 msgstr "Prehliadaè pomocníka DevHelp"
 
-#: src/GNOME_DevHelp.oaf.in.in.h:4
+#: src/GNOME_DevHelp.server.in.in.h:4
 msgid "DevHelp HelpBrowser Factory"
 msgstr "Továreò prehliadaèa pomocníka DevHelp"
 
-#: src/html-widget.c:208
+#: src/devhelp-view.c:361
 msgid ""
 "Select a subject in the contents to the left or switch to the search pane to "
 "find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
@@ -107,180 +103,175 @@ msgstr ""
 "prechádzanie po strome vµavo a <b>shift+vµavo/vpravo</b> na rozbalenie a "
 "zabalenie kníh v strome."
 
-#: src/html-widget.c:294
-#, c-format
-msgid "Couldn't open uri: %s"
-msgstr "Nemô¾em otvori» uri: %s"
-
-#: src/html-widget.c:464
-msgid "Print Help"
-msgstr "Vytlaèi» pomocníka"
-
-#: src/html-widget.c:509
-msgid "Print Preview"
-msgstr "Náhµad pred tlaèou"
-
-#: src/html-widget.c:520
-msgid "Printing failed."
-msgstr "Tlaè zlyhala."
-
-#: src/install.c:101 src/install.c:190 src/install.c:214 src/install.c:306
+#: src/install.c:103 src/install.c:192 src/install.c:216 src/install.c:308
 msgid "The book is already installed."
 msgstr "Kniha je u¾ nain¹talovaná."
 
-#: src/install.c:114 src/install.c:198 src/install.c:223
+#: src/install.c:116 src/install.c:200 src/install.c:225
 msgid "Failed to move book. This should never happen."
 msgstr "Zlyhalo presunutie knihy. Toto by sa nemalo nikdy sta»."
 
-#: src/install.c:154
+#: src/install.c:156
 msgid "Failed to extract spec file from book."
 msgstr "Zlyhalo extrahovanie súboru spec z knihy."
 
-#: src/install.c:169
+#: src/install.c:171
 msgid "Error, the book is corrupted or very old."
 msgstr "Chyba. Kniha je po¹kodená alebo veµmi stará."
 
-#: src/install.c:180
+#: src/install.c:182
 msgid "Failed to extract the book."
 msgstr "Zlyhalo extrahovanie knihy."
 
-#: src/install.c:287 src/install.c:297
+#: src/install.c:289 src/install.c:299
 #, c-format
 msgid "Wrong type (mime_type=%s)."
 msgstr "Zlý typ (mime_type=%s)."
 
-#: src/main.c:78
+#: src/main.c:80
 #, c-format
 msgid "Could not activate devhelp: '%s'"
 msgstr "Nemô¾em aktivova» devhelp: '%s'"
 
-#: src/main.c:87
+#: src/main.c:89
 msgid "Could not search for string."
 msgstr "Nemô¾em vyhµadáva» re»azec."
 
-#: src/main.c:125
+#: src/main.c:129
 msgid "Search for a function"
 msgstr "Vyhµada» funkciu"
 
-#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:11 ui/devhelp.glade.h:22
+#: src/preferences.c:85 ui/GNOME_DevHelp.ui.h:11 ui/devhelp2.glade.h:22
 msgid "Tiny"
 msgstr "Drobný"
 
-#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:10 ui/devhelp.glade.h:21
+#: src/preferences.c:86 ui/GNOME_DevHelp.ui.h:10 ui/devhelp2.glade.h:21
 msgid "Small"
 msgstr "Malý"
 
-#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:5 ui/devhelp.glade.h:12
+#: src/preferences.c:87 ui/GNOME_DevHelp.ui.h:5 ui/devhelp2.glade.h:12
 msgid "Medium"
 msgstr "Stredný"
 
-#: src/preferences.c:90 ui/GNOME_DevHelp.ui.h:4 ui/devhelp.glade.h:11
+#: src/preferences.c:88 ui/GNOME_DevHelp.ui.h:4 ui/devhelp2.glade.h:11
 msgid "Large"
 msgstr "Veµký"
 
-#: src/preferences.c:91 ui/GNOME_DevHelp.ui.h:3 ui/devhelp.glade.h:9
+#: src/preferences.c:89 ui/GNOME_DevHelp.ui.h:3 ui/devhelp2.glade.h:9
 msgid "Huge"
 msgstr "Obrovský"
 
-#: ui/devhelp.glade.h:1
+#: ui/devhelp2.glade.h:1
 msgid " "
 msgstr " "
 
-#: ui/devhelp.glade.h:2
-msgid "<< _Show"
-msgstr "<< _Ukáza»"
+#: ui/devhelp2.glade.h:2
+msgid "&lt;&lt; _Show"
+msgstr "&lt;&lt; _Zobrazi»"
 
-#: ui/devhelp.glade.h:3
+#: ui/devhelp2.glade.h:3
 msgid "Author:"
 msgstr "Autor:"
 
-#: ui/devhelp.glade.h:4
+#: ui/devhelp2.glade.h:4
 msgid "Book info"
 msgstr "Informácie o knihe"
 
-#: ui/devhelp.glade.h:5
+#: ui/devhelp2.glade.h:5
 msgid "Bookmarks"
 msgstr "Zálo¾ky"
 
-#: ui/devhelp.glade.h:6
+#: ui/devhelp2.glade.h:6
 msgid "DevHelp Book Manager"
 msgstr "Správca kníh DevHelp"
 
-#: ui/devhelp.glade.h:7
+#: ui/devhelp2.glade.h:7
 msgid "DevHelp Preferences"
 msgstr "Predvoµby DevHelp"
 
-#: ui/devhelp.glade.h:8
+#: ui/devhelp2.glade.h:8
 msgid "Hidden"
 msgstr "Skrýté"
 
-#: ui/devhelp.glade.h:10
+#: ui/devhelp2.glade.h:10
 msgid "Install new book..."
 msgstr "Nain¹talova» novú knihu..."
 
-#: ui/devhelp.glade.h:13
+#: ui/devhelp2.glade.h:13
 msgid "Move down"
 msgstr "Presunú» dole"
 
-#: ui/devhelp.glade.h:14
+#: ui/devhelp2.glade.h:14
 msgid "Move up"
 msgstr "Presunú» hore"
 
-#: ui/devhelp.glade.h:15
+#: ui/devhelp2.glade.h:15
 msgid "Name:"
 msgstr "Meno:"
 
-#: ui/devhelp.glade.h:16
+#: ui/devhelp2.glade.h:16
 msgid "Path:"
 msgstr "Cesta:"
 
-#: ui/devhelp.glade.h:17
+#: ui/devhelp2.glade.h:17
 msgid "Remove"
 msgstr "Odstráni»"
 
-#: ui/devhelp.glade.h:18
+#: ui/devhelp2.glade.h:18
 msgid "Reset to defaults"
 msgstr "Vráti» na ¹tandardné hodnoty"
 
-#: ui/devhelp.glade.h:19
+#: ui/devhelp2.glade.h:19
 msgid "Search"
 msgstr "Hµada»"
 
-#: ui/devhelp.glade.h:20
+#: ui/devhelp2.glade.h:20
 msgid "Show _sidebar"
 msgstr "Ukáza» _boènú li¹tu"
 
-#: ui/devhelp.glade.h:23
+#: ui/devhelp2.glade.h:23
 msgid "Title:"
 msgstr "Titul:"
 
-#: ui/devhelp.glade.h:24
+#: ui/devhelp2.glade.h:24
 msgid "Version:"
 msgstr "Verzia:"
 
-#: ui/devhelp.glade.h:25
+#: ui/devhelp2.glade.h:25
 msgid "View"
 msgstr "Zobrazi»"
 
-#: ui/devhelp.glade.h:26
+#: ui/devhelp2.glade.h:26
 msgid "Visible"
 msgstr "Viditeµné"
 
-#: ui/devhelp.glade.h:27
+#: ui/devhelp2.glade.h:27
 msgid "_Edit book..."
 msgstr "_Upravi» knihu..."
 
-#: ui/devhelp.glade.h:28
-msgid "_Hide >>"
-msgstr "_Skry» >>"
+#: ui/devhelp2.glade.h:28
+msgid "_Hide &gt;&gt;"
+msgstr "_Skry» &gt;&gt;"
 
-#: ui/devhelp.glade.h:29
+#: ui/devhelp2.glade.h:29
 msgid "_Limit the number of hits to:"
 msgstr "_Obmedzi» poèet zásahov na:"
 
-#: ui/devhelp.glade.h:30
+#: ui/devhelp2.glade.h:30
 msgid "_Text size: "
 msgstr "Veµkos» _textu: "
+
+#: ui/devhelp2.glade.h:31
+msgid "gtk-cancel"
+msgstr "gtk-cancel"
+
+#: ui/devhelp2.glade.h:32
+msgid "gtk-close"
+msgstr "gtk-close"
+
+#: ui/devhelp2.glade.h:33
+msgid "gtk-ok"
+msgstr "gtk-ok"
 
 #: ui/GNOME_DevHelp.ui.h:1
 msgid "About this application"
