@@ -358,7 +358,7 @@ window_activate_action (EggAction *action, DhWindow *window)
 		}
 	}
 	else if (strcmp (name, "AboutAction") == 0) {
-		GtkWidget *about;
+		static GtkWidget *about = NULL;
 
 		const gchar *authors[] = {
 			"Mikael Hallendal <micke@imendio.com>",
@@ -367,16 +367,26 @@ window_activate_action (EggAction *action, DhWindow *window)
 			"Ross Burton <ross@burtonini.com>",
 			NULL
 		};
-		
-		about = gnome_about_new ("Devhelp", VERSION,
-					 "",
-					 _("A developer's help browser for GNOME 2"),
-					 authors,
-					 NULL,
-					 NULL,
-					 NULL);
-		
-		gtk_widget_show (about);
+
+		if (!about) {
+			about = gnome_about_new ("Devhelp", VERSION,
+						 "",
+						 _("A developer's help browser for GNOME 2"),
+						 authors,
+						 NULL,
+						 NULL,
+						 NULL);
+
+					
+			g_signal_connect (about,
+					  "destroy",
+					  G_CALLBACK (gtk_widget_destroyed),
+					  &about);
+
+			gtk_widget_show (about);
+		} else {
+			gtk_window_present (GTK_WINDOW (about));
+		}
 	} else {
 		g_message ("Unhandled action '%s'", name);
 	}

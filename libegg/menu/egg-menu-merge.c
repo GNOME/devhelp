@@ -935,15 +935,15 @@ update_node (EggMenuMerge *self, GNode *node)
 
   info = NODE_INFO(node);
 
-  g_print("update_node name=%s dirty=%d (", info->name, info->dirty);
+  //g_print("update_node name=%s dirty=%d (", info->name, info->dirty);
   for (tmp = info->uifiles; tmp != NULL; tmp = tmp->next)
     {
-      NodeUIReference *ref = tmp->data;
-      g_print("%s:%u", g_quark_to_string(ref->action_quark), ref->merge_id);
+      //NodeUIReference *ref = tmp->data;
+      //g_print("%s:%u", g_quark_to_string(ref->action_quark), ref->merge_id);
       if (tmp->next)
-	g_print(", ");
+	      ;//g_print(", ");
     }
-  g_print(")\n");
+  //g_print(")\n");
 
   if (NODE_INFO(node)->dirty)
     {
@@ -1276,7 +1276,7 @@ do_updates(EggMenuMerge *self)
    *    is created and added to the parent container).
    */
 
-  g_message("do_updates");
+  //g_message("do_updates");
 
   update_node (self, self->root_node);
 
