@@ -1,4 +1,4 @@
-# Swedish messages for Devhelp.
+# Swedish messages for DevHelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Richard Hult <rhult@codefactory.se>, 2001.
 # Johan Dahlin <zilch.am@home.se>, 2001.
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2001-10-10 22:17+0200\n"
-"PO-Revision-Date: 2001-10-10 22:19+0200\n"
+"POT-Creation-Date: 2001-10-13 02:13+0200\n"
+"PO-Revision-Date: 2001-10-13 02:14+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Tomt dokument: %s"
 #: src/bookshelf.c:256
 #, c-format
 msgid "Document wrong type, got %s, expected 'booklist': %s"
-msgstr "Dokumentet är av fel typ, fick %s, färväntade mig \"booklist\": %s"
+msgstr "Dokumentet är av fel typ, fick %s, förväntade mig \"booklist\": %s"
 
 #: src/bookshelf.c:310
 #, c-format
@@ -94,9 +94,9 @@ msgid ""
 "books in the tree."
 msgstr ""
 "Välj en rubrik i innehållet till vänster eller byt till sökpanelen för att "
-"ta reda på vad du söker på.<p>Använd <b>Skift Upp/Ner</b> för att navigera i "
-"trädet till vänster, och <b>Skift Vänster/Höger</b> för att fälla in "
-"respektive fälla ut böckerna i trädet."
+"finna det du söker.<p>Använd <b>Skift Upp/Ner</b> för att navigera i trädet "
+"till vänster, och <b>Skift Vänster/Höger</b> för att fälla in respektive "
+"fälla ut böckerna i trädet."
 
 #: src/html-widget.c:294
 #, c-format
@@ -125,7 +125,7 @@ msgstr "Misslyckades med att flytta bok. Detta borde aldrig inträffa."
 
 #: src/install.c:154
 msgid "Failed to extract spec file from book."
-msgstr "Misslyckades med att extrahera specifikationsfil från boken."
+msgstr "Misslyckades med att extrahera specifikationsfil från bok."
 
 #: src/install.c:171
 msgid "Error, the book is corrupted or very old."
@@ -372,6 +372,15 @@ msgstr "Gå till föregående sida i historiken"
 #: ui/GNOME_DevHelp_Controller.ui.h:6
 msgid "Open the book manager dialog"
 msgstr "Öppna bokhanterardialogen"
+
+#~ msgid "DevHelp"
+#~ msgstr "DevHelp"
+
+#~ msgid "New file"
+#~ msgstr "Ny fil"
+
+#~ msgid "Open file"
+#~ msgstr "Öppna fil"
 
 #~ msgid "searchInNewWindow not implemented."
 #~ msgstr "searchInNewWindow är inte implementerat."
