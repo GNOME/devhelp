@@ -65,7 +65,6 @@ static void book_tree_create_pixbufs       (DhBookTree           *tree);
 static void book_tree_selection_changed_cb (GtkTreeSelection     *selection,
 					    DhBookTree           *tree);
 
-
 enum {
         LINK_SELECTED,
         LAST_SIGNAL

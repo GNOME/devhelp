@@ -66,14 +66,6 @@ static void window_populate                  (DhWindow           *window);
 
 static void window_activate_action           (EggAction          *action,
 					      DhWindow           *window);
-#if 0
-static void window_uri_changed_cb            (BonoboListener     *listener,
-					      const gchar        *event_name,
-					      const CORBA_any    *arg,
-					      CORBA_Environment  *ev,
-					      gpointer            user_data);
-
-#endif
 static void window_delete_cb                 (GtkWidget          *widget,
 					      GdkEventAny        *event,
 					      gpointer            user_data);
@@ -94,6 +86,13 @@ static void window_note_change_page_cb       (GtkWidget          *child,
 static void window_merge_add_widget          (EggMenuMerge       *merge,
 					      GtkWidget          *widget,
 					      DhWindow           *window);
+static void window_back_exists_changed_cb    (DhHistory          *history,
+					      gboolean            exists,
+					      DhWindow           *window);
+static void window_forward_exists_changed_cb (DhHistory          *history,
+					      gboolean            exists,
+					      DhWindow           *window);
+
 
 static GtkWindowClass *parent_class = NULL;
 
@@ -160,9 +159,17 @@ window_init (DhWindow *window)
 {
         DhWindowPriv *priv;
 	gint          i;
-
+	EggAction    *action;
+	
         priv          = g_new0 (DhWindowPriv, 1);
 	priv->history = dh_history_new ();
+
+	g_signal_connect (priv->history, "forward_exists_changed",
+			  G_CALLBACK (window_forward_exists_changed_cb),
+			  window);
+	g_signal_connect (priv->history, "back_exists_changed",
+			  G_CALLBACK (window_back_exists_changed_cb),
+			  window);
 	
 	priv->merge   = egg_menu_merge_new ();
 
@@ -196,6 +203,14 @@ window_init (DhWindow *window)
 					    priv->action_group,
 					    0);
 
+	action = egg_action_group_get_action (priv->action_group, 
+					      "BackAction");
+	g_object_set (action, "sensitive", FALSE, NULL);
+	
+	action = egg_action_group_get_action (priv->action_group,
+					      "ForwardAction");
+	g_object_set (action, "sensitive", FALSE, NULL);
+	
         window->priv = priv;
 }
 
@@ -281,24 +296,12 @@ window_populate (DhWindow *window)
 				  window);
 	}
 
-#if 0
-	gtk_box_pack_start (GTK_BOX (priv->search_box), 
-			    priv->search_entry, 
-			    FALSE, FALSE, 0); 
-
-	gtk_box_pack_end_defaults (GTK_BOX (priv->search_box),
-				   priv->search_list); 
-	gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-				  priv->search_box,
-				  gtk_label_new_with_mnemonic (_("_Search")));
-
-
-
-#endif
-	gtk_widget_show_all (priv->hpaned);
-
 	gtk_box_pack_start (GTK_BOX (priv->main_box), priv->hpaned,
 			    TRUE, TRUE, 0);
+
+	gtk_widget_show_all (priv->hpaned);
+
+	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 0);
 
  	g_signal_connect_swapped (HTML_VIEW (priv->html_view),
 				  "uri_selected", 
@@ -306,7 +309,7 @@ window_populate (DhWindow *window)
 				  window);
 
 	/* TODO: Look in gtkhtml2 code or ask jborg */
-#if GNOME2_PORT_COMPLETE	
+#if 0
 	g_signal_connect_object (G_OBJECT (HTML_VIEW (priv->html_view)->document),
 				 "on_url",
 				 G_CALLBACK (window_on_url_cb),
@@ -354,33 +357,6 @@ window_activate_action (EggAction *action, DhWindow *window)
 		g_message ("Unhandled action '%s'", name);
 	}
 }
-
-#if 0
-static void
-window_uri_changed_cb (BonoboListener    *listener,
-		       const gchar       *event_name,
-		       const CORBA_any   *any,
-		       CORBA_Environment *ev,
-		       gpointer           user_data)
-{
-	DhWindow       *window;
-	DhWindowPriv   *priv;
-	gchar               *uri;
-	
-	g_return_if_fail (user_data != NULL);
-	g_return_if_fail (DH_IS_WINDOW (user_data));
-	
-	window = DH_WINDOW (user_data);
-	priv   = window->priv;
-	uri  = g_strdup (any->_value);
-
-	if (uri) {
-		dh_html_open_uri (DH_HTML (priv->html_view), uri);
-	}
-	
-	g_free (uri);
-}
-#endif 
 
 static void
 window_delete_cb (GtkWidget   *widget,
@@ -466,6 +442,44 @@ window_merge_add_widget (EggMenuMerge *merge,
 			    FALSE, FALSE, 0);
 	
 	gtk_widget_show (widget);
+}
+
+static void
+window_back_exists_changed_cb (DhHistory *history, 
+			       gboolean   exists,
+			       DhWindow  *window)
+{
+	DhWindowPriv *priv;
+	EggAction *action;
+		
+	g_return_if_fail (DH_IS_HISTORY (history));
+	g_return_if_fail (DH_IS_WINDOW (window));
+	
+	priv = window->priv;
+	
+	action = egg_action_group_get_action (priv->action_group, 
+					      "BackAction");
+	
+	g_object_set (action, "sensitive", exists, NULL);
+}
+
+static void
+window_forward_exists_changed_cb (DhHistory *history, 
+				  gboolean   exists, 
+				  DhWindow  *window)
+{
+	DhWindowPriv *priv;
+	EggAction *action;
+		
+	g_return_if_fail (DH_IS_HISTORY (history));
+	g_return_if_fail (DH_IS_WINDOW (window));
+	
+	priv = window->priv;
+	
+	action = egg_action_group_get_action (priv->action_group, 
+					      "ForwardAction");
+	
+	g_object_set (action, "sensitive", exists, NULL);
 }
 
 GtkWidget *

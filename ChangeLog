@@ -1,3 +1,11 @@
+2002-11-04  Mikael Hallendal  <micke@codefactory.se>
+
+	* src/dh-window.c: 
+	- removed unused code.
+	- set history buttons unsensitive by default
+	- connect to history signals.
+	- show the tree by default
+
 2002-11-03  Mikael Hallendal  <micke@codefactory.se>
 
 	* src/dh-util.[ch]: 
