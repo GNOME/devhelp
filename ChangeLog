@@ -1,3 +1,7 @@
+2003-02-02  Daniel Yacob  <locales@geez.org>
+
+	* configure.in: Added Amharic (am) to ALL_LINGUAS
+
 2003-02-01  Richard Hult  <rhult@codefactory.se>
 
 	* src/dh-main.c (main): Don't create a base and window if we're
