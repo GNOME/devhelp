@@ -90,6 +90,8 @@ activate_and_search (gpointer data, gboolean new_window)
 			exit (1);
 		}
 	}
+
+	CORBA_exception_free (&ev);
 }
 
 static gboolean
