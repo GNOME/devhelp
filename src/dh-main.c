@@ -1,8 +1,8 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001-2002 CodeFactory AB
+ * Copyright (C) 2001-2003 CodeFactory AB
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@codefactory.se>
- * Copyright (C) 2001-2002 Richard Hult <rhult@codefactory.se>
+ * Copyright (C) 2001-2003 Richard Hult <rhult@codefactory.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -269,11 +269,11 @@ main (int argc, char **argv)
                                       NULL);
 	LIBXML_TEST_VERSION;
 
- 	base = dh_base_new ();
- 	window = dh_base_new_window (base, NULL);
-
-	fd = dh_try_to_connect ();
+ 	fd = dh_try_to_connect ();
 	if (fd < 0) {
+		base = dh_base_new ();
+		window = dh_base_new_window (base, NULL);
+		
 		dh_create_socket (DH_WINDOW (window));
 	}
 
@@ -298,7 +298,7 @@ main (int argc, char **argv)
 	if (fd >= 0) {
 		return 0;
 	}
-	
+
 	gtk_widget_show (window);
 		
 	gtk_main ();

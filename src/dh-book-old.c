@@ -94,8 +94,8 @@ book_old_parse_chapter (GNode        *parent,
 		if (xmlStrcmp (child->name, "sub") == 0) {
 			gboolean success;
 			success = book_old_parse_chapter (new_parent, 
-							     child, base_uri,
-							     error);
+							  child, base_uri,
+							  error);
 		
 			if (!success) {
 				return FALSE;
@@ -108,9 +108,9 @@ book_old_parse_chapter (GNode        *parent,
 
 static gboolean
 book_old_parse_function (GList       **keywords, 
-			    xmlNode      *node, 
-			    const gchar  *base_uri,
-			    GError      **error)
+			 xmlNode      *node, 
+			 const gchar  *base_uri,
+			 GError      **error)
 {
 	GNode   *new_root;
 	xmlNode *child;
@@ -161,6 +161,8 @@ book_old_get_base_uri (const gchar *spec_path,
 	
 	ch = strrchr (tmp_url, '/');
 	if (!ch) {
+		g_free (tmp_url);
+		
 		return g_strdup (read_base);
 	}
 	
@@ -168,6 +170,8 @@ book_old_get_base_uri (const gchar *spec_path,
 
 	ch = strrchr (tmp_url, '/');
 	if (!ch) {
+		g_free (tmp_url);
+		
 		return g_strdup (read_base);
 	}
 	*ch = '\0';
@@ -177,6 +181,8 @@ book_old_get_base_uri (const gchar *spec_path,
 	
 	if (!ret_val || !g_file_test (ret_val, 
 				      G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR)) {
+		g_free (ret_val);
+		
 		return g_strdup (read_base);
 	}
 	
@@ -184,17 +190,18 @@ book_old_get_base_uri (const gchar *spec_path,
 }
 
 static void
-validating_error_cb(void *ctx, const char *msg, ...)
+validating_error_cb (void *ctx, const char *msg, ...)
 {
-	va_list args;
-	gchar *str;
+	va_list  args;
+	gchar   *str;
 
-	va_start(args, msg);
-	str = g_strdup_vprintf(msg, args);
-	va_end(args);
-	// TODO: save this somewhere for displaying later?
+	va_start (args, msg);
+	str = g_strdup_vprintf (msg, args);
+	va_end (args);
 
-	g_print("%s\n", str);
+	/* TODO: save this somewhere for displaying later? */
+
+	g_print ("%s\n", str);
 	g_free (str);
 }
 
@@ -207,10 +214,9 @@ book_old_validate (xmlDoc *doc, const gchar *dtd_path)
 	
 	g_return_val_if_fail (doc != NULL, FALSE);
 	g_return_val_if_fail (dtd_path != NULL, FALSE);
-	
-	cvp.userData = NULL;
-	cvp.error    = &validating_error_cb;
-	cvp.warning  = NULL;
+
+	memset (&cvp, 0, sizeof (cvp));
+	cvp.error = &validating_error_cb;
 
 	dtd = xmlParseDTD (NULL, dtd_path);
 	
@@ -317,7 +323,7 @@ dh_book_old_read (GsfInput  *input,
 	
 	xml_str = xmlGetProp (root_node, "base");
 	if (!xml_str) {
-		// TODO: this goes against the DTD
+		/* TODO: this goes against the DTD */
 		g_set_error (error,
 			     DH_ERROR,
 			     DH_ERROR_MALFORMED_BOOK,

@@ -40,8 +40,7 @@ static void        base_new_window_cb         (DhWindow       *window,
 static void        base_window_finalized_cb   (DhBase         *base,
 					       DhWindow       *window);
 
-
-static GObjectClass  *parent_class;
+static GObjectClass *parent_class;
 
 GType
 dh_base_get_type (void)
@@ -84,7 +83,7 @@ base_init (DhBase *base)
 static void
 base_class_init (DhBaseClass *klass)
 {
-	parent_class = gtk_type_class (G_TYPE_OBJECT);
+	parent_class = g_type_class_peek_parent (klass);
 }
 
 static void

@@ -176,6 +176,10 @@ book_tree_finalize (GObject *object)
 		
 		tree->priv = NULL;
 	}
+
+	if (G_OBJECT_CLASS (parent_class)->finalize) {
+		G_OBJECT_CLASS (parent_class)->finalize (object);
+	}
 }
 
 static void

@@ -133,10 +133,10 @@ dh_window_get_type (void)
 		};
 		
                 type = g_type_register_static (GTK_TYPE_WINDOW, 
-					       "DhWIndow",
+					       "DhWindow",
 					       &info, 0);
         }
-
+	
         return type;
 }
 
@@ -145,8 +145,8 @@ window_class_init (DhWindowClass *klass)
 {
         GObjectClass *object_class;
         
-        parent_class = gtk_type_class (GTK_TYPE_WINDOW);
-
+        parent_class = g_type_class_peek_parent (klass);
+        
         object_class = (GObjectClass *) klass;
         
         object_class->finalize = window_finalize;
@@ -218,6 +218,9 @@ window_init (DhWindow *window)
 static void
 window_finalize (GObject *object)
 {
+	if (G_OBJECT_CLASS (parent_class)->finalize) {
+		G_OBJECT_CLASS (parent_class)->finalize (object);
+	}
 }
 
 static void
@@ -274,17 +277,19 @@ window_populate (DhWindow *window)
 	contents_tree = dh_profile_open (priv->profile, &keywords, &error);
 	if (error) {
 		GtkWidget *dialog;
-		dialog = gtk_message_dialog_new(NULL,
-						GTK_DIALOG_MODAL,
-						GTK_MESSAGE_WARNING,
-						GTK_BUTTONS_OK,
-						_("<b>Cound not read all books</b>\n\nThe following errors occured whilst reading the books:\n%s"),
+		dialog = gtk_message_dialog_new (NULL,
+						 GTK_DIALOG_MODAL,
+						 GTK_MESSAGE_WARNING,
+						 GTK_BUTTONS_OK,
+						 _("<b>Could not read all books</b>\n\n"
+						   "The following errors occured whilst reading the books:\n%s"),
 						error->message);
-		g_object_set (GTK_MESSAGE_DIALOG(dialog)->label, "use-markup", TRUE, NULL);
-		gtk_dialog_run(GTK_DIALOG(dialog));
-		gtk_widget_destroy(dialog);
-		// TODO: would like to get GTK+ to do an event loop to
-		// hide the dialog
+		g_object_set (GTK_MESSAGE_DIALOG (dialog)->label, "use-markup", TRUE, NULL);
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+
+		/* TODO: would like to get GTK+ to do an event loop to
+		   hide the dialog */
 	}
 
 	if (contents_tree) {
@@ -332,7 +337,7 @@ window_populate (DhWindow *window)
 				 G_CALLBACK (window_on_url_cb),
 				 G_OBJECT (window),
 				 0);
-#endif	
+#endif
 }
 
 static void

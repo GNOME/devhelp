@@ -1,3 +1,40 @@
+2003-02-01  Richard Hult  <rhult@codefactory.se>
+
+	* src/dh-main.c (main): Don't create a base and window if we're
+	only contacting an already running instance.
+
+	* src/dh-book-old.c (dh_book_old_read): Fix style.
+	(book_old_validate): Zero out the validation context before using
+	it to silence valgrind.
+
+	* dtd/devhelp-1.dtd: Add author property to book element.
+
+	* src/dh-window.c (window_populate): Fix typo in error message
+	dialog.
+
+2003-01-31  Richard Hult  <rhult@codefactory.se>
+
+	* src/dh-book-tree.c (book_tree_finalize): Chain up.
+
+	* src/dh-window.c (window_populate): Fix style.
+
+	* src/dh-book-old.c (validating_error_cb): Fix style.
+	(book_old_get_base_uri): Fix leaks.
+
+	* src/dh-base.c (base_class_init): Use ..._peek_parent.
+
+	* src/dh-profile.c (profile_finalize): Chain up and rename from
+	profile_destroy.
+	(profile_class_init): Get parent class.
+
+	* src/dh-window.c (dh_window_get_type): Fix typo in the type name
+	argument to g_type_register_static.
+	(window_finalize): Chain up.
+	(window_class_init): Use g_type_class_peek_parent instead of
+	gtk_type_class.
+
+	* src/dh-profile.c (dh_profile_open): Fix style and plug leak.
+
 2003-01-27  Ross Burton  <ross@burtonini.com>
 
 	* src/dh-book-old.c: Display the reason for the validation

@@ -43,7 +43,9 @@ static gboolean   profile_find_books    (DhProfile      *profile,
 
 static void       profile_init          (DhProfile      *profile);
 static void       profile_class_init    (GObjectClass   *klass);
-static void       profile_destroy       (GObject        *object);
+static void       profile_finalize      (GObject        *object);
+
+static GObjectClass *parent_class = NULL;
 
 GType
 dh_profile_get_type (void)
@@ -91,13 +93,19 @@ profile_init (DhProfile *profile)
 static void
 profile_class_init (GObjectClass *klass)
 {
-	klass->finalize = profile_destroy;
+        parent_class = g_type_class_peek_parent (klass);
+
+	klass->finalize = profile_finalize;
 }
 
 static void
-profile_destroy (GObject *object)
+profile_finalize (GObject *object)
 {
 	g_print ("FIXME: Free profile\n");
+	
+	if (G_OBJECT_CLASS (parent_class)->finalize) {
+		G_OBJECT_CLASS (parent_class)->finalize (object);
+	}
 }
 
 static gboolean
@@ -185,7 +193,7 @@ dh_profile_open (DhProfile *profile, GList **keywords, GError **error)
 {
 	DhProfilePriv *priv;
 	GSList        *l;
-	GString *failures = g_string_new("");
+	GString       *failures;
 	
 	g_return_val_if_fail (DH_IS_PROFILE (profile), NULL);
 
@@ -196,6 +204,8 @@ dh_profile_open (DhProfile *profile, GList **keywords, GError **error)
 		return priv->contents;
 	}
 
+	failures = g_string_new ("");
+	
 	priv->contents = g_node_new (NULL);
 
 	for (l = priv->books; l; l = l->next) {
@@ -205,21 +215,23 @@ dh_profile_open (DhProfile *profile, GList **keywords, GError **error)
 				   priv->contents,
 				   &priv->keywords,
 				   &load_error)) {
-			g_string_append(failures, load_error->message);
-			g_string_append_c(failures, '\n');
-			g_clear_error(&load_error);
+			g_string_append (failures, load_error->message);
+			g_string_append_c (failures, '\n');
+			g_clear_error (&load_error);
 		}
-		g_message("Pulse");
+
+		/*g_message ("Pulse");*/
 	}
 
 	priv->open = TRUE;
 	*keywords = priv->keywords;
 
 	if (failures->len > 0) {
-		g_set_error(error,
-			    DH_ERROR, DH_ERROR_MALFORMED_BOOK,
-			    g_string_free(failures, FALSE));
+		g_set_error (error,
+			     DH_ERROR, DH_ERROR_MALFORMED_BOOK,
+			     g_string_free (failures, FALSE));
 	}
+
 	return priv->contents;
 }
 
