@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2003-04-24 22:06+0200\n"
-"PO-Revision-Date: 2003-02-25 20:04+0100\n"
+"POT-Creation-Date: 2003-05-15 18:41+0200\n"
+"PO-Revision-Date: 2003-05-15 18:41+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,22 @@ msgstr "DevHelp"
 msgid "Developers Help program"
 msgstr "Hjälpprogram för utvecklare"
 
+#: devhelp.keys.in.h:1
+msgid "DevHelp Book"
+msgstr "DevHelp-bok"
+
+#: src/dh-html-gtkhtml2.c:526
+msgid ""
+"Select a subject in the contents to the left or switch to the search pane to "
+"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
+"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
+"books in the tree."
+msgstr ""
+"Välj en rubrik i innehållet till vänster eller byt till sökpanelen för att "
+"finna det du söker.<p>Använd <b>Skift Upp/Ner</b> för att navigera i trädet "
+"till vänster, och <b>Skift Vänster/Höger</b> för att fälla in respektive "
+"fälla ut böckerna i trädet."
+
 #: src/dh-main.c:261
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
@@ -32,6 +48,55 @@ msgstr "Sök efter en funktion"
 #: src/dh-main.c:270
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
+
+#: src/dh-parser.c:94
+#, c-format
+msgid "Expected 'book' got '%s' at line %d, column %d"
+msgstr "\"book\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
+
+#: src/dh-parser.c:110
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Ogiltig namnrymd \"%s\" vid rad %d, kolumn %d"
+
+#: src/dh-parser.c:139
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "titel-, namn- och länkelement krävs vid rad %d, kolumn %d"
+
+#: src/dh-parser.c:171
+#, c-format
+msgid "Expected 'sub' got '%s' at line %d column %d"
+msgstr "\"sub\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
+
+#: src/dh-parser.c:192
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "namn- och länkelement krävs inuti <sub> på rad %d, kolumn %d"
+
+#: src/dh-parser.c:218
+#, c-format
+msgid "Expected 'function' got '%s' at line %d, column %d"
+msgstr "\"function\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
+
+#: src/dh-parser.c:240
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr "namn- och länkelement krävs inuti <function> på rad %d, kolumn %d"
+
+#: src/dh-parser.c:326 src/dh-parser.c:410
+msgid "Could not create book parser"
+msgstr "Kunde inte skapa boktolk"
+
+#: src/dh-parser.c:336 src/dh-parser.c:420
+msgid "Could not create markup parser"
+msgstr "Kunde inte skapa markuptolk"
+
+#: src/dh-parser.c:466
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Kan inte dekomprimera boken \"%s\": %s"
 
 #: src/dh-search.c:349
 msgid "_Search for:"
@@ -70,17 +135,11 @@ msgstr "Sök"
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
-#: src/dh-html-gtkhtml2.c:526
-msgid ""
-"Select a subject in the contents to the left or switch to the search pane to "
-"find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate the "
-"tree to the left, and <b>Shift Left/Right</b> to expand and collapse the "
-"books in the tree."
-msgstr ""
-"Välj en rubrik i innehållet till vänster eller byt till sökpanelen för att "
-"finna det du söker.<p>Använd <b>Skift Upp/Ner</b> för att navigera i trädet "
-"till vänster, och <b>Skift Vänster/Höger</b> för att fälla in respektive "
-"fälla ut böckerna i trädet."
+#~ msgid "Expected '%s' got '%s' at line %d, column %d"
+#~ msgstr "\"%s\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
+
+#~ msgid "Expected '%s', got '%s' at line %d, column %d"
+#~ msgstr "\"%s\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
 
 #~ msgid ""
 #~ "<b>Could not read all books</b>\n"
@@ -92,9 +151,6 @@ msgstr ""
 #~ "\n"
 #~ "Följande fel inträffade vid läsande av böckerna:\n"
 #~ "%s"
-
-#~ msgid "Could not read all books"
-#~ msgstr "Kunde inte läsa alla böcker"
 
 #~ msgid "The following errors occured whilst reading the books:\n"
 #~ msgstr "Följande fel inträffade vid läsande av böckerna:\n"
@@ -210,9 +266,6 @@ msgstr ""
 
 #~ msgid "Bookmarks"
 #~ msgstr "Bokmärken"
-
-#~ msgid "DevHelp Book Manager"
-#~ msgstr "DevHelp-bokhanterare"
 
 #~ msgid "DevHelp Preferences"
 #~ msgstr "Inställningar för DevHelp"
