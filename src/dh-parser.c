@@ -317,6 +317,7 @@ dh_parse_file (const gchar  *path,
 	DhParser   *parser;
 	GIOChannel *io;
 	gchar       buf[BYTES_PER_READ];
+	gboolean    result = TRUE;
 	
 	parser = g_new0 (DhParser, 1);
 	if (!parser) {
@@ -357,9 +358,8 @@ dh_parse_file (const gchar  *path,
 	io = g_io_channel_new_file (path, "r", error);
 	
 	if (!io) {
-		g_markup_parse_context_free (parser->context);
-		g_free (parser);
-		return FALSE;
+		result = FALSE;
+		goto exit;
 	}
 	
 	while (TRUE) {
@@ -368,16 +368,16 @@ dh_parse_file (const gchar  *path,
 		io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
 					   &bytes_read, error);
 		if (io_status == G_IO_STATUS_ERROR) {
-			g_markup_parse_context_free (parser->context);
-			g_free (parser);
-			return FALSE;
+			result = FALSE;
+			goto exit;
 		}
 		if (io_status != G_IO_STATUS_NORMAL) break;
 
 		g_markup_parse_context_parse (parser->context, buf,
 					      bytes_read, error);
 		if (error != NULL && *error != NULL) {
-			return FALSE;
+			result = FALSE;
+			goto exit;
 		}
 
 		if (bytes_read < BYTES_PER_READ) {
@@ -385,10 +385,12 @@ dh_parse_file (const gchar  *path,
 		}
 	}
 
+exit:
 	g_markup_parse_context_free (parser->context);
+	g_free (parser->m_parser);
 	g_free (parser);
 	
-	return TRUE;
+	return result;
 }
 
 #ifdef HAVE_LIBZ
