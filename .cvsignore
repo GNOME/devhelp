@@ -24,3 +24,4 @@ build-stamp
 install-stamp
 autom4te.cache
 devhelp.keys
+libdevhelp-1.0.pc
