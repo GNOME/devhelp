@@ -278,7 +278,7 @@ window_populate (DhWindow *window)
 
 		gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
 					  book_tree_sw,
-					  gtk_label_new_with_mnemonic (_("_Contents")));
+					  gtk_label_new (_("Contents")));
 		g_signal_connect (priv->book_tree, "link_selected", 
 				  G_CALLBACK (window_link_selected_cb),
 				  window);
@@ -289,7 +289,7 @@ window_populate (DhWindow *window)
 		
 		gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
 					  priv->search,
-					  gtk_label_new_with_mnemonic (_("_Search")));
+					  gtk_label_new (_("Search")));
 
 		g_signal_connect (priv->search, "link_selected",
 				  G_CALLBACK (window_link_selected_cb),

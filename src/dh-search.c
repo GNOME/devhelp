@@ -335,7 +335,7 @@ dh_search_new (GList *keywords)
 			  G_CALLBACK (search_entry_changed_cb),
 			  search);
 
-	gtk_box_pack_end (GTK_BOX (hbox), priv->entry, FALSE, FALSE, 0);
+	gtk_box_pack_end (GTK_BOX (hbox), priv->entry, TRUE, TRUE, 0);
 	
 	g_signal_connect (priv->entry, "activate",
 			  G_CALLBACK (search_entry_activated_cb),
