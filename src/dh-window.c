@@ -272,7 +272,21 @@ window_populate (DhWindow *window)
 	error = NULL;
 
 	contents_tree = dh_profile_open (priv->profile, &keywords, &error);
-	
+	if (error) {
+		GtkWidget *dialog;
+		dialog = gtk_message_dialog_new(NULL,
+						GTK_DIALOG_MODAL,
+						GTK_MESSAGE_WARNING,
+						GTK_BUTTONS_OK,
+						_("<b>Cound not read all books</b>\n\nThe following errors occured whilst reading the books:\n%s"),
+						error->message);
+		g_object_set (GTK_MESSAGE_DIALOG(dialog)->label, "use-markup", TRUE, NULL);
+		gtk_dialog_run(GTK_DIALOG(dialog));
+		gtk_widget_destroy(dialog);
+		// TODO: would like to get GTK+ to do an event loop to
+		// hide the dialog
+	}
+
 	if (contents_tree) {
 		priv->book_tree = dh_book_tree_new (contents_tree);
 	
@@ -498,7 +512,7 @@ dh_window_new (DhProfile *profile)
         gtk_window_set_policy (GTK_WINDOW (window), TRUE, TRUE, FALSE);
         
         gtk_window_set_default_size (GTK_WINDOW (window), 700, 500);
-	
+	gtk_window_set_title (GTK_WINDOW (window), "DevHelp");
 	gtk_window_set_wmclass (GTK_WINDOW (window), "devhelp", "DevHelp");
 
 	g_signal_connect (GTK_OBJECT (window), 

@@ -1,3 +1,17 @@
+2003-01-27  Ross Burton  <ross@burtonini.com>
+
+	* src/dh-book-old.c: Display the reason for the validation
+	failure, and make the warnings clearer.
+
+	* src/dh-profile.c (dh_profile_open): Use a new GError for the
+	parser, and save the error messages returning them in the original
+	error. Removes the GError re-use warnings.
+
+	* src/dh-window.c (window_populate): Display the error message
+	returned from opening the profile in a pretty dialog.
+
+	* src/dh-window.c (dh_window_new): Set the window title.
+
 2002-12-09  Miloslav Trmac  <mitr@volny.cz>
 
 	* configure.in: Added cs (Czech) to ALL_LINGUAS

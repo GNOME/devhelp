@@ -25,6 +25,7 @@
 
 #include "dh-book-old.h"
 #include "dh-profile.h"
+#include "dh-error.h"
 
 #define d(x)
 
@@ -184,6 +185,7 @@ dh_profile_open (DhProfile *profile, GList **keywords, GError **error)
 {
 	DhProfilePriv *priv;
 	GSList        *l;
+	GString *failures = g_string_new("");
 	
 	g_return_val_if_fail (DH_IS_PROFILE (profile), NULL);
 
@@ -197,19 +199,27 @@ dh_profile_open (DhProfile *profile, GList **keywords, GError **error)
 	priv->contents = g_node_new (NULL);
 
 	for (l = priv->books; l; l = l->next) {
+		GError *load_error = NULL;
 		if (!dh_book_read ((const gchar *) l->data,
 				   NULL,
 				   priv->contents,
 				   &priv->keywords,
-				   error)) {
-			g_print ("Reading book '%s' failed with error message\n",
-				 (*error)->message);
+				   &load_error)) {
+			g_string_append(failures, load_error->message);
+			g_string_append_c(failures, '\n');
+			g_clear_error(&load_error);
 		}
+		g_message("Pulse");
 	}
 
 	priv->open = TRUE;
 	*keywords = priv->keywords;
 
+	if (failures->len > 0) {
+		g_set_error(error,
+			    DH_ERROR, DH_ERROR_MALFORMED_BOOK,
+			    g_string_free(failures, FALSE));
+	}
 	return priv->contents;
 }
 

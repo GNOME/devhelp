@@ -183,6 +183,21 @@ book_old_get_base_uri (const gchar *spec_path,
 	return ret_val;
 }
 
+static void
+validating_error_cb(void *ctx, const char *msg, ...)
+{
+	va_list args;
+	gchar *str;
+
+	va_start(args, msg);
+	str = g_strdup_vprintf(msg, args);
+	va_end(args);
+	// TODO: save this somewhere for displaying later?
+
+	g_print("%s\n", str);
+	g_free (str);
+}
+
 static gboolean
 book_old_validate (xmlDoc *doc, const gchar *dtd_path)
 {
@@ -194,7 +209,7 @@ book_old_validate (xmlDoc *doc, const gchar *dtd_path)
 	g_return_val_if_fail (dtd_path != NULL, FALSE);
 	
 	cvp.userData = NULL;
-	cvp.error    = NULL;
+	cvp.error    = &validating_error_cb;
 	cvp.warning  = NULL;
 
 	dtd = xmlParseDTD (NULL, dtd_path);
@@ -203,7 +218,7 @@ book_old_validate (xmlDoc *doc, const gchar *dtd_path)
 	
 	xmlFreeDtd (dtd);
 	
-        return ret_val;
+	return ret_val;
 }
 
 gboolean
@@ -231,7 +246,7 @@ dh_book_old_read (GsfInput  *input,
 		g_set_error (error,
 			     DH_ERROR,
 			     DH_ERROR_MALFORMED_BOOK,
-			     _("Book '%s' is malformed."), 
+			     _("Book '%s' is malformed, the parse context is invalid."), 
 			     gsf_input_name (input));
 		return FALSE;
 	}
@@ -242,7 +257,7 @@ dh_book_old_read (GsfInput  *input,
 		g_set_error (error,
 			     DH_ERROR,
 			     DH_ERROR_MALFORMED_BOOK,
-			     _("Book '%s' is malformed."),
+			     _("Book '%s' is malformed, the XML is invalid."),
 			     gsf_input_name (input));
 		return FALSE;
 	}
@@ -251,11 +266,13 @@ dh_book_old_read (GsfInput  *input,
 	xmlFreeParserCtxt (ctxt);
 	
 	if (!book_old_validate (doc, DTD_DIR"/devhelp-1.dtd")) {
+		// TODO: store the error message and insert it into
+		// the GError.
 		g_set_error (error,
 			     DH_ERROR,
 			     DH_ERROR_MALFORMED_BOOK,
-			     _("Book '%s' is malformed."),
-			     gsf_input_name (input));
+			     _("Book '%s' is malformed, it does not conform to the DTD (%s)."),
+			     gsf_input_name (input), "TODO");
 		return FALSE;
 	}
 	
@@ -275,7 +292,11 @@ dh_book_old_read (GsfInput  *input,
 
 	xml_str = xmlGetProp (root_node, "title");
 	if (!xml_str) {
-		g_warning ("Book doesn't have a title, fix the book file");
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_MALFORMED_BOOK,
+			     "Book '%s' doesn't have a title, fix the book file",
+			     gsf_input_name (input));
 		return FALSE;
 	}
 	title = g_strdup (xml_str);
@@ -283,7 +304,12 @@ dh_book_old_read (GsfInput  *input,
 
 	xml_str = xmlGetProp (root_node, "name");
 	if (!xml_str) {
-		g_warning ("Book doesn't have a name, fix the book file");
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_MALFORMED_BOOK,
+			     "Book '%s' doesn't have a name, fix the book file",
+			     gsf_input_name (input));
+		g_free(title);
 		return FALSE;
 	}
 	name = g_strdup (xml_str);
@@ -291,9 +317,15 @@ dh_book_old_read (GsfInput  *input,
 	
 	xml_str = xmlGetProp (root_node, "base");
 	if (!xml_str) {
-		g_warning ("Book '%s' misses the base URL, fix the book file",
-			   title);
+		// TODO: this goes against the DTD
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_MALFORMED_BOOK,
+			     "Book '%s' is missing the base URL, fix the book file",
+			     gsf_input_name (input));
+		xmlFree (xml_str);
 		g_free (title);
+		g_free (name);
 		return FALSE;
 	}
 	
@@ -302,7 +334,7 @@ dh_book_old_read (GsfInput  *input,
 	
 	xml_str = xmlGetProp (root_node, "link");
 	if (!xml_str) {
-		g_warning ("Book '%s' misses link, fix the book file", title);
+		g_warning ("Book '%s' is missing link, fix the book file", title);
 		g_free (base);
 		g_free (uri);
 		return FALSE;
