@@ -255,7 +255,8 @@ devhelp_search_clist_select_row_cb (GtkCList        *clist,
         Function            *function;
         BookNode            *book_node;
         GnomeVFSURI         *uri;
-
+	Book                *book;
+	
         g_return_if_fail (clist != NULL);
         g_return_if_fail (GTK_IS_CLIST (clist));
         g_return_if_fail (search != NULL);
@@ -269,6 +270,8 @@ devhelp_search_clist_select_row_cb (GtkCList        *clist,
                 return;
         }
 
+	bookshelf_open_document (priv->bookshelf, function->document);
+	
 	uri = document_get_uri (function->document, function->anchor);
         
 	gtk_signal_emit (GTK_OBJECT (search),
