@@ -37,14 +37,40 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
 	libglade-2.0 >= 2.0.0
 ])
 
-PKG_CHECK_MODULES(MOZILLA_COMPONENT, mozilla-gtkmozembed)
+AC_MSG_CHECKING([which mozilla to use])
+
+MOZILLA=
+AC_ARG_WITH([mozilla],
+	AC_HELP_STRING([--with-mozilla@<:@=mozilla|firefox|thunderbird@:>@],
+		       [Whether to use mozilla, firefox or thunderbird gtkmozembed (default: mozilla)]),
+	[MOZILLA="$withval"])
+
+dnl try to autodetect: if mozilla exists, use it, else try firefox, then thunderbird
+if test "x$MOZILLA" = "x"; then
+  if pkg-config --exists mozilla-gtkmozembed; then
+    MOZILLA=mozilla
+  elif pkg-config --exists firefox-gtkmozembed; then
+    MOZILLA=firefox
+  elif pkg-config --exists thunderbird-gtkmozembed; then
+    MOZILLA=thunderbird
+  else
+    AC_MSG_ERROR([no mozilla installation found])
+  fi
+elif test "x$with_mozilla" != "xmozilla" -a "x$with_mozilla" != "xfirefox" -a "x$with_mozilla" != "xthunderbird"; then
+  AC_MSG_ERROR([unknown mozilla name ($MOZILLA)])
+fi
+
+AC_MSG_RESULT([$MOZILLA])
+AC_SUBST(MOZILLA)
+
+PKG_CHECK_MODULES(MOZILLA_COMPONENT, $MOZILLA-gtkmozembed)
 AC_SUBST(MOZILLA_COMPONENT_CFLAGS)
 AC_SUBST(MOZILLA_COMPONENT_LIBS)
 
-MOZILLA_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir mozilla-gtkmozembed`"
+MOZILLA_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir $MOZILLA-gtkmozembed`"
 AC_SUBST(MOZILLA_INCLUDE_ROOT)
 
-MOZILLA_HOME="`$PKG_CONFIG --variable=libdir mozilla-gtkmozembed`"
+MOZILLA_HOME="`$PKG_CONFIG --variable=libdir $MOZILLA-gtkmozembed`"
 AC_SUBST(MOZILLA_HOME)
 
 dnl Checks for zlib library.

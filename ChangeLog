@@ -1,3 +1,8 @@
+2004-09-30  Christian Persch  <chpe@cvs.gnome.org>
+
+	* configure.in: Enable compilation against firefox' gtkmozembed library.
+	  Fixes bug #153999.
+
 2004-09-27  Mikael Hallendal  <micke@imendio.com>
 
 	* Release 0.9.2
