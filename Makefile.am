@@ -25,8 +25,6 @@ mime_DATA = $(KEYS_FILES) devhelp.mime
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libdevhelp-1.0.pc
 
-bin_SCRIPTS = devhelp
-
 INTLTOOL =                      \
 	intltool-extract.in     \
 	intltool-merge.in       \
@@ -41,7 +39,6 @@ EXTRA_DIST =			\
 	$(schemas_in_files)     \
 	$(schemas_DATA)         \
 	$(mime_DATA)            \
-	devhelp.in              \
 	libdevhelp-1.0.pc.in    \ 
 	$(INTLTOOL)             \
 	misc/devhelp.el	        \

@@ -122,7 +122,6 @@ AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
 AC_OUTPUT([
 Makefile
-devhelp
 libdevhelp-1.0.pc
 dtd/Makefile
 po/Makefile.in

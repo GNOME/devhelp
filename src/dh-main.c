@@ -35,6 +35,7 @@
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs-init.h>
+#include <gtkmozembed.h>
 
 #include "bacon-message-connection.h"
 #include "dh-base.h"
@@ -115,6 +116,8 @@ main (int argc, char **argv)
 				      GNOME_PARAM_POPT_TABLE, options,
                                       NULL);
 	LIBXML_TEST_VERSION;
+
+	gtk_moz_embed_set_comp_path (MOZILLA_HOME);
 
 	message_conn = bacon_message_connection_new ("Devhelp");
 	if (!bacon_message_connection_get_is_server (message_conn)) {

@@ -2,7 +2,7 @@ Makefile
 Makefile.in
 .deps
 .libs
-devhelp-bin
+devhelp
 dh-marshal.c
 dh-marshal.h
 test-profile

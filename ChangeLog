@@ -1,3 +1,12 @@
+2004-10-06  Christian Persch  <chpe@cvs.gnome.org>
+
+	* Makefile.am:
+	* configure.in:
+	* src/.cvsignore:
+	* src/Makefile.am:
+	* src/dh-main.c: (main):
+	R devhelp.in: Get rid of the startup script. Fixes bug #154152.
+
 2004-10-05  Mikael Hallendal  <micke@imendio.com>
 
 	* src/*.[ch]:

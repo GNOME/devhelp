@@ -17,16 +17,20 @@ INCLUDES = 						  \
 	-I$(MOZILLA_INCLUDE_ROOT)/string		  \
 	-I$(MOZILLA_INCLUDE_ROOT)/pref                    \
 	-I$(MOZILLA_INCLUDE_ROOT)/gfx                     \
+	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""              \
 	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h 
 
-bin_PROGRAMS = devhelp-bin
+bin_PROGRAMS = devhelp
 
-devhelp_bin_SOURCES = 					\
+devhelp_SOURCES = 					\
 	dh-main.c
 
-devhelp_bin_LDADD = 					\
+devhelp_LDADD = 					\
         @DEVHELP_LIBS@ 					\
         libdevhelp-1.la
+
+devhelp_LDFLAGS =                                       \
+	-R$(MOZILLA_HOME)
 
 devhelpdir=$(libdir)
 
