@@ -47,7 +47,7 @@ devhelp_LDADD = 			\
 	      -lgtkhtml 		\
               libdevhelp.la
 
-devhelpdir=$(libdir)
+devhelpdir=$(libdir)/devhelp
 
 devhelp_LTLIBRARIES =			\
 	libdevhelp.la
@@ -72,6 +72,8 @@ libdevhelp_la_SOURCES =			\
 
 libdevhelp_la_LIBADD =			\
 	$(BONOBO_LIBS)	
+
+libdevhelp_la_LDFLAGS = -avoid-version -module
 
 GENERATED =				\
 	GNOME_DevHelp-skels.c		\

@@ -1,5 +1,10 @@
 2002-04-26  Mikael Hallendal  <micke@codefactory.se>
 
+	* src/Makefile.am (libdevhelp_la_LDFLAGS): 
+	- put private library in $(libdir)/devhelp
+	- add -avoid-version -module to libdevhelp_la_LDFLAGS
+	- Fixes #78495
+	
 	* src/devhelp-window.c (cmd_size_changed_cb): 
 	- added patch from kov@debian.org to default to medium size.
 	  Fixes #78498
