@@ -1,3 +1,11 @@
+2005-04-14  Ray Strode  <rstrode@redhat.com>
+
+	* src/dh-keyword-model.c: (keyword_model_get_iter),
+	(keyword_model_get_path):
+	- Fixes bug #166013
+	- devhelp's keyword_model_get_path function was incorrectly determining
+	  the index of the tree model iterator's node in a list
+
 2005-04-06  Christian Persch  <chpe@cvs.gnome.org>
 
 	* src/dh-gecko-utils.cpp:

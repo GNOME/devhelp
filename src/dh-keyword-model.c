@@ -205,7 +205,7 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
         DhKeywordModel     *model;
         DhKeywordModelPriv *priv;
         GList               *node;
-        gint                 i;
+        const gint          *indices;
         
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (tree_model), FALSE);
         g_return_val_if_fail (gtk_tree_path_get_depth (path) > 0, FALSE);
@@ -213,13 +213,17 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
         model = DH_KEYWORD_MODEL (tree_model);
         priv  = model->priv;
         
-        i = gtk_tree_path_get_indices (path)[0];
+        indices = gtk_tree_path_get_indices (path);
         
-        if (i >= g_list_length (priv->keyword_words)) {
+        if (indices == NULL) {
                 return FALSE;
         }
         
-        node = g_list_nth (priv->keyword_words, i);
+        if (indices[0] >= g_list_length (priv->keyword_words)) {
+                return FALSE;
+        }
+        
+        node = g_list_nth (priv->keyword_words, indices[0]);
         
         iter->stamp     = priv->stamp;
         iter->user_data = node;
@@ -242,18 +246,14 @@ keyword_model_get_path (GtkTreeModel *tree_model,
 
         priv = model->priv;
 
-        for (node = priv->keyword_words; node; node = node->next)
-        {
-                if ((gpointer)node->data == (gpointer)iter->user_data)
-                        break;
-                i++;
-        }
+        i = g_list_position (priv->keyword_words, iter->user_data);
 
-        if (node == NULL) {
+        if (i < 0) {
                 return NULL;
         }
         
         path = gtk_tree_path_new ();
+
         gtk_tree_path_append_index (path, i);
 
         return path;
