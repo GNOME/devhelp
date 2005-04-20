@@ -5,236 +5,234 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp\n"
+"Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-29 02:48+0100\n"
-"PO-Revision-Date: 2005-01-29 10:05+0100\n"
+"POT-Creation-Date: 2005-04-20 10:40+0000\n"
+"PO-Revision-Date: 2005-04-20 18:45+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms:  nplurals=1; plural=0;\n"
 
-#: devhelp.desktop.in.in.h:1
+#: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Fejlesztők súgóprogramja"
 
-#: devhelp.desktop.in.in.h:2 ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:447 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: devhelp.keys.in.h:1
+#: ../devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Devhelp könyv"
 
-#: src/dh-main.c:83
+#: ../src/dh-main.c:137
 msgid "Specify the size and location of the window"
 msgstr "Az ablak méretének és helyének megadása"
 
-#: src/dh-main.c:84
+#: ../src/dh-main.c:138
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "WIDTHxHEIGHT+XOFF+YOFF"
 
-#: src/dh-main.c:92
+#: ../src/dh-main.c:146
 msgid "Search for a function"
 msgstr "Függvény keresése"
 
-#: src/dh-main.c:101
+#: ../src/dh-main.c:155
 msgid "Quit any running Devhelp"
 msgstr "Kilépés bármely futó Devhelpből"
 
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "\"%s\" helyett \"%s\" található a(z) %d. sor %d. oszlopában"
 
-#: src/dh-parser.c:120
+#: ../src/dh-parser.c:121
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "\"%s\" érvénytelen névtér a(z) %d. sor %d. oszlopában"
 
-#: src/dh-parser.c:149
+#: ../src/dh-parser.c:150
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "cím, név és hivatkozás elemek szükségesek a(z) %d. sor %d. oszlopában"
 
-#: src/dh-parser.c:202
+#: ../src/dh-parser.c:203
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "név és hivatkozás elemek szükségesek a <sub>-on belül a(z) %d. sor %d. "
 "oszlopában"
 
-#: src/dh-parser.c:250
+#: ../src/dh-parser.c:251
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "név és hivatkozás elemek szükségesek a <function>-on belül a(z) %d. sor %d. "
 "oszlopában"
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
+#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
 msgid "Could not create book parser"
 msgstr "Nem lehet létrehozni a könyvfeldolgozót"
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
+#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
 msgid "Could not create markup parser"
 msgstr "Nem lehet létrehozni a jelölőfeldolgozót"
 
-#: src/dh-parser.c:479
+#: ../src/dh-parser.c:480
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nem lehet kicsomagolni a(z) \"%s\" könyvet: %s"
 
-#: src/dh-search.c:417
+#: ../src/dh-search.c:418
 msgid "_Search:"
 msgstr "_Keresés:"
 
-#: src/dh-search.c:461
+#: ../src/dh-search.c:462
 msgid "Section"
 msgstr "Fejezet"
 
-#: src/dh-window.c:120
+#: ../src/dh-window.c:110
 msgid "_File"
 msgstr "_Fájl"
 
-#: src/dh-window.c:121
+#: ../src/dh-window.c:111
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
-#: src/dh-window.c:122 ui/devhelp.glade.h:10
+#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Ugrás"
 
-#: src/dh-window.c:123
+#: ../src/dh-window.c:113
 msgid "_Help"
 msgstr "_Súgó"
 
-#: src/dh-window.c:307
+#: ../src/dh-window.c:297
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Nem lehet beállítani a felhasználói felületet: %s"
 
-#: src/dh-window.c:367 ui/devhelp.glade.h:3
+#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Tartalom"
 
-#: src/dh-window.c:378
+#: ../src/dh-window.c:368
 msgid "Search"
 msgstr "Keresés"
 
-#: src/dh-window.c:461
+#: ../src/dh-window.c:444
+msgid "translator_credits"
+msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
+
+#: ../src/dh-window.c:449
 msgid "A developer's help browser for GNOME 2"
 msgstr "Súgóböngésző fejlesztőknek GNOME2-höz"
 
-#: src/dh-window.c:477
-msgid "Devhelp project page"
-msgstr "A Devhelp projekt oldala"
-
-#: src/dh-window.c:481
-msgid "Bug report Devhelp"
-msgstr "Hibajelentés a Devhelphez"
-
-#: devhelp.schemas.in.h:1
+#: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
 msgstr "Rögzített szélességű szöveg betűkészlete"
 
-#: devhelp.schemas.in.h:2
+#: ../devhelp.schemas.in.h:2
 msgid "Font for text"
 msgstr "Szöveg betűkészlete"
 
-#: devhelp.schemas.in.h:3
+#: ../devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
 msgstr "Rögzített szélességű szöveg betűkészlete."
 
-#: devhelp.schemas.in.h:4
+#: ../devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Változó szélességű szöveg betűkészlete."
 
-#: devhelp.schemas.in.h:5
+#: ../devhelp.schemas.in.h:5
 msgid "Height of main window"
 msgstr "Főablak magassága"
 
-#: devhelp.schemas.in.h:6
+#: ../devhelp.schemas.in.h:6
 msgid "Location of the paned"
 msgstr "Az ablaktábla helye"
 
-#: devhelp.schemas.in.h:7
+#: ../devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Főablak maximalizált állapota"
 
-#: devhelp.schemas.in.h:8
+#: ../devhelp.schemas.in.h:8
 msgid "The X position of the main window."
 msgstr "A főablak X-pozíciója."
 
-#: devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:9
 msgid "The Y position of the main window."
 msgstr "A főablak Y-pozíciója."
 
-#: devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:10
 msgid "The height of the main window."
 msgstr "A főablak magassága."
 
-#: devhelp.schemas.in.h:11
+#: ../devhelp.schemas.in.h:11
 msgid "The location of the paned separator."
 msgstr "Az ablaktábla-elválasztó helye."
 
-#: devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:12
 msgid "The width of the main window."
 msgstr "A főablak szélessége."
 
-#: devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:13
 msgid "Use system fonts"
 msgstr "A rendszer betűkészletének használata"
 
-#: devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
 msgstr "A rendszer alapértelmezett betűkészletének használata."
 
-#: devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:15
 msgid "Whether the main window should start maximized or not."
 msgstr "A főablak teljes méretben induljon-e?"
 
-#: devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:16
 msgid "Width of the main window"
 msgstr "Főablak szélessége"
 
-#: devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:17
 msgid "X position of main window"
 msgstr "Főablak X-pozíciója"
 
-#: devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:18
 msgid "Y position of main window"
 msgstr "Főablak Y-pozíciója"
 
-#: ui/devhelp.glade.h:1
+#: ../ui/devhelp.glade.h:1
 msgid "    "
 msgstr "    "
 
-#: ui/devhelp.glade.h:2
+#: ../ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Betűk</b>"
 
-#: ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:5
 msgid "Fixed width:"
 msgstr "Rögzített szélességű:"
 
-#: ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:6
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:7
 msgid "Variable width: "
 msgstr "Változó szélességű: "
 
-#: ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:8
 msgid "_Back"
 msgstr "_Vissza"
 
-#: ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:9
 msgid "_Forward"
 msgstr "_Előre"
 
-#: ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "A rendszer betűkészletének _használata"
+
