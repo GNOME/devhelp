@@ -56,20 +56,16 @@
 static gboolean
 dh_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 {
-	gchar *tmp_name, *ch;
-	
-	tmp_name = g_strdup (font_name);
+	gchar *ch;
 
-	ch = g_utf8_strrchr (tmp_name, -1, ' ');
-	if (!ch || ch == tmp_name) {
+	ch = g_utf8_strrchr (font_name, -1, ' ');
+	if (!ch || ch == font_name) {
 		return FALSE;
 	}
 
-	*ch = '\0';
-
-	*name = g_strdup (tmp_name);
+	*name = strndup (font_name, ch - font_name);
 	*size = strtol (ch + 1, (char **) NULL, 10);
-	
+
 	return TRUE;
 }
 

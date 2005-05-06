@@ -1,3 +1,9 @@
+2005-05-06  Mikael Hallendal  <micke@imendio.com>
+
+	* src/dh-gecko-utils.cpp: 
+	- Fixed memory leak, bug #302866
+	- Patch from Paolo Borelli
+
 2005-04-14  Ray Strode  <rstrode@redhat.com>
 
 	* src/dh-keyword-model.c: (keyword_model_get_iter),
