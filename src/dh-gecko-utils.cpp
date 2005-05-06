@@ -63,7 +63,7 @@ dh_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 		return FALSE;
 	}
 
-	*name = strndup (font_name, ch - font_name);
+	*name = g_strndup (font_name, ch - font_name);
 	*size = strtol (ch + 1, (char **) NULL, 10);
 
 	return TRUE;
