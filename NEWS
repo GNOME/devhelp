@@ -1,3 +1,17 @@
+Devhelp 0.10:
+-------------
+* Added third party contributed scripts for generating Devhelp books.
+* Mozilla build fixes (Christian Persch)
+* Improved Bug Buddy support (Christoffer Olsen)
+* Fix to not have the HTML widget steal focus (Tommi Komulainen)
+* Ported to GTK+ 2.6 and removed libgnomeui depdendency. (Kristof Vansant)
+* Window presentation fixes for new Metacity (Richard Hult)
+* Fixed crash when searching (Ray Strode)
+* Plugged memory leak in the gecko bindings (Paolo Borelli)
+* New translations (hu, rw)
+* Updated translations 
+  (el, en_CA, de, cs, ca, sk, sv, en_GB)
+
 Devhelp 0.9.3:
 --------------
 * Compiling against firefox (Christian Persch)

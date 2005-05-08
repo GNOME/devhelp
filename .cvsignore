@@ -27,3 +27,8 @@ devhelp.keys
 libdevhelp-1.0.pc
 devhelp
 *.schemas
+depcomp
+*.desktop.in
+install-sh
+missing
+mkinstalldirs
