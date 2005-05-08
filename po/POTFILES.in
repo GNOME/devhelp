@@ -9,7 +9,6 @@ src/dh-keyword-model.c
 src/dh-link.c
 src/dh-main.c
 src/dh-parser.c
-src/dh-profile.c
 src/dh-search.c
 src/dh-util.c
 src/dh-window.c
