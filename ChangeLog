@@ -1,3 +1,11 @@
+2005-05-08  Mikael Hallendal  <micke@imendio.com>
+
+	* contrib/Makefile.am:
+	* src/dh-profile.c:
+	* src/dh-profile.h:
+	* src/test-profile.c:
+	- Removed, half cooked code that won't be developed :)
+
 2005-05-06  Mikael Hallendal  <micke@imendio.com>
 
 	* src/dh-gecko-utils.cpp: 
