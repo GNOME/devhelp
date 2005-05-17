@@ -56,17 +56,22 @@
 static gboolean
 dh_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 {
-	gchar *ch;
+	PangoFontDescription *desc;
+	PangoFontMask mask = (PangoFontMask) (PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_SIZE);
+	gboolean retval = FALSE;
 
-	ch = g_utf8_strrchr (font_name, -1, ' ');
-	if (!ch || ch == font_name) {
-		return FALSE;
+	desc = pango_font_description_from_string (font_name);
+	if (!desc) return FALSE;
+
+	if ((pango_font_description_get_set_fields (desc) & mask) == mask) {
+		*size = PANGO_PIXELS (pango_font_description_get_size (desc));
+		*name = g_strdup (pango_font_description_get_family (desc));
+		retval = TRUE;
 	}
 
-	*name = g_strndup (font_name, ch - font_name);
-	*size = strtol (ch + 1, (char **) NULL, 10);
+	pango_font_description_free (desc);
 
-	return TRUE;
+	return retval;
 }
 
 static gboolean
