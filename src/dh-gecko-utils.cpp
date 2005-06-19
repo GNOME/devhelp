@@ -31,11 +31,8 @@
 #define MOZILLA_INTERNAL_API
 #include <nsIServiceManager.h>
 #undef MOZILLA_INTERNAL_API
-#include <nsIWindowWatcher.h>
-#include <nsIIOService.h>
 #include <nsISupportsPrimitives.h>
 #include <nsILocalFile.h>
-#include <nsIURI.h>
 
 #include <stdlib.h>
 
