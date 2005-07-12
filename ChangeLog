@@ -1,3 +1,9 @@
+2005-07-12  Christian Persch  <chpe@cvs.gnome.org>
+
+	* configure.in:
+	Update gecko configure checks to also detect mozilla trunk
+	which is now named 'seamonkey'.
+
 2005-06-19  Mikael Hallendal  <micke@imendio.com>
 
 	* src/dh-gecko-utils.cpp:
