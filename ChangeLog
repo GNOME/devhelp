@@ -1,6 +1,13 @@
 2005-07-12  Christian Persch  <chpe@cvs.gnome.org>
 
 	* configure.in:
+	Downgrade minimal mozilla version to 1.7 again, was accidentally
+        not changed when copying the rest of the configure changes
+	from Epiphany.
+		
+2005-07-12  Christian Persch  <chpe@cvs.gnome.org>
+
+	* configure.in:
 	Update gecko configure checks to also detect mozilla trunk
 	which is now named 'seamonkey'.
 
