@@ -1,0 +1,235 @@
+# translation of devhelp.HEAD.po to Nepali
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Pawan Chitrakar <pawan@mpp.org.np>, 2005.
+# Kapil Timilsina <lipak21@gmail.com>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp.HEAD\n"
+"Report-Msgid-Bugs-To:<info@mpp.org.np>\n"
+"POT-Creation-Date: 2005-04-04 02:50+0200\n"
+"PO-Revision-Date: 2005-06-02 16:25+0545\n"
+"Last-Translator: Kapil Timilsina <lipak21@gmail.com>\n"
+"Language-Team: Nepali <info@mpp.org.np>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: nplural=2;plural=(n!=1)\n"
+
+#: devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "सुधारककर्ता मद्दत प्रोग्राम"
+
+#: devhelp.desktop.in.in.h:2 src/dh-window.c:449 ui/devhelp.glade.h:4
+msgid "Devhelp"
+msgstr "देभमद्दत"
+
+#: devhelp.keys.in.h:1
+msgid "Devhelp Book"
+msgstr "देभमद्दत पुस्तक"
+
+#: src/dh-main.c:89
+msgid "Specify the size and location of the window"
+msgstr "सण्झ्यालको आकार र स्थान स्पेसिफाइ गर्नुहोस्"
+
+#: src/dh-main.c:90
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "चौडाइ*उचाइ+Xबन्द+Yबन्द"
+
+#: src/dh-main.c:98
+msgid "Search for a function"
+msgstr "कार्यको लागि खोज"
+
+#: src/dh-main.c:107
+msgid "Quit any running Devhelp"
+msgstr "केहि चालु भइरहेको देभमद्दत बन्द गर्नुहोस्"
+
+#: src/dh-parser.c:105 src/dh-parser.c:182 src/dh-parser.c:229
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "सोचिएको '%s' पाइयो '%s' पङ्त्तिमा %d, स्तम्भ %d"
+
+#: src/dh-parser.c:121
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "खारिज नामस्थान '%s' पङ्त्तिमा %d, स्तम्भ %d"
+
+#: src/dh-parser.c:150
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "शिर्षक, नाम, र लिङ्क तत्वहरु पङ्त्ति %d, स्तम्भ %d मा उपयुक्त छ"
+
+#: src/dh-parser.c:203
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "नाम र लिङ्क तत्वहरु <सब> पङ्त्तिमा %d, स्तम्भ %d भित्र आवश्यक छ"
+
+#: src/dh-parser.c:251
+#, c-format
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "नाम र लिङ्क तत्वहरु <कार्य> पङ्त्तिमा %d, स्तम्भ %d भित्र आवश्यक छ"
+
+#: src/dh-parser.c:338 src/dh-parser.c:424
+msgid "Could not create book parser"
+msgstr "पुस्तक पार्सर निर्माण गर्न सकिँदैन"
+
+#: src/dh-parser.c:348 src/dh-parser.c:434
+msgid "Could not create markup parser"
+msgstr "मार्कअप पार्सर निर्माण गर्न सकिंदैन"
+
+#: src/dh-parser.c:480
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "पुस्तकलाई कम्प्रेस नगर्न सकिँदैन '%s': %s"
+
+#: src/dh-search.c:418
+msgid "_Search:"
+msgstr "_खोज्नुस:"
+
+#: src/dh-search.c:462
+msgid "Section"
+msgstr "क्षेत्र"
+
+#: src/dh-window.c:110
+msgid "_File"
+msgstr "फाईल"
+
+#: src/dh-window.c:111
+msgid "_Edit"
+msgstr "सम्पादन गर्नुहोस्"
+
+#: src/dh-window.c:112 ui/devhelp.glade.h:10
+msgid "_Go"
+msgstr "_जानुहोस्"
+
+#: src/dh-window.c:113
+msgid "_Help"
+msgstr "मद्दत"
+
+#: src/dh-window.c:297
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "युआइ सेट गर्न सकिँदैन: %s"
+
+#: src/dh-window.c:357 ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "विषय सुची"
+
+#: src/dh-window.c:368
+msgid "Search"
+msgstr "खोज्नुहोस्"
+
+#: src/dh-window.c:446
+msgid "translator_credits"
+msgstr "अनुवादकको श्रेय"
+
+#: src/dh-window.c:451
+msgid "A developer's help browser for GNOME 2"
+msgstr "जीनोम २ को लागि ब्राउजरलाई सहयोग सुधारककर्ता बाट"
+
+#: devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "निश्चित पाठको फण्ट"
+
+#: devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "पाठको निम्ति फण्ट"
+
+#: devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "निश्चित चौडाई भएको पाठको फण्ट"
+
+#: devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "अनिश्चित चौडाई भएको पाठको फण्ट"
+
+#: devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "मूख्य सन्झ्यालको उचाइ"
+
+#: devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "प्यानेडको स्थान"
+
+#: devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "मूख्य सन्झ्याल बढ्तो स्थिति"
+
+#: devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "मूख्य सन्झ्यालको एक्स स्थान"
+
+#: devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "मूख्य सन्झ्यालको वाइ स्थान"
+
+#: devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "मुख्य सन्झ्यालको उचाइँ"
+
+#: devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "प्यानेड छट्याउनेकर्ताको स्थान"
+
+#: devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "मुख्य सन्झ्यालको चौडाइ"
+
+#: devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "पद्धति फण्ट प्रयोग गर्नुहोस"
+
+#: devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "प्रणाली पूर्वनिर्धारित फन्टहरु प्रयोग गर्नुहोस्."
+
+#: devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "कि मूख्य सन्झ्याल बढ्तो शुरु हुन्छ वा हुँदैन."
+
+#: devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "मुख्य सन्झ्यालको चौडाई"
+
+#: devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "मूख्य सन्झ्यालको एक्स स्थान"
+
+#: devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "मूख्य सन्झ्यालको वाइ स्थान"
+
+#: ui/devhelp.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>लिपिहरु</b>"
+
+#: ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr "निश्चित चौडाइ:"
+
+#: ui/devhelp.glade.h:6
+msgid "Preferences"
+msgstr "प्राथमिकताहरु"
+
+#: ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr "चल चौडाइ:"
+
+#: ui/devhelp.glade.h:8
+msgid "_Back"
+msgstr "_पछाडि"
+
+#: ui/devhelp.glade.h:9
+msgid "_Forward"
+msgstr "_अगाडि"
+
+#: ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "पद्धति फण्ट प्रयोग गर्नुहोस"
+
