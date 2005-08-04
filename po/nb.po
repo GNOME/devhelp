@@ -1,235 +1,231 @@
 # Norwegian/Bokmaal translation of devhelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 2001-2004.
+# Kjartan Maraas <kmaraas@gnome.org>, 2001-2005.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.8\n"
+"Project-Id-Version: devhelp 0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-02 22:00+0200\n"
-"PO-Revision-Date: 2004-07-29 12:39+0200\n"
+"POT-Creation-Date: 2005-08-04 16:10+0200\n"
+"PO-Revision-Date: 2005-08-04 16:11+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
-"Language-Team: Norsk/Bokmål <i18n-nb@lister.ping.uio.no>\n"
+"Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: devhelp.desktop.in.h:1
+#: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Hjelpleser for utviklere"
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:447 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: devhelp.keys.in.h:1
+#: ../devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Devhelp bok"
 
-#: src/dh-main.c:81
+#: ../src/dh-main.c:137
 msgid "Specify the size and location of the window"
 msgstr "Oppgi størrelse og lokasjon for vinduet"
 
-#: src/dh-main.c:82
+#: ../src/dh-main.c:138
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "BREDDExHØYDExXAVxYAV"
 
-#: src/dh-main.c:90
+#: ../src/dh-main.c:146
 msgid "Search for a function"
 msgstr "Søk etter en funksjon"
 
-#: src/dh-main.c:99
+#: ../src/dh-main.c:155
 msgid "Quit any running Devhelp"
 msgstr "Avslutt Devhelp"
 
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Forventet «%s» fikk «%s» ved linje %d, kolonne %d"
 
-#: src/dh-parser.c:120
+#: ../src/dh-parser.c:121
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Ugyldig navneområde «%s» ved linje %d, kolonne %d"
 
-#: src/dh-parser.c:149
+#: ../src/dh-parser.c:150
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "tittel, navn og lenkeelementer kreves ved linje %d, kolonne %d"
 
-#: src/dh-parser.c:202
+#: ../src/dh-parser.c:203
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr "navn og lenkeelementer kreves inne i <sub> på linje %d, kolonne %d"
 
-#: src/dh-parser.c:250
+#: ../src/dh-parser.c:251
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr "navn og lenkeelementer kreves inne i <function> på linje %d, kolone %d"
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
+#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
 msgid "Could not create book parser"
 msgstr "Kunne ikke opprette bokleser"
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
+#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
 msgid "Could not create markup parser"
 msgstr "Kunne ikke opprette leser for tagger"
 
-#: src/dh-parser.c:479
+#: ../src/dh-parser.c:480
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan ikke dekomprimere bok «%s»: %s"
 
-#: src/dh-search.c:417
+#: ../src/dh-search.c:418
 msgid "_Search:"
 msgstr "_Søk:"
 
-#: src/dh-search.c:461
+#: ../src/dh-search.c:462
 msgid "Section"
 msgstr "Del"
 
-#: src/dh-window.c:120
+#: ../src/dh-window.c:110
 msgid "_File"
 msgstr "_Fil"
 
-#: src/dh-window.c:121
+#: ../src/dh-window.c:111
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: src/dh-window.c:122 ui/devhelp.glade.h:10
+#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Gå"
 
-#: src/dh-window.c:123
+#: ../src/dh-window.c:113
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: src/dh-window.c:307
+#: ../src/dh-window.c:297
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Kan ikke sette brukergrensesnitt: %s"
 
-#: src/dh-window.c:367 ui/devhelp.glade.h:3
+#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Innhold"
 
-#: src/dh-window.c:378
+#: ../src/dh-window.c:368
 msgid "Search"
 msgstr "Søk"
 
-#: src/dh-window.c:461
+#: ../src/dh-window.c:444
+msgid "translator_credits"
+msgstr "Kjartan Maraas <kmaraas@gnome.org>"
+
+#: ../src/dh-window.c:449
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjelpleser for utviklere for GNOME 2"
 
-#: src/dh-window.c:477
-msgid "Devhelp project page"
-msgstr "Nettside for Devhelp"
-
-#: src/dh-window.c:481
-msgid "Bug report Devhelp"
-msgstr "Feilrapport for Devhelp"
-
-#: devhelp.schemas.in.h:1
+#: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
 msgstr "Skrift for tekst med fast størrelse"
 
-#: devhelp.schemas.in.h:2
+#: ../devhelp.schemas.in.h:2
 msgid "Font for text"
 msgstr "Skrift for tekst"
 
-#: devhelp.schemas.in.h:3
+#: ../devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
 msgstr "Skrift for tekst med fast bredde."
 
-#: devhelp.schemas.in.h:4
+#: ../devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Skrift for tekst med variabel bredde."
 
-#: devhelp.schemas.in.h:5
+#: ../devhelp.schemas.in.h:5
 msgid "Height of main window"
 msgstr "Høyde for hovedvinduet"
 
-#: devhelp.schemas.in.h:6
+#: ../devhelp.schemas.in.h:6
 msgid "Location of the paned"
 msgstr "Lokasjon for paned"
 
-#: devhelp.schemas.in.h:7
+#: ../devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Maksimert tilstand for hovedvinduet"
 
-#: devhelp.schemas.in.h:8
+#: ../devhelp.schemas.in.h:8
 msgid "The X position of the main window."
 msgstr "Horisontal posisjon for hovedvinduet."
 
-#: devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:9
 msgid "The Y position of the main window."
 msgstr "Vertikal posisjon for hovedvinduet."
 
-#: devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:10
 msgid "The height of the main window."
 msgstr "Høyde på hovedvinduet."
 
-#: devhelp.schemas.in.h:11
+#: ../devhelp.schemas.in.h:11
 msgid "The location of the paned separator."
 msgstr "Plassering av separator."
 
-#: devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:12
 msgid "The width of the main window."
 msgstr "Bredde på hovedvinduet."
 
-#: devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:13
 msgid "Use system fonts"
 msgstr "Bruk systemets skrifter"
 
-#: devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
 msgstr "Bruk systemets forvalgte skrifter."
 
-#: devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:15
 msgid "Whether the main window should start maximized or not."
 msgstr "Om hovedvinduet skal startes maksimert eller ikke."
 
-#: devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:16
 msgid "Width of the main window"
 msgstr "Bredde på hovedvinduet"
 
-#: devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:17
 msgid "X position of main window"
 msgstr "Horisontal posisjon for hovedvinduet"
 
-#: devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:18
 msgid "Y position of main window"
 msgstr "Vertikal posisjon for hovedvinduet"
 
-#: ui/devhelp.glade.h:1
+#: ../ui/devhelp.glade.h:1
 msgid "    "
 msgstr "    "
 
-#: ui/devhelp.glade.h:2
+#: ../ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Skrifter</b>"
 
-#: ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:5
 msgid "Fixed width:"
 msgstr "Fast bredde:"
 
-#: ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:6
 msgid "Preferences"
 msgstr "Brukervalg"
 
-#: ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:7
 msgid "Variable width: "
 msgstr "Variabel bredde: "
 
-#: ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:8
 msgid "_Back"
 msgstr "Til_bake"
 
-#: ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:9
 msgid "_Forward"
 msgstr "_Fremover"
 
-#: ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "Br_uk systemskrifter"
