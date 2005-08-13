@@ -1,453 +1,235 @@
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Vietnamese translation for Dev. Help.
+# Copyright © 2005 Gnome i18n Project for Vietnamese.
 # This file is distributed under the same license as the devhelp package.
-# pclouds <pclouds@gmx.net>, 2002.
+# Nguyễn Thái Ngọc Duy <pclouds@gmx.net>, 2002.
+# Clytie Siddall <clytie@riverland.net.au>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp VERSION\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2003-01-20 16:18+0700\n"
-"Last-Translator: pclouds <pclouds@gmx.net>\n"
-"Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
+"Project-Id-Version: devhelp Gnome HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-13 02:54+0000\n"
+"PO-Revision-Date: 2005-08-13 21:02+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: LocFactoryEditor 1.2.2\n"
 
-#: devhelp.desktop.in.h:1
-#, fuzzy
+#: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Chương trình trợ giúp Nhà phát triển"
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
-#, fuzzy
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:447 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "DevHelp"
 
-#: devhelp.keys.in.h:1
-#, fuzzy
+#: ../devhelp.keys.in.h:1
 msgid "Devhelp Book"
 msgstr "Bộ quản lý sách DevHelp"
 
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
-
-#: src/dh-main.c:259
+#: ../src/dh-main.c:137
 msgid "Specify the size and location of the window"
-msgstr ""
+msgstr "Xác định kích thước và vị trí của cửa sổ."
 
-#: src/dh-main.c:260
+#: ../src/dh-main.c:138
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+msgstr "RỘNG×CAO+HIỆUX+HIỆUY"
 
-#: src/dh-main.c:268
+#: ../src/dh-main.c:146
 msgid "Search for a function"
-msgstr "Tìm hàm"
+msgstr "Tìm kiếm hàm"
 
-#: src/dh-main.c:277
+#: ../src/dh-main.c:155
 msgid "Quit any running Devhelp"
-msgstr "Thoát khỏi mọi chương trình Devhelp"
+msgstr "Thoát khỏi chương trình Devhelp nào đang chạy."
 
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Ngờ « %s » mà gặp « %s » tại dòng %d, cột %d."
 
-#: src/dh-parser.c:120
+#: ../src/dh-parser.c:121
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Khoảng tên không hợp lệ « %s » tại dòng %d, cột %d."
 
-#: src/dh-parser.c:149
+#: ../src/dh-parser.c:150
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "các phần tử tiêu đề, tên và liên kết đều cần thiết tại dòng %d, cột %d."
 
-#: src/dh-parser.c:202
+#: ../src/dh-parser.c:203
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "cả hai phần tử tên và liên kết đều cần thiết ở trong <sub> tại dòng %d, cột %d."
 
-#: src/dh-parser.c:250
+#: ../src/dh-parser.c:251
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
+msgstr "cả hai phần tử tên và liên kết đều cần thiết ở trong <function> tại dòng %d, cột %d."
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
-#, fuzzy
+#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
 msgid "Could not create book parser"
-msgstr "Không thể tìm chuỗi"
+msgstr "Không tạo được bộ phần tách sách."
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
+#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Không tạo được bộ phân tách kiểu dạng đánh dấu."
 
-#: src/dh-parser.c:479
+#: ../src/dh-parser.c:480
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Không thể giải nén sách « %s »: %s"
 
-#: src/dh-search.c:417
-#, fuzzy
+#: ../src/dh-search.c:418
 msgid "_Search:"
-msgstr "Tìm kiếm"
+msgstr "_Tìm kiếm:"
 
-#: src/dh-search.c:461
+#: ../src/dh-search.c:462
 msgid "Section"
 msgstr "Phần"
 
-#: src/dh-window.c:111
+#: ../src/dh-window.c:110
 msgid "_File"
 msgstr "_Tập tin"
 
-#: src/dh-window.c:112
-#, fuzzy
+#: ../src/dh-window.c:111
 msgid "_Edit"
-msgstr "T_hoát"
+msgstr "_Hiệu chỉnh"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
 msgid "_Go"
-msgstr "Đ_i"
+msgstr "_Đi"
 
-#: src/dh-window.c:114
+#: ../src/dh-window.c:113
 msgid "_Help"
 msgstr "Trợ _giúp"
 
-#: src/dh-window.c:292
+#: ../src/dh-window.c:297
 #, c-format
 msgid "Cannot set UI: %s"
-msgstr ""
+msgstr "Không đặt được UI: %s"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Nội dung"
 
-#: src/dh-window.c:363
+#: ../src/dh-window.c:368
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: src/dh-window.c:446
+#: ../src/dh-window.c:444
+msgid "translator_credits"
+msgstr "Nhóm Việt hóa Gnome <gnomevi-list@lists.sourceforge.net>"
+
+#: ../src/dh-window.c:449
 msgid "A developer's help browser for GNOME 2"
-msgstr "Bộ duyệt trợ giúp dành cho nhà phát triển"
+msgstr "Bộ duyệt trợ giúp dành cho nhà phát triển, của Gnome 2."
 
-#: src/dh-window.c:462
-#, fuzzy
-msgid "Devhelp project page"
-msgstr "Bộ quản lý sách DevHelp"
+#: ../devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Phông chữ cho văn bản cố định."
 
-#: src/dh-window.c:466
-msgid "Bug report Devhelp"
-msgstr ""
+#: ../devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Phông chữ cho văn bản."
 
-#: ui/devhelp.glade.h:1
+#: ../devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Phông chữ cho văn bản có độ rộng cố định."
+
+#: ../devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Phông chữ cho văn bản có độ rộng thay đổi."
+
+#: ../devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Độ cao của cửa sổ chính"
+
+#: ../devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Vị trí của ô cửa sổ."
+
+#: ../devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Tính tráng được cực đại hóa của cửa sổ chính."
+
+#: ../devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "Vị trí X của cửa sổ chính."
+
+#: ../devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "Vị trí Y của cửa sổ chính."
+
+#: ../devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "Độ cao của cửa sổ chính."
+
+#: ../devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "Vị trí của dòng ngăn cách ô."
+
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "Độ rộng của cửa sổ chính."
+
+#: ../devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Dùng phông chữ hệ thống."
+
+#: ../devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Sử dụng các phông chữ mặc định của hệ thống."
+
+#: ../devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Có nên cửa sổ chính bắt đầu với kích thước lớn nhất hay không."
+
+#: ../devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Độ rộng của cửa sổ chính."
+
+#: ../devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Vị trí X của cửa sổ chính."
+
+#: ../devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Vị trí Y của cửa sổ chính."
+
+#: ../ui/devhelp.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
-#: ui/devhelp.glade.h:2
+#: ../ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Phông chữ</b>"
 
-#: ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:5
 msgid "Fixed width:"
-msgstr ""
+msgstr "Rộng có định:"
 
-#: ui/devhelp.glade.h:6
-#, fuzzy
+#: ../ui/devhelp.glade.h:6
 msgid "Preferences"
-msgstr "Thông số..."
+msgstr "Sở thích"
 
-#: ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:7
 msgid "Variable width: "
-msgstr ""
+msgstr "Rộng thay đổi: "
 
-#: ui/devhelp.glade.h:8
-#, fuzzy
+#: ../ui/devhelp.glade.h:8
 msgid "_Back"
-msgstr "Lùi"
+msgstr "_Lùi"
 
-#: ui/devhelp.glade.h:9
-#, fuzzy
+#: ../ui/devhelp.glade.h:9
 msgid "_Forward"
-msgstr "Tới"
+msgstr "_Tới"
 
-#: ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
-
-#~ msgid "_Search for:"
-#~ msgstr "_Tìm:"
-
-#~ msgid "_About"
-#~ msgstr "_Giới thiệu"
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Chọn một chủ để trong phần nội dung bên trái hoăc chuyển qua khung Tìm "
-#~ "kiếm để tìm cái bạn cần.<p>Dùng <b>Dịch lên/xuống<b> để duyệt cây bên "
-#~ "trái, và dùng <b>Dịch trái/phải<b> để bung cây hoặc thu hẹp cây trong "
-#~ "cuốn sách."
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "'%s' không phải là sách hợp lệ"
-
-#~ msgid "Book '%s' is malformed."
-#~ msgstr "Sách '%s' bị hỏng."
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Không thể mở tập tin: '%s'"
-
-#~ msgid "Open %s"
-#~ msgstr "Mở %s"
-
-#~ msgid "DevHelp Controller"
-#~ msgstr "Bộ điều khiển DevHelp"
-
-#~ msgid "DevHelp Controller Factory"
-#~ msgstr "Factory Bộ điều khiển DevHelp"
-
-#~ msgid "DevHelp HelpBrowser"
-#~ msgstr "Bộ duyệt trợ giúp DevHelp"
-
-#~ msgid "DevHelp HelpBrowser Factory"
-#~ msgstr "Factory Trình duyệt trợ giúp DevHelp"
-
-#~ msgid "Problems when reading books: %s\n"
-#~ msgstr "Lỗi khi đọc sách: %s\n"
-
-#~ msgid "Empty document: %s"
-#~ msgstr "Tài liệu rỗng: %s"
-
-#~ msgid "Document wrong type, got %s, expected 'booklist': %s"
-#~ msgstr "Tài liệu sai kiểu, lấy được là %s, yêu cầu là 'booklist': %s"
-
-#~ msgid ""
-#~ "I found an old version of your spec file (%s)\n"
-#~ "I removed it, so you have to hide the books you want to be hidden again."
-#~ msgstr ""
-#~ "Tìm thấy phiên bản cũ của tập tin spec (%s)\n"
-#~ "Sẽ loại bỏ nó, vì thể bạn sẽ phải giấu lại những cuốn sách bạn đã giấu "
-#~ "trước đó."
-
-#~ msgid "Ok"
-#~ msgstr "Đồng ý"
-
-#~ msgid "Failed to open file %s for writing."
-#~ msgstr "Lỗi mở tập tin %s để ghi"
-
-#~ msgid "Could not activate devhelp: '%s'"
-#~ msgstr "Không thể kích hoạt DevHelp: '%s'"
-
-#~ msgid "About this application"
-#~ msgstr "Nói về ứng dụng này"
-
-#~ msgid "Print the html page"
-#~ msgstr "In trang HTML"
-
-#~ msgid "_Print"
-#~ msgstr "_In"
-
-#~ msgid "Go to next page in the history"
-#~ msgstr "Đi tới trang kế trong lược sử"
-
-#~ msgid "Go to previous page in the history"
-#~ msgstr "Đi tới trang trước trong lược sử"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "<< _Show"
-#~ msgstr "<< _Hiện"
-
-#~ msgid "Author:"
-#~ msgstr "Tác giả:"
-
-#~ msgid "Book info"
-#~ msgstr "Thông tin sách"
-
-#~ msgid "Bookmarks"
-#~ msgstr "Đánh dấu"
-
-#~ msgid "DevHelp Preferences"
-#~ msgstr "Thông số DevHelp"
-
-#~ msgid "Hidden"
-#~ msgstr "Ẩn"
-
-#~ msgid "Huge"
-#~ msgstr "Khổng lồ"
-
-#~ msgid "Install new book..."
-#~ msgstr "Cài đặt sách mới..."
-
-#~ msgid "Large"
-#~ msgstr "Lớn"
-
-#~ msgid "Medium"
-#~ msgstr "Trung"
-
-#~ msgid "Move down"
-#~ msgstr "Chuyển xuống"
-
-#~ msgid "Move up"
-#~ msgstr "Chuyển lên"
-
-#~ msgid "Name:"
-#~ msgstr "Tên:"
-
-#~ msgid "Path:"
-#~ msgstr "Đường dẫn:"
-
-#~ msgid "Remove"
-#~ msgstr "Loại bỏ"
-
-#~ msgid "Reset to defaults"
-#~ msgstr "Đặt về mặc định"
-
-#~ msgid "Show _sidebar"
-#~ msgstr "Hiện Thanh bên"
-
-#~ msgid "Small"
-#~ msgstr "Nhỏ"
-
-#~ msgid "Tiny"
-#~ msgstr "Tí hon"
-
-#~ msgid "Title:"
-#~ msgstr "Tựa đề:"
-
-#~ msgid "Version:"
-#~ msgstr "Phiên bản:"
-
-#~ msgid "View"
-#~ msgstr "Xem"
-
-#~ msgid "Visible"
-#~ msgstr "Khả kiến"
-
-#~ msgid "_Edit book..."
-#~ msgstr "_Sửa sách..."
-
-#~ msgid "_Hide >>"
-#~ msgstr "Ẩ_n >>"
-
-#~ msgid "_Limit the number of hits to:"
-#~ msgstr "_Giới hạn số lần tìm trúng:"
-
-#~ msgid "_Text size: "
-#~ msgstr "_Cỡ text: "
-
-#~ msgid "Choose a book..."
-#~ msgstr "Chọn sách..."
-
-#~ msgid "The book is already installed."
-#~ msgstr "Sách này đã được cài đặt rồi."
-
-#~ msgid "Failed to move book. This should never happen."
-#~ msgstr "Lỗi di chuyển sách. Điều này lẽ ra không bao giờ xảy ra."
-
-#~ msgid "Failed to extract spec file from book."
-#~ msgstr "Lỗi trích tập tin spec từ sách."
-
-#~ msgid "Error, the book is corrupted or very old."
-#~ msgstr "Lỗi, sách bị hỏng hoặc quá cũ."
-
-#~ msgid "Failed to extract the book."
-#~ msgstr "Lỗi trích từ sách"
-
-#~ msgid "Wrong type (mime_type=%s)."
-#~ msgstr "Sai kiểu (Kiểu MIME là %s)"
-
-#~ msgid "Print Help"
-#~ msgstr "In trợ giúp"
-
-#~ msgid "Print Preview"
-#~ msgstr "Xem trước bản in"
-
-#~ msgid "Printing failed."
-#~ msgstr "Quá trình in thất bại."
-
-#~ msgid "Font size"
-#~ msgstr "Cỡ font"
-
-#~ msgid "Open preferences dialog"
-#~ msgstr "Mở hộp thoại thông số"
-
-#~ msgid "Show sidebar"
-#~ msgstr "Hiện Thanh bên"
-
-#~ msgid "_View"
-#~ msgstr "_Xem"
-
-#~ msgid "Book Manager..."
-#~ msgstr "Bộ quản lý sách..."
-
-#~ msgid "Open the book manager dialog"
-#~ msgstr "Mở hộp thoại Bộ quản lý sách"
-
-#~ msgid "(C) Copyright 2001, Johan Dahlin"
-#~ msgstr "(C) Copyright 2001, Johan Dahlin"
+msgstr "_Dùng phông chữ hệ thống"
