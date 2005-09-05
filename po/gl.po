@@ -1,0 +1,238 @@
+# translation of gl.po to Galego
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-05 16:33+0200\n"
+"PO-Revision-Date: 2005-09-05 16:45+0200\n"
+"Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
+"Language-Team: Galego\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10.2\n"
+
+#: ../devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "Programa de axuda do desenrolador"
+
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:447 ../ui/devhelp.glade.h:4
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../devhelp.keys.in.h:1
+msgid "Devhelp Book"
+msgstr "Libro Devhelp"
+
+#: ../src/dh-main.c:137
+msgid "Specify the size and location of the window"
+msgstr "Especifique o tamaño e ubicación da fiestra"
+
+#: ../src/dh-main.c:138
+msgid "WIDTHxHEIGHT+XOFF+YOFF"
+msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+
+#: ../src/dh-main.c:146
+msgid "Search for a function"
+msgstr "Buscar unha función"
+
+#: ../src/dh-main.c:155
+msgid "Quit any running Devhelp"
+msgstr "Remata calquera execución de Devhelp"
+
+#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Esperábase '%s' pero obteuse '%s' na liña %d, columna %d"
+
+#: ../src/dh-parser.c:121
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Espazo de nomes inválido '%s' na liña %d, columna %d"
+
+#: ../src/dh-parser.c:150
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "os elementos título, nome e ligazón requírense na liña %d, columna %d"
+
+#: ../src/dh-parser.c:203
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+"os elementos nome e ligazón requírense dentro de <sub> na liña %d, columna %d"
+
+#: ../src/dh-parser.c:251
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"os elementos nome e ligazón requírense dentro de <function> na liña %d, "
+"columna %d"
+
+#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
+msgid "Could not create book parser"
+msgstr "Non se puido crear o analizador do libro"
+
+#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
+msgid "Could not create markup parser"
+msgstr "Non se puido crear o analizador do marco"
+
+#: ../src/dh-parser.c:480
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Non se puido descomprimir o libro '%s': %s"
+
+#: ../src/dh-search.c:418
+msgid "_Search:"
+msgstr "_Buscar:"
+
+#: ../src/dh-search.c:462
+msgid "Section"
+msgstr "Sección"
+
+#: ../src/dh-window.c:110
+msgid "_File"
+msgstr "_Ficheiro"
+
+#: ../src/dh-window.c:111
+msgid "_Edit"
+msgstr "_Editar"
+
+#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
+msgid "_Go"
+msgstr "_Ir"
+
+#: ../src/dh-window.c:113
+msgid "_Help"
+msgstr "A_xuda"
+
+#: ../src/dh-window.c:297
+#, c-format
+msgid "Cannot set UI: %s"
+msgstr "Non se pode establecer IU: %s"
+
+#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Contidos"
+
+#: ../src/dh-window.c:368
+msgid "Search"
+msgstr "Buscar"
+
+#: ../src/dh-window.c:444
+msgid "translator_credits"
+msgstr ""
+"Ignacio Casal Quinteiro <nacho.resa@gmail.com> \n"
+"Proxecto Trasno: http://www.trasno.net"
+
+#: ../src/dh-window.c:449
+msgid "A developer's help browser for GNOME 2"
+msgstr "Un visor de axuda para desenroladores para Gnome 2"
+
+#: ../devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Fonte para o texto fixo"
+
+#: ../devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Fonte para o texto"
+
+#: ../devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Fonte para o texto co ancho fixo."
+
+#: ../devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Fonte para o texto co ancho variable."
+
+#: ../devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Altura da fiestra principal"
+
+#: ../devhelp.schemas.in.h:6
+msgid "Location of the paned"
+msgstr "Ubicación do panel"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Estado maximizado da fiestra principal"
+
+#: ../devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "A posición X da fiestra principal."
+
+#: ../devhelp.schemas.in.h:9
+msgid "The Y position of the main window."
+msgstr "A posición Y da fiestra principal."
+
+#: ../devhelp.schemas.in.h:10
+msgid "The height of the main window."
+msgstr "A altura da fiestra principal."
+
+#: ../devhelp.schemas.in.h:11
+msgid "The location of the paned separator."
+msgstr "A ubicación do panel separador."
+
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "O ancho da fiestra principal."
+
+#: ../devhelp.schemas.in.h:13
+msgid "Use system fonts"
+msgstr "Usar fontes do sistema"
+
+#: ../devhelp.schemas.in.h:14
+msgid "Use the systems default fonts."
+msgstr "Usar a fonte predeterminada do sistema."
+
+#: ../devhelp.schemas.in.h:15
+msgid "Whether the main window should start maximized or not."
+msgstr "Indica se a fiestra principal debería iniciar maximizada ou non."
+
+#: ../devhelp.schemas.in.h:16
+msgid "Width of the main window"
+msgstr "Ancho da fiestra principal"
+
+#: ../devhelp.schemas.in.h:17
+msgid "X position of main window"
+msgstr "Posición X da fiestra principal"
+
+#: ../devhelp.schemas.in.h:18
+msgid "Y position of main window"
+msgstr "Posición Y da fiestra principal"
+
+#: ../ui/devhelp.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Fontes</b>"
+
+#: ../ui/devhelp.glade.h:5
+msgid "Fixed width:"
+msgstr "Anchura fixa:"
+
+#: ../ui/devhelp.glade.h:6
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: ../ui/devhelp.glade.h:7
+msgid "Variable width: "
+msgstr "Ancho variable:"
+
+#: ../ui/devhelp.glade.h:8
+msgid "_Back"
+msgstr "_Atrás"
+
+#: ../ui/devhelp.glade.h:9
+msgid "_Forward"
+msgstr "A_diante"
+
+#: ../ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "_Usar fonte do sistema"
