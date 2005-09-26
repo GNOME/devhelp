@@ -1,5 +1,7 @@
 2005-09-26  Richard Hult  <richard@imendio.com>
 
+	* devhelp.schemas.in: Clarify two strings, bug #313930.
+
 	* src/dh-html.c: (html_title_cb):
 	* src/dh-window.c: (window_init), (window_location_changed_cb),
 	(window_title_changed_cb): Patch from Tommi Komulainen to use the

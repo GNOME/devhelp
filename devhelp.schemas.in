@@ -75,9 +75,9 @@
       <type>int</type>
       <default>250</default>
       <locale name="C">
-         <short>Location of the paned</short>
+         <short>Width of the index and search pane</short>
          <long>
-           The location of the paned separator.
+           The width of the index and search pane.
          </long>
       </locale>
     </schema>
