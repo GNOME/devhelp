@@ -163,9 +163,7 @@ html_title_cb (GtkMozEmbed *embed, DhHtml *html)
 	char *new_title;
 
 	new_title = gtk_moz_embed_get_title (embed);
-	if (new_title && *new_title != '\0') {
-		g_signal_emit (html, signals[TITLE_CHANGED], 0, new_title);
-	}
+	g_signal_emit (html, signals[TITLE_CHANGED], 0, new_title);
 	g_free (new_title);
 }
 

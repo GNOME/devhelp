@@ -103,6 +103,9 @@ static void window_check_history             (DhWindow           *window);
 static void window_location_changed_cb       (DhHtml             *html,
 					      const gchar        *location,
 					      DhWindow           *window);
+static void window_title_changed_cb          (DhHtml             *html,
+					      const gchar        *location,
+					      DhWindow           *window);
 
 static GtkWindowClass *parent_class = NULL;
 
@@ -186,6 +189,9 @@ window_init (DhWindow *window)
 	priv->html = dh_html_new ();
 	g_signal_connect (priv->html, "location-changed",
 			  G_CALLBACK (window_location_changed_cb),
+			  window);
+	g_signal_connect (priv->html, "title-changed",
+			  G_CALLBACK (window_title_changed_cb),
 			  window);
 	
 	priv->manager = gtk_ui_manager_new ();
@@ -652,6 +658,23 @@ window_location_changed_cb (DhHtml      *html,
 			    DhWindow    *window)
 {
 	window_check_history (window);
+}
+
+static void
+window_title_changed_cb (DhHtml      *html,
+			 const gchar *title, 
+			 DhWindow    *window)
+{
+	gchar *new_title;
+
+	if (title && *title != '\0') {
+		new_title = g_strdup_printf ("%s - Devhelp", title);
+	} else {
+		new_title = g_strdup ("Devhelp");
+	}
+	gtk_window_set_title (GTK_WINDOW (window), new_title);
+
+	g_free (new_title);
 }
 
 GtkWidget *
