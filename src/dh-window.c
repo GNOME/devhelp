@@ -106,7 +106,7 @@ static void window_location_changed_cb       (DhHtml             *html,
 
 static GtkWindowClass *parent_class = NULL;
 
-static GtkActionEntry actions[] = {
+static const GtkActionEntry actions[] = {
 	{ "FileMenu", NULL, N_("_File") },
 	{ "EditMenu", NULL, N_("_Edit") },
 	{ "GoMenu", NULL, N_("_Go") },

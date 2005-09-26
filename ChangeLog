@@ -1,3 +1,8 @@
+2005-09-26  Richard Hult  <richard@imendio.com>
+
+	* src/dh-window.c: Apply patch from Paolo Borelli to constify the
+	UI actions, bug #302557.
+
 2005-09-05  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* configure.in: Added 'gl' to ALL_LINGUAS.
