@@ -20,6 +20,7 @@
  */
 
 #include <config.h>
+#include <string.h>
 #include <gdk/gdkkeysyms.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtkcellrenderertext.h>
@@ -38,6 +39,13 @@ typedef struct {
         GdkPixbuf *pixbuf_closed;
         GdkPixbuf *pixbuf_helpdoc;
 } DhBookTreePixbufs;
+
+typedef struct {
+	const gchar *uri;
+	gboolean     found;
+	GtkTreeIter  iter;
+	GtkTreePath *path;
+} FindURIData;
 
 struct _DhBookTreePriv {
 	GtkTreeStore      *store;
@@ -343,36 +351,65 @@ dh_book_tree_new (GNode *books)
         return GTK_WIDGET (tree);
 }
 
+static gboolean
+book_tree_find_uri_foreach (GtkTreeModel *model,
+			    GtkTreePath  *path,
+			    GtkTreeIter  *iter,
+			    FindURIData  *data)
+{
+	DhLink      *link;
+	const gchar *uri;
+	
+	gtk_tree_model_get (model, iter, 
+			    COL_LINK, &link, 
+			    -1);
+
+	/* A bit hackish, could be made more generic. */
+	if (g_str_has_prefix (data->uri, "file://")) {
+		uri = data->uri + 7;
+	} else {
+		uri = data->uri;
+	}
+	
+	if (g_str_has_prefix (uri, link->uri)) {
+		data->found = TRUE;
+		data->iter = *iter;
+		data->path = gtk_tree_path_copy (path);
+	}
+
+	return data->found;
+}
+
 void
 dh_book_tree_show_uri (DhBookTree *tree, const gchar *uri)
 {
-#if 0
-	GtkTreeSelection    *selection;
-	GtkTreeRowReference *row;
-	GtkTreePath         *path;
+	GtkTreeSelection *selection;
+	FindURIData       data;
+
+	data.found = FALSE;
+	data.uri = uri;
+	
+	gtk_tree_model_foreach (GTK_TREE_MODEL (tree->priv->store),
+				(GtkTreeModelForeachFunc) book_tree_find_uri_foreach, 
+				&data);
+
+	if (!data.found) {
+		return;
+	}
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
 
-	/* FIXME: Hmm .. */
-	row = g_hash_table_lookup (tree->priv->node_rows, book_node);
-	g_return_if_fail (row != NULL);
+	g_signal_handlers_block_by_func	(selection, 
+					 book_tree_selection_changed_cb,
+					 tree);
 
-	path = gtk_tree_row_reference_get_path (row);
-	g_return_if_fail (path != NULL);
-	
-	g_signal_handlers_block_by_func
-		(selection, 
-		 book_tree_selection_changed_cb,
-		 tree);
+	gtk_tree_view_expand_to_path (GTK_TREE_VIEW (tree), data.path);
+	gtk_tree_selection_select_iter (selection, &data.iter);
+	gtk_tree_view_set_cursor (GTK_TREE_VIEW (tree), data.path, NULL, 0);	
 
-	gtk_tree_selection_select_path (selection, path);
-	gtk_tree_view_set_cursor (GTK_TREE_VIEW (tree), path, NULL, 0);	
+	g_signal_handlers_unblock_by_func (selection, 
+					   book_tree_selection_changed_cb,
+					   tree);
 
-	g_signal_handlers_unblock_by_func
-		(selection, 
-		 book_tree_selection_changed_cb,
-		 tree);
-
-	gtk_tree_path_free (path);
-#endif
+	gtk_tree_path_free (data.path);
 }

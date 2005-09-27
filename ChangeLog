@@ -1,5 +1,14 @@
 2005-09-28  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c (window_location_changed_cb): Update the book
+	tree here...
+	(window_open_url): ...instead of here.
+
+	* src/dh-book-tree.c (dh_book_tree_show_uri): Bring back to life,
+	fix finding the node and expand the path.
+	(book_tree_find_uri_foreach): Add as helper to the above. Fixes
+	bug #134333. Might be too slow, but let's test it a bit.
+
 	* src/dh-window.c (window_activate_about): Set the icon for the
 	about box, patch from Pedro Villavicencio, bug #309547.
 

@@ -600,7 +600,6 @@ window_open_url (DhWindow *window, const gchar *url)
 	priv = window->priv;
 
 	dh_html_open_uri (priv->html, url);
-	dh_book_tree_show_uri (DH_BOOK_TREE (priv->book_tree), url);
 
 	window_check_history (window);
 	
@@ -679,7 +678,13 @@ window_location_changed_cb (DhHtml      *html,
 			    const gchar *location, 
 			    DhWindow    *window)
 {
+	DhWindowPriv *priv;
+
+	priv = window->priv;
+	
 	window_check_history (window);
+
+	dh_book_tree_show_uri (DH_BOOK_TREE (priv->book_tree), location);
 }
 
 static void
