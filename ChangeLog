@@ -1,3 +1,25 @@
+2005-09-27  Richard Hult  <richard@imendio.com>
+
+	* src/dh-search.c (search_init): Disable typeahead search in the
+	hitlist.
+
+	* src/dh-keyword-model.c (keyword_model_tree_model_init)
+	(keyword_model_get_flags): Implement get_flags and specify that
+	it's a list to get rid of the unneccesary space for the expander.
+
+	* src/dh-search.c (dh_search_new): Try ellipsizing the hits to get
+	rid of the horizontal scrolling.
+
+	* src/dh-window.c (window_populate): Don't scroll the content tree
+	horizontally.
+	(window_restore_state, window_save_state): Save and restore the
+	selected tab.
+
+	* devhelp.schemas.in: Add the selected tab preference.
+
+	* src/dh-book-tree.c (book_tree_add_columns): Ellipsize the
+	titles.
+
 2005-09-26  Richard Hult  <richard@imendio.com>
 
 	* devhelp.schemas.in: Clarify two strings, bug #313930.

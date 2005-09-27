@@ -157,6 +157,8 @@ search_init (DhSearch *search)
 	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->hitlist),
 				 GTK_TREE_MODEL (priv->model));
 
+	gtk_tree_view_set_enable_search (GTK_TREE_VIEW (priv->hitlist), FALSE);
+
 	gtk_box_set_spacing (GTK_BOX (search), 2);
 }
 
@@ -394,17 +396,17 @@ search_complete_func (DhLink *link)
 	return link->name;
 }
 
-
 GtkWidget *
 dh_search_new (GList *keywords)
 {
-	DhSearch          *search;
-	DhSearchPriv      *priv;
-	GtkTreeSelection  *selection;
-        GtkWidget         *list_sw;
-	GtkWidget         *frame;
-	GtkWidget         *hbox;
-	GtkWidget         *label;
+	DhSearch         *search;
+	DhSearchPriv     *priv;
+	GtkTreeSelection *selection;
+        GtkWidget        *list_sw;
+	GtkWidget        *frame;
+	GtkWidget        *hbox;
+	GtkWidget        *label;
+	GtkCellRenderer  *cell;
 		
 	search = g_object_new (DH_TYPE_SEARCH, NULL);
 
@@ -452,22 +454,27 @@ dh_search_new (GList *keywords)
 	
         list_sw = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (list_sw),
-                                        GTK_POLICY_AUTOMATIC, 
+                                        GTK_POLICY_NEVER, 
                                         GTK_POLICY_AUTOMATIC);
 
 	gtk_container_add (GTK_CONTAINER (frame), list_sw);
+
+	cell = gtk_cell_renderer_text_new ();
+	g_object_set (cell,
+		      "ellipsize", PANGO_ELLIPSIZE_END,
+		      NULL);
 	
 	gtk_tree_view_insert_column_with_attributes (
 		GTK_TREE_VIEW (priv->hitlist), -1,
-		_("Section"), gtk_cell_renderer_text_new (),
+		_("Section"), cell,
 		"text", 0,
 		NULL);
 
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->hitlist),
 					   FALSE);
+	gtk_tree_view_set_search_column (GTK_TREE_VIEW (priv->hitlist), FALSE);
 
-	selection = gtk_tree_view_get_selection (
-		GTK_TREE_VIEW (priv->hitlist));
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->hitlist));
 
 	g_signal_connect (selection, "changed",
 			  G_CALLBACK (search_selection_changed_cb),

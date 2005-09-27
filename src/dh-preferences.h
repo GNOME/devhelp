@@ -31,6 +31,7 @@
 #define GCONF_MAIN_WINDOW_POS_X     "/apps/devhelp/ui/main_window_position_x"
 #define GCONF_MAIN_WINDOW_POS_Y     "/apps/devhelp/ui/main_window_position_y"
 #define GCONF_PANED_LOCATION        "/apps/devhelp/ui/paned_location"
+#define GCONF_SELECTED_TAB          "/apps/devhelp/ui/selected_tab"
 #define GCONF_USE_SYSTEM_FONTS      "/apps/devhelp/ui/use_system_fonts"
 #define GCONF_VARIABLE_FONT         "/apps/devhelp/ui/variable_font"
 #define GCONF_FIXED_FONT            "/apps/devhelp/ui/fixed_font"

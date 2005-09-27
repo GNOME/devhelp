@@ -184,26 +184,30 @@ book_tree_finalize (GObject *object)
 static void
 book_tree_add_columns (DhBookTree *tree)
 {
-	GtkCellRenderer   *renderer;
+	GtkCellRenderer   *cell;
 	GtkTreeViewColumn *column;
 
 	column = gtk_tree_view_column_new ();
 	
-	renderer = GTK_CELL_RENDERER (gtk_cell_renderer_pixbuf_new ());
-	gtk_tree_view_column_pack_start (column, renderer, FALSE);
-	gtk_tree_view_column_set_attributes
-		(column, renderer,
-		 "pixbuf", COL_OPEN_PIXBUF,
-		 "pixbuf-expander-open", COL_OPEN_PIXBUF,
-		 "pixbuf-expander-closed", COL_CLOSED_PIXBUF,
-		 NULL);
+	cell = gtk_cell_renderer_pixbuf_new ();
+	gtk_tree_view_column_pack_start (column, cell, FALSE);
+	gtk_tree_view_column_set_attributes (
+		column,
+		cell,
+		"pixbuf", COL_OPEN_PIXBUF,
+		"pixbuf-expander-open", COL_OPEN_PIXBUF,
+		"pixbuf-expander-closed", COL_CLOSED_PIXBUF,
+		NULL);
 	
-	renderer = GTK_CELL_RENDERER (gtk_cell_renderer_text_new ());
-	gtk_tree_view_column_pack_start (column, renderer, TRUE);
-	gtk_tree_view_column_set_attributes (column, renderer,
+	cell = gtk_cell_renderer_text_new ();
+	g_object_set (cell,
+		      "ellipsize", PANGO_ELLIPSIZE_END,
+		      NULL);
+	gtk_tree_view_column_pack_start (column, cell, TRUE);
+	gtk_tree_view_column_set_attributes (column, cell,
 					     "text", COL_TITLE,
 					     NULL);
-
+	
 	gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
 }
 

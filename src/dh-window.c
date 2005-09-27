@@ -25,8 +25,6 @@
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 
-
-
 #include "dh-book-tree.h"
 #include "dh-html.h"
 #include "dh-preferences.h"
@@ -283,16 +281,13 @@ window_switch_page_after_cb (GtkWidget       *notebook,
 static void
 window_populate (DhWindow *window)
 {
-        DhWindowPriv *priv;
-	GtkWidget    *frame;
-	GtkWidget    *book_tree_sw;
-	GNode        *contents_tree;
-	GList        *keywords = NULL;
-	GError       *error = NULL;
-	gint          hpaned_position;
-	
-        g_return_if_fail (window != NULL);
-        g_return_if_fail (DH_IS_WINDOW (window));
+        DhWindowPriv  *priv;
+	GtkWidget     *frame;
+	GtkWidget     *book_tree_sw;
+	GNode         *contents_tree;
+	GList         *keywords = NULL;
+	GError        *error = NULL;
+	gint           hpaned_position;
         
         priv = window->priv;
 	
@@ -300,14 +295,14 @@ window_populate (DhWindow *window)
 					 DATADIR "/devhelp/ui/window.ui",
 					 &error);
 	if (error) {
-		g_warning (_("Cannot set UI: %s"), error->message);
+		g_warning ("Cannot set UI: %s", error->message);
 		g_error_free (error);
 	}
 
 	gtk_ui_manager_ensure_update (priv->manager);
 	
-        priv->hpaned    = gtk_hpaned_new ();
-        priv->notebook  = gtk_notebook_new ();
+        priv->hpaned   = gtk_hpaned_new ();
+        priv->notebook = gtk_notebook_new ();
 
 	g_signal_connect (priv->notebook, "switch_page",
 			  G_CALLBACK (window_switch_page_cb),
@@ -319,7 +314,7 @@ window_populate (DhWindow *window)
 
 	book_tree_sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (book_tree_sw),
-					GTK_POLICY_AUTOMATIC,
+					GTK_POLICY_NEVER,
 					GTK_POLICY_AUTOMATIC);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (book_tree_sw),
 					     GTK_SHADOW_IN);
@@ -337,12 +332,15 @@ window_populate (DhWindow *window)
 	gtk_container_add (GTK_CONTAINER (frame), priv->html_view);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
 
-	gtk_paned_add2 (GTK_PANED(priv->hpaned), frame);
+	gtk_paned_add2 (GTK_PANED (priv->hpaned), frame);
 
 	hpaned_position = gconf_client_get_int (gconf_client,
 						GCONF_PANED_LOCATION,
 						NULL);
 
+	/* This workaround for broken schema installs is not really working that
+	 * well, since it makes having a 0 location not possible.
+	 */
 	if (hpaned_position <= 0) {
 		hpaned_position = DEFAULT_PANED_LOC;
 	}
@@ -382,8 +380,6 @@ window_populate (DhWindow *window)
 			    TRUE, TRUE, 0);
 
 	gtk_widget_show_all (priv->hpaned);
-
-	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 0);
 
 	dh_preferences_setup_fonts ();
 }
@@ -509,15 +505,31 @@ window_save_state (DhWindow *window)
 			      GCONF_PANED_LOCATION,
 			      gtk_paned_get_position (GTK_PANED (priv->hpaned)),
 			      NULL);
+
+	if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)) == 0) {
+		gconf_client_set_string (gconf_client,
+					 GCONF_SELECTED_TAB,
+					 "content",
+					 NULL);
+	} else {
+		gconf_client_set_string (gconf_client,
+					 GCONF_SELECTED_TAB,
+					 "search",
+					 NULL);
+	}
 }
 
 static void
 window_restore_state (DhWindow *window)
 {
-	gboolean maximized;
-	int      width, height;
-	int      x, y;
+	DhWindowPriv *priv;
+	gboolean      maximized;
+	int           width, height;
+	int           x, y;
+	const gchar  *tab;
 
+	priv = window->priv;
+	
 	width = gconf_client_get_int (gconf_client,
 				      GCONF_MAIN_WINDOW_WIDTH,
 				      NULL);
@@ -551,6 +563,15 @@ window_restore_state (DhWindow *window)
 					   NULL);
 	if (maximized) {
 		gtk_window_maximize (GTK_WINDOW (window));
+	}
+
+	tab = gconf_client_get_string (gconf_client,
+				       GCONF_SELECTED_TAB,
+				       NULL);
+	if (!tab || strcmp (tab, "") == 0 || strcmp (tab, "content") == 0) {
+		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 0);
+	} else {
+		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 1);
 	}
 }
 
@@ -692,18 +713,18 @@ dh_window_new (DhBase *base)
         gtk_window_set_policy (GTK_WINDOW (window), TRUE, TRUE, FALSE);
 	gtk_window_set_title (GTK_WINDOW (window), "Devhelp");
 
-	if (geometry) {
-		gtk_window_parse_geometry (GTK_WINDOW (window), geometry);
-	} else {
-		window_restore_state (window);
-	}
-
 	g_signal_connect (window, 
 			  "delete_event",
 			  G_CALLBACK (window_delete_cb),
 			  NULL);
 
 	window_populate (window);
+
+	if (geometry) {
+		gtk_window_parse_geometry (GTK_WINDOW (window), geometry);
+	} else {
+		window_restore_state (window);
+	}
 
 	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png", 
 					 NULL);

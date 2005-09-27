@@ -82,6 +82,19 @@
       </locale>
     </schema>
     <schema>
+      <key>/schemas/apps/devhelp/ui/selected_tab</key>
+      <applyto>/apps/devhelp/ui/selected_tab</applyto>
+      <owner>devhelp</owner>
+      <type>string</type>
+      <default>content</default>
+      <locale name="C">
+         <short>Selected tab, "content" or "search"</short>
+         <long>
+	   Which of the tabs that is selected, "content" or "search".
+         </long>
+      </locale>
+    </schema>
+    <schema>
       <key>/schemas/apps/devhelp/ui/use_system_fonts</key>
       <applyto>/apps/devhelp/ui/use_system_fonts</applyto>
       <owner>devhelp</owner>

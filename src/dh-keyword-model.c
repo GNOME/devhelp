@@ -42,6 +42,7 @@ static void     keyword_model_tree_model_init   (GtkTreeModelIface  *iface);
 
 
 static void     keyword_model_finalize          (GObject            *object);
+static GtkTreeModelFlags keyword_model_get_flags (GtkTreeModel *tree_model);
 static gint     keyword_model_get_n_columns     (GtkTreeModel       *tree_model);
 static GType    keyword_model_get_column_type   (GtkTreeModel       *tree_model,
 						 gint                keyword);
@@ -128,6 +129,7 @@ keyword_model_class_init (DhKeywordModelClass *class)
 static void
 keyword_model_tree_model_init (GtkTreeModelIface *iface)
 {
+	iface->get_flags       = keyword_model_get_flags;
         iface->get_n_columns   = keyword_model_get_n_columns;
         iface->get_column_type = keyword_model_get_column_type;
         iface->get_iter        = keyword_model_get_iter;
@@ -175,6 +177,12 @@ keyword_model_finalize (GObject *object)
         (* parent_class->finalize) (object);
 }
 
+static GtkTreeModelFlags
+keyword_model_get_flags (GtkTreeModel *tree_model)
+{
+	return GTK_TREE_MODEL_ITERS_PERSIST | GTK_TREE_MODEL_LIST_ONLY;
+}
+
 static gint
 keyword_model_get_n_columns (GtkTreeModel *tree_model)
 {
@@ -183,7 +191,7 @@ keyword_model_get_n_columns (GtkTreeModel *tree_model)
 
 static GType
 keyword_model_get_column_type (GtkTreeModel *tree_model,
-                     gint          column)
+			       gint          column)
 {
 	switch (column) {
 	case DH_KEYWORD_MODEL_COL_NAME:
@@ -199,8 +207,8 @@ keyword_model_get_column_type (GtkTreeModel *tree_model,
 
 static gboolean
 keyword_model_get_iter (GtkTreeModel *tree_model,
-              GtkTreeIter  *iter,
-              GtkTreePath  *path)
+			GtkTreeIter  *iter,
+			GtkTreePath  *path)
 {
         DhKeywordModel     *model;
         DhKeywordModelPriv *priv;
@@ -233,12 +241,11 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
 
 static GtkTreePath *
 keyword_model_get_path (GtkTreeModel *tree_model,
-              GtkTreeIter  *iter)
+			GtkTreeIter  *iter)
 {
         DhKeywordModel     *model = DH_KEYWORD_MODEL (tree_model);
         DhKeywordModelPriv *priv;
         GtkTreePath         *path;
-        GList               *node;
         gint                 i = 0;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (tree_model), NULL);
@@ -261,9 +268,9 @@ keyword_model_get_path (GtkTreeModel *tree_model,
 
 static void
 keyword_model_get_value (GtkTreeModel *tree_model,
-		       GtkTreeIter  *iter,
-		       gint          column,
-		       GValue       *value)
+			 GtkTreeIter  *iter,
+			 gint          column,
+			 GValue       *value)
 {
         DhLink *link;
 	
@@ -301,8 +308,8 @@ keyword_model_iter_next (GtkTreeModel *tree_model, GtkTreeIter *iter)
 
 static gboolean
 keyword_model_iter_children (GtkTreeModel *tree_model,
-                   GtkTreeIter  *iter,
-                   GtkTreeIter  *parent)
+			     GtkTreeIter  *iter,
+			     GtkTreeIter  *parent)
 {
         DhKeywordModelPriv *priv;
         
@@ -330,14 +337,14 @@ keyword_model_iter_children (GtkTreeModel *tree_model,
 
 static gboolean
 keyword_model_iter_has_child (GtkTreeModel *tree_model,
-                    GtkTreeIter  *iter)
+			      GtkTreeIter  *iter)
 {
         return FALSE;
 }
 
 static gint
 keyword_model_iter_n_children (GtkTreeModel *tree_model,
-                     GtkTreeIter  *iter)
+			       GtkTreeIter  *iter)
 {
         DhKeywordModelPriv *priv;
 
@@ -356,9 +363,9 @@ keyword_model_iter_n_children (GtkTreeModel *tree_model,
 
 static gboolean
 keyword_model_iter_nth_child (GtkTreeModel *tree_model,
-                    GtkTreeIter  *iter,
-                    GtkTreeIter  *parent,
-                    gint          n)
+			      GtkTreeIter  *iter,
+			      GtkTreeIter  *parent,
+			      gint          n)
 {
         DhKeywordModelPriv *priv;
         GList               *child;
@@ -384,8 +391,8 @@ keyword_model_iter_nth_child (GtkTreeModel *tree_model,
 
 static gboolean
 keyword_model_iter_parent (GtkTreeModel *tree_model,
-                 GtkTreeIter  *iter,
-                 GtkTreeIter  *child)
+			   GtkTreeIter  *iter,
+			   GtkTreeIter  *child)
 {
         return FALSE;
 }
