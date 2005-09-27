@@ -429,10 +429,12 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	gint                 new_length, old_length;
 	gint                 i;
 	GtkTreePath         *path;
- 	GtkTreeIter          iter;
+	GtkTreeIter          iter;
 	gint                 hits = 0;
 	DhLink              *exactlink = NULL;
-	gboolean	     found;
+	gboolean             found;
+	gboolean             case_sensitive;
+	gchar               *lower, *name;
 	gchar              **stringv;
 
 	g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
@@ -449,7 +451,20 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	if (!strcmp ("", string)) {
 		new_list = NULL;
 	} else {
-	        stringv = g_strsplit (string, " ", -1);
+		stringv = g_strsplit (string, " ", -1);
+
+		/* determine wether or not we should search with case
+		   sensitivity, searches are case sensitive when upper
+		   case is used in the search terms, matching vim
+		   smartcase behaviour */
+		case_sensitive = FALSE;
+		for (i = 0; stringv[i] != NULL; i++) {
+			lower = g_ascii_strdown (stringv[i], -1);
+			if (strcmp (lower, stringv[i])) {
+				case_sensitive = TRUE;
+			}
+			g_free (lower);
+		}
 
 		for (node = priv->original_list; 
 		     node && hits < MAX_HITS; 
@@ -459,11 +474,21 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 			
 			found = TRUE;
 			for (i = 0; stringv[i] != NULL; i++) {
-                                if (!g_strrstr (link->name, stringv[i])) {
-	    				found = FALSE;
+
+				if (!case_sensitive) {
+					name = g_ascii_strdown (link->name, -1);
+				} else {
+					name = g_strdup (link->name);
+				}
+				
+				if (!g_strrstr (name, stringv[i])) {
+					found = FALSE;
+					g_free (name);
 					break;
 				}
-                        }
+
+				g_free (name);
+			}
 				
 			if (found) {
 				/* Include in the new list */
