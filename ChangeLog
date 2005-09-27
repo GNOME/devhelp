@@ -1,5 +1,8 @@
 2005-09-28  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c (window_activate_about): Set the icon for the
+	about box, patch from Pedro Villavicencio, bug #309547.
+
 	* src/dh-keyword-model.c: (dh_keyword_model_filter): Apply patch
 	from Ruben Vermeersch to add "smart case" searching, bug #166154.
 

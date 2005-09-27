@@ -455,6 +455,7 @@ window_activate_about (GtkAction *action,
 			       strcmp (translator_credits, "translator_credits") != 0 ?
 			       translator_credits : NULL,
 			       "website", "http://www.imendio.com/projects/devhelp/",
+			       "logo-icon-name", "devhelp",
 			       NULL);
 	
 }
