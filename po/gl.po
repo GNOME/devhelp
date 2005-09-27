@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-05 16:33+0200\n"
-"PO-Revision-Date: 2005-09-05 16:45+0200\n"
+"POT-Creation-Date: 2005-09-27 23:15+0200\n"
+"PO-Revision-Date: 2005-09-27 23:16+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programa de axuda do desenrolador"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:447 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:453 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -62,13 +62,11 @@ msgstr "os elementos título, nome e ligazón requírense na liña %d, columna %
 #: ../src/dh-parser.c:203
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"os elementos nome e ligazón requírense dentro de <sub> na liña %d, columna %d"
+msgstr "os elementos nome e ligazón requírense dentro de <sub> na liña %d, columna %d"
 
 #: ../src/dh-parser.c:251
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "os elementos nome e ligazón requírense dentro de <function> na liña %d, "
 "columna %d"
@@ -94,42 +92,42 @@ msgstr "_Buscar:"
 msgid "Section"
 msgstr "Sección"
 
-#: ../src/dh-window.c:110
+#: ../src/dh-window.c:113
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: ../src/dh-window.c:111
+#: ../src/dh-window.c:114
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:115 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/dh-window.c:113
+#: ../src/dh-window.c:116
 msgid "_Help"
 msgstr "A_xuda"
 
-#: ../src/dh-window.c:297
+#: ../src/dh-window.c:303
 #, c-format
 msgid "Cannot set UI: %s"
 msgstr "Non se pode establecer IU: %s"
 
-#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:363 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Contidos"
 
-#: ../src/dh-window.c:368
+#: ../src/dh-window.c:374
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:444
+#: ../src/dh-window.c:450
 msgid "translator_credits"
 msgstr ""
 "Ignacio Casal Quinteiro <nacho.resa@gmail.com> \n"
 "Proxecto Trasno: http://www.trasno.net"
 
-#: ../src/dh-window.c:449
+#: ../src/dh-window.c:455
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un visor de axuda para desenroladores para Gnome 2"
 
@@ -154,44 +152,44 @@ msgid "Height of main window"
 msgstr "Altura da fiestra principal"
 
 #: ../devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr "Ubicación do panel"
-
-#: ../devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Estado maximizado da fiestra principal"
 
-#: ../devhelp.schemas.in.h:8
+#: ../devhelp.schemas.in.h:7
 msgid "The X position of the main window."
 msgstr "A posición X da fiestra principal."
 
-#: ../devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:8
 msgid "The Y position of the main window."
 msgstr "A posición Y da fiestra principal."
 
-#: ../devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:9
 msgid "The height of the main window."
 msgstr "A altura da fiestra principal."
 
-#: ../devhelp.schemas.in.h:11
-msgid "The location of the paned separator."
-msgstr "A ubicación do panel separador."
+#: ../devhelp.schemas.in.h:10
+msgid "The width of the index and search pane."
+msgstr "O ancho do índice e panel de busca."
 
-#: ../devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:11
 msgid "The width of the main window."
 msgstr "O ancho da fiestra principal."
 
-#: ../devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:12
 msgid "Use system fonts"
 msgstr "Usar fontes do sistema"
 
-#: ../devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:13
 msgid "Use the systems default fonts."
 msgstr "Usar a fonte predeterminada do sistema."
 
-#: ../devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:14
 msgid "Whether the main window should start maximized or not."
 msgstr "Indica se a fiestra principal debería iniciar maximizada ou non."
+
+#: ../devhelp.schemas.in.h:15
+msgid "Width of the index and search pane"
+msgstr "Ancho do índice e panel de busca"
 
 #: ../devhelp.schemas.in.h:16
 msgid "Width of the main window"
@@ -236,3 +234,4 @@ msgstr "A_diante"
 #: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Usar fonte do sistema"
+
