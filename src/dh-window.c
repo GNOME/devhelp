@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001-2004 Imendio AB
+ * Copyright (C) 2001-2005 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -59,51 +59,54 @@ struct _DhWindowPriv {
 #define DEFAULT_HEIGHT    500
 #define DEFAULT_PANED_LOC 250 
 
-static void window_class_init                (DhWindowClass      *klass);
-static void window_init                      (DhWindow           *window);
- 
-static void window_finalize                  (GObject            *object);
+static void     window_class_init              (DhWindowClass *klass);
+static void     window_init                    (DhWindow      *window);
+static void     window_finalize                (GObject       *object);
+static void     window_populate                (DhWindow      *window);
+static void     window_activate_quit           (GtkAction     *action,
+						DhWindow      *window);
+static void     window_activate_copy           (GtkAction     *action,
+						DhWindow      *window);
+static void     window_activate_preferences    (GtkAction     *action,
+						DhWindow      *window);
+static void     window_activate_back           (GtkAction     *action,
+						DhWindow      *window);
+static void     window_activate_forward        (GtkAction     *action,
+						DhWindow      *window);
+static void     window_activate_show_contents  (GtkAction     *action,
+						DhWindow      *window);
+static void     window_activate_show_search    (GtkAction     *action,
+						DhWindow      *window);
+static void     window_activate_about          (GtkAction     *action,
+						DhWindow      *window);
+static void     window_save_state              (DhWindow      *window);
+static void     window_restore_state           (DhWindow      *window);
+static void     window_delete_cb               (GtkWidget     *widget,
+						GdkEventAny   *event,
+						gpointer       user_data);
+static void     window_tree_link_selected_cb   (GObject       *ignored,
+						DhLink        *link,
+						DhWindow      *window);
+static void     window_search_link_selected_cb (GObject       *ignored,
+						DhLink        *link,
+						DhWindow      *window);
+static void     window_manager_add_widget      (GtkUIManager  *manager,
+						GtkWidget     *widget,
+						DhWindow      *window);
+static gboolean window_key_press_event_cb      (GtkWidget     *widget,
+						GdkEventKey   *event,
+						DhWindow      *window);
+static void     window_check_history           (DhWindow      *window);
+static void     window_location_changed_cb     (DhHtml        *html,
+						const gchar   *location,
+						DhWindow      *window);
+static void     window_title_changed_cb        (DhHtml        *html,
+						const gchar   *location,
+						DhWindow      *window);
+static gboolean window_open_uri_cb             (DhHtml        *html,
+						const gchar   *uri,
+						DhWindow      *window);
 
-static void window_populate                  (DhWindow           *window);
-
-static void window_activate_quit             (GtkAction          *action,
-					      DhWindow           *window);
-static void window_activate_copy             (GtkAction          *action,
-					      DhWindow           *window);
-static void window_activate_preferences      (GtkAction          *action,
-					      DhWindow           *window);
-static void window_activate_back             (GtkAction          *action,
-					      DhWindow           *window);
-static void window_activate_forward          (GtkAction          *action,
-					      DhWindow           *window);
-static void window_activate_about            (GtkAction          *action,
-					      DhWindow           *window);
-static void window_save_state                (DhWindow           *window);
-static void window_restore_state             (DhWindow           *window);
-static void window_delete_cb                 (GtkWidget          *widget,
-					      GdkEventAny        *event,
-					      gpointer            user_data);
-
-static gboolean window_open_url              (DhWindow           *window,
-					      const gchar        *url);
-
-static void window_link_selected_cb          (GObject            *ignored,
-					      DhLink             *link,
-					      DhWindow           *window);
-
-static void window_manager_add_widget          (GtkUIManager        *manager,
-					      GtkWidget          *widget,
-					      DhWindow           *window);
-static gboolean window_key_press_event_cb    (GtkWidget          *widget,
-					      GdkEventKey        *event,
-					      DhWindow           *window);
-static void window_check_history             (DhWindow           *window);
-static void window_location_changed_cb       (DhHtml             *html,
-					      const gchar        *location,
-					      DhWindow           *window);
-static void window_title_changed_cb          (DhHtml             *html,
-					      const gchar        *location,
-					      DhWindow           *window);
 
 static GtkWindowClass *parent_class = NULL;
 
@@ -128,6 +131,12 @@ static const GtkActionEntry actions[] = {
 	  G_CALLBACK (window_activate_back) },
 	{ "Forward", GTK_STOCK_GO_FORWARD, NULL, "<alt>Right", NULL,
 	  G_CALLBACK (window_activate_forward) },
+
+	{ "ShowContentsTab", NULL, N_("Browse Contents"), "<ctrl>B", NULL,
+	  G_CALLBACK (window_activate_show_contents) },
+
+	{ "ShowSearchTab", NULL, N_("Search"), "<ctrl>S", NULL,
+	  G_CALLBACK (window_activate_show_search) },
 
 	/* About menu */
 	{ "About", GTK_STOCK_ABOUT, NULL, NULL, NULL,
@@ -187,6 +196,9 @@ window_init (DhWindow *window)
 	priv->html = dh_html_new ();
 	g_signal_connect (priv->html, "location-changed",
 			  G_CALLBACK (window_location_changed_cb),
+			  window);
+	g_signal_connect (priv->html, "open-uri",
+			  G_CALLBACK (window_open_uri_cb),
 			  window);
 	g_signal_connect (priv->html, "title-changed",
 			  G_CALLBACK (window_title_changed_cb),
@@ -261,7 +273,7 @@ window_switch_page_cb (GtkWidget       *notebook,
 	priv = window->priv;
 
 	g_signal_handlers_block_by_func (priv->book_tree, 
-					 window_link_selected_cb, window);
+					 window_tree_link_selected_cb, window);
 }
 
 static void
@@ -275,30 +287,24 @@ window_switch_page_after_cb (GtkWidget       *notebook,
 	priv = window->priv;
 	
 	g_signal_handlers_unblock_by_func (priv->book_tree, 
-					   window_link_selected_cb, window);
+					   window_tree_link_selected_cb, window);
 }
 
 static void
 window_populate (DhWindow *window)
 {
-        DhWindowPriv  *priv;
-	GtkWidget     *frame;
-	GtkWidget     *book_tree_sw;
-	GNode         *contents_tree;
-	GList         *keywords = NULL;
-	GError        *error = NULL;
-	gint           hpaned_position;
+        DhWindowPriv *priv;
+	GtkWidget    *frame;
+	GtkWidget    *book_tree_sw;
+	GNode        *contents_tree;
+	GList        *keywords;
+	gint          hpaned_position;
         
         priv = window->priv;
 	
 	gtk_ui_manager_add_ui_from_file (priv->manager,
 					 DATADIR "/devhelp/ui/window.ui",
-					 &error);
-	if (error) {
-		g_warning ("Cannot set UI: %s", error->message);
-		g_error_free (error);
-	}
-
+					 NULL);
 	gtk_ui_manager_ensure_update (priv->manager);
 	
         priv->hpaned   = gtk_hpaned_new ();
@@ -327,12 +333,13 @@ window_populate (DhWindow *window)
 	gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
 	
 	priv->html_view = dh_html_get_widget (priv->html);
-	
+
 	frame = gtk_frame_new (NULL);
 	gtk_container_add (GTK_CONTAINER (frame), priv->html_view);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
+	gtk_container_set_border_width (GTK_CONTAINER (frame), 2);
 
-	gtk_paned_add2 (GTK_PANED (priv->hpaned), frame);
+	gtk_paned_add2 (GTK_PANED (priv->hpaned), frame);	
 
 	hpaned_position = gconf_client_get_int (gconf_client,
 						GCONF_PANED_LOCATION,
@@ -360,10 +367,9 @@ window_populate (DhWindow *window)
 					  book_tree_sw,
 					  gtk_label_new (_("Contents")));
 		g_signal_connect (priv->book_tree, "link_selected", 
-				  G_CALLBACK (window_link_selected_cb),
+				  G_CALLBACK (window_tree_link_selected_cb),
 				  window);
 	}
-	
 	if (keywords) {
 		priv->search = dh_search_new (keywords);
 		
@@ -372,7 +378,7 @@ window_populate (DhWindow *window)
 					  gtk_label_new (_("Search")));
 
 		g_signal_connect (priv->search, "link_selected",
-				  G_CALLBACK (window_link_selected_cb),
+				  G_CALLBACK (window_search_link_selected_cb),
 				  window);
 	}
 
@@ -389,8 +395,6 @@ window_activate_quit (GtkAction *action, DhWindow *window)
 {
 	DhWindowPriv *priv;
 	
-	g_return_if_fail (DH_IS_WINDOW (window));
-
 	priv = window->priv;
 
 	window_save_state (window);
@@ -429,6 +433,30 @@ window_activate_forward (GtkAction *action,
 	priv = window->priv;
 
 	dh_html_go_forward (priv->html);
+}
+
+static void
+window_activate_show_contents (GtkAction *action,
+			       DhWindow  *window)
+{
+	DhWindowPriv *priv;
+
+	priv = window->priv;
+
+	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 0);
+	gtk_widget_grab_focus (priv->book_tree);
+}
+
+static void
+window_activate_show_search (GtkAction *action,
+			     DhWindow  *window)
+{
+	DhWindowPriv *priv;
+
+	priv = window->priv;
+
+	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 1);
+	dh_search_grab_focus (DH_SEARCH (priv->search));
 }
 
 static void
@@ -571,8 +599,10 @@ window_restore_state (DhWindow *window)
 				       NULL);
 	if (!tab || strcmp (tab, "") == 0 || strcmp (tab, "content") == 0) {
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 0);
+		gtk_widget_grab_focus (priv->book_tree);
 	} else {
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 1);
+		dh_search_grab_focus (DH_SEARCH (priv->search));
 	}
 }
 
@@ -581,52 +611,57 @@ window_delete_cb (GtkWidget   *widget,
 		  GdkEventAny *event,
 		  gpointer     user_data)
 {
-	g_return_if_fail (widget != NULL);
-	g_return_if_fail (DH_IS_WINDOW (widget));
-
 	window_save_state (DH_WINDOW (widget));
 
 	gtk_main_quit ();
 }
 
-static gboolean 
-window_open_url (DhWindow *window, const gchar *url)
+static void
+window_tree_link_selected_cb (GObject  *ignored,
+			      DhLink   *link,
+			      DhWindow *window)
 {
 	DhWindowPriv *priv;
 	
-	g_return_val_if_fail (DH_IS_WINDOW (window), FALSE);
-	g_return_val_if_fail (url != NULL, FALSE);
-
 	priv = window->priv;
 
-	dh_html_open_uri (priv->html, url);
-
-	window_check_history (window);
+	/* Block so we don't try to sync the tree when we have already clicked
+	 * in it.
+	 */
+	g_signal_handlers_block_by_func (priv->html, 
+					 window_open_uri_cb,
+					 window);
 	
-	return TRUE;
+	dh_html_open_uri (priv->html, link->uri);
+	
+	g_signal_handlers_unblock_by_func (priv->html, 
+					   window_open_uri_cb,
+					   window);
+	
+	window_check_history (window);
 }
 
 static void
-window_link_selected_cb (GObject *ignored, DhLink *link, DhWindow *window)
+window_search_link_selected_cb (GObject  *ignored,
+				DhLink   *link,
+				DhWindow *window)
 {
 	DhWindowPriv   *priv;
 
-	g_return_if_fail (link != NULL);
-	g_return_if_fail (DH_IS_WINDOW (window));
-	
 	priv = window->priv;
 
-	window_open_url (window, link->uri);
+	dh_html_open_uri (priv->html, link->uri);
+
+	window_check_history (window);
 }
 
 static void
 window_manager_add_widget (GtkUIManager *manager,
-			 GtkWidget    *widget,
-			 DhWindow     *window)
+			   GtkWidget    *widget,
+			   DhWindow     *window)
 {
 	DhWindowPriv *priv;
 	
-	g_return_if_fail (DH_IS_WINDOW (window));
 	priv = window->priv;
 
 	gtk_box_pack_start (GTK_BOX (priv->menu_box), widget,
@@ -658,19 +693,19 @@ static void
 window_check_history (DhWindow *window)
 {
 	DhWindowPriv *priv;
-	GtkAction *action;
+	GtkAction    *action;
 		
 	priv = window->priv;
 	
-	action = gtk_action_group_get_action (priv->action_group, 
-					      "Forward");
+	action = gtk_action_group_get_action (priv->action_group, "Forward");
+	g_object_set (action,
+		      "sensitive", dh_html_can_go_forward (priv->html),
+		      NULL);
 	
-	g_object_set (action, "sensitive", 
-		      dh_html_can_go_forward (priv->html), NULL);
-	action = gtk_action_group_get_action (priv->action_group,
-					      "Back");
-	g_object_set (action, "sensitive",
-		      dh_html_can_go_back (priv->html), NULL);
+	action = gtk_action_group_get_action (priv->action_group, "Back");
+	g_object_set (action,
+		      "sensitive", dh_html_can_go_back (priv->html),
+		      NULL);
 }
 
 static void
@@ -681,10 +716,22 @@ window_location_changed_cb (DhHtml      *html,
 	DhWindowPriv *priv;
 
 	priv = window->priv;
-	
-	window_check_history (window);
 
-	dh_book_tree_show_uri (DH_BOOK_TREE (priv->book_tree), location);
+	window_check_history (window);
+}
+
+static gboolean
+window_open_uri_cb (DhHtml      *html,
+		    const gchar *uri, 
+		    DhWindow    *window)
+{
+	DhWindowPriv *priv;
+
+	priv = window->priv;
+
+	dh_book_tree_show_uri (DH_BOOK_TREE (priv->book_tree), uri);
+
+	return FALSE;
 }
 
 static void
@@ -762,7 +809,6 @@ dh_window_search (DhWindow *window, const gchar *str)
 {
 	DhWindowPriv *priv;
 	
-	g_return_if_fail (window != NULL);
 	g_return_if_fail (DH_IS_WINDOW (window));
 	
 	priv = window->priv;

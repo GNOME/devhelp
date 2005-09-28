@@ -388,7 +388,7 @@ dh_book_tree_show_uri (DhBookTree *tree, const gchar *uri)
 
 	data.found = FALSE;
 	data.uri = uri;
-	
+
 	gtk_tree_model_foreach (GTK_TREE_MODEL (tree->priv->store),
 				(GtkTreeModelForeachFunc) book_tree_find_uri_foreach, 
 				&data);

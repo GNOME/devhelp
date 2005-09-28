@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2002-2003 CodeFactory AB
  * Copyright (C) 2001-2003 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2004 Imendio hB
+ * Copyright (C) 2004-2005 Imendio hB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -38,16 +38,21 @@ struct _DhHtmlPriv {
 	GtkMozEmbed *gecko;
 };
 
-static void     html_class_init               (DhHtmlClass         *klass);
-static void     html_init                     (DhHtml              *html);
-static void     html_title_cb                 (GtkMozEmbed         *embed,
-					       DhHtml              *html);
-static void     html_location_cb              (GtkMozEmbed         *embed, 
-					       DhHtml              *html);
+static void     html_class_init  (DhHtmlClass *klass);
+static void     html_init        (DhHtml      *html);
+static void     html_title_cb    (GtkMozEmbed *embed,
+				  DhHtml      *html);
+static void     html_location_cb (GtkMozEmbed *embed,
+				  DhHtml      *html);
+static gboolean html_open_uri_cb (GtkMozEmbed *embed,
+				  const gchar *uri,
+				  DhHtml      *html);
+
 
 enum {
 	TITLE_CHANGED,
 	LOCATION_CHANGED,
+	OPEN_URI,
 	LAST_SIGNAL
 };
 
@@ -102,6 +107,15 @@ html_class_init (DhHtmlClass *klass)
 			      dh_marshal_VOID__STRING,
 			      G_TYPE_NONE,
 			      1, G_TYPE_STRING);
+	signals[OPEN_URI] =
+		g_signal_new ("open-uri",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      0,
+			      NULL, NULL,
+			      dh_marshal_BOOLEAN__STRING,
+			      G_TYPE_BOOLEAN,
+			      1, G_TYPE_STRING);
 }
 
 static void
@@ -147,6 +161,9 @@ html_init (DhHtml *html)
 	g_signal_connect (priv->gecko, "location",
 			  G_CALLBACK (html_location_cb),
 			  html);
+	g_signal_connect (priv->gecko, "open-uri",
+			  G_CALLBACK (html_open_uri_cb),
+			  html);
 	g_signal_connect (priv->gecko, "add",
 			  G_CALLBACK (html_child_add_cb),
 			  html);
@@ -178,6 +195,19 @@ html_location_cb (GtkMozEmbed *embed, DhHtml *html)
 	location = gtk_moz_embed_get_location (embed);
 	g_signal_emit (html, signals[LOCATION_CHANGED], 0, location);
 	g_free (location);
+}
+
+static gboolean
+html_open_uri_cb (GtkMozEmbed *embed, const gchar *uri, DhHtml *html)
+{
+	DhHtmlPriv *priv;
+	gboolean   retval;
+
+	priv = html->priv;
+	
+	g_signal_emit (html, signals[OPEN_URI], 0, uri, &retval);
+
+	return retval;
 }
 
 DhHtml *

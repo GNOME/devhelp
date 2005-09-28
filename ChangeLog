@@ -1,5 +1,25 @@
 2005-09-28  Richard Hult  <richard@imendio.com>
 
+	* src/dh-marshal.list:
+	* src/dh-html.c: (html_class_init, html_init),
+	(html_open_uri_cb): Add open-uri signal that is called before
+	opening a location.
+	
+	* src/dh-search.c: (search_selection_changed_cb),
+	(search_tree_button_press_cb): Don't emit link-selected twice when
+	clicking in the tree.
+
+	* ui/window.ui:
+	* src/dh-window.c: Use the open-uri signal to update the book tree
+	selection before loading the html, makes things feel
+	snappier. Don't update the book tree selection when clicking it.
+	- Add menu items for switching between the search and content
+	tabs, bug #142054.
+
+	Also update copyright and clean up some old cruft.
+
+2005-09-28  Richard Hult  <richard@imendio.com>
+
 	* src/dh-window.c (window_location_changed_cb): Update the book
 	tree here...
 	(window_open_url): ...instead of here.

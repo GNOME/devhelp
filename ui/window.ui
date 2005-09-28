@@ -10,6 +10,9 @@
     <menu action="GoMenu">
       <menuitem action="Back"/>
       <menuitem action="Forward"/>
+      <separator/>
+      <menuitem action="ShowSearchTab"/>
+      <menuitem action="ShowContentsTab"/>
     </menu>
     <menu action="HelpMenu">
       <menuitem action="About"/>

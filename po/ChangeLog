@@ -1,3 +1,8 @@
+2005-09-28  Richard Hult  <richard@imendio.com>
+
+	* POTFILE.skip: Remove obsolete file.
+	* sv.po: Update.
+
 2005-09-27  Marcel Telka  <marcel@telka.sk>
 
 	* sk.po: Updated Slovak translation.

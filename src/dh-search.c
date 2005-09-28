@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2001-2003 CodeFactory AB
  * Copyright (C) 2001-2003 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2005      Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -44,6 +45,8 @@
 struct _DhSearchPriv {
 	DhKeywordModel *model;
 
+	DhLink         *selected_link;
+	
 	GtkWidget      *entry;
 	GtkWidget      *hitlist;
 
@@ -176,9 +179,6 @@ search_selection_changed_cb (GtkTreeSelection *selection, DhSearch *search)
 	DhSearchPriv *priv;
  	GtkTreeIter   iter;
 	
-	g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
-	g_return_if_fail (DH_IS_SEARCH (search));
-
 	priv = search->priv;
 
 	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
@@ -188,22 +188,29 @@ search_selection_changed_cb (GtkTreeSelection *selection, DhSearch *search)
 				    DH_KEYWORD_MODEL_COL_LINK, &link,
 				    -1);
 
- 		d(g_print ("Emiting signal with link to: %s (%s)\n",
-			   link->name, link->uri));
+		if (link != priv->selected_link) {
+			priv->selected_link = link;
 		
-		g_signal_emit (search, signals[LINK_SELECTED], 0, link);
+			d(g_print ("Emiting signal with link to: %s (%s)\n",
+				   link->name, link->uri));
+		
+			g_signal_emit (search, signals[LINK_SELECTED], 0, link);
+		}
 	}
 }
 
+/* Make it possible to jump back to the currently selected item, useful when the
+ * html view has been scrolled away.
+ */
 static gboolean
 search_tree_button_press_cb (GtkTreeView    *view,
 			     GdkEventButton *event,
 			     DhSearch       *search)
 {
-	GtkTreePath  *path = NULL;
+	GtkTreePath  *path;
 	GtkTreeIter   iter;
 	DhSearchPriv *priv;
-	DhLink       *link = NULL;
+	DhLink       *link;
 
 	priv = search->priv;
 	
@@ -220,6 +227,8 @@ search_tree_button_press_cb (GtkTreeView    *view,
 			    &iter,
 			    DH_KEYWORD_MODEL_COL_LINK, &link,
 			    -1);
+
+	priv->selected_link = link;
 	
 	g_signal_emit (search, signals[LINK_SELECTED], 0, link);
 	
@@ -282,9 +291,6 @@ search_entry_changed_cb (GtkEntry *entry, DhSearch *search)
 {
 	DhSearchPriv *priv;
 	
-	g_return_if_fail (GTK_IS_ENTRY (entry));
-	g_return_if_fail (DH_IS_SEARCH (search));
-	
 	priv = search->priv;
  
 	d(g_print ("Entry changed\n"));
@@ -301,9 +307,6 @@ search_entry_activated_cb (GtkEntry *entry, DhSearch *search)
 	DhSearchPriv *priv;
 	gchar             *str;
 	
-	g_return_if_fail (GTK_IS_ENTRY (entry));
-	g_return_if_fail (DH_IS_SEARCH (search));
-
 	priv = search->priv;
 	
 	str = (gchar *) gtk_entry_get_text (GTK_ENTRY (priv->entry));
@@ -319,8 +322,6 @@ search_entry_text_inserted_cb (GtkEntry    *entry,
 			       DhSearch    *search)
 {
 	DhSearchPriv *priv;
-	
- 	g_return_if_fail (DH_IS_SEARCH (search));
 	
 	priv = search->priv;
 	
@@ -339,8 +340,6 @@ search_complete_idle (DhSearch *search)
 	gchar             *completed = NULL;
 	GList             *list;
 	gint               text_length;
-	
-	g_return_val_if_fail (DH_IS_SEARCH (search), FALSE);
 	
 	priv = search->priv;
 	
@@ -372,8 +371,6 @@ search_filter_idle (DhSearch *search)
 	gchar        *str;
 	DhLink       *link;
 	
-	g_return_val_if_fail (DH_IS_SEARCH (search), FALSE);
-
 	priv = search->priv;
 
 	d(g_print ("Filter idle\n"));

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-05 14:11+0200\n"
+"POT-Creation-Date: 2005-09-28 21:00+0200\n"
 "PO-Revision-Date: 2004-04-12 20:57+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:449 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:477 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -85,51 +85,50 @@ msgstr "Kunde inte skapa markuptolk"
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan inte dekomprimera boken \"%s\": %s"
 
-#: ../src/dh-search.c:418
+#: ../src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Sök:"
 
-#: ../src/dh-search.c:462
+#: ../src/dh-search.c:466
 msgid "Section"
 msgstr "Avsnitt"
 
-#: ../src/dh-window.c:110
+#: ../src/dh-window.c:114
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/dh-window.c:111
+#: ../src/dh-window.c:115
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:116 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/dh-window.c:113
+#: ../src/dh-window.c:117
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../src/dh-window.c:297
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Kan inte ställa in användargränssnitt: %s"
+#: ../src/dh-window.c:135
+msgid "Browse Contents"
+msgstr "Bläddra i innehållet"
 
-#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Innehåll"
-
-#: ../src/dh-window.c:368
+#: ../src/dh-window.c:138 ../src/dh-window.c:378
 msgid "Search"
 msgstr "Sök"
 
-#: ../src/dh-window.c:446
+#: ../src/dh-window.c:368 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Innehåll"
+
+#: ../src/dh-window.c:474
 msgid "translator_credits"
 msgstr ""
 "Christian Rose <menthos@menthos.com>\n"
 "Richard Hult <richard@imendio.com>\n"
 "Johan Dahlin <johan@gnome.org>"
 
-#: ../src/dh-window.c:451
+#: ../src/dh-window.c:479
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
@@ -154,12 +153,12 @@ msgid "Height of main window"
 msgstr "Höjd på huvudfönstret"
 
 #: ../devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr "Plats för paneden"
-
-#: ../devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Maximerat tillstånd för huvudfönstret"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Vald flik, \"content\" eller \"search\""
 
 #: ../devhelp.schemas.in.h:8
 msgid "The X position of the main window."
@@ -174,8 +173,8 @@ msgid "The height of the main window."
 msgstr "Höjden på huvudfönstret."
 
 #: ../devhelp.schemas.in.h:11
-msgid "The location of the paned separator."
-msgstr "Platsen för paned-avskiljaren."
+msgid "The width of the index and search pane."
+msgstr "Bredden på index- och sökpanelen."
 
 #: ../devhelp.schemas.in.h:12
 msgid "The width of the main window."
@@ -194,14 +193,22 @@ msgid "Whether the main window should start maximized or not."
 msgstr "Huruvida huvudfönstret ska starta maximerat eller inte."
 
 #: ../devhelp.schemas.in.h:16
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Vilken av flikarna som är vald, \"content\" eller \"search\"."
+
+#: ../devhelp.schemas.in.h:17
+msgid "Width of the index and search pane"
+msgstr "Bredd på index- och sökpanelen"
+
+#: ../devhelp.schemas.in.h:18
 msgid "Width of the main window"
 msgstr "Bredd på huvudfönstret"
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:19
 msgid "X position of main window"
 msgstr "X-position för huvudfönstret"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:20
 msgid "Y position of main window"
 msgstr "Y-position för huvudfönstret"
 
@@ -236,6 +243,15 @@ msgstr "_Framåt"
 #: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Använd systemets typsnitt"
+
+#~ msgid "Cannot set UI: %s"
+#~ msgstr "Kan inte ställa in användargränssnitt: %s"
+
+#~ msgid "Location of the paned"
+#~ msgstr "Plats för paneden"
+
+#~ msgid "The location of the paned separator."
+#~ msgstr "Platsen för paned-avskiljaren."
 
 #~ msgid "Devhelp project page"
 #~ msgstr "Devhelps projektsida"
