@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-27 23:17+0200\n"
-"PO-Revision-Date: 2005-09-27 23:18+0200\n"
+"POT-Creation-Date: 2005-09-29 00:54+0200\n"
+"PO-Revision-Date: 2005-09-29 00:56+0200\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Program pomocníka pre vývojárov"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:453 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:509 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -28,19 +28,19 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp kniha"
 
-#: ../src/dh-main.c:137
+#: ../src/dh-main.c:100
 msgid "Specify the size and location of the window"
 msgstr "Zadajte veľkosť a umiestnenie okna"
 
-#: ../src/dh-main.c:138
+#: ../src/dh-main.c:101
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "ŠÍRKAxVÝŠKA+XPOS+YPOS"
 
-#: ../src/dh-main.c:146
+#: ../src/dh-main.c:109
 msgid "Search for a function"
 msgstr "Vyhľadať funkciu"
 
-#: ../src/dh-main.c:155
+#: ../src/dh-main.c:118
 msgid "Quit any running Devhelp"
 msgstr "Ukončiť všetky bežiace kópie Devhelp"
 
@@ -86,48 +86,52 @@ msgstr "Nepodarilo sa vytvoriť analyzátor pre značky"
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nepodarilo sa rozbaliť knihu '%s': %s"
 
-#: ../src/dh-search.c:418
+#: ../src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Hľadať:"
 
-#: ../src/dh-search.c:462
+#: ../src/dh-search.c:466
 msgid "Section"
 msgstr "Časť"
 
-#: ../src/dh-window.c:113
+#: ../src/dh-window.c:118
 msgid "_File"
 msgstr "_Súbor"
 
-#: ../src/dh-window.c:114
+#: ../src/dh-window.c:119
 msgid "_Edit"
 msgstr "_Upraviť"
 
-#: ../src/dh-window.c:115 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:120 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Ísť"
 
-#: ../src/dh-window.c:116
+#: ../src/dh-window.c:121
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: ../src/dh-window.c:303
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Nepodarilo sa nastaviť používateľské rozhranie: %s"
+#. File menu
+#: ../src/dh-window.c:124
+msgid "_New Window"
+msgstr "_Nové okno"
 
-#: ../src/dh-window.c:363 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Obsah"
+#: ../src/dh-window.c:143
+msgid "Browse Contents"
+msgstr "Prehliadať obsah"
 
-#: ../src/dh-window.c:374
+#: ../src/dh-window.c:146 ../src/dh-window.c:386
 msgid "Search"
 msgstr "Hľadať"
 
-#: ../src/dh-window.c:450
+#: ../src/dh-window.c:376 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Obsah"
+
+#: ../src/dh-window.c:506
 msgid "translator_credits"
 msgstr "Marcel Telka <marcel@telka.sk>"
 
-#: ../src/dh-window.c:455
+#: ../src/dh-window.c:511
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prehliadač pomocníka pre vývojárov pre GNOME 2"
 
@@ -156,50 +160,58 @@ msgid "Main window maximized state"
 msgstr "Maximalizovaný stav hlavného okna"
 
 #: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Zvolená záložka, \"obsah\" alebo \"hľadať\""
+
+#: ../devhelp.schemas.in.h:8
 msgid "The X position of the main window."
 msgstr "Umiestnenie hlavného okna v smere osi X."
 
-#: ../devhelp.schemas.in.h:8
+#: ../devhelp.schemas.in.h:9
 msgid "The Y position of the main window."
 msgstr "Umiestnenie hlavného okna v smere osi Y."
 
-#: ../devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:10
 msgid "The height of the main window."
 msgstr "Výška hlavného okna."
 
-#: ../devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:11
 msgid "The width of the index and search pane."
 msgstr "Šírka indexu a vyhľadávacieho panelu."
 
-#: ../devhelp.schemas.in.h:11
+#: ../devhelp.schemas.in.h:12
 msgid "The width of the main window."
 msgstr "Šírka hlavného okna."
 
-#: ../devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:13
 msgid "Use system fonts"
 msgstr "Použiť systémové písma"
 
-#: ../devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
 msgstr "Použiť štandardné systémové písma."
 
-#: ../devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:15
 msgid "Whether the main window should start maximized or not."
 msgstr "Či sa má hlavné okno spustiť maximalizované, alebo nie."
 
-#: ../devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:16
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Ktorá zo zvolených záložiek, \"obsah\" alebo \"hľadať\"."
+
+#: ../devhelp.schemas.in.h:17
 msgid "Width of the index and search pane"
 msgstr "Šírka indexu a vyhľadávacieho panelu"
 
-#: ../devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:18
 msgid "Width of the main window"
 msgstr "Šírka hlavného okna"
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:19
 msgid "X position of main window"
 msgstr "Umiestnenie hlavného okna v smere osi X"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:20
 msgid "Y position of main window"
 msgstr "Umiestnenie hlavného okna v smere osi Y"
 
