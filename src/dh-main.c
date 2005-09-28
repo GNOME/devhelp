@@ -46,67 +46,30 @@
 
 gchar *geometry = NULL;
 
-static gboolean
-window_get_is_on_current_workspace (GtkWindow *window)
-{
-	GdkWindow *gdk_window;
-
-	gdk_window = GTK_WIDGET (window)->window;
-	if (gdk_window) {
-		return !(gdk_window_get_state (gdk_window) &
-			 GDK_WINDOW_STATE_ICONIFIED);
-	} else {
-		return FALSE;
-	}
-}
-
-/* Takes care of moving the window to the current workspace. */
 static void
-window_present (GtkWindow *window)
+message_received_cb (const gchar *message, DhBase *base)
 {
-	gboolean visible;
-	gboolean on_current;
-	gboolean show;
-
-	/* There are three cases: hidden, visible, visible on another
-	 * workspace.
-	 */
-
-	g_object_get (window,
-		      "visible", &visible,
-		      NULL);
-
-	on_current = window_get_is_on_current_workspace (
-		GTK_WINDOW (window));
-
-	if (!visible) {
-		show = TRUE;
-	}
-	else if (on_current) {
-		show = FALSE;
-	} else {
-		/* Hide it so present brings it to the current workspace. */
-		gtk_widget_hide (GTK_WIDGET (window));
-		show = TRUE;
-	}
-
-	if (show) {
-		gtk_window_present (window);
-	}
-}
-
-static void
-message_received_cb (const gchar *message, DhWindow *window)
-{
+	GtkWidget *window;
+	
 	if (strcmp (message, COMMAND_QUIT) == 0) {
 		gtk_main_quit ();
 	}
 	else if (strncmp (message, COMMAND_SEARCH, strlen (COMMAND_SEARCH)) == 0) {
-		dh_window_search (window,
+		window = dh_base_get_window_on_current_workspace (base);
+		if (!window) {
+			window = dh_base_new_window (base);
+		}
+
+		dh_window_search (DH_WINDOW (window),
 				  message + strlen (COMMAND_SEARCH) + 1);
 	}
 	else if (strcmp (message, COMMAND_RAISE) == 0) {
-		window_present (GTK_WINDOW (window));
+		window = dh_base_get_window_on_current_workspace (base);
+		if (!window) {
+			window = dh_base_new_window (base);
+		}
+
+		gtk_window_present (GTK_WINDOW (window));
 	}
 }
 
@@ -203,10 +166,11 @@ main (int argc, char **argv)
 	base = dh_base_new ();
 	window = dh_base_new_window (base);
 
-	bacon_message_connection_set_callback (message_conn,
-					       (BaconMessageReceivedFunc) message_received_cb,
-					       window);
-
+	bacon_message_connection_set_callback (
+		message_conn,
+		(BaconMessageReceivedFunc) message_received_cb,
+		base);
+	
 	if (option_search) {
 		dh_window_search (DH_WINDOW (window), option_search);
 	}

@@ -393,7 +393,7 @@ dh_base_get_keywords (DhBase *base)
 GSList *
 dh_base_get_windows (DhBase *base)
 {
-	DhBasePriv          *priv;
+	DhBasePriv *priv;
 
 	g_return_val_if_fail (DH_IS_BASE (base), NULL);
 	
@@ -402,4 +402,38 @@ dh_base_get_windows (DhBase *base)
 	return priv->windows;
 }
 
+static gboolean
+is_window_on_current_workspace (GtkWidget *window)
+{
+	GdkWindow *gdk_window;
 
+	gdk_window = window->window;
+	if (gdk_window) {
+		return !(gdk_window_get_state (gdk_window) &
+			 GDK_WINDOW_STATE_ICONIFIED);
+	} else {
+		return FALSE;
+	}
+}
+
+GtkWidget *
+dh_base_get_window_on_current_workspace (DhBase *base)
+{
+	DhBasePriv *priv;
+	GtkWidget  *window;
+	GSList     *l;
+
+	g_return_val_if_fail (DH_IS_BASE (base), NULL);
+	
+	priv = base->priv;
+	
+	for (l = priv->windows; l; l = l->next) {
+		window = l->data;
+		
+		if (is_window_on_current_workspace (window)) {
+			return window;
+		}
+	}
+
+	return NULL;
+}

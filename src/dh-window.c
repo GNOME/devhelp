@@ -63,6 +63,10 @@ static void     window_class_init              (DhWindowClass *klass);
 static void     window_init                    (DhWindow      *window);
 static void     window_finalize                (GObject       *object);
 static void     window_populate                (DhWindow      *window);
+static void     window_activate_new            (GtkAction     *action,
+						DhWindow      *window);
+static void     window_activate_close          (GtkAction     *action,
+						DhWindow      *window);
 static void     window_activate_quit           (GtkAction     *action,
 						DhWindow      *window);
 static void     window_activate_copy           (GtkAction     *action,
@@ -117,6 +121,10 @@ static const GtkActionEntry actions[] = {
 	{ "HelpMenu", NULL, N_("_Help") },
 
 	/* File menu */
+	{ "NewWindow", GTK_STOCK_NEW, "_New Window", "<control>N", NULL,
+	  G_CALLBACK (window_activate_new) },
+	{ "Close", GTK_STOCK_CLOSE, NULL, NULL, NULL,
+	  G_CALLBACK (window_activate_close) },
 	{ "Quit", GTK_STOCK_QUIT, NULL, "<control>Q", NULL,
 	  G_CALLBACK (window_activate_quit) },
 
@@ -391,6 +399,30 @@ window_populate (DhWindow *window)
 }
 
 static void
+window_activate_new (GtkAction *action, DhWindow *window)
+{
+	DhWindowPriv *priv;
+	GtkWidget    *new_window;
+
+	priv = window->priv;
+
+	new_window = dh_base_new_window (priv->base);
+	dh_window_show (DH_WINDOW (new_window));
+}
+
+static void
+window_activate_close (GtkAction *action, DhWindow *window)
+{
+	DhWindowPriv *priv;
+	
+	priv = window->priv;
+
+	window_save_state (window);
+
+	gtk_widget_destroy (GTK_WIDGET (window));	
+}
+
+static void
 window_activate_quit (GtkAction *action, DhWindow *window)
 {
 	DhWindowPriv *priv;
@@ -613,7 +645,7 @@ window_delete_cb (GtkWidget   *widget,
 {
 	window_save_state (DH_WINDOW (widget));
 
-	gtk_main_quit ();
+	gtk_widget_destroy (GTK_WIDGET (widget));	
 }
 
 static void
