@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-28 21:00+0200\n"
+"POT-Creation-Date: 2005-09-29 00:19+0200\n"
 "PO-Revision-Date: 2004-04-12 20:57+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:477 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:509 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -30,19 +30,19 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp-bok"
 
-#: ../src/dh-main.c:137
+#: ../src/dh-main.c:100
 msgid "Specify the size and location of the window"
 msgstr "Ange storlek och position för fönstret"
 
-#: ../src/dh-main.c:138
+#: ../src/dh-main.c:101
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "BREDDxHÖJD+XOFF+YOFF"
 
-#: ../src/dh-main.c:146
+#: ../src/dh-main.c:109
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: ../src/dh-main.c:155
+#: ../src/dh-main.c:118
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
@@ -93,42 +93,47 @@ msgstr "_Sök:"
 msgid "Section"
 msgstr "Avsnitt"
 
-#: ../src/dh-window.c:114
+#: ../src/dh-window.c:118
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/dh-window.c:115
+#: ../src/dh-window.c:119
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/dh-window.c:116 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:120 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/dh-window.c:117
+#: ../src/dh-window.c:121
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../src/dh-window.c:135
+#. File menu
+#: ../src/dh-window.c:124
+msgid "_New Window"
+msgstr "_Nytt fönster"
+
+#: ../src/dh-window.c:143
 msgid "Browse Contents"
 msgstr "Bläddra i innehållet"
 
-#: ../src/dh-window.c:138 ../src/dh-window.c:378
+#: ../src/dh-window.c:146 ../src/dh-window.c:386
 msgid "Search"
 msgstr "Sök"
 
-#: ../src/dh-window.c:368 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:376 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Innehåll"
 
-#: ../src/dh-window.c:474
+#: ../src/dh-window.c:506
 msgid "translator_credits"
 msgstr ""
 "Christian Rose <menthos@menthos.com>\n"
 "Richard Hult <richard@imendio.com>\n"
 "Johan Dahlin <johan@gnome.org>"
 
-#: ../src/dh-window.c:479
+#: ../src/dh-window.c:511
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 

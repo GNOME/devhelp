@@ -121,7 +121,7 @@ static const GtkActionEntry actions[] = {
 	{ "HelpMenu", NULL, N_("_Help") },
 
 	/* File menu */
-	{ "NewWindow", GTK_STOCK_NEW, "_New Window", "<control>N", NULL,
+	{ "NewWindow", GTK_STOCK_NEW, N_("_New Window"), "<control>N", NULL,
 	  G_CALLBACK (window_activate_new) },
 	{ "Close", GTK_STOCK_CLOSE, NULL, NULL, NULL,
 	  G_CALLBACK (window_activate_close) },
