@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-25 13:40-0500\n"
+"POT-Creation-Date: 2005-09-28 21:23-0400\n"
 "PO-Revision-Date: 2005-03-25 22:00-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Developer's Help program"
 
-#: devhelp.desktop.in.in.h:2 src/dh-window.c:449 ui/devhelp.glade.h:4
+#: devhelp.desktop.in.in.h:2 src/dh-window.c:509 ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -28,19 +28,19 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp Book"
 
-#: src/dh-main.c:89
+#: src/dh-main.c:100
 msgid "Specify the size and location of the window"
 msgstr "Specify the size and location of the window"
 
-#: src/dh-main.c:90
+#: src/dh-main.c:101
 msgid "WIDTHxHEIGHT+XOFF+YOFF"
 msgstr "WIDTHxHEIGHT+XOFF+YOFF"
 
-#: src/dh-main.c:98
+#: src/dh-main.c:109
 msgid "Search for a function"
 msgstr "Search for a function"
 
-#: src/dh-main.c:107
+#: src/dh-main.c:118
 msgid "Quit any running Devhelp"
 msgstr "Quit any running Devhelp"
 
@@ -84,48 +84,52 @@ msgstr "Could not create markup parser"
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Cannot uncompress book '%s': %s"
 
-#: src/dh-search.c:418
+#: src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Search:"
 
-#: src/dh-search.c:462
+#: src/dh-search.c:466
 msgid "Section"
 msgstr "Section"
 
-#: src/dh-window.c:110
+#: src/dh-window.c:118
 msgid "_File"
 msgstr "_File"
 
-#: src/dh-window.c:111
+#: src/dh-window.c:119
 msgid "_Edit"
 msgstr "_Edit"
 
-#: src/dh-window.c:112 ui/devhelp.glade.h:10
+#: src/dh-window.c:120 ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Go"
 
-#: src/dh-window.c:113
+#: src/dh-window.c:121
 msgid "_Help"
 msgstr "_Help"
 
-#: src/dh-window.c:297
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Cannot set UI: %s"
+#. File menu
+#: src/dh-window.c:124
+msgid "_New Window"
+msgstr "_New Window"
 
-#: src/dh-window.c:357 ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Contents"
+#: src/dh-window.c:143
+msgid "Browse Contents"
+msgstr "Browse Contents"
 
-#: src/dh-window.c:368
+#: src/dh-window.c:146 src/dh-window.c:386
 msgid "Search"
 msgstr "Search"
 
-#: src/dh-window.c:446
+#: src/dh-window.c:376 ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Contents"
+
+#: src/dh-window.c:506
 msgid "translator_credits"
 msgstr "Adam Weinberger <adamw@gnome.org>"
 
-#: src/dh-window.c:451
+#: src/dh-window.c:511
 msgid "A developer's help browser for GNOME 2"
 msgstr "A developer's help browser for GNOME 2"
 
@@ -150,12 +154,12 @@ msgid "Height of main window"
 msgstr "Height of main window"
 
 #: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr "Location of the paned"
-
-#: devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Main window maximized state"
+
+#: devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Selected tab (\"content\" or \"search\")"
 
 #: devhelp.schemas.in.h:8
 msgid "The X position of the main window."
@@ -170,8 +174,8 @@ msgid "The height of the main window."
 msgstr "The height of the main window."
 
 #: devhelp.schemas.in.h:11
-msgid "The location of the paned separator."
-msgstr "The location of the paned separator."
+msgid "The width of the index and search pane."
+msgstr "The width of the index and search pane."
 
 #: devhelp.schemas.in.h:12
 msgid "The width of the main window."
@@ -190,14 +194,22 @@ msgid "Whether the main window should start maximized or not."
 msgstr "Whether the main window should start maximized or not."
 
 #: devhelp.schemas.in.h:16
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Which of the tabs is selected, \"content\" or \"search\"."
+
+#: devhelp.schemas.in.h:17
+msgid "Width of the index and search pane"
+msgstr "Width of the index and search pane"
+
+#: devhelp.schemas.in.h:18
 msgid "Width of the main window"
 msgstr "Width of the main window"
 
-#: devhelp.schemas.in.h:17
+#: devhelp.schemas.in.h:19
 msgid "X position of main window"
 msgstr "X position of main window"
 
-#: devhelp.schemas.in.h:18
+#: devhelp.schemas.in.h:20
 msgid "Y position of main window"
 msgstr "Y position of main window"
 
