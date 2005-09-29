@@ -28,12 +28,14 @@ AC_SUBST(CFLAGS)
 AC_SUBST(LDFLAGS)
 
 PKG_CHECK_MODULES(DEVHELP, [
-	gtk+-2.0 >= 2.2.0])
+	gtk+-2.0 >= 2.6.0
+])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
         gtk+-2.0 >= 2.6.0
-	gnome-vfs-2.0 >= 2.2.0
-	libglade-2.0 >= 2.0.0
+	gnome-vfs-2.0 >= 2.6.0
+	libglade-2.0 >= 2.4.0
+	libwnck-1.0 >= 2.10.0
 ])
 
 dnl *******

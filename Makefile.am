@@ -39,7 +39,7 @@ EXTRA_DIST =			\
 	$(schemas_in_files)     \
 	$(schemas_DATA)         \
 	$(mime_DATA)            \
-	libdevhelp-1.0.pc.in    \ 
+	libdevhelp-1.0.pc.in    \
 	$(INTLTOOL)             \
 	misc/devhelp.el	        \
 	misc/html2funcs.py	\

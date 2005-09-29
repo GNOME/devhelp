@@ -21,9 +21,16 @@
  */
 
 #include <config.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include <string.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <gtk/gtkmain.h>
+
+#include <gdk/gdkx.h>
+
+#define WNCK_I_KNOW_THIS_IS_UNSTABLE
+#include <libwnck/libwnck.h>
 
 #include "dh-window.h"
 #include "dh-link.h"
@@ -53,6 +60,7 @@ static void        base_window_finalized_cb   (DhBase         *base,
 static void        base_init_books            (DhBase         *base);
 static void        base_add_books             (DhBase         *base,
 					       const gchar    *directory);
+
 
 static GObjectClass *parent_class;
 
@@ -85,6 +93,7 @@ static void
 base_init (DhBase *base)
 { 
         DhBasePriv *priv;
+	int         n_screens, i;
 
         priv = g_new0 (DhBasePriv, 1);
         
@@ -94,6 +103,16 @@ base_init (DhBase *base)
 	priv->books     = g_hash_table_new_full (g_str_hash, g_str_equal, 
 						 g_free, g_free);
         base->priv      = priv;
+
+	/* For some reason, libwnck doesn't seem to update its list of
+	 * workspaces etc if we don't do this.
+	 */
+	n_screens = gdk_display_get_n_screens (gdk_display_get_default());
+	for (i = 0; i < n_screens; i++) {
+		WnckScreen *screen;
+
+		screen = wnck_screen_get (i);
+	}
 }
 
 static void
@@ -247,8 +266,8 @@ base_add_books (DhBase *base, const gchar *directory)
 
 	d(g_print ("Adding books from %s\n", directory));
  
-	result  = gnome_vfs_directory_list_load (&dir_list, directory,
-						 GNOME_VFS_FILE_INFO_DEFAULT);
+	result = gnome_vfs_directory_list_load (&dir_list, directory,
+						GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (result != GNOME_VFS_OK) {
 		if (result == GNOME_VFS_ERROR_NOT_FOUND) {
@@ -402,38 +421,64 @@ dh_base_get_windows (DhBase *base)
 	return priv->windows;
 }
 
-static gboolean
-is_window_on_current_workspace (GtkWidget *window)
-{
-	GdkWindow *gdk_window;
-
-	gdk_window = window->window;
-	if (gdk_window) {
-		return !(gdk_window_get_state (gdk_window) &
-			 GDK_WINDOW_STATE_ICONIFIED);
-	} else {
-		return FALSE;
-	}
-}
-
 GtkWidget *
 dh_base_get_window_on_current_workspace (DhBase *base)
 {
-	DhBasePriv *priv;
-	GtkWidget  *window;
-	GSList     *l;
-
+	DhBasePriv    *priv;
+	WnckWorkspace *workspace;
+	WnckScreen    *screen;
+	GtkWidget     *window;
+	GList         *windows, *w;
+	GSList        *l;
+	gulong         xid;
+	pid_t          pid;
+	
 	g_return_val_if_fail (DH_IS_BASE (base), NULL);
 	
 	priv = base->priv;
+
+	if (!priv->windows) {
+		return NULL;
+	}
+
+	screen = wnck_screen_get (0);
+	if (!screen) {
+		return NULL;
+	}
 	
-	for (l = priv->windows; l; l = l->next) {
-		window = l->data;
-		
-		if (is_window_on_current_workspace (window)) {
-			return window;
+	workspace = wnck_screen_get_active_workspace (screen);
+	if (!workspace) {
+		return NULL;
+	}
+
+	xid = 0;
+	pid = getpid ();
+
+	/* Use _stacked so we can use the one on top. */
+	windows = wnck_screen_get_windows_stacked (screen);
+	windows = g_list_last (windows);
+
+	for (w = windows; w; w = w->prev) {
+		if (wnck_window_is_on_workspace (w->data, workspace) &&
+		    wnck_window_get_pid (w->data) == pid) {
+			xid = wnck_window_get_xid (w->data);
+			break;
 		}
 	}
 
+	if (!xid) {
+		return NULL;
+	}
+
+	/* Return the first matching window we have. */
+	for (l = priv->windows; l; l = l->next) {
+		window = l->data;
+
+		if (GDK_WINDOW_XID (window->window) == xid) {
+			return window;
+		}
+	}
+	
 	return NULL;
 }
+

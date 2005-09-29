@@ -1,5 +1,18 @@
 2005-09-29  Richard Hult  <richard@imendio.com>
 
+	* Makefile.am: Remove stray space.
+
+	* configure.in:
+	* src/dh-base.c: (base_init),
+	(dh_base_get_window_on_current_workspace): Use libwnck to track
+	windows, since we can't differentiate between a minimized and
+	on-another-workspace window otherwise.
+
+	* src/dh-search.c (dh_search_new): Try without the search label
+	for a bit.
+
+2005-09-29  Richard Hult  <richard@imendio.com>
+
 	* src/dh-base.c: (is_window_on_current_workspace),
 	(dh_base_get_window_on_current_workspace): New function, returns a
 	window if there is one on the current workspace.
