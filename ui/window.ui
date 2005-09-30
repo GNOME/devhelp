@@ -4,8 +4,6 @@
     <menu action="FileMenu">
       <menuitem action="NewWindow"/>
       <menuitem action="Close"/>
-      <separator/>
-      <menuitem action="Quit"/>
     </menu>
     <menu action="EditMenu">
       <menuitem action="Preferences"/>
