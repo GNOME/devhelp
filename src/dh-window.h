@@ -49,7 +49,6 @@ struct _DhWindowClass {
 
 GType            dh_window_get_type        (void) G_GNUC_CONST;
 GtkWidget *      dh_window_new             (DhBase      *base);
-void             dh_window_show            (DhWindow    *window);
 void             dh_window_search          (DhWindow    *window,
 					    const gchar *str);
 

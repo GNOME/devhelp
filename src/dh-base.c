@@ -333,8 +333,6 @@ dh_base_new_window (DhBase *base)
 			   (GWeakNotify) base_window_finalized_cb,
 			   base);
 
-	dh_window_show (DH_WINDOW (window));
-
 	return window;
 }
 

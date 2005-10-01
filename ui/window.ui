@@ -3,6 +3,8 @@
   <menubar name="MenuBar">
     <menu action="FileMenu">
       <menuitem action="NewWindow"/>
+      <menuitem action="NewTab"/>
+      <separator/>
       <menuitem action="Close"/>
     </menu>
     <menu action="EditMenu">

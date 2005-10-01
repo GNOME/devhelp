@@ -45,17 +45,18 @@ struct _DhHtmlClass {
         GObjectClass   parent_class;
 };
 
-GType           dh_html_get_type       (void);
-DhHtml         *dh_html_new            (void);
-
-void            dh_html_clear          (DhHtml        *html);
-void            dh_html_open_uri       (DhHtml        *html,
-					const gchar   *uri);
-GtkWidget *     dh_html_get_widget     (DhHtml        *html);
-gboolean        dh_html_can_go_forward (DhHtml        *html);
-gboolean        dh_html_can_go_back    (DhHtml        *html);
-void            dh_html_go_forward     (DhHtml        *html);
-void            dh_html_go_back        (DhHtml        *html);
+GType           dh_html_get_type        (void) G_GNUC_CONST;
+DhHtml         *dh_html_new             (void);
+void            dh_html_clear           (DhHtml      *html);
+void            dh_html_open_uri        (DhHtml      *html,
+					 const gchar *uri);
+GtkWidget *     dh_html_get_widget      (DhHtml      *html);
+gboolean        dh_html_can_go_forward  (DhHtml      *html);
+gboolean        dh_html_can_go_back     (DhHtml      *html);
+void            dh_html_go_forward      (DhHtml      *html);
+void            dh_html_go_back         (DhHtml      *html);
+gchar *         dh_html_get_title       (DhHtml      *html);
+gchar *         dh_html_get_location    (DhHtml      *html);
 
 #endif /* __DH_HTML_H__ */
 

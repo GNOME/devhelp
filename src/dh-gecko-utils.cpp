@@ -32,6 +32,7 @@
 #undef MOZILLA_INTERNAL_API
 #include <nsISupportsPrimitives.h>
 #include <nsILocalFile.h>
+#include <nsIDOMMouseEvent.h>
 
 #include <stdlib.h>
 
@@ -48,6 +49,26 @@
 
 #include "dh-util.h"
 #include "dh-gecko-utils.h"
+
+gint
+dh_gecko_utils_get_mouse_event_button (gpointer event)
+{
+	gint	button = 0;
+
+	/* the following lines were taken from liferea, which
+	 * were in turn taken from the Galeon source */
+	nsIDOMMouseEvent *aMouseEvent = (nsIDOMMouseEvent *)event;
+	aMouseEvent->GetButton ((PRUint16 *) &button);
+
+	/* for some reason we get different numbers on PPC, this fixes
+	 * that up...  -- MattA */
+	if (button == 65536)
+		button = 1;
+	else if (button == 131072)
+		button = 2;
+
+	return button;
+}
 
 static gboolean
 dh_util_split_font_string (const gchar *font_name, gchar **name, gint *size)

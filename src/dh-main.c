@@ -77,7 +77,7 @@ main (int argc, char **argv)
 			_("Search for a function"),
 			NULL
 		},
-		{
+       		{
 			"quit",
 			'q',
 			0,
@@ -86,7 +86,9 @@ main (int argc, char **argv)
 			_("Quit any running Devhelp"),
 			NULL
 		},
-		{ NULL, '\0', 0, 0, NULL, NULL, NULL }
+		{
+			NULL, '\0', 0, 0, NULL, NULL, NULL
+		}
 	};
 
 	bindtextdomain (PACKAGE, LOCALEDIR);

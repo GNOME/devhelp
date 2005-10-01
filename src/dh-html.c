@@ -51,10 +51,14 @@ enum {
 	TITLE_CHANGED,
 	LOCATION_CHANGED,
 	OPEN_URI,
+	OPEN_NEW_TAB,
 	LAST_SIGNAL
 };
 
 static gint signals[LAST_SIGNAL] = { 0 };
+
+/* Has the value of the URL under the mouse pointer, otherwise NULL */
+static gchar *current_url = NULL;
 
 GType
 dh_html_get_type (void)
@@ -114,6 +118,54 @@ html_class_init (DhHtmlClass *klass)
 			      dh_marshal_BOOLEAN__STRING,
 			      G_TYPE_BOOLEAN,
 			      1, G_TYPE_STRING);
+	signals[OPEN_NEW_TAB] =
+		g_signal_new ("open-new-tab",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      0,
+			      NULL, NULL,
+			      dh_marshal_VOID__STRING,
+			      G_TYPE_NONE,
+			      1, G_TYPE_STRING);
+}
+
+static gboolean
+html_mouse_click_cb (GtkMozEmbed *widget, gpointer dom_event, DhHtml *html)
+{
+	gint button;
+
+	button = dh_gecko_utils_get_mouse_event_button (dom_event);
+
+	if (button == -1) {
+		g_warning ("Unable to determine the button that was pressed.\n");
+	} else {
+		/* middle click, which indicates we should open a new tab */
+		if (button == 1) {
+			if (current_url) {
+				g_signal_emit_by_name (html, "open-new-tab", current_url);
+				return TRUE;
+			}
+		}
+	}
+
+	/* don't "consume" the event */
+	return FALSE;
+}
+
+static gboolean
+html_link_message_cb (GtkMozEmbed *widget)
+{
+	if (current_url)
+		g_free (current_url);
+
+	current_url = gtk_moz_embed_get_link_message (widget);
+
+	if (*current_url == '\0') {
+		g_free (current_url);
+		current_url = NULL;
+	}
+
+	return FALSE;
 }
 
 static void
@@ -150,8 +202,8 @@ html_init (DhHtml *html)
         DhHtmlPriv *priv;
         
 	priv = g_new0 (DhHtmlPriv, 1);
-
-	priv->gecko = (GtkMozEmbed *) gtk_moz_embed_new ();
+	
+	priv->gecko = GTK_MOZ_EMBED (gtk_moz_embed_new ());
 
 	g_signal_connect (priv->gecko, "title",
 			  G_CALLBACK (html_title_cb),
@@ -162,6 +214,12 @@ html_init (DhHtml *html)
 	g_signal_connect (priv->gecko, "open-uri",
 			  G_CALLBACK (html_open_uri_cb),
 			  html);
+	g_signal_connect (priv->gecko, "dom_mouse_click",
+			  G_CALLBACK (html_mouse_click_cb),
+			  html);
+	g_signal_connect (priv->gecko, "link_message",
+			  G_CALLBACK (html_link_message_cb),
+			  html);
 	g_signal_connect (priv->gecko, "add",
 			  G_CALLBACK (html_child_add_cb),
 			  html);
@@ -169,7 +227,7 @@ html_init (DhHtml *html)
 			  G_CALLBACK (html_child_remove_cb),
 			  html);
 
-        html->priv = priv;
+	html->priv = priv;
 }
 
 static void
@@ -202,7 +260,9 @@ html_open_uri_cb (GtkMozEmbed *embed, const gchar *uri, DhHtml *html)
 	gboolean   retval;
 
 	priv = html->priv;
-	
+
+	retval = TRUE;
+
 	g_signal_emit (html, signals[OPEN_URI], 0, uri, &retval);
 
 	return retval;
@@ -213,8 +273,6 @@ dh_html_new (void)
 {
         DhHtml *html;
 
-        d(puts(__FUNCTION__));
-
         html = g_object_new (DH_TYPE_HTML, NULL);
  
         return html;
@@ -223,7 +281,7 @@ dh_html_new (void)
 void
 dh_html_clear (DhHtml *html)
 {
-	DhHtmlPriv  *priv;
+	DhHtmlPriv        *priv;
 	static const char *data = "<html><body bgcolor=\"white\"></body></html>";
 	
 	g_return_if_fail (DH_IS_HTML (html));
@@ -239,8 +297,6 @@ dh_html_open_uri (DhHtml *html, const gchar *str_uri)
 {
         DhHtmlPriv *priv;
 	gchar      *full_uri;
-	
-        d(puts(__FUNCTION__));
 	
 	g_return_if_fail (DH_IS_HTML (html));
 	g_return_if_fail (str_uri != NULL);
@@ -263,11 +319,13 @@ dh_html_open_uri (DhHtml *html, const gchar *str_uri)
 GtkWidget *
 dh_html_get_widget (DhHtml *html)
 {
-	g_return_val_if_fail (DH_IS_HTML (html), NULL);
-	
-	gtk_widget_show (GTK_WIDGET (html->priv->gecko));
+	DhHtmlPriv *priv;
 
-	return GTK_WIDGET (html->priv->gecko);
+	g_return_val_if_fail (DH_IS_HTML (html), NULL);
+
+	priv = html->priv;
+
+	return GTK_WIDGET (priv->gecko);
 }
 
 gboolean
@@ -316,6 +374,30 @@ dh_html_go_back (DhHtml *html)
 	priv = html->priv;
 	
 	gtk_moz_embed_go_back (priv->gecko);
+}
+
+gchar *
+dh_html_get_title (DhHtml *html)
+{
+	DhHtmlPriv *priv;
+	
+	g_return_val_if_fail (DH_IS_HTML (html), NULL);
+
+	priv = html->priv;
+	
+	return gtk_moz_embed_get_title (priv->gecko);
+}
+
+gchar *
+dh_html_get_location (DhHtml *html)
+{
+	DhHtmlPriv *priv;
+	
+	g_return_val_if_fail (DH_IS_HTML (html), NULL);
+
+	priv = html->priv;
+	
+	return gtk_moz_embed_get_location (priv->gecko);
 }
 
 

@@ -1,3 +1,15 @@
+2005-10-02  Richard Hult  <richard@imendio.com>
+
+	* src/dh-base.c: (dh_base_new_window): Don't show the window here.
+
+	* ui/window.ui:
+	* src/dh-gecko-utils.cpp:
+	* src/dh-html.c:
+	* src/dh-window.c: Add support for tabs. Based on patch from Brent
+	Smith, bug #154248.
+	- Remove externs from libdevhelp referrering to the devhelp
+	binary.
+
 2005-10-01  Richard Hult  <richard@imendio.com>
 
 	* acinclude.m4:
