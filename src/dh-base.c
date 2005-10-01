@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2004 Imendio AB
+ * Copyright (C) 2004-2005 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,14 +24,13 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <gtk/gtkmain.h>
-
 #include <gdk/gdkx.h>
 
 #define WNCK_I_KNOW_THIS_IS_UNSTABLE
 #include <libwnck/libwnck.h>
 
+#include "dh-gecko-utils.h"
 #include "dh-window.h"
 #include "dh-link.h"
 #include "dh-parser.h"
@@ -41,25 +40,19 @@
 #define d(x)
 
 struct _DhBasePriv {
-	GSList *windows;
-
-	GNode  *book_tree;
-	GList  *keywords;
-	
+	GSList     *windows;
+	GNode      *book_tree;
+	GList      *keywords;
 	GHashTable *books;
 };
 
-static void        base_init                  (DhBase         *base);
-static void        base_class_init            (DhBaseClass    *klass);
-#if 0
-static void        base_new_window_cb         (DhWindow       *window,
-					       DhBase         *base);
-#endif
-static void        base_window_finalized_cb   (DhBase         *base,
-					       DhWindow       *window);
-static void        base_init_books            (DhBase         *base);
-static void        base_add_books             (DhBase         *base,
-					       const gchar    *directory);
+static void base_init                (DhBase      *base);
+static void base_class_init          (DhBaseClass *klass);
+static void base_window_finalized_cb (DhBase      *base,
+				      DhWindow    *window);
+static void base_init_books          (DhBase      *base);
+static void base_add_books           (DhBase      *base,
+				      const gchar *directory);
 
 
 static GObjectClass *parent_class;
@@ -68,7 +61,7 @@ GType
 dh_base_get_type (void)
 {
 	static GType type = 0;
-        
+
 	if (!type) {
 		static const GTypeInfo info = {
 			sizeof (DhBaseClass),
@@ -81,7 +74,7 @@ dh_base_get_type (void)
 			0,
 			(GInstanceInitFunc) base_init,
 		};
-                
+
 		type = g_type_register_static (G_TYPE_OBJECT, "DhBase",
 					       &info, 0);
 	}
@@ -91,18 +84,18 @@ dh_base_get_type (void)
 
 static void
 base_init (DhBase *base)
-{ 
+{
         DhBasePriv *priv;
 	int         n_screens, i;
 
         priv = g_new0 (DhBasePriv, 1);
-        
+        base->priv = priv;
+
 	priv->windows   = NULL;
 	priv->book_tree = g_node_new (NULL);
 	priv->keywords  = NULL;
-	priv->books     = g_hash_table_new_full (g_str_hash, g_str_equal, 
+	priv->books     = g_hash_table_new_full (g_str_hash, g_str_equal,
 						 g_free, g_free);
-        base->priv      = priv;
 
 	/* For some reason, libwnck doesn't seem to update its list of
 	 * workspaces etc if we don't do this.
@@ -121,30 +114,13 @@ base_class_init (DhBaseClass *klass)
 	parent_class = g_type_class_peek_parent (klass);
 }
 
-#if 0
-static void
-base_new_window_cb (DhWindow *window, DhBase *base)
-{
-	GtkWidget *new_window;
-	
-	g_return_if_fail (DH_IS_WINDOW (window));
-	g_return_if_fail (DH_IS_BASE (base));
-	
-	new_window = dh_base_new_window (base);
-	
-	gtk_widget_show_all (new_window);
-}
-#endif
-
 static void
 base_window_finalized_cb (DhBase *base, DhWindow *window)
 {
 	DhBasePriv *priv;
-	
-	g_return_if_fail (DH_IS_BASE (base));
-	
+
 	priv = base->priv;
-	
+
 	priv->windows = g_slist_remove (priv->windows, window);
 
 	if (g_slist_length (priv->windows) == 0) {
@@ -178,7 +154,7 @@ book_sort_func (gconstpointer a,
 	if (g_ascii_strncasecmp (name_b, "the ", 4) == 0) {
 		name_b += 4;
 	}
-	
+
 	return g_utf8_collate (name_a, name_b);
 }
 
@@ -191,15 +167,15 @@ base_sort_books (DhBase *base)
 	GList      *list = NULL, *l;
 
 	priv = base->priv;
-	
+
 	if (base->priv->book_tree) {
 		n = base->priv->book_tree->children;
-		
+
 		while (n) {
 			list = g_list_prepend (list, n);
 			n = n->next;
 		}
-		
+
 		list = g_list_sort (list, book_sort_func);
 	}
 
@@ -211,7 +187,7 @@ base_sort_books (DhBase *base)
 
 	for (l = list; l; l = l->next) {
 		n = l->data;
-		
+
 		g_node_append (base->priv->book_tree, n);
 	}
 
@@ -223,28 +199,33 @@ base_init_books (DhBase *base)
 {
 	const gchar *env;
 	gchar       *dir;
-	
+
 	dir = g_build_filename (g_get_home_dir (), ".devhelp", "books", NULL);
 	base_add_books (base, dir);
 	g_free (dir);
-	
+
 	env = g_getenv ("DEVHELP_SEARCH_PATH");
 	if (env) {
 		gchar **paths, **p;
 
-		/* Insert all books from this path first. */
 		paths = g_strsplit (env, ":", -1);
 		for (p = paths; *p != NULL; p++) {
 			base_add_books (base, *p);
 		}
 		g_strfreev (paths);
 	}
-	
+
 	env = g_getenv ("GNOME2_PATH");
 	if (env) {
-		base_add_books (base, env);
+		gchar **paths, **p;
+
+		paths = g_strsplit (env, ":", -1);
+		for (p = paths; *p != NULL; p++) {
+			base_add_books (base, *p);
+		}
+		g_strfreev (paths);
 	}
-	
+
 	/* Insert the books from default gtk-doc install path. */
 	base_add_books (base, DATADIR "/gtk-doc/html");
 	base_add_books (base, "/usr/share/gtk-doc/html");
@@ -254,111 +235,79 @@ base_init_books (DhBase *base)
 }
 
 static void
-base_add_books (DhBase *base, const gchar *directory)
+base_add_books (DhBase *base, const gchar *path)
 {
-	DhBasePriv       *priv;
-	GList            *dir_list;
-	GList            *l;
-	GnomeVFSFileInfo *info;
-	GnomeVFSResult    result;
-	
+	DhBasePriv  *priv;
+	GDir        *dir;
+	const gchar *name;
+
 	priv = base->priv;
 
-	d(g_print ("Adding books from %s\n", directory));
- 
-	result = gnome_vfs_directory_list_load (&dir_list, directory,
-						GNOME_VFS_FILE_INFO_DEFAULT);
+	d(g_print ("Adding books from %s\n", path));
 
-	if (result != GNOME_VFS_OK) {
-		if (result == GNOME_VFS_ERROR_NOT_FOUND) {
-			d(g_print ("Cannot find %s\n", directory));
-			return;
-		}
-		g_print ("Cannot read directory %s: %s",
-			directory, gnome_vfs_result_to_string (result));
+	dir = g_dir_open (path, 0, NULL);
+	if (!dir) {
 		return;
 	}
 
-	for (l = dir_list; l; l = l->next) {
+	while ((name = g_dir_read_name (dir)) != NULL) {
+		gchar  *tmp;
 		gchar  *book_path;
 		GError *error = NULL;
-		
-		info = (GnomeVFSFileInfo *) l->data;
-		
-		if (g_hash_table_lookup (priv->books, info->name)) {
-			gnome_vfs_file_info_unref (info);
-			continue;
-		}
-	
-		if (strcmp (info->name, ".") == 0) {
+
+		if (g_hash_table_lookup (priv->books, name)) {
 			continue;
 		}
 
-		if (strcmp (info->name, "..") == 0) {
+		tmp = g_build_filename (path, name, name, NULL);
+		book_path = g_strconcat (tmp, ".devhelp", NULL);
+		if (!g_file_test (book_path, G_FILE_TEST_EXISTS)) {
+			g_free (book_path);
+			book_path = g_strconcat (tmp, ".devhelp.gz", NULL);
+		}
+
+		g_free (tmp);
+
+		if (!g_file_test (book_path, G_FILE_TEST_EXISTS)) {
+			g_free (book_path);
 			continue;
 		}
-		
-		book_path = g_strdup_printf ("%s/%s/%s.devhelp",
-					     directory, 
-					     info->name, info->name);
 
-		if (g_file_test (book_path, G_FILE_TEST_EXISTS)) {
+		if (!dh_parser_read_file  (book_path,
+					   priv->book_tree,
+					   &priv->keywords,
+					   &error)) {
+			g_warning ("Failed to read '%s': %s",
+				   book_path, error->message);
+			g_clear_error (&error);
+		} else {
 			g_hash_table_insert (priv->books,
-					     g_strdup (info->name),
+					     g_strdup (name),
 					     book_path);
 			d(g_print ("Found book: '%s'\n", book_path));
-			
-			if (!dh_parse_file  (book_path,
-					     priv->book_tree,
-					     &priv->keywords,
-					     &error)) {
-				g_warning ("Failed to read '%s': %s", book_path, error->message);
-				g_error_free (error);
-				error = NULL;
-			}
-			goto next;
 		}
 
-#ifdef HAVE_LIBZ
-		g_free (book_path);
-		book_path = g_strdup_printf ("%s/%s/%s.devhelp.gz",
-					     directory, 
-					     info->name, info->name);
-
-		if (g_file_test (book_path, G_FILE_TEST_EXISTS)) {
-			g_hash_table_insert (priv->books,
-					     g_strdup (info->name),
-					     book_path);
-			d(g_print ("Found book: '%s'\n", book_path));
-			
-			if (!dh_parse_gz_file  (book_path,
-					     priv->book_tree,
-					     &priv->keywords,
-					     &error)) {
-				g_warning ("Failed to read '%s': %s", book_path, error->message);
-				g_error_free (error);
-				error = NULL;
-			}
-			goto next;
-		}
-#endif
-	next:
-		gnome_vfs_file_info_unref (info);
 		g_free (book_path);
 	}
 
-	g_list_free (dir_list);
+	g_dir_close (dir);
 }
 
 DhBase *
 dh_base_new (void)
 {
-        DhBase     *base;
-	DhBasePriv *priv;
-	
+        DhBase          *base;
+	DhBasePriv      *priv;
+	static gboolean  initialized = FALSE;
+
+	if (!initialized) {
+		dh_gecko_utils_init_services ();
+		initialized = TRUE;
+	}
+
         base = g_object_new (DH_TYPE_BASE, NULL);
 	priv = base->priv;
-	
+
 	base_init_books (base);
 
 	dh_preferences_init ();
@@ -371,23 +320,19 @@ dh_base_new_window (DhBase *base)
 {
 	DhBasePriv *priv;
 	GtkWidget  *window;
-        
+
         g_return_val_if_fail (DH_IS_BASE (base), NULL);
 
 	priv = base->priv;
-        
+
         window = dh_window_new (base);
-        
+
 	priv->windows = g_slist_prepend (priv->windows, window);
 
 	g_object_weak_ref (G_OBJECT (window),
 			   (GWeakNotify) base_window_finalized_cb,
 			   base);
-	
-	/*g_signal_connect (window, "new_window_requested",
-			  G_CALLBACK (base_new_window_cb),
-			  base);*/
-	
+
 	dh_window_show (DH_WINDOW (window));
 
 	return window;
@@ -397,7 +342,7 @@ GNode *
 dh_base_get_book_tree (DhBase *base)
 {
 	g_return_val_if_fail (DH_IS_BASE (base), NULL);
-	
+
 	return base->priv->book_tree;
 }
 
@@ -405,7 +350,7 @@ GList *
 dh_base_get_keywords (DhBase *base)
 {
 	g_return_val_if_fail (DH_IS_BASE (base), NULL);
-	
+
 	return base->priv->keywords;
 }
 
@@ -415,9 +360,9 @@ dh_base_get_windows (DhBase *base)
 	DhBasePriv *priv;
 
 	g_return_val_if_fail (DH_IS_BASE (base), NULL);
-	
+
 	priv = base->priv;
-	
+
 	return priv->windows;
 }
 
@@ -432,9 +377,9 @@ dh_base_get_window_on_current_workspace (DhBase *base)
 	GSList        *l;
 	gulong         xid;
 	pid_t          pid;
-	
+
 	g_return_val_if_fail (DH_IS_BASE (base), NULL);
-	
+
 	priv = base->priv;
 
 	if (!priv->windows) {
@@ -445,7 +390,7 @@ dh_base_get_window_on_current_workspace (DhBase *base)
 	if (!screen) {
 		return NULL;
 	}
-	
+
 	workspace = wnck_screen_get_active_workspace (screen);
 	if (!workspace) {
 		return NULL;
@@ -478,7 +423,7 @@ dh_base_get_window_on_current_workspace (DhBase *base)
 			return window;
 		}
 	}
-	
+
 	return NULL;
 }
 

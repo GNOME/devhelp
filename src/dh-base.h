@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2005 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -47,12 +48,12 @@ struct _DhBaseClass {
         GObjectClass parent_class;
 };
 
-GType      dh_base_get_type                        (void);
+GType      dh_base_get_type                        (void) G_GNUC_CONST;
 DhBase *   dh_base_new                             (void);
-GtkWidget *dh_base_new_window                      (DhBase *base);
-GtkWidget *dh_base_get_window_on_current_workspace (DhBase *base);
-GNode *    dh_base_get_book_tree                   (DhBase *base);
-GList *    dh_base_get_keywords                    (DhBase *base);
-GSList *   dh_base_get_windows                     (DhBase *base);
+GtkWidget *dh_base_new_window                      (DhBase   *base);
+GtkWidget *dh_base_get_window_on_current_workspace (DhBase   *base);
+GNode *    dh_base_get_book_tree                   (DhBase   *base);
+GList *    dh_base_get_keywords                    (DhBase   *base);
+GSList *   dh_base_get_windows                     (DhBase   *base);
 
 #endif /* __DH_BASE_H__ */

@@ -57,7 +57,7 @@ struct _DhWindowPriv {
  */
 #define DEFAULT_WIDTH     700
 #define DEFAULT_HEIGHT    500
-#define DEFAULT_PANED_LOC 250 
+#define DEFAULT_PANED_LOC 250
 
 static void     window_class_init              (DhWindowClass *klass);
 static void     window_init                    (DhWindow      *window);
@@ -83,7 +83,7 @@ static void     window_activate_about          (GtkAction     *action,
 						DhWindow      *window);
 static void     window_save_state              (DhWindow      *window);
 static void     window_restore_state           (DhWindow      *window);
-static void     window_delete_cb               (GtkWidget     *widget,
+static gboolean window_delete_cb               (GtkWidget     *widget,
 						GdkEventAny   *event,
 						gpointer       user_data);
 static void     window_tree_link_selected_cb   (GObject       *ignored,
@@ -129,7 +129,7 @@ static const GtkActionEntry actions[] = {
 	  G_CALLBACK (window_activate_copy) },
 	{ "Preferences", GTK_STOCK_PREFERENCES, NULL, NULL, NULL,
 	  G_CALLBACK (window_activate_preferences) },
-	 
+
 	/* Go menu */
 	{ "Back", GTK_STOCK_GO_BACK, NULL, "<alt>Left", NULL,
 	  G_CALLBACK (window_activate_back) },
@@ -155,7 +155,7 @@ dh_window_get_type (void)
         if (!type) {
                 static const GTypeInfo info = {
 			sizeof (DhWindowClass),
-			NULL, 
+			NULL,
 			NULL,
 			(GClassInitFunc) window_class_init,
 			NULL,
@@ -164,12 +164,12 @@ dh_window_get_type (void)
 			0,
 			(GInstanceInitFunc) window_init
 		};
-		
-                type = g_type_register_static (GTK_TYPE_WINDOW, 
+
+                type = g_type_register_static (GTK_TYPE_WINDOW,
 					       "DhWindow",
 					       &info, 0);
         }
-	
+
         return type;
 }
 
@@ -177,11 +177,11 @@ static void
 window_class_init (DhWindowClass *klass)
 {
         GObjectClass *object_class;
-	
+
         parent_class = g_type_class_peek_parent (klass);
-        
+
         object_class = G_OBJECT_CLASS (klass);
-        
+
         object_class->finalize = window_finalize;
 }
 
@@ -190,9 +190,9 @@ window_init (DhWindow *window)
 {
 	DhWindowPriv *priv;
 	GtkAction    *action;
-	
-	priv = g_new0 (DhWindowPriv, 1);
 
+	priv = g_new0 (DhWindowPriv, 1);
+	
 	g_signal_connect (window, "key_press_event",
 			  G_CALLBACK (window_key_press_event_cb),
 			  window);
@@ -207,21 +207,21 @@ window_init (DhWindow *window)
 	g_signal_connect (priv->html, "title-changed",
 			  G_CALLBACK (window_title_changed_cb),
 			  window);
-	
+
 	priv->manager = gtk_ui_manager_new ();
 
 	gtk_window_add_accel_group (GTK_WINDOW (window),
 				    gtk_ui_manager_get_accel_group (priv->manager));
-	
+
 	priv->main_box = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (priv->main_box);
-	
+
 	priv->menu_box = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (priv->menu_box);
 	gtk_container_set_border_width (GTK_CONTAINER (priv->menu_box), 0);
-	gtk_box_pack_start (GTK_BOX (priv->main_box), priv->menu_box, 
+	gtk_box_pack_start (GTK_BOX (priv->main_box), priv->menu_box,
 			    FALSE, TRUE, 0);
-	
+
 	gtk_container_add (GTK_CONTAINER (window), priv->main_box);
 
 	g_signal_connect (priv->manager,
@@ -233,7 +233,7 @@ window_init (DhWindow *window)
 
 	gtk_action_group_set_translation_domain (priv->action_group,
 						 GETTEXT_PACKAGE);
-	
+
 	gtk_action_group_add_actions (priv->action_group,
 				      actions,
 				      G_N_ELEMENTS (actions),
@@ -243,10 +243,10 @@ window_init (DhWindow *window)
 					    priv->action_group,
 					    0);
 
-	action = gtk_action_group_get_action (priv->action_group, 
+	action = gtk_action_group_get_action (priv->action_group,
 					      "Back");
 	g_object_set (action, "sensitive", FALSE, NULL);
-	
+
 	action = gtk_action_group_get_action (priv->action_group,
 					      "Forward");
 	g_object_set (action, "sensitive", FALSE, NULL);
@@ -276,7 +276,7 @@ window_switch_page_cb (GtkWidget       *notebook,
 
 	priv = window->priv;
 
-	g_signal_handlers_block_by_func (priv->book_tree, 
+	g_signal_handlers_block_by_func (priv->book_tree,
 					 window_tree_link_selected_cb, window);
 }
 
@@ -289,8 +289,8 @@ window_switch_page_after_cb (GtkWidget       *notebook,
 	DhWindowPriv *priv;
 
 	priv = window->priv;
-	
-	g_signal_handlers_unblock_by_func (priv->book_tree, 
+
+	g_signal_handlers_unblock_by_func (priv->book_tree,
 					   window_tree_link_selected_cb, window);
 }
 
@@ -303,14 +303,14 @@ window_populate (DhWindow *window)
 	GNode        *contents_tree;
 	GList        *keywords;
 	gint          hpaned_position;
-        
+
         priv = window->priv;
-	
+
 	gtk_ui_manager_add_ui_from_file (priv->manager,
 					 DATADIR "/devhelp/ui/window.ui",
 					 NULL);
 	gtk_ui_manager_ensure_update (priv->manager);
-	
+
         priv->hpaned   = gtk_hpaned_new ();
         priv->notebook = gtk_notebook_new ();
 
@@ -335,7 +335,7 @@ window_populate (DhWindow *window)
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
 
 	gtk_paned_add1 (GTK_PANED (priv->hpaned), frame);
-	
+
 	priv->html_view = dh_html_get_widget (priv->html);
 
 	frame = gtk_frame_new (NULL);
@@ -343,7 +343,7 @@ window_populate (DhWindow *window)
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
 	gtk_container_set_border_width (GTK_CONTAINER (frame), 2);
 
-	gtk_paned_add2 (GTK_PANED (priv->hpaned), frame);	
+	gtk_paned_add2 (GTK_PANED (priv->hpaned), frame);
 
 	hpaned_position = gconf_client_get_int (gconf_client,
 						GCONF_PANED_LOCATION,
@@ -355,28 +355,28 @@ window_populate (DhWindow *window)
 	if (hpaned_position <= 0) {
 		hpaned_position = DEFAULT_PANED_LOC;
 	}
-	
+
  	gtk_paned_set_position (GTK_PANED (priv->hpaned), hpaned_position);
 
 	contents_tree = dh_base_get_book_tree (priv->base);
 	keywords      = dh_base_get_keywords (priv->base);
-	
+
 	if (contents_tree) {
 		priv->book_tree = dh_book_tree_new (contents_tree);
-	
-		gtk_container_add (GTK_CONTAINER (book_tree_sw), 
+
+		gtk_container_add (GTK_CONTAINER (book_tree_sw),
 				   priv->book_tree);
 
 		gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
 					  book_tree_sw,
 					  gtk_label_new (_("Contents")));
-		g_signal_connect (priv->book_tree, "link_selected", 
+		g_signal_connect (priv->book_tree, "link_selected",
 				  G_CALLBACK (window_tree_link_selected_cb),
 				  window);
 	}
 	if (keywords) {
 		priv->search = dh_search_new (keywords);
-		
+
 		gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
 					  priv->search,
 					  gtk_label_new (_("Search")));
@@ -410,24 +410,12 @@ static void
 window_activate_close (GtkAction *action, DhWindow *window)
 {
 	DhWindowPriv *priv;
-	
+
 	priv = window->priv;
 
 	window_save_state (window);
 
-	gtk_widget_destroy (GTK_WIDGET (window));	
-}
-
-static void
-window_activate_quit (GtkAction *action, DhWindow *window)
-{
-	DhWindowPriv *priv;
-	
-	priv = window->priv;
-
-	window_save_state (window);
-	
-	gtk_main_quit ();
+	gtk_widget_destroy (GTK_WIDGET (window));
 }
 
 static void
@@ -500,7 +488,7 @@ window_activate_about (GtkAction *action,
 	};
 	const gchar **documenters = NULL;
 	const gchar *translator_credits = _("translator_credits");
-	
+
 	gtk_show_about_dialog (GTK_WINDOW (window),
 			       "name",_("Devhelp"),
 			       "version", VERSION,
@@ -513,7 +501,7 @@ window_activate_about (GtkAction *action,
 			       "website", "http://www.imendio.com/projects/devhelp/",
 			       "logo-icon-name", "devhelp",
 			       NULL);
-	
+
 }
 
 static void
@@ -586,7 +574,7 @@ window_restore_state (DhWindow *window)
 	const gchar  *tab;
 
 	priv = window->priv;
-	
+
 	width = gconf_client_get_int (gconf_client,
 				      GCONF_MAIN_WINDOW_WIDTH,
 				      NULL);
@@ -603,7 +591,7 @@ window_restore_state (DhWindow *window)
 		height = DEFAULT_HEIGHT;
 	}
 
-	gtk_window_set_default_size (GTK_WINDOW (window), 
+	gtk_window_set_default_size (GTK_WINDOW (window),
 				     width, height);
 
 	x = gconf_client_get_int (gconf_client,
@@ -634,14 +622,14 @@ window_restore_state (DhWindow *window)
 	}
 }
 
-static void
+static gboolean
 window_delete_cb (GtkWidget   *widget,
 		  GdkEventAny *event,
 		  gpointer     user_data)
 {
 	window_save_state (DH_WINDOW (widget));
 
-	gtk_widget_destroy (GTK_WIDGET (widget));	
+	return FALSE;
 }
 
 static void
@@ -650,22 +638,22 @@ window_tree_link_selected_cb (GObject  *ignored,
 			      DhWindow *window)
 {
 	DhWindowPriv *priv;
-	
+
 	priv = window->priv;
 
 	/* Block so we don't try to sync the tree when we have already clicked
 	 * in it.
 	 */
-	g_signal_handlers_block_by_func (priv->html, 
+	g_signal_handlers_block_by_func (priv->html,
 					 window_open_uri_cb,
 					 window);
-	
+
 	dh_html_open_uri (priv->html, link->uri);
-	
-	g_signal_handlers_unblock_by_func (priv->html, 
+
+	g_signal_handlers_unblock_by_func (priv->html,
 					   window_open_uri_cb,
 					   window);
-	
+
 	window_check_history (window);
 }
 
@@ -689,12 +677,12 @@ window_manager_add_widget (GtkUIManager *manager,
 			   DhWindow     *window)
 {
 	DhWindowPriv *priv;
-	
+
 	priv = window->priv;
 
 	gtk_box_pack_start (GTK_BOX (priv->menu_box), widget,
 			    FALSE, FALSE, 0);
-	
+
 	gtk_widget_show (widget);
 }
 
@@ -706,14 +694,14 @@ window_key_press_event_cb (GtkWidget   *widget,
 	DhWindowPriv *priv;
 
 	priv = window->priv;
-	
+
 	if ((event->state & GDK_CONTROL_MASK) &&
 	    (event->keyval == GDK_l) &&
 	    (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)) == 1)) {
 		dh_search_grab_focus (DH_SEARCH (priv->search));
 		return TRUE;
 	}
-	
+
 	return FALSE;
 }
 
@@ -722,14 +710,14 @@ window_check_history (DhWindow *window)
 {
 	DhWindowPriv *priv;
 	GtkAction    *action;
-		
+
 	priv = window->priv;
-	
+
 	action = gtk_action_group_get_action (priv->action_group, "Forward");
 	g_object_set (action,
 		      "sensitive", dh_html_can_go_forward (priv->html),
 		      NULL);
-	
+
 	action = gtk_action_group_get_action (priv->action_group, "Back");
 	g_object_set (action,
 		      "sensitive", dh_html_can_go_back (priv->html),
@@ -738,7 +726,7 @@ window_check_history (DhWindow *window)
 
 static void
 window_location_changed_cb (DhHtml      *html,
-			    const gchar *location, 
+			    const gchar *location,
 			    DhWindow    *window)
 {
 	DhWindowPriv *priv;
@@ -750,7 +738,7 @@ window_location_changed_cb (DhHtml      *html,
 
 static gboolean
 window_open_uri_cb (DhHtml      *html,
-		    const gchar *uri, 
+		    const gchar *uri,
 		    DhWindow    *window)
 {
 	DhWindowPriv *priv;
@@ -764,7 +752,7 @@ window_open_uri_cb (DhHtml      *html,
 
 static void
 window_title_changed_cb (DhHtml      *html,
-			 const gchar *title, 
+			 const gchar *title,
 			 DhWindow    *window)
 {
 	gchar *new_title;
@@ -780,34 +768,29 @@ window_title_changed_cb (DhHtml      *html,
 }
 
 GtkWidget *
-dh_window_new (DhBase *base)
+dh_window_new (DhBase   *base)
 {
         DhWindow     *window;
         DhWindowPriv *priv;
 	GdkPixbuf    *icon;
-	
+
         window = g_object_new (DH_TYPE_WINDOW, NULL);
         priv   = window->priv;
 
 	priv->base = g_object_ref (base);
 
-        gtk_window_set_policy (GTK_WINDOW (window), TRUE, TRUE, FALSE);
+	gtk_window_set_policy (GTK_WINDOW (window), TRUE, TRUE, FALSE);
 	gtk_window_set_title (GTK_WINDOW (window), "Devhelp");
 
-	g_signal_connect (window, 
+	g_signal_connect (window,
 			  "delete_event",
 			  G_CALLBACK (window_delete_cb),
 			  NULL);
 
 	window_populate (window);
-
-	if (geometry) {
-		gtk_window_parse_geometry (GTK_WINDOW (window), geometry);
-	} else {
-		window_restore_state (window);
-	}
-
-	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png", 
+	window_restore_state (window);
+	
+	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png",
 					 NULL);
 	if (icon) {
 		gtk_window_set_icon (GTK_WINDOW (window), icon);
@@ -822,7 +805,7 @@ dh_window_show (DhWindow *window)
 {
 	gtk_widget_show_all (GTK_WIDGET (window));
 
-	/* Make sure that the HTML widget is realized before trying to 
+	/* Make sure that the HTML widget is realized before trying to
 	 * clear it. Solves bug #147343.
 	 */
 	while (g_main_context_pending (NULL)) {
@@ -836,9 +819,9 @@ void
 dh_window_search (DhWindow *window, const gchar *str)
 {
 	DhWindowPriv *priv;
-	
+
 	g_return_if_fail (DH_IS_WINDOW (window));
-	
+
 	priv = window->priv;
 
 	dh_search_set_search_string (DH_SEARCH (priv->search), str);

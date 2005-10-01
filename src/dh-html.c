@@ -22,8 +22,6 @@
 
 #include <stdio.h>
 #include <string.h>
-
-#include <libgnomevfs/gnome-vfs.h>
 #include <gtkmozembed.h>
 
 #include "dh-util.h"

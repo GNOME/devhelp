@@ -1,3 +1,27 @@
+2005-10-01  Richard Hult  <richard@imendio.com>
+
+	* acinclude.m4:
+	* configure.in:
+	* src/Makefile.am: Reorganize a bit so that we can use compiler
+	warnings better suited for C (split out the C++ part in a separate
+	static library). Clean up the dependencies.
+
+	* src/dh-base.c: Clean up a bit, initiaize gecko here instead of
+	in main(). Use glib to read the directory list instead of gnomevfs
+	and don't duplicate the code to read gzipped devhelp files.
+
+	* src/dh-html.c: Remove unused includes.
+
+	* src/dh-main.c: Don't initialize gecko here, remove unused
+	includes. Remove the geometry option since it doesn't work and
+	also breaks the libdevhelp library.
+	
+	* src/dh-parser.c: Clean up and handle conditional gzip support
+	internally.
+	
+	* src/dh-window.c: Fix the function signature for delete-event,
+	and don't destroy the window in the handler.
+
 2005-09-30  Richard Hult  <richard@imendio.com>
 
 	* src/dh-window.c:

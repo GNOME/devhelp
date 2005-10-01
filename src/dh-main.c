@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2001-2003 CodeFactory AB
- * Copyright (C) 2001-2004 Imendio AB
+ * Copyright (C) 2001-2005 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -20,37 +20,23 @@
  */
 
 #include <config.h>
-#include <stdio.h>
 #include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/socket.h>
-#include <sys/un.h>
-#include <libxml/parser.h>
-#include <gconf/gconf.h>
 #include <glib/gi18n.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtkmain.h>
-#include <libgnomevfs/gnome-vfs-init.h>
-#include <gtkmozembed.h>
 
 #include "bacon-message-connection.h"
 #include "dh-base.h"
-#include "dh-gecko-utils.h"
 #include "dh-window.h"
 
 #define COMMAND_QUIT   "quit"
 #define COMMAND_SEARCH "search"
 #define COMMAND_RAISE  "raise"
 
-gchar *geometry = NULL;
-
 static void
 message_received_cb (const gchar *message, DhBase *base)
 {
 	GtkWidget *window;
-	
+
 	if (strcmp (message, COMMAND_QUIT) == 0) {
 		gtk_main_quit ();
 	}
@@ -73,15 +59,7 @@ message_received_cb (const gchar *message, DhBase *base)
 	}
 }
 
-static void
-devhelp_init_i18n (void)
-{
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain (PACKAGE);
-}
-
-int 
+int
 main (int argc, char **argv)
 {
 	gchar                  *option_search = NULL;
@@ -89,53 +67,34 @@ main (int argc, char **argv)
 	BaconMessageConnection *message_conn;
 	DhBase                 *base;
 	GtkWidget              *window;
-	
-	GOptionEntry  options[] = {
+	GOptionEntry            options[] = {
 		{
-			"geometry",
-			'g',
-			0,
-			G_OPTION_ARG_STRING,
-			&geometry,
-			N_("Specify the size and location of the window"),
-			N_("WIDTHxHEIGHT+XOFF+YOFF")
-		},
-		{ 
-			"search",      
+			"search",
 			's',
 			0,
-			G_OPTION_ARG_STRING, 
-			&option_search,    
-			_("Search for a function"),      
-			NULL 
+			G_OPTION_ARG_STRING,
+			&option_search,
+			_("Search for a function"),
+			NULL
 		},
-		{ 
-			"quit",      
-			'q',  
+		{
+			"quit",
+			'q',
 			0,
-			G_OPTION_ARG_NONE, 
-			&option_quit,    
-			_("Quit any running Devhelp"),      
-			NULL 
+			G_OPTION_ARG_NONE,
+			&option_quit,
+			_("Quit any running Devhelp"),
+			NULL
 		},
 		{ NULL, '\0', 0, 0, NULL, NULL, NULL }
 	};
 
-	devhelp_init_i18n ();
+	bindtextdomain (PACKAGE, LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain (PACKAGE);
 
-	/* Initialize the widget set */
 	gtk_init_with_args (&argc, &argv, NULL, options, NULL, NULL);
-
 	g_set_application_name ("Devhelp");
-	
-	g_thread_init (NULL);
-
-	LIBXML_TEST_VERSION;
-
-	gnome_vfs_init ();
-
-	dh_gecko_utils_init_services ();
-	/*gtk_moz_embed_set_comp_path (MOZILLA_HOME);*/
 
 	message_conn = bacon_message_connection_new ("Devhelp");
 	if (!bacon_message_connection_get_is_server (message_conn)) {
@@ -157,12 +116,12 @@ main (int argc, char **argv)
 		bacon_message_connection_send (message_conn, COMMAND_RAISE);
 		return 0;
 	}
-	
+
 	if (option_quit) {
 		/* No running Devhelps so just quit */
 		return 0;
 	}
-		
+
 	base = dh_base_new ();
 	window = dh_base_new_window (base);
 
@@ -170,13 +129,13 @@ main (int argc, char **argv)
 		message_conn,
 		(BaconMessageReceivedFunc) message_received_cb,
 		base);
-	
+
 	if (option_search) {
 		dh_window_search (DH_WINDOW (window), option_search);
 	}
-	
+
 	gtk_widget_show (window);
-		
+
 	gtk_main ();
 
 	return 0;

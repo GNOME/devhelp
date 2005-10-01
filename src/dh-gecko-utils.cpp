@@ -21,7 +21,6 @@
  */
 
 #include <config.h>
-
 #include <gtkmozembed.h>
 
 #include <nsCOMPtr.h>
@@ -196,7 +195,11 @@ extern "C" void
 dh_gecko_utils_init_services (void)
 {
 	gchar *profile_dir;
-	
+
+	if (!g_thread_supported ()) {
+		g_thread_init (NULL);
+	}
+
 	gtk_moz_embed_set_comp_path (MOZILLA_HOME);
 	
 	profile_dir = g_build_filename (g_getenv ("HOME"), 

@@ -2,6 +2,7 @@
 /*
  * Copyright (c) 2002-2003 Mikael Hallendal <micke@imendio.com>
  * Copyright (c) 2002-2003 CodeFactory AB
+ * Copyright (C) 2005 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -22,13 +23,11 @@
 #include <config.h>
 #include <string.h>
 #include <errno.h>
-
 #include <glib/gi18n.h>
 
 #ifdef HAVE_LIBZ
-#include "zlib.h"
+#include <zlib.h>
 #endif
-
 
 #include "dh-error.h"
 #include "dh-link.h"
@@ -38,21 +37,19 @@
 #define DH_PARSER(o) ((DhParser *) o)
 #define BYTES_PER_READ 4096
 
-extern int errno;
-
-typedef struct { 
+typedef struct {
 	GMarkupParser       *m_parser;
 	GMarkupParseContext *context;
 
 	const gchar         *path;
 	gchar               *base;
-	
+
 	/* Top node of book */
 	GNode               *book_node;
-	
+
 	/* Current sub section node */
 	GNode               *parent;
-	
+
 	gboolean             parsing_chapters;
 	gboolean             parsing_functions;
 
@@ -60,20 +57,24 @@ typedef struct {
 	GList              **keywords;
 } DhParser;
 
-/* Used while parsing */
-static void    parser_start_node_cb (GMarkupParseContext  *context,
-				     const gchar          *node_name,
-				     const gchar         **attribute_names,
-				     const gchar         **attribute_values,
-				     gpointer              user_data,
-				     GError              **error);
-static void    parser_end_node_cb   (GMarkupParseContext  *context,
-				     const gchar          *node_name,
-				     gpointer              user_data,
-				     GError              **error);
-static void    parser_error_cb      (GMarkupParseContext  *context,
-				     GError               *error,
-				     gpointer              user_data); 
+static void     parser_start_node_cb (GMarkupParseContext  *context,
+				      const gchar          *node_name,
+				      const gchar         **attribute_names,
+				      const gchar         **attribute_values,
+				      gpointer              user_data,
+				      GError              **error);
+static void     parser_end_node_cb   (GMarkupParseContext  *context,
+				      const gchar          *node_name,
+				      gpointer              user_data,
+				      GError              **error);
+static void     parser_error_cb      (GMarkupParseContext  *context,
+				      GError               *error,
+				      gpointer              user_data);
+static gboolean parser_read_gz_file  (const gchar          *path,
+				      GNode                *book_tree,
+				      GList               **keywords,
+				      GError              **error);
+
 
 static void
 parser_start_node_cb (GMarkupParseContext  *context,
@@ -82,12 +83,12 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		      const gchar         **attribute_values,
 		      gpointer              user_data,
 		      GError              **error)
-{	
+{
 	DhParser *parser;
 	gint      i, line, col;
 	DhLink   *dh_link;
 	gchar    *full_link;
-	
+
 	parser = DH_PARSER (user_data);;
 
 	if (!parser->book_node) {
@@ -96,13 +97,13 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		const gchar *base  = NULL;
 		const gchar *name  = NULL;
 		const gchar *link  = NULL;
-		
+
 		if (g_ascii_strcasecmp (node_name, "book") != 0) {
 			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected '%s' got '%s' at line %d, column %d"), 
+				     _("Expected '%s' got '%s' at line %d, column %d"),
 				     "book", node_name, line, col);
 			return;
 		}
@@ -111,14 +112,17 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			if (g_ascii_strcasecmp (attribute_names[i],
 						"xmlns") == 0) {
 				xmlns = attribute_values[i];
-				if (g_ascii_strcasecmp (xmlns, 
+				if (g_ascii_strcasecmp (xmlns,
 							"http://www.devhelp.net/book") != 0) {
 					/* Set error */
-					g_markup_parse_context_get_position (context, &line, &col);
+					g_markup_parse_context_get_position (context,
+									     &line,
+									     &col);
 					g_set_error (error,
 						     DH_ERROR,
 						     DH_ERROR_MALFORMED_BOOK,
-						     _("Invalid namespace '%s' at line %d, column %d"), 
+						     _("Invalid namespace '%s' at"
+						       " line %d, column %d"),
 						     xmlns, line, col);
 					return;
 				}
@@ -147,7 +151,8 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("title, name, and link elements are required at line %d, column %d"),
+				     _("title, name, and link elements are "
+				       "required at line %d, column %d"),
 				     line, col);
 			return;
 		}
@@ -157,7 +162,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		} else {
 			parser->base = g_path_get_dirname (parser->path);
 		}
-		
+
 		full_link = g_strconcat (parser->base, "/", link, NULL);
 		dh_link = dh_link_new (DH_LINK_TYPE_BOOK, title, full_link);
 		g_free (full_link);
@@ -179,7 +184,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected '%s' got '%s' at line %d, column %d"), 
+				     _("Expected '%s' got '%s' at line %d, column %d"),
 				     "sub", node_name, line, col);
 			return;
 		}
@@ -200,7 +205,8 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("name and link elements are required inside <sub> on line %d, column %d"),
+				     _("name and link elements are required "
+				       "inside <sub> on line %d, column %d"),
 				     line, col);
 			return;
 		}
@@ -212,10 +218,6 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		node = g_node_new (dh_link);
 		g_node_prepend (parser->parent, node);
 		parser->parent = node;
-		
-/* 		g_print ("Parser sub: %s %s\n", name, link); */
-		
-		/* Insert new sub */
 	}
 	else if (parser->parsing_functions) {
 		const gchar *name = NULL;
@@ -248,7 +250,8 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
-				     _("name and link elements are required inside <function> on line %d, column %d"),
+				     _("name and link elements are required "
+				       "inside <function> on line %d, column %d"),
 				     line, col);
 			return;
 		}
@@ -259,9 +262,6 @@ parser_start_node_cb (GMarkupParseContext  *context,
 
  		*parser->keywords = g_list_prepend (*parser->keywords,
  						    dh_link);
-		
-/* 		g_print ("Parsed function: %s %s\n", name, link); */
-		/* Insert new function */
 	}
 	else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
 		parser->parsing_chapters = TRUE;
@@ -273,14 +273,14 @@ parser_start_node_cb (GMarkupParseContext  *context,
 
 static void
 parser_end_node_cb (GMarkupParseContext  *context,
-		       const gchar          *node_name,
-		       gpointer              user_data,
-		       GError              **error)
+		    const gchar          *node_name,
+		    gpointer              user_data,
+		    GError              **error)
 {
 	DhParser *parser;
-	
+
 	parser = DH_PARSER (user_data);
-	
+
 	if (parser->parsing_chapters) {
 		g_node_reverse_children (parser->parent);
 		if (g_ascii_strcasecmp (node_name, "sub") == 0) {
@@ -309,10 +309,8 @@ parser_error_cb (GMarkupParseContext *context,
 		 GError              *error,
 		 gpointer             user_data)
 {
-	DhParser     *parser;
-	
-	g_return_if_fail (user_data != NULL);
-	
+	DhParser *parser;
+
 	parser = DH_PARSER (user_data);
 
 	g_markup_parse_context_free (parser->context);
@@ -320,16 +318,23 @@ parser_error_cb (GMarkupParseContext *context,
 }
 
 gboolean
-dh_parse_file (const gchar  *path,
-	       GNode        *book_tree,
-	       GList       **keywords,
-	       GError      **error)
+dh_parser_read_file (const gchar  *path,
+		     GNode        *book_tree,
+		     GList       **keywords,
+		     GError      **error)
 {
 	DhParser   *parser;
 	GIOChannel *io;
 	gchar       buf[BYTES_PER_READ];
 	gboolean    result = TRUE;
-	
+
+	if (g_str_has_suffix (path, ".gz")) {
+		return parser_read_gz_file (path,
+					    book_tree,
+					    keywords,
+					    error);
+	}
+
 	parser = g_new0 (DhParser, 1);
 	if (!parser) {
 		g_set_error (error,
@@ -338,7 +343,7 @@ dh_parse_file (const gchar  *path,
 			     _("Could not create book parser"));
 		return FALSE;
 	}
-	
+
 	parser->m_parser = g_new0 (GMarkupParser, 1);
 	if (!parser->m_parser) {
 		g_free (parser);
@@ -367,12 +372,12 @@ dh_parse_file (const gchar  *path,
 
 	/* Parse the string */
 	io = g_io_channel_new_file (path, "r", error);
-	
+
 	if (!io) {
 		result = FALSE;
 		goto exit;
 	}
-	
+
 	while (TRUE) {
 		GIOStatus io_status;
 		gsize     bytes_read;
@@ -383,7 +388,9 @@ dh_parse_file (const gchar  *path,
 			result = FALSE;
 			goto exit;
 		}
-		if (io_status != G_IO_STATUS_NORMAL) break;
+		if (io_status != G_IO_STATUS_NORMAL) {
+			break;
+		}
 
 		g_markup_parse_context_parse (parser->context, buf,
 					      bytes_read, error);
@@ -401,17 +408,17 @@ exit:
 	g_markup_parse_context_free (parser->context);
 	g_free (parser->m_parser);
 	g_free (parser);
-	
+
 	return result;
 }
 
-#ifdef HAVE_LIBZ
-gboolean
-dh_parse_gz_file (const gchar  *path,
-	       GNode        *book_tree,
-	       GList       **keywords,
-	       GError      **error)
+static gboolean
+parser_read_gz_file (const gchar  *path,
+		     GNode        *book_tree,
+		     GList       **keywords,
+		     GError      **error)
 {
+#ifdef HAVE_LIBZ
 	DhParser *parser;
 	gchar     buf[BYTES_PER_READ];
 	gzFile    file;
@@ -424,7 +431,7 @@ dh_parse_gz_file (const gchar  *path,
 			     _("Could not create book parser"));
 		return FALSE;
 	}
-	
+
 	parser->m_parser = g_new0 (GMarkupParser, 1);
 	if (!parser->m_parser) {
 		g_free (parser);
@@ -453,7 +460,7 @@ dh_parse_gz_file (const gchar  *path,
 
 	/* Parse the string */
 	file = gzopen (path, "r");
-	
+
 	if (!file) {
 		g_markup_parse_context_free (parser->context);
 		g_free (parser);
@@ -463,25 +470,26 @@ dh_parse_gz_file (const gchar  *path,
 			     g_strerror (errno));
 		return FALSE;
 	}
-	
+
 	while (TRUE) {
 		gsize bytes_read;
 
 		bytes_read = gzread (file, buf, BYTES_PER_READ);
 		if (bytes_read == -1) {
-			const char *message;
-			int err;
+			const gchar *message;
+			gint         err;
+
 			g_markup_parse_context_free (parser->context);
 			g_free (parser);
 			message = gzerror (file, &err);
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_INTERNAL_ERROR,
-				     _("Cannot uncompress book '%s': %s"), 
+				     _("Cannot uncompress book '%s': %s"),
 				     path, message);
 			return FALSE;
 		}
-		
+
 		g_markup_parse_context_parse (parser->context, buf,
 					      bytes_read, error);
 		if (error != NULL && *error != NULL) {
@@ -496,7 +504,13 @@ dh_parse_gz_file (const gchar  *path,
 
 	g_markup_parse_context_free (parser->context);
 	g_free (parser);
-	
+
 	return TRUE;
-}
+#else
+	g_set_error (error,
+		     DH_ERROR,
+		     DH_ERROR_INTERNAL_ERROR,
+		     _("Devhelp is not built with zlib support"));
+	return FALSE;
 #endif
+}

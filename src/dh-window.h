@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2005 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,8 +24,6 @@
 #define __DH_WINDOW_H__
 
 #include <glib-object.h>
-#include <gtk/gtktypeutils.h>
-#include <gtk/gtkwidget.h>
 #include <gtk/gtkwindow.h>
 
 #include "dh-base.h"
@@ -39,20 +38,13 @@ typedef struct _DhWindow       DhWindow;
 typedef struct _DhWindowClass  DhWindowClass;
 typedef struct _DhWindowPriv   DhWindowPriv;
 
-struct _DhWindow
-{
-        GtkWindow         parent;
-        
-        DhWindowPriv   *priv;
+struct _DhWindow {
+        GtkWindow       parent;
+	DhWindowPriv   *priv;
 };
 
-struct _DhWindowClass
-{
+struct _DhWindowClass {
         GtkWindowClass    parent_class;
-
-        /* Signals */
-	void (*new_window_requested) (DhWindow *window);
-
 };
 
 GType            dh_window_get_type        (void) G_GNUC_CONST;

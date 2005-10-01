@@ -24,7 +24,6 @@
 
 #include <glib.h>
 #include <glade/glade.h>
-#include <libgnomevfs/gnome-vfs.h>
 
 const gchar *  dh_dot_dir                    (void);
 GladeXML *     dh_glade_get_file             (const gchar  *filename,
