@@ -748,7 +748,7 @@ window_tree_link_selected_cb (GObject  *ignored,
 
 	priv = window->priv;
 
-	g_print ("tree link\n");
+	/* g_print ("tree link\n"); */
 	
 	html = window_get_active_html (window);
 
@@ -915,6 +915,7 @@ window_open_new_tab (DhWindow    *window,
 	GtkWidget    *frame;
 	GtkWidget    *view;
 	GtkWidget    *label;
+	gint          num;
 
 	priv = window->priv;
 
@@ -948,7 +949,7 @@ window_open_new_tab (DhWindow    *window,
 			  G_CALLBACK (window_html_open_new_tab_cb),
 			  window);
 
-	gtk_notebook_append_page (GTK_NOTEBOOK (priv->html_notebook),
+	num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->html_notebook),
 				  frame, NULL);
 
 	gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->html_notebook),
@@ -967,6 +968,9 @@ window_open_new_tab (DhWindow    *window,
 	} else {
 		dh_html_clear (html);
 	}
+
+	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->html_notebook), num);
+
 }
 
 static GtkWidget*

@@ -1,3 +1,8 @@
+2005-10-02  Mikael Hallendal  <micke@imendio.com>
+
+	* src/dh-window.c: (window_open_new_tab):
+	- Select the new tab so you can start using it directly.
+
 2005-10-02  Richard Hult  <richard@imendio.com>
 
 	* src/dh-window.c (window_key_press_event_cb): Escape minimizes,
