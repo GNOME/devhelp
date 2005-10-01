@@ -1,5 +1,9 @@
 2005-10-02  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c (window_key_press_event_cb): Escape minimizes,
+	not higgy but very convenient when using as a complent to
+	Emacs/vim.
+
 	* src/dh-base.c: (dh_base_new_window): Don't show the window here.
 
 	* ui/window.ui:

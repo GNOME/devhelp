@@ -61,75 +61,75 @@ static guint tab_accel_keys[] = {
 #define DEFAULT_HEIGHT    500
 #define DEFAULT_PANED_LOC 250
 
-static void     window_class_init              (DhWindowClass *klass);
-static void     window_init                    (DhWindow      *window);
-static void     window_finalize                (GObject       *object);
-static void     window_populate                (DhWindow      *window);
-static void     window_activate_new_window     (GtkAction     *action,
-						DhWindow      *window);
-static void     window_activate_new_tab        (GtkAction     *action,
-						DhWindow      *window);
-static void     window_activate_close          (GtkAction     *action,
-						DhWindow      *window);
-static void     window_activate_copy           (GtkAction     *action,
-						DhWindow      *window);
-static void     window_activate_preferences    (GtkAction     *action,
-						DhWindow      *window);
-static void     window_activate_back           (GtkAction     *action,
-						DhWindow      *window);
-static void     window_activate_forward        (GtkAction     *action,
-						DhWindow      *window);
-static void     window_activate_show_contents  (GtkAction     *action,
-						DhWindow      *window);
-static void     window_activate_show_search    (GtkAction     *action,
-						DhWindow      *window);
-static void     window_activate_about          (GtkAction     *action,
-						DhWindow      *window);
-static void     window_save_state              (DhWindow      *window);
-static void     window_restore_state           (DhWindow      *window);
-static gboolean window_delete_cb               (GtkWidget     *widget,
-						GdkEventAny   *event,
-						gpointer       user_data);
-static void     window_tree_link_selected_cb   (GObject       *ignored,
-						DhLink        *link,
-						DhWindow      *window);
-static void     window_search_link_selected_cb (GObject       *ignored,
-						DhLink        *link,
-						DhWindow      *window);
-static void     window_manager_add_widget      (GtkUIManager  *manager,
-						GtkWidget     *widget,
-						DhWindow      *window);
-static void     window_check_history           (DhWindow      *window,
-						DhHtml        *html);
-static void     window_html_location_changed_cb (DhHtml        *html,
-						 const gchar   *location,
-						 DhWindow      *window);
-static void     window_html_title_changed_cb   (DhHtml        *html,
-						const gchar   *location,
-						DhWindow      *window);
-static gboolean window_html_open_uri_cb        (DhHtml        *html,
-						const gchar   *uri,
-						DhWindow      *window);
-static void	window_html_open_new_tab_cb    (DhHtml        *html,
-					        const gchar   *location,
-						DhWindow      *window);
+static void       window_class_init               (DhWindowClass   *klass);
+static void       window_init                     (DhWindow        *window);
+static void       window_finalize                 (GObject         *object);
+static void       window_populate                 (DhWindow        *window);
+static void       window_activate_new_window      (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_new_tab         (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_close           (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_copy            (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_preferences     (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_back            (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_forward         (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_show_contents   (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_show_search     (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_about           (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_save_state               (DhWindow        *window);
+static void       window_restore_state            (DhWindow        *window);
+static gboolean   window_delete_cb                (GtkWidget       *widget,
+						   GdkEventAny     *event,
+						   gpointer         user_data);
+static gboolean   window_key_press_event_cb       (GtkWidget       *widget,
+						   GdkEventKey     *event,
+						   DhWindow        *window);
+static void       window_tree_link_selected_cb    (GObject         *ignored,
+						   DhLink          *link,
+						   DhWindow        *window);
+static void       window_search_link_selected_cb  (GObject         *ignored,
+						   DhLink          *link,
+						   DhWindow        *window);
+static void       window_manager_add_widget       (GtkUIManager    *manager,
+						   GtkWidget       *widget,
+						   DhWindow        *window);
+static void       window_check_history            (DhWindow        *window,
+						   DhHtml          *html);
+static void       window_html_location_changed_cb (DhHtml          *html,
+						   const gchar     *location,
+						   DhWindow        *window);
+static void       window_html_title_changed_cb    (DhHtml          *html,
+						   const gchar     *location,
+						   DhWindow        *window);
+static gboolean   window_html_open_uri_cb         (DhHtml          *html,
+						   const gchar     *uri,
+						   DhWindow        *window);
+static void       window_html_open_new_tab_cb     (DhHtml          *html,
+						   const gchar     *location,
+						   DhWindow        *window);
+static void       window_html_tab_accel_cb        (GtkAccelGroup   *accel_group,
+						   GObject         *object,
+						   guint            key,
+						   GdkModifierType  mod,
+						   DhWindow        *window);
+static GtkWidget *window_new_tab_label            (DhWindow        *window,
+						   const gchar     *label);
+static void       window_open_new_tab             (DhWindow        *window,
+						   const gchar     *location);
+static DhHtml *   window_get_active_html          (DhWindow        *window);
+static void       window_tab_set_title            (DhWindow        *window,
+						   DhHtml          *html,
+						   const gchar     *title);
 
-static void window_html_tab_accel_cb (GtkAccelGroup    *accel_group,
-				      GObject          *object,
-				      guint             key,
-				      GdkModifierType   mod,
-				      DhWindow         *window);
-
-static GtkWidget *window_new_tab_label	       (DhWindow      *window,
-						const gchar   *label);
-
-static void window_open_new_tab (DhWindow    *window,
-				 const gchar *location);
-
-static DhHtml * window_get_active_html (DhWindow *window);
-static void window_tab_set_title (DhWindow *window,
-				  DhHtml *html,
-				  const gchar *title);
 
 
 static GtkWindowClass *parent_class = NULL;
@@ -221,6 +221,11 @@ window_init (DhWindow *window)
 	priv = g_new0 (DhWindowPriv, 1);
         window->priv = priv;
 
+	g_signal_connect (window,
+			  "key-press-event",
+			  G_CALLBACK (window_key_press_event_cb),
+			  window);
+	
 	priv->manager = gtk_ui_manager_new ();
 
 	priv->gconf_client = gconf_client_get_default ();
@@ -300,8 +305,6 @@ window_control_switch_page_cb (GtkWidget       *notebook,
 			       DhWindow        *window)
 {
 	DhWindowPriv *priv;
-
-	// FIXME: check if this is necessary really
 
 	priv = window->priv;
 
@@ -572,7 +575,7 @@ static void
 window_activate_about (GtkAction *action,
 		       DhWindow  *window)
 {
-	const gchar *authors[] = {
+	const gchar  *authors[] = {
 		"Mikael Hallendal <micke@imendio.com>",
 		"Richard Hult <richard@imendio.com>",
 		"Johan Dahlin <johan@gnome.org>",
@@ -580,7 +583,7 @@ window_activate_about (GtkAction *action,
 		NULL
 	};
 	const gchar **documenters = NULL;
-	const gchar *translator_credits = _("translator_credits");
+	const gchar  *translator_credits = _("translator_credits");
 
 	gtk_show_about_dialog (GTK_WINDOW (window),
 			       "name",_("Devhelp"),
@@ -594,7 +597,6 @@ window_activate_about (GtkAction *action,
 			       "website", "http://developer.imendio.com/wiki/Devhelp",
 			       "logo-icon-name", "devhelp",
 			       NULL);
-
 }
 
 static void
@@ -723,6 +725,19 @@ window_delete_cb (GtkWidget   *widget,
 	return FALSE;
 }
 
+static gboolean
+window_key_press_event_cb (GtkWidget   *widget,
+			   GdkEventKey *event,
+			   DhWindow    *window)
+{
+	if (event->keyval == GDK_Escape) {
+		gtk_window_iconify (GTK_WINDOW (window));
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 static void
 window_tree_link_selected_cb (GObject  *ignored,
 			      DhLink   *link,
@@ -733,6 +748,8 @@ window_tree_link_selected_cb (GObject  *ignored,
 
 	priv = window->priv;
 
+	g_print ("tree link\n");
+	
 	html = window_get_active_html (window);
 
 	/* Block so we don't try to sync the tree when we have already clicked
