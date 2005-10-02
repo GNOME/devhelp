@@ -5,7 +5,8 @@
 	* src/dh-gecko-utils.cpp:
 	* src/dh-html.c: (dh_html_copy_selection):
 	* src/dh-window.c: (window_activate_copy):
-	* ui/window.ui: Add copy command and hook up in the UI.
+	* ui/window.ui: Add copy command and hook up in the UI, bug
+	#120522.
 
 2005-10-02  Richard Hult  <richard@imendio.com>
 
