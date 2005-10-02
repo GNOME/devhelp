@@ -401,5 +401,14 @@ dh_html_get_location (DhHtml *html)
 	return gtk_moz_embed_get_location (priv->gecko);
 }
 
+void
+dh_html_copy_selection (DhHtml *html)
+{
+	DhHtmlPriv *priv;
+	
+	g_return_if_fail (DH_IS_HTML (html));
 
+	priv = html->priv;
 
+	dh_gecko_utils_copy_selection (priv->gecko);
+}

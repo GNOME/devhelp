@@ -57,6 +57,7 @@ void            dh_html_go_forward      (DhHtml      *html);
 void            dh_html_go_back         (DhHtml      *html);
 gchar *         dh_html_get_title       (DhHtml      *html);
 gchar *         dh_html_get_location    (DhHtml      *html);
+void            dh_html_copy_selection  (DhHtml      *html);
 
 #endif /* __DH_HTML_H__ */
 

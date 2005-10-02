@@ -1,5 +1,14 @@
 2005-10-02  Richard Hult  <richard@imendio.com>
 
+	* src/Makefile.am: Add commandhandler includes.
+
+	* src/dh-gecko-utils.cpp:
+	* src/dh-html.c: (dh_html_copy_selection):
+	* src/dh-window.c: (window_activate_copy):
+	* ui/window.ui: Add copy command and hook up in the UI.
+
+2005-10-02  Richard Hult  <richard@imendio.com>
+
 	* src/dh-gecko-utils.cpp (dh_gecko_utils_get_mouse_event_button):
 	Clean up.
 	

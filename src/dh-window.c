@@ -503,7 +503,18 @@ window_activate_close (GtkAction *action, DhWindow *window)
 static void
 window_activate_copy (GtkAction *action, DhWindow *window)
 {
-	g_print ("Copy\n");
+	GtkWidget *widget;
+
+	widget = gtk_window_get_focus (GTK_WINDOW (window));
+
+	if (GTK_IS_EDITABLE (widget)) {
+		gtk_editable_copy_clipboard (GTK_EDITABLE (widget));
+	} else {
+		DhHtml *html;
+		
+		html = window_get_active_html (window); 
+		dh_html_copy_selection (html);
+	}
 }
 
 static void

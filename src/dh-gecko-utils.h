@@ -23,6 +23,8 @@
 #ifndef __DH_GECKO_UTILS_H__
 #define __DH_GECKO_UTILS_H__
 
+#include <gtkmozembed.h>
+
 G_BEGIN_DECLS
 
 enum {
@@ -35,6 +37,7 @@ void dh_gecko_utils_set_font                  (gint         font_type,
 void dh_gecko_utils_init_services             (void);
 gint dh_gecko_utils_get_mouse_event_button    (gpointer     event);
 gint dh_gecko_utils_get_mouse_event_modifiers (gpointer     event);
+void dh_gecko_utils_copy_selection            (GtkMozEmbed *embed);
 
 G_END_DECLS
 

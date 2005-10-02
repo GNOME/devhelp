@@ -22,11 +22,14 @@
 
 #include <config.h>
 #include <gtkmozembed.h>
+#include <gtkmozembed_internal.h>
 
 #include <nsCOMPtr.h>
 #include <nsMemory.h>
 #include <nsEmbedString.h>
 #include <nsIPrefService.h>
+#include <nsICommandManager.h>
+#include <nsIInterfaceRequestorUtils.h>
 #define MOZILLA_INTERNAL_API
 #include <nsIServiceManager.h>
 #undef MOZILLA_INTERNAL_API
@@ -91,6 +94,26 @@ dh_gecko_utils_get_mouse_event_modifiers (gpointer event)
 	return mask;
 }
 
+static nsresult
+do_command (GtkMozEmbed *embed,
+	    const char  *command)
+{
+	nsCOMPtr<nsIWebBrowser>     webBrowser;
+	nsCOMPtr<nsICommandManager> cmdManager;
+
+	gtk_moz_embed_get_nsIWebBrowser (embed, getter_AddRefs (webBrowser));
+	
+	cmdManager = do_GetInterface (webBrowser);
+	
+	return cmdManager->DoCommand (command, nsnull, nsnull);
+}
+
+void
+dh_gecko_utils_copy_selection (GtkMozEmbed *embed)
+{
+	do_command (embed, "cmd_copy");
+}
+
 static gboolean
 dh_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 {
@@ -130,7 +153,6 @@ gecko_prefs_set_string (const gchar *key, const gchar *value)
 	}
 	
 	return FALSE;
-
 }
 
 static gboolean

@@ -20,6 +20,7 @@ MOZILLA_INCLUDES =					\
 	-I$(MOZILLA_INCLUDE_ROOT)/string		\
 	-I$(MOZILLA_INCLUDE_ROOT)/pref			\
 	-I$(MOZILLA_INCLUDE_ROOT)/gfx			\
+	-I$(MOZILLA_INCLUDE_ROOT)/commandhandler	\
 	-DALLOW_PRIVATE_API				\
 	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""		\
 	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h
