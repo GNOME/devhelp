@@ -53,33 +53,58 @@
 gint
 dh_gecko_utils_get_mouse_event_button (gpointer event)
 {
-	gint	button = 0;
+	nsIDOMMouseEvent *aMouseEvent;
+	PRUint16          button;
 
-	/* the following lines were taken from liferea, which
-	 * were in turn taken from the Galeon source */
-	nsIDOMMouseEvent *aMouseEvent = (nsIDOMMouseEvent *)event;
-	aMouseEvent->GetButton ((PRUint16 *) &button);
+	aMouseEvent = (nsIDOMMouseEvent *) event;
 
-	/* for some reason we get different numbers on PPC, this fixes
-	 * that up...  -- MattA */
-	if (button == 65536)
-		button = 1;
-	else if (button == 131072)
-		button = 2;
+	aMouseEvent->GetButton (&button);
 
-	return button;
+	return button + 1;
+}
+
+gint
+dh_gecko_utils_get_mouse_event_modifiers (gpointer event)
+{
+	nsIDOMMouseEvent *aMouseEvent;
+	PRBool            ctrl, alt, shift, meta;
+	gint              mask;
+	
+	aMouseEvent = (nsIDOMMouseEvent *) event;
+
+	aMouseEvent->GetCtrlKey (&ctrl);
+	aMouseEvent->GetAltKey (&alt);
+	aMouseEvent->GetShiftKey (&shift);
+	aMouseEvent->GetMetaKey (&meta);
+
+	mask = 0;
+	if (ctrl) {
+		mask |= GDK_CONTROL_MASK;
+	}
+	if (alt || meta) {
+		mask |= GDK_MOD1_MASK;
+	}
+	if (shift) {
+		mask |= GDK_SHIFT_MASK;
+	}
+
+	return mask;
 }
 
 static gboolean
 dh_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 {
 	PangoFontDescription *desc;
-	PangoFontMask mask = (PangoFontMask) (PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_SIZE);
-	gboolean retval = FALSE;
+	PangoFontMask         mask;
+	gboolean              retval = FALSE;
 
+	mask = (PangoFontMask) (PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_SIZE);
+	
 	desc = pango_font_description_from_string (font_name);
-	if (!desc) return FALSE;
-
+	if (!desc) {
+		return FALSE;
+	}
+	
 	if ((pango_font_description_get_set_fields (desc) & mask) == mask) {
 		*size = PANGO_PIXELS (pango_font_description_get_size (desc));
 		*name = g_strdup (pango_font_description_get_family (desc));

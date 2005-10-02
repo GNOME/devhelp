@@ -133,34 +133,35 @@ static gboolean
 html_mouse_click_cb (GtkMozEmbed *widget, gpointer dom_event, DhHtml *html)
 {
 	gint button;
-
+	gint mask;
+	
 	button = dh_gecko_utils_get_mouse_event_button (dom_event);
+	mask = dh_gecko_utils_get_mouse_event_modifiers (dom_event);
 
-	if (button == -1) {
-		g_warning ("Unable to determine the button that was pressed.\n");
-	} else {
-		/* middle click, which indicates we should open a new tab */
-		if (button == 1) {
-			if (current_url) {
-				g_signal_emit_by_name (html, "open-new-tab", current_url);
-				return TRUE;
-			}
+	if (button == 2 || (button == 1 && mask & GDK_CONTROL_MASK)) {
+		if (current_url) {
+			g_signal_emit (html,
+				       signals[OPEN_NEW_TAB], 0,
+				       current_url);
+			return TRUE;
 		}
 	}
 
-	/* don't "consume" the event */
 	return FALSE;
 }
 
+/* I'd like to get rid of this hack, there should be a way to get the URI that
+ * was clicked instead of tracking it like this.
+ */
 static gboolean
 html_link_message_cb (GtkMozEmbed *widget)
 {
-	if (current_url)
+	if (current_url) {
 		g_free (current_url);
-
+	}
 	current_url = gtk_moz_embed_get_link_message (widget);
 
-	if (*current_url == '\0') {
+	if (current_url[0] == '\0') {
 		g_free (current_url);
 		current_url = NULL;
 	}

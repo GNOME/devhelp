@@ -30,20 +30,11 @@ enum {
 	DH_GECKO_PREF_FONT_FIXED
 };
 
-void            dh_gecko_utils_set_font      (gint          font_type,
-					      const gchar  *fontname);
-void            dh_gecko_utils_init_services (void);
-
-gint		dh_gecko_utils_get_mouse_event_button
-		                             (gpointer      event);
-
-/*
-gboolean        dh_gecko_find           (GtkMozEmbed  *html,
-					 const gchar  *str,
-					 gboolean      match_case,
-					 gboolean      wrap,
-					 gboolean      forward);
-*/
+void dh_gecko_utils_set_font                  (gint         font_type,
+					       const gchar *fontname);
+void dh_gecko_utils_init_services             (void);
+gint dh_gecko_utils_get_mouse_event_button    (gpointer     event);
+gint dh_gecko_utils_get_mouse_event_modifiers (gpointer     event);
 
 G_END_DECLS
 
