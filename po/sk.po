@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-29 00:54+0200\n"
-"PO-Revision-Date: 2005-09-29 00:56+0200\n"
+"POT-Creation-Date: 2005-10-03 05:13+0200\n"
+"PO-Revision-Date: 2005-10-03 05:15+0200\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Program pomocníka pre vývojárov"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:509 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:600 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -28,44 +28,36 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp kniha"
 
-#: ../src/dh-main.c:100
-msgid "Specify the size and location of the window"
-msgstr "Zadajte veľkosť a umiestnenie okna"
-
-#: ../src/dh-main.c:101
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "ŠÍRKAxVÝŠKA+XPOS+YPOS"
-
-#: ../src/dh-main.c:109
+#: ../src/dh-main.c:77
 msgid "Search for a function"
 msgstr "Vyhľadať funkciu"
 
-#: ../src/dh-main.c:118
+#: ../src/dh-main.c:86
 msgid "Quit any running Devhelp"
 msgstr "Ukončiť všetky bežiace kópie Devhelp"
 
-#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
+#: ../src/dh-parser.c:106 ../src/dh-parser.c:187 ../src/dh-parser.c:231
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Očakávané '%s', ale vyskytlo sa '%s' na riadku %d, stĺpec %d"
 
-#: ../src/dh-parser.c:121
+#: ../src/dh-parser.c:124
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neplatný menný priestor '%s' na riadku %d, stĺpec %d"
 
-#: ../src/dh-parser.c:150
+#: ../src/dh-parser.c:154
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Elementy title, name a link sú vyžadované na riadku %d, stĺpec %d"
 
-#: ../src/dh-parser.c:203
+#: ../src/dh-parser.c:208
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Elementy name a link sú vyžadované vo vnútri <sub> na riadku %d, stĺpec %d"
 
-#: ../src/dh-parser.c:251
+#: ../src/dh-parser.c:253
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -73,67 +65,79 @@ msgstr ""
 "Elementy name a link sú vyžadované vo vnútri <function> na riadku %d, stĺpec "
 "%d"
 
-#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
+#: ../src/dh-parser.c:343 ../src/dh-parser.c:431
 msgid "Could not create book parser"
 msgstr "Nepodarilo sa vytvoriť analyzátor pre knihu"
 
-#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
+#: ../src/dh-parser.c:353 ../src/dh-parser.c:441
 msgid "Could not create markup parser"
 msgstr "Nepodarilo sa vytvoriť analyzátor pre značky"
 
-#: ../src/dh-parser.c:480
+#: ../src/dh-parser.c:488
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nepodarilo sa rozbaliť knihu '%s': %s"
+
+#: ../src/dh-parser.c:513
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp nie je skompilovaný s podporou zlib"
 
 #: ../src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Hľadať:"
 
-#: ../src/dh-search.c:466
+#: ../src/dh-search.c:467
 msgid "Section"
 msgstr "Časť"
 
-#: ../src/dh-window.c:118
+#: ../src/dh-window.c:138
 msgid "_File"
 msgstr "_Súbor"
 
-#: ../src/dh-window.c:119
+#: ../src/dh-window.c:139
 msgid "_Edit"
 msgstr "_Upraviť"
 
-#: ../src/dh-window.c:120 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:140 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Ísť"
 
-#: ../src/dh-window.c:121
+#: ../src/dh-window.c:141
 msgid "_Help"
 msgstr "_Pomocník"
 
 #. File menu
-#: ../src/dh-window.c:124
+#: ../src/dh-window.c:144
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: ../src/dh-window.c:143
+#: ../src/dh-window.c:146
+msgid "New _Tab"
+msgstr "Nová _záložka"
+
+#: ../src/dh-window.c:163
 msgid "Browse Contents"
 msgstr "Prehliadať obsah"
 
-#: ../src/dh-window.c:146 ../src/dh-window.c:386
+#: ../src/dh-window.c:166 ../src/dh-window.c:442
 msgid "Search"
 msgstr "Hľadať"
 
-#: ../src/dh-window.c:376 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:432 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Obsah"
 
-#: ../src/dh-window.c:506
+#: ../src/dh-window.c:597
 msgid "translator_credits"
 msgstr "Marcel Telka <marcel@telka.sk>"
 
-#: ../src/dh-window.c:511
+#: ../src/dh-window.c:602
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prehliadač pomocníka pre vývojárov pre GNOME 2"
+
+#: ../src/dh-window.c:947 ../src/dh-window.c:1034
+msgid "Empty Page"
+msgstr "Prázdna strana"
 
 #: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
