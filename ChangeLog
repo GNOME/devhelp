@@ -1,3 +1,9 @@
+2005-10-04  Richard Hult  <richard@imendio.com>
+
+	* src/dh-parser.c (parser_start_node_cb): Strip out struct, union
+	and enum from names, and also remove "()" from functions, fixes
+	bug #108295.
+
 2005-10-02  Richard Hult  <richard@imendio.com>
 
 	* src/Makefile.am: Add commandhandler includes.

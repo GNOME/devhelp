@@ -256,8 +256,30 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			return;
 		}
 
+		/* Strip out these, they are only present for code that gtk-doc
+		 * couldn't parse properly. We'll get this information in a
+		 * better way soon from gtk-doc.
+		 */
+		if (g_str_has_prefix (name, "struct ")) {
+			name = name + 7;
+		}
+		else if (g_str_has_prefix (name, "union ")) {
+			name = name + 6;
+		}
+		else if (g_str_has_prefix (name, "enum ")) {
+			name = name + 5;
+		}
+	
 		full_link = g_strconcat (parser->base, "/", link, NULL);
-		dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, name, full_link);
+		if (g_str_has_suffix (name, " ()")) {
+			gchar *tmp;
+
+			tmp = g_strndup (name, strlen (name) - 3);
+			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, tmp, full_link);
+			g_free (tmp);
+		} else {
+			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, name, full_link);
+		}
 		g_free (full_link);
 
  		*parser->keywords = g_list_prepend (*parser->keywords,
