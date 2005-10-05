@@ -1,3 +1,9 @@
+2005-10-05  Richard Hult  <richard@imendio.com>
+
+	* src/dh-book-tree.c: 
+	* src/dh-window.c: Make the window title be the book title + the
+	html title. Fixes bug #313239.
+
 2005-10-04  Richard Hult  <richard@imendio.com>
 
 	* src/dh-parser.c (parser_start_node_cb): Strip out struct, union

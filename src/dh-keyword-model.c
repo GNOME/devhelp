@@ -212,8 +212,8 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
 {
         DhKeywordModel     *model;
         DhKeywordModelPriv *priv;
-        GList               *node;
-        const gint          *indices;
+        GList              *node;
+        const gint         *indices;
         
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (tree_model), FALSE);
         g_return_val_if_fail (gtk_tree_path_get_depth (path) > 0, FALSE);
@@ -415,7 +415,8 @@ dh_keyword_model_set_words (DhKeywordModel *model, GList *keyword_words)
 	g_return_if_fail (DH_IS_KEYWORD_MODEL (model));
 
 	priv = model->priv;
-		
+
+	g_list_free (priv->original_list);
 	priv->original_list = g_list_copy (keyword_words);
 }
 

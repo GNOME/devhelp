@@ -126,10 +126,11 @@ static GtkWidget *window_new_tab_label            (DhWindow        *window,
 static void       window_open_new_tab             (DhWindow        *window,
 						   const gchar     *location);
 static DhHtml *   window_get_active_html          (DhWindow        *window);
+static void       window_update_title             (DhWindow        *window,
+						   DhHtml          *html);
 static void       window_tab_set_title            (DhWindow        *window,
 						   DhHtml          *html,
 						   const gchar     *title);
-
 
 
 static GtkWindowClass *parent_class = NULL;
@@ -137,7 +138,7 @@ static GtkWindowClass *parent_class = NULL;
 static const GtkActionEntry actions[] = {
 	{ "FileMenu", NULL, N_("_File") },
 	{ "EditMenu", NULL, N_("_Edit") },
-	{ "GoMenu", NULL, N_("_Go") },
+	{ "GoMenu",   NULL, N_("_Go") },
 	{ "HelpMenu", NULL, N_("_Help") },
 
 	/* File menu */
@@ -225,7 +226,7 @@ window_init (DhWindow *window)
 			  "key-press-event",
 			  G_CALLBACK (window_key_press_event_cb),
 			  window);
-	
+
 	priv->manager = gtk_ui_manager_new ();
 
 	priv->gconf_client = gconf_client_get_default ();
@@ -273,7 +274,7 @@ window_init (DhWindow *window)
 
 	accel_group = gtk_accel_group_new ();
 	gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
-	
+
 	for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
 		closure =  g_cclosure_new (G_CALLBACK (window_html_tab_accel_cb),
 					   window,
@@ -344,6 +345,11 @@ window_html_switch_page_cb (GtkNotebook     *notebook,
 
 		new_html = g_object_get_data (G_OBJECT (new_page), "html");
 
+		window_update_title (window, new_html);
+		return;
+
+
+		
 		title = dh_html_get_title (new_html);
 		gtk_window_set_title (GTK_WINDOW (window), title);
 		g_free (title);
@@ -351,8 +357,8 @@ window_html_switch_page_cb (GtkNotebook     *notebook,
 		/* Sync the book tree. */
 		location = dh_html_get_location (new_html);
 		if (location) {
-			dh_book_tree_show_uri (DH_BOOK_TREE (priv->book_tree),
-					       location);
+			dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree),
+						 location);
 			g_free (location);
 		}
 
@@ -511,8 +517,8 @@ window_activate_copy (GtkAction *action, DhWindow *window)
 		gtk_editable_copy_clipboard (GTK_EDITABLE (widget));
 	} else {
 		DhHtml *html;
-		
-		html = window_get_active_html (window); 
+
+		html = window_get_active_html (window);
 		dh_html_copy_selection (html);
 	}
 }
@@ -532,9 +538,9 @@ window_activate_back (GtkAction *action, DhWindow *window)
 
 	priv = window->priv;
 
-	frame = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->html_notebook),
-	                                   gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->html_notebook))
-	                                  );
+	frame = gtk_notebook_get_nth_page (
+		GTK_NOTEBOOK (priv->html_notebook),
+		gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->html_notebook)));
 	html = g_object_get_data (G_OBJECT (frame), "html");
 
 	dh_html_go_back (html);
@@ -760,7 +766,7 @@ window_tree_link_selected_cb (GObject  *ignored,
 	priv = window->priv;
 
 	/* g_print ("tree link\n"); */
-	
+
 	html = window_get_active_html (window);
 
 	/* Block so we don't try to sync the tree when we have already clicked
@@ -854,7 +860,7 @@ window_html_open_uri_cb (DhHtml      *html,
 	priv = window->priv;
 
 	if (html == window_get_active_html (window)) {
-		dh_book_tree_show_uri (DH_BOOK_TREE (priv->book_tree), uri);
+		dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree), uri);
 	}
 
 	return FALSE;
@@ -865,22 +871,7 @@ window_html_title_changed_cb (DhHtml      *html,
 			      const gchar *title,
 			      DhWindow    *window)
 {
-	DhHtml      *active_html;
-	const gchar *new_title;
-
-	active_html = window_get_active_html (window);
-
-	if (title && *title != '\0') {
-		new_title = title;
-	} else {
-		new_title = "Devhelp";
-	}
-
-	window_tab_set_title (window, html, title);
-
-	if (active_html == html) {
-		gtk_window_set_title (GTK_WINDOW (window), new_title);
-	}
+	window_update_title (window, window_get_active_html (window));
 }
 
 static void
@@ -902,7 +893,7 @@ window_html_tab_accel_cb (GtkAccelGroup    *accel_group,
 	gint          i, num;
 
 	priv = window->priv;
-	
+
 	num = -1;
 	for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
 		if (tab_accel_keys[i] == key) {
@@ -1018,6 +1009,47 @@ window_get_active_html (DhWindow *window)
 }
 
 static void
+window_update_title (DhWindow *window,
+		     DhHtml   *html)
+{
+	DhWindowPriv *priv;
+	gchar        *html_title;
+	const gchar  *book_title;
+	gchar        *full_title;
+
+	priv = window->priv;
+	
+	html_title = dh_html_get_title (html);
+
+	window_tab_set_title (window, html, html_title);
+
+	if (html_title && *html_title == '\0') {
+		g_free (html_title);
+		html_title = NULL;
+	}
+
+	book_title = dh_book_tree_get_selected_book_title (DH_BOOK_TREE (priv->book_tree));
+
+	/* Don't use both titles if they are the same. */
+	if (book_title && html_title && strcmp (book_title, html_title) == 0) {
+		html_title = NULL;
+	}
+	
+	if (!book_title) {
+		book_title = "Devhelp";
+	}
+	
+	if (html_title) {
+		full_title = g_strdup_printf ("%s : %s", book_title, html_title);
+	} else {
+		full_title = g_strdup (book_title);
+	}
+	
+	gtk_window_set_title (GTK_WINDOW (window), full_title);
+	g_free (full_title);
+}
+
+static void
 window_tab_set_title (DhWindow *window, DhHtml *html, const gchar *title)
 {
 	DhWindowPriv *priv;
@@ -1044,7 +1076,9 @@ window_tab_set_title (DhWindow *window, DhHtml *html, const gchar *title)
 			label = gtk_notebook_get_tab_label (
 				GTK_NOTEBOOK (priv->html_notebook), page);
 
-			gtk_label_set_text (GTK_LABEL (label), title);
+			if (label) {
+				gtk_label_set_text (GTK_LABEL (label), title);
+			}
 			break;
 		}
 	}
@@ -1090,6 +1124,7 @@ dh_window_search (DhWindow *window, const gchar *str)
 	priv = window->priv;
 
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
+
 	dh_search_set_search_string (DH_SEARCH (priv->search), str);
 }
 

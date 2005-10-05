@@ -28,37 +28,33 @@
 
 #include "dh-link.h"
 
-#define DH_BOOK_TREE_OAFIID "OAFIID:GNOME_DevHelp_DhBookTree"
-
-#define DH_TYPE_BOOK_TREE		(dh_book_tree_get_type ())
-#define DH_BOOK_TREE(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_BOOK_TREE, DhBookTree))
-#define DH_BOOK_TREE_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_BOOK_TREE, DhBookTreeClass))
-#define DH_IS_BOOK_TREE(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_BOOK_TREE))
-#define DH_IS_BOOK_TREE_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((obj), DH_TYPE_BOOK_TREE))
+#define DH_TYPE_BOOK_TREE	     (dh_book_tree_get_type ())
+#define DH_BOOK_TREE(obj)	     (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_BOOK_TREE, DhBookTree))
+#define DH_BOOK_TREE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_BOOK_TREE, DhBookTreeClass))
+#define DH_IS_BOOK_TREE(obj)	     (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_BOOK_TREE))
+#define DH_IS_BOOK_TREE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), DH_TYPE_BOOK_TREE))
 
 typedef struct _DhBookTree       DhBookTree;
 typedef struct _DhBookTreeClass  DhBookTreeClass;
 typedef struct _DhBookTreePriv   DhBookTreePriv;
 
-struct _DhBookTree
-{
+struct _DhBookTree {
 	GtkTreeView     parent;
-         
         DhBookTreePriv *priv;
 };
 
-struct _DhBookTreeClass
-{
+struct _DhBookTreeClass {
         GtkTreeViewClass parent_class;
 
         /* Signals */
-        
         void (*link_selected) (DhBookTree *book_tree,
 			       DhLink     *link);
 };
 
-GType            dh_book_tree_get_type      (void);
-GtkWidget *      dh_book_tree_new           (GNode       *books);
-void             dh_book_tree_show_uri      (DhBookTree  *book_tree,
-					     const gchar *uri);
+GType        dh_book_tree_get_type           (void) G_GNUC_CONST;
+GtkWidget *  dh_book_tree_new                (GNode       *books);
+void         dh_book_tree_select_uri         (DhBookTree  *book_tree,
+					      const gchar *uri);
+const gchar *dh_book_tree_get_selected_book_title (DhBookTree  *tree);
+
 #endif /* __DH_BOOK_TREE_H__ */
