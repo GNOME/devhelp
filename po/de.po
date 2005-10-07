@@ -9,19 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelper 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-25 08:25+0100\n"
-"PO-Revision-Date: 2004-03-25 08:22+0100\n"
+"POT-Creation-Date: 2005-10-07 17:51+0200\n"
+"PO-Revision-Date: 2005-10-07 17:54+0200\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translations <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Hilfeprogramm für Entwickler"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:449 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:606 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -29,110 +29,118 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp-Buch"
 
-#: ../src/dh-main.c:89
-msgid "Specify the size and location of the window"
-msgstr "Die Größe und den Anzeigeort des Fensters angeben"
-
-#: ../src/dh-main.c:90
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "BREITExHÖHE+XVER+YVER"
-
-#: ../src/dh-main.c:98
+#: ../src/dh-main.c:77
 msgid "Search for a function"
 msgstr "Nach einer Funktion suchen"
 
-#: ../src/dh-main.c:107
+#: ../src/dh-main.c:86
 msgid "Quit any running Devhelp"
 msgstr "Alle laufenden Devhelp-Instanzen beenden"
 
-#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
+#: ../src/dh-parser.c:106 ../src/dh-parser.c:187 ../src/dh-parser.c:231
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "»%s« erwartet, »%s« erhalten - Zeile %d, Spalte %d"
 
-#: ../src/dh-parser.c:121
+#: ../src/dh-parser.c:124
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Ungültiger Namensraum »%s« - Zeile %d, Spalte %d"
 
-#: ../src/dh-parser.c:150
+#: ../src/dh-parser.c:154
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
 "»title«-, »name«- sowie »link«-Elemente erforderlich - Zeile %d, Spalte %d"
 
-#: ../src/dh-parser.c:203
+#: ../src/dh-parser.c:208
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "»name« sowie »link«-Elemente in <sub> erforderlich - Zeile %d, Spalte %d"
 
-#: ../src/dh-parser.c:251
+#: ../src/dh-parser.c:253
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "»name« sowie »link«-Elemente in <function> erforderlich - Zeile %d, Spalte %d"
 
-#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
+#: ../src/dh-parser.c:365 ../src/dh-parser.c:453
 msgid "Could not create book parser"
 msgstr "Buchverarbeiter konnte nicht angelegt werden"
 
-#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
+#: ../src/dh-parser.c:375 ../src/dh-parser.c:463
 msgid "Could not create markup parser"
 msgstr "Auszeichnungsverarbeiter konnte nicht angelegt werden"
 
-#: ../src/dh-parser.c:480
+#: ../src/dh-parser.c:510
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Buch »%s« konnte nicht entpackt werden: %s"
 
-#: ../src/dh-search.c:418
+#: ../src/dh-parser.c:535
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp wurde ohne zlib-Unterstützung kompiliert"
+
+#: ../src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Suchbegriff:"
 
-#: ../src/dh-search.c:462
+#: ../src/dh-search.c:467
 msgid "Section"
 msgstr "Abschnitt"
 
-#: ../src/dh-window.c:110
+#: ../src/dh-window.c:139
 msgid "_File"
 msgstr "_Datei"
 
-#: ../src/dh-window.c:111
+#: ../src/dh-window.c:140
 msgid "_Edit"
 msgstr "B_earbeiten"
 
-#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Gehe zu"
 
-#: ../src/dh-window.c:113
+#: ../src/dh-window.c:142
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: ../src/dh-window.c:297
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Die Benutzeroberfläche konnte nicht erstellt werden: %s"
+#. File menu
+#: ../src/dh-window.c:145
+msgid "_New Window"
+msgstr "_Neues Fenster"
 
-#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Inhalt"
+#: ../src/dh-window.c:147
+msgid "New _Tab"
+msgstr "Neuer _Reiter"
 
-#: ../src/dh-window.c:368
+#: ../src/dh-window.c:164
+msgid "Browse Contents"
+msgstr "Inhalt durchsuchen"
+
+#: ../src/dh-window.c:167 ../src/dh-window.c:448
 msgid "Search"
 msgstr "Suche"
 
-#: ../src/dh-window.c:446
+#: ../src/dh-window.c:438 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Inhalt"
+
+#: ../src/dh-window.c:603
 msgid "translator_credits"
 msgstr ""
 "Christian Meyer\n"
 "Christian Neumair"
 
-#: ../src/dh-window.c:451
+#: ../src/dh-window.c:608
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
+
+#: ../src/dh-window.c:938 ../src/dh-window.c:1066
+msgid "Empty Page"
+msgstr "Leere Seite"
 
 #: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -155,12 +163,12 @@ msgid "Height of main window"
 msgstr "Höhe des Hauptfensters"
 
 #: ../devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr "Position der Schiebeleiste"
-
-#: ../devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Hauptfenstermaximierungsstatus"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Ausgewählter Reiter, »content« (Inhalt) oder »search« (Suche)"
 
 #: ../devhelp.schemas.in.h:8
 msgid "The X position of the main window."
@@ -175,8 +183,8 @@ msgid "The height of the main window."
 msgstr "Die Höhe des Hauptfensters."
 
 #: ../devhelp.schemas.in.h:11
-msgid "The location of the paned separator."
-msgstr "Die Position der Schiebeleiste."
+msgid "The width of the index and search pane."
+msgstr "Die Breite des Index- und Sucheabschnitts"
 
 #: ../devhelp.schemas.in.h:12
 msgid "The width of the main window."
@@ -195,14 +203,22 @@ msgid "Whether the main window should start maximized or not."
 msgstr "Legt fest, ob das Hauptfenster beim Start maximiert ist."
 
 #: ../devhelp.schemas.in.h:16
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Welcher der Reiter aktuell ausgewählt ist, »content« (Inhalt) oder »search« (Suche)."
+
+#: ../devhelp.schemas.in.h:17
+msgid "Width of the index and search pane"
+msgstr "Breite des Index- und Sucheabschnitts"
+
+#: ../devhelp.schemas.in.h:18
 msgid "Width of the main window"
 msgstr "Breite des Hauptfensters"
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:19
 msgid "X position of main window"
 msgstr "Horizontale Position des Hauptfensters"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:20
 msgid "Y position of main window"
 msgstr "Vertikale Position des Hauptfensters"
 
@@ -238,8 +254,3 @@ msgstr "_Vor"
 msgid "_Use system fonts"
 msgstr "S_ystemschrift verwenden"
 
-#~ msgid "Devhelp project page"
-#~ msgstr "Devhelp-Projektseite"
-
-#~ msgid "Bug report Devhelp"
-#~ msgstr "Devhelp-Fehler berichten"
