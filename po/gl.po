@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-27 23:15+0200\n"
-"PO-Revision-Date: 2005-09-27 23:16+0200\n"
+"POT-Creation-Date: 2005-10-11 16:03+0200\n"
+"PO-Revision-Date: 2005-10-11 16:06+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programa de axuda do desenrolador"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:453 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:606 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -28,108 +28,116 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Libro Devhelp"
 
-#: ../src/dh-main.c:137
-msgid "Specify the size and location of the window"
-msgstr "Especifique o tamaño e ubicación da fiestra"
-
-#: ../src/dh-main.c:138
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "WIDTHxHEIGHT+XOFF+YOFF"
-
-#: ../src/dh-main.c:146
+#: ../src/dh-main.c:77
 msgid "Search for a function"
 msgstr "Buscar unha función"
 
-#: ../src/dh-main.c:155
+#: ../src/dh-main.c:86
 msgid "Quit any running Devhelp"
 msgstr "Remata calquera execución de Devhelp"
 
-#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
+#: ../src/dh-parser.c:106 ../src/dh-parser.c:187 ../src/dh-parser.c:231
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Esperábase '%s' pero obteuse '%s' na liña %d, columna %d"
 
-#: ../src/dh-parser.c:121
+#: ../src/dh-parser.c:124
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Espazo de nomes inválido '%s' na liña %d, columna %d"
 
-#: ../src/dh-parser.c:150
+#: ../src/dh-parser.c:154
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "os elementos título, nome e ligazón requírense na liña %d, columna %d"
 
-#: ../src/dh-parser.c:203
+#: ../src/dh-parser.c:208
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr "os elementos nome e ligazón requírense dentro de <sub> na liña %d, columna %d"
 
-#: ../src/dh-parser.c:251
+#: ../src/dh-parser.c:253
 #, c-format
 msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "os elementos nome e ligazón requírense dentro de <function> na liña %d, "
 "columna %d"
 
-#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
+#: ../src/dh-parser.c:365 ../src/dh-parser.c:453
 msgid "Could not create book parser"
 msgstr "Non se puido crear o analizador do libro"
 
-#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
+#: ../src/dh-parser.c:375 ../src/dh-parser.c:463
 msgid "Could not create markup parser"
 msgstr "Non se puido crear o analizador do marco"
 
-#: ../src/dh-parser.c:480
+#: ../src/dh-parser.c:510
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Non se puido descomprimir o libro '%s': %s"
 
-#: ../src/dh-search.c:418
+#: ../src/dh-parser.c:535
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp non está construido con soporte de zlib"
+
+#: ../src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Buscar:"
 
-#: ../src/dh-search.c:462
+#: ../src/dh-search.c:467
 msgid "Section"
 msgstr "Sección"
 
-#: ../src/dh-window.c:113
+#: ../src/dh-window.c:139
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: ../src/dh-window.c:114
+#: ../src/dh-window.c:140
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:115 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/dh-window.c:116
+#: ../src/dh-window.c:142
 msgid "_Help"
 msgstr "A_xuda"
 
-#: ../src/dh-window.c:303
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Non se pode establecer IU: %s"
+#. File menu
+#: ../src/dh-window.c:145
+msgid "_New Window"
+msgstr "_Nova fiestra"
 
-#: ../src/dh-window.c:363 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Contidos"
+#: ../src/dh-window.c:147
+msgid "New _Tab"
+msgstr "Nova _solapa"
 
-#: ../src/dh-window.c:374
+#: ../src/dh-window.c:164
+msgid "Browse Contents"
+msgstr "Examinar contidos"
+
+#: ../src/dh-window.c:167 ../src/dh-window.c:448
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:450
+#: ../src/dh-window.c:438 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Contidos"
+
+#: ../src/dh-window.c:603
 msgid "translator_credits"
 msgstr ""
 "Ignacio Casal Quinteiro <nacho.resa@gmail.com> \n"
 "Proxecto Trasno: http://www.trasno.net"
 
-#: ../src/dh-window.c:455
+#: ../src/dh-window.c:608
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un visor de axuda para desenroladores para Gnome 2"
+
+#: ../src/dh-window.c:938 ../src/dh-window.c:1066
+msgid "Empty Page"
+msgstr "Páxina baleira"
 
 #: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -156,50 +164,58 @@ msgid "Main window maximized state"
 msgstr "Estado maximizado da fiestra principal"
 
 #: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Seleccionar solapa, \"contido\" ou \"busca\""
+
+#: ../devhelp.schemas.in.h:8
 msgid "The X position of the main window."
 msgstr "A posición X da fiestra principal."
 
-#: ../devhelp.schemas.in.h:8
+#: ../devhelp.schemas.in.h:9
 msgid "The Y position of the main window."
 msgstr "A posición Y da fiestra principal."
 
-#: ../devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:10
 msgid "The height of the main window."
 msgstr "A altura da fiestra principal."
 
-#: ../devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:11
 msgid "The width of the index and search pane."
 msgstr "O ancho do índice e panel de busca."
 
-#: ../devhelp.schemas.in.h:11
+#: ../devhelp.schemas.in.h:12
 msgid "The width of the main window."
 msgstr "O ancho da fiestra principal."
 
-#: ../devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:13
 msgid "Use system fonts"
 msgstr "Usar fontes do sistema"
 
-#: ../devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
 msgstr "Usar a fonte predeterminada do sistema."
 
-#: ../devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:15
 msgid "Whether the main window should start maximized or not."
 msgstr "Indica se a fiestra principal debería iniciar maximizada ou non."
 
-#: ../devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:16
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Cál das solapas está seleccionada, \"contido\" ou \"busca\"."
+
+#: ../devhelp.schemas.in.h:17
 msgid "Width of the index and search pane"
 msgstr "Ancho do índice e panel de busca"
 
-#: ../devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:18
 msgid "Width of the main window"
 msgstr "Ancho da fiestra principal"
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:19
 msgid "X position of main window"
 msgstr "Posición X da fiestra principal"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:20
 msgid "Y position of main window"
 msgstr "Posición Y da fiestra principal"
 
