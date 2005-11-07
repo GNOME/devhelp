@@ -1,3 +1,8 @@
+2005-11-07  Christian Persch  <chpe@cvs.gnome.org>
+
+	* configure.in:	Allow compilation against xulrunner.
+	Patch by Robert O'Callahan <rocallahan@novell.com>.
+
 2005-10-05  Richard Hult  <richard@imendio.com>
 
 	* src/dh-book-tree.c: 
