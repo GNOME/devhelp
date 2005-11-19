@@ -1,5 +1,11 @@
 2005-11-19  Richard Hult  <richard@imendio.com>
 
+	* src/dh-parser.c: (parser_start_node_cb), (dh_parser_read_file):
+	Add ugly workaround until we have solved the version issue with
+	the old/new devhelp formats.
+
+2005-11-19  Richard Hult  <richard@imendio.com>
+
 	* src/bacon-message-connection.c: Update.
 
 	* src/dh-main.c: Use present_with_time and remove the separate

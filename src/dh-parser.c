@@ -55,6 +55,9 @@ typedef struct {
 
  	GNode               *book_tree;
 	GList              **keywords;
+
+	/* Version 2 uses <keyword> instead of <function>. */
+	gint                 version;
 } DhParser;
 
 static void     parser_start_node_cb (GMarkupParseContext  *context,
@@ -220,11 +223,24 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		parser->parent = node;
 	}
 	else if (parser->parsing_functions) {
+		gboolean     ok = FALSE;
 		const gchar *name = NULL;
 		const gchar *link = NULL;
+		
+		if (g_ascii_strcasecmp (node_name, "function") == 0) {
+			ok = TRUE;
 
-		if (g_ascii_strcasecmp (node_name, "function") != 0 &&
-		    g_ascii_strcasecmp (node_name, "keyword") != 0) {
+			if (parser->version == 2) {
+				/* Skip this keyword. */
+				return;
+			}
+		}
+		else if (g_ascii_strcasecmp (node_name, "keyword") == 0) {
+			ok = TRUE;
+			parser->version = 2;
+		}
+
+		if (!ok) {
 			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
 				     DH_ERROR,
@@ -393,6 +409,8 @@ dh_parser_read_file (const gchar  *path,
 	parser->book_tree = book_tree;
 	parser->keywords  = keywords;
 
+	parser->version = 1;
+	
 	/* Parse the string */
 	io = g_io_channel_new_file (path, "r", error);
 
@@ -427,7 +445,7 @@ dh_parser_read_file (const gchar  *path,
 		}
 	}
 
-exit:
+ exit:
 	g_markup_parse_context_free (parser->context);
 	g_free (parser->m_parser);
 	g_free (parser);
