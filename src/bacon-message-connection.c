@@ -91,7 +91,7 @@ server_cb (GIOChannel *source, GIOCondition condition, gpointer data)
 
 	offset = 0;
 	if (conn->serverfd == g_io_channel_unix_get_fd (source)) {
-		cd = accept (conn->serverfd, NULL, &alen);
+		cd = accept (conn->serverfd, NULL, (guint *)&alen);
 		conn->fd = cd;
 		setup_connection (conn);
 		return TRUE;
@@ -122,9 +122,9 @@ server_cb (GIOChannel *source, GIOCondition condition, gpointer data)
 	subs = message;
 	finished = FALSE;
 
-	while (*subs != '\0' && finished == FALSE)
+	while (finished == FALSE && *subs != '\0')
 	{
-		if (message != NULL && conn->func != NULL)
+		if (conn->func != NULL)
 			(*conn->func) (subs, conn->data);
 
 		subs += strlen (subs) + 1;
@@ -285,6 +285,7 @@ bacon_message_connection_send (BaconMessageConnection *conn,
 			       const char *message)
 {
 	g_return_if_fail (conn != NULL);
+	g_return_if_fail (message != NULL);
 
 	g_io_channel_write_chars (conn->chan, message, strlen (message),
 				  NULL, NULL);

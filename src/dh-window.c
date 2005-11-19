@@ -765,8 +765,6 @@ window_tree_link_selected_cb (GObject  *ignored,
 
 	priv = window->priv;
 
-	/* g_print ("tree link\n"); */
-
 	html = window_get_active_html (window);
 
 	/* Block so we don't try to sync the tree when we have already clicked

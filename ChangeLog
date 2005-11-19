@@ -1,3 +1,15 @@
+2005-11-19  Richard Hult  <richard@imendio.com>
+
+	* src/bacon-message-connection.c: Update.
+
+	* src/dh-main.c: Use present_with_time and remove the separate
+	raise command.
+
+	* src/dh-parser.c: (parser_start_node_cb): Parse the new keyword
+	tag.
+	
+	* src/dh-search.c: Remove old cruft.
+
 2005-11-07  Christian Persch  <chpe@cvs.gnome.org>
 
 	* configure.in:	Allow compilation against xulrunner.

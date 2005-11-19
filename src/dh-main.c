@@ -30,7 +30,6 @@
 
 #define COMMAND_QUIT   "quit"
 #define COMMAND_SEARCH "search"
-#define COMMAND_RAISE  "raise"
 
 static void
 message_received_cb (const gchar *message, DhBase *base)
@@ -48,14 +47,7 @@ message_received_cb (const gchar *message, DhBase *base)
 
 		dh_window_search (DH_WINDOW (window),
 				  message + strlen (COMMAND_SEARCH) + 1);
-	}
-	else if (strcmp (message, COMMAND_RAISE) == 0) {
-		window = dh_base_get_window_on_current_workspace (base);
-		if (!window) {
-			window = dh_base_new_window (base);
-		}
-
-		gtk_window_present (GTK_WINDOW (window));
+		gtk_window_present_with_time (GTK_WINDOW (window), GDK_CURRENT_TIME);
 	}
 }
 
@@ -115,7 +107,6 @@ main (int argc, char **argv)
 		}
 
 		gdk_notify_startup_complete ();
-		bacon_message_connection_send (message_conn, COMMAND_RAISE);
 		return 0;
 	}
 

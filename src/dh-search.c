@@ -416,12 +416,7 @@ dh_search_new (GList *keywords)
 	
 	label = gtk_label_new_with_mnemonic (_("_Search:"));
 
-	/* Try without the search label a bit. */
-	/*gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 4);*/
-
 	priv->entry = gtk_entry_new ();
-
-	/*gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->entry);*/
 
 	g_signal_connect (priv->entry, "key_press_event",
 			  G_CALLBACK (search_entry_key_press_event_cb),

@@ -223,13 +223,14 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		const gchar *name = NULL;
 		const gchar *link = NULL;
 
-		if (g_ascii_strcasecmp (node_name, "function") != 0) {
+		if (g_ascii_strcasecmp (node_name, "function") != 0 &&
+		    g_ascii_strcasecmp (node_name, "keyword") != 0) {
 			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
 				     _("Expected '%s' got '%s' at line %d, column %d"),
-				     "function", node_name, line, col);
+				     "function or keyword", node_name, line, col);
 			return;
 		}
 
