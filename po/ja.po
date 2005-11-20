@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-09 13:35+0900\n"
-"PO-Revision-Date: 2005-05-09 13:34+0900\n"
+"POT-Creation-Date: 2005-11-21 01:08+0900\n"
+"PO-Revision-Date: 2005-11-21 01:07+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "開発者向けのヘルプ・プログラムです"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:447 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:606 ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -26,62 +26,58 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp ブック"
 
-#: ../src/dh-main.c:137
-msgid "Specify the size and location of the window"
-msgstr "表示するウィンドウのサイズと位置を指定する"
-
-#: ../src/dh-main.c:138
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "幅x高さ+X座標+Y座標"
-
-#: ../src/dh-main.c:146
+#: ../src/dh-main.c:69
 msgid "Search for a function"
 msgstr "関数の検索"
 
-#: ../src/dh-main.c:155
+#: ../src/dh-main.c:78
 msgid "Quit any running Devhelp"
 msgstr "Devhelp を終了します"
 
-#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
+#: ../src/dh-parser.c:109 ../src/dh-parser.c:190 ../src/dh-parser.c:248
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "'%s' を期待しましたが '%s' を受け取りました (%d 行 %d 桁)"
 
-#: ../src/dh-parser.c:121
+#: ../src/dh-parser.c:127
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "名前空間 '%s' が正しくありません (%d 行 %d 桁)"
 
-#: ../src/dh-parser.c:150
+#: ../src/dh-parser.c:157
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "タイトル、名前とリンク要素が %d 行 %d 桁で要求されました"
 
-#: ../src/dh-parser.c:203
+#: ../src/dh-parser.c:211
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr "名前とリンク要素が <sub> の中の %d 行 %d 桁で要求されました"
 
-#: ../src/dh-parser.c:251
+#: ../src/dh-parser.c:270
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr "名前とリンク要素が <function> の中の %d 行 %d 桁で要求されました"
 
-#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
+#: ../src/dh-parser.c:382 ../src/dh-parser.c:472
 msgid "Could not create book parser"
 msgstr "ブック・パーサを生成できませんでした"
 
-#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
+#: ../src/dh-parser.c:392 ../src/dh-parser.c:482
 msgid "Could not create markup parser"
 msgstr "マークアップ・パーサを生成できませんでした"
 
-#: ../src/dh-parser.c:480
+#: ../src/dh-parser.c:529
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "ブック '%s': %s を展開できません"
 
-#: ../src/dh-search.c:418
+#: ../src/dh-parser.c:554
+msgid "Devhelp is not built with zlib support"
+msgstr "この Devhelp は zlib をサポートしていません"
+
+#: ../src/dh-search.c:417
 msgid "_Search:"
 msgstr "検索(_S):"
 
@@ -89,44 +85,56 @@ msgstr "検索(_S):"
 msgid "Section"
 msgstr "セクション"
 
-#: ../src/dh-window.c:110
+#: ../src/dh-window.c:139
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../src/dh-window.c:111
+#: ../src/dh-window.c:140
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:10
 msgid "_Go"
 msgstr "移動(_G)"
 
-#: ../src/dh-window.c:113
+#: ../src/dh-window.c:142
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../src/dh-window.c:297
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "ユーザ・インタフェースをセットできません: %s"
+#. File menu
+#: ../src/dh-window.c:145
+msgid "_New Window"
+msgstr "新しいウィンドウ(_N)"
 
-#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "目次"
+#: ../src/dh-window.c:147
+msgid "New _Tab"
+msgstr "新しいタブ(_T)"
 
-#: ../src/dh-window.c:368
+#: ../src/dh-window.c:164
+msgid "Browse Contents"
+msgstr "目次の参照"
+
+#: ../src/dh-window.c:167 ../src/dh-window.c:448
 msgid "Search"
 msgstr "検索"
 
-#: ../src/dh-window.c:444
+#: ../src/dh-window.c:438 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "目次"
+
+#: ../src/dh-window.c:603
 msgid "translator_credits"
 msgstr ""
 "相花 毅 <aihana@gnome.gr.jp>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp>"
 
-#: ../src/dh-window.c:449
+#: ../src/dh-window.c:608
 msgid "A developer's help browser for GNOME 2"
 msgstr "GNOME 2 対応の開発者向けのヘルプブラウザです。"
+
+#: ../src/dh-window.c:936 ../src/dh-window.c:1064
+msgid "Empty Page"
+msgstr "空のページ"
 
 #: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -149,12 +157,12 @@ msgid "Height of main window"
 msgstr "メイン・ウィンドウの高さ"
 
 #: ../devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr "目次ウィンドウの位置"
-
-#: ../devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "メイン・ウィンドウの最大化"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "選択したタブ (\"content\" または \"search\")"
 
 #: ../devhelp.schemas.in.h:8
 msgid "The X position of the main window."
@@ -169,8 +177,8 @@ msgid "The height of the main window."
 msgstr "メイン・ウィンドウの高さです。"
 
 #: ../devhelp.schemas.in.h:11
-msgid "The location of the paned separator."
-msgstr "目次ウィンドウの位置です。"
+msgid "The width of the index and search pane."
+msgstr "目次と検索ウィンドウの幅です。"
 
 #: ../devhelp.schemas.in.h:12
 msgid "The width of the main window."
@@ -189,14 +197,22 @@ msgid "Whether the main window should start maximized or not."
 msgstr "メイン・ウィンドウを最大サイズで起動するかどうかです。"
 
 #: ../devhelp.schemas.in.h:16
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "選択したタブの種類 (\"content\" または \"search\") です。"
+
+#: ../devhelp.schemas.in.h:17
+msgid "Width of the index and search pane"
+msgstr "目次と検索ウィンドウの幅"
+
+#: ../devhelp.schemas.in.h:18
 msgid "Width of the main window"
 msgstr "メイン・ウィンドウの幅"
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:19
 msgid "X position of main window"
 msgstr "メイン・ウィンドウの位置 X"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:20
 msgid "Y position of main window"
 msgstr "メイン・ウィンドウの位置 Y"
 
