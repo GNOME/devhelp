@@ -22,6 +22,7 @@
 #include <config.h>
 #include <string.h>
 #include <glib/gi18n.h>
+#include <gdk/gdkx.h>
 #include <gtk/gtkmain.h>
 
 #include "bacon-message-connection.h"
@@ -30,25 +31,38 @@
 
 #define COMMAND_QUIT   "quit"
 #define COMMAND_SEARCH "search"
+#define COMMAND_RAISE  "raise"
 
 static void
 message_received_cb (const gchar *message, DhBase *base)
 {
 	GtkWidget *window;
-
+	guint32    timestamp;
+		
 	if (strcmp (message, COMMAND_QUIT) == 0) {
 		gtk_main_quit ();
+		return;
 	}
-	else if (strncmp (message, COMMAND_SEARCH, strlen (COMMAND_SEARCH)) == 0) {
-		window = dh_base_get_window_on_current_workspace (base);
-		if (!window) {
-			window = dh_base_new_window (base);
-		}
 
+	/* Note: This is a bit strange. It seems like we need both the
+	 * gtk_window_present() andgtk_window_present_with_time() to make all
+	 * the cases working.
+	 */
+	
+	window = dh_base_get_window_on_current_workspace (base);
+	if (!window) {
+		window = dh_base_new_window (base);
+		gtk_window_present (GTK_WINDOW (window));
+	}
+	
+	if (strncmp (message, COMMAND_SEARCH, strlen (COMMAND_SEARCH)) == 0) {
+		
 		dh_window_search (DH_WINDOW (window),
 				  message + strlen (COMMAND_SEARCH) + 1);
-		gtk_window_present_with_time (GTK_WINDOW (window), GDK_CURRENT_TIME);
-	}
+	}	
+	
+	timestamp = gdk_x11_get_server_time (window->window);
+	gtk_window_present_with_time (GTK_WINDOW (window), timestamp);
 }
 
 int
@@ -100,10 +114,14 @@ main (int argc, char **argv)
 		if (option_search) {
 			gchar *command;
 
-			command = g_strdup_printf ("%s %s", COMMAND_SEARCH,
+			command = g_strdup_printf ("%s %s",
+						   COMMAND_SEARCH,
 						   option_search);
+
 			bacon_message_connection_send (message_conn, command);
 			g_free (command);
+		} else {
+			bacon_message_connection_send (message_conn, COMMAND_RAISE);
 		}
 
 		gdk_notify_startup_complete ();
