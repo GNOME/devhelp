@@ -237,9 +237,18 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		}
 		else if (g_ascii_strcasecmp (node_name, "keyword") == 0) {
 			ok = TRUE;
-			parser->version = 2;
-		}
 
+			/* Note: We have this hack since there are released
+			 * tarballs out there of GTK+ etc that have been built
+			 * with a non-released version of gtk-doc that didn't
+			 * have the proper versioning scheme. So when we find
+			 * this new tag, we force the version to the newer one.
+			 */
+			if (parser->version < 2) {
+				parser->version = 2;
+			}
+		}
+		
 		if (!ok) {
 			g_markup_parse_context_get_position (context, &line, &col);
 			g_set_error (error,
@@ -383,6 +392,12 @@ dh_parser_read_file (const gchar  *path,
 		return FALSE;
 	}
 
+	if (g_str_has_suffix (path, ".devhelp2")) {
+		parser->version = 2;
+	} else {
+		parser->version = 1;
+	}
+
 	parser->m_parser = g_new0 (GMarkupParser, 1);
 	if (!parser->m_parser) {
 		g_free (parser);
@@ -409,8 +424,6 @@ dh_parser_read_file (const gchar  *path,
 	parser->book_tree = book_tree;
 	parser->keywords  = keywords;
 
-	parser->version = 1;
-	
 	/* Parse the string */
 	io = g_io_channel_new_file (path, "r", error);
 
@@ -483,6 +496,12 @@ parser_read_gz_file (const gchar  *path,
 		return FALSE;
 	}
 
+	if (g_str_has_suffix (path, ".devhelp2")) {
+		parser->version = 2;
+	} else {
+		parser->version = 1;
+	}
+	
 	parser->m_parser->start_element = parser_start_node_cb;
 	parser->m_parser->end_element   = parser_end_node_cb;
 	parser->m_parser->error         = parser_error_cb;

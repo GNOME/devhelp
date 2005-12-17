@@ -234,6 +234,27 @@ base_init_books (DhBase *base)
 	base_sort_books (base);
 }
 
+static gchar *
+base_get_book_path (DhBase      *base,
+		    const gchar *base_path,
+		    const gchar *name,
+		    const gchar *suffix)
+{
+	gchar *tmp;
+	gchar *book_path;
+	
+	tmp = g_build_filename (base_path, name, name, NULL);
+	book_path = g_strconcat (tmp, ".", suffix, NULL);
+	g_free (tmp);
+
+	if (!g_file_test (book_path, G_FILE_TEST_EXISTS)) {
+		g_free (book_path);
+		return NULL;
+	}
+
+	return book_path;
+}	
+
 static void
 base_add_books (DhBase *base, const gchar *path)
 {
@@ -251,7 +272,6 @@ base_add_books (DhBase *base, const gchar *path)
 	}
 
 	while ((name = g_dir_read_name (dir)) != NULL) {
-		gchar  *tmp;
 		gchar  *book_path;
 		GError *error = NULL;
 
@@ -259,17 +279,18 @@ base_add_books (DhBase *base, const gchar *path)
 			continue;
 		}
 
-		tmp = g_build_filename (path, name, name, NULL);
-		book_path = g_strconcat (tmp, ".devhelp", NULL);
-		if (!g_file_test (book_path, G_FILE_TEST_EXISTS)) {
-			g_free (book_path);
-			book_path = g_strconcat (tmp, ".devhelp.gz", NULL);
+		book_path = base_get_book_path (base, path, name, "devhelp2");
+		if (!book_path) {
+			book_path = base_get_book_path (base, path, name, "devhelp2.gz");
 		}
-
-		g_free (tmp);
-
-		if (!g_file_test (book_path, G_FILE_TEST_EXISTS)) {
-			g_free (book_path);
+		if (!book_path) {
+			book_path = base_get_book_path (base, path, name, "devhelp");
+		}
+		if (!book_path) {
+			book_path = base_get_book_path (base, path, name, "devhelp.gz");
+		}
+		
+		if (!book_path) {
 			continue;
 		}
 

@@ -1,3 +1,10 @@
+2005-12-17  Richard Hult  <richard@imendio.com>
+
+	* src/dh-base.c: (base_get_book_path), (base_add_books): 
+	* src/dh-parser.c: (parser_start_node_cb), (dh_parser_read_file),
+	(parser_read_gz_file): Add the new suffix for the new format and
+	handle that.
+
 2005-11-28  Richard Hult  <richard@imendio.com>
 
 	* src/dh-main.c: (message_received_cb), (main): Make both new and
