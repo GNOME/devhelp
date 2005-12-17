@@ -1,5 +1,7 @@
 SUBDIRS = dtd po src ui misc contrib
 
+ACLOCAL_AMFLAGS = -I m4
+
 @INTLTOOL_DESKTOP_RULE@
 
 DESKTOP_IN_FILES = devhelp.desktop.in

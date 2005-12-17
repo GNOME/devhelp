@@ -1,7 +1,9 @@
-AC_INIT(src/Makefile.am)
-
-AM_INIT_AUTOMAKE(devhelp, 0.10)
-AM_CONFIG_HEADER(config.h)
+AC_INIT([DevHelp],[0.11],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+  
+AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_SRCDIR([src/dh-window.c])
 
 AM_SANITY_CHECK
 AM_MAINTAINER_MODE
@@ -36,105 +38,38 @@ dnl *******
 dnl Mozilla
 dnl *******
 
-AC_MSG_CHECKING([which gecko to use])
+GECKO_INIT([MOZILLA])
 
-AC_ARG_WITH([mozilla],
-	AS_HELP_STRING([--with-mozilla@<:@=mozilla|firefox|xulrunner|thunderbird@:>@],
-		       [Which gecko engine to use (default: autodetect)]))
+AC_SUBST([MOZILLA])
+AC_SUBST([MOZILLA_FLAVOUR])
+AC_SUBST([MOZILLA_INCLUDE_ROOT])
+AC_SUBST([MOZILLA_HOME])
+AC_SUBST([MOZILLA_PREFIX])
 
-GECKOS="firefox mozilla-firefox seamonkey mozilla xulrunner thunderbird mozilla-thunderbird"
-gecko=$with_mozilla
-
-if test "x$gecko" = "x"; then
-	dnl Autodetect gecko
-	for g in $GECKOS; do
-		if $PKG_CONFIG --exists $g-xpcom; then
-			gecko=$g
-			break;
-		fi
-	done
-fi
-
-if test "x$gecko" = "x"; then
-	AC_MSG_ERROR([No gecko found])
-elif ! ( echo "$GECKOS" | egrep "(^| )$gecko(\$| )" > /dev/null); then
-	AC_MSG_ERROR([Unknown gecko "$gecko" specified])
-fi
-
-AC_MSG_RESULT([$gecko])
-
-case "$gecko" in
-mozilla) min_version=1.7 flavour=mozilla ;;
-seamonkey) min_version=1.0 flavour=mozilla ;;
-*firefox) min_version=1.0 flavour=toolkit ;;
-*thunderbird) min_version=1.0 flavour=toolkit ;;
-xulrunner) min_version=1.8 flavour=toolkit ;;
+case "$MOZILLA" in
+mozilla) gecko_min_version=1.7 ;;
+seamonkey) gecko_min_version=1.0 ;;
+*firefox) gecko_min_version=1.0 ;;
+*thunderbird) gecko_min_version=1.0 ;;
+xulrunner) gecko_min_version=1.8 ;;
 esac
 
-MOZILLA=$gecko
-AC_SUBST([MOZILLA])
-
-MOZILLA_FLAVOUR=$flavour
-AC_SUBST([MOZILLA_FLAVOUR])
-
-PKG_CHECK_MODULES(MOZILLA_COMPONENT, $MOZILLA-gtkmozembed >= $min_version $MOZILLA-xpcom >= $min_version)
-AC_SUBST(MOZILLA_COMPONENT_CFLAGS)
-AC_SUBST(MOZILLA_COMPONENT_LIBS)
-
-MOZILLA_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir $MOZILLA-gtkmozembed`"
-AC_SUBST(MOZILLA_INCLUDE_ROOT)
-
-MOZILLA_HOME="`$PKG_CONFIG --variable=libdir $MOZILLA-gtkmozembed`"
-AC_SUBST(MOZILLA_HOME)
-
-MOZILLA_PREFIX="`$PKG_CONFIG --variable=prefix $MOZILLA-gtkmozembed`"
-AC_SUBST(MOZILLA_PREFIX)
-
-dnl *************************************************************************
-dnl This is from Mozilla's configure.in. They set almost all the config stuff
-dnl they need in mozilla-config.h Except for this compiler flag, which can't
-dnl go in mozilla-config.h So we check the flag too and now we can include
-dnl mozilla-config.h without breaking epiphany.
-dnl This is really gcc-only
-dnl Do this test using CXX only since some versions of gcc
-dnl 2.95-2.97 have a signed wchar_t in c++ only and some versions
-dnl only have short-wchar support for c++.
-AC_LANG_PUSH(C++)
-_SAVE_CXXFLAGS=$CXXFLAGS
-_SAVE_AM_CXXFLAGS=$AM_CXXFLAGS
-AM_CXXFLAGS="$AM_CXXFLAGS -fshort-wchar"
-CXXFLAGS="$CXXFLAGS $AM_CXXFLAGS"
-
-AC_CACHE_CHECK(for compiler -fshort-wchar option,
-    ac_cv_have_usable_wchar_option,
-    [AC_TRY_RUN([#include <stddef.h>
-                 int main () {
-                   return (sizeof(wchar_t) != 2) ||
-                          (wchar_t)-1 < (wchar_t) 0 ; } ],
-                ac_cv_have_usable_wchar_option="yes",
-                ac_cv_have_usable_wchar_option="no",
-                ac_cv_have_usable_wchar_option="maybe")])
-
-if test "$ac_cv_have_usable_wchar_option" != "yes"; then
-    AM_CXXFLAGS=$_SAVE_AM_CXXFLAGS
-fi
+PKG_CHECK_MODULES([MOZILLA_COMPONENT],[$MOZILLA-gtkmozembed >= $gecko_min_version $MOZILLA-xpcom >= $gecko_min_version])
+AC_SUBST([MOZILLA_COMPONENT_CFLAGS])
+AC_SUBST([MOZILLA_COMPONENT_LIBS])
 
 dnl **********************************
 dnl now tests for mozilla API variance
 dnl **********************************
 
-dnl FIXME find a m4/autoconf guru who can distill this into a nice macro
-
-CXXFLAGS="$_SAVE_CXXFLAGS $AM_CXXFLAGS -I$MOZILLA_INCLUDE_ROOT `pkg-config --cflags $MOZILLA-xpcom`"
-
 dnl Firefox doesn't have this API (?)
 
 AC_MSG_CHECKING([for nsIXULChromeRegistry API])
 
-AC_COMPILE_IFELSE(
+GECKO_COMPILE_IFELSE([content],
 	[AC_LANG_PROGRAM(
 		[[#include <nsEmbedString.h>
-		  #include <content/nsIChromeRegistry.h>]],
+		  #include <nsIChromeRegistry.h>]],
 		[[nsIXULChromeRegistry *p;
 		  p->SelectSkin (nsEmbedCString(), PR_FALSE);]]
 	)],
@@ -152,15 +87,16 @@ MOZILLA_WARN_CXXFLAGS="-Wall -Wconversion -Wpointer-arith -Wcast-align -Woverloa
 AC_SUBST(MOZILLA_WARN_CXXFLAGS)
 
 dnl Checks for zlib library.
-_cppflags="${CPPFLAGS}"
-_ldflags="${LDFLAGS}"
+AC_LANG_PUSH([C])
+_SAVE_CPPFLAGS="$CPPFLAGS"
+_SAVE_LDFLAGS="$LDFLAGS"
  
 AC_ARG_WITH(zlib,
 [  --with-zlib[=DIR]       use libz in DIR],[
         if test "$withval" != "no" -a "$withval" != "yes"; then
                 Z_DIR=$withval
-                CPPFLAGS="${CPPFLAGS} -I$withval/include"
-                LDFLAGS="${LDFLAGS} -L$withval/lib"
+                CPPFLAGS="$CPPFLAGS -I$withval/include"
+                LDFLAGS="$LDFLAGS -L$withval/lib"
         fi
 ])
 if test "$with_zlib" = "no"; then
@@ -185,8 +121,9 @@ fi
 AC_SUBST(Z_CFLAGS)
 AC_SUBST(Z_LIBS)
 
-CPPFLAGS=${_cppflags}
-LDFLAGS=${_ldflags}
+CPPFLAGS="$_SAVE_CPPFLAGS"
+LDFLAGS="$_SAVE_LDFLAGS"
+AC_LANG_POP([C])
 
 ALL_LINGUAS="am az be bg ca cs da de el en_CA en_GB es fi fr gl gu he hi hr hu is it ja kn ko lv mk ml ms nb ne nl no pa pl pt pt_BR ru rw sk sq sr sr@Latn sv tr uk vi zh_CN zh_TW"
 
