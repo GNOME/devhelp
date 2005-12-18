@@ -1,5 +1,11 @@
 2005-12-17  Richard Hult  <richard@imendio.com>
 
+	* Release 0.11.
+
+	* README: Bring a bit more up to date.
+
+2005-12-17  Richard Hult  <richard@imendio.com>
+
 	* NEWS: Prepare for a release.
 
 	* Makefile.am:

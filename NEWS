@@ -1,17 +1,16 @@
 Devhelp 0.11:
 -------------
-* Parse the new gtk-doc format
-* Reuse devhelp windows from the current workspace only
-* Sync the contents tree with the actual selection
-* Use an icon in the about box (Pedro Villavicencio)
-* Smart case searching (Ruben Vermeersch)
 * Tab support (based on patch from Brent Smith)
 * Support for multiple windows (based on patch from Nirmal Kumar)
-* Use book title + html title as window title (Richard, Tommi Komulainen)
+* Parse the new gtk-doc format (Richard)
+* Reuse devhelp windows from the current workspace only (Richard)
+* Sync the contents tree with the actual selection (Richard)
+* Smart case searching (Ruben Vermeersch)
+* Use book title + html title as window title (Tommi Komulainen)
 * Improve build against various mozilla-derivates (Peter Volkov,
   Christian Persch, Robert O'Callahan)
-* General UI tweaks
-* Misc fixes: (Mikael, Paolo Borell, Christian Persch)
+* General UI tweaks and bug fixes (Richard, Mikael, Christian, Paolo
+  Borelli, Pedro Villavicencio)
 * New and updated translations: bg, cs, de, en_CA, es, fi, gl, hu, it,
   ja, nb, ne, nl, no, sk, sv, vi, zh_TW
 

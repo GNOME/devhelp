@@ -1,51 +1,50 @@
-README for DevHelp.
+Devhelp information
+===================
 
-The following packages are required to compile DevHelp:
+The following packages are required to compile Devhelp:
 
-GTK+ 2.2.0 (or greater)
-gnome-vfs 2.0 (or greater)
-libgnomeui 2.2.0 (or greater)
+gtk+ 2.6.0 (or greater)
+libglade 2.4.0 (or greater)
+libwnck 2.10.0 (or greater)
+gconf 2.6.0 (or greater)
 
-Also either gtkhtml2 (2.1.2 or greater) or a recent Mozilla (built
-with GTK+ 2). The default HTML viewer component in gtkhtml, to use
-Mozilla pass --with-html-widget=mozilla to configure.
+Also required is a version of the Gecko HTML engine, either supplied
+by mozilla, firefox, thunderbird or xulrunner.
 
-Book management has been totally rewritten since DevHelp 0.4.  From the user's
-point of view, the Add Book menu item has been removed as it is not needed any
-more.
-
-DevHelp's primary goal is to be an API documentation browser for GNOME.  When
-you build (or install) a GNOME library, it will build an API reference for you
-and install it into $PREFIX/gtk-doc/html/$PACKAGE.  Along with the HTML files, a
-.devhelp file is also generated automatically -- no post-processing has to be
-done.  Thus DevHelp can simply scan that folder for .devhelp files and display
-them.  For other documentation, there is also $PREFIX/share/devhelp/books and
-$HOME/.devhelp/books which are scanned. These locations are ideal for system-
-and user-wide non-GTK+ books.
+Devhelp's primary goal is to be an API documentation browser for
+GNOME.  When you build (or install) a GNOME library, it will build an
+API reference for you and install it into
+$PREFIX/gtk-doc/html/$PACKAGE.  Along with the HTML files, a .devhelp
+and/or .devhelp2 file is also generated automatically. Thus Devhelp
+can simply scan that folder for .devhelp files and display them. For
+other documentation, there is also $PREFIX/share/devhelp/books and
+$HOME/.devhelp/books which are scanned.  These locations are useful
+for system- and user-wide non-GTK+ books.
 
 The complete list of locations searched for books is:
 
 $DEVHELP_SEARCH_PATH
-   ex $DEVHELP_SEARCH_PATH/glib-2.0/glib-2.0.devhelp
+   e.g. $DEVHELP_SEARCH_PATH/glib-2.0/glib-2.0.devhelp
 
 $GNOME2_PATH:
-   ex $GNOME2_PATH/share/devhelp/books/glib-2.0/glib-2.0.devhelp
+   e.g. $GNOME2_PATH/share/devhelp/books/glib-2.0/glib-2.0.devhelp
 
 $PREFIX/share/gtk-doc/html ($PREFIX=where you install devhelp),
-   ex /opt/gnome2/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp
+   e.g. /opt/gnome2/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp
 
 /usr/share/gtk-doc/html
-   ex /usr/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp
+   e.g. /usr/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp
 
 $PREFIX/share/devhelp/books
-   ex /opt/gnome2/share/devhelp/books/glib-2.0/glib-2.0.devhelp
+   e.g. /opt/gnome2/share/devhelp/books/glib-2.0/glib-2.0.devhelp
 
 $HOME/.devhelp/books
-   ex /home/ross/.devhelp/books/glib-2.0/glib-2.0.devhelp
+   e.g. /home/ross/.devhelp/books/glib-2.0/glib-2.0.devhelp
 
-Note that the name of the directory the .devhelp file is in, and the name of the
-.devhelp file (minus the extension) must match.  There is a DTD available in
-dtd/devhelp-1.dtd which can be used to validate books.  Note that there have
-been several minor changes to the format which break the older books: the base
-attribute is actually respected, the only valid child of <chapters> is <sub>,
-and the author attribute has been removed.
+Note that the name of the directory the .devhelp file is in, and the
+name of the .devhelp file (minus the extension) must match. There is a
+DTD available in dtd/devhelp-1.dtd which can be used to validate
+books. Note that there have been several minor changes to the format
+which break the older books: the base attribute is actually respected,
+the only valid child of <chapters> is <sub>, and the author attribute
+has been removed.
