@@ -37,7 +37,7 @@
 #include "dh-preferences.h"
 #include "dh-base.h"
 
-#define d(x)
+#define d(x) 
 
 struct _DhBasePriv {
 	GSList     *windows;
