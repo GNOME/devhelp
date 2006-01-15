@@ -1,3 +1,10 @@
+2006-01-15 Christian Persch <chpe@cvs.gnome.org>
+ 
+	* m4/gecko.m4:
+
+	Updated from Epiphany: correct gecko version check
+	if mozilla-config.h includes other files (multi-arch).
+
 2006-01-02  Mikael Hallendal  <micke@imendio.com>
 
 	* MAINTAINERS: Added
