@@ -23,12 +23,12 @@ AM_GCONF_SOURCE_2
 IMENDIO_COMPILE_WARNINGS
 
 PKG_CHECK_MODULES(DEVHELP, [
-	gtk+-2.0 >= 2.6.0
+	gtk+-2.0 >= 2.8.0
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-        gthread-2.0 >= 2.6.0
-        gtk+-2.0 >= 2.6.0
+        gthread-2.0 >= 2.8.0
+        gtk+-2.0 >= 2.8.0
 	libglade-2.0 >= 2.4.0
 	libwnck-1.0 >= 2.10.0
 	gconf-2.0 >= 2.6.0

@@ -1,5 +1,8 @@
 2006-02-17  Richard Hult  <richard@imendio.com>
 
+	* configure.in: Update GTK+/GLib requirements to 2.8 since that's
+	what we need. Fixes bug #326071.
+
 	* src/dh-main.c (main): Check if the options were correct. Fixes
 	bug #328948.
 
