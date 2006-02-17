@@ -73,6 +73,7 @@ main (int argc, char **argv)
 	BaconMessageConnection *message_conn;
 	DhBase                 *base;
 	GtkWidget              *window;
+	GError                 *error = NULL;
 	GOptionEntry            options[] = {
 		{
 			"search",
@@ -97,11 +98,15 @@ main (int argc, char **argv)
 		}
 	};
 
-	bindtextdomain (PACKAGE, LOCALEDIR);
+	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (PACKAGE);
 
-	gtk_init_with_args (&argc, &argv, NULL, options, NULL, NULL);
+	if (!gtk_init_with_args (&argc, &argv, NULL, options, GETTEXT_PACKAGE, &error)) {
+		g_printerr ("%s\n", error->message);
+		return 1;
+	}
+
 	g_set_application_name ("Devhelp");
 
 	message_conn = bacon_message_connection_new ("Devhelp");

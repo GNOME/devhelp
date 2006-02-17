@@ -100,7 +100,7 @@ base_init (DhBase *base)
 	/* For some reason, libwnck doesn't seem to update its list of
 	 * workspaces etc if we don't do this.
 	 */
-	n_screens = gdk_display_get_n_screens (gdk_display_get_default());
+	n_screens = gdk_display_get_n_screens (gdk_display_get_default ());
 	for (i = 0; i < n_screens; i++) {
 		WnckScreen *screen;
 
