@@ -1,3 +1,7 @@
+2006-02-18  Christian Persch  <chpe@cvs.gnome.org>
+
+	* ui/devhelp.glade: Adjust spacings to be HIG compliant.
+
 2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
 
 	* ui/COPYING: Removed.  The copying information in in the SVG
