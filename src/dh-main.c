@@ -107,7 +107,8 @@ main (int argc, char **argv)
 		return 1;
 	}
 
-	g_set_application_name ("Devhelp");
+	g_set_application_name (_("Devhelp"));
+	gtk_window_set_default_icon_name ("devhelp");
 
 	message_conn = bacon_message_connection_new ("Devhelp");
 	if (!bacon_message_connection_get_is_server (message_conn)) {

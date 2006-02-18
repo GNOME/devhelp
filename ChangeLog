@@ -1,5 +1,24 @@
 2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
 
+	* src/dh-main.c (main): Pass gettextized string to
+	g_set_application_name, as per glib docs recommendation.
+
+	* src/dh-main.c (main): Set default icon name to devhelp.
+
+	* src/dh-window.c (dh_window_new): Set window icon name
+	to devhelp (and no icon file tweaking at all.)
+
+	* ui/Makefile.am: Install PNG and SVG icons in the themeable
+	locations.  Call gtk-update-icon-cache.  Distribute ui/COPYING.
+	Fixes bug #330851.
+
+	* ui/devhelp.svg, ui/devhelp.png: Shiny new single red book icon
+	from Marcus Leyman. Fixes bug #144859.
+
+	* ui/COPYING: Copying infor for the new icon.
+
+2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
+
 	* src/dh-base.c (base_init_books): Add books installed into user and
 	system data dirs. Patch from Antoine Dopffer. Fixes bug #328668.
 

@@ -1087,7 +1087,6 @@ dh_window_new (DhBase *base)
 {
         DhWindow     *window;
         DhWindowPriv *priv;
-	GdkPixbuf    *icon;
 
         window = g_object_new (DH_TYPE_WINDOW, NULL);
         priv = window->priv;
@@ -1102,12 +1101,7 @@ dh_window_new (DhBase *base)
 	window_populate (window);
 	window_restore_state (window);
 
-	icon = gdk_pixbuf_new_from_file (DATA_DIR "/pixmaps/devhelp.png",
-					 NULL);
-	if (icon) {
-		gtk_window_set_icon (GTK_WINDOW (window), icon);
-		g_object_unref (icon);
-	}
+	gtk_window_set_icon_name (GTK_WINDOW (window), "devhelp");
 
 	return GTK_WIDGET (window);
 }
