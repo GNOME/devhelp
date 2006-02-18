@@ -1,5 +1,13 @@
 2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
 
+	* ui/COPYING: Removed.  The copying information in in the SVG
+	itself now, as well as the original author.
+
+	* ui/Makefile.am: Adapt to above.  Correct installation path for
+	SVG icon.
+
+2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
+
 	* ui/Makefile.am: Pass -t and the target directory to
 	gtk-update-icon-cache.
 

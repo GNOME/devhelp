@@ -6,8 +6,7 @@ image_DATA = 		\
 
 appicondir = $(datadir)/icons/hicolor/48x48/apps
 appicon_DATA = devhelp.png
-
-svgicondir = $(datadir)/icons/hicolor/scalable/48x48/apps
+svgicondir = $(datadir)/icons/hicolor/scalable/apps
 svgicon_DATA = devhelp.svg
 
 install-data-hook:
@@ -24,5 +23,4 @@ glade_DATA =                            \
 EXTRA_DIST = $(image_DATA) 		\
 	     $(appicon_DATA)		\
 	     $(ui_DATA)                 \
-	     $(glade_DATA)		\
-	     COPYING
+	     $(glade_DATA)
