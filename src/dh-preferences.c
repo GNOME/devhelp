@@ -271,7 +271,7 @@ dh_preferences_init (void)
 
 	prefs = g_new0 (DhPreferences, 1);
 	
-	gui = dh_glade_get_file (GLADEDIR "/devhelp.glade",
+	gui = dh_glade_get_file (SHAREDIR "/devhelp.glade",
 				 "preferences_dialog",
 				 NULL,
 				 "preferences_dialog", &prefs->dialog,

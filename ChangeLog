@@ -1,5 +1,9 @@
 2006-02-18  Christian Persch  <chpe@cvs.gnome.org>
 
+	* src/dh-preferences.c: (dh_preferences_init): Use SHAREDIR here too.
+
+2006-02-18  Christian Persch  <chpe@cvs.gnome.org>
+
 	Open external links in the web browser, not in devhelp. Bug #329928,
 	also fixes bug #324471.
 
