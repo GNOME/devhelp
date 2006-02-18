@@ -1,5 +1,10 @@
 2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
 
+	* ui/Makefile.am: Pass -t and the target directory to
+	gtk-update-icon-cache.
+
+2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
+
 	* src/dh-main.c (main): Pass gettextized string to
 	g_set_application_name, as per glib docs recommendation.
 

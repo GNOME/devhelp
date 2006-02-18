@@ -10,6 +10,9 @@ appicon_DATA = devhelp.png
 svgicondir = $(datadir)/icons/hicolor/scalable/48x48/apps
 svgicon_DATA = devhelp.svg
 
+install-data-hook:
+	gtk-update-icon-cache -t $(datadir)/icons/hicolor || :
+
 uidir = $(datadir)/devhelp/ui
 ui_DATA = 				\
 	window.ui
@@ -23,6 +26,3 @@ EXTRA_DIST = $(image_DATA) 		\
 	     $(ui_DATA)                 \
 	     $(glade_DATA)		\
 	     COPYING
-
-install-data-hook:
-	gtk-update-icon-cache || :
