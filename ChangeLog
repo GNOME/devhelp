@@ -1,3 +1,8 @@
+2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
+
+	* devhelp.desktop.in.in: Categorize as GTK too, and add MimeType.
+	Patch from Stephane LOEUILLET. Fixes bug #328030.
+
 2006-02-17  Richard Hult  <richard@imendio.com>
 
 	* configure.in: Update GTK+/GLib requirements to 2.8 since that's
@@ -12,7 +17,7 @@
 	* src/bacon-message-connection.h: Update from bacon.
 
 2006-01-15 Christian Persch <chpe@cvs.gnome.org>
- 
+
 	* m4/gecko.m4:
 
 	Updated from Epiphany: correct gecko version check
