@@ -10,7 +10,7 @@ svgicondir = $(datadir)/icons/hicolor/scalable/apps
 svgicon_DATA = devhelp.svg
 
 install-data-hook:
-	gtk-update-icon-cache -t $(datadir)/icons/hicolor || :
+	gtk-update-icon-cache -f -t $(datadir)/icons/hicolor || :
 
 uidir = $(datadir)/devhelp/ui
 ui_DATA = 				\
