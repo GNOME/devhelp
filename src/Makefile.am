@@ -1,12 +1,10 @@
 DEFINES = 						\
 	-DLOCALEDIR=\""$(datadir)/locale"\" 	  	\
-	-DDATA_DIR=\"$(datadir)\"			\
 	-DPREFIX="\"$(prefix)"\"		 	\
 	-DSYSCONFDIR=\""$(sysconfdir)"\"                \
 	-DDATADIR=\""$(datadir)"\"                      \
 	-DLIBDIR=\""$(libdir)"\"			\
-	-DDTD_DIR="\"$(datadir)/devhelp/dtd"\"		\
-	-DGLADEDIR=\"$(datadir)/devhelp\"		\
+	-DSHAREDIR=\""$(pkgdatadir)"\"			\
 	-DG_LOG_DOMAIN=\"Devhelp\"
 
 bin_PROGRAMS = devhelp
@@ -128,12 +126,33 @@ dh-marshal.c: dh-marshal.list
 
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
+default_prefs_in_FILES = \
+	default-prefs-common.js         \
+	default-prefs-mozilla.js        \
+	default-prefs-toolkit.js        \
+	default-prefs-gecko-1-8.js
+
+default_prefs_files = \
+	default-prefs-common.js                 \
+	default-prefs-$(MOZILLA_FLAVOUR).js
+
+if HAVE_GECKO_1_8
+default_prefs_files += default-prefs-gecko-1-8.js
+endif
+
+default-prefs.js: $(default_prefs_files)
+	cat $^ > $@
+
+default_prefsdir = $(pkgdatadir)
+default_prefs_DATA = default-prefs.js
+
 BUILT_SOURCES =						\
 	dh-marshal.h					\
 	dh-marshal.c
 
 EXTRA_DIST =						\
 	dh-marshal.list					\
-	$(devhelpinclude_HEADERS)
+	$(devhelpinclude_HEADERS)			\
+	$(default_prefs_in_FILES)
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(BUILT_SOURCES) $(default_prefs_DATA)

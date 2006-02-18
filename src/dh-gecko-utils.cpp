@@ -121,6 +121,10 @@ dh_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 	PangoFontMask         mask;
 	gboolean              retval = FALSE;
 
+	if (font_name == NULL) {
+		return FALSE;
+	}
+
 	mask = (PangoFontMask) (PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_SIZE);
 	
 	desc = pango_font_description_from_string (font_name);
@@ -140,35 +144,51 @@ dh_util_split_font_string (const gchar *font_name, gchar **name, gint *size)
 }
 
 static gboolean
+gecko_prefs_set_bool (const gchar *key, gboolean value)
+{
+	nsresult rv;
+	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
+	NS_ENSURE_SUCCESS (rv, FALSE);
+
+	nsCOMPtr<nsIPrefBranch> pref;
+	rv = prefService->GetBranch ("", getter_AddRefs (pref));
+	NS_ENSURE_SUCCESS (rv, FALSE);
+
+	rv = pref->SetBoolPref (key, value);
+
+	return NS_SUCCEEDED (rv) != PR_FALSE;
+}
+
+static gboolean
 gecko_prefs_set_string (const gchar *key, const gchar *value)
 {
-	nsCOMPtr<nsIPrefService> prefService =
-		do_GetService (NS_PREFSERVICE_CONTRACTID);
-	nsCOMPtr<nsIPrefBranch> pref;
-	prefService->GetBranch ("", getter_AddRefs (pref));
+	nsresult rv;
+	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
+	NS_ENSURE_SUCCESS (rv, FALSE);
 
-	if (pref) {
-		nsresult rv = pref->SetCharPref (key, value);
-		return NS_SUCCEEDED (rv) ? TRUE : FALSE;
-	}
-	
-	return FALSE;
+	nsCOMPtr<nsIPrefBranch> pref;
+	rv = prefService->GetBranch ("", getter_AddRefs (pref));
+	NS_ENSURE_SUCCESS (rv, FALSE);
+
+	rv = pref->SetCharPref (key, value);
+
+	return NS_SUCCEEDED (rv) != PR_FALSE;
 }
 
 static gboolean
 gecko_prefs_set_int (const gchar *key, gint value)
 {
-	nsCOMPtr<nsIPrefService> prefService =
-		do_GetService (NS_PREFSERVICE_CONTRACTID);
-	nsCOMPtr<nsIPrefBranch> pref;
-	prefService->GetBranch ("", getter_AddRefs (pref));
+	nsresult rv;
+	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
+	NS_ENSURE_SUCCESS (rv, FALSE);
 
-	if (pref) {
-		nsresult rv = pref->SetIntPref (key, value);
-		return NS_SUCCEEDED (rv) ? TRUE : FALSE;
-	}
-	
-	return FALSE;
+	nsCOMPtr<nsIPrefBranch> pref;
+	rv = prefService->GetBranch ("", getter_AddRefs (pref));
+	NS_ENSURE_SUCCESS (rv, FALSE);
+
+	rv = pref->SetIntPref (key, value);
+
+	return NS_SUCCEEDED (rv) != PR_FALSE;
 }
 
 extern "C" void 
@@ -200,6 +220,8 @@ dh_gecko_utils_set_font (gint type, const gchar *fontname)
 
 	g_free (name);
 }		   
+
+#ifndef HAVE_GECKO_1_8
 
 static nsresult
 getUILang (nsAString& aUILang)
@@ -259,6 +281,27 @@ gecko_utils_init_chrome (void)
 #endif
 }
 
+#endif /* !HAVE_GECKO_1_8 */
+
+static nsresult
+gecko_utils_init_prefs (void)
+{
+	nsresult rv;
+	nsCOMPtr<nsIPrefService> prefService (do_GetService (NS_PREFSERVICE_CONTRACTID, &rv));
+	NS_ENSURE_SUCCESS (rv, rv);
+
+	nsCOMPtr<nsILocalFile> file;
+	rv = NS_NewNativeLocalFile (nsEmbedCString (SHAREDIR "/default-prefs.js"),
+				   PR_TRUE, getter_AddRefs (file));
+	NS_ENSURE_SUCCESS (rv, rv);
+
+	rv = prefService->ReadUserPrefs (file);
+	rv |= prefService->ReadUserPrefs (nsnull);
+	NS_ENSURE_SUCCESS (rv, rv);
+
+	return rv;
+}
+
 extern "C" void
 dh_gecko_utils_init_services (void)
 {
@@ -279,8 +322,10 @@ dh_gecko_utils_init_services (void)
 	g_free (profile_dir);
 
 	gtk_moz_embed_push_startup ();
-        
-	gecko_prefs_set_string ("font.size.unit", "pt");
-	gecko_utils_init_chrome ();
-}
 
+	gecko_utils_init_prefs ();
+
+#ifndef HAVE_GECKO_1_8
+	gecko_utils_init_chrome ();
+#endif
+}

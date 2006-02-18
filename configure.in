@@ -135,7 +135,7 @@ AM_GLIB_GNU_GETTEXT
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 libdevhelp-1.0.pc
 dtd/Makefile
@@ -146,3 +146,6 @@ misc/Makefile
 contrib/Makefile
 devhelp.desktop.in
 ])
+
+AC_OUTPUT
+

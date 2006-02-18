@@ -7,3 +7,4 @@ dh-marshal.c
 dh-marshal.h
 test-profile
 *.loT
+default-prefs.js

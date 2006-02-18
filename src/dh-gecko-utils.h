@@ -35,6 +35,7 @@ enum {
 void dh_gecko_utils_set_font                  (gint         font_type,
 					       const gchar *fontname);
 void dh_gecko_utils_init_services             (void);
+void dh_gecko_utils_shutdown		      (void);
 gint dh_gecko_utils_get_mouse_event_button    (gpointer     event);
 gint dh_gecko_utils_get_mouse_event_modifiers (gpointer     event);
 void dh_gecko_utils_copy_selection            (GtkMozEmbed *embed);

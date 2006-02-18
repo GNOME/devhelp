@@ -1,5 +1,21 @@
 2006-02-18  Christian Persch  <chpe@cvs.gnome.org>
 
+	Open external links in the web browser, not in devhelp. Bug #329928,
+	also fixes bug #324471.
+
+	* configure.in: Use AC_CONFIG_FILES.
+	* src/.cvsignore: Updated.
+	* src/Makefile.am: Build prefs.js file. Simplify defines.
+	* src/default-prefs-common.js: Common prefs.
+	* src/default-prefs-gecko-1-8.js: Gecko 1.8 specific prefs.
+	* src/default-prefs-mozilla.js: Mozilla suite specific prefs.
+	* src/default-prefs-toolkit.js: Toolkit specific prefs.
+	* src/dh-book-tree.c: (book_tree_create_pixbufs): Use SHAREDIR define.
+	* src/dh-gecko-utils.cpp: Updated from yelp. Read the default prefs
+	file on startup.
+
+2006-02-18  Christian Persch  <chpe@cvs.gnome.org>
+
 	* ui/devhelp.glade: Adjust spacings to be HIG compliant.
 
 2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
