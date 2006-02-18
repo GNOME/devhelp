@@ -1,5 +1,10 @@
 2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
 
+	* src/dh-base.c (base_init_books): Add books installed into user and
+	system data dirs. Patch from Antoine Dopffer. Fixes bug #328668.
+
+2006-02-18  Behdad Esfahbod  <behdad@gnome.org>
+
 	* devhelp.desktop.in.in: Categorize as GTK too, and add MimeType.
 	Patch from Stephane LOEUILLET. Fixes bug #328030.
 
