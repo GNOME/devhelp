@@ -1,5 +1,5 @@
 # Copyright (C) 2000-2004 Marco Pesenti Gritti
-# Copyright (C) 2003, 2004, 2005 Christian Persch
+# Copyright (C) 2003, 2004, 2005, 2006 Christian Persch
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the
@@ -88,9 +88,9 @@ seamonkey) gecko_cv_gecko_flavour=mozilla ;;
 xulrunner) gecko_cv_gecko_flavour=toolkit ;;
 esac
 
-_GECKO_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir ${gecko_cv_gecko}-gtkmozembed`"
-_GECKO_HOME="`$PKG_CONFIG --variable=libdir ${gecko_cv_gecko}-gtkmozembed`"
-_GECKO_PREFIX="`$PKG_CONFIG --variable=prefix ${gecko_cv_gecko}-gtkmozembed`"
+_GECKO_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir ${gecko_cv_gecko}-xpcom`"
+_GECKO_HOME="`$PKG_CONFIG --variable=libdir ${gecko_cv_gecko}-xpcom`"
+_GECKO_PREFIX="`$PKG_CONFIG --variable=prefix ${gecko_cv_gecko}-xpcom`"
 
 fi # if gecko_cv_have_gecko
 
@@ -210,9 +210,13 @@ AC_LANG_POP([C++])
 if test "$gecko_cv_have_debug" = "yes"; then
 	_GECKO_EXTRA_CXXFLAGS="$_GECKO_EXTRA_CXXFLAGS -DDEBUG -D_DEBUG"
 	AM_CXXFLAGS="-DDEBUG -D_DEBUG $AM_CXXFLAGS"
+
+	AC_DEFINE([HAVE_GECKO_DEBUG],[1],[Define if gecko is a debug build])
 fi
 
 fi # if gecko_cv_have_gecko
+
+AM_CONDITIONAL([HAVE_GECKO_DEBUG],[test "$gecko_cv_have_debug" = "yes"])
 
 # ***********************
 # Check for gecko version
@@ -277,15 +281,33 @@ $1[]_VERSION=$gecko_cv_gecko_version
 $1[]_VERSION_MAJOR=$gecko_cv_gecko_version_major
 $1[]_VERSION_MINOR=$gecko_cv_gecko_version_minor
 
+# **************************************************
+# Packages that we need to check for with pkg-config 
+# **************************************************
+
+gecko_cv_extra_libs=
+gecko_cv_extra_pkg_dependencies=
+
+if test "$gecko_cv_gecko_version_major" = "1" -a "$gecko_cv_gecko_version_minor" -ge "9"; then
+	if test "$gecko_cv_gecko" != "xulrunner"; then
+		gecko_cv_extra_libs="-lxul"
+	fi
+else
+	gecko_cv_extra_pkg_dependencies="${gecko_cv_gecko}-gtkmozembed"
+fi
+
+$1[]_EXTRA_PKG_DEPENDENCIES="$gecko_cv_extra_pkg_dependencies"
+$1[]_EXTRA_LIBS="$gecko_cv_extra_libs"
+
 ])
 
 # ***************************************************************************
 # ***************************************************************************
 # ***************************************************************************
 
-# GECKO_DISPATCH([MACRO], [HEADERS], ...)
+# _GECKO_DISPATCH(MACRO, INCLUDEDIRS, ...)
 
-m4_define([GECKO_DISPATCH],
+m4_define([_GECKO_DISPATCH],
 [
 
 if test "$gecko_cv_have_gecko" != "yes"; then
@@ -301,15 +323,15 @@ CPPFLAGS="$CPPFLAGS $_GECKO_EXTRA_CPPFLAGS -I$_GECKO_INCLUDE_ROOT $($PKG_CONFIG 
 CXXFLAGS="$CXXFLAGS $_GECKO_EXTRA_CXXFLAGS $($PKG_CONFIG --cflags-only-other ${gecko_cv_gecko}-xpcom)"
 LDFLAGS="$LDFLAGS $_GECKO_EXTRA_LDFLAGS $($PKG_CONFIG --libs ${gecko_cv_gecko}-xpcom) -Wl,--rpath=$_GECKO_HOME"
 
-_GECKO_DISPATCH_HEADERS="$2"
+_GECKO_DISPATCH_INCLUDEDIRS="$2"
 
 # Sigh Gentoo has a rubbish header layout
 # http://bugs.gentoo.org/show_bug.cgi?id=100804
 # Mind you, it's useful to be able to test against uninstalled mozilla builds...
-_GECKO_DISPATCH_HEADERS="$_GECKO_DISPATCH_HEADERS necko dom"
+_GECKO_DISPATCH_INCLUDEDIRS="$_GECKO_DISPATCH_INCLUDEDIRS dom necko pref"
 
 # Now add them to CPPFLAGS
-for i in $_GECKO_DISPATCH_HEADERS; do
+for i in $_GECKO_DISPATCH_INCLUDEDIRS; do
 	CPPFLAGS="$CPPFLAGS -I$_GECKO_INCLUDE_ROOT/$i"
 done
 
@@ -327,13 +349,83 @@ AC_LANG_POP([C++])
 # ***************************************************************************
 # ***************************************************************************
 
-# GECKO_COMPILE_IFELSE(HEADERS, PROGRAM, [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
+# GECKO_CHECK_HEADERS(INCLUDEDIRS, HEADERS, [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND], [INCLUDES])
 
-AC_DEFUN([GECKO_COMPILE_IFELSE],[GECKO_DISPATCH([AC_COMPILE_IFELSE],$@)])
+AC_DEFUN([GECKO_CHECK_HEADERS],[_GECKO_DISPATCH([AC_CHECK_HEADERS],$@)])
 
-# GECKO_RUN_IFELSE(HEADERS, PROGRAM, [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
+# GECKO_COMPILE_IFELSE(INCLUDEDIRS, PROGRAM, [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
 
-AC_DEFUN([GECKO_RUN_IFELSE],[GECKO_DISPATCH([AC_RUN_IFELSE],$@)])
+AC_DEFUN([GECKO_COMPILE_IFELSE],[_GECKO_DISPATCH([AC_COMPILE_IFELSE],$@)])
+
+# GECKO_RUN_IFELSE(INCLUDEDIRS, PROGRAM, [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
+
+AC_DEFUN([GECKO_RUN_IFELSE],[_GECKO_DISPATCH([AC_RUN_IFELSE],$@)])
+
+# ***************************************************************************
+# ***************************************************************************
+# ***************************************************************************
+
+# GECKO_XPCOMPROGRAM([PROLOGUE], [BODY])
+#
+# Produce a template C++ program which starts XPCOM up and shuts it down after
+# the BODY part has run. In BODY, the the following variables are predeclared:
+#
+# nsresult rv
+# PRBool retval (set to PR_FALSE)
+#
+# The program's exit status will be EXIT_FAILURE if you retval is PR_FALSE;
+# else it will be EXIT_SUCCESS.
+#
+# To jump out of the BODY and exit the test program, you can use |break|.
+
+AC_DEFUN([GECKO_XPCOM_PROGRAM],
+[AC_LANG_PROGRAM([[
+#include <mozilla-config.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <nsXPCOM.h>
+#include <nsCOMPtr.h>
+#include <nsILocalFile.h>
+#include <nsIServiceManager.h>
+#ifdef HAVE_GECKO_1_8
+#include <nsStringAPI.h>
+#else
+#include <nsString.h>
+#endif
+]]
+[$1],
+[[
+// redirect unwanted mozilla debug output to the bit bucket
+freopen ("/dev/null", "w", stdout);
+freopen ("/dev/null", "w", stderr);
+
+nsresult rv;
+nsCOMPtr<nsILocalFile> directory;
+rv = NS_NewNativeLocalFile (NS_LITERAL_CSTRING("$_GECKO_HOME"), PR_FALSE,
+			    getter_AddRefs (directory));
+if (NS_FAILED (rv) || !directory) {
+	exit (EXIT_FAILURE);
+}
+
+rv = NS_InitXPCOM2 (nsnull, directory, nsnull);
+if (NS_FAILED (rv)) {
+	exit (EXIT_FAILURE);
+}
+
+PRBool retval = PR_FALSE;
+
+// now put in the BODY, scoped with do...while(0) to ensure we don't hold a
+// COMptr after XPCOM shutdown and so we can jump out with a simple |break|.
+do {
+]]
+m4_shiftn(1,$@)
+[[
+} while (0);
+	
+NS_ShutdownXPCOM (nsnull);
+exit (retval ? EXIT_SUCCESS : EXIT_FAILURE);
+]])
+]) # GECKO_XPCOM_PROGRAM
 
 # ***************************************************************************
 # ***************************************************************************
@@ -349,52 +441,21 @@ AC_DEFUN([GECKO_CHECK_CONTRACTID],
 AS_VAR_PUSHDEF([gecko_cv_have_CID],[gecko_cv_have_$1])
 
 AC_CACHE_CHECK([for the $1 XPCOM component],
-[gecko_cv_have_CID],
+gecko_cv_have_CID,
 [
 AS_VAR_SET(gecko_cv_have_CID,[no])
 
 GECKO_RUN_IFELSE([],
-[AC_LANG_PROGRAM([[
-#include <mozilla-config.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <nsXPCOM.h>
-#include <nsCOMPtr.h>
-#include <nsILocalFile.h>
-#include <nsIServiceManager.h>
+[GECKO_XPCOM_PROGRAM([[
 #include <nsIComponentRegistrar.h>
-#include <nsString.h>
 ]],[[
-// redirect unwanted mozilla debug output
-freopen ("/dev/null", "w", stdout);
-freopen ("/dev/null", "w", stderr);
-
-nsresult rv;
-nsCOMPtr<nsILocalFile> directory;
-rv = NS_NewNativeLocalFile (NS_LITERAL_CSTRING("$_GECKO_HOME"), PR_FALSE, getter_AddRefs (directory));
-if (NS_FAILED (rv) || !directory) {
-	exit (EXIT_FAILURE);
-}
-
-nsCOMPtr<nsIServiceManager> sm;
-rv = NS_InitXPCOM2 (getter_AddRefs (sm), directory, nsnull);
-if (NS_FAILED (rv)) {
-	exit (EXIT_FAILURE);
-}
-
-nsCOMPtr<nsIComponentRegistrar> registar (do_QueryInterface (sm, &rv));
-sm = nsnull; // release service manager
-if (NS_FAILED (rv)) {
-	NS_ShutdownXPCOM (nsnull);
-	exit (EXIT_FAILURE);
-}
+nsCOMPtr<nsIComponentRegistrar> registrar;
+rv = NS_GetComponentRegistrar (getter_AddRefs (registrar));
+if (NS_FAILED (rv)) break;
 
 PRBool isRegistered = PR_FALSE;
-rv = registar->IsContractIDRegistered ("$1", &isRegistered);
-registar = nsnull; // release registar before shutdown
-	
-NS_ShutdownXPCOM (nsnull);
-exit (isRegistered ? EXIT_SUCCESS : EXIT_FAILURE);
+rv = registrar->IsContractIDRegistered ("$1", &isRegistered);
+retval = NS_SUCCEEDED (rv) && isRegistered;
 ]])
 ],
 [AS_VAR_SET(gecko_cv_have_CID,[yes])],
@@ -412,5 +473,73 @@ Contract ID "$1" is not registered, but $PACKAGE_NAME depends on it.])],
 fi
 
 AS_VAR_POPDEF([gecko_cv_have_CID])
+
+]) # GECKO_CHECK_CONTRACTID
+
+# GECKO_CHECK_CONTRACTIDS(CONTRACTID, [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
+#
+# Checks wheter CONTRACTIDs are registered contract IDs.
+# If ACTION-IF-NOT-FOUND is given, it is executed when one of the contract IDs
+# is not found and the missing contract ID is in the |as_contractid| variable.
+
+AC_DEFUN([GECKO_CHECK_CONTRACTIDS],
+[AC_REQUIRE([GECKO_INIT])dnl
+
+result=yes
+as_contractid=
+for as_contractid in $1
+do
+	GECKO_CHECK_CONTRACTID([$as_contractid],[],[result=no; break;])
+done
+
+if test "$result" = "yes"; then
+	ifelse([$2],,[:],[$2])
+else
+	ifelse([$3],,[AC_MSG_FAILURE([dnl
+Contract ID "$as_contractid" is not registered, but $PACKAGE_NAME depends on it.])],
+	[$3])
+fi
+
+]) # GECKO_CHECK_CONTRACTIDS
+
+# ***************************************************************************
+# ***************************************************************************
+# ***************************************************************************
+
+# GECKO_XPIDL([ACTION-IF-FOUND],[ACTION-IF-NOT-FOUND])
+#
+# Checks for xpidl program and include directory
+#
+# Variables set:
+# XPIDL:        the xpidl program
+# XPIDL_IDLDIR: the xpidl include directory
+
+AC_DEFUN([GECKO_XPIDL],
+[AC_REQUIRE([GECKO_INIT])dnl
+
+_GECKO_LIBDIR="`$PKG_CONFIG --variable=libdir ${gecko_cv_gecko}-xpcom`"
+
+AC_PATH_PROG([XPIDL],[xpidl],[no],[$_GECKO_LIBDIR:$PATH])
+
+XPIDL_IDLDIR="`$PKG_CONFIG --variable=idldir ${gecko_cv_gecko}-xpcom`"
+
+# Older geckos don't have this variable, see
+# https://bugzilla.mozilla.org/show_bug.cgi?id=240473
+
+if test -z "$XPIDL_IDLDIR" -o ! -f "$XPIDL_IDLDIR/nsISupports.idl"; then
+	XPIDL_IDLDIR="`echo $_GECKO_LIBDIR | sed -e s!lib!share/idl!`"
+fi
+
+# Some distributions (Gentoo) have it in unusual places
+
+if test -z "$XPIDL_IDLDIR" -o ! -f "$XPIDL_IDLDIR/nsISupports.idl"; then
+	XPIDL_IDLDIR="$_GECKO_INCLUDE_ROOT/idl"
+fi
+
+if test "$XPIDL" != "no" -a -n "$XPIDL_IDLDIR" -a -f "$XPIDL_IDLDIR/nsISupports.idl"; then
+	ifelse([$1],,[:],[$1])
+else
+	ifelse([$2],,[AC_MSG_FAILURE([XPIDL program or include directory not found])],[$2])
+fi
 
 ])

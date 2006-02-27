@@ -34,19 +34,19 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
 	gconf-2.0 >= 2.6.0
 ])
 
-dnl *******
-dnl Mozilla
-dnl *******
+# *****
+# Gecko
+# *****
 
-GECKO_INIT([MOZILLA])
+GECKO_INIT([GECKO])
 
-AC_SUBST([MOZILLA])
-AC_SUBST([MOZILLA_FLAVOUR])
-AC_SUBST([MOZILLA_INCLUDE_ROOT])
-AC_SUBST([MOZILLA_HOME])
-AC_SUBST([MOZILLA_PREFIX])
+AC_SUBST([GECKO])
+AC_SUBST([GECKO_FLAVOUR])
+AC_SUBST([GECKO_INCLUDE_ROOT])
+AC_SUBST([GECKO_HOME])
+AC_SUBST([GECKO_PREFIX])
 
-case "$MOZILLA" in
+case "$GECKO" in
 mozilla) gecko_min_version=1.7 ;;
 seamonkey) gecko_min_version=1.0 ;;
 *firefox) gecko_min_version=1.0 ;;
@@ -54,15 +54,15 @@ seamonkey) gecko_min_version=1.0 ;;
 xulrunner) gecko_min_version=1.8 ;;
 esac
 
-PKG_CHECK_MODULES([MOZILLA_COMPONENT],[$MOZILLA-gtkmozembed >= $gecko_min_version $MOZILLA-xpcom >= $gecko_min_version])
-AC_SUBST([MOZILLA_COMPONENT_CFLAGS])
-AC_SUBST([MOZILLA_COMPONENT_LIBS])
+PKG_CHECK_MODULES([GECKO],[$GECKO_EXTRA_PKG_DEPENDENCIES $GECKO-xpcom >= $gecko_min_version])
+AC_SUBST([GECKO_CFLAGS])
+AC_SUBST([GECKO_LIBS])
 
-dnl **********************************
-dnl now tests for mozilla API variance
-dnl **********************************
+# **********************************
+# now tests for mozilla API variance
+# **********************************
 
-dnl Firefox doesn't have this API (?)
+# Firefox doesn't have this API
 
 AC_MSG_CHECKING([for nsIXULChromeRegistry API])
 
@@ -78,13 +78,12 @@ GECKO_COMPILE_IFELSE([content],
 
 AC_MSG_RESULT([$result])
 
-dnl changed from nsIXULChromeRegistry in 1.8a4
+# changed from nsIXULChromeRegistry in 1.8a4
 
-AC_CHECK_FILE([$MOZILLA_INCLUDE_ROOT/chrome/nsIChromeRegistrySea.h],
-	[AC_DEFINE([HAVE_CHROME_NSICHROMEREGISTRYSEA_H], [1], [Define if nsIChromeRegistrySea.h exists])])
+GECKO_CHECK_HEADERS([],[chrome/nsIChromeRegistrySea.h])
 
-MOZILLA_WARN_CXXFLAGS="-Wall -Wconversion -Wpointer-arith -Wcast-align -Woverloaded-virtual -Wsynth -Wno-ctor-dtor-privacy -Wno-non-virtual-dtor"
-AC_SUBST(MOZILLA_WARN_CXXFLAGS)
+GECKO_WARN_CXXFLAGS="-Wall -Wconversion -Wpointer-arith -Wcast-align -Woverloaded-virtual -Wsynth -Wno-ctor-dtor-privacy -Wno-non-virtual-dtor"
+AC_SUBST(GECKO_WARN_CXXFLAGS)
 
 dnl Checks for zlib library.
 AC_LANG_PUSH([C])

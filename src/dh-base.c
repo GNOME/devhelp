@@ -109,9 +109,19 @@ base_init (DhBase *base)
 }
 
 static void
+dh_base_finalize (GObject *object)
+{
+	dh_gecko_utils_shutdown ();
+}
+
+static void
 base_class_init (DhBaseClass *klass)
 {
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
 	parent_class = g_type_class_peek_parent (klass);
+
+	object_class->finalize = dh_base_finalize;
 }
 
 static void
@@ -341,10 +351,9 @@ dh_base_new (void)
 	DhBasePriv      *priv;
 	static gboolean  initialized = FALSE;
 
-	if (!initialized) {
-		dh_gecko_utils_init_services ();
-		initialized = TRUE;
-	}
+	g_assert (!initialized);
+
+	dh_gecko_utils_init ();
 
         base = g_object_new (DH_TYPE_BASE, NULL);
 	priv = base->priv;
@@ -352,6 +361,8 @@ dh_base_new (void)
 	base_init_books (base);
 
 	dh_preferences_init ();
+
+	initialized = TRUE;
 
 	return base;
 }

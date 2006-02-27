@@ -33,6 +33,7 @@ INTLTOOL =                      \
 	intltool-update.in
 
 EXTRA_DIST =			\
+	autogen.sh		\
 	TODO 			\
 	$(DESKTOP_IN_FILES)	\
 	$(DESKTOP_FILES)        \
@@ -48,17 +49,14 @@ EXTRA_DIST =			\
 	misc/html2xml.py	\
 	misc/devhelp.vim
 
+install-data-local: $(schema_DATA)
 if GCONF_SCHEMAS_INSTALL
-install-data-local:
 	if test -z "$(DESTDIR)" ; then \
-          for p in $(schemas_DATA) ; do \
-            GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$$p ; \
-          done \
-        fi
-else
-install-data-local:
+	for p in $^ ; do \
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $$p >&1 > /dev/null; \
+	done \
+	fi
 endif
-
 
 CLEANFILES = $(KEYS_FILES) $(DESKTOP_FILES)
 

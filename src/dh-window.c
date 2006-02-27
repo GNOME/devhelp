@@ -290,9 +290,12 @@ window_init (DhWindow *window)
 static void
 window_finalize (GObject *object)
 {
-	if (G_OBJECT_CLASS (parent_class)->finalize) {
-		G_OBJECT_CLASS (parent_class)->finalize (object);
-	}
+	DhWindow *window = DH_WINDOW (object);
+	DhBase *base = window->priv->base;
+
+	G_OBJECT_CLASS (parent_class)->finalize (object);
+
+	g_object_unref (base);
 }
 
 /* The ugliest hack. When switching tabs, the selection and cursor is changed

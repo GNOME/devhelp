@@ -155,5 +155,7 @@ main (int argc, char **argv)
 
 	gtk_main ();
 
+	g_object_unref (base);
+
 	return 0;
 }

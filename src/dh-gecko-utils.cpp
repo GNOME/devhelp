@@ -39,6 +39,7 @@
 
 #include <stdlib.h>
 
+#ifndef HAVE_GECKO_1_8
 #if defined (HAVE_CHROME_NSICHROMEREGISTRYSEA_H)
 #include <chrome/nsIChromeRegistrySea.h>
 #elif defined(MOZ_NSIXULCHROMEREGISTRY_SELECTSKIN)
@@ -49,6 +50,7 @@
 // FIXME: For setting the locale. hopefully gtkmozembed will do itself soon
 #include <nsILocaleService.h>
 #endif
+#endif /* !HAVE_GECKO_1_8 */
 
 #include "dh-util.h"
 #include "dh-gecko-utils.h"
@@ -303,20 +305,26 @@ gecko_utils_init_prefs (void)
 }
 
 extern "C" void
-dh_gecko_utils_init_services (void)
+dh_gecko_utils_init (void)
 {
-	gchar *profile_dir;
-
 	if (!g_thread_supported ()) {
 		g_thread_init (NULL);
 	}
 
-	gtk_moz_embed_set_comp_path (MOZILLA_HOME);
-	
-	profile_dir = g_build_filename (g_getenv ("HOME"), 
-					".gnome2",
-					"devhelp",
-					"mozilla", NULL);
+#ifdef HAVE_GECKO_1_9
+	NS_LogInit ();
+#endif
+
+#ifdef HAVE_GECKO_1_9
+	gtk_moz_embed_set_path (GECKO_HOME);
+#else
+	gtk_moz_embed_set_comp_path (GECKO_HOME);
+#endif
+
+	gchar *profile_dir = g_build_filename (g_get_home_dir (),
+					       ".gnome2",
+					       "devhelp",
+					       "mozilla", NULL);
 
 	gtk_moz_embed_set_profile_path (profile_dir, "Devhelp");
 	g_free (profile_dir);
@@ -327,5 +335,15 @@ dh_gecko_utils_init_services (void)
 
 #ifndef HAVE_GECKO_1_8
 	gecko_utils_init_chrome ();
+#endif
+}
+
+extern "C" void
+dh_gecko_utils_shutdown (void)
+{
+	gtk_moz_embed_pop_startup ();
+
+#ifdef HAVE_GECKO_1_9
+	NS_LogTerm ();
 #endif
 }

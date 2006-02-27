@@ -25,7 +25,7 @@ devhelp_LDADD = 					\
         $(DEVHELP_LIBS)					\
         libdevhelp-1.la
 
-devhelp_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
+devhelp_LDFLAGS = -R$(GECKO_HOME) $(AM_LDFLAGS)
 
 # Build the C++ code in a separate library so we can use our warning
 # flags for the C code.
@@ -35,33 +35,36 @@ libcppwrapper_la_SOURCES =				\
 	dh-gecko-utils.cpp				\
 	dh-gecko-utils.h
 
-mozilla_include_subdirs =	\
+gecko_include_subdirs =	\
 	.			\
 	commandhandler		\
 	content			\
 	dom			\
 	find			\
 	gfx			\
+	gtkembedmoz		\
 	locale			\
-	prefix			\
+	pref			\
 	webbrwsr		\
-	string
+	string			\
+	xpcom
 
 libcppwrapper_la_CPPFLAGS = 				\
 	$(DEFINES)					\
 	-DALLOW_PRIVATE_API				\
-	-DMOZILLA_HOME=\""$(MOZILLA_HOME)\""		\
-	-include $(MOZILLA_INCLUDE_ROOT)/mozilla-config.h			\
-	$(addprefix -I$(MOZILLA_INCLUDE_ROOT)/,$(mozilla_include_subdirs))	\
+	-DGECKO_HOME=\""$(GECKO_HOME)\""		\
+	-include $(GECKO_INCLUDE_ROOT)/mozilla-config.h			\
+	$(addprefix -I$(GECKO_INCLUDE_ROOT)/,$(gecko_include_subdirs))	\
 	$(LIBDEVHELP_CFLAGS)				\
 	$(AM_CPPFLAGS)
 
 libcppwrapper_la_CXXFLAGS =				\
-	$(MOZILLA_COMPONENT_CFLAGS)			\
+	$(GECKO_CFLAGS)					\
 	$(AM_CXXFLAGS)
 
 libcppwrapper_la_LIBADD =				\
-	$(MOZILLA_COMPONENT_LIBS)
+	$(GECKO_LIBS)					\
+	$(GECKO_EXTRA_LIBS)
 
 lib_LTLIBRARIES = libdevhelp-1.la
 
@@ -97,20 +100,22 @@ libdevhelp_1_la_SOURCES =				\
 
 libdevhelp_1_la_CPPFLAGS =				\
 	$(DEFINES)					\
+	$(addprefix -I$(GECKO_INCLUDE_ROOT)/,$(gecko_include_subdirs))	\
 	$(AM_CPPFLAGS)
 
 libdevhelp_1_la_CFLAGS = 				\
 	$(WARN_CFLAGS)					\
 	$(LIBDEVHELP_CFLAGS)				\
-	$(MOZILLA_COMPONENT_CFLAGS)			\
+	$(GECKO_CFLAGS)			\
 	$(AM_CFLAGS)
 
 libdevhelp_1_la_LIBADD =				\
 	libcppwrapper.la				\
 	$(LIBDEVHELP_LIBS)				\
-	$(MOZILLA_COMPONENT_LIBS)
+	$(GECKO_LIBS)					\
+	$(GECKO_EXTRA_LIBS)
 
-libdevhelp_1_la_LDFLAGS = -R$(MOZILLA_HOME) $(AM_LDFLAGS)
+libdevhelp_1_la_LDFLAGS = -R$(GECKO_HOME) $(AM_LDFLAGS)
 
 dh-marshal.h: dh-marshal.list
 	(cd $(srcdir) && \
@@ -134,7 +139,7 @@ default_prefs_in_FILES = \
 
 default_prefs_files = \
 	default-prefs-common.js                 \
-	default-prefs-$(MOZILLA_FLAVOUR).js
+	default-prefs-$(GECKO_FLAVOUR).js
 
 if HAVE_GECKO_1_8
 default_prefs_files += default-prefs-gecko-1-8.js
