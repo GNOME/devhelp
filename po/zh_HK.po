@@ -31,7 +31,7 @@ msgstr "DevHelp 說明文件"
 
 #: ../src/dh-main.c:84
 msgid "Search for a function"
-msgstr "搜尋函式"
+msgstr "搜尋函數"
 
 #: ../src/dh-main.c:93
 msgid "Quit any running Devhelp"
