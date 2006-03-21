@@ -1,27 +1,29 @@
 # Dutch translation of devhelp.
 # Copyright (C) 2003, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
-# Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003.
-# Daniel van Eeden <daniel_e@dds.nl>, 2004.
-# Taco Witte <tcwitte@cs.uu.nl>, 2004, 2005.
+# Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003
+# Daniel van Eeden <daniel_e@dds.nl>, 2004
+# Taco Witte <tcwitte@cs.uu.nl>, 2004, 2005
+# Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-13 02:52+0000\n"
-"PO-Revision-Date: 2005-05-13 16:31+0200\n"
-"Last-Translator: Taco Witte <tcwitte@cs.uu.nl>\n"
+"POT-Creation-Date: 2006-03-21 09:16+0100\n"
+"PO-Revision-Date: 2006-03-21 09:18+0100\n"
+"Last-Translator: Wouter Bolsterlee <uws+gnome@xs4all.nl\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Hulpprogramma voor ontwikkelaars"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:447 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:110 ../src/dh-window.c:609
+#: ../ui/devhelp.glade.h:3
 msgid "Devhelp"
 msgstr "DevHulp"
 
@@ -29,46 +31,38 @@ msgstr "DevHulp"
 msgid "Devhelp Book"
 msgstr "DevHulp boek"
 
-#: ../src/dh-main.c:137
-msgid "Specify the size and location of the window"
-msgstr "Geef de grootte en plaats van het venster"
-
-#: ../src/dh-main.c:138
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "WIDTHxHEIGHT+XOFF+YOFF"
-
-#: ../src/dh-main.c:146
+#: ../src/dh-main.c:84
 msgid "Search for a function"
 msgstr "Functie opzoeken"
 
-#: ../src/dh-main.c:155
+#: ../src/dh-main.c:93
 msgid "Quit any running Devhelp"
 msgstr "Alle actieve DevHulp-processen afsluiten"
 
-#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
+#: ../src/dh-parser.c:109 ../src/dh-parser.c:190 ../src/dh-parser.c:257
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "In plaats van de verwachte '%s' kreeg ik '%s' op regel %d, kolom %d"
 
-#: ../src/dh-parser.c:121
+#: ../src/dh-parser.c:127
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Ongeldige context '%s' op regel %d, kolom %d"
 
-#: ../src/dh-parser.c:150
+#: ../src/dh-parser.c:157
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
 "titel, naam en verwijzingselementen zijn verplicht op regel %d, kolom %d"
 
-#: ../src/dh-parser.c:203
+#: ../src/dh-parser.c:211
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "naam en verwijzingselementen zijn verplicht in een <sub> op regel %d, kolom %"
 "d"
 
-#: ../src/dh-parser.c:251
+#: ../src/dh-parser.c:279
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -76,20 +70,24 @@ msgstr ""
 "naam en verwijzingselementen zijn verplicht in een <function> op regel %d, "
 "kolom %d"
 
-#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
+#: ../src/dh-parser.c:391 ../src/dh-parser.c:485
 msgid "Could not create book parser"
-msgstr "Kon book-analyse niet aanmaken"
+msgstr "Kon boek-analyse niet aanmaken"
 
-#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
+#: ../src/dh-parser.c:407 ../src/dh-parser.c:495
 msgid "Could not create markup parser"
 msgstr "Kon markup-analyse niet aanmaken"
 
-#: ../src/dh-parser.c:480
+#: ../src/dh-parser.c:548
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan boek '%s' niet uitpakken: %s"
 
-#: ../src/dh-search.c:418
+#: ../src/dh-parser.c:573
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp is niet gecompileerd met ondersteuning voor zlib."
+
+#: ../src/dh-search.c:417
 msgid "_Search:"
 msgstr "_Zoeken:"
 
@@ -97,43 +95,58 @@ msgstr "_Zoeken:"
 msgid "Section"
 msgstr "Sectie"
 
-#: ../src/dh-window.c:110
+#: ../src/dh-window.c:139
 msgid "_File"
 msgstr "_Bestand"
 
-#: ../src/dh-window.c:111
+#: ../src/dh-window.c:140
 msgid "_Edit"
 msgstr "Be_werken"
 
-#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Ga naar"
 
-#: ../src/dh-window.c:113
+#: ../src/dh-window.c:142
 msgid "_Help"
 msgstr "_Hulp"
 
-#: ../src/dh-window.c:297
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Kan UI niet instellen: %s"
+#. File menu
+#: ../src/dh-window.c:145
+msgid "_New Window"
+msgstr "_Nieuw venster"
 
-#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Inhoud"
+#: ../src/dh-window.c:147
+msgid "New _Tab"
+msgstr "Nieuw _tabblad"
 
-#: ../src/dh-window.c:368
+#: ../src/dh-window.c:164
+msgid "Browse Contents"
+msgstr "Inhoud doorbladeren"
+
+#: ../src/dh-window.c:167 ../src/dh-window.c:451
 msgid "Search"
 msgstr "Zoeken"
 
-#: ../src/dh-window.c:444
-msgid "translator_credits"
-msgstr "Taco Witte"
-"Zie ook nl.gnome.org"
+#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:2
+msgid "Contents"
+msgstr "Inhoud"
 
-#: ../src/dh-window.c:449
+#: ../src/dh-window.c:606
+msgid "translator_credits"
+msgstr ""
+"Wouter Bolsterlee\n"
+"Taco Witte\n"
+"\n"
+"Kijk voor meer informatie op http://nl.gnome.org/"
+
+#: ../src/dh-window.c:611
 msgid "A developer's help browser for GNOME 2"
 msgstr "Een GNOME 2 hulpprogramma voor ontwikkelaars"
+
+#: ../src/dh-window.c:939 ../src/dh-window.c:1067
+msgid "Empty Page"
+msgstr "Lege pagina"
 
 #: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -156,12 +169,12 @@ msgid "Height of main window"
 msgstr "Hoogte van hoofdvenster"
 
 #: ../devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr "Positie van paneel"
-
-#: ../devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Hoofdvenster gemaximaliseerde status"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Geselecteerde tabblad, ‘content’ of ‘search’"
 
 #: ../devhelp.schemas.in.h:8
 msgid "The X position of the main window."
@@ -176,8 +189,8 @@ msgid "The height of the main window."
 msgstr "De hoogte van het hoofdvenster."
 
 #: ../devhelp.schemas.in.h:11
-msgid "The location of the paned separator."
-msgstr "De positie van de paneelafscheiding."
+msgid "The width of the index and search pane."
+msgstr "De breedte van het inhoud- en zoekvenster."
 
 #: ../devhelp.schemas.in.h:12
 msgid "The width of the main window."
@@ -189,58 +202,81 @@ msgstr "Systeemlettertypen gebruiken"
 
 #: ../devhelp.schemas.in.h:14
 msgid "Use the systems default fonts."
-msgstr "De standaard systeemlettertypen gebruiken."
+msgstr "De systeemlettertypen gebruiken."
 
 #: ../devhelp.schemas.in.h:15
 msgid "Whether the main window should start maximized or not."
 msgstr "Of het hoofdvenster gemaximaliseerd moet starten of niet."
 
 #: ../devhelp.schemas.in.h:16
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Welk tabblad geselecteerd is, ‘content’ of ‘search’."
+
+#: ../devhelp.schemas.in.h:17
+msgid "Width of the index and search pane"
+msgstr "Breedte van het inhoud- en zoekvenster"
+
+#: ../devhelp.schemas.in.h:18
 msgid "Width of the main window"
 msgstr "Breedte van het hoofdvenster"
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:19
 msgid "X position of main window"
 msgstr "X-positie van hoofdvenster"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:20
 msgid "Y position of main window"
 msgstr "Y-positie van hoofdvenster"
 
 #: ../ui/devhelp.glade.h:1
-msgid "    "
-msgstr "    "
-
-#: ../ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Lettertypen</b>"
 
-#: ../ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:4
 msgid "Fixed width:"
 msgstr "Vaste breedte:"
 
-#: ../ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: ../ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:6
 msgid "Variable width: "
 msgstr "Variabele breedte: "
 
-#: ../ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:7
 msgid "_Back"
 msgstr "_Terug"
 
-#: ../ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "_Vooruit"
 
-#: ../ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:10
 msgid "_Use system fonts"
 msgstr "Systeemlettertypen _gebruiken"
+
+#~ msgid "Specify the size and location of the window"
+#~ msgstr "Geef de grootte en plaats van het venster"
+
+#~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
+#~ msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+
+#~ msgid "Cannot set UI: %s"
+#~ msgstr "Kan UI niet instellen: %s"
+
+#~ msgid "Location of the paned"
+#~ msgstr "Positie van paneel"
+
+#~ msgid "The location of the paned separator."
+#~ msgstr "De positie van de paneelafscheiding."
+
+#~ msgid "    "
+#~ msgstr "    "
 
 #~ msgid "Devhelp project page"
 #~ msgstr "Devhulp projectpagina"
 
 #~ msgid "Bug report Devhelp"
 #~ msgstr "Bug rapporteren voor Devhulp"
+
