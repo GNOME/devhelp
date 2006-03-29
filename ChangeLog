@@ -1,3 +1,11 @@
+2006-03-29  Richard Hult  <richard@imendio.com>
+
+	* src/dh-main.c: (message_received_cb): Fix typo.
+	
+	* configure.in:
+	* misc/Makefile.am:
+	* misc/gedit-plugin: Add very simple gedit plugin for devhelp.
+
 2006-03-26  Behdad Esfahbod  <behdad@gnome.org>
 
 	* ui/Makefile.am: Respect DESTDIR.

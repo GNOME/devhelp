@@ -14,3 +14,4 @@ src/dh-util.c
 src/dh-window.c
 devhelp.schemas.in
 ui/devhelp.glade
+misc/gedit-plugin/devhelp.gedit-plugin.desktop.in

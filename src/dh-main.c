@@ -45,7 +45,7 @@ message_received_cb (const gchar *message, DhBase *base)
 	}
 
 	/* Note: This is a bit strange. It seems like we need both the
-	 * gtk_window_present() andgtk_window_present_with_time() to make all
+	 * gtk_window_present() and gtk_window_present_with_time() to make all
 	 * the cases working.
 	 */
 	
