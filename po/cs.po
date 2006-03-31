@@ -1,15 +1,15 @@
 # Czech translation of devhelp
 # Copyright (C) 2002, 2003, 2004 devhelp'S COPYRIGHT HOLDER
-# Copyright (C) 2004 Miloslav Trmac <mitr@volny.cz>
+# Copyright (C) 2004, 2006 Miloslav Trmac <mitr@volny.cz>
 # This file is distributed under the same license as the devhelp package.
-# Miloslav Trmac <mitr@volny.cz>, 2002, 2003, 2004.
+# Miloslav Trmac <mitr@volny.cz>, 2002, 2003, 2004, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-02 18:13+0100\n"
-"PO-Revision-Date: 2005-11-02 22:37+0100\n"
+"POT-Creation-Date: 2006-03-31 18:11+0200\n"
+"PO-Revision-Date: 2006-03-31 23:02+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,8 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Program nápovědy pro vývojáře"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:606 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:110 ../src/dh-window.c:609
+#: ../ui/devhelp.glade.h:3
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -28,36 +29,36 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Kniha Devhelp"
 
-#: ../src/dh-main.c:77
+#: ../src/dh-main.c:84
 msgid "Search for a function"
 msgstr "Hledat funkci"
 
-#: ../src/dh-main.c:86
+#: ../src/dh-main.c:93
 msgid "Quit any running Devhelp"
 msgstr "Ukončit všechny běžící Devhelpy"
 
-#: ../src/dh-parser.c:106 ../src/dh-parser.c:187 ../src/dh-parser.c:231
+#: ../src/dh-parser.c:109 ../src/dh-parser.c:190 ../src/dh-parser.c:257
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Očekával jsem '%s', dostal jsem '%s' na řádku %d, sloupci %d"
 
-#: ../src/dh-parser.c:124
+#: ../src/dh-parser.c:127
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neplatné namespace '%s' na řádku %d, sloupci %d"
 
-#: ../src/dh-parser.c:154
+#: ../src/dh-parser.c:157
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Na řádku %d, sloupci %d jsou vyžadovány elementy title, name a link"
 
-#: ../src/dh-parser.c:208
+#: ../src/dh-parser.c:211
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <sub> vyžadovány elementy name a link"
 
-#: ../src/dh-parser.c:253
+#: ../src/dh-parser.c:279
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -65,20 +66,20 @@ msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <function> vyžadovány elementy name a "
 "link"
 
-#: ../src/dh-parser.c:365 ../src/dh-parser.c:453
+#: ../src/dh-parser.c:391 ../src/dh-parser.c:485
 msgid "Could not create book parser"
 msgstr "Nemohu vytvořit parser knihy"
 
-#: ../src/dh-parser.c:375 ../src/dh-parser.c:463
+#: ../src/dh-parser.c:407 ../src/dh-parser.c:495
 msgid "Could not create markup parser"
 msgstr "Nemohu vytvořit parser značení"
 
-#: ../src/dh-parser.c:510
+#: ../src/dh-parser.c:548
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nemohu dekomprimovat knihu '%s': %s"
 
-#: ../src/dh-parser.c:535
+#: ../src/dh-parser.c:573
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp nebyl přeložen s podporou zlib"
 
@@ -86,7 +87,7 @@ msgstr "Devhelp nebyl přeložen s podporou zlib"
 msgid "_Search:"
 msgstr "_Hledat:"
 
-#: ../src/dh-search.c:467
+#: ../src/dh-search.c:462
 msgid "Section"
 msgstr "Oddíl"
 
@@ -98,7 +99,7 @@ msgstr "_Soubor"
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Jít"
 
@@ -119,23 +120,23 @@ msgstr "Nová _karta"
 msgid "Browse Contents"
 msgstr "Procházet obsah"
 
-#: ../src/dh-window.c:167 ../src/dh-window.c:448
+#: ../src/dh-window.c:167 ../src/dh-window.c:451
 msgid "Search"
 msgstr "Hledat"
 
-#: ../src/dh-window.c:438 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:2
 msgid "Contents"
 msgstr "Obsah"
 
-#: ../src/dh-window.c:603
+#: ../src/dh-window.c:606
 msgid "translator_credits"
 msgstr "Miloslav Trmač <mitr@volny.cz>"
 
-#: ../src/dh-window.c:608
+#: ../src/dh-window.c:611
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
 
-#: ../src/dh-window.c:938 ../src/dh-window.c:1066
+#: ../src/dh-window.c:939 ../src/dh-window.c:1067
 msgid "Empty Page"
 msgstr "Prázdná strana"
 
@@ -220,33 +221,37 @@ msgid "Y position of main window"
 msgstr "Pozice Y hlavního okna"
 
 #: ../ui/devhelp.glade.h:1
-msgid "    "
-msgstr "    "
-
-#: ../ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Písma</b>"
 
-#: ../ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:4
 msgid "Fixed width:"
 msgstr "Pevná šířka:"
 
-#: ../ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: ../ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:6
 msgid "Variable width: "
 msgstr "Proměnná šířka:"
 
-#: ../ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:7
 msgid "_Back"
 msgstr "_Zpět"
 
-#: ../ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "_Vpřed"
 
-#: ../ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:10
 msgid "_Use system fonts"
 msgstr "_Používat písma systému"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Podpora Devhelpu"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Způsobí, že F7 spustí Devhelp pro slovo pod kurzorem"
