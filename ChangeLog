@@ -1,3 +1,8 @@
+2006-04-03  Wouter Bolsterlee  <uws+gnome@xs4all.nl>
+
+	* ui/devhelp.glade: Add keyboard mnemonics in preferences
+	dialog (bug #336112, Wouter Bolsterlee)
+
 2006-03-30  Richard Hult  <richard@imendio.com>
 
 	* misc/gedit-plugin/devhelp/: Make it actually work.
