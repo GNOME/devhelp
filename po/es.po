@@ -11,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-31 23:10+0200\n"
-"PO-Revision-Date: 2006-03-31 23:12+0200\n"
+"POT-Creation-Date: 2006-04-06 19:27+0200\n"
+"PO-Revision-Date: 2006-04-06 19:28+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
-"Language-Team:  <traductores@es.gnome.org>\n"
+"Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.9.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../devhelp.desktop.in.in.h:1
@@ -104,7 +104,7 @@ msgstr "_Archivo"
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:8
 msgid "_Go"
 msgstr "_Ir"
 
@@ -230,28 +230,28 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Tipografías</b>"
 
 #: ../ui/devhelp.glade.h:4
-msgid "Fixed width:"
-msgstr "Anchura fija:"
-
-#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../ui/devhelp.glade.h:6
-msgid "Variable width: "
-msgstr "Anchura variable:"
-
-#: ../ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:5
 msgid "_Back"
 msgstr "_Atrás"
 
-#: ../ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:6
+msgid "_Fixed width:"
+msgstr "Anchura _fija:"
+
+#: ../ui/devhelp.glade.h:7
 msgid "_Forward"
 msgstr "A_delante"
 
-#: ../ui/devhelp.glade.h:10
+#: ../ui/devhelp.glade.h:9
 msgid "_Use system fonts"
 msgstr "_Usar tipografía del sistema"
+
+#: ../ui/devhelp.glade.h:10
+msgid "_Variable width: "
+msgstr "Anchura _variable: "
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
 msgid "Devhelp support"
