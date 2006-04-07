@@ -157,5 +157,7 @@ main (int argc, char **argv)
 
 	g_object_unref (base);
 
+	bacon_message_connection_free (message_conn);
+
 	return 0;
 }

@@ -1,3 +1,11 @@
+2006-04-06  Johannes Schmid <jhs@cvs.gnome.org>
+
+	* libdevhelp-1.0.pc.in: Correct requirement for libwnck-1.0.
+
+2006-04-07  Richard Hult  <richard@imendio.com>
+
+	* src/dh-main.c (main): Free the bacon! (message connection).
+
 2006-04-03  Wouter Bolsterlee  <uws+gnome@xs4all.nl>
 
 	* ui/devhelp.glade: Add keyboard mnemonics in preferences
