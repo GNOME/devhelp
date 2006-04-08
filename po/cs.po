@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-31 18:11+0200\n"
+"POT-Creation-Date: 2006-04-08 10:11+0200\n"
 "PO-Revision-Date: 2006-03-31 23:02+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -99,7 +99,7 @@ msgstr "_Soubor"
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:8
 msgid "_Go"
 msgstr "_Jít"
 
@@ -225,28 +225,30 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Písma</b>"
 
 #: ../ui/devhelp.glade.h:4
-msgid "Fixed width:"
-msgstr "Pevná šířka:"
-
-#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: ../ui/devhelp.glade.h:6
-msgid "Variable width: "
-msgstr "Proměnná šířka:"
-
-#: ../ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:5
 msgid "_Back"
 msgstr "_Zpět"
 
-#: ../ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:6
+#, fuzzy
+msgid "_Fixed width:"
+msgstr "Pevná šířka:"
+
+#: ../ui/devhelp.glade.h:7
 msgid "_Forward"
 msgstr "_Vpřed"
 
-#: ../ui/devhelp.glade.h:10
+#: ../ui/devhelp.glade.h:9
 msgid "_Use system fonts"
 msgstr "_Používat písma systému"
+
+#: ../ui/devhelp.glade.h:10
+#, fuzzy
+msgid "_Variable width: "
+msgstr "Proměnná šířka:"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
 msgid "Devhelp support"
