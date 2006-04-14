@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-03 06:47+0200\n"
-"PO-Revision-Date: 2005-11-03 06:50+0300\n"
+"POT-Creation-Date: 2006-04-14 18:22+0300\n"
+"PO-Revision-Date: 2006-04-14 18:25+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,8 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Kehittäjän Ohje"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:606 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:110 ../src/dh-window.c:609
+#: ../ui/devhelp.glade.h:3
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -27,37 +28,37 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp-kirja"
 
-#: ../src/dh-main.c:77
+#: ../src/dh-main.c:84
 msgid "Search for a function"
 msgstr "Etsi funktiota"
 
-#: ../src/dh-main.c:86
+#: ../src/dh-main.c:93
 msgid "Quit any running Devhelp"
 msgstr "Sulje suoritettavana olevat Devhelp-ohjelmat"
 
-#: ../src/dh-parser.c:106 ../src/dh-parser.c:187 ../src/dh-parser.c:231
+#: ../src/dh-parser.c:109 ../src/dh-parser.c:190 ../src/dh-parser.c:257
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Oletettiin '%s', saatiin '%s' rivillä %d, sarakkeessa %d"
 
-#: ../src/dh-parser.c:124
+#: ../src/dh-parser.c:127
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Virheellinen nimiavaruus '%s' rivillä %d, sarakkeessa %d"
 
-#: ../src/dh-parser.c:154
+#: ../src/dh-parser.c:157
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Elementit otsikko, nimi ja linkki vaaditaan rivillä %d, sarakkeessa %d"
 
-#: ../src/dh-parser.c:208
+#: ../src/dh-parser.c:211
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Elementit nimi ja linkki vaaditaan <sub>:in sisällä rivillä %d, sarakkeessa %"
 "d"
 
-#: ../src/dh-parser.c:253
+#: ../src/dh-parser.c:279
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -65,20 +66,20 @@ msgstr ""
 "Elementit nimi ja linkki vaaditaan <function>:in sisällä rivillä %d, "
 "sarakkeessa %d"
 
-#: ../src/dh-parser.c:365 ../src/dh-parser.c:453
+#: ../src/dh-parser.c:391 ../src/dh-parser.c:485
 msgid "Could not create book parser"
 msgstr "Kirjan tulkkia ei voitu luoda"
 
-#: ../src/dh-parser.c:375 ../src/dh-parser.c:463
+#: ../src/dh-parser.c:407 ../src/dh-parser.c:495
 msgid "Could not create markup parser"
 msgstr "Merkintöjen tulkkia ei voitu luoda"
 
-#: ../src/dh-parser.c:510
+#: ../src/dh-parser.c:548
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kirjan '%s' pakkausta ei voitu avata: %s"
 
-#: ../src/dh-parser.c:535
+#: ../src/dh-parser.c:573
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp ei ole käännetty zlib-tuen kanssa"
 
@@ -86,7 +87,7 @@ msgstr "Devhelp ei ole käännetty zlib-tuen kanssa"
 msgid "_Search:"
 msgstr "_Etsi:"
 
-#: ../src/dh-search.c:467
+#: ../src/dh-search.c:462
 msgid "Section"
 msgstr "Osa"
 
@@ -98,7 +99,7 @@ msgstr "_Tiedosto"
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:8
 msgid "_Go"
 msgstr "Siirry"
 
@@ -119,26 +120,26 @@ msgstr "Uusi _välilehti"
 msgid "Browse Contents"
 msgstr "Selaa sisällysluetteloa"
 
-#: ../src/dh-window.c:167 ../src/dh-window.c:448
+#: ../src/dh-window.c:167 ../src/dh-window.c:451
 msgid "Search"
 msgstr "Hae"
 
-#: ../src/dh-window.c:438 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:2
 msgid "Contents"
 msgstr "Sisältö"
 
-#: ../src/dh-window.c:603
+#: ../src/dh-window.c:606
 msgid "translator_credits"
 msgstr ""
 "Ilkka Tuohela, 2004-2005.\n"
 "\n"
 "http://gnome.fi/"
 
-#: ../src/dh-window.c:608
+#: ../src/dh-window.c:611
 msgid "A developer's help browser for GNOME 2"
 msgstr "Kehittäjän avusteselain Gnome 2:een"
 
-#: ../src/dh-window.c:938 ../src/dh-window.c:1066
+#: ../src/dh-window.c:939 ../src/dh-window.c:1067
 msgid "Empty Page"
 msgstr "Tyhjä sivu"
 
@@ -223,36 +224,44 @@ msgid "Y position of main window"
 msgstr "Pääikkunan Y-koordinaatti"
 
 #: ../ui/devhelp.glade.h:1
-msgid "    "
-msgstr " "
-
-#: ../ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Kirjasimet</b>"
 
-#: ../ui/devhelp.glade.h:5
-msgid "Fixed width:"
-msgstr "Tasalevyinen:"
-
-#: ../ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:4
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: ../ui/devhelp.glade.h:7
-msgid "Variable width: "
-msgstr "Vaihtelevan levyinen:"
-
-#: ../ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:5
 msgid "_Back"
 msgstr "_Takaisin"
 
-#: ../ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:6
+msgid "_Fixed width:"
+msgstr "_Tasalevyinen:"
+
+#: ../ui/devhelp.glade.h:7
 msgid "_Forward"
 msgstr "_Eteenpäin"
 
-#: ../ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:9
 msgid "_Use system fonts"
 msgstr "_Käytä järjestelmän kirjasimia"
+
+#: ../ui/devhelp.glade.h:10
+msgid "_Variable width: "
+msgstr "_Vaihtelevan levyinen: "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp-tuki"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Käynnistää devhelpin F7-näppäimestä kohdistimen kohdalla "
+"olevalle sanalle"
+
+#~ msgid "    "
+#~ msgstr " "
 
 #~ msgid "Specify the size and location of the window"
 #~ msgstr "Määrittele ikkunan koko ja sijainti"
