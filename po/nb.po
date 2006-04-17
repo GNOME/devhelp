@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-24 23:07+0200\n"
+"POT-Creation-Date: 2006-03-02 10:33+0100\n"
 "PO-Revision-Date: 2005-10-24 23:09+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
@@ -18,7 +18,8 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Hjelpleser for utviklere"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:606 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:110 ../src/dh-window.c:609
+#: ../ui/devhelp.glade.h:3
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -26,54 +27,54 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp bok"
 
-#: ../src/dh-main.c:77
+#: ../src/dh-main.c:84
 msgid "Search for a function"
 msgstr "Søk etter en funksjon"
 
-#: ../src/dh-main.c:86
+#: ../src/dh-main.c:93
 msgid "Quit any running Devhelp"
 msgstr "Avslutt Devhelp"
 
-#: ../src/dh-parser.c:106 ../src/dh-parser.c:187 ../src/dh-parser.c:231
+#: ../src/dh-parser.c:109 ../src/dh-parser.c:190 ../src/dh-parser.c:257
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Forventet «%s» fikk «%s» ved linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:124
+#: ../src/dh-parser.c:127
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Ugyldig navneområde «%s» ved linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:154
+#: ../src/dh-parser.c:157
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "tittel, navn og lenkeelementer kreves ved linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:208
+#: ../src/dh-parser.c:211
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr "navn og lenkeelementer kreves inne i <sub> på linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:253
+#: ../src/dh-parser.c:279
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr "navn og lenkeelementer kreves inne i <function> på linje %d, kolone %d"
 
-#: ../src/dh-parser.c:365 ../src/dh-parser.c:453
+#: ../src/dh-parser.c:391 ../src/dh-parser.c:485
 msgid "Could not create book parser"
 msgstr "Kunne ikke opprette bokleser"
 
-#: ../src/dh-parser.c:375 ../src/dh-parser.c:463
+#: ../src/dh-parser.c:407 ../src/dh-parser.c:495
 msgid "Could not create markup parser"
 msgstr "Kunne ikke opprette leser for tagger"
 
-#: ../src/dh-parser.c:510
+#: ../src/dh-parser.c:548
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan ikke dekomprimere bok «%s»: %s"
 
-#: ../src/dh-parser.c:535
+#: ../src/dh-parser.c:573
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp er ikke bygget med støtte for zlib"
 
@@ -81,7 +82,7 @@ msgstr "Devhelp er ikke bygget med støtte for zlib"
 msgid "_Search:"
 msgstr "_Søk:"
 
-#: ../src/dh-search.c:467
+#: ../src/dh-search.c:462
 msgid "Section"
 msgstr "Del"
 
@@ -93,7 +94,7 @@ msgstr "_Fil"
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Gå"
 
@@ -114,23 +115,23 @@ msgstr "Ny _fane"
 msgid "Browse Contents"
 msgstr "Bla gjennom innhold"
 
-#: ../src/dh-window.c:167 ../src/dh-window.c:448
+#: ../src/dh-window.c:167 ../src/dh-window.c:451
 msgid "Search"
 msgstr "Søk"
 
-#: ../src/dh-window.c:438 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:2
 msgid "Contents"
 msgstr "Innhold"
 
-#: ../src/dh-window.c:603
+#: ../src/dh-window.c:606
 msgid "translator_credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/dh-window.c:608
+#: ../src/dh-window.c:611
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjelpleser for utviklere for GNOME 2"
 
-#: ../src/dh-window.c:938 ../src/dh-window.c:1066
+#: ../src/dh-window.c:939 ../src/dh-window.c:1067
 msgid "Empty Page"
 msgstr "Tom side"
 
@@ -215,33 +216,32 @@ msgid "Y position of main window"
 msgstr "Vertikal posisjon for hovedvinduet"
 
 #: ../ui/devhelp.glade.h:1
-msgid "    "
-msgstr "    "
-
-#: ../ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Skrifter</b>"
 
-#: ../ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:4
 msgid "Fixed width:"
 msgstr "Fast bredde:"
 
-#: ../ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Brukervalg"
 
-#: ../ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:6
 msgid "Variable width: "
 msgstr "Variabel bredde: "
 
-#: ../ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:7
 msgid "_Back"
 msgstr "Til_bake"
 
-#: ../ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "_Fremover"
 
-#: ../ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:10
 msgid "_Use system fonts"
 msgstr "Br_uk systemskrifter"
+
+#~ msgid "    "
+#~ msgstr "    "

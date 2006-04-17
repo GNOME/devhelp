@@ -1,3 +1,9 @@
+2006-04-17  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Remove obsolete entry for no_NO
+	* po/nb.po: Updated this translation
+	* po/no.po: Removed this translation.
+
 2006-04-06  Johannes Schmid <jhs@cvs.gnome.org>
 
 	* libdevhelp-1.0.pc.in: Correct requirement for libwnck-1.0.
