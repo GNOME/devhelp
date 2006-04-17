@@ -1,13 +1,13 @@
 # Norwegian/Bokmaal translation of devhelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 2001-2005.
+# Kjartan Maraas <kmaraas@gnome.org>, 2001-2006.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-02 10:33+0100\n"
-"PO-Revision-Date: 2005-10-24 23:09+0200\n"
+"POT-Creation-Date: 2006-04-17 13:01+0200\n"
+"PO-Revision-Date: 2006-04-17 13:04+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr "_Fil"
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:8
 msgid "_Go"
 msgstr "_Gå"
 
@@ -220,28 +220,33 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Skrifter</b>"
 
 #: ../ui/devhelp.glade.h:4
-msgid "Fixed width:"
-msgstr "Fast bredde:"
-
-#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Brukervalg"
 
-#: ../ui/devhelp.glade.h:6
-msgid "Variable width: "
-msgstr "Variabel bredde: "
-
-#: ../ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:5
 msgid "_Back"
 msgstr "Til_bake"
 
-#: ../ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:6
+msgid "_Fixed width:"
+msgstr "_Fast bredde:"
+
+#: ../ui/devhelp.glade.h:7
 msgid "_Forward"
 msgstr "_Fremover"
 
-#: ../ui/devhelp.glade.h:10
+#: ../ui/devhelp.glade.h:9
 msgid "_Use system fonts"
 msgstr "Br_uk systemskrifter"
 
-#~ msgid "    "
-#~ msgstr "    "
+#: ../ui/devhelp.glade.h:10
+msgid "_Variable width: "
+msgstr "_Variabel bredde: "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Støtte for Devhelp"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Start Devhelp for ordet ved markøren med F7"
