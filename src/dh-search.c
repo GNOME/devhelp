@@ -30,6 +30,7 @@
 #include <gtk/gtkframe.h>
 #include <gtk/gtkhbox.h>
 #include <gtk/gtkvbox.h>
+#include <gtk/gtktable.h>
 #include <gtk/gtklabel.h>
 #include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtktreeview.h>
@@ -47,6 +48,8 @@ struct _DhSearchPriv {
 
 	DhLink         *selected_link;
 	
+	GtkWidget      *book;
+	GtkWidget      *page;
 	GtkWidget      *entry;
 	GtkWidget      *hitlist;
 
@@ -82,7 +85,7 @@ static void  search_entry_text_inserted_cb     (GtkEntry         *entry,
 static gboolean search_complete_idle           (DhSearch         *search);
 static gboolean search_filter_idle             (DhSearch         *search);
 static gchar *  search_complete_func           (DhLink           *link);
-
+static gchar *  search_string                  (DhSearch         *search);
 
 enum {
         LINK_SELECTED,
@@ -286,6 +289,33 @@ search_entry_key_press_event_cb (GtkEntry    *entry,
 	return FALSE;
 }
 
+static gchar *
+search_string (DhSearch *search)
+{
+	gchar *string, *book, *page;
+
+	book = (gchar *) gtk_entry_get_text (GTK_ENTRY (search->priv->book));
+	if (book && book[0])
+		book = g_strdup_printf ("book:%s ", book);
+	else page = "";
+
+	page = (gchar *) gtk_entry_get_text (GTK_ENTRY (search->priv->page));
+	if (page && page[0])
+		page = g_strdup_printf ("page:%s ", page);
+	else page = "";
+
+	string = g_strdup_printf ("%s%s%s", book, page, 
+				  gtk_entry_get_text (GTK_ENTRY
+						      (search->priv->entry)));
+
+	if (book[0] != '\0') 
+		g_free (book);
+	if (page[0] != '\0') 
+		g_free (page);
+
+	return string;
+}
+
 static void
 search_entry_changed_cb (GtkEntry *entry, DhSearch *search)
 {
@@ -305,13 +335,13 @@ static void
 search_entry_activated_cb (GtkEntry *entry, DhSearch *search)
 {
 	DhSearchPriv *priv;
-	gchar             *str;
+	gchar        *str;
 	
 	priv = search->priv;
 	
-	str = (gchar *) gtk_entry_get_text (GTK_ENTRY (priv->entry));
-	
+	str = search_string (search);
 	dh_keyword_model_filter (priv->model, str);
+	g_free (str);
 }
 
 static void
@@ -375,9 +405,10 @@ search_filter_idle (DhSearch *search)
 
 	d(g_print ("Filter idle\n"));
 	
-	str = (gchar *) gtk_entry_get_text (GTK_ENTRY (priv->entry));
-
+	str = search_string (search);
 	link = dh_keyword_model_filter (priv->model, str);
+	g_free (str);
+
 	priv->idle_filter = 0;
 
 	if (link) {
@@ -401,7 +432,7 @@ dh_search_new (GList *keywords)
 	GtkTreeSelection *selection;
         GtkWidget        *list_sw;
 	GtkWidget        *frame;
-	GtkWidget        *hbox;
+	GtkWidget        *table;
 	GtkWidget        *label;
 	GtkCellRenderer  *cell;
 		
@@ -410,14 +441,46 @@ dh_search_new (GList *keywords)
 	priv = search->priv;
 
 	gtk_container_set_border_width (GTK_CONTAINER (search), 2);
-	
+
+	table = gtk_table_new (2, 2, FALSE);
+
+	/* Setup the book box */
+	priv->book = gtk_entry_new ();
+	g_signal_connect (priv->book, "changed", 
+			  G_CALLBACK (search_entry_changed_cb),
+			  search);
+	g_signal_connect (priv->book, "activate",
+			  G_CALLBACK (search_entry_activated_cb),
+			  search);
+
+	label = gtk_label_new_with_mnemonic (_("_Book:"));
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->book);
+	gtk_table_attach (GTK_TABLE (table), label,      0, 1, 0, 1, 
+			  0, GTK_EXPAND|GTK_FILL, 2, 2);
+	gtk_table_attach (GTK_TABLE (table), priv->book, 1, 2, 0, 1, 
+			  GTK_EXPAND|GTK_FILL, GTK_EXPAND|GTK_FILL, 2, 2);
+
+	/* Setup the page box */
+	priv->page = gtk_entry_new ();
+	g_signal_connect (priv->page, "changed", 
+			  G_CALLBACK (search_entry_changed_cb),
+			  search);
+	g_signal_connect (priv->page, "activate",
+			  G_CALLBACK (search_entry_activated_cb),
+			  search);
+
+	label = gtk_label_new_with_mnemonic (_("_Page:"));
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->page);
+
+	gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, 
+			  0, GTK_EXPAND|GTK_FILL, 2, 2);
+	gtk_table_attach (GTK_TABLE (table), priv->page, 1, 2, 1, 2, 
+			  GTK_EXPAND|GTK_FILL, GTK_EXPAND|GTK_FILL, 2, 2);
+
+ 	gtk_box_pack_start (GTK_BOX (search), table, FALSE, FALSE, 0);
+
 	/* Setup the keyword box */
-	hbox = gtk_hbox_new (FALSE, 0);
-	
-	label = gtk_label_new_with_mnemonic (_("_Search:"));
-
 	priv->entry = gtk_entry_new ();
-
 	g_signal_connect (priv->entry, "key_press_event",
 			  G_CALLBACK (search_entry_key_press_event_cb),
 			  search);
@@ -430,8 +493,6 @@ dh_search_new (GList *keywords)
 			  G_CALLBACK (search_entry_changed_cb),
 			  search);
 
-	gtk_box_pack_end (GTK_BOX (hbox), priv->entry, TRUE, TRUE, 0);
-	
 	g_signal_connect (priv->entry, "activate",
 			  G_CALLBACK (search_entry_activated_cb),
 			  search);
@@ -440,8 +501,9 @@ dh_search_new (GList *keywords)
 			  G_CALLBACK (search_entry_text_inserted_cb),
 			  search);
 
-	gtk_box_pack_start (GTK_BOX (search), hbox, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (search), priv->entry, FALSE, FALSE, 0);
 
+	/* Setup the hitlist */
 	frame = gtk_frame_new (NULL);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 	
@@ -488,13 +550,57 @@ dh_search_new (GList *keywords)
 void
 dh_search_set_search_string (DhSearch *search, const gchar *str)
 {
-	DhSearchPriv *priv;
-	
+	DhSearchPriv  *priv;
+	gchar        **split, **leftover, *lower;
+	gchar         *string = NULL;
+	gint           i;
+
 	g_return_if_fail (DH_IS_SEARCH (search));
 
 	priv = search->priv;
 
-	gtk_entry_set_text (GTK_ENTRY (priv->entry), str);
+	if ((leftover = split = g_strsplit (str, " ", -1)) != NULL) {
+		for (i = 0; split[i] != NULL; i++) {
+
+			lower = g_ascii_strdown (split[i], -1);
+			
+			/* Determine if there was a book or page specification
+			 */
+			if (!strncmp (lower, "book:", 5)) {
+				gtk_entry_set_text (GTK_ENTRY (priv->book), 
+						    split[i] + 5);
+				leftover++;
+			} else if (!strncmp (lower, "page:", 5)) {
+				gtk_entry_set_text (GTK_ENTRY (priv->page), 
+						    split[i] + 5);
+				leftover++;
+			} else
+				/* No more specifications */
+				break;
+			
+			g_free (lower);
+		}
+
+		for (i = 0; leftover[i] != NULL; i++) {
+			if (string == NULL)
+				string = g_strdup (leftover[i]);
+			else { 
+				lower = g_strdup_printf ("%s %s", string, leftover[i]);
+				g_free (string);
+				string = lower;
+			}
+		}
+
+		g_strfreev (split);
+		
+		gtk_entry_set_text (GTK_ENTRY (priv->entry), string);
+
+		if (string) 
+			g_free (string);
+
+	} else {
+		gtk_entry_set_text (GTK_ENTRY (priv->entry), str);
+	}
 	
 	gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
 	gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);

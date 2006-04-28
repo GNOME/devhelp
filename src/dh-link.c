@@ -29,13 +29,19 @@ static void
 link_free (DhLink *link)
 {
 	g_free (link->name);
+	g_free (link->book);
+	g_free (link->page);
 	g_free (link->uri);
 
 	g_free (link);
 }
 
 DhLink *
-dh_link_new (DhLinkType type, const gchar *name, const gchar *uri)
+dh_link_new (DhLinkType   type, 
+	     const gchar *name, 
+	     const gchar *book, 
+	     const gchar *page, 
+	     const gchar *uri)
 {
 	DhLink *link;
 
@@ -47,6 +53,8 @@ dh_link_new (DhLinkType type, const gchar *name, const gchar *uri)
 	link->type = type;
 
 	link->name = g_strdup (name);
+	link->book = g_strdup (book);
+	link->page = g_strdup (page);
 	link->uri  = g_strdup (uri);
 	
 	return link;
@@ -55,13 +63,27 @@ dh_link_new (DhLinkType type, const gchar *name, const gchar *uri)
 DhLink *
 dh_link_copy (const DhLink *link)
 {
-	return dh_link_new (link->type, link->name, link->uri);
+	return dh_link_new (link->type, link->name, link->book, 
+			    link->page, link->uri);
 }
 
 gint
 dh_link_compare  (gconstpointer a, gconstpointer b)
 {
-	return strcmp (((DhLink *)a)->name, ((DhLink *)b)->name);
+	gint book_diff;
+	gint page_diff;
+
+	book_diff = strcmp (((DhLink *)a)->book, ((DhLink *)b)->book);
+	if (book_diff == 0) {
+		page_diff = strcmp (((DhLink *)a)->page, ((DhLink *)b)->page);
+
+		if (page_diff == 0)
+			return strcmp (((DhLink *)a)->name, ((DhLink *)b)->name);
+
+		return page_diff;
+	}
+
+	return book_diff;
 }
 
 DhLink *

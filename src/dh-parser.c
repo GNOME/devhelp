@@ -77,6 +77,7 @@ static gboolean parser_read_gz_file  (const gchar          *path,
 				      GNode                *book_tree,
 				      GList               **keywords,
 				      GError              **error);
+static gchar   *extract_page_name    (const gchar          *uri);
 
 
 static void
@@ -90,9 +91,9 @@ parser_start_node_cb (GMarkupParseContext  *context,
 	DhParser *parser;
 	gint      i, line, col;
 	DhLink   *dh_link;
-	gchar    *full_link;
+	gchar    *full_link, *page;
 
-	parser = DH_PARSER (user_data);;
+	parser = DH_PARSER (user_data);
 
 	if (!parser->book_node) {
 		const gchar *xmlns = NULL;
@@ -167,7 +168,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		}
 
 		full_link = g_strconcat (parser->base, "/", link, NULL);
-		dh_link = dh_link_new (DH_LINK_TYPE_BOOK, title, full_link);
+		dh_link = dh_link_new (DH_LINK_TYPE_BOOK, title, name, NULL, full_link);
 		g_free (full_link);
 
 		parser->book_node = g_node_new (dh_link);
@@ -214,9 +215,15 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			return;
 		}
 
+		
+
 		full_link = g_strconcat (parser->base, "/", link, NULL);
-		dh_link = dh_link_new (DH_LINK_TYPE_PAGE, name, full_link);
+		page = extract_page_name (link);
+		dh_link = dh_link_new (DH_LINK_TYPE_PAGE, name, 
+				       DH_LINK(parser->book_node->data)->book,
+				       page, full_link);
 		g_free (full_link);
+		g_free (page);
 
 		node = g_node_new (dh_link);
 		g_node_prepend (parser->parent, node);
@@ -297,16 +304,22 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		}
 	
 		full_link = g_strconcat (parser->base, "/", link, NULL);
+		page = extract_page_name (link);
 		if (g_str_has_suffix (name, " ()")) {
 			gchar *tmp;
 
 			tmp = g_strndup (name, strlen (name) - 3);
-			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, tmp, full_link);
+			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, tmp, 
+					       DH_LINK(parser->book_node->data)->book,
+					       page, full_link);
 			g_free (tmp);
 		} else {
-			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, name, full_link);
+			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, name, 
+					       DH_LINK(parser->book_node->data)->book,
+					       page, full_link);
 		}
 		g_free (full_link);
+		g_free (page);
 
  		*parser->keywords = g_list_prepend (*parser->keywords,
  						    dh_link);
@@ -573,4 +586,18 @@ parser_read_gz_file (const gchar  *path,
 		     _("Devhelp is not built with zlib support"));
 	return FALSE;
 #endif
+}
+
+
+static gchar *
+extract_page_name (const gchar *uri)
+{
+	gchar  *page = NULL;
+	gchar **split;
+
+	if ((split = g_strsplit (uri, ".", 2)) != NULL) {
+		page = g_strdup (split[0]);
+		g_strfreev (split);
+	}
+	return page;
 }

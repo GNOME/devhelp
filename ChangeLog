@@ -1,3 +1,17 @@
+2006-04-26  Tristan Van Berkom <tvb@gnome.org>
+
+	* src/dh-link.[ch]: Added book & page specification
+
+	* src/dh-parser.c: Pass 'book' & 'page' parameter when parsing 
+	  devhelp files.
+
+	* src/dh-keyword-model.c: Use the 'book:bookname' and 'page:pagename' construct 
+	  to perform book and page sensitive searches.
+
+	* src/dh-search.c: Updated to reflect changes; now you can enter a book name
+	  and or a page name to effect the search results (no completion implemented
+	  here though unfortunately).
+
 2006-04-17  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* configure.in: Remove obsolete entry for no_NO

@@ -36,6 +36,8 @@ typedef enum {
 
 struct _DhLink {
 	gchar       *name;
+	gchar       *book;
+	gchar       *page;
 	gchar       *uri;
 	DhLinkType   type;
 	
@@ -44,6 +46,8 @@ struct _DhLink {
 
 DhLink * dh_link_new        (DhLinkType      type,
 			     const gchar    *name,
+			     const gchar    *book,
+			     const gchar    *page,
 			     const gchar    *uri);
 
 DhLink * dh_link_copy       (const DhLink   *link);

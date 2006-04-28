@@ -436,7 +436,8 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	gboolean             found;
 	gboolean             case_sensitive;
 	gchar               *lower, *name;
-	gchar              **stringv;
+	gchar              **stringv, **searchv;
+	gchar               *book_search, *page_search;
 
 	g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
 	g_return_val_if_fail (string != NULL, NULL);
@@ -454,14 +455,42 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	} else {
 		stringv = g_strsplit (string, " ", -1);
 
+		book_search    = NULL;
+		page_search    = NULL;
+		case_sensitive = FALSE;
+		searchv        = stringv;
+
+		/* Search for any parameters and position search cursor
+		 * to the next element in the search string.
+		 */
+		for (i = 0; stringv[i] != NULL; i++) {
+
+			/* Parse specifications insensitively
+			 */
+			lower = g_ascii_strdown (stringv[i], -1);
+			
+			/* Determine if there was a book or page specification
+			 */
+			if (!strncmp (lower, "book:", 5)) {
+				book_search = g_strdup (stringv[i] + 5);
+				searchv++;
+			} else if (!strncmp (lower, "page:", 5)) {
+				page_search = g_strdup (stringv[i] + 5);
+				searchv++;
+			} else
+				/* No more specifications */
+				break;
+
+			g_free (lower);
+		}
+
 		/* determine wether or not we should search with case
 		   sensitivity, searches are case sensitive when upper
 		   case is used in the search terms, matching vim
 		   smartcase behaviour */
-		case_sensitive = FALSE;
-		for (i = 0; stringv[i] != NULL; i++) {
-			lower = g_ascii_strdown (stringv[i], -1);
-			if (strcmp (lower, stringv[i])) {
+		for (i = 0; searchv[i] != NULL; i++) {
+			lower = g_ascii_strdown (searchv[i], -1);
+			if (strcmp (lower, searchv[i])) {
 				case_sensitive = TRUE;
 			}
 			g_free (lower);
@@ -473,8 +502,17 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 
 			link = DH_LINK (node->data);
 			
+			if (book_search &&
+			    strcmp (link->book, book_search))
+				continue;
+			
+			if ((page_search && !link->page) ||
+			    (page_search && strcmp (link->page, page_search)))
+				continue;
+
+					
 			found = TRUE;
-			for (i = 0; stringv[i] != NULL; i++) {
+			for (i = 0; searchv[i] != NULL; i++) {
 
 				if (!case_sensitive) {
 					name = g_ascii_strdown (link->name, -1);
@@ -482,7 +520,7 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 					name = g_strdup (link->name);
 				}
 				
-				if (!g_strrstr (name, stringv[i])) {
+				if (!g_strrstr (name, searchv[i])) {
 					found = FALSE;
 					g_free (name);
 					break;
@@ -504,6 +542,11 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 		
 		new_list = g_list_sort (new_list, dh_link_compare);
 		g_strfreev (stringv);
+
+		if (book_search) 
+			g_free (book_search);
+		if (page_search) 
+			g_free (page_search);
 	}
 
 	new_length = g_list_length (new_list);
