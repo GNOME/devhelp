@@ -70,6 +70,7 @@ main (int argc, char **argv)
 {
 	gchar                  *option_search = NULL;
 	gboolean                option_quit = FALSE;
+	gboolean                option_version = FALSE;
 	BaconMessageConnection *message_conn;
 	DhBase                 *base;
 	GtkWidget              *window;
@@ -93,11 +94,20 @@ main (int argc, char **argv)
 			_("Quit any running Devhelp"),
 			NULL
 		},
+       		{
+			"version",
+			'v',
+			0,
+			G_OPTION_ARG_NONE,
+			&option_version,
+			_("Print the version and exit"),
+			NULL
+		},
 		{
 			NULL, '\0', 0, 0, NULL, NULL, NULL
 		}
 	};
-
+	
 	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (PACKAGE);
@@ -105,6 +115,13 @@ main (int argc, char **argv)
 	if (!gtk_init_with_args (&argc, &argv, NULL, options, GETTEXT_PACKAGE, &error)) {
 		g_printerr ("%s\n", error->message);
 		return 1;
+	}
+
+	/* Print version information and exit 
+	 */
+	if (option_version) {
+		g_print ("%s\n", PACKAGE_STRING);
+		return 0;
 	}
 
 	g_set_application_name (_("Devhelp"));

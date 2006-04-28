@@ -1,4 +1,6 @@
-2006-04-26  Tristan Van Berkom <tvb@gnome.org>
+2006-04-28  Tristan Van Berkom <tvb@gnome.org>
+
+	* src/dh-main.c: Added --version option.
 
 	* src/dh-link.[ch]: Added book & page specification
 
