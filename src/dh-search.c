@@ -308,10 +308,13 @@ search_string (DhSearch *search)
 				  gtk_entry_get_text (GTK_ENTRY
 						      (search->priv->entry)));
 
-	if (book[0] != '\0') 
+	if (book[0] != '\0') {
 		g_free (book);
-	if (page[0] != '\0') 
+	}
+
+	if (page[0] != '\0') {
 		g_free (page);
+	}
 
 	return string;
 }
@@ -595,8 +598,9 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 		
 		gtk_entry_set_text (GTK_ENTRY (priv->entry), string);
 
-		if (string) 
+		if (string) {
 			g_free (string);
+		}
 
 	} else {
 		gtk_entry_set_text (GTK_ENTRY (priv->entry), str);

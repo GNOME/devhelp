@@ -543,10 +543,13 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 		new_list = g_list_sort (new_list, dh_link_compare);
 		g_strfreev (stringv);
 
-		if (book_search) 
+		if (book_search) {
 			g_free (book_search);
-		if (page_search) 
+		}
+
+		if (page_search) {
 			g_free (page_search);
+		}
 	}
 
 	new_length = g_list_length (new_list);
