@@ -338,12 +338,15 @@ static void
 search_entry_activated_cb (GtkEntry *entry, DhSearch *search)
 {
 	DhSearchPriv *priv;
+	DhLink       *link;
 	gchar        *str;
 	
 	priv = search->priv;
 	
 	str = search_string (search);
-	dh_keyword_model_filter (priv->model, str);
+
+	link = dh_keyword_model_filter (priv->model, str);
+
 	g_free (str);
 }
 
@@ -563,6 +566,7 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 	priv = search->priv;
 
 	if ((leftover = split = g_strsplit (str, " ", -1)) != NULL) {
+
 		for (i = 0; split[i] != NULL; i++) {
 
 			lower = g_ascii_strdown (split[i], -1);
@@ -584,10 +588,13 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 			g_free (lower);
 		}
 
+
+		/* Collect the search string */
+		string = NULL;
 		for (i = 0; leftover[i] != NULL; i++) {
-			if (string == NULL)
+			if (string == NULL) {
 				string = g_strdup (leftover[i]);
-			else { 
+			} else { 
 				lower = g_strdup_printf ("%s %s", string, leftover[i]);
 				g_free (string);
 				string = lower;
@@ -596,14 +603,16 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 
 		g_strfreev (split);
 		
-		gtk_entry_set_text (GTK_ENTRY (priv->entry), string);
+		gtk_entry_set_text (GTK_ENTRY (priv->entry), 
+				    string ? string : "");
 
 		if (string) {
 			g_free (string);
 		}
 
 	} else {
-		gtk_entry_set_text (GTK_ENTRY (priv->entry), str);
+		gtk_entry_set_text (GTK_ENTRY (priv->entry), 
+				    str ? str : "");
 	}
 	
 	gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);

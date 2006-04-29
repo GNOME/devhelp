@@ -28,6 +28,10 @@
 struct _DhKeywordModelPriv {
 	GList *original_list;
 
+	GList *keys_list;
+	GList *book_list;
+	GList *page_list;
+
         GList *keyword_words;
 
         gint   stamp;
@@ -168,6 +172,22 @@ keyword_model_finalize (GObject *object)
         if (model->priv) {
 		if (model->priv->keyword_words) {
 			g_list_free (model->priv->keyword_words);
+		}
+
+		if (model->priv->original_list) {
+			g_list_free (model->priv->original_list);
+		}
+
+		if (model->priv->keys_list) {
+			g_list_free (model->priv->keys_list);
+		}
+
+		if (model->priv->book_list) {
+			g_list_free (model->priv->book_list);
+		}
+
+		if (model->priv->page_list) {
+			g_list_free (model->priv->page_list);
 		}
 
                 g_free (model->priv);
@@ -411,13 +431,45 @@ void
 dh_keyword_model_set_words (DhKeywordModel *model, GList *keyword_words)
 {
 	DhKeywordModelPriv *priv;
+	DhLink             *link;
+	GList              *list;
 
 	g_return_if_fail (DH_IS_KEYWORD_MODEL (model));
 
 	priv = model->priv;
 
 	g_list_free (priv->original_list);
+	g_list_free (priv->keys_list);
+	g_list_free (priv->book_list);
+	g_list_free (priv->page_list);
+
+
 	priv->original_list = g_list_copy (keyword_words);
+	priv->keys_list = priv->book_list = priv->page_list = NULL;
+
+	/* Parse it into usable lists
+	 */
+	for (list = priv->original_list; 
+	     list; list = list->next) {
+		link = list->data;
+		switch (link->type) {
+		case DH_LINK_TYPE_BOOK:
+			priv->book_list = 
+				g_list_prepend (priv->book_list, link);
+			break;
+		case DH_LINK_TYPE_PAGE:
+			priv->page_list = 
+				g_list_prepend (priv->page_list, link);
+			break;
+		case DH_LINK_TYPE_KEYWORD:
+			priv->keys_list = 
+				g_list_prepend (priv->keys_list, link);
+			break;
+		default:
+			g_assert_not_reached();
+		}
+	}
+
 }
 
 DhLink *
@@ -436,7 +488,7 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	gboolean             found;
 	gboolean             case_sensitive;
 	gchar               *lower, *name;
-	gchar              **stringv, **searchv;
+	gchar              **stringv, **searchv, *search = NULL;
 	gchar               *book_search, *page_search;
 
 	g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
@@ -447,7 +499,6 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 	/* here we want to change the contents of keyword_words,
 	   call update on all rows that is included in the new 
 	   list and remove on all outside it */
-	
 	old_length = g_list_length (priv->keyword_words);
 
 	if (!strcmp ("", string)) {
@@ -461,9 +512,13 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 		searchv        = stringv;
 
 		/* Search for any parameters and position search cursor
-		 * to the next element in the search string.
+		 * to the next element in the search string, also collect
+		 * a search string for exact matches.
 		 */
 		for (i = 0; stringv[i] != NULL; i++) {
+
+			if (stringv[i][0] == '\0')
+				continue;
 
 			/* Parse specifications insensitively
 			 */
@@ -477,71 +532,132 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 			} else if (!strncmp (lower, "page:", 5)) {
 				page_search = g_strdup (stringv[i] + 5);
 				searchv++;
-			} else
-				/* No more specifications */
-				break;
+			} else {
 
-			g_free (lower);
-		}
-
-		/* determine wether or not we should search with case
-		   sensitivity, searches are case sensitive when upper
-		   case is used in the search terms, matching vim
-		   smartcase behaviour */
-		for (i = 0; searchv[i] != NULL; i++) {
-			lower = g_ascii_strdown (searchv[i], -1);
-			if (strcmp (lower, searchv[i])) {
-				case_sensitive = TRUE;
-			}
-			g_free (lower);
-		}
-
-		for (node = priv->original_list; 
-		     node && hits < MAX_HITS; 
-		     node = node->next) {
-
-			link = DH_LINK (node->data);
-			
-			if (book_search &&
-			    strcmp (link->book, book_search))
-				continue;
-			
-			if ((page_search && !link->page) ||
-			    (page_search && strcmp (link->page, page_search)))
-				continue;
-
-					
-			found = TRUE;
-			for (i = 0; searchv[i] != NULL; i++) {
-
-				if (!case_sensitive) {
-					name = g_ascii_strdown (link->name, -1);
-				} else {
-					name = g_strdup (link->name);
+				/* determine wether or not we should search with case
+				 * sensitivity, searches are case sensitive when upper
+				 * case is used in the search terms, matching vim
+				 * smartcase behaviour 
+				 */
+				name = g_ascii_strdown (stringv[i], -1);
+				if (strcmp (name, stringv[i])) {
+					case_sensitive = TRUE;
 				}
-				
-				if (!g_strrstr (name, searchv[i])) {
-					found = FALSE;
-					g_free (name);
-					break;
-				}
-
 				g_free (name);
-			}
 				
-			if (found) {
-				/* Include in the new list */
-				new_list = g_list_prepend (new_list, link);
-				hits++;
+				/* Accumulate our search string
+				 */
+				if (search == NULL) {
+					search = g_strdup (stringv[i]);
+				} else { 
+					name = g_strdup_printf ("%s %s", search, stringv[i]);
+					g_free (search);
+					search = name;
+				}
 			}
-			
-			if (strcmp (link->name, string) == 0) {
-				exactlink = link;
+			g_free (lower);
+		}
+
+		/* Only return book and page matches with empty 
+		 * search strings
+		 */
+		if (search == NULL) {
+
+			if (book_search && !page_search) {
+				/* Search books first */
+				for (node = priv->book_list; 
+				     node && hits < MAX_HITS; 
+				     node = node->next) {
+					
+					link = node->data;
+					
+					if (strcmp (link->book, book_search))
+						continue;
+					
+					/* Found our book */
+					new_list = g_list_prepend (new_list, link);
+					hits++;
+					
+					exactlink = link;
+					
+				}
+				
+				/* Currently, only searches that specify
+				 * page & book return page indexes.
+				 */
+			} else if (book_search && page_search) {
+				
+				/* Now search pages */
+				for (node = priv->page_list; 
+				     book_search && page_search && 
+					     node && hits < MAX_HITS; node = node->next) {
+					
+					link = node->data;
+					
+					if (strcmp (link->book, book_search))
+						continue;
+					if (strcmp (link->page, page_search))
+						continue;
+					
+					/* Found our page */
+					new_list  = g_list_prepend (new_list, link);
+					exactlink = link;
+					hits++;
+				}
+			}
+		} else { /* if (search != NULL) */
+		
+			/* Now search keywords */
+			for (node = priv->keys_list; 
+			     node && hits < MAX_HITS; 
+			     node = node->next) {
+				
+				link      = DH_LINK (node->data);
+				found     = FALSE;
+				
+				if (book_search && strcmp (link->book, book_search))
+					continue;
+				if (page_search && strcmp (link->page, page_search))
+					continue;
+				
+				if (!found) {
+					found = TRUE;
+					
+					for (i = 0; searchv[i] != NULL; i++) {
+						
+						if (!case_sensitive) {
+							name = g_ascii_strdown (link->name, -1);
+						} else {
+							name = g_strdup (link->name);
+						}
+						
+						if (!g_strrstr (name, searchv[i])) {
+							found = FALSE;
+							g_free (name);
+							break;
+						}
+						g_free (name);
+					}
+				}
+				
+				if (found) {
+					/* Include in the new list */
+					new_list = g_list_prepend (new_list, link);
+					hits++;
+					
+					if (search && strcmp (link->name, search) == 0) {
+						exactlink = link;
+					}
+				}
 			}
 		}
 		
 		new_list = g_list_sort (new_list, dh_link_compare);
 		g_strfreev (stringv);
+
+		if (search) {
+			g_free (search);
+		}
 
 		if (book_search) {
 			g_free (book_search);

@@ -75,7 +75,15 @@ dh_link_compare  (gconstpointer a, gconstpointer b)
 
 	book_diff = strcmp (((DhLink *)a)->book, ((DhLink *)b)->book);
 	if (book_diff == 0) {
-		page_diff = strcmp (((DhLink *)a)->page, ((DhLink *)b)->page);
+
+		if (((DhLink *)a)->page == 0 &&
+		    ((DhLink *)b)->page == 0) {
+			page_diff = 0;
+		} else {
+			page_diff = 
+				(((DhLink *)a)->page && ((DhLink *)b)->page) ?
+				strcmp (((DhLink *)a)->page, ((DhLink *)b)->page) : -1;
+		}
 
 		if (page_diff == 0)
 			return strcmp (((DhLink *)a)->name, ((DhLink *)b)->name);

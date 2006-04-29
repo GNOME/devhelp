@@ -171,6 +171,9 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		dh_link = dh_link_new (DH_LINK_TYPE_BOOK, title, name, NULL, full_link);
 		g_free (full_link);
 
+ 		*parser->keywords = g_list_prepend (*parser->keywords,
+ 						    dh_link);
+
 		parser->book_node = g_node_new (dh_link);
 		g_node_prepend (parser->book_tree, parser->book_node);
 		parser->parent = parser->book_node;
@@ -224,6 +227,9 @@ parser_start_node_cb (GMarkupParseContext  *context,
 				       page, full_link);
 		g_free (full_link);
 		g_free (page);
+
+ 		*parser->keywords = g_list_prepend (*parser->keywords,
+ 						    dh_link);
 
 		node = g_node_new (dh_link);
 		g_node_prepend (parser->parent, node);

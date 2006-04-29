@@ -1,5 +1,18 @@
 2006-04-28  Tristan Van Berkom <tvb@gnome.org>
 
+	* src/dh-parser.c: Now append book & page indexes into the
+	  keyword list.
+
+	* src/dh-keyword-model.c: Now return hits for page and book indexes
+	  (much nicer search results over all)
+
+	* src/dh-link.c: Patch possible segfaults on comparing NULL pointers
+
+	* src/dh-search.c: Patched critical assertions in some searches
+	  (i.e. gtk_entry_set_text called with NULL).
+
+2006-04-28  Tristan Van Berkom <tvb@gnome.org>
+
 	* src/dh-main.c: Added --version option.
 
 	* src/dh-link.[ch]: Added book & page specification
