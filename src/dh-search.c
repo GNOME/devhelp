@@ -565,6 +565,9 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 
 	priv = search->priv;
 
+	gtk_entry_set_text (GTK_ENTRY (priv->book), "");
+	gtk_entry_set_text (GTK_ENTRY (priv->page), "");
+
 	if ((leftover = split = g_strsplit (str, " ", -1)) != NULL) {
 
 		for (i = 0; split[i] != NULL; i++) {

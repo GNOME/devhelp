@@ -1,3 +1,12 @@
+2006-05-03  Tristan Van Berkom <tvb@gnome.org>
+
+	* src/dh-search.c: Fix dh_search_set_search_string() to clear
+	  the entries first.
+
+	* ui/devhelp.glade: Set use_underline to TRUE for mnemonic
+	  labels in the prefs dialog (since there was already a prefixed
+	  underscore).
+
 2006-04-28  Tristan Van Berkom <tvb@gnome.org>
 
 	* src/dh-parser.c: Now append book & page indexes into the
