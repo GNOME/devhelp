@@ -35,6 +35,7 @@
 #include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtktreeview.h>
 #include <gtk/gtktreeselection.h>
+#include <gtk/gtksizegroup.h>
 
 
 #include "dh-marshal.h"
@@ -438,8 +439,9 @@ dh_search_new (GList *keywords)
 	GtkTreeSelection *selection;
         GtkWidget        *list_sw;
 	GtkWidget        *frame;
-	GtkWidget        *table;
-	GtkWidget        *label;
+	GtkWidget        *hbox;
+	GtkWidget        *book_label, *page_label;
+	GtkSizeGroup     *group;
 	GtkCellRenderer  *cell;
 		
 	search = g_object_new (DH_TYPE_SEARCH, NULL);
@@ -447,8 +449,6 @@ dh_search_new (GList *keywords)
 	priv = search->priv;
 
 	gtk_container_set_border_width (GTK_CONTAINER (search), 2);
-
-	table = gtk_table_new (2, 2, FALSE);
 
 	/* Setup the book box */
 	priv->book = gtk_entry_new ();
@@ -459,12 +459,13 @@ dh_search_new (GList *keywords)
 			  G_CALLBACK (search_entry_activated_cb),
 			  search);
 
-	label = gtk_label_new_with_mnemonic (_("_Book:"));
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->book);
-	gtk_table_attach (GTK_TABLE (table), label,      0, 1, 0, 1, 
-			  0, GTK_EXPAND|GTK_FILL, 2, 2);
-	gtk_table_attach (GTK_TABLE (table), priv->book, 1, 2, 0, 1, 
-			  GTK_EXPAND|GTK_FILL, GTK_EXPAND|GTK_FILL, 2, 2);
+	book_label = gtk_label_new_with_mnemonic (_("_Book:"));
+	gtk_label_set_mnemonic_widget (GTK_LABEL (book_label), priv->book);
+
+	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), book_label, FALSE, FALSE, 2);
+	gtk_box_pack_start (GTK_BOX (hbox), priv->book, TRUE, TRUE, 2);
+ 	gtk_box_pack_start (GTK_BOX (search), hbox, FALSE, FALSE, 2);
 
 	/* Setup the page box */
 	priv->page = gtk_entry_new ();
@@ -475,15 +476,19 @@ dh_search_new (GList *keywords)
 			  G_CALLBACK (search_entry_activated_cb),
 			  search);
 
-	label = gtk_label_new_with_mnemonic (_("_Page:"));
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->page);
+	page_label = gtk_label_new_with_mnemonic (_("_Page:"));
+	gtk_label_set_mnemonic_widget (GTK_LABEL (page_label), priv->page);
 
-	gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, 
-			  0, GTK_EXPAND|GTK_FILL, 2, 2);
-	gtk_table_attach (GTK_TABLE (table), priv->page, 1, 2, 1, 2, 
-			  GTK_EXPAND|GTK_FILL, GTK_EXPAND|GTK_FILL, 2, 2);
+	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), page_label, FALSE, FALSE, 2);
+	gtk_box_pack_start (GTK_BOX (hbox), priv->page, TRUE, TRUE, 2);
+ 	gtk_box_pack_start (GTK_BOX (search), hbox, FALSE, FALSE, 2);
 
- 	gtk_box_pack_start (GTK_BOX (search), table, FALSE, FALSE, 0);
+	/* Align the labels */
+	group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
+	gtk_size_group_add_widget (group, book_label);
+	gtk_size_group_add_widget (group, page_label);
+	g_object_unref (G_OBJECT (group));
 
 	/* Setup the keyword box */
 	priv->entry = gtk_entry_new ();

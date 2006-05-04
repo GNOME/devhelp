@@ -1,5 +1,20 @@
 2006-05-03  Tristan Van Berkom <tvb@gnome.org>
 
+	* src/dh-search.c: Fixed the glitches when dragging the paned over
+	  the book & page entries.
+
+	* src/dh-preferences.c:
+	  o Dont build dialog in dh_preferences_init();
+	  o Build the dialog every time we show it and 
+	    destroy it in the "close" handler.
+	  o When recieving settings updates through gconf, 
+	    check that the dialog currently exists before 
+	    setting the button activity/sensitivity.
+	  o Now only one code segment is responsable for updating the
+	    gecko fonts, usually run in an idle handler.
+
+2006-05-03  Tristan Van Berkom <tvb@gnome.org>
+
 	* src/dh-search.c: Fix dh_search_set_search_string() to clear
 	  the entries first.
 
