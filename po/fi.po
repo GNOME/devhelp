@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-14 18:22+0300\n"
-"PO-Revision-Date: 2006-04-14 18:25+0300\n"
+"POT-Creation-Date: 2006-05-06 08:49+0300\n"
+"PO-Revision-Date: 2006-05-06 08:50+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Kehittäjän Ohje"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:110 ../src/dh-window.c:609
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:127 ../src/dh-window.c:609
 #: ../ui/devhelp.glade.h:3
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -28,37 +28,41 @@ msgstr "Devhelp"
 msgid "Devhelp Book"
 msgstr "Devhelp-kirja"
 
-#: ../src/dh-main.c:84
+#: ../src/dh-main.c:85
 msgid "Search for a function"
 msgstr "Etsi funktiota"
 
-#: ../src/dh-main.c:93
+#: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
 msgstr "Sulje suoritettavana olevat Devhelp-ohjelmat"
 
-#: ../src/dh-parser.c:109 ../src/dh-parser.c:190 ../src/dh-parser.c:257
+#: ../src/dh-main.c:103
+msgid "Print the version and exit"
+msgstr "Näytä versio ja sulje"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Oletettiin '%s', saatiin '%s' rivillä %d, sarakkeessa %d"
 
-#: ../src/dh-parser.c:127
+#: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Virheellinen nimiavaruus '%s' rivillä %d, sarakkeessa %d"
 
-#: ../src/dh-parser.c:157
+#: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Elementit otsikko, nimi ja linkki vaaditaan rivillä %d, sarakkeessa %d"
 
-#: ../src/dh-parser.c:211
+#: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Elementit nimi ja linkki vaaditaan <sub>:in sisällä rivillä %d, sarakkeessa %"
 "d"
 
-#: ../src/dh-parser.c:279
+#: ../src/dh-parser.c:292
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -66,28 +70,32 @@ msgstr ""
 "Elementit nimi ja linkki vaaditaan <function>:in sisällä rivillä %d, "
 "sarakkeessa %d"
 
-#: ../src/dh-parser.c:391 ../src/dh-parser.c:485
+#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
 msgid "Could not create book parser"
 msgstr "Kirjan tulkkia ei voitu luoda"
 
-#: ../src/dh-parser.c:407 ../src/dh-parser.c:495
+#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
 msgid "Could not create markup parser"
 msgstr "Merkintöjen tulkkia ei voitu luoda"
 
-#: ../src/dh-parser.c:548
+#: ../src/dh-parser.c:567
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kirjan '%s' pakkausta ei voitu avata: %s"
 
-#: ../src/dh-parser.c:573
+#: ../src/dh-parser.c:592
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp ei ole käännetty zlib-tuen kanssa"
 
-#: ../src/dh-search.c:417
-msgid "_Search:"
-msgstr "_Etsi:"
-
 #: ../src/dh-search.c:462
+msgid "_Book:"
+msgstr "_Kirja:"
+
+#: ../src/dh-search.c:479
+msgid "_Page:"
+msgstr "_Sivu:"
+
+#: ../src/dh-search.c:535
 msgid "Section"
 msgstr "Osa"
 
@@ -257,8 +265,11 @@ msgstr "Devhelp-tuki"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Käynnistää devhelpin F7-näppäimestä kohdistimen kohdalla "
-"olevalle sanalle"
+msgstr ""
+"Käynnistää devhelpin F7-näppäimestä kohdistimen kohdalla olevalle sanalle"
+
+#~ msgid "_Search:"
+#~ msgstr "_Etsi:"
 
 #~ msgid "    "
 #~ msgstr " "
