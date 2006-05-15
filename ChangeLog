@@ -1,3 +1,7 @@
+2006-05-15  Tristan Van Berkom <tvb@gnome.org>
+
+	* configure.in: Bumping version to 0.12 in cvs.
+
 2006-05-03  Tristan Van Berkom <tvb@gnome.org>
 
 	* src/dh-search.c: Fixed the glitches when dragging the paned over
