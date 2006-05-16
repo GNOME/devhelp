@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2004-2005 Imendio AB
+ * Copyright (C) 2004-2006 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -26,6 +26,7 @@
 #include <string.h>
 #include <gtk/gtkmain.h>
 #include <gdk/gdkx.h>
+#include <gconf/gconf-client.h>
 
 #define WNCK_I_KNOW_THIS_IS_UNSTABLE
 #include <libwnck/libwnck.h>
@@ -40,10 +41,11 @@
 #define d(x) 
 
 struct _DhBasePriv {
-	GSList     *windows;
-	GNode      *book_tree;
-	GList      *keywords;
-	GHashTable *books;
+	GSList      *windows;
+	GNode       *book_tree;
+	GList       *keywords;
+	GHashTable  *books;
+	GConfClient *gconf_client;
 };
 
 static void base_init                (DhBase      *base);
@@ -56,6 +58,7 @@ static void base_add_books           (DhBase      *base,
 
 
 static GObjectClass *parent_class;
+static DhBase       *base_instance;
 
 GType
 dh_base_get_type (void)
@@ -106,12 +109,26 @@ base_init (DhBase *base)
 
 		screen = wnck_screen_get (i);
 	}
+
+	priv->gconf_client = gconf_client_get_default ();
+	gconf_client_add_dir (priv->gconf_client,
+			      GCONF_PATH,
+			      GCONF_CLIENT_PRELOAD_ONELEVEL,
+			      NULL);
 }
 
 static void
 dh_base_finalize (GObject *object)
 {
+        DhBasePriv *priv;
+
+	priv = DH_BASE (object)->priv;
+
+	g_object_unref (priv->gconf_client);
+	
 	dh_gecko_utils_shutdown ();
+
+	parent_class->finalize (object);
 }
 
 static void
@@ -345,26 +362,32 @@ base_add_books (DhBase *base, const gchar *path)
 }
 
 DhBase *
+dh_base_get (void)
+{
+	DhBasePriv *priv;
+
+	if (!base_instance) {
+		dh_gecko_utils_init ();
+		
+		base_instance = g_object_new (DH_TYPE_BASE, NULL);
+		priv = base_instance->priv;
+		
+		base_init_books (base_instance);
+		
+		dh_preferences_init ();
+	}
+	
+	return base_instance;
+}
+
+DhBase *
 dh_base_new (void)
 {
-        DhBase          *base;
-	DhBasePriv      *priv;
-	static gboolean  initialized = FALSE;
+	if (base_instance) {
+		g_error ("You can only have one DhBase instance.");
+	}
 
-	g_assert (!initialized);
-
-	dh_gecko_utils_init ();
-
-        base = g_object_new (DH_TYPE_BASE, NULL);
-	priv = base->priv;
-
-	base_init_books (base);
-
-	dh_preferences_init ();
-
-	initialized = TRUE;
-
-	return base;
+	return dh_base_get ();
 }
 
 GtkWidget *
@@ -477,3 +500,14 @@ dh_base_get_window_on_current_workspace (DhBase *base)
 	return NULL;
 }
 
+GConfClient *
+dh_base_get_gconf_client (DhBase *base)
+{
+	DhBasePriv *priv;
+
+	g_return_val_if_fail (DH_IS_BASE (base), NULL);
+	
+	priv = base->priv;
+	
+	return priv->gconf_client;
+}

@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2004 Imendio AB
+ * Copyright (C) 2004-2006 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -33,6 +33,7 @@
 #define GCONF_PANED_LOCATION        "/apps/devhelp/ui/paned_location"
 #define GCONF_SELECTED_TAB          "/apps/devhelp/ui/selected_tab"
 #define GCONF_USE_SYSTEM_FONTS      "/apps/devhelp/ui/use_system_fonts"
+#define GCONF_ADVANCED_OPTIONS      "/apps/devhelp/ui/show_advanced_search_options"
 #define GCONF_VARIABLE_FONT         "/apps/devhelp/ui/variable_font"
 #define GCONF_FIXED_FONT            "/apps/devhelp/ui/fixed_font"
 #define GCONF_SYSTEM_VARIABLE_FONT  "/desktop/gnome/interface/font_name"

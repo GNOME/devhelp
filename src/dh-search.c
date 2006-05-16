@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2001-2003 CodeFactory AB
  * Copyright (C) 2001-2003 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2005      Imendio AB
+ * Copyright (C) 2005-2006 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,23 +24,14 @@
 #include <string.h>
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
-#include <gtk/gtkaccessible.h>
-#include <gtk/gtkcellrenderertext.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkframe.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtktable.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkscrolledwindow.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtktreeselection.h>
-#include <gtk/gtksizegroup.h>
-
+#include <gtk/gtk.h>
+#include <gconf/gconf-client.h>
 
 #include "dh-marshal.h"
 #include "dh-keyword-model.h"
 #include "dh-search.h"
+#include "dh-preferences.h"
+#include "dh-base.h"
 
 #define d(x)
 
@@ -49,6 +40,8 @@ struct _DhSearchPriv {
 
 	DhLink         *selected_link;
 	
+	GtkWidget      *advanced_box;
+
 	GtkWidget      *book;
 	GtkWidget      *page;
 	GtkWidget      *entry;
@@ -60,12 +53,19 @@ struct _DhSearchPriv {
 	guint           idle_filter;
 
 	gboolean        first;
+
+	guint           advanced_options_id;
 };
 
 
 static void  search_init                       (DhSearch         *search);
 static void  search_class_init                 (DhSearchClass    *klass);
 static void  search_finalize                   (GObject          *object);
+static void  search_advanced_options_setup     (DhSearch         *search);
+static void  search_advanced_options_notify_cb (GConfClient      *client,
+						guint             cnxn_id,
+						GConfEntry       *entry,
+						gpointer          user_data);
 static void  search_selection_changed_cb       (GtkTreeSelection *selection,
 						DhSearch         *content);
 static gboolean search_tree_button_press_cb    (GtkTreeView      *view,
@@ -86,7 +86,7 @@ static void  search_entry_text_inserted_cb     (GtkEntry         *entry,
 static gboolean search_complete_idle           (DhSearch         *search);
 static gboolean search_filter_idle             (DhSearch         *search);
 static gchar *  search_complete_func           (DhLink           *link);
-static gchar *  search_string                  (DhSearch         *search);
+static gchar *  search_get_search_string       (DhSearch         *search);
 
 enum {
         LINK_SELECTED,
@@ -127,11 +127,16 @@ static void
 search_class_init (DhSearchClass *klass)
 {
         GObjectClass   *object_class;
+        GtkWidgetClass *widget_class;
 	
-        object_class = (GObjectClass *) klass;
         parent_class = g_type_class_peek_parent (klass);
+
+        object_class = (GObjectClass *) klass;
+        widget_class = (GtkWidgetClass *) klass;
 	
 	object_class->finalize = search_finalize;
+
+	//widget_class->show_all = search_finalize;
 	
         signals[LINK_SELECTED] =
                 g_signal_new ("link_selected",
@@ -172,9 +177,54 @@ search_init (DhSearch *search)
 static void
 search_finalize (GObject *object)
 {
-	if (G_OBJECT_CLASS (parent_class)->finalize) {
-		G_OBJECT_CLASS (parent_class)->finalize (object);
-	}
+	DhSearchPriv *priv;
+	GConfClient  *gconf_client;
+	
+	priv = DH_SEARCH (object)->priv;
+
+	gconf_client = dh_base_get_gconf_client (dh_base_get ());	
+	gconf_client_notify_remove (gconf_client, priv->advanced_options_id);
+
+	G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
+static void
+search_advanced_options_setup (DhSearch *search)
+{
+	DhSearchPriv *priv;
+	gboolean      advanced_options;
+	GConfClient  *gconf_client;
+
+	priv = search->priv;
+
+	gconf_client = dh_base_get_gconf_client (dh_base_get ());
+	
+	advanced_options = gconf_client_get_bool (gconf_client,
+						  GCONF_ADVANCED_OPTIONS,
+						  NULL);
+	if (advanced_options) {
+		gtk_widget_show (priv->advanced_box);
+	} else {
+		gtk_widget_hide (priv->advanced_box);
+	}		
+}
+
+static void
+search_advanced_options_notify_cb (GConfClient     *client,
+				   guint            cnxn_id,
+				   GConfEntry      *entry,
+				   gpointer         user_data)
+{
+	DhSearch     *search;
+	DhSearchPriv *priv;
+
+	search = DH_SEARCH (user_data);
+	priv = search->priv;
+
+	search_advanced_options_setup (search);
+
+	/* Simulate a new search to update. */
+	search_entry_activated_cb (GTK_ENTRY (priv->entry), search);
 }
 
 static void
@@ -291,31 +341,40 @@ search_entry_key_press_event_cb (GtkEntry    *entry,
 }
 
 static gchar *
-search_string (DhSearch *search)
+search_get_search_string (DhSearch *search)
 {
-	gchar *string, *book, *page;
+	DhSearchPriv *priv;
+	const gchar  *tmp;
+	gchar        *string, *book, *page;
 
-	book = (gchar *) gtk_entry_get_text (GTK_ENTRY (search->priv->book));
-	if (book && book[0])
-		book = g_strdup_printf ("book:%s ", book);
-	else page = "";
-
-	page = (gchar *) gtk_entry_get_text (GTK_ENTRY (search->priv->page));
-	if (page && page[0])
-		page = g_strdup_printf ("page:%s ", page);
-	else page = "";
-
-	string = g_strdup_printf ("%s%s%s", book, page, 
-				  gtk_entry_get_text (GTK_ENTRY
-						      (search->priv->entry)));
-
-	if (book[0] != '\0') {
-		g_free (book);
+	priv = search->priv;
+	
+	if (GTK_WIDGET_VISIBLE (priv->advanced_box)) {
+		tmp =  gtk_entry_get_text (GTK_ENTRY (priv->book));
+		if (tmp[0]) {
+			book = g_strdup_printf ("book:%s ", tmp);
+		} else {
+			book = g_strdup ("");
+		}
+		
+		tmp = gtk_entry_get_text (GTK_ENTRY (priv->page));
+		if (tmp[0]) {
+		page = g_strdup_printf ("page:%s ", tmp);
+		} else {
+			page = g_strdup ("");
+		}
+	} else {
+		book = g_strdup ("");
+		page = g_strdup ("");
 	}
 
-	if (page[0] != '\0') {
-		g_free (page);
-	}
+	string = g_strdup_printf ("%s%s%s",
+				  book,
+				  page,
+				  gtk_entry_get_text (GTK_ENTRY (priv->entry)));
+
+	g_free (book);
+	g_free (page);
 
 	return string;
 }
@@ -344,7 +403,7 @@ search_entry_activated_cb (GtkEntry *entry, DhSearch *search)
 	
 	priv = search->priv;
 	
-	str = search_string (search);
+	str = search_get_search_string (search);
 
 	link = dh_keyword_model_filter (priv->model, str);
 
@@ -373,10 +432,10 @@ static gboolean
 search_complete_idle (DhSearch *search)
 {
 	DhSearchPriv *priv;
-	const gchar       *text;
-	gchar             *completed = NULL;
-	GList             *list;
-	gint               text_length;
+	const gchar  *text;
+	gchar        *completed = NULL;
+	GList        *list;
+	gint          text_length;
 	
 	priv = search->priv;
 	
@@ -412,7 +471,7 @@ search_filter_idle (DhSearch *search)
 
 	d(g_print ("Filter idle\n"));
 	
-	str = search_string (search);
+	str = search_get_search_string (search);
 	link = dh_keyword_model_filter (priv->model, str);
 	g_free (str);
 
@@ -443,6 +502,7 @@ dh_search_new (GList *keywords)
 	GtkWidget        *book_label, *page_label;
 	GtkSizeGroup     *group;
 	GtkCellRenderer  *cell;
+	GConfClient      *gconf_client;
 		
 	search = g_object_new (DH_TYPE_SEARCH, NULL);
 
@@ -462,10 +522,13 @@ dh_search_new (GList *keywords)
 	book_label = gtk_label_new_with_mnemonic (_("_Book:"));
 	gtk_label_set_mnemonic_widget (GTK_LABEL (book_label), priv->book);
 
-	hbox = gtk_hbox_new (FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), book_label, FALSE, FALSE, 2);
-	gtk_box_pack_start (GTK_BOX (hbox), priv->book, TRUE, TRUE, 2);
- 	gtk_box_pack_start (GTK_BOX (search), hbox, FALSE, FALSE, 2);
+	priv->advanced_box = gtk_vbox_new (FALSE, 2);
+ 	gtk_box_pack_start (GTK_BOX (search), priv->advanced_box, FALSE, FALSE, 0);
+	
+	hbox = gtk_hbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (hbox), book_label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), priv->book, TRUE, TRUE, 0);
+ 	gtk_box_pack_start (GTK_BOX (priv->advanced_box), hbox, FALSE, FALSE, 0);
 
 	/* Setup the page box */
 	priv->page = gtk_entry_new ();
@@ -479,16 +542,19 @@ dh_search_new (GList *keywords)
 	page_label = gtk_label_new_with_mnemonic (_("_Page:"));
 	gtk_label_set_mnemonic_widget (GTK_LABEL (page_label), priv->page);
 
-	hbox = gtk_hbox_new (FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), page_label, FALSE, FALSE, 2);
-	gtk_box_pack_start (GTK_BOX (hbox), priv->page, TRUE, TRUE, 2);
- 	gtk_box_pack_start (GTK_BOX (search), hbox, FALSE, FALSE, 2);
-
+	hbox = gtk_hbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (hbox), page_label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), priv->page, TRUE, TRUE, 0);
+ 	gtk_box_pack_start (GTK_BOX (priv->advanced_box), hbox, FALSE, FALSE, 0);
+	
 	/* Align the labels */
 	group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
 	gtk_size_group_add_widget (group, book_label);
 	gtk_size_group_add_widget (group, page_label);
 	g_object_unref (G_OBJECT (group));
+
+	gtk_widget_show_all (priv->advanced_box);
+	gtk_widget_set_no_show_all (priv->advanced_box, TRUE);
 
 	/* Setup the keyword box */
 	priv->entry = gtk_entry_new ();
@@ -554,7 +620,15 @@ dh_search_new (GList *keywords)
 	dh_keyword_model_set_words (priv->model, keywords);
 
 	gtk_widget_show_all (GTK_WIDGET (search));
+	
+	gconf_client = dh_base_get_gconf_client (dh_base_get ());
+	priv->advanced_options_id = gconf_client_notify_add (gconf_client,
+							     GCONF_ADVANCED_OPTIONS,
+							     search_advanced_options_notify_cb,
+							     search, NULL, NULL);
 
+	search_advanced_options_setup (search);
+	
 	return GTK_WIDGET (search);
 }
 

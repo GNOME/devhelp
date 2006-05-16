@@ -133,6 +133,20 @@
          </long>
       </locale>
     </schema>
+
+    <schema>
+      <key>/schemas/apps/devhelp/ui/show_advanced_options</key>
+      <applyto>/apps/devhelp/ui/show_advanced_options</applyto>
+      <owner>devhelp</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+         <short>Show advanced search options</short>
+         <long>
+	   Whether the advanced search options are shown.
+         </long>
+      </locale>
+    </schema>
    </schemalist>
 </gconfschemafile>
 

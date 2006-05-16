@@ -31,4 +31,5 @@ glade_DATA =                            \
 EXTRA_DIST = $(image_DATA) 		\
 	     $(appicon_DATA)		\
 	     $(ui_DATA)                 \
-	     $(glade_DATA)
+	     $(glade_DATA)		\
+	     $(svgicon_DATA)

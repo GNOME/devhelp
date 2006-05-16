@@ -1,3 +1,20 @@
+2006-05-16  Richard Hult  <richard@imendio.com>
+
+	* Makefile.am:
+	* configure.in:
+	* devhelp.keys.in:
+	* devhelp.mime: Remove obsolete and unused mime/keys files.
+
+	* src/dh-main.c: (main): Improve the option strings a bit.
+
+	* ui/devhelp.glade:
+	* src/dh-base.[ch:]
+	* src/dh-search.[ch]:
+	* src/dh-preferences.[ch]: Clean up a bit, and add a
+	preference for showing/hiding the new search fields.
+
+	* ui/Makefile.am: Dist the svg, fixes distcheck.
+
 2006-05-15  Tristan Van Berkom <tvb@gnome.org>
 
 	* configure.in: Bumping version to 0.12 in cvs.

@@ -100,7 +100,7 @@ main (int argc, char **argv)
 			0,
 			G_OPTION_ARG_NONE,
 			&option_version,
-			_("Print the version and exit"),
+			_("Display the version and exit"),
 			NULL
 		},
 		{
@@ -117,8 +117,6 @@ main (int argc, char **argv)
 		return 1;
 	}
 
-	/* Print version information and exit 
-	 */
 	if (option_version) {
 		g_print ("%s\n", PACKAGE_STRING);
 		return 0;
