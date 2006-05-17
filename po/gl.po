@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-30 23:17+0200\n"
-"PO-Revision-Date: 2006-04-30 23:18+0200\n"
+"POT-Creation-Date: 2006-05-18 00:14+0200\n"
+"PO-Revision-Date: 2006-05-18 00:15+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -20,14 +20,10 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programa de axuda do desenrolador"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:127 ../src/dh-window.c:609
-#: ../ui/devhelp.glade.h:3
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:609
+#: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
-
-#: ../devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr "Libro Devhelp"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
@@ -38,8 +34,8 @@ msgid "Quit any running Devhelp"
 msgstr "Remata calquera execución de Devhelp"
 
 #: ../src/dh-main.c:103
-msgid "Print the version and exit"
-msgstr "Imprimir a versión e saír"
+msgid "Display the version and exit"
+msgstr "Amosar a versión e saír"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
 #, c-format
@@ -85,15 +81,15 @@ msgstr "Non se puido descomprimir o libro '%s': %s"
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp non está construido con soporte de zlib"
 
-#: ../src/dh-search.c:462
+#: ../src/dh-search.c:522
 msgid "_Book:"
 msgstr "Li_bro:"
 
-#: ../src/dh-search.c:478
+#: ../src/dh-search.c:542
 msgid "_Page:"
 msgstr "_Páxina:"
 
-#: ../src/dh-search.c:530
+#: ../src/dh-search.c:601
 msgid "Section"
 msgstr "Sección"
 
@@ -105,7 +101,7 @@ msgstr "_Ficheiro"
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:8
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Ir"
 
@@ -130,7 +126,7 @@ msgstr "Examinar contidos"
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:2
+#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Contidos"
 
@@ -177,54 +173,62 @@ msgid "Selected tab, \"content\" or \"search\""
 msgstr "Seleccionar solapa, \"contido\" ou \"busca\""
 
 #: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Amosar as opcións avanzadas de busca"
+
+#: ../devhelp.schemas.in.h:9
 msgid "The X position of the main window."
 msgstr "A posición X da fiestra principal."
 
-#: ../devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
 msgstr "A posición Y da fiestra principal."
 
-#: ../devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:11
 msgid "The height of the main window."
 msgstr "A altura da fiestra principal."
 
-#: ../devhelp.schemas.in.h:11
+#: ../devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
 msgstr "O ancho do índice e panel de busca."
 
-#: ../devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:13
 msgid "The width of the main window."
 msgstr "O ancho da fiestra principal."
 
-#: ../devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:14
 msgid "Use system fonts"
 msgstr "Usar fontes do sistema"
 
-#: ../devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
 msgstr "Usar a fonte predeterminada do sistema."
 
-#: ../devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Indica se se amosan as opcións avanzadas de busca."
+
+#: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
 msgstr "Indica se a fiestra principal debería iniciar maximizada ou non."
 
-#: ../devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr "Cál das solapas está seleccionada, \"contido\" ou \"busca\"."
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
 msgstr "Ancho do índice e panel de busca"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:20
 msgid "Width of the main window"
 msgstr "Ancho da fiestra principal"
 
-#: ../devhelp.schemas.in.h:19
+#: ../devhelp.schemas.in.h:21
 msgid "X position of main window"
 msgstr "Posición X da fiestra principal"
 
-#: ../devhelp.schemas.in.h:20
+#: ../devhelp.schemas.in.h:22
 msgid "Y position of main window"
 msgstr "Posición Y da fiestra principal"
 
@@ -232,27 +236,35 @@ msgstr "Posición Y da fiestra principal"
 msgid "<b>Fonts</b>"
 msgstr "<b>Fontes</b>"
 
-#: ../ui/devhelp.glade.h:4
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Procurando</b>"
+
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:6
 msgid "_Back"
 msgstr "_Atrás"
 
-#: ../ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:7
 msgid "_Fixed width:"
 msgstr "Anchura _fixa:"
 
-#: ../ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "A_diante"
 
-#: ../ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Amosar as opcións avanzadas de busca"
+
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Usar fonte do sistema"
 
-#: ../ui/devhelp.glade.h:10
+#: ../ui/devhelp.glade.h:12
 msgid "_Variable width: "
 msgstr "Ancho _variable:"
 
