@@ -1,3 +1,9 @@
+2006-05-17  Tristan Van Berkom <tvb@gnome.org>
+
+	* src/dh-search.c: Added a abstraction buffers in the DhSearch cleaning
+	  up the code a little and allowing for the dh_search_set_search_string() 
+	  api to work properly with the advanced box hidden.
+
 2006-05-16  Richard Hult  <richard@imendio.com>
 
 	* Makefile.am:

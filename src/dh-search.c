@@ -55,6 +55,10 @@ struct _DhSearchPriv {
 	gboolean        first;
 
 	guint           advanced_options_id;
+	
+	GString        *book_str;
+	GString        *page_str;
+	GString        *entry_str;
 };
 
 
@@ -136,8 +140,6 @@ search_class_init (DhSearchClass *klass)
 	
 	object_class->finalize = search_finalize;
 
-	//widget_class->show_all = search_finalize;
-	
         signals[LINK_SELECTED] =
                 g_signal_new ("link_selected",
 			      G_TYPE_FROM_CLASS (klass),
@@ -157,6 +159,10 @@ search_init (DhSearch *search)
 	priv = g_new0 (DhSearchPriv, 1);
 	search->priv = priv;
 	
+	priv->book_str = g_string_new ("");
+	priv->page_str = g_string_new ("");
+	priv->entry_str = g_string_new ("");
+
 	priv->idle_complete = 0;
 	priv->idle_filter   = 0;
 
@@ -181,6 +187,10 @@ search_finalize (GObject *object)
 	GConfClient  *gconf_client;
 	
 	priv = DH_SEARCH (object)->priv;
+
+	g_string_free (priv->book_str, TRUE);
+	g_string_free (priv->page_str, TRUE);
+	g_string_free (priv->entry_str, TRUE);
 
 	gconf_client = dh_base_get_gconf_client (dh_base_get ());	
 	gconf_client_notify_remove (gconf_client, priv->advanced_options_id);
@@ -344,39 +354,54 @@ static gchar *
 search_get_search_string (DhSearch *search)
 {
 	DhSearchPriv *priv;
-	const gchar  *tmp;
-	gchar        *string, *book, *page;
+	GString      *string;
+
+	priv = search->priv;
+
+	string = g_string_new ("");
+
+	if (priv->book_str->len > 0) {
+		g_string_append (string, priv->book_str->str);
+		g_string_append (string, " ");
+	}
+
+	if (priv->page_str->len > 0) {
+		g_string_append (string, priv->page_str->str);
+		g_string_append (string, " ");
+	}
+
+	if (priv->entry_str->len > 0) {
+		g_string_append (string, priv->entry_str->str);
+		g_string_append (string, " ");
+	}
+
+	return g_string_free (string, FALSE);
+}
+
+static void
+search_update_string (DhSearch *search, GtkEntry *entry)
+{
+	const gchar  *str = gtk_entry_get_text (entry);
+	DhSearchPriv *priv;
 
 	priv = search->priv;
 	
-	if (GTK_WIDGET_VISIBLE (priv->advanced_box)) {
-		tmp =  gtk_entry_get_text (GTK_ENTRY (priv->book));
-		if (tmp[0]) {
-			book = g_strdup_printf ("book:%s ", tmp);
+	if (GTK_WIDGET (entry) == priv->book) {
+		if (str && str[0]) {
+			g_string_printf (priv->book_str, "book:%s", str ? str : "");
 		} else {
-			book = g_strdup ("");
+			g_string_set_size (priv->book_str, 0);
 		}
-		
-		tmp = gtk_entry_get_text (GTK_ENTRY (priv->page));
-		if (tmp[0]) {
-		page = g_strdup_printf ("page:%s ", tmp);
+	} else if (GTK_WIDGET (entry) == priv->page) {
+		if (str && str[0]) {
+			g_string_printf (priv->page_str, "page:%s", str ? str : "");
 		} else {
-			page = g_strdup ("");
+			g_string_set_size (priv->page_str, 0);
 		}
 	} else {
-		book = g_strdup ("");
-		page = g_strdup ("");
+		g_string_set_size (priv->entry_str, 0);
+		g_string_append (priv->entry_str, str);
 	}
-
-	string = g_strdup_printf ("%s%s%s",
-				  book,
-				  page,
-				  gtk_entry_get_text (GTK_ENTRY (priv->entry)));
-
-	g_free (book);
-	g_free (page);
-
-	return string;
 }
 
 static void
@@ -387,6 +412,8 @@ search_entry_changed_cb (GtkEntry *entry, DhSearch *search)
 	priv = search->priv;
  
 	d(g_print ("Entry changed\n"));
+
+	search_update_string (search, entry);
 
 	if (!priv->idle_filter) {
 		priv->idle_filter =
@@ -644,8 +671,13 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 
 	priv = search->priv;
 
-	gtk_entry_set_text (GTK_ENTRY (priv->book), "");
-	gtk_entry_set_text (GTK_ENTRY (priv->page), "");
+	g_string_set_size (priv->book_str, 0);
+	g_string_set_size (priv->page_str, 0);
+	g_string_set_size (priv->entry_str, 0);
+
+	g_signal_handlers_block_by_func (priv->book, search_entry_changed_cb, search);
+	g_signal_handlers_block_by_func (priv->page, search_entry_changed_cb, search);
+	g_signal_handlers_block_by_func (priv->entry, search_entry_changed_cb, search);
 
 	if ((leftover = split = g_strsplit (str, " ", -1)) != NULL) {
 
@@ -656,20 +688,19 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 			/* Determine if there was a book or page specification
 			 */
 			if (!strncmp (lower, "book:", 5)) {
-				gtk_entry_set_text (GTK_ENTRY (priv->book), 
-						    split[i] + 5);
+				g_string_append (priv->book_str, lower);
 				leftover++;
 			} else if (!strncmp (lower, "page:", 5)) {
-				gtk_entry_set_text (GTK_ENTRY (priv->page), 
-						    split[i] + 5);
+
+				g_string_append (priv->page_str, lower);
 				leftover++;
-			} else
+			} else {
 				/* No more specifications */
 				break;
+			}
 			
 			g_free (lower);
 		}
-
 
 		/* Collect the search string */
 		string = NULL;
@@ -685,20 +716,39 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 
 		g_strfreev (split);
 		
-		gtk_entry_set_text (GTK_ENTRY (priv->entry), 
-				    string ? string : "");
+		g_string_append (priv->entry_str, string);
 
 		if (string) {
 			g_free (string);
 		}
 
 	} else {
-		gtk_entry_set_text (GTK_ENTRY (priv->entry), 
-				    str ? str : "");
+		g_string_append (priv->entry_str, str);
 	}
 	
+	gtk_entry_set_text (GTK_ENTRY (priv->entry), 
+			    priv->entry_str->str);
+
+	if (GTK_WIDGET_VISIBLE (priv->advanced_box)) {
+		gtk_entry_set_text (GTK_ENTRY (priv->book), 
+				    priv->book_str->len > 5 ? 
+				    priv->book_str->str + 5 : "");
+		gtk_entry_set_text (GTK_ENTRY (priv->page), 
+				    priv->page_str->len > 5 ? 
+				    priv->page_str->str + 5 : "");
+	}
+
 	gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
 	gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
+
+	g_signal_handlers_unblock_by_func (priv->book, search_entry_changed_cb, search);
+	g_signal_handlers_unblock_by_func (priv->page, search_entry_changed_cb, search);
+	g_signal_handlers_unblock_by_func (priv->entry, search_entry_changed_cb, search);
+
+	if (!priv->idle_filter) {
+		priv->idle_filter =
+			g_idle_add ((GSourceFunc) search_filter_idle, search);
+	}
 }
 
 void
