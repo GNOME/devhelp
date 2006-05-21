@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-08 10:11+0200\n"
-"PO-Revision-Date: 2006-04-08 16:38+0200\n"
+"POT-Creation-Date: 2006-05-21 10:14+0200\n"
+"PO-Revision-Date: 2006-05-21 16:18+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,45 +20,45 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Program nápovědy pro vývojáře"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:110 ../src/dh-window.c:609
-#: ../ui/devhelp.glade.h:3
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:609
+#: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr "Kniha Devhelp"
-
-#: ../src/dh-main.c:84
+#: ../src/dh-main.c:85
 msgid "Search for a function"
 msgstr "Hledat funkci"
 
-#: ../src/dh-main.c:93
+#: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
 msgstr "Ukončit všechny běžící Devhelpy"
 
-#: ../src/dh-parser.c:109 ../src/dh-parser.c:190 ../src/dh-parser.c:257
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "Zobrazit verzi a skončit"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Očekával jsem '%s', dostal jsem '%s' na řádku %d, sloupci %d"
 
-#: ../src/dh-parser.c:127
+#: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neplatné namespace '%s' na řádku %d, sloupci %d"
 
-#: ../src/dh-parser.c:157
+#: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "Na řádku %d, sloupci %d jsou vyžadovány elementy title, name a link"
 
-#: ../src/dh-parser.c:211
+#: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <sub> vyžadovány elementy name a link"
 
-#: ../src/dh-parser.c:279
+#: ../src/dh-parser.c:292
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -66,28 +66,32 @@ msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <function> vyžadovány elementy name a "
 "link"
 
-#: ../src/dh-parser.c:391 ../src/dh-parser.c:485
+#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
 msgid "Could not create book parser"
 msgstr "Nemohu vytvořit parser knihy"
 
-#: ../src/dh-parser.c:407 ../src/dh-parser.c:495
+#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
 msgid "Could not create markup parser"
 msgstr "Nemohu vytvořit parser značení"
 
-#: ../src/dh-parser.c:548
+#: ../src/dh-parser.c:567
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nemohu dekomprimovat knihu '%s': %s"
 
-#: ../src/dh-parser.c:573
+#: ../src/dh-parser.c:592
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp nebyl přeložen s podporou zlib"
 
-#: ../src/dh-search.c:417
-msgid "_Search:"
-msgstr "_Hledat:"
+#: ../src/dh-search.c:549
+msgid "_Book:"
+msgstr "_Kniha:"
 
-#: ../src/dh-search.c:462
+#: ../src/dh-search.c:569
+msgid "_Page:"
+msgstr "_Strana:"
+
+#: ../src/dh-search.c:628
 msgid "Section"
 msgstr "Oddíl"
 
@@ -99,7 +103,7 @@ msgstr "_Soubor"
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:8
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Jít"
 
@@ -124,7 +128,7 @@ msgstr "Procházet obsah"
 msgid "Search"
 msgstr "Hledat"
 
-#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:2
+#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Obsah"
 
@@ -169,54 +173,62 @@ msgid "Selected tab, \"content\" or \"search\""
 msgstr "Vybraná karta, \"content\" nebo \"search\""
 
 #: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Zobrazit pokročilé možnosti hledání"
+
+#: ../devhelp.schemas.in.h:9
 msgid "The X position of the main window."
 msgstr "Pozice X hlavního okna."
 
-#: ../devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
 msgstr "Pozice Y hlavního okna."
 
-#: ../devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:11
 msgid "The height of the main window."
 msgstr "Výška hlavního okna."
 
-#: ../devhelp.schemas.in.h:11
+#: ../devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
 msgstr "Šířka panelu rejstříku a hledání."
 
-#: ../devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:13
 msgid "The width of the main window."
 msgstr "Šířka hlavního okna."
 
-#: ../devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:14
 msgid "Use system fonts"
 msgstr "Používat písma systému"
 
-#: ../devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
 msgstr "Používat implicitní písma systému"
 
-#: ../devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Jestli jsou zobrazeny pokročilé možnosti hledání."
+
+#: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
 msgstr "Jestli má hlavní okno být po spuštění maximalizované."
 
-#: ../devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr "Která z karet je vybrána, \"content\" nebo \"search\"."
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
 msgstr "Šířka panelu rejstříku a hledání"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:20
 msgid "Width of the main window"
 msgstr "Šířka hlavního okna"
 
-#: ../devhelp.schemas.in.h:19
+#: ../devhelp.schemas.in.h:21
 msgid "X position of main window"
 msgstr "Pozice X hlavního okna"
 
-#: ../devhelp.schemas.in.h:20
+#: ../devhelp.schemas.in.h:22
 msgid "Y position of main window"
 msgstr "Pozice Y hlavního okna"
 
@@ -224,27 +236,35 @@ msgstr "Pozice Y hlavního okna"
 msgid "<b>Fonts</b>"
 msgstr "<b>Písma</b>"
 
-#: ../ui/devhelp.glade.h:4
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Hledání</b>"
+
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: ../ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:6
 msgid "_Back"
 msgstr "_Zpět"
 
-#: ../ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:7
 msgid "_Fixed width:"
 msgstr "_Pevná šířka:"
 
-#: ../ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "_Vpřed"
 
-#: ../ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Zobrazit pokročilé možnosti hledání"
+
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Používat písma systému"
 
-#: ../ui/devhelp.glade.h:10
+#: ../ui/devhelp.glade.h:12
 msgid "_Variable width: "
 msgstr "Pro_měnná šířka:"
 
@@ -255,3 +275,6 @@ msgstr "Podpora Devhelpu"
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
 msgstr "Způsobí, že F7 spustí Devhelp pro slovo pod kurzorem"
+
+#~ msgid "_Search:"
+#~ msgstr "_Hledat:"
