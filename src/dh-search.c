@@ -35,6 +35,13 @@
 
 #define d(x)
 
+typedef enum _DhSearchSource DhSearchSource;
+
+enum _DhSearchSource {
+	SEARCH_API    = 0,
+	SEARCH_ENTRY
+};
+
 struct _DhSearchPriv {
 	DhKeywordModel *model;
 
@@ -59,6 +66,8 @@ struct _DhSearchPriv {
 	GString        *book_str;
 	GString        *page_str;
 	GString        *entry_str;
+
+	DhSearchSource  search_source;
 };
 
 
@@ -214,6 +223,20 @@ search_advanced_options_setup (DhSearch *search)
 						  NULL);
 	if (advanced_options) {
 		gtk_widget_show (priv->advanced_box);
+
+		g_signal_handlers_block_by_func (priv->book, search_entry_changed_cb, search);
+		g_signal_handlers_block_by_func (priv->page, search_entry_changed_cb, search);
+
+		gtk_entry_set_text (GTK_ENTRY (priv->book), 
+				    priv->book_str->len > 5 ? 
+				    priv->book_str->str + 5 : "");
+		gtk_entry_set_text (GTK_ENTRY (priv->page), 
+				    priv->page_str->len > 5 ? 
+				    priv->page_str->str + 5 : "");
+
+		g_signal_handlers_unblock_by_func (priv->book, search_entry_changed_cb, search);
+		g_signal_handlers_unblock_by_func (priv->page, search_entry_changed_cb, search);
+
 	} else {
 		gtk_widget_hide (priv->advanced_box);
 	}		
@@ -360,21 +383,25 @@ search_get_search_string (DhSearch *search)
 
 	string = g_string_new ("");
 
-	if (priv->book_str->len > 0) {
-		g_string_append (string, priv->book_str->str);
-		g_string_append (string, " ");
-	}
+	if (GTK_WIDGET_VISIBLE (priv->advanced_box) ||
+	    priv->search_source == SEARCH_API) {
 
-	if (priv->page_str->len > 0) {
-		g_string_append (string, priv->page_str->str);
-		g_string_append (string, " ");
+		if (priv->book_str->len > 0) {
+			g_string_append (string, priv->book_str->str);
+			g_string_append (string, " ");
+		}
+		
+		if (priv->page_str->len > 0) {
+			g_string_append (string, priv->page_str->str);
+			g_string_append (string, " ");
+		}
 	}
 
 	if (priv->entry_str->len > 0) {
 		g_string_append (string, priv->entry_str->str);
 		g_string_append (string, " ");
 	}
-
+	
 	return g_string_free (string, FALSE);
 }
 
@@ -385,22 +412,31 @@ search_update_string (DhSearch *search, GtkEntry *entry)
 	DhSearchPriv *priv;
 
 	priv = search->priv;
+
+	priv->search_source = SEARCH_ENTRY;
 	
 	if (GTK_WIDGET (entry) == priv->book) {
 		if (str && str[0]) {
-			g_string_printf (priv->book_str, "book:%s", str ? str : "");
+			g_string_printf (priv->book_str, "book:%s", str);
 		} else {
 			g_string_set_size (priv->book_str, 0);
 		}
 	} else if (GTK_WIDGET (entry) == priv->page) {
 		if (str && str[0]) {
-			g_string_printf (priv->page_str, "page:%s", str ? str : "");
+			g_string_printf (priv->page_str, "page:%s", str);
 		} else {
 			g_string_set_size (priv->page_str, 0);
 		}
 	} else {
+		if (GTK_WIDGET_VISIBLE (priv->advanced_box) == FALSE) {
+			g_string_set_size (priv->book_str, 0);
+			g_string_set_size (priv->page_str, 0);
+		}
+
 		g_string_set_size (priv->entry_str, 0);
-		g_string_append (priv->entry_str, str);
+		if (str && str[0]) {
+			g_string_append (priv->entry_str, str);
+		}
 	}
 }
 
@@ -431,7 +467,6 @@ search_entry_activated_cb (GtkEntry *entry, DhSearch *search)
 	priv = search->priv;
 	
 	str = search_get_search_string (search);
-
 	link = dh_keyword_model_filter (priv->model, str);
 
 	g_free (str);
@@ -671,6 +706,8 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 
 	priv = search->priv;
 
+	priv->search_source = SEARCH_API;
+
 	g_string_set_size (priv->book_str, 0);
 	g_string_set_size (priv->page_str, 0);
 	g_string_set_size (priv->entry_str, 0);
@@ -688,11 +725,10 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 			/* Determine if there was a book or page specification
 			 */
 			if (!strncmp (lower, "book:", 5)) {
-				g_string_append (priv->book_str, lower);
+				g_string_append (priv->book_str, split[i]);
 				leftover++;
 			} else if (!strncmp (lower, "page:", 5)) {
-
-				g_string_append (priv->page_str, lower);
+				g_string_append (priv->page_str, split[i]);
 				leftover++;
 			} else {
 				/* No more specifications */
@@ -715,14 +751,16 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 		}
 
 		g_strfreev (split);
-		
-		g_string_append (priv->entry_str, string);
+
+		if (string) {
+			g_string_append (priv->entry_str, string);
+		}
 
 		if (string) {
 			g_free (string);
 		}
 
-	} else {
+	} else if (str) {
 		g_string_append (priv->entry_str, str);
 	}
 	

@@ -1,3 +1,15 @@
+2006-05-20  Tristan Van Berkom <tvb@gnome.org>
+
+	* src/dh-search.c:
+	  o Added a search source distinction... to mark whether the
+	    search string has been requested through the dh-search api
+	    or from the entries themselves.
+	  o When the advanced box is hidden... ignore book and page buffers
+	    if the search comes from the entry.
+	  o Set book & page entries upon gtk_widget_show (i.e. gconf setting)
+	  o destroy book & page buffers when setting the entry (so as not to
+	    re-enable those when the advanced_box shows up).
+	
 2006-05-17  Tristan Van Berkom <tvb@gnome.org>
 
 	* src/dh-search.c: Added a abstraction buffers in the DhSearch cleaning
