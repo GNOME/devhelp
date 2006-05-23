@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-06 19:27+0200\n"
-"PO-Revision-Date: 2006-04-06 19:28+0200\n"
+"POT-Creation-Date: 2006-05-23 02:44+0200\n"
+"PO-Revision-Date: 2006-05-23 02:46+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,74 +25,78 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programa de ayuda del desarrollador"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:110 ../src/dh-window.c:609
-#: ../ui/devhelp.glade.h:3
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:609
+#: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "DevHelp"
 
-#: ../devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr "Libro DevHelp"
-
-#: ../src/dh-main.c:84
+#: ../src/dh-main.c:85
 msgid "Search for a function"
 msgstr "Buscar una función"
 
-#: ../src/dh-main.c:93
+#: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
 msgstr "Termina cualquier DevHelp en ejecución"
 
-#: ../src/dh-parser.c:109 ../src/dh-parser.c:190 ../src/dh-parser.c:257
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "Muestra la versión y sale"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Se esperaba «%s» pero se obtuvo «%s» en la línea %d, columna %d"
 
-#: ../src/dh-parser.c:127
+#: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Espacio de nombres inválido «%s» en la línea %d, columna %d"
 
-#: ../src/dh-parser.c:157
+#: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "los elementos título, nombre y enlace se requieren en la línea %d, columna %d"
 
-#: ../src/dh-parser.c:211
+#: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "los elementos nombre y enlace se requieren dentro de <sub> en la línea %d, "
 "columna %d"
 
-#: ../src/dh-parser.c:279
+#: ../src/dh-parser.c:292
 #, c-format
 msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "los elementos nombre y enlace se requieren dentro de <function> en la línea %"
 "d, columna %d"
 
-#: ../src/dh-parser.c:391 ../src/dh-parser.c:485
+#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
 msgid "Could not create book parser"
 msgstr "No se pudo crear el parser del libro"
 
-#: ../src/dh-parser.c:407 ../src/dh-parser.c:495
+#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
 msgid "Could not create markup parser"
 msgstr "No se pudo crear el parser del marco"
 
-#: ../src/dh-parser.c:548
+#: ../src/dh-parser.c:567
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "No se pudo descomprimir el libro «%s»: %s"
 
-#: ../src/dh-parser.c:573
+#: ../src/dh-parser.c:592
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp no está construido con soporte zlib"
 
-#: ../src/dh-search.c:417
-msgid "_Search:"
-msgstr "_Buscar:"
+#: ../src/dh-search.c:584
+msgid "_Book:"
+msgstr "_Libro:"
 
-#: ../src/dh-search.c:462
+#: ../src/dh-search.c:604
+msgid "_Page:"
+msgstr "_Página:"
+
+#: ../src/dh-search.c:663
 msgid "Section"
 msgstr "Sección"
 
@@ -104,7 +108,7 @@ msgstr "_Archivo"
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:8
+#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Ir"
 
@@ -129,7 +133,7 @@ msgstr "Examinar contenido"
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:2
+#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Índice"
 
@@ -174,54 +178,62 @@ msgid "Selected tab, \"content\" or \"search\""
 msgstr "Solapa seleccionada, «contenido» o «búsqueda»"
 
 #: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Mostrar opciones de búsqueda avanzadas"
+
+#: ../devhelp.schemas.in.h:9
 msgid "The X position of the main window."
 msgstr "La posición X de la ventana principal."
 
-#: ../devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
 msgstr "La posición Y de la ventana principal."
 
-#: ../devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:11
 msgid "The height of the main window."
 msgstr "La altura de la ventana principal."
 
-#: ../devhelp.schemas.in.h:11
+#: ../devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
 msgstr "La anchura del índice y el panel lateral de búsqueda."
 
-#: ../devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:13
 msgid "The width of the main window."
 msgstr "La anchura de la ventana principal."
 
-#: ../devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:14
 msgid "Use system fonts"
 msgstr "Usar tipografía del sistema"
 
-#: ../devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
 msgstr "Usar la tipografía predeterminada del sistema."
 
-#: ../devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Indica si se muestran las opciones de búsqueda avanzadas."
+
+#: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
 msgstr "Indica si la ventana principal debería iniciar maximizada o no."
 
-#: ../devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr "Cual de las solapas está seleccionada,  «contenido» o «búsqueda»."
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
 msgstr "Anchura del índice de panel de búsqueda"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:20
 msgid "Width of the main window"
 msgstr "Anchura de la ventana principal"
 
-#: ../devhelp.schemas.in.h:19
+#: ../devhelp.schemas.in.h:21
 msgid "X position of main window"
 msgstr "Posición X de la ventana principal"
 
-#: ../devhelp.schemas.in.h:20
+#: ../devhelp.schemas.in.h:22
 msgid "Y position of main window"
 msgstr "Posición Y de la ventana principal"
 
@@ -229,27 +241,35 @@ msgstr "Posición Y de la ventana principal"
 msgid "<b>Fonts</b>"
 msgstr "<b>Tipografías</b>"
 
-#: ../ui/devhelp.glade.h:4
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Búsqueda</b>"
+
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../ui/devhelp.glade.h:5
+#: ../ui/devhelp.glade.h:6
 msgid "_Back"
 msgstr "_Atrás"
 
-#: ../ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:7
 msgid "_Fixed width:"
 msgstr "Anchura _fija:"
 
-#: ../ui/devhelp.glade.h:7
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "A_delante"
 
-#: ../ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Mostrar las opciones de búsqueda avanzadas"
+
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Usar tipografía del sistema"
 
-#: ../ui/devhelp.glade.h:10
+#: ../ui/devhelp.glade.h:12
 msgid "_Variable width: "
 msgstr "Anchura _variable: "
 
