@@ -1,3 +1,25 @@
+Devhelp 0.12:
+-------------
+
+* Add advanced (book/page) search options (Tristan Van Berkom)
+* Improve libdevhelp (Tristan, Johannes Schmid)
+* Add --version option (Tristan)
+* Fix mnemomics (Wouter Bolsterlee)
+* Add a very simple gedit plugin (Richard)
+* Add quit menu item (Richard)
+* Build fixes and clean ups (Behdad Esfahbod)
+* Lots of Gecko build fixes and improvements (Christian Persch)
+* Open external links in browser (Christian)
+* UI tweaks (Christian)
+* Shiny new icon (Marcus Leyman, Behdad)
+* Read books installed in XDG data dirs (Antoine Dopffer, Behdad)
+* Use correct category in desktop file (Stephane Loeuillet)
+* Translations (Miloslav Trmac, Xavier Conde, Ilkka Tuohela, Francisco
+  Javier F. Serrador, Gabor Kelemen, Ignacio Casal Quinteiro, Vincent
+  van Adrighem, Takeshi AIHANA, Daniel Nylander, Sergey Al. Safonov,
+  Clytie Siddall, Chao-Hsiung Liao)
+
+
 Devhelp 0.11:
 -------------
 * Tab support (based on patch from Brent Smith)
