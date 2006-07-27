@@ -71,6 +71,8 @@ static void       window_activate_new_tab         (GtkAction       *action,
 						   DhWindow        *window);
 static void       window_activate_close           (GtkAction       *action,
 						   DhWindow        *window);
+static void       window_activate_quit            (GtkAction       *action,
+						   DhWindow        *window);
 static void       window_activate_copy            (GtkAction       *action,
 						   DhWindow        *window);
 static void       window_activate_preferences     (GtkAction       *action,
@@ -148,6 +150,8 @@ static const GtkActionEntry actions[] = {
 	  G_CALLBACK (window_activate_new_tab) },
 	{ "Close", GTK_STOCK_CLOSE, NULL, NULL, NULL,
 	  G_CALLBACK (window_activate_close) },
+	{ "Quit", GTK_STOCK_QUIT, NULL, NULL, NULL,
+	  G_CALLBACK (window_activate_quit) },
 
 	/* Edit menu */
 	{ "Copy", GTK_STOCK_COPY, NULL, "<control>C", NULL,
@@ -507,6 +511,12 @@ window_activate_close (GtkAction *action, DhWindow *window)
 		window_save_state (window);
 		gtk_widget_destroy (GTK_WIDGET (window));
 	}
+}
+
+static void
+window_activate_quit (GtkAction *action, DhWindow *window)
+{
+	gtk_main_quit ();
 }
 
 static void

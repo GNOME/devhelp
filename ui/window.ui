@@ -6,6 +6,7 @@
       <menuitem action="NewTab"/>
       <separator/>
       <menuitem action="Close"/>
+      <menuitem action="Quit"/>
     </menu>
     <menu action="EditMenu">
       <menuitem action="Copy"/>

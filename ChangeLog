@@ -1,3 +1,8 @@
+2006-07-27  Richard Hult  <richard@imendio.com>
+
+	* src/dh-window.c: (window_activate_quit):
+	* ui/window.ui: Add quit menu item, fixes bug #346786.
+
 2006-05-20  Tristan Van Berkom <tvb@gnome.org>
 
 	* src/dh-search.c:
