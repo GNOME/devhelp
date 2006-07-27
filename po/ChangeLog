@@ -1,5 +1,9 @@
 2006-07-27  Richard Hult  <richard@imendio.com>
 
+	* Release 0.12
+
+2006-07-27  Richard Hult  <richard@imendio.com>
+
 	* POTFILES.skip: Add the gedit plugin.
 
 2006-07-27  Christophe Merlet  <redfox@redfoxcenter.org>
