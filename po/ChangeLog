@@ -1,3 +1,7 @@
+2006-07-27  Richard Hult  <richard@imendio.com>
+
+	* POTFILES.skip: Add the gedit plugin.
+
 2006-07-27  Christophe Merlet  <redfox@redfoxcenter.org>
 
 	* fr.po: Updated French translation from
