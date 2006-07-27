@@ -1,3 +1,8 @@
+2006-07-27  Christian Persch  <chpe@cvs.gnome.org>
+
+	* src/default-prefs-gecko-1-8.js: Always use theme colours.
+	Fixes bug #347967.
+
 2006-07-27  Richard Hult  <richard@imendio.com>
 
 	* src/dh-window.c: (window_activate_quit):
