@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-23 02:44+0200\n"
+"POT-Creation-Date: 2006-07-29 19:43+0200\n"
 "PO-Revision-Date: 2006-05-23 02:46+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programa de ayuda del desarrollador"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:609
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
 #: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "DevHelp"
@@ -55,7 +55,8 @@ msgstr "Espacio de nombres inválido «%s» en la línea %d, columna %d"
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "los elementos título, nombre y enlace se requieren en la línea %d, columna %d"
+msgstr ""
+"los elementos título, nombre y enlace se requieren en la línea %d, columna %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
@@ -66,7 +67,8 @@ msgstr ""
 
 #: ../src/dh-parser.c:292
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "los elementos nombre y enlace se requieren dentro de <function> en la línea %"
 "d, columna %d"
@@ -100,52 +102,52 @@ msgstr "_Página:"
 msgid "Section"
 msgstr "Sección"
 
-#: ../src/dh-window.c:139
+#: ../src/dh-window.c:141
 msgid "_File"
 msgstr "_Archivo"
 
-#: ../src/dh-window.c:140
+#: ../src/dh-window.c:142
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:144
 msgid "_Help"
-msgstr "A_yuda"
+msgstr "Ay_uda"
 
 #. File menu
-#: ../src/dh-window.c:145
+#: ../src/dh-window.c:147
 msgid "_New Window"
 msgstr "_Ventana nueva"
 
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:149
 msgid "New _Tab"
 msgstr "_Solapa nueva"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:168
 msgid "Browse Contents"
 msgstr "Examinar contenido"
 
-#: ../src/dh-window.c:167 ../src/dh-window.c:451
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Índice"
 
-#: ../src/dh-window.c:606
+#: ../src/dh-window.c:616
 msgid "translator_credits"
 msgstr "Francisco Javier F. Serrador <serrador@cvs.gnome.org>"
 
-#: ../src/dh-window.c:611
+#: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un visor de ayuda para desarrolladores para GNOME 2"
 
-#: ../src/dh-window.c:939 ../src/dh-window.c:1067
+#: ../src/dh-window.c:949 ../src/dh-window.c:1077
 msgid "Empty Page"
 msgstr "Página vacía"
 
@@ -280,4 +282,3 @@ msgstr "Soporte para DevHelp"
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
 msgstr "Hace que F7 inicie DevHelp para la palabra en el cursor"
-
