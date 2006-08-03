@@ -135,7 +135,7 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/devhelp/ui/show_advanced_options</key>
+      <key>/schemas/apps/devhelp/ui/show_advanced_search_options</key>
       <applyto>/apps/devhelp/ui/show_advanced_options</applyto>
       <owner>devhelp</owner>
       <type>bool</type>

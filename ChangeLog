@@ -1,3 +1,13 @@
+2006-08-03  Richard Hult  <richard@imendio.com>
+
+	* configure.in: Bump version.
+
+2006-07-30  Jonathon Jongsma  <jonathon.jongsma@gmail.com>
+
+	* devhelp.schemas.in: fix schema entry for
+	show_advanced_search_options to match the actual gconf key used in
+	code (was show_advanced_options)
+
 2006-07-27  Richard Hult  <richard@imendio.com>
 
 	* Release 0.12
