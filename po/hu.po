@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-23 00:50+0200\n"
+"POT-Creation-Date: 2006-08-16 00:50+0200\n"
 "PO-Revision-Date: 2006-06-25 11:36+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
@@ -15,13 +15,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.2\n"
-"Plural-Forms:  nplurals=1; plural=0;\n"
+"Plural-Forms:   nplurals=2; plural=(n != 1);\n"
 
 #: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Fejlesztők súgóprogramja"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:609
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
 #: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -62,7 +62,8 @@ msgstr ""
 
 #: ../src/dh-parser.c:292
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "név és hivatkozás elemek szükségesek a <function>-on belül a(z) %d. sor %d. "
 "oszlopában"
@@ -96,52 +97,52 @@ msgstr "_Oldal:"
 msgid "Section"
 msgstr "Fejezet"
 
-#: ../src/dh-window.c:139
+#: ../src/dh-window.c:141
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../src/dh-window.c:140
+#: ../src/dh-window.c:142
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Ugrás"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:144
 msgid "_Help"
 msgstr "_Súgó"
 
 #. File menu
-#: ../src/dh-window.c:145
+#: ../src/dh-window.c:147
 msgid "_New Window"
 msgstr "Új _ablak"
 
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:149
 msgid "New _Tab"
 msgstr "Új _lap"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:168
 msgid "Browse Contents"
 msgstr "Tartalom böngészése"
 
-#: ../src/dh-window.c:167 ../src/dh-window.c:451
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
 msgstr "Keresés"
 
-#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Tartalom"
 
-#: ../src/dh-window.c:606
+#: ../src/dh-window.c:616
 msgid "translator_credits"
 msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 
-#: ../src/dh-window.c:611
+#: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
 msgstr "Súgóböngésző fejlesztőknek GNOME2-höz"
 
-#: ../src/dh-window.c:939 ../src/dh-window.c:1067
+#: ../src/dh-window.c:949 ../src/dh-window.c:1077
 msgid "Empty Page"
 msgstr "Üres oldal"
 
@@ -215,7 +216,8 @@ msgstr "A főablak teljes méretben induljon-e?"
 
 #: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Melyik lap van kiválasztva, \"content\" (tartalom) vagy \"search\" (keresés)."
+msgstr ""
+"Melyik lap van kiválasztva, \"content\" (tartalom) vagy \"search\" (keresés)."
 
 #: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
@@ -276,4 +278,3 @@ msgstr "Devhelp támogatás"
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
 msgstr "Az F7 hatására megjelenik a Devhelp a kurzornál található szóhoz"
-
