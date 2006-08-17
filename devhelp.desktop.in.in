@@ -2,6 +2,7 @@
 Encoding=UTF-8
 _Name=Devhelp
 _Comment=Developer's Help program
+_GenericName=Documentation Browser
 Exec=devhelp
 Terminal=false
 Type=Application

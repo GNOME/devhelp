@@ -239,6 +239,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		gboolean     ok = FALSE;
 		const gchar *name = NULL;
 		const gchar *link = NULL;
+		const gchar *deprecated = NULL;
 		
 		if (g_ascii_strcasecmp (node_name, "function") == 0) {
 			ok = TRUE;
@@ -281,6 +282,10 @@ parser_start_node_cb (GMarkupParseContext  *context,
 						     "link") == 0) {
 				link = attribute_values[i];
 			}
+			else if (g_ascii_strcasecmp (attribute_names[i],
+						     "deprecated") == 0) {
+				deprecated = attribute_values[i];
+			}
 		}
 
 		if (!name || !link) {
@@ -316,14 +321,15 @@ parser_start_node_cb (GMarkupParseContext  *context,
 
 			tmp = g_strndup (name, strlen (name) - 3);
 			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, tmp, 
-					       DH_LINK(parser->book_node->data)->book,
+					       DH_LINK (parser->book_node->data)->book,
 					       page, full_link);
 			g_free (tmp);
 		} else {
 			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, name, 
-					       DH_LINK(parser->book_node->data)->book,
+					       DH_LINK (parser->book_node->data)->book,
 					       page, full_link);
 		}
+
 		g_free (full_link);
 		g_free (page);
 

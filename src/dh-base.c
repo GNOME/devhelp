@@ -226,13 +226,13 @@ base_add_books_in_data_dir(DhBase *base, const gchar *data_dir)
 {
 	gchar *dir;
 	
-	dir = g_build_filename(data_dir, "gtk-doc", "html", NULL);
-	base_add_books(base, dir);
-	g_free(dir);
+	dir = g_build_filename (data_dir, "gtk-doc", "html", NULL);
+	base_add_books (base, dir);
+	g_free (dir);
 
-	dir = g_build_filename(data_dir, "devhelp", "books", NULL);
-	base_add_books(base, dir);
-	g_free(dir);
+	dir = g_build_filename (data_dir, "devhelp", "books", NULL);
+	base_add_books (base, dir);
+	g_free (dir);
 }
 
 static void
@@ -270,11 +270,11 @@ base_init_books (DhBase *base)
 	
 	/* Insert the books from all gtk-doc and devhelp install paths. */
 
-	base_add_books_in_data_dir(base, g_get_user_data_dir());
+	base_add_books_in_data_dir (base, g_get_user_data_dir ());
 
-	system_dirs = g_get_system_data_dirs();
-	while (*system_dirs){
-		base_add_books_in_data_dir(base, *system_dirs);
+	system_dirs = g_get_system_data_dirs ();
+	while (*system_dirs) {
+		base_add_books_in_data_dir (base, *system_dirs);
 		system_dirs++;
 	}
 	

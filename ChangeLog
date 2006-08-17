@@ -1,3 +1,13 @@
+2006-08-17  Richard Hult  <richard@imendio.com>
+
+	* src/dh-base.c: (base_add_books_in_data_dir), (base_init_books):
+	* src/dh-parser.c: (parser_start_node_cb): Fix style.
+
+2006-08-17  Richard Hult  <richard@imendio.com>
+
+	* devhelp.desktop.in.in (_GenericName): Add, fixes bug
+	#349880 (Matthias Clasen).
+
 2006-08-03  Richard Hult  <richard@imendio.com>
 
 	* src/default-prefs-gecko-1-8.js: Comment out the document color
