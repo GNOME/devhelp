@@ -219,6 +219,8 @@ keyword_model_get_column_type (GtkTreeModel *tree_model,
 		break;
 	case DH_KEYWORD_MODEL_COL_LINK:
 		return G_TYPE_POINTER;
+	case DH_KEYWORD_MODEL_COL_IS_DEPRECATED:
+		return G_TYPE_BOOLEAN;
 		break;
 	default:
 		return G_TYPE_INVALID;
@@ -307,6 +309,10 @@ keyword_model_get_value (GtkTreeModel *tree_model,
 	case DH_KEYWORD_MODEL_COL_LINK:
 		g_value_init (value, G_TYPE_POINTER);
 		g_value_set_pointer (value, link);
+		break;
+	case DH_KEYWORD_MODEL_COL_IS_DEPRECATED:
+		g_value_init (value, G_TYPE_BOOLEAN);
+		g_value_set_boolean (value, link->is_deprecated);
 		break;
         default:
                 g_warning ("Bad column %d requested", column);

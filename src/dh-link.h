@@ -40,25 +40,29 @@ struct _DhLink {
 	gchar       *page;
 	gchar       *uri;
 	DhLinkType   type;
+
+	/* FIXME: Use an enum or flags for this when we know more about what we
+	 * can do (or keep the actual deprecation string).
+	 */
+	gboolean     is_deprecated;
 	
 	guint        ref_count;
 };
 
-DhLink * dh_link_new        (DhLinkType      type,
-			     const gchar    *name,
-			     const gchar    *book,
-			     const gchar    *page,
-			     const gchar    *uri);
-
-DhLink * dh_link_copy       (const DhLink   *link);
-
-void     dh_link_free       (DhLink         *link);
-
-gint     dh_link_compare    (gconstpointer   a,
-			     gconstpointer   b);
-
-DhLink * dh_link_ref        (DhLink         *link);
-void     dh_link_unref      (DhLink         *link);
+DhLink * dh_link_new               (DhLinkType     type,
+				    const gchar   *name,
+				    const gchar   *book,
+				    const gchar   *page,
+				    const gchar   *uri);
+DhLink * dh_link_copy              (const DhLink  *link);
+void     dh_link_free              (DhLink        *link);
+gint     dh_link_compare           (gconstpointer  a,
+				    gconstpointer  b);
+DhLink * dh_link_ref               (DhLink        *link);
+void     dh_link_unref             (DhLink        *link);
+gboolean dh_link_get_is_deprecated (DhLink        *link);
+void     dh_link_set_is_deprecated (DhLink        *link,
+				    gboolean       is_deprecated);
 
 #endif /* __DH_LINK_H__ */
 

@@ -115,3 +115,16 @@ dh_link_unref (DhLink *link)
 		link_free (link);
 	}
 }
+
+gboolean
+dh_link_get_is_deprecated (DhLink *link)
+{
+	return link->is_deprecated;
+}
+
+void
+dh_link_set_is_deprecated (DhLink   *link,
+			   gboolean  is_deprecated)
+{
+	link->is_deprecated = is_deprecated;
+}

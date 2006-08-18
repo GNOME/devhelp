@@ -333,6 +333,10 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		g_free (full_link);
 		g_free (page);
 
+		if (deprecated) {
+			dh_link_set_is_deprecated (dh_link, TRUE);
+		}
+		
  		*parser->keywords = g_list_prepend (*parser->keywords,
  						    dh_link);
 	}

@@ -41,7 +41,7 @@ typedef struct _DhKeywordModelPriv   DhKeywordModelPriv;
 
 struct _DhKeywordModel
 {
-        GObject           parent;
+        GObject             parent;
 
         DhKeywordModelPriv *priv;
 
@@ -56,6 +56,7 @@ enum {
 	/* DH_KEYWORD_MODEL_COL_PIXBUF, */
 	DH_KEYWORD_MODEL_COL_NAME,
 	DH_KEYWORD_MODEL_COL_LINK,
+	DH_KEYWORD_MODEL_COL_IS_DEPRECATED,
 	DH_KEYWORD_MODEL_NR_OF_COLS
 };
 

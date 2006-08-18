@@ -1,7 +1,9 @@
 Devhelp 0.13:
 -------------
 
-* FIXME
+* Add generic name to desktop file (Matthias Clasen)
+* Revert theme change since it breaks gecko < 1.9
+* Make deprecated keywords grey.
 
 
 Devhelp 0.12:

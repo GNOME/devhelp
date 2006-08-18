@@ -552,6 +552,41 @@ search_complete_func (DhLink *link)
 	return link->name;
 }
 
+static void
+search_cell_data_func (GtkTreeViewColumn *tree_column,
+		       GtkCellRenderer   *cell,
+		       GtkTreeModel      *tree_model,
+		       GtkTreeIter       *iter,
+		       gpointer           data)
+{
+	DhSearch     *search;
+	DhSearchPriv *priv;
+	gchar        *name;
+	gboolean      is_deprecated;
+	GdkColor     *color;
+
+	search = data;
+	priv = search->priv;
+
+	gtk_tree_model_get (tree_model, iter,
+			    DH_KEYWORD_MODEL_COL_NAME, &name,
+			    DH_KEYWORD_MODEL_COL_IS_DEPRECATED, &is_deprecated,
+			    -1);
+
+	if (is_deprecated) {
+		color = &GTK_WIDGET (search)->style->text_aa[GTK_STATE_NORMAL];
+	} else {
+		color = NULL;
+	}
+	
+	g_object_set (cell,
+		      "text", name,
+		      "foreground-gdk", color,
+		      NULL);
+
+	g_free (name);
+}
+
 GtkWidget *
 dh_search_new (GList *keywords)
 {
@@ -657,16 +692,19 @@ dh_search_new (GList *keywords)
 	g_object_set (cell,
 		      "ellipsize", PANGO_ELLIPSIZE_END,
 		      NULL);
-	
-	gtk_tree_view_insert_column_with_attributes (
-		GTK_TREE_VIEW (priv->hitlist), -1,
-		_("Section"), cell,
-		"text", 0,
-		NULL);
 
+	gtk_tree_view_insert_column_with_data_func (
+		GTK_TREE_VIEW (priv->hitlist),
+		-1,
+		NULL, 
+		cell,
+		search_cell_data_func,
+		search, NULL);
+	
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->hitlist),
 					   FALSE);
-	gtk_tree_view_set_search_column (GTK_TREE_VIEW (priv->hitlist), FALSE);
+	gtk_tree_view_set_search_column (GTK_TREE_VIEW (priv->hitlist),
+					 DH_KEYWORD_MODEL_COL_NAME);
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->hitlist));
 
