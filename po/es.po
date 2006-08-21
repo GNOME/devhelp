@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-29 19:43+0200\n"
-"PO-Revision-Date: 2006-05-23 02:46+0200\n"
+"POT-Creation-Date: 2006-08-21 10:58+0200\n"
+"PO-Revision-Date: 2006-08-21 10:58+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,10 @@ msgstr "Programa de ayuda del desarrollador"
 msgid "Devhelp"
 msgstr "DevHelp"
 
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Visor de documentación"
+
 #: ../src/dh-main.c:85
 msgid "Search for a function"
 msgstr "Buscar una función"
@@ -42,7 +46,7 @@ msgstr "Termina cualquier DevHelp en ejecución"
 msgid "Display the version and exit"
 msgstr "Muestra la versión y sale"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Se esperaba «%s» pero se obtuvo «%s» en la línea %d, columna %d"
@@ -65,7 +69,7 @@ msgstr ""
 "los elementos nombre y enlace se requieren dentro de <sub> en la línea %d, "
 "columna %d"
 
-#: ../src/dh-parser.c:292
+#: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -73,34 +77,30 @@ msgstr ""
 "los elementos nombre y enlace se requieren dentro de <function> en la línea %"
 "d, columna %d"
 
-#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:514
 msgid "Could not create book parser"
 msgstr "No se pudo crear el parser del libro"
 
-#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:524
 msgid "Could not create markup parser"
 msgstr "No se pudo crear el parser del marco"
 
-#: ../src/dh-parser.c:567
+#: ../src/dh-parser.c:577
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "No se pudo descomprimir el libro «%s»: %s"
 
-#: ../src/dh-parser.c:592
+#: ../src/dh-parser.c:602
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp no está construido con soporte zlib"
 
-#: ../src/dh-search.c:584
+#: ../src/dh-search.c:619
 msgid "_Book:"
 msgstr "_Libro:"
 
-#: ../src/dh-search.c:604
+#: ../src/dh-search.c:639
 msgid "_Page:"
 msgstr "_Página:"
-
-#: ../src/dh-search.c:663
-msgid "Section"
-msgstr "Sección"
 
 #: ../src/dh-window.c:141
 msgid "_File"
@@ -282,3 +282,6 @@ msgstr "Soporte para DevHelp"
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
 msgstr "Hace que F7 inicie DevHelp para la palabra en el cursor"
+
+#~ msgid "Section"
+#~ msgstr "Sección"
