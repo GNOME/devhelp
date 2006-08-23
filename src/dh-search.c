@@ -201,6 +201,8 @@ search_finalize (GObject *object)
 	g_string_free (priv->page_str, TRUE);
 	g_string_free (priv->entry_str, TRUE);
 
+	g_completion_free (priv->completion);
+
 	gconf_client = dh_base_get_gconf_client (dh_base_get ());	
 	gconf_client_notify_remove (gconf_client, priv->advanced_options_id);
 

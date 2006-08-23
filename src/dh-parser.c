@@ -488,6 +488,7 @@ dh_parser_read_file (const gchar  *path,
 	}
 
  exit:
+	g_io_channel_unref (io);
 	g_markup_parse_context_free (parser->context);
 	g_free (parser->m_parser);
 	g_free (parser);

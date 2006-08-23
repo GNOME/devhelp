@@ -694,7 +694,7 @@ window_restore_state (DhWindow *window)
 	gboolean      maximized;
 	int           width, height;
 	int           x, y;
-	const gchar  *tab;
+	gchar        *tab;
 
 	priv = window->priv;
 
@@ -743,6 +743,7 @@ window_restore_state (DhWindow *window)
 		gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
 		dh_search_grab_focus (DH_SEARCH (priv->search));
 	}
+	g_free (tab);
 }
 
 static gboolean
@@ -1043,6 +1044,7 @@ window_update_title (DhWindow *window,
 
 	/* Don't use both titles if they are the same. */
 	if (book_title && html_title && strcmp (book_title, html_title) == 0) {
+		g_free (html_title);
 		html_title = NULL;
 	}
 	
@@ -1052,10 +1054,11 @@ window_update_title (DhWindow *window,
 	
 	if (html_title) {
 		full_title = g_strdup_printf ("%s : %s", book_title, html_title);
+		g_free (html_title);
 	} else {
 		full_title = g_strdup (book_title);
 	}
-	
+
 	gtk_window_set_title (GTK_WINDOW (window), full_title);
 	g_free (full_title);
 }

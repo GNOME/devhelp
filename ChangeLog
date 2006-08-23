@@ -1,3 +1,11 @@
+2006-08-23  Paolo Borelli  <pborelli@katamail.com>
+
+	* src/dh-parser:
+	* src/dh-window:
+	* src/dh-search:
+
+	plug some memory leaks.
+
 2006-08-18  Richard Hult  <richard@imendio.com>
 
 	* src/dh-keyword-model.c: (keyword_model_get_column_type),
