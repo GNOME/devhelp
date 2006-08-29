@@ -3,20 +3,21 @@
 # This file is distributed under the GNU General Public License Version 2.
 #
 # maintainer: Christophe Fergeau <christophe.fergeau@laposte.net>, 2001.
-# Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2002-2004.
-# Laurent RICHARD <laurent.richard@lilit.be>, 2003.
+# Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2002-2006.
+# Laurent Richard <laurent.richard@lilit.be>, 2003.
 # Sebastien Bacher <seb128@debian.org>, 2003.
 # Thierry Moisan <thierryn@videotron.ca>, 2004.
 # Robert-André Mauchin <zebob.m@gmail.com>, 2006.
 # Jonathan Ernst <jonathan@ernstfamily.ch>, 2006.
+# Damien Durand <splinux@fedoraproject.org>, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.12\n"
+"Project-Id-Version: devhelp 0.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-27 17:39+0200\n"
-"PO-Revision-Date: 2006-07-27 17:24+0200\n"
-"Last-Translator: Robert-André Mauchin <zebob.m@gmail.com>\n"
+"POT-Creation-Date: 2006-08-29 13:40+0200\n"
+"PO-Revision-Date: 2006-08-29 13:40+0200\n"
+"Last-Translator: Damien Durand <splinux@fedoraproject.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +32,10 @@ msgstr "Programme d'aide pour les développeurs"
 msgid "Devhelp"
 msgstr "Devhelp"
 
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Navigateur de documentation"
+
 #: ../src/dh-main.c:85
 msgid "Search for a function"
 msgstr "Rechercher une fonction"
@@ -43,7 +48,7 @@ msgstr "Quitter tous les Devhelp en cours de fonctionnement"
 msgid "Display the version and exit"
 msgstr "Affiche la version et quitte"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Attendu « %s » reçu « %s » à la ligne %d, colonne %d"
@@ -67,7 +72,7 @@ msgstr ""
 "Les éléments name et link doivent être présents dans <sub> à la ligne %d, "
 "colonne %d"
 
-#: ../src/dh-parser.c:292
+#: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -75,34 +80,30 @@ msgstr ""
 "Les éléments name et link doivent être présents dans <function> à la ligne %"
 "d, colonne %d"
 
-#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Impossible de créer l'analyseur de livres"
 
-#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Impossible de créer l'analyseur de balises"
 
-#: ../src/dh-parser.c:567
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Impossible de décompresser le livre « %s » : %s"
 
-#: ../src/dh-parser.c:592
+#: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp n'a pas été construit avec le support de zlib"
 
-#: ../src/dh-search.c:584
+#: ../src/dh-search.c:621
 msgid "_Book:"
 msgstr "_Livre :"
 
-#: ../src/dh-search.c:604
+#: ../src/dh-search.c:641
 msgid "_Page:"
 msgstr "_Page :"
-
-#: ../src/dh-search.c:663
-msgid "Section"
-msgstr "Section"
 
 #: ../src/dh-window.c:141
 msgid "_File"
@@ -150,13 +151,14 @@ msgstr ""
 "Sebastien Bacher <seb128@debian.org>\n"
 "Thierry Moisan <thierryn@videotron.ca>\n"
 "Robert-André Mauchin <zebob.m@gmail.com>\n"
-"Jonathan Ernst <jonathan@ernstfamily.ch>"
+"Jonathan Ernst <jonathan@ernstfamily.ch>\n"
+"Damien Durand <splinux@fedoraproject.org>"
 
 #: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un navigateur d'aide pour les développeurs GNOME 2"
 
-#: ../src/dh-window.c:949 ../src/dh-window.c:1077
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
 msgid "Empty Page"
 msgstr "Page vide"
 
@@ -206,7 +208,7 @@ msgstr "La hauteur de la fenêtre principale."
 
 #: ../devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
-msgstr "La largeur de l'index et du panneau de recherche"
+msgstr "La largeur de l'index et du panneau de recherche."
 
 #: ../devhelp.schemas.in.h:13
 msgid "The width of the main window."
@@ -230,7 +232,7 @@ msgstr "Indique si la fenêtre principale devrait démarrer maximisée ou non."
 
 #: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "L'onglet qui est sélectionné, « contenu » ou  « recherche »"
+msgstr "L'onglet qui est sélectionné, « contenu » ou  « recherche »."
 
 #: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
@@ -282,7 +284,7 @@ msgstr "_Utiliser les polices du système"
 
 #: ../ui/devhelp.glade.h:12
 msgid "_Variable width: "
-msgstr "Largeur _variable :"
+msgstr "Largeur _variable : "
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
 msgid "Devhelp support"
