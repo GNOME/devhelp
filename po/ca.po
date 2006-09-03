@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-21 02:17+0200\n"
-"PO-Revision-Date: 2006-07-21 02:31+0200\n"
+"POT-Creation-Date: 2006-09-03 22:58+0200\n"
+"PO-Revision-Date: 2006-09-03 23:00+0200\n"
 "Last-Translator: Xavier Conde Rueda <xavi.conde@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,10 +21,14 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programa d'ajuda per als desenvolupadors"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:609
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
 #: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
+
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Navegador de documentació"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
@@ -38,7 +42,7 @@ msgstr "Surt de tots els Devhelp en execució"
 msgid "Display the version and exit"
 msgstr "Mostra la versió i surt"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "S'esperava '%s' però s'ha obtingut '%s', a la línia %d, columna %d"
@@ -59,7 +63,7 @@ msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Els elements title i link són necessaris dins de <sub> (línia %d, columna %d)"
 
-#: ../src/dh-parser.c:292
+#: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -67,83 +71,79 @@ msgstr ""
 "Els elements name i link són necessaris dins de <function> (línia %d, "
 "columna %d)"
 
-#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "No s'ha pogut crear l'analitzador del llibre"
 
-#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "No s'ha pogut crear l'analitzador de marques"
 
-#: ../src/dh-parser.c:567
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "No es pot descomprimir el llibre '%s': %s"
 
-#: ../src/dh-parser.c:592
+#: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
 msgstr "El devhelp s'ha muntat sense suport per a zlib"
 
-#: ../src/dh-search.c:584
+#: ../src/dh-search.c:621
 msgid "_Book:"
 msgstr "Lli_bre:"
 
-#: ../src/dh-search.c:604
+#: ../src/dh-search.c:641
 msgid "_Page:"
 msgstr "_Pàgina:"
 
-#: ../src/dh-search.c:663
-msgid "Section"
-msgstr "Secció"
-
-#: ../src/dh-window.c:139
+#: ../src/dh-window.c:141
 msgid "_File"
 msgstr "_Fitxer"
 
-#: ../src/dh-window.c:140
+#: ../src/dh-window.c:142
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Vés a"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:144
 msgid "_Help"
 msgstr "A_juda"
 
 #. File menu
-#: ../src/dh-window.c:145
-msgid "_New Window"
-msgstr "_Nova finestra"
-
 #: ../src/dh-window.c:147
-msgid "New _Tab"
-msgstr "Nova pes_tanya"
+msgid "_New Window"
+msgstr "Nova _finestra"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:149
+msgid "New _Tab"
+msgstr "Nova _pestanya"
+
+#: ../src/dh-window.c:168
 msgid "Browse Contents"
 msgstr "Navega pels continguts"
 
-#: ../src/dh-window.c:167 ../src/dh-window.c:451
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
 msgstr "Cerca"
 
-#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Continguts"
 
-#: ../src/dh-window.c:606
+#: ../src/dh-window.c:616
 msgid "translator_credits"
 msgstr ""
 "Aleix Badia i Bosch <a.badia@callusdigital.org>\n"
 "Xavier Conde Rueda <xavi.conde@gmail.com>"
 
-#: ../src/dh-window.c:611
+#: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un navegador d'ajuda als desenvolupadors per al GNOME 2"
 
-#: ../src/dh-window.c:939 ../src/dh-window.c:1067
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
 msgid "Empty Page"
 msgstr "Pàgina buida"
 
@@ -165,7 +165,7 @@ msgstr "Tipus de lletra per al text amb l'amplada variable."
 
 #: ../devhelp.schemas.in.h:5
 msgid "Height of main window"
-msgstr "Alçària de la finestra principal"
+msgstr "Alçada de la finestra principal"
 
 #: ../devhelp.schemas.in.h:6
 msgid "Main window maximized state"
@@ -254,7 +254,7 @@ msgstr "_Endarrere"
 
 #: ../ui/devhelp.glade.h:7
 msgid "_Fixed width:"
-msgstr "_Amplada fixa:"
+msgstr "Amplada _fixa:"
 
 #: ../ui/devhelp.glade.h:8
 msgid "_Forward"
@@ -281,6 +281,9 @@ msgstr "Suport del Devhelp"
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
 msgstr ""
 "En prémer F7 apareixerà l'ajuda del Devhelp per a la paraula sota el cursor"
+
+#~ msgid "Section"
+#~ msgstr "Secció"
 
 #~ msgid "Specify the size and location of the window"
 #~ msgstr "Especifica la mida i la ubicació de la finestra"
