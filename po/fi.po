@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-02 22:50+0300\n"
-"PO-Revision-Date: 2006-07-02 22:51+0300\n"
+"POT-Creation-Date: 2006-09-15 11:04+0300\n"
+"PO-Revision-Date: 2006-09-15 11:04+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,10 +19,14 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Kehittäjän Ohje"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:609
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
 #: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
+
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Dokumentaatioselain"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
@@ -36,7 +40,7 @@ msgstr "Sulje suoritettavana olevat Devhelp-ohjelmat"
 msgid "Display the version and exit"
 msgstr "Näytä versio ja sulje"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Oletettiin '%s', saatiin '%s' rivillä %d, sarakkeessa %d"
@@ -58,7 +62,7 @@ msgstr ""
 "Elementit nimi ja linkki vaaditaan <sub>:in sisällä rivillä %d, sarakkeessa %"
 "d"
 
-#: ../src/dh-parser.c:292
+#: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -66,84 +70,80 @@ msgstr ""
 "Elementit nimi ja linkki vaaditaan <function>:in sisällä rivillä %d, "
 "sarakkeessa %d"
 
-#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Kirjan tulkkia ei voitu luoda"
 
-#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Merkintöjen tulkkia ei voitu luoda"
 
-#: ../src/dh-parser.c:567
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kirjan '%s' pakkausta ei voitu avata: %s"
 
-#: ../src/dh-parser.c:592
+#: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp ei ole käännetty zlib-tuen kanssa"
 
-#: ../src/dh-search.c:584
+#: ../src/dh-search.c:621
 msgid "_Book:"
 msgstr "_Kirja:"
 
-#: ../src/dh-search.c:604
+#: ../src/dh-search.c:641
 msgid "_Page:"
 msgstr "_Sivu:"
 
-#: ../src/dh-search.c:663
-msgid "Section"
-msgstr "Osa"
-
-#: ../src/dh-window.c:139
+#: ../src/dh-window.c:141
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../src/dh-window.c:140
+#: ../src/dh-window.c:142
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "Siirry"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:144
 msgid "_Help"
 msgstr "O_hje"
 
 #. File menu
-#: ../src/dh-window.c:145
+#: ../src/dh-window.c:147
 msgid "_New Window"
 msgstr "_Uusi ikkuna"
 
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:149
 msgid "New _Tab"
 msgstr "Uusi _välilehti"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:168
 msgid "Browse Contents"
 msgstr "Selaa sisällysluetteloa"
 
-#: ../src/dh-window.c:167 ../src/dh-window.c:451
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
 msgstr "Etsi"
 
-#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Sisältö"
 
-#: ../src/dh-window.c:606
+#: ../src/dh-window.c:616
 msgid "translator_credits"
 msgstr ""
 "Ilkka Tuohela, 2004-2005.\n"
 "\n"
 "http://gnome.fi/"
 
-#: ../src/dh-window.c:611
+#: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
 msgstr "Kehittäjän avusteselain Gnome 2:een"
 
-#: ../src/dh-window.c:939 ../src/dh-window.c:1067
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
 msgid "Empty Page"
 msgstr "Tyhjä sivu"
 
@@ -279,6 +279,9 @@ msgstr "Devhelp-tuki"
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
 msgstr ""
 "Käynnistää devhelpin F7-näppäimestä kohdistimen kohdalla olevalle sanalle"
+
+#~ msgid "Section"
+#~ msgstr "Osa"
 
 #~ msgid "Devhelp Book"
 #~ msgstr "Devhelp-kirja"
