@@ -3,14 +3,14 @@
 # Alessio Frusciante <algol@firenze.linux.it>, 2001.
 # Francesco Marletta <francesco.marletta@tiscali.it>, 2003
 # Alessio Frusciante <algol@firenze.linux.it>, 2003.
-# Francesco Marletta <francesco.marletta@tiscali.it>, 2004, 2005.
+# Francesco Marletta <francesco.marletta@tiscali.it>, 2004-2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-18 17:14+0200\n"
-"PO-Revision-Date: 2005-09-04 00:08+0200\n"
+"POT-Creation-Date: 2006-09-20 21:51+0200\n"
+"PO-Revision-Date: 2006-09-20 21:53+0200\n"
 "Last-Translator: Francesco Marletta <francesco.marletta@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -21,58 +21,54 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programma di aiuto per sviluppatori"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-window.c:447 ../ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
+#: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr "Libro DevHelp"
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr ""
 
-#: ../src/dh-main.c:137
-msgid "Specify the size and location of the window"
-msgstr "Specifica la dimensione e la posizione della finestra"
-
-# [MF] so che sarebbe OFFSET X/Y ma credo che posizione renda meglio l'idea
-#: ../src/dh-main.c:138
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "LARGHEZZAxALTEZZA+POSIZIONEX+POSIZIONEY"
-
-#: ../src/dh-main.c:146
+#: ../src/dh-main.c:85
 msgid "Search for a function"
 msgstr "Cerca una funzione"
 
-#: ../src/dh-main.c:155
+#: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
 msgstr "Termina ogni Devhelp in esecuzione"
 
-#: ../src/dh-parser.c:105 ../src/dh-parser.c:182 ../src/dh-parser.c:229
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "Mostra la versione ed esce"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr ""
 "Era atteso \"%s\" ed invece si è ottenuto \"%s\" alla riga %d, colonna %d"
 
 # [MF] è una guida per sviluppatori quindi si presume che si sappia cos'è un namespace
-#: ../src/dh-parser.c:121
+#: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Namespace \"%s\" non valido alla riga %d, colonna %d"
 
-#: ../src/dh-parser.c:150
+#: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
 "gli elementi \"title\", \"name\" e \"link\" devono essere presenti alla riga "
 "%d, colonna %d"
 
-#: ../src/dh-parser.c:203
+#: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "gli elementi \"name\" e \"link\" devono essere presenti dentro il tag <sub> "
 "alla riga %d, colonna %d"
 
-#: ../src/dh-parser.c:251
+#: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -80,63 +76,79 @@ msgstr ""
 "gli elementi \"name\" e \"link\" devono essere presenti dentro il tag "
 "<function> alla riga %d, colonna %d"
 
-#: ../src/dh-parser.c:338 ../src/dh-parser.c:424
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Impossibile creare l'analizzatore per il libro"
 
-#: ../src/dh-parser.c:348 ../src/dh-parser.c:434
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Imposibile creare l'analizzatore per la marcatura"
 
-#: ../src/dh-parser.c:480
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Impossibile decomprimere il libro \"%s\": %s"
 
-#: ../src/dh-search.c:418
-msgid "_Search:"
-msgstr "_Cerca:"
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp non è compilato con il supporto per zlib"
 
-#: ../src/dh-search.c:462
-msgid "Section"
-msgstr "Sezione"
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "_Libro:"
 
-#: ../src/dh-window.c:110
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "_Pagina:"
+
+#: ../src/dh-window.c:141
 msgid "_File"
 msgstr "_File"
 
-#: ../src/dh-window.c:111
+#: ../src/dh-window.c:142
 msgid "_Edit"
 msgstr "_Modifica"
 
-#: ../src/dh-window.c:112 ../ui/devhelp.glade.h:10
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Vai"
 
-#: ../src/dh-window.c:113
+#: ../src/dh-window.c:144
 msgid "_Help"
 msgstr "A_iuto"
 
-#: ../src/dh-window.c:297
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Impossibile impostare interfaccia utente: %s"
+#. File menu
+#: ../src/dh-window.c:147
+msgid "_New Window"
+msgstr "_Nuova finestra"
 
-#: ../src/dh-window.c:357 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Sommario"
+#: ../src/dh-window.c:149
+msgid "New _Tab"
+msgstr "Nuova _scheda"
 
-#: ../src/dh-window.c:368
+#: ../src/dh-window.c:168
+msgid "Browse Contents"
+msgstr "Sfoglia sommario"
+
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
 msgstr "Cerca"
 
-#: ../src/dh-window.c:444
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Sommario"
+
+#: ../src/dh-window.c:616
 msgid "translator_credits"
 msgstr "Francesco Marletta <francesco.marletta@tiscali.it>"
 
-#: ../src/dh-window.c:449
+#: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
-msgstr "Un navigatore per la documentazione per sviluppatori di GNOME 2"
+msgstr "Un visualizzatore per la documentazione degli sviluppatori per GNOME 2"
+
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+msgid "Empty Page"
+msgstr "Pagina vuota"
 
 # [NdT] so che come traduzione non è il massimo, ma c'è dopo la descrizione lunga che chiarisce meglio.
 #: ../devhelp.schemas.in.h:1
@@ -160,86 +172,115 @@ msgid "Height of main window"
 msgstr "Altezza della finestra principale"
 
 #: ../devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr "Posizione del pannello"
-
-#: ../devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Stato di massimizzazione della finestra principale"
 
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Scheda selezionata, \"sommario\" o \"cerca\""
+
 #: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Mostra le opzioni di ricerca avanzate"
+
+#: ../devhelp.schemas.in.h:9
 msgid "The X position of the main window."
 msgstr "La posizione X della finestra principale."
 
-#: ../devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
 msgstr "La posizione Y della finestra principale."
 
-#: ../devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:11
 msgid "The height of the main window."
 msgstr "L'altezza della finestra principale."
 
-#: ../devhelp.schemas.in.h:11
-msgid "The location of the paned separator."
-msgstr "La posizione del separatore di pannello."
-
 #: ../devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "La larghezza del pannello di ricerca e indicizzazione"
+
+#: ../devhelp.schemas.in.h:13
 msgid "The width of the main window."
 msgstr "La larghezza della finestra principale"
 
-#: ../devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:14
 msgid "Use system fonts"
 msgstr "Usa i tipi di carattere di sistema"
 
-#: ../devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
 msgstr "Usa i tipi di carattere di sistema predefiniti."
 
-#: ../devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Indica se sono mostrate le opzioni di ricerca avanzate."
+
+#: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
 msgstr ""
 "Indica se la finestra principale deve essere avviata massimizzata o no."
 
-#: ../devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Quale delle schede è selezionata, \"sommario\" o \"cerca\"."
+
+#: ../devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Larghezza del pannello di ricerca e indicizzazione"
+
+#: ../devhelp.schemas.in.h:20
 msgid "Width of the main window"
 msgstr "Larghezza della finestra principale"
 
-#: ../devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:21
 msgid "X position of main window"
 msgstr "Posizione X della finestra principale"
 
-#: ../devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:22
 msgid "Y position of main window"
 msgstr "Posizione Y della finestra principale"
 
 #: ../ui/devhelp.glade.h:1
-msgid "    "
-msgstr "    "
-
-#: ../ui/devhelp.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Tipi di carattere</b>"
 
-#: ../ui/devhelp.glade.h:5
-msgid "Fixed width:"
-msgstr "Ampiezza fissa:"
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Ricerca in corso</b>"
 
-#: ../ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: ../ui/devhelp.glade.h:7
-msgid "Variable width: "
-msgstr "Ampiezza variabile:"
-
-#: ../ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:6
 msgid "_Back"
 msgstr "_Indietro"
 
-#: ../ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "Larghezza _fissa:"
+
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "_Avanti"
+
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "Mo_stra opzioni di ricerca avanzate"
 
 #: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Usare i tipi di carattere di sistema"
+
+#: ../ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "Larghezza _variabile:"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Supporto DevHelp"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr ""
+"Imposta F7 come attivatore di Devhelp per la parola dove si trova il cursore"
