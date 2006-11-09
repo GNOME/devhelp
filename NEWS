@@ -1,9 +1,29 @@
-Devhelp 0.13:
--------------
+NEW in 0.13:
+============
 
-* Add generic name to desktop file (Matthias Clasen)
-* Revert theme change since it breaks gecko < 1.9
-* Make deprecated keywords grey.
+- Revert theme change since it breaks gecko < 1.9
+- Make deprecated keywords grey
+- Only search for books in the XDG data/home directories
+- Fixed #310542, Improve the gtk-doc devhelp format (Richard)
+- Fixed #349229, Documentation page header is transparent (Richard)
+- Fixed #349352, GConf schema has wrong key for advanced search options (Jonathon Jongsma)
+- Fixed #349880, add a generic name to the .desktop file (Matthias Clasen)
+
+Translations:
+- Updated el: Kostas Papadimas
+- Updated fr: Christophe Merlet
+- Updated bg: Alexander Shopov
+- Updated sv: Richard Hult
+- Updated vi: Clytie Siddall
+- Updated nb: Kjartan Maraas
+- Updated ko: Changwoo Ryu
+- Updated ne: Pawan Chitrakar
+- Updated it: Alessio Frusciante
+- Updated es: Francisco Javier F. Serrador
+- Updated hu: Gabor Kelemen
+- Updated gl: Ignacio Casal Quinteiro
+- Updated ca: Josep Puigdemont i Casamajó
+- Updated en_GB: David Lodge
 
 
 Devhelp 0.12:
