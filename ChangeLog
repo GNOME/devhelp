@@ -1,10 +1,15 @@
+2006-11-10  Richard Hult  <richard@imendio.com>
+
+	* configure.in: Fix name.
+
+	* src/dh-base.c: (base_add_books_in_data_dir), (base_init_books),
+	(dh_base_get): Remove the old non-xdg locations.
+
 2006-08-23  Paolo Borelli  <pborelli@katamail.com>
 
-	* src/dh-parser:
-	* src/dh-window:
-	* src/dh-search:
-
-	plug some memory leaks.
+	* src/dh-parser.c:
+	* src/dh-window.c:
+	* src/dh-search.c: Plug some memory leaks.
 
 2006-08-18  Richard Hult  <richard@imendio.com>
 
@@ -28,7 +33,7 @@
 2006-08-03  Richard Hult  <richard@imendio.com>
 
 	* src/default-prefs-gecko-1-8.js: Comment out the document color
-	setting for now, since it breaks on gecko < 1.9 (#349229).
+	setting for now, since it breaks on gecko < 1.9, bug #349229.
 
 	* configure.in: Bump version.
 
@@ -36,7 +41,7 @@
 
 	* devhelp.schemas.in: fix schema entry for
 	show_advanced_search_options to match the actual gconf key used in
-	code (was show_advanced_options). Bug #349352.
+	code (was show_advanced_options), fixes bug #349352.
 
 2006-07-27  Richard Hult  <richard@imendio.com>
 

@@ -222,7 +222,7 @@ base_sort_books (DhBase *base)
 }
 
 static void
-base_add_books_in_data_dir(DhBase *base, const gchar *data_dir)
+base_add_books_in_data_dir (DhBase *base, const gchar *data_dir)
 {
 	gchar *dir;
 	
@@ -238,37 +238,7 @@ base_add_books_in_data_dir(DhBase *base, const gchar *data_dir)
 static void
 base_init_books (DhBase *base)
 {
-	const gchar *env;
-	gchar       *dir;
 	const gchar * const * system_dirs;
-
-	dir = g_build_filename (g_get_home_dir (), ".devhelp", "books", NULL);
-	base_add_books (base, dir);
-	g_free (dir);
-
-	env = g_getenv ("DEVHELP_SEARCH_PATH");
-	if (env) {
-		gchar **paths, **p;
-
-		paths = g_strsplit (env, ":", -1);
-		for (p = paths; *p != NULL; p++) {
-			base_add_books (base, *p);
-		}
-		g_strfreev (paths);
-	}
-
-	env = g_getenv ("GNOME2_PATH");
-	if (env) {
-		gchar **paths, **p;
-
-		paths = g_strsplit (env, ":", -1);
-		for (p = paths; *p != NULL; p++) {
-			base_add_books (base, *p);
-		}
-		g_strfreev (paths);
-	}
-	
-	/* Insert the books from all gtk-doc and devhelp install paths. */
 
 	base_add_books_in_data_dir (base, g_get_user_data_dir ());
 
@@ -277,7 +247,7 @@ base_init_books (DhBase *base)
 		base_add_books_in_data_dir (base, *system_dirs);
 		system_dirs++;
 	}
-	
+
 	base_sort_books (base);
 }
 
@@ -364,16 +334,12 @@ base_add_books (DhBase *base, const gchar *path)
 DhBase *
 dh_base_get (void)
 {
-	DhBasePriv *priv;
-
 	if (!base_instance) {
 		dh_gecko_utils_init ();
 		
-		base_instance = g_object_new (DH_TYPE_BASE, NULL);
-		priv = base_instance->priv;
-		
+		base_instance = g_object_new (DH_TYPE_BASE, NULL);		
+
 		base_init_books (base_instance);
-		
 		dh_preferences_init ();
 	}
 	

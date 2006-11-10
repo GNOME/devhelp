@@ -1,4 +1,4 @@
-AC_INIT([DevHelp],[0.13],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+AC_INIT([Devhelp],[0.13],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
   
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
 AC_CONFIG_HEADERS([config.h])
