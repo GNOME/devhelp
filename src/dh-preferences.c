@@ -464,13 +464,17 @@ dh_preferences_show_dialog (GtkWindow *parent)
 
 	preferences_get_font_names (FALSE, &var_font_name, &fixed_font_name);
 	
-	gtk_font_button_set_font_name (GTK_FONT_BUTTON (prefs->variable_font_button),
-				       var_font_name);
-	gtk_font_button_set_font_name (GTK_FONT_BUTTON (prefs->fixed_font_button),
-				       fixed_font_name);
-	
-	g_free (var_font_name);
-	g_free (fixed_font_name);
+	if (var_font_name) {
+		gtk_font_button_set_font_name (GTK_FONT_BUTTON (prefs->variable_font_button),
+					       var_font_name);
+		g_free (var_font_name);
+	}
+
+	if (fixed_font_name) {
+		gtk_font_button_set_font_name (GTK_FONT_BUTTON (prefs->fixed_font_button),
+					       fixed_font_name);
+		g_free (fixed_font_name);
+	}
 	
 	g_object_unref (gui);
 	
