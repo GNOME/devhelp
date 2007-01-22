@@ -228,6 +228,8 @@ html_init (DhHtml *html)
 			  G_CALLBACK (html_child_remove_cb),
 			  html);
 
+	gtk_moz_embed_load_url (GTK_MOZ_EMBED (priv->gecko), "about:blank");
+
 	html->priv = priv;
 }
 
