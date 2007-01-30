@@ -1,3 +1,7 @@
+2007-01-30  Priit Laes  <plaes@svn.gnome.org>
+
+	* configure.in: Added 'et' to ALL_LINGUAS.
+
 2007-01-22  David Trowbridge <trowbrds@gmail.com>
 
 	* src/dh-html.c: Initialize the GtkMozEmbed widget to display
