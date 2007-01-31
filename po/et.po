@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-29 03:14+0000\n"
-"PO-Revision-Date: 2007-01-29 09:47+0200\n"
+"PO-Revision-Date: 2007-01-31 19:39+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -33,25 +33,25 @@ msgstr "Dokumentatsioonisirvija"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
-msgstr ""
+msgstr "Funktsiooni otsimine"
 
 #: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
-msgstr ""
+msgstr "Kõigi töötavate devhelp'ide sulgemine"
 
 #: ../src/dh-main.c:103
 msgid "Display the version and exit"
-msgstr ""
+msgstr "Versiooni andmete kuvamine ja programmi töö lõpetamine"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Oodati '%s', selle asemel saadi '%s' real %d, veerul %d"
 
 #: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Vigane nimeruum '%s' real %d, veerul %d"
 
 #: ../src/dh-parser.c:158
 #, c-format
@@ -104,7 +104,7 @@ msgstr "_Redaktor"
 
 #: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
-msgstr ""
+msgstr "_Liikumine"
 
 #: ../src/dh-window.c:144
 msgid "_Help"
@@ -121,11 +121,11 @@ msgstr "Uus _kaart"
 
 #: ../src/dh-window.c:168
 msgid "Browse Contents"
-msgstr ""
+msgstr "Sirvi sisukorda"
 
 #: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
-msgstr ""
+msgstr "Otsing"
 
 #: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
 msgid "Contents"
@@ -146,19 +146,19 @@ msgstr "Tühi leht"
 
 #: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Määratud laiusega teksti kirjatüüp"
 
 #: ../devhelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "Teksti kirjatüüp"
 
 #: ../devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "Määratud laiusega teksti korral kasutatav kirjatüüp."
 
 #: ../devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Muutuva laiusega teksti korral kasutatav kirjatüüp."
 
 #: ../devhelp.schemas.in.h:5
 msgid "Height of main window"
@@ -166,15 +166,15 @@ msgstr "Peaakna kõrgus"
 
 #: ../devhelp.schemas.in.h:6
 msgid "Main window maximized state"
-msgstr ""
+msgstr "Peaakna maksimeeritud olek"
 
 #: ../devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr ""
+msgstr "Valitud kaart, \"content\" (sisukord) või \"search\" (otsing)"
 
 #: ../devhelp.schemas.in.h:8
 msgid "Show advanced search options"
-msgstr ""
+msgstr "Laiendatud otsimisvalikute näitamine"
 
 #: ../devhelp.schemas.in.h:9
 msgid "The X position of the main window."
@@ -190,7 +190,7 @@ msgstr "Peaakna kõrgus."
 
 #: ../devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
-msgstr ""
+msgstr "Indeksi- ja otsimispaani laius."
 
 #: ../devhelp.schemas.in.h:13
 msgid "The width of the main window."
@@ -215,10 +215,11 @@ msgstr "Kas peaaken peab käivitamisel saama maksimeeritud või mitte."
 #: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr ""
+"Milline kaart on valitud, kas \"content\" (sisukord) või \"search\" (otsing)"
 
 #: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
-msgstr ""
+msgstr "Indeksi- ja otsimispaani laius"
 
 #: ../devhelp.schemas.in.h:20
 msgid "Width of the main window"
@@ -234,11 +235,11 @@ msgstr "Peaakna asukoht Y-teljel"
 
 #: ../ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Kirjatüübid</b>"
 
 #: ../ui/devhelp.glade.h:2
 msgid "<b>Searching</b>"
-msgstr ""
+msgstr "<b>Otsing</b>"
 
 #: ../ui/devhelp.glade.h:5
 msgid "Preferences"
@@ -250,7 +251,7 @@ msgstr "_Tagasi"
 
 #: ../ui/devhelp.glade.h:7
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Määratud laiusega:"
 
 #: ../ui/devhelp.glade.h:8
 msgid "_Forward"
@@ -258,15 +259,15 @@ msgstr "_Edasi"
 
 #: ../ui/devhelp.glade.h:10
 msgid "_Show advanced search options"
-msgstr ""
+msgstr "_Kuvatakse laiendatud otsimisvalikuid"
 
 #: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
+msgstr "Kas_utatakse süsteemseid kirjatüüpe"
 
 #: ../ui/devhelp.glade.h:12
 msgid "_Variable width: "
-msgstr ""
+msgstr "Muutuva _laiusega:"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
 msgid "Devhelp support"
