@@ -1,3 +1,8 @@
+2007-02-02  Naba Kumar  <naba@gnome.org>
+
+	* libdevhelp-1.0.pc.in: Added gecko_home variable, addresses bug
+	#341170.
+
 2007-01-30  Priit Laes  <plaes@svn.gnome.org>
 
 	* configure.in: Added 'et' to ALL_LINGUAS.

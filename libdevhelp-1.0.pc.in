@@ -3,6 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 libgnomeui_serverdir=@libexecdir@
+gecko_home=@GECKO_HOME@
 
 Name: devhelp
 Description: devhelp
