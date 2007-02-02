@@ -6,23 +6,30 @@ NEW in 0.13:
 - Only search for books in the XDG data/home directories
 - Fixed #310542, Improve the gtk-doc devhelp format (Richard)
 - Fixed #349229, Documentation page header is transparent (Richard)
-- Fixed #349352, GConf schema has wrong key for advanced search options (Jonathon Jongsma)
+- Fixed #349352, GConf schema has wrong key (Jonathon Jongsma)
 - Fixed #349880, add a generic name to the .desktop file (Matthias Clasen)
+- Fixed #341170, Added gecko_home variable to .pc file (Naba Kumar)
+- Fixed #334867, Initialize the HTML view to display about:blank (David Trowbridge)
 
 Translations:
 - Updated el: Kostas Papadimas
 - Updated fr: Christophe Merlet
 - Updated bg: Alexander Shopov
 - Updated sv: Richard Hult
+- Updated pt: Duarte Loreto
 - Updated vi: Clytie Siddall
 - Updated nb: Kjartan Maraas
+- Updated de: Hendrik Richter
 - Updated ko: Changwoo Ryu
 - Updated ne: Pawan Chitrakar
 - Updated it: Alessio Frusciante
+- Updated ar: Djihed Afifi
 - Updated es: Francisco Javier F. Serrador
+- Updated sl: Matic Zgur
+- Updated et: Priit Laes
 - Updated hu: Gabor Kelemen
 - Updated gl: Ignacio Casal Quinteiro
-- Updated ca: Josep Puigdemont i CasamajÃ³
+- Updated ca: Josep Puigdemont i Casamajó
 - Updated en_GB: David Lodge
 
 
