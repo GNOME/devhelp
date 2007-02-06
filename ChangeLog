@@ -1,3 +1,7 @@
+2007-02-06  Pema Geyleg   <pema.geyleg@gmail.com>
+
+	* configure.in: added dz to ALL_Linguas 
+
 2007-02-02  Richard Hult  <richard@imendio.com>
 
 	* Release 0.13.

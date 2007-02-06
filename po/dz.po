@@ -1,0 +1,287 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-17 03:18+0000\n"
+"PO-Revision-Date: 2007-02-05 13:38-0500\n"
+"Last-Translator: Tshewang Norbu <bumthap2006@hotmail.com>\n"
+"Language-Team: dzongkha <pgeyleg@dit.gov.bt>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2;plural=(n!=1);\n"
+"X-Poedit-Language: Dzongkha\n"
+"X-Poedit-Country: BHUTAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "བཟོ་མིའི་གྲོགས་རམལས་རིམ།"
+
+#: ../devhelp.desktop.in.in.h:2
+#: ../src/dh-main.c:125
+#: ../src/dh-window.c:619
+#: ../ui/devhelp.glade.h:4
+msgid "Devhelp"
+msgstr "ཌེབ་ཧལཔ།"
+
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "ཡིག་ཐོག་བཀོད་པ་བརའུ་ཟར།"
+
+#: ../src/dh-main.c:85
+msgid "Search for a function"
+msgstr "ལས་འགན་ཅིག་་གི་དོན་ལུ་འཚོལ་ཞིབ།"
+
+#: ../src/dh-main.c:94
+msgid "Quit any running Devhelp"
+msgstr "གཡོག་བཀོལ་བའི་བསྒང་གི་ཌེ་ཧལཔ་གང་རུང་་སྤང་།"
+
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "ཐོན་རིམ་དེ་དང་ཕྱིར་ཐོན་བཀྲམ་སྟོན་འབད།"
+
+#: ../src/dh-parser.c:110
+#: ../src/dh-parser.c:194
+#: ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "རེ་བ་ཡོད་མི་ '%s' གྱལ་ལུ་ '%s' ཀེར་ཐིག་ %d, ཐོབ་ཡོདཔ %d"
+
+#: ../src/dh-parser.c:128
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "ནུས་མེད་མིང་གི་བར་སྟོང་ '%s' གྱལ་ལུ་ %d, ཀེར་ཐིག་ %d"
+
+#: ../src/dh-parser.c:158
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "མགོ་མིང་་ མིངདང་འབྲེལ་ལམ་རྒྱུ་རྫས་དེ་ཚུ གྱལ་རིམ་%d ཀེར་ཐིག%dལུ་དགོས་མཁོ་ཡོདཔ།"
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "མིང་དང་འབྲེལ་ལམ་རྣམ་གྲངས་ཚུ་ <sub> གློག་ལམ་ཐོག་ལུ་ %d, ཀེར་ཐིག་ནང་ན་དགོས་མཁོ་ཡོདཔ། %d"
+
+#: ../src/dh-parser.c:297
+#, c-format
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "མིང་དང་འབྲེལ་ལམ་རྣམ་གྲངས་ཚུ་ <function> གློག་ལམ་ཐོག་ལུ་ %d, ཀེར་ཐིག་ནང་ན་དགོས་མཁོ་ཡོདཔ། %d"
+
+#: ../src/dh-parser.c:420
+#: ../src/dh-parser.c:515
+msgid "Could not create book parser"
+msgstr "ཀི་དེབ་མིང་དཔྱད་འབད་མི་གསར་བསྐྲུན་འབད་མ་ཚུགས། "
+
+#: ../src/dh-parser.c:436
+#: ../src/dh-parser.c:525
+msgid "Could not create markup parser"
+msgstr "རྟགས་བཀོད་ མིང་དཔྱད་འབད་མི་གསར་བསྐྲུན་འབད་མ་ཚུགས།"
+
+#: ../src/dh-parser.c:578
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "ཀི་དེབ'%s': %s་ ཨེབ་བཙུགས་བཤོལ་འབད་མི་ཆོག།"
+
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "ཌེབ་ཧལཔ་འདི་ ཛིལཔ་རྒྱབ་སྐྱོར་དང་བཅསཔ་འབད་བཟོ་བརྩིགས་འབད།"
+
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "ཀི་དེབ།(_B:"
+
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "ཤོག་ལེབ(_P):"
+
+#: ../src/dh-window.c:141
+msgid "_File"
+msgstr "ཡིག་སྣོད(_F)"
+
+#: ../src/dh-window.c:142
+msgid "_Edit"
+msgstr " ཞུན་དག(_E)"
+
+#: ../src/dh-window.c:143
+#: ../ui/devhelp.glade.h:9
+msgid "_Go"
+msgstr "འགྱོ།(_G)"
+
+#: ../src/dh-window.c:144
+msgid "_Help"
+msgstr "གྲོགས་རམ།(_H)"
+
+#. File menu
+#: ../src/dh-window.c:147
+msgid "_New Window"
+msgstr "ཝིན་ཌོ་གསརཔ།(_N)"
+
+#: ../src/dh-window.c:149
+msgid "New _Tab"
+msgstr "མཆོང་ལྡེ་གསརཔ།(_T)"
+
+#: ../src/dh-window.c:168
+msgid "Browse Contents"
+msgstr "ནང་དོན་ཚུ་བརྡ་འཚོལ་འབད།"
+
+#: ../src/dh-window.c:171
+#: ../src/dh-window.c:455
+msgid "Search"
+msgstr "འཚོལ་ཞིབ།"
+
+#: ../src/dh-window.c:445
+#: ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "ནང་དོན་ཚུ།"
+
+#: ../src/dh-window.c:616
+msgid "translator_credits"
+msgstr "སྐད་བསྒྱུར་པའི་ངོ་བསྟོད།(_c)"
+
+#: ../src/dh-window.c:621
+msgid "A developer's help browser for GNOME 2"
+msgstr "ཇི་ནོམ་༢ གི་དོན་ལུ་བཟོ་མི་གི་གྲོགས་རམ་བརའུ་ཟར་ཅིག"
+
+#: ../src/dh-window.c:950
+#: ../src/dh-window.c:1080
+msgid "Empty Page"
+msgstr "ཤོག་ལེབ་སྟོངམ།"
+
+#: ../devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "གཏན་བཟོས་ཚིག་ཡིག་གི་དོན་ལུ་ཡིག་གཟུགས།"
+
+#: ../devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "ཡིག་ཚིག་གི་དོན་ལུ་ཡིག་གཟུགས།"
+
+#: ../devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "ཚིག་ཡིག་དང་གཅིག་ཁར་གཏན་བཟོ་ཡོད་མི་རྒྱ་ཚད་ཀྱི་དོན་ལུ་ཡིག་གཟུགས།"
+
+#: ../devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "ཚིག་ཡིག་དང་གཅིག་ཁར་འགྱུར་ཅན་རྒྱ་ཚད་ཀྱི་དོན་ལུ་ཡིག་གཟུགས།"
+
+#: ../devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "ཝིན་ཌོ་གཙོ་བོ་གི་མཐོ་ཚད།"
+
+#: ../devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "ཝིན་ཌོ་གཙོ་བོ་གི་སྦོོམ་བཟོ་ཡོད་མི་གནས་ལུགས།"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "སེལ་འཐུ་འབད་ཡོད་མི་མཆོང་ལྡེ་\"content\" ཡང \"search\""
+
+#: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "ཡར་འཕེལ་འབད་ཡོད་མི་ཞིབ་འཚོལ་གདམ་ཁ་ཚུ་སྟོན།"
+
+#: ../devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "ཝིན་ཌོ་་གཙོ་བོ་འདི་གིགནས་ས་་ཨེགསི་འདི།"
+
+#: ../devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "ཝིན་ཌོ་གཙོ་བོ་འདི་གི་གནས་་སཝའི་འདི། "
+
+#: ../devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "ཝིན་ཌོ་གཙོ་བོ་གི་ཐོ་ཚད།"
+
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "ཟུར་ཐོ་དང་ཚུལ་ཞིབ་པེན་གྱི་རྒྱ་ཚད་འདི།"
+
+#: ../devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "ཝིན་ཌོ་གཙོ་བོ་གི་རྒྱ་ཚད་འདི།"
+
+#: ../devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "རིམ་ལུགས་ཡིག་བཟོ་ཚུ་ལག་ལེན་འཐབ།"
+
+#: ../devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "རིམ་ལུགས་སྔོན་སྒྲིག་གི་ཡིག་གཟུགས་ཚུ་ལག་ལེན་འཐབ།"
+
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "ཡར་འཕར་འབད་ཡོད་མི་འཚོལ་ཞིབ་གདམ་ཁ་ཚུ་སྟོན་ཡོདཔ་ཨིན་རུང་མེད་རུང་།"
+
+#: ../devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "ཝིནཌོ་གཙོ་བོ་འདི་མང་མཐའ་འགོ་བཙུགས་དགོཔ་ཨིན་ན་མེན་ན།"
+
+#: ../devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "སེལ་འཐུ་འབད་ཡོད་མི་མཆོང་ལྡེ་ཚུ་་\"content\" ཡང་ན་ \"search\"ག་ཨིན་སྨོ།"
+
+#: ../devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "ཟུར་ཐོ་འདི་དང་འཚོལ་ཞིབ་པེན་གྱི་འདི་གི་རྒྱ་ཚད།"
+
+#: ../devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "ཝིནཌོ་གཙོ་བོ་གི་རྒྱ་ཚད།"
+
+#: ../devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "ཝིནཌོ་གཙོ་བོ་གི་གནས་ས་ཨེགསི།"
+
+#: ../devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "ཝིནཌོ་གཙོ་བོ་གི་གནས་ས་ཝའི། "
+
+#: ../ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>ཡིག་གཟུགས་ཚུ།</b>"
+
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>འཚོལ་ཞིབ་འབད་དོ།</b>"
+
+#: ../ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "དགའ་གདམ་ཚུ།"
+
+#: ../ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "རྒྱབ(_B)"
+
+#: ../ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "གཏན་བཟོའི་རྒྱ་ཚད།(_F)"
+
+#: ../ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "གདོང་བསྐྱོད།(_F)"
+
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "ཡར་འཕེལ་ཅན་གྱི་འཚོལ་ཞིབ་གདམ་དབང་སྟོན།(_S)"
+
+#: ../ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "རིམ་ལུགས་ཡིག་གཟུགས་ལག་ལེན་འཐབ།(_U)"
+
+#: ../ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "འགྱུར་ཅན་རྒྱ་ཚད།(_V)"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "ཌེབ་ཧལཔ་རྒྱབ་སྐྱོར།"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "ཌེཔ་ཧལཔ་ མིང་ཚིག་འོད་རྟགས་ཀྱི་དོན་ལུ་ སེ་ཝན་ཨེཕ་ཡར་འབག་འོང་་བཟོ་དོ།"
+
