@@ -1,331 +1,290 @@
+# translation of devhelp.HEAD.ar.po to Arabic
 # Arabic translations for PACKAGE package.
 # Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Automatically generated, 2006.
 #
+# Automatically generated, 2006.
+# Khaled Hosny <khaledhosny@eglug.org>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: Project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-17 21:14+0000\n"
-"PO-Revision-Date: 2006-11-18 00:07+0100\n"
-"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
+"PO-Revision-Date: 2007-01-26 00:39+0200\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : n >= 3 && n <= 10 ? 3 : n >= 11 && n <= 99 ? 4 : 5;\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
 "X-Poedit-Language: Arabic\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../devhelp.desktop.in.in.h:1
-#, fuzzy
 msgid "Developer's Help program"
-msgstr "الرزمة المحتوية على البرنامج"
+msgstr "برنامج مساعدة المطوِّرين"
 
 #: ../devhelp.desktop.in.in.h:2
 #: ../src/dh-main.c:125
 #: ../src/dh-window.c:619
 #: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
-msgstr ""
+msgstr "Devhelp"
 
 #: ../devhelp.desktop.in.in.h:3
-#, fuzzy
 msgid "Documentation Browser"
-msgstr "متصفّح الانترنت"
+msgstr "متصفّح الوثائق"
 
 #: ../src/dh-main.c:85
-#, fuzzy
 msgid "Search for a function"
-msgstr "ابحث في Devhelp عن اسم دالة"
+msgstr "ابحث عن دالّة"
 
 #: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
-msgstr ""
+msgstr "اغلق أي Devhelp يعمل"
 
 #: ../src/dh-main.c:103
-#, fuzzy
 msgid "Display the version and exit"
-msgstr "اطبع الإصدار و اخرج"
+msgstr "اعرض الإصدار و اخرج"
 
 #: ../src/dh-parser.c:110
 #: ../src/dh-parser.c:194
 #: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "توقعت '%s' حصلت على '%s' في السطر %d، و العمود %d"
 
 #: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "حيز اسم غير سليم '%s' في السطر %d، و العمود %d"
 
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
+msgstr "عناصر العنوان، و الإسم، والوصلة مطلوبة عند السطر %d، والعمود %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
+msgstr "عنصري الإسم والوصلة مطلوبين بداخل <sub> في السطر %d، والعمود %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
+msgstr "عنصري الإسم والوصلة مطلوبين بداخل <function> في السطر %d، والعمود %d"
 
 #: ../src/dh-parser.c:420
 #: ../src/dh-parser.c:515
-#, fuzzy
 msgid "Could not create book parser"
-msgstr "لم أستطع إنشاء ذاكرة مخبئيّة لـ%s"
+msgstr "لم أستطع إنشاء محلل كتاب"
 
 #: ../src/dh-parser.c:436
 #: ../src/dh-parser.c:525
-#, fuzzy
 msgid "Could not create markup parser"
-msgstr "لم أستطع إنشاء ذاكرة مخبئيّة لـ%s"
+msgstr "لم أستطع إنشاء محلل رقْم"
 
 #: ../src/dh-parser.c:578
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "بريد (دفتر العناوين)"
+msgstr "لم أستطع فك ضغط الكتاب '%s': %s"
 
 #: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
-msgstr ""
+msgstr "لم يُبنى Devhelp بدعم zlib "
 
 #: ../src/dh-search.c:621
-#, fuzzy
 msgid "_Book:"
-msgstr "كتاب"
+msgstr "_كتاب:"
 
 #: ../src/dh-search.c:641
-#, fuzzy
 msgid "_Page:"
-msgstr "الصّفحة %d من %d"
+msgstr "_صفحة:"
 
 #: ../src/dh-window.c:141
-#, fuzzy
 msgid "_File"
 msgstr "_ملف"
 
 #: ../src/dh-window.c:142
-#, fuzzy
 msgid "_Edit"
-msgstr "_تحرير"
+msgstr "_حرِّر"
 
 #: ../src/dh-window.c:143
 #: ../ui/devhelp.glade.h:9
-#, fuzzy
 msgid "_Go"
-msgstr "إ_ذهب"
+msgstr "ا_ذهب"
 
 #: ../src/dh-window.c:144
-#, fuzzy
 msgid "_Help"
-msgstr "م_ساعدة"
+msgstr "_مساعدة"
 
 #. File menu
 #: ../src/dh-window.c:147
-#, fuzzy
 msgid "_New Window"
 msgstr "نافذة _جديدة"
 
 #: ../src/dh-window.c:149
-#, fuzzy
 msgid "New _Tab"
 msgstr "_لسان جديد"
 
 #: ../src/dh-window.c:168
-#, fuzzy
 msgid "Browse Contents"
-msgstr "محتويات الخلية"
+msgstr "تصفّح المحتويات"
 
 #: ../src/dh-window.c:171
 #: ../src/dh-window.c:455
-#, fuzzy
 msgid "Search"
-msgstr "بحث"
+msgstr "ابحث"
 
 #: ../src/dh-window.c:445
 #: ../ui/devhelp.glade.h:3
-#, fuzzy
 msgid "Contents"
 msgstr "المحتويات"
 
 #: ../src/dh-window.c:616
-#, fuzzy
 msgid "translator_credits"
-msgstr "جهاد عفيفي (Djihed Afifi) <djihed@gmail.com> /n عرفات المديني، تونس <lumina@silverpen.de>"
+msgstr ""
+"فريق عربآيز للترجمة http://www.arabeyes.org :\n"
+"خالد حسني\t<khaledhosny@eglug.org>"
 
 #: ../src/dh-window.c:621
-#, fuzzy
 msgid "A developer's help browser for GNOME 2"
-msgstr "أهلا في متصفح المساعدة لجنوم"
+msgstr "متصفح مساعدة developer في جنوم 2"
 
 #: ../src/dh-window.c:950
 #: ../src/dh-window.c:1080
-#, fuzzy
 msgid "Empty Page"
-msgstr "<b>الصفحة الرئيسية</b>"
+msgstr "صفحة فارغة"
 
 #: ../devhelp.schemas.in.h:1
-#, fuzzy
 msgid "Font for fixed text"
 msgstr "خطّ النّص الثّابت"
 
 #: ../devhelp.schemas.in.h:2
-#, fuzzy
 msgid "Font for text"
 msgstr "خطّ النّصّ"
 
 #: ../devhelp.schemas.in.h:3
-#, fuzzy
 msgid "Font for text with fixed width."
-msgstr "خطّ نص ذي عرض ثابت."
+msgstr "خطّ النص ثابت العرض."
 
 #: ../devhelp.schemas.in.h:4
-#, fuzzy
 msgid "Font for text with variable width."
-msgstr "خطّ نصّ ذي عرض متغيّر."
+msgstr "خطّ نصّ متغيّر العرض."
 
 #: ../devhelp.schemas.in.h:5
-#, fuzzy
 msgid "Height of main window"
-msgstr "ارتفاع النّافذة الرّئيسيّة."
+msgstr "ارتفاع النّافذة الرّئيسيّة"
 
 #: ../devhelp.schemas.in.h:6
-#, fuzzy
 msgid "Main window maximized state"
-msgstr "فشل تلحيظ النافذة الرئيسية"
+msgstr "حالة تكبير النافذة الرئيسيّة"
 
 #: ../devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr ""
+msgstr "اختر لسان، \"المحتويات\" أو \"ابحث\""
 
 #: ../devhelp.schemas.in.h:8
-#, fuzzy
 msgid "Show advanced search options"
-msgstr "إظهار خيارات القرص المتقدمة"
+msgstr "اظهر خيارات البحث المتقدمة"
 
 #: ../devhelp.schemas.in.h:9
-#, fuzzy
 msgid "The X position of the main window."
-msgstr "موضع النافذة الرئيسية على الشاشة"
+msgstr "الموضع السيني للنافذة الرئيسية"
 
 #: ../devhelp.schemas.in.h:10
-#, fuzzy
 msgid "The Y position of the main window."
-msgstr "موضع النافذة الرئيسية على الشاشة"
+msgstr "الموضع الصادي للنافذة الرئيسية"
 
 #: ../devhelp.schemas.in.h:11
-#, fuzzy
 msgid "The height of the main window."
 msgstr "ارتفاع النّافذة الرّئيسيّة."
 
 #: ../devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
-msgstr ""
+msgstr "عرض لوح الفهرس والبحث."
 
 #: ../devhelp.schemas.in.h:13
-#, fuzzy
 msgid "The width of the main window."
 msgstr "عرض النّافذة الرّئيسيّة."
 
 #: ../devhelp.schemas.in.h:14
-#, fuzzy
 msgid "Use system fonts"
-msgstr "استخدام خطوط النّظام"
+msgstr "استخدم خطوط النّظام"
 
 #: ../devhelp.schemas.in.h:15
-#, fuzzy
 msgid "Use the systems default fonts."
-msgstr "استخدام الخطوط الإفتراضيّة المحدّد للنّظام."
+msgstr "استخدم خطوط النظام الإفتراضيّة."
 
 #: ../devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."
-msgstr ""
+msgstr "ما إذا ستُعرض خيارات البحث المتقدّمة."
 
 #: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
-msgstr ""
+msgstr "ما إذا ستبدأ النافذة الرئيسية مكبّرة أم لا."
 
 #: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr ""
+msgstr "ما المنتقى من الألسنة، \"المحتويات\" أو \"ابحث\"."
 
 #: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
-msgstr ""
+msgstr "عرض لوح الفهرس والبحث"
 
 #: ../devhelp.schemas.in.h:20
-#, fuzzy
 msgid "Width of the main window"
-msgstr "عرض النّافذة الرّئيسيّة."
+msgstr "عرض النّافذة الرّئيسيّة"
 
 #: ../devhelp.schemas.in.h:21
-#, fuzzy
 msgid "X position of main window"
-msgstr "موضع النافذة الرئيسية على الشاشة"
+msgstr "الموضع السيني للنافذة الرئيسية"
 
 #: ../devhelp.schemas.in.h:22
-#, fuzzy
 msgid "Y position of main window"
-msgstr "موضع النافذة الرئيسية على الشاشة"
+msgstr "الموضع الصادي للنافذة الرئيسية"
 
 #: ../ui/devhelp.glade.h:1
-#, fuzzy
 msgid "<b>Fonts</b>"
-msgstr "<b>الخطوط</b>"
+msgstr "<b>خطوط</b>"
 
 #: ../ui/devhelp.glade.h:2
-#, fuzzy
 msgid "<b>Searching</b>"
-msgstr "جاري البحث..."
+msgstr "<b>جارِ البحث</b>"
 
 #: ../ui/devhelp.glade.h:5
-#, fuzzy
 msgid "Preferences"
 msgstr "تفضيلات"
 
 #: ../ui/devhelp.glade.h:6
-#, fuzzy
 msgid "_Back"
-msgstr "إلى ال_خلف"
+msgstr "_خلف"
 
 #: ../ui/devhelp.glade.h:7
-#, fuzzy
 msgid "_Fixed width:"
-msgstr "العرض الم_ثبت:"
+msgstr "عرض _ثابت:"
 
 #: ../ui/devhelp.glade.h:8
-#, fuzzy
 msgid "_Forward"
-msgstr "_حوّل"
+msgstr "_مرِّر"
 
 #: ../ui/devhelp.glade.h:10
-#, fuzzy
 msgid "_Show advanced search options"
-msgstr "إظهار خيارات القرص المتقدمة"
+msgstr "أ_ظهر خيارات البحث المتقدمة"
 
 #: ../ui/devhelp.glade.h:11
-#, fuzzy
 msgid "_Use system fonts"
-msgstr "ا_ستخدام خطوط النّظام"
+msgstr "ا_ستخدم خطوط النّظام"
 
 #: ../ui/devhelp.glade.h:12
-#, fuzzy
 msgid "_Variable width: "
-msgstr "عرض _قابل للتغيير:"
+msgstr "عرض _متغيِّر:"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-#, fuzzy
 msgid "Devhelp support"
-msgstr "_شغّل الدعم"
+msgstr "دعم Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr ""
+msgstr "يجعل F7 يجلب مساعدة المطوِّر حوْل الكلمة عند المؤشِّر"
 
