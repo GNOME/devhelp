@@ -1,0 +1,273 @@
+# Thai translation of devhelp
+# Copyright (C) 2007 Free Software Foundation, Inc.
+# This file is distributed under the same license as the devhelp package.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-02-11 17:28+0700\n"
+"PO-Revision-Date: 2007-02-11 17:55+0700\n"
+"Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
+"Language-Team: Thai <l10n@opentle.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "โปรแกรมช่วยเหลือนักพัฒนา"
+
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
+#: ../ui/devhelp.glade.h:4
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "เครื่องมือเรียกดูเอกสาร"
+
+#: ../src/dh-main.c:85
+msgid "Search for a function"
+msgstr "ค้นหาฟังก์ชัน"
+
+#: ../src/dh-main.c:94
+msgid "Quit any running Devhelp"
+msgstr "ปิด Devhelp ทุกตัวที่กำลังทำงานอยู่"
+
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "แสดงข้อมูลรุ่นโปรแกรมแล้วจบการทำงาน"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "ต้องการ '%s' แต่พบ '%s' ที่บรรทัด %d, คอลัมน์ %d"
+
+#: ../src/dh-parser.c:128
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "namespace '%s' ไม่ถูกต้อง ที่บรรทัด %d, คอลัมน์ %d"
+
+#: ../src/dh-parser.c:158
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "ต้องมีอิลิเมนต์ title, name, และ link ที่บรรทัด %d, คอลัมน์ %d"
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "ต้องมีอิลิเมนต์ name และ link ภายใต้ <sub> ที่บรรทัด %d, คอลัมน์ %d"
+
+#: ../src/dh-parser.c:297
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr "ต้องมีอิลิเมนต์ name และ link ภายใต้ <function> ที่บรรทัด %d, คอลัมน์ %d"
+
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+msgid "Could not create book parser"
+msgstr "ไม่สามารถสร้างตัวแจงหนังสือ"
+
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+msgid "Could not create markup parser"
+msgstr "ไม่สามารถสร้างตัวแจงมาร์กอัพ"
+
+#: ../src/dh-parser.c:578
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "ไม่สามารถคลายข้อมูลหนังสือ '%s': %s"
+
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp ไม่ได้คอมไพล์ไว้ในแบบที่รองรับ zlib"
+
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "_หนังสือ:"
+
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "ห_น้า:"
+
+#: ../src/dh-window.c:141
+msgid "_File"
+msgstr "แ_ฟ้ม"
+
+#: ../src/dh-window.c:142
+msgid "_Edit"
+msgstr "แ_ก้ไข"
+
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
+msgid "_Go"
+msgstr "ไ_ป"
+
+#: ../src/dh-window.c:144
+msgid "_Help"
+msgstr "_วิธีใช้"
+
+#. File menu
+#: ../src/dh-window.c:147
+msgid "_New Window"
+msgstr "หน้า_ต่างใหม่"
+
+#: ../src/dh-window.c:149
+msgid "New _Tab"
+msgstr "แ_ท็บใหม่"
+
+#: ../src/dh-window.c:168
+msgid "Browse Contents"
+msgstr "แสดงเนื้อหา"
+
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
+msgid "Search"
+msgstr "ค้นหา"
+
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "เนื้อหา"
+
+#: ../src/dh-window.c:616
+msgid "translator_credits"
+msgstr "เทพพิทักษ์ การุญบุญญานันท์ <thep@linux.thai.net>"
+
+#: ../src/dh-window.c:621
+msgid "A developer's help browser for GNOME 2"
+msgstr "เบราว์เซอร์คู่มือนักพัฒนาสำหรับ GNOME 2"
+
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+msgid "Empty Page"
+msgstr "หน้าว่าง"
+
+#: ../devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "แบบอักษรสำหรับอักษรความกว้างคงที่"
+
+#: ../devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "แบบอักษรสำหรับข้อความ"
+
+#: ../devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "แบบอักษรสำหรับข้อความที่ใช้อักษรความกว้างคงที่"
+
+#: ../devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "แบบอักษรสำหรับข้อความที่ใช้อักษรความกว้างไม่คงที่"
+
+#: ../devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "ความสูงของหน้าต่างหลัก"
+
+#: ../devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "สถานะขยายเต็มของหน้าต่างหลัก"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "แท็บที่เลือก, \"content\" หรือ \"search\""
+
+#: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "แสดงตัวเลือกเพิ่มเติมของการค้นหา"
+
+#: ../devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "ตำแหน่ง X ของหน้าต่างหลัก"
+
+#: ../devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "ตำแหน่ง Y ของหน้าต่างหลัก"
+
+#: ../devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "ความสูงของหน้าต่างหลัก"
+
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "ความกว้างของช่องดัชนีและค้นหา"
+
+#: ../devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "ความกว้างของหน้าต่างหลัก"
+
+#: ../devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "ใช้แบบอักษรของระบบ"
+
+#: ../devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "ใช้แบบอักษรปริยายของระบบ"
+
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "กำหนดว่าจะแสดงตัวเลือกเพิ่มเติมของการค้นหาหรือไม่"
+
+#: ../devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "กำหนดว่าควรเปิดหน้าต่างหลักแบบขยายเต็มจอหรือไม่"
+
+#: ../devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "แท็บไหนที่เลือกอยู่, \"content\" หรือ \"search\""
+
+#: ../devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "ความกว้างของช่องดัชนีและค้นหา"
+
+#: ../devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "ความกว้างของหน้าต่างหลัก"
+
+#: ../devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "ตำแหน่ง X ของหน้าต่างหลัก"
+
+#: ../devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "ตำแหน่ง Y ของหน้าต่างหลัก"
+
+#: ../ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>แบบอักษร</b>"
+
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>การค้นหา</b>"
+
+#: ../ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "ปรับแต่ง"
+
+#: ../ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "ย้อน_กลับ"
+
+#: ../ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "ความกว้าง_คงที่:"
+
+#: ../ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_ถัดไป"
+
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "แ_สดงตัวเลือกเพิ่มเติมของการค้นหา"
+
+#: ../ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "ใ_ช้แบบอักษรของระบบ"
+
+#: ../ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "ความกว้างไ_ม่คงที่: "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "การสนับสนุน Devhelp"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "ทำให้ใช้ F7 เปิด Devhelp สำหรับคำที่ตำแหน่งเคอร์เซอร์ได้"
