@@ -1,3 +1,9 @@
+2007-02-14  Richard Hult  <richard@imendio.com>
+
+	* m4/gecko.m4: Update from epiphany to fix bug #405384.
+
+	* configure.in: Bump version.
+
 2007-02-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in: Added 'th' (Thai) to ALL_LINGUAS.

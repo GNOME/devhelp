@@ -1,5 +1,5 @@
-# Copyright (C) 2000-2004 Marco Pesenti Gritti
-# Copyright (C) 2003, 2004, 2005, 2006 Christian Persch
+# Copyright © 2000-2004 Marco Pesenti Gritti
+# Copyright © 2003, 2004, 2005, 2006 Christian Persch
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the
@@ -35,11 +35,18 @@
 # VARIABLE_PREFIX:
 # VARIABLE_INCLUDE_ROOT:
 # VARIABLE_VERSION: The version of the gecko that was found
-# VARIABLE_VERSION_MAJOR:
-# VARIABLE_VERSION_MINOR:
+# VARIABLE_VERSION:
+# VARIABLE_VERSION_INT:
 
 AC_DEFUN([GECKO_INIT],
 [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
+AC_REQUIRE([AC_PROG_AWK])dnl
+
+AC_PROG_AWK
+
+# ************************
+# Check which gecko to use
+# ************************
 
 AC_MSG_CHECKING([which gecko to use])
 
@@ -53,7 +60,7 @@ AC_ARG_WITH([mozilla],[],[with_gecko=$withval],[])
 gecko_cv_gecko=$with_gecko
 
 # Autodetect gecko
-_geckos="firefox mozilla-firefox seamonkey mozilla xulrunner"
+_geckos="xulrunner firefox mozilla-firefox seamonkey mozilla"
 if test -z "$gecko_cv_gecko"; then
 	for lizard in $_geckos; do
 		if $PKG_CONFIG --exists $lizard-xpcom; then
@@ -69,7 +76,7 @@ if test "x$gecko_cv_gecko" = "x"; then
 	ifelse([$3],,[AC_MSG_ERROR([No gecko found; you may need to adjust PKG_CONFIG_PATH or install a mozilla/firefox/xulrunner -devel package])],[$3])
 	gecko_cv_have_gecko=no
 elif ! ( echo "$_geckos" | egrep "(^| )$gecko_cv_gecko(\$| )" > /dev/null); then
-	AC_MSG_ERROR([Unknown gecko "gecko_cv_gecko" specified])
+	AC_MSG_ERROR([Unknown gecko "$gecko_cv_gecko" specified])
 else
 	ifelse([$2],,[],[$2])
 	gecko_cv_have_gecko=yes
@@ -89,6 +96,7 @@ xulrunner) gecko_cv_gecko_flavour=toolkit ;;
 esac
 
 _GECKO_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir ${gecko_cv_gecko}-xpcom`"
+_GECKO_LIBDIR="`$PKG_CONFIG --variable=libdir ${gecko_cv_gecko}-xpcom`"
 _GECKO_HOME="`$PKG_CONFIG --variable=libdir ${gecko_cv_gecko}-xpcom`"
 _GECKO_PREFIX="`$PKG_CONFIG --variable=prefix ${gecko_cv_gecko}-xpcom`"
 
@@ -103,6 +111,7 @@ AM_CONDITIONAL([HAVE_MOZILLA_TOOLKIT],[test "$gecko_cv_gecko_flavour" = "toolkit
 $1[]=$gecko_cv_gecko
 $1[]_FLAVOUR=$gecko_cv_gecko_flavour
 $1[]_INCLUDE_ROOT=$_GECKO_INCLUDE_ROOT
+$1[]_LIBDIR=$_GECKO_LIBDIR
 $1[]_HOME=$_GECKO_HOME
 $1[]_PREFIX=$_GECKO_PREFIX
 
@@ -182,8 +191,13 @@ AC_RUN_IFELSE(
 	[AC_LANG_SOURCE(
 		[[#include <mozilla-config.h>
 		  #include <string.h>
+		  #include <stdlib.h>
                   int main(void) {
-		    return strcmp (MOZ_DEFAULT_TOOLKIT, "gtk2") != 0;
+		    if (strcmp (MOZ_DEFAULT_TOOLKIT, "gtk2") == 0 ||
+		        strcmp (MOZ_DEFAULT_TOOLKIT, "cairo-gtk2") == 0)
+			    return EXIT_SUCCESS;
+		
+		    return EXIT_FAILURE;
 		  } ]]
 	)],
 	[result=yes],
@@ -224,80 +238,105 @@ AM_CONDITIONAL([HAVE_GECKO_DEBUG],[test "$gecko_cv_have_debug" = "yes"])
 
 if test "$gecko_cv_have_gecko" = "yes"; then
 
-AC_MSG_CHECKING([for gecko version])
-
-# We cannot in grep in mozilla-config.h directly, since in some setups
-# (mult-arch for instance) it includes another file with the real
-# definitions.
-
 AC_LANG_PUSH([C++])
 
 _SAVE_CPPFLAGS="$CPPFLAGS"
 CPPFLAGS="$CPPFLAGS -I$_GECKO_INCLUDE_ROOT"
 
-AC_EGREP_CPP([\"1\.9],
-	[#include <mozilla-config.h>
-	 MOZILLA_VERSION],
-	[gecko_cv_gecko_version_major=1 gecko_cv_gecko_version_minor=9],
-	[AC_EGREP_CPP([\"1\.8],
-		[#include <mozilla-config.h>
-		 MOZILLA_VERSION],
-		[gecko_cv_gecko_version_major=1 gecko_cv_gecko_version_minor=8],
-		[gecko_cv_gecko_version_major=1 gecko_cv_gecko_version_minor=7])
+AC_CACHE_CHECK([for gecko version],
+	[gecko_cv_gecko_version],
+	[AC_RUN_IFELSE(
+		[AC_LANG_PROGRAM([[
+#include <mozilla-config.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <locale.h>
+]],[[
+FILE *stream;
+const char *version = "";
+
+if (!setlocale (LC_ALL, "C")) return 127;
+
+stream = fopen ("conftest.data", "w");
+if (!stream) return 126;
+
+#ifdef MOZILLA_1_8_BRANCH
+version = "1.8.1";
+#else
+if (strncmp (MOZILLA_VERSION, "1.9", strlen ("1.9")) == 0) {
+	version = "1.9";
+} else if (strncmp (MOZILLA_VERSION, "1.8", strlen ("1.8")) == 0) {
+	version = "1.8";
+} else {
+	version = "1.7";
+}
+#endif
+fprintf (stream, "%s\n", version);
+if (fclose (stream) != 0) return 125;
+
+return EXIT_SUCCESS;
+]])],
+	[gecko_cv_gecko_version="$(cat conftest.data)"],
+	[AC_MSG_FAILURE([could not determine gecko version])],
+	[gecko_cv_gecko_version="1.7"])
 ])
 
 CPPFLAGS="$_SAVE_CPPFLAGS"
 
 AC_LANG_POP([C++])
 
-gecko_cv_gecko_version="$gecko_cv_gecko_version_major.$gecko_cv_gecko_version_minor"
+gecko_cv_gecko_version_int="$(echo "$gecko_cv_gecko_version" | $AWK -F . '{print [$]1 * 1000000 + [$]2 * 1000 + [$]3}')"
 
-AC_MSG_RESULT([$gecko_cv_gecko_version])
-
-if test "$gecko_cv_gecko_version_major" != "1" -o "$gecko_cv_gecko_version_minor" -lt "7" -o "$gecko_cv_gecko_version_minor" -gt "9"; then
+if test "$gecko_cv_gecko_version_int" -lt "1007000" -o "$gecko_cv_gecko_version_int" -gt "1009000"; then
 	AC_MSG_ERROR([Gecko version $gecko_cv_gecko_version is not supported!])
 fi
 
-if test "$gecko_cv_gecko_version_major" = "1" -a "$gecko_cv_gecko_version_minor" -ge "7"; then
+if test "$gecko_cv_gecko_version_int" -ge "1007000"; then
 	AC_DEFINE([HAVE_GECKO_1_7],[1],[Define if we have gecko 1.7])
 	gecko_cv_have_gecko_1_7=yes
 fi
-if test "$gecko_cv_gecko_version_major" = "1" -a "$gecko_cv_gecko_version_minor" -ge "8"; then
+if test "$gecko_cv_gecko_version_int" -ge "1008000"; then
 	AC_DEFINE([HAVE_GECKO_1_8],[1],[Define if we have gecko 1.8])
 	gecko_cv_have_gecko_1_8=yes
 fi
-if test "$gecko_cv_gecko_version_major" = "1" -a "$gecko_cv_gecko_version_minor" -ge "9"; then
+if test "$gecko_cv_gecko_version_int" -ge "1008001"; then
+	AC_DEFINE([HAVE_GECKO_1_8_1],[1],[Define if we have gecko 1.8.1])
+	gecko_cv_have_gecko_1_8_1=yes
+fi
+if test "$gecko_cv_gecko_version_int" -ge "1009000"; then
 	AC_DEFINE([HAVE_GECKO_1_9],[1],[Define if we have gecko 1.9])
 	gecko_cv_have_gecko_1_9=yes
 fi
 
 fi # if gecko_cv_have_gecko
 
-AM_CONDITIONAL([HAVE_GECKO_1_7],[test "$gecko_cv_gecko_version_major" = "1" -a "$gecko_cv_gecko_version_minor" -ge "7"])
-AM_CONDITIONAL([HAVE_GECKO_1_8],[test "$gecko_cv_gecko_version_major" = "1" -a "$gecko_cv_gecko_version_minor" -ge "8"])
-AM_CONDITIONAL([HAVE_GECKO_1_9],[test "$gecko_cv_gecko_version_major" = "1" -a "$gecko_cv_gecko_version_minor" -ge "9"])
+AM_CONDITIONAL([HAVE_GECKO_1_7],[test "$gecko_cv_gecko_version_int" -ge "1007000"])
+AM_CONDITIONAL([HAVE_GECKO_1_8],[test "$gecko_cv_gecko_version_int" -ge "1008000"])
+AM_CONDITIONAL([HAVE_GECKO_1_8_1],[test "$gecko_cv_gecko_version_int" -ge "1008001"])
+AM_CONDITIONAL([HAVE_GECKO_1_9],[test "$gecko_cv_gecko_version_int" -ge "1009000"])
 
 $1[]_VERSION=$gecko_cv_gecko_version
-$1[]_VERSION_MAJOR=$gecko_cv_gecko_version_major
-$1[]_VERSION_MINOR=$gecko_cv_gecko_version_minor
+$1[]_VERSION_INT=$gecko_cv_gecko_version_int
 
 # **************************************************
 # Packages that we need to check for with pkg-config 
 # **************************************************
 
 gecko_cv_extra_libs=
+gecko_cv_glue_libs=
 gecko_cv_extra_pkg_dependencies=
 
-if test "$gecko_cv_gecko_version_major" = "1" -a "$gecko_cv_gecko_version_minor" -ge "9"; then
-	if test "$gecko_cv_gecko" != "xulrunner"; then
-		gecko_cv_extra_libs="-lxul"
-	fi
+if test "$gecko_cv_gecko_version_int" -ge "1009000"; then
+	gecko_cv_extra_libs="-L$_GECKO_LIBDIR -lxul"
+	gecko_cv_glue_libs="-L$_GECKO_LIBDIR -lxpcomglue_s"
 else
 	gecko_cv_extra_pkg_dependencies="${gecko_cv_gecko}-gtkmozembed"
 fi
 
 $1[]_EXTRA_PKG_DEPENDENCIES="$gecko_cv_extra_pkg_dependencies"
 $1[]_EXTRA_LIBS="$gecko_cv_extra_libs"
+$1[]_GLUE_LIBS="$gecko_cv_glue_libs"
 
 ])
 
@@ -319,9 +358,11 @@ AC_LANG_PUSH([C++])
 _SAVE_CPPFLAGS="$CPPFLAGS"
 _SAVE_CXXFLAGS="$CXXFLAGS"
 _SAVE_LDFLAGS="$LDFLAGS"
+_SAVE_LIBS="$LIBS"
 CPPFLAGS="$CPPFLAGS $_GECKO_EXTRA_CPPFLAGS -I$_GECKO_INCLUDE_ROOT $($PKG_CONFIG --cflags-only-I ${gecko_cv_gecko}-xpcom)"
 CXXFLAGS="$CXXFLAGS $_GECKO_EXTRA_CXXFLAGS $($PKG_CONFIG --cflags-only-other ${gecko_cv_gecko}-xpcom)"
-LDFLAGS="$LDFLAGS $_GECKO_EXTRA_LDFLAGS $($PKG_CONFIG --libs ${gecko_cv_gecko}-xpcom) -Wl,--rpath=$_GECKO_HOME"
+LDFLAGS="$LDFLAGS $_GECKO_EXTRA_LDFLAGS -Wl,--rpath=$_GECKO_HOME"
+LIBS="$LIBS $($PKG_CONFIG --libs ${gecko_cv_gecko}-xpcom)"
 
 _GECKO_DISPATCH_INCLUDEDIRS="$2"
 
@@ -340,6 +381,7 @@ m4_indir([$1],m4_shiftn(2,$@))
 CPPFLAGS="$_SAVE_CPPFLAGS"
 CXXFLAGS="$_SAVE_CXXFLAGS"
 LDFLAGS="$_SAVE_LDFLAGS"
+LIBS="$_SAVE_LIBS"
 
 AC_LANG_POP([C++])
 
@@ -365,16 +407,17 @@ AC_DEFUN([GECKO_RUN_IFELSE],[_GECKO_DISPATCH([AC_RUN_IFELSE],$@)])
 # ***************************************************************************
 # ***************************************************************************
 
-# GECKO_XPCOMPROGRAM([PROLOGUE], [BODY])
+# GECKO_XPCOM_PROGRAM([PROLOGUE], [BODY])
 #
 # Produce a template C++ program which starts XPCOM up and shuts it down after
 # the BODY part has run. In BODY, the the following variables are predeclared:
 #
 # nsresult rv
-# PRBool retval (set to PR_FALSE)
+# int status = 1 (EXIT_FAILURE)
 #
-# The program's exit status will be EXIT_FAILURE if you retval is PR_FALSE;
-# else it will be EXIT_SUCCESS.
+# The program's exit status will be |status|; set it to 0 (or EXIT_SUCCESS)
+# to indicate success and to a value between 1 (EXIT_FAILURE) and 120 to
+# indicate failure.
 #
 # To jump out of the BODY and exit the test program, you can use |break|.
 
@@ -397,22 +440,21 @@ AC_DEFUN([GECKO_XPCOM_PROGRAM],
 [[
 // redirect unwanted mozilla debug output to the bit bucket
 freopen ("/dev/null", "w", stdout);
-freopen ("/dev/null", "w", stderr);
 
 nsresult rv;
 nsCOMPtr<nsILocalFile> directory;
 rv = NS_NewNativeLocalFile (NS_LITERAL_CSTRING("$_GECKO_HOME"), PR_FALSE,
 			    getter_AddRefs (directory));
 if (NS_FAILED (rv) || !directory) {
-	exit (EXIT_FAILURE);
+	exit (126);
 }
 
 rv = NS_InitXPCOM2 (nsnull, directory, nsnull);
 if (NS_FAILED (rv)) {
-	exit (EXIT_FAILURE);
+	exit (125);
 }
 
-PRBool retval = PR_FALSE;
+int status = EXIT_FAILURE;
 
 // now put in the BODY, scoped with do...while(0) to ensure we don't hold a
 // COMptr after XPCOM shutdown and so we can jump out with a simple |break|.
@@ -423,9 +465,41 @@ m4_shiftn(1,$@)
 } while (0);
 	
 NS_ShutdownXPCOM (nsnull);
-exit (retval ? EXIT_SUCCESS : EXIT_FAILURE);
+exit (status);
 ]])
 ]) # GECKO_XPCOM_PROGRAM
+
+# ***************************************************************************
+# ***************************************************************************
+# ***************************************************************************
+
+# GECKO_XPCOM_PROGRAM_CHECK([ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND], [ACTION-IF-CROSS-COMPILING])
+#
+# Checks whether we can build and run any XPCOM test programs at all
+
+AC_DEFUN([GECKO_XPCOM_PROGRAM_CHECK],
+[AC_REQUIRE([GECKO_INIT])dnl
+
+AC_CACHE_CHECK([whether we can compile and run XPCOM programs],
+[gecko_cv_xpcom_program_check],
+[
+gecko_cv_xpcom_program_check=no
+
+GECKO_RUN_IFELSE([],
+	[GECKO_XPCOM_PROGRAM([],[[status = EXIT_SUCCESS;]])],
+	[gecko_cv_xpcom_program_check=yes],
+	[gecko_cv_xpcom_program_check=no],
+	[gecko_cv_xpcom_program_check=maybe])
+])
+
+if test "$gecko_cv_xpcom_program_check" = "yes"; then
+	ifelse([$2],,[:],[$2])
+else
+	ifelse([$3],,[AC_MSG_FAILURE([Cannot compile and run XPCOM programs])],
+	[$3])
+fi
+
+]) # GECKO_XPCOM_PROGRAM_CHECK
 
 # ***************************************************************************
 # ***************************************************************************
@@ -449,13 +523,17 @@ GECKO_RUN_IFELSE([],
 [GECKO_XPCOM_PROGRAM([[
 #include <nsIComponentRegistrar.h>
 ]],[[
+status = 99;
 nsCOMPtr<nsIComponentRegistrar> registrar;
 rv = NS_GetComponentRegistrar (getter_AddRefs (registrar));
 if (NS_FAILED (rv)) break;
 
+status = 98;
 PRBool isRegistered = PR_FALSE;
 rv = registrar->IsContractIDRegistered ("$1", &isRegistered);
-retval = NS_SUCCEEDED (rv) && isRegistered;
+if (NS_FAILED (rv)) break;
+
+status = isRegistered ? EXIT_SUCCESS : 97;
 ]])
 ],
 [AS_VAR_SET(gecko_cv_have_CID,[yes])],
@@ -467,7 +545,7 @@ retval = NS_SUCCEEDED (rv) && isRegistered;
 if test AS_VAR_GET(gecko_cv_have_CID) = "yes"; then
 	ifelse([$2],,[:],[$2])
 else
-	ifelse([$3],,[AC_MSG_FAILURE([dnl
+	ifelse([$3],,[AC_MSG_ERROR([dnl
 Contract ID "$1" is not registered, but $PACKAGE_NAME depends on it.])],
 	[$3])
 fi
@@ -495,7 +573,7 @@ done
 if test "$result" = "yes"; then
 	ifelse([$2],,[:],[$2])
 else
-	ifelse([$3],,[AC_MSG_FAILURE([dnl
+	ifelse([$3],,[AC_MSG_ERROR([dnl
 Contract ID "$as_contractid" is not registered, but $PACKAGE_NAME depends on it.])],
 	[$3])
 fi
