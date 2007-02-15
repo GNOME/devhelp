@@ -1,3 +1,7 @@
+2007-02-15  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* nl.po: Translation updated by Wouter Bolsterlee.
+
 2007-02-11  Raphael Higino  <raphaelh@svn.gnome.org>
 
 	* pt_BR.po: Updated Brazilian Portuguese translation by Luiz Fernando da Silva Armesto <luiz.armesto@gmail.com>.
@@ -20,7 +24,7 @@
 
 2007-02-03  Ihar Hrachyshka <iharh@gnome.org>
 
-        * be.po: Updated Belarusian translation.
+	* be.po: Updated Belarusian translation.
 
 2007-02-03  Richard Hult  <richard@imendio.com>
 
@@ -358,7 +362,7 @@
 
 2005-04-01  Steve Murphy  <murf@e-tools.com>
 
-        * rw.po: Added Kinyarwanda translation.
+	* rw.po: Added Kinyarwanda translation.
 
 2005-03-30  Marcel Telka  <marcel@telka.sk>
 
@@ -480,14 +484,14 @@
 	* sv.po: Updated Swedish translation.
 
 2004-04-10  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
-   
-        * pt_BR.po: Updated Brazilian Portuguese translation
-        from Raphael Higino <raphaelh@uai.com.br>.
+
+	* pt_BR.po: Updated Brazilian Portuguese translation
+	from Raphael Higino <raphaelh@uai.com.br>.
 
 2004-04-10  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
-   
-        * pt_BR.po: Updated Brazilian Portuguese translation
-        from Afonso Celso Medina <medina@maua.br>.
+
+	* pt_BR.po: Updated Brazilian Portuguese translation
+	from Afonso Celso Medina <medina@maua.br>.
 
 2004-04-09  Samúel Jón Gunnarsson  <sammi@techattack.nu>
 
@@ -515,7 +519,7 @@
 
 2004-03-20  Robert Sedak  <robert.sedak@sk.htnet.hr>
 
-        * hr.po: Updated Croatian translation.
+	* hr.po: Updated Croatian translation.
 
 2004-03-19  Vincent van Adrighem  <adrighem@gnome.org>
 
@@ -687,7 +691,7 @@
 	* ca.po: Added Catalan translation by
 	Aleix Badia i Bosch <abadia@ica.es>.
 
-2003-12-04   Vincent van Adrighem  <adrighem@gnome.org>
+2003-12-04  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
@@ -730,7 +734,7 @@
 
 2003-07-27  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Updated Portuguese translation.
+	* pt.po: Updated Portuguese translation.
 
 2003-07-22  Hasbullah Bin Pit  <sebol@ikhlas.com>
 
@@ -745,9 +749,9 @@
 	* pl.po: Updated Polish translation.
 
 2003-07-10  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
-        
-        * es.po: Updated Spanish translation by
-                 Francisco Javier F. Serrador <serrador@arrakis.es>.
+
+	* es.po: Updated Spanish translation by
+	Francisco Javier F. Serrador <serrador@arrakis.es>.
 
 2003-07-09  Christian Neumair  <chris@gnome-de.org>
 
@@ -808,13 +812,13 @@
 	* nl.po: Dutch translation updated.
 
 2003-05-26  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
-        
-        * es.po: Updated Spanish translation by
-                 Francisco Javier F. Serrador <serrador@arrakis.es>.
+
+	* es.po: Updated Spanish translation by
+	Francisco Javier F. Serrador <serrador@arrakis.es>.
 
 2003-05-24  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Updated Portuguese translation.
+	* pt.po: Updated Portuguese translation.
 
 2003-05-16  Miloslav Trmac  <mitr@volny.cz>
 
@@ -865,7 +869,7 @@
 
 2003-03-09  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Updated Portuguese translation.
+	* pt.po: Updated Portuguese translation.
 
 2003-03-04  Vincent van Adrighem  <V.vanAdrighem@dirck.mine.nu>
 
@@ -877,9 +881,9 @@
 	to enable translation for initial text of right pane.
 
 2003-03-02  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
- 
-        * pt_BR.po: Updated Brazilian Portuguese translation
-        from Alexandre Folle de Menezes <afmenez@terra.com.br>.
+
+	* pt_BR.po: Updated Brazilian Portuguese translation
+	from Alexandre Folle de Menezes <afmenez@terra.com.br>.
 
 2003-03-02  Christian Rose  <menthos@menthos.com>
 
@@ -948,7 +952,7 @@
 
 2003-02-02  Artis Trops  <hornet@navigator.lv>
 
-        * lv.po: Updated Latvian translation.
+	* lv.po: Updated Latvian translation.
 
 2003-02-02  Daniel Yacob  <locales@geez.org>
 
@@ -961,7 +965,7 @@
 
 2003-01-28  Artis Trops  <hornet@navigator.lv>
 
-        * lv.po: Updated Latvian translation.
+	* lv.po: Updated Latvian translation.
 	
 2003-01-28  Kostas Papadimas <pkst@gmx.net>
 
@@ -1161,7 +1165,7 @@
 
 2001-12-27  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Added portuguese translation
+	* pt.po: Added portuguese translation
 
 2001-12-17  GermÃ¡n Poo-CaamaÃ±o  <gpoo@ubiobio.cl>
 
@@ -1184,7 +1188,7 @@
 
 	* de.po: Updated German translation.
 
-2001-12-05  Johan Dahlin    <jdahlin@telia.com>
+2001-12-05  Johan Dahlin  <jdahlin@telia.com>
 
 	* ja.po: Added Japanese translation from 
 	Takeshi Aihana <aihana@jcom.home.ne.jp>.
