@@ -1,21 +1,21 @@
 # Hungarian translation of devhelp.
-# Copyright (C) 2005, 2006 Free Software Foundation, Inc.
+# Copyright (C) 2005, 2006, 2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2005, 2006.
 #
+# Gabor Kelemen <kelemeng@gnome.hu>, 2005, 2006, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-16 00:50+0200\n"
-"PO-Revision-Date: 2006-06-25 11:36+0200\n"
+"POT-Creation-Date: 2007-01-02 02:08+0000\n"
+"PO-Revision-Date: 2007-02-24 08:30+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
-"Plural-Forms:   nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -25,6 +25,10 @@ msgstr "Fejlesztők súgóprogramja"
 #: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
+
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Dokumentációböngésző"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
@@ -38,7 +42,7 @@ msgstr "Kilépés bármely futó Devhelpből"
 msgid "Display the version and exit"
 msgstr "Verziószám megjelenítése és kilépés"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "\"%s\" helyett \"%s\" található a(z) %d. sor %d. oszlopában"
@@ -60,42 +64,37 @@ msgstr ""
 "név és hivatkozás elemek szükségesek a <sub>-on belül a(z) %d. sor %d. "
 "oszlopában"
 
-#: ../src/dh-parser.c:292
+#: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "név és hivatkozás elemek szükségesek a <function>-on belül a(z) %d. sor %d. "
 "oszlopában"
 
-#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Nem lehet létrehozni a könyvfeldolgozót"
 
-#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Nem lehet létrehozni a jelölőfeldolgozót"
 
-#: ../src/dh-parser.c:567
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nem lehet kicsomagolni a(z) \"%s\" könyvet: %s"
 
-#: ../src/dh-parser.c:592
+#: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
 msgstr "A Devhelp zlib támogatás nélkül lett lefordítva"
 
-#: ../src/dh-search.c:584
+#: ../src/dh-search.c:621
 msgid "_Book:"
 msgstr "_Könyv:"
 
-#: ../src/dh-search.c:604
+#: ../src/dh-search.c:641
 msgid "_Page:"
 msgstr "_Oldal:"
-
-#: ../src/dh-search.c:663
-msgid "Section"
-msgstr "Fejezet"
 
 #: ../src/dh-window.c:141
 msgid "_File"
@@ -142,7 +141,7 @@ msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 msgid "A developer's help browser for GNOME 2"
 msgstr "Súgóböngésző fejlesztőknek GNOME2-höz"
 
-#: ../src/dh-window.c:949 ../src/dh-window.c:1077
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
 msgid "Empty Page"
 msgstr "Üres oldal"
 
@@ -216,8 +215,7 @@ msgstr "A főablak teljes méretben induljon-e?"
 
 #: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr ""
-"Melyik lap van kiválasztva, \"content\" (tartalom) vagy \"search\" (keresés)."
+msgstr "Melyik lap van kiválasztva, \"content\" (tartalom) vagy \"search\" (keresés)."
 
 #: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
@@ -278,3 +276,4 @@ msgstr "Devhelp támogatás"
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
 msgstr "Az F7 hatására megjelenik a Devhelp a kurzornál található szóhoz"
+
