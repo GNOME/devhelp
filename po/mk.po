@@ -4,19 +4,19 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 #
 # Ime Prezime <email@adresa.com>, 2003.
-# Arangel Angov <ufo@linux.net.mk>, 2006.
+# Arangel Angov <ufo@linux.net.mk>, 2006, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-12 10:19+0200\n"
-"PO-Revision-Date: 2006-08-12 14:45+0200\n"
+"POT-Creation-Date: 2007-01-02 02:08+0000\n"
+"PO-Revision-Date: 2007-03-01 22:47+0100\n"
 "Last-Translator: Arangel Angov <ufo@linux.net.mk>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -26,6 +26,10 @@ msgstr "Помошна програма за програмери"
 #: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
+
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Прелистувач за документација"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
@@ -39,7 +43,7 @@ msgstr "Напушти секое вклучено Девпомош"
 msgid "Display the version and exit"
 msgstr "Прикажи ја верзијата и излези"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Очекував '%s' добив '%s' на линија %d, колона %d"
@@ -59,39 +63,35 @@ msgstr "Наслов, име, и линк елементи се потребни
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr "име и линк елементи се потребни внатре <sub> на линија %d, колона %d"
 
-#: ../src/dh-parser.c:292
+#: ../src/dh-parser.c:297
 #, c-format
 msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr "име и линк елементи се потребни внатре <function> на линија %d, колона %d"
 
-#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Не може да создаде парсер за книга"
 
-#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Не може да создаде парсер за означување"
 
-#: ../src/dh-parser.c:567
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Не може да ја декомпресира книгата '%s': %s"
 
-#: ../src/dh-parser.c:592
+#: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp не е изграден со поддршка за zlib"
 
-#: ../src/dh-search.c:584
+#: ../src/dh-search.c:621
 msgid "_Book:"
 msgstr "_Книга:"
 
-#: ../src/dh-search.c:604
+#: ../src/dh-search.c:641
 msgid "_Page:"
 msgstr "_Страница:"
-
-#: ../src/dh-search.c:663
-msgid "Section"
-msgstr "Оддел"
 
 #: ../src/dh-window.c:141
 msgid "_File"
@@ -138,7 +138,7 @@ msgstr "Арангел Ангов <ufo@linux.net.mk>"
 msgid "A developer's help browser for GNOME 2"
 msgstr "Пребарувач за помош на развивачот за GNOME 2"
 
-#: ../src/dh-window.c:949 ../src/dh-window.c:1077
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
 msgid "Empty Page"
 msgstr "Празна страница"
 
