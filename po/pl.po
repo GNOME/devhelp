@@ -9,130 +9,63 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2003-07-27 23:58+0100\n"
-"Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-03-03 20:01+0100\n"
+"PO-Revision-Date: 2007-03-01 20:56+0100\n"
+"Last-Translator: wadim dziedzic <wdziedzic@aviary.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
-#: devhelp.desktop.in.h:1
+#: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Program pomocy dla programistów"
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
+#: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "DevHelp"
 
-#: devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr "Książka DevHelpa"
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Przeglądarka dokumentacji"
 
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
-
-#: src/dh-main.c:259
-msgid "Specify the size and location of the window"
-msgstr "Określ rozmiar oraz położenie okna"
-
-#: src/dh-main.c:260
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "SZEROKOŚĆxWYSOKOŚĆ+X0FF+YOFF"
-
-#: src/dh-main.c:268
+#: ../src/dh-main.c:85
 msgid "Search for a function"
 msgstr "Wyszukuje funkcję"
 
-#: src/dh-main.c:277
+#: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
 msgstr "Kończy wszystkie uruchomione kopie programu devhelp"
 
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "Wyświetla wersję i kończy działanie"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Spodziewano się \"%s\" otrzymano \"%s\" w wierszu %d, kolumnie %d"
 
-#: src/dh-parser.c:120
+#: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Niepoprawna przestrzeń nazw \"%s\" w wierszu %d, kolumnie %d"
 
-#: src/dh-parser.c:149
+#: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "tytuł, nazwa i elementy dowiązań są wymagane w wierszu %d, kolumnie %d"
 
-#: src/dh-parser.c:202
+#: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "nazwa i elementy dowiązań są wymagane wewnątrz <sub> w wierszu %d, kolumnie %"
 "d"
 
-#: src/dh-parser.c:250
+#: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -140,103 +73,229 @@ msgstr ""
 "nazwa i elementy dowiązań są wymagane wewnątrz <function> w wierszu %d, "
 "kolumnie %d"
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Nie można utworzyć analizatora książki"
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Nie można utworzyć analizatora znaczników"
 
-#: src/dh-parser.c:479
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nie można zdekompresować książki \"%s\": %s"
 
-#: src/dh-search.c:417
-msgid "_Search:"
-msgstr "_Znajdź:"
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp nie jest skompilowany z obsługą zlib"
 
-#: src/dh-search.c:461
-msgid "Section"
-msgstr "Sekcja"
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "_Książka:"
 
-#: src/dh-window.c:111
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "_Strona:"
+
+#: ../src/dh-window.c:141
 msgid "_File"
 msgstr "_Plik"
 
-#: src/dh-window.c:112
-#, fuzzy
+#: ../src/dh-window.c:142
 msgid "_Edit"
-msgstr "Za_kończ"
+msgstr "_Edycja"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "P_rzejdź"
 
-#: src/dh-window.c:114
+#: ../src/dh-window.c:144
 msgid "_Help"
 msgstr "Pomo_c"
 
-#: src/dh-window.c:292
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr ""
+#. File menu
+#: ../src/dh-window.c:147
+msgid "_New Window"
+msgstr "_Nowe okno"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Zawartość"
+#: ../src/dh-window.c:149
+msgid "New _Tab"
+msgstr "Nowa _karta"
 
-#: src/dh-window.c:363
+#: ../src/dh-window.c:168
+msgid "Browse Contents"
+msgstr "Przeglądaj zawartość"
+
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
 msgstr "Wyszukiwanie"
 
-#: src/dh-window.c:446
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Zawartość"
+
+#: ../src/dh-window.c:616
+msgid "translator_credits"
+msgstr "GnomePL/AviaryPL"
+
+#: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
 msgstr "Przeglądarka pomocy dla programistów GNOME"
 
-#: src/dh-window.c:462
-msgid "Devhelp project page"
-msgstr "Witryna projektu DevHelp"
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+msgid "Empty Page"
+msgstr "Pusta strona"
 
-#: src/dh-window.c:466
-msgid "Bug report Devhelp"
-msgstr "Zgłaszanie błędów DevHelp"
+#: ../devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Czcionka tekstu o stałej szerokości"
 
-#: ui/devhelp.glade.h:1
-msgid "    "
-msgstr ""
+#: ../devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Czcionka tekstu"
 
-#: ui/devhelp.glade.h:2
+#: ../devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Czcionka dla tekstu o stałej szerokości"
+
+#: ../devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Czcionka dla tekstu o zmiennej szerokości"
+
+#: ../devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Wysokość głównego okna"
+
+#: ../devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Główne okno zmaksymalizowane"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Wybrana karta - \"zawartość\" lub \"wyszukiwanie\""
+
+#: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Pokaż zaawansowane opcje wyszukiwania"
+
+#: ../devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "Pozycja pozioma głównego okna"
+
+#: ../devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Pozycja pionowa głównego okna"
+
+#: ../devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Wysokość głównego okna"
+
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Szerokość indeksu i panelu wyszukiwania."
+
+#: ../devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Szerokość główego okna"
+
+#: ../devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Użyj czcionek systemowych"
+
+#: ../devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Używa domyślnych czcionek ustawioneych dla systemu"
+
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Określa czy zaawansowane opcje wyszukiwania są wyświetlane"
+
+#: ../devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Określa czy "
+
+#: ../devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Określa aktywną kartę - \"zawartość\" lub \"wyszukiwanie\"."
+
+#: ../devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Szerokość panelu wyszukiwania i indeksu"
+
+#: ../devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Szerokość głównego okna"
+
+#: ../devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Pozycja pozioma głównego okna"
+
+#: ../devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Pozycja pionowa głównego okna"
+
+#: ../ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>Czcionki</b>"
 
-#: ui/devhelp.glade.h:5
-msgid "Fixed width:"
-msgstr ""
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Wyszukiwanie</b>"
 
-#: ui/devhelp.glade.h:6
-#, fuzzy
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
-msgstr "Preferencje..."
+msgstr "Preferencje"
 
-#: ui/devhelp.glade.h:7
-msgid "Variable width: "
-msgstr ""
-
-#: ui/devhelp.glade.h:8
-#, fuzzy
+#: ../ui/devhelp.glade.h:6
 msgid "_Back"
-msgstr "Wstecz"
+msgstr "_Wstecz"
 
-#: ui/devhelp.glade.h:9
-#, fuzzy
+#: ../ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "O _stałej szerokości:"
+
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
-msgstr "Naprzód"
+msgstr "_Naprzód"
 
-#: ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Wyświetl zaawansowane opcje wyszukiwania"
+
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Użyj czcionek systemowych"
+
+#: ../ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "O _zmiennej szerokości:"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Wsparcie Devhelp"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Wywołuje Devhelp dla bieżącego słowa po naciśnięciu klawisza F7"
+
+#~ msgid "Specify the size and location of the window"
+#~ msgstr "Określ rozmiar oraz położenie okna"
+
+#~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
+#~ msgstr "SZEROKOŚĆxWYSOKOŚĆ+X0FF+YOFF"
+
+#~ msgid "_Search:"
+#~ msgstr "_Znajdź:"
+
+#~ msgid "Section"
+#~ msgstr "Sekcja"
+
+#~ msgid "Devhelp project page"
+#~ msgstr "Witryna projektu DevHelp"
+
+#~ msgid "Bug report Devhelp"
+#~ msgstr "Zgłaszanie błędów DevHelp"
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search tab "
