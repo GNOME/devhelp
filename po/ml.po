@@ -1,227 +1,281 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of devhelp.HEAD.ml.po to Malayalam
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FSF-India <locale@gnu.org.in>, 2003.
 #
+# FSF-India <locale@gnu.org.in>, 2003.
+# Ani Peter <apeter@redhat.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version:devhelp\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2003-07-05 10:29+0530\n"
-"Last-Translator: FSF-India <locale@gnu.org.in>\n"
-"Language-Team: Malayalam <locale@gnu.org.in>\n"
+"Project-Id-Version: devhelp.HEAD.ml\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-02 02:08+0000\n"
+"PO-Revision-Date: 2007-03-04 22:15+0530\n"
+"Last-Translator: Ani Peter <apeter@redhat.com>\n"
+"Language-Team: Malayalam <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 
-#: devhelp.desktop.in.h:1
+#: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
-msgstr ""
+msgstr "ഡവലപ്പറിനെ സഹായിക്കുന്ന പ്റോഗ്റാം"
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
+#: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
-msgstr ""
+msgstr "Devhelp"
 
-#: devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr ""
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "ഡോക്യുമെന്‍റേഷന്‍ ബ്റൌസറ്‍"
 
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
-
-#: src/dh-main.c:259
-msgid "Specify the size and location of the window"
-msgstr ""
-
-#: src/dh-main.c:260
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "WIDTHxHEIGHT+XOFF+YOFF"
-
-#: src/dh-main.c:268
+#: ../src/dh-main.c:85
 msgid "Search for a function"
-msgstr ""
+msgstr "ഒരു പ്റക്റിയയ്ക്കായി തിരയുക"
 
-#: src/dh-main.c:277
+#: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
-msgstr ""
+msgstr "പ്റവറ്‍ത്തനത്തിലുളള Devhelp-ല്‍ നിന്നും പുറത്ത് കടക്കുക"
 
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "വേറ്‍ഷന്‍ ഏത് എന്ന് കാണിച്ച് പുറത്ത് കടക്കുക"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
+msgstr "'%s' പ്റതീക്ഷിച്ചു ലഭ്യമായത് '%s' - %d-ആം വരിയില്‍, %d-ആം നിരയില്‍"
 
-#: src/dh-parser.c:120
+#: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "namespace '%s' തെറ്റാണ്. ഇത് %d-ആം വരിയില്‍, %d-ആം നിരയില്‍ ലഭ്യമാണ്."
 
-#: src/dh-parser.c:149
+#: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
+"തലക്കെട്ട്, പേര്, ലിങ്ക് എലമെന്‍റുകള്‍ എന്നിവ %d-ആം വരിയില്‍, %d-ആം നിരയില്‍ "
+"ആവശ്യമുണ്ട്."
 
-#: src/dh-parser.c:202
+#: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
+"%d-ആം വരിയില്‍, %d-ആം നിരയില്‍, <sub>-നുളളില്‍ പേരും ലിങ്ക് എലമെന്‍റുകളും "
+"ആവശ്യമുണ്ട്."
 
-#: src/dh-parser.c:250
+#: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
+"%d-ആം വരിയില്‍, %d-ആം നിരയില്‍, <function>-നുളളില്‍ പേരും ലിങ്ക് എലമെന്‍റുകളും "
+"ആവശ്യമുണ്ട്."
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
-msgstr ""
+msgstr "ബുക്ക് പാഴ്സറ്‍ ഉണ്ടാക്കുവാന്‍ സാധ്യമായില്ല"
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "മാറ്‍ക്കപ്പ് പാഴ്സറ്‍ ഉണ്ടാക്കുവാന്‍ സാധ്യമായില്ല"
 
-#: src/dh-parser.c:479
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "'%s' എന്ന പുസ്തകം അണ്‍കംപ്റസ്സ് ചെയ്യുവാന്‍ സാധ്യമായില്ല: %s"
 
-#: src/dh-search.c:417
-msgid "_Search:"
-msgstr ""
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp zlib പിന്തുണയോടെയല്ല ഉണ്ടാക്കിയിരിക്കുന്നത്"
 
-#: src/dh-search.c:461
-msgid "Section"
-msgstr "വിഭാഗം"
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "പുസ്തകം: (_B)"
 
-#: src/dh-window.c:111
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "പേജ്: (_P)"
+
+#: ../src/dh-window.c:141
 msgid "_File"
-msgstr "ശേഖരം"
+msgstr "ഫയല്‍ (_F)"
 
-#: src/dh-window.c:112
+#: ../src/dh-window.c:142
 msgid "_Edit"
-msgstr ""
+msgstr "മാറ്റുക (_E)"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
-msgstr "പോകുക"
+msgstr "പോകുക (_G)"
 
-#: src/dh-window.c:114
+#: ../src/dh-window.c:144
 msgid "_Help"
-msgstr "സഹായം"
+msgstr "സഹായം (_H)"
 
-#: src/dh-window.c:292
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr ""
+#. File menu
+#: ../src/dh-window.c:147
+msgid "_New Window"
+msgstr "പുതിയ ജാലകം (_N)"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: ../src/dh-window.c:149
+msgid "New _Tab"
+msgstr "പുതിയ ടാബ് (_T)"
+
+#: ../src/dh-window.c:168
+msgid "Browse Contents"
+msgstr "ഉള്ളടക്കം തിരയുക"
+
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
+msgid "Search"
+msgstr "തിരയുക"
+
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "ഉള്ളടക്കം"
 
-#: src/dh-window.c:363
-msgid "Search"
-msgstr "തെരയുക"
+#: ../src/dh-window.c:616
+msgid "translator_credits"
+msgstr "അനി പീറ്ററ്‍ <peter.ani@gmail.com>"
 
-#: src/dh-window.c:446
+#: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
-msgstr ""
+msgstr "GNOME 2-നുളള ഒരു ഡവലപ്പറിന്‍റെ സഹായി"
 
-#: src/dh-window.c:462
-msgid "Devhelp project page"
-msgstr ""
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+msgid "Empty Page"
+msgstr "കാലിയായ പേജ്"
 
-#: src/dh-window.c:466
-msgid "Bug report Devhelp"
-msgstr ""
+#: ../devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "സ്ഥിരമായ ടെക്സ്റ്റിനുളള ലിപി"
 
-#: ui/devhelp.glade.h:1
-msgid "    "
-msgstr ""
+#: ../devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "ടെക്സ്റ്റിനുളള ലിപി"
 
-#: ui/devhelp.glade.h:2
+#: ../devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "സ്ഥിരമായ വീതിയുളള ടെക്സ്റ്റിനുളള ലിപി."
+
+#: ../devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "വിവിധ വീതിയുളള ടെക്സ്റ്റിനുളള ലിപി."
+
+#: ../devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "പ്റധാന ജാലകത്തിന്‍റെ ഉയരം"
+
+#: ../devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "പ്റധാന ജാലകം ഏറ്റവും കൂടുതല്‍ വലിപ്പത്തില്‍"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "\"content\" അല്ലെങ്കില്‍ \"search\" ടാബ് തിരഞ്ഞെടുത്തിരിക്കുന്നു"
+
+#: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "പുരോഗമിച്ച തിരച്ചില്‍ ഉപാധികള്‍"
+
+#: ../devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "പ്റധാന ജാലകത്തിന്‍റെ X സ്ഥാനം."
+
+#: ../devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "പ്റധാന ജാലകത്തിന്‍റെ Y സ്ഥാനം."
+
+#: ../devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "പ്റധാന ജാലകത്തിന്‍റെ ഉയരം."
+
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "ഇന്‍ഡക്സിന്‍റേയും തിരച്ചില്‍ പാളിയുടേയും വീതി."
+
+#: ../devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "പ്റധാന ജാലകത്തിന്‍റെ വീതി."
+
+#: ../devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "സിസ്റ്റമിലുളള ലിപികള്‍ ഉപയോഗിക്കുക."
+
+#: ../devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "സിസ്റ്റമില്‍ ഡീഫോള്‍ട്ടായുളള ലിപികള്‍ ഉപയോഗിക്കുക."
+
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "പുരോഗമിച്ച തിരച്ചില്‍ ഉപാധികള്‍ കാണിച്ചിട്ടുണ്ടോ എന്ന്."
+
+#: ../devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "പ്റധാനപ്പെട്ട ജാലകം വലുതായി ആരംഭിക്കണമോ എന്ന്."
+
+#: ../devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "ഏത് ടാബ് തിരഞ്ഞെടുത്തിരിക്കുന്നു, \"content\" അല്ലെങ്കില്‍ \"search\"."
+
+#: ../devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "ഇന്‍ഡക്സിന്‍റേയും തിരച്ചില്‍ പാളിയുടേയും വീതി"
+
+#: ../devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "പ്റധാന ജാലകത്തിന്‍റെ വീതി"
+
+#: ../devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "പ്റധാന ജാലകത്തിന്‍റെ X സ്ഥാനം"
+
+#: ../devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "പ്റധാന ജാലകത്തിന്‍റെ Y സ്ഥാനം"
+
+#: ../ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
-msgstr ""
+msgstr "<b>ലിപികള്‍</b>"
 
-#: ui/devhelp.glade.h:5
-msgid "Fixed width:"
-msgstr ""
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>തിരയുന്നു</b>"
 
-#: ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
-msgstr ""
+msgstr "സവിശേഷതകള്‍"
 
-#: ui/devhelp.glade.h:7
-msgid "Variable width: "
-msgstr ""
-
-#: ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:6
 msgid "_Back"
-msgstr ""
+msgstr "പുറകോട്ട് (_B)"
 
-#: ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "സ്ഥിരമായ വീതി (_F):"
+
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
-msgstr ""
+msgstr "മുന്പോട്ട് (_F)"
 
-#: ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "പുരോഗമിച്ച തിരച്ചില്‍ ഉപാധികള്‍ കാണിക്കുക (_S)"
+
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr ""
+msgstr "സിസ്റ്റമിന്‍റെ ലിപികള്‍ ഉപയോഗിക്കുക (_U)"
+
+#: ../ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "മാറ്റുവാന്‍ സാധ്യമായ വീതി (_V):"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp സപ്പോറ്‍ട്ട്"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "കറ്‍സറിലുളള വാക്കിനായി F7 Devhelp ലഭ്യമാക്കുന്നു."
+
