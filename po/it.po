@@ -3,14 +3,14 @@
 # Alessio Frusciante <algol@firenze.linux.it>, 2001.
 # Francesco Marletta <francesco.marletta@tiscali.it>, 2003
 # Alessio Frusciante <algol@firenze.linux.it>, 2003.
-# Francesco Marletta <francesco.marletta@tiscali.it>, 2004-2006.
+# Francesco Marletta <francesco.marletta@tiscali.it>, 2004-2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-20 21:51+0200\n"
-"PO-Revision-Date: 2006-09-20 21:53+0200\n"
+"POT-Creation-Date: 2007-01-02 02:08+0000\n"
+"PO-Revision-Date: 2007-03-10 14:27+0100\n"
 "Last-Translator: Francesco Marletta <francesco.marletta@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Devhelp"
 
 #: ../devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr ""
+msgstr "Esplorazione documentazione"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
@@ -82,7 +82,7 @@ msgstr "Impossibile creare l'analizzatore per il libro"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
-msgstr "Imposibile creare l'analizzatore per la marcatura"
+msgstr "Impossibile creare l'analizzatore per la marcatura"
 
 #: ../src/dh-parser.c:578
 #, c-format
