@@ -1,0 +1,277 @@
+# Biełaruski pierakład devhelp
+# Ihar Hračyška <iharh@gnome.org>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-03-10 16:28+0200\n"
+"PO-Revision-Date: 2007-03-10 16:27+0300\n"
+"Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
+"Language-Team: Belarusian Latin <i18n@mova.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Belarusian\n"
+"X-Poedit-Country: BELARUS\n"
+
+#: ../devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "Prahrama ŭ dapamohu raspracoŭniku"
+
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
+#: ../ui/devhelp.glade.h:4
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Hartač dakumentacyi"
+
+#: ../src/dh-main.c:85
+msgid "Search for a function"
+msgstr "Šukaj funkcyju"
+
+#: ../src/dh-main.c:94
+msgid "Quit any running Devhelp"
+msgstr "Vychad z uruchomlenaha Devhelpa"
+
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "Pakažy versiju i zakonč pracu"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Čakałasia '%s', atrymana '%s' u radku %d, kalonie %d"
+
+#: ../src/dh-parser.c:128
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Niapravilny abšar nazvaŭ '%s' u radku %d, kalonie %d"
+
+#: ../src/dh-parser.c:158
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr ""
+"elementy zahałoŭka, nazvy i spasyłki patrabujucca ŭ radku %d, kalonie %d"
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+"elementy nazvy i spasyłki patrabujucca ŭnutry <sub> u radku %d, kalonie %d"
+
+#: ../src/dh-parser.c:297
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"elementy nazvy i spasyłki patrabujucca ŭnutry <function> u radku %d, kalonie "
+"%d"
+
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+msgid "Could not create book parser"
+msgstr "Niemahčyma stvaryć analizatara knihaŭ"
+
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+msgid "Could not create markup parser"
+msgstr "Niemahčyma stvaryć analizatara značnikaŭ"
+
+#: ../src/dh-parser.c:578
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Niemahčyma zdekampresavać knihu '%s': %s"
+
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp sabrany biez padtrymki zlib"
+
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "_Kniha:"
+
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "_Staronka:"
+
+#: ../src/dh-window.c:141
+msgid "_File"
+msgstr "_Fajł"
+
+#: ../src/dh-window.c:142
+msgid "_Edit"
+msgstr "_Źmiani"
+
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
+msgid "_Go"
+msgstr "_Pierajdzi"
+
+#: ../src/dh-window.c:144
+msgid "_Help"
+msgstr "_Dapamoha"
+
+#. File menu
+#: ../src/dh-window.c:147
+msgid "_New Window"
+msgstr "_Novaje akno"
+
+#: ../src/dh-window.c:149
+msgid "New _Tab"
+msgstr "Novaja _kartka"
+
+#: ../src/dh-window.c:168
+msgid "Browse Contents"
+msgstr "Prahladaj źmieściva"
+
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
+msgid "Search"
+msgstr "Šukaj"
+
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Źmieściva"
+
+#: ../src/dh-window.c:616
+msgid "translator_credits"
+msgstr "Ihar Hračyška <iharh@gnome.org>"
+
+#: ../src/dh-window.c:621
+msgid "A developer's help browser for GNOME 2"
+msgstr "Hartač dakumentacyi raspracoŭnika dla GNOME 2"
+
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+msgid "Empty Page"
+msgstr "Pustaja staronka"
+
+#: ../devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Šryft dla tekstu stałaj šyryni"
+
+#: ../devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Šryft dla tekstu"
+
+#: ../devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Šryft dla tekstu stałaj šyryni."
+
+#: ../devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Šryft dla tekstu źmiennaj šyryni."
+
+#: ../devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Vyšynia hałoŭnaha akna"
+
+#: ../devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Maksymalizavany stan hałoŭnaha akna"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Dziejnaja kartka, \"źmieściva\" albo \"šukaj\""
+
+#: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Pakažy pašyranyja opcyi pošuku"
+
+#: ../devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "Pałažeńnie hałoŭnaha akna pa vosi X."
+
+#: ../devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Pałažeńnie hałoŭnaha akna pa vosi Y."
+
+#: ../devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Vyšynia hałoŭnaha akna."
+
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Šyrynia paneli źmiestu i pošuku."
+
+#: ../devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Šyrynia hałoŭnaha akna."
+
+#: ../devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Užyj systemnyja šryfty"
+
+#: ../devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Užyj systemnyja zmoŭčanyja šryfty."
+
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Akreślivaje, ci pakazvajucca pašyranyja opcyi pošuku."
+
+#: ../devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Akreślivaje, ci maksymalizavać hałoŭnaje akno pry ŭruchomleńni."
+
+#: ../devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Akreślivaje dziejnuju kartku, \"źmieściva\" albo \"šukaj\"."
+
+#: ../devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Šyrynia paneli źmieściva i pošuku"
+
+#: ../devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Šyrynia hałoŭnaha akna"
+
+#: ../devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Pałažeńnie hałoŭnaha akna pa vosi X"
+
+#: ../devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Pałažeńnie hałoŭnaha akna pa vosi Y"
+
+#: ../ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Šryfty</b>"
+
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Pošuk</b>"
+
+#: ../ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Nałady"
+
+#: ../ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "Na_zad"
+
+#: ../ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Stałaja šyrynia:"
+
+#: ../ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "Na_pierad"
+
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Pakažy pašyranyja opcyi pošuku"
+
+#: ../ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "_Užyj systemnyja šryfty"
+
+#: ../ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "_Źmiennaja šyrynia: "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Padtrymka Devhelpa"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Pry nacisku klavišy F7 pakazvaj infarmacyju ab słovie pad kursoram"

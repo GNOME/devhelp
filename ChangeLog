@@ -1,3 +1,7 @@
+2007-03-10  Ihar Hrachyshka <iharh@gnome.org>
+
+	_ configure.in: Added be@latin to ALL_LINGUAS.
+
 2007-03-07  Gintautas Miliauskas  <gintas@akl.lt>
 
 	* configure.in: Added 'lt' (Lithuanian) to ALL_LINGUAS.
