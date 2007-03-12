@@ -1,22 +1,26 @@
 # devhelp Greek translation.
-# Copyright (C) Free Software Foundation, 2003
+# Copyright (C) Free Software Foundation, 2003, 2004, 2005, 2006, 2007
 # This file is distributed under the same license as the devhelp package.
+#
 # Kostas Papadimas <pkst@gmx.net>, 2003.
 # Stylianos Papanastasiou <stelios@dcs.gla.ac.uk>, 2005.
-# kostas:22 messages, 28Jan2003, initial translation
-# 
+# kostas:22 messages, 28Jan2003, initial translation.
+# George Fragos <fragos.george@gmail.com>, 2007.
+# Athanasios Lefteris <alefteris@gmail.com>, 2007.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp\n"
+"Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-12 12:49+0300\n"
-"PO-Revision-Date: 2005-02-20 14:24+0000\n"
-"Last-Translator: Stylianos Papanastasiou <stelios@dcs.gla.ac.uk>\n"
-"Language-Team: Greek <nls@tux.hellug.gr>\n"
+"POT-Creation-Date: 2007-01-02 02:08+0000\n"
+"PO-Revision-Date: 2007-03-12 15:11+0800\n"
+"Last-Translator: Athanasios Lefteris <alefteris@gmail.com>\n"
+"Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -29,19 +33,19 @@ msgstr "DevHelp"
 
 #: ../devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr ""
+msgstr "Περιηγητής τεκμηρίωσης"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
-msgstr "Αναζήτηση για μια λειτουργία"
+msgstr "Αναζήτηση λειτουργίας"
 
 #: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
-msgstr "Έξοδος από οποιαδήποτε εκτελούμενο Devhelp "
+msgstr "Έξοδος από οποιαδήποτε εκτελούμενο Devhelp"
 
 #: ../src/dh-main.c:103
 msgid "Display the version and exit"
-msgstr ""
+msgstr "Εμφάνιση της έκδοσης και έξοδος"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -56,29 +60,25 @@ msgstr "Μη έγκυρο namespace '%s' στη γραμμή %d, στήλη %d"
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
-"Τίτλος, όνομα, και δεσμικό στοιχείο απαιτούνται στη γραμμή %d, στήλη %d"
+msgstr "Τίτλος, όνομα, και δεσμικό στοιχείο απαιτούνται στη γραμμή %d, στήλη %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"Όνομα και δεσμικό στοιχείο απαιτούνται στο <sub> στη γραμμή %d, στήλη %d"
+msgstr "Όνομα και δεσμικό στοιχείο απαιτούνται στο <sub> στη γραμμή %d, στήλη %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
-"Όνομα και δεσμικό στοιχείο απαιτούνται στο <function> στη γραμμή %d, στήλη %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "Όνομα και δεσμικό στοιχείο απαιτούνται στο <function> στη γραμμή %d, στήλη %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
-msgstr "Αδυναμία δημιουργίας διαβιβαστή βιβλίου"
+msgstr "Αδυναμία δημιουργίας book parser"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
-msgstr "Αδυναμία δημιουργίας διαβιβαστή markup"
+msgstr "Αδυναμία δημιουργίας markup parse"
 
 #: ../src/dh-parser.c:578
 #, c-format
@@ -87,15 +87,15 @@ msgstr "Αδυναμία αποσυμπίεσης βιβλίου '%s': %s"
 
 #: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
-msgstr ""
+msgstr "Το Devhelp δε δημιουργήθηκε με υποστήριξη zlib"
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
-msgstr ""
+msgstr "_Βιβλίο:"
 
 #: ../src/dh-search.c:641
 msgid "_Page:"
-msgstr ""
+msgstr "_Σελίδα:"
 
 #: ../src/dh-window.c:141
 msgid "_File"
@@ -116,16 +116,15 @@ msgstr "_Βοήθεια"
 #. File menu
 #: ../src/dh-window.c:147
 msgid "_New Window"
-msgstr ""
+msgstr "_Νέο παράθυρο"
 
 #: ../src/dh-window.c:149
 msgid "New _Tab"
-msgstr ""
+msgstr "Νέα καρ_τέλα"
 
 #: ../src/dh-window.c:168
-#, fuzzy
 msgid "Browse Contents"
-msgstr "Περιεχόμενα"
+msgstr "Περιήγηση περιεχομένων"
 
 #: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
@@ -138,14 +137,17 @@ msgstr "Περιεχόμενα"
 #: ../src/dh-window.c:616
 msgid "translator_credits"
 msgstr ""
+"Kostas Papadimas <pkst@gmx.net>\n"
+"Stylianos Papanastasiou <stelios@dcs.gla.ac.uk>\n"
+"George Fragos <fragos.george@gmail.com>"
 
 #: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
-msgstr "Ένα φυλλομετρητής βοήθειας για τους developers του GNOME 2"
+msgstr "Ένας περιηγητής βοήθειας για τους προγραμματιστές του GNOME 2"
 
 #: ../src/dh-window.c:950 ../src/dh-window.c:1080
 msgid "Empty Page"
-msgstr ""
+msgstr "Κενή Σελίδα"
 
 #: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -173,11 +175,11 @@ msgstr "Κατάσταση μεγιστοποίησης κύριου παραθ�
 
 #: ../devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr ""
+msgstr "Επιλεγμένη καρτέλα, \"περιεχόμενα\" ή \"αναζήτηση\""
 
 #: ../devhelp.schemas.in.h:8
 msgid "Show advanced search options"
-msgstr ""
+msgstr "Εμφάνιση προχωρημένων επιλογών αναζήτησης"
 
 #: ../devhelp.schemas.in.h:9
 msgid "The X position of the main window."
@@ -192,9 +194,8 @@ msgid "The height of the main window."
 msgstr "Ύψος κύριου παραθύρου."
 
 #: ../devhelp.schemas.in.h:12
-#, fuzzy
 msgid "The width of the index and search pane."
-msgstr "Πλάτος κύριου παραθύρου."
+msgstr "Το πλάτος των πλαισίων του καταλόγου και της αναζήτησης."
 
 #: ../devhelp.schemas.in.h:13
 msgid "The width of the main window."
@@ -206,28 +207,27 @@ msgstr "Χρήση γραμματοσειρών συστήματος"
 
 #: ../devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
-msgstr "Χρήση προεπιλεγμένης γραμματοσειράς συστήματος."
+msgstr "Χρήση προεπιλεγμένων γραμματοσειρών συστήματος."
 
 #: ../devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."
-msgstr ""
+msgstr "Εμφάνιση ή απόκρυψη των προχωρημένων επιλογών αναζήτησης."
 
 #: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
-msgstr "Αν αρχικά το κύριο παράθυρο θα εμφανίζεται μεγιστοποιημένο ή όχι"
+msgstr "Αν αρχικά το κύριο παράθυρο θα εμφανίζεται μεγιστοποιημένο ή όχι."
 
 #: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr ""
+msgstr "Ποιά από τις καρτέλες είναι επιλεγμένη, \"περιεχόμενα\" ή \"αναζήτηση\"."
 
 #: ../devhelp.schemas.in.h:19
-#, fuzzy
 msgid "Width of the index and search pane"
-msgstr "Το πλάτος του κυρίως παραθύρου."
+msgstr "Το πλάτος των πλαισίων του καταλόγου και της αναζήτησης"
 
 #: ../devhelp.schemas.in.h:20
 msgid "Width of the main window"
-msgstr "Το πλάτος του κυρίως παραθύρου."
+msgstr "Το πλάτος του κυρίως παραθύρου"
 
 #: ../devhelp.schemas.in.h:21
 msgid "X position of main window"
@@ -243,7 +243,7 @@ msgstr "<b>Γραμματοσειρές</b>"
 
 #: ../ui/devhelp.glade.h:2
 msgid "<b>Searching</b>"
-msgstr ""
+msgstr "<b>Αναζήτηση</b>"
 
 #: ../ui/devhelp.glade.h:5
 msgid "Preferences"
@@ -254,9 +254,8 @@ msgid "_Back"
 msgstr "_Πίσω"
 
 #: ../ui/devhelp.glade.h:7
-#, fuzzy
 msgid "_Fixed width:"
-msgstr "Σταθερό πλάτος:"
+msgstr "_Σταθερό πλάτος:"
 
 #: ../ui/devhelp.glade.h:8
 msgid "_Forward"
@@ -264,103 +263,21 @@ msgstr "_Μπροστά"
 
 #: ../ui/devhelp.glade.h:10
 msgid "_Show advanced search options"
-msgstr ""
+msgstr "Εμφάνι_ση προχωρημένων επιλογών αναζήτησης"
 
 #: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Χρήση γραμματοσειρών συστήματος"
 
 #: ../ui/devhelp.glade.h:12
-#, fuzzy
 msgid "_Variable width: "
-msgstr "Μεταβλητό πλάτος: "
+msgstr "_Μεταβλητό πλάτος: "
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-#, fuzzy
 msgid "Devhelp support"
-msgstr "Βιβλίο DevHelp"
+msgstr "Υποστήριξη DevHelp"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr ""
+msgstr "Κάνει το F7 να εμφανίζει το Devhelp για την λέξη στον δρομέα"
 
-#~ msgid "Specify the size and location of the window"
-#~ msgstr "Καθορίστε μέγεθος και τοποθεσία παραθύρου"
-
-#~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
-#~ msgstr "WIDTHxHEIGHT+XOFF+YOFF"
-
-#~ msgid "_Search:"
-#~ msgstr "_Αναζήτηση"
-
-#~ msgid "Section"
-#~ msgstr "Ενότητα"
-
-#~ msgid "Cannot set UI: %s"
-#~ msgstr "Αδυναμία καθορισμού UI: %s"
-
-#~ msgid "Devhelp project page"
-#~ msgstr "Σελίδα project Devhelp"
-
-#~ msgid "Bug report Devhelp"
-#~ msgstr "Αναφορά Προβλήματος Devhelp"
-
-#~ msgid "Location of the paned"
-#~ msgstr "Τοποθεσία του εσωτερικού"
-
-#~ msgid "The location of the paned separator."
-#~ msgstr "Τοποθεσία εσωτερικού διαχωριστικού."
-
-#~ msgid "    "
-#~ msgstr "    "
-
-#~ msgid "_Search for:"
-#~ msgstr "_Αναζήτηση για: "
-
-#~ msgid "_About"
-#~ msgstr "_Περί"
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Επιλέξτε ένα θέμα από τα περιεχόμενα στα αριστερά ή αλλάξτε στο ταμπλώ "
-#~ "αναζήτησης για να βρείτε αυτό που ψάχνετε. <p>Χρησιμοποιείστε <b>Shift Up/"
-#~ "Down</b>  για να περιηγηθείτε στο δέντρο στα αριστερά και <b>Shift Left/"
-#~ "Right</b> για να αναπτύξετε τα βιβλία στο δέντρο."
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "Το '%s' δεν είναι έγκυρο βιβλίο"
-
-#~ msgid "Book '%s' is malformed."
-#~ msgstr "Το βιβλίο '%s' είναι κακοδιατυπωμένο."
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Δεν βρέθηκε το αρχείο '%s' "
-
-#~ msgid "Book '%s' is malformed, the parse context is invalid."
-#~ msgstr ""
-#~ "Το βιβλίο '%s' είναι κακοδιατυπωμένο, το περιεχόμενο ανάλυσης δεν είναι "
-#~ "έγκυρο."
-
-#~ msgid "Book '%s' is malformed, the XML is invalid."
-#~ msgstr "Το βιβλίο '%s' είναι κακοδιατυπωμένο, το XML δεν είναι έγκυρο."
-
-#~ msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
-#~ msgstr "Το βιβλίο '%s' είναι κακοδιατυπωμένο, δεν υπακούει στο DTD (%s)."
-
-#~ msgid ""
-#~ "<b>Cound not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Αδυναμία ανάγνωσης όλων των βιβλίων</b>\n"
-#~ "\n"
-#~ "Παρουσιάστηκαν τα παρακάτω σφάλματα κατά την ανάγνωση των βιβλίων:\n"
-#~ "%s"
-
-#~ msgid "Open %s"
-#~ msgstr "Άνοιγμα %s"
