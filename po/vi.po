@@ -4,33 +4,30 @@
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2006.
 # 
 msgid ""
-""
-msgstr "Project-Id-Version: devhelp 0.12 Gnome HEAD\n"
+msgstr ""
+"Project-Id-Version: devhelp 0.12 Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-21 10:21+0200\n"
-"PO-Revision-Date: 2006-08-21 20:58+0930\n"
-"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"POT-Creation-Date: 2007-01-02 02:08+0000\n"
+"PO-Revision-Date: 2007-03-07 22:20+0700\n"
+"Last-Translator: Phạm Thành Long <lngt@ngonngu.net>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.6fc1\n"
 
 #: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Chương trình trợ giúp cho nhà phát triển"
 
-#: ../devhelp.desktop.in.in.h:2
-#: ../src/dh-main.c:125
-#: ../src/dh-window.c:619
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
 #: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Trợ giúp phát triển"
 
 #: ../devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr "Bộ duyệt tài liệu chỉ dẫn"
+msgstr "Bộ duyệt tài liệu"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
@@ -38,64 +35,62 @@ msgstr "Tìm kiếm hàm"
 
 #: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
-msgstr "Thoát khỏi chương trình trợ giúp phát triển nào đang chạy"
+msgstr "Thoát bất kì chương trình trợ giúp phát triển nào đang chạy"
 
 #: ../src/dh-main.c:103
 msgid "Display the version and exit"
 msgstr "Hiển thị phiên bản rồi thoát"
 
-#: ../src/dh-parser.c:110
-#: ../src/dh-parser.c:194
-#: ../src/dh-parser.c:271
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Ngờ « %s » mà nhận « %s » tại dòng %d, cột %d"
+msgstr "Đợi '%s' nhận '%s' tại dòng %d, cột %d"
 
 #: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Miền tên không hợp lệ « %s » tại dòng %d, cột %d"
+msgstr "Miền tên không hợp lệ '%s' tại dòng %d, cột %d"
 
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "các yếu tố tựa, tên và liên kết đều cần thiết tại dòng %d, cột %d"
+msgstr "các yếu tố tiêu đề, tên và liên kết đều phải có tại dòng %d, cột %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "cả hai yếu tố tên và liên kết đều cần thiết bên trong <sub> (dưới) tại dòng %d, cột %d"
+msgstr ""
+"các yếu tố tên và liên kết đều phải có bên trong <sub> tại dòng %d, cột %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr "cả hai yếu tố tên và liên kết đều cần thiết bên trong <function> (hàm) tại dòng %d, cột %d"
+msgstr ""
+"các yếu tố tên và liên kết đều phải có bên trong <function> tại dòng %d, cột %d"
 
-#: ../src/dh-parser.c:420
-#: ../src/dh-parser.c:514
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
-msgstr "Không thể tạo bộ phần tách quyển sách"
+msgstr "Không thể tạo bộ phân tách sách"
 
-#: ../src/dh-parser.c:436
-#: ../src/dh-parser.c:524
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Không thể tạo bộ phân tách mã định dạng"
 
-#: ../src/dh-parser.c:577
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "Không thể giải nén quyển sách « %s »: %s"
+msgstr "Không thể giải nén quyển sách '%s': %s"
 
-#: ../src/dh-parser.c:602
+#: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
 msgstr "Trợ giúp phát triển không được xây dựng với khả năng hỗ trợ zlib"
 
-#: ../src/dh-search.c:619
+#: ../src/dh-search.c:621
 msgid "_Book:"
 msgstr "_Quyển:"
 
-#: ../src/dh-search.c:639
+#: ../src/dh-search.c:641
 msgid "_Page:"
 msgstr "T_rang:"
 
@@ -107,8 +102,7 @@ msgstr "_Tập tin"
 msgid "_Edit"
 msgstr "_Sửa"
 
-#: ../src/dh-window.c:143
-#: ../ui/devhelp.glade.h:9
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "Tớ_i"
 
@@ -116,7 +110,7 @@ msgstr "Tớ_i"
 msgid "_Help"
 msgstr "Trợ _giúp"
 
-#.File menu
+#. File menu
 #: ../src/dh-window.c:147
 msgid "_New Window"
 msgstr "Cửa sổ _mới"
@@ -129,13 +123,11 @@ msgstr "_Thanh mới"
 msgid "Browse Contents"
 msgstr "Duyệt mục lục"
 
-#: ../src/dh-window.c:171
-#: ../src/dh-window.c:455
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: ../src/dh-window.c:445
-#: ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Mục lục"
 
@@ -145,10 +137,9 @@ msgstr "Nhóm Việt hóa Gnome <gnomevi-list@lists.sourceforge.net>"
 
 #: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
-msgstr "Bộ duyệt trợ giúp dành cho nhà phát triển, của GNOME 2"
+msgstr "Bộ duyệt trợ giúp của GNOME 2 dành cho nhà phát triển"
 
-#: ../src/dh-window.c:949
-#: ../src/dh-window.c:1077
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
 msgid "Empty Page"
 msgstr "Trang trắng"
 
@@ -174,15 +165,15 @@ msgstr "Độ cao của cửa sổ chính"
 
 #: ../devhelp.schemas.in.h:6
 msgid "Main window maximized state"
-msgstr "Tình tráng được cực đại hóa của cửa sổ chính"
+msgstr "Tình trạng được cực đại hóa của cửa sổ chính"
 
 #: ../devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "Thanh đã chọn, « nội dung » (content) hay « tìm kiếm » (search)"
+msgstr "Thanh đã chọn, \"nội dung\" hoặc \"tìm kiếm\""
 
 #: ../devhelp.schemas.in.h:8
 msgid "Show advanced search options"
-msgstr "Hiện các tùy chọn tìm kiếm cấp cao"
+msgstr "Hiện các tuỳ chọn tìm kiếm nâng cao"
 
 #: ../devhelp.schemas.in.h:9
 msgid "The X position of the main window."
@@ -214,15 +205,15 @@ msgstr "Sử dụng các phông mặc định của hệ thống."
 
 #: ../devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."
-msgstr "Hiện/ẩn các tùy chọn tìm kiếm cấp cao."
+msgstr "Hiện/ẩn các tuỳ chọn tìm kiếm nâng cao."
 
 #: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
-msgstr "Cửa sổ chính có nên bắt đầu với kích cỡ lớn nhất hay không."
+msgstr "Khi nào cửa sổ chính bắt đầu với kích cỡ lớn nhất hoặc không."
 
 #: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Thanh nào đã chọn, « nội dung » (content) hay « tìm kiếm » (search)."
+msgstr "Đối với thanh đã chọn, 'nội dung' hoặc 'tìm kiếm'."
 
 #: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
@@ -250,7 +241,7 @@ msgstr "<b>Tìm kiếm</b>"
 
 #: ../ui/devhelp.glade.h:5
 msgid "Preferences"
-msgstr "Tùy thích"
+msgstr "Cấu hình"
 
 #: ../ui/devhelp.glade.h:6
 msgid "_Back"
@@ -258,7 +249,7 @@ msgstr "_Lùi"
 
 #: ../ui/devhelp.glade.h:7
 msgid "_Fixed width:"
-msgstr "_Rộng cố định:"
+msgstr "Độ rộng _cố định:"
 
 #: ../ui/devhelp.glade.h:8
 msgid "_Forward"
@@ -266,7 +257,7 @@ msgstr "_Tiếp"
 
 #: ../ui/devhelp.glade.h:10
 msgid "_Show advanced search options"
-msgstr "_Hiện tùy chọn tìm kiếm cấp cao"
+msgstr "_Hiện tuỳ chọn tìm kiếm nâng cao"
 
 #: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
@@ -274,12 +265,12 @@ msgstr "_Dùng phông hệ thống"
 
 #: ../ui/devhelp.glade.h:12
 msgid "_Variable width: "
-msgstr "Rộng tha_y đổi: "
+msgstr "Độ rộng _không cố định: "
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
 msgid "Devhelp support"
-msgstr "Sự hỗ trợ Trợ giúp phát triển"
+msgstr "Hỗ trợ của Trợ giúp phát triển"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Đặt phím F7 sẽ hiển thị Trợ giúp phát triển về từ tại con chạy"
+msgstr "Đặt phím F7 để hiển thị Trợ giúp phát triển cho từ ở vị trí con trỏ"
