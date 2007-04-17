@@ -12,7 +12,11 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_ISC_POSIX
 AC_HEADER_STDC
+
+AM_DISABLE_STATIC
+F77=no
 AM_PROG_LIBTOOL
+
 AM_PATH_GLIB_2_0
 
 AC_PROG_INTLTOOL
@@ -141,15 +145,16 @@ AM_PATH_PYTHON([2.3],[],[no])
 AC_CONFIG_FILES([
 Makefile
 libdevhelp-1.0.pc
-dtd/Makefile
 po/Makefile.in
 src/Makefile
-ui/Makefile
+data/Makefile
+data/devhelp.desktop.in
+data/ui/Makefile
+data/dtd/Makefile
 misc/Makefile
 misc/gedit-plugin/Makefile
 misc/gedit-plugin/devhelp/Makefile
 contrib/Makefile
-devhelp.desktop.in
 ])
 
 AC_OUTPUT
