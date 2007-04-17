@@ -1,3 +1,9 @@
+2007-02-18  Ryan Lortie  <desrt@desrt.ca>
+
+	* src/dh-window.[ch]: Add command to focus search field.
+	* src/dh-main.c: Add --focus-search command line option and bacon
+	  command (closes bug #409182).
+
 2007-04-17  Richard Hult  <richard@imendio.com>
 
 	* Apply patch from Huang Peng to add typeahead searching to the

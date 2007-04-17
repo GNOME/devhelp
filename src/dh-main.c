@@ -29,16 +29,17 @@
 #include "dh-base.h"
 #include "dh-window.h"
 
-#define COMMAND_QUIT   "quit"
-#define COMMAND_SEARCH "search"
-#define COMMAND_RAISE  "raise"
+#define COMMAND_QUIT           "quit"
+#define COMMAND_SEARCH         "search"
+#define COMMAND_FOCUS_SEARCH   "focus-search"
+#define COMMAND_RAISE          "raise"
 
 static void
 message_received_cb (const gchar *message, DhBase *base)
 {
 	GtkWidget *window;
 	guint32    timestamp;
-		
+
 	if (strcmp (message, COMMAND_QUIT) == 0) {
 		gtk_main_quit ();
 		return;
@@ -48,19 +49,22 @@ message_received_cb (const gchar *message, DhBase *base)
 	 * gtk_window_present() and gtk_window_present_with_time() to make all
 	 * the cases working.
 	 */
-	
+
 	window = dh_base_get_window_on_current_workspace (base);
 	if (!window) {
 		window = dh_base_new_window (base);
 		gtk_window_present (GTK_WINDOW (window));
 	}
-	
+
 	if (strncmp (message, COMMAND_SEARCH, strlen (COMMAND_SEARCH)) == 0) {
-		
+
 		dh_window_search (DH_WINDOW (window),
 				  message + strlen (COMMAND_SEARCH) + 1);
-	}	
-	
+	}
+	else if (strcmp (message, COMMAND_FOCUS_SEARCH) == 0) {
+		dh_window_focus_search (DH_WINDOW (window));
+	}
+
 	timestamp = gdk_x11_get_server_time (window->window);
 	gtk_window_present_with_time (GTK_WINDOW (window), timestamp);
 }
@@ -70,6 +74,7 @@ main (int argc, char **argv)
 {
 	gchar                  *option_search = NULL;
 	gboolean                option_quit = FALSE;
+	gboolean                option_focus_search = FALSE;
 	gboolean                option_version = FALSE;
 	BaconMessageConnection *message_conn;
 	DhBase                 *base;
@@ -103,11 +108,20 @@ main (int argc, char **argv)
 			_("Display the version and exit"),
 			NULL
 		},
+       		{
+			"focus-search",
+			'f',
+			0,
+			G_OPTION_ARG_NONE,
+			&option_focus_search,
+			_("Focus the devhelp window with the search field active"),
+			NULL
+		},
 		{
 			NULL, '\0', 0, 0, NULL, NULL, NULL
 		}
 	};
-	
+
 	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (PACKAGE);
@@ -141,6 +155,9 @@ main (int argc, char **argv)
 
 			bacon_message_connection_send (message_conn, command);
 			g_free (command);
+		}
+		else if (option_focus_search) {
+			bacon_message_connection_send (message_conn, COMMAND_FOCUS_SEARCH);
 		} else {
 			bacon_message_connection_send (message_conn, COMMAND_RAISE);
 		}
