@@ -5,13 +5,13 @@
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004.
 # Daniel Nylander <po@danielnylander.se>, 2006.
 #
-# $Id$
+# $Id: sv.po,v 1.36 2006/08/17 20:05:54 rhult Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-17 22:04+0200\n"
+"POT-Creation-Date: 2007-04-17 19:00+0200\n"
 "PO-Revision-Date: 2006-04-12 00:54+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:701
 #: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -70,73 +70,81 @@ msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr "namn- och länkelement krävs inuti <function> på rad %d, kolumn %d"
 
-#: ../src/dh-parser.c:416 ../src/dh-parser.c:510
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Kunde inte skapa boktolk"
 
-#: ../src/dh-parser.c:432 ../src/dh-parser.c:520
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Kunde inte skapa markuptolk"
 
-#: ../src/dh-parser.c:573
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan inte dekomprimera boken \"%s\": %s"
 
-#: ../src/dh-parser.c:598
+#: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp äre inte byggt med zlib-stöd"
 
-#: ../src/dh-search.c:584
+#: ../src/dh-search.c:621
 msgid "_Book:"
 msgstr "_Bok:"
 
-#: ../src/dh-search.c:604
+#: ../src/dh-search.c:641
 msgid "_Page:"
 msgstr "_Sida:"
 
-#: ../src/dh-search.c:663
-msgid "Section"
-msgstr "Avsnitt"
-
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:160
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:161
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
+#: ../src/dh-window.c:162 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:163
 msgid "_Help"
 msgstr "_Hjälp"
 
 #. File menu
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:166
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:168
 msgid "New _Tab"
 msgstr "Ny _flik"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "Bläddra i innehållet"
+#: ../src/dh-window.c:180 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "Sök nästa"
 
-#: ../src/dh-window.c:171 ../src/dh-window.c:455
-msgid "Search"
-msgstr "Sök"
+#: ../src/dh-window.c:182 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Sök föregående"
 
-#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
+#: ../src/dh-window.c:193
+msgid "_Contents Tab"
+msgstr "_Innehållsflik"
+
+#: ../src/dh-window.c:196
+msgid "_Search Tab"
+msgstr "_Sökflik"
+
+#: ../src/dh-window.c:473 ../ui/devhelp.glade.h:3
 msgid "Contents"
 msgstr "Innehåll"
 
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:483
+msgid "Search"
+msgstr "Sök"
+
+#: ../src/dh-window.c:698
 msgid "translator_credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -144,13 +152,33 @@ msgstr ""
 "Richard Hult <richard@imendio.com>\n"
 "Johan Dahlin <johan@gnome.org>"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:703
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
-#: ../src/dh-window.c:949 ../src/dh-window.c:1077
+#: ../src/dh-window.c:1110 ../src/dh-window.c:1239
 msgid "Empty Page"
 msgstr "Tom sida"
+
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "Sök:"
+
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "Sök föregående förekomst av söksträngen"
+
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "Sök nästa förekomst av söksträngen"
+
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "Skiftlägeskänslig"
+
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "Växla skiftlägeskänslighet"
 
 #: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -284,8 +312,5 @@ msgstr "Devhelpstöd"
 msgid "Makes F7 bring up Devhelp for the word at the cursor"
 msgstr "Gör så att F7 tar fram Devhelp för ordet vid markören"
 
-#~ msgid "Devhelp Book"
-#~ msgstr "Devhelp-bok"
-
-#~ msgid "_Search:"
-#~ msgstr "_Sök:"
+#~ msgid "Browse _Contents"
+#~ msgstr "_Bläddra i innehållet"

@@ -1,5 +1,10 @@
 2007-04-17  Richard Hult  <richard@imendio.com>
 
+	* Apply patch from Huang Peng to add typeahead searching to the
+	content area, fixes bug #116322.
+
+2007-04-17  Richard Hult  <richard@imendio.com>
+
 	* README: Update information about where books should be installed
 	and the required version of the library we use. Fixes bug #411748.
 

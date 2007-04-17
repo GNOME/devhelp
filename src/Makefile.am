@@ -32,6 +32,8 @@ devhelp_LDFLAGS = -R$(GECKO_HOME) $(AM_LDFLAGS)
 noinst_LTLIBRARIES = libcppwrapper.la
 
 libcppwrapper_la_SOURCES =				\
+	Yelper.cpp					\
+	Yelper.h					\
 	dh-gecko-utils.cpp				\
 	dh-gecko-utils.h
 
@@ -41,6 +43,8 @@ gecko_include_subdirs =	\
 	content			\
 	dom			\
 	find			\
+	fastfind		\
+	docshell		\
 	gfx			\
 	gtkembedmoz		\
 	locale			\
@@ -80,7 +84,8 @@ devhelpinclude_HEADERS = 				\
 	dh-parser.h					\
 	dh-preferences.h                                \
 	dh-util.h					\
-	dh-window.h
+	dh-window.h					\
+	eggfindbar.h
 
 libdevhelp_1_la_SOURCES =				\
 	bacon-message-connection.c			\
@@ -96,7 +101,8 @@ libdevhelp_1_la_SOURCES =				\
 	dh-parser.c					\
 	dh-preferences.c				\
 	dh-util.c					\
-	dh-window.c
+	dh-window.c					\
+	eggfindbar.c
 
 libdevhelp_1_la_CPPFLAGS =				\
 	$(DEFINES)					\

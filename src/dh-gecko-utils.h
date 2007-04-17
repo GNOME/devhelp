@@ -24,13 +24,19 @@
 #define __DH_GECKO_UTILS_H__
 
 #include <gtkmozembed.h>
-
 G_BEGIN_DECLS
 
 enum {
 	DH_GECKO_PREF_FONT_VARIABLE,
 	DH_GECKO_PREF_FONT_FIXED
 };
+
+#ifndef __cplusplus
+typedef struct _Yelper Yelper;
+#else
+class Yelper;
+#endif
+
 
 void dh_gecko_utils_set_font                  (gint         font_type,
 					       const gchar *fontname);
@@ -39,6 +45,11 @@ void dh_gecko_utils_shutdown                  (void);
 gint dh_gecko_utils_get_mouse_event_button    (gpointer     event);
 gint dh_gecko_utils_get_mouse_event_modifiers (gpointer     event);
 void dh_gecko_utils_copy_selection            (GtkMozEmbed *embed);
+gboolean dh_gecko_utils_search_find           (Yelper *yelper, const gchar * text);
+gboolean dh_gecko_utils_search_find_again     (Yelper *yelper, gboolean backward);
+void dh_gecko_utils_search_set_case_sensitive (Yelper *yelper, gboolean match);
+Yelper* dh_gecko_utils_create_yelper         (GtkMozEmbed *gecko);
+void dh_gecko_utils_destroy_yelper            (Yelper* yelper);
 
 G_END_DECLS
 

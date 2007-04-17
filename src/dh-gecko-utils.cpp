@@ -36,6 +36,8 @@
 #include <nsISupportsPrimitives.h>
 #include <nsILocalFile.h>
 #include <nsIDOMMouseEvent.h>
+#include <nsIWebBrowserFind.h>
+#include <nsStringAPI.h>
 
 #include <stdlib.h>
 
@@ -54,6 +56,7 @@
 
 #include "dh-util.h"
 #include "dh-gecko-utils.h"
+#include "Yelper.h"
 
 gint
 dh_gecko_utils_get_mouse_event_button (gpointer event)
@@ -346,4 +349,39 @@ dh_gecko_utils_shutdown (void)
 #ifdef HAVE_GECKO_1_9
 	NS_LogTerm ();
 #endif
+}
+
+
+extern "C" gboolean
+dh_gecko_utils_search_find (Yelper *yelper, const gchar * text)
+{
+	yelper->Init();
+	return yelper->Find (text);
+}
+
+extern "C" gboolean
+dh_gecko_utils_search_find_again (Yelper *yelper, gboolean backward)
+{
+	yelper->Init();
+	return yelper->FindAgain(!backward);
+}
+
+extern "C" void
+dh_gecko_utils_search_set_case_sensitive (Yelper * yelper, gboolean case_sensitive)
+{
+	yelper->Init();
+	yelper->SetFindProperties (NULL, case_sensitive, FALSE);
+}
+
+extern "C" Yelper *
+dh_gecko_utils_create_yelper (GtkMozEmbed *gecko)
+{
+	Yelper *yelper = new Yelper (gecko);
+	return yelper;
+}
+
+extern "C" void
+dh_gecko_utils_destroy_yelper (Yelper *yelper)
+{
+	delete yelper;
 }

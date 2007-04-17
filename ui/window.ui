@@ -11,6 +11,10 @@
     <menu action="EditMenu">
       <menuitem action="Copy"/>
       <separator/>
+      <menuitem action="Find"/>
+      <menuitem action="Find Next"/>
+      <menuitem action="Find Previous"/>
+      <separator/>
       <menuitem action="Preferences"/>
     </menu>
     <menu action="GoMenu">

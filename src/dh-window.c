@@ -30,6 +30,7 @@
 #include "dh-preferences.h"
 #include "dh-search.h"
 #include "dh-window.h"
+#include "eggfindbar.h"
 
 struct _DhWindowPriv {
 	DhBase         *base;
@@ -43,6 +44,9 @@ struct _DhWindowPriv {
         GtkWidget      *book_tree;
 	GtkWidget      *search;
 	GtkWidget      *html_notebook;
+
+	GtkWidget      *vbox;
+	GtkWidget      *findbar;
 
 	GtkUIManager   *manager;
 	GtkActionGroup *action_group;
@@ -74,6 +78,8 @@ static void       window_activate_close           (GtkAction       *action,
 static void       window_activate_quit            (GtkAction       *action,
 						   DhWindow        *window);
 static void       window_activate_copy            (GtkAction       *action,
+						   DhWindow        *window);
+static void       window_activate_find            (GtkAction       *action,
 						   DhWindow        *window);
 static void       window_activate_preferences     (GtkAction       *action,
 						   DhWindow        *window);
@@ -123,6 +129,18 @@ static void       window_html_tab_accel_cb        (GtkAccelGroup   *accel_group,
 						   guint            key,
 						   GdkModifierType  mod,
 						   DhWindow        *window);
+static void       window_findbar_search_changed_cb(GObject         *object,
+						   GParamSpec      *arg1,
+						   DhWindow        *window);
+static void       window_findbar_case_sensitive_changed_cb (GObject         *object,
+							    GParamSpec      *arg1,
+							    DhWindow        *window);
+static void       window_find_previous_cb         (GtkEntry        *entry,
+						   DhWindow        *window);
+static void       window_find_next_cb             (GtkEntry        *entry,
+						   DhWindow        *window);
+static void       window_findbar_close_cb         (GtkWidget       *widget,
+						   DhWindow        *window);
 static GtkWidget *window_new_tab_label            (DhWindow        *window,
 						   const gchar     *label);
 static void       window_open_new_tab             (DhWindow        *window,
@@ -156,6 +174,12 @@ static const GtkActionEntry actions[] = {
 	/* Edit menu */
 	{ "Copy", GTK_STOCK_COPY, NULL, "<control>C", NULL,
 	  G_CALLBACK (window_activate_copy) },
+	{ "Find", GTK_STOCK_FIND, NULL, "<control>F", NULL,
+	  G_CALLBACK (window_activate_find) },
+	{ "Find Next", GTK_STOCK_GO_FORWARD, N_("Find Next"), "<control>G", NULL,
+	  G_CALLBACK (window_find_next_cb) },
+	{ "Find Previous", GTK_STOCK_GO_BACK, N_("Find Previous"), "<shift><control>G", NULL,
+	  G_CALLBACK (window_find_previous_cb) },
 	{ "Preferences", GTK_STOCK_PREFERENCES, NULL, NULL, NULL,
 	  G_CALLBACK (window_activate_preferences) },
 
@@ -165,15 +189,15 @@ static const GtkActionEntry actions[] = {
 	{ "Forward", GTK_STOCK_GO_FORWARD, NULL, "<alt>Right", NULL,
 	  G_CALLBACK (window_activate_forward) },
 
-	{ "ShowContentsTab", NULL, N_("Browse _Contents"), "<ctrl>B", NULL,
+	{ "ShowContentsTab", NULL, N_("_Contents Tab"), "<ctrl>B", NULL,
 	  G_CALLBACK (window_activate_show_contents) },
 
-	{ "ShowSearchTab", NULL, N_("_Search"), "<ctrl>S", NULL,
+	{ "ShowSearchTab", NULL, N_("_Search Tab"), "<ctrl>S", NULL,
 	  G_CALLBACK (window_activate_show_search) },
 
 	/* About menu */
 	{ "About", GTK_STOCK_ABOUT, NULL, NULL, NULL,
-	  G_CALLBACK (window_activate_about) }
+	  G_CALLBACK (window_activate_about) },
 };
 
 GType
@@ -353,10 +377,11 @@ window_html_switch_page_cb (GtkNotebook     *notebook,
 		new_html = g_object_get_data (G_OBJECT (new_page), "html");
 
 		window_update_title (window, new_html);
+
 		return;
 
 
-		
+
 		title = dh_html_get_title (new_html);
 		gtk_window_set_title (GTK_WINDOW (window), title);
 		g_free (title);
@@ -370,6 +395,7 @@ window_html_switch_page_cb (GtkNotebook     *notebook,
 		}
 
 		window_check_history (window, new_html);
+
 	} else {
 		gtk_window_set_title (GTK_WINDOW (window), "Devhelp");
 		window_check_history (window, NULL);
@@ -459,18 +485,48 @@ window_populate (DhWindow *window)
 			  G_CALLBACK (window_search_link_selected_cb),
 			  window);
 
+	priv->vbox = gtk_vbox_new (FALSE, 0);
+	gtk_paned_add2 (GTK_PANED (priv->hpaned), priv->vbox);
+
 	/* HTML tabs notebook. */
  	priv->html_notebook = gtk_notebook_new ();
-	gtk_paned_add2 (GTK_PANED (priv->hpaned), priv->html_notebook);
+	gtk_box_pack_start (GTK_BOX (priv->vbox), priv->html_notebook, TRUE, TRUE, 0);
 
  	g_signal_connect (priv->html_notebook,
 			  "switch-page",
 			  G_CALLBACK (window_html_switch_page_cb),
 			  window);
 
+	/* Create findbar. */
+	priv->findbar = egg_find_bar_new ();
+	gtk_widget_set_no_show_all (priv->findbar, TRUE);
+	gtk_box_pack_start (GTK_BOX (priv->vbox), priv->findbar, FALSE, FALSE, 0);
+
+	g_signal_connect (priv->findbar,
+			  "notify::search-string",
+			  G_CALLBACK(window_findbar_search_changed_cb),
+			  window);
+	g_signal_connect (priv->findbar,
+			  "notify::case-sensitive",
+			  G_CALLBACK (window_findbar_case_sensitive_changed_cb),
+			  window);
+	g_signal_connect (priv->findbar,
+			  "previous",
+			  G_CALLBACK (window_find_previous_cb),
+			  window);
+	g_signal_connect (priv->findbar,
+			  "next",
+			  G_CALLBACK (window_find_next_cb),
+			  window);
+	g_signal_connect (priv->findbar,
+			  "close",
+			  G_CALLBACK (window_findbar_close_cb),
+			  window);
+
 	dh_preferences_setup_fonts ();
 
 	gtk_widget_show_all (priv->hpaned);
+
 	window_open_new_tab (window, NULL);
 }
 
@@ -537,13 +593,35 @@ window_activate_copy (GtkAction *action, DhWindow *window)
 }
 
 static void
-window_activate_preferences (GtkAction *action, DhWindow *window)
+window_activate_find (GtkAction *action,
+		      DhWindow  *window)
+{
+	DhWindowPriv *priv;
+	DhHtml       *html;
+
+	priv = window->priv;
+
+	html = window_get_active_html (window);
+
+	dh_html_search_find (
+		html, egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)));
+	dh_html_search_set_case_sensitive (
+		html,  egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)));
+
+	gtk_widget_show (priv->findbar);
+	gtk_widget_grab_focus (priv->findbar);
+}
+
+static void
+window_activate_preferences (GtkAction *action,
+			     DhWindow  *window)
 {
 	dh_preferences_show_dialog (GTK_WINDOW (window));
 }
 
 static void
-window_activate_back (GtkAction *action, DhWindow *window)
+window_activate_back (GtkAction *action,
+		      DhWindow  *window)
 {
 	DhWindowPriv *priv;
 	DhHtml       *html;
@@ -887,6 +965,82 @@ window_html_title_changed_cb (DhHtml      *html,
 }
 
 static void
+window_findbar_search_changed_cb (GObject    *object,
+				  GParamSpec *pspec,
+				  DhWindow   *window)
+{
+	DhWindowPriv *priv;
+	DhHtml       *html;
+
+	priv = window->priv;
+
+	html = window_get_active_html (window);
+
+	dh_html_search_find (html,
+		egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)));
+}
+
+static void
+window_findbar_case_sensitive_changed_cb (GObject    *object,
+					  GParamSpec *pspec,
+					  DhWindow   *window)
+{
+	DhWindowPriv *priv;
+	DhHtml       *html;
+
+	priv = window->priv;
+
+	html = window_get_active_html (window);
+
+	dh_html_search_set_case_sensitive (
+		html,
+		egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)));
+}
+
+static void
+window_find_next_cb (GtkEntry *entry,
+		     DhWindow *window)
+{
+	DhHtml       *html;
+	DhWindowPriv *priv = window->priv;
+
+	priv = window->priv;
+
+	gtk_widget_show (priv->findbar);
+
+	html = window_get_active_html (window);
+
+	dh_html_search_find_again (html, FALSE);
+}
+
+static void
+window_find_previous_cb (GtkEntry *entry,
+			 DhWindow *window)
+{
+	DhHtml       *html;
+	DhWindowPriv *priv = window->priv;
+
+	priv = window->priv;
+
+	gtk_widget_show (priv->findbar);
+
+	html = window_get_active_html (window);
+
+	dh_html_search_find_again (html, TRUE);
+}
+
+static void
+window_findbar_close_cb (GtkWidget *widget,
+			 DhWindow  *window)
+{
+	DhWindowPriv *priv;
+
+	priv = window->priv;
+
+	gtk_widget_hide (priv->findbar);
+}
+
+static void
 window_html_open_new_tab_cb (DhHtml      *html,
 			     const gchar *location,
 			     DhWindow    *window)
@@ -941,8 +1095,10 @@ window_open_new_tab (DhWindow    *window,
 	frame = gtk_frame_new (NULL);
 	gtk_widget_show (frame);
 
+
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 	gtk_container_set_border_width (GTK_CONTAINER (frame), 2);
+
 	gtk_container_add (GTK_CONTAINER (frame), view);
 
 	g_object_set_data (G_OBJECT (frame), "html", html);
@@ -982,7 +1138,6 @@ window_open_new_tab (DhWindow    *window,
 	} else {
 		dh_html_clear (html);
 	}
-
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->html_notebook), num);
 
 }
@@ -1030,7 +1185,7 @@ window_update_title (DhWindow *window,
 	gchar        *full_title;
 
 	priv = window->priv;
-	
+
 	html_title = dh_html_get_title (html);
 
 	window_tab_set_title (window, html, html_title);
@@ -1047,11 +1202,11 @@ window_update_title (DhWindow *window,
 		g_free (html_title);
 		html_title = NULL;
 	}
-	
+
 	if (!book_title) {
 		book_title = "Devhelp";
 	}
-	
+
 	if (html_title) {
 		full_title = g_strdup_printf ("%s : %s", book_title, html_title);
 		g_free (html_title);

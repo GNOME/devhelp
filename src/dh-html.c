@@ -30,10 +30,11 @@
 #include "dh-preferences.h"
 #include "dh-html.h"
 
-#define d(x) 
+#define d(x)
 
 struct _DhHtmlPriv {
 	GtkMozEmbed *gecko;
+	Yelper      *yelper;
 };
 
 static void     html_class_init  (DhHtmlClass *klass);
@@ -78,19 +79,19 @@ dh_html_get_type (void)
                                 0,
                                 (GInstanceInitFunc) html_init,
                         };
-                
+
                 type = g_type_register_static (G_TYPE_OBJECT,
-					       "DhHtml", 
+					       "DhHtml",
 					       &info, 0);
         }
-        
+
         return type;
 }
 
 static void
 html_class_init (DhHtmlClass *klass)
 {
-	signals[TITLE_CHANGED] = 
+	signals[TITLE_CHANGED] =
 		g_signal_new ("title-changed",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
@@ -134,7 +135,7 @@ html_mouse_click_cb (GtkMozEmbed *widget, gpointer dom_event, DhHtml *html)
 {
 	gint button;
 	gint mask;
-	
+
 	button = dh_gecko_utils_get_mouse_event_button (dom_event);
 	mask = dh_gecko_utils_get_mouse_event_modifiers (dom_event);
 
@@ -201,9 +202,9 @@ static void
 html_init (DhHtml *html)
 {
         DhHtmlPriv *priv;
-        
+
 	priv = g_new0 (DhHtmlPriv, 1);
-	
+
 	priv->gecko = GTK_MOZ_EMBED (gtk_moz_embed_new ());
 
 	g_signal_connect (priv->gecko, "title",
@@ -230,6 +231,8 @@ html_init (DhHtml *html)
 
 	gtk_moz_embed_load_url (GTK_MOZ_EMBED (priv->gecko), "about:blank");
 
+	priv->yelper = dh_gecko_utils_create_yelper (priv->gecko);
+
 	html->priv = priv;
 }
 
@@ -250,7 +253,7 @@ html_location_cb (GtkMozEmbed *embed, DhHtml *html)
 	char       *location;
 
 	priv = html->priv;
-	
+
 	location = gtk_moz_embed_get_location (embed);
 	g_signal_emit (html, signals[LOCATION_CHANGED], 0, location);
 	g_free (location);
@@ -277,7 +280,7 @@ dh_html_new (void)
         DhHtml *html;
 
         html = g_object_new (DH_TYPE_HTML, NULL);
- 
+
         return html;
 }
 
@@ -286,7 +289,7 @@ dh_html_clear (DhHtml *html)
 {
 	DhHtmlPriv        *priv;
 	static const char *data = "<html><body bgcolor=\"white\"></body></html>";
-	
+
 	g_return_if_fail (DH_IS_HTML (html));
 
 	priv = html->priv;
@@ -300,24 +303,25 @@ dh_html_open_uri (DhHtml *html, const gchar *str_uri)
 {
         DhHtmlPriv *priv;
 	gchar      *full_uri;
-	
+
 	g_return_if_fail (DH_IS_HTML (html));
 	g_return_if_fail (str_uri != NULL);
 
         priv = html->priv;
-	
+
 	if (str_uri[0] == '/') {
 		full_uri = g_strdup_printf ("file://%s", str_uri);
 	} else {
 		full_uri = (gchar *) str_uri;
 	}
-	
+
 	gtk_moz_embed_load_url (priv->gecko, full_uri);
 
 	if (full_uri != str_uri) {
 		g_free (full_uri);
 	}
 }
+
 
 GtkWidget *
 dh_html_get_widget (DhHtml *html)
@@ -335,7 +339,7 @@ gboolean
 dh_html_can_go_forward (DhHtml *html)
 {
 	DhHtmlPriv *priv;
-	
+
 	g_return_val_if_fail (DH_IS_HTML (html), FALSE);
 
 	priv = html->priv;
@@ -347,7 +351,7 @@ gboolean
 dh_html_can_go_back (DhHtml *html)
 {
 	DhHtmlPriv *priv;
-	
+
 	g_return_val_if_fail (DH_IS_HTML (html), FALSE);
 
 	priv = html->priv;
@@ -359,7 +363,7 @@ void
 dh_html_go_forward (DhHtml *html)
 {
 	DhHtmlPriv *priv;
-	
+
 	g_return_if_fail (DH_IS_HTML (html));
 
 	priv = html->priv;
@@ -371,11 +375,11 @@ void
 dh_html_go_back (DhHtml *html)
 {
 	DhHtmlPriv *priv;
-	
+
 	g_return_if_fail (DH_IS_HTML (html));
 
 	priv = html->priv;
-	
+
 	gtk_moz_embed_go_back (priv->gecko);
 }
 
@@ -383,11 +387,11 @@ gchar *
 dh_html_get_title (DhHtml *html)
 {
 	DhHtmlPriv *priv;
-	
+
 	g_return_val_if_fail (DH_IS_HTML (html), NULL);
 
 	priv = html->priv;
-	
+
 	return gtk_moz_embed_get_title (priv->gecko);
 }
 
@@ -395,11 +399,11 @@ gchar *
 dh_html_get_location (DhHtml *html)
 {
 	DhHtmlPriv *priv;
-	
+
 	g_return_val_if_fail (DH_IS_HTML (html), NULL);
 
 	priv = html->priv;
-	
+
 	return gtk_moz_embed_get_location (priv->gecko);
 }
 
@@ -407,10 +411,49 @@ void
 dh_html_copy_selection (DhHtml *html)
 {
 	DhHtmlPriv *priv;
-	
+
 	g_return_if_fail (DH_IS_HTML (html));
 
 	priv = html->priv;
 
 	dh_gecko_utils_copy_selection (priv->gecko);
+}
+
+void
+dh_html_search_find (DhHtml      *html,
+		     const gchar *text)
+{
+	DhHtmlPriv *priv;
+
+	g_return_if_fail (DH_IS_HTML (html));
+
+	priv = html->priv;
+
+	dh_gecko_utils_search_find (priv->yelper, text);
+}
+
+gboolean
+dh_html_search_find_again (DhHtml   *html,
+			   gboolean  backwards)
+{
+	DhHtmlPriv *priv;
+
+	g_return_val_if_fail (DH_IS_HTML (html), FALSE);
+
+	priv = html->priv;
+
+	return dh_gecko_utils_search_find_again (priv->yelper, backwards);
+}
+
+void
+dh_html_search_set_case_sensitive (DhHtml   *html,
+				   gboolean  case_sensitive)
+{
+	DhHtmlPriv *priv;
+
+	g_return_if_fail (DH_IS_HTML (html));
+
+	priv = html->priv;
+
+	dh_gecko_utils_search_set_case_sensitive (priv->yelper, case_sensitive);
 }

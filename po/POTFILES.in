@@ -11,6 +11,7 @@ src/dh-parser.c
 src/dh-search.c
 src/dh-util.c
 src/dh-window.c
+src/eggfindbar.c
 devhelp.schemas.in
 ui/devhelp.glade
 misc/gedit-plugin/devhelp.gedit-plugin.desktop.in
