@@ -1,5 +1,9 @@
 2007-04-17  Richard Hult  <richard@imendio.com>
 
+	* configure.in: Bump version on trunk after branching.
+
+2007-04-17  Richard Hult  <richard@imendio.com>
+	
 	* configure.in: Prepare for branching.
 
 2007-03-13  Runa Bhattacharjee <runabh@gmail.com>
