@@ -165,10 +165,10 @@ static const GtkActionEntry actions[] = {
 	{ "Forward", GTK_STOCK_GO_FORWARD, NULL, "<alt>Right", NULL,
 	  G_CALLBACK (window_activate_forward) },
 
-	{ "ShowContentsTab", NULL, N_("Browse Contents"), "<ctrl>B", NULL,
+	{ "ShowContentsTab", NULL, N_("Browse _Contents"), "<ctrl>B", NULL,
 	  G_CALLBACK (window_activate_show_contents) },
 
-	{ "ShowSearchTab", NULL, N_("Search"), "<ctrl>S", NULL,
+	{ "ShowSearchTab", NULL, N_("_Search"), "<ctrl>S", NULL,
 	  G_CALLBACK (window_activate_show_search) },
 
 	/* About menu */

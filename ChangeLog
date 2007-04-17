@@ -1,5 +1,10 @@
 2007-04-17  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c: Patch from Mariano Suárez-Alvarez to add
+	missing mnemonics, bug #411376.
+
+2007-04-17  Richard Hult  <richard@imendio.com>
+
 	* devhelp.desktop.in.in: Patch from Kamil Páral to fix bug
 	#417613, GNOME Goal #3: Remove "Application" category from
 	.desktop files.
