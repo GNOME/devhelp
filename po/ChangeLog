@@ -1,5 +1,10 @@
 2007-04-17  Richard Hult  <richard@imendio.com>
 
+	* POTFILES.in: 
+	* POTFILES.skip: Update since data files were moved. 
+
+2007-04-17  Richard Hult  <richard@imendio.com>
+
 	* sv.po: Update.
 
 2007-04-17  Peter Bach  <bach.peter@gmail.com>

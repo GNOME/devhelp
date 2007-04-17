@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 19:00+0200\n"
+"POT-Creation-Date: 2007-04-17 20:47+0200\n"
 "PO-Revision-Date: 2006-04-12 00:54+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -19,30 +19,174 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:701
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:139 ../src/dh-window.c:697
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Dokumentationsläsare"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Typsnitt för text med fast bredd"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Typsnitt för text"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Typsnitt för text med fast breddsteg."
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Typsnitt för text med variabel bredd."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Höjd på huvudfönstret"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Maximerat tillstånd för huvudfönstret"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Vald flik, \"content\" eller \"search\""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Visa avancerade sökalternativ"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "X-positionen för huvudfönstret."
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Y-positionen för huvudfönstret."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Höjden på huvudfönstret."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Bredden på index- och sökpanelen."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Bredden på huvudfönstret."
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Använd systemtypsnitt"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Använd systemets standardtypsnitt."
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Huruvida avancerade sökalternativ visas."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Huruvida huvudfönstret ska starta maximerat eller inte."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Vilken av flikarna som är vald, \"content\" eller \"search\"."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Bredd på index- och sökpanelen"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Bredd på huvudfönstret"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "X-position för huvudfönstret"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Y-position för huvudfönstret"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Typsnitt</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Sökning</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:471
+msgid "Contents"
+msgstr "Innehåll"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "_Bakåt"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Fast bredd:"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_Framåt"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:161
+msgid "_Go"
+msgstr "_Gå"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Visa avancerande sökalternativ"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "_Använd systemets typsnitt"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "_Variabel bredd:"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelpstöd"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Gör så att F7 tar fram Devhelp för ordet vid markören"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "Visa versionen och avsluta"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "Fokusera devhelp-fönstret med sökfältet aktivt"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -95,56 +239,48 @@ msgstr "_Bok:"
 msgid "_Page:"
 msgstr "_Sida:"
 
-#: ../src/dh-window.c:160
+#: ../src/dh-window.c:159
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/dh-window.c:161
+#: ../src/dh-window.c:160
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/dh-window.c:162 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "_Gå"
-
-#: ../src/dh-window.c:163
+#: ../src/dh-window.c:162
 msgid "_Help"
 msgstr "_Hjälp"
 
 #. File menu
-#: ../src/dh-window.c:166
+#: ../src/dh-window.c:165
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/dh-window.c:168
+#: ../src/dh-window.c:167
 msgid "New _Tab"
 msgstr "Ny _flik"
 
-#: ../src/dh-window.c:180 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:179 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Sök nästa"
 
-#: ../src/dh-window.c:182 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:181 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Sök föregående"
 
-#: ../src/dh-window.c:193
+#: ../src/dh-window.c:192
 msgid "_Contents Tab"
 msgstr "_Innehållsflik"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:195
 msgid "_Search Tab"
 msgstr "_Sökflik"
 
-#: ../src/dh-window.c:473 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Innehåll"
-
-#: ../src/dh-window.c:483
+#: ../src/dh-window.c:481
 msgid "Search"
 msgstr "Sök"
 
-#: ../src/dh-window.c:698
+#: ../src/dh-window.c:694
 msgid "translator_credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -152,11 +288,11 @@ msgstr ""
 "Richard Hult <richard@imendio.com>\n"
 "Johan Dahlin <johan@gnome.org>"
 
-#: ../src/dh-window.c:703
+#: ../src/dh-window.c:699
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
-#: ../src/dh-window.c:1110 ../src/dh-window.c:1239
+#: ../src/dh-window.c:1106 ../src/dh-window.c:1235
 msgid "Empty Page"
 msgstr "Tom sida"
 
@@ -179,138 +315,6 @@ msgstr "Skiftlägeskänslig"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Växla skiftlägeskänslighet"
-
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Typsnitt för text med fast bredd"
-
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Typsnitt för text"
-
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Typsnitt för text med fast breddsteg."
-
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Typsnitt för text med variabel bredd."
-
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "Höjd på huvudfönstret"
-
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "Maximerat tillstånd för huvudfönstret"
-
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Vald flik, \"content\" eller \"search\""
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Visa avancerade sökalternativ"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "X-positionen för huvudfönstret."
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "Y-positionen för huvudfönstret."
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "Höjden på huvudfönstret."
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "Bredden på index- och sökpanelen."
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "Bredden på huvudfönstret."
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "Använd systemtypsnitt"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "Använd systemets standardtypsnitt."
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Huruvida avancerade sökalternativ visas."
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "Huruvida huvudfönstret ska starta maximerat eller inte."
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Vilken av flikarna som är vald, \"content\" eller \"search\"."
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "Bredd på index- och sökpanelen"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "Bredd på huvudfönstret"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "X-position för huvudfönstret"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "Y-position för huvudfönstret"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Typsnitt</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Sökning</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "_Bakåt"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "_Fast bredd:"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "_Framåt"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Visa avancerande sökalternativ"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "_Använd systemets typsnitt"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "_Variabel bredd:"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Devhelpstöd"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Gör så att F7 tar fram Devhelp för ordet vid markören"
 
 #~ msgid "Browse _Contents"
 #~ msgstr "_Bläddra i innehållet"

@@ -122,11 +122,7 @@ filename = sys.argv[1]
 dict =  parse_book (sys.argv[1])
 
 print '<?xml version="1.0"?>'
-print '''
-<book title="%s"
-      name=""
-      base=""
-      link="%s">''' % (dict['name'], os.path.basename (sys.argv[1]))
+print '<book title="%s"\nname=""\nbase=""\nlink="%s">' % (dict['name'], os.path.basename (sys.argv[1]))
 
 print '<chapters>'
 for chap in dict['order']:
