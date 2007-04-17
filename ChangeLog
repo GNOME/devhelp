@@ -1,10 +1,14 @@
+2007-04-17  Richard Hult  <richard@imendio.com>
+
+	* configure.in: Prepare for branching.
+
 2007-03-13  Runa Bhattacharjee <runabh@gmail.com>
 
 	* configure.in: Added Bengali India (bn_IN) to ALL_LINGUAS.
 
 2007-03-10  Ihar Hrachyshka <iharh@gnome.org>
 
-	_ configure.in: Added be@latin to ALL_LINGUAS.
+	* configure.in: Added be@latin to ALL_LINGUAS.
 
 2007-03-07  Gintautas Miliauskas  <gintas@akl.lt>
 
