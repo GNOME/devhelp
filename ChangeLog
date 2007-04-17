@@ -1,5 +1,10 @@
 2007-04-17  Richard Hult  <richard@imendio.com>
 
+	* README: Update information about where books should be installed
+	and the required version of the library we use. Fixes bug #411748.
+
+2007-04-17  Richard Hult  <richard@imendio.com>
+
 	* src/dh-window.c: Patch from Mariano Suárez-Alvarez to add
 	missing mnemonics, bug #411376.
 
