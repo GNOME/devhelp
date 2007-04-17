@@ -1,71 +1,70 @@
 # Danish translation of DevHelp.
-# Copyright (C) 2001, 02, 03, 04 Free Software Foundation, Inc.
+# Copyright (C) 2001-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
+#
 # Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-27 00:20+0200\n"
-"PO-Revision-Date: 2004-08-27 00:18+0200\n"
-"Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
-"Language-Team: Danish <dansk@klid.dk>\n"
+"POT-Creation-Date: 2007-01-02 02:08+0000\n"
+"PO-Revision-Date: 2007-04-16 02:08+0200\n"
+"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: devhelp.desktop.in.h:1
+#: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Hjælpeprogram til udviklere"
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
+#: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Udviklerhjælp"
 
-#: devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr "Udviklerhjælpbog"
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Dokumentationsfremviser"
 
-#: src/dh-main.c:81
-msgid "Specify the size and location of the window"
-msgstr "Angiv størrelsen og placeringen af vinduet"
-
-#: src/dh-main.c:82
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "BREDDExHØJDE+XOFF+YOFF"
-
-#: src/dh-main.c:90
+#: ../src/dh-main.c:85
 msgid "Search for a function"
 msgstr "Søg efter en funktion"
 
-#: src/dh-main.c:99
+#: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
 msgstr "Afslut alle kørende udviklerhjælp"
 
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "Vis versionsnummeret og afslut"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Forventede '%s', modtog '%s' ved linje %d, kolonne %d"
+msgstr "Forventede \"%s\", modtog \"%s\" ved linje %d, kolonne %d"
 
-#: src/dh-parser.c:120
+#: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Ugyldigt navnerum '%s' ved linje %d, kolonne %d"
+msgstr "Ugyldigt navnerum \"%s\" ved linje %d, kolonne %d"
 
-#: src/dh-parser.c:149
+#: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "title, name og link-elementer er påkrævet ved linje %d, kolonne %d"
 
-#: src/dh-parser.c:202
+#: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "name og link-elementer er påkrævet inden i <sub> ved linje %d, kolonne %d"
 
-#: src/dh-parser.c:250
+#: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -73,171 +72,249 @@ msgstr ""
 "name og link-elementer er påkrævet inden i <function> ved linje %d, kolonne %"
 "d"
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Kunne ikke oprette bogfortolker"
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Kunne ikke oprette opmærkningsfortolker"
 
-#: src/dh-parser.c:479
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "Kan ikke udpakke bogen '%s': %s"
+msgstr "Kan ikke udpakke bogen \"%s\": %s"
 
-#: src/dh-search.c:417
-msgid "_Search:"
-msgstr "_Søg:"
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "Udviklerhjælp er ikke kompileret med understøttelse for zlib"
 
-#: src/dh-search.c:461
-msgid "Section"
-msgstr "Sektion"
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "_Bog:"
 
-#: src/dh-window.c:120
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "_Side:"
+
+#: ../src/dh-window.c:141
 msgid "_File"
 msgstr "_Fil"
 
-#: src/dh-window.c:121
+#: ../src/dh-window.c:142
 msgid "_Edit"
 msgstr "_Redigér"
 
-#: src/dh-window.c:122 ui/devhelp.glade.h:10
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
 msgid "_Go"
 msgstr "_Gå til"
 
-#: src/dh-window.c:123
+#: ../src/dh-window.c:144
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: src/dh-window.c:307
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr "Kan ikke anvende grænseflade: %s"
+#. File menu
+#: ../src/dh-window.c:147
+msgid "_New Window"
+msgstr "_Nyt vindue"
 
-#: src/dh-window.c:367 ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Indhold"
+#: ../src/dh-window.c:149
+msgid "New _Tab"
+msgstr "Nyt _Faneblad"
 
-#: src/dh-window.c:378
+#: ../src/dh-window.c:168
+msgid "Browse Contents"
+msgstr "Vis indhold"
+
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
 msgstr "Søg"
 
-#: src/dh-window.c:461
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Indhold"
+
+#: ../src/dh-window.c:616
+msgid "translator_credits"
+msgstr ""
+"Ole Laursen\n"
+"Martin Willemoes Hansen\n"
+"Ask Hjorth Larsen\n"
+"\n"
+"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+"Mere info: http://www.dansk-gruppen.dk"
+
+#: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
-msgstr "En hjælpefremviser til udviklere"
+msgstr "En hjælpefremviser for udviklere til GNOME 2"
 
-#: src/dh-window.c:477
-msgid "Devhelp project page"
-msgstr "Udviklerhjælps projektside"
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+msgid "Empty Page"
+msgstr "Tom side"
 
-#: src/dh-window.c:481
-msgid "Bug report Devhelp"
-msgstr "Rapportér fejl i Udviklerhjælp"
-
-#: devhelp.schemas.in.h:1
+#: ../devhelp.schemas.in.h:1
 msgid "Font for fixed text"
 msgstr "Skrifttype for fast tekst"
 
-#: devhelp.schemas.in.h:2
+#: ../devhelp.schemas.in.h:2
 msgid "Font for text"
 msgstr "Skrifttype for tekst"
 
-#: devhelp.schemas.in.h:3
+#: ../devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
 msgstr "Skrifttype til fast skrift."
 
-#: devhelp.schemas.in.h:4
+#: ../devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Skrifttype til tekst med variabel bredde."
 
-#: devhelp.schemas.in.h:5
+#: ../devhelp.schemas.in.h:5
 msgid "Height of main window"
 msgstr "Højde på hovedvinduet"
 
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr "Feltets position"
-
-#: devhelp.schemas.in.h:7
+#: ../devhelp.schemas.in.h:6
 msgid "Main window maximized state"
 msgstr "Hovedvindue i maksimeret tilstand"
 
-#: devhelp.schemas.in.h:8
+# Kan også betyde "faneblad valgt", men at dømme efter en senere msgid (which of the tabs that is selected), er dette ikke tilfældet
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Valgt faneblad, \"indhold\" eller \"søg\""
+
+#: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Vis avancerede søgeindstillinger"
+
+#: ../devhelp.schemas.in.h:9
 msgid "The X position of the main window."
-msgstr "Hovedvinduets x-position"
+msgstr "Hovedvinduets x-position."
 
-#: devhelp.schemas.in.h:9
+#: ../devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
-msgstr "Hovedvinduets y-position"
+msgstr "Hovedvinduets y-position."
 
-#: devhelp.schemas.in.h:10
+#: ../devhelp.schemas.in.h:11
 msgid "The height of the main window."
 msgstr "Hovedvinduets højde."
 
-#: devhelp.schemas.in.h:11
-msgid "The location of the paned separator."
-msgstr "Felt-adskillerens position."
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Bredden af indeks- og søgepanelerne."
 
-#: devhelp.schemas.in.h:12
+#: ../devhelp.schemas.in.h:13
 msgid "The width of the main window."
 msgstr "Hovedvinduets bredde."
 
-#: devhelp.schemas.in.h:13
+#: ../devhelp.schemas.in.h:14
 msgid "Use system fonts"
 msgstr "Brug systemskrifttyper"
 
-#: devhelp.schemas.in.h:14
+#: ../devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
 msgstr "Brug systemets standard-skrifttyper."
 
-#: devhelp.schemas.in.h:15
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Om de avancerede søgeindstillinger vises."
+
+#: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
 msgstr "Om hovedvinduet skal åbne maksimeret eller ej."
 
-#: devhelp.schemas.in.h:16
+#: ../devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Hvilket af fanebladene der er valgt, \"indhold\" eller \"søg\"."
+
+#: ../devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Bredden af indeks- og søgepanelerne"
+
+#: ../devhelp.schemas.in.h:20
 msgid "Width of the main window"
 msgstr "Hovedvinduets bredde"
 
-#: devhelp.schemas.in.h:17
+#: ../devhelp.schemas.in.h:21
 msgid "X position of main window"
 msgstr "Hovedvinduets x-position"
 
-#: devhelp.schemas.in.h:18
+#: ../devhelp.schemas.in.h:22
 msgid "Y position of main window"
 msgstr "Hovedvinduets y-position"
 
-#: ui/devhelp.glade.h:1
-msgid "    "
-msgstr "    "
-
-#: ui/devhelp.glade.h:2
+#: ../ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
 msgstr "<b>Skrifttyper</b>"
 
-#: ui/devhelp.glade.h:5
-msgid "Fixed width:"
-msgstr "Fastbredde:"
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Søger</b>"
 
-#: ui/devhelp.glade.h:6
+#: ../ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: ui/devhelp.glade.h:7
-msgid "Variable width: "
-msgstr "Variabel bredde: "
-
-#: ui/devhelp.glade.h:8
+#: ../ui/devhelp.glade.h:6
 msgid "_Back"
 msgstr "_Tilbage"
 
-#: ui/devhelp.glade.h:9
+#: ../ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Fast bredde:"
+
+#: ../ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "_Fremad"
 
-#: ui/devhelp.glade.h:11
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Vis avancerede søgeindstillinger"
+
+#: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "_Brug systemskrifttype"
+
+#: ../ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "_Variabel bredde: "
+
+# Denne msgid ligger i et gedit-plugin, så det er nok en knap hvor man kan køre devhelp, eller indstille understøttelsen af devhelp. At oversætte det til blot Udviklerhjælp kan derfor ikke gå helt galt, men ethvert andet gæt på om det betyder understøttelse af devhelp, eller hjælp til devhelp eller noget andet vil være risikabelt
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Udviklerhjælp"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Får F7 til at starte Udviklerhjælp for ordet ved markøren"
+
+#~ msgid "Specify the size and location of the window"
+#~ msgstr "Angiv størrelsen og placeringen af vinduet"
+
+#~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
+#~ msgstr "BREDDExHØJDE+XOFF+YOFF"
+
+#~ msgid "_Search:"
+#~ msgstr "_Søg:"
+
+#~ msgid "Section"
+#~ msgstr "Sektion"
+
+#~ msgid "Cannot set UI: %s"
+#~ msgstr "Kan ikke anvende grænseflade: %s"
+
+#~ msgid "Devhelp project page"
+#~ msgstr "Udviklerhjælps projektside"
+
+#~ msgid "Bug report Devhelp"
+#~ msgstr "Rapportér fejl i Udviklerhjælp"
+
+#~ msgid "Location of the paned"
+#~ msgstr "Feltets position"
+
+#~ msgid "The location of the paned separator."
+#~ msgstr "Felt-adskillerens position."
+
+#~ msgid "    "
+#~ msgstr "    "
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search tab "
