@@ -1,3 +1,7 @@
+2007-04-18  Mikael Hallendal  <micke@imendio.com>
+	
+	* src/dh-main.c (main): Call g_thread_init. Fixes bug #414221
+
 2007-04-18  Richard Hult  <richard@imendio.com>
 
 	* src/dh-window.c (window_init): Remove the broken Esc key

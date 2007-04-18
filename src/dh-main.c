@@ -126,6 +126,8 @@ main (int argc, char **argv)
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (PACKAGE);
 
+	g_thread_init (NULL);
+
 	if (!gtk_init_with_args (&argc, &argv, NULL, options, GETTEXT_PACKAGE, &error)) {
 		g_printerr ("%s\n", error->message);
 		return 1;
