@@ -98,9 +98,6 @@ static void       window_restore_state            (DhWindow        *window);
 static gboolean   window_delete_cb                (GtkWidget       *widget,
 						   GdkEventAny     *event,
 						   gpointer         user_data);
-static gboolean   window_key_press_event_cb       (GtkWidget       *widget,
-						   GdkEventKey     *event,
-						   DhWindow        *window);
 static void       window_tree_link_selected_cb    (GObject         *ignored,
 						   DhLink          *link,
 						   DhWindow        *window);
@@ -249,11 +246,6 @@ window_init (DhWindow *window)
 
 	priv = g_new0 (DhWindowPriv, 1);
         window->priv = priv;
-
-	g_signal_connect (window,
-			  "key-press-event",
-			  G_CALLBACK (window_key_press_event_cb),
-			  window);
 
 	priv->manager = gtk_ui_manager_new ();
 
@@ -830,19 +822,6 @@ window_delete_cb (GtkWidget   *widget,
 		  gpointer     user_data)
 {
 	window_save_state (DH_WINDOW (widget));
-
-	return FALSE;
-}
-
-static gboolean
-window_key_press_event_cb (GtkWidget   *widget,
-			   GdkEventKey *event,
-			   DhWindow    *window)
-{
-	if (event->keyval == GDK_Escape) {
-		gtk_window_iconify (GTK_WINDOW (window));
-		return TRUE;
-	}
 
 	return FALSE;
 }

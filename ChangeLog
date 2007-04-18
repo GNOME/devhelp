@@ -1,3 +1,10 @@
+2007-04-18  Richard Hult  <richard@imendio.com>
+
+	* src/dh-window.c (window_init): Remove the broken Esc key
+	binding, it interferes with the typeahead search. The window
+	manager keybindings should be used instead for minimizing the
+	window.
+
 2007-04-17  Richard Hult  <richard@imendio.com>
 
 	* Makefile.am:
