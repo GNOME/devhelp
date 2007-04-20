@@ -1,3 +1,9 @@
+2007-04-20  Richard Hult  <richard@imendio.com>
+
+	* src/default-prefs-gecko-1-9.js: 
+	* src/Makefile.am (default_prefs_files): Use theme colors for
+	gecko 1.9 and later, fixes bug #347967.
+
 2007-04-18  Mikael Hallendal  <micke@imendio.com>
 	
 	* src/dh-main.c (main): Call g_thread_init. Fixes bug #414221

@@ -112,7 +112,7 @@ libdevhelp_1_la_CPPFLAGS =				\
 libdevhelp_1_la_CFLAGS = 				\
 	$(WARN_CFLAGS)					\
 	$(LIBDEVHELP_CFLAGS)				\
-	$(GECKO_CFLAGS)			\
+	$(GECKO_CFLAGS)					\
 	$(AM_CFLAGS)
 
 libdevhelp_1_la_LIBADD =				\
@@ -138,10 +138,11 @@ dh-marshal.c: dh-marshal.list
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
 default_prefs_in_FILES = \
-	default-prefs-common.js         \
-	default-prefs-mozilla.js        \
-	default-prefs-toolkit.js        \
-	default-prefs-gecko-1-8.js
+	default-prefs-common.js			\
+	default-prefs-mozilla.js		\
+	default-prefs-toolkit.js		\
+	default-prefs-gecko-1-8.js		\
+	default-prefs-gecko-1-9.js
 
 default_prefs_files = \
 	default-prefs-common.js                 \
@@ -149,6 +150,10 @@ default_prefs_files = \
 
 if HAVE_GECKO_1_8
 default_prefs_files += default-prefs-gecko-1-8.js
+endif
+
+if HAVE_GECKO_1_9
+default_prefs_files += default-prefs-gecko-1-9.js
 endif
 
 default-prefs.js: $(default_prefs_files)
