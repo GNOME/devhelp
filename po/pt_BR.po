@@ -6,14 +6,15 @@
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001.
 # Raphael Higino <phhigino@gmail.com>, 2004.
 # Luiz Fernando S. Armesto <luiz.armesto@gmail.com>, 2007.
+# Washington Lins <washington-lins@uol.com.br>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-11 10:58+0000\n"
-"PO-Revision-Date: 2007-02-11 12:49-0200\n"
-"Last-Translator: Luiz Fernando da Silva Armesto <luiz.armesto@gmail.com>\n"
+"POT-Creation-Date: 2007-04-21 18:30-0300\n"
+"PO-Revision-Date: 2007-04-21 18:37-0300\n"
+"Last-Translator: Washington Lins <washington-lins@uol.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr "Navegador de Documentação"
 
 #: ../src/dh-main.c:85
 msgid "Search for a function"
-msgstr "Procurar por uma função"
+msgstr "Pesquisar por uma função"
 
 #: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
@@ -131,7 +132,7 @@ msgstr "Navegar pelo Conteúdo"
 
 #: ../src/dh-window.c:171 ../src/dh-window.c:455
 msgid "Search"
-msgstr "Procurar"
+msgstr "Pesquisar"
 
 #: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
 msgid "Contents"
@@ -179,11 +180,11 @@ msgstr "Estado maximizado da janela principal"
 
 #: ../devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "Aba selecionada, \"conteúdo\" ou \"procurar\""
+msgstr "Aba selecionada, \"conteúdo\" ou \"pesquisar\""
 
 #: ../devhelp.schemas.in.h:8
 msgid "Show advanced search options"
-msgstr "Exibir opções avançadas de busca"
+msgstr "Mostrar opções avançadas de pesquisa"
 
 #: ../devhelp.schemas.in.h:9
 msgid "The X position of the main window."
@@ -200,7 +201,7 @@ msgstr "A altura da janela principal."
 # verificar 'pane'
 #: ../devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
-msgstr "A largura dos painéis índice e procurar."
+msgstr "A largura dos painéis índice e pesquisar."
 
 #: ../devhelp.schemas.in.h:13
 msgid "The width of the main window."
@@ -216,7 +217,7 @@ msgstr "Usa as fontes padrão do sistema."
 
 #: ../devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."
-msgstr "Exibir ou não as opções avançadas de busca."
+msgstr "Mostrar ou não as opções avançadas de pesquisa."
 
 #: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
@@ -224,12 +225,12 @@ msgstr "Se a janela principal deve iniciar maximizada ou não."
 
 #: ../devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Qual das abas está selecionada, \"conteúdo\" ou \"procurar\"."
+msgstr "Qual das abas está selecionada, \"conteúdo\" ou \"pesquisar\"."
 
 # verificar "pane"
 #: ../devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
-msgstr "Largura dos painéis índice e procurar"
+msgstr "Largura dos painéis índice e pesquisar"
 
 #: ../devhelp.schemas.in.h:20
 msgid "Width of the main window"
@@ -269,7 +270,7 @@ msgstr "Para _Frente"
 
 #: ../ui/devhelp.glade.h:10
 msgid "_Show advanced search options"
-msgstr "_Exibir opções avançadas de busca"
+msgstr "_Mostrar opções avançadas de pesquisa"
 
 #: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
