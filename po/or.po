@@ -1,0 +1,311 @@
+# translation of or.po to Oriya
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Subhransu Behera <arya_subhransu@yahoo.co.in>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: or\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-05-09 03:15+0100\n"
+"PO-Revision-Date: 2007-05-09 18:53+0530\n"
+"Last-Translator: Subhransu Behera <arya_subhransu@yahoo.co.in>\n"
+"Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+
+#: ../data/devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "ବିକାଶକାରୀ ମାନଙ୍କର ସହୟତା ପ୍ରୋଗ୍ରାମ"
+
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:141 ../src/dh-window.c:689
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "ଦଲିଲକରଣ ବ୍ରାଉଜର"
+
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "ସ୍ଥିର ପାଠ୍ଯ ପାଇଁ ଅକ୍ଷରରୂପ"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "ପାଠ୍ଯ ପାଇଁ ଅକ୍ଷରରୂପ"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "ପାଠ୍ଯ ପାଇଁ ନିର୍ଦ୍ଦିଷ୍ଟ ଓସାର ବିଶିଷ୍ଟ ଅକ୍ଷରରୂପ।"
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "ପାଠ୍ଯ ପାଇଁ ଅନିର୍ଦ୍ଦିଷ୍ଟ ଓସାର ବିଶିଷ୍ଟ ଅକ୍ଷରରୂପ।"
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ଉଚ୍ଛତା"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ବୃହତ୍ତମ ଅବସ୍ଥା"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "ଚୟିତ ଟ୍ଯାବ, \"ସୂଚୀପତ୍ର\" କିମ୍ବା \"ସନ୍ଧାନ\""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "ଉନ୍ନତ ସନ୍ଧାନ ବିକଳ୍ପ ମାନଙ୍କୁ ପ୍ରଦର୍ଶନ କରନ୍ତୁ"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ଏକ୍ସ ଅବସ୍ଥାନ।"
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ୟାଈ ଅବସ୍ଥାନ।"
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ଉଚ୍ଛତା।"
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "ଅନୁକ୍ରମଣିକା ଏବଂ ସନ୍ଧାନ ଫଳକର ଓସାର।"
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ଓସାର।"
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "ତନ୍ତ୍ର ଅକ୍ଷରରୂପ ବ୍ଯବହାର କରନ୍ତୁ"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "ତନ୍ତ୍ରର ପୂର୍ବନିର୍ଦ୍ଧାରିତ ଅକ୍ଷରରୂପ ମାନଙ୍କୁ ବ୍ଯବହାର କରନ୍ତୁ।"
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "ଉନ୍ନତ ସନ୍ଧାନ ବିକଳ୍ପ ମାନଙ୍କୁ ଦେଖାଯାଇଛି କି ନାହିଁ।"
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋକୁ ବଡ କରାଯିବ କି ନାହିଁ।"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "ଏହି ଦୁଇଟି ଟ୍ଯାବ ମଧ୍ଯରୁ କାହାକୁ ଚୟନ କରାଯାଇଛି, \"ସୂଚୀପତ୍ର\" କିମ୍ବା \"ସନ୍ଧାନ\"।"
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "ଅନୁକ୍ରମଣିକା ଏବଂ ସନ୍ଧାନ ଫଳକର ଓସାର"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ଓସାର"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ଏକ୍ସ ଅବସ୍ଥାନ"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ୟାଈ ଅବସ୍ଥାନ"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>ଅକ୍ଷରରୂପ</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>ସନ୍ଧାନ କରୁଅଛି</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+msgid "Contents"
+msgstr "ସୂଚୀପତ୍ର"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "ବିକଳ୍ପ"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "ପୂର୍ବବର୍ତ୍ତୀ (_B)"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "ନିର୍ଦ୍ଦିଷ୍ଟ ଓସାର: (_F)"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "ପରବର୍ତ୍ତୀ (_F)"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+msgid "_Go"
+msgstr "ଯାଆନ୍ତୁ (_G)"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "ଉନ୍ନତ ସନ୍ଧାନ ବିକଳ୍ପ ମାନଙ୍କୁ ପ୍ରଦର୍ଶନ କରନ୍ତୁ (_S)"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "ତନ୍ତ୍ର ଅକ୍ଷରରୂପ ବ୍ଯବହାର କରନ୍ତୁ (_U)"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "ଅନିର୍ଦ୍ଦିଷ୍ଟ ଓସାର (_V):"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp ସହାୟତା"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "ଏହା F7 ଦ୍ବାରା ଦର୍ଶିକା ଥିବା ଶବ୍ଦ ପାଇଁ Devhelp ପ୍ରଦାନ କରିଥାଏ"
+
+#: ../src/dh-main.c:90
+msgid "Search for a function"
+msgstr "ଗୋଟିଏ ପ୍ରକ୍ରିୟା ପାଇଁ ଖୋଜନ୍ତୁ"
+
+#: ../src/dh-main.c:99
+msgid "Quit any running Devhelp"
+msgstr "ଯେ କୌଣସି ଚଳନ୍ତି Devhelp କୁ ବନ୍ଦ କରନ୍ତୁ"
+
+#: ../src/dh-main.c:108
+msgid "Display the version and exit"
+msgstr "ସଂସ୍କରଣ ପ୍ରଦର୍ଶନ କରନ୍ତୁ ଏବଂ ବନ୍ଦ କରନ୍ତୁ"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "ସନ୍ଧାନ କ୍ଷେତ୍ରକୁ ସକ୍ରିୟ କରି devhelp ୱିଣ୍ଡୋ ପ୍ରତି ଦୃଷ୍ଟି ଦିଅନ୍ତୁ"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "'%s' ଆଶା କରାଯାଉଥିଲା '%s' ମିଳିଲା - %d ଧାଡିର, %d ସ୍ତମ୍ଭରେ"
+
+#: ../src/dh-parser.c:128
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "ଅବୈଧ namespace '%s' - %d ଧାଡିର, %d ସ୍ତମ୍ଭରେ"
+
+#: ../src/dh-parser.c:158
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "%d ଧାଡିର, %d ସ୍ତମ୍ଭରେ ଶୀର୍ଷକ, ନାମ, ଏବଂ ସଂଯୋଗ ବସ୍ତୁ ଗୁଡିକ ଦରକାରୀ"
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "%d ଧାଡିର, %d ସ୍ତମ୍ଭରେ <sub> ମଧ୍ଯରେ ନାମ, ଏବଂ ସଂଯୋଗ ବସ୍ତୁ ଗୁଡିକ ଦରକାରୀ"
+
+#: ../src/dh-parser.c:297
+#, c-format
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "%d ଧାଡିର, %d ସ୍ତମ୍ଭରେ <function> ମଧ୍ଯରେ ନାମ, ଏବଂ ସଂଯୋଗ ବସ୍ତୁ ଗୁଡିକ ଦରକାରୀ"
+
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+msgid "Could not create book parser"
+msgstr "ବହି ବିଶ୍ଳେଷକ ସୃଷ୍ଟି କରିପାରିଲା ନାହିଁ"
+
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+msgid "Could not create markup parser"
+msgstr "ମାର୍କ-ଅପ ବିଶ୍ଳେଷକ ସୃଷ୍ଟି କରିପାରିଲା ନାହିଁ"
+
+#: ../src/dh-parser.c:578
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "'%s' ବହିକୁ ଖୋଲି ପାରିଲା ନାହିଁ: %s"
+
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp କୁ zlib ସହାୟତା ସହିତ ନିର୍ମାଣ କରାଯାଇ ନାହିଁ"
+
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "ବହି (_B):"
+
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "ପୃଷ୍ଠା (_P):"
+
+#: ../src/dh-window.c:156
+msgid "_File"
+msgstr "ଫାଇଲ (_F)"
+
+#: ../src/dh-window.c:157
+msgid "_Edit"
+msgstr "ସମ୍ପାଦନ କରନ୍ତୁ (_E)"
+
+#: ../src/dh-window.c:159
+msgid "_Help"
+msgstr "ସହାୟତା (_H)"
+
+#. File menu
+#: ../src/dh-window.c:162
+msgid "_New Window"
+msgstr "ନୂତନ ୱିଣ୍ଡୋ (_N)"
+
+#: ../src/dh-window.c:164
+msgid "New _Tab"
+msgstr "ନୂତନ ଟ୍ଯାବ (_T)"
+
+#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "ପରବର୍ତ୍ତୀ ଉପସ୍ଥିତିକୁ ଖୋଜନ୍ତୁ"
+
+#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "ପୂର୍ବବର୍ତ୍ତୀ ଉପସ୍ଥିତିକୁ ଖୋଜନ୍ତୁ"
+
+#: ../src/dh-window.c:189
+msgid "_Contents Tab"
+msgstr "ବିଷୟବସ୍ତୁ ଟ୍ଯାବ (_C)"
+
+#: ../src/dh-window.c:192
+msgid "_Search Tab"
+msgstr "ସନ୍ଧାନ ଟ୍ଯାବ (_S)"
+
+#: ../src/dh-window.c:473
+msgid "Search"
+msgstr "ଖୋଜନ୍ତୁ"
+
+#: ../src/dh-window.c:686
+msgid "translator_credits"
+msgstr "ଶୁଭ୍ରାଂଶୁ ବେହେରା <arya_subhransu@yahoo.co.in>"
+
+#: ../src/dh-window.c:691
+msgid "A developer's help browser for GNOME 2"
+msgstr "ନୋମ-୨ ପାଇଁ ଗୋଟିଏ ବିକାଶକାରୀ ମାନଙ୍କର ସହୟତା ବ୍ରାଉଜର"
+
+#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+msgid "Empty Page"
+msgstr "ଖାଲି ପୃଷ୍ଠା"
+
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "ଖୋଜନ୍ତୁ:"
+
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "ସନ୍ଧାନ ପଂକ୍ତିର ପୂର୍ବବର୍ତ୍ତୀ ଉପସ୍ଥିତିକୁ ଖୋଜନ୍ତୁ"
+
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "ସନ୍ଧାନ ପଂକ୍ତିର ପରବର୍ତ୍ତୀ ଉପସ୍ଥିତିକୁ ଖୋଜନ୍ତୁ"
+
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "ଅକ୍ଷର ନିର୍ଦ୍ଦିଷ୍ଟ"
+
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "ଅକ୍ଷର ନିର୍ଦ୍ଦିଷ୍ଟ ଅନୁସନ୍ଧାନକୁ ଅଦଳବଦଳ କରନ୍ତୁ"
+
