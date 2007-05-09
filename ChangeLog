@@ -1,3 +1,7 @@
+2007-05-09  Subhransu Behera <arya_subhransu@yahoo.co.in>
+
+	* configure.in: Added Oriya (or) to ALL_LINGUAS.
+
 2007-04-20  Richard Hult  <richard@imendio.com>
 
 	* src/default-prefs-gecko-1-9.js: 

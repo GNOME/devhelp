@@ -130,7 +130,7 @@ CPPFLAGS="$_SAVE_CPPFLAGS"
 LDFLAGS="$_SAVE_LDFLAGS"
 AC_LANG_POP([C])
 
-ALL_LINGUAS="am ar az be be@latin bg bn_IN ca cs da de dz el en_CA en_GB es et fi fr gl gu he hi hr hu is it ja kn ko lt lv mk ml ms nb ne nl pa pl pt pt_BR ru rw sk sl sq sr sr@Latn sv th tr uk vi zh_CN zh_HK zh_TW"
+ALL_LINGUAS="am ar az be be@latin bg bn_IN ca cs da de dz el en_CA en_GB es et fi fr gl gu he hi hr hu is it ja kn ko lt lv mk ml ms nb ne nl or pa pl pt pt_BR ru rw sk sl sq sr sr@Latn sv th tr uk vi zh_CN zh_HK zh_TW"
 
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
