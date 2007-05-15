@@ -1,3 +1,52 @@
+NEW in 0.14:
+============
+
+- Use theme colors for gecko 1.9 and later (bug #347967)
+- Call g_thread_init (bug #414221, Mikael Hallendal)
+- Add --focus-search command line option (bug #409182, Ryan Lortie)
+- Add typeahead searching (bug #116322, Huang Peng)
+- Update information about where books should be installed (bug #411748)
+- Add missing mnemonics (bug #411376, Mariano Suárez-Alvarez)
+- GNOME Goal #3: Remove "Application" category (bug #417613, Kamil Páral)
+
+Translations:
+- Updated el: Simos Xenitellis
+- Updated gu: Ankit Patel
+- Updated vi: Nguyễn Thái Ngọc Duy
+- Updated it: Luca Ferretti
+- Updated ar: Theppitak Karoonboonyanan
+- Updated et: Priit Laes
+- Updated gl: Ignacio Casal Quinteiro
+- Updated es: Jorge Gonzalez, Vincent van Adrighem
+- Updated bn_IN: Runa Bhattacharjee
+- Updated ru: Nickolay V. Shmyrev
+- Updated rw: Ihar Hrachyshka
+- Updated nl: Wouter Bolsterlee
+- Updated pt: Vincent van Adrighem
+- Updated nb: Kjartan Maraas
+- Updated zh_HK.po, zh_TW: Abel Cheung
+- Updated lv: Vincent van Adrighem
+- Updated lt: Gintautas Miliauskas
+- Updated th: Theppitak Karoonboonyanan
+- Updated pl: Artur Flinta
+- Updated be: Ihar Hrachyshka
+- Updated fr: shortcuts
+- Updated pt_BR: Leonardo Ferreira Fontenelle, Raphael Higino, Ihar Hrachyshka, Vincent van Adrighem
+- Updated hr: Ihar Hrachyshka
+- Updated da: Peter Bach
+- Updated dz: Pema Geyleg
+- Updated hu: Gabor Kelemen
+- Updated ja: Takeshi AIHANA
+- Updated be@latin: Ihar Hrachyshka
+- Updated zh_CN: Funda Wang
+- Updated ml: Ani Peter
+- Updated sq: Laurent Dhima
+- Updated sv: Richard Hult
+- Updated en_GB: David Lodge
+- Updated uk: Maxim Dziumanenko
+- Updated or: Subhransu Behera
+
+
 NEW in 0.13:
 ============
 
@@ -29,7 +78,7 @@ Translations:
 - Updated et: Priit Laes
 - Updated hu: Gabor Kelemen
 - Updated gl: Ignacio Casal Quinteiro
-- Updated ca: Josep Puigdemont i Casamaj�
+- Updated ca: Josep Puigdemont i Casamajó
 - Updated en_GB: David Lodge
 
 
@@ -157,7 +206,7 @@ Devhelp 0.6:
 * Added gnome-vfs MIME support                      (Ross)
 * New and updated translations, thanks to Kang Jeong-Hee, Vincent van Adrighem,
   Duarte Loreto, Zbigniew Chyla, Takeshi AIHANA, Metin Amiroff, 
-  Sam�el J�n Gunnarsson, Guntupalli Karunakar.
+  Samúel Jón Gunnarsson, Guntupalli Karunakar.
 
 Devhelp 0.5:
 ------------
@@ -172,7 +221,7 @@ Devhelp 0.4:
 ------------
 * Raise minimized window (Richard)
 * Bug fixes              (Mikael, Richard)
-* Limit history length   (Nils O. Sel�sdal)
+* Limit history length   (Nils O. Selåsdal)
 * Saner installdirs      (Mikael)
 
 Devhelp 0.3:
