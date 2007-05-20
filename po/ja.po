@@ -6,38 +6,182 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-05 22:22+0900\n"
-"PO-Revision-Date: 2007-02-05 22:21+0900\n"
+"POT-Creation-Date: 2007-05-20 12:14+0900\n"
+"PO-Revision-Date: 2007-05-20 12:14+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "開発者向けのヘルプ・プログラムです"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:141 ../src/dh-window.c:689
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "ドキュメント・ブラウザです"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "等幅テキスト用のフォント"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "テキストのフォント"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "等幅 (固定幅) のテキスト表示に使用フォントです。"
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "可変幅のテキスト表示に使用するフォントです。"
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "メイン・ウィンドウの高さ"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "メイン・ウィンドウの最大化"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "選択したタブ (\"content\" または \"search\")"
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "検索の拡張オプションを表示する"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "メイン・ウィンドウを表示する X 座標です。"
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "メイン・ウィンドウを表示する Y 座標です。"
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "メイン・ウィンドウの高さです。"
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "目次と検索ウィンドウの幅です。"
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "メイン・ウィンドウの幅です。"
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "システム・フォントの利用可否"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "デスクトップで設定したデフォルトのフォントを使用します。"
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "検索の拡張オプションを表示するかどうかです。"
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "メイン・ウィンドウを最大サイズで起動するかどうかです。"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "選択したタブの種類 (\"content\" または \"search\") です。"
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "目次と検索ウィンドウの幅"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "メイン・ウィンドウの幅"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "メイン・ウィンドウの位置 X"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "メイン・ウィンドウの位置 Y"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>フォント</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>検索</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+msgid "Contents"
+msgstr "目次"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "設定"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "戻る(_B)"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "等幅(_F):"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "進む(_F)"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+msgid "_Go"
+msgstr "移動(_G)"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "拡張オプションを表示する(_S)"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "システムのフォントを使用する(_U)"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "可変幅(_V):"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp のサポート"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "[F7] キーを押すと、カーソル位置にある文字を Devhelp から検索します。"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "関数の検索"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Devhelp を終了します"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "バージョンを表示して終了する"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "Devhelp のウィンドウにフォーカスを与える"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -90,185 +234,77 @@ msgstr "ブック(_B):"
 msgid "_Page:"
 msgstr "ページ(_P):"
 
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:156
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:157
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "移動(_G)"
-
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:159
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
 #. File menu
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:162
 msgid "_New Window"
 msgstr "新しいウィンドウ(_N)"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:164
 msgid "New _Tab"
 msgstr "新しいタブ(_T)"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "目次の参照"
+#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "後方検索"
 
-#: ../src/dh-window.c:171 ../src/dh-window.c:455
+#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "前方検索"
+
+#: ../src/dh-window.c:189
+msgid "_Contents Tab"
+msgstr "目次タブ(_C)"
+
+#: ../src/dh-window.c:192
+msgid "_Search Tab"
+msgstr "検索タブ(_S)"
+
+#: ../src/dh-window.c:473
 msgid "Search"
 msgstr "検索"
 
-#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "目次"
-
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:686
 msgid "translator_credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "日本GNOMEユーザー会 http://www.gnome.gr.jp"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:691
 msgid "A developer's help browser for GNOME 2"
 msgstr "GNOME 2 対応の開発者向けのヘルプブラウザです。"
 
-#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
 msgid "Empty Page"
 msgstr "空のページ"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "等幅テキスト用のフォント"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "検索:"
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "テキストのフォント"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "先頭に向かって文字列を検索します"
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "等幅 (固定幅) のテキスト表示に使用フォントです。"
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "後方に向かって文字列を検索します"
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "可変幅のテキスト表示に使用するフォントです。"
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "大/小文字を区別する"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "メイン・ウィンドウの高さ"
-
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "メイン・ウィンドウの最大化"
-
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "選択したタブ (\"content\" または \"search\")"
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "検索の拡張オプションを表示する"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "メイン・ウィンドウを表示する X 座標です。"
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "メイン・ウィンドウを表示する Y 座標です。"
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "メイン・ウィンドウの高さです。"
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "目次と検索ウィンドウの幅です。"
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "メイン・ウィンドウの幅です。"
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "システム・フォントの利用可否"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "デスクトップで設定したデフォルトのフォントを使用します。"
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "検索の拡張オプションを表示するかどうかです。"
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "メイン・ウィンドウを最大サイズで起動するかどうかです。"
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "選択したタブの種類 (\"content\" または \"search\") です。"
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "目次と検索ウィンドウの幅"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "メイン・ウィンドウの幅"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "メイン・ウィンドウの位置 X"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "メイン・ウィンドウの位置 Y"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>フォント</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>検索</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "設定"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "戻る(_B)"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "等幅(_F):"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "進む(_F)"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "拡張オプションを表示する(_S)"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "システムのフォントを使用する(_U)"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "可変幅(_V):"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Devhelp のサポート"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "[F7] キーを押すと、カーソル位置にある文字を Devhelp から検索します。"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "大/小文字を区別するかどうかを切り換えます"
