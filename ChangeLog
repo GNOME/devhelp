@@ -1,3 +1,10 @@
+2007-05-28  Richard Hult  <richard@imendio.com>
+
+	* configure.in: Bump version.
+
+	* data/devhelp.desktop.in.in: Don't hardcode the png extension,
+	fixes bug #440434 ,patch from Loïc Minier.
+
 2007-05-15  Richard Hult  <richard@imendio.com>
 
 	* Release 0.14.
