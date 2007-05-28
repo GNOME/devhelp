@@ -62,8 +62,6 @@
 #include "yelp-gecko-services.h"
 */
 
-#define debug_print(a...)
-
 #include "Yelper.h"
 
 #define NS_TYPEAHEADFIND_CONTRACTID "@mozilla.org/typeaheadfind;1"
@@ -74,12 +72,12 @@ Yelper::Yelper (GtkMozEmbed *aEmbed)
 , mHasFocus(PR_FALSE)
 , mEmbed(aEmbed)
 {
-	debug_print (DB_DEBUG, "Yelper ctor [%p]\n", this);
+        //printf ("Yelper ctor [%p]\n", this);
 }
 
 Yelper::~Yelper ()
 {
-	debug_print (DB_DEBUG, "Yelper dtor [%p]\n", this);
+        //printf ("Yelper dtor [%p]\n", this);
 }
 
 nsresult
