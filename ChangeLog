@@ -1,3 +1,7 @@
+2007-06-18  Richard Hult  <richard@imendio.com>
+
+	* configure.in: Release 0.15.
+
 2007-05-28  Richard Hult  <richard@imendio.com>
 
 	* src/Yelper.cpp: Fix build on Solaris, bug #439054.
@@ -7,7 +11,7 @@
 	* configure.in: Bump version.
 
 	* data/devhelp.desktop.in.in: Don't hardcode the png extension,
-	fixes bug #440434 ,patch from Loïc Minier.
+	fixes bug #440434, patch from Loïc Minier.
 
 2007-05-15  Richard Hult  <richard@imendio.com>
 

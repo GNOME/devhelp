@@ -1,3 +1,14 @@
+NEW in 0.15:
+============
+
+- Fix build on Solaris (bug #439054)
+- Don't hardcode the png extension in desktop file (bug #440434, Loïc Minier)
+
+Translations:
+- Updated ja: Takeshi AIHANA
+- Updated th: Theppitak Karoonboonyanan
+
+
 NEW in 0.14:
 ============
 
