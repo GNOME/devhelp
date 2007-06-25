@@ -1,47 +1,198 @@
 # Vietnamese translation for Dev. Help.
-# Copyright © 2006 Gnome i18n Project for Vietnamese.
+# Copyright © 2007 Gnome i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmx.net>, 2002.
-# Clytie Siddall <clytie@riverland.net.au>, 2005-2006.
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
 # 
 msgid ""
-msgstr ""
-"Project-Id-Version: devhelp 0.12 Gnome HEAD\n"
+""
+msgstr "Project-Id-Version: devhelp 0.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-02 02:08+0000\n"
-"PO-Revision-Date: 2007-03-07 22:20+0700\n"
-"Last-Translator: Phạm Thành Long <lngt@ngonngu.net>\n"
+"POT-Creation-Date: 2007-04-17 19:51+0100\n"
+"PO-Revision-Date: 2007-06-25 22:58+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: LocFactoryEditor 1.6.4a3\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Chương trình trợ giúp cho nhà phát triển"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:139
+#: ../src/dh-window.c:697
 msgid "Devhelp"
 msgstr "Trợ giúp phát triển"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Bộ duyệt tài liệu"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Phông cho văn bản cố định"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Phông cho văn bản"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Phông cho văn bản có độ rộng cố định."
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Phông cho văn bản có độ rộng thay đổi."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Độ cao của cửa sổ chính"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Tình trạng được cực đại hóa của cửa sổ chính"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Thanh đã chọn, \"nội dung\" hoặc \"tìm kiếm\""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Hiện các tuỳ chọn tìm kiếm nâng cao"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "Vị trí X của cửa sổ chính."
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Vị trí Y của cửa sổ chính."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Độ cao của cửa sổ chính."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Độ rộng của mục lục và ô tìm kiếm."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Độ rộng của cửa sổ chính."
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Dùng phông hệ thống"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Sử dụng các phông mặc định của hệ thống."
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Hiện/ẩn các tuỳ chọn tìm kiếm nâng cao."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Khi nào cửa sổ chính bắt đầu với kích cỡ lớn nhất hoặc không."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Đối với thanh đã chọn, 'nội dung' hoặc 'tìm kiếm'."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Độ rộng của mục lục và ô tìm kiếm"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Độ rộng của cửa sổ chính"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Vị trí X của cửa sổ chính"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Vị trí Y của cửa sổ chính"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Phông</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Tìm kiếm</b>"
+
+#: ../data/ui/devhelp.glade.h:3
+#: ../src/dh-window.c:471
+msgid "Contents"
+msgstr "Mục lục"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Cấu hình"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "_Lùi"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "Độ rộng _cố định:"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_Tiếp"
+
+#: ../data/ui/devhelp.glade.h:9
+#: ../src/dh-window.c:161
+msgid "_Go"
+msgstr "Tớ_i"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Hiện tuỳ chọn tìm kiếm nâng cao"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "_Dùng phông hệ thống"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "Độ rộng _không cố định: "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Hỗ trợ của Trợ giúp phát triển"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Đặt phím F7 để hiển thị Trợ giúp phát triển cho từ ở vị trí con trỏ"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Tìm kiếm hàm"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Thoát bất kì chương trình trợ giúp phát triển nào đang chạy"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "Hiển thị phiên bản rồi thoát"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "Đặt tiêu điểm trong cửa sổ trợ giúp phát triển, có trường tìm kiếm còn hoạt động"
+
+#: ../src/dh-parser.c:110
+#: ../src/dh-parser.c:194
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Đợi '%s' nhận '%s' tại dòng %d, cột %d"
@@ -59,21 +210,22 @@ msgstr "các yếu tố tiêu đề, tên và liên kết đều phải có tạ
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"các yếu tố tên và liên kết đều phải có bên trong <sub> tại dòng %d, cột %d"
+msgstr "các yếu tố tên và liên kết đều phải có bên trong <sub> tại dòng %d, cột %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
-"các yếu tố tên và liên kết đều phải có bên trong <function> tại dòng %d, cột %d"
+msgstr "các yếu tố tên và liên kết đều phải có bên trong <function> tại dòng %d, cột "
+"%d"
 
-#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#: ../src/dh-parser.c:420
+#: ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Không thể tạo bộ phân tách sách"
 
-#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#: ../src/dh-parser.c:436
+#: ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Không thể tạo bộ phân tách mã định dạng"
 
@@ -94,183 +246,81 @@ msgstr "_Quyển:"
 msgid "_Page:"
 msgstr "T_rang:"
 
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:159
 msgid "_File"
 msgstr "_Tập tin"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:160
 msgid "_Edit"
 msgstr "_Sửa"
 
-#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "Tớ_i"
-
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:162
 msgid "_Help"
 msgstr "Trợ _giúp"
 
+#: ../src/dh-window.c:165
 #. File menu
-#: ../src/dh-window.c:147
 msgid "_New Window"
 msgstr "Cửa sổ _mới"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:167
 msgid "New _Tab"
 msgstr "_Thanh mới"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "Duyệt mục lục"
+#: ../src/dh-window.c:179
+#: ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "Tìm kế"
 
-#: ../src/dh-window.c:171 ../src/dh-window.c:455
+#: ../src/dh-window.c:181
+#: ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Tìm lùi"
+
+#: ../src/dh-window.c:192
+msgid "_Contents Tab"
+msgstr "Thẻ Mụ_c lục"
+
+#: ../src/dh-window.c:195
+msgid "_Search Tab"
+msgstr "Thẻ Tìm _kiếm"
+
+#: ../src/dh-window.c:481
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Mục lục"
-
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:694
 msgid "translator_credits"
 msgstr "Nhóm Việt hóa Gnome <gnomevi-list@lists.sourceforge.net>"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:699
 msgid "A developer's help browser for GNOME 2"
 msgstr "Bộ duyệt trợ giúp của GNOME 2 dành cho nhà phát triển"
 
-#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+#: ../src/dh-window.c:1106
+#: ../src/dh-window.c:1235
 msgid "Empty Page"
 msgstr "Trang trắng"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Phông cho chữ cố định"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "Tìm:"
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Phông cho chữ"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "Tìm lần trước gặp chuỗi tìm kiếm"
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Phông cho chữ có độ rộng cố định."
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "Tìm lần kế tiếp gặp chuỗi tìm kiếm"
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Phông cho chữ có độ rộng thay đổi."
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "Phân biệt chữ hoa/thường"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "Độ cao của cửa sổ chính"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "Bật/tắt phân biệt chữ hoa/thường"
 
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "Tình trạng được cực đại hóa của cửa sổ chính"
-
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Thanh đã chọn, \"nội dung\" hoặc \"tìm kiếm\""
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Hiện các tuỳ chọn tìm kiếm nâng cao"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "Vị trí X của cửa sổ chính."
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "Vị trí Y của cửa sổ chính."
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "Độ cao của cửa sổ chính."
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "Độ rộng của mục lục và ô tìm kiếm."
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "Độ rộng của cửa sổ chính."
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "Dùng phông hệ thống"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "Sử dụng các phông mặc định của hệ thống."
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Hiện/ẩn các tuỳ chọn tìm kiếm nâng cao."
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "Khi nào cửa sổ chính bắt đầu với kích cỡ lớn nhất hoặc không."
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Đối với thanh đã chọn, 'nội dung' hoặc 'tìm kiếm'."
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "Độ rộng của mục lục và ô tìm kiếm"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "Độ rộng của cửa sổ chính"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "Vị trí X của cửa sổ chính"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "Vị trí Y của cửa sổ chính"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Phông</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Tìm kiếm</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Cấu hình"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "_Lùi"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "Độ rộng _cố định:"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "_Tiếp"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Hiện tuỳ chọn tìm kiếm nâng cao"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "_Dùng phông hệ thống"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "Độ rộng _không cố định: "
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Hỗ trợ của Trợ giúp phát triển"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Đặt phím F7 để hiển thị Trợ giúp phát triển cho từ ở vị trí con trỏ"
+#~ msgid "Browse Contents"
+#~ msgstr "Duyệt mục lục"
