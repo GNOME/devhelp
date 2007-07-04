@@ -1,48 +1,192 @@
 # translation of devhelp.HEAD.gu.po to Gujarati
-# translation of devhelp.HEAD.po to Gujarati
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
-# Ankit Patel <ankit@redhat.com>, 2004, 2007.
 #
+# Ankit Patel <ankit@redhat.com>, 2004, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-02 02:08+0000\n"
-"PO-Revision-Date: 2007-03-01 15:06+0530\n"
+"POT-Creation-Date: 2007-04-17 19:51+0100\n"
+"PO-Revision-Date: 2007-07-04 15:23+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati <fedora-trans-gu@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "વિકાસ કરનારાઓનો મદદ કાર્યક્રમ"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:139 ../src/dh-window.c:697
 msgid "Devhelp"
 msgstr "વિકાસ મદદ"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "દસ્તાવેજીકરણ બ્રાઉઝર"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "ચોક્કસ લખાણ માટે ફોન્ટ"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "લખાણ માટે ફોન્ટ"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "લખાણ માટે ચોક્કસ પહોળાઈવાળા ફોન્ટ."
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "લખાણ માટે ચલિત પહોળાઈવાળા ફોન્ટ."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "મુખ્ય વિન્ડોની ઊંચાઈ"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "મુખ્ય વિન્ડોની મહત્તમ સ્થિતિ"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "પસંદ થયેલ ટેબ, \"સમાવિષ્ટ\" અથવા \"શોધ\""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "અદ્યતન શોધ વિકલ્પો બતાવો"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "મુખ્ય વિન્ડોની X સ્થિતિ."
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "મુખ્ય વિન્ડોની Y સ્થિતિ."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "મુખ્ય વિન્ડોની ઊંચાઈ."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "અનુક્રમણિકાની પહોળાઈ અને શોધ તકતી."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "મુખ્ય વિન્ડોની પહોળાઈ."
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "સિસ્ટમ ફોન્ટ વાપરો"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "સિસ્ટમના મૂળભુત ફોન્ટ વાપરો."
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "શું અદ્યતન શોધ વિકલ્પો બતાવાયેલ છે."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "શું મુખ્ય વિન્ડો મહત્તમ સ્થિતિમાં શરુ થશે કે નહિં."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "ટેબોમાંની કઈ કે જે પસંદ થયેલ છે, \"સમાવિષ્ટ\" અથવા \"શોધ\"."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "અનુક્રમણિકાની પહોળાઈ અને શોધ તકતી"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "મુખ્ય વિન્ડોની પહોળાઈ"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "મુખ્ય વિન્ડોની X સ્થિતિ"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "મુખ્ય વિન્ડોની Y સ્થિતિ"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>ફોન્ટ</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>શોધ કરી રહ્યા છીએ</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:471
+msgid "Contents"
+msgstr "સમાવિષ્ટો"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "પસંદગીઓ"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "પાછા જાઓ (_B)"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "ચોક્કસ પહોળાઈ (_F):"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "આગળ ધપાવો (_F)"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:161
+msgid "_Go"
+msgstr "જાઓ (_G)"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "અદ્યતન શોધ વિકલ્પો બતાવો (_S)"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "સિસ્ટમ ફોન્ટ વાપરો (_U)"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "ચલિત પહોળાઈ (_V): "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp આધાર"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "કર્સર આગળને Devhelp લાવવા માટે F7 માટે આ શબ્દ છે"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "વિધેય માટે શોધ કરો"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "કોઈપણ ચાલતી વિકાસ મદદ બંધ કરો"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "આવૃત્તિ દર્શાવો અને બહાર નીકળો"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "devhelp વિન્ડોને શોધ ક્ષેત્ર સક્રિય રાખીને ફોકસ કરો"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -94,184 +238,76 @@ msgstr "પુસ્તક (_B):"
 msgid "_Page:"
 msgstr "પાનું (_P):"
 
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:159
 msgid "_File"
 msgstr "ફાઈલ (_F)"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:160
 msgid "_Edit"
 msgstr "ફેરફાર કરો (_E)"
 
-#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "જાઓ (_G)"
-
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:162
 msgid "_Help"
 msgstr "મદદ (_H)"
 
 #. File menu
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:165
 msgid "_New Window"
 msgstr "નવી વિન્ડો (_N)"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:167
 msgid "New _Tab"
 msgstr "નવી ટેબ (_T)"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "સમાવિષ્ટો બ્રાઉઝ કરો"
+#: ../src/dh-window.c:179 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "આગળનું શોધો"
 
-#: ../src/dh-window.c:171 ../src/dh-window.c:455
+#: ../src/dh-window.c:181 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "પહેલાંનું શોધો"
+
+#: ../src/dh-window.c:192
+msgid "_Contents Tab"
+msgstr "સમાવિષ્ટો ટેબ (_C)"
+
+#: ../src/dh-window.c:195
+msgid "_Search Tab"
+msgstr "શોધો ટેબ (_S)"
+
+#: ../src/dh-window.c:481
 msgid "Search"
 msgstr "શોધો"
 
-#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "સમાવિષ્ટો"
-
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:694
 msgid "translator_credits"
 msgstr "અંકિત પટેલ <ankit644@yahoo.com>"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:699
 msgid "A developer's help browser for GNOME 2"
 msgstr "જીનોમ ૨ માટે વિકાસ કરનારાઓ માટે મદદ બ્રાઉઝર"
 
-#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+#: ../src/dh-window.c:1106 ../src/dh-window.c:1235
 msgid "Empty Page"
 msgstr "ખાલી પાનું"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "ચોક્કસ લખાણ માટે ફોન્ટ"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "શોધો:"
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "લખાણ માટે ફોન્ટ"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "શોધ શબ્દમાળાનો પહેલાંનો વારો શોધો"
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "લખાણ માટે ચોક્કસ પહોળાઈવાળા ફોન્ટ."
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "શોધ શબ્દમાળાનો આગળનો વારો શોધો"
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "લખાણ માટે ચલિત પહોળાઈવાળા ફોન્ટ."
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "કેસ પ્રત્યે સંવેદનશીલ"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "મુખ્ય વિન્ડોની ઊંચાઈ"
-
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "મુખ્ય વિન્ડોની મહત્તમ સ્થિતિ"
-
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "પસંદ થયેલ ટેબ, \"સમાવિષ્ટ\" અથવા \"શોધ\""
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "અદ્યતન શોધ વિકલ્પો બતાવો"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "મુખ્ય વિન્ડોની X સ્થિતિ."
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "મુખ્ય વિન્ડોની Y સ્થિતિ."
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "મુખ્ય વિન્ડોની ઊંચાઈ."
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "અનુક્રમણિકાની પહોળાઈ અને શોધ તકતી."
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "મુખ્ય વિન્ડોની પહોળાઈ."
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "સિસ્ટમ ફોન્ટ વાપરો"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "સિસ્ટમના મૂળભુત ફોન્ટ વાપરો."
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "શું અદ્યતન શોધ વિકલ્પો બતાવાયેલ છે."
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "શું મુખ્ય વિન્ડો મહત્તમ સ્થિતિમાં શરુ થશે કે નહિં."
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "ટેબોમાંની કઈ કે જે પસંદ થયેલ છે, \"સમાવિષ્ટ\" અથવા \"શોધ\"."
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "અનુક્રમણિકાની પહોળાઈ અને શોધ તકતી"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "મુખ્ય વિન્ડોની પહોળાઈ"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "મુખ્ય વિન્ડોની X સ્થિતિ"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "મુખ્ય વિન્ડોની Y સ્થિતિ"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>ફોન્ટ</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>શોધ કરી રહ્યા છીએ</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "પસંદગીઓ"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "પાછા જાઓ (_B)"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "ચોક્કસ પહોળાઈ (_F):"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "આગળ ધપાવો (_F)"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "અદ્યતન શોધ વિકલ્પો બતાવો (_S)"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "સિસ્ટમ ફોન્ટ વાપરો (_U)"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "ચલિત પહોળાઈ (_V): "
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Devhelp આધાર"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "કર્સર આગળને Devhelp લાવવા માટે F7 માટે આ શબ્દ છે"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "કેસ પ્રત્યે સંવેદનશીલ શોધ બદલો"
 
