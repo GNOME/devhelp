@@ -1,46 +1,191 @@
-# translation of devhelp.HEAD.po to Bengali India
+# translation of devhelp to Bengali (India)
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
-# Runa Bhattacharjee <runabh@gmail.com>, 2007.
 #
+# Runa Bhattacharjee <runabh@gmail.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-13 03:14+0000\n"
-"PO-Revision-Date: 2007-03-13 11:20+0530\n"
+"POT-Creation-Date: 2007-04-17 19:51+0100\n"
+"PO-Revision-Date: 2007-07-10 17:40+0530\n"
 "Last-Translator: Runa Bhattacharjee <runabh@gmail.com>\n"
-"Language-Team: Bengali India\n"
+"Language-Team: Bengali (India) <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "ডিভেলপারদের সহায়ক প্রোগ্রাম"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:139 ../src/dh-window.c:697
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "নথিপত্র ব্রাউজার"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "অপরিবর্তনযোগ্য টেক্সটে ব্যবহৃত ফন্ট"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "টেক্সটে ব্যবহৃত ফন্ট"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "অপরিবর্তনযোগ্য প্রস্থের টেক্সটে ব্যবহৃত ফন্ট।"
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "পরিবর্তনযোগ্য প্রস্থের টেক্সটে ব্যবহৃত ফন্ট।"
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "প্রধান উইন্ডোর উচ্চতা"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "সর্বোচ্চ মাপে প্রধান উইন্ডো"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "নির্বাচিত ট্যাব, \"বিষয়বস্তু\" অথবা \"অনুসন্ধান\""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "অনুসন্ধান সংক্রান্ত উন্নত বিকল্প প্রদর্শন করা হবে"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "প্রধান উইন্ডোর X অবস্থান।"
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "প্রধান উইন্ডোর Y অবস্থান।"
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "প্রধান উইন্ডোর উচ্চতা।"
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "সূচি ও অনুসন্ধানের পেইনের প্রস্থ।"
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "প্রধান উইন্ডোর প্রস্থ।"
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "সিস্টেমের ফন্ট ব্যবহৃত হবে"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "সিস্টেমের ডিফল্ট ফন্ট ব্যবহৃত হবে।"
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "অনুসন্ধান সংক্রান্ত উন্নত বিকল্পগুলি প্রদর্শন করা হবে কি না।"
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "প্রধান উইন্ডোটি সর্বোচ্চ মাপে আরম্ভ করা হবে কি না।"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "কোন ট্যাবটি নির্বাচন করা হবে, \"বিষয়বস্তু\" অথবা \"অনুসন্ধান\"।"
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "সূচি ও অনুসন্ধানের পেইনের প্রস্থ"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "প্রধান উইন্ডোর প্রস্থ"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "প্রধান উইন্ডোর X অবস্থান"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "প্রধান উইন্ডোর Y অবস্থান"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>ফন্ট</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>অনুসন্ধান</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:471
+msgid "Contents"
+msgstr "বিষয়বস্তু"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "পছন্দ"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "পূর্ববর্তী (_B)"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "অপরিবর্তনযোগ্য মাপ: (_F)"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "পরবর্তী (_F)"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:161
+msgid "_Go"
+msgstr "গন্তব্য (_G)"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "অনুসন্ধান সংক্রান্ত উন্নত বিকল্প প্রদর্শন করা হবে (_S)"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "সিস্টেম ফন্ট ব্যবহার করা হবে (_U)"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "পরিবর্তনযোগ্য মাপ :(_V)"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp সহায়তা"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "F7-র সাহায্যে কার্সার দ্বারা চিহ্নিত শব্দের জন্য Devhelp আরম্ভ করা হয়"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "ফাংশান অনুসন্ধান করুন"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "চলমান Devhelp বন্ধ করুন"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "সংস্করণ সংখ্যা প্রদর্শন করে প্রস্থান করা হবে"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "অনুসন্ধানের ক্ষেত্র সক্রিয় করে devhelp উইন্ডো ফোকাস করা হবে"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -92,184 +237,76 @@ msgstr "বই: (_B)"
 msgid "_Page:"
 msgstr "পৃষ্ঠা: (_P)"
 
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:159
 msgid "_File"
 msgstr "ফাইল (_F)"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:160
 msgid "_Edit"
 msgstr "সম্পাদনা (_E)"
 
-#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "গন্তব্য (_G)"
-
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:162
 msgid "_Help"
 msgstr "সাহায্য (_H)"
 
 #. File menu
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:165
 msgid "_New Window"
 msgstr "নতুন উইন্ডো (_N)"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:167
 msgid "New _Tab"
 msgstr "নতুন ট্যাব (_T)"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "বিষয়বস্তু পর্যালোচনা করুন"
+#: ../src/dh-window.c:179 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "পরবর্তী উপস্থিত অনুসন্ধান"
 
-#: ../src/dh-window.c:171 ../src/dh-window.c:455
+#: ../src/dh-window.c:181 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "পূর্ববর্তী উপস্থিতি অনুসন্ধান"
+
+#: ../src/dh-window.c:192
+msgid "_Contents Tab"
+msgstr "বিষয়বস্তু ট্যাব (_C)"
+
+#: ../src/dh-window.c:195
+msgid "_Search Tab"
+msgstr "অনুসন্ধান ট্যাব (_S)"
+
+#: ../src/dh-window.c:481
 msgid "Search"
 msgstr "অনুসন্ধান"
 
-#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "বিষয়বস্তু"
-
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:694
 msgid "translator_credits"
 msgstr "রুণা ভট্টাচার্য্য <runabh@gmail.com>"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:699
 msgid "A developer's help browser for GNOME 2"
 msgstr "GNOME 2-র ক্ষেত্রে প্রযোজ্য ডিভেলপারদের জন্য সহায়ক তথ্যের ব্রাউজার"
 
-#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+#: ../src/dh-window.c:1106 ../src/dh-window.c:1235
 msgid "Empty Page"
 msgstr "ফাঁকা পৃষ্ঠা"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "অপরিবর্তনযোগ্য টেক্সটে ব্যবহৃত ফন্ট"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "অনুসন্ধান:"
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "টেক্সটে ব্যবহৃত ফন্ট"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "অনুসন্ধান করা পংক্তির পূর্ববর্তী উপস্থিতি সনাক্ত করুন"
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "অপরিবর্তনযোগ্য প্রস্থের টেক্সটে ব্যবহৃত ফন্ট।"
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "অনুসন্ধান করা পংক্তির পরবর্তী উপস্থিতি সনাক্ত করুন"
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "পরিবর্তনযোগ্য প্রস্থের টেক্সটে ব্যবহৃত ফন্ট।"
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "হরফের ছাঁদ সম্পর্কে সচেতন"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "প্রধান উইন্ডোর উচ্চতা"
-
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "সর্বোচ্চ মাপে প্রধান উইন্ডো"
-
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "নির্বাচিত ট্যাব, \"বিষয়বস্তু\" অথবা \"অনুসন্ধান\""
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "অনুসন্ধান সংক্রান্ত উন্নত বিকল্প প্রদর্শন করা হবে"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "প্রধান উইন্ডোর X অবস্থান।"
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "প্রধান উইন্ডোর Y অবস্থান।"
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "প্রধান উইন্ডোর উচ্চতা।"
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "সূচি ও অনুসন্ধানের পেইনের প্রস্থ।"
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "প্রধান উইন্ডোর প্রস্থ।"
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "সিস্টেমের ফন্ট ব্যবহৃত হবে"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "সিস্টেমের ডিফল্ট ফন্ট ব্যবহৃত হবে।"
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "অনুসন্ধান সংক্রান্ত উন্নত বিকল্পগুলি প্রদর্শন করা হবে কি না।"
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "প্রধান উইন্ডোটি সর্বোচ্চ মাপে আরম্ভ করা হবে কি না।"
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "কোন ট্যাবটি নির্বাচন করা হবে, \"বিষয়বস্তু\" অথবা \"অনুসন্ধান\"।"
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "সূচি ও অনুসন্ধানের পেইনের প্রস্থ"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "প্রধান উইন্ডোর প্রস্থ"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "প্রধান উইন্ডোর X অবস্থান"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "প্রধান উইন্ডোর Y অবস্থান"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>ফন্ট</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>অনুসন্ধান</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "পছন্দ"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "পূর্ববর্তী (_B)"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "অপরিবর্তনযোগ্য মাপ: (_F)"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "পরবর্তী (_F)"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "অনুসন্ধান সংক্রান্ত উন্নত বিকল্প প্রদর্শন করা হবে (_S)"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "সিস্টেম ফন্ট ব্যবহার করা হবে (_U)"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "পরিবর্তনযোগ্য মাপ :(_V)"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Devhelp সহায়তা"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "F7-র সাহায্যে কার্সার দ্বারা চিহ্নিত শব্দের জন্য Devhelp আরম্ভ করা হয়"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "হরফের ছাঁদ অনুযায়ী অনুসন্ধান সক্রিয় অথবা নিষ্ক্রিয় করুন"
 
