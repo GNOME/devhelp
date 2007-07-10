@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-02 02:08+0000\n"
-"PO-Revision-Date: 2007-02-24 08:30+0100\n"
+"POT-Creation-Date: 2007-04-17 19:51+0100\n"
+"PO-Revision-Date: 2007-07-11 00:11+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -17,30 +17,174 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Fejlesztők súgóprogramja"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:139 ../src/dh-window.c:697
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Dokumentációböngésző"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Rögzített szélességű szöveg betűkészlete"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Szöveg betűkészlete"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Rögzített szélességű szöveg betűkészlete."
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Változó szélességű szöveg betűkészlete."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Főablak magassága"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Főablak maximalizált állapota"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Kiválasztott lap, \"content\" (tartalom) vagy \"search\" (keresés)"
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Haladó keresési beállítások megjelenítése"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "A főablak X-pozíciója."
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "A főablak Y-pozíciója."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "A főablak magassága."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Az index és a kereső oldalsáv szélessége."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "A főablak szélessége."
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "A rendszer betűkészletének használata"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "A rendszer alapértelmezett betűkészletének használata."
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Megjelenjenek-e a haladó keresési beállítások?"
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "A főablak teljes méretben induljon-e?"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Melyik lap van kiválasztva, \"content\" (tartalom) vagy \"search\" (keresés)."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Az index és a kereső oldalsáv szélessége"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Főablak szélessége"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Főablak X-pozíciója"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Főablak Y-pozíciója"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Betűk</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Keresés</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:471
+msgid "Contents"
+msgstr "Tartalom"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "_Vissza"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Rögzített szélességű:"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_Előre"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:161
+msgid "_Go"
+msgstr "_Ugrás"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Haladó keresési beállítások megjelenítése"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "A rendszer betűkészletének _használata"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "_Változó szélességű: "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp támogatás"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Az F7 hatására megjelenik a Devhelp a kurzornál található szóhoz"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Függvény keresése"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Kilépés bármely futó Devhelpből"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "Verziószám megjelenítése és kilépés"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "A Devhelp ablakának előtérbe hozása aktív keresőmezővel"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -96,184 +240,76 @@ msgstr "_Könyv:"
 msgid "_Page:"
 msgstr "_Oldal:"
 
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:159
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:160
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
-#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "_Ugrás"
-
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:162
 msgid "_Help"
 msgstr "_Súgó"
 
 #. File menu
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:165
 msgid "_New Window"
 msgstr "Új _ablak"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:167
 msgid "New _Tab"
 msgstr "Új _lap"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "Tartalom böngészése"
+#: ../src/dh-window.c:179 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "Következő keresése"
 
-#: ../src/dh-window.c:171 ../src/dh-window.c:455
+#: ../src/dh-window.c:181 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Előző keresése"
+
+#: ../src/dh-window.c:192
+msgid "_Contents Tab"
+msgstr "_Tartalom fül"
+
+#: ../src/dh-window.c:195
+msgid "_Search Tab"
+msgstr "_Keresés fül"
+
+#: ../src/dh-window.c:481
 msgid "Search"
 msgstr "Keresés"
 
-#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Tartalom"
-
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:694
 msgid "translator_credits"
 msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:699
 msgid "A developer's help browser for GNOME 2"
 msgstr "Súgóböngésző fejlesztőknek GNOME2-höz"
 
-#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+#: ../src/dh-window.c:1106 ../src/dh-window.c:1235
 msgid "Empty Page"
 msgstr "Üres oldal"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Rögzített szélességű szöveg betűkészlete"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "Keresés:"
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Szöveg betűkészlete"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "A keresendő karakterlánc előző előfordulásának keresése"
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Rögzített szélességű szöveg betűkészlete."
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "A keresendő karakterlánc következő előfordulásának keresése"
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Változó szélességű szöveg betűkészlete."
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "Kis- és nagybetű"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "Főablak magassága"
-
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "Főablak maximalizált állapota"
-
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Kiválasztott lap, \"content\" (tartalom) vagy \"search\" (keresés)"
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Haladó keresési beállítások megjelenítése"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "A főablak X-pozíciója."
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "A főablak Y-pozíciója."
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "A főablak magassága."
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "Az index és a kereső oldalsáv szélessége."
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "A főablak szélessége."
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "A rendszer betűkészletének használata"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "A rendszer alapértelmezett betűkészletének használata."
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Megjelenjenek-e a haladó keresési beállítások?"
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "A főablak teljes méretben induljon-e?"
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Melyik lap van kiválasztva, \"content\" (tartalom) vagy \"search\" (keresés)."
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "Az index és a kereső oldalsáv szélessége"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "Főablak szélessége"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "Főablak X-pozíciója"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "Főablak Y-pozíciója"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Betűk</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Keresés</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Beállítások"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "_Vissza"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "_Rögzített szélességű:"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "_Előre"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Haladó keresési beállítások megjelenítése"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "A rendszer betűkészletének _használata"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "_Változó szélességű: "
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Devhelp támogatás"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Az F7 hatására megjelenik a Devhelp a kurzornál található szóhoz"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "Váltás a kis- és nagybetűérzékeny keresés között"
 
