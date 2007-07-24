@@ -8,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp HEAD\n"
+"Project-Id-Version: devhelp GNOME 2.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-29 03:14+0000\n"
-"PO-Revision-Date: 2007-02-16 00:41+0200\n"
+"POT-Creation-Date: 2007-04-18 03:15+0100\n"
+"PO-Revision-Date: 2007-07-22 12:02+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -71,16 +71,16 @@ msgstr ""
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
-msgstr ""
+msgstr "Raamatu parserit pole võimalik luua"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
-msgstr ""
+msgstr "Märkimiskeele parserit pole võimalik luua"
 
 #: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Raamatut '%s' pole võimalik lahti pakkida: %s"
 
 #: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
@@ -133,8 +133,7 @@ msgstr "Sisukord"
 
 #: ../src/dh-window.c:616
 msgid "translator_credits"
-msgstr ""
-"Ivar Smolin <okul@linux.ee>, 2007."
+msgstr "Ivar Smolin <okul@linux.ee>, 2007."
 
 #: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
@@ -206,7 +205,7 @@ msgstr "Süsteemsete vaikimisi kirjatüüpide kasutamine"
 
 #: ../devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."
-msgstr ""
+msgstr "Kas laiendatud otsimisvalikuid näidatakse või mitte."
 
 #: ../devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
