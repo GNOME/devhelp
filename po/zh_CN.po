@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-02 02:08+0000\n"
+"POT-Creation-Date: 2007-04-17 19:51+0100\n"
 "PO-Revision-Date: 2007-04-15 17:56+0700\n"
 "Last-Translator: Yang Zhang <zyangmath@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -15,36 +15,176 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "开发者帮助程序"
 
-#: ../devhelp.desktop.in.in.h:2
-#: ../src/dh-main.c:125
-#: ../src/dh-window.c:619
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:139 ../src/dh-window.c:697
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "文档浏览器"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "固定宽度文本字体"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "普通文本字体"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "固定宽度文本使用的字体。"
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "变动宽度文本使用的字体。"
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "主窗口高度"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "主窗口最大化"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "所选的标签，是“内容”还是“搜索”"
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "显示高级搜索选项"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "主窗口水平位置。"
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "主窗口垂直位置。"
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "主窗口高度。"
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "索引和搜索面板宽度。"
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "主窗口宽度。"
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "使用系统字体"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "使用系统默认字体。"
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "是否显示高级搜索选项。"
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "是否以最大化启动主窗口。"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "选中哪个标签，“content”还是“search”？"
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "索引和搜索面板宽度"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "主窗口宽度"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "主窗口水平位置"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "主窗口垂直位置"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>字体</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>正在搜索</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:471
+msgid "Contents"
+msgstr "目录"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "首选项"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "后退(_B)"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "等宽字体(_F)："
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "前进(_F)"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:161
+msgid "_Go"
+msgstr "转到(_G)"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "显示高级搜索选项(_S)"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "使用系统字体(_U)"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "变宽字体(_V)："
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp 支持"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "F7 启动光标处单词的 Devhelp"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "搜索一个函数"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "退出正在运行的 Devhelp"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "显示版本然后退出"
 
-#: ../src/dh-parser.c:110
-#: ../src/dh-parser.c:194
-#: ../src/dh-parser.c:271
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr ""
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "期待“%s”但得到“%s”(第%d行，第%d列)"
@@ -66,16 +206,15 @@ msgstr "在 <sub> 内需要指定 name 和 link 元素 (第%d行，第%d列)"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr "在 <function> 内需要指定 name 和 link 元素 (第%d行，第%d列)"
 
-#: ../src/dh-parser.c:420
-#: ../src/dh-parser.c:515
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "无法创建书籍分析器"
 
-#: ../src/dh-parser.c:436
-#: ../src/dh-parser.c:525
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "无法创建标记分析器"
 
@@ -96,203 +235,98 @@ msgstr "书籍(_B)："
 msgid "_Page:"
 msgstr "页面(_P)："
 
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:159
 msgid "_File"
 msgstr "文件(_F)"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:160
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/dh-window.c:143
-#: ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "转到(_G)"
-
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:162
 msgid "_Help"
 msgstr "帮助(_H)"
 
 #. File menu
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:165
 msgid "_New Window"
 msgstr "新建窗口(_N)"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:167
 msgid "New _Tab"
 msgstr "新建标签(_T)"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "浏览内容"
+#: ../src/dh-window.c:179 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "查找下一个"
 
-#: ../src/dh-window.c:171
-#: ../src/dh-window.c:455
+#: ../src/dh-window.c:181 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "查找上一个"
+
+#: ../src/dh-window.c:192
+#, fuzzy
+msgid "_Contents Tab"
+msgstr "目录"
+
+#: ../src/dh-window.c:195
+#, fuzzy
+msgid "_Search Tab"
+msgstr "搜索(_S)："
+
+#: ../src/dh-window.c:481
 msgid "Search"
 msgstr "搜索"
 
-#: ../src/dh-window.c:445
-#: ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "目录"
-
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:694
 msgid "translator_credits"
 msgstr "Yang Zhang <zyangmath@gmail.com>, 2007"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:699
 msgid "A developer's help browser for GNOME 2"
 msgstr "用于 GNOME 2 的开发者帮助浏览器"
 
-#: ../src/dh-window.c:950
-#: ../src/dh-window.c:1080
+#: ../src/dh-window.c:1106 ../src/dh-window.c:1235
 msgid "Empty Page"
 msgstr "空白页"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "固定宽度文本字体"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "查找："
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "普通文本字体"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr ""
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "固定宽度文本使用的字体。"
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr ""
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "变动宽度文本使用的字体。"
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "区分大小写"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "主窗口高度"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr ""
 
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "主窗口最大化"
-
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "所选的标签，是“内容”还是“搜索”"
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "显示高级搜索选项"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "主窗口水平位置。"
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "主窗口垂直位置。"
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "主窗口高度。"
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "索引和搜索面板宽度。"
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "主窗口宽度。"
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "使用系统字体"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "使用系统默认字体。"
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "是否显示高级搜索选项。"
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "是否以最大化启动主窗口。"
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "选中哪个标签，“content”还是“search”？"
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "索引和搜索面板宽度"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "主窗口宽度"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "主窗口水平位置"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "主窗口垂直位置"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>字体</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>正在搜索</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "首选项"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "后退(_B)"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "等宽字体(_F)："
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "前进(_F)"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "显示高级搜索选项(_S)"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "使用系统字体(_U)"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "变宽字体(_V)："
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Devhelp 支持"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "F7 启动光标处单词的 Devhelp"
+#~ msgid "Browse Contents"
+#~ msgstr "浏览内容"
 
 #~ msgid "Specify the size and location of the window"
 #~ msgstr "指定窗口的大小和位置"
+
 #~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
 #~ msgstr "WIDTHxHEIGHT+XOFF+YOFF"
-#~ msgid "_Search:"
-#~ msgstr "搜索(_S)："
+
 #~ msgid "Section"
 #~ msgstr "节"
+
 #~ msgid "Cannot set UI: %s"
 #~ msgstr "无法设定 UI：%s"
+
 #~ msgid "Devhelp project page"
 #~ msgstr "Devhelp 项目页"
+
 #~ msgid "Bug report Devhelp"
 #~ msgstr "错误报告 Devhelp"
-
