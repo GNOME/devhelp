@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: devhelp 0.13\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-02-17 18:06+0100\n"
-"PO-Revision-Date: 2007-05-13 18:41+0200\n"
+"PO-Revision-Date: 2007-08-19 17:09+0200\n"
 "Last-Translator: Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
@@ -261,7 +261,7 @@ msgstr ""
 
 #: ../ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr "_Utilisar las poliças del sistèma"
+msgstr "_Utilizar las poliças del sistèma"
 
 #: ../ui/devhelp.glade.h:12
 msgid "_Variable width: "
