@@ -1,47 +1,192 @@
-# translation of mk.po to Macedonian
+# translation of devhelp.HEAD.mk.po to Macedonian
 # translation of devhelp.HEAD.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 #
 # Ime Prezime <email@adresa.com>, 2003.
 # Arangel Angov <ufo@linux.net.mk>, 2006, 2007.
+# Jovan Naumovski <jovan@lugola.net>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: mk\n"
+"Project-Id-Version: devhelp.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-02 02:08+0000\n"
-"PO-Revision-Date: 2007-03-01 22:47+0100\n"
-"Last-Translator: Arangel Angov <ufo@linux.net.mk>\n"
+"POT-Creation-Date: 2007-04-17 19:51+0100\n"
+"PO-Revision-Date: 2007-08-18 15:54+0200\n"
+"Last-Translator: Jovan Naumovski <jovan@lugola.net>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Помошна програма за програмери"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:139 ../src/dh-window.c:697
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Прелистувач за документација"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Фонт за fixed текст"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Фонт за текст"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Фонт за текст со fixed широчина."
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Фонт за текст со променлива широчина."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Висина на главен прозорец"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Максимизирана состојба на главниот прозорец"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Избран таб, \"содржина\" или \"пребарување\""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Покажи напредни опции за пребарување"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "X позицијата на главниот прозорец."
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Y позицијата на главниот прозорец."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Височината на главниот прозорец."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Широчината на индексот и просторот за пребарување."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Широчината на главниот прозорец."
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Користи системски фонтови"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Користи системски стандардни фонтови."
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Дали да бидат прикажани напредните опции за пребарување."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Дали главниот прозорец да се подигне како максимизиран или не."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Кои табови се избрани, \"содржина\" или \"пребарување\"."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Широчина на индексот и просторот за пребарување."
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Широчина на главниот прозорец"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "X позицијата на главниот прозорец"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Y позицијата на главниот прозорец"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Фонтови</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Пребарување</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:471
+msgid "Contents"
+msgstr "Содржини"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Преференци"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "_Назад"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Fixed широчина:"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_Напред"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:161
+msgid "_Go"
+msgstr "_Оди"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Покажи напредни опции за пребарување"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "_Користи системски фонтови"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "_Променлива широчина: "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Поддршка за Devhelp"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Прави F7 да го подигнува Devhelp на зборчето каде што е курсорот"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Пребарувај за функција"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Напушти секое вклучено Девпомош"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "Прикажи ја верзијата и излези"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "Фокусирај го прозорецот на devhelp со активно поле за пребарување"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -93,184 +238,76 @@ msgstr "_Книга:"
 msgid "_Page:"
 msgstr "_Страница:"
 
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:159
 msgid "_File"
 msgstr "_Датотека"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:160
 msgid "_Edit"
 msgstr "_Уреди"
 
-#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "_Оди"
-
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:162
 msgid "_Help"
 msgstr "_Помош"
 
 #. File menu
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:165
 msgid "_New Window"
 msgstr "_Нов прозорец"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:167
 msgid "New _Tab"
 msgstr "Нов _таб"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "Разгледај содржини"
+#: ../src/dh-window.c:179 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "Пронајди следно"
 
-#: ../src/dh-window.c:171 ../src/dh-window.c:455
+#: ../src/dh-window.c:181 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Пронајди претходно"
+
+#: ../src/dh-window.c:192
+msgid "_Contents Tab"
+msgstr "Јазиче со _содржини"
+
+#: ../src/dh-window.c:195
+msgid "_Search Tab"
+msgstr "Јазиче за _пребарување"
+
+#: ../src/dh-window.c:481
 msgid "Search"
 msgstr "Пребарувај"
 
-#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Содржини"
-
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:694
 msgid "translator_credits"
 msgstr "Арангел Ангов <ufo@linux.net.mk>"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:699
 msgid "A developer's help browser for GNOME 2"
 msgstr "Пребарувач за помош на развивачот за GNOME 2"
 
-#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+#: ../src/dh-window.c:1106 ../src/dh-window.c:1235
 msgid "Empty Page"
 msgstr "Празна страница"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Фонт за fixed текст"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "Пронајди:"
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Фонт за текст"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "Пронајди го претходното појавување на низата која се пребарува"
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Фонт за текст со fixed широчина."
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "Пронајди го следното појавување на низата која се пребарува"
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Фонт за текст со променлива широчина."
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "Разликувај мали-големи букви"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "Висина на главен прозорец"
-
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "Максимизирана состојба на главниот прозорец"
-
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Избран таб, \"содржина\" или \"пребарување\""
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Покажи напредни опции за пребарување"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "X позицијата на главниот прозорец."
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "Y позицијата на главниот прозорец."
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "Височината на главниот прозорец."
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "Широчината на индексот и просторот за пребарување."
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "Широчината на главниот прозорец."
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "Користи системски фонтови"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "Користи системски стандардни фонтови."
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Дали да бидат прикажани напредните опции за пребарување."
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "Дали главниот прозорец да се подигне како максимизиран или не."
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Кои табови се избрани, \"содржина\" или \"пребарување\"."
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "Широчина на индексот и просторот за пребарување."
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "Широчина на главниот прозорец"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "X позицијата на главниот прозорец"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "Y позицијата на главниот прозорец"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Фонтови</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Пребарување</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Преференци"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "_Назад"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "_Fixed широчина:"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "_Напред"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Покажи напредни опции за пребарување"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "_Користи системски фонтови"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "_Променлива широчина: "
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Поддршка за Devhelp"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Прави F7 да го подигнува Devhelp на зборчето каде што е курсорот"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "Овозможи/оневозможи пребарување со разликување на мали-големи букви"
 
