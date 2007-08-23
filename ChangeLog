@@ -1,3 +1,7 @@
+2007-08-23  Sunil Mohan Adapa  <sunil@atc.tcs.com>
+
+	* configure.in: Added Telugu (te) to ALL_LINGUAS.
+
 2007-06-18  Richard Hult  <richard@imendio.com>
 
 	* configure.in: Release 0.15.
