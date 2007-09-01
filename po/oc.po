@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-20 11:00+0100\n"
-"PO-Revision-Date: 2007-08-20 23:33+0200\n"
+"POT-Creation-Date: 2007-08-22 22:22+0100\n"
+"PO-Revision-Date: 2007-09-01 18:48+0200\n"
 "Last-Translator: Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Devhelp"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr ""
+msgstr "Navegaire de documentacin"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Height of main window"
-msgstr ""
+msgstr "Nautor de la fenèstra principala"
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Main window maximized state"
@@ -180,7 +180,7 @@ msgstr ""
 
 #: ../src/dh-main.c:108
 msgid "Display the version and exit"
-msgstr ""
+msgstr "Visualizar la version e sortir"
 
 #: ../src/dh-main.c:117
 msgid "Focus the devhelp window with the search field active"
@@ -256,15 +256,15 @@ msgstr "Fenèstra _novèla"
 
 #: ../src/dh-window.c:164
 msgid "New _Tab"
-msgstr ""
+msgstr "_Onglet novèl"
 
 #: ../src/dh-window.c:176 ../src/eggfindbar.c:337
 msgid "Find Next"
-msgstr ""
+msgstr "Recercar lo seguent"
 
 #: ../src/dh-window.c:178 ../src/eggfindbar.c:329
 msgid "Find Previous"
-msgstr ""
+msgstr "Recercar lo precedent"
 
 #: ../src/dh-window.c:189
 msgid "_Contents Tab"
@@ -280,15 +280,17 @@ msgstr "Recercar"
 
 #: ../src/dh-window.c:686
 msgid "translator_credits"
-msgstr "La còla occitana de revirada d'Ubuntu, 2007 - ubuntu-l10n-oci@lists.ubuntu.com"
+msgstr ""
+"La còla occitana de revirada d'Ubuntu, 2007 - ubuntu-l10n-oci@lists.ubuntu."
+"com"
 
 #: ../src/dh-window.c:691
 msgid "A developer's help browser for GNOME 2"
-msgstr ""
+msgstr "A navegaire d'ajuda per desvolopaire de GNOME 2"
 
 #: ../src/dh-window.c:1085 ../src/dh-window.c:1214
 msgid "Empty Page"
-msgstr ""
+msgstr "Pagina voida"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
