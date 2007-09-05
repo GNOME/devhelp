@@ -34,7 +34,7 @@ class DevhelpInstance:
         self._action_group.set_translation_domain('devhelp')
         self._action_group.add_actions([('Devhelp', None,
                                          _('Show API Documentation'),
-                                         'F7',
+                                         'F2',
                                          _('Show API Documentation for the word at the cursor'),
                                          self.on_action_devhelp_activate)])
         
