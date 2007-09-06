@@ -1,5 +1,10 @@
 2007-09-05  Jonh Wendell  <jwendell@gnome.org>
 
+	* misc/gedit-plugin/devhelp.gedit-plugin.desktop.in:
+	  Updated plugin description to the new shortcut key.
+
+2007-09-05  Jonh Wendell  <jwendell@gnome.org>
+
 	* misc/gedit-plugin/devhelp/devhelp.py:
 	  Changed keybinding from F7 to F2, avoiding a conflict with gtk 2.12
 
