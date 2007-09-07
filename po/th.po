@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 18:04+0700\n"
-"PO-Revision-Date: 2007-05-17 18:10+0700\n"
+"POT-Creation-Date: 2007-09-07 14:54+0700\n"
+"PO-Revision-Date: 2007-09-07 14:55+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
-"Language-Team: Thai <l10n@opentle.org>\n"
+"Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -165,8 +165,8 @@ msgid "Devhelp support"
 msgstr "การสนับสนุน Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "ทำให้ใช้ F7 เปิด Devhelp สำหรับคำที่ตำแหน่งเคอร์เซอร์ได้"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "ทำให้ใช้ F2 เปิด Devhelp สำหรับคำที่ตำแหน่งเคอร์เซอร์ได้"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
@@ -211,10 +211,12 @@ msgid ""
 msgstr "ต้องมีอิลิเมนต์ name และ link ภายใต้ <function> ที่บรรทัด %d, คอลัมน์ %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "ไม่สามารถสร้างตัวแจงหนังสือ"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "ไม่สามารถสร้างตัวแจงมาร์กอัพ"
 
@@ -224,6 +226,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "ไม่สามารถคลายข้อมูลหนังสือ '%s': %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp ไม่ได้คอมไพล์ไว้ในแบบที่รองรับ zlib"
 
