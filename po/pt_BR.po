@@ -7,14 +7,15 @@
 # Raphael Higino <phhigino@gmail.com>, 2004.
 # Luiz Fernando S. Armesto <luiz.armesto@gmail.com>, 2007.
 # Washington Lins <washington-lins@uol.com.br>, 2007.
+# Og Maciel <ogmaciel@gnome.org>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-21 22:50+0100\n"
-"PO-Revision-Date: 2007-08-22 13:59-0300\n"
-"Last-Translator: Luiz Armesto <luiz.armesto@gmail.com>\n"
+"POT-Creation-Date: 2007-09-06 21:59+0100\n"
+"PO-Revision-Date: 2007-09-06 18:54-0500\n"
+"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,8 +177,8 @@ msgid "Devhelp support"
 msgstr "Suporte do Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Faz a tecla F7 exibir o Devhelp para a palavra sob o cursor"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Faz a tecla F2 exibir o Devhelp para a palavra sob o cursor"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
@@ -297,7 +298,9 @@ msgid "translator_credits"
 msgstr ""
 "Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
 "Raphael Higino <phhigino@gmail.com>\n"
-"Luiz Armesto <luiz.armesto@gmail.com>"
+"Luiz Armesto <luiz.armesto@gmail.com>\n"
+"Washington Lins <washington-lins@uol.com.br>\n"
+"Og Maciel <ogmaciel@gnome.org>"
 
 #: ../src/dh-window.c:691
 msgid "A developer's help browser for GNOME 2"
