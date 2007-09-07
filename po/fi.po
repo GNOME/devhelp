@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-06 16:25+0300\n"
+"POT-Creation-Date: 2007-09-07 08:56+0300\n"
 "PO-Revision-Date: 2006-09-15 11:04+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -165,9 +165,8 @@ msgid "Devhelp support"
 msgstr "Devhelp-tuki"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr ""
-"Käynnistää devhelpin F7-näppäimestä kohdistimen kohdalla olevalle sanalle"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Avaa devhelpin kohdistimen kohdalla olevalle sanalle F2-näppäimestä"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
@@ -216,10 +215,12 @@ msgstr ""
 "sarakkeessa %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Kirjan tulkkia ei voitu luoda"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Merkintöjen tulkkia ei voitu luoda"
 
@@ -229,6 +230,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Kirjan '%s' pakkausta ei voitu avata: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp ei ole käännetty zlib-tuen kanssa"
 
