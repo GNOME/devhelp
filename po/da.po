@@ -10,38 +10,184 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-02 02:08+0000\n"
-"PO-Revision-Date: 2007-04-16 02:08+0200\n"
+"POT-Creation-Date: 2007-09-09 01:49+0200\n"
+"PO-Revision-Date: 2007-09-08 14:11+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Hjælpeprogram til udviklere"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:141 ../src/dh-window.c:689
 msgid "Devhelp"
 msgstr "Udviklerhjælp"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Dokumentationsfremviser"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Skrifttype for fast tekst"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Skrifttype for tekst"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Skrifttype til fast skrift."
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Skrifttype til tekst med variabel bredde."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Højde på hovedvinduet"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Hovedvindue i maksimeret tilstand"
+
+# Kan også betyde "faneblad valgt", men at dømme efter en senere msgid (which of the tabs that is selected), er dette ikke tilfældet
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Valgt faneblad, \"indhold\" eller \"søg\""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Vis avancerede søgeindstillinger"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "Hovedvinduets x-position."
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Hovedvinduets y-position."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Hovedvinduets højde."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Bredden af indeks- og søgepanelerne."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Hovedvinduets bredde."
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Brug systemskrifttyper"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Brug systemets standard-skrifttyper."
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Om de avancerede søgeindstillinger vises."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Om hovedvinduet skal åbne maksimeret eller ej."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Hvilket af fanebladene der er valgt, \"indhold\" eller \"søg\"."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Bredden af indeks- og søgepanelerne"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Hovedvinduets bredde"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Hovedvinduets x-position"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Hovedvinduets y-position"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Skrifttyper</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Søger</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+msgid "Contents"
+msgstr "Indhold"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Indstillinger"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "_Tilbage"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Fast bredde:"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_Fremad"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+msgid "_Go"
+msgstr "_Gå til"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Vis avancerede søgeindstillinger"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "_Brug systemskrifttype"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "_Variabel bredde: "
+
+# Denne msgid ligger i et gedit-plugin, så det er nok en knap hvor man kan køre devhelp, eller indstille understøttelsen af devhelp. At oversætte det til blot Udviklerhjælp kan derfor ikke gå helt galt, men ethvert andet gæt på om det betyder understøttelse af devhelp, eller hjælp til devhelp eller noget andet vil være risikabelt
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Udviklerhjælp"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Får F2 til at starte Udviklerhjælp for ordet ved markøren"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Søg efter en funktion"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Afslut alle kørende udviklerhjælp"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "Vis versionsnummeret og afslut"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "Fokusér Udviklerhjælp-vinduet med fokus på søgefeltet"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -97,44 +243,48 @@ msgstr "_Bog:"
 msgid "_Page:"
 msgstr "_Side:"
 
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:156
 msgid "_File"
 msgstr "_Fil"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:157
 msgid "_Edit"
 msgstr "_Redigér"
 
-#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "_Gå til"
-
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:159
 msgid "_Help"
 msgstr "_Hjælp"
 
 #. File menu
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:162
 msgid "_New Window"
 msgstr "_Nyt vindue"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:164
 msgid "New _Tab"
 msgstr "Nyt _Faneblad"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "Vis indhold"
+#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "Find næste"
 
-#: ../src/dh-window.c:171 ../src/dh-window.c:455
+#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Find forrige"
+
+#: ../src/dh-window.c:189
+msgid "_Contents Tab"
+msgstr "_Indholdsfaneblad"
+
+#: ../src/dh-window.c:192
+msgid "_Search Tab"
+msgstr "_Søgefaneblad"
+
+#: ../src/dh-window.c:473
 msgid "Search"
 msgstr "Søg"
 
-#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Indhold"
-
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:686
 msgid "translator_credits"
 msgstr ""
 "Ole Laursen\n"
@@ -144,156 +294,42 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:691
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjælpefremviser for udviklere til GNOME 2"
 
-#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
 msgid "Empty Page"
 msgstr "Tom side"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Skrifttype for fast tekst"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "Find:"
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Skrifttype for tekst"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "Find forrige træfning af søgestrengen"
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Skrifttype til fast skrift."
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "Find næste træfning af søgestrengen"
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Skrifttype til tekst med variabel bredde."
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "Versalfølsom"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "Højde på hovedvinduet"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "Slå versalfølsom søgning til/fra"
 
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "Hovedvindue i maksimeret tilstand"
-
-# Kan også betyde "faneblad valgt", men at dømme efter en senere msgid (which of the tabs that is selected), er dette ikke tilfældet
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Valgt faneblad, \"indhold\" eller \"søg\""
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Vis avancerede søgeindstillinger"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "Hovedvinduets x-position."
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "Hovedvinduets y-position."
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "Hovedvinduets højde."
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "Bredden af indeks- og søgepanelerne."
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "Hovedvinduets bredde."
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "Brug systemskrifttyper"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "Brug systemets standard-skrifttyper."
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Om de avancerede søgeindstillinger vises."
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "Om hovedvinduet skal åbne maksimeret eller ej."
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Hvilket af fanebladene der er valgt, \"indhold\" eller \"søg\"."
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "Bredden af indeks- og søgepanelerne"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "Hovedvinduets bredde"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "Hovedvinduets x-position"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "Hovedvinduets y-position"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Skrifttyper</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Søger</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Indstillinger"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "_Tilbage"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "_Fast bredde:"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "_Fremad"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Vis avancerede søgeindstillinger"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "_Brug systemskrifttype"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "_Variabel bredde: "
-
-# Denne msgid ligger i et gedit-plugin, så det er nok en knap hvor man kan køre devhelp, eller indstille understøttelsen af devhelp. At oversætte det til blot Udviklerhjælp kan derfor ikke gå helt galt, men ethvert andet gæt på om det betyder understøttelse af devhelp, eller hjælp til devhelp eller noget andet vil være risikabelt
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Udviklerhjælp"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Får F7 til at starte Udviklerhjælp for ordet ved markøren"
+#~ msgid "Browse Contents"
+#~ msgstr "Vis indhold"
 
 #~ msgid "Specify the size and location of the window"
 #~ msgstr "Angiv størrelsen og placeringen af vinduet"
 
 #~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
 #~ msgstr "BREDDExHØJDE+XOFF+YOFF"
-
-#~ msgid "_Search:"
-#~ msgstr "_Søg:"
 
 #~ msgid "Section"
 #~ msgstr "Sektion"
@@ -534,9 +570,6 @@ msgstr "Får F7 til at starte Udviklerhjælp for ordet ved markøren"
 
 #~ msgid "Print Help"
 #~ msgstr "Udskriv hjælp"
-
-#~ msgid "Print Preview"
-#~ msgstr "Vis udskrift"
 
 #~ msgid "Printing failed."
 #~ msgstr "Udskift mislykkedes."
