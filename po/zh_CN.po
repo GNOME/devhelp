@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-26 17:34+0100\n"
-"PO-Revision-Date: 2007-09-04 20:47+0800\n"
+"POT-Creation-Date: 2007-09-06 21:59+0100\n"
+"PO-Revision-Date: 2007-09-08 15:22+0800\n"
 "Last-Translator: Yang Zhang <zyangmath@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -165,8 +165,8 @@ msgid "Devhelp support"
 msgstr "Devhelp 支持"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "F7 启动光标处单词的 Devhelp"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "使用 F2 为光标处单词启动 Devhelp"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
