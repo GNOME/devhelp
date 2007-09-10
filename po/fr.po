@@ -10,14 +10,14 @@
 # Robert-André Mauchin <zebob.m@gmail.com>, 2006.
 # Jonathan Ernst <jonathan@ernstfamily.ch>, 2006-2007.
 # Damien Durand <splinux@fedoraproject.org>, 2006.
-# Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007
+# Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-20 11:58+0200\n"
-"PO-Revision-Date: 2007-08-20 11:58+0200\n"
+"POT-Creation-Date: 2007-09-10 21:36+0200\n"
+"PO-Revision-Date: 2007-09-10 21:40+0200\n"
 "Last-Translator: Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,11 +39,11 @@ msgstr "Navigateur de documentation"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr "Police de caratères pour texte fixe"
+msgstr "Police de caractères à chasse fixe"
 
 #: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
-msgstr "Police de caratères pour texte"
+msgstr "Police de caractères"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
@@ -127,7 +127,7 @@ msgstr "Position Y the la fenêtre principale"
 
 #: ../data/ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
-msgstr "<b>Polices de caractères</b>"
+msgstr "<b>Polices</b>"
 
 #: ../data/ui/devhelp.glade.h:2
 msgid "<b>Searching</b>"
@@ -174,10 +174,8 @@ msgid "Devhelp support"
 msgstr "Prise en charge de Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr ""
-"L'appui sur la touche F7 affiche Devhelp pour le mot à l'emplacement du "
-"curseur."
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Un appui sur la touche F2 permet de lancer Devhelp pour le mot à l'emplacement du curseur."
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
