@@ -1,3 +1,39 @@
+NEW in 0.16:
+============
+
+- Changed keybinding in GEdit plugin from F7 to F2 to avoid a conflict
+  with GTK+ 2.12
+
+Translations:
+- Updated gu: Ankit Patel
+- Updated vi: Clytie Siddall, Nguyễn Thái Ngọc Duy
+- Updated fi: Ilkka Tuohela
+- Updated et: Priit Laes
+- Updated gl: Ignacio Casal Quinteiro
+- Updated es: Jorge Gonzalez
+- Updated bn_IN: Runa Bhattacharjee
+- Updated sr.po, sr@Latn: Goran Rakić
+- Updated pt: Duarte Loreto
+- Updated nb: Kjartan Maraas
+- Updated tr: Baris Cicek
+- Updated th: Theppitak Karoonboonyanan
+- Updated te: Sunil Mohan Adapa
+- Updated en_CA: Adam Weinberger
+- Updated fr: Stéphane Raimbault
+- Updated bg: Alexander Shopov
+- Updated pt_BR: Raphael Higino
+- Updated de: Johannes Schmid
+- Updated da: Kenneth Nielsen
+- Updated nl: Wouter Bolsterlee
+- Updated hu: Gabor Kelemen
+- Updated zh_CN: Funda Wang
+- Updated sv: Daniel Nylander
+- Updated mk: Jovan Naumovski  <jovan@lugola.net>
++
+- Updated uk: Maxim Dziumanenko
+- Updated sl: Matic Žgur
+
+
 NEW in 0.15:
 ============
 
