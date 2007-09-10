@@ -1,13 +1,13 @@
 # Norwegian/Bokmaal translation of devhelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 2001-2006.
+# Kjartan Maraas <kmaraas@gnome.org>, 2001-2007.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.10\n"
+"Project-Id-Version: devhelp 0.11\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-22 19:39+0200\n"
-"PO-Revision-Date: 2007-04-22 19:41+0200\n"
+"POT-Creation-Date: 2007-09-10 11:32+0200\n"
+"PO-Revision-Date: 2007-09-10 11:32+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -164,8 +164,8 @@ msgid "Devhelp support"
 msgstr "Støtte for Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Start Devhelp for ordet ved markøren med F7"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Start Devhelp for ordet ved markøren med F2"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
@@ -210,10 +210,12 @@ msgid ""
 msgstr "navn og lenkeelementer kreves inne i <function> på linje %d, kolone %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Kunne ikke opprette bokleser"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Kunne ikke opprette leser for tagger"
 
@@ -223,6 +225,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan ikke dekomprimere bok «%s»: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp er ikke bygget med støtte for zlib"
 
