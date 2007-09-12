@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-23 19:33+0300\n"
-"PO-Revision-Date: 2007-04-23 19:36+0300\n"
+"POT-Creation-Date: 2007-09-13 01:54+0300\n"
+"PO-Revision-Date: 2007-09-13 01:54+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian Latin <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,10 +19,8 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Prahrama ŭ dapamohu raspracoŭniku"
 
-#: ../data/devhelp.desktop.in.in.h:2
-#: ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141
-#: ../src/dh-window.c:689
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:141 ../src/dh-window.c:689
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -126,8 +124,7 @@ msgstr "<b>Šryfty</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Pošuk</b>"
 
-#: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
 msgid "Contents"
 msgstr "Źmieściva"
 
@@ -147,8 +144,7 @@ msgstr "_Stałaja šyrynia:"
 msgid "_Forward"
 msgstr "Na_pierad"
 
-#: ../data/ui/devhelp.glade.h:9
-#: ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
 msgid "_Go"
 msgstr "_Pierajdzi"
 
@@ -169,8 +165,8 @@ msgid "Devhelp support"
 msgstr "Padtrymka Devhelpa"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Pry nacisku klavišy F7 pakazvaj infarmacyju ab słovie pad kursoram"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Pry nacisku klavišy F2 pakazvaj infarmacyju ab słovie pad kursoram"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
@@ -188,9 +184,7 @@ msgstr "Pakažy versiju i zakonč pracu"
 msgid "Focus the devhelp window with the search field active"
 msgstr "Sfakusujsia na vaknie Devhelpa i aktyvizuj pole pošuku"
 
-#: ../src/dh-parser.c:110
-#: ../src/dh-parser.c:194
-#: ../src/dh-parser.c:271
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Čakałasia '%s', atrymana '%s' u radku %d, kalonie %d"
@@ -203,25 +197,28 @@ msgstr "Niapravilny abšar nazvaŭ '%s' u radku %d, kalonie %d"
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "elementy zahałoŭka, nazvy i spasyłki patrabujucca ŭ radku %d, kalonie %d"
+msgstr ""
+"elementy zahałoŭka, nazvy i spasyłki patrabujucca ŭ radku %d, kalonie %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "elementy nazvy i spasyłki patrabujucca ŭnutry <sub> u radku %d, kalonie %d"
+msgstr ""
+"elementy nazvy i spasyłki patrabujucca ŭnutry <sub> u radku %d, kalonie %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr "elementy nazvy i spasyłki patrabujucca ŭnutry <function> u radku %d, kalonie %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"elementy nazvy i spasyłki patrabujucca ŭnutry <function> u radku %d, kalonie "
+"%d"
 
-#: ../src/dh-parser.c:420
-#: ../src/dh-parser.c:515
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Niemahčyma stvaryć analizatara knihaŭ"
 
-#: ../src/dh-parser.c:436
-#: ../src/dh-parser.c:525
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Niemahčyma stvaryć analizatara značnikaŭ"
 
@@ -263,13 +260,11 @@ msgstr "_Novaje akno"
 msgid "New _Tab"
 msgstr "Novaja _kartka"
 
-#: ../src/dh-window.c:176
-#: ../src/eggfindbar.c:337
+#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Šukaj dalej"
 
-#: ../src/dh-window.c:178
-#: ../src/eggfindbar.c:329
+#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Šukaj raniej"
 
@@ -293,8 +288,7 @@ msgstr "Ihar Hračyška <iharh@gnome.org>"
 msgid "A developer's help browser for GNOME 2"
 msgstr "Hartač dakumentacyi raspracoŭnika dla GNOME 2"
 
-#: ../src/dh-window.c:1085
-#: ../src/dh-window.c:1214
+#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
 msgid "Empty Page"
 msgstr "Pustaja staronka"
 
@@ -320,4 +314,3 @@ msgstr "Pieraklučy pošuk z ulikam rehistru"
 
 #~ msgid "Browse Contents"
 #~ msgstr "Prahladaj źmieściva"
-
