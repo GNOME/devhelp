@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 19:51+0100\n"
-"PO-Revision-Date: 2007-07-11 00:11+0200\n"
+"POT-Creation-Date: 2007-09-06 21:59+0100\n"
+"PO-Revision-Date: 2007-09-13 14:21+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgid "Developer's Help program"
 msgstr "Fejlesztők súgóprogramja"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:139 ../src/dh-window.c:697
+#: ../src/dh-main.c:141 ../src/dh-window.c:689
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -126,7 +126,7 @@ msgstr "<b>Betűk</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Keresés</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:471
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
 msgid "Contents"
 msgstr "Tartalom"
 
@@ -146,7 +146,7 @@ msgstr "_Rögzített szélességű:"
 msgid "_Forward"
 msgstr "_Előre"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:161
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
 msgid "_Go"
 msgstr "_Ugrás"
 
@@ -167,8 +167,8 @@ msgid "Devhelp support"
 msgstr "Devhelp támogatás"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Az F7 hatására megjelenik a Devhelp a kurzornál található szóhoz"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Az F2 hatására megjelenik a Devhelp a kurzornál található szóhoz"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
@@ -240,56 +240,56 @@ msgstr "_Könyv:"
 msgid "_Page:"
 msgstr "_Oldal:"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:156
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../src/dh-window.c:160
+#: ../src/dh-window.c:157
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:159
 msgid "_Help"
 msgstr "_Súgó"
 
 #. File menu
-#: ../src/dh-window.c:165
+#: ../src/dh-window.c:162
 msgid "_New Window"
 msgstr "Új _ablak"
 
-#: ../src/dh-window.c:167
+#: ../src/dh-window.c:164
 msgid "New _Tab"
 msgstr "Új _lap"
 
-#: ../src/dh-window.c:179 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Következő keresése"
 
-#: ../src/dh-window.c:181 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Előző keresése"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:189
 msgid "_Contents Tab"
 msgstr "_Tartalom fül"
 
-#: ../src/dh-window.c:195
+#: ../src/dh-window.c:192
 msgid "_Search Tab"
 msgstr "_Keresés fül"
 
-#: ../src/dh-window.c:481
+#: ../src/dh-window.c:473
 msgid "Search"
 msgstr "Keresés"
 
-#: ../src/dh-window.c:694
+#: ../src/dh-window.c:686
 msgid "translator_credits"
 msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 
-#: ../src/dh-window.c:699
+#: ../src/dh-window.c:691
 msgid "A developer's help browser for GNOME 2"
 msgstr "Súgóböngésző fejlesztőknek GNOME2-höz"
 
-#: ../src/dh-window.c:1106 ../src/dh-window.c:1235
+#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
 msgid "Empty Page"
 msgstr "Üres oldal"
 
