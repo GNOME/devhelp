@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-26 20:17+0100\n"
-"PO-Revision-Date: 2007-08-26 20:25+0000\n"
+"POT-Creation-Date: 2007-09-13 09:09+0100\n"
+"PO-Revision-Date: 2007-09-13 09:10+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -165,8 +165,8 @@ msgid "Devhelp support"
 msgstr "Suporte Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Faz com que o F7 abra o Devhelp para a palavra sob o cursor"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Faz com que o F2 abra o Devhelp para a palavra sob o cursor"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
@@ -197,21 +197,24 @@ msgstr "Nome de espaço '%s' inválido na linha %d, coluna %d"
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "Elementos \"title\", \"name\" e \"link\" são requeridos na linha %d, coluna %d"
+msgstr ""
+"Elementos \"title\", \"name\" e \"link\" são requeridos na linha %d, coluna %"
+"d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
-"Elementos \"name\" e \"link\" são requeridos dentro de <sub> na linha %d, coluna %d"
+"Elementos \"name\" e \"link\" são requeridos dentro de <sub> na linha %d, "
+"coluna %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
-"Elementos \"name\" e \"link\" são requeridos dentro de <function> na linha %d, "
-"coluna %d"
+"Elementos \"name\" e \"link\" são requeridos dentro de <function> na linha %"
+"d, coluna %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
