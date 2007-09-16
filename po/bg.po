@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-03 11:19+0300\n"
-"PO-Revision-Date: 2007-09-01 18:21+0300\n"
+"POT-Creation-Date: 2007-09-16 13:38+0300\n"
+"PO-Revision-Date: 2007-09-16 13:38+0300\n"
 "Last-Translator: Yavor Doganov <yavor@gnu.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -168,10 +168,9 @@ msgid "Devhelp support"
 msgstr "Поддръжка за Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr ""
-"При натискане на F7 се стартира Devhelp, като показва помощ за думата на "
-"позицията на курсора"
+"F2 да стартира Devhelp и да се покаже помощ за думата на позицията на курсора"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
