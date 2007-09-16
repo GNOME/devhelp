@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-20 12:14+0900\n"
-"PO-Revision-Date: 2007-05-20 12:14+0900\n"
+"POT-Creation-Date: 2007-09-16 10:32+0900\n"
+"PO-Revision-Date: 2007-09-16 10:32+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -164,8 +164,8 @@ msgid "Devhelp support"
 msgstr "Devhelp のサポート"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "[F7] キーを押すと、カーソル位置にある文字を Devhelp から検索します。"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "[F2] キーを押してカーソル位置にある単語を Devhelp から検索します。"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
@@ -210,10 +210,12 @@ msgid ""
 msgstr "名前とリンク要素が <function> の中の %d 行 %d 桁で要求されました"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "ブック・パーサを生成できませんでした"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "マークアップ・パーサを生成できませんでした"
 
@@ -223,6 +225,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "ブック '%s': %s を展開できません"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "この Devhelp は zlib をサポートしていません"
 
