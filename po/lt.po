@@ -1,45 +1,194 @@
+# translation of lt.po to Lithuanian
 # Lithuanian translation
 # Copyright (C) 2001-2007 Devhelp's authors
 # This file is distributed under the same license as the devhelp package.
-# Vytautas Liuolia <vytautas.liuolia@gmail.com>, 2007. 
 #
 #
+# Vytautas Liuolia <vytautas.liuolia@gmail.com>, 2007.
+# Gintautas Miliauskas <gintas@akl.lt>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp\n"
+"Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-07 19:30+0200\n"
-"PO-Revision-Date: 2007-03-06 21:53+0200\n"
+"POT-Creation-Date: 2007-09-17 16:09+0300\n"
+"PO-Revision-Date: 2007-09-17 16:09+0300\n"
 "Last-Translator: Vytautas Liuolia <vytautas.liuolia@gmail.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Programuotojo žinynas"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:141 ../src/dh-window.c:689
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Dokumentacijos naršyklė"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Šriftas fiksuoto pločio tekstui"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Šriftas tekstui"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Šriftas fiksuoto pločio tekstui."
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Šriftas kintamo pločio tekstui."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Pagrindinio lango aukštis"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Pagrindinio lango būsena"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Pasirinkta kortelė, „turinys“ ar „paieška“"
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Rodo išplėstines paiškos galimybes"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "Pagrindinio lango X koordinatė"
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Pagrindinio lango Y koordinatė"
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Pagrindinio lango aukštis."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Indekso ir paieškos pulto plotis."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Pagrindinio lango plotis."
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Naudoti sisteminius šriftus"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Naudoti sistemos standartinius šriftus."
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Ar rodomos išplėstinės paieškos galimybės."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Ar paleidžiant Devhelp pagrindinis langas turėtų būti išdidintas."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Kuri iš kortelių pasirinkta, „turinys“ ar „paieška“."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Paieškos ir turinio pulto plotis"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Pagrindinio lango plotis"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Pagrindinio lango X koordinatė"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Pagrindinio lango X koordinatė"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Šriftai</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Paieška</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+msgid "Contents"
+msgstr "Turinys"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Nustatymai"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "_Atgal"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Fiksuoto pločio šriftas"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_Pirmyn"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+msgid "_Go"
+msgstr "_Eiti"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Rodyti išplėstines paieškos galimybes"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "_Naudoti sisteminius šriftus"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "_Kintamo pločio šriftas"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp palaikymas"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Nurodo, kad F2 iškviestų Devhelp pagalbą apie žodį ties žymekliu"
+
+#: ../src/dh-main.c:90
 msgid "Search for a function"
 msgstr "Ieškoti funkcijos"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:99
 msgid "Quit any running Devhelp"
 msgstr "Uždaryti paleistus Devhelp"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:108
 msgid "Display the version and exit"
 msgstr "Parodyti versijos informaciją ir išeiti"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "Fokusuoti devhelp langą su aktyviu paieškos lauku"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -97,183 +246,75 @@ msgstr "_Knyga:"
 msgid "_Page:"
 msgstr "_Puslapis:"
 
-#: ../src/dh-window.c:141
+#: ../src/dh-window.c:156
 msgid "_File"
 msgstr "_Failas"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:157
 msgid "_Edit"
 msgstr "_Keisti"
 
-#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "_Eiti"
-
-#: ../src/dh-window.c:144
+#: ../src/dh-window.c:159
 msgid "_Help"
 msgstr "_Pagalba"
 
 #. File menu
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:162
 msgid "_New Window"
 msgstr "_Naujas langas"
 
-#: ../src/dh-window.c:149
+#: ../src/dh-window.c:164
 msgid "New _Tab"
 msgstr "Nauja _kortelė"
 
-#: ../src/dh-window.c:168
-msgid "Browse Contents"
-msgstr "Naršyti turinį"
+#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "Rasti kitą"
 
-#: ../src/dh-window.c:171 ../src/dh-window.c:455
+#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Rasti ankstesnį"
+
+#: ../src/dh-window.c:189
+msgid "_Contents Tab"
+msgstr "_Turinio kortelė"
+
+#: ../src/dh-window.c:192
+msgid "_Search Tab"
+msgstr "_Paieškos kortelė"
+
+#: ../src/dh-window.c:473
 msgid "Search"
 msgstr "Paieška"
 
-#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Turinys"
-
-#: ../src/dh-window.c:616
+#: ../src/dh-window.c:686
 msgid "translator_credits"
 msgstr "Vytautas Liuolia <vytautas.liuolia@gmail.com>"
 
-#: ../src/dh-window.c:621
+#: ../src/dh-window.c:691
 msgid "A developer's help browser for GNOME 2"
 msgstr "GNOME 2 programuotojo žinynas"
 
-#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
 msgid "Empty Page"
 msgstr "Tuščias puslapis"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Šriftas fiksuoto pločio tekstui"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "Ieškoti:"
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Šriftas tekstui"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "Rasti ankstesnį užklausos rezultatą"
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Šriftas fiksuoto pločio tekstui."
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "Rasti kitą užklausos rezultatą"
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Šriftas kintamo pločio tekstui."
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "Skirti raidžių dydį"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "Pagrindinio lango aukštis"
-
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "Pagrindinio lango būsena"
-
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Pasirinkta kortelė, „turinys“ ar „paieška“"
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Rodo išplėstines paiškos galimybes"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "Pagrindinio lango X koordinatė"
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "Pagrindinio lango Y koordinatė"
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "Pagrindinio lango aukštis."
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "Indekso ir paieškos pulto plotis."
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "Pagrindinio lango plotis."
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "Naudoti sisteminius šriftus"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "Naudoti sistemos standartinius šriftus."
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Ar rodomos išplėstinės paieškos galimybės."
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "Ar paleidžiant Devhelp pagrindinis langas turėtų būti išdidintas."
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Kuri iš kortelių pasirinkta, „turinys“ ar „paieška“."
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "Paieškos ir turinio pulto plotis"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "Pagrindinio lango plotis"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "Pagrindinio lango X koordinatė"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "Pagrindinio lango X koordinatė"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Šriftai</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Paieška</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Nustatymai"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "_Atgal"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "_Fiksuoto pločio šriftas"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "_Pirmyn"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Rodyti išplėstines paieškos galimybes"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "_Naudoti sisteminius šriftus"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "_Kintamo pločio šriftas"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Devhelp palaikymas"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Paspaudus F7, iškviečia Devhelp pagalbą apie žodį ties žymekliu"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "Skirti raidžių dydį"
