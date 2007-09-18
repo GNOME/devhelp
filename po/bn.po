@@ -1,16 +1,17 @@
-# Translation of devhelp to Bengali (updated from bn_IN)
+# Translation of devhelp to Bengali (updated from bn)
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
 # Runa Bhattacharjee <runabh@gmail.com>, 2007.
+# Khandakar Mujahidul Islam <suzan@bengalinux.org>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 19:51+0100\n"
-"PO-Revision-Date: 2007-09-18 15:03+0600\n"
+"POT-Creation-Date: 2007-09-18 10:05+0100\n"
+"PO-Revision-Date: 2007-09-18 15:10+0600\n"
 "Last-Translator: Khandakar Mujahidul Islam <suzan@bengalinux.org>\n"
-"Language-Team: Bengali (India) <en@li.org>\n"
+"Language-Team: Bengali <gnome-translation@bengalinux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,8 +24,8 @@ msgstr "ডেভেলপারদের সহায়ক প্রোগ্র�
 
 #: ../data/devhelp.desktop.in.in.h:2
 #: ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:139
-#: ../src/dh-window.c:697
+#: ../src/dh-main.c:141
+#: ../src/dh-window.c:689
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -129,7 +130,7 @@ msgid "<b>Searching</b>"
 msgstr "<b>অনুসন্ধান</b>"
 
 #: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:471
+#: ../src/dh-window.c:463
 msgid "Contents"
 msgstr "বিষয়বস্তু"
 
@@ -150,7 +151,7 @@ msgid "_Forward"
 msgstr "পরবর্তী (_F)"
 
 #: ../data/ui/devhelp.glade.h:9
-#: ../src/dh-window.c:161
+#: ../src/dh-window.c:158
 msgid "_Go"
 msgstr "গন্তব্য (_G)"
 
@@ -171,8 +172,8 @@ msgid "Devhelp support"
 msgstr "Devhelp সমর্থন"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "F7-র সাহায্যে কার্সার দ্বারা চিহ্নিত শব্দের জন্য Devhelp আরম্ভ করা হয়"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "F2-র সাহায্যে কার্সার দ্বারা চিহ্নিত শব্দের জন্য Devhelp আরম্ভ করা হয়"
 
 #: ../src/dh-main.c:90
 msgid "Search for a function"
@@ -244,59 +245,61 @@ msgstr "বই: (_B)"
 msgid "_Page:"
 msgstr "পৃষ্ঠা: (_P)"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:156
 msgid "_File"
 msgstr "ফাইল (_F)"
 
-#: ../src/dh-window.c:160
+#: ../src/dh-window.c:157
 msgid "_Edit"
 msgstr "সম্পাদনা (_E)"
 
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:159
 msgid "_Help"
 msgstr "সহায়িকা (_H)"
 
 #. File menu
-#: ../src/dh-window.c:165
+#: ../src/dh-window.c:162
 msgid "_New Window"
 msgstr "নতুন উইন্ডো (_N)"
 
-#: ../src/dh-window.c:167
+#: ../src/dh-window.c:164
 msgid "New _Tab"
 msgstr "নতুন ট্যাব (_T)"
 
-#: ../src/dh-window.c:179
+#: ../src/dh-window.c:176
 #: ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "পরবর্তী উপস্থিত অনুসন্ধান"
 
-#: ../src/dh-window.c:181
+#: ../src/dh-window.c:178
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "পূর্ববর্তী উপস্থিতি অনুসন্ধান"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:189
 msgid "_Contents Tab"
 msgstr "বিষয়বস্তু ট্যাব (_C)"
 
-#: ../src/dh-window.c:195
+#: ../src/dh-window.c:192
 msgid "_Search Tab"
 msgstr "অনুসন্ধান ট্যাব (_S)"
 
-#: ../src/dh-window.c:481
+#: ../src/dh-window.c:473
 msgid "Search"
 msgstr "অনুসন্ধান"
 
-#: ../src/dh-window.c:694
+#: ../src/dh-window.c:686
 msgid "translator_credits"
-msgstr "রুণা ভট্টাচার্য্য <runabh@gmail.com>খন্দকার মুজাহিদুল ইসলাম সুজন <suzan@bengalinux.org>"
+msgstr ""
+"রুণা ভট্টাচার্য্য <runabh@gmail.com>\n"
+"খন্দকার মুজাহিদুল ইসলাম সুজন <suzan@bengalinux.org>"
 
-#: ../src/dh-window.c:699
+#: ../src/dh-window.c:691
 msgid "A developer's help browser for GNOME 2"
 msgstr "গনোম ২ এর ক্ষেত্রে প্রযোজ্য ডিভেলপারদের জন্য সহায়ক তথ্যের ব্রাউজার"
 
-#: ../src/dh-window.c:1106
-#: ../src/dh-window.c:1235
+#: ../src/dh-window.c:1085
+#: ../src/dh-window.c:1214
 msgid "Empty Page"
 msgstr "ফাঁকা পৃষ্ঠা"
 
