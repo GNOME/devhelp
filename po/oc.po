@@ -280,9 +280,7 @@ msgstr "Recercar"
 
 #: ../src/dh-window.c:686
 msgid "translator_credits"
-msgstr ""
-"La còla occitana de revirada d'Ubuntu, 2007 - ubuntu-l10n-oci@lists.ubuntu."
-"com"
+msgstr "Yannig Marchegay (Kokoyaya) <yannig@marchegay.org)"
 
 #: ../src/dh-window.c:691
 msgid "A developer's help browser for GNOME 2"
