@@ -1,3 +1,11 @@
+2007-10-06  Richard Hult  <richard@imendio.com>
+
+	Release 0.16.1.
+
+2007-10-06  Richard Hult  <richard@imendio.com>
+
+	* configure.in: Bump version.
+
 2007-09-10  Richard Hult  <richard@imendio.com>
 
 	* Release 0.16.
