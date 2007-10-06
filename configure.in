@@ -36,9 +36,8 @@ if test "x$IGE_PLATFORM" = xx11; then
    PLATFORM_CFLAGS=
    PLATFORM_LDFLAGS=
 else
-   gconf_pkgconfig=
-   gnome_vfs_pkgconfig=
-   libgnomeui_pkgconfig=
+   gconf_pkgconfig="gconf-2.0 >= 2.6.0"
+   libwnck_pkgconfig=
    PLATFORM_CFLAGS=
    PLATFORM_LDFLAGS=
 fi
