@@ -1,5 +1,14 @@
 2007-10-06  Richard Hult  <richard@imendio.com>
 
+	* acinclude.m4:
+	* configure.in:
+	* src/dh-base.c:
+	* src/dh-main.c: Make libwnck optional.
+
+	* misc/gedit-plugin/Makefile.am: Use a non-gnumake specific rule.
+
+2007-10-06  Richard Hult  <richard@imendio.com>
+
 	Release 0.16.1.
 
 2007-10-06  Richard Hult  <richard@imendio.com>

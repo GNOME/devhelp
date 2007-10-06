@@ -26,17 +26,37 @@ AM_GCONF_SOURCE_2
 
 IMENDIO_COMPILE_WARNINGS
 
+dnl -----------------------------------------------------------
+dnl Platform (GTK+ X11 or GTK OS X)
+dnl -----------------------------------------------------------
+IGE_PLATFORM_CHECK
+if test "x$IGE_PLATFORM" = xx11; then
+   gconf_pkgconfig="gconf-2.0 >= 2.6.0"
+   libwnck_pkgconfig="libwnck-1.0 >= 2.10.0"
+   PLATFORM_CFLAGS=
+   PLATFORM_LDFLAGS=
+else
+   gconf_pkgconfig=
+   gnome_vfs_pkgconfig=
+   libgnomeui_pkgconfig=
+   PLATFORM_CFLAGS=
+   PLATFORM_LDFLAGS=
+fi
+AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, test "x$IGE_PLATFORM" = xx11)
+AC_SUBST(PLATFORM_CFLAGS)
+AC_SUBST(PLATFORM_LDFLAGS)
+
 PKG_CHECK_MODULES(DEVHELP, [
 	gtk+-2.0 >= 2.8.0
-	gconf-2.0 >= 2.6.0
+	$gconf_pkgconfig
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
         gthread-2.0 >= 2.8.0
         gtk+-2.0 >= 2.8.0
 	libglade-2.0 >= 2.4.0
-	libwnck-1.0 >= 2.10.0
-	gconf-2.0 >= 2.6.0
+	$gconf_pkgconfig
+        $libwnck_pkgconfig
 ])
 
 # *****
@@ -159,3 +179,7 @@ contrib/Makefile
 
 AC_OUTPUT
 
+echo
+echo "Prefix:    $prefix"
+echo "Platform:  $IGE_PLATFORM_NAME"
+echo

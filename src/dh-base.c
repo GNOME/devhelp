@@ -25,11 +25,13 @@
 #include <unistd.h>
 #include <string.h>
 #include <gtk/gtkmain.h>
-#include <gdk/gdkx.h>
 #include <gconf/gconf-client.h>
 
+#ifdef HAVE_PLATFORM_X11
+#include <gdk/gdkx.h>
 #define WNCK_I_KNOW_THIS_IS_UNSTABLE
 #include <libwnck/libwnck.h>
+#endif
 
 #include "dh-gecko-utils.h"
 #include "dh-window.h"
@@ -89,7 +91,6 @@ static void
 base_init (DhBase *base)
 {
         DhBasePriv *priv;
-	int         n_screens, i;
 
         priv = g_new0 (DhBasePriv, 1);
         base->priv = priv;
@@ -100,15 +101,21 @@ base_init (DhBase *base)
 	priv->books     = g_hash_table_new_full (g_str_hash, g_str_equal,
 						 g_free, g_free);
 
-	/* For some reason, libwnck doesn't seem to update its list of
-	 * workspaces etc if we don't do this.
-	 */
-	n_screens = gdk_display_get_n_screens (gdk_display_get_default ());
-	for (i = 0; i < n_screens; i++) {
-		WnckScreen *screen;
+#ifdef HAVE_PLATFORM_X11
+	{
+		gint n_screens, i;
 
-		screen = wnck_screen_get (i);
+		/* For some reason, libwnck doesn't seem to update its list of
+		 * workspaces etc if we don't do this.
+		 */
+		n_screens = gdk_display_get_n_screens (gdk_display_get_default ());
+		for (i = 0; i < n_screens; i++) {
+			WnckScreen *screen;
+			
+			screen = wnck_screen_get (i);
+		}
 	}
+#endif
 
 	priv->gconf_client = gconf_client_get_default ();
 	gconf_client_add_dir (priv->gconf_client,
@@ -408,6 +415,7 @@ dh_base_get_windows (DhBase *base)
 GtkWidget *
 dh_base_get_window_on_current_workspace (DhBase *base)
 {
+#ifdef HAVE_PLATFORM_X11
 	DhBasePriv    *priv;
 	WnckWorkspace *workspace;
 	WnckScreen    *screen;
@@ -462,6 +470,7 @@ dh_base_get_window_on_current_workspace (DhBase *base)
 			return window;
 		}
 	}
+#endif
 
 	return NULL;
 }

@@ -22,8 +22,11 @@
 #include <config.h>
 #include <string.h>
 #include <glib/gi18n.h>
-#include <gdk/gdkx.h>
 #include <gtk/gtkmain.h>
+
+#ifdef HAVE_PLATFORM_X11
+#include <gdk/gdkx.h>
+#endif
 
 #include "bacon-message-connection.h"
 #include "dh-base.h"
@@ -65,7 +68,12 @@ message_received_cb (const gchar *message, DhBase *base)
 		dh_window_focus_search (DH_WINDOW (window));
 	}
 
+#ifdef HAVE_PLATFORM_X11
 	timestamp = gdk_x11_get_server_time (window->window);
+#else
+	timestamp = GDK_CURRENT_TIME;
+#endif
+
 	gtk_window_present_with_time (GTK_WINDOW (window), timestamp);
 }
 

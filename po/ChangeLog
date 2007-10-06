@@ -1,5 +1,11 @@
 2007-10-06  Richard Hult  <richard@imendio.com>
 
+	reviewed by: <delete if not using a buddy>
+
+	* POTFILES.in:
+
+2007-10-06  Richard Hult  <richard@imendio.com>
+
 	* Release 0.16.1.
 
 2007-09-30  Changwoo Ryu  <cwryu@debian.org>

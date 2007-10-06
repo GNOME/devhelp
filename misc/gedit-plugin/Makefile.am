@@ -1,12 +1,15 @@
 SUBDIRS = devhelp
+
+@INTLTOOL_DESKTOP_RULE@
+DESKTOP_IN_FILES = devhelp.desktop.in
+DESKTOP_FILES =$(DESKTOP_IN_FILES:.desktop.in=.desktop)
+
 plugindir = $(libdir)/gedit-2/plugins
+plugin_DATA = $(DESKTOP_FILES:.desktop=.gedit-plugin)
 
-plugin_in_files = devhelp.gedit-plugin.desktop.in
-%.gedit-plugin: %.gedit-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+.desktop.gedit-plugin:
+	cp $< $*.gedit-plugin
 
-plugin_DATA = $(plugin_in_files:.gedit-plugin.desktop.in=.gedit-plugin)
-
-EXTRA_DIST = $(plugin_in_files)
-
-CLEANFILES = $(plugin_DATA)
-DISTCLEANFILES = $(plugin_DATA)
+CLEANFILES = $(DESKTOP_FILES) $(plugin_DATA)
+DISTCLEANFILES = $(DESKTOP_FILES) $(plugin_DATA)
+EXTRA_DIST = $(DESKTOP_IN_FILES) $(DESKTOP_FILES) $(plugin_DATA)
