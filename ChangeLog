@@ -1,3 +1,8 @@
+2007-10-08  Richard Hult  <richard@imendio.com>
+
+	* configure.in: Move lanuage list to po/LINGUAS, fixes bug
+	#464108 (Gilles Dartiguelongue).
+
 2007-10-06  Richard Hult  <richard@imendio.com>
 
 	* acinclude.m4:

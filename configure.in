@@ -1,4 +1,4 @@
-AC_INIT([Devhelp],[0.16.1],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+AC_INIT([Devhelp],[0.17],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
   
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
 AC_CONFIG_HEADERS([config.h])
@@ -19,7 +19,7 @@ AM_PROG_LIBTOOL
 
 AM_PATH_GLIB_2_0
 
-AC_PROG_INTLTOOL
+IT_PROG_INTLTOOL([0.35.5])
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 
 AM_GCONF_SOURCE_2
@@ -148,8 +148,6 @@ AC_SUBST(Z_LIBS)
 CPPFLAGS="$_SAVE_CPPFLAGS"
 LDFLAGS="$_SAVE_LDFLAGS"
 AC_LANG_POP([C])
-
-ALL_LINGUAS="am ar az be be@latin bg bn bn_IN ca cs da de dz el en_CA en_GB es et fi fr gl gu he hi hr hu is it ja kn ko lt lv mk ml ms nb ne nl oc or pa pl pt pt_BR ru rw sk sl sq sr sr@Latn sv te th tr uk vi zh_CN zh_HK zh_TW"
 
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
