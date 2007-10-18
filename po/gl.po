@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-22 23:11+0200\n"
-"PO-Revision-Date: 2007-04-19 11:49+0200\n"
+"POT-Creation-Date: 2007-10-18 15:09+0200\n"
+"PO-Revision-Date: 2007-10-18 15:09+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@cvs.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgid "Developer's Help program"
 msgstr "Programa de axuda do desenvolvedor"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:149 ../src/dh-window.c:689
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -162,28 +162,27 @@ msgstr "_Usar tipos de letra do sistema"
 msgid "_Variable width: "
 msgstr "Largura _variable: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Soporte Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr ""
-"Fai que a tecla F7 inicie o Devhelp para a palabra na que está o cursor"
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Fai que a tecla F2 inicie o Devhelp para a palabra na que está o cursor"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:98
 msgid "Search for a function"
 msgstr "Buscar unha función"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:107
 msgid "Quit any running Devhelp"
 msgstr "Sae de calquera Devhelp en execución"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:116
 msgid "Display the version and exit"
 msgstr "Mostrar a versión e saír"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:125
 msgid "Focus the devhelp window with the search field active"
 msgstr "Enfocar a ventá de devhelp co campo de busca activo"
 
@@ -205,13 +204,11 @@ msgstr "requírense os elementos título, nome e ligazón na liña %d, columna %
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"requírense os elementos nome e ligazón dentro de <sub> na liña %d, columna %d"
+msgstr "requírense os elementos nome e ligazón dentro de <sub> na liña %d, columna %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "requírense os elementos nome e ligazón dentro de <function> na liña %d, "
 "columna %d"
@@ -318,3 +315,4 @@ msgstr "Diferencia maiúsculas de minúsculas"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Alternar a busca diferenciando maiúsculas de minúsculas"
+
