@@ -1,3 +1,10 @@
+2007-10-22  Richard Hult  <richard@imendio.com>
+
+	* configure.in.
+	* libdevhelp-1.0.pc.in (Requires): Remove libgnomeui and
+	gnome-vfs, as they are no longer used. Also make libwnk optional.
+	Fixes bug #484896.
+
 2007-10-08  Richard Hult  <richard@imendio.com>
 
 	* configure.in: Move lanuage list to po/LINGUAS, fixes bug

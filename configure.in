@@ -33,17 +33,20 @@ IGE_PLATFORM_CHECK
 if test "x$IGE_PLATFORM" = xx11; then
    gconf_pkgconfig="gconf-2.0 >= 2.6.0"
    libwnck_pkgconfig="libwnck-1.0 >= 2.10.0"
+   REQUIRES_LIBWNCK=libwnck-1.0
    PLATFORM_CFLAGS=
    PLATFORM_LDFLAGS=
 else
    gconf_pkgconfig="gconf-2.0 >= 2.6.0"
    libwnck_pkgconfig=
+   REQUIRES_LIBWNCK=
    PLATFORM_CFLAGS=
    PLATFORM_LDFLAGS=
 fi
 AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, test "x$IGE_PLATFORM" = xx11)
 AC_SUBST(PLATFORM_CFLAGS)
 AC_SUBST(PLATFORM_LDFLAGS)
+AC_SUBST(REQUIRES_LIBWNCK)
 
 PKG_CHECK_MODULES(DEVHELP, [
 	gtk+-2.0 >= 2.8.0
