@@ -1,3 +1,8 @@
+2007-11-17  ahmad riza h nst  <rizahnst@gnome.org>
+
+	* configure.in: Added id in to ALL_LINGUAS line.
+	* po/id.po: Added Indonesian translation.
+
 2007-04-17  Richard Hult  <richard@imendio.com>
 
 	* configure.in: Prepare for branching.

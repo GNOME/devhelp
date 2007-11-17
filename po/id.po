@@ -1,0 +1,277 @@
+# translation of devhelp.
+# Copyright (C) 2007 THE devhelp'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# ahmad riza h nst <rizahnst@gnome.org>, 2007.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp gnome-2-18\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-11-16 03:15+0000\n"
+"PO-Revision-Date: 2007-11-17 07:14+0700\n"
+"Last-Translator: ahmad riza h nst <rizahnst@gnome.org>\n"
+"Language-Team: Indonesia <kontak@id.gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+#: ../devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "Program Bantu Pengembang"
+
+#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:619
+#: ../ui/devhelp.glade.h:4
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Perambah Dokumentasi"
+
+#: ../src/dh-main.c:85
+msgid "Search for a function"
+msgstr "Cari fungsi"
+
+#: ../src/dh-main.c:94
+msgid "Quit any running Devhelp"
+msgstr "Hentikan seluruh Devhelp"
+
+#: ../src/dh-main.c:103
+msgid "Display the version and exit"
+msgstr "Tampilkan versi dan keluar"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Menantikan '%s' dapat '%s' pada baris %d, kolom %d"
+
+#: ../src/dh-parser.c:128
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Ruangnama '%s' salah pada baris %d, kolom %d"
+
+#: ../src/dh-parser.c:158
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "judul, nama dan bagian link dibutuhkan pada baris %d, kolom %d"
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "nama dan bagian elemen dibutuhkan dalam <sub> pada baris %d, kolom %d"
+
+#: ../src/dh-parser.c:297
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"nama dan elemen link dibutuhkan dalam <function> pada baris %d, kolom %d"
+
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+msgid "Could not create book parser"
+msgstr ""
+
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+msgid "Could not create markup parser"
+msgstr ""
+
+#: ../src/dh-parser.c:578
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Tidak bisa mengurai buku '%s': %s"
+
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp tidak dibangun dengan dukungan zlib"
+
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "_Buku:"
+
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "_Halaman:"
+
+#: ../src/dh-window.c:141
+msgid "_File"
+msgstr "_Berkas"
+
+#: ../src/dh-window.c:142
+msgid "_Edit"
+msgstr "_Sunting"
+
+#: ../src/dh-window.c:143 ../ui/devhelp.glade.h:9
+msgid "_Go"
+msgstr "_Ayo"
+
+#: ../src/dh-window.c:144
+msgid "_Help"
+msgstr "_Bantu"
+
+#. File menu
+#: ../src/dh-window.c:147
+msgid "_New Window"
+msgstr "Je_ndela Baru"
+
+#: ../src/dh-window.c:149
+msgid "New _Tab"
+msgstr "_Tab Baru"
+
+#: ../src/dh-window.c:168
+msgid "Browse Contents"
+msgstr "Jelajahi Isi"
+
+#: ../src/dh-window.c:171 ../src/dh-window.c:455
+msgid "Search"
+msgstr "Cari"
+
+#: ../src/dh-window.c:445 ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Isi"
+
+#: ../src/dh-window.c:616
+msgid "translator_credits"
+msgstr "Ahmad Riza H Nst  <rizahnst@gnome.org>\n"
+"http://id.gnome.org"
+
+#: ../src/dh-window.c:621
+msgid "A developer's help browser for GNOME 2"
+msgstr "Perambah bantuan pengembang untuk GNOME 2"
+
+#: ../src/dh-window.c:950 ../src/dh-window.c:1080
+msgid "Empty Page"
+msgstr "Halaman Kosong"
+
+#: ../devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Huruf untuk teks tetap"
+
+#: ../devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Huruf untuk teks"
+
+#: ../devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Huruf untuk teks dengan lebar tetap."
+
+#: ../devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Huruf untuk teks dengan lebar variasi."
+
+#: ../devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Tinggi jendela utama"
+
+#: ../devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr ""
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Tab terpilih, \"isi\" atau \"cari\""
+
+#: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Tampilkan pilihan cari lebih lanjut"
+
+#: ../devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "Posisi X dari jendela utama."
+
+#: ../devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Posisi Y dari jendela utama."
+
+#: ../devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Tinggi jendela utama."
+
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr ""
+
+#: ../devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Lebar jendela utama."
+
+#: ../devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Gunakan huruf system"
+
+#: ../devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Gunakan huruf default system."
+
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Apakah pilihan pencarian tingkat lanjut ditampilkan."
+
+#: ../devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Apakah jendela utama harus mulai dengan lebar atau tidak."
+
+#: ../devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Tab mana yang terpilih, \"isi: atau \"cari\"."
+
+#: ../devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr ""
+
+#: ../devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Lebar jendela utama"
+
+#: ../devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Posisi X jendela utama"
+
+#: ../devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Posisi Y jendela utama"
+
+#: ../ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Huruf</b>"
+
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Mencari</b>"
+
+#: ../ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Ketentuan"
+
+#: ../ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "_Balik"
+
+#: ../ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Lebar tetap:"
+
+#: ../ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_Maju"
+
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Tampilkan pilihan pencarian tingkat lanjut"
+
+#: ../ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "G_unakan huruf system"
+
+#: ../ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "Lebar _variasi: "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Dukungan Devhelp"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Jadikan F7 mengaktifkan Devhelp untuk kata pada kursor"
+
