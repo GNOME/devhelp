@@ -41,7 +41,9 @@
 #include <nsIDOMWindow.h>
 #include <nsIInterfaceRequestorUtils.h>
 #include <nsIPrefService.h>
+#ifndef HAVE_GECKO_1_9
 #include <nsIPrintSettings.h>
+#endif
 #include <nsISelectionController.h>
 #include <nsITypeAheadFind.h>
 #include <nsIWebBrowser.h>
@@ -169,16 +171,9 @@ Yelper::Find (const char *aSearchString)
 
 	nsresult rv;
 	PRUint16 found = nsITypeAheadFind::FIND_NOTFOUND;
-#ifdef HAVE_GECKO_1_9
-	rv = mFinder->Find (NS_ConvertUTF8toUTF16 (aSearchString),
-			    PR_FALSE /* links only? */,
-			    mHasFocus,
-			    &found);
-#else
 	rv = mFinder->Find (NS_ConvertUTF8toUTF16 (aSearchString),
 			    PR_FALSE /* links only? */,
 			    &found);
-#endif
 
 	return NS_SUCCEEDED (rv) && (found == nsITypeAheadFind::FIND_FOUND || found == nsITypeAheadFind::FIND_WRAPPED);
 }
