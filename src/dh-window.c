@@ -47,6 +47,8 @@ struct _DhWindowPriv {
 
 	GtkWidget      *vbox;
 	GtkWidget      *findbar;
+	
+	gint            zoom_level;
 
 	GtkUIManager   *manager;
 	GtkActionGroup *action_group;
@@ -56,6 +58,29 @@ static guint tab_accel_keys[] = {
 	GDK_1, GDK_2, GDK_3, GDK_4, GDK_5,
 	GDK_6, GDK_7, GDK_8, GDK_9, GDK_0
 };
+
+static const
+struct
+{
+	gchar *name;
+	float level;
+}
+zoom_levels[] =
+{
+	{ N_("50%"), 0.7071067811 },
+	{ N_("75%"), 0.8408964152 },
+	{ N_("100%"), 1.0 },
+	{ N_("125%"), 1.1892071149 },
+	{ N_("150%"), 1.4142135623 },
+	{ N_("175%"), 1.6817928304 },
+	{ N_("200%"), 2.0 },
+	{ N_("300%"), 2.8284271247 },
+	{ N_("400%"), 4.0 }
+};
+
+#define ZOOM_MINIMAL	(zoom_levels[0].level)
+#define ZOOM_MAXIMAL	(zoom_levels[8].level)
+#define ZOOM_DEFAULT	(zoom_levels[2].level)
 
 /* People have reported problems with the default values in GConf so I'm
  * adding this to make sure that the window isn't started 1x1 pixels or the
@@ -93,6 +118,12 @@ static void       window_activate_show_search     (GtkAction       *action,
 						   DhWindow        *window);
 static void       window_activate_about           (GtkAction       *action,
 						   DhWindow        *window);
+static void	  window_activate_zoom_default	  (GtkAction 	   *action,
+						   DhWindow	   *window);
+static void	  window_activate_zoom_in	  (GtkAction 	   *action,
+						   DhWindow	   *window);
+static void	  window_activate_zoom_out	  (GtkAction 	   *action,
+						   DhWindow	   *window);
 static void       window_save_state               (DhWindow        *window);
 static void       window_restore_state            (DhWindow        *window);
 static gboolean   window_delete_cb                (GtkWidget       *widget,
@@ -155,6 +186,7 @@ static GtkWindowClass *parent_class = NULL;
 static const GtkActionEntry actions[] = {
 	{ "FileMenu", NULL, N_("_File") },
 	{ "EditMenu", NULL, N_("_Edit") },
+	{ "ViewMenu", NULL, N_("_View") },
 	{ "GoMenu",   NULL, N_("_Go") },
 	{ "HelpMenu", NULL, N_("_Help") },
 
@@ -191,6 +223,14 @@ static const GtkActionEntry actions[] = {
 
 	{ "ShowSearchTab", NULL, N_("_Search Tab"), "<ctrl>S", NULL,
 	  G_CALLBACK (window_activate_show_search) },
+	
+	/* View menu */
+	{ "ZoomIn", GTK_STOCK_ZOOM_IN, NULL, "<ctrl>plus", NULL,
+	  G_CALLBACK (window_activate_zoom_in) },
+	{ "ZoomOut", GTK_STOCK_ZOOM_OUT, NULL, "<ctrl>minus", NULL,
+	  G_CALLBACK (window_activate_zoom_out) },
+	{ "ZoomDefault", GTK_STOCK_ZOOM_100, NULL, "<ctrl>0", NULL,
+	  G_CALLBACK (window_activate_zoom_default) },
 
 	/* About menu */
 	{ "About", GTK_STOCK_ABOUT, NULL, NULL, NULL,
@@ -253,6 +293,8 @@ window_init (DhWindow *window)
 
 	accel_group = gtk_ui_manager_get_accel_group (priv->manager);
 	gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
+	
+	priv->zoom_level = 2;
 
 	priv->main_box = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (priv->main_box);
@@ -311,7 +353,7 @@ static void
 window_finalize (GObject *object)
 {
 	DhWindow *window = DH_WINDOW (object);
-	DhBase *base = window->priv->base;
+	DhBase   *base = window->priv->base;
 
 	G_OBJECT_CLASS (parent_class)->finalize (object);
 
@@ -602,6 +644,51 @@ window_activate_find (GtkAction *action,
 
 	gtk_widget_show (priv->findbar);
 	gtk_widget_grab_focus (priv->findbar);
+}
+
+static void
+window_activate_zoom_in (GtkAction *action,
+			 DhWindow *window)
+{
+	DhWindowPriv *priv;
+	DhHtml       *html;
+
+	html = window_get_active_html (window);
+	priv = window->priv;
+
+	if (zoom_levels[priv->zoom_level].level < ZOOM_MAXIMAL) {
+		priv->zoom_level++;
+		dh_html_set_zoom (html, zoom_levels[priv->zoom_level].level);
+	}
+}
+
+static void
+window_activate_zoom_out (GtkAction *action,
+			  DhWindow *window)
+{
+	DhHtml       *html;
+	DhWindowPriv *priv;
+
+	html = window_get_active_html (window);
+	priv = window->priv;
+
+	if (zoom_levels[priv->zoom_level].level > ZOOM_MINIMAL) {
+		priv->zoom_level--;
+		dh_html_set_zoom (html, zoom_levels[priv->zoom_level].level);
+	}
+}
+
+static void
+window_activate_zoom_default (GtkAction *action,
+			      DhWindow *window)
+{
+	DhHtml       *html;
+	DhWindowPriv *priv;
+
+	html = window_get_active_html (window);
+	priv = window->priv;
+
+	dh_html_set_zoom (html, ZOOM_DEFAULT);
 }
 
 static void

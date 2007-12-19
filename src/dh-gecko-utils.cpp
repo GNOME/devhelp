@@ -366,6 +366,37 @@ dh_gecko_utils_search_find_again (Yelper *yelper, gboolean backward)
 	return yelper->FindAgain(!backward);
 }
 
+extern "C" float
+dh_gecko_utils_get_zoom (Yelper *yelper)
+{
+	nsresult rv;
+	float zoom;
+
+	yelper->Init();
+	rv = yelper->GetZoom (&zoom);
+	
+	if (NS_SUCCEEDED (rv))
+	{
+		return zoom;
+	}
+
+	return 1.0;
+}
+
+extern "C" gboolean
+dh_gecko_utils_set_zoom (Yelper *yelper,
+			 float zoom) 
+{
+	nsresult rv;
+
+	g_return_val_if_fail (zoom > 0.0, FALSE);
+
+	yelper->Init();
+	rv = yelper->SetZoom (zoom);
+
+	return (NS_SUCCEEDED (rv));
+}		
+
 extern "C" void
 dh_gecko_utils_search_set_case_sensitive (Yelper * yelper, gboolean case_sensitive)
 {

@@ -24,6 +24,7 @@
 
 #include <gtkmozembed.h>
 #include <nsCOMPtr.h>
+#include <nsIContentViewer.h>
 
 #if 0
 #include "yelp-print.h"
@@ -43,6 +44,9 @@ public:
 	void Destroy ();
 
 	void DoCommand (const char *aCommand);
+	
+	nsresult SetZoom (float aTextZoom);
+	nsresult GetZoom (float *aTextZoom);
 
 	void SetFindProperties (const char *aSearchString,
 				PRBool aCaseSensitive,
@@ -69,6 +73,8 @@ private:
 	nsCOMPtr<nsIWebBrowser> mWebBrowser;
 	nsCOMPtr<nsIDOMWindow> mDOMWindow;
 	nsCOMPtr<nsITypeAheadFind> mFinder;
+	
+	nsresult GetContentViewer (nsIContentViewer **aViewer);
 };
 
 #endif /* !__YELPER_H__ */

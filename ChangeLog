@@ -1,5 +1,19 @@
 2007-12-19  Richard Hult  <richard@imendio.com>
 
+	* data/ui/window.ui:
+	* src/Yelper.cpp:
+	* src/Yelper.h:
+	* src/dh-gecko-utils.cpp:
+	* src/dh-gecko-utils.h:
+	* src/dh-html.c: (dh_html_search_find_again):
+	* src/dh-html.h:
+	* src/dh-window.c: (dh_window_get_type), (window_class_init),
+	(window_init), (window_finalize), (window_activate_quit),
+	(window_activate_copy), (window_activate_find): Fix bug #144517,
+	patch from Cosimo Cecchi. Adds zoom actions.
+
+2007-12-19  Richard Hult  <richard@imendio.com>
+
 	* src/dh-window.c: (window_open_new_tab), (window_new_tab_label),
 	(window_get_active_html), (window_update_title),
 	(window_tab_set_title): Fix bug #479306, patch from Cosimo Cecchi,

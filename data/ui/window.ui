@@ -17,6 +17,11 @@
       <separator/>
       <menuitem action="Preferences"/>
     </menu>
+    <menu action="ViewMenu">
+      <menuitem action="ZoomIn"/>
+      <menuitem action="ZoomOut"/>
+      <menuitem action="ZoomDefault"/>
+    </menu>
     <menu action="GoMenu">
       <menuitem action="Back"/>
       <menuitem action="Forward"/>
@@ -32,5 +37,8 @@
   <toolbar name="Toolbar">
     <toolitem action="Back"/>
     <toolitem action="Forward"/>
+    <toolitem action="ZoomIn"/>
+    <toolitem action="ZoomOut"/>
+    <toolitem action="ZoomDefault"/>
   </toolbar>
 </ui>

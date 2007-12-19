@@ -50,6 +50,8 @@
 #include <nsIWebBrowserPrint.h>
 #include <nsIWebBrowserSetup.h>
 #include <nsServiceManagerUtils.h>
+#include <nsIMarkupDocumentViewer.h>
+#include <nsIContentViewer.h>
 
 #ifndef HAVE_GECKO_1_9
 #include <nsIDocShell.h>
@@ -285,6 +287,44 @@ Yelper::ProcessMouseEvent (void* aEvent)
 
 	g_signal_emit_by_name (mEmbed, "popupmenu_requested",
 			       NS_ConvertUTF16toUTF8 (href).get());
+}
+
+nsresult Yelper::GetContentViewer (nsIContentViewer **aViewer)
+{
+	NS_ENSURE_TRUE (mWebBrowser, NS_ERROR_FAILURE);
+
+	nsCOMPtr<nsIDocShell> ourDocShell(do_GetInterface(mWebBrowser));
+	NS_ENSURE_TRUE (ourDocShell, NS_ERROR_FAILURE);
+
+	return ourDocShell->GetContentViewer(aViewer);
+}
+
+nsresult Yelper::SetZoom (float aZoom)
+{
+	NS_ENSURE_TRUE (mWebBrowser, NS_ERROR_FAILURE);
+
+	nsCOMPtr<nsIContentViewer> contentViewer;	
+	GetContentViewer (getter_AddRefs(contentViewer));
+	NS_ENSURE_TRUE (contentViewer, NS_ERROR_FAILURE);
+	
+	nsCOMPtr<nsIMarkupDocumentViewer> mdv = do_QueryInterface(contentViewer);
+	NS_ENSURE_TRUE (mdv, NS_ERROR_FAILURE);
+
+	return mdv->SetTextZoom (aZoom);
+}
+
+nsresult Yelper::GetZoom (float *aZoom)
+{
+	NS_ENSURE_TRUE (mWebBrowser, NS_ERROR_FAILURE);
+
+	nsCOMPtr<nsIContentViewer> contentViewer;	
+	GetContentViewer (getter_AddRefs(contentViewer));
+	NS_ENSURE_TRUE (contentViewer, NS_ERROR_FAILURE);
+
+	nsCOMPtr<nsIMarkupDocumentViewer> mdv = do_QueryInterface(contentViewer);
+	NS_ENSURE_TRUE (mdv, NS_ERROR_FAILURE);
+
+	return mdv->GetTextZoom (aZoom);
 }
 
 #if 0

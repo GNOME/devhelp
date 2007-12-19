@@ -445,6 +445,32 @@ dh_html_search_find_again (DhHtml   *html,
 	return dh_gecko_utils_search_find_again (priv->yelper, backwards);
 }
 
+float
+dh_html_get_zoom (DhHtml *html)
+{
+	DhHtmlPriv *priv;
+	
+	g_return_val_if_fail (DH_IS_HTML (html), 1.0);
+	
+	priv = html->priv;
+	
+	return dh_gecko_utils_get_zoom (priv->yelper);
+}
+
+void
+dh_html_set_zoom (DhHtml *html,
+		  float zoom)
+{
+	DhHtmlPriv *priv;
+
+	g_return_if_fail (DH_IS_HTML (html));
+
+	priv = html->priv;
+
+	dh_gecko_utils_set_zoom (priv->yelper, zoom);
+}
+	
+
 void
 dh_html_search_set_case_sensitive (DhHtml   *html,
 				   gboolean  case_sensitive)

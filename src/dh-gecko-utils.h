@@ -48,6 +48,8 @@ void dh_gecko_utils_copy_selection            (GtkMozEmbed *embed);
 gboolean dh_gecko_utils_search_find           (Yelper *yelper, const gchar * text);
 gboolean dh_gecko_utils_search_find_again     (Yelper *yelper, gboolean backward);
 void dh_gecko_utils_search_set_case_sensitive (Yelper *yelper, gboolean match);
+float dh_gecko_utils_get_zoom		      (Yelper *yelper);
+gboolean dh_gecko_utils_set_zoom 	      (Yelper *yelper, float zoom);
 Yelper* dh_gecko_utils_create_yelper         (GtkMozEmbed *gecko);
 void dh_gecko_utils_destroy_yelper            (Yelper* yelper);
 
