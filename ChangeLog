@@ -1,3 +1,10 @@
+2007-12-19  Richard Hult  <richard@imendio.com>
+
+	* src/dh-window.c: (window_open_new_tab), (window_new_tab_label),
+	(window_get_active_html), (window_update_title),
+	(window_tab_set_title): Fix bug #479306, patch from Cosimo Cecchi,
+	adds close button to tabs.
+
 2007-12-03  Richard Hult  <richard@imendio.com>
 
 	* src/Yelper.cpp: Patch from Matthias Clasen to fix bug #499050,

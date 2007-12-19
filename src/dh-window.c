@@ -1083,7 +1083,7 @@ window_open_new_tab (DhWindow    *window,
 	g_object_set_data (G_OBJECT (frame), "html", html);
 
 	label = window_new_tab_label (window, _("Empty Page"));
-	gtk_widget_show (label);
+	gtk_widget_show_all (label);
 
 	g_signal_connect (html, "title-changed",
 			  G_CALLBACK (window_html_title_changed_cb),
@@ -1121,18 +1121,86 @@ window_open_new_tab (DhWindow    *window,
 
 }
 
+static void
+close_button_clicked_cb (GtkButton *button,
+			 DhWindow *window)
+{
+	GtkAction *action_close;
+	
+	action_close = gtk_action_group_get_action (window->priv->action_group,
+						    "Close");
+	window_activate_close (action_close, window);
+}
+
+static void
+tab_label_style_set_cb (GtkWidget *hbox,
+			GtkStyle *previous_style,
+		        gpointer user_data)
+{
+	PangoFontMetrics *metrics;
+	PangoContext     *context;
+	GtkWidget        *button;
+	gint              char_width;
+	gint              h, w;
+
+	context = gtk_widget_get_pango_context (hbox);
+	metrics = pango_context_get_metrics (context,
+					     hbox->style->font_desc,
+					     pango_context_get_language (context));
+
+	char_width = pango_font_metrics_get_approximate_digit_width (metrics);
+	pango_font_metrics_unref (metrics);
+
+	gtk_icon_size_lookup_for_settings (gtk_widget_get_settings (hbox),
+					   GTK_ICON_SIZE_MENU, &w, &h);
+
+	gtk_widget_set_size_request (hbox, 15 * PANGO_PIXELS (char_width) + 2 * w, -1);
+
+	button = g_object_get_data (G_OBJECT (hbox), "close-button");
+	gtk_widget_set_size_request (button, w + 2, h + 2);
+}
+
 static GtkWidget*
 window_new_tab_label (DhWindow *window, const gchar *str)
 {
-	GtkWidget *label;
+	GtkWidget  *hbox, *label, *close_button, *image;
+	GtkRcStyle *rcstyle;
+	
+	hbox = gtk_hbox_new (FALSE, 4);
 
 	label = gtk_label_new (str);
 	gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
 	gtk_label_set_single_line_mode (GTK_LABEL (label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	gtk_misc_set_padding (GTK_MISC (label), 0, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
+	
+	close_button = gtk_button_new ();
+	gtk_button_set_relief (GTK_BUTTON (close_button),
+			       GTK_RELIEF_NONE);
+	gtk_button_set_focus_on_click (GTK_BUTTON (close_button), FALSE);
+	
+	rcstyle = gtk_widget_get_modifier_style (close_button);
+	rcstyle->xthickness = rcstyle->ythickness = 0;
+	gtk_widget_modify_style (close_button, rcstyle);
+	
+	image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+	/*gtk_widget_set_tooltip_text (close_button, _("Close tab"));*/
+	g_signal_connect (close_button, "clicked",
+			  G_CALLBACK (close_button_clicked_cb), window);
+	
+	gtk_container_add (GTK_CONTAINER (close_button), image);
 
-	return label;
+	gtk_box_pack_start (GTK_BOX (hbox), close_button, FALSE, FALSE, 0);
+	
+	/* Set minimal size */
+	g_signal_connect (hbox, "style-set",
+			  G_CALLBACK (tab_label_style_set_cb), NULL);
+	
+	g_object_set_data (G_OBJECT (hbox), "label", label);
+	g_object_set_data (G_OBJECT (hbox), "close-button", close_button);
+
+	return hbox;
 }
 
 static DhHtml *
@@ -1204,6 +1272,7 @@ window_tab_set_title (DhWindow *window, DhHtml *html, const gchar *title)
 	gint          num_pages, i;
 	GtkWidget    *view;
 	GtkWidget    *page;
+	GtkWidget    *hbox;
 	GtkWidget    *label;
 
 	priv = window->priv;
@@ -1221,10 +1290,11 @@ window_tab_set_title (DhWindow *window, DhHtml *html, const gchar *title)
 
 		/* The html widget is inside a frame. */
 		if (gtk_bin_get_child (GTK_BIN (page)) == view) {
-			label = gtk_notebook_get_tab_label (
+			hbox = gtk_notebook_get_tab_label (
 				GTK_NOTEBOOK (priv->html_notebook), page);
 
-			if (label) {
+			if (hbox) {
+				label = g_object_get_data (G_OBJECT (hbox), "label");
 				gtk_label_set_text (GTK_LABEL (label), title);
 			}
 			break;
