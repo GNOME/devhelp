@@ -169,6 +169,7 @@ po/Makefile.in
 src/Makefile
 data/Makefile
 data/devhelp.desktop.in
+data/icons/Makefile
 data/ui/Makefile
 data/dtd/Makefile
 misc/Makefile

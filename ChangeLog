@@ -1,5 +1,14 @@
 2007-12-19  Richard Hult  <richard@imendio.com>
 
+	* configure.in:
+	* data/Makefile.am:
+	* data/ui:
+	* data/icons: Add new icons from Andreas Nilsson, fixes bug
+	#463131.
+
+2007-12-19  Richard Hult  <richard@imendio.com>
+
+
 	* data/ui/window.ui:
 	* src/Yelper.cpp:
 	* src/Yelper.h:

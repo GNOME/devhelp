@@ -1,4 +1,4 @@
-SUBDIRS = ui dtd
+SUBDIRS = ui dtd icons
 
 @INTLTOOL_DESKTOP_RULE@
 
