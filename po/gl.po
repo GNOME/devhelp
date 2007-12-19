@@ -4,13 +4,14 @@
 #
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Ignacio Casal Quinteiro <icq@cvs.gnome.org>, 2007.
+# Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-18 15:09+0200\n"
-"PO-Revision-Date: 2007-10-18 15:09+0200\n"
-"Last-Translator: Ignacio Casal Quinteiro <icq@cvs.gnome.org>\n"
+"POT-Creation-Date: 2007-12-19 22:27+0100\n"
+"PO-Revision-Date: 2007-12-19 22:28+0100\n"
+"Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Programa de axuda do desenvolvedor"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:149 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:776
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -126,7 +127,7 @@ msgstr "<b>Tipos de letra</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Buscando</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
 msgid "Contents"
 msgstr "Contidos"
 
@@ -146,7 +147,7 @@ msgstr "Largura _fixa:"
 msgid "_Forward"
 msgstr "_Seguinte"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Ir"
 
@@ -170,19 +171,19 @@ msgstr "Soporte Devhelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Fai que a tecla F2 inicie o Devhelp para a palabra na que está o cursor"
 
-#: ../src/dh-main.c:98
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Buscar unha función"
 
-#: ../src/dh-main.c:107
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Sae de calquera Devhelp en execución"
 
-#: ../src/dh-main.c:116
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Mostrar a versión e saír"
 
-#: ../src/dh-main.c:125
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Enfocar a ventá de devhelp co campo de busca activo"
 
@@ -241,58 +242,98 @@ msgstr "Li_bro:"
 msgid "_Page:"
 msgstr "_Páxina:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Ver"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Axuda"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Nova ventá"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Novo _separador"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Buscar seguinte"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Buscar anterior"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:221
 msgid "_Contents Tab"
 msgstr "Separador de _contidos"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:224
 msgid "_Search Tab"
 msgstr "Separador de _busca"
 
-#: ../src/dh-window.c:473
+#: ../src/dh-window.c:515
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:773
 msgid "translator_credits"
 msgstr ""
 "Ignacio Casal Quinteiro <adorador_del_heavy@hotmail.com>\n"
 "Proxecto Trasno: <www.trasno.net>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:778
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un navegador de axuda para desenvolvedores do Gnome 2"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
 msgid "Empty Page"
 msgstr "Páxina baleira"
 
