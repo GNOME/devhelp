@@ -84,6 +84,8 @@ main (int argc, char **argv)
 	gboolean                option_quit = FALSE;
 	gboolean                option_focus_search = FALSE;
 	gboolean                option_version = FALSE;
+	gchar                  *display;
+	gchar                  *connection_name;
 	BaconMessageConnection *message_conn;
 	DhBase                 *base;
 	GtkWidget              *window;
@@ -149,7 +151,12 @@ main (int argc, char **argv)
 	g_set_application_name (_("Devhelp"));
 	gtk_window_set_default_icon_name ("devhelp");
 
-	message_conn = bacon_message_connection_new ("Devhelp");
+	display = gdk_get_display ();
+	connection_name = g_strdup_printf ("Devhelp-%s", display);
+	message_conn = bacon_message_connection_new (connection_name);
+	g_free (display);
+	g_free (connection_name);
+
 	if (!bacon_message_connection_get_is_server (message_conn)) {
 		if (option_quit) {
 			bacon_message_connection_send (message_conn, COMMAND_QUIT);
