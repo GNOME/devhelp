@@ -1,6 +1,9 @@
 # Copyright (C) 2005-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the program package.
 #
+# Slovenian maintainer: Matej Urbančič <mateju@svn.gnome.org>.
+#
+# Translators:
 # Matej Urbančič <mateju@svn.gnome.org>, 2007.
 #
 msgid ""
@@ -8,7 +11,7 @@ msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-04-17 19:51+0100\n"
-"PO-Revision-Date: 2007-11-13 14:19+0100\n"
+"PO-Revision-Date: 2007-12-20 15:25+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -25,8 +28,8 @@ msgstr "Program za pomoč razvijalcem "
 
 #: ../data/devhelp.desktop.in.in.h:2
 #: ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:149
-#: ../src/dh-window.c:689
+#: ../src/dh-main.c:151
+#: ../src/dh-window.c:776
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -131,7 +134,7 @@ msgid "<b>Searching</b>"
 msgstr "<b>Iskanje</b>"
 
 #: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:463
+#: ../src/dh-window.c:505
 msgid "Contents"
 msgstr "Vsebina"
 
@@ -152,7 +155,7 @@ msgid "_Forward"
 msgstr "_Naprej"
 
 #: ../data/ui/devhelp.glade.h:9
-#: ../src/dh-window.c:158
+#: ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Pojdi"
 
@@ -176,19 +179,19 @@ msgstr "Devhelp podpora"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Tipka F2 prikaže pomoč Devhelp za besedo ob kazalniku"
 
-#: ../src/dh-main.c:98
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Iskanje funkcije"
 
-#: ../src/dh-main.c:107
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Izhod iz Devhelp"
 
-#: ../src/dh-main.c:116
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Prikaži pomoč in zapusti program"
 
-#: ../src/dh-main.c:125
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Osveži devhelp okno z aktivnim iskalnim poljem"
 
@@ -246,59 +249,99 @@ msgstr "_Knjiga:"
 msgid "_Page:"
 msgstr "_Stran:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Datoteka"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Uredi"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Pogled"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Pomoč"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Nov _zavihek"
 
-#: ../src/dh-window.c:176
+#: ../src/dh-window.c:208
 #: ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Poišči naslednje"
 
-#: ../src/dh-window.c:178
+#: ../src/dh-window.c:210
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Poišči predhodnje"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:221
 msgid "_Contents Tab"
 msgstr "Zavihek _vsebine"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:224
 msgid "_Search Tab"
 msgstr "Zavihek _iskanja"
 
-#: ../src/dh-window.c:473
+#: ../src/dh-window.c:515
 msgid "Search"
 msgstr "Iskanje"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:773
 msgid "translator_credits"
 msgstr "Matej Urbančič"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:778
 msgid "A developer's help browser for GNOME 2"
 msgstr "Pregledovalnik pomoči za GNOME 2"
 
-#: ../src/dh-window.c:1085
-#: ../src/dh-window.c:1214
+#: ../src/dh-window.c:1172
+#: ../src/dh-window.c:1370
 msgid "Empty Page"
 msgstr "Prazna stran"
 
