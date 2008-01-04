@@ -1,21 +1,21 @@
 # Vietnamese translation for Dev. Help.
-# Copyright © 2007 Gnome i18n Project for Vietnamese.
+# Copyright © 2008 Gnome i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmx.net>, 2002.
-# Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 # 
 msgid ""
-msgstr ""
-"Project-Id-Version: devhelp 0.15\n"
+""
+msgstr "Project-Id-Version: devhelp 0.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 21:59+0100\n"
-"PO-Revision-Date: 2007-09-07 22:29+0930\n"
+"POT-Creation-Date: 2007-12-19 17:41+0000\n"
+"PO-Revision-Date: 2008-01-04 18:53+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.6.4a3\n"
+"X-Generator: LocFactoryEditor 1.7b1\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -23,8 +23,8 @@ msgstr "Chương trình trợ giúp cho nhà phát triển"
 
 #: ../data/devhelp.desktop.in.in.h:2
 #: ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141
-#: ../src/dh-window.c:689
+#: ../src/dh-main.c:149
+#: ../src/dh-window.c:776
 msgid "Devhelp"
 msgstr "Trợ giúp phát triển"
 
@@ -129,7 +129,7 @@ msgid "<b>Searching</b>"
 msgstr "<b>Tìm kiếm</b>"
 
 #: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:463
+#: ../src/dh-window.c:505
 msgid "Contents"
 msgstr "Mục lục"
 
@@ -150,7 +150,7 @@ msgid "_Forward"
 msgstr "_Tiếp"
 
 #: ../data/ui/devhelp.glade.h:9
-#: ../src/dh-window.c:158
+#: ../src/dh-window.c:190
 msgid "_Go"
 msgstr "Tớ_i"
 
@@ -166,30 +166,29 @@ msgstr "_Dùng phông hệ thống"
 msgid "_Variable width: "
 msgstr "Độ rộng _không cố định: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Hỗ trợ của Trợ giúp phát triển"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Đặt phím F2 để hiển thị Trợ giúp Phát triển cho từ ở vị trí con trỏ"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:98
 msgid "Search for a function"
 msgstr "Tìm kiếm hàm"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:107
 msgid "Quit any running Devhelp"
 msgstr "Thoát bất kì chương trình trợ giúp phát triển nào đang chạy"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:116
 msgid "Display the version and exit"
 msgstr "Hiển thị phiên bản rồi thoát"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:125
 msgid "Focus the devhelp window with the search field active"
-msgstr ""
-"Đặt tiêu điểm trong cửa sổ trợ giúp phát triển, có trường tìm kiếm còn hoạt "
+msgstr "Đặt tiêu điểm trong cửa sổ trợ giúp phát triển, có trường tìm kiếm còn hoạt "
 "động"
 
 #: ../src/dh-parser.c:110
@@ -212,15 +211,13 @@ msgstr "các yếu tố tiêu đề, tên và liên kết đều phải có tạ
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"các yếu tố tên và liên kết đều phải có bên trong <sub> tại dòng %d, cột %d"
+msgstr "các yếu tố tên và liên kết đều phải có bên trong <sub> tại dòng %d, cột %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
-"các yếu tố tên và liên kết đều phải có bên trong <function> tại dòng %d, cột "
+msgstr "các yếu tố tên và liên kết đều phải có bên trong <function> tại dòng %d, cột "
 "%d"
 
 #: ../src/dh-parser.c:420
@@ -250,59 +247,99 @@ msgstr "_Quyển:"
 msgid "_Page:"
 msgstr "T_rang:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Tập tin"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Sửa"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Xem"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "Trợ _giúp"
 
-#: ../src/dh-window.c:162
-#. File menu
+#.File menu
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "Cửa sổ _mới"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "_Thanh mới"
 
-#: ../src/dh-window.c:176
+#: ../src/dh-window.c:208
 #: ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Tìm kế"
 
-#: ../src/dh-window.c:178
+#: ../src/dh-window.c:210
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Tìm lùi"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:221
 msgid "_Contents Tab"
 msgstr "Thẻ Mụ_c lục"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:224
 msgid "_Search Tab"
 msgstr "Thẻ Tìm _kiếm"
 
-#: ../src/dh-window.c:473
+#: ../src/dh-window.c:515
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:773
 msgid "translator_credits"
 msgstr "Nhóm Việt hóa Gnome <gnomevi-list@lists.sourceforge.net>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:778
 msgid "A developer's help browser for GNOME 2"
 msgstr "Bộ duyệt trợ giúp của GNOME 2 dành cho nhà phát triển"
 
-#: ../src/dh-window.c:1085
-#: ../src/dh-window.c:1214
+#: ../src/dh-window.c:1172
+#: ../src/dh-window.c:1370
 msgid "Empty Page"
 msgstr "Trang trắng"
 
