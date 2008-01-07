@@ -1,3 +1,7 @@
+2008-01-07  Richard Hult  <richard@imendio.com>
+
+	* NEWS: Prepare for a release.
+
 2007-12-19  Richard Hult  <richard@imendio.com>
 
 	* src/dh-main.c: (main): Fix bug #354895, Devhelp doesn't run new

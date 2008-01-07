@@ -1,3 +1,23 @@
+NEW in 0.17:
+============
+
+- Devhelp doesn't run new instance on new display (bug #354895)
+- New icons from Andreas Nilsson (bug #463131)
+- Add zoom actions (bug #144517, Cosimo Cecchi)
+- Add close buttons to tabs (bug #479306, Cosimo Cecchi)
+- Fix build against xyulrunner 1.9 (bug #499050, Matthias Clasen)
+- Remove obsolete dependencies (libgnomeui and gnome-vfs, bug #484896)
+  and make libwnck optional
+- Use po/LINGUAS (bug #464108, Gilles Dartiguelongue)
+- Updated and new translations: ar, be@latin, es, et, gl, nb, oc, sl,
+  sv, ta, vi
+
+Many thanks to all the translators: Djihed Afifi, Sohaib Afifi, Ihar
+Hrachyshka, Jorge Gonzalez, Priit Laes, Ignacio Casal Quinteiro,
+Kjartan Maraas, Yannig Marchegay, Matej Urbančič, I. Felix, Clytie
+Siddall
+
+
 NEW in 0.16.1:
 ==============
 
