@@ -1,15 +1,15 @@
 # translation of devhelp.HEAD.po to Español
 # Ismael Olea <ismael@olea.org>, 2001.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008.
 # Spanish/Spain translation of devhelp.
-# Copyright (C) 2001,2003, 2004, 2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2001,2003, 2004, 2006, 2007, 2008 Free Software Foundation, Inc.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-19 17:41+0000\n"
-"PO-Revision-Date: 2007-12-23 13:27+0100\n"
+"POT-Creation-Date: 2008-01-13 13:46+0000\n"
+"PO-Revision-Date: 2008-01-13 17:59+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <<gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Programa de ayuda del desarrollador"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:149 ../src/dh-window.c:776
+#: ../src/dh-main.c:151 ../src/dh-window.c:781
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -127,7 +127,7 @@ msgstr "<b>Tipografías</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Búsqueda</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
 msgid "Contents"
 msgstr "Índice"
 
@@ -171,19 +171,19 @@ msgstr "Soporte para DevHelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Hace que F2 inicie DevHelp para la palabra en el cursor"
 
-#: ../src/dh-main.c:98
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Buscar una función"
 
-#: ../src/dh-main.c:107
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Termina cualquier DevHelp en ejecución"
 
-#: ../src/dh-main.c:116
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Muestra la versión y sale"
 
-#: ../src/dh-main.c:125
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Da el foco a la ventana de devhelp con el campo de búsqueda activo"
 
@@ -310,29 +310,62 @@ msgstr "Buscar siguiente"
 msgid "Find Previous"
 msgstr "Buscar anterior"
 
-#: ../src/dh-window.c:221
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Ir a la página anterior"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Ir a la página siguiente"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Solapa de _contenido"
 
-#: ../src/dh-window.c:224
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Solapa de _búsqueda"
 
-#: ../src/dh-window.c:515
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "Texto más _grande"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Aumentar el tamaño del texto"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "Texto más _pequeño"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Disminuir el tamaño del texto"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "Tamaño _normal"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Usar el tamaño de texto normal"
+
+#: ../src/dh-window.c:520
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:778
 msgid "translator_credits"
 msgstr ""
-"Jorge González <jorgegonz@svn.gnome.org>, 2007\n"
-"Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006"
+"Jorge González <jorgegonz@svn.gnome.org>, 2007-2008.\n"
+"Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006."
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:783
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un visor de ayuda para desarrolladores para GNOME 2"
 
-#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
+#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
 msgid "Empty Page"
 msgstr "Página vacía"
 
