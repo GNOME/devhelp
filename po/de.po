@@ -4,15 +4,16 @@
 # Christian Neumair <chris@gnome-de.org>, 2002, 2003, 2004.
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
 # Hendrik Richter <hendrikr@gnome.org>, 2007.
-# Johannes Schmid <jha@gnome.org>, 2007 
+# Johannes Schmid <jhs@gnome.org>, 2007. 
+# Andre Klapper <ak-47@gmx.net>, 2008.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelper 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-11 12:02+0200\n"
-"PO-Revision-Date: 2007-09-11 12:02+0200\n"
-"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
+"POT-Creation-Date: 2008-01-13 03:03+0100\n"
+"PO-Revision-Date: 2008-01-13 03:05+0100\n"
+"Last-Translator: Andre Klapper <ak-47@gmx.net>\n"
 "Language-Team: German GNOME Translations <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgid "Developer's Help program"
 msgstr "Hilfeprogramm für Entwickler"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:776
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -129,7 +130,7 @@ msgstr "<b>Schriften</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Suche läuft</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
 msgid "Contents"
 msgstr "Inhalt"
 
@@ -149,7 +150,7 @@ msgstr "_Dicktengleichheit:"
 msgid "_Forward"
 msgstr "_Vor"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Gehe zu"
 
@@ -165,28 +166,28 @@ msgstr "S_ystemschrift verwenden"
 msgid "_Variable width: "
 msgstr "_Variable Breite: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Devhelp-Unterstützung"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr ""
 "F2 drücken, und das Wort an der Zeigerposition wird in Devhelp nachgeschlagen"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Nach einer Funktion suchen"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Alle laufenden Devhelp-Instanzen beenden"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Programmversion anzeigen und beenden"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Fokus auf das Suchfeld im devhelp-Fenster verschieben"
 
@@ -220,12 +221,10 @@ msgstr ""
 "»name« sowie »link«-Elemente in <function> erforderlich - Zeile %d, Spalte %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
-#, c-format
 msgid "Could not create book parser"
 msgstr "Buchverarbeiter konnte nicht angelegt werden"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
-#, c-format
 msgid "Could not create markup parser"
 msgstr "Auszeichnungsverarbeiter konnte nicht angelegt werden"
 
@@ -235,7 +234,6 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Buch »%s« konnte nicht entpackt werden: %s"
 
 #: ../src/dh-parser.c:603
-#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp wurde ohne zlib-Unterstützung kompiliert"
 
@@ -247,58 +245,98 @@ msgstr "_Buch:"
 msgid "_Page:"
 msgstr "_Seite:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Datei"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "B_earbeiten"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Ansicht"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Hilfe"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Neues Fenster"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Neuer _Reiter"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Weitersuchen"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Rückwärts suchen"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:221
 msgid "_Contents Tab"
 msgstr "Reiter _Inhalt"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:224
 msgid "_Search Tab"
 msgstr "Reiter _Suchen"
 
-#: ../src/dh-window.c:473
+#: ../src/dh-window.c:515
 msgid "Search"
 msgstr "Suche"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:773
 msgid "translator_credits"
 msgstr ""
 "Christian Meyer\n"
 "Christian Neumair"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:778
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
 msgid "Empty Page"
 msgstr "Leere Seite"
 
