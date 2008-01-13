@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-16 10:32+0900\n"
-"PO-Revision-Date: 2007-09-16 10:32+0900\n"
+"POT-Creation-Date: 2008-01-13 20:05+0900\n"
+"PO-Revision-Date: 2008-01-13 18:28+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgid "Developer's Help program"
 msgstr "開発者向けのヘルプ・プログラムです"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:776
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -123,7 +123,7 @@ msgstr "<b>フォント</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>検索</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
 msgid "Contents"
 msgstr "目次"
 
@@ -143,7 +143,7 @@ msgstr "等幅(_F):"
 msgid "_Forward"
 msgstr "進む(_F)"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "移動(_G)"
 
@@ -159,27 +159,27 @@ msgstr "システムのフォントを使用する(_U)"
 msgid "_Variable width: "
 msgstr "可変幅(_V):"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Devhelp のサポート"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "[F2] キーを押してカーソル位置にある単語を Devhelp から検索します。"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "関数の検索"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Devhelp を終了します"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "バージョンを表示して終了する"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Devhelp のウィンドウにフォーカスを与える"
 
@@ -237,58 +237,98 @@ msgstr "ブック(_B):"
 msgid "_Page:"
 msgstr "ページ(_P):"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "表示(_V)"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "新しいウィンドウ(_N)"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "新しいタブ(_T)"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "後方検索"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "前方検索"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:221
 msgid "_Contents Tab"
 msgstr "目次タブ(_C)"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:224
 msgid "_Search Tab"
 msgstr "検索タブ(_S)"
 
-#: ../src/dh-window.c:473
+#: ../src/dh-window.c:515
 msgid "Search"
 msgstr "検索"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:773
 msgid "translator_credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "日本GNOMEユーザー会 http://www.gnome.gr.jp"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:778
 msgid "A developer's help browser for GNOME 2"
 msgstr "GNOME 2 対応の開発者向けのヘルプブラウザです。"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
 msgid "Empty Page"
 msgstr "空のページ"
 
