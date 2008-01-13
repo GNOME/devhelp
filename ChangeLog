@@ -1,3 +1,13 @@
+2008-01-13  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	reviewed by: Richart Hult
+
+	* src/dh-window.c:
+
+	Use "text size" instead of "zoom" in the menus and
+	buttons. Fixes bug #508111. Add tooltips to navigational
+	toolbar items. Fixes bug #508513.
+
 2008-01-07  Richard Hult  <richard@imendio.com>
 
 	* Release 0.17.

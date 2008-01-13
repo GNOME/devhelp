@@ -213,9 +213,11 @@ static const GtkActionEntry actions[] = {
 	  G_CALLBACK (window_activate_preferences) },
 
 	/* Go menu */
-	{ "Back", GTK_STOCK_GO_BACK, NULL, "<alt>Left", NULL,
+	{ "Back", GTK_STOCK_GO_BACK, NULL, "<alt>Left",
+	  N_("Go to the previous page"),
 	  G_CALLBACK (window_activate_back) },
-	{ "Forward", GTK_STOCK_GO_FORWARD, NULL, "<alt>Right", NULL,
+	{ "Forward", GTK_STOCK_GO_FORWARD, NULL, "<alt>Right",
+	  N_("Go to the next page"),
 	  G_CALLBACK (window_activate_forward) },
 
 	{ "ShowContentsTab", NULL, N_("_Contents Tab"), "<ctrl>B", NULL,
@@ -225,11 +227,14 @@ static const GtkActionEntry actions[] = {
 	  G_CALLBACK (window_activate_show_search) },
 	
 	/* View menu */
-	{ "ZoomIn", GTK_STOCK_ZOOM_IN, NULL, "<ctrl>plus", NULL,
+	{ "ZoomIn", GTK_STOCK_ZOOM_IN, N_("_Larger Text"), "<ctrl>plus",
+	  N_("Increase the text size"),
 	  G_CALLBACK (window_activate_zoom_in) },
-	{ "ZoomOut", GTK_STOCK_ZOOM_OUT, NULL, "<ctrl>minus", NULL,
+	{ "ZoomOut", GTK_STOCK_ZOOM_OUT, N_("S_maller Text"), "<ctrl>minus",
+	  N_("Decrease the text size"),
 	  G_CALLBACK (window_activate_zoom_out) },
-	{ "ZoomDefault", GTK_STOCK_ZOOM_100, NULL, "<ctrl>0", NULL,
+	{ "ZoomDefault", GTK_STOCK_ZOOM_100, N_("_Normal size"), "<ctrl>0",
+	  N_("Use the normal text size"),
 	  G_CALLBACK (window_activate_zoom_default) },
 
 	/* About menu */
