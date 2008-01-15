@@ -1,18 +1,16 @@
 # Swedish messages for Devhelp.
-# Copyright (C) 2001, 2002, 2003, 2004, 2006 Free Software Foundation, Inc.
+# Copyright (C) 2001-2008 Free Software Foundation, Inc.
 # Richard Hult <richard@imendio.com>, 2001, 2004.
 # Johan Dahlin <zilch.am@home.se>, 2001.
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004.
-# Daniel Nylander <po@danielnylander.se>, 2006.
-#
-# $Id: sv.po,v 1.36 2006/08/17 20:05:54 rhult Exp $
+# Daniel Nylander <po@danielnylander.se>, 2006, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-19 18:41+0100\n"
-"PO-Revision-Date: 2007-09-07 10:13+0100\n"
+"POT-Creation-Date: 2008-01-15 01:27+0100\n"
+"PO-Revision-Date: 2008-01-15 01:29+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -23,10 +21,12 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:149 ../src/dh-window.c:776
+#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151
+#: ../src/dh-window.c:781
 msgid "Devhelp"
-msgstr "Devhelp"
+msgstr "Utvecklarhjälp"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -128,7 +128,8 @@ msgstr "<b>Typsnitt</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Sökning</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
+#: ../data/ui/devhelp.glade.h:3
+#: ../src/dh-window.c:510
 msgid "Contents"
 msgstr "Innehåll"
 
@@ -148,7 +149,8 @@ msgstr "_Fast bredd:"
 msgid "_Forward"
 msgstr "_Framåt"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9
+#: ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Gå"
 
@@ -166,29 +168,31 @@ msgstr "_Variabel bredd:"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
-msgstr "Devhelpstöd"
+msgstr "Stöd för Utvecklarhjälp"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "Gör så att F2 tar fram Devhelp för ordet vid markören"
+msgstr "Gör så att F2 tar fram Utvecklarhjälp för ordet vid markören"
 
-#: ../src/dh-main.c:98
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: ../src/dh-main.c:107
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
-msgstr "Avsluta alla körande Devhelp"
+msgstr "Avsluta alla körande Utvecklarhjälp"
 
-#: ../src/dh-main.c:116
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Visa versionen och avsluta"
 
-#: ../src/dh-main.c:125
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
-msgstr "Fokusera devhelp-fönstret med sökfältet aktivt"
+msgstr "Fokusera Utvecklarhjälp-fönstret med sökfältet aktivt"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#: ../src/dh-parser.c:110
+#: ../src/dh-parser.c:194
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "\"%s\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
@@ -210,16 +214,17 @@ msgstr "namn- och länkelement krävs inuti <sub> på rad %d, kolumn %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr "namn- och länkelement krävs inuti <function> på rad %d, kolumn %d"
 
-#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#: ../src/dh-parser.c:420
+#: ../src/dh-parser.c:515
 #, c-format
 msgid "Could not create book parser"
 msgstr "Kunde inte skapa boktolk"
 
-#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#: ../src/dh-parser.c:436
+#: ../src/dh-parser.c:525
 #, c-format
 msgid "Could not create markup parser"
 msgstr "Kunde inte skapa markuptolk"
@@ -232,7 +237,7 @@ msgstr "Kan inte dekomprimera boken \"%s\": %s"
 #: ../src/dh-parser.c:603
 #, c-format
 msgid "Devhelp is not built with zlib support"
-msgstr "Devhelp äre inte byggt med zlib-stöd"
+msgstr "Utvecklarhjälp har inte byggts med stöd för zlib"
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
@@ -303,27 +308,62 @@ msgstr "_Nytt fönster"
 msgid "New _Tab"
 msgstr "Ny _flik"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208
+#: ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Sök nästa"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210
+#: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Sök föregående"
 
-#: ../src/dh-window.c:221
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Gå till föregående sida"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Gå till nästa sida"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "_Innehållsflik"
 
-#: ../src/dh-window.c:224
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "_Sökflik"
 
-#: ../src/dh-window.c:515
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "_Större text"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Öka textstorleken"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Mindre text"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Minska textstorleken"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Normal storlek"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Använd normal textstorlek"
+
+#: ../src/dh-window.c:520
 msgid "Search"
 msgstr "Sök"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:778
 msgid "translator_credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -331,11 +371,12 @@ msgstr ""
 "Richard Hult <richard@imendio.com>\n"
 "Johan Dahlin <johan@gnome.org>"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:783
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
-#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
+#: ../src/dh-window.c:1177
+#: ../src/dh-window.c:1375
 msgid "Empty Page"
 msgstr "Tom sida"
 
@@ -361,3 +402,4 @@ msgstr "Växla skiftlägeskänslighet"
 
 #~ msgid "Browse _Contents"
 #~ msgstr "_Bläddra i innehållet"
+
