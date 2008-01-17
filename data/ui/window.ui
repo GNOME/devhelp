@@ -37,8 +37,8 @@
   <toolbar name="Toolbar">
     <toolitem action="Back"/>
     <toolitem action="Forward"/>
-    <toolitem action="ZoomIn"/>
+    <separator/>
     <toolitem action="ZoomOut"/>
-    <toolitem action="ZoomDefault"/>
+    <toolitem action="ZoomIn"/>
   </toolbar>
 </ui>
