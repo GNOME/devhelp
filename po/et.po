@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-19 17:41+0000\n"
-"PO-Revision-Date: 2008-01-01 21:22+0200\n"
+"POT-Creation-Date: 2008-01-13 13:46+0000\n"
+"PO-Revision-Date: 2008-01-19 12:37+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Arendaja abiteabe programm"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:149 ../src/dh-window.c:776
+#: ../src/dh-main.c:151 ../src/dh-window.c:781
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -128,7 +128,7 @@ msgstr "<b>Kirjatüübid</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Otsing</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
 msgid "Contents"
 msgstr "Sisukord"
 
@@ -172,19 +172,19 @@ msgstr "Devhelp'i tugi"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "F2 korral Devhelp'i avamine kursori all oleva sõna kohta"
 
-#: ../src/dh-main.c:98
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Funktsiooni otsimine"
 
-#: ../src/dh-main.c:107
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Kõigi töötavate devhelp'ide sulgemine"
 
-#: ../src/dh-main.c:116
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Versiooni andmete kuvamine ja programmi töö lõpetamine"
 
-#: ../src/dh-main.c:125
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Devhelp'i akna fokuseerimine koos aktiivse otsinguväljaga"
 
@@ -309,27 +309,60 @@ msgstr "Leia järgmine"
 msgid "Find Previous"
 msgstr "Leia eelmine"
 
-#: ../src/dh-window.c:221
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Liigu järgmisele lehele"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Liigu eelmisele lehele"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "_Sisukorra kaart"
 
-#: ../src/dh-window.c:224
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "_Otsingu kaart"
 
-#: ../src/dh-window.c:515
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "_Suurem kiri"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Kirja suuruse suurendamine"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Väiksem kiri"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Kirja suuruse vähendamine"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Tavasuurus"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Tavasuuruse määramine kirja suuruseks"
+
+#: ../src/dh-window.c:520
 msgid "Search"
 msgstr "Otsing"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:778
 msgid "translator_credits"
 msgstr "Ivar Smolin <okul@linux.ee>, 2007, 2008."
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:783
 msgid "A developer's help browser for GNOME 2"
 msgstr "Arendusteabe sirvija GNOME 2 jaoks"
 
-#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
+#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
 msgid "Empty Page"
 msgstr "Tühi leht"
 
