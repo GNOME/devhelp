@@ -337,7 +337,7 @@ msgstr "_Größerer Text"
 
 #: ../src/dh-window.c:231
 msgid "Increase the text size"
-msgstr "Textgröße vergrößern"
+msgstr "Text vergrößern"
 
 #: ../src/dh-window.c:233
 msgid "S_maller Text"
@@ -345,7 +345,7 @@ msgstr "_Kleinerer Text"
 
 #: ../src/dh-window.c:234
 msgid "Decrease the text size"
-msgstr "Textgröße verkleinern"
+msgstr "Text verkleinern"
 
 #: ../src/dh-window.c:236
 msgid "_Normal size"
