@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelper 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-13 03:03+0100\n"
-"PO-Revision-Date: 2008-01-13 03:05+0100\n"
+"POT-Creation-Date: 2008-01-20 15:53+0100\n"
+"PO-Revision-Date: 2008-01-20 15:54+0100\n"
 "Last-Translator: Andre Klapper <ak-47@gmx.net>\n"
 "Language-Team: German GNOME Translations <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgid "Developer's Help program"
 msgstr "Hilfeprogramm für Entwickler"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:776
+#: ../src/dh-main.c:151 ../src/dh-window.c:781
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -130,7 +130,7 @@ msgstr "<b>Schriften</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Suche läuft</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
 msgid "Contents"
 msgstr "Inhalt"
 
@@ -314,29 +314,62 @@ msgstr "Weitersuchen"
 msgid "Find Previous"
 msgstr "Rückwärts suchen"
 
-#: ../src/dh-window.c:221
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Zur vorherigen Seite gehen"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Zur nächsten Seite gehen"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Reiter _Inhalt"
 
-#: ../src/dh-window.c:224
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Reiter _Suchen"
 
-#: ../src/dh-window.c:515
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "_Größerer Text"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Textgröße vergrößern"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Kleinerer Text"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Textgröße verkleinern"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Normale Größe"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Die normale Textgröße verwenden"
+
+#: ../src/dh-window.c:520
 msgid "Search"
 msgstr "Suche"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:778
 msgid "translator_credits"
 msgstr ""
 "Christian Meyer\n"
 "Christian Neumair"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:783
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
 
-#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
+#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
 msgid "Empty Page"
 msgstr "Leere Seite"
 
