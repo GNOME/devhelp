@@ -1,3 +1,11 @@
+2008-01-24  Luca Ferretti  <elle.uca@libero.it>
+
+	reviewed by: Richard Hult
+
+	* src/dh-window.c: (window_class_init), (window_new_tab_label):
+
+	Use proper size icon for close buttons in tabs. Fixes bug #510984.
+
 2008-01-17  Wouter Bolsterlee  <wbolster@svn.gnome.org>
 
 	reviewed by: Richard Hult

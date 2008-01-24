@@ -278,6 +278,15 @@ window_class_init (DhWindowClass *klass)
         object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = window_finalize;
+
+	gtk_rc_parse_string ("style \"devhelp-tab-close-button-style\"\n"
+                             "{\n"
+                             "GtkWidget::focus-padding = 0\n"
+                             "GtkWidget::focus-line-width = 0\n"
+                             "xthickness = 0\n"
+                             "ythickness = 0\n"
+                             "}\n"
+                             "widget \"*.devhelp-tab-close-button\" style \"devhelp-tab-close-button-style\"");
 }
 
 static void
@@ -1256,7 +1265,6 @@ static GtkWidget*
 window_new_tab_label (DhWindow *window, const gchar *str)
 {
 	GtkWidget  *hbox, *label, *close_button, *image;
-	GtkRcStyle *rcstyle;
 	
 	hbox = gtk_hbox_new (FALSE, 4);
 
@@ -1272,9 +1280,7 @@ window_new_tab_label (DhWindow *window, const gchar *str)
 			       GTK_RELIEF_NONE);
 	gtk_button_set_focus_on_click (GTK_BUTTON (close_button), FALSE);
 	
-	rcstyle = gtk_widget_get_modifier_style (close_button);
-	rcstyle->xthickness = rcstyle->ythickness = 0;
-	gtk_widget_modify_style (close_button, rcstyle);
+	gtk_widget_set_name (close_button, "devhelp-tab-close-button");
 	
 	image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
 	/*gtk_widget_set_tooltip_text (close_button, _("Close tab"));*/
