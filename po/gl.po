@@ -4,13 +4,13 @@
 #
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Ignacio Casal Quinteiro <icq@cvs.gnome.org>, 2007.
-# Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007.
+# Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-19 22:27+0100\n"
-"PO-Revision-Date: 2007-12-19 22:28+0100\n"
+"POT-Creation-Date: 2008-01-24 13:03+0100\n"
+"PO-Revision-Date: 2008-01-24 13:04+0100\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Programa de axuda do desenvolvedor"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:776
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -127,7 +127,7 @@ msgstr "<b>Tipos de letra</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Buscando</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Contidos"
 
@@ -311,29 +311,62 @@ msgstr "Buscar seguinte"
 msgid "Find Previous"
 msgstr "Buscar anterior"
 
-#: ../src/dh-window.c:221
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Ir á páxina anterior"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Ir á seguinte páxina"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Separador de _contidos"
 
-#: ../src/dh-window.c:224
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Separador de _busca"
 
-#: ../src/dh-window.c:515
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "Texto máis _grande"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Aumentar o tamaño do texto"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "Texto máis _pequeno"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Disminuir o tamaño do texto"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "Tamaño _normal"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Usar o tamaño de texto normal"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Ignacio Casal Quinteiro <adorador_del_heavy@hotmail.com>\n"
 "Proxecto Trasno: <www.trasno.net>"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un navegador de axuda para desenvolvedores do Gnome 2"
 
-#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Páxina baleira"
 
