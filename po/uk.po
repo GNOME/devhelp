@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-07 15:16+0300\n"
+"POT-Creation-Date: 2008-01-25 13:41+0200\n"
 "PO-Revision-Date: 2007-09-07 03:23--500\n"
 "Last-Translator: Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <linux@linux.org.ua>\n"
@@ -21,7 +21,7 @@ msgid "Developer's Help program"
 msgstr "Програма довідки для розробників"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -125,7 +125,7 @@ msgstr "<b>Шрифти</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Пошук</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Зміст"
 
@@ -145,7 +145,7 @@ msgstr "_Фіксована ширина:"
 msgid "_Forward"
 msgstr "В_перед"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Перейти"
 
@@ -161,27 +161,27 @@ msgstr "Використовувати системний _шрифт"
 msgid "_Variable width: "
 msgstr "_Змінної ширини: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Підказки Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Викликати Devhelp при натисканні F2 для слова під курсором"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Знайти функцію"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Вийти з Devhelp"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Вивести версію та завершити виконання"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Передати фокус вікну розробки та активувати поле пошуку"
 
@@ -212,10 +212,12 @@ msgid ""
 msgstr "Необхідні елементи name і link в <function> в рядку %d, позиція %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Не вдалось створити аналізатор книги"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Не вдалось створити аналізатор розмітки"
 
@@ -225,6 +227,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Не вдалось розтиснути книгу \"%s\": %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp зібрано без підтримки zlib"
 
@@ -236,58 +239,131 @@ msgstr "_Книга:"
 msgid "_Page:"
 msgstr "_Сторінка:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Правка"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Вигляд"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Довідка"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Створити вікно"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Створити _вкладку"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Зайти наступне"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Знайти попереднє"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Перейти до попередньої сторінки"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Перейти до наступної сторінки"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "_Зміст"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "З_найти"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "_Більший шрифт"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Збільшити розмір тексту"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Менший шрифт"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Зменшити розмір тексту"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Звичайний розмір"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Текст звичайного розміру"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Пошук"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Yuriy Syrota <rasta@cvs.gnome.org>\n"
 "Maxim Dziumanenko <dziumanenko@gmail.com>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Програма перегляду довідки для розробників"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Порожня сторінка"
 
@@ -310,5 +386,3 @@ msgstr "Враховувати регістр"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Перемикає чутливість до регістру літер"
-
-
