@@ -1,231 +1,92 @@
-# Беларускі пераклад devhelp.
-# This file is distributed under the same license as the devhelp package.
+# translation of devhelp.HEAD.be.po to belarusian
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
 # Vital Khilko <dojlid@mova.org>, 2003.
-# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp.HEAD\n"
+"Project-Id-Version: devhelp.HEAD.be\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-26 14:04+0200\n"
-"PO-Revision-Date: 2008-01-26 14:25+0200\n"
+"POT-Creation-Date: 2007-02-03 14:24+0200\n"
+"PO-Revision-Date: 2007-02-03 14:32+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
-"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language-Team: belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/devhelp.desktop.in.in.h:1
+#: ../devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
-msgstr "Праграма дапамогі праграмісту"
+msgstr "Праграма дапамогі распрацоўнікам"
 
-#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
+#: ../devhelp.desktop.in.in.h:2
+#: ../src/dh-main.c:125
+#: ../src/dh-window.c:619
+#: ../ui/devhelp.glade.h:4
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr "Праглядальнік дакументацыі"
+msgstr "Гартач дакумэнтацыі"
 
-#: ../data/devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Шрыфт для тэксту нязменнай шырыні"
-
-#: ../data/devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Шрыфт для тэксту"
-
-#: ../data/devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Шрыфт для тэксту нязменнай шырыні."
-
-#: ../data/devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Шрыфт для тэксту зменнай шырыні."
-
-#: ../data/devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "Вышыня галоўнага вакна"
-
-#: ../data/devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "Разгорнутасць галоўнага вакна"
-
-#: ../data/devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Выбраная картка, „Змест” ці „Пошук”"
-
-#: ../data/devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Паказвай спецыяльныя опцыі пошуку."
-
-#: ../data/devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "Пазіцыя галоўнага вакна па восі X."
-
-#: ../data/devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "Пазіцыя галоўнага вакна па восі Y."
-
-#: ../data/devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "Вышыня галоўнага вакна."
-
-#: ../data/devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "Шырыня панэлі зместу і пошуку."
-
-#: ../data/devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "Шырыня галоўнага вакна."
-
-#: ../data/devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "Выкарыстоўвай сістэмныя шрыфты."
-
-#: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "Выкарыстоўвай змоўчаныя сістэмныя шрыфты."
-
-#: ../data/devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Ці паказваць спецыяльныя опцыі пошуку."
-
-#: ../data/devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "Ці разгортваць галоўнае вакно пры ўключэнні."
-
-#: ../data/devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Якая картка выбрана, \"Змест\" ці \"Пошук\"."
-
-#: ../data/devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "Шырыня панэлі зместу і пошуку"
-
-#: ../data/devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "Шырыня галоўнага вакна"
-
-#: ../data/devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "Пазіцыя галоўнага вакна па восі X"
-
-#: ../data/devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "Пазіцыя галоўнага вакна па восі Y"
-
-#: ../data/ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Шрыфты</b>"
-
-#: ../data/ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Пошук</b>"
-
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
-msgid "Contents"
-msgstr "Змест"
-
-#: ../data/ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Налады"
-
-#: ../data/ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "На_зад"
-
-#: ../data/ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "_Нязменная шырыня:"
-
-#: ../data/ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "На_перад"
-
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
-msgid "_Go"
-msgstr "_Ідзі"
-
-#: ../data/ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Пакажы спецыяльныя опцыі пошуку."
-
-#: ../data/ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "_Выкарыстоўвай сістэмныя шрыфты."
-
-#: ../data/ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "_Зменная шырыня: "
-
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Падтрымка DevHelp"
-
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
-msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "Па націску F2 Devhelp пакажа даведку аб слове пад курсорам."
-
-#: ../src/dh-main.c:100
+#: ../src/dh-main.c:85
 msgid "Search for a function"
-msgstr "Шукай функцыю."
+msgstr "Пошук функцыі"
 
-#: ../src/dh-main.c:109
+#: ../src/dh-main.c:94
 msgid "Quit any running Devhelp"
-msgstr "Выйдзі з праграмы Devhelp."
+msgstr "Закрыць вокны Devhelp"
 
-#: ../src/dh-main.c:118
+#: ../src/dh-main.c:103
 msgid "Display the version and exit"
-msgstr "Пакажы нумар версіі праграмы і выйдзі."
+msgstr "Паказаць нумар вэрсіі і скончыць работу"
 
-#: ../src/dh-main.c:127
-msgid "Focus the devhelp window with the search field active"
-msgstr ""
-
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#: ../src/dh-parser.c:110
+#: ../src/dh-parser.c:194
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Чакалася „%s”, атрымана „%s” у радку %d, у слупку %d."
+msgstr "Чакалася '%s', атрымана '%s' у радку %d, у слупку %d"
 
 #: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Няправільны абсяг назваў „%s” у радку %d, у слупку %d."
+msgstr "Памылковая прастора назваў '%s' у радку %d, у слупку %d"
 
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "элементы загалоўка, назвы і спасылкі вымагаюцца ў радку %d, у слупку %d."
+msgstr "элемэнты загалоўка, назвы і спасылкі патрэбуюцца ў радку %d, у слупку %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "элемэнты назвы і спасылкі вымагаюцца ў <sub> у радку %d, у слупку %d."
+msgstr "элемэнты назвы і спасылкі патрабуюцца ў <sub>·у радку·%d,·у слупку·%d"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
-msgstr "элементы назвы і спасылкі вымагаюцца ў <function> у радку %d, у слупку %d."
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "элемэнты назвы і спасылкі патрабуюцца ў <function>·у радку·%d,·у слупку·%d"
 
-#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#: ../src/dh-parser.c:420
+#: ../src/dh-parser.c:515
 msgid "Could not create book parser"
-msgstr "Немагчыма стварыць падпраграму для разбору кнігі."
+msgstr "Немагчыма разабраць кнігу"
 
-#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#: ../src/dh-parser.c:436
+#: ../src/dh-parser.c:525
 msgid "Could not create markup parser"
-msgstr "Немагчыма стварыць падпраграму для разбору аздаблення."
+msgstr "Немагчыма разабраць разьметку"
 
 #: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "Немагчыма распакаваць кнігу „%s”: %s."
+msgstr "Немагчыма распакаваць кнігу '%s':·%s"
 
 #: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
-msgstr "Devhelp збудаваны без падтрымкі zlib."
+msgstr "Devhelp сабраны без падтрымкі zlib"
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
@@ -235,148 +96,240 @@ msgstr "_Кніга:"
 msgid "_Page:"
 msgstr "_Старонка:"
 
-#: ../src/dh-window.c:70
-msgid "50%"
-msgstr "50%"
-
-#: ../src/dh-window.c:71
-msgid "75%"
-msgstr "75%"
-
-#: ../src/dh-window.c:72
-msgid "100%"
-msgstr "100%"
-
-#: ../src/dh-window.c:73
-msgid "125%"
-msgstr "125%"
-
-#: ../src/dh-window.c:74
-msgid "150%"
-msgstr "150%"
-
-#: ../src/dh-window.c:75
-msgid "175%"
-msgstr "175%"
-
-#: ../src/dh-window.c:76
-msgid "200%"
-msgstr "200%"
-
-#: ../src/dh-window.c:77
-msgid "300%"
-msgstr "300%"
-
-#: ../src/dh-window.c:78
-msgid "400%"
-msgstr "400%"
-
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:141
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:142
 msgid "_Edit"
-msgstr "_Праца"
+msgstr "_Зьмяніць"
 
-#: ../src/dh-window.c:189
-msgid "_View"
-msgstr "_Выгляд"
+#: ../src/dh-window.c:143
+#: ../ui/devhelp.glade.h:9
+msgid "_Go"
+msgstr "_Перайсьці"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:144
 msgid "_Help"
-msgstr "_Дапамога"
+msgstr "_Даведка"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:147
 msgid "_New Window"
 msgstr "_Новае вакно"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:149
 msgid "New _Tab"
 msgstr "Новая _картка"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
-msgid "Find Next"
-msgstr "Шукай далей"
+#: ../src/dh-window.c:168
+msgid "Browse Contents"
+msgstr "Гартаць зьмест"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
-msgid "Find Previous"
-msgstr "Шукай раней"
-
-#: ../src/dh-window.c:217
-msgid "Go to the previous page"
-msgstr "Перайдзі на папярэднюю старонку."
-
-#: ../src/dh-window.c:220
-msgid "Go to the next page"
-msgstr "Перайдзі на наступную старонку."
-
-#: ../src/dh-window.c:223
-msgid "_Contents Tab"
-msgstr "Картка _зместу"
-
-#: ../src/dh-window.c:226
-msgid "_Search Tab"
-msgstr "Картка _пошуку"
-
-#. View menu
-#: ../src/dh-window.c:230
-msgid "_Larger Text"
-msgstr "_Большы тэкст"
-
-#: ../src/dh-window.c:231
-msgid "Increase the text size"
-msgstr "Павяліч памер тэксту."
-
-#: ../src/dh-window.c:233
-msgid "S_maller Text"
-msgstr "_Меншы тэкст"
-
-#: ../src/dh-window.c:234
-msgid "Decrease the text size"
-msgstr "Паменш памер тэксту."
-
-#: ../src/dh-window.c:236
-msgid "_Normal size"
-msgstr "_Звычайны памер"
-
-#: ../src/dh-window.c:237
-msgid "Use the normal text size"
-msgstr "Вярні звычайны памер тэксту."
-
-#: ../src/dh-window.c:529
+#: ../src/dh-window.c:171
+#: ../src/dh-window.c:455
 msgid "Search"
-msgstr "Шукай"
+msgstr "Пошук"
 
-#: ../src/dh-window.c:787
+#: ../src/dh-window.c:445
+#: ../ui/devhelp.glade.h:3
+msgid "Contents"
+msgstr "Зьмест"
+
+#: ../src/dh-window.c:616
 msgid "translator_credits"
-msgstr "Ігар Грачышка <ihar.hrachyshka@gmail.com>"
+msgstr "Ігар Грачышка"
 
-#: ../src/dh-window.c:792
+#: ../src/dh-window.c:621
 msgid "A developer's help browser for GNOME 2"
-msgstr "Праграма дапамогі праграмісту для GNOME 2"
+msgstr "Гартач дакумэнтацыі распрацоўніка для GNOME 2"
 
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:950
+#: ../src/dh-window.c:1080
 msgid "Empty Page"
 msgstr "Пустая старонка"
 
-#: ../src/eggfindbar.c:320
-msgid "Find:"
-msgstr "Шукай:"
+#: ../devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Шрыфт фіксаванага тэксту"
 
-#: ../src/eggfindbar.c:332
-msgid "Find previous occurrence of the search string"
-msgstr "Знайдзі папярэдні адпаведнік шуканаму выразу."
+#: ../devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Шрыфт тэксту"
 
-#: ../src/eggfindbar.c:340
-msgid "Find next occurrence of the search string"
-msgstr "Знайдзі наступны адпаведнік шуканаму выразу."
+#: ../devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Шрыфт тэксту зь фіксаванай шырынёй."
 
-#: ../src/eggfindbar.c:348
-msgid "Case Sensitive"
-msgstr "Адрознівай загалоўныя і радковыя літары"
+#: ../devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Шрыфт тэксту зь пераменнай шырынёй."
 
-#: ../src/eggfindbar.c:351
-msgid "Toggle case sensitive search"
-msgstr "Змяні опцыю адрознення загалоўных і радковых літар."
+#: ../devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Вышыня галоўнага вакна"
+
+#: ../devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Найбольшы памер вакна"
+
+#: ../devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Выбраная картка, \"зьмест\" альбо \"пошук\""
+
+#: ../devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Паказаць адмысловыя наладкі пошуку"
+
+#: ../devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "Пазыцыя галоўнага вакна па X."
+
+#: ../devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Пазыцыя галоўнага вакна па Y."
+
+#: ../devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Вышыня галоўнага вакна."
+
+#: ../devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Шырыня панэлі зьместу і пошуку."
+
+#: ../devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Шырыня галоўнага вакна."
+
+#: ../devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Выкарыстоўваць сыстэмныя шрыфты"
+
+#: ../devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Выкарыстоўваць прадвызначаныя сыстэмныя шрыфты."
+
+#: ../devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Ці паказваць адмысловыя наладкі пошуку."
+
+#: ../devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Ці мусіць стартаваць вакно ў найбольшаным стане."
+
+#: ../devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Якая картка выбраная, \"зьмест\" альбо \"пошук\"."
+
+#: ../devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Шырыня панэлі зьместу і пошуку"
+
+#: ../devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Шырыня галоўнага вакна"
+
+#: ../devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Пазыцыя галоўнага вакна па X"
+
+#: ../devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Пазыцыя галоўнага вакна па Y"
+
+#: ../ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Шрыфты</b>"
+
+#: ../ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Пошук</b>"
+
+#: ../ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Перавагі"
+
+#: ../ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "_Назад"
+
+#: ../ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Фіксаваная шырыня:"
+
+#: ../ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "На_перад"
+
+#: ../ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Паказаць адмысловыя наладкі пошуку"
+
+#: ../ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "Выкарыстоўваць сыстэмныя шрыфты"
+
+#: ../ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "_Пераменная шырыня: "
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Падтрымка DevHelp"
+
+#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+msgid "Makes F7 bring up Devhelp for the word at the cursor"
+msgstr "Па націску F7 Devhelp пакажа даведку па слове, на якім засяроджаны курсор"
+
+#~ msgid "Specify the size and location of the window"
+#~ msgstr "Пазначце памер і разьмяшчэньне акна"
+#~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
+#~ msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+#~ msgid "_Search:"
+#~ msgstr "Пошук:"
+#~ msgid "Section"
+#~ msgstr "Параграфы"
+#~ msgid "Cannot set UI: %s"
+#~ msgstr "Не магчыма усталяваць UI:·%s"
+#~ msgid "Devhelp project page"
+#~ msgstr "Старонка праекта Devhelp"
+#~ msgid "Bug report Devhelp"
+#~ msgstr "Справаздача аб памылцы у Devhelp"
+#~ msgid "Location of the paned"
+#~ msgstr "Разьмяшчэньне падзяляльніка"
+#~ msgid "The location of the paned separator."
+#~ msgstr "Разьмяшчэньне падзяляльніка."
+#~ msgid "    "
+#~ msgstr "    "
+#~ msgid ""
+#~ "Select a subject in the contents to the left or switch to the search pane "
+#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
+#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
+#~ "the books in the tree."
+#~ msgstr ""
+#~ "Выбярыце тэму са зьместа з левага боку ці пераключыцеся на панэль пошуку. "
+#~ "<p>Выкарыстоўвайце <b>Shift Up/Down</b> для навігацыі па дрэве, і "
+#~ "<b>Shift Left/Right</b> для згортваньня й разгортваньня кніг у дрэве."
+#~ msgid "_Search for:"
+#~ msgstr "Ад_шукаць па:"
+#~ msgid "_About"
+#~ msgstr "_Пра праграму"
+#~ msgid ""
+#~ "<b>Could not read all books</b>\n"
+#~ "\n"
+#~ "The following errors occured whilst reading the books:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>Немагчыма прачытаць усе кнігі</b>\n"
+#~ "\n"
+#~ "Адбылася памылка пад час чытаньня кніг:\n"
+#~ "%s"
+#~ msgid "'%s' is not a valid book"
+#~ msgstr "'%s' - не зьяўляецца кнігай DevHelp"
+#~ msgid "Book '%s' is malformed."
+#~ msgstr "Кніга '%s' пашкоджана."
+#~ msgid "Couldn't find file '%s'"
+#~ msgstr "Файл '%s' не адшуканы"
+#~ msgid "Open %s"
+#~ msgstr "Адчыніць %s"
+
