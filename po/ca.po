@@ -1,18 +1,18 @@
 # Devhelp translation to Catalan.
-# Copyright © 2003, 2005 Free Software Foundation, Inc.
+# Copyright © 2003, 2005, 2008 Free Software Foundation, Inc.
 # Raül Cambeiro <rulet@menta.net>, 2003.
 # Jordi Mallach <jordi@sindominio.ne>, 2003.
 # Aleix Badia i Bosch <a.badia@callusdigital.org>, 2005.
 # Xavier Conde Rueda <xavi.conde@gmail.com>, 2006
-# Gil Forcada <gilforcada@guifi.net>, 2007.
+# Gil Forcada <gilforcada@guifi.net>, 2007, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-14 15:18+0200\n"
-"PO-Revision-Date: 2007-09-04 23:00+0200\n"
-"Last-Translator: Xavier Conde Rueda <xavi.conde@gmail.com>\n"
+"POT-Creation-Date: 2008-01-27 11:18+0100\n"
+"PO-Revision-Date: 2008-01-27 11:18+0100\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Programa d'ajuda per als desenvolupadors"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -41,7 +41,7 @@ msgstr "Tipus de lletra per al text"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "Tipus de lletra per al text amb l'amplada fixa."
+msgstr "Tipus de lletra per al text d'amplada fixa."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
@@ -102,7 +102,7 @@ msgstr "Si la finestra principal s'ha d'iniciar maximitzada."
 #: ../data/devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr ""
-"Quina pestanya està seleccionada, «content» (continguts) o «search» (cerca)"
+"Quina pestanya està seleccionada, «content» (continguts) o «search» (cerca)."
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
@@ -128,7 +128,7 @@ msgstr "<b>Tipus de lletra</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Cerca</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Continguts"
 
@@ -148,7 +148,7 @@ msgstr "Amplada _fixa:"
 msgid "_Forward"
 msgstr "E_ndavant"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Vés a"
 
@@ -164,29 +164,30 @@ msgstr "_Utilitza els tipus de lletra del sistema"
 msgid "_Variable width: "
 msgstr "Amplada _variable: "
 
-# FIXME
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+# gil: al ser un connector per el gedit i que fa el que diu la següent
+#     cadena, trobo que així tot i no ser correcte s'entendrà més
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
-msgstr "Suport del Devhelp"
+msgstr "Consulta el Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr ""
 "En prémer F2 apareixerà l'ajuda del Devhelp per a la paraula sota el cursor"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Cerca una funció"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Surt de tots els Devhelp en execució"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Mostra la versió i surt"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Dóna el focus a la finestra del Devhelp amb el camp de cerca actiu"
 
@@ -205,14 +206,14 @@ msgstr "L'espai de noms «%s» no és vàlid a la línia %d, columna %d"
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
 "Els elements «title» (títol), «name» (nom) i «link» (enllaç) són necessaris "
-"(línia %d, columna %d)"
+"a la línia %d, columna %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
-"Els elements «title» (títol) i «link» (enllaç) són necessaris dins de <sub> "
-"(línia %d, columna %d)"
+"Els elements «name» (nom) i «link» (enllaç) són necessaris dins de <sub> a "
+"la línia %d, columna %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
@@ -220,13 +221,15 @@ msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "Els elements «name» (nom) i «link» (enllaç) són necessaris dins de "
-"<function> (línia %d, columna %d)"
+"<function> a la línia %d, columna %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "No s'ha pogut crear l'analitzador del llibre"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "No s'ha pogut crear l'analitzador de marques"
 
@@ -236,6 +239,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "No s'ha pogut descomprimir el llibre «%s»: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "El Devhelp s'ha muntat sense habilitar l'ús de la zlib"
 
@@ -247,59 +251,132 @@ msgstr "Lli_bre:"
 msgid "_Page:"
 msgstr "_Pàgina:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Fitxer"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Visualitza"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "A_juda"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Finestra nova"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "_Pestanya nova"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Cerca la següent"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Cerca l'anterior"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Vés a la pàgina anterior"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Vés a la pàgina següent"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Pestanya de _continguts"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Pestanya de _cerca"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "Text més _gran"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Augmenta la mida del text"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "Text més _petit"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Redueix la mida del text"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "Mida _normal"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Utilitza la mida de text normal"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Cerca"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Aleix Badia i Bosch <a.badia@callusdigital.org>\n"
 "Xavier Conde Rueda <xavi.conde@gmail.com>\n"
 "Gil Forcada <gilforcada@guifi.net>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
-msgstr "Un navegador d'ajuda als desenvolupadors per al GNOME 2"
+msgstr "Un navegador d'ajuda del GNOME per a desenvolupadors"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Pàgina buida"
 
