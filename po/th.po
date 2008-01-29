@@ -1,14 +1,14 @@
 # Thai translation of devhelp
-# Copyright (C) 2007 Free Software Foundation, Inc.
+# Copyright (C) 2007-2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2007.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2007-2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-07 14:54+0700\n"
-"PO-Revision-Date: 2007-09-07 14:55+0700\n"
+"POT-Creation-Date: 2008-01-29 15:22+0700\n"
+"PO-Revision-Date: 2008-01-29 15:29+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgid "Developer's Help program"
 msgstr "โปรแกรมช่วยเหลือนักพัฒนา"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -124,7 +124,7 @@ msgstr "<b>แบบอักษร</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>การค้นหา</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "เนื้อหา"
 
@@ -144,7 +144,7 @@ msgstr "ความกว้าง_คงที่:"
 msgid "_Forward"
 msgstr "_ถัดไป"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "ไ_ป"
 
@@ -160,27 +160,27 @@ msgstr "ใ_ช้แบบอักษรของระบบ"
 msgid "_Variable width: "
 msgstr "ความกว้างไ_ม่คงที่: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "การสนับสนุน Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "ทำให้ใช้ F2 เปิด Devhelp สำหรับคำที่ตำแหน่งเคอร์เซอร์ได้"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "ค้นหาฟังก์ชัน"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "ปิด Devhelp ทุกตัวที่กำลังทำงานอยู่"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "แสดงข้อมูลรุ่นโปรแกรมแล้วจบการทำงาน"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "โฟกัสไปที่หน้าต่าง devhelp แล้วเรียกช่องค้นหา"
 
@@ -238,56 +238,129 @@ msgstr "_หนังสือ:"
 msgid "_Page:"
 msgstr "ห_น้า:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "แ_ฟ้ม"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "แ_ก้ไข"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "มุ_มมอง"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_วิธีใช้"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "หน้า_ต่างใหม่"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "แ_ท็บใหม่"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "หาต่อ"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "หาก่อนหน้า"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "ไปหน้าก่อน"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "ไปหน้าถัดไป"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "แท็บเนื้อ_หา"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "แท็บ_ค้นหา"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "ตัวอักษรใ_หญ่ขึ้น"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "เพิ่มขนาดตัวอักษร"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "ตัวอักษรเ_ล็กลง"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "ลดขนาดตัวอักษร"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "ขนาด_ปกติ"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "ใช้ตัวอักษรขนาดปกติ"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "ค้นหา"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "เทพพิทักษ์ การุญบุญญานันท์ <thep@linux.thai.net>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "เบราว์เซอร์คู่มือนักพัฒนาสำหรับ GNOME 2"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "หน้าว่าง"
 
