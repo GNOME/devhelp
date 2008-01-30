@@ -1,3 +1,9 @@
+2008-01-30  Richard Hult  <richard@imendio.com>
+
+	* Release 0.18.
+
+	* configure.in: Bump version.
+
 2008-01-24  Luca Ferretti  <elle.uca@libero.it>
 
 	reviewed by: Richard Hult

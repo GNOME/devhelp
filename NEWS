@@ -1,3 +1,16 @@
+NEW in 0.18:
+============
+
+- Use proper size icon for close buttons in tabs (bug #510984, Luca Ferretti)
+- Polish the new Zoom UI (bugs #508510 and #508513, Wouter Bolsterlee)
+- Updated translations: be, ca, de, es, et, gl, he, ja, nb, sv, th, uk 
+
+Many thanks to the translators: Ihar Hrachyshka, Gil Forcada, Andre
+Klapper, Jorge Gonzalez, Priit Laes, Ignacio Casal Quinteiro, Yair
+Hershkovitz, Takeshi AIHANA, Kjartan Maraas, Daniel Nylander,
+Theppitak Karoonboonyanan, Maxim Dziumanenko.
+
+
 NEW in 0.17:
 ============
 
