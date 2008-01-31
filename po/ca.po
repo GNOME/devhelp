@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-27 11:18+0100\n"
-"PO-Revision-Date: 2008-01-27 11:18+0100\n"
+"POT-Creation-Date: 2008-01-31 18:05+0100\n"
+"PO-Revision-Date: 2008-01-31 18:05+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -374,7 +374,7 @@ msgstr ""
 
 #: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
-msgstr "Un navegador d'ajuda del GNOME per a desenvolupadors"
+msgstr "Un navegador d'ajuda del GNOME 2 per a desenvolupadors"
 
 #: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
