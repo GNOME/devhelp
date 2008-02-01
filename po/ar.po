@@ -4,20 +4,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Automatically generated, 2006.
-# Khaled Hosny <khaledhosny@eglug.org>, 2007.
+# Khaled Hosny <khaledhosny@eglug.org>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: Project\n"
+"Project-Id-Version: devhelp.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-31 08:06+0000\n"
-"PO-Revision-Date: 2007-12-23 13:28+0100\n"
-"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
+"PO-Revision-Date: 2008-02-02 00:22+0200\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
-"n<=10 ? 2 : 3\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Poedit-Language: Arabic\n"
 "X-Generator: KBabel 1.11.4\n"
 
@@ -60,19 +59,19 @@ msgstr "حالة تكبير النافذة الرئيسيّة"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "اختر لسان، \"المحتويات\" أو \"ابحث\""
+msgstr "اختر لسان، \"content\" أو \"search\""
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Show advanced search options"
-msgstr "اظهر خيارات البحث المتقدمة"
+msgstr "أظهر خيارات البحث المتقدمة"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the main window."
-msgstr "الموضع السيني للنافذة الرئيسية"
+msgstr "الموضع السيني للنافذة الرئيسية."
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
-msgstr "الموضع الصادي للنافذة الرئيسية"
+msgstr "الموضع الصادي للنافذة الرئيسية."
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "The height of the main window."
@@ -92,7 +91,7 @@ msgstr "استخدم خطوط النّظام"
 
 #: ../data/devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
-msgstr "استخدم خطوط النظام الإفتراضيّة."
+msgstr "استخدم خطوط النظام المبدئية."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."
@@ -104,7 +103,7 @@ msgstr "ما إذا ستبدأ النافذة الرئيسية مكبّرة أم
 
 #: ../data/devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "ما المنتقى من الألسنة، \"المحتويات\" أو \"ابحث\"."
+msgstr "ما المختار من الألسنة، \"content\" أو \"search\". "
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
@@ -124,11 +123,11 @@ msgstr "الموضع الصادي للنافذة الرئيسية"
 
 #: ../data/ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
-msgstr "<b>خطوط</b>"
+msgstr "<b>الخطوط</b>"
 
 #: ../data/ui/devhelp.glade.h:2
 msgid "<b>Searching</b>"
-msgstr "<b>جارِ البحث</b>"
+msgstr "<b>البحث</b>"
 
 #: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
@@ -136,19 +135,19 @@ msgstr "المحتويات"
 
 #: ../data/ui/devhelp.glade.h:5
 msgid "Preferences"
-msgstr "تفضيلات"
+msgstr "التفضيلات"
 
 #: ../data/ui/devhelp.glade.h:6
 msgid "_Back"
-msgstr "_خلف"
+msgstr "لل_خلف"
 
 #: ../data/ui/devhelp.glade.h:7
 msgid "_Fixed width:"
-msgstr "عرض _ثابت:"
+msgstr "_ثابت العرض:"
 
 #: ../data/ui/devhelp.glade.h:8
 msgid "_Forward"
-msgstr "_مرِّر"
+msgstr "للأ_مام"
 
 #: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
@@ -164,7 +163,7 @@ msgstr "ا_ستخدم خطوط النّظام"
 
 #: ../data/ui/devhelp.glade.h:12
 msgid "_Variable width: "
-msgstr "عرض _متغيِّر:"
+msgstr "_متغيِّر العرض:"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -180,7 +179,7 @@ msgstr "ابحث عن دالّة"
 
 #: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
-msgstr "اغلق أي Devhelp يعمل"
+msgstr "أغلق أي Devhelp يعمل"
 
 #: ../src/dh-main.c:118
 msgid "Display the version and exit"
@@ -188,7 +187,7 @@ msgstr "اعرض الإصدار و اخرج"
 
 #: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
-msgstr "تركيز على خانة البحث النشيطة في نافذة devhelp"
+msgstr "ركز على خانة البحث النشيطة في نافذة devhelp"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -203,18 +202,17 @@ msgstr "حيز اسم غير سليم '%s' في السطر %d، و العمود 
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "عناصر العنوان، و الإسم، والوصلة مطلوبة عند السطر %d، والعمود %d"
+msgstr "عناصر العنوان، و الاسم، والوصلة مطلوبة عند السطر %d، والعمود %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "عنصري الإسم والوصلة مطلوبين بداخل <sub> في السطر %d، والعمود %d"
+msgstr "عنصري الاسم والوصلة مطلوبين بداخل <sub> في السطر %d، والعمود %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
-msgstr "عنصري الإسم والوصلة مطلوبين بداخل <function> في السطر %d، والعمود %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "عنصري الاسم والوصلة مطلوبين بداخل <function> في السطر %d، والعمود %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 #, c-format
@@ -286,7 +284,7 @@ msgstr "_ملف"
 
 #: ../src/dh-window.c:188
 msgid "_Edit"
-msgstr "_حرِّر"
+msgstr "ت_حرير"
 
 #: ../src/dh-window.c:189
 msgid "_View"
@@ -307,52 +305,52 @@ msgstr "_لسان جديد"
 
 #: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
-msgstr "ايجاد التالي"
+msgstr "ابحث عن التالي"
 
 #: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
-msgstr "ايجاد السابق"
+msgstr "ابحث عن السابق"
 
 #: ../src/dh-window.c:217
 msgid "Go to the previous page"
-msgstr ""
+msgstr "اذهب للصفحة السابقة"
 
 #: ../src/dh-window.c:220
 msgid "Go to the next page"
-msgstr ""
+msgstr "اذهب للصفحة التالية"
 
 #: ../src/dh-window.c:223
 msgid "_Contents Tab"
-msgstr "لسان المحتويات"
+msgstr "_لسان المحتويات"
 
 #: ../src/dh-window.c:226
 msgid "_Search Tab"
-msgstr "لسان البحث"
+msgstr "لسان ال_بحث"
 
 #. View menu
 #: ../src/dh-window.c:230
 msgid "_Larger Text"
-msgstr ""
+msgstr "_نص أكبر"
 
 #: ../src/dh-window.c:231
 msgid "Increase the text size"
-msgstr ""
+msgstr "زوّد حجم النص"
 
 #: ../src/dh-window.c:233
 msgid "S_maller Text"
-msgstr ""
+msgstr "نص أ_صغر"
 
 #: ../src/dh-window.c:234
 msgid "Decrease the text size"
-msgstr ""
+msgstr "قلل حجم النص"
 
 #: ../src/dh-window.c:236
 msgid "_Normal size"
-msgstr ""
+msgstr "حجم _عادي"
 
 #: ../src/dh-window.c:237
 msgid "Use the normal text size"
-msgstr ""
+msgstr "استخدم حجم النص العادي"
 
 #: ../src/dh-window.c:529
 msgid "Search"
@@ -366,7 +364,7 @@ msgstr ""
 
 #: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
-msgstr "متصفح مساعدة developer في جنوم 2"
+msgstr "متصفح مساعدة مطوري جنوم 2"
 
 #: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
@@ -374,15 +372,15 @@ msgstr "صفحة فارغة"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
-msgstr "جٍد:"
+msgstr "ابحث:"
 
 #: ../src/eggfindbar.c:332
 msgid "Find previous occurrence of the search string"
-msgstr "إيجاد التواجد السابق لسلسة البحث"
+msgstr "ابحث عن التواجد السابق لسلسة البحث"
 
 #: ../src/eggfindbar.c:340
 msgid "Find next occurrence of the search string"
-msgstr "إيجاد التواجد التالي لسلسلة البحث"
+msgstr "ابحث عن التواجد التالي لسلسلة البحث"
 
 #: ../src/eggfindbar.c:348
 msgid "Case Sensitive"
@@ -392,5 +390,3 @@ msgstr "حسّاس لحالة الأحرف"
 msgid "Toggle case sensitive search"
 msgstr "بدّل البحث الحسّاس لحالة الأحرف"
 
-#~ msgid "Browse Contents"
-#~ msgstr "تصفّح المحتويات"
