@@ -1,14 +1,14 @@
 # devhelp's Portuguese Translation
-# Copyright © 2001, 2002, 2003, 2004, 2007 devhelp
+# Copyright © 2001, 2002, 2003, 2004, 2007, 2008 devhelp
 # Diatributed under the same licence as the devhelp package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2007.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2007, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.20\n"
+"Project-Id-Version: 2.22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-13 09:09+0100\n"
-"PO-Revision-Date: 2007-09-13 09:10+0000\n"
+"POT-Creation-Date: 2008-02-01 23:06+0000\n"
+"PO-Revision-Date: 2008-02-01 23:00+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgid "Developer's Help program"
 msgstr "Aplicação de Ajuda aos Programadores"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -124,7 +124,7 @@ msgstr "<b>Fontes</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>A Procurar</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Conteúdo"
 
@@ -144,7 +144,7 @@ msgstr "Largura _fixa:"
 msgid "_Forward"
 msgstr "_Avançar"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Ir"
 
@@ -160,27 +160,27 @@ msgstr "_Utilizar as fontes do sistema"
 msgid "_Variable width: "
 msgstr "Largura _variável: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Suporte Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Faz com que o F2 abra o Devhelp para a palavra sob o cursor"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Procurar uma função"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Sair de qualquer Devhelp em execução"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Apresentar a versão e sair"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Transmitir o foco à janela do devhelp com o campo de procura activo"
 
@@ -241,56 +241,129 @@ msgstr "_Livro:"
 msgid "_Page:"
 msgstr "_Página:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Ver"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Ajuda"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Nova Janela"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Novo _Separador"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Procurar Seguinte"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Procurar Anterior"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Ir para a página anterior"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Ir para a página seguinte"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Separador de _Conteúdo"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Separador de _Procura"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "Texto _Maior"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Aumentar o tamanho da fonte do texto"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "Texto M_enor"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Reduzir o tamanho da fonte do texto"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "Tamanho _normal"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Utilizar o tamanho normal da fonte do texto"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Procurar"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Um navegador de ajuda para programadores do GNOME 2"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Página Vazia"
 
