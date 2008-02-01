@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-19 23:15+0200\n"
-"PO-Revision-Date: 2007-12-19 23:16+0200\n"
+"POT-Creation-Date: 2008-02-01 11:01+0200\n"
+"PO-Revision-Date: 2008-02-01 11:02+0200\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian Latin <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgid "Developer's Help program"
 msgstr "Prahrama ŭ dapamohu raspracoŭniku"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:776
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -124,7 +124,7 @@ msgstr "<b>Šryfty</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Pošuk</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Źmieściva"
 
@@ -215,12 +215,10 @@ msgstr ""
 "%d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
-#, c-format
 msgid "Could not create book parser"
 msgstr "Niemahčyma stvaryć analizatara knihaŭ"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
-#, c-format
 msgid "Could not create markup parser"
 msgstr "Niemahčyma stvaryć analizatara značnikaŭ"
 
@@ -230,7 +228,6 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Niemahčyma zdekampresavać knihu '%s': %s"
 
 #: ../src/dh-parser.c:603
-#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp sabrany biez padtrymki zlib"
 
@@ -311,27 +308,60 @@ msgstr "Šukaj dalej"
 msgid "Find Previous"
 msgstr "Šukaj raniej"
 
-#: ../src/dh-window.c:221
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Pierajdzi da papiaredniaj staronki"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Pierajdzi da nastupnaj staronki"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Kartka _źmieściva"
 
-#: ../src/dh-window.c:224
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Kartka _pošuku"
 
-#: ../src/dh-window.c:515
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "_Bolšy tekst"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Pavialič pamier tekstu"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Mienšy tekst"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Pamienš pamier tekstu"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Zvyčajny pamier"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Užyj zvyčajny pamier tekstu"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Šukaj"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "Ihar Hračyška <iharh@gnome.org>"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Hartač dakumentacyi raspracoŭnika dla GNOME 2"
 
-#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Pustaja staronka"
 
