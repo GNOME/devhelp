@@ -7,14 +7,14 @@
 # Raphael Higino <phhigino@gmail.com>, 2004.
 # Luiz Fernando S. Armesto <luiz.armesto@gmail.com>, 2007.
 # Washington Lins <washington-lins@uol.com.br>, 2007.
-# Og Maciel <ogmaciel@gnome.org>, 2007.
+# Og Maciel <ogmaciel@gnome.org>, 2007-2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 21:59+0100\n"
-"PO-Revision-Date: 2007-09-06 18:54-0500\n"
+"POT-Creation-Date: 2008-02-03 23:39-0200\n"
+"PO-Revision-Date: 2008-02-03 23:44-0200\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -25,10 +25,8 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programa de Ajuda para Desenvolvedores"
 
-#: ../data/devhelp.desktop.in.in.h:2
-#: ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141
-#: ../src/dh-window.c:689
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -134,8 +132,7 @@ msgstr "<b>Fontes</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Pesquisando</b>"
 
-#: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Conteúdo"
 
@@ -155,8 +152,7 @@ msgstr "Largura _fixa:"
 msgid "_Forward"
 msgstr "Para _Frente"
 
-#: ../data/ui/devhelp.glade.h:9
-#: ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Ir"
 
@@ -172,33 +168,31 @@ msgstr "_Usar fontes do sistema"
 msgid "_Variable width: "
 msgstr "Largura _variável: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Suporte do Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Faz a tecla F2 exibir o Devhelp para a palavra sob o cursor"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Pesquisar por uma função"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Encerrar qualquer Devhelp executando"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Exibe a versão e sai"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Focar janela do devhelp com o campo de pesquisa ativo"
 
-#: ../src/dh-parser.c:110
-#: ../src/dh-parser.c:194
-#: ../src/dh-parser.c:271
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Esperava \"%s\" encontrei \"%s\" na linha %d, coluna %d"
@@ -211,25 +205,29 @@ msgstr "Namespace inválido \"%s\" na linha %d, coluna %d"
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "título, nome e elementos de linkagem são requeridos na linha %d, coluna %d"
+msgstr ""
+"título, nome e elementos de linkagem são requeridos na linha %d, coluna %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "nome e elementos de linkagem são requeridos dentro de <sub> na linha %d, coluna %d"
+msgstr ""
+"nome e elementos de linkagem são requeridos dentro de <sub> na linha %d, "
+"coluna %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr "nome e elementos de linkagem são requeridos dentro de <function> na linha %d, coluna %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+"nome e elementos de linkagem são requeridos dentro de <function> na linha %"
+"d, coluna %d"
 
-#: ../src/dh-parser.c:420
-#: ../src/dh-parser.c:515
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Impossível criar analisador de livro"
 
-#: ../src/dh-parser.c:436
-#: ../src/dh-parser.c:525
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Impossível criar analisador de marcação"
 
@@ -250,50 +248,121 @@ msgstr "_Livro:"
 msgid "_Page:"
 msgstr "_Página:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Arquivo"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Ver"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "Aj_uda"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Nova Janela"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Nova _Aba"
 
-#: ../src/dh-window.c:176
-#: ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Localizar Próxima"
 
-#: ../src/dh-window.c:178
-#: ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Localizar Anterior"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Vai para a página anterior"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Vai para a próxima página"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Aba _Conteúdo"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Aba _Pesquisar"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "Texto M_aior"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Aumentar o tamanho do texto"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "Texto _Menor"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Diminuir o tamanho do texto"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "Tamanho _normal"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Usar o tamanho normal de texto"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Pesquisar"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
@@ -302,12 +371,11 @@ msgstr ""
 "Washington Lins <washington-lins@uol.com.br>\n"
 "Og Maciel <ogmaciel@gnome.org>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Um navegador de ajuda para desenvolvedores para o GNOME 2"
 
-#: ../src/dh-window.c:1085
-#: ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Página Vazia"
 
@@ -333,28 +401,37 @@ msgstr "Alternar diferenciação de maiúsculas de minúsculas"
 
 #~ msgid "Browse Contents"
 #~ msgstr "Navegar pelo Conteúdo"
+
 #~ msgid "Specify the size and location of the window"
 #~ msgstr "Especifique o tamanho e a posição da janela"
+
 #~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
 #~ msgstr "LARGURAxALTURA+XOFF+YOFF"
+
 #~ msgid "Section"
 #~ msgstr "Seção"
+
 #~ msgid "Cannot set UI: %s"
 #~ msgstr "Impossível definir UI: %s"
+
 #~ msgid "Devhelp project page"
 #~ msgstr "Página do Projeto Devhelp"
+
 #~ msgid "Bug report Devhelp"
 #~ msgstr "Relatório de erros Devhelp"
+
 #~ msgid "Location of the paned"
 #~ msgstr "Localização do painel"
+
 #~ msgid "The location of the paned separator."
 #~ msgstr "A localização do separador de painel."
+
 #~ msgid "    "
 #~ msgstr "    "
+
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search tab "
 #~ "to find what you are looking for."
 #~ msgstr ""
 #~ "Selecione um assunto entre os conteúdos à esquerda ou vá para a aba de "
 #~ "busca para encontrar o que você está procurando"
-
