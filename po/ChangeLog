@@ -1,3 +1,7 @@
+2008-02-04  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* nl.po: Dutch translation updated by Wouter Bolsterlee.
+
 2008-02-03  Leonardo Ferreira Fontenelle  <leonardof@svn.gnome.org>
 
 	* pt_BR.po: Brazilian Portuguese translation updated by Og Maciel.
@@ -86,7 +90,7 @@
 
 	* Release 0.17.
 
-2008-01-04   Clytie Siddall <clytie@riverland.net.au>
+2008-01-04  Clytie Siddall <clytie@riverland.net.au>
 
 	* vi.po: Updated Vietnamese translation.
 
@@ -246,8 +250,8 @@
 	* da.po: Updated Danish translation
 
 2007-09-08  Jovan Naumovski  <jovan@lugola.net>
- 
- 	* mk.po: Updated Macedonian translation.
+
+	* mk.po: Updated Macedonian translation.
 
 2007-09-07  Clytie Siddall <clytie@riverland.net.au>
 
@@ -314,7 +318,7 @@
 	* fr.po: Updated French translation.
 
 2007-08-19  Jovan Naumovski  <jovan@lugola.net>
- 
+
 	* mk.po: Updated Macedonian translation.
 
 2007-08-15  Adam Weinberger  <adamw@gnome.org>

@@ -5,14 +5,14 @@
 # Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003
 # Daniel van Eeden <daniel_e@dds.nl>, 2004
 # Taco Witte <tcwitte@cs.uu.nl>, 2004, 2005
-# Wouter Bolsterlee <wbolster@gnome.org>, 2006, 2007.
+# Wouter Bolsterlee <wbolster@gnome.org>, 2006, 2007, 2008
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-17 19:12+0200\n"
-"PO-Revision-Date: 2007-09-17 19:12+0200\n"
+"POT-Creation-Date: 2008-02-04 17:26+0100\n"
+"PO-Revision-Date: 2008-02-04 17:26+0100\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgid "Developer's Help program"
 msgstr "Hulpprogramma voor ontwikkelaars"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "DevHulp"
 
@@ -128,7 +128,7 @@ msgstr "<b>Lettertypen</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Zoeken</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Inhoud"
 
@@ -148,7 +148,7 @@ msgstr "_Vaste breedte:"
 msgid "_Forward"
 msgstr "_Vooruit"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Ga naar"
 
@@ -164,27 +164,27 @@ msgstr "Systeemlettertypen _gebruiken"
 msgid "_Variable width: "
 msgstr "_Variabele breedte: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "DevHulp-ondersteuning"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Zorgt dat F2 een Devhelp-venster opent voor het huidige woord"
 
-#: ../src/dh-main.c:90
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Functie opzoeken"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Alle actieve DevHulp-processen afsluiten"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Versie tonen en afsluiten"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Het devhelp-venster de aandacht geven als het zoekveld actief is"
 
@@ -247,48 +247,121 @@ msgstr "_Boek:"
 msgid "_Page:"
 msgstr "_Pagina:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Bestand"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "Be_werken"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "Beel_d"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Hulp"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Nieuw venster"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Nieuw _tabblad"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Volgende zoeken"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Vorige zoeken"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Terug naar de vorige pagina"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Vooruit naar de volgende pagina"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "In_houdtabblad"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "_Zoektabblad"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "Grotere _tekst"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Tekst vergroten"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Kleinere tekst"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Tekst verkleinen"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Normale grootte"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Standaard tekstgrootte"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Zoeken"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Wouter Bolsterlee\n"
@@ -296,11 +369,11 @@ msgstr ""
 "\n"
 "Kijk voor meer informatie op http://nl.gnome.org/"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Een GNOME 2 hulpprogramma voor ontwikkelaars"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Lege pagina"
 
