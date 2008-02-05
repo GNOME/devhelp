@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-03 23:39-0200\n"
-"PO-Revision-Date: 2008-02-03 23:44-0200\n"
+"POT-Creation-Date: 2008-02-05 19:53-0200\n"
+"PO-Revision-Date: 2008-02-05 20:40-0200\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -78,10 +78,10 @@ msgstr "A posição Y da janela principal."
 msgid "The height of the main window."
 msgstr "A altura da janela principal."
 
-# verificar 'pane'
+# "index and search pane": o painel lateral (só tem um)
 #: ../data/devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
-msgstr "A largura dos painéis índice e pesquisar."
+msgstr "A largura do painel de índice e pesquisa."
 
 #: ../data/devhelp.schemas.in.h:13
 msgid "The width of the main window."
@@ -97,7 +97,7 @@ msgstr "Usa as fontes padrão do sistema."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."
-msgstr "Mostrar ou não as opções avançadas de pesquisa."
+msgstr "Mostra as opções avançadas de pesquisa."
 
 #: ../data/devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
@@ -110,7 +110,7 @@ msgstr "Qual das abas está selecionada, \"conteúdo\" ou \"pesquisar\"."
 # verificar "pane"
 #: ../data/devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
-msgstr "Largura dos painéis índice e pesquisar"
+msgstr "Largura do painel de índice e de pesquisa"
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "Width of the main window"
@@ -190,12 +190,12 @@ msgstr "Exibe a versão e sai"
 
 #: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
-msgstr "Focar janela do devhelp com o campo de pesquisa ativo"
+msgstr "Focar em janela do devhelp com o campo de pesquisa ativo"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Esperava \"%s\" encontrei \"%s\" na linha %d, coluna %d"
+msgstr "Esperava \"%s\", encontrei \"%s\" na linha %d, coluna %d"
 
 #: ../src/dh-parser.c:128
 #, c-format
@@ -206,22 +206,23 @@ msgstr "Namespace inválido \"%s\" na linha %d, coluna %d"
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
-"título, nome e elementos de linkagem são requeridos na linha %d, coluna %d"
+"os elementos \"title\", \"name\" e \"link\" são necessários na linha %d, "
+"coluna %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
-"nome e elementos de linkagem são requeridos dentro de <sub> na linha %d, "
-"coluna %d"
+"os elementos \"name\" e \"link\" são necessários dentro de <sub> na linha %"
+"d, coluna %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
-"nome e elementos de linkagem são requeridos dentro de <function> na linha %"
-"d, coluna %d"
+"os elementos \"name\" e \"link\" são necessários dentro de <function> na "
+"linha %d, coluna %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
@@ -238,7 +239,7 @@ msgstr "Impossível descompactar o livro \"%s\": %s"
 
 #: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
-msgstr "Devhelp não é construído com suporte a zlib"
+msgstr "Devhelp não foi compilado com suporte a zlib"
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
@@ -340,7 +341,7 @@ msgstr "Texto M_aior"
 
 #: ../src/dh-window.c:231
 msgid "Increase the text size"
-msgstr "Aumentar o tamanho do texto"
+msgstr "Aumenta o tamanho do texto"
 
 #: ../src/dh-window.c:233
 msgid "S_maller Text"
@@ -348,7 +349,7 @@ msgstr "Texto _Menor"
 
 #: ../src/dh-window.c:234
 msgid "Decrease the text size"
-msgstr "Diminuir o tamanho do texto"
+msgstr "Diminui o tamanho do texto"
 
 #: ../src/dh-window.c:236
 msgid "_Normal size"
@@ -356,7 +357,7 @@ msgstr "Tamanho _normal"
 
 #: ../src/dh-window.c:237
 msgid "Use the normal text size"
-msgstr "Usar o tamanho normal de texto"
+msgstr "Usa o tamanho normal de texto"
 
 #: ../src/dh-window.c:529
 msgid "Search"
@@ -373,7 +374,7 @@ msgstr ""
 
 #: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
-msgstr "Um navegador de ajuda para desenvolvedores para o GNOME 2"
+msgstr "Um navegador de ajuda para desenvolvedores do GNOME 2"
 
 #: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
@@ -385,11 +386,11 @@ msgstr "Localizar:"
 
 #: ../src/eggfindbar.c:332
 msgid "Find previous occurrence of the search string"
-msgstr "Localizar a ocorrência anterior da palavra ou frase"
+msgstr "Localiza a ocorrência anterior da palavra ou frase"
 
 #: ../src/eggfindbar.c:340
 msgid "Find next occurrence of the search string"
-msgstr "Localizar a próxima ocorrência da palavra ou frase"
+msgstr "Localiza a próxima ocorrência da palavra ou frase"
 
 #: ../src/eggfindbar.c:348
 msgid "Case Sensitive"
@@ -397,7 +398,7 @@ msgstr "Diferenciar maiúsculas de minúsculas"
 
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
-msgstr "Alternar diferenciação de maiúsculas de minúsculas"
+msgstr "Alterna diferenciação de maiúsculas de minúsculas"
 
 #~ msgid "Browse Contents"
 #~ msgstr "Navegar pelo Conteúdo"
