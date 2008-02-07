@@ -1,3 +1,14 @@
+2008-02-07  Richard Hult  <richard@imendio.com>
+
+	* Release 0.19.
+
+2008-02-07  Richard Hult  <richard@imendio.com>
+
+	* configure.in: Bump version.
+
+	* misc/gedit-plugin/devhelp.desktop.in: Add icon, fixes bug
+	#512000.
+
 2008-01-30  Richard Hult  <richard@imendio.com>
 
 	* Release 0.18.

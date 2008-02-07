@@ -1,3 +1,14 @@
+NEW in 0.19:
+============
+
+- Specify an icon for the GEdit plugin (bug #512000)
+- Updated translations: ar, be@latin, ca, nl, pt_BR, pt
+
+Many thanks to the translators: Leonardo Ferreira Fontenelle, Pedro de
+Medeiros, Og Maciel, Wouter Bolsterlee, Duarte Loreto, Khaled Hosny,
+Ihar Hrachyshka, Joan Duran, Djihed Afifi.
+
+
 NEW in 0.18:
 ============
 
