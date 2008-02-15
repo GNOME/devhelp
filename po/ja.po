@@ -1,13 +1,13 @@
 # devhelp ja.po.
-# Copyright (C) 2001-2007 Free Software Foundation, Inc.
-# Takeshi Aihana <takeshi.aihana@gmail.com>, 2001-2007.
+# Copyright (C) 2001-2008 Free Software Foundation, Inc.
+# Takeshi Aihana <takeshi.aihana@gmail.com>, 2001-2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-13 20:05+0900\n"
-"PO-Revision-Date: 2008-01-13 18:28+0900\n"
+"POT-Creation-Date: 2008-02-15 23:02+0900\n"
+"PO-Revision-Date: 2008-02-15 23:01+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgid "Developer's Help program"
 msgstr "開発者向けのヘルプ・プログラムです"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:776
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -123,7 +123,7 @@ msgstr "<b>フォント</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>検索</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:505
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "目次"
 
@@ -306,29 +306,62 @@ msgstr "後方検索"
 msgid "Find Previous"
 msgstr "前方検索"
 
-#: ../src/dh-window.c:221
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "前のページに移動します"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "次のページに移動します"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "目次タブ(_C)"
 
-#: ../src/dh-window.c:224
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "検索タブ(_S)"
 
-#: ../src/dh-window.c:515
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "文字を大きくする(_L)"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "文字を一段階大きくします"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "文字を小さくする(_M)"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "文字を一段階小さくします"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "通常の大きさ(_N)"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "文字を標準の大きさにリセットします"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "検索"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "日本GNOMEユーザー会 http://www.gnome.gr.jp"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "GNOME 2 対応の開発者向けのヘルプブラウザです。"
 
-#: ../src/dh-window.c:1172 ../src/dh-window.c:1370
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "空のページ"
 
