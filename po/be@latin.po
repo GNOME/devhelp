@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-01 11:01+0200\n"
-"PO-Revision-Date: 2008-02-01 11:02+0200\n"
+"POT-Creation-Date: 2008-02-16 23:50+0200\n"
+"PO-Revision-Date: 2008-02-16 23:51+0200\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian Latin <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
@@ -167,6 +167,14 @@ msgstr "Padtrymka Devhelpa"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Pry nacisku klavišy F2 pakazvaj infarmacyju ab słovie pad kursoram"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Pakažy dakumentacyju API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Pakažy dakumentacyju API dla słova pad kursoram"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
