@@ -4,6 +4,7 @@ data/devhelp.desktop.in.in
 data/devhelp.schemas.in
 data/ui/devhelp.glade
 misc/gedit-plugin/devhelp.desktop.in
+misc/gedit-plugin/devhelp/devhelp.py
 src/dh-base.c
 src/dh-book-tree.c
 src/dh-html.c
