@@ -1,13 +1,13 @@
 # Norwegian/Bokmaal translation of devhelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Kjartan Maraas <kmaraas@gnome.org>, 2001-2008.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-14 10:17+0100\n"
-"PO-Revision-Date: 2008-01-14 10:19+0100\n"
+"POT-Creation-Date: 2008-02-17 12:17+0100\n"
+"PO-Revision-Date: 2008-02-17 12:17+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgid "Developer's Help program"
 msgstr "Hjelpleser for utviklere"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:781
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -123,7 +123,7 @@ msgstr "<b>Skrifter</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Søk</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Innhold"
 
@@ -166,6 +166,14 @@ msgstr "Støtte for Devhelp"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Start Devhelp for ordet ved markøren med F2"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Vis API-dokumentasjon"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Vis API-dokumentasjon for ordet ved markøren"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -347,19 +355,19 @@ msgstr "_Normal størrelse"
 msgid "Use the normal text size"
 msgstr "Bruk normal tekststørrelse"
 
-#: ../src/dh-window.c:520
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Søk"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjelpleser for utviklere for GNOME 2"
 
-#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Tom side"
 
