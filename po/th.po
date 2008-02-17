@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-29 15:22+0700\n"
-"PO-Revision-Date: 2008-01-29 15:29+0700\n"
+"POT-Creation-Date: 2008-02-17 10:22+0700\n"
+"PO-Revision-Date: 2008-02-17 10:23+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -167,6 +167,14 @@ msgstr "การสนับสนุน Devhelp"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "ทำให้ใช้ F2 เปิด Devhelp สำหรับคำที่ตำแหน่งเคอร์เซอร์ได้"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "แสดงเอกสารของ API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "แสดงเอกสารของ API สำหรับคำที่ตำแหน่งเคอร์เซอร์"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
