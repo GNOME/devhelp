@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-04 17:26+0100\n"
-"PO-Revision-Date: 2008-02-04 17:26+0100\n"
+"POT-Creation-Date: 2008-02-17 14:20+0100\n"
+"PO-Revision-Date: 2008-02-17 14:21+0100\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -171,6 +171,14 @@ msgstr "DevHulp-ondersteuning"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Zorgt dat F2 een Devhelp-venster opent voor het huidige woord"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "API-Documentatie tonen"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "API-documentatie voor het huidige woord tonen"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
