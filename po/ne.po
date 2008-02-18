@@ -1,263 +1,169 @@
 # translation of devhelp.HEAD.ne.po to Nepali
-# translation of devhelp.HEAD.po to Nepali
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+#
 # Pawan Chitrakar <pawan@mpp.org.np>, 2005.
 # Kapil Timilsina <lipak21@gmail.com>, 2005.
 # Jaydeep Bhusal <zaydeep@hotmail.com>, 2005.
 # Mahesh subedi <submanesh@hotmail.com>, 2006.
-#
+# Narayan Kumar Magar <narayan@mpp.org.np>, 2007.
+# Nabin Gautam <nabin@mpp.org.np>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD.ne\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-15 10:14+0200\n"
-"PO-Revision-Date: 2006-09-05 10:53+0545\n"
-"Last-Translator: Mahesh subedi <submanesh@hotmail.com>\n"
+"POT-Creation-Date: 2007-09-06 21:59+0100\n"
+"PO-Revision-Date: 2008-01-31 14:52+0545\n"
+"Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
-"Plural-Forms: nplurals=2;plural=(n!=1)\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n !=1\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "विकाकर्ताको मद्दत कार्यक्रम"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:127 ../src/dh-window.c:609
-#: ../ui/devhelp.glade.h:3
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:141 ../src/dh-window.c:689
 msgid "Devhelp"
-msgstr "विकासकर्ता मद्दत"
+msgstr "विकासकर्ताको मद्दत"
 
-#: ../devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr "विकासकर्ता मद्दत पुस्तक"
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "मिसिलिकरण ब्राउजर"
 
-#: ../src/dh-main.c:85
-msgid "Search for a function"
-msgstr "प्रकार्य खोजी गर्नुहोस्"
-
-#: ../src/dh-main.c:94
-msgid "Quit any running Devhelp"
-msgstr "केही चालु विकासकर्ता मद्दतलाई अन्त्य गर्नुहोस्"
-
-#: ../src/dh-main.c:103
-msgid "Print the version and exit"
-msgstr "संस्करण मुद्रण गर्नुहोस् र निस्कनुहोस्"
-
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
-#, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "अपेक्षा गरिएको '%s' पाइयो '%s' रेखामा %d, स्तम्भ %d"
-
-#: ../src/dh-parser.c:128
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "अवैध नामस्थान '%s' रेखामा %d, स्तम्भ %d"
-
-#: ../src/dh-parser.c:158
-#, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "शीर्षक, नाम, र लिङ्क तत्वहरू रेखा %d, स्तम्भ %d मा उपयुक्त छ"
-
-#: ../src/dh-parser.c:215
-#, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "नाम र लिङ्क तत्वहरू <सब> रेखामा %d, स्तम्भ %d भित्र आवश्यक छ"
-
-#: ../src/dh-parser.c:292
-#, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr "<function> %d लाइनमा, %d स्तम्भमा नाम र लिङ्क तत्वहरू आवश्यक हुन्छ"
-
-#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
-msgid "Could not create book parser"
-msgstr "पुस्तक पद वर्णक सिर्जना गर्न सकेन"
-
-#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
-msgid "Could not create markup parser"
-msgstr "मार्कअप पद वर्णक सिर्जना गर्न सकेन"
-
-#: ../src/dh-parser.c:567
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "पुस्तक '%s'लाई असङ्कुचन गर्न सकिँदैन: %s"
-
-#: ../src/dh-parser.c:592
-msgid "Devhelp is not built with zlib support"
-msgstr "विकासकर्ता मद्दत जिल्प समर्थनसँग निर्माण गरिएको होइन"
-
-#: ../src/dh-search.c:462
-msgid "_Book:"
-msgstr "पुस्तक:"
-
-#: ../src/dh-search.c:479
-msgid "_Page:"
-msgstr "पृष्ठ:"
-
-#: ../src/dh-search.c:535
-msgid "Section"
-msgstr "विभाग"
-
-#: ../src/dh-window.c:139
-msgid "_File"
-msgstr "फाइल"
-
-#: ../src/dh-window.c:140
-msgid "_Edit"
-msgstr "सम्पादन"
-
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:8
-msgid "_Go"
-msgstr "जानुहोस्"
-
-#: ../src/dh-window.c:142
-msgid "_Help"
-msgstr "मद्दत"
-
-#. File menu
-#: ../src/dh-window.c:145
-msgid "_New Window"
-msgstr "नयाँ सञ्झ्याल"
-
-#: ../src/dh-window.c:147
-msgid "New _Tab"
-msgstr "नयाँ ट्याब"
-
-#: ../src/dh-window.c:164
-msgid "Browse Contents"
-msgstr "विषयसूची ब्राउज गर्नुहोस्"
-
-#: ../src/dh-window.c:167 ../src/dh-window.c:451
-msgid "Search"
-msgstr "खोजी गर्नुहोस्"
-
-#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:2
-msgid "Contents"
-msgstr "विषयसूची"
-
-#: ../src/dh-window.c:606
-msgid "translator_credits"
-msgstr ""
-"Mahesh Subedi<submanesh@hotmail.com>"
-"Pawan Chitrakar <pawan@mpp.org.np>"
-"Kapil Timilsina <lipak21@gmail.com>"
-"Jaydeep Bhusal <zaydeep@hotmail.com>"
-
-#: ../src/dh-window.c:611
-msgid "A developer's help browser for GNOME 2"
-msgstr "जिनोम २ का लागि एउटा विकासकर्ताको मद्दत ब्राउजर"
-
-#: ../src/dh-window.c:939 ../src/dh-window.c:1067
-msgid "Empty Page"
-msgstr "खाली पृष्ठ"
-
-#: ../devhelp.schemas.in.h:1
+#: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed text"
 msgstr "स्थिर पाठका लागि फन्ट"
 
-#: ../devhelp.schemas.in.h:2
+#: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
 msgstr "पाठका लागि फन्ट"
 
-#: ../devhelp.schemas.in.h:3
+#: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
 msgstr "निश्चित चौडाइ भएको पाठका लागि फन्ट"
 
-#: ../devhelp.schemas.in.h:4
+#: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "अनिश्चित चौडाइ भएको पाठका लागि फन्ट"
 
-#: ../devhelp.schemas.in.h:5
+#: ../data/devhelp.schemas.in.h:5
 msgid "Height of main window"
 msgstr "मुख्य सञ्झ्यालको उचाइ"
 
-#: ../devhelp.schemas.in.h:6
+#: ../data/devhelp.schemas.in.h:6
 msgid "Main window maximized state"
-msgstr "मुख्य सञ्झ्याल अधिकतम स्थिति"
+msgstr "मुख्य सञ्झ्यालको अधिकतम स्थिति"
 
-#: ../devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
 msgstr "चयन गरिएको ट्याब, \"विषय\" वा \"खोजी\""
 
-#: ../devhelp.schemas.in.h:8
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "उन्नत खोजी विकल्प देखाउनुहोस्"
+
+#: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the main window."
-msgstr "मुख्य सञ्झ्यालको एक्स स्थान"
+msgstr "मुख्य सञ्झ्यालको X स्थान ।"
 
-#: ../devhelp.schemas.in.h:9
+#: ../data/devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
-msgstr "मुख्य सञ्झ्यालको वाई स्थान"
+msgstr "मुख्य सञ्झ्यालको Y स्थान"
 
-#: ../devhelp.schemas.in.h:10
+#: ../data/devhelp.schemas.in.h:11
 msgid "The height of the main window."
-msgstr "मुख्य सञ्झ्यालको उचाइ"
+msgstr "मुख्य सञ्झ्यालको उचाइ ।"
 
-#: ../devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
-msgstr "अनुक्रमणिका वा खोजी फलक चौडाइ"
+msgstr "अनुक्रमणिका वा खोजी फलकको चौडाइ ।"
 
-#: ../devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:13
 msgid "The width of the main window."
-msgstr "मुख्य सञ्झ्यालको चौडाइ"
+msgstr "मुख्य सञ्झ्यालको चौडाइ ।"
 
-#: ../devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:14
 msgid "Use system fonts"
 msgstr "प्रणाली फन्ट प्रयोग गर्नुहोस्"
 
-#: ../devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
 msgstr "प्रणालीको पूर्वनिर्धारित फन्ट प्रयोग गर्नुहोस् ।"
 
-#: ../devhelp.schemas.in.h:15
-msgid "Whether the main window should start maximized or not."
-msgstr "मुख्य सञ्झ्याल बढाउनेमा सुरु हुन्छ वा हुँदैन ।"
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "उन्नत खोजी विकल्प देखाइने छन् वा छैनन् ।"
 
-#: ../devhelp.schemas.in.h:16
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "मुख्य सञ्झ्याल बढाइएकोमा सुरु हुन्छ वा हुँदैन ।"
+
+#: ../data/devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr "कुन ट्याब चयन गरियो, \"विषय\" वा \"खोजी\""
 
-#: ../devhelp.schemas.in.h:17
+#: ../data/devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
-msgstr "अनुक्रमणिका र खोजी फलको चौडाइ"
+msgstr "अनुक्रमणिका र खोजी फलकको चौडाइ"
 
-#: ../devhelp.schemas.in.h:18
+#: ../data/devhelp.schemas.in.h:20
 msgid "Width of the main window"
 msgstr "मुख्य सञ्झ्यालको चौडाइ"
 
-#: ../devhelp.schemas.in.h:19
+#: ../data/devhelp.schemas.in.h:21
 msgid "X position of main window"
-msgstr "मुख्य सञ्झ्यालको एक्स स्थान"
+msgstr "मुख्य सञ्झ्यालको X स्थान"
 
-#: ../devhelp.schemas.in.h:20
+#: ../data/devhelp.schemas.in.h:22
 msgid "Y position of main window"
-msgstr "मुख्य सञ्झ्यालको वाइ स्थान"
+msgstr "मुख्य सञ्झ्यालको Y स्थान"
 
-#: ../ui/devhelp.glade.h:1
+#: ../data/ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
 msgstr "<b>फन्ट</b>"
 
-#: ../ui/devhelp.glade.h:4
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>खोजी</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+msgid "Contents"
+msgstr "विषय-सूची"
+
+#: ../data/ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "प्राथमिकता"
 
-#: ../ui/devhelp.glade.h:5
+#: ../data/ui/devhelp.glade.h:6
 msgid "_Back"
 msgstr "पछाडि"
 
-#: ../ui/devhelp.glade.h:6
+#: ../data/ui/devhelp.glade.h:7
 msgid "_Fixed width:"
 msgstr "स्थिर चौडाइ:"
 
-#: ../ui/devhelp.glade.h:7
+#: ../data/ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "अगाडि"
 
-#: ../ui/devhelp.glade.h:9
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+msgid "_Go"
+msgstr "जानुहोस्"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "उन्नत खोजी विकल्प देखाउनुहोस्"
+
+#: ../data/ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr "प्रणाली फन्ट प्रयोग गर्नुहोस्"
 
-#: ../ui/devhelp.glade.h:10
+#: ../data/ui/devhelp.glade.h:12
 msgid "_Variable width: "
 msgstr "चल चौडाइ: "
 
@@ -266,6 +172,147 @@ msgid "Devhelp support"
 msgstr "विकासकर्ता मद्दत समर्थन"
 
 #: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "शब्दका लागि कर्सरमा विकासकर्ता मद्दत सुम्पने F7 बनाउँदछ"
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "कर्सर रहेको शब्दका लागि F2 ले विकासकर्ता मद्दत ल्याउने बनाउँदछ"
+
+#: ../src/dh-main.c:90
+msgid "Search for a function"
+msgstr "प्रकार्यका लागि खोजी"
+
+#: ../src/dh-main.c:99
+msgid "Quit any running Devhelp"
+msgstr "कुनै पनि चालु विकासकर्ता मद्दतलाई अन्त्य गर्नुहोस्"
+
+#: ../src/dh-main.c:108
+msgid "Display the version and exit"
+msgstr "संस्करण प्रदर्शन गर्नुहोस् र निस्कनुहोस्"
+
+#: ../src/dh-main.c:117
+msgid "Focus the devhelp window with the search field active"
+msgstr "खोजी फिल्ड सक्रियतासँग डेभहेल्प सञ्झ्याल फोकस गर्दछ"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "अपेक्षित '%s' प्राप्त '%s' लाइन %d, स्तम्भ %d मा"
+
+#: ../src/dh-parser.c:128
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "अवैध नेमस्पेस '%s' रेखा %d, स्तम्भ %d मा"
+
+#: ../src/dh-parser.c:158
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "शीर्षक, नाम, र लिङ्क तत्वहरू रेखा %d, स्तम्भ %d मा आवश्यक हुन्छन्"
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr " <sub> रेखा %d, %d स्तम्भमा नाम र लिङ्क तत्वहरू आवश्यक हुन्छन्"
+
+#: ../src/dh-parser.c:297
+#, c-format
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "<function> %d लाइनमा, %d स्तम्भमा नाम र लिङ्क तत्वहरू आवश्यक हुन्छन्"
+
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+msgid "Could not create book parser"
+msgstr "पुस्तक पद वर्णक सिर्जना गर्न सकेन"
+
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+msgid "Could not create markup parser"
+msgstr "मार्कअप पद वर्णक सिर्जना गर्न सकेन"
+
+#: ../src/dh-parser.c:578
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "पुस्तक '%s' को सङ्कुचन हटाउन सकिँदैन: %s"
+
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr "विकासकर्ता मद्दत ग्लिब समर्थनसँग निर्माण गरिएको छैन"
+
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "पुस्तक:"
+
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "पृष्ठ:"
+
+#: ../src/dh-window.c:156
+msgid "_File"
+msgstr "फाइल"
+
+#: ../src/dh-window.c:157
+msgid "_Edit"
+msgstr "सम्पादन"
+
+#: ../src/dh-window.c:159
+msgid "_Help"
+msgstr "मद्दत"
+
+#. File menu
+#: ../src/dh-window.c:162
+msgid "_New Window"
+msgstr "नयाँ सञ्झ्याल"
+
+#: ../src/dh-window.c:164
+msgid "New _Tab"
+msgstr "नयाँ ट्याब"
+
+#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "पछिल्लो फेला पार्नुहोस्"
+
+#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "अघिल्लो फेला पार्नुहोस्"
+
+#: ../src/dh-window.c:189
+msgid "_Contents Tab"
+msgstr "सामाग्री ट्याब"
+
+#: ../src/dh-window.c:192
+msgid "_Search Tab"
+msgstr "खोजी ट्याब"
+
+#: ../src/dh-window.c:473
+msgid "Search"
+msgstr "खोजी गर्नुहोस्"
+
+#: ../src/dh-window.c:686
+msgid "translator_credits"
+msgstr ""
+"Mahesh Subedi<submanesh@hotmail.com> Nabin Gautam <nabingautam2oo1@gmail.com>. Pawan Chitrakar <pawan@mpp.org.np>Kapil "
+"Timilsina <lipak21@gmail.com>Jaydeep Bhusal <zaydeep@hotmail.com>"
+
+#: ../src/dh-window.c:691
+msgid "A developer's help browser for GNOME 2"
+msgstr "जिनोम २ का लागि एउटा विकासकर्ताको मद्दत ब्राउजर"
+
+#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+msgid "Empty Page"
+msgstr "खाली पृष्ठ"
+
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "फेला पार्नुहोस्:"
+
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "खोजी स्ट्रिङको अघिल्लो घटना फेला पार्नुहोस्"
+
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "खोजी स्ट्रिङको पछिल्लो घटना फेला पार्नुहोस्"
+
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "केस संवेदनशिलता"
+
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "केस संवेदनशिल खोजी टगल गर्नुहोस्"
 
