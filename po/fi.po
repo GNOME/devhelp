@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-13 15:09+0300\n"
+"POT-Creation-Date: 2008-02-18 12:10+0300\n"
 "PO-Revision-Date: 2006-09-15 11:04+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -167,6 +167,14 @@ msgstr "Devhelp-tuki"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Avaa devhelpin kohdistimen kohdalla olevalle sanalle F2-näppäimestä"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Näytä API-dokumentaatio"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Näytä API-dokumentaatio kohdistimen kohdalla olevalle sanalle"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
