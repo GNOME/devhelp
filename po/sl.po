@@ -1,17 +1,14 @@
 # Copyright (C) 2005-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the program package.
 #
-# Slovenian maintainer: Matej Urbančič <mateju@svn.gnome.org>.
-#
-# Translators:
-# Matej Urbančič <mateju@svn.gnome.org>, 2007.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 19:51+0100\n"
-"PO-Revision-Date: 2007-12-20 15:25+0100\n"
+"POT-Creation-Date: 2008-02-16 15:13+0000\n"
+"PO-Revision-Date: 2008-02-19 13:17+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +26,7 @@ msgstr "Program za pomoč razvijalcem "
 #: ../data/devhelp.desktop.in.in.h:2
 #: ../data/ui/devhelp.glade.h:4
 #: ../src/dh-main.c:151
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -134,7 +131,7 @@ msgid "<b>Searching</b>"
 msgstr "<b>Iskanje</b>"
 
 #: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:505
+#: ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Vsebina"
 
@@ -179,6 +176,14 @@ msgstr "Devhelp podpora"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Tipka F2 prikaže pomoč Devhelp za besedo ob kazalniku"
 
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Pokaži API dokumentacijo"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Prikaži API dokumentacijo za besedo ob kazalniku"
+
 #: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Iskanje funkcije"
@@ -210,17 +215,17 @@ msgstr "Neveljaven imenski prostor '%s' v vrstici %d, stolpec %d"
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "Vpisan mora biti naslov, ime in povezava elementov v vrstici %d, stolpec %d"
+msgstr "vpisan mora biti naslov, ime in povezava elementov v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "Vpis imena in povezave je obvezen znotraj <sub> v vrstici %d, stolpec %d"
+msgstr "vpis imena in povezave je obvezen znotraj <sub> v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr "Vpis imena in povezave je obvezen znotraj <function> v vrstici %d, stolpec %d"
+msgstr "vpis imena in povezave je obvezen znotraj <function> v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:420
 #: ../src/dh-parser.c:515
@@ -318,30 +323,63 @@ msgstr "Poišči naslednje"
 #: ../src/dh-window.c:210
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
-msgstr "Poišči predhodnje"
+msgstr "Poišči predhodne"
 
-#: ../src/dh-window.c:221
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Skoči na predhodno stran"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Skoči na naslednjo stran"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Zavihek _vsebine"
 
-#: ../src/dh-window.c:224
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Zavihek _iskanja"
 
-#: ../src/dh-window.c:515
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "_Večja pisava"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Povečaj velikost pisave"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Manjša pisava"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Zmanjšaj velikost pisave"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Običajna velikost"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Uporabi običajno velikost pisave"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Iskanje"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "Matej Urbančič"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Pregledovalnik pomoči za GNOME 2"
 
-#: ../src/dh-window.c:1172
-#: ../src/dh-window.c:1370
+#: ../src/dh-window.c:1186
+#: ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Prazna stran"
 
@@ -351,11 +389,11 @@ msgstr "Poišči:"
 
 #: ../src/eggfindbar.c:332
 msgid "Find previous occurrence of the search string"
-msgstr "Poišči predhodno pojavitev iskanega niza"
+msgstr "Poišči predhodni zadetek iskanega niza"
 
 #: ../src/eggfindbar.c:340
 msgid "Find next occurrence of the search string"
-msgstr "Poišči naslednjo pojavitev iskanega niza"
+msgstr "Poišči naslednji zadetek iskanega niza"
 
 #: ../src/eggfindbar.c:348
 msgid "Case Sensitive"
