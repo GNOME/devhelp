@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-13 13:46+0000\n"
-"PO-Revision-Date: 2008-01-19 12:37+0200\n"
+"POT-Creation-Date: 2008-02-16 15:13+0000\n"
+"PO-Revision-Date: 2008-02-18 13:25+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Arendaja abiteabe programm"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:781
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -128,7 +128,7 @@ msgstr "<b>Kirjatüübid</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Otsing</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Sisukord"
 
@@ -171,6 +171,14 @@ msgstr "Devhelp'i tugi"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "F2 korral Devhelp'i avamine kursori all oleva sõna kohta"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Näita API dokumentatsiooni"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Kursori all oleva sõna kohta API dokumentatsiooni näitamine"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -350,19 +358,19 @@ msgstr "_Tavasuurus"
 msgid "Use the normal text size"
 msgstr "Tavasuuruse määramine kirja suuruseks"
 
-#: ../src/dh-window.c:520
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Otsing"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "Ivar Smolin <okul@linux.ee>, 2007, 2008."
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Arendusteabe sirvija GNOME 2 jaoks"
 
-#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Tühi leht"
 
