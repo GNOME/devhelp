@@ -3,14 +3,17 @@
 # This file is distributed under the same license as the devhelp package.
 # Kang Jeong-Hee <Keizi@mail.co.kr>, 2003.
 # Seongchong Park <spark@tapl01.kaist.ac.kr>, 2004.
-# Changwoo Ryu <cwryu@debian.org>, 2006.
+# Changwoo Ryu <cwryu@debian.org>, 2006, 2008.
+#
+#
+# 새로 번역하신 분은 아래 "translator_credits"에 추가하세요.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.7\n"
+"Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-30 00:49+0900\n"
-"PO-Revision-Date: 2007-09-30 00:54+0900\n"
+"POT-Creation-Date: 2008-02-19 11:25+0900\n"
+"PO-Revision-Date: 2008-02-19 11:27+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +25,7 @@ msgid "Developer's Help program"
 msgstr "개발자를 위한 도움말 프로그램"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "개발자 도움말"
 
@@ -126,7 +129,7 @@ msgstr "<b>글꼴</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>찾기</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "내용"
 
@@ -146,7 +149,7 @@ msgstr "고정폭(_F):"
 msgid "_Forward"
 msgstr "앞으로(_F)"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "이동(_G)"
 
@@ -162,27 +165,36 @@ msgstr "시스템 글꼴 사용(_U)"
 msgid "_Variable width: "
 msgstr "가변폭(_V): "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "개발자 도움말 기능"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "F2을 누르면 커서 위치에 있는 단어에 대해 개발자 도움말 프로그램을 실행합니다"
+msgstr ""
+"F2을 누르면 커서 위치에 있는 단어에 대해 개발자 도움말 프로그램을 실행합니다"
 
-#: ../src/dh-main.c:90
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "API 문서 보기"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "커서 위치에 있는 단어의 API 문서를 봅니다"
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "함수 찾기"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "실행 중인 개발자 도움말을 끝냅니다"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "버전을 표시하고 끝냅니다"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "개발자 도움말 창의 포커스를 찾기 입력란에 놓습니다"
 
@@ -240,59 +252,132 @@ msgstr "도움말(_B):"
 msgid "_Page:"
 msgstr "페이지(_P):"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "파일(_F)"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "보기(_V)"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "도움말(_H)"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "새 창(_N)"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "새 탭(_T)"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "다음 찾기"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "이전 찾기"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "이전 페이지로 이동"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "다음 페이지로 이동"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "차례 탭(_C)"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "찾기 탭(_S)"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "글씨 크게 (_L)"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "글씨 크기를 늘립니다"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "글씨 작게(_M)"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "글씨 크기를 줄입니다"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "보통 크기(_N)"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "보통 글씨 크기를 사용합니다"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "찾기"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "강정희\n"
 "류창우\n"
 "박성종"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "그놈 2 개발자를 위한 도움말 브라우저"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "빈 페이지"
 
