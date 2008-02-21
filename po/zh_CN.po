@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-19 03:15+0000\n"
+"POT-Creation-Date: 2008-02-16 15:13+0000\n"
 "PO-Revision-Date: 2008-01-19 21:43+0800\n"
 "Last-Translator: Deng Xiyue <manphiz@gmail.com>\n"
 "Language-Team: i18n-zh <i18n-zh@googlegroups.com>\n"
@@ -22,7 +22,7 @@ msgid "Developer's Help program"
 msgstr "开发者帮助程序"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:781
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -126,7 +126,7 @@ msgstr "<b>字体</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>搜索</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "目录"
 
@@ -170,6 +170,16 @@ msgstr "Devhelp 支持"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "使用 F2 为光标处单词启动 Devhelp"
 
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+#, fuzzy
+msgid "Show API Documentation"
+msgstr "文档浏览器"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#, fuzzy
+msgid "Show API Documentation for the word at the cursor"
+msgstr "使用 F2 为光标处单词启动 Devhelp"
+
 #: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "搜索一个函数"
@@ -208,7 +218,8 @@ msgstr "在 <sub> 内需要指定 name 和 link 元素 (第%d行，第%d列)"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr "在 <function> 内需要指定 name 和 link 元素 (第%d行，第%d列)"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
@@ -346,20 +357,21 @@ msgstr "正常大小(_N)"
 msgid "Use the normal text size"
 msgstr "使用正常文本大小"
 
-#: ../src/dh-window.c:520
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "搜索"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:787
 msgid "translator_credits"
-msgstr "YangZhang <zyangmath@gmail.com>, 2007 \n"
+msgstr ""
+"YangZhang <zyangmath@gmail.com>, 2007 \n"
 "Den Xiyue <manphiz@gmail.com>, 2008"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "用于 GNOME 2 的开发者帮助浏览器"
 
-#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "空白页"
 
