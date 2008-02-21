@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-16 15:13+0000\n"
-"PO-Revision-Date: 2008-01-19 21:43+0800\n"
+"PO-Revision-Date: 2008-02-21 22:18+0800\n"
 "Last-Translator: Deng Xiyue <manphiz@gmail.com>\n"
 "Language-Team: i18n-zh <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -171,14 +171,12 @@ msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "使用 F2 为光标处单词启动 Devhelp"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:36
-#, fuzzy
 msgid "Show API Documentation"
-msgstr "文档浏览器"
+msgstr "显示 API 文档"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
-#, fuzzy
 msgid "Show API Documentation for the word at the cursor"
-msgstr "使用 F2 为光标处单词启动 Devhelp"
+msgstr "显示光标处单词的 API 文档"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
