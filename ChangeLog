@@ -1,3 +1,9 @@
+2008-02-21  Ross Burton  <ross@burtonini.com>
+
+	* src/dh-link.c:
+	* src/dh-link.h:
+	Add a GType for the DhLink boxed type.
+
 2008-02-07  Richard Hult  <richard@imendio.com>
 
 	* Release 0.19.

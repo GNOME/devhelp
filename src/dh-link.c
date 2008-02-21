@@ -20,10 +20,21 @@
  */
 
 #include <config.h>
-#include "string.h"
+#include <string.h>
+#include <glib-object.h>
 #include "dh-link.h"
 
-static void link_free (DhLink *link);
+GType
+dh_link_get_type (void)
+{
+  static GType type = 0;
+  if (G_UNLIKELY (type == 0)) {
+    type = g_boxed_type_register_static ("DhLink",
+                                         (GBoxedCopyFunc)dh_link_ref,
+                                         (GBoxedFreeFunc)dh_link_unref);
+  }
+  return type;
+}
 
 static void 
 link_free (DhLink *link)

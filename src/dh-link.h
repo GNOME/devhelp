@@ -23,6 +23,7 @@
 #define __DH_LINK_H__ 
 
 #include <glib.h>
+#include <glib-object.h>
 
 typedef struct _DhLink   DhLink;
 
@@ -48,6 +49,10 @@ struct _DhLink {
 	
 	guint        ref_count;
 };
+
+#define DH_TYPE_LINK dh_link_get_type ()
+
+GType dh_link_get_type (void);
 
 DhLink * dh_link_new               (DhLinkType     type,
 				    const gchar   *name,
