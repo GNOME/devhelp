@@ -4,7 +4,7 @@
 # Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002-2003.
 # based on the GNOME 2.0 translation to Portuguese (pt) by
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001.
-# Raphael Higino <phhigino@gmail.com>, 2004.
+# Raphael Higino <in memoriam>, 2004.
 # Luiz Fernando S. Armesto <luiz.armesto@gmail.com>, 2007.
 # Washington Lins <washington-lins@uol.com.br>, 2007.
 # Og Maciel <ogmaciel@gnome.org>, 2007-2008.
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-05 19:53-0200\n"
-"PO-Revision-Date: 2008-02-05 20:40-0200\n"
+"POT-Creation-Date: 2008-02-22 09:08-0300\n"
+"PO-Revision-Date: 2008-02-21 22:37-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -176,6 +176,14 @@ msgstr "Suporte do Devhelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Faz a tecla F2 exibir o Devhelp para a palavra sob o cursor"
 
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Mostrar a Documentação da API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Mostrar a documentação da API para a palavra sob o cursor"
+
 #: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Pesquisar por uma função"
@@ -225,10 +233,12 @@ msgstr ""
 "linha %d, coluna %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Impossível criar analisador de livro"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Impossível criar analisador de marcação"
 
@@ -238,6 +248,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Impossível descompactar o livro \"%s\": %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp não foi compilado com suporte a zlib"
 
@@ -399,40 +410,3 @@ msgstr "Diferenciar maiúsculas de minúsculas"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Alterna diferenciação de maiúsculas de minúsculas"
-
-#~ msgid "Browse Contents"
-#~ msgstr "Navegar pelo Conteúdo"
-
-#~ msgid "Specify the size and location of the window"
-#~ msgstr "Especifique o tamanho e a posição da janela"
-
-#~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
-#~ msgstr "LARGURAxALTURA+XOFF+YOFF"
-
-#~ msgid "Section"
-#~ msgstr "Seção"
-
-#~ msgid "Cannot set UI: %s"
-#~ msgstr "Impossível definir UI: %s"
-
-#~ msgid "Devhelp project page"
-#~ msgstr "Página do Projeto Devhelp"
-
-#~ msgid "Bug report Devhelp"
-#~ msgstr "Relatório de erros Devhelp"
-
-#~ msgid "Location of the paned"
-#~ msgstr "Localização do painel"
-
-#~ msgid "The location of the paned separator."
-#~ msgstr "A localização do separador de painel."
-
-#~ msgid "    "
-#~ msgstr "    "
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search tab "
-#~ "to find what you are looking for."
-#~ msgstr ""
-#~ "Selecione um assunto entre os conteúdos à esquerda ou vá para a aba de "
-#~ "busca para encontrar o que você está procurando"
