@@ -1,43 +1,200 @@
-# Czech translation of devhelp
-# Copyright (C) 2002, 2003, 2004 devhelp'S COPYRIGHT HOLDER
-# Copyright (C) 2004, 2006 Miloslav Trmac <mitr@volny.cz>
+# Czech translation of devhelp.
+# Copyright (C) 2002, 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2004, 2006 Miloslav Trmac <mitr@volny.cz>.
 # This file is distributed under the same license as the devhelp package.
 # Miloslav Trmac <mitr@volny.cz>, 2002, 2003, 2004, 2006.
+# Lucas Lommer <llommer@svn.gnome.org>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp VERSION\n"
+"Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-21 10:14+0200\n"
-"PO-Revision-Date: 2006-05-21 16:18+0200\n"
-"Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"POT-Creation-Date: 2008-02-23 03:17+0100\n"
+"PO-Revision-Date: 2008-02-22 21:17+0100\n"
+"Last-Translator: Lucas Lommer <llommer@svn.gnome.org>\n"
+"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../devhelp.desktop.in.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Program nápovědy pro vývojáře"
 
-#: ../devhelp.desktop.in.in.h:2 ../src/dh-main.c:125 ../src/dh-window.c:609
-#: ../ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../src/dh-main.c:85
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Prohlížeč dokumentace"
+
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Písmo pro neproporcionální text"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Písmo pro text"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Písmo pro text s pevnou šířkou."
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Písmo pro text s proměnnou šířkou."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Výška hlavního okna"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Stav maximalizace hlavního okna"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Vybraná karta, \"Obsah\" nebo \"Vyhledávání\""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Zobrazit pokročilé možnosti hledání"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "Souřadníce X pro hlavní okno."
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Souřadnice Y pro hlavní okno."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Výška hlavního okna."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Šířka panelu rejstříku a hledání."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Šířka hlavního okna."
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Používat systémová písma"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Používat výchozí písma systému."
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Jestli jsou zobrazeny pokročilé možnosti hledání."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Jestli má hlavní okno být po spuštění maximalizované."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Která z karet je vybrána, \"content\" nebo \"search\"."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Šířka panelu rejstříku a hledání"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Šířka hlavního okna"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Pozice X hlavního okna"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Pozice Y hlavního okna"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Písma</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Vyhledávání</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+msgid "Contents"
+msgstr "Obsah"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Nastavení"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "_Zpět"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Pevná šířka:"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_Vpřed"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+msgid "_Go"
+msgstr "_Jít"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "_Zobrazit pokročilé možnosti hledání"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "_Používat písma systému"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "Pro_měnná šířka: "
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Podpora Devhelpu"
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Způsobí, že F2 spustí Devhelp pro slovo pod kurzorem"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Zobrazit dokumentaci API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Zobrazit dokumentaci API pro slovo pod kurzorem"
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Hledat funkci"
 
-#: ../src/dh-main.c:94
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Ukončit všechny běžící Devhelpy"
 
-#: ../src/dh-main.c:103
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Zobrazit verzi a skončit"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:270
+#: ../src/dh-main.c:127
+msgid "Focus the devhelp window with the search field active"
+msgstr "Aktivovat okno DevHelp se zvoleným polem vyhledávání"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Očekával jsem '%s', dostal jsem '%s' na řádku %d, sloupci %d"
@@ -58,7 +215,7 @@ msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <sub> vyžadovány elementy name a link"
 
-#: ../src/dh-parser.c:292
+#: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
@@ -66,215 +223,181 @@ msgstr ""
 "Na řádku %d, sloupci %d jsou uvnitř <function> vyžadovány elementy name a "
 "link"
 
-#: ../src/dh-parser.c:410 ../src/dh-parser.c:504
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "Nemohu vytvořit parser knihy"
 
-#: ../src/dh-parser.c:426 ../src/dh-parser.c:514
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "Nemohu vytvořit parser značení"
 
-#: ../src/dh-parser.c:567
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nemohu dekomprimovat knihu '%s': %s"
 
-#: ../src/dh-parser.c:592
+#: ../src/dh-parser.c:603
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp nebyl přeložen s podporou zlib"
 
-#: ../src/dh-search.c:549
+#: ../src/dh-search.c:621
 msgid "_Book:"
 msgstr "_Kniha:"
 
-#: ../src/dh-search.c:569
+#: ../src/dh-search.c:641
 msgid "_Page:"
 msgstr "_Strana:"
 
-#: ../src/dh-search.c:628
-msgid "Section"
-msgstr "Oddíl"
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
 
-#: ../src/dh-window.c:139
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Soubor"
 
-#: ../src/dh-window.c:140
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/dh-window.c:141 ../ui/devhelp.glade.h:9
-msgid "_Go"
-msgstr "_Jít"
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Zobrazit"
 
-#: ../src/dh-window.c:142
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Nápověda"
 
 #. File menu
-#: ../src/dh-window.c:145
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: ../src/dh-window.c:147
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Nová _karta"
 
-#: ../src/dh-window.c:164
-msgid "Browse Contents"
-msgstr "Procházet obsah"
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "Hledat následující"
 
-#: ../src/dh-window.c:167 ../src/dh-window.c:451
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Hledat předchozí"
+
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Přejít na předchozí stránku"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Přejít na další stránku"
+
+#: ../src/dh-window.c:223
+msgid "_Contents Tab"
+msgstr "Karta _obsahu"
+
+#: ../src/dh-window.c:226
+msgid "_Search Tab"
+msgstr "Karta vyhledává_ní"
+
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "Větší t_ext"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Zvětšit velikost textu"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Menší text"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Zmenšit velikost textu"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Normální velikost"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Použít normální velikost textu"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Hledat"
 
-#: ../src/dh-window.c:441 ../ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Obsah"
-
-#: ../src/dh-window.c:606
+#: ../src/dh-window.c:787
 msgid "translator_credits"
-msgstr "Miloslav Trmač <mitr@volny.cz>"
+msgstr ""
+"Miloslav Trmač <mitr@volny.cz>\n"
+"Lucas Lommer <llommer@svn.gnome.org>"
 
-#: ../src/dh-window.c:611
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME 2"
 
-#: ../src/dh-window.c:939 ../src/dh-window.c:1067
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Prázdná strana"
 
-#: ../devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Písmo pro neproporcionální text"
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "Najít:"
 
-#: ../devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Písmo pro text"
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "Vyhledat předchozí výskyt hledaného řetězce"
 
-#: ../devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Písmo pro text s pevnou šířkou."
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "Vyhledat další výskyt hledaného řetězce"
 
-#: ../devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Písmo pro text s proměnnou šířkou."
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "Rozlišovat malá a velká písmena"
 
-#: ../devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr "Výška hlavního okna"
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "Přepnout citlivost na velikost písmen"
 
-#: ../devhelp.schemas.in.h:6
-msgid "Main window maximized state"
-msgstr "Stav maximalizace hlavního okna"
+#~ msgid "Section"
+#~ msgstr "Oddíl"
 
-#: ../devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Vybraná karta, \"content\" nebo \"search\""
-
-#: ../devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Zobrazit pokročilé možnosti hledání"
-
-#: ../devhelp.schemas.in.h:9
-msgid "The X position of the main window."
-msgstr "Pozice X hlavního okna."
-
-#: ../devhelp.schemas.in.h:10
-msgid "The Y position of the main window."
-msgstr "Pozice Y hlavního okna."
-
-#: ../devhelp.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "Výška hlavního okna."
-
-#: ../devhelp.schemas.in.h:12
-msgid "The width of the index and search pane."
-msgstr "Šířka panelu rejstříku a hledání."
-
-#: ../devhelp.schemas.in.h:13
-msgid "The width of the main window."
-msgstr "Šířka hlavního okna."
-
-#: ../devhelp.schemas.in.h:14
-msgid "Use system fonts"
-msgstr "Používat písma systému"
-
-#: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "Používat implicitní písma systému"
-
-#: ../devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Jestli jsou zobrazeny pokročilé možnosti hledání."
-
-#: ../devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "Jestli má hlavní okno být po spuštění maximalizované."
-
-#: ../devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Která z karet je vybrána, \"content\" nebo \"search\"."
-
-#: ../devhelp.schemas.in.h:19
-msgid "Width of the index and search pane"
-msgstr "Šířka panelu rejstříku a hledání"
-
-#: ../devhelp.schemas.in.h:20
-msgid "Width of the main window"
-msgstr "Šířka hlavního okna"
-
-#: ../devhelp.schemas.in.h:21
-msgid "X position of main window"
-msgstr "Pozice X hlavního okna"
-
-#: ../devhelp.schemas.in.h:22
-msgid "Y position of main window"
-msgstr "Pozice Y hlavního okna"
-
-#: ../ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Písma</b>"
-
-#: ../ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Hledání</b>"
-
-#: ../ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Nastavení"
-
-#: ../ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "_Zpět"
-
-#: ../ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "_Pevná šířka:"
-
-#: ../ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "_Vpřed"
-
-#: ../ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Zobrazit pokročilé možnosti hledání"
-
-#: ../ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "_Používat písma systému"
-
-#: ../ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "Pro_měnná šířka:"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "Podpora Devhelpu"
-
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "Způsobí, že F7 spustí Devhelp pro slovo pod kurzorem"
-
-#~ msgid "_Search:"
-#~ msgstr "_Hledat:"
+#~ msgid "Browse Contents"
+#~ msgstr "Procházet obsah"
