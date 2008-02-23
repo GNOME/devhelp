@@ -1,5 +1,5 @@
 # French translation of devhelp.
-# Copyright (C) 2001-2007 Free Software Foundation, Inc.
+# Copyright (C) 2001-2008 Free Software Foundation, Inc.
 # This file is distributed under the GNU General Public License Version 2.
 #
 # Christophe Fergeau <christophe.fergeau@laposte.net>, 2001.
@@ -7,7 +7,7 @@
 # Laurent Richard <laurent.richard@lilit.be>, 2003.
 # Sebastien Bacher <seb128@debian.org>, 2003.
 # Thierry Moisan <thierryn@videotron.ca>, 2004.
-# Robert-André Mauchin <zebob.m@gmail.com>, 2006.
+# Robert-André Mauchin <zebob.m@pengzone.org>, 2006-2008.
 # Jonathan Ernst <jonathan@ernstfamily.ch>, 2006-2007.
 # Damien Durand <splinux@fedoraproject.org>, 2006.
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007.
@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-10 21:36+0200\n"
-"PO-Revision-Date: 2007-09-10 21:40+0200\n"
-"Last-Translator: Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
+"POT-Creation-Date: 2008-02-23 14:02+0100\n"
+"PO-Revision-Date: 2008-02-23 12:49+0100\n"
+"Last-Translator: Robert-André Mauchin <zebob.m@pengzone.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgid "Developer's Help program"
 msgstr "Programme d'aide pour les développeurs"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -133,7 +133,7 @@ msgstr "<b>Polices</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Recherche en cours</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Sommaire"
 
@@ -153,7 +153,7 @@ msgstr "Largeur _fixe :"
 msgid "_Forward"
 msgstr "_Suivant"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "A_ller à"
 
@@ -169,27 +169,38 @@ msgstr "_Utiliser les polices du système"
 msgid "_Variable width: "
 msgstr "Largeur _variable : "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Prise en charge de Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "Un appui sur la touche F2 permet de lancer Devhelp pour le mot à l'emplacement du curseur."
+msgstr ""
+"Un appui sur la touche F2 permet de lancer Devhelp pour le mot à "
+"l'emplacement du curseur."
 
-#: ../src/dh-main.c:90
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Afficher la documentation des API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr ""
+"Affiche la documentation des API pour le mot à l'emplacement du curseur"
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Recherche une fonction"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Quitte tous les Devhelp en cours"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Affiche la version et quitte"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Donne le focus à la fenêtre Devhelp avec le champ de recherche actif"
 
@@ -226,10 +237,12 @@ msgstr ""
 "d, colonne %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Impossible de créer l'analyseur de livres"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Impossible de créer l'analyseur de balises"
 
@@ -239,6 +252,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Impossible de décompresser le livre « %s » : %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp n'a pas été compilée avec la prise en charge de la zlib"
 
@@ -250,48 +264,121 @@ msgstr "_Livre :"
 msgid "_Page:"
 msgstr "_Page :"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50 %"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75 %"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100 %"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125 %"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150 %"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175 %"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200 %"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300 %"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400 %"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Fichier"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "É_dition"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Affichage"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "Aid_e"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Nouvelle fenêtre"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Nouvel Ongle_t"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Rechercher le suivant"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Rechercher le précédent"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Va à la page précédente"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Va à la page suivante"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Onglet du _sommaire"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Onglet de _recherche"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "A_grandir le texte"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Augmente la taille du texte"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Réduire le texte"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Diminue la taille du texte"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "Taille _normale"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Utilise la taille standard pour le texte"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Rechercher"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Christophe Fergeau <christophe.fergeau@laposte.net>\n"
@@ -299,16 +386,16 @@ msgstr ""
 "Laurent Richard <laurent.richard@lilit.be>\n"
 "Sebastien Bacher <seb128@debian.org>\n"
 "Thierry Moisan <thierryn@videotron.ca>\n"
-"Robert-André Mauchin <zebob.m@gmail.com>\n"
+"Robert-André Mauchin <zebob.m@pengzone.org>\n"
 "Jonathan Ernst <jonathan@ernstfamily.ch>\n"
 "Damien Durand <splinux@fedoraproject.org>\n"
 "Stéphane Raimbault <stephane.raimbault@gmail.com>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un navigateur d'aide pour les développeurs GNOME 2"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Page vide"
 
