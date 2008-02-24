@@ -4,16 +4,17 @@
 # Christian Neumair <chris@gnome-de.org>, 2002, 2003, 2004.
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
 # Hendrik Richter <hendrikr@gnome.org>, 2007.
-# Johannes Schmid <jhs@gnome.org>, 2007. 
+# Johannes Schmid <jhs@gnome.org>, 2007.
 # Andre Klapper <ak-47@gmx.net>, 2008.
-# 
+# Philipp Kerling <k.philipp@gmail.com>, 2008.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelper 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-20 15:53+0100\n"
-"PO-Revision-Date: 2008-01-20 15:54+0100\n"
-"Last-Translator: Andre Klapper <ak-47@gmx.net>\n"
+"POT-Creation-Date: 2008-02-24 14:32+0100\n"
+"PO-Revision-Date: 2008-02-24 14:30+0100\n"
+"Last-Translator: Philipp Kerling <k.philipp@gmail.com>\n"
 "Language-Team: German GNOME Translations <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgid "Developer's Help program"
 msgstr "Hilfeprogramm für Entwickler"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:781
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -130,7 +131,7 @@ msgstr "<b>Schriften</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Suche läuft</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Inhalt"
 
@@ -175,6 +176,14 @@ msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr ""
 "F2 drücken, und das Wort an der Zeigerposition wird in Devhelp nachgeschlagen"
 
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "API-Dokumentation anzeigen"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "API-Dokumentation für das Wort an der Zeigerposition anzeigen"
+
 #: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Nach einer Funktion suchen"
@@ -210,8 +219,7 @@ msgstr ""
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"»name« sowie »link«-Elemente in <sub> erforderlich - Zeile %d, Spalte %d"
+msgstr "»name« sowie »link«-Elemente in <sub> erforderlich - Zeile %d, Spalte %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
@@ -221,10 +229,12 @@ msgstr ""
 "»name« sowie »link«-Elemente in <function> erforderlich - Zeile %d, Spalte %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Buchverarbeiter konnte nicht angelegt werden"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Auszeichnungsverarbeiter konnte nicht angelegt werden"
 
@@ -234,6 +244,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Buch »%s« konnte nicht entpackt werden: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp wurde ohne zlib-Unterstützung kompiliert"
 
@@ -355,21 +366,21 @@ msgstr "_Normale Größe"
 msgid "Use the normal text size"
 msgstr "Die normale Textgröße verwenden"
 
-#: ../src/dh-window.c:520
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Suche"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Christian Meyer\n"
 "Christian Neumair"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
 
-#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Leere Seite"
 
