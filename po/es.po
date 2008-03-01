@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 15:13+0000\n"
+"POT-Creation-Date: 2008-02-16 15:58+0000\n"
 "PO-Revision-Date: 2008-02-16 16:39+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
@@ -208,7 +208,8 @@ msgstr "Espacio de nombres inválido «%s» en la línea %d, columna %d"
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "los elementos título, nombre y enlace se requieren en la línea %d, columna %d"
+msgstr ""
+"los elementos título, nombre y enlace se requieren en la línea %d, columna %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
@@ -219,7 +220,8 @@ msgstr ""
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "los elementos nombre y enlace se requieren dentro de <function> en la línea %"
 "d, columna %d"
@@ -396,4 +398,3 @@ msgstr "Coincidir con capitalización"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Conmutar búsqueda discriminando capitalización"
-
