@@ -1,20 +1,20 @@
-# translation of mk.po to Macedonian
+# translation of devhelp.HEAD.mk.po to Macedonian
 # translation of devhelp.HEAD.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 #
 # Ime Prezime <email@adresa.com>, 2003.
 # Arangel Angov <ufo@linux.net.mk>, 2006, 2007, 2008.
-# Jovan Naumovski <jovan@lugola.net>, 2007.
+# Jovan Naumovski <jovan@lugola.net>, 2007, 2008.
 # Arangel Angov <arangel@linux.net.mk>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: mk\n"
+"Project-Id-Version: devhelp.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-13 13:46+0000\n"
-"PO-Revision-Date: 2008-02-10 12:15+0100\n"
-"Last-Translator: Arangel Angov <ufo@linux.net.mk>\n"
-"Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
+"POT-Creation-Date: 2008-02-16 15:13+0000\n"
+"PO-Revision-Date: 2008-03-02 18:39+0100\n"
+"Last-Translator: Jovan Naumovski <jovan@lugola.net>\n"
+"Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +25,7 @@ msgid "Developer's Help program"
 msgstr "Помошна програма за програмери"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:781
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -129,7 +129,7 @@ msgstr "<b>Фонтови</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Пребарување</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Содржини"
 
@@ -172,6 +172,14 @@ msgstr "Поддршка за Devhelp"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Прави F2 да го подигнува Devhelp на зборчето каде што е курсорот"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Прикажи API документација"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Прикажувај API документација за зборот под стрелката"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -349,19 +357,19 @@ msgstr "_Нормална големина"
 msgid "Use the normal text size"
 msgstr "Користи нормална големина на текст"
 
-#: ../src/dh-window.c:520
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Пребарувај"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "Арангел Ангов <ufo@linux.net.mk>"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Пребарувач за помош на развивачот за GNOME 2"
 
-#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Празна страница"
 
