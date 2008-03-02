@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-17 09:41+0200\n"
-"PO-Revision-Date: 2007-09-17 09:40+0200\n"
+"POT-Creation-Date: 2008-03-02 14:14+0100\n"
+"PO-Revision-Date: 2008-03-02 14:26+0100\n"
 "Last-Translator: Francesco Marletta <francesco.marletta@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgid "Developer's Help program"
 msgstr "Programma di aiuto per sviluppatori"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -55,9 +55,10 @@ msgstr "Altezza della finestra principale"
 msgid "Main window maximized state"
 msgstr "Stato di massimizzazione della finestra principale"
 
+# GNOME-2-22
 #: ../data/devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "Scheda selezionata, \"sommario\" o \"cerca\""
+msgstr "Scheda selezionata, \"content\" o \"search\""
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Show advanced search options"
@@ -100,9 +101,10 @@ msgid "Whether the main window should start maximized or not."
 msgstr ""
 "Indica se la finestra principale deve essere avviata massimizzata o no."
 
+# GNOME-2-22
 #: ../data/devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Quale delle schede è selezionata, \"sommario\" o \"cerca\"."
+msgstr "Quale delle schede è selezionata, \"content\" o \"search\"."
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
@@ -128,7 +130,7 @@ msgstr "<b>Tipi di carattere</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Ricerca in corso</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Sommario"
 
@@ -148,9 +150,10 @@ msgstr "Larghezza _fissa:"
 msgid "_Forward"
 msgstr "_Avanti"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+# GNOME-2-22
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
-msgstr "_Vai"
+msgstr "V_ai"
 
 #: ../data/ui/devhelp.glade.h:10
 msgid "_Show advanced search options"
@@ -164,28 +167,38 @@ msgstr "_Usare i tipi di carattere di sistema"
 msgid "_Variable width: "
 msgstr "Larghezza _variabile:"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Supporto DevHelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr ""
 "Imposta F2 come attivatore di Devhelp per la parola dove si trova il cursore"
 
-#: ../src/dh-main.c:90
+# GNOME-2-22
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Mostra documentazione API"
+
+# GNOME-2-22
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Mostra la documentazione API per la parola alla posizione del cursore"
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Cerca una funzione"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Termina ogni Devhelp in esecuzione"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Mostra la versione ed esce"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Dà il focus alla finestra di devhelp con il campo di ricerca attivo"
 
@@ -251,56 +264,140 @@ msgstr "_Libro:"
 msgid "_Page:"
 msgstr "_Pagina:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_File"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Modifica"
 
-#: ../src/dh-window.c:159
+# GNOME-2-22
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Visualizza"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "A_iuto"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Nuova finestra"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Nuova _scheda"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Trova successiva"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Trova precedente"
 
-#: ../src/dh-window.c:189
+# GNOME-2-22
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Va alla pagina precedente"
+
+# GNOME-2-22
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Va alla pagina successiva"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Scheda _sommario"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Scheda _ricerca"
 
-#: ../src/dh-window.c:473
+# GNOME-2-22
+# tradotto come in Ephy, non so se anche
+# gli originali coincidono --Luca
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "Testo più _grande"
+
+# GNOME-2-22
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Aumenta la dimensione del testo"
+
+# GNOME-2-22
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "Testo più _piccolo"
+
+# GNOME-2-22
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Riduce la dimensione del testo"
+
+# GNOME-2-22
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "Dimensione _normale"
+
+# GNOME-2-22
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Usa la dimensione normale del testo"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Cerca"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "Francesco Marletta <francesco.marletta@tiscali.it>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un visualizzatore per la documentazione degli sviluppatori per GNOME 2"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Pagina vuota"
 
@@ -316,9 +413,10 @@ msgstr "Trova l'occorrenza precedente della stringa di ricerca"
 msgid "Find next occurrence of the search string"
 msgstr "Trova l'occorrenza successiva della stringa di ricerca"
 
+# GNOME-2-22
 #: ../src/eggfindbar.c:348
 msgid "Case Sensitive"
-msgstr "Maiuscole/Minuscole"
+msgstr "Distingui MAIUSCOLE/minuscole"
 
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
