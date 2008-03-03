@@ -1,24 +1,29 @@
-# Copyright (C) 2001-2003 Free Software Foundation, Inc.
+# translation of devhelp to Russian
+# Copyright (C) 2001-2003, 2008 Free Software Foundation, Inc.
+#
 # Valek Filippov <frob@df.ru>, 2001-2003.
-# 
+# Yuri Kozlov <kozlov.y@gmail.com>, 2008.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 21:59+0100\n"
-"PO-Revision-Date: 2007-09-14 14:26+0400\n"
-"Last-Translator: Nickolay V. Shmyrev <nshmyrev@yandex.ru>\n"
+"POT-Creation-Date: 2008-03-03 23:35+0300\n"
+"PO-Revision-Date: 2008-03-02 19:09+0300\n"
+"Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Программа справки для разработчиков"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -84,7 +89,7 @@ msgstr "Использовать системные шрифты"
 
 #: ../data/devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
-msgstr "Использовать системные шрифты по-умолчанию"
+msgstr "Использовать системные шрифты по умолчанию"
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."
@@ -122,7 +127,7 @@ msgstr "<b>Шрифты</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Поиск</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Содержание"
 
@@ -142,7 +147,7 @@ msgstr "_Фиксированная ширина:"
 msgid "_Forward"
 msgstr "_Вперед"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Перейти"
 
@@ -158,27 +163,35 @@ msgstr "_Использовать исходные шрифты темы"
 msgid "_Variable width: "
 msgstr "_Переменная ширина: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Подсказки Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Вызывать Devhelp по нажатию F2 для слова под курсором"
 
-#: ../src/dh-main.c:90
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Показать документацию по API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Показать документацию по API для слова под курсором"
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Поиск функции"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Выйти из Devhelp"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Отобразить версию и выйти"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "При переходе в окно Devhelp помещать курсор в поле поиска"
 
@@ -237,58 +250,131 @@ msgstr "_Книга:"
 msgid "_Page:"
 msgstr "_Страница:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Правка"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Вид"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Справка"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Новое окно"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Новая _закладка"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Найти следующее"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Найти предыдущее"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Перейти на предыдущую страницу"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Перейти на следующую страницу"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Сод_ержание"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "П_оиск"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "Укрупнить текст"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Увеличить размер текста"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "Уменьшить текст"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Уменьшить размер текста"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "Обычный размер"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Использовать нормальный размер текста"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Поиск"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Валек Филиппов <frob@df.ru>\n"
 "Сергей Сафонов <spoof@spoofa.info>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Программа просмотра справки для разработчиков"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Пустая страница"
 
@@ -311,4 +397,3 @@ msgstr "С учётом регистра"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Включить поиск, чувствительный к регистру"
-
