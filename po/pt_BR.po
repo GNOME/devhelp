@@ -4,7 +4,7 @@
 # Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002-2003.
 # based on the GNOME 2.0 translation to Portuguese (pt) by
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001.
-# Raphael Higino <in memoriam>, 2004.
+# Raphael Higino <In memoriam>, 2004.
 # Luiz Fernando S. Armesto <luiz.armesto@gmail.com>, 2007.
 # Washington Lins <washington-lins@uol.com.br>, 2007.
 # Og Maciel <ogmaciel@gnome.org>, 2007-2008.
@@ -378,7 +378,7 @@ msgstr "Pesquisar"
 msgid "translator_credits"
 msgstr ""
 "Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
-"Raphael Higino <phhigino@gmail.com>\n"
+"Raphael Higino <In memoriam>\n"
 "Luiz Armesto <luiz.armesto@gmail.com>\n"
 "Washington Lins <washington-lins@uol.com.br>\n"
 "Og Maciel <ogmaciel@gnome.org>"
