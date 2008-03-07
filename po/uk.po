@@ -2,14 +2,14 @@
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 # Yuriy Syrota <rasta@cvs.gnome.org>, 2003.
-# Maxim Dziumanenko <dziumanenko@gmail.com>, 2007
+# Maxim Dziumanenko <dziumanenko@gmail.com>, 2007-2008
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-25 13:41+0200\n"
-"PO-Revision-Date: 2007-09-07 03:23--500\n"
+"POT-Creation-Date: 2008-03-08 01:07+0200\n"
+"PO-Revision-Date: 2008-03-08 03:23--500\n"
 "Last-Translator: Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <linux@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,14 @@ msgstr "Підказки Devhelp"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Викликати Devhelp при натисканні F2 для слова під курсором"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Показати документацію з API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Показати документацію з API для слова під курсором"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
