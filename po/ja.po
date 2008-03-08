@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-15 23:02+0900\n"
-"PO-Revision-Date: 2008-02-15 23:01+0900\n"
+"POT-Creation-Date: 2008-03-08 14:40+0900\n"
+"PO-Revision-Date: 2008-03-08 14:40+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -166,6 +166,14 @@ msgstr "Devhelp のサポート"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "[F2] キーを押してカーソル位置にある単語を Devhelp から検索します。"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "API ドキュメントの参照"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "カーソル位置にある文字列に対応する API ドキュメントを表示します。"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
