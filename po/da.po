@@ -1,17 +1,17 @@
 # Danish translation of DevHelp.
-# Copyright (C) 2001-2007 Free Software Foundation, Inc.
+# Copyright (C) 2001-2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 #
 # Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-09 01:49+0200\n"
-"PO-Revision-Date: 2007-09-08 14:11+0200\n"
+"POT-Creation-Date: 2008-03-10 23:43+0100\n"
+"PO-Revision-Date: 2008-03-10 00:37+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Hjælpeprogram til udviklere"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Udviklerhjælp"
 
@@ -128,7 +128,7 @@ msgstr "<b>Skrifttyper</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Søger</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Indhold"
 
@@ -148,7 +148,7 @@ msgstr "_Fast bredde:"
 msgid "_Forward"
 msgstr "_Fremad"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Gå til"
 
@@ -165,27 +165,35 @@ msgid "_Variable width: "
 msgstr "_Variabel bredde: "
 
 # Denne msgid ligger i et gedit-plugin, så det er nok en knap hvor man kan køre devhelp, eller indstille understøttelsen af devhelp. At oversætte det til blot Udviklerhjælp kan derfor ikke gå helt galt, men ethvert andet gæt på om det betyder understøttelse af devhelp, eller hjælp til devhelp eller noget andet vil være risikabelt
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Udviklerhjælp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Får F2 til at starte Udviklerhjælp for ordet ved markøren"
 
-#: ../src/dh-main.c:90
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Vis API-dokumentation"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Vis API-dokumentation for ordet ved markøren"
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Søg efter en funktion"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Afslut alle kørende udviklerhjælp"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Vis versionsnummeret og afslut"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "Fokusér Udviklerhjælp-vinduet med fokus på søgefeltet"
 
@@ -219,10 +227,12 @@ msgstr ""
 "d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Kunne ikke oprette bogfortolker"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Kunne ikke oprette opmærkningsfortolker"
 
@@ -232,6 +242,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan ikke udpakke bogen \"%s\": %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Udviklerhjælp er ikke kompileret med understøttelse for zlib"
 
@@ -243,48 +254,121 @@ msgstr "_Bog:"
 msgid "_Page:"
 msgstr "_Side:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Fil"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Redigér"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Vis"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Hjælp"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_Nyt vindue"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Nyt _Faneblad"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Find næste"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Find forrige"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Gå til forrige side"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Gå til næste side"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "_Indholdsfaneblad"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "_Søgefaneblad"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "_Større tekst"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Forøg skriftstørrelsen"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Mindre skrift"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Formindsk skriftstørrelsen"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Normal størrelse"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Brug normal skriftstørrelse"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Søg"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Ole Laursen\n"
@@ -294,11 +378,11 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "En hjælpefremviser for udviklere til GNOME 2"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Tom side"
 
@@ -535,26 +619,17 @@ msgstr "Slå versalfølsom søgning til/fra"
 #~ msgid "Open preferences dialog"
 #~ msgstr "Åbn vinduet med indstillinger"
 
-#~ msgid "Print the html page"
-#~ msgstr "Udskriv html-siden"
-
 #~ msgid "Show sidebar"
 #~ msgstr "Vis sidepanel"
 
 #~ msgid "_Print"
 #~ msgstr "_Udskriv"
 
-#~ msgid "_View"
-#~ msgstr "_Vis"
-
 #~ msgid "Book Manager..."
 #~ msgstr "Boghåndtering..."
 
 #~ msgid "Go to next page in the history"
 #~ msgstr "Gå til næste side i historikken"
-
-#~ msgid "Go to previous page in the history"
-#~ msgstr "Gå til foregående side i historikken"
 
 #~ msgid "Open the book manager dialog"
 #~ msgstr "Åbn boghåndteringsvinduet"
