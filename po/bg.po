@@ -1,14 +1,14 @@
 # Bulgarian translation of devhelp po-file.
-# Copyright (C) 2005, 2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
-# Yavor Doganov <yavor@gnu.org>, 2005, 2006, 2007.
-# 
+# Yavor Doganov <yavor@gnu.org>, 2005, 2006, 2007, 2008.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-16 13:38+0300\n"
-"PO-Revision-Date: 2007-09-16 13:38+0300\n"
+"POT-Creation-Date: 2008-03-11 08:51+0200\n"
+"PO-Revision-Date: 2008-03-11 08:50+0200\n"
 "Last-Translator: Yavor Doganov <yavor@gnu.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "Developer's Help program"
 msgstr "Програма за помощ на разработчика"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -127,7 +127,7 @@ msgstr "<b>Шрифтове</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Търсене</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Съдържание"
 
@@ -147,7 +147,7 @@ msgstr "С _фиксирана широчина:"
 msgid "_Forward"
 msgstr "На_пред"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Отиване"
 
@@ -163,28 +163,36 @@ msgstr "_Използване на системни шрифтове"
 msgid "_Variable width: "
 msgstr "_С променлива широчина: "
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Поддръжка за Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr ""
 "F2 да стартира Devhelp и да се покаже помощ за думата на позицията на курсора"
 
-#: ../src/dh-main.c:90
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Документация за API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Показване на документацията за API за думата при курсора"
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Търсене за функция"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Изход от всички стартирани програми Devhelp"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Показване на версията и изход"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr ""
 "Фокусиране на прозореца на Devhelp с активирано\n"
@@ -218,10 +226,12 @@ msgstr ""
 "необходими са име и елементи на връзка във <function> на ред %d, колона %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Неуспех при създаването на анализатор на книга"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Неуспех при създаването на анализатор на етикети"
 
@@ -231,6 +241,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Книгата „%s“ не може да се разкомпресира: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp не е компилиран с поддръжка на „zlib“"
 
@@ -242,48 +253,121 @@ msgstr "_Книга:"
 msgid "_Page:"
 msgstr "_Страница:"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_Редактиране"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Изглед"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_Помощ"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "Нов п_розорец"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "Нов _подпрозорец"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Следващо съвпадение"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Предходно съвпадение"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Отиване на предходната страница"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Отиване на следващата страница"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "_Съдържание"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "_Търсене"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "По-_голям текст"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Увеличаване на размера на текста"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "По-_малък текст"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Намаляване на размера на текста"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Нормален размер"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Използване на нормалния размер на текста"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Търсене"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "Явор Доганов <yavor@gnu.org>\n"
@@ -292,11 +376,11 @@ msgstr ""
 "Научете повече за нас на http://gnome.cult.bg\n"
 "Докладвайте за грешки на http://gnome.cult.bg/bugs"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Браузър на ръководства за разработчици на GNOME"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Празна страница"
 
