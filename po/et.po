@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-16 15:13+0000\n"
-"PO-Revision-Date: 2008-02-18 13:25+0200\n"
+"PO-Revision-Date: 2008-03-12 20:54+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -298,7 +298,7 @@ msgstr "_Vaade"
 
 #: ../src/dh-window.c:191
 msgid "_Help"
-msgstr "_Abi"
+msgstr "A_bi"
 
 #. File menu
 #: ../src/dh-window.c:194
