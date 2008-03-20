@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-18 18:07+0100\n"
-"PO-Revision-Date: 2008-03-18 18:25+0100\n"
+"POT-Creation-Date: 2008-03-20 10:14+0100\n"
+"PO-Revision-Date: 2008-03-20 11:43+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
-msgstr "Program ndihmës për zhvilluesit"
+msgstr "Program ndihmues për zhvilluesit"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
 #: ../src/dh-main.c:151 ../src/dh-window.c:790
@@ -392,7 +392,7 @@ msgstr "Gjej korrispondimin në vazhdim të tekstit të kërkuar"
 
 #: ../src/eggfindbar.c:348
 msgid "Case Sensitive"
-msgstr "I ndjeshëm ndaj ndryshimit gërma të mëdha/vogla"
+msgstr "Ndjeshmëri ndaj ndryshimit gërma të mëdha/vogla"
 
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
