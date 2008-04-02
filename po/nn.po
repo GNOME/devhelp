@@ -1,0 +1,393 @@
+# Norwegian/Nynorsk translation of devhelp.
+# Copyright (C) 2001-2008 Free Software Foundation, Inc.
+# Kjartan Maraas <kmaraas@gnome.org>, 2001-2008.
+# Eskild Hustvedt <eskildh@gnome.org>, 2008
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp 0.16\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-02-17 12:17+0100\n"
+"PO-Revision-Date: 2008-04-02 14:26+0200\n"
+"Last-Translator: Eskild Hustvedt <eskildh@gnome.org>\n"
+"Language-Team: Norwegian Nynorsk <i18n-no@lister.ping.uio.no>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "Hjelplesar for utviklarar"
+
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Dokumentasjonsvising"
+
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Skrift for tekst med fast storleik"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Skrift for tekst"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Skrift for tekst med fast breidd."
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Skrift for tekst med variabel breidd."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Storleik for hovudvindauget"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "Maksimert tilstand for hovudvindauget"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "Vald fane, «content» eller «search»"
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "Vis avanserte søkjealternativ"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the main window."
+msgstr "Horisontal posisjon for hovudvindauget."
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Vertikal posisjon for hovudvindauget."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Storleik på hovudvindauget."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "Breidd på indeks og søkjevindauget."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The width of the main window."
+msgstr "Breidd på hovudvindauget."
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "Use system fonts"
+msgstr "Bruk systemets skrifter"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "Use the systems default fonts."
+msgstr "Bruk systemets forvalgte skrifter."
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "Hvorvidt avanserte søkjealternativ skal vert viste."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "Om hovudvindauget skal startast maksimert eller ikkje."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "Kva fane er vald; «content» eller «search»."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Breidd på indeks og hovudvindauget"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "Breidd på hovudvindauget"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "X position of main window"
+msgstr "Horisontal posisjon for hovudvindauget"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Y position of main window"
+msgstr "Vertikal posisjon for hovudvindauget"
+
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>Skrifter</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>Søk</b>"
+
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+msgid "Contents"
+msgstr "Innhald"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "Innstillingar"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "Til_bake"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "_Fast breidd:"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "_Framover"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+msgid "_Go"
+msgstr "_Gå"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "Vi_s avanserte søkjealternativ"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "Br_uk systemskrifter"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "_Variabel breidd: "
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Støtte for Devhelp"
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Start Devhelp for ordet ved markøren med F2"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Vis API-dokumentasjon"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Vis API-dokumentasjon for ordet ved markøren"
+
+#: ../src/dh-main.c:100
+msgid "Search for a function"
+msgstr "Søk etter ein funksjon"
+
+#: ../src/dh-main.c:109
+msgid "Quit any running Devhelp"
+msgstr "Avslutt Devhelp"
+
+#: ../src/dh-main.c:118
+msgid "Display the version and exit"
+msgstr "Vis versjon og avslutt"
+
+#: ../src/dh-main.c:127
+msgid "Focus the devhelp window with the search field active"
+msgstr "Fokuser devhelp-vindauget med søkjefeltet aktivt"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "Forventa «%s» fikk «%s» ved linje %d, kolonne %d"
+
+#: ../src/dh-parser.c:128
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Ugyldig namneområde «%s» ved linje %d, kolonne %d"
+
+#: ../src/dh-parser.c:158
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "tittel, namn og lenkjeelementer kreves ved linje %d, kolonne %d"
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "namn og lenkjeelementer kreves inne i <sub> på linje %d, kolonne %d"
+
+#: ../src/dh-parser.c:297
+#, c-format
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "namn og lenkjeelementer kreves inne i <function> på linje %d, kolone %d"
+
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
+msgid "Could not create book parser"
+msgstr "Kunne ikkje oppretta boklesar"
+
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
+msgid "Could not create markup parser"
+msgstr "Kunne ikkje oppretta lesar for taggar"
+
+#: ../src/dh-parser.c:578
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Kan ikkje dekomprimere bok «%s»: %s"
+
+#: ../src/dh-parser.c:603
+#, c-format
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp er ikkje bygget med støtte for zlib"
+
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "_Bok:"
+
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "_Side:"
+
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
+msgid "_File"
+msgstr "_Fil"
+
+#: ../src/dh-window.c:188
+msgid "_Edit"
+msgstr "R_ediger"
+
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "_Vis"
+
+#: ../src/dh-window.c:191
+msgid "_Help"
+msgstr "_Hjelp"
+
+#. File menu
+#: ../src/dh-window.c:194
+msgid "_New Window"
+msgstr "_Nytt vindauge"
+
+#: ../src/dh-window.c:196
+msgid "New _Tab"
+msgstr "Ny _fane"
+
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "Finn neste"
+
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Finn førre"
+
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Gå til førre side"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Gå til neste side"
+
+#: ../src/dh-window.c:223
+msgid "_Contents Tab"
+msgstr "_Innhaldsfane"
+
+#: ../src/dh-window.c:226
+msgid "_Search Tab"
+msgstr "_Søkjefane"
+
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "S_tørre tekst"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Bruk større tekst"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "_Mindre tekst"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Bruk mindre tekst"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Normal storleik"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Bruk normal tekststørrelse"
+
+#: ../src/dh-window.c:529
+msgid "Search"
+msgstr "Søk"
+
+#: ../src/dh-window.c:787
+msgid "translator_credits"
+msgstr "Kjartan Maraas <kmaraas@gnome.org>\n"
+"Eskild Hustvedt <eskildh@gnome.org>"
+
+#: ../src/dh-window.c:792
+msgid "A developer's help browser for GNOME 2"
+msgstr "Ein hjelplesar for utviklere for GNOME 2"
+
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+msgid "Empty Page"
+msgstr "Tom side"
+
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "Finn:"
+
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "Finn førre oppføring av søkjestrengen"
+
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "Finn neste oppføring av søkjestrengen"
+
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "Skil mellom små/store bokstavar"
+
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "Slå av/på skilja mellom små/store bokstavar"
