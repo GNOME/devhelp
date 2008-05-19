@@ -9,14 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 15:09+0000\n"
+"POT-Creation-Date: 2008-02-16 15:13+0000\n"
 "PO-Revision-Date: 2008-02-16 15:11+0100\n"
 "Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Poedit-Language: Arabic\n"
 "X-Generator: KBabel 1.11.4\n"
 
@@ -24,10 +25,8 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "برنامج مساعدة المطوِّرين"
 
-#: ../data/devhelp.desktop.in.in.h:2
-#: ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151
-#: ../src/dh-window.c:790
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -131,8 +130,7 @@ msgstr "<b>الخطوط</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>البحث</b>"
 
-#: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "المحتويات"
 
@@ -152,8 +150,7 @@ msgstr "_ثابت العرض:"
 msgid "_Forward"
 msgstr "للأ_مام"
 
-#: ../data/ui/devhelp.glade.h:9
-#: ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "ا_ذهب"
 
@@ -201,9 +198,7 @@ msgstr "اعرض الإصدار و اخرج"
 msgid "Focus the devhelp window with the search field active"
 msgstr "ركز على خانة البحث النشيطة في نافذة devhelp"
 
-#: ../src/dh-parser.c:110
-#: ../src/dh-parser.c:194
-#: ../src/dh-parser.c:271
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "توقعت '%s' حصلت على '%s' في السطر %d، و العمود %d"
@@ -225,18 +220,15 @@ msgstr "عنصري الاسم والوصلة مطلوبين بداخل <sub> ف�
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr "عنصري الاسم والوصلة مطلوبين بداخل <function> في السطر %d، والعمود %d"
 
-#: ../src/dh-parser.c:420
-#: ../src/dh-parser.c:515
-#, c-format
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 msgid "Could not create book parser"
 msgstr "لم أستطع إنشاء محلل كتاب"
 
-#: ../src/dh-parser.c:436
-#: ../src/dh-parser.c:525
-#, c-format
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 msgid "Could not create markup parser"
 msgstr "لم أستطع إنشاء محلل رقْم"
 
@@ -246,7 +238,6 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "لم أستطع فك ضغط الكتاب '%s': %s"
 
 #: ../src/dh-parser.c:603
-#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "لم يُبنى Devhelp بدعم zlib "
 
@@ -319,13 +310,11 @@ msgstr "نافذة _جديدة"
 msgid "New _Tab"
 msgstr "_لسان جديد"
 
-#: ../src/dh-window.c:208
-#: ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "ابحث عن التالي"
 
-#: ../src/dh-window.c:210
-#: ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "ابحث عن السابق"
 
@@ -384,8 +373,7 @@ msgstr ""
 msgid "A developer's help browser for GNOME 2"
 msgstr "متصفح مساعدة مطوري جنوم 2"
 
-#: ../src/dh-window.c:1186
-#: ../src/dh-window.c:1381
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "صفحة فارغة"
 
@@ -408,4 +396,3 @@ msgstr "حسّاس لحالة الأحرف"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "بدّل البحث الحسّاس لحالة الأحرف"
-
