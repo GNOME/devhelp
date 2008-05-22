@@ -8,9 +8,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp HEAD\n"
+"Project-Id-Version: devhelp GNOME 2.22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 15:13+0000\n"
+"POT-Creation-Date: 2008-05-22 03:15+0000\n"
 "PO-Revision-Date: 2008-03-12 20:54+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -224,10 +224,12 @@ msgstr ""
 "%d. rea %d. veerul peavas <function> sildi sees olema nime ja viida kirjed"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Raamatu parserit pole võimalik luua"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Märkimiskeele parserit pole võimalik luua"
 
@@ -237,6 +239,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Raamatut '%s' pole võimalik lahti pakkida: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp pole kompileeritud koos zlib'i toega"
 
