@@ -4,18 +4,18 @@
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 # 
 msgid ""
-""
-msgstr "Project-Id-Version: devhelp 0.15\n"
+msgstr ""
+"Project-Id-Version: devhelp 0.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-19 17:41+0000\n"
-"PO-Revision-Date: 2008-01-04 18:53+1030\n"
+"POT-Creation-Date: 2008-02-16 15:13+0000\n"
+"PO-Revision-Date: 2008-05-24 23:12+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
-"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.7b1\n"
+"X-Generator: LocFactoryEditor 1.7b3\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -23,8 +23,8 @@ msgstr "Chương trình trợ giúp cho nhà phát triển"
 
 #: ../data/devhelp.desktop.in.in.h:2
 #: ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:149
-#: ../src/dh-window.c:776
+#: ../src/dh-main.c:151
+#: ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Trợ giúp phát triển"
 
@@ -129,7 +129,7 @@ msgid "<b>Searching</b>"
 msgstr "<b>Tìm kiếm</b>"
 
 #: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:505
+#: ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Mục lục"
 
@@ -174,21 +174,30 @@ msgstr "Hỗ trợ của Trợ giúp phát triển"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Đặt phím F2 để hiển thị Trợ giúp Phát triển cho từ ở vị trí con trỏ"
 
-#: ../src/dh-main.c:98
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "Hiển thị tài liệu hướng dẫn API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Hiển thị tài liệu hướng dẫn API cho từ ở vị trí con trỏ"
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "Tìm kiếm hàm"
 
-#: ../src/dh-main.c:107
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "Thoát bất kì chương trình trợ giúp phát triển nào đang chạy"
 
-#: ../src/dh-main.c:116
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "Hiển thị phiên bản rồi thoát"
 
-#: ../src/dh-main.c:125
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
-msgstr "Đặt tiêu điểm trong cửa sổ trợ giúp phát triển, có trường tìm kiếm còn hoạt "
+msgstr ""
+"Đặt tiêu điểm trong cửa sổ trợ giúp phát triển, có trường tìm kiếm còn hoạt "
 "động"
 
 #: ../src/dh-parser.c:110
@@ -211,13 +220,15 @@ msgstr "các yếu tố tiêu đề, tên và liên kết đều phải có tạ
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "các yếu tố tên và liên kết đều phải có bên trong <sub> tại dòng %d, cột %d"
+msgstr ""
+"các yếu tố tên và liên kết đều phải có bên trong <sub> tại dòng %d, cột %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr "các yếu tố tên và liên kết đều phải có bên trong <function> tại dòng %d, cột "
+msgstr ""
+"các yếu tố tên và liên kết đều phải có bên trong <function> tại dòng %d, cột "
 "%d"
 
 #: ../src/dh-parser.c:420
@@ -299,8 +310,8 @@ msgstr "_Xem"
 msgid "_Help"
 msgstr "Trợ _giúp"
 
-#.File menu
 #: ../src/dh-window.c:194
+#. File menu
 msgid "_New Window"
 msgstr "Cửa sổ _mới"
 
@@ -318,28 +329,61 @@ msgstr "Tìm kế"
 msgid "Find Previous"
 msgstr "Tìm lùi"
 
-#: ../src/dh-window.c:221
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "Đi về trang trước"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "Đi tới trang kế tiếp"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "Thẻ Mụ_c lục"
 
-#: ../src/dh-window.c:224
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "Thẻ Tìm _kiếm"
 
-#: ../src/dh-window.c:515
+#: ../src/dh-window.c:230
+#. View menu
+msgid "_Larger Text"
+msgstr "Chữ _lớn hơn"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "Tăng kích cỡ của các chữ"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "Chữ _nhỏ hơn"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "Giảm kích cỡ của các chữ"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "_Kích cỡ chuẩn"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "Dùng kích cỡ chữ tiêu chuẩn"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "Nhóm Việt hóa Gnome <gnomevi-list@lists.sourceforge.net>"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "Bộ duyệt trợ giúp của GNOME 2 dành cho nhà phát triển"
 
-#: ../src/dh-window.c:1172
-#: ../src/dh-window.c:1370
+#: ../src/dh-window.c:1186
+#: ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Trang trắng"
 
@@ -362,6 +406,3 @@ msgstr "Phân biệt chữ hoa/thường"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Bật/tắt phân biệt chữ hoa/thường"
-
-#~ msgid "Browse Contents"
-#~ msgstr "Duyệt mục lục"
