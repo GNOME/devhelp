@@ -1,5 +1,10 @@
 2008-05-25  Richard Hult  <richard@imendio.com>
 
+	* configure.in:
+	* src/dh-window.c: (window_populate): Hook up mac menubar.
+
+2008-05-25  Richard Hult  <richard@imendio.com>
+
 	* README: Update the section on dependencies.
 
 2008-05-25  Richard Hult  <richard@imendio.com>

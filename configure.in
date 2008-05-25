@@ -32,12 +32,14 @@ IGE_PLATFORM_CHECK
 if test "x$IGE_PLATFORM" = xx11; then
    gconf_pkgconfig="gconf-2.0 >= 2.6.0"
    libwnck_pkgconfig="libwnck-1.0 >= 2.10.0"
+   igemacintegration_pkgconfig=
    REQUIRES_LIBWNCK=libwnck-1.0
    PLATFORM_CFLAGS=
    PLATFORM_LDFLAGS=
 else
    gconf_pkgconfig="gconf-2.0 >= 2.6.0"
    libwnck_pkgconfig=
+   igemacintegration_pkgconfig="ige-mac-integration >= 0.8.2"
    REQUIRES_LIBWNCK=
    PLATFORM_CFLAGS=
    PLATFORM_LDFLAGS=
@@ -58,6 +60,7 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
 	libglade-2.0 >= 2.4.0
 	$gconf_pkgconfig
         $libwnck_pkgconfig
+        $igemacintegration_pkgconfig
 ])
 
 PKG_CHECK_MODULES([WEBKIT], [webkit-1.0])
