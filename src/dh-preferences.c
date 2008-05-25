@@ -25,7 +25,6 @@
 #include <string.h>
 
 #include "dh-util.h" 
-#include "dh-gecko-utils.h"
 #include "dh-preferences.h"
 #include "dh-base.h"
 
@@ -383,8 +382,7 @@ preferences_update_fonts (gpointer unused)
 	preferences_get_font_names (use_system_fonts,
 				    &var_font_name, &fixed_font_name);
 
-	dh_gecko_utils_set_font (DH_GECKO_PREF_FONT_VARIABLE, var_font_name);
-	dh_gecko_utils_set_font (DH_GECKO_PREF_FONT_FIXED, fixed_font_name);
+    // FIXME: Set WebKit font preferences
 
 	g_free (var_font_name);
 	g_free (fixed_font_name);

@@ -33,7 +33,6 @@
 #include <libwnck/libwnck.h>
 #endif
 
-#include "dh-gecko-utils.h"
 #include "dh-window.h"
 #include "dh-link.h"
 #include "dh-parser.h"
@@ -133,8 +132,6 @@ dh_base_finalize (GObject *object)
 
 	g_object_unref (priv->gconf_client);
 	
-	dh_gecko_utils_shutdown ();
-
 	parent_class->finalize (object);
 }
 
@@ -342,8 +339,6 @@ DhBase *
 dh_base_get (void)
 {
 	if (!base_instance) {
-		dh_gecko_utils_init ();
-		
 		base_instance = g_object_new (DH_TYPE_BASE, NULL);		
 
 		base_init_books (base_instance);

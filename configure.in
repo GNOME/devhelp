@@ -1,15 +1,14 @@
-AC_INIT([Devhelp],[0.19.1],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+AC_INIT([Devhelp],[0.20],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
   
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/dh-window.c])
 
 AM_SANITY_CHECK
 AM_MAINTAINER_MODE
 
 AC_PROG_CC
-AC_PROG_CXX
+AM_PROG_CC_C_O
 AC_ISC_POSIX
 AC_HEADER_STDC
 
@@ -61,57 +60,9 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
         $libwnck_pkgconfig
 ])
 
-# *****
-# Gecko
-# *****
-
-GECKO_INIT([GECKO])
-
-AC_SUBST([GECKO])
-AC_SUBST([GECKO_FLAVOUR])
-AC_SUBST([GECKO_INCLUDE_ROOT])
-AC_SUBST([GECKO_HOME])
-AC_SUBST([GECKO_PREFIX])
-AC_SUBST([GECKO_EXTRA_LIBS])
-
-case "$GECKO" in
-mozilla) gecko_min_version=1.7 ;;
-seamonkey) gecko_min_version=1.0 ;;
-*firefox) gecko_min_version=1.0 ;;
-*thunderbird) gecko_min_version=1.0 ;;
-xulrunner) gecko_min_version=1.8 ;;
-esac
-
-PKG_CHECK_MODULES([GECKO],[$GECKO_EXTRA_PKG_DEPENDENCIES $GECKO-xpcom >= $gecko_min_version])
-AC_SUBST([GECKO_CFLAGS])
-AC_SUBST([GECKO_LIBS])
-
-# **********************************
-# now tests for mozilla API variance
-# **********************************
-
-# Firefox doesn't have this API
-
-AC_MSG_CHECKING([for nsIXULChromeRegistry API])
-
-GECKO_COMPILE_IFELSE([content],
-	[AC_LANG_PROGRAM(
-		[[#include <nsEmbedString.h>
-		  #include <nsIChromeRegistry.h>]],
-		[[nsIXULChromeRegistry *p;
-		  p->SelectSkin (nsEmbedCString(), PR_FALSE);]]
-	)],
-	[AC_DEFINE([MOZ_NSIXULCHROMEREGISTRY_SELECTSKIN],[1],[dummy]) result=yes],
-	[result=no])
-
-AC_MSG_RESULT([$result])
-
-# changed from nsIXULChromeRegistry in 1.8a4
-
-GECKO_CHECK_HEADERS([],[chrome/nsIChromeRegistrySea.h])
-
-GECKO_WARN_CXXFLAGS="-Wall -Wconversion -Wpointer-arith -Wcast-align -Woverloaded-virtual -Wsynth -Wno-ctor-dtor-privacy -Wno-non-virtual-dtor"
-AC_SUBST(GECKO_WARN_CXXFLAGS)
+PKG_CHECK_MODULES([WEBKIT], [webkit-1.0])
+AC_SUBST([WEBKIT_CFLAGS])
+AC_SUBST([WEBKIT_LIBS])
 
 dnl Checks for zlib library.
 AC_LANG_PUSH([C])

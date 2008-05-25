@@ -1,7 +1,5 @@
 SUBDIRS = po src data misc contrib
 
-ACLOCAL_AMFLAGS = -I m4
-
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libdevhelp-1.0.pc
 

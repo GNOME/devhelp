@@ -25,50 +25,7 @@ devhelp_LDADD = 					\
         $(DEVHELP_LIBS)					\
         libdevhelp-1.la
 
-devhelp_LDFLAGS = -R$(GECKO_HOME) $(AM_LDFLAGS)
-
-# Build the C++ code in a separate library so we can use our warning
-# flags for the C code.
-noinst_LTLIBRARIES = libcppwrapper.la
-
-libcppwrapper_la_SOURCES =				\
-	Yelper.cpp					\
-	Yelper.h					\
-	dh-gecko-utils.cpp				\
-	dh-gecko-utils.h
-
-gecko_include_subdirs =	\
-	.			\
-	commandhandler		\
-	content			\
-	dom			\
-	find			\
-	fastfind		\
-	docshell		\
-	gfx			\
-	gtkembedmoz		\
-	locale			\
-	pref			\
-	webbrwsr		\
-	string			\
-	xpcom
-
-libcppwrapper_la_CPPFLAGS = 				\
-	$(DEFINES)					\
-	-DALLOW_PRIVATE_API				\
-	-DGECKO_HOME=\""$(GECKO_HOME)\""		\
-	-include $(GECKO_INCLUDE_ROOT)/mozilla-config.h			\
-	$(addprefix -I$(GECKO_INCLUDE_ROOT)/,$(gecko_include_subdirs))	\
-	$(LIBDEVHELP_CFLAGS)				\
-	$(AM_CPPFLAGS)
-
-libcppwrapper_la_CXXFLAGS =				\
-	$(GECKO_CFLAGS)					\
-	$(AM_CXXFLAGS)
-
-libcppwrapper_la_LIBADD =				\
-	$(GECKO_LIBS)					\
-	$(GECKO_EXTRA_LIBS)
+devhelp_LDFLAGS = $(AM_LDFLAGS)
 
 lib_LTLIBRARIES = libdevhelp-1.la
 
@@ -77,7 +34,6 @@ devhelpinclude_HEADERS = 				\
 	dh-base.h					\
 	dh-book-tree.h					\
 	dh-error.h					\
-	dh-html.h					\
 	dh-keyword-model.h				\
 	dh-link.h					\
 	dh-search.h					\
@@ -94,7 +50,6 @@ libdevhelp_1_la_SOURCES =				\
 	dh-base.c					\
 	dh-book-tree.c					\
 	dh-error.c					\
-	dh-html.c					\
 	dh-keyword-model.c				\
 	dh-link.c					\
 	dh-search.c					\
@@ -106,22 +61,20 @@ libdevhelp_1_la_SOURCES =				\
 
 libdevhelp_1_la_CPPFLAGS =				\
 	$(DEFINES)					\
-	$(addprefix -I$(GECKO_INCLUDE_ROOT)/,$(gecko_include_subdirs))	\
 	$(AM_CPPFLAGS)
 
 libdevhelp_1_la_CFLAGS = 				\
 	$(WARN_CFLAGS)					\
 	$(LIBDEVHELP_CFLAGS)				\
-	$(GECKO_CFLAGS)					\
+	$(WEBKIT_CFLAGS)					\
 	$(AM_CFLAGS)
 
 libdevhelp_1_la_LIBADD =				\
-	libcppwrapper.la				\
 	$(LIBDEVHELP_LIBS)				\
-	$(GECKO_LIBS)					\
-	$(GECKO_EXTRA_LIBS)
+	$(WEBKIT_LIBS)					\
+	$(WEBKIT_EXTRA_LIBS)
 
-libdevhelp_1_la_LDFLAGS = -R$(GECKO_HOME) $(AM_LDFLAGS)
+libdevhelp_1_la_LDFLAGS = $(AM_LDFLAGS)
 
 dh-marshal.h: dh-marshal.list
 	(cd $(srcdir) && \
@@ -137,38 +90,12 @@ dh-marshal.c: dh-marshal.list
 
 dh-marshal-main.c: dh-marshal.c dh-marshal.h
 
-default_prefs_in_FILES = \
-	default-prefs-common.js			\
-	default-prefs-mozilla.js		\
-	default-prefs-toolkit.js		\
-	default-prefs-gecko-1-8.js		\
-	default-prefs-gecko-1-9.js
-
-default_prefs_files = \
-	default-prefs-common.js                 \
-	default-prefs-$(GECKO_FLAVOUR).js
-
-if HAVE_GECKO_1_8
-default_prefs_files += default-prefs-gecko-1-8.js
-endif
-
-if HAVE_GECKO_1_9
-default_prefs_files += default-prefs-gecko-1-9.js
-endif
-
-default-prefs.js: $(default_prefs_files)
-	cat $^ > $@
-
-default_prefsdir = $(pkgdatadir)
-default_prefs_DATA = default-prefs.js
-
 BUILT_SOURCES =						\
 	dh-marshal.h					\
 	dh-marshal.c
 
 EXTRA_DIST =						\
 	dh-marshal.list					\
-	$(devhelpinclude_HEADERS)			\
-	$(default_prefs_in_FILES)
+	$(devhelpinclude_HEADERS)
 
-CLEANFILES = $(BUILT_SOURCES) $(default_prefs_DATA)
+CLEANFILES = $(BUILT_SOURCES)
