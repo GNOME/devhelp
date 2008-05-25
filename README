@@ -9,8 +9,7 @@ libglade 2.4.0 (or greater)
 libwnck 2.10.0 (or greater)
 gconf 2.6.0 (or greater)
 
-Also required is a version of the Gecko HTML engine, either supplied
-by mozilla, firefox, thunderbird or xulrunner.
+Also required is WebKit for GTK+.
 
 Devhelp's primary goal is to be an API documentation browser for
 GNOME. When you build (or install) a GNOME library, it will build an
@@ -41,9 +40,9 @@ $XDG_DATA_DIRS/devhelp/books
 $XDG_DATA_DIRS/gtk-doc/html
    e.g. /usr/local/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp
 
-Note that the two latter consist of : separated lists of directories
-to look for. Those environment variables are normally set up by the
+Note that the two latter consist of: separated lists of directories to
+look for. Those environment variables are normally set up by the
 desktop environment or distribution.
 
-Note that the name of the directory the .devhelp file is in, and the
+Note that the name of the directory the .devhelp file is in and the
 name of the .devhelp file (minus the extension) must match.

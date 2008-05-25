@@ -1,5 +1,9 @@
 2008-05-25  Richard Hult  <richard@imendio.com>
 
+	* README: Update the section on dependencies.
+
+2008-05-25  Richard Hult  <richard@imendio.com>
+
 	* Merge initial WebKit version from Alp Toker.
 
 2008-02-24  Mikael Hallendal  <micke@imendio.com>
