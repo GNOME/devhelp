@@ -25,17 +25,11 @@ devhelp_LDADD = 					\
         $(DEVHELP_LIBS)					\
         libdevhelp-1.la
 
-devhelp_LDFLAGS = -R$(GECKO_HOME) $(AM_LDFLAGS)
+devhelp_LDFLAGS = $(AM_LDFLAGS)
 
-# Build the C++ code in a separate library so we can use our warning
-# flags for the C code.
-noinst_LTLIBRARIES = libcppwrapper.la
-
-libcppwrapper_la_SOURCES =				\
-	Yelper.cpp					\
-	Yelper.h					\
-	dh-gecko-utils.cpp				\
-	dh-gecko-utils.h
+if !HAVE_GECKO_XPCOM_GLUE
+devhelp_LDFLAGS += -R$(GECKO_HOME)
+endif
 
 gecko_include_subdirs =	\
 	.			\
@@ -52,23 +46,6 @@ gecko_include_subdirs =	\
 	webbrwsr		\
 	string			\
 	xpcom
-
-libcppwrapper_la_CPPFLAGS = 				\
-	$(DEFINES)					\
-	-DALLOW_PRIVATE_API				\
-	-DGECKO_HOME=\""$(GECKO_HOME)\""		\
-	-include $(GECKO_INCLUDE_ROOT)/mozilla-config.h			\
-	$(addprefix -I$(GECKO_INCLUDE_ROOT)/,$(gecko_include_subdirs))	\
-	$(LIBDEVHELP_CFLAGS)				\
-	$(AM_CPPFLAGS)
-
-libcppwrapper_la_CXXFLAGS =				\
-	$(GECKO_CFLAGS)					\
-	$(AM_CXXFLAGS)
-
-libcppwrapper_la_LIBADD =				\
-	$(GECKO_LIBS)					\
-	$(GECKO_EXTRA_LIBS)
 
 lib_LTLIBRARIES = libdevhelp-1.la
 
@@ -88,6 +65,10 @@ devhelpinclude_HEADERS = 				\
 	eggfindbar.h
 
 libdevhelp_1_la_SOURCES =				\
+	Yelper.cpp					\
+	Yelper.h					\
+	dh-gecko-utils.cpp				\
+	dh-gecko-utils.h				\
 	bacon-message-connection.c			\
 	bacon-message-connection.h			\
 	dh-marshal-main.c				\
@@ -106,6 +87,8 @@ libdevhelp_1_la_SOURCES =				\
 
 libdevhelp_1_la_CPPFLAGS =				\
 	$(DEFINES)					\
+	-DALLOW_PRIVATE_API				\
+	-DGECKO_HOME=\""$(GECKO_HOME)\""		\
 	$(addprefix -I$(GECKO_INCLUDE_ROOT)/,$(gecko_include_subdirs))	\
 	$(AM_CPPFLAGS)
 
@@ -115,13 +98,21 @@ libdevhelp_1_la_CFLAGS = 				\
 	$(GECKO_CFLAGS)					\
 	$(AM_CFLAGS)
 
+libdevhelp_1_la_CXXFLAGS =				\
+	$(LIBDEVHELP_CFLAGS)				\
+	$(GECKO_CFLAGS)					\
+	$(AM_CXXFLAGS)
+
 libdevhelp_1_la_LIBADD =				\
-	libcppwrapper.la				\
 	$(LIBDEVHELP_LIBS)				\
 	$(GECKO_LIBS)					\
 	$(GECKO_EXTRA_LIBS)
 
-libdevhelp_1_la_LDFLAGS = -R$(GECKO_HOME) $(AM_LDFLAGS)
+libdevhelp_1_la_LDFLAGS = $(AM_LDFLAGS)
+
+if !HAVE_GECKO_XPCOM_GLUE
+libdevhelp_1_la_LDFLAGS += -R$(GECKO_HOME)
+endif
 
 dh-marshal.h: dh-marshal.list
 	(cd $(srcdir) && \

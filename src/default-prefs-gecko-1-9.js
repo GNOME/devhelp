@@ -1,2 +1,2 @@
-pref("browser.display.use_document_colors", false);
+pref("browser.display.use_document_colors", true);
 

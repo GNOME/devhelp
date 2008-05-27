@@ -1,3 +1,26 @@
+2008-05-27  Josselin Mouette  <joss@malsain.org>
+
+	* configure.in:
+	* m4/gecko.m4:
+	  Correctly detect Gecko 1.9 (libxul-embedding variant). 
+	  Heavily based on the Epiphany work.
+
+	* src/Makefile.am:
+          Remove the separation between libcppwrapper.la and 
+	  libdevhelp-1.la. It is still possible to specify different 
+	  flags for C and C++ through CXXFLAGS, and the separation 
+	  prevents correct use of g++ for linking.
+	  Also remove -R flag unless appropriate.
+
+	* src/default-prefs-gecko-1-9.js:
+	  Get the correct colors with Gecko 1.9.
+
+	* src/dh-gecko-utils.cpp:
+	  Use libxpcomglue when building with Gecko 1.9 (patch from 
+	  Ubuntu).
+
+	* Fixes bug #499050.
+
 2008-05-25  Richard Hult  <richard@imendio.com>
 
 	* Release 0.19.1.

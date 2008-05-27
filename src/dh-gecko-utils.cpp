@@ -21,6 +21,9 @@
  */
 
 #include <config.h>
+#ifdef XPCOM_GLUE
+#	include <gtkmozembed_glue.cpp>
+#endif
 #include <gtkmozembed.h>
 #include <gtkmozembed_internal.h>
 
@@ -41,7 +44,7 @@
 
 #include <stdlib.h>
 
-#ifndef HAVE_GECKO_1_8
+#if !defined(HAVE_GECKO_1_8) && !defined(HAVE_GECKO_1_9)
 #if defined (HAVE_CHROME_NSICHROMEREGISTRYSEA_H)
 #include <chrome/nsIChromeRegistrySea.h>
 #elif defined(MOZ_NSIXULCHROMEREGISTRY_SELECTSKIN)
@@ -226,7 +229,7 @@ dh_gecko_utils_set_font (gint type, const gchar *fontname)
 	g_free (name);
 }		   
 
-#ifndef HAVE_GECKO_1_8
+#if !defined(HAVE_GECKO_1_8) && !defined(HAVE_GECKO_1_9)
 
 static nsresult
 getUILang (nsAString& aUILang)
@@ -286,7 +289,7 @@ gecko_utils_init_chrome (void)
 #endif
 }
 
-#endif /* !HAVE_GECKO_1_8 */
+#endif /* !HAVE_GECKO_1_8  && !HAVE_GECKO_1_9 */
 
 static nsresult
 gecko_utils_init_prefs (void)
@@ -318,11 +321,57 @@ dh_gecko_utils_init (void)
 	NS_LogInit ();
 #endif
 
+nsresult rv;
+#ifdef XPCOM_GLUE
+    static const GREVersionRange greVersion = {
+    "1.9a", PR_TRUE,
+    "1.9.*", PR_TRUE
+    };
+    char xpcomLocation[4096];
+    rv = GRE_GetGREPathWithProperties(&greVersion, 1, nsnull, 0, xpcomLocation, 4096);
+    if (NS_FAILED (rv))
+    {
+       g_warning ("Could not determine locale!\n");
+       return;
+    }
+
+    // Startup the XPCOM Glue that links us up with XPCOM.
+    rv = XPCOMGlueStartup(xpcomLocation);
+    if (NS_FAILED (rv))
+    {
+       g_warning ("Could not determine locale!\n");
+       return;
+    }
+
+    rv = GTKEmbedGlueStartup();
+    if (NS_FAILED (rv))
+    {
+       g_warning ("Could not startup embed glue!\n");
+       return;
+    }
+
+ #ifdef GTKEmbedGlueStartupInternal
+    rv = GTKEmbedGlueStartupInternal();
+    if (NS_FAILED (rv))
+    {
+       g_warning ("Could not startup embed glue (internal)!\n");
+       return;
+    }
+ #endif
+
+    char *lastSlash = strrchr(xpcomLocation, '/');
+    if (lastSlash)
+      *lastSlash = '\0';
+
+    gtk_moz_embed_set_path(xpcomLocation);
+
+#else
 #ifdef HAVE_GECKO_1_9
 	gtk_moz_embed_set_path (GECKO_HOME);
 #else
 	gtk_moz_embed_set_comp_path (GECKO_HOME);
 #endif
+#endif // XPCOM_GLUE
 
 	gchar *profile_dir = g_build_filename (g_get_home_dir (),
 					       ".gnome2",
@@ -336,7 +385,7 @@ dh_gecko_utils_init (void)
 
 	gecko_utils_init_prefs ();
 
-#ifndef HAVE_GECKO_1_8
+#if !defined(HAVE_GECKO_1_8) && !defined(HAVE_GECKO_1_9)
 	gecko_utils_init_chrome ();
 #endif
 }
