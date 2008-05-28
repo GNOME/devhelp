@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 15:58+0000\n"
-"PO-Revision-Date: 2008-02-16 16:39+0100\n"
+"POT-Creation-Date: 2008-05-27 10:12+0000\n"
+"PO-Revision-Date: 2008-05-28 19:03+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Programa de ayuda del desarrollador"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
+#: ../src/dh-main.c:151 ../src/dh-window.c:834
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -127,7 +127,7 @@ msgstr "<b>Tipografías</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Búsqueda</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:557
 msgid "Contents"
 msgstr "Índice"
 
@@ -147,7 +147,7 @@ msgstr "Anchura _fija:"
 msgid "_Forward"
 msgstr "A_delante"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:200
 msgid "_Go"
 msgstr "_Ir"
 
@@ -208,8 +208,7 @@ msgstr "Espacio de nombres inválido «%s» en la línea %d, columna %d"
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
-"los elementos título, nombre y enlace se requieren en la línea %d, columna %d"
+msgstr "los elementos título, nombre y enlace se requieren en la línea %d, columna %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
@@ -220,17 +219,18 @@ msgstr ""
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "los elementos nombre y enlace se requieren dentro de <function> en la línea %"
 "d, columna %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "No se pudo crear el parser del libro"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "No se pudo crear el parser del marco"
 
@@ -240,6 +240,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "No se pudo descomprimir el libro «%s»: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp no está construido con soporte zlib"
 
@@ -251,131 +252,139 @@ msgstr "_Libro:"
 msgid "_Page:"
 msgstr "_Página:"
 
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:74
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:75
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:76
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:77
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:78
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:79
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:80
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:81
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:82
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:197
 msgid "_File"
 msgstr "_Archivo"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:198
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:199
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:201
 msgid "_Help"
 msgstr "Ay_uda"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:204
 msgid "_New Window"
 msgstr "_Ventana nueva"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:206
 msgid "New _Tab"
 msgstr "_Solapa nueva"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:218 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Buscar siguiente"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:220 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Buscar anterior"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:227
 msgid "Go to the previous page"
 msgstr "Ir a la página anterior"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:230
 msgid "Go to the next page"
 msgstr "Ir a la página siguiente"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:233
 msgid "_Contents Tab"
 msgstr "Solapa de _contenido"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:236
 msgid "_Search Tab"
 msgstr "Solapa de _búsqueda"
 
 #. View menu
-#: ../src/dh-window.c:230
+#: ../src/dh-window.c:240
 msgid "_Larger Text"
 msgstr "Texto más _grande"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:241
 msgid "Increase the text size"
 msgstr "Aumentar el tamaño del texto"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:243
 msgid "S_maller Text"
 msgstr "Texto más _pequeño"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:244
 msgid "Decrease the text size"
 msgstr "Disminuir el tamaño del texto"
 
-#: ../src/dh-window.c:236
+#: ../src/dh-window.c:246
 msgid "_Normal size"
 msgstr "Tamaño _normal"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:247
 msgid "Use the normal text size"
 msgstr "Usar el tamaño de texto normal"
 
-#: ../src/dh-window.c:529
+#: ../src/dh-window.c:498
+msgid "About Devhelp"
+msgstr "Acerca de DevHelp"
+
+#: ../src/dh-window.c:503
+msgid "Preferences..."
+msgstr "Preferencias…"
+
+#: ../src/dh-window.c:567
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:787
+#: ../src/dh-window.c:831
 msgid "translator_credits"
 msgstr ""
 "Jorge González <jorgegonz@svn.gnome.org>, 2007-2008.\n"
 "Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006."
 
-#: ../src/dh-window.c:792
+#: ../src/dh-window.c:836
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un visor de ayuda para desarrolladores para GNOME 2"
 
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:1240 ../src/dh-window.c:1435
 msgid "Empty Page"
 msgstr "Página vacía"
 
@@ -398,3 +407,4 @@ msgstr "Coincidir con capitalización"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Conmutar búsqueda discriminando capitalización"
+
