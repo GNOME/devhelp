@@ -713,8 +713,7 @@ window_activate_zoom_in (GtkAction *action,
 
 	if (zoom_levels[priv->zoom_level].level < ZOOM_MAXIMAL) {
 		priv->zoom_level++;
-        // FIXME: WebKit
-		//webkit_web_view_set_zoom (web_view, zoom_levels[priv->zoom_level].level);
+		g_object_set (web_view, "zoom-level", zoom_levels[priv->zoom_level].level, NULL);
 	}
 }
 
@@ -730,8 +729,7 @@ window_activate_zoom_out (GtkAction *action,
 
 	if (zoom_levels[priv->zoom_level].level > ZOOM_MINIMAL) {
 		priv->zoom_level--;
-        // FIXME: WebKit
-		//webkit_web_view_set_zoom (web_view, zoom_levels[priv->zoom_level].level);
+		g_object_set (web_view, "zoom-level", zoom_levels[priv->zoom_level].level, NULL);
 	}
 }
 
@@ -745,8 +743,7 @@ window_activate_zoom_default (GtkAction *action,
 	web_view = window_get_active_web_view (window);
 	priv = window->priv;
 
-    // FIXME: WebKit
-	//webkit_web_view_set_zoom (web_view, ZOOM_DEFAULT);
+	g_object_set (web_view, "zoom-level", ZOOM_DEFAULT, NULL);
 }
 
 static void
