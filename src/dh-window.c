@@ -102,6 +102,8 @@ static void       window_activate_new_window      (GtkAction       *action,
 						   DhWindow        *window);
 static void       window_activate_new_tab         (GtkAction       *action,
 						   DhWindow        *window);
+static void       window_activate_print           (GtkAction       *action,
+						   DhWindow        *window);
 static void       window_activate_close           (GtkAction       *action,
 						   DhWindow        *window);
 static void       window_activate_quit            (GtkAction       *action,
@@ -205,6 +207,8 @@ static const GtkActionEntry actions[] = {
 	  G_CALLBACK (window_activate_new_window) },
 	{ "NewTab", GTK_STOCK_NEW, N_("New _Tab"), "<control>T", NULL,
 	  G_CALLBACK (window_activate_new_tab) },
+	{ "Print", GTK_STOCK_PRINT, N_("_Print..."), "<control>P", NULL,
+	  G_CALLBACK (window_activate_print) },
 	{ "Close", GTK_STOCK_CLOSE, NULL, NULL, NULL,
 	  G_CALLBACK (window_activate_close) },
 	{ "Quit", GTK_STOCK_QUIT, NULL, NULL, NULL,
@@ -636,6 +640,15 @@ window_activate_new_tab (GtkAction *action, DhWindow *window)
 	priv = window->priv;
 
 	window_open_new_tab (window, NULL);
+}
+
+static void
+window_activate_print (GtkAction *action, DhWindow *window)
+{
+    WebKitWebView *web_view;
+
+    web_view = window_get_active_web_view (window);
+    webkit_web_view_execute_script (web_view, "print();");
 }
 
 static void

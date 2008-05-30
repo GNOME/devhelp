@@ -1,5 +1,10 @@
 2008-05-30  Alp Toker  <alp@nuanti.com>
 
+	* src/dh-window.c: (window_activate_print):
+	* data/ui/window.ui: Add printing support. Fixes bug #517115.
+
+2008-05-30  Alp Toker  <alp@nuanti.com>
+
 	* src/dh-window.c: (window_activate_zoom_in),
 	(window_activate_zoom_out), (window_activate_zoom_default): Bring
 	back zoom support using the zoom-level property added in WebKit

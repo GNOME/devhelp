@@ -5,6 +5,8 @@
       <menuitem action="NewWindow"/>
       <menuitem action="NewTab"/>
       <separator/>
+      <menuitem action="Print"/>
+      <separator/>
       <menuitem action="Close"/>
       <menuitem action="Quit"/>
     </menu>
