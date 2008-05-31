@@ -696,22 +696,15 @@ window_activate_find (GtkAction *action,
 		      DhWindow  *window)
 {
 	DhWindowPriv *priv;
-	WebKitWebView       *web_view;
+	WebKitWebView *web_view;
 
 	priv = window->priv;
-
 	web_view = window_get_active_web_view (window);
-
-    // FIXME: WebKit
-    /*
-	webkit_web_view_search_find (
-		web_view, egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)));
-	webkit_web_view_search_set_case_sensitive (
-		web_view,  egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)));
-    */
 
 	gtk_widget_show (priv->findbar);
 	gtk_widget_grab_focus (priv->findbar);
+
+	webkit_web_view_set_highlight_text_matches (web_view, TRUE);
 }
 
 static void
@@ -1107,15 +1100,20 @@ window_findbar_search_changed_cb (GObject    *object,
 				  DhWindow   *window)
 {
 	DhWindowPriv *priv;
-	WebKitWebView       *web_view;
+	WebKitWebView *web_view;
 
 	priv = window->priv;
-
 	web_view = window_get_active_web_view (window);
 
-    //FIXME: WebKit
-	//webkit_web_view_search_find (web_view,
-	//	egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)));
+	webkit_web_view_unmark_text_matches (web_view);
+	webkit_web_view_mark_text_matches (web_view,
+		egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)),
+		egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)), 0);
+	webkit_web_view_set_highlight_text_matches (web_view, TRUE);
+
+	webkit_web_view_search_text (
+		web_view, egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)),
+		egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)), TRUE, TRUE);
 }
 
 static void
@@ -1124,52 +1122,48 @@ window_findbar_case_sensitive_changed_cb (GObject    *object,
 					  DhWindow   *window)
 {
 	DhWindowPriv *priv;
-	WebKitWebView       *web_view;
+	WebKitWebView *web_view;
 
 	priv = window->priv;
-
 	web_view = window_get_active_web_view (window);
 
-    // FIXME: WebKit
-    /*
-	webkit_web_view_search_set_case_sensitive (
-		web_view,
-		egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)));
-    */
+	webkit_web_view_unmark_text_matches (web_view);
+	webkit_web_view_mark_text_matches (web_view, egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)), egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)), 0);
+	webkit_web_view_set_highlight_text_matches (web_view, TRUE);
 }
 
 static void
 window_find_next_cb (GtkEntry *entry,
 		     DhWindow *window)
 {
-	WebKitWebView       *web_view;
-	DhWindowPriv *priv = window->priv;
+	DhWindowPriv *priv;
+	WebKitWebView *web_view;
 
 	priv = window->priv;
+	web_view = window_get_active_web_view (window);
 
 	gtk_widget_show (priv->findbar);
 
-	web_view = window_get_active_web_view (window);
-
-    //FIXME: WebKit
-	//webkit_web_view_search_find_again (web_view, FALSE);
+	webkit_web_view_search_text (
+		web_view, egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)),
+		egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)), TRUE, TRUE);
 }
 
 static void
 window_find_previous_cb (GtkEntry *entry,
 			 DhWindow *window)
 {
-	WebKitWebView       *web_view;
-	DhWindowPriv *priv = window->priv;
+	DhWindowPriv *priv;
+	WebKitWebView *web_view;
 
 	priv = window->priv;
+	web_view = window_get_active_web_view (window);
 
 	gtk_widget_show (priv->findbar);
 
-	web_view = window_get_active_web_view (window);
-
-    // FIXME: WebKit
-	//webkit_web_view_search_find_again (web_view, TRUE);
+	webkit_web_view_search_text (
+		web_view, egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)),
+		egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)), FALSE, TRUE);
 }
 
 static void
@@ -1177,10 +1171,14 @@ window_findbar_close_cb (GtkWidget *widget,
 			 DhWindow  *window)
 {
 	DhWindowPriv *priv;
+	WebKitWebView *web_view;
 
 	priv = window->priv;
+	web_view = window_get_active_web_view (window);
 
 	gtk_widget_hide (priv->findbar);
+
+	webkit_web_view_set_highlight_text_matches (web_view, FALSE);
 }
 
 #if 0
