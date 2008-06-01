@@ -2,13 +2,13 @@
 # Copyright © 2008 Gnome i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmx.net>, 2002.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 15:13+0000\n"
-"PO-Revision-Date: 2008-05-24 23:12+0930\n"
+"POT-Creation-Date: 2008-05-30 15:35+0000\n"
+"PO-Revision-Date: 2008-06-01 22:32+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,10 +21,8 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Chương trình trợ giúp cho nhà phát triển"
 
-#: ../data/devhelp.desktop.in.in.h:2
-#: ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151
-#: ../src/dh-window.c:790
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151 ../src/dh-window.c:844
 msgid "Devhelp"
 msgstr "Trợ giúp phát triển"
 
@@ -128,8 +126,7 @@ msgstr "<b>Phông</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Tìm kiếm</b>"
 
-#: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:561
 msgid "Contents"
 msgstr "Mục lục"
 
@@ -149,8 +146,7 @@ msgstr "Độ rộng _cố định:"
 msgid "_Forward"
 msgstr "_Tiếp"
 
-#: ../data/ui/devhelp.glade.h:9
-#: ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
 msgid "_Go"
 msgstr "Tớ_i"
 
@@ -200,9 +196,7 @@ msgstr ""
 "Đặt tiêu điểm trong cửa sổ trợ giúp phát triển, có trường tìm kiếm còn hoạt "
 "động"
 
-#: ../src/dh-parser.c:110
-#: ../src/dh-parser.c:194
-#: ../src/dh-parser.c:271
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Đợi '%s' nhận '%s' tại dòng %d, cột %d"
@@ -231,13 +225,13 @@ msgstr ""
 "các yếu tố tên và liên kết đều phải có bên trong <function> tại dòng %d, cột "
 "%d"
 
-#: ../src/dh-parser.c:420
-#: ../src/dh-parser.c:515
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Không thể tạo bộ phân tách sách"
 
-#: ../src/dh-parser.c:436
-#: ../src/dh-parser.c:525
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Không thể tạo bộ phân tách mã định dạng"
 
@@ -247,6 +241,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Không thể giải nén quyển sách '%s': %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Trợ giúp phát triển không được xây dựng với khả năng hỗ trợ zlib"
 
@@ -258,132 +253,141 @@ msgstr "_Quyển:"
 msgid "_Page:"
 msgstr "T_rang:"
 
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:74
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:75
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:76
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:77
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:78
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:79
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:80
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:81
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:82
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:199
 msgid "_File"
 msgstr "_Tập tin"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:200
 msgid "_Edit"
 msgstr "_Sửa"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:201
 msgid "_View"
 msgstr "_Xem"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:203
 msgid "_Help"
 msgstr "Trợ _giúp"
 
-#: ../src/dh-window.c:194
 #. File menu
+#: ../src/dh-window.c:206
 msgid "_New Window"
 msgstr "Cửa sổ _mới"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:208
 msgid "New _Tab"
 msgstr "_Thanh mới"
 
-#: ../src/dh-window.c:208
-#: ../src/eggfindbar.c:337
+#: ../src/dh-window.c:210
+msgid "_Print..."
+msgstr "_In..."
+
+#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Tìm kế"
 
-#: ../src/dh-window.c:210
-#: ../src/eggfindbar.c:329
+#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Tìm lùi"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:231
 msgid "Go to the previous page"
 msgstr "Đi về trang trước"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:234
 msgid "Go to the next page"
 msgstr "Đi tới trang kế tiếp"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:237
 msgid "_Contents Tab"
 msgstr "Thẻ Mụ_c lục"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:240
 msgid "_Search Tab"
 msgstr "Thẻ Tìm _kiếm"
 
-#: ../src/dh-window.c:230
 #. View menu
+#: ../src/dh-window.c:244
 msgid "_Larger Text"
 msgstr "Chữ _lớn hơn"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:245
 msgid "Increase the text size"
 msgstr "Tăng kích cỡ của các chữ"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:247
 msgid "S_maller Text"
 msgstr "Chữ _nhỏ hơn"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:248
 msgid "Decrease the text size"
 msgstr "Giảm kích cỡ của các chữ"
 
-#: ../src/dh-window.c:236
+#: ../src/dh-window.c:250
 msgid "_Normal size"
 msgstr "_Kích cỡ chuẩn"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:251
 msgid "Use the normal text size"
 msgstr "Dùng kích cỡ chữ tiêu chuẩn"
 
-#: ../src/dh-window.c:529
+#: ../src/dh-window.c:502
+msgid "About Devhelp"
+msgstr "Giới thiệu Trợ giúp Phát triển"
+
+#: ../src/dh-window.c:507
+msgid "Preferences..."
+msgstr "Tuỳ thích..."
+
+#: ../src/dh-window.c:571
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: ../src/dh-window.c:787
+#: ../src/dh-window.c:841
 msgid "translator_credits"
 msgstr "Nhóm Việt hóa Gnome <gnomevi-list@lists.sourceforge.net>"
 
-#: ../src/dh-window.c:792
+#: ../src/dh-window.c:846
 msgid "A developer's help browser for GNOME 2"
 msgstr "Bộ duyệt trợ giúp của GNOME 2 dành cho nhà phát triển"
 
-#: ../src/dh-window.c:1186
-#: ../src/dh-window.c:1381
+#: ../src/dh-window.c:1250 ../src/dh-window.c:1445
 msgid "Empty Page"
 msgstr "Trang trắng"
 
