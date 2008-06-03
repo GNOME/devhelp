@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 15:13+0000\n"
-"PO-Revision-Date: 2008-03-12 20:54+0200\n"
+"POT-Creation-Date: 2008-05-30 15:35+0000\n"
+"PO-Revision-Date: 2008-06-02 21:58+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Arendaja abiteabe programm"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
+#: ../src/dh-main.c:151 ../src/dh-window.c:844
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -128,7 +128,7 @@ msgstr "<b>Kirjatüübid</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Otsing</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:561
 msgid "Contents"
 msgstr "Sisukord"
 
@@ -148,7 +148,7 @@ msgstr "_Määratud laiusega:"
 msgid "_Forward"
 msgstr "_Edasi"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
 msgid "_Go"
 msgstr "_Liikumine"
 
@@ -224,10 +224,12 @@ msgstr ""
 "%d. rea %d. veerul peavas <function> sildi sees olema nime ja viida kirjed"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Raamatu parserit pole võimalik luua"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Märkimiskeele parserit pole võimalik luua"
 
@@ -237,6 +239,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Raamatut '%s' pole võimalik lahti pakkida: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp pole kompileeritud koos zlib'i toega"
 
@@ -248,129 +251,141 @@ msgstr "Raa_mat:"
 msgid "_Page:"
 msgstr "Le_hekülg:"
 
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:74
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:75
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:76
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:77
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:78
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:79
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:80
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:81
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:82
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:199
 msgid "_File"
 msgstr "_Fail"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:200
 msgid "_Edit"
 msgstr "_Redaktor"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:201
 msgid "_View"
 msgstr "_Vaade"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:203
 msgid "_Help"
 msgstr "A_bi"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:206
 msgid "_New Window"
 msgstr "_Uus aken"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:208
 msgid "New _Tab"
 msgstr "Uus _kaart"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:210
+msgid "_Print..."
+msgstr "_Prindi..."
+
+#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Leia järgmine"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Leia eelmine"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:231
 msgid "Go to the previous page"
 msgstr "Liigu järgmisele lehele"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:234
 msgid "Go to the next page"
 msgstr "Liigu eelmisele lehele"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:237
 msgid "_Contents Tab"
 msgstr "_Sisukorra kaart"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:240
 msgid "_Search Tab"
 msgstr "_Otsingu kaart"
 
 #. View menu
-#: ../src/dh-window.c:230
+#: ../src/dh-window.c:244
 msgid "_Larger Text"
 msgstr "_Suurem kiri"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:245
 msgid "Increase the text size"
 msgstr "Kirja suuruse suurendamine"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:247
 msgid "S_maller Text"
 msgstr "_Väiksem kiri"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:248
 msgid "Decrease the text size"
 msgstr "Kirja suuruse vähendamine"
 
-#: ../src/dh-window.c:236
+#: ../src/dh-window.c:250
 msgid "_Normal size"
 msgstr "_Tavasuurus"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:251
 msgid "Use the normal text size"
 msgstr "Tavasuuruse määramine kirja suuruseks"
 
-#: ../src/dh-window.c:529
+#: ../src/dh-window.c:502
+msgid "About Devhelp"
+msgstr "Devhelp'ist lähemalt"
+
+#: ../src/dh-window.c:507
+msgid "Preferences..."
+msgstr "Eelistused..."
+
+#: ../src/dh-window.c:571
 msgid "Search"
 msgstr "Otsing"
 
-#: ../src/dh-window.c:787
+#: ../src/dh-window.c:841
 msgid "translator_credits"
 msgstr "Ivar Smolin <okul@linux.ee>, 2007, 2008."
 
-#: ../src/dh-window.c:792
+#: ../src/dh-window.c:846
 msgid "A developer's help browser for GNOME 2"
 msgstr "Arendusteabe sirvija GNOME 2 jaoks"
 
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:1250 ../src/dh-window.c:1445
 msgid "Empty Page"
 msgstr "Tühi leht"
 
