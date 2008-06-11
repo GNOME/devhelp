@@ -1,17 +1,16 @@
-# translation of devhelp.HEAD.ar.po to Arabic
+# translation of devhelp.HEAD.po to Arabic
 # Arabic translations for PACKAGE package.
 # Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Automatically generated, 2006.
 # Khaled Hosny <khaledhosny@eglug.org>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp.HEAD.ar\n"
+"Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 15:13+0000\n"
-"PO-Revision-Date: 2008-02-16 15:11+0100\n"
-"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
+"POT-Creation-Date: 2008-06-11 22:23+0100\n"
+"PO-Revision-Date: 2008-05-24 19:20+0300\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,9 +25,9 @@ msgid "Developer's Help program"
 msgstr "برنامج مساعدة المطوِّرين"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
+#: ../src/dh-main.c:151 ../src/dh-window.c:837
 msgid "Devhelp"
-msgstr "Devhelp"
+msgstr "مساعدة المطورين"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -130,7 +129,7 @@ msgstr "<b>الخطوط</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>البحث</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:561
 msgid "Contents"
 msgstr "المحتويات"
 
@@ -150,7 +149,7 @@ msgstr "_ثابت العرض:"
 msgid "_Forward"
 msgstr "للأ_مام"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
 msgid "_Go"
 msgstr "ا_ذهب"
 
@@ -176,7 +175,7 @@ msgstr "يجعل F2 يجلب مساعدة المطوِّر حوْل الكلمة
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:36
 msgid "Show API Documentation"
-msgstr "اعرض مساعدة المطوِّر"
+msgstr "اعرض وثائق واجهة برمجة التطبيقات (API)"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation for the word at the cursor"
@@ -192,7 +191,7 @@ msgstr "أغلق أي Devhelp يعمل"
 
 #: ../src/dh-main.c:118
 msgid "Display the version and exit"
-msgstr "اعرض الإصدار و اخرج"
+msgstr "اعرض الإصدارة و اخرج"
 
 #: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
@@ -201,17 +200,17 @@ msgstr "ركز على خانة البحث النشيطة في نافذة devhelp
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "توقعت '%s' حصلت على '%s' في السطر %d، و العمود %d"
+msgstr "توقعت '%s' حصلت على '%s' في السطر %Id، و العمود %Id"
 
 #: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "حيز اسم غير سليم '%s' في السطر %d، و العمود %d"
+msgstr "نطاق أسماء غير سليم '%s' في السطر %Id، و العمود %Id"
 
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "عناصر العنوان، و الاسم، والوصلة مطلوبة عند السطر %d، والعمود %d"
+msgstr "عناصر العنوان، والاسم، والوصلة مطلوبة عند السطر %d، والعمود %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
@@ -225,155 +224,172 @@ msgid ""
 msgstr "عنصري الاسم والوصلة مطلوبين بداخل <function> في السطر %d، والعمود %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
-msgstr "لم أستطع إنشاء محلل كتاب"
+msgstr "تعذّر إنشاء محلل كتاب"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
-msgstr "لم أستطع إنشاء محلل رقْم"
+msgstr "تعذّر إنشاء محلل رقْم"
 
 #: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "لم أستطع فك ضغط الكتاب '%s': %s"
+msgstr "تعذّر فك ضغط الكتاب '%s': %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "لم يُبنى Devhelp بدعم zlib "
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
-msgstr "_كتاب:"
+msgstr "ال_كتاب:"
 
 #: ../src/dh-search.c:641
 msgid "_Page:"
-msgstr "_صفحة:"
+msgstr "ال_صفحة:"
 
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:74
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:75
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:76
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:77
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:78
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:79
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:80
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:81
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:82
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:199
 msgid "_File"
 msgstr "_ملف"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:200
 msgid "_Edit"
 msgstr "ت_حرير"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:201
 msgid "_View"
 msgstr "_عرض"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:203
 msgid "_Help"
 msgstr "_مساعدة"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:206
 msgid "_New Window"
 msgstr "نافذة _جديدة"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:208
 msgid "New _Tab"
 msgstr "_لسان جديد"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:210
+msgid "_Print..."
+msgstr ""
+
+#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "ابحث عن التالي"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "ابحث عن السابق"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:231
 msgid "Go to the previous page"
 msgstr "اذهب للصفحة السابقة"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:234
 msgid "Go to the next page"
 msgstr "اذهب للصفحة التالية"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:237
 msgid "_Contents Tab"
 msgstr "_لسان المحتويات"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:240
 msgid "_Search Tab"
-msgstr "لسان ال_بحث"
+msgstr "لسان الب_حث"
 
 #. View menu
-#: ../src/dh-window.c:230
+#: ../src/dh-window.c:244
 msgid "_Larger Text"
 msgstr "_نص أكبر"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:245
 msgid "Increase the text size"
 msgstr "زوّد حجم النص"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:247
 msgid "S_maller Text"
 msgstr "نص أ_صغر"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:248
 msgid "Decrease the text size"
 msgstr "قلل حجم النص"
 
-#: ../src/dh-window.c:236
+#: ../src/dh-window.c:250
 msgid "_Normal size"
 msgstr "حجم _عادي"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:251
 msgid "Use the normal text size"
 msgstr "استخدم حجم النص العادي"
 
-#: ../src/dh-window.c:529
+#: ../src/dh-window.c:502
+#, fuzzy
+msgid "About Devhelp"
+msgstr "مساعدة المطورين"
+
+#: ../src/dh-window.c:507
+#, fuzzy
+msgid "Preferences..."
+msgstr "التفضيلات"
+
+#: ../src/dh-window.c:571
 msgid "Search"
 msgstr "ابحث"
 
-#: ../src/dh-window.c:787
+#: ../src/dh-window.c:834
 msgid "translator_credits"
 msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
 "خالد حسني\t<khaledhosny@eglug.org>"
 
-#: ../src/dh-window.c:792
+#: ../src/dh-window.c:839
 msgid "A developer's help browser for GNOME 2"
 msgstr "متصفح مساعدة مطوري جنوم 2"
 
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:1248 ../src/dh-window.c:1443
 msgid "Empty Page"
 msgstr "صفحة فارغة"
 
