@@ -1,3 +1,8 @@
+2008-07-01  Cosimo Cecchi  <cosimoc@gnome.org>
+
+	* src/dh-parser.c: (parser_read_gz_file):
+	Use correct string format in g_set_error (). (#537093).
+
 2008-05-27  Josselin Mouette  <joss@malsain.org>
 
 	* configure.in:
