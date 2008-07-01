@@ -557,7 +557,7 @@ parser_read_gz_file (const gchar  *path,
 		g_set_error (error,
 			     DH_ERROR,
 			     DH_ERROR_FILE_NOT_FOUND,
-			     g_strerror (errno));
+			     "%s", g_strerror (errno));
 		return FALSE;
 	}
 
