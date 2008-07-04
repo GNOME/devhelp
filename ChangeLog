@@ -1,5 +1,11 @@
 2008-07-04  Alp Toker  <alp@nuanti.com>
 
+	* src/dh-window.c:
+	* src/dh-preferences.c: Avoid C++ comments and remove a couple of
+	FIXMEs.
+
+2008-07-04  Alp Toker  <alp@nuanti.com>
+
 	* m4/:
 	* src/dh-util.c: Remove Gecko leftovers.
 

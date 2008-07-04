@@ -442,8 +442,7 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
 
 		return;
 
-
-        // FIXME: WebKit: where did the return above come from?!
+        /* FIXME: WebKit: where did the return above come from?! */
 
         WebKitWebFrame *web_frame = webkit_web_view_get_main_frame (new_web_view);
 		title = webkit_web_frame_get_title (web_frame);
@@ -1237,8 +1236,8 @@ window_open_new_tab (DhWindow    *window,
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_widget_show (scrolled_window);
 
-    // FIXME: WebKit: remove remaining kludge from frame to scrolled_window port
-	//gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
+	/* FIXME: Remove remaining references to GtkFrame */
+	/* gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN); */
 	gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 2);
 
 	gtk_container_add (GTK_CONTAINER (scrolled_window), web_view);
@@ -1277,8 +1276,7 @@ window_open_new_tab (DhWindow    *window,
 	if (location) {
 		webkit_web_view_open (WEBKIT_WEB_VIEW (web_view), location);
 	} else {
-        //FIXME: WebKit
-		//webkit_web_view_clear (web_view);
+		webkit_web_view_open (WEBKIT_WEB_VIEW (web_view), "about:blank");
 	}
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->web_view_notebook), num);
 
@@ -1429,15 +1427,11 @@ window_tab_set_title (DhWindow *window, WebKitWebView *web_view, const gchar *ti
 {
 	DhWindowPriv *priv;
 	gint          num_pages, i;
-	GtkWidget    *view;
 	GtkWidget    *page;
 	GtkWidget    *hbox;
 	GtkWidget    *label;
 
 	priv = window->priv;
-
-    // FIXME: WebKit: view/web_view
-	view = (GtkWidget *) web_view;
 
 	if (!title || title[0] == '\0') {
 		title = _("Empty Page");
@@ -1449,7 +1443,7 @@ window_tab_set_title (DhWindow *window, WebKitWebView *web_view, const gchar *ti
 			GTK_NOTEBOOK (priv->web_view_notebook), i);
 
 		/* The web_view widget is inside a frame. */
-		if (gtk_bin_get_child (GTK_BIN (page)) == view) {
+		if (gtk_bin_get_child (GTK_BIN (page)) == GTK_WIDGET (web_view)) {
 			hbox = gtk_notebook_get_tab_label (
 				GTK_NOTEBOOK (priv->web_view_notebook), page);
 
