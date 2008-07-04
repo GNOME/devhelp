@@ -280,7 +280,7 @@ dh_util_uri_relative_new (const gchar *uri, const gchar *base_uri)
 
 	/* FIXME bugzilla.eazel.com 4413: This function does not take
 	 * into account a BASE tag in an HTML document, so its
-	 * functionality differs from what Mozilla itself would do.
+	 * functionality differs from what the browser engine itself would do.
 	 */
 
 	if (dh_util_uri_is_relative (uri)) {
