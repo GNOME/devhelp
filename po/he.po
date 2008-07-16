@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-13 13:46+0000\n"
+"POT-Creation-Date: 2008-05-30 15:35+0000\n"
 "PO-Revision-Date: 2003-03-06 22:19+0200\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -21,7 +21,7 @@ msgid "Developer's Help program"
 msgstr "תוכנת עזרה למפתחים"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:781
+#: ../src/dh-main.c:151 ../src/dh-window.c:844
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -39,8 +39,8 @@ msgstr "Font for text"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "Font for text with fixed width."
-"Search for a function"
+msgstr "Font for text with fixed width.Search for a function"
+
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Font for text with variable width."
@@ -115,7 +115,7 @@ msgstr "X position of main window"
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Y position of main window"
-msgstr"Y position of main window"
+msgstr "Y position of main window"
 
 #: ../data/ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
@@ -125,7 +125,7 @@ msgstr "<b>גופנים</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>חיפוש</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:561
 msgid "Contents"
 msgstr "תכנים"
 
@@ -145,7 +145,7 @@ msgstr "_רוחב קבוע:"
 msgid "_Forward"
 msgstr "_קדימה"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
 msgid "_Go"
 msgstr "_לך"
 
@@ -168,6 +168,15 @@ msgstr "תמיכת Devhelp"
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "גורם ל-F2 לעלות את Devhelp עבור המילה תחת הסמן"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "הצג תעוד API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr ""
+"הצג תעוד API עבור המילה שבסמן"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -213,10 +222,12 @@ msgstr ""
 "name and link elements are required inside <function> on line %d, column %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Could not create book parser"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Could not create markup parser"
 
@@ -226,6 +237,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Cannot uncompress book '%s': %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp is not built with zlib support"
 
@@ -237,121 +249,134 @@ msgstr "_ספר:"
 msgid "_Page:"
 msgstr "_עמוד:"
 
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:74
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:75
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:76
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:77
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:78
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:79
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:80
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:81
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:82
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:199
 msgid "_File"
 msgstr "_קובץ"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:200
 msgid "_Edit"
 msgstr "_עריכה"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:201
 msgid "_View"
 msgstr "_תצוגה"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:203
 msgid "_Help"
 msgstr "_עזרה"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:206
 msgid "_New Window"
 msgstr "_חלון _חדש"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:208
 msgid "New _Tab"
 msgstr "_לשונית חדשה"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:210
+msgid "_Print..."
+msgstr "ה_דפס..."
+
+#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "חפש את הבא"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "חפש את הקודם"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:231
 msgid "Go to the previous page"
 msgstr "לך אל הדף הקודם"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:234
 msgid "Go to the next page"
 msgstr "לך אל הדף הבא"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:237
 msgid "_Contents Tab"
 msgstr "לשונית _תכנים"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:240
 msgid "_Search Tab"
 msgstr "לשונית _חיפוש"
 
 #. View menu
-#: ../src/dh-window.c:230
+#: ../src/dh-window.c:244
 msgid "_Larger Text"
 msgstr "_הגדל טקסט"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:245
 msgid "Increase the text size"
 msgstr "הגדל את גודל הטקסט"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:247
 msgid "S_maller Text"
 msgstr "ה_קטן טקסט"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:248
 msgid "Decrease the text size"
 msgstr "הקטן את גודל הטקסט"
 
-#: ../src/dh-window.c:236
+#: ../src/dh-window.c:250
 msgid "_Normal size"
 msgstr "_גודל רגיל"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:251
 msgid "Use the normal text size"
 msgstr "השתמש בגודל הטקסט הרגיל"
 
-#: ../src/dh-window.c:520
+#: ../src/dh-window.c:502
+msgid "About Devhelp"
+msgstr ""
+"אודות DevHelp"
+
+#: ../src/dh-window.c:507
+msgid "Preferences..."
+msgstr "העדפות..."
+
+#: ../src/dh-window.c:571
 msgid "Search"
 msgstr "חיפוש"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:841
 msgid "translator_credits"
 msgstr ""
 "יאיר הרשקוביץ  <yairhr@gmail.com>\n"
@@ -359,11 +384,11 @@ msgstr ""
 "פרוייקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:846
 msgid "A developer's help browser for GNOME 2"
 msgstr "דפדפן עזרה למפתחים בעבור GNOME 2"
 
-#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
+#: ../src/dh-window.c:1250 ../src/dh-window.c:1445
 msgid "Empty Page"
 msgstr "דף ריק"
 
