@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-20 10:14+0100\n"
-"PO-Revision-Date: 2008-03-20 11:43+0100\n"
+"POT-Creation-Date: 2008-07-17 13:18+0200\n"
+"PO-Revision-Date: 2008-07-17 17:32+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "Developer's Help program"
 msgstr "Program ndihmues për zhvilluesit"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
+#: ../src/dh-main.c:151 ../src/dh-window.c:836
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -125,7 +125,7 @@ msgstr "<b>Gërmat</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Duke kërkuar</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:560
 msgid "Contents"
 msgstr "Përmbajtja"
 
@@ -145,7 +145,7 @@ msgstr "Gjerësia e _fiksuar:"
 msgid "_Forward"
 msgstr "_Vazhdo"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
 msgid "_Go"
 msgstr "_Shko"
 
@@ -250,131 +250,143 @@ msgstr "_Libri:"
 msgid "_Page:"
 msgstr "_Faqja:"
 
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:74
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:75
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:76
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:77
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:78
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:79
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:80
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:81
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:82
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:199
 msgid "_File"
 msgstr "_File"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:200
 msgid "_Edit"
 msgstr "_Ndrysho"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:201
 msgid "_View"
 msgstr "_Shfaq"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:203
 msgid "_Help"
 msgstr "_Ndihmë"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:206
 msgid "_New Window"
 msgstr "_Dritare e re"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:208
 msgid "New _Tab"
 msgstr "_Skedë e re"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:210
+msgid "_Print..."
+msgstr "_Printo..."
+
+#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Gjej në vazhdim"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Gjej paraardhësen"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:231
 msgid "Go to the previous page"
 msgstr "Shko tek faqja paraardhëse"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:234
 msgid "Go to the next page"
 msgstr "Shko tek faqja në vijim"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:237
 msgid "_Contents Tab"
 msgstr "_Skeda e përmbajtjes"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:240
 msgid "_Search Tab"
 msgstr "_Skeda e kërkimit"
 
 #. View menu
-#: ../src/dh-window.c:230
+#: ../src/dh-window.c:244
 msgid "_Larger Text"
 msgstr "Tekst më i _madh"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:245
 msgid "Increase the text size"
 msgstr "Rrit madhësinë e tekstit"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:247
 msgid "S_maller Text"
 msgstr "Tekst më i v_ogël"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:248
 msgid "Decrease the text size"
 msgstr "Zvogëlo madhësinë e tekstit"
 
-#: ../src/dh-window.c:236
+#: ../src/dh-window.c:250
 msgid "_Normal size"
 msgstr "Madhësi _normale"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:251
 msgid "Use the normal text size"
 msgstr "Përdor madhësinë e zakonshme të tekstit"
 
-#: ../src/dh-window.c:529
+#: ../src/dh-window.c:501
+msgid "About Devhelp"
+msgstr "Informacione mbi Devhelp"
+
+#: ../src/dh-window.c:506
+msgid "Preferences..."
+msgstr "Preferimet..."
+
+#: ../src/dh-window.c:570
 msgid "Search"
 msgstr "Kërko"
 
 # (pofilter) accelerators: accelerator _ is missing from translation
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
-#: ../src/dh-window.c:787
+#: ../src/dh-window.c:833
 msgid "translator_credits"
 msgstr "Laurent Dhima <laurenti@alblinux.net>"
 
-#: ../src/dh-window.c:792
+#: ../src/dh-window.c:838
 msgid "A developer's help browser for GNOME 2"
 msgstr "Një shletues i ndihmës për zhvilluesit i GNOME 2"
 
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:1247 ../src/dh-window.c:1437
 msgid "Empty Page"
 msgstr "Faqe bosh"
 
