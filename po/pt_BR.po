@@ -4,6 +4,7 @@
 # Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002-2003.
 # based on the GNOME 2.0 translation to Portuguese (pt) by
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001.
+#
 # Raphael Higino <In memoriam>, 2004.
 # Luiz Fernando S. Armesto <luiz.armesto@gmail.com>, 2007.
 # Washington Lins <washington-lins@uol.com.br>, 2007.
@@ -14,7 +15,7 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-22 09:08-0300\n"
-"PO-Revision-Date: 2008-02-21 22:37-0500\n"
+"PO-Revision-Date: 2008-07-22 00:23-0300\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -190,7 +191,7 @@ msgstr "Pesquisar por uma função"
 
 #: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
-msgstr "Encerrar qualquer Devhelp executando"
+msgstr "Sair de qualquer Devhelp que estiver executando"
 
 #: ../src/dh-main.c:118
 msgid "Display the version and exit"
