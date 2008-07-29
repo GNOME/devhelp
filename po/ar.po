@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-11 22:23+0100\n"
+"POT-Creation-Date: 2008-07-29 02:08+0100\n"
 "PO-Revision-Date: 2008-05-24 19:20+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -25,7 +25,7 @@ msgid "Developer's Help program"
 msgstr "برنامج مساعدة المطوِّرين"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:837
+#: ../src/dh-main.c:151 ../src/dh-window.c:836
 msgid "Devhelp"
 msgstr "مساعدة المطورين"
 
@@ -129,7 +129,7 @@ msgstr "<b>الخطوط</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>البحث</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:561
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:560
 msgid "Contents"
 msgstr "المحتويات"
 
@@ -365,31 +365,31 @@ msgstr "حجم _عادي"
 msgid "Use the normal text size"
 msgstr "استخدم حجم النص العادي"
 
-#: ../src/dh-window.c:502
+#: ../src/dh-window.c:501
 #, fuzzy
 msgid "About Devhelp"
 msgstr "مساعدة المطورين"
 
-#: ../src/dh-window.c:507
+#: ../src/dh-window.c:506
 #, fuzzy
 msgid "Preferences..."
 msgstr "التفضيلات"
 
-#: ../src/dh-window.c:571
+#: ../src/dh-window.c:570
 msgid "Search"
 msgstr "ابحث"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:833
 msgid "translator_credits"
 msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
 "خالد حسني\t<khaledhosny@eglug.org>"
 
-#: ../src/dh-window.c:839
+#: ../src/dh-window.c:838
 msgid "A developer's help browser for GNOME 2"
 msgstr "متصفح مساعدة مطوري جنوم 2"
 
-#: ../src/dh-window.c:1248 ../src/dh-window.c:1443
+#: ../src/dh-window.c:1247 ../src/dh-window.c:1437
 msgid "Empty Page"
 msgstr "صفحة فارغة"
 
