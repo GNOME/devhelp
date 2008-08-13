@@ -1,237 +1,395 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of devhelp.gnome-2-22.kn.po to Kannada
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Shankar Prasad <svenkate@redhat.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: DevHelp.Gnome-2.1\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2002-12-17 12:12+0530\n"
-"Last-Translator: Pramod <rpramod@postmaster.co.uk>\n"
-"Language-Team: Kannada <LL@li.org>\n"
+"Project-Id-Version: devhelp.gnome-2-22.kn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-22 03:15+0000\n"
+"PO-Revision-Date: 2008-08-13 12:20+0530\n"
+"Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
+"Language-Team: Kannada <en@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: devhelp.desktop.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
-msgstr ""
+msgstr "ವಿಕಸನಗಾರನ ಸಹಾಯ ಪ್ರೋಗ್ರಾಮ್"
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
-msgstr ""
+msgstr "Devhelp"
 
-#: devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr ""
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "ದಸ್ತಾವೇಜುಗಳ ವೀಕ್ಷಕ"
 
-#: devhelp.schemas.in.h:1
+#: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "ನಿರ್ದಿಷ್ಟ ಪಠ್ಯದ ಅಕ್ಷರ ವಿನ್ಯಾಸ"
 
-#: devhelp.schemas.in.h:2
+#: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "ಅಕ್ಷರಕ್ಕಾಗಿನ ಲಿಪಿ"
 
-#: devhelp.schemas.in.h:3
+#: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "ನಿರ್ದಿಷ್ಟ ಗಾತ್ರ ಪಠ್ಯದ ಅಕ್ಷರ ವಿನ್ಯಾಸ."
 
-#: devhelp.schemas.in.h:4
+#: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "ಬದಲಾಗಬಲ್ಲ ಗಾತ್ರದ ಅಕ್ಷರ ವಿನ್ಯಾಸ."
 
-#: devhelp.schemas.in.h:5
+#: ../data/devhelp.schemas.in.h:5
 msgid "Height of main window"
-msgstr ""
+msgstr "ಮುಖ್ಯ ವಿಂಡೋವಿನ ಎತ್ತರ"
 
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
+msgstr "ಮುಖ್ಯ ವಿಂಡೊವಿನ ಹಿಗ್ಗಿಸಲಾದ ಸ್ಥಿತಿ"
 
-#: devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr "ಆರಿಸಲಾದ ಟ್ಯಾಬ್, \"ಒಳ ವಿಷಯ\" ಅಥವ \"ಹುಡುಕು\""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr "ಸುಧಾರಿತ ಹುಡುಕು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸು"
+
+#: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the main window."
-msgstr ""
+msgstr "ಮುಖ್ಯ ವಿಂಡೊವಿನ X ಜಾಗ."
 
-#: devhelp.schemas.in.h:8
+#: ../data/devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
-msgstr ""
+msgstr "ಮುಖ್ಯ ವಿಂಡೊವಿನ Y ಜಾಗ."
 
-#: devhelp.schemas.in.h:9
+#: ../data/devhelp.schemas.in.h:11
 msgid "The height of the main window."
-msgstr ""
+msgstr "ಮುಖ್ಯ ವಿಂಡೊವಿನ ಎತ್ತರ."
 
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
+msgstr "ಸೂಚಿಕ ಮತ್ತು ಹುಡುಕು ಫಲಕದ ಗಾತ್ರ."
 
-#: devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:13
 msgid "The width of the main window."
-msgstr ""
+msgstr "ಮುಖ್ಯ ವಿಂಡೊವಿನ ಗಾತ್ರ."
 
-#: devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:14
 msgid "Use system fonts"
-msgstr ""
+msgstr "ಗಣಕದ ಅಕ್ಷರ ವಿನ್ಯಾಸವನ್ನು ಬಳಸು"
 
-#: devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
-msgstr ""
+msgstr "ಗಣಕದ ಡೀಫಾಲ್ಟ್ ಅಕ್ಷರ ವಿನ್ಯಾಸವನ್ನು ಬಳಸು."
 
-#: devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr "ಸುಧಾರಿತ ಹುಡುಕು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸಬೇಕೆ ಅಥವ ಬೇಡವೆ."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr "ಮುಖ್ಯ ವಿಂಡೊವು ಆರಂಭದಲ್ಲಿ ಹಿಗ್ಗಿಸಲ್ಪಟ್ಟಿರಬೇಕೆ ಅಥವ ಬೇಡವೆ."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr "ಯಾವ ಟ್ಯಾಬ್ ಅನ್ನು ಬಳಸಬೇಕು, \"ಒಳ ವಿಷಯ\" ಅಥವ \"ಹುಡುಕು\"."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "ಸೂಚಿಕ ಮತ್ತು ಹುಡುಕು ಫಲಕದ ಗಾತ್ರ"
+
+#: ../data/devhelp.schemas.in.h:20
 msgid "Width of the main window"
-msgstr ""
+msgstr "ಮುಖ್ಯ ವಿಂಡೋದ ಅಗಲ"
 
-#: devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:21
 msgid "X position of main window"
-msgstr ""
+msgstr "ಮುಖ್ಯ ವಿಂಡೊವಿನ X ಸ್ಥಾನ"
 
-#: devhelp.schemas.in.h:16
+#: ../data/devhelp.schemas.in.h:22
 msgid "Y position of main window"
-msgstr ""
+msgstr "ಮುಖ್ಯ ವಿಂಡೊವಿನ Y ಸ್ಥಾನ"
 
-#: src/dh-main.c:259
-msgid "Specify the size and location of the window"
-msgstr ""
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>ಅಕ್ಷರ ವಿನ್ಯಾಸ</b>"
 
-#: src/dh-main.c:260
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr ""
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
+msgstr "<b>ಹುಡುಕಲಾಗುತ್ತಿದೆ</b>"
 
-#: src/dh-main.c:268
-msgid "Search for a function"
-msgstr ""
-
-#: src/dh-main.c:277
-msgid "Quit any running Devhelp"
-msgstr ""
-
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-#, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:120
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:149
-#, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:202
-#, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:250
-#, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:337 src/dh-parser.c:423
-msgid "Could not create book parser"
-msgstr ""
-
-#: src/dh-parser.c:347 src/dh-parser.c:433
-msgid "Could not create markup parser"
-msgstr ""
-
-#: src/dh-parser.c:479
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr ""
-
-#: src/dh-search.c:417
-#, fuzzy
-msgid "_Search:"
-msgstr "ಹುಡುಕು"
-
-#: src/dh-search.c:461
-msgid "Section"
-msgstr ""
-
-#: src/dh-window.c:111
-msgid "_File"
-msgstr "ಕಡತ"
-
-#: src/dh-window.c:112
-msgid "_Edit"
-msgstr ""
-
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
-msgid "_Go"
-msgstr "ಹೊಗು"
-
-#: src/dh-window.c:114
-msgid "_Help"
-msgstr "ಸಹಾಯ"
-
-#: src/dh-window.c:292
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr ""
-
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "ಒಳ ವಿಷಯಗಳು"
 
-#: src/dh-window.c:363
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "ಆದ್ಯತೆಗಳು"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "ಹಿಂದಕ್ಕೆ(_B)"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "ನಿರ್ದಿಷ್ಟ ಗಾತ್ರ(_F):"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "ಮುಂದಕ್ಕೆ(_F)"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+msgid "_Go"
+msgstr "ತೆರಳು(_G)"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr "ಸುಧಾರಿತ ಹುಡುಕು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸು(_S)"
+
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "ಗಣಕದ ಅಕ್ಷರ ವಿನ್ಯಾಸವನ್ನು ಬಳಸು(_U)"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr "ಬದಲಾಗಬಲ್ಲ ಗಾತ್ರ(_V): "
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp ಬೆಂಬಲ"
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "F2 ತೆರೆ ಸೂಚಕದಲ್ಲಿರುವ ಪದಕ್ಕೆ Devhelp ಒದಗುವಂತೆ ಮಾಡುತ್ತದೆ"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "API ದಸ್ತಾವೇಜನ್ನು ತೋರಿಸು"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "ತೆರೆ ಸೂಚಕದಲ್ಲಿರುವ ಪದಕ್ಕೆ ಸಂಬಂಧಿಸಿದ API ದಸ್ತಾವೇಜನ್ನು ತೋರಿಸು"
+
+#: ../src/dh-main.c:100
+msgid "Search for a function"
+msgstr "ಒಂದು ಕ್ರಿಯೆಗಾಗಿ ಹುಡುಕು"
+
+#: ../src/dh-main.c:109
+msgid "Quit any running Devhelp"
+msgstr "ಚಾಲನೆಯಲ್ಲಿರುವ ಯಾವುದೆ Devhelp ಯಿಂದ ಹೊರನಡೆ"
+
+#: ../src/dh-main.c:118
+msgid "Display the version and exit"
+msgstr "ಆವೃತ್ತಿಯನ್ನು ತೋರಿಸಿ ಹೊರನಡೆ"
+
+#: ../src/dh-main.c:127
+msgid "Focus the devhelp window with the search field active"
+msgstr "ಹುಡುಕು ಸಾಧನವು ಸಕ್ರಿಯವಾಗಿರುವ devhelp ವಿಂಡೋನತ್ತ ಗಮನ ಹರಿಸು"
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr "ನಿರೀಕ್ಷಿತ '%s' '%s' %d ಸಾಲು, %d ಕಾಲಂನಲ್ಲಿ ಕಂಡುಬಂದಿದೆ"
+
+#: ../src/dh-parser.c:128
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "ಅಮಾನ್ಯವಾದ '%s' ನೇಮ್‌ಸ್ಪೇಸ್ %d ಸಾಲು, %d ಕಾಲಂನಲ್ಲಿ ಕಂಡುಬಂದಿದೆ"
+
+#: ../src/dh-parser.c:158
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr "%d ಸಾಲು, %d ಕಾಲಂನಲ್ಲಿ ತಲೆಬರಹ, ಹೆಸರು, ಹಾಗು ಕೊಂಡಿ(ಲಿಂಕ್) ಘಟಕಗಳ ಅಗತ್ಯವಿದೆ"
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr "<sub> %d ಸಾಲು, %d ಕಾಲಂನಲ್ಲಿ ಹೆಸರು, ಹಾಗು ಕೊಂಡಿ(ಲಿಂಕ್) ಘಟಕಗಳ ಅಗತ್ಯವಿದೆ"
+
+#: ../src/dh-parser.c:297
+#, c-format
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "<function> %d ಸಾಲು, %d ಕಾಲಂನಲ್ಲಿ ಕಾಲಂನಲ್ಲಿ ಹೆಸರು, ಹಾಗು ಕೊಂಡಿ(ಲಿಂಕ್) ಘಟಕಗಳ ಅಗತ್ಯವಿದೆ"
+
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
+msgid "Could not create book parser"
+msgstr "ಬುಕ್ ಪಾರ್ಸರ್ ಅನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
+msgid "Could not create markup parser"
+msgstr "ಮಾರ್ಕ್‍ಅಪ್ ಪಾರ್ಸರ್ ಅನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#: ../src/dh-parser.c:578
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "'%s' ಬುಕ್ ಅನ್ನು ಅನ್‌ಕಂಪ್ರೆಸ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ: %s"
+
+#: ../src/dh-parser.c:603
+#, c-format
+msgid "Devhelp is not built with zlib support"
+msgstr "Devhelp ಅನ್ನು zlib ಬೆಂಬಲದೊಂದಿಗೆ ನಿರ್ಮಿಸಲಾಗಿಲ್ಲ"
+
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr "ಪುಸ್ತ್ತಕ(_B):"
+
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr "ಪುಟ(_P):"
+
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "೫೦%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "೭೫%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "೧೦೦%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "೧೨೫%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "೧೫೦%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "೧೭೫%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "೨೦೦%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "೩೦೦%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "೪೦೦%"
+
+#: ../src/dh-window.c:187
+msgid "_File"
+msgstr "ಕಡತ(_F)"
+
+#: ../src/dh-window.c:188
+msgid "_Edit"
+msgstr "ಸಂಪಾದಿಸು(_E)"
+
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "ನೋಟ(_V)"
+
+#: ../src/dh-window.c:191
+msgid "_Help"
+msgstr "ನೆರವು(_H)"
+
+#. File menu
+#: ../src/dh-window.c:194
+msgid "_New Window"
+msgstr "ಹೊಸ ವಿಂಡೊ(_N)"
+
+#: ../src/dh-window.c:196
+msgid "New _Tab"
+msgstr "ಹೊಸ ಹಾಳೆ(_T)"
+
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "ಮುಂದಿನದನ್ನು ಹುಡುಕು"
+
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "ಹಿಂದಿನದನ್ನು ಹುಡುಕು"
+
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "ಹಿಂದಿನ ಪುಟಕ್ಕೆ ಹೋಗು"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "ಮುಂದಿನ ಪುಟಕ್ಕೆ ಹೋಗು"
+
+#: ../src/dh-window.c:223
+msgid "_Contents Tab"
+msgstr "ಒಳ ವಿಷಯಗಳ ಟ್ಯಾಬ್(_C)"
+
+#: ../src/dh-window.c:226
+msgid "_Search Tab"
+msgstr "ಹುಡುಕು ಟ್ಯಾಬ್(_S)"
+
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "ದೊಡ್ಡ ಗಾತ್ರದ ಪಠ್ಯ(_L)"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "ಪಠ್ಯದ ಆಕಾರವನ್ನು ಹೆಚ್ಚಿಸು"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "ಸಣ್ಣ ಗಾತ್ರದ ಪಠ್ಯ(_m)"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "ಪಠ್ಯ ಗಾತ್ರವನ್ನು ಕಿರಿದಾಗಿಸು"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "ಸಾಮಾನ್ಯ ಗಾತ್ರ(_N)"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "ಸಾಮಾನ್ಯ ಗಾತ್ರದ ಪಠ್ಯವನ್ನು ಬಳಸು"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "ಹುಡುಕು"
 
-#: src/dh-window.c:446
+#: ../src/dh-window.c:787
+msgid "translator_credits"
+msgstr "ರೇಣುಕ ಪ್ರಸಾದ್ <rennie606@yahoo.co.in>, ಶಂಕರ್ ಪ್ರಸಾದ್ ಎಂ. ವಿ. <svenkate@redhat.com>"
+
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
-msgstr ""
+msgstr "GNOME 2 ನ ಬಗ್ಗೆ ವಿಕಸನಗಾರರಿಗಾಗಿ ನೆರವಾಗುವಂತಹ ಒಂದು ವೀಕ್ಷಕ"
 
-#: src/dh-window.c:462
-msgid "Devhelp project page"
-msgstr ""
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+msgid "Empty Page"
+msgstr "ಖಾಲಿ ಪುಟ"
 
-#: src/dh-window.c:466
-msgid "Bug report Devhelp"
-msgstr ""
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "ಹುಡುಕು:"
 
-#: ui/devhelp.glade.h:1
-msgid "    "
-msgstr ""
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "ಹುಡುಕಲಾಗುತ್ತಿರುವ ವಾಕ್ಯದ ಈ ಹಿಂದಿನ ಇರುವಿಕೆಯನ್ನು ಹುಡುಕು"
 
-#: ui/devhelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr ""
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "ಹುಡುಕಲಾಗುತ್ತಿರುವ ವಾಕ್ಯದ ಮುಂದಿನ ಇರುವಿಕೆಯನ್ನು ಹುಡುಕು"
 
-#: ui/devhelp.glade.h:5
-msgid "Fixed width:"
-msgstr ""
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "ಕೇಸ್ ಸಂವೇದಿ"
 
-#: ui/devhelp.glade.h:6
-msgid "Preferences"
-msgstr ""
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "ಕೇಸ್ ಸಂವೇದಿ ಹುಡುಕಾಟದ ನಡುವೆ ಬದಲಾಯಿಸು"
 
-#: ui/devhelp.glade.h:7
-msgid "Variable width: "
-msgstr ""
-
-#: ui/devhelp.glade.h:8
-msgid "_Back"
-msgstr ""
-
-#: ui/devhelp.glade.h:9
-msgid "_Forward"
-msgstr ""
-
-#: ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr ""
-
-#~ msgid "_Search for:"
-#~ msgstr "ಹುಡುಕು:"
-
-#~ msgid "_About"
-#~ msgstr "ತಂತ್ರಾಂಶದ ಬಗ್ಗೆ"
-
-#~ msgid "Open %s"
-#~ msgstr "ತೆಗೆ %s"
