@@ -1,28 +1,30 @@
-# translation of or.po to Oriya
+# translation of devhelp.HEAD.or.po to Oriya
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Subhransu Behera <arya_subhransu@yahoo.co.in>, 2007.
+# Manoj Kumar Giri <giri.manojkr@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: or\n"
+"Project-Id-Version: devhelp.HEAD.or\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-09 03:15+0100\n"
-"PO-Revision-Date: 2007-05-09 18:53+0530\n"
-"Last-Translator: Subhransu Behera <arya_subhransu@yahoo.co.in>\n"
-"Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
+"POT-Creation-Date: 2008-08-20 03:15+0000\n"
+"PO-Revision-Date: 2008-06-12 16:22+0530\n"
+"Last-Translator: Manoj Kumar Giri <giri.manojkr@gmail.com>\n"
+"Language-Team: Oriya\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "ବିକାଶକାରୀ ମାନଙ୍କର ସହୟତା ପ୍ରୋଗ୍ରାମ"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:141 ../src/dh-window.c:689
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -64,7 +66,7 @@ msgstr "ଉନ୍ନତ ସନ୍ଧାନ ବିକଳ୍ପ ମାନଙ୍କ
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the main window."
-msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର ଏକ୍ସ ଅବସ୍ଥାନ।"
+msgstr "ମୂଖ୍ଯ ୱିଣ୍ଡୋର X ଅବସ୍ଥାନ।"
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
@@ -126,7 +128,7 @@ msgstr "<b>ଅକ୍ଷରରୂପ</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>ସନ୍ଧାନ କରୁଅଛି</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:463
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "ସୂଚୀପତ୍ର"
 
@@ -146,7 +148,7 @@ msgstr "ନିର୍ଦ୍ଦିଷ୍ଟ ଓସାର: (_F)"
 msgid "_Forward"
 msgstr "ପରବର୍ତ୍ତୀ (_F)"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:158
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "ଯାଆନ୍ତୁ (_G)"
 
@@ -162,27 +164,35 @@ msgstr "ତନ୍ତ୍ର ଅକ୍ଷରରୂପ ବ୍ଯବହାର କର
 msgid "_Variable width: "
 msgstr "ଅନିର୍ଦ୍ଦିଷ୍ଟ ଓସାର (_V):"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Devhelp ସହାୟତା"
 
-#: ../misc/gedit-plugin/devhelp.gedit-plugin.desktop.in.h:2
-msgid "Makes F7 bring up Devhelp for the word at the cursor"
-msgstr "ଏହା F7 ଦ୍ବାରା ଦର୍ଶିକା ଥିବା ଶବ୍ଦ ପାଇଁ Devhelp ପ୍ରଦାନ କରିଥାଏ"
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "ଏହା F2 ଦ୍ବାରା ଦର୍ଶିକା ଥିବା ଶବ୍ଦ ପାଇଁ Devhelp ପ୍ରଦାନ କରିଥାଏ"
 
-#: ../src/dh-main.c:90
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "API ଦଲିଲକରଣ ଦର୍ଶାନ୍ତୁ"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "ଦର୍ଶିକାରେ ଥିବା ଶବ୍ଦ ପାଇଁ API ଦଲିଲକରଣ ପ୍ରଦର୍ଶନ କରନ୍ତୁ"
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "ଗୋଟିଏ ପ୍ରକ୍ରିୟା ପାଇଁ ଖୋଜନ୍ତୁ"
 
-#: ../src/dh-main.c:99
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "ଯେ କୌଣସି ଚଳନ୍ତି Devhelp କୁ ବନ୍ଦ କରନ୍ତୁ"
 
-#: ../src/dh-main.c:108
+#: ../src/dh-main.c:118
 msgid "Display the version and exit"
 msgstr "ସଂସ୍କରଣ ପ୍ରଦର୍ଶନ କରନ୍ତୁ ଏବଂ ବନ୍ଦ କରନ୍ତୁ"
 
-#: ../src/dh-main.c:117
+#: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
 msgstr "ସନ୍ଧାନ କ୍ଷେତ୍ରକୁ ସକ୍ରିୟ କରି devhelp ୱିଣ୍ଡୋ ପ୍ରତି ଦୃଷ୍ଟି ଦିଅନ୍ତୁ"
 
@@ -208,14 +218,17 @@ msgstr "%d ଧାଡିର, %d ସ୍ତମ୍ଭରେ <sub> ମଧ୍ଯରେ
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr "%d ଧାଡିର, %d ସ୍ତମ୍ଭରେ <function> ମଧ୍ଯରେ ନାମ, ଏବଂ ସଂଯୋଗ ବସ୍ତୁ ଗୁଡିକ ଦରକାରୀ"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "ବହି ବିଶ୍ଳେଷକ ସୃଷ୍ଟି କରିପାରିଲା ନାହିଁ"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "ମାର୍କ-ଅପ ବିଶ୍ଳେଷକ ସୃଷ୍ଟି କରିପାରିଲା ନାହିଁ"
 
@@ -225,6 +238,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "'%s' ବହିକୁ ଖୋଲି ପାରିଲା ନାହିଁ: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp କୁ zlib ସହାୟତା ସହିତ ନିର୍ମାଣ କରାଯାଇ ନାହିଁ"
 
@@ -236,56 +250,129 @@ msgstr "ବହି (_B):"
 msgid "_Page:"
 msgstr "ପୃଷ୍ଠା (_P):"
 
-#: ../src/dh-window.c:156
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "ଫାଇଲ (_F)"
 
-#: ../src/dh-window.c:157
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "ସମ୍ପାଦନ କରନ୍ତୁ (_E)"
 
-#: ../src/dh-window.c:159
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "ଦୃଶ୍ୟ (_V)"
+
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "ସହାୟତା (_H)"
 
 #. File menu
-#: ../src/dh-window.c:162
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "ନୂତନ ୱିଣ୍ଡୋ (_N)"
 
-#: ../src/dh-window.c:164
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "ନୂତନ ଟ୍ଯାବ (_T)"
 
-#: ../src/dh-window.c:176 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "ପରବର୍ତ୍ତୀ ଉପସ୍ଥିତିକୁ ଖୋଜନ୍ତୁ"
 
-#: ../src/dh-window.c:178 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "ପୂର୍ବବର୍ତ୍ତୀ ଉପସ୍ଥିତିକୁ ଖୋଜନ୍ତୁ"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "ପୂର୍ବ ପୃଷ୍ଠାକୁ ଯାଆନ୍ତୁ"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "ପରବର୍ତ୍ତୀ ପୃଷ୍ଠାକୁ ଯାଆନ୍ତୁ"
+
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "ବିଷୟବସ୍ତୁ ଟ୍ଯାବ (_C)"
 
-#: ../src/dh-window.c:192
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "ସନ୍ଧାନ ଟ୍ଯାବ (_S)"
 
-#: ../src/dh-window.c:473
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "ବୃହତର ପାଠ୍ୟ (_L)"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "ପାଠ୍ୟର ଆକାର ବୃଦ୍ଧି କରନ୍ତୁ"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "କ୍ଷୁଦ୍ରତର ପାଠ୍ୟ (_m)"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "ପାଠ୍ୟର ଆକାର କମ କରନ୍ତୁ"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr "ସାଧାରଣ ଆକାର (_N)"
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "ସାଧାରଣ ପାଠ୍ୟ ଆକାର ବ୍ୟବହାର କରନ୍ତୁ"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "ଖୋଜନ୍ତୁ"
 
-#: ../src/dh-window.c:686
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr "ଶୁଭ୍ରାଂଶୁ ବେହେରା <arya_subhransu@yahoo.co.in>"
 
-#: ../src/dh-window.c:691
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "ନୋମ-୨ ପାଇଁ ଗୋଟିଏ ବିକାଶକାରୀ ମାନଙ୍କର ସହୟତା ବ୍ରାଉଜର"
 
-#: ../src/dh-window.c:1085 ../src/dh-window.c:1214
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "ଖାଲି ପୃଷ୍ଠା"
 
@@ -309,3 +396,11 @@ msgstr "ଅକ୍ଷର ନିର୍ଦ୍ଦିଷ୍ଟ"
 msgid "Toggle case sensitive search"
 msgstr "ଅକ୍ଷର ନିର୍ଦ୍ଦିଷ୍ଟ ଅନୁସନ୍ଧାନକୁ ଅଦଳବଦଳ କରନ୍ତୁ"
 
+#~ msgid "_Print..."
+#~ msgstr "ମୂଦ୍ରଣ କରନ୍ତୁ (_P) ..."
+
+#~ msgid "About Devhelp"
+#~ msgstr "Devhelp ବିଷୟରେ"
+
+#~ msgid "Preferences..."
+#~ msgstr "ପସନ୍ଦ...ଳ୍ପ"
