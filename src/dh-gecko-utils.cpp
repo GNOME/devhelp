@@ -350,14 +350,12 @@ nsresult rv;
        return;
     }
 
- #ifdef GTKEmbedGlueStartupInternal
     rv = GTKEmbedGlueStartupInternal();
     if (NS_FAILED (rv))
     {
        g_warning ("Could not startup embed glue (internal)!\n");
        return;
     }
- #endif
 
     char *lastSlash = strrchr(xpcomLocation, '/');
     if (lastSlash)
