@@ -4,224 +4,405 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0\n"
-"POT-Creation-Date: 2004-03-20 14:43+0100\n"
-"PO-Revision-Date: 2004-03-20 14:43+CET\n"
-"Last-Translator: auto\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-07 22:33+0200\n"
+"PO-Revision-Date: 2008-02-12 20:27+0000\n"
+"Last-Translator: Launchpad Translations Administrators <rosetta@launchpad."
+"net>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: TransDict server\n"
+"X-Launchpad-Export-Date: 2008-05-28 10:34+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-#: devhelp.desktop.in.h:1
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr ""
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151 ../src/dh-window.c:836
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: devhelp.keys.in.h:1
-msgid "Devhelp Book"
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
 msgstr ""
 
-#: src/dh-main.c:259
-msgid "Specify the size and location of the window"
-msgstr ""
-
-#: src/dh-main.c:260
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "ŠIRINAxVISINA+VODORAVNO+HORIZONTALNO"
-
-#: src/dh-main.c:268
-msgid "Search for a function"
-msgstr ""
-
-#: src/dh-main.c:277
-msgid "Quit any running Devhelp"
-msgstr ""
-
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:120
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:149
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:202
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:250
-msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
-
-#: src/dh-parser.c:337 src/dh-parser.c:423
-msgid "Could not create book parser"
-msgstr ""
-
-#: src/dh-parser.c:347 src/dh-parser.c:433
-msgid "Could not create markup parser"
-msgstr ""
-
-#: src/dh-parser.c:479
-msgid "Cannot uncompress book '%s': %s"
-msgstr ""
-
-#: src/dh-search.c:417
-msgid "_Search:"
-msgstr "Traži :"
-
-#: src/dh-search.c:461
-msgid "Section"
-msgstr "Odsječak"
-
-#: src/dh-window.c:112
-msgid "_File"
-msgstr "_Datoteka"
-
-#: src/dh-window.c:113
-msgid "_Edit"
-msgstr "_Uredi"
-
-#: src/dh-window.c:114 ui/devhelp.glade.h:10
-msgid "_Go"
-msgstr "_Idi"
-
-#: src/dh-window.c:115
-msgid "_Help"
-msgstr "_Pomoć"
-
-#: src/dh-window.c:300
-msgid "Cannot set UI: %s"
-msgstr ""
-
-#: src/dh-window.c:355 ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Sadržaj"
-
-#: src/dh-window.c:366
-msgid "Search"
-msgstr "&Traži"
-
-#: src/dh-window.c:449
-msgid "A developer's help browser for GNOME 2"
-msgstr ""
-
-#: src/dh-window.c:465
-msgid "Devhelp project page"
-msgstr ""
-
-#: src/dh-window.c:469
-msgid "Bug report Devhelp"
-msgstr ""
-
-#: devhelp.schemas.in.h:1
+#: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed text"
 msgstr ""
 
-#: devhelp.schemas.in.h:2
+#: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
 msgstr ""
 
-#: devhelp.schemas.in.h:3
+#: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
 msgstr ""
 
-#: devhelp.schemas.in.h:4
+#: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr ""
 
-#: devhelp.schemas.in.h:5
+#: ../data/devhelp.schemas.in.h:5
 msgid "Height of main window"
 msgstr ""
 
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:6
 msgid "Main window maximized state"
 msgstr ""
 
-#: devhelp.schemas.in.h:8
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the main window."
 msgstr ""
 
-#: devhelp.schemas.in.h:9
+#: ../data/devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
 msgstr ""
 
-#: devhelp.schemas.in.h:10
+#: ../data/devhelp.schemas.in.h:11
 msgid "The height of the main window."
 msgstr "Visina glavnog prozora."
 
-#: devhelp.schemas.in.h:11
-msgid "The location of the paned separator."
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
 msgstr ""
 
-#: devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:13
 msgid "The width of the main window."
 msgstr "Širina glavnog prozora."
 
-#: devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:14
 msgid "Use system fonts"
 msgstr ""
 
-#: devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
 msgstr ""
 
-#: devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
 msgstr ""
 
-#: devhelp.schemas.in.h:16
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:20
 msgid "Width of the main window"
 msgstr ""
 
-#: devhelp.schemas.in.h:17
+#: ../data/devhelp.schemas.in.h:21
 msgid "X position of main window"
 msgstr ""
 
-#: devhelp.schemas.in.h:18
+#: ../data/devhelp.schemas.in.h:22
 msgid "Y position of main window"
 msgstr ""
 
-#: ui/devhelp.glade.h:1
-msgid "    "
-msgstr "    "
-
-#: ui/devhelp.glade.h:2
+#: ../data/ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
 msgstr "<b>Fontovi</b>"
 
-#: ui/devhelp.glade.h:5
-msgid "Fixed width:"
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
 msgstr ""
 
-#: ui/devhelp.glade.h:6
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:560
+msgid "Contents"
+msgstr "Sadržaj"
+
+#: ../data/ui/devhelp.glade.h:5
 msgid "Preferences"
 msgstr "Podešenja"
 
-#: ui/devhelp.glade.h:7
-msgid "Variable width: "
-msgstr ""
-
-#: ui/devhelp.glade.h:8
+#: ../data/ui/devhelp.glade.h:6
 msgid "_Back"
 msgstr "_Nazad"
 
-#: ui/devhelp.glade.h:9
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr ""
+
+#: ../data/ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "_Naprijed"
 
-#: ui/devhelp.glade.h:11
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
+msgid "_Go"
+msgstr "_Idi"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
+msgstr ""
+
+#: ../data/ui/devhelp.glade.h:11
 msgid "_Use system fonts"
 msgstr ""
 
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+msgid "Devhelp support"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr ""
+
+#: ../src/dh-main.c:100
+msgid "Search for a function"
+msgstr ""
+
+#: ../src/dh-main.c:109
+msgid "Quit any running Devhelp"
+msgstr ""
+
+#: ../src/dh-main.c:118
+msgid "Display the version and exit"
+msgstr ""
+
+#: ../src/dh-main.c:127
+msgid "Focus the devhelp window with the search field active"
+msgstr ""
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:128
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:158
+#, c-format
+msgid "title, name, and link elements are required at line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:297
+#, c-format
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+msgid "Could not create book parser"
+msgstr ""
+
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+msgid "Could not create markup parser"
+msgstr ""
+
+#: ../src/dh-parser.c:578
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr ""
+
+#: ../src/dh-parser.c:603
+msgid "Devhelp is not built with zlib support"
+msgstr ""
+
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr ""
+
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr ""
+
+#: ../src/dh-window.c:74
+msgid "50%"
+msgstr ""
+
+#: ../src/dh-window.c:75
+msgid "75%"
+msgstr ""
+
+#: ../src/dh-window.c:76
+msgid "100%"
+msgstr ""
+
+#: ../src/dh-window.c:77
+msgid "125%"
+msgstr ""
+
+#: ../src/dh-window.c:78
+msgid "150%"
+msgstr ""
+
+#: ../src/dh-window.c:79
+msgid "175%"
+msgstr ""
+
+#: ../src/dh-window.c:80
+msgid "200%"
+msgstr ""
+
+#: ../src/dh-window.c:81
+msgid "300%"
+msgstr ""
+
+#: ../src/dh-window.c:82
+msgid "400%"
+msgstr ""
+
+#: ../src/dh-window.c:199
+msgid "_File"
+msgstr "_Datoteka"
+
+#: ../src/dh-window.c:200
+msgid "_Edit"
+msgstr "_Uredi"
+
+#: ../src/dh-window.c:201
+msgid "_View"
+msgstr ""
+
+#: ../src/dh-window.c:203
+msgid "_Help"
+msgstr "_Pomoć"
+
+#. File menu
+#: ../src/dh-window.c:206
+msgid "_New Window"
+msgstr ""
+
+#: ../src/dh-window.c:208
+msgid "New _Tab"
+msgstr ""
+
+#: ../src/dh-window.c:210
+msgid "_Print..."
+msgstr ""
+
+#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr ""
+
+#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr ""
+
+#: ../src/dh-window.c:231
+msgid "Go to the previous page"
+msgstr ""
+
+#: ../src/dh-window.c:234
+msgid "Go to the next page"
+msgstr ""
+
+#: ../src/dh-window.c:237
+msgid "_Contents Tab"
+msgstr ""
+
+#: ../src/dh-window.c:240
+msgid "_Search Tab"
+msgstr ""
+
+#. View menu
+#: ../src/dh-window.c:244
+msgid "_Larger Text"
+msgstr ""
+
+#: ../src/dh-window.c:245
+msgid "Increase the text size"
+msgstr ""
+
+#: ../src/dh-window.c:247
+msgid "S_maller Text"
+msgstr ""
+
+#: ../src/dh-window.c:248
+msgid "Decrease the text size"
+msgstr ""
+
+#: ../src/dh-window.c:250
+msgid "_Normal size"
+msgstr ""
+
+#: ../src/dh-window.c:251
+msgid "Use the normal text size"
+msgstr ""
+
+#: ../src/dh-window.c:501
+#, fuzzy
+msgid "About Devhelp"
+msgstr "Devhelp"
+
+#: ../src/dh-window.c:506
+#, fuzzy
+msgid "Preferences..."
+msgstr "Podešenja"
+
+#: ../src/dh-window.c:570
+msgid "Search"
+msgstr "&Traži"
+
+#: ../src/dh-window.c:833
+msgid "translator_credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Carlos Perelló Marín https://launchpad.net/~carlos\n"
+"  Launchpad Translations Administrators https://launchpad.net/~rosetta-admins"
+
+#: ../src/dh-window.c:838
+msgid "A developer's help browser for GNOME 2"
+msgstr ""
+
+#: ../src/dh-window.c:1247 ../src/dh-window.c:1437
+msgid "Empty Page"
+msgstr ""
+
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr ""
+
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr ""
+
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr ""
+
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr ""
+
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr ""
