@@ -1,3 +1,15 @@
+NEW in 0.20:
+============
+
+- Fixed #499050, fix build against xulrunner 1.9 (Josselin Mouette)
+- Fixed #537093, Does not build with gcc 4.3.0 (Cosimo Cecchi)
+- Fixed #539624, Crashes when copying text with xulrunner 1.9 (Claudio Saavedra)
+- Updated translations: vi, kn, sr, or, mr
+
+Many thanks to the translators: Clytie Siddall, Shankar Prasad, Goran
+Rakic, Manoj Kumar Giri, Sandeep Shedmake.
+
+
 NEW in 0.19.1:
 ==============
 

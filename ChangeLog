@@ -1,3 +1,7 @@
+2008-09-08  Richard Hult  <richard@imendio.com>
+
+	* Release 0.20.
+
 2008-08-28  Claudio Saavedra  <csaavedra@igalia.com>
 
 	* src/dh-gecko-utils.cpp (dh_gecko_utils_init): Start up
