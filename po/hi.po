@@ -1,239 +1,399 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of devhelp.gnome-2-22.hi.po to Hindi
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# G Karunakar <karunakar@freedomink.org>, 2003.
 #
+# G Karunakar <karunakar@freedomink.org>, 2003.
+# Rajesh Ranjan <rranjan@redhat.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp HEAD\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2003-04-09 14:30+0530\n"
-"Last-Translator: G Karunakar <karunakar@freedomink.org>\n"
-"Language-Team: Gnome Hindi Team <indlinux-hindi-gnome@lists.sourceforge."
-"net>\n"
+"Project-Id-Version: devhelp.gnome-2-22.hi\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-22 03:15+0000\n"
+"PO-Revision-Date: 2008-09-09 16:23+0530\n"
+"Last-Translator: Rajesh Ranjan <rranjan@redhat.com>\n"
+"Language-Team: Hindi <hindi.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n\n"
 
-#: devhelp.desktop.in.h:1
-#, fuzzy
+#: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "डेवलपर सहायता प्रोग्राम"
 
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
-#, fuzzy
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
-msgstr "डेवहेल्प"
+msgstr "Devhelp"
 
-#: devhelp.keys.in.h:1
-#, fuzzy
-msgid "Devhelp Book"
-msgstr "डेवहेल्प"
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr ""
 
-#: devhelp.schemas.in.h:1
+#: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "स्थिर पाठ के लिये फंट"
 
-#: devhelp.schemas.in.h:2
+#: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
-msgstr ""
+msgstr "पाठ के लिये फंट"
 
-#: devhelp.schemas.in.h:3
+#: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr ""
+msgstr "स्थिर चौड़ाई के साथ पाठ के लियें फंट"
 
-#: devhelp.schemas.in.h:4
+#: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "परिवर्तनशील चौड़ाई के साथ पाठ के लियें फंट"
 
-#: devhelp.schemas.in.h:5
+#: ../data/devhelp.schemas.in.h:5
 msgid "Height of main window"
 msgstr ""
 
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
+#: ../data/devhelp.schemas.in.h:6
+msgid "Main window maximized state"
 msgstr ""
 
-#: devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:7
+msgid "Selected tab, \"content\" or \"search\""
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Show advanced search options"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the main window."
 msgstr ""
 
-#: devhelp.schemas.in.h:8
+#: ../data/devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
 msgstr ""
 
-#: devhelp.schemas.in.h:9
+#: ../data/devhelp.schemas.in.h:11
 msgid "The height of the main window."
+msgstr "मुख्य विंडो की ऊँचाई."
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the index and search pane."
 msgstr ""
 
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:13
 msgid "The width of the main window."
-msgstr ""
+msgstr "मुख्य विंडो की चौड़ाई."
 
-#: devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:14
 msgid "Use system fonts"
-msgstr ""
+msgstr "सिस्टम फंट का प्रयोग करें"
 
-#: devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
 msgstr ""
 
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
+#: ../data/devhelp.schemas.in.h:16
+msgid "Whether the advanced search options are shown."
 msgstr ""
 
-#: devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:17
+msgid "Whether the main window should start maximized or not."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Width of the main window"
+msgstr "मुख्य विंडो की चौड़ाई."
+
+#: ../data/devhelp.schemas.in.h:21
 msgid "X position of main window"
 msgstr ""
 
-#: devhelp.schemas.in.h:16
+#: ../data/devhelp.schemas.in.h:22
 msgid "Y position of main window"
 msgstr ""
 
-#: src/dh-main.c:259
-msgid "Specify the size and location of the window"
+#: ../data/ui/devhelp.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>फ़ॉन्ट्स</b>"
+
+#: ../data/ui/devhelp.glade.h:2
+msgid "<b>Searching</b>"
 msgstr ""
 
-#: src/dh-main.c:260
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+msgid "Contents"
+msgstr "घटक"
+
+#: ../data/ui/devhelp.glade.h:5
+msgid "Preferences"
+msgstr "वरीयताएं"
+
+#: ../data/ui/devhelp.glade.h:6
+msgid "_Back"
+msgstr "पीछे (_B)"
+
+#: ../data/ui/devhelp.glade.h:7
+msgid "_Fixed width:"
+msgstr "निश्चित चौड़ाई (_F):"
+
+#: ../data/ui/devhelp.glade.h:8
+msgid "_Forward"
+msgstr "आगे (_F)"
+
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+msgid "_Go"
+msgstr "जाना (_G)"
+
+#: ../data/ui/devhelp.glade.h:10
+msgid "_Show advanced search options"
 msgstr ""
 
-#: src/dh-main.c:268
+#: ../data/ui/devhelp.glade.h:11
+msgid "_Use system fonts"
+msgstr "सिस्टम फंट का प्रयोग करें (_U)"
+
+#: ../data/ui/devhelp.glade.h:12
+msgid "_Variable width: "
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#, fuzzy
+msgid "Devhelp support"
+msgstr "डेवहेल्प"
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr ""
+
+#: ../src/dh-main.c:100
 msgid "Search for a function"
 msgstr "प्रकार्य ढूँढें"
 
-#: src/dh-main.c:277
+#: ../src/dh-main.c:109
 msgid "Quit any running Devhelp"
 msgstr "कोइ चालू डेवहेल्प बंद करें"
 
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
+#: ../src/dh-main.c:118
+msgid "Display the version and exit"
+msgstr ""
+
+#: ../src/dh-main.c:127
+msgid "Focus the devhelp window with the search field active"
+msgstr ""
+
+#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:120
+#: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:149
+#: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:202
+#: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:250
+#: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
+#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr ""
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
+#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr ""
 
-#: src/dh-parser.c:479
+#: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr ""
 
-#: src/dh-search.c:417
-#, fuzzy
-msgid "_Search:"
-msgstr "खोज"
+#: ../src/dh-parser.c:603
+#, c-format
+msgid "Devhelp is not built with zlib support"
+msgstr ""
 
-#: src/dh-search.c:461
-msgid "Section"
-msgstr "भाग"
+#: ../src/dh-search.c:621
+msgid "_Book:"
+msgstr ""
 
-#: src/dh-window.c:111
+#: ../src/dh-search.c:641
+msgid "_Page:"
+msgstr ""
+
+#: ../src/dh-window.c:70
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:71
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:72
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:73
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:74
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:75
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:76
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:77
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:78
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "फाइल (_F)"
 
-#: src/dh-window.c:112
+#: ../src/dh-window.c:188
 msgid "_Edit"
-msgstr ""
+msgstr "संपादन (_E)"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
-msgid "_Go"
-msgstr "जाना (_G)"
+#: ../src/dh-window.c:189
+msgid "_View"
+msgstr "देखें (_V)"
 
-#: src/dh-window.c:114
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "सहायता (_H)"
 
-#: src/dh-window.c:292
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr ""
+#. File menu
+#: ../src/dh-window.c:194
+msgid "_New Window"
+msgstr "नया विंडो (_N)"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
-msgid "Contents"
+#: ../src/dh-window.c:196
+msgid "New _Tab"
+msgstr "नया टैब (_T)"
+
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+msgid "Find Next"
+msgstr "अगला ढूंढें"
+
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "पिछला ढूंढें"
+
+#: ../src/dh-window.c:217
+msgid "Go to the previous page"
+msgstr "पिछले पृष्ठ पर जाएँ"
+
+#: ../src/dh-window.c:220
+msgid "Go to the next page"
+msgstr "अगले पृष्ठ पर जाएँ"
+
+#: ../src/dh-window.c:223
+#, fuzzy
+msgid "_Contents Tab"
 msgstr "घटक"
 
-#: src/dh-window.c:363
+#: ../src/dh-window.c:226
+#, fuzzy
+msgid "_Search Tab"
+msgstr "खोज"
+
+#. View menu
+#: ../src/dh-window.c:230
+msgid "_Larger Text"
+msgstr "बड़ा पाठ (_L)"
+
+#: ../src/dh-window.c:231
+msgid "Increase the text size"
+msgstr "पाठ का आकार बढ़ाएँ"
+
+#: ../src/dh-window.c:233
+msgid "S_maller Text"
+msgstr "छोटा पाठ (_m)"
+
+#: ../src/dh-window.c:234
+msgid "Decrease the text size"
+msgstr "पाठ का आकार घटाएँ"
+
+#: ../src/dh-window.c:236
+msgid "_Normal size"
+msgstr ""
+
+#: ../src/dh-window.c:237
+msgid "Use the normal text size"
+msgstr "सामान्य पाठ आकार उपयोग में लें"
+
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "खोज"
 
-#: src/dh-window.c:446
+#: ../src/dh-window.c:787
+msgid "translator_credits"
+msgstr "संगीता कुमारी (sangeeta09@gmail.com)"
+
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "गनोम विकासकर्ता के लिए सहायता"
 
-#: src/dh-window.c:462
-msgid "Devhelp project page"
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+msgid "Empty Page"
 msgstr ""
 
-#: src/dh-window.c:466
-msgid "Bug report Devhelp"
-msgstr ""
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "ढूंढें:"
 
-#: ui/devhelp.glade.h:1
-msgid "    "
-msgstr ""
+#: ../src/eggfindbar.c:332
+msgid "Find previous occurrence of the search string"
+msgstr "खोज स्ट्रिंग की पिछली उपस्थिति ढूंढें"
 
-#: ui/devhelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr ""
+#: ../src/eggfindbar.c:340
+msgid "Find next occurrence of the search string"
+msgstr "खोज स्ट्रिंग की अगली उपस्थिति ढूंढें"
 
-#: ui/devhelp.glade.h:5
-msgid "Fixed width:"
-msgstr ""
+#: ../src/eggfindbar.c:348
+msgid "Case Sensitive"
+msgstr "केस सेंसिटिव"
 
-#: ui/devhelp.glade.h:6
-msgid "Preferences"
-msgstr ""
+#: ../src/eggfindbar.c:351
+msgid "Toggle case sensitive search"
+msgstr "स्थिति संवेदनशील खोज टॉगल करें"
 
-#: ui/devhelp.glade.h:7
-msgid "Variable width: "
-msgstr ""
-
-#: ui/devhelp.glade.h:8
-msgid "_Back"
-msgstr ""
-
-#: ui/devhelp.glade.h:9
-msgid "_Forward"
-msgstr ""
-
-#: ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr ""
-
-#~ msgid "_Search for:"
-#~ msgstr "के लिए ढूँढें (_S):"
-
-#~ msgid "_About"
-#~ msgstr "के बारे में (_A)"
