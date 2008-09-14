@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.22\n"
+"Project-Id-Version: 2.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 18:06+0000\n"
-"PO-Revision-Date: 2008-02-16 18:10+0000\n"
+"POT-Creation-Date: 2008-09-14 20:37+0100\n"
+"PO-Revision-Date: 2008-09-14 20:40+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -225,12 +225,14 @@ msgstr ""
 "d, coluna %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
-msgstr "Incapaz de criar um parseador de livro"
+msgstr "Incapaz de criar um processador de livro"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
-msgstr "Incapaz de criar um parseador de markup"
+msgstr "Incapaz de criar um processador de markup"
 
 #: ../src/dh-parser.c:578
 #, c-format
@@ -238,6 +240,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Incapaz de descomprimir o livro '%s': %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp não foi compilado com suporte para zlib"
 
