@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.22\n"
+"Project-Id-Version: 2.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 18:06+0000\n"
-"PO-Revision-Date: 2008-02-16 18:10+0000\n"
+"POT-Creation-Date: 2008-09-14 20:33+0100\n"
+"PO-Revision-Date: 2008-09-14 20:35+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgid "Developer's Help program"
 msgstr "Aplicação de Ajuda aos Programadores"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
+#: ../src/dh-main.c:151 ../src/dh-window.c:836
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -124,7 +124,7 @@ msgstr "<b>Fontes</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>A Procurar</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:560
 msgid "Contents"
 msgstr "Conteúdo"
 
@@ -144,7 +144,7 @@ msgstr "Largura _fixa:"
 msgid "_Forward"
 msgstr "_Avançar"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
 msgid "_Go"
 msgstr "_Ir"
 
@@ -225,12 +225,14 @@ msgstr ""
 "d, coluna %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
-msgstr "Incapaz de criar um parseador de livro"
+msgstr "Incapaz de criar um processador de livro"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
-msgstr "Incapaz de criar um parseador de markup"
+msgstr "Incapaz de criar um processador de markup"
 
 #: ../src/dh-parser.c:578
 #, c-format
@@ -238,6 +240,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Incapaz de descomprimir o livro '%s': %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp não foi compilado com suporte para zlib"
 
@@ -249,129 +252,141 @@ msgstr "_Livro:"
 msgid "_Page:"
 msgstr "_Página:"
 
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:74
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:75
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:76
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:77
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:78
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:79
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:80
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:81
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:82
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:199
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:200
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:201
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:203
 msgid "_Help"
 msgstr "_Ajuda"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:206
 msgid "_New Window"
 msgstr "_Nova Janela"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:208
 msgid "New _Tab"
 msgstr "Novo _Separador"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:210
+msgid "_Print..."
+msgstr "_Imprimir..."
+
+#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Procurar Seguinte"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Procurar Anterior"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:231
 msgid "Go to the previous page"
 msgstr "Ir para a página anterior"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:234
 msgid "Go to the next page"
 msgstr "Ir para a página seguinte"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:237
 msgid "_Contents Tab"
 msgstr "Separador de _Conteúdo"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:240
 msgid "_Search Tab"
 msgstr "Separador de _Procura"
 
 #. View menu
-#: ../src/dh-window.c:230
+#: ../src/dh-window.c:244
 msgid "_Larger Text"
 msgstr "Texto _Maior"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:245
 msgid "Increase the text size"
 msgstr "Aumentar o tamanho da fonte do texto"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:247
 msgid "S_maller Text"
 msgstr "Texto M_enor"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:248
 msgid "Decrease the text size"
 msgstr "Reduzir o tamanho da fonte do texto"
 
-#: ../src/dh-window.c:236
+#: ../src/dh-window.c:250
 msgid "_Normal size"
 msgstr "Tamanho _normal"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:251
 msgid "Use the normal text size"
 msgstr "Utilizar o tamanho normal da fonte do texto"
 
-#: ../src/dh-window.c:529
+#: ../src/dh-window.c:501
+msgid "About Devhelp"
+msgstr "Sobre o Devhelp"
+
+#: ../src/dh-window.c:506
+msgid "Preferences..."
+msgstr "Preferências..."
+
+#: ../src/dh-window.c:570
 msgid "Search"
 msgstr "Procurar"
 
-#: ../src/dh-window.c:787
+#: ../src/dh-window.c:833
 msgid "translator_credits"
 msgstr "Duarte Loreto <happyguy_pt@hotmail.com>"
 
-#: ../src/dh-window.c:792
+#: ../src/dh-window.c:838
 msgid "A developer's help browser for GNOME 2"
 msgstr "Um navegador de ajuda para programadores do GNOME 2"
 
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:1247 ../src/dh-window.c:1437
 msgid "Empty Page"
 msgstr "Página Vazia"
 
