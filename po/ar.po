@@ -1,17 +1,16 @@
-# translation of devhelp.HEAD.ar.po to Arabic
+# translation of devhelp.HEAD.po to Arabic
 # Arabic translations for PACKAGE package.
 # Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Automatically generated, 2006.
 # Khaled Hosny <khaledhosny@eglug.org>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp.HEAD.ar\n"
+"Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 15:13+0000\n"
-"PO-Revision-Date: 2008-02-16 15:11+0100\n"
-"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
+"POT-Creation-Date: 2008-09-15 10:31+0100\n"
+"PO-Revision-Date: 2008-07-28 19:47+0300\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +27,7 @@ msgstr "برنامج مساعدة المطوِّرين"
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
 #: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
-msgstr "Devhelp"
+msgstr "مساعدة المطورين"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -176,7 +175,7 @@ msgstr "يجعل F2 يجلب مساعدة المطوِّر حوْل الكلمة
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:36
 msgid "Show API Documentation"
-msgstr "اعرض مساعدة المطوِّر"
+msgstr "اعرض وثائق واجهة برمجة التطبيقات (API)"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation for the word at the cursor"
@@ -192,7 +191,7 @@ msgstr "أغلق أي Devhelp يعمل"
 
 #: ../src/dh-main.c:118
 msgid "Display the version and exit"
-msgstr "اعرض الإصدار و اخرج"
+msgstr "اعرض الإصدارة و اخرج"
 
 #: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
@@ -201,53 +200,56 @@ msgstr "ركز على خانة البحث النشيطة في نافذة devhelp
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "توقعت '%s' حصلت على '%s' في السطر %d، و العمود %d"
+msgstr "توقعت '%s' حصلت على '%s' في السطر %Id، و العمود %Id"
 
 #: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "حيز اسم غير سليم '%s' في السطر %d، و العمود %d"
+msgstr "نطاق أسماء غير سليم '%s' في السطر %Id، و العمود %Id"
 
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "عناصر العنوان، و الاسم، والوصلة مطلوبة عند السطر %d، والعمود %d"
+msgstr "عناصر العنوان، والاسم، والوصلة مطلوبة عند السطر %Id، والعمود %Id"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "عنصري الاسم والوصلة مطلوبين بداخل <sub> في السطر %d، والعمود %d"
+msgstr "عنصري الاسم والوصلة مطلوبين بداخل <sub> في السطر %Id، والعمود %Id"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
-msgstr "عنصري الاسم والوصلة مطلوبين بداخل <function> في السطر %d، والعمود %d"
+msgstr "عنصري الاسم والوصلة مطلوبين بداخل <function> في السطر %Id، والعمود %Id"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
-msgstr "لم أستطع إنشاء محلل كتاب"
+msgstr "تعذّر إنشاء محلل كتاب"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
-msgstr "لم أستطع إنشاء محلل رقْم"
+msgstr "تعذّر إنشاء محلل رقْم"
 
 #: ../src/dh-parser.c:578
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "لم أستطع فك ضغط الكتاب '%s': %s"
+msgstr "تعذّر فك ضغط الكتاب '%s': %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "لم يُبنى Devhelp بدعم zlib "
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
-msgstr "_كتاب:"
+msgstr "ال_كتاب:"
 
 #: ../src/dh-search.c:641
 msgid "_Page:"
-msgstr "_صفحة:"
+msgstr "ال_صفحة:"
 
 #: ../src/dh-window.c:70
 msgid "50%"
@@ -332,7 +334,7 @@ msgstr "_لسان المحتويات"
 
 #: ../src/dh-window.c:226
 msgid "_Search Tab"
-msgstr "لسان ال_بحث"
+msgstr "لسان الب_حث"
 
 #. View menu
 #: ../src/dh-window.c:230
@@ -396,3 +398,11 @@ msgstr "حسّاس لحالة الأحرف"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "بدّل البحث الحسّاس لحالة الأحرف"
+
+#, fuzzy
+#~ msgid "About Devhelp"
+#~ msgstr "مساعدة المطورين"
+
+#, fuzzy
+#~ msgid "Preferences..."
+#~ msgstr "التفضيلات"
