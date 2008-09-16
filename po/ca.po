@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-21 01:12+0100\n"
-"PO-Revision-Date: 2008-02-21 01:13+0100\n"
+"POT-Creation-Date: 2008-09-17 01:48+0200\n"
+"PO-Revision-Date: 2008-09-17 01:48+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Developer's Help program"
 msgstr "Programa d'ajuda per als desenvolupadors"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
+#: ../src/dh-main.c:151 ../src/dh-window.c:836
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -128,7 +128,7 @@ msgstr "<b>Tipus de lletra</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Cerca</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:560
 msgid "Contents"
 msgstr "Continguts"
 
@@ -148,7 +148,7 @@ msgstr "Amplada _fixa:"
 msgid "_Forward"
 msgstr "E_ndavant"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
 msgid "_Go"
 msgstr "_Vés a"
 
@@ -181,8 +181,7 @@ msgstr "Mostra la documentació de la API"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation for the word at the cursor"
-msgstr ""
-"Mostra la documentació de la API per a la paraula sota el cursor"
+msgstr "Mostra la documentació de la API per a la paraula sota el cursor"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -214,23 +213,23 @@ msgstr "L'espai de noms «%s» no és vàlid a la línia %d, columna %d"
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr ""
-"Els elements «title» (títol), «name» (nom) i «link» (enllaç) són necessaris "
-"a la línia %d, columna %d"
+"Els elements «title» (títol), «name» (nom) i «link» (enllaç) són necessaris a "
+"la línia %d, columna %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
-"Els elements «name» (nom) i «link» (enllaç) són necessaris dins de <sub> a "
-"la línia %d, columna %d"
+"Els elements «name» (nom) i «link» (enllaç) són necessaris dins de <sub> a la "
+"línia %d, columna %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
 msgid ""
 "name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
-"Els elements «name» (nom) i «link» (enllaç) són necessaris dins de "
-"<function> a la línia %d, columna %d"
+"Els elements «name» (nom) i «link» (enllaç) són necessaris dins de <function> "
+"a la línia %d, columna %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
 #, c-format
@@ -260,132 +259,144 @@ msgstr "Lli_bre:"
 msgid "_Page:"
 msgstr "_Pàgina:"
 
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:74
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:75
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:76
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:77
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:78
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:79
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:80
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:81
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:82
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:199
 msgid "_File"
 msgstr "_Fitxer"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:200
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:201
 msgid "_View"
 msgstr "_Visualitza"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:203
 msgid "_Help"
 msgstr "A_juda"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:206
 msgid "_New Window"
 msgstr "_Finestra nova"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:208
 msgid "New _Tab"
 msgstr "_Pestanya nova"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:210
+msgid "_Print..."
+msgstr "_Imprimeix..."
+
+#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "Cerca la següent"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Cerca l'anterior"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:231
 msgid "Go to the previous page"
 msgstr "Vés a la pàgina anterior"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:234
 msgid "Go to the next page"
 msgstr "Vés a la pàgina següent"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:237
 msgid "_Contents Tab"
 msgstr "Pestanya de _continguts"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:240
 msgid "_Search Tab"
 msgstr "Pestanya de _cerca"
 
 #. View menu
-#: ../src/dh-window.c:230
+#: ../src/dh-window.c:244
 msgid "_Larger Text"
 msgstr "Text més _gran"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:245
 msgid "Increase the text size"
 msgstr "Augmenta la mida del text"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:247
 msgid "S_maller Text"
 msgstr "Text més _petit"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:248
 msgid "Decrease the text size"
 msgstr "Redueix la mida del text"
 
-#: ../src/dh-window.c:236
+#: ../src/dh-window.c:250
 msgid "_Normal size"
 msgstr "Mida _normal"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:251
 msgid "Use the normal text size"
 msgstr "Utilitza la mida de text normal"
 
-#: ../src/dh-window.c:529
+#: ../src/dh-window.c:501
+msgid "About Devhelp"
+msgstr "Quant al Devhelp"
+
+#: ../src/dh-window.c:506
+msgid "Preferences..."
+msgstr "Preferències..."
+
+#: ../src/dh-window.c:570
 msgid "Search"
 msgstr "Cerca"
 
-#: ../src/dh-window.c:787
+#: ../src/dh-window.c:833
 msgid "translator_credits"
 msgstr ""
 "Aleix Badia i Bosch <a.badia@callusdigital.org>\n"
 "Xavier Conde Rueda <xavi.conde@gmail.com>\n"
 "Gil Forcada <gilforcada@guifi.net>"
 
-#: ../src/dh-window.c:792
+#: ../src/dh-window.c:838
 msgid "A developer's help browser for GNOME 2"
 msgstr "Un navegador d'ajuda del GNOME 2 per a desenvolupadors"
 
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:1247 ../src/dh-window.c:1437
 msgid "Empty Page"
 msgstr "Pàgina buida"
 
