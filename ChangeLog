@@ -1,3 +1,9 @@
+2008-09-22  Richard Hult  <richard@imendio.com>
+
+	* Release 0.21.
+
+	* configure.in: Bump version.
+
 2008-09-08  Richard Hult  <richard@imendio.com>
 
 	* Release 0.20.
