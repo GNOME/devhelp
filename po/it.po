@@ -1,16 +1,16 @@
 # Italian translation for devhelp.
-# Copyright (C) 2001 Free Software Foundation, Inc.
+# Copyright (C) 2001-2008 Free Software Foundation, Inc.
 # Alessio Frusciante <algol@firenze.linux.it>, 2001.
 # Francesco Marletta <francesco.marletta@tiscali.it>, 2003
 # Alessio Frusciante <algol@firenze.linux.it>, 2003.
-# Francesco Marletta <francesco.marletta@tiscali.it>, 2004-2007.
+# Francesco Marletta <francesco.marletta@tiscali.it>, 2004-2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.7\n"
+"Project-Id-Version: devhelp 2.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-02 14:14+0100\n"
-"PO-Revision-Date: 2008-03-02 14:26+0100\n"
+"POT-Creation-Date: 2008-09-22 13:42+0200\n"
+"PO-Revision-Date: 2008-09-17 15:22-0400\n"
 "Last-Translator: Francesco Marletta <francesco.marletta@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Tipo di carattere per il testo"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "Tipo di carattere per il testo ad ampiezza fissa."
+msgstr "Tipo di carattere per il testo a larghezza fissa."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
@@ -206,7 +206,7 @@ msgstr "Dà il focus alla finestra di devhelp con il campo di ricerca attivo"
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr ""
-"Era atteso \"%s\" ed invece si è ottenuto \"%s\" alla riga %d, colonna %d"
+"Era atteso \"%s\" e invece si è ottenuto \"%s\" alla riga %d, colonna %d"
 
 # [MF] è una guida per sviluppatori quindi si presume che si sappia cos'è un namespace
 #: ../src/dh-parser.c:128
@@ -254,7 +254,7 @@ msgstr "Impossibile decomprimere il libro \"%s\": %s"
 #: ../src/dh-parser.c:603
 #, c-format
 msgid "Devhelp is not built with zlib support"
-msgstr "Devhelp non è compilato con il supporto per zlib"
+msgstr "Devhelp non è compilato con il supporto zlib"
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
@@ -421,3 +421,12 @@ msgstr "Distingui MAIUSCOLE/minuscole"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Considera o meno differenti maiuscole e minuscole nella ricerca"
+
+#~ msgid "_Print..."
+#~ msgstr "Stam_pa..."
+
+#~ msgid "About Devhelp"
+#~ msgstr "Informazioni su Devhelp"
+
+#~ msgid "Preferences..."
+#~ msgstr "Preferenze..."
