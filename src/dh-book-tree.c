@@ -121,7 +121,7 @@ book_tree_class_init (DhBookTreeClass *klass)
 			      G_STRUCT_OFFSET (DhBookTreeClass,
 					       link_selected),
 			      NULL, NULL,
-			      dh_marshal_VOID__POINTER,
+			      _dh_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
 }

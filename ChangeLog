@@ -1,5 +1,13 @@
 2008-10-01  Richard Hult  <richard@imendio.com>
 
+	* src/Makefile.am:
+	* src/dh-book-tree.c: (book_tree_class_init):
+	* src/dh-marshal-main.c:
+	* src/dh-search.c: (search_class_init): Get rid of the
+	marshal-main file.
+
+2008-10-01  Richard Hult  <richard@imendio.com>
+
 	* src/dh-main.c: (message_received_cb), (main): Prepare for a new
 	search method.
 

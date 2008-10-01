@@ -155,7 +155,7 @@ search_class_init (DhSearchClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (DhSearchClass, link_selected),
 			      NULL, NULL,
-			      dh_marshal_VOID__POINTER,
+			      _dh_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
 }

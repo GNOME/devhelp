@@ -38,7 +38,8 @@ devhelpinclude_HEADERS = 				\
 libdevhelp_1_la_SOURCES =				\
 	bacon-message-connection.c			\
 	bacon-message-connection.h			\
-	dh-marshal-main.c				\
+	dh-marshal.c					\
+	dh-marshal.h					\
 	dh-base.c					\
 	dh-book-tree.c					\
 	dh-error.c					\
@@ -67,27 +68,25 @@ libdevhelp_1_la_LIBADD =				\
 libdevhelp_1_la_LDFLAGS =				\
 	$(ZLIB_LDFLAGS)
 
-dh-marshal.h: dh-marshal.list
+MARSHAL=dh
+$(MARSHAL)-marshal.h: $(MARSHAL)-marshal.list
 	(cd $(srcdir) && \
-	@GLIB_GENMARSHAL@ --prefix=dh_marshal dh-marshal.list --header) > xgen-gmh \
-	&& (cmp -s xgen-gmh dh-marshal.h || cp xgen-gmh dh-marshal.h) \
+	$(GLIB_GENMARSHAL) --prefix=_$(MARSHAL)_marshal $(MARSHAL)-marshal.list --header) > xgen-gmh \
+	&& (cmp -s xgen-gmh $(MARSHAL)-marshal.h || cp xgen-gmh $(MARSHAL)-marshal.h) \
 	&& rm -f xgen-gmh xgen-gmh~
 
-dh-marshal.c: dh-marshal.list
+$(MARSHAL)-marshal.c: $(MARSHAL)-marshal.list
 	(cd $(srcdir) && \
-	@GLIB_GENMARSHAL@ --prefix=dh_marshal dh-marshal.list --body) > xgen-gmc \
-	&& cp xgen-gmc dh-marshal.c \
+	echo "#include \"$(MARSHAL)-marshal.h\""; \
+	$(GLIB_GENMARSHAL) --prefix=_$(MARSHAL)_marshal $(MARSHAL)-marshal.list --body) > xgen-gmc \
+	&& cp xgen-gmc $(MARSHAL)-marshal.c \
 	&& rm -f xgen-gmc xgen-gmc~
 
-dh-marshal-main.c: dh-marshal.c dh-marshal.h
+BUILT_SOURCES = 			\
+	$(MARSHAL)-marshal.h		\
+	$(MARSHAL)-marshal.c		\
+	$(NULL)
 
-BUILT_SOURCES =						\
-	dh-marshal.h					\
-	dh-marshal.c
-
-EXTRA_DIST =						\
-	dh-marshal.list					
-
-#	$(devhelpinclude_HEADERS)
-
-CLEANFILES = $(BUILT_SOURCES)
+EXTRA_DIST =				\
+	$(MARSHAL)-marshal.list		\
+	$(NULL)
