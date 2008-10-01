@@ -468,6 +468,11 @@ dh_keyword_model_set_words (DhKeywordModel *model, GList *keyword_words)
 				g_list_prepend (priv->page_list, link);
 			break;
 		case DH_LINK_TYPE_KEYWORD:
+		case DH_LINK_TYPE_FUNCTION:
+		case DH_LINK_TYPE_STRUCT:
+		case DH_LINK_TYPE_MACRO:
+		case DH_LINK_TYPE_ENUM:
+		case DH_LINK_TYPE_TYPEDEF:
 			priv->keys_list = 
 				g_list_prepend (priv->keys_list, link);
 			break;
@@ -475,7 +480,6 @@ dh_keyword_model_set_words (DhKeywordModel *model, GList *keyword_words)
 			g_assert_not_reached();
 		}
 	}
-
 }
 
 DhLink *

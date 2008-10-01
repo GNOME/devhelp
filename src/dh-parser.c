@@ -237,9 +237,12 @@ parser_start_node_cb (GMarkupParseContext  *context,
 	}
 	else if (parser->parsing_functions) {
 		gboolean     ok = FALSE;
+		const gchar *type = NULL;
 		const gchar *name = NULL;
 		const gchar *link = NULL;
 		const gchar *deprecated = NULL;
+		DhLinkType   link_type;
+		gchar       *tmp;
 		
 		if (g_ascii_strcasecmp (node_name, "function") == 0) {
 			ok = TRUE;
@@ -275,7 +278,11 @@ parser_start_node_cb (GMarkupParseContext  *context,
 
 		for (i = 0; attribute_names[i]; ++i) {
 			if (g_ascii_strcasecmp (attribute_names[i],
-						"name") == 0) {
+						"type") == 0) {
+				type = attribute_values[i];
+			}
+			else if (g_ascii_strcasecmp (attribute_names[i],
+						     "name") == 0) {
 				name = attribute_values[i];
 			}
 			else if (g_ascii_strcasecmp (attribute_names[i],
@@ -295,7 +302,19 @@ parser_start_node_cb (GMarkupParseContext  *context,
 				     DH_ERROR,
 				     DH_ERROR_MALFORMED_BOOK,
 				     _("name and link elements are required "
-				       "inside <function> on line %d, column %d"),
+				       "inside <keyword> on line %d, column %d"),
+				     line, col);
+			return;
+		}
+
+		if (parser->version == 2 && !type) {
+			/* Required */
+			g_markup_parse_context_get_position (context, &line, &col);
+			g_set_error (error,
+				     DH_ERROR,
+				     DH_ERROR_MALFORMED_BOOK,
+				     _("type element is required "
+				       "inside <keyword> on line %d, column %d"),
 				     line, col);
 			return;
 		}
@@ -313,22 +332,48 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		else if (g_str_has_prefix (name, "enum ")) {
 			name = name + 5;
 		}
-	
+
 		full_link = g_strconcat (parser->base, "/", link, NULL);
 		page = extract_page_name (link);
-		if (g_str_has_suffix (name, " ()")) {
-			gchar *tmp;
 
-			tmp = g_strndup (name, strlen (name) - 3);
-			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, tmp, 
-					       DH_LINK (parser->book_node->data)->book,
-					       page, full_link);
-			g_free (tmp);
+		if (parser->version == 2) {
+			if (strcmp (type, "function") == 0) {
+				link_type = DH_LINK_TYPE_FUNCTION;
+			}
+			else if (strcmp (type, "struct") == 0) {
+				link_type = DH_LINK_TYPE_STRUCT;
+			}
+			else if (strcmp (type, "macro") == 0) {
+				link_type = DH_LINK_TYPE_MACRO;
+			}
+			else if (strcmp (type, "enum") == 0) {
+				link_type = DH_LINK_TYPE_ENUM;
+			}
+			else if (strcmp (type, "typedef") == 0) {
+				link_type = DH_LINK_TYPE_TYPEDEF;
+			} else {
+				link_type = DH_LINK_TYPE_KEYWORD;
+			}
 		} else {
-			dh_link = dh_link_new (DH_LINK_TYPE_KEYWORD, name, 
-					       DH_LINK (parser->book_node->data)->book,
-					       page, full_link);
+			link_type = DH_LINK_TYPE_KEYWORD;
 		}
+
+		if (g_str_has_suffix (name, " ()")) {
+			tmp = g_strndup (name, strlen (name) - 3);
+
+			if (link_type == DH_LINK_TYPE_KEYWORD) {
+				link_type = DH_LINK_TYPE_FUNCTION;
+			}
+			name = tmp;
+		} else {
+			tmp = NULL;
+		}
+
+		dh_link = dh_link_new (link_type, name, 
+				       DH_LINK (parser->book_node->data)->book,
+				       page, full_link);
+
+		g_free (tmp);
 
 		g_free (full_link);
 		g_free (page);

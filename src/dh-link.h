@@ -32,7 +32,12 @@ typedef struct _DhLink   DhLink;
 typedef enum {
 	DH_LINK_TYPE_BOOK,
 	DH_LINK_TYPE_PAGE,
-	DH_LINK_TYPE_KEYWORD
+	DH_LINK_TYPE_KEYWORD,
+	DH_LINK_TYPE_FUNCTION,
+	DH_LINK_TYPE_STRUCT,
+	DH_LINK_TYPE_MACRO,
+	DH_LINK_TYPE_ENUM,
+	DH_LINK_TYPE_TYPEDEF
 } DhLinkType;
 
 struct _DhLink {
@@ -70,5 +75,3 @@ void     dh_link_set_is_deprecated (DhLink        *link,
 				    gboolean       is_deprecated);
 
 #endif /* __DH_LINK_H__ */
-
-

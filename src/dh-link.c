@@ -67,6 +67,8 @@ dh_link_new (DhLinkType   type,
 	link->book = g_strdup (book);
 	link->page = g_strdup (page);
 	link->uri  = g_strdup (uri);
+
+	link->ref_count = 1;
 	
 	return link;
 }

@@ -1,3 +1,14 @@
+2008-10-01  Richard Hult  <richard@imendio.com>
+
+	Add support for the keyword types added to gtk-doc output in
+	devhelp2 files:
+	
+	* src/dh-link.c: (dh_link_new): Init ref count.
+	* src/dh-link.h: Add the types here.
+	
+	* src/dh-keyword-model.c: (dh_keyword_model_set_words):
+	* src/dh-parser.c: (parser_start_node_cb): Parse them.
+
 2008-07-04  Alp Toker  <alp@nuanti.com>
 
 	* src/dh-window.c:
