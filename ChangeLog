@@ -1,5 +1,10 @@
 2008-10-01  Richard Hult  <richard@imendio.com>
 
+	* src/*.c: Only include signle gtk header and make includes more
+	consistant.
+
+2008-10-01  Richard Hult  <richard@imendio.com>
+
 	* configure.in:
 	* src/Makefile.am:
 	* src/dh-book-tree.c: (book_tree_create_pixbufs):

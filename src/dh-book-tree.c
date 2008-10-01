@@ -19,15 +19,10 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <config.h>
+#include "config.h"
 #include <string.h>
 #include <gdk/gdkkeysyms.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
-#include <gtk/gtkcellrenderertext.h>
-#include <gtk/gtkcellrendererpixbuf.h>
-#include <gtk/gtkscrolledwindow.h>
-#include <gtk/gtktreeselection.h>
-#include <gtk/gtktreestore.h>
+#include <gtk/gtk.h>
 
 #include "dh-marshal.h"
 #include "dh-book-tree.h"

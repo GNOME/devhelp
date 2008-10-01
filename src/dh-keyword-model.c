@@ -19,7 +19,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <gtk/gtktreemodel.h>
+#include "config.h"
+#include <gtk/gtk.h>
 #include <string.h>
 
 #include "dh-link.h"

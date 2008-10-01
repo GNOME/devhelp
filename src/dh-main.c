@@ -19,10 +19,10 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <config.h>
+#include "config.h"
 #include <string.h>
 #include <glib/gi18n.h>
-#include <gtk/gtkmain.h>
+#include <gtk/gtk.h>
 
 #ifdef HAVE_PLATFORM_X11
 #include <gdk/gdkx.h>
