@@ -32,10 +32,17 @@
 #include "dh-base.h"
 #include "dh-window.h"
 
-#define COMMAND_QUIT           "quit"
-#define COMMAND_SEARCH         "search"
-#define COMMAND_FOCUS_SEARCH   "focus-search"
-#define COMMAND_RAISE          "raise"
+#define COMMAND_QUIT             "quit"
+#define COMMAND_SEARCH           "search"
+#define COMMAND_SEARCH_ASSISTANT "search-assistant"
+#define COMMAND_FOCUS_SEARCH     "focus-search"
+#define COMMAND_RAISE            "raise"
+
+static void
+search_assistant (DhBase      *base,
+                  const gchar *str)
+{
+}
 
 static void
 message_received_cb (const gchar *message, DhBase *base)
@@ -45,6 +52,13 @@ message_received_cb (const gchar *message, DhBase *base)
 
 	if (strcmp (message, COMMAND_QUIT) == 0) {
 		gtk_main_quit ();
+		return;
+	}
+
+	if (g_str_has_prefix (message, COMMAND_SEARCH_ASSISTANT)) {
+                search_assistant (base,
+                                  message +
+                                  strlen (COMMAND_SEARCH_ASSISTANT) + 1);
 		return;
 	}
 
@@ -80,6 +94,7 @@ int
 main (int argc, char **argv)
 {
 	gchar                  *option_search = NULL;
+	gchar                  *option_search_assistant = NULL;
 	gboolean                option_quit = FALSE;
 	gboolean                option_focus_search = FALSE;
 	gboolean                option_version = FALSE;
@@ -124,6 +139,15 @@ main (int argc, char **argv)
 			G_OPTION_ARG_NONE,
 			&option_focus_search,
 			_("Focus the devhelp window with the search field active"),
+			NULL
+		},
+       		{
+			"search-assistant",
+			'a',
+			0,
+			G_OPTION_ARG_STRING,
+			&option_search_assistant,
+			_("Search and display any hit in the assistant window"),
 			NULL
 		},
 		{
@@ -172,6 +196,16 @@ main (int argc, char **argv)
 			bacon_message_connection_send (message_conn, command);
 			g_free (command);
 		}
+		else if (option_search_assistant) {
+			gchar *command;
+
+			command = g_strdup_printf ("%s %s",
+						   COMMAND_SEARCH_ASSISTANT,
+						   option_search_assistant);
+
+			bacon_message_connection_send (message_conn, command);
+			g_free (command);
+		}
 		else if (option_focus_search) {
 			bacon_message_connection_send (message_conn, COMMAND_FOCUS_SEARCH);
 		} else {
@@ -188,18 +222,23 @@ main (int argc, char **argv)
 	}
 
 	base = dh_base_new ();
-	window = dh_base_new_window (base);
 
 	bacon_message_connection_set_callback (
 		message_conn,
 		(BaconMessageReceivedFunc) message_received_cb,
 		base);
 
-	if (option_search) {
-		dh_window_search (DH_WINDOW (window), option_search);
-	}
+	if (!option_search_assistant) {
+		window = dh_base_new_window (base);
 
-	gtk_widget_show (window);
+                if (option_search) {
+                        dh_window_search (DH_WINDOW (window), option_search);
+                }
+
+		gtk_widget_show (window);
+	} else {
+		search_assistant (base, option_search_assistant);
+	}
 
 	gtk_main ();
 

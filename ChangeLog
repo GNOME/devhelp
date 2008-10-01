@@ -1,5 +1,10 @@
 2008-10-01  Richard Hult  <richard@imendio.com>
 
+	* src/dh-main.c: (message_received_cb), (main): Prepare for a new
+	search method.
+
+2008-10-01  Richard Hult  <richard@imendio.com>
+
 	* Makefile.am: Adapt to recent intltool changes.
 
 2008-10-01  Richard Hult  <richard@imendio.com>
