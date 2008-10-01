@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 1999 Free Software Foundation
  * Copyright (C) 2000, 2001 Eazel, Inc.

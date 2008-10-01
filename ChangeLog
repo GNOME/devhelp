@@ -1,5 +1,9 @@
 2008-10-01  Richard Hult  <richard@imendio.com>
 
+	* src/*.c: Update modelines to what I actually use.
+
+2008-10-01  Richard Hult  <richard@imendio.com>
+
 	* src/*.c: Only include signle gtk header and make includes more
 	consistant.
 
