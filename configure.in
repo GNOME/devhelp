@@ -1,4 +1,4 @@
-AC_INIT([Devhelp],[0.20],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+AC_INIT([Devhelp],[0.21],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
   
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
 AC_CONFIG_HEADERS([config.h])
@@ -64,8 +64,6 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
 ])
 
 PKG_CHECK_MODULES([WEBKIT], [webkit-1.0])
-AC_SUBST([WEBKIT_CFLAGS])
-AC_SUBST([WEBKIT_LIBS])
 
 dnl Checks for zlib library.
 AC_LANG_PUSH([C])
