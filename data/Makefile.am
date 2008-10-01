@@ -1,5 +1,8 @@
 SUBDIRS = ui dtd icons
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = libdevhelp-1.0.pc
+
 @INTLTOOL_DESKTOP_RULE@
 
 DESKTOP_IN_FILES = devhelp.desktop.in
@@ -14,6 +17,7 @@ schemas_DATA     = $(schemas_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
 EXTRA_DIST =			\
+	libdevhelp-1.0.pc.in    \
 	$(DESKTOP_IN_FILES)	\
 	$(DESKTOP_FILES)        \
 	$(schemas_in_files)     \

@@ -1,5 +1,11 @@
 2008-10-01  Richard Hult  <richard@imendio.com>
 
+	* configure.in:
+	* Makefile.am:
+	* data/Makefile.am: Move pc file to data/.
+
+2008-10-01  Richard Hult  <richard@imendio.com>
+
 	* src/*.c: Update modelines to what I actually use.
 
 2008-10-01  Richard Hult  <richard@imendio.com>
