@@ -1,24 +1,18 @@
+AC_PREREQ(2.60)
 AC_INIT([Devhelp],[0.21],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
-  
-AM_INIT_AUTOMAKE([1.9 dist-bzip2 no-dist-gzip])
-AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_SRCDIR([src/dh-window.c])
 
-AM_SANITY_CHECK
-AM_MAINTAINER_MODE
+AC_CONFIG_HEADERS(config.h)
+AM_INIT_AUTOMAKE([1.9 no-define -Wall])
+AC_DISABLE_STATIC
+AC_PROG_LIBTOOL
 
 AC_PROG_CC
+AC_PROG_CPP
 AM_PROG_CC_C_O
-AC_ISC_POSIX
-AC_HEADER_STDC
-
-AM_DISABLE_STATIC
-F77=no
-AM_PROG_LIBTOOL
 
 AM_PATH_GLIB_2_0
 
-IT_PROG_INTLTOOL([0.35.5])
+IT_PROG_INTLTOOL([0.40.0])
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 
 AM_GCONF_SOURCE_2
@@ -50,64 +44,41 @@ AC_SUBST(PLATFORM_LDFLAGS)
 AC_SUBST(REQUIRES_LIBWNCK)
 
 PKG_CHECK_MODULES(DEVHELP, [
-	gtk+-2.0 >= 2.8.0
-	$gconf_pkgconfig
+  gtk+-2.0 >= 2.8.0
+  $gconf_pkgconfig
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-        gthread-2.0 >= 2.8.0
-        gtk+-2.0 >= 2.8.0
-	libglade-2.0 >= 2.4.0
-	$gconf_pkgconfig
-        $libwnck_pkgconfig
-        $igemacintegration_pkgconfig
+  gthread-2.0 >= 2.8.0
+  gtk+-2.0 >= 2.8.0
+  libglade-2.0 >= 2.4.0
+  $gconf_pkgconfig
+  $libwnck_pkgconfig
+  $igemacintegration_pkgconfig
+  webkit-1.0
 ])
 
-PKG_CHECK_MODULES([WEBKIT], [webkit-1.0])
-
-dnl Checks for zlib library.
-AC_LANG_PUSH([C])
-_SAVE_CPPFLAGS="$CPPFLAGS"
-_SAVE_LDFLAGS="$LDFLAGS"
- 
-AC_ARG_WITH(zlib,
-[  --with-zlib[=DIR]       use libz in DIR],[
-        if test "$withval" != "no" -a "$withval" != "yes"; then
-                Z_DIR=$withval
-                CPPFLAGS="$CPPFLAGS -I$withval/include"
-                LDFLAGS="$LDFLAGS -L$withval/lib"
-        fi
-])
-if test "$with_zlib" = "no"; then
-        echo "Disabling compression support"
-else
-        AC_CHECK_HEADERS(zlib.h,
-                AC_CHECK_LIB(z, gzread,[
-                        AC_DEFINE(HAVE_LIBZ,1,[zlib is available])
-                        if test "x${Z_DIR}" != "x"; then
-                                Z_CFLAGS="-I${Z_DIR}/include"
-                                Z_LIBS="-L${Z_DIR}/lib -lz"
-                                [case ${host} in
-                                        *-*-solaris*)
-                                                Z_LIBS="-L${Z_DIR}/lib -R${Z_DIR}/lib -lz"
-                                                ;;
-                                esac]
-                        else
-                                Z_LIBS="-lz"
-                        fi]))
+AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)
+have_zlib=no
+if test "x$zlibdir" != x; then
+    ZLIB_CPPFLAGS=-I$zlibdir/include
+    ZLIB_LDFLAGS=-L$zlibdir/lib
 fi
-
-AC_SUBST(Z_CFLAGS)
-AC_SUBST(Z_LIBS)
-
-CPPFLAGS="$_SAVE_CPPFLAGS"
-LDFLAGS="$_SAVE_LDFLAGS"
-AC_LANG_POP([C])
+save_CPPFLAGS="$CPPFLAGS"
+save_LDFLAGS="$LDFLAGS"
+CPPFLAGS="$CPPFLAGS $ZLIB_CPPFLAGS"
+LDFLAGS="$LDFLAGS $ZLIB_LDFLAGS"
+AC_CHECK_HEADERS(zlib.h, AC_CHECK_LIB(z, gzread, have_zlib=yes))
+CPPFLAGS="$save_CPPFLAGS"
+LDFLAGS="$save_LDFLAGS"
+ZLIB_LIBS=-lz
+AC_SUBST(ZLIB_CFLAGS)
+AC_SUBST(ZLIB_LDFLAGS)
+AC_SUBST(ZLIB_LIBS)
 
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Package name for gettext])
-
 AM_GLIB_GNU_GETTEXT
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)

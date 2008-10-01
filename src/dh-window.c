@@ -834,7 +834,7 @@ window_activate_about (GtkAction *action,
 
 	gtk_show_about_dialog (GTK_WINDOW (window),
 			       "name",_("Devhelp"),
-			       "version", VERSION,
+			       "version", PACKAGE_VERSION,
 			       "comments", _("A developer's help browser for GNOME 2"),
 			       "authors", authors,
 			       "documenters", documenters,

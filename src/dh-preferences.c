@@ -425,7 +425,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
 		return;
 	}
 
-	gui = dh_glade_get_file (SHAREDIR "/devhelp.glade",
+	gui = dh_glade_get_file (DATADIR "/devhelp.glade",
 				 "preferences_dialog",
 				 NULL,
 				 "preferences_dialog", &prefs->dialog,

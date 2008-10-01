@@ -59,8 +59,7 @@ message_received_cb (const gchar *message, DhBase *base)
 		gtk_window_present (GTK_WINDOW (window));
 	}
 
-	if (strncmp (message, COMMAND_SEARCH, strlen (COMMAND_SEARCH)) == 0) {
-
+	if (g_str_has_prefix (message, COMMAND_SEARCH)) {
 		dh_window_search (DH_WINDOW (window),
 				  message + strlen (COMMAND_SEARCH) + 1);
 	}
@@ -134,7 +133,7 @@ main (int argc, char **argv)
 
 	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain (PACKAGE);
+	textdomain (GETTEXT_PACKAGE);
 
 	g_thread_init (NULL);
 

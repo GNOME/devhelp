@@ -1,10 +1,7 @@
-DEFINES = 						\
+AM_CPPFLAGS = 						\
 	-DLOCALEDIR=\""$(datadir)/locale"\" 	  	\
 	-DPREFIX="\"$(prefix)"\"		 	\
-	-DSYSCONFDIR=\""$(sysconfdir)"\"                \
 	-DDATADIR=\""$(datadir)"\"                      \
-	-DLIBDIR=\""$(libdir)"\"			\
-	-DSHAREDIR=\""$(pkgdatadir)"\"			\
 	-DG_LOG_DOMAIN=\"Devhelp\"
 
 bin_PROGRAMS = devhelp
@@ -13,19 +10,15 @@ devhelp_SOURCES =					\
 	dh-main.c
 
 devhelp_CPPFLAGS =					\
-	$(DEFINES)					\
 	$(AM_CPPFLAGS)
 
 devhelp_CFLAGS = 					\
 	$(WARN_CFLAGS)					\
-	$(DEVHELP_CFLAGS)				\
-	$(AM_CFLAGS)
+	$(DEVHELP_CFLAGS)
 
 devhelp_LDADD = 					\
         $(DEVHELP_LIBS)					\
         libdevhelp-1.la
-
-devhelp_LDFLAGS = $(AM_LDFLAGS)
 
 lib_LTLIBRARIES = libdevhelp-1.la
 
@@ -40,8 +33,7 @@ devhelpinclude_HEADERS = 				\
 	dh-parser.h					\
 	dh-preferences.h                                \
 	dh-util.h					\
-	dh-window.h					\
-	eggfindbar.h
+	dh-window.h
 
 libdevhelp_1_la_SOURCES =				\
 	bacon-message-connection.c			\
@@ -57,24 +49,23 @@ libdevhelp_1_la_SOURCES =				\
 	dh-preferences.c				\
 	dh-util.c					\
 	dh-window.c					\
-	eggfindbar.c
+	eggfindbar.c					\
+	eggfindbar.h
 
 libdevhelp_1_la_CPPFLAGS =				\
-	$(DEFINES)					\
-	$(AM_CPPFLAGS)
+	$(AM_CPPFLAGS)					\
+	$(ZLIB_CPPFLAGS)
 
 libdevhelp_1_la_CFLAGS = 				\
 	$(WARN_CFLAGS)					\
-	$(LIBDEVHELP_CFLAGS)				\
-	$(WEBKIT_CFLAGS)					\
-	$(AM_CFLAGS)
+	$(LIBDEVHELP_CFLAGS)
 
 libdevhelp_1_la_LIBADD =				\
 	$(LIBDEVHELP_LIBS)				\
-	$(WEBKIT_LIBS)					\
-	$(WEBKIT_EXTRA_LIBS)
+	$(ZLIB_LIBS)
 
-libdevhelp_1_la_LDFLAGS = $(AM_LDFLAGS)
+libdevhelp_1_la_LDFLAGS =				\
+	$(ZLIB_LDFLAGS)
 
 dh-marshal.h: dh-marshal.list
 	(cd $(srcdir) && \
@@ -95,7 +86,8 @@ BUILT_SOURCES =						\
 	dh-marshal.c
 
 EXTRA_DIST =						\
-	dh-marshal.list					\
-	$(devhelpinclude_HEADERS)
+	dh-marshal.list					
+
+#	$(devhelpinclude_HEADERS)
 
 CLEANFILES = $(BUILT_SOURCES)

@@ -23,11 +23,8 @@
 #include <config.h>
 #include <string.h>
 #include <errno.h>
-#include <glib/gi18n.h>
-
-#ifdef HAVE_LIBZ
 #include <zlib.h>
-#endif
+#include <glib/gi18n.h>
 
 #include "dh-error.h"
 #include "dh-link.h"
@@ -547,7 +544,6 @@ parser_read_gz_file (const gchar  *path,
 		     GList       **keywords,
 		     GError      **error)
 {
-#ifdef HAVE_LIBZ
 	DhParser *parser;
 	gchar     buf[BYTES_PER_READ];
 	gzFile    file;
@@ -641,13 +637,6 @@ parser_read_gz_file (const gchar  *path,
 	g_free (parser);
 
 	return TRUE;
-#else
-	g_set_error (error,
-		     DH_ERROR,
-		     DH_ERROR_INTERNAL_ERROR,
-		     _("Devhelp is not built with zlib support"));
-	return FALSE;
-#endif
 }
 
 

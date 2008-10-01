@@ -1,5 +1,16 @@
 2008-10-01  Richard Hult  <richard@imendio.com>
 
+	* configure.in:
+	* src/Makefile.am:
+	* src/dh-book-tree.c: (book_tree_create_pixbufs):
+	* src/dh-main.c: (main):
+	* src/dh-parser.c: (parser_read_gz_file):
+	* src/dh-preferences.c: (dh_preferences_show_dialog):
+	* src/dh-window.c: Modernize the build setup, and make zlib an
+	unconditional dependency.
+
+2008-10-01  Richard Hult  <richard@imendio.com>
+
 	* libdevhelp-1.0.pc.in: Remove more gecko remains.
 
 2008-10-01  Richard Hult  <richard@imendio.com>

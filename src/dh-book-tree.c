@@ -298,9 +298,9 @@ book_tree_create_pixbufs (DhBookTree *tree)
 
 	pixbufs = g_new0 (DhBookTreePixbufs, 1);
 
-	pixbufs->pixbuf_closed = gdk_pixbuf_new_from_file (SHAREDIR "/images/book_closed.png", NULL);
-	pixbufs->pixbuf_opened = gdk_pixbuf_new_from_file (SHAREDIR "/images/book_open.png", NULL);
-	pixbufs->pixbuf_helpdoc = gdk_pixbuf_new_from_file (SHAREDIR "/images/helpdoc.png", NULL);
+	pixbufs->pixbuf_closed = gdk_pixbuf_new_from_file (DATADIR "/images/book_closed.png", NULL);
+	pixbufs->pixbuf_opened = gdk_pixbuf_new_from_file (DATADIR "/images/book_open.png", NULL);
+	pixbufs->pixbuf_helpdoc = gdk_pixbuf_new_from_file (DATADIR "/images/helpdoc.png", NULL);
 
         tree->priv->pixbufs = pixbufs;
 }
