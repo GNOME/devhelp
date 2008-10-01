@@ -2,7 +2,6 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
-gecko_home=@GECKO_HOME@
 
 Name: devhelp
 Description: devhelp

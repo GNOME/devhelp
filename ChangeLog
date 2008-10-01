@@ -1,5 +1,9 @@
 2008-10-01  Richard Hult  <richard@imendio.com>
 
+	* libdevhelp-1.0.pc.in: Remove more gecko remains.
+
+2008-10-01  Richard Hult  <richard@imendio.com>
+
 	* configure.in: Bump version. Also remove unneeded AC_SUBST.
 
 2008-10-01  Richard Hult  <richard@imendio.com>
