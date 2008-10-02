@@ -21,7 +21,7 @@
 #ifndef __DH_PREFERENCES_H__
 #define __DH_PREFERENCES_H__
 
-#include <gtk/gtkwindow.h>
+#include <gtk/gtk.h>
 
 #define GCONF_PATH "/apps/devhelp"
 

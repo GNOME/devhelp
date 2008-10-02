@@ -21,11 +21,7 @@
 #ifndef __DH_BOOK_TREE_H__
 #define __DH_BOOK_TREE_H__
 
-#include <glib.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtkwidget.h>
-#include <gtk/gtktypeutils.h>
-
+#include <gtk/gtk.h>
 #include "dh-link.h"
 
 #define DH_TYPE_BOOK_TREE	     (dh_book_tree_get_type ())

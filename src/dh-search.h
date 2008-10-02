@@ -22,9 +22,7 @@
 #ifndef __DH_SEARCH_H__
 #define __DH_SEARCH_H__
 
-#include <glib-object.h>
-#include <gtk/gtkwidget.h>
-
+#include <gtk/gtk.h>
 #include "dh-link.h"
 
 #define DH_SEARCH_ENTRY_OAFIID "OAFIID:GNOME_Dh_SearchEntry"

@@ -22,10 +22,7 @@
 #ifndef __DH_KEYWORD_MODEL_H__
 #define __DH_KEYWORD_MODEL_H__
 
-#include <glib-object.h>
-#include <gtk/gtktreemodel.h>
-#include <gtk/gtktreesortable.h>
-
+#include <gtk/gtk.h>
 #include "dh-link.h"
 
 #define DH_TYPE_KEYWORD_MODEL	          (dh_keyword_model_get_type ())

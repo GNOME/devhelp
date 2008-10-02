@@ -1,5 +1,13 @@
 2008-10-02  Richard Hult  <richard@imendio.com>
 
+	* src/dh-book-tree.h:
+	* src/dh-keyword-model.h:
+	* src/dh-preferences.h:
+	* src/dh-search.h:
+	* src/eggfindbar.h: More single header include fixing.
+
+2008-10-02  Richard Hult  <richard@imendio.com>
+
 	* src/dh-window.[ch] (_dh_window_display_uri): New private
 	function that displays a URI that is known to be in the docs.
 
