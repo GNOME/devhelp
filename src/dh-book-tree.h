@@ -30,9 +30,8 @@
 #define DH_IS_BOOK_TREE(obj)	     (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_BOOK_TREE))
 #define DH_IS_BOOK_TREE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), DH_TYPE_BOOK_TREE))
 
-typedef struct _DhBookTree       DhBookTree;
-typedef struct _DhBookTreeClass  DhBookTreeClass;
-typedef struct _DhBookTreePriv   DhBookTreePriv;
+typedef struct _DhBookTree      DhBookTree;
+typedef struct _DhBookTreeClass DhBookTreeClass;
 
 struct _DhBookTree {
 	GtkTreeView parent_instance;

@@ -35,13 +35,13 @@ typedef struct {
 	GtkTreePath *path;
 } FindURIData;
 
-struct _DhBookTreePriv {
+typedef struct {
 	GtkTreeStore *store;
         GdkPixbuf    *pixbuf_opened;
         GdkPixbuf    *pixbuf_closed;
         GdkPixbuf    *pixbuf_helpdoc;
  	GNode        *link_tree;
-};
+} DhBookTreePriv;
 
 static void dh_book_tree_class_init        (DhBookTreeClass  *klass);
 static void dh_book_tree_init              (DhBookTree       *tree);
