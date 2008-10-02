@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-19 21:39+0100\n"
+"POT-Creation-Date: 2008-10-02 16:41+0200\n"
 "PO-Revision-Date: 2008-02-19 21:39+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -21,10 +21,8 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Hjälpprogram för utvecklare"
 
-#: ../data/devhelp.desktop.in.in.h:2
-#: ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151
-#: ../src/dh-window.c:790
+#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:180 ../src/dh-window.c:836
 msgid "Devhelp"
 msgstr "Utvecklarhjälp"
 
@@ -128,8 +126,7 @@ msgstr "<b>Typsnitt</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Sökning</b>"
 
-#: ../data/ui/devhelp.glade.h:3
-#: ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:560
 msgid "Contents"
 msgstr "Innehåll"
 
@@ -149,8 +146,7 @@ msgstr "_Fast bredd:"
 msgid "_Forward"
 msgstr "_Framåt"
 
-#: ../data/ui/devhelp.glade.h:9
-#: ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
 msgid "_Go"
 msgstr "_Gå"
 
@@ -182,70 +178,122 @@ msgstr "Visa API-dokumentation"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Visa API-dokumentation för ordet vid markören"
 
-#: ../src/dh-main.c:100
+#. i18n: a documentation book
+#: ../src/dh-link.c:152
+msgid "Book"
+msgstr "Bok"
+
+#. i18n: a "page" in a documentation book
+#: ../src/dh-link.c:155
+msgid "Page"
+msgstr "Sida"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: ../src/dh-link.c:159
+msgid "Keyword"
+msgstr "Nyckelord"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:164
+msgid "Function"
+msgstr "Funktion"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:169
+msgid "Struct"
+msgstr "Struct"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:174
+msgid "Macro"
+msgstr "Makro"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:179
+msgid "Enum"
+msgstr "Enum"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:184
+msgid "Type"
+msgstr "Typ"
+
+#: ../src/dh-main.c:120
 msgid "Search for a function"
 msgstr "Sök efter en funktion"
 
-#: ../src/dh-main.c:109
+#: ../src/dh-main.c:129
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Utvecklarhjälp"
 
-#: ../src/dh-main.c:118
+#: ../src/dh-main.c:138
 msgid "Display the version and exit"
 msgstr "Visa versionen och avsluta"
 
-#: ../src/dh-main.c:127
+#: ../src/dh-main.c:147
 msgid "Focus the devhelp window with the search field active"
 msgstr "Fokusera Utvecklarhjälp-fönstret med sökfältet aktivt"
 
-#: ../src/dh-parser.c:110
-#: ../src/dh-parser.c:194
-#: ../src/dh-parser.c:271
+#: ../src/dh-main.c:156
+msgid "Search and display any hit in the assistant window"
+msgstr "Sök och visa eventuell träff i assistentfönstret"
+
+#: ../src/dh-parser.c:107 ../src/dh-parser.c:191 ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "\"%s\" förväntades, fick \"%s\" vid rad %d, kolumn %d"
 
-#: ../src/dh-parser.c:128
+#: ../src/dh-parser.c:125
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Ogiltig namnrymd \"%s\" vid rad %d, kolumn %d"
 
-#: ../src/dh-parser.c:158
+#: ../src/dh-parser.c:155
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "titel-, namn- och länkelement krävs vid rad %d, kolumn %d"
 
-#: ../src/dh-parser.c:215
+#: ../src/dh-parser.c:212
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr "namn- och länkelement krävs inuti <sub> på rad %d, kolumn %d"
 
-#: ../src/dh-parser.c:297
+#: ../src/dh-parser.c:301
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
-msgstr "namn- och länkelement krävs inuti <function> på rad %d, kolumn %d"
+msgid ""
+"name and link elements are required inside <keyword> on line %d, column %d"
+msgstr "namn- och länkelement krävs inuti <keyword> på rad %d, kolumn %d"
 
-#: ../src/dh-parser.c:420
-#: ../src/dh-parser.c:515
+#: ../src/dh-parser.c:313
+#, c-format
+msgid "type element is required inside <keyword> on line %d, column %d"
+msgstr "typelement krävs inuti <keyword> på rad %d, kolumn %d"
+
+#: ../src/dh-parser.c:462 ../src/dh-parser.c:556
 #, c-format
 msgid "Could not create book parser"
 msgstr "Kunde inte skapa boktolk"
 
-#: ../src/dh-parser.c:436
-#: ../src/dh-parser.c:525
+#: ../src/dh-parser.c:478 ../src/dh-parser.c:566
 #, c-format
 msgid "Could not create markup parser"
 msgstr "Kunde inte skapa markuptolk"
 
-#: ../src/dh-parser.c:578
+#: ../src/dh-parser.c:619
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan inte dekomprimera boken \"%s\": %s"
-
-#: ../src/dh-parser.c:603
-#, c-format
-msgid "Devhelp is not built with zlib support"
-msgstr "Utvecklarhjälp har inte byggts med stöd för zlib"
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
@@ -255,123 +303,133 @@ msgstr "_Bok:"
 msgid "_Page:"
 msgstr "_Sida:"
 
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:74
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:75
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:76
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:77
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:78
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:79
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:80
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:81
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:82
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:199
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:200
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:201
 msgid "_View"
 msgstr "_Visa"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:203
 msgid "_Help"
 msgstr "_Hjälp"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:206
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:208
 msgid "New _Tab"
 msgstr "Ny _flik"
 
-#: ../src/dh-window.c:208
-#: ../src/eggfindbar.c:337
+#: ../src/dh-window.c:210
+msgid "_Print..."
+msgstr "_Skriv ut..."
+
+#: ../src/dh-window.c:222 ../src/eggfindbar.c:326
 msgid "Find Next"
 msgstr "Sök nästa"
 
-#: ../src/dh-window.c:210
-#: ../src/eggfindbar.c:329
+#: ../src/dh-window.c:224 ../src/eggfindbar.c:318
 msgid "Find Previous"
 msgstr "Sök föregående"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:231
 msgid "Go to the previous page"
 msgstr "Gå till föregående sida"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:234
 msgid "Go to the next page"
 msgstr "Gå till nästa sida"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:237
 msgid "_Contents Tab"
 msgstr "_Innehållsflik"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:240
 msgid "_Search Tab"
 msgstr "_Sökflik"
 
 #. View menu
-#: ../src/dh-window.c:230
+#: ../src/dh-window.c:244
 msgid "_Larger Text"
 msgstr "_Större text"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:245
 msgid "Increase the text size"
 msgstr "Öka textstorleken"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:247
 msgid "S_maller Text"
 msgstr "_Mindre text"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:248
 msgid "Decrease the text size"
 msgstr "Minska textstorleken"
 
-#: ../src/dh-window.c:236
+#: ../src/dh-window.c:250
 msgid "_Normal size"
 msgstr "_Normal storlek"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:251
 msgid "Use the normal text size"
 msgstr "Använd normal textstorlek"
 
-#: ../src/dh-window.c:529
+#: ../src/dh-window.c:501
+msgid "About Devhelp"
+msgstr "Om Utvecklarhjälp"
+
+#: ../src/dh-window.c:506
+msgid "Preferences..."
+msgstr "Inställningar..."
+
+#: ../src/dh-window.c:570
 msgid "Search"
 msgstr "Sök"
 
-#: ../src/dh-window.c:787
+#: ../src/dh-window.c:833
 msgid "translator_credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -379,35 +437,41 @@ msgstr ""
 "Richard Hult <richard@imendio.com>\n"
 "Johan Dahlin <johan@gnome.org>"
 
-#: ../src/dh-window.c:792
+#: ../src/dh-window.c:838
 msgid "A developer's help browser for GNOME 2"
 msgstr "Ett hjälpprogram för utvecklare för GNOME 2"
 
-#: ../src/dh-window.c:1186
-#: ../src/dh-window.c:1381
+#: ../src/dh-window.c:1247 ../src/dh-window.c:1437
 msgid "Empty Page"
 msgstr "Tom sida"
 
-#: ../src/eggfindbar.c:320
+#: ../src/eggfindbar.c:309
 msgid "Find:"
 msgstr "Sök:"
 
-#: ../src/eggfindbar.c:332
+#: ../src/eggfindbar.c:321
 msgid "Find previous occurrence of the search string"
 msgstr "Sök föregående förekomst av söksträngen"
 
-#: ../src/eggfindbar.c:340
+#: ../src/eggfindbar.c:329
 msgid "Find next occurrence of the search string"
 msgstr "Sök nästa förekomst av söksträngen"
 
-#: ../src/eggfindbar.c:348
+#: ../src/eggfindbar.c:337
 msgid "Case Sensitive"
 msgstr "Skiftlägeskänslig"
 
-#: ../src/eggfindbar.c:351
+#: ../src/eggfindbar.c:340
 msgid "Toggle case sensitive search"
 msgstr "Växla skiftlägeskänslighet"
 
+#~ msgid ""
+#~ "name and link elements are required inside <function> on line %d, column %"
+#~ "d"
+#~ msgstr "namn- och länkelement krävs inuti <function> på rad %d, kolumn %d"
+
+#~ msgid "Devhelp is not built with zlib support"
+#~ msgstr "Utvecklarhjälp har inte byggts med stöd för zlib"
+
 #~ msgid "Browse _Contents"
 #~ msgstr "_Bläddra i innehållet"
-
