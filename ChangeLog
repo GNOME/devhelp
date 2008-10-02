@@ -1,5 +1,9 @@
 2008-10-02  Richard Hult  <richard@imendio.com>
 
+	* src/*.h: Update modelines in the header files too.
+
+2008-10-02  Richard Hult  <richard@imendio.com>
+
 	* src/dh-book-tree.h:
 	* src/dh-keyword-model.h:
 	* src/dh-preferences.h:
