@@ -35,22 +35,17 @@ typedef struct _DhBookTreeClass  DhBookTreeClass;
 typedef struct _DhBookTreePriv   DhBookTreePriv;
 
 struct _DhBookTree {
-	GtkTreeView     parent;
-        DhBookTreePriv *priv;
+	GtkTreeView parent_instance;
 };
 
 struct _DhBookTreeClass {
         GtkTreeViewClass parent_class;
-
-        /* Signals */
-        void (*link_selected) (DhBookTree *book_tree,
-			       DhLink     *link);
 };
 
-GType        dh_book_tree_get_type           (void) G_GNUC_CONST;
-GtkWidget *  dh_book_tree_new                (GNode       *books);
-void         dh_book_tree_select_uri         (DhBookTree  *book_tree,
-					      const gchar *uri);
+GType        dh_book_tree_get_type                (void) G_GNUC_CONST;
+GtkWidget *  dh_book_tree_new                     (GNode       *books);
+void         dh_book_tree_select_uri              (DhBookTree  *book_tree,
+                                                   const gchar *uri);
 const gchar *dh_book_tree_get_selected_book_title (DhBookTree  *tree);
 
 #endif /* __DH_BOOK_TREE_H__ */

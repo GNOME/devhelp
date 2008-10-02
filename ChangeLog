@@ -1,5 +1,11 @@
 2008-10-02  Richard Hult  <richard@imendio.com>
 
+	* src/dh-book-tree.c:
+	* src/dh-book-tree.h: Modernize the code a bit, use private
+	instance data and G_DEFINE_TYPE, clean up a bit.
+
+2008-10-02  Richard Hult  <richard@imendio.com>
+
 	* src/dh-base.c: (dh_base_get_window_on_current_workspace): Fix
 	build.
 
