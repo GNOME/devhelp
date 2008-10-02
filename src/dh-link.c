@@ -37,7 +37,7 @@ dh_link_get_type (void)
   return type;
 }
 
-static void 
+static void
 link_free (DhLink *link)
 {
 	g_free (link->name);
@@ -49,10 +49,10 @@ link_free (DhLink *link)
 }
 
 DhLink *
-dh_link_new (DhLinkType   type, 
-	     const gchar *name, 
-	     const gchar *book, 
-	     const gchar *page, 
+dh_link_new (DhLinkType   type,
+	     const gchar *name,
+	     const gchar *book,
+	     const gchar *page,
 	     const gchar *uri)
 {
 	DhLink *link;
@@ -70,14 +70,14 @@ dh_link_new (DhLinkType   type,
 	link->uri  = g_strdup (uri);
 
 	link->ref_count = 1;
-	
+
 	return link;
 }
 
 DhLink *
 dh_link_copy (const DhLink *link)
 {
-	return dh_link_new (link->type, link->name, link->book, 
+	return dh_link_new (link->type, link->name, link->book,
 			    link->page, link->uri);
 }
 
@@ -94,7 +94,7 @@ dh_link_compare  (gconstpointer a, gconstpointer b)
 		    ((DhLink *)b)->page == 0) {
 			page_diff = 0;
 		} else {
-			page_diff = 
+			page_diff =
 				(((DhLink *)a)->page && ((DhLink *)b)->page) ?
 				strcmp (((DhLink *)a)->page, ((DhLink *)b)->page) : -1;
 		}
@@ -114,7 +114,7 @@ dh_link_ref (DhLink *link)
 	g_return_val_if_fail (link != NULL, NULL);
 
 	link->ref_count++;
-	
+
 	return link;
 }
 
@@ -122,7 +122,7 @@ void
 dh_link_unref (DhLink *link)
 {
 	g_return_if_fail (link != NULL);
-	
+
 	link->ref_count--;
 
 	if (link->ref_count == 0) {
@@ -157,7 +157,7 @@ dh_link_get_type_as_string (DhLink *link)
                 /* i18n: a search hit in the documentation, could be a
                  * function, macro, struct, etc */
                 return _("Keyword");
-	case DH_LINK_TYPE_FUNCTION:
+        case DH_LINK_TYPE_FUNCTION:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
@@ -175,7 +175,7 @@ dh_link_get_type_as_string (DhLink *link)
 	case DH_LINK_TYPE_ENUM:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
-                 * untranslated. */ 
+                 * untranslated. */
                return _("Enum");
 	case DH_LINK_TYPE_TYPEDEF:
                 /* i18n: in the programming language context, if you don't

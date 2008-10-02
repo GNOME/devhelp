@@ -20,17 +20,16 @@
  */
 
 #include "config.h"
-
 #include "dh-error.h"
 
 GQuark
-dh_error_quark (void) 
+dh_error_quark (void)
 {
         static GQuark q = 0;
-        
+
         if (q == 0) {
                 q = g_quark_from_static_string ("dh-error-quark");
         }
-        
+
         return q;
 }

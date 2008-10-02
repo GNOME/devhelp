@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2008 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -19,41 +20,36 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef __DH_LINK_H__ 
-#define __DH_LINK_H__ 
+#ifndef __DH_LINK_H__
+#define __DH_LINK_H__
 
-#include <glib.h>
 #include <glib-object.h>
 
-typedef struct _DhLink   DhLink;
-
-#define DH_LINK(x) ((DhLink *) x)
-
 typedef enum {
-	DH_LINK_TYPE_BOOK,
-	DH_LINK_TYPE_PAGE,
-	DH_LINK_TYPE_KEYWORD,
-	DH_LINK_TYPE_FUNCTION,
-	DH_LINK_TYPE_STRUCT,
-	DH_LINK_TYPE_MACRO,
-	DH_LINK_TYPE_ENUM,
-	DH_LINK_TYPE_TYPEDEF
+        DH_LINK_TYPE_BOOK,
+        DH_LINK_TYPE_PAGE,
+        DH_LINK_TYPE_KEYWORD,
+        DH_LINK_TYPE_FUNCTION,
+        DH_LINK_TYPE_STRUCT,
+        DH_LINK_TYPE_MACRO,
+        DH_LINK_TYPE_ENUM,
+        DH_LINK_TYPE_TYPEDEF
 } DhLinkType;
 
-struct _DhLink {
-	gchar       *name;
-	gchar       *book;
-	gchar       *page;
-	gchar       *uri;
-	DhLinkType   type;
+typedef struct {
+        gchar       *name;
+        gchar       *book;
+        gchar       *page;
+        gchar       *uri;
+        DhLinkType   type;
 
-	/* FIXME: Use an enum or flags for this when we know more about what we
-	 * can do (or keep the actual deprecation string).
-	 */
-	gboolean     is_deprecated;
-	
-	guint        ref_count;
-};
+        /* FIXME: Use an enum or flags for this when we know more about what we
+         * can do (or keep the actual deprecation string).
+         */
+        gboolean     is_deprecated;
+
+        guint        ref_count;
+} DhLink;
 
 #define DH_TYPE_LINK dh_link_get_type ()
 

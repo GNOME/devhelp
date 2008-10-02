@@ -1,5 +1,11 @@
 2008-10-02  Richard Hult  <richard@imendio.com>
 
+	* src/dh-error.c:
+	* src/dh-link.c:
+	* src/dh-link.h: Whitespace cleanup.
+
+2008-10-02  Richard Hult  <richard@imendio.com>
+
 	* src/dh-parser.c: (parser_start_node_cb): Try a bit harder to get
 	useful info from old devhelp files by setting the link type to
 	struct, enum if those can be extracted from the name.
