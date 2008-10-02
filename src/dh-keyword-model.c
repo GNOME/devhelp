@@ -121,12 +121,11 @@ dh_keyword_model_get_type (void)
 }
 
 static void
-keyword_model_class_init (DhKeywordModelClass *class)
+keyword_model_class_init (DhKeywordModelClass *klass)
 {
-        GObjectClass *object_class;
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);;
 
-        parent_class = g_type_class_peek_parent (class);
-        object_class = (GObjectClass*) class;
+        parent_class = g_type_class_peek_parent (klass);
 
         object_class->finalize = keyword_model_finalize;
 }
@@ -154,48 +153,28 @@ keyword_model_init (DhKeywordModel *model)
         DhKeywordModelPriv *priv;
 
         priv = g_new0 (DhKeywordModelPriv, 1);
+        model->priv = priv;
 
         do {
                 priv->stamp = g_random_int ();
         } while (priv->stamp == 0);
-
-        priv->original_list = NULL;
-        priv->keyword_words = NULL;
-
-        model->priv = priv;
 }
 
 static void
 keyword_model_finalize (GObject *object)
 {
-        DhKeywordModel *model = DH_KEYWORD_MODEL (object);
+        DhKeywordModel     *model = DH_KEYWORD_MODEL (object);
+        DhKeywordModelPriv *priv = model->priv;
+        
+        g_list_free (priv->keyword_words);
+        g_list_free (priv->original_list);
+        g_list_free (priv->keys_list);
+        g_list_free (priv->book_list);
+        g_list_free (priv->page_list);
 
-        if (model->priv) {
-                if (model->priv->keyword_words) {
-                        g_list_free (model->priv->keyword_words);
-                }
+        g_free (model->priv);
 
-                if (model->priv->original_list) {
-                        g_list_free (model->priv->original_list);
-                }
-
-                if (model->priv->keys_list) {
-                        g_list_free (model->priv->keys_list);
-                }
-
-                if (model->priv->book_list) {
-                        g_list_free (model->priv->book_list);
-                }
-
-                if (model->priv->page_list) {
-                        g_list_free (model->priv->page_list);
-                }
-
-                g_free (model->priv);
-                model->priv = NULL;
-        }
-
-        (* parent_class->finalize) (object);
+        parent_class->finalize (object);
 }
 
 static GtkTreeModelFlags
@@ -238,11 +217,8 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
         GList              *node;
         const gint         *indices;
 
-        g_return_val_if_fail (DH_IS_KEYWORD_MODEL (tree_model), FALSE);
-        g_return_val_if_fail (gtk_tree_path_get_depth (path) > 0, FALSE);
-
         model = DH_KEYWORD_MODEL (tree_model);
-        priv  = model->priv;
+        priv = model->priv;
 
         indices = gtk_tree_path_get_indices (path);
 
@@ -268,10 +244,9 @@ keyword_model_get_path (GtkTreeModel *tree_model,
 {
         DhKeywordModel     *model = DH_KEYWORD_MODEL (tree_model);
         DhKeywordModelPriv *priv;
-        GtkTreePath         *path;
-        gint                 i = 0;
+        GtkTreePath        *path;
+        gint                i = 0;
 
-        g_return_val_if_fail (DH_IS_KEYWORD_MODEL (tree_model), NULL);
         g_return_val_if_fail (iter->stamp == model->priv->stamp, NULL);
 
         priv = model->priv;
@@ -297,9 +272,6 @@ keyword_model_get_value (GtkTreeModel *tree_model,
 {
         DhLink *link;
 
-        g_return_if_fail (DH_IS_KEYWORD_MODEL (tree_model));
-        g_return_if_fail (iter != NULL);
-
         link = G_LIST (iter->user_data)->data;
 
         switch (column) {
@@ -321,14 +293,14 @@ keyword_model_get_value (GtkTreeModel *tree_model,
 }
 
 static gboolean
-keyword_model_iter_next (GtkTreeModel *tree_model, GtkTreeIter *iter)
+keyword_model_iter_next (GtkTreeModel *tree_model, 
+                         GtkTreeIter  *iter)
 {
         DhKeywordModel *model = DH_KEYWORD_MODEL (tree_model);
 
-        g_return_val_if_fail (DH_IS_KEYWORD_MODEL (tree_model), FALSE);
         g_return_val_if_fail (model->priv->stamp == iter->stamp, FALSE);
 
-        iter->user_data = G_LIST(iter->user_data)->next;
+        iter->user_data = G_LIST (iter->user_data)->next;
 
         return (iter->user_data != NULL);
 }
@@ -340,9 +312,7 @@ keyword_model_iter_children (GtkTreeModel *tree_model,
 {
         DhKeywordModelPriv *priv;
 
-        g_return_val_if_fail (DH_IS_KEYWORD_MODEL (tree_model), FALSE);
-
-        priv = DH_KEYWORD_MODEL(tree_model)->priv;
+        priv = DH_KEYWORD_MODEL (tree_model)->priv;
 
         /* this is a list, nodes have no children */
         if (parent) {
@@ -375,9 +345,7 @@ keyword_model_iter_n_children (GtkTreeModel *tree_model,
 {
         DhKeywordModelPriv *priv;
 
-        g_return_val_if_fail (DH_IS_KEYWORD_MODEL (tree_model), -1);
-
-        priv = DH_KEYWORD_MODEL(tree_model)->priv;
+        priv = DH_KEYWORD_MODEL (tree_model)->priv;
 
         if (iter == NULL) {
                 return g_list_length (priv->keyword_words);
@@ -395,11 +363,9 @@ keyword_model_iter_nth_child (GtkTreeModel *tree_model,
                               gint          n)
 {
         DhKeywordModelPriv *priv;
-        GList               *child;
+        GList              *child;
 
-        g_return_val_if_fail (DH_IS_KEYWORD_MODEL (tree_model), FALSE);
-
-        priv = DH_KEYWORD_MODEL(tree_model)->priv;
+        priv = DH_KEYWORD_MODEL (tree_model)->priv;
 
         if (parent) {
                 return FALSE;
@@ -408,7 +374,7 @@ keyword_model_iter_nth_child (GtkTreeModel *tree_model,
         child = g_list_nth (priv->keyword_words, n);
 
         if (child) {
-                iter->stamp     = priv->stamp;
+                iter->stamp = priv->stamp;
                 iter->user_data = child;
                 return TRUE;
         }
@@ -435,7 +401,8 @@ dh_keyword_model_new (void)
 }
 
 void
-dh_keyword_model_set_words (DhKeywordModel *model, GList *keyword_words)
+dh_keyword_model_set_words (DhKeywordModel *model,
+                            GList          *keyword_words)
 {
         DhKeywordModelPriv *priv;
         DhLink             *link;
@@ -449,7 +416,6 @@ dh_keyword_model_set_words (DhKeywordModel *model, GList *keyword_words)
         g_list_free (priv->keys_list);
         g_list_free (priv->book_list);
         g_list_free (priv->page_list);
-
 
         priv->original_list = g_list_copy (keyword_words);
         priv->keys_list = priv->book_list = priv->page_list = NULL;
@@ -484,7 +450,8 @@ dh_keyword_model_set_words (DhKeywordModel *model, GList *keyword_words)
 }
 
 DhLink *
-dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
+dh_keyword_model_filter (DhKeywordModel *model,
+                         const gchar    *string)
 {
         DhKeywordModelPriv  *priv;
         DhLink              *link;
@@ -495,7 +462,7 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
         GtkTreePath         *path;
         GtkTreeIter          iter;
         gint                 hits = 0;
-        DhLink              *exactlink = NULL;
+        DhLink              *exact_link = NULL;
         gboolean             found;
         gboolean             case_sensitive;
         gchar               *lower, *name;
@@ -589,7 +556,7 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
                                         new_list = g_list_prepend (new_list, link);
                                         hits++;
 
-                                        exactlink = link;
+                                        exact_link = link;
 
                                 }
 
@@ -612,7 +579,7 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
 
                                         /* Found our page */
                                         new_list  = g_list_prepend (new_list, link);
-                                        exactlink = link;
+                                        exact_link = link;
                                         hits++;
                                 }
                         }
@@ -655,7 +622,7 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
                                         hits++;
 
                                         if (search && strcmp (link->name, search) == 0) {
-                                                exactlink = link;
+                                                exact_link = link;
                                         }
                                 }
                         }
@@ -731,6 +698,5 @@ dh_keyword_model_filter (DhKeywordModel *model, const gchar *string)
                 return priv->keyword_words->data;
         }
 
-        return exactlink;
+        return exact_link;
 }
-

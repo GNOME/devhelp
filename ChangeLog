@@ -2,6 +2,8 @@
 
 	* src/dh-keyword-model.c: Remove g_return_* for static functions
 	except for the consistency stamp checks.
+	- Simplify the finalizer.
+	- Small style cleanups.
 
 2008-10-02  Richard Hult  <richard@imendio.com>
 
