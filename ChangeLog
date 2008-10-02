@@ -1,5 +1,10 @@
 2008-10-02  Richard Hult  <richard@imendio.com>
 
+	* src/dh-keyword-model.c:
+	* src/dh-keyword-model.h: Untabify, remove trailing whitespace.
+
+2008-10-02  Richard Hult  <richard@imendio.com>
+
 	* src/dh-book-tree.c:
 	* src/dh-book-tree.h: Move private struct typedef from the header.
 

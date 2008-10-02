@@ -25,10 +25,10 @@
 #include <gtk/gtk.h>
 #include "dh-link.h"
 
-#define DH_TYPE_KEYWORD_MODEL	          (dh_keyword_model_get_type ())
-#define DH_KEYWORD_MODEL(obj)	          (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModel))
+#define DH_TYPE_KEYWORD_MODEL             (dh_keyword_model_get_type ())
+#define DH_KEYWORD_MODEL(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModel))
 #define DH_KEYWORD_MODEL_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
-#define DH_IS_KEYWORD_MODEL(obj)	  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_KEYWORD_MODEL))
+#define DH_IS_KEYWORD_MODEL(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_KEYWORD_MODEL))
 #define DH_IS_KEYWORD_MODEL_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_KEYWORD_MODEL))
 #define DH_KEYWORD_MODEL_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
 
@@ -46,24 +46,24 @@ struct _DhKeywordModel
 
 struct _DhKeywordModelClass
 {
-	GObjectClass parent_class;
+        GObjectClass parent_class;
 };
 
 enum {
-	/* DH_KEYWORD_MODEL_COL_PIXBUF, */
-	DH_KEYWORD_MODEL_COL_NAME,
-	DH_KEYWORD_MODEL_COL_LINK,
-	DH_KEYWORD_MODEL_COL_IS_DEPRECATED,
-	DH_KEYWORD_MODEL_NR_OF_COLS
+        /* DH_KEYWORD_MODEL_COL_PIXBUF, */
+        DH_KEYWORD_MODEL_COL_NAME,
+        DH_KEYWORD_MODEL_COL_LINK,
+        DH_KEYWORD_MODEL_COL_IS_DEPRECATED,
+        DH_KEYWORD_MODEL_NR_OF_COLS
 };
 
 GtkType            dh_keyword_model_get_type     (void);
 
 DhKeywordModel *   dh_keyword_model_new          (void);
 void               dh_keyword_model_set_words    (DhKeywordModel  *model,
-						  GList           *keywords);
+                                                  GList           *keywords);
 
 DhLink *           dh_keyword_model_filter       (DhKeywordModel  *model,
-						  const gchar     *string);
+                                                  const gchar     *string);
 
 #endif /* __DH_KEYWORD_MODEL_H__ */
