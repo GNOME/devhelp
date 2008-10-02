@@ -28,7 +28,6 @@
 
 typedef struct _DhBase      DhBase;
 typedef struct _DhBaseClass DhBaseClass;
-typedef struct _DhBasePriv  DhBasePriv;
 
 #define DH_TYPE_BASE         (dh_base_get_type ())
 #define DH_BASE(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_BASE, DhBase))
@@ -37,11 +36,8 @@ typedef struct _DhBasePriv  DhBasePriv;
 #define DH_IS_BASE_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), DH_TYPE_BASE))
 #define DH_BASE_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), DH_TYPE_BASE, DhBaseClass))
 
-
 struct _DhBase {
-        GObject     parent;
-        
-        DhBasePriv *priv;
+        GObject parent_instance;
 };
 
 struct _DhBaseClass {
@@ -52,11 +48,11 @@ GType        dh_base_get_type                        (void) G_GNUC_CONST;
 DhBase *     dh_base_get                             (void);
 DhBase *     dh_base_new                             (void);
 GtkWidget *  dh_base_new_window                      (DhBase *base);
+GtkWidget *  dh_base_get_window                      (DhBase *base);
 GtkWidget *  dh_base_get_window_on_current_workspace (DhBase *base);
 GNode *      dh_base_get_book_tree                   (DhBase *base);
 GList *      dh_base_get_keywords                    (DhBase *base);
 GSList *     dh_base_get_windows                     (DhBase *base);
 GConfClient *dh_base_get_gconf_client                (DhBase *base);
-GtkWidget *  dh_base_get_window                      (DhBase *base);
 
 #endif /* __DH_BASE_H__ */
