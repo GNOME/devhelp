@@ -26,31 +26,32 @@
 #include <gtk/gtk.h>
 #include "dh-base.h"
 
-#define DH_TYPE_WINDOW		  (dh_window_get_type ())
-#define DH_WINDOW(obj)		  (GTK_CHECK_CAST ((obj), DH_TYPE_WINDOW, DhWindow))
-#define DH_WINDOW_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), DH_TYPE_WINDOW, DhWindowClass))
-#define DH_IS_WINDOW(obj)	  (GTK_CHECK_TYPE ((obj), DH_TYPE_WINDOW))
-#define DH_IS_WINDOW_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((obj), DH_TYPE_WINDOW))
+#define DH_TYPE_WINDOW         (dh_window_get_type ())
+#define DH_WINDOW(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_WINDOW, DhWindow))
+#define DH_WINDOW_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), DH_TYPE_WINDOW, DhWindowClass))
+#define DH_IS_WINDOW(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), DH_TYPE_WINDOW))
+#define DH_IS_WINDOW_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), DH_TYPE_WINDOW))
+#define DH_WINDOW_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), DH_TYPE_WINDOW, DhWindowClass))
 
 typedef struct _DhWindow       DhWindow;
 typedef struct _DhWindowClass  DhWindowClass;
 typedef struct _DhWindowPriv   DhWindowPriv;
 
 struct _DhWindow {
-        GtkWindow       parent;
-	DhWindowPriv   *priv;
+        GtkWindow     parent_instance;
+	DhWindowPriv *priv;
 };
 
 struct _DhWindowClass {
-        GtkWindowClass    parent_class;
+        GtkWindowClass parent_class;
 };
 
-GType            dh_window_get_type        (void) G_GNUC_CONST;
-GtkWidget *      dh_window_new             (DhBase      *base);
-void             dh_window_search          (DhWindow    *window,
-					    const gchar *str);
-void		 dh_window_focus_search    (DhWindow    *window);
-void             _dh_window_display_uri    (DhWindow    *window,
-				            const gchar *uri);
+GType      dh_window_get_type     (void) G_GNUC_CONST;
+GtkWidget *dh_window_new          (DhBase      *base);
+void       dh_window_search       (DhWindow    *window,
+                                   const gchar *str);
+void       dh_window_focus_search (DhWindow    *window);
+void       _dh_window_display_uri (DhWindow    *window,
+                                   const gchar *uri);
 
 #endif /* __DH_WINDOW_H__ */
