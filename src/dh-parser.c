@@ -2,7 +2,7 @@
 /*
  * Copyright (c) 2002-2003 Mikael Hallendal <micke@imendio.com>
  * Copyright (c) 2002-2003 CodeFactory AB
- * Copyright (C) 2005 Imendio AB
+ * Copyright (C) 2005,2008 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -220,7 +220,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		full_link = g_strconcat (parser->base, "/", link, NULL);
 		page = extract_page_name (link);
 		dh_link = dh_link_new (DH_LINK_TYPE_PAGE, name, 
-				       DH_LINK(parser->book_node->data)->book,
+				       ((DhLink *)parser->book_node->data)->book,
 				       page, full_link);
 		g_free (full_link);
 		g_free (page);
@@ -316,20 +316,6 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			return;
 		}
 
-		/* Strip out these, they are only present for code that gtk-doc
-		 * couldn't parse properly. We'll get this information in a
-		 * better way soon from gtk-doc.
-		 */
-		if (g_str_has_prefix (name, "struct ")) {
-			name = name + 7;
-		}
-		else if (g_str_has_prefix (name, "union ")) {
-			name = name + 6;
-		}
-		else if (g_str_has_prefix (name, "enum ")) {
-			name = name + 5;
-		}
-
 		full_link = g_strconcat (parser->base, "/", link, NULL);
 		page = extract_page_name (link);
 
@@ -366,8 +352,28 @@ parser_start_node_cb (GMarkupParseContext  *context,
 			tmp = NULL;
 		}
 
+		/* Strip out these, they are only present for code that gtk-doc
+		 * couldn't parse properly. We'll get this information in a
+		 * better way soon from gtk-doc.
+		 */
+		if (g_str_has_prefix (name, "struct ")) {
+			name = name + 7;
+			if (link_type == DH_LINK_TYPE_KEYWORD) {
+				link_type = DH_LINK_TYPE_STRUCT;
+			}
+		}
+		else if (g_str_has_prefix (name, "union ")) {
+			name = name + 6;
+		}
+		else if (g_str_has_prefix (name, "enum ")) {
+			name = name + 5;
+			if (link_type == DH_LINK_TYPE_KEYWORD) {
+				link_type = DH_LINK_TYPE_ENUM;
+			}
+		}
+
 		dh_link = dh_link_new (link_type, name, 
-				       DH_LINK (parser->book_node->data)->book,
+				       ((DhLink *) parser->book_node->data)->book,
 				       page, full_link);
 
 		g_free (tmp);
