@@ -24,17 +24,17 @@
 #include <gtk/gtk.h>
 #include "dh-link.h"
 
-#define DH_TYPE_BOOK_TREE	     (dh_book_tree_get_type ())
-#define DH_BOOK_TREE(obj)	     (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_BOOK_TREE, DhBookTree))
+#define DH_TYPE_BOOK_TREE            (dh_book_tree_get_type ())
+#define DH_BOOK_TREE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_BOOK_TREE, DhBookTree))
 #define DH_BOOK_TREE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_BOOK_TREE, DhBookTreeClass))
-#define DH_IS_BOOK_TREE(obj)	     (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_BOOK_TREE))
+#define DH_IS_BOOK_TREE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_BOOK_TREE))
 #define DH_IS_BOOK_TREE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), DH_TYPE_BOOK_TREE))
 
 typedef struct _DhBookTree      DhBookTree;
 typedef struct _DhBookTreeClass DhBookTreeClass;
 
 struct _DhBookTree {
-	GtkTreeView parent_instance;
+        GtkTreeView parent_instance;
 };
 
 struct _DhBookTreeClass {

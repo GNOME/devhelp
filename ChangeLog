@@ -1,5 +1,10 @@
 2008-10-02  Richard Hult  <richard@imendio.com>
 
+	* src/dh-book-tree.c:
+	* src/dh-book-tree.h: Whitespace cleanup.
+
+2008-10-02  Richard Hult  <richard@imendio.com>
+
 	* src/dh-util.c:
 	* src/dh-util.h: Remove unused
 	functions (dh_util_uri_relative_new, dh_util_uri_is_relative,

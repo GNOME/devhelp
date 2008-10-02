@@ -29,18 +29,18 @@
 #include "dh-book-tree.h"
 
 typedef struct {
-	const gchar *uri;
-	gboolean     found;
-	GtkTreeIter  iter;
-	GtkTreePath *path;
+        const gchar *uri;
+        gboolean     found;
+        GtkTreeIter  iter;
+        GtkTreePath *path;
 } FindURIData;
 
 typedef struct {
-	GtkTreeStore *store;
+        GtkTreeStore *store;
         GdkPixbuf    *pixbuf_opened;
         GdkPixbuf    *pixbuf_closed;
         GdkPixbuf    *pixbuf_helpdoc;
- 	GNode        *link_tree;
+        GNode        *link_tree;
 } DhBookTreePriv;
 
 static void dh_book_tree_class_init        (DhBookTreeClass  *klass);
