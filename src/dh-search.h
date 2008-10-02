@@ -25,39 +25,33 @@
 #include <gtk/gtk.h>
 #include "dh-link.h"
 
-#define DH_SEARCH_ENTRY_OAFIID "OAFIID:GNOME_Dh_SearchEntry"
-#define DH_SEARCH_RESULT_OAFIID "OAFIID:GNOME_Dh_SearchResult"
+#define DH_TYPE_SEARCH           (dh_search_get_type ())
+#define DH_SEARCH(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_SEARCH, DhSearch))
+#define DH_SEARCH_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_SEARCH, DhSearchClass))
+#define DH_IS_SEARCH(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_SEARCH))
+#define DH_IS_SEARCH_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_SEARCH))
 
-#define DH_TYPE_SEARCH		(dh_search_get_type ())
-#define DH_SEARCH(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_SEARCH, DhSearch))
-#define DH_SEARCH_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_SEARCH, DhSearchClass))
-#define DH_IS_SEARCH(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_SEARCH))
-#define DH_IS_SEARCH_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_SEARCH))
-
-typedef struct _DhSearch       DhSearch;
-typedef struct _DhSearchClass  DhSearchClass;
-typedef struct _DhSearchPriv   DhSearchPriv;
+typedef struct _DhSearch      DhSearch;
+typedef struct _DhSearchClass DhSearchClass;
 
 struct _DhSearch {
-        GtkVBox        parent;
-        
-        DhSearchPriv  *priv;
+        GtkVBox parent_instance;
 };
 
 struct _DhSearchClass {
-        GtkVBoxClass   parent_class;
+        GtkVBoxClass parent_class;
 
         /* Signals */
         void (*link_selected) (DhSearch          *search,
-			       DhLink            *link);
+                               DhLink            *link);
 };
 
 GType      dh_search_get_type              (void);
 GtkWidget *dh_search_new                   (GList       *keywords);
 void       dh_search_set_search_string     (DhSearch    *search,
-					    const gchar *str);
+                                            const gchar *str);
 void       dh_search_grab_focus            (DhSearch    *search);
 void       dh_search_show_advanced_options (DhSearch    *search,
-					    gboolean     show);
+                                            gboolean     show);
 
 #endif /* __DH_SEARCH_H__ */

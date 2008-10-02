@@ -35,14 +35,12 @@
 
 #define d(x)
 
-typedef enum _DhSearchSource DhSearchSource;
-
-enum _DhSearchSource {
+typedef enum {
 	SEARCH_API    = 0,
 	SEARCH_ENTRY
-};
+} DhSearchSource;
 
-struct _DhSearchPriv {
+typedef struct {
 	DhKeywordModel *model;
 
 	DhLink         *selected_link;
@@ -68,11 +66,10 @@ struct _DhSearchPriv {
 	GString        *entry_str;
 
 	DhSearchSource  search_source;
-};
+} DhSearchPriv;
 
-
-static void  search_init                       (DhSearch         *search);
-static void  search_class_init                 (DhSearchClass    *klass);
+static void  dh_search_init                    (DhSearch         *search);
+static void  dh_search_class_init              (DhSearchClass    *klass);
 static void  search_finalize                   (GObject          *object);
 static void  search_advanced_options_setup     (DhSearch         *search);
 static void  search_advanced_options_notify_cb (GConfClient      *client,
@@ -106,44 +103,19 @@ enum {
         LAST_SIGNAL
 };
 
-static GtkVBox *parent_class;
-static gint     signals[LAST_SIGNAL] = { 0 };
+G_DEFINE_TYPE (DhSearch, dh_search, GTK_TYPE_VBOX);
 
-GType
-dh_search_get_type (void)
-{
-        static GType type = 0;
+#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
+  (instance, DH_TYPE_SEARCH, DhSearchPriv);
 
-        if (!type) {
-                static const GTypeInfo info =
-                        {
-                                sizeof (DhSearchClass),
-                                NULL,
-                                NULL,
-                                (GClassInitFunc) search_class_init,
-                                NULL,
-                                NULL,
-                                sizeof (DhSearch),
-                                0,
-                                (GInstanceInitFunc) search_init,
-                        };
-                
-                type = g_type_register_static (GTK_TYPE_VBOX,
-					       "DhSearch", 
-					       &info, 0);
-        }
-        
-        return type;
-}
+static gint signals[LAST_SIGNAL] = { 0 };
 
 static void
-search_class_init (DhSearchClass *klass)
+dh_search_class_init (DhSearchClass *klass)
 {
         GObjectClass   *object_class;
         GtkWidgetClass *widget_class;
 	
-        parent_class = g_type_class_peek_parent (klass);
-
         object_class = (GObjectClass *) klass;
         widget_class = (GtkWidgetClass *) klass;
 	
@@ -158,15 +130,16 @@ search_class_init (DhSearchClass *klass)
 			      _dh_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
+
+	g_type_class_add_private (klass, sizeof (DhSearchPriv));
 }
 
 static void
-search_init (DhSearch *search)
+dh_search_init (DhSearch *search)
 {
 	DhSearchPriv *priv;
 
-	priv = g_new0 (DhSearchPriv, 1);
-	search->priv = priv;
+	priv = GET_PRIVATE (search);
 	
 	priv->book_str = g_string_new ("");
 	priv->page_str = g_string_new ("");
@@ -195,7 +168,7 @@ search_finalize (GObject *object)
 	DhSearchPriv *priv;
 	GConfClient  *gconf_client;
 	
-	priv = DH_SEARCH (object)->priv;
+	priv = GET_PRIVATE (object);
 
 	g_string_free (priv->book_str, TRUE);
 	g_string_free (priv->page_str, TRUE);
@@ -206,17 +179,15 @@ search_finalize (GObject *object)
 	gconf_client = dh_base_get_gconf_client (dh_base_get ());	
 	gconf_client_notify_remove (gconf_client, priv->advanced_options_id);
 
-	G_OBJECT_CLASS (parent_class)->finalize (object);
+	G_OBJECT_CLASS (dh_search_parent_class)->finalize (object);
 }
 
 static void
 search_advanced_options_setup (DhSearch *search)
 {
-	DhSearchPriv *priv;
+	DhSearchPriv *priv = GET_PRIVATE (search);
 	gboolean      advanced_options;
 	GConfClient  *gconf_client;
-
-	priv = search->priv;
 
 	gconf_client = dh_base_get_gconf_client (dh_base_get ());
 	
@@ -245,16 +216,16 @@ search_advanced_options_setup (DhSearch *search)
 }
 
 static void
-search_advanced_options_notify_cb (GConfClient     *client,
-				   guint            cnxn_id,
-				   GConfEntry      *entry,
-				   gpointer         user_data)
+search_advanced_options_notify_cb (GConfClient *client,
+				   guint        cnxn_id,
+				   GConfEntry  *entry,
+				   gpointer     user_data)
 {
 	DhSearch     *search;
 	DhSearchPriv *priv;
 
 	search = DH_SEARCH (user_data);
-	priv = search->priv;
+	priv = GET_PRIVATE (search);
 
 	search_advanced_options_setup (search);
 
@@ -263,12 +234,13 @@ search_advanced_options_notify_cb (GConfClient     *client,
 }
 
 static void
-search_selection_changed_cb (GtkTreeSelection *selection, DhSearch *search)
+search_selection_changed_cb (GtkTreeSelection *selection,
+                             DhSearch         *search)
 {
 	DhSearchPriv *priv;
  	GtkTreeIter   iter;
 	
-	priv = search->priv;
+	priv = GET_PRIVATE (search);
 
 	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
 		DhLink *link;
@@ -301,7 +273,7 @@ search_tree_button_press_cb (GtkTreeView    *view,
 	DhSearchPriv *priv;
 	DhLink       *link;
 
-	priv = search->priv;
+	priv = GET_PRIVATE (search);
 	
 	gtk_tree_view_get_path_at_pos (view, event->x, event->y, &path,
 				       NULL, NULL, NULL);
@@ -332,9 +304,7 @@ search_entry_key_press_event_cb (GtkEntry    *entry,
 				 GdkEventKey *event,
 				 DhSearch    *search)
 {
-	DhSearchPriv *priv;
-	
-	priv = search->priv;
+	DhSearchPriv *priv = GET_PRIVATE (search);
 	
 	if (event->keyval == GDK_Tab) {
 		if (event->state & GDK_CONTROL_MASK) {
@@ -378,10 +348,8 @@ search_entry_key_press_event_cb (GtkEntry    *entry,
 static gchar *
 search_get_search_string (DhSearch *search)
 {
-	DhSearchPriv *priv;
+	DhSearchPriv *priv = GET_PRIVATE (search);;
 	GString      *string;
-
-	priv = search->priv;
 
 	string = g_string_new ("");
 
@@ -408,12 +376,11 @@ search_get_search_string (DhSearch *search)
 }
 
 static void
-search_update_string (DhSearch *search, GtkEntry *entry)
+search_update_string (DhSearch *search,
+                      GtkEntry *entry)
 {
 	const gchar  *str = gtk_entry_get_text (entry);
-	DhSearchPriv *priv;
-
-	priv = search->priv;
+	DhSearchPriv *priv = GET_PRIVATE (search);
 
 	priv->search_source = SEARCH_ENTRY;
 	
@@ -443,12 +410,11 @@ search_update_string (DhSearch *search, GtkEntry *entry)
 }
 
 static void
-search_entry_changed_cb (GtkEntry *entry, DhSearch *search)
+search_entry_changed_cb (GtkEntry *entry,
+                         DhSearch *search)
 {
-	DhSearchPriv *priv;
+	DhSearchPriv *priv = GET_PRIVATE (search);
 	
-	priv = search->priv;
- 
 	d(g_print ("Entry changed\n"));
 
 	search_update_string (search, entry);
@@ -460,13 +426,12 @@ search_entry_changed_cb (GtkEntry *entry, DhSearch *search)
 }
 
 static void
-search_entry_activated_cb (GtkEntry *entry, DhSearch *search)
+search_entry_activated_cb (GtkEntry *entry,
+                           DhSearch *search)
 {
-	DhSearchPriv *priv;
+	DhSearchPriv *priv = GET_PRIVATE (search);
 	DhLink       *link;
 	gchar        *str;
-	
-	priv = search->priv;
 	
 	str = search_get_search_string (search);
 	link = dh_keyword_model_filter (priv->model, str);
@@ -481,9 +446,7 @@ search_entry_text_inserted_cb (GtkEntry    *entry,
 			       gint        *position,
 			       DhSearch    *search)
 {
-	DhSearchPriv *priv;
-	
-	priv = search->priv;
+	DhSearchPriv *priv = GET_PRIVATE (search);
 	
 	if (!priv->idle_complete) {
 		priv->idle_complete = 
@@ -495,13 +458,11 @@ search_entry_text_inserted_cb (GtkEntry    *entry,
 static gboolean
 search_complete_idle (DhSearch *search)
 {
-	DhSearchPriv *priv;
+	DhSearchPriv *priv = GET_PRIVATE (search);
 	const gchar  *text;
 	gchar        *completed = NULL;
 	GList        *list;
 	gint          text_length;
-	
-	priv = search->priv;
 	
 	text = gtk_entry_get_text (GTK_ENTRY (priv->entry));
 
@@ -527,12 +488,10 @@ search_complete_idle (DhSearch *search)
 static gboolean
 search_filter_idle (DhSearch *search)
 {
-	DhSearchPriv *priv;
+	DhSearchPriv *priv = GET_PRIVATE (search);
 	gchar        *str;
 	DhLink       *link;
 	
-	priv = search->priv;
-
 	d(g_print ("Filter idle\n"));
 	
 	str = search_get_search_string (search);
@@ -568,7 +527,7 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
 	GdkColor     *color;
 
 	search = data;
-	priv = search->priv;
+	priv = GET_PRIVATE (search);
 
 	gtk_tree_model_get (tree_model, iter,
 			    DH_KEYWORD_MODEL_COL_NAME, &name,
@@ -605,7 +564,7 @@ dh_search_new (GList *keywords)
 		
 	search = g_object_new (DH_TYPE_SEARCH, NULL);
 
-	priv = search->priv;
+	priv = GET_PRIVATE (search);
 
 	gtk_container_set_border_width (GTK_CONTAINER (search), 2);
 
@@ -735,7 +694,8 @@ dh_search_new (GList *keywords)
 }
 
 void
-dh_search_set_search_string (DhSearch *search, const gchar *str)
+dh_search_set_search_string (DhSearch    *search,
+                             const gchar *str)
 {
 	DhSearchPriv  *priv;
 	gchar        **split, **leftover, *lower;
@@ -744,7 +704,7 @@ dh_search_set_search_string (DhSearch *search, const gchar *str)
 
 	g_return_if_fail (DH_IS_SEARCH (search));
 
-	priv = search->priv;
+	priv = GET_PRIVATE (search);
 
 	priv->search_source = SEARCH_API;
 
@@ -836,7 +796,7 @@ dh_search_grab_focus (DhSearch *search)
 	
 	g_return_if_fail (DH_IS_SEARCH (search));
 
-	priv = search->priv;
+	priv = GET_PRIVATE (search);
 
 	gtk_widget_grab_focus (priv->entry);
 }
