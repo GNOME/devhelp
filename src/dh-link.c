@@ -22,6 +22,7 @@
 #include "config.h"
 #include <string.h>
 #include <glib-object.h>
+#include <glib/gi18n.h>
 #include "dh-link.h"
 
 GType
@@ -140,4 +141,48 @@ dh_link_set_is_deprecated (DhLink   *link,
 			   gboolean  is_deprecated)
 {
 	link->is_deprecated = is_deprecated;
+}
+
+const gchar *
+dh_link_get_type_as_string (DhLink *link)
+{
+        switch (link->type) {
+        case DH_LINK_TYPE_BOOK:
+                /* i18n: a documentation book */
+                return _("Book");
+	case DH_LINK_TYPE_PAGE:
+                /* i18n: a "page" in a documentation book */
+                return _("Page");
+	case DH_LINK_TYPE_KEYWORD:
+                /* i18n: a search hit in the documentation, could be a
+                 * function, macro, struct, etc */
+                return _("Keyword");
+	case DH_LINK_TYPE_FUNCTION:
+                /* i18n: in the programming language context, if you don't
+                 * have an ESTABLISHED term for it, leave it
+                 * untranslated. */
+                return _("Function");
+	case DH_LINK_TYPE_STRUCT:
+                /* i18n: in the programming language context, if you don't
+                 * have an ESTABLISHED term for it, leave it
+                 * untranslated. */
+                return _("Struct");
+	case DH_LINK_TYPE_MACRO:
+                /* i18n: in the programming language context, if you don't
+                 * have an ESTABLISHED term for it, leave it
+                 * untranslated. */
+                return _("Macro");
+	case DH_LINK_TYPE_ENUM:
+                /* i18n: in the programming language context, if you don't
+                 * have an ESTABLISHED term for it, leave it
+                 * untranslated. */ 
+               return _("Enum");
+	case DH_LINK_TYPE_TYPEDEF:
+                /* i18n: in the programming language context, if you don't
+                 * have an ESTABLISHED term for it, leave it
+                 * untranslated. */
+                return _("Type");
+        }
+
+        return "";
 }
