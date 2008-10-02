@@ -23,9 +23,7 @@
 #ifndef __DH_WINDOW_H__
 #define __DH_WINDOW_H__
 
-#include <glib-object.h>
-#include <gtk/gtkwindow.h>
-
+#include <gtk/gtk.h>
 #include "dh-base.h"
 
 #define DH_TYPE_WINDOW		  (dh_window_get_type ())
@@ -52,5 +50,7 @@ GtkWidget *      dh_window_new             (DhBase      *base);
 void             dh_window_search          (DhWindow    *window,
 					    const gchar *str);
 void		 dh_window_focus_search    (DhWindow    *window);
+void             _dh_window_display_uri    (DhWindow    *window,
+				            const gchar *uri);
 
 #endif /* __DH_WINDOW_H__ */

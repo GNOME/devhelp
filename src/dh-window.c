@@ -1507,3 +1507,21 @@ dh_window_focus_search (DhWindow *window)
 
 	dh_search_grab_focus (DH_SEARCH (priv->search));
 }
+
+/* Only call this with a URI that is known to be in the docs. */
+void
+_dh_window_display_uri (DhWindow    *window,
+                        const gchar *uri)
+{
+        DhWindowPriv  *priv;
+        WebKitWebView *web_view;
+
+        g_return_if_fail (DH_IS_WINDOW (window));
+        g_return_if_fail (uri != NULL);
+
+        priv = window->priv;
+
+        web_view = window_get_active_web_view (window);
+	webkit_web_view_open (web_view, uri);
+        dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree), uri);
+}
