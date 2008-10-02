@@ -23,8 +23,7 @@
 #ifndef __DH_BASE_H__
 #define __DH_BASE_H__
 
-#include <glib-object.h>
-#include <gtk/gtkwidget.h>
+#include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 
 typedef struct _DhBase      DhBase;
@@ -58,5 +57,6 @@ GNode *      dh_base_get_book_tree                   (DhBase *base);
 GList *      dh_base_get_keywords                    (DhBase *base);
 GSList *     dh_base_get_windows                     (DhBase *base);
 GConfClient *dh_base_get_gconf_client                (DhBase *base);
+GtkWidget *  dh_base_get_window                      (DhBase *base);
 
 #endif /* __DH_BASE_H__ */

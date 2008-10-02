@@ -410,15 +410,7 @@ dh_base_get_windows (DhBase *base)
 GtkWidget *
 dh_base_get_window_on_current_workspace (DhBase *base)
 {
-#ifdef HAVE_PLATFORM_X11
 	DhBasePriv    *priv;
-	WnckWorkspace *workspace;
-	WnckScreen    *screen;
-	GtkWidget     *window;
-	GList         *windows, *w;
-	GSList        *l;
-	gulong         xid;
-	pid_t          pid;
 
 	g_return_val_if_fail (DH_IS_BASE (base), NULL);
 
@@ -428,46 +420,57 @@ dh_base_get_window_on_current_workspace (DhBase *base)
 		return NULL;
 	}
 
-	screen = wnck_screen_get (0);
-	if (!screen) {
-		return NULL;
-	}
+#ifdef HAVE_PLATFORM_X11
+        {
+                WnckWorkspace *workspace;
+                WnckScreen    *screen;
+                GtkWidget     *window;
+                GList         *windows, *w;
+                GSList        *l;
+                gulong         xid;
+                pid_t          pid;
 
-	workspace = wnck_screen_get_active_workspace (screen);
-	if (!workspace) {
-		return NULL;
-	}
+                screen = wnck_screen_get (0);
+                if (!screen) {
+                        return NULL;
+                }
 
-	xid = 0;
-	pid = getpid ();
+                workspace = wnck_screen_get_active_workspace (screen);
+                if (!workspace) {
+                        return NULL;
+                }
 
-	/* Use _stacked so we can use the one on top. */
-	windows = wnck_screen_get_windows_stacked (screen);
-	windows = g_list_last (windows);
+                xid = 0;
+                pid = getpid ();
 
-	for (w = windows; w; w = w->prev) {
-		if (wnck_window_is_on_workspace (w->data, workspace) &&
-		    wnck_window_get_pid (w->data) == pid) {
-			xid = wnck_window_get_xid (w->data);
-			break;
-		}
-	}
+                /* Use _stacked so we can use the one on top. */
+                windows = wnck_screen_get_windows_stacked (screen);
+                windows = g_list_last (windows);
 
-	if (!xid) {
-		return NULL;
-	}
+                for (w = windows; w; w = w->prev) {
+                        if (wnck_window_is_on_workspace (w->data, workspace) &&
+                            wnck_window_get_pid (w->data) == pid) {
+                                xid = wnck_window_get_xid (w->data);
+                                break;
+                        }
+                }
 
-	/* Return the first matching window we have. */
-	for (l = priv->windows; l; l = l->next) {
-		window = l->data;
+                if (!xid) {
+                        return NULL;
+                }
 
-		if (GDK_WINDOW_XID (window->window) == xid) {
-			return window;
-		}
-	}
+                /* Return the first matching window we have. */
+                for (l = priv->windows; l; l = l->next) {
+                        window = l->data;
+
+                        if (GDK_WINDOW_XID (window->window) == xid) {
+                                return window;
+                        }
+                }
+        }
+#else
+        return priv->windows->data;
 #endif
-
-	return NULL;
 }
 
 GConfClient *
@@ -480,4 +483,20 @@ dh_base_get_gconf_client (DhBase *base)
 	priv = base->priv;
 	
 	return priv->gconf_client;
+}
+
+GtkWidget *
+dh_base_get_window (DhBase *base)
+{
+        GtkWidget *window;
+
+	g_return_val_if_fail (DH_IS_BASE (base), NULL);
+	
+	window = dh_base_get_window_on_current_workspace (base);
+	if (!window) {
+		window = dh_base_new_window (base);
+		gtk_window_present (GTK_WINDOW (window));
+	}
+
+        return window;
 }
