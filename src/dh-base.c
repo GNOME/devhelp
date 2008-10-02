@@ -468,6 +468,8 @@ dh_base_get_window_on_current_workspace (DhBase *base)
                         }
                 }
         }
+
+        return NULL;
 #else
         return priv->windows->data;
 #endif
