@@ -1,5 +1,12 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-parser.c: Split out code blocks to parse book, chapter,
+	keywords in preparation for further cleanups and
+	improvements. Also remove temporary hack to handle broken books
+	that were generated during a brief period dring 2005.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-parser.c: (parser_start_node_cb), (parser_end_node_cb):
 	Some micro optimizations of things that turned up in the profile:
 	Reduce number of strdups/frees, only try to fix up broken gtk-doc

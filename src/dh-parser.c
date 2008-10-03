@@ -30,6 +30,7 @@
 #include "dh-link.h"
 #include "dh-parser.h"
 
+#define NAMESPACE      "http://www.devhelp.net/book"
 #define BYTES_PER_READ 4096
 
 typedef struct {
@@ -46,7 +47,7 @@ typedef struct {
 	GNode               *parent;
 
 	gboolean             parsing_chapters;
-	gboolean             parsing_functions;
+	gboolean             parsing_keywords;
 
  	GNode               *book_tree;
 	GList              **keywords;
@@ -76,6 +77,306 @@ static gchar   *extract_page_name    (const gchar          *uri);
 
 
 static void
+parser_start_node_book (DhParser             *parser,
+                        GMarkupParseContext  *context,
+                        const gchar          *node_name,
+                        const gchar         **attribute_names,
+                        const gchar         **attribute_values,
+                        GError              **error)
+{
+        gint         i;
+        gint         line, col;
+        const gchar *title = NULL;
+        const gchar *base  = NULL;
+        const gchar *name  = NULL;
+        const gchar *uri  = NULL;
+	gchar       *full_uri;
+	DhLink      *link;
+
+        if (g_ascii_strcasecmp (node_name, "book") != 0) {
+                g_markup_parse_context_get_position (context, &line, &col);
+                g_set_error (error,
+                             DH_ERROR,
+                             DH_ERROR_MALFORMED_BOOK,
+                             _("Expected '%s' got '%s' at line %d, column %d"),
+                             "book", node_name, line, col);
+                return;
+        }
+
+        for (i = 0; attribute_names[i]; ++i) {
+                const gchar *xmlns;
+
+                if (g_ascii_strcasecmp (attribute_names[i], "xmlns") == 0) {
+                        xmlns = attribute_values[i];
+                        if (g_ascii_strcasecmp (xmlns, NAMESPACE) != 0) {
+                                g_markup_parse_context_get_position (context,
+                                                                     &line,
+                                                                     &col);
+                                g_set_error (error,
+                                             DH_ERROR,
+                                             DH_ERROR_MALFORMED_BOOK,
+                                             _("Invalid namespace '%s' at"
+                                               " line %d, column %d"),
+                                             xmlns, line, col);
+                                return;
+                        }
+                }
+                else if (g_ascii_strcasecmp (attribute_names[i], "name") == 0) {
+                        name = attribute_values[i];
+                }
+                else if (g_ascii_strcasecmp (attribute_names[i], "title") == 0) {
+                        title = attribute_values[i];
+                }
+                else if (g_ascii_strcasecmp (attribute_names[i], "base") == 0) {
+                        base = attribute_values[i];
+			}
+                else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
+                        uri = attribute_values[i];
+                }
+        }
+
+        if (!title || !name || !uri) {
+                g_markup_parse_context_get_position (context, &line, &col);
+                g_set_error (error,
+                             DH_ERROR,
+                             DH_ERROR_MALFORMED_BOOK,
+                             _("title, name, and link elements are "
+                               "required at line %d, column %d"),
+                             line, col);
+                return;
+        }
+
+        if (base) {
+                parser->base = g_strdup (base);
+        } else {
+                parser->base = g_path_get_dirname (parser->path);
+        }
+
+        full_uri = g_strconcat (parser->base, "/", uri, NULL);
+        link = dh_link_new (DH_LINK_TYPE_BOOK, title, name, NULL, full_uri);
+        g_free (full_uri);
+
+        *parser->keywords = g_list_prepend (*parser->keywords, link);
+
+        parser->book_node = g_node_new (link);
+        g_node_prepend (parser->book_tree, parser->book_node);
+        parser->parent = parser->book_node;
+}
+
+static void
+parser_start_node_chapter (DhParser             *parser,
+                           GMarkupParseContext  *context,
+                           const gchar          *node_name,
+                           const gchar         **attribute_names,
+                           const gchar         **attribute_values,
+                           GError              **error)
+{
+        gint         i;
+        gint         line, col;
+        const gchar *name = NULL;
+        const gchar *uri = NULL;
+	gchar       *full_uri;
+	gchar       *page;
+	DhLink      *link;
+        GNode       *node;
+
+        if (g_ascii_strcasecmp (node_name, "sub") != 0) {
+                g_markup_parse_context_get_position (context, &line, &col);
+                g_set_error (error,
+                             DH_ERROR,
+                             DH_ERROR_MALFORMED_BOOK,
+                             _("Expected '%s' got '%s' at line %d, column %d"),
+                             "sub", node_name, line, col);
+                return;
+        }
+
+        for (i = 0; attribute_names[i]; ++i) {
+                if (g_ascii_strcasecmp (attribute_names[i], "name") == 0) {
+                        name = attribute_values[i];
+                }
+                else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
+                        uri = attribute_values[i];
+                }
+        }
+
+        if (!name || !uri) {
+                g_markup_parse_context_get_position (context, &line, &col);
+                g_set_error (error,
+                             DH_ERROR,
+                             DH_ERROR_MALFORMED_BOOK,
+                             _("name and link elements are required "
+                               "inside <sub> on line %d, column %d"),
+                             line, col);
+                return;
+        }
+
+        full_uri = g_strconcat (parser->base, "/", uri, NULL);
+        page = extract_page_name (uri);
+        link = dh_link_new (DH_LINK_TYPE_PAGE, name, 
+                            dh_link_get_book (parser->book_node->data),
+                            page, full_uri);
+        g_free (full_uri);
+        g_free (page);
+
+        *parser->keywords = g_list_prepend (*parser->keywords, link);
+
+        node = g_node_new (link);
+        g_node_prepend (parser->parent, node);
+        parser->parent = node;
+}
+
+static void
+parser_start_node_keyword (DhParser             *parser,
+                           GMarkupParseContext  *context,
+                           const gchar          *node_name,
+                           const gchar         **attribute_names,
+                           const gchar         **attribute_values,
+                           GError              **error)
+{
+        gint         i;
+        gint         line, col;
+        const gchar *name = NULL;
+        const gchar *uri = NULL;
+        const gchar *type = NULL;
+        const gchar *deprecated = NULL;
+	gchar       *full_uri;
+	gchar       *page;
+        DhLinkType   link_type;
+	DhLink      *link;
+        gchar       *tmp;
+
+        if (parser->version == 2 &&
+            g_ascii_strcasecmp (node_name, "keyword") != 0) {
+                g_markup_parse_context_get_position (context, &line, &col);
+                g_set_error (error,
+                             DH_ERROR,
+                             DH_ERROR_MALFORMED_BOOK,
+                             _("Expected '%s' got '%s' at line %d, column %d"),
+                             "keyword", node_name, line, col);
+                return;
+        }
+        else if (parser->version == 1 &&
+            g_ascii_strcasecmp (node_name, "function") != 0) {
+                g_markup_parse_context_get_position (context, &line, &col);
+                g_set_error (error,
+                             DH_ERROR,
+                             DH_ERROR_MALFORMED_BOOK,
+                             _("Expected '%s' got '%s' at line %d, column %d"),
+                             "function", node_name, line, col);
+                return;
+        }
+		
+        for (i = 0; attribute_names[i]; ++i) {
+                if (g_ascii_strcasecmp (attribute_names[i], "type") == 0) {
+                        type = attribute_values[i];
+                }
+                else if (g_ascii_strcasecmp (attribute_names[i], "name") == 0) {
+                        name = attribute_values[i];
+                }
+                else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
+                        uri = attribute_values[i];
+                }
+                else if (g_ascii_strcasecmp (attribute_names[i], "deprecated") == 0) {
+                        deprecated = attribute_values[i];
+                }
+        }
+
+        if (!name || !uri) {
+                g_markup_parse_context_get_position (context, &line, &col);
+                g_set_error (error,
+                             DH_ERROR,
+                             DH_ERROR_MALFORMED_BOOK,
+                             _("name and link elements are required "
+                               "inside '%s' on line %d, column %d"),
+                             parser->version == 2 ? "keyword" : "function",
+                             line, col);
+                return;
+        }
+
+        if (parser->version == 2 && !type) {
+                /* Required */
+                g_markup_parse_context_get_position (context, &line, &col);
+                g_set_error (error,
+                             DH_ERROR,
+                             DH_ERROR_MALFORMED_BOOK,
+                             _("type element is required "
+                               "inside <keyword> on line %d, column %d"),
+                             line, col);
+                return;
+        }
+
+        full_uri = g_strconcat (parser->base, "/", uri, NULL);
+        page = extract_page_name (uri);
+
+        if (parser->version == 2) {
+                if (strcmp (type, "function") == 0) {
+                        link_type = DH_LINK_TYPE_FUNCTION;
+                }
+                else if (strcmp (type, "struct") == 0) {
+                        link_type = DH_LINK_TYPE_STRUCT;
+                }
+                else if (strcmp (type, "macro") == 0) {
+                        link_type = DH_LINK_TYPE_MACRO;
+                }
+                else if (strcmp (type, "enum") == 0) {
+                        link_type = DH_LINK_TYPE_ENUM;
+                }
+                else if (strcmp (type, "typedef") == 0) {
+                        link_type = DH_LINK_TYPE_TYPEDEF;
+                } else {
+                        link_type = DH_LINK_TYPE_KEYWORD;
+                }
+        } else {
+                link_type = DH_LINK_TYPE_KEYWORD;
+        }
+
+        if (g_str_has_suffix (name, " ()")) {
+                tmp = g_strndup (name, strlen (name) - 3);
+
+                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                        link_type = DH_LINK_TYPE_FUNCTION;
+                }
+                name = tmp;
+        } else {
+                tmp = NULL;
+        }
+
+        /* Strip out these, they are only present for code that gtk-doc
+         * couldn't parse properly. We'll get this information in a better
+         * way soon from gtk-doc.
+         */
+        if (link_type == DH_LINK_TYPE_KEYWORD) {
+                if (g_str_has_prefix (name, "struct ")) {
+                        name = name + 7;
+                        link_type = DH_LINK_TYPE_STRUCT;
+                }
+                else if (g_str_has_prefix (name, "union ")) {
+                        name = name + 6;
+                }
+                else if (g_str_has_prefix (name, "enum ")) {
+                        name = name + 5;
+                        link_type = DH_LINK_TYPE_ENUM;
+                }
+        }
+
+        link = dh_link_new (link_type, name, 
+                            dh_link_get_book (parser->book_node->data),
+                            page, full_uri);
+
+        g_free (tmp);
+        g_free (full_uri);
+        g_free (page);
+
+        if (deprecated) {
+                dh_link_set_flags (
+                        link,
+                        dh_link_get_flags (link) | DH_LINK_FLAGS_DEPRECATED);
+        }
+
+        *parser->keywords = g_list_prepend (*parser->keywords, link);
+}
+
+static void
 parser_start_node_cb (GMarkupParseContext  *context,
 		      const gchar          *node_name,
 		      const gchar         **attribute_names,
@@ -84,310 +385,39 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		      GError              **error)
 {
 	DhParser *parser = user_data;
-	gint      i, line, col;
-	DhLink   *dh_link;
-	gchar    *full_link, *page;
 
 	if (!parser->book_node) {
-		const gchar *xmlns = NULL;
-		const gchar *title = NULL;
-		const gchar *base  = NULL;
-		const gchar *name  = NULL;
-		const gchar *link  = NULL;
-
-		if (g_ascii_strcasecmp (node_name, "book") != 0) {
-			g_markup_parse_context_get_position (context, &line, &col);
-			g_set_error (error,
-				     DH_ERROR,
-				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected '%s' got '%s' at line %d, column %d"),
-				     "book", node_name, line, col);
-			return;
-		}
-
-		for (i = 0; attribute_names[i]; ++i) {
-			if (g_ascii_strcasecmp (attribute_names[i],
-						"xmlns") == 0) {
-				xmlns = attribute_values[i];
-				if (g_ascii_strcasecmp (xmlns,
-							"http://www.devhelp.net/book") != 0) {
-					/* Set error */
-					g_markup_parse_context_get_position (context,
-									     &line,
-									     &col);
-					g_set_error (error,
-						     DH_ERROR,
-						     DH_ERROR_MALFORMED_BOOK,
-						     _("Invalid namespace '%s' at"
-						       " line %d, column %d"),
-						     xmlns, line, col);
-					return;
-				}
-			}
-			else if (g_ascii_strcasecmp (attribute_names[i],
-						     "name") == 0) {
-				name = attribute_values[i];
-			}
-			else if (g_ascii_strcasecmp (attribute_names[i],
-						     "title") == 0) {
-				title = attribute_values[i];
-			}
-			else if (g_ascii_strcasecmp (attribute_names[i],
-						     "base") == 0) {
-				base = attribute_values[i];
-			}
-			else if (g_ascii_strcasecmp (attribute_names[i],
-						     "link") == 0) {
-				link = attribute_values[i];
-			}
-		}
-
-		if (!title || !name || !link) {
-			/* Required attributes */
-			g_markup_parse_context_get_position (context, &line, &col);
-			g_set_error (error,
-				     DH_ERROR,
-				     DH_ERROR_MALFORMED_BOOK,
-				     _("title, name, and link elements are "
-				       "required at line %d, column %d"),
-				     line, col);
-			return;
-		}
-
-		if (base) {
-			parser->base = g_strdup (base);
-		} else {
-			parser->base = g_path_get_dirname (parser->path);
-		}
-
-		full_link = g_strconcat (parser->base, "/", link, NULL);
-		dh_link = dh_link_new (DH_LINK_TYPE_BOOK, title, name, NULL, full_link);
-		g_free (full_link);
-
- 		*parser->keywords = g_list_prepend (*parser->keywords,
- 						    dh_link);
-
-		parser->book_node = g_node_new (dh_link);
-		g_node_prepend (parser->book_tree, parser->book_node);
-		parser->parent = parser->book_node;
-
+                parser_start_node_book (parser,
+                                        context,
+                                        node_name,
+                                        attribute_names,
+                                        attribute_values,
+                                        error);
 		return;
 	}
-
-	if (parser->parsing_chapters) {
-		const gchar *name = NULL;
-		const gchar *link = NULL;
-		GNode       *node;
-
-		if (g_ascii_strcasecmp (node_name, "sub") != 0) {
-			g_markup_parse_context_get_position (context, &line, &col);
-			g_set_error (error,
-				     DH_ERROR,
-				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected '%s' got '%s' at line %d, column %d"),
-				     "sub", node_name, line, col);
-			return;
-		}
-
-		for (i = 0; attribute_names[i]; ++i) {
-			if (g_ascii_strcasecmp (attribute_names[i],
-						"name") == 0) {
-				name = attribute_values[i];
-			}
-			else if (g_ascii_strcasecmp (attribute_names[i],
-						     "link") == 0) {
-				link = attribute_values[i];
-			}
-		}
-
-		if (!name || !link) {
-			g_markup_parse_context_get_position (context, &line, &col);
-			g_set_error (error,
-				     DH_ERROR,
-				     DH_ERROR_MALFORMED_BOOK,
-				     _("name and link elements are required "
-				       "inside <sub> on line %d, column %d"),
-				     line, col);
-			return;
-		}
-
-		
-
-		full_link = g_strconcat (parser->base, "/", link, NULL);
-		page = extract_page_name (link);
-		dh_link = dh_link_new (DH_LINK_TYPE_PAGE, name, 
-				       dh_link_get_book (parser->book_node->data),
-				       page, full_link);
-		g_free (full_link);
-		g_free (page);
-
- 		*parser->keywords = g_list_prepend (*parser->keywords,
- 						    dh_link);
-
-		node = g_node_new (dh_link);
-		g_node_prepend (parser->parent, node);
-		parser->parent = node;
-	}
-	else if (parser->parsing_functions) {
-		gboolean     ok = FALSE;
-		const gchar *type = NULL;
-		const gchar *name = NULL;
-		const gchar *link = NULL;
-		const gchar *deprecated = NULL;
-		DhLinkType   link_type;
-		gchar       *tmp;
-		
-		if (g_ascii_strcasecmp (node_name, "function") == 0) {
-			ok = TRUE;
-
-			if (parser->version == 2) {
-				/* Skip this keyword. */
-				return;
-			}
-		}
-		else if (g_ascii_strcasecmp (node_name, "keyword") == 0) {
-			ok = TRUE;
-
-			/* Note: We have this hack since there are released
-			 * tarballs out there of GTK+ etc that have been built
-			 * with a non-released version of gtk-doc that didn't
-			 * have the proper versioning scheme. So when we find
-			 * this new tag, we force the version to the newer one.
-			 */
-			if (parser->version < 2) {
-				parser->version = 2;
-			}
-		}
-		
-		if (!ok) {
-			g_markup_parse_context_get_position (context, &line, &col);
-			g_set_error (error,
-				     DH_ERROR,
-				     DH_ERROR_MALFORMED_BOOK,
-				     _("Expected '%s' got '%s' at line %d, column %d"),
-				     "function or keyword", node_name, line, col);
-			return;
-		}
-
-		for (i = 0; attribute_names[i]; ++i) {
-			if (g_ascii_strcasecmp (attribute_names[i],
-						"type") == 0) {
-				type = attribute_values[i];
-			}
-			else if (g_ascii_strcasecmp (attribute_names[i],
-						     "name") == 0) {
-				name = attribute_values[i];
-			}
-			else if (g_ascii_strcasecmp (attribute_names[i],
-						     "link") == 0) {
-				link = attribute_values[i];
-			}
-			else if (g_ascii_strcasecmp (attribute_names[i],
-						     "deprecated") == 0) {
-				deprecated = attribute_values[i];
-			}
-		}
-
-		if (!name || !link) {
-			/* Required */
-			g_markup_parse_context_get_position (context, &line, &col);
-			g_set_error (error,
-				     DH_ERROR,
-				     DH_ERROR_MALFORMED_BOOK,
-				     _("name and link elements are required "
-				       "inside <keyword> on line %d, column %d"),
-				     line, col);
-			return;
-		}
-
-		if (parser->version == 2 && !type) {
-			/* Required */
-			g_markup_parse_context_get_position (context, &line, &col);
-			g_set_error (error,
-				     DH_ERROR,
-				     DH_ERROR_MALFORMED_BOOK,
-				     _("type element is required "
-				       "inside <keyword> on line %d, column %d"),
-				     line, col);
-			return;
-		}
-
-		full_link = g_strconcat (parser->base, "/", link, NULL);
-		page = extract_page_name (link);
-
-		if (parser->version == 2) {
-			if (strcmp (type, "function") == 0) {
-				link_type = DH_LINK_TYPE_FUNCTION;
-			}
-			else if (strcmp (type, "struct") == 0) {
-				link_type = DH_LINK_TYPE_STRUCT;
-			}
-			else if (strcmp (type, "macro") == 0) {
-				link_type = DH_LINK_TYPE_MACRO;
-			}
-			else if (strcmp (type, "enum") == 0) {
-				link_type = DH_LINK_TYPE_ENUM;
-			}
-			else if (strcmp (type, "typedef") == 0) {
-				link_type = DH_LINK_TYPE_TYPEDEF;
-			} else {
-				link_type = DH_LINK_TYPE_KEYWORD;
-			}
-		} else {
-			link_type = DH_LINK_TYPE_KEYWORD;
-		}
-
-		if (g_str_has_suffix (name, " ()")) {
-			tmp = g_strndup (name, strlen (name) - 3);
-
-			if (link_type == DH_LINK_TYPE_KEYWORD) {
-				link_type = DH_LINK_TYPE_FUNCTION;
-			}
-			name = tmp;
-		} else {
-			tmp = NULL;
-		}
-
-		/* Strip out these, they are only present for code that gtk-doc
-		 * couldn't parse properly. We'll get this information in a
-		 * better way soon from gtk-doc.
-		 */
-                if (link_type == DH_LINK_TYPE_KEYWORD) {
-                        if (g_str_has_prefix (name, "struct ")) {
-                                name = name + 7;
-				link_type = DH_LINK_TYPE_STRUCT;
-                        }
-                        else if (g_str_has_prefix (name, "union ")) {
-                                name = name + 6;
-                        }
-                        else if (g_str_has_prefix (name, "enum ")) {
-                                name = name + 5;
-                                link_type = DH_LINK_TYPE_ENUM;
-                        }
-                }
-
-		dh_link = dh_link_new (link_type, name, 
-				       dh_link_get_book (parser->book_node->data),
-				       page, full_link);
-
-		g_free (tmp);
-		g_free (full_link);
-		g_free (page);
-
-		if (deprecated) {
-			dh_link_set_flags (
-                                dh_link,
-                                dh_link_get_flags (dh_link) | DH_LINK_FLAGS_DEPRECATED);
-		}
-		
- 		*parser->keywords = g_list_prepend (*parser->keywords,
- 						    dh_link);
-	}
+        else if (parser->parsing_chapters) {
+                parser_start_node_chapter (parser,
+                                           context,
+                                           node_name,
+                                           attribute_names,
+                                           attribute_values,
+                                           error);
+                return;
+        }
+	else if (parser->parsing_keywords) {
+                parser_start_node_keyword (parser,
+                                           context,
+                                           node_name,
+                                           attribute_names,
+                                           attribute_values,
+                                           error);
+                return;
+        }
 	else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
 		parser->parsing_chapters = TRUE;
 	}
 	else if (g_ascii_strcasecmp (node_name, "functions") == 0) {
-		parser->parsing_functions = TRUE;
+		parser->parsing_keywords = TRUE;
 	}
 }
 
@@ -409,13 +439,13 @@ parser_end_node_cb (GMarkupParseContext  *context,
 			parser->parsing_chapters = FALSE;
 		}
 	}
-	else if (parser->parsing_functions) {
+	else if (parser->parsing_keywords) {
 		if (g_ascii_strcasecmp (node_name, "function") == 0) {
 			/* Do nothing */
 			return;
 		}
 		else if (g_ascii_strcasecmp (node_name, "functions") == 0) {
-			parser->parsing_functions = FALSE;
+			parser->parsing_keywords = FALSE;
 		}
 	}
 }
@@ -483,7 +513,7 @@ dh_parser_read_file (const gchar  *path,
 
 	parser->parent = NULL;
 
-	parser->parsing_functions = FALSE;
+	parser->parsing_keywords = FALSE;
 	parser->parsing_chapters  = FALSE;
 
 	parser->path      = path;
@@ -577,7 +607,7 @@ parser_read_gz_file (const gchar  *path,
 
 	parser->parent = NULL;
 
-	parser->parsing_functions = FALSE;
+	parser->parsing_keywords = FALSE;
 	parser->parsing_chapters  = FALSE;
 
 	parser->path      = path;
