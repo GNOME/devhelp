@@ -1,5 +1,11 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-keyword-model.c: (keyword_model_get_value),
+	(dh_keyword_model_set_words), (dh_keyword_model_filter): Use
+	getters for link members.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* data/ui/Makefile.am:
 	* data/ui/*.png:
 	* data/ui/*.xpm: Remove unused images.

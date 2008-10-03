@@ -277,7 +277,7 @@ keyword_model_get_value (GtkTreeModel *tree_model,
         switch (column) {
         case DH_KEYWORD_MODEL_COL_NAME:
                 g_value_init (value, G_TYPE_STRING);
-                g_value_set_string (value, link->name);
+                g_value_set_string (value, dh_link_get_name (link));
                 break;
         case DH_KEYWORD_MODEL_COL_LINK:
                 g_value_init (value, G_TYPE_POINTER);
@@ -285,7 +285,8 @@ keyword_model_get_value (GtkTreeModel *tree_model,
                 break;
         case DH_KEYWORD_MODEL_COL_IS_DEPRECATED:
                 g_value_init (value, G_TYPE_BOOLEAN);
-                g_value_set_boolean (value, link->is_deprecated);
+                g_value_set_boolean (
+                        value, dh_link_get_flags (link) & DH_LINK_FLAGS_DEPRECATED);
                 break;
         default:
                 g_warning ("Bad column %d requested", column);
@@ -425,7 +426,7 @@ dh_keyword_model_set_words (DhKeywordModel *model,
         for (list = priv->original_list;
              list; list = list->next) {
                 link = list->data;
-                switch (link->type) {
+                switch (dh_link_get_link_type (link)) {
                 case DH_LINK_TYPE_BOOK:
                         priv->book_list =
                                 g_list_prepend (priv->book_list, link);
@@ -549,7 +550,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
 
                                         link = node->data;
 
-                                        if (strcmp (link->book, book_search))
+                                        if (strcmp (dh_link_get_book (link), book_search))
                                                 continue;
 
                                         /* Found our book */
@@ -572,9 +573,9 @@ dh_keyword_model_filter (DhKeywordModel *model,
 
                                         link = node->data;
 
-                                        if (strcmp (link->book, book_search))
+                                        if (strcmp (dh_link_get_book (link), book_search))
                                                 continue;
-                                        if (strcmp (link->page, page_search))
+                                        if (strcmp (dh_link_get_page (link), page_search))
                                                 continue;
 
                                         /* Found our page */
@@ -592,9 +593,9 @@ dh_keyword_model_filter (DhKeywordModel *model,
                                 link = node->data;
                                 found = FALSE;
 
-                                if (book_search && strcmp (link->book, book_search))
+                                if (book_search && strcmp (dh_link_get_book (link), book_search))
                                         continue;
-                                if (page_search && strcmp (link->page, page_search))
+                                if (page_search && strcmp (dh_link_get_page (link), page_search))
                                         continue;
 
                                 if (!found) {
@@ -602,9 +603,10 @@ dh_keyword_model_filter (DhKeywordModel *model,
 
                                         for (i = 0; searchv[i] != NULL; i++) {
                                                 if (!case_sensitive) {
-                                                        name = g_ascii_strdown (link->name, -1);
+                                                        name = g_ascii_strdown (
+                                                                dh_link_get_name (link), -1);
                                                 } else {
-                                                        name = g_strdup (link->name);
+                                                        name = g_strdup (dh_link_get_name (link));
                                                 }
 
                                                 if (!g_strrstr (name, searchv[i])) {
@@ -621,7 +623,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                                         new_list = g_list_prepend (new_list, link);
                                         hits++;
 
-                                        if (search && strcmp (link->name, search) == 0) {
+                                        if (search && strcmp (dh_link_get_name (link), search) == 0) {
                                                 exact_link = link;
                                         }
                                 }
