@@ -50,11 +50,9 @@ struct _DhKeywordModelClass
 };
 
 enum {
-        /* DH_KEYWORD_MODEL_COL_PIXBUF, */
         DH_KEYWORD_MODEL_COL_NAME,
         DH_KEYWORD_MODEL_COL_LINK,
-        DH_KEYWORD_MODEL_COL_IS_DEPRECATED,
-        DH_KEYWORD_MODEL_NR_OF_COLS
+        DH_KEYWORD_MODEL_NUM_COLS
 };
 
 GtkType            dh_keyword_model_get_type     (void);
