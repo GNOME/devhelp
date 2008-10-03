@@ -30,8 +30,6 @@
 #include "dh-link.h"
 #include "dh-parser.h"
 
-#define d(x)
-#define DH_PARSER(o) ((DhParser *) o)
 #define BYTES_PER_READ 4096
 
 typedef struct {
@@ -85,12 +83,10 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		      gpointer              user_data,
 		      GError              **error)
 {
-	DhParser *parser;
+	DhParser *parser = user_data;
 	gint      i, line, col;
 	DhLink   *dh_link;
 	gchar    *full_link, *page;
-
-	parser = DH_PARSER (user_data);
 
 	if (!parser->book_node) {
 		const gchar *xmlns = NULL;
@@ -356,28 +352,25 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		 * couldn't parse properly. We'll get this information in a
 		 * better way soon from gtk-doc.
 		 */
-		if (g_str_has_prefix (name, "struct ")) {
-			name = name + 7;
-			if (link_type == DH_LINK_TYPE_KEYWORD) {
+                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                        if (g_str_has_prefix (name, "struct ")) {
+                                name = name + 7;
 				link_type = DH_LINK_TYPE_STRUCT;
-			}
-		}
-		else if (g_str_has_prefix (name, "union ")) {
-			name = name + 6;
-		}
-		else if (g_str_has_prefix (name, "enum ")) {
-			name = name + 5;
-			if (link_type == DH_LINK_TYPE_KEYWORD) {
-				link_type = DH_LINK_TYPE_ENUM;
-			}
-		}
+                        }
+                        else if (g_str_has_prefix (name, "union ")) {
+                                name = name + 6;
+                        }
+                        else if (g_str_has_prefix (name, "enum ")) {
+                                name = name + 5;
+                                link_type = DH_LINK_TYPE_ENUM;
+                        }
+                }
 
 		dh_link = dh_link_new (link_type, name, 
 				       dh_link_get_book (parser->book_node->data),
 				       page, full_link);
 
 		g_free (tmp);
-
 		g_free (full_link);
 		g_free (page);
 
@@ -404,9 +397,7 @@ parser_end_node_cb (GMarkupParseContext  *context,
 		    gpointer              user_data,
 		    GError              **error)
 {
-	DhParser *parser;
-
-	parser = DH_PARSER (user_data);
+	DhParser *parser = user_data;
 
 	if (parser->parsing_chapters) {
 		g_node_reverse_children (parser->parent);
@@ -427,8 +418,6 @@ parser_end_node_cb (GMarkupParseContext  *context,
 			parser->parsing_functions = FALSE;
 		}
 	}
-/* 	else if (g_ascii_strcasecmp (node_name, "book") == 0) { */
-/* 	} */
 }
 
 static void
@@ -436,9 +425,7 @@ parser_error_cb (GMarkupParseContext *context,
 		 GError              *error,
 		 gpointer             user_data)
 {
-	DhParser *parser;
-
-	parser = DH_PARSER (user_data);
+	DhParser *parser = user_data;
 
 	g_markup_parse_context_free (parser->context);
  	parser->context = NULL;
@@ -655,7 +642,8 @@ extract_page_name (const gchar *uri)
 	gchar **split;
 
 	if ((split = g_strsplit (uri, ".", 2)) != NULL) {
-		page = g_strdup (split[0]);
+		page = split[0];
+                split[0] = NULL;
 		g_strfreev (split);
 	}
 	return page;

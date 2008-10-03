@@ -1,5 +1,12 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-parser.c: (parser_start_node_cb), (parser_end_node_cb):
+	Some micro optimizations of things that turned up in the profile:
+	Reduce number of strdups/frees, only try to fix up broken gtk-doc
+	files if needed.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-base.c: (base_add_books): Don't free the path string,
 	fixes crash if the same book name is found more than once.
 
