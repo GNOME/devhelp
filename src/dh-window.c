@@ -1216,17 +1216,17 @@ window_open_new_tab (DhWindow    *window,
         priv = window->priv;
 
         web_view = webkit_web_view_new ();
-
         gtk_widget_show (web_view);
 
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+                                        GTK_POLICY_AUTOMATIC,
+                                        GTK_POLICY_AUTOMATIC);
         gtk_widget_show (scrolled_window);
 
-        /* FIXME: Remove remaining references to GtkFrame */
-        /* gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN); */
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
+                                             GTK_SHADOW_IN);
         gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 2);
-
         gtk_container_add (GTK_CONTAINER (scrolled_window), web_view);
 
         g_object_set_data (G_OBJECT (scrolled_window), "web_view", web_view);
@@ -1250,7 +1250,7 @@ window_open_new_tab (DhWindow    *window,
               */
 
         num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->web_view_notebook),
-                                  scrolled_window, NULL);
+                                        scrolled_window, NULL);
 
         gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->web_view_notebook),
                                     scrolled_window, label);

@@ -1,5 +1,10 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c: (window_open_new_tab): Set shadow type to "in"
+	again, seems to have been lost in webkit merge..
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-link.c: (dh_link_get,set_is_deprecated):
 	* src/dh-link.h: Remove, now obsoleted by get,set_flags.
 
