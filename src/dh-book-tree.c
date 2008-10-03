@@ -37,9 +37,6 @@ typedef struct {
 
 typedef struct {
         GtkTreeStore *store;
-        GdkPixbuf    *pixbuf_opened;
-        GdkPixbuf    *pixbuf_closed;
-        GdkPixbuf    *pixbuf_helpdoc;
         GNode        *link_tree;
 } DhBookTreePriv;
 
@@ -60,10 +57,9 @@ enum {
 };
 
 enum {
-	COL_OPEN_PIXBUF,
-	COL_CLOSED_PIXBUF,
 	COL_TITLE,
 	COL_LINK,
+	COL_WEIGHT,
 	N_COLUMNS
 };
 
@@ -80,10 +76,6 @@ book_tree_finalize (GObject *object)
 	DhBookTreePriv *priv = GET_PRIVATE (object);
 
 	g_object_unref (priv->store);
-
-	g_object_unref (priv->pixbuf_opened);
-	g_object_unref (priv->pixbuf_closed);
-	g_object_unref (priv->pixbuf_helpdoc);
 
         G_OBJECT_CLASS (dh_book_tree_parent_class)->finalize (object);
 }
@@ -115,18 +107,10 @@ dh_book_tree_init (DhBookTree *tree)
 
         priv = GET_PRIVATE (tree);
 
-	priv->pixbuf_closed = gdk_pixbuf_new_from_file (
-                DATADIR "/devhelp/images/book_closed.png", NULL);
-	priv->pixbuf_opened = gdk_pixbuf_new_from_file (
-                DATADIR "/devhelp/images/book_open.png", NULL);
-	priv->pixbuf_helpdoc = gdk_pixbuf_new_from_file (
-                DATADIR "/devhelp/images/helpdoc.png", NULL);
-
 	priv->store = gtk_tree_store_new (N_COLUMNS,
-					  GDK_TYPE_PIXBUF,
-					  GDK_TYPE_PIXBUF,
 					  G_TYPE_STRING,
-					  G_TYPE_POINTER);
+					  G_TYPE_POINTER,
+                                          PANGO_TYPE_WEIGHT);
 
 	gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
 				 GTK_TREE_MODEL (priv->store));
@@ -146,16 +130,6 @@ book_tree_add_columns (DhBookTree *tree)
 
 	column = gtk_tree_view_column_new ();
 
-	cell = gtk_cell_renderer_pixbuf_new ();
-	gtk_tree_view_column_pack_start (column, cell, FALSE);
-	gtk_tree_view_column_set_attributes (
-		column,
-		cell,
-		"pixbuf", COL_OPEN_PIXBUF,
-		"pixbuf-expander-open", COL_OPEN_PIXBUF,
-		"pixbuf-expander-closed", COL_CLOSED_PIXBUF,
-		NULL);
-
 	cell = gtk_cell_renderer_text_new ();
 	g_object_set (cell,
 		      "ellipsize", PANGO_ELLIPSIZE_END,
@@ -163,6 +137,7 @@ book_tree_add_columns (DhBookTree *tree)
 	gtk_tree_view_column_pack_start (column, cell, TRUE);
 	gtk_tree_view_column_set_attributes (column, cell,
 					     "text", COL_TITLE,
+                                             "weight", COL_WEIGHT,
 					     NULL);
 
 	gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
@@ -202,37 +177,26 @@ book_tree_insert_node (DhBookTree  *tree,
 
 {
         DhBookTreePriv *priv = GET_PRIVATE (tree);
-	GtkTreeIter     iter;
 	DhLink         *link;
+	GtkTreeIter     iter;
+        PangoWeight     weight;
 	GNode          *child;
 
 	link = node->data;
 
 	gtk_tree_store_append (priv->store, &iter, parent_iter);
 
-	if (link->type == DH_LINK_TYPE_BOOK) {
-		gtk_tree_store_set (priv->store, &iter,
-				    COL_OPEN_PIXBUF,
-				    priv->pixbuf_opened,
-				    COL_CLOSED_PIXBUF,
-				    priv->pixbuf_closed,
-				    COL_TITLE,
-				    link->name,
-				    COL_LINK,
-				    link,
-				    -1);
+	if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
+                weight = PANGO_WEIGHT_BOLD;
 	} else {
-		gtk_tree_store_set (priv->store, &iter,
-				    COL_OPEN_PIXBUF,
-				    priv->pixbuf_helpdoc,
-				    COL_CLOSED_PIXBUF,
-				    priv->pixbuf_helpdoc,
-				    COL_TITLE,
-				    link->name,
-				    COL_LINK,
-				    link,
-				    -1);
-	}
+                weight = PANGO_WEIGHT_NORMAL;
+        }
+
+        gtk_tree_store_set (priv->store, &iter,
+                            COL_TITLE, dh_link_get_name (link),
+                            COL_LINK, link,
+                            COL_WEIGHT, weight,
+                            -1);
 
 	for (child = g_node_first_child (node);
 	     child;
@@ -294,7 +258,7 @@ book_tree_find_uri_foreach (GtkTreeModel *model,
 		uri = data->uri;
 	}
 
-	if (g_str_has_prefix (uri, link->uri)) {
+	if (g_str_has_prefix (uri, dh_link_get_uri (link))) {
 		data->found = TRUE;
 		data->iter = *iter;
 		data->path = gtk_tree_path_copy (path);
@@ -371,5 +335,5 @@ dh_book_tree_get_selected_book_title (DhBookTree *tree)
 			    COL_LINK, &link,
 			    -1);
 
-	return link->name;
+	return dh_link_get_name (link);
 }
