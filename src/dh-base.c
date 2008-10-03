@@ -286,13 +286,13 @@ base_add_books (DhBase *base, const gchar *path)
                         g_warning ("Failed to read '%s': %s",
                                    book_path, error->message);
                         g_clear_error (&error);
+
+                        g_free (book_path);
                 } else {
                         g_hash_table_insert (priv->books,
                                              g_strdup (name),
                                              book_path);
                 }
-
-                g_free (book_path);
         }
 
         g_dir_close (dir);

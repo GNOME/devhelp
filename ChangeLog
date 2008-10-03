@@ -1,5 +1,10 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-base.c: (base_add_books): Don't free the path string,
+	fixes crash if the same book name is found more than once.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-keyword-model.c: (keyword_model_get_column_type),
 	(keyword_model_get_value):
 	* src/dh-keyword-model.h: Remove unused model column for "is
