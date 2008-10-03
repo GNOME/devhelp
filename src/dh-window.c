@@ -971,7 +971,7 @@ window_tree_link_selected_cb (GObject  *ignored,
                                          window_web_view_open_uri_cb,
                                          window);
 
-        webkit_web_view_open (web_view, link->uri);
+        webkit_web_view_open (web_view, dh_link_get_uri (link));
 
         g_signal_handlers_unblock_by_func (web_view,
                                            window_web_view_open_uri_cb,
@@ -992,7 +992,7 @@ window_search_link_selected_cb (GObject  *ignored,
 
         web_view = window_get_active_web_view (window);
 
-        webkit_web_view_open (web_view, link->uri);
+        webkit_web_view_open (web_view, dh_link_get_uri (link));
 
         window_check_history (window, web_view);
 }

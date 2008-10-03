@@ -1,5 +1,10 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c: (window_tree_link_selected_cb),
+	(window_search_link_selected_cb): Use getters for link members.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	Bug 417692 – Deprecated functions are displayed in grey
 
 	* src/dh-search.c: Use getters for link members, and use italic
