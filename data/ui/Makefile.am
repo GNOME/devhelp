@@ -1,8 +1,5 @@
 imagedir = $(datadir)/devhelp/images
-image_DATA = 		\
-	book_open.png   \
-	book_closed.png \
-	helpdoc.png
+image_DATA =
 
 uidir = $(datadir)/devhelp/ui
 ui_DATA = 				\

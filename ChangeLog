@@ -1,5 +1,11 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* data/ui/Makefile.am:
+	* data/ui/*.png:
+	* data/ui/*.xpm: Remove unused images.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-book-tree.c: (book_tree_finalize), (dh_book_tree_init),
 	(book_tree_insert_node): Use getters for link members.
 	- Remove the ugly GNOME 1 looking icons from the book tree, use
