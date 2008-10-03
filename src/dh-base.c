@@ -131,18 +131,20 @@ static gint
 book_sort_func (gconstpointer a,
                 gconstpointer b)
 {
-        DhLink      *link_a, *link_b;
-        const gchar *name_a, *name_b;
+        DhLink      *link_a;
+        DhLink      *link_b;
+        const gchar *name_a;
+        const gchar *name_b;
 
         link_a = ((GNode *) a)->data;
         link_b = ((GNode *) b)->data;
 
-        name_a = link_a->name;
+        name_a = dh_link_get_name (link_a);
         if (!name_a) {
                 name_a = "";
         }
 
-        name_b = link_b->name;
+        name_b = dh_link_get_name (link_b);
         if (!name_b) {
                 name_b = "";
         }

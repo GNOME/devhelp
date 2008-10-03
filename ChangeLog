@@ -1,5 +1,9 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-base.c: (book_sort_func): Use getters for link name.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-link.c:
 	* src/dh-link.h: Add getters for the link members, change the
 	deprecated bool to a bitfield of flags.
