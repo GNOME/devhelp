@@ -1,5 +1,10 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-parser.c: Don't duplicate code in the compressed (gz) and
+	non-compressed cases.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-parser.c: More preparations, reorder things a bit.
 
 2008-10-03  Richard Hult  <richard@imendio.com>

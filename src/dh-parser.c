@@ -452,62 +452,17 @@ parser_error_cb (GMarkupParseContext *context,
 }
 
 static gboolean
-parser_read_gz_file (const gchar  *path,
+parser_read_gz_file (DhParser     *parser,
+                     const gchar  *path,
 		     GNode        *book_tree,
 		     GList       **keywords,
 		     GError      **error)
 {
-	DhParser *parser;
-	gchar     buf[BYTES_PER_READ];
-	gzFile    file;
+	gchar  buf[BYTES_PER_READ];
+	gzFile file;
 
-	parser = g_new0 (DhParser, 1);
-	if (!parser) {
-		g_set_error (error,
-			     DH_ERROR,
-			     DH_ERROR_INTERNAL_ERROR,
-			     _("Could not create book parser"));
-		return FALSE;
-	}
-
-	parser->m_parser = g_new0 (GMarkupParser, 1);
-	if (!parser->m_parser) {
-		g_free (parser);
-		g_set_error (error,
-			     DH_ERROR,
-			     DH_ERROR_INTERNAL_ERROR,
-			     _("Could not create markup parser"));
-		return FALSE;
-	}
-
-	if (g_str_has_suffix (path, ".devhelp2")) {
-		parser->version = 2;
-	} else {
-		parser->version = 1;
-	}
-	
-	parser->m_parser->start_element = parser_start_node_cb;
-	parser->m_parser->end_element   = parser_end_node_cb;
-	parser->m_parser->error         = parser_error_cb;
-
-	parser->context = g_markup_parse_context_new (parser->m_parser, 0,
-						      parser, NULL);
-
-	parser->parent = NULL;
-
-	parser->parsing_keywords = FALSE;
-	parser->parsing_chapters  = FALSE;
-
-	parser->path      = path;
-	parser->book_tree = book_tree;
-	parser->keywords  = keywords;
-
-	/* Parse the string */
 	file = gzopen (path, "r");
-
 	if (!file) {
-		g_markup_parse_context_free (parser->context);
-		g_free (parser);
 		g_set_error (error,
 			     DH_ERROR,
 			     DH_ERROR_FILE_NOT_FOUND,
@@ -520,11 +475,9 @@ parser_read_gz_file (const gchar  *path,
 
 		bytes_read = gzread (file, buf, BYTES_PER_READ);
 		if (bytes_read == -1) {
-			const gchar *message;
 			gint         err;
+			const gchar *message;
 
-			g_markup_parse_context_free (parser->context);
-			g_free (parser);
 			message = gzerror (file, &err);
 			g_set_error (error,
 				     DH_ERROR,
@@ -546,9 +499,6 @@ parser_read_gz_file (const gchar  *path,
 
 	gzclose (file);
 
-	g_markup_parse_context_free (parser->context);
-	g_free (parser);
-
 	return TRUE;
 }
 
@@ -559,16 +509,10 @@ dh_parser_read_file (const gchar  *path,
 		     GError      **error)
 {
 	DhParser   *parser;
-	GIOChannel *io;
+        gboolean    gz;
+	GIOChannel *io = NULL;
 	gchar       buf[BYTES_PER_READ];
 	gboolean    result = TRUE;
-
-	if (g_str_has_suffix (path, ".gz")) {
-		return parser_read_gz_file (path,
-					    book_tree,
-					    keywords,
-					    error);
-	}
 
 	parser = g_new0 (DhParser, 1);
 	if (!parser) {
@@ -581,9 +525,19 @@ dh_parser_read_file (const gchar  *path,
 
 	if (g_str_has_suffix (path, ".devhelp2")) {
 		parser->version = 2;
-	} else {
+                gz = FALSE;
+        }
+        else if (g_str_has_suffix (path, ".devhelp")) {
 		parser->version = 1;
-	}
+                gz = FALSE;
+        }
+        else if (g_str_has_suffix (path, ".devhelp2.gz")) {
+		parser->version = 2;
+                gz = TRUE;
+        } else {
+		parser->version = 1;
+                gz = TRUE;
+        }
 
 	parser->m_parser = g_new0 (GMarkupParser, 1);
 	if (!parser->m_parser) {
@@ -596,8 +550,8 @@ dh_parser_read_file (const gchar  *path,
 	}
 
 	parser->m_parser->start_element = parser_start_node_cb;
-	parser->m_parser->end_element   = parser_end_node_cb;
-	parser->m_parser->error         = parser_error_cb;
+	parser->m_parser->end_element = parser_end_node_cb;
+	parser->m_parser->error = parser_error_cb;
 
 	parser->context = g_markup_parse_context_new (parser->m_parser, 0,
 						      parser, NULL);
@@ -605,48 +559,59 @@ dh_parser_read_file (const gchar  *path,
 	parser->parent = NULL;
 
 	parser->parsing_keywords = FALSE;
-	parser->parsing_chapters  = FALSE;
+	parser->parsing_chapters = FALSE;
 
-	parser->path      = path;
+	parser->path = path;
 	parser->book_tree = book_tree;
-	parser->keywords  = keywords;
+	parser->keywords = keywords;
 
-	/* Parse the string */
-	io = g_io_channel_new_file (path, "r", error);
+        if (gz) {
+                if (!parser_read_gz_file (parser,
+                                          path,
+                                          book_tree,
+                                          keywords,
+                                          error)) {
+                        result = FALSE;
+                }
+                goto exit;
+	} else {
+                io = g_io_channel_new_file (path, "r", error);
+                if (!io) {
+                        result = FALSE;
+                        goto exit;
+                }
 
-	if (!io) {
-		result = FALSE;
-		goto exit;
-	}
+                while (TRUE) {
+                        GIOStatus io_status;
+                        gsize     bytes_read;
 
-	while (TRUE) {
-		GIOStatus io_status;
-		gsize     bytes_read;
+                        io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
+                                                             &bytes_read, error);
+                        if (io_status == G_IO_STATUS_ERROR) {
+                                result = FALSE;
+                                goto exit;
+                        }
+                        if (io_status != G_IO_STATUS_NORMAL) {
+                                break;
+                        }
 
-		io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
-						     &bytes_read, error);
-		if (io_status == G_IO_STATUS_ERROR) {
-			result = FALSE;
-			goto exit;
-		}
-		if (io_status != G_IO_STATUS_NORMAL) {
-			break;
-		}
+                        g_markup_parse_context_parse (parser->context, buf,
+                                                      bytes_read, error);
+                        if (error != NULL && *error != NULL) {
+                                result = FALSE;
+                                goto exit;
+                        }
 
-		g_markup_parse_context_parse (parser->context, buf,
-					      bytes_read, error);
-		if (error != NULL && *error != NULL) {
-			result = FALSE;
-			goto exit;
-		}
-
-		if (bytes_read < BYTES_PER_READ) {
-			break;
-		}
-	}
+                        if (bytes_read < BYTES_PER_READ) {
+                                break;
+                        }
+                }
+        }
 
  exit:
-	g_io_channel_unref (io);
+	if (io) {
+                g_io_channel_unref (io);
+        }
 	g_markup_parse_context_free (parser->context);
 	g_free (parser->m_parser);
 	g_free (parser);
