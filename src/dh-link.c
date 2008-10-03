@@ -164,19 +164,6 @@ dh_link_get_link_type (DhLink *link)
         return link->type;
 }
 
-gboolean
-dh_link_get_is_deprecated (DhLink *link)
-{
-        return link->flags & DH_LINK_FLAGS_DEPRECATED;
-}
-
-void
-dh_link_set_is_deprecated (DhLink   *link,
-			   gboolean  is_deprecated)
-{
-        link->flags |= DH_LINK_FLAGS_DEPRECATED;
-}         
-
 DhLinkFlags
 dh_link_get_flags (DhLink *link)
 {

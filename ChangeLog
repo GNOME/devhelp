@@ -1,5 +1,10 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-link.c: (dh_link_get,set_is_deprecated):
+	* src/dh-link.h: Remove, now obsoleted by get,set_flags.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-keyword-model.c: (keyword_model_get_value),
 	(dh_keyword_model_set_words), (dh_keyword_model_filter): Use
 	getters for link members.

@@ -68,9 +68,6 @@ gint         dh_link_compare            (gconstpointer  a,
 					 gconstpointer  b);
 DhLink *     dh_link_ref                (DhLink        *link);
 void         dh_link_unref              (DhLink        *link);
-gboolean     dh_link_get_is_deprecated  (DhLink        *link);
-void         dh_link_set_is_deprecated  (DhLink        *link,
-                                         gboolean       is_deprecated);
 const gchar *dh_link_get_name           (DhLink        *link);
 const gchar *dh_link_get_book           (DhLink        *link);
 const gchar *dh_link_get_page           (DhLink        *link);
