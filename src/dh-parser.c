@@ -335,9 +335,8 @@ parser_start_node_keyword (DhParser             *parser,
                 tmp = NULL;
         }
 
-        /* Strip out these, they are only present for code that gtk-doc
-         * couldn't parse properly. We'll get this information in a better
-         * way soon from gtk-doc.
+        /* We only get "keyword" from old gtk-doc files, try to fix up the
+         * metadata as well as we can.
          */
         if (link_type == DH_LINK_TYPE_KEYWORD) {
                 if (g_str_has_prefix (name, "struct ")) {
