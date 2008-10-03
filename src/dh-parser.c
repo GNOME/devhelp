@@ -56,25 +56,19 @@ typedef struct {
 	gint                 version;
 } DhParser;
 
-static void     parser_start_node_cb (GMarkupParseContext  *context,
-				      const gchar          *node_name,
-				      const gchar         **attribute_names,
-				      const gchar         **attribute_values,
-				      gpointer              user_data,
-				      GError              **error);
-static void     parser_end_node_cb   (GMarkupParseContext  *context,
-				      const gchar          *node_name,
-				      gpointer              user_data,
-				      GError              **error);
-static void     parser_error_cb      (GMarkupParseContext  *context,
-				      GError               *error,
-				      gpointer              user_data);
-static gboolean parser_read_gz_file  (const gchar          *path,
-				      GNode                *book_tree,
-				      GList               **keywords,
-				      GError              **error);
-static gchar   *extract_page_name    (const gchar          *uri);
+static gchar *
+extract_page_name (const gchar *uri)
+{
+	gchar  *page = NULL;
+	gchar **split;
 
+	if ((split = g_strsplit (uri, ".", 2)) != NULL) {
+		page = split[0];
+                split[0] = NULL;
+		g_strfreev (split);
+	}
+	return page;
+}
 
 static void
 parser_start_node_book (DhParser             *parser,
@@ -386,15 +380,15 @@ parser_start_node_cb (GMarkupParseContext  *context,
 {
 	DhParser *parser = user_data;
 
-	if (!parser->book_node) {
-                parser_start_node_book (parser,
-                                        context,
-                                        node_name,
-                                        attribute_names,
-                                        attribute_values,
-                                        error);
-		return;
-	}
+        if (parser->parsing_keywords) {
+                parser_start_node_keyword (parser,
+                                           context,
+                                           node_name,
+                                           attribute_names,
+                                           attribute_values,
+                                           error);
+                return;
+        }
         else if (parser->parsing_chapters) {
                 parser_start_node_chapter (parser,
                                            context,
@@ -404,20 +398,20 @@ parser_start_node_cb (GMarkupParseContext  *context,
                                            error);
                 return;
         }
-	else if (parser->parsing_keywords) {
-                parser_start_node_keyword (parser,
-                                           context,
-                                           node_name,
-                                           attribute_names,
-                                           attribute_values,
-                                           error);
-                return;
-        }
+	else if (g_ascii_strcasecmp (node_name, "functions") == 0) {
+		parser->parsing_keywords = TRUE;
+	}
 	else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
 		parser->parsing_chapters = TRUE;
 	}
-	else if (g_ascii_strcasecmp (node_name, "functions") == 0) {
-		parser->parsing_keywords = TRUE;
+	if (!parser->book_node) {
+                parser_start_node_book (parser,
+                                        context,
+                                        node_name,
+                                        attribute_names,
+                                        attribute_values,
+                                        error);
+		return;
 	}
 }
 
@@ -429,7 +423,12 @@ parser_end_node_cb (GMarkupParseContext  *context,
 {
 	DhParser *parser = user_data;
 
-	if (parser->parsing_chapters) {
+        if (parser->parsing_keywords) {
+                if (g_ascii_strcasecmp (node_name, "functions") == 0) {
+			parser->parsing_keywords = FALSE;
+		}
+	}
+	else if (parser->parsing_chapters) {
 		g_node_reverse_children (parser->parent);
 		if (g_ascii_strcasecmp (node_name, "sub") == 0) {
 			parser->parent = parser->parent->parent;
@@ -437,15 +436,6 @@ parser_end_node_cb (GMarkupParseContext  *context,
 		}
 		else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
 			parser->parsing_chapters = FALSE;
-		}
-	}
-	else if (parser->parsing_keywords) {
-		if (g_ascii_strcasecmp (node_name, "function") == 0) {
-			/* Do nothing */
-			return;
-		}
-		else if (g_ascii_strcasecmp (node_name, "functions") == 0) {
-			parser->parsing_keywords = FALSE;
 		}
 	}
 }
@@ -459,108 +449,6 @@ parser_error_cb (GMarkupParseContext *context,
 
 	g_markup_parse_context_free (parser->context);
  	parser->context = NULL;
-}
-
-gboolean
-dh_parser_read_file (const gchar  *path,
-		     GNode        *book_tree,
-		     GList       **keywords,
-		     GError      **error)
-{
-	DhParser   *parser;
-	GIOChannel *io;
-	gchar       buf[BYTES_PER_READ];
-	gboolean    result = TRUE;
-
-	if (g_str_has_suffix (path, ".gz")) {
-		return parser_read_gz_file (path,
-					    book_tree,
-					    keywords,
-					    error);
-	}
-
-	parser = g_new0 (DhParser, 1);
-	if (!parser) {
-		g_set_error (error,
-			     DH_ERROR,
-			     DH_ERROR_INTERNAL_ERROR,
-			     _("Could not create book parser"));
-		return FALSE;
-	}
-
-	if (g_str_has_suffix (path, ".devhelp2")) {
-		parser->version = 2;
-	} else {
-		parser->version = 1;
-	}
-
-	parser->m_parser = g_new0 (GMarkupParser, 1);
-	if (!parser->m_parser) {
-		g_free (parser);
-		g_set_error (error,
-			     DH_ERROR,
-			     DH_ERROR_INTERNAL_ERROR,
-			     _("Could not create markup parser"));
-		return FALSE;
-	}
-
-	parser->m_parser->start_element = parser_start_node_cb;
-	parser->m_parser->end_element   = parser_end_node_cb;
-	parser->m_parser->error         = parser_error_cb;
-
-	parser->context = g_markup_parse_context_new (parser->m_parser, 0,
-						      parser, NULL);
-
-	parser->parent = NULL;
-
-	parser->parsing_keywords = FALSE;
-	parser->parsing_chapters  = FALSE;
-
-	parser->path      = path;
-	parser->book_tree = book_tree;
-	parser->keywords  = keywords;
-
-	/* Parse the string */
-	io = g_io_channel_new_file (path, "r", error);
-
-	if (!io) {
-		result = FALSE;
-		goto exit;
-	}
-
-	while (TRUE) {
-		GIOStatus io_status;
-		gsize     bytes_read;
-
-		io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
-						     &bytes_read, error);
-		if (io_status == G_IO_STATUS_ERROR) {
-			result = FALSE;
-			goto exit;
-		}
-		if (io_status != G_IO_STATUS_NORMAL) {
-			break;
-		}
-
-		g_markup_parse_context_parse (parser->context, buf,
-					      bytes_read, error);
-		if (error != NULL && *error != NULL) {
-			result = FALSE;
-			goto exit;
-		}
-
-		if (bytes_read < BYTES_PER_READ) {
-			break;
-		}
-	}
-
- exit:
-	g_io_channel_unref (io);
-	g_markup_parse_context_free (parser->context);
-	g_free (parser->m_parser);
-	g_free (parser);
-
-	return result;
 }
 
 static gboolean
@@ -664,17 +552,104 @@ parser_read_gz_file (const gchar  *path,
 	return TRUE;
 }
 
-
-static gchar *
-extract_page_name (const gchar *uri)
+gboolean
+dh_parser_read_file (const gchar  *path,
+		     GNode        *book_tree,
+		     GList       **keywords,
+		     GError      **error)
 {
-	gchar  *page = NULL;
-	gchar **split;
+	DhParser   *parser;
+	GIOChannel *io;
+	gchar       buf[BYTES_PER_READ];
+	gboolean    result = TRUE;
 
-	if ((split = g_strsplit (uri, ".", 2)) != NULL) {
-		page = split[0];
-                split[0] = NULL;
-		g_strfreev (split);
+	if (g_str_has_suffix (path, ".gz")) {
+		return parser_read_gz_file (path,
+					    book_tree,
+					    keywords,
+					    error);
 	}
-	return page;
+
+	parser = g_new0 (DhParser, 1);
+	if (!parser) {
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_INTERNAL_ERROR,
+			     _("Could not create book parser"));
+		return FALSE;
+	}
+
+	if (g_str_has_suffix (path, ".devhelp2")) {
+		parser->version = 2;
+	} else {
+		parser->version = 1;
+	}
+
+	parser->m_parser = g_new0 (GMarkupParser, 1);
+	if (!parser->m_parser) {
+		g_free (parser);
+		g_set_error (error,
+			     DH_ERROR,
+			     DH_ERROR_INTERNAL_ERROR,
+			     _("Could not create markup parser"));
+		return FALSE;
+	}
+
+	parser->m_parser->start_element = parser_start_node_cb;
+	parser->m_parser->end_element   = parser_end_node_cb;
+	parser->m_parser->error         = parser_error_cb;
+
+	parser->context = g_markup_parse_context_new (parser->m_parser, 0,
+						      parser, NULL);
+
+	parser->parent = NULL;
+
+	parser->parsing_keywords = FALSE;
+	parser->parsing_chapters  = FALSE;
+
+	parser->path      = path;
+	parser->book_tree = book_tree;
+	parser->keywords  = keywords;
+
+	/* Parse the string */
+	io = g_io_channel_new_file (path, "r", error);
+
+	if (!io) {
+		result = FALSE;
+		goto exit;
+	}
+
+	while (TRUE) {
+		GIOStatus io_status;
+		gsize     bytes_read;
+
+		io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
+						     &bytes_read, error);
+		if (io_status == G_IO_STATUS_ERROR) {
+			result = FALSE;
+			goto exit;
+		}
+		if (io_status != G_IO_STATUS_NORMAL) {
+			break;
+		}
+
+		g_markup_parse_context_parse (parser->context, buf,
+					      bytes_read, error);
+		if (error != NULL && *error != NULL) {
+			result = FALSE;
+			goto exit;
+		}
+
+		if (bytes_read < BYTES_PER_READ) {
+			break;
+		}
+	}
+
+ exit:
+	g_io_channel_unref (io);
+	g_markup_parse_context_free (parser->context);
+	g_free (parser->m_parser);
+	g_free (parser);
+
+	return result;
 }
