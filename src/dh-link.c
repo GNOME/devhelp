@@ -29,8 +29,8 @@ struct _DhLink {
         gchar       *name;
         gchar       *uri;
 
-        gchar       *book;
-        gchar       *page;
+        DhLink      *book;
+        DhLink      *page;
 
         guint        ref_count;
 
@@ -56,8 +56,12 @@ static void
 link_free (DhLink *link)
 {
 	g_free (link->name);
-	g_free (link->book);
-	g_free (link->page);
+        if (link->book) {
+                dh_link_unref (link->book);
+        }
+	if (link->page) {
+                dh_link_unref (link->page);
+        }
 	g_free (link->uri);
 
 	g_slice_free (DhLink, link);
@@ -66,8 +70,8 @@ link_free (DhLink *link)
 DhLink *
 dh_link_new (DhLinkType   type,
 	     const gchar *name,
-	     const gchar *book,
-	     const gchar *page,
+	     DhLink      *book,
+	     DhLink      *page,
 	     const gchar *uri)
 {
 	DhLink *link;
@@ -80,8 +84,12 @@ dh_link_new (DhLinkType   type,
 	link->type = type;
 
 	link->name = g_strdup (name);
-	link->book = g_strdup (book);
-	link->page = g_strdup (page);
+	if (book) {
+                link->book = dh_link_ref (book);
+        }
+	if (page) {
+                link->page = dh_link_ref (page);
+        }
 	link->uri  = g_strdup (uri);
 
 	link->ref_count = 1;
@@ -93,11 +101,11 @@ gint
 dh_link_compare  (gconstpointer a,
                   gconstpointer b)
 {
-        const DhLink *la = a;
-        const DhLink *lb = b;
-	gint          flags_diff;
-	gint          book_diff;
-	gint          page_diff;
+        DhLink *la = (DhLink *) a;
+        DhLink *lb = (DhLink *) b;
+	gint    flags_diff;
+	gint    book_diff;
+	gint    page_diff;
 
         /* Sort deprecated hits last. */
         flags_diff = (la->flags & DH_LINK_FLAGS_DEPRECATED) - 
@@ -106,15 +114,9 @@ dh_link_compare  (gconstpointer a,
                 return flags_diff;
         }
 
-	book_diff = strcmp (la->book, lb->book);
+	book_diff = strcmp (dh_link_get_book_name (la), dh_link_get_book_name (lb));
 	if (book_diff == 0) {
-		if (la->page == 0 && lb->page == 0) {
-			page_diff = 0;
-		} else {
-			page_diff = (la->page && lb->page) ?
-                                strcmp (la->page, lb->page) : -1;
-		}
-
+                page_diff = strcmp (dh_link_get_page_name (la), dh_link_get_page_name (lb));
 		if (page_diff == 0) {
 			return strcmp (la->name, lb->name);
                 }
@@ -154,15 +156,23 @@ dh_link_get_name (DhLink *link)
 }
 
 const gchar *
-dh_link_get_book (DhLink *link)
+dh_link_get_book_name (DhLink *link)
 {
-        return link->book;
+        if (link->book) {
+                return link->book->name;
+        }
+
+        return "";
 }
 
 const gchar *
-dh_link_get_page (DhLink *link)
+dh_link_get_page_name (DhLink *link)
 {
-        return link->page;
+        if (link->page) {
+                return link->page->name;
+        }
+
+        return "";
 }
 
 const gchar *

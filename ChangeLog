@@ -1,5 +1,21 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-link.c:
+	* src/dh-link.h: Replace the book and page names with pointers to
+	their respective DhLinks. This saves quite a bit of memory, but
+	breaks searching for pages and books, which will be reimplemented
+	soon in a more useful fashion.
+
+	* src/dh-parser.c: (parser_start_node_book),
+	(parser_start_node_chapter), (parser_start_node_keyword): Adapt to
+	link changes.
+
+	* src/dh-keyword-model.c: (dh_keyword_model_filter): Adapt to the
+	link API changes. Also remove (instead of adapt) book/page-only
+	searching in the keyword list, it does not belong here.
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-parser.c: Don't duplicate code in the compressed (gz) and
 	non-compressed cases.
 

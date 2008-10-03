@@ -48,8 +48,8 @@ typedef struct _DhLink DhLink;
 GType        dh_link_get_type           (void);
 DhLink *     dh_link_new                (DhLinkType     type,
 					 const gchar   *name,
-					 const gchar   *book,
-					 const gchar   *page,
+                                         DhLink        *book,
+                                         DhLink        *page,
 					 const gchar   *uri);
 void         dh_link_free               (DhLink        *link);
 gint         dh_link_compare            (gconstpointer  a,
@@ -57,8 +57,8 @@ gint         dh_link_compare            (gconstpointer  a,
 DhLink *     dh_link_ref                (DhLink        *link);
 void         dh_link_unref              (DhLink        *link);
 const gchar *dh_link_get_name           (DhLink        *link);
-const gchar *dh_link_get_book           (DhLink        *link);
-const gchar *dh_link_get_page           (DhLink        *link);
+const gchar *dh_link_get_book_name      (DhLink        *link);
+const gchar *dh_link_get_page_name      (DhLink        *link);
 const gchar *dh_link_get_uri            (DhLink        *link);
 DhLinkFlags  dh_link_get_flags          (DhLink        *link);
 void         dh_link_set_flags          (DhLink        *link,

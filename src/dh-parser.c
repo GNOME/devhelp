@@ -147,7 +147,7 @@ parser_start_node_book (DhParser             *parser,
         }
 
         full_uri = g_strconcat (parser->base, "/", uri, NULL);
-        link = dh_link_new (DH_LINK_TYPE_BOOK, title, name, NULL, full_uri);
+        link = dh_link_new (DH_LINK_TYPE_BOOK, title, NULL, NULL, full_uri);
         g_free (full_uri);
 
         *parser->keywords = g_list_prepend (*parser->keywords, link);
@@ -207,8 +207,8 @@ parser_start_node_chapter (DhParser             *parser,
         full_uri = g_strconcat (parser->base, "/", uri, NULL);
         page = extract_page_name (uri);
         link = dh_link_new (DH_LINK_TYPE_PAGE, name, 
-                            dh_link_get_book (parser->book_node->data),
-                            page, full_uri);
+                            parser->book_node->data,
+                            NULL, full_uri);
         g_free (full_uri);
         g_free (page);
 
@@ -353,8 +353,9 @@ parser_start_node_keyword (DhParser             *parser,
         }
 
         link = dh_link_new (link_type, name, 
-                            dh_link_get_book (parser->book_node->data),
-                            page, full_uri);
+                            parser->book_node->data,
+                            parser->parent->data,
+                            full_uri);
 
         g_free (tmp);
         g_free (full_uri);
