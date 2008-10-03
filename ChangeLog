@@ -1,7 +1,14 @@
 2008-10-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-keyword-model.c: (keyword_model_get_column_type),
+	(keyword_model_get_value):
+	* src/dh-keyword-model.h: Remove unused model column for "is
+	deprecated".
+
+2008-10-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-window.c: (window_open_new_tab): Set shadow type to "in"
-	again, seems to have been lost in webkit merge..
+	again, seems to have been lost in webkit merge.
 
 2008-10-03  Richard Hult  <richard@imendio.com>
 

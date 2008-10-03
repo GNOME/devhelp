@@ -186,7 +186,7 @@ keyword_model_get_flags (GtkTreeModel *tree_model)
 static gint
 keyword_model_get_n_columns (GtkTreeModel *tree_model)
 {
-        return DH_KEYWORD_MODEL_NR_OF_COLS;
+        return DH_KEYWORD_MODEL_NUM_COLS;
 }
 
 static GType
@@ -199,9 +199,6 @@ keyword_model_get_column_type (GtkTreeModel *tree_model,
                 break;
         case DH_KEYWORD_MODEL_COL_LINK:
                 return G_TYPE_POINTER;
-        case DH_KEYWORD_MODEL_COL_IS_DEPRECATED:
-                return G_TYPE_BOOLEAN;
-                break;
         default:
                 return G_TYPE_INVALID;
         }
@@ -282,11 +279,6 @@ keyword_model_get_value (GtkTreeModel *tree_model,
         case DH_KEYWORD_MODEL_COL_LINK:
                 g_value_init (value, G_TYPE_POINTER);
                 g_value_set_pointer (value, link);
-                break;
-        case DH_KEYWORD_MODEL_COL_IS_DEPRECATED:
-                g_value_init (value, G_TYPE_BOOLEAN);
-                g_value_set_boolean (
-                        value, dh_link_get_flags (link) & DH_LINK_FLAGS_DEPRECATED);
                 break;
         default:
                 g_warning ("Bad column %d requested", column);
