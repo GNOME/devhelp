@@ -220,7 +220,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		full_link = g_strconcat (parser->base, "/", link, NULL);
 		page = extract_page_name (link);
 		dh_link = dh_link_new (DH_LINK_TYPE_PAGE, name, 
-				       ((DhLink *)parser->book_node->data)->book,
+				       dh_link_get_book (parser->book_node->data),
 				       page, full_link);
 		g_free (full_link);
 		g_free (page);
@@ -373,7 +373,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		}
 
 		dh_link = dh_link_new (link_type, name, 
-				       ((DhLink *) parser->book_node->data)->book,
+				       dh_link_get_book (parser->book_node->data),
 				       page, full_link);
 
 		g_free (tmp);
@@ -382,7 +382,9 @@ parser_start_node_cb (GMarkupParseContext  *context,
 		g_free (page);
 
 		if (deprecated) {
-			dh_link_set_is_deprecated (dh_link, TRUE);
+			dh_link_set_flags (
+                                dh_link,
+                                dh_link_get_flags (dh_link) | DH_LINK_FLAGS_DEPRECATED);
 		}
 		
  		*parser->keywords = g_list_prepend (*parser->keywords,
