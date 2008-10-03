@@ -3,7 +3,7 @@
 	Bug 417692 – Deprecated functions are displayed in grey
 
 	* src/dh-search.c: Use getters for link members, and use italic
-	instead of insensitive fg colro for deprecated keywords.
+	instead of insensitive fg color for deprecated keywords.
 
 2008-10-03  Richard Hult  <richard@imendio.com>
 
