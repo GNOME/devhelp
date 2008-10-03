@@ -28,13 +28,15 @@
 GType
 dh_link_get_type (void)
 {
-  static GType type = 0;
-  if (G_UNLIKELY (type == 0)) {
-    type = g_boxed_type_register_static ("DhLink",
-                                         (GBoxedCopyFunc)dh_link_ref,
-                                         (GBoxedFreeFunc)dh_link_unref);
-  }
-  return type;
+        static GType type = 0;
+
+        if (G_UNLIKELY (type == 0)) {
+                type = g_boxed_type_register_static (
+                        "DhLink",
+                        (GBoxedCopyFunc) dh_link_ref,
+                        (GBoxedFreeFunc) dh_link_unref);
+        }
+        return type;
 }
 
 static void
@@ -45,7 +47,7 @@ link_free (DhLink *link)
 	g_free (link->page);
 	g_free (link->uri);
 
-	g_free (link);
+	g_slice_free (DhLink, link);
 }
 
 DhLink *
@@ -60,7 +62,7 @@ dh_link_new (DhLinkType   type,
 	g_return_val_if_fail (name != NULL, NULL);
 	g_return_val_if_fail (uri != NULL, NULL);
 
-	link = g_new0 (DhLink, 1);
+	link = g_slice_new0 (DhLink);
 
 	link->type = type;
 
@@ -74,33 +76,35 @@ dh_link_new (DhLinkType   type,
 	return link;
 }
 
-DhLink *
-dh_link_copy (const DhLink *link)
-{
-	return dh_link_new (link->type, link->name, link->book,
-			    link->page, link->uri);
-}
-
 gint
-dh_link_compare  (gconstpointer a, gconstpointer b)
+dh_link_compare  (gconstpointer a,
+                  gconstpointer b)
 {
-	gint book_diff;
-	gint page_diff;
+        const DhLink *la = a;
+        const DhLink *lb = b;
+	gint          flags_diff;
+	gint          book_diff;
+	gint          page_diff;
 
-	book_diff = strcmp (((DhLink *)a)->book, ((DhLink *)b)->book);
+        /* Sort deprecated hits last. */
+        flags_diff = (la->flags & DH_LINK_FLAGS_DEPRECATED) - 
+                (lb->flags & DH_LINK_FLAGS_DEPRECATED);
+        if (flags_diff != 0) {
+                return flags_diff;
+        }
+
+	book_diff = strcmp (la->book, lb->book);
 	if (book_diff == 0) {
-
-		if (((DhLink *)a)->page == 0 &&
-		    ((DhLink *)b)->page == 0) {
+		if (la->page == 0 && lb->page == 0) {
 			page_diff = 0;
 		} else {
-			page_diff =
-				(((DhLink *)a)->page && ((DhLink *)b)->page) ?
-				strcmp (((DhLink *)a)->page, ((DhLink *)b)->page) : -1;
+			page_diff = (la->page && lb->page) ?
+                                strcmp (la->page, lb->page) : -1;
 		}
 
-		if (page_diff == 0)
-			return strcmp (((DhLink *)a)->name, ((DhLink *)b)->name);
+		if (page_diff == 0) {
+			return strcmp (la->name, lb->name);
+                }
 
 		return page_diff;
 	}
@@ -130,17 +134,60 @@ dh_link_unref (DhLink *link)
 	}
 }
 
+const gchar *
+dh_link_get_name (DhLink *link)
+{
+        return link->name;
+}
+
+const gchar *
+dh_link_get_book (DhLink *link)
+{
+        return link->book;
+}
+
+const gchar *
+dh_link_get_page (DhLink *link)
+{
+        return link->page;
+}
+
+const gchar *
+dh_link_get_uri (DhLink *link)
+{
+        return link->uri;
+}
+
+DhLinkType
+dh_link_get_link_type (DhLink *link)
+{
+        return link->type;
+}
+
 gboolean
 dh_link_get_is_deprecated (DhLink *link)
 {
-	return link->is_deprecated;
+        return link->flags & DH_LINK_FLAGS_DEPRECATED;
 }
 
 void
 dh_link_set_is_deprecated (DhLink   *link,
 			   gboolean  is_deprecated)
 {
-	link->is_deprecated = is_deprecated;
+        link->flags |= DH_LINK_FLAGS_DEPRECATED;
+}         
+
+DhLinkFlags
+dh_link_get_flags (DhLink *link)
+{
+	return link->flags;
+}
+
+void
+dh_link_set_flags (DhLink      *link,
+                   DhLinkFlags  flags)
+{
+        link->flags = flags;
 }
 
 const gchar *

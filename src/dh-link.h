@@ -36,22 +36,26 @@ typedef enum {
         DH_LINK_TYPE_TYPEDEF
 } DhLinkType;
 
-typedef struct {
+typedef enum {
+        DH_LINK_FLAGS_NONE       = 0,
+        DH_LINK_FLAGS_DEPRECATED = 1 << 0
+} DhLinkFlags;
+
+typedef struct _DhLink DhLink;
+struct _DhLink {
         gchar       *name;
+        gchar       *uri;
+
         gchar       *book;
         gchar       *page;
-        gchar       *uri;
-        DhLinkType   type;
-
-        /* FIXME: Use an enum or flags for this when we know more about what we
-         * can do (or keep the actual deprecation string).
-         */
-        gboolean     is_deprecated;
 
         guint        ref_count;
-} DhLink;
 
-#define DH_TYPE_LINK dh_link_get_type ()
+        DhLinkType   type : 8;
+        DhLinkFlags  flags : 8;
+};
+
+#define DH_TYPE_LINK (dh_link_get_type ())
 
 GType        dh_link_get_type           (void);
 DhLink *     dh_link_new                (DhLinkType     type,
@@ -59,7 +63,6 @@ DhLink *     dh_link_new                (DhLinkType     type,
 					 const gchar   *book,
 					 const gchar   *page,
 					 const gchar   *uri);
-DhLink *     dh_link_copy               (const DhLink  *link);
 void         dh_link_free               (DhLink        *link);
 gint         dh_link_compare            (gconstpointer  a,
 					 gconstpointer  b);
@@ -67,7 +70,15 @@ DhLink *     dh_link_ref                (DhLink        *link);
 void         dh_link_unref              (DhLink        *link);
 gboolean     dh_link_get_is_deprecated  (DhLink        *link);
 void         dh_link_set_is_deprecated  (DhLink        *link,
-					 gboolean       is_deprecated);
+                                         gboolean       is_deprecated);
+const gchar *dh_link_get_name           (DhLink        *link);
+const gchar *dh_link_get_book           (DhLink        *link);
+const gchar *dh_link_get_page           (DhLink        *link);
+const gchar *dh_link_get_uri            (DhLink        *link);
+DhLinkFlags  dh_link_get_flags          (DhLink        *link);
+void         dh_link_set_flags          (DhLink        *link,
+					 DhLinkFlags    flags);
+DhLinkType   dh_link_get_link_type      (DhLink        *link);
 const gchar *dh_link_get_type_as_string (DhLink        *link);
 
 #endif /* __DH_LINK_H__ */
