@@ -42,18 +42,6 @@ typedef enum {
 } DhLinkFlags;
 
 typedef struct _DhLink DhLink;
-struct _DhLink {
-        gchar       *name;
-        gchar       *uri;
-
-        gchar       *book;
-        gchar       *page;
-
-        guint        ref_count;
-
-        DhLinkType   type : 8;
-        DhLinkFlags  flags : 8;
-};
 
 #define DH_TYPE_LINK (dh_link_get_type ())
 

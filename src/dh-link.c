@@ -25,6 +25,19 @@
 #include <glib/gi18n.h>
 #include "dh-link.h"
 
+struct _DhLink {
+        gchar       *name;
+        gchar       *uri;
+
+        gchar       *book;
+        gchar       *page;
+
+        guint        ref_count;
+
+        DhLinkType   type : 8;
+        DhLinkFlags  flags : 8;
+};
+
 GType
 dh_link_get_type (void)
 {
