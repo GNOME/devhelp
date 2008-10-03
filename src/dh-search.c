@@ -68,35 +68,35 @@ typedef struct {
 	DhSearchSource  search_source;
 } DhSearchPriv;
 
-static void  dh_search_init                    (DhSearch         *search);
-static void  dh_search_class_init              (DhSearchClass    *klass);
-static void  search_finalize                   (GObject          *object);
-static void  search_advanced_options_setup     (DhSearch         *search);
-static void  search_advanced_options_notify_cb (GConfClient      *client,
-						guint             cnxn_id,
-						GConfEntry       *entry,
-						gpointer          user_data);
-static void  search_selection_changed_cb       (GtkTreeSelection *selection,
-						DhSearch         *content);
-static gboolean search_tree_button_press_cb    (GtkTreeView      *view,
-						GdkEventButton   *event,
-						DhSearch         *search);
-static gboolean search_entry_key_press_event_cb (GtkEntry        *entry,
-						 GdkEventKey     *event,
-						 DhSearch        *search);
-static void  search_entry_changed_cb           (GtkEntry         *entry,
-						DhSearch         *search);
-static void  search_entry_activated_cb         (GtkEntry         *entry,
-						DhSearch         *search);
-static void  search_entry_text_inserted_cb     (GtkEntry         *entry,
-						const gchar      *text,
-						gint              length,
-						gint             *position,
-						DhSearch         *search);
-static gboolean search_complete_idle           (DhSearch         *search);
-static gboolean search_filter_idle             (DhSearch         *search);
-static gchar *  search_complete_func           (DhLink           *link);
-static gchar *  search_get_search_string       (DhSearch         *search);
+static void         dh_search_init                    (DhSearch         *search);
+static void         dh_search_class_init              (DhSearchClass    *klass);
+static void         search_advanced_options_setup     (DhSearch         *search);
+static void         search_advanced_options_notify_cb (GConfClient      *client,
+                                                       guint             cnxn_id,
+                                                       GConfEntry       *entry,
+                                                       gpointer          user_data);
+static void         search_selection_changed_cb       (GtkTreeSelection *selection,
+                                                       DhSearch         *content);
+static gboolean     search_tree_button_press_cb       (GtkTreeView      *view,
+                                                       GdkEventButton   *event,
+                                                       DhSearch         *search);
+static gboolean     search_entry_key_press_event_cb   (GtkEntry         *entry,
+                                                       GdkEventKey      *event,
+                                                       DhSearch         *search);
+static void         search_entry_changed_cb           (GtkEntry         *entry,
+                                                       DhSearch         *search);
+static void         search_entry_activated_cb         (GtkEntry         *entry,
+                                                       DhSearch         *search);
+static void         search_entry_text_inserted_cb     (GtkEntry         *entry,
+                                                       const gchar      *text,
+                                                       gint              length,
+                                                       gint             *position,
+                                                       DhSearch         *search);
+static gboolean     search_complete_idle              (DhSearch         *search);
+static gboolean     search_filter_idle                (DhSearch         *search);
+static const gchar *search_complete_func              (DhLink           *link);
+static gchar *      search_get_search_string          (DhSearch         *search);
+
 
 enum {
         LINK_SELECTED,
@@ -109,6 +109,26 @@ G_DEFINE_TYPE (DhSearch, dh_search, GTK_TYPE_VBOX);
   (instance, DH_TYPE_SEARCH, DhSearchPriv);
 
 static gint signals[LAST_SIGNAL] = { 0 };
+
+static void
+search_finalize (GObject *object)
+{
+	DhSearchPriv *priv;
+	GConfClient  *gconf_client;
+	
+	priv = GET_PRIVATE (object);
+
+	g_string_free (priv->book_str, TRUE);
+	g_string_free (priv->page_str, TRUE);
+	g_string_free (priv->entry_str, TRUE);
+
+	g_completion_free (priv->completion);
+
+	gconf_client = dh_base_get_gconf_client (dh_base_get ());	
+	gconf_client_notify_remove (gconf_client, priv->advanced_options_id);
+
+	G_OBJECT_CLASS (dh_search_parent_class)->finalize (object);
+}
 
 static void
 dh_search_class_init (DhSearchClass *klass)
@@ -160,26 +180,6 @@ dh_search_init (DhSearch *search)
 	gtk_tree_view_set_enable_search (GTK_TREE_VIEW (priv->hitlist), FALSE);
 
 	gtk_box_set_spacing (GTK_BOX (search), 2);
-}
-
-static void
-search_finalize (GObject *object)
-{
-	DhSearchPriv *priv;
-	GConfClient  *gconf_client;
-	
-	priv = GET_PRIVATE (object);
-
-	g_string_free (priv->book_str, TRUE);
-	g_string_free (priv->page_str, TRUE);
-	g_string_free (priv->entry_str, TRUE);
-
-	g_completion_free (priv->completion);
-
-	gconf_client = dh_base_get_gconf_client (dh_base_get ());	
-	gconf_client_notify_remove (gconf_client, priv->advanced_options_id);
-
-	G_OBJECT_CLASS (dh_search_parent_class)->finalize (object);
 }
 
 static void
@@ -507,10 +507,10 @@ search_filter_idle (DhSearch *search)
 	return FALSE;
 }
 
-static gchar *
+static const gchar *
 search_complete_func (DhLink *link)
 {
-	return link->name;
+	return dh_link_get_name (link);
 }
 
 static void
@@ -523,28 +523,27 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
 	DhSearch     *search;
 	DhSearchPriv *priv;
 	gchar        *name;
-	gboolean      is_deprecated;
-	GdkColor     *color;
+        DhLink       *link;
+        PangoStyle    style;
 
 	search = data;
 	priv = GET_PRIVATE (search);
 
 	gtk_tree_model_get (tree_model, iter,
 			    DH_KEYWORD_MODEL_COL_NAME, &name,
-			    DH_KEYWORD_MODEL_COL_IS_DEPRECATED, &is_deprecated,
+			    DH_KEYWORD_MODEL_COL_LINK, &link,
 			    -1);
 
-	if (is_deprecated) {
-		color = &GTK_WIDGET (search)->style->text_aa[GTK_STATE_NORMAL];
-	} else {
-		color = NULL;
-	}
-	
+        style = PANGO_STYLE_NORMAL;
+
+        if (dh_link_get_flags (link) & DH_LINK_FLAGS_DEPRECATED) {
+                style |= PANGO_STYLE_ITALIC;
+        }
+
 	g_object_set (cell,
 		      "text", name,
-		      "foreground-gdk", color,
+                      "style", style,
 		      NULL);
-
 	g_free (name);
 }
 
