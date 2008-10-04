@@ -915,26 +915,29 @@ window_tree_link_selected_cb (GObject  *ignored,
                               DhWindow *window)
 {
         DhWindowPriv  *priv;
-        WebKitWebView *web_view;
+        WebKitWebView *view;
+        gchar         *uri;
 
         priv = window->priv;
 
-        web_view = window_get_active_web_view (window);
+        view = window_get_active_web_view (window);
 
-        /* Block so we don't try to sync the tree when we have already clicked
-         * in it.
+        /* Block so we don't try to sync the tree when we have already
+         * clicked in it.
          */
-        g_signal_handlers_block_by_func (web_view,
+        g_signal_handlers_block_by_func (view,
                                          window_web_view_open_uri_cb,
                                          window);
 
-        webkit_web_view_open (web_view, dh_link_get_uri (link));
+        uri = dh_link_get_uri (link);
+        webkit_web_view_open (view, uri);
+        g_free (uri);
 
-        g_signal_handlers_unblock_by_func (web_view,
+        g_signal_handlers_unblock_by_func (view,
                                            window_web_view_open_uri_cb,
                                            window);
 
-        window_check_history (window, web_view);
+        window_check_history (window, view);
 }
 
 static void
@@ -943,15 +946,18 @@ window_search_link_selected_cb (GObject  *ignored,
                                 DhWindow *window)
 {
         DhWindowPriv  *priv;
-        WebKitWebView *web_view;
+        WebKitWebView *view;
+        gchar         *uri;
 
         priv = window->priv;
 
-        web_view = window_get_active_web_view (window);
+        view = window_get_active_web_view (window);
 
-        webkit_web_view_open (web_view, dh_link_get_uri (link));
+        uri = dh_link_get_uri (link);
+        webkit_web_view_open (view, uri);
+        g_free (uri);
 
-        window_check_history (window, web_view);
+        window_check_history (window, view);
 }
 
 static void

@@ -246,6 +246,7 @@ book_tree_find_uri_foreach (GtkTreeModel *model,
 {
 	DhLink      *link;
 	const gchar *uri;
+        gchar       *link_uri;
 
 	gtk_tree_model_get (model, iter,
 			    COL_LINK, &link,
@@ -258,11 +259,13 @@ book_tree_find_uri_foreach (GtkTreeModel *model,
 		uri = data->uri;
 	}
 
-	if (g_str_has_prefix (uri, dh_link_get_uri (link))) {
+        link_uri = dh_link_get_uri (link);
+	if (g_str_has_prefix (uri, link_uri)) {
 		data->found = TRUE;
 		data->iter = *iter;
 		data->path = gtk_tree_path_copy (path);
 	}
+        g_free (link_uri);
 
 	return data->found;
 }

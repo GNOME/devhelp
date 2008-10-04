@@ -26,7 +26,11 @@
 #include "dh-link.h"
 
 struct _DhLink {
+        /* FIXME: Those two could exist only for book to save some
+         * memory.
+         */
         gchar       *id;
+        gchar       *base;
 
         gchar       *name;
         gchar       *uri;
@@ -57,6 +61,7 @@ dh_link_get_type (void)
 static void
 link_free (DhLink *link)
 {
+	g_free (link->base);
 	g_free (link->id);
 	g_free (link->name);
 	g_free (link->uri);
@@ -73,6 +78,7 @@ link_free (DhLink *link)
 
 DhLink *
 dh_link_new (DhLinkType   type,
+             const gchar *base,
 	     const gchar *id,
 	     const gchar *name,
 	     DhLink      *book,
@@ -84,14 +90,24 @@ dh_link_new (DhLinkType   type,
 	g_return_val_if_fail (name != NULL, NULL);
 	g_return_val_if_fail (uri != NULL, NULL);
 
+        if (type == DH_LINK_TYPE_BOOK) {
+                g_return_val_if_fail (base != NULL, NULL);
+                g_return_val_if_fail (id != NULL, NULL);
+        }
+        if (type != DH_LINK_TYPE_BOOK && type != DH_LINK_TYPE_PAGE) {
+                g_return_val_if_fail (book != NULL, NULL);
+                g_return_val_if_fail (page != NULL, NULL);
+        }
+        
 	link = g_slice_new0 (DhLink);
 
 	link->ref_count = 1;
 	link->type = type;
 
+	link->base = g_strdup (base);
 	link->id = g_strdup (id);
 	link->name = g_strdup (name);
-	link->uri  = g_strdup (uri);
+	link->uri = g_strdup (uri);
 
 	if (book) {
                 link->book = dh_link_ref (book);
@@ -200,10 +216,14 @@ dh_link_get_book_id (DhLink *link)
         return "";
 }
 
-const gchar *
+gchar *
 dh_link_get_uri (DhLink *link)
 {
-        return link->uri;
+        if (link->type == DH_LINK_TYPE_BOOK) {
+                return g_strconcat (link->base, "/", link->uri, NULL);
+        }
+
+        return g_strconcat (link->book->base, "/", link->uri, NULL);
 }
 
 DhLinkType

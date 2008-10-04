@@ -1,5 +1,18 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-link.[ch]: Only keep the "leaf" part of the URI in each
+	link, and the base part in the book. Construct the full URI on
+	demand. This saves lots and lots of allocations and memory.
+
+	* src/dh-book-tree.c: (book_tree_find_uri_foreach):
+	* src/dh-parser.c: (parser_start_node_book),
+	(parser_start_node_chapter), (parser_start_node_keyword):
+	* src/dh-window.c: (window_tree_link_selected_cb),
+	(window_search_link_selected_cb): Adapt to the
+	above (dh_link_get_uri() now returns allocated memory).
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	Bug 514001 – search results not sorted alphabetically
 	
 	* src/dh-link.c (dh_link_compare): Don't sort hits after
@@ -16,7 +29,7 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
 	* src/dh-search.c: (dh_search_new): Change the book combo label to
-	"Search in:":
+	"Search in:".
 	
 2008-10-04  Richard Hult  <richard@imendio.com>
 

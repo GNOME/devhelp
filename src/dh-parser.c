@@ -56,20 +56,6 @@ typedef struct {
 	gint                 version;
 } DhParser;
 
-static gchar *
-extract_page_name (const gchar *uri)
-{
-	gchar  *page = NULL;
-	gchar **split;
-
-	if ((split = g_strsplit (uri, ".", 2)) != NULL) {
-		page = split[0];
-                split[0] = NULL;
-		g_strfreev (split);
-	}
-	return page;
-}
-
 static void
 parser_start_node_book (DhParser             *parser,
                         GMarkupParseContext  *context,
@@ -81,10 +67,9 @@ parser_start_node_book (DhParser             *parser,
         gint         i;
         gint         line, col;
         const gchar *title = NULL;
-        const gchar *base  = NULL;
-        const gchar *name  = NULL;
-        const gchar *uri  = NULL;
-	gchar       *full_uri;
+        const gchar *base = NULL;
+        const gchar *name = NULL;
+        const gchar *uri = NULL;
 	DhLink      *link;
 
         if (g_ascii_strcasecmp (node_name, "book") != 0) {
@@ -146,14 +131,13 @@ parser_start_node_book (DhParser             *parser,
                 parser->base = g_path_get_dirname (parser->path);
         }
 
-        full_uri = g_strconcat (parser->base, "/", uri, NULL);
         link = dh_link_new (DH_LINK_TYPE_BOOK,
+                            parser->base,
                             name,
                             title,
                             NULL,
                             NULL,
-                            full_uri);
-        g_free (full_uri);
+                            uri);
 
         *parser->keywords = g_list_prepend (*parser->keywords, link);
 
@@ -174,8 +158,6 @@ parser_start_node_chapter (DhParser             *parser,
         gint         line, col;
         const gchar *name = NULL;
         const gchar *uri = NULL;
-	gchar       *full_uri;
-	gchar       *page;
 	DhLink      *link;
         GNode       *node;
 
@@ -209,17 +191,13 @@ parser_start_node_chapter (DhParser             *parser,
                 return;
         }
 
-        full_uri = g_strconcat (parser->base, "/", uri, NULL);
-        page = extract_page_name (uri);
         link = dh_link_new (DH_LINK_TYPE_PAGE,
+                            NULL,
                             NULL,
                             name, 
                             parser->book_node->data,
                             NULL,
-                            full_uri);
-
-        g_free (full_uri);
-        g_free (page);
+                            uri);
 
         *parser->keywords = g_list_prepend (*parser->keywords, link);
 
@@ -242,7 +220,6 @@ parser_start_node_keyword (DhParser             *parser,
         const gchar *uri = NULL;
         const gchar *type = NULL;
         const gchar *deprecated = NULL;
-	gchar       *full_uri;
         DhLinkType   link_type;
 	DhLink      *link;
         gchar       *tmp;
@@ -307,8 +284,6 @@ parser_start_node_keyword (DhParser             *parser,
                 return;
         }
 
-        full_uri = g_strconcat (parser->base, "/", uri, NULL);
-
         if (parser->version == 2) {
                 if (strcmp (type, "function") == 0) {
                         link_type = DH_LINK_TYPE_FUNCTION;
@@ -360,14 +335,14 @@ parser_start_node_keyword (DhParser             *parser,
         }
 
         link = dh_link_new (link_type,
-                            NULL, // koko id
+                            NULL,
+                            NULL,
                             name, 
                             parser->book_node->data,
                             parser->parent->data,
-                            full_uri);
+                            uri);
 
         g_free (tmp);
-        g_free (full_uri);
 
         if (deprecated) {
                 dh_link_set_flags (
