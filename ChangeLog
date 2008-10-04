@@ -1,5 +1,25 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* data/ui/devhelp.glade: Remove the "advanced options"
+	preference. Also remove lots of old unused parts, only keep the
+	preference dialog.
+
+	* configure.in: Add AC_PROG_OBJC so we can build ObjC sources.
+
+	* src/Makefile.am:
+	* src/ige-conf.h:
+	* src/ige-conf-gconf.h:
+	* src/ige-conf-mac.h: Add tiny layer on top of gconf and
+	nsdefaults.
+
+	* src/dh-base.[ch]: Remove gconf client.
+
+	* src/dh-preferences.c:
+	* src/dh-search.c:
+	* src/dh-window.c: Use the conf abstraction.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-window.c (window_open_new_tab): Fix typo in previous
 	commit.
 

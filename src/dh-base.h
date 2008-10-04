@@ -24,7 +24,6 @@
 #define __DH_BASE_H__
 
 #include <gtk/gtk.h>
-#include <gconf/gconf-client.h>
 
 typedef struct _DhBase      DhBase;
 typedef struct _DhBaseClass DhBaseClass;
@@ -53,6 +52,5 @@ GtkWidget *  dh_base_get_window_on_current_workspace (DhBase *base);
 GNode *      dh_base_get_book_tree                   (DhBase *base);
 GList *      dh_base_get_keywords                    (DhBase *base);
 GSList *     dh_base_get_windows                     (DhBase *base);
-GConfClient *dh_base_get_gconf_client                (DhBase *base);
 
 #endif /* __DH_BASE_H__ */

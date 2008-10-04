@@ -25,7 +25,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <gtk/gtk.h>
-#include <gconf/gconf-client.h>
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
@@ -44,7 +43,6 @@ typedef struct {
         GNode       *book_tree;
         GList       *keywords;
         GHashTable  *books;
-        GConfClient *gconf_client;
 } DhBasePriv;
 
 G_DEFINE_TYPE (DhBase, dh_base, G_TYPE_OBJECT);
@@ -68,9 +66,11 @@ static DhBase *base_instance;
 static void
 base_finalize (GObject *object)
 {
-        DhBasePriv *priv = GET_PRIVATE (object);
+        DhBasePriv *priv;
 
-        g_object_unref (priv->gconf_client);
+        priv = GET_PRIVATE (object);
+
+        /* FIXME: Free things... */
 
         G_OBJECT_CLASS (dh_base_parent_class)->finalize (object);
 }
@@ -111,12 +111,6 @@ dh_base_init (DhBase *base)
                 }
         }
 #endif
-
-        priv->gconf_client = gconf_client_get_default ();
-        gconf_client_add_dir (priv->gconf_client,
-                              GCONF_PATH,
-                              GCONF_CLIENT_PRELOAD_ONELEVEL,
-                              NULL);
 }
 
 static void
@@ -568,18 +562,6 @@ dh_base_get_window_on_current_workspace (DhBase *base)
 #else
         return priv->windows->data;
 #endif
-}
-
-GConfClient *
-dh_base_get_gconf_client (DhBase *base)
-{
-        DhBasePriv *priv;
-
-        g_return_val_if_fail (DH_IS_BASE (base), NULL);
-
-        priv = GET_PRIVATE (base);
-
-        return priv->gconf_client;
 }
 
 GtkWidget *

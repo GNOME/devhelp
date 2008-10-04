@@ -25,15 +25,11 @@
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <gconf/gconf-client.h>
-
 #include "dh-marshal.h"
 #include "dh-keyword-model.h"
 #include "dh-search.h"
 #include "dh-preferences.h"
 #include "dh-base.h"
-
-#define d(x)
 
 typedef struct {
         DhKeywordModel *model;
@@ -157,10 +153,6 @@ search_selection_changed_cb (GtkTreeSelection *selection,
 
                 if (link != priv->selected_link) {
                         priv->selected_link = link;
-
-                        d(g_print ("Emiting signal with link to: %s (%s)\n",
-                                   link->name, link->uri));
-
                         g_signal_emit (search, signals[LINK_SELECTED], 0, link);
                 }
         }
@@ -339,8 +331,6 @@ search_entry_changed_cb (GtkEntry *entry,
 {
         DhSearchPriv *priv = GET_PRIVATE (search);
 
-        d(g_print ("Entry changed\n"));
-
         if (!priv->idle_filter) {
                 priv->idle_filter =
                         g_idle_add ((GSourceFunc) search_filter_idle, search);
@@ -411,8 +401,6 @@ search_filter_idle (DhSearch *search)
         const gchar  *str;
         gchar        *id;
         DhLink       *link;
-
-        d(g_print ("Filter idle\n"));
 
         str = gtk_entry_get_text (GTK_ENTRY (priv->entry));
         id = search_combo_get_active_id (search);

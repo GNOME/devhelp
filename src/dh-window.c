@@ -23,7 +23,6 @@
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <gconf/gconf-client.h>
 #include <webkit/webkit.h>
 
 #ifdef GDK_WINDOWING_QUARTZ
@@ -35,11 +34,10 @@
 #include "dh-search.h"
 #include "dh-window.h"
 #include "eggfindbar.h"
+#include "ige-conf.h"
 
 struct _DhWindowPriv {
         DhBase         *base;
-
-        GConfClient    *gconf_client;
 
         GtkWidget      *main_box;
         GtkWidget      *menu_box;
@@ -488,8 +486,6 @@ dh_window_init (DhWindow *window)
 
         priv->manager = gtk_ui_manager_new ();
 
-        priv->gconf_client = gconf_client_get_default ();
-
         accel_group = gtk_ui_manager_get_accel_group (priv->manager);
         gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
@@ -674,9 +670,9 @@ window_populate (DhWindow *window)
 
         gtk_box_pack_start (GTK_BOX (priv->main_box), priv->hpaned, TRUE, TRUE, 0);
 
-        hpaned_position = gconf_client_get_int (priv->gconf_client,
-                                                GCONF_PANED_LOCATION,
-                                                NULL);
+        ige_conf_get_int (ige_conf_get (),
+                          GCONF_PANED_LOCATION,
+                          &hpaned_position);
 
         /* This workaround for broken schema installs is not really working that
          * well, since it makes having a 0 location not possible.
@@ -798,45 +794,37 @@ window_save_state (DhWindow *window)
                 maximized = FALSE;
         }
 
-        gconf_client_set_bool (priv->gconf_client,
-                               GCONF_MAIN_WINDOW_MAXIMIZED, maximized,
-                               NULL);
+        ige_conf_set_bool (ige_conf_get (),
+                           GCONF_MAIN_WINDOW_MAXIMIZED, maximized);
 
-        /* If maximized don't save the size and position */
+        /* If maximized don't save the size and position. */
         if (!maximized) {
                 gint width, height;
                 gint x, y;
 
                 gtk_window_get_size (GTK_WINDOW (window), &width, &height);
-                gconf_client_set_int (priv->gconf_client,
-                                      GCONF_MAIN_WINDOW_WIDTH, width,
-                                      NULL);
-                gconf_client_set_int (priv->gconf_client,
-                                      GCONF_MAIN_WINDOW_HEIGHT, height,
-                                      NULL);
+                ige_conf_set_int (ige_conf_get (),
+                                  GCONF_MAIN_WINDOW_WIDTH, width);
+                ige_conf_set_int (ige_conf_get (),
+                                  GCONF_MAIN_WINDOW_HEIGHT, height);
 
                 gtk_window_get_position (GTK_WINDOW (window), &x, &y);
-                gconf_client_set_int (priv->gconf_client,
-                                      GCONF_MAIN_WINDOW_POS_X, x,
-                                      NULL);
-                gconf_client_set_int (priv->gconf_client,
-                                      GCONF_MAIN_WINDOW_POS_Y, y,
-                                      NULL);
+                ige_conf_set_int (ige_conf_get (),
+                                  GCONF_MAIN_WINDOW_POS_X, x);
+                ige_conf_set_int (ige_conf_get (),
+                                  GCONF_MAIN_WINDOW_POS_Y, y);
         }
 
-        gconf_client_set_int (priv->gconf_client,
-                              GCONF_PANED_LOCATION,
-                              gtk_paned_get_position (GTK_PANED (priv->hpaned)),
-                              NULL);
+        ige_conf_set_int (ige_conf_get (),
+                          GCONF_PANED_LOCATION,
+                          gtk_paned_get_position (GTK_PANED (priv->hpaned)));
 
         if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->control_notebook)) == 0) {
-                gconf_client_set_string (priv->gconf_client,
-                                         GCONF_SELECTED_TAB, "content",
-                                         NULL);
+                ige_conf_set_string (ige_conf_get (),
+                                     GCONF_SELECTED_TAB, "content");
         } else {
-                gconf_client_set_string (priv->gconf_client,
-                                         GCONF_SELECTED_TAB, "search",
-                                         NULL);
+                ige_conf_set_string (ige_conf_get (),
+                                     GCONF_SELECTED_TAB, "search");
         }
 }
 
@@ -851,17 +839,17 @@ window_restore_state (DhWindow *window)
 
         priv = window->priv;
 
-        width = gconf_client_get_int (priv->gconf_client,
-                                      GCONF_MAIN_WINDOW_WIDTH,
-                                      NULL);
+        ige_conf_get_int (ige_conf_get (),
+                          GCONF_MAIN_WINDOW_WIDTH,
+                          &width);
 
         if (width <= 0) {
                 width = DEFAULT_WIDTH;
         }
 
-        height = gconf_client_get_int (priv->gconf_client,
-                                       GCONF_MAIN_WINDOW_HEIGHT,
-                                       NULL);
+        ige_conf_get_int (ige_conf_get (),
+                          GCONF_MAIN_WINDOW_HEIGHT,
+                          &height);
 
         if (height <= 0) {
                 height = DEFAULT_HEIGHT;
@@ -870,25 +858,25 @@ window_restore_state (DhWindow *window)
         gtk_window_set_default_size (GTK_WINDOW (window),
                                      width, height);
 
-        x = gconf_client_get_int (priv->gconf_client,
-                                  GCONF_MAIN_WINDOW_POS_X,
-                                  NULL);
-        y = gconf_client_get_int (priv->gconf_client,
-                                  GCONF_MAIN_WINDOW_POS_Y,
-                                  NULL);
+        ige_conf_get_int (ige_conf_get (),
+                          GCONF_MAIN_WINDOW_POS_X,
+                          &x);
+        ige_conf_get_int (ige_conf_get (),
+                          GCONF_MAIN_WINDOW_POS_Y,
+                          &y);
 
         gtk_window_move (GTK_WINDOW (window), x, y);
 
-        maximized = gconf_client_get_bool (priv->gconf_client,
-                                           GCONF_MAIN_WINDOW_MAXIMIZED,
-                                           NULL);
+        ige_conf_get_bool (ige_conf_get (),
+                           GCONF_MAIN_WINDOW_MAXIMIZED,
+                           &maximized);
         if (maximized) {
                 gtk_window_maximize (GTK_WINDOW (window));
         }
 
-        tab = gconf_client_get_string (priv->gconf_client,
-                                       GCONF_SELECTED_TAB,
-                                       NULL);
+        ige_conf_get_string (ige_conf_get (),
+                             GCONF_SELECTED_TAB,
+                             &tab);
         if (!tab || strcmp (tab, "") == 0 || strcmp (tab, "content") == 0) {
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 0);
                 gtk_widget_grab_focus (priv->book_tree);

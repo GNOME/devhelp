@@ -2,7 +2,8 @@ AM_CPPFLAGS = 						\
 	-DLOCALEDIR=\""$(datadir)/locale"\" 	  	\
 	-DPREFIX="\"$(prefix)"\"		 	\
 	-DDATADIR=\""$(datadir)"\"                      \
-	-DG_LOG_DOMAIN=\"Devhelp\"
+	-DG_LOG_DOMAIN=\"Devhelp\"			\
+	$(WARN_CFLAGS)
 
 bin_PROGRAMS = devhelp
 
@@ -12,8 +13,7 @@ devhelp_SOURCES =					\
 devhelp_CPPFLAGS =					\
 	$(AM_CPPFLAGS)
 
-devhelp_CFLAGS = 					\
-	$(WARN_CFLAGS)					\
+devhelp_CFLAGS =					\
 	$(DEVHELP_CFLAGS)
 
 devhelp_LDADD = 					\
@@ -30,9 +30,6 @@ devhelpinclude_HEADERS = 				\
 	dh-keyword-model.h				\
 	dh-link.h					\
 	dh-search.h					\
-	dh-parser.h					\
-	dh-preferences.h                                \
-	dh-util.h					\
 	dh-window.h
 
 libdevhelp_1_la_SOURCES =				\
@@ -50,15 +47,30 @@ libdevhelp_1_la_SOURCES =				\
 	dh-preferences.c				\
 	dh-util.c					\
 	dh-window.c					\
+	dh-parser.h					\
+	dh-preferences.h                                \
+	dh-util.h					\
 	eggfindbar.c					\
-	eggfindbar.h
+	eggfindbar.h					\
+	ige-conf.h
+
+if HAVE_PLATFORM_OSX
+libdevhelp_1_la_SOURCES +=				\
+	ige-conf-mac.m
+endif
+if HAVE_PLATFORM_X11
+libdevhelp_1_la_SOURCES +=				\
+	ige-conf-gconf.c
+endif
 
 libdevhelp_1_la_CPPFLAGS =				\
 	$(AM_CPPFLAGS)					\
 	$(ZLIB_CPPFLAGS)
 
-libdevhelp_1_la_CFLAGS = 				\
-	$(WARN_CFLAGS)					\
+libdevhelp_1_la_CFLAGS =				\
+	$(LIBDEVHELP_CFLAGS)
+
+libdevhelp_1_la_OBJCFLAGS =				\
 	$(LIBDEVHELP_CFLAGS)
 
 libdevhelp_1_la_LIBADD =				\

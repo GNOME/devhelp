@@ -20,12 +20,11 @@
 
 #include "config.h"
 #include <glade/glade.h>
-#include <gconf/gconf-client.h>
 #include <gtk/gtk.h>
 #include <string.h>
-
 #include "dh-util.h" 
 #include "dh-preferences.h"
+#include "ige-conf.h"
 #include "dh-base.h"
 
 typedef struct {
@@ -43,45 +42,36 @@ typedef struct {
 	guint      fixed_id;
 } DhPreferences;
 
-#define DH_PREFERENCES(x) ((DhPreferences *) x)
-
-static void     preferences_font_set_cb                 (GtkFontButton    *button,
-							 gpointer          user_data);
-static void     preferences_close_cb                    (GtkButton        *button,
-							 gpointer          user_data);
-static void     preferences_system_fonts_toggled_cb     (GtkToggleButton  *button,
-							 gpointer          user_data);
-static void     preferences_var_font_notify_cb          (GConfClient      *client,
-							 guint             cnxn_id,
-							 GConfEntry       *entry,
-							 gpointer          user_data);
-static void     preferences_fixed_font_notify_cb        (GConfClient      *client,
-							 guint             cnxn_id,
-							 GConfEntry       *entry,
-							 gpointer          user_data);
-static void     preferences_use_system_font_notify_cb   (GConfClient      *client,
-							 guint             cnxn_id,
-							 GConfEntry       *entry,
-							 gpointer          user_data);
-static void     preferences_connect_gconf_listeners     (void);
-static void     preferences_get_font_names              (gboolean          use_system_fonts,
-							 gchar           **variable,
-							 gchar           **fixed);
-static gboolean preferences_update_fonts                (gpointer          unused);
-
-
+static void     preferences_font_set_cb               (GtkFontButton    *button,
+                                                       gpointer          user_data);
+static void     preferences_close_cb                  (GtkButton        *button,
+                                                       gpointer          user_data);
+static void     preferences_system_fonts_toggled_cb   (GtkToggleButton  *button,
+                                                       gpointer          user_data);
+static void     preferences_var_font_notify_cb        (IgeConf          *client,
+                                                       const gchar      *path,
+                                                       gpointer          user_data);
+static void     preferences_fixed_font_notify_cb      (IgeConf          *client,
+                                                       const gchar      *path,
+                                                       gpointer          user_data);
+static void     preferences_use_system_font_notify_cb (IgeConf          *client,
+                                                       const gchar      *path,
+                                                       gpointer          user_data);
+static void     preferences_connect_conf_listeners    (void);
+static void     preferences_get_font_names            (gboolean          use_system_fonts,
+                                                       gchar           **variable,
+                                                       gchar           **fixed);
+static gboolean preferences_update_fonts              (gpointer          unused);
 
 static DhPreferences *prefs;
 
 static void
 preferences_font_set_cb (GtkFontButton *button, gpointer user_data)
 {
-	DhPreferences *prefs;
+	DhPreferences *prefs = user_data;
 	const gchar   *font_name;
 	const gchar   *key;
-	GConfClient   *gconf_client;
 
-	prefs = DH_PREFERENCES (user_data); 
 	font_name = gtk_font_button_get_font_name (button);
 
 	if (GTK_WIDGET (button) == prefs->variable_font_button) {
@@ -90,42 +80,13 @@ preferences_font_set_cb (GtkFontButton *button, gpointer user_data)
 		key = GCONF_FIXED_FONT;
 	}
 
-	gconf_client = dh_base_get_gconf_client (dh_base_get ());
-	gconf_client_set_string (gconf_client,
-				 key, font_name,
-				 NULL);
+	ige_conf_set_string (ige_conf_get (), key, font_name);
 }
-
-/* FIXME: I'd rather see the dialog and preference handling split up. In which
- * case this code would be useful:
- */
-/*
-static void
-preferences_destroy_cb (GtkWidget *dialog, DhPreferences *prefs)
-{
-	gconf_client_notify_remove (gconf_client,
-				    prefs->use_system_fonts_id);
-	
-	gconf_client_notify_remove (gconf_client,
-				    prefs->system_var_id);
-
-	gconf_client_notify_remove (gconf_client,
-					 prefs->system_fixed_id);
-	
-	gconf_client_notify_remove (gconf_client,
-				    prefs->var_id);
-	
-	gconf_client_notify_remove (gconf_client,
-				    prefs->fixed_id);
-}
-*/
 
 static void
 preferences_close_cb (GtkButton *button, gpointer user_data)
 {
-	DhPreferences *prefs;
-
-	prefs = DH_PREFERENCES (user_data);
+	DhPreferences *prefs = user_data;
 
 	gtk_widget_destroy (GTK_WIDGET (prefs->dialog));
 
@@ -140,44 +101,36 @@ static void
 preferences_system_fonts_toggled_cb (GtkToggleButton *button, 
 				     gpointer         user_data)
 {
-	DhPreferences *prefs;
+	DhPreferences *prefs = user_data;
 	gboolean       active;
-	GConfClient   *gconf_client;
-
-	prefs = DH_PREFERENCES (user_data);
 
 	active = gtk_toggle_button_get_active (button);
 
-	gconf_client = dh_base_get_gconf_client (dh_base_get ());
-	gconf_client_set_bool (gconf_client,
-			       GCONF_USE_SYSTEM_FONTS,
-			       active, NULL);
+	ige_conf_set_bool (ige_conf_get (),
+                           GCONF_USE_SYSTEM_FONTS,
+                           active);
 	
 	gtk_widget_set_sensitive (prefs->fonts_table, !active);
 }
 
 static void
-preferences_var_font_notify_cb (GConfClient *client,
-				guint        cnxn_id,
-				GConfEntry  *entry,
+preferences_var_font_notify_cb (IgeConf     *client,
+				const gchar *path,
 				gpointer     user_data)
 {
-	DhPreferences *prefs;
+	DhPreferences *prefs = user_data;
 	gboolean       use_system_fonts;
-	const gchar   *font_name;
-	GConfClient   *gconf_client;
+	gchar         *font_name;
 
-	prefs = DH_PREFERENCES (user_data);
-
-	gconf_client = dh_base_get_gconf_client (dh_base_get ());
-	use_system_fonts = gconf_client_get_bool (gconf_client,
-						  GCONF_USE_SYSTEM_FONTS,
-						  NULL);
+        ige_conf_get_bool (ige_conf_get (),
+                           GCONF_USE_SYSTEM_FONTS,
+                           &use_system_fonts);
 
 	if (prefs->variable_font_button) {
-		font_name = gconf_value_get_string (gconf_entry_get_value (entry));
+		ige_conf_get_string (ige_conf_get (), path, &font_name);
 		gtk_font_button_set_font_name (GTK_FONT_BUTTON (prefs->variable_font_button),
 					       font_name);
+                g_free (font_name);
 	}
 	
 	if (use_system_fonts) {
@@ -188,27 +141,23 @@ preferences_var_font_notify_cb (GConfClient *client,
 }
 
 static void
-preferences_fixed_font_notify_cb (GConfClient *client,
-				  guint        cnxn_id,
-				  GConfEntry  *entry,
+preferences_fixed_font_notify_cb (IgeConf     *client,
+				  const gchar *path,
 				  gpointer     user_data)
 {
-	DhPreferences *prefs;
+	DhPreferences *prefs = user_data;
 	gboolean       use_system_fonts;
-	const gchar   *font_name;
-	GConfClient   *gconf_client;
+	gchar         *font_name;
 
-	prefs = DH_PREFERENCES (user_data);
-
-	gconf_client = dh_base_get_gconf_client (dh_base_get ());
-	use_system_fonts = gconf_client_get_bool (gconf_client,
-						  GCONF_USE_SYSTEM_FONTS,
-						  NULL);
+	ige_conf_get_bool (ige_conf_get (),
+                           GCONF_USE_SYSTEM_FONTS,
+                           &use_system_fonts);
 
 	if (prefs->fixed_font_button) {
-		font_name = gconf_value_get_string (gconf_entry_get_value (entry));
+                ige_conf_get_string (ige_conf_get (), path, &font_name);
 		gtk_font_button_set_font_name (GTK_FONT_BUTTON (prefs->fixed_font_button),
 					       font_name);
+                g_free (font_name);
 	}
 
 	if (use_system_fonts) {
@@ -219,17 +168,14 @@ preferences_fixed_font_notify_cb (GConfClient *client,
 }
 
 static void
-preferences_use_system_font_notify_cb (GConfClient *client,
-				       guint        cnxn_id,
-				       GConfEntry  *entry,
+preferences_use_system_font_notify_cb (IgeConf     *client,
+                                       const gchar *path,
 				       gpointer     user_data)
 {
-	DhPreferences *prefs;
+	DhPreferences *prefs = user_data;
 	gboolean       use_system_fonts;
 
-	prefs = DH_PREFERENCES (user_data);
-
-	use_system_fonts = gconf_value_get_bool (gconf_entry_get_value (entry));
+	ige_conf_get_bool (ige_conf_get (), path, &use_system_fonts);
 
 	if (prefs->system_fonts_button) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prefs->system_fonts_button),
@@ -244,41 +190,37 @@ preferences_use_system_font_notify_cb (GConfClient *client,
 }
 
 static void
-preferences_connect_gconf_listeners (void)
+preferences_connect_conf_listeners (void)
 {
-	GConfClient *gconf_client;
+	IgeConf *conf;
 	
-	gconf_client = dh_base_get_gconf_client (dh_base_get ());
+	conf = ige_conf_get ();
 
 	prefs->use_system_fonts_id =
-		gconf_client_notify_add (gconf_client,
-					 GCONF_USE_SYSTEM_FONTS,
-					 preferences_use_system_font_notify_cb,
-					 prefs, NULL, NULL);
-	
+		ige_conf_notify_add (conf,
+                                     GCONF_USE_SYSTEM_FONTS,
+                                     preferences_use_system_font_notify_cb,
+                                     prefs);
 	prefs->system_var_id =
-		gconf_client_notify_add (gconf_client,
-					 GCONF_SYSTEM_VARIABLE_FONT,
-					 preferences_var_font_notify_cb,
-					 prefs, NULL, NULL);
-
+		ige_conf_notify_add (conf,
+                                     GCONF_SYSTEM_VARIABLE_FONT,
+                                     preferences_var_font_notify_cb,
+                                     prefs);
 	prefs->system_fixed_id =
-		gconf_client_notify_add (gconf_client,
-					 GCONF_SYSTEM_FIXED_FONT,
-					 preferences_fixed_font_notify_cb,
-					 prefs, NULL, NULL);
-
+		ige_conf_notify_add (conf,
+                                     GCONF_SYSTEM_FIXED_FONT,
+                                     preferences_fixed_font_notify_cb,
+                                     prefs);
 	prefs->var_id =
-		gconf_client_notify_add (gconf_client,
-					 GCONF_VARIABLE_FONT,
-					 preferences_var_font_notify_cb,
-					 prefs, NULL, NULL);
-
+		ige_conf_notify_add (conf,
+                                     GCONF_VARIABLE_FONT,
+                                     preferences_var_font_notify_cb,
+                                     prefs);
 	prefs->fixed_id =
-		gconf_client_notify_add (gconf_client,
-					 GCONF_FIXED_FONT,
-					 preferences_fixed_font_notify_cb,
-					 prefs, NULL, NULL);
+		ige_conf_notify_add (conf,
+                                     GCONF_FIXED_FONT,
+                                     preferences_fixed_font_notify_cb,
+                                     prefs);
 }
 
 static void
@@ -286,25 +228,25 @@ preferences_get_font_names (gboolean   use_system_fonts,
 			    gchar    **variable,
 			    gchar    **fixed)
 {
-	gchar       *var_font_name, *fixed_font_name;
-	GConfClient *gconf_client;
+	gchar   *var_font_name, *fixed_font_name;
+	IgeConf *conf;
 
-	gconf_client = dh_base_get_gconf_client (dh_base_get ());
+	conf = ige_conf_get ();
 	
 	if (use_system_fonts) {
-		var_font_name = gconf_client_get_string (gconf_client,
-							 GCONF_SYSTEM_VARIABLE_FONT,
-							 NULL);
-		fixed_font_name = gconf_client_get_string (gconf_client,
-							   GCONF_SYSTEM_FIXED_FONT,
-							   NULL);
+		ige_conf_get_string (conf,
+                                     GCONF_SYSTEM_VARIABLE_FONT,
+                                     &var_font_name);
+		ige_conf_get_string (conf,
+                                     GCONF_SYSTEM_FIXED_FONT,
+                                     &fixed_font_name);
 	} else {
-		var_font_name = gconf_client_get_string (gconf_client,
-							 GCONF_VARIABLE_FONT, 
-							 NULL);
-		fixed_font_name = gconf_client_get_string (gconf_client,
-							   GCONF_FIXED_FONT,
-							   NULL);
+		ige_conf_get_string (conf,
+                                     GCONF_VARIABLE_FONT, 
+                                     &var_font_name);
+                ige_conf_get_string (conf,
+                                     GCONF_FIXED_FONT,
+                                     &fixed_font_name);
 	}
 
 	*variable = var_font_name;
@@ -314,20 +256,22 @@ preferences_get_font_names (gboolean   use_system_fonts,
 static gboolean
 preferences_update_fonts (gpointer unused)
 {
-	GConfClient *gconf_client;
-	gboolean     use_system_fonts;
-	gchar       *var_font_name;
-	gchar       *fixed_font_name;
+	IgeConf  *conf;
+	gboolean  use_system_fonts;
+	gchar    *var_font_name;
+	gchar    *fixed_font_name;
 
-	gconf_client = dh_base_get_gconf_client (dh_base_get ());
-	use_system_fonts = gconf_client_get_bool (gconf_client,
-						  GCONF_USE_SYSTEM_FONTS,
-						  NULL);
+	conf = ige_conf_get ();
+
+	ige_conf_get_bool (conf,
+                           GCONF_USE_SYSTEM_FONTS,
+                           &use_system_fonts);
 
 	preferences_get_font_names (use_system_fonts,
-				    &var_font_name, &fixed_font_name);
+				    &var_font_name,
+                                    &fixed_font_name);
 
-    /* FIXME: Set WebKit font preferences using WebSettings */
+        /* FIXME: Set WebKit font preferences using WebSettings. */
 
 	g_free (var_font_name);
 	g_free (fixed_font_name);
@@ -349,49 +293,48 @@ void
 dh_preferences_setup_fonts (void)
 {
 	preferences_update_fonts (NULL);
-	preferences_connect_gconf_listeners ();
+	preferences_connect_conf_listeners ();
 }
 
 
 void
 dh_preferences_show_dialog (GtkWindow *parent)
 {
-	gboolean     use_system_fonts;
-	gchar       *var_font_name, *fixed_font_name;
-	GladeXML    *gui;
-	GConfClient *gconf_client;
+	gboolean  use_system_fonts;
+	gchar    *var_font_name, *fixed_font_name;
+	GladeXML *gui;
 
 	if (prefs->dialog != NULL) {
-		/* Do something useful, although it should be visible at this
-		 * point anyway.
+		/* Do something useful, although it should be visible at
+		 * this point anyway.
 		 */
 		gtk_window_present (GTK_WINDOW (prefs->dialog));
 		return;
 	}
 
-	gui = dh_glade_get_file (DATADIR "/devhelp/devhelp.glade",
-				 "preferences_dialog",
-				 NULL,
-				 "preferences_dialog", &prefs->dialog,
-				 "fonts_table", &prefs->fonts_table,
-				 "system_fonts_button", &prefs->system_fonts_button,
-				 "variable_font_button", &prefs->variable_font_button,
-				 "fixed_font_button", &prefs->fixed_font_button,
-				 NULL);
-	
-	dh_glade_connect (gui,
-			  prefs,
-			  "variable_font_button", "font_set", preferences_font_set_cb,
-			  "fixed_font_button", "font_set", preferences_font_set_cb,
-			  "close_button", "clicked", preferences_close_cb,
-			  "system_fonts_button", "toggled", preferences_system_fonts_toggled_cb,
-			  NULL);
+	gui = dh_glade_get_file (
+                DATADIR "/devhelp/devhelp.glade",
+                "preferences_dialog",
+                NULL,
+                "preferences_dialog", &prefs->dialog,
+                "fonts_table", &prefs->fonts_table,
+                "system_fonts_button", &prefs->system_fonts_button,
+                "variable_font_button", &prefs->variable_font_button,
+                "fixed_font_button", &prefs->fixed_font_button,
+                NULL);
 
-	gconf_client = dh_base_get_gconf_client (dh_base_get ());
-	
-	use_system_fonts = gconf_client_get_bool (gconf_client,
-						  GCONF_USE_SYSTEM_FONTS,
-						  NULL);
+	dh_glade_connect (
+                gui,
+                prefs,
+                "variable_font_button", "font_set", preferences_font_set_cb,
+                "fixed_font_button", "font_set", preferences_font_set_cb,
+                "close_button", "clicked", preferences_close_cb,
+                "system_fonts_button", "toggled", preferences_system_fonts_toggled_cb,
+                NULL);
+
+	ige_conf_get_bool (ige_conf_get (),
+                           GCONF_USE_SYSTEM_FONTS,
+                           &use_system_fonts);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prefs->system_fonts_button),
 				      use_system_fonts);
 	gtk_widget_set_sensitive (prefs->fonts_table, !use_system_fonts);
