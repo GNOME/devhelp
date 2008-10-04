@@ -1,5 +1,10 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c (window_populate): Hook up global mac menubar
+	events.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* data/devhelp.schemas.in: Remove advanced option here too.
 
 2008-10-04  Richard Hult  <richard@imendio.com>

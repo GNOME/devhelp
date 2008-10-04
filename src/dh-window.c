@@ -477,6 +477,8 @@ window_populate (DhWindow *window)
                 widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/EditMenu/Preferences");
                 ige_mac_menu_add_app_menu_item (group, GTK_MENU_ITEM (widget),
                                                 _("Preferences..."));
+
+                ige_mac_menu_set_global_key_handler_enabled (TRUE);
         }
 #endif
 
