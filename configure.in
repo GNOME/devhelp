@@ -14,8 +14,8 @@ AM_PROG_CC_C_O
 AM_PATH_GLIB_2_0
 
 IT_PROG_INTLTOOL([0.40.0])
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
 
+AC_PATH_PROG(GCONFTOOL, gconftool-2)
 AM_GCONF_SOURCE_2
 
 IMENDIO_COMPILE_WARNINGS
@@ -32,7 +32,7 @@ if test "x$IGE_PLATFORM" = xx11; then
    PLATFORM_CFLAGS=
    PLATFORM_LDFLAGS=
 else
-   gconf_pkgconfig="gconf-2.0 >= 2.6.0"
+   gconf_pkgconfig=
    libwnck_pkgconfig=
    igemacintegration_pkgconfig="ige-mac-integration >= 0.8.2"
    REQUIRES_LIBWNCK=

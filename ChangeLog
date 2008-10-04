@@ -1,5 +1,10 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* acinclude.m4:
+	* configure.in: Only depend on gconf on X11.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* data/ui/devhelp.glade: Remove the "advanced options"
 	preference. Also remove lots of old unused parts, only keep the
 	preference dialog.
