@@ -26,15 +26,15 @@
 #include <gconf/gconf-client.h>
 #include <webkit/webkit.h>
 
+#ifdef GDK_WINDOWING_QUARTZ
+#include <ige-mac-integration.h>
+#endif
+
 #include "dh-book-tree.h"
 #include "dh-preferences.h"
 #include "dh-search.h"
 #include "dh-window.h"
 #include "eggfindbar.h"
-
-#ifdef GDK_WINDOWING_QUARTZ
-#include <ige-mac-integration.h>
-#endif
 
 struct _DhWindowPriv {
         DhBase         *base;
