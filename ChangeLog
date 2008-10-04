@@ -1,5 +1,9 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-search.c: Whitespace cleanup.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-link.[ch]: (dh_link_new),
 	(dh_link_get_book_id): Add id for links, only used for books.
 
