@@ -1217,7 +1217,7 @@ window_open_new_tab (DhWindow    *window,
         g_signal_connect (view, "title-changed",
                           G_CALLBACK (window_web_view_title_changed_cb),
                           window);
-        g_signal_connect (view, "button-press--event",
+        g_signal_connect (view, "button-press-event",
                           G_CALLBACK (window_web_view_button_press_event_cb),
                           window);
     /*

@@ -1,5 +1,10 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c (window_open_new_tab): Fix typo in previous
+	commit.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-link.[ch]: Only keep the "leaf" part of the URI in each
 	link, and the base part in the book. Construct the full URI on
 	demand. This saves lots and lots of allocations and memory.
