@@ -1,5 +1,9 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* data/devhelp.schemas.in: Remove advanced option here too.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-preferences.c: (dh_preferences_show_dialog):
 	* src/dh-search.c: (dh_search_new): Remove option for "advanced
 	search", and always enable it. Now that the UI doesn't suck, I
