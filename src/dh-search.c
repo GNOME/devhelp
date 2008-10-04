@@ -539,7 +539,7 @@ dh_search_new (GList *keywords)
                           G_CALLBACK (search_combo_changed_cb),
                           search);
 
-        book_label = gtk_label_new_with_mnemonic (_("_Book:"));
+        book_label = gtk_label_new_with_mnemonic (_("Search in:"));
         gtk_label_set_mnemonic_widget (GTK_LABEL (book_label), priv->book_combo);
 
         hbox = gtk_hbox_new (FALSE, 6);
