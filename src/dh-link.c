@@ -120,6 +120,11 @@ dh_link_compare  (gconstpointer a,
                 return flags_diff;
         }
 
+        return strcmp (la->name, lb->name);
+
+        /* We used to sort on book/page first before, which I can't really
+         * understand why. Keep the old code here for a while. 
+         */
 	book_diff = strcmp (dh_link_get_book_name (la), dh_link_get_book_name (lb));
 	if (book_diff == 0) {
                 page_diff = strcmp (dh_link_get_page_name (la), dh_link_get_page_name (lb));

@@ -1,5 +1,12 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	Bug 514001 – search results not sorted alphabetically
+	
+	* src/dh-link.c (dh_link_compare): Don't sort hits after
+	book/page.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-search.c: Use canonical signal names.
 
 2008-10-04  Richard Hult  <richard@imendio.com>
