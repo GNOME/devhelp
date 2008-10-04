@@ -52,11 +52,16 @@ G_DEFINE_TYPE (DhBase, dh_base, G_TYPE_OBJECT);
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE  \
   (instance, DH_TYPE_BASE, DhBasePriv);
 
-static void dh_base_init       (DhBase      *base);
-static void dh_base_class_init (DhBaseClass *klass);
-static void base_init_books    (DhBase      *base);
-static void base_add_books     (DhBase      *base,
-                                const gchar *directory);
+static void dh_base_init           (DhBase      *base);
+static void dh_base_class_init     (DhBaseClass *klass);
+static void base_init_books        (DhBase      *base);
+static void base_add_books         (DhBase      *base,
+                                    const gchar *directory);
+
+#ifdef GDK_WINDOWING_QUARTZ
+static void base_add_xcode_docsets (DhBase      *base,
+                                    const gchar *path);
+#endif
 
 static DhBase *base_instance;
 
@@ -194,7 +199,8 @@ base_sort_books (DhBase *base)
 }
 
 static void
-base_add_books_in_data_dir (DhBase *base, const gchar *data_dir)
+base_add_books_in_data_dir (DhBase      *base,
+                            const gchar *data_dir)
 {
         gchar *dir;
 
@@ -220,6 +226,12 @@ base_init_books (DhBase *base)
                 system_dirs++;
         }
 
+#ifdef GDK_WINDOWING_QUARTZ
+        base_add_xcode_docsets (
+                base,
+                "/Library/Developer/Shared/Documentation/DocSets");
+#endif
+
         base_sort_books (base);
 }
 
@@ -244,8 +256,120 @@ base_get_book_path (DhBase      *base,
         return book_path;
 }
 
+#ifdef GDK_WINDOWING_QUARTZ
 static void
-base_add_books (DhBase *base, const gchar *path)
+base_add_xcode_docset (DhBase      *base,
+                       const gchar *path)
+{
+        DhBasePriv  *priv = GET_PRIVATE (base);
+        gchar       *tmp;
+        gboolean     seems_like_devhelp = FALSE;
+        GDir        *dir;
+        const gchar *name;
+
+        /* Do some sanity checking on the directory first so we don't have
+         * to go through several hundreds of files in every docset.
+         */
+        tmp = g_build_filename (path, "style.css", NULL);
+        if (g_file_test (tmp, G_FILE_TEST_EXISTS)) {
+                gchar *tmp;
+
+                tmp = g_build_filename (path, "index.sgml", NULL);
+                if (g_file_test (tmp, G_FILE_TEST_EXISTS)) {
+                        seems_like_devhelp = TRUE;
+                }
+                g_free (tmp);
+        }
+        g_free (tmp);
+
+        if (!seems_like_devhelp) {
+                return;
+        }
+
+        dir = g_dir_open (path, 0, NULL);
+        if (!dir) {
+                return;
+        }
+
+        while ((name = g_dir_read_name (dir)) != NULL) {
+                gchar  *p;
+                GError *error = NULL;
+
+                p = strrchr (name, '.');
+                if (strcmp (p, ".devhelp2") == 0) {
+                        gchar *book_name;
+                        gchar *book_path;
+
+                        book_name = g_strdup (name);
+                        p = strrchr (book_name, '.');
+                        p[0] = '\0';
+
+                        if (g_hash_table_lookup (priv->books, book_name)) {
+                                g_free (book_name);
+                                continue;
+                        }
+
+                        book_path = g_build_filename (path, name, NULL);
+
+                        if (!dh_parser_read_file  (book_path,
+                                                   priv->book_tree,
+                                                   &priv->keywords,
+                                                   &error)) {
+                                g_warning ("Failed to read '%s': %s",
+                                           book_path, error->message);
+                                g_clear_error (&error);
+
+                                g_free (book_path);
+                                g_free (book_name);
+                        } else {
+                                g_hash_table_insert (priv->books,
+                                                     book_name,
+                                                     book_path);
+                        }
+                }
+        }
+
+        g_dir_close (dir);
+}
+
+
+/* This isn't really -any- Xcode docset, just gtk-doc docs converted to
+ * docsets.
+ *
+ * Path should point to a DocSets directory.
+ */
+static void
+base_add_xcode_docsets (DhBase      *base,
+                        const gchar *path)
+{
+        GDir        *dir;
+        const gchar *name;
+
+        dir = g_dir_open (path, 0, NULL);
+        if (!dir) {
+                return;
+        }
+
+        while ((name = g_dir_read_name (dir)) != NULL) {
+                gchar *docset_path;
+
+                docset_path = g_build_filename (path,
+                                                name,
+                                                "Contents",
+                                                "Resources",
+                                                "Documents",
+                                                NULL);
+                base_add_xcode_docset (base, docset_path);
+                g_free (docset_path);
+        }
+
+        g_dir_close (dir);
+}
+#endif
+
+static void
+base_add_books (DhBase      *base,
+                const gchar *path)
 {
         DhBasePriv  *priv = GET_PRIVATE (base);
         GDir        *dir;

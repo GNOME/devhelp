@@ -1,5 +1,10 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-base.c: Add support for picking up docsets when built in
+	mac.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-base.c: (dh_base_init),
 	(dh_base_get_window_on_current_workspace): Use GDK_WINDOWING_X11
 	instead of homebrew version.
