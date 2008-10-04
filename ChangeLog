@@ -1,5 +1,9 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-search.c: Use canonical signal names.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-window.c: Style cleanup, no functionality changes.
 
 2008-10-04  Richard Hult  <richard@imendio.com>

@@ -549,11 +549,11 @@ dh_search_new (GList *keywords)
 
         /* Setup the keyword box. */
         priv->entry = gtk_entry_new ();
-        g_signal_connect (priv->entry, "key_press_event",
+        g_signal_connect (priv->entry, "key-press-event",
                           G_CALLBACK (search_entry_key_press_event_cb),
                           search);
 
-        g_signal_connect (priv->hitlist, "button_press_event",
+        g_signal_connect (priv->hitlist, "button-press-event",
                           G_CALLBACK (search_tree_button_press_cb),
                           search);
 
@@ -565,7 +565,7 @@ dh_search_new (GList *keywords)
                           G_CALLBACK (search_entry_activated_cb),
                           search);
 
-        g_signal_connect (priv->entry, "insert_text",
+        g_signal_connect (priv->entry, "insert-text",
                           G_CALLBACK (search_entry_text_inserted_cb),
                           search);
 
