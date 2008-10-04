@@ -1,5 +1,12 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-preferences.c: (dh_preferences_show_dialog):
+	* src/dh-search.c: (dh_search_new): Remove option for "advanced
+	search", and always enable it. Now that the UI doesn't suck, I
+	declare it not advanced ;)
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-keyword-model.[ch]: (keyword_model_finalize),
 	(dh_keyword_model_set_words), (dh_keyword_model_filter): Get rid
 	of unused copy of the keyword list. Remove support for filtering

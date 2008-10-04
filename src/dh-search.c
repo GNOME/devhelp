@@ -40,8 +40,6 @@ typedef struct {
 
         DhLink         *selected_link;
 
-        GtkWidget      *advanced_box;
-
         GtkWidget      *book_combo;
         GtkWidget      *entry;
         GtkWidget      *hitlist;
@@ -50,19 +48,10 @@ typedef struct {
 
         guint           idle_complete;
         guint           idle_filter;
-
-        guint           advanced_options_id;
-
-        GString        *entry_str;
 } DhSearchPriv;
 
 static void         dh_search_init                    (DhSearch         *search);
 static void         dh_search_class_init              (DhSearchClass    *klass);
-static void         search_advanced_options_setup     (DhSearch         *search);
-static void         search_advanced_options_notify_cb (GConfClient      *client,
-                                                       guint             cnxn_id,
-                                                       GConfEntry       *entry,
-                                                       gpointer          user_data);
 static void         search_selection_changed_cb       (GtkTreeSelection *selection,
                                                        DhSearch         *content);
 static gboolean     search_tree_button_press_cb       (GtkTreeView      *view,
@@ -103,16 +92,10 @@ static void
 search_finalize (GObject *object)
 {
         DhSearchPriv *priv;
-        GConfClient  *gconf_client;
 
         priv = GET_PRIVATE (object);
 
-        g_string_free (priv->entry_str, TRUE);
-
         g_completion_free (priv->completion);
-
-        gconf_client = dh_base_get_gconf_client (dh_base_get ());
-        gconf_client_notify_remove (gconf_client, priv->advanced_options_id);
 
         G_OBJECT_CLASS (dh_search_parent_class)->finalize (object);
 }
@@ -142,8 +125,6 @@ dh_search_init (DhSearch *search)
 {
         DhSearchPriv *priv = GET_PRIVATE (search);
 
-        priv->entry_str = g_string_new ("");
-
         priv->completion = g_completion_new (
                 (GCompletionFunc) search_complete_func);
 
@@ -156,40 +137,6 @@ dh_search_init (DhSearch *search)
         gtk_tree_view_set_enable_search (GTK_TREE_VIEW (priv->hitlist), FALSE);
 
         gtk_box_set_spacing (GTK_BOX (search), 2);
-}
-
-static void
-search_advanced_options_setup (DhSearch *search)
-{
-        DhSearchPriv *priv = GET_PRIVATE (search);
-        gboolean      advanced_options;
-        GConfClient  *gconf_client;
-
-        gconf_client = dh_base_get_gconf_client (dh_base_get ());
-
-        advanced_options = gconf_client_get_bool (gconf_client,
-                                                  GCONF_ADVANCED_OPTIONS,
-                                                  NULL);
-        if (1 || advanced_options) {
-                gtk_widget_show (priv->advanced_box);
-        } else {
-                gtk_widget_hide (priv->advanced_box);
-        }
-}
-
-static void
-search_advanced_options_notify_cb (GConfClient *client,
-                                   guint        cnxn_id,
-                                   GConfEntry  *entry,
-                                   gpointer     user_data)
-{
-        DhSearch     *search = user_data;
-        DhSearchPriv *priv = GET_PRIVATE (search);
-
-        search_advanced_options_setup (search);
-
-        /* Simulate a new search to update. */
-        search_entry_activated_cb (GTK_ENTRY (priv->entry), search);
 }
 
 static void
@@ -317,7 +264,7 @@ search_combo_set_active_id (DhSearch    *search,
                                          search_combo_changed_cb,
                                          search);
 
-        if (book_id != NULL && GTK_WIDGET_VISIBLE (priv->advanced_box)) {
+        if (book_id != NULL) {
                 model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo));
 
                 has_next = gtk_tree_model_get_iter_first (model, &iter);
@@ -356,10 +303,6 @@ search_combo_get_active_id (DhSearch *search)
         GtkTreeIter   iter;
         GtkTreeModel *model;
         gchar        *id;
-
-        if (!GTK_WIDGET_VISIBLE (priv->advanced_box)) {
-                return NULL;
-        }
 
         if (!gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->book_combo),
                                             &iter)) {
@@ -413,11 +356,7 @@ search_entry_activated_cb (GtkEntry *entry,
         const gchar  *str;
         DhLink       *link;
 
-        if (GTK_WIDGET_VISIBLE (priv->advanced_box)) {
-                id = search_combo_get_active_id (search);
-        } else {
-                id = NULL;
-        }
+        id = search_combo_get_active_id (search);
         str = gtk_entry_get_text (GTK_ENTRY (priv->entry));
         link = dh_keyword_model_filter (priv->model, str, id);
         g_free (id);
@@ -476,11 +415,7 @@ search_filter_idle (DhSearch *search)
         d(g_print ("Filter idle\n"));
 
         str = gtk_entry_get_text (GTK_ENTRY (priv->entry));
-        if (GTK_WIDGET_VISIBLE (priv->advanced_box)) {
-                id = search_combo_get_active_id (search);
-        } else {
-                id = NULL;
-        }
+        id = search_combo_get_active_id (search);
         link = dh_keyword_model_filter (priv->model, str, id);
         g_free (id);
 
@@ -592,7 +527,6 @@ dh_search_new (GList *keywords)
         GtkWidget        *hbox;
         GtkWidget        *book_label;
         GtkCellRenderer  *cell;
-        GConfClient      *gconf_client;
 
         search = g_object_new (DH_TYPE_SEARCH, NULL);
 
@@ -608,18 +542,12 @@ dh_search_new (GList *keywords)
         book_label = gtk_label_new_with_mnemonic (_("_Book:"));
         gtk_label_set_mnemonic_widget (GTK_LABEL (book_label), priv->book_combo);
 
-        priv->advanced_box = gtk_vbox_new (FALSE, 2);
-        gtk_box_pack_start (GTK_BOX (search), priv->advanced_box, FALSE, FALSE, 0);
-
         hbox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (hbox), book_label, FALSE, FALSE, 0);
         gtk_box_pack_start (GTK_BOX (hbox), priv->book_combo, TRUE, TRUE, 0);
-        gtk_box_pack_start (GTK_BOX (priv->advanced_box), hbox, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (search), hbox, FALSE, FALSE, 0);
 
-        gtk_widget_show_all (priv->advanced_box);
-        gtk_widget_set_no_show_all (priv->advanced_box, TRUE);
-
-        /* Setup the keyword box */
+        /* Setup the keyword box. */
         priv->entry = gtk_entry_new ();
         g_signal_connect (priv->entry, "key_press_event",
                           G_CALLBACK (search_entry_key_press_event_cb),
@@ -687,14 +615,6 @@ dh_search_new (GList *keywords)
 
         gtk_widget_show_all (GTK_WIDGET (search));
 
-        gconf_client = dh_base_get_gconf_client (dh_base_get ());
-        priv->advanced_options_id = gconf_client_notify_add (gconf_client,
-                                                             GCONF_ADVANCED_OPTIONS,
-                                                             search_advanced_options_notify_cb,
-                                                             search, NULL, NULL);
-
-        search_advanced_options_setup (search);
-
         return GTK_WIDGET (search);
 }
 
@@ -709,14 +629,11 @@ dh_search_set_search_string (DhSearch    *search,
 
         priv = GET_PRIVATE (search);
 
-        g_string_set_size (priv->entry_str, 0);
-        g_string_append (priv->entry_str, str);
-
         g_signal_handlers_block_by_func (priv->entry,
                                          search_entry_changed_cb,
                                          search);
 
-        gtk_entry_set_text (GTK_ENTRY (priv->entry), priv->entry_str->str);
+        gtk_entry_set_text (GTK_ENTRY (priv->entry), str);
 
         gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
         gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
