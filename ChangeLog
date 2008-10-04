@@ -1,5 +1,10 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-link.c (dh_link_get_book_id): Make this work for books as
+	well (return their own ids).
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-search.c: Whitespace cleanup.
 
 2008-10-04  Richard Hult  <richard@imendio.com>
