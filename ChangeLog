@@ -1,5 +1,25 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-keyword-model.[ch]: (keyword_model_finalize),
+	(dh_keyword_model_set_words), (dh_keyword_model_filter): Get rid
+	of unused copy of the keyword list. Remove support for filtering
+	by book id through the search string and add an explicit book id
+	instead.
+
+	* src/dh-main.c: (extract_book_id), (search_normal),
+	(search_assistant), (message_received_cb), (main): Parse the
+	search string here and pass an explicit book id search term to the
+	search functionality.
+
+	* src/dh-search.[ch]: Remove the page search UI and replace the
+	book search entry with a combo box, and adapt to this throughout
+	the rest of the file.
+
+	* src/dh-window.[ch]: (dh_window_search): Add book id parameter
+	and pass it on when searching.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-link.c (dh_link_get_book_id): Make this work for books as
 	well (return their own ids).
 

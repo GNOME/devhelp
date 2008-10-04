@@ -55,13 +55,12 @@ enum {
         DH_KEYWORD_MODEL_NUM_COLS
 };
 
-GtkType            dh_keyword_model_get_type     (void);
-
-DhKeywordModel *   dh_keyword_model_new          (void);
-void               dh_keyword_model_set_words    (DhKeywordModel  *model,
-                                                  GList           *keywords);
-
-DhLink *           dh_keyword_model_filter       (DhKeywordModel  *model,
-                                                  const gchar     *string);
+GtkType         dh_keyword_model_get_type  (void);
+DhKeywordModel *dh_keyword_model_new       (void);
+void            dh_keyword_model_set_words (DhKeywordModel *model,
+                                            GList          *keywords);
+DhLink *        dh_keyword_model_filter    (DhKeywordModel *model,
+                                            const gchar    *string,
+                                            const gchar    *book_id);
 
 #endif /* __DH_KEYWORD_MODEL_H__ */

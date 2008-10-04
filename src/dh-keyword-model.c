@@ -28,9 +28,6 @@
 
 struct _DhKeywordModelPriv {
         GList *original_list;
-
-        GList *keys_list;
-
         GList *keyword_words;
 
         gint   stamp;
@@ -166,7 +163,6 @@ keyword_model_finalize (GObject *object)
         
         g_list_free (priv->keyword_words);
         g_list_free (priv->original_list);
-        g_list_free (priv->keys_list);
 
         g_free (model->priv);
 
@@ -394,42 +390,19 @@ dh_keyword_model_set_words (DhKeywordModel *model,
                             GList          *keyword_words)
 {
         DhKeywordModelPriv *priv;
-        DhLink             *link;
-        GList              *list;
 
         g_return_if_fail (DH_IS_KEYWORD_MODEL (model));
 
         priv = model->priv;
 
         g_list_free (priv->original_list);
-        g_list_free (priv->keys_list);
-
         priv->original_list = g_list_copy (keyword_words);
-        priv->keys_list = NULL;
-
-        /* Parse it into usable lists. */
-        for (list = priv->original_list;
-             list; list = list->next) {
-                link = list->data;
-                switch (dh_link_get_link_type (link)) {
-                case DH_LINK_TYPE_KEYWORD:
-                case DH_LINK_TYPE_FUNCTION:
-                case DH_LINK_TYPE_STRUCT:
-                case DH_LINK_TYPE_MACRO:
-                case DH_LINK_TYPE_ENUM:
-                case DH_LINK_TYPE_TYPEDEF:
-                        priv->keys_list =
-                                g_list_prepend (priv->keys_list, link);
-                        break;
-                default:
-                        break;
-                }
-        }
 }
 
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
-                         const gchar    *string)
+                         const gchar    *string,
+                         const gchar    *book_id)
 {
         DhKeywordModelPriv  *priv;
         DhLink              *link;
@@ -445,7 +418,6 @@ dh_keyword_model_filter (DhKeywordModel *model,
         gboolean             case_sensitive;
         gchar               *lower, *name;
         gchar              **stringv, **searchv, *search = NULL;
-        gchar               *book_search;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
         g_return_val_if_fail (string != NULL, NULL);
@@ -463,61 +435,54 @@ dh_keyword_model_filter (DhKeywordModel *model,
         } else {
                 stringv = g_strsplit (string, " ", -1);
 
-                book_search    = NULL;
                 case_sensitive = FALSE;
-                searchv        = stringv;
+                searchv = stringv;
 
                 /* Search for any parameters and position search cursor to
                  * the next element in the search string, also collect a
                  * search string for exact matches.
                  */
                 for (i = 0; stringv[i] != NULL; i++) {
-
-                        if (stringv[i][0] == '\0')
+                        if (stringv[i][0] == '\0') {
                                 continue;
+                        }
 
                         /* Parse specifications insensitively. */
                         lower = g_ascii_strdown (stringv[i], -1);
 
-                        /* Determine if there was a book. */
-                        if (!strncmp (lower, "book:", 5)) {
-                                book_search = g_strdup (stringv[i] + 5);
-                                searchv++;
-                        } else {
-                                /* Determine wether or not we should search
-                                 * with case sensitivity, searches are case
-                                 * sensitive when upper case is used in the
-                                 * search terms, matching vim smartcase
-                                 * behaviour.
-                                 */
-                                name = g_ascii_strdown (stringv[i], -1);
-                                if (strcmp (name, stringv[i])) {
-                                        case_sensitive = TRUE;
-                                }
-                                g_free (name);
-
-                                /* Accumulate our search string. */
-                                if (search == NULL) {
-                                        search = g_strdup (stringv[i]);
-                                } else {
-                                        name = g_strdup_printf ("%s %s", search, stringv[i]);
-                                        g_free (search);
-                                        search = name;
-                                }
+                        /* Determine wether or not we should search with
+                         * case sensitivity, searches are case sensitive
+                         * when upper case is used in the search terms,
+                         * matching vim smartcase behaviour.
+                         */
+                        name = g_ascii_strdown (stringv[i], -1);
+                        if (strcmp (name, stringv[i])) {
+                                case_sensitive = TRUE;
                         }
+                        g_free (name);
+                        
+                        /* Accumulate our search string. */
+                        if (search == NULL) {
+                                search = g_strdup (stringv[i]);
+                        } else {
+                                name = g_strdup_printf ("%s %s", search, stringv[i]);
+                                g_free (search);
+                                search = name;
+                        }
+
                         g_free (lower);
                 }
 
                 /* Now search keywords. */
-                for (node = priv->keys_list;
+                for (node = priv->original_list;
                      node && hits < MAX_HITS;
                      node = node->next) {
 
                         link = node->data;
                         found = FALSE;
 
-                        if (book_search &&
-                            strcmp (dh_link_get_book_id (link), book_search) != 0) {
+                        if (book_id &&
+                            strcmp (dh_link_get_book_id (link), book_id) != 0) {
                                 continue;
                         }
 
@@ -556,7 +521,6 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 g_strfreev (stringv);
 
                 g_free (search);
-                g_free (book_search);
         }
 
         new_length = g_list_length (new_list);

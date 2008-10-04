@@ -39,13 +39,66 @@
 #define COMMAND_RAISE            "raise"
 
 static void
-search_assistant (DhBase      *base,
-                  const gchar *str)
+extract_book_id (const gchar  *str,
+                 gchar       **term,
+                 gchar       **book_id)
 {
+        gchar   **strv;
+        gint      i;
+        GString  *term_string;
+        
+        *term = NULL;
+        *book_id = NULL;
+
+        term_string = g_string_new (NULL);
+
+        strv = g_strsplit (str, " ", 0);
+
+        i = 0;
+        while (strv[i]) {
+                if (!*book_id && g_str_has_prefix (strv[i], "book:")) {
+                        *book_id = g_strdup (strv[i] + 5);
+                } else {
+                        if (i > 0 && term_string->len > 0) {
+                                g_string_append_c (term_string, ' ');
+                        }
+                        g_string_append (term_string, strv[i]);
+                }
+
+                i++;
+        }
+
+        g_strfreev (strv);
+
+        *term = g_string_free (term_string, FALSE);
 }
 
 static void
-message_received_cb (const gchar *message, DhBase *base)
+search_normal (DhWindow    *window,
+               const gchar *str)
+{
+        gchar *term, *book_id;
+
+        if (str[0] == '\0') {
+                return;
+        }
+
+        extract_book_id (str, &term, &book_id);
+        dh_window_search (window, term, book_id);
+        g_free (term);
+        g_free (book_id);
+}
+
+static gboolean
+search_assistant (DhBase      *base,
+                  const gchar *str)
+{
+        return FALSE;
+}
+
+static void
+message_received_cb (const gchar *message,
+                     DhBase      *base)
 {
 	GtkWidget *window;
 	guint32    timestamp;
@@ -62,20 +115,10 @@ message_received_cb (const gchar *message, DhBase *base)
 		return;
 	}
 
-	/* Note: This is a bit strange. It seems like we need both the
-	 * gtk_window_present() and gtk_window_present_with_time() to make all
-	 * the cases working.
-	 */
-
-	window = dh_base_get_window_on_current_workspace (base);
-	if (!window) {
-		window = dh_base_new_window (base);
-		gtk_window_present (GTK_WINDOW (window));
-	}
-
+	window = dh_base_get_window (base);
 	if (g_str_has_prefix (message, COMMAND_SEARCH)) {
-		dh_window_search (DH_WINDOW (window),
-				  message + strlen (COMMAND_SEARCH) + 1);
+                search_normal (DH_WINDOW (window),
+                               message + strlen (COMMAND_SEARCH) + 1);
 	}
 	else if (strcmp (message, COMMAND_FOCUS_SEARCH) == 0) {
 		dh_window_focus_search (DH_WINDOW (window));
@@ -232,12 +275,14 @@ main (int argc, char **argv)
 		window = dh_base_new_window (base);
 
                 if (option_search) {
-                        dh_window_search (DH_WINDOW (window), option_search);
+                        search_normal (DH_WINDOW (window), option_search);
                 }
 
 		gtk_widget_show (window);
 	} else {
-		search_assistant (base, option_search_assistant);
+		if (!search_assistant (base, option_search_assistant)) {
+                        return 0;
+                }
 	}
 
 	gtk_main ();

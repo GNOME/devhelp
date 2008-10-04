@@ -49,7 +49,8 @@ struct _DhSearchClass {
 GType      dh_search_get_type              (void);
 GtkWidget *dh_search_new                   (GList       *keywords);
 void       dh_search_set_search_string     (DhSearch    *search,
-                                            const gchar *str);
+                                            const gchar *str,
+                                            const gchar *book_id);
 void       dh_search_grab_focus            (DhSearch    *search);
 void       dh_search_show_advanced_options (DhSearch    *search,
                                             gboolean     show);
