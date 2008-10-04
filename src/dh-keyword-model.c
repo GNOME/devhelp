@@ -30,8 +30,6 @@ struct _DhKeywordModelPriv {
         GList *original_list;
 
         GList *keys_list;
-        GList *book_list;
-        GList *page_list;
 
         GList *keyword_words;
 
@@ -169,8 +167,6 @@ keyword_model_finalize (GObject *object)
         g_list_free (priv->keyword_words);
         g_list_free (priv->original_list);
         g_list_free (priv->keys_list);
-        g_list_free (priv->book_list);
-        g_list_free (priv->page_list);
 
         g_free (model->priv);
 
@@ -407,26 +403,15 @@ dh_keyword_model_set_words (DhKeywordModel *model,
 
         g_list_free (priv->original_list);
         g_list_free (priv->keys_list);
-        g_list_free (priv->book_list);
-        g_list_free (priv->page_list);
 
         priv->original_list = g_list_copy (keyword_words);
-        priv->keys_list = priv->book_list = priv->page_list = NULL;
+        priv->keys_list = NULL;
 
-        /* Parse it into usable lists
-         */
+        /* Parse it into usable lists. */
         for (list = priv->original_list;
              list; list = list->next) {
                 link = list->data;
                 switch (dh_link_get_link_type (link)) {
-                case DH_LINK_TYPE_BOOK:
-                        priv->book_list =
-                                g_list_prepend (priv->book_list, link);
-                        break;
-                case DH_LINK_TYPE_PAGE:
-                        priv->page_list =
-                                g_list_prepend (priv->page_list, link);
-                        break;
                 case DH_LINK_TYPE_KEYWORD:
                 case DH_LINK_TYPE_FUNCTION:
                 case DH_LINK_TYPE_STRUCT:
@@ -437,7 +422,7 @@ dh_keyword_model_set_words (DhKeywordModel *model,
                                 g_list_prepend (priv->keys_list, link);
                         break;
                 default:
-                        g_assert_not_reached();
+                        break;
                 }
         }
 }
@@ -460,7 +445,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
         gboolean             case_sensitive;
         gchar               *lower, *name;
         gchar              **stringv, **searchv, *search = NULL;
-        gchar               *book_search, *page_search;
+        gchar               *book_search;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
         g_return_val_if_fail (string != NULL, NULL);
@@ -479,7 +464,6 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 stringv = g_strsplit (string, " ", -1);
 
                 book_search    = NULL;
-                page_search    = NULL;
                 case_sensitive = FALSE;
                 searchv        = stringv;
 
@@ -495,17 +479,11 @@ dh_keyword_model_filter (DhKeywordModel *model,
                         /* Parse specifications insensitively. */
                         lower = g_ascii_strdown (stringv[i], -1);
 
-                        /* Determine if there was a book or page
-                         * specification.
-                         */
+                        /* Determine if there was a book. */
                         if (!strncmp (lower, "book:", 5)) {
                                 book_search = g_strdup (stringv[i] + 5);
                                 searchv++;
-                        } else if (!strncmp (lower, "page:", 5)) {
-                                page_search = g_strdup (stringv[i] + 5);
-                                searchv++;
                         } else {
-
                                 /* Determine wether or not we should search
                                  * with case sensitivity, searches are case
                                  * sensitive when upper case is used in the
@@ -539,11 +517,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                         found = FALSE;
 
                         if (book_search &&
-                            strcmp (dh_link_get_book_name (link), book_search) != 0) {
-                                continue;
-                        }
-                        if (page_search &&
-                            strcmp (dh_link_get_page_name (link), page_search) != 0) {
+                            strcmp (dh_link_get_book_id (link), book_search) != 0) {
                                 continue;
                         }
 
@@ -581,17 +555,8 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 new_list = g_list_sort (new_list, dh_link_compare);
                 g_strfreev (stringv);
 
-                if (search) {
-                        g_free (search);
-                }
-
-                if (book_search) {
-                        g_free (book_search);
-                }
-
-                if (page_search) {
-                        g_free (page_search);
-                }
+                g_free (search);
+                g_free (book_search);
         }
 
         new_length = g_list_length (new_list);

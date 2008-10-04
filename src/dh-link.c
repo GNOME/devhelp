@@ -26,6 +26,8 @@
 #include "dh-link.h"
 
 struct _DhLink {
+        gchar       *id;
+
         gchar       *name;
         gchar       *uri;
 
@@ -55,20 +57,23 @@ dh_link_get_type (void)
 static void
 link_free (DhLink *link)
 {
+	g_free (link->id);
 	g_free (link->name);
+	g_free (link->uri);
+
         if (link->book) {
                 dh_link_unref (link->book);
         }
 	if (link->page) {
                 dh_link_unref (link->page);
         }
-	g_free (link->uri);
 
 	g_slice_free (DhLink, link);
 }
 
 DhLink *
 dh_link_new (DhLinkType   type,
+	     const gchar *id,
 	     const gchar *name,
 	     DhLink      *book,
 	     DhLink      *page,
@@ -81,18 +86,19 @@ dh_link_new (DhLinkType   type,
 
 	link = g_slice_new0 (DhLink);
 
+	link->ref_count = 1;
 	link->type = type;
 
+	link->id = g_strdup (id);
 	link->name = g_strdup (name);
+	link->uri  = g_strdup (uri);
+
 	if (book) {
                 link->book = dh_link_ref (book);
         }
 	if (page) {
                 link->page = dh_link_ref (page);
         }
-	link->uri  = g_strdup (uri);
-
-	link->ref_count = 1;
 
 	return link;
 }
@@ -170,6 +176,16 @@ dh_link_get_page_name (DhLink *link)
 {
         if (link->page) {
                 return link->page->name;
+        }
+
+        return "";
+}
+
+const gchar *
+dh_link_get_book_id (DhLink *link)
+{
+        if (link->book) {
+                return link->book->id;
         }
 
         return "";

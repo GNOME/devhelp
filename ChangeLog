@@ -1,3 +1,20 @@
+2008-10-04  Richard Hult  <richard@imendio.com>
+
+	* src/dh-link.[ch]: (dh_link_new),
+	(dh_link_get_book_id): Add id for links, only used for books.
+
+	* src/dh-keyword-model.c: Remove unused book/page link lists. Also
+	remove the ability to search for page ids, they are more or less
+	random anywya and just clutters the search result list.
+	(dh_keyword_model_filter): Change the book search to use the id,
+	not the title (this restores the book search entry to work as
+	before the recent refactoring).
+
+	* src/dh-parser.c: Adapt to link API change by specifying the id
+	when creating links.
+
+	* src/dh-search.c: Remove the page search entry.
+
 2008-10-03  Richard Hult  <richard@imendio.com>
 
 	* src/dh-link.c:

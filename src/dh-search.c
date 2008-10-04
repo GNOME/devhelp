@@ -48,7 +48,6 @@ typedef struct {
 	GtkWidget      *advanced_box;
 
 	GtkWidget      *book;
-	GtkWidget      *page;
 	GtkWidget      *entry;
 	GtkWidget      *hitlist;
 
@@ -62,7 +61,6 @@ typedef struct {
 	guint           advanced_options_id;
 	
 	GString        *book_str;
-	GString        *page_str;
 	GString        *entry_str;
 
 	DhSearchSource  search_source;
@@ -119,7 +117,6 @@ search_finalize (GObject *object)
 	priv = GET_PRIVATE (object);
 
 	g_string_free (priv->book_str, TRUE);
-	g_string_free (priv->page_str, TRUE);
 	g_string_free (priv->entry_str, TRUE);
 
 	g_completion_free (priv->completion);
@@ -162,7 +159,6 @@ dh_search_init (DhSearch *search)
 	priv = GET_PRIVATE (search);
 	
 	priv->book_str = g_string_new ("");
-	priv->page_str = g_string_new ("");
 	priv->entry_str = g_string_new ("");
 
 	priv->idle_complete = 0;
@@ -198,18 +194,12 @@ search_advanced_options_setup (DhSearch *search)
 		gtk_widget_show (priv->advanced_box);
 
 		g_signal_handlers_block_by_func (priv->book, search_entry_changed_cb, search);
-		g_signal_handlers_block_by_func (priv->page, search_entry_changed_cb, search);
 
 		gtk_entry_set_text (GTK_ENTRY (priv->book), 
 				    priv->book_str->len > 5 ? 
 				    priv->book_str->str + 5 : "");
-		gtk_entry_set_text (GTK_ENTRY (priv->page), 
-				    priv->page_str->len > 5 ? 
-				    priv->page_str->str + 5 : "");
 
 		g_signal_handlers_unblock_by_func (priv->book, search_entry_changed_cb, search);
-		g_signal_handlers_unblock_by_func (priv->page, search_entry_changed_cb, search);
-
 	} else {
 		gtk_widget_hide (priv->advanced_box);
 	}		
@@ -360,11 +350,6 @@ search_get_search_string (DhSearch *search)
 			g_string_append (string, priv->book_str->str);
 			g_string_append (string, " ");
 		}
-		
-		if (priv->page_str->len > 0) {
-			g_string_append (string, priv->page_str->str);
-			g_string_append (string, " ");
-		}
 	}
 
 	if (priv->entry_str->len > 0) {
@@ -390,16 +375,9 @@ search_update_string (DhSearch *search,
 		} else {
 			g_string_set_size (priv->book_str, 0);
 		}
-	} else if (GTK_WIDGET (entry) == priv->page) {
-		if (str && str[0]) {
-			g_string_printf (priv->page_str, "page:%s", str);
-		} else {
-			g_string_set_size (priv->page_str, 0);
-		}
 	} else {
 		if (GTK_WIDGET_VISIBLE (priv->advanced_box) == FALSE) {
 			g_string_set_size (priv->book_str, 0);
-			g_string_set_size (priv->page_str, 0);
 		}
 
 		g_string_set_size (priv->entry_str, 0);
@@ -556,8 +534,7 @@ dh_search_new (GList *keywords)
         GtkWidget        *list_sw;
 	GtkWidget        *frame;
 	GtkWidget        *hbox;
-	GtkWidget        *book_label, *page_label;
-	GtkSizeGroup     *group;
+	GtkWidget        *book_label;
 	GtkCellRenderer  *cell;
 	GConfClient      *gconf_client;
 		
@@ -586,29 +563,6 @@ dh_search_new (GList *keywords)
 	gtk_box_pack_start (GTK_BOX (hbox), book_label, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), priv->book, TRUE, TRUE, 0);
  	gtk_box_pack_start (GTK_BOX (priv->advanced_box), hbox, FALSE, FALSE, 0);
-
-	/* Setup the page box */
-	priv->page = gtk_entry_new ();
-	g_signal_connect (priv->page, "changed", 
-			  G_CALLBACK (search_entry_changed_cb),
-			  search);
-	g_signal_connect (priv->page, "activate",
-			  G_CALLBACK (search_entry_activated_cb),
-			  search);
-
-	page_label = gtk_label_new_with_mnemonic (_("_Page:"));
-	gtk_label_set_mnemonic_widget (GTK_LABEL (page_label), priv->page);
-
-	hbox = gtk_hbox_new (FALSE, 6);
-	gtk_box_pack_start (GTK_BOX (hbox), page_label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), priv->page, TRUE, TRUE, 0);
- 	gtk_box_pack_start (GTK_BOX (priv->advanced_box), hbox, FALSE, FALSE, 0);
-	
-	/* Align the labels */
-	group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-	gtk_size_group_add_widget (group, book_label);
-	gtk_size_group_add_widget (group, page_label);
-	g_object_unref (G_OBJECT (group));
 
 	gtk_widget_show_all (priv->advanced_box);
 	gtk_widget_set_no_show_all (priv->advanced_box, TRUE);
@@ -708,11 +662,9 @@ dh_search_set_search_string (DhSearch    *search,
 	priv->search_source = SEARCH_API;
 
 	g_string_set_size (priv->book_str, 0);
-	g_string_set_size (priv->page_str, 0);
 	g_string_set_size (priv->entry_str, 0);
 
 	g_signal_handlers_block_by_func (priv->book, search_entry_changed_cb, search);
-	g_signal_handlers_block_by_func (priv->page, search_entry_changed_cb, search);
 	g_signal_handlers_block_by_func (priv->entry, search_entry_changed_cb, search);
 
 	if ((leftover = split = g_strsplit (str, " ", -1)) != NULL) {
@@ -721,13 +673,9 @@ dh_search_set_search_string (DhSearch    *search,
 
 			lower = g_ascii_strdown (split[i], -1);
 			
-			/* Determine if there was a book or page specification
-			 */
+			/* Determine if there was a book specification. */
 			if (!strncmp (lower, "book:", 5)) {
 				g_string_append (priv->book_str, split[i]);
-				leftover++;
-			} else if (!strncmp (lower, "page:", 5)) {
-				g_string_append (priv->page_str, split[i]);
 				leftover++;
 			} else {
 				/* No more specifications */
@@ -770,16 +718,12 @@ dh_search_set_search_string (DhSearch    *search,
 		gtk_entry_set_text (GTK_ENTRY (priv->book), 
 				    priv->book_str->len > 5 ? 
 				    priv->book_str->str + 5 : "");
-		gtk_entry_set_text (GTK_ENTRY (priv->page), 
-				    priv->page_str->len > 5 ? 
-				    priv->page_str->str + 5 : "");
 	}
 
 	gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
 	gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
 
 	g_signal_handlers_unblock_by_func (priv->book, search_entry_changed_cb, search);
-	g_signal_handlers_unblock_by_func (priv->page, search_entry_changed_cb, search);
 	g_signal_handlers_unblock_by_func (priv->entry, search_entry_changed_cb, search);
 
 	if (!priv->idle_filter) {
