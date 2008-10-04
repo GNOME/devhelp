@@ -423,7 +423,6 @@ dh_base_get (void)
                 base_instance = g_object_new (DH_TYPE_BASE, NULL);
 
                 base_init_books (base_instance);
-                dh_preferences_init ();
         }
 
         return base_instance;

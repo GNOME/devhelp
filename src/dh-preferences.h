@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2004-2006 Imendio AB
+ * Copyright (C) 2004-2008 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,23 +23,22 @@
 
 #include <gtk/gtk.h>
 
-#define GCONF_PATH "/apps/devhelp"
+#define DH_CONF_PATH "/apps/devhelp"
 
-#define GCONF_MAIN_WINDOW_MAXIMIZED "/apps/devhelp/ui/main_window_maximized"
-#define GCONF_MAIN_WINDOW_WIDTH     "/apps/devhelp/ui/main_window_width"
-#define GCONF_MAIN_WINDOW_HEIGHT    "/apps/devhelp/ui/main_window_height"
-#define GCONF_MAIN_WINDOW_POS_X     "/apps/devhelp/ui/main_window_position_x"
-#define GCONF_MAIN_WINDOW_POS_Y     "/apps/devhelp/ui/main_window_position_y"
-#define GCONF_PANED_LOCATION        "/apps/devhelp/ui/paned_location"
-#define GCONF_SELECTED_TAB          "/apps/devhelp/ui/selected_tab"
-#define GCONF_USE_SYSTEM_FONTS      "/apps/devhelp/ui/use_system_fonts"
-#define GCONF_ADVANCED_OPTIONS      "/apps/devhelp/ui/show_advanced_search_options"
-#define GCONF_VARIABLE_FONT         "/apps/devhelp/ui/variable_font"
-#define GCONF_FIXED_FONT            "/apps/devhelp/ui/fixed_font"
-#define GCONF_SYSTEM_VARIABLE_FONT  "/desktop/gnome/interface/font_name"
-#define GCONF_SYSTEM_FIXED_FONT     "/desktop/gnome/interface/monospace_font_name"
+#define DH_CONF_MAIN_WINDOW_MAXIMIZED DH_CONF_PATH "/ui/main_window_maximized"
+#define DH_CONF_MAIN_WINDOW_WIDTH     DH_CONF_PATH "/ui/main_window_width"
+#define DH_CONF_MAIN_WINDOW_HEIGHT    DH_CONF_PATH "/ui/main_window_height"
+#define DH_CONF_MAIN_WINDOW_POS_X     DH_CONF_PATH "/ui/main_window_position_x"
+#define DH_CONF_MAIN_WINDOW_POS_Y     DH_CONF_PATH "/ui/main_window_position_y"
+#define DH_CONF_PANED_LOCATION        DH_CONF_PATH "/ui/paned_location"
+#define DH_CONF_SELECTED_TAB          DH_CONF_PATH "/ui/selected_tab"
+#define DH_CONF_USE_SYSTEM_FONTS      DH_CONF_PATH "/ui/use_system_fonts"
+#define DH_CONF_ADVANCED_OPTIONS      DH_CONF_PATH "/ui/show_advanced_search_options"
+#define DH_CONF_VARIABLE_FONT         DH_CONF_PATH "/ui/variable_font"
+#define DH_CONF_FIXED_FONT            DH_CONF_PATH "/ui/fixed_font"
+#define DH_CONF_SYSTEM_VARIABLE_FONT  "/desktop/gnome/interface/font_name"
+#define DH_CONF_SYSTEM_FIXED_FONT     "/desktop/gnome/interface/monospace_font_name"
 
-void dh_preferences_init        (void);
 void dh_preferences_setup_fonts (void);
 void dh_preferences_show_dialog (GtkWindow *parent);
 

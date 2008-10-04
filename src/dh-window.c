@@ -671,7 +671,7 @@ window_populate (DhWindow *window)
         gtk_box_pack_start (GTK_BOX (priv->main_box), priv->hpaned, TRUE, TRUE, 0);
 
         ige_conf_get_int (ige_conf_get (),
-                          GCONF_PANED_LOCATION,
+                          DH_CONF_PANED_LOCATION,
                           &hpaned_position);
 
         /* This workaround for broken schema installs is not really working that
@@ -795,7 +795,7 @@ window_save_state (DhWindow *window)
         }
 
         ige_conf_set_bool (ige_conf_get (),
-                           GCONF_MAIN_WINDOW_MAXIMIZED, maximized);
+                           DH_CONF_MAIN_WINDOW_MAXIMIZED, maximized);
 
         /* If maximized don't save the size and position. */
         if (!maximized) {
@@ -804,27 +804,27 @@ window_save_state (DhWindow *window)
 
                 gtk_window_get_size (GTK_WINDOW (window), &width, &height);
                 ige_conf_set_int (ige_conf_get (),
-                                  GCONF_MAIN_WINDOW_WIDTH, width);
+                                  DH_CONF_MAIN_WINDOW_WIDTH, width);
                 ige_conf_set_int (ige_conf_get (),
-                                  GCONF_MAIN_WINDOW_HEIGHT, height);
+                                  DH_CONF_MAIN_WINDOW_HEIGHT, height);
 
                 gtk_window_get_position (GTK_WINDOW (window), &x, &y);
                 ige_conf_set_int (ige_conf_get (),
-                                  GCONF_MAIN_WINDOW_POS_X, x);
+                                  DH_CONF_MAIN_WINDOW_POS_X, x);
                 ige_conf_set_int (ige_conf_get (),
-                                  GCONF_MAIN_WINDOW_POS_Y, y);
+                                  DH_CONF_MAIN_WINDOW_POS_Y, y);
         }
 
         ige_conf_set_int (ige_conf_get (),
-                          GCONF_PANED_LOCATION,
+                          DH_CONF_PANED_LOCATION,
                           gtk_paned_get_position (GTK_PANED (priv->hpaned)));
 
         if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->control_notebook)) == 0) {
                 ige_conf_set_string (ige_conf_get (),
-                                     GCONF_SELECTED_TAB, "content");
+                                     DH_CONF_SELECTED_TAB, "content");
         } else {
                 ige_conf_set_string (ige_conf_get (),
-                                     GCONF_SELECTED_TAB, "search");
+                                     DH_CONF_SELECTED_TAB, "search");
         }
 }
 
@@ -840,7 +840,7 @@ window_restore_state (DhWindow *window)
         priv = window->priv;
 
         ige_conf_get_int (ige_conf_get (),
-                          GCONF_MAIN_WINDOW_WIDTH,
+                          DH_CONF_MAIN_WINDOW_WIDTH,
                           &width);
 
         if (width <= 0) {
@@ -848,7 +848,7 @@ window_restore_state (DhWindow *window)
         }
 
         ige_conf_get_int (ige_conf_get (),
-                          GCONF_MAIN_WINDOW_HEIGHT,
+                          DH_CONF_MAIN_WINDOW_HEIGHT,
                           &height);
 
         if (height <= 0) {
@@ -859,23 +859,23 @@ window_restore_state (DhWindow *window)
                                      width, height);
 
         ige_conf_get_int (ige_conf_get (),
-                          GCONF_MAIN_WINDOW_POS_X,
+                          DH_CONF_MAIN_WINDOW_POS_X,
                           &x);
         ige_conf_get_int (ige_conf_get (),
-                          GCONF_MAIN_WINDOW_POS_Y,
+                          DH_CONF_MAIN_WINDOW_POS_Y,
                           &y);
 
         gtk_window_move (GTK_WINDOW (window), x, y);
 
         ige_conf_get_bool (ige_conf_get (),
-                           GCONF_MAIN_WINDOW_MAXIMIZED,
+                           DH_CONF_MAIN_WINDOW_MAXIMIZED,
                            &maximized);
         if (maximized) {
                 gtk_window_maximize (GTK_WINDOW (window));
         }
 
         ige_conf_get_string (ige_conf_get (),
-                             GCONF_SELECTED_TAB,
+                             DH_CONF_SELECTED_TAB,
                              &tab);
         if (!tab || strcmp (tab, "") == 0 || strcmp (tab, "content") == 0) {
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 0);

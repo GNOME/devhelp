@@ -1,5 +1,12 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-base.c:
+	* src/dh-preferences.[ch]:
+	* src/dh-window.c: Get rid of dh_preferences_init(), init on
+	demand. Rename the conf keys to DH_CONF_*.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* acinclude.m4:
 	* configure.in: Only depend on gconf on X11.
 
