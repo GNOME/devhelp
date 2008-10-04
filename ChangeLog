@@ -1,5 +1,9 @@
 2008-10-04  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c: Style cleanup, no functionality changes.
+
+2008-10-04  Richard Hult  <richard@imendio.com>
+
 	* src/dh-search.c: (dh_search_new): Change the book combo label to
 	"Search in:":
 	
