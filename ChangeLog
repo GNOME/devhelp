@@ -1,5 +1,10 @@
 2008-10-05  Richard Hult  <richard@imendio.com>
 
+	* README:
+	* configure.in: Update required dependency list.
+
+2008-10-05  Richard Hult  <richard@imendio.com>
+
 	* src/Makefile.am:
 	* src/dh-assistant.c:
 	* src/dh-assistant.h: Add a small "assistant" window for
