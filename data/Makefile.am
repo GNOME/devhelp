@@ -3,6 +3,11 @@ SUBDIRS = ui dtd icons
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libdevhelp-1.0.pc
 
+assistantdir = $(datadir)/devhelp/assistant
+assistant_DATA = 		\
+	assistant.js		\
+	assistant.css
+
 @INTLTOOL_DESKTOP_RULE@
 
 DESKTOP_IN_FILES = devhelp.desktop.in
@@ -21,7 +26,8 @@ EXTRA_DIST =			\
 	$(DESKTOP_IN_FILES)	\
 	$(DESKTOP_FILES)        \
 	$(schemas_in_files)     \
-	$(schemas_DATA)
+	$(schemas_DATA)		\
+	$(assistant_DATA)
 
 install-data-local: $(schema_DATA)
 if GCONF_SCHEMAS_INSTALL

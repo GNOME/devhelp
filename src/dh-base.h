@@ -47,10 +47,10 @@ GType        dh_base_get_type                        (void) G_GNUC_CONST;
 DhBase *     dh_base_get                             (void);
 DhBase *     dh_base_new                             (void);
 GtkWidget *  dh_base_new_window                      (DhBase *base);
+GtkWidget *  dh_base_new_assistant                   (DhBase *base);
 GtkWidget *  dh_base_get_window                      (DhBase *base);
 GtkWidget *  dh_base_get_window_on_current_workspace (DhBase *base);
 GNode *      dh_base_get_book_tree                   (DhBase *base);
 GList *      dh_base_get_keywords                    (DhBase *base);
-GSList *     dh_base_get_windows                     (DhBase *base);
 
 #endif /* __DH_BASE_H__ */

@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body * {
+  font-size: 9pt;
+}
+
+.title {
+  font-size: 11pt;
+  margin: 6pt;
+
+  color: #a52a2a;
+}
+.subtitle {
+  font-size: 9pt;
+  margin: 6pt;
+
+  color: #a52a2a;
+}
+
+.content {
+  margin: 6pt;
+  line-height: 1.3em;
+}
+
+div.book {
+  display: none;
+  position: absolute;
+  right: 6pt;
+  top: 6pt;
+  color: #a52a2a;
+}
+
+div.warning {
+  color: #A52A2A;
+  margin: 0 !important;
+}
+div.warning h3 {
+  background: inherit;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+}
+
+div.note {
+  margin: 0 !important;
+}
+div.note h3 {
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+}
+
+p {
+  margin-top: 0;
+  margin-left: 2pt;
+}
+
+div.variablelist {
+  padding: 6pt;
+  background: #dddddd;
+  -webkit-border-radius: 5px;
+}
+
+code {
+  font-family: "Bitstream Vera Sans Mono", Monaco, Courier, monospace;
+  font-size: 8pt;
+}
+
+pre.programlisting {
+  font-family: "Bitstream Vera Sans Mono", Monaco, Courier, monospace;
+  font-size: 8pt;
+  padding: 6pt;
+  background: #dddddd;
+  -webkit-border-radius: 5px;
+  overflow: hidden;
+}
+
+pre.programlisting a {
+  font-family: "Bitstream Vera Sans Mono", Monaco, Courier, monospace;
+  font-size: 8pt;
+}
+
+div.variablelist * {
+  vertical-align: top;
+  line-height: 1.3em;
+}
+
+hr {
+  display: none;
+}

@@ -8,7 +8,9 @@ AM_CPPFLAGS = 						\
 bin_PROGRAMS = devhelp
 
 devhelp_SOURCES =					\
-	dh-main.c
+	dh-main.c					\
+	dh-assistant.c					\
+	dh-assistant.h
 
 devhelp_CPPFLAGS =					\
 	$(AM_CPPFLAGS)

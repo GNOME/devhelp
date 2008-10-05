@@ -1,5 +1,22 @@
 2008-10-05  Richard Hult  <richard@imendio.com>
 
+	* src/Makefile.am:
+	* src/dh-assistant.c:
+	* src/dh-assistant.h: Add a small "assistant" window for
+	displaying just one hit.
+
+	* data/Makefile.am:
+	* data/assistant.css:
+	* data/assistant.js: Add necessary glue for the assistant.
+	
+	* src/dh-base.[ch]: Remove unused function to get the windows.
+	Hook up assistant, quit when there are no assistants or regular
+	windows left.
+
+	* src/dh-main.c: Add assistant search.
+
+2008-10-05  Richard Hult  <richard@imendio.com>
+
 	* src/dh-window.c: Improve some strings and break some long lines.
 
 2008-10-05  Richard Hult  <richard@imendio.com>

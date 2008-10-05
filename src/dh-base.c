@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2004-2006 Imendio AB
+ * Copyright (C) 2004-2008 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -36,10 +36,12 @@
 #include "dh-link.h"
 #include "dh-parser.h"
 #include "dh-preferences.h"
+#include "dh-assistant.h"
 #include "dh-base.h"
 
 typedef struct {
         GSList      *windows;
+        GSList      *assistants;
         GNode       *book_tree;
         GList       *keywords;
         GHashTable  *books;
@@ -47,7 +49,7 @@ typedef struct {
 
 G_DEFINE_TYPE (DhBase, dh_base, G_TYPE_OBJECT);
 
-#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE  \
+#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
   (instance, DH_TYPE_BASE, DhBasePriv);
 
 static void dh_base_init           (DhBase      *base);
@@ -90,9 +92,7 @@ dh_base_init (DhBase *base)
 {
         DhBasePriv *priv = GET_PRIVATE (base);
 
-        priv->windows = NULL;
         priv->book_tree = g_node_new (NULL);
-        priv->keywords = NULL;
         priv->books = g_hash_table_new_full (g_str_hash, g_str_equal,
                                              g_free, g_free);
 
@@ -114,14 +114,15 @@ dh_base_init (DhBase *base)
 }
 
 static void
-base_window_finalized_cb (DhBase   *base,
-                          DhWindow *window)
+base_window_or_assistant_finalized_cb (DhBase   *base,
+                                       gpointer  window_or_assistant)
 {
         DhBasePriv *priv = GET_PRIVATE (base);
 
-        priv->windows = g_slist_remove (priv->windows, window);
+        priv->windows = g_slist_remove (priv->windows, window_or_assistant);
+        priv->assistants = g_slist_remove (priv->assistants, window_or_assistant);
 
-        if (g_slist_length (priv->windows) == 0) {
+        if (priv->windows == NULL && priv->assistants == NULL) {
                 gtk_main_quit ();
         }
 }
@@ -453,10 +454,31 @@ dh_base_new_window (DhBase *base)
         priv->windows = g_slist_prepend (priv->windows, window);
 
         g_object_weak_ref (G_OBJECT (window),
-                           (GWeakNotify) base_window_finalized_cb,
+                           (GWeakNotify) base_window_or_assistant_finalized_cb,
                            base);
 
         return window;
+}
+
+GtkWidget *
+dh_base_new_assistant (DhBase *base)
+{
+        DhBasePriv *priv;
+        GtkWidget  *assistant;
+
+        g_return_val_if_fail (DH_IS_BASE (base), NULL);
+
+        priv = GET_PRIVATE (base);
+
+        assistant = dh_assistant_new (base);
+
+        priv->assistants = g_slist_prepend (priv->assistants, assistant);
+
+        g_object_weak_ref (G_OBJECT (assistant),
+                           (GWeakNotify) base_window_or_assistant_finalized_cb,
+                           base);
+
+        return assistant;
 }
 
 GNode *
@@ -481,18 +503,6 @@ dh_base_get_keywords (DhBase *base)
         priv = GET_PRIVATE (base);
 
         return priv->keywords;
-}
-
-GSList *
-dh_base_get_windows (DhBase *base)
-{
-        DhBasePriv *priv;
-
-        g_return_val_if_fail (DH_IS_BASE (base), NULL);
-
-        priv = GET_PRIVATE (base);
-
-        return priv->windows;
 }
 
 GtkWidget *

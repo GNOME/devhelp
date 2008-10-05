@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2001-2003 CodeFactory AB
- * Copyright (C) 2001-2005 Imendio AB
+ * Copyright (C) 2001-2008 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,13 +24,14 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#ifdef HAVE_PLATFORM_X11
+#ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
 
 #include "bacon-message-connection.h"
 #include "dh-base.h"
 #include "dh-window.h"
+#include "dh-assistant.h"
 
 #define COMMAND_QUIT             "quit"
 #define COMMAND_SEARCH           "search"
@@ -93,7 +94,20 @@ static gboolean
 search_assistant (DhBase      *base,
                   const gchar *str)
 {
-        return FALSE;
+        static GtkWidget *assistant;
+
+        if (str[0] == '\0') {
+                return FALSE;
+        }
+
+        if (!assistant) {
+                assistant = dh_base_new_assistant (base);
+                g_signal_connect (assistant, "destroy",
+                                  G_CALLBACK (gtk_widget_destroyed),
+                                  &assistant);
+        }
+
+        return dh_assistant_search (DH_ASSISTANT (assistant), str);
 }
 
 static void
@@ -124,7 +138,7 @@ message_received_cb (const gchar *message,
 		dh_window_focus_search (DH_WINDOW (window));
 	}
 
-#ifdef HAVE_PLATFORM_X11
+#ifdef GDK_WINDOWING_X11
 	timestamp = gdk_x11_get_server_time (window->window);
 #else
 	timestamp = GDK_CURRENT_TIME;
@@ -181,7 +195,7 @@ main (int argc, char **argv)
 			0,
 			G_OPTION_ARG_NONE,
 			&option_focus_search,
-			_("Focus the devhelp window with the search field active"),
+			_("Focus the Devhelp window with the search field active"),
 			NULL
 		},
        		{
@@ -214,7 +228,7 @@ main (int argc, char **argv)
 		return 0;
 	}
 
-	g_set_application_name (_("Devhelp"));
+	g_set_application_name ("Devhelp");
 	gtk_window_set_default_icon_name ("devhelp");
 
 	display = gdk_get_display ();
