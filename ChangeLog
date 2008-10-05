@@ -1,5 +1,9 @@
 2008-10-05  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c: Improve some strings and break some long lines.
+
+2008-10-05  Richard Hult  <richard@imendio.com>
+
 	* data/devhelp.desktop.in.in: Don't mark the name for translation.
 
 	* data/devhelp.schemas.in: Improve some strings.

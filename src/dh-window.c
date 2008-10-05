@@ -368,9 +368,9 @@ window_activate_about (GtkAction *action,
         const gchar  *translator_credits = _("translator_credits");
 
         gtk_show_about_dialog (GTK_WINDOW (window),
-                               "name",_("Devhelp"),
+                               "name", "Devhelp",
                                "version", PACKAGE_VERSION,
-                               "comments", _("A developer's help browser for GNOME 2"),
+                               "comments", _("A developer's help browser for GNOME"),
                                "authors", authors,
                                "documenters", documenters,
                                "translator-credits",
@@ -433,7 +433,7 @@ static const GtkActionEntry actions[] = {
         { "ZoomOut", GTK_STOCK_ZOOM_OUT, N_("S_maller Text"), "<ctrl>minus",
           N_("Decrease the text size"),
           G_CALLBACK (window_activate_zoom_out) },
-        { "ZoomDefault", GTK_STOCK_ZOOM_100, N_("_Normal size"), "<ctrl>0",
+        { "ZoomDefault", GTK_STOCK_ZOOM_100, N_("_Normal Size"), "<ctrl>0",
           N_("Use the normal text size"),
           G_CALLBACK (window_activate_zoom_default) },
 
@@ -559,7 +559,8 @@ window_control_switch_page_cb (GtkWidget       *notebook,
         priv = window->priv;
 
         g_signal_handlers_block_by_func (priv->book_tree,
-                                         window_tree_link_selected_cb, window);
+                                         window_tree_link_selected_cb,
+                                         window);
 }
 
 static void
@@ -573,7 +574,8 @@ window_control_after_switch_page_cb (GtkWidget       *notebook,
         priv = window->priv;
 
         g_signal_handlers_unblock_by_func (priv->book_tree,
-                                           window_tree_link_selected_cb, window);
+                                           window_tree_link_selected_cb,
+                                           window);
 }
 
 static void
@@ -655,6 +657,9 @@ window_populate (DhWindow *window)
                 group =  ige_mac_menu_add_app_menu_group ();
                 widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/HelpMenu/About");
                 ige_mac_menu_add_app_menu_item (group, GTK_MENU_ITEM (widget),
+                                                /* i18n: please don't translate
+                                                 * "Devhelp", it's a name, not a
+                                                 * generic word. */
                                                 _("About Devhelp"));
 
                 group =  ige_mac_menu_add_app_menu_group ();
