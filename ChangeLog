@@ -1,3 +1,7 @@
+2008-10-05  Richard Hult  <richard@imendio.com>
+
+	* src/ige-conf-gconf.c: Fix build.
+
 2008-10-04  Richard Hult  <richard@imendio.com>
 
 	* src/dh-base.c:

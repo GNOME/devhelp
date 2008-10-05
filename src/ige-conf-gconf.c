@@ -38,6 +38,8 @@ G_DEFINE_TYPE (IgeConf, ige_conf, G_TYPE_OBJECT);
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
   (instance, IGE_TYPE_CONF, IgeConfPriv);
 
+#define CONF_PATH "/apps/devhelp"
+
 static IgeConf *global_conf = NULL;
 
 static void
@@ -45,7 +47,7 @@ conf_finalize (GObject *object)
 {
         IgeConfPriv *priv;
 
-        priv = GET_PRIV (object);
+        priv = GET_PRIVATE (object);
 
         gconf_client_remove_dir (priv->gconf_client,
                                  CONF_PATH,
@@ -73,7 +75,7 @@ ige_conf_init (IgeConf *conf)
 {
         IgeConfPriv *priv;
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         priv->gconf_client = gconf_client_get_default ();
 
@@ -102,7 +104,7 @@ ige_conf_set_int (IgeConf     *conf,
 
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         return gconf_client_set_int (priv->gconf_client,
                                      key,
@@ -123,7 +125,7 @@ ige_conf_get_int (IgeConf     *conf,
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
         g_return_val_if_fail (value != NULL, FALSE);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         *value = gconf_client_get_int (priv->gconf_client,
                                        key,
@@ -146,7 +148,7 @@ ige_conf_set_bool (IgeConf     *conf,
 
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         return gconf_client_set_bool (priv->gconf_client,
                                       key,
@@ -167,7 +169,7 @@ ige_conf_get_bool (IgeConf     *conf,
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
         g_return_val_if_fail (value != NULL, FALSE);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         *value = gconf_client_get_bool (priv->gconf_client,
                                         key,
@@ -190,7 +192,7 @@ ige_conf_set_string (IgeConf     *conf,
 
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         return gconf_client_set_string (priv->gconf_client,
                                         key,
@@ -210,7 +212,7 @@ ige_conf_get_string (IgeConf      *conf,
 
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         *value = gconf_client_get_string (priv->gconf_client,
                                           key,
@@ -233,7 +235,7 @@ ige_conf_set_string_list (IgeConf     *conf,
 
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         return gconf_client_set_list (priv->gconf_client,
                                       key,
@@ -254,7 +256,7 @@ ige_conf_get_string_list (IgeConf      *conf,
 
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         *value = gconf_client_get_list (priv->gconf_client,
                                         key,
@@ -302,7 +304,7 @@ ige_conf_notify_add (IgeConf           *conf,
 
         g_return_val_if_fail (IGE_IS_CONF (conf), 0);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         data = g_slice_new (IgeConfNotifyData);
         data->func = func;
@@ -327,7 +329,7 @@ ige_conf_notify_remove (IgeConf *conf,
 
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
 
-        priv = GET_PRIV (conf);
+        priv = GET_PRIVATE (conf);
 
         gconf_client_notify_remove (priv->gconf_client, id);
 
