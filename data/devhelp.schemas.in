@@ -127,9 +127,9 @@
       <type>string</type>
       <default>Monospace 12</default>
       <locale name="C">
-         <short>Font for fixed text</short>
+         <short>Font for fixed width text</short>
          <long>
-	   Font for text with fixed width.
+	   Font for text with fixed width, such as code examples
          </long>
       </locale>
     </schema>

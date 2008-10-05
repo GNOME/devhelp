@@ -1,6 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
-_Name=Devhelp
+Name=Devhelp
 _Comment=Developer's Help program
 _GenericName=Documentation Browser
 Exec=devhelp

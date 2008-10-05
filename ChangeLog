@@ -1,5 +1,11 @@
 2008-10-05  Richard Hult  <richard@imendio.com>
 
+	* data/devhelp.desktop.in.in: Don't mark the name for translation.
+
+	* data/devhelp.schemas.in: Improve some strings.
+
+2008-10-05  Richard Hult  <richard@imendio.com>
+
 	* src/ige-conf-gconf.c: Fix build.
 
 2008-10-04  Richard Hult  <richard@imendio.com>
