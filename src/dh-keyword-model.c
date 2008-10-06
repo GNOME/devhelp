@@ -29,7 +29,9 @@
 
 struct _DhKeywordModelPriv {
         GList *original_list;
+
         GList *keyword_words;
+        gint   keyword_words_length;
 
         gint   stamp;
 };
@@ -125,7 +127,7 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
                 return FALSE;
         }
 
-        if (indices[0] >= g_list_length (priv->keyword_words)) {
+        if (indices[0] >= priv->keyword_words_length) {
                 return FALSE;
         }
 
@@ -243,7 +245,7 @@ keyword_model_iter_n_children (GtkTreeModel *tree_model,
         priv = DH_KEYWORD_MODEL (tree_model)->priv;
 
         if (iter == NULL) {
-                return g_list_length (priv->keyword_words);
+                return priv->keyword_words_length;
         }
 
         g_return_val_if_fail (priv->stamp == iter->stamp, -1);
@@ -355,7 +357,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
          * on all rows that is included in the new list and remove on all
          * outside it.
          */
-        old_length = g_list_length (priv->keyword_words);
+        old_length = priv->keyword_words_length;
 
         if (!strcmp ("", string)) {
                 new_list = NULL;
@@ -460,6 +462,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
         }
 
         priv->keyword_words = new_list;
+        priv->keyword_words_length = new_length;
 
         /* Update rows 0 - new_length. */
         for (i = 0; i < new_length; ++i) {
