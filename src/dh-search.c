@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2001-2003 CodeFactory AB
  * Copyright (C) 2001-2003 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2005-2006 Imendio AB
+ * Copyright (C) 2005-2008 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -431,7 +431,6 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
 {
         DhSearch     *search;
         DhSearchPriv *priv;
-        gchar        *name;
         DhLink       *link;
         PangoStyle    style;
 
@@ -439,7 +438,6 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
         priv = GET_PRIVATE (search);
 
         gtk_tree_model_get (tree_model, iter,
-                            DH_KEYWORD_MODEL_COL_NAME, &name,
                             DH_KEYWORD_MODEL_COL_LINK, &link,
                             -1);
 
@@ -450,10 +448,9 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
         }
 
         g_object_set (cell,
-                      "text", name,
+                      "text", dh_link_get_name (link),
                       "style", style,
                       NULL);
-        g_free (name);
 }
 
 static GtkWidget *
@@ -649,4 +646,3 @@ dh_search_grab_focus (DhSearch *search)
 
         gtk_widget_grab_focus (priv->entry);
 }
-

@@ -1,5 +1,11 @@
 2008-10-06  Richard Hult  <richard@imendio.com>
 
+	* src/dh-search.c: (search_cell_data_func): Use the link instead
+	of getting the name directly from the model, saves a copy/free and
+	is more consistent with the other properties that we get.
+
+2008-10-06  Richard Hult  <richard@imendio.com>
+
 	* src/dh-preferences.c: (dh_preferences_show_dialog):
 	* src/dh-util.[ch]: Rename dh_glade_* to dh_util_glade for
 	consistency.
