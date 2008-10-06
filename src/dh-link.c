@@ -126,8 +126,6 @@ dh_link_compare  (gconstpointer a,
         DhLink *la = (DhLink *) a;
         DhLink *lb = (DhLink *) b;
 	gint    flags_diff;
-	gint    book_diff;
-	gint    page_diff;
 
         /* Sort deprecated hits last. */
         flags_diff = (la->flags & DH_LINK_FLAGS_DEPRECATED) - 
