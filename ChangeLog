@@ -1,5 +1,13 @@
 2008-10-06  Richard Hult  <richard@imendio.com>
 
+	* src/dh-keyword-model.c: (dh_keyword_model_set_words): A bit
+	bigger commit than I wanted... Split out the actual searching to
+	make the code a little clearer. Remove the last remains of the old
+	book/page searching, and move out allocating/freeing the search
+	terms from the inner search loop. Only check for one exact hit..
+
+2008-10-06  Richard Hult  <richard@imendio.com>
+
 	* src/dh-keyword-model.c: Whitespace and comment fixes.
 
 2008-10-06  Richard Hult  <richard@imendio.com>

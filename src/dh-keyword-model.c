@@ -38,6 +38,7 @@ struct _DhKeywordModelPriv {
 
 #define G_LIST(x) ((GList *) x)
 #define MAX_HITS 100
+
 static void dh_keyword_model_init            (DhKeywordModel      *list_store);
 static void dh_keyword_model_class_init      (DhKeywordModelClass *class);
 static void dh_keyword_model_tree_model_init (GtkTreeModelIface   *iface);
@@ -153,13 +154,11 @@ keyword_model_get_path (GtkTreeModel *tree_model,
         priv = model->priv;
 
         i = g_list_position (priv->keyword_words, iter->user_data);
-
         if (i < 0) {
                 return NULL;
         }
 
         path = gtk_tree_path_new ();
-
         gtk_tree_path_append_index (path, i);
 
         return path;
@@ -327,180 +326,163 @@ dh_keyword_model_set_words (DhKeywordModel *model,
         priv->original_list = g_list_copy (keyword_words);
 }
 
+static GList *
+keyword_model_search (DhKeywordModel  *model,
+                      const gchar     *string,
+                      gchar          **stringv,
+                      const gchar     *book_id,
+                      gboolean         case_sensitive,
+                      DhLink         **exact_link)
+{
+        DhKeywordModelPriv *priv;
+        GList              *new_list = NULL, *l;
+        gint                hits = 0;
+
+        priv = model->priv;
+
+        for (l = priv->original_list; l && hits < MAX_HITS; l = l->next) {
+                DhLink   *link;
+                gboolean  found;
+                gchar    *name;
+
+                link = l->data;
+                found = FALSE;
+
+                if (book_id &&
+                    strcmp (dh_link_get_book_id (link), book_id) != 0) {
+                        continue;
+                }
+
+                if (!case_sensitive) {
+                        name = g_ascii_strdown (dh_link_get_name (link), -1);
+                } else {
+                        name = g_strdup (dh_link_get_name (link));
+                }
+
+                if (!found) {
+                        gint i;
+
+                        found = TRUE;
+                        for (i = 0; stringv[i] != NULL; i++) {
+                                if (!g_strrstr (name, stringv[i])) {
+                                        found = FALSE;
+                                        break;
+                                }
+                        }
+                }
+
+                g_free (name);
+
+                if (found) {
+                        /* Include in the new list. */
+                        new_list = g_list_prepend (new_list, link);
+                        hits++;
+
+                        if (!*exact_link && strcmp (dh_link_get_name (link), string) == 0) {
+                                *exact_link = link;
+                        }
+                }
+        }
+
+        return g_list_sort (new_list, dh_link_compare);
+}
+
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
                          const gchar    *string,
                          const gchar    *book_id)
 {
         DhKeywordModelPriv  *priv;
-        DhLink              *link;
-        GList               *node;
         GList               *new_list = NULL;
-        gint                 new_length, old_length;
+        gint                 old_length;
+        DhLink              *exact_link = NULL;
+        gint                 hits;
         gint                 i;
         GtkTreePath         *path;
         GtkTreeIter          iter;
-        gint                 hits = 0;
-        DhLink              *exact_link = NULL;
-        gboolean             found;
-        gboolean             case_sensitive;
-        gchar               *lower, *name;
-        gchar              **stringv, **searchv, *search = NULL;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
         g_return_val_if_fail (string != NULL, NULL);
 
         priv = model->priv;
 
-        /* Here we want to change the contents of keyword_words, call update
-         * on all rows that is included in the new list and remove on all
-         * outside it.
+        /* Do the minimum amount of work: call update on all rows that are
+         * kept and remove the rest.
          */
         old_length = priv->keyword_words_length;
+        new_list = NULL;
+        hits = 0;
 
-        if (!strcmp ("", string)) {
-                new_list = NULL;
-        } else {
+        if (string[0] != '\0') {
+                gchar    **stringv;
+                gboolean   case_sensitive;
+
                 stringv = g_strsplit (string, " ", -1);
 
                 case_sensitive = FALSE;
-                searchv = stringv;
 
                 /* Search for any parameters and position search cursor to
-                 * the next element in the search string, also collect a
-                 * search string for exact matches.
+                 * the next element in the search string.
                  */
                 for (i = 0; stringv[i] != NULL; i++) {
-                        if (stringv[i][0] == '\0') {
-                                continue;
-                        }
+                        gchar *lower;
 
-                        /* Parse specifications insensitively. */
-                        lower = g_ascii_strdown (stringv[i], -1);
-
-                        /* Determine wether or not we should search with
-                         * case sensitivity, searches are case sensitive
-                         * when upper case is used in the search terms,
-                         * matching vim smartcase behaviour.
+                        /* Searches are case sensitive when any uppercase
+                         * letter is used in the search terms, matching vim
+                         * smartcase behaviour.
                          */
-                        name = g_ascii_strdown (stringv[i], -1);
-                        if (strcmp (name, stringv[i])) {
+                        lower = g_ascii_strdown (stringv[i], -1);
+                        if (strcmp (lower, stringv[i]) != 0) {
                                 case_sensitive = TRUE;
+                                g_free (lower);
+                                break;
                         }
-                        g_free (name);
-
-                        /* Accumulate our search string. */
-                        if (search == NULL) {
-                                search = g_strdup (stringv[i]);
-                        } else {
-                                name = g_strdup_printf ("%s %s", search, stringv[i]);
-                                g_free (search);
-                                search = name;
-                        }
-
                         g_free (lower);
                 }
 
-                /* Now search keywords. */
-                for (node = priv->original_list;
-                     node && hits < MAX_HITS;
-                     node = node->next) {
+                new_list = keyword_model_search (model,
+                                                 string,
+                                                 stringv,
+                                                 book_id,
+                                                 case_sensitive,
+                                                 &exact_link);
+                hits = g_list_length (new_list);
 
-                        link = node->data;
-                        found = FALSE;
-
-                        if (book_id &&
-                            strcmp (dh_link_get_book_id (link), book_id) != 0) {
-                                continue;
-                        }
-
-                        if (!found) {
-                                found = TRUE;
-
-                                for (i = 0; searchv[i] != NULL; i++) {
-                                        if (!case_sensitive) {
-                                                name = g_ascii_strdown (
-                                                        dh_link_get_name (link), -1);
-                                        } else {
-                                                name = g_strdup (dh_link_get_name (link));
-                                        }
-
-                                        if (!g_strrstr (name, searchv[i])) {
-                                                found = FALSE;
-                                                g_free (name);
-                                                break;
-                                        }
-                                        g_free (name);
-                                }
-                        }
-
-                        if (found) {
-                                /* Include in the new list */
-                                new_list = g_list_prepend (new_list, link);
-                                hits++;
-
-                                if (search && strcmp (dh_link_get_name (link), search) == 0) {
-                                        exact_link = link;
-                                }
-                        }
-                }
-
-                new_list = g_list_sort (new_list, dh_link_compare);
                 g_strfreev (stringv);
-
-                g_free (search);
         }
 
-        new_length = g_list_length (new_list);
-
-        if (priv->keyword_words != priv->original_list) {
-                /* Only remove the old list if it's not pointing at the
-                 * original list.
-                 */
-                g_list_free (priv->keyword_words);
-        }
-
+        /* Update the list of hits. */
+        g_list_free (priv->keyword_words);
         priv->keyword_words = new_list;
-        priv->keyword_words_length = new_length;
+        priv->keyword_words_length = hits;
 
-        /* Update rows 0 - new_length. */
-        for (i = 0; i < new_length; ++i) {
+        /* Update model: rows 0 -> hits. */
+        for (i = 0; i < hits; ++i) {
                 path = gtk_tree_path_new ();
                 gtk_tree_path_append_index (path, i);
-
                 keyword_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
-
-                gtk_tree_model_row_changed (GTK_TREE_MODEL (model),
-                                            path, &iter);
+                gtk_tree_model_row_changed (GTK_TREE_MODEL (model), path, &iter);
                 gtk_tree_path_free (path);
         }
 
-        if (old_length > new_length) {
-                /* Remove rows new_length - old_length */
-                for (i = old_length - 1; i >= new_length; --i) {
+        if (old_length > hits) {
+                /* Update model: remove rows hits -> old_length. */
+                for (i = old_length - 1; i >= hits; i--) {
                         path = gtk_tree_path_new ();
                         gtk_tree_path_append_index (path, i);
-
-                        gtk_tree_model_row_deleted (GTK_TREE_MODEL (model),
-                                                    path);
+                        gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), path);
                         gtk_tree_path_free (path);
                 }
         }
-        else if (old_length < new_length) {
-                /* Add rows old_length - new_length */
-                for (i = old_length; i < new_length; ++i) {
+        else if (old_length < hits) {
+                /* Update model: add rows old_length -> hits. */
+                for (i = old_length; i < hits; i++) {
                         path = gtk_tree_path_new ();
-
                         gtk_tree_path_append_index (path, i);
-
                         keyword_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
-
-                        gtk_tree_model_row_inserted (GTK_TREE_MODEL (model),
-                                                     path, &iter);
-
+                        gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
                         gtk_tree_path_free (path);
                 }
-
         }
 
         if (hits == 1) {
