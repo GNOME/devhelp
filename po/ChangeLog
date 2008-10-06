@@ -1,3 +1,7 @@
+2008-10-06  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* nb.po: Updated Norwegian bokmål translation.
+
 2008-10-05  Richard Hult  <richard@imendio.com>
 
 	* POTFILES.in: Add dh-assistant.c
