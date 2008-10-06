@@ -1,5 +1,10 @@
 2008-10-06  Richard Hult  <richard@imendio.com>
 
+	* src/dh-keyword-model.c: Use G_DEFINE_TYPE_WITH_CODE instead of
+	doing by hand.
+
+2008-10-06  Richard Hult  <richard@imendio.com>
+
 	* src/dh-keyword-model.h: Whitespace cleanup.
 
 2008-10-06  Richard Hult  <richard@imendio.com>

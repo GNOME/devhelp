@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2008 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -35,115 +36,38 @@ struct _DhKeywordModelPriv {
 
 #define G_LIST(x) ((GList *) x)
 #define MAX_HITS 100
+static void dh_keyword_model_init            (DhKeywordModel      *list_store);
+static void dh_keyword_model_class_init      (DhKeywordModelClass *class);
+static void dh_keyword_model_tree_model_init (GtkTreeModelIface   *iface);
 
-static void     keyword_model_init              (DhKeywordModel       *list_store);
-static void     keyword_model_class_init        (DhKeywordModelClass  *class);
-static void     keyword_model_tree_model_init   (GtkTreeModelIface  *iface);
+G_DEFINE_TYPE_WITH_CODE (DhKeywordModel, dh_keyword_model, G_TYPE_OBJECT,
+			 G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL,
+						dh_keyword_model_tree_model_init));
 
-
-static void     keyword_model_finalize          (GObject            *object);
-static GtkTreeModelFlags keyword_model_get_flags (GtkTreeModel *tree_model);
-static gint     keyword_model_get_n_columns     (GtkTreeModel       *tree_model);
-static GType    keyword_model_get_column_type   (GtkTreeModel       *tree_model,
-                                                 gint                keyword);
-
-static gboolean keyword_model_get_iter          (GtkTreeModel       *tree_model,
-                                                 GtkTreeIter        *iter,
-                                                 GtkTreePath        *path);
-static GtkTreePath *
-keyword_model_get_path                          (GtkTreeModel       *tree_model,
-                                                 GtkTreeIter        *iter);
-static void     keyword_model_get_value         (GtkTreeModel       *tree_model,
-                                                 GtkTreeIter        *iter,
-                                                 gint                column,
-                                                 GValue             *value);
-static gboolean keyword_model_iter_next         (GtkTreeModel       *tree_model,
-                                                 GtkTreeIter        *iter);
-static gboolean keyword_model_iter_children     (GtkTreeModel       *tree_model,
-                                                 GtkTreeIter        *iter,
-                                                 GtkTreeIter        *parent);
-static gboolean keyword_model_iter_has_child    (GtkTreeModel       *tree_model,
-                                                 GtkTreeIter        *iter);
-static gint     keyword_model_iter_n_children   (GtkTreeModel       *tree_model,
-                                                 GtkTreeIter        *iter);
-static gboolean keyword_model_iter_nth_child    (GtkTreeModel       *tree_model,
-                                                 GtkTreeIter        *iter,
-                                                 GtkTreeIter        *parent,
-                                                 gint                n);
-static gboolean keyword_model_iter_parent       (GtkTreeModel       *tree_model,
-                                                 GtkTreeIter        *iter,
-                                                 GtkTreeIter        *child);
-
-static GObjectClass *parent_class = NULL;
-
-
-GtkType
-dh_keyword_model_get_type (void)
+static void
+keyword_model_finalize (GObject *object)
 {
-        static GType type = 0;
+        DhKeywordModel     *model = DH_KEYWORD_MODEL (object);
+        DhKeywordModelPriv *priv = model->priv;
 
-        if (!type) {
-                static const GTypeInfo info =
-                        {
-                                sizeof (DhKeywordModelClass),
-                                NULL,           /* base_init */
-                                NULL,           /* base_finalize */
-                                (GClassInitFunc) keyword_model_class_init,
-                                NULL,           /* class_finalize */
-                                NULL,           /* class_data */
-                                sizeof (DhKeywordModel),
-                                0,
-                                (GInstanceInitFunc) keyword_model_init,
-                        };
+        g_list_free (priv->keyword_words);
+        g_list_free (priv->original_list);
 
-                static const GInterfaceInfo tree_model_info =
-                        {
-                                (GInterfaceInitFunc) keyword_model_tree_model_init,
-                                NULL,
-                                NULL
-                        };
+        g_free (model->priv);
 
-                type = g_type_register_static (G_TYPE_OBJECT,
-                                               "DhKeywordModel",
-                                               &info, 0);
-
-                g_type_add_interface_static (type,
-                                             GTK_TYPE_TREE_MODEL,
-                                             &tree_model_info);
-        }
-
-        return type;
+        G_OBJECT_CLASS (dh_keyword_model_parent_class)->finalize (object);
 }
 
 static void
-keyword_model_class_init (DhKeywordModelClass *klass)
+dh_keyword_model_class_init (DhKeywordModelClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);;
-
-        parent_class = g_type_class_peek_parent (klass);
 
         object_class->finalize = keyword_model_finalize;
 }
 
 static void
-keyword_model_tree_model_init (GtkTreeModelIface *iface)
-{
-        iface->get_flags       = keyword_model_get_flags;
-        iface->get_n_columns   = keyword_model_get_n_columns;
-        iface->get_column_type = keyword_model_get_column_type;
-        iface->get_iter        = keyword_model_get_iter;
-        iface->get_path        = keyword_model_get_path;
-        iface->get_value       = keyword_model_get_value;
-        iface->iter_next       = keyword_model_iter_next;
-        iface->iter_children   = keyword_model_iter_children;
-        iface->iter_has_child  = keyword_model_iter_has_child;
-        iface->iter_n_children = keyword_model_iter_n_children;
-        iface->iter_nth_child  = keyword_model_iter_nth_child;
-        iface->iter_parent     = keyword_model_iter_parent;
-}
-
-static void
-keyword_model_init (DhKeywordModel *model)
+dh_keyword_model_init (DhKeywordModel *model)
 {
         DhKeywordModelPriv *priv;
 
@@ -153,20 +77,6 @@ keyword_model_init (DhKeywordModel *model)
         do {
                 priv->stamp = g_random_int ();
         } while (priv->stamp == 0);
-}
-
-static void
-keyword_model_finalize (GObject *object)
-{
-        DhKeywordModel     *model = DH_KEYWORD_MODEL (object);
-        DhKeywordModelPriv *priv = model->priv;
-        
-        g_list_free (priv->keyword_words);
-        g_list_free (priv->original_list);
-
-        g_free (model->priv);
-
-        parent_class->finalize (object);
 }
 
 static GtkTreeModelFlags
@@ -373,6 +283,23 @@ keyword_model_iter_parent (GtkTreeModel *tree_model,
                            GtkTreeIter  *child)
 {
         return FALSE;
+}
+
+static void
+dh_keyword_model_tree_model_init (GtkTreeModelIface *iface)
+{
+        iface->get_flags       = keyword_model_get_flags;
+        iface->get_n_columns   = keyword_model_get_n_columns;
+        iface->get_column_type = keyword_model_get_column_type;
+        iface->get_iter        = keyword_model_get_iter;
+        iface->get_path        = keyword_model_get_path;
+        iface->get_value       = keyword_model_get_value;
+        iface->iter_next       = keyword_model_iter_next;
+        iface->iter_children   = keyword_model_iter_children;
+        iface->iter_has_child  = keyword_model_iter_has_child;
+        iface->iter_n_children = keyword_model_iter_n_children;
+        iface->iter_nth_child  = keyword_model_iter_nth_child;
+        iface->iter_parent     = keyword_model_iter_parent;
 }
 
 DhKeywordModel *
