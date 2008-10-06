@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2004 Imendio AB
+ * Copyright (C) 2004,2008 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,14 +24,16 @@
 
 #include <glade/glade.h>
 
-GladeXML *dh_glade_get_file (const gchar *filename,
-                             const gchar *root,
-                             const gchar *domain,
-                             const gchar *first_required_widget,
-                             ...);
-void      dh_glade_connect  (GladeXML    *gui,
-                             gpointer     user_data,
-                             gchar       *first_widget,
-                             ...);
+GladeXML *dh_glade_get_file      (const gchar *filename,
+                                  const gchar *root,
+                                  const gchar *domain,
+                                  const gchar *first_required_widget,
+                                  ...);
+void      dh_glade_connect       (GladeXML    *gui,
+                                  gpointer     user_data,
+                                  gchar       *first_widget,
+                                  ...);
+gchar *   dh_util_build_data_filename (const gchar *first_part,
+                                       ...);
 
 #endif /* __DH_UTIL_H__ */

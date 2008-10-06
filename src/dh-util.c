@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2004 Imendio AB
+ * Copyright (C) 2001      Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2004,2008 Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -58,36 +58,30 @@ get_glade_file (const gchar *filename,
 
 GladeXML *
 dh_glade_get_file (const gchar *filename,
-		   const gchar *root,
-		   const gchar *domain,
-		   const gchar *first_required_widget,
-		   ...)
+                   const gchar *root,
+                   const gchar *domain,
+                   const gchar *first_required_widget,
+                   ...)
 {
         va_list   args;
         GladeXML *gui;
 
         va_start (args, first_required_widget);
-
         gui = get_glade_file (filename,
                               root,
                               domain,
                               first_required_widget,
                               args);
-
         va_end (args);
-
-        if (!gui) {
-                return NULL;
-        }
 
         return gui;
 }
 
 void
 dh_glade_connect (GladeXML *gui,
-		  gpointer  user_data,
-		  gchar    *first_widget,
-		  ...)
+                  gpointer  user_data,
+                  gchar    *first_widget,
+                  ...)
 {
         va_list      args;
         const gchar *name;
@@ -115,4 +109,46 @@ dh_glade_connect (GladeXML *gui,
         }
 
         va_end (args);
+}
+
+gchar *
+dh_util_build_data_filename (const gchar *first_part,
+                             ...)
+{
+        const gchar  *datadir = NULL;
+        va_list       args;
+        const gchar  *part;
+        gchar       **strv;
+        gint          i;
+        gchar        *ret;
+
+        va_start (args, first_part);
+
+#ifdef GDK_WINDOWING_QUARTZ
+        datadir = g_getenv ("DEVHELP_DATADIR");
+#endif
+
+        if (datadir == NULL) {
+                datadir = DATADIR;
+        }
+
+        /* 3 = two initial components + terminating NULL element. */
+        strv = g_malloc (sizeof (gchar *) * 3);
+        strv[0] = (gchar *) datadir;
+        strv[1] = "devhelp";
+
+        i = 2;
+        for (part = first_part; part; part = va_arg (args, char *), i++) {
+                /* +2 = 1 new element + terminating NULL element. */
+                strv = g_realloc (strv, sizeof (gchar*) * (i + 2));
+                strv[i] = (gchar *) part;
+        }
+
+        strv[i] = NULL;
+        ret = g_build_filenamev (strv);
+        g_free (strv);
+
+        va_end (args);
+
+        return ret;
 }
