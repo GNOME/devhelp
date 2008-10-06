@@ -1,5 +1,10 @@
 2008-10-06  Richard Hult  <richard@imendio.com>
 
+	* src/dh-link.c (dh_link_compare): Remove unused code to sort by
+	book/page.
+
+2008-10-06  Richard Hult  <richard@imendio.com>
+
 	* data/assistant.js: 
 	* data/assistant.css: Improve the style and handle libxml's API
 	docs a bit better.
