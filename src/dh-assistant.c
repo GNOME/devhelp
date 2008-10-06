@@ -26,6 +26,7 @@
 #include <webkit/webkit.h>
 #include "dh-window.h"
 #include "dh-link.h"
+#include "dh-util.h"
 #include "dh-assistant.h"
 
 typedef struct {
@@ -293,6 +294,8 @@ assistant_set_link (DhAssistant *assistant,
                 gchar       *buf;
                 gboolean     break_line;
                 const gchar *function;
+                gchar       *stylesheet;
+                gchar       *javascript;
                 gchar       *html;
                 gchar       *tmp;
                 gchar       *base;
@@ -327,6 +330,9 @@ assistant_set_link (DhAssistant *assistant,
                         }
                 }
 
+                stylesheet = dh_util_build_data_filename ("assistant", "assistant.css", NULL);
+                javascript = dh_util_build_data_filename ("assistant", "assistant.js", NULL);
+                
                 html = g_strdup_printf (
                         "<html>"
                         "<head>"
@@ -334,28 +340,32 @@ assistant_set_link (DhAssistant *assistant,
                         "<script src=\"file://%s\"</script>"
                         "</head>"
                         "<body %s>"
-                        "<div class=\"title\">%s: %s</div><div class=\"subtitle\">%s %s</div>"
+                        "<div class=\"title\">%s: <a href=\"%s\">%s</a></div>"
+                        "<div class=\"subtitle\">%s %s</div>"
                         "<div class=\"content\">%s</div>"
                         "</body>"
                         "</html>",
-                        DATADIR "/devhelp/assistant/assistant.css",
-                        DATADIR "/devhelp/assistant/assistant.js",
+                        stylesheet,
+                        javascript,
                         function,
                         dh_link_get_type_as_string (link),
+                        dh_link_get_uri (link),
                         dh_link_get_name (link),
                         _("Book:"),
                         dh_link_get_book_name (link),
                         buf);
                 g_free (buf);
 
-                /* We need to set a local base to be able to access
-                 * the stylesheet and javascript, but we also have to
-                 * set something that is not the same as the current
-                 * page, otherwise link clicks won't go through the
-                 * network request handler (which we need so we can
-                 * forward then to a main devhelp window. The reason
-                 * is that page-local anchor links are handled
-                 * internally in webkit.
+                g_free (stylesheet);
+                g_free (javascript);
+
+                /* We need to set a local base to be able to access the
+                 * stylesheet and javascript, but we also have to set
+                 * something that is not the same as the current page,
+                 * otherwise link clicks won't go through the network
+                 * request handler (which we need so we can forward then to
+                 * a main devhelp window. The reason is that page-local
+                 * anchor links are handled internally in webkit.
                  */
                 tmp = g_path_get_dirname (filename);
                 base = g_strconcat ("file://", tmp, "/fake", NULL);
