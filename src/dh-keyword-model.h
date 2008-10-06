@@ -25,23 +25,21 @@
 #include <gtk/gtk.h>
 #include "dh-link.h"
 
-#define DH_TYPE_KEYWORD_MODEL             (dh_keyword_model_get_type ())
-#define DH_KEYWORD_MODEL(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModel))
-#define DH_KEYWORD_MODEL_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
-#define DH_IS_KEYWORD_MODEL(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_KEYWORD_MODEL))
-#define DH_IS_KEYWORD_MODEL_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_KEYWORD_MODEL))
-#define DH_KEYWORD_MODEL_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
+#define DH_TYPE_KEYWORD_MODEL            (dh_keyword_model_get_type ())
+#define DH_KEYWORD_MODEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModel))
+#define DH_KEYWORD_MODEL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
+#define DH_IS_KEYWORD_MODEL(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_KEYWORD_MODEL))
+#define DH_IS_KEYWORD_MODEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_KEYWORD_MODEL))
+#define DH_KEYWORD_MODEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
 
-typedef struct _DhKeywordModel       DhKeywordModel;
-typedef struct _DhKeywordModelClass  DhKeywordModelClass;
-typedef struct _DhKeywordModelPriv   DhKeywordModelPriv;
+typedef struct _DhKeywordModel      DhKeywordModel;
+typedef struct _DhKeywordModelClass DhKeywordModelClass;
+typedef struct _DhKeywordModelPriv  DhKeywordModelPriv;
 
 struct _DhKeywordModel
 {
-        GObject             parent;
-
+        GObject             parent_instance;
         DhKeywordModelPriv *priv;
-
 };
 
 struct _DhKeywordModelClass
