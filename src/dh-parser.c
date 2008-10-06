@@ -317,19 +317,25 @@ parser_start_node_keyword (DhParser             *parser,
                 tmp = NULL;
         }
 
-        /* We only get "keyword" from old gtk-doc files, try to fix up the
-         * metadata as well as we can.
+        /* Strip out prefixing "struct", "union", "enum", to make searching
+         * easier. Also fix up the link type (only applies for old devhelp
+         * format).
          */
-        if (link_type == DH_LINK_TYPE_KEYWORD) {
-                if (g_str_has_prefix (name, "struct ")) {
-                        name = name + 7;
+        if (g_str_has_prefix (name, "struct ")) {
+                name = name + 7;
+                if (link_type == DH_LINK_TYPE_KEYWORD) {
                         link_type = DH_LINK_TYPE_STRUCT;
                 }
-                else if (g_str_has_prefix (name, "union ")) {
-                        name = name + 6;
+        }
+        else if (g_str_has_prefix (name, "union ")) {
+                name = name + 6;
+                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                        link_type = DH_LINK_TYPE_STRUCT;
                 }
-                else if (g_str_has_prefix (name, "enum ")) {
-                        name = name + 5;
+        }
+        else if (g_str_has_prefix (name, "enum ")) {
+                name = name + 5;
+                if (link_type == DH_LINK_TYPE_KEYWORD) {
                         link_type = DH_LINK_TYPE_ENUM;
                 }
         }

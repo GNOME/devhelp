@@ -1,5 +1,11 @@
 2008-10-06  Richard Hult  <richard@imendio.com>
 
+	* src/dh-parser.c: (parser_start_node_keyword): Fix regression
+	introduced recently when parsing devhelp2 files by stripping away
+	struct/union/enum even for devhelp2 again.
+
+2008-10-06  Richard Hult  <richard@imendio.com>
+
 	* src/dh-assistant.c (assistant_set_link): Use
 	dh_util_build_data_filename to point to the assistant javascript
 	and css files. Make the title a link.
