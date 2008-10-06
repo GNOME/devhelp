@@ -43,8 +43,8 @@ static void dh_keyword_model_class_init      (DhKeywordModelClass *class);
 static void dh_keyword_model_tree_model_init (GtkTreeModelIface   *iface);
 
 G_DEFINE_TYPE_WITH_CODE (DhKeywordModel, dh_keyword_model, G_TYPE_OBJECT,
-			 G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL,
-						dh_keyword_model_tree_model_init));
+                         G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL,
+                                                dh_keyword_model_tree_model_init));
 
 static void
 keyword_model_finalize (GObject *object)
@@ -190,7 +190,7 @@ keyword_model_get_value (GtkTreeModel *tree_model,
 }
 
 static gboolean
-keyword_model_iter_next (GtkTreeModel *tree_model, 
+keyword_model_iter_next (GtkTreeModel *tree_model,
                          GtkTreeIter  *iter)
 {
         DhKeywordModel *model = DH_KEYWORD_MODEL (tree_model);
@@ -211,15 +211,14 @@ keyword_model_iter_children (GtkTreeModel *tree_model,
 
         priv = DH_KEYWORD_MODEL (tree_model)->priv;
 
-        /* this is a list, nodes have no children */
+        /* This is a list, nodes have no children. */
         if (parent) {
                 return FALSE;
         }
 
-        /* but if parent == NULL we return the list itself as children of the
-         * "root"
+        /* But if parent == NULL we return the list itself as children of
+         * the "root".
          */
-
         if (priv->keyword_words) {
                 iter->stamp = priv->stamp;
                 iter->user_data = priv->keyword_words;
@@ -307,7 +306,7 @@ dh_keyword_model_tree_model_init (GtkTreeModelIface *iface)
 DhKeywordModel *
 dh_keyword_model_new (void)
 {
-        DhKeywordModel     *model;
+        DhKeywordModel *model;
 
         model = g_object_new (DH_TYPE_KEYWORD_MODEL, NULL);
 
@@ -389,7 +388,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                                 case_sensitive = TRUE;
                         }
                         g_free (name);
-                        
+
                         /* Accumulate our search string. */
                         if (search == NULL) {
                                 search = g_strdup (stringv[i]);
