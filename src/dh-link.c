@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001-2002 CodeFactory AB
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2008      Imendio AB
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -98,14 +98,17 @@ dh_link_new (DhLinkType   type,
                 g_return_val_if_fail (book != NULL, NULL);
                 g_return_val_if_fail (page != NULL, NULL);
         }
-        
+
 	link = g_slice_new0 (DhLink);
 
 	link->ref_count = 1;
 	link->type = type;
 
-	link->base = g_strdup (base);
-	link->id = g_strdup (id);
+        if (type == DH_LINK_TYPE_BOOK) {
+                link->base = g_strdup (base);
+                link->id = g_strdup (id);
+        }
+
 	link->name = g_strdup (name);
 	link->uri = g_strdup (uri);
 
@@ -120,8 +123,8 @@ dh_link_new (DhLinkType   type,
 }
 
 gint
-dh_link_compare  (gconstpointer a,
-                  gconstpointer b)
+dh_link_compare (gconstpointer a,
+                 gconstpointer b)
 {
         DhLink *la = (DhLink *) a;
         DhLink *lb = (DhLink *) b;
