@@ -1,3 +1,7 @@
+2008-10-06  Richard Hult  <richard@imendio.com>
+
+	* misc/devhelp.el: Add function that uses the assistant.
+
 2008-10-05  Richard Hult  <richard@imendio.com>
 
 	* README:
