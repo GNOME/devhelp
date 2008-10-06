@@ -306,11 +306,23 @@ parser_start_node_keyword (DhParser             *parser,
                 link_type = DH_LINK_TYPE_KEYWORD;
         }
 
+        /* Strip out trailing " () or "()". */
         if (g_str_has_suffix (name, " ()")) {
                 tmp = g_strndup (name, strlen (name) - 3);
 
                 if (link_type == DH_LINK_TYPE_KEYWORD) {
                         link_type = DH_LINK_TYPE_FUNCTION;
+                }
+                name = tmp;
+        }
+        else if (g_str_has_suffix (name, "()")) {
+                tmp = g_strndup (name, strlen (name) - 2);
+
+                /* With old devhelp format, take a guess that this is a
+                 * macro.
+                 */
+                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                        link_type = DH_LINK_TYPE_MACRO;
                 }
                 name = tmp;
         } else {

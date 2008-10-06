@@ -1,5 +1,12 @@
 2008-10-06  Richard Hult  <richard@imendio.com>
 
+	* src/dh-parser.c: (parser_start_node_keyword): Strip out "()" in
+	addition to the previous " ()". Try to be smart for devhelp 1
+	files by assuming it's a macro (might need to revert that part
+	after testing more devhelp books).
+
+2008-10-06  Richard Hult  <richard@imendio.com>
+
 	* src/dh-parser.c: (parser_start_node_keyword): Fix regression
 	introduced recently when parsing devhelp2 files by stripping away
 	struct/union/enum even for devhelp2 again.
