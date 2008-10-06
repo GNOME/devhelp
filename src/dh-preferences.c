@@ -296,7 +296,6 @@ dh_preferences_setup_fonts (void)
 	preferences_connect_conf_listeners ();
 }
 
-
 void
 dh_preferences_show_dialog (GtkWindow *parent)
 {
@@ -307,14 +306,11 @@ dh_preferences_show_dialog (GtkWindow *parent)
         preferences_init ();
 
 	if (prefs->dialog != NULL) {
-		/* Do something useful, although it should be visible at
-		 * this point anyway.
-		 */
 		gtk_window_present (GTK_WINDOW (prefs->dialog));
 		return;
 	}
 
-	gui = dh_glade_get_file (
+	gui = dh_util_glade_get_file (
                 DATADIR "/devhelp/devhelp.glade",
                 "preferences_dialog",
                 NULL,
@@ -325,7 +321,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
                 "fixed_font_button", &prefs->fixed_font_button,
                 NULL);
 
-	dh_glade_connect (
+	dh_util_glade_connect (
                 gui,
                 prefs,
                 "variable_font_button", "font_set", preferences_font_set_cb,

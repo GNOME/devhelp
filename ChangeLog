@@ -1,5 +1,11 @@
 2008-10-06  Richard Hult  <richard@imendio.com>
 
+	* src/dh-preferences.c: (dh_preferences_show_dialog):
+	* src/dh-util.[ch]: Rename dh_glade_* to dh_util_glade for
+	consistency.
+
+2008-10-06  Richard Hult  <richard@imendio.com>
+
 	* src/dh-parser.c: (parser_start_node_keyword): Strip out "()" in
 	addition to the previous " ()". Try to be smart for devhelp 1
 	files by assuming it's a macro (might need to revert that part

@@ -57,11 +57,11 @@ get_glade_file (const gchar *filename,
 }
 
 GladeXML *
-dh_glade_get_file (const gchar *filename,
-                   const gchar *root,
-                   const gchar *domain,
-                   const gchar *first_required_widget,
-                   ...)
+dh_util_glade_get_file (const gchar *filename,
+                        const gchar *root,
+                        const gchar *domain,
+                        const gchar *first_required_widget,
+                        ...)
 {
         va_list   args;
         GladeXML *gui;
@@ -78,10 +78,10 @@ dh_glade_get_file (const gchar *filename,
 }
 
 void
-dh_glade_connect (GladeXML *gui,
-                  gpointer  user_data,
-                  gchar    *first_widget,
-                  ...)
+dh_util_glade_connect (GladeXML *gui,
+                       gpointer  user_data,
+                       gchar    *first_widget,
+                       ...)
 {
         va_list      args;
         const gchar *name;
