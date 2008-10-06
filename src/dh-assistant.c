@@ -291,7 +291,7 @@ assistant_set_link (DhAssistant *assistant,
 
         if (start && end) {
                 gchar       *buf;
-                gchar       *name;
+                gboolean     break_line;
                 const gchar *function;
                 gchar       *html;
                 gchar       *tmp;
@@ -305,18 +305,26 @@ assistant_set_link (DhAssistant *assistant,
                  */
                 switch (dh_link_get_link_type (link)) {
                 case DH_LINK_TYPE_FUNCTION:
+                        break_line = TRUE;
+                        function = "onload=\"reformatSignature()\"";
+                        break;
+                case DH_LINK_TYPE_MACRO:
+                        break_line = TRUE;
+                        function = "onload=\"cleanupSignature()\"";
+                        break;
+                default:
+                        break_line = FALSE;
+                        function = "";
+                        break;
+                }
+
+                if (break_line) {
+                        gchar *name;
+
                         name = strstr (buf, dh_link_get_name (link));
                         if (name && name > buf) {
                                 name[-1] = '\n';
                         }
-                        function = "onload=\"reformatSignature()\"";
-                        break;
-                case DH_LINK_TYPE_MACRO:
-                        function = "onload=\"cleanupSignature()\"";
-                        break;
-                default:
-                        function = "";
-                        break;
                 }
 
                 html = g_strdup_printf (
