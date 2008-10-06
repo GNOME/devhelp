@@ -7,9 +7,18 @@ body * {
   font-size: 9pt;
 }
 
+a {
+  text-decoration: none;
+}
+
 .title {
   font-size: 11pt;
   margin: 6pt;
+
+  color: #a52a2a;
+}
+.title a {
+  font-size: 11pt;
 
   color: #a52a2a;
 }
@@ -81,6 +90,10 @@ pre.programlisting {
 pre.programlisting a {
   font-family: "Bitstream Vera Sans Mono", Monaco, Courier, monospace;
   font-size: 8pt;
+}
+
+div.variablelist {
+  margin-bottom: 6pt;
 }
 
 div.variablelist * {

@@ -1,19 +1,6 @@
 function strStrip(str)
 {
-    var length;
-    var i;
-
-    length = str.length;
-    i = 0;
-    while (i < length && (str[i] == " " || str[i] == "\t"))
-        i++;
-    str = str.substr(i);
-
-    i = str.length - 1;
-    while (i >= 0 && (str[i] == " " || str[i] == "\t"))
-        i--;
-
-    return str.substr(0, i + 1);
+    return str.replace(/^\s*(.*?)\s*$/, "$1");
 }
 
 function strCompactWhitespace(str)
@@ -23,11 +10,13 @@ function strCompactWhitespace(str)
     var ret;
     var whitespace_count = 0;
 
+    str = str.replace(/\t/, " ");
+
     ret = "";
     length = str.length;
     i = 0;
     while (i < length) {
-        if (str[i] == " " || str[i] == "\t") {
+        if (str[i] == " ") {
             whitespace_count++;
         } else {
             if (whitespace_count > 0) {
@@ -93,23 +82,30 @@ function reformatSignature()
 
     listing = elements[0];
 
+    /* Fixup oddly formatted HTML, e.g libxml has <br> inside the pre
+     * element.
+     */
+    tmp = listing.innerHTML;
+    tmp = tmp.replace("<br>", "\n").replace("\t", " ");
+    listing.innerHTML = tmp;
+
     var input = listing.textContent;
     var lines = input.split("\n");
-    var output;
-
     var line;
-    var i = 0;
+    var i;
+
+    i = 0;
     while (line = lines[i]) {
         lines[i] = strCompactWhitespace(strStrip(line));
         i++;
     }
 
     var indexOfParen = getIndexOfParen(lines[1]);
-
-    i = 1;
     var lastWordIndices = Array(lines.length);
     var maxIndexOfLastWord = 0;
     var maxDiff = 0;
+
+    i = 1;
     while (line = lines[i]) {
         lastWordIndices[i] = getIndexOfLastWordIgnoreAsterisk(line);
         tmp = getIndexOfLastWord(line);
@@ -140,6 +136,7 @@ function reformatSignature()
     }
 
     var formattedLastWordIndices = Array(formattedLines.length);
+
     i = 1;
     while (line = formattedLines[i]) {
         formattedLastWordIndices[i] = getIndexOfLastWord(line);
@@ -150,8 +147,8 @@ function reformatSignature()
         i++;
     }
 
-    i = 2;
     padding = buildPadding(indexOfParen + 1);
+    i = 2;
     while (line = formattedLines[i]) {
         formattedLines[i] = padding + line;
         i++;
@@ -166,7 +163,7 @@ function reformatSignature()
         i++;
     }
 
-    output = "";
+    var output = "";
     i = 0;
     while (line = formattedLines[i]) {
         output = output + line + "\n";
