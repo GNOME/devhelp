@@ -516,13 +516,6 @@ dh_parser_read_file (const gchar  *path,
 	gboolean    result = TRUE;
 
 	parser = g_new0 (DhParser, 1);
-	if (!parser) {
-		g_set_error (error,
-			     DH_ERROR,
-			     DH_ERROR_INTERNAL_ERROR,
-			     _("Could not create book parser"));
-		return FALSE;
-	}
 
 	if (g_str_has_suffix (path, ".devhelp2")) {
 		parser->version = 2;
@@ -541,14 +534,6 @@ dh_parser_read_file (const gchar  *path,
         }
 
 	parser->m_parser = g_new0 (GMarkupParser, 1);
-	if (!parser->m_parser) {
-		g_free (parser);
-		g_set_error (error,
-			     DH_ERROR,
-			     DH_ERROR_INTERNAL_ERROR,
-			     _("Could not create markup parser"));
-		return FALSE;
-	}
 
 	parser->m_parser->start_element = parser_start_node_cb;
 	parser->m_parser->end_element = parser_end_node_cb;
@@ -556,11 +541,6 @@ dh_parser_read_file (const gchar  *path,
 
 	parser->context = g_markup_parse_context_new (parser->m_parser, 0,
 						      parser, NULL);
-
-	parser->parent = NULL;
-
-	parser->parsing_keywords = FALSE;
-	parser->parsing_chapters = FALSE;
 
 	parser->path = path;
 	parser->book_tree = book_tree;
