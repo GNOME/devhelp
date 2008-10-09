@@ -62,6 +62,14 @@ dh_assistant_view_class_init (DhAssistantViewClass* self_class)
         object_class->finalize = view_finalize;
 }
 
+DhBase*
+dh_assistant_view_get_base (DhAssistantView* self)
+{
+        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (self), NULL);
+
+        return self->base;
+}
+
 GtkWidget*
 dh_assistant_view_new (void)
 {

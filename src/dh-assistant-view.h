@@ -42,6 +42,7 @@ typedef struct _DhAssistantViewClass DhAssistantViewClass;
 
 GType      dh_assistant_view_get_type (void) G_GNUC_CONST;
 GtkWidget* dh_assistant_view_new      (void);
+DhBase*    dh_assistant_view_get_base (DhAssistantView* self);
 void       dh_assistant_view_set_base (DhAssistantView *self,
                                        DhBase          *base);
 

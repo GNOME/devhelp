@@ -1,5 +1,13 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Added a getter for the DhBase
+
+	* src/dh-assistant-view.c,
+	* src/dh-assistant-view.h: added a getter, so we can get rid of the
+	DhBase in DhAssistant
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Added a DhBase field to the DhAssistantView
 
 	* src/dh-assistant-view.c,
