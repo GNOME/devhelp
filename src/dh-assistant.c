@@ -59,19 +59,6 @@ assistant_key_press_event_cb (GtkWidget   *widget,
         return FALSE;
 }
 
-static gboolean
-assistant_button_press_event_cb (GtkWidget      *widget,
-                                 GdkEventButton *event,
-                                 gpointer        user_data)
-{
-        /* Block webkit's builtin context menu. */
-        if (event->button != 1) {
-                return TRUE;
-        }
-
-        return FALSE;
-}
-
 static void
 assistant_finalize (GObject *object)
 {
@@ -110,10 +97,6 @@ dh_assistant_init (DhAssistant *assistant)
         gtk_window_set_default_size (GTK_WINDOW (assistant), 400, 400);
 
         priv->web_view = dh_assistant_view_new ();
-
-        g_signal_connect (priv->web_view, "button-press-event",
-                          G_CALLBACK (assistant_button_press_event_cb),
-                          assistant);
 
         g_signal_connect (priv->web_view, "key-press-event",
                           G_CALLBACK (assistant_key_press_event_cb),

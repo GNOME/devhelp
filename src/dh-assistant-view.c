@@ -82,13 +82,28 @@ assistant_navigation_requested_cb (WebKitWebView        *web_view,
         return WEBKIT_NAVIGATION_RESPONSE_IGNORE;
 }
 
+static gboolean
+assistant_button_press_event_cb (GtkWidget      *widget,
+                                 GdkEventButton *event)
+{
+        /* Block webkit's builtin context menu. */
+        if (event->button != 1) {
+                return TRUE;
+        }
+
+        return FALSE;
+}
+
 static void
 dh_assistant_view_class_init (DhAssistantViewClass* self_class)
 {
         GObjectClass       *object_class = G_OBJECT_CLASS (self_class);
+        GtkWidgetClass     *widget_class = GTK_WIDGET_CLASS (self_class);
         WebKitWebViewClass *web_view_class = WEBKIT_WEB_VIEW_CLASS (self_class);
 
         object_class->finalize = view_finalize;
+
+        widget_class->button_press_event = assistant_button_press_event_cb;
 
         web_view_class->navigation_requested = assistant_navigation_requested_cb;
 }

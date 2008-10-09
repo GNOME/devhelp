@@ -1,5 +1,12 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Moved assistant_button_press_event_cb into DhAssistantView
+
+	* src/dh-assistant-view.c: added assistant_button_press_event_cb
+	* src/dh-assistant.c: dropped assistant_button_press_event_cb
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Moved assistant_navigation_requested_cb into the DhAssistantView
 
 	* src/dh-assistant-view.c: added assistant_navigation_requested_cb
