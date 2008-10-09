@@ -1,5 +1,13 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Moved the search code into the DhAssistantView
+
+	* src/dh-assistant-view.c,
+	* src/dh-assistant-view.h: added the search code
+	* src/dh-assistant.c: forward search to DhAssistantView
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Dropped assistant_set_link()
 
 	* src/dh-assistant.c: dropped the function

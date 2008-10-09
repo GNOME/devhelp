@@ -32,8 +32,6 @@
 typedef struct {
         GtkWidget *main_box;
         GtkWidget *web_view;
-
-        gchar     *current_search;
 } DhAssistantPriv;
 
 static void dh_assistant_class_init (DhAssistantClass *klass);
@@ -58,22 +56,8 @@ assistant_key_press_event_cb (GtkWidget   *widget,
 }
 
 static void
-assistant_finalize (GObject *object)
-{
-        DhAssistantPriv *priv = GET_PRIVATE (object);
-
-        g_free (priv->current_search);
-
-        G_OBJECT_CLASS (dh_assistant_parent_class)->finalize (object);
-}
-
-static void
 dh_assistant_class_init (DhAssistantClass *klass)
 {
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-        object_class->finalize = assistant_finalize;
-
         g_type_class_add_private (klass, sizeof (DhAssistantPriv));
 }
 
@@ -132,77 +116,16 @@ dh_assistant_search (DhAssistant *assistant,
                      const gchar *str)
 {
         DhAssistantPriv *priv;
-        GList           *keywords, *l;
-        const gchar     *name;
-        DhLink          *link;
-        DhLink          *exact_link;
-        DhLink          *prefix_link;
 
         g_return_val_if_fail (DH_IS_ASSISTANT (assistant), FALSE);
         g_return_val_if_fail (str != NULL, FALSE);
 
         priv = GET_PRIVATE (assistant);
 
-        /* Filter out very short strings. */
-        if (strlen (str) < 4) {
-                return FALSE;
-        }
-
-        if (priv->current_search && strcmp (priv->current_search, str) == 0) {
-                return FALSE;
-        }
-        g_free (priv->current_search);
-        priv->current_search = g_strdup (str);
-
-        keywords = dh_base_get_keywords (dh_assistant_view_get_base (DH_ASSISTANT_VIEW (priv->web_view)));
-
-        prefix_link = NULL;
-        exact_link = NULL;
-        for (l = keywords; l && exact_link == NULL; l = l->next) {
-                DhLinkType type;
-
-                link = l->data;
-
-                type = dh_link_get_link_type (link);
-
-                if (type == DH_LINK_TYPE_BOOK ||
-                    type == DH_LINK_TYPE_PAGE ||
-                    type == DH_LINK_TYPE_KEYWORD) {
-                        continue;
-                }
-
-                name = dh_link_get_name (link);
-                if (strcmp (name, str) == 0) {
-                        exact_link = link;
-                }
-                else if (g_str_has_prefix (name, str)) {
-                        /* Prefer shorter prefix matches. */
-                        if (!prefix_link) {
-                                prefix_link = link;
-                        }
-                        else if (strlen (dh_link_get_name (prefix_link)) > strlen (name)) {
-                                prefix_link = link;
-                        }
-                }
-        }
-
-        if (exact_link) {
-                /*g_print ("exact hit: '%s' '%s'\n", exact_link->name, str);*/
-                dh_assistant_view_set_link (DH_ASSISTANT_VIEW (GET_PRIVATE (assistant)->web_view),
-                                            exact_link);
-        }
-        else if (prefix_link) {
-                /*g_print ("prefix hit: '%s' '%s'\n", prefix_link->name, str);*/
-                dh_assistant_view_set_link (DH_ASSISTANT_VIEW (GET_PRIVATE (assistant)->web_view),
-                                            prefix_link);
+        if (dh_assistant_view_search (DH_ASSISTANT_VIEW (priv->web_view), str)) {
+                gtk_widget_show (GTK_WIDGET (assistant));
+                return TRUE;
         } else {
-                /*g_print ("no hit\n");*/
-                /*dh_assistant_view_set_link (DH_ASSISTANT_VIEW (GET_PRIVATE (assistant)->web_view),
-                                            NULL);*/
                 return FALSE;
         }
-
-        gtk_widget_show (GTK_WIDGET (assistant));
-
-        return TRUE;
 }

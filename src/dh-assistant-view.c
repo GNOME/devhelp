@@ -37,6 +37,7 @@ struct _DhAssistantView {
         /* private - move to a private structure before publishing this struct */
         DhBase            *base;
         DhLink            *link;
+        gchar             *current_search;
 };
 
 struct _DhAssistantViewClass {
@@ -61,6 +62,8 @@ view_finalize (GObject *object)
         if (self->base) {
                 g_object_unref (self->base);
         }
+
+        g_free (self->current_search);
 
         G_OBJECT_CLASS (dh_assistant_view_parent_class)->finalize (object);
 }
@@ -137,6 +140,81 @@ GtkWidget*
 dh_assistant_view_new (void)
 {
         return g_object_new (DH_TYPE_ASSISTANT_VIEW, NULL);
+}
+
+gboolean
+dh_assistant_view_search (DhAssistantView *self,
+                          const gchar     *str)
+{
+        GList           *keywords, *l;
+        const gchar     *name;
+        DhLink          *link;
+        DhLink          *exact_link;
+        DhLink          *prefix_link;
+
+        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (self), FALSE);
+        g_return_val_if_fail (str, FALSE);
+
+        /* Filter out very short strings. */
+        if (strlen (str) < 4) {
+                return FALSE;
+        }
+
+        if (self->current_search && strcmp (self->current_search, str) == 0) {
+                return FALSE;
+        }
+        g_free (self->current_search);
+        self->current_search = g_strdup (str);
+
+        keywords = dh_base_get_keywords (dh_assistant_view_get_base (self));
+
+        prefix_link = NULL;
+        exact_link = NULL;
+        for (l = keywords; l && exact_link == NULL; l = l->next) {
+                DhLinkType type;
+
+                link = l->data;
+
+                type = dh_link_get_link_type (link);
+
+                if (type == DH_LINK_TYPE_BOOK ||
+                    type == DH_LINK_TYPE_PAGE ||
+                    type == DH_LINK_TYPE_KEYWORD) {
+                        continue;
+                }
+
+                name = dh_link_get_name (link);
+                if (strcmp (name, str) == 0) {
+                        exact_link = link;
+                }
+                else if (g_str_has_prefix (name, str)) {
+                        /* Prefer shorter prefix matches. */
+                        if (!prefix_link) {
+                                prefix_link = link;
+                        }
+                        else if (strlen (dh_link_get_name (prefix_link)) > strlen (name)) {
+                                prefix_link = link;
+                        }
+                }
+        }
+
+        if (exact_link) {
+                /*g_print ("exact hit: '%s' '%s'\n", exact_link->name, str);*/
+                dh_assistant_view_set_link (self,
+                                            exact_link);
+        }
+        else if (prefix_link) {
+                /*g_print ("prefix hit: '%s' '%s'\n", prefix_link->name, str);*/
+                dh_assistant_view_set_link (self,
+                                            prefix_link);
+        } else {
+                /*g_print ("no hit\n");*/
+                /*dh_assistant_view_set_link (self,
+                                            NULL);*/
+                return FALSE;
+        }
+
+        return TRUE;
 }
 
 void
