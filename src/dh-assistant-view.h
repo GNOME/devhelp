@@ -25,5 +25,23 @@
 #ifndef __DH_ASSISTANT_VIEW_H__
 #define __DH_ASSISTANT_VIEW_H__
 
+#include <gtk/gtk.h>
+
+G_BEGIN_DECLS
+
+typedef struct _DhAssistantView      DhAssistantView;
+typedef struct _DhAssistantViewClass DhAssistantViewClass;
+
+#define DH_TYPE_ASSISTANT_VIEW         (dh_assistant_view_get_type ())
+#define DH_ASSISTANT_VIEW(i)           (G_TYPE_CHECK_INSTANCE_CAST ((i), DH_TYPE_ASSISTANT_VIEW, DhAssistantView))
+#define DH_ASSISTANT_VIEW_CLASS(c)     (G_TYPE_CHECK_CLASS_CAST ((c), DH_TYPE_ASSISTANT_VIEW, DhAssistantViewClass))
+#define DH_IS_ASSISTANT_VIEW(i)        (G_TYPE_CHECK_INSTANCE_TYPE ((i), DH_TYPE_ASSISTANT_VIEW))
+#define DH_IS_ASSISTANT_VIEW_CLASS(c)  (G_TYPE_CHECK_CLASS_TYPE ((c), DH_ASSISTANT_VIEW))
+#define DH_ASSISTANT_VIEW_GET_CLASS(i) (G_TYPE_INSTANCE_GET_CLASS ((i), DH_TYPE_ASSISTANT_VIEW, DhAssistantView))
+
+GType      dh_assistant_view_get_type (void) G_GNUC_CONST;
+GtkWidget* dh_assistant_view_new      (void);
+
+G_END_DECLS
 
 #endif /* !__DH_ASSISTANT_VIEW_H__ */

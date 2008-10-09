@@ -28,6 +28,7 @@
 #include "dh-link.h"
 #include "dh-util.h"
 #include "dh-assistant.h"
+#include "dh-assistant-view.h"
 
 typedef struct {
         DhBase    *base;
@@ -139,7 +140,7 @@ dh_assistant_init (DhAssistant *assistant)
         gtk_window_set_icon_name (GTK_WINDOW (assistant), "devhelp");
         gtk_window_set_default_size (GTK_WINDOW (assistant), 400, 400);
 
-        priv->web_view = webkit_web_view_new ();
+        priv->web_view = dh_assistant_view_new ();
 
         g_signal_connect (priv->web_view, "navigation-requested",
                           G_CALLBACK (assistant_navigation_requested_cb),

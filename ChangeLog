@@ -1,5 +1,16 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Implemented the DhAssistantView type (with blind type prototypes)
+
+	* src/dh-assistant-view.c,
+	* src/dh-assistant-view.h: implement DhAssistantView; put the struct
+	definitions into the .c file so we don't have to include webkit in the
+	header
+	* src/dh-assistant.c: use the new DhAssistantView instead of a plain
+	WebKitWebView
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Added source files for the assistant view
 
 	* src/Makefile.am: distribute and compile the new sources; install the

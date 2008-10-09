@@ -24,3 +24,30 @@
 
 #include "dh-assistant-view.h"
 
+#include <webkit/webkit.h>
+
+struct _DhAssistantView {
+        WebKitWebView      base_instance;
+};
+
+struct _DhAssistantViewClass {
+        WebKitWebViewClass base_class;
+};
+
+G_DEFINE_TYPE (DhAssistantView, dh_assistant_view, WEBKIT_TYPE_WEB_VIEW);
+
+static void
+dh_assistant_view_init (DhAssistantView* self)
+{}
+
+static void
+dh_assistant_view_class_init (DhAssistantViewClass* self_class)
+{}
+
+GtkWidget*
+dh_assistant_view_new (void)
+{
+        return g_object_new (DH_TYPE_ASSISTANT_VIEW, NULL);
+}
+
+
