@@ -20,13 +20,12 @@
 
 #include "config.h"
 #include <string.h>
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
 #include "dh-window.h"
 #include "dh-link.h"
-#include "dh-util.h"
 #include "dh-assistant.h"
 #include "dh-assistant-view.h"
 
@@ -43,7 +42,7 @@ static void dh_assistant_init       (DhAssistant      *assistant);
 G_DEFINE_TYPE (DhAssistant, dh_assistant, GTK_TYPE_WINDOW);
 
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
-  (instance, DH_TYPE_ASSISTANT, DhAssistantPriv);
+  (instance, DH_TYPE_ASSISTANT, DhAssistantPriv)
 
 static gboolean
 assistant_key_press_event_cb (GtkWidget   *widget,
@@ -128,204 +127,12 @@ dh_assistant_new (DhBase *base)
         return GTK_WIDGET (assistant);
 }
 
-static const gchar *
-find_in_buffer (const gchar *buffer,
-                const gchar *key,
-                gsize        length,
-                gsize        key_length)
-{
-        gsize m = 0;
-        gsize i = 0;
-
-        while (i < length) {
-                if (key[m] == buffer[i]) {
-                        m++;
-                        if (m == key_length) {
-                                return buffer + i - m + 1;
-                        }
-                } else {
-                        m = 0;
-                }
-                i++;
-        }
-
-        return NULL;
-}
-
 static void
 assistant_set_link (DhAssistant *assistant,
                     DhLink      *link)
 {
-        DhAssistantPriv *priv = GET_PRIVATE (assistant);
-        gchar           *uri;
-        const gchar     *anchor;
-        gchar           *filename;
-        GMappedFile     *file;
-        const gchar     *contents;
-        gsize            length;
-        gchar           *key;
-        gsize            key_length;
-        const gchar     *start;
-        const gchar     *end;
-
-        if (dh_assistant_view_get_link (DH_ASSISTANT_VIEW (priv->web_view)) == link) {
-                return;
-        }
-
-        dh_assistant_view_set_link (DH_ASSISTANT_VIEW (priv->web_view),
+        dh_assistant_view_set_link (DH_ASSISTANT_VIEW (GET_PRIVATE (assistant)->web_view),
                                     link);
-
-        if (!link) {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (priv->web_view),
-                                      "about:blank");
-                return;
-        }
-
-        uri = dh_link_get_uri (link);
-        anchor = strrchr (uri, '#');
-        if (anchor) {
-                filename = g_strndup (uri, anchor - uri);
-                anchor++;
-                g_free (uri);
-        } else {
-                g_free (uri);
-                return;
-        }
-
-        file = g_mapped_file_new (filename, FALSE, NULL);
-        if (!file) {
-                g_free (filename);
-                return;
-        }
-
-        contents = g_mapped_file_get_contents (file);
-        length = g_mapped_file_get_length (file);
-
-        key = g_strdup_printf ("<a name=\"%s\"", anchor);
-        key_length = strlen (key);
-
-        start = find_in_buffer (contents, key, length, key_length);
-        g_free (key);
-
-        end = NULL;
-
-        if (start) {
-                const gchar *start_key;
-                const gchar *end_key;
-
-                length -= start - contents;
-
-                start_key = "<pre class=\"programlisting\">";
-
-                start = find_in_buffer (start,
-                                        start_key,
-                                        length,
-                                        strlen (start_key));
-
-                end_key = "<div class=\"refsect";
-
-                if (start) {
-                        end = find_in_buffer (start, end_key,
-                                              length - strlen (start_key),
-                                              strlen (end_key));
-                }
-        }
-
-        if (start && end) {
-                gchar       *buf;
-                gboolean     break_line;
-                const gchar *function;
-                gchar       *stylesheet;
-                gchar       *javascript;
-                gchar       *html;
-                gchar       *tmp;
-                gchar       *base;
-
-                buf = g_strndup (start, end-start);
-
-                /* Try to reformat function signatures so they take less
-                 * space and look nicer. Don't reformat things that don't
-                 * look like functions.
-                 */
-                switch (dh_link_get_link_type (link)) {
-                case DH_LINK_TYPE_FUNCTION:
-                        break_line = TRUE;
-                        function = "onload=\"reformatSignature()\"";
-                        break;
-                case DH_LINK_TYPE_MACRO:
-                        break_line = TRUE;
-                        function = "onload=\"cleanupSignature()\"";
-                        break;
-                default:
-                        break_line = FALSE;
-                        function = "";
-                        break;
-                }
-
-                if (break_line) {
-                        gchar *name;
-
-                        name = strstr (buf, dh_link_get_name (link));
-                        if (name && name > buf) {
-                                name[-1] = '\n';
-                        }
-                }
-
-                stylesheet = dh_util_build_data_filename ("assistant", "assistant.css", NULL);
-                javascript = dh_util_build_data_filename ("assistant", "assistant.js", NULL);
-                
-                html = g_strdup_printf (
-                        "<html>"
-                        "<head>"
-                        "<link rel=\"stylesheet\" type=\"text/css\" href=\"file://%s\">"
-                        "<script src=\"file://%s\"</script>"
-                        "</head>"
-                        "<body %s>"
-                        "<div class=\"title\">%s: <a href=\"%s\">%s</a></div>"
-                        "<div class=\"subtitle\">%s %s</div>"
-                        "<div class=\"content\">%s</div>"
-                        "</body>"
-                        "</html>",
-                        stylesheet,
-                        javascript,
-                        function,
-                        dh_link_get_type_as_string (link),
-                        dh_link_get_uri (link),
-                        dh_link_get_name (link),
-                        _("Book:"),
-                        dh_link_get_book_name (link),
-                        buf);
-                g_free (buf);
-
-                g_free (stylesheet);
-                g_free (javascript);
-
-                /* We need to set a local base to be able to access the
-                 * stylesheet and javascript, but we also have to set
-                 * something that is not the same as the current page,
-                 * otherwise link clicks won't go through the network
-                 * request handler (which we need so we can forward then to
-                 * a main devhelp window. The reason is that page-local
-                 * anchor links are handled internally in webkit.
-                 */
-                tmp = g_path_get_dirname (filename);
-                base = g_strconcat ("file://", tmp, "/fake", NULL);
-                g_free (tmp);
-
-                webkit_web_view_load_html_string (
-                        WEBKIT_WEB_VIEW (priv->web_view),
-                        html,
-                        base);
-
-                g_free (html);
-                g_free (base);
-        } else {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (priv->web_view),
-                                      "about:blank");
-        }
-
-        g_mapped_file_free (file);
-        g_free (filename);
 }
 
 gboolean

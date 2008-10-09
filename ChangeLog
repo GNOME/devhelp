@@ -1,5 +1,16 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Moved the real navigation code
+
+	* src/dh-assistant-view.c: added find_in_buffer() and the real code to
+	dh_assistant_view_set_link()
+	* src/dh-assistant.c: use <glib/gi18n-lib.h> to be properly
+	translatable in other applications; dropped the semicolon after
+	GET_PRIVATE(); removed find_in_buffer() and the code in
+	assistant_set_link()
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Use the DhAssistantView's DhLink
 
 	* src/dh-assistant.c: use the link from the DhAssistantView
