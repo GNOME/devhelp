@@ -1,5 +1,13 @@
 2008-10-09  Richard Hult  <richard@imendio.com>
 
+	* src/dh-util.c (dh_util_build_data_filename): Don't include the
+	"devhelp" directory component.
+
+	* src/dh-assistant-view.c (dh_assistant_view_set_link): Add
+	"devhelp" component here.
+
+2008-10-09  Richard Hult  <richard@imendio.com>
+
 	* src/dh-assistant-view.[ch]: Consistency fixes after the
 	refactoring: Don't use "self", use some form of the name of the
 	class. Use parent_class and parent_instance in class/instance

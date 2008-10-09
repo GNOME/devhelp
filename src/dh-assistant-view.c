@@ -367,8 +367,14 @@ dh_assistant_view_set_link (DhAssistantView *view,
                         }
                 }
 
-                stylesheet = dh_util_build_data_filename ("assistant", "assistant.css", NULL);
-                javascript = dh_util_build_data_filename ("assistant", "assistant.js", NULL);
+                stylesheet = dh_util_build_data_filename ("devhelp",
+                                                          "assistant",
+                                                          "assistant.css",
+                                                          NULL);
+                javascript = dh_util_build_data_filename ("devhelp",
+                                                          "assistant",
+                                                          "assistant.js",
+                                                          NULL);
                 
                 html = g_strdup_printf (
                         "<html>"

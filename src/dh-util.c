@@ -132,12 +132,11 @@ dh_util_build_data_filename (const gchar *first_part,
                 datadir = DATADIR;
         }
 
-        /* 3 = two initial components + terminating NULL element. */
-        strv = g_malloc (sizeof (gchar *) * 3);
+        /* 2 = 1 initial component + terminating NULL element. */
+        strv = g_malloc (sizeof (gchar *) * 2);
         strv[0] = (gchar *) datadir;
-        strv[1] = "devhelp";
 
-        i = 2;
+        i = 1;
         for (part = first_part; part; part = va_arg (args, char *), i++) {
                 /* +2 = 1 new element + terminating NULL element. */
                 strv = g_realloc (strv, sizeof (gchar*) * (i + 2));
