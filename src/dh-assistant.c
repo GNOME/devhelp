@@ -98,7 +98,7 @@ dh_assistant_init (DhAssistant *assistant)
 
         priv->web_view = dh_assistant_view_new ();
 
-        g_signal_connect (priv->web_view, "key-press-event",
+        g_signal_connect (assistant, "key-press-event",
                           G_CALLBACK (assistant_key_press_event_cb),
                           assistant);
 

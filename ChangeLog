@@ -1,5 +1,13 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Connect to the key-press-event of the DhAssistant, not the
+	WebKitWebView
+
+	* src/dh-assistant.c: connect to a different widget (no need to
+	connect this one on the WebKitWebView)
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Moved assistant_button_press_event_cb into DhAssistantView
 
 	* src/dh-assistant-view.c: added assistant_button_press_event_cb
