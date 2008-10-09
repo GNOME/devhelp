@@ -32,6 +32,7 @@ struct _DhAssistantView {
         WebKitWebView      base_instance;
         /* private - move to a private structure before publishing this struct */
         DhBase            *base;
+        DhLink            *link;
 };
 
 struct _DhAssistantViewClass {
@@ -48,6 +49,10 @@ static void
 view_finalize (GObject *object)
 {
         DhAssistantView* self = (DhAssistantView*) object;
+
+        if (self->link) {
+                g_object_unref (self->link);
+        }
 
         if (self->base) {
                 g_object_unref (self->base);
@@ -109,11 +114,19 @@ dh_assistant_view_class_init (DhAssistantViewClass* self_class)
 }
 
 DhBase*
-dh_assistant_view_get_base (DhAssistantView* self)
+dh_assistant_view_get_base (DhAssistantView *self)
 {
         g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (self), NULL);
 
         return self->base;
+}
+
+DhLink*
+dh_assistant_view_get_link (DhAssistantView *self)
+{
+        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (self), NULL);
+
+        return self->link;
 }
 
 GtkWidget*
@@ -130,5 +143,25 @@ dh_assistant_view_set_base (DhAssistantView *view,
         g_return_if_fail (DH_IS_BASE (base));
 
         view->base = g_object_ref (base);
+}
+
+void
+dh_assistant_view_set_link (DhAssistantView *self,
+                            DhLink          *link)
+{
+        g_return_if_fail (DH_IS_ASSISTANT_VIEW (self));
+
+        if (self->link == link) {
+                return;
+        }
+
+        if (self->link) {
+                dh_link_unref (self->link);
+                self->link = NULL;
+        }
+
+        if (link) {
+                link = dh_link_ref (link);
+        }
 }
 

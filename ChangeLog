@@ -1,5 +1,13 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Added a DhLink field to the DhAssistantView
+
+	* src/dh-assistant-view.c,
+	* src/dh-assistant-view.h: added getter and setter for the link
+	* src/dh-link.h: added DH_IS_LINK
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Connect to the key-press-event of the DhAssistant, not the
 	WebKitWebView
 

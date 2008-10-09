@@ -27,6 +27,9 @@
 
 #include <gtk/gtk.h>
 #include "dh-base.h"
+#ifndef DROP_AFTER_REFACTORING
+#include "dh-link.h"
+#endif
 
 G_BEGIN_DECLS
 
@@ -42,9 +45,14 @@ typedef struct _DhAssistantViewClass DhAssistantViewClass;
 
 GType      dh_assistant_view_get_type (void) G_GNUC_CONST;
 GtkWidget* dh_assistant_view_new      (void);
-DhBase*    dh_assistant_view_get_base (DhAssistantView* self);
+DhBase*    dh_assistant_view_get_base (DhAssistantView *self);
 void       dh_assistant_view_set_base (DhAssistantView *self,
                                        DhBase          *base);
+#ifndef DROP_AFTER_REFACTORING
+DhLink*    dh_assistant_view_get_link (DhAssistantView *self);
+void       dh_assistant_view_set_link (DhAssistantView *self,
+                                       DhLink          *link);
+#endif
 
 G_END_DECLS
 
