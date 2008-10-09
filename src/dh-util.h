@@ -24,16 +24,26 @@
 
 #include <glade/glade.h>
 
-GladeXML *dh_util_glade_get_file      (const gchar *filename,
-                                       const gchar *root,
-                                       const gchar *domain,
-                                       const gchar *first_required_widget,
-                                       ...);
-void      dh_util_glade_connect       (GladeXML    *gui,
-                                       gpointer     user_data,
-                                       gchar       *first_widget,
-                                       ...);
-gchar *   dh_util_build_data_filename (const gchar *first_part,
-                                       ...);
+GladeXML *   dh_util_glade_get_file               (const gchar *filename,
+                                                   const gchar *root,
+                                                   const gchar *domain,
+                                                   const gchar *first_required_widget,
+                                                   ...);
+void         dh_util_glade_connect                (GladeXML    *gui,
+                                                   gpointer     user_data,
+                                                   gchar       *first_widget,
+                                                   ...);
+gchar *      dh_util_build_data_filename          (const gchar *first_part,
+                                                   ...);
+void         dh_util_state_manage_window          (GtkWindow   *window,
+                                                   const gchar *name);
+void         dh_util_state_manage_paned           (GtkPaned    *paned,
+                                                   const gchar *name);
+void         dh_util_state_manage_notebook        (GtkNotebook *notebook,
+                                                   const gchar *name,
+                                                   const gchar *default_tab);
+void         dh_util_state_set_notebook_page_name (GtkWidget   *page,
+                                                   const gchar *page_name);
+const gchar *dh_util_state_get_notebook_page_name (GtkWidget   *page);
 
 #endif /* __DH_UTIL_H__ */
