@@ -1,10 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/* This file is part of Devhelp
- *
- * AUTHORS
- *     Sven Herzberg  <sven@imendio.com>
- *
- * Copyright (C) 2008  Sven Herzberg
+/*
+ * Copyright (C) 2008 Sven Herzberg
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -50,4 +46,4 @@ void       dh_assistant_view_set_base (DhAssistantView *self,
 
 G_END_DECLS
 
-#endif /* !__DH_ASSISTANT_VIEW_H__ */
+#endif /* __DH_ASSISTANT_VIEW_H__ */

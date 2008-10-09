@@ -1,10 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/* This file is part of Devhelp
- *
- * AUTHORS
- *     Sven Herzberg  <sven@imendio.com>
- *
- * Copyright (C) 2008  Sven Herzberg
+/*
+ * Copyright (C) 2008 Imendio AB
+ * Copyright (C) 2008 Sven Herzberg
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,51 +20,50 @@
  */
 
 #include "config.h"
-
 #include <string.h>
 #include <glib/gi18n-lib.h>
 #include <webkit/webkit.h>
-
 #include "dh-assistant-view.h"
 #include "dh-link.h"
 #include "dh-util.h"
 #include "dh-window.h"
 
 struct _DhAssistantView {
-        WebKitWebView      base_instance;
-        /* private - move to a private structure before publishing this struct */
-        DhBase            *base;
-        DhLink            *link;
-        gchar             *current_search;
+        WebKitWebView  parent_instance;
+
+        DhBase        *base;
+        DhLink        *link;
+        gchar         *current_search;
 };
 
 struct _DhAssistantViewClass {
-        WebKitWebViewClass base_class;
+        WebKitWebViewClass parent_class;
 };
 
-static void       dh_assistant_view_set_link (DhAssistantView *self,
-                                              DhLink          *link);
+static void dh_assistant_view_set_link (DhAssistantView *view,
+                                        DhLink          *link);
 
 G_DEFINE_TYPE (DhAssistantView, dh_assistant_view, WEBKIT_TYPE_WEB_VIEW);
 
 static void
-dh_assistant_view_init (DhAssistantView* self)
-{}
+dh_assistant_view_init (DhAssistantView *view)
+{
+}
 
 static void
 view_finalize (GObject *object)
 {
-        DhAssistantView* self = (DhAssistantView*) object;
+        DhAssistantView *view = DH_ASSISTANT_VIEW (object);
 
-        if (self->link) {
-                g_object_unref (self->link);
+        if (view->link) {
+                g_object_unref (view->link);
         }
 
-        if (self->base) {
-                g_object_unref (self->base);
+        if (view->base) {
+                g_object_unref (view->base);
         }
 
-        g_free (self->current_search);
+        g_free (view->current_search);
 
         G_OBJECT_CLASS (dh_assistant_view_parent_class)->finalize (object);
 }
@@ -77,10 +73,10 @@ assistant_navigation_requested (WebKitWebView        *web_view,
                                 WebKitWebFrame       *frame,
                                 WebKitNetworkRequest *request)
 {
-        DhAssistantView *self;
+        DhAssistantView *view;
         const gchar     *uri;
 
-        self = DH_ASSISTANT_VIEW (web_view);
+        view = DH_ASSISTANT_VIEW (web_view);
 
         uri = webkit_network_request_get_uri (request);
 
@@ -91,7 +87,7 @@ assistant_navigation_requested (WebKitWebView        *web_view,
         if (g_str_has_prefix (uri, "file://")) {
                 GtkWidget *window;
 
-                window = dh_base_get_window (self->base);
+                window = dh_base_get_window (view->base);
                 _dh_window_display_uri (DH_WINDOW (window), uri);
         }
 
@@ -111,11 +107,11 @@ assistant_button_press_event (GtkWidget      *widget,
 }
 
 static void
-dh_assistant_view_class_init (DhAssistantViewClass* self_class)
+dh_assistant_view_class_init (DhAssistantViewClass* view_class)
 {
-        GObjectClass       *object_class = G_OBJECT_CLASS (self_class);
-        GtkWidgetClass     *widget_class = GTK_WIDGET_CLASS (self_class);
-        WebKitWebViewClass *web_view_class = WEBKIT_WEB_VIEW_CLASS (self_class);
+        GObjectClass       *object_class = G_OBJECT_CLASS (view_class);
+        GtkWidgetClass     *widget_class = GTK_WIDGET_CLASS (view_class);
+        WebKitWebViewClass *web_view_class = WEBKIT_WEB_VIEW_CLASS (view_class);
 
         object_class->finalize = view_finalize;
 
@@ -125,11 +121,11 @@ dh_assistant_view_class_init (DhAssistantViewClass* self_class)
 }
 
 DhBase*
-dh_assistant_view_get_base (DhAssistantView *self)
+dh_assistant_view_get_base (DhAssistantView *view)
 {
-        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (self), NULL);
+        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), NULL);
 
-        return self->base;
+        return view->base;
 }
 
 GtkWidget*
@@ -139,7 +135,7 @@ dh_assistant_view_new (void)
 }
 
 gboolean
-dh_assistant_view_search (DhAssistantView *self,
+dh_assistant_view_search (DhAssistantView *view,
                           const gchar     *str)
 {
         GList           *keywords, *l;
@@ -148,7 +144,7 @@ dh_assistant_view_search (DhAssistantView *self,
         DhLink          *exact_link;
         DhLink          *prefix_link;
 
-        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (self), FALSE);
+        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), FALSE);
         g_return_val_if_fail (str, FALSE);
 
         /* Filter out very short strings. */
@@ -156,13 +152,13 @@ dh_assistant_view_search (DhAssistantView *self,
                 return FALSE;
         }
 
-        if (self->current_search && strcmp (self->current_search, str) == 0) {
+        if (view->current_search && strcmp (view->current_search, str) == 0) {
                 return FALSE;
         }
-        g_free (self->current_search);
-        self->current_search = g_strdup (str);
+        g_free (view->current_search);
+        view->current_search = g_strdup (str);
 
-        keywords = dh_base_get_keywords (dh_assistant_view_get_base (self));
+        keywords = dh_base_get_keywords (dh_assistant_view_get_base (view));
 
         prefix_link = NULL;
         exact_link = NULL;
@@ -196,16 +192,16 @@ dh_assistant_view_search (DhAssistantView *self,
 
         if (exact_link) {
                 /*g_print ("exact hit: '%s' '%s'\n", exact_link->name, str);*/
-                dh_assistant_view_set_link (self,
+                dh_assistant_view_set_link (view,
                                             exact_link);
         }
         else if (prefix_link) {
                 /*g_print ("prefix hit: '%s' '%s'\n", prefix_link->name, str);*/
-                dh_assistant_view_set_link (self,
+                dh_assistant_view_set_link (view,
                                             prefix_link);
         } else {
                 /*g_print ("no hit\n");*/
-                /*dh_assistant_view_set_link (self,
+                /*dh_assistant_view_set_link (view,
                                             NULL);*/
                 return FALSE;
         }
@@ -248,7 +244,7 @@ find_in_buffer (const gchar *buffer,
 }
 
 void
-dh_assistant_view_set_link (DhAssistantView *self,
+dh_assistant_view_set_link (DhAssistantView *view,
                             DhLink          *link)
 {
         gchar           *uri;
@@ -262,21 +258,21 @@ dh_assistant_view_set_link (DhAssistantView *self,
         const gchar     *start;
         const gchar     *end;
 
-        g_return_if_fail (DH_IS_ASSISTANT_VIEW (self));
+        g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
 
-        if (self->link == link) {
+        if (view->link == link) {
                 return;
         }
 
-        if (self->link) {
-                dh_link_unref (self->link);
-                self->link = NULL;
+        if (view->link) {
+                dh_link_unref (view->link);
+                view->link = NULL;
         }
 
         if (link) {
                 link = dh_link_ref (link);
         } else {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (self),
+                webkit_web_view_open (WEBKIT_WEB_VIEW (view),
                                       "about:blank");
                 return;
         }
@@ -413,18 +409,17 @@ dh_assistant_view_set_link (DhAssistantView *self,
                 g_free (tmp);
 
                 webkit_web_view_load_html_string (
-                        WEBKIT_WEB_VIEW (self),
+                        WEBKIT_WEB_VIEW (view),
                         html,
                         base);
 
                 g_free (html);
                 g_free (base);
         } else {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (self),
+                webkit_web_view_open (WEBKIT_WEB_VIEW (view),
                                       "about:blank");
         }
 
         g_mapped_file_free (file);
         g_free (filename);
 }
-

@@ -1,5 +1,13 @@
 2008-10-09  Richard Hult  <richard@imendio.com>
 
+	* src/dh-assistant-view.[ch]: Consistency fixes after the
+	refactoring: Don't use "self", use some form of the name of the
+	class. Use parent_class and parent_instance in class/instance
+	structs. Add copyright back, it's the same old code moved to a new
+	file.
+
+2008-10-09  Richard Hult  <richard@imendio.com>
+
 	* src/dh-assistant.c (dh_assistant_init): Remove unused includes
 	and the webkit API usage left over from the move to
 	DhAssistantView. Rename web_view to view.
