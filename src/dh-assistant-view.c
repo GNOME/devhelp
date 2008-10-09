@@ -22,9 +22,11 @@
  * USA
  */
 
-#include "dh-assistant-view.h"
-
+#include <string.h>
 #include <webkit/webkit.h>
+
+#include "dh-assistant-view.h"
+#include "dh-window.h"
 
 struct _DhAssistantView {
         WebKitWebView      base_instance;
@@ -54,12 +56,41 @@ view_finalize (GObject *object)
         G_OBJECT_CLASS (dh_assistant_view_parent_class)->finalize (object);
 }
 
+static WebKitNavigationResponse
+assistant_navigation_requested_cb (WebKitWebView        *web_view,
+                                   WebKitWebFrame       *frame,
+                                   WebKitNetworkRequest *request)
+{
+        DhAssistantView *self;
+        const gchar     *uri;
+
+        self = DH_ASSISTANT_VIEW (web_view);
+
+        uri = webkit_network_request_get_uri (request);
+
+        if (strcmp (uri, "about:blank") == 0) {
+                return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
+        }
+
+        if (g_str_has_prefix (uri, "file://")) {
+                GtkWidget *window;
+
+                window = dh_base_get_window (self->base);
+                _dh_window_display_uri (DH_WINDOW (window), uri);
+        }
+
+        return WEBKIT_NAVIGATION_RESPONSE_IGNORE;
+}
+
 static void
 dh_assistant_view_class_init (DhAssistantViewClass* self_class)
 {
-        GObjectClass *object_class = G_OBJECT_CLASS (self_class);
+        GObjectClass       *object_class = G_OBJECT_CLASS (self_class);
+        WebKitWebViewClass *web_view_class = WEBKIT_WEB_VIEW_CLASS (self_class);
 
         object_class->finalize = view_finalize;
+
+        web_view_class->navigation_requested = assistant_navigation_requested_cb;
 }
 
 DhBase*

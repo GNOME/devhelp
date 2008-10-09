@@ -1,5 +1,12 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Moved assistant_navigation_requested_cb into the DhAssistantView
+
+	* src/dh-assistant-view.c: added assistant_navigation_requested_cb
+	* src/dh-assistant.c: dropped assistant_navigation_requested_cb
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Use the DhAssistantView's DhBase
 
 	* src/dh-assistant.c: drop the own DhBase reference; use the one from

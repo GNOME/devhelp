@@ -46,33 +46,6 @@ G_DEFINE_TYPE (DhAssistant, dh_assistant, GTK_TYPE_WINDOW);
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
   (instance, DH_TYPE_ASSISTANT, DhAssistantPriv);
 
-static WebKitNavigationResponse
-assistant_navigation_requested_cb (WebKitWebView        *web_view,
-                                   WebKitWebFrame       *frame,
-                                   WebKitNetworkRequest *request,
-                                   DhAssistant          *assistant)
-{
-        DhAssistantPriv *priv;
-        const gchar     *uri;
-
-        priv = GET_PRIVATE (assistant);
-
-        uri = webkit_network_request_get_uri (request);
-
-        if (strcmp (uri, "about:blank") == 0) {
-                return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
-        }
-
-        if (g_str_has_prefix (uri, "file://")) {
-                GtkWidget *window;
-
-                window = dh_base_get_window (dh_assistant_view_get_base (DH_ASSISTANT_VIEW (priv->web_view)));
-                _dh_window_display_uri (DH_WINDOW (window), uri);
-        }
-
-        return WEBKIT_NAVIGATION_RESPONSE_IGNORE;
-}
-
 static gboolean
 assistant_key_press_event_cb (GtkWidget   *widget,
                               GdkEventKey *event,
@@ -138,9 +111,6 @@ dh_assistant_init (DhAssistant *assistant)
 
         priv->web_view = dh_assistant_view_new ();
 
-        g_signal_connect (priv->web_view, "navigation-requested",
-                          G_CALLBACK (assistant_navigation_requested_cb),
-                          assistant);
         g_signal_connect (priv->web_view, "button-press-event",
                           G_CALLBACK (assistant_button_press_event_cb),
                           assistant);
