@@ -1,5 +1,12 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Use the DhAssistantView's DhBase
+
+	* src/dh-assistant.c: drop the own DhBase reference; use the one from
+	the DhAssistantView
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Added a getter for the DhBase
 
 	* src/dh-assistant-view.c,

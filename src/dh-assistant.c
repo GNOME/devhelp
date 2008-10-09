@@ -31,8 +31,6 @@
 #include "dh-assistant-view.h"
 
 typedef struct {
-        DhBase    *base;
-
         GtkWidget *main_box;
         GtkWidget *web_view;
 
@@ -68,7 +66,7 @@ assistant_navigation_requested_cb (WebKitWebView        *web_view,
         if (g_str_has_prefix (uri, "file://")) {
                 GtkWidget *window;
 
-                window = dh_base_get_window (priv->base);
+                window = dh_base_get_window (dh_assistant_view_get_base (DH_ASSISTANT_VIEW (priv->web_view)));
                 _dh_window_display_uri (DH_WINDOW (window), uri);
         }
 
@@ -105,8 +103,6 @@ static void
 assistant_finalize (GObject *object)
 {
         DhAssistantPriv *priv = GET_PRIVATE (object);
-
-        g_object_unref (priv->base);
 
         g_free (priv->current_search);
 
@@ -178,7 +174,6 @@ dh_assistant_new (DhBase *base)
 
         priv = GET_PRIVATE (assistant);
 
-        priv->base = g_object_ref (base);
         dh_assistant_view_set_base (DH_ASSISTANT_VIEW (priv->web_view),
                                     base);
 
@@ -417,7 +412,7 @@ dh_assistant_search (DhAssistant *assistant,
         g_free (priv->current_search);
         priv->current_search = g_strdup (str);
 
-        keywords = dh_base_get_keywords (priv->base);
+        keywords = dh_base_get_keywords (dh_assistant_view_get_base (DH_ASSISTANT_VIEW (priv->web_view)));
 
         prefix_link = NULL;
         exact_link = NULL;
