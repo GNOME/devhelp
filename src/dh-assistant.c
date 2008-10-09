@@ -127,14 +127,6 @@ dh_assistant_new (DhBase *base)
         return GTK_WIDGET (assistant);
 }
 
-static void
-assistant_set_link (DhAssistant *assistant,
-                    DhLink      *link)
-{
-        dh_assistant_view_set_link (DH_ASSISTANT_VIEW (GET_PRIVATE (assistant)->web_view),
-                                    link);
-}
-
 gboolean
 dh_assistant_search (DhAssistant *assistant,
                      const gchar *str)
@@ -196,14 +188,17 @@ dh_assistant_search (DhAssistant *assistant,
 
         if (exact_link) {
                 /*g_print ("exact hit: '%s' '%s'\n", exact_link->name, str);*/
-                assistant_set_link (assistant, exact_link);
+                dh_assistant_view_set_link (DH_ASSISTANT_VIEW (GET_PRIVATE (assistant)->web_view),
+                                            exact_link);
         }
         else if (prefix_link) {
                 /*g_print ("prefix hit: '%s' '%s'\n", prefix_link->name, str);*/
-                assistant_set_link (assistant, prefix_link);
+                dh_assistant_view_set_link (DH_ASSISTANT_VIEW (GET_PRIVATE (assistant)->web_view),
+                                            prefix_link);
         } else {
                 /*g_print ("no hit\n");*/
-                /*assistant_set_link (assistant, NULL);*/
+                /*dh_assistant_view_set_link (DH_ASSISTANT_VIEW (GET_PRIVATE (assistant)->web_view),
+                                            NULL);*/
                 return FALSE;
         }
 

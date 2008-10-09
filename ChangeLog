@@ -1,5 +1,11 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Dropped assistant_set_link()
+
+	* src/dh-assistant.c: dropped the function
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Moved the real navigation code
 
 	* src/dh-assistant-view.c: added find_in_buffer() and the real code to
