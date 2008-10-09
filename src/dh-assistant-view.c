@@ -29,6 +29,7 @@
 #include <webkit/webkit.h>
 
 #include "dh-assistant-view.h"
+#include "dh-link.h"
 #include "dh-util.h"
 #include "dh-window.h"
 
@@ -43,6 +44,9 @@ struct _DhAssistantView {
 struct _DhAssistantViewClass {
         WebKitWebViewClass base_class;
 };
+
+static void       dh_assistant_view_set_link (DhAssistantView *self,
+                                              DhLink          *link);
 
 G_DEFINE_TYPE (DhAssistantView, dh_assistant_view, WEBKIT_TYPE_WEB_VIEW);
 
@@ -126,14 +130,6 @@ dh_assistant_view_get_base (DhAssistantView *self)
         g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (self), NULL);
 
         return self->base;
-}
-
-DhLink*
-dh_assistant_view_get_link (DhAssistantView *self)
-{
-        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (self), NULL);
-
-        return self->link;
 }
 
 GtkWidget*
