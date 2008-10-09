@@ -28,6 +28,8 @@
 
 struct _DhAssistantView {
         WebKitWebView      base_instance;
+        /* private - move to a private structure before publishing this struct */
+        DhBase            *base;
 };
 
 struct _DhAssistantViewClass {
@@ -41,8 +43,24 @@ dh_assistant_view_init (DhAssistantView* self)
 {}
 
 static void
+view_finalize (GObject *object)
+{
+        DhAssistantView* self = (DhAssistantView*) object;
+
+        if (self->base) {
+                g_object_unref (self->base);
+        }
+
+        G_OBJECT_CLASS (dh_assistant_view_parent_class)->finalize (object);
+}
+
+static void
 dh_assistant_view_class_init (DhAssistantViewClass* self_class)
-{}
+{
+        GObjectClass *object_class = G_OBJECT_CLASS (self_class);
+
+        object_class->finalize = view_finalize;
+}
 
 GtkWidget*
 dh_assistant_view_new (void)
@@ -50,4 +68,13 @@ dh_assistant_view_new (void)
         return g_object_new (DH_TYPE_ASSISTANT_VIEW, NULL);
 }
 
+void
+dh_assistant_view_set_base (DhAssistantView *view,
+                            DhBase          *base)
+{
+        g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
+        g_return_if_fail (DH_IS_BASE (base));
+
+        view->base = g_object_ref (base);
+}
 

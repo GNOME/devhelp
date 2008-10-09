@@ -179,6 +179,8 @@ dh_assistant_new (DhBase *base)
         priv = GET_PRIVATE (assistant);
 
         priv->base = g_object_ref (base);
+        dh_assistant_view_set_base (DH_ASSISTANT_VIEW (priv->web_view),
+                                    base);
 
         return GTK_WIDGET (assistant);
 }

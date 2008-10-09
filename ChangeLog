@@ -1,5 +1,14 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Added a DhBase field to the DhAssistantView
+
+	* src/dh-assistant-view.c,
+	* src/dh-assistant-view.h: added the field to the view (for the code
+	moving)
+	* src/dh-assistant.c: set the base of the DhAssistantView
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Implemented the DhAssistantView type (with blind type prototypes)
 
 	* src/dh-assistant-view.c,

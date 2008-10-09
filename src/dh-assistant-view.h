@@ -26,6 +26,7 @@
 #define __DH_ASSISTANT_VIEW_H__
 
 #include <gtk/gtk.h>
+#include "dh-base.h"
 
 G_BEGIN_DECLS
 
@@ -41,6 +42,8 @@ typedef struct _DhAssistantViewClass DhAssistantViewClass;
 
 GType      dh_assistant_view_get_type (void) G_GNUC_CONST;
 GtkWidget* dh_assistant_view_new      (void);
+void       dh_assistant_view_set_base (DhAssistantView *self,
+                                       DhBase          *base);
 
 G_END_DECLS
 
