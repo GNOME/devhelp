@@ -1,3 +1,9 @@
+2008-10-09  Richard Hult  <richard@imendio.com>
+
+	* src/dh-assistant.c (dh_assistant_init): Remove unused includes
+	and the webkit API usage left over from the move to
+	DhAssistantView. Rename web_view to view.
+
 2008-10-09  Sven Herzberg  <sven@imendio.com>
 
 	Drop the "_cp" suffix of the old callbacks, now they are vfunc

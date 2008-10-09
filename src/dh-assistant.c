@@ -20,18 +20,16 @@
 
 #include "config.h"
 #include <string.h>
-#include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <webkit/webkit.h>
 #include "dh-window.h"
 #include "dh-link.h"
-#include "dh-assistant.h"
 #include "dh-assistant-view.h"
+#include "dh-assistant.h"
 
 typedef struct {
         GtkWidget *main_box;
-        GtkWidget *web_view;
+        GtkWidget *view;
 } DhAssistantPriv;
 
 static void dh_assistant_class_init (DhAssistantClass *klass);
@@ -74,7 +72,7 @@ dh_assistant_init (DhAssistant *assistant)
         gtk_window_set_icon_name (GTK_WINDOW (assistant), "devhelp");
         gtk_window_set_default_size (GTK_WINDOW (assistant), 400, 400);
 
-        priv->web_view = dh_assistant_view_new ();
+        priv->view = dh_assistant_view_new ();
 
         g_signal_connect (assistant, "key-press-event",
                           G_CALLBACK (assistant_key_press_event_cb),
@@ -84,12 +82,9 @@ dh_assistant_init (DhAssistant *assistant)
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                         GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
 
-        gtk_container_add (GTK_CONTAINER (scrolled_window), priv->web_view);
+        gtk_container_add (GTK_CONTAINER (scrolled_window), priv->view);
 
         gtk_widget_show_all (scrolled_window);
-
-        webkit_web_view_open (WEBKIT_WEB_VIEW (priv->web_view),
-                              "about:blank");
 
         gtk_box_pack_start (GTK_BOX (priv->main_box),
                             scrolled_window, TRUE, TRUE, 0);
@@ -105,8 +100,7 @@ dh_assistant_new (DhBase *base)
 
         priv = GET_PRIVATE (assistant);
 
-        dh_assistant_view_set_base (DH_ASSISTANT_VIEW (priv->web_view),
-                                    base);
+        dh_assistant_view_set_base (DH_ASSISTANT_VIEW (priv->view), base);
 
         return GTK_WIDGET (assistant);
 }
@@ -122,7 +116,7 @@ dh_assistant_search (DhAssistant *assistant,
 
         priv = GET_PRIVATE (assistant);
 
-        if (dh_assistant_view_search (DH_ASSISTANT_VIEW (priv->web_view), str)) {
+        if (dh_assistant_view_search (DH_ASSISTANT_VIEW (priv->view), str)) {
                 gtk_widget_show (GTK_WIDGET (assistant));
                 return TRUE;
         } else {
