@@ -1,5 +1,11 @@
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
+	Use the DhAssistantView's DhLink
+
+	* src/dh-assistant.c: use the link from the DhAssistantView
+
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
 	Added a DhLink field to the DhAssistantView
 
 	* src/dh-assistant-view.c,

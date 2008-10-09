@@ -35,7 +35,6 @@ typedef struct {
         GtkWidget *web_view;
 
         gchar     *current_search;
-        DhLink    *current_link;
 } DhAssistantPriv;
 
 static void dh_assistant_class_init (DhAssistantClass *klass);
@@ -65,10 +64,6 @@ assistant_finalize (GObject *object)
         DhAssistantPriv *priv = GET_PRIVATE (object);
 
         g_free (priv->current_search);
-
-        if (priv->current_link) {
-                dh_link_unref (priv->current_link);
-        }
 
         G_OBJECT_CLASS (dh_assistant_parent_class)->finalize (object);
 }
@@ -173,17 +168,12 @@ assistant_set_link (DhAssistant *assistant,
         const gchar     *start;
         const gchar     *end;
 
-        if (priv->current_link == link) {
+        if (dh_assistant_view_get_link (DH_ASSISTANT_VIEW (priv->web_view)) == link) {
                 return;
         }
 
-        if (link) {
-                dh_link_ref (link);
-        }
-        if (priv->current_link) {
-                dh_link_unref (priv->current_link);
-        }
-        priv->current_link = link;
+        dh_assistant_view_set_link (DH_ASSISTANT_VIEW (priv->web_view),
+                                    link);
 
         if (!link) {
                 webkit_web_view_open (WEBKIT_WEB_VIEW (priv->web_view),
