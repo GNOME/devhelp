@@ -25,6 +25,7 @@ lib_LTLIBRARIES = libdevhelp-1.la
 devhelpincludedir = $(includedir)/devhelp-1.0/devhelp
 devhelpinclude_HEADERS = 				\
 	dh-assistant.h					\
+	dh-assistant-view.h				\
 	dh-base.h					\
 	dh-book-tree.h					\
 	dh-error.h					\
@@ -39,6 +40,7 @@ libdevhelp_1_la_SOURCES =				\
 	dh-marshal.c					\
 	dh-marshal.h					\
 	dh-assistant.c					\
+	dh-assistant-view.c				\
 	dh-base.c					\
 	dh-book-tree.c					\
 	dh-error.c					\

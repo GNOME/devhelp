@@ -1,3 +1,12 @@
+2008-10-07  Sven Herzberg  <sven@imendio.com>
+
+	Added source files for the assistant view
+
+	* src/Makefile.am: distribute and compile the new sources; install the
+	header
+	* src/dh-assistant-view.c,
+	* src/dh-assistant-view.h: new skeleton files
+
 2008-10-08  Richard Hult  <richard@imendio.com>
 
 	* src/dh-parser.c: (dh_parser_read_file): Remove unnecessary
