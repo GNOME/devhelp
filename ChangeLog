@@ -1,3 +1,11 @@
+2008-10-09  Sven Herzberg  <sven@imendio.com>
+
+	Drop the "_cp" suffix of the old callbacks, now they are vfunc
+	implementations
+
+	* src/dh-assistant-view.c: for more consistency with the rest of the
+	code
+
 2008-10-07  Sven Herzberg  <sven@imendio.com>
 
 	Dropped the refactoring helpers

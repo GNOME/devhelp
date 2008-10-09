@@ -73,9 +73,9 @@ view_finalize (GObject *object)
 }
 
 static WebKitNavigationResponse
-assistant_navigation_requested_cb (WebKitWebView        *web_view,
-                                   WebKitWebFrame       *frame,
-                                   WebKitNetworkRequest *request)
+assistant_navigation_requested (WebKitWebView        *web_view,
+                                WebKitWebFrame       *frame,
+                                WebKitNetworkRequest *request)
 {
         DhAssistantView *self;
         const gchar     *uri;
@@ -99,8 +99,8 @@ assistant_navigation_requested_cb (WebKitWebView        *web_view,
 }
 
 static gboolean
-assistant_button_press_event_cb (GtkWidget      *widget,
-                                 GdkEventButton *event)
+assistant_button_press_event (GtkWidget      *widget,
+                              GdkEventButton *event)
 {
         /* Block webkit's builtin context menu. */
         if (event->button != 1) {
@@ -119,9 +119,9 @@ dh_assistant_view_class_init (DhAssistantViewClass* self_class)
 
         object_class->finalize = view_finalize;
 
-        widget_class->button_press_event = assistant_button_press_event_cb;
+        widget_class->button_press_event = assistant_button_press_event;
 
-        web_view_class->navigation_requested = assistant_navigation_requested_cb;
+        web_view_class->navigation_requested = assistant_navigation_requested;
 }
 
 DhBase*
