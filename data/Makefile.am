@@ -10,21 +10,23 @@ assistant_DATA = 		\
 
 @INTLTOOL_DESKTOP_RULE@
 
-DESKTOP_IN_FILES = devhelp.desktop.in
-DESKTOP_FILES =$(DESKTOP_IN_FILES:.desktop.in=.desktop)
-
 desktopdir = $(datadir)/applications
-desktop_DATA = $(DESKTOP_FILES)
+desktop_in_files = devhelp.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-schemasdir       = $(GCONF_SCHEMA_FILE_DIR)
+schemasdir = $(GCONF_SCHEMA_FILE_DIR)
 schemas_in_files = devhelp.schemas.in
-schemas_DATA     = $(schemas_in_files:.schemas.in=.schemas)
+schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
+
+defaultsdir = $(datadir)/devhelp
+defaults_DATA = devhelp.defaults
+devhelp.defaults: devhelp.schemas.in
+	cp $(srcdir)/devhelp.schemas.in $(builddir)/devhelp.defaults
 
 EXTRA_DIST =			\
 	libdevhelp-1.0.pc.in    \
-	$(DESKTOP_IN_FILES)	\
-	$(DESKTOP_FILES)        \
+	$(desktop_in_files)	\
 	$(schemas_in_files)     \
 	$(schemas_DATA)		\
 	$(assistant_DATA)
@@ -38,7 +40,10 @@ if GCONF_SCHEMAS_INSTALL
 	fi
 endif
 
-CLEANFILES = $(DESKTOP_FILES)
+CLEANFILES =			\
+	$(DESKTOP_FILES)	\
+	$(defaults_DATA)
 
-DISTCLEANFILES = $(DESKTOP_FILES)  \
-		 $(schemas_DATA)
+DISTCLEANFILES =		\
+	$(desktop_DATA)		\
+	$(schemas_DATA)
