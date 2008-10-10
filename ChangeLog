@@ -1,5 +1,10 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
+	* autogen.sh:
+	* configure.ac: Rename configure.in to .ac.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
 	* src/Makefile.am: Use marshal generation from build dir.
 
 2008-10-10  Richard Hult  <richard@imendio.com>
