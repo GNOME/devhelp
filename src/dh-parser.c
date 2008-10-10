@@ -24,7 +24,7 @@
 #include <string.h>
 #include <errno.h>
 #include <zlib.h>
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 
 #include "dh-error.h"
 #include "dh-link.h"
