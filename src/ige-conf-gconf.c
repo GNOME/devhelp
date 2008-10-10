@@ -38,8 +38,6 @@ G_DEFINE_TYPE (IgeConf, ige_conf, G_TYPE_OBJECT);
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
   (instance, IGE_TYPE_CONF, IgeConfPriv);
 
-#define CONF_PATH "/apps/devhelp"
-
 static IgeConf *global_conf = NULL;
 
 static void
@@ -49,9 +47,11 @@ conf_finalize (GObject *object)
 
         priv = GET_PRIVATE (object);
 
+        /* FIXME: Remove added dirs.
         gconf_client_remove_dir (priv->gconf_client,
                                  CONF_PATH,
                                  NULL);
+        */
 
         g_object_unref (priv->gconf_client);
 
@@ -74,15 +74,12 @@ static void
 ige_conf_init (IgeConf *conf)
 {
         IgeConfPriv *priv;
+        GList       *defaults;
+        gchar       *root;
 
         priv = GET_PRIVATE (conf);
 
         priv->gconf_client = gconf_client_get_default ();
-
-        gconf_client_add_dir (priv->gconf_client,
-                              CONF_PATH,
-                              GCONF_CLIENT_PRELOAD_ONELEVEL,
-                              NULL);
 }
 
 IgeConf *
@@ -93,6 +90,25 @@ ige_conf_get (void)
         }
 
         return global_conf;
+}
+
+void
+ige_conf_add_defaults (IgeConf     *conf,
+                       const gchar *path)
+{
+        GList *defaults;
+        gchar *root;
+
+        defaults = _ige_conf_defaults_read_file (path, NULL);
+        root = _ige_conf_defaults_get_root (defaults);
+
+        gconf_client_add_dir (priv->gconf_client,
+                              root,
+                              GCONF_CLIENT_PRELOAD_ONELEVEL,
+                              NULL);
+
+        g_free (root);
+        _ige_conf_defaults_free_list (defaults);
 }
 
 gboolean

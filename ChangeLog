@@ -1,5 +1,23 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
+	* src/Makefile.am:
+	* src/ige-conf.h:
+	* src/ige-conf-private.h:
+	* src/ige-conf.c: New file with code to read the installed
+	defaults file.
+
+	* src/ige-conf-mac.m: Use the defaults from above here to setup
+	defaults for NSUserDefaults.
+
+	* src/ige-conf-gconf.c: Get the highest level dir from the
+	defaults instead of hard coding it.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
+	* src/Makefile.am: Disable deprecated APIs in GLib, GDK, and GTK+.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
 	* data/devhelp.schemas.in: Restructure the non-preferences keys
 	that are used for saving state so we can add more of those without
 	making a mess.

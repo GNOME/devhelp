@@ -36,7 +36,7 @@ typedef struct _IgeConf      IgeConf;
 typedef struct _IgeConfClass IgeConfClass;
 
 struct _IgeConf  {
-        GObject parent;
+        GObject parent_instance;
 };
 
 struct _IgeConfClass {
@@ -49,6 +49,8 @@ typedef void (*IgeConfNotifyFunc) (IgeConf     *conf,
 
 GType       ige_conf_get_type        (void);
 IgeConf    *ige_conf_get             (void);
+void        ige_conf_add_defaults    (IgeConf            *conf,
+				      const gchar        *path);
 guint       ige_conf_notify_add      (IgeConf            *conf,
                                       const gchar        *key,
                                       IgeConfNotifyFunc   func,

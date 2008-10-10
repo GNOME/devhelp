@@ -21,7 +21,7 @@
 #include "config.h"
 #import <Cocoa/Cocoa.h>
 #include <string.h>
-#include "ige-conf.h"
+#include "ige-conf-private.h"
 
 typedef struct {
         NSUserDefaults *defaults;
@@ -32,9 +32,6 @@ typedef struct {
         IgeConfNotifyFunc  func;
         gpointer           user_data;
 } IgeConfNotifyData;
-
-#define POOL_ALLOC   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]
-#define POOL_RELEASE [pool release]
 
 G_DEFINE_TYPE (IgeConf, ige_conf, G_TYPE_OBJECT);
 
@@ -49,6 +46,10 @@ conf_finalize (GObject *object)
         IgeConfPriv *priv = GET_PRIVATE (object);
 
         [priv->defaults synchronize];
+
+        if (IGE_CONF (object) == global_conf) {
+                global_conf = NULL;
+        }
 
         G_OBJECT_CLASS (ige_conf_parent_class)->finalize (object);
 }
@@ -68,24 +69,16 @@ ige_conf_class_init (IgeConfClass *class)
 static void
 ige_conf_init (IgeConf *conf)
 {
-        IgeConfPriv  *priv = GET_PRIVATE (conf);
-        NSDictionary *dict;
+}
 
-        priv->defaults = [NSUserDefaults standardUserDefaults];
+static void
+conf_atexit (void)
+{
+        if (global_conf) {
+                IgeConfPriv *priv = GET_PRIVATE (global_conf);
 
-        POOL_ALLOC;
-
-#define CONF_PATH                     "/apps/devhelp"
-#define CONF_UI_MAIN_WINDOW_MAXIMIZED CONF_PATH "/ui/main_window_maximized"
-
-        dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                @"NO", @CONF_UI_MAIN_WINDOW_MAXIMIZED,
-                nil];
-
-        /* Setup defaults. FIXME: Can we do this only when needed? */
-        [priv->defaults registerDefaults: dict];
-
-        POOL_RELEASE;
+                [priv->defaults synchronize];
+        }
 }
 
 IgeConf *
@@ -93,9 +86,38 @@ ige_conf_get (void)
 {
         if (!global_conf) {
                 global_conf = g_object_new (IGE_TYPE_CONF, NULL);
+                g_atexit (conf_atexit);
         }
 
         return global_conf;
+}
+
+void
+ige_conf_add_defaults (IgeConf     *conf,
+                       const gchar *path)
+{
+        IgeConfPriv  *priv = GET_PRIVATE (conf);
+        NSDictionary *dict;
+        GList        *defaults, *l;
+
+        priv->defaults = [NSUserDefaults standardUserDefaults];
+
+        dict = [NSMutableDictionary dictionaryWithCapacity: 10];
+
+        defaults = _ige_conf_defaults_read_file (path, NULL);
+        for (l = defaults; l; l = l->next) {
+                IgeConfDefaultItem *item = l->data;
+                NSString           *key;
+                NSString           *value;
+
+                key = [NSString stringWithUTF8String: item->key];
+                value = [NSString stringWithUTF8String: item->value];
+                [dict setValue:value forKey:key];
+        }
+
+        _ige_conf_defaults_free_list (defaults);
+
+        [priv->defaults registerDefaults: dict];
 }
 
 gboolean
@@ -110,12 +132,8 @@ ige_conf_set_int (IgeConf     *conf,
 
         priv = GET_PRIVATE (conf);
 
-        POOL_ALLOC;
-
         string = [NSString stringWithUTF8String: key];
         [priv->defaults setInteger: value forKey: string];
-
-        POOL_RELEASE;
 
         return TRUE;
 }
@@ -132,14 +150,8 @@ ige_conf_get_int (IgeConf     *conf,
 
         priv = GET_PRIVATE (conf);
 
-        POOL_ALLOC;
-
         string = [NSString stringWithUTF8String: key];
         *value = [priv->defaults integerForKey: string];
-
-        [priv->defaults synchronize];
-
-        POOL_RELEASE;
 
         return TRUE;
 }
@@ -156,14 +168,8 @@ ige_conf_set_bool (IgeConf     *conf,
 
         priv = GET_PRIVATE (conf);
 
-        POOL_ALLOC;
-
         string = [NSString stringWithUTF8String: key];
         [priv->defaults setBool: value forKey: string];
-
-        [priv->defaults synchronize];
-
-        POOL_RELEASE;
 
         return TRUE;
 }
@@ -180,12 +186,8 @@ ige_conf_get_bool (IgeConf     *conf,
 
         priv = GET_PRIVATE (conf);
 
-        POOL_ALLOC;
-
         string = [NSString stringWithUTF8String: key];
         *value = [priv->defaults boolForKey: string];
-
-        POOL_RELEASE;
 
         return TRUE;
 }
@@ -202,15 +204,10 @@ ige_conf_set_string (IgeConf     *conf,
 
         priv = GET_PRIVATE (conf);
 
-        POOL_ALLOC;
-
         string = [NSString stringWithUTF8String: key];
         nsvalue = [NSString stringWithUTF8String: value];
+
         [priv->defaults setObject: nsvalue forKey: string];
-
-        [priv->defaults synchronize];
-
-        POOL_RELEASE;
 
         return TRUE;
 }
@@ -227,14 +224,15 @@ ige_conf_get_string (IgeConf      *conf,
 
         priv = GET_PRIVATE (conf);
 
-        POOL_ALLOC;
+        *value = NULL;
 
         string = [NSString stringWithUTF8String: key];
         nsvalue = [priv->defaults stringForKey: string];
+        if (nsvalue == NULL) {
+                return FALSE;
+        }
 
         *value = g_strdup ([nsvalue UTF8String]);
-
-        POOL_RELEASE;
 
         return TRUE;
 }
