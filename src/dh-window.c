@@ -33,6 +33,7 @@
 #include "dh-preferences.h"
 #include "dh-search.h"
 #include "dh-window.h"
+#include "dh-util.h"
 #include "eggfindbar.h"
 #include "ige-conf.h"
 
@@ -84,22 +85,9 @@ zoom_levels[] =
 #define ZOOM_MAXIMAL    (zoom_levels[8].level)
 #define ZOOM_DEFAULT    (zoom_levels[2].level)
 
-/* People have reported problems with the default values in GConf so I'm
- * adding this to make sure that the window isn't started 1x1 pixels or the
- * paned having size 0
- */
-#define DEFAULT_WIDTH     700
-#define DEFAULT_HEIGHT    500
-#define DEFAULT_PANED_LOC 250
-
 static void           dh_window_class_init           (DhWindowClass   *klass);
 static void           dh_window_init                 (DhWindow        *window);
 static void           window_populate                (DhWindow        *window);
-static void           window_save_state              (DhWindow        *window);
-static void           window_restore_state           (DhWindow        *window);
-static gboolean       window_delete_cb               (GtkWidget       *widget,
-                                                      GdkEventAny     *event,
-                                                      gpointer         user_data);
 static void           window_tree_link_selected_cb   (GObject         *ignored,
                                                       DhLink          *link,
                                                       DhWindow        *window);
@@ -195,7 +183,6 @@ window_activate_close (GtkAction *action,
         gtk_notebook_remove_page (GTK_NOTEBOOK (priv->notebook), page_num);
 
         if (gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook)) == 0) {
-                window_save_state (window);
                 gtk_widget_destroy (GTK_WIDGET (window));
         }
 }
@@ -628,7 +615,6 @@ window_populate (DhWindow *window)
         GtkWidget    *book_tree_sw;
         GNode        *contents_tree;
         GList        *keywords;
-        gint          hpaned_position;
 
         priv = window->priv;
 
@@ -675,18 +661,6 @@ window_populate (DhWindow *window)
 
         gtk_box_pack_start (GTK_BOX (priv->main_box), priv->hpaned, TRUE, TRUE, 0);
 
-        ige_conf_get_int (ige_conf_get (),
-                          DH_CONF_PANED_LOCATION,
-                          &hpaned_position);
-
-        /* This workaround for broken schema installs is not really working that
-         * well, since it makes having a 0 location not possible.
-         */
-        if (hpaned_position <= 0) {
-                hpaned_position = DEFAULT_PANED_LOC;
-        }
-        gtk_paned_set_position (GTK_PANED (priv->hpaned), hpaned_position);
-
         /* Search and contents notebook. */
         priv->control_notebook = gtk_notebook_new ();
 
@@ -715,10 +689,9 @@ window_populate (DhWindow *window)
         keywords = dh_base_get_keywords (priv->base);
 
         priv->book_tree = dh_book_tree_new (contents_tree);
-
         gtk_container_add (GTK_CONTAINER (book_tree_sw),
                            priv->book_tree);
-
+        dh_util_state_set_notebook_page_name (book_tree_sw, "content");
         gtk_notebook_append_page (GTK_NOTEBOOK (priv->control_notebook),
                                   book_tree_sw,
                                   gtk_label_new (_("Contents")));
@@ -728,11 +701,10 @@ window_populate (DhWindow *window)
                           window);
 
         priv->search = dh_search_new (keywords);
-
+        dh_util_state_set_notebook_page_name (priv->search, "search");
         gtk_notebook_append_page (GTK_NOTEBOOK (priv->control_notebook),
                                   priv->search,
                                   gtk_label_new (_("Search")));
-
         g_signal_connect (priv->search,
                           "link-selected",
                           G_CALLBACK (window_search_link_selected_cb),
@@ -781,125 +753,6 @@ window_populate (DhWindow *window)
         gtk_widget_show_all (priv->hpaned);
 
         window_open_new_tab (window, NULL);
-}
-
-static void
-window_save_state (DhWindow *window)
-{
-        DhWindowPriv   *priv;
-        GdkWindowState  state;
-        gboolean        maximized;
-
-        priv = window->priv;
-
-        state = gdk_window_get_state (GTK_WIDGET (window)->window);
-        if (state & GDK_WINDOW_STATE_MAXIMIZED) {
-                maximized = TRUE;
-        } else {
-                maximized = FALSE;
-        }
-
-        ige_conf_set_bool (ige_conf_get (),
-                           DH_CONF_MAIN_WINDOW_MAXIMIZED, maximized);
-
-        /* If maximized don't save the size and position. */
-        if (!maximized) {
-                gint width, height;
-                gint x, y;
-
-                gtk_window_get_size (GTK_WINDOW (window), &width, &height);
-                ige_conf_set_int (ige_conf_get (),
-                                  DH_CONF_MAIN_WINDOW_WIDTH, width);
-                ige_conf_set_int (ige_conf_get (),
-                                  DH_CONF_MAIN_WINDOW_HEIGHT, height);
-
-                gtk_window_get_position (GTK_WINDOW (window), &x, &y);
-                ige_conf_set_int (ige_conf_get (),
-                                  DH_CONF_MAIN_WINDOW_POS_X, x);
-                ige_conf_set_int (ige_conf_get (),
-                                  DH_CONF_MAIN_WINDOW_POS_Y, y);
-        }
-
-        ige_conf_set_int (ige_conf_get (),
-                          DH_CONF_PANED_LOCATION,
-                          gtk_paned_get_position (GTK_PANED (priv->hpaned)));
-
-        if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->control_notebook)) == 0) {
-                ige_conf_set_string (ige_conf_get (),
-                                     DH_CONF_SELECTED_TAB, "content");
-        } else {
-                ige_conf_set_string (ige_conf_get (),
-                                     DH_CONF_SELECTED_TAB, "search");
-        }
-}
-
-static void
-window_restore_state (DhWindow *window)
-{
-        DhWindowPriv *priv;
-        gboolean      maximized;
-        int           width, height;
-        int           x, y;
-        gchar        *tab;
-
-        priv = window->priv;
-
-        ige_conf_get_int (ige_conf_get (),
-                          DH_CONF_MAIN_WINDOW_WIDTH,
-                          &width);
-
-        if (width <= 0) {
-                width = DEFAULT_WIDTH;
-        }
-
-        ige_conf_get_int (ige_conf_get (),
-                          DH_CONF_MAIN_WINDOW_HEIGHT,
-                          &height);
-
-        if (height <= 0) {
-                height = DEFAULT_HEIGHT;
-        }
-
-        gtk_window_set_default_size (GTK_WINDOW (window),
-                                     width, height);
-
-        ige_conf_get_int (ige_conf_get (),
-                          DH_CONF_MAIN_WINDOW_POS_X,
-                          &x);
-        ige_conf_get_int (ige_conf_get (),
-                          DH_CONF_MAIN_WINDOW_POS_Y,
-                          &y);
-
-        gtk_window_move (GTK_WINDOW (window), x, y);
-
-        ige_conf_get_bool (ige_conf_get (),
-                           DH_CONF_MAIN_WINDOW_MAXIMIZED,
-                           &maximized);
-        if (maximized) {
-                gtk_window_maximize (GTK_WINDOW (window));
-        }
-
-        ige_conf_get_string (ige_conf_get (),
-                             DH_CONF_SELECTED_TAB,
-                             &tab);
-        if (!tab || strcmp (tab, "") == 0 || strcmp (tab, "content") == 0) {
-                gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 0);
-                gtk_widget_grab_focus (priv->book_tree);
-        } else {
-                gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
-                gtk_widget_grab_focus (priv->search);
-        }
-        g_free (tab);
-}
-
-static gboolean
-window_delete_cb (GtkWidget   *widget,
-                  GdkEventAny *event,
-                  gpointer     user_data)
-{
-        window_save_state (DH_WINDOW (widget));
-
-        return FALSE;
 }
 
 static void
@@ -1433,15 +1286,15 @@ dh_window_new (DhBase *base)
 
         priv->base = g_object_ref (base);
 
-        g_signal_connect (window,
-                          "delete-event",
-                          G_CALLBACK (window_delete_cb),
-                          NULL);
-
         window_populate (window);
-        window_restore_state (window);
 
         gtk_window_set_icon_name (GTK_WINDOW (window), "devhelp");
+
+        dh_util_state_manage_window (GTK_WINDOW (window), "main/window");
+        dh_util_state_manage_paned (GTK_PANED (priv->hpaned), "main/paned");
+        dh_util_state_manage_notebook (GTK_NOTEBOOK (priv->control_notebook),
+                                       "main/search_notebook",
+                                       "content");
 
         return GTK_WIDGET (window);
 }

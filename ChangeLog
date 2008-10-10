@@ -1,5 +1,10 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c: (window_populate): Remove the state saving and
+	use dh_util_state_*.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
 	* src/*.h: Add begin/end decl macros for consistency.
 
 2008-10-10  Richard Hult  <richard@imendio.com>
