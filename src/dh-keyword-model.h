@@ -53,7 +53,7 @@ enum {
         DH_KEYWORD_MODEL_NUM_COLS
 };
 
-GtkType         dh_keyword_model_get_type  (void);
+GType           dh_keyword_model_get_type  (void);
 DhKeywordModel *dh_keyword_model_new       (void);
 void            dh_keyword_model_set_words (DhKeywordModel *model,
                                             GList          *keywords);
