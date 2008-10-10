@@ -20,6 +20,7 @@
 
 #include "config.h"
 #include <string.h>
+#include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include "dh-window.h"
@@ -69,6 +70,8 @@ dh_assistant_init (DhAssistant *assistant)
         gtk_widget_show (priv->main_box);
         gtk_container_add (GTK_CONTAINER (assistant), priv->main_box);
 
+        /* i18n: Please don't translate "Devhelp". */
+        gtk_window_set_title (GTK_WINDOW (assistant), _("Devhelp - Assistant"));
         gtk_window_set_icon_name (GTK_WINDOW (assistant), "devhelp");
         gtk_window_set_default_size (GTK_WINDOW (assistant), 400, 400);
 
