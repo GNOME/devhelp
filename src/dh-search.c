@@ -593,7 +593,7 @@ dh_search_new (GList *keywords)
 
         gtk_container_add (GTK_CONTAINER (list_sw), priv->hitlist);
 
-        gtk_box_pack_end_defaults (GTK_BOX (search), frame);
+        gtk_box_pack_end (GTK_BOX (search), frame, TRUE, TRUE, 0);
 
         g_completion_add_items (priv->completion, keywords);
         dh_keyword_model_set_words (priv->model, keywords);

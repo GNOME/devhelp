@@ -1,5 +1,9 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
+	* src/dh-search.c: (dh_search_new): Replace deprecated API.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
 	* src/eggfindbar.c: Sync from evince to get rid of deprecated
 	APIs. Reapply the removal of property translations.
 
