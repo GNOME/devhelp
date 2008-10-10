@@ -6,6 +6,7 @@ data/ui/devhelp.glade
 misc/gedit-plugin/devhelp.desktop.in
 misc/gedit-plugin/devhelp/devhelp.py
 src/dh-assistant.c
+src/dh-assistant-view.c
 src/dh-base.c
 src/dh-book-tree.c
 src/dh-keyword-model.c
