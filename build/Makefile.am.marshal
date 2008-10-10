@@ -1,0 +1,21 @@
+$(MARSHAL)-marshal.h: $(MARSHAL)-marshal.list
+	(cd $(srcdir) && \
+	$(GLIB_GENMARSHAL) --prefix=_$(MARSHAL)_marshal $(MARSHAL)-marshal.list --header) > xgen-gmh \
+	&& (cmp -s xgen-gmh $(MARSHAL)-marshal.h || cp xgen-gmh $(MARSHAL)-marshal.h) \
+	&& rm -f xgen-gmh xgen-gmh~
+
+$(MARSHAL)-marshal.c: $(MARSHAL)-marshal.list
+	(cd $(srcdir) && \
+	echo "#include \"$(MARSHAL)-marshal.h\""; \
+	$(GLIB_GENMARSHAL) --prefix=_$(MARSHAL)_marshal $(MARSHAL)-marshal.list --body) > xgen-gmc \
+	&& cp xgen-gmc $(MARSHAL)-marshal.c \
+	&& rm -f xgen-gmc xgen-gmc~
+
+BUILT_SOURCES += 			\
+	$(MARSHAL)-marshal.h		\
+	$(MARSHAL)-marshal.c		\
+	$(NULL)
+
+EXTRA_DIST +=				\
+	$(MARSHAL)-marshal.list		\
+	$(NULL)
