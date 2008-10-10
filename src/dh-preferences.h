@@ -25,13 +25,6 @@
 
 G_BEGIN_DECLS
 
-#define DH_CONF_PATH "/apps/devhelp"
-#define DH_CONF_USE_SYSTEM_FONTS      DH_CONF_PATH "/ui/use_system_fonts"
-#define DH_CONF_VARIABLE_FONT         DH_CONF_PATH "/ui/variable_font"
-#define DH_CONF_FIXED_FONT            DH_CONF_PATH "/ui/fixed_font"
-#define DH_CONF_SYSTEM_VARIABLE_FONT  "/desktop/gnome/interface/font_name"
-#define DH_CONF_SYSTEM_FIXED_FONT     "/desktop/gnome/interface/monospace_font_name"
-
 void dh_preferences_setup_fonts (void);
 void dh_preferences_show_dialog (GtkWindow *parent);
 
