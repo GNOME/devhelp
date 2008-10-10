@@ -26,6 +26,8 @@
 #include <gtk/gtk.h>
 #include "dh-base.h"
 
+G_BEGIN_DECLS
+
 #define DH_TYPE_WINDOW         (dh_window_get_type ())
 #define DH_WINDOW(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_WINDOW, DhWindow))
 #define DH_WINDOW_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), DH_TYPE_WINDOW, DhWindowClass))
@@ -54,5 +56,7 @@ void       dh_window_search       (DhWindow    *window,
 void       dh_window_focus_search (DhWindow    *window);
 void       _dh_window_display_uri (DhWindow    *window,
                                    const gchar *uri);
+
+G_END_DECLS
 
 #endif /* __DH_WINDOW_H__ */

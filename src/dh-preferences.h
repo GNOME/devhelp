@@ -23,17 +23,10 @@
 
 #include <gtk/gtk.h>
 
-#define DH_CONF_PATH "/apps/devhelp"
+G_BEGIN_DECLS
 
-#define DH_CONF_MAIN_WINDOW_MAXIMIZED DH_CONF_PATH "/ui/main_window_maximized"
-#define DH_CONF_MAIN_WINDOW_WIDTH     DH_CONF_PATH "/ui/main_window_width"
-#define DH_CONF_MAIN_WINDOW_HEIGHT    DH_CONF_PATH "/ui/main_window_height"
-#define DH_CONF_MAIN_WINDOW_POS_X     DH_CONF_PATH "/ui/main_window_position_x"
-#define DH_CONF_MAIN_WINDOW_POS_Y     DH_CONF_PATH "/ui/main_window_position_y"
-#define DH_CONF_PANED_LOCATION        DH_CONF_PATH "/ui/paned_location"
-#define DH_CONF_SELECTED_TAB          DH_CONF_PATH "/ui/selected_tab"
+#define DH_CONF_PATH "/apps/devhelp"
 #define DH_CONF_USE_SYSTEM_FONTS      DH_CONF_PATH "/ui/use_system_fonts"
-#define DH_CONF_ADVANCED_OPTIONS      DH_CONF_PATH "/ui/show_advanced_search_options"
 #define DH_CONF_VARIABLE_FONT         DH_CONF_PATH "/ui/variable_font"
 #define DH_CONF_FIXED_FONT            DH_CONF_PATH "/ui/fixed_font"
 #define DH_CONF_SYSTEM_VARIABLE_FONT  "/desktop/gnome/interface/font_name"
@@ -41,6 +34,8 @@
 
 void dh_preferences_setup_fonts (void);
 void dh_preferences_show_dialog (GtkWindow *parent);
+
+G_END_DECLS
 
 #endif /* __DH_PREFERENCES_H__ */
 

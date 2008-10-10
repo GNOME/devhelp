@@ -24,6 +24,8 @@
 #include <gtk/gtk.h>
 #include "dh-link.h"
 
+G_BEGIN_DECLS
+
 #define DH_TYPE_BOOK_TREE            (dh_book_tree_get_type ())
 #define DH_BOOK_TREE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_BOOK_TREE, DhBookTree))
 #define DH_BOOK_TREE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_BOOK_TREE, DhBookTreeClass))
@@ -46,5 +48,7 @@ GtkWidget *  dh_book_tree_new                     (GNode       *books);
 void         dh_book_tree_select_uri              (DhBookTree  *book_tree,
                                                    const gchar *uri);
 const gchar *dh_book_tree_get_selected_book_title (DhBookTree  *tree);
+
+G_END_DECLS
 
 #endif /* __DH_BOOK_TREE_H__ */

@@ -24,6 +24,8 @@
 #include <gtk/gtk.h>
 #include "dh-base.h"
 
+G_BEGIN_DECLS
+
 #define DH_TYPE_ASSISTANT         (dh_assistant_get_type ())
 #define DH_ASSISTANT(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_ASSISTANT, DhAssistant))
 #define DH_ASSISTANT_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), DH_TYPE_ASSISTANT, DhAssistantClass))
@@ -46,5 +48,7 @@ GType      dh_assistant_get_type  (void) G_GNUC_CONST;
 GtkWidget *dh_assistant_new       (DhBase      *base);
 gboolean   dh_assistant_search    (DhAssistant *assistant,
                                    const gchar *str);
+
+G_END_DECLS
 
 #endif /* __DH_ASSISTANT_H__ */

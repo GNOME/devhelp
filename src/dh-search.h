@@ -25,6 +25,8 @@
 #include <gtk/gtk.h>
 #include "dh-link.h"
 
+G_BEGIN_DECLS
+
 #define DH_TYPE_SEARCH           (dh_search_get_type ())
 #define DH_SEARCH(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_SEARCH, DhSearch))
 #define DH_SEARCH_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_SEARCH, DhSearchClass))
@@ -51,5 +53,7 @@ GtkWidget *dh_search_new               (GList       *keywords);
 void       dh_search_set_search_string (DhSearch    *search,
                                         const gchar *str,
                                         const gchar *book_id);
+
+G_END_DECLS
 
 #endif /* __DH_SEARCH_H__ */

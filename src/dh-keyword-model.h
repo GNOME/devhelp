@@ -25,6 +25,8 @@
 #include <gtk/gtk.h>
 #include "dh-link.h"
 
+G_BEGIN_DECLS
+
 #define DH_TYPE_KEYWORD_MODEL            (dh_keyword_model_get_type ())
 #define DH_KEYWORD_MODEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModel))
 #define DH_KEYWORD_MODEL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
@@ -60,5 +62,7 @@ void            dh_keyword_model_set_words (DhKeywordModel *model,
 DhLink *        dh_keyword_model_filter    (DhKeywordModel *model,
                                             const gchar    *string,
                                             const gchar    *book_id);
+
+G_END_DECLS
 
 #endif /* __DH_KEYWORD_MODEL_H__ */

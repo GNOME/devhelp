@@ -1,5 +1,9 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
+	* src/*.h: Add begin/end decl macros for consistency.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
 	* configure.in:
 	* data/ui/Makefile.am:
 	* data/ui/devhelp.glade:

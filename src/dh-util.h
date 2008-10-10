@@ -24,6 +24,8 @@
 
 #include <gtk/gtk.h>
 
+G_BEGIN_DECLS
+
 GtkBuilder * dh_util_builder_get_file             (const gchar *filename,
                                                    const gchar *root,
                                                    const gchar *domain,
@@ -45,5 +47,7 @@ void         dh_util_state_manage_notebook        (GtkNotebook *notebook,
 void         dh_util_state_set_notebook_page_name (GtkWidget   *page,
                                                    const gchar *page_name);
 const gchar *dh_util_state_get_notebook_page_name (GtkWidget   *page);
+
+G_END_DECLS
 
 #endif /* __DH_UTIL_H__ */

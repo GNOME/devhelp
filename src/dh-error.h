@@ -24,6 +24,8 @@
 
 #include <glib.h>
 
+G_BEGIN_DECLS
+
 #define DH_ERROR dh_error_quark ()
 
 typedef enum {
@@ -34,5 +36,7 @@ typedef enum {
 } DhError;
 
 GQuark dh_error_quark (void) G_GNUC_CONST;
+
+G_END_DECLS
 
 #endif /* __DH_ERROR_H__ */
