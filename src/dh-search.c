@@ -645,15 +645,3 @@ dh_search_set_search_string (DhSearch    *search,
                         g_idle_add ((GSourceFunc) search_filter_idle, search);
         }
 }
-
-void
-dh_search_grab_focus (DhSearch *search)
-{
-        DhSearchPriv *priv;
-
-        g_return_if_fail (DH_IS_SEARCH (search));
-
-        priv = GET_PRIVATE (search);
-
-        gtk_widget_grab_focus (priv->entry);
-}

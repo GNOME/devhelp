@@ -350,7 +350,7 @@ window_activate_show_search (GtkAction *action,
         priv = window->priv;
 
         gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
-        dh_search_grab_focus (DH_SEARCH (priv->search));
+        gtk_widget_grab_focus (priv->search);
 }
 
 static void
@@ -887,7 +887,7 @@ window_restore_state (DhWindow *window)
                 gtk_widget_grab_focus (priv->book_tree);
         } else {
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
-                dh_search_grab_focus (DH_SEARCH (priv->search));
+                gtk_widget_grab_focus (priv->search);
         }
         g_free (tab);
 }
@@ -1471,8 +1471,7 @@ dh_window_focus_search (DhWindow *window)
         priv = window->priv;
 
         gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
-
-        dh_search_grab_focus (DH_SEARCH (priv->search));
+        gtk_widget_grab_focus (priv->search);
 }
 
 /* Only call this with a URI that is known to be in the docs. */
