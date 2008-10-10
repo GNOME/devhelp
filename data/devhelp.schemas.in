@@ -2,96 +2,128 @@
   <schemalist>
 
     <schema>
-      <key>/schemas/apps/devhelp/ui/main_window_maximized</key>
-      <applyto>/apps/devhelp/ui/main_window_maximized</applyto>
+      <key>/schemas/apps/devhelp/state/main/window/maximized</key>
+      <applyto>/apps/devhelp/state/main/window/maximized</applyto>
       <owner>devhelp</owner>
       <type>bool</type>
       <default>false</default>
       <locale name="C">
          <short>Main window maximized state</short>
-         <long>
-           Whether the main window should start maximized or not.
-         </long>
+         <long>Whether the main window should start maximized or not.</long>
       </locale>
     </schema>
 
     <schema>
-      <key>/schemas/apps/devhelp/ui/main_window_width</key>
-      <applyto>/apps/devhelp/ui/main_window_width</applyto>
+      <key>/schemas/apps/devhelp/state/main/window/width</key>
+      <applyto>/apps/devhelp/state/main/window/width</applyto>
       <owner>devhelp</owner>
       <type>int</type>
       <default>700</default>
       <locale name="C">
          <short>Width of the main window</short>
-         <long>
-           The width of the main window.
-         </long>
+         <long>The width of the main window.</long>
       </locale>
     </schema>
                                                                                 
     <schema>
-      <key>/schemas/apps/devhelp/ui/main_window_height</key>
-      <applyto>/apps/devhelp/ui/main_window_height</applyto>
+      <key>/schemas/apps/devhelp/state/main/window/height</key>
+      <applyto>/apps/devhelp/state/main/window/height</applyto>
       <owner>devhelp</owner>
       <type>int</type>
       <default>500</default>
       <locale name="C">
          <short>Height of main window</short>
-         <long>
-           The height of the main window.
-         </long>
+         <long>The height of the main window.</long>
       </locale>
     </schema>
     <schema>
-      <key>/schemas/apps/devhelp/ui/main_window_position_x</key>
-      <applyto>/apps/devhelp/ui/main_window_position_x</applyto>
+      <key>/schemas/apps/devhelp/state/main/window/x_position</key>
+      <applyto>/apps/devhelp/state/main/window/x_position</applyto>
       <owner>devhelp</owner>
       <type>int</type>
-      <default>0</default>
+      <default>100</default>
       <locale name="C">
          <short>X position of main window</short>
-         <long>
-           The X position of the main window.
-         </long>
+         <long>The X position of the main window.</long>
       </locale>
     </schema>
     <schema>
-      <key>/schemas/apps/devhelp/ui/main_window_position_y</key>
-      <applyto>/apps/devhelp/ui/main_window_position_y</applyto>
+      <key>/schemas/apps/devhelp/state/main/window/y_position</key>
+      <applyto>/apps/devhelp/state/main/window/y_position</applyto>
+      <owner>devhelp</owner>
+      <type>int</type>
+      <default>100</default>
+      <locale name="C">
+         <short>Y position of main window</short>
+         <long>The Y position of the main window.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/devhelp/state/assistant/window/width</key>
+      <applyto>/apps/devhelp/state/assistant/window/width</applyto>
+      <owner>devhelp</owner>
+      <type>int</type>
+      <default>350</default>
+      <locale name="C">
+         <short>Width of the assistant window</short>
+         <long>The width of the assistant window.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/devhelp/state/assistant/window/height</key>
+      <applyto>/apps/devhelp/state/assistant/window/height</applyto>
+      <owner>devhelp</owner>
+      <type>int</type>
+      <default>400</default>
+      <locale name="C">
+         <short>Height of assistant window</short>
+         <long>The height of the assistant window.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/devhelp/state/assistant/window/x_position</key>
+      <applyto>/apps/devhelp/state/assistant/window/x_position</applyto>
       <owner>devhelp</owner>
       <type>int</type>
       <default>0</default>
       <locale name="C">
-         <short>Y position of main window</short>
-         <long>
-           The Y position of the main window.
-         </long>
+         <short>X position of assistant window</short>
+         <long>The X position of the assistant window.</long>
       </locale>
     </schema>
     <schema>
-      <key>/schemas/apps/devhelp/ui/paned_location</key>
-      <applyto>/apps/devhelp/ui/paned_location</applyto>
+      <key>/schemas/apps/devhelp/state/assistant/window/y_position</key>
+      <applyto>/apps/devhelp/state/assistant/window/y_position</applyto>
+      <owner>devhelp</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+         <short>Y position of assistant window</short>
+         <long>The Y position of the assistant window.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/devhelp/state/main/paned/position</key>
+      <applyto>/apps/devhelp/state/main/paned/position</applyto>
       <owner>devhelp</owner>
       <type>int</type>
       <default>250</default>
       <locale name="C">
          <short>Width of the index and search pane</short>
-         <long>
-           The width of the index and search pane.
-         </long>
+         <long>The width of the index and search pane.</long>
       </locale>
     </schema>
     <schema>
-      <key>/schemas/apps/devhelp/ui/selected_tab</key>
-      <applyto>/apps/devhelp/ui/selected_tab</applyto>
+      <key>/schemas/apps/devhelp/state/main/search_notebook/selected_tab</key>
+      <applyto>/apps/devhelp/state/main/search_notebook/selected_tab</applyto>
       <owner>devhelp</owner>
       <type>string</type>
       <default>content</default>
       <locale name="C">
          <short>Selected tab, "content" or "search"</short>
-         <long>
-	   Which of the tabs that is selected, "content" or "search".
-         </long>
+         <long>Which of the tabs that is selected, "content" or "search".</long>
       </locale>
     </schema>
     <schema>
@@ -115,9 +147,7 @@
       <default>Sans 12</default>
       <locale name="C">
          <short>Font for text</short>
-         <long>
-	   Font for text with variable width.
-         </long>
+         <long>Font for text with variable width.</long>
       </locale>
     </schema>
     <schema>
@@ -128,12 +158,9 @@
       <default>Monospace 12</default>
       <locale name="C">
          <short>Font for fixed width text</short>
-         <long>
-	   Font for text with fixed width, such as code examples
-         </long>
+         <long>Font for text with fixed width, such as code examples.</long>
       </locale>
     </schema>
 
    </schemalist>
 </gconfschemafile>
-
