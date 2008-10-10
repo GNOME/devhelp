@@ -46,31 +46,31 @@ typedef struct {
         guint           idle_filter;
 } DhSearchPriv;
 
-static void         dh_search_init                    (DhSearch         *search);
-static void         dh_search_class_init              (DhSearchClass    *klass);
-static void         search_selection_changed_cb       (GtkTreeSelection *selection,
-                                                       DhSearch         *content);
-static gboolean     search_tree_button_press_cb       (GtkTreeView      *view,
-                                                       GdkEventButton   *event,
-                                                       DhSearch         *search);
-static gboolean     search_entry_key_press_event_cb   (GtkEntry         *entry,
-                                                       GdkEventKey      *event,
-                                                       DhSearch         *search);
-static void         search_combo_changed_cb           (GtkComboBox      *combo,
-                                                       DhSearch         *search);
-static void         search_entry_changed_cb           (GtkEntry         *entry,
-                                                       DhSearch         *search);
-static void         search_entry_activated_cb         (GtkEntry         *entry,
-                                                       DhSearch         *search);
-static void         search_entry_text_inserted_cb     (GtkEntry         *entry,
-                                                       const gchar      *text,
-                                                       gint              length,
-                                                       gint             *position,
-                                                       DhSearch         *search);
-static gboolean     search_complete_idle              (DhSearch         *search);
-static gboolean     search_filter_idle                (DhSearch         *search);
-static const gchar *search_complete_func              (DhLink           *link);
-
+static void         dh_search_init                  (DhSearch         *search);
+static void         dh_search_class_init            (DhSearchClass    *klass);
+static void         search_grab_focus               (GtkWidget        *widget);
+static void         search_selection_changed_cb     (GtkTreeSelection *selection,
+                                                     DhSearch         *content);
+static gboolean     search_tree_button_press_cb     (GtkTreeView      *view,
+                                                     GdkEventButton   *event,
+                                                     DhSearch         *search);
+static gboolean     search_entry_key_press_event_cb (GtkEntry         *entry,
+                                                     GdkEventKey      *event,
+                                                     DhSearch         *search);
+static void         search_combo_changed_cb         (GtkComboBox      *combo,
+                                                     DhSearch         *search);
+static void         search_entry_changed_cb         (GtkEntry         *entry,
+                                                     DhSearch         *search);
+static void         search_entry_activated_cb       (GtkEntry         *entry,
+                                                     DhSearch         *search);
+static void         search_entry_text_inserted_cb   (GtkEntry         *entry,
+                                                     const gchar      *text,
+                                                     gint              length,
+                                                     gint             *position,
+                                                     DhSearch         *search);
+static gboolean     search_complete_idle            (DhSearch         *search);
+static gboolean     search_filter_idle              (DhSearch         *search);
+static const gchar *search_complete_func            (DhLink           *link);
 
 enum {
         LINK_SELECTED,
@@ -99,9 +99,12 @@ search_finalize (GObject *object)
 static void
 dh_search_class_init (DhSearchClass *klass)
 {
-        GObjectClass *object_class = (GObjectClass *) klass;;
+        GObjectClass   *object_class = (GObjectClass *) klass;;
+        GtkWidgetClass *widget_class = (GtkWidgetClass *) klass;;
 
         object_class->finalize = search_finalize;
+
+        widget_class->grab_focus = search_grab_focus;
 
         signals[LINK_SELECTED] =
                 g_signal_new ("link_selected",
@@ -135,6 +138,14 @@ dh_search_init (DhSearch *search)
         gtk_box_set_spacing (GTK_BOX (search), 2);
 }
 
+static void
+search_grab_focus (GtkWidget *widget)
+{
+        DhSearchPriv *priv = GET_PRIVATE (widget);
+
+        gtk_widget_grab_focus (priv->entry);
+}
+                   
 static void
 search_selection_changed_cb (GtkTreeSelection *selection,
                              DhSearch         *search)

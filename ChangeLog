@@ -1,5 +1,10 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
+	* src/dh-search.c: (dh_search_class_init, dh_search_grab_focus):
+	Prepare to get rid of dh_search_grab_focus().
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
 	* src/dh-assistant.c: (dh_assistant_init): Set window title.
 
 2008-10-10  Richard Hult  <richard@imendio.com>
