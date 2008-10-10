@@ -19,7 +19,6 @@
  */
 
 #include "config.h"
-#include <glade/glade.h>
 #include <gtk/gtk.h>
 #include <string.h>
 #include "dh-util.h" 
@@ -299,9 +298,10 @@ dh_preferences_setup_fonts (void)
 void
 dh_preferences_show_dialog (GtkWindow *parent)
 {
-	gboolean  use_system_fonts;
-	gchar    *var_font_name, *fixed_font_name;
-	GladeXML *gui;
+        gchar      *path;
+	GtkBuilder *builder;
+	gboolean    use_system_fonts;
+	gchar      *var_font_name, *fixed_font_name;
 
         preferences_init ();
 
@@ -310,8 +310,11 @@ dh_preferences_show_dialog (GtkWindow *parent)
 		return;
 	}
 
-	gui = dh_util_glade_get_file (
-                DATADIR "/devhelp/devhelp.glade",
+        path = dh_util_build_data_filename ("devhelp", "ui",
+                                            "devhelp.builder",
+                                            NULL);
+	builder = dh_util_builder_get_file (
+                path,
                 "preferences_dialog",
                 NULL,
                 "preferences_dialog", &prefs->dialog,
@@ -320,9 +323,10 @@ dh_preferences_show_dialog (GtkWindow *parent)
                 "variable_font_button", &prefs->variable_font_button,
                 "fixed_font_button", &prefs->fixed_font_button,
                 NULL);
+        g_free (path);
 
-	dh_util_glade_connect (
-                gui,
+	dh_util_builder_connect (
+                builder,
                 prefs,
                 "variable_font_button", "font_set", preferences_font_set_cb,
                 "fixed_font_button", "font_set", preferences_font_set_cb,
@@ -351,7 +355,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
 		g_free (fixed_font_name);
 	}
 	
-	g_object_unref (gui);
+	g_object_unref (builder);
 	
 	gtk_window_set_transient_for (GTK_WINDOW (prefs->dialog), parent); 
 	gtk_widget_show_all (prefs->dialog);

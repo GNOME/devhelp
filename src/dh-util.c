@@ -26,68 +26,69 @@
 #include "ige-conf.h"
 #include "dh-util.h"
 
-static GladeXML *
-get_glade_file (const gchar *filename,
-                const gchar *root,
-                const gchar *domain,
-                const gchar *first_required_widget,
-                va_list args)
+static GtkBuilder *
+get_builder_file (const gchar *filename,
+                  const gchar *root,
+                  const gchar *domain,
+                  const gchar *first_required_widget,
+                  va_list args)
 {
-        GladeXML   *gui;
-        const char *name;
-        GtkWidget **widget_ptr;
+        GtkBuilder  *builder;
+        const char  *name;
+        GObject    **object_ptr;
 
-        gui = glade_xml_new (filename, root, domain);
-        if (!gui) {
-                g_warning ("Couldn't find necessary glade file '%s'", filename);
+        builder = gtk_builder_new ();
+        if (!gtk_builder_add_from_file (builder, filename, NULL)) {
+                g_warning ("Couldn't find necessary UI file '%s'", filename);
+                g_object_unref (builder);
                 return NULL;
         }
 
         for (name = first_required_widget; name; name = va_arg (args, char *)) {
-                widget_ptr = va_arg (args, void *);
-                *widget_ptr = glade_xml_get_widget (gui, name);
+                object_ptr = va_arg (args, void *);
+                *object_ptr = gtk_builder_get_object (builder, name);
 
-                if (!*widget_ptr) {
-                        g_warning ("Glade file '%s' is missing widget '%s'.",
+                if (!*object_ptr) {
+                        g_warning ("UI file '%s' is missing widget '%s'.",
                                    filename, name);
                         continue;
                 }
         }
 
-        return gui;
+        return builder;
 }
 
-GladeXML *
-dh_util_glade_get_file (const gchar *filename,
-                        const gchar *root,
-                        const gchar *domain,
-                        const gchar *first_required_widget,
-                        ...)
+GtkBuilder *
+dh_util_builder_get_file (const gchar *filename,
+                          const gchar *root,
+                          const gchar *domain,
+                          const gchar *first_required_widget,
+                          ...)
 {
-        va_list   args;
-        GladeXML *gui;
+        va_list     args;
+        GtkBuilder *builder;
 
         va_start (args, first_required_widget);
-        gui = get_glade_file (filename,
-                              root,
-                              domain,
-                              first_required_widget,
-                              args);
+        builder = get_builder_file (filename,
+                                    root,
+                                    domain,
+                                    first_required_widget,
+                                    args);
         va_end (args);
 
-        return gui;
+        return builder;
 }
 
 void
-dh_util_glade_connect (GladeXML *gui,
-                       gpointer  user_data,
-                       gchar    *first_widget,
-                       ...)
+dh_util_builder_connect (GtkBuilder *builder,
+                         gpointer    user_data,
+                         gchar     *first_widget,
+                         ...)
 {
         va_list      args;
         const gchar *name;
         const gchar *signal;
-        GtkWidget   *widget;
+        GObject     *object;
         gpointer    *callback;
 
         va_start (args, first_widget);
@@ -96,14 +97,14 @@ dh_util_glade_connect (GladeXML *gui,
                 signal = va_arg (args, void *);
                 callback = va_arg (args, void *);
 
-                widget = glade_xml_get_widget (gui, name);
-                if (!widget) {
-                        g_warning ("Glade file is missing widget '%s', aborting",
+                object = gtk_builder_get_object (builder, name);
+                if (!object) {
+                        g_warning ("UI file is missing widget '%s', aborting",
                                    name);
                         continue;
                 }
 
-                g_signal_connect (widget,
+                g_signal_connect (object,
                                   signal,
                                   G_CALLBACK (callback),
                                   user_data);

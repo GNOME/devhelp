@@ -22,14 +22,14 @@
 #ifndef __DH_UTIL_H__
 #define __DH_UTIL_H__
 
-#include <glade/glade.h>
+#include <gtk/gtk.h>
 
-GladeXML *   dh_util_glade_get_file               (const gchar *filename,
+GtkBuilder * dh_util_builder_get_file             (const gchar *filename,
                                                    const gchar *root,
                                                    const gchar *domain,
                                                    const gchar *first_required_widget,
                                                    ...);
-void         dh_util_glade_connect                (GladeXML    *gui,
+void         dh_util_builder_connect              (GtkBuilder  *gui,
                                                    gpointer     user_data,
                                                    gchar       *first_widget,
                                                    ...);

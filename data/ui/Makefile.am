@@ -3,12 +3,8 @@ image_DATA =
 
 uidir = $(datadir)/devhelp/ui
 ui_DATA = 				\
-	window.ui
-
-gladedir = $(datadir)/devhelp
-glade_DATA =                            \
-	devhelp.glade
+	window.ui			\
+	devhelp.builder
 
 EXTRA_DIST = $(image_DATA) 		\
-	     $(ui_DATA)                 \
-	     $(glade_DATA)
+	     $(ui_DATA)

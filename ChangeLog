@@ -1,5 +1,16 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
+	* configure.in:
+	* data/ui/Makefile.am:
+	* data/ui/devhelp.glade:
+	* data/ui/devhelp.builder:
+	* src/dh-util.[ch] (dh_util_glade_connect,
+	dh_util_glade_get_file):
+	* src/dh-preferences.c (dh_preferences_show_dialog): Use
+	GtkBuilder instead of libglade.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
 	* src/dh-assistant.c: (dh_assistant_init): Save/restore state.
 	(dh_assistant_new), (dh_assistant_search): Small style tweaks.
 
