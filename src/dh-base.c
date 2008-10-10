@@ -21,8 +21,6 @@
  */
 
 #include "config.h"
-#include <sys/types.h>
-#include <unistd.h>
 #include <string.h>
 #include <gtk/gtk.h>
 
@@ -37,6 +35,8 @@
 #include "dh-parser.h"
 #include "dh-preferences.h"
 #include "dh-assistant.h"
+#include "dh-util.h"
+#include "ige-conf.h"
 #include "dh-base.h"
 
 typedef struct {
@@ -91,6 +91,13 @@ static void
 dh_base_init (DhBase *base)
 {
         DhBasePriv *priv = GET_PRIVATE (base);
+        IgeConf    *conf;
+        gchar      *path;
+
+        conf = ige_conf_get ();
+        path = dh_util_build_data_filename ("devhelp", "devhelp.defaults");
+        ige_conf_add_defaults (conf, path);
+        g_free (path);
 
         priv->book_tree = g_node_new (NULL);
         priv->books = g_hash_table_new_full (g_str_hash, g_str_equal,

@@ -1,5 +1,9 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
+	* src/dh-base.c: (dh_base_init): Setup default values.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
 	* src/Makefile.am:
 	* src/ige-conf.h:
 	* src/ige-conf-private.h:
