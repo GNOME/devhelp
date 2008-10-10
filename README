@@ -5,9 +5,8 @@ The following packages are required to compile Devhelp:
 
 glib 2.10.0 (or greater)
 gtk+ 2.10.0 (or greater)
-libglade 2.4.0 (or greater)
-libwnck 2.10.0 (or greater)
-gconf 2.6.0 (or greater)
+libwnck 2.10.0 (or greater, only for X11 build)
+gconf 2.6.0 (or greater, only for X11 build)
 webkit
 
 Devhelp's primary goal is to be an API documentation browser for
