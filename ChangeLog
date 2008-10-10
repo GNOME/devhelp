@@ -1,6 +1,13 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
-	* data/Makefile.am: Install gconf schemas in file so ige-conf can
+	* data/devhelp.desktop.in.in: Remove Encoding field since
+	desktop-file-validate complains about it, thanks to Enrico Tröger.
+	Also remove the MimeType field as haven't supported opening
+	devhelp files for a long time (have we ever?).
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
+	* data/Makefile.am: Install the schemas.in file so ige-conf can
 	use it for defaults handling when using NSUserDefaults.
 
 2008-10-10  Richard Hult  <richard@imendio.com>

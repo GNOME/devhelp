@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Devhelp
 _Comment=Developer's Help program
 _GenericName=Documentation Browser
@@ -9,7 +8,6 @@ Type=Application
 Icon=devhelp
 Categories=GNOME;GTK;Development;
 StartupNotify=true
-MimeType=application/x-devhelp;
 X-GNOME-Bugzilla-Bugzilla=GNOME
 X-GNOME-Bugzilla-Product=devhelp
 X-GNOME-Bugzilla-Component=General
