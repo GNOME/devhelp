@@ -24,7 +24,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include "dh-window.h"
-#include "dh-link.h"
+#include "dh-util.h"
 #include "dh-assistant-view.h"
 #include "dh-assistant.h"
 
@@ -73,7 +73,6 @@ dh_assistant_init (DhAssistant *assistant)
         /* i18n: Please don't translate "Devhelp". */
         gtk_window_set_title (GTK_WINDOW (assistant), _("Devhelp - Assistant"));
         gtk_window_set_icon_name (GTK_WINDOW (assistant), "devhelp");
-        gtk_window_set_default_size (GTK_WINDOW (assistant), 400, 400);
 
         priv->view = dh_assistant_view_new ();
 
@@ -91,12 +90,15 @@ dh_assistant_init (DhAssistant *assistant)
 
         gtk_box_pack_start (GTK_BOX (priv->main_box),
                             scrolled_window, TRUE, TRUE, 0);
+
+        dh_util_state_manage_window (GTK_WINDOW (assistant),
+                                     "assistant/window");
 }
 
 GtkWidget *
 dh_assistant_new (DhBase *base)
 {
-        DhAssistant     *assistant;
+        GtkWidget       *assistant;
         DhAssistantPriv *priv;
 
         assistant = g_object_new (DH_TYPE_ASSISTANT, NULL);
@@ -105,7 +107,7 @@ dh_assistant_new (DhBase *base)
 
         dh_assistant_view_set_base (DH_ASSISTANT_VIEW (priv->view), base);
 
-        return GTK_WIDGET (assistant);
+        return assistant;
 }
 
 gboolean
@@ -122,7 +124,7 @@ dh_assistant_search (DhAssistant *assistant,
         if (dh_assistant_view_search (DH_ASSISTANT_VIEW (priv->view), str)) {
                 gtk_widget_show (GTK_WIDGET (assistant));
                 return TRUE;
-        } else {
-                return FALSE;
         }
+
+        return FALSE;
 }

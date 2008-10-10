@@ -1,5 +1,10 @@
 2008-10-10  Richard Hult  <richard@imendio.com>
 
+	* src/dh-assistant.c: (dh_assistant_init): Save/restore state.
+	(dh_assistant_new), (dh_assistant_search): Small style tweaks.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
 	* src/dh-base.c: (dh_base_init): Setup default values.
 
 2008-10-10  Richard Hult  <richard@imendio.com>
