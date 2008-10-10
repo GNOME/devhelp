@@ -1,3 +1,15 @@
+2008-10-10  Richard Hult  <richard@imendio.com>
+
+	* src/Makefile.am: Use marshal generation from build dir.
+
+2008-10-10  Richard Hult  <richard@imendio.com>
+
+	* build/Makefile.am.common:
+	* build/Makefile.am.marshal:
+	* configure.in: Add build dir and the beginnings of makefile stuff
+	to make things cleaner (build dir also used as aux dir for auto*,
+	inspired by cairo).
+
 2008-10-10  Sven Herzberg  <sven@imendio.com>
 
 	* src/dh-link.c:

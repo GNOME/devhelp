@@ -1,4 +1,7 @@
-AM_CPPFLAGS = 						\
+include $(top_srcdir)/build/Makefile.am.common
+include $(top_srcdir)/build/Makefile.am.marshal
+
+AM_CPPFLAGS += 						\
 	-DLOCALEDIR=\""$(datadir)/locale"\" 	  	\
 	-DPREFIX="\"$(prefix)"\"		 	\
 	-DDATADIR=\""$(datadir)"\"                      \
@@ -61,15 +64,14 @@ libdevhelp_1_la_SOURCES =				\
 	eggfindbar.h					\
 	ige-conf.c					\
 	ige-conf.h					\
-	ige-conf-private.h
+	ige-conf-private.h				\
+	$(conf_platform_sources)
 
 if HAVE_PLATFORM_OSX
-libdevhelp_1_la_SOURCES +=				\
-	ige-conf-mac.m
+conf_platform_sources = ige-conf-mac.m
 endif
 if HAVE_PLATFORM_X11
-libdevhelp_1_la_SOURCES +=				\
-	ige-conf-gconf.c
+conf_platform_sources =	ige-conf-gconf.c
 endif
 
 libdevhelp_1_la_CPPFLAGS =				\
@@ -90,24 +92,3 @@ libdevhelp_1_la_LDFLAGS =				\
 	$(ZLIB_LDFLAGS)
 
 MARSHAL=dh
-$(MARSHAL)-marshal.h: $(MARSHAL)-marshal.list
-	(cd $(srcdir) && \
-	$(GLIB_GENMARSHAL) --prefix=_$(MARSHAL)_marshal $(MARSHAL)-marshal.list --header) > xgen-gmh \
-	&& (cmp -s xgen-gmh $(MARSHAL)-marshal.h || cp xgen-gmh $(MARSHAL)-marshal.h) \
-	&& rm -f xgen-gmh xgen-gmh~
-
-$(MARSHAL)-marshal.c: $(MARSHAL)-marshal.list
-	(cd $(srcdir) && \
-	echo "#include \"$(MARSHAL)-marshal.h\""; \
-	$(GLIB_GENMARSHAL) --prefix=_$(MARSHAL)_marshal $(MARSHAL)-marshal.list --body) > xgen-gmc \
-	&& cp xgen-gmc $(MARSHAL)-marshal.c \
-	&& rm -f xgen-gmc xgen-gmc~
-
-BUILT_SOURCES = 			\
-	$(MARSHAL)-marshal.h		\
-	$(MARSHAL)-marshal.c		\
-	$(NULL)
-
-EXTRA_DIST =				\
-	$(MARSHAL)-marshal.list		\
-	$(NULL)
