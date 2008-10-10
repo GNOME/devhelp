@@ -59,7 +59,9 @@ libdevhelp_1_la_SOURCES =				\
 	dh-util.h					\
 	eggfindbar.c					\
 	eggfindbar.h					\
-	ige-conf.h
+	ige-conf.c					\
+	ige-conf.h					\
+	ige-conf-private.h
 
 if HAVE_PLATFORM_OSX
 libdevhelp_1_la_SOURCES +=				\
