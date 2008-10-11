@@ -23,6 +23,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_QUARTZ
+#include <CoreFoundation/CoreFoundation.h>
+#endif
 #include "ige-conf.h"
 #include "dh-util.h"
 
@@ -113,11 +116,69 @@ dh_util_builder_connect (GtkBuilder *builder,
         va_end (args);
 }
 
+#ifdef GDK_WINDOWING_QUARTZ
+static gchar *
+cf_string_to_utf8 (CFStringRef str)
+{
+  CFIndex  len;
+  gchar   *ret;
+
+  len = CFStringGetMaximumSizeForEncoding (CFStringGetLength (str), 
+                                           kCFStringEncodingUTF8) + 1;
+
+  ret = g_malloc (len);
+  ret[len] = '\0';
+
+  if (CFStringGetCString (str, ret, len, kCFStringEncodingUTF8))
+    return ret;
+
+  g_free (ret);
+  return NULL;
+}
+
+static gchar *
+util_get_mac_data_dir (void)
+{
+        const gchar *env;
+        CFBundleRef  cf_bundle; 
+        UInt32       type;
+        UInt32       creator;
+        CFURLRef     cf_url;
+        CFStringRef  cf_string;
+        gchar       *ret;
+
+        /* The environment variable overrides all. */
+        env = g_getenv ("DEVHELP_DATADIR");
+        if (env) {
+                return g_strdup (env);
+        }
+
+        cf_bundle = CFBundleGetMainBundle ();
+        if (!cf_bundle) {
+                return NULL;
+        }
+
+        /* Only point into the bundle if it's an application. */
+        CFBundleGetPackageInfo (cf_bundle, &type, &creator);
+        if (type != 'APPL') {
+                return NULL;
+        }
+        
+        cf_url = CFBundleCopyBundleURL (cf_bundle);
+        cf_string = CFURLCopyFileSystemPath (cf_url, kCFURLPOSIXPathStyle);
+        ret = cf_string_to_utf8 (cf_string);
+        CFRelease (cf_string);
+        CFRelease (cf_url);
+
+        return ret;
+}
+#endif
+
 gchar *
 dh_util_build_data_filename (const gchar *first_part,
                              ...)
 {
-        const gchar  *datadir = NULL;
+        gchar        *datadir = NULL;
         va_list       args;
         const gchar  *part;
         gchar       **strv;
@@ -127,11 +188,11 @@ dh_util_build_data_filename (const gchar *first_part,
         va_start (args, first_part);
 
 #ifdef GDK_WINDOWING_QUARTZ
-        datadir = g_getenv ("DEVHELP_DATADIR");
+        datadir = util_get_mac_data_dir ();
 #endif
 
         if (datadir == NULL) {
-                datadir = DATADIR;
+                datadir = g_strdup (DATADIR);
         }
 
         /* 2 = 1 initial component + terminating NULL element. */
@@ -148,6 +209,8 @@ dh_util_build_data_filename (const gchar *first_part,
         strv[i] = NULL;
         ret = g_build_filenamev (strv);
         g_free (strv);
+
+        g_free (datadir);
 
         va_end (args);
 

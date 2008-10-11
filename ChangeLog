@@ -1,5 +1,11 @@
 2008-10-11  Richard Hult  <richard@imendio.com>
 
+	* src/dh-util.c: (dh_util_build_data_filename): Pick up bundle
+	location is ran from a bundle (still needs work to point to the
+	right place).
+
+2008-10-11  Richard Hult  <richard@imendio.com>
+
 	* autogen.sh: Replace with our own to get more control over what
 	it does.
 
