@@ -21,13 +21,10 @@
 #ifndef __DH_ASSISTANT_VIEW_H__
 #define __DH_ASSISTANT_VIEW_H__
 
-#include <gtk/gtk.h>
+#include <webkit/webkit.h>
 #include "dh-base.h"
 
 G_BEGIN_DECLS
-
-typedef struct _DhAssistantView      DhAssistantView;
-typedef struct _DhAssistantViewClass DhAssistantViewClass;
 
 #define DH_TYPE_ASSISTANT_VIEW         (dh_assistant_view_get_type ())
 #define DH_ASSISTANT_VIEW(i)           (G_TYPE_CHECK_INSTANCE_CAST ((i), DH_TYPE_ASSISTANT_VIEW, DhAssistantView))
@@ -36,12 +33,23 @@ typedef struct _DhAssistantViewClass DhAssistantViewClass;
 #define DH_IS_ASSISTANT_VIEW_CLASS(c)  (G_TYPE_CHECK_CLASS_TYPE ((c), DH_ASSISTANT_VIEW))
 #define DH_ASSISTANT_VIEW_GET_CLASS(i) (G_TYPE_INSTANCE_GET_CLASS ((i), DH_TYPE_ASSISTANT_VIEW, DhAssistantView))
 
+typedef struct _DhAssistantView      DhAssistantView;
+typedef struct _DhAssistantViewClass DhAssistantViewClass;
+
+struct _DhAssistantView {
+        WebKitWebView parent_instance;
+};
+
+struct _DhAssistantViewClass {
+        WebKitWebViewClass parent_class;
+};
+
 GType      dh_assistant_view_get_type (void) G_GNUC_CONST;
 GtkWidget* dh_assistant_view_new      (void);
-gboolean   dh_assistant_view_search   (DhAssistantView *self,
+gboolean   dh_assistant_view_search   (DhAssistantView *view,
                                        const gchar     *str);
-DhBase*    dh_assistant_view_get_base (DhAssistantView *self);
-void       dh_assistant_view_set_base (DhAssistantView *self,
+DhBase*    dh_assistant_view_get_base (DhAssistantView *view);
+void       dh_assistant_view_set_base (DhAssistantView *view,
                                        DhBase          *base);
 
 G_END_DECLS

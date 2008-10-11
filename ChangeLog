@@ -1,5 +1,11 @@
 2008-10-11  Richard Hult  <richard@imendio.com>
 
+	* src/dh-assistant-view.[ch]: Make consistant with the rest of the
+	code: Move the instance/class structs to the header file and move
+	private data to a private struct.
+
+2008-10-11  Richard Hult  <richard@imendio.com>
+
 	* build/Makefile.am.gi18n-check:
 	* src/Makefile.am: Add check for gi18n vs gi18n-lib, based on
 	patch from Sven Herzberg.

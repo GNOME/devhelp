@@ -28,42 +28,31 @@
 #include "dh-util.h"
 #include "dh-window.h"
 
-struct _DhAssistantView {
-        WebKitWebView  parent_instance;
-
-        DhBase        *base;
-        DhLink        *link;
-        gchar         *current_search;
-};
-
-struct _DhAssistantViewClass {
-        WebKitWebViewClass parent_class;
-};
-
-static void dh_assistant_view_set_link (DhAssistantView *view,
-                                        DhLink          *link);
+typedef struct {
+        DhBase *base;
+        DhLink *link;
+        gchar  *current_search;
+} DhAssistantViewPriv;
 
 G_DEFINE_TYPE (DhAssistantView, dh_assistant_view, WEBKIT_TYPE_WEB_VIEW);
 
-static void
-dh_assistant_view_init (DhAssistantView *view)
-{
-}
+#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
+  (instance, DH_TYPE_ASSISTANT_VIEW, DhAssistantViewPriv)
 
 static void
 view_finalize (GObject *object)
 {
-        DhAssistantView *view = DH_ASSISTANT_VIEW (object);
+        DhAssistantViewPriv *priv = GET_PRIVATE (object);
 
-        if (view->link) {
-                g_object_unref (view->link);
+        if (priv->link) {
+                g_object_unref (priv->link);
         }
 
-        if (view->base) {
-                g_object_unref (view->base);
+        if (priv->base) {
+                g_object_unref (priv->base);
         }
 
-        g_free (view->current_search);
+        g_free (priv->current_search);
 
         G_OBJECT_CLASS (dh_assistant_view_parent_class)->finalize (object);
 }
@@ -73,21 +62,19 @@ assistant_navigation_requested (WebKitWebView        *web_view,
                                 WebKitWebFrame       *frame,
                                 WebKitNetworkRequest *request)
 {
-        DhAssistantView *view;
-        const gchar     *uri;
+        DhAssistantViewPriv *priv;
+        const gchar         *uri;
 
-        view = DH_ASSISTANT_VIEW (web_view);
+        priv = GET_PRIVATE (web_view);
 
         uri = webkit_network_request_get_uri (request);
-
         if (strcmp (uri, "about:blank") == 0) {
                 return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
         }
-
-        if (g_str_has_prefix (uri, "file://")) {
+        else if (g_str_has_prefix (uri, "file://")) {
                 GtkWidget *window;
 
-                window = dh_base_get_window (view->base);
+                window = dh_base_get_window (priv->base);
                 _dh_window_display_uri (DH_WINDOW (window), uri);
         }
 
@@ -107,116 +94,42 @@ assistant_button_press_event (GtkWidget      *widget,
 }
 
 static void
-dh_assistant_view_class_init (DhAssistantViewClass* view_class)
+dh_assistant_view_class_init (DhAssistantViewClass* klass)
 {
-        GObjectClass       *object_class = G_OBJECT_CLASS (view_class);
-        GtkWidgetClass     *widget_class = GTK_WIDGET_CLASS (view_class);
-        WebKitWebViewClass *web_view_class = WEBKIT_WEB_VIEW_CLASS (view_class);
+        GObjectClass       *object_class = G_OBJECT_CLASS (klass);
+        GtkWidgetClass     *widget_class = GTK_WIDGET_CLASS (klass);
+        WebKitWebViewClass *web_view_class = WEBKIT_WEB_VIEW_CLASS (klass);
 
         object_class->finalize = view_finalize;
 
         widget_class->button_press_event = assistant_button_press_event;
 
         web_view_class->navigation_requested = assistant_navigation_requested;
+
+        g_type_class_add_private (klass, sizeof (DhAssistantViewPriv));
+}
+
+static void
+dh_assistant_view_init (DhAssistantView *view)
+{
 }
 
 DhBase*
 dh_assistant_view_get_base (DhAssistantView *view)
 {
+        DhAssistantViewPriv *priv;
+
         g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), NULL);
 
-        return view->base;
+        priv = GET_PRIVATE (view);
+
+        return priv->base;
 }
 
 GtkWidget*
 dh_assistant_view_new (void)
 {
         return g_object_new (DH_TYPE_ASSISTANT_VIEW, NULL);
-}
-
-gboolean
-dh_assistant_view_search (DhAssistantView *view,
-                          const gchar     *str)
-{
-        GList           *keywords, *l;
-        const gchar     *name;
-        DhLink          *link;
-        DhLink          *exact_link;
-        DhLink          *prefix_link;
-
-        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), FALSE);
-        g_return_val_if_fail (str, FALSE);
-
-        /* Filter out very short strings. */
-        if (strlen (str) < 4) {
-                return FALSE;
-        }
-
-        if (view->current_search && strcmp (view->current_search, str) == 0) {
-                return FALSE;
-        }
-        g_free (view->current_search);
-        view->current_search = g_strdup (str);
-
-        keywords = dh_base_get_keywords (dh_assistant_view_get_base (view));
-
-        prefix_link = NULL;
-        exact_link = NULL;
-        for (l = keywords; l && exact_link == NULL; l = l->next) {
-                DhLinkType type;
-
-                link = l->data;
-
-                type = dh_link_get_link_type (link);
-
-                if (type == DH_LINK_TYPE_BOOK ||
-                    type == DH_LINK_TYPE_PAGE ||
-                    type == DH_LINK_TYPE_KEYWORD) {
-                        continue;
-                }
-
-                name = dh_link_get_name (link);
-                if (strcmp (name, str) == 0) {
-                        exact_link = link;
-                }
-                else if (g_str_has_prefix (name, str)) {
-                        /* Prefer shorter prefix matches. */
-                        if (!prefix_link) {
-                                prefix_link = link;
-                        }
-                        else if (strlen (dh_link_get_name (prefix_link)) > strlen (name)) {
-                                prefix_link = link;
-                        }
-                }
-        }
-
-        if (exact_link) {
-                /*g_print ("exact hit: '%s' '%s'\n", exact_link->name, str);*/
-                dh_assistant_view_set_link (view,
-                                            exact_link);
-        }
-        else if (prefix_link) {
-                /*g_print ("prefix hit: '%s' '%s'\n", prefix_link->name, str);*/
-                dh_assistant_view_set_link (view,
-                                            prefix_link);
-        } else {
-                /*g_print ("no hit\n");*/
-                /*dh_assistant_view_set_link (view,
-                                            NULL);*/
-                return FALSE;
-        }
-
-        return TRUE;
-}
-
-void
-dh_assistant_view_set_base (DhAssistantView *view,
-                            DhBase          *base)
-{
-        g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
-        g_return_if_fail (DH_IS_BASE (base));
-
-        view->base = g_object_ref (base);
 }
 
 static const gchar *
@@ -243,37 +156,39 @@ find_in_buffer (const gchar *buffer,
         return NULL;
 }
 
-void
-dh_assistant_view_set_link (DhAssistantView *view,
-                            DhLink          *link)
+static void
+assistant_view_set_link (DhAssistantView *view,
+                         DhLink          *link)
 {
-        gchar           *uri;
-        const gchar     *anchor;
-        gchar           *filename;
-        GMappedFile     *file;
-        const gchar     *contents;
-        gsize            length;
-        gchar           *key;
-        gsize            key_length;
-        const gchar     *start;
-        const gchar     *end;
+        DhAssistantViewPriv *priv;
+        gchar               *uri;
+        const gchar         *anchor;
+        gchar               *filename;
+        GMappedFile         *file;
+        const gchar         *contents;
+        gsize                length;
+        gchar               *key;
+        gsize                key_length;
+        const gchar         *start;
+        const gchar         *end;
 
         g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
 
-        if (view->link == link) {
+        priv = GET_PRIVATE (view);
+
+        if (priv->link == link) {
                 return;
         }
 
-        if (view->link) {
-                dh_link_unref (view->link);
-                view->link = NULL;
+        if (priv->link) {
+                dh_link_unref (priv->link);
+                priv->link = NULL;
         }
 
         if (link) {
                 link = dh_link_ref (link);
         } else {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (view),
-                                      "about:blank");
+                webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
                 return;
         }
 
@@ -422,10 +337,98 @@ dh_assistant_view_set_link (DhAssistantView *view,
                 g_free (html);
                 g_free (base);
         } else {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (view),
-                                      "about:blank");
+                webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
         }
 
         g_mapped_file_free (file);
         g_free (filename);
+}
+
+gboolean
+dh_assistant_view_search (DhAssistantView *view,
+                          const gchar     *str)
+{
+        DhAssistantViewPriv *priv;
+        GList               *keywords, *l;
+        const gchar         *name;
+        DhLink              *link;
+        DhLink              *exact_link;
+        DhLink              *prefix_link;
+
+        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), FALSE);
+        g_return_val_if_fail (str, FALSE);
+
+        priv = GET_PRIVATE (view);
+
+        /* Filter out very short strings. */
+        if (strlen (str) < 4) {
+                return FALSE;
+        }
+
+        if (priv->current_search && strcmp (priv->current_search, str) == 0) {
+                return FALSE;
+        }
+        g_free (priv->current_search);
+        priv->current_search = g_strdup (str);
+
+        keywords = dh_base_get_keywords (dh_assistant_view_get_base (view));
+
+        prefix_link = NULL;
+        exact_link = NULL;
+        for (l = keywords; l && exact_link == NULL; l = l->next) {
+                DhLinkType type;
+
+                link = l->data;
+
+                type = dh_link_get_link_type (link);
+
+                if (type == DH_LINK_TYPE_BOOK ||
+                    type == DH_LINK_TYPE_PAGE ||
+                    type == DH_LINK_TYPE_KEYWORD) {
+                        continue;
+                }
+
+                name = dh_link_get_name (link);
+                if (strcmp (name, str) == 0) {
+                        exact_link = link;
+                }
+                else if (g_str_has_prefix (name, str)) {
+                        /* Prefer shorter prefix matches. */
+                        if (!prefix_link) {
+                                prefix_link = link;
+                        }
+                        else if (strlen (dh_link_get_name (prefix_link)) > strlen (name)) {
+                                prefix_link = link;
+                        }
+                }
+        }
+
+        if (exact_link) {
+                /*g_print ("exact hit: '%s' '%s'\n", exact_link->name, str);*/
+                assistant_view_set_link (view, exact_link);
+        }
+        else if (prefix_link) {
+                /*g_print ("prefix hit: '%s' '%s'\n", prefix_link->name, str);*/
+                assistant_view_set_link (view, prefix_link);
+        } else {
+                /*g_print ("no hit\n");*/
+                /*assistant_view_set_link (view, NULL);*/
+                return FALSE;
+        }
+
+        return TRUE;
+}
+
+void
+dh_assistant_view_set_base (DhAssistantView *view,
+                            DhBase          *base)
+{
+        DhAssistantViewPriv *priv;
+
+        g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
+        g_return_if_fail (DH_IS_BASE (base));
+
+        priv = GET_PRIVATE (view);
+
+        priv->base = g_object_ref (base);
 }
