@@ -67,21 +67,11 @@ libdevhelp_1_la_SOURCES =				\
 	ige-conf-private.h				\
 	$(conf_platform_sources)
 
-if HAVE_PLATFORM_OSX
-conf_platform_sources = ige-conf-mac.m
-endif
-if HAVE_PLATFORM_X11
-conf_platform_sources =	ige-conf-gconf.c
-endif
-
 libdevhelp_1_la_CPPFLAGS =				\
 	$(AM_CPPFLAGS)					\
 	$(ZLIB_CPPFLAGS)
 
 libdevhelp_1_la_CFLAGS =				\
-	$(LIBDEVHELP_CFLAGS)
-
-libdevhelp_1_la_OBJCFLAGS =				\
 	$(LIBDEVHELP_CFLAGS)
 
 libdevhelp_1_la_LIBADD =				\
@@ -90,5 +80,13 @@ libdevhelp_1_la_LIBADD =				\
 
 libdevhelp_1_la_LDFLAGS =				\
 	$(ZLIB_LDFLAGS)
+
+if HAVE_PLATFORM_OSX
+conf_platform_sources = ige-conf-mac.c
+libdevhelp_1_la_CPPFLAGS += -xobjective.c
+endif
+if HAVE_PLATFORM_X11
+conf_platform_sources = ige-conf-gconf.c
+endif
 
 MARSHAL=dh

@@ -1,3 +1,12 @@
+2008-10-11  Richard Hult  <richard@imendio.com>
+
+	* src/ige-conf-mac.c: Rename from .m to work around a bug(?) in
+	auto*, can't get this to work on linux.
+
+	* configure.ac: Remove AC_PROG_OBJC.
+
+	* src/Makefile.am: Update the filename here and use -xobjective-c.
+
 2008-10-10  Richard Hult  <richard@imendio.com>
 
 	* autogen.sh:
