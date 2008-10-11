@@ -41,8 +41,7 @@ typedef struct {
 GList *_ige_conf_defaults_read_file (const gchar  *path,
                                      GError      **error);
 void   _ige_conf_defaults_free_list (GList        *defaults);
-
-const gchar *_ige_conf_defaults_get_root (GList *defaults);
+gchar *_ige_conf_defaults_get_root  (GList        *defaults);
 
 G_END_DECLS
 

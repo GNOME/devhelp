@@ -215,14 +215,14 @@ _ige_conf_defaults_free_list (GList *defaults)
         g_list_free (defaults);
 }
 
-const gchar *
+gchar *
 _ige_conf_defaults_get_root (GList *defaults)
 {
-        GList        *l;
-        const gchar  *root;
-        gchar       **strv_prev = NULL;
-        gint          i;
-        gint          last_common = G_MAXINT;
+        GList  *l;
+        gchar  *root;
+        gchar **strv_prev = NULL;
+        gint    i;
+        gint    last_common = G_MAXINT;
 
         for (l = defaults; l; l = l->next) {
                 IgeConfDefaultItem  *item = l->data;

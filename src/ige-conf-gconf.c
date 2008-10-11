@@ -21,7 +21,7 @@
 #include "config.h"
 #include <string.h>
 #include <gconf/gconf-client.h>
-#include "ige-conf.h"
+#include "ige-conf-private.h"
 
 typedef struct {
         GConfClient *gconf_client;
@@ -74,8 +74,6 @@ static void
 ige_conf_init (IgeConf *conf)
 {
         IgeConfPriv *priv;
-        GList       *defaults;
-        gchar       *root;
 
         priv = GET_PRIVATE (conf);
 
@@ -96,8 +94,9 @@ void
 ige_conf_add_defaults (IgeConf     *conf,
                        const gchar *path)
 {
-        GList *defaults;
-        gchar *root;
+        IgeConfPriv *priv = GET_PRIVATE (conf);
+        GList       *defaults;
+        gchar       *root;
 
         defaults = _ige_conf_defaults_read_file (path, NULL);
         root = _ige_conf_defaults_get_root (defaults);
