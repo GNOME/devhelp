@@ -1,5 +1,12 @@
 2008-10-11  Richard Hult  <richard@imendio.com>
 
+	* autogen.sh: Replace with our own to get more control over what
+	it does.
+
+	* src/Makefile.am: Enable single includes for the dependencies.
+
+2008-10-11  Richard Hult  <richard@imendio.com>
+
 	* src/dh-assistant-view.[ch]: Make consistant with the rest of the
 	code: Move the instance/class structs to the header file and move
 	private data to a private struct.
