@@ -1,5 +1,6 @@
 include $(top_srcdir)/build/Makefile.am.common
 include $(top_srcdir)/build/Makefile.am.marshal
+include $(top_srcdir)/build/Makefile.am.gi18n-check
 
 AM_CPPFLAGS += 						\
 	-DLOCALEDIR=\""$(datadir)/locale"\" 	  	\
@@ -90,3 +91,6 @@ conf_platform_sources = ige-conf-gconf.c
 endif
 
 MARSHAL=dh
+
+GI18N_CHECK_LIB_FILES = $(libdevhelp_1_la_SOURCES) $(devhelpinclude_HEADERS)
+GI18N_CHECK_APP_FILES = $(devhelp_SOURCES)

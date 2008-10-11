@@ -1,0 +1,21 @@
+check-local: Makefile
+	@for f in $(GI18N_CHECK_LIB_FILES); do \
+	  if echo $$f | grep -q "\\.h\$$"; then \
+            if grep -n "#.*include.*glib/gi18n.*\\.h" $$f; then \
+	      echo "$$f includes an i18n header" >&2 ; \
+              exit 1; \
+            fi; \
+          elif echo $$f | grep -q "\\.c\$$"; then \
+	    if grep -n "#.*include.*glib/gi18n\\.h" $$f; then \
+	      echo "$$f includes glib/gi18n.h, not glib/gi18n-lib.h" >&2 ; \
+	      exit 1; \
+	    fi; \
+          fi; \
+	done; \
+	\
+	for f in $(GI18N_CHECK_APP_FILES); do \
+          if grep -n "#.*include.*glib/gi18n-lib\\.h" $$f; then \
+            echo "$$f includes glib/gi18n-lib.h, not glib/gi18n.h" >&2 \
+	    exit 1; \
+          fi; \
+	done

@@ -1,5 +1,11 @@
 2008-10-11  Richard Hult  <richard@imendio.com>
 
+	* build/Makefile.am.gi18n-check:
+	* src/Makefile.am: Add check for gi18n vs gi18n-lib, based on
+	patch from Sven Herzberg.
+
+2008-10-11  Richard Hult  <richard@imendio.com>
+
 	* data/Makefile.am:
 	* src/Makefile.am: Small distcheck fixes.
 
