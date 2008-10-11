@@ -25,6 +25,7 @@
 #include <gtk/gtk.h>
 
 #ifdef GDK_WINDOWING_X11
+#include <unistd.h>
 #include <gdk/gdkx.h>
 #define WNCK_I_KNOW_THIS_IS_UNSTABLE
 #include <libwnck/libwnck.h>
@@ -95,7 +96,7 @@ dh_base_init (DhBase *base)
         gchar      *path;
 
         conf = ige_conf_get ();
-        path = dh_util_build_data_filename ("devhelp", "devhelp.defaults");
+        path = dh_util_build_data_filename ("devhelp", "devhelp.defaults", NULL);
         ige_conf_add_defaults (conf, path);
         g_free (path);
 

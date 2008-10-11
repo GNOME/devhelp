@@ -1,5 +1,9 @@
 2008-10-11  Richard Hult  <richard@imendio.com>
 
+	* src/dh-base.c: (dh_base_init): Add missing NULL terminator.
+
+2008-10-11  Richard Hult  <richard@imendio.com>
+
 	* src/ige-conf-gconf.c: (ige_conf_init), (ige_conf_add_defaults):
 	* src/ige-conf-private.h:
 	* src/ige-conf.c: (_ige_conf_defaults_free_list): Fix build with
