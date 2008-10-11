@@ -22,7 +22,7 @@ schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 defaultsdir = $(datadir)/devhelp
 defaults_DATA = devhelp.defaults
 devhelp.defaults: devhelp.schemas.in
-	cp $(srcdir)/devhelp.schemas.in $(builddir)/devhelp.defaults
+	cp $(top_srcdir)/data/devhelp.schemas.in $(top_builddir)/data/devhelp.defaults
 
 EXTRA_DIST =			\
 	libdevhelp-1.0.pc.in    \

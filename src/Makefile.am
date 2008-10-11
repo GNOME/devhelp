@@ -83,7 +83,7 @@ libdevhelp_1_la_LDFLAGS =				\
 
 if HAVE_PLATFORM_OSX
 conf_platform_sources = ige-conf-mac.c
-libdevhelp_1_la_CPPFLAGS += -xobjective.c
+libdevhelp_1_la_CPPFLAGS += -xobjective-c
 endif
 if HAVE_PLATFORM_X11
 conf_platform_sources = ige-conf-gconf.c

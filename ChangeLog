@@ -1,5 +1,10 @@
 2008-10-11  Richard Hult  <richard@imendio.com>
 
+	* data/Makefile.am:
+	* src/Makefile.am: Small distcheck fixes.
+
+2008-10-11  Richard Hult  <richard@imendio.com>
+
 	* src/dh-base.c: (dh_base_init): Add missing NULL terminator.
 
 2008-10-11  Richard Hult  <richard@imendio.com>
