@@ -1,8 +1,19 @@
+2008-10-12  Richard Hult  <richard@imendio.com>
+
+	* src/dh-main.c: (main): Ignore -psn_* on quartz, which is added
+	by Finder.
+	
+	* src/dh-util.c: (util_get_mac_data_dir): Point to the Resources
+	directory inside the bundle.
+
+	* src/dh-window.c: (window_populate): Use
+	dh_util_build_data_filename.
+
 2008-10-11  Richard Hult  <richard@imendio.com>
 
 	* src/dh-util.c: (dh_util_build_data_filename): Pick up bundle
-	location is ran from a bundle (still needs work to point to the
-	right place).
+	location if executed from a bundle (still needs work to point to
+	the right place).
 
 2008-10-11  Richard Hult  <richard@imendio.com>
 

@@ -612,15 +612,18 @@ static void
 window_populate (DhWindow *window)
 {
         DhWindowPriv *priv;
+        gchar        *path;
         GtkWidget    *book_tree_sw;
         GNode        *contents_tree;
         GList        *keywords;
 
         priv = window->priv;
 
+        path = dh_util_build_data_filename ("devhelp", "ui", "window.ui", NULL);
         gtk_ui_manager_add_ui_from_file (priv->manager,
-                                         DATADIR "/devhelp/ui/window.ui",
+                                         path,
                                          NULL);
+        g_free (path);
         gtk_ui_manager_ensure_update (priv->manager);
 
 #ifdef GDK_WINDOWING_QUARTZ

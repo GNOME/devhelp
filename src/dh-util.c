@@ -145,7 +145,7 @@ util_get_mac_data_dir (void)
         UInt32       creator;
         CFURLRef     cf_url;
         CFStringRef  cf_string;
-        gchar       *ret;
+        gchar       *ret, *tmp;
 
         /* The environment variable overrides all. */
         env = g_getenv ("DEVHELP_DATADIR");
@@ -170,7 +170,10 @@ util_get_mac_data_dir (void)
         CFRelease (cf_string);
         CFRelease (cf_url);
 
-        return ret;
+        tmp = g_build_filename (ret, "Contents", "Resources", NULL);
+        g_free (ret);
+
+        return tmp;
 }
 #endif
 

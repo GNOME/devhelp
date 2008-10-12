@@ -212,6 +212,22 @@ main (int argc, char **argv)
 		}
 	};
 
+#ifdef GDK_WINDOWING_QUARTZ
+        {
+                gint i;
+
+                for (i = 0; i < argc; i++) {
+                        if (g_str_has_prefix (argv[i], "-psn_")) {
+                                for (; i < argc-1; i++) {
+                                        argv[i] = argv[i+1];
+                                }
+                                argc--;
+                                break;
+                        }
+                }
+        }
+#endif
+
 	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
