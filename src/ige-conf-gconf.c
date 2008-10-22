@@ -25,6 +25,7 @@
 
 typedef struct {
         GConfClient *gconf_client;
+        GList       *defaults;
 } IgeConfPriv;
 
 typedef struct {
@@ -54,6 +55,8 @@ conf_finalize (GObject *object)
         */
 
         g_object_unref (priv->gconf_client);
+
+        _ige_conf_defaults_free_list (priv->defaults);
 
         G_OBJECT_CLASS (ige_conf_parent_class)->finalize (object);
 }
@@ -95,11 +98,10 @@ ige_conf_add_defaults (IgeConf     *conf,
                        const gchar *path)
 {
         IgeConfPriv *priv = GET_PRIVATE (conf);
-        GList       *defaults;
         gchar       *root;
 
-        defaults = _ige_conf_defaults_read_file (path, NULL);
-        root = _ige_conf_defaults_get_root (defaults);
+        priv->defaults = _ige_conf_defaults_read_file (path, NULL);
+        root = _ige_conf_defaults_get_root (priv->defaults);
 
         gconf_client_add_dir (priv->gconf_client,
                               root,
@@ -107,7 +109,18 @@ ige_conf_add_defaults (IgeConf     *conf,
                               NULL);
 
         g_free (root);
-        _ige_conf_defaults_free_list (defaults);
+}
+
+static GConfEntry *
+conf_get_entry (IgeConf     *conf,
+                const gchar *key)
+{
+        IgeConfPriv *priv;
+
+        priv = GET_PRIVATE (conf);
+
+        return gconf_client_get_entry (priv->gconf_client, key,
+                                       NULL, TRUE, NULL);
 }
 
 gboolean
@@ -133,7 +146,8 @@ ige_conf_get_int (IgeConf     *conf,
                   gint        *value)
 {
         IgeConfPriv *priv;
-        GError          *error = NULL;
+        GConfEntry  *entry;
+        gboolean     got_value = FALSE;
 
         *value = 0;
 
@@ -142,13 +156,21 @@ ige_conf_get_int (IgeConf     *conf,
 
         priv = GET_PRIVATE (conf);
 
-        *value = gconf_client_get_int (priv->gconf_client,
-                                       key,
-                                       &error);
+        entry = conf_get_entry (conf, key);
+        if (entry) {
+                GConfValue *v;
 
-        if (error) {
-                g_error_free (error);
-                return FALSE;
+                v = gconf_entry_get_value (entry);
+                if (v) {
+                        *value = gconf_value_get_int (v);
+                        got_value = TRUE;
+                }
+        }
+
+        gconf_entry_free (entry);
+
+        if (!got_value) {
+                *value = _ige_conf_defaults_get_int (priv->defaults, key);
         }
 
         return TRUE;
@@ -177,22 +199,31 @@ ige_conf_get_bool (IgeConf     *conf,
                    gboolean    *value)
 {
         IgeConfPriv *priv;
-        GError      *error = NULL;
+        GConfEntry  *entry;
+        gboolean     got_value = FALSE;
 
-        *value = FALSE;
+        *value = 0;
 
         g_return_val_if_fail (IGE_IS_CONF (conf), FALSE);
         g_return_val_if_fail (value != NULL, FALSE);
 
         priv = GET_PRIVATE (conf);
 
-        *value = gconf_client_get_bool (priv->gconf_client,
-                                        key,
-                                        &error);
+        entry = conf_get_entry (conf, key);
+        if (entry) {
+                GConfValue *v;
 
-        if (error) {
-                g_error_free (error);
-                return FALSE;
+                v = gconf_entry_get_value (entry);
+                if (v) {
+                        *value = gconf_value_get_bool (v);
+                        got_value = TRUE;
+                }
+        }
+
+        gconf_entry_free (entry);
+
+        if (!got_value) {
+                *value = _ige_conf_defaults_get_bool (priv->defaults, key);
         }
 
         return TRUE;
@@ -237,6 +268,10 @@ ige_conf_get_string (IgeConf      *conf,
                 g_error_free (error);
                 return FALSE;
         }
+
+        if (*value == NULL) {
+                *value = g_strdup (_ige_conf_defaults_get_string (priv->defaults, key));
+       }
 
         return TRUE;
 }

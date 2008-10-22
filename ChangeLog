@@ -1,3 +1,12 @@
+2008-10-22  Richard Hult  <richard@imendio.com>
+
+	Bug 557223 – segmentation fault on startup
+
+	* src/ige-conf-gconf.c:
+	* src/ige-conf-private.h:
+	* src/ige-conf.c: Add back simple fallbacks for people with
+	mis-configured gconf setups.
+
 2008-10-12  Richard Hult  <richard@imendio.com>
 
 	* src/dh-main.c: (main): Ignore -psn_* on quartz, which is added

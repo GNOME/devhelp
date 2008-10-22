@@ -20,6 +20,7 @@
 
 #include "config.h"
 #include <string.h>
+#include <stdlib.h>
 #include "ige-conf-private.h"
 
 typedef struct {
@@ -266,4 +267,71 @@ _ige_conf_defaults_get_root (GList *defaults)
         }
 
         return root;
+}
+
+static IgeConfDefaultItem *
+defaults_get_item (GList       *defaults,
+                   const gchar *key)
+{
+        GList  *l;
+
+        for (l = defaults; l; l = l->next) {
+                IgeConfDefaultItem *item = l->data;
+
+                if (strcmp (item->key, key) == 0) {
+                        return item;
+                }
+        }
+
+        return NULL;
+}
+
+const gchar *
+_ige_conf_defaults_get_string (GList       *defaults,
+                               const gchar *key)
+{
+        IgeConfDefaultItem *item;
+
+        item = defaults_get_item (defaults, key);
+
+        if (item) {
+                return item->value;
+        }
+
+        return NULL;
+}
+
+gint
+_ige_conf_defaults_get_int (GList       *defaults,
+                            const gchar *key)
+{
+        IgeConfDefaultItem *item;
+
+        item = defaults_get_item (defaults, key);
+
+        if (item) {
+                return strtol (item->value, NULL, 10);
+        }
+
+        return 0;
+}
+
+gboolean
+_ige_conf_defaults_get_bool (GList       *defaults,
+                             const gchar *key)
+{
+        IgeConfDefaultItem *item;
+
+        item = defaults_get_item (defaults, key);
+
+        if (item) {
+                if (strcmp (item->value, "false") == 0) {
+                        return FALSE;
+                }
+                else if (strcmp (item->value, "true") == 0) {
+                        return TRUE;
+                }
+        }
+
+        return FALSE;
 }

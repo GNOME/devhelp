@@ -38,10 +38,16 @@ typedef struct {
         gchar       *value;
 } IgeConfDefaultItem;
 
-GList *_ige_conf_defaults_read_file (const gchar  *path,
-                                     GError      **error);
-void   _ige_conf_defaults_free_list (GList        *defaults);
-gchar *_ige_conf_defaults_get_root  (GList        *defaults);
+GList *      _ige_conf_defaults_read_file  (const gchar  *path,
+					    GError      **error);
+void         _ige_conf_defaults_free_list  (GList        *defaults);
+gchar *      _ige_conf_defaults_get_root   (GList        *defaults);
+const gchar *_ige_conf_defaults_get_string (GList        *defaults,
+					    const gchar  *key);
+gint         _ige_conf_defaults_get_int    (GList        *defaults,
+					    const gchar  *key);
+gboolean     _ige_conf_defaults_get_bool   (GList        *defaults,
+					    const gchar  *key);
 
 G_END_DECLS
 
