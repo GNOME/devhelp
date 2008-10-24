@@ -42,3 +42,5 @@
 ;;
 ;; Bind F6 to search with the assistant window.
 ;; (global-set-key [f6] 'devhelp-assistant-word-at-point)
+
+(provide 'devhelp)

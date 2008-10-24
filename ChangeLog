@@ -1,3 +1,7 @@
+2008-10-23  Carlos Garnacho  <carlos@imendio.com>
+
+	* misc/devhelp.el: Add provide for devhelp.el.
+
 2008-10-22  Richard Hult  <richard@imendio.com>
 
 	Bug 557223 – segmentation fault on startup
