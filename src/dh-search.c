@@ -519,7 +519,6 @@ dh_search_new (GList *keywords)
         DhSearchPriv     *priv;
         GtkTreeSelection *selection;
         GtkWidget        *list_sw;
-        GtkWidget        *frame;
         GtkWidget        *hbox;
         GtkWidget        *book_label;
         GtkCellRenderer  *cell;
@@ -568,15 +567,11 @@ dh_search_new (GList *keywords)
         gtk_box_pack_start (GTK_BOX (search), priv->entry, FALSE, FALSE, 0);
 
         /* Setup the hitlist */
-        frame = gtk_frame_new (NULL);
-        gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-
         list_sw = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (list_sw), GTK_SHADOW_IN);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (list_sw),
                                         GTK_POLICY_NEVER,
                                         GTK_POLICY_AUTOMATIC);
-
-        gtk_container_add (GTK_CONTAINER (frame), list_sw);
 
         cell = gtk_cell_renderer_text_new ();
         g_object_set (cell,
@@ -604,7 +599,7 @@ dh_search_new (GList *keywords)
 
         gtk_container_add (GTK_CONTAINER (list_sw), priv->hitlist);
 
-        gtk_box_pack_end (GTK_BOX (search), frame, TRUE, TRUE, 0);
+        gtk_box_pack_end (GTK_BOX (search), list_sw, TRUE, TRUE, 0);
 
         g_completion_add_items (priv->completion, keywords);
         dh_keyword_model_set_words (priv->model, keywords);
