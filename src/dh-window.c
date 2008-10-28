@@ -99,9 +99,6 @@ static void           window_manager_add_widget      (GtkUIManager    *manager,
                                                       DhWindow        *window);
 static void           window_check_history           (DhWindow        *window,
                                                       WebKitWebView   *web_view);
-static gboolean       window_web_view_open_uri_cb    (WebKitWebView   *web_view,
-                                                      const gchar     *uri,
-                                                      DhWindow        *window);
 static void           window_web_view_tab_accel_cb   (GtkAccelGroup   *accel_group,
                                                       GObject         *object,
                                                       guint            key,
@@ -579,29 +576,21 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
         new_page = gtk_notebook_get_nth_page (notebook, new_page_num);
         if (new_page) {
                 WebKitWebView  *new_web_view;
-                const gchar    *title, *location;
                 WebKitWebFrame *web_frame;
+                const gchar    *location;
 
                 new_web_view = g_object_get_data (G_OBJECT (new_page), "web_view");
 
                 window_update_title (window, new_web_view, NULL);
 
-                return;
-
-                /* FIXME: WebKit: where did the return above come from?! */
-
-                web_frame = webkit_web_view_get_main_frame (new_web_view);
-                title = webkit_web_frame_get_title (web_frame);
-                gtk_window_set_title (GTK_WINDOW (window), title);
-
                 /* Sync the book tree. */
+                web_frame = webkit_web_view_get_main_frame (new_web_view);
                 location = webkit_web_frame_get_uri (web_frame);
                 if (location) {
                         dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree),
                                                  location);
                 }
                 window_check_history (window, new_web_view);
-
         } else {
                 gtk_window_set_title (GTK_WINDOW (window), "Devhelp");
                 window_check_history (window, NULL);
@@ -751,11 +740,31 @@ window_populate (DhWindow *window)
                           G_CALLBACK (window_findbar_close_cb),
                           window);
 
-        dh_preferences_setup_fonts ();
-
         gtk_widget_show_all (priv->hpaned);
 
         window_open_new_tab (window, NULL);
+}
+
+static WebKitNavigationResponse
+window_web_view_navigation_requested_cb (WebKitWebView        *web_view,
+                                         WebKitWebFrame       *frame,
+                                         WebKitNetworkRequest *request,
+                                         DhWindow             *window)
+{
+        DhWindowPriv *priv;
+
+        priv = window->priv;
+
+        if (web_view == window_get_active_web_view (window)) {
+                const gchar *uri;
+
+                uri = webkit_network_request_get_uri (request);
+
+                dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree), uri);
+                window_check_history (window, web_view);
+        }
+
+        return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
 }
 
 static void
@@ -775,7 +784,7 @@ window_tree_link_selected_cb (GObject  *ignored,
          * clicked in it.
          */
         g_signal_handlers_block_by_func (view,
-                                         window_web_view_open_uri_cb,
+                                         window_web_view_navigation_requested_cb,
                                          window);
 
         uri = dh_link_get_uri (link);
@@ -783,7 +792,7 @@ window_tree_link_selected_cb (GObject  *ignored,
         g_free (uri);
 
         g_signal_handlers_unblock_by_func (view,
-                                           window_web_view_open_uri_cb,
+                                           window_web_view_navigation_requested_cb,
                                            window);
 
         window_check_history (window, view);
@@ -842,38 +851,6 @@ window_check_history (DhWindow      *window,
         g_object_set (action,
                       "sensitive", web_view ? webkit_web_view_can_go_back (web_view) : FALSE,
                       NULL);
-}
-
-#if 0
-static void
-window_web_view_location_changed_cb (WebKitWebView *web_view,
-                                     const gchar   *location,
-                                     DhWindow      *window)
-{
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
-        if (web_view == window_get_active_web_view (window)) {
-                window_check_history (window, web_view);
-        }
-}
-#endif
-
-static gboolean
-window_web_view_open_uri_cb (WebKitWebView *web_view,
-                             const gchar   *uri,
-                             DhWindow      *window)
-{
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
-        if (web_view == window_get_active_web_view (window)) {
-                dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree), uri);
-        }
-
-        return FALSE;
 }
 
 static void
@@ -1069,17 +1046,16 @@ window_open_new_tab (DhWindow    *window,
         g_signal_connect (view, "button-press-event",
                           G_CALLBACK (window_web_view_button_press_event_cb),
                           window);
-    /*
-        g_signal_connect (view, "open-uri",
-                          G_CALLBACK (window_web_view_open_uri_cb),
+
+        g_signal_connect (view, "navigation-requested",
+                          G_CALLBACK (window_web_view_navigation_requested_cb),
                           window);
-        g_signal_connect (view, "location-changed",
-                          G_CALLBACK (window_web_view_location_changed_cb),
-                          window);
+
+        /*
         g_signal_connect (view, "open-new-tab",
                           G_CALLBACK (window_web_view_open_new_tab_cb),
                           window);
-              */
+        */
 
         num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
                                         scrolled_window, NULL);
@@ -1087,18 +1063,13 @@ window_open_new_tab (DhWindow    *window,
         gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
                                     scrolled_window, label);
 
-        gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (priv->notebook),
-                                            scrolled_window,
-                                            TRUE, TRUE,
-                                            GTK_PACK_START);
-
         if (location) {
                 webkit_web_view_open (WEBKIT_WEB_VIEW (view), location);
         } else {
                 webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
         }
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), num);
 
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), num);
 }
 
 static void
@@ -1211,7 +1182,9 @@ window_update_title (DhWindow      *window,
         priv = window->priv;
 
         if (!web_view_title) {
-                WebKitWebFrame *web_frame = webkit_web_view_get_main_frame (web_view);
+                WebKitWebFrame *web_frame;
+
+                web_frame = webkit_web_view_get_main_frame (web_view);
                 web_view_title = webkit_web_frame_get_title (web_frame);
         }
 
