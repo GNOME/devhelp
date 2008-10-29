@@ -229,15 +229,18 @@ static void
 window_activate_zoom_in (GtkAction *action,
                          DhWindow  *window)
 {
-        DhWindowPriv  *priv;
-        WebKitWebView *web_view;
+        DhWindowPriv *priv;
 
-        web_view = window_get_active_web_view (window);
         priv = window->priv;
 
         if (zoom_levels[priv->zoom_level].level < ZOOM_MAXIMAL) {
+                WebKitWebView *web_view;
+
                 priv->zoom_level++;
-                g_object_set (web_view, "zoom-level", zoom_levels[priv->zoom_level].level, NULL);
+                web_view = window_get_active_web_view (window);
+                g_object_set (web_view,
+                              "zoom-level", zoom_levels[priv->zoom_level].level,
+                              NULL);
         }
 }
 
@@ -245,15 +248,18 @@ static void
 window_activate_zoom_out (GtkAction *action,
                           DhWindow  *window)
 {
-        WebKitWebView *web_view;
-        DhWindowPriv  *priv;
+        DhWindowPriv *priv;
 
-        web_view = window_get_active_web_view (window);
         priv = window->priv;
 
         if (zoom_levels[priv->zoom_level].level > ZOOM_MINIMAL) {
+                WebKitWebView *web_view;
+
                 priv->zoom_level--;
-                g_object_set (web_view, "zoom-level", zoom_levels[priv->zoom_level].level, NULL);
+                web_view = window_get_active_web_view (window);
+                g_object_set (web_view,
+                              "zoom-level", zoom_levels[priv->zoom_level].level,
+                              NULL);
         }
 }
 
@@ -261,12 +267,12 @@ static void
 window_activate_zoom_default (GtkAction *action,
                               DhWindow  *window)
 {
-        WebKitWebView *web_view;
         DhWindowPriv  *priv;
+        WebKitWebView *web_view;
 
-        web_view = window_get_active_web_view (window);
         priv = window->priv;
 
+        web_view = window_get_active_web_view (window);
         g_object_set (web_view, "zoom-level", ZOOM_DEFAULT, NULL);
 }
 
@@ -1115,36 +1121,35 @@ static GtkWidget*
 window_new_tab_label (DhWindow    *window,
                       const gchar *str)
 {
-        GtkWidget  *hbox, *label, *close_button, *image;
+        GtkWidget *hbox;
+        GtkWidget *label;
+        GtkWidget *close_button;
+        GtkWidget *image;
 
         hbox = gtk_hbox_new (FALSE, 4);
 
         label = gtk_label_new (str);
         gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
-        gtk_label_set_single_line_mode (GTK_LABEL (label), TRUE);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-        gtk_misc_set_padding (GTK_MISC (label), 0, 0);
         gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 
         close_button = gtk_button_new ();
-        gtk_button_set_relief (GTK_BUTTON (close_button),
-                               GTK_RELIEF_NONE);
+        gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
         gtk_button_set_focus_on_click (GTK_BUTTON (close_button), FALSE);
-
         gtk_widget_set_name (close_button, "devhelp-tab-close-button");
 
         image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
-        /*gtk_widget_set_tooltip_text (close_button, _("Close tab"));*/
         g_signal_connect (close_button, "clicked",
-                          G_CALLBACK (close_button_clicked_cb), window);
-
+                          G_CALLBACK (close_button_clicked_cb),
+                          window);
         gtk_container_add (GTK_CONTAINER (close_button), image);
 
         gtk_box_pack_start (GTK_BOX (hbox), close_button, FALSE, FALSE, 0);
 
         /* Set minimal size */
         g_signal_connect (hbox, "style-set",
-                          G_CALLBACK (tab_label_style_set_cb), NULL);
+                          G_CALLBACK (tab_label_style_set_cb),
+                          NULL);
 
         g_object_set_data (G_OBJECT (hbox), "label", label);
         g_object_set_data (G_OBJECT (hbox), "close-button", close_button);
