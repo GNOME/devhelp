@@ -135,7 +135,7 @@ dh_search_init (DhSearch *search)
 
         gtk_tree_view_set_enable_search (GTK_TREE_VIEW (priv->hitlist), FALSE);
 
-        gtk_box_set_spacing (GTK_BOX (search), 2);
+        gtk_box_set_spacing (GTK_BOX (search), 4);
 }
 
 static void
@@ -527,7 +527,7 @@ dh_search_new (GList *keywords)
 
         priv = GET_PRIVATE (search);
 
-        gtk_container_set_border_width (GTK_CONTAINER (search), 2);
+        gtk_container_set_border_width (GTK_CONTAINER (search), 4);
 
         priv->book_combo = search_combo_create (search, keywords);
         g_signal_connect (priv->book_combo, "changed",

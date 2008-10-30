@@ -681,7 +681,7 @@ window_populate (DhWindow *window)
                                         GTK_POLICY_AUTOMATIC);
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (book_tree_sw),
                                              GTK_SHADOW_IN);
-        gtk_container_set_border_width (GTK_CONTAINER (book_tree_sw), 2);
+        gtk_container_set_border_width (GTK_CONTAINER (book_tree_sw), 4);
 
         contents_tree = dh_base_get_book_tree (priv->base);
         keywords = dh_base_get_keywords (priv->base);
@@ -1038,7 +1038,7 @@ window_open_new_tab (DhWindow    *window,
 
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
                                              GTK_SHADOW_IN);
-        gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 2);
+        gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 4);
         gtk_container_add (GTK_CONTAINER (scrolled_window), view);
 
         g_object_set_data (G_OBJECT (scrolled_window), "web_view", view);
