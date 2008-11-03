@@ -161,56 +161,34 @@ main (int argc, char **argv)
 	DhBase                 *base;
 	GtkWidget              *window;
 	GError                 *error = NULL;
-	GOptionEntry            options[] = {
-		{
-			"search",
-			's',
-			0,
-			G_OPTION_ARG_STRING,
-			&option_search,
-			_("Search for a function"),
-			NULL
-		},
-       		{
-			"quit",
-			'q',
-			0,
-			G_OPTION_ARG_NONE,
-			&option_quit,
-			_("Quit any running Devhelp"),
-			NULL
-		},
-       		{
-			"version",
-			'v',
-			0,
-			G_OPTION_ARG_NONE,
-			&option_version,
-			_("Display the version and exit"),
-			NULL
-		},
-       		{
-			"focus-search",
-			'f',
-			0,
-			G_OPTION_ARG_NONE,
-			&option_focus_search,
-			_("Focus the Devhelp window with the search field active"),
-			NULL
-		},
-       		{
-			"search-assistant",
-			'a',
-			0,
-			G_OPTION_ARG_STRING,
-			&option_search_assistant,
-			_("Search and display any hit in the assistant window"),
-			NULL
-		},
-		{
-			NULL, '\0', 0, 0, NULL, NULL, NULL
-		}
-	};
+        GOptionEntry            options[] = {
+                { "search", 's',
+                  0, G_OPTION_ARG_STRING, &option_search,
+                  _("Search for a keyword"),
+                  NULL
+                },
+                { "quit", 'q',
+                  0, G_OPTION_ARG_NONE, &option_quit,
+                  _("Quit any running Devhelp"),
+                  NULL
+                },
+                { "version", 'v',
+                  0, G_OPTION_ARG_NONE, &option_version,
+                  _("Display the version and exit"),
+                  NULL
+                },
+                { "focus-search",       'f',
+                  0, G_OPTION_ARG_NONE, &option_focus_search,
+                  _("Focus the Devhelp window with the search field active"),
+                  NULL
+                },
+                { "search-assistant", 'a',
+                  0, G_OPTION_ARG_STRING, &option_search_assistant,
+                  _("Search and display any hit in the assistant window"),
+                  NULL
+                },
+                { NULL }
+        };
 
 #ifdef GDK_WINDOWING_QUARTZ
         {
