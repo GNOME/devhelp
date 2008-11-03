@@ -173,14 +173,20 @@ window_activate_close (GtkAction *action,
 {
         DhWindowPriv *priv;
         gint          page_num;
+        gint          pages;
 
         priv = window->priv;
 
         page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
         gtk_notebook_remove_page (GTK_NOTEBOOK (priv->notebook), page_num);
 
-        if (gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook)) == 0) {
+        pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
+
+        if (pages == 0) {
                 gtk_widget_destroy (GTK_WIDGET (window));
+        }
+        else if (pages == 1) {
+                /*gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);*/
         }
 }
 
@@ -587,16 +593,17 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
 
                 new_web_view = g_object_get_data (G_OBJECT (new_page), "web_view");
 
-                window_update_title (window, new_web_view, NULL);
-
                 /* Sync the book tree. */
                 web_frame = webkit_web_view_get_main_frame (new_web_view);
                 location = webkit_web_frame_get_uri (web_frame);
+
                 if (location) {
                         dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree),
                                                  location);
                 }
                 window_check_history (window, new_web_view);
+
+                window_update_title (window, new_web_view, NULL);
         } else {
                 gtk_window_set_title (GTK_WINDOW (window), "Devhelp");
                 window_check_history (window, NULL);
@@ -681,7 +688,7 @@ window_populate (DhWindow *window)
                                         GTK_POLICY_AUTOMATIC);
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (book_tree_sw),
                                              GTK_SHADOW_IN);
-        gtk_container_set_border_width (GTK_CONTAINER (book_tree_sw), 4);
+        gtk_container_set_border_width (GTK_CONTAINER (book_tree_sw), 2);
 
         contents_tree = dh_base_get_book_tree (priv->base);
         keywords = dh_base_get_keywords (priv->base);
@@ -1038,7 +1045,7 @@ window_open_new_tab (DhWindow    *window,
 
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
                                              GTK_SHADOW_IN);
-        gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 4);
+        gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 2);
         gtk_container_add (GTK_CONTAINER (scrolled_window), view);
 
         g_object_set_data (G_OBJECT (scrolled_window), "web_view", view);
@@ -1069,6 +1076,10 @@ window_open_new_tab (DhWindow    *window,
         gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
                                     scrolled_window, label);
 
+        /*gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook),
+                                    gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook)) > 1);
+        */
+
         if (location) {
                 webkit_web_view_open (WEBKIT_WEB_VIEW (view), location);
         } else {
@@ -1078,6 +1089,7 @@ window_open_new_tab (DhWindow    *window,
         gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), num);
 }
 
+#ifndef GDK_WINDOWING_QUARTZ
 static void
 close_button_clicked_cb (GtkButton *button,
                          DhWindow  *window)
@@ -1116,13 +1128,18 @@ tab_label_style_set_cb (GtkWidget *hbox,
         button = g_object_get_data (G_OBJECT (hbox), "close-button");
         gtk_widget_set_size_request (button, w + 2, h + 2);
 }
+#endif
 
+/* Don't create a close button on quartz, it looks very much out of
+ * place.
+ */
 static GtkWidget*
 window_new_tab_label (DhWindow    *window,
                       const gchar *str)
 {
-        GtkWidget *hbox;
         GtkWidget *label;
+#ifndef GDK_WINDOWING_QUARTZ
+        GtkWidget *hbox;
         GtkWidget *close_button;
         GtkWidget *image;
 
@@ -1155,6 +1172,12 @@ window_new_tab_label (DhWindow    *window,
         g_object_set_data (G_OBJECT (hbox), "close-button", close_button);
 
         return hbox;
+#else
+        label = gtk_label_new (str);
+        g_object_set_data (G_OBJECT (label), "label", label);
+
+        return label;
+#endif
 }
 
 static WebKitWebView *
@@ -1212,7 +1235,7 @@ window_update_title (DhWindow      *window,
 
         if (web_view_title) {
                 gchar *full_title;
-                full_title = g_strdup_printf ("%s : %s", book_title, web_view_title);
+                full_title = g_strdup_printf ("%s - %s", book_title, web_view_title);
                 gtk_window_set_title (GTK_WINDOW (window), full_title);
                 g_free (full_title);
         } else {

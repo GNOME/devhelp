@@ -1,5 +1,12 @@
 2008-11-03  Richard Hult  <richard@imendio.com>
 
+	* src/dh-search.c:
+	* src/dh-window.c: Revert the padding changes.
+	- Fix title updating when switching tabs.
+	- Remove the close button on mac, it looks really strange.
+
+2008-11-03  Richard Hult  <richard@imendio.com>
+
 	* src/dh-main.c: Reindent.
 
 2008-10-30  Richard Hult  <richard@imendio.com>

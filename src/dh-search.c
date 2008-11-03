@@ -527,7 +527,7 @@ dh_search_new (GList *keywords)
 
         priv = GET_PRIVATE (search);
 
-        gtk_container_set_border_width (GTK_CONTAINER (search), 4);
+        gtk_container_set_border_width (GTK_CONTAINER (search), 2);
 
         priv->book_combo = search_combo_create (search, keywords);
         g_signal_connect (priv->book_combo, "changed",
