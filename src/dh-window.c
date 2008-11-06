@@ -186,7 +186,7 @@ window_activate_close (GtkAction *action,
                 gtk_widget_destroy (GTK_WIDGET (window));
         }
         else if (pages == 1) {
-                /*gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);*/
+                gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
         }
 }
 
@@ -372,7 +372,7 @@ window_activate_about (GtkAction *action,
                                "translator-credits",
                                strcmp (translator_credits, "translator_credits") != 0 ?
                                translator_credits : NULL,
-                               "website", "http://developer.imendio.com/wiki/Devhelp",
+                               "website", "http://developer.imendio.com/projects/devhelp/",
                                "logo-icon-name", "devhelp",
                                NULL);
 }
@@ -720,6 +720,8 @@ window_populate (DhWindow *window)
 
         /* HTML tabs notebook. */
         priv->notebook = gtk_notebook_new ();
+        gtk_container_set_border_width (GTK_CONTAINER (priv->notebook), 0);
+        gtk_notebook_set_show_border (GTK_NOTEBOOK (priv->notebook), FALSE);
         gtk_box_pack_start (GTK_BOX (priv->vbox), priv->notebook, TRUE, TRUE, 0);
 
         g_signal_connect (priv->notebook,
@@ -1034,7 +1036,6 @@ window_open_new_tab (DhWindow    *window,
         priv = window->priv;
 
         view = webkit_web_view_new ();
-
         gtk_widget_show (view);
 
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -1042,12 +1043,7 @@ window_open_new_tab (DhWindow    *window,
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
         gtk_widget_show (scrolled_window);
-
-        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
-                                             GTK_SHADOW_IN);
-        gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 2);
         gtk_container_add (GTK_CONTAINER (scrolled_window), view);
-
         g_object_set_data (G_OBJECT (scrolled_window), "web_view", view);
 
         label = window_new_tab_label (window, _("Empty Page"));
@@ -1076,9 +1072,11 @@ window_open_new_tab (DhWindow    *window,
         gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
                                     scrolled_window, label);
 
-        /*gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook),
-                                    gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook)) > 1);
-        */
+        if (gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook)) > 1) {
+                gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), TRUE);
+        } else {
+                gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
+        }
 
         if (location) {
                 webkit_web_view_open (WEBKIT_WEB_VIEW (view), location);

@@ -1,3 +1,11 @@
+2008-11-06  Richard Hult  <richard@imendio.com>
+
+	* src/dh-window.c: (window_activate_close),
+	(window_activate_about), (window_populate), (window_open_new_tab):
+	Don't show notebook tabs if there is only one tab to save some
+	space and get a cleaner look. Paddings/shadow might need some
+	further tweaking.
+
 2008-11-03  Richard Hult  <richard@imendio.com>
 
 	* src/dh-search.c:
