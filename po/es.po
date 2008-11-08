@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-11 06:59+0000\n"
-"PO-Revision-Date: 2008-10-12 22:26+0200\n"
+"POT-Creation-Date: 2008-11-07 08:51+0100\n"
+"PO-Revision-Date: 2008-11-08 16:06+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,27 +27,25 @@ msgid "Documentation Browser"
 msgstr "Visor de documentación"
 
 #: ../data/devhelp.schemas.in.h:1
-#, fuzzy
 msgid "Font for fixed width text"
-msgstr "Tipografía para el texto fijo"
+msgstr "Tipografía para el texto de anchura fija"
 
 #: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
 msgstr "Tipografía para el texto"
 
 #: ../data/devhelp.schemas.in.h:3
-#, fuzzy
 msgid "Font for text with fixed width, such as code examples."
-msgstr "Tipografía para el texto con ancho fijo."
+msgstr ""
+"Tipografía para el texto con anchura fija, tal como los ejemplos de código."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Tipografía para el texto con ancho variable."
 
 #: ../data/devhelp.schemas.in.h:5
-#, fuzzy
 msgid "Height of assistant window"
-msgstr "Altura de la ventana principal"
+msgstr "Altura de la ventana del asistente"
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Height of main window"
@@ -62,36 +60,32 @@ msgid "Selected tab, \"content\" or \"search\""
 msgstr "Solapa seleccionada, «contenido» o «búsqueda»"
 
 #: ../data/devhelp.schemas.in.h:9
-#, fuzzy
 msgid "The X position of the assistant window."
-msgstr "La posición X de la ventana principal."
+msgstr "La posición X de la ventana del asistente."
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "The X position of the main window."
 msgstr "La posición X de la ventana principal."
 
 #: ../data/devhelp.schemas.in.h:11
-#, fuzzy
 msgid "The Y position of the assistant window."
-msgstr "La posición Y de la ventana principal."
+msgstr "La posición Y de la ventana del asistente."
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The Y position of the main window."
 msgstr "La posición Y de la ventana principal."
 
 #: ../data/devhelp.schemas.in.h:13
-#, fuzzy
 msgid "The height of the assistant window."
-msgstr "La altura de la ventana principal."
+msgstr "La altura de la ventana del asistente."
 
 #: ../data/devhelp.schemas.in.h:14
 msgid "The height of the main window."
 msgstr "La altura de la ventana principal."
 
 #: ../data/devhelp.schemas.in.h:15
-#, fuzzy
 msgid "The width of the assistant window."
-msgstr "La anchura de la ventana principal."
+msgstr "La anchura de la ventana del asistente."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
@@ -166,7 +160,7 @@ msgstr "Muestra la documentación de la API para la palabra bajo el cursor"
 msgid "Devhelp - Assistant"
 msgstr "Asistente de Devhelp"
 
-#: ../src/dh-assistant-view.c:397
+#: ../src/dh-assistant-view.c:312
 msgid "Book:"
 msgstr "Libro:"
 
@@ -221,24 +215,23 @@ msgstr "Enumerar"
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/dh-main.c:171
-msgid "Search for a function"
-msgstr "Buscar una función"
+#: ../src/dh-main.c:167
+msgid "Search for a keyword"
+msgstr "Buscar una palabra clave"
 
-#: ../src/dh-main.c:180
+#: ../src/dh-main.c:172
 msgid "Quit any running Devhelp"
 msgstr "Termina cualquier DevHelp en ejecución"
 
-#: ../src/dh-main.c:189
+#: ../src/dh-main.c:177
 msgid "Display the version and exit"
 msgstr "Muestra la versión y sale"
 
-#: ../src/dh-main.c:198
-#, fuzzy
+#: ../src/dh-main.c:182
 msgid "Focus the Devhelp window with the search field active"
-msgstr "Da el foco a la ventana de devhelp con el campo de búsqueda activo"
+msgstr "Da el foco a la ventana de Devhelp con el campo de búsqueda activo"
 
-#: ../src/dh-main.c:207
+#: ../src/dh-main.c:187
 msgid "Search and display any hit in the assistant window"
 msgstr "Buscar y mostrar cualquier coincidencia en la ventana del asistente"
 
@@ -263,22 +256,22 @@ msgstr ""
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr ""
-"los elementos nombre y enlace se requieren dentro de <sub> en la línea %d, "
+"se requieren los elementos nombre y enlace dentro de <sub> en la línea %d, "
 "columna %d"
 
 #: ../src/dh-parser.c:268
-#, fuzzy, c-format
+#, c-format
 msgid "name and link elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"los elementos nombre y enlace se requieren dentro de <sub> en la línea %d, "
+"se requieren los elementos nombre y enlace dentro de «%s» en la línea %d, "
 "columna %d"
 
 #: ../src/dh-parser.c:281
-#, fuzzy, c-format
+#, c-format
 msgid "type element is required inside <keyword> on line %d, column %d"
 msgstr ""
-"los elementos nombre y enlace se requieren dentro de <sub> en la línea %d, "
-"columna %d"
+"se requiere el tipo de elemento dentro de <keyword> en la línea %d, columna %"
+"d"
 
 #: ../src/dh-parser.c:486
 #, c-format
@@ -289,7 +282,7 @@ msgstr "No se pudo descomprimir el libro «%s»: %s"
 msgid "All books"
 msgstr "Todos los libros"
 
-#: ../src/dh-search.c:538
+#: ../src/dh-search.c:537
 msgid "Search in:"
 msgstr "Buscar en:"
 
@@ -329,118 +322,118 @@ msgstr "300%"
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:355
+#: ../src/dh-window.c:364
 msgid "translator_credits"
 msgstr ""
-"Jorge González <jorgegonz@svn.gnome.org>, 2007-2008.\n"
-"Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006."
+"Jorge González <jorgegonz@svn.gnome.org>, 2007-2008\n"
+"Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006"
 
-#: ../src/dh-window.c:360
+#: ../src/dh-window.c:369
 msgid "A developer's help browser for GNOME"
 msgstr "Un visor de ayuda para desarrolladores de GNOME"
 
-#: ../src/dh-window.c:372
+#: ../src/dh-window.c:381
 msgid "_File"
 msgstr "_Archivo"
 
-#: ../src/dh-window.c:373
+#: ../src/dh-window.c:382
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:374
+#: ../src/dh-window.c:383
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/dh-window.c:375
+#: ../src/dh-window.c:384
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/dh-window.c:376
+#: ../src/dh-window.c:385
 msgid "_Help"
 msgstr "Ay_uda"
 
 #. File menu
-#: ../src/dh-window.c:379
+#: ../src/dh-window.c:388
 msgid "_New Window"
 msgstr "_Ventana nueva"
 
-#: ../src/dh-window.c:381
+#: ../src/dh-window.c:390
 msgid "New _Tab"
 msgstr "_Solapa nueva"
 
-#: ../src/dh-window.c:383
+#: ../src/dh-window.c:392
 msgid "_Print..."
 msgstr "_Imprimir…"
 
-#: ../src/dh-window.c:395 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:404 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Buscar siguiente"
 
-#: ../src/dh-window.c:397 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:406 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Buscar anterior"
 
-#: ../src/dh-window.c:404
+#: ../src/dh-window.c:413
 msgid "Go to the previous page"
 msgstr "Ir a la página anterior"
 
-#: ../src/dh-window.c:407
+#: ../src/dh-window.c:416
 msgid "Go to the next page"
 msgstr "Ir a la página siguiente"
 
-#: ../src/dh-window.c:410
+#: ../src/dh-window.c:419
 msgid "_Contents Tab"
 msgstr "Solapa de _contenido"
 
-#: ../src/dh-window.c:413
+#: ../src/dh-window.c:422
 msgid "_Search Tab"
 msgstr "Solapa de _búsqueda"
 
 #. View menu
-#: ../src/dh-window.c:417
+#: ../src/dh-window.c:426
 msgid "_Larger Text"
 msgstr "Texto más _grande"
 
-#: ../src/dh-window.c:418
+#: ../src/dh-window.c:427
 msgid "Increase the text size"
 msgstr "Aumentar el tamaño del texto"
 
-#: ../src/dh-window.c:420
+#: ../src/dh-window.c:429
 msgid "S_maller Text"
 msgstr "Texto más _pequeño"
 
-#: ../src/dh-window.c:421
+#: ../src/dh-window.c:430
 msgid "Decrease the text size"
 msgstr "Disminuir el tamaño del texto"
 
-#: ../src/dh-window.c:423
+#: ../src/dh-window.c:432
 msgid "_Normal Size"
 msgstr "Tamaño _normal"
 
-#: ../src/dh-window.c:424
+#: ../src/dh-window.c:433
 msgid "Use the normal text size"
 msgstr "Usar el tamaño de texto normal"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:649
+#: ../src/dh-window.c:654
 msgid "About Devhelp"
 msgstr "Acerca de DevHelp"
 
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:659
 msgid "Preferences..."
 msgstr "Preferencias…"
 
-#: ../src/dh-window.c:697
+#: ../src/dh-window.c:702
 msgid "Contents"
 msgstr "Índice"
 
-#: ../src/dh-window.c:707
+#: ../src/dh-window.c:712
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:1060 ../src/dh-window.c:1256
+#: ../src/dh-window.c:1049 ../src/dh-window.c:1258
 msgid "Empty Page"
 msgstr "Página vacía"
 
