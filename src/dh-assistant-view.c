@@ -90,7 +90,7 @@ assistant_button_press_event (GtkWidget      *widget,
                 return TRUE;
         }
 
-        return FALSE;
+        return GTK_WIDGET_CLASS (dh_assistant_view_parent_class)->button_press_event (widget, event);
 }
 
 static void

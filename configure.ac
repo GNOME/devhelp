@@ -1,5 +1,5 @@
 AC_PREREQ(2.60)
-AC_INIT([Devhelp],[0.21],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+AC_INIT([Devhelp],[0.22],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
 
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_AUX_DIR(build)
