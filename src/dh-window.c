@@ -1038,6 +1038,20 @@ window_open_new_tab (DhWindow    *window,
         view = webkit_web_view_new ();
         gtk_widget_show (view);
 
+        dh_util_font_add_web_view (WEBKIT_WEB_VIEW (view));
+
+#if 0
+        /* Leave this in for now to make it easier to experiment. */
+        {
+                WebKitWebSettings *settings;
+                settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
+
+                g_object_set (settings,
+                              "user-stylesheet-uri", "file://" DATADIR "/devhelp/devhelp.css",
+                              NULL);
+        }
+#endif
+
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                         GTK_POLICY_AUTOMATIC,
