@@ -60,7 +60,6 @@ static void     preferences_connect_conf_listeners    (void);
 static void     preferences_get_font_names            (gboolean          use_system_fonts,
                                                        gchar           **variable,
                                                        gchar           **fixed);
-static gboolean preferences_update_fonts              (gpointer          unused);
 
 #define DH_CONF_PATH                  "/apps/devhelp"
 #define DH_CONF_USE_SYSTEM_FONTS      DH_CONF_PATH "/ui/use_system_fonts"
@@ -146,12 +145,6 @@ preferences_var_font_notify_cb (IgeConf     *client,
 					       font_name);
                 g_free (font_name);
 	}
-	
-	if (use_system_fonts) {
-		return;
-	}
-
-	g_idle_add (preferences_update_fonts, NULL);
 }
 
 static void
@@ -173,12 +166,6 @@ preferences_fixed_font_notify_cb (IgeConf     *client,
 					       font_name);
                 g_free (font_name);
 	}
-
-	if (use_system_fonts) {
-		return;
-	}
-	
-	g_idle_add (preferences_update_fonts, NULL);
 }
 
 static void
@@ -199,14 +186,17 @@ preferences_use_system_font_notify_cb (IgeConf     *client,
 	if (prefs->fonts_table) {
 		gtk_widget_set_sensitive (prefs->fonts_table, !use_system_fonts);
 	}
-			
-	g_idle_add (preferences_update_fonts, NULL);
 }
 
+/* FIXME: This is not hooked up yet (to update the dialog if the values are
+ * changed outside of devhelp).
+ */
 static void
 preferences_connect_conf_listeners (void)
 {
 	IgeConf *conf;
+
+        if (0) preferences_connect_conf_listeners ();
 	
 	conf = ige_conf_get ();
 
@@ -237,6 +227,7 @@ preferences_connect_conf_listeners (void)
                                      prefs);
 }
 
+/* FIXME: Use the functions in dh-util.c for this. */
 static void
 preferences_get_font_names (gboolean   use_system_fonts, 
 			    gchar    **variable,
@@ -246,14 +237,19 @@ preferences_get_font_names (gboolean   use_system_fonts,
 	IgeConf *conf;
 
 	conf = ige_conf_get ();
-	
+
 	if (use_system_fonts) {
+#ifdef GDK_WINDOWING_QUARTZ
+                var_font_name = g_strdup ("Lucida Grande 14");
+                fixed_font_name = g_strdup ("Monaco 14");
+#else
 		ige_conf_get_string (conf,
                                      DH_CONF_SYSTEM_VARIABLE_FONT,
                                      &var_font_name);
 		ige_conf_get_string (conf,
                                      DH_CONF_SYSTEM_FIXED_FONT,
                                      &fixed_font_name);
+#endif
 	} else {
 		ige_conf_get_string (conf,
                                      DH_CONF_VARIABLE_FONT, 
@@ -265,41 +261,6 @@ preferences_get_font_names (gboolean   use_system_fonts,
 
 	*variable = var_font_name;
 	*fixed = fixed_font_name;
-}
-
-static gboolean
-preferences_update_fonts (gpointer unused)
-{
-	IgeConf  *conf;
-	gboolean  use_system_fonts;
-	gchar    *var_font_name;
-	gchar    *fixed_font_name;
-
-	conf = ige_conf_get ();
-
-	ige_conf_get_bool (conf,
-                           DH_CONF_USE_SYSTEM_FONTS,
-                           &use_system_fonts);
-
-	preferences_get_font_names (use_system_fonts,
-				    &var_font_name,
-                                    &fixed_font_name);
-
-        /* FIXME: Set WebKit font preferences using WebSettings. */
-
-	g_free (var_font_name);
-	g_free (fixed_font_name);
-
-	return FALSE;
-}
-
-void
-dh_preferences_setup_fonts (void)
-{
-        preferences_init ();
-
-	preferences_update_fonts (NULL);
-	preferences_connect_conf_listeners ();
 }
 
 void
