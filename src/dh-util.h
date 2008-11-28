@@ -23,6 +23,7 @@
 #define __DH_UTIL_H__
 
 #include <gtk/gtk.h>
+#include <webkit/webkit.h>
 
 G_BEGIN_DECLS
 
@@ -47,6 +48,14 @@ void         dh_util_state_manage_notebook        (GtkNotebook *notebook,
 void         dh_util_state_set_notebook_page_name (GtkWidget   *page,
                                                    const gchar *page_name);
 const gchar *dh_util_state_get_notebook_page_name (GtkWidget   *page);
+
+void         dh_util_font_get_variable            (gchar        **name,
+                                                   gdouble       *size,
+                                                   gboolean       use_system_font);
+void         dh_util_font_get_fixed               (gchar        **name,
+                                                   gdouble       *size,
+                                                   gboolean       use_system_font);
+void         dh_util_font_add_web_view            (WebKitWebView *view);
 
 G_END_DECLS
 

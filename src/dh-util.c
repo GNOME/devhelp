@@ -29,6 +29,8 @@
 #include "ige-conf.h"
 #include "dh-util.h"
 
+static GList *views;
+
 static GtkBuilder *
 get_builder_file (const gchar *filename,
                   const gchar *root,
@@ -547,4 +549,198 @@ dh_util_state_manage_notebook (GtkNotebook *notebook,
         g_signal_connect (notebook, "switch-page",
                           G_CALLBACK (util_state_notebook_switch_page_cb),
                           NULL);
+}
+
+static gboolean
+split_font_string (const gchar  *name_and_size,
+                   gchar       **name,
+                   gdouble      *size)
+{
+	PangoFontDescription *desc;
+	PangoFontMask         mask;
+	gboolean              retval = FALSE;
+
+	desc = pango_font_description_from_string (name_and_size);
+	if (!desc) {
+		return FALSE;
+	}
+	
+	mask = (PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_SIZE);
+        if ((pango_font_description_get_set_fields (desc) & mask) == mask) {
+		*size = PANGO_PIXELS (pango_font_description_get_size (desc));
+		*name = g_strdup (pango_font_description_get_family (desc));
+		retval = TRUE;
+	}
+
+	pango_font_description_free (desc);
+
+	return retval;
+}
+
+#define DH_CONF_PATH                  "/apps/devhelp"
+#define DH_CONF_USE_SYSTEM_FONTS      DH_CONF_PATH "/ui/use_system_fonts"
+#define DH_CONF_VARIABLE_FONT         DH_CONF_PATH "/ui/variable_font"
+#define DH_CONF_FIXED_FONT            DH_CONF_PATH "/ui/fixed_font"
+#define DH_CONF_SYSTEM_VARIABLE_FONT  "/desktop/gnome/interface/font_name"
+#define DH_CONF_SYSTEM_FIXED_FONT     "/desktop/gnome/interface/monospace_font_name"
+
+void
+dh_util_font_get_variable (gchar    **name,
+                           gdouble   *size,
+                           gboolean   use_system_fonts)
+{
+	IgeConf *conf;
+	gchar   *name_and_size;
+
+	conf = ige_conf_get ();
+
+	if (use_system_fonts) {
+#ifdef GDK_WINDOWING_QUARTZ
+                name_and_size = g_strdup ("Lucida Grande 14");
+#else
+		ige_conf_get_string (conf,
+                                     DH_CONF_SYSTEM_VARIABLE_FONT,
+                                     &name_and_size);
+#endif
+	} else {
+		ige_conf_get_string (conf,
+                                     DH_CONF_VARIABLE_FONT, 
+                                     &name_and_size);
+	}
+
+        if (split_font_string (name_and_size, name, size)) {
+                *name = g_strdup ("sans");
+                *size = 12;
+        }
+
+        g_free (name_and_size);
+}
+
+void
+dh_util_font_get_fixed (gchar    **name,
+                        gdouble   *size,
+                        gboolean   use_system_fonts)
+{
+	IgeConf *conf;
+	gchar   *name_and_size;
+
+	conf = ige_conf_get ();
+
+	if (use_system_fonts) {
+#ifdef GDK_WINDOWING_QUARTZ
+                name_and_size = g_strdup ("Monaco 14");
+#else
+		ige_conf_get_string (conf,
+                                     DH_CONF_SYSTEM_FIXED_FONT,
+                                     &name_and_size);
+#endif
+	} else {
+		ige_conf_get_string (conf,
+                                     DH_CONF_FIXED_FONT, 
+                                     &name_and_size);
+	}
+
+        if (!split_font_string (name_and_size, name, size)) {
+                *name = g_strdup ("monospace");
+                *size = 12;
+        }
+
+        g_free (name_and_size);
+}
+
+static void
+view_destroy_cb (GtkWidget *view,
+                 gpointer   user_data)
+{
+        views = g_list_remove (views, view);
+}
+
+static void
+view_setup_fonts (WebKitWebView *view)
+{
+        IgeConf           *conf;
+        WebKitWebSettings *settings;
+        gboolean           use_system_fonts;
+	gchar             *variable_name;
+	gdouble            variable_size;
+	gchar             *fixed_name;
+	gdouble            fixed_size;
+
+        conf = ige_conf_get ();
+
+        settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
+
+	ige_conf_get_bool (conf,
+                           DH_CONF_USE_SYSTEM_FONTS,
+                           &use_system_fonts);
+
+        dh_util_font_get_variable (&variable_name, &variable_size,
+                                   use_system_fonts);
+        dh_util_font_get_fixed (&fixed_name, &fixed_size,
+                                   use_system_fonts);
+
+        g_object_set (settings,
+                      "monospace-font-family", fixed_name,
+                      "default-monospace-font-size", (guint) fixed_size,
+                      "sans-serif-font-family", variable_name,
+                      "serif-font-family", variable_name,
+                      "default-font-size", (guint) variable_size,
+                      NULL);
+}
+
+static void
+font_notify_cb (IgeConf     *conf,
+                const gchar *path,
+                gpointer     user_data)
+{
+        GList *l;
+
+        g_print ("fonts changed\n");
+
+        for (l = views; l; l = l->next) {
+                view_setup_fonts (l->data);
+        }
+}
+
+void
+dh_util_font_add_web_view (WebKitWebView *view)
+{
+        static gboolean setup;
+
+        if (!setup) {
+                IgeConf *conf;
+
+                conf = ige_conf_get ();
+
+		ige_conf_notify_add (conf,
+                                     DH_CONF_USE_SYSTEM_FONTS,
+                                     font_notify_cb,
+                                     NULL);
+		ige_conf_notify_add (conf,
+                                     DH_CONF_SYSTEM_VARIABLE_FONT,
+                                     font_notify_cb,
+                                     NULL);
+		ige_conf_notify_add (conf,
+                                     DH_CONF_SYSTEM_FIXED_FONT,
+                                     font_notify_cb,
+                                     NULL);
+		ige_conf_notify_add (conf,
+                                     DH_CONF_VARIABLE_FONT,
+                                     font_notify_cb,
+                                     NULL);
+		ige_conf_notify_add (conf,
+                                     DH_CONF_FIXED_FONT,
+                                     font_notify_cb,
+                                     NULL);
+
+                setup = TRUE;
+        }
+
+        views = g_list_prepend (views, view);
+
+        g_signal_connect (view, "destroy",
+                          G_CALLBACK (view_destroy_cb),
+                          NULL);
+
+        view_setup_fonts (view);
 }
