@@ -1,3 +1,27 @@
+2008-12-01  Richard Hult  <richard@imendio.com>
+
+	* NEWS: Update for 0.22 release.
+
+	* src/dh-preferences.c: (preferences_system_fonts_toggled_cb),
+	(preferences_connect_conf_listeners): Fix build with recent gcc
+	versions.
+
+	* src/dh-util.c: (dh_util_font_get_variable), (font_notify_cb):
+	Fix the font size and remove debug output.
+
+2008-12-01  Richard Hult  <richard@imendio.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	* NEWS:
+	* src/dh-preferences.c: (preferences_system_fonts_toggled_cb),
+	(preferences_connect_conf_listeners):
+	* src/dh-util.c: (dh_util_font_get_variable), (font_notify_cb):
+
+2008-12-01  Richard Hult  <richard@imendio.com>
+
+	* NEWS: Update for 0.22 release.
+
 2008-11-28  Richard Hult  <richard@imendio.com>
 
 	* src/dh-util.[ch]: Add code to handle updating the font settings

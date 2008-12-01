@@ -608,7 +608,7 @@ dh_util_font_get_variable (gchar    **name,
                                      &name_and_size);
 	}
 
-        if (split_font_string (name_and_size, name, size)) {
+        if (!split_font_string (name_and_size, name, size)) {
                 *name = g_strdup ("sans");
                 *size = 12;
         }
@@ -694,8 +694,6 @@ font_notify_cb (IgeConf     *conf,
                 gpointer     user_data)
 {
         GList *l;
-
-        g_print ("fonts changed\n");
 
         for (l = views; l; l = l->next) {
                 view_setup_fonts (l->data);

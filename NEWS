@@ -1,3 +1,26 @@
+NEW in 0.22:
+============
+
+This is the first release from the WebKit branch. Many thanks to Alp
+Toker, Frederic Peters and Jan Alonzo for the initial patches.
+
+Updated translations: ar, be@latin, bg, bn_IN, ca, cs, da, de, en_GB,
+es, et, fi, fr, gl, he, hr, hu, it, ja, ko, lt, mk, nb, ne, nl, nn,
+oc, pl, ps, pt, pt_BR, ru, sq, sv, th, tr, uk, vi, zh_TW
+
+Many thanks to the translators: Alexander Shopov, Arangel Angov, Artur
+Flinta, Baris Cicek, Changwoo Ryu, Claude Paroz, Clytie Siddall,
+Daniel Nylander, David Lodge, Djihed Afifi, Duarte Loreto, Eskild
+Hustvedt, Gabor Kelemen, Gil Forcada, Gintautas Miliauskas, Hong Kong,
+Ignacio Casal Quinteiro, Ihar Hrachyshka, Ilkka Tuohela, Jonh Wendell,
+Jorge Gonzalez, Jovan Naumovski, Kenneth Nielsen, Kjartan Maraas,
+Laurent Dhima, Leonardo Ferreira Fontenelle, Luca Ferretti, Maxim
+Dziumanenko, Pawan Chitrakar, Petr Kovar, Philipp Kerling, Priit Laes,
+Richard Hult, Robert Sedak, Runa Bhattacharjee, Takeshi AIHANA,
+Theppitak Karoonboonyanan, Wouter Bolsterlee, Yair Hershkovitz, Yannig
+Marchegay, Yuri Kozlov.
+
+
 NEW in 0.19:
 ============
 

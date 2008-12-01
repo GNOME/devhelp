@@ -47,6 +47,7 @@ static void     preferences_close_cb                  (GtkButton        *button,
                                                        gpointer          user_data);
 static void     preferences_system_fonts_toggled_cb   (GtkToggleButton  *button,
                                                        gpointer          user_data);
+#if 0
 static void     preferences_var_font_notify_cb        (IgeConf          *client,
                                                        const gchar      *path,
                                                        gpointer          user_data);
@@ -57,6 +58,7 @@ static void     preferences_use_system_font_notify_cb (IgeConf          *client,
                                                        const gchar      *path,
                                                        gpointer          user_data);
 static void     preferences_connect_conf_listeners    (void);
+#endif
 static void     preferences_get_font_names            (gboolean          use_system_fonts,
                                                        gchar           **variable,
                                                        gchar           **fixed);
@@ -126,6 +128,7 @@ preferences_system_fonts_toggled_cb (GtkToggleButton *button,
 	gtk_widget_set_sensitive (prefs->fonts_table, !active);
 }
 
+#if 0
 static void
 preferences_var_font_notify_cb (IgeConf     *client,
 				const gchar *path,
@@ -196,8 +199,6 @@ preferences_connect_conf_listeners (void)
 {
 	IgeConf *conf;
 
-        if (0) preferences_connect_conf_listeners ();
-	
 	conf = ige_conf_get ();
 
 	prefs->use_system_fonts_id =
@@ -226,6 +227,7 @@ preferences_connect_conf_listeners (void)
                                      preferences_fixed_font_notify_cb,
                                      prefs);
 }
+#endif
 
 /* FIXME: Use the functions in dh-util.c for this. */
 static void
