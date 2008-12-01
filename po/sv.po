@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-10 15:28+0200\n"
-"PO-Revision-Date: 2008-02-19 21:39+0100\n"
+"POT-Creation-Date: 2008-12-01 21:33+0100\n"
+"PO-Revision-Date: 2008-12-01 21:33+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -139,26 +139,6 @@ msgstr "Y-position för assistentfönstret"
 msgid "Y position of main window"
 msgstr "Y-position för huvudfönstret"
 
-#: ../data/ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Typsnitt</b>"
-
-#: ../data/ui/devhelp.glade.h:2
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: ../data/ui/devhelp.glade.h:3
-msgid "_Fixed width:"
-msgstr "_Fast bredd:"
-
-#: ../data/ui/devhelp.glade.h:4
-msgid "_Use system fonts"
-msgstr "_Använd systemets typsnitt"
-
-#: ../data/ui/devhelp.glade.h:5
-msgid "_Variable width: "
-msgstr "_Variabel bredd:"
-
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Stöd för Devhelp"
@@ -180,7 +160,7 @@ msgstr "Visa API-dokumentation för ordet vid markören"
 msgid "Devhelp - Assistant"
 msgstr "Devhelp - Assistent"
 
-#: ../src/dh-assistant-view.c:397
+#: ../src/dh-assistant-view.c:312
 msgid "Book:"
 msgstr "Bok:"
 
@@ -235,27 +215,29 @@ msgstr "Enum"
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/dh-main.c:170
-msgid "Search for a function"
-msgstr "Sök efter en funktion"
+#: ../src/dh-main.c:167
+msgid "Search for a keyword"
+msgstr "Sök efter ett nyckelord"
 
-#: ../src/dh-main.c:179
+#: ../src/dh-main.c:172
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
-#: ../src/dh-main.c:188
+#: ../src/dh-main.c:177
 msgid "Display the version and exit"
 msgstr "Visa versionen och avsluta"
 
-#: ../src/dh-main.c:197
+#: ../src/dh-main.c:182
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Fokusera Devhelpfönstret med sökfältet aktivt"
 
-#: ../src/dh-main.c:206
+#: ../src/dh-main.c:187
 msgid "Search and display any hit in the assistant window"
 msgstr "Sök och visa eventuell träff i assistentfönstret"
 
-#: ../src/dh-parser.c:80 ../src/dh-parser.c:169 ../src/dh-parser.c:233
+#: ../src/dh-parser.c:80
+#: ../src/dh-parser.c:169
+#: ../src/dh-parser.c:233
 #: ../src/dh-parser.c:243
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
@@ -291,11 +273,11 @@ msgstr "typelement krävs inuti <keyword> på rad %d, kolumn %d"
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan inte dekomprimera boken \"%s\": %s"
 
-#: ../src/dh-search.c:470
+#: ../src/dh-search.c:481
 msgid "All books"
 msgstr "Alla böcker"
 
-#: ../src/dh-search.c:527
+#: ../src/dh-search.c:537
 msgid "Search in:"
 msgstr "Sök i:"
 
@@ -335,7 +317,7 @@ msgstr "300%"
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:355
+#: ../src/dh-window.c:364
 msgid "translator_credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -343,112 +325,115 @@ msgstr ""
 "Richard Hult <richard@imendio.com>\n"
 "Johan Dahlin <johan@gnome.org>"
 
-#: ../src/dh-window.c:360
+#: ../src/dh-window.c:369
 msgid "A developer's help browser for GNOME"
 msgstr "Ett hjälpprogram för utvecklare för GNOME"
 
-#: ../src/dh-window.c:372
+#: ../src/dh-window.c:381
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/dh-window.c:373
+#: ../src/dh-window.c:382
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/dh-window.c:374
+#: ../src/dh-window.c:383
 msgid "_View"
 msgstr "_Visa"
 
-#: ../src/dh-window.c:375
+#: ../src/dh-window.c:384
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/dh-window.c:376
+#: ../src/dh-window.c:385
 msgid "_Help"
 msgstr "_Hjälp"
 
 #. File menu
-#: ../src/dh-window.c:379
+#: ../src/dh-window.c:388
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/dh-window.c:381
+#: ../src/dh-window.c:390
 msgid "New _Tab"
 msgstr "Ny _flik"
 
-#: ../src/dh-window.c:383
+#: ../src/dh-window.c:392
 msgid "_Print..."
 msgstr "_Skriv ut..."
 
-#: ../src/dh-window.c:395 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:404
+#: ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Sök nästa"
 
-#: ../src/dh-window.c:397 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:406
+#: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Sök föregående"
 
-#: ../src/dh-window.c:404
+#: ../src/dh-window.c:413
 msgid "Go to the previous page"
 msgstr "Gå till föregående sida"
 
-#: ../src/dh-window.c:407
+#: ../src/dh-window.c:416
 msgid "Go to the next page"
 msgstr "Gå till nästa sida"
 
-#: ../src/dh-window.c:410
+#: ../src/dh-window.c:419
 msgid "_Contents Tab"
 msgstr "_Innehållsflik"
 
-#: ../src/dh-window.c:413
+#: ../src/dh-window.c:422
 msgid "_Search Tab"
 msgstr "_Sökflik"
 
 #. View menu
-#: ../src/dh-window.c:417
+#: ../src/dh-window.c:426
 msgid "_Larger Text"
 msgstr "_Större text"
 
-#: ../src/dh-window.c:418
+#: ../src/dh-window.c:427
 msgid "Increase the text size"
 msgstr "Öka textstorleken"
 
-#: ../src/dh-window.c:420
+#: ../src/dh-window.c:429
 msgid "S_maller Text"
 msgstr "_Mindre text"
 
-#: ../src/dh-window.c:421
+#: ../src/dh-window.c:430
 msgid "Decrease the text size"
 msgstr "Minska textstorleken"
 
-#: ../src/dh-window.c:423
+#: ../src/dh-window.c:432
 msgid "_Normal Size"
 msgstr "_Normal storlek"
 
-#: ../src/dh-window.c:424
+#: ../src/dh-window.c:433
 msgid "Use the normal text size"
 msgstr "Använd normal textstorlek"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:649
+#: ../src/dh-window.c:654
 msgid "About Devhelp"
 msgstr "Om Devhelp"
 
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:659
 msgid "Preferences..."
 msgstr "Inställningar..."
 
-#: ../src/dh-window.c:697
+#: ../src/dh-window.c:702
 msgid "Contents"
 msgstr "Innehåll"
 
-#: ../src/dh-window.c:707
+#: ../src/dh-window.c:712
 msgid "Search"
 msgstr "Sök"
 
-#: ../src/dh-window.c:1060 ../src/dh-window.c:1256
+#: ../src/dh-window.c:1063
+#: ../src/dh-window.c:1272
 msgid "Empty Page"
 msgstr "Tom sida"
 
@@ -456,11 +441,13 @@ msgstr "Tom sida"
 msgid "Find:"
 msgstr "Sök:"
 
-#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
+#: ../src/eggfindbar.c:333
+#: ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Sök föregående förekomst av söksträngen"
 
-#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
+#: ../src/eggfindbar.c:346
+#: ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "Sök nästa förekomst av söksträngen"
 
@@ -468,12 +455,23 @@ msgstr "Sök nästa förekomst av söksträngen"
 msgid "C_ase Sensitive"
 msgstr "Skift_lägeskänslig"
 
-#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
+#: ../src/eggfindbar.c:362
+#: ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Växla skiftlägeskänslighet"
 
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Typsnitt</b>"
+#~ msgid "Preferences"
+#~ msgstr "Inställningar"
+#~ msgid "_Fixed width:"
+#~ msgstr "_Fast bredd:"
+#~ msgid "_Use system fonts"
+#~ msgstr "_Använd systemets typsnitt"
+#~ msgid "_Variable width: "
+#~ msgstr "_Variabel bredd:"
 #~ msgid "Could not create book parser"
 #~ msgstr "Kunde inte skapa boktolk"
-
 #~ msgid "Could not create markup parser"
 #~ msgstr "Kunde inte skapa markuptolk"
+
