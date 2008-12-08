@@ -4,15 +4,15 @@
 # Copyright (C) 2007, 2008 The GNOME Project.
 # This file is distributed under the same license as the devhelp package.
 #
-# Ivar Smolin <okul@linux.ee>, 2007, 2008.
-#
+# Ivar Smolin <okul linux ee>, 2007, 2008.
+# Mattias Põldaru <mahfiaz gmail com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-30 15:35+0000\n"
-"PO-Revision-Date: 2008-06-02 21:58+0300\n"
-"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
+"POT-Creation-Date: 2008-11-07 08:51+0100\n"
+"PO-Revision-Date: 2008-11-23 01:20+0300\n"
+"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,17 +22,12 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Arendaja abiteabe programm"
 
-#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:844
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:2
 msgid "Documentation Browser"
 msgstr "Dokumentatsioonisirvija"
 
 #: ../data/devhelp.schemas.in.h:1
-msgid "Font for fixed text"
+msgid "Font for fixed width text"
 msgstr "Määratud laiusega teksti kirjatüüp"
 
 #: ../data/devhelp.schemas.in.h:2
@@ -40,129 +35,108 @@ msgid "Font for text"
 msgstr "Teksti kirjatüüp"
 
 #: ../data/devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Määratud laiusega teksti korral kasutatav kirjatüüp."
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Määratud laiusega teksti, nagu koodilõigud, korral kasutatav kirjatüüp."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Muutuva laiusega teksti korral kasutatav kirjatüüp."
 
 #: ../data/devhelp.schemas.in.h:5
+msgid "Height of assistant window"
+msgstr "Assistendiakna kõrgus"
+
+#: ../data/devhelp.schemas.in.h:6
 msgid "Height of main window"
 msgstr "Peaakna kõrgus"
 
-#: ../data/devhelp.schemas.in.h:6
+#: ../data/devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Peaakna maksimeeritud olek"
 
-#: ../data/devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:8
 msgid "Selected tab, \"content\" or \"search\""
 msgstr "Valitud kaart, \"content\" (sisukord) või \"search\" (otsing)"
 
-#: ../data/devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Laiendatud otsimisvalikute näitamine"
-
 #: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the assistant window."
+msgstr "Assistendiakna asukoht X-teljel."
+
+#: ../data/devhelp.schemas.in.h:10
 msgid "The X position of the main window."
 msgstr "Peaakna asukoht X-teljel."
 
-#: ../data/devhelp.schemas.in.h:10
+#: ../data/devhelp.schemas.in.h:11
+msgid "The Y position of the assistant window."
+msgstr "Assistendiakna asukoht Y-teljel."
+
+#: ../data/devhelp.schemas.in.h:12
 msgid "The Y position of the main window."
 msgstr "Peaakna asukoht Y-teljel."
 
-#: ../data/devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:13
+msgid "The height of the assistant window."
+msgstr "Assistendiakna kõrgus."
+
+#: ../data/devhelp.schemas.in.h:14
 msgid "The height of the main window."
 msgstr "Peaakna kõrgus."
 
-#: ../data/devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:15
+msgid "The width of the assistant window."
+msgstr "Assistendiakna laius."
+
+#: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
 msgstr "Indeksi- ja otsimispaani laius."
 
-#: ../data/devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:17
 msgid "The width of the main window."
 msgstr "Peaakna laius."
 
-#: ../data/devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:18
 msgid "Use system fonts"
 msgstr "Süsteemsete kirjatüüpide kasutamine"
 
-#: ../data/devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:19
 msgid "Use the systems default fonts."
 msgstr "Süsteemsete vaikimisi kirjatüüpide kasutamine"
 
-#: ../data/devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Kas laiendatud otsimisvalikuid näidatakse või mitte."
-
-#: ../data/devhelp.schemas.in.h:17
+#: ../data/devhelp.schemas.in.h:20
 msgid "Whether the main window should start maximized or not."
 msgstr "Kas peaaken peab käivitamisel saama maksimeeritud või mitte."
 
-#: ../data/devhelp.schemas.in.h:18
+#: ../data/devhelp.schemas.in.h:21
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr ""
-"Milline kaart on valitud, kas \"content\" (sisukord) või \"search\" (otsing)"
+msgstr "Milline kaart on valitud, kas \"content\" (sisukord) või \"search\" (otsing)"
 
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/devhelp.schemas.in.h:22
+msgid "Width of the assistant window"
+msgstr "Assistendiakna laius."
+
+#: ../data/devhelp.schemas.in.h:23
 msgid "Width of the index and search pane"
 msgstr "Indeksi- ja otsimispaani laius"
 
-#: ../data/devhelp.schemas.in.h:20
+#: ../data/devhelp.schemas.in.h:24
 msgid "Width of the main window"
 msgstr "Peaakna laius."
 
-#: ../data/devhelp.schemas.in.h:21
+#: ../data/devhelp.schemas.in.h:25
+msgid "X position of assistant window"
+msgstr "Assistendiakna asukoht X-teljel"
+
+#: ../data/devhelp.schemas.in.h:26
 msgid "X position of main window"
 msgstr "Peaakna asukoht X-teljel"
 
-#: ../data/devhelp.schemas.in.h:22
+#: ../data/devhelp.schemas.in.h:27
+msgid "Y position of assistant window"
+msgstr "Assistendiakna asukoht Y-teljel"
+
+#: ../data/devhelp.schemas.in.h:28
 msgid "Y position of main window"
 msgstr "Peaakna asukoht Y-teljel"
-
-#: ../data/ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Kirjatüübid</b>"
-
-#: ../data/ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Otsing</b>"
-
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:561
-msgid "Contents"
-msgstr "Sisukord"
-
-#: ../data/ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Eelistused"
-
-#: ../data/ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "_Tagasi"
-
-#: ../data/ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "_Määratud laiusega:"
-
-#: ../data/ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "_Edasi"
-
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
-msgid "_Go"
-msgstr "_Liikumine"
-
-#: ../data/ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Kuvatakse laiendatud otsimisvalikuid"
-
-#: ../data/ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "Kas_utatakse süsteemseid kirjatüüpe"
-
-#: ../data/ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "Muutuva _laiusega:"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -180,212 +154,281 @@ msgstr "Näita API dokumentatsiooni"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Kursori all oleva sõna kohta API dokumentatsiooni näitamine"
 
-#: ../src/dh-main.c:100
-msgid "Search for a function"
-msgstr "Funktsiooni otsimine"
+#. i18n: Please don't translate "Devhelp".
+#: ../src/dh-assistant.c:74
+msgid "Devhelp - Assistant"
+msgstr "Devhelp - Assistent"
 
-#: ../src/dh-main.c:109
+#: ../src/dh-assistant-view.c:312
+msgid "Book:"
+msgstr "Raamat:"
+
+#. i18n: a documentation book
+#: ../src/dh-link.c:240
+msgid "Book"
+msgstr "Raamat"
+
+#. i18n: a "page" in a documentation book
+#: ../src/dh-link.c:243
+msgid "Page"
+msgstr "Lehekülg"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: ../src/dh-link.c:247
+msgid "Keyword"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:252
+msgid "Function"
+msgstr "Funktsioon"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:257
+msgid "Struct"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:262
+msgid "Macro"
+msgstr "Makro"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:267
+msgid "Enum"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:272
+msgid "Type"
+msgstr ""
+
+#: ../src/dh-main.c:167
+msgid "Search for a keyword"
+msgstr "Võtmesõna otsimine"
+
+#: ../src/dh-main.c:172
 msgid "Quit any running Devhelp"
 msgstr "Kõigi töötavate devhelp'ide sulgemine"
 
-#: ../src/dh-main.c:118
+#: ../src/dh-main.c:177
 msgid "Display the version and exit"
 msgstr "Versiooni andmete kuvamine ja programmi töö lõpetamine"
 
-#: ../src/dh-main.c:127
-msgid "Focus the devhelp window with the search field active"
+#: ../src/dh-main.c:182
+msgid "Focus the Devhelp window with the search field active"
 msgstr "Devhelp'i akna fokuseerimine koos aktiivse otsinguväljaga"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#: ../src/dh-main.c:187
+msgid "Search and display any hit in the assistant window"
+msgstr "Otsi ja kuva iga vastavus assistendiaknas"
+
+#: ../src/dh-parser.c:80
+#: ../src/dh-parser.c:169
+#: ../src/dh-parser.c:233
+#: ../src/dh-parser.c:243
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Oodati '%s', selle asemel saadi '%s' %d. rea %d. veerul"
 
-#: ../src/dh-parser.c:128
+#: ../src/dh-parser.c:97
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Vigane nimeruum '%s' %d. rea %d. veerul"
 
-#: ../src/dh-parser.c:158
+#: ../src/dh-parser.c:122
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
 msgstr "%d. rea %d. veerul peavad olema pealkiri, nimi ja viit"
 
-#: ../src/dh-parser.c:215
+#: ../src/dh-parser.c:188
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
 msgstr "%d. rea %d. veerul peavas <sub> sildi sees olema nime ja viida kirjed"
 
-#: ../src/dh-parser.c:297
+#: ../src/dh-parser.c:268
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
-"%d. rea %d. veerul peavas <function> sildi sees olema nime ja viida kirjed"
+msgid "name and link elements are required inside '%s' on line %d, column %d"
+msgstr "%2$d. rea %3$d. veerul peavad '%1$s' sildi sees olema nime ja viida kirjed"
 
-#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#: ../src/dh-parser.c:281
 #, c-format
-msgid "Could not create book parser"
-msgstr "Raamatu parserit pole võimalik luua"
+msgid "type element is required inside <keyword> on line %d, column %d"
+msgstr "%d. rea %d. veerul <keyword> sees on type element kohustuslik"
 
-#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
-#, c-format
-msgid "Could not create markup parser"
-msgstr "Märkimiskeele parserit pole võimalik luua"
-
-#: ../src/dh-parser.c:578
+#: ../src/dh-parser.c:486
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Raamatut '%s' pole võimalik lahti pakkida: %s"
 
-#: ../src/dh-parser.c:603
-#, c-format
-msgid "Devhelp is not built with zlib support"
-msgstr "Devhelp pole kompileeritud koos zlib'i toega"
+#: ../src/dh-search.c:481
+msgid "All books"
+msgstr "Kõik raamatud"
 
-#: ../src/dh-search.c:621
-msgid "_Book:"
-msgstr "Raa_mat:"
+#: ../src/dh-search.c:537
+msgid "Search in:"
+msgstr "Otsi kohast:"
 
-#: ../src/dh-search.c:641
-msgid "_Page:"
-msgstr "Le_hekülg:"
-
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:73
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:74
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:75
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:76
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:77
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:79
+#: ../src/dh-window.c:78
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:80
+#: ../src/dh-window.c:79
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:80
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:81
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:199
+#: ../src/dh-window.c:364
+msgid "translator_credits"
+msgstr "Ivar Smolin <okul@linux.ee>, 2007, 2008."
+
+#: ../src/dh-window.c:369
+msgid "A developer's help browser for GNOME"
+msgstr "Arendusteabe sirvija GNOME jaoks"
+
+#: ../src/dh-window.c:381
 msgid "_File"
 msgstr "_Fail"
 
-#: ../src/dh-window.c:200
+#: ../src/dh-window.c:382
 msgid "_Edit"
 msgstr "_Redaktor"
 
-#: ../src/dh-window.c:201
+#: ../src/dh-window.c:383
 msgid "_View"
 msgstr "_Vaade"
 
-#: ../src/dh-window.c:203
+#: ../src/dh-window.c:384
+msgid "_Go"
+msgstr "_Liikumine"
+
+#: ../src/dh-window.c:385
 msgid "_Help"
 msgstr "A_bi"
 
 #. File menu
-#: ../src/dh-window.c:206
+#: ../src/dh-window.c:388
 msgid "_New Window"
 msgstr "_Uus aken"
 
-#: ../src/dh-window.c:208
+#: ../src/dh-window.c:390
 msgid "New _Tab"
 msgstr "Uus _kaart"
 
-#: ../src/dh-window.c:210
+#: ../src/dh-window.c:392
 msgid "_Print..."
 msgstr "_Prindi..."
 
-#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:404
+#: ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Leia järgmine"
 
-#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:406
+#: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Leia eelmine"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:413
 msgid "Go to the previous page"
 msgstr "Liigu järgmisele lehele"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:416
 msgid "Go to the next page"
 msgstr "Liigu eelmisele lehele"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:419
 msgid "_Contents Tab"
 msgstr "_Sisukorra kaart"
 
-#: ../src/dh-window.c:240
+#: ../src/dh-window.c:422
 msgid "_Search Tab"
 msgstr "_Otsingu kaart"
 
 #. View menu
-#: ../src/dh-window.c:244
+#: ../src/dh-window.c:426
 msgid "_Larger Text"
 msgstr "_Suurem kiri"
 
-#: ../src/dh-window.c:245
+#: ../src/dh-window.c:427
 msgid "Increase the text size"
 msgstr "Kirja suuruse suurendamine"
 
-#: ../src/dh-window.c:247
+#: ../src/dh-window.c:429
 msgid "S_maller Text"
 msgstr "_Väiksem kiri"
 
-#: ../src/dh-window.c:248
+#: ../src/dh-window.c:430
 msgid "Decrease the text size"
 msgstr "Kirja suuruse vähendamine"
 
-#: ../src/dh-window.c:250
-msgid "_Normal size"
+#: ../src/dh-window.c:432
+msgid "_Normal Size"
 msgstr "_Tavasuurus"
 
-#: ../src/dh-window.c:251
+#: ../src/dh-window.c:433
 msgid "Use the normal text size"
 msgstr "Tavasuuruse määramine kirja suuruseks"
 
-#: ../src/dh-window.c:502
+#. i18n: please don't translate
+#. * "Devhelp", it's a name, not a
+#. * generic word.
+#: ../src/dh-window.c:654
 msgid "About Devhelp"
 msgstr "Devhelp'ist lähemalt"
 
-#: ../src/dh-window.c:507
+#: ../src/dh-window.c:659
 msgid "Preferences..."
 msgstr "Eelistused..."
 
-#: ../src/dh-window.c:571
+#: ../src/dh-window.c:702
+msgid "Contents"
+msgstr "Sisukord"
+
+#: ../src/dh-window.c:712
 msgid "Search"
 msgstr "Otsing"
 
-#: ../src/dh-window.c:841
-msgid "translator_credits"
-msgstr "Ivar Smolin <okul@linux.ee>, 2007, 2008."
-
-#: ../src/dh-window.c:846
-msgid "A developer's help browser for GNOME 2"
-msgstr "Arendusteabe sirvija GNOME 2 jaoks"
-
-#: ../src/dh-window.c:1250 ../src/dh-window.c:1445
+#: ../src/dh-window.c:1049
+#: ../src/dh-window.c:1258
 msgid "Empty Page"
 msgstr "Tühi leht"
 
@@ -393,18 +436,58 @@ msgstr "Tühi leht"
 msgid "Find:"
 msgstr "Otsing:"
 
-#: ../src/eggfindbar.c:332
+#: ../src/eggfindbar.c:333
+#: ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Stringi eelmise esinemiskoha leidmine"
 
-#: ../src/eggfindbar.c:340
+#: ../src/eggfindbar.c:346
+#: ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "Stringi järgmise esinemiskoha leidmine"
 
-#: ../src/eggfindbar.c:348
-msgid "Case Sensitive"
-msgstr "Tõstutundlik"
+#: ../src/eggfindbar.c:358
+msgid "C_ase Sensitive"
+msgstr "_Tõstutundlik"
 
-#: ../src/eggfindbar.c:351
+#: ../src/eggfindbar.c:362
+#: ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Tõstutundliku otsingu sisse- ja väljalülitamine"
+
+#~ msgid "Devhelp"
+#~ msgstr "Devhelp"
+#~ msgid "Show advanced search options"
+#~ msgstr "Laiendatud otsimisvalikute näitamine"
+#~ msgid "Whether the advanced search options are shown."
+#~ msgstr "Kas laiendatud otsimisvalikuid näidatakse või mitte."
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Kirjatüübid</b>"
+#~ msgid "<b>Searching</b>"
+#~ msgstr "<b>Otsing</b>"
+#~ msgid "Preferences"
+#~ msgstr "Eelistused"
+#~ msgid "_Back"
+#~ msgstr "_Tagasi"
+#~ msgid "_Fixed width:"
+#~ msgstr "_Määratud laiusega:"
+#~ msgid "_Forward"
+#~ msgstr "_Edasi"
+#~ msgid "_Show advanced search options"
+#~ msgstr "_Kuvatakse laiendatud otsimisvalikuid"
+#~ msgid "_Use system fonts"
+#~ msgstr "Kas_utatakse süsteemseid kirjatüüpe"
+#~ msgid "_Variable width: "
+#~ msgstr "Muutuva _laiusega:"
+#~ msgid ""
+#~ "name and link elements are required inside <function> on line %d, column %"
+#~ "d"
+#~ msgstr ""
+#~ "%d. rea %d. veerul peavas <function> sildi sees olema nime ja viida kirjed"
+#~ msgid "Could not create book parser"
+#~ msgstr "Raamatu parserit pole võimalik luua"
+#~ msgid "Could not create markup parser"
+#~ msgstr "Märkimiskeele parserit pole võimalik luua"
+#~ msgid "Devhelp is not built with zlib support"
+#~ msgstr "Devhelp pole kompileeritud koos zlib'i toega"
+
