@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-15 23:26+0100\n"
-"PO-Revision-Date: 2008-12-15 23:27+0100\n"
+"POT-Creation-Date: 2009-01-05 01:26+0100\n"
+"PO-Revision-Date: 2009-01-05 01:27+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -71,18 +71,16 @@ msgid "The Y position of the main window."
 msgstr "Vertikal posisjon for hovedvinduet."
 
 #: ../data/devhelp.schemas.in.h:13
-#, fuzzy
 msgid "The height of the assistant window."
-msgstr "Høyde på hovedvinduet."
+msgstr "Høyde på assistentvinduet."
 
 #: ../data/devhelp.schemas.in.h:14
 msgid "The height of the main window."
 msgstr "Høyde på hovedvinduet."
 
 #: ../data/devhelp.schemas.in.h:15
-#, fuzzy
 msgid "The width of the assistant window."
-msgstr "Bredde på hovedvinduet."
+msgstr "Bredde på assistentvinduet."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
@@ -109,9 +107,8 @@ msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr "Hvilken fane er valgt; «content» eller «search»."
 
 #: ../data/devhelp.schemas.in.h:22
-#, fuzzy
 msgid "Width of the assistant window"
-msgstr "Bredde på hovedvinduet"
+msgstr "Bredde på assistentvinduet"
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Width of the index and search pane"
@@ -122,16 +119,14 @@ msgid "Width of the main window"
 msgstr "Bredde på hovedvinduet"
 
 #: ../data/devhelp.schemas.in.h:25
-#, fuzzy
 msgid "X position of assistant window"
-msgstr "Horisontal posisjon for hovedvinduet"
+msgstr "X-posisjon for assistentvinduet"
 
 #: ../data/devhelp.schemas.in.h:26
 msgid "X position of main window"
 msgstr "Horisontal posisjon for hovedvinduet"
 
 #: ../data/devhelp.schemas.in.h:27
-#, fuzzy
 msgid "Y position of assistant window"
 msgstr "Vertikal posisjon for hovedvinduet"
 
