@@ -5,10 +5,10 @@
 # Gabor Kelemen <kelemeng@gnome.hu>, 2005, 2006, 2007, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp.HEAD\n"
+"Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-07 08:51+0100\n"
-"PO-Revision-Date: 2009-01-07 21:33+0100\n"
+"PO-Revision-Date: 2009-01-13 23:27+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
