@@ -1,3 +1,9 @@
+2009-01-19  Richard Hult  <richard@imendio.com>
+
+	* Release 0.23.
+
+	* configure.ac: Bump version.
+
 2008-12-01  Richard Hult  <richard@imendio.com>
 
 	* NEWS: Update for 0.22 release.
@@ -10,8 +16,6 @@
 	Fix the font size and remove debug output.
 
 2008-12-01  Richard Hult  <richard@imendio.com>
-
-	reviewed by: <delete if not using a buddy>
 
 	* NEWS:
 	* src/dh-preferences.c: (preferences_system_fonts_toggled_cb),
