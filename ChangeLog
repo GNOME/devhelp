@@ -1,3 +1,12 @@
+2009-01-20  Leonardo Ferreira Fontenelle  <leonardof@gnome.org>
+
+	reviewed by: Richard Hult.
+
+	* src/dh-parser.c: (parser_start_node_book),
+	(parser_start_node_chapter), (parser_start_node_keyword):
+	Enclosed the elements names between double quotes in some error
+	messages. Closes bug #566454.
+
 2009-01-19  Richard Hult  <richard@imendio.com>
 
 	* Release 0.23.

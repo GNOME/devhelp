@@ -119,7 +119,7 @@ parser_start_node_book (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("title, name, and link elements are "
+                             _("\"title\", \"name\", and \"link\" elements are "
                                "required at line %d, column %d"),
                              line, col);
                 return;
@@ -185,7 +185,7 @@ parser_start_node_chapter (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("name and link elements are required "
+                             _("\"name\" and \"link\" elements are required "
                                "inside <sub> on line %d, column %d"),
                              line, col);
                 return;
@@ -265,7 +265,7 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("name and link elements are required "
+                             _("\"name\" and \"link\" elements are required "
                                "inside '%s' on line %d, column %d"),
                              parser->version == 2 ? "keyword" : "function",
                              line, col);
@@ -278,7 +278,7 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("type element is required "
+                             _("\"type\" element is required "
                                "inside <keyword> on line %d, column %d"),
                              line, col);
                 return;
