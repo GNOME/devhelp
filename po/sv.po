@@ -1,9 +1,9 @@
 # Swedish messages for Devhelp.
-# Copyright (C) 2001-2008 Free Software Foundation, Inc.
+# Copyright (C) 2001-2009 Free Software Foundation, Inc.
 # Richard Hult <richard@imendio.com>, 2001, 2004.
 # Johan Dahlin <zilch.am@home.se>, 2001.
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2008.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2008, 2009.
 #
 # Översätt inte "Devhelp", det är ett namn.
 #
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-01 21:33+0100\n"
-"PO-Revision-Date: 2008-12-01 21:33+0100\n"
+"POT-Creation-Date: 2009-02-11 15:28+0100\n"
+"PO-Revision-Date: 2009-02-11 15:29+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -250,23 +250,23 @@ msgstr "Ogiltig namnrymd \"%s\" vid rad %d, kolumn %d"
 
 #: ../src/dh-parser.c:122
 #, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "titel-, namn- och länkelement krävs vid rad %d, kolumn %d"
+msgid "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
+msgstr "Elementen \"title\", \"name\" och \"link\" krävs på rad %d, kolumn %d"
 
 #: ../src/dh-parser.c:188
 #, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "namn- och länkelement krävs inuti <sub> på rad %d, kolumn %d"
+msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
+msgstr "Elementen \"name\" och \"link\" krävs inuti <sub> på rad %d, kolumn %d"
 
 #: ../src/dh-parser.c:268
 #, c-format
-msgid "name and link elements are required inside '%s' on line %d, column %d"
-msgstr "namn- och länkelement krävs inuti '%s' på rad %d, kolumn %d"
+msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr "Elementen \"name\" och \"link\" krävs inuti \"%s\" på rad %d, kolumn %d"
 
 #: ../src/dh-parser.c:281
 #, c-format
-msgid "type element is required inside <keyword> on line %d, column %d"
-msgstr "typelement krävs inuti <keyword> på rad %d, kolumn %d"
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+msgstr "Elementet \"type\" krävs inuti <keyword> på rad %d, kolumn %d"
 
 #: ../src/dh-parser.c:486
 #, c-format
