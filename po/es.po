@@ -1,15 +1,15 @@
 # translation of devhelp.HEAD.po to Español
 # Ismael Olea <ismael@olea.org>, 2001.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008.
 # Spanish/Spain translation of devhelp.
 # Copyright (C) 2001,2003, 2004, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 200, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 15:58+0000\n"
-"PO-Revision-Date: 2008-02-16 16:39+0100\n"
+"POT-Creation-Date: 2008-11-07 08:51+0100\n"
+"PO-Revision-Date: 2009-02-14 14:36+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "Estado maximizado de la ventana principal"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "Solapa seleccionada, «contenido» o «búsqueda»"
+msgstr "Solapa seleccionada, \"content\" (contenido) o \"search\" (búsqueda)"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Show advanced search options"
@@ -227,10 +227,12 @@ msgstr ""
 "d, columna %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "No se pudo crear el parser del libro"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "No se pudo crear el parser del marco"
 
@@ -240,6 +242,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "No se pudo descomprimir el libro «%s»: %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp no está construido con soporte zlib"
 
@@ -368,8 +371,8 @@ msgstr "Buscar"
 #: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
-"Jorge González <jorgegonz@svn.gnome.org>, 2007-2008.\n"
-"Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006."
+"Jorge González <jorgegonz@svn.gnome.org>, 2007-2009\n"
+"Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006"
 
 #: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
