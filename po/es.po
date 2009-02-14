@@ -1,15 +1,16 @@
 # translation of devhelp.HEAD.po to Español
 # Ismael Olea <ismael@olea.org>, 2001.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008.
 # Spanish/Spain translation of devhelp.
 # Copyright (C) 2001,2003, 2004, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 200, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 08:51+0100\n"
-"PO-Revision-Date: 2008-11-08 16:06+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&component=general\n"
+"POT-Creation-Date: 2009-01-20 19:55+0000\n"
+"PO-Revision-Date: 2009-02-14 14:36+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +58,7 @@ msgstr "Estado maximizado de la ventana principal"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "Solapa seleccionada, «contenido» o «búsqueda»"
+msgstr "Solapa seleccionada, \"content\" (contenido) o \"search\" (búsqueda)"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
@@ -248,30 +249,41 @@ msgstr "Espacio de nombres inválido «%s» en la línea %d, columna %d"
 
 #: ../src/dh-parser.c:122
 #, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
+#| msgid "title, name, and link elements are required at line %d, column %d"
+msgid ""
+"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"los elementos título, nombre y enlace se requieren en la línea %d, columna %d"
+"son necesarios los elementos «título», «nombre» y «enlace» en la línea %d, "
+"columna %d"
 
 #: ../src/dh-parser.c:188
 #, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
+#| msgid ""
+#| "name and link elements are required inside <sub> on line %d, column %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
 msgstr ""
-"se requieren los elementos nombre y enlace dentro de <sub> en la línea %d, "
-"columna %d"
+"son necesarios los elementos «nombre» y «enlace» dentro de <sub> en la línea %"
+"d, columna %d"
 
 #: ../src/dh-parser.c:268
 #, c-format
-msgid "name and link elements are required inside '%s' on line %d, column %d"
+#| msgid ""
+#| "name and link elements are required inside '%s' on line %d, column %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"se requieren los elementos nombre y enlace dentro de «%s» en la línea %d, "
+"son necesarios los elementos «nombre» y «enlace» dentro de «%s» en la línea %d, "
 "columna %d"
 
 #: ../src/dh-parser.c:281
 #, c-format
-msgid "type element is required inside <keyword> on line %d, column %d"
+#| msgid "type element is required inside <keyword> on line %d, column %d"
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
-"se requiere el tipo de elemento dentro de <keyword> en la línea %d, columna %"
-"d"
+"es necesario el «tipo» de elemento dentro de <keyword> en la línea %d, "
+"columna %d"
 
 #: ../src/dh-parser.c:486
 #, c-format
@@ -325,7 +337,7 @@ msgstr "400%"
 #: ../src/dh-window.c:364
 msgid "translator_credits"
 msgstr ""
-"Jorge González <jorgegonz@svn.gnome.org>, 2007-2008\n"
+"Jorge González <jorgegonz@svn.gnome.org>, 2007-2009\n"
 "Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006"
 
 #: ../src/dh-window.c:369
@@ -433,7 +445,7 @@ msgstr "Índice"
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:1049 ../src/dh-window.c:1258
+#: ../src/dh-window.c:1063 ../src/dh-window.c:1272
 msgid "Empty Page"
 msgstr "Página vacía"
 
