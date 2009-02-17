@@ -9,12 +9,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.19\n"
+"Project-Id-Version: devhelp 0.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-17 20:05+0800\n"
-"PO-Revision-Date: 2008-02-16 17:13+0800\n"
-"Last-Translator: Hialan Liu <hialan.liu@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) <community@linuxhall.org>\n"
+"POT-Creation-Date: 2008-11-07 08:51+0100\n"
+"PO-Revision-Date: 2009-02-17 20:43+0800\n"
+"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
+"Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,8 +23,10 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "適用於程式開發者的說明書瀏覽程式"
 
-#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
+#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151
+#: ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -34,19 +36,19 @@ msgstr "文件瀏覽器"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr "固定寬度文字字型"
+msgstr "固定寬度字型"
 
 #: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
-msgstr "普通文字字型"
+msgstr "一般文字字型"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "固定寬度文字所使用的字型。"
+msgstr "在固定寬度的文字中使用的字型。"
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "可變寬度文字所使用的字型。"
+msgstr "在一般文字中使用的可變寬度字型。"
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Height of main window"
@@ -56,9 +58,10 @@ msgstr "主視窗高度"
 msgid "Main window maximized state"
 msgstr "視窗最大化"
 
+# (pofilter) gconf: do not translate gconf attribute: "content", "search"
 #: ../data/devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "選擇分頁：「內容」或「搜尋」"
+msgstr "選擇分頁：「content」(內容)或「search」(搜尋)"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Show advanced search options"
@@ -74,7 +77,7 @@ msgstr "主視窗垂直位置。"
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "The height of the main window."
-msgstr "主視窗的高度。"
+msgstr "主視窗高度。"
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
@@ -100,9 +103,10 @@ msgstr "是否顯示進階搜尋選項。"
 msgid "Whether the main window should start maximized or not."
 msgstr "程式啟動時視窗應否成為最大化的狀態。"
 
+# (pofilter) gconf: do not translate gconf attribute: "content", "search"
 #: ../data/devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "選擇何種分頁？「內容」還是「搜尋」。"
+msgstr "選擇何種分頁？「content」(內容)或「search」(搜尋)。"
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
@@ -128,7 +132,8 @@ msgstr "<b>字型</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>搜尋中</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3
+#: ../src/dh-window.c:519
 msgid "Contents"
 msgstr "內容"
 
@@ -142,13 +147,14 @@ msgstr "上一頁(_B)"
 
 #: ../data/ui/devhelp.glade.h:7
 msgid "_Fixed width:"
-msgstr "固定寬度(_F)："
+msgstr "固定寬度(_F):"
 
 #: ../data/ui/devhelp.glade.h:8
 msgid "_Forward"
 msgstr "下一頁(_F)"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9
+#: ../src/dh-window.c:190
 msgid "_Go"
 msgstr "前往(_G)"
 
@@ -162,7 +168,7 @@ msgstr "使用系統字型(_U)"
 
 #: ../data/ui/devhelp.glade.h:12
 msgid "_Variable width: "
-msgstr "可變寬度(_V)："
+msgstr "可變寬度(_V):"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -196,7 +202,9 @@ msgstr "顯示版本號及離開"
 msgid "Focus the devhelp window with the search field active"
 msgstr "使用搜尋區域時將焦點定在 devhelp 視窗上"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#: ../src/dh-parser.c:110
+#: ../src/dh-parser.c:194
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "第 %3$d 行第 %4$d 字應該是‘%1$s’，但實際是‘%2$s’"
@@ -218,16 +226,17 @@ msgstr "第 %d 行第 %d 字的 <sub> 之內需要指定 name 及 link 元素"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
 msgstr "第 %d 行第 %d 字的 <function> 之內需要指定 name 及 link 元素"
 
-#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#: ../src/dh-parser.c:420
+#: ../src/dh-parser.c:515
 #, c-format
 msgid "Could not create book parser"
 msgstr "無法產生說明書內容的分析程序"
 
-#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#: ../src/dh-parser.c:436
+#: ../src/dh-parser.c:525
 #, c-format
 msgid "Could not create markup parser"
 msgstr "無法產生標記文字的分析程序"
@@ -244,11 +253,11 @@ msgstr "Devhelp 建置時未加入 zlib 支援"
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
-msgstr "書本(_B)："
+msgstr "書本(_B):"
 
 #: ../src/dh-search.c:641
 msgid "_Page:"
-msgstr "頁(_P)："
+msgstr "頁(_P):"
 
 #: ../src/dh-window.c:70
 msgid "50%"
@@ -311,17 +320,19 @@ msgstr "新增視窗(_N)"
 msgid "New _Tab"
 msgstr "新增分頁(_T)"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208
+#: ../src/eggfindbar.c:337
 msgid "Find Next"
-msgstr "尋找下一筆"
+msgstr "找下一個"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210
+#: ../src/eggfindbar.c:329
 msgid "Find Previous"
-msgstr "尋找上一筆"
+msgstr "找上一個"
 
 #: ../src/dh-window.c:217
 msgid "Go to the previous page"
-msgstr "前往上一頁"
+msgstr "回到上一頁"
 
 #: ../src/dh-window.c:220
 msgid "Go to the next page"
@@ -342,7 +353,7 @@ msgstr "放大文字(_L)"
 
 #: ../src/dh-window.c:231
 msgid "Increase the text size"
-msgstr "增加文字大小"
+msgstr "將文字放大"
 
 #: ../src/dh-window.c:233
 msgid "S_maller Text"
@@ -350,7 +361,7 @@ msgstr "縮小文字(_M)"
 
 #: ../src/dh-window.c:234
 msgid "Decrease the text size"
-msgstr "降低文字大小"
+msgstr "將文字縮小"
 
 #: ../src/dh-window.c:236
 msgid "_Normal size"
@@ -358,7 +369,7 @@ msgstr "一般大小(_N)"
 
 #: ../src/dh-window.c:237
 msgid "Use the normal text size"
-msgstr "使用一般文字大小"
+msgstr "將文字還原為正常大小"
 
 #: ../src/dh-window.c:529
 msgid "Search"
@@ -369,7 +380,7 @@ msgid "translator_credits"
 msgstr ""
 "如對翻譯有任何意見，請送一封電子郵件給\n"
 "以下地址，GNOME 翻譯團隊會盡快回覆您：\n"
-"community@linuxhall.org\n"
+"zh-l10n@lists.linux.org.tw\n"
 "\n"
 "Hialan Liu <hialan.liu@gmail.com>, 2008\n"
 "Woodman Tuen <wmtuen@gmail.com>, 2007\n"
@@ -381,21 +392,22 @@ msgstr ""
 msgid "A developer's help browser for GNOME 2"
 msgstr "適合程式開發者的說明文件瀏覽程式，適用於 GNOME 2 環境"
 
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:1186
+#: ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "空白頁"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
-msgstr "搜尋："
+msgstr "尋找:"
 
 #: ../src/eggfindbar.c:332
 msgid "Find previous occurrence of the search string"
-msgstr "尋找上一個出現的搜尋字串"
+msgstr "尋找上一個出現搜尋字串的地方"
 
 #: ../src/eggfindbar.c:340
 msgid "Find next occurrence of the search string"
-msgstr "尋找下一個出現的搜尋字串"
+msgstr "尋找下一個出現搜尋字串的地方"
 
 #: ../src/eggfindbar.c:348
 msgid "Case Sensitive"
@@ -407,34 +419,24 @@ msgstr "選取後在搜尋時將區分大小寫"
 
 #~ msgid "Browse Contents"
 #~ msgstr "瀏覽內容"
-
 #~ msgid "Section"
 #~ msgstr "章節"
-
 #~ msgid "Specify the size and location of the window"
 #~ msgstr "指定視窗尺寸和位置"
-
 #~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
-#~ msgstr "寬度x高度+水平+垂直"
-
+#~ msgstr "WIDTHxHEIGHT+XOFF+YOFF"
 #~ msgid "Cannot set UI: %s"
 #~ msgstr "無法建立介面：%s"
-
 #~ msgid "Devhelp project page"
 #~ msgstr "Devhelp 專案主網頁"
-
 #~ msgid "Bug report Devhelp"
 #~ msgstr "匯報 Devhelp 程式錯誤"
-
 #~ msgid "Location of the paned"
 #~ msgstr "窗格分隔條位置"
-
 #~ msgid "The location of the paned separator."
 #~ msgstr "分開兩邊窗格的分隔條位置。"
-
 #~ msgid "    "
 #~ msgstr "    "
-
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search pane "
 #~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
@@ -444,37 +446,26 @@ msgstr "選取後在搜尋時將區分大小寫"
 #~ "請在左面的目錄中選取標題，或者在搜尋窗格中尋找您想要的內容。<p>使用 "
 #~ "<b>Shift ↑/↓鍵</b> 可在內容的標題之間移動，而 <b>Shift ←/→ 鍵</b> 可展開或"
 #~ "摺疊說明書。"
-
 #~ msgid "Expected 'book' got '%s' at line %d, column %d"
 #~ msgstr "第 %2$d 行第 %3$d 字應該是‘book’，但實際是‘%1$s’"
-
 #~ msgid "Expected 'function' got '%s' at line %d, column %d"
 #~ msgstr "第 %2$d 行第 %3$d 字應該是‘function’，但實際是‘%1$s’"
-
 #~ msgid "_Search for:"
-#~ msgstr "搜尋字串(_S)："
-
+#~ msgstr "搜尋字串(_S):"
 #~ msgid "_About"
 #~ msgstr "關於(_A)"
-
 #~ msgid "'%s' is not a valid book"
 #~ msgstr "‘%s’不是有效的說明書"
-
 #~ msgid "Book '%s' is malformed."
 #~ msgstr "說明書‘%s’格式不正確。"
-
 #~ msgid "Couldn't find file '%s'"
 #~ msgstr "找不到檔案‘%s’"
-
 #~ msgid "Book '%s' is malformed, the parse context is invalid."
 #~ msgstr "說明書‘%s’格式不正確，準備分析的內容無效。"
-
 #~ msgid "Book '%s' is malformed, the XML is invalid."
 #~ msgstr "說明書‘%s’格式不正確，XML 內容無效。"
-
 #~ msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
 #~ msgstr "說明書‘%s’格式不正確，它不符合 DTD 指定的規格 (%s)。"
-
 #~ msgid ""
 #~ "<b>Could not read all books</b>\n"
 #~ "\n"
@@ -485,99 +476,68 @@ msgstr "選取後在搜尋時將區分大小寫"
 #~ "\n"
 #~ "當讀取說明書時發生以下的錯誤：\n"
 #~ "%s"
-
 #~ msgid "Open %s"
 #~ msgstr "開啟 %s"
-
 #~ msgid "Problems when reading books: %s\n"
 #~ msgstr "讀取說明書時發生錯誤：%s\n"
-
 #~ msgid "Empty document: %s"
 #~ msgstr "沒有內容的說明書：%s"
-
 #~ msgid "Document wrong type, got %s, expected 'booklist': %s"
 #~ msgstr "不正確的說明書類別，讀取到 %s，但應該是 'booklist'：%s"
-
 #~ msgid "Print Help"
 #~ msgstr "列印說明"
-
 #~ msgid "Printing failed."
 #~ msgstr "列印失敗。"
-
 #~ msgid "The book is already installed."
 #~ msgstr "這本說明書之前已經安裝了。"
-
 #~ msgid "Failed to move book. This should never happen."
 #~ msgstr "移動說明書時發生錯誤。"
-
 #~ msgid "Failed to extract spec file from book."
 #~ msgstr "無法讀取說明書的目錄索引。"
-
 #~ msgid "Error, the book is corrupted or very old."
 #~ msgstr "錯誤，這本說明書已損毀或過時。"
-
 #~ msgid "Wrong type (mime_type=%s)."
 #~ msgstr "錯誤的類別 (mime 類別 = %s)。"
-
 #~ msgid "Author:"
-#~ msgstr "作者："
-
+#~ msgstr "作者:"
 #~ msgid "Book info"
 #~ msgstr "說明書資訊"
-
 #~ msgid "Bookmarks"
 #~ msgstr "書籤"
-
 #~ msgid "Install new book..."
 #~ msgstr "新增說明書..."
-
 #~ msgid "Move down"
 #~ msgstr "下移"
-
 #~ msgid "Move up"
 #~ msgstr "上移"
-
 #~ msgid "Name:"
-#~ msgstr "名稱："
-
+#~ msgstr "名稱:"
 #~ msgid "Path:"
 #~ msgstr "路徑："
-
 #~ msgid "Remove"
 #~ msgstr "移除"
-
 #~ msgid "Title:"
 #~ msgstr "標題："
-
 #~ msgid "Version:"
-#~ msgstr "版本："
-
+#~ msgstr "版本:"
 #~ msgid "_Limit the number of hits to:"
-#~ msgstr "搜尋結果數目限制為(_L)："
-
+#~ msgstr "搜尋結果數目限制為(_L):"
 #~ msgid "_Text size: "
-#~ msgstr "字型大小(_T)："
-
+#~ msgstr "字型大小(_T):"
 #~ msgid "About this application"
-#~ msgstr "關於本程式的資訊"
-
+#~ msgstr "關於此程式"
 #~ msgid "Font size"
 #~ msgstr "字型大小"
-
 #~ msgid "_Print"
 #~ msgstr "列印(_P)"
-
 #~ msgid "Book Manager..."
 #~ msgstr "說明書總管..."
-
 #~ msgid "Open the book manager dialog"
 #~ msgstr "安裝及管理說明書"
-
 #~ msgid "Add book ..."
 #~ msgstr "新增說明書 ..."
-
 #~ msgid "Use autocompletion"
 #~ msgstr "使用自動完成"
-
 #~ msgid "_Book manager..."
 #~ msgstr "說明書總管(_B)..."
+
