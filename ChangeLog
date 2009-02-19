@@ -1,5 +1,10 @@
 2009-02-19  Richard Hult  <richard@imendio.com>
 
+	* autogen.sh: Use automake 1.10 by default, patch from Gaute Hope,
+	bug #560025.
+
+2009-02-19  Richard Hult  <richard@imendio.com>
+
 	* src/Makefile.am: Patch from cygwin ports maintainer to fix bug
 	#564446, libdevhelp-1 Cygwin patch.
 

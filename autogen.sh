@@ -5,8 +5,8 @@ CONFIGURE=configure.ac
 
 : ${AUTOCONF=autoconf}
 : ${AUTOHEADER=autoheader}
-: ${AUTOMAKE=automake-1.9}
-: ${ACLOCAL=aclocal-1.9}
+: ${AUTOMAKE=automake-1.10}
+: ${ACLOCAL=aclocal-1.10}
 : ${INTLTOOLIZE=intltoolize}
 : ${LIBTOOLIZE=libtoolize}
 : ${GTKDOCIZE=gtkdocize}
