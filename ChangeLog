@@ -1,3 +1,8 @@
+2009-02-19  Richard Hult  <richard@imendio.com>
+
+	* src/Makefile.am: Patch from cygwin ports maintainer to fix bug
+	#564446, libdevhelp-1 Cygwin patch.
+
 2009-02-19  Enrico Tröge  <enrico.troeger@uvena.de>
 
 	* src/dh-assistant-view.c: (assistant_view_set_link):

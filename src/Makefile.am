@@ -82,6 +82,7 @@ libdevhelp_1_la_LIBADD =				\
 	$(ZLIB_LIBS)
 
 libdevhelp_1_la_LDFLAGS =				\
+	-no-undefined					\
 	$(ZLIB_LDFLAGS)
 
 if HAVE_PLATFORM_OSX
