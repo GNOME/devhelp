@@ -1,5 +1,10 @@
 2009-02-19  Richard Hult  <richard@imendio.com>
 
+	* src/dh-window.c: (dh_window_init): Patch from Luca Ferretti to
+	fix bug #563032, Use shorter text for zoom actions in toolbar.
+
+2009-02-19  Richard Hult  <richard@imendio.com>
+
 	* autogen.sh: Use automake 1.10 by default, patch from Gaute Hope,
 	bug #560025.
 

@@ -525,6 +525,13 @@ dh_window_init (DhWindow *window)
                                               "Forward");
         g_object_set (action, "sensitive", FALSE, NULL);
 
+        action = gtk_action_group_get_action (priv->action_group, "ZoomIn");
+        /* Translators: This refers to text size */
+        g_object_set (action, "short_label", _("Larger"), NULL);
+        action = gtk_action_group_get_action (priv->action_group, "ZoomOut");
+        /* Translators: This refers to text size */
+        g_object_set (action, "short_label", _("Smaller"), NULL);
+
         accel_group = gtk_accel_group_new ();
         gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
