@@ -1,3 +1,11 @@
+2009-02-19  Enrico Tröge  <enrico.troeger@uvena.de>
+
+	* src/dh-assistant-view.c: (assistant_view_set_link):
+	* src/dh-book-tree.c: (book_tree_find_uri_foreach):
+	* src/dh-link.c: (link_free), (dh_link_new):
+	* src/dh-link.h: Use file: URIs instead of local paths, fixes use
+	with more recent webkit versions.
+
 2009-01-20  Leonardo Ferreira Fontenelle  <leonardof@gnome.org>
 
 	reviewed by: Richard Hult.

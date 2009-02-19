@@ -51,7 +51,7 @@ DhLink *     dh_link_new                (DhLinkType     type,
 					 const gchar   *name,
                                          DhLink        *book,
                                          DhLink        *page,
-					 const gchar   *uri);
+					 const gchar   *filename);
 void         dh_link_free               (DhLink        *link);
 gint         dh_link_compare            (gconstpointer  a,
 					 gconstpointer  b);

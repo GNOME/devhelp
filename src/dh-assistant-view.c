@@ -169,6 +169,7 @@ assistant_view_set_link (DhAssistantView *view,
         gsize                length;
         gchar               *key;
         gsize                key_length;
+        gsize                offset = 0;
         const gchar         *start;
         const gchar         *end;
 
@@ -203,7 +204,10 @@ assistant_view_set_link (DhAssistantView *view,
                 return;
         }
 
-        file = g_mapped_file_new (filename, FALSE, NULL);
+        if (g_str_has_prefix (filename, "file://"))
+            offset = 7;
+        
+        file = g_mapped_file_new (filename + offset, FALSE, NULL);
         if (!file) {
                 g_free (filename);
                 return;
@@ -326,7 +330,7 @@ assistant_view_set_link (DhAssistantView *view,
                  * anchor links are handled internally in webkit.
                  */
                 tmp = g_path_get_dirname (filename);
-                base = g_strconcat ("file://", tmp, "/fake", NULL);
+                base = g_strconcat (tmp, "/fake", NULL);
                 g_free (tmp);
 
                 webkit_web_view_load_html_string (

@@ -33,7 +33,7 @@ struct _DhLink {
         gchar       *base;
 
         gchar       *name;
-        gchar       *uri;
+        gchar       *filename;
 
         DhLink      *book;
         DhLink      *page;
@@ -64,7 +64,7 @@ link_free (DhLink *link)
 	g_free (link->base);
 	g_free (link->id);
 	g_free (link->name);
-	g_free (link->uri);
+	g_free (link->filename);
 
         if (link->book) {
                 dh_link_unref (link->book);
@@ -83,12 +83,12 @@ dh_link_new (DhLinkType   type,
 	     const gchar *name,
 	     DhLink      *book,
 	     DhLink      *page,
-	     const gchar *uri)
+	     const gchar *filename)
 {
 	DhLink *link;
 
 	g_return_val_if_fail (name != NULL, NULL);
-	g_return_val_if_fail (uri != NULL, NULL);
+	g_return_val_if_fail (filename != NULL, NULL);
 
         if (type == DH_LINK_TYPE_BOOK) {
                 g_return_val_if_fail (base != NULL, NULL);
@@ -110,7 +110,7 @@ dh_link_new (DhLinkType   type,
         }
 
 	link->name = g_strdup (name);
-	link->uri = g_strdup (uri);
+	link->filename = g_strdup (filename);
 
 	if (book) {
                 link->book = dh_link_ref (book);
@@ -205,11 +205,16 @@ dh_link_get_book_id (DhLink *link)
 gchar *
 dh_link_get_uri (DhLink *link)
 {
-        if (link->type == DH_LINK_TYPE_BOOK) {
-                return g_strconcat (link->base, "/", link->uri, NULL);
-        }
+	gchar *base, *uri;
 
-        return g_strconcat (link->book->base, "/", link->uri, NULL);
+        if (link->type == DH_LINK_TYPE_BOOK)
+                base = link->base;
+        else
+                base = link->book->base;
+
+	uri = g_strconcat ("file://", base, "/", link->filename, NULL, NULL);
+
+	return uri;
 }
 
 DhLinkType
