@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-01-20 19:55+0000\n"
-"PO-Revision-Date: 2009-02-14 14:36+0100\n"
+"POT-Creation-Date: 2009-02-19 10:18+0000\n"
+"PO-Revision-Date: 2009-03-02 10:20+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -161,58 +161,58 @@ msgstr "Muestra la documentación de la API para la palabra bajo el cursor"
 msgid "Devhelp - Assistant"
 msgstr "Asistente de Devhelp"
 
-#: ../src/dh-assistant-view.c:312
+#: ../src/dh-assistant-view.c:316
 msgid "Book:"
 msgstr "Libro:"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:240
+#: ../src/dh-link.c:245
 msgid "Book"
 msgstr "Libro"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:243
+#: ../src/dh-link.c:248
 msgid "Page"
 msgstr "Página"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:247
+#: ../src/dh-link.c:252
 msgid "Keyword"
 msgstr "Palabra clave"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:252
+#: ../src/dh-link.c:257
 msgid "Function"
 msgstr "Función"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:257
+#: ../src/dh-link.c:262
 msgid "Struct"
 msgstr "Estructura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:262
+#: ../src/dh-link.c:267
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:272
 msgid "Enum"
 msgstr "Enumerar"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:277
 msgid "Type"
 msgstr "Tipo"
 
@@ -249,7 +249,6 @@ msgstr "Espacio de nombres inválido «%s» en la línea %d, columna %d"
 
 #: ../src/dh-parser.c:122
 #, c-format
-#| msgid "title, name, and link elements are required at line %d, column %d"
 msgid ""
 "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
 msgstr ""
@@ -258,8 +257,6 @@ msgstr ""
 
 #: ../src/dh-parser.c:188
 #, c-format
-#| msgid ""
-#| "name and link elements are required inside <sub> on line %d, column %d"
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
@@ -269,8 +266,6 @@ msgstr ""
 
 #: ../src/dh-parser.c:268
 #, c-format
-#| msgid ""
-#| "name and link elements are required inside '%s' on line %d, column %d"
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
@@ -279,7 +274,6 @@ msgstr ""
 
 #: ../src/dh-parser.c:281
 #, c-format
-#| msgid "type element is required inside <keyword> on line %d, column %d"
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "es necesario el «tipo» de elemento dentro de <keyword> en la línea %d, "
@@ -426,26 +420,38 @@ msgstr "Tamaño _normal"
 msgid "Use the normal text size"
 msgstr "Usar el tamaño de texto normal"
 
+#. Translators: This refers to text size
+#: ../src/dh-window.c:530
+#| msgid "_Larger Text"
+msgid "Larger"
+msgstr "Más grande"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:533
+#| msgid "S_maller Text"
+msgid "Smaller"
+msgstr "Más pequeño"
+
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:661
 msgid "About Devhelp"
 msgstr "Acerca de DevHelp"
 
-#: ../src/dh-window.c:659
+#: ../src/dh-window.c:666
 msgid "Preferences..."
 msgstr "Preferencias…"
 
-#: ../src/dh-window.c:702
+#: ../src/dh-window.c:709
 msgid "Contents"
 msgstr "Índice"
 
-#: ../src/dh-window.c:712
+#: ../src/dh-window.c:719
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:1063 ../src/dh-window.c:1272
+#: ../src/dh-window.c:1070 ../src/dh-window.c:1279
 msgid "Empty Page"
 msgstr "Página vacía"
 
