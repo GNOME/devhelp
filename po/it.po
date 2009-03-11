@@ -1,16 +1,15 @@
 # Italian translation for devhelp.
-# Copyright (C) 2001-2008 Free Software Foundation, Inc.
-# Alessio Frusciante <algol@firenze.linux.it>, 2001.
-# Francesco Marletta <francesco.marletta@tiscali.it>, 2003
-# Alessio Frusciante <algol@firenze.linux.it>, 2003.
-# Francesco Marletta <francesco.marletta@tiscali.it>, 2004-2008.
+# Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the devhelp package.
+# Alessio Frusciante <algol@firenze.linux.it>, 2001, 2002, 2003.
+# Francesco Marletta <francesco.marletta@tiscali.it>, 2003, 2004, 2005, 2006, 2007, 2008, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 2.24\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-22 13:42+0200\n"
-"PO-Revision-Date: 2008-09-17 15:22-0400\n"
+"Project-Id-Version: devhelp\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
+"POT-Creation-Date: 2009-02-17 13:18+0000\n"
+"PO-Revision-Date: 2009-03-11 22:40+0100\n"
 "Last-Translator: Francesco Marletta <francesco.marletta@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +57,7 @@ msgstr "Stato di massimizzazione della finestra principale"
 # GNOME-2-22
 #: ../data/devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "Scheda selezionata, \"content\" o \"search\""
+msgstr "Scheda selezionata, \"content\" (contenuto) o \"search\" (ricerca)"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Show advanced search options"
@@ -78,7 +77,7 @@ msgstr "L'altezza della finestra principale."
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
-msgstr "La larghezza del pannello di ricerca e indicizzazione."
+msgstr "La larghezza del riquadro di ricerca e indicizzazione."
 
 #: ../data/devhelp.schemas.in.h:13
 msgid "The width of the main window."
@@ -104,11 +103,13 @@ msgstr ""
 # GNOME-2-22
 #: ../data/devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Quale delle schede è selezionata, \"content\" o \"search\"."
+msgstr ""
+"Quale delle schede è selezionata, \"content\" (contenuto) o \"search"
+"\" (ricerca)."
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
-msgstr "Larghezza del pannello di ricerca e indicizzazione"
+msgstr "Larghezza del riquadro di ricerca e indicizzazione"
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "Width of the main window"
@@ -184,7 +185,8 @@ msgstr "Mostra documentazione API"
 # GNOME-2-22
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation for the word at the cursor"
-msgstr "Mostra la documentazione API per la parola alla posizione del cursore"
+msgstr ""
+"Mostra la documentazione delle API per la parola alla posizione del cursore"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -208,7 +210,8 @@ msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr ""
 "Era atteso \"%s\" e invece si è ottenuto \"%s\" alla riga %d, colonna %d"
 
-# [MF] è una guida per sviluppatori quindi si presume che si sappia cos'è un namespace
+# [NdT] è una guida per sviluppatori quindi si presume che si sappia cos'è 
+#       un namespace
 #: ../src/dh-parser.c:128
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
@@ -421,12 +424,3 @@ msgstr "Distingui MAIUSCOLE/minuscole"
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Considera o meno differenti maiuscole e minuscole nella ricerca"
-
-#~ msgid "_Print..."
-#~ msgstr "Stam_pa..."
-
-#~ msgid "About Devhelp"
-#~ msgstr "Informazioni su Devhelp"
-
-#~ msgid "Preferences..."
-#~ msgstr "Preferenze..."
