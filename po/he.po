@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-30 15:35+0000\n"
-"PO-Revision-Date: 2003-03-06 22:19+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&component=general\n"
+"POT-Creation-Date: 2009-02-17 13:18+0000\n"
+"PO-Revision-Date: 2009-03-09 15:30+0200\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,13 +22,14 @@ msgid "Developer's Help program"
 msgstr "תוכנת עזרה למפתחים"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:844
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "DevHelp"
 
+# בכל מקרה עם י כי המילה המקורית מופיע עם חיריק ודגש ב־ת
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr "דפדפן תעוד"
+msgstr "דפדפן תיעוד"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -125,7 +127,7 @@ msgstr "<b>גופנים</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>חיפוש</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:561
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "תכנים"
 
@@ -145,7 +147,7 @@ msgstr "_רוחב קבוע:"
 msgid "_Forward"
 msgstr "_קדימה"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
+#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_לך"
 
@@ -167,16 +169,15 @@ msgstr "תמיכת Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "גורם ל-F2 לעלות את Devhelp עבור המילה תחת הסמן"
+msgstr "גורם ל־F2 לעלות את Devhelp עבור המילה תחת הסמן"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:36
 msgid "Show API Documentation"
-msgstr "הצג תעוד API"
+msgstr "הצג תיעוד API"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation for the word at the cursor"
-msgstr ""
-"הצג תעוד API עבור המילה שבסמן"
+msgstr "הצג תיעוד API עבור המילה שתחת הסמן"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -249,146 +250,134 @@ msgstr "_ספר:"
 msgid "_Page:"
 msgstr "_עמוד:"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:70
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:71
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:72
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:73
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:74
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:79
+#: ../src/dh-window.c:75
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:80
+#: ../src/dh-window.c:76
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:77
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:78
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:199
+#: ../src/dh-window.c:187
 msgid "_File"
 msgstr "_קובץ"
 
-#: ../src/dh-window.c:200
+#: ../src/dh-window.c:188
 msgid "_Edit"
 msgstr "_עריכה"
 
-#: ../src/dh-window.c:201
+#: ../src/dh-window.c:189
 msgid "_View"
 msgstr "_תצוגה"
 
-#: ../src/dh-window.c:203
+#: ../src/dh-window.c:191
 msgid "_Help"
 msgstr "_עזרה"
 
 #. File menu
-#: ../src/dh-window.c:206
+#: ../src/dh-window.c:194
 msgid "_New Window"
 msgstr "_חלון _חדש"
 
-#: ../src/dh-window.c:208
+#: ../src/dh-window.c:196
 msgid "New _Tab"
 msgstr "_לשונית חדשה"
 
-#: ../src/dh-window.c:210
-msgid "_Print..."
-msgstr "ה_דפס..."
-
-#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
 msgid "Find Next"
 msgstr "חפש את הבא"
 
-#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "חפש את הקודם"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:217
 msgid "Go to the previous page"
 msgstr "לך אל הדף הקודם"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:220
 msgid "Go to the next page"
 msgstr "לך אל הדף הבא"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:223
 msgid "_Contents Tab"
 msgstr "לשונית _תכנים"
 
-#: ../src/dh-window.c:240
+#: ../src/dh-window.c:226
 msgid "_Search Tab"
 msgstr "לשונית _חיפוש"
 
 #. View menu
-#: ../src/dh-window.c:244
+#: ../src/dh-window.c:230
 msgid "_Larger Text"
 msgstr "_הגדל טקסט"
 
-#: ../src/dh-window.c:245
+#: ../src/dh-window.c:231
 msgid "Increase the text size"
 msgstr "הגדל את גודל הטקסט"
 
-#: ../src/dh-window.c:247
+#: ../src/dh-window.c:233
 msgid "S_maller Text"
 msgstr "ה_קטן טקסט"
 
-#: ../src/dh-window.c:248
+#: ../src/dh-window.c:234
 msgid "Decrease the text size"
 msgstr "הקטן את גודל הטקסט"
 
-#: ../src/dh-window.c:250
+#: ../src/dh-window.c:236
 msgid "_Normal size"
 msgstr "_גודל רגיל"
 
-#: ../src/dh-window.c:251
+#: ../src/dh-window.c:237
 msgid "Use the normal text size"
 msgstr "השתמש בגודל הטקסט הרגיל"
 
-#: ../src/dh-window.c:502
-msgid "About Devhelp"
-msgstr ""
-"אודות DevHelp"
-
-#: ../src/dh-window.c:507
-msgid "Preferences..."
-msgstr "העדפות..."
-
-#: ../src/dh-window.c:571
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "חיפוש"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "יאיר הרשקוביץ  <yairhr@gmail.com>\n"
+"Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "\n"
 "פרוייקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/dh-window.c:846
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "דפדפן עזרה למפתחים בעבור GNOME 2"
 
-#: ../src/dh-window.c:1250 ../src/dh-window.c:1445
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "דף ריק"
 
