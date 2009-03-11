@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-13 13:46+0000\n"
-"PO-Revision-Date: 2003-03-06 22:19+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&component=general\n"
+"POT-Creation-Date: 2009-02-17 13:18+0000\n"
+"PO-Revision-Date: 2009-03-09 15:30+0200\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,13 +22,14 @@ msgid "Developer's Help program"
 msgstr "תוכנת עזרה למפתחים"
 
 #: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:781
+#: ../src/dh-main.c:151 ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "DevHelp"
 
+# בכל מקרה עם י כי המילה המקורית מופיע עם חיריק ודגש ב־ת
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr "דפדפן תעוד"
+msgstr "דפדפן תיעוד"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed text"
@@ -39,8 +41,8 @@ msgstr "Font for text"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width."
-msgstr "Font for text with fixed width."
-"Search for a function"
+msgstr "Font for text with fixed width.Search for a function"
+
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Font for text with variable width."
@@ -115,7 +117,7 @@ msgstr "X position of main window"
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Y position of main window"
-msgstr"Y position of main window"
+msgstr "Y position of main window"
 
 #: ../data/ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
@@ -125,7 +127,7 @@ msgstr "<b>גופנים</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>חיפוש</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:510
+#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
 msgid "Contents"
 msgstr "תכנים"
 
@@ -167,7 +169,15 @@ msgstr "תמיכת Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "גורם ל-F2 לעלות את Devhelp עבור המילה תחת הסמן"
+msgstr "גורם ל־F2 לעלות את Devhelp עבור המילה תחת הסמן"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+msgid "Show API Documentation"
+msgstr "הצג תיעוד API"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation for the word at the cursor"
+msgstr "הצג תיעוד API עבור המילה שתחת הסמן"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -213,10 +223,12 @@ msgstr ""
 "name and link elements are required inside <function> on line %d, column %d"
 
 #: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#, c-format
 msgid "Could not create book parser"
 msgstr "Could not create book parser"
 
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#, c-format
 msgid "Could not create markup parser"
 msgstr "Could not create markup parser"
 
@@ -226,6 +238,7 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Cannot uncompress book '%s': %s"
 
 #: ../src/dh-parser.c:603
+#, c-format
 msgid "Devhelp is not built with zlib support"
 msgstr "Devhelp is not built with zlib support"
 
@@ -347,23 +360,24 @@ msgstr "_גודל רגיל"
 msgid "Use the normal text size"
 msgstr "השתמש בגודל הטקסט הרגיל"
 
-#: ../src/dh-window.c:520
+#: ../src/dh-window.c:529
 msgid "Search"
 msgstr "חיפוש"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:787
 msgid "translator_credits"
 msgstr ""
 "יאיר הרשקוביץ  <yairhr@gmail.com>\n"
+"Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "\n"
 "פרוייקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
 msgstr "דפדפן עזרה למפתחים בעבור GNOME 2"
 
-#: ../src/dh-window.c:1177 ../src/dh-window.c:1375
+#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "דף ריק"
 
