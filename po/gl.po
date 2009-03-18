@@ -5,18 +5,20 @@
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Ignacio Casal Quinteiro <icq@cvs.gnome.org>, 2007.
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
+# Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-19 20:38+0100\n"
-"PO-Revision-Date: 2008-02-19 20:39+0100\n"
-"Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
+"POT-Creation-Date: 2009-03-18 21:06+0100\n"
+"PO-Revision-Date: 2009-03-10 20:17+0000\n"
+"Last-Translator: Suso Baleato <suso.baleato@xunta.es>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -45,19 +47,20 @@ msgstr "Tipo de letra para o texto de largura fixa."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "Tipo de letra para o texto de largura variable."
+msgstr "Tipo de letra para o texto de largura variábel."
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Height of main window"
-msgstr "Altura da ventá principal"
+msgstr "Altura da xanela principal"
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Main window maximized state"
-msgstr "Estado maximizado da ventá principal"
+msgstr "Estado maximizado da xanela principal"
 
+# (pofilter) gconf: do not translate gconf attribute: "content", "search"
 #: ../data/devhelp.schemas.in.h:7
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "O separador seleccionado, \"contido\" ou \"busca\""
+msgstr "O separador seleccionado: \"content\" ou \"search\""
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Show advanced search options"
@@ -65,15 +68,15 @@ msgstr "Mostrar as opcións avanzadas de busca"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the main window."
-msgstr "A posición X da ventá principal."
+msgstr "A posición X da xanela principal."
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "The Y position of the main window."
-msgstr "A posición Y da ventá principal."
+msgstr "A posición Y da xanela principal."
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "The height of the main window."
-msgstr "A altura da ventá principal."
+msgstr "A altura da xanela principal."
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The width of the index and search pane."
@@ -81,15 +84,15 @@ msgstr "A largura do índice e do panel de busca."
 
 #: ../data/devhelp.schemas.in.h:13
 msgid "The width of the main window."
-msgstr "A largura da ventá principal."
+msgstr "A largura da xanela principal."
 
 #: ../data/devhelp.schemas.in.h:14
 msgid "Use system fonts"
-msgstr "Usar tipos de letra do sistema"
+msgstr "Usar os tipos de letra do sistema"
 
 #: ../data/devhelp.schemas.in.h:15
 msgid "Use the systems default fonts."
-msgstr "Usar os tipos de letra predeterminados dos sistemas."
+msgstr "Usar os tipos de letra predeterminados do sistema."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."
@@ -97,27 +100,28 @@ msgstr "Indica se se mostran as opcións avanzadas de busca."
 
 #: ../data/devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
-msgstr "Indica se a ventá principal se debería iniciar maximizada ou non."
+msgstr "Indica se a xanela principal se debería iniciar maximizada ou non."
 
+# (pofilter) gconf: do not translate gconf attribute: "content", "search"
 #: ../data/devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Que separador está seleccionado, \"contido\" ou \"busca\"."
+msgstr "O separador que está seleccionado: \"content\" ou \"search\"."
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
-msgstr "Largura do índice e do panel de busca."
+msgstr "Largura do índice e do panel de busca"
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "Width of the main window"
-msgstr "A largura da ventá principal"
+msgstr "A largura da xanela principal"
 
 #: ../data/devhelp.schemas.in.h:21
 msgid "X position of main window"
-msgstr "Posición X da ventá principal"
+msgstr "Posición X da xanela principal"
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Y position of main window"
-msgstr "Posición Y da ventá principal"
+msgstr "Posición Y da xanela principal"
 
 #: ../data/ui/devhelp.glade.h:1
 msgid "<b>Fonts</b>"
@@ -157,19 +161,19 @@ msgstr "_Mostrar as opcións avanzadas de busca"
 
 #: ../data/ui/devhelp.glade.h:11
 msgid "_Use system fonts"
-msgstr "_Usar tipos de letra do sistema"
+msgstr "_Usar os tipos de letra do sistema"
 
 #: ../data/ui/devhelp.glade.h:12
 msgid "_Variable width: "
-msgstr "Largura _variable: "
+msgstr "Largura _variábel: "
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
-msgstr "Soporte Devhelp"
+msgstr "Soporte do Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "Fai que a tecla F2 inicie o Devhelp para a palabra na que está o cursor"
+msgstr "Fai que a tecla F2 inicie o Devhelp para a palabra onde está o cursor"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:36
 msgid "Show API Documentation"
@@ -177,7 +181,7 @@ msgstr "Mostrar a documentación da API"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation for the word at the cursor"
-msgstr "Mostra a documentación da API para a palabra baixo o cursor"
+msgstr "Mostra a documentación da API para a palabra onde está o cursor"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -193,7 +197,7 @@ msgstr "Mostrar a versión e saír"
 
 #: ../src/dh-main.c:127
 msgid "Focus the devhelp window with the search field active"
-msgstr "Enfocar a ventá de devhelp co campo de busca activo"
+msgstr "Enfocar a xanela do devhelp co campo de busca activo"
 
 #: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
 #, c-format
@@ -213,11 +217,13 @@ msgstr "requírense os elementos título, nome e ligazón na liña %d, columna %
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "requírense os elementos nome e ligazón dentro de <sub> na liña %d, columna %d"
+msgstr ""
+"requírense os elementos nome e ligazón dentro de <sub> na liña %d, columna %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"name and link elements are required inside <function> on line %d, column %d"
 msgstr ""
 "requírense os elementos nome e ligazón dentro de <function> na liña %d, "
 "columna %d"
@@ -230,7 +236,7 @@ msgstr "Non se puido crear o analizador do libro"
 #: ../src/dh-parser.c:436 ../src/dh-parser.c:525
 #, c-format
 msgid "Could not create markup parser"
-msgstr "Non se puido crear o analizador do marco"
+msgstr "Non se puido crear o analizador da marcación"
 
 #: ../src/dh-parser.c:578
 #, c-format
@@ -305,7 +311,7 @@ msgstr "_Axuda"
 #. File menu
 #: ../src/dh-window.c:194
 msgid "_New Window"
-msgstr "_Nova ventá"
+msgstr "_Nova xanela"
 
 #: ../src/dh-window.c:196
 msgid "New _Tab"
@@ -325,7 +331,7 @@ msgstr "Ir á páxina anterior"
 
 #: ../src/dh-window.c:220
 msgid "Go to the next page"
-msgstr "Ir á seguinte páxina"
+msgstr "Ir á páxina seguinte"
 
 #: ../src/dh-window.c:223
 msgid "_Contents Tab"
@@ -350,7 +356,7 @@ msgstr "Texto máis _pequeno"
 
 #: ../src/dh-window.c:234
 msgid "Decrease the text size"
-msgstr "Disminuir o tamaño do texto"
+msgstr "Diminuír o tamaño do texto"
 
 #: ../src/dh-window.c:236
 msgid "_Normal size"
@@ -364,11 +370,10 @@ msgstr "Usar o tamaño de texto normal"
 msgid "Search"
 msgstr "Buscar"
 
+# (pofilter) accelerators: accelerator _ is missing from translation
 #: ../src/dh-window.c:787
 msgid "translator_credits"
-msgstr ""
-"Ignacio Casal Quinteiro <adorador_del_heavy@hotmail.com>\n"
-"Proxecto Trasno: <www.trasno.net>"
+msgstr "Suso Baleato <suso.baleato@xunta.es>"
 
 #: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
@@ -392,9 +397,8 @@ msgstr "Buscar a seguinte ocorrencia da cadea de busca"
 
 #: ../src/eggfindbar.c:348
 msgid "Case Sensitive"
-msgstr "Diferencia maiúsculas de minúsculas"
+msgstr "Diferenciar maiúsculas de minúsculas"
 
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
 msgstr "Alternar a busca diferenciando maiúsculas de minúsculas"
-
