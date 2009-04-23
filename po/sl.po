@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-09 22:10+0000\n"
+"POT-Creation-Date: 2009-04-23 13:31+0200\n"
 "PO-Revision-Date: 2008-11-17 14:04+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -160,58 +161,58 @@ msgstr "Prikaži API dokumentacijo za besedo ob kazalniku"
 msgid "Devhelp - Assistant"
 msgstr "Devhelp - pomočnik"
 
-#: ../src/dh-assistant-view.c:312
+#: ../src/dh-assistant-view.c:316
 msgid "Book:"
 msgstr "Knjiga:"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:240
+#: ../src/dh-link.c:245
 msgid "Book"
 msgstr "Knjiga"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:243
+#: ../src/dh-link.c:248
 msgid "Page"
 msgstr "Stran"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:247
+#: ../src/dh-link.c:252
 msgid "Keyword"
 msgstr "Ključna beseda"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:252
+#: ../src/dh-link.c:257
 msgid "Function"
 msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:257
+#: ../src/dh-link.c:262
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:262
+#: ../src/dh-link.c:267
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:272
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:277
 msgid "Type"
 msgstr "Vrsta"
 
@@ -235,9 +236,7 @@ msgstr "Osveži devhelp okno z dejavnim iskalnim poljem"
 msgid "Search and display any hit in the assistant window"
 msgstr "Poišči in prikaži vse zadetke v oknu pomočnika"
 
-#: ../src/dh-parser.c:80
-#: ../src/dh-parser.c:169
-#: ../src/dh-parser.c:233
+#: ../src/dh-parser.c:80 ../src/dh-parser.c:169 ../src/dh-parser.c:233
 #: ../src/dh-parser.c:243
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
@@ -249,23 +248,30 @@ msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neveljaven imenski prostor '%s' v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:122
-#, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "vpisan mora biti naslov, ime in povezava elementov v vrstici %d, stolpec %d"
+#, fuzzy, c-format
+msgid ""
+"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
+msgstr ""
+"vpisan mora biti naslov, ime in povezava elementov v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:188
-#, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "vpis imena in povezave je obvezen znotraj <sub> v vrstici %d, stolpec %d"
+#, fuzzy, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
+msgstr ""
+"vpis imena in povezave je obvezen znotraj <sub> v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:268
-#, c-format
-msgid "name and link elements are required inside '%s' on line %d, column %d"
-msgstr "vpis imena in povezave je obvezen znotraj '%s' v vrstici %d, stolpec %d"
+#, fuzzy, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+"vpis imena in povezave je obvezen znotraj '%s' v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:281
-#, c-format
-msgid "type element is required inside <keyword> on line %d, column %d"
+#, fuzzy, c-format
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "vrstni element je obvezen znotraj <keyword> v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:486
@@ -358,13 +364,11 @@ msgstr "Nov _zavihek"
 msgid "_Print..."
 msgstr "_Natisni ..."
 
-#: ../src/dh-window.c:404
-#: ../src/eggfindbar.c:342
+#: ../src/dh-window.c:404 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Poišči naslednje"
 
-#: ../src/dh-window.c:406
-#: ../src/eggfindbar.c:329
+#: ../src/dh-window.c:406 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Poišči predhodne"
 
@@ -409,27 +413,38 @@ msgstr "_Običajna velikost"
 msgid "Use the normal text size"
 msgstr "Uporabi običajno velikost pisave"
 
+#. Translators: This refers to text size
+#: ../src/dh-window.c:530
+#, fuzzy
+msgid "Larger"
+msgstr "_Večja pisava"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:533
+#, fuzzy
+msgid "Smaller"
+msgstr "_Manjša pisava"
+
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:661
 msgid "About Devhelp"
 msgstr "O programu Devhelp"
 
-#: ../src/dh-window.c:659
+#: ../src/dh-window.c:666
 msgid "Preferences..."
 msgstr "Lastnosti ..."
 
-#: ../src/dh-window.c:702
+#: ../src/dh-window.c:709
 msgid "Contents"
 msgstr "Vsebina"
 
-#: ../src/dh-window.c:712
+#: ../src/dh-window.c:719
 msgid "Search"
 msgstr "Iskanje"
 
-#: ../src/dh-window.c:1049
-#: ../src/dh-window.c:1258
+#: ../src/dh-window.c:1070 ../src/dh-window.c:1279
 msgid "Empty Page"
 msgstr "Prazna stran"
 
@@ -437,13 +452,11 @@ msgstr "Prazna stran"
 msgid "Find:"
 msgstr "Poišči:"
 
-#: ../src/eggfindbar.c:333
-#: ../src/eggfindbar.c:336
+#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Poišči predhodni zadetek iskanega niza"
 
-#: ../src/eggfindbar.c:346
-#: ../src/eggfindbar.c:349
+#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "Poišči naslednji zadetek iskanega niza"
 
@@ -451,41 +464,52 @@ msgstr "Poišči naslednji zadetek iskanega niza"
 msgid "C_ase Sensitive"
 msgstr "_Razlikovanje velikosti črk"
 
-#: ../src/eggfindbar.c:362
-#: ../src/eggfindbar.c:365
+#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Preklop iskanja po velikosti črk"
 
 #~ msgid "Show advanced search options"
 #~ msgstr "Pokaži napredne možnosti iskanja"
+
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "Ali naj bodo prikazane napredne možnosti iskanja."
+
 #~ msgid "<b>Fonts</b>"
 #~ msgstr "<b>Pisave</b>"
+
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>Iskanje</b>"
+
 #~ msgid "_Back"
 #~ msgstr "_Nazaj"
+
 #~ msgid "_Fixed width:"
 #~ msgstr "_Določena širina:"
+
 #~ msgid "_Forward"
 #~ msgstr "_Naprej"
+
 #~ msgid "_Show advanced search options"
 #~ msgstr "_Prikaži napredne možnosti iskanja"
+
 #~ msgid "_Use system fonts"
 #~ msgstr "_Uporabi sistemske pisave"
+
 #~ msgid "_Variable width: "
 #~ msgstr "_Spremenljiva širina:"
+
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column %"
 #~ "d"
 #~ msgstr ""
 #~ "vpis imena in povezave je obvezen znotraj <function> v vrstici %d, "
 #~ "stolpec %d"
+
 #~ msgid "Could not create book parser"
 #~ msgstr "Ni mogoče ustvariti razčlenjevalca knjige"
+
 #~ msgid "Could not create markup parser"
 #~ msgstr "Ni mogoče ustvariti razčlenjevalca oblike"
+
 #~ msgid "Devhelp is not built with zlib support"
 #~ msgstr "Devhelp nima podpore za zlib"
-
