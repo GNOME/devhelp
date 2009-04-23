@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-04-23 13:31+0200\n"
-"PO-Revision-Date: 2008-11-17 14:04+0100\n"
+"PO-Revision-Date: 2009-04-23 09:53+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -248,31 +248,36 @@ msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neveljaven imenski prostor '%s' v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:122
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"vpisan mora biti naslov, ime in povezava elementov v vrstici %d, stolpec %d"
+"\"naslov\", \"ime\" in \"povezava\" predmeta so zahtevani v vrstici %d in "
+"stolpcu %d"
 
 #: ../src/dh-parser.c:188
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
 msgstr ""
-"vpis imena in povezave je obvezen znotraj <sub> v vrstici %d, stolpec %d"
+"\"ime\" in \"povezava\" predmeta sta zahtevana znotraj <sub> v vrstici %d in "
+"stolpcu %d"
 
 #: ../src/dh-parser.c:268
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"vpis imena in povezave je obvezen znotraj '%s' v vrstici %d, stolpec %d"
+"\"ime\" in\"povezava\" predmeta sta zahtevana znotraj '%s' v vrstici %d in "
+"stolpcu %d"
 
 #: ../src/dh-parser.c:281
-#, fuzzy, c-format
+#, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "vrstni element je obvezen znotraj <keyword> v vrstici %d, stolpec %d"
+msgstr ""
+"\"vrstni\" element je zahtevan znotraj <ključne besede> v vrstici %d in "
+"stolpcu %d"
 
 #: ../src/dh-parser.c:486
 #, c-format
@@ -415,15 +420,13 @@ msgstr "Uporabi običajno velikost pisave"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:530
-#, fuzzy
 msgid "Larger"
-msgstr "_Večja pisava"
+msgstr "Večje"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:533
-#, fuzzy
 msgid "Smaller"
-msgstr "_Manjša pisava"
+msgstr "Manjše"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
