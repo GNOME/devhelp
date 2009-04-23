@@ -10,15 +10,17 @@
 # Washington Lins <washington-lins@uol.com.br>, 2007.
 # Og Maciel <ogmaciel@gnome.org>, 2007-2008.
 # Taylon Silmer <taylonsilva@gmail.com>, 2008.
+# Leonardo Ferreira Fontenelle <leonardof@gnome.org>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 08:51+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&component=general\n"
+"POT-Creation-Date: 2009-04-17 17:43+0000\n"
 "PO-Revision-Date: 2009-01-03 16:24-0300\n"
-"Last-Translator: Taylon <taylonsilva@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
+"Last-Translator: Leonardo Ferreira Fontenelle <leonardof@gnome.org>\n"
+"Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -168,58 +170,58 @@ msgstr "Mostrar a documentação da API para a palavra sob o cursor"
 msgid "Devhelp - Assistant"
 msgstr "Devhelp - Assistente"
 
-#: ../src/dh-assistant-view.c:312
+#: ../src/dh-assistant-view.c:316
 msgid "Book:"
 msgstr "Livro:"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:240
+#: ../src/dh-link.c:245
 msgid "Book"
 msgstr "Livro"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:243
+#: ../src/dh-link.c:248
 msgid "Page"
 msgstr "Página"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:247
+#: ../src/dh-link.c:252
 msgid "Keyword"
 msgstr "Palavra-chave"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:252
+#: ../src/dh-link.c:257
 msgid "Function"
 msgstr "Função"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:257
+#: ../src/dh-link.c:262
 msgid "Struct"
 msgstr "Estrutura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:262
+#: ../src/dh-link.c:267
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:272
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:277
 msgid "Type"
 msgstr "Tipo"
 
@@ -256,35 +258,40 @@ msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Espaço de nomes \"%s\" inválido na linha %d, coluna %d"
 
 #: ../src/dh-parser.c:122
-#, fuzzy
-msgid "title, name, and link elements are required at line %d, column %d"
+#, c-format
+msgid ""
+"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"os elementos título, nome e link são necessários na linha %d, coluna %d"
+"os elementos \"title\", \"name\", e \"link\" são necessários na linha %d, "
+"coluna %d"
 
 #: ../src/dh-parser.c:188
-#, fuzzy
-msgid "name and link elements are required inside <sub> on line %d, column %d"
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
 msgstr ""
-"os elementos nome e link são necessários dentro de <sub> na linha %d, coluna "
-"%d"
+"os elementos \"name\" e \"link\" são necessários dentro de <sub> na linha %"
+"d, coluna %d"
 
 #: ../src/dh-parser.c:268
-#, fuzzy
-msgid "name and link elements are required inside '%s' on line %d, column %d"
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"os elementos nome e link são necessários dentro de '%s' na linha %d, coluna %"
-"d "
+"os elementos \"name\" e \"link\" são necessários dentro de \"%s\" na linha %"
+"d, coluna %d"
 
 #: ../src/dh-parser.c:281
-#, fuzzy
-msgid "type element is required inside <keyword> on line %d, column %d"
+#, c-format
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
-"o elemento tipo é necessário dentro de <keyword> na linha %d, coluna %d"
+"o elemento \"type\" é necessário dentro de <keyword> na linha %d, coluna %d"
 
 #: ../src/dh-parser.c:486
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "Impossível descompactar o livro \"%s\": %s"
+msgstr "Não é possível descompactar o livro \"%s\": %s"
 
 #: ../src/dh-search.c:481
 msgid "All books"
@@ -338,7 +345,8 @@ msgstr ""
 "Luiz Armesto <luiz.armesto@gmail.com>\n"
 "Washington Lins <washington-lins@uol.com.br>\n"
 "Og Maciel <ogmaciel@gnome.org>\n"
-"Taylon Silmer <taylonsilva@gmail.com>"
+"Taylon Silmer <taylonsilva@gmail.com>\n"
+"Leonardo Ferreira Fontenelle <leonardof@gnome.org>"
 
 #: ../src/dh-window.c:369
 msgid "A developer's help browser for GNOME"
@@ -426,26 +434,36 @@ msgstr "Tamanho _normal"
 msgid "Use the normal text size"
 msgstr "Usa o tamanho normal de texto"
 
+#. Translators: This refers to text size
+#: ../src/dh-window.c:530
+msgid "Larger"
+msgstr "Maior"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:533
+msgid "Smaller"
+msgstr "Menor"
+
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:661
 msgid "About Devhelp"
 msgstr "Sobre o Devhelp"
 
-#: ../src/dh-window.c:659
+#: ../src/dh-window.c:666
 msgid "Preferences..."
 msgstr "Preferências..."
 
-#: ../src/dh-window.c:702
+#: ../src/dh-window.c:709
 msgid "Contents"
 msgstr "Conteúdo"
 
-#: ../src/dh-window.c:712
+#: ../src/dh-window.c:719
 msgid "Search"
 msgstr "Pesquisar"
 
-#: ../src/dh-window.c:1049 ../src/dh-window.c:1258
+#: ../src/dh-window.c:1070 ../src/dh-window.c:1279
 msgid "Empty Page"
 msgstr "Página vazia"
 
