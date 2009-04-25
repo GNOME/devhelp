@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-16 23:50+0200\n"
+"POT-Creation-Date: 2009-04-25 13:52+0300\n"
 "PO-Revision-Date: 2008-02-16 23:51+0200\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian Latin <i18n@mova.org>\n"
@@ -19,17 +19,12 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Prahrama ŭ dapamohu raspracoŭniku"
 
-#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/devhelp.desktop.in.in.h:2
 msgid "Documentation Browser"
 msgstr "Hartač dakumentacyi"
 
 #: ../data/devhelp.schemas.in.h:1
-msgid "Font for fixed text"
+msgid "Font for fixed width text"
 msgstr "Šryft dla tekstu stałaj šyryni"
 
 #: ../data/devhelp.schemas.in.h:2
@@ -37,128 +32,108 @@ msgid "Font for text"
 msgstr "Šryft dla tekstu"
 
 #: ../data/devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Šryft dla tekstu stałaj šyryni."
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Šryft dla tekstu stałaj šyryni, naprykład, uzoraŭ kodu."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Šryft dla tekstu źmiennaj šyryni."
 
 #: ../data/devhelp.schemas.in.h:5
+msgid "Height of assistant window"
+msgstr "Vyšynia dapamožnaha akna"
+
+#: ../data/devhelp.schemas.in.h:6
 msgid "Height of main window"
 msgstr "Vyšynia hałoŭnaha akna"
 
-#: ../data/devhelp.schemas.in.h:6
+#: ../data/devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Maksymalizavany stan hałoŭnaha akna"
 
-#: ../data/devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:8
 msgid "Selected tab, \"content\" or \"search\""
 msgstr "Dziejnaja kartka, \"źmieściva\" albo \"šukaj\""
 
-#: ../data/devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Pakažy pašyranyja opcyi pošuku"
-
 #: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the assistant window."
+msgstr "Pałažeńnie dapamožnaha akna pa vosi X."
+
+#: ../data/devhelp.schemas.in.h:10
 msgid "The X position of the main window."
 msgstr "Pałažeńnie hałoŭnaha akna pa vosi X."
 
-#: ../data/devhelp.schemas.in.h:10
+#: ../data/devhelp.schemas.in.h:11
+msgid "The Y position of the assistant window."
+msgstr "Pałažeńnie dapamožnaha akna pa vosi Y."
+
+#: ../data/devhelp.schemas.in.h:12
 msgid "The Y position of the main window."
 msgstr "Pałažeńnie hałoŭnaha akna pa vosi Y."
 
-#: ../data/devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:13
+msgid "The height of the assistant window."
+msgstr "Vyšynia dapamožnaha akna."
+
+#: ../data/devhelp.schemas.in.h:14
 msgid "The height of the main window."
 msgstr "Vyšynia hałoŭnaha akna."
 
-#: ../data/devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:15
+msgid "The width of the assistant window."
+msgstr "Šyrynia dapamožnaha akna."
+
+#: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
 msgstr "Šyrynia paneli źmiestu i pošuku."
 
-#: ../data/devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:17
 msgid "The width of the main window."
 msgstr "Šyrynia hałoŭnaha akna."
 
-#: ../data/devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:18
 msgid "Use system fonts"
 msgstr "Užyj systemnyja šryfty"
 
-#: ../data/devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:19
 msgid "Use the systems default fonts."
 msgstr "Užyj systemnyja zmoŭčanyja šryfty."
 
-#: ../data/devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Akreślivaje, ci pakazvajucca pašyranyja opcyi pošuku."
-
-#: ../data/devhelp.schemas.in.h:17
+#: ../data/devhelp.schemas.in.h:20
 msgid "Whether the main window should start maximized or not."
 msgstr "Akreślivaje, ci maksymalizavać hałoŭnaje akno pry ŭruchomleńni."
 
-#: ../data/devhelp.schemas.in.h:18
+#: ../data/devhelp.schemas.in.h:21
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr "Akreślivaje dziejnuju kartku, \"źmieściva\" albo \"šukaj\"."
 
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/devhelp.schemas.in.h:22
+msgid "Width of the assistant window"
+msgstr "Šyrynia dapamožnaha akna"
+
+#: ../data/devhelp.schemas.in.h:23
 msgid "Width of the index and search pane"
 msgstr "Šyrynia paneli źmieściva i pošuku"
 
-#: ../data/devhelp.schemas.in.h:20
+#: ../data/devhelp.schemas.in.h:24
 msgid "Width of the main window"
 msgstr "Šyrynia hałoŭnaha akna"
 
-#: ../data/devhelp.schemas.in.h:21
+#: ../data/devhelp.schemas.in.h:25
+msgid "X position of assistant window"
+msgstr "Pałažeńnie dapamožnaha akna pa vosi X"
+
+#: ../data/devhelp.schemas.in.h:26
 msgid "X position of main window"
 msgstr "Pałažeńnie hałoŭnaha akna pa vosi X"
 
-#: ../data/devhelp.schemas.in.h:22
+#: ../data/devhelp.schemas.in.h:27
+msgid "Y position of assistant window"
+msgstr "Pałažeńnie dapamožnaha akna pa vosi Y"
+
+#: ../data/devhelp.schemas.in.h:28
 msgid "Y position of main window"
 msgstr "Pałažeńnie hałoŭnaha akna pa vosi Y"
-
-#: ../data/ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Šryfty</b>"
-
-#: ../data/ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Pošuk</b>"
-
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
-msgid "Contents"
-msgstr "Źmieściva"
-
-#: ../data/ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Nałady"
-
-#: ../data/ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "Na_zad"
-
-#: ../data/ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "_Stałaja šyrynia:"
-
-#: ../data/ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "Na_pierad"
-
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
-msgid "_Go"
-msgstr "_Pierajdzi"
-
-#: ../data/ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Pakažy pašyranyja opcyi pošuku"
-
-#: ../data/ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "_Užyj systemnyja šryfty"
-
-#: ../data/ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "_Źmiennaja šyrynia: "
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -176,200 +151,297 @@ msgstr "Pakažy dakumentacyju API"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Pakažy dakumentacyju API dla słova pad kursoram"
 
-#: ../src/dh-main.c:100
-msgid "Search for a function"
-msgstr "Šukaj funkcyju"
+#. i18n: Please don't translate "Devhelp".
+#: ../src/dh-assistant.c:74
+msgid "Devhelp - Assistant"
+msgstr "Devhelp - Pamočnik"
 
-#: ../src/dh-main.c:109
+#: ../src/dh-assistant-view.c:316
+msgid "Book:"
+msgstr "Kniha:"
+
+#. i18n: a documentation book
+#: ../src/dh-link.c:245
+msgid "Book"
+msgstr "Kniha"
+
+#. i18n: a "page" in a documentation book
+#: ../src/dh-link.c:248
+msgid "Page"
+msgstr "Staronka"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: ../src/dh-link.c:252
+msgid "Keyword"
+msgstr "Klučavoje słova"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:257
+msgid "Function"
+msgstr "Funkcyja"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:262
+msgid "Struct"
+msgstr "Struktura"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:267
+msgid "Macro"
+msgstr "Makras"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:272
+msgid "Enum"
+msgstr "Enum"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:277
+msgid "Type"
+msgstr "Typ"
+
+#: ../src/dh-main.c:167
+msgid "Search for a keyword"
+msgstr "Šukaj słova"
+
+#: ../src/dh-main.c:172
 msgid "Quit any running Devhelp"
 msgstr "Vychad z uruchomlenaha Devhelpa"
 
-#: ../src/dh-main.c:118
+#: ../src/dh-main.c:177
 msgid "Display the version and exit"
 msgstr "Pakažy versiju i zakonč pracu"
 
-#: ../src/dh-main.c:127
-msgid "Focus the devhelp window with the search field active"
-msgstr "Sfakusujsia na vaknie Devhelpa i aktyvizuj pole pošuku"
+#: ../src/dh-main.c:182
+msgid "Focus the Devhelp window with the search field active"
+msgstr "Sfakusuj akno Devhelpa i aktyvizuj pole pošuku"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#: ../src/dh-main.c:187
+msgid "Search and display any hit in the assistant window"
+msgstr "Šukaj i pakazvaj padkazki ŭ dapamožnym aknie"
+
+#: ../src/dh-parser.c:80 ../src/dh-parser.c:169 ../src/dh-parser.c:233
+#: ../src/dh-parser.c:243
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Čakałasia '%s', atrymana '%s' u radku %d, kalonie %d"
 
-#: ../src/dh-parser.c:128
+#: ../src/dh-parser.c:97
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Niapravilny abšar nazvaŭ '%s' u radku %d, kalonie %d"
 
-#: ../src/dh-parser.c:158
-#, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
-"elementy zahałoŭka, nazvy i spasyłki patrabujucca ŭ radku %d, kalonie %d"
-
-#: ../src/dh-parser.c:215
-#, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"elementy nazvy i spasyłki patrabujucca ŭnutry <sub> u radku %d, kalonie %d"
-
-#: ../src/dh-parser.c:297
+#: ../src/dh-parser.c:122
 #, c-format
 msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"elementy nazvy i spasyłki patrabujucca ŭnutry <function> u radku %d, kalonie "
-"%d"
+"Elementy zahałoŭka (\"title\"), nazvy (\"name\") i spasyłki (\"link\") "
+"patrabujucca ŭ radku %d, kalonie %d"
 
-#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
-msgid "Could not create book parser"
-msgstr "Niemahčyma stvaryć analizatara knihaŭ"
+#: ../src/dh-parser.c:188
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
+msgstr ""
+"Elementy nazvy (\"name\") i spasyłki (\"link\") patrabujucca ŭnutry <sub> u "
+"radku %d, kalonie %d"
 
-#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
-msgid "Could not create markup parser"
-msgstr "Niemahčyma stvaryć analizatara značnikaŭ"
+#: ../src/dh-parser.c:268
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+"Elementy nazvy (\"name\") i spasyłki (\"link\") patrabujucca ŭnutry \"%s\" u "
+"radku %d, kalonie %d"
 
-#: ../src/dh-parser.c:578
+#: ../src/dh-parser.c:281
+#, c-format
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+msgstr ""
+"Element typu (\"type\") patrabujecca ŭnutry <keyword> u radku %d, kalonie %d"
+
+#: ../src/dh-parser.c:486
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Niemahčyma zdekampresavać knihu '%s': %s"
 
-#: ../src/dh-parser.c:603
-msgid "Devhelp is not built with zlib support"
-msgstr "Devhelp sabrany biez padtrymki zlib"
+#: ../src/dh-search.c:481
+msgid "All books"
+msgstr "Usie knihi"
 
-#: ../src/dh-search.c:621
-msgid "_Book:"
-msgstr "_Kniha:"
+#: ../src/dh-search.c:537
+msgid "Search in:"
+msgstr "Šukaj u:"
 
-#: ../src/dh-search.c:641
-msgid "_Page:"
-msgstr "_Staronka:"
-
-#: ../src/dh-window.c:70
+#: ../src/dh-window.c:73
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:71
+#: ../src/dh-window.c:74
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:72
+#: ../src/dh-window.c:75
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:76
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:77
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:78
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:79
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:80
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:81
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:187
+#: ../src/dh-window.c:364
+msgid "translator_credits"
+msgstr "Ihar Hračyška <iharh@gnome.org>"
+
+#: ../src/dh-window.c:369
+msgid "A developer's help browser for GNOME"
+msgstr "Hartač dakumentacyi raspracoŭnika dla GNOME"
+
+#: ../src/dh-window.c:381
 msgid "_File"
 msgstr "_Fajł"
 
-#: ../src/dh-window.c:188
+#: ../src/dh-window.c:382
 msgid "_Edit"
 msgstr "_Redahuj"
 
-#: ../src/dh-window.c:189
+#: ../src/dh-window.c:383
 msgid "_View"
 msgstr "_Vyhlad"
 
-#: ../src/dh-window.c:191
+#: ../src/dh-window.c:384
+msgid "_Go"
+msgstr "_Pierajdzi"
+
+#: ../src/dh-window.c:385
 msgid "_Help"
 msgstr "_Dapamoha"
 
 #. File menu
-#: ../src/dh-window.c:194
+#: ../src/dh-window.c:388
 msgid "_New Window"
 msgstr "_Novaje akno"
 
-#: ../src/dh-window.c:196
+#: ../src/dh-window.c:390
 msgid "New _Tab"
 msgstr "Novaja _kartka"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:392
+msgid "_Print..."
+msgstr "_Vydrukuj..."
+
+#: ../src/dh-window.c:404 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Šukaj dalej"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:406 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Šukaj raniej"
 
-#: ../src/dh-window.c:217
+#: ../src/dh-window.c:413
 msgid "Go to the previous page"
 msgstr "Pierajdzi da papiaredniaj staronki"
 
-#: ../src/dh-window.c:220
+#: ../src/dh-window.c:416
 msgid "Go to the next page"
 msgstr "Pierajdzi da nastupnaj staronki"
 
-#: ../src/dh-window.c:223
+#: ../src/dh-window.c:419
 msgid "_Contents Tab"
 msgstr "Kartka _źmieściva"
 
-#: ../src/dh-window.c:226
+#: ../src/dh-window.c:422
 msgid "_Search Tab"
 msgstr "Kartka _pošuku"
 
 #. View menu
-#: ../src/dh-window.c:230
+#: ../src/dh-window.c:426
 msgid "_Larger Text"
 msgstr "_Bolšy tekst"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:427
 msgid "Increase the text size"
 msgstr "Pavialič pamier tekstu"
 
-#: ../src/dh-window.c:233
+#: ../src/dh-window.c:429
 msgid "S_maller Text"
 msgstr "_Mienšy tekst"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:430
 msgid "Decrease the text size"
 msgstr "Pamienš pamier tekstu"
 
-#: ../src/dh-window.c:236
-msgid "_Normal size"
+#: ../src/dh-window.c:432
+msgid "_Normal Size"
 msgstr "_Zvyčajny pamier"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:433
 msgid "Use the normal text size"
 msgstr "Užyj zvyčajny pamier tekstu"
 
-#: ../src/dh-window.c:529
+#. Translators: This refers to text size
+#: ../src/dh-window.c:530
+msgid "Larger"
+msgstr "_Bolšy"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:533
+msgid "Smaller"
+msgstr "_Mienšy"
+
+#. i18n: please don't translate
+#. * "Devhelp", it's a name, not a
+#. * generic word.
+#: ../src/dh-window.c:661
+msgid "About Devhelp"
+msgstr "Pra Devhelp"
+
+#: ../src/dh-window.c:666
+msgid "Preferences..."
+msgstr "Nałady..."
+
+#: ../src/dh-window.c:709
+msgid "Contents"
+msgstr "Źmieściva"
+
+#: ../src/dh-window.c:719
 msgid "Search"
 msgstr "Šukaj"
 
-#: ../src/dh-window.c:787
-msgid "translator_credits"
-msgstr "Ihar Hračyška <iharh@gnome.org>"
-
-#: ../src/dh-window.c:792
-msgid "A developer's help browser for GNOME 2"
-msgstr "Hartač dakumentacyi raspracoŭnika dla GNOME 2"
-
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:1070 ../src/dh-window.c:1279
 msgid "Empty Page"
 msgstr "Pustaja staronka"
 
@@ -377,21 +449,18 @@ msgstr "Pustaja staronka"
 msgid "Find:"
 msgstr "Šukaj:"
 
-#: ../src/eggfindbar.c:332
+#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Šukaj papiaredniaje supadzieńnie z šukanym radkom"
 
-#: ../src/eggfindbar.c:340
+#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "Šukaj nastupnaje supadzieńnie z šukanym radkom"
 
-#: ../src/eggfindbar.c:348
-msgid "Case Sensitive"
-msgstr "Z ulikam rehistru"
+#: ../src/eggfindbar.c:358
+msgid "C_ase Sensitive"
+msgstr "_Uličvaj rehistar"
 
-#: ../src/eggfindbar.c:351
+#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Pieraklučy pošuk z ulikam rehistru"
-
-#~ msgid "Browse Contents"
-#~ msgstr "Prahladaj źmieściva"
