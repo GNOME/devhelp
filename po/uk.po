@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-28 12:50+0300\n"
+"POT-Creation-Date: 2009-04-28 13:09+0300\n"
 "PO-Revision-Date: 2009-04-28 03:23--500\n"
 "Last-Translator: Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <linux@linux.org.ua>\n"
@@ -247,25 +247,30 @@ msgstr "Неправильний простір назв \"%s\" в рядку %d
 #, c-format
 msgid ""
 "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
-msgstr "Елементи \"title\", \"name\", та \"link\" є обов'язковими в рядку line %d, позиція %d"
+msgstr ""
+"Елементи \"title\", \"name\", та \"link\" є обов'язковими в рядку line %d, "
+"позиція %d"
 
 #: ../src/dh-parser.c:188
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
-msgstr "Елементи \"name\" та \"link\" є обов'язковими  у <sub> в рядку %d, позиція %d"
+msgstr ""
+"Елементи \"name\" та \"link\" є обов'язковими  у <sub> в рядку %d, позиція %d"
 
 #: ../src/dh-parser.c:268
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr "Елементи \"name\" та \"link\" є обов'язковими  у '%s' в рядку %d, позиція %d"
+msgstr ""
+"Елементи \"name\" та \"link\" є обов'язковими  у '%s' в рядку %d, позиція %d"
 
 #: ../src/dh-parser.c:281
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "Елемент \"type\" є обов'язковим всередині <keyword> в рядку %d, позиція %d"
+msgstr ""
+"Елемент \"type\" є обов'язковим всередині <keyword> в рядку %d, позиція %d"
 
 #: ../src/dh-parser.c:486
 #, c-format
@@ -460,5 +465,3 @@ msgstr "В_раховувати регістр"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Перемикає чутливість до регістру літер"
-
-
