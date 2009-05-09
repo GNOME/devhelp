@@ -11,23 +11,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 17:22+0200\n"
-"PO-Revision-Date: 2009-03-11 09:50+0100\n"
-"Last-Translator: Athanasios Lefteris <alefteris@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
+"POT-Creation-Date: 2009-03-14 15:28+0000\n"
+"PO-Revision-Date: 2009-04-10 01:11+0200\n"
+"Last-Translator: Socrates Vavilis <s_vavilis@yahoo.fr>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
 msgstr "Πρόγραμμα βοήθειας για προγραμματιστές"
 
-#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:790
+#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/ui/devhelp.glade.h:4
+#: ../src/dh-main.c:151
+#: ../src/dh-window.c:790
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -101,13 +103,11 @@ msgstr "Εμφάνιση ή απόκρυψη των προχωρημένων ε�
 
 #: ../data/devhelp.schemas.in.h:17
 msgid "Whether the main window should start maximized or not."
-msgstr ""
-"Αν το κύριο παράθυρο θα εμφανίζεται μεγιστοποιημένο ή όχι κατά την εκκίνηση."
+msgstr "Μεγιστοποίηση ή ελαχιστοποίηση του κύριου παραθύρου κατά την εκκίνηση."
 
 #: ../data/devhelp.schemas.in.h:18
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr ""
-"Ποια από τις καρτέλες είναι επιλεγμένη, \"περιεχόμενα\" ή \"αναζήτηση\"."
+msgstr "Καρτέλες οι οποίες είναι επιλεγμένες, \"περιεχόμενα\" ή \"αναζήτηση\"."
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "Width of the index and search pane"
@@ -133,7 +133,8 @@ msgstr "<b>Γραμματοσειρές</b>"
 msgid "<b>Searching</b>"
 msgstr "<b>Αναζήτηση</b>"
 
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:519
+#: ../data/ui/devhelp.glade.h:3
+#: ../src/dh-window.c:519
 msgid "Contents"
 msgstr "Περιεχόμενα"
 
@@ -153,7 +154,8 @@ msgstr "_Σταθερό πλάτος:"
 msgid "_Forward"
 msgstr "_Μπροστά"
 
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:190
+#: ../data/ui/devhelp.glade.h:9
+#: ../src/dh-window.c:190
 msgid "_Go"
 msgstr "_Μετάβαση"
 
@@ -183,9 +185,7 @@ msgstr "Εμφάνιση τεκμηρίωσης API"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation for the word at the cursor"
-msgstr ""
-"Εμφάνιση τεκμηρίωσης API (Διεπαφής Προγραμματισμού Εφαρμογών) για τη λέξη "
-"στην οποία βρίσκεται ο δρομέας"
+msgstr "Εμφάνιση τεκμηρίωσης API (Διεπαφής Προγραμματισμού Εφαρμογών) για τη λέξη στην οποία βρίσκεται ο δρομέας"
 
 #: ../src/dh-main.c:100
 msgid "Search for a function"
@@ -203,7 +203,9 @@ msgstr "Εμφάνιση της έκδοσης και έξοδος"
 msgid "Focus the devhelp window with the search field active"
 msgstr "Εστίαση στο παράθυρο του devhelp με το πεδίο αναζήτησης ενεργό"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#: ../src/dh-parser.c:110
+#: ../src/dh-parser.c:194
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Αναμενόταν '%s', αλλά ελήφθη '%s' στη γραμμή %d, στήλη %d"
@@ -216,33 +218,29 @@ msgstr "Μη έγκυρο namespace '%s' στη γραμμή %d, στήλη %d"
 #: ../src/dh-parser.c:158
 #, c-format
 msgid "title, name, and link elements are required at line %d, column %d"
-msgstr ""
-"στοιχεία τίτλου, ονόματος και συνδέσμου απαιτούνται στη γραμμή %d, στήλη %d"
+msgstr "στοιχεία τίτλου, ονόματος και συνδέσμου απαιτούνται στη γραμμή %d, στήλη %d"
 
 #: ../src/dh-parser.c:215
 #, c-format
 msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"στοιχεία ονόματος και συνδέσμου απαιτούνται εντός του <sub> στη γραμμή %d, "
-"στήλη %d"
+msgstr "στοιχεία ονόματος και συνδέσμου απαιτούνται εντός του <sub> στη γραμμή %d, στήλη %d"
 
 #: ../src/dh-parser.c:297
 #, c-format
-msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
-msgstr ""
-"στοιχεία ονόματος και συνδέσμου απαιτούνται εντός του <function> στη γραμμή %"
-"d, στήλη %d"
+msgid "name and link elements are required inside <function> on line %d, column %d"
+msgstr "στοιχεία ονόματος και συνδέσμου απαιτούνται εντός του <function> στη γραμμή %d, στήλη %d"
 
-#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
+#: ../src/dh-parser.c:420
+#: ../src/dh-parser.c:515
 #, c-format
 msgid "Could not create book parser"
-msgstr "Αδυναμία δημιουργίας parser βιβλίων"
+msgstr "Αδυναμία δημιουργίας συντακτικού βιβλιοαναλυτή"
 
-#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
+#: ../src/dh-parser.c:436
+#: ../src/dh-parser.c:525
 #, c-format
 msgid "Could not create markup parser"
-msgstr "Αδυναμία δημιουργίας markup parser"
+msgstr "Αδυναμία δημιουργίας συντακτικού αναλυτή σήμανσης"
 
 #: ../src/dh-parser.c:578
 #, c-format
@@ -252,7 +250,7 @@ msgstr "Αδυναμία αποσυμπίεσης βιβλίου '%s': %s"
 #: ../src/dh-parser.c:603
 #, c-format
 msgid "Devhelp is not built with zlib support"
-msgstr "Το Devhelp δε δημιουργήθηκε με υποστήριξη zlib"
+msgstr "Το Devhelp δεν δημιουργήθηκε με υποστήριξη zlib"
 
 #: ../src/dh-search.c:621
 msgid "_Book:"
@@ -323,11 +321,13 @@ msgstr "_Νέο παράθυρο"
 msgid "New _Tab"
 msgstr "Νέα καρ_τέλα"
 
-#: ../src/dh-window.c:208 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:208
+#: ../src/eggfindbar.c:337
 msgid "Find Next"
-msgstr "Εύρεση Επόμενου"
+msgstr "Εύρεση επόμενου"
 
-#: ../src/dh-window.c:210 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:210
+#: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Εύρεση προηγούμενου"
 
@@ -386,9 +386,10 @@ msgstr ""
 
 #: ../src/dh-window.c:792
 msgid "A developer's help browser for GNOME 2"
-msgstr "Ένας περιηγητής βοήθειας για τους προγραμματιστές του GNOME 2"
+msgstr "Περιηγητής βοήθειας για τους προγραμματιστές του GNOME 2"
 
-#: ../src/dh-window.c:1186 ../src/dh-window.c:1381
+#: ../src/dh-window.c:1186
+#: ../src/dh-window.c:1381
 msgid "Empty Page"
 msgstr "Κενή Σελίδα"
 
@@ -398,11 +399,11 @@ msgstr "Εύρεση:"
 
 #: ../src/eggfindbar.c:332
 msgid "Find previous occurrence of the search string"
-msgstr "Εύρεση της προηγούμενης εμφάνισης του ζητούμενου αλφαριθμητικού"
+msgstr "Εύρεση προηγούμενης εμφάνισης του ζητούμενου αλφαριθμητικού"
 
 #: ../src/eggfindbar.c:340
 msgid "Find next occurrence of the search string"
-msgstr "Εύρεση της επόμενης εμφάνισης του ζητούμενου αλφαριθμητικού"
+msgstr "Εύρεση επόμενης εμφάνισης του ζητούμενου αλφαριθμητικού"
 
 #: ../src/eggfindbar.c:348
 msgid "Case Sensitive"
@@ -410,7 +411,8 @@ msgstr "Διάκριση πεζών/κεφαλαίων"
 
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
-msgstr "Εναλλαγή της διάκρισης πεζών/κεφαλαίων κατά την αναζήτηση"
+msgstr "Εναλλαγή διάκρισης πεζών/κεφαλαίων κατά την αναζήτηση"
 
 #~ msgid "Browse Contents"
 #~ msgstr "Περιήγηση περιεχομένων"
+
