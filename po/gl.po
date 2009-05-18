@@ -1,4 +1,4 @@
-# translation of gl.po to Galego
+# translation of devhelp-master-po-gl-1953.po to Galician
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
@@ -6,19 +6,22 @@
 # Ignacio Casal Quinteiro <icq@cvs.gnome.org>, 2007.
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
+# Fran Dieguez <fran.dieguez@glug.es>, 2009.
+# Antón Méixome <meixome@mancomun.org>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gl\n"
+"Project-Id-Version: devhelp-master-po-gl-1953\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-18 21:06+0100\n"
-"PO-Revision-Date: 2009-03-10 20:17+0000\n"
-"Last-Translator: Suso Baleato <suso.baleato@xunta.es>\n"
-"Language-Team: Galego <proxecto@trasno.net>\n"
+"POT-Creation-Date: 2009-05-18 14:37+0200\n"
+"PO-Revision-Date: 2009-05-12 18:48+0200\n"
+"Last-Translator: Antón Méixome <meixome@mancomun.org>\n"
+"Language-Team: Galician <gnome@mancomun.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -29,7 +32,6 @@ msgid "Documentation Browser"
 msgstr "Navegador de documentación"
 
 #: ../data/devhelp.schemas.in.h:1
-#, fuzzy
 msgid "Font for fixed width text"
 msgstr "Tipo de letra para o texto fixo"
 
@@ -38,18 +40,17 @@ msgid "Font for text"
 msgstr "Tipo de letra para o texto"
 
 #: ../data/devhelp.schemas.in.h:3
-#, fuzzy
 msgid "Font for text with fixed width, such as code examples."
-msgstr "Tipo de letra para o texto de largura fixa."
+msgstr ""
+"Tipo de letra para o texto de largura fixa, coma os exemplos de código."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Tipo de letra para o texto de largura variábel."
 
 #: ../data/devhelp.schemas.in.h:5
-#, fuzzy
 msgid "Height of assistant window"
-msgstr "Altura da xanela principal"
+msgstr "Altura da xanela do asistente"
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Height of main window"
@@ -65,36 +66,32 @@ msgid "Selected tab, \"content\" or \"search\""
 msgstr "O separador seleccionado: \"content\" ou \"search\""
 
 #: ../data/devhelp.schemas.in.h:9
-#, fuzzy
 msgid "The X position of the assistant window."
-msgstr "A posición X da xanela principal."
+msgstr "A posición X da xanela do asistente."
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "The X position of the main window."
 msgstr "A posición X da xanela principal."
 
 #: ../data/devhelp.schemas.in.h:11
-#, fuzzy
 msgid "The Y position of the assistant window."
-msgstr "A posición Y da xanela principal."
+msgstr "A posición Y da xanela do asistente."
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The Y position of the main window."
 msgstr "A posición Y da xanela principal."
 
 #: ../data/devhelp.schemas.in.h:13
-#, fuzzy
 msgid "The height of the assistant window."
-msgstr "A altura da xanela principal."
+msgstr "A altura da xanela do asistente."
 
 #: ../data/devhelp.schemas.in.h:14
 msgid "The height of the main window."
 msgstr "A altura da xanela principal."
 
 #: ../data/devhelp.schemas.in.h:15
-#, fuzzy
 msgid "The width of the assistant window."
-msgstr "A largura da xanela principal."
+msgstr "A largura da xanela do asistente."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
@@ -122,9 +119,8 @@ msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr "O separador que está seleccionado: \"content\" ou \"search\"."
 
 #: ../data/devhelp.schemas.in.h:22
-#, fuzzy
 msgid "Width of the assistant window"
-msgstr "A largura da xanela principal"
+msgstr "A largura da xanela do asistente"
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Width of the index and search pane"
@@ -135,18 +131,16 @@ msgid "Width of the main window"
 msgstr "A largura da xanela principal"
 
 #: ../data/devhelp.schemas.in.h:25
-#, fuzzy
 msgid "X position of assistant window"
-msgstr "Posición X da xanela principal"
+msgstr "Posición X da xanela do asistente"
 
 #: ../data/devhelp.schemas.in.h:26
 msgid "X position of main window"
 msgstr "Posición X da xanela principal"
 
 #: ../data/devhelp.schemas.in.h:27
-#, fuzzy
 msgid "Y position of assistant window"
-msgstr "Posición Y da xanela principal"
+msgstr "Posición Y da xanela do asistente"
 
 #: ../data/devhelp.schemas.in.h:28
 msgid "Y position of main window"
@@ -154,7 +148,7 @@ msgstr "Posición Y da xanela principal"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
-msgstr "Soporte do Devhelp"
+msgstr "Asistencia do Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
@@ -171,70 +165,66 @@ msgstr "Mostra a documentación da API para a palabra onde está o cursor"
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
 msgid "Devhelp - Assistant"
-msgstr ""
+msgstr "Devhelp - Asistente"
 
 #: ../src/dh-assistant-view.c:316
-#, fuzzy
 msgid "Book:"
-msgstr "Li_bro:"
+msgstr "Libro:"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:245
-#, fuzzy
 msgid "Book"
-msgstr "Li_bro:"
+msgstr "Libro"
 
 #. i18n: a "page" in a documentation book
 #: ../src/dh-link.c:248
-#, fuzzy
 msgid "Page"
-msgstr "_Páxina:"
+msgstr "Páxina"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
 #: ../src/dh-link.c:252
 msgid "Keyword"
-msgstr ""
+msgstr "Palabra Chave"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:257
 msgid "Function"
-msgstr ""
+msgstr "Función"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:262
 msgid "Struct"
-msgstr ""
+msgstr "Estrutura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:267
 msgid "Macro"
-msgstr ""
+msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:272
 msgid "Enum"
-msgstr ""
+msgstr "Enumerado"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:277
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: ../src/dh-main.c:167
-#, fuzzy
 msgid "Search for a keyword"
-msgstr "Buscar unha función"
+msgstr "Buscar unha palabra chave"
 
 #: ../src/dh-main.c:172
 msgid "Quit any running Devhelp"
@@ -245,13 +235,12 @@ msgid "Display the version and exit"
 msgstr "Mostrar a versión e saír"
 
 #: ../src/dh-main.c:182
-#, fuzzy
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Enfocar a xanela do devhelp co campo de busca activo"
 
 #: ../src/dh-main.c:187
 msgid "Search and display any hit in the assistant window"
-msgstr ""
+msgstr "Procurar e amosar calquera coincidencia coa ventá do asistente"
 
 #: ../src/dh-parser.c:80 ../src/dh-parser.c:169 ../src/dh-parser.c:233
 #: ../src/dh-parser.c:243
@@ -265,31 +254,35 @@ msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Espazo de nomes non válido '%s' na liña %d, columna %d"
 
 #: ../src/dh-parser.c:122
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
-msgstr "requírense os elementos título, nome e ligazón na liña %d, columna %d"
+msgstr ""
+"requírense os elementos \"título\", \"nome\" e \"ligazón\" na liña %d, "
+"columna %d"
 
 #: ../src/dh-parser.c:188
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
 msgstr ""
-"requírense os elementos nome e ligazón dentro de <sub> na liña %d, columna %d"
+"requírense os elementos \"nome\" e \"ligazón\" dentro de <sub> na liña %d, "
+"columna %d"
 
 #: ../src/dh-parser.c:268
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"requírense os elementos nome e ligazón dentro de <sub> na liña %d, columna %d"
+"requírense os elementos \"nome\" e \"ligazón\" dentro de '%s' na liña %d, "
+"columna %d"
 
 #: ../src/dh-parser.c:281
-#, fuzzy, c-format
+#, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
-"requírense os elementos nome e ligazón dentro de <sub> na liña %d, columna %d"
+"requírese o elemento \"tipo\" dentro de <keyword> na liña %d, columna %d"
 
 #: ../src/dh-parser.c:486
 #, c-format
@@ -298,12 +291,11 @@ msgstr "Non se puido descomprimir o libro '%s': %s"
 
 #: ../src/dh-search.c:481
 msgid "All books"
-msgstr ""
+msgstr "Tódolos libros"
 
 #: ../src/dh-search.c:537
-#, fuzzy
 msgid "Search in:"
-msgstr "Buscar"
+msgstr "Buscar en:"
 
 #: ../src/dh-window.c:73
 msgid "50%"
@@ -344,12 +336,12 @@ msgstr "400%"
 # (pofilter) accelerators: accelerator _ is missing from translation
 #: ../src/dh-window.c:364
 msgid "translator_credits"
-msgstr "Suso Baleato <suso.baleato@xunta.es>"
+msgstr ""
+"Mancomún <gnome@mancomun.org>, Francisco Diéguez <fran.dieguez@glug.es>"
 
 #: ../src/dh-window.c:369
-#, fuzzy
 msgid "A developer's help browser for GNOME"
-msgstr "Un navegador de axuda para desenvolvedores do Gnome 2"
+msgstr "Un navegador de axuda para desenvolvedores do GNOME"
 
 #: ../src/dh-window.c:381
 msgid "_File"
@@ -382,7 +374,7 @@ msgstr "Novo _separador"
 
 #: ../src/dh-window.c:392
 msgid "_Print..."
-msgstr ""
+msgstr "Im_primir..."
 
 #: ../src/dh-window.c:404 ../src/eggfindbar.c:342
 msgid "Find Next"
@@ -426,7 +418,6 @@ msgid "Decrease the text size"
 msgstr "Diminuír o tamaño do texto"
 
 #: ../src/dh-window.c:432
-#, fuzzy
 msgid "_Normal Size"
 msgstr "Tamaño _normal"
 
@@ -436,28 +427,24 @@ msgstr "Usar o tamaño de texto normal"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:530
-#, fuzzy
 msgid "Larger"
-msgstr "Texto máis _grande"
+msgstr "Máis _grande"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:533
-#, fuzzy
 msgid "Smaller"
-msgstr "Texto máis _pequeno"
+msgstr "Máis _pequeno"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
 #: ../src/dh-window.c:661
-#, fuzzy
 msgid "About Devhelp"
-msgstr "Devhelp"
+msgstr "Sobre Devhelp"
 
 #: ../src/dh-window.c:666
-#, fuzzy
 msgid "Preferences..."
-msgstr "Preferencias"
+msgstr "Preferencias..."
 
 #: ../src/dh-window.c:709
 msgid "Contents"
@@ -484,56 +471,9 @@ msgid "Find next occurrence of the search string"
 msgstr "Buscar a seguinte ocorrencia da cadea de busca"
 
 #: ../src/eggfindbar.c:358
-#, fuzzy
 msgid "C_ase Sensitive"
-msgstr "Diferenciar maiúsculas de minúsculas"
+msgstr "Diferen_ciar maiúsculas de minúsculas"
 
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Alternar a busca diferenciando maiúsculas de minúsculas"
-
-#~ msgid "Show advanced search options"
-#~ msgstr "Mostrar as opcións avanzadas de busca"
-
-#~ msgid "Whether the advanced search options are shown."
-#~ msgstr "Indica se se mostran as opcións avanzadas de busca."
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Tipos de letra</b>"
-
-#~ msgid "<b>Searching</b>"
-#~ msgstr "<b>Buscando</b>"
-
-#~ msgid "_Back"
-#~ msgstr "_Atrás"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "Largura _fixa:"
-
-#~ msgid "_Forward"
-#~ msgstr "_Seguinte"
-
-#~ msgid "_Show advanced search options"
-#~ msgstr "_Mostrar as opcións avanzadas de busca"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Usar os tipos de letra do sistema"
-
-#~ msgid "_Variable width: "
-#~ msgstr "Largura _variábel: "
-
-#~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %"
-#~ "d"
-#~ msgstr ""
-#~ "requírense os elementos nome e ligazón dentro de <function> na liña %d, "
-#~ "columna %d"
-
-#~ msgid "Could not create book parser"
-#~ msgstr "Non se puido crear o analizador do libro"
-
-#~ msgid "Could not create markup parser"
-#~ msgstr "Non se puido crear o analizador da marcación"
-
-#~ msgid "Devhelp is not built with zlib support"
-#~ msgstr "O Devhelp non está compilado con o soporte de zlib"
