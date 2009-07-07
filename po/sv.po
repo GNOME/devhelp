@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-11 15:28+0100\n"
-"PO-Revision-Date: 2009-02-11 15:29+0100\n"
+"POT-Creation-Date: 2009-07-07 12:13+0200\n"
+"PO-Revision-Date: 2009-07-07 13:43+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -160,58 +160,58 @@ msgstr "Visa API-dokumentation för ordet vid markören"
 msgid "Devhelp - Assistant"
 msgstr "Devhelp - Assistent"
 
-#: ../src/dh-assistant-view.c:312
+#: ../src/dh-assistant-view.c:316
 msgid "Book:"
 msgstr "Bok:"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:240
+#: ../src/dh-link.c:245
 msgid "Book"
 msgstr "Bok"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:243
+#: ../src/dh-link.c:248
 msgid "Page"
 msgstr "Sida"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:247
+#: ../src/dh-link.c:252
 msgid "Keyword"
 msgstr "Nyckelord"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:252
+#: ../src/dh-link.c:257
 msgid "Function"
 msgstr "Funktion"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:257
+#: ../src/dh-link.c:262
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:262
+#: ../src/dh-link.c:267
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:272
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:277
 msgid "Type"
 msgstr "Typ"
 
@@ -413,27 +413,37 @@ msgstr "_Normal storlek"
 msgid "Use the normal text size"
 msgstr "Använd normal textstorlek"
 
+#. Translators: This refers to text size
+#: ../src/dh-window.c:530
+msgid "Larger"
+msgstr "Större"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:533
+msgid "Smaller"
+msgstr "Mindre"
+
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:661
 msgid "About Devhelp"
 msgstr "Om Devhelp"
 
-#: ../src/dh-window.c:659
+#: ../src/dh-window.c:666
 msgid "Preferences..."
 msgstr "Inställningar..."
 
-#: ../src/dh-window.c:702
+#: ../src/dh-window.c:709
 msgid "Contents"
 msgstr "Innehåll"
 
-#: ../src/dh-window.c:712
+#: ../src/dh-window.c:719
 msgid "Search"
 msgstr "Sök"
 
-#: ../src/dh-window.c:1063
-#: ../src/dh-window.c:1272
+#: ../src/dh-window.c:1070
+#: ../src/dh-window.c:1279
 msgid "Empty Page"
 msgstr "Tom sida"
 
