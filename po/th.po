@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-21 18:05+0700\n"
-"PO-Revision-Date: 2008-12-21 20:28+0700\n"
-"Last-Translator: Visal Srivisal <srivisal@yahoo.com>\n"
+"POT-Creation-Date: 2009-07-18 11:59+0700\n"
+"PO-Revision-Date: 2009-07-18 12:03+0700\n"
+"Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -158,58 +158,58 @@ msgstr "แสดงเอกสารของ API สำหรับคำท�
 msgid "Devhelp - Assistant"
 msgstr "Devhelp - ผู้ช่วย"
 
-#: ../src/dh-assistant-view.c:312
+#: ../src/dh-assistant-view.c:316
 msgid "Book:"
 msgstr "หนังสือ:"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:240
+#: ../src/dh-link.c:245
 msgid "Book"
 msgstr "หนังสือ"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:243
+#: ../src/dh-link.c:248
 msgid "Page"
 msgstr "หน้า"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:247
+#: ../src/dh-link.c:252
 msgid "Keyword"
 msgstr "คำหลัก"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:252
+#: ../src/dh-link.c:257
 msgid "Function"
 msgstr "ฟังก์ชัน"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:257
+#: ../src/dh-link.c:262
 msgid "Struct"
 msgstr "โครงสร้าง"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:262
+#: ../src/dh-link.c:267
 msgid "Macro"
 msgstr "แมโคร"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:272
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:277
 msgid "Type"
 msgstr "ชนิด"
 
@@ -246,23 +246,27 @@ msgstr "namespace '%s' ไม่ถูกต้อง ที่บรรทั�
 
 #: ../src/dh-parser.c:122
 #, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "ต้องมีอิลิเมนต์ title, name, และ link ที่บรรทัด %d, คอลัมน์ %d"
+msgid ""
+"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
+msgstr "ต้องมีอิลิเมนต์ \"title\", \"name\", และ \"link\" ที่บรรทัด %d, คอลัมน์ %d"
 
 #: ../src/dh-parser.c:188
 #, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr "ต้องมีอิลิเมนต์ name และ link ภายใต้ <sub> ที่บรรทัด %d, คอลัมน์ %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
+msgstr "ต้องมีอิลิเมนต์ \"name\" และ \"link\" ภายใต้ <sub> ที่บรรทัด %d, คอลัมน์ %d"
 
 #: ../src/dh-parser.c:268
 #, c-format
-msgid "name and link elements are required inside '%s' on line %d, column %d"
-msgstr "ต้องมีอิลิเมนต์ name และ link ภายใต้ '%s' ที่บรรทัด %d, คอลัมน์ %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr "ต้องมีอิลิเมนต์ \"name\" และ \"link\" ภายใต้ '%s' ที่บรรทัด %d, คอลัมน์ %d"
 
 #: ../src/dh-parser.c:281
 #, c-format
-msgid "type element is required inside <keyword> on line %d, column %d"
-msgstr "ต้องมีอิลิเมนต์ type ภายใต้ <keyword> ที่บรรทัด %d, คอลัมน์ %d"
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+msgstr "ต้องมีอิลิเมนต์ \"type\" ภายใต้ <keyword> ที่บรรทัด %d, คอลัมน์ %d"
 
 #: ../src/dh-parser.c:486
 #, c-format
@@ -405,26 +409,36 @@ msgstr "ขนาด_ปกติ"
 msgid "Use the normal text size"
 msgstr "ใช้ตัวอักษรขนาดปกติ"
 
+#. Translators: This refers to text size
+#: ../src/dh-window.c:530
+msgid "Larger"
+msgstr "ใหญ่ขึ้น"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:533
+msgid "Smaller"
+msgstr "เล็กลง"
+
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:661
 msgid "About Devhelp"
 msgstr "เกี่ยวกับ Devhelp"
 
-#: ../src/dh-window.c:659
+#: ../src/dh-window.c:666
 msgid "Preferences..."
 msgstr "ปรับแต่ง..."
 
-#: ../src/dh-window.c:702
+#: ../src/dh-window.c:709
 msgid "Contents"
 msgstr "เนื้อหา"
 
-#: ../src/dh-window.c:712
+#: ../src/dh-window.c:719
 msgid "Search"
 msgstr "ค้นหา"
 
-#: ../src/dh-window.c:1063 ../src/dh-window.c:1272
+#: ../src/dh-window.c:1070 ../src/dh-window.c:1279
 msgid "Empty Page"
 msgstr "หน้าว่าง"
 
