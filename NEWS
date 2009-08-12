@@ -1,3 +1,22 @@
+NEW in 0.23.1:
+==============
+
+This is a build fix release for latest glib and a translation update.
+The updated translations are:
+
+Updated translations: ca, ko, sv, es, cs, el, it, ja, ga, pt_BR, uk,
+et, fr, se, zh_CN, zh_HK, bg, ge, he
+
+Many thanks to the translators: Gil Forcada, Changwoo Ryu,
+Jani Monoses, Daniel Nylander, Jorge Gonzalez Gonzalez, Petr Kovar,
+Jennie Petoumenou, Francesco Marletta, Yair Hershkovitz,
+Takeshi Aihana, Ignacio Casal Quinteiro, Miquel Esplà,
+Leonardo Ferreira Fontenelle, Matej Urban, Ihar Hrachyshka,
+Maxim V. Dziumanenko, Maxim V. Dziumanenko, Socratis Vavilis,
+Antón Méixome, Βασίλης Κοντογιάνης, Mattias Põldaru, Kjartan Maraas,
+Claude Paroz, Chao-Hsiung Liao, Theppitak Karoonboonyanan,
+Ivar Smolin, Yavor Doganov, Christian Kirbach
+
 NEW in 0.23:
 ============
 

@@ -1,5 +1,11 @@
 2009-08-12  Lucas Rocha  <lucasr@gnome.org>
 
+	* Release 0.23.1.
+
+	* configure.ac: Bump version.
+
+2009-08-12  Lucas Rocha  <lucasr@gnome.org>
+
 	* src/dh-assistant-view.c: Patch from Matthew Barnes to
 	fix bug #588655, Work around deprecated g_mapped_file_free().
 
