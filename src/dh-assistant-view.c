@@ -344,7 +344,12 @@ assistant_view_set_link (DhAssistantView *view,
                 webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
         }
 
+#if GLIB_CHECK_VERSION(2,21,3)
+        g_mapped_file_unref (file);
+#else
         g_mapped_file_free (file);
+#endif
+
         g_free (filename);
 }
 
