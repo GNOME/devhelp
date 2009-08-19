@@ -1143,12 +1143,14 @@ tab_label_style_set_cb (GtkWidget *hbox,
         PangoFontMetrics *metrics;
         PangoContext     *context;
         GtkWidget        *button;
+        GtkStyle         *style;
         gint              char_width;
         gint              h, w;
 
         context = gtk_widget_get_pango_context (hbox);
+        style = gtk_widget_get_style (hbox);
         metrics = pango_context_get_metrics (context,
-                                             hbox->style->font_desc,
+                                             style->font_desc,
                                              pango_context_get_language (context));
 
         char_width = pango_font_metrics_get_approximate_digit_width (metrics);

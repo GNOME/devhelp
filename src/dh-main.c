@@ -139,7 +139,11 @@ message_received_cb (const gchar *message,
 	}
 
 #ifdef GDK_WINDOWING_X11
+#if GTK_CHECK_VERSION (2,14,0)
+	timestamp = gdk_x11_get_server_time (gtk_widget_get_window (window));
+#else
 	timestamp = gdk_x11_get_server_time (window->window);
+#endif
 #else
 	timestamp = GDK_CURRENT_TIME;
 #endif
