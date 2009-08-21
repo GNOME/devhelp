@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-18 06:25+0300\n"
-"PO-Revision-Date: 2009-08-18 06:41+0300\n"
+"POT-Creation-Date: 2009-08-21 19:55+0300\n"
+"PO-Revision-Date: 2009-08-21 19:56+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -207,7 +207,7 @@ msgstr "ماكرو"
 #. * untranslated.
 #: ../src/dh-link.c:272
 msgid "Enum"
-msgstr ""
+msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -249,14 +249,18 @@ msgstr "نطاق أسماء غير سليم '%s' في السطر %Id، و الع
 
 #: ../src/dh-parser.c:122
 #, c-format
-msgid "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
-msgstr "عناصر \"title\" و \"name\" و \"link\" مطلوبة عند السطر %Id، والعمود %Id"
+msgid ""
+"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
+msgstr ""
+"عناصر \"title\" و \"name\" و \"link\" مطلوبة عند السطر %Id، والعمود %Id"
 
 #: ../src/dh-parser.c:188
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
-msgstr "عنصري \"name\" و \"link\" مطلوبين بداخل <sub> في السطر %Id، والعمود %Id"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
+msgstr ""
+"عنصري \"name\" و \"link\" مطلوبين بداخل <sub> في السطر %Id، والعمود %Id"
 
 #: ../src/dh-parser.c:268
 #, c-format
