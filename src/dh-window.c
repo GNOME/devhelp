@@ -363,8 +363,10 @@ window_activate_about (GtkAction *action,
         const gchar **documenters = NULL;
         const gchar  *translator_credits = _("translator_credits");
 
+        /* i18n: Please don't translate "Devhelp" (it's marked as translatable
+         * for transliteration only) */
         gtk_show_about_dialog (GTK_WINDOW (window),
-                               "name", "Devhelp",
+                               "name", _("Devhelp"),
                                "version", PACKAGE_VERSION,
                                "comments", _("A developer's help browser for GNOME"),
                                "authors", authors,
@@ -612,7 +614,9 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
 
                 window_update_title (window, new_web_view, NULL);
         } else {
-                gtk_window_set_title (GTK_WINDOW (window), "Devhelp");
+                /* i18n: Please don't translate "Devhelp" (it's marked as translatable
+                 * for transliteration only) */
+                gtk_window_set_title (GTK_WINDOW (window), _("Devhelp"));
                 window_check_history (window, NULL);
         }
 }
@@ -1249,7 +1253,9 @@ window_update_title (DhWindow      *window,
         }
 
         if (!book_title) {
-                book_title = "Devhelp";
+                /* i18n: Please don't translate "Devhelp" (it's marked as translatable
+                 * for transliteration only) */
+                book_title = _("Devhelp");
         }
 
         if (web_view_title) {

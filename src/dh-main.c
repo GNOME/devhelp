@@ -222,7 +222,9 @@ main (int argc, char **argv)
 		return 0;
 	}
 
-	g_set_application_name ("Devhelp");
+	/* i18n: Please don't translate "Devhelp" (it's marked as translatable
+	 * for transliteration only) */
+	g_set_application_name (_("Devhelp"));
 	gtk_window_set_default_icon_name ("devhelp");
 
 	display = gdk_get_display ();

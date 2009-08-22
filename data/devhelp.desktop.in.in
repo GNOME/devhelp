@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Devhelp
+_Name=Devhelp
 _Comment=Developer's Help program
 _GenericName=Documentation Browser
 Exec=devhelp
