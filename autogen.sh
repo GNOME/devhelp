@@ -5,8 +5,8 @@ CONFIGURE=configure.ac
 
 : ${AUTOCONF=autoconf}
 : ${AUTOHEADER=autoheader}
-: ${AUTOMAKE=automake-1.10}
-: ${ACLOCAL=aclocal-1.10}
+: ${AUTOMAKE=automake}
+: ${ACLOCAL=aclocal}
 : ${INTLTOOLIZE=intltoolize}
 : ${LIBTOOLIZE=libtoolize}
 : ${GTKDOCIZE=gtkdocize}
@@ -71,7 +71,7 @@ fi
 ($AUTOMAKE --version) < /dev/null > /dev/null 2>&1 || {
   echo
   echo "You must have automake installed to compile this project."
-  echo "Get ftp://sourceware.cygnus.com/pub/automake/automake-1.9.tar.gz"
+  echo "Get ftp://sourceware.cygnus.com/pub/automake/automake-1.11.tar.gz"
   echo "(or a newer version if it is available)"
   DIE=1
 }
