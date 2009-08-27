@@ -1193,6 +1193,7 @@ window_open_new_tab (DhWindow    *window,
 {
         DhWindowPriv *priv;
         GtkWidget    *view;
+        GtkWidget    *vbox;
         GtkWidget    *scrolled_window;
         GtkWidget    *label;
         gint          num;
@@ -1216,13 +1217,17 @@ window_open_new_tab (DhWindow    *window,
         }
 #endif
 
+        vbox = gtk_vbox_new (0, FALSE);
+        gtk_widget_show (vbox);
+        g_object_set_data (G_OBJECT (vbox), "web_view", view);
+
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
-        gtk_widget_show (scrolled_window);
         gtk_container_add (GTK_CONTAINER (scrolled_window), view);
-        g_object_set_data (G_OBJECT (scrolled_window), "web_view", view);
+        gtk_widget_show (scrolled_window);
+        gtk_box_pack_start (GTK_BOX(vbox), scrolled_window, TRUE, TRUE, 0);
 
         label = window_new_tab_label (window, _("Empty Page"));
         gtk_widget_show_all (label);
@@ -1241,10 +1246,10 @@ window_open_new_tab (DhWindow    *window,
                           window);
 
         num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-                                        scrolled_window, NULL);
+                                        vbox, NULL);
 
         gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
-                                    scrolled_window, label);
+                                    vbox, label);
 
         if (gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook)) > 1) {
                 gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), TRUE);
