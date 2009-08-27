@@ -327,8 +327,8 @@ assistant_view_set_link (DhAssistantView *view,
                 priv->snippet_loaded = FALSE;
                 webkit_web_view_load_string (
                         WEBKIT_WEB_VIEW (view),
-                        "text/html",
                         html,
+                        "text/html",
                         NULL,
                         filename);
 
