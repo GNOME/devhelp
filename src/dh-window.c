@@ -941,6 +941,17 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
         return FALSE;
 }
 
+
+static gboolean
+window_web_view_load_error_cb (WebKitWebView  *web_view,
+                               WebKitWebFrame *frame,
+                               gchar          *uri,
+                               gpointer       *web_error,
+                               DhWindow       *window)
+{
+        return FALSE;
+}
+
 static void
 window_tree_link_selected_cb (GObject  *ignored,
                               DhLink   *link,
@@ -1222,9 +1233,11 @@ window_open_new_tab (DhWindow    *window,
         g_signal_connect (view, "button-press-event",
                           G_CALLBACK (window_web_view_button_press_event_cb),
                           window);
-
         g_signal_connect (view, "navigation-policy-decision-requested",
                           G_CALLBACK (window_web_view_navigation_policy_decision_requested),
+                          window);
+        g_signal_connect (view, "load-error",
+                          G_CALLBACK (window_web_view_load_error_cb),
                           window);
 
         num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
