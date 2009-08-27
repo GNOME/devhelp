@@ -301,8 +301,8 @@ assistant_view_set_link (DhAssistantView *view,
                 html = g_strdup_printf (
                         "<html>"
                         "<head>"
-                        "<link rel=\"stylesheet\" type=\"text/css\" href=\"file://%s\">"
-                        "<script src=\"file://%s\"</script>"
+                        "<link rel=\"stylesheet\" type=\"text/css\" href=\"file://%s\"/>"
+                        "<script src=\"file://%s\"></script>"
                         "</head>"
                         "<body %s>"
                         "<div class=\"title\">%s: <a href=\"%s\">%s</a></div>"
