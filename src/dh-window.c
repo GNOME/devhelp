@@ -744,6 +744,7 @@ window_populate (DhWindow *window)
         priv->notebook = gtk_notebook_new ();
         gtk_container_set_border_width (GTK_CONTAINER (priv->notebook), 0);
         gtk_notebook_set_show_border (GTK_NOTEBOOK (priv->notebook), FALSE);
+        gtk_notebook_set_scrollable (GTK_NOTEBOOK (priv->notebook), TRUE);
         gtk_box_pack_start (GTK_BOX (priv->vbox), priv->notebook, TRUE, TRUE, 0);
 
         g_signal_connect (priv->notebook,
