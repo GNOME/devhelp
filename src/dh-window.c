@@ -374,7 +374,7 @@ window_activate_about (GtkAction *action,
                                "translator-credits",
                                strcmp (translator_credits, "translator_credits") != 0 ?
                                translator_credits : NULL,
-                               "website", "http://developer.imendio.com/projects/devhelp/",
+                               "website", "http://live.gnome.org/devhelp",
                                "logo-icon-name", "devhelp",
                                NULL);
 }
