@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-21 19:55+0300\n"
-"PO-Revision-Date: 2009-08-21 19:56+0300\n"
+"POT-Creation-Date: 2009-08-27 13:51+0300\n"
+"PO-Revision-Date: 2009-08-27 13:54+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -24,9 +24,16 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "برنامج وثائق المطوِّرين"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:227
+#: ../src/dh-window.c:369 ../src/dh-window.c:619 ../src/dh-window.c:1258
+msgid "Devhelp"
+msgstr "‏دِڤ‌هِلب"
+
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr "متصفّح الوثائق"
+msgstr "متصفّح التوثيق"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed width text"
@@ -328,122 +335,122 @@ msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
 "خالد حسني\t<khaledhosny@eglug.org>"
 
-#: ../src/dh-window.c:369
+#: ../src/dh-window.c:371
 msgid "A developer's help browser for GNOME"
 msgstr "متصفح وثائق مطوري جنوم"
 
-#: ../src/dh-window.c:381
+#: ../src/dh-window.c:383
 msgid "_File"
 msgstr "_ملف"
 
-#: ../src/dh-window.c:382
+#: ../src/dh-window.c:384
 msgid "_Edit"
 msgstr "ت_حرير"
 
-#: ../src/dh-window.c:383
+#: ../src/dh-window.c:385
 msgid "_View"
 msgstr "_عرض"
 
-#: ../src/dh-window.c:384
+#: ../src/dh-window.c:386
 msgid "_Go"
 msgstr "ا_ذهب"
 
-#: ../src/dh-window.c:385
+#: ../src/dh-window.c:387
 msgid "_Help"
 msgstr "_مساعدة"
 
 #. File menu
-#: ../src/dh-window.c:388
+#: ../src/dh-window.c:390
 msgid "_New Window"
 msgstr "نافذة _جديدة"
 
-#: ../src/dh-window.c:390
+#: ../src/dh-window.c:392
 msgid "New _Tab"
 msgstr "_لسان جديد"
 
-#: ../src/dh-window.c:392
+#: ../src/dh-window.c:394
 msgid "_Print..."
 msgstr "ا_طبع..."
 
-#: ../src/dh-window.c:404 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:406 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "ابحث عن التالي"
 
-#: ../src/dh-window.c:406 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:408 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "ابحث عن السابق"
 
-#: ../src/dh-window.c:413
+#: ../src/dh-window.c:415
 msgid "Go to the previous page"
 msgstr "اذهب للصفحة السابقة"
 
-#: ../src/dh-window.c:416
+#: ../src/dh-window.c:418
 msgid "Go to the next page"
 msgstr "اذهب للصفحة التالية"
 
-#: ../src/dh-window.c:419
+#: ../src/dh-window.c:421
 msgid "_Contents Tab"
 msgstr "_لسان المحتويات"
 
-#: ../src/dh-window.c:422
+#: ../src/dh-window.c:424
 msgid "_Search Tab"
 msgstr "لسان الب_حث"
 
 #. View menu
-#: ../src/dh-window.c:426
+#: ../src/dh-window.c:428
 msgid "_Larger Text"
 msgstr "_نص أكبر"
 
-#: ../src/dh-window.c:427
+#: ../src/dh-window.c:429
 msgid "Increase the text size"
 msgstr "زوّد حجم النص"
 
-#: ../src/dh-window.c:429
+#: ../src/dh-window.c:431
 msgid "S_maller Text"
 msgstr "نص أ_صغر"
 
-#: ../src/dh-window.c:430
+#: ../src/dh-window.c:432
 msgid "Decrease the text size"
 msgstr "قلل حجم النص"
 
-#: ../src/dh-window.c:432
+#: ../src/dh-window.c:434
 msgid "_Normal Size"
 msgstr "الحجم ال_عادي"
 
-#: ../src/dh-window.c:433
+#: ../src/dh-window.c:435
 msgid "Use the normal text size"
 msgstr "استخدم حجم النص العادي"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:530
+#: ../src/dh-window.c:532
 msgid "Larger"
 msgstr "أكبر"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:533
+#: ../src/dh-window.c:535
 msgid "Smaller"
 msgstr "أصغر"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:661
+#: ../src/dh-window.c:665
 msgid "About Devhelp"
 msgstr "عن البرنامج"
 
-#: ../src/dh-window.c:666
+#: ../src/dh-window.c:670
 msgid "Preferences..."
 msgstr "التفضيلات..."
 
-#: ../src/dh-window.c:709
+#: ../src/dh-window.c:713
 msgid "Contents"
 msgstr "المحتويات"
 
-#: ../src/dh-window.c:719
+#: ../src/dh-window.c:723
 msgid "Search"
 msgstr "ابحث"
 
-#: ../src/dh-window.c:1070 ../src/dh-window.c:1279
+#: ../src/dh-window.c:1074 ../src/dh-window.c:1285
 msgid "Empty Page"
 msgstr "صفحة فارغة"
 
@@ -466,9 +473,6 @@ msgstr "ح_سّاس لحالة الأحرف"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "بدّل البحث الحسّاس لحالة الأحرف"
-
-#~ msgid "Devhelp"
-#~ msgstr "مساعدة المطورين"
 
 #~ msgid "Show advanced search options"
 #~ msgstr "أظهر خيارات البحث المتقدمة"
