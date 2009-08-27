@@ -440,6 +440,11 @@ static const GtkActionEntry actions[] = {
           G_CALLBACK (window_activate_about) },
 };
 
+static const gchar* important_actions[] = {
+        "Back",
+        "Forward"
+};
+
 static void
 window_finalize (GObject *object)
 {
@@ -514,6 +519,12 @@ dh_window_init (DhWindow *window)
                                       actions,
                                       G_N_ELEMENTS (actions),
                                       window);
+
+        for (i = 0; i < G_N_ELEMENTS (important_actions); i++) {
+                action = gtk_action_group_get_action (priv->action_group,
+                                                      important_actions[i]);
+                g_object_set (action, "is-important", TRUE, NULL);
+        }
 
         gtk_ui_manager_insert_action_group (priv->manager,
                                             priv->action_group,
