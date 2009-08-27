@@ -1418,6 +1418,7 @@ window_tab_set_title (DhWindow      *window,
         GtkWidget    *page;
         GtkWidget    *hbox;
         GtkWidget    *label;
+        GtkWidget    *page_web_view;
 
         priv = window->priv;
 
@@ -1429,9 +1430,10 @@ window_tab_set_title (DhWindow      *window,
         for (i = 0; i < num_pages; i++) {
                 page = gtk_notebook_get_nth_page (
                         GTK_NOTEBOOK (priv->notebook), i);
+                page_web_view = g_object_get_data (G_OBJECT (page), "web_view");
 
                 /* The web_view widget is inside a frame. */
-                if (gtk_bin_get_child (GTK_BIN (page)) == GTK_WIDGET (web_view)) {
+                if (page_web_view == GTK_WIDGET (web_view)) {
                         hbox = gtk_notebook_get_tab_label (
                                 GTK_NOTEBOOK (priv->notebook), page);
 
