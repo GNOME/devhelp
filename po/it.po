@@ -7,10 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0.7\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-03-08 17:29+0000\n"
-"PO-Revision-Date: 2009-03-08 15:30+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-27 14:43+0200\n"
+"PO-Revision-Date: 2009-08-27 14:43+0200\n"
 "Last-Translator: Francesco Marletta <francesco.marletta@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +20,14 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programma di aiuto per sviluppatori"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:227
+#: ../src/dh-window.c:369 ../src/dh-window.c:630 ../src/dh-window.c:1269
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Esplorazione documentazione"
 
@@ -342,68 +348,68 @@ msgstr "400%"
 msgid "translator_credits"
 msgstr "Francesco Marletta <francesco.marletta@tiscali.it>"
 
-#: ../src/dh-window.c:369
+#: ../src/dh-window.c:371
 msgid "A developer's help browser for GNOME"
 msgstr "Un visualizzatore per la documentazione di sviluppo per GNOME"
 
-#: ../src/dh-window.c:381
+#: ../src/dh-window.c:383
 msgid "_File"
 msgstr "_File"
 
-#: ../src/dh-window.c:382
+#: ../src/dh-window.c:384
 msgid "_Edit"
 msgstr "_Modifica"
 
 # GNOME-2-22
-#: ../src/dh-window.c:383
+#: ../src/dh-window.c:385
 msgid "_View"
 msgstr "_Visualizza"
 
 # GNOME-2-22
-#: ../src/dh-window.c:384
+#: ../src/dh-window.c:386
 msgid "_Go"
 msgstr "V_ai"
 
-#: ../src/dh-window.c:385
+#: ../src/dh-window.c:387
 msgid "_Help"
 msgstr "A_iuto"
 
 #. File menu
-#: ../src/dh-window.c:388
+#: ../src/dh-window.c:390
 msgid "_New Window"
 msgstr "_Nuova finestra"
 
-#: ../src/dh-window.c:390
+#: ../src/dh-window.c:392
 msgid "New _Tab"
 msgstr "Nuova _scheda"
 
-#: ../src/dh-window.c:392
+#: ../src/dh-window.c:394
 msgid "_Print..."
 msgstr "Stam_pa..."
 
-#: ../src/dh-window.c:404 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:406 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Trova successiva"
 
-#: ../src/dh-window.c:406 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:408 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Trova precedente"
 
 # GNOME-2-22
-#: ../src/dh-window.c:413
+#: ../src/dh-window.c:415
 msgid "Go to the previous page"
 msgstr "Va alla pagina precedente"
 
 # GNOME-2-22
-#: ../src/dh-window.c:416
+#: ../src/dh-window.c:418
 msgid "Go to the next page"
 msgstr "Va alla pagina successiva"
 
-#: ../src/dh-window.c:419
+#: ../src/dh-window.c:421
 msgid "_Contents Tab"
 msgstr "Scheda _sommario"
 
-#: ../src/dh-window.c:422
+#: ../src/dh-window.c:424
 msgid "_Search Tab"
 msgstr "Scheda _ricerca"
 
@@ -411,67 +417,67 @@ msgstr "Scheda _ricerca"
 # tradotto come in Ephy, non so se anche
 # gli originali coincidono --Luca
 #. View menu
-#: ../src/dh-window.c:426
+#: ../src/dh-window.c:428
 msgid "_Larger Text"
 msgstr "Testo più _grande"
 
 # GNOME-2-22
-#: ../src/dh-window.c:427
+#: ../src/dh-window.c:429
 msgid "Increase the text size"
 msgstr "Aumenta la dimensione del testo"
 
 # GNOME-2-22
-#: ../src/dh-window.c:429
+#: ../src/dh-window.c:431
 msgid "S_maller Text"
 msgstr "Testo più _piccolo"
 
 # GNOME-2-22
-#: ../src/dh-window.c:430
+#: ../src/dh-window.c:432
 msgid "Decrease the text size"
 msgstr "Riduce la dimensione del testo"
 
 # GNOME-2-22
-#: ../src/dh-window.c:432
+#: ../src/dh-window.c:434
 msgid "_Normal Size"
 msgstr "Dimensione _normale"
 
 # GNOME-2-22
-#: ../src/dh-window.c:433
+#: ../src/dh-window.c:435
 msgid "Use the normal text size"
 msgstr "Usa la dimensione normale del testo"
 
 # GNOME-2-22
 #. Translators: This refers to text size
-#: ../src/dh-window.c:530
+#: ../src/dh-window.c:543
 msgid "Larger"
 msgstr "Aumenta"
 
 # GNOME-2-22
 #. Translators: This refers to text size
-#: ../src/dh-window.c:533
+#: ../src/dh-window.c:546
 msgid "Smaller"
 msgstr "Riduci"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:661
+#: ../src/dh-window.c:676
 msgid "About Devhelp"
 msgstr "Informazioni su Devhelp"
 
-#: ../src/dh-window.c:666
+#: ../src/dh-window.c:681
 msgid "Preferences..."
 msgstr "Preferenze..."
 
-#: ../src/dh-window.c:709
+#: ../src/dh-window.c:724
 msgid "Contents"
 msgstr "Sommario"
 
-#: ../src/dh-window.c:719
+#: ../src/dh-window.c:734
 msgid "Search"
 msgstr "Cerca"
 
-#: ../src/dh-window.c:1070 ../src/dh-window.c:1279
+#: ../src/dh-window.c:1085 ../src/dh-window.c:1296
 msgid "Empty Page"
 msgstr "Pagina vuota"
 
