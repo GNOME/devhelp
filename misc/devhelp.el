@@ -4,8 +4,7 @@
 (defun devhelp-word-at-point ()
   "Searches for the current word in Devhelp"
   (interactive)
-  (setq w (current-word))
-  (start-process-shell-command "devhelp" nil "devhelp" "-s" w)
+  (start-process-shell-command "devhelp" nil "devhelp" "-s" (current-word))
   (set-process-query-on-exit-flag (get-process "devhelp") nil)
   )
 (defun devhelp-assistant-word-at-point ()
