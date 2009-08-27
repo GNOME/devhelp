@@ -333,9 +333,11 @@ assistant_view_set_link (DhAssistantView *view,
                 base = g_strconcat (tmp, "/fake", NULL);
                 g_free (tmp);
 
-                webkit_web_view_load_html_string (
+                webkit_web_view_load_string (
                         WEBKIT_WEB_VIEW (view),
+                        "text/html",
                         html,
+                        NULL,
                         base);
 
                 g_free (html);
