@@ -64,9 +64,9 @@ parser_start_node_book (DhParser             *parser,
                         const gchar         **attribute_values,
                         GError              **error)
 {
-        gint         i;
+        gint         i, j;
         gint         line, col;
-        const gchar *title = NULL;
+        gchar       *title = NULL;
         const gchar *base = NULL;
         const gchar *name = NULL;
         const gchar *uri = NULL;
@@ -104,7 +104,10 @@ parser_start_node_book (DhParser             *parser,
                         name = attribute_values[i];
                 }
                 else if (g_ascii_strcasecmp (attribute_names[i], "title") == 0) {
-                        title = attribute_values[i];
+                        title = g_strdup(attribute_values[i]);
+                        for (j = 0; title[j]; j++) {
+                                if (title[j] == '\n') title[j] = ' ';
+                        }
                 }
                 else if (g_ascii_strcasecmp (attribute_names[i], "base") == 0) {
                         base = attribute_values[i];
@@ -122,6 +125,7 @@ parser_start_node_book (DhParser             *parser,
                              _("\"title\", \"name\", and \"link\" elements are "
                                "required at line %d, column %d"),
                              line, col);
+                g_free (title);
                 return;
         }
 
@@ -144,6 +148,7 @@ parser_start_node_book (DhParser             *parser,
         parser->book_node = g_node_new (link);
         g_node_prepend (parser->book_tree, parser->book_node);
         parser->parent = parser->book_node;
+        g_free (title);
 }
 
 static void
