@@ -44,8 +44,6 @@ devhelpinclude_HEADERS = 				\
 	dh-window.h
 
 libdevhelp_1_la_SOURCES =				\
-	bacon-message-connection.c			\
-	bacon-message-connection.h			\
 	dh-marshal.c					\
 	dh-marshal.h					\
 	dh-assistant.c					\

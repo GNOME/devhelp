@@ -23,21 +23,21 @@
 #include <string.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <unique/unique.h>
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
 
-#include "bacon-message-connection.h"
 #include "dh-base.h"
 #include "dh-window.h"
 #include "dh-assistant.h"
 
-#define COMMAND_QUIT             "quit"
-#define COMMAND_SEARCH           "search"
-#define COMMAND_SEARCH_ASSISTANT "search-assistant"
-#define COMMAND_FOCUS_SEARCH     "focus-search"
-#define COMMAND_RAISE            "raise"
+#define COMMAND_QUIT             1
+#define COMMAND_SEARCH           2
+#define COMMAND_SEARCH_ASSISTANT 3
+#define COMMAND_FOCUS_SEARCH     4
+#define COMMAND_RAISE            5
 
 static void
 extract_book_id (const gchar  *str,
@@ -110,31 +110,36 @@ search_assistant (DhBase      *base,
         return dh_assistant_search (DH_ASSISTANT (assistant), str);
 }
 
-static void
-message_received_cb (const gchar *message,
-                     DhBase      *base)
+static UniqueResponse
+unique_app_message_cb (UniqueApp *unique_app,
+                       gint command,
+                       UniqueMessageData *data,
+                       guint timestamp,
+                       gpointer user_data)
 {
+	DhBase    *base = user_data;
+	gchar     *search_string;
 	GtkWidget *window;
-	guint32    timestamp;
 
-	if (strcmp (message, COMMAND_QUIT) == 0) {
+	if (command == COMMAND_QUIT) {
 		gtk_main_quit ();
-		return;
+		return UNIQUE_RESPONSE_OK;
 	}
 
-	if (g_str_has_prefix (message, COMMAND_SEARCH_ASSISTANT)) {
-                search_assistant (base,
-                                  message +
-                                  strlen (COMMAND_SEARCH_ASSISTANT) + 1);
-		return;
+	if (command == COMMAND_SEARCH_ASSISTANT) {
+		search_string = unique_message_data_get_text(data);
+                search_assistant (base, search_string);
+		g_free (search_string);
+		return UNIQUE_RESPONSE_OK;
 	}
 
 	window = dh_base_get_window (base);
-	if (g_str_has_prefix (message, COMMAND_SEARCH)) {
-                search_normal (DH_WINDOW (window),
-                               message + strlen (COMMAND_SEARCH) + 1);
+	if (command == COMMAND_SEARCH) {
+		search_string = unique_message_data_get_text(data);
+                search_normal (DH_WINDOW (window), search_string);
+		g_free (search_string);
 	}
-	else if (strcmp (message, COMMAND_FOCUS_SEARCH) == 0) {
+	else if (command == COMMAND_FOCUS_SEARCH) {
 		dh_window_focus_search (DH_WINDOW (window));
 	}
 
@@ -149,6 +154,7 @@ message_received_cb (const gchar *message,
 #endif
 
 	gtk_window_present_with_time (GTK_WINDOW (window), timestamp);
+	return UNIQUE_RESPONSE_OK;
 }
 
 int
@@ -159,9 +165,7 @@ main (int argc, char **argv)
 	gboolean                option_quit = FALSE;
 	gboolean                option_focus_search = FALSE;
 	gboolean                option_version = FALSE;
-	gchar                  *display;
-	gchar                  *connection_name;
-	BaconMessageConnection *message_conn;
+	UniqueApp              *unique_app;
 	DhBase                 *base;
 	GtkWidget              *window;
 	GError                 *error = NULL;
@@ -231,45 +235,40 @@ main (int argc, char **argv)
 	g_set_application_name (_("Devhelp"));
 	gtk_window_set_default_icon_name ("devhelp");
 
-	display = gdk_get_display ();
-	connection_name = g_strdup_printf ("Devhelp-%s", display);
-	message_conn = bacon_message_connection_new (connection_name);
-	g_free (display);
-	g_free (connection_name);
+	unique_app = unique_app_new_with_commands ("org.gnome.Devhelp", NULL,
+		"quit", COMMAND_QUIT,
+		"search", COMMAND_SEARCH,
+		"search_assistant", COMMAND_SEARCH_ASSISTANT,
+		"focus_search", COMMAND_FOCUS_SEARCH,
+		"raise", COMMAND_RAISE,
+		NULL
+		);
 
-	if (!bacon_message_connection_get_is_server (message_conn)) {
+	if (unique_app_is_running (unique_app)) {
+		UniqueMessageData *message_data = NULL;
+
 		if (option_quit) {
-			bacon_message_connection_send (message_conn, COMMAND_QUIT);
-			return 0;
+			unique_app_send_message (unique_app, COMMAND_QUIT, NULL);
 		}
-
-		if (option_search) {
-			gchar *command;
-
-			command = g_strdup_printf ("%s %s",
-						   COMMAND_SEARCH,
-						   option_search);
-
-			bacon_message_connection_send (message_conn, command);
-			g_free (command);
+		else if (option_search) {
+			message_data = unique_message_data_new ();
+			unique_message_data_set_text (message_data, option_search, -1);
+			unique_app_send_message (unique_app, COMMAND_SEARCH, message_data);
+			unique_message_data_free (message_data);
 		}
 		else if (option_search_assistant) {
-			gchar *command;
-
-			command = g_strdup_printf ("%s %s",
-						   COMMAND_SEARCH_ASSISTANT,
-						   option_search_assistant);
-
-			bacon_message_connection_send (message_conn, command);
-			g_free (command);
+			message_data = unique_message_data_new ();
+			unique_message_data_set_text (message_data, option_search_assistant, -1);
+			unique_app_send_message (unique_app, COMMAND_SEARCH_ASSISTANT, message_data);
+			unique_message_data_free (message_data);
 		}
 		else if (option_focus_search) {
-			bacon_message_connection_send (message_conn, COMMAND_FOCUS_SEARCH);
+			unique_app_send_message (unique_app, COMMAND_FOCUS_SEARCH, NULL);
 		} else {
-			bacon_message_connection_send (message_conn, COMMAND_RAISE);
+			unique_app_send_message (unique_app, COMMAND_RAISE, NULL);
 		}
 
-		gdk_notify_startup_complete ();
+		g_object_unref (unique_app);
 		return 0;
 	}
 
@@ -280,10 +279,8 @@ main (int argc, char **argv)
 
 	base = dh_base_new ();
 
-	bacon_message_connection_set_callback (
-		message_conn,
-		(BaconMessageReceivedFunc) message_received_cb,
-		base);
+	g_signal_connect (unique_app, "message-received",
+	      G_CALLBACK (unique_app_message_cb), base);
 
 	if (!option_search_assistant) {
 		window = dh_base_new_window (base);
@@ -302,8 +299,7 @@ main (int argc, char **argv)
 	gtk_main ();
 
 	g_object_unref (base);
-
-	bacon_message_connection_free (message_conn);
+	g_object_unref (unique_app);
 
 	return 0;
 }
