@@ -127,17 +127,17 @@ print '<book title="%s"\nname=""\nbase=""\nlink="%s">' % (dict['name'], os.path.
 print '<chapters>'
 for chap in dict['order']:
     print '  <sub name="%s" link="%s">' % (chap, dict[chap]['link'])
-    if not dict[chap].has_key ('order'):
-	continue
-    for sub in dict[chap]['order']:
-	if not does_dict_have_keys (dict[chap][sub], ['link']):
-	    print '    <sub name="%s" link="%s">' % (sub, dict[chap][sub]['link'])
+    if dict[chap].has_key ('order'):
+        for sub in dict[chap]['order']:
+            if not does_dict_have_keys (dict[chap][sub], ['link']):
+                print '    <sub name="%s" link="%s">' % (sub, dict[chap][sub]['link'])
 	    
-	    for sub2 in dict[chap][sub]['order']:
-		print '      <sub name="%s" link="%s"/>' % (sub2, dict[chap][sub][sub2]['link'])
-            print '    </sub>'
-	else:
-	    print '    <sub name="%s" link="%s"/>' % (sub, dict[chap][sub]['link'])	    
+                for sub2 in dict[chap][sub]['order']:
+                    print '      <sub name="%s" link="%s"/>' % (sub2, dict[chap][sub][sub2]['link'])
+                print '    </sub>'
+            else:
+                print '    <sub name="%s" link="%s"/>' % (sub, dict[chap][sub]['link'])
+                    
     print '  </sub>'
     print
     
