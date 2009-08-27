@@ -52,7 +52,7 @@ AC_SUBST(REQUIRES_LIBWNCK)
 
 PKG_CHECK_MODULES(DEVHELP, [
   gtk+-2.0 >= 2.10.0
-  webkit-1.0
+  webkit-1.0 >= 1.1.13
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
@@ -61,7 +61,7 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
   $gconf_pkgconfig
   $libwnck_pkgconfig
   $igemacintegration_pkgconfig
-  webkit-1.0
+  webkit-1.0 >= 1.1.13
 ])
 
 AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)

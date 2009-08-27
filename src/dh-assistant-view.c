@@ -29,9 +29,10 @@
 #include "dh-window.h"
 
 typedef struct {
-        DhBase *base;
-        DhLink *link;
-        gchar  *current_search;
+        DhBase   *base;
+        DhLink   *link;
+        gchar    *current_search;
+        gboolean  snippet_loaded;
 } DhAssistantViewPriv;
 
 G_DEFINE_TYPE (DhAssistantView, dh_assistant_view, WEBKIT_TYPE_WEB_VIEW);
@@ -69,6 +70,10 @@ assistant_navigation_requested (WebKitWebView        *web_view,
 
         uri = webkit_network_request_get_uri (request);
         if (strcmp (uri, "about:blank") == 0) {
+                return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
+        }
+        else if (! priv->snippet_loaded) {
+                priv->snippet_loaded = TRUE;
                 return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
         }
         else if (g_str_has_prefix (uri, "file://")) {
@@ -253,8 +258,6 @@ assistant_view_set_link (DhAssistantView *view,
                 gchar       *stylesheet;
                 gchar       *javascript;
                 gchar       *html;
-                gchar       *tmp;
-                gchar       *base;
 
                 buf = g_strndup (start, end-start);
 
@@ -321,27 +324,15 @@ assistant_view_set_link (DhAssistantView *view,
                 g_free (stylesheet);
                 g_free (javascript);
 
-                /* We need to set a local base to be able to access the
-                 * stylesheet and javascript, but we also have to set
-                 * something that is not the same as the current page,
-                 * otherwise link clicks won't go through the network
-                 * request handler (which we need so we can forward then to
-                 * a main devhelp window. The reason is that page-local
-                 * anchor links are handled internally in webkit.
-                 */
-                tmp = g_path_get_dirname (filename);
-                base = g_strconcat (tmp, "/fake", NULL);
-                g_free (tmp);
-
+                priv->snippet_loaded = FALSE;
                 webkit_web_view_load_string (
                         WEBKIT_WEB_VIEW (view),
                         "text/html",
                         html,
                         NULL,
-                        base);
+                        filename);
 
                 g_free (html);
-                g_free (base);
         } else {
                 webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
         }
