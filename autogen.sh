@@ -144,6 +144,8 @@ fi
 
 do_cmd $AUTOHEADER
 
+touch $srcdir/ChangeLog # required for automake
+
 do_cmd $AUTOMAKE --add-missing -Wall
 
 do_cmd $AUTOCONF
