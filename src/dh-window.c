@@ -790,8 +790,19 @@ window_web_view_navigation_requested_cb (WebKitWebView        *web_view,
                                          DhWindow             *window)
 {
         DhWindowPriv *priv;
+        const char   *uri;
 
         priv = window->priv;
+
+        uri = webkit_network_request_get_uri (request);
+        if (strcmp (uri, "about:blank") == 0) {
+                return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
+        }
+
+        if (strncmp (uri, "file://", 7) != 0) {
+                gtk_show_uri (NULL, uri, GDK_CURRENT_TIME, NULL);
+                return WEBKIT_NAVIGATION_RESPONSE_IGNORE;
+        }
 
         if (web_view == window_get_active_web_view (window)) {
                 const gchar *uri;
