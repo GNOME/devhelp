@@ -1,8 +1,21 @@
 AC_PREREQ(2.60)
 AC_INIT([Devhelp],[0.23.1],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
 
+# LT Version numbers, remember to change them just *before* a release.
+#   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
+#   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
+#   (No interfaces changed:                   REVISION++)
+LIBDEVHELP_CURRENT=0
+LIBDEVHELP_AGE=0
+LIBDEVHELP_REVISION=0
+
+AC_SUBST(LIBDEVHELP_CURRENT)
+AC_SUBST(LIBDEVHELP_AGE)
+AC_SUBST(LIBDEVHELP_REVISION)
+
 AC_CONFIG_HEADERS(config.h)
-AC_CONFIG_AUX_DIR(build)
+AC_CONFIG_SRCDIR(src/dh-main.c)
+AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([1.9 no-define -Wall])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
@@ -12,19 +25,15 @@ AC_PROG_LIBTOOL
 # to make
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
-
 AC_PROG_CC
 AC_PROG_CPP
 AM_PROG_CC_C_O
 
-AM_PATH_GLIB_2_0
-
 IT_PROG_INTLTOOL([0.40.0])
 
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
+PKG_PROG_PKG_CONFIG
 AM_GCONF_SOURCE_2
-
-IMENDIO_COMPILE_WARNINGS
+GNOME_COMPILE_WARNINGS
 
 dnl -----------------------------------------------------------
 dnl Platform (GTK+ X11 or GTK OS X)

@@ -1,8 +1,21 @@
-include $(top_srcdir)/build/Makefile.am.common
-include $(top_srcdir)/build/Makefile.am.marshal
-include $(top_srcdir)/build/Makefile.am.gi18n-check
+dh-marshal.h: dh-marshal.list
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=_dh_marshal dh-marshal.list > $@
 
-AM_CPPFLAGS += 						\
+dh-marshal.c: dh-marshal.list
+	$(AM_V_GEN) echo "#include \"dh-marshal.h\"" > $@ && \
+	$(GLIB_GENMARSHAL) $< --body --prefix=_dh_marshal dh-marshal.list >> $@
+
+BUILT_SOURCES = 		\
+	dh-marshal.h		\
+	dh-marshal.c		\
+	$(NULL)
+
+EXTRA_DIST =			\
+	dh-marshal.list		\
+	$(NULL)
+
+AM_CPPFLAGS = 						\
+	-I$(top_srcdir)					\
 	-DLOCALEDIR=\""$(datadir)/locale"\" 	  	\
 	-DDATADIR=\""$(datadir)"\"                      \
 	-DG_LOG_DOMAIN=\"Devhelp\"			\
@@ -81,6 +94,8 @@ libdevhelp_1_la_LIBADD =				\
 
 libdevhelp_1_la_LDFLAGS =				\
 	-no-undefined					\
+	-version-info ${LIBDEVHELP_CURRENT}:${LIBDEVHELP_REVISION}:${LIBDEVHELP_AGE} \
+	-export-symbols-regex ^dh_ \
 	$(ZLIB_LDFLAGS)
 
 if HAVE_PLATFORM_OSX
@@ -91,7 +106,3 @@ if HAVE_PLATFORM_X11
 conf_platform_sources = ige-conf-gconf.c
 endif
 
-MARSHAL=dh
-
-GI18N_CHECK_LIB_FILES = $(libdevhelp_1_la_SOURCES) $(devhelpinclude_HEADERS)
-GI18N_CHECK_APP_FILES = $(devhelp_SOURCES)
