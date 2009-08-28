@@ -338,6 +338,7 @@ keyword_model_search (DhKeywordModel  *model,
         GList              *new_list = NULL, *l;
         gint                hits = 0;
         gchar              *page_id = NULL;
+        gchar              *page_filename_prefix = NULL;
 
         priv = model->priv;
 
@@ -346,7 +347,8 @@ keyword_model_search (DhKeywordModel  *model,
          * search to pages whose filename is prefixed by "foobar.
          */
         if (stringv && g_str_has_prefix(stringv[0], "page:")) {
-                page_id = g_strdup_printf("%s.", stringv[0]+5);
+                page_id = stringv[0] + 5;
+                page_filename_prefix = g_strdup_printf("%s.", page_id);
                 stringv++;
         }
 
@@ -364,7 +366,8 @@ keyword_model_search (DhKeywordModel  *model,
                 }
 
                 if (page_id && 
-                    !g_str_has_prefix(dh_link_get_file_name (link), page_id)) {
+                    (dh_link_get_link_type (link) != DH_LINK_TYPE_PAGE &&
+                     !g_str_has_prefix (dh_link_get_file_name (link), page_filename_prefix))) {
                         continue;
                 }
 
@@ -377,11 +380,17 @@ keyword_model_search (DhKeywordModel  *model,
                 if (!found) {
                         gint i;
 
-                        found = TRUE;
-                        for (i = 0; stringv[i] != NULL; i++) {
-                                if (!g_strrstr (name, stringv[i])) {
-                                        found = FALSE;
-                                        break;
+                        if (stringv[0] == NULL) {
+                                /* means only a page was specified, no keyword */
+                                if (g_strrstr (dh_link_get_name(link), page_id))
+                                        found = TRUE;
+                        } else {
+                                found = TRUE;
+                                for (i = 0; stringv[i] != NULL; i++) {
+                                        if (!g_strrstr (name, stringv[i])) {
+                                                found = FALSE;
+                                                break;
+                                        }
                                 }
                         }
                 }
@@ -393,13 +402,16 @@ keyword_model_search (DhKeywordModel  *model,
                         new_list = g_list_prepend (new_list, link);
                         hits++;
 
-                        if (!*exact_link && strcmp (dh_link_get_name (link), string) == 0) {
+                        if (!*exact_link && (
+                            (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
+                             strcmp (dh_link_get_name (link), page_id) == 0) ||
+                            (strcmp (dh_link_get_name (link), string) == 0))) {
                                 *exact_link = link;
                         }
                 }
         }
 
-        g_free (page_id);
+        g_free (page_filename_prefix);
 
         return g_list_sort (new_list, dh_link_compare);
 }
