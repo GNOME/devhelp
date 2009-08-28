@@ -108,7 +108,7 @@ msgid "Use system fonts"
 msgstr "استخدم خطوط النّظام"
 
 #: ../data/devhelp.schemas.in.h:19
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "استخدم خطوط النظام المبدئية."
 
 #: ../data/devhelp.schemas.in.h:20

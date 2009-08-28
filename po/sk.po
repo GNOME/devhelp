@@ -192,7 +192,7 @@ msgid "Use system fonts"
 msgstr "Použiť systémové písma"
 
 #: ../devhelp.schemas.in.h:14
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Použiť štandardné systémové písma."
 
 #: ../devhelp.schemas.in.h:15

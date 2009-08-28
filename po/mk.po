@@ -90,7 +90,7 @@ msgid "Use system fonts"
 msgstr "Користи системски фонтови"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Користи системски стандардни фонтови."
 
 #: ../data/devhelp.schemas.in.h:16

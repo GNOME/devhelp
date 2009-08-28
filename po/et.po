@@ -81,7 +81,7 @@ msgstr "Peaakna laius."
 msgid "Use system fonts"
 msgstr "Süsteemsete kirjatüüpide kasutamine"
 
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Süsteemsete vaikimisi kirjatüüpide kasutamine"
 
 msgid "Whether the main window should start maximized or not."

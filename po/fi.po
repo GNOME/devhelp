@@ -85,7 +85,7 @@ msgid "Use system fonts"
 msgstr "Käytä järjestelmän kirjasimia"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Käytä järjestelmän oletuskirjasimia."
 
 #: ../data/devhelp.schemas.in.h:16

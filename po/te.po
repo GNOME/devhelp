@@ -85,7 +85,7 @@ msgid "Use system fonts"
 msgstr "వ్యవస్థ అక్షరశైలి వాడుము"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "వ్యవస్థల అప్రమేయ అక్షరశైలిలను వాడుము."
 
 #: ../data/devhelp.schemas.in.h:16

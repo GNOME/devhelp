@@ -100,7 +100,7 @@ msgid "Use system fonts"
 msgstr "Använd systemtypsnitt"
 
 #: ../data/devhelp.schemas.in.h:19
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Använd systemets standardtypsnitt."
 
 #: ../data/devhelp.schemas.in.h:20

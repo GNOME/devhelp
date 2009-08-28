@@ -101,7 +101,7 @@ msgid "Use system fonts"
 msgstr "시스템 글꼴 사용"
 
 #: ../data/devhelp.schemas.in.h:19
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "시스템 기본 글꼴을 사용합니다."
 
 #: ../data/devhelp.schemas.in.h:20

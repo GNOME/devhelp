@@ -206,7 +206,7 @@ msgid "Use system fonts"
 msgstr "Выкарыстоўваць сыстэмныя шрыфты"
 
 #: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Выкарыстоўваць прадвызначаныя сыстэмныя шрыфты."
 
 #: ../devhelp.schemas.in.h:16

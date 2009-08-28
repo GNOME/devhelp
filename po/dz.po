@@ -210,7 +210,7 @@ msgid "Use system fonts"
 msgstr "རིམ་ལུགས་ཡིག་བཟོ་ཚུ་ལག་ལེན་འཐབ།"
 
 #: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "རིམ་ལུགས་སྔོན་སྒྲིག་གི་ཡིག་གཟུགས་ཚུ་ལག་ལེན་འཐབ།"
 
 #: ../devhelp.schemas.in.h:16

@@ -101,7 +101,7 @@ msgid "Use system fonts"
 msgstr "Usar tipografía del sistema"
 
 #: ../data/devhelp.schemas.in.h:19
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Usar la tipografía predeterminada del sistema."
 
 #: ../data/devhelp.schemas.in.h:20

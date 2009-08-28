@@ -90,7 +90,7 @@ msgid "Use system fonts"
 msgstr "સિસ્ટમ ફોન્ટ વાપરો"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "સિસ્ટમના મૂળભુત ફોન્ટ વાપરો."
 
 #: ../data/devhelp.schemas.in.h:16

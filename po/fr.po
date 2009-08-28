@@ -107,7 +107,7 @@ msgid "Use system fonts"
 msgstr "Utiliser les polices de caractères du système"
 
 #: ../data/devhelp.schemas.in.h:19
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Utiliser les polices de caractères par défaut du système."
 
 #: ../data/devhelp.schemas.in.h:20

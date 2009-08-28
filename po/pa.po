@@ -186,7 +186,7 @@ msgid "Use system fonts"
 msgstr "ਸਿਸਟਮ ਫੋਟ ਵਰਤੋਂ"
 
 #: devhelp.schemas.in.h:14
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "ਮੂਲ ਸਿਸਟਮ ਫੋਟ ਵਰਤੋਂ"
 
 #: devhelp.schemas.in.h:15

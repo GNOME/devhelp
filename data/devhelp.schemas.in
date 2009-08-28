@@ -135,7 +135,7 @@
       <locale name="C">
         <short>Use system fonts</short>
 	<long>
-	  Use the systems default fonts.
+	  Use the system default fonts.
 	</long>
       </locale>
     </schema>

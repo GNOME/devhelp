@@ -98,7 +98,7 @@ msgid "Use system fonts"
 msgstr "A rendszer betűkészletének használata"
 
 #: ../data/devhelp.schemas.in.h:19
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "A rendszer alapértelmezett betűkészletének használata."
 
 #: ../data/devhelp.schemas.in.h:20

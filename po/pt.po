@@ -96,7 +96,7 @@ msgid "Use system fonts"
 msgstr "Utilizar as fontes do sistema"
 
 #: ../data/devhelp.schemas.in.h:19
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Utilizar as fontes por omissão do sistema."
 
 #: ../data/devhelp.schemas.in.h:20

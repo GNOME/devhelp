@@ -102,7 +102,7 @@ msgid "Use system fonts"
 msgstr "Użycie czcionek systemowych"
 
 #: ../data/devhelp.schemas.in.h:19
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Użycie domyślnych czcionek systemu."
 
 #: ../data/devhelp.schemas.in.h:20

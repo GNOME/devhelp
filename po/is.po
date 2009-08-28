@@ -189,7 +189,7 @@ msgid "Use system fonts"
 msgstr "Nota letur kerfis"
 
 #: devhelp.schemas.in.h:14
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Nota sjálfgefið letur kerfis."
 
 #: devhelp.schemas.in.h:15

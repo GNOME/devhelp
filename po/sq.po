@@ -86,7 +86,7 @@ msgid "Use system fonts"
 msgstr "Përdor gërmat e sistemit"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "Përdor gërmat e prezgjedhura të sistemit."
 
 #: ../data/devhelp.schemas.in.h:16

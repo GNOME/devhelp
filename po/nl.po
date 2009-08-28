@@ -89,7 +89,7 @@ msgid "Use system fonts"
 msgstr "Systeemlettertypen gebruiken"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "De systeemlettertypen gebruiken."
 
 #: ../data/devhelp.schemas.in.h:16

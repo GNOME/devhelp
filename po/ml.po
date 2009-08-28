@@ -204,7 +204,7 @@ msgid "Use system fonts"
 msgstr "സിസ്റ്റമിലുളള ലിപികള്‍ ഉപയോഗിക്കുക."
 
 #: ../devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "സിസ്റ്റമില്‍ ഡീഫോള്‍ട്ടായുളള ലിപികള്‍ ഉപയോഗിക്കുക."
 
 #: ../devhelp.schemas.in.h:16

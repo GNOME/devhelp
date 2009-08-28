@@ -254,7 +254,7 @@ msgstr "Sisitemu Imyandikire"
 
 #: devhelp.schemas.in.h:14
 #, fuzzy
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "i Mburabuzi Imyandikire"
 
 #: devhelp.schemas.in.h:15

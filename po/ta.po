@@ -86,7 +86,7 @@ msgid "Use system fonts"
 msgstr "கணினி எழுத்துருக்களை பயன்படுத்து"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "கணினியின் கொடா எழுத்துருக்களை பயன்படுத்து."
 
 #: ../data/devhelp.schemas.in.h:16

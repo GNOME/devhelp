@@ -87,8 +87,8 @@ msgid "Use system fonts"
 msgstr "Use system fonts"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
-msgstr "Use the systems default fonts."
+msgid "Use the system default fonts."
+msgstr "Use the system default fonts."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "Whether the advanced search options are shown."

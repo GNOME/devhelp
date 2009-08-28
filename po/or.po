@@ -87,7 +87,7 @@ msgid "Use system fonts"
 msgstr "ତନ୍ତ୍ର ଅକ୍ଷରରୂପ ବ୍ଯବହାର କରନ୍ତୁ"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr "ତନ୍ତ୍ରର ପୂର୍ବନିର୍ଦ୍ଧାରିତ ଅକ୍ଷରରୂପ ମାନଙ୍କୁ ବ୍ଯବହାର କରନ୍ତୁ।"
 
 #: ../data/devhelp.schemas.in.h:16

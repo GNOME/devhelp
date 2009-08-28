@@ -89,7 +89,7 @@ msgid "Use system fonts"
 msgstr "غونډال ليکبڼې کارول"
 
 #: ../data/devhelp.schemas.in.h:15
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr ".د غونډال تلواله ليکبڼې کارول"
 
 #: ../data/devhelp.schemas.in.h:16

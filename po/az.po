@@ -77,7 +77,7 @@ msgid "Use system fonts"
 msgstr ""
 
 #: devhelp.schemas.in.h:13
-msgid "Use the systems default fonts."
+msgid "Use the system default fonts."
 msgstr ""
 
 #: devhelp.schemas.in.h:14
