@@ -39,13 +39,24 @@ typedef struct _DhWindow       DhWindow;
 typedef struct _DhWindowClass  DhWindowClass;
 typedef struct _DhWindowPriv   DhWindowPriv;
 
+typedef enum
+{
+        DH_OPEN_LINK_NEW_WINDOW = 1 << 0,
+        DH_OPEN_LINK_NEW_TAB    = 1 << 1
+} DhOpenLinkFlags;
+
 struct _DhWindow {
         GtkWindow     parent_instance;
-	DhWindowPriv *priv;
+        DhWindowPriv *priv;
 };
 
 struct _DhWindowClass {
         GtkWindowClass parent_class;
+
+        /* Signals */
+        void (*open_link) (DhWindow        *window,
+                           const char      *location,
+                           DhOpenLinkFlags  flags);
 };
 
 GType      dh_window_get_type     (void) G_GNUC_CONST;

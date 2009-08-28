@@ -42,4 +42,6 @@ libtool
 /src/devhelp
 /src/dh-marshal.c
 /src/dh-marshal.h
+/src/dh-enum-types.c
+/src/dh-enum-types.h
 /stamp-h1

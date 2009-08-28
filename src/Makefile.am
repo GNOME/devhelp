@@ -8,10 +8,14 @@ dh-marshal.c: dh-marshal.list
 BUILT_SOURCES = 		\
 	dh-marshal.h		\
 	dh-marshal.c		\
+	dh-enum-types.h		\
+	dh-enum-types.c		\
 	$(NULL)
 
 EXTRA_DIST =			\
 	dh-marshal.list		\
+	dh-enum-types.c.template \
+	dh-enum-types.h.template \
 	$(NULL)
 
 AM_CPPFLAGS = 						\
@@ -44,8 +48,7 @@ devhelp_LDADD = 					\
 
 lib_LTLIBRARIES = libdevhelp-1.la
 
-devhelpincludedir = $(includedir)/devhelp-1.0/devhelp
-devhelpinclude_HEADERS = 				\
+INST_H_FILES = 						\
 	dh-assistant.h					\
 	dh-assistant-view.h				\
 	dh-base.h					\
@@ -56,9 +59,14 @@ devhelpinclude_HEADERS = 				\
 	dh-search.h					\
 	dh-window.h
 
+devhelpincludedir = $(includedir)/devhelp-1.0/devhelp
+devhelpinclude_HEADERS = $(INST_H_FILES)
+
 libdevhelp_1_la_SOURCES =				\
 	dh-marshal.c					\
 	dh-marshal.h					\
+	dh-enum-types.c					\
+	dh-enum-types.h					\
 	dh-assistant.c					\
 	dh-assistant-view.c				\
 	dh-base.c					\
@@ -97,6 +105,12 @@ libdevhelp_1_la_LDFLAGS =				\
 	-version-info ${LIBDEVHELP_CURRENT}:${LIBDEVHELP_REVISION}:${LIBDEVHELP_AGE} \
 	-export-symbols-regex ^dh_ \
 	$(ZLIB_LDFLAGS)
+
+dh-enum-types.h: dh-enum-types.h.template $(INST_H_FILES) $(GLIB_MKENUMS)
+	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.h.template $(INST_H_FILES)) > $@
+
+dh-enum-types.c: dh-enum-types.c.template $(INST_H_FILES) $(GLIB_MKENUMS)
+	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.c.template $(INST_H_FILES)) > $@
 
 if HAVE_PLATFORM_OSX
 conf_platform_sources = ige-conf-mac.c

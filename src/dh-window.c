@@ -34,6 +34,8 @@
 #include "dh-search.h"
 #include "dh-window.h"
 #include "dh-util.h"
+#include "dh-marshal.h"
+#include "dh-enum-types.h"
 #include "eggfindbar.h"
 #include "ige-conf.h"
 
@@ -56,6 +58,13 @@ struct _DhWindowPriv {
         GtkUIManager   *manager;
         GtkActionGroup *action_group;
 };
+
+enum {
+        OPEN_LINK,
+        LAST_SIGNAL
+};
+
+static gint signals[LAST_SIGNAL] = { 0 };
 
 static guint tab_accel_keys[] = {
         GDK_1, GDK_2, GDK_3, GDK_4, GDK_5,
@@ -118,8 +127,9 @@ static void           window_findbar_close_cb        (GtkWidget       *widget,
                                                       DhWindow        *window);
 static GtkWidget *    window_new_tab_label           (DhWindow        *window,
                                                       const gchar     *label);
-static void           window_open_new_tab            (DhWindow        *window,
-                                                      const gchar     *location);
+static int            window_open_new_tab            (DhWindow        *window,
+                                                      const gchar     *location,
+                                                      gboolean         switch_focus);
 static WebKitWebView *window_get_active_web_view     (DhWindow        *window);
 static void           window_update_title            (DhWindow        *window,
                                                       WebKitWebView   *web_view,
@@ -154,7 +164,7 @@ window_activate_new_tab (GtkAction *action,
 
         priv = window->priv;
 
-        window_open_new_tab (window, NULL);
+        window_open_new_tab (window, NULL, TRUE);
 }
 
 static void
@@ -379,6 +389,24 @@ window_activate_about (GtkAction *action,
                                NULL);
 }
 
+static void
+window_open_link_cb (DhWindow *window,
+                     const char *location,
+                     DhOpenLinkFlags flags)
+{
+        DhWindowPriv *priv;
+        priv = window->priv;
+
+        if (flags & DH_OPEN_LINK_NEW_TAB) {
+                window_open_new_tab (window, location, FALSE);
+        }
+        else if (flags & DH_OPEN_LINK_NEW_WINDOW) {
+                GtkWidget *new_window;
+                new_window = dh_base_new_window (priv->base);
+                gtk_widget_show (new_window);
+        }
+}
+
 static const GtkActionEntry actions[] = {
         { "FileMenu", NULL, N_("_File") },
         { "EditMenu", NULL, N_("_Edit") },
@@ -462,6 +490,18 @@ dh_window_class_init (DhWindowClass *klass)
 
         object_class->finalize = window_finalize;
 
+        signals[OPEN_LINK] =
+                g_signal_new ("open-link",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (DhWindowClass, open_link),
+                              NULL, NULL,
+                              _dh_marshal_VOID__STRING_FLAGS,
+                              G_TYPE_NONE,
+                              2,
+                              G_TYPE_STRING,
+                              DH_TYPE_OPEN_LINK_FLAGS);
+
         gtk_rc_parse_string ("style \"devhelp-tab-close-button-style\"\n"
                              "{\n"
                              "GtkWidget::focus-padding = 0\n"
@@ -504,6 +544,11 @@ dh_window_init (DhWindow *window)
                             FALSE, TRUE, 0);
 
         gtk_container_add (GTK_CONTAINER (window), priv->main_box);
+
+        g_signal_connect (window,
+                          "open-link",
+                          G_CALLBACK (window_open_link_cb),
+                          window);
 
         g_signal_connect (priv->manager,
                           "add-widget",
@@ -780,14 +825,16 @@ window_populate (DhWindow *window)
 
         gtk_widget_show_all (priv->hpaned);
 
-        window_open_new_tab (window, NULL);
+        window_open_new_tab (window, NULL, TRUE);
 }
 
-static WebKitNavigationResponse
-window_web_view_navigation_requested_cb (WebKitWebView        *web_view,
-                                         WebKitWebFrame       *frame,
-                                         WebKitNetworkRequest *request,
-                                         DhWindow             *window)
+static gboolean
+window_web_view_navigation_policy_decision_requested (WebKitWebView             *web_view,
+                                                      WebKitWebFrame            *frame,
+                                                      WebKitNetworkRequest      *request,
+                                                      WebKitWebNavigationAction *navigation_action,
+                                                      WebKitWebPolicyDecision   *policy_decision,
+                                                      DhWindow                  *window)
 {
         DhWindowPriv *priv;
         const char   *uri;
@@ -795,25 +842,29 @@ window_web_view_navigation_requested_cb (WebKitWebView        *web_view,
         priv = window->priv;
 
         uri = webkit_network_request_get_uri (request);
-        if (strcmp (uri, "about:blank") == 0) {
-                return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
+
+        if (webkit_web_navigation_action_get_button (navigation_action) == 2) { /* middle click */
+                webkit_web_policy_decision_ignore (policy_decision);
+                g_signal_emit (window, signals[OPEN_LINK], 0, uri, DH_OPEN_LINK_NEW_TAB);
+                return TRUE;
         }
 
         if (strncmp (uri, "file://", 7) != 0) {
+                webkit_web_policy_decision_ignore (policy_decision);
                 gtk_show_uri (NULL, uri, GDK_CURRENT_TIME, NULL);
-                return WEBKIT_NAVIGATION_RESPONSE_IGNORE;
+                return TRUE;
+        }
+
+        if (strcmp (uri, "about:blank") == 0) {
+                return FALSE;
         }
 
         if (web_view == window_get_active_web_view (window)) {
-                const gchar *uri;
-
-                uri = webkit_network_request_get_uri (request);
-
                 dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree), uri);
                 window_check_history (window, web_view);
         }
 
-        return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
+        return FALSE;
 }
 
 static void
@@ -829,20 +880,9 @@ window_tree_link_selected_cb (GObject  *ignored,
 
         view = window_get_active_web_view (window);
 
-        /* Block so we don't try to sync the tree when we have already
-         * clicked in it.
-         */
-        g_signal_handlers_block_by_func (view,
-                                         window_web_view_navigation_requested_cb,
-                                         window);
-
         uri = dh_link_get_uri (link);
         webkit_web_view_open (view, uri);
         g_free (uri);
-
-        g_signal_handlers_unblock_by_func (view,
-                                           window_web_view_navigation_requested_cb,
-                                           window);
 
         window_check_history (window, view);
 }
@@ -908,9 +948,11 @@ window_web_view_title_changed_cb (WebKitWebView  *web_view,
                                   const gchar    *title,
                                   DhWindow       *window)
 {
-        window_update_title (window,
-                             window_get_active_web_view (window),
-                             title);
+        if (web_view == window_get_active_web_view (window)) {
+                window_update_title (window, web_view, title);
+        }
+
+        window_tab_set_title (window, web_view, title);
 }
 
 static gboolean
@@ -1057,9 +1099,10 @@ window_web_view_tab_accel_cb (GtkAccelGroup   *accel_group,
         }
 }
 
-static void
+static int
 window_open_new_tab (DhWindow    *window,
-                     const gchar *location)
+                     const gchar *location,
+                     gboolean     switch_focus)
 {
         DhWindowPriv *priv;
         GtkWidget    *view;
@@ -1104,15 +1147,9 @@ window_open_new_tab (DhWindow    *window,
                           G_CALLBACK (window_web_view_button_press_event_cb),
                           window);
 
-        g_signal_connect (view, "navigation-requested",
-                          G_CALLBACK (window_web_view_navigation_requested_cb),
+        g_signal_connect (view, "navigation-policy-decision-requested",
+                          G_CALLBACK (window_web_view_navigation_policy_decision_requested),
                           window);
-
-        /*
-        g_signal_connect (view, "open-new-tab",
-                          G_CALLBACK (window_web_view_open_new_tab_cb),
-                          window);
-        */
 
         num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
                                         scrolled_window, NULL);
@@ -1127,12 +1164,16 @@ window_open_new_tab (DhWindow    *window,
         }
 
         if (location) {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (view), location);
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), location);
         } else {
                 webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
         }
 
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), num);
+        if (switch_focus) {
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), num);
+        }
+
+        return num;
 }
 
 #ifndef GDK_WINDOWING_QUARTZ
@@ -1263,8 +1304,6 @@ window_update_title (DhWindow      *window,
                 web_frame = webkit_web_view_get_main_frame (web_view);
                 web_view_title = webkit_web_frame_get_title (web_frame);
         }
-
-        window_tab_set_title (window, web_view, web_view_title);
 
         if (web_view_title && *web_view_title == '\0') {
                 web_view_title = NULL;
