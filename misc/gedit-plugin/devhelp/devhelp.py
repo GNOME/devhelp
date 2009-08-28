@@ -22,6 +22,7 @@
 import gedit
 import gtk
 import os
+import gettext
 
 class DevhelpInstance:
     def __init__(self, window):
@@ -29,9 +30,10 @@ class DevhelpInstance:
 
     def activate(self):
         manager = self._window.get_ui_manager()
+	# Translate actions below, hardcoding domain here to avoid complications now
+	_ = lambda s: gettext.dgettext('devhelp', s);
 
         self._action_group = gtk.ActionGroup("GeditDevhelpPluginActions")
-        self._action_group.set_translation_domain('devhelp')
         self._action_group.add_actions([('Devhelp', None,
                                          _('Show API Documentation'),
                                          'F2',
