@@ -361,6 +361,7 @@ keyword_model_search (DhKeywordModel  *model,
                 found = FALSE;
 
                 if (book_id &&
+                    dh_link_get_book_id (link) &&
                     strcmp (dh_link_get_book_id (link), book_id) != 0) {
                         continue;
                 }
@@ -402,9 +403,10 @@ keyword_model_search (DhKeywordModel  *model,
                         new_list = g_list_prepend (new_list, link);
                         hits++;
 
-                        if (!*exact_link && (
+                        if (!*exact_link &&
+                            dh_link_get_name (link) && (
                             (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
-                             strcmp (dh_link_get_name (link), page_id) == 0) ||
+                             page_id && strcmp (dh_link_get_name (link), page_id) == 0) ||
                             (strcmp (dh_link_get_name (link), string) == 0))) {
                                 *exact_link = link;
                         }
