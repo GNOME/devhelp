@@ -337,8 +337,18 @@ keyword_model_search (DhKeywordModel  *model,
         DhKeywordModelPriv *priv;
         GList              *new_list = NULL, *l;
         gint                hits = 0;
+        gchar              *page_id = NULL;
 
         priv = model->priv;
+
+        /* The search string may be prefixed by a page:foobar qualifier, it
+         * will be matched against the filenames of the hits to limit the
+         * search to pages whose filename is prefixed by "foobar.
+         */
+        if (stringv && g_str_has_prefix(stringv[0], "page:")) {
+                page_id = g_strdup_printf("%s.", stringv[0]+5);
+                stringv++;
+        }
 
         for (l = priv->original_list; l && hits < MAX_HITS; l = l->next) {
                 DhLink   *link;
@@ -350,6 +360,11 @@ keyword_model_search (DhKeywordModel  *model,
 
                 if (book_id &&
                     strcmp (dh_link_get_book_id (link), book_id) != 0) {
+                        continue;
+                }
+
+                if (page_id && 
+                    !g_str_has_prefix(dh_link_get_file_name (link), page_id)) {
                         continue;
                 }
 
@@ -383,6 +398,8 @@ keyword_model_search (DhKeywordModel  *model,
                         }
                 }
         }
+
+        g_free (page_id);
 
         return g_list_sort (new_list, dh_link_compare);
 }

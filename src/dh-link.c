@@ -189,6 +189,16 @@ dh_link_get_page_name (DhLink *link)
 }
 
 const gchar *
+dh_link_get_file_name (DhLink *link)
+{
+        if (link->page) {
+                return link->filename;
+        }
+
+        return "";
+}
+
+const gchar *
 dh_link_get_book_id (DhLink *link)
 {
         if (link->type == DH_LINK_TYPE_BOOK) {
