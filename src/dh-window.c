@@ -53,8 +53,6 @@ struct _DhWindowPriv {
         GtkWidget      *vbox;
         GtkWidget      *findbar;
 
-        gint            zoom_level;
-
         GtkUIManager   *manager;
         GtkActionGroup *action_group;
 };
@@ -75,19 +73,19 @@ static const
 struct
 {
         gchar *name;
-        float level;
+        int    level;
 }
 zoom_levels[] =
 {
-        { N_("50%"), 0.7071067811 },
-        { N_("75%"), 0.8408964152 },
-        { N_("100%"), 1.0 },
-        { N_("125%"), 1.1892071149 },
-        { N_("150%"), 1.4142135623 },
-        { N_("175%"), 1.6817928304 },
-        { N_("200%"), 2.0 },
-        { N_("300%"), 2.8284271247 },
-        { N_("400%"), 4.0 }
+        { N_("50%"), 70 },
+        { N_("75%"), 84 },
+        { N_("100%"), 100 },
+        { N_("125%"), 119 },
+        { N_("150%"), 141 },
+        { N_("175%"), 168 },
+        { N_("200%"), 200 },
+        { N_("300%"), 283 },
+        { N_("400%"), 400 }
 };
 
 #define ZOOM_MINIMAL    (zoom_levels[0].level)
@@ -241,23 +239,69 @@ window_activate_find (GtkAction *action,
         webkit_web_view_set_highlight_text_matches (web_view, TRUE);
 }
 
+static int
+window_get_current_zoom_level_index (DhWindow *window)
+{
+        WebKitWebView *web_view;
+        float zoom_level;
+        int zoom_level_as_int = ZOOM_DEFAULT;
+        int i;
+
+        web_view = window_get_active_web_view (window);
+        if (web_view) {
+                g_object_get (web_view, "zoom-level", &zoom_level, NULL);
+                zoom_level_as_int = (int)(zoom_level*100);
+        }
+
+        for (i=0; zoom_levels[i].level != ZOOM_MAXIMAL; i++) {
+                if (zoom_levels[i].level == zoom_level_as_int)
+                        return i;
+        }
+        return i;
+}
+
+static void
+window_update_zoom_actions_sensitiveness (DhWindow *window)
+{
+        DhWindowPriv *priv;
+        GtkAction *zoom_in, *zoom_out, *zoom_default;
+        int zoom_level_idx;
+
+        priv = window->priv;
+        zoom_in = gtk_action_group_get_action (priv->action_group, "ZoomIn");
+        zoom_out = gtk_action_group_get_action (priv->action_group, "ZoomOut");
+        zoom_default = gtk_action_group_get_action (priv->action_group, "ZoomDefault");
+
+        zoom_level_idx = window_get_current_zoom_level_index (window);
+
+        gtk_action_set_sensitive (zoom_in,
+                                  zoom_levels[zoom_level_idx].level < ZOOM_MAXIMAL);
+        gtk_action_set_sensitive (zoom_out,
+                                  zoom_levels[zoom_level_idx].level > ZOOM_MINIMAL);
+        gtk_action_set_sensitive (zoom_default,
+                                  zoom_levels[zoom_level_idx].level != ZOOM_DEFAULT);
+}
+
 static void
 window_activate_zoom_in (GtkAction *action,
                          DhWindow  *window)
 {
         DhWindowPriv *priv;
+        int zoom_level_idx;
 
         priv = window->priv;
 
-        if (zoom_levels[priv->zoom_level].level < ZOOM_MAXIMAL) {
+        zoom_level_idx = window_get_current_zoom_level_index (window);
+        if (zoom_levels[zoom_level_idx].level < ZOOM_MAXIMAL) {
                 WebKitWebView *web_view;
 
-                priv->zoom_level++;
                 web_view = window_get_active_web_view (window);
                 g_object_set (web_view,
-                              "zoom-level", zoom_levels[priv->zoom_level].level,
+                              "zoom-level", (float)(zoom_levels[zoom_level_idx+1].level)/100,
                               NULL);
+                window_update_zoom_actions_sensitiveness (window);
         }
+
 }
 
 static void
@@ -265,17 +309,19 @@ window_activate_zoom_out (GtkAction *action,
                           DhWindow  *window)
 {
         DhWindowPriv *priv;
+        int zoom_level_idx;
 
         priv = window->priv;
 
-        if (zoom_levels[priv->zoom_level].level > ZOOM_MINIMAL) {
+        zoom_level_idx = window_get_current_zoom_level_index (window);
+        if (zoom_levels[zoom_level_idx].level > ZOOM_MINIMAL) {
                 WebKitWebView *web_view;
 
-                priv->zoom_level--;
                 web_view = window_get_active_web_view (window);
                 g_object_set (web_view,
-                              "zoom-level", zoom_levels[priv->zoom_level].level,
+                              "zoom-level", (float)(zoom_levels[zoom_level_idx-1].level)/100,
                               NULL);
+                window_update_zoom_actions_sensitiveness (window);
         }
 }
 
@@ -289,7 +335,8 @@ window_activate_zoom_default (GtkAction *action,
         priv = window->priv;
 
         web_view = window_get_active_web_view (window);
-        g_object_set (web_view, "zoom-level", ZOOM_DEFAULT, NULL);
+        g_object_set (web_view, "zoom-level", (float)(ZOOM_DEFAULT)/100, NULL);
+        window_update_zoom_actions_sensitiveness (window);
 }
 
 static void
@@ -532,8 +579,6 @@ dh_window_init (DhWindow *window)
         accel_group = gtk_ui_manager_get_accel_group (priv->manager);
         gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
-        priv->zoom_level = 2;
-
         priv->main_box = gtk_vbox_new (FALSE, 0);
         gtk_widget_show (priv->main_box);
 
@@ -678,6 +723,15 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
 }
 
 static void
+window_web_view_switch_page_after_cb (GtkNotebook     *notebook,
+                                      GtkNotebookPage *page,
+                                      guint            new_page_num,
+                                      DhWindow        *window)
+{
+        window_update_zoom_actions_sensitiveness (window);
+}
+
+static void
 window_populate (DhWindow *window)
 {
         DhWindowPriv *priv;
@@ -796,6 +850,11 @@ window_populate (DhWindow *window)
                           "switch-page",
                           G_CALLBACK (window_web_view_switch_page_cb),
                           window);
+        g_signal_connect_after (priv->notebook,
+                                "switch-page",
+                                G_CALLBACK (window_web_view_switch_page_after_cb),
+                                window);
+
 
         /* Create findbar. */
         priv->findbar = egg_find_bar_new ();
@@ -825,6 +884,7 @@ window_populate (DhWindow *window)
 
         gtk_widget_show_all (priv->hpaned);
 
+        window_update_zoom_actions_sensitiveness (window);
         window_open_new_tab (window, NULL, TRUE);
 }
 
