@@ -15,10 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-05-18 12:38+0000\n"
-"PO-Revision-Date: 2009-07-02 23:03+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-29 20:55+0200\n"
+"PO-Revision-Date: 2009-08-29 20:55+0200\n"
 "Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +28,14 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Programme d'aide pour les développeurs"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../src/dh-window.c:438 ../src/dh-window.c:734 ../src/dh-window.c:1398
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Navigateur de documentation"
 
@@ -156,11 +162,11 @@ msgstr ""
 "Un appui sur la touche F2 permet de lancer Devhelp pour le mot à "
 "l'emplacement du curseur."
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation"
 msgstr "Afficher la documentation des API"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp/devhelp.py:40
 msgid "Show API Documentation for the word at the cursor"
 msgstr ""
 "Affiche la documentation des API pour le mot à l'emplacement du curseur"
@@ -170,83 +176,83 @@ msgstr ""
 msgid "Devhelp - Assistant"
 msgstr "Devhelp - Assistant"
 
-#: ../src/dh-assistant-view.c:316
+#: ../src/dh-assistant-view.c:319
 msgid "Book:"
 msgstr "Livre :"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:245
+#: ../src/dh-link.c:255
 msgid "Book"
 msgstr "Livre"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:248
+#: ../src/dh-link.c:258
 msgid "Page"
 msgstr "Page"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:252
+#: ../src/dh-link.c:262
 msgid "Keyword"
 msgstr "Mot-clé"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:257
+#: ../src/dh-link.c:267
 msgid "Function"
 msgstr "Fonction"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:262
+#: ../src/dh-link.c:272
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:277
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:282
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:287
 msgid "Type"
 msgstr "Type"
 
-#: ../src/dh-main.c:167
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Recherche un mot-clé"
 
-#: ../src/dh-main.c:172
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Quitte tous les Devhelp en cours"
 
-#: ../src/dh-main.c:177
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Affiche la version et quitte"
 
-#: ../src/dh-main.c:182
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Donne le focus à la fenêtre Devhelp avec le champ de recherche actif"
 
-#: ../src/dh-main.c:187
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Recherche et affiche tout résultat dans la fenêtre de l'assistant"
 
-#: ../src/dh-parser.c:80 ../src/dh-parser.c:169 ../src/dh-parser.c:233
-#: ../src/dh-parser.c:243
+#: ../src/dh-parser.c:80 ../src/dh-parser.c:174 ../src/dh-parser.c:238
+#: ../src/dh-parser.c:248
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "Attendu « %s » reçu « %s » à la ligne %d, colonne %d"
@@ -256,38 +262,38 @@ msgstr "Attendu « %s » reçu « %s » à la ligne %d, colonne %d"
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Espace de nommage incorrect « %s » à la ligne %d, colonne %d"
 
-#: ../src/dh-parser.c:122
+#: ../src/dh-parser.c:125
 #, c-format
 msgid ""
 "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"Les éléments « title », « name » et « link » doivent être présents à la ligne "
-"%d, colonne %d"
+"Les éléments « title », « name » et « link » doivent être présents à la ligne %"
+"d, colonne %d"
 
-#: ../src/dh-parser.c:188
+#: ../src/dh-parser.c:193
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
 msgstr ""
-"Les éléments « name » et « link » doivent être présents dans <sub> à la ligne "
-"%d, colonne %d"
+"Les éléments « name » et « link » doivent être présents dans <sub> à la ligne %"
+"d, colonne %d"
 
-#: ../src/dh-parser.c:268
+#: ../src/dh-parser.c:273
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"Les éléments « name » et « link » doivent être présents dans « %s » à la ligne "
-"%d, colonne %d"
+"Les éléments « name » et « link » doivent être présents dans « %s » à la ligne %"
+"d, colonne %d"
 
-#: ../src/dh-parser.c:281
+#: ../src/dh-parser.c:286
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "L'élément « type » doit être présent dans <keyword> à la ligne %d, colonne %d"
 
-#: ../src/dh-parser.c:486
+#: ../src/dh-parser.c:491
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Impossible de décompresser le livre « %s » : %s"
@@ -300,43 +306,43 @@ msgstr "Tous les livres"
 msgid "Search in:"
 msgstr "Rechercher dans :"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:82
 msgid "50%"
 msgstr "50 %"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:83
 msgid "75%"
 msgstr "75 %"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:84
 msgid "100%"
 msgstr "100 %"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:85
 msgid "125%"
 msgstr "125 %"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:86
 msgid "150%"
 msgstr "150 %"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:87
 msgid "175%"
 msgstr "175 %"
 
-#: ../src/dh-window.c:79
+#: ../src/dh-window.c:88
 msgid "200%"
 msgstr "200 %"
 
-#: ../src/dh-window.c:80
+#: ../src/dh-window.c:89
 msgid "300%"
 msgstr "300 %"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:90
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:364
+#: ../src/dh-window.c:433
 msgid "translator_credits"
 msgstr ""
 "Christophe Fergeau <christophe.fergeau@laposte.net>\n"
@@ -349,122 +355,122 @@ msgstr ""
 "Damien Durand <splinux@fedoraproject.org>\n"
 "Stéphane Raimbault <stephane.raimbault@gmail.com>"
 
-#: ../src/dh-window.c:369
+#: ../src/dh-window.c:440
 msgid "A developer's help browser for GNOME"
 msgstr "Un navigateur d'aide pour les développeurs GNOME"
 
-#: ../src/dh-window.c:381
+#: ../src/dh-window.c:470
 msgid "_File"
 msgstr "_Fichier"
 
-#: ../src/dh-window.c:382
+#: ../src/dh-window.c:471
 msgid "_Edit"
 msgstr "É_dition"
 
-#: ../src/dh-window.c:383
+#: ../src/dh-window.c:472
 msgid "_View"
 msgstr "_Affichage"
 
-#: ../src/dh-window.c:384
+#: ../src/dh-window.c:473
 msgid "_Go"
 msgstr "A_ller à"
 
-#: ../src/dh-window.c:385
+#: ../src/dh-window.c:474
 msgid "_Help"
 msgstr "Aid_e"
 
 #. File menu
-#: ../src/dh-window.c:388
+#: ../src/dh-window.c:477
 msgid "_New Window"
 msgstr "_Nouvelle fenêtre"
 
-#: ../src/dh-window.c:390
+#: ../src/dh-window.c:479
 msgid "New _Tab"
 msgstr "Nouvel Ongle_t"
 
-#: ../src/dh-window.c:392
+#: ../src/dh-window.c:481
 msgid "_Print..."
 msgstr "_Imprimer..."
 
-#: ../src/dh-window.c:404 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:493 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Rechercher le suivant"
 
-#: ../src/dh-window.c:406 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:495 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Rechercher le précédent"
 
-#: ../src/dh-window.c:413
+#: ../src/dh-window.c:502
 msgid "Go to the previous page"
 msgstr "Va à la page précédente"
 
-#: ../src/dh-window.c:416
+#: ../src/dh-window.c:505
 msgid "Go to the next page"
 msgstr "Va à la page suivante"
 
-#: ../src/dh-window.c:419
+#: ../src/dh-window.c:508
 msgid "_Contents Tab"
 msgstr "Onglet du _sommaire"
 
-#: ../src/dh-window.c:422
+#: ../src/dh-window.c:511
 msgid "_Search Tab"
 msgstr "Onglet de _recherche"
 
 #. View menu
-#: ../src/dh-window.c:426
+#: ../src/dh-window.c:515
 msgid "_Larger Text"
 msgstr "A_grandir le texte"
 
-#: ../src/dh-window.c:427
+#: ../src/dh-window.c:516
 msgid "Increase the text size"
 msgstr "Augmente la taille du texte"
 
-#: ../src/dh-window.c:429
+#: ../src/dh-window.c:518
 msgid "S_maller Text"
 msgstr "_Réduire le texte"
 
-#: ../src/dh-window.c:430
+#: ../src/dh-window.c:519
 msgid "Decrease the text size"
 msgstr "Diminue la taille du texte"
 
-#: ../src/dh-window.c:432
+#: ../src/dh-window.c:521
 msgid "_Normal Size"
 msgstr "Taille _normale"
 
-#: ../src/dh-window.c:433
+#: ../src/dh-window.c:522
 msgid "Use the normal text size"
 msgstr "Utilise la taille standard pour le texte"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:530
+#: ../src/dh-window.c:647
 msgid "Larger"
 msgstr "Plus grand"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:533
+#: ../src/dh-window.c:650
 msgid "Smaller"
 msgstr "Plus petit"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:661
+#: ../src/dh-window.c:789
 msgid "About Devhelp"
 msgstr "À propos de Devhelp"
 
-#: ../src/dh-window.c:666
+#: ../src/dh-window.c:794
 msgid "Preferences..."
 msgstr "Préférences..."
 
-#: ../src/dh-window.c:709
+#: ../src/dh-window.c:837
 msgid "Contents"
 msgstr "Sommaire"
 
-#: ../src/dh-window.c:719
+#: ../src/dh-window.c:847
 msgid "Search"
 msgstr "Rechercher"
 
-#: ../src/dh-window.c:1070 ../src/dh-window.c:1279
+#: ../src/dh-window.c:1216 ../src/dh-window.c:1425
 msgid "Empty Page"
 msgstr "Page vide"
 
