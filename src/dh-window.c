@@ -55,6 +55,8 @@ struct _DhWindowPriv {
 
         GtkUIManager   *manager;
         GtkActionGroup *action_group;
+
+        DhLink         *selected_search_link;
 };
 
 enum {
@@ -210,11 +212,21 @@ window_activate_copy (GtkAction *action,
                       DhWindow  *window)
 {
         GtkWidget *widget;
+        DhWindowPriv  *priv;
+
+        priv = window->priv;
 
         widget = gtk_window_get_focus (GTK_WINDOW (window));
 
         if (GTK_IS_EDITABLE (widget)) {
                 gtk_editable_copy_clipboard (GTK_EDITABLE (widget));
+        } else if (GTK_IS_TREE_VIEW (widget) &&
+                   gtk_widget_is_ancestor (widget, priv->search) &&
+                   priv->selected_search_link) {
+                GtkClipboard *clipboard;
+                clipboard = gtk_widget_get_clipboard (widget, GDK_SELECTION_CLIPBOARD);
+                gtk_clipboard_set_text (clipboard,
+                                dh_link_get_name(priv->selected_search_link), -1);
         } else {
                 WebKitWebView *web_view;
 
@@ -573,6 +585,8 @@ dh_window_init (DhWindow *window)
 
         priv = GET_PRIVATE (window);
         window->priv = priv;
+
+        priv->selected_search_link = NULL;
 
         priv->manager = gtk_ui_manager_new ();
 
@@ -957,6 +971,8 @@ window_search_link_selected_cb (GObject  *ignored,
         gchar         *uri;
 
         priv = window->priv;
+
+        priv->selected_search_link = link;
 
         view = window_get_active_web_view (window);
 
