@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-05-18 12:38+0000\n"
-"PO-Revision-Date: 2009-07-23 17:20+0300\n"
+"POT-Creation-Date: 2009-08-28 15:01+0000\n"
+"PO-Revision-Date: 2009-08-30 12:20+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,11 @@ msgstr ""
 
 msgid "Developer's Help program"
 msgstr "Arendaja abiteabe programm"
+
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+msgid "Devhelp"
+msgstr "Devhelp"
 
 msgid "Documentation Browser"
 msgstr "Dokumentatsioonisirvija"
