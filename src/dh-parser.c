@@ -70,6 +70,7 @@ parser_start_node_book (DhParser             *parser,
         const gchar *base = NULL;
         const gchar *name = NULL;
         const gchar *uri = NULL;
+        const gchar *lang = NULL;
 	DhLink      *link;
 
         if (g_ascii_strcasecmp (node_name, "book") != 0) {
@@ -114,6 +115,9 @@ parser_start_node_book (DhParser             *parser,
 			}
                 else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
                         uri = attribute_values[i];
+                }
+                else if (g_ascii_strcasecmp (attribute_names[i], "language") == 0) {
+                        lang = attribute_values[i];
                 }
         }
 
