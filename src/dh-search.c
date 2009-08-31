@@ -464,6 +464,23 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
                       NULL);
 }
 
+static gint
+book_cmp (DhLink **a, DhLink **b)
+{
+        gchar *name_a, *name_b;
+        int r;
+
+        name_a = g_utf8_casefold (dh_link_get_name (*a), -1);
+        name_b = g_utf8_casefold (dh_link_get_name (*b), -1);
+
+        r = strcmp(name_a, name_b);
+
+        g_free (name_a);
+        g_free (name_b);
+
+        return r;
+}
+
 static GtkWidget *
 search_combo_create (DhSearch *search,
                      GList    *keywords)
@@ -473,6 +490,8 @@ search_combo_create (DhSearch *search,
         GList           *l;
         GtkWidget       *combo;
         GtkCellRenderer *cell;
+        GArray          *books;
+        int              i, nb_books = 0;
 
         store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
 
@@ -482,6 +501,7 @@ search_combo_create (DhSearch *search,
                             1, NULL,
                             -1);
 
+        books = g_array_sized_new (FALSE, FALSE, sizeof(DhLink*), 50);
         for (l = keywords; l; l = l->next) {
                 DhLink *link = l->data;
 
@@ -489,12 +509,22 @@ search_combo_create (DhSearch *search,
                         continue;
                 }
 
+                g_array_append_val (books, link);
+                nb_books++;
+        }
+
+        g_array_sort (books, (GCompareFunc)book_cmp);
+
+        for (i = 0; i < nb_books; i++) {
+                DhLink *link = g_array_index(books, DhLink*, i);
                 gtk_list_store_append (store, &iter); 
                 gtk_list_store_set (store, &iter,
                                     0, dh_link_get_name (link),
                                     1, dh_link_get_book_id (link),
                                     -1);
         }
+
+        g_array_free (books, TRUE);
 
         combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
         g_object_unref (store);
