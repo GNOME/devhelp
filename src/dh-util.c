@@ -746,3 +746,41 @@ dh_util_font_add_web_view (WebKitWebView *view)
 
         view_setup_fonts (view);
 }
+
+gint
+dh_util_cmp_book (DhLink *a, DhLink *b)
+{
+        const gchar *name_a;
+        const gchar *name_b;
+        gchar       *name_a_casefold;
+        gchar       *name_b_casefold;
+        int          rc;
+
+        name_a = dh_link_get_name (a);
+        if (!name_a) {
+                name_a = "";
+        }
+
+        name_b = dh_link_get_name (b);
+        if (!name_b) {
+                name_b = "";
+        }
+
+        if (g_ascii_strncasecmp (name_a, "the ", 4) == 0) {
+                name_a += 4;
+        }
+        if (g_ascii_strncasecmp (name_b, "the ", 4) == 0) {
+                name_b += 4;
+        }
+
+        name_a_casefold = g_utf8_casefold (name_a, -1);
+        name_b_casefold = g_utf8_casefold (name_b, -1);
+
+        rc = strcmp (name_a_casefold, name_b_casefold);
+
+        g_free (name_a_casefold);
+        g_free (name_b_casefold);
+
+        return rc;
+}
+

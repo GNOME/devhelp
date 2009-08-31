@@ -141,30 +141,11 @@ book_sort_func (gconstpointer a,
 {
         DhLink      *link_a;
         DhLink      *link_b;
-        const gchar *name_a;
-        const gchar *name_b;
 
         link_a = ((GNode *) a)->data;
         link_b = ((GNode *) b)->data;
 
-        name_a = dh_link_get_name (link_a);
-        if (!name_a) {
-                name_a = "";
-        }
-
-        name_b = dh_link_get_name (link_b);
-        if (!name_b) {
-                name_b = "";
-        }
-
-        if (g_ascii_strncasecmp (name_a, "the ", 4) == 0) {
-                name_a += 4;
-        }
-        if (g_ascii_strncasecmp (name_b, "the ", 4) == 0) {
-                name_b += 4;
-        }
-
-        return g_utf8_collate (name_a, name_b);
+        return dh_util_cmp_book (link_a, link_b);
 }
 
 static void

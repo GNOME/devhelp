@@ -24,6 +24,7 @@
 
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
+#include "dh-link.h"
 
 G_BEGIN_DECLS
 
@@ -56,6 +57,8 @@ void         dh_util_font_get_fixed               (gchar        **name,
                                                    gdouble       *size,
                                                    gboolean       use_system_font);
 void         dh_util_font_add_web_view            (WebKitWebView *view);
+gint         dh_util_cmp_book                     (DhLink *a,
+                                                   DhLink *b);
 
 G_END_DECLS
 

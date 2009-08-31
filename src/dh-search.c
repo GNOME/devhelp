@@ -30,6 +30,7 @@
 #include "dh-search.h"
 #include "dh-preferences.h"
 #include "dh-base.h"
+#include "dh-util.h"
 
 typedef struct {
         DhKeywordModel *model;
@@ -467,18 +468,7 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
 static gint
 book_cmp (DhLink **a, DhLink **b)
 {
-        gchar *name_a, *name_b;
-        int r;
-
-        name_a = g_utf8_casefold (dh_link_get_name (*a), -1);
-        name_b = g_utf8_casefold (dh_link_get_name (*b), -1);
-
-        r = strcmp(name_a, name_b);
-
-        g_free (name_a);
-        g_free (name_b);
-
-        return r;
+        return dh_util_cmp_book (*a, *b);
 }
 
 static GtkWidget *
