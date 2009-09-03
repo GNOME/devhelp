@@ -471,6 +471,19 @@ book_cmp (DhLink **a, DhLink **b)
         return dh_util_cmp_book (*a, *b);
 }
 
+static gboolean
+search_combo_row_separator_func (GtkTreeModel *model,
+                                 GtkTreeIter  *iter,
+                                 gpointer      data)
+{
+        char *label;
+        char *link;
+
+        gtk_tree_model_get (model, iter, 0, &label, 1, &link, -1);
+
+        return (link == NULL && label == NULL);
+}
+
 static GtkWidget *
 search_combo_create (DhSearch *search,
                      GList    *keywords)
@@ -488,6 +501,13 @@ search_combo_create (DhSearch *search,
         gtk_list_store_append (store, &iter); 
         gtk_list_store_set (store, &iter,
                             0, _("All books"),
+                            1, NULL,
+                            -1);
+
+        /* Add a separator */
+        gtk_list_store_append (store, &iter); 
+        gtk_list_store_set (store, &iter,
+                            0, NULL,
                             1, NULL,
                             -1);
 
@@ -518,6 +538,10 @@ search_combo_create (DhSearch *search,
 
         combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
         g_object_unref (store);
+
+        gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (combo),
+                                              search_combo_row_separator_func,
+                                              NULL, NULL);
 
         cell = gtk_cell_renderer_text_new ();
         gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo),
