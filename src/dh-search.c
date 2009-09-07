@@ -498,14 +498,14 @@ search_combo_create (DhSearch *search,
 
         store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
 
-        gtk_list_store_append (store, &iter); 
+        gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
                             0, _("All books"),
                             1, NULL,
                             -1);
 
         /* Add a separator */
-        gtk_list_store_append (store, &iter); 
+        gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
                             0, NULL,
                             1, NULL,
@@ -527,7 +527,7 @@ search_combo_create (DhSearch *search,
 
         for (i = 0; i < nb_books; i++) {
                 DhLink *link = g_array_index(books, DhLink*, i);
-                gtk_list_store_append (store, &iter); 
+                gtk_list_store_append (store, &iter);
                 gtk_list_store_set (store, &iter,
                                     0, dh_link_get_name (link),
                                     1, dh_link_get_book_id (link),
