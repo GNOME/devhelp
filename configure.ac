@@ -1,11 +1,11 @@
 AC_PREREQ(2.60)
-AC_INIT([Devhelp],[0.23.1],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+AC_INIT([Devhelp],[2.27.92],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
 
 # LT Version numbers, remember to change them just *before* a release.
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
 #   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
 #   (No interfaces changed:                   REVISION++)
-LIBDEVHELP_CURRENT=0
+LIBDEVHELP_CURRENT=1
 LIBDEVHELP_AGE=0
 LIBDEVHELP_REVISION=0
 

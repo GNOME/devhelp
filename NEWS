@@ -1,3 +1,44 @@
+NEW in 2.27.92:
+===============
+
+New maintainer (to Richard, thanks for everything).
+
+Fixed bugs:
+
+ - #517003, Translated strings are not being used in gedit's plugin
+ - #552640, New tabs should not steal focus
+ - #563036, Desensitize zoom items when non applicable
+ - #566117, Book titles should be forced to be single line
+ - #566459, generate Enumeration and Flag Types
+ - #568172, Wrong management of fonts
+ - #571626, Space should scroll down
+ - #578964, Make Ctrl+C copy the symbol name in the symbol listing pane
+ - #579539, New tabs don't suit a window well
+ - #585110, Use accessor functions instead direct access
+ - #585670, Blank Screen on DevHelp Assistant
+ - #587984, emacs devhelp-word-at-point clobbers global "w"
+ - #587986, html2xml.py does not close <sub>
+ - #587999, Page sensitive searches have been broken.
+ - #588655, Work around deprecated g_mapped_file_free()
+ - #588850, Installs empty images dir
+ - #590207, link in About dialog is out of date
+ - #590209, toolbar actions could use some is_important love
+ - #591046, Assistant window resizes automatically
+ - #592157, Application name is desktop file and main window is not
+            translatable
+ - #592712, build fails using automake 1.11
+ - #592750, Support silent build rules with automake 1.11
+ - #593174, Incredibly small string fix
+
+Updated translations: ar, de, en_GB, et, fr, hu, it, nb, pl, pt_BR,
+pt, sv, tr
+
+Many thanks to all contributors: Duarte Loreto, Michael Gratton, Kjartan
+Maraas, Ivar Smolin, Khaled Hosny, Baris Cicek, Daniel Nylander, Mario
+Blättermann, Luca Ferretti, Tomasz Dominikowski, Claude Paroz, Bruce Cowan,
+Richard Cohen, Javier Jardón, Gabor Kelemen, Gustavo Noronha Silva, Og B.
+Maciel
+
 NEW in 0.23.1:
 ==============
 
