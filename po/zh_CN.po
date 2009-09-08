@@ -1,19 +1,18 @@
 # devhelp simplified chinese translation
-# Copyright (C) 2002, 2009 Free Software Foundation, Inc.
-# This file is distributed under the same license as the devhelp package.
+# Copyright (C) 2002 Free Software Foundation, Inc.
 # Zipeco <Zipeco@btamail.net.cn>, 2002.
 # Funda Wang <fundawang@linux.net.cn>, 2004
 # Yang Zhang <zyangmath@gmail.com>, 2007
 # Deng Xiyue <manphiz@gmail.com>, 2008
-# Aron Xu <happyaron.xu@gmail.com>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-08 20:35+0800\n"
-"PO-Revision-Date: 2009-09-08 20:40+0800\n"
-"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&component=general\n"
+"POT-Creation-Date: 2009-09-07 07:14+0000\n"
+"PO-Revision-Date: 2009-09-07 09:58+0800\n"
+"Last-Translator: Hinker Liu <hinkerliu@gmail.com>\n"
 "Language-Team: i18n-zh <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,9 +26,8 @@ msgstr "开发者帮助程序"
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:438 ../src/dh-window.c:734 ../src/dh-window.c:1398
-#, fuzzy
 msgid "Devhelp"
-msgstr "关于 Devhelp"
+msgstr "Devhelp"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -49,7 +47,7 @@ msgstr "固定宽度文本使用的字体，例如示例代码。"
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "非等宽文本字体。"
+msgstr "变动宽度文本使用的字体。"
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Height of assistant window"
@@ -65,7 +63,7 @@ msgstr "主窗口最大化"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "选定的标签，“内容”或“搜索”"
+msgstr "所选的标签，是“内容”还是“搜索”"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
@@ -97,7 +95,7 @@ msgstr "辅助窗口宽度。"
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
-msgstr "索引和搜索栏的宽度。"
+msgstr "索引和搜索面板宽度。"
 
 #: ../data/devhelp.schemas.in.h:17
 msgid "The width of the main window."
@@ -255,28 +253,28 @@ msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "非法命名空间“%s”(第%d行，第%d列)"
 
 #: ../src/dh-parser.c:129
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
-msgstr "需要指定 title、name 和 link 元素 (第%d行，第%d列)"
+msgstr "在第%d行，第%d列，需要指定元素“title”，“name”，和“link”"
 
 #: ../src/dh-parser.c:197
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
-msgstr "在 <sub> 内需要指定 name 和 link 元素 (第%d行，第%d列)"
+msgstr "在<sub>内第%d行，第%d列，需要指定元素“name”和“link”"
 
 #: ../src/dh-parser.c:277
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr "在“%s”内需要指定 name 和 link 元素 (第%d行，第%d列)"
+msgstr "在“%s”内第%d行，第%d列，需要指定元素“name”和“link”"
 
 #: ../src/dh-parser.c:290
-#, fuzzy, c-format
+#, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "在 <keyword> 内需要指定 name 和 link 元素 (第%d行，第%d列)"
+msgstr "在 <keyword> 内第%d行，第%d列，需要指定元素“name”和“link”"
 
 #: ../src/dh-parser.c:495
 #, c-format
@@ -347,7 +345,7 @@ msgstr "编辑(_E)"
 
 #: ../src/dh-window.c:472
 msgid "_View"
-msgstr "查看(_V)"
+msgstr "视图(_V)"
 
 #: ../src/dh-window.c:473
 msgid "_Go"
@@ -421,15 +419,13 @@ msgstr "使用正常文本大小"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:647
-#, fuzzy
 msgid "Larger"
-msgstr "更大的文本(_L)"
+msgstr "更大"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:650
-#, fuzzy
 msgid "Smaller"
-msgstr "更小的文本(_M)"
+msgstr "更小"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
