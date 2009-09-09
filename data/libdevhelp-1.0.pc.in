@@ -5,7 +5,8 @@ includedir=@includedir@
 
 Name: devhelp
 Description: devhelp
-Requires: gtk+-2.0 @REQUIRES_LIBWNCK@
+Requires: gtk+-2.0
+Requires.private: @REQUIRES_LIBWNCK@
 Version: @VERSION@
 Libs: -L${libdir} -ldevhelp-1
 Cflags: -I${includedir}/devhelp-1.0
