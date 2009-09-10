@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-29 15:02+0200\n"
-"PO-Revision-Date: 2009-08-29 15:02+0200\n"
+"PO-Revision-Date: 2009-09-10 14:31+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Változó szélességű szöveg betűkészlete."
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Height of assistant window"
-msgstr "Segédablak magassága"
+msgstr "Asszisztensablak magassága"
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Height of main window"
@@ -66,7 +66,7 @@ msgstr "Kiválasztott lap, „content” (tartalom) vagy „search” (keresés)
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
-msgstr "A segédablak X-pozíciója."
+msgstr "Az asszisztensablak X-pozíciója."
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "The X position of the main window."
@@ -74,7 +74,7 @@ msgstr "A főablak X-pozíciója."
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "The Y position of the assistant window."
-msgstr "A segédablak Y-pozíciója."
+msgstr "Az asszisztensablak Y-pozíciója."
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The Y position of the main window."
@@ -82,7 +82,7 @@ msgstr "A főablak Y-pozíciója."
 
 #: ../data/devhelp.schemas.in.h:13
 msgid "The height of the assistant window."
-msgstr "A segédablak magassága."
+msgstr "Az asszisztensablak magassága."
 
 #: ../data/devhelp.schemas.in.h:14
 msgid "The height of the main window."
@@ -90,7 +90,7 @@ msgstr "A főablak magassága."
 
 #: ../data/devhelp.schemas.in.h:15
 msgid "The width of the assistant window."
-msgstr "A segédablak szélessége."
+msgstr "Az asszisztensablak szélessége."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
@@ -118,7 +118,7 @@ msgstr "Melyik lap van kiválasztva, „content” (tartalom) vagy „search” 
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Width of the assistant window"
-msgstr "Segédablak szélessége"
+msgstr "Asszisztensablak szélessége"
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Width of the index and search pane"
@@ -130,7 +130,7 @@ msgstr "Főablak szélessége"
 
 #: ../data/devhelp.schemas.in.h:25
 msgid "X position of assistant window"
-msgstr "Segédablak X-pozíciója"
+msgstr "Asszisztensablak X-pozíciója"
 
 #: ../data/devhelp.schemas.in.h:26
 msgid "X position of main window"
@@ -138,7 +138,7 @@ msgstr "Főablak X-pozíciója"
 
 #: ../data/devhelp.schemas.in.h:27
 msgid "Y position of assistant window"
-msgstr "Segédablak Y-pozíciója"
+msgstr "Asszisztensablak Y-pozíciója"
 
 #: ../data/devhelp.schemas.in.h:28
 msgid "Y position of main window"
@@ -163,7 +163,7 @@ msgstr "API dokumentáció megjelenítése a kurzornál található szóhoz"
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
 msgid "Devhelp - Assistant"
-msgstr "Devhelp – Segéd"
+msgstr "Devhelp – Asszisztens"
 
 #: ../src/dh-assistant-view.c:319
 msgid "Book:"
@@ -238,7 +238,7 @@ msgstr "A Devhelp ablakának előtérbe hozása aktív keresőmezővel"
 
 #: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
-msgstr "Keresés és találatok megjelenítése a segéd ablakában"
+msgstr "Keresés és találatok megjelenítése az asszisztens ablakban"
 
 #: ../src/dh-parser.c:80 ../src/dh-parser.c:174 ../src/dh-parser.c:238
 #: ../src/dh-parser.c:248
