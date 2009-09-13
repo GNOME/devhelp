@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-12 02:54+0200\n"
-"PO-Revision-Date: 2009-09-12 02:27+0200\n"
+"POT-Creation-Date: 2009-09-13 02:59+0200\n"
+"PO-Revision-Date: 2009-09-12 19:29+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -32,9 +32,8 @@ msgstr "Hjælpeprogram til udviklere"
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:438 ../src/dh-window.c:734 ../src/dh-window.c:1398
-#, fuzzy
 msgid "Devhelp"
-msgstr "Om Devhelp"
+msgstr "Devhelp"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -114,7 +113,6 @@ msgid "Use system fonts"
 msgstr "Brug systemskrifttyper"
 
 #: ../data/devhelp.schemas.in.h:19
-#, fuzzy
 msgid "Use the system default fonts."
 msgstr "Brug systemets standard-skrifttyper."
 
