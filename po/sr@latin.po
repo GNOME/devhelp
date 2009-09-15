@@ -3,9 +3,9 @@
 #
 # This file is distributed under the same license as the devhelp package.
 #
-# Maintainer: Бранко Ивановић <popeye@one.ekof.bg.ac.yu>
-# Translated on 2004-03-26 by: Данило Шеган <danilo@prevod.org>
-# Translated on 2009-09-13 by: Бранко Кокановић <branko.kokanovic@gmail.com>
+# Maintainer: Branko Ivanović <popeye@one.ekof.bg.ac.yu>
+# Translated on 2004-03-26 by: Danilo Šegan <danilo@prevod.org>
+# Translated on 2009-09-13 by: Branko Kokanović <branko.kokanovic@gmail.com>
 #
 msgid ""
 msgstr ""
@@ -14,7 +14,7 @@ msgstr ""
 "product=devhelp&component=general\n"
 "POT-Creation-Date: 2009-09-13 03:55+0000\n"
 "PO-Revision-Date: 2009-09-13 20:29+0200\n"
-"Last-Translator: Бранко Кокановић <branko.kokanovic@gmail.com>\n"
+"Last-Translator: Branko Kokanović <branko.kokanovic@gmail.com>\n"
 "Language-Team: Serbian (sr)  <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,194 +24,194 @@ msgstr ""
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
-msgstr "Програм за помоћ програмерима"
+msgstr "Program za pomoć programerima"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:438 ../src/dh-window.c:734 ../src/dh-window.c:1398
 msgid "Devhelp"
-msgstr "ДевХелп"
+msgstr "DevHelp"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr "Прегледник документације"
+msgstr "Preglednik dokumentacije"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed width text"
-msgstr "Фонт за текст утврђене ширине"
+msgstr "Font za tekst utvrđene širine"
 
 #: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
-msgstr "Фонт за текст"
+msgstr "Font za tekst"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width, such as code examples."
-msgstr "Фонт за текст утврђене ширине, као што су примери програмског кода."
+msgstr "Font za tekst utvrđene širine, kao što su primeri programskog koda."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "Фонт за текст променљиве ширине."
+msgstr "Font za tekst promenljive širine."
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Height of assistant window"
-msgstr "Висина прозора асистента"
+msgstr "Visina prozora asistenta"
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Height of main window"
-msgstr "Висина главног прозора"
+msgstr "Visina glavnog prozora"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Main window maximized state"
-msgstr "Стање увећања главног прозора"
+msgstr "Stanje uvećanja glavnog prozora"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Selected tab, \"content\" or \"search\""
-msgstr "Одабрани лист — „content“ (садржај) или „search“ (претрага)"
+msgstr "Odabrani list — „content“ (sadržaj) ili „search“ (pretraga)"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
-msgstr "X (водораван) положај прозора асистента."
+msgstr "X (vodoravan) položaj prozora asistenta."
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "The X position of the main window."
-msgstr "X (водораван) положај главног прозора."
+msgstr "X (vodoravan) položaj glavnog prozora."
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "The Y position of the assistant window."
-msgstr "Y (усправан) положај прозора асистента."
+msgstr "Y (uspravan) položaj prozora asistenta."
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The Y position of the main window."
-msgstr "Y (усправан) положај главног прозора."
+msgstr "Y (uspravan) položaj glavnog prozora."
 
 #: ../data/devhelp.schemas.in.h:13
 msgid "The height of the assistant window."
-msgstr "Висина прозора асистента."
+msgstr "Visina prozora asistenta."
 
 #: ../data/devhelp.schemas.in.h:14
 msgid "The height of the main window."
-msgstr "Висина главног прозора."
+msgstr "Visina glavnog prozora."
 
 #: ../data/devhelp.schemas.in.h:15
 msgid "The width of the assistant window."
-msgstr "Ширина прозора асистента."
+msgstr "Širina prozora asistenta."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
-msgstr "Ширина панела за садржај и претрагу."
+msgstr "Širina panela za sadržaj i pretragu."
 
 #: ../data/devhelp.schemas.in.h:17
 msgid "The width of the main window."
-msgstr "Ширина главног прозора."
+msgstr "Širina glavnog prozora."
 
 #: ../data/devhelp.schemas.in.h:18
 msgid "Use system fonts"
-msgstr "Користи фонтове окружења"
+msgstr "Koristi fontove okruženja"
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "Use the system default fonts."
-msgstr "Користи подразумеване фонтове из окружења."
+msgstr "Koristi podrazumevane fontove iz okruženja."
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "Whether the main window should start maximized or not."
-msgstr "Да ли се главни прозор покреће увећан или не."
+msgstr "Da li se glavni prozor pokreće uvećan ili ne."
 
 #: ../data/devhelp.schemas.in.h:21
 msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgstr ""
-"Одређује који лист ће бити одабрана, „content“ (садржај) или "
-"„search“ (претрага)."
+"Određuje koji list će biti odabrana, „content“ (sadržaj) ili "
+"„search“ (pretraga)."
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Width of the assistant window"
-msgstr "Ширина прозора асистента"
+msgstr "Širina prozora asistenta"
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Width of the index and search pane"
-msgstr "Ширина главног прозора"
+msgstr "Širina glavnog prozora"
 
 #: ../data/devhelp.schemas.in.h:24
 msgid "Width of the main window"
-msgstr "Ширина главног прозора"
+msgstr "Širina glavnog prozora"
 
 #: ../data/devhelp.schemas.in.h:25
 msgid "X position of assistant window"
-msgstr "Водоравни положај прозора асистента"
+msgstr "Vodoravni položaj prozora asistenta"
 
 #: ../data/devhelp.schemas.in.h:26
 msgid "X position of main window"
-msgstr "Водоравни положај главног прозора"
+msgstr "Vodoravni položaj glavnog prozora"
 
 #: ../data/devhelp.schemas.in.h:27
 msgid "Y position of assistant window"
-msgstr "Усправни положај прозора асистента"
+msgstr "Uspravni položaj prozora asistenta"
 
 #: ../data/devhelp.schemas.in.h:28
 msgid "Y position of main window"
-msgstr "Усправни положај главног прозора"
+msgstr "Uspravni položaj glavnog prozora"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
-msgstr "ДевХелп испомоћ"
+msgstr "DevHelp ispomoć"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "F2 ће позвати ДевХелп и тражити реч под курсором"
+msgstr "F2 će pozvati DevHelp i tražiti reč pod kursorom"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation"
-msgstr "Прикажи API документацију"
+msgstr "Prikaži API dokumentaciju"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:40
 msgid "Show API Documentation for the word at the cursor"
-msgstr "Прикажи API документацију за реч под курсором"
+msgstr "Prikaži API dokumentaciju za reč pod kursorom"
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
 msgid "Devhelp - Assistant"
-msgstr "Девхелп асистент"
+msgstr "Devhelp asistent"
 
 #: ../src/dh-assistant-view.c:319
 msgid "Book:"
-msgstr "Књига:"
+msgstr "Knjiga:"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:255
 msgid "Book"
-msgstr "Књига"
+msgstr "Knjiga"
 
 #. i18n: a "page" in a documentation book
 #: ../src/dh-link.c:258
 msgid "Page"
-msgstr "Страна"
+msgstr "Strana"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
 #: ../src/dh-link.c:262
 msgid "Keyword"
-msgstr "Кључна реч"
+msgstr "Ključna reč"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:267
 msgid "Function"
-msgstr "Функција"
+msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:272
 msgid "Struct"
-msgstr "Структура"
+msgstr "Struktura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:277
 msgid "Macro"
-msgstr "Макро"
+msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -225,44 +225,44 @@ msgstr "Enum"
 #. * untranslated.
 #: ../src/dh-link.c:287
 msgid "Type"
-msgstr "Тип"
+msgstr "Tip"
 
 #: ../src/dh-main.c:175
 msgid "Search for a keyword"
-msgstr "Тражи кључну реч"
+msgstr "Traži ključnu reč"
 
 #: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
-msgstr "Затвори све ДевХелп прозоре"
+msgstr "Zatvori sve DevHelp prozore"
 
 #: ../src/dh-main.c:185
 msgid "Display the version and exit"
-msgstr "Прикажи ознаку верзије и изађи"
+msgstr "Prikaži oznaku verzije i izađi"
 
 #: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
-msgstr "Издигни ДевХелп прозор са активним пољем за претрагу"
+msgstr "Izdigni DevHelp prozor sa aktivnim poljem za pretragu"
 
 #: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
-msgstr "Претражуј и прикажи све поготке у прозору асистента"
+msgstr "Pretražuj i prikaži sve pogotke u prozoru asistenta"
 
 #: ../src/dh-parser.c:81 ../src/dh-parser.c:178 ../src/dh-parser.c:242
 #: ../src/dh-parser.c:252
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Очекивао је „%s“, а добио „%s“ у линији %d, колони %d"
+msgstr "Očekivao je „%s“, a dobio „%s“ u liniji %d, koloni %d"
 
 #: ../src/dh-parser.c:98
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Неисправан простор имена „%s“ у линији %d, колони %d"
+msgstr "Neispravan prostor imena „%s“ u liniji %d, koloni %d"
 
 #: ../src/dh-parser.c:129
 #, c-format
 msgid ""
 "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
-msgstr "Елементи „title“, „name“ и „link“ су обавезни у линији %d, колони %d"
+msgstr "Elementi „title“, „name“ i „link“ su obavezni u liniji %d, koloni %d"
 
 #: ../src/dh-parser.c:197
 #, c-format
@@ -270,34 +270,34 @@ msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
 msgstr ""
-"Елементи „title“, „name“ и „link“ су обавезни унутар <sub> у линији %d, "
-"колони %d"
+"Elementi „title“, „name“ i „link“ su obavezni unutar <sub> u liniji %d, "
+"koloni %d"
 
 #: ../src/dh-parser.c:277
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"Елементи „title“, „name“ и „link“ су обавезни унутар „%s“ у линији %d, "
-"колони %d"
+"Elementi „title“, „name“ i „link“ su obavezni unutar „%s“ u liniji %d, "
+"koloni %d"
 
 #: ../src/dh-parser.c:290
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "Елемент „type“ је обавезан унутар <keyword> у линији %d, колони %d"
+msgstr "Element „type“ je obavezan unutar <keyword> u liniji %d, koloni %d"
 
 #: ../src/dh-parser.c:495
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "Не може да декомпресује књигу „%s“: %s"
+msgstr "Ne može da dekompresuje knjigu „%s“: %s"
 
 #: ../src/dh-search.c:503
 msgid "All books"
-msgstr "Све књиге"
+msgstr "Sve knjige"
 
 #: ../src/dh-search.c:581
 msgid "Search in:"
-msgstr "Тражи у:"
+msgstr "Traži u:"
 
 #: ../src/dh-window.c:82
 msgid "50%"
@@ -338,148 +338,148 @@ msgstr "400%"
 #: ../src/dh-window.c:433
 msgid "translator_credits"
 msgstr ""
-"Бранко Ивановић <popeye@one.ekof.bg.ac.yu>\n"
-"Данило Шеган <danilo@prevod.org>\n"
-"Горан Ракић grakic@devbase.net\n"
-"Бранко Кокановић <branko.kokanovic@gmail.com>\n"
+"Branko Ivanović <popeye@one.ekof.bg.ac.yu>\n"
+"Danilo Šegan <danilo@prevod.org>\n"
+"Goran Rakić grakic@devbase.net\n"
+"Branko Kokanović <branko.kokanovic@gmail.com>\n"
 "\n"
-"http://prevod.org — превод на српски језик."
+"http://prevod.org — prevod na srpski jezik."
 
 #: ../src/dh-window.c:440
 msgid "A developer's help browser for GNOME"
-msgstr "Читач помоћи за програмере у Гном окружењу"
+msgstr "Čitač pomoći za programere u Gnom okruženju"
 
 #: ../src/dh-window.c:470
 msgid "_File"
-msgstr "_Датотека"
+msgstr "_Datoteka"
 
 #: ../src/dh-window.c:471
 msgid "_Edit"
-msgstr "_Уређивање"
+msgstr "_Uređivanje"
 
 #: ../src/dh-window.c:472
 msgid "_View"
-msgstr "П_реглед"
+msgstr "P_regled"
 
 #: ../src/dh-window.c:473
 msgid "_Go"
-msgstr "_Иди"
+msgstr "_Idi"
 
 #: ../src/dh-window.c:474
 msgid "_Help"
-msgstr "_Помоћ"
+msgstr "_Pomoć"
 
 #. File menu
 #: ../src/dh-window.c:477
 msgid "_New Window"
-msgstr "_Нови прозор"
+msgstr "_Novi prozor"
 
 #: ../src/dh-window.c:479
 msgid "New _Tab"
-msgstr "Нови _лист"
+msgstr "Novi _list"
 
 #: ../src/dh-window.c:481
 msgid "_Print..."
-msgstr "_Штампај..."
+msgstr "_Štampaj..."
 
 #: ../src/dh-window.c:493 ../src/eggfindbar.c:342
 msgid "Find Next"
-msgstr "Нађи следеће"
+msgstr "Nađi sledeće"
 
 #: ../src/dh-window.c:495 ../src/eggfindbar.c:329
 msgid "Find Previous"
-msgstr "Нађи претходно"
+msgstr "Nađi prethodno"
 
 #: ../src/dh-window.c:502
 msgid "Go to the previous page"
-msgstr "Иди на претходну страну"
+msgstr "Idi na prethodnu stranu"
 
 #: ../src/dh-window.c:505
 msgid "Go to the next page"
-msgstr "Иди на следећу страну"
+msgstr "Idi na sledeću stranu"
 
 #: ../src/dh-window.c:508
 msgid "_Contents Tab"
-msgstr "Лист са _садржајем"
+msgstr "List sa _sadržajem"
 
 #: ../src/dh-window.c:511
 msgid "_Search Tab"
-msgstr "Лист са _претрагом:"
+msgstr "List sa _pretragom:"
 
 #. View menu
 #: ../src/dh-window.c:515
 msgid "_Larger Text"
-msgstr "_Увећај текст"
+msgstr "_Uvećaj tekst"
 
 #: ../src/dh-window.c:516
 msgid "Increase the text size"
-msgstr "Увећава величину текста"
+msgstr "Uvećava veličinu teksta"
 
 #: ../src/dh-window.c:518
 msgid "S_maller Text"
-msgstr "У_мањи текст"
+msgstr "U_manji tekst"
 
 #: ../src/dh-window.c:519
 msgid "Decrease the text size"
-msgstr "Смањује величину текста"
+msgstr "Smanjuje veličinu teksta"
 
 #: ../src/dh-window.c:521
 msgid "_Normal Size"
-msgstr "_Нормална величина"
+msgstr "_Normalna veličina"
 
 #: ../src/dh-window.c:522
 msgid "Use the normal text size"
-msgstr "Користи нормалну величину текста"
+msgstr "Koristi normalnu veličinu teksta"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:647
 msgid "Larger"
-msgstr "Веће"
+msgstr "Veće"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:650
 msgid "Smaller"
-msgstr "Мање"
+msgstr "Manje"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
 #: ../src/dh-window.c:789
 msgid "About Devhelp"
-msgstr "О ДевХелпу"
+msgstr "O DevHelpu"
 
 #: ../src/dh-window.c:794
 msgid "Preferences..."
-msgstr "Поставке..."
+msgstr "Postavke..."
 
 #: ../src/dh-window.c:837
 msgid "Contents"
-msgstr "Садржај"
+msgstr "Sadržaj"
 
 #: ../src/dh-window.c:847
 msgid "Search"
-msgstr "Тражи"
+msgstr "Traži"
 
 #: ../src/dh-window.c:1216 ../src/dh-window.c:1425
 msgid "Empty Page"
-msgstr "Празна страница"
+msgstr "Prazna stranica"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
-msgstr "Тражи:"
+msgstr "Traži:"
 
 #: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
-msgstr "Пронађи претходно појављивање у тексту"
+msgstr "Pronađi prethodno pojavljivanje u tekstu"
 
 #: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
-msgstr "Пронађи наредно појављивање у тексту"
+msgstr "Pronađi naredno pojavljivanje u tekstu"
 
 #: ../src/eggfindbar.c:358
 msgid "C_ase Sensitive"
-msgstr "Величин_а слова је битна"
+msgstr "Veličin_a slova je bitna"
 
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
-msgstr "Омогући разликовање величине слова"
+msgstr "Omogući razlikovanje veličine slova"
