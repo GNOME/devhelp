@@ -923,14 +923,14 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
                 return TRUE;
         }
 
+        if (strcmp (uri, "about:blank") == 0) {
+                return FALSE;
+        }
+
         if (strncmp (uri, "file://", 7) != 0) {
                 webkit_web_policy_decision_ignore (policy_decision);
                 gtk_show_uri (NULL, uri, GDK_CURRENT_TIME, NULL);
                 return TRUE;
-        }
-
-        if (strcmp (uri, "about:blank") == 0) {
-                return FALSE;
         }
 
         if (web_view == window_get_active_web_view (window)) {
