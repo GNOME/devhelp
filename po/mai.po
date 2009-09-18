@@ -1,0 +1,467 @@
+# translation of devhelp.master.po to Maithili
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sangeeta Kumari <sangeeta09@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp.master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
+"POT-Creation-Date: 2009-09-11 06:43+0000\n"
+"PO-Revision-Date: 2009-09-11 20:32+0530\n"
+"Last-Translator: Sangeeta Kumari <sangeeta09@gmail.com>\n"
+"Language-Team: Maithili <maithili.sf.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+
+#: ../data/devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr ""
+
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../src/dh-window.c:438 ../src/dh-window.c:734 ../src/dh-window.c:1398
+msgid "Devhelp"
+msgstr ""
+
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed width text"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "पाठ क'लेल फाँट"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width, such as code examples."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "परिवर्तनशील चओड़ाइ क' सँग पाठ क'लेल फाँट"
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of assistant window"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Height of main window"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Selected tab, \"content\" or \"search\""
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the assistant window."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The X position of the main window."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The Y position of the assistant window."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The Y position of the main window."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The height of the assistant window."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "The height of the main window."
+msgstr "मुख्य विंडो क' उँचाइ."
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "The width of the assistant window."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "The width of the index and search pane."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "The width of the main window."
+msgstr "मुख्य विंडो क' चओड़ाइ."
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Use system fonts"
+msgstr "सिस्टम फाँट क' प्रयोग करू "
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Use the system default fonts."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Whether the main window should start maximized or not."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Width of the assistant window"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:23
+msgid "Width of the index and search pane"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:24
+msgid "Width of the main window"
+msgstr "मुख्य विंडो क' चओड़ाइ."
+
+#: ../data/devhelp.schemas.in.h:25
+msgid "X position of assistant window"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:26
+msgid "X position of main window"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:27
+msgid "Y position of assistant window"
+msgstr ""
+
+#: ../data/devhelp.schemas.in.h:28
+msgid "Y position of main window"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+msgid "Devhelp support"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+msgid "Show API Documentation for the word at the cursor"
+msgstr ""
+
+#. i18n: Please don't translate "Devhelp".
+#: ../src/dh-assistant.c:74
+msgid "Devhelp - Assistant"
+msgstr ""
+
+#: ../src/dh-assistant-view.c:319
+msgid "Book:"
+msgstr ""
+
+#. i18n: a documentation book
+#: ../src/dh-link.c:255
+msgid "Book"
+msgstr "पुस्तक"
+
+#. i18n: a "page" in a documentation book
+#: ../src/dh-link.c:258
+msgid "Page"
+msgstr "पृष्ठ"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: ../src/dh-link.c:262
+msgid "Keyword"
+msgstr "कीवर्ड"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:267
+msgid "Function"
+msgstr "फंक्शन"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:272
+msgid "Struct"
+msgstr "सट्रक्ट"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:277
+msgid "Macro"
+msgstr "मैक्रो"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:282
+msgid "Enum"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:287
+msgid "Type"
+msgstr "प्रकार"
+
+#: ../src/dh-main.c:175
+msgid "Search for a keyword"
+msgstr ""
+
+#: ../src/dh-main.c:180
+msgid "Quit any running Devhelp"
+msgstr ""
+
+#: ../src/dh-main.c:185
+msgid "Display the version and exit"
+msgstr ""
+
+#: ../src/dh-main.c:190
+msgid "Focus the Devhelp window with the search field active"
+msgstr ""
+
+#: ../src/dh-main.c:195
+msgid "Search and display any hit in the assistant window"
+msgstr ""
+
+#: ../src/dh-parser.c:81 ../src/dh-parser.c:178 ../src/dh-parser.c:242
+#: ../src/dh-parser.c:252
+#, c-format
+msgid "Expected '%s' got '%s' at line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:98
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:129
+#, c-format
+msgid "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:197
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
+msgstr ""
+
+#: ../src/dh-parser.c:277
+#, c-format
+msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:290
+#, c-format
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:495
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr ""
+
+#: ../src/dh-search.c:503
+msgid "All books"
+msgstr ""
+
+#: ../src/dh-search.c:581
+msgid "Search in:"
+msgstr ""
+
+#: ../src/dh-window.c:82
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:83
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:84
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:85
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:86
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:87
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:88
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:89
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:90
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:433
+msgid "translator_credits"
+msgstr "संगीता कुमारी (sangeeta09@gmail.com)"
+
+#: ../src/dh-window.c:440
+msgid "A developer's help browser for GNOME"
+msgstr ""
+
+#: ../src/dh-window.c:470
+msgid "_File"
+msgstr "फाइल (_F)"
+
+#: ../src/dh-window.c:471
+msgid "_Edit"
+msgstr "संपादन (_E)"
+
+#: ../src/dh-window.c:472
+msgid "_View"
+msgstr "देखू (_V)"
+
+#: ../src/dh-window.c:473
+msgid "_Go"
+msgstr "जाउ (_G)"
+
+#: ../src/dh-window.c:474
+msgid "_Help"
+msgstr "मद्दति (_H)"
+
+#. File menu
+#: ../src/dh-window.c:477
+msgid "_New Window"
+msgstr "नवीन विंडो (_N)"
+
+#: ../src/dh-window.c:479
+msgid "New _Tab"
+msgstr "नवीन टैब (_T)"
+
+#: ../src/dh-window.c:481
+msgid "_Print..."
+msgstr "छापू... (_P)"
+
+#: ../src/dh-window.c:493 ../src/eggfindbar.c:342
+msgid "Find Next"
+msgstr "अगिला खोजू"
+
+#: ../src/dh-window.c:495 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "पछिला खोजू"
+
+#: ../src/dh-window.c:502
+msgid "Go to the previous page"
+msgstr "पछिला पृष्ठ पर जाउ"
+
+#: ../src/dh-window.c:505
+msgid "Go to the next page"
+msgstr "अगिला पृष्ठ पर जाउ"
+
+#: ../src/dh-window.c:508
+msgid "_Contents Tab"
+msgstr ""
+
+#: ../src/dh-window.c:511
+msgid "_Search Tab"
+msgstr ""
+
+#. View menu
+#: ../src/dh-window.c:515
+msgid "_Larger Text"
+msgstr "पैघ पाठ (_L)"
+
+#: ../src/dh-window.c:516
+msgid "Increase the text size"
+msgstr "पाठ क' आकार बढ़ाबू"
+
+#: ../src/dh-window.c:518
+msgid "S_maller Text"
+msgstr "छोट पाठ (_m)"
+
+#: ../src/dh-window.c:519
+msgid "Decrease the text size"
+msgstr "पाठ क' आकार घटाबू"
+
+#: ../src/dh-window.c:521
+msgid "_Normal Size"
+msgstr "सामान्य आकार (_N)"
+
+#: ../src/dh-window.c:522
+msgid "Use the normal text size"
+msgstr "सामान्य पाठ आकार उपयोगमे लिअ'"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:647
+msgid "Larger"
+msgstr "पैघ"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:650
+msgid "Smaller"
+msgstr "छोट"
+
+#. i18n: please don't translate
+#. * "Devhelp", it's a name, not a
+#. * generic word.
+#: ../src/dh-window.c:789
+msgid "About Devhelp"
+msgstr ""
+
+#: ../src/dh-window.c:794
+msgid "Preferences..."
+msgstr "वरीयतासभ ..."
+
+#: ../src/dh-window.c:837
+msgid "Contents"
+msgstr "विषय सूची"
+
+#: ../src/dh-window.c:847
+msgid "Search"
+msgstr "खोजू"
+
+#: ../src/dh-window.c:1216 ../src/dh-window.c:1425
+msgid "Empty Page"
+msgstr ""
+
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "खोजू:"
+
+#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
+msgid "Find previous occurrence of the search string"
+msgstr "खोज स्ट्रिंग क' पछिला उपस्थिति खोजू"
+
+#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
+msgid "Find next occurrence of the search string"
+msgstr "खोज स्ट्रिंग क' अगिला उपस्थिति खोजू"
+
+#: ../src/eggfindbar.c:358
+msgid "C_ase Sensitive"
+msgstr "स्थिति क' प्रति संवेदनशील (_a)"
+
+#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
+msgid "Toggle case sensitive search"
+msgstr "स्थिति संवेदनशील खोज टॉगल करू"
+
