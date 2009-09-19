@@ -9,10 +9,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.23\n"
+"Project-Id-Version: devhelp 2.28.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-07 20:48+0800\n"
-"PO-Revision-Date: 2009-07-07 20:49+0800\n"
+"POT-Creation-Date: 2009-09-19 20:50+0800\n"
+"PO-Revision-Date: 2009-09-19 20:51+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,14 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "程式開發者的說明書瀏覽程式"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../src/dh-window.c:438 ../src/dh-window.c:734 ../src/dh-window.c:1398
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "文件瀏覽器"
 
@@ -147,11 +154,11 @@ msgstr "Devhelp 支援"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "使得按 F2 會以游標所在的文字啟動 Devhelp"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation"
 msgstr "顯示 API 文件"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp/devhelp.py:40
 msgid "Show API Documentation for the word at the cursor"
 msgstr "以游標所在的文字顯示其 API 文件"
 
@@ -160,171 +167,171 @@ msgstr "以游標所在的文字顯示其 API 文件"
 msgid "Devhelp - Assistant"
 msgstr "Devhelp - 助理"
 
-#: ../src/dh-assistant-view.c:316
+#: ../src/dh-assistant-view.c:319
 msgid "Book:"
 msgstr "書本："
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:245
+#: ../src/dh-link.c:255
 msgid "Book"
 msgstr "書本"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:248
+#: ../src/dh-link.c:258
 msgid "Page"
 msgstr "頁面"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:252
+#: ../src/dh-link.c:262
 msgid "Keyword"
 msgstr "關鍵字"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:257
+#: ../src/dh-link.c:267
 msgid "Function"
 msgstr "函數"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:262
+#: ../src/dh-link.c:272
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:277
 msgid "Macro"
 msgstr "巨集"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:282
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:287
 msgid "Type"
 msgstr "類型"
 
-#: ../src/dh-main.c:167
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "搜尋關鍵字"
 
-#: ../src/dh-main.c:172
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "結束所有執行中的 Devhelp 進程"
 
-#: ../src/dh-main.c:177
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "顯示版本號及離開"
 
-#: ../src/dh-main.c:182
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "使用搜尋欄位時將焦點定在 Devhelp 視窗上"
 
-#: ../src/dh-main.c:187
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "在助理視窗中搜尋並顯示任何提示"
 
-#: ../src/dh-parser.c:80 ../src/dh-parser.c:169 ../src/dh-parser.c:233
-#: ../src/dh-parser.c:243
+#: ../src/dh-parser.c:81 ../src/dh-parser.c:178 ../src/dh-parser.c:242
+#: ../src/dh-parser.c:252
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
 msgstr "第 %3$d 行第 %4$d 字應該是‘%1$s’，但實際是‘%2$s’"
 
-#: ../src/dh-parser.c:97
+#: ../src/dh-parser.c:98
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "第 %2$d 行第 %3$d 字出現無效的 namespace‘%1$s’"
 
-#: ../src/dh-parser.c:122
+#: ../src/dh-parser.c:129
 #, c-format
 msgid ""
 "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
 msgstr "第 %d 行第 %d 字需要指定 \"title\"，\"name\"及\"link\"元素"
 
-#: ../src/dh-parser.c:188
+#: ../src/dh-parser.c:197
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
 msgstr "第 %d 行第 %d 字的 <sub> 之內需要指定\"name\"及\"link\"元素"
 
-#: ../src/dh-parser.c:268
+#: ../src/dh-parser.c:277
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr "「%s」的第 %d 行第 %d 字需要指定\"name\"及\"link\"元素"
 
-#: ../src/dh-parser.c:281
+#: ../src/dh-parser.c:290
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "<keyword> 的第 %d 行第 %d 字需要指定\"type\"元素"
 
-#: ../src/dh-parser.c:486
+#: ../src/dh-parser.c:495
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "無法將說明書‘%s’解壓：%s"
 
-#: ../src/dh-search.c:481
+#: ../src/dh-search.c:503
 msgid "All books"
 msgstr "所有書本"
 
-#: ../src/dh-search.c:537
+#: ../src/dh-search.c:581
 msgid "Search in:"
 msgstr "搜尋於："
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:82
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:83
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:84
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:85
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:86
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:87
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:79
+#: ../src/dh-window.c:88
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:80
+#: ../src/dh-window.c:89
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:90
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:364
+#: ../src/dh-window.c:433
 msgid "translator_credits"
 msgstr ""
 "如對翻譯有任何意見，請送一封電子郵件給\n"
 "以下地址，GNOME 翻譯隊伍會盡快回覆你：\n"
-"community@linuxhall.org\n"
+"zh-l10n@lists.linux.org.tw\n"
 "\n"
 "Hialan Liu <hialan.liu@gmail.com>, 2008\n"
 "Woodman Tuen <wmtuen@gmail.com>, 2007\n"
@@ -332,122 +339,122 @@ msgstr ""
 "Abel Cheung <abel@oaka.org>, 2003-04\n"
 "Joe Man <trmetal@yahoo.com.hk>, 2001"
 
-#: ../src/dh-window.c:369
+#: ../src/dh-window.c:440
 msgid "A developer's help browser for GNOME"
 msgstr "GNOME 的程式開發者說明文件瀏覽程式"
 
-#: ../src/dh-window.c:381
+#: ../src/dh-window.c:470
 msgid "_File"
 msgstr "檔案(_F)"
 
-#: ../src/dh-window.c:382
+#: ../src/dh-window.c:471
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../src/dh-window.c:383
+#: ../src/dh-window.c:472
 msgid "_View"
 msgstr "檢視(_V)"
 
-#: ../src/dh-window.c:384
+#: ../src/dh-window.c:473
 msgid "_Go"
 msgstr "前往(_G)"
 
-#: ../src/dh-window.c:385
+#: ../src/dh-window.c:474
 msgid "_Help"
 msgstr "求助(_H)"
 
 #. File menu
-#: ../src/dh-window.c:388
+#: ../src/dh-window.c:477
 msgid "_New Window"
 msgstr "新增視窗(_N)"
 
-#: ../src/dh-window.c:390
+#: ../src/dh-window.c:479
 msgid "New _Tab"
 msgstr "新增分頁(_T)"
 
-#: ../src/dh-window.c:392
+#: ../src/dh-window.c:481
 msgid "_Print..."
 msgstr "打印(_P)..."
 
-#: ../src/dh-window.c:404 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:493 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "尋找下一筆"
 
-#: ../src/dh-window.c:406 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:495 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "尋找上一筆"
 
-#: ../src/dh-window.c:413
+#: ../src/dh-window.c:502
 msgid "Go to the previous page"
 msgstr "前往上一頁"
 
-#: ../src/dh-window.c:416
+#: ../src/dh-window.c:505
 msgid "Go to the next page"
 msgstr "前往下一頁"
 
-#: ../src/dh-window.c:419
+#: ../src/dh-window.c:508
 msgid "_Contents Tab"
 msgstr "內容分頁(_C)"
 
-#: ../src/dh-window.c:422
+#: ../src/dh-window.c:511
 msgid "_Search Tab"
 msgstr "搜尋分頁(_S)"
 
 #. View menu
-#: ../src/dh-window.c:426
+#: ../src/dh-window.c:515
 msgid "_Larger Text"
 msgstr "放大文字(_L)"
 
-#: ../src/dh-window.c:427
+#: ../src/dh-window.c:516
 msgid "Increase the text size"
 msgstr "增加文字大小"
 
-#: ../src/dh-window.c:429
+#: ../src/dh-window.c:518
 msgid "S_maller Text"
 msgstr "縮小文字(_M)"
 
-#: ../src/dh-window.c:430
+#: ../src/dh-window.c:519
 msgid "Decrease the text size"
 msgstr "降低文字大小"
 
-#: ../src/dh-window.c:432
+#: ../src/dh-window.c:521
 msgid "_Normal Size"
 msgstr "正常大小(_N)"
 
-#: ../src/dh-window.c:433
+#: ../src/dh-window.c:522
 msgid "Use the normal text size"
 msgstr "使用一般文字大小"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:530
+#: ../src/dh-window.c:647
 msgid "Larger"
 msgstr "放大"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:533
+#: ../src/dh-window.c:650
 msgid "Smaller"
 msgstr "縮小"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:661
+#: ../src/dh-window.c:789
 msgid "About Devhelp"
 msgstr "關於 Devhelp"
 
-#: ../src/dh-window.c:666
+#: ../src/dh-window.c:794
 msgid "Preferences..."
 msgstr "偏好設定..."
 
-#: ../src/dh-window.c:709
+#: ../src/dh-window.c:837
 msgid "Contents"
 msgstr "內容"
 
-#: ../src/dh-window.c:719
+#: ../src/dh-window.c:847
 msgid "Search"
 msgstr "搜尋"
 
-#: ../src/dh-window.c:1070 ../src/dh-window.c:1279
+#: ../src/dh-window.c:1216 ../src/dh-window.c:1425
 msgid "Empty Page"
 msgstr "空白頁"
 
