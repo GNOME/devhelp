@@ -1,3 +1,19 @@
+NEW in 2.28.0
+==============
+
+Fixed bugs:
+
+ - #594633, Remove libwnck from Requires in .pc file
+ - #595567, devhelp launches along with a spurious empty browser window
+
+Updated translations: bg, cs, da, fi, gl, hu, mai, ro, sl, sr@latin,
+sr, th, uk, zh_CN, zh_HK, zh_TW
+
+Many thanks to all contributors: Gabor Kelemen, Lucas Lommer, Branko
+Kokanović, Rajesh Ranjan, Alexander Shopov, Ilkka Tuohela, Ask H. Larsen,
+Fran Diéguez, Yanko Kaneti, Theppitak Karoonboonyanan, Matej Urbančič,
+Adi Roiban, Aron Xu, Chao-Hsiung Liao, Maxim V. Dziumanenko
+
 NEW in 2.27.92:
 ===============
 
