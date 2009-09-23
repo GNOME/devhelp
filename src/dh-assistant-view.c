@@ -161,9 +161,18 @@ find_in_buffer (const gchar *buffer,
         return NULL;
 }
 
-static void
-assistant_view_set_link (DhAssistantView *view,
-                         DhLink          *link)
+/**
+ * dh_assistant_view_set_link:
+ * @view: an devhelp assistant view
+ * @link: the #DhLink
+ *
+ * Open @link in the assistant view, if %NULL the view will be blanked.
+ *
+ * Return value: %TRUE if the requested link is open, %FALSE otherwise.
+ **/
+gboolean
+dh_assistant_view_set_link (DhAssistantView *view,
+                            DhLink          *link)
 {
         DhAssistantViewPriv *priv;
         gchar               *uri;
@@ -178,12 +187,12 @@ assistant_view_set_link (DhAssistantView *view,
         const gchar         *start;
         const gchar         *end;
 
-        g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
+        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), FALSE);
 
         priv = GET_PRIVATE (view);
 
         if (priv->link == link) {
-                return;
+                return TRUE;
         }
 
         if (priv->link) {
@@ -195,7 +204,7 @@ assistant_view_set_link (DhAssistantView *view,
                 link = dh_link_ref (link);
         } else {
                 webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
-                return;
+                return TRUE;
         }
 
         uri = dh_link_get_uri (link);
@@ -206,16 +215,16 @@ assistant_view_set_link (DhAssistantView *view,
                 g_free (uri);
         } else {
                 g_free (uri);
-                return;
+                return FALSE;
         }
 
         if (g_str_has_prefix (filename, "file://"))
             offset = 7;
-        
+
         file = g_mapped_file_new (filename + offset, FALSE, NULL);
         if (!file) {
                 g_free (filename);
-                return;
+                return FALSE;
         }
 
         contents = g_mapped_file_get_contents (file);
@@ -344,6 +353,8 @@ assistant_view_set_link (DhAssistantView *view,
 #endif
 
         g_free (filename);
+
+        return TRUE;
 }
 
 gboolean
@@ -407,11 +418,11 @@ dh_assistant_view_search (DhAssistantView *view,
 
         if (exact_link) {
                 /*g_print ("exact hit: '%s' '%s'\n", exact_link->name, str);*/
-                assistant_view_set_link (view, exact_link);
+                dh_assistant_view_set_link (view, exact_link);
         }
         else if (prefix_link) {
                 /*g_print ("prefix hit: '%s' '%s'\n", prefix_link->name, str);*/
-                assistant_view_set_link (view, prefix_link);
+                dh_assistant_view_set_link (view, prefix_link);
         } else {
                 /*g_print ("no hit\n");*/
                 /*assistant_view_set_link (view, NULL);*/

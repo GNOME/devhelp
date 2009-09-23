@@ -23,6 +23,7 @@
 
 #include <webkit/webkit.h>
 #include "dh-base.h"
+#include "dh-link.h"
 
 G_BEGIN_DECLS
 
@@ -51,7 +52,8 @@ gboolean   dh_assistant_view_search   (DhAssistantView *view,
 DhBase*    dh_assistant_view_get_base (DhAssistantView *view);
 void       dh_assistant_view_set_base (DhAssistantView *view,
                                        DhBase          *base);
-
+gboolean   dh_assistant_view_set_link (DhAssistantView *view,
+                                       DhLink          *link);
 G_END_DECLS
 
 #endif /* __DH_ASSISTANT_VIEW_H__ */
