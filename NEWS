@@ -1,4 +1,11 @@
-NEW in 2.28.0
+NEW in 2.28.0.1:
+================
+
+Fixed bugs:
+
+ - badly generated configure file
+
+NEW in 2.28.0:
 ==============
 
 Fixed bugs:
