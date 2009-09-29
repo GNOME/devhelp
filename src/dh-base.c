@@ -74,6 +74,8 @@ base_finalize (GObject *object)
         priv = GET_PRIVATE (object);
 
         /* FIXME: Free things... */
+        g_hash_table_destroy (priv->books);
+        g_node_destroy (priv->book_tree);
 
         G_OBJECT_CLASS (dh_base_parent_class)->finalize (object);
 }
