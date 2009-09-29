@@ -38,7 +38,6 @@ typedef struct {
 	GMarkupParseContext *context;
 
 	const gchar         *path;
-	gchar               *base;
 
 	/* Top node of book */
 	GNode               *book_node;
@@ -67,7 +66,7 @@ parser_start_node_book (DhParser             *parser,
         gint         i, j;
         gint         line, col;
         gchar       *title = NULL;
-        const gchar *base = NULL;
+        gchar *base = NULL;
         const gchar *name = NULL;
         const gchar *uri = NULL;
         const gchar *lang = NULL;
@@ -111,7 +110,7 @@ parser_start_node_book (DhParser             *parser,
                         }
                 }
                 else if (g_ascii_strcasecmp (attribute_names[i], "base") == 0) {
-                        base = attribute_values[i];
+                        base = g_strdup (attribute_values[i]);
 			}
                 else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
                         uri = attribute_values[i];
@@ -133,19 +132,18 @@ parser_start_node_book (DhParser             *parser,
                 return;
         }
 
-        if (base) {
-                parser->base = g_strdup (base);
-        } else {
-                parser->base = g_path_get_dirname (parser->path);
+        if (!base) {
+                base = g_path_get_dirname (parser->path);
         }
 
         link = dh_link_new (DH_LINK_TYPE_BOOK,
-                            parser->base,
+                            base,
                             name,
                             title,
                             NULL,
                             NULL,
                             uri);
+        g_free (base);
 
         *parser->keywords = g_list_prepend (*parser->keywords, link);
 
