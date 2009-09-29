@@ -690,6 +690,9 @@ view_setup_fonts (WebKitWebView *view)
                       "serif-font-family", variable_name,
                       "default-font-size", (guint) variable_size,
                       NULL);
+
+        g_free (variable_name);
+        g_free (fixed_name);
 }
 
 static void
