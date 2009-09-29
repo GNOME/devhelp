@@ -54,6 +54,7 @@ GtkWidget *  dh_base_get_window                      (DhBase *base);
 GtkWidget *  dh_base_get_window_on_current_workspace (DhBase *base);
 GNode *      dh_base_get_book_tree                   (DhBase *base);
 GList *      dh_base_get_keywords                    (DhBase *base);
+void         dh_base_quit                            (DhBase *base);
 
 G_END_DECLS
 

@@ -215,7 +215,7 @@ static void
 window_activate_quit (GtkAction *action,
                       DhWindow  *window)
 {
-        gtk_main_quit ();
+        dh_base_quit (window->priv->base);
 }
 
 static void

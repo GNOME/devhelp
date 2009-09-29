@@ -599,3 +599,16 @@ dh_base_get_window (DhBase *base)
 
         return window;
 }
+
+void
+dh_base_quit (DhBase *base)
+{
+        DhBasePriv *priv = GET_PRIVATE (base);
+
+        /* Make sure all of the windows get a chance to release their resources
+         * properly.  As they get destroyed,
+         * base_window_or_assistant_finalized_cb() will be called, and when the
+         * last one is removed, we will quit */
+        g_slist_foreach (priv->windows, (GFunc)gtk_widget_destroy, NULL);
+        g_slist_foreach (priv->assistants, (GFunc)gtk_widget_destroy, NULL);
+}
