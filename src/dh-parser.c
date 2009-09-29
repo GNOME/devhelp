@@ -157,12 +157,13 @@ parser_start_node_book (DhParser             *parser,
                             uri);
         g_free (base);
 
-        *parser->keywords = g_list_prepend (*parser->keywords, link);
+        *parser->keywords = g_list_prepend (*parser->keywords, dh_link_ref (link));
 
-        parser->book_node = g_node_new (link);
+        parser->book_node = g_node_new (dh_link_ref (link));
         g_node_prepend (parser->book_tree, parser->book_node);
         parser->parent = parser->book_node;
         g_free (title);
+        dh_link_unref (link);
 }
 
 static void
