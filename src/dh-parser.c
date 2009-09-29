@@ -56,6 +56,18 @@ typedef struct {
 } DhParser;
 
 static void
+dh_parser_free (DhParser *parser)
+{
+        // NOTE: priv->book_tree and priv->keywords do not need to be freed
+        // because they're only used to store the locations for the return
+        // params of dh_parser_read_file()
+
+        g_markup_parse_context_free (parser->context);
+        g_free (parser->m_parser);
+        g_free (parser);
+}
+
+static void
 parser_start_node_book (DhParser             *parser,
                         GMarkupParseContext  *context,
                         const gchar          *node_name,
@@ -600,9 +612,7 @@ dh_parser_read_file (const gchar  *path,
 	if (io) {
                 g_io_channel_unref (io);
         }
-	g_markup_parse_context_free (parser->context);
-	g_free (parser->m_parser);
-	g_free (parser);
+	dh_parser_free (parser);
 
 	return result;
 }
