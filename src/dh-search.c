@@ -478,10 +478,15 @@ search_combo_row_separator_func (GtkTreeModel *model,
 {
         char *label;
         char *link;
+        gboolean result;
 
         gtk_tree_model_get (model, iter, 0, &label, 1, &link, -1);
 
-        return (link == NULL && label == NULL);
+        result = (link == NULL && label == NULL);
+        g_free (label);
+        g_free (link);
+
+        return result;
 }
 
 static GtkWidget *
