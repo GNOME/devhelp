@@ -67,6 +67,13 @@ static void base_add_xcode_docsets (DhBase      *base,
 static DhBase *base_instance;
 
 static void
+unref_node_link (GNode *node, gpointer data)
+{
+    dh_link_unref (node->data);
+    dh_link_unref (node->data);
+}
+
+static void
 base_finalize (GObject *object)
 {
         DhBasePriv *priv;
@@ -75,7 +82,16 @@ base_finalize (GObject *object)
 
         /* FIXME: Free things... */
         g_hash_table_destroy (priv->books);
+        g_node_traverse (priv->book_tree,
+                         G_IN_ORDER,
+                         G_TRAVERSE_ALL,
+                         -1,
+                         (GNodeTraverseFunc)unref_node_link,
+                         NULL);
         g_node_destroy (priv->book_tree);
+
+        g_list_foreach (priv->keywords, (GFunc)dh_link_unref, NULL);
+        g_list_free (priv->keywords);
 
         G_OBJECT_CLASS (dh_base_parent_class)->finalize (object);
 }
