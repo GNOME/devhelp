@@ -399,6 +399,7 @@ search_complete_idle (DhSearch *search)
                 gtk_editable_set_position (GTK_EDITABLE (priv->entry), length);
                 gtk_editable_select_region (GTK_EDITABLE (priv->entry),
                                             length, -1);
+                g_free (completed);
         }
 
         priv->idle_complete = 0;
