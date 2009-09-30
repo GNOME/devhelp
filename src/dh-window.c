@@ -126,7 +126,8 @@ static void           window_find_next_cb            (GtkEntry        *entry,
 static void           window_findbar_close_cb        (GtkWidget       *widget,
                                                       DhWindow        *window);
 static GtkWidget *    window_new_tab_label           (DhWindow        *window,
-                                                      const gchar     *label);
+                                                      const gchar     *label,
+                                                      const GtkWidget *parent);
 static int            window_open_new_tab            (DhWindow        *window,
                                                       const gchar     *location,
                                                       gboolean         switch_focus);
@@ -137,6 +138,8 @@ static void           window_update_title            (DhWindow        *window,
 static void           window_tab_set_title           (DhWindow        *window,
                                                       WebKitWebView   *web_view,
                                                       const gchar     *title);
+static void           window_close_tab               (DhWindow *window,
+                                                      gint      page_num);
 
 G_DEFINE_TYPE (DhWindow, dh_window, GTK_TYPE_WINDOW);
 
@@ -178,16 +181,14 @@ window_activate_print (GtkAction *action,
 }
 
 static void
-window_activate_close (GtkAction *action,
-                       DhWindow  *window)
+window_close_tab (DhWindow *window,
+                  gint      page_num)
 {
         DhWindowPriv *priv;
-        gint          page_num;
         gint          pages;
 
         priv = window->priv;
 
-        page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
         gtk_notebook_remove_page (GTK_NOTEBOOK (priv->notebook), page_num);
 
         pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
@@ -198,6 +199,16 @@ window_activate_close (GtkAction *action,
         else if (pages == 1) {
                 gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
         }
+}
+
+static void
+window_activate_close (GtkAction *action,
+                       DhWindow  *window)
+{
+        gint          page_num;
+
+        page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (window->priv->notebook));
+        window_close_tab (window, page_num);
 }
 
 static void
@@ -1213,7 +1224,7 @@ window_open_new_tab (DhWindow    *window,
         gtk_container_add (GTK_CONTAINER (scrolled_window), view);
         g_object_set_data (G_OBJECT (scrolled_window), "web_view", view);
 
-        label = window_new_tab_label (window, _("Empty Page"));
+        label = window_new_tab_label (window, _("Empty Page"), vbox);
         gtk_widget_show_all (label);
 
         g_signal_connect (view, "title-changed",
@@ -1257,11 +1268,18 @@ static void
 close_button_clicked_cb (GtkButton *button,
                          DhWindow  *window)
 {
-        GtkAction *action_close;
+        GtkWidget *parent_tab;
+        gint       pages;
+        gint       i;
 
-        action_close = gtk_action_group_get_action (window->priv->action_group,
-                                                    "Close");
-        window_activate_close (action_close, window);
+        parent_tab = g_object_get_data (G_OBJECT (button), "parent_tab");
+        pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (window->priv->notebook));
+        for (i=0; i<pages; i++) {
+                if (gtk_notebook_get_nth_page (GTK_NOTEBOOK (window->priv->notebook), i) == parent_tab) {
+                        window_close_tab (window, i);
+                        break;
+                }
+        }
 }
 
 static void
@@ -1299,8 +1317,9 @@ tab_label_style_set_cb (GtkWidget *hbox,
  * place.
  */
 static GtkWidget*
-window_new_tab_label (DhWindow    *window,
-                      const gchar *str)
+window_new_tab_label (DhWindow        *window,
+                      const gchar     *str,
+                      const GtkWidget *parent)
 {
         GtkWidget *label;
 #ifndef GDK_WINDOWING_QUARTZ
@@ -1319,6 +1338,7 @@ window_new_tab_label (DhWindow    *window,
         gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
         gtk_button_set_focus_on_click (GTK_BUTTON (close_button), FALSE);
         gtk_widget_set_name (close_button, "devhelp-tab-close-button");
+        g_object_set_data (G_OBJECT (close_button), "parent_tab", (gpointer) parent);
 
         image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
         g_signal_connect (close_button, "clicked",
