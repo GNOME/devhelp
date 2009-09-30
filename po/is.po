@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "POT-Creation-Date: 2004-04-07 01:21+0000\n"
-"PO-Revision-Date: 2004-04-09 10:55-0000\n"
+"PO-Revision-Date: 2009-09-30 23:20+0000\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgstr "Senda tilkynningu um lús í DevHelp"
 
 #: devhelp.schemas.in.h:1
 msgid "Font for fixed text"
-msgstr ""
+msgstr "Leturgerð fyrir fastan texta"
 
 #: devhelp.schemas.in.h:2
 msgid "Font for text"
