@@ -23,6 +23,8 @@
       <menuitem action="ZoomIn"/>
       <menuitem action="ZoomOut"/>
       <menuitem action="ZoomDefault"/>
+      <separator/>
+      <menuitem name="ViewFullscreenMenu" action="ViewFullscreen"/>
     </menu>
     <menu action="GoMenu">
       <menuitem action="Back"/>
@@ -43,4 +45,15 @@
     <toolitem action="ZoomOut"/>
     <toolitem action="ZoomIn"/>
   </toolbar>
+
+  <toolbar name="FullscreenToolBar">
+    <toolitem action="Back"/>
+    <toolitem action="Forward"/>
+    <separator/>
+    <toolitem action="ZoomOut"/>
+    <toolitem action="ZoomIn"/>
+    <separator expand="true"/>
+    <toolitem action="LeaveFullscreen"/>
+  </toolbar>
+
 </ui>

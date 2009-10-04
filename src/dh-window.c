@@ -18,6 +18,13 @@
  * Boston, MA 02111-1307, USA.
  */
 
+/*
+ * Fullscreen mode code adapted from gedit
+ *  Copyright (C) 1998, 1999 Alex Roberts, Evan Lawrence
+ *  Copyright (C) 2000, 2001 Chema Celorio, Paolo Maggi
+ *  Copyright (C) 2002-2005 Paolo Maggi
+ */
+
 #include "config.h"
 #include <string.h>
 #include <glib/gi18n-lib.h>
@@ -39,6 +46,8 @@
 #include "eggfindbar.h"
 #include "ige-conf.h"
 
+#define FULLSCREEN_ANIMATION_SPEED 4
+
 struct _DhWindowPriv {
         DhBase         *base;
 
@@ -52,6 +61,10 @@ struct _DhWindowPriv {
 
         GtkWidget      *vbox;
         GtkWidget      *findbar;
+
+        GtkWidget      *fullscreen_controls;
+        guint           fullscreen_animation_timeout_id;
+        gboolean        fullscreen_animation_enter;
 
         GtkUIManager   *manager;
         GtkActionGroup *action_group;
@@ -106,9 +119,6 @@ static void           window_tree_link_selected_cb   (GObject         *ignored,
                                                       DhWindow        *window);
 static void           window_search_link_selected_cb (GObject         *ignored,
                                                       DhLink          *link,
-                                                      DhWindow        *window);
-static void           window_manager_add_widget      (GtkUIManager    *manager,
-                                                      GtkWidget       *widget,
                                                       DhWindow        *window);
 static void           window_check_history           (DhWindow        *window,
                                                       WebKitWebView   *web_view);
@@ -369,6 +379,276 @@ window_activate_zoom_default (GtkAction *action,
         window_update_zoom_actions_sensitiveness (window);
 }
 
+static gboolean
+run_fullscreen_animation (gpointer data)
+{
+	DhWindow *window = DH_WINDOW (data);
+	GdkScreen *screen;
+	GdkRectangle fs_rect;
+	gint x, y;
+	
+	screen = gtk_window_get_screen (GTK_WINDOW (window));
+	gdk_screen_get_monitor_geometry (screen,
+					 gdk_screen_get_monitor_at_window (screen,
+									   gtk_widget_get_window (GTK_WIDGET (window))),
+					 &fs_rect);
+					 
+	gtk_window_get_position (GTK_WINDOW (window->priv->fullscreen_controls),
+				 &x, &y);
+	
+	if (window->priv->fullscreen_animation_enter)
+	{
+		if (y == fs_rect.y)
+		{
+			window->priv->fullscreen_animation_timeout_id = 0;
+			return FALSE;
+		}
+		else
+		{
+			gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
+					 x, y + 1);
+			return TRUE;
+		}
+	}
+	else
+	{
+		gint w, h;
+	
+		gtk_window_get_size (GTK_WINDOW (window->priv->fullscreen_controls),
+				     &w, &h);
+	
+		if (y == fs_rect.y - h + 1)
+		{
+			window->priv->fullscreen_animation_timeout_id = 0;
+			return FALSE;
+		}
+		else
+		{
+			gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
+					 x, y - 1);
+			return TRUE;
+		}
+	}
+}
+
+static void
+show_hide_fullscreen_toolbar (DhWindow *window,
+                              gboolean     show,
+                              gint         height)
+{
+        GtkSettings *settings;
+        gboolean enable_animations;
+
+        settings = gtk_widget_get_settings (GTK_WIDGET (window));
+        g_object_get (G_OBJECT (settings),
+                      "gtk-enable-animations",
+                      &enable_animations,
+                      NULL);
+
+        if (enable_animations)
+        {
+                window->priv->fullscreen_animation_enter = show;
+
+                if (window->priv->fullscreen_animation_timeout_id == 0)
+                {
+                        window->priv->fullscreen_animation_timeout_id =
+                                g_timeout_add (FULLSCREEN_ANIMATION_SPEED,
+                                               (GSourceFunc) run_fullscreen_animation,
+                                               window);
+                }
+        }
+        else
+        {
+                GdkRectangle fs_rect;
+                GdkScreen *screen;
+
+                screen = gtk_window_get_screen (GTK_WINDOW (window));
+                gdk_screen_get_monitor_geometry (screen,
+                                                 gdk_screen_get_monitor_at_window (screen,
+                                                                                   gtk_widget_get_window (GTK_WIDGET (window))),
+                                                 &fs_rect);
+
+                if (show)
+                        gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
+                                 fs_rect.x, fs_rect.y);
+                else
+                        gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
+                                         fs_rect.x, fs_rect.y - height + 1);
+        }
+
+}
+
+
+static gboolean
+on_fullscreen_controls_enter_notify_event (GtkWidget        *widget,
+                                           GdkEventCrossing *event,
+                                           DhWindow      *window)
+{
+        show_hide_fullscreen_toolbar (window, TRUE, 0);
+
+        return FALSE;
+}
+
+static gboolean
+on_fullscreen_controls_leave_notify_event (GtkWidget        *widget,
+                                           GdkEventCrossing *event,
+                                           DhWindow      *window)
+{
+        GdkDisplay *display;
+        GdkScreen *screen;
+        gint w, h;
+        gint x, y;
+
+        display = gdk_display_get_default ();
+        screen = gtk_window_get_screen (GTK_WINDOW (window));
+
+        gtk_window_get_size (GTK_WINDOW (window->priv->fullscreen_controls), &w, &h);
+        gdk_display_get_pointer (display, &screen, &x, &y, NULL);
+
+        /* gtk seems to emit leave notify when clicking on tool items,
+         * work around it by checking the coordinates
+         */
+        if (y >= h)
+        {
+                show_hide_fullscreen_toolbar (window, FALSE, h);
+        }
+
+        return FALSE;
+}
+
+static gboolean
+window_is_fullscreen (DhWindow *window)
+{
+        GdkWindowState  state;
+
+        g_return_val_if_fail (DH_IS_WINDOW (window), FALSE);
+
+#if GTK_CHECK_VERSION (2,14,0)
+        state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
+#else
+        state = gdk_window_get_state (GTK_WIDGET (window)->window);
+#endif
+
+        return state & GDK_WINDOW_STATE_FULLSCREEN;
+}
+
+static void
+window_fullscreen_controls_build (DhWindow *window)
+{
+        GtkWidget *toolbar;
+        GtkAction *action;
+        DhWindowPriv  *priv;
+
+        priv = window->priv;
+        if (priv->fullscreen_controls != NULL)
+                return;
+
+        priv->fullscreen_controls = gtk_window_new (GTK_WINDOW_POPUP);
+        gtk_window_set_transient_for (GTK_WINDOW (priv->fullscreen_controls),
+                                      GTK_WINDOW (window));
+
+        toolbar = gtk_ui_manager_get_widget (priv->manager, "/FullscreenToolBar");
+        gtk_container_add (GTK_CONTAINER (priv->fullscreen_controls),
+                           toolbar);
+        action = gtk_action_group_get_action (priv->action_group,
+                                              "LeaveFullscreen");
+        g_object_set (action, "is-important", TRUE, NULL);
+
+        /* Set the toolbar style */
+        gtk_toolbar_set_style (GTK_TOOLBAR (toolbar),
+                               GTK_TOOLBAR_BOTH_HORIZ);
+
+        g_signal_connect (priv->fullscreen_controls, "enter-notify-event",
+                          G_CALLBACK (on_fullscreen_controls_enter_notify_event),
+                          window);
+        g_signal_connect (priv->fullscreen_controls, "leave-notify-event",
+                          G_CALLBACK (on_fullscreen_controls_leave_notify_event),
+                          window);
+}
+
+static void
+window_fullscreen_controls_show (DhWindow *window)
+{
+        GdkScreen *screen;
+        GdkRectangle fs_rect;
+        gint w, h;
+
+        screen = gtk_window_get_screen (GTK_WINDOW (window));
+        gdk_screen_get_monitor_geometry (screen,
+                        gdk_screen_get_monitor_at_window (
+                                screen,
+                                gtk_widget_get_window (GTK_WIDGET (window))),
+                        &fs_rect);
+
+        gtk_window_get_size (GTK_WINDOW (window->priv->fullscreen_controls), &w, &h);
+
+        gtk_window_resize (GTK_WINDOW (window->priv->fullscreen_controls),
+                           fs_rect.width, h);
+
+        gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
+                         fs_rect.x, fs_rect.y - h + 1);
+
+        gtk_widget_show_all (window->priv->fullscreen_controls);
+}
+
+static void
+window_fullscreen (DhWindow *window)
+{
+        if (window_is_fullscreen (window))
+                return;
+
+        gtk_window_fullscreen (GTK_WINDOW (window));
+        gtk_widget_hide (gtk_ui_manager_get_widget (window->priv->manager, "/MenuBar"));
+        gtk_widget_hide (gtk_ui_manager_get_widget (window->priv->manager, "/Toolbar"));
+
+        window_fullscreen_controls_build (window);
+        window_fullscreen_controls_show (window);
+}
+
+static void
+window_unfullscreen (DhWindow *window)
+{
+        if (! window_is_fullscreen (window))
+                return;
+
+        gtk_window_unfullscreen (GTK_WINDOW (window));
+        gtk_widget_show (gtk_ui_manager_get_widget (window->priv->manager, "/MenuBar"));
+        gtk_widget_show (gtk_ui_manager_get_widget (window->priv->manager, "/Toolbar"));
+
+        gtk_widget_hide (window->priv->fullscreen_controls);
+}
+
+
+static void
+window_toggle_fullscreen_mode (GtkAction *action,
+                               DhWindow  *window)
+{
+        if (window_is_fullscreen (window)) {
+                window_unfullscreen (window);
+        } else {
+                window_fullscreen (window);
+        }
+}
+
+static void
+window_leave_fullscreen_mode (GtkAction *action,
+                              DhWindow *window)
+{
+        GtkAction *view_action;
+
+        view_action = gtk_action_group_get_action (window->priv->action_group,
+                                                   "ViewFullscreen");
+        g_signal_handlers_block_by_func (view_action,
+                        G_CALLBACK (window_toggle_fullscreen_mode),
+                        window);
+        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (view_action),
+                                      FALSE);
+        window_unfullscreen (window);
+        g_signal_handlers_unblock_by_func (view_action,
+                        G_CALLBACK (window_toggle_fullscreen_mode),
+                        window);
+}
+
 static void
 window_activate_preferences (GtkAction *action,
                              DhWindow  *window)
@@ -543,6 +823,18 @@ static const GtkActionEntry actions[] = {
         /* About menu */
         { "About", GTK_STOCK_ABOUT, NULL, NULL, NULL,
           G_CALLBACK (window_activate_about) },
+
+        /* Fullscreen toolbar */
+        { "LeaveFullscreen", GTK_STOCK_LEAVE_FULLSCREEN, NULL,
+          NULL, N_("Leave fullscreen mode"),
+          G_CALLBACK (window_leave_fullscreen_mode) }
+};
+
+static const GtkToggleActionEntry always_sensitive_toggle_menu_entries[] =
+{
+        { "ViewFullscreen", GTK_STOCK_FULLSCREEN, NULL, "F11",
+          N_("Display in full screen"),
+          G_CALLBACK (window_toggle_fullscreen_mode), FALSE },
 };
 
 static const gchar* important_actions[] = {
@@ -627,11 +919,6 @@ dh_window_init (DhWindow *window)
                           G_CALLBACK (window_open_link_cb),
                           window);
 
-        g_signal_connect (priv->manager,
-                          "add-widget",
-                          G_CALLBACK (window_manager_add_widget),
-                          window);
-
         priv->action_group = gtk_action_group_new ("MainWindow");
 
         gtk_action_group_set_translation_domain (priv->action_group,
@@ -641,6 +928,10 @@ dh_window_init (DhWindow *window)
                                       actions,
                                       G_N_ELEMENTS (actions),
                                       window);
+        gtk_action_group_add_toggle_actions (priv->action_group,
+                                             always_sensitive_toggle_menu_entries,
+                                             G_N_ELEMENTS (always_sensitive_toggle_menu_entries),
+                                             window);
 
         for (i = 0; i < G_N_ELEMENTS (important_actions); i++) {
                 action = gtk_action_group_get_action (priv->action_group,
@@ -771,6 +1062,8 @@ window_populate (DhWindow *window)
         GtkWidget    *book_tree_sw;
         GNode        *contents_tree;
         GList        *keywords;
+        GtkWidget    *menubar;
+        GtkWidget    *toolbar;
 
         priv = window->priv;
 
@@ -781,19 +1074,24 @@ window_populate (DhWindow *window)
         g_free (path);
         gtk_ui_manager_ensure_update (priv->manager);
 
+        menubar = gtk_ui_manager_get_widget (priv->manager, "/MenuBar");
+        gtk_box_pack_start (GTK_BOX (priv->menu_box), menubar,
+                            FALSE, FALSE, 0);
+        toolbar = gtk_ui_manager_get_widget (priv->manager, "/Toolbar");
+        gtk_box_pack_start (GTK_BOX (priv->menu_box), toolbar,
+                            FALSE, FALSE, 0);
+
 #ifdef GDK_WINDOWING_QUARTZ
         {
                 GtkWidget       *widget;
                 IgeMacMenuGroup *group;
 
                 /* Hide toolbar labels. */
-                widget = gtk_ui_manager_get_widget (priv->manager, "/Toolbar");
-                gtk_toolbar_set_style (GTK_TOOLBAR (widget), GTK_TOOLBAR_ICONS);
+                gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_ICONS);
 
                 /* Setup menubar. */
-                widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar");
-                ige_mac_menu_set_menu_bar (GTK_MENU_SHELL (widget));
-                gtk_widget_hide (widget);
+                ige_mac_menu_set_menu_bar (GTK_MENU_SHELL (menubar));
+                gtk_widget_hide (menubar);
 
                 widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/FileMenu/Quit");
                 ige_mac_menu_set_quit_menu_item (GTK_MENU_ITEM (widget));
@@ -1043,21 +1341,6 @@ window_search_link_selected_cb (GObject  *ignored,
         g_free (uri);
 
         window_check_history (window, view);
-}
-
-static void
-window_manager_add_widget (GtkUIManager *manager,
-                           GtkWidget    *widget,
-                           DhWindow     *window)
-{
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
-        gtk_box_pack_start (GTK_BOX (priv->menu_box), widget,
-                            FALSE, FALSE, 0);
-
-        gtk_widget_show (widget);
 }
 
 static void
