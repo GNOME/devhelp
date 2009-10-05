@@ -1224,7 +1224,7 @@ window_open_new_tab (DhWindow    *window,
         gtk_container_add (GTK_CONTAINER (scrolled_window), view);
         g_object_set_data (G_OBJECT (scrolled_window), "web_view", view);
 
-        label = window_new_tab_label (window, _("Empty Page"), vbox);
+        label = window_new_tab_label (window, _("Empty Page"), scrolled_window);
         gtk_widget_show_all (label);
 
         g_signal_connect (view, "title-changed",
