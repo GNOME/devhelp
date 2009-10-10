@@ -71,7 +71,7 @@ dh_assistant_init (DhAssistant *assistant)
         gtk_container_add (GTK_CONTAINER (assistant), priv->main_box);
 
         /* i18n: Please don't translate "Devhelp". */
-        gtk_window_set_title (GTK_WINDOW (assistant), _("Devhelp - Assistant"));
+        gtk_window_set_title (GTK_WINDOW (assistant), _("Devhelp — Assistant"));
         gtk_window_set_icon_name (GTK_WINDOW (assistant), "devhelp");
 
         priv->view = dh_assistant_view_new ();

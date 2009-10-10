@@ -735,7 +735,7 @@ window_activate_about (GtkAction *action,
         gtk_show_about_dialog (GTK_WINDOW (window),
                                "name", _("Devhelp"),
                                "version", PACKAGE_VERSION,
-                               "comments", _("A developer's help browser for GNOME"),
+                               "comments", _("A developers' help browser for GNOME"),
                                "authors", authors,
                                "documenters", documenters,
                                "translator-credits",
@@ -776,7 +776,7 @@ static const GtkActionEntry actions[] = {
           G_CALLBACK (window_activate_new_window) },
         { "NewTab", GTK_STOCK_NEW, N_("New _Tab"), "<control>T", NULL,
           G_CALLBACK (window_activate_new_tab) },
-        { "Print", GTK_STOCK_PRINT, N_("_Print..."), "<control>P", NULL,
+        { "Print", GTK_STOCK_PRINT, N_("_Print…"), "<control>P", NULL,
           G_CALLBACK (window_activate_print) },
         { "Close", GTK_STOCK_CLOSE, NULL, NULL, NULL,
           G_CALLBACK (window_activate_close) },
@@ -1107,7 +1107,7 @@ window_populate (DhWindow *window)
                 group =  ige_mac_menu_add_app_menu_group ();
                 widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/EditMenu/Preferences");
                 ige_mac_menu_add_app_menu_item (group, GTK_MENU_ITEM (widget),
-                                                _("Preferences..."));
+                                                _("Preferences…"));
 
                 ige_mac_menu_set_global_key_handler_enabled (TRUE);
         }

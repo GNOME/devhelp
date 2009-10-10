@@ -9,7 +9,7 @@
       <default>false</default>
       <locale name="C">
          <short>Main window maximized state</short>
-         <long>Whether the main window should start maximized or not.</long>
+         <long>Whether the main window should start maximized.</long>
       </locale>
     </schema>
 
@@ -122,8 +122,8 @@
       <type>string</type>
       <default>content</default>
       <locale name="C">
-         <short>Selected tab, "content" or "search"</short>
-         <long>Which of the tabs that is selected, "content" or "search".</long>
+         <short>Selected tab: "content" or "search"</short>
+         <long>Which of the tabs is selected: "content" or "search".</long>
       </locale>
     </schema>
     <schema>

@@ -89,7 +89,7 @@ parser_start_node_book (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected '%s' got '%s' at line %d, column %d"),
+                             _("Expected '%s', got '%s' at line %d, column %d"),
                              "book", node_name, line, col);
                 return;
         }
@@ -137,7 +137,7 @@ parser_start_node_book (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("\"title\", \"name\", and \"link\" elements are "
+                             _("\"title\", \"name\" and \"link\" elements are "
                                "required at line %d, column %d"),
                              line, col);
                 g_free (title);
@@ -186,7 +186,7 @@ parser_start_node_chapter (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected '%s' got '%s' at line %d, column %d"),
+                             _("Expected '%s', got '%s' at line %d, column %d"),
                              "sub", node_name, line, col);
                 return;
         }
@@ -250,7 +250,7 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected '%s' got '%s' at line %d, column %d"),
+                             _("Expected '%s', got '%s' at line %d, column %d"),
                              "keyword", node_name, line, col);
                 return;
         }
@@ -260,7 +260,7 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected '%s' got '%s' at line %d, column %d"),
+                             _("Expected '%s', got '%s' at line %d, column %d"),
                              "function", node_name, line, col);
                 return;
         }
