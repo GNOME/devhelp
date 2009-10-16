@@ -913,6 +913,43 @@ window_populate (DhWindow *window)
         window_open_new_tab (window, NULL, TRUE);
 }
 
+
+static gchar*
+find_library_equivalent (DhWindow    *window,
+                         const gchar *uri)
+{
+        DhWindowPriv *priv;
+        gchar **components;
+        GList *iter;
+        DhLink *link;
+        gchar *book_id;
+        gchar *filename;
+        gchar *local_uri = NULL;
+
+        components = g_strsplit (uri, "/", 0);
+        book_id = components[4];
+        filename = components[6];
+
+        priv = window->priv;
+
+        for (iter = dh_base_get_keywords (priv->base); iter; iter = g_list_next (iter)) {
+                link = iter->data;
+                if (g_strcmp0 (dh_link_get_book_id (link), book_id) != 0) {
+                        continue;
+                }
+                if (g_strcmp0 (dh_link_get_file_name (link), filename) != 0) {
+                        continue;
+                }
+                local_uri = dh_link_get_uri (link);
+                break;
+        }
+
+        g_strfreev (components);
+
+        return local_uri;
+}
+
+
 static gboolean
 window_web_view_navigation_policy_decision_requested (WebKitWebView             *web_view,
                                                       WebKitWebFrame            *frame,
@@ -936,6 +973,16 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
 
         if (strcmp (uri, "about:blank") == 0) {
                 return FALSE;
+        }
+
+        if (strncmp (uri, "http://library.gnome.org/devel/", 31) == 0) {
+                gchar *local_uri = find_library_equivalent (window, uri);
+                if (local_uri) {
+                        webkit_web_policy_decision_ignore (policy_decision);
+                        _dh_window_display_uri (window, local_uri);
+                        g_free (local_uri);
+                        return TRUE;
+                }
         }
 
         if (strncmp (uri, "file://", 7) != 0) {
