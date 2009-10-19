@@ -1,3 +1,18 @@
+NEW in 2.28.1:
+==============
+
+Fixed bugs:
+
+ - #589435, Track pad horizontal scrolling
+ - #596808, Fix several leaks reported by valgrind
+ - #596810, Clicking close button on a tab always closes the current tab
+ - #598598, Linking across GNOME components
+
+Updated translations: ca, ja, ru, zh_CN
+
+Many thanks to all contributors: Leonid Kanter, Gil Forcada, Jonathon
+Jongsma, Takeshi Aihana, Tao Wei
+
 NEW in 2.28.0.1:
 ================
 
