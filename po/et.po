@@ -9,11 +9,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp HEAD\n"
+"Project-Id-Version: devhelp MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-08-28 15:01+0000\n"
-"PO-Revision-Date: 2009-08-30 12:20+0300\n"
+"POT-Creation-Date: 2009-10-10 09:16+0000\n"
+"PO-Revision-Date: 2009-10-26 21:35+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -53,8 +53,8 @@ msgstr "Peaakna kõrgus"
 msgid "Main window maximized state"
 msgstr "Peaakna maksimeeritud olek"
 
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Valitud kaart, \"content\" (sisukord) või \"search\" (otsing)"
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Valitud kaart: \"content\" (sisukord) või \"search\" (otsing)"
 
 msgid "The X position of the assistant window."
 msgstr "Assistendiakna asukoht X-teljel."
@@ -89,10 +89,10 @@ msgstr "Süsteemsete kirjatüüpide kasutamine"
 msgid "Use the system default fonts."
 msgstr "Süsteemsete vaikimisi kirjatüüpide kasutamine"
 
-msgid "Whether the main window should start maximized or not."
+msgid "Whether the main window should start maximized."
 msgstr "Kas peaaken peab käivitamisel saama maksimeeritud või mitte."
 
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr ""
 "Milline kaart on valitud, kas \"content\" (sisukord) või \"search\" (otsing)"
 
@@ -130,8 +130,8 @@ msgid "Show API Documentation for the word at the cursor"
 msgstr "Kursori all oleva sõna kohta API dokumentatsiooni näitamine"
 
 #. i18n: Please don't translate "Devhelp".
-msgid "Devhelp - Assistant"
-msgstr "Devhelp - Assistent"
+msgid "Devhelp — Assistant"
+msgstr "Devhelp — Assistent"
 
 msgid "Book:"
 msgstr "Raamat:"
@@ -194,8 +194,7 @@ msgstr "Devhelp'i akna fokuseerimine koos aktiivse otsinguväljaga"
 msgid "Search and display any hit in the assistant window"
 msgstr "Otsi ja kuva iga vastavus assistendiaknas"
 
-#, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
+msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Oodati '%s', selle asemel saadi '%s' %d. rea %d. veerul"
 
 #, c-format
@@ -204,7 +203,7 @@ msgstr "Vigane nimeruum '%s' %d. rea %d. veerul"
 
 #, c-format
 msgid ""
-"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
 "%d. rea %d. veerul peavad olema pealkiri (\"title\"), nimi (\"name\") ja "
 "viit (\"link\")"
@@ -266,10 +265,12 @@ msgid "400%"
 msgstr "400%"
 
 msgid "translator_credits"
-msgstr "Ivar Smolin <okul@linux.ee>, 2007-2009."
+msgstr ""
+"Ivar Smolin <okul linux ee>, 2007-2009.\n"
+"Mattias Põldaru <mahfiaz gmail com>, 2008."
 
-msgid "A developer's help browser for GNOME"
-msgstr "Arendusteabe sirvija GNOME jaoks"
+msgid "A developers' help browser for GNOME"
+msgstr "Arendusteabe sirvija GNOME töölauale"
 
 msgid "_File"
 msgstr "_Fail"
@@ -293,8 +294,8 @@ msgstr "_Uus aken"
 msgid "New _Tab"
 msgstr "Uus _kaart"
 
-msgid "_Print..."
-msgstr "_Prindi..."
+msgid "_Print…"
+msgstr "_Prindi…"
 
 msgid "Find Next"
 msgstr "Leia järgmine"
@@ -333,6 +334,12 @@ msgstr "_Tavasuurus"
 msgid "Use the normal text size"
 msgstr "Tavasuuruse määramine kirja suuruseks"
 
+msgid "Leave fullscreen mode"
+msgstr "Välju täisekraanvaatest"
+
+msgid "Display in full screen"
+msgstr "Kuva täisekraanil"
+
 #. Translators: This refers to text size
 msgid "Larger"
 msgstr "Suurem"
@@ -347,14 +354,17 @@ msgstr "Väiksem"
 msgid "About Devhelp"
 msgstr "Devhelp'ist lähemalt"
 
-msgid "Preferences..."
-msgstr "Eelistused..."
+msgid "Preferences…"
+msgstr "Eelistused…"
 
 msgid "Contents"
 msgstr "Sisukord"
 
 msgid "Search"
 msgstr "Otsing"
+
+msgid "Error opening the requested link."
+msgstr "Viga küsitud viida avamisel."
 
 msgid "Empty Page"
 msgstr "Tühi leht"
@@ -373,33 +383,3 @@ msgstr "_Tõstutundlik"
 
 msgid "Toggle case sensitive search"
 msgstr "Tõstutundliku otsingu sisse- ja väljalülitamine"
-
-#~ msgid "Show advanced search options"
-#~ msgstr "Laiendatud otsimisvalikute näitamine"
-
-#~ msgid "Whether the advanced search options are shown."
-#~ msgstr "Kas laiendatud otsimisvalikuid näidatakse või mitte."
-
-#~ msgid "_Show advanced search options"
-#~ msgstr "_Kuvatakse laiendatud otsimisvalikuid"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "Kas_utatakse süsteemseid kirjatüüpe"
-
-#~ msgid "_Variable width: "
-#~ msgstr "Muutuva _laiusega:"
-
-#~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %"
-#~ "d"
-#~ msgstr ""
-#~ "%d. rea %d. veerul peavas <function> sildi sees olema nime ja viida kirjed"
-
-#~ msgid "Could not create book parser"
-#~ msgstr "Raamatu parserit pole võimalik luua"
-
-#~ msgid "Could not create markup parser"
-#~ msgstr "Märkimiskeele parserit pole võimalik luua"
-
-#~ msgid "Devhelp is not built with zlib support"
-#~ msgstr "Devhelp pole kompileeritud koos zlib'i toega"
