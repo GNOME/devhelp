@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-10-04 13:51+0000\n"
-"PO-Revision-Date: 2009-10-10 11:15+0200\n"
+"POT-Creation-Date: 2009-10-26 13:45+0000\n"
+"PO-Revision-Date: 2009-10-27 21:34+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Programa de ayuda del desarrollador"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
-#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1802
+#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1849
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -64,8 +64,9 @@ msgid "Main window maximized state"
 msgstr "Estado maximizado de la ventana principal"
 
 #: ../data/devhelp.schemas.in.h:8
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Solapa seleccionada, \"content\" (contenido) o \"search\" (búsqueda)"
+#| msgid "Selected tab, \"content\" or \"search\""
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Solapa seleccionada: «content» (contenido) o «search» (búsqueda)"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
@@ -112,12 +113,16 @@ msgid "Use the system default fonts."
 msgstr "Usar la tipografía predeterminada del sistema."
 
 #: ../data/devhelp.schemas.in.h:20
-msgid "Whether the main window should start maximized or not."
-msgstr "Indica si la ventana principal debería iniciar maximizada o no."
+#| msgid "Whether the main window should start maximized or not."
+msgid "Whether the main window should start maximized."
+msgstr "Indica si la ventana principal debería iniciar maximizada."
 
 #: ../data/devhelp.schemas.in.h:21
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Cual de las solapas está seleccionada,  «contenido» o «búsqueda»."
+#| msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr ""
+"Cuál de las solapas está seleccionada: «content» (contenido) o "
+"«search» (búsqueda)."
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Width of the assistant window"
@@ -165,8 +170,9 @@ msgstr "Muestra la documentación de la API para la palabra bajo el cursor"
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
-msgid "Devhelp - Assistant"
-msgstr "Asistente de Devhelp"
+#| msgid "Devhelp - Assistant"
+msgid "Devhelp — Assistant"
+msgstr "Devhelp — Asistente"
 
 #: ../src/dh-assistant-view.c:328
 msgid "Book:"
@@ -246,8 +252,9 @@ msgstr "Buscar y mostrar cualquier coincidencia en la ventana del asistente"
 #: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
 #: ../src/dh-parser.c:263
 #, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Se esperaba «%s» pero se obtuvo «%s» en la línea %d, columna %d"
+#| msgid "Expected '%s' got '%s' at line %d, column %d"
+msgid "Expected '%s', got '%s' at line %d, column %d"
+msgstr "Se esperaba «%s» se obtuvo «%s» en la línea %d, columna %d"
 
 #: ../src/dh-parser.c:109
 #, c-format
@@ -256,8 +263,11 @@ msgstr "Espacio de nombres inválido «%s» en la línea %d, columna %d"
 
 #: ../src/dh-parser.c:140
 #, c-format
+#| msgid ""
+#| "\"title\", \"name\", and \"link\" elements are required at line %d, "
+#| "column %d"
 msgid ""
-"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
 "son necesarios los elementos «título», «nombre» y «enlace» en la línea %d, "
 "columna %d"
@@ -342,7 +352,8 @@ msgstr ""
 "Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006"
 
 #: ../src/dh-window.c:738
-msgid "A developer's help browser for GNOME"
+#| msgid "A developer's help browser for GNOME"
+msgid "A developers' help browser for GNOME"
 msgstr "Un visor de ayuda para desarrolladores de GNOME"
 
 #: ../src/dh-window.c:768
@@ -375,7 +386,8 @@ msgid "New _Tab"
 msgstr "_Solapa nueva"
 
 #: ../src/dh-window.c:779
-msgid "_Print..."
+#| msgid "_Print..."
+msgid "_Print…"
 msgstr "_Imprimir…"
 
 #: ../src/dh-window.c:791 ../src/eggfindbar.c:342
@@ -453,7 +465,8 @@ msgid "About Devhelp"
 msgstr "Acerca de DevHelp"
 
 #: ../src/dh-window.c:1110
-msgid "Preferences..."
+#| msgid "Preferences"
+msgid "Preferences…"
 msgstr "Preferencias…"
 
 #: ../src/dh-window.c:1153
@@ -464,11 +477,11 @@ msgstr "Índice"
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:1282
+#: ../src/dh-window.c:1329
 msgid "Error opening the requested link."
 msgstr "Error al abrir el enlace solicitado."
 
-#: ../src/dh-window.c:1588 ../src/dh-window.c:1830
+#: ../src/dh-window.c:1635 ../src/dh-window.c:1877
 msgid "Empty Page"
 msgstr "Página vacía"
 
@@ -492,6 +505,9 @@ msgstr "Coincidir con c_apitalización"
 msgid "Toggle case sensitive search"
 msgstr "Conmutar búsqueda discriminando capitalización"
 
+#~ msgid "Preferences..."
+#~ msgstr "Preferencias…"
+
 #~ msgid "Show advanced search options"
 #~ msgstr "Mostrar opciones de búsqueda avanzadas"
 
@@ -503,9 +519,6 @@ msgstr "Conmutar búsqueda discriminando capitalización"
 
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>Búsqueda</b>"
-
-#~ msgid "Preferences"
-#~ msgstr "Preferencias"
 
 #~ msgid "_Back"
 #~ msgstr "_Atrás"
