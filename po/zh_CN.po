@@ -4,16 +4,17 @@
 # Funda Wang <fundawang@linux.net.cn>, 2004
 # Yang Zhang <zyangmath@gmail.com>, 2007
 # Deng Xiyue <manphiz@gmail.com>, 2008
+# Richard Ma <richard.ma.19850509@gmail.com>, 2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-10-10 09:16+0000\n"
-"PO-Revision-Date: 2009-10-06 09:33+0200\n"
-"Last-Translator: Hinker Liu <hinkerliu@gmail.com>\n"
-"Language-Team: i18n-zh <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2009-10-16 10:11+0000\n"
+"PO-Revision-Date: 2009-10-25 21:42+0800\n"
+"Last-Translator: Richard Ma <richard.ma.19850509@gmail.com>\n"
+"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +26,7 @@ msgstr "开发者帮助程序"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
-#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1802
+#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1849
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -62,8 +63,6 @@ msgid "Main window maximized state"
 msgstr "主窗口最大化"
 
 #: ../data/devhelp.schemas.in.h:8
-#, fuzzy
-#| msgid "Selected tab, \"content\" or \"search\""
 msgid "Selected tab: \"content\" or \"search\""
 msgstr "所选的标签，是“内容”还是“搜索”"
 
@@ -112,14 +111,10 @@ msgid "Use the system default fonts."
 msgstr "使用系统默认字体。"
 
 #: ../data/devhelp.schemas.in.h:20
-#, fuzzy
-#| msgid "Whether the main window should start maximized or not."
 msgid "Whether the main window should start maximized."
 msgstr "是否以最大化启动主窗口。"
 
 #: ../data/devhelp.schemas.in.h:21
-#, fuzzy
-#| msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "选中哪个标签，“内容”还是“搜索”？"
 
@@ -169,8 +164,6 @@ msgstr "显示光标处单词的 API 文档"
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
-#, fuzzy
-#| msgid "Devhelp - Assistant"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - 助手"
 
@@ -251,10 +244,9 @@ msgstr "在辅助窗口中搜索并显示任何命中内容"
 
 #: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
 #: ../src/dh-parser.c:263
-#, fuzzy, c-format
-#| msgid "Expected '%s' got '%s' at line %d, column %d"
+#, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "期待“%s”但得到“%s”(第%d行，第%d列)"
+msgstr "需要“%s”但得到“%s”(第%d行，第%d列)"
 
 #: ../src/dh-parser.c:109
 #, c-format
@@ -262,10 +254,7 @@ msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "非法命名空间“%s”(第%d行，第%d列)"
 
 #: ../src/dh-parser.c:140
-#, fuzzy, c-format
-#| msgid ""
-#| "\"title\", \"name\", and \"link\" elements are required at line %d, "
-#| "column %d"
+#, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr "在第%d行，第%d列，需要指定元素“title”，“name”，和“link”"
@@ -344,10 +333,8 @@ msgstr ""
 "Den Xiyue <manphiz@gmail.com>, 2008"
 
 #: ../src/dh-window.c:738
-#, fuzzy
-#| msgid "A developer's help browser for GNOME"
 msgid "A developers' help browser for GNOME"
-msgstr "GNOME 的开发者帮助浏览器"
+msgstr "GNOME 开发者帮助浏览器"
 
 #: ../src/dh-window.c:768
 msgid "_File"
@@ -379,8 +366,6 @@ msgid "New _Tab"
 msgstr "新建标签(_T)"
 
 #: ../src/dh-window.c:779
-#, fuzzy
-#| msgid "_Print..."
 msgid "_Print…"
 msgstr "打印(_P)..."
 
@@ -459,8 +444,6 @@ msgid "About Devhelp"
 msgstr "关于 Devhelp"
 
 #: ../src/dh-window.c:1110
-#, fuzzy
-#| msgid "Preferences..."
 msgid "Preferences…"
 msgstr "首选项..."
 
@@ -472,11 +455,11 @@ msgstr "目录"
 msgid "Search"
 msgstr "搜索"
 
-#: ../src/dh-window.c:1282
+#: ../src/dh-window.c:1329
 msgid "Error opening the requested link."
 msgstr "在打开需要的链接时出错。"
 
-#: ../src/dh-window.c:1588 ../src/dh-window.c:1830
+#: ../src/dh-window.c:1635 ../src/dh-window.c:1877
 msgid "Empty Page"
 msgstr "空白页"
 
