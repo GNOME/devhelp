@@ -60,6 +60,7 @@ AC_SUBST(PLATFORM_LDFLAGS)
 AC_SUBST(REQUIRES_LIBWNCK)
 
 PKG_CHECK_MODULES(DEVHELP, [
+  gthread-2.0 >= 2.10.0
   gtk+-2.0 >= 2.10.0
   webkit-1.0 >= 1.1.13
   unique-1.0
