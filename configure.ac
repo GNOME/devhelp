@@ -67,7 +67,6 @@ PKG_CHECK_MODULES(DEVHELP, [
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-  gthread-2.0 >= 2.10.0
   gtk+-2.0 >= 2.10.0
   $gconf_pkgconfig
   $libwnck_pkgconfig
