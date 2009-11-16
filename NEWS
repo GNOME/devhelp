@@ -1,3 +1,15 @@
+NEW in 2.29.2:
+==============
+
+Fixed bugs:
+
+ - #601651, devhelp needs to link against libgthread
+
+Updated translations: en@shaw, es, et, gl, nb, zh_CN
+
+Many thanks to all contributors: Emilio Pozuelo Monfort, Richard Ma, Antón
+Méixome, Jorge González, Thomas Thurman, Kjartan Maraas, Ivar Smolin
+
 NEW in 2.29.1:
 ==============
 
