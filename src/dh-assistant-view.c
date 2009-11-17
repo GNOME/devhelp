@@ -203,7 +203,7 @@ dh_assistant_view_set_link (DhAssistantView *view,
         if (link) {
                 link = dh_link_ref (link);
         } else {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), "about:blank");
                 return TRUE;
         }
 
@@ -343,7 +343,7 @@ dh_assistant_view_set_link (DhAssistantView *view,
 
                 g_free (html);
         } else {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), "about:blank");
         }
 
 #if GLIB_CHECK_VERSION(2,21,3)

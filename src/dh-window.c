@@ -1362,7 +1362,7 @@ window_tree_link_selected_cb (GObject  *ignored,
         view = window_get_active_web_view (window);
 
         uri = dh_link_get_uri (link);
-        webkit_web_view_open (view, uri);
+        webkit_web_view_load_uri (view, uri);
         g_free (uri);
 
         window_check_history (window, view);
@@ -1384,7 +1384,7 @@ window_search_link_selected_cb (GObject  *ignored,
         view = window_get_active_web_view (window);
 
         uri = dh_link_get_uri (link);
-        webkit_web_view_open (view, uri);
+        webkit_web_view_load_uri (view, uri);
         g_free (uri);
 
         window_check_history (window, view);
@@ -1663,7 +1663,7 @@ window_open_new_tab (DhWindow    *window,
         if (location) {
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), location);
         } else {
-                webkit_web_view_open (WEBKIT_WEB_VIEW (view), "about:blank");
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), "about:blank");
         }
 
         if (switch_focus) {
@@ -1963,6 +1963,6 @@ _dh_window_display_uri (DhWindow    *window,
         priv = window->priv;
 
         web_view = window_get_active_web_view (window);
-        webkit_web_view_open (web_view, uri);
+        webkit_web_view_load_uri (web_view, uri);
         dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree), uri);
 }
