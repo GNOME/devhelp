@@ -38,6 +38,7 @@ typedef struct {
 typedef struct {
         GtkTreeStore *store;
         GNode        *link_tree;
+        DhLink       *selected_link;
 } DhBookTreePriv;
 
 static void dh_book_tree_class_init        (DhBookTreeClass  *klass);
@@ -111,7 +112,7 @@ dh_book_tree_init (DhBookTree *tree)
 					  G_TYPE_STRING,
 					  G_TYPE_POINTER,
                                           PANGO_TYPE_WEIGHT);
-
+	priv->selected_link = NULL;
 	gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
 				 GTK_TREE_MODEL (priv->store));
 
@@ -219,7 +220,10 @@ book_tree_selection_changed_cb (GtkTreeSelection *selection,
 				    &iter,
                                     COL_LINK, &link,
                                     -1);
-		g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
+		if (link != priv->selected_link) {
+			g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
+		}
+		priv->selected_link = link;
 	}
 }
 
@@ -228,12 +232,35 @@ dh_book_tree_new (GNode *books)
 {
         DhBookTree     *tree;
         DhBookTreePriv *priv;
+	GtkTreeSelection *selection;
+	GtkTreeIter     iter;
+	DhLink *link;
 
 	tree = g_object_new (DH_TYPE_BOOK_TREE, NULL);
         priv = GET_PRIVATE (tree);
 
         priv->link_tree = books;
         book_tree_populate_tree (tree);
+
+	/* Mark the first item as selected, or it would get automatically
+	 * selected when the treeview will get focus; but that's not even
+	 * enough as a selection changed would still be emitted when there
+	 * is no change, hence the manual tracking of selection in
+	 * selected_link.
+	 *   https://bugzilla.gnome.org/show_bug.cgi?id=492206
+	 */
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
+	g_signal_handlers_block_by_func	(selection,
+					 book_tree_selection_changed_cb,
+					 tree);
+	gtk_tree_model_get_iter_first ( GTK_TREE_MODEL (priv->store), &iter);
+	gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
+			&iter, COL_LINK, &link, -1);
+	priv->selected_link = link;
+	gtk_tree_selection_select_iter (selection, &iter);
+	g_signal_handlers_unblock_by_func (selection,
+					   book_tree_selection_changed_cb,
+					   tree);
 
         return GTK_WIDGET (tree);
 }
