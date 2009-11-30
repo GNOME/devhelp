@@ -1,3 +1,14 @@
+NEW in 2.29.3
+=============
+
+Fixed bugs:
+
+ - #603040, Opening the wrong arrow in the left side bar
+
+Updated translations: ca@valencia, sv
+
+Many thanks to all contributors: Carles Ferrando, Daniel Nylander
+
 NEW in 2.29.2:
 ==============
 
