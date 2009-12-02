@@ -5,7 +5,7 @@ includedir=@includedir@
 
 Name: devhelp
 Description: devhelp
-Requires: gtk+-2.0
+Requires: gtk+-2.0 webkit-1.0
 Requires.private: @REQUIRES_LIBWNCK@
 Version: @VERSION@
 Libs: -L${libdir} -ldevhelp-1
