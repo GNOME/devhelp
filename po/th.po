@@ -1,7 +1,7 @@
 # Thai translation of devhelp
-# Copyright (C) 2007-2008 Free Software Foundation, Inc.
+# Copyright (C) 2007-2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2007-2008.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2007-2010.
 # Visal Srivisal <srivisal@yahoo.com>, 2008.
 #
 #
@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-08-28 15:01+0000\n"
-"PO-Revision-Date: 2009-07-18 12:03+0700\n"
+"POT-Creation-Date: 2009-12-14 15:53+0000\n"
+"PO-Revision-Date: 2010-02-08 11:37+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "โปรแกรมช่วยเหลือนักพัฒนา
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
-#: ../src/dh-window.c:369 ../src/dh-window.c:630 ../src/dh-window.c:1283
+#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1849
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -62,8 +62,8 @@ msgid "Main window maximized state"
 msgstr "สถานะขยายเต็มของหน้าต่างหลัก"
 
 #: ../data/devhelp.schemas.in.h:8
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "แท็บที่เลือก, \"content\" หรือ \"search\""
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "แท็บที่เลือก: \"content\" หรือ \"search\""
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
@@ -110,12 +110,12 @@ msgid "Use the system default fonts."
 msgstr "ใช้แบบอักษรปริยายของระบบ"
 
 #: ../data/devhelp.schemas.in.h:20
-msgid "Whether the main window should start maximized or not."
+msgid "Whether the main window should start maximized."
 msgstr "กำหนดว่าควรเปิดหน้าต่างหลักแบบขยายเต็มจอหรือไม่"
 
 #: ../data/devhelp.schemas.in.h:21
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "แท็บไหนที่เลือกอยู่, \"content\" หรือ \"search\""
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr "แท็บไหนที่เลือกอยู่: \"content\" หรือ \"search\""
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Width of the assistant window"
@@ -163,10 +163,10 @@ msgstr "แสดงเอกสารของ API สำหรับคำท�
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
-msgid "Devhelp - Assistant"
-msgstr "Devhelp - ผู้ช่วย"
+msgid "Devhelp — Assistant"
+msgstr "Devhelp — ผู้ช่วย"
 
-#: ../src/dh-assistant-view.c:319
+#: ../src/dh-assistant-view.c:328
 msgid "Book:"
 msgstr "หนังสือ:"
 
@@ -241,212 +241,224 @@ msgstr "โฟกัสไปที่หน้าต่าง Devhelp แล้
 msgid "Search and display any hit in the assistant window"
 msgstr "ค้นหาและแสดงรายการที่พบในหน้าต่างผู้ช่วย"
 
-#: ../src/dh-parser.c:80 ../src/dh-parser.c:174 ../src/dh-parser.c:238
-#: ../src/dh-parser.c:248
+#: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
+#: ../src/dh-parser.c:263
 #, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
+msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "ต้องการ '%s' แต่พบ '%s' ที่บรรทัด %d, คอลัมน์ %d"
 
-#: ../src/dh-parser.c:97
+#: ../src/dh-parser.c:109
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "namespace '%s' ไม่ถูกต้อง ที่บรรทัด %d, คอลัมน์ %d"
 
-#: ../src/dh-parser.c:125
+#: ../src/dh-parser.c:140
 #, c-format
 msgid ""
-"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
-msgstr "ต้องมีอิลิเมนต์ \"title\", \"name\", และ \"link\" ที่บรรทัด %d, คอลัมน์ %d"
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr "ต้องมีอิลิเมนต์ \"title\", \"name\" และ \"link\" ที่บรรทัด %d, คอลัมน์ %d"
 
-#: ../src/dh-parser.c:193
+#: ../src/dh-parser.c:208
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
 msgstr "ต้องมีอิลิเมนต์ \"name\" และ \"link\" ภายใต้ <sub> ที่บรรทัด %d, คอลัมน์ %d"
 
-#: ../src/dh-parser.c:273
+#: ../src/dh-parser.c:288
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr "ต้องมีอิลิเมนต์ \"name\" และ \"link\" ภายใต้ '%s' ที่บรรทัด %d, คอลัมน์ %d"
 
-#: ../src/dh-parser.c:286
+#: ../src/dh-parser.c:301
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "ต้องมีอิลิเมนต์ \"type\" ภายใต้ <keyword> ที่บรรทัด %d, คอลัมน์ %d"
 
-#: ../src/dh-parser.c:491
+#: ../src/dh-parser.c:506
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "ไม่สามารถคลายข้อมูลหนังสือ '%s': %s"
 
-#: ../src/dh-search.c:481
+#: ../src/dh-search.c:509
 msgid "All books"
 msgstr "ทุกเอกสาร"
 
-#: ../src/dh-search.c:537
+#: ../src/dh-search.c:587
 msgid "Search in:"
 msgstr "ค้นหาใน:"
 
-#: ../src/dh-window.c:73
+#: ../src/dh-window.c:95
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:96
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:97
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:98
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:99
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:100
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:79
+#: ../src/dh-window.c:101
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:80
+#: ../src/dh-window.c:102
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:103
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:364
+#: ../src/dh-window.c:731
 msgid "translator_credits"
 msgstr ""
 "เทพพิทักษ์ การุญบุญญานันท์ <thep@linux.thai.net>\n"
 "Visal Srivisal <srivisal@yahoo.com>"
 
-#: ../src/dh-window.c:371
-msgid "A developer's help browser for GNOME"
+#: ../src/dh-window.c:738
+msgid "A developers' help browser for GNOME"
 msgstr "เบราว์เซอร์คู่มือนักพัฒนาสำหรับ GNOME"
 
-#: ../src/dh-window.c:383
+#: ../src/dh-window.c:768
 msgid "_File"
 msgstr "แ_ฟ้ม"
 
-#: ../src/dh-window.c:384
+#: ../src/dh-window.c:769
 msgid "_Edit"
 msgstr "แ_ก้ไข"
 
-#: ../src/dh-window.c:385
+#: ../src/dh-window.c:770
 msgid "_View"
 msgstr "มุ_มมอง"
 
-#: ../src/dh-window.c:386
+#: ../src/dh-window.c:771
 msgid "_Go"
 msgstr "ไ_ป"
 
-#: ../src/dh-window.c:387
+#: ../src/dh-window.c:772
 msgid "_Help"
 msgstr "_วิธีใช้"
 
 #. File menu
-#: ../src/dh-window.c:390
+#: ../src/dh-window.c:775
 msgid "_New Window"
 msgstr "หน้า_ต่างใหม่"
 
-#: ../src/dh-window.c:392
+#: ../src/dh-window.c:777
 msgid "New _Tab"
 msgstr "แ_ท็บใหม่"
 
-#: ../src/dh-window.c:394
-msgid "_Print..."
-msgstr "_พิมพ์..."
+#: ../src/dh-window.c:779
+msgid "_Print…"
+msgstr "_พิมพ์…"
 
-#: ../src/dh-window.c:406 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:791 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "หาต่อ"
 
-#: ../src/dh-window.c:408 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:793 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "หาก่อนหน้า"
 
-#: ../src/dh-window.c:415
+#: ../src/dh-window.c:800
 msgid "Go to the previous page"
 msgstr "ไปหน้าก่อน"
 
-#: ../src/dh-window.c:418
+#: ../src/dh-window.c:803
 msgid "Go to the next page"
 msgstr "ไปหน้าถัดไป"
 
-#: ../src/dh-window.c:421
+#: ../src/dh-window.c:806
 msgid "_Contents Tab"
 msgstr "แท็บเนื้อ_หา"
 
-#: ../src/dh-window.c:424
+#: ../src/dh-window.c:809
 msgid "_Search Tab"
 msgstr "แท็บ_ค้นหา"
 
 #. View menu
-#: ../src/dh-window.c:428
+#: ../src/dh-window.c:813
 msgid "_Larger Text"
 msgstr "ตัวอักษรใ_หญ่ขึ้น"
 
-#: ../src/dh-window.c:429
+#: ../src/dh-window.c:814
 msgid "Increase the text size"
 msgstr "เพิ่มขนาดตัวอักษร"
 
-#: ../src/dh-window.c:431
+#: ../src/dh-window.c:816
 msgid "S_maller Text"
 msgstr "ตัวอักษรเ_ล็กลง"
 
-#: ../src/dh-window.c:432
+#: ../src/dh-window.c:817
 msgid "Decrease the text size"
 msgstr "ลดขนาดตัวอักษร"
 
-#: ../src/dh-window.c:434
+#: ../src/dh-window.c:819
 msgid "_Normal Size"
 msgstr "ขนาด_ปกติ"
 
-#: ../src/dh-window.c:435
+#: ../src/dh-window.c:820
 msgid "Use the normal text size"
 msgstr "ใช้ตัวอักษรขนาดปกติ"
 
+#: ../src/dh-window.c:829
+msgid "Leave fullscreen mode"
+msgstr "ออกจากการแสดงผลเต็มจอ"
+
+#: ../src/dh-window.c:836
+msgid "Display in full screen"
+msgstr "แสดงผลแบบเต็มจอ"
+
 #. Translators: This refers to text size
-#: ../src/dh-window.c:543
+#: ../src/dh-window.c:956
 msgid "Larger"
 msgstr "ใหญ่ขึ้น"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:546
+#: ../src/dh-window.c:959
 msgid "Smaller"
 msgstr "เล็กลง"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:676
+#: ../src/dh-window.c:1105
 msgid "About Devhelp"
 msgstr "เกี่ยวกับ Devhelp"
 
-#: ../src/dh-window.c:681
-msgid "Preferences..."
-msgstr "ปรับแต่ง..."
+#: ../src/dh-window.c:1110
+msgid "Preferences…"
+msgstr "ปรับแต่ง…"
 
-#: ../src/dh-window.c:724
+#: ../src/dh-window.c:1153
 msgid "Contents"
 msgstr "เนื้อหา"
 
-#: ../src/dh-window.c:734
+#: ../src/dh-window.c:1163
 msgid "Search"
 msgstr "ค้นหา"
 
-#: ../src/dh-window.c:1097 ../src/dh-window.c:1310
+#: ../src/dh-window.c:1329
+msgid "Error opening the requested link."
+msgstr "เกิดข้อผิดพลาดขณะเปิดลิงก์ที่ร้องขอ"
+
+#: ../src/dh-window.c:1635 ../src/dh-window.c:1877
 msgid "Empty Page"
 msgstr "หน้าว่าง"
 
