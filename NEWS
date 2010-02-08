@@ -1,3 +1,19 @@
+NEW in 2.29.90
+==============
+
+Fixed bugs:
+
+ - #601048, Segfaults when typing too fast in the search box
+ - #603623, libdevhelp-1.0.pc is missing webkit-1.0
+
+Updated translations: ast, bg, bn, de, fr, he, pt_BR, th, uk, zh_HK,
+zh_TW
+
+Many thanks to all contributors: Matthew Barnes, Christian Kirbach,
+Alexander Shopov, Theppitak Karoonboonyanan, Jamil Ahmed, Jonh Wendell,
+Xandru Armesto Fernandez, Yaron Sharabani, Claude Paroz, Chao-Hsiung Liao,
+Maxim V. Dziumanenko
+
 NEW in 2.29.3
 =============
 
