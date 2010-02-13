@@ -2,21 +2,23 @@
 # Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
 # This file is distributed under the same license as the devhelp package.
 # Adi Roiban , https://launchpad.net/~adiroiban
-#
+# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-09-10 12:31+0000\n"
-"PO-Revision-Date: 2009-09-10 15:44+0200\n"
-"Last-Translator: Adi Roiban <adi@roiban.ro>\n"
-"Language-Team: Gnome Romanian Team <gnomero-list@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2010-02-11 14:32+0000\n"
+"PO-Revision-Date: 2010-02-13 00:18+0300\n"
+"Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
+"Language-Team: Romanian GNOME Team <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
-"== 0) && (n != 0))) ? 2: 1));\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
+"X-Generator: Virtaal 0.5.2\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -25,7 +27,7 @@ msgstr "Program de ajutor pentru programatori"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
-#: ../src/dh-window.c:438 ../src/dh-window.c:734 ../src/dh-window.c:1398
+#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1849
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -62,8 +64,8 @@ msgid "Main window maximized state"
 msgstr "Starea ferestrei principale maximizate"
 
 #: ../data/devhelp.schemas.in.h:8
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Tab selectat, „content” sau „search”"
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Tab selectat: „content” sau „search”"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
@@ -110,12 +112,12 @@ msgid "Use the system default fonts."
 msgstr "Folosește setul de fonturi implicit al sistemului."
 
 #: ../data/devhelp.schemas.in.h:20
-msgid "Whether the main window should start maximized or not."
-msgstr "Dacă fereastra principală va fi sau nu pornită maximizat."
+msgid "Whether the main window should start maximized."
+msgstr "Dacă fereastra principală va fi pornită maximizat."
 
 #: ../data/devhelp.schemas.in.h:21
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Care din taburile alese, „content” sau „search”."
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr "Care din taburile alese: „content” sau „search”."
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Width of the assistant window"
@@ -163,10 +165,10 @@ msgstr "Afișează documentația API pentru cuvântul de la cursor"
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
-msgid "Devhelp - Assistant"
-msgstr "Devhelp - Asistent"
+msgid "Devhelp — Assistant"
+msgstr "Devhelp – Asistent"
 
-#: ../src/dh-assistant-view.c:319
+#: ../src/dh-assistant-view.c:328
 msgid "Book:"
 msgstr "Carte:"
 
@@ -241,25 +243,25 @@ msgstr "Activează fereastra Devhelp cu câmpul de căutare activat"
 msgid "Search and display any hit in the assistant window"
 msgstr "Caută și afișează orice rezultat în fereastra asistent"
 
-#: ../src/dh-parser.c:81 ../src/dh-parser.c:178 ../src/dh-parser.c:242
-#: ../src/dh-parser.c:252
+#: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
+#: ../src/dh-parser.c:263
 #, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Se aștepta „%s” dar s-a primit „%s” la linia %d, coloana %d"
+msgid "Expected '%s', got '%s' at line %d, column %d"
+msgstr "Se aștepta „%s”, dar s-a primit „%s” la linia %d, coloana %d"
 
-#: ../src/dh-parser.c:98
+#: ../src/dh-parser.c:109
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Spațiu de nume „%s” nevalid la linia %d, coloana %d"
 
-#: ../src/dh-parser.c:129
+#: ../src/dh-parser.c:140
 #, c-format
 msgid ""
-"\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
 "elementele „title”, „name”, și „link” sunt necesare la linia %d, coloana %d"
 
-#: ../src/dh-parser.c:197
+#: ../src/dh-parser.c:208
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
@@ -268,7 +270,7 @@ msgstr ""
 "elementele „name”, și „link” sunt necesare în interiorul <sub> la linia %d, "
 "coloana %d"
 
-#: ../src/dh-parser.c:277
+#: ../src/dh-parser.c:288
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
@@ -276,186 +278,200 @@ msgstr ""
 "elementele „name”, și „link” sunt necesare în interiorul „%s” la linia %d, "
 "coloana %d"
 
-#: ../src/dh-parser.c:290
+#: ../src/dh-parser.c:301
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "elementul „type” este necesar în interiorul <keyword> la linia %d, coloana %d"
 
-#: ../src/dh-parser.c:495
+#: ../src/dh-parser.c:506
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nu se poate dezarhiva cartea „%s”: %s"
 
-#: ../src/dh-search.c:503
+#: ../src/dh-search.c:509
 msgid "All books"
 msgstr "Toate cărțile"
 
-#: ../src/dh-search.c:581
+#: ../src/dh-search.c:587
 msgid "Search in:"
 msgstr "Caută în:"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:95
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:96
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:97
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:98
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:99
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:100
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:101
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:102
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:103
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:433
+#: ../src/dh-window.c:731
 msgid "translator_credits"
 msgstr ""
 "Adi Roiban\n"
+"Lucian Adrian Grijincu\n"
+"\n"
 "Launchpad Contributions:\n"
 "  Adi Roiban https://launchpad.net/~adiroiban\n"
 "  Ionuț Jula https://launchpad.net/~ionutjula\n"
 "  Mihai Felseghi https://launchpad.net/~mihaifelseghi"
 
-#: ../src/dh-window.c:440
-msgid "A developer's help browser for GNOME"
-msgstr "Un navigator de documentație pentru GNOME"
+#: ../src/dh-window.c:738
+msgid "A developers' help browser for GNOME"
+msgstr "Navigator de documentație pentru GNOME"
 
-#: ../src/dh-window.c:470
+#: ../src/dh-window.c:768
 msgid "_File"
 msgstr "_Fișier"
 
-#: ../src/dh-window.c:471
+#: ../src/dh-window.c:769
 msgid "_Edit"
 msgstr "_Modifică"
 
-#: ../src/dh-window.c:472
+#: ../src/dh-window.c:770
 msgid "_View"
 msgstr "_Vizualizare"
 
-#: ../src/dh-window.c:473
+#: ../src/dh-window.c:771
 msgid "_Go"
 msgstr "_Du-te"
 
-#: ../src/dh-window.c:474
+#: ../src/dh-window.c:772
 msgid "_Help"
 msgstr "_Ajutor"
 
 #. File menu
-#: ../src/dh-window.c:477
+#: ../src/dh-window.c:775
 msgid "_New Window"
 msgstr "Fereastră _nouă"
 
-#: ../src/dh-window.c:479
+#: ../src/dh-window.c:777
 msgid "New _Tab"
 msgstr "_Tab nou"
 
-#: ../src/dh-window.c:481
-msgid "_Print..."
-msgstr "Ti_părește..."
+#: ../src/dh-window.c:779
+msgid "_Print…"
+msgstr "Ti_părește…"
 
-#: ../src/dh-window.c:493 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:791 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Caută următor"
 
-#: ../src/dh-window.c:495 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:793 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Caută precedent"
 
-#: ../src/dh-window.c:502
+#: ../src/dh-window.c:800
 msgid "Go to the previous page"
 msgstr "Arată pagina precedentă"
 
-#: ../src/dh-window.c:505
+#: ../src/dh-window.c:803
 msgid "Go to the next page"
 msgstr "Arată pagina următoare"
 
-#: ../src/dh-window.c:508
+#: ../src/dh-window.c:806
 msgid "_Contents Tab"
 msgstr "Tab _conținut"
 
-#: ../src/dh-window.c:511
+#: ../src/dh-window.c:809
 msgid "_Search Tab"
 msgstr "Tab cău_tare"
 
 #. View menu
-#: ../src/dh-window.c:515
+#: ../src/dh-window.c:813
 msgid "_Larger Text"
 msgstr "_Text mai mare"
 
-#: ../src/dh-window.c:516
+#: ../src/dh-window.c:814
 msgid "Increase the text size"
 msgstr "Mărește dimensiunea textului"
 
-#: ../src/dh-window.c:518
+#: ../src/dh-window.c:816
 msgid "S_maller Text"
 msgstr "Text mai _mic"
 
-#: ../src/dh-window.c:519
+#: ../src/dh-window.c:817
 msgid "Decrease the text size"
 msgstr "Micșorează dimensiunea textului"
 
-#: ../src/dh-window.c:521
+#: ../src/dh-window.c:819
 msgid "_Normal Size"
 msgstr "Dimensiune _normală"
 
-#: ../src/dh-window.c:522
+#: ../src/dh-window.c:820
 msgid "Use the normal text size"
 msgstr "Utilizează dimensiunea normală a textului"
 
+#: ../src/dh-window.c:829
+msgid "Leave fullscreen mode"
+msgstr "Părăsește modul pe tot ecranul"
+
+#: ../src/dh-window.c:836
+msgid "Display in full screen"
+msgstr "Afișează pe tot ecranul"
+
 #. Translators: This refers to text size
-#: ../src/dh-window.c:647
+#: ../src/dh-window.c:956
 msgid "Larger"
 msgstr "Mai mare"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:650
+#: ../src/dh-window.c:959
 msgid "Smaller"
 msgstr "Mai mic"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:789
+#: ../src/dh-window.c:1105
 msgid "About Devhelp"
 msgstr "Despre Devhelp"
 
-#: ../src/dh-window.c:794
-msgid "Preferences..."
-msgstr "Preferințe..."
+#: ../src/dh-window.c:1110
+msgid "Preferences…"
+msgstr "Preferințe…"
 
-#: ../src/dh-window.c:837
+#: ../src/dh-window.c:1153
 msgid "Contents"
 msgstr "Conținut"
 
-#: ../src/dh-window.c:847
+#: ../src/dh-window.c:1163
 msgid "Search"
 msgstr "Caută"
 
-#: ../src/dh-window.c:1216 ../src/dh-window.c:1425
+#: ../src/dh-window.c:1329
+msgid "Error opening the requested link."
+msgstr "Eroare la deschiderea legăturii cerute."
+
+#: ../src/dh-window.c:1635 ../src/dh-window.c:1877
 msgid "Empty Page"
 msgstr "Pagina goală"
 
