@@ -1,14 +1,14 @@
 # Hungarian translation of devhelp.
-# Copyright (C) 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+# Copyright (C) 2005, 2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 #
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-29 15:02+0200\n"
-"PO-Revision-Date: 2009-09-10 14:31+0200\n"
+"POT-Creation-Date: 2010-03-03 23:44+0100\n"
+"PO-Revision-Date: 2010-03-03 23:42+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Fejlesztők súgóprogramja"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
-#: ../src/dh-window.c:426 ../src/dh-window.c:720 ../src/dh-window.c:1382
+#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1849
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -61,8 +61,8 @@ msgid "Main window maximized state"
 msgstr "Főablak maximalizált állapota"
 
 #: ../data/devhelp.schemas.in.h:8
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Kiválasztott lap, „content” (tartalom) vagy „search” (keresés)"
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Kiválasztott lap: „content” (tartalom) vagy „search” (keresés)"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
@@ -109,12 +109,13 @@ msgid "Use the system default fonts."
 msgstr "A rendszer alapértelmezett betűkészleteinek használata."
 
 #: ../data/devhelp.schemas.in.h:20
-msgid "Whether the main window should start maximized or not."
+msgid "Whether the main window should start maximized."
 msgstr "A főablak teljes méretben induljon-e?"
 
 #: ../data/devhelp.schemas.in.h:21
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Melyik lap van kiválasztva, „content” (tartalom) vagy „search” (keresés)."
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr ""
+"Melyik lap van kiválasztva: „content” (tartalom) vagy „search” (keresés)."
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Width of the assistant window"
@@ -162,10 +163,10 @@ msgstr "API dokumentáció megjelenítése a kurzornál található szóhoz"
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
-msgid "Devhelp - Assistant"
+msgid "Devhelp — Assistant"
 msgstr "Devhelp – Asszisztens"
 
-#: ../src/dh-assistant-view.c:319
+#: ../src/dh-assistant-view.c:328
 msgid "Book:"
 msgstr "Könyv:"
 
@@ -240,23 +241,25 @@ msgstr "A Devhelp ablakának előtérbe hozása aktív keresőmezővel"
 msgid "Search and display any hit in the assistant window"
 msgstr "Keresés és találatok megjelenítése az asszisztens ablakban"
 
-#: ../src/dh-parser.c:80 ../src/dh-parser.c:174 ../src/dh-parser.c:238
-#: ../src/dh-parser.c:248
+#: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
+#: ../src/dh-parser.c:263
 #, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
+msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "„%s” helyett „%s” található a(z) %d. sor %d. oszlopában"
 
-#: ../src/dh-parser.c:97
+#: ../src/dh-parser.c:109
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "„%s” érvénytelen névtér a(z) %d. sor %d. oszlopában"
 
-#: ../src/dh-parser.c:125
+#: ../src/dh-parser.c:140
 #, c-format
-msgid "\"title\", \"name\", and \"link\" elements are required at line %d, column %d"
-msgstr "„title”, „name” és „link” elemek szükségesek a(z) %d. sor %d. oszlopában"
+msgid ""
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr ""
+"A „title”, „name” és „link” elemek szükségesek a(z) %d. sor %d. oszlopában"
 
-#: ../src/dh-parser.c:193
+#: ../src/dh-parser.c:208
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
@@ -265,187 +268,201 @@ msgstr ""
 "„name” és „link” elemek szükségesek a <sub>-on belül a(z) %d. sor %d. "
 "oszlopában"
 
-#: ../src/dh-parser.c:273
+#: ../src/dh-parser.c:288
 #, c-format
-msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
 "„name” és „link” elemek szükségesek az elemen („%s”) belül a(z) %d. sor %d. "
 "oszlopában"
 
-#: ../src/dh-parser.c:286
+#: ../src/dh-parser.c:301
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "„type” elem szükséges a <keyword> elemen belül a(z) %d. sor %d. oszlopában"
+msgstr ""
+"„type” elem szükséges a <keyword> elemen belül a(z) %d. sor %d. oszlopában"
 
-#: ../src/dh-parser.c:491
+#: ../src/dh-parser.c:506
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nem lehet kicsomagolni a könyvet („%s”): %s"
 
-#: ../src/dh-search.c:481
+#: ../src/dh-search.c:509
 msgid "All books"
 msgstr "Minden könyv"
 
-#: ../src/dh-search.c:537
+#: ../src/dh-search.c:587
 msgid "Search in:"
 msgstr "Keresés itt:"
 
-#: ../src/dh-window.c:80
+#: ../src/dh-window.c:95
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:96
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:97
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:98
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:99
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:100
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:101
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:102
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:103
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:421
+#: ../src/dh-window.c:731
 msgid "translator_credits"
 msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 
-#: ../src/dh-window.c:428
-msgid "A developer's help browser for GNOME"
+#: ../src/dh-window.c:738
+msgid "A developers' help browser for GNOME"
 msgstr "Fejlesztők súgóböngészője GNOME-hoz"
 
-#: ../src/dh-window.c:458
+#: ../src/dh-window.c:768
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../src/dh-window.c:459
+#: ../src/dh-window.c:769
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
-#: ../src/dh-window.c:460
+#: ../src/dh-window.c:770
 msgid "_View"
 msgstr "_Nézet"
 
-#: ../src/dh-window.c:461
+#: ../src/dh-window.c:771
 msgid "_Go"
 msgstr "_Ugrás"
 
-#: ../src/dh-window.c:462
+#: ../src/dh-window.c:772
 msgid "_Help"
 msgstr "_Súgó"
 
 #. File menu
-#: ../src/dh-window.c:465
+#: ../src/dh-window.c:775
 msgid "_New Window"
 msgstr "Új _ablak"
 
-#: ../src/dh-window.c:467
+#: ../src/dh-window.c:777
 msgid "New _Tab"
 msgstr "Új _lap"
 
-#: ../src/dh-window.c:469
-msgid "_Print..."
+#: ../src/dh-window.c:779
+msgid "_Print…"
 msgstr "_Nyomtatás…"
 
-#: ../src/dh-window.c:481 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:791 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Következő keresése"
 
-#: ../src/dh-window.c:483 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:793 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Előző keresése"
 
-#: ../src/dh-window.c:490
+#: ../src/dh-window.c:800
 msgid "Go to the previous page"
 msgstr "Ugrás az előző oldalra"
 
-#: ../src/dh-window.c:493
+#: ../src/dh-window.c:803
 msgid "Go to the next page"
 msgstr "Ugrás a következő oldalra"
 
-#: ../src/dh-window.c:496
+#: ../src/dh-window.c:806
 msgid "_Contents Tab"
 msgstr "_Tartalom fül"
 
-#: ../src/dh-window.c:499
+#: ../src/dh-window.c:809
 msgid "_Search Tab"
 msgstr "_Keresés fül"
 
 #. View menu
-#: ../src/dh-window.c:503
+#: ../src/dh-window.c:813
 msgid "_Larger Text"
 msgstr "_Nagyobb szöveg"
 
-#: ../src/dh-window.c:504
+#: ../src/dh-window.c:814
 msgid "Increase the text size"
 msgstr "A szöveg méretének nagyítása"
 
-#: ../src/dh-window.c:506
+#: ../src/dh-window.c:816
 msgid "S_maller Text"
 msgstr "Kisebb szöve_g"
 
-#: ../src/dh-window.c:507
+#: ../src/dh-window.c:817
 msgid "Decrease the text size"
 msgstr "A szöveg méretének csökkentése"
 
-#: ../src/dh-window.c:509
+#: ../src/dh-window.c:819
 msgid "_Normal Size"
 msgstr "_Normál méret"
 
-#: ../src/dh-window.c:510
+#: ../src/dh-window.c:820
 msgid "Use the normal text size"
 msgstr "A normál szövegméret használata"
 
+#: ../src/dh-window.c:829
+msgid "Leave fullscreen mode"
+msgstr "Teljes képernyő elhagyása"
+
+#: ../src/dh-window.c:836
+msgid "Display in full screen"
+msgstr "Megjelenítés teljes képernyőn"
+
 #. Translators: This refers to text size
-#: ../src/dh-window.c:633
+#: ../src/dh-window.c:956
 msgid "Larger"
 msgstr "Nagyobb"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:636
+#: ../src/dh-window.c:959
 msgid "Smaller"
 msgstr "Kisebb"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:1105
 msgid "About Devhelp"
 msgstr "A Devhelp névjegye"
 
-#: ../src/dh-window.c:780
-msgid "Preferences..."
+#: ../src/dh-window.c:1110
+msgid "Preferences…"
 msgstr "Beállítások…"
 
-#: ../src/dh-window.c:823
+#: ../src/dh-window.c:1153
 msgid "Contents"
 msgstr "Tartalom"
 
-#: ../src/dh-window.c:833
+#: ../src/dh-window.c:1163
 msgid "Search"
 msgstr "Keresés"
 
-#: ../src/dh-window.c:1200 ../src/dh-window.c:1409
+#: ../src/dh-window.c:1329
+msgid "Error opening the requested link."
+msgstr "Hiba a kért hivatkozás megnyitásakor."
+
+#: ../src/dh-window.c:1635 ../src/dh-window.c:1877
 msgid "Empty Page"
 msgstr "Üres oldal"
 
@@ -468,4 +485,3 @@ msgstr "Na_gybetűérzékeny"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Váltás a kis- és nagybetűérzékeny keresés között"
-
