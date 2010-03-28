@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-01 19:10+0100\n"
-"PO-Revision-Date: 2010-02-24 19:27+0100\n"
+"POT-Creation-Date: 2010-03-28 20:17+0200\n"
+"PO-Revision-Date: 2010-03-28 16:58+0100\n"
 "Last-Translator: Lucas Lommer <llommer@svn.gnome.org>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "Stav maximalizace hlavního okna"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Selected tab: \"content\" or \"search\""
-msgstr "Vybraná karta: \"content\" nebo \"search\""
+msgstr "Vybraná karta: „content“ nebo „search“"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
@@ -117,7 +117,7 @@ msgstr "Jestli má hlavní okno být po spuštění maximalizované."
 
 #: ../data/devhelp.schemas.in.h:21
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "Která z karet je vybrána: \"content\" nebo \"search\"."
+msgstr "Která z karet je vybrána: „content“ nebo „search“."
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Width of the assistant window"
@@ -259,8 +259,7 @@ msgstr "Neplatné namespace '%s' na řádku %d, sloupci %d"
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"Elementy \"title\", \"name\" a \"link\" jsou vyžadovány na řádce %d, sloupec "
-"%d"
+"Elementy „title“, „name“ a „link“ jsou vyžadovány na řádce %d, sloupec %d"
 
 #: ../src/dh-parser.c:208
 #, c-format
@@ -268,20 +267,18 @@ msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
 msgstr ""
-"Elementy \"name\" a \"link\" jsou vyžadovány uvnitř <sub> na řádce %d, "
-"pozice %d"
+"Elementy „name“ a „link“ jsou vyžadovány uvnitř <sub> na řádce %d, pozice %d"
 
 #: ../src/dh-parser.c:288
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr ""
-"Elementy \"name\" a \"link\" jsou vyžadovány v '%s' na řádce %d, pozice %d"
+msgstr "Elementy „name“ a „link“ jsou vyžadovány v '%s' na řádce %d, pozice %d"
 
 #: ../src/dh-parser.c:301
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "Element \"type\" je vyžadován v <keyword> na řádce %d, pozice %d"
+msgstr "Element „type“ je vyžadován v <keyword> na řádce %d, pozice %d"
 
 #: ../src/dh-parser.c:506
 #, c-format
@@ -373,7 +370,7 @@ msgstr "Nová _karta"
 
 #: ../src/dh-window.c:779
 msgid "_Print…"
-msgstr "_Tisk..."
+msgstr "_Tisk…"
 
 #: ../src/dh-window.c:791 ../src/eggfindbar.c:342
 msgid "Find Next"
@@ -451,7 +448,7 @@ msgstr "A aplikaci DevHelp"
 
 #: ../src/dh-window.c:1110
 msgid "Preferences…"
-msgstr "Předvolby..."
+msgstr "Předvolby…"
 
 #: ../src/dh-window.c:1153
 msgid "Contents"
