@@ -9,8 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bn\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-12-14 15:53+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&component=general\n"
+"POT-Creation-Date: 2010-01-25 19:50+0000\n"
 "PO-Revision-Date: 2010-01-25 11:31+0600\n"
 "Last-Translator: Loba Yeasmeen <loba@ankur.org.bd>\n"
 "Language-Team: Bengali <ankur-bd-l10n@googlegroups.com>\n"
@@ -26,11 +27,8 @@ msgstr "ডেভেলপারদের সহায়ক প্রোগ্র�
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2
-#: ../src/dh-main.c:235
-#: ../src/dh-window.c:736
-#: ../src/dh-window.c:1043
-#: ../src/dh-window.c:1849
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1849
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -39,7 +37,6 @@ msgid "Documentation Browser"
 msgstr "ডকুমেন্টেশন ব্রাউজার"
 
 #: ../data/devhelp.schemas.in.h:1
-#| msgid "Font for fixed text"
 msgid "Font for fixed width text"
 msgstr "অপরিবর্তনযোগ্য পাঠ্যে ব্যবহৃত ফন্ট"
 
@@ -48,7 +45,6 @@ msgid "Font for text"
 msgstr "টেক্সটে ব্যবহৃত ফন্ট"
 
 #: ../data/devhelp.schemas.in.h:3
-#| msgid "Font for text with fixed width."
 msgid "Font for text with fixed width, such as code examples."
 msgstr "অপরিবর্তনযোগ্য প্রস্থের টেক্সটে ব্যবহৃত ফন্ট, কোড উদাহরণের ন্যায়।"
 
@@ -57,7 +53,6 @@ msgid "Font for text with variable width."
 msgstr "পরিবর্তনযোগ্য প্রস্থের টেক্সটে ব্যবহৃত ফন্ট।"
 
 #: ../data/devhelp.schemas.in.h:5
-#| msgid "Height of main window"
 msgid "Height of assistant window"
 msgstr "সহায়ক উইন্ডোর উচ্চতা"
 
@@ -70,12 +65,10 @@ msgid "Main window maximized state"
 msgstr "সর্বোচ্চ মাপে প্রধান উইন্ডো"
 
 #: ../data/devhelp.schemas.in.h:8
-#| msgid "Selected tab, \"content\" or \"search\""
 msgid "Selected tab: \"content\" or \"search\""
 msgstr "নির্বাচিত ট্যাব: \"content\" অথবা \"search\""
 
 #: ../data/devhelp.schemas.in.h:9
-#| msgid "The X position of the main window."
 msgid "The X position of the assistant window."
 msgstr "সহায়ক উইন্ডোর X অবস্থান।"
 
@@ -84,7 +77,6 @@ msgid "The X position of the main window."
 msgstr "প্রধান উইন্ডোর X অবস্থান।"
 
 #: ../data/devhelp.schemas.in.h:11
-#| msgid "The Y position of the main window."
 msgid "The Y position of the assistant window."
 msgstr "সহায়ক উইন্ডোর Y অবস্থান।"
 
@@ -93,7 +85,6 @@ msgid "The Y position of the main window."
 msgstr "প্রধান উইন্ডোর Y অবস্থান।"
 
 #: ../data/devhelp.schemas.in.h:13
-#| msgid "The height of the main window."
 msgid "The height of the assistant window."
 msgstr "সহায়ক উইন্ডোর উচ্চতা।"
 
@@ -102,7 +93,6 @@ msgid "The height of the main window."
 msgstr "প্রধান উইন্ডোর উচ্চতা।"
 
 #: ../data/devhelp.schemas.in.h:15
-#| msgid "The width of the main window."
 msgid "The width of the assistant window."
 msgstr "সহায়ক উইন্ডোর প্রস্থ।"
 
@@ -123,17 +113,14 @@ msgid "Use the system default fonts."
 msgstr "সিস্টেমের ডিফল্ট ফন্ট ব্যবহৃত হবে।"
 
 #: ../data/devhelp.schemas.in.h:20
-#| msgid "Whether the main window should start maximized or not."
 msgid "Whether the main window should start maximized."
 msgstr "প্রধান উইন্ডোটি সর্বোচ্চ আকারে প্রদর্শন শুরু করা হবে কি না।"
 
 #: ../data/devhelp.schemas.in.h:21
-#| msgid "Which of the tabs that is selected, \"content\" or \"search\"."
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "কোন ট্যাবটি নির্বাচন করা হবে: \"content\" অথবা \"search\"।"
 
 #: ../data/devhelp.schemas.in.h:22
-#| msgid "Width of the main window"
 msgid "Width of the assistant window"
 msgstr "সহায়ক উইন্ডোর প্রস্থ"
 
@@ -146,7 +133,6 @@ msgid "Width of the main window"
 msgstr "প্রধান উইন্ডোর প্রস্থ"
 
 #: ../data/devhelp.schemas.in.h:25
-#| msgid "X position of main window"
 msgid "X position of assistant window"
 msgstr "সহায়ক উইন্ডোর X অবস্থান"
 
@@ -155,7 +141,6 @@ msgid "X position of main window"
 msgstr "প্রধান উইন্ডোর X অবস্থান"
 
 #: ../data/devhelp.schemas.in.h:27
-#| msgid "Y position of main window"
 msgid "Y position of assistant window"
 msgstr "সহায়ক উইন্ডোর Y অবস্থান"
 
@@ -172,12 +157,10 @@ msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "F2-র সাহায্যে কার্সার দ্বারা চিহ্নিত শব্দের জন্য Devhelp আরম্ভ করা হয়"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
-#| msgid "Documentation Browser"
 msgid "Show API Documentation"
 msgstr "API ডকুমেন্টেশন প্রদর্শন করা হবে"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:40
-#| msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "কার্সারের অবস্থানে বিদ্যমান শব্দের জন্য API  ডকুমেন্টেশন প্রদর্শন করা হবে"
 
@@ -187,19 +170,16 @@ msgid "Devhelp — Assistant"
 msgstr "Devhelp — সহকারী"
 
 #: ../src/dh-assistant-view.c:328
-#| msgid "_Book:"
 msgid "Book:"
 msgstr "বই:"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:255
-#| msgid "_Book:"
 msgid "Book"
 msgstr "বই:"
 
 #. i18n: a "page" in a documentation book
 #: ../src/dh-link.c:258
-#| msgid "_Page:"
 msgid "Page"
 msgstr "পৃষ্ঠা:"
 
@@ -245,7 +225,6 @@ msgid "Type"
 msgstr "Type"
 
 #: ../src/dh-main.c:175
-#| msgid "Search for a function"
 msgid "Search for a keyword"
 msgstr "কীওয়ার্ড অনুসন্ধান করুন"
 
@@ -258,7 +237,6 @@ msgid "Display the version and exit"
 msgstr "সংস্করণ সংখ্যা প্রদর্শন করে প্রস্থান করা হবে"
 
 #: ../src/dh-main.c:190
-#| msgid "Focus the devhelp window with the search field active"
 msgid "Focus the Devhelp window with the search field active"
 msgstr "অনুসন্ধানের ক্ষেত্র সক্রিয় করে devhelp উইন্ডো ফোকাস করা হবে"
 
@@ -266,13 +244,11 @@ msgstr "অনুসন্ধানের ক্ষেত্র সক্রি�
 msgid "Search and display any hit in the assistant window"
 msgstr "সহকারী উইন্ডোতে যেকোন হিট অনুসন্ধান করে প্রদর্শন করুন"
 
-#: ../src/dh-parser.c:92
-#: ../src/dh-parser.c:189
-#: ../src/dh-parser.c:253
+#: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
 #: ../src/dh-parser.c:263
-#| msgid "Expected '%s' got '%s' at line %d, column %d"
+#| msgid "Expected '%s', got '%s' at line %d, column %d"
 msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "প্রত্যাশিত মান '%1s', %1d লাইনের কলাম %2d এ প্রাপ্ত মান '%2s'"
+msgstr "প্রত্যাশিত মান '%1$s', %3$d লাইনের কলাম %4$d এ প্রাপ্ত মান '%2$s'"
 
 #: ../src/dh-parser.c:109
 #, c-format
@@ -281,28 +257,26 @@ msgstr "অবৈধ namespace '%s', পংক্তি %d, কলাম %d-এ"
 
 #: ../src/dh-parser.c:140
 #, c-format
-#| msgid "title, name, and link elements are required at line %d, column %d"
-msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgid ""
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr "\"title\", \"name\" এবং \"link\" বিষয়বস্তু, %d লাইনের কলাম %d-এ আবশ্যক"
 
 #: ../src/dh-parser.c:208
 #, c-format
-#| msgid ""
-#| "name and link elements are required inside <sub> on line %d, column %d"
-msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
-msgstr "<sub> এর মধ্যে \"name\" এবং \"link\" এর বিষয়বস্তু লাইন %d, কলাম %d-এ আবশ্যক"
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
+msgstr ""
+"<sub> এর মধ্যে \"name\" এবং \"link\" এর বিষয়বস্তু লাইন %d, কলাম %d-এ আবশ্যক"
 
 #: ../src/dh-parser.c:288
 #, c-format
-#| msgid ""
-#| "name and link elements are required inside <sub> on line %d, column %d"
-msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr "'%s এর মধ্যে \"name\" এবং \"link\" বিষয়বস্তু লাইন %d, কলাম %d এ আবশ্যক"
 
 #: ../src/dh-parser.c:301
 #, c-format
-#| msgid ""
-#| "name and link elements are required inside <sub> on line %d, column %d"
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "<keyword> এর মধ্যে \"type\" এর বিষয়বস্তু লাইন %d, কলাম %d এ আবশ্যক"
 
@@ -316,7 +290,6 @@ msgid "All books"
 msgstr "সকল বই"
 
 #: ../src/dh-search.c:587
-#| msgid "Search"
 msgid "Search in:"
 msgstr "অনুসন্ধান করুন:"
 
@@ -359,11 +332,11 @@ msgstr "৪০০%"
 #: ../src/dh-window.c:731
 msgid "translator_credits"
 msgstr ""
-"রুণা ভট্টাচার্য্য <runabh@gmail.com>\n"
-"খন্দকার মুজাহিদুল ইসলাম সুজন <suzan@bengalinux.org>"
+"অঙ্কুর প্রকল্পের পক্ষে, রুণা ভট্টাচার্য্য <runabh@gmail.com>\n"
+"খন্দকার মুজাহিদুল ইসলাম সুজন <suzan@bengalinux.org>\n"
+"লোবা ইয়াসমীন <loba@ankur.org.bd>"
 
 #: ../src/dh-window.c:738
-#| msgid "A developer's help browser for GNOME 2"
 msgid "A developers' help browser for GNOME"
 msgstr "GNOME এর ক্ষেত্রে প্রযোজ্য ডেভেলপারদের জন্য সহায়িকা ব্রাউজার"
 
@@ -376,7 +349,6 @@ msgid "_Edit"
 msgstr "সম্পাদনা (_E)"
 
 #: ../src/dh-window.c:770
-#| msgid "_File"
 msgid "_View"
 msgstr "প্রদর্শন (_V)"
 
@@ -401,13 +373,11 @@ msgstr "নতুন ট্যাব (_T)"
 msgid "_Print…"
 msgstr "মুদ্রণ… (_P)"
 
-#: ../src/dh-window.c:791
-#: ../src/eggfindbar.c:342
+#: ../src/dh-window.c:791 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "পরবর্তী উপস্থিত অনুসন্ধান"
 
-#: ../src/dh-window.c:793
-#: ../src/eggfindbar.c:329
+#: ../src/dh-window.c:793 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "পূর্ববর্তী উপস্থিতি অনুসন্ধান"
 
@@ -474,12 +444,10 @@ msgstr "অপেক্ষাকৃত বড়"
 #. * "Devhelp", it's a name, not a
 #. * generic word.
 #: ../src/dh-window.c:1105
-#| msgid "Devhelp"
 msgid "About Devhelp"
 msgstr "Devhelp সম্পর্কিত"
 
 #: ../src/dh-window.c:1110
-#| msgid "Preferences"
 msgid "Preferences…"
 msgstr "পছন্দসমূহ…"
 
@@ -495,8 +463,7 @@ msgstr "অনুসন্ধান"
 msgid "Error opening the requested link."
 msgstr "অনুরোধকৃত লিঙ্ক খোলার ক্ষেত্রে ত্রুটি।"
 
-#: ../src/dh-window.c:1635
-#: ../src/dh-window.c:1877
+#: ../src/dh-window.c:1635 ../src/dh-window.c:1877
 msgid "Empty Page"
 msgstr "ফাঁকা পৃষ্ঠা"
 
@@ -504,54 +471,62 @@ msgstr "ফাঁকা পৃষ্ঠা"
 msgid "Find:"
 msgstr "খোঁজো:"
 
-#: ../src/eggfindbar.c:333
-#: ../src/eggfindbar.c:336
+#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "অনুসন্ধান করা পংক্তির পূর্ববর্তী উপস্থিতি সনাক্ত করুন"
 
-#: ../src/eggfindbar.c:346
-#: ../src/eggfindbar.c:349
+#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "অনুসন্ধান করা পংক্তির পরবর্তী উপস্থিতি সনাক্ত করুন"
 
 #: ../src/eggfindbar.c:358
-#| msgid "Case Sensitive"
 msgid "C_ase Sensitive"
 msgstr "অক্ষরের ছাঁদ সংবেদনশীল"
 
-#: ../src/eggfindbar.c:362
-#: ../src/eggfindbar.c:365
+#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "হরফের ছাঁদ অনুযায়ী অনুসন্ধান সক্রিয় অথবা নিষ্ক্রিয় করুন"
 
 #~ msgid "Show advanced search options"
 #~ msgstr "অনুসন্ধান সংক্রান্ত উন্নত বিকল্প প্রদর্শন করা হবে"
+
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "অনুসন্ধান সংক্রান্ত উন্নত বিকল্পগুলি প্রদর্শন করা হবে কি না।"
+
 #~ msgid "<b>Fonts</b>"
 #~ msgstr "<b>ফন্ট</b>"
+
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>অনুসন্ধান</b>"
+
 #~ msgid "_Back"
 #~ msgstr "পূর্ববর্তী (_B)"
+
 #~ msgid "_Fixed width:"
 #~ msgstr "অপরিবর্তনযোগ্য মাপ: (_F)"
+
 #~ msgid "_Forward"
 #~ msgstr "পরবর্তী (_F)"
+
 #~ msgid "_Show advanced search options"
 #~ msgstr "অনুসন্ধান সংক্রান্ত উন্নত বিকল্প প্রদর্শন করা হবে (_S)"
+
 #~ msgid "_Use system fonts"
 #~ msgstr "সিস্টেম ফন্ট ব্যবহার করা হবে (_U)"
+
 #~ msgid "_Variable width: "
 #~ msgstr "পরিবর্তনযোগ্য মাপ :(_V)"
+
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column %"
 #~ "d"
 #~ msgstr "<function>-র মধ্যে নাম ও লিঙ্কের বিষয়বস্তু পংক্তি %d, কলাম %d-এ আবশ্যক"
+
 #~ msgid "Could not create book parser"
 #~ msgstr "বই পার্সার নির্মাণ করতে ব্যর্থ"
+
 #~ msgid "Could not create markup parser"
 #~ msgstr "মার্ক-আপ পার্সার নির্মাণ করতে ব্যর্থ"
+
 #~ msgid "Devhelp is not built with zlib support"
 #~ msgstr "zlib সমর্থনসহ Devhelp বিল্ড করা হয়নি"
-
