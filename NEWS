@@ -1,3 +1,15 @@
+NEW in 2.30.0
+=============
+
+Updated translations: ar, bn, ca, cs, da, el, en_GB, fi, gl, hu, it,
+ko, lt, pl, pt, ro, ru, sr@latin, sr
+
+Many thanks to all contributors: Changwoo Ryu, Leonid Kanter, Lucian Adrian
+Grijincu, Gil Forcada, Miloš Popović, Duarte Loreto, Petr Kovar, Francesco
+Marletta, Tommi Vainikainen, Ask H. Larsen, Piotr Drąg, Nikos Bakaoukas,
+Khaled Hosny, Jamil Ahmed, Fran Diéguez, Bruce Cowan, Gintautas Miliauskas,
+Gabor Kelemen, Pablo Castellano
+
 NEW in 2.29.90
 ==============
 
