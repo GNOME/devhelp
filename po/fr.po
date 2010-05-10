@@ -18,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
 "POT-Creation-Date: 2009-12-14 15:53+0000\n"
-"PO-Revision-Date: 2010-01-09 23:22+0100\n"
+"PO-Revision-Date: 2010-05-10 18:34+0200\n"
 "Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "La hauteur de la fenêtre principale"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Main window maximized state"
-msgstr "État maximisée de la fenêtre principale"
+msgstr "État maximisé de la fenêtre principale"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Selected tab: \"content\" or \"search\""
@@ -75,11 +75,11 @@ msgstr "Onglet sélectionné : « content » ou « search »"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
-msgstr "La position X the la fenêtre de l'assistant."
+msgstr "La position X de la fenêtre de l'assistant."
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "The X position of the main window."
-msgstr "La position X the la fenêtre principale."
+msgstr "La position X de la fenêtre principale."
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "The Y position of the assistant window."
@@ -148,11 +148,11 @@ msgstr "Position X de la fenêtre principale"
 
 #: ../data/devhelp.schemas.in.h:27
 msgid "Y position of assistant window"
-msgstr "Position Y the la fenêtre de l'assistant"
+msgstr "Position Y de la fenêtre de l'assistant"
 
 #: ../data/devhelp.schemas.in.h:28
 msgid "Y position of main window"
-msgstr "Position Y the la fenêtre principale"
+msgstr "Position Y de la fenêtre principale"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
