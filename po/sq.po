@@ -1,14 +1,14 @@
 # Përkthimi i devhelp në shqip.
 # This file is distributed under the same license as the devhelp package.
-# Copyright (C) 2004, 2007, 2008 Free Software Foundation, Inc.
+# Copyright (C) 2004-2008, 2010 Free Software Foundation, Inc.
 #
-# Laurent Dhima <laurenti@alblinux.net>, 2004, 2007, 2008.
+# Laurent Dhima <laurenti@alblinux.net>, 2004-2008, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp HEAD\n"
+"Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-17 13:18+0200\n"
-"PO-Revision-Date: 2008-07-17 17:32+0200\n"
+"POT-Creation-Date: 2010-05-11 18:59+0200\n"
+"PO-Revision-Date: 2010-05-11 19:16+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -20,8 +20,10 @@ msgstr ""
 msgid "Developer's Help program"
 msgstr "Program ndihmues për zhvilluesit"
 
-#: ../data/devhelp.desktop.in.in.h:2 ../data/ui/devhelp.glade.h:4
-#: ../src/dh-main.c:151 ../src/dh-window.c:836
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1849
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -30,136 +32,116 @@ msgid "Documentation Browser"
 msgstr "Shfletimi i dokumentimeve"
 
 #: ../data/devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Lloji i gërmave për tekstin e fiksuar"
+msgid "Font for fixed width text"
+msgstr "Lloji i gërmave për tekstin me gjerësi të fiksuar"
 
 #: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
 msgstr "Lloji i gërmave për tekstin"
 
 #: ../data/devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Lloji i gërmave për tekstin me gjerësi të fiksuar."
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Lloji i gërmave për tekstin me gjerësi të fiksuar, si p.sh. shembuj kodi."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
 msgstr "Lloji i gërmave për tekstin me gjerësi të ndryshueshme."
 
 #: ../data/devhelp.schemas.in.h:5
+msgid "Height of assistant window"
+msgstr "Lartësia e dritares ndihmëse"
+
+#: ../data/devhelp.schemas.in.h:6
 msgid "Height of main window"
 msgstr "Lartësia e dritares qendrore"
 
-#: ../data/devhelp.schemas.in.h:6
+#: ../data/devhelp.schemas.in.h:7
 msgid "Main window maximized state"
 msgstr "Gjendja e maksimizimit të dritares qendrore"
 
-#: ../data/devhelp.schemas.in.h:7
-msgid "Selected tab, \"content\" or \"search\""
-msgstr "Skeda e zgjedhur, \"përmbajtja\" ose \"kërko\""
-
 #: ../data/devhelp.schemas.in.h:8
-msgid "Show advanced search options"
-msgstr "Shfaq opsionet e përparuar të kërkimit"
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Skeda e zgjedhur: \"përmbajtja\" ose \"kërko\""
 
 #: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the assistant window."
+msgstr "Pozicioni X i dritares ndihmëse."
+
+#: ../data/devhelp.schemas.in.h:10
 msgid "The X position of the main window."
 msgstr "Pozicioni X i dritares qendrore."
 
-#: ../data/devhelp.schemas.in.h:10
+#: ../data/devhelp.schemas.in.h:11
+msgid "The Y position of the assistant window."
+msgstr "Pozicioni Y i dritares ndihmëse."
+
+#: ../data/devhelp.schemas.in.h:12
 msgid "The Y position of the main window."
 msgstr "Pozicioni Y i dritares qendrore."
 
-#: ../data/devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:13
+msgid "The height of the assistant window."
+msgstr "Lartësia e dritares ndihmëse."
+
+#: ../data/devhelp.schemas.in.h:14
 msgid "The height of the main window."
 msgstr "Lartësia e dritares kryesore."
 
-#: ../data/devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:15
+msgid "The width of the assistant window."
+msgstr "Gjerësia e dritares ndihmëse."
+
+#: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
 msgstr "Gjerësia e treguesit dhe panelit të kërkimit."
 
-#: ../data/devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:17
 msgid "The width of the main window."
 msgstr "Gjerësia e dritares kryesore."
 
-#: ../data/devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:18
 msgid "Use system fonts"
 msgstr "Përdor gërmat e sistemit"
 
-#: ../data/devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:19
 msgid "Use the system default fonts."
 msgstr "Përdor gërmat e prezgjedhura të sistemit."
 
-#: ../data/devhelp.schemas.in.h:16
-msgid "Whether the advanced search options are shown."
-msgstr "Nëse duhen shfaqur opsionet e përparuar të kërkimit."
+#: ../data/devhelp.schemas.in.h:20
+msgid "Whether the main window should start maximized."
+msgstr "Nëse dritarja qendrore duhet të hapet e maksimizuar."
 
-#: ../data/devhelp.schemas.in.h:17
-msgid "Whether the main window should start maximized or not."
-msgstr "Nëse dritarja qendrore duhet të hapet e maksimizuar apo jo."
+#: ../data/devhelp.schemas.in.h:21
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr "Cila nga skedat është zgjedhur: \"përmbajtja\" ose \"kërko\"."
 
-#: ../data/devhelp.schemas.in.h:18
-msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgstr "Cila nga skedat është zgjedhur \"përmbajtja\" ose \"kërko\"."
+#: ../data/devhelp.schemas.in.h:22
+msgid "Width of the assistant window"
+msgstr "Gjerësia e dritares ndihmëse"
 
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/devhelp.schemas.in.h:23
 msgid "Width of the index and search pane"
 msgstr "Gjerësia e treguesit dhe panelit të kërkimit"
 
-#: ../data/devhelp.schemas.in.h:20
+#: ../data/devhelp.schemas.in.h:24
 msgid "Width of the main window"
 msgstr "Gjerësia e dritares qendrore"
 
-#: ../data/devhelp.schemas.in.h:21
+#: ../data/devhelp.schemas.in.h:25
+msgid "X position of assistant window"
+msgstr "Pozicioni X i dritares ndihmëse"
+
+#: ../data/devhelp.schemas.in.h:26
 msgid "X position of main window"
 msgstr "Pozicioni X i dritares qendrore"
 
-#: ../data/devhelp.schemas.in.h:22
+#: ../data/devhelp.schemas.in.h:27
+msgid "Y position of assistant window"
+msgstr "Pozicioni Y i dritares ndihmëse"
+
+#: ../data/devhelp.schemas.in.h:28
 msgid "Y position of main window"
 msgstr "Pozicioni Y i dritares qendrore"
-
-#: ../data/ui/devhelp.glade.h:1
-msgid "<b>Fonts</b>"
-msgstr "<b>Gërmat</b>"
-
-#: ../data/ui/devhelp.glade.h:2
-msgid "<b>Searching</b>"
-msgstr "<b>Duke kërkuar</b>"
-
-#: ../data/ui/devhelp.glade.h:3 ../src/dh-window.c:560
-msgid "Contents"
-msgstr "Përmbajtja"
-
-#: ../data/ui/devhelp.glade.h:5
-msgid "Preferences"
-msgstr "Preferimet"
-
-#: ../data/ui/devhelp.glade.h:6
-msgid "_Back"
-msgstr "_Mbrapa"
-
-#: ../data/ui/devhelp.glade.h:7
-msgid "_Fixed width:"
-msgstr "Gjerësia e _fiksuar:"
-
-#: ../data/ui/devhelp.glade.h:8
-msgid "_Forward"
-msgstr "_Vazhdo"
-
-#: ../data/ui/devhelp.glade.h:9 ../src/dh-window.c:202
-msgid "_Go"
-msgstr "_Shko"
-
-#: ../data/ui/devhelp.glade.h:10
-msgid "_Show advanced search options"
-msgstr "_Shfaq opsionet e përparuar të kërkimit"
-
-#: ../data/ui/devhelp.glade.h:11
-msgid "_Use system fonts"
-msgstr "_Përdor gërmat e sistemit"
-
-#: ../data/ui/devhelp.glade.h:12
-msgid "_Variable width: "
-msgstr "Gjerësia e _ndryshueshme: "
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -169,224 +151,318 @@ msgstr "Suporti i Devhelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Bën që F2 të shfaqë Devhelp për fjalën tek pozicioni i kursorit"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:36
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation"
 msgstr "Shfaq dokumentimin API"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp/devhelp.py:40
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Shfaq dokumentimin API për fjalën tek pozicioni i kursorit"
 
-#: ../src/dh-main.c:100
-msgid "Search for a function"
-msgstr "Kërko për një funksion"
+#. i18n: Please don't translate "Devhelp".
+#: ../src/dh-assistant.c:74
+msgid "Devhelp — Assistant"
+msgstr "Devhelp — Asistenti"
 
-#: ../src/dh-main.c:109
+#: ../src/dh-assistant-view.c:328
+msgid "Book:"
+msgstr "Libri:"
+
+#. i18n: a documentation book
+#: ../src/dh-link.c:255
+msgid "Book"
+msgstr "Libër"
+
+#. i18n: a "page" in a documentation book
+#: ../src/dh-link.c:258
+msgid "Page"
+msgstr "Faqe"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: ../src/dh-link.c:262
+msgid "Keyword"
+msgstr "Fjalëkyçi"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:267
+msgid "Function"
+msgstr "Funksion"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:272
+msgid "Struct"
+msgstr "Struct"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:277
+msgid "Macro"
+msgstr "Macro"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:282
+msgid "Enum"
+msgstr "Enum"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:287
+msgid "Type"
+msgstr "Type"
+
+#: ../src/dh-main.c:175
+msgid "Search for a keyword"
+msgstr "Kërko për një fjalëkyç"
+
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Përfundo çdo Devhelp në ekzekutim"
 
-#: ../src/dh-main.c:118
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Shfaq versionin dhe dil"
 
-#: ../src/dh-main.c:127
-msgid "Focus the devhelp window with the search field active"
-msgstr "Vë në fokus dritaren e devhelp me fushën e kërkimit të aktivuar"
+#: ../src/dh-main.c:190
+msgid "Focus the Devhelp window with the search field active"
+msgstr "Vë në fokus dritaren e Devhelp me fushën e kërkimit të aktivizuar"
 
-#: ../src/dh-parser.c:110 ../src/dh-parser.c:194 ../src/dh-parser.c:271
+#: ../src/dh-main.c:195
+msgid "Search and display any hit in the assistant window"
+msgstr "Kërkon dhe shfaq çfarëdo ndihme në dritaren ndihmuese"
+
+#: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
+#: ../src/dh-parser.c:263
 #, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Pritej '%s' u mor '%s' në rreshtin %d, kolona %d"
+msgid "Expected '%s', got '%s' at line %d, column %d"
+msgstr "Pritej '%s', u mor '%s' në rreshtin %d, kollona %d"
 
-#: ../src/dh-parser.c:128
+#: ../src/dh-parser.c:109
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Emër hapësire i pavlefshëm '%s' tek rreshti %d, kollona %d"
 
-#: ../src/dh-parser.c:158
+#: ../src/dh-parser.c:140
 #, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "titulli, emri, dhe elementët e lidhur nevoiten tek rreshti %d, kollona %d"
-
-#: ../src/dh-parser.c:215
-#, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
+msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"emri dhe elementët e lidhur kërkohen në brendësi <sub> tek rreshti %d, "
+"Elementët \"titulli\", \"emri\" dhe \"lidhja\" janë të domosdoshëm tek rreshti %d, "
 "kollona %d"
 
-#: ../src/dh-parser.c:297
+#: ../src/dh-parser.c:208
 #, c-format
-msgid "name and link elements are required inside <function> on line %d, column %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
 msgstr ""
-"emri dhe elementët e lidhur kërkohen në brendësi <function> tek rreshti %d, "
+"Elementët \"emri\" dhe \"lidhja\" janë të domosdoshëm në brendësi të <sub> tek "
+"rreshti %d, kollona %d"
+
+#: ../src/dh-parser.c:288
+#, c-format
+msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+"Elementët \"emri\" dhe \"lidhja\" janë të domosdoshëm në brendësi të '%s' tek "
+"rreshti %d, kollona %d"
+
+#: ../src/dh-parser.c:301
+#, c-format
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+msgstr ""
+"Elementi \"lloji\" është i domosdoshëm në brendësi të <kezword> tek rreshti %d, "
 "kollona %d"
 
-#: ../src/dh-parser.c:420 ../src/dh-parser.c:515
-#, c-format
-msgid "Could not create book parser"
-msgstr "I pamundur krijimi i analizuesit të librit"
-
-#: ../src/dh-parser.c:436 ../src/dh-parser.c:525
-#, c-format
-msgid "Could not create markup parser"
-msgstr "I pamundur krijimi i analizuesit të markues-ve"
-
-#: ../src/dh-parser.c:578
+#: ../src/dh-parser.c:506
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "I pamundur dekompresimi i librit '%s': %s"
 
-#: ../src/dh-parser.c:603
-#, c-format
-msgid "Devhelp is not built with zlib support"
-msgstr "Devhelp nuk është nuk strukturuar me suportin për zlib"
+#: ../src/dh-search.c:509
+msgid "All books"
+msgstr "Të gjithë librat"
 
-#: ../src/dh-search.c:621
-msgid "_Book:"
-msgstr "_Libri:"
+#: ../src/dh-search.c:587
+msgid "Search in:"
+msgstr "Kërko tek:"
 
-#: ../src/dh-search.c:641
-msgid "_Page:"
-msgstr "_Faqja:"
-
-#: ../src/dh-window.c:74
+#: ../src/dh-window.c:95
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:75
+#: ../src/dh-window.c:96
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:76
+#: ../src/dh-window.c:97
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:77
+#: ../src/dh-window.c:98
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:78
+#: ../src/dh-window.c:99
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:79
+#: ../src/dh-window.c:100
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:80
+#: ../src/dh-window.c:101
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:102
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:103
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:199
+# (pofilter) accelerators: accelerator _ is missing from translation
+# (pofilter) xmltags: checks that XML/HTML tags have not been translated
+#: ../src/dh-window.c:731
+msgid "translator_credits"
+msgstr "Laurent Dhima <laurenti@alblinux.net>"
+
+#: ../src/dh-window.c:738
+msgid "A developers' help browser for GNOME"
+msgstr "Një shletues i ndihmës për zhvillues për GNOME"
+
+#: ../src/dh-window.c:768
 msgid "_File"
 msgstr "_File"
 
-#: ../src/dh-window.c:200
+#: ../src/dh-window.c:769
 msgid "_Edit"
 msgstr "_Ndrysho"
 
-#: ../src/dh-window.c:201
+#: ../src/dh-window.c:770
 msgid "_View"
 msgstr "_Shfaq"
 
-#: ../src/dh-window.c:203
+#: ../src/dh-window.c:771
+msgid "_Go"
+msgstr "_Shko"
+
+#: ../src/dh-window.c:772
 msgid "_Help"
 msgstr "_Ndihmë"
 
 #. File menu
-#: ../src/dh-window.c:206
+#: ../src/dh-window.c:775
 msgid "_New Window"
 msgstr "_Dritare e re"
 
-#: ../src/dh-window.c:208
+#: ../src/dh-window.c:777
 msgid "New _Tab"
 msgstr "_Skedë e re"
 
-#: ../src/dh-window.c:210
-msgid "_Print..."
+#: ../src/dh-window.c:779
+msgid "_Print…"
 msgstr "_Printo..."
 
-#: ../src/dh-window.c:222 ../src/eggfindbar.c:337
+#: ../src/dh-window.c:791 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Gjej në vazhdim"
 
-#: ../src/dh-window.c:224 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:793 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Gjej paraardhësen"
 
-#: ../src/dh-window.c:231
+#: ../src/dh-window.c:800
 msgid "Go to the previous page"
 msgstr "Shko tek faqja paraardhëse"
 
-#: ../src/dh-window.c:234
+#: ../src/dh-window.c:803
 msgid "Go to the next page"
 msgstr "Shko tek faqja në vijim"
 
-#: ../src/dh-window.c:237
+#: ../src/dh-window.c:806
 msgid "_Contents Tab"
 msgstr "_Skeda e përmbajtjes"
 
-#: ../src/dh-window.c:240
+#: ../src/dh-window.c:809
 msgid "_Search Tab"
 msgstr "_Skeda e kërkimit"
 
 #. View menu
-#: ../src/dh-window.c:244
+#: ../src/dh-window.c:813
 msgid "_Larger Text"
 msgstr "Tekst më i _madh"
 
-#: ../src/dh-window.c:245
+#: ../src/dh-window.c:814
 msgid "Increase the text size"
 msgstr "Rrit madhësinë e tekstit"
 
-#: ../src/dh-window.c:247
+#: ../src/dh-window.c:816
 msgid "S_maller Text"
 msgstr "Tekst më i v_ogël"
 
-#: ../src/dh-window.c:248
+#: ../src/dh-window.c:817
 msgid "Decrease the text size"
 msgstr "Zvogëlo madhësinë e tekstit"
 
-#: ../src/dh-window.c:250
-msgid "_Normal size"
-msgstr "Madhësi _normale"
+#: ../src/dh-window.c:819
+msgid "_Normal Size"
+msgstr "Madhësia _normale"
 
-#: ../src/dh-window.c:251
+#: ../src/dh-window.c:820
 msgid "Use the normal text size"
 msgstr "Përdor madhësinë e zakonshme të tekstit"
 
-#: ../src/dh-window.c:501
+#: ../src/dh-window.c:829
+msgid "Leave fullscreen mode"
+msgstr "Dil nga modaliteti me ekran të plotë"
+
+#: ../src/dh-window.c:836
+msgid "Display in full screen"
+msgstr "Shfaq me ekran të plotë"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:956
+msgid "Larger"
+msgstr "Më i madh"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:959
+msgid "Smaller"
+msgstr "Më i vogël"
+
+#. i18n: please don't translate
+#. * "Devhelp", it's a name, not a
+#. * generic word.
+#: ../src/dh-window.c:1105
 msgid "About Devhelp"
 msgstr "Informacione mbi Devhelp"
 
-#: ../src/dh-window.c:506
-msgid "Preferences..."
+#: ../src/dh-window.c:1110
+msgid "Preferences…"
 msgstr "Preferimet..."
 
-#: ../src/dh-window.c:570
+#: ../src/dh-window.c:1153
+msgid "Contents"
+msgstr "Përmbajtja"
+
+#: ../src/dh-window.c:1163
 msgid "Search"
 msgstr "Kërko"
 
-# (pofilter) accelerators: accelerator _ is missing from translation
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-#: ../src/dh-window.c:833
-msgid "translator_credits"
-msgstr "Laurent Dhima <laurenti@alblinux.net>"
+#: ../src/dh-window.c:1329
+msgid "Error opening the requested link."
+msgstr "Gabim gjatë hapjes së lidhjes së kërkuar."
 
-#: ../src/dh-window.c:838
-msgid "A developer's help browser for GNOME 2"
-msgstr "Një shletues i ndihmës për zhvilluesit i GNOME 2"
-
-#: ../src/dh-window.c:1247 ../src/dh-window.c:1437
+#: ../src/dh-window.c:1635 ../src/dh-window.c:1877
 msgid "Empty Page"
 msgstr "Faqe bosh"
 
@@ -394,19 +470,19 @@ msgstr "Faqe bosh"
 msgid "Find:"
 msgstr "Gjej:"
 
-#: ../src/eggfindbar.c:332
+#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Gjej korrispondimin paraardhës të tekstit të kërkuar"
 
-#: ../src/eggfindbar.c:340
+#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "Gjej korrispondimin në vazhdim të tekstit të kërkuar"
 
-#: ../src/eggfindbar.c:348
-msgid "Case Sensitive"
-msgstr "Ndjeshmëri ndaj ndryshimit gërma të mëdha/vogla"
+#: ../src/eggfindbar.c:358
+msgid "C_ase Sensitive"
+msgstr "Ndjeshmëri ndaj ndryshimit gërma të mëdh_a/vogla"
 
-#: ../src/eggfindbar.c:351
+#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Ndrysho kërkimin duke diskriminuar ndryshimet gërma të mëdha/vogla"
 
