@@ -13,19 +13,20 @@
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
 # Fran Diéguez <frandieguez@ubuntu.com>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp-master-po-gl-1953\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 15:32+0100\n"
-"PO-Revision-Date: 2010-02-05 13:05+0100\n"
+"POT-Creation-Date: 2010-05-12 17:42+0200\n"
+"PO-Revision-Date: 2010-05-12 17:42+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
-"Language-Team: Gallician <proxecto@trasno.net>\n"
+"Language-Team: Galician <gnome@g11n.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -40,23 +41,24 @@ msgstr "Devhelp"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr "Navegador de documentación"
+msgstr "Visor de documentación"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Font for fixed width text"
-msgstr "Tipo de letra do texto fixo"
+msgstr "Tipo de letra para o texto de ancho fixo"
 
 #: ../data/devhelp.schemas.in.h:2
 msgid "Font for text"
-msgstr "Tipo de letra do texto"
+msgstr "Tipo de letra para o texto"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text with fixed width, such as code examples."
-msgstr "Tipo de letra do texto de largura fixa, como os exemplos de código."
+msgstr ""
+"Tipo de letra para o texto de ancho fixo, tal como os exemplos de código."
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with variable width."
-msgstr "Tipo de letra do texto de largura variábel."
+msgstr "Tipo de letra para o texto de ancho variábel."
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Height of assistant window"
@@ -73,7 +75,7 @@ msgstr "Estado maximizado da xanela principal"
 # (pofilter) gconf: do not translate gconf attribute: "content", "search"
 #: ../data/devhelp.schemas.in.h:8
 msgid "Selected tab: \"content\" or \"search\""
-msgstr "O separador seleccionado: \"content\" ou \"search\""
+msgstr "O separador seleccionado: «content» (contido) ou «search» (busca)"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "The X position of the assistant window."
@@ -121,24 +123,26 @@ msgstr "Usar os tipos de letra predefinidos do sistema."
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "Whether the main window should start maximized."
-msgstr "Indica se a xanela principal se debería iniciar maximizada ou non."
+msgstr "Indica se a xanela principal debería iniciarse maximizada."
 
 # (pofilter) gconf: do not translate gconf attribute: "content", "search"
 #: ../data/devhelp.schemas.in.h:21
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "Que separador está seleccionado: \"content\" ou \"search\"."
+msgstr ""
+"Cal dos separadores está seleccionado: «content» (contidos) ou "
+"«search» (busca)."
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Width of the assistant window"
-msgstr "A largura da xanela do asistente"
+msgstr "A anchura da xanela do asistente"
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Width of the index and search pane"
-msgstr "Largura do índice e do panel de busca"
+msgstr "Anchura do índice e do panel de busca"
 
 #: ../data/devhelp.schemas.in.h:24
 msgid "Width of the main window"
-msgstr "A largura da xanela principal"
+msgstr "A anchura da xanela principal"
 
 #: ../data/devhelp.schemas.in.h:25
 msgid "X position of assistant window"
@@ -238,7 +242,7 @@ msgstr "Buscar unha palabra chave"
 
 #: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
-msgstr "Sae de calquera devhelp en execución"
+msgstr "Termina calquera devhelp en execución"
 
 #: ../src/dh-main.c:185
 msgid "Display the version and exit"
@@ -256,7 +260,7 @@ msgstr "Buscar e mostrar calquera coincidencia na xanela do asistente"
 #: ../src/dh-parser.c:263
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "Esperábase '%s' e obtívose '%s' na liña %d, columna %d"
+msgstr "Esperábase «%s» e obtívose «%s» na liña %d, columna %d"
 
 #: ../src/dh-parser.c:109
 #, c-format
@@ -268,8 +272,7 @@ msgstr "O espazo de nomes incorrecto '%s' na liña %d, columna %d"
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"Requírense os elementos \"título\", \"nome\" e \"ligazón\" na liña %d, "
-"columna %d"
+"Requírense os elementos «título», «nome» e «ligazón» na liña %d, columna %d"
 
 #: ../src/dh-parser.c:208
 #, c-format
@@ -277,27 +280,25 @@ msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
 "d"
 msgstr ""
-"requírense os elementos \"nome\" e \"ligazón\" dentro de <sub> na liña %d, "
-"columna %d"
+"requírense os elementos «nome» e «ligazón» dentro de <sub> na liña %d, columna "
+"%d"
 
 #: ../src/dh-parser.c:288
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"requírense os elementos \"nome\" e \"ligazón\" dentro de '%s' na liña %d, "
-"columna %d"
+"requírense os elementos «nome» e «ligazón» dentro de «%s» na liña %d, columna %d"
 
 #: ../src/dh-parser.c:301
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr ""
-"requírese o elemento \"tipo\" dentro de <keyword> na liña %d, columna %d"
+msgstr "requírese o elemento «tipo» dentro de <keyword> na liña %d, columna %d"
 
 #: ../src/dh-parser.c:506
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "Non se puido descomprimir o libro '%s': %s"
+msgstr "Non se puido descomprimir o libro «%s»: %s"
 
 #: ../src/dh-search.c:509
 msgid "All books"
@@ -347,15 +348,17 @@ msgstr "400%"
 #: ../src/dh-window.c:731
 msgid "translator_credits"
 msgstr ""
-"Antón Méixome <meixome@mancomun.org>, 2009;\n"
-"Francisco Diéguez <fran.dieguez@glug.es>, 2009;\n"
-"Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010.\n"
+"Fran Dieguez <frandieguez@ubuntu.com>, 2009,2010\n"
+"Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010\n"
+"Antón Méixome <meixome@mancomun.org>, 2009\n"
+"Mancomún <g11n@mancomun.org>, 2009\n"
+"Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006, 2007, 2008\n"
 "\n"
 "Proxecto Trasno http://trasno.net"
 
 #: ../src/dh-window.c:738
 msgid "A developers' help browser for GNOME"
-msgstr "Un navegador de axuda para desenvolvedores de GNOME"
+msgstr "Un visor de axuda para desenvolvedores de GNOME"
 
 #: ../src/dh-window.c:768
 msgid "_File"
@@ -441,11 +444,11 @@ msgstr "Usar o tamaño de texto normal"
 
 #: ../src/dh-window.c:829
 msgid "Leave fullscreen mode"
-msgstr "Deixar o modo de pantalla completa"
+msgstr "Saír do modo a pantalla completa"
 
 #: ../src/dh-window.c:836
 msgid "Display in full screen"
-msgstr "Mostrar en pantalla completa"
+msgstr "Ver a pantalla completa"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:956
@@ -494,12 +497,12 @@ msgstr "Buscar a anterior aparición da cadea de busca"
 
 #: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
-msgstr "Buscar a seguinte aparición da cadea de busca"
+msgstr "Buscar a seguinte coincidencia da cadea buscada"
 
 #: ../src/eggfindbar.c:358
 msgid "C_ase Sensitive"
-msgstr "Diferen_ciar maiúsculas de minúsculas"
+msgstr "Coincidir con c_apitalización"
 
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
-msgstr "Activar/desactivar a busca diferenciando maiúsculas de minúsculas"
+msgstr "Activar/desactivar a busca discriminando a capitalización"
