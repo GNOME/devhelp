@@ -1,9 +1,10 @@
 # Shavian translation for devhelp.
 # Copyright (C) 2009 The Gnome Foundation.
 # Thomas Thurman <tthurman@gnome.org>, 2009.
+# Transliterate Devhelp as ·𐑛𐑧𐑝𐑣𐑧𐑤𐑐
 msgid ""
 msgstr ""
-"Project-Id-Version: metacity\n"
+"Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
 "POT-Creation-Date: 2010-05-12 19:02+0000\n"
 "PO-Revision-Date: 2010-05-12 18:35 -0400\n"
@@ -20,11 +21,11 @@ msgstr "𐑛𐑦𐑝𐑧𐑤𐑩𐑐𐑼'𐑟 𐑣𐑧𐑤𐑐 𐑐𐑮𐑴𐑜�
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#, fuzzy
+# (Shavian: So transliteration is okay)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1849
 msgid "Devhelp"
-msgstr "Devhelp"
+msgstr "·𐑛𐑧𐑝𐑣𐑧𐑤𐑐"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -142,31 +143,26 @@ msgstr "Y 𐑐𐑩𐑟𐑦𐑖𐑩𐑯 𐑝 𐑩𐑕𐑦𐑕𐑑𐑩𐑯𐑑 �
 msgid "Y position of main window"
 msgstr "Y 𐑐𐑩𐑟𐑦𐑖𐑩𐑯 𐑝 𐑥𐑱𐑯 𐑢𐑦𐑯𐑛𐑴"
 
-#, fuzzy
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
-msgstr "Devhelp 𐑕𐑩𐑐𐑹𐑑"
+msgstr "·𐑛𐑧𐑝𐑣𐑧𐑤𐑐 𐑕𐑩𐑐𐑹𐑑"
 
-#, fuzzy
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "𐑥𐑱𐑒𐑕 F2 𐑚𐑮𐑦𐑙 𐑳𐑐 Devhelp 𐑓𐑹 𐑞 𐑢𐑻𐑛 𐑨𐑑 𐑞 𐑒𐑻𐑕𐑼"
+msgstr "𐑥𐑱𐑒𐑕 F2 𐑚𐑮𐑦𐑙 𐑳𐑐 ·𐑛𐑧𐑝𐑣𐑧𐑤𐑐 𐑓𐑹 𐑞 𐑢𐑻𐑛 𐑨𐑑 𐑞 𐑒𐑻𐑕𐑼"
 
-#, fuzzy
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation"
 msgstr "𐑖𐑴 API 𐑛𐑪𐑒𐑿𐑥𐑩𐑯𐑑𐑱𐑖𐑩𐑯"
 
-#, fuzzy
 #: ../misc/gedit-plugin/devhelp/devhelp.py:40
 msgid "Show API Documentation for the word at the cursor"
 msgstr "𐑖𐑴 API 𐑛𐑪𐑒𐑿𐑥𐑩𐑯𐑑𐑱𐑖𐑩𐑯 𐑓𐑹 𐑞 𐑢𐑻𐑛 𐑨𐑑 𐑞 𐑒𐑻𐑕𐑼"
 
 #. i18n: Please don't translate "Devhelp".
-#, fuzzy
 #: ../src/dh-assistant.c:74
 msgid "Devhelp — Assistant"
-msgstr "Devhelp — 𐑩𐑕𐑦𐑕𐑑𐑩𐑯𐑑"
+msgstr "·𐑛𐑧𐑝𐑣𐑧𐑤𐑐 — 𐑩𐑕𐑦𐑕𐑑𐑩𐑯𐑑"
 
 #: ../src/dh-assistant-view.c:328
 msgid "Book:"
@@ -198,10 +194,9 @@ msgstr "𐑓𐑳𐑙𐑒𐑖𐑩𐑯"
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#, fuzzy
 #: ../src/dh-link.c:272
 msgid "Struct"
-msgstr "Struct"
+msgstr "𐑕𐑑𐑮𐑳𐑒𐑑"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -213,10 +208,9 @@ msgstr "𐑥𐑨𐑒𐑮𐑴"
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#, fuzzy
 #: ../src/dh-link.c:282
 msgid "Enum"
-msgstr "Enum"
+msgstr "𐑰𐑯𐑳𐑥"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -229,19 +223,17 @@ msgstr "𐑑𐑲𐑐"
 msgid "Search for a keyword"
 msgstr "𐑕𐑻𐑗 𐑓𐑹 𐑩 𐑒𐑰𐑢𐑻𐑛"
 
-#, fuzzy
 #: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
-msgstr "𐑒𐑢𐑦𐑑 𐑧𐑯𐑦 𐑮𐑳𐑯𐑦𐑙 Devhelp"
+msgstr "𐑒𐑢𐑦𐑑 𐑧𐑯𐑦 𐑮𐑳𐑯𐑦𐑙 ·𐑛𐑧𐑝𐑣𐑧𐑤𐑐"
 
 #: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "𐑛𐑩𐑕𐑐𐑤𐑱 𐑞 𐑝𐑻𐑠𐑩𐑯 𐑯 𐑧𐑜𐑟𐑦𐑑"
 
-#, fuzzy
 #: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
-msgstr "𐑓𐑴𐑒𐑩𐑕 𐑞 Devhelp 𐑢𐑦𐑯𐑛𐑴 𐑢𐑦𐑞 𐑞 𐑕𐑻𐑗 𐑓𐑰𐑤𐑛 𐑨𐑒𐑑𐑦𐑝"
+msgstr "𐑓𐑴𐑒𐑩𐑕 𐑞 ·𐑛𐑧𐑝𐑣𐑧𐑤𐑐 𐑢𐑦𐑯𐑛𐑴 𐑢𐑦𐑞 𐑞 𐑕𐑻𐑗 𐑓𐑰𐑤𐑛 𐑨𐑒𐑑𐑦𐑝"
 
 #: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
@@ -269,7 +261,7 @@ msgstr "\"title\", \"name\" 𐑯 \"link\" 𐑧𐑤𐑩𐑥𐑩𐑯𐑑𐑕 𐑸 
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
 msgstr ""
-"\"name\" 𐑯 \"link\" 𐑧𐑤𐑩𐑥𐑩𐑯𐑑𐑕 𐑸 𐑮𐑦𐑒𐑢𐑲𐑼𐑛 𐑦𐑯𐑕𐑲𐑛 <𐑕𐑳𐑚> 𐑪𐑯 𐑤𐑲𐑯 %d, 𐑒𐑪𐑤𐑩𐑥 %d"
+"\"name\" 𐑯 \"link\" 𐑧𐑤𐑩𐑥𐑩𐑯𐑑𐑕 𐑸 𐑮𐑦𐑒𐑢𐑲𐑼𐑛 𐑦𐑯𐑕𐑲𐑛 <sub> 𐑪𐑯 𐑤𐑲𐑯 %d, 𐑒𐑪𐑤𐑩𐑥 %d"
 
 #, c-format
 #: ../src/dh-parser.c:288
@@ -282,10 +274,10 @@ msgstr "\"name\" 𐑯 \"link\" 𐑧𐑤𐑩𐑥𐑩𐑯𐑑𐑕 𐑸 𐑮𐑦�
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "\"type\" 𐑧𐑤𐑩𐑥𐑩𐑯𐑑 𐑦𐑟 𐑮𐑦𐑒𐑢𐑲𐑼𐑛 𐑦𐑯𐑕𐑲𐑛 <keyword> 𐑪𐑯 𐑤𐑲𐑯 %d, 𐑒𐑪𐑤𐑩𐑥 %d"
 
-#, fuzzy, c-format
+#, c-format
 #: ../src/dh-parser.c:506
 msgid "Cannot uncompress book '%s': %s"
-msgstr "𐑒𐑨𐑯𐑪𐑑 uncompress 𐑚𐑫𐑒 '%s': %s"
+msgstr "𐑒𐑨𐑯𐑪𐑑 𐑳𐑯𐑒𐑪𐑥𐑐𐑮𐑧𐑕 𐑚𐑫𐑒 '%s': %s"
 
 #: ../src/dh-search.c:509
 msgid "All books"
@@ -405,10 +397,9 @@ msgstr "_𐑤𐑸𐑡𐑼 𐑑𐑧𐑒𐑕𐑑"
 msgid "Increase the text size"
 msgstr "𐑦𐑯𐑒𐑮𐑰𐑕 𐑞 𐑑𐑧𐑒𐑕𐑑 𐑕𐑲𐑟"
 
-#, fuzzy
 #: ../src/dh-window.c:816
 msgid "S_maller Text"
-msgstr "S_maller 𐑑𐑧𐑒𐑕𐑑"
+msgstr "_𐑕𐑥𐑷𐑤𐑼 𐑑𐑧𐑒𐑕𐑑"
 
 #: ../src/dh-window.c:817
 msgid "Decrease the text size"
@@ -422,10 +413,9 @@ msgstr "_𐑯𐑹𐑥𐑩𐑤 𐑕𐑲𐑟"
 msgid "Use the normal text size"
 msgstr "𐑿𐑟 𐑞 𐑯𐑹𐑥𐑩𐑤 𐑑𐑧𐑒𐑕𐑑 𐑕𐑲𐑟"
 
-#, fuzzy
 #: ../src/dh-window.c:829
 msgid "Leave fullscreen mode"
-msgstr "𐑤𐑰𐑝 fullscreen 𐑥𐑴𐑛"
+msgstr "𐑤𐑰𐑝 𐑓𐑫𐑤𐑕𐑒𐑮𐑰𐑯 𐑥𐑴𐑛"
 
 #: ../src/dh-window.c:836
 msgid "Display in full screen"
@@ -444,10 +434,9 @@ msgstr "𐑕𐑥𐑷𐑤𐑼"
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#, fuzzy
 #: ../src/dh-window.c:1105
 msgid "About Devhelp"
-msgstr "𐑩𐑚𐑬𐑑 Devhelp"
+msgstr "𐑩𐑚𐑬𐑑 ·𐑛𐑧𐑝𐑣𐑧𐑤𐑐"
 
 #: ../src/dh-window.c:1110
 msgid "Preferences…"
@@ -481,10 +470,9 @@ msgstr "𐑓𐑲𐑯𐑛 𐑐𐑮𐑰𐑝𐑦𐑩𐑕 𐑪𐑒𐑻𐑩𐑯𐑕 �
 msgid "Find next occurrence of the search string"
 msgstr "𐑓𐑲𐑯𐑛 𐑯𐑧𐑒𐑕𐑑 𐑪𐑒𐑻𐑩𐑯𐑕 𐑝 𐑞 𐑕𐑻𐑗 𐑕𐑑𐑮𐑦𐑙"
 
-#, fuzzy
 #: ../src/eggfindbar.c:358
 msgid "C_ase Sensitive"
-msgstr "C_ase 𐑕𐑧𐑯𐑕𐑦𐑑𐑦𐑝"
+msgstr "𐑒_𐑱𐑕 𐑕𐑧𐑯𐑕𐑦𐑑𐑦𐑝"
 
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
