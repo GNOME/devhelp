@@ -48,12 +48,7 @@ struct _DhBookManagerClass {
 
 GType          dh_book_manager_get_type              (void) G_GNUC_CONST;
 DhBookManager *dh_book_manager_new                   (void);
-void           dh_book_manager_add_from_dir          (DhBookManager *book_manager,
-                                                      const gchar   *dir_path);
-void           dh_book_manager_add_from_xcode_docset (DhBookManager *book_manager,
-                                                      const gchar   *dir_path);
-void           dh_book_manager_add_from_filepath     (DhBookManager *book_manager,
-                                                      const gchar   *book_path);
+
 
 G_END_DECLS
 
