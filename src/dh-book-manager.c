@@ -53,6 +53,16 @@ G_DEFINE_TYPE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 static void    dh_book_manager_init       (DhBookManager      *book_manager);
 static void    dh_book_manager_class_init (DhBookManagerClass *klass);
 
+static void    book_manager_add_from_filepath     (DhBookManager *book_manager,
+                                                   const gchar   *book_path);
+static void    book_manager_add_from_dir          (DhBookManager *book_manager,
+                                                   const gchar   *dir_path);
+
+#ifdef GDK_WINDOWING_QUARTZ
+static void    book_manager_add_from_xcode_docset (DhBookManager *book_manager,
+                                                   const gchar   *dir_path);
+#endif
+
 static DhBook *book_new                   (const gchar  *book_path);
 static void    book_free                  (DhBook       *book);
 static gint    book_cmp                   (const DhBook *a,
@@ -123,9 +133,9 @@ book_manager_get_book_path (const gchar *base_path,
         return NULL;
 }
 
-void
-dh_book_manager_add_from_dir (DhBookManager *book_manager,
-                              const gchar   *dir_path)
+static void
+book_manager_add_from_dir (DhBookManager *book_manager,
+                           const gchar   *dir_path)
 {
         GError      *error = NULL;
         GDir        *dir;
@@ -150,8 +160,8 @@ dh_book_manager_add_from_dir (DhBookManager *book_manager,
                 book_path = book_manager_get_book_path (dir_path, name);
                 if (book_path) {
                         /* Add book from filepath */
-                        dh_book_manager_add_from_filepath (book_manager,
-                                                           book_path);
+                        book_manager_add_from_filepath (book_manager,
+                                                        book_path);
                         g_free (book_path);
                 }
         }
@@ -161,7 +171,7 @@ dh_book_manager_add_from_dir (DhBookManager *book_manager,
 
 #ifdef GDK_WINDOWING_QUARTZ
 static gboolean
-book_manager_seems_docset_dir (const gchar *path)
+seems_docset_dir (const gchar *path)
 {
         gchar    *tmp;
         gboolean  seems_like_devhelp = FALSE;
@@ -185,14 +195,11 @@ book_manager_seems_docset_dir (const gchar *path)
 
         return seems_like_devhelp;
 }
-#endif
 
-
-void
-dh_book_manager_add_from_xcode_docset (DhBookManager *book_manager,
-                                       const gchar   *dir_path)
+static void
+book_manager_add_from_xcode_docset (DhBookManager *book_manager,
+                                    const gchar   *dir_path)
 {
-#ifdef GDK_WINDOWING_QUARTZ
         GError      *error = NULL;
         GDir        *dir;
         const gchar *name;
@@ -200,7 +207,7 @@ dh_book_manager_add_from_xcode_docset (DhBookManager *book_manager,
         g_return_if_fail (book_manager);
         g_return_if_fail (dir_path);
 
-        if (!book_manager_seems_docset_dir (dir_path)) {
+        if (!seems_docset_dir (dir_path)) {
                 return;
         }
 
@@ -221,19 +228,19 @@ dh_book_manager_add_from_xcode_docset (DhBookManager *book_manager,
 
                         book_path = g_build_filename (path, name, NULL);
                         /* Add book from filepath */
-                        dh_book_manager_add_from_filepath (book_manager,
-                                                           book_path);
+                        book_manager_add_from_filepath (book_manager,
+                                                        book_path);
                         g_free (book_path);
                 }
         }
 
         g_dir_close (dir);
-#endif
 }
+#endif
 
-void
-dh_book_manager_add_from_filepath (DhBookManager *book_manager,
-                                   const gchar   *book_path)
+static void
+book_manager_add_from_filepath (DhBookManager *book_manager,
+                                const gchar   *book_path)
 {
         DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
         DhBook *book;
@@ -281,7 +288,7 @@ dh_book_manager_new (void)
         return g_object_new (DH_TYPE_BOOK_MANAGER, NULL);
 }
 
-/* Single book creation/destruction */
+/* Single book creation/destruction/management */
 
 static DhBook *
 book_new (const gchar *book_path)
