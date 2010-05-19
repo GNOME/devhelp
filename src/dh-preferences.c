@@ -21,7 +21,7 @@
 #include "config.h"
 #include <gtk/gtk.h>
 #include <string.h>
-#include "dh-util.h" 
+#include "dh-util.h"
 #include "dh-preferences.h"
 #include "ige-conf.h"
 #include "dh-base.h"
@@ -113,7 +113,7 @@ preferences_close_cb (GtkButton *button, gpointer user_data)
 }
 
 static void
-preferences_system_fonts_toggled_cb (GtkToggleButton *button, 
+preferences_system_fonts_toggled_cb (GtkToggleButton *button,
 				     gpointer         user_data)
 {
 	DhPreferences *prefs = user_data;
@@ -124,7 +124,7 @@ preferences_system_fonts_toggled_cb (GtkToggleButton *button,
 	ige_conf_set_bool (ige_conf_get (),
                            DH_CONF_USE_SYSTEM_FONTS,
                            active);
-	
+
 	gtk_widget_set_sensitive (prefs->fonts_table, !active);
 }
 
@@ -185,7 +185,7 @@ preferences_use_system_font_notify_cb (IgeConf     *client,
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prefs->system_fonts_button),
 					      use_system_fonts);
 	}
-	
+
 	if (prefs->fonts_table) {
 		gtk_widget_set_sensitive (prefs->fonts_table, !use_system_fonts);
 	}
@@ -231,7 +231,7 @@ preferences_connect_conf_listeners (void)
 
 /* FIXME: Use the functions in dh-util.c for this. */
 static void
-preferences_get_font_names (gboolean   use_system_fonts, 
+preferences_get_font_names (gboolean   use_system_fonts,
 			    gchar    **variable,
 			    gchar    **fixed)
 {
@@ -254,7 +254,7 @@ preferences_get_font_names (gboolean   use_system_fonts,
 #endif
 	} else {
 		ige_conf_get_string (conf,
-                                     DH_CONF_VARIABLE_FONT, 
+                                     DH_CONF_VARIABLE_FONT,
                                      &var_font_name);
                 ige_conf_get_string (conf,
                                      DH_CONF_FIXED_FONT,
@@ -300,7 +300,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
                 prefs,
                 "variable_font_button", "font_set", preferences_font_set_cb,
                 "fixed_font_button", "font_set", preferences_font_set_cb,
-                "close_button", "clicked", preferences_close_cb,
+                "preferences_close_button", "clicked", preferences_close_cb,
                 "system_fonts_button", "toggled", preferences_system_fonts_toggled_cb,
                 NULL);
 
@@ -312,7 +312,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
 	gtk_widget_set_sensitive (prefs->fonts_table, !use_system_fonts);
 
 	preferences_get_font_names (FALSE, &var_font_name, &fixed_font_name);
-	
+
 	if (var_font_name) {
 		gtk_font_button_set_font_name (GTK_FONT_BUTTON (prefs->variable_font_button),
 					       var_font_name);
@@ -324,9 +324,9 @@ dh_preferences_show_dialog (GtkWindow *parent)
 					       fixed_font_name);
 		g_free (fixed_font_name);
 	}
-	
+
 	g_object_unref (builder);
-	
-	gtk_window_set_transient_for (GTK_WINDOW (prefs->dialog), parent); 
+
+	gtk_window_set_transient_for (GTK_WINDOW (prefs->dialog), parent);
 	gtk_widget_show_all (prefs->dialog);
 }
