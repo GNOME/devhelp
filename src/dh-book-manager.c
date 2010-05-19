@@ -292,7 +292,6 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
                 return;
         }
 
-        g_debug ("Adding '%s'...", book_path);
         /* Add the book to the book list */
         priv->books = g_list_insert_sorted (priv->books,
                                             book,
