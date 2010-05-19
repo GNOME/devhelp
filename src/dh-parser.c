@@ -48,7 +48,7 @@ typedef struct {
 	gboolean             parsing_chapters;
 	gboolean             parsing_keywords;
 
- 	GNode               *book_tree;
+ 	GNode              **book_tree;
 	GList              **keywords;
 
 	/* Version 2 uses <keyword> instead of <function>. */
@@ -160,7 +160,7 @@ parser_start_node_book (DhParser             *parser,
         *parser->keywords = g_list_prepend (*parser->keywords, dh_link_ref (link));
 
         parser->book_node = g_node_new (dh_link_ref (link));
-        g_node_prepend (parser->book_tree, parser->book_node);
+        *parser->book_tree = parser->book_node;
         parser->parent = parser->book_node;
         g_free (title);
         dh_link_unref (link);
@@ -214,7 +214,7 @@ parser_start_node_chapter (DhParser             *parser,
         link = dh_link_new (DH_LINK_TYPE_PAGE,
                             NULL,
                             NULL,
-                            name, 
+                            name,
                             parser->book_node->data,
                             NULL,
                             uri);
@@ -264,7 +264,7 @@ parser_start_node_keyword (DhParser             *parser,
                              "function", node_name, line, col);
                 return;
         }
-		
+
         for (i = 0; attribute_names[i]; ++i) {
                 if (g_ascii_strcasecmp (attribute_names[i], "type") == 0) {
                         type = attribute_values[i];
@@ -375,7 +375,7 @@ parser_start_node_keyword (DhParser             *parser,
         link = dh_link_new (link_type,
                             NULL,
                             NULL,
-                            name, 
+                            name,
                             parser->book_node->data,
                             parser->parent->data,
                             uri);
@@ -475,8 +475,6 @@ parser_error_cb (GMarkupParseContext *context,
 static gboolean
 parser_read_gz_file (DhParser     *parser,
                      const gchar  *path,
-		     GNode        *book_tree,
-		     GList       **keywords,
 		     GError      **error)
 {
 	gchar  buf[BYTES_PER_READ];
@@ -525,7 +523,7 @@ parser_read_gz_file (DhParser     *parser,
 
 gboolean
 dh_parser_read_file (const gchar  *path,
-		     GNode        *book_tree,
+		     GNode       **book_tree,
 		     GList       **keywords,
 		     GError      **error)
 {
@@ -569,8 +567,6 @@ dh_parser_read_file (const gchar  *path,
         if (gz) {
                 if (!parser_read_gz_file (parser,
                                           path,
-                                          book_tree,
-                                          keywords,
                                           error)) {
                         result = FALSE;
                 }

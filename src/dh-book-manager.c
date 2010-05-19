@@ -25,20 +25,8 @@
 #include <string.h>
 
 #include "dh-link.h"
-#include "dh-parser.h"
+#include "dh-book.h"
 #include "dh-book-manager.h"
-
-/* Structure defining basic contents to store about every book */
-typedef struct {
-        /* File path of the book */
-        gchar    *path;
-        /* Enable or disabled? */
-        gboolean  enabled;
-        /* Generated book tree */
-        GNode    *tree;
-        /* Generated list of keywords in the book */
-        GList    *keywords;
-} DhBook;
 
 typedef struct {
         /* The list of all books found in the system */
@@ -47,8 +35,8 @@ typedef struct {
 
 G_DEFINE_TYPE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
-#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
-        (instance, DH_TYPE_BOOK_MANAGER, DhBookManagerPriv);
+#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE       \
+        (instance, DH_TYPE_BOOK_MANAGER, DhBookManagerPriv)
 
 static void    dh_book_manager_init       (DhBookManager      *book_manager);
 static void    dh_book_manager_class_init (DhBookManagerClass *klass);
@@ -63,22 +51,23 @@ static void    book_manager_add_from_xcode_docset (DhBookManager *book_manager,
                                                    const gchar   *dir_path);
 #endif
 
-static DhBook *book_new                   (const gchar  *book_path);
-static void    book_free                  (DhBook       *book);
-static gint    book_cmp                   (const DhBook *a,
-                                           const DhBook *b);
+static void    unref_node_link                  (GNode *node,
+                                                 gpointer data);
+static void    ref_node_link                    (GNode *node,
+                                                 gpointer data);
 
 static void
 book_manager_finalize (GObject *object)
 {
         DhBookManagerPriv *priv;
-        GList *walker;
+        GList             *walker;
 
         priv = GET_PRIVATE (object);
 
+        /* Destroy all books */
         walker = priv->books;
         while (walker) {
-                book_free ((DhBook *)walker->data);
+                g_object_unref (walker->data);
                 walker = g_list_next (walker);
         }
         g_list_free (priv->books);
@@ -101,8 +90,58 @@ dh_book_manager_init (DhBookManager *book_manager)
 {
         DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
 
-        /* Empty list of books */
         priv->books = NULL;
+}
+
+static void
+unref_node_link (GNode *node,
+                 gpointer data)
+{
+        dh_link_unref (node->data);
+}
+
+static void
+ref_node_link (GNode *node,
+               gpointer data)
+{
+        dh_link_ref (node->data);
+}
+
+static void
+book_manager_add_books_in_data_dir (DhBookManager *book_manager,
+                                    const gchar   *data_dir)
+{
+        gchar *dir;
+
+        dir = g_build_filename (data_dir, "gtk-doc", "html", NULL);
+        book_manager_add_from_dir (book_manager, dir);
+        g_free (dir);
+
+        dir = g_build_filename (data_dir, "devhelp", "books", NULL);
+        book_manager_add_from_dir (book_manager, dir);
+        g_free (dir);
+}
+
+void
+dh_book_manager_populate (DhBookManager *book_manager)
+{
+        const gchar * const * system_dirs;
+
+        book_manager_add_books_in_data_dir (book_manager,
+                                            g_get_user_data_dir ());
+
+        system_dirs = g_get_system_data_dirs ();
+        while (*system_dirs) {
+                book_manager_add_books_in_data_dir (book_manager,
+                                                    *system_dirs);
+                system_dirs++;
+        }
+
+#ifdef GDK_WINDOWING_QUARTZ
+        book_manager_add_from_xcode_docset (
+                book_manager,
+                "/Library/Developer/Shared/Documentation/DocSets");
+#endif
 }
 
 static gchar *
@@ -137,7 +176,6 @@ static void
 book_manager_add_from_dir (DhBookManager *book_manager,
                            const gchar   *dir_path)
 {
-        GError      *error = NULL;
         GDir        *dir;
         const gchar *name;
 
@@ -145,11 +183,8 @@ book_manager_add_from_dir (DhBookManager *book_manager,
         g_return_if_fail (dir_path);
 
         /* Open directory */
-        dir = g_dir_open (dir_path, 0, &error);
+        dir = g_dir_open (dir_path, 0, NULL);
         if (!dir) {
-                g_warning ("Failed to open directory '%s': %s",
-                           dir_path, error->message);
-                g_error_free (error);
                 return;
         }
 
@@ -200,7 +235,6 @@ static void
 book_manager_add_from_xcode_docset (DhBookManager *book_manager,
                                     const gchar   *dir_path)
 {
-        GError      *error = NULL;
         GDir        *dir;
         const gchar *name;
 
@@ -212,11 +246,8 @@ book_manager_add_from_xcode_docset (DhBookManager *book_manager,
         }
 
         /* Open directory */
-        dir = g_dir_open (dir_path, 0, &error);
+        dir = g_dir_open (dir_path, 0, NULL);
         if (!dir) {
-                g_warning ("Failed to open directory '%s': %s",
-                           dir_path, error->message);
-                g_error_free (error);
                 return;
         }
 
@@ -242,45 +273,39 @@ static void
 book_manager_add_from_filepath (DhBookManager *book_manager,
                                 const gchar   *book_path)
 {
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
-        DhBook *book;
-        GError *error = NULL;
+        DhBookManagerPriv *priv;
+        DhBook            *book;
 
         g_return_if_fail (book_manager);
         g_return_if_fail (book_path);
 
+        priv = GET_PRIVATE (book_manager);
+
         /* Allocate new book struct */
-        book = book_new (book_path);
+        book = dh_book_new (book_path);
 
         /* Check if book was already loaded in the manager */
         if (g_list_find_custom (priv->books,
                                 book,
-                                (GCompareFunc)book_cmp)) {
-                book_free (book);
+                                (GCompareFunc)dh_book_cmp)) {
+                g_object_unref (book);
                 return;
         }
 
-        /* Parse file storing contents in the book struct */
-        if (!dh_parser_read_file  (book_path,
-                                   book->tree,
-                                   &book->keywords,
-                                   &error)) {
-                g_warning ("Failed to read '%s': %s",
-                           book_path, error->message);
-                g_error_free (error);
-
-                /* Deallocate the book, as we are not going to add it
-                 *  in the manager */
-                book_free (book);
-                return;
-        }
-
+        g_debug ("Adding '%s'...", book_path);
         /* Add the book to the book list */
         priv->books = g_list_insert_sorted (priv->books,
                                             book,
-                                            (GCompareFunc)book_cmp);
+                                            (GCompareFunc)dh_book_cmp);
 }
 
+GList *
+dh_book_manager_get_books (DhBookManager *book_manager)
+{
+        g_return_val_if_fail (book_manager, NULL);
+
+        return GET_PRIVATE (book_manager)->books;
+}
 
 DhBookManager *
 dh_book_manager_new (void)
@@ -288,59 +313,3 @@ dh_book_manager_new (void)
         return g_object_new (DH_TYPE_BOOK_MANAGER, NULL);
 }
 
-/* Single book creation/destruction/management */
-
-static DhBook *
-book_new (const gchar *book_path)
-{
-        DhBook *book;
-
-        g_return_val_if_fail (book_path, NULL);
-
-        /* Allocate and initialize new book struct, by default
-         *  enabled */
-        book = g_malloc0 (sizeof (*book));
-        book->path = g_strdup (book_path);
-        book->enabled = TRUE;
-        book->tree = g_node_new (NULL);
-        book->keywords = NULL;
-
-        return book;
-}
-
-static void
-unref_node_link (GNode *node,
-                 gpointer data)
-{
-        dh_link_unref (node->data);
-}
-
-static void
-book_free (DhBook *book)
-{
-        g_return_if_fail (book);
-
-        if (book->tree) {
-                g_node_traverse (book->tree,
-                                 G_IN_ORDER,
-                                 G_TRAVERSE_ALL,
-                                 -1,
-                                 (GNodeTraverseFunc)unref_node_link,
-                                 NULL);
-                g_node_destroy (book->tree);
-        }
-
-        if (book->keywords) {
-                g_list_foreach (book->keywords, (GFunc)dh_link_unref, NULL);
-                g_list_free (book->keywords);
-        }
-
-        g_free (book->path);
-        g_free (book);
-}
-
-static gint book_cmp (const DhBook *a,
-                      const DhBook *b)
-{
-        return (a && b) ? g_strcmp0 (a->path, b->path) : -1;
-}

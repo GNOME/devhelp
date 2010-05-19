@@ -31,9 +31,13 @@
 #include "dh-preferences.h"
 #include "dh-base.h"
 #include "dh-util.h"
+#include "dh-book-manager.h"
+#include "dh-book.h"
 
 typedef struct {
         DhKeywordModel *model;
+
+        DhBookManager  *book_manager;
 
         DhLink         *selected_link;
 
@@ -93,6 +97,7 @@ search_finalize (GObject *object)
         priv = GET_PRIVATE (object);
 
         g_completion_free (priv->completion);
+        g_object_unref (priv->book_manager);
 
         G_OBJECT_CLASS (dh_search_parent_class)->finalize (object);
 }
@@ -146,7 +151,7 @@ search_grab_focus (GtkWidget *widget)
 
         gtk_widget_grab_focus (priv->entry);
 }
-                   
+
 static void
 search_selection_changed_cb (GtkTreeSelection *selection,
                              DhSearch         *search)
@@ -294,7 +299,7 @@ search_combo_set_active_id (DhSearch    *search,
         } else {
                 gtk_combo_box_set_active (GTK_COMBO_BOX (priv->book_combo), 0);
         }
-        
+
         g_signal_handlers_unblock_by_func (priv->book_combo,
                                            search_combo_changed_cb,
                                            search);
@@ -318,7 +323,7 @@ search_combo_get_active_id (DhSearch *search)
         gtk_tree_model_get (model, &iter,
                             1, &id,
                             -1);
-        
+
         return id;
 }
 
@@ -466,12 +471,6 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
                       NULL);
 }
 
-static gint
-book_cmp (DhLink **a, DhLink **b)
-{
-        return dh_util_cmp_book (*a, *b);
-}
-
 static gboolean
 search_combo_row_separator_func (GtkTreeModel *model,
                                  GtkTreeIter  *iter,
@@ -491,16 +490,16 @@ search_combo_row_separator_func (GtkTreeModel *model,
 }
 
 static GtkWidget *
-search_combo_create (DhSearch *search,
-                     GList    *keywords)
+search_combo_create (DhSearch *search)
 {
         GtkTreeIter      iter;
         GtkListStore    *store;
-        GList           *l;
         GtkWidget       *combo;
         GtkCellRenderer *cell;
-        GArray          *books;
-        int              i, nb_books = 0;
+        GList           *l;
+        DhSearchPriv    *priv;
+
+        priv = GET_PRIVATE (search);
 
         store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
 
@@ -517,30 +516,25 @@ search_combo_create (DhSearch *search,
                             1, NULL,
                             -1);
 
-        books = g_array_sized_new (FALSE, FALSE, sizeof(DhLink*), 50);
-        for (l = keywords; l; l = l->next) {
-                DhLink *link = l->data;
+        for (l = dh_book_manager_get_books (priv->book_manager);
+             l;
+             l = g_list_next (l)) {
+                DhBook *book = DH_BOOK (l->data);
+                GNode  *node;
 
-                if (dh_link_get_link_type (link) != DH_LINK_TYPE_BOOK) {
-                        continue;
+                node = dh_book_get_tree (book);
+                if (node) {
+                        DhLink *link;
+
+                        link = node->data;
+
+                        gtk_list_store_append (store, &iter);
+                        gtk_list_store_set (store, &iter,
+                                            0, dh_link_get_name (link),
+                                            1, dh_link_get_book_id (link),
+                                            -1);
                 }
-
-                g_array_append_val (books, link);
-                nb_books++;
         }
-
-        g_array_sort (books, (GCompareFunc)book_cmp);
-
-        for (i = 0; i < nb_books; i++) {
-                DhLink *link = g_array_index(books, DhLink*, i);
-                gtk_list_store_append (store, &iter);
-                gtk_list_store_set (store, &iter,
-                                    0, dh_link_get_name (link),
-                                    1, dh_link_get_book_id (link),
-                                    -1);
-        }
-
-        g_array_free (books, TRUE);
 
         combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
         g_object_unref (store);
@@ -562,8 +556,31 @@ search_combo_create (DhSearch *search,
         return combo;
 }
 
+static void
+completion_add_items (DhSearch *search)
+{
+        DhSearchPriv *priv;
+        GList        *l;
+
+        priv = GET_PRIVATE (search);
+
+        for (l = dh_book_manager_get_books (priv->book_manager);
+             l;
+             l = g_list_next (l)) {
+                DhBook *book = DH_BOOK (l->data);
+                GList  *keywords;
+
+                keywords = dh_book_get_keywords(book);
+
+                if (keywords) {
+                        g_completion_add_items (priv->completion,
+                                                keywords);
+                }
+        }
+}
+
 GtkWidget *
-dh_search_new (GList *keywords)
+dh_search_new (DhBookManager *book_manager)
 {
         DhSearch         *search;
         DhSearchPriv     *priv;
@@ -577,9 +594,11 @@ dh_search_new (GList *keywords)
 
         priv = GET_PRIVATE (search);
 
+        priv->book_manager = g_object_ref (book_manager);
+
         gtk_container_set_border_width (GTK_CONTAINER (search), 2);
 
-        priv->book_combo = search_combo_create (search, keywords);
+        priv->book_combo = search_combo_create (search);
         g_signal_connect (priv->book_combo, "changed",
                           G_CALLBACK (search_combo_changed_cb),
                           search);
@@ -651,8 +670,8 @@ dh_search_new (GList *keywords)
 
         gtk_box_pack_end (GTK_BOX (search), list_sw, TRUE, TRUE, 0);
 
-        g_completion_add_items (priv->completion, keywords);
-        dh_keyword_model_set_words (priv->model, keywords);
+        completion_add_items (search);
+        dh_keyword_model_set_words (priv->model, book_manager);
 
         gtk_widget_show_all (GTK_WIDGET (search));
 

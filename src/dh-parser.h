@@ -27,7 +27,7 @@
 G_BEGIN_DECLS
 
 gboolean dh_parser_read_file (const gchar  *path,
-                              GNode        *book_tree,
+                              GNode       **book_tree,
                               GList       **keywords,
                               GError      **error);
 

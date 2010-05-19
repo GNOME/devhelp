@@ -37,6 +37,8 @@
 #endif
 
 #include "dh-book-tree.h"
+#include "dh-book-manager.h"
+#include "dh-book.h"
 #include "dh-preferences.h"
 #include "dh-search.h"
 #include "dh-window.h"
@@ -386,16 +388,16 @@ run_fullscreen_animation (gpointer data)
 	GdkScreen *screen;
 	GdkRectangle fs_rect;
 	gint x, y;
-	
+
 	screen = gtk_window_get_screen (GTK_WINDOW (window));
 	gdk_screen_get_monitor_geometry (screen,
 					 gdk_screen_get_monitor_at_window (screen,
 									   gtk_widget_get_window (GTK_WIDGET (window))),
 					 &fs_rect);
-					 
+
 	gtk_window_get_position (GTK_WINDOW (window->priv->fullscreen_controls),
 				 &x, &y);
-	
+
 	if (window->priv->fullscreen_animation_enter)
 	{
 		if (y == fs_rect.y)
@@ -413,10 +415,10 @@ run_fullscreen_animation (gpointer data)
 	else
 	{
 		gint w, h;
-	
+
 		gtk_window_get_size (GTK_WINDOW (window->priv->fullscreen_controls),
 				     &w, &h);
-	
+
 		if (y == fs_rect.y - h + 1)
 		{
 			window->priv->fullscreen_animation_timeout_id = 0;
@@ -1057,13 +1059,12 @@ window_web_view_switch_page_after_cb (GtkNotebook     *notebook,
 static void
 window_populate (DhWindow *window)
 {
-        DhWindowPriv *priv;
-        gchar        *path;
-        GtkWidget    *book_tree_sw;
-        GNode        *contents_tree;
-        GList        *keywords;
-        GtkWidget    *menubar;
-        GtkWidget    *toolbar;
+        DhWindowPriv  *priv;
+        gchar         *path;
+        GtkWidget     *book_tree_sw;
+        DhBookManager *book_manager;
+        GtkWidget     *menubar;
+        GtkWidget     *toolbar;
 
         priv = window->priv;
 
@@ -1141,10 +1142,9 @@ window_populate (DhWindow *window)
                                              GTK_SHADOW_IN);
         gtk_container_set_border_width (GTK_CONTAINER (book_tree_sw), 2);
 
-        contents_tree = dh_base_get_book_tree (priv->base);
-        keywords = dh_base_get_keywords (priv->base);
+        book_manager = dh_base_get_book_manager (priv->base);
 
-        priv->book_tree = dh_book_tree_new (contents_tree);
+        priv->book_tree = dh_book_tree_new (book_manager);
         gtk_container_add (GTK_CONTAINER (book_tree_sw),
                            priv->book_tree);
         dh_util_state_set_notebook_page_name (book_tree_sw, "content");
@@ -1156,7 +1156,7 @@ window_populate (DhWindow *window)
                           G_CALLBACK (window_tree_link_selected_cb),
                           window);
 
-        priv->search = dh_search_new (keywords);
+        priv->search = dh_search_new (book_manager);
         dh_util_state_set_notebook_page_name (priv->search, "search");
         gtk_notebook_append_page (GTK_NOTEBOOK (priv->control_notebook),
                                   priv->search,
@@ -1219,7 +1219,7 @@ window_populate (DhWindow *window)
 }
 
 
-static gchar*
+static gchar *
 find_library_equivalent (DhWindow    *window,
                          const gchar *uri)
 {
@@ -1227,26 +1227,39 @@ find_library_equivalent (DhWindow    *window,
         gchar **components;
         GList *iter;
         DhLink *link;
+        DhBookManager *book_manager;
         gchar *book_id;
         gchar *filename;
         gchar *local_uri = NULL;
+        GList *books;
 
         components = g_strsplit (uri, "/", 0);
         book_id = components[4];
         filename = components[6];
 
         priv = window->priv;
+        book_manager = dh_base_get_book_manager (priv->base);
 
-        for (iter = dh_base_get_keywords (priv->base); iter; iter = g_list_next (iter)) {
-                link = iter->data;
-                if (g_strcmp0 (dh_link_get_book_id (link), book_id) != 0) {
-                        continue;
+
+        /* use list pointer to iterate */
+        for (books = dh_book_manager_get_books (book_manager);
+             !local_uri && books;
+             books = g_list_next (books)) {
+                DhBook *book = DH_BOOK (books->data);
+
+                for (iter = dh_book_get_keywords (book);
+                     iter;
+                     iter = g_list_next (iter)) {
+                        link = iter->data;
+                        if (g_strcmp0 (dh_link_get_book_id (link), book_id) != 0) {
+                                continue;
+                        }
+                        if (g_strcmp0 (dh_link_get_file_name (link), filename) != 0) {
+                                continue;
+                        }
+                        local_uri = dh_link_get_uri (link);
+                        break;
                 }
-                if (g_strcmp0 (dh_link_get_file_name (link), filename) != 0) {
-                        continue;
-                }
-                local_uri = dh_link_get_uri (link);
-                break;
         }
 
         g_strfreev (components);

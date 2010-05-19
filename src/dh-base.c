@@ -39,62 +39,43 @@
 #include "dh-util.h"
 #include "ige-conf.h"
 #include "dh-base.h"
+#include "dh-book-manager.h"
 
 typedef struct {
-        GSList      *windows;
-        GSList      *assistants;
-        GNode       *book_tree;
-        GList       *keywords;
-        GHashTable  *books;
+        GSList        *windows;
+        GSList        *assistants;
+        DhBookManager *book_manager;
 } DhBasePriv;
 
 G_DEFINE_TYPE (DhBase, dh_base, G_TYPE_OBJECT);
 
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
-  (instance, DH_TYPE_BASE, DhBasePriv);
+  (instance, DH_TYPE_BASE, DhBasePriv)
 
 static void dh_base_init           (DhBase      *base);
 static void dh_base_class_init     (DhBaseClass *klass);
-static void base_init_books        (DhBase      *base);
-static void base_add_books         (DhBase      *base,
-                                    const gchar *directory);
-
-#ifdef GDK_WINDOWING_QUARTZ
-static void base_add_xcode_docsets (DhBase      *base,
-                                    const gchar *path);
-#endif
 
 static DhBase *base_instance;
 
 static void
-unref_node_link (GNode *node, gpointer data)
+base_finalize (GObject *object)
 {
-    dh_link_unref (node->data);
-    dh_link_unref (node->data);
+        G_OBJECT_CLASS (dh_base_parent_class)->finalize (object);
 }
 
 static void
-base_finalize (GObject *object)
+base_dispose (GObject *object)
 {
         DhBasePriv *priv;
 
         priv = GET_PRIVATE (object);
 
-        /* FIXME: Free things... */
-        g_hash_table_destroy (priv->books);
-        g_node_traverse (priv->book_tree,
-                         G_IN_ORDER,
-                         G_TRAVERSE_ALL,
-                         -1,
-                         (GNodeTraverseFunc)unref_node_link,
-                         NULL);
-        g_node_destroy (priv->book_tree);
-
-        g_list_foreach (priv->keywords, (GFunc)dh_link_unref, NULL);
-        g_list_free (priv->keywords);
-
-        G_OBJECT_CLASS (dh_base_parent_class)->finalize (object);
+        if (priv->book_manager) {
+                g_object_unref (priv->book_manager);
+                priv->book_manager = NULL;
+        }
 }
+
 
 static void
 dh_base_class_init (DhBaseClass *klass)
@@ -102,6 +83,7 @@ dh_base_class_init (DhBaseClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = base_finalize;
+        object_class->dispose = base_dispose;
 
 	g_type_class_add_private (klass, sizeof (DhBasePriv));
 }
@@ -118,9 +100,8 @@ dh_base_init (DhBase *base)
         ige_conf_add_defaults (conf, path);
         g_free (path);
 
-        priv->book_tree = g_node_new (NULL);
-        priv->books = g_hash_table_new_full (g_str_hash, g_str_equal,
-                                             g_free, g_free);
+        priv->book_manager = dh_book_manager_new ();
+        dh_book_manager_populate (priv->book_manager);
 
 #ifdef GDK_WINDOWING_X11
         {
@@ -153,284 +134,11 @@ base_window_or_assistant_finalized_cb (DhBase   *base,
         }
 }
 
-static gint
-book_sort_func (gconstpointer a,
-                gconstpointer b)
-{
-        DhLink      *link_a;
-        DhLink      *link_b;
-
-        link_a = ((GNode *) a)->data;
-        link_b = ((GNode *) b)->data;
-
-        return dh_util_cmp_book (link_a, link_b);
-}
-
-static void
-base_sort_books (DhBase *base)
-{
-        DhBasePriv *priv = GET_PRIVATE (base);
-        GNode      *n;
-        DhLink     *link;
-        GList      *list = NULL, *l;
-
-        if (priv->book_tree) {
-                n = priv->book_tree->children;
-
-                while (n) {
-                        list = g_list_prepend (list, n);
-                        n = n->next;
-                }
-
-                list = g_list_sort (list, book_sort_func);
-        }
-
-        for (l = list; l; l = l->next) {
-                n = l->data;
-                link = n->data;
-                g_node_unlink (n);
-        }
-
-        for (l = list; l; l = l->next) {
-                n = l->data;
-
-                g_node_append (priv->book_tree, n);
-        }
-
-        g_list_free (list);
-}
-
-static void
-base_add_books_in_data_dir (DhBase      *base,
-                            const gchar *data_dir)
-{
-        gchar *dir;
-
-        dir = g_build_filename (data_dir, "gtk-doc", "html", NULL);
-        base_add_books (base, dir);
-        g_free (dir);
-
-        dir = g_build_filename (data_dir, "devhelp", "books", NULL);
-        base_add_books (base, dir);
-        g_free (dir);
-}
-
-static void
-base_init_books (DhBase *base)
-{
-        const gchar * const * system_dirs;
-
-        base_add_books_in_data_dir (base, g_get_user_data_dir ());
-
-        system_dirs = g_get_system_data_dirs ();
-        while (*system_dirs) {
-                base_add_books_in_data_dir (base, *system_dirs);
-                system_dirs++;
-        }
-
-#ifdef GDK_WINDOWING_QUARTZ
-        base_add_xcode_docsets (
-                base,
-                "/Library/Developer/Shared/Documentation/DocSets");
-#endif
-
-        base_sort_books (base);
-}
-
-static gchar *
-base_get_book_path (DhBase      *base,
-                    const gchar *base_path,
-                    const gchar *name,
-                    const gchar *suffix)
-{
-        gchar *tmp;
-        gchar *book_path;
-
-        tmp = g_build_filename (base_path, name, name, NULL);
-        book_path = g_strconcat (tmp, ".", suffix, NULL);
-        g_free (tmp);
-
-        if (!g_file_test (book_path, G_FILE_TEST_EXISTS)) {
-                g_free (book_path);
-                return NULL;
-        }
-
-        return book_path;
-}
-
-#ifdef GDK_WINDOWING_QUARTZ
-static void
-base_add_xcode_docset (DhBase      *base,
-                       const gchar *path)
-{
-        DhBasePriv  *priv = GET_PRIVATE (base);
-        gchar       *tmp;
-        gboolean     seems_like_devhelp = FALSE;
-        GDir        *dir;
-        const gchar *name;
-
-        /* Do some sanity checking on the directory first so we don't have
-         * to go through several hundreds of files in every docset.
-         */
-        tmp = g_build_filename (path, "style.css", NULL);
-        if (g_file_test (tmp, G_FILE_TEST_EXISTS)) {
-                gchar *tmp;
-
-                tmp = g_build_filename (path, "index.sgml", NULL);
-                if (g_file_test (tmp, G_FILE_TEST_EXISTS)) {
-                        seems_like_devhelp = TRUE;
-                }
-                g_free (tmp);
-        }
-        g_free (tmp);
-
-        if (!seems_like_devhelp) {
-                return;
-        }
-
-        dir = g_dir_open (path, 0, NULL);
-        if (!dir) {
-                return;
-        }
-
-        while ((name = g_dir_read_name (dir)) != NULL) {
-                gchar  *p;
-                GError *error = NULL;
-
-                p = strrchr (name, '.');
-                if (strcmp (p, ".devhelp2") == 0) {
-                        gchar *book_name;
-                        gchar *book_path;
-
-                        book_name = g_strdup (name);
-                        p = strrchr (book_name, '.');
-                        p[0] = '\0';
-
-                        if (g_hash_table_lookup (priv->books, book_name)) {
-                                g_free (book_name);
-                                continue;
-                        }
-
-                        book_path = g_build_filename (path, name, NULL);
-
-                        if (!dh_parser_read_file  (book_path,
-                                                   priv->book_tree,
-                                                   &priv->keywords,
-                                                   &error)) {
-                                g_warning ("Failed to read '%s': %s",
-                                           book_path, error->message);
-                                g_clear_error (&error);
-
-                                g_free (book_path);
-                                g_free (book_name);
-                        } else {
-                                g_hash_table_insert (priv->books,
-                                                     book_name,
-                                                     book_path);
-                        }
-                }
-        }
-
-        g_dir_close (dir);
-}
-
-
-/* This isn't really -any- Xcode docset, just gtk-doc docs converted to
- * docsets.
- *
- * Path should point to a DocSets directory.
- */
-static void
-base_add_xcode_docsets (DhBase      *base,
-                        const gchar *path)
-{
-        GDir        *dir;
-        const gchar *name;
-
-        dir = g_dir_open (path, 0, NULL);
-        if (!dir) {
-                return;
-        }
-
-        while ((name = g_dir_read_name (dir)) != NULL) {
-                gchar *docset_path;
-
-                docset_path = g_build_filename (path,
-                                                name,
-                                                "Contents",
-                                                "Resources",
-                                                "Documents",
-                                                NULL);
-                base_add_xcode_docset (base, docset_path);
-                g_free (docset_path);
-        }
-
-        g_dir_close (dir);
-}
-#endif
-
-static void
-base_add_books (DhBase      *base,
-                const gchar *path)
-{
-        DhBasePriv  *priv = GET_PRIVATE (base);
-        GDir        *dir;
-        const gchar *name;
-
-        dir = g_dir_open (path, 0, NULL);
-        if (!dir) {
-                return;
-        }
-
-        while ((name = g_dir_read_name (dir)) != NULL) {
-                gchar  *book_path;
-                GError *error = NULL;
-
-                if (g_hash_table_lookup (priv->books, name)) {
-                        continue;
-                }
-
-                book_path = base_get_book_path (base, path, name, "devhelp2");
-                if (!book_path) {
-                        book_path = base_get_book_path (base, path, name, "devhelp2.gz");
-                }
-                if (!book_path) {
-                        book_path = base_get_book_path (base, path, name, "devhelp");
-                }
-                if (!book_path) {
-                        book_path = base_get_book_path (base, path, name, "devhelp.gz");
-                }
-
-                if (!book_path) {
-                        continue;
-                }
-
-                if (!dh_parser_read_file  (book_path,
-                                           priv->book_tree,
-                                           &priv->keywords,
-                                           &error)) {
-                        g_warning ("Failed to read '%s': %s",
-                                   book_path, error->message);
-                        g_clear_error (&error);
-
-                        g_free (book_path);
-                } else {
-                        g_hash_table_insert (priv->books,
-                                             g_strdup (name),
-                                             book_path);
-                }
-        }
-
-        g_dir_close (dir);
-}
-
 DhBase *
 dh_base_get (void)
 {
         if (!base_instance) {
                 base_instance = g_object_new (DH_TYPE_BASE, NULL);
-
-                base_init_books (base_instance);
         }
 
         return base_instance;
@@ -488,8 +196,8 @@ dh_base_new_assistant (DhBase *base)
         return assistant;
 }
 
-GNode *
-dh_base_get_book_tree (DhBase *base)
+DhBookManager *
+dh_base_get_book_manager (DhBase *base)
 {
         DhBasePriv *priv;
 
@@ -497,19 +205,7 @@ dh_base_get_book_tree (DhBase *base)
 
         priv = GET_PRIVATE (base);
 
-        return priv->book_tree;
-}
-
-GList *
-dh_base_get_keywords (DhBase *base)
-{
-        DhBasePriv *priv;
-
-        g_return_val_if_fail (DH_IS_BASE (base), NULL);
-
-        priv = GET_PRIVATE (base);
-
-        return priv->keywords;
+        return priv->book_manager;
 }
 
 GtkWidget *
