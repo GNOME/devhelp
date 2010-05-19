@@ -1241,7 +1241,6 @@ find_library_equivalent (DhWindow    *window,
         priv = window->priv;
         book_manager = dh_base_get_book_manager (priv->base);
 
-
         /* use list pointer to iterate */
         for (books = dh_book_manager_get_books (book_manager);
              !local_uri && books;
