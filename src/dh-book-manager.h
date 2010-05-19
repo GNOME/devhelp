@@ -46,8 +46,10 @@ struct _DhBookManagerClass {
         GObjectClass parent_class;
 };
 
-GType          dh_book_manager_get_type              (void) G_GNUC_CONST;
-DhBookManager *dh_book_manager_new                   (void);
+GType          dh_book_manager_get_type     (void) G_GNUC_CONST;
+DhBookManager *dh_book_manager_new          (void);
+void           dh_book_manager_populate     (DhBookManager *book_manager);
+GList         *dh_book_manager_get_books    (DhBookManager *book_manager);
 
 
 G_END_DECLS

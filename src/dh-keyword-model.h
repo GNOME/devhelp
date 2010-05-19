@@ -24,6 +24,7 @@
 
 #include <gtk/gtk.h>
 #include "dh-link.h"
+#include "dh-book-manager.h"
 
 G_BEGIN_DECLS
 
@@ -58,7 +59,7 @@ enum {
 GType           dh_keyword_model_get_type  (void);
 DhKeywordModel *dh_keyword_model_new       (void);
 void            dh_keyword_model_set_words (DhKeywordModel *model,
-                                            GList          *keywords);
+                                            DhBookManager  *book_manager);
 DhLink *        dh_keyword_model_filter    (DhKeywordModel *model,
                                             const gchar    *string,
                                             const gchar    *book_id);
