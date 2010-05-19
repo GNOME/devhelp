@@ -51,11 +51,6 @@ static void    book_manager_add_from_xcode_docset (DhBookManager *book_manager,
                                                    const gchar   *dir_path);
 #endif
 
-static void    unref_node_link                  (GNode *node,
-                                                 gpointer data);
-static void    ref_node_link                    (GNode *node,
-                                                 gpointer data);
-
 static void
 book_manager_finalize (GObject *object)
 {
@@ -91,20 +86,6 @@ dh_book_manager_init (DhBookManager *book_manager)
         DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
 
         priv->books = NULL;
-}
-
-static void
-unref_node_link (GNode *node,
-                 gpointer data)
-{
-        dh_link_unref (node->data);
-}
-
-static void
-ref_node_link (GNode *node,
-               gpointer data)
-{
-        dh_link_ref (node->data);
 }
 
 static void

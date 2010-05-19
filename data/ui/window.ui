@@ -18,6 +18,7 @@
       <menuitem action="Find Previous"/>
       <separator/>
       <menuitem action="Preferences"/>
+      <menuitem action="BookManager"/>
     </menu>
     <menu action="ViewMenu">
       <menuitem action="ZoomIn"/>
