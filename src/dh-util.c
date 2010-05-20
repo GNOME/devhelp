@@ -125,7 +125,7 @@ cf_string_to_utf8 (CFStringRef str)
   CFIndex  len;
   gchar   *ret;
 
-  len = CFStringGetMaximumSizeForEncoding (CFStringGetLength (str), 
+  len = CFStringGetMaximumSizeForEncoding (CFStringGetLength (str),
                                            kCFStringEncodingUTF8) + 1;
 
   ret = g_malloc (len);
@@ -142,7 +142,7 @@ static gchar *
 util_get_mac_data_dir (void)
 {
         const gchar *env;
-        CFBundleRef  cf_bundle; 
+        CFBundleRef  cf_bundle;
         UInt32       type;
         UInt32       creator;
         CFURLRef     cf_url;
@@ -165,7 +165,7 @@ util_get_mac_data_dir (void)
         if (type != 'APPL') {
                 return NULL;
         }
-        
+
         cf_url = CFBundleCopyBundleURL (cf_bundle);
         cf_string = CFURLCopyFileSystemPath (cf_url, kCFURLPOSIXPathStyle);
         ret = cf_string_to_utf8 (cf_string);
@@ -238,7 +238,7 @@ util_state_item_free (DhUtilStateItem *item)
 }
 
 static void
-util_state_setup_widget (GtkWidget   *widget, 
+util_state_setup_widget (GtkWidget   *widget,
                          const gchar *name)
 {
         DhUtilStateItem *item;
@@ -464,6 +464,29 @@ dh_util_state_manage_paned (GtkPaned    *paned,
                           NULL);
 }
 
+GSList *
+dh_util_state_load_disabled_books (void)
+{
+        gchar *key;
+        GSList *disabled_books = NULL;
+
+        key = util_state_get_key ("main/contents", "disabled_books");
+        ige_conf_get_string_list (ige_conf_get (), key, &disabled_books);
+        g_free(key);
+
+        return disabled_books;
+}
+
+void
+dh_util_state_store_disabled_books (GSList *disabled_books)
+{
+        gchar *key;
+
+        key = util_state_get_key ("main/contents", "disabled_books");
+        ige_conf_set_string_list (ige_conf_get (), key, disabled_books);
+        g_free(key);
+}
+
 static gboolean
 util_state_notebook_timeout_cb (gpointer notebook)
 {
@@ -477,7 +500,7 @@ util_state_notebook_timeout_cb (gpointer notebook)
                 item->timeout_id = 0;
 
                 page = gtk_notebook_get_nth_page (
-                        notebook, 
+                        notebook,
                         gtk_notebook_get_current_page (notebook));
                 page_name = dh_util_state_get_notebook_page_name (page);
                 if (page_name) {
@@ -568,7 +591,7 @@ split_font_string (const gchar  *name_and_size,
 	if (!desc) {
 		return FALSE;
 	}
-	
+
 	mask = (PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_SIZE);
         if ((pango_font_description_get_set_fields (desc) & mask) == mask) {
 		*size = PANGO_PIXELS (pango_font_description_get_size (desc));
@@ -608,7 +631,7 @@ dh_util_font_get_variable (gchar    **name,
 #endif
 	} else {
 		ige_conf_get_string (conf,
-                                     DH_CONF_VARIABLE_FONT, 
+                                     DH_CONF_VARIABLE_FONT,
                                      &name_and_size);
 	}
 
@@ -640,7 +663,7 @@ dh_util_font_get_fixed (gchar    **name,
 #endif
 	} else {
 		ige_conf_get_string (conf,
-                                     DH_CONF_FIXED_FONT, 
+                                     DH_CONF_FIXED_FONT,
                                      &name_and_size);
 	}
 

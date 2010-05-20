@@ -34,6 +34,8 @@ typedef struct {
         gchar    *path;
         /* Enable or disabled? */
         gboolean  enabled;
+        /* Book name */
+        gchar    *name;
         /* Book title */
         gchar    *title;
         /* Generated book tree */
@@ -97,6 +99,7 @@ dh_book_init (DhBook *book)
 {
         DhBookPriv *priv = GET_PRIVATE (book);
 
+        priv->name = NULL;
         priv->path = NULL;
         priv->title = NULL;
         priv->enabled = TRUE;
@@ -111,6 +114,22 @@ unref_node_link (GNode *node,
         dh_link_unref (node->data);
 }
 
+static gchar *
+book_get_name_from_path (const gchar *path)
+{
+        gchar *name;
+        gchar *aux;
+
+        g_return_val_if_fail (path, NULL);
+
+        name = g_path_get_basename (path);
+        aux = strrchr (name, '.');
+        if (aux) {
+                *aux = '\0';
+        }
+        return name;
+}
+
 DhBook *
 dh_book_new (const gchar  *book_path)
 {
@@ -123,11 +142,8 @@ dh_book_new (const gchar  *book_path)
         book = g_object_new (DH_TYPE_BOOK, NULL);
         priv = GET_PRIVATE (book);
 
-        /* Store path */
-        priv->path = g_strdup (book_path);
-
         /* Parse file storing contents in the book struct */
-        if (!dh_parser_read_file  (priv->path,
+        if (!dh_parser_read_file  (book_path,
                                    &priv->tree,
                                    &priv->keywords,
                                    &error)) {
@@ -141,8 +157,15 @@ dh_book_new (const gchar  *book_path)
                 return NULL;
         }
 
+        /* Store path */
+        priv->path = g_strdup (book_path);
+
         /* Setup title */
         priv->title = g_strdup (dh_link_get_name ((DhLink *)priv->tree->data));
+
+        /* Setup name */
+        priv->name = book_get_name_from_path (book_path);
+
 
         return book;
 }
@@ -169,6 +192,18 @@ dh_book_get_tree (DhBook *book)
         priv = GET_PRIVATE (book);
 
         return priv->enabled ? priv->tree : NULL;
+}
+
+const gchar *
+dh_book_get_name (DhBook *book)
+{
+        DhBookPriv *priv;
+
+        g_return_val_if_fail (DH_IS_BOOK (book), NULL);
+
+        priv = GET_PRIVATE (book);
+
+        return priv->name;
 }
 
 const gchar *

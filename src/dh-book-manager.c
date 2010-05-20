@@ -25,11 +25,12 @@
 #include <string.h>
 
 #include "dh-link.h"
+#include "dh-util.h"
 #include "dh-book.h"
 #include "dh-book-manager.h"
 
 typedef struct {
-        /* The list of all books found in the system */
+        /* The list of all DhBooks found in the system */
         GList *books;
 } DhBookManagerPriv;
 
@@ -55,15 +56,13 @@ static void
 book_manager_finalize (GObject *object)
 {
         DhBookManagerPriv *priv;
-        GList             *walker;
+        GList             *l;
 
         priv = GET_PRIVATE (object);
 
         /* Destroy all books */
-        walker = priv->books;
-        while (walker) {
-                g_object_unref (walker->data);
-                walker = g_list_next (walker);
+        for (l = priv->books; l; l = g_list_next (l)) {
+                g_object_unref (l->data);
         }
         g_list_free (priv->books);
 
@@ -86,6 +85,37 @@ dh_book_manager_init (DhBookManager *book_manager)
         DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
 
         priv->books = NULL;
+}
+
+static void
+book_manager_clean_list_of_disabled_books (GSList *disabled_books)
+{
+        GSList *sl;
+
+        for (sl = disabled_books; sl; sl = g_slist_next (sl)) {
+                g_free (sl->data);
+        }
+        g_slist_free (sl);
+}
+
+static void
+book_manager_check_status_from_conf (DhBookManager *book_manager)
+{
+        GSList *disabled_books, *sl;
+
+        disabled_books = dh_util_state_load_disabled_books ();
+
+        for (sl = disabled_books; sl; sl = g_slist_next (sl)) {
+                DhBook *book;
+
+                book = dh_book_manager_get_book_by_name (book_manager,
+                                                         (const gchar *)sl->data);
+                if (book) {
+                        dh_book_set_enabled (book, FALSE);
+                }
+        }
+
+        book_manager_clean_list_of_disabled_books (disabled_books);
 }
 
 static void
@@ -123,6 +153,9 @@ dh_book_manager_populate (DhBookManager *book_manager)
                 book_manager,
                 "/Library/Developer/Shared/Documentation/DocSets");
 #endif
+
+        /* Once all books are loaded, check enabled status from conf */
+        book_manager_check_status_from_conf (book_manager);
 }
 
 static gchar *
@@ -285,6 +318,54 @@ dh_book_manager_get_books (DhBookManager *book_manager)
         g_return_val_if_fail (book_manager, NULL);
 
         return GET_PRIVATE (book_manager)->books;
+}
+
+DhBook *
+dh_book_manager_get_book_by_name (DhBookManager *book_manager,
+                                  const gchar *name)
+{
+        DhBook *book = NULL;
+        GList  *l;
+
+        g_return_val_if_fail (book_manager, NULL);
+
+        for (l = GET_PRIVATE (book_manager)->books;
+             l && !book;
+             l = g_list_next (l)) {
+                if (g_strcmp0 (name,
+                               dh_book_get_name (DH_BOOK (l->data))) == 0) {
+                        book = l->data;
+                }
+        }
+
+        return book;
+}
+
+void
+dh_book_manager_update (DhBookManager *book_manager)
+{
+        DhBookManagerPriv *priv;
+        GSList *disabled_books = NULL;
+        GList  *l;
+
+        g_return_if_fail (book_manager);
+
+        priv = GET_PRIVATE (book_manager);
+
+        /* Create list of disabled books */
+        for (l = priv->books; l; l = g_list_next (l)) {
+                DhBook *book = DH_BOOK (l->data);
+
+                if (!dh_book_get_enabled (book)) {
+                        disabled_books = g_slist_append (disabled_books,
+                                                         g_strdup (dh_book_get_name (book)));
+                }
+        }
+
+        /* Store in conf */
+        dh_util_state_store_disabled_books (disabled_books);
+
+        book_manager_clean_list_of_disabled_books (disabled_books);
 }
 
 DhBookManager *
