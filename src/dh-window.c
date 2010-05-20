@@ -735,6 +735,7 @@ window_activate_about (GtkAction *action,
                 "Richard Hult <richard@imendio.com>",
                 "Johan Dahlin <johan@gnome.org>",
                 "Ross Burton <ross@burtonini.com>",
+                "Aleksander Morgado <aleksander@lanedo.com>",
                 NULL
         };
         const gchar **documenters = NULL;
