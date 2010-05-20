@@ -127,6 +127,18 @@
       </locale>
     </schema>
     <schema>
+      <key>/schemas/apps/devhelp/state/main/contents/books_disabled</key>
+      <applyto>/apps/devhelp/state/main/contents/books_disabled</applyto>
+      <owner>devhelp</owner>
+      <type>list</type>
+      <default></default>
+      <locale name="C">
+         <short>Books disabled</short>
+         <long>List of books disabled by the user.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/devhelp/ui/use_system_fonts</key>
       <applyto>/apps/devhelp/ui/use_system_fonts</applyto>
       <owner>devhelp</owner>

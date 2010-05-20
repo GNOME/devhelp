@@ -26,6 +26,8 @@
 
 #include <gtk/gtk.h>
 
+#include <dh-book.h>
+
 G_BEGIN_DECLS
 
 typedef struct _DhBookManager      DhBookManager;
@@ -46,11 +48,13 @@ struct _DhBookManagerClass {
         GObjectClass parent_class;
 };
 
-GType          dh_book_manager_get_type     (void) G_GNUC_CONST;
-DhBookManager *dh_book_manager_new          (void);
-void           dh_book_manager_populate     (DhBookManager *book_manager);
-GList         *dh_book_manager_get_books    (DhBookManager *book_manager);
-
+GType          dh_book_manager_get_type         (void) G_GNUC_CONST;
+DhBookManager *dh_book_manager_new              (void);
+void           dh_book_manager_populate         (DhBookManager *book_manager);
+GList         *dh_book_manager_get_books        (DhBookManager *book_manager);
+DhBook        *dh_book_manager_get_book_by_name (DhBookManager *book_manager,
+                                                 const gchar *name);
+void           dh_book_manager_update           (DhBookManager *book_manager);
 
 G_END_DECLS
 
