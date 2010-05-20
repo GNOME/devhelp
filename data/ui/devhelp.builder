@@ -180,12 +180,10 @@
   </object>
   <object class="GtkListStore" id="book_manager_store">
     <columns>
-      <!-- column-name name -->
-      <column type="gchararray"/>
-      <!-- column-name title -->
-      <column type="gchararray"/>
       <!-- column-name enabled -->
       <column type="gboolean"/>
+      <!-- column-name title -->
+      <column type="gchararray"/>
       <!-- column-name book -->
       <column type="gpointer"/>
     </columns>
@@ -193,6 +191,8 @@
   <object class="GtkDialog" id="book_manager_dialog">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Book Manager</property>
+    <property name="default_width">500</property>
+    <property name="default_height">300</property>
     <property name="type_hint">normal</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">
@@ -209,7 +209,7 @@
                 <property name="hscrollbar_policy">automatic</property>
                 <property name="vscrollbar_policy">automatic</property>
                 <child>
-                  <object class="GtkTreeView" id="book-manager-treeview">
+                  <object class="GtkTreeView" id="book_manager_treeview">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="model">book_manager_store</property>
@@ -219,9 +219,9 @@
                       <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                         <property name="title">Enabled</property>
                         <child>
-                          <object class="GtkCellRendererToggle" id="cellrenderertoggle1"/>
+                          <object class="GtkCellRendererToggle" id="book_manager_toggle_enabled"/>
                           <attributes>
-                            <attribute name="active">2</attribute>
+                            <attribute name="active">0</attribute>
                           </attributes>
                         </child>
                       </object>
