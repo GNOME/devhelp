@@ -114,22 +114,6 @@ unref_node_link (GNode *node,
         dh_link_unref (node->data);
 }
 
-static gchar *
-book_get_name_from_path (const gchar *path)
-{
-        gchar *name;
-        gchar *aux;
-
-        g_return_val_if_fail (path, NULL);
-
-        name = g_path_get_basename (path);
-        aux = strrchr (name, '.');
-        if (aux) {
-                *aux = '\0';
-        }
-        return name;
-}
-
 DhBook *
 dh_book_new (const gchar  *book_path)
 {
@@ -164,8 +148,7 @@ dh_book_new (const gchar  *book_path)
         priv->title = g_strdup (dh_link_get_name ((DhLink *)priv->tree->data));
 
         /* Setup name */
-        priv->name = book_get_name_from_path (book_path);
-
+        priv->name = g_strdup (dh_link_get_book_id ((DhLink *)priv->tree->data));
 
         return book;
 }
