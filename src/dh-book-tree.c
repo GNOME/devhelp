@@ -166,6 +166,8 @@ book_tree_populate_tree (DhBookTree *tree)
         DhBookTreePriv *priv = GET_PRIVATE (tree);
         GList          *l;
 
+        gtk_tree_store_clear (priv->store);
+
         for (l = dh_book_manager_get_books (priv->book_manager);
              l;
              l = g_list_next (l)) {
@@ -178,6 +180,14 @@ book_tree_populate_tree (DhBookTree *tree)
                         node = g_node_next_sibling (node);
                 }
         }
+}
+
+static void
+book_manager_disabled_book_list_changed_cb (DhBookManager *book_manager,
+                                            gpointer user_data)
+{
+        DhBookTree *tree = user_data;
+        book_tree_populate_tree (tree);
 }
 
 static void
@@ -249,6 +259,11 @@ dh_book_tree_new (DhBookManager *book_manager)
         priv = GET_PRIVATE (tree);
 
         priv->book_manager = g_object_ref (book_manager);
+        g_signal_connect (priv->book_manager,
+                          "disabled-book-list-updated",
+                          G_CALLBACK (book_manager_disabled_book_list_changed_cb),
+                          tree);
+
         book_tree_populate_tree (tree);
 
 	/* Mark the first item as selected, or it would get automatically
