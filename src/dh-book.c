@@ -34,6 +34,8 @@ typedef struct {
         gchar    *path;
         /* Enable or disabled? */
         gboolean  enabled;
+        /* Book title */
+        gchar    *title;
         /* Generated book tree */
         GNode    *tree;
         /* Generated list of keywords in the book */
@@ -73,6 +75,8 @@ book_finalize (GObject *object)
                 g_list_free (priv->keywords);
         }
 
+        g_free (priv->title);
+
         g_free (priv->path);
 
         G_OBJECT_CLASS (dh_book_parent_class)->finalize (object);
@@ -94,6 +98,7 @@ dh_book_init (DhBook *book)
         DhBookPriv *priv = GET_PRIVATE (book);
 
         priv->path = NULL;
+        priv->title = NULL;
         priv->enabled = TRUE;
         priv->tree = NULL;
         priv->keywords = NULL;
@@ -136,6 +141,9 @@ dh_book_new (const gchar  *book_path)
                 return NULL;
         }
 
+        /* Setup title */
+        priv->title = g_strdup (dh_link_get_name ((DhLink *)priv->tree->data));
+
         return book;
 }
 
@@ -161,6 +169,18 @@ dh_book_get_tree (DhBook *book)
         priv = GET_PRIVATE (book);
 
         return priv->enabled ? priv->tree : NULL;
+}
+
+const gchar *
+dh_book_get_title (DhBook *book)
+{
+        DhBookPriv *priv;
+
+        g_return_val_if_fail (DH_IS_BOOK (book), NULL);
+
+        priv = GET_PRIVATE (book);
+
+        return priv->title;
 }
 
 gboolean

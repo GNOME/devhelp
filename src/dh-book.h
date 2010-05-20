@@ -46,15 +46,16 @@ struct _DhBookClass {
         GObjectClass parent_class;
 };
 
-GType     dh_book_get_type     (void) G_GNUC_CONST;
-DhBook   *dh_book_new          (const gchar  *book_path);
-GList    *dh_book_get_keywords (DhBook *book);
-GNode    *dh_book_get_tree     (DhBook *book);
-gboolean  dh_book_get_enabled  (DhBook *book);
-void      dh_book_set_enabled  (DhBook *book,
-                                gboolean enabled);
-gint      dh_book_cmp           (const DhBook *a,
-                                 const DhBook *b);
+GType        dh_book_get_type     (void) G_GNUC_CONST;
+DhBook      *dh_book_new          (const gchar  *book_path);
+GList       *dh_book_get_keywords (DhBook *book);
+GNode       *dh_book_get_tree     (DhBook *book);
+const gchar *dh_book_get_title    (DhBook *book);
+gboolean     dh_book_get_enabled  (DhBook *book);
+void         dh_book_set_enabled  (DhBook *book,
+                                   gboolean enabled);
+gint         dh_book_cmp          (const DhBook *a,
+                                   const DhBook *b);
 
 G_END_DECLS
 
