@@ -85,7 +85,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
         object_class->finalize = book_manager_finalize;
 
         signals[DISABLED_BOOK_LIST_UPDATED] =
-                g_signal_new ("open-link",
+                g_signal_new ("disabled-book-list-updated",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (DhBookManagerClass, disabled_book_list_updated),

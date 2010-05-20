@@ -489,19 +489,19 @@ search_combo_row_separator_func (GtkTreeModel *model,
         return result;
 }
 
-static GtkWidget *
-search_combo_create (DhSearch *search)
+static void
+search_combo_populate (DhSearch *search)
 {
-        GtkTreeIter      iter;
-        GtkListStore    *store;
-        GtkWidget       *combo;
-        GtkCellRenderer *cell;
-        GList           *l;
-        DhSearchPriv    *priv;
+        DhSearchPriv *priv;
+        GtkListStore *store;
+        GtkTreeIter   iter;
+        GList        *l;
 
         priv = GET_PRIVATE (search);
 
-        store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+        store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo)));
+
+        gtk_list_store_clear (store);
 
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
@@ -536,24 +536,36 @@ search_combo_create (DhSearch *search)
                 }
         }
 
-        combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
+        gtk_combo_box_set_active (GTK_COMBO_BOX (priv->book_combo), 0);
+}
+
+
+static void
+search_combo_create (DhSearch *search)
+{
+        GtkListStore    *store;
+        GtkCellRenderer *cell;
+        DhSearchPriv    *priv;
+
+        priv = GET_PRIVATE (search);
+
+        store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+        priv->book_combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
         g_object_unref (store);
 
-        gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (combo),
+        search_combo_populate (search);
+
+        gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (priv->book_combo),
                                               search_combo_row_separator_func,
                                               NULL, NULL);
 
         cell = gtk_cell_renderer_text_new ();
-        gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo),
+        gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->book_combo),
                                     cell,
                                     TRUE);
-        gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo),
+        gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (priv->book_combo),
                                        cell,
                                        "text", 0);
-
-        gtk_combo_box_set_active (GTK_COMBO_BOX (combo), 0);
-
-        return combo;
 }
 
 static void
@@ -579,6 +591,14 @@ completion_add_items (DhSearch *search)
         }
 }
 
+static void
+book_manager_disabled_book_list_changed_cb (DhBookManager *book_manager,
+                                            gpointer user_data)
+{
+        DhSearch *search = user_data;
+        search_combo_populate (search);
+}
+
 GtkWidget *
 dh_search_new (DhBookManager *book_manager)
 {
@@ -595,10 +615,14 @@ dh_search_new (DhBookManager *book_manager)
         priv = GET_PRIVATE (search);
 
         priv->book_manager = g_object_ref (book_manager);
+        g_signal_connect (priv->book_manager,
+                          "disabled-book-list-updated",
+                          G_CALLBACK (book_manager_disabled_book_list_changed_cb),
+                          search);
 
         gtk_container_set_border_width (GTK_CONTAINER (search), 2);
 
-        priv->book_combo = search_combo_create (search);
+        search_combo_create (search);
         g_signal_connect (priv->book_combo, "changed",
                           G_CALLBACK (search_combo_changed_cb),
                           search);
