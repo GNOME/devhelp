@@ -28,11 +28,19 @@
 #include "dh-util.h"
 #include "dh-book.h"
 #include "dh-book-manager.h"
+#include "dh-marshal.h"
 
 typedef struct {
         /* The list of all DhBooks found in the system */
         GList *books;
 } DhBookManagerPriv;
+
+enum {
+        DISABLED_BOOK_LIST_UPDATED,
+        LAST_SIGNAL
+};
+
+static gint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
@@ -75,6 +83,16 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = book_manager_finalize;
+
+        signals[DISABLED_BOOK_LIST_UPDATED] =
+                g_signal_new ("open-link",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (DhBookManagerClass, disabled_book_list_updated),
+                              NULL, NULL,
+                              _dh_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
 
 	g_type_class_add_private (klass, sizeof (DhBookManagerPriv));
 }
@@ -364,6 +382,11 @@ dh_book_manager_update (DhBookManager *book_manager)
 
         /* Store in conf */
         dh_util_state_store_disabled_books (disabled_books);
+
+        /* Emit signal to notify others */
+        g_signal_emit (book_manager,
+                       signals[DISABLED_BOOK_LIST_UPDATED],
+                       0);
 
         book_manager_clean_list_of_disabled_books (disabled_books);
 }
