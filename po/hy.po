@@ -1,0 +1,486 @@
+# Translation of devhelp to Armenian
+# This file is distributed under the same license as the devhelp package.
+# Copyright (C) Zhanna Sargsyan, 2010.
+# Zhanna Sargsyan <zhanna.sargsyan@yahoo.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
+"POT-Creation-Date: 2010-05-13 01:54+0000\n"
+"PO-Revision-Date: 2010-05-19 15:36+0400\n"
+"Last-Translator: Zhanna <zhanna.sargsyan@yahoo.com>\n"
+"Language-Team:  <norik@freenet.am>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "Օգնություն ծրագիր նախագծողի  համար"
+
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/devhelp.desktop.in.in.h:2
+#: ../src/dh-main.c:235
+#: ../src/dh-window.c:736
+#: ../src/dh-window.c:1043
+#: ../src/dh-window.c:1849
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Փաստաթղթի զննիչ"
+
+#: ../data/devhelp.schemas.in.h:1
+msgid "Font for fixed width text"
+msgstr "Տառատեսակ ֆիքսված լայնությամբ տեքստի համար"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Տառատեսակ տեքստի համար"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Տառատեսակ ֆիքսված լայնությամբ տեքստի համար, ինչպիսիք են կոդի օրինակները:"
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Տառատեսակ փոփոխական լայնությամբ տեքստի համար:"
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of assistant window"
+msgstr "Օգնական պատուհանի բարձրություն"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Height of main window"
+msgstr "Հիմնական պատուհանի բարձրություն"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Main window maximized state"
+msgstr "Հիմնական պատուհանի մեծացված վիճակ"
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Նշված ներդիր․ \"բովանդակություն\" կամ \" որոնում\""
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "The X position of the assistant window."
+msgstr "Օգնական պատուհանի X դիրքը:"
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The X position of the main window."
+msgstr "Հիմնական պատուհանի X դիրքը:"
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The Y position of the assistant window."
+msgstr "Օգնական պատուհանի Y դիրքը:"
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The Y position of the main window."
+msgstr "Հիմնական պատուհանի Y դիրքը:"
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The height of the assistant window."
+msgstr "Օգնական պատուհանի բարձրությունը:"
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "The height of the main window."
+msgstr "Հիմնական պատուհանի բարձրությունը:"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "The width of the assistant window."
+msgstr "Օգնական պատուհանի լայնությունը:"
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "The width of the index and search pane."
+msgstr "Ինդեքսի և որոնման վահանակի լայնությունը:"
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "The width of the main window."
+msgstr "Հիմնական պատուհանի լայնությունը:"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "Use system fonts"
+msgstr "Օգտագործել համակարգի տառատեսակները"
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Use the system default fonts."
+msgstr "Օգտագործել համակարգի լռելայն տառատեսակները։"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "Whether the main window should start maximized."
+msgstr "Երբ հիմնական պատուհանը սկսի մեծանալ:"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr "Ներդիրներից որն է նշված․ \"բովանդակություն\" թե \" որոնում\":"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Width of the assistant window"
+msgstr "Օգնական պատուհանի լայնություն"
+
+#: ../data/devhelp.schemas.in.h:23
+msgid "Width of the index and search pane"
+msgstr "Ինդեքսի և որոնման վահանակի լայնություն"
+
+#: ../data/devhelp.schemas.in.h:24
+msgid "Width of the main window"
+msgstr "Հիմնական պատուհանի լայնություն"
+
+#: ../data/devhelp.schemas.in.h:25
+msgid "X position of assistant window"
+msgstr "Օգնական պատուհանի X դիրք"
+
+#: ../data/devhelp.schemas.in.h:26
+msgid "X position of main window"
+msgstr "Հիմնական պատուհանի X դիրք"
+
+#: ../data/devhelp.schemas.in.h:27
+msgid "Y position of assistant window"
+msgstr "Օգնական պատուհանի Y դիրք"
+
+#: ../data/devhelp.schemas.in.h:28
+msgid "Y position of main window"
+msgstr "Հիմնական պատուհանի Y դիրք"
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Devhelp ապահովում"
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "Կանչել Devhelp սեղմելով F2 այն բառի վրա, որտեղ կանգնած է կուրսորը"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+msgid "Show API Documentation"
+msgstr "Ցույց տալ API Փաստաթուղթը"
+
+#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Ցույց տալ API Փաստաթուղթը կուրսորի տակ գտնվող բառի համար"
+
+#. i18n: Please don't translate "Devhelp".
+#: ../src/dh-assistant.c:74
+msgid "Devhelp — Assistant"
+msgstr "Devhelp — Օգնական"
+
+#: ../src/dh-assistant-view.c:328
+msgid "Book:"
+msgstr "Գիրք."
+
+#. i18n: a documentation book
+#: ../src/dh-link.c:255
+msgid "Book"
+msgstr "Գիրք"
+
+#. i18n: a "page" in a documentation book
+#: ../src/dh-link.c:258
+msgid "Page"
+msgstr "Էջ"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: ../src/dh-link.c:262
+msgid "Keyword"
+msgstr "Հիմնաբառ"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:267
+msgid "Function"
+msgstr "Ֆունկցիա"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:272
+msgid "Struct"
+msgstr "Ստրուկտուրա"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:277
+msgid "Macro"
+msgstr "Մակրո"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:282
+msgid "Enum"
+msgstr "Enum"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:287
+msgid "Type"
+msgstr "Տիպ"
+
+#: ../src/dh-main.c:175
+msgid "Search for a keyword"
+msgstr "Որոնել ըստ հիմնաբառի"
+
+#: ../src/dh-main.c:180
+msgid "Quit any running Devhelp"
+msgstr "Անջատել ցանկացած գործարկվող Devhelp"
+
+#: ../src/dh-main.c:185
+msgid "Display the version and exit"
+msgstr "Ցույց տալ տարբերակը և դուրս գալ"
+
+#: ../src/dh-main.c:190
+msgid "Focus the Devhelp window with the search field active"
+msgstr "Ֆոկուսի բերել Devhelp պատուհանը ակտիվացված որոնման դաշտով"
+
+#: ../src/dh-main.c:195
+msgid "Search and display any hit in the assistant window"
+msgstr "Oգնական պատուհանում որոնել և ցույց տալ ցանկացած համընկնում"
+
+#: ../src/dh-parser.c:92
+#: ../src/dh-parser.c:189
+#: ../src/dh-parser.c:253
+#: ../src/dh-parser.c:263
+#, c-format
+msgid "Expected '%s', got '%s' at line %d, column %d"
+msgstr "Ակնկալվում էր '%s', ստացված է '%s' %d տողում և %d սյունում"
+
+#: ../src/dh-parser.c:109
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Անվավեր անվանումների տիրույթ '%s' %d տողում և %d սյունում"
+
+#: ../src/dh-parser.c:140
+#, c-format
+msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr "%d տողում և %d սյունում պահանջվում են  \"title\", \"name\" և \"link\" էլեմենտներ"
+
+#: ../src/dh-parser.c:208
+#, c-format
+msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
+msgstr "%d տողում և %d սյունում <sub> -ի ներսում պահանջվում են  \"name\" և \"link\" էլեմենտներ"
+
+#: ../src/dh-parser.c:288
+#, c-format
+msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr "'%s' -ի ներսում %d տողում և %d սյունում  պահանջվում են \"name\" և \"link\" էլեմենտները"
+
+#: ../src/dh-parser.c:301
+#, c-format
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+msgstr "<keyword> -ի ներսում %d տողում և %d սյունում պահանջվում է \"type\" էլեմենտ"
+
+#: ../src/dh-parser.c:506
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Չի հաջողվել բացել սեղմված '%s'. %s գիրքը"
+
+#: ../src/dh-search.c:509
+msgid "All books"
+msgstr "Բոլոր գրքերը"
+
+#: ../src/dh-search.c:587
+msgid "Search in:"
+msgstr "Որոնել."
+
+#: ../src/dh-window.c:95
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:96
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:97
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:98
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:99
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:100
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:101
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:102
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:103
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:731
+msgid "translator_credits"
+msgstr "Թարգմանչի _կրեդիտներ"
+
+#: ../src/dh-window.c:738
+msgid "A developers' help browser for GNOME"
+msgstr "Նախագծողների օգնություն ծրագիր GNOME-ի համար"
+
+#: ../src/dh-window.c:768
+msgid "_File"
+msgstr "_Ֆայլ"
+
+#: ../src/dh-window.c:769
+msgid "_Edit"
+msgstr "_Խմբագրել"
+
+#: ../src/dh-window.c:770
+msgid "_View"
+msgstr "_Տեսք"
+
+#: ../src/dh-window.c:771
+msgid "_Go"
+msgstr "_Գնալ"
+
+#: ../src/dh-window.c:772
+msgid "_Help"
+msgstr "_Օգնություն"
+
+#. File menu
+#: ../src/dh-window.c:775
+msgid "_New Window"
+msgstr "_Նոր պատուհան"
+
+#: ../src/dh-window.c:777
+msgid "New _Tab"
+msgstr "Նոր _Ներդիր"
+
+#: ../src/dh-window.c:779
+msgid "_Print…"
+msgstr "_Տպել"
+
+#: ../src/dh-window.c:791
+#: ../src/eggfindbar.c:342
+msgid "Find Next"
+msgstr "Գտնել Հաջորդը"
+
+#: ../src/dh-window.c:793
+#: ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Գտնել Նախորդը"
+
+#: ../src/dh-window.c:800
+msgid "Go to the previous page"
+msgstr "Գնալ նախորդ էջ"
+
+#: ../src/dh-window.c:803
+msgid "Go to the next page"
+msgstr "Գնալ հաջորդ էջ"
+
+#: ../src/dh-window.c:806
+msgid "_Contents Tab"
+msgstr "_Բովանդակության ներդիր"
+
+#: ../src/dh-window.c:809
+msgid "_Search Tab"
+msgstr "_Որոնման Ներդիր"
+
+#. View menu
+#: ../src/dh-window.c:813
+msgid "_Larger Text"
+msgstr "_Մեծացնել տեքստը"
+
+#: ../src/dh-window.c:814
+msgid "Increase the text size"
+msgstr "Մեծացնել տեքստի չափը"
+
+#: ../src/dh-window.c:816
+msgid "S_maller Text"
+msgstr "_Փոքրացնել տեքստը"
+
+#: ../src/dh-window.c:817
+msgid "Decrease the text size"
+msgstr "Փոքրացնել տեքստի չափը"
+
+#: ../src/dh-window.c:819
+msgid "_Normal Size"
+msgstr "_Նորմալ չափ"
+
+#: ../src/dh-window.c:820
+msgid "Use the normal text size"
+msgstr "Օգտագործել տեքստի նորմալ չափ"
+
+#: ../src/dh-window.c:829
+msgid "Leave fullscreen mode"
+msgstr "Դուրս գալ լրիվ էկրանային ռեժիմից"
+
+#: ../src/dh-window.c:836
+msgid "Display in full screen"
+msgstr "Ցույց տալ լրիվ էկրանային ռեժիմում"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:956
+msgid "Larger"
+msgstr "Մեծացնել"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:959
+msgid "Smaller"
+msgstr "Փոքրացնել"
+
+#. i18n: please don't translate
+#. * "Devhelp", it's a name, not a
+#. * generic word.
+#: ../src/dh-window.c:1105
+msgid "About Devhelp"
+msgstr "Devhelp-ի մասին"
+
+#: ../src/dh-window.c:1110
+msgid "Preferences…"
+msgstr "Նախընտրություններ"
+
+#: ../src/dh-window.c:1153
+msgid "Contents"
+msgstr "Բովանդակություն"
+
+#: ../src/dh-window.c:1163
+msgid "Search"
+msgstr "Որոնել"
+
+#: ../src/dh-window.c:1329
+msgid "Error opening the requested link."
+msgstr "Պահանջվող հղումը բացելու սխալ"
+
+#: ../src/dh-window.c:1635
+#: ../src/dh-window.c:1877
+msgid "Empty Page"
+msgstr "Դատարկ էջ"
+
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "Գտնել."
+
+#: ../src/eggfindbar.c:333
+#: ../src/eggfindbar.c:336
+msgid "Find previous occurrence of the search string"
+msgstr "Գտնել որոնվող տողի նախորդ հանդիպած արդյունքը"
+
+#: ../src/eggfindbar.c:346
+#: ../src/eggfindbar.c:349
+msgid "Find next occurrence of the search string"
+msgstr "Գտնել որոնվող տողի հաջորդ հանդիպած արդյունքը"
+
+#: ../src/eggfindbar.c:358
+msgid "C_ase Sensitive"
+msgstr "_Զգայուն ռեգիստրի նկատմամբ"
+
+#: ../src/eggfindbar.c:362
+#: ../src/eggfindbar.c:365
+msgid "Toggle case sensitive search"
+msgstr "Միացնել ռեգիստրի նկատմամբ զգայուն որոնումը"
+
