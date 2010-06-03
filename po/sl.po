@@ -1,3 +1,4 @@
+# Slovenian translation for devhelp.
 # Copyright (C) 2005-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the program package.
 #
@@ -5,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp HEAD\n"
+"Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
 "POT-Creation-Date: 2009-10-16 10:11+0000\n"
-"PO-Revision-Date: 2009-10-26 14:26+0100\n"
+"PO-Revision-Date: 2010-06-03 14:58+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +64,7 @@ msgstr "Višina glavnega okna"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Main window maximized state"
-msgstr "Razprto glavno okno"
+msgstr "Razpeto glavno okno"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Selected tab: \"content\" or \"search\""
@@ -75,7 +76,7 @@ msgstr "X položaj okna pomočnika"
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "The X position of the main window."
-msgstr "X  položaj glavnega okna"
+msgstr "X položaj glavnega okna"
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "The Y position of the assistant window."
@@ -83,7 +84,7 @@ msgstr "Y položaj okna pomočnika"
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The Y position of the main window."
-msgstr "X položaj glavnega okna"
+msgstr "Y položaj glavnega okna."
 
 #: ../data/devhelp.schemas.in.h:13
 msgid "The height of the assistant window."
@@ -99,7 +100,7 @@ msgstr "Širina okna pomočnika."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "The width of the index and search pane."
-msgstr "Širina indeksa in iskalnega pladnja."
+msgstr "Širina kazala in iskalnega pladnja."
 
 #: ../data/devhelp.schemas.in.h:17
 msgid "The width of the main window."
@@ -115,7 +116,7 @@ msgstr "Uporabi privzete sistemske pisave."
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "Whether the main window should start maximized."
-msgstr "Ali naj bo glavno okno ob zagonu razprto."
+msgstr "Ali naj bo glavno okno ob zagonu razpeto."
 
 #: ../data/devhelp.schemas.in.h:21
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
@@ -163,7 +164,7 @@ msgstr "Pokaži API dokumentacijo"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:40
 msgid "Show API Documentation for the word at the cursor"
-msgstr "Prikaži API dokumentacijo za besedo ob kazalniku"
+msgstr "Pokaži API dokumentacijo za besedo ob kazalniku"
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
@@ -235,7 +236,7 @@ msgstr "Končaj zagnani Devhelp"
 
 #: ../src/dh-main.c:185
 msgid "Display the version and exit"
-msgstr "Prikaži pomoč in zapusti program"
+msgstr "Pokaži pomoč in končaj program"
 
 #: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
@@ -329,7 +330,7 @@ msgstr "400%"
 
 #: ../src/dh-window.c:731
 msgid "translator_credits"
-msgstr "Matej Urbančič"
+msgstr "Matej Urbančič, <mateju@svn.gnome.org>"
 
 #: ../src/dh-window.c:738
 msgid "A developers' help browser for GNOME"
@@ -353,7 +354,7 @@ msgstr "_Pojdi"
 
 #: ../src/dh-window.c:772
 msgid "_Help"
-msgstr "_Pomoč"
+msgstr "Pomo_č"
 
 #. File menu
 #: ../src/dh-window.c:775
@@ -371,20 +372,20 @@ msgstr "_Natisni ..."
 #: ../src/dh-window.c:791
 #: ../src/eggfindbar.c:342
 msgid "Find Next"
-msgstr "Poišči naslednje"
+msgstr "Najdi naslednje"
 
 #: ../src/dh-window.c:793
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
-msgstr "Poišči predhodne"
+msgstr "Najdi predhodne"
 
 #: ../src/dh-window.c:800
 msgid "Go to the previous page"
-msgstr "Skoči na predhodno stran"
+msgstr "Pojdi na predhodno stran"
 
 #: ../src/dh-window.c:803
 msgid "Go to the next page"
-msgstr "Skoči na naslednjo stran"
+msgstr "Pojdi na naslednjo stran"
 
 #: ../src/dh-window.c:806
 msgid "_Contents Tab"
@@ -397,11 +398,11 @@ msgstr "Zavihek _iskanja"
 #. View menu
 #: ../src/dh-window.c:813
 msgid "_Larger Text"
-msgstr "_Večja pisava"
+msgstr "_Večje besedilo"
 
 #: ../src/dh-window.c:814
 msgid "Increase the text size"
-msgstr "Povečaj velikost pisave"
+msgstr "Povečaj velikost besedila"
 
 #: ../src/dh-window.c:816
 msgid "S_maller Text"
@@ -409,7 +410,7 @@ msgstr "_Manjša pisava"
 
 #: ../src/dh-window.c:817
 msgid "Decrease the text size"
-msgstr "Zmanjšaj velikost pisave"
+msgstr "Zmanjšaj velikost besedila"
 
 #: ../src/dh-window.c:819
 msgid "_Normal Size"
@@ -425,7 +426,7 @@ msgstr "Zapusti celozaslonski način"
 
 #: ../src/dh-window.c:836
 msgid "Display in full screen"
-msgstr "Prikaži v celozaslonskem načinu"
+msgstr "Pokaži v celozaslonskem načinu"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:956
@@ -435,7 +436,7 @@ msgstr "Večje"
 #. Translators: This refers to text size
 #: ../src/dh-window.c:959
 msgid "Smaller"
-msgstr "Manjše"
+msgstr "Manjša"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
@@ -446,7 +447,7 @@ msgstr "O programu Devhelp"
 
 #: ../src/dh-window.c:1110
 msgid "Preferences…"
-msgstr "Lastnosti ..."
+msgstr "Možnosti ..."
 
 #: ../src/dh-window.c:1153
 msgid "Contents"
@@ -467,17 +468,17 @@ msgstr "Prazna stran"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
-msgstr "Poišči:"
+msgstr "Najdi:"
 
 #: ../src/eggfindbar.c:333
 #: ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
-msgstr "Poišči predhodni zadetek iskanega niza"
+msgstr "Najdi predhodno ponovitev iskanega niza"
 
 #: ../src/eggfindbar.c:346
 #: ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
-msgstr "Poišči naslednji zadetek iskanega niza"
+msgstr "Najdi naslednjo ponovitev iskanega niza"
 
 #: ../src/eggfindbar.c:358
 msgid "C_ase Sensitive"
@@ -486,38 +487,4 @@ msgstr "_Razlikovanje velikosti črk"
 #: ../src/eggfindbar.c:362
 #: ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
-msgstr "Preklop iskanja po velikosti črk"
-
-#~ msgid "Show advanced search options"
-#~ msgstr "Pokaži napredne možnosti iskanja"
-#~ msgid "Whether the advanced search options are shown."
-#~ msgstr "Ali naj bodo prikazane napredne možnosti iskanja."
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Pisave</b>"
-#~ msgid "<b>Searching</b>"
-#~ msgstr "<b>Iskanje</b>"
-#~ msgid "_Back"
-#~ msgstr "_Nazaj"
-#~ msgid "_Fixed width:"
-#~ msgstr "_Določena širina:"
-#~ msgid "_Forward"
-#~ msgstr "_Naprej"
-#~ msgid "_Show advanced search options"
-#~ msgstr "_Prikaži napredne možnosti iskanja"
-#~ msgid "_Use system fonts"
-#~ msgstr "_Uporabi sistemske pisave"
-#~ msgid "_Variable width: "
-#~ msgstr "_Spremenljiva širina:"
-#~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %"
-#~ "d"
-#~ msgstr ""
-#~ "vpis imena in povezave je obvezen znotraj <function> v vrstici %d, "
-#~ "stolpec %d"
-#~ msgid "Could not create book parser"
-#~ msgstr "Ni mogoče ustvariti razčlenjevalca knjige"
-#~ msgid "Could not create markup parser"
-#~ msgstr "Ni mogoče ustvariti razčlenjevalca oblike"
-#~ msgid "Devhelp is not built with zlib support"
-#~ msgstr "Devhelp nima podpore za zlib"
-
+msgstr "Preklopi iskanje z razlikovanjem velikih in malih črk"
