@@ -70,6 +70,7 @@ struct _DhWindowPriv {
         GtkActionGroup *action_group;
 
         DhLink         *selected_search_link;
+        guint           find_source_id;
 };
 
 enum {
@@ -1435,15 +1436,14 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
         return FALSE;
 }
 
-static void
-window_find_search_changed_cb (GObject    *object,
-                               GParamSpec *pspec,
-                               DhWindow   *window)
+static gboolean
+do_search (DhWindow *window)
 {
-        DhWindowPriv  *priv;
+        DhWindowPriv  *priv = window->priv;
         WebKitWebView *web_view;
 
-        priv = window->priv;
+        priv->find_source_id = 0;
+
         web_view = window_get_active_web_view (window);
 
         webkit_web_view_unmark_text_matches (web_view);
@@ -1457,6 +1457,23 @@ window_find_search_changed_cb (GObject    *object,
                 web_view, egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)),
                 egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)),
                 TRUE, TRUE);
+
+	return FALSE;
+}
+
+static void
+window_find_search_changed_cb (GObject    *object,
+                               GParamSpec *pspec,
+                               DhWindow   *window)
+{
+        DhWindowPriv *priv = window->priv;
+
+        if (priv->find_source_id != 0) {
+                g_source_remove (priv->find_source_id);
+                priv->find_source_id = 0;
+        }
+
+        priv->find_source_id = g_timeout_add (300, (GSourceFunc)do_search, window);
 }
 
 static void
