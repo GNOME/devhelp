@@ -27,8 +27,10 @@
 #ifdef GDK_WINDOWING_X11
 #include <unistd.h>
 #include <gdk/gdkx.h>
+#ifdef HAVE_WNCK
 #define WNCK_I_KNOW_THIS_IS_UNSTABLE
 #include <libwnck/libwnck.h>
+#endif
 #endif
 
 #include "dh-window.h"
@@ -122,7 +124,7 @@ dh_base_init (DhBase *base)
         priv->books = g_hash_table_new_full (g_str_hash, g_str_equal,
                                              g_free, g_free);
 
-#ifdef GDK_WINDOWING_X11
+#ifdef HAVE_WNCK
         {
                 gint n_screens, i;
 
@@ -525,7 +527,7 @@ dh_base_get_window_on_current_workspace (DhBase *base)
                 return NULL;
         }
 
-#ifdef GDK_WINDOWING_X11
+#ifdef HAVE_WNCK
         {
                 WnckWorkspace *workspace;
                 WnckScreen    *screen;

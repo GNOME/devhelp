@@ -1,11 +1,11 @@
 AC_PREREQ(2.60)
-AC_INIT([Devhelp],[2.30.2],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+AC_INIT([Devhelp],[2.90.2],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
 
 # LT Version numbers, remember to change them just *before* a release.
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
 #   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
 #   (No interfaces changed:                   REVISION++)
-LIBDEVHELP_CURRENT=1
+LIBDEVHELP_CURRENT=0
 LIBDEVHELP_AGE=0
 LIBDEVHELP_REVISION=0
 
@@ -41,11 +41,12 @@ dnl -----------------------------------------------------------
 IGE_PLATFORM_CHECK
 if test "x$IGE_PLATFORM" = xx11; then
    gconf_pkgconfig="gconf-2.0 >= 2.6.0"
-   libwnck_pkgconfig="libwnck-1.0 >= 2.10.0"
+   libwnck_pkgconfig=
    igemacintegration_pkgconfig=
-   REQUIRES_LIBWNCK=libwnck-1.0
+   REQUIRES_LIBWNCK=
    PLATFORM_CFLAGS=
    PLATFORM_LDFLAGS=
+   HAVE_WNCK=no
 else
    gconf_pkgconfig=
    libwnck_pkgconfig=
@@ -53,6 +54,7 @@ else
    REQUIRES_LIBWNCK=
    PLATFORM_CFLAGS=
    PLATFORM_LDFLAGS=
+   HAVE_WNCK=no
 fi
 AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, test "x$IGE_PLATFORM" = xx11)
 AC_SUBST(PLATFORM_CFLAGS)
@@ -61,18 +63,22 @@ AC_SUBST(REQUIRES_LIBWNCK)
 
 PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
-  gtk+-2.0 >= 2.10.0
-  webkit-1.0 >= 1.1.13
-  unique-1.0
+  gtk+-3.0
+  webkitgtk-3.0
+  unique-3.0
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-  gtk+-2.0 >= 2.10.0
+  gtk+-3.0
   $gconf_pkgconfig
   $libwnck_pkgconfig
   $igemacintegration_pkgconfig
-  webkit-1.0 >= 1.1.13
+  webkitgtk-3.0
 ])
+
+if test "x$HAVE_WNCK" = "xyes" ; then
+    AC_DEFINE(HAVE_WNCK, 1, [Defined if libwnck is available])
+fi
 
 AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)
 have_zlib=no
@@ -107,7 +113,7 @@ Makefile
 po/Makefile.in
 src/Makefile
 data/Makefile
-data/libdevhelp-1.0.pc
+data/libdevhelp-3.0.pc
 data/devhelp.desktop.in
 data/icons/Makefile
 data/ui/Makefile
