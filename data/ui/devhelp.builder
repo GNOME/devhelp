@@ -178,7 +178,7 @@
                               <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                                 <property name="title">Enabled</property>
                                 <child>
-                                  <object class="GtkCellRendererToggle" id="book_manager_toggle_enabled"/>
+                                  <object class="GtkCellRendererToggle" id="book_manager_toggle"/>
                                   <attributes>
                                     <attribute name="active">0</attribute>
                                   </attributes>
