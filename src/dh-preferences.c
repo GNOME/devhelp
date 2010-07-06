@@ -398,7 +398,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
                 "variable_font_button", "font_set", preferences_fonts_font_set_cb,
                 "fixed_font_button", "font_set", preferences_fonts_font_set_cb,
                 "system_fonts_button", "toggled", preferences_fonts_system_fonts_toggled_cb,
-                "book_manager_toggle_enabled", "toggled", preferences_bookshelf_tree_selection_toggled_cb,
+                "book_manager_toggle", "toggled", preferences_bookshelf_tree_selection_toggled_cb,
                 "preferences_close_button", "clicked", preferences_close_cb,
                 NULL);
 
