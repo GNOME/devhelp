@@ -81,12 +81,10 @@ libdevhelp_1_la_SOURCES =				\
 	dh-search.c					\
 	dh-parser.c					\
 	dh-preferences.c				\
-	dh-book-manager-dialog.c			\
 	dh-util.c					\
 	dh-window.c					\
 	dh-parser.h					\
 	dh-preferences.h                                \
-	dh-book-manager-dialog.h			\
 	dh-util.h					\
 	eggfindbar.c					\
 	eggfindbar.h					\
