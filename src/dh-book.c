@@ -219,10 +219,28 @@ dh_book_set_enabled (DhBook *book,
 }
 
 gint
-dh_book_cmp (const DhBook *a,
-             const DhBook *b)
+dh_book_cmp_by_path (const DhBook *a,
+                     const DhBook *b)
 {
         return ((a && b) ?
                 g_strcmp0 (GET_PRIVATE (a)->path, GET_PRIVATE (b)->path) :
+                -1);
+}
+
+gint
+dh_book_cmp_by_name (const DhBook *a,
+                     const DhBook *b)
+{
+        return ((a && b) ?
+                g_ascii_strcasecmp (GET_PRIVATE (a)->name, GET_PRIVATE (b)->name) :
+                -1);
+}
+
+gint
+dh_book_cmp_by_title (const DhBook *a,
+                      const DhBook *b)
+{
+        return ((a && b) ?
+                g_utf8_collate (GET_PRIVATE (a)->title, GET_PRIVATE (b)->title) :
                 -1);
 }
