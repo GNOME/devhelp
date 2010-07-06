@@ -316,10 +316,19 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
         /* Allocate new book struct */
         book = dh_book_new (book_path);
 
-        /* Check if book was already loaded in the manager */
+        /* Check if book with same path was already loaded in the manager */
         if (g_list_find_custom (priv->books,
                                 book,
-                                (GCompareFunc)dh_book_cmp)) {
+                                (GCompareFunc)dh_book_cmp_by_path)) {
+                g_object_unref (book);
+                return;
+        }
+
+        /* Check if book with same bookname was already loaded in the manager
+         * (we need to force unique book names) */
+        if (g_list_find_custom (priv->books,
+                                book,
+                                (GCompareFunc)dh_book_cmp_by_name)) {
                 g_object_unref (book);
                 return;
         }
@@ -327,7 +336,7 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
         /* Add the book to the book list */
         priv->books = g_list_insert_sorted (priv->books,
                                             book,
-                                            (GCompareFunc)dh_book_cmp);
+                                            (GCompareFunc)dh_book_cmp_by_title);
 }
 
 GList *

@@ -55,7 +55,11 @@ const gchar *dh_book_get_title    (DhBook *book);
 gboolean     dh_book_get_enabled  (DhBook *book);
 void         dh_book_set_enabled  (DhBook *book,
                                    gboolean enabled);
-gint         dh_book_cmp          (const DhBook *a,
+gint         dh_book_cmp_by_path  (const DhBook *a,
+                                   const DhBook *b);
+gint         dh_book_cmp_by_name  (const DhBook *a,
+                                   const DhBook *b);
+gint         dh_book_cmp_by_title (const DhBook *a,
                                    const DhBook *b);
 
 G_END_DECLS
