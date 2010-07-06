@@ -40,7 +40,6 @@
 #include "dh-book-manager.h"
 #include "dh-book.h"
 #include "dh-preferences.h"
-#include "dh-book-manager-dialog.h"
 #include "dh-search.h"
 #include "dh-window.h"
 #include "dh-util.h"
@@ -661,13 +660,6 @@ window_activate_preferences (GtkAction *action,
 }
 
 static void
-window_activate_book_manager (GtkAction *action,
-                              DhWindow *window)
-{
-        dh_book_manager_dialog_show (GTK_WINDOW (window));
-}
-
-static void
 window_activate_back (GtkAction *action,
                       DhWindow  *window)
 {
@@ -806,8 +798,6 @@ static const GtkActionEntry actions[] = {
           G_CALLBACK (window_find_previous_cb) },
         { "Preferences", GTK_STOCK_PREFERENCES, NULL, NULL, NULL,
           G_CALLBACK (window_activate_preferences) },
-        { "BookManager", GTK_STOCK_FILE, N_("Manage books…"), NULL, NULL,
-          G_CALLBACK (window_activate_book_manager) },
 
         /* Go menu */
         { "Back", GTK_STOCK_GO_BACK, NULL, "<alt>Left",
