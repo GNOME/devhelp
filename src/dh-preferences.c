@@ -44,7 +44,6 @@ typedef struct {
         DhBookManager *book_manager;
         GtkTreeView   *booklist_treeview;
         GtkListStore  *booklist_store;
-        gboolean       booklist_modified;
 } DhPreferences;
 
 /* Fonts-tab related */
@@ -97,9 +96,6 @@ preferences_init (void)
 {
 	if (!prefs) {
                 prefs = g_new0 (DhPreferences, 1);
-        }
-
-        if (!prefs->book_manager) {
                 prefs->book_manager  = dh_base_get_book_manager (dh_base_get ());
         }
 }
@@ -109,24 +105,16 @@ preferences_close_cb (GtkButton *button, gpointer user_data)
 {
 	DhPreferences *prefs = user_data;
 
-        /* If any change was done, tell the book manager to update itself
-         *  This will update conf and notify the trees so that they get
-         *  updated as well */
-        if (prefs->booklist_modified) {
-                dh_book_manager_update (prefs->book_manager);
-        }
-
 	gtk_widget_destroy (GTK_WIDGET (prefs->dialog));
-
 	prefs->dialog = NULL;
+
 	prefs->system_fonts_button = NULL;
 	prefs->fonts_table = NULL;
 	prefs->variable_font_button = NULL;
 	prefs->fixed_font_button = NULL;
+
         prefs->booklist_treeview = NULL;
         prefs->booklist_store = NULL;
-        prefs->book_manager = NULL;
-        prefs->booklist_modified = FALSE;
 }
 
 static void
@@ -329,11 +317,7 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
                                             LTCOLUMN_ENABLED, !enabled,
                                             -1);
 
-                        /* Set the modified flag so that we know we must
-                         *  update conf & trees */
-                        if (!prefs->booklist_modified) {
-                                prefs->booklist_modified = TRUE;
-                        }
+                        dh_book_manager_update (prefs->book_manager);
                 }
         }
 }
