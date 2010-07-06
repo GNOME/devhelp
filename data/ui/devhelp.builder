@@ -180,9 +180,13 @@
                                 <property name="enable_grid_lines">vertical</property>
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn1">
+                                    <property name="min_width">60</property>
                                     <property name="title">Enabled</property>
+                                    <property name="expand">True</property>
                                     <child>
-                                      <object class="GtkCellRendererToggle" id="book_manager_toggle"/>
+                                      <object class="GtkCellRendererToggle" id="book_manager_toggle">
+                                        <property name="width">60</property>
+                                      </object>
                                       <attributes>
                                         <attribute name="active">0</attribute>
                                       </attributes>
@@ -192,6 +196,7 @@
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn2">
                                     <property name="title">Title</property>
+                                    <property name="expand">True</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext1"/>
                                       <attributes>
