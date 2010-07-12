@@ -38,7 +38,7 @@ libtool
 /py-compile
 /data/devhelp.defaults
 /data/devhelp.schemas
-/data/libdevhelp-1.0.pc
+/data/libdevhelp-3.0.pc
 /data/devhelp.desktop
 /data/devhelp.desktop.in
 /po/*.gmo
