@@ -20,10 +20,12 @@
  */
 
 #include "config.h"
+
+#include <stdlib.h>
 #include <string.h>
+
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <unique/unique.h>
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
@@ -33,11 +35,6 @@
 #include "dh-window.h"
 #include "dh-assistant.h"
 
-#define COMMAND_QUIT             1
-#define COMMAND_SEARCH           2
-#define COMMAND_SEARCH_ASSISTANT 3
-#define COMMAND_FOCUS_SEARCH     4
-#define COMMAND_RAISE            5
 
 static void
 extract_book_id (const gchar  *str,
@@ -110,51 +107,127 @@ search_assistant (DhBase      *base,
         return dh_assistant_search (DH_ASSISTANT (assistant), str);
 }
 
-static UniqueResponse
-unique_app_message_cb (UniqueApp *unique_app,
-                       gint command,
-                       UniqueMessageData *data,
-                       guint timestamp,
-                       gpointer user_data)
+
+static GApplication *application = NULL;
+
+
+static void
+dh_quit (DhBase         *base,
+	 const char     *data)
 {
-	DhBase    *base = user_data;
-	gchar     *search_string;
+	gtk_main_quit ();
+}
+
+static void
+dh_search (DhBase       *base,
+	   const char   *data)
+{
 	GtkWidget *window;
 
-	if (command == COMMAND_QUIT) {
-		gtk_main_quit ();
-		return UNIQUE_RESPONSE_OK;
-	}
+	window = dh_base_get_window (base);
+	search_normal (DH_WINDOW (window), data);
+	gtk_window_present (GTK_WINDOW (window));
+}
 
-	if (command == COMMAND_SEARCH_ASSISTANT) {
-		search_string = unique_message_data_get_text(data);
-                search_assistant (base, search_string);
-		g_free (search_string);
-		return UNIQUE_RESPONSE_OK;
-	}
+static void
+dh_search_assistant (DhBase     *base,
+		     const char *data)
+{
+	search_assistant (base, data);
+}
+
+static void
+dh_focus_search (DhBase         *base,
+		 const char     *data)
+{
+	GtkWidget *window;
 
 	window = dh_base_get_window (base);
-	if (command == COMMAND_SEARCH) {
-		search_string = unique_message_data_get_text(data);
-                search_normal (DH_WINDOW (window), search_string);
-		g_free (search_string);
-	}
-	else if (command == COMMAND_FOCUS_SEARCH) {
-		dh_window_focus_search (DH_WINDOW (window));
+	dh_window_focus_search (DH_WINDOW (window));
+	gtk_window_present (GTK_WINDOW (window));
+}
+
+static void
+dh_raise (DhBase        *base,
+	  const char    *data)
+{
+	GtkWidget *window;
+
+	window = dh_base_get_window (base);
+	gtk_window_present (GTK_WINDOW (window));
+}
+
+
+enum
+{
+	COMMAND_QUIT,
+	COMMAND_SEARCH,
+	COMMAND_SEARCH_ASSISTANT,
+	COMMAND_FOCUS_SEARCH,
+	COMMAND_RAISE,
+	N_COMMANDS,
+};
+
+static const struct dh_command {
+	const gchar * const name;
+	const gchar * const description;
+	void (*handler)(DhBase *, const char *);
+} commands[N_COMMANDS] = {
+	[COMMAND_QUIT]                  = { "quit",             "quit any running devhelp",                              dh_quit },
+	[COMMAND_SEARCH]                = { "search",           "search for a keyword",                                  dh_search },
+	[COMMAND_SEARCH_ASSISTANT]      = { "search-assistant", "search and display any hit in the assitant window",     dh_search_assistant },
+	[COMMAND_FOCUS_SEARCH]          = { "focus-search",     "focus the devhelp window with the search field active", dh_focus_search },
+	[COMMAND_RAISE]                 = { "raise",            "raise any running devhelp window",                      dh_raise },
+};
+
+
+static void
+dh_action_handler (GApplication *app,
+		   gchar        *name,
+		   GVariant     *platform_data,
+		   gpointer      user_data)
+{
+	char    *data = NULL;
+	DhBase  *base;
+	guint    i;
+
+	g_return_if_fail (DH_IS_BASE (user_data));
+
+	base = DH_BASE (user_data);
+
+	if (platform_data) {
+		GVariantIter iter;
+		const char *key;
+		GVariant *value;
+
+		g_variant_iter_init (&iter, platform_data);
+		while (g_variant_iter_next (&iter, "{&sv}", &key, &value)) {
+			if (g_strcmp0 (key, "data") == 0) {
+				data = g_variant_dup_string (value, NULL);
+				g_variant_unref (value);
+				break;
+			}
+			g_variant_unref (value);
+		}
 	}
 
-#ifdef GDK_WINDOWING_X11
-#if GTK_CHECK_VERSION (2,14,0)
-	timestamp = gdk_x11_get_server_time (gtk_widget_get_window (window));
-#else
-	timestamp = gdk_x11_get_server_time (window->window);
-#endif
-#else
-	timestamp = GDK_CURRENT_TIME;
-#endif
+	for (i = 0; i < N_COMMANDS; i++) {
+		if (g_strcmp0 (name, commands[i].name) == 0) {
+			commands[i].handler (base, data);
+		}
+	}
 
-	gtk_window_present_with_time (GTK_WINDOW (window), timestamp);
-	return UNIQUE_RESPONSE_OK;
+	g_free (data);
+}
+
+static void
+dh_register_commands (GApplication *application)
+{
+	guint i;
+
+	for (i = 0; i < G_N_ELEMENTS (commands); i++) {
+		g_application_add_action (application, commands[i].name, commands[i].description);
+	}
 }
 
 int
@@ -165,7 +238,6 @@ main (int argc, char **argv)
 	gboolean                option_quit = FALSE;
 	gboolean                option_focus_search = FALSE;
 	gboolean                option_version = FALSE;
-	UniqueApp              *unique_app;
 	DhBase                 *base;
 	GtkWidget              *window;
 	GError                 *error = NULL;
@@ -235,71 +307,81 @@ main (int argc, char **argv)
 	g_set_application_name (_("Devhelp"));
 	gtk_window_set_default_icon_name ("devhelp");
 
-	unique_app = unique_app_new_with_commands ("org.gnome.Devhelp", NULL,
-		"quit", COMMAND_QUIT,
-		"search", COMMAND_SEARCH,
-		"search_assistant", COMMAND_SEARCH_ASSISTANT,
-		"focus_search", COMMAND_FOCUS_SEARCH,
-		"raise", COMMAND_RAISE,
-		NULL
-		);
+	application = g_initable_new (G_TYPE_APPLICATION,
+				      NULL,
+				      NULL,
+				      "application-id", "org.gnome.Devhelp",
+				      "argv", g_variant_new_bytestring_array ((const char * const *) argv, argc),
+				      "default-quit", FALSE,
+				      NULL);
 
-	if (unique_app_is_running (unique_app)) {
-		UniqueMessageData *message_data = NULL;
+	if (g_application_is_remote (G_APPLICATION (application))) {
+		GVariant *data = NULL;
+		GVariantBuilder builder;
+
+		g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{sv}"));
 
 		if (option_quit) {
-			unique_app_send_message (unique_app, COMMAND_QUIT, NULL);
+			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_QUIT].name, data);
 		}
 		else if (option_search) {
-			message_data = unique_message_data_new ();
-			unique_message_data_set_text (message_data, option_search, -1);
-			unique_app_send_message (unique_app, COMMAND_SEARCH, message_data);
-			unique_message_data_free (message_data);
+			g_variant_builder_add (&builder, "{sv}", "data", g_variant_new_string (option_search));
+			data = g_variant_builder_end (&builder);
+
+			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_SEARCH].name, data);
+
+			g_variant_unref (data);
 		}
 		else if (option_search_assistant) {
-			message_data = unique_message_data_new ();
-			unique_message_data_set_text (message_data, option_search_assistant, -1);
-			unique_app_send_message (unique_app, COMMAND_SEARCH_ASSISTANT, message_data);
-			unique_message_data_free (message_data);
+			g_variant_builder_add (&builder, "{sv}", "data", g_variant_new_string (option_search_assistant));
+			data = g_variant_builder_end (&builder);
+
+			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_SEARCH_ASSISTANT].name, data);
+
+			g_variant_unref (data);
 		}
 		else if (option_focus_search) {
-			unique_app_send_message (unique_app, COMMAND_FOCUS_SEARCH, NULL);
+			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_FOCUS_SEARCH].name, data);
 		} else {
-			unique_app_send_message (unique_app, COMMAND_RAISE, NULL);
+			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_RAISE].name, data);
 		}
 
-		g_object_unref (unique_app);
-		return 0;
+		gdk_notify_startup_complete ();
+		g_object_unref (application);
+		return EXIT_SUCCESS;
+	} else {
+		dh_register_commands (G_APPLICATION (application));
 	}
 
 	if (option_quit) {
 		/* No running Devhelps so just quit */
-		return 0;
+		return EXIT_SUCCESS;
 	}
 
 	base = dh_base_new ();
 
-	g_signal_connect (unique_app, "message-received",
-	      G_CALLBACK (unique_app_message_cb), base);
+	g_signal_connect (G_APPLICATION (application), "action-with-data",
+			  G_CALLBACK (dh_action_handler), base);
 
 	if (!option_search_assistant) {
 		window = dh_base_new_window (base);
 
-                if (option_search) {
-                        search_normal (DH_WINDOW (window), option_search);
-                }
+		if (option_search) {
+			search_normal (DH_WINDOW (window), option_search);
+		}
 
 		gtk_widget_show (window);
 	} else {
 		if (!search_assistant (base, option_search_assistant)) {
-                        return 0;
-                }
+			return EXIT_SUCCESS;
+		}
 	}
 
 	gtk_main ();
 
 	g_object_unref (base);
-	g_object_unref (unique_app);
+	g_object_unref (application);
 
-	return 0;
+	return EXIT_SUCCESS;
 }
+

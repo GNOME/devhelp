@@ -65,7 +65,7 @@ PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
   gtk+-3.0
   webkitgtk-3.0
-  unique-3.0
+  glib-2.0 >= 2.25.11
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
