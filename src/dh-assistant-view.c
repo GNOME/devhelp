@@ -26,6 +26,8 @@
 #include "dh-assistant-view.h"
 #include "dh-link.h"
 #include "dh-util.h"
+#include "dh-book-manager.h"
+#include "dh-book.h"
 #include "dh-window.h"
 
 typedef struct {
@@ -306,7 +308,7 @@ dh_assistant_view_set_link (DhAssistantView *view,
                                                           "assistant",
                                                           "assistant.js",
                                                           NULL);
-                
+
                 html = g_strdup_printf (
                         "<html>"
                         "<head>"
@@ -362,11 +364,12 @@ dh_assistant_view_search (DhAssistantView *view,
                           const gchar     *str)
 {
         DhAssistantViewPriv *priv;
-        GList               *keywords, *l;
         const gchar         *name;
         DhLink              *link;
         DhLink              *exact_link;
         DhLink              *prefix_link;
+        DhBookManager       *book_manager;
+        GList               *books;
 
         g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), FALSE);
         g_return_val_if_fail (str, FALSE);
@@ -384,34 +387,43 @@ dh_assistant_view_search (DhAssistantView *view,
         g_free (priv->current_search);
         priv->current_search = g_strdup (str);
 
-        keywords = dh_base_get_keywords (dh_assistant_view_get_base (view));
+        book_manager = dh_base_get_book_manager (dh_assistant_view_get_base (view));
 
         prefix_link = NULL;
         exact_link = NULL;
-        for (l = keywords; l && exact_link == NULL; l = l->next) {
-                DhLinkType type;
 
-                link = l->data;
+        for (books = dh_book_manager_get_books (book_manager);
+             !exact_link && books;
+             books = g_list_next (books)) {
+                GList *l;
 
-                type = dh_link_get_link_type (link);
+                for (l = dh_book_get_keywords (DH_BOOK (books->data));
+                     l && exact_link == NULL;
+                     l = l->next) {
+                        DhLinkType type;
 
-                if (type == DH_LINK_TYPE_BOOK ||
-                    type == DH_LINK_TYPE_PAGE ||
-                    type == DH_LINK_TYPE_KEYWORD) {
-                        continue;
-                }
+                        link = l->data;
 
-                name = dh_link_get_name (link);
-                if (strcmp (name, str) == 0) {
-                        exact_link = link;
-                }
-                else if (g_str_has_prefix (name, str)) {
-                        /* Prefer shorter prefix matches. */
-                        if (!prefix_link) {
-                                prefix_link = link;
+                        type = dh_link_get_link_type (link);
+
+                        if (type == DH_LINK_TYPE_BOOK ||
+                            type == DH_LINK_TYPE_PAGE ||
+                            type == DH_LINK_TYPE_KEYWORD) {
+                                continue;
                         }
-                        else if (strlen (dh_link_get_name (prefix_link)) > strlen (name)) {
-                                prefix_link = link;
+
+                        name = dh_link_get_name (link);
+                        if (strcmp (name, str) == 0) {
+                                exact_link = link;
+                        }
+                        else if (g_str_has_prefix (name, str)) {
+                                /* Prefer shorter prefix matches. */
+                                if (!prefix_link) {
+                                        prefix_link = link;
+                                }
+                                else if (strlen (dh_link_get_name (prefix_link)) > strlen (name)) {
+                                        prefix_link = link;
+                                }
                         }
                 }
         }

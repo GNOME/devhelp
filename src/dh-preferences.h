@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2004-2008 Imendio AB
+ * Copyright (C) 2010 Lanedo GmbH
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -25,7 +26,6 @@
 
 G_BEGIN_DECLS
 
-void dh_preferences_setup_fonts (void);
 void dh_preferences_show_dialog (GtkWindow *parent);
 
 G_END_DECLS

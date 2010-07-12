@@ -24,6 +24,7 @@
 
 #include <gtk/gtk.h>
 #include "dh-link.h"
+#include "dh-book-manager.h"
 
 G_BEGIN_DECLS
 
@@ -49,10 +50,10 @@ struct _DhSearchClass {
 };
 
 GType      dh_search_get_type          (void);
-GtkWidget *dh_search_new               (GList       *keywords);
-void       dh_search_set_search_string (DhSearch    *search,
-                                        const gchar *str,
-                                        const gchar *book_id);
+GtkWidget *dh_search_new               (DhBookManager *book_manager);
+void       dh_search_set_search_string (DhSearch      *search,
+                                        const gchar   *str,
+                                        const gchar   *book_id);
 
 G_END_DECLS
 

@@ -27,6 +27,7 @@
 
 #include "dh-marshal.h"
 #include "dh-book-tree.h"
+#include "dh-book.h"
 
 typedef struct {
         const gchar *uri;
@@ -36,9 +37,9 @@ typedef struct {
 } FindURIData;
 
 typedef struct {
-        GtkTreeStore *store;
-        GNode        *link_tree;
-        DhLink       *selected_link;
+        GtkTreeStore  *store;
+        DhBookManager *book_manager;
+        DhLink        *selected_link;
 } DhBookTreePriv;
 
 static void dh_book_tree_class_init        (DhBookTreeClass  *klass);
@@ -77,6 +78,7 @@ book_tree_finalize (GObject *object)
 	DhBookTreePriv *priv = GET_PRIVATE (object);
 
 	g_object_unref (priv->store);
+        g_object_unref (priv->book_manager);
 
         G_OBJECT_CLASS (dh_book_tree_parent_class)->finalize (object);
 }
@@ -162,13 +164,30 @@ static void
 book_tree_populate_tree (DhBookTree *tree)
 {
         DhBookTreePriv *priv = GET_PRIVATE (tree);
-	GNode          *node;
+        GList          *l;
 
-	for (node = g_node_first_child (priv->link_tree);
-	     node;
-	     node = g_node_next_sibling (node)) {
-		book_tree_insert_node (tree, node, NULL);
-	}
+        gtk_tree_store_clear (priv->store);
+
+        for (l = dh_book_manager_get_books (priv->book_manager);
+             l;
+             l = g_list_next (l)) {
+                DhBook *book = DH_BOOK (l->data);
+                GNode  *node;
+
+                node = dh_book_get_tree (book);
+                while(node) {
+                        book_tree_insert_node (tree, node, NULL);
+                        node = g_node_next_sibling (node);
+                }
+        }
+}
+
+static void
+book_manager_disabled_book_list_changed_cb (DhBookManager *book_manager,
+                                            gpointer user_data)
+{
+        DhBookTree *tree = user_data;
+        book_tree_populate_tree (tree);
 }
 
 static void
@@ -228,7 +247,7 @@ book_tree_selection_changed_cb (GtkTreeSelection *selection,
 }
 
 GtkWidget *
-dh_book_tree_new (GNode *books)
+dh_book_tree_new (DhBookManager *book_manager)
 {
         DhBookTree     *tree;
         DhBookTreePriv *priv;
@@ -239,7 +258,12 @@ dh_book_tree_new (GNode *books)
 	tree = g_object_new (DH_TYPE_BOOK_TREE, NULL);
         priv = GET_PRIVATE (tree);
 
-        priv->link_tree = books;
+        priv->book_manager = g_object_ref (book_manager);
+        g_signal_connect (priv->book_manager,
+                          "disabled-book-list-updated",
+                          G_CALLBACK (book_manager_disabled_book_list_changed_cb),
+                          tree);
+
         book_tree_populate_tree (tree);
 
 	/* Mark the first item as selected, or it would get automatically

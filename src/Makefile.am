@@ -52,6 +52,8 @@ INST_H_FILES = 						\
 	dh-assistant.h					\
 	dh-assistant-view.h				\
 	dh-base.h					\
+	dh-book-manager.h				\
+	dh-book.h					\
 	dh-book-tree.h					\
 	dh-error.h					\
 	dh-keyword-model.h				\
@@ -70,6 +72,8 @@ libdevhelp_3_la_SOURCES =				\
 	dh-assistant.c					\
 	dh-assistant-view.c				\
 	dh-base.c					\
+	dh-book-manager.c				\
+	dh-book.c					\
 	dh-book-tree.c					\
 	dh-error.c					\
 	dh-keyword-model.c				\

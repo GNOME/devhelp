@@ -25,10 +25,11 @@
 #include <string.h>
 
 #include "dh-link.h"
+#include "dh-book.h"
 #include "dh-keyword-model.h"
 
 struct _DhKeywordModelPriv {
-        GList *original_list;
+        DhBookManager *book_manager;
 
         GList *keyword_words;
         gint   keyword_words_length;
@@ -48,13 +49,26 @@ G_DEFINE_TYPE_WITH_CODE (DhKeywordModel, dh_keyword_model, G_TYPE_OBJECT,
                                                 dh_keyword_model_tree_model_init));
 
 static void
+keyword_model_dispose (GObject *object)
+{
+        DhKeywordModel     *model = DH_KEYWORD_MODEL (object);
+        DhKeywordModelPriv *priv = model->priv;
+
+        if (priv->book_manager) {
+                g_object_unref (priv->book_manager);
+                priv->book_manager = NULL;
+        }
+
+        G_OBJECT_CLASS (dh_keyword_model_parent_class)->dispose (object);
+}
+
+static void
 keyword_model_finalize (GObject *object)
 {
         DhKeywordModel     *model = DH_KEYWORD_MODEL (object);
         DhKeywordModelPriv *priv = model->priv;
 
         g_list_free (priv->keyword_words);
-        g_list_free (priv->original_list);
 
         g_free (model->priv);
 
@@ -67,6 +81,7 @@ dh_keyword_model_class_init (DhKeywordModelClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);;
 
         object_class->finalize = keyword_model_finalize;
+        object_class->dispose = keyword_model_dispose;
 }
 
 static void
@@ -314,16 +329,11 @@ dh_keyword_model_new (void)
 
 void
 dh_keyword_model_set_words (DhKeywordModel *model,
-                            GList          *keyword_words)
+                            DhBookManager  *book_manager)
 {
-        DhKeywordModelPriv *priv;
-
         g_return_if_fail (DH_IS_KEYWORD_MODEL (model));
 
-        priv = model->priv;
-
-        g_list_free (priv->original_list);
-        priv->original_list = g_list_copy (keyword_words);
+        model->priv->book_manager = g_object_ref (book_manager);
 }
 
 static GList *
@@ -335,7 +345,7 @@ keyword_model_search (DhKeywordModel  *model,
                       DhLink         **exact_link)
 {
         DhKeywordModelPriv *priv;
-        GList              *new_list = NULL, *l;
+        GList              *new_list = NULL, *b;
         gint                hits = 0;
         gchar              *page_id = NULL;
         gchar              *page_filename_prefix = NULL;
@@ -352,63 +362,74 @@ keyword_model_search (DhKeywordModel  *model,
                 stringv++;
         }
 
-        for (l = priv->original_list; l && hits < MAX_HITS; l = l->next) {
-                DhLink   *link;
-                gboolean  found;
-                gchar    *name;
+        for (b = dh_book_manager_get_books (priv->book_manager);
+             b && hits < MAX_HITS;
+             b = g_list_next (b)) {
+                DhBook *book;
+                GList *l;
 
-                link = l->data;
-                found = FALSE;
+                book = DH_BOOK (b->data);
 
-                if (book_id &&
-                    dh_link_get_book_id (link) &&
-                    strcmp (dh_link_get_book_id (link), book_id) != 0) {
-                        continue;
-                }
+                for (l = dh_book_get_keywords (book);
+                     l && hits < MAX_HITS;
+                     l = g_list_next (l)) {
+                        DhLink   *link;
+                        gboolean  found;
+                        gchar    *name;
 
-                if (page_id && 
-                    (dh_link_get_link_type (link) != DH_LINK_TYPE_PAGE &&
-                     !g_str_has_prefix (dh_link_get_file_name (link), page_filename_prefix))) {
-                        continue;
-                }
+                        link = l->data;
+                        found = FALSE;
 
-                if (!case_sensitive) {
-                        name = g_ascii_strdown (dh_link_get_name (link), -1);
-                } else {
-                        name = g_strdup (dh_link_get_name (link));
-                }
+                        if (book_id &&
+                            dh_link_get_book_id (link) &&
+                            strcmp (dh_link_get_book_id (link), book_id) != 0) {
+                                continue;
+                        }
 
-                if (!found) {
-                        gint i;
+                        if (page_id &&
+                            (dh_link_get_link_type (link) != DH_LINK_TYPE_PAGE &&
+                             !g_str_has_prefix (dh_link_get_file_name (link), page_filename_prefix))) {
+                                continue;
+                        }
 
-                        if (stringv[0] == NULL) {
-                                /* means only a page was specified, no keyword */
-                                if (g_strrstr (dh_link_get_name(link), page_id))
-                                        found = TRUE;
+                        if (!case_sensitive) {
+                                name = g_ascii_strdown (dh_link_get_name (link), -1);
                         } else {
-                                found = TRUE;
-                                for (i = 0; stringv[i] != NULL; i++) {
-                                        if (!g_strrstr (name, stringv[i])) {
-                                                found = FALSE;
-                                                break;
+                                name = g_strdup (dh_link_get_name (link));
+                        }
+
+                        if (!found) {
+                                gint i;
+
+                                if (stringv[0] == NULL) {
+                                        /* means only a page was specified, no keyword */
+                                        if (g_strrstr (dh_link_get_name(link), page_id))
+                                                found = TRUE;
+                                } else {
+                                        found = TRUE;
+                                        for (i = 0; stringv[i] != NULL; i++) {
+                                                if (!g_strrstr (name, stringv[i])) {
+                                                        found = FALSE;
+                                                        break;
+                                                }
                                         }
                                 }
                         }
-                }
 
-                g_free (name);
+                        g_free (name);
 
-                if (found) {
-                        /* Include in the new list. */
-                        new_list = g_list_prepend (new_list, link);
-                        hits++;
+                        if (found) {
+                                /* Include in the new list. */
+                                new_list = g_list_prepend (new_list, link);
+                                hits++;
 
-                        if (!*exact_link &&
-                            dh_link_get_name (link) && (
-                            (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
-                             page_id && strcmp (dh_link_get_name (link), page_id) == 0) ||
-                            (strcmp (dh_link_get_name (link), string) == 0))) {
-                                *exact_link = link;
+                                if (!*exact_link &&
+                                    dh_link_get_name (link) && (
+                                            (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
+                                             page_id && strcmp (dh_link_get_name (link), page_id) == 0) ||
+                                            (strcmp (dh_link_get_name (link), string) == 0))) {
+                                        *exact_link = link;
+                                }
                         }
                 }
         }
