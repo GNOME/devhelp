@@ -1,3 +1,14 @@
+==============
+Version 2.90.5
+==============
+
+Fixed bugs:
+
+ - #614798, find string is slow
+ - #619202, Add the possibility of enabling or disabling specific books
+
+Many thanks to all contributors: Aleksander Morgado
+
 NEW in 2.30.1
 =============
 
