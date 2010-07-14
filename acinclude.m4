@@ -1,5 +1,5 @@
 AC_DEFUN([IGE_PLATFORM_CHECK],[
-    gdk_target=`$PKG_CONFIG --variable=target gtk+-2.0`
+    gdk_target=`$PKG_CONFIG --variable=target gtk+-3.0`
 
     if test "x$gdk_target" = "xquartz"; then
         AC_MSG_CHECKING([checking for Mac OS X support])
