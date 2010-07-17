@@ -517,7 +517,7 @@ util_state_notebook_timeout_cb (gpointer notebook)
 
 static void
 util_state_notebook_switch_page_cb (GtkWidget       *notebook,
-                                    GtkNotebookPage *page,
+                                    gpointer         page,
                                     guint            page_num,
                                     gpointer         user_data)
 {
