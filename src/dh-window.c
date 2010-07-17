@@ -983,7 +983,7 @@ dh_window_init (DhWindow *window)
  */
 static void
 window_control_switch_page_cb (GtkWidget       *notebook,
-                               GtkNotebookPage *page,
+                               gpointer         page,
                                guint            page_num,
                                DhWindow        *window)
 {
@@ -998,7 +998,7 @@ window_control_switch_page_cb (GtkWidget       *notebook,
 
 static void
 window_control_after_switch_page_cb (GtkWidget       *notebook,
-                                     GtkNotebookPage *page,
+                                     gpointer         page,
                                      guint            page_num,
                                      DhWindow        *window)
 {
@@ -1013,7 +1013,7 @@ window_control_after_switch_page_cb (GtkWidget       *notebook,
 
 static void
 window_web_view_switch_page_cb (GtkNotebook     *notebook,
-                                GtkNotebookPage *page,
+                                gpointer         page,
                                 guint            new_page_num,
                                 DhWindow        *window)
 {
@@ -1051,7 +1051,7 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
 
 static void
 window_web_view_switch_page_after_cb (GtkNotebook     *notebook,
-                                      GtkNotebookPage *page,
+                                      gpointer         page,
                                       guint            new_page_num,
                                       DhWindow        *window)
 {
