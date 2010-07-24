@@ -60,7 +60,7 @@ INST_H_FILES = 						\
 	dh-search.h					\
 	dh-window.h
 
-devhelpincludedir = $(includedir)/devhelp-1.0/devhelp
+devhelpincludedir = $(includedir)/devhelp-3.0/devhelp
 devhelpinclude_HEADERS = $(INST_H_FILES)
 
 libdevhelp_3_la_SOURCES =				\
