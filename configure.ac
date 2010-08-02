@@ -107,7 +107,7 @@ Makefile
 po/Makefile.in
 src/Makefile
 data/Makefile
-data/libdevhelp-1.0.pc
+data/libdevhelp-2.0.pc
 data/devhelp.desktop.in
 data/icons/Makefile
 data/ui/Makefile

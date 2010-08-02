@@ -43,9 +43,9 @@ devhelp_CFLAGS =					\
 
 devhelp_LDADD = 					\
         $(DEVHELP_LIBS)					\
-        libdevhelp-1.la
+        libdevhelp-2.la
 
-lib_LTLIBRARIES = libdevhelp-1.la
+lib_LTLIBRARIES = libdevhelp-2.la
 
 INST_H_FILES = 						\
 	dh-assistant.h					\
@@ -60,7 +60,7 @@ INST_H_FILES = 						\
 	dh-search.h					\
 	dh-window.h
 
-devhelpincludedir = $(includedir)/devhelp-1.0/devhelp
+devhelpincludedir = $(includedir)/devhelp-2.0/devhelp
 devhelpinclude_HEADERS = $(INST_H_FILES)
 
 libdevhelp_1_la_SOURCES =				\

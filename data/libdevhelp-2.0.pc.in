@@ -8,5 +8,5 @@ Description: devhelp
 Requires: gtk+-2.0 webkit-1.0
 Requires.private: @REQUIRES_LIBWNCK@
 Version: @VERSION@
-Libs: -L${libdir} -ldevhelp-1
-Cflags: -I${includedir}/devhelp-1.0
+Libs: -L${libdir} -ldevhelp-2
+Cflags: -I${includedir}/devhelp-2.0
