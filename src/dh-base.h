@@ -25,7 +25,7 @@
 
 #include <gtk/gtk.h>
 
-#include <dh-book-manager.h>
+#include "dh-book-manager.h"
 
 G_BEGIN_DECLS
 

@@ -23,7 +23,7 @@
 
 #include <gtk/gtk.h>
 
-#include <dh-book.h>
+#include "dh-book.h"
 
 G_BEGIN_DECLS
 
