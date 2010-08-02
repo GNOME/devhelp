@@ -1,3 +1,14 @@
+NEW in 2.31.6
+=============
+
+Fixed bugs:
+
+ - #619202, possibility of enabling or disabling specific books
+ - #624197, port to Application
+ - #625805, do no disable deprecated GLib functions
+
+Many thanks to all contributors: Saleem Abdulrasool, Aleksander Morgado
+
 NEW in 2.30.1
 =============
 
