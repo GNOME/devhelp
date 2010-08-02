@@ -1,7 +1,7 @@
 SUBDIRS = ui dtd icons
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libdevhelp-1.0.pc
+pkgconfig_DATA = libdevhelp-2.0.pc
 
 assistantdir = $(datadir)/devhelp/assistant
 assistant_DATA = 		\
@@ -25,7 +25,7 @@ devhelp.defaults: devhelp.schemas.in
 	cp $(top_srcdir)/data/devhelp.schemas.in $(top_builddir)/data/devhelp.defaults
 
 EXTRA_DIST =			\
-	libdevhelp-1.0.pc.in    \
+	libdevhelp-2.0.pc.in    \
 	$(desktop_in_files)	\
 	$(schemas_in_files)     \
 	$(schemas_DATA)		\

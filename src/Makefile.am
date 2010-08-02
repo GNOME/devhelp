@@ -63,7 +63,7 @@ INST_H_FILES = 						\
 devhelpincludedir = $(includedir)/devhelp-2.0/devhelp
 devhelpinclude_HEADERS = $(INST_H_FILES)
 
-libdevhelp_1_la_SOURCES =				\
+libdevhelp_2_la_SOURCES =				\
 	dh-marshal.c					\
 	dh-marshal.h					\
 	dh-enum-types.c					\
@@ -92,18 +92,18 @@ libdevhelp_1_la_SOURCES =				\
 	ige-conf-private.h				\
 	$(conf_platform_sources)
 
-libdevhelp_1_la_CPPFLAGS =				\
+libdevhelp_2_la_CPPFLAGS =				\
 	$(AM_CPPFLAGS)					\
 	$(ZLIB_CPPFLAGS)
 
-libdevhelp_1_la_CFLAGS =				\
+libdevhelp_2_la_CFLAGS =				\
 	$(LIBDEVHELP_CFLAGS)
 
-libdevhelp_1_la_LIBADD =				\
+libdevhelp_2_la_LIBADD =				\
 	$(LIBDEVHELP_LIBS)				\
 	$(ZLIB_LIBS)
 
-libdevhelp_1_la_LDFLAGS =				\
+libdevhelp_2_la_LDFLAGS =				\
 	-no-undefined					\
 	-version-info ${LIBDEVHELP_CURRENT}:${LIBDEVHELP_REVISION}:${LIBDEVHELP_AGE} \
 	-export-symbols-regex ^dh_ \
@@ -117,7 +117,7 @@ dh-enum-types.c: dh-enum-types.c.template $(INST_H_FILES) $(GLIB_MKENUMS)
 
 if HAVE_PLATFORM_OSX
 conf_platform_sources = ige-conf-mac.c
-libdevhelp_1_la_CPPFLAGS += -xobjective-c
+libdevhelp_2_la_CPPFLAGS += -xobjective-c
 endif
 if HAVE_PLATFORM_X11
 conf_platform_sources = ige-conf-gconf.c
