@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp-master-po-gl-1953\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-18 17:52+0200\n"
+"POT-Creation-Date: 2010-08-03 12:38+0200\n"
 "PO-Revision-Date: 2010-07-13 02:45+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome@g11n.net>\n"
@@ -34,7 +34,7 @@ msgstr "Programa de axuda do desenvolvedor"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -244,23 +244,23 @@ msgstr "Enumerado"
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/dh-main.c:175
+#: ../src/dh-main.c:247
 msgid "Search for a keyword"
 msgstr "Buscar unha palabra chave"
 
-#: ../src/dh-main.c:180
+#: ../src/dh-main.c:252
 msgid "Quit any running Devhelp"
 msgstr "Termina calquera devhelp en execución"
 
-#: ../src/dh-main.c:185
+#: ../src/dh-main.c:257
 msgid "Display the version and exit"
 msgstr "Mostrar a versión e saír"
 
-#: ../src/dh-main.c:190
+#: ../src/dh-main.c:262
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Enfocar a xanela do devhelp co campo de busca activo"
 
-#: ../src/dh-main.c:195
+#: ../src/dh-main.c:267
 msgid "Search and display any hit in the assistant window"
 msgstr "Buscar e mostrar calquera coincidencia na xanela do asistente"
 
