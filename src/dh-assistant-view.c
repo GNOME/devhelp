@@ -259,6 +259,12 @@ dh_assistant_view_set_link (DhAssistantView *view,
                         end = find_in_buffer (start, end_key,
                                               length - strlen (start_key),
                                               strlen (end_key));
+                        if (!end) {
+                                end_key = "<div class=\"footer";
+                                end = find_in_buffer (start, end_key,
+                                                      length - strlen (start_key),
+                                                      strlen (end_key));
+                        }
                 }
         }
 
