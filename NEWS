@@ -1,10 +1,27 @@
+NEW in 2.31.91
+==============
+
+Fixed bugs:
+
+ - #627795, Some functions cannot be viewed in Assistant.
+
+Updated translations: bg, ca, cz, en_GB, es, es, fr, ga, he, hu, id,
+nb, pl, ro, ru, se, sk, sl, sr, zh_CN, zh_HK, zh_TW
+
+Many thanks to all contributors: Ivar Smolin, Gil Forcada, Eiichi
+Sato, Bruno Brouard, Philip Withnall, Petr Kovar, Chao-Hsiung Liao,
+Yavor Doganov, Gabor Kelemen, Милош Поповић, Roman Mátyus, Leonid
+Kanter, Aron Xu, Piotr Drąg, Andika Triwidada, Kjartan Maraas, Daniel
+Nylander, Yaron Shahrabani, Lucian Adrian Grijincu, Matej Urbančič,
+Jorge González
+
 NEW in 2.31.6
 =============
 
 Fixed bugs:
 
  - #619202, possibility of enabling or disabling specific books
- - #624197, port to Application
+ - #624197, port to GApplication
  - #625805, do no disable deprecated GLib functions
 
 Many thanks to all contributors: Saleem Abdulrasool, Aleksander Morgado

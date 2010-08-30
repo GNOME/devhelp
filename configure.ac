@@ -1,5 +1,5 @@
 AC_PREREQ(2.60)
-AC_INIT([Devhelp],[2.31.90],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+AC_INIT([Devhelp],[2.31.91],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
 
 # LT Version numbers, remember to change them just *before* a release.
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
