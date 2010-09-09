@@ -106,11 +106,11 @@ dh_book_manager_init (DhBookManager *book_manager)
 }
 
 static void
-book_manager_clean_list_of_disabled_books (GSList *disabled_books)
+book_manager_clean_list_of_books_disabled (GSList *books_disabled)
 {
         GSList *sl;
 
-        for (sl = disabled_books; sl; sl = g_slist_next (sl)) {
+        for (sl = books_disabled; sl; sl = g_slist_next (sl)) {
                 g_free (sl->data);
         }
         g_slist_free (sl);
@@ -119,11 +119,11 @@ book_manager_clean_list_of_disabled_books (GSList *disabled_books)
 static void
 book_manager_check_status_from_conf (DhBookManager *book_manager)
 {
-        GSList *disabled_books, *sl;
+        GSList *books_disabled, *sl;
 
-        disabled_books = dh_util_state_load_disabled_books ();
+        books_disabled = dh_util_state_load_books_disabled ();
 
-        for (sl = disabled_books; sl; sl = g_slist_next (sl)) {
+        for (sl = books_disabled; sl; sl = g_slist_next (sl)) {
                 DhBook *book;
 
                 book = dh_book_manager_get_book_by_name (book_manager,
@@ -133,7 +133,7 @@ book_manager_check_status_from_conf (DhBookManager *book_manager)
                 }
         }
 
-        book_manager_clean_list_of_disabled_books (disabled_books);
+        book_manager_clean_list_of_books_disabled (books_disabled);
 }
 
 static void
@@ -372,7 +372,7 @@ void
 dh_book_manager_update (DhBookManager *book_manager)
 {
         DhBookManagerPriv *priv;
-        GSList *disabled_books = NULL;
+        GSList *books_disabled = NULL;
         GList  *l;
 
         g_return_if_fail (book_manager);
@@ -384,20 +384,20 @@ dh_book_manager_update (DhBookManager *book_manager)
                 DhBook *book = DH_BOOK (l->data);
 
                 if (!dh_book_get_enabled (book)) {
-                        disabled_books = g_slist_append (disabled_books,
+                        books_disabled = g_slist_append (books_disabled,
                                                          g_strdup (dh_book_get_name (book)));
                 }
         }
 
         /* Store in conf */
-        dh_util_state_store_disabled_books (disabled_books);
+        dh_util_state_store_books_disabled (books_disabled);
 
         /* Emit signal to notify others */
         g_signal_emit (book_manager,
                        signals[DISABLED_BOOK_LIST_UPDATED],
                        0);
 
-        book_manager_clean_list_of_disabled_books (disabled_books);
+        book_manager_clean_list_of_books_disabled (books_disabled);
 }
 
 DhBookManager *
