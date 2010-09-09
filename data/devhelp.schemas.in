@@ -131,6 +131,7 @@
       <applyto>/apps/devhelp/state/main/contents/books_disabled</applyto>
       <owner>devhelp</owner>
       <type>list</type>
+      <list_type>string</list_type>
       <default></default>
       <locale name="C">
          <short>Books disabled</short>
