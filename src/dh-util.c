@@ -465,25 +465,25 @@ dh_util_state_manage_paned (GtkPaned    *paned,
 }
 
 GSList *
-dh_util_state_load_disabled_books (void)
+dh_util_state_load_books_disabled (void)
 {
         gchar *key;
-        GSList *disabled_books = NULL;
+        GSList *books_disabled = NULL;
 
-        key = util_state_get_key ("main/contents", "disabled_books");
-        ige_conf_get_string_list (ige_conf_get (), key, &disabled_books);
+        key = util_state_get_key ("main/contents", "books_disabled");
+        ige_conf_get_string_list (ige_conf_get (), key, &books_disabled);
         g_free(key);
 
-        return disabled_books;
+        return books_disabled;
 }
 
 void
-dh_util_state_store_disabled_books (GSList *disabled_books)
+dh_util_state_store_books_disabled (GSList *books_disabled)
 {
         gchar *key;
 
-        key = util_state_get_key ("main/contents", "disabled_books");
-        ige_conf_set_string_list (ige_conf_get (), key, disabled_books);
+        key = util_state_get_key ("main/contents", "books_disabled");
+        ige_conf_set_string_list (ige_conf_get (), key, books_disabled);
         g_free(key);
 }
 
