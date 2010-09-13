@@ -1,3 +1,15 @@
+NEW in 2.31.92
+==============
+
+Fixed bugs:
+
+ - #629174, Fix "disabled_books" GConf key
+
+Updated translations: de, pt
+
+Many thanks to all contributors: Duarte Loreto, Bastien Nocera,
+Christian Kirbach
+
 NEW in 2.31.91
 ==============
 
