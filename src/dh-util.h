@@ -49,8 +49,8 @@ void         dh_util_state_manage_notebook        (GtkNotebook *notebook,
 void         dh_util_state_set_notebook_page_name (GtkWidget   *page,
                                                    const gchar *page_name);
 const gchar *dh_util_state_get_notebook_page_name (GtkWidget   *page);
-GSList *     dh_util_state_load_disabled_books    (void);
-void         dh_util_state_store_disabled_books   (GSList *disabled_books);
+GSList *     dh_util_state_load_books_disabled    (void);
+void         dh_util_state_store_books_disabled   (GSList *books_disabled);
 
 void         dh_util_font_get_variable            (gchar        **name,
                                                    gdouble       *size,
