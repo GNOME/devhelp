@@ -1,5 +1,9 @@
-AC_PREREQ(2.60)
-AC_INIT([Devhelp],[2.90.6],[http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],[devhelp])
+AC_PREREQ([2.64])
+AC_INIT([Devhelp],
+        [2.90.6],
+        [http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],
+        [devhelp],
+        [http://live.gnome.org/devhelp])
 
 # LT Version numbers, remember to change them just *before* a release.
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
@@ -16,24 +20,28 @@ AC_SUBST(LIBDEVHELP_REVISION)
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_SRCDIR(src/dh-main.c)
 AC_CONFIG_MACRO_DIR([m4])
-AM_INIT_AUTOMAKE([1.9 no-define -Wall])
-AC_DISABLE_STATIC
-AC_PROG_LIBTOOL
+
+AM_INIT_AUTOMAKE([1.11 foreign no-define -Wall])
 
 # Support silent build rules, requires at least automake-1.11. Disable
 # by either passing --disable-silent-rules to configure or passing V=1
 # to make
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+AM_SILENT_RULES([yes])
 
+# Check for programs
 AC_PROG_CC
 AC_PROG_CPP
 AM_PROG_CC_C_O
 
-IT_PROG_INTLTOOL([0.40.0])
+# Initialize libtool
+LT_PREREQ([2.2])
+LT_INIT([disable-static])
+
 
 PKG_PROG_PKG_CONFIG
 AM_GCONF_SOURCE_2
-GNOME_COMPILE_WARNINGS
+
+GNOME_COMPILE_WARNINGS([maximum])
 
 dnl -----------------------------------------------------------
 dnl Platform (GTK+ X11 or GTK OS X)
@@ -97,6 +105,9 @@ ZLIB_LIBS=-lz
 AC_SUBST(ZLIB_CFLAGS)
 AC_SUBST(ZLIB_LDFLAGS)
 AC_SUBST(ZLIB_LIBS)
+
+# i18n stuff
+IT_PROG_INTLTOOL([0.40.0])
 
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
