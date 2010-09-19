@@ -20,7 +20,7 @@ EXTRA_DIST =			\
 
 AM_CPPFLAGS = 						\
 	-I$(top_srcdir)					\
-	-DLOCALEDIR=\""$(datadir)/locale"\" 	  	\
+	-DLOCALEDIR=\""$(localedir)"\" 	  		\
 	-DDATADIR=\""$(datadir)"\"                      \
 	-DG_LOG_DOMAIN=\"Devhelp\"			\
 	-DGDK_DISABLE_DEPRECATED			\
