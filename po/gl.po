@@ -17,16 +17,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp-master-po-gl-1953\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-09-21 21:48+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-22 00:25+0200\n"
 "PO-Revision-Date: 2010-09-22 00:25+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
@@ -182,12 +181,10 @@ msgid "Enabled"
 msgstr "Activado"
 
 #: ../data/ui/devhelp.builder.h:4
-#| msgid "Preferences…"
 msgid "Preferences"
 msgstr "Preferenzas"
 
 #: ../data/ui/devhelp.builder.h:5
-#| msgid "_File"
 msgid "Title"
 msgstr "Título"
 
@@ -196,7 +193,6 @@ msgid "_Fixed width:"
 msgstr "Ancho _fixo:"
 
 #: ../data/ui/devhelp.builder.h:7
-#| msgid "Use system fonts"
 msgid "_Use system fonts"
 msgstr "_Usar os tipos de letra do sistema:"
 
