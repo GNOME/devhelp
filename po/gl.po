@@ -11,16 +11,17 @@
 #
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
-# Fran Diéguez <frandieguez@ubuntu.com>, 2010.
 # Fran Dieguez <frandieguez@ubuntu.com>, 2009, 2010.
+# Fran Diéguez <frandieguez@ubuntu.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp-master-po-gl-1953\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-16 10:21+0200\n"
-"PO-Revision-Date: 2010-08-05 16:18+0200\n"
-"Last-Translator: Fran Dieguez <frandieguez@ubuntu.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&component=general\n"
+"POT-Creation-Date: 2010-09-21 21:48+0000\n"
+"PO-Revision-Date: 2010-09-22 00:25+0200\n"
+"Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr "Programa de axuda do desenvolvedor"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -168,6 +169,41 @@ msgstr "Posición Y da xanela do asistente"
 msgid "Y position of main window"
 msgstr "Posición Y da xanela principal"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Estantería</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Tipos de letra</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "Activado"
+
+#: ../data/ui/devhelp.builder.h:4
+#| msgid "Preferences…"
+msgid "Preferences"
+msgstr "Preferenzas"
+
+#: ../data/ui/devhelp.builder.h:5
+#| msgid "_File"
+msgid "Title"
+msgstr "Título"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "Ancho _fixo:"
+
+#: ../data/ui/devhelp.builder.h:7
+#| msgid "Use system fonts"
+msgid "_Use system fonts"
+msgstr "_Usar os tipos de letra do sistema:"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "Ancho _variábel: "
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Asistencia de Devhelp"
@@ -189,7 +225,7 @@ msgstr "Mostra a documentación da API para a palabra onde está o cursor"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Asistente"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Libro:"
 
@@ -244,23 +280,23 @@ msgstr "Enumerado"
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Buscar unha palabra chave"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Termina calquera devhelp en execución"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Mostrar a versión e saír"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Enfocar a xanela do devhelp co campo de busca activo"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Buscar e mostrar calquera coincidencia na xanela do asistente"
 
@@ -285,18 +321,19 @@ msgstr ""
 #: ../src/dh-parser.c:208
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
-msgstr ""
-"requírense os elementos «nome» e «ligazón» dentro de <sub> na liña %d, columna "
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
 "%d"
+msgstr ""
+"requírense os elementos «nome» e «ligazón» dentro de <sub> na liña %d, "
+"columna %d"
 
 #: ../src/dh-parser.c:288
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"requírense os elementos «nome» e «ligazón» dentro de «%s» na liña %d, columna %d"
+"requírense os elementos «nome» e «ligazón» dentro de «%s» na liña %d, "
+"columna %d"
 
 #: ../src/dh-parser.c:301
 #, c-format
