@@ -2,7 +2,7 @@
 # Please keep this file sorted alphabetically.
 data/devhelp.desktop.in.in
 data/devhelp.schemas.in
-data/ui/devhelp.builder
+[type: gettext/glade]data/ui/devhelp.builder
 misc/gedit-plugin/devhelp.desktop.in
 misc/gedit-plugin/devhelp/devhelp.py
 src/dh-assistant.c
