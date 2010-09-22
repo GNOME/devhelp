@@ -1,15 +1,16 @@
-# Indonesian GNOME Translation Team
+# Indonesian translation of devhelp
 # Copyright (C) 2010 the devhelp's copyright holder
 # This file is distributed under the same license as the devhelp package.
-# Mikiya <eien.mihoshi@gmail.com> 2010
+# Mikiya <eien.mihoshi@gmail.com>, 2010.
+# Andika Triwidada <andika@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-08-05 06:19+0000\n"
-"PO-Revision-Date: 2010-08-09 18:44+0700\n"
+"POT-Creation-Date: 2010-09-22 00:02+0000\n"
+"PO-Revision-Date: 2010-09-22 09:25+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +27,7 @@ msgstr "Program Bantuan untuk Pengembang"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -155,6 +156,41 @@ msgstr "Posisi Y jendela penolong"
 msgid "Y position of main window"
 msgstr "Posisi Y jendela utama"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Rak Buku</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Fonta</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "Diaktifkan"
+
+#: ../data/ui/devhelp.builder.h:4
+#| msgid "Preferences…"
+msgid "Preferences"
+msgstr "Preferensi"
+
+#: ../data/ui/devhelp.builder.h:5
+#| msgid "_File"
+msgid "Title"
+msgstr "Judul"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Lebar tetap:"
+
+#: ../data/ui/devhelp.builder.h:7
+#| msgid "Use system fonts"
+msgid "_Use system fonts"
+msgstr "G_unakan fonta sistem"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "Lebar _variabel:"
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Dukungan Devhelp"
@@ -176,7 +212,7 @@ msgstr "Tunjukkan Dokumentasi API untuk kata pada kursor"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Penolong"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Buku:"
 
@@ -231,23 +267,23 @@ msgstr "Enumerasi"
 msgid "Type"
 msgstr "Tipe"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Cari kata kunci"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Keluar dari semua Devhelp yang sedang berjalan"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Tampilkan versi dan keluar"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Fokuskan jendela Devhelp dengan masukan pencarian aktif"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Cari dan tampilkan semua hasil di jendela penolong"
 
