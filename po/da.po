@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-19 17:32+0200\n"
-"PO-Revision-Date: 2010-09-18 17:46+0200\n"
+"POT-Creation-Date: 2010-09-23 00:59+0200\n"
+"PO-Revision-Date: 2010-09-22 23:42+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -159,6 +159,40 @@ msgstr "Hjælpervinduets y-position"
 #: ../data/devhelp.schemas.in.h:30
 msgid "Y position of main window"
 msgstr "Hovedvinduets y-position"
+
+#: ../data/ui/devhelp.builder.h:1
+#, fuzzy
+msgid "Book Shelf"
+msgstr "<b>Boghylde</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "Aktiveret"
+
+#: ../data/ui/devhelp.builder.h:3
+#, fuzzy
+msgid "Fonts"
+msgstr "Skifttypestørrelse"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "Indstillinger"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Titel"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Fast bredde:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "_Brug systemskrifttype"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "_Variabel bredde: "
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -505,14 +539,14 @@ msgstr "_Versalfølsom"
 msgid "Toggle case sensitive search"
 msgstr "Slå versalfølsom søgning til/fra"
 
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Skrifttyper</b>"
+
 #~ msgid "Show advanced search options"
 #~ msgstr "Vis avancerede søgeindstillinger"
 
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "Om de avancerede søgeindstillinger vises."
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Skrifttyper</b>"
 
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>Søger</b>"
@@ -520,20 +554,11 @@ msgstr "Slå versalfølsom søgning til/fra"
 #~ msgid "_Back"
 #~ msgstr "_Tilbage"
 
-#~ msgid "_Fixed width:"
-#~ msgstr "_Fast bredde:"
-
 #~ msgid "_Forward"
 #~ msgstr "_Fremad"
 
 #~ msgid "_Show advanced search options"
 #~ msgstr "_Vis avancerede søgeindstillinger"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Brug systemskrifttype"
-
-#~ msgid "_Variable width: "
-#~ msgstr "_Variabel bredde: "
 
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column %"
@@ -692,9 +717,6 @@ msgstr "Slå versalfølsom søgning til/fra"
 #~ msgid "Show _sidebar"
 #~ msgstr "Vis _sidepanel"
 
-#~ msgid "Title:"
-#~ msgstr "Titel:"
-
 #~ msgid "Version:"
 #~ msgstr "Version:"
 
@@ -718,9 +740,6 @@ msgstr "Slå versalfølsom søgning til/fra"
 
 #~ msgid "About this application"
 #~ msgstr "Om dette program"
-
-#~ msgid "Font size"
-#~ msgstr "Skifttypestørrelse"
 
 #~ msgid "Open preferences dialog"
 #~ msgstr "Åbn vinduet med indstillinger"
