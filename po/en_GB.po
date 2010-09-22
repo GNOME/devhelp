@@ -2,22 +2,22 @@
 # Copyright (C) 2004 devhelp's COPYRIGHT HOLDER
 # This file is distributed under the same licence as the devhelp package.
 # Gareth Owen <gowen72@yahoo.com>, 2004.
-# Bruce Cowan <bcowan@fastmail.co.uk>, 2009, 2010.
+# Bruce Cowan <bruce@bcowan.me.uk>, 2009, 2010.
 # Philip Withnall <philip@tecnocode.co.uk>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-27 09:38+0100\n"
-"PO-Revision-Date: 2010-01-27 20:43+0100\n"
-"Last-Translator: Philip Withnall <philip@tecnocode.co.uk>\n"
+"POT-Creation-Date: 2010-09-22 19:30+0100\n"
+"PO-Revision-Date: 2010-09-22 19:31+0100\n"
+"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: British English <en@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.5.1\n"
+"X-Generator: Virtaal 0.6.1\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -25,7 +25,7 @@ msgstr "Developer's Help program"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -154,6 +154,38 @@ msgstr "Y position of assistant window"
 msgid "Y position of main window"
 msgstr "Y position of main window"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Book Shelf</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Fonts</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "Enabled"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "Preferences"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Title"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Fixed width:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "_Use system fonts"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "_Variable width: "
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Devhelp support"
@@ -175,7 +207,7 @@ msgstr "Show API Documentation for the word at the cursor"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Assistant"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Book:"
 
@@ -230,23 +262,23 @@ msgstr "Enum"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Search for a keyword"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Quit any running Devhelp"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Display the version and exit"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Focus the Devhelp window with the search field active"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Search and display any hit in the assistant window"
 
@@ -502,29 +534,17 @@ msgstr "Toggle case sensitive search"
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "Whether the advanced search options are shown."
 
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Fonts</b>"
-
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>Searching</b>"
 
 #~ msgid "_Back"
 #~ msgstr "_Back"
 
-#~ msgid "_Fixed width:"
-#~ msgstr "_Fixed width:"
-
 #~ msgid "_Forward"
 #~ msgstr "_Forward"
 
 #~ msgid "_Show advanced search options"
 #~ msgstr "_Show advanced search options"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Use system fonts"
-
-#~ msgid "_Variable width: "
-#~ msgstr "_Variable width: "
 
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column "
