@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: devhelp 2.32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-08-29 13:52+0000\n"
-"PO-Revision-Date: 2010-08-30 11:49+0300\n"
+"POT-Creation-Date: 2010-09-22 00:02+0000\n"
+"PO-Revision-Date: 2010-09-22 11:52+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgid "Height of main window"
 msgstr "Peaakna kõrgus"
 
 msgid "List of books disabled by the user."
-msgstr "Kasutaja poolt keelatud raamatud."
+msgstr "Kasutaja poolt keelatud raamatute nimekiri."
 
 msgid "Main window maximized state"
 msgstr "Peaakna maksimeeritud olek"
@@ -122,6 +122,33 @@ msgstr "Assistendiakna asukoht Y-teljel"
 
 msgid "Y position of main window"
 msgstr "Peaakna asukoht Y-teljel"
+
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Raamaturiiul</b>"
+
+msgid "<b>Fonts</b>"
+msgstr "<b>Kirjatüübid</b>"
+
+msgid "Enabled"
+msgstr "Lubatud"
+
+#| msgid "Preferences…"
+msgid "Preferences"
+msgstr "Eelistused"
+
+#| msgid "_File"
+msgid "Title"
+msgstr "Pealkiri"
+
+msgid "_Fixed width:"
+msgstr "_Määratud laiusega:"
+
+#| msgid "Use system fonts"
+msgid "_Use system fonts"
+msgstr "_Süsteemsete kirjatüüpide kasutamine"
+
+msgid "_Variable width: "
+msgstr "M_uutuva laiusega: "
 
 msgid "Devhelp support"
 msgstr "Devhelp'i tugi"
