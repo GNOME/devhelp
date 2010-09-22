@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-08-03 05:14+0000\n"
-"PO-Revision-Date: 2010-08-03 12:22+0100\n"
+"POT-Creation-Date: 2010-09-22 02:27+0000\n"
+"PO-Revision-Date: 2010-09-22 09:22+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Program za pomoč razvijalcem "
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2
-#: ../src/dh-main.c:307
+#: ../src/dh-main.c:235
 #: ../src/dh-window.c:740
 #: ../src/dh-window.c:1047
 #: ../src/dh-window.c:1879
@@ -158,6 +158,38 @@ msgstr "Y položaj okna pomočnika"
 msgid "Y position of main window"
 msgstr "Y položaj glavnega okna"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Knjižna polica</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Pisave</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "Omogočeno"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "Možnosti"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Naslov"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Stalna širina:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "_Uporabi sistemske pisave"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "Pisava _spremenljive širine"
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Devhelp podpora"
@@ -179,7 +211,7 @@ msgstr "Pokaži API dokumentacijo za besedo ob kazalki"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - pomočnik"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Knjiga:"
 
@@ -234,23 +266,23 @@ msgstr "Enum"
 msgid "Type"
 msgstr "Vrsta"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Iskanje ključne besede"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Končaj zagnani Devhelp"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Pokaži pomoč in končaj program"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Osveži devhelp okno z dejavnim iskalnim poljem"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Poišči in prikaži vse zadetke v oknu pomočnika"
 
