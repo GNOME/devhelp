@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 2.31.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-07 18:30+0200\n"
-"PO-Revision-Date: 2010-08-07 18:31+0200\n"
+"Project-Id-Version: devhelp 2.32.x\n"
+"Report-Msgid-Bugs-To:\n"
+"POT-Creation-Date: 2010-09-25 11:45+0200\n"
+"PO-Revision-Date: 2010-09-25 11:46+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -21,7 +21,7 @@ msgstr "Hjelpleser for utviklere"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -150,6 +150,38 @@ msgstr "Vertikal posisjon for hovedvinduet"
 msgid "Y position of main window"
 msgstr "Vertikal posisjon for hovedvinduet"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Bokhylle</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Skrifter</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "Slått på"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "Brukervalg"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Tittel"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Fast bredde:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "Br_uk systemets skrifter"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "_Variabel bredde: "
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Støtte for Devhelp"
@@ -171,7 +203,7 @@ msgstr "Vis API-dokumentasjon for ordet ved markøren"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - Assistent"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Bok:"
 
@@ -226,23 +258,23 @@ msgstr "Enum"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Søk etter en nøkkelord"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Avslutt Devhelp"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Vis versjon og avslutt"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Fokuser Devhelp-vinduet med søkefeltet aktivt"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Søk etter og vis alle treff i assistentvinduet"
 
