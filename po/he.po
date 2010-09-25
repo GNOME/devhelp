@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-05 09:17+0300\n"
-"PO-Revision-Date: 2010-08-05 09:18+0200\n"
+"POT-Creation-Date: 2010-09-25 02:34+0200\n"
+"PO-Revision-Date: 2010-09-25 02:38+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr "תוכנת עזרה למפתחים"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "DevHelp"
@@ -152,6 +152,38 @@ msgstr "Y position of assistant window"
 msgid "Y position of main window"
 msgstr "Y position of main window"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>מדף ספרים</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>גופנים</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "פעיל"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "העדפות"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "כותרת"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_רוחב קבוע:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "השתמש ב_גופני המערכת"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "רוחב _משתנה: "
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "תמיכת Devhelp"
@@ -173,7 +205,7 @@ msgstr "הצג תיעוד API עבור המילה שתחת הסמן"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — המסייע"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "ספר:"
 
@@ -228,23 +260,23 @@ msgstr "מניה"
 msgid "Type"
 msgstr "סוג"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Search for a keyword"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Quit any running Devhelp"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Display the version and exit"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Focus the Devhelp window with the search field active"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Search and display any hit in the assistant window"
 
@@ -355,7 +387,7 @@ msgstr "_קובץ"
 
 #: ../src/dh-window.c:773
 msgid "_Edit"
-msgstr "_עריכה"
+msgstr "ע_ריכה"
 
 #: ../src/dh-window.c:774
 msgid "_View"
@@ -363,11 +395,11 @@ msgstr "_תצוגה"
 
 #: ../src/dh-window.c:775
 msgid "_Go"
-msgstr "_לך"
+msgstr "מע_בר"
 
 #: ../src/dh-window.c:776
 msgid "_Help"
-msgstr "_עזרה"
+msgstr "ע_זרה"
 
 #. File menu
 #: ../src/dh-window.c:779
@@ -384,19 +416,19 @@ msgstr "ה_דפסה..."
 
 #: ../src/dh-window.c:795 ../src/eggfindbar.c:342
 msgid "Find Next"
-msgstr "חפש את הבא"
+msgstr "חיפוש הבא"
 
 #: ../src/dh-window.c:797 ../src/eggfindbar.c:329
 msgid "Find Previous"
-msgstr "חפש את הקודם"
+msgstr "חיפוש הקודם"
 
 #: ../src/dh-window.c:804
 msgid "Go to the previous page"
-msgstr "לך אל הדף הקודם"
+msgstr "מעבר לדף הקודם"
 
 #: ../src/dh-window.c:807
 msgid "Go to the next page"
-msgstr "לך אל הדף הבא"
+msgstr "מעבר לדף הבא"
 
 #: ../src/dh-window.c:810
 msgid "_Contents Tab"
@@ -409,19 +441,19 @@ msgstr "לשונית _חיפוש"
 #. View menu
 #: ../src/dh-window.c:817
 msgid "_Larger Text"
-msgstr "_הגדל טקסט"
+msgstr "ה_גדלת הטקסט"
 
 #: ../src/dh-window.c:818
 msgid "Increase the text size"
-msgstr "הגדל את גודל הטקסט"
+msgstr "הגדלת גודל הטקסט"
 
 #: ../src/dh-window.c:820
 msgid "S_maller Text"
-msgstr "ה_קטן טקסט"
+msgstr "ה_קטנת הטקסט"
 
 #: ../src/dh-window.c:821
 msgid "Decrease the text size"
-msgstr "הקטן את גודל הטקסט"
+msgstr "הקטנת גודל הטקסט"
 
 #: ../src/dh-window.c:823
 msgid "_Normal Size"
@@ -429,11 +461,11 @@ msgstr "_גודל רגיל"
 
 #: ../src/dh-window.c:824
 msgid "Use the normal text size"
-msgstr "השתמש בגודל הטקסט הרגיל"
+msgstr "שימוש בגודל הטקסט הרגיל"
 
 #: ../src/dh-window.c:833
 msgid "Leave fullscreen mode"
-msgstr "עזיבת מצב מסך מלא"
+msgstr "יציאה ממסך מלא"
 
 #: ../src/dh-window.c:840
 msgid "Display in full screen"
@@ -454,7 +486,7 @@ msgstr "קטן יותר"
 #. * generic word.
 #: ../src/dh-window.c:1108
 msgid "About Devhelp"
-msgstr "אודות DevHelp"
+msgstr "על אודות DevHelp"
 
 #: ../src/dh-window.c:1113
 msgid "Preferences…"
@@ -478,15 +510,15 @@ msgstr "דף ריק"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
-msgstr "חפש:"
+msgstr "חיפוש:"
 
 #: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
-msgstr "חפש את המופע הקודם של מחרוזת החיפוש"
+msgstr "חיפוש המופע הקודם של מחרוזת החיפוש"
 
 #: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
-msgstr "חפש את המופע הבא של מחרוזת החיפוש"
+msgstr "חיפוש המופע הבא של מחרוזת החיפוש"
 
 #: ../src/eggfindbar.c:358
 msgid "C_ase Sensitive"
@@ -494,7 +526,7 @@ msgstr "תלוי ר_שיות"
 
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
-msgstr "הפעל/כבה חיפוש תלוי רשיות"
+msgstr "הפעלת/כיבוי חיפוש תלוי רשיות"
 
 #~ msgid "Show advanced search options"
 #~ msgstr "Show advanced search options"
@@ -502,29 +534,17 @@ msgstr "הפעל/כבה חיפוש תלוי רשיות"
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "Whether the advanced search options are shown."
 
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>גופנים</b>"
-
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>חיפוש</b>"
 
 #~ msgid "_Back"
 #~ msgstr "_אחורה"
 
-#~ msgid "_Fixed width:"
-#~ msgstr "_רוחב קבוע:"
-
 #~ msgid "_Forward"
 #~ msgstr "_קדימה"
 
 #~ msgid "_Show advanced search options"
 #~ msgstr "הצג אפשרויות חיפוש _מתקדמות"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "השתמש ב_גופני המערכת"
-
-#~ msgid "_Variable width: "
-#~ msgstr "רוחב _משתנה: "
 
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column %"
