@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-08-04 01:18+0000\n"
+"POT-Creation-Date: 2010-09-25 09:47+0000\n"
 "PO-Revision-Date: 2010-08-04 04:17+0300\n"
 "Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
@@ -26,7 +26,7 @@ msgstr "Program de ajutor pentru programatori"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -155,6 +155,44 @@ msgstr "Poziție Y fereastră asistent"
 msgid "Y position of main window"
 msgstr "Coordonata Y a ferestrei principale"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr ""
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr ""
+
+#: ../data/ui/devhelp.builder.h:4
+#, fuzzy
+#| msgid "Preferences…"
+msgid "Preferences"
+msgstr "Preferințe…"
+
+#: ../data/ui/devhelp.builder.h:5
+#, fuzzy
+#| msgid "_File"
+msgid "Title"
+msgstr "_Fișier"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr ""
+
+#: ../data/ui/devhelp.builder.h:7
+#, fuzzy
+#| msgid "Use system fonts"
+msgid "_Use system fonts"
+msgstr "Folosește fonturile sistemului"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr ""
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Asistență Devhelp"
@@ -176,7 +214,7 @@ msgstr "Afișează documentația API pentru cuvântul de la cursor"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp – Asistent"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Carte:"
 
@@ -231,23 +269,23 @@ msgstr "Enum"
 msgid "Type"
 msgstr "Tip"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Caută cuvânt cheie"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Închide orice instanță Devhelp"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Afișează versiunea și ieși"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Activează fereastra Devhelp cu câmpul de căutare activat"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Caută și afișează orice rezultat în fereastra asistent"
 
