@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: devhelp gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-09-14 10:23+0000\n"
-"PO-Revision-Date: 2010-09-14 21:44+0900\n"
+"POT-Creation-Date: 2010-09-25 09:47+0000\n"
+"PO-Revision-Date: 2010-09-23 19:07+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -109,7 +109,7 @@ msgstr "メイン・ウィンドウの幅です。"
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "Use system fonts"
-msgstr "システム・フォントを使うかどうか"
+msgstr "システムフォントを使うかどうか"
 
 #: ../data/devhelp.schemas.in.h:21
 msgid "Use the system default fonts."
@@ -150,6 +150,38 @@ msgstr "アシスタント・ウィンドウの位置Y"
 #: ../data/devhelp.schemas.in.h:30
 msgid "Y position of main window"
 msgstr "メイン・ウィンドウの位置Y"
+
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>本棚</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>フォント</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "有効"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "設定"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "タイトル"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "固定幅(_F):"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "システムフォントを使う(_U)"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "可変幅(_V): "
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
