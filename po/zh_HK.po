@@ -9,10 +9,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 2.31.90\n"
+"Project-Id-Version: devhelp 2.31.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-21 19:34+0800\n"
-"PO-Revision-Date: 2010-08-21 19:35+0800\n"
+"POT-Creation-Date: 2010-09-25 14:22+0800\n"
+"PO-Revision-Date: 2010-09-25 14:22+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "程式開發者的說明書瀏覽程式"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -154,6 +154,38 @@ msgstr "助理視窗的 Y 位置"
 msgid "Y position of main window"
 msgstr "主視窗垂直位置"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>書櫃</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>字型</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "已啟用"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "偏好設定"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "標題"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "固定闊度(_F)："
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "使用系統字型(_U)"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "可變闊度(_V)："
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Devhelp 支援"
@@ -175,7 +207,7 @@ msgstr "以游標所在的文字顯示其 API 文件"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — 助理"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "書本："
 
@@ -230,23 +262,23 @@ msgstr "Enum"
 msgid "Type"
 msgstr "類型"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "搜尋關鍵字"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "結束所有執行中的 Devhelp 進程"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "顯示版本號及離開"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "使用搜尋欄位時將焦點定在 Devhelp 視窗上"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "在助理視窗中搜尋並顯示任何提示"
 
@@ -504,29 +536,17 @@ msgstr "選取後在搜尋時將區分大小寫"
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "是否顯示進階搜尋選項。"
 
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>字型</b>"
-
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>搜尋中</b>"
 
 #~ msgid "_Back"
 #~ msgstr "上一頁(_B)"
 
-#~ msgid "_Fixed width:"
-#~ msgstr "固定寬度(_F)："
-
 #~ msgid "_Forward"
 #~ msgstr "下一頁(_F)"
 
 #~ msgid "_Show advanced search options"
 #~ msgstr "顯示進階搜尋選項(_S)"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "使用系統字型(_U)"
-
-#~ msgid "_Variable width: "
-#~ msgstr "可變寬度(_V)："
 
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column %"
@@ -676,9 +696,6 @@ msgstr "選取後在搜尋時將區分大小寫"
 
 #~ msgid "Remove"
 #~ msgstr "移除"
-
-#~ msgid "Title:"
-#~ msgstr "標題："
 
 #~ msgid "Version:"
 #~ msgstr "版本："
