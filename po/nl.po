@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-19 18:34+0200\n"
-"PO-Revision-Date: 2010-09-19 18:34+0200\n"
+"POT-Creation-Date: 2010-09-26 15:56+0200\n"
+"PO-Revision-Date: 2010-09-26 15:57+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
@@ -155,6 +155,38 @@ msgstr "Y-positie van hulpvenster"
 #: ../data/devhelp.schemas.in.h:30
 msgid "Y position of main window"
 msgstr "Y-positie van hoofdvenster"
+
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Boekenplank</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Lettertypen</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Titel"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Vaste breedte:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "_Systeemlettertypen gebruiken"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "_Variabele breedte: "
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
