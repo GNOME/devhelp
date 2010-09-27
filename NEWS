@@ -1,3 +1,23 @@
+NEW in 2.32.0
+=============
+
+Fixed bugs:
+
+ - #629174, Fix "disabled_books" GConf key
+ - #629546, missing prototype definition for
+            dh_util_state_load_books_disabled
+
+Updated translations: ca, cs, da, de, en_GB, es, et, fr, gl, he, hu,
+id, it, ja, nb, nl, pl, pt_BR, pt, ro, ru, sl, zh_CN, zh_HK, zh_TW
+
+Many thanks to all contributors: Gil Forcada, Kjartan Maraas, Duarte Loreto,
+Bruce Cowan, Gabor Kelemen, Bastien Nocera, Chao-Hsiung Liao, Lucian Adrian
+Grijincu, Takayuki KUSANO, Luca Ferretti, Christian Kirbach, Kenneth
+Nielsen, Jorge González, Fran Diéguez, Piotr Drąg, Marek Černocký, Ivar
+Smolin, Wouter Bolsterlee, Bruno Brouard, Matej Urbančič, Jonh Wendell,
+Andika Triwidada, Francesco Marletta, Yuri Myasoedov, Xhacker Liu, Yaron
+Shahrabani
+
 NEW in 2.31.92
 ==============
 
