@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-29 15:47+0200\n"
-"PO-Revision-Date: 2010-08-07 20:28+0200\n"
+"POT-Creation-Date: 2010-09-27 20:27+0200\n"
+"PO-Revision-Date: 2010-09-24 10:07+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Programa d'ajuda per als desenvolupadors"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -155,6 +155,38 @@ msgstr "Posició Y de la finestra auxiliar"
 msgid "Y position of main window"
 msgstr "Posició Y de la finestra principal"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Prestatgeria</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Tipus de lletra</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "Habilitat"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "Preferències"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Títol"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "Amplada _fixa:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "_Utilitza els tipus de lletra del sistema"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "Amplada _variable: "
+
 # gil: al ser un connector per el gedit i que fa el que diu la següent
 #     cadena, trobo que així tot i no ser correcte s'entendrà més
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
@@ -179,7 +211,7 @@ msgstr "Mostra la documentació de l'API per a la paraula sota el cursor"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Auxiliar"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Llibre:"
 
@@ -234,23 +266,23 @@ msgstr "Enumeració"
 msgid "Type"
 msgstr "Tipus"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Cerca una paraula clau"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Surt de tots els Devhelp en execució"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Mostra la versió i surt"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Dóna el focus a la finestra del Devhelp amb el camp de cerca actiu"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Cerca i visualitza qualsevol coincidència a la finestra auxiliar"
 
@@ -513,29 +545,17 @@ msgstr "Commuta la cerca diferenciant les minúscules de les majúscules"
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "Si es mostren les opcions de cerca avançada."
 
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Tipus de lletra</b>"
-
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>Cerca</b>"
 
 #~ msgid "_Back"
 #~ msgstr "_Enrere"
 
-#~ msgid "_Fixed width:"
-#~ msgstr "Amplada _fixa:"
-
 #~ msgid "_Forward"
 #~ msgstr "E_ndavant"
 
 #~ msgid "_Show advanced search options"
 #~ msgstr "Mo_stra les opcions de cerca avançada"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Utilitza els tipus de lletra del sistema"
-
-#~ msgid "_Variable width: "
-#~ msgstr "Amplada _variable: "
 
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column %"
