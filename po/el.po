@@ -11,10 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
-"POT-Creation-Date: 2009-12-14 15:53+0000\n"
-"PO-Revision-Date: 2010-03-25 18:22+0200\n"
-"Last-Translator: Bakaoukas Nikolaos <nikolaosx1@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-30 14:58+0300\n"
+"PO-Revision-Date: 2010-09-14 20:14+0200\n"
+"Last-Translator: Bakaoukas Nikolaos <nikolaos.x1@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,12 +30,8 @@ msgstr "Πρόγραμμα βοήθειας για προγραμματιστέ�
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2
-#: ../src/dh-main.c:235
-#: ../src/dh-window.c:736
-#: ../src/dh-window.c:1043
-#: ../src/dh-window.c:1849
-#| msgid "About Devhelp"
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -44,119 +40,156 @@ msgid "Documentation Browser"
 msgstr "Περιηγητής τεκμηρίωσης"
 
 #: ../data/devhelp.schemas.in.h:1
+msgid "Books disabled"
+msgstr "Τα βιβλία απενεργοποιήθηκαν"
+
+#: ../data/devhelp.schemas.in.h:2
 msgid "Font for fixed width text"
 msgstr "Γραμματοσειρά για κείμενο σταθερού πλάτους"
 
-#: ../data/devhelp.schemas.in.h:2
+#: ../data/devhelp.schemas.in.h:3
 msgid "Font for text"
 msgstr "Γραμματοσειρά κειμένου"
 
-#: ../data/devhelp.schemas.in.h:3
+#: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Γραμματοσειρά κειμένου με σταθερό πλάτος, όπως τα παραδείγματα κώδικα."
 
-#: ../data/devhelp.schemas.in.h:4
+#: ../data/devhelp.schemas.in.h:5
 msgid "Font for text with variable width."
 msgstr "Γραμματοσειρά κειμένου μεταβλητού πλάτους."
 
-#: ../data/devhelp.schemas.in.h:5
+#: ../data/devhelp.schemas.in.h:6
 msgid "Height of assistant window"
 msgstr "Ύψος βοηθητικού παραθύρου"
 
-#: ../data/devhelp.schemas.in.h:6
+#: ../data/devhelp.schemas.in.h:7
 msgid "Height of main window"
 msgstr "Ύψος κύριου παραθύρου"
 
-#: ../data/devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:8
+msgid "List of books disabled by the user."
+msgstr "Κατάλογος των βιβλίων που απενεργοποιήθηκαν από το χρήστη."
+
+#: ../data/devhelp.schemas.in.h:9
 msgid "Main window maximized state"
 msgstr "Κατάσταση μεγιστοποίησης κύριου παραθύρου"
 
-#: ../data/devhelp.schemas.in.h:8
-#| msgid "Selected tab, \"content\" or \"search\""
+#: ../data/devhelp.schemas.in.h:10
 msgid "Selected tab: \"content\" or \"search\""
 msgstr "Επιλεγμένη καρτέλα: \"περιεχόμενα\" ή \"αναζήτηση\""
 
-#: ../data/devhelp.schemas.in.h:9
+#: ../data/devhelp.schemas.in.h:11
 msgid "The X position of the assistant window."
 msgstr "Η θέση Χ του βοηθητικού παραθύρου."
 
-#: ../data/devhelp.schemas.in.h:10
+#: ../data/devhelp.schemas.in.h:12
 msgid "The X position of the main window."
 msgstr "Θέση Χ κύριου παραθύρου."
 
-#: ../data/devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:13
 msgid "The Y position of the assistant window."
 msgstr "Η θέση Y του βοηθητικού παραθύρου."
 
-#: ../data/devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:14
 msgid "The Y position of the main window."
 msgstr "Θέση Y κύριου παραθύρου."
 
-#: ../data/devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:15
 msgid "The height of the assistant window."
 msgstr "Το ύψος του βοηθητικού παραθύρου."
 
-#: ../data/devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:16
 msgid "The height of the main window."
 msgstr "Ύψος κύριου παραθύρου."
 
-#: ../data/devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:17
 msgid "The width of the assistant window."
 msgstr "Το πλάτος κύριου βοηθητικού παραθύρου."
 
-#: ../data/devhelp.schemas.in.h:16
+#: ../data/devhelp.schemas.in.h:18
 msgid "The width of the index and search pane."
 msgstr "Το πλάτος των πλαισίων του καταλόγου και της αναζήτησης."
 
-#: ../data/devhelp.schemas.in.h:17
+#: ../data/devhelp.schemas.in.h:19
 msgid "The width of the main window."
 msgstr "Πλάτος κύριου παραθύρου."
 
-#: ../data/devhelp.schemas.in.h:18
+#: ../data/devhelp.schemas.in.h:20
 msgid "Use system fonts"
 msgstr "Χρήση γραμματοσειρών συστήματος"
 
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/devhelp.schemas.in.h:21
 msgid "Use the system default fonts."
 msgstr "Χρήση προεπιλεγμένων γραμματοσειρών συστήματος."
 
-#: ../data/devhelp.schemas.in.h:20
-#| msgid "Whether the main window should start maximized or not."
+#: ../data/devhelp.schemas.in.h:22
 msgid "Whether the main window should start maximized."
 msgstr "Εάν το κύριο παράθυρο θα πρέπει να εμφανίζεται μεγιστοποιημένο."
 
-#: ../data/devhelp.schemas.in.h:21
-#| msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+#: ../data/devhelp.schemas.in.h:23
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "Ποιες καρτέλες είναι επιλεγμένες: \"περιεχόμενα\" ή \"αναζήτηση\"."
 
-#: ../data/devhelp.schemas.in.h:22
+#: ../data/devhelp.schemas.in.h:24
 msgid "Width of the assistant window"
 msgstr "Πλάτος του βοηθητικού παραθύρου"
 
-#: ../data/devhelp.schemas.in.h:23
+#: ../data/devhelp.schemas.in.h:25
 msgid "Width of the index and search pane"
 msgstr "Το πλάτος των πλαισίων του καταλόγου και της αναζήτησης"
 
-#: ../data/devhelp.schemas.in.h:24
+#: ../data/devhelp.schemas.in.h:26
 msgid "Width of the main window"
 msgstr "Το πλάτος του κύριου παραθύρου"
 
-#: ../data/devhelp.schemas.in.h:25
+#: ../data/devhelp.schemas.in.h:27
 msgid "X position of assistant window"
 msgstr "Θέση Χ του βοηθητικού παραθύρου"
 
-#: ../data/devhelp.schemas.in.h:26
+#: ../data/devhelp.schemas.in.h:28
 msgid "X position of main window"
 msgstr "Θέση Χ του κύριου παραθύρου"
 
-#: ../data/devhelp.schemas.in.h:27
+#: ../data/devhelp.schemas.in.h:29
 msgid "Y position of assistant window"
 msgstr "Θέση Y του βοηθητικού παραθύρου"
 
-#: ../data/devhelp.schemas.in.h:28
+#: ../data/devhelp.schemas.in.h:30
 msgid "Y position of main window"
 msgstr "Θέση Y του κύριου παραθύρου"
+
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Ράφι</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Γραμματοσειρές</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "Ενεργοποιημένο"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Τίτλος"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Σταθερό πλάτος:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "_Χρήση γραμματοσειρών συστήματος"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "_Μεταβλητό πλάτος: "
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -172,15 +205,16 @@ msgstr "Εμφάνιση τεκμηρίωσης API"
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:40
 msgid "Show API Documentation for the word at the cursor"
-msgstr "Εμφάνιση τεκμηρίωσης API (Διεπαφής Προγραμματισμού Εφαρμογών) για τη λέξη στην οποία βρίσκεται ο δρομέας"
+msgstr ""
+"Εμφάνιση τεκμηρίωσης API (Διεπαφής Προγραμματισμού Εφαρμογών) για τη λέξη "
+"στην οποία βρίσκεται ο δρομέας"
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
-#| msgid "Devhelp - Assistant"
 msgid "Devhelp — Assistant"
 msgstr "Βοηθός — Devhelp"
 
-#: ../src/dh-assistant-view.c:328
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Βιβλίο:"
 
@@ -255,12 +289,9 @@ msgstr "Εστίαση στο παράθυρο του devhelp με το πεδί
 msgid "Search and display any hit in the assistant window"
 msgstr "Αναζητήστε και δείξτε κάθε επιλογή στο βοηθητικό παράθυρο"
 
-#: ../src/dh-parser.c:92
-#: ../src/dh-parser.c:189
-#: ../src/dh-parser.c:253
+#: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
 #: ../src/dh-parser.c:263
 #, c-format
-#| msgid "Expected '%s' got '%s' at line %d, column %d"
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Αναμενόταν '%s', αλλά ελήφθη '%s' στη γραμμή %d, και την στήλη %d"
 
@@ -271,77 +302,85 @@ msgstr "Μη έγκυρο namespace '%s' στη γραμμή %d, στήλη %d"
 
 #: ../src/dh-parser.c:140
 #, c-format
-#| msgid ""
-#| "\"title\", \"name\", and \"link\" elements are required at line %d, "
-#| "column %d"
-msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr "τα στοιχεία \"title\", \"name\", και \"link\" απαιτούνται στη γραμμή %d, και στήλη %d"
+msgid ""
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr ""
+"τα στοιχεία \"title\", \"name\", και \"link\" απαιτούνται στη γραμμή %d, και "
+"στήλη %d"
 
 #: ../src/dh-parser.c:208
 #, c-format
-msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
-msgstr "\"name\" και \"link\" στοιχείων απαιτούνται εντός του <sub> στη γραμμή %d, στήλη %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
+msgstr ""
+"\"name\" και \"link\" στοιχείων απαιτούνται εντός του <sub> στη γραμμή %d, "
+"στήλη %d"
 
 #: ../src/dh-parser.c:288
 #, c-format
-msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr "\"name\" και \"link\" στοιχείων απαιτούνται εντός του '%s'  στη γραμμή %d, στήλη %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+"\"name\" και \"link\" στοιχείων απαιτούνται εντός του '%s'  στη γραμμή %d, "
+"στήλη %d"
 
 #: ../src/dh-parser.c:301
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "\"type\" στοιχείο απαιττείται εντός του <keyword>  στη γραμμή %d, στήλη %d"
+msgstr ""
+"\"type\" στοιχείο απαιττείται εντός του <keyword>  στη γραμμή %d, στήλη %d"
 
-#: ../src/dh-parser.c:506
+#: ../src/dh-parser.c:504
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Αδυναμία αποσυμπίεσης βιβλίου '%s': %s"
 
-#: ../src/dh-search.c:509
+#: ../src/dh-search.c:508
 msgid "All books"
 msgstr "Όλα τα βιβλία"
 
-#: ../src/dh-search.c:587
+#: ../src/dh-search.c:630
 msgid "Search in:"
 msgstr "Αναζήτηση σε:"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:98
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:96
+#: ../src/dh-window.c:99
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:97
+#: ../src/dh-window.c:100
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:101
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:102
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:103
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:104
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:105
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:106
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:731
+#: ../src/dh-window.c:735
 msgid "translator_credits"
 msgstr ""
 "Kostas Papadimas <pkst@gmx.net>\n"
@@ -349,140 +388,134 @@ msgstr ""
 "George Fragos <fragos.george@gmail.com>\n"
 "Τζένη Πετούμενου <epetoumenou@gmail.com>"
 
-#: ../src/dh-window.c:738
-#| msgid "A developer's help browser for GNOME"
+#: ../src/dh-window.c:742
 msgid "A developers' help browser for GNOME"
 msgstr "Περιηγητής βοήθειας για τους προγραμματιστές του GNOME"
 
-#: ../src/dh-window.c:768
+#: ../src/dh-window.c:772
 msgid "_File"
 msgstr "_Αρχείο"
 
-#: ../src/dh-window.c:769
+#: ../src/dh-window.c:773
 msgid "_Edit"
 msgstr "_Επεξεργασία"
 
-#: ../src/dh-window.c:770
+#: ../src/dh-window.c:774
 msgid "_View"
 msgstr "_Προβολή"
 
-#: ../src/dh-window.c:771
+#: ../src/dh-window.c:775
 msgid "_Go"
 msgstr "_Μετάβαση"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:776
 msgid "_Help"
 msgstr "_Βοήθεια"
 
 #. File menu
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:779
 msgid "_New Window"
 msgstr "_Νέο παράθυρο"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:781
 msgid "New _Tab"
 msgstr "Νέα καρ_τέλα"
 
-#: ../src/dh-window.c:779
-#| msgid "_Print..."
+#: ../src/dh-window.c:783
 msgid "_Print…"
 msgstr "_Εκτύπωση..."
 
-#: ../src/dh-window.c:791
-#: ../src/eggfindbar.c:342
+#: ../src/dh-window.c:795 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Εύρεση επόμενου"
 
-#: ../src/dh-window.c:793
-#: ../src/eggfindbar.c:329
+#: ../src/dh-window.c:797 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Εύρεση προηγούμενου"
 
-#: ../src/dh-window.c:800
+#: ../src/dh-window.c:804
 msgid "Go to the previous page"
 msgstr "Μετάβαση στην προηγούμενη σελίδα"
 
-#: ../src/dh-window.c:803
+#: ../src/dh-window.c:807
 msgid "Go to the next page"
 msgstr "Μετάβαση στην επόμενη σελίδα"
 
-#: ../src/dh-window.c:806
+#: ../src/dh-window.c:810
 msgid "_Contents Tab"
 msgstr "Καρτέλα _περιεχομένων"
 
-#: ../src/dh-window.c:809
+#: ../src/dh-window.c:813
 msgid "_Search Tab"
 msgstr "Καρτέλα _αναζήτησης"
 
 #. View menu
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:817
 msgid "_Larger Text"
 msgstr "Με_γαλύτερο κείμενο"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:818
 msgid "Increase the text size"
 msgstr "Μεγέθυνση του κειμένου"
 
-#: ../src/dh-window.c:816
+#: ../src/dh-window.c:820
 msgid "S_maller Text"
 msgstr "Μι_κρότερο κείμενο"
 
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:821
 msgid "Decrease the text size"
 msgstr "Σμίκρυνση του κειμένου"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:823
 msgid "_Normal Size"
 msgstr "_Κανονικό μέγεθος"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:824
 msgid "Use the normal text size"
 msgstr "Χρήση κανονικού μεγέθους κειμένου"
 
-#: ../src/dh-window.c:829
+#: ../src/dh-window.c:833
 msgid "Leave fullscreen mode"
 msgstr "Έξοδος από την προβολή πλήρους οθόνης"
 
-#: ../src/dh-window.c:836
+#: ../src/dh-window.c:840
 msgid "Display in full screen"
 msgstr "Προβολή πλήρους οθόνης"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:956
+#: ../src/dh-window.c:960
 msgid "Larger"
 msgstr "Μεγαλύτερο"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:959
+#: ../src/dh-window.c:963
 msgid "Smaller"
 msgstr "Μικρότερο"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1105
+#: ../src/dh-window.c:1108
 msgid "About Devhelp"
 msgstr "Περί DevHelp"
 
-#: ../src/dh-window.c:1110
-#| msgid "Preferences..."
+#: ../src/dh-window.c:1113
 msgid "Preferences…"
 msgstr "Προτιμήσεις..."
 
-#: ../src/dh-window.c:1153
+#: ../src/dh-window.c:1155
 msgid "Contents"
 msgstr "Περιεχόμενα"
 
-#: ../src/dh-window.c:1163
+#: ../src/dh-window.c:1165
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: ../src/dh-window.c:1329
+#: ../src/dh-window.c:1343
 msgid "Error opening the requested link."
 msgstr "Σφάλμα στο άνοιγμα της επιλεγμένης σύνδεσης."
 
-#: ../src/dh-window.c:1635
-#: ../src/dh-window.c:1877
+#: ../src/dh-window.c:1665 ../src/dh-window.c:1907
 msgid "Empty Page"
 msgstr "Κενή Σελίδα"
 
@@ -490,13 +523,11 @@ msgstr "Κενή Σελίδα"
 msgid "Find:"
 msgstr "Εύρεση:"
 
-#: ../src/eggfindbar.c:333
-#: ../src/eggfindbar.c:336
+#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Εύρεση προηγούμενης εμφάνισης του ζητούμενου αλφαριθμητικού"
 
-#: ../src/eggfindbar.c:346
-#: ../src/eggfindbar.c:349
+#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "Εύρεση επόμενης εμφάνισης του ζητούμενου αλφαριθμητικού"
 
@@ -504,8 +535,7 @@ msgstr "Εύρεση επόμενης εμφάνισης του ζητούμεν
 msgid "C_ase Sensitive"
 msgstr "Δ_ιάκριση πεζών/κεφαλαίων"
 
-#: ../src/eggfindbar.c:362
-#: ../src/eggfindbar.c:365
+#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Εναλλαγή διάκρισης πεζών/κεφαλαίων κατά την αναζήτηση"
 
@@ -515,29 +545,17 @@ msgstr "Εναλλαγή διάκρισης πεζών/κεφαλαίων κατ
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "Εμφάνιση ή απόκρυψη των προχωρημένων επιλογών αναζήτησης."
 
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Γραμματοσειρές</b>"
-
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>Αναζήτηση</b>"
 
 #~ msgid "_Back"
 #~ msgstr "_Πίσω"
 
-#~ msgid "_Fixed width:"
-#~ msgstr "_Σταθερό πλάτος:"
-
 #~ msgid "_Forward"
 #~ msgstr "_Μπροστά"
 
 #~ msgid "_Show advanced search options"
 #~ msgstr "Εμφάνι_ση προχωρημένων επιλογών αναζήτησης"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Χρήση γραμματοσειρών συστήματος"
-
-#~ msgid "_Variable width: "
-#~ msgstr "_Μεταβλητό πλάτος: "
 
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column %"
