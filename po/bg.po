@@ -4,14 +4,15 @@
 # This file is distributed under the same license as the devhelp package.
 # Yavor Doganov <yavor@gnu.org>, 2005, 2006, 2007, 2008, 2009, 2010.
 # Alexander Shopov <ash@kambanaria.org>, 2009, 2010.
+# Damyan Ivanov <dam+gnome@ktnx.net>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-21 10:38+0300\n"
-"PO-Revision-Date: 2010-07-27 15:45+0300\n"
-"Last-Translator: Yavor Doganov <yavor@gnu.org>\n"
+"POT-Creation-Date: 2010-10-02 10:09+0300\n"
+"PO-Revision-Date: 2010-10-02 10:09+0300\n"
+"Last-Translator: Damyan Ivanov <dam+gnome@ktnx.net>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -157,6 +158,38 @@ msgstr "Позиция на спомагателния прозорец по в�
 msgid "Y position of main window"
 msgstr "Позиция на главния прозорец по вертикала"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "Book Shelf"
+msgstr "Набор от ръководства"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "Включено"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Fonts"
+msgstr "Шрифтове"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "Настройки"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Заглавие"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Фиксирана широчина:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "Използване на _системните шрифтове"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "_Променлива широчина:"
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Поддръжка за Devhelp"
@@ -179,7 +212,7 @@ msgstr "Показване на документацията за API за ду�
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — спомагателен прозорец"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Ръководство:"
 
