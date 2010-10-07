@@ -1,4 +1,4 @@
-# translation of devhelp.gnome-2-32.es.po to Español
+# translation of devhelp.HEAD.po to Español
 # Ismael Olea <ismael@olea.org>, 2001.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006.
 # Spanish/Spain translation of devhelp.
@@ -7,11 +7,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp.gnome-2-32\n"
+"Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-09-21 21:48+0000\n"
-"PO-Revision-Date: 2010-09-22 00:27+0200\n"
+"POT-Creation-Date: 2010-10-02 07:10+0000\n"
+"PO-Revision-Date: 2010-10-07 14:16+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Programa de ayuda del desarrollador"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "DevHelp"
@@ -159,16 +159,17 @@ msgid "Y position of main window"
 msgstr "Posición Y de la ventana principal"
 
 #: ../data/ui/devhelp.builder.h:1
-msgid "<b>Book Shelf</b>"
-msgstr "<b>Biblioteca</b>"
+msgid "Book Shelf"
+msgstr "Biblioteca"
 
 #: ../data/ui/devhelp.builder.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Tipografías</b>"
-
-#: ../data/ui/devhelp.builder.h:3
 msgid "Enabled"
 msgstr "Activada"
+
+#: ../data/ui/devhelp.builder.h:3
+#| msgid "Contents"
+msgid "Fonts"
+msgstr "Tipografías"
 
 #: ../data/ui/devhelp.builder.h:4
 #| msgid "Preferences…"
@@ -268,23 +269,23 @@ msgstr "Enumerar"
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/dh-main.c:175
+#: ../src/dh-main.c:247
 msgid "Search for a keyword"
 msgstr "Buscar una palabra clave"
 
-#: ../src/dh-main.c:180
+#: ../src/dh-main.c:252
 msgid "Quit any running Devhelp"
 msgstr "Termina cualquier DevHelp en ejecución"
 
-#: ../src/dh-main.c:185
+#: ../src/dh-main.c:257
 msgid "Display the version and exit"
 msgstr "Muestra la versión y sale"
 
-#: ../src/dh-main.c:190
+#: ../src/dh-main.c:262
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Da el foco a la ventana de Devhelp con el campo de búsqueda activo"
 
-#: ../src/dh-main.c:195
+#: ../src/dh-main.c:267
 msgid "Search and display any hit in the assistant window"
 msgstr "Buscar y mostrar cualquier coincidencia en la ventana del asistente"
 
@@ -545,6 +546,9 @@ msgstr "Conmutar búsqueda discriminando capitalización"
 
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "Indica si se muestran las opciones de búsqueda avanzadas."
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Tipografías</b>"
 
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>Búsqueda</b>"
