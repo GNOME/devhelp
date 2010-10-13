@@ -6,21 +6,22 @@
 #
 # Gintautas Miliauskas <gintas@akl.lt>, 2007, 2008.
 # Vytautas Liuolia <vytautas.liuolia@gmail.com>, 2007, 2010.
+# Aurimas Černius <aurisc4@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-03-03 22:44+0000\n"
-"PO-Revision-Date: 2010-03-09 16:44+0200\n"
-"Last-Translator: Vytautas Liuolia <vytautas.liuolia@gmail.com>\n"
-"Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-13 15:43+0300\n"
+"PO-Revision-Date: 2010-10-02 13:41+0300\n"
+"Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
+"Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: UTF-8\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -29,7 +30,7 @@ msgstr "Programuotojo žinynas"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
-#: ../src/dh-window.c:736 ../src/dh-window.c:1043 ../src/dh-window.c:1849
+#: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -38,116 +39,156 @@ msgid "Documentation Browser"
 msgstr "Dokumentacijos naršyklė"
 
 #: ../data/devhelp.schemas.in.h:1
+msgid "Books disabled"
+msgstr "Knygos išjungtos"
+
+#: ../data/devhelp.schemas.in.h:2
 msgid "Font for fixed width text"
 msgstr "Šriftas fiksuoto pločio tekstui"
 
-#: ../data/devhelp.schemas.in.h:2
+#: ../data/devhelp.schemas.in.h:3
 msgid "Font for text"
 msgstr "Šriftas tekstui"
 
-#: ../data/devhelp.schemas.in.h:3
+#: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Šriftas fiksuoto pločio tekstui, pavyzdžiui kodo pavyzdžiams."
 
-#: ../data/devhelp.schemas.in.h:4
+#: ../data/devhelp.schemas.in.h:5
 msgid "Font for text with variable width."
 msgstr "Šriftas kintamo pločio tekstui."
 
-#: ../data/devhelp.schemas.in.h:5
+#: ../data/devhelp.schemas.in.h:6
 msgid "Height of assistant window"
 msgstr "Pagalbinio lango aukštis"
 
-#: ../data/devhelp.schemas.in.h:6
+#: ../data/devhelp.schemas.in.h:7
 msgid "Height of main window"
 msgstr "Pagrindinio lango aukštis"
 
-#: ../data/devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:8
+msgid "List of books disabled by the user."
+msgstr "Knygų sąrašas išjungtas naudotojo."
+
+#: ../data/devhelp.schemas.in.h:9
 msgid "Main window maximized state"
 msgstr "Pagrindinio lango būsena"
 
-#: ../data/devhelp.schemas.in.h:8
+#: ../data/devhelp.schemas.in.h:10
 msgid "Selected tab: \"content\" or \"search\""
 msgstr "Pasirinkta kortelė: „turinys“ ar „paieška“"
 
-#: ../data/devhelp.schemas.in.h:9
+#: ../data/devhelp.schemas.in.h:11
 msgid "The X position of the assistant window."
 msgstr "Pagalbinio lango X koordinatė"
 
-#: ../data/devhelp.schemas.in.h:10
+#: ../data/devhelp.schemas.in.h:12
 msgid "The X position of the main window."
 msgstr "Pagrindinio lango X koordinatė"
 
-#: ../data/devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:13
 msgid "The Y position of the assistant window."
 msgstr "Pagalbinio lango Y koordinatė"
 
-#: ../data/devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:14
 msgid "The Y position of the main window."
 msgstr "Pagrindinio lango Y koordinatė"
 
-#: ../data/devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:15
 msgid "The height of the assistant window."
 msgstr "Pagalbinio lango aukštis."
 
-#: ../data/devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:16
 msgid "The height of the main window."
 msgstr "Pagrindinio lango aukštis."
 
-#: ../data/devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:17
 msgid "The width of the assistant window."
 msgstr "Pagalbinio lango plotis."
 
-#: ../data/devhelp.schemas.in.h:16
+#: ../data/devhelp.schemas.in.h:18
 msgid "The width of the index and search pane."
 msgstr "Indekso ir paieškos pulto plotis."
 
-#: ../data/devhelp.schemas.in.h:17
+#: ../data/devhelp.schemas.in.h:19
 msgid "The width of the main window."
 msgstr "Pagrindinio lango plotis."
 
-#: ../data/devhelp.schemas.in.h:18
+#: ../data/devhelp.schemas.in.h:20
 msgid "Use system fonts"
 msgstr "Naudoti sisteminius šriftus"
 
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/devhelp.schemas.in.h:21
 msgid "Use the system default fonts."
 msgstr "Naudoti sistemos standartinius šriftus."
 
-#: ../data/devhelp.schemas.in.h:20
+#: ../data/devhelp.schemas.in.h:22
 msgid "Whether the main window should start maximized."
 msgstr "Ar paleidžiant pagrindinis langas turėtų būti išdidintas."
 
-#: ../data/devhelp.schemas.in.h:21
+#: ../data/devhelp.schemas.in.h:23
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "Kuri iš kortelių pasirinkta: „turinys“ ar „paieška“."
 
-#: ../data/devhelp.schemas.in.h:22
+#: ../data/devhelp.schemas.in.h:24
 msgid "Width of the assistant window"
 msgstr "Pagalbinio lango plotis"
 
-#: ../data/devhelp.schemas.in.h:23
+#: ../data/devhelp.schemas.in.h:25
 msgid "Width of the index and search pane"
 msgstr "Paieškos ir turinio pulto plotis"
 
-#: ../data/devhelp.schemas.in.h:24
+#: ../data/devhelp.schemas.in.h:26
 msgid "Width of the main window"
 msgstr "Pagrindinio lango plotis"
 
-#: ../data/devhelp.schemas.in.h:25
+#: ../data/devhelp.schemas.in.h:27
 msgid "X position of assistant window"
 msgstr "Pagalbinio lango X koordinatė"
 
-#: ../data/devhelp.schemas.in.h:26
+#: ../data/devhelp.schemas.in.h:28
 msgid "X position of main window"
 msgstr "Pagrindinio lango X koordinatė"
 
-#: ../data/devhelp.schemas.in.h:27
+#: ../data/devhelp.schemas.in.h:29
 msgid "Y position of assistant window"
 msgstr "Pagalbinio lango X koordinatė"
 
-#: ../data/devhelp.schemas.in.h:28
+#: ../data/devhelp.schemas.in.h:30
 msgid "Y position of main window"
 msgstr "Pagrindinio lango X koordinatė"
+
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Knygos lentyna</b>"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Šriftai</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "Įjungta"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "Nustatymai"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Pavadinimas"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Fiksuoto pločio šriftas"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "_Naudoti sisteminius šriftus"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "_Kintamo pločio šriftas"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -170,7 +211,7 @@ msgstr "Rodyti API dokumentaciją žodžiui ties kursoriumi"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - pagalbininkas"
 
-#: ../src/dh-assistant-view.c:328
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Knyga:"
 
@@ -267,8 +308,8 @@ msgstr ""
 #: ../src/dh-parser.c:208
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+"%d"
 msgstr ""
 "„vardas“ ir „saitas“ elementai būtini <sub> viduje eilutėje %d, stulpelyje %d"
 
@@ -284,187 +325,187 @@ msgstr ""
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "Elementas „tipas“ būtinas viduje <keyword> eilutėje %d, stulpelyje %d"
 
-#: ../src/dh-parser.c:506
+#: ../src/dh-parser.c:504
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nepavyko išpakuoti knygos '%s': %s"
 
-#: ../src/dh-search.c:509
+#: ../src/dh-search.c:508
 msgid "All books"
 msgstr "Visos knygos"
 
-#: ../src/dh-search.c:587
+#: ../src/dh-search.c:630
 msgid "Search in:"
 msgstr "Paieškos sritis:"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:98
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:96
+#: ../src/dh-window.c:99
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:97
+#: ../src/dh-window.c:100
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:101
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:102
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:103
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:104
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:105
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:106
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:731
+#: ../src/dh-window.c:735
 msgid "translator_credits"
 msgstr "Vytautas Liuolia <vytautas.liuolia@gmail.com>"
 
-#: ../src/dh-window.c:738
+#: ../src/dh-window.c:742
 msgid "A developers' help browser for GNOME"
 msgstr "GNOME programuotojo žinynas"
 
-#: ../src/dh-window.c:768
+#: ../src/dh-window.c:772
 msgid "_File"
 msgstr "_Failas"
 
-#: ../src/dh-window.c:769
+#: ../src/dh-window.c:773
 msgid "_Edit"
 msgstr "_Keisti"
 
-#: ../src/dh-window.c:770
+#: ../src/dh-window.c:774
 msgid "_View"
 msgstr "_Rodymas"
 
-#: ../src/dh-window.c:771
+#: ../src/dh-window.c:775
 msgid "_Go"
 msgstr "_Eiti"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:776
 msgid "_Help"
 msgstr "_Pagalba"
 
 #. File menu
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:779
 msgid "_New Window"
 msgstr "_Naujas langas"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:781
 msgid "New _Tab"
 msgstr "Nauja _kortelė"
 
-#: ../src/dh-window.c:779
+#: ../src/dh-window.c:783
 msgid "_Print…"
 msgstr "S_pausdinti..."
 
-#: ../src/dh-window.c:791 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:795 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Rasti kitą"
 
-#: ../src/dh-window.c:793 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:797 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Rasti ankstesnį"
 
-#: ../src/dh-window.c:800
+#: ../src/dh-window.c:804
 msgid "Go to the previous page"
 msgstr "Rodyti praeitą puslapį"
 
-#: ../src/dh-window.c:803
+#: ../src/dh-window.c:807
 msgid "Go to the next page"
 msgstr "Rodyti kitą puslapį"
 
-#: ../src/dh-window.c:806
+#: ../src/dh-window.c:810
 msgid "_Contents Tab"
 msgstr "_Turinio kortelė"
 
-#: ../src/dh-window.c:809
+#: ../src/dh-window.c:813
 msgid "_Search Tab"
 msgstr "_Paieškos kortelė"
 
 #. View menu
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:817
 msgid "_Larger Text"
 msgstr "_Didesnis tekstas"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:818
 msgid "Increase the text size"
 msgstr "Didinti teksto dydį"
 
-#: ../src/dh-window.c:816
+#: ../src/dh-window.c:820
 msgid "S_maller Text"
 msgstr "_Mažesnis tekstas"
 
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:821
 msgid "Decrease the text size"
 msgstr "Mažinti teksto dydį"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:823
 msgid "_Normal Size"
 msgstr "_Normalus dydis"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:824
 msgid "Use the normal text size"
 msgstr "Naudoti normalų teksto dydį"
 
-#: ../src/dh-window.c:829
+#: ../src/dh-window.c:833
 msgid "Leave fullscreen mode"
 msgstr "Baigti viso ekrano veikseną"
 
-#: ../src/dh-window.c:836
+#: ../src/dh-window.c:840
 msgid "Display in full screen"
 msgstr "Rodyti visame ekrane"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:956
+#: ../src/dh-window.c:960
 msgid "Larger"
 msgstr "_Didesnis tekstas"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:959
+#: ../src/dh-window.c:963
 msgid "Smaller"
 msgstr "_Mažesnis tekstas"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1105
+#: ../src/dh-window.c:1108
 msgid "About Devhelp"
 msgstr "Apie Devhelp"
 
-#: ../src/dh-window.c:1110
+#: ../src/dh-window.c:1113
 msgid "Preferences…"
 msgstr "Nustatymai…"
 
-#: ../src/dh-window.c:1153
+#: ../src/dh-window.c:1155
 msgid "Contents"
 msgstr "Turinys"
 
-#: ../src/dh-window.c:1163
+#: ../src/dh-window.c:1165
 msgid "Search"
 msgstr "Paieška"
 
-#: ../src/dh-window.c:1329
+#: ../src/dh-window.c:1343
 msgid "Error opening the requested link."
 msgstr "Klaida atverčiant nuorodą."
 
-#: ../src/dh-window.c:1635 ../src/dh-window.c:1877
+#: ../src/dh-window.c:1665 ../src/dh-window.c:1907
 msgid "Empty Page"
 msgstr "Tuščias puslapis"
 
@@ -494,17 +535,11 @@ msgstr "Skirti raidžių dydį"
 #~ msgid "Whether the advanced search options are shown."
 #~ msgstr "Ar rodomos išplėstinės paieškos galimybės."
 
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Šriftai</b>"
-
 #~ msgid "<b>Searching</b>"
 #~ msgstr "<b>Paieška</b>"
 
 #~ msgid "_Back"
 #~ msgstr "_Atgal"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "_Fiksuoto pločio šriftas"
 
 #~ msgid "_Forward"
 #~ msgstr "_Pirmyn"
@@ -512,15 +547,9 @@ msgstr "Skirti raidžių dydį"
 #~ msgid "_Show advanced search options"
 #~ msgstr "_Rodyti išplėstines paieškos galimybes"
 
-#~ msgid "_Use system fonts"
-#~ msgstr "_Naudoti sisteminius šriftus"
-
-#~ msgid "_Variable width: "
-#~ msgstr "_Kintamo pločio šriftas"
-
 #~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %"
-#~ "d"
+#~ "name and link elements are required inside <function> on line %d, column "
+#~ "%d"
 #~ msgstr ""
 #~ "vardas ir rodantieji elementai būtini <function> viduje eilutėje %d, "
 #~ "stulpelyje %d"
