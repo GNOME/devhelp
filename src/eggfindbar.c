@@ -181,7 +181,7 @@ egg_find_bar_class_init (EggFindBarClass *klass)
 
   binding_set = gtk_binding_set_by_class (klass);
 
-  gtk_binding_entry_add_signal (binding_set, GDK_Escape, 0,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Escape, 0,
 				"close", 0);
 
   gtk_binding_entry_add_signal (binding_set, GDK_Up, 0,

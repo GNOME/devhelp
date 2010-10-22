@@ -46,7 +46,7 @@ assistant_key_press_event_cb (GtkWidget   *widget,
                               GdkEventKey *event,
                               DhAssistant *assistant)
 {
-        if (event->keyval == GDK_Escape) {
+        if (event->keyval == GDK_KEY_Escape) {
                 gtk_widget_destroy (GTK_WIDGET (assistant));
                 return TRUE;
         }
