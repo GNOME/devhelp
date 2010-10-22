@@ -83,8 +83,8 @@ enum {
 static gint signals[LAST_SIGNAL] = { 0 };
 
 static guint tab_accel_keys[] = {
-        GDK_1, GDK_2, GDK_3, GDK_4, GDK_5,
-        GDK_6, GDK_7, GDK_8, GDK_9, GDK_0
+        GDK_KEY_1, GDK_KEY_2, GDK_KEY_3, GDK_KEY_4, GDK_KEY_5,
+        GDK_KEY_6, GDK_KEY_7, GDK_KEY_8, GDK_KEY_9, GDK_KEY_0
 };
 
 static const
