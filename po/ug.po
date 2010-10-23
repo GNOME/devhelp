@@ -5,10 +5,10 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp trunk\n"
+"Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-10-02 07:10+0000\n"
+"POT-Creation-Date: 2010-10-22 10:00+0000\n"
 "PO-Revision-Date: 2009-03-12 08:15+0900\n"
 "Last-Translator: Sahran <sahran.ug@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -22,10 +22,10 @@ msgstr "ئىجادىيەتچىلەرنىڭ ياردەم پروگراممىسى"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
-msgstr "Devhelp ھەققىدە"
+msgstr "Devhelp "
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -154,16 +154,16 @@ msgid "Y position of main window"
 msgstr "ئاساسىي كۆزنەكنىڭ Y ئوق قىممىتى"
 
 #: ../data/ui/devhelp.builder.h:1
-msgid "<b>Book Shelf</b>"
-msgstr "<b>كىتاب تەكچىسى</b>"
+msgid "Book Shelf"
+msgstr "كىتاب تەكچىسى"
 
 #: ../data/ui/devhelp.builder.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>خەت نۇسخا</b>"
-
-#: ../data/ui/devhelp.builder.h:3
 msgid "Enabled"
 msgstr "قوزغىتىلغان"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Fonts"
+msgstr "خەت نۇسخا"
 
 #: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
@@ -260,26 +260,26 @@ msgstr "Enum"
 #. * untranslated.
 #: ../src/dh-link.c:287
 msgid "Type"
-msgstr "Type"
+msgstr "تىپى"
 
-#: ../src/dh-main.c:175
+#: ../src/dh-main.c:247
 msgid "Search for a keyword"
 msgstr "ئاچقۇچ سۆزنى ئىزدەش"
 
-#: ../src/dh-main.c:180
+#: ../src/dh-main.c:252
 msgid "Quit any running Devhelp"
 msgstr "Devhelp نى ئاخىرلاشتۇرماق"
 
-#: ../src/dh-main.c:185
+#: ../src/dh-main.c:257
 msgid "Display the version and exit"
 msgstr "نەشر ئۇچۇرنى كۆرسىتىپ ئاخىرلاشتۇرماق"
 
-#: ../src/dh-main.c:190
+#: ../src/dh-main.c:262
 msgid "Focus the Devhelp window with the search field active"
 msgstr ""
 "Devhelp كۆزنىكىدە فوكۇسقا ئېرىشىدۇ ھەمدە ئىزدەش دائىرىسىنى ئاكتىپلايدۇ."
 
-#: ../src/dh-main.c:195
+#: ../src/dh-main.c:267
 msgid "Search and display any hit in the assistant window"
 msgstr "ئىزدەش نەتىجىسىنى ياردەمچى كۆزنەكتە كۆرسىتىش"
 
@@ -521,3 +521,6 @@ msgstr "چوڭ-كىچىكلىكىنى پەرقلەندۈرۈش(_A)"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "چوڭ-كىچىكلىكىنى پەرقلەندۈرۈشنى ئۆزگەرتىش"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>خەت نۇسخا</b>"
