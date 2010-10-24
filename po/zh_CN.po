@@ -12,9 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-17 12:59+0800\n"
-"PO-Revision-Date: 2010-07-17 13:02+0800\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&component=general\n"
+"POT-Creation-Date: 2010-10-16 10:24+0000\n"
+"PO-Revision-Date: 2010-10-17 07:22+0800\n"
 "Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +28,7 @@ msgstr "开发者帮助程序"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -156,6 +157,38 @@ msgstr "辅助窗口的 Y 坐标"
 msgid "Y position of main window"
 msgstr "主窗口的 Y 坐标"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "Book Shelf"
+msgstr "书架"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "已启用"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Fonts"
+msgstr "字体"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "首选项"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "标题"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "等宽字体(_F)："
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "使用系统字体(_U)"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "变宽字体(_V)："
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Devhelp 支持"
@@ -177,7 +210,7 @@ msgstr "显示光标处单词的 API 文档"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - 助手"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "书籍："
 
@@ -232,23 +265,23 @@ msgstr "枚举"
 msgid "Type"
 msgstr "类型"
 
-#: ../src/dh-main.c:175
+#: ../src/dh-main.c:247
 msgid "Search for a keyword"
 msgstr "搜索一个关键词"
 
-#: ../src/dh-main.c:180
+#: ../src/dh-main.c:252
 msgid "Quit any running Devhelp"
 msgstr "退出正在运行的 Devhelp"
 
-#: ../src/dh-main.c:185
+#: ../src/dh-main.c:257
 msgid "Display the version and exit"
 msgstr "显示版本后退出"
 
-#: ../src/dh-main.c:190
+#: ../src/dh-main.c:262
 msgid "Focus the Devhelp window with the search field active"
 msgstr "使 Devhelp 窗口获得焦点并让搜索域激活"
 
-#: ../src/dh-main.c:195
+#: ../src/dh-main.c:267
 msgid "Search and display any hit in the assistant window"
 msgstr "在辅助窗口中搜索并显示任何命中内容"
 
@@ -513,20 +546,11 @@ msgstr "切换区分大小写搜索"
 #~ msgid "_Back"
 #~ msgstr "后退(_B)"
 
-#~ msgid "_Fixed width:"
-#~ msgstr "等宽字体(_F)："
-
 #~ msgid "_Forward"
 #~ msgstr "前进(_F)"
 
 #~ msgid "_Show advanced search options"
 #~ msgstr "显示高级搜索选项(_S)"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "使用系统字体(_U)"
-
-#~ msgid "_Variable width: "
-#~ msgstr "变宽字体(_V)："
 
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column %"
