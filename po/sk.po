@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-08-16 10:58+0000\n"
-"PO-Revision-Date: 2010-08-12 22:24+0200\n"
+"POT-Creation-Date: 2010-09-21 21:48+0000\n"
+"PO-Revision-Date: 2010-09-11 12:34+0200\n"
 "Last-Translator: Roman Mátyus <romanmatyus@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Program pomocníka pre vývojárov"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -34,7 +34,7 @@ msgstr "Prehliadač dokumentácie"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Books disabled"
-msgstr ""
+msgstr "Zakázané knihy"
 
 #: ../data/devhelp.schemas.in.h:2
 msgid "Font for fixed width text"
@@ -62,7 +62,7 @@ msgstr "Výška hlavného okna"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "List of books disabled by the user."
-msgstr ""
+msgstr "Zoznam kníh zakázaných používateľom."
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "Main window maximized state"
@@ -154,6 +154,46 @@ msgstr "Umiestnenie okna asistenta v smere osi Y"
 msgid "Y position of main window"
 msgstr "Umiestnenie hlavného okna v smere osi Y"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "<b>Book Shelf</b>"
+msgstr ""
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Písma</b>"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr ""
+
+#: ../data/ui/devhelp.builder.h:4
+#, fuzzy
+#| msgid "Preferences…"
+msgid "Preferences"
+msgstr "Nastavenia…"
+
+#: ../data/ui/devhelp.builder.h:5
+#, fuzzy
+#| msgid "_File"
+msgid "Title"
+msgstr "_Súbor"
+
+#: ../data/ui/devhelp.builder.h:6
+#, fuzzy
+#| msgid "Fixed width:"
+msgid "_Fixed width:"
+msgstr "Pevná šírka:"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Use system fonts"
+msgstr "_Použiť systémové písma"
+
+#: ../data/ui/devhelp.builder.h:8
+#, fuzzy
+#| msgid "Variable width: "
+msgid "_Variable width: "
+msgstr "Premenlivá šírka:"
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Podpora pre Devhelp"
@@ -175,7 +215,7 @@ msgstr "Zobraziť dokumentáciu API pre slovo, na ktorom je kurzor"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — asistent"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Kniha:"
 
@@ -221,9 +261,8 @@ msgstr "Makro"
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:282
-#, fuzzy
 msgid "Enum"
-msgstr "Enumeračný typ"
+msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -232,23 +271,23 @@ msgstr "Enumeračný typ"
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Vyhľadať kľúčové slovo"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Ukončiť každý bežiaci Devhelp"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Zobraziť verziu a ukončiť"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Aktivovať okno Devhelp s aktívnym vyhľadávacím poľom"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Nájsť a zobraziť každý výskyt v okne asistenta"
 
@@ -531,20 +570,8 @@ msgstr "Prepnúť citlivosť na veľkosť písmen vyhľadávanie"
 #~ msgid "    "
 #~ msgstr "    "
 
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Písma</b>"
-
-#~ msgid "Fixed width:"
-#~ msgstr "Pevná šírka:"
-
-#~ msgid "Variable width: "
-#~ msgstr "Premenlivá šírka:"
-
 #~ msgid "_Back"
 #~ msgstr "_Späť"
 
 #~ msgid "_Forward"
 #~ msgstr "Ďa_lej"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Použiť systémové písma"
