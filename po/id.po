@@ -1,18 +1,19 @@
-# translation of devhelp.master.po to Indonesian
+# translation of devhelp to Indonesian
 # Copyright (C) 2010 the devhelp's copyright holder
 # This file is distributed under the same license as the devhelp package.
 # Mikiya <eien.mihoshi@gmail.com> 2010
-#
 # Dirgita <dirgitadevina@gmail.com>, 2010.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010.
+# Andika Triwidada <andika@gmail.com>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-08-02 14:49+0000\n"
-"PO-Revision-Date: 2010-07-18 11:09+0700\n"
-"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
+"POT-Creation-Date: 2010-10-22 22:52+0000\n"
+"PO-Revision-Date: 2010-10-25 20:55+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -158,6 +159,42 @@ msgstr "Posisi Y jendela pembantu"
 msgid "Y position of main window"
 msgstr "Posisi Y jendela utama"
 
+#: ../data/ui/devhelp.builder.h:1
+msgid "Book Shelf"
+msgstr "Rak Buku"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "Diaktifkan"
+
+#: ../data/ui/devhelp.builder.h:3
+#| msgid "Contents"
+msgid "Fonts"
+msgstr "Fonta"
+
+#: ../data/ui/devhelp.builder.h:4
+#| msgid "Preferences…"
+msgid "Preferences"
+msgstr "Preferensi"
+
+#: ../data/ui/devhelp.builder.h:5
+#| msgid "_File"
+msgid "Title"
+msgstr "Judul"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Lebar tetap:"
+
+#: ../data/ui/devhelp.builder.h:7
+#| msgid "Use system fonts"
+msgid "_Use system fonts"
+msgstr "G_unakan fonta sistem"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "Lebar _variabel:"
+
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Dukungan Devhelp"
@@ -179,7 +216,7 @@ msgstr "Menunjukkan Dokumentasi API untuk kata pada kursor"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Pembantu"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Buku:"
 
