@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-28 00:35+0300\n"
+"POT-Creation-Date: 2010-10-28 00:39+0300\n"
 "PO-Revision-Date: 2010-10-27 16:04+0200\n"
 "Last-Translator: Jim <vlma@tut.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -22,7 +22,7 @@ msgstr "Праграма дапамогі распрацоўнікам"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:235
 #: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
@@ -152,16 +152,16 @@ msgid "Y position of main window"
 msgstr "Y-пазыцыя галоўнага акна"
 
 #: ../data/ui/devhelp.builder.h:1
-msgid "Book Shelf"
-msgstr "Кніжная паліца"
+msgid "<b>Book Shelf</b>"
+msgstr "<b>Кніжная паліца</b>"
 
 #: ../data/ui/devhelp.builder.h:2
-msgid "Enabled"
-msgstr "Уключана"
+msgid "<b>Fonts</b>"
+msgstr "<b>Шрыфты</b>"
 
 #: ../data/ui/devhelp.builder.h:3
-msgid "Fonts"
-msgstr "Шрыфты"
+msgid "Enabled"
+msgstr "Уключана"
 
 #: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
@@ -259,23 +259,23 @@ msgstr "Пералік"
 msgid "Type"
 msgstr "Тып"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:175
 msgid "Search for a keyword"
 msgstr "Пошук ключавога слова"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:180
 msgid "Quit any running Devhelp"
 msgstr "Выйсьці з Devhelp"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:185
 msgid "Display the version and exit"
 msgstr "Паказаць нумар вэрсіі і выйсьці"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:190
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Сфакусавацца на акне Devhelp, задзейнічаўшы поле пошуку"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:195
 msgid "Search and display any hit in the assistant window"
 msgstr "Знайсьці і падсьвятліць усе адпаведнікі ў акне дапаможніка"
 
@@ -522,3 +522,4 @@ msgstr "_Улічваць памер літар"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Зьмяніць стаўленьне пошуку да памеру літараў"
+
