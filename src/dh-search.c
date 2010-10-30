@@ -630,7 +630,7 @@ dh_search_new (DhBookManager *book_manager)
         book_label = gtk_label_new_with_mnemonic (_("Search in:"));
         gtk_label_set_mnemonic_widget (GTK_LABEL (book_label), priv->book_combo);
 
-        hbox = gtk_hbox_new (FALSE, 6);
+        hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE, 6);
         gtk_box_pack_start (GTK_BOX (hbox), book_label, FALSE, FALSE, 0);
         gtk_box_pack_start (GTK_BOX (hbox), priv->book_combo, TRUE, TRUE, 0);
         gtk_box_pack_start (GTK_BOX (search), hbox, FALSE, FALSE, 0);

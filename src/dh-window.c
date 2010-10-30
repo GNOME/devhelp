@@ -908,10 +908,10 @@ dh_window_init (DhWindow *window)
         accel_group = gtk_ui_manager_get_accel_group (priv->manager);
         gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
-        priv->main_box = gtk_vbox_new (FALSE, 0);
+        priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, FALSE, 0);
         gtk_widget_show (priv->main_box);
 
-        priv->menu_box = gtk_vbox_new (FALSE, 0);
+        priv->menu_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, FALSE, 0);
         gtk_widget_show (priv->menu_box);
         gtk_container_set_border_width (GTK_CONTAINER (priv->menu_box), 0);
         gtk_box_pack_start (GTK_BOX (priv->main_box), priv->menu_box,
@@ -1117,7 +1117,7 @@ window_populate (DhWindow *window)
         }
 #endif
 
-        priv->hpaned = gtk_hpaned_new ();
+        priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
 
         gtk_box_pack_start (GTK_BOX (priv->main_box), priv->hpaned, TRUE, TRUE, 0);
 
@@ -1169,7 +1169,7 @@ window_populate (DhWindow *window)
                           G_CALLBACK (window_search_link_selected_cb),
                           window);
 
-        priv->vbox = gtk_vbox_new (FALSE, 0);
+        priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, FALSE, 0);
         gtk_paned_add2 (GTK_PANED (priv->hpaned), priv->vbox);
 
         /* HTML tabs notebook. */
@@ -1644,7 +1644,7 @@ window_open_new_tab (DhWindow    *window,
         }
 #endif
 
-        vbox = gtk_vbox_new (0, FALSE);
+        vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0, FALSE);
         gtk_widget_show (vbox);
 
         /* XXX: Really it would be much better to use real structures */
@@ -1768,7 +1768,7 @@ window_new_tab_label (DhWindow        *window,
         GtkWidget *close_button;
         GtkWidget *image;
 
-        hbox = gtk_hbox_new (FALSE, 4);
+        hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE, 4);
 
         label = gtk_label_new (str);
         gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
