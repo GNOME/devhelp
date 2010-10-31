@@ -1,4 +1,4 @@
-# translation of devhelp.HEAD.po to Español
+# translation of devhelp.master.po to Español
 # Ismael Olea <ismael@olea.org>, 2001.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006.
 # Spanish/Spain translation of devhelp.
@@ -7,11 +7,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp.HEAD\n"
+"Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-10-02 07:10+0000\n"
-"PO-Revision-Date: 2010-10-07 14:16+0200\n"
+"POT-Creation-Date: 2010-10-30 01:24+0000\n"
+"PO-Revision-Date: 2010-10-31 21:37+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Programa de ayuda del desarrollador"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
-#: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
+#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -167,17 +167,14 @@ msgid "Enabled"
 msgstr "Activada"
 
 #: ../data/ui/devhelp.builder.h:3
-#| msgid "Contents"
 msgid "Fonts"
 msgstr "Tipografías"
 
 #: ../data/ui/devhelp.builder.h:4
-#| msgid "Preferences…"
 msgid "Preferences"
 msgstr "Preferencias"
 
 #: ../data/ui/devhelp.builder.h:5
-#| msgid "_File"
 msgid "Title"
 msgstr "Título"
 
@@ -311,19 +308,19 @@ msgstr ""
 #: ../src/dh-parser.c:208
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+"%d"
 msgstr ""
-"son necesarios los elementos «nombre» y «enlace» dentro de <sub> en la línea %"
-"d, columna %d"
+"son necesarios los elementos «nombre» y «enlace» dentro de <sub> en la línea "
+"%d, columna %d"
 
 #: ../src/dh-parser.c:288
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"son necesarios los elementos «nombre» y «enlace» dentro de «%s» en la línea %d, "
-"columna %d"
+"son necesarios los elementos «nombre» y «enlace» dentro de «%s» en la línea "
+"%d, columna %d"
 
 #: ../src/dh-parser.c:301
 #, c-format
@@ -391,130 +388,135 @@ msgstr ""
 msgid "A developers' help browser for GNOME"
 msgstr "Un visor de ayuda para desarrolladores de GNOME"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:749
+#| msgid "Devhelp support"
+msgid "DevHelp Website"
+msgstr "Página web de DevHelp"
+
+#: ../src/dh-window.c:773
 msgid "_File"
 msgstr "_Archivo"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:774
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:775
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:776
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:777
 msgid "_Help"
 msgstr "Ay_uda"
 
 #. File menu
-#: ../src/dh-window.c:779
+#: ../src/dh-window.c:780
 msgid "_New Window"
 msgstr "_Ventana nueva"
 
-#: ../src/dh-window.c:781
+#: ../src/dh-window.c:782
 msgid "New _Tab"
 msgstr "_Solapa nueva"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:784
 msgid "_Print…"
 msgstr "_Imprimir…"
 
-#: ../src/dh-window.c:795 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Buscar siguiente"
 
-#: ../src/dh-window.c:797 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Buscar anterior"
 
-#: ../src/dh-window.c:804
+#: ../src/dh-window.c:805
 msgid "Go to the previous page"
 msgstr "Ir a la página anterior"
 
-#: ../src/dh-window.c:807
+#: ../src/dh-window.c:808
 msgid "Go to the next page"
 msgstr "Ir a la página siguiente"
 
-#: ../src/dh-window.c:810
+#: ../src/dh-window.c:811
 msgid "_Contents Tab"
 msgstr "Solapa de _contenido"
 
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:814
 msgid "_Search Tab"
 msgstr "Solapa de _búsqueda"
 
 #. View menu
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:818
 msgid "_Larger Text"
 msgstr "Texto más _grande"
 
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:819
 msgid "Increase the text size"
 msgstr "Aumentar el tamaño del texto"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:821
 msgid "S_maller Text"
 msgstr "Texto más _pequeño"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:822
 msgid "Decrease the text size"
 msgstr "Disminuir el tamaño del texto"
 
-#: ../src/dh-window.c:823
+#: ../src/dh-window.c:824
 msgid "_Normal Size"
 msgstr "Tamaño _normal"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:825
 msgid "Use the normal text size"
 msgstr "Usar el tamaño de texto normal"
 
-#: ../src/dh-window.c:833
+#: ../src/dh-window.c:834
 msgid "Leave fullscreen mode"
 msgstr "Salir del modo a pantalla completa"
 
-#: ../src/dh-window.c:840
+#: ../src/dh-window.c:841
 msgid "Display in full screen"
 msgstr "Ver a pantalla completa"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:960
+#: ../src/dh-window.c:961
 msgid "Larger"
 msgstr "Más grande"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:963
+#: ../src/dh-window.c:964
 msgid "Smaller"
 msgstr "Más pequeño"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1108
+#: ../src/dh-window.c:1109
 msgid "About Devhelp"
 msgstr "Acerca de DevHelp"
 
-#: ../src/dh-window.c:1113
+#: ../src/dh-window.c:1114
 msgid "Preferences…"
 msgstr "Preferencias…"
 
-#: ../src/dh-window.c:1155
+#: ../src/dh-window.c:1156
 msgid "Contents"
 msgstr "Índice"
 
-#: ../src/dh-window.c:1165
+#: ../src/dh-window.c:1166
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:1343
+#: ../src/dh-window.c:1344
 msgid "Error opening the requested link."
 msgstr "Error al abrir el enlace solicitado."
 
-#: ../src/dh-window.c:1665 ../src/dh-window.c:1907
+#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
 msgid "Empty Page"
 msgstr "Página vacía"
 
@@ -563,8 +565,8 @@ msgstr "Conmutar búsqueda discriminando capitalización"
 #~ msgstr "_Mostrar las opciones de búsqueda avanzadas"
 
 #~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %"
-#~ "d"
+#~ "name and link elements are required inside <function> on line %d, column "
+#~ "%d"
 #~ msgstr ""
 #~ "los elementos nombre y enlace se requieren dentro de <function> en la "
 #~ "línea %d, columna %d"
