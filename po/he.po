@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-07 08:28+0200\n"
-"PO-Revision-Date: 2010-10-07 08:32+0200\n"
+"POT-Creation-Date: 2010-11-01 07:49+0200\n"
+"PO-Revision-Date: 2010-11-01 07:49+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "תכנית עזרה למפתחים"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
-#: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
+#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -381,130 +381,134 @@ msgstr ""
 msgid "A developers' help browser for GNOME"
 msgstr "דפדפן עזרה למפתחים עבור GNOME"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:749
+msgid "DevHelp Website"
+msgstr "האתר של Devhelp"
+
+#: ../src/dh-window.c:773
 msgid "_File"
 msgstr "_קובץ"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:774
 msgid "_Edit"
 msgstr "ע_ריכה"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:775
 msgid "_View"
 msgstr "_תצוגה"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:776
 msgid "_Go"
 msgstr "מע_בר"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:777
 msgid "_Help"
 msgstr "ע_זרה"
 
 #. File menu
-#: ../src/dh-window.c:779
+#: ../src/dh-window.c:780
 msgid "_New Window"
 msgstr "_חלון _חדש"
 
-#: ../src/dh-window.c:781
+#: ../src/dh-window.c:782
 msgid "New _Tab"
 msgstr "_לשונית חדשה"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:784
 msgid "_Print…"
 msgstr "ה_דפסה..."
 
-#: ../src/dh-window.c:795 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "חיפוש הבא"
 
-#: ../src/dh-window.c:797 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "חיפוש הקודם"
 
-#: ../src/dh-window.c:804
+#: ../src/dh-window.c:805
 msgid "Go to the previous page"
 msgstr "מעבר לדף הקודם"
 
-#: ../src/dh-window.c:807
+#: ../src/dh-window.c:808
 msgid "Go to the next page"
 msgstr "מעבר לדף הבא"
 
-#: ../src/dh-window.c:810
+#: ../src/dh-window.c:811
 msgid "_Contents Tab"
 msgstr "לשונית _תכנים"
 
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:814
 msgid "_Search Tab"
 msgstr "לשונית _חיפוש"
 
 #. View menu
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:818
 msgid "_Larger Text"
 msgstr "ה_גדלת הטקסט"
 
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:819
 msgid "Increase the text size"
 msgstr "הגדלת גודל הטקסט"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:821
 msgid "S_maller Text"
 msgstr "ה_קטנת טקסט"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:822
 msgid "Decrease the text size"
 msgstr "הקטנת גודל הטקסט"
 
-#: ../src/dh-window.c:823
+#: ../src/dh-window.c:824
 msgid "_Normal Size"
 msgstr "גודל _רגיל"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:825
 msgid "Use the normal text size"
 msgstr "שימוש בגודל הטקסט הרגיל"
 
-#: ../src/dh-window.c:833
+#: ../src/dh-window.c:834
 msgid "Leave fullscreen mode"
 msgstr "יציאה ממצב מסך מלא"
 
-#: ../src/dh-window.c:840
+#: ../src/dh-window.c:841
 msgid "Display in full screen"
 msgstr "הצגה במסך מלא"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:960
+#: ../src/dh-window.c:961
 msgid "Larger"
 msgstr "גדול יותר"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:963
+#: ../src/dh-window.c:964
 msgid "Smaller"
 msgstr "קטן יותר"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1108
+#: ../src/dh-window.c:1109
 msgid "About Devhelp"
 msgstr "על אודות DevHelp"
 
-#: ../src/dh-window.c:1113
+#: ../src/dh-window.c:1114
 msgid "Preferences…"
 msgstr "העדפות..."
 
-#: ../src/dh-window.c:1155
+#: ../src/dh-window.c:1156
 msgid "Contents"
 msgstr "תכנים"
 
-#: ../src/dh-window.c:1165
+#: ../src/dh-window.c:1166
 msgid "Search"
 msgstr "חיפוש"
 
-#: ../src/dh-window.c:1343
+#: ../src/dh-window.c:1344
 msgid "Error opening the requested link."
 msgstr "שגיאה בפתיחת הקישור המבוקש."
 
-#: ../src/dh-window.c:1665 ../src/dh-window.c:1907
+#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
 msgid "Empty Page"
 msgstr "דף ריק"
 
