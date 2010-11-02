@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-01-09 22:23+0000\n"
-"PO-Revision-Date: 2010-01-11 15:58+0100\n"
-"Last-Translator: astur <malditoastur@gmail.com>\n"
+"POT-Creation-Date: 2010-09-22 11:45+0000\n"
+"PO-Revision-Date: 2010-10-14 20:02+0100\n"
+"Last-Translator: Iñigo Varela <ivarela@softastur.org>\n"
 "Language-Team: Asturian <alministradores@softastur.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,10 +21,10 @@ msgstr "Programa d'aida del desendolcador"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2
-#: ../src/dh-main.c:235
-#: ../src/dh-window.c:736
-#: ../src/dh-window.c:1043
-#: ../src/dh-window.c:1849
+#: ../src/dh-main.c:307
+#: ../src/dh-window.c:740
+#: ../src/dh-window.c:1047
+#: ../src/dh-window.c:1879
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -33,116 +33,160 @@ msgid "Documentation Browser"
 msgstr "Visor de documentación"
 
 #: ../data/devhelp.schemas.in.h:1
-msgid "Font for fixed width text"
-msgstr "Fonte pal testu d'anchu fixu"
+msgid "Books disabled"
+msgstr "Llibros desactivaos"
 
 #: ../data/devhelp.schemas.in.h:2
+msgid "Font for fixed width text"
+msgstr "Fonte pal testu d'anchor fixu"
+
+#: ../data/devhelp.schemas.in.h:3
 msgid "Font for text"
 msgstr "Fonte pal testu"
 
-#: ../data/devhelp.schemas.in.h:3
-msgid "Font for text with fixed width, such as code examples."
-msgstr "Fonte pal testu con anchu fixu, tal como los exemplos de códigu."
-
 #: ../data/devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Fonte pal testu con anchu variable."
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Fonte pal testu con anchor fixu, tal como los exemplos de códigu."
 
 #: ../data/devhelp.schemas.in.h:5
-msgid "Height of assistant window"
-msgstr "Altor del ventanu del asistente"
+msgid "Font for text with variable width."
+msgstr "Fonte pal testu con anchor variable."
 
 #: ../data/devhelp.schemas.in.h:6
-msgid "Height of main window"
-msgstr "Altor del ventanu principal"
+msgid "Height of assistant window"
+msgstr "Altor de la ventana del asistente"
 
 #: ../data/devhelp.schemas.in.h:7
+msgid "Height of main window"
+msgstr "Altor de la ventana principal"
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "List of books disabled by the user."
+msgstr "Llista de llibros desactivaos pol usuariu."
+
+#: ../data/devhelp.schemas.in.h:9
 msgid "Main window maximized state"
 msgstr "Estáu maximizáu de la ventana principal"
 
-#: ../data/devhelp.schemas.in.h:8
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "Llingüeta seleicionada, «conteníu» o «gueta»"
-
-#: ../data/devhelp.schemas.in.h:9
-msgid "The X position of the assistant window."
-msgstr "La posición X del ventanu del asistente."
-
 #: ../data/devhelp.schemas.in.h:10
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Llingüeta seleicionada: «conteníu» o «gueta»"
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "The X position of the assistant window."
+msgstr "La posición X de la ventana del asistente."
+
+#: ../data/devhelp.schemas.in.h:12
 msgid "The X position of the main window."
 msgstr "La posición X de la ventana principal."
 
-#: ../data/devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:13
 msgid "The Y position of the assistant window."
-msgstr "La posición Y del ventanu del asistente."
+msgstr "La posición Y de la ventana del asistente."
 
-#: ../data/devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:14
 msgid "The Y position of the main window."
 msgstr "La posición Y de la ventana principal."
 
-#: ../data/devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:15
 msgid "The height of the assistant window."
-msgstr "L'altor del ventanu del asistente."
+msgstr "L'altor de la ventana del asistente."
 
-#: ../data/devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:16
 msgid "The height of the main window."
 msgstr "L'altor de la ventana principal."
 
-#: ../data/devhelp.schemas.in.h:15
-msgid "The width of the assistant window."
-msgstr "L'anchu del ventanu del asistente."
-
-#: ../data/devhelp.schemas.in.h:16
-msgid "The width of the index and search pane."
-msgstr "L'anchu del índiz y el panel llateral de gueta."
-
 #: ../data/devhelp.schemas.in.h:17
-msgid "The width of the main window."
-msgstr "L'anchu de la ventana principal."
+msgid "The width of the assistant window."
+msgstr "L'anchor de la ventana del asistente."
 
 #: ../data/devhelp.schemas.in.h:18
+msgid "The width of the index and search pane."
+msgstr "L'anchor del índiz y el panel llateral de gueta."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "The width of the main window."
+msgstr "L'anchor de la ventana principal."
+
+#: ../data/devhelp.schemas.in.h:20
 msgid "Use system fonts"
 msgstr "Emplegar fontes del sistema"
 
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/devhelp.schemas.in.h:21
 msgid "Use the system default fonts."
 msgstr "Usar les fontes predeterminaes del sistema."
 
-#: ../data/devhelp.schemas.in.h:20
+#: ../data/devhelp.schemas.in.h:22
 msgid "Whether the main window should start maximized."
 msgstr "Indica si la ventana principal tendría d'aniciase maximizada."
 
-#: ../data/devhelp.schemas.in.h:21
+#: ../data/devhelp.schemas.in.h:23
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "Cuál de les llingüetes ta seleicionada,  «conteníu» o «gueta»."
 
-#: ../data/devhelp.schemas.in.h:22
-msgid "Width of the assistant window"
-msgstr "Anchu del ventanu del asistente"
-
-#: ../data/devhelp.schemas.in.h:23
-msgid "Width of the index and search pane"
-msgstr "Anchu del índiz de panel de gueta"
-
 #: ../data/devhelp.schemas.in.h:24
-msgid "Width of the main window"
-msgstr "Anchu de la ventana principal"
+msgid "Width of the assistant window"
+msgstr "Anchor de la ventana del asistente"
 
 #: ../data/devhelp.schemas.in.h:25
-msgid "X position of assistant window"
-msgstr "Posición X del ventanu del asistente"
+msgid "Width of the index and search pane"
+msgstr "Anchor del índiz de panel de gueta"
 
 #: ../data/devhelp.schemas.in.h:26
+msgid "Width of the main window"
+msgstr "Anchor de la ventana principal"
+
+#: ../data/devhelp.schemas.in.h:27
+msgid "X position of assistant window"
+msgstr "Posición X de la ventana del asistente"
+
+#: ../data/devhelp.schemas.in.h:28
 msgid "X position of main window"
 msgstr "Posición X de la ventana principal"
 
-#: ../data/devhelp.schemas.in.h:27
+#: ../data/devhelp.schemas.in.h:29
 msgid "Y position of assistant window"
-msgstr "Posición Y del ventanu del asistente"
+msgstr "Posición Y de la ventana del asistente"
 
-#: ../data/devhelp.schemas.in.h:28
+#: ../data/devhelp.schemas.in.h:30
 msgid "Y position of main window"
 msgstr "Posición Y de la ventana principal"
+
+#: ../data/ui/devhelp.builder.h:1
+msgid "Book Shelf"
+msgstr "Biblioteca"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "Activada"
+
+#: ../data/ui/devhelp.builder.h:3
+#| msgid "Contents"
+msgid "Fonts"
+msgstr "Fontes"
+
+#: ../data/ui/devhelp.builder.h:4
+#| msgid "Preferences…"
+msgid "Preferences"
+msgstr "Preferencies"
+
+#: ../data/ui/devhelp.builder.h:5
+#| msgid "_File"
+msgid "Title"
+msgstr "Títulu"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "_Anchor fixu:"
+
+#: ../data/ui/devhelp.builder.h:7
+#| msgid "Use system fonts"
+msgid "_Use system fonts"
+msgstr "_Usar fontes del sistema"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Variable width: "
+msgstr "A_nchor variable:"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -165,7 +209,7 @@ msgstr "Amuesa la documentación de l'API pa la pallabra embaxo'l cursor"
 msgid "Devhelp — Assistant"
 msgstr "Asistente — Devhelp"
 
-#: ../src/dh-assistant-view.c:328
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Llibru:"
 
@@ -183,7 +227,7 @@ msgstr "Páxina"
 #. * function, macro, struct, etc
 #: ../src/dh-link.c:262
 msgid "Keyword"
-msgstr "Pallabra contraseña"
+msgstr "Pallabra clave"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -220,25 +264,25 @@ msgstr "Enumberar"
 msgid "Type"
 msgstr "Triba"
 
-#: ../src/dh-main.c:175
+#: ../src/dh-main.c:247
 msgid "Search for a keyword"
-msgstr "Guetar una pallabra contraseña"
+msgstr "Guetar una pallabra clave"
 
-#: ../src/dh-main.c:180
+#: ../src/dh-main.c:252
 msgid "Quit any running Devhelp"
 msgstr "Fina cualesquier DevHelp n'execución"
 
-#: ../src/dh-main.c:185
+#: ../src/dh-main.c:257
 msgid "Display the version and exit"
 msgstr "Amuesa la versión y sal"
 
-#: ../src/dh-main.c:190
+#: ../src/dh-main.c:262
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Da'l focu al ventanu de Devhelp col campu de gueta activu"
 
-#: ../src/dh-main.c:195
+#: ../src/dh-main.c:267
 msgid "Search and display any hit in the assistant window"
-msgstr "Guetar y amosar cualesquier coincidencia nel ventanu del asistente"
+msgstr "Guetar y amosar cualesquier coincidencia na ventana del asistente"
 
 #: ../src/dh-parser.c:92
 #: ../src/dh-parser.c:189
@@ -273,190 +317,190 @@ msgstr "requiérense elementos «nome» y «enllaz» dientro de «%s» na llinia
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "requierse la «triba» d'elementu dientro de <keyword> na llinia %d, columna %d"
 
-#: ../src/dh-parser.c:506
+#: ../src/dh-parser.c:504
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nun pudo descomprimise'l llibru «%s»: %s"
 
-#: ../src/dh-search.c:509
+#: ../src/dh-search.c:508
 msgid "All books"
 msgstr "Tolos llibros"
 
-#: ../src/dh-search.c:587
+#: ../src/dh-search.c:630
 msgid "Search in:"
 msgstr "Guetar en:"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:98
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:96
+#: ../src/dh-window.c:99
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:97
+#: ../src/dh-window.c:100
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:101
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:102
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:103
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:104
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:105
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:106
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:731
+#: ../src/dh-window.c:735
 msgid "translator_credits"
 msgstr "Astur <malditoastur@gmail.com>, 2009"
 
-#: ../src/dh-window.c:738
+#: ../src/dh-window.c:742
 msgid "A developers' help browser for GNOME"
 msgstr "Un visor d'aida pa desendolcadores de GNOME"
 
-#: ../src/dh-window.c:768
+#: ../src/dh-window.c:772
 msgid "_File"
 msgstr "_Ficheru"
 
-#: ../src/dh-window.c:769
+#: ../src/dh-window.c:773
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:770
+#: ../src/dh-window.c:774
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/dh-window.c:771
+#: ../src/dh-window.c:775
 msgid "_Go"
 msgstr "_Dir"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:776
 msgid "_Help"
 msgstr "Ai_da"
 
 #. File menu
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:779
 msgid "_New Window"
 msgstr "_Ventana nueva"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:781
 msgid "New _Tab"
 msgstr "_Llingüeta nueva"
 
-#: ../src/dh-window.c:779
+#: ../src/dh-window.c:783
 msgid "_Print…"
 msgstr "_Imprentar…"
 
-#: ../src/dh-window.c:791
+#: ../src/dh-window.c:795
 #: ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Guetar siguiente"
 
-#: ../src/dh-window.c:793
+#: ../src/dh-window.c:797
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Guetar anterior"
 
-#: ../src/dh-window.c:800
+#: ../src/dh-window.c:804
 msgid "Go to the previous page"
 msgstr "Dir a la páxina anterior"
 
-#: ../src/dh-window.c:803
+#: ../src/dh-window.c:807
 msgid "Go to the next page"
 msgstr "Dir a la páxina siguiente"
 
-#: ../src/dh-window.c:806
+#: ../src/dh-window.c:810
 msgid "_Contents Tab"
 msgstr "Llingüeta de _conteníu"
 
-#: ../src/dh-window.c:809
+#: ../src/dh-window.c:813
 msgid "_Search Tab"
 msgstr "Llingüeta de _gueta"
 
 #. View menu
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:817
 msgid "_Larger Text"
 msgstr "Testu más _grande"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:818
 msgid "Increase the text size"
 msgstr "Aumentar el tamañu del testu"
 
-#: ../src/dh-window.c:816
+#: ../src/dh-window.c:820
 msgid "S_maller Text"
 msgstr "Testu más _pequeñu"
 
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:821
 msgid "Decrease the text size"
 msgstr "Amenorgar el tamañu del testu"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:823
 msgid "_Normal Size"
 msgstr "Tamañu _normal"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:824
 msgid "Use the normal text size"
 msgstr "Usar el tamañu de testu normal"
 
-#: ../src/dh-window.c:829
+#: ../src/dh-window.c:833
 msgid "Leave fullscreen mode"
 msgstr "Colar de mou pantalla completa"
 
-#: ../src/dh-window.c:836
+#: ../src/dh-window.c:840
 msgid "Display in full screen"
 msgstr "Amosar en pantalla completa"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:956
+#: ../src/dh-window.c:960
 msgid "Larger"
 msgstr "Más _grande"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:959
+#: ../src/dh-window.c:963
 msgid "Smaller"
 msgstr "Más _pequeñu"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1105
+#: ../src/dh-window.c:1108
 msgid "About Devhelp"
 msgstr "Tocante a DevHelp"
 
-#: ../src/dh-window.c:1110
+#: ../src/dh-window.c:1113
 msgid "Preferences…"
 msgstr "Preferencies…"
 
-#: ../src/dh-window.c:1153
+#: ../src/dh-window.c:1155
 msgid "Contents"
 msgstr "Índiz"
 
-#: ../src/dh-window.c:1163
+#: ../src/dh-window.c:1165
 msgid "Search"
 msgstr "Guetar"
 
-#: ../src/dh-window.c:1329
+#: ../src/dh-window.c:1343
 msgid "Error opening the requested link."
 msgstr "Fallu abriendo l'enllaz solicitáu."
 
-#: ../src/dh-window.c:1635
-#: ../src/dh-window.c:1877
+#: ../src/dh-window.c:1665
+#: ../src/dh-window.c:1907
 msgid "Empty Page"
 msgstr "Páxina erma"
 
@@ -467,12 +511,12 @@ msgstr "Guetar:"
 #: ../src/eggfindbar.c:333
 #: ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
-msgstr "Guetar la coincidencia anterior de la cadena guetada"
+msgstr "Atopar la coincidencia anterior de la cadena guetada"
 
 #: ../src/eggfindbar.c:346
 #: ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
-msgstr "Guetar la siguiente coincidencia de la cadena guetada"
+msgstr "Atopar la siguiente coincidencia de la cadena guetada"
 
 #: ../src/eggfindbar.c:358
 msgid "C_ase Sensitive"
