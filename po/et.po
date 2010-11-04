@@ -1,4 +1,4 @@
-# Devhelp'i eesti keele tõlge.
+# Devhelpi eesti keele tõlge.
 # Estonian translation of Devhelp.
 #
 # Copyright (C) 2007–2010 The GNOME Project.
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: devhelp MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-09-21 23:51+0000\n"
-"PO-Revision-Date: 2010-09-22 11:52+0300\n"
+"POT-Creation-Date: 2010-10-30 01:24+0000\n"
+"PO-Revision-Date: 2010-11-04 15:44+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -123,14 +123,14 @@ msgstr "Assistendiakna asukoht Y-teljel"
 msgid "Y position of main window"
 msgstr "Peaakna asukoht Y-teljel"
 
-msgid "<b>Book Shelf</b>"
-msgstr "<b>Raamaturiiul</b>"
-
-msgid "<b>Fonts</b>"
-msgstr "<b>Kirjatüübid</b>"
+msgid "Book Shelf"
+msgstr "Raamaturiiul"
 
 msgid "Enabled"
 msgstr "Lubatud"
+
+msgid "Fonts"
+msgstr "Kirjatüübid"
 
 msgid "Preferences"
 msgstr "Eelistused"
@@ -148,10 +148,10 @@ msgid "_Variable width: "
 msgstr "M_uutuva laiusega: "
 
 msgid "Devhelp support"
-msgstr "Devhelp'i tugi"
+msgstr "Devhelpi tugi"
 
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "F2 korral Devhelp'i avamine kursori all oleva sõna kohta"
+msgstr "F2 korral Devhelpi avamine kursori all oleva sõna kohta"
 
 msgid "Show API Documentation"
 msgstr "Näita API dokumentatsiooni"
@@ -219,7 +219,7 @@ msgid "Display the version and exit"
 msgstr "Versiooni andmete kuvamine ja programmi töö lõpetamine"
 
 msgid "Focus the Devhelp window with the search field active"
-msgstr "Devhelp'i akna fokuseerimine koos aktiivse otsinguväljaga"
+msgstr "Devhelpi akna fokuseerimine koos aktiivse otsinguväljaga"
 
 msgid "Search and display any hit in the assistant window"
 msgstr "Otsi ja kuva iga vastavus assistendiaknas"
@@ -303,6 +303,9 @@ msgstr ""
 msgid "A developers' help browser for GNOME"
 msgstr "Arendusteabe sirvija GNOME töölauale"
 
+msgid "DevHelp Website"
+msgstr "Devhelpi veebisait"
+
 msgid "_File"
 msgstr "_Fail"
 
@@ -383,7 +386,7 @@ msgstr "Väiksem"
 #. * "Devhelp", it's a name, not a
 #. * generic word.
 msgid "About Devhelp"
-msgstr "Devhelp'ist lähemalt"
+msgstr "Devhelpist lähemalt"
 
 msgid "Preferences…"
 msgstr "Eelistused…"
