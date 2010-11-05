@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-10-02 07:10+0000\n"
-"PO-Revision-Date: 2010-10-06 14:49+0100\n"
+"POT-Creation-Date: 2010-11-04 16:51+0000\n"
+"PO-Revision-Date: 2010-11-05 12:38+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
@@ -30,8 +30,8 @@ msgstr "Program za pomoč razvijalcem "
 #: ../data/devhelp.desktop.in.in.h:2
 #: ../src/dh-main.c:307
 #: ../src/dh-window.c:740
-#: ../src/dh-window.c:1047
-#: ../src/dh-window.c:1879
+#: ../src/dh-window.c:1048
+#: ../src/dh-window.c:1880
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -377,133 +377,137 @@ msgstr "Matej Urbančič, <mateju@svn.gnome.org>"
 msgid "A developers' help browser for GNOME"
 msgstr "Pregledovalnik pomoči razvijalcem za GNOME"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:749
+msgid "DevHelp Website"
+msgstr "Spletišče Devhelp"
+
+#: ../src/dh-window.c:773
 msgid "_File"
 msgstr "_Datoteka"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:774
 msgid "_Edit"
 msgstr "_Uredi"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:775
 msgid "_View"
 msgstr "_Pogled"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:776
 msgid "_Go"
 msgstr "_Pojdi"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:777
 msgid "_Help"
 msgstr "Pomo_č"
 
 #. File menu
-#: ../src/dh-window.c:779
+#: ../src/dh-window.c:780
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: ../src/dh-window.c:781
+#: ../src/dh-window.c:782
 msgid "New _Tab"
 msgstr "Nov _zavihek"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:784
 msgid "_Print…"
 msgstr "_Natisni ..."
 
-#: ../src/dh-window.c:795
+#: ../src/dh-window.c:796
 #: ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Najdi naslednje"
 
-#: ../src/dh-window.c:797
+#: ../src/dh-window.c:798
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Najdi predhodne"
 
-#: ../src/dh-window.c:804
+#: ../src/dh-window.c:805
 msgid "Go to the previous page"
 msgstr "Pojdi na predhodno stran"
 
-#: ../src/dh-window.c:807
+#: ../src/dh-window.c:808
 msgid "Go to the next page"
 msgstr "Pojdi na naslednjo stran"
 
-#: ../src/dh-window.c:810
+#: ../src/dh-window.c:811
 msgid "_Contents Tab"
 msgstr "Zavihek _vsebine"
 
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:814
 msgid "_Search Tab"
 msgstr "Zavihek _iskanja"
 
 #. View menu
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:818
 msgid "_Larger Text"
 msgstr "_Večje besedilo"
 
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:819
 msgid "Increase the text size"
 msgstr "Povečaj velikost besedila"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:821
 msgid "S_maller Text"
 msgstr "_Manjša pisava"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:822
 msgid "Decrease the text size"
 msgstr "Zmanjšaj velikost besedila"
 
-#: ../src/dh-window.c:823
+#: ../src/dh-window.c:824
 msgid "_Normal Size"
 msgstr "_Običajna velikost"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:825
 msgid "Use the normal text size"
 msgstr "Uporabi običajno velikost pisave"
 
-#: ../src/dh-window.c:833
+#: ../src/dh-window.c:834
 msgid "Leave fullscreen mode"
 msgstr "Zapusti celozaslonski način"
 
-#: ../src/dh-window.c:840
+#: ../src/dh-window.c:841
 msgid "Display in full screen"
 msgstr "Pokaži v celozaslonskem načinu"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:960
+#: ../src/dh-window.c:961
 msgid "Larger"
 msgstr "Večje"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:963
+#: ../src/dh-window.c:964
 msgid "Smaller"
 msgstr "Manjša"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1108
+#: ../src/dh-window.c:1109
 msgid "About Devhelp"
 msgstr "O programu Devhelp"
 
-#: ../src/dh-window.c:1113
+#: ../src/dh-window.c:1114
 msgid "Preferences…"
 msgstr "Možnosti ..."
 
-#: ../src/dh-window.c:1155
+#: ../src/dh-window.c:1156
 msgid "Contents"
 msgstr "Vsebina"
 
-#: ../src/dh-window.c:1165
+#: ../src/dh-window.c:1166
 msgid "Search"
 msgstr "Iskanje"
 
-#: ../src/dh-window.c:1343
+#: ../src/dh-window.c:1344
 msgid "Error opening the requested link."
 msgstr "Napaka med odpiranjem zahtevane povezave."
 
-#: ../src/dh-window.c:1665
-#: ../src/dh-window.c:1907
+#: ../src/dh-window.c:1666
+#: ../src/dh-window.c:1908
 msgid "Empty Page"
 msgstr "Prazna stran"
 
