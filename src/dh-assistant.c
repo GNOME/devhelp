@@ -66,7 +66,7 @@ dh_assistant_init (DhAssistant *assistant)
         DhAssistantPriv *priv = GET_PRIVATE (assistant);
         GtkWidget       *scrolled_window;
 
-        priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, FALSE, 0);
+        priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_widget_show (priv->main_box);
         gtk_container_add (GTK_CONTAINER (assistant), priv->main_box);
 
