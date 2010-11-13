@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-10-22 10:00+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
+"POT-Creation-Date: 2010-10-30 01:24+0000\n"
 "PO-Revision-Date: 2009-03-12 08:15+0900\n"
 "Last-Translator: Sahran <sahran.ug@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -23,9 +22,9 @@ msgstr "ئىجادىيەتچىلەرنىڭ ياردەم پروگراممىسى"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
-#: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
+#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
 msgid "Devhelp"
-msgstr "Devhelp "
+msgstr "Devhelp ھەققىدە"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -41,17 +40,15 @@ msgstr "تەڭ كەڭلىكتىكى تېكىست فونتى"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text"
-msgstr "تېكىست فونتى"
+msgstr "تېكىست خەت نۇسخىسى"
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with fixed width, such as code examples."
-msgstr ""
-"تېكىست ئۈچۈن ئىشلىتىدىغان ھەرپ كەڭلىكى ئوخشاش فونت، مەسىلەن ئەسلى كود "
-"قاتارلىقلاردا."
+msgstr "تېكىست ئۈچۈن ئىشلىتىدىغان ھەرپ كەڭلىكى ئوخشاش فونت، مەسىلەن ئەسلى كود قاتارلىقلاردا."
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Font for text with variable width."
-msgstr "ئۆزگىرىشچان كەڭلىكتىكى تېكىست فونتى"
+msgstr "ئۆزگىرىشچان كەڭلىكتىكى تېكىست خەت نۇسخىسى."
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Height of assistant window"
@@ -111,7 +108,7 @@ msgstr "ئاساسىي كۆزنەكنىڭ كەڭلىكى"
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "Use system fonts"
-msgstr "سىستېما فونتى ئىشلەت"
+msgstr "سىستېما خەت نۇسخىسى ئىشلەت"
 
 #: ../data/devhelp.schemas.in.h:21
 msgid "Use the system default fonts."
@@ -171,15 +168,15 @@ msgstr "مايىللىق"
 
 #: ../data/ui/devhelp.builder.h:5
 msgid "Title"
-msgstr "ماۋزۇ"
+msgstr "ماۋزۇ(ئاتى)"
 
 #: ../data/ui/devhelp.builder.h:6
 msgid "_Fixed width:"
-msgstr "مۇقىم كەڭلىك(_F):"
+msgstr "مۇقىم كەڭلىك(_F)"
 
 #: ../data/ui/devhelp.builder.h:7
 msgid "_Use system fonts"
-msgstr "سىستېما فونتلىرىنى  ئىشلەت(_U)"
+msgstr "سىستېما خەت نۇسخىلىرىنى ئىشلەت(_U)"
 
 #: ../data/ui/devhelp.builder.h:8
 msgid "_Variable width: "
@@ -191,8 +188,7 @@ msgstr "Devhelp تېخنىكىلىق ياردەملىرى"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr ""
-"[F2] نى باسسا نۇر بەلگىسى تۇرغان ئورۇندىكى سۆزنى  Devhelp تىن ئىزدەيدۇ."
+msgstr "[F2] نى باسسا نۇر بەلگىسى تۇرغان ئورۇندىكى سۆزنى  Devhelp تىن ئىزدەيدۇ."
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation"
@@ -276,8 +272,7 @@ msgstr "نەشر ئۇچۇرنى كۆرسىتىپ ئاخىرلاشتۇرماق"
 
 #: ../src/dh-main.c:262
 msgid "Focus the Devhelp window with the search field active"
-msgstr ""
-"Devhelp كۆزنىكىدە فوكۇسقا ئېرىشىدۇ ھەمدە ئىزدەش دائىرىسىنى ئاكتىپلايدۇ."
+msgstr "Devhelp كۆزنىكىدە فوكۇسقا ئېرىشىدۇ ھەمدە ئىزدەش دائىرىسىنى ئاكتىپلايدۇ."
 
 #: ../src/dh-main.c:267
 msgid "Search and display any hit in the assistant window"
@@ -369,136 +364,144 @@ msgstr "400%"
 
 #: ../src/dh-window.c:735
 msgid "translator_credits"
-msgstr "Gheyret T.Kenji <gheyret@gmail.com>"
+msgstr "Sahran <sahran@live.com>\n"
+"Gheyret T.Kenji <gheyret@yahoo.com>\n"
+"Zeper <zeper@msn.com>\n"
+"Abduxukur Abdurixit <abduxukur.abdurixit@t-systems.ch>"
 
 #: ../src/dh-window.c:742
 msgid "A developers' help browser for GNOME"
 msgstr "GNOME ئىجادىيەتچىلىرىنىڭ ياردەم ئۇچۇر كۆرگۈسى"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:749
+#| msgid "Devhelp support"
+msgid "DevHelp Website"
+msgstr ""
+
+#: ../src/dh-window.c:773
 msgid "_File"
 msgstr "ھۆججەت(_F)"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:774
 msgid "_Edit"
 msgstr "تەھرىر(_E)"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:775
 msgid "_View"
 msgstr "كۆرۈنۈش(_V)"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:776
 msgid "_Go"
 msgstr "يۆتكەل(_G)"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:777
 msgid "_Help"
 msgstr "ياردەم(_H)"
 
 #. File menu
-#: ../src/dh-window.c:779
+#: ../src/dh-window.c:780
 msgid "_New Window"
 msgstr "يېڭى كۆزنەك(_N)"
 
-#: ../src/dh-window.c:781
+#: ../src/dh-window.c:782
 msgid "New _Tab"
 msgstr "يېڭى بەتكۈچ(_T)"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:784
 msgid "_Print…"
 msgstr "باس(_P)…"
 
-#: ../src/dh-window.c:795 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "كېيىنكىنى ئىزدە"
 
-#: ../src/dh-window.c:797 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "كېيىنكىنى ئىزدە"
 
-#: ../src/dh-window.c:804
+#: ../src/dh-window.c:805
 msgid "Go to the previous page"
-msgstr "ئالدىنقى بەتكە يۆتكەل"
+msgstr "ئالدىنقى بەتكە يۆتكىلىدۇ"
 
-#: ../src/dh-window.c:807
+#: ../src/dh-window.c:808
 msgid "Go to the next page"
-msgstr "كېيىنكى بەتكە يۆتكەل"
+msgstr "كېيىنكى بەتكە يۆتكىلىدۇ"
 
-#: ../src/dh-window.c:810
+#: ../src/dh-window.c:811
 msgid "_Contents Tab"
 msgstr "مەزمۇن بەتكۈچىلىرى(_C)"
 
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:814
 msgid "_Search Tab"
 msgstr "ئىزدەش بەتكۈچى(_S)"
 
 #. View menu
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:818
 msgid "_Larger Text"
 msgstr "چوڭراق تېكىست(_L)"
 
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:819
 msgid "Increase the text size"
 msgstr "تېكىستنى چوڭايت"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:821
 msgid "S_maller Text"
 msgstr "تېكىستنى كىچىكرەك قىل(_M)"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:822
 msgid "Decrease the text size"
 msgstr "تېكىستنى كىچىكلەت"
 
-#: ../src/dh-window.c:823
+#: ../src/dh-window.c:824
 msgid "_Normal Size"
 msgstr "ئەسلى چوڭلۇقى(_N)"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:825
 msgid "Use the normal text size"
 msgstr "نورمال تېكىست چوڭلۇقنى ئىشلەت"
 
-#: ../src/dh-window.c:833
+#: ../src/dh-window.c:834
 msgid "Leave fullscreen mode"
 msgstr "تولۇق ئېكران ھالىتىدىن ئايرىلىش"
 
-#: ../src/dh-window.c:840
+#: ../src/dh-window.c:841
 msgid "Display in full screen"
 msgstr "تولۇق ئېكران ھالىتىدە كۆرسەت"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:960
+#: ../src/dh-window.c:961
 msgid "Larger"
 msgstr "چوڭراق"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:963
+#: ../src/dh-window.c:964
 msgid "Smaller"
 msgstr "كىچىكرەك"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1108
+#: ../src/dh-window.c:1109
 msgid "About Devhelp"
 msgstr "Devhelp ھەققىدە"
 
-#: ../src/dh-window.c:1113
+#: ../src/dh-window.c:1114
 msgid "Preferences…"
 msgstr "مايىللىق…"
 
-#: ../src/dh-window.c:1155
+#: ../src/dh-window.c:1156
 msgid "Contents"
 msgstr "مەزمۇن"
 
-#: ../src/dh-window.c:1165
+#: ../src/dh-window.c:1166
 msgid "Search"
 msgstr "ئىزدە"
 
-#: ../src/dh-window.c:1343
+#: ../src/dh-window.c:1344
 msgid "Error opening the requested link."
 msgstr "تەلەپ قىلىنغان ئۇلانمىنى ئېچىشتا خاتالىق كۆرۈلدى"
 
-#: ../src/dh-window.c:1665 ../src/dh-window.c:1907
+#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
 msgid "Empty Page"
 msgstr "قۇرۇق بەت"
 
@@ -516,11 +519,11 @@ msgstr "ئاياق تەرەپكە قاراپ ئىزدە"
 
 #: ../src/eggfindbar.c:358
 msgid "C_ase Sensitive"
-msgstr "چوڭ-كىچىكلىكىنى پەرقلەندۈرۈش(_A)"
+msgstr "چوڭ-كىچىكلىكىنى پەرقلەندۈر(_A)"
 
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
-msgstr "چوڭ-كىچىكلىكىنى پەرقلەندۈرۈشنى ئۆزگەرتىش"
+msgstr "چوڭ-كىچىكلىكىنى پەرقلەندۈرۈشنى ئالماشتۇر"
 
 #~ msgid "<b>Fonts</b>"
 #~ msgstr "<b>خەت نۇسخا</b>"
