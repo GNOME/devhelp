@@ -35,6 +35,40 @@
 #include "dh-window.h"
 #include "dh-assistant.h"
 
+static gchar    *option_search = NULL;
+static gchar    *option_search_assistant = NULL;
+static gboolean  option_quit = FALSE;
+static gboolean  option_focus_search = FALSE;
+static gboolean  option_version = FALSE;
+
+static GOptionEntry options[] = {
+        { "search", 's',
+          0, G_OPTION_ARG_STRING, &option_search,
+          N_("Search for a keyword"),
+          NULL
+        },
+        { "quit", 'q',
+          0, G_OPTION_ARG_NONE, &option_quit,
+          N_("Quit any running Devhelp"),
+          NULL
+        },
+        { "version", 'v',
+          0, G_OPTION_ARG_NONE, &option_version,
+          N_("Display the version and exit"),
+          NULL
+        },
+        { "focus-search",       'f',
+          0, G_OPTION_ARG_NONE, &option_focus_search,
+          N_("Focus the Devhelp window with the search field active"),
+          NULL
+        },
+        { "search-assistant", 'a',
+          0, G_OPTION_ARG_STRING, &option_search_assistant,
+          N_("Search and display any hit in the assistant window"),
+          NULL
+        },
+        { NULL }
+};
 
 static void
 extract_book_id (const gchar  *str,
@@ -44,7 +78,7 @@ extract_book_id (const gchar  *str,
         gchar   **strv;
         gint      i;
         GString  *term_string;
-        
+
         *term = NULL;
         *book_id = NULL;
 
@@ -107,39 +141,47 @@ search_assistant (DhBase      *base,
         return dh_assistant_search (DH_ASSISTANT (assistant), str);
 }
 
-
 static GApplication *application = NULL;
 
-
 static void
-dh_quit (DhBase         *base,
-	 const char     *data)
+dh_quit (GAction  *action,
+         GVariant *parameter,
+         gpointer  data)
 {
 	gtk_main_quit ();
 }
 
 static void
-dh_search (DhBase       *base,
-	   const char   *data)
+dh_search (GAction  *action,
+           GVariant *parameter,
+           gpointer  data)
 {
+        DhBase *base = data;
 	GtkWidget *window;
 
 	window = dh_base_get_window (base);
-	search_normal (DH_WINDOW (window), data);
+	search_normal (DH_WINDOW (window),
+                       g_variant_get_string (parameter, NULL));
 	gtk_window_present (GTK_WINDOW (window));
 }
 
 static void
-dh_search_assistant (DhBase     *base,
-		     const char *data)
+dh_search_assistant (GAction  *action,
+                     GVariant *parameter,
+                     gpointer  data)
 {
-	search_assistant (base, data);
+        DhBase *base = data;
+
+	search_assistant (base,
+                          g_variant_get_string (parameter, NULL));
 }
 
 static void
-dh_focus_search (DhBase         *base,
-		 const char     *data)
+dh_focus_search (GAction  *action,
+                 GVariant *parameter,
+                 gpointer  data)
 {
+        DhBase *base = data;
 	GtkWidget *window;
 
 	window = dh_base_get_window (base);
@@ -148,127 +190,99 @@ dh_focus_search (DhBase         *base,
 }
 
 static void
-dh_raise (DhBase        *base,
-	  const char    *data)
+dh_raise (GAction  *action,
+          GVariant *parameter,
+          gpointer  data)
 {
+        DhBase *base = data;
 	GtkWidget *window;
 
 	window = dh_base_get_window (base);
 	gtk_window_present (GTK_WINDOW (window));
 }
 
-
 enum
 {
-	COMMAND_QUIT,
-	COMMAND_SEARCH,
-	COMMAND_SEARCH_ASSISTANT,
-	COMMAND_FOCUS_SEARCH,
-	COMMAND_RAISE,
-	N_COMMANDS,
+	ACTION_QUIT,
+	ACTION_SEARCH,
+	ACTION_SEARCH_ASSISTANT,
+	ACTION_FOCUS_SEARCH,
+	ACTION_RAISE,
+	N_ACTIONS,
 };
 
-static const struct dh_command {
+static const struct dh_action {
 	const gchar * const name;
-	const gchar * const description;
-	void (*handler)(DhBase *, const char *);
-} commands[N_COMMANDS] = {
-	[COMMAND_QUIT]                  = { "quit",             "quit any running devhelp",                              dh_quit },
-	[COMMAND_SEARCH]                = { "search",           "search for a keyword",                                  dh_search },
-	[COMMAND_SEARCH_ASSISTANT]      = { "search-assistant", "search and display any hit in the assitant window",     dh_search_assistant },
-	[COMMAND_FOCUS_SEARCH]          = { "focus-search",     "focus the devhelp window with the search field active", dh_focus_search },
-	[COMMAND_RAISE]                 = { "raise",            "raise any running devhelp window",                      dh_raise },
+        const GVariantType *expected_type;
+	void (* handler) (GAction *action, GVariant *parameter, gpointer data);
+} actions[N_ACTIONS] = {
+	[ACTION_QUIT]                  = { "quit",             NULL,                  dh_quit },
+	[ACTION_SEARCH]                = { "search",           G_VARIANT_TYPE_STRING, dh_search },
+	[ACTION_SEARCH_ASSISTANT]      = { "search-assistant", G_VARIANT_TYPE_STRING, dh_search_assistant },
+	[ACTION_FOCUS_SEARCH]          = { "focus-search",     NULL,                  dh_focus_search },
+	[ACTION_RAISE]                 = { "raise",            NULL,                  dh_raise },
 };
 
-
 static void
-dh_action_handler (GApplication *app,
-		   gchar        *name,
-		   GVariant     *platform_data,
-		   gpointer      user_data)
-{
-	char    *data = NULL;
-	DhBase  *base;
-	guint    i;
-
-	g_return_if_fail (DH_IS_BASE (user_data));
-
-	base = DH_BASE (user_data);
-
-	if (platform_data) {
-		GVariantIter iter;
-		const char *key;
-		GVariant *value;
-
-		g_variant_iter_init (&iter, platform_data);
-		while (g_variant_iter_next (&iter, "{&sv}", &key, &value)) {
-			if (g_strcmp0 (key, "data") == 0) {
-				data = g_variant_dup_string (value, NULL);
-				g_variant_unref (value);
-				break;
-			}
-			g_variant_unref (value);
-		}
-	}
-
-	for (i = 0; i < N_COMMANDS; i++) {
-		if (g_strcmp0 (name, commands[i].name) == 0) {
-			commands[i].handler (base, data);
-		}
-	}
-
-	g_free (data);
-}
-
-static void
-dh_register_commands (GApplication *application)
+dh_register_actions (GApplication *application,
+                     DhBase       *base)
 {
 	guint i;
 
-	for (i = 0; i < G_N_ELEMENTS (commands); i++) {
-		g_application_add_action (application, commands[i].name, commands[i].description);
+        GSimpleActionGroup *action_group;
+        GSimpleAction *action;
+
+        action_group = g_simple_action_group_new ();
+
+	for (i = 0; i < G_N_ELEMENTS (actions); i++) {
+                action = g_simple_action_new (actions[i].name, actions[i].expected_type);
+                g_signal_connect (action, "activate",  G_CALLBACK (actions[i].handler), base);
+                g_simple_action_group_insert (action_group, G_ACTION (action));
+                g_object_unref (action);
 	}
+
+        g_application_set_action_group (application, G_ACTION_GROUP (action_group));
+        g_object_unref (action_group);
+}
+
+static int
+activate (GApplication *application,
+          gpointer      data)
+{
+        DhBase *base = data;
+
+	if (option_quit) {
+		/* No running Devhelps so just quit */
+		return EXIT_SUCCESS;
+	}
+
+	if (!option_search_assistant) {
+                GtkWidget *window;
+
+		window = dh_base_new_window (base);
+
+		if (option_search) {
+			search_normal (DH_WINDOW (window), option_search);
+		}
+
+		gtk_widget_show (window);
+	} else {
+		if (!search_assistant (base, option_search_assistant)) {
+			return EXIT_SUCCESS;
+		}
+	}
+
+        gtk_main ();
+
+        return EXIT_SUCCESS;
 }
 
 int
 main (int argc, char **argv)
 {
-	gchar                  *option_search = NULL;
-	gchar                  *option_search_assistant = NULL;
-	gboolean                option_quit = FALSE;
-	gboolean                option_focus_search = FALSE;
-	gboolean                option_version = FALSE;
 	DhBase                 *base;
-	GtkWidget              *window;
 	GError                 *error = NULL;
-        GOptionEntry            options[] = {
-                { "search", 's',
-                  0, G_OPTION_ARG_STRING, &option_search,
-                  _("Search for a keyword"),
-                  NULL
-                },
-                { "quit", 'q',
-                  0, G_OPTION_ARG_NONE, &option_quit,
-                  _("Quit any running Devhelp"),
-                  NULL
-                },
-                { "version", 'v',
-                  0, G_OPTION_ARG_NONE, &option_version,
-                  _("Display the version and exit"),
-                  NULL
-                },
-                { "focus-search",       'f',
-                  0, G_OPTION_ARG_NONE, &option_focus_search,
-                  _("Focus the Devhelp window with the search field active"),
-                  NULL
-                },
-                { "search-assistant", 'a',
-                  0, G_OPTION_ARG_STRING, &option_search_assistant,
-                  _("Search and display any hit in the assistant window"),
-                  NULL
-                },
-                { NULL }
-        };
+        int                     status;
 
 #ifdef GDK_WINDOWING_QUARTZ
         {
@@ -294,12 +308,12 @@ main (int argc, char **argv)
 
 	if (!gtk_init_with_args (&argc, &argv, NULL, options, GETTEXT_PACKAGE, &error)) {
 		g_printerr ("%s\n", error->message);
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	if (option_version) {
 		g_print ("%s\n", PACKAGE_STRING);
-		return 0;
+		return EXIT_SUCCESS;
 	}
 
 	/* i18n: Please don't translate "Devhelp" (it's marked as translatable
@@ -307,81 +321,63 @@ main (int argc, char **argv)
 	g_set_application_name (_("Devhelp"));
 	gtk_window_set_default_icon_name ("devhelp");
 
-	application = g_initable_new (G_TYPE_APPLICATION,
-				      NULL,
-				      NULL,
-				      "application-id", "org.gnome.Devhelp",
-				      "argv", g_variant_new_bytestring_array ((const char * const *) argv, argc),
-				      "default-quit", FALSE,
-				      NULL);
+        /* Create our base application. Needs to be created before the GApplication,
+         * as we will pass it as data to the 'activate' callback */
+	base = dh_base_new ();
 
-	if (g_application_is_remote (G_APPLICATION (application))) {
-		GVariant *data = NULL;
-		GVariantBuilder builder;
+        /* Create new GApplication */
+        application = g_application_new ("org.gnome.Devhelp", 0);
 
-		g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{sv}"));
+        /* Register all known actions */
+        g_signal_connect (application, "activate", G_CALLBACK (activate), base);
+        dh_register_actions (application, base);
 
+        /* Try to register the application... */
+        if (!g_application_register (application, NULL, &error)) {
+                g_printerr ("Couldn't register Devhelp instance: '%s'\n",
+                            error ? error->message : "");
+		g_object_unref (application);
+                g_object_unref (base);
+                return EXIT_FAILURE;
+        }
+
+        /* Actions on a remote Devhelp already running? */
+	if (g_application_get_is_remote (G_APPLICATION (application))) {
 		if (option_quit) {
-			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_QUIT].name, data);
-		}
-		else if (option_search) {
-			g_variant_builder_add (&builder, "{sv}", "data", g_variant_new_string (option_search));
-			data = g_variant_builder_end (&builder);
-
-			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_SEARCH].name, data);
-
-			g_variant_unref (data);
-		}
-		else if (option_search_assistant) {
-			g_variant_builder_add (&builder, "{sv}", "data", g_variant_new_string (option_search_assistant));
-			data = g_variant_builder_end (&builder);
-
-			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_SEARCH_ASSISTANT].name, data);
-
-			g_variant_unref (data);
-		}
-		else if (option_focus_search) {
-			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_FOCUS_SEARCH].name, data);
+                        g_action_group_activate_action (G_ACTION_GROUP (application),
+                                                        actions[ACTION_QUIT].name,
+                                                        NULL);
+		} else if (option_search) {
+                        g_debug ("Searching in remote instance... '%s'", option_search);
+                        g_action_group_activate_action (G_ACTION_GROUP (application),
+                                                        actions[ACTION_SEARCH].name,
+                                                        g_variant_new_string (option_search));
+		} else if (option_search_assistant) {
+                        g_action_group_activate_action (G_ACTION_GROUP (application),
+                                                        actions[ACTION_SEARCH_ASSISTANT].name,
+                                                        g_variant_new_string (option_search_assistant));
+		} else if (option_focus_search) {
+                        g_action_group_activate_action (G_ACTION_GROUP (application),
+                                                        actions[ACTION_FOCUS_SEARCH].name,
+                                                        NULL);
 		} else {
-			g_application_invoke_action (G_APPLICATION (application), commands[COMMAND_RAISE].name, data);
+                        g_action_group_activate_action (G_ACTION_GROUP (application),
+                                                        actions[ACTION_RAISE].name,
+                                                        NULL);
 		}
 
 		gdk_notify_startup_complete ();
 		g_object_unref (application);
-		return EXIT_SUCCESS;
-	} else {
-		dh_register_commands (G_APPLICATION (application));
-	}
-
-	if (option_quit) {
-		/* No running Devhelps so just quit */
+                g_object_unref (base);
 		return EXIT_SUCCESS;
 	}
 
-	base = dh_base_new ();
-
-	g_signal_connect (G_APPLICATION (application), "action-with-data",
-			  G_CALLBACK (dh_action_handler), base);
-
-	if (!option_search_assistant) {
-		window = dh_base_new_window (base);
-
-		if (option_search) {
-			search_normal (DH_WINDOW (window), option_search);
-		}
-
-		gtk_widget_show (window);
-	} else {
-		if (!search_assistant (base, option_search_assistant)) {
-			return EXIT_SUCCESS;
-		}
-	}
-
-	gtk_main ();
+        /* And run the GApplication */
+        status = g_application_run (application, argc, argv);
 
 	g_object_unref (base);
 	g_object_unref (application);
 
-	return EXIT_SUCCESS;
+	return status;
 }
 
