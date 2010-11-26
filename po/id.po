@@ -9,10 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-10-22 22:52+0000\n"
-"PO-Revision-Date: 2010-10-25 20:55+0700\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
+"POT-Creation-Date: 2010-11-18 12:44+0000\n"
+"PO-Revision-Date: 2010-11-26 12:00+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,8 +29,11 @@ msgstr "Program Bantuan untuk Pengembang"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
-#: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
+#: ../data/devhelp.desktop.in.in.h:2
+#: ../src/dh-main.c:307
+#: ../src/dh-window.c:740
+#: ../src/dh-window.c:1048
+#: ../src/dh-window.c:1880
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -168,17 +170,14 @@ msgid "Enabled"
 msgstr "Diaktifkan"
 
 #: ../data/ui/devhelp.builder.h:3
-#| msgid "Contents"
 msgid "Fonts"
 msgstr "Fonta"
 
 #: ../data/ui/devhelp.builder.h:4
-#| msgid "Preferences…"
 msgid "Preferences"
 msgstr "Preferensi"
 
 #: ../data/ui/devhelp.builder.h:5
-#| msgid "_File"
 msgid "Title"
 msgstr "Judul"
 
@@ -187,7 +186,6 @@ msgid "_Fixed width:"
 msgstr "_Lebar tetap:"
 
 #: ../data/ui/devhelp.builder.h:7
-#| msgid "Use system fonts"
 msgid "_Use system fonts"
 msgstr "G_unakan fonta sistem"
 
@@ -291,7 +289,9 @@ msgstr "Jendela Devhelp terfokus pada kolom pencarian yang aktif"
 msgid "Search and display any hit in the assistant window"
 msgstr "Mencari dan menampilkan semua hasil di jendela pembantu"
 
-#: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
+#: ../src/dh-parser.c:92
+#: ../src/dh-parser.c:189
+#: ../src/dh-parser.c:253
 #: ../src/dh-parser.c:263
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
@@ -304,25 +304,18 @@ msgstr "Namespace '%s' tidak sah pada baris %d, kolom %d"
 
 #: ../src/dh-parser.c:140
 #, c-format
-msgid ""
-"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr ""
-"Elemen \"title\", \"name\", dan \"link\" diperlukan pada baris %d, kolom %d"
+msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr "Elemen \"title\", \"name\", dan \"link\" diperlukan pada baris %d, kolom %d"
 
 #: ../src/dh-parser.c:208
 #, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
-msgstr ""
-"Elemen \"name\" dan \"link\" diperlukan dalam <sub> pada baris %d, kolom %d"
+msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
+msgstr "Elemen \"name\" dan \"link\" diperlukan dalam <sub> pada baris %d, kolom %d"
 
 #: ../src/dh-parser.c:288
 #, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr ""
-"Elemen \"name\" dan \"link\" diperlukan dalam '%s' pada baris %d, kolom %d"
+msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr "Elemen \"name\" dan \"link\" diperlukan dalam '%s' pada baris %d, kolom %d"
 
 #: ../src/dh-parser.c:301
 #, c-format
@@ -389,130 +382,138 @@ msgstr ""
 msgid "A developers' help browser for GNOME"
 msgstr "Peramban bantuan GNOME bagi pengembang"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:749
+#| msgid "Devhelp support"
+msgid "DevHelp Website"
+msgstr "Situs Web Devhelp"
+
+#: ../src/dh-window.c:773
 msgid "_File"
 msgstr "_Berkas"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:774
 msgid "_Edit"
 msgstr "_Sunting"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:775
 msgid "_View"
 msgstr "_Tampilan"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:776
 msgid "_Go"
 msgstr "_Ke"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:777
 msgid "_Help"
 msgstr "Ba_ntuan"
 
 #. File menu
-#: ../src/dh-window.c:779
+#: ../src/dh-window.c:780
 msgid "_New Window"
 msgstr "Je_ndela Baru"
 
-#: ../src/dh-window.c:781
+#: ../src/dh-window.c:782
 msgid "New _Tab"
 msgstr "_Tab Baru"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:784
 msgid "_Print…"
 msgstr "_Cetak…"
 
-#: ../src/dh-window.c:795 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:796
+#: ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Cari Selanjutnya"
 
-#: ../src/dh-window.c:797 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:798
+#: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Temukan Sebelumnya"
 
-#: ../src/dh-window.c:804
+#: ../src/dh-window.c:805
 msgid "Go to the previous page"
 msgstr "Halaman sebelumnya"
 
-#: ../src/dh-window.c:807
+#: ../src/dh-window.c:808
 msgid "Go to the next page"
 msgstr "Halaman selanjutnya"
 
-#: ../src/dh-window.c:810
+#: ../src/dh-window.c:811
 msgid "_Contents Tab"
 msgstr "Tab _Isi"
 
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:814
 msgid "_Search Tab"
 msgstr "Tab Penca_rian"
 
 #. View menu
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:818
 msgid "_Larger Text"
 msgstr "_Teks Besar"
 
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:819
 msgid "Increase the text size"
 msgstr "Memperbesar ukuran teks"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:821
 msgid "S_maller Text"
 msgstr "T_eks Kecil"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:822
 msgid "Decrease the text size"
 msgstr "Memperkecil ukuran teks"
 
-#: ../src/dh-window.c:823
+#: ../src/dh-window.c:824
 msgid "_Normal Size"
 msgstr "Ukuran _Normal"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:825
 msgid "Use the normal text size"
 msgstr "Teks dengan ukuran normal"
 
-#: ../src/dh-window.c:833
+#: ../src/dh-window.c:834
 msgid "Leave fullscreen mode"
 msgstr "Meninggalkan mode layar penuh"
 
-#: ../src/dh-window.c:840
+#: ../src/dh-window.c:841
 msgid "Display in full screen"
 msgstr "Tampil sepenuh layar"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:960
+#: ../src/dh-window.c:961
 msgid "Larger"
 msgstr "Lebih besar"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:963
+#: ../src/dh-window.c:964
 msgid "Smaller"
 msgstr "Lebih kecil"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1108
+#: ../src/dh-window.c:1109
 msgid "About Devhelp"
 msgstr "Tentang Devhelp"
 
-#: ../src/dh-window.c:1113
+#: ../src/dh-window.c:1114
 msgid "Preferences…"
 msgstr "Preferensi…"
 
-#: ../src/dh-window.c:1155
+#: ../src/dh-window.c:1156
 msgid "Contents"
 msgstr "Isi"
 
-#: ../src/dh-window.c:1165
+#: ../src/dh-window.c:1166
 msgid "Search"
 msgstr "Cari"
 
-#: ../src/dh-window.c:1343
+#: ../src/dh-window.c:1344
 msgid "Error opening the requested link."
 msgstr "Galat sewaktu membuka tautan yang diminta."
 
-#: ../src/dh-window.c:1665 ../src/dh-window.c:1907
+#: ../src/dh-window.c:1666
+#: ../src/dh-window.c:1908
 msgid "Empty Page"
 msgstr "Halaman Kosong"
 
@@ -520,11 +521,13 @@ msgstr "Halaman Kosong"
 msgid "Find:"
 msgstr "Cari:"
 
-#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
+#: ../src/eggfindbar.c:333
+#: ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Menuju string yang ditemukan sebelumnya"
 
-#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
+#: ../src/eggfindbar.c:346
+#: ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "Menuju string yang ditemukan sebelumnya"
 
@@ -533,6 +536,8 @@ msgid "C_ase Sensitive"
 msgstr "Sesuai Bes_ar/Kecil Huruf"
 
 # Teks keterangan.
-#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
+#: ../src/eggfindbar.c:362
+#: ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Mencari dengan menyesuaikan besar atau kecilnya huruf"
+
