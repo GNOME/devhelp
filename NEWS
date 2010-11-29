@@ -1,4 +1,35 @@
 ==============
+Version 2.91.3
+==============
+
+Fixed bugs:
+
+ - #606593, Devhelp no longer recognizes "page:" search keyword
+ - #624197, [patch] port to GtkApplication
+ - #630108, Update autotools configuration
+ - #632872, Cannot build devhelp - Replace GDK_<keyname> with
+            GDK_KEY_<keyname>
+ - #635162, Devhelp won't build due to the new GApplication API
+
+Updated translations: ast, be, bg, ca, ca@valencia, cs, da, de, el,
+en_GB, es, et, fr, gl, he, hu, id, it, ja, ko, lt, nb, nl, pl, pt_BR,
+pt, ro, ru, sk, sl, sr@latin, sr, sv, th, ug, zh_CN, zh_HK, zh_TW
+
+Many thanks to all contributors: Gil Forcada, Gheyret T.Kenji, Bruce Cowan,
+Kalev Lember, Petr Kovar, Yinghua Wang, Mario Blättermann, Dirgita, Philip
+Withnall, Duarte Loreto, Theppitak Karoonboonyanan, Kjartan Maraas,
+Gintautas Miliauskas, Javier Jardón, Gabor Kelemen, Bastien Nocera, Chao-
+Hsiung Liao, Lucian Adrian Grijincu, Takayuki KUSANO, Lucas Lommer,
+Christian Kirbach, Roman Mátyus, Kenneth Nielsen, Jorge González, Fran
+Diéguez, Piotr Drąg, Claude Paroz, Милош Поповић, Marek
+Černocký, Aleksander Morgado, Yavor Doganov, Matthias Clasen, Changwoo
+Ryu, Aron Xu, Ivar Smolin, Eiichi Sato, Wouter Bolsterlee, Daniel Nylander,
+Bruno Brouard, Xandru Armesto, Matej Urbančič, Jonh Wendell, Johannes
+Schmid, Damyan Ivanov, Leonid Kanter, Wladzimir Manulenka, Andika Triwidada,
+Carles Ferrando, Francesco Marletta, Saleem Abdulrasool, Daniel
+Șerbănescu, Olav Vitters, Simos Xenitellis, Yaron Shahrabani
+
+==============
 Version 2.90.5
 ==============
 
