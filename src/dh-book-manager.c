@@ -216,14 +216,66 @@ book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
                                         GFile             *file,
                                         GFile             *other_file,
                                         GFileMonitorEvent  event_type,
-                                        gpointer	       user_data)
+                                        gpointer	   user_data)
 {
-        gchar *file_uri;
+        DhBookManager *book_manager = user_data;
+        GError *error = NULL;
+        GFileInfo *file_info;
+        gchar *file_path;
+        gchar *file_basename;
+        gchar *book_path;
 
-        file_uri = g_file_get_uri (file);
+        /* In the book manager we only handle events for new directories
+         * created. Books removed or updated are handled by the book objects
+         * themselves */
+        if (event_type != G_FILE_MONITOR_EVENT_CREATED) {
+                return;
+        }
 
-        g_debug ("CHANGED BOOKLIST DIR '%s'", file_uri);
-        g_free (file_uri);
+        /* Get file info */
+        file_info = g_file_query_info (file,
+                                       G_FILE_ATTRIBUTE_STANDARD_TYPE,
+                                       G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+                                       NULL,
+                                       &error);
+        if (!file_info) {
+                gchar *file_uri;
+
+                file_uri = g_file_get_uri (file);
+                g_warning ("Couldn't query file type of '%s': %s",
+                           file_uri,
+                           error ? error->message : "unknown error");
+                g_free (file_uri);
+                g_clear_error (&error);
+                return;
+        }
+
+        /* The created file must be a directory! */
+        if (g_file_info_get_file_type (file_info) != G_FILE_TYPE_DIRECTORY) {
+                g_object_unref (file_info);
+                return;
+        }
+        g_object_unref (file_info);
+
+        file_path = g_file_get_path (file);
+        file_basename = g_file_get_basename (file);
+
+        /* Compute book path */
+        book_path = book_manager_get_book_path (file_path, file_basename);
+        if (book_path) {
+                /* Add book from filepath */
+                book_manager_add_from_filepath (book_manager,
+                                                book_path);
+                g_free (book_path);
+
+                /* Emit signal to notify others */
+                g_signal_emit (book_manager,
+                               signals[DISABLED_BOOK_LIST_UPDATED],
+                               0);
+        }
+
+        g_free (file_path);
+        g_free (file_basename);
 }
 
 static void
@@ -404,10 +456,31 @@ book_manager_book_deleted_cb (DhBook   *book,
         if (li) {
                 g_debug ("Deleting book '%s' from the book manager list",
                          dh_book_get_title (book));
+
                 /* Remove the item and unref our reference */
                 priv->books = g_list_delete_link (priv->books, li);
                 g_object_unref (book);
+
+                /* Emit signal to notify others */
+                g_signal_emit (book_manager,
+                               signals[DISABLED_BOOK_LIST_UPDATED],
+                               0);
         }
+}
+
+static void
+book_manager_book_updated_cb (DhBook   *book,
+                              gpointer  user_data)
+{
+        DhBookManager *book_manager = user_data;
+
+        g_debug ("Updating book '%s' in the book manager list",
+                 dh_book_get_title (book));
+
+        /* Emit signal to notify others */
+        g_signal_emit (book_manager,
+                       signals[DISABLED_BOOK_LIST_UPDATED],
+                       0);
 }
 
 static void
@@ -447,10 +520,17 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
                                             book,
                                             (GCompareFunc)dh_book_cmp_by_title);
 
-        /* Get notifications of book being REMOVED */
+        g_debug ("Adding book '%s' to the book manager list",
+                 dh_book_get_title (book));
+
+        /* Get notifications of book being deleted or updated */
         g_signal_connect (book,
-                          "book-deleted",
+                          "deleted",
                           G_CALLBACK (book_manager_book_deleted_cb),
+                          book_manager);
+        g_signal_connect (book,
+                          "updated",
+                          G_CALLBACK (book_manager_book_updated_cb),
                           book_manager);
 }
 

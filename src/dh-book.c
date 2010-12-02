@@ -122,7 +122,7 @@ dh_book_class_init (DhBookClass *klass)
         object_class->finalize = book_finalize;
 
 	signals[BOOK_UPDATED] =
-		g_signal_new ("book-updated",
+		g_signal_new ("updated",
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
@@ -132,7 +132,7 @@ dh_book_class_init (DhBookClass *klass)
                               0);
 
 	signals[BOOK_DELETED] =
-		g_signal_new ("book-deleted",
+		g_signal_new ("deleted",
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
@@ -237,14 +237,12 @@ book_monitor_event_timeout_cb  (gpointer data)
         /* We'll get either is_deleted OR is_updated,
          * not possible to have both or none */
         if (priv->is_deleted) {
-                g_debug ("Book '%s' was deleted", dh_book_get_title (book));
                 /* Emit the signal, but make sure we hold a reference
                  * while doing it */
                 g_object_ref (book);
 		g_signal_emit (book, signals[BOOK_DELETED], 0);
                 g_object_unref (book);
         } else if (priv->is_updated) {
-                g_debug ("Book '%s' was updated", dh_book_get_title (book));
 		g_signal_emit (book, signals[BOOK_UPDATED], 0);
         } else {
                 g_warn_if_reached ();
