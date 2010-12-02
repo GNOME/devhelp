@@ -9,7 +9,9 @@ Makefile.in
 autom4te.cache/
 /ChangeLog
 /INSTALL
+/ABOUT-NLS
 /aclocal.m4
+/m4
 /build/compile
 /build/config.guess
 /build/config.sub
@@ -19,12 +21,7 @@ autom4te.cache/
 /build/missing
 /build/py-compile
 /compile
-/config.log
-/config.guess
-/config.h
-/config.h.in
-/config.status
-/config.sub
+/config.*
 /configure
 /depcomp
 /install-sh
@@ -47,6 +44,13 @@ libtool
 /po/POTFILES
 /po/devhelp.pot
 /po/stamp-it
+/po/Makevars.template
+/po/Rules-quot
+/po/boldquot.sed
+/po/*.header
+/po/insert-header.sin
+/po/quot.sed
+/po/remove-potcdate.sin
 /misc/gedit-plugin/devhelp.desktop
 /misc/gedit-plugin/devhelp.gedit-plugin
 /src/devhelp
