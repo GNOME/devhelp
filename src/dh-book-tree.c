@@ -183,8 +183,8 @@ book_tree_populate_tree (DhBookTree *tree)
 }
 
 static void
-book_manager_disabled_book_list_changed_cb (DhBookManager *book_manager,
-                                            gpointer user_data)
+book_manager_book_list_changed_cb (DhBookManager *book_manager,
+                                   gpointer       user_data)
 {
         DhBookTree *tree = user_data;
         book_tree_populate_tree (tree);
@@ -261,7 +261,11 @@ dh_book_tree_new (DhBookManager *book_manager)
         priv->book_manager = g_object_ref (book_manager);
         g_signal_connect (priv->book_manager,
                           "disabled-book-list-updated",
-                          G_CALLBACK (book_manager_disabled_book_list_changed_cb),
+                          G_CALLBACK (book_manager_book_list_changed_cb),
+                          tree);
+        g_signal_connect (priv->book_manager,
+                          "book-list-updated",
+                          G_CALLBACK (book_manager_book_list_changed_cb),
                           tree);
 
         book_tree_populate_tree (tree);

@@ -43,9 +43,6 @@ struct _DhBookManager {
 
 struct _DhBookManagerClass {
         GObjectClass parent_class;
-
-        /* Signals */
-        void (* disabled_book_list_updated) (DhBookManager *book_manager);
 };
 
 GType          dh_book_manager_get_type             (void) G_GNUC_CONST;
@@ -56,7 +53,7 @@ DhBook        *dh_book_manager_get_book_by_name     (DhBookManager *book_manager
                                                      const gchar   *name);
 DhBook        *dh_book_manager_get_book_by_path     (DhBookManager *book_manager,
                                                      const gchar   *path);
-void           dh_book_manager_update               (DhBookManager *book_manager);
+void           dh_book_manager_update_disabled      (DhBookManager *book_manager);
 
 G_END_DECLS
 

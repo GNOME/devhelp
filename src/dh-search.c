@@ -597,8 +597,8 @@ search_completion_populate (DhSearch *search)
 }
 
 static void
-book_manager_disabled_book_list_changed_cb (DhBookManager *book_manager,
-                                            gpointer user_data)
+book_manager_book_list_changed_cb (DhBookManager *book_manager,
+                                   gpointer       user_data)
 {
         DhSearch *search = user_data;
 
@@ -624,7 +624,11 @@ dh_search_new (DhBookManager *book_manager)
         priv->book_manager = g_object_ref (book_manager);
         g_signal_connect (priv->book_manager,
                           "disabled-book-list-updated",
-                          G_CALLBACK (book_manager_disabled_book_list_changed_cb),
+                          G_CALLBACK (book_manager_book_list_changed_cb),
+                          search);
+        g_signal_connect (priv->book_manager,
+                          "book-list-updated",
+                          G_CALLBACK (book_manager_book_list_changed_cb),
                           search);
 
         gtk_container_set_border_width (GTK_CONTAINER (search), 2);

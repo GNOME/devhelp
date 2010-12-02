@@ -38,6 +38,7 @@ typedef struct {
 } DhBookManagerPriv;
 
 enum {
+        BOOK_LIST_UPDATED,
         DISABLED_BOOK_LIST_UPDATED,
         LAST_SIGNAL
 };
@@ -91,11 +92,20 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
 
         object_class->finalize = book_manager_finalize;
 
+        signals[BOOK_LIST_UPDATED] =
+                g_signal_new ("book-list-updated",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
+                              _dh_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
         signals[DISABLED_BOOK_LIST_UPDATED] =
                 g_signal_new ("disabled-book-list-updated",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (DhBookManagerClass, disabled_book_list_updated),
+                              0,
                               NULL, NULL,
                               _dh_marshal_VOID__VOID,
                               G_TYPE_NONE,
@@ -270,7 +280,7 @@ book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
 
                 /* Emit signal to notify others */
                 g_signal_emit (book_manager,
-                               signals[DISABLED_BOOK_LIST_UPDATED],
+                               signals[BOOK_LIST_UPDATED],
                                0);
         }
 
@@ -463,7 +473,7 @@ book_manager_book_deleted_cb (DhBook   *book,
 
                 /* Emit signal to notify others */
                 g_signal_emit (book_manager,
-                               signals[DISABLED_BOOK_LIST_UPDATED],
+                               signals[BOOK_LIST_UPDATED],
                                0);
         }
 }
@@ -479,7 +489,7 @@ book_manager_book_updated_cb (DhBook   *book,
 
         /* Emit signal to notify others */
         g_signal_emit (book_manager,
-                       signals[DISABLED_BOOK_LIST_UPDATED],
+                       signals[BOOK_LIST_UPDATED],
                        0);
 }
 
@@ -573,7 +583,7 @@ dh_book_manager_get_book_by_path (DhBookManager *book_manager,
 }
 
 void
-dh_book_manager_update (DhBookManager *book_manager)
+dh_book_manager_update_disabled (DhBookManager *book_manager)
 {
         DhBookManagerPriv *priv;
         GSList *books_disabled = NULL;
