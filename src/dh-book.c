@@ -284,6 +284,8 @@ book_monitor_event_timeout_cb  (gpointer data)
         /* Reset event */
         priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
 
+        /* Destroy the reference we got in the timeout */
+        g_object_unref (book);
         return FALSE;
 }
 
@@ -324,7 +326,7 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                 }
                 priv->monitor_event_timeout_id = g_timeout_add_seconds (EVENT_MERGE_TIMEOUT_SECS,
                                                                         book_monitor_event_timeout_cb,
-                                                                        book);
+                                                                        g_object_ref (book));
         }
 }
 
