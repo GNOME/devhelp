@@ -495,9 +495,15 @@ static void
 book_manager_book_updated_cb (DhBook   *book,
                               gpointer  user_data)
 {
-        g_debug ("Updating book '%s' in the book manager list",
-                 dh_book_get_title (book));
-        /* TODO */
+        DhBookManager *book_manager = user_data;
+        gchar         *book_path;
+
+        /* When we update a book, we need to delete it and then
+         * create it again. */
+        book_path = g_strdup (dh_book_get_path (book));
+        book_manager_book_deleted_cb (book, book_manager);
+        book_manager_add_from_filepath (book_manager, book_path);
+        g_free (book_path);
 }
 
 static GSList *
