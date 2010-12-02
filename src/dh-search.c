@@ -130,8 +130,7 @@ dh_search_init (DhSearch *search)
 {
         DhSearchPriv *priv = GET_PRIVATE (search);
 
-        priv->completion = g_completion_new (
-                (GCompletionFunc) search_complete_func);
+        priv->completion = NULL;
 
         priv->hitlist = gtk_tree_view_new ();
         priv->model = dh_keyword_model_new ();
@@ -569,12 +568,18 @@ search_combo_create (DhSearch *search)
 }
 
 static void
-completion_add_items (DhSearch *search)
+search_completion_populate (DhSearch *search)
 {
         DhSearchPriv *priv;
         GList        *l;
 
         priv = GET_PRIVATE (search);
+
+        if (priv->completion) {
+                g_completion_free (priv->completion);
+        }
+
+        priv->completion = g_completion_new ((GCompletionFunc) search_complete_func);
 
         for (l = dh_book_manager_get_books (priv->book_manager);
              l;
@@ -582,7 +587,7 @@ completion_add_items (DhSearch *search)
                 DhBook *book = DH_BOOK (l->data);
                 GList  *keywords;
 
-                keywords = dh_book_get_keywords(book);
+                keywords = dh_book_get_keywords (book);
 
                 if (keywords) {
                         g_completion_add_items (priv->completion,
@@ -596,6 +601,8 @@ book_manager_disabled_book_list_changed_cb (DhBookManager *book_manager,
                                             gpointer user_data)
 {
         DhSearch *search = user_data;
+
+        search_completion_populate (search);
         search_combo_populate (search);
 }
 
@@ -694,7 +701,7 @@ dh_search_new (DhBookManager *book_manager)
 
         gtk_box_pack_end (GTK_BOX (search), list_sw, TRUE, TRUE, 0);
 
-        completion_add_items (search);
+        search_completion_populate (search);
         dh_keyword_model_set_words (priv->model, book_manager);
 
         gtk_widget_show_all (GTK_WIDGET (search));
