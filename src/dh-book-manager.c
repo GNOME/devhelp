@@ -30,6 +30,13 @@
 #include "dh-book-manager.h"
 #include "dh-marshal.h"
 
+#define NEW_POSSIBLE_BOOK_TIMEOUT_SECS 5
+
+typedef struct {
+        DhBookManager *book_manager;
+        GFile         *file;
+} NewPossibleBookData;
+
 typedef struct {
         /* The list of all DhBooks found in the system */
         GList      *books;
@@ -240,6 +247,35 @@ book_manager_get_book_path (const gchar *base_path,
         return NULL;
 }
 
+static gboolean
+book_manager_new_possible_book_cb (gpointer user_data)
+{
+        NewPossibleBookData *data = user_data;
+        gchar               *file_path;
+        gchar               *file_basename;
+        gchar               *book_path;
+
+        file_path = g_file_get_path (data->file);
+        file_basename = g_file_get_basename (data->file);
+
+        /* Compute book path, will return NULL if it's not a proper path */
+        book_path = book_manager_get_book_path (file_path, file_basename);
+        if (book_path) {
+                /* Add book from filepath */
+                book_manager_add_from_filepath (data->book_manager,
+                                                book_path);
+                g_free (book_path);
+        }
+
+        g_free (file_path);
+        g_free (file_basename);
+        g_object_unref (data->book_manager);
+        g_object_unref (data->file);
+        g_slice_free (NewPossibleBookData, data);
+
+        return FALSE;
+}
+
 static void
 book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
                                         GFile             *file,
@@ -247,12 +283,8 @@ book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
                                         GFileMonitorEvent  event_type,
                                         gpointer	   user_data)
 {
-        DhBookManager *book_manager = user_data;
-        GError        *error = NULL;
-        GFileInfo     *file_info;
-        gchar         *file_path;
-        gchar         *file_basename;
-        gchar         *book_path;
+        DhBookManager       *book_manager = user_data;
+        NewPossibleBookData *data;
 
         /* In the book manager we only handle events for new directories
          * created. Books removed or updated are handled by the book objects
@@ -261,45 +293,17 @@ book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
                 return;
         }
 
-        /* Get file info */
-        file_info = g_file_query_info (file,
-                                       G_FILE_ATTRIBUTE_STANDARD_TYPE,
-                                       G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
-                                       NULL,
-                                       &error);
-        if (!file_info) {
-                gchar *file_uri;
+        data = g_slice_new (NewPossibleBookData);
+        data->book_manager = g_object_ref (book_manager);
+        data->file = g_object_ref (file);
 
-                file_uri = g_file_get_uri (file);
-                g_warning ("Couldn't query file type of '%s': %s",
-                           file_uri,
-                           error ? error->message : "unknown error");
-                g_free (file_uri);
-                g_clear_error (&error);
-                return;
-        }
-
-        /* The created file must be a directory! */
-        if (g_file_info_get_file_type (file_info) != G_FILE_TYPE_DIRECTORY) {
-                g_object_unref (file_info);
-                return;
-        }
-        g_object_unref (file_info);
-
-        file_path = g_file_get_path (file);
-        file_basename = g_file_get_basename (file);
-
-        /* Compute book path */
-        book_path = book_manager_get_book_path (file_path, file_basename);
-        if (book_path) {
-                /* Add book from filepath */
-                book_manager_add_from_filepath (book_manager,
-                                                book_path);
-                g_free (book_path);
-        }
-
-        g_free (file_path);
-        g_free (file_basename);
+        /* We add a timeout of several seconds so that we give time to the
+         * whole documentation to get installed. If we don't do this, we may
+         * end up trying to add the new book when even the .devhelp file is
+         * not installed yet */
+        g_timeout_add_seconds (NEW_POSSIBLE_BOOK_TIMEOUT_SECS,
+                               book_manager_new_possible_book_cb,
+                               data);
 }
 
 static void
