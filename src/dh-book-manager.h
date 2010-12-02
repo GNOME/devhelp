@@ -53,7 +53,6 @@ DhBook        *dh_book_manager_get_book_by_name     (DhBookManager *book_manager
                                                      const gchar   *name);
 DhBook        *dh_book_manager_get_book_by_path     (DhBookManager *book_manager,
                                                      const gchar   *path);
-void           dh_book_manager_update_disabled      (DhBookManager *book_manager);
 
 G_END_DECLS
 

@@ -472,7 +472,7 @@ dh_util_state_load_books_disabled (void)
 
         key = util_state_get_key ("main/contents", "books_disabled");
         ige_conf_get_string_list (ige_conf_get (), key, &books_disabled);
-        g_free(key);
+        g_free (key);
 
         return books_disabled;
 }
@@ -484,7 +484,7 @@ dh_util_state_store_books_disabled (GSList *books_disabled)
 
         key = util_state_get_key ("main/contents", "books_disabled");
         ige_conf_set_string_list (ige_conf_get (), key, books_disabled);
-        g_free(key);
+        g_free (key);
 }
 
 static gboolean

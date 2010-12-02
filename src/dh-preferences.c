@@ -73,7 +73,11 @@ static void     preferences_bookshelf_tree_selection_toggled_cb (GtkCellRenderer
                                                                  gchar                 *path,
                                                                  gpointer               user_data);
 static void     preferences_bookshelf_populate_store            (void);
-static void     preferences_bookshelf_book_list_changed_cb      (DhBookManager         *book_manager,
+static void     preferences_bookshelf_book_created_cb           (DhBookManager         *book_manager,
+                                                                 GObject               *book_object,
+                                                                 gpointer               user_data);
+static void     preferences_bookshelf_book_deleted_cb           (DhBookManager         *book_manager,
+                                                                 GObject               *book_object,
                                                                  gpointer               user_data);
 
 #define DH_CONF_PATH                  "/apps/devhelp"
@@ -97,8 +101,12 @@ preferences_init (void)
                 prefs = g_new0 (DhPreferences, 1);
                 prefs->book_manager = dh_base_get_book_manager (dh_base_get ());
                 g_signal_connect (prefs->book_manager,
-                                  "book-list-updated",
-                                  G_CALLBACK (preferences_bookshelf_book_list_changed_cb),
+                                  "book-created",
+                                  G_CALLBACK (preferences_bookshelf_book_created_cb),
+                                  NULL);
+                g_signal_connect (prefs->book_manager,
+                                  "book-deleted",
+                                  G_CALLBACK (preferences_bookshelf_book_deleted_cb),
                                   NULL);
         }
 }
@@ -315,18 +323,63 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
                         gtk_list_store_set (prefs->booklist_store, &iter,
                                             LTCOLUMN_ENABLED, !enabled,
                                             -1);
-
-                        dh_book_manager_update_disabled (prefs->book_manager);
                 }
         }
 }
 
 static void
-preferences_bookshelf_book_list_changed_cb (DhBookManager *book_manager,
-                                            gpointer       user_data)
+preferences_bookshelf_book_created_cb (DhBookManager *book_manager,
+                                       GObject       *book_object,
+                                       gpointer       user_data)
 {
-        gtk_list_store_clear (prefs->booklist_store);
-        preferences_bookshelf_populate_store ();
+        DhBook      *book = DH_BOOK (book_object);
+        GtkTreeIter  iter;
+
+        /* TODO: Proper order AND make sure not already there. */
+        gtk_list_store_append (prefs->booklist_store, &iter);
+        gtk_list_store_set (prefs->booklist_store, &iter,
+                            LTCOLUMN_ENABLED,  dh_book_get_enabled (book),
+                            LTCOLUMN_TITLE,    dh_book_get_title (book),
+                            LTCOLUMN_BOOK,     book,
+                            -1);
+}
+
+static void
+preferences_bookshelf_book_deleted_cb (DhBookManager *book_manager,
+                                       GObject       *book_object,
+                                       gpointer       user_data)
+{
+        DhBook      *book = DH_BOOK (book_object);
+        GtkTreeIter  iter;
+        gboolean     found;
+
+        /* Look for the specific book. */
+	if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (prefs->booklist_store), &iter)) {
+                /* The model is empty now */
+                return;
+        }
+
+        /* Loop elements looking for the book */
+        found = FALSE;
+        do {
+                DhBook *in_list_book = NULL;
+
+                gtk_tree_model_get (GTK_TREE_MODEL (prefs->booklist_store),
+                                    &iter,
+                                    LTCOLUMN_BOOK, &in_list_book,
+                                    -1);
+                if (in_list_book == book) {
+                        found = TRUE;
+                }
+
+                if (in_list_book)
+                        g_object_unref (in_list_book);
+        } while (!found && gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->booklist_store), &iter));
+
+        /* If found, delete item from the store */
+        if (found) {
+                gtk_list_store_remove (prefs->booklist_store, &iter);
+        }
 }
 
 static void
@@ -334,6 +387,7 @@ preferences_bookshelf_populate_store (void)
 {
         GList *l;
 
+        /* This list already comes ordered */
         for (l = dh_book_manager_get_books (prefs->book_manager);
              l;
              l = g_list_next (l)) {

@@ -35,10 +35,18 @@
 
 /* Signals managed by the DhBook */
 enum {
+        BOOK_ENABLED,
+        BOOK_DISABLED,
 	BOOK_UPDATED,
         BOOK_DELETED,
 	BOOK_LAST_SIGNAL
 };
+
+typedef enum {
+        BOOK_MONITOR_EVENT_NONE,
+        BOOK_MONITOR_EVENT_UPDATED,
+        BOOK_MONITOR_EVENT_DELETED
+} DhBookMonitorEvent;
 
 /* Structure defining basic contents to store about every book */
 typedef struct {
@@ -57,9 +65,8 @@ typedef struct {
 
         /* Monitor of this specific book */
         GFileMonitor *monitor;
-        /* Last received events */
-        gboolean      is_deleted;
-        gboolean      is_updated;
+        /* Last received event */
+        DhBookMonitorEvent monitor_event;
         /* ID of the event source */
         guint         monitor_event_timeout_id;
 } DhBookPriv;
@@ -121,6 +128,27 @@ dh_book_class_init (DhBookClass *klass)
 
         object_class->finalize = book_finalize;
 
+	signals[BOOK_ENABLED] =
+		g_signal_new ("enabled",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              0,
+		              NULL, NULL,
+                              _dh_marshal_VOID__VOID,
+		              G_TYPE_NONE,
+                              0);
+
+	signals[BOOK_DISABLED] =
+		g_signal_new ("disabled",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              0,
+		              NULL, NULL,
+                              _dh_marshal_VOID__VOID,
+		              G_TYPE_NONE,
+                              0);
+
+
 	signals[BOOK_UPDATED] =
 		g_signal_new ("updated",
 		              G_TYPE_FROM_CLASS (klass),
@@ -156,8 +184,7 @@ dh_book_init (DhBook *book)
         priv->tree = NULL;
         priv->keywords = NULL;
         priv->monitor = NULL;
-        priv->is_deleted = FALSE;
-        priv->is_updated = FALSE;
+        priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
         priv->monitor_event_timeout_id = 0;
 }
 
@@ -236,17 +263,28 @@ book_monitor_event_timeout_cb  (gpointer data)
 
         /* We'll get either is_deleted OR is_updated,
          * not possible to have both or none */
-        if (priv->is_deleted) {
+        switch (priv->monitor_event)
+        {
+        case BOOK_MONITOR_EVENT_DELETED:
                 /* Emit the signal, but make sure we hold a reference
                  * while doing it */
                 g_object_ref (book);
 		g_signal_emit (book, signals[BOOK_DELETED], 0);
                 g_object_unref (book);
-        } else if (priv->is_updated) {
+                break;
+        case BOOK_MONITOR_EVENT_UPDATED:
+                /* Emit the signal, but make sure we hold a reference
+                 * while doing it */
+                g_object_ref (book);
 		g_signal_emit (book, signals[BOOK_UPDATED], 0);
-        } else {
-                g_warn_if_reached ();
+                g_object_unref (book);
+                break;
+        default:
+                break;
         }
+
+        /* Reset event */
+        priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
 
         return FALSE;
 }
@@ -271,13 +309,11 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                  * Treat in the same way as a CHANGES_DONE_HINT, so
                  * fall through the case.  */
         case G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT:
-                priv->is_deleted = FALSE; /* Reset any previous one */
-                priv->is_updated = TRUE;
+                priv->monitor_event = BOOK_MONITOR_EVENT_UPDATED;
                 reset_timer = TRUE;
                 break;
         case G_FILE_MONITOR_EVENT_DELETED:
-                priv->is_deleted = TRUE;
-                priv->is_updated = FALSE; /* Reset any previous one */
+                priv->monitor_event = BOOK_MONITOR_EVENT_DELETED;
                 reset_timer = TRUE;
                 break;
         default:
@@ -371,6 +407,10 @@ dh_book_set_enabled (DhBook *book,
         g_return_if_fail (DH_IS_BOOK (book));
 
         GET_PRIVATE (book)->enabled = enabled;
+
+        g_signal_emit (book,
+                       enabled ? signals[BOOK_ENABLED] : signals[BOOK_DISABLED],
+                       0);
 }
 
 gint

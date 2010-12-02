@@ -82,6 +82,13 @@ enum {
         LAST_SIGNAL
 };
 
+enum {
+	COL_TITLE,
+	COL_LINK,
+        COL_BOOK,
+	N_COLUMNS
+};
+
 G_DEFINE_TYPE (DhSearch, dh_search, GTK_TYPE_VBOX);
 
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
@@ -280,7 +287,7 @@ search_combo_set_active_id (DhSearch    *search,
                         gchar *id;
 
                         gtk_tree_model_get (model, &iter,
-                                            1, &id,
+                                            COL_LINK, &id,
                                             -1);
 
                         if (id && strcmp (book_id, id) == 0) {
@@ -320,7 +327,7 @@ search_combo_get_active_id (DhSearch *search)
         model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo));
 
         gtk_tree_model_get (model, &iter,
-                            1, &id,
+                            COL_LINK, &id,
                             -1);
 
         return id;
@@ -477,13 +484,21 @@ search_combo_row_separator_func (GtkTreeModel *model,
 {
         char *label;
         char *link;
+        GObject *book;
         gboolean result;
 
-        gtk_tree_model_get (model, iter, 0, &label, 1, &link, -1);
+        gtk_tree_model_get (model, iter,
+                            COL_TITLE, &label,
+                            COL_LINK, &link,
+                            COL_BOOK, &book,
+                            -1);
 
-        result = (link == NULL && label == NULL);
+        result = (link == NULL && label == NULL && book == NULL);
         g_free (label);
         g_free (link);
+        if (book) {
+                g_object_unref (book);
+        }
 
         return result;
 }
@@ -502,17 +517,20 @@ search_combo_populate (DhSearch *search)
 
         gtk_list_store_clear (store);
 
+        /* Add main title */
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
-                            0, _("All books"),
-                            1, NULL,
+                            COL_TITLE, _("All books"),
+                            COL_LINK, NULL,
+                            COL_BOOK, NULL,
                             -1);
 
         /* Add a separator */
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
-                            0, NULL,
-                            1, NULL,
+                            COL_TITLE, NULL,
+                            COL_LINK, NULL,
+                            COL_BOOK, NULL,
                             -1);
 
         for (l = dh_book_manager_get_books (priv->book_manager);
@@ -529,8 +547,9 @@ search_combo_populate (DhSearch *search)
 
                         gtk_list_store_append (store, &iter);
                         gtk_list_store_set (store, &iter,
-                                            0, dh_link_get_name (link),
-                                            1, dh_link_get_book_id (link),
+                                            COL_TITLE, dh_link_get_name (link),
+                                            COL_LINK, dh_link_get_book_id (link),
+                                            COL_BOOK, book,
                                             -1);
                 }
         }
@@ -538,6 +557,73 @@ search_combo_populate (DhSearch *search)
         gtk_combo_box_set_active (GTK_COMBO_BOX (priv->book_combo), 0);
 }
 
+static void
+search_combo_add_book (DhSearch *search,
+                       DhBook   *book)
+{
+        DhSearchPriv *priv;
+        GtkListStore *store;
+        GNode        *node;
+        GtkTreeIter   iter;
+
+        priv = GET_PRIVATE (search);
+        store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo)));
+
+        node = dh_book_get_tree (book);
+        if (node) {
+                DhLink *link;
+
+                link = node->data;
+                /* TODO: Proper order AND make sure not already there */
+                gtk_list_store_append (store, &iter);
+                gtk_list_store_set (store, &iter,
+                                    COL_TITLE, dh_link_get_name (link),
+                                    COL_LINK, dh_link_get_book_id (link),
+                                    COL_BOOK, book,
+                                    -1);
+        }
+}
+
+static void
+search_combo_delete_book (DhSearch *search,
+                          DhBook   *book)
+{
+        DhSearchPriv *priv;
+        GtkListStore *store;
+        GtkTreeIter   iter;
+        gboolean      found;
+
+        priv = GET_PRIVATE (search);
+        store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo)));
+
+        /* Look for the specific book. */
+	if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
+                /* The model is empty now */
+                return;
+        }
+
+        /* Loop elements looking for the book */
+        found = FALSE;
+        do {
+                DhBook *in_list_book = NULL;
+
+                gtk_tree_model_get (GTK_TREE_MODEL (store),
+                                    &iter,
+                                    COL_BOOK, &in_list_book,
+                                    -1);
+                if (in_list_book == book) {
+                        found = TRUE;
+                }
+
+                if (in_list_book)
+                        g_object_unref (in_list_book);
+        } while (!found && gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter));
+
+        /* If found, delete item from the store */
+        if (found) {
+                gtk_list_store_remove (store, &iter);
+        }
+}
 
 static void
 search_combo_create (DhSearch *search)
@@ -548,11 +634,9 @@ search_combo_create (DhSearch *search)
 
         priv = GET_PRIVATE (search);
 
-        store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+        store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_OBJECT);
         priv->book_combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
         g_object_unref (store);
-
-        search_combo_populate (search);
 
         gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (priv->book_combo),
                                               search_combo_row_separator_func,
@@ -565,6 +649,64 @@ search_combo_create (DhSearch *search)
         gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (priv->book_combo),
                                        cell,
                                        "text", 0);
+
+        search_combo_populate (search);
+}
+
+static void
+search_completion_add_book (DhSearch *search,
+                            DhBook   *book)
+{
+        DhSearchPriv *priv = GET_PRIVATE (search);
+        GList        *keywords;
+
+        if (G_UNLIKELY (!priv->completion)) {
+                priv->completion = g_completion_new ((GCompletionFunc) search_complete_func);
+        }
+
+        keywords = dh_book_get_keywords (book);
+        if (keywords) {
+                g_completion_add_items (priv->completion, keywords);
+        }
+}
+
+static void
+search_completion_delete_book (DhSearch *search,
+                               DhBook   *book)
+{
+        DhSearchPriv *priv = GET_PRIVATE (search);
+        GList        *keywords;
+
+        if (G_UNLIKELY (!priv->completion)) {
+                return;
+        }
+
+        keywords = dh_book_get_keywords (book);
+        if (keywords) {
+                g_completion_remove_items (priv->completion, keywords);
+        }
+}
+
+static void
+search_book_created_or_enabled_cb (DhBookManager *book_manager,
+                                   DhBook        *book,
+                                   gpointer       user_data)
+{
+        DhSearch *search = DH_SEARCH (user_data);
+
+        search_completion_add_book (search, book);
+        search_combo_add_book (search, book);
+}
+
+static void
+search_book_deleted_or_disabled_cb (DhBookManager *book_manager,
+                                    DhBook        *book,
+                                    gpointer       user_data)
+{
+        DhSearch *search = DH_SEARCH (user_data);
+
+        search_completion_delete_book (search, book);
+        search_combo_delete_book (search, book);
 }
 
 static void
@@ -575,36 +717,13 @@ search_completion_populate (DhSearch *search)
 
         priv = GET_PRIVATE (search);
 
-        if (priv->completion) {
-                g_completion_free (priv->completion);
-        }
-
-        priv->completion = g_completion_new ((GCompletionFunc) search_complete_func);
-
         for (l = dh_book_manager_get_books (priv->book_manager);
              l;
              l = g_list_next (l)) {
-                DhBook *book = DH_BOOK (l->data);
-                GList  *keywords;
-
-                keywords = dh_book_get_keywords (book);
-
-                if (keywords) {
-                        g_completion_add_items (priv->completion,
-                                                keywords);
-                }
+                search_completion_add_book (search, DH_BOOK (l->data));
         }
 }
 
-static void
-book_manager_book_list_changed_cb (DhBookManager *book_manager,
-                                   gpointer       user_data)
-{
-        DhSearch *search = user_data;
-
-        search_completion_populate (search);
-        search_combo_populate (search);
-}
 
 GtkWidget *
 dh_search_new (DhBookManager *book_manager)
@@ -622,13 +741,22 @@ dh_search_new (DhBookManager *book_manager)
         priv = GET_PRIVATE (search);
 
         priv->book_manager = g_object_ref (book_manager);
+
         g_signal_connect (priv->book_manager,
-                          "disabled-book-list-updated",
-                          G_CALLBACK (book_manager_book_list_changed_cb),
+                          "book-created",
+                          G_CALLBACK (search_book_created_or_enabled_cb),
                           search);
         g_signal_connect (priv->book_manager,
-                          "book-list-updated",
-                          G_CALLBACK (book_manager_book_list_changed_cb),
+                          "book-deleted",
+                          G_CALLBACK (search_book_deleted_or_disabled_cb),
+                          search);
+        g_signal_connect (priv->book_manager,
+                          "book-enabled",
+                          G_CALLBACK (search_book_created_or_enabled_cb),
+                          search);
+        g_signal_connect (priv->book_manager,
+                          "book-disabled",
+                          G_CALLBACK (search_book_deleted_or_disabled_cb),
                           search);
 
         gtk_container_set_border_width (GTK_CONTAINER (search), 2);
@@ -706,6 +834,7 @@ dh_search_new (DhBookManager *book_manager)
         gtk_box_pack_end (GTK_BOX (search), list_sw, TRUE, TRUE, 0);
 
         search_completion_populate (search);
+
         dh_keyword_model_set_words (priv->model, book_manager);
 
         gtk_widget_show_all (GTK_WIDGET (search));

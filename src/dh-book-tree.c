@@ -46,10 +46,10 @@ static void dh_book_tree_class_init        (DhBookTreeClass  *klass);
 static void dh_book_tree_init              (DhBookTree       *tree);
 static void book_tree_add_columns          (DhBookTree       *tree);
 static void book_tree_setup_selection      (DhBookTree       *tree);
-static void book_tree_populate_tree        (DhBookTree       *tree);
 static void book_tree_insert_node          (DhBookTree       *tree,
                                             GNode            *node,
-                                            GtkTreeIter      *parent_iter);
+                                            GtkTreeIter      *parent_iter,
+                                            DhBook           *book);
 static void book_tree_selection_changed_cb (GtkTreeSelection *selection,
                                             DhBookTree       *tree);
 
@@ -62,6 +62,7 @@ enum {
 	COL_TITLE,
 	COL_LINK,
 	COL_WEIGHT,
+        COL_BOOK,
 	N_COLUMNS
 };
 
@@ -113,7 +114,8 @@ dh_book_tree_init (DhBookTree *tree)
 	priv->store = gtk_tree_store_new (N_COLUMNS,
 					  G_TYPE_STRING,
 					  G_TYPE_POINTER,
-                                          PANGO_TYPE_WEIGHT);
+                                          PANGO_TYPE_WEIGHT,
+                                          G_TYPE_OBJECT);
 	priv->selected_link = NULL;
 	gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
 				 GTK_TREE_MODEL (priv->store));
@@ -168,6 +170,7 @@ book_tree_populate_tree (DhBookTree *tree)
 
         gtk_tree_store_clear (priv->store);
 
+        /* This list comes in order */
         for (l = dh_book_manager_get_books (priv->book_manager);
              l;
              l = g_list_next (l)) {
@@ -175,25 +178,75 @@ book_tree_populate_tree (DhBookTree *tree)
                 GNode  *node;
 
                 node = dh_book_get_tree (book);
-                while(node) {
-                        book_tree_insert_node (tree, node, NULL);
+                while (node) {
+                        book_tree_insert_node (tree, node, NULL, book);
                         node = g_node_next_sibling (node);
                 }
         }
 }
 
 static void
-book_manager_book_list_changed_cb (DhBookManager *book_manager,
-                                   gpointer       user_data)
+book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
+                                      GObject       *book_object,
+                                      gpointer       user_data)
 {
         DhBookTree *tree = user_data;
-        book_tree_populate_tree (tree);
+        DhBook *book = DH_BOOK (book_object);
+        GNode  *node;
+
+        /* TODO: insert ordered here! */
+
+        node = dh_book_get_tree (book);
+        while (node) {
+                book_tree_insert_node (tree, node, NULL, book);
+                node = g_node_next_sibling (node);
+        }
+}
+
+static void
+book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
+                                       GObject       *book_object,
+                                       gpointer       user_data)
+{
+        DhBookTree *tree = user_data;
+        DhBookTreePriv *priv = GET_PRIVATE (tree);
+        DhBook *book = DH_BOOK (book_object);
+        GtkTreeIter iter;
+        gboolean found;
+
+        /* Look for the specific book. */
+	if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter)) {
+                /* The model is empty now */
+                return;
+        }
+
+        /* Loop top-level elements looking for the book */
+        found = FALSE;
+        do {
+                DhBook *in_tree_book = NULL;
+
+                gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
+                                    &iter,
+                                    COL_BOOK, &in_tree_book,
+                                    -1);
+                if (in_tree_book == book) {
+                        found = TRUE;
+                }
+                /* We should always have a DhBook in the top level tree elements */
+                g_object_unref (in_tree_book);
+        } while (!found && gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter));
+
+        /* If found, delete item from the store */
+        if (found) {
+                gtk_tree_store_remove (priv->store, &iter);
+        }
 }
 
 static void
 book_tree_insert_node (DhBookTree  *tree,
 		       GNode       *node,
-		       GtkTreeIter *parent_iter)
+		       GtkTreeIter *parent_iter,
+                       DhBook      *book)
 
 {
         DhBookTreePriv *priv = GET_PRIVATE (tree);
@@ -216,12 +269,13 @@ book_tree_insert_node (DhBookTree  *tree,
                             COL_TITLE, dh_link_get_name (link),
                             COL_LINK, link,
                             COL_WEIGHT, weight,
+                            COL_BOOK, book,
                             -1);
 
 	for (child = g_node_first_child (node);
 	     child;
 	     child = g_node_next_sibling (child)) {
-		book_tree_insert_node (tree, child, &iter);
+		book_tree_insert_node (tree, child, &iter, NULL);
 	}
 }
 
@@ -259,13 +313,22 @@ dh_book_tree_new (DhBookManager *book_manager)
         priv = GET_PRIVATE (tree);
 
         priv->book_manager = g_object_ref (book_manager);
+
         g_signal_connect (priv->book_manager,
-                          "disabled-book-list-updated",
-                          G_CALLBACK (book_manager_book_list_changed_cb),
+                          "book-created",
+                          G_CALLBACK (book_tree_book_created_or_enabled_cb),
                           tree);
         g_signal_connect (priv->book_manager,
-                          "book-list-updated",
-                          G_CALLBACK (book_manager_book_list_changed_cb),
+                          "book-deleted",
+                          G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
+                          tree);
+        g_signal_connect (priv->book_manager,
+                          "book-enabled",
+                          G_CALLBACK (book_tree_book_created_or_enabled_cb),
+                          tree);
+        g_signal_connect (priv->book_manager,
+                          "book-disabled",
+                          G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
                           tree);
 
         book_tree_populate_tree (tree);
@@ -283,7 +346,7 @@ dh_book_tree_new (DhBookManager *book_manager)
 					 tree);
 	gtk_tree_model_get_iter_first ( GTK_TREE_MODEL (priv->store), &iter);
 	gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
-			&iter, COL_LINK, &link, -1);
+                            &iter, COL_LINK, &link, -1);
 	priv->selected_link = link;
 	gtk_tree_selection_select_iter (selection, &iter);
 	g_signal_handlers_unblock_by_func (selection,
