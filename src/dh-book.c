@@ -256,10 +256,8 @@ dh_book_new (const gchar *book_path)
 static gboolean
 book_monitor_event_timeout_cb  (gpointer data)
 {
-        DhBook *book = data;
-        DhBookPriv *priv;
-
-        priv = GET_PRIVATE (book);
+        DhBook     *book = data;
+        DhBookPriv *priv = GET_PRIVATE (book);
 
         /* We'll get either is_deleted OR is_updated,
          * not possible to have both or none */
@@ -296,11 +294,9 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                        GFileMonitorEvent  event_type,
                        gpointer	          user_data)
 {
-        DhBook *book = user_data;
-        DhBookPriv *priv;
-        gboolean reset_timer = FALSE;
-
-        priv = GET_PRIVATE (book);
+        DhBook     *book = user_data;
+        DhBookPriv *priv = GET_PRIVATE (book);
+        gboolean    reset_timer = FALSE;
 
         switch (event_type) {
         case G_FILE_MONITOR_EVENT_CREATED:
@@ -401,8 +397,8 @@ dh_book_get_enabled (DhBook *book)
 }
 
 void
-dh_book_set_enabled (DhBook *book,
-                     gboolean enabled)
+dh_book_set_enabled (DhBook   *book,
+                     gboolean  enabled)
 {
         g_return_if_fail (DH_IS_BOOK (book));
 

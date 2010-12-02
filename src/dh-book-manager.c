@@ -163,7 +163,7 @@ book_manager_is_book_disabled_in_conf (DhBookManager *book_manager,
                                        DhBook        *book)
 {
         DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
-        GSList *li;
+        GSList            *li;
 
         for (li = priv->books_disabled; li; li = g_slist_next (li)) {
                 if (g_strcmp0 (dh_book_get_name (book),
@@ -248,11 +248,11 @@ book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
                                         gpointer	   user_data)
 {
         DhBookManager *book_manager = user_data;
-        GError *error = NULL;
-        GFileInfo *file_info;
-        gchar *file_path;
-        gchar *file_basename;
-        gchar *book_path;
+        GError        *error = NULL;
+        GFileInfo     *file_info;
+        gchar         *file_path;
+        gchar         *file_basename;
+        gchar         *book_path;
 
         /* In the book manager we only handle events for new directories
          * created. Books removed or updated are handled by the book objects
@@ -469,11 +469,9 @@ static void
 book_manager_book_deleted_cb (DhBook   *book,
                               gpointer  user_data)
 {
-        DhBookManager *book_manager = user_data;
-        DhBookManagerPriv *priv;
+        DhBookManager     *book_manager = user_data;
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
         GList *li;
-
-        priv = GET_PRIVATE (book_manager);
 
         /* Look for the item we want to remove */
         li = g_list_find (priv->books, book);

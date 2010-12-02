@@ -191,8 +191,8 @@ book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
                                       gpointer       user_data)
 {
         DhBookTree *tree = user_data;
-        DhBook *book = DH_BOOK (book_object);
-        GNode  *node;
+        DhBook     *book = DH_BOOK (book_object);
+        GNode      *node;
 
         /* TODO: insert ordered here! */
 
@@ -208,11 +208,11 @@ book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
                                        GObject       *book_object,
                                        gpointer       user_data)
 {
-        DhBookTree *tree = user_data;
+        DhBookTree     *tree = user_data;
         DhBookTreePriv *priv = GET_PRIVATE (tree);
-        DhBook *book = DH_BOOK (book_object);
-        GtkTreeIter iter;
-        gboolean found;
+        DhBook         *book = DH_BOOK (book_object);
+        GtkTreeIter     iter;
+        gboolean        found;
 
         /* Look for the specific book. */
 	if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter)) {
@@ -303,11 +303,11 @@ book_tree_selection_changed_cb (GtkTreeSelection *selection,
 GtkWidget *
 dh_book_tree_new (DhBookManager *book_manager)
 {
-        DhBookTree     *tree;
-        DhBookTreePriv *priv;
+        DhBookTree       *tree;
+        DhBookTreePriv   *priv;
 	GtkTreeSelection *selection;
-	GtkTreeIter     iter;
-	DhLink *link;
+	GtkTreeIter       iter;
+	DhLink           *link;
 
 	tree = g_object_new (DH_TYPE_BOOK_TREE, NULL);
         priv = GET_PRIVATE (tree);

@@ -266,7 +266,8 @@ preferences_fonts_get_font_names (gboolean   use_system_fonts,
                                   gchar    **variable,
                                   gchar    **fixed)
 {
-	gchar   *var_font_name, *fixed_font_name;
+	gchar   *var_font_name;
+        gchar   *fixed_font_name;
 	IgeConf *conf;
 
 	conf = ige_conf_get ();

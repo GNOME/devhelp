@@ -482,10 +482,10 @@ search_combo_row_separator_func (GtkTreeModel *model,
                                  GtkTreeIter  *iter,
                                  gpointer      data)
 {
-        char *label;
-        char *link;
-        GObject *book;
-        gboolean result;
+        char     *label;
+        char     *link;
+        GObject  *book;
+        gboolean  result;
 
         gtk_tree_model_get (model, iter,
                             COL_TITLE, &label,
