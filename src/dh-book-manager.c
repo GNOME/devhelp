@@ -390,11 +390,32 @@ book_manager_add_from_xcode_docset (DhBookManager *book_manager,
 #endif
 
 static void
+book_manager_book_deleted_cb (DhBook   *book,
+                              gpointer  user_data)
+{
+        DhBookManager *book_manager = user_data;
+        DhBookManagerPriv *priv;
+        GList *li;
+
+        priv = GET_PRIVATE (book_manager);
+
+        /* Look for the item we want to remove */
+        li = g_list_find (priv->books, book);
+        if (li) {
+                g_debug ("Deleting book '%s' from the book manager list",
+                         dh_book_get_title (book));
+                /* Remove the item and unref our reference */
+                priv->books = g_list_delete_link (priv->books, li);
+                g_object_unref (book);
+        }
+}
+
+static void
 book_manager_add_from_filepath (DhBookManager *book_manager,
                                 const gchar   *book_path)
 {
         DhBookManagerPriv *priv;
-        DhBook            *book;
+        DhBook *book;
 
         g_return_if_fail (book_manager);
         g_return_if_fail (book_path);
@@ -425,6 +446,12 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
         priv->books = g_list_insert_sorted (priv->books,
                                             book,
                                             (GCompareFunc)dh_book_cmp_by_title);
+
+        /* Get notifications of book being REMOVED */
+        g_signal_connect (book,
+                          "book-deleted",
+                          G_CALLBACK (book_manager_book_deleted_cb),
+                          book_manager);
 }
 
 GList *

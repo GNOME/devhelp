@@ -27,10 +27,18 @@
 #include "dh-link.h"
 #include "dh-parser.h"
 #include "dh-book.h"
+#include "dh-marshal.h"
 
 /* Timeout to wait for new events in the book so that
  * they are merged and we don't spam unneeded signals */
 #define EVENT_MERGE_TIMEOUT_SECS 2
+
+/* Signals managed by the DhBook */
+enum {
+	BOOK_UPDATED,
+        BOOK_DELETED,
+	BOOK_LAST_SIGNAL
+};
 
 /* Structure defining basic contents to store about every book */
 typedef struct {
@@ -54,7 +62,6 @@ typedef struct {
         gboolean      is_updated;
         /* ID of the event source */
         guint         monitor_event_timeout_id;
-
 } DhBookPriv;
 
 G_DEFINE_TYPE (DhBook, dh_book, G_TYPE_OBJECT);
@@ -69,9 +76,10 @@ static void    book_monitor_event_cb (GFileMonitor      *file_monitor,
                                       GFile             *other_file,
                                       GFileMonitorEvent  event_type,
                                       gpointer	         user_data);
-
 static void    unref_node_link       (GNode             *node,
                                       gpointer           data);
+
+static guint signals[BOOK_LAST_SIGNAL] = { 0 };
 
 static void
 book_finalize (GObject *object)
@@ -112,6 +120,26 @@ dh_book_class_init (DhBookClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = book_finalize;
+
+	signals[BOOK_UPDATED] =
+		g_signal_new ("book-updated",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              0,
+		              NULL, NULL,
+                              _dh_marshal_VOID__VOID,
+		              G_TYPE_NONE,
+                              0);
+
+	signals[BOOK_DELETED] =
+		g_signal_new ("book-deleted",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              0,
+		              NULL, NULL,
+                              _dh_marshal_VOID__VOID,
+		              G_TYPE_NONE,
+		              0);
 
 	g_type_class_add_private (klass, sizeof (DhBookPriv));
 }
@@ -209,11 +237,15 @@ book_monitor_event_timeout_cb  (gpointer data)
         /* We'll get either is_deleted OR is_updated,
          * not possible to have both or none */
         if (priv->is_deleted) {
-                g_debug ("Book '%s' was deleted",
-                         dh_book_get_title (book));
+                g_debug ("Book '%s' was deleted", dh_book_get_title (book));
+                /* Emit the signal, but make sure we hold a reference
+                 * while doing it */
+                g_object_ref (book);
+		g_signal_emit (book, signals[BOOK_DELETED], 0);
+                g_object_unref (book);
         } else if (priv->is_updated) {
-                g_debug ("Book '%s' was updated",
-                         dh_book_get_title (book));
+                g_debug ("Book '%s' was updated", dh_book_get_title (book));
+		g_signal_emit (book, signals[BOOK_UPDATED], 0);
         } else {
                 g_warn_if_reached ();
         }
