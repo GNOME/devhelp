@@ -73,6 +73,8 @@ static void     preferences_bookshelf_tree_selection_toggled_cb (GtkCellRenderer
                                                                  gchar                 *path,
                                                                  gpointer               user_data);
 static void     preferences_bookshelf_populate_store            (void);
+static void     preferences_bookshelf_book_list_changed_cb      (DhBookManager         *book_manager,
+                                                                 gpointer               user_data);
 
 #define DH_CONF_PATH                  "/apps/devhelp"
 #define DH_CONF_USE_SYSTEM_FONTS      DH_CONF_PATH "/ui/use_system_fonts"
@@ -94,6 +96,10 @@ preferences_init (void)
         if (!prefs) {
                 prefs = g_new0 (DhPreferences, 1);
                 prefs->book_manager = dh_base_get_book_manager (dh_base_get ());
+                g_signal_connect (prefs->book_manager,
+                                  "book-list-updated",
+                                  G_CALLBACK (preferences_bookshelf_book_list_changed_cb),
+                                  NULL);
         }
 }
 
@@ -310,15 +316,23 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
                                             LTCOLUMN_ENABLED, !enabled,
                                             -1);
 
-                        dh_book_manager_update (prefs->book_manager);
+                        dh_book_manager_update_disabled (prefs->book_manager);
                 }
         }
 }
 
 static void
+preferences_bookshelf_book_list_changed_cb (DhBookManager *book_manager,
+                                            gpointer       user_data)
+{
+        gtk_list_store_clear (prefs->booklist_store);
+        preferences_bookshelf_populate_store ();
+}
+
+static void
 preferences_bookshelf_populate_store (void)
 {
-        GList         *l;
+        GList *l;
 
         for (l = dh_book_manager_get_books (prefs->book_manager);
              l;
