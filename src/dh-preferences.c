@@ -118,6 +118,7 @@ preferences_shutdown (void)
                 return;
         }
 
+        gtk_list_store_clear (prefs->booklist_store);
         gtk_widget_destroy (GTK_WIDGET (prefs->dialog));
 
         g_free (prefs);
@@ -335,9 +336,44 @@ preferences_bookshelf_book_created_cb (DhBookManager *book_manager,
 {
         DhBook      *book = DH_BOOK (book_object);
         GtkTreeIter  iter;
+        GtkTreeIter  loop_iter;
 
-        /* TODO: Proper order AND make sure not already there. */
-        gtk_list_store_append (prefs->booklist_store, &iter);
+        if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (prefs->booklist_store), &loop_iter)) {
+                /* The model is empty now, so just append */
+                gtk_list_store_append (prefs->booklist_store, &iter);
+        } else {
+                gboolean found = FALSE;
+
+                do {
+                        DhBook *in_list_book = NULL;
+
+                        gtk_tree_model_get (GTK_TREE_MODEL (prefs->booklist_store),
+                                            &loop_iter,
+                                            LTCOLUMN_BOOK, &in_list_book,
+                                            -1);
+                        if (in_list_book == book) {
+                                /* Book already in list, so don't add it again */
+                                g_object_unref (in_list_book);
+                                return;
+                        }
+                        if (dh_book_cmp_by_title (in_list_book, book) > 0) {
+                                found = TRUE;
+                        }
+
+                        if (in_list_book)
+                                g_object_unref (in_list_book);
+                } while (!found &&
+                         gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->booklist_store), &loop_iter));
+
+                if (found) {
+                        gtk_list_store_insert_before (prefs->booklist_store,
+                                                      &iter,
+                                                      &loop_iter);
+                } else {
+                        gtk_list_store_append (prefs->booklist_store, &iter);
+                }
+        }
+
         gtk_list_store_set (prefs->booklist_store, &iter,
                             LTCOLUMN_ENABLED,  dh_book_get_enabled (book),
                             LTCOLUMN_TITLE,    dh_book_get_title (book),
@@ -375,7 +411,8 @@ preferences_bookshelf_book_deleted_cb (DhBookManager *book_manager,
 
                 if (in_list_book)
                         g_object_unref (in_list_book);
-        } while (!found && gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->booklist_store), &iter));
+        } while (!found &&
+                 gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->booklist_store), &iter));
 
         /* If found, delete item from the store */
         if (found) {

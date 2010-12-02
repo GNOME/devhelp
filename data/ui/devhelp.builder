@@ -9,7 +9,7 @@
       <!-- column-name title -->
       <column type="gchararray"/>
       <!-- column-name book -->
-      <column type="gpointer"/>
+      <column type="GObject"/>
     </columns>
   </object>
   <object class="GtkDialog" id="preferences_dialog">
