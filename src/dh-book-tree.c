@@ -198,8 +198,8 @@ book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
         DhBookTreePriv *priv = GET_PRIVATE (tree);
         DhBook         *book = DH_BOOK (book_object);
         GNode          *node;
-        GtkTreeIter loop_iter;
-        GtkTreeIter iter;
+        GtkTreeIter     loop_iter;
+        GtkTreeIter     iter;
 
         node = dh_book_get_tree (book);
         if (!node)

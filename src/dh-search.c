@@ -561,39 +561,75 @@ static void
 search_combo_add_book (DhSearch *search,
                        DhBook   *book)
 {
-        DhSearchPriv *priv;
+        DhSearchPriv *priv = GET_PRIVATE (search);
         GtkListStore *store;
         GNode        *node;
+        GtkTreeIter   loop_iter;
         GtkTreeIter   iter;
+        DhLink       *link;
 
-        priv = GET_PRIVATE (search);
         store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo)));
 
         node = dh_book_get_tree (book);
-        if (node) {
-                DhLink *link;
+        if (!node)
+                return;
 
-                link = node->data;
-                /* TODO: Proper order AND make sure not already there */
+        link = node->data;
+
+        /* Look for the proper place to add the new item */
+
+        if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &loop_iter)) {
+                /* The model is empty now, so just append */
                 gtk_list_store_append (store, &iter);
-                gtk_list_store_set (store, &iter,
-                                    COL_TITLE, dh_link_get_name (link),
-                                    COL_LINK, dh_link_get_book_id (link),
-                                    COL_BOOK, book,
-                                    -1);
+        } else {
+                gboolean found = FALSE;
+
+                do {
+                        DhBook *in_list_book = NULL;
+
+                        gtk_tree_model_get (GTK_TREE_MODEL (store),
+                                            &loop_iter,
+                                            COL_BOOK, &in_list_book,
+                                            -1);
+                        if (in_list_book == book) {
+                                /* Book already in list, so don't add it again */
+                                g_object_unref (in_list_book);
+                                return;
+                        }
+                        if (dh_book_cmp_by_title (in_list_book, book) > 0) {
+                                found = TRUE;
+                        }
+
+                        if (in_list_book)
+                                g_object_unref (in_list_book);
+
+                } while (!found && gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &loop_iter));
+
+                if (found) {
+                        gtk_list_store_insert_before (store,
+                                                      &iter,
+                                                      &loop_iter);
+                } else {
+                        gtk_list_store_append (store, &iter);
+                }
         }
+
+        gtk_list_store_set (store, &iter,
+                            COL_TITLE, dh_link_get_name (link),
+                            COL_LINK, dh_link_get_book_id (link),
+                            COL_BOOK, book,
+                            -1);
 }
 
 static void
 search_combo_delete_book (DhSearch *search,
                           DhBook   *book)
 {
-        DhSearchPriv *priv;
+        DhSearchPriv *priv = GET_PRIVATE (search);
         GtkListStore *store;
         GtkTreeIter   iter;
         gboolean      found;
 
-        priv = GET_PRIVATE (search);
         store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo)));
 
         /* Look for the specific book. */
