@@ -223,38 +223,16 @@ book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
         file_uri = g_file_get_uri (file);
 
         g_debug ("CHANGED BOOKLIST DIR '%s'", file_uri);
-}
-
-static void
-book_manager_book_monitor_event_cb (GFileMonitor      *file_monitor,
-                                    GFile             *file,
-                                    GFile             *other_file,
-                                    GFileMonitorEvent  event_type,
-                                    gpointer	       user_data)
-{
-        gchar *file_uri;
-
-        file_uri = g_file_get_uri (file);
-
-        g_debug ("CHANGED BOOK DIR '%s'", file_uri);
-        switch (event_type) {
-        case G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT:
-                /* An existing file got modified */
-                break;
-        default:
-                break;
-        }
+        g_free (file_uri);
 }
 
 static void
 book_manager_monitor_path (DhBookManager *book_manager,
-                           const gchar   *path,
-                           gboolean       is_file)
+                           const gchar   *path)
 {
         GFileMonitor      *file_monitor;
         GFile             *file;
         DhBookManagerPriv *priv;
-        GError            *error = NULL;
 
         priv = GET_PRIVATE (book_manager);
 
@@ -266,17 +244,15 @@ book_manager_monitor_path (DhBookManager *book_manager,
                 return;
         }
 
-        /* Create new monitor for the given directory/file */
-        file_monitor = g_file_monitor (file,
-                                       G_FILE_MONITOR_NONE,
-                                       NULL,
-                                       &error);
+        /* Create new monitor for the given directory */
+        file_monitor = g_file_monitor_directory (file,
+                                                 G_FILE_MONITOR_NONE,
+                                                 NULL,
+                                                 NULL);
         if (file_monitor) {
                 /* Setup changed signal callback */
                 g_signal_connect (file_monitor, "changed",
-                                  (is_file ?
-                                   G_CALLBACK (book_manager_book_monitor_event_cb) :
-                                   G_CALLBACK (book_manager_booklist_monitor_event_cb)),
+                                  G_CALLBACK (book_manager_booklist_monitor_event_cb),
                                   book_manager);
 
                 /* Create HT if not already there */
@@ -292,10 +268,8 @@ book_manager_monitor_path (DhBookManager *book_manager,
                                      g_object_ref (file),
                                      file_monitor);
         } else {
-                g_warning ("Couldn't setup to monitor changes on %s '%s': %s",
-                           is_file ? "file" : "directory",
-                           path,
-                           error ? error->message : "unknown");
+                g_warning ("Couldn't setup to monitor changes on directory '%s'",
+                           path);
         }
 
         g_object_unref (file);
@@ -318,7 +292,7 @@ book_manager_add_from_dir (DhBookManager *book_manager,
         }
 
         /* Monitor the directory for changes */
-        book_manager_monitor_path (book_manager, dir_path, FALSE);
+        book_manager_monitor_path (book_manager, dir_path);
 
         /* And iterate it */
         while ((name = g_dir_read_name (dir)) != NULL) {
@@ -337,10 +311,6 @@ book_manager_add_from_dir (DhBookManager *book_manager,
                         /* Add book from filepath */
                         book_manager_add_from_filepath (book_manager,
                                                         book_path);
-
-                        /* Add monitor only if we actually got a valid book */
-                        book_manager_monitor_path (book_manager, book_dir_path, FALSE);
-
                         g_free (book_path);
                 }
                 g_free (book_dir_path);
@@ -396,9 +366,10 @@ book_manager_add_from_xcode_docset (DhBookManager *book_manager,
                 return;
         }
 
-        /* Monitor the directory for changes (if it works on MacOSX, which
-         *  I truly don't know if they support something like inotify */
-        book_manager_monitor_path (book_manager, dir_path, FALSE);
+        /* Monitor the directory for changes (if it works on MacOSX,
+         * not sure if GIO implements GFileMonitor based on FSEvents
+         * or what */
+        book_manager_monitor_path (book_manager, dir_path);
 
         /* And iterate it, looking for files ending with .devhelp2 */
         while ((name = g_dir_read_name (dir)) != NULL) {
@@ -454,9 +425,6 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
         priv->books = g_list_insert_sorted (priv->books,
                                             book,
                                             (GCompareFunc)dh_book_cmp_by_title);
-
-        /* Add monitor for the specific file */
-        book_manager_monitor_path (book_manager, book_path, TRUE);
 }
 
 GList *
@@ -469,23 +437,32 @@ dh_book_manager_get_books (DhBookManager *book_manager)
 
 DhBook *
 dh_book_manager_get_book_by_name (DhBookManager *book_manager,
-                                  const gchar *name)
+                                  const gchar   *name)
 {
-        DhBook *book = NULL;
         GList  *l;
 
         g_return_val_if_fail (book_manager, NULL);
 
-        for (l = GET_PRIVATE (book_manager)->books;
-             l && !book;
-             l = g_list_next (l)) {
-                if (g_strcmp0 (name,
-                               dh_book_get_name (DH_BOOK (l->data))) == 0) {
-                        book = l->data;
-                }
-        }
+        l = g_list_find_custom (GET_PRIVATE (book_manager)->books,
+                                name,
+                                (GCompareFunc)dh_book_cmp_by_name_str);
 
-        return book;
+        return l ? l->data : NULL;
+}
+
+DhBook *
+dh_book_manager_get_book_by_path (DhBookManager *book_manager,
+                                  const gchar   *path)
+{
+        GList  *l;
+
+        g_return_val_if_fail (book_manager, NULL);
+
+        l = g_list_find_custom (GET_PRIVATE (book_manager)->books,
+                                path,
+                                (GCompareFunc)dh_book_cmp_by_path_str);
+
+        return l ? l->data : NULL;
 }
 
 void

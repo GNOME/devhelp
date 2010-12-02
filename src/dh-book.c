@@ -28,20 +28,33 @@
 #include "dh-parser.h"
 #include "dh-book.h"
 
+/* Timeout to wait for new events in the book so that
+ * they are merged and we don't spam unneeded signals */
+#define EVENT_MERGE_TIMEOUT_SECS 2
+
 /* Structure defining basic contents to store about every book */
 typedef struct {
         /* File path of the book */
-        gchar    *path;
+        gchar        *path;
         /* Enable or disabled? */
-        gboolean  enabled;
+        gboolean      enabled;
         /* Book name */
-        gchar    *name;
+        gchar        *name;
         /* Book title */
-        gchar    *title;
+        gchar        *title;
         /* Generated book tree */
-        GNode    *tree;
+        GNode        *tree;
         /* Generated list of keywords in the book */
-        GList    *keywords;
+        GList        *keywords;
+
+        /* Monitor of this specific book */
+        GFileMonitor *monitor;
+        /* Last received events */
+        gboolean      is_deleted;
+        gboolean      is_updated;
+        /* ID of the event source */
+        guint         monitor_event_timeout_id;
+
 } DhBookPriv;
 
 G_DEFINE_TYPE (DhBook, dh_book, G_TYPE_OBJECT);
@@ -49,11 +62,16 @@ G_DEFINE_TYPE (DhBook, dh_book, G_TYPE_OBJECT);
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE       \
         (instance, DH_TYPE_BOOK, DhBookPriv)
 
-static void    dh_book_init       (DhBook      *book);
-static void    dh_book_class_init (DhBookClass *klass);
+static void    dh_book_init          (DhBook            *book);
+static void    dh_book_class_init    (DhBookClass       *klass);
+static void    book_monitor_event_cb (GFileMonitor      *file_monitor,
+                                      GFile             *file,
+                                      GFile             *other_file,
+                                      GFileMonitorEvent  event_type,
+                                      gpointer	         user_data);
 
-static void    unref_node_link    (GNode *node,
-                                   gpointer data);
+static void    unref_node_link       (GNode             *node,
+                                      gpointer           data);
 
 static void
 book_finalize (GObject *object)
@@ -75,6 +93,10 @@ book_finalize (GObject *object)
         if (priv->keywords) {
                 g_list_foreach (priv->keywords, (GFunc)dh_link_unref, NULL);
                 g_list_free (priv->keywords);
+        }
+
+        if (priv->monitor) {
+                g_object_unref (priv->monitor);
         }
 
         g_free (priv->title);
@@ -105,21 +127,26 @@ dh_book_init (DhBook *book)
         priv->enabled = TRUE;
         priv->tree = NULL;
         priv->keywords = NULL;
+        priv->monitor = NULL;
+        priv->is_deleted = FALSE;
+        priv->is_updated = FALSE;
+        priv->monitor_event_timeout_id = 0;
 }
 
 static void
-unref_node_link (GNode *node,
-                 gpointer data)
+unref_node_link (GNode    *node,
+                 gpointer  data)
 {
         dh_link_unref (node->data);
 }
 
 DhBook *
-dh_book_new (const gchar  *book_path)
+dh_book_new (const gchar *book_path)
 {
         DhBookPriv *priv;
         DhBook     *book;
         GError     *error = NULL;
+        GFile      *book_path_file;
 
         g_return_val_if_fail (book_path, NULL);
 
@@ -150,7 +177,93 @@ dh_book_new (const gchar  *book_path)
         /* Setup name */
         priv->name = g_strdup (dh_link_get_book_id ((DhLink *)priv->tree->data));
 
+        /* Setup monitor for changes */
+        book_path_file = g_file_new_for_path (book_path);
+        priv->monitor = g_file_monitor_file (book_path_file,
+                                             G_FILE_MONITOR_NONE,
+                                             NULL,
+                                             NULL);
+        if (priv->monitor) {
+                /* Setup changed signal callback */
+                g_signal_connect (priv->monitor,
+                                  "changed",
+                                  G_CALLBACK (book_monitor_event_cb),
+                                  book);
+        } else {
+                g_warning ("Couldn't setup monitoring of changes in book '%s'",
+                           priv->title);
+        }
+        g_object_unref (book_path_file);
+
         return book;
+}
+
+static gboolean
+book_monitor_event_timeout_cb  (gpointer data)
+{
+        DhBook *book = data;
+        DhBookPriv *priv;
+
+        priv = GET_PRIVATE (book);
+
+        /* We'll get either is_deleted OR is_updated,
+         * not possible to have both or none */
+        if (priv->is_deleted) {
+                g_debug ("Book '%s' was deleted",
+                         dh_book_get_title (book));
+        } else if (priv->is_updated) {
+                g_debug ("Book '%s' was updated",
+                         dh_book_get_title (book));
+        } else {
+                g_warn_if_reached ();
+        }
+
+        return FALSE;
+}
+
+static void
+book_monitor_event_cb (GFileMonitor      *file_monitor,
+                       GFile             *file,
+                       GFile             *other_file,
+                       GFileMonitorEvent  event_type,
+                       gpointer	          user_data)
+{
+        DhBook *book = user_data;
+        DhBookPriv *priv;
+        gboolean reset_timer = FALSE;
+
+        priv = GET_PRIVATE (book);
+
+        switch (event_type) {
+        case G_FILE_MONITOR_EVENT_CREATED:
+                /* This may happen if the file is deleted and then
+                 * created right away, as we're merging events.
+                 * Treat in the same way as a CHANGES_DONE_HINT, so
+                 * fall through the case.  */
+        case G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT:
+                priv->is_deleted = FALSE; /* Reset any previous one */
+                priv->is_updated = TRUE;
+                reset_timer = TRUE;
+                break;
+        case G_FILE_MONITOR_EVENT_DELETED:
+                priv->is_deleted = TRUE;
+                priv->is_updated = FALSE; /* Reset any previous one */
+                reset_timer = TRUE;
+                break;
+        default:
+                /* Ignore all the other events */
+                break;
+        }
+
+        /* Reset timer if any of the flags changed */
+        if (reset_timer) {
+                if (priv->monitor_event_timeout_id != 0) {
+                        g_source_remove (priv->monitor_event_timeout_id);
+                }
+                priv->monitor_event_timeout_id = g_timeout_add_seconds (EVENT_MERGE_TIMEOUT_SECS,
+                                                                        book_monitor_event_timeout_cb,
+                                                                        book);
+        }
 }
 
 GList *
@@ -201,6 +314,18 @@ dh_book_get_title (DhBook *book)
         return priv->title;
 }
 
+const gchar *
+dh_book_get_path (DhBook *book)
+{
+        DhBookPriv *priv;
+
+        g_return_val_if_fail (DH_IS_BOOK (book), NULL);
+
+        priv = GET_PRIVATE (book);
+
+        return priv->path;
+}
+
 gboolean
 dh_book_get_enabled (DhBook *book)
 {
@@ -228,11 +353,29 @@ dh_book_cmp_by_path (const DhBook *a,
 }
 
 gint
+dh_book_cmp_by_path_str (const DhBook *a,
+                         const gchar  *b_path)
+{
+        return ((a && b_path) ?
+                g_strcmp0 (GET_PRIVATE (a)->path, b_path) :
+                -1);
+}
+
+gint
 dh_book_cmp_by_name (const DhBook *a,
                      const DhBook *b)
 {
         return ((a && b) ?
                 g_ascii_strcasecmp (GET_PRIVATE (a)->name, GET_PRIVATE (b)->name) :
+                -1);
+}
+
+gint
+dh_book_cmp_by_name_str (const DhBook *a,
+                         const gchar  *b_name)
+{
+        return ((a && b_name) ?
+                g_ascii_strcasecmp (GET_PRIVATE (a)->name, b_name) :
                 -1);
 }
 
