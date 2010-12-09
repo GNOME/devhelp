@@ -10,6 +10,10 @@
       <column type="gchararray"/>
       <!-- column-name book -->
       <column type="GObject"/>
+      <!-- column-name weight -->
+      <column type="gint"/>
+      <!-- column-name inconsistent -->
+      <column type="gboolean"/>
     </columns>
   </object>
   <object class="GtkDialog" id="preferences_dialog">
@@ -218,6 +222,7 @@
                                           </object>
                                           <attributes>
                                             <attribute name="active">0</attribute>
+                                            <attribute name="inconsistent">4</attribute>
                                           </attributes>
                                         </child>
                                       </object>
@@ -230,6 +235,7 @@
                                           <object class="GtkCellRendererText" id="cellrenderertext1"/>
                                           <attributes>
                                             <attribute name="text">1</attribute>
+                                            <attribute name="weight">3</attribute>
                                           </attributes>
                                         </child>
                                       </object>

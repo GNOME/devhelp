@@ -24,6 +24,8 @@
 #include "config.h"
 #include <string.h>
 
+#include <glib/gi18n.h>
+
 #include "dh-link.h"
 #include "dh-parser.h"
 #include "dh-book.h"
@@ -386,7 +388,7 @@ dh_book_get_language (DhBook *book)
 
         priv = GET_PRIVATE (book);
 
-        return priv->language;
+        return priv->language ? priv->language : _("Undefined language");
 }
 
 const gchar *
@@ -413,13 +415,17 @@ void
 dh_book_set_enabled (DhBook   *book,
                      gboolean  enabled)
 {
+        DhBookPriv *priv;
+
         g_return_if_fail (DH_IS_BOOK (book));
 
-        GET_PRIVATE (book)->enabled = enabled;
-
-        g_signal_emit (book,
-                       enabled ? signals[BOOK_ENABLED] : signals[BOOK_DISABLED],
-                       0);
+        priv = GET_PRIVATE (book);
+        if (priv->enabled != enabled) {
+                priv->enabled = enabled;
+                g_signal_emit (book,
+                               enabled ? signals[BOOK_ENABLED] : signals[BOOK_DISABLED],
+                               0);
+        }
 }
 
 gint
