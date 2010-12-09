@@ -45,6 +45,7 @@ typedef struct {
         DhBookManager *book_manager;
         GtkTreeView   *booklist_treeview;
         GtkListStore  *booklist_store;
+        GtkWidget     *group_by_language_button;
 } DhPreferences;
 
 /* Fonts-tab related */
@@ -69,16 +70,18 @@ static void     preferences_fonts_get_font_names            (gboolean          u
                                                              gchar           **fixed);
 
 /* Bookshelf-tab related */
-static void     preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_renderer,
-                                                                 gchar                 *path,
-                                                                 gpointer               user_data);
-static void     preferences_bookshelf_populate_store            (void);
-static void     preferences_bookshelf_book_created_cb           (DhBookManager         *book_manager,
-                                                                 GObject               *book_object,
-                                                                 gpointer               user_data);
-static void     preferences_bookshelf_book_deleted_cb           (DhBookManager         *book_manager,
-                                                                 GObject               *book_object,
-                                                                 gpointer               user_data);
+static void     preferences_bookshelf_tree_selection_toggled_cb    (GtkCellRendererToggle *cell_renderer,
+                                                                    gchar                 *path,
+                                                                    gpointer               user_data);
+static void     preferences_bookshelf_populate_store               (void);
+static void     preferences_bookshelf_book_created_cb              (DhBookManager         *book_manager,
+                                                                    GObject               *book_object,
+                                                                    gpointer               user_data);
+static void     preferences_bookshelf_book_deleted_cb              (DhBookManager         *book_manager,
+                                                                    GObject               *book_object,
+                                                                    gpointer               user_data);
+static void     preferences_bookshelf_group_by_language_toggled_cb (GtkToggleButton       *button,
+                                                                    gpointer               user_data);
 
 #define DH_CONF_PATH                  "/apps/devhelp"
 #define DH_CONF_USE_SYSTEM_FONTS      DH_CONF_PATH "/ui/use_system_fonts"
@@ -86,6 +89,7 @@ static void     preferences_bookshelf_book_deleted_cb           (DhBookManager  
 #define DH_CONF_FIXED_FONT            DH_CONF_PATH "/ui/fixed_font"
 #define DH_CONF_SYSTEM_VARIABLE_FONT  "/desktop/gnome/interface/font_name"
 #define DH_CONF_SYSTEM_FIXED_FONT     "/desktop/gnome/interface/monospace_font_name"
+#define DH_CONF_GROUP_BY_LANGUAGE     DH_CONF_PATH "/ui/use_system_fonts"
 
 /* Book list store columns... */
 #define LTCOLUMN_ENABLED  0
@@ -451,6 +455,18 @@ preferences_dialog_response (GtkDialog *dialog,
         preferences_shutdown ();
 }
 
+static void
+preferences_bookshelf_group_by_language_toggled_cb (GtkToggleButton *button,
+                                                    gpointer         user_data)
+{
+	DhPreferences *prefs = user_data;
+	gboolean       active;
+
+	active = gtk_toggle_button_get_active (button);
+
+        dh_util_state_store_group_books_by_language (active);
+}
+
 void
 dh_preferences_show_dialog (GtkWindow *parent)
 {
@@ -480,6 +496,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
                 "fixed_font_button", &prefs->fixed_font_button,
                 "book_manager_store", &prefs->booklist_store,
                 "book_manager_treeview", &prefs->booklist_treeview,
+                "group_by_language_button", &prefs->group_by_language_button,
                 NULL);
         g_free (path);
 
@@ -490,6 +507,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
                 "fixed_font_button", "font_set", preferences_fonts_font_set_cb,
                 "system_fonts_button", "toggled", preferences_fonts_system_fonts_toggled_cb,
                 "book_manager_toggle", "toggled", preferences_bookshelf_tree_selection_toggled_cb,
+                "group_by_language_button", "toggled", preferences_bookshelf_group_by_language_toggled_cb,
                 NULL);
 
 	ige_conf_get_bool (ige_conf_get (),
@@ -513,6 +531,8 @@ dh_preferences_show_dialog (GtkWindow *parent)
 		g_free (fixed_font_name);
 	}
 
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prefs->group_by_language_button),
+                                                         dh_util_state_load_group_books_by_language ());
         preferences_bookshelf_populate_store ();
 
 	g_object_unref (builder);

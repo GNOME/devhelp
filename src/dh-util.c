@@ -487,6 +487,29 @@ dh_util_state_store_books_disabled (GSList *books_disabled)
         g_free (key);
 }
 
+gboolean
+dh_util_state_load_group_books_by_language (void)
+{
+        gchar *key;
+        gboolean group_books_by_language = FALSE;
+
+        key = util_state_get_key ("main/contents", "group_books_by_language");
+        ige_conf_get_bool (ige_conf_get (), key, &group_books_by_language);
+        g_free (key);
+
+        return group_books_by_language;
+}
+
+void
+dh_util_state_store_group_books_by_language (gboolean group_books_by_language)
+{
+        gchar *key;
+
+        key = util_state_get_key ("main/contents", "group_books_by_language");
+        ige_conf_set_bool (ige_conf_get (), key, group_books_by_language);
+        g_free (key);
+}
+
 static gboolean
 util_state_notebook_timeout_cb (gpointer notebook)
 {

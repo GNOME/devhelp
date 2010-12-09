@@ -52,6 +52,9 @@ const gchar *dh_util_state_get_notebook_page_name (GtkWidget   *page);
 GSList *     dh_util_state_load_books_disabled    (void);
 void         dh_util_state_store_books_disabled   (GSList *books_disabled);
 
+gboolean     dh_util_state_load_group_books_by_language  (void);
+void         dh_util_state_store_group_books_by_language (gboolean group_books_by_language);
+
 void         dh_util_font_get_variable            (gchar        **name,
                                                    gdouble       *size,
                                                    gboolean       use_system_font);
