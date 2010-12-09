@@ -58,6 +58,8 @@ typedef struct {
         gchar        *name;
         /* Book title */
         gchar        *title;
+        /* Book language */
+        gchar        *language;
         /* Generated book tree */
         GNode        *tree;
         /* Generated list of keywords in the book */
@@ -210,6 +212,9 @@ dh_book_new (const gchar *book_path)
 
         /* Parse file storing contents in the book struct */
         if (!dh_parser_read_file  (book_path,
+                                   &priv->title,
+                                   &priv->name,
+                                   &priv->language,
                                    &priv->tree,
                                    &priv->keywords,
                                    &error)) {
@@ -225,12 +230,6 @@ dh_book_new (const gchar *book_path)
 
         /* Store path */
         priv->path = g_strdup (book_path);
-
-        /* Setup title */
-        priv->title = g_strdup (dh_link_get_name ((DhLink *)priv->tree->data));
-
-        /* Setup name */
-        priv->name = g_strdup (dh_link_get_book_id ((DhLink *)priv->tree->data));
 
         /* Setup monitor for changes */
         book_path_file = g_file_new_for_path (book_path);
@@ -376,6 +375,18 @@ dh_book_get_title (DhBook *book)
         priv = GET_PRIVATE (book);
 
         return priv->title;
+}
+
+const gchar *
+dh_book_get_language (DhBook *book)
+{
+        DhBookPriv *priv;
+
+        g_return_val_if_fail (DH_IS_BOOK (book), NULL);
+
+        priv = GET_PRIVATE (book);
+
+        return priv->language;
 }
 
 const gchar *

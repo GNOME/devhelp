@@ -39,6 +39,11 @@ typedef struct {
 
 	const gchar         *path;
 
+        /* Primary metadata of the book */
+        gchar              **book_title;
+        gchar              **book_name;
+        gchar              **book_language;
+
 	/* Top node of book */
 	GNode               *book_node;
 
@@ -77,11 +82,11 @@ parser_start_node_book (DhParser             *parser,
 {
         gint         i, j;
         gint         line, col;
-        gchar       *title = NULL;
-        gchar *base = NULL;
-        const gchar *name = NULL;
+        gchar       *base = NULL;
         const gchar *uri = NULL;
-        const gchar *lang = NULL;
+        const gchar *title = NULL;
+        const gchar *name = NULL;
+        const gchar *language = NULL;
 	DhLink      *link;
 
         if (g_ascii_strcasecmp (node_name, "book") != 0) {
@@ -116,19 +121,17 @@ parser_start_node_book (DhParser             *parser,
                         name = attribute_values[i];
                 }
                 else if (g_ascii_strcasecmp (attribute_names[i], "title") == 0) {
-                        title = g_strdup(attribute_values[i]);
-                        for (j = 0; title[j]; j++) {
-                                if (title[j] == '\n') title[j] = ' ';
-                        }
+                        title = attribute_values[i];
                 }
                 else if (g_ascii_strcasecmp (attribute_names[i], "base") == 0) {
+                        /* Dup this one */
                         base = g_strdup (attribute_values[i]);
-			}
+                }
                 else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
                         uri = attribute_values[i];
                 }
                 else if (g_ascii_strcasecmp (attribute_names[i], "language") == 0) {
-                        lang = attribute_values[i];
+                        language = attribute_values[i];
                 }
         }
 
@@ -140,9 +143,17 @@ parser_start_node_book (DhParser             *parser,
                              _("\"title\", \"name\" and \"link\" elements are "
                                "required at line %d, column %d"),
                              line, col);
-                g_free (title);
                 return;
         }
+
+        /* Store book metadata */
+        *(parser->book_title) = g_strdup (title);
+        for (j = 0; (*(parser->book_title))[j]; j++) {
+                if ((*(parser->book_title))[j] == '\n')
+                        (*(parser->book_title))[j] = ' ';
+        }
+        *(parser->book_name) = g_strdup (name);
+        *(parser->book_language) = language ? g_strdup (language) : NULL;
 
         if (!base) {
                 base = g_path_get_dirname (parser->path);
@@ -150,8 +161,8 @@ parser_start_node_book (DhParser             *parser,
 
         link = dh_link_new (DH_LINK_TYPE_BOOK,
                             base,
-                            name,
-                            title,
+                            *(parser->book_name),
+                            *(parser->book_title),
                             NULL,
                             NULL,
                             uri);
@@ -162,7 +173,6 @@ parser_start_node_book (DhParser             *parser,
         parser->book_node = g_node_new (dh_link_ref (link));
         *parser->book_tree = parser->book_node;
         parser->parent = parser->book_node;
-        g_free (title);
         dh_link_unref (link);
 }
 
@@ -523,6 +533,9 @@ parser_read_gz_file (DhParser     *parser,
 
 gboolean
 dh_parser_read_file (const gchar  *path,
+                     gchar       **book_title,
+                     gchar       **book_name,
+                     gchar       **book_language,
 		     GNode       **book_tree,
 		     GList       **keywords,
 		     GError      **error)
@@ -563,6 +576,9 @@ dh_parser_read_file (const gchar  *path,
 	parser->path = path;
 	parser->book_tree = book_tree;
 	parser->keywords = keywords;
+        parser->book_title = book_title;
+        parser->book_name = book_name;
+        parser->book_language = book_language;
 
         if (gz) {
                 if (!parser_read_gz_file (parser,
