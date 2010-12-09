@@ -833,3 +833,28 @@ dh_util_cmp_book (DhLink *a, DhLink *b)
         return rc;
 }
 
+/* We're only going to expect ASCII strings here, so there's no point in
+ * playing with g_unichar_totitle() and such.
+ * Note that we modify the string in place.
+ */
+void
+dh_util_ascii_strtitle (gchar *str)
+{
+        gboolean word_start;
+
+        if (!str)
+                return;
+
+        word_start = TRUE;
+        while (*str != '\0') {
+                if (g_ascii_isalpha (*str)) {
+                        *str = (word_start ?
+                                g_ascii_toupper (*str) :
+                                g_ascii_tolower (*str));
+                        word_start = FALSE;
+                } else {
+                        word_start = TRUE;
+                }
+                str++;
+        }
+}

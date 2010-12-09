@@ -655,10 +655,10 @@ preferences_bookshelf_add_book_to_store (DhBook   *book,
                 gboolean     language_iter_found;
                 GtkTreeIter  next_language_iter;
                 gboolean     next_language_iter_found;
-                gchar       *language_title;
+                const gchar *language_title;
                 gboolean     first_in_language = FALSE;
 
-                language_title = g_ascii_strup (dh_book_get_language (book), -1);
+                language_title = dh_book_get_language (book);
 
                 /* Look for the proper language group */
                 preferences_bookshelf_find_language_group (language_title,

@@ -49,6 +49,7 @@ void         dh_util_state_manage_notebook        (GtkNotebook *notebook,
 void         dh_util_state_set_notebook_page_name (GtkWidget   *page,
                                                    const gchar *page_name);
 const gchar *dh_util_state_get_notebook_page_name (GtkWidget   *page);
+
 GSList *     dh_util_state_load_books_disabled    (void);
 void         dh_util_state_store_books_disabled   (GSList *books_disabled);
 
@@ -62,8 +63,11 @@ void         dh_util_font_get_fixed               (gchar        **name,
                                                    gdouble       *size,
                                                    gboolean       use_system_font);
 void         dh_util_font_add_web_view            (WebKitWebView *view);
+
 gint         dh_util_cmp_book                     (DhLink *a,
                                                    DhLink *b);
+
+void         dh_util_ascii_strtitle               (gchar *str);
 
 G_END_DECLS
 

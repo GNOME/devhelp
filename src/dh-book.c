@@ -30,6 +30,7 @@
 #include "dh-parser.h"
 #include "dh-book.h"
 #include "dh-marshal.h"
+#include "dh-util.h"
 
 /* Timeout to wait for new events in the book so that
  * they are merged and we don't spam unneeded signals */
@@ -206,6 +207,7 @@ dh_book_new (const gchar *book_path)
         DhBook     *book;
         GError     *error = NULL;
         GFile      *book_path_file;
+        gchar      *language;
 
         g_return_val_if_fail (book_path, NULL);
 
@@ -216,7 +218,7 @@ dh_book_new (const gchar *book_path)
         if (!dh_parser_read_file  (book_path,
                                    &priv->title,
                                    &priv->name,
-                                   &priv->language,
+                                   &language,
                                    &priv->tree,
                                    &priv->keywords,
                                    &error)) {
@@ -232,6 +234,16 @@ dh_book_new (const gchar *book_path)
 
         /* Store path */
         priv->path = g_strdup (book_path);
+
+        /* Rewrite language, if any, including the prefix we want
+         * to use when seeing it. It is pretty ugly to do it here,
+         * but it's the only way of making sure we standarize how
+         * the language group is shown */
+        dh_util_ascii_strtitle (language);
+        priv->language = (language ?
+                          g_strdup_printf (_("Language: %s"), language) :
+                          g_strdup (_("Language: Undefined")));
+        g_free (language);
 
         /* Setup monitor for changes */
         book_path_file = g_file_new_for_path (book_path);
@@ -388,7 +400,7 @@ dh_book_get_language (DhBook *book)
 
         priv = GET_PRIVATE (book);
 
-        return priv->language ? priv->language : _("Undefined language");
+        return priv->language;
 }
 
 const gchar *
