@@ -45,14 +45,18 @@ struct _DhBookManagerClass {
         GObjectClass parent_class;
 };
 
-GType          dh_book_manager_get_type             (void) G_GNUC_CONST;
-DhBookManager *dh_book_manager_new                  (void);
-void           dh_book_manager_populate             (DhBookManager *book_manager);
-GList         *dh_book_manager_get_books            (DhBookManager *book_manager);
-DhBook        *dh_book_manager_get_book_by_name     (DhBookManager *book_manager,
-                                                     const gchar   *name);
-DhBook        *dh_book_manager_get_book_by_path     (DhBookManager *book_manager,
-                                                     const gchar   *path);
+GType          dh_book_manager_get_type              (void) G_GNUC_CONST;
+DhBookManager *dh_book_manager_new                   (void);
+void           dh_book_manager_populate              (DhBookManager *book_manager);
+GList         *dh_book_manager_get_books             (DhBookManager *book_manager);
+DhBook        *dh_book_manager_get_book_by_name      (DhBookManager *book_manager,
+                                                      const gchar   *name);
+DhBook        *dh_book_manager_get_book_by_path      (DhBookManager *book_manager,
+                                                      const gchar   *path);
+
+gboolean       dh_book_manager_get_group_by_language (DhBookManager *book_manager);
+void           dh_book_manager_set_group_by_language (DhBookManager *book_manager,
+                                                      gboolean       group_by_language);
 
 G_END_DECLS
 

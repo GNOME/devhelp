@@ -464,7 +464,8 @@ preferences_bookshelf_group_by_language_toggled_cb (GtkToggleButton *button,
 
 	active = gtk_toggle_button_get_active (button);
 
-        dh_util_state_store_group_books_by_language (active);
+        dh_book_manager_set_group_by_language (prefs->book_manager,
+                                               active);
 }
 
 void
@@ -532,7 +533,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
 	}
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prefs->group_by_language_button),
-                                                         dh_util_state_load_group_books_by_language ());
+                                      dh_book_manager_get_group_by_language (prefs->book_manager));
         preferences_bookshelf_populate_store ();
 
 	g_object_unref (builder);

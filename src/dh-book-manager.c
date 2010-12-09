@@ -44,6 +44,8 @@ typedef struct {
         GHashTable *monitors;
         /* List of book names currently disabled */
         GSList     *books_disabled;
+        /* Whether books should be grouped by language */
+        gboolean    group_by_language;
 } DhBookManagerPriv;
 
 enum {
@@ -51,7 +53,13 @@ enum {
         BOOK_DELETED,
         BOOK_ENABLED,
         BOOK_DISABLED,
+        BOOKLIST_GROUP_BY_LANGUAGE,
         LAST_SIGNAL
+};
+
+enum {
+        PROP_0,
+        PROP_GROUP_BY_LANGUAGE
 };
 
 static gint signals[LAST_SIGNAL] = { 0 };
@@ -61,13 +69,21 @@ G_DEFINE_TYPE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE       \
         (instance, DH_TYPE_BOOK_MANAGER, DhBookManagerPriv)
 
-static void    dh_book_manager_init       (DhBookManager      *book_manager);
-static void    dh_book_manager_class_init (DhBookManagerClass *klass);
+static void    dh_book_manager_init           (DhBookManager      *book_manager);
+static void    dh_book_manager_class_init     (DhBookManagerClass *klass);
 
-static void    book_manager_add_from_filepath     (DhBookManager *book_manager,
-                                                   const gchar   *book_path);
-static void    book_manager_add_from_dir          (DhBookManager *book_manager,
-                                                   const gchar   *dir_path);
+static void    book_manager_add_from_filepath (DhBookManager *book_manager,
+                                               const gchar   *book_path);
+static void    book_manager_add_from_dir      (DhBookManager *book_manager,
+                                               const gchar   *dir_path);
+static void    book_manager_get_property      (GObject        *object,
+                                               guint           prop_id,
+                                               GValue         *value,
+                                               GParamSpec     *pspec);
+static void    book_manager_set_property      (GObject        *object,
+                                               guint           prop_id,
+                                               const GValue   *value,
+                                               GParamSpec     *pspec);
 
 #ifdef GDK_WINDOWING_QUARTZ
 static void    book_manager_add_from_xcode_docset (DhBookManager *book_manager,
@@ -109,6 +125,8 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = book_manager_finalize;
+        object_class->set_property = book_manager_set_property;
+        object_class->get_property = book_manager_get_property;
 
         signals[BOOK_CREATED] =
                 g_signal_new ("book-created",
@@ -151,6 +169,17 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               1,
                               G_TYPE_OBJECT);
 
+        g_object_class_install_property (object_class,
+                                         PROP_GROUP_BY_LANGUAGE,
+                                         g_param_spec_boolean ("group-by-language",
+                                                               ("Group by language"),
+                                                               ("TRUE if books should be grouped by language"),
+                                                               FALSE,
+                                                               (G_PARAM_READWRITE |
+                                                                G_PARAM_STATIC_NAME |
+                                                                G_PARAM_STATIC_NICK |
+                                                                G_PARAM_STATIC_BLURB)));
+
 	g_type_class_add_private (klass, sizeof (DhBookManagerPriv));
 }
 
@@ -164,6 +193,47 @@ dh_book_manager_init (DhBookManager *book_manager)
 
         priv->books_disabled = dh_util_state_load_books_disabled ();
 }
+
+static void
+book_manager_set_property (GObject      *object,
+                           guint         prop_id,
+                           const GValue *value,
+                           GParamSpec   *pspec)
+{
+        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
+
+        switch (prop_id)
+        {
+        case PROP_GROUP_BY_LANGUAGE:
+                dh_book_manager_set_group_by_language (book_manager,
+                                                       g_value_get_boolean (value));
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
+book_manager_get_property (GObject    *object,
+                           guint       prop_id,
+                           GValue     *value,
+                           GParamSpec *pspec)
+{
+        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
+
+        switch (prop_id)
+        {
+        case PROP_GROUP_BY_LANGUAGE:
+                g_value_set_boolean (value,
+                                     dh_book_manager_get_group_by_language (book_manager));
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
 
 static gboolean
 book_manager_is_book_disabled_in_conf (DhBookManager *book_manager,
@@ -480,9 +550,6 @@ book_manager_book_deleted_cb (DhBook   *book,
         /* Look for the item we want to remove */
         li = g_list_find (priv->books, book);
         if (li) {
-                g_debug ("Deleting book '%s' from the book manager list",
-                         dh_book_get_title (book));
-
                 /* Emit signal to notify others */
                 g_signal_emit (book_manager,
                                signals[BOOK_DELETED],
@@ -607,9 +674,6 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
                                             book,
                                             (GCompareFunc)dh_book_cmp_by_title);
 
-        g_debug ("Adding book '%s' to the book manager list",
-                 dh_book_get_title (book));
-
         /* Set the proper enabled/disabled state, depending on conf */
         dh_book_set_enabled (book,
                              !book_manager_is_book_disabled_in_conf (book_manager,
@@ -678,9 +742,36 @@ dh_book_manager_get_book_by_path (DhBookManager *book_manager,
         return l ? l->data : NULL;
 }
 
+gboolean
+dh_book_manager_get_group_by_language (DhBookManager *book_manager)
+{
+        g_return_val_if_fail (book_manager, FALSE);
+
+        return GET_PRIVATE (book_manager)->group_by_language;
+}
+
+void
+dh_book_manager_set_group_by_language (DhBookManager *book_manager,
+                                       gboolean       group_by_language)
+{
+        DhBookManagerPriv *priv;
+
+        g_return_if_fail (book_manager);
+
+        priv = GET_PRIVATE (book_manager);
+
+        /* Store in conf */
+        dh_util_state_store_group_books_by_language (group_by_language);
+
+        priv->group_by_language = group_by_language;
+        g_object_notify (G_OBJECT (book_manager), "group-by-language");
+}
+
 DhBookManager *
 dh_book_manager_new (void)
 {
-        return g_object_new (DH_TYPE_BOOK_MANAGER, NULL);
+        return g_object_new (DH_TYPE_BOOK_MANAGER,
+                             "group-by-language", dh_util_state_load_group_books_by_language (),
+                             NULL);
 }
 
