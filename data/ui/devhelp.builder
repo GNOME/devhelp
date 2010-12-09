@@ -1,6 +1,6 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
+  <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkListStore" id="book_manager_store">
     <columns>
@@ -15,8 +15,8 @@
   <object class="GtkDialog" id="preferences_dialog">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Preferences</property>
-    <property name="default_width">500</property>
-    <property name="default_height">300</property>
+    <property name="default_width">600</property>
+    <property name="default_height">400</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
@@ -166,47 +166,80 @@
                         <property name="left_padding">8</property>
                         <property name="right_padding">8</property>
                         <child>
-                          <object class="GtkScrolledWindow" id="scrolledwindow1">
+                          <object class="GtkVBox" id="vbox1">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="hscrollbar_policy">automatic</property>
-                            <property name="vscrollbar_policy">automatic</property>
                             <child>
-                              <object class="GtkTreeView" id="book_manager_treeview">
+                              <object class="GtkCheckButton" id="group_by_language_button">
+                                <property name="label" translatable="yes">_Group by language</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="model">book_manager_store</property>
-                                <property name="headers_clickable">False</property>
-                                <property name="search_column">0</property>
-                                <property name="enable_grid_lines">vertical</property>
+                                <property name="receives_default">False</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_indicator">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkHSeparator" id="hseparator1">
+                                <property name="height_request">10</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkScrolledWindow" id="scrolledwindow1">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="hscrollbar_policy">automatic</property>
+                                <property name="vscrollbar_policy">automatic</property>
                                 <child>
-                                  <object class="GtkTreeViewColumn" id="treeviewcolumn1">
-                                    <property name="min_width">60</property>
-                                    <property name="title" translatable="yes">Enabled</property>
-                                    <property name="expand">True</property>
+                                  <object class="GtkTreeView" id="book_manager_treeview">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="model">book_manager_store</property>
+                                    <property name="headers_clickable">False</property>
+                                    <property name="search_column">0</property>
+                                    <property name="enable_grid_lines">vertical</property>
                                     <child>
-                                      <object class="GtkCellRendererToggle" id="book_manager_toggle">
-                                        <property name="width">60</property>
+                                      <object class="GtkTreeViewColumn" id="treeviewcolumn1">
+                                        <property name="min_width">60</property>
+                                        <property name="title">Enabled</property>
+                                        <property name="expand">True</property>
+                                        <child>
+                                          <object class="GtkCellRendererToggle" id="book_manager_toggle">
+                                            <property name="width">60</property>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="active">0</attribute>
+                                          </attributes>
+                                        </child>
                                       </object>
-                                      <attributes>
-                                        <attribute name="active">0</attribute>
-                                      </attributes>
                                     </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkTreeViewColumn" id="treeviewcolumn2">
-                                    <property name="title" translatable="yes">Title</property>
-                                    <property name="expand">True</property>
                                     <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                                      <attributes>
-                                        <attribute name="text">1</attribute>
-                                      </attributes>
+                                      <object class="GtkTreeViewColumn" id="treeviewcolumn2">
+                                        <property name="title">Title</property>
+                                        <property name="expand">True</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                                          <attributes>
+                                            <attribute name="text">1</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
                                     </child>
                                   </object>
                                 </child>
                               </object>
+                              <packing>
+                                <property name="position">2</property>
+                              </packing>
                             </child>
                           </object>
                         </child>
