@@ -63,6 +63,7 @@ enum {
 	COL_LINK,
         COL_BOOK,
 	COL_WEIGHT,
+        COL_UNDERLINE,
 	N_COLUMNS
 };
 
@@ -115,7 +116,8 @@ dh_book_tree_init (DhBookTree *tree)
 					  G_TYPE_STRING,
 					  G_TYPE_POINTER,
                                           G_TYPE_OBJECT,
-                                          PANGO_TYPE_WEIGHT);
+                                          PANGO_TYPE_WEIGHT,
+                                          PANGO_TYPE_UNDERLINE);
 	priv->selected_link = NULL;
 	gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
 				 GTK_TREE_MODEL (priv->store));
@@ -143,6 +145,7 @@ book_tree_add_columns (DhBookTree *tree)
 	gtk_tree_view_column_set_attributes (column, cell,
 					     "text", COL_TITLE,
                                              "weight", COL_WEIGHT,
+                                             "underline", COL_UNDERLINE,
 					     NULL);
 
 	gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
@@ -346,6 +349,7 @@ book_tree_add_book_to_store (DhBookTree *tree,
                                             COL_LINK,       NULL,
                                             COL_BOOK,       NULL,
                                             COL_WEIGHT,     PANGO_WEIGHT_BOLD,
+                                            COL_UNDERLINE,  PANGO_UNDERLINE_SINGLE,
                                             -1);
 
                         new_language = TRUE;
@@ -559,8 +563,9 @@ book_tree_insert_node (DhBookTree  *tree,
                             current_iter,
                             COL_TITLE, dh_link_get_name (link),
                             COL_LINK, link,
-                            COL_WEIGHT, weight,
                             COL_BOOK, book,
+                            COL_WEIGHT, weight,
+                            COL_UNDERLINE, PANGO_UNDERLINE_NONE,
                             -1);
 
 	for (child = g_node_first_child (node);
