@@ -74,10 +74,6 @@ static void     preferences_bookshelf_tree_selection_toggled_cb (GtkCellRenderer
                                                                  gpointer               user_data);
 static void     preferences_bookshelf_populate_store            (void);
 
-/* Common */
-static void     preferences_close_cb                        (GtkButton        *button,
-                                                             gpointer          user_data);
-
 #define DH_CONF_PATH                  "/apps/devhelp"
 #define DH_CONF_USE_SYSTEM_FONTS      DH_CONF_PATH "/ui/use_system_fonts"
 #define DH_CONF_VARIABLE_FONT         DH_CONF_PATH "/ui/variable_font"
@@ -95,27 +91,23 @@ static DhPreferences *prefs;
 static void
 preferences_init (void)
 {
-	if (!prefs) {
+        if (!prefs) {
                 prefs = g_new0 (DhPreferences, 1);
-                prefs->book_manager  = dh_base_get_book_manager (dh_base_get ());
+                prefs->book_manager = dh_base_get_book_manager (dh_base_get ());
         }
 }
 
 static void
-preferences_close_cb (GtkButton *button, gpointer user_data)
+preferences_shutdown (void)
 {
-	DhPreferences *prefs = user_data;
+        if (!prefs) {
+                return;
+        }
 
-	gtk_widget_destroy (GTK_WIDGET (prefs->dialog));
-	prefs->dialog = NULL;
+        gtk_widget_destroy (GTK_WIDGET (prefs->dialog));
 
-	prefs->system_fonts_button = NULL;
-	prefs->fonts_table = NULL;
-	prefs->variable_font_button = NULL;
-	prefs->fixed_font_button = NULL;
-
-        prefs->booklist_treeview = NULL;
-        prefs->booklist_store = NULL;
+        g_free (prefs);
+        prefs = NULL;
 }
 
 static void
@@ -345,6 +337,14 @@ preferences_bookshelf_populate_store (void)
         }
 }
 
+static void
+preferences_dialog_response (GtkDialog *dialog,
+                             gint       response_id,
+                             gpointer   user_data)
+{
+        preferences_shutdown ();
+}
+
 void
 dh_preferences_show_dialog (GtkWindow *parent)
 {
@@ -384,7 +384,6 @@ dh_preferences_show_dialog (GtkWindow *parent)
                 "fixed_font_button", "font_set", preferences_fonts_font_set_cb,
                 "system_fonts_button", "toggled", preferences_fonts_system_fonts_toggled_cb,
                 "book_manager_toggle", "toggled", preferences_bookshelf_tree_selection_toggled_cb,
-                "preferences_close_button", "clicked", preferences_close_cb,
                 NULL);
 
 	ige_conf_get_bool (ige_conf_get (),
@@ -411,6 +410,13 @@ dh_preferences_show_dialog (GtkWindow *parent)
         preferences_bookshelf_populate_store ();
 
 	g_object_unref (builder);
+
+        /* Connect to the response signal to get notified when the dialog is
+         * closed or deleted */
+        g_signal_connect (prefs->dialog,
+                          "response",
+                          G_CALLBACK (preferences_dialog_response),
+                          NULL);
 
 	gtk_window_set_transient_for (GTK_WINDOW (prefs->dialog), parent);
 	gtk_widget_show_all (prefs->dialog);
