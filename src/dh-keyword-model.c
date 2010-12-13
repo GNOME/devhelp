@@ -337,12 +337,15 @@ dh_keyword_model_set_words (DhKeywordModel *model,
 }
 
 static GList *
-keyword_model_search (DhKeywordModel  *model,
-                      const gchar     *string,
-                      gchar          **stringv,
-                      const gchar     *book_id,
-                      gboolean         case_sensitive,
-                      DhLink         **exact_link)
+keyword_model_search_books (DhKeywordModel  *model,
+                            const gchar     *string,
+                            gchar          **stringv,
+                            const gchar     *book_id,
+                            gboolean         case_sensitive,
+                            gboolean         prefix,
+                            guint            max_hits,
+                            guint           *n_hits,
+                            DhLink         **exact_link)
 {
         DhKeywordModelPriv *priv;
         GList              *new_list = NULL, *b;
@@ -363,7 +366,7 @@ keyword_model_search (DhKeywordModel  *model,
         }
 
         for (b = dh_book_manager_get_books (priv->book_manager);
-             b && hits < MAX_HITS;
+             b && hits < max_hits;
              b = g_list_next (b)) {
                 DhBook *book;
                 GList *l;
@@ -376,7 +379,7 @@ keyword_model_search (DhKeywordModel  *model,
                 }
 
                 for (l = dh_book_get_keywords (book);
-                     l && hits < MAX_HITS;
+                     l && hits < max_hits;
                      l = g_list_next (l)) {
                         DhLink   *link;
                         gboolean  found;
@@ -403,18 +406,39 @@ keyword_model_search (DhKeywordModel  *model,
 
                         if (stringv[0] == NULL) {
                                 /* means only a page was specified, no keyword */
-                                if (g_strrstr (file_name, page_id))
-                                        found = TRUE;
+                                if (prefix) {
+                                        if (g_str_has_prefix (file_name, page_id))
+                                                found = TRUE;
+                                } else {
+                                        if (!g_str_has_prefix (file_name, page_id) &&
+                                            g_strrstr (file_name, page_id))
+                                                found = TRUE;
+                                }
                         } else {
-                                gint i;
+                                gboolean all_found;
+                                gboolean prefix_found;
+                                gint     i;
 
-                                found = TRUE;
+                                prefix_found = FALSE;
+                                all_found = TRUE;
+
                                 for (i = 0; stringv[i] != NULL; i++) {
-                                        if (!g_strrstr (name, stringv[i])) {
-                                                found = FALSE;
+                                        if (g_str_has_prefix (name, stringv[i])) {
+                                                prefix_found = TRUE;
+                                                /* If we get a prefix match and we're not
+                                                 * looking for prefix, stop. */
+                                                if (!prefix)
+                                                        break;
+                                        } else if (!g_strrstr (name, stringv[i])) {
+                                                all_found = FALSE;
                                                 break;
                                         }
                                 }
+
+                                found = (all_found &&
+                                         ((prefix && prefix_found) ||
+                                         (!prefix && !prefix_found)) ?
+                                         TRUE : FALSE);
                         }
 
                         g_free (name);
@@ -425,7 +449,8 @@ keyword_model_search (DhKeywordModel  *model,
                                 new_list = g_list_prepend (new_list, link);
                                 hits++;
 
-                                if (!*exact_link &&
+                                if (exact_link &&
+                                    !*exact_link &&
                                     dh_link_get_name (link) && (
                                             (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
                                              page_id && strcmp (dh_link_get_name (link), page_id) == 0) ||
@@ -438,7 +463,59 @@ keyword_model_search (DhKeywordModel  *model,
 
         g_free (page_filename_prefix);
 
+        if (n_hits)
+                *n_hits = hits;
         return g_list_sort (new_list, dh_link_compare);
+}
+
+static GList *
+keyword_model_search (DhKeywordModel  *model,
+                      const gchar     *string,
+                      gchar          **stringv,
+                      const gchar     *book_id,
+                      gboolean         case_sensitive,
+                      DhLink         **exact_link)
+{
+        guint max_hits = MAX_HITS;
+        guint n_hits;
+        GList *list;
+        gint i;
+
+        g_debug ("-------------------");
+        g_debug ("string: %s", string);
+        g_debug ("book_id: %s", book_id);
+        for (i = 0; stringv[i]; i++) {
+                g_debug ("stringv[%d]: '%s'", i, stringv[i]);
+        }
+
+        /* First, look for prefixed items */
+        list = keyword_model_search_books (model,
+                                           string,
+                                           stringv,
+                                           book_id,
+                                           case_sensitive,
+                                           TRUE,
+                                           max_hits,
+                                           &n_hits,
+                                           exact_link);
+
+        if (n_hits < max_hits) {
+                GList *non_prefixed_list;
+
+                /* If not enough hits, get non-prefixed ones */
+                non_prefixed_list = keyword_model_search_books (model,
+                                                                string,
+                                                                stringv,
+                                                                book_id,
+                                                                case_sensitive,
+                                                                FALSE,
+                                                                max_hits - n_hits,
+                                                                NULL,
+                                                                NULL);
+                list = g_list_concat (list, non_prefixed_list);
+        }
+
+        return list;
 }
 
 DhLink *
