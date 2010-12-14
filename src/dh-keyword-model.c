@@ -454,6 +454,8 @@ dh_keyword_model_filter (DhKeywordModel *model,
         gint                 i;
         GtkTreePath         *path;
         GtkTreeIter          iter;
+        gchar               *processed_string;
+        gchar               *aux_str;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
         g_return_val_if_fail (string != NULL, NULL);
@@ -467,11 +469,20 @@ dh_keyword_model_filter (DhKeywordModel *model,
         new_list = NULL;
         hits = 0;
 
-        if (string[0] != '\0') {
+        /* Remove all leading and trailing whitespaces in the search string */
+        processed_string = g_strdup (string);
+        g_strstrip (processed_string);
+        /* Avoid words being separated by more than one whitespace */
+        aux_str = processed_string;
+        while ((aux_str = strchr (aux_str, ' ')) != NULL) {
+                g_strchug (++aux_str);
+        }
+
+        if (processed_string[0] != '\0') {
                 gchar    **stringv;
                 gboolean   case_sensitive;
 
-                stringv = g_strsplit (string, " ", -1);
+                stringv = g_strsplit (processed_string, " ", -1);
 
                 case_sensitive = FALSE;
 
@@ -495,7 +506,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 }
 
                 new_list = keyword_model_search (model,
-                                                 string,
+                                                 processed_string,
                                                  stringv,
                                                  book_id,
                                                  case_sensitive,
@@ -538,6 +549,8 @@ dh_keyword_model_filter (DhKeywordModel *model,
                         gtk_tree_path_free (path);
                 }
         }
+
+        g_free (processed_string);
 
         if (hits == 1) {
                 return priv->keyword_words->data;
