@@ -484,25 +484,16 @@ dh_keyword_model_filter (DhKeywordModel *model,
 
                 stringv = g_strsplit (processed_string, " ", -1);
 
-                case_sensitive = FALSE;
-
-                /* Search for any parameters and position search cursor to
-                 * the next element in the search string.
+                /* Searches are case sensitive when any uppercase
+                 * letter is used in the search terms, matching vim
+                 * smartcase behaviour.
                  */
-                for (i = 0; stringv[i] != NULL; i++) {
-                        gchar *lower;
-
-                        /* Searches are case sensitive when any uppercase
-                         * letter is used in the search terms, matching vim
-                         * smartcase behaviour.
-                         */
-                        lower = g_ascii_strdown (stringv[i], -1);
-                        if (strcmp (lower, stringv[i]) != 0) {
+                case_sensitive = FALSE;
+                for (i = 0; processed_string[i] != '\0'; i++) {
+                        if (g_ascii_isupper (processed_string[i])) {
                                 case_sensitive = TRUE;
-                                g_free (lower);
                                 break;
                         }
-                        g_free (lower);
                 }
 
                 new_list = keyword_model_search (model,
