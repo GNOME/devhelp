@@ -370,6 +370,11 @@ keyword_model_search (DhKeywordModel  *model,
 
                 book = DH_BOOK (b->data);
 
+                if (book_id &&
+                    g_strcmp0 (book_id, dh_book_get_name (book)) != 0) {
+                        continue;
+                }
+
                 for (l = dh_book_get_keywords (book);
                      l && hits < MAX_HITS;
                      l = g_list_next (l)) {
@@ -379,12 +384,6 @@ keyword_model_search (DhKeywordModel  *model,
 
                         link = l->data;
                         found = FALSE;
-
-                        if (book_id &&
-                            dh_link_get_book_id (link) &&
-                            strcmp (dh_link_get_book_id (link), book_id) != 0) {
-                                continue;
-                        }
 
                         if (page_id &&
                             (dh_link_get_link_type (link) != DH_LINK_TYPE_PAGE &&
