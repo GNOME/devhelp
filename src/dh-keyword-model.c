@@ -381,41 +381,44 @@ keyword_model_search (DhKeywordModel  *model,
                         DhLink   *link;
                         gboolean  found;
                         gchar    *name;
+                        gchar    *file_name;
 
                         link = l->data;
                         found = FALSE;
 
+                        file_name = (case_sensitive ?
+                                     g_strdup (dh_link_get_file_name (link)) :
+                                     g_ascii_strdown (dh_link_get_file_name (link), -1));
+
                         if (page_id &&
-                            (dh_link_get_link_type (link) != DH_LINK_TYPE_PAGE &&
-                             !g_str_has_prefix (dh_link_get_file_name (link), page_filename_prefix))) {
+                            (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE ||
+                             !g_str_has_prefix (file_name, page_filename_prefix))) {
+                                g_free (file_name);
                                 continue;
                         }
 
-                        if (!case_sensitive) {
-                                name = g_ascii_strdown (dh_link_get_name (link), -1);
-                        } else {
-                                name = g_strdup (dh_link_get_name (link));
-                        }
+                        name = (case_sensitive ?
+                                g_strdup (dh_link_get_name (link)) :
+                                g_ascii_strdown (dh_link_get_name (link), -1));
 
-                        if (!found) {
+                        if (stringv[0] == NULL) {
+                                /* means only a page was specified, no keyword */
+                                if (g_strrstr (file_name, page_id))
+                                        found = TRUE;
+                        } else {
                                 gint i;
 
-                                if (stringv[0] == NULL) {
-                                        /* means only a page was specified, no keyword */
-                                        if (g_strrstr (dh_link_get_name(link), page_id))
-                                                found = TRUE;
-                                } else {
-                                        found = TRUE;
-                                        for (i = 0; stringv[i] != NULL; i++) {
-                                                if (!g_strrstr (name, stringv[i])) {
-                                                        found = FALSE;
-                                                        break;
-                                                }
+                                found = TRUE;
+                                for (i = 0; stringv[i] != NULL; i++) {
+                                        if (!g_strrstr (name, stringv[i])) {
+                                                found = FALSE;
+                                                break;
                                         }
                                 }
                         }
 
                         g_free (name);
+                        g_free (file_name);
 
                         if (found) {
                                 /* Include in the new list. */
