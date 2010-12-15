@@ -60,6 +60,8 @@ enum {
         BOOK_DELETED,
         BOOK_ENABLED,
         BOOK_DISABLED,
+        LANGUAGE_ENABLED,
+        LANGUAGE_DISABLED,
         BOOKLIST_GROUP_BY_LANGUAGE,
         LAST_SIGNAL
 };
@@ -188,6 +190,27 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
+
+        signals[LANGUAGE_ENABLED] =
+                g_signal_new ("language-enabled",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
+                              _dh_marshal_VOID__STRING,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_STRING);
+        signals[LANGUAGE_DISABLED] =
+                g_signal_new ("language-disabled",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
+                              _dh_marshal_VOID__STRING,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_STRING);
 
         g_object_class_install_property (object_class,
                                          PROP_GROUP_BY_LANGUAGE,
@@ -828,9 +851,14 @@ book_manager_inc_language (DhBookManager *book_manager,
         if (!li) {
                 lang_data = g_new (DhBookManagerLanguage, 1);
                 lang_data->name = g_strdup (language);
-                lang_data->n_books_enabled = 0;
+                lang_data->n_books_enabled = 1;
                 priv->languages = g_list_prepend (priv->languages,
                                                   lang_data);
+                /* Emit signal to notify others */
+                g_signal_emit (book_manager,
+                               signals[LANGUAGE_ENABLED],
+                               0,
+                               language);
         }
 }
 
@@ -852,7 +880,7 @@ book_manager_dec_language (DhBookManager *book_manager,
                 }
         }
 
-        /* Language must always be found */
+        /* Language  */
         g_assert (li != NULL);
         g_assert (lang_data->n_books_enabled >= 0);
 
@@ -861,6 +889,12 @@ book_manager_dec_language (DhBookManager *book_manager,
                 g_free (lang_data->name);
                 g_free (lang_data);
                 priv->languages = g_list_delete_link (priv->languages, li);
+
+                /* Emit signal to notify others */
+                g_signal_emit (book_manager,
+                               signals[LANGUAGE_DISABLED],
+                               0,
+                               language);
         }
 }
 
