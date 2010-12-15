@@ -341,6 +341,7 @@ keyword_model_search_books (DhKeywordModel  *model,
                             const gchar     *string,
                             gchar          **stringv,
                             const gchar     *book_id,
+                            const gchar     *language,
                             gboolean         case_sensitive,
                             gboolean         prefix,
                             guint            max_hits,
@@ -375,6 +376,11 @@ keyword_model_search_books (DhKeywordModel  *model,
 
                 if (book_id &&
                     g_strcmp0 (book_id, dh_book_get_name (book)) != 0) {
+                        continue;
+                }
+
+                if (language &&
+                    g_strcmp0 (language, dh_book_get_language (book)) != 0) {
                         continue;
                 }
 
@@ -473,26 +479,20 @@ keyword_model_search (DhKeywordModel  *model,
                       const gchar     *string,
                       gchar          **stringv,
                       const gchar     *book_id,
+                      const gchar     *language,
                       gboolean         case_sensitive,
                       DhLink         **exact_link)
 {
         guint max_hits = MAX_HITS;
         guint n_hits;
         GList *list;
-        gint i;
-
-        g_debug ("-------------------");
-        g_debug ("string: %s", string);
-        g_debug ("book_id: %s", book_id);
-        for (i = 0; stringv[i]; i++) {
-                g_debug ("stringv[%d]: '%s'", i, stringv[i]);
-        }
 
         /* First, look for prefixed items */
         list = keyword_model_search_books (model,
                                            string,
                                            stringv,
                                            book_id,
+                                           language,
                                            case_sensitive,
                                            TRUE,
                                            max_hits,
@@ -507,6 +507,7 @@ keyword_model_search (DhKeywordModel  *model,
                                                                 string,
                                                                 stringv,
                                                                 book_id,
+                                                                language,
                                                                 case_sensitive,
                                                                 FALSE,
                                                                 max_hits - n_hits,
@@ -521,7 +522,8 @@ keyword_model_search (DhKeywordModel  *model,
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
                          const gchar    *string,
-                         const gchar    *book_id)
+                         const gchar    *book_id,
+                         const gchar    *language)
 {
         DhKeywordModelPriv  *priv;
         GList               *new_list = NULL;
@@ -577,6 +579,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                                                  processed_string,
                                                  stringv,
                                                  book_id,
+                                                 language,
                                                  case_sensitive,
                                                  &exact_link);
                 hits = g_list_length (new_list);

@@ -62,7 +62,8 @@ void            dh_keyword_model_set_words (DhKeywordModel *model,
                                             DhBookManager  *book_manager);
 DhLink *        dh_keyword_model_filter    (DhKeywordModel *model,
                                             const gchar    *string,
-                                            const gchar    *book_id);
+                                            const gchar    *book_id,
+                                            const gchar    *language);
 
 G_END_DECLS
 

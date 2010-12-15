@@ -283,8 +283,8 @@ search_entry_key_press_event_cb (GtkEntry    *entry,
 }
 
 static void
-search_combo_set_active_id (DhSearch    *search,
-                            const gchar *book_id)
+search_combo_set_active_book_id (DhSearch    *search,
+                                 const gchar *book_id)
 {
         DhSearchPriv *priv = GET_PRIVATE (search);
         GtkTreeIter   iter;
@@ -301,12 +301,17 @@ search_combo_set_active_id (DhSearch    *search,
                 has_next = gtk_tree_model_get_iter_first (model, &iter);
                 while (has_next) {
                         gchar *id;
+                        gint row_type;
 
-                        gtk_tree_model_get (model, &iter,
-                                            COL_BOOK_ID, &id,
+                        gtk_tree_model_get (model,
+                                            &iter,
+                                            COL_BOOK_ID,  &id,
+                                            COL_ROW_TYPE, &row_type,
                                             -1);
 
-                        if (id && strcmp (book_id, id) == 0) {
+                        if (row_type == ROW_TYPE_BOOK &&
+                            id &&
+                            strcmp (book_id, id) == 0) {
                                 g_free (id);
 
                                 gtk_combo_box_set_active_iter (GTK_COMBO_BOX (priv->book_combo),
@@ -327,53 +332,71 @@ search_combo_set_active_id (DhSearch    *search,
                                            search);
 }
 
-static gchar *
-search_combo_get_active_id (DhSearch *search)
+static void
+search_combo_get_active (DhSearch  *search,
+                         gchar    **book_id,
+                         gchar    **language)
 {
         DhSearchPriv *priv = GET_PRIVATE (search);
-        GtkTreeIter   iter;
         GtkTreeModel *model;
-        gchar        *id;
+        GtkTreeIter   iter;
+        gint          row_type;
 
         if (!gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->book_combo),
                                             &iter)) {
-                return NULL;
+                return;
         }
 
         model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo));
-
-        gtk_tree_model_get (model, &iter,
-                            COL_BOOK_ID, &id,
+        gtk_tree_model_get (model,
+                            &iter,
+                            COL_ROW_TYPE, &row_type,
                             -1);
+        switch (row_type) {
+        case ROW_TYPE_LANGUAGE:
+                gtk_tree_model_get (model,
+                                    &iter,
+                                    COL_TITLE, language,
+                                    -1);
+                *book_id = NULL;
+                break;
+        case ROW_TYPE_BOOK:
+                gtk_tree_model_get (model,
+                                    &iter,
+                                    COL_BOOK_ID, book_id,
+                                    -1);
+                *language = NULL;
+                break;
+        default:
+                *book_id = NULL;
+                *language = NULL;
+                break;
+        }
+}
 
-        return id;
+static void
+search_run_idle (DhSearch *search)
+{
+        DhSearchPriv *priv = GET_PRIVATE (search);
+
+        if (!priv->idle_filter) {
+                priv->idle_filter =
+                        g_idle_add ((GSourceFunc) search_filter_idle, search);
+        }
 }
 
 static void
 search_combo_changed_cb (GtkComboBox *combo,
                          DhSearch    *search)
 {
-        DhSearchPriv *priv = GET_PRIVATE (search);
-        gchar        *id;
-
-        id = search_combo_get_active_id (search);
-
-        if (!priv->idle_filter) {
-                priv->idle_filter =
-                        g_idle_add ((GSourceFunc) search_filter_idle, search);
-        }
+        search_run_idle (search);
 }
 
 static void
 search_entry_changed_cb (GtkEntry *entry,
                          DhSearch *search)
 {
-        DhSearchPriv *priv = GET_PRIVATE (search);
-
-        if (!priv->idle_filter) {
-                priv->idle_filter =
-                        g_idle_add ((GSourceFunc) search_filter_idle, search);
-        }
+        search_run_idle (search);
 }
 
 static void
@@ -381,14 +404,17 @@ search_entry_activated_cb (GtkEntry *entry,
                            DhSearch *search)
 {
         DhSearchPriv *priv = GET_PRIVATE (search);
-        gchar        *id;
+        gchar        *book_id;
+        gchar        *language;
         const gchar  *str;
         DhLink       *link;
 
-        id = search_combo_get_active_id (search);
+        /* Always sets book_id and language */
+        search_combo_get_active (search, &book_id, &language);
         str = gtk_entry_get_text (GTK_ENTRY (priv->entry));
-        link = dh_keyword_model_filter (priv->model, str, id);
-        g_free (id);
+        link = dh_keyword_model_filter (priv->model, str, book_id, language);
+        g_free (book_id);
+        g_free (language);
 }
 
 static void
@@ -439,13 +465,16 @@ search_filter_idle (DhSearch *search)
 {
         DhSearchPriv *priv = GET_PRIVATE (search);
         const gchar  *str;
-        gchar        *id;
+        gchar        *book_id;
+        gchar        *language;
         DhLink       *link;
 
+        /* Always sets book_id and language */
+        search_combo_get_active (search, &book_id, &language);
         str = gtk_entry_get_text (GTK_ENTRY (priv->entry));
-        id = search_combo_get_active_id (search);
-        link = dh_keyword_model_filter (priv->model, str, id);
-        g_free (id);
+        link = dh_keyword_model_filter (priv->model, str, book_id, language);
+        g_free (book_id);
+        g_free (language);
 
         priv->idle_filter = 0;
 
@@ -619,10 +648,9 @@ search_combo_find_language (DhSearch    *search,
                         return;
                 }
 
-                g_debug ("loop... %s", in_list_language_name);
-
                 /* Exact found? */
-                if (g_strcmp0 (in_list_language_name, language_name) == 0) {
+                if (exact_iter &&
+                    g_strcmp0 (in_list_language_name, language_name) == 0) {
                         *exact_iter = loop_iter;
                         *exact_found = TRUE;
                         if (prev_found)
@@ -719,6 +747,7 @@ search_combo_delete_language (DhSearch    *search,
         GtkTreeIter   prev_iter;
         GtkTreeIter   exact_iter;
         GtkTreeIter   next_iter;
+        GtkTreeIter   active_iter;
         gboolean      prev_iter_found = FALSE;
         gboolean      exact_iter_found = FALSE;
         gboolean      next_iter_found = FALSE;
@@ -726,7 +755,33 @@ search_combo_delete_language (DhSearch    *search,
 
         store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo)));
 
-        /* Look for the item */
+        /* Deleting active iter? */
+        if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->book_combo),
+                                           &active_iter)) {
+                gchar *active_title;
+                gint   row_type;
+
+                gtk_tree_model_get (GTK_TREE_MODEL (store),
+                                    &active_iter,
+                                    COL_TITLE,    &active_title,
+                                    COL_ROW_TYPE, &row_type,
+                                    -1);
+                if (row_type == ROW_TYPE_LANGUAGE &&
+                    active_title &&
+                    strcmp (active_title, language_name) == 0) {
+                        /* Reset active item */
+                        g_signal_handlers_block_by_func (priv->book_combo,
+                                                         search_combo_changed_cb,
+                                                         search);
+                        gtk_combo_box_set_active (GTK_COMBO_BOX (priv->book_combo), 0);
+                        g_signal_handlers_unblock_by_func (priv->book_combo,
+                                                           search_combo_changed_cb,
+                                                           search);
+                }
+                g_free (active_title);
+        }
+
+        /* Look for the item, keeping next and prev items as well */
         search_combo_find_language (search,
                                     language_name,
                                     &exact_iter,
@@ -896,6 +951,33 @@ search_combo_delete_book (DhSearch *search,
 
         store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo)));
 
+        /* Deleting active iter? */
+        if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->book_combo),
+                                           &iter)) {
+                DhBook *active_book = NULL;
+
+                gtk_tree_model_get (GTK_TREE_MODEL (store),
+                                    &iter,
+                                    COL_BOOK, &active_book,
+                                    -1);
+                if (active_book == book) {
+                        /* Reset active item */
+                        g_signal_handlers_block_by_func (priv->book_combo,
+                                                         search_combo_changed_cb,
+                                                         search);
+                        gtk_combo_box_set_active (GTK_COMBO_BOX (priv->book_combo), 0);
+                        g_signal_handlers_unblock_by_func (priv->book_combo,
+                                                           search_combo_changed_cb,
+                                                           search);
+                        /* And remove it right here */
+                        gtk_list_store_remove (store, &iter);
+                        g_object_unref (active_book);
+                        return;
+                }
+                if (active_book)
+                        g_object_unref (active_book);
+        }
+
         /* Look for the item */
         search_combo_find_book (search,
                                 book,
@@ -903,10 +985,10 @@ search_combo_delete_book (DhSearch *search,
                                 &found,
                                 NULL,
                                 NULL);
-        /* If found, delete item from the store */
-        if (found) {
-                gtk_list_store_remove (store, &iter);
-        }
+
+        g_assert (found);
+
+        gtk_list_store_remove (store, &iter);
 }
 
 static void
@@ -984,6 +1066,8 @@ search_book_created_or_enabled_cb (DhBookManager *book_manager,
 
         search_completion_add_book (search, book);
         search_combo_add_book (search, book);
+        /* Update current search if any */
+        search_run_idle (search);
 }
 
 static void
@@ -995,6 +1079,8 @@ search_book_deleted_or_disabled_cb (DhBookManager *book_manager,
 
         search_completion_delete_book (search, book);
         search_combo_delete_book (search, book);
+        /* Update current search if any */
+        search_run_idle (search);
 }
 
 static void
@@ -1182,7 +1268,7 @@ dh_search_set_search_string (DhSearch    *search,
                                            search_entry_changed_cb,
                                            search);
 
-        search_combo_set_active_id (search, book_id);
+        search_combo_set_active_book_id (search, book_id);
 
         if (!priv->idle_filter) {
                 priv->idle_filter =
