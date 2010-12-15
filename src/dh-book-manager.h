@@ -27,8 +27,9 @@
 
 G_BEGIN_DECLS
 
-typedef struct _DhBookManager      DhBookManager;
-typedef struct _DhBookManagerClass DhBookManagerClass;
+typedef struct _DhBookManager         DhBookManager;
+typedef struct _DhBookManagerClass    DhBookManagerClass;
+typedef struct _DhBookManagerLanguage DhBookManagerLanguage;
 
 #define DH_TYPE_BOOK_MANAGER         (dh_book_manager_get_type ())
 #define DH_BOOK_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_BOOK_MANAGER, DhBookManager))
@@ -57,6 +58,10 @@ DhBook        *dh_book_manager_get_book_by_path      (DhBookManager *book_manage
 gboolean       dh_book_manager_get_group_by_language (DhBookManager *book_manager);
 void           dh_book_manager_set_group_by_language (DhBookManager *book_manager,
                                                       gboolean       group_by_language);
+
+GList         *dh_book_manager_get_languages                (DhBookManager *book_manager);
+const gchar   *dh_book_manager_language_get_name            (DhBookManagerLanguage *language);
+gint           dh_book_manager_language_get_n_books_enabled (DhBookManagerLanguage *language);
 
 G_END_DECLS
 

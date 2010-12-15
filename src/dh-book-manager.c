@@ -37,6 +37,11 @@ typedef struct {
         GFile         *file;
 } NewPossibleBookData;
 
+struct _DhBookManagerLanguage {
+        gchar *name;
+        gint   n_books_enabled;
+};
+
 typedef struct {
         /* The list of all DhBooks found in the system */
         GList      *books;
@@ -46,6 +51,8 @@ typedef struct {
         GSList     *books_disabled;
         /* Whether books should be grouped by language */
         gboolean    group_by_language;
+        /* List of programming languages with at least one book enabled */
+        GList      *languages;
 } DhBookManagerPriv;
 
 enum {
@@ -76,6 +83,10 @@ static void    book_manager_add_from_filepath (DhBookManager *book_manager,
                                                const gchar   *book_path);
 static void    book_manager_add_from_dir      (DhBookManager *book_manager,
                                                const gchar   *dir_path);
+static void    book_manager_inc_language      (DhBookManager *book_manager,
+                                               const gchar   *language);
+static void    book_manager_dec_language      (DhBookManager *book_manager,
+                                               const gchar   *language);
 static void    book_manager_get_property      (GObject        *object,
                                                guint           prop_id,
                                                GValue         *value,
@@ -104,6 +115,15 @@ book_manager_finalize (GObject *object)
                 g_object_unref (l->data);
         }
         g_list_free (priv->books);
+
+        /* Free all languages */
+        for (l = priv->languages; l; l = g_list_next (l)) {
+                DhBookManagerLanguage *lang = l->data;
+
+                g_free (lang->name);
+                g_free (lang);
+        }
+        g_list_free (priv->languages);
 
         /* Destroy the monitors HT */
         if (priv->monitors) {
@@ -190,6 +210,7 @@ dh_book_manager_init (DhBookManager *book_manager)
 
         priv->books = NULL;
         priv->monitors = NULL;
+        priv->languages = NULL;
 
         priv->books_disabled = dh_util_state_load_books_disabled ();
 }
@@ -233,7 +254,6 @@ book_manager_get_property (GObject    *object,
                 break;
         }
 }
-
 
 static gboolean
 book_manager_is_book_disabled_in_conf (DhBookManager *book_manager,
@@ -550,6 +570,10 @@ book_manager_book_deleted_cb (DhBook   *book,
         /* Look for the item we want to remove */
         li = g_list_find (priv->books, book);
         if (li) {
+                /* Decrement language count */
+                book_manager_inc_language (book_manager,
+                                           dh_book_get_language (book));
+
                 /* Emit signal to notify others */
                 g_signal_emit (book_manager,
                                signals[BOOK_DELETED],
@@ -608,6 +632,10 @@ book_manager_book_enabled_cb (DhBook   *book,
         priv->books_disabled = g_slist_delete_link (priv->books_disabled, li);
         dh_util_state_store_books_disabled (priv->books_disabled);
 
+        /* Increment language count */
+        book_manager_inc_language (book_manager,
+                                   dh_book_get_language (book));
+
         g_signal_emit (book_manager,
                        signals[BOOK_ENABLED],
                        0,
@@ -631,6 +659,10 @@ book_manager_book_disabled_cb (DhBook   *book,
                                                g_strdup (dh_book_get_name (book)));
         dh_util_state_store_books_disabled (priv->books_disabled);
 
+        /* Decrement language count */
+        book_manager_dec_language (book_manager,
+                                   dh_book_get_language (book));
+
         g_signal_emit (book_manager,
                        signals[BOOK_DISABLED],
                        0,
@@ -643,6 +675,7 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
 {
         DhBookManagerPriv *priv;
         DhBook            *book;
+        gboolean           book_disabled;
 
         g_return_if_fail (book_manager);
         g_return_if_fail (book_path);
@@ -675,9 +708,15 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
                                             (GCompareFunc)dh_book_cmp_by_title);
 
         /* Set the proper enabled/disabled state, depending on conf */
-        dh_book_set_enabled (book,
-                             !book_manager_is_book_disabled_in_conf (book_manager,
-                                                                     book));
+        book_disabled = book_manager_is_book_disabled_in_conf (book_manager,
+                                                               book);
+        dh_book_set_enabled (book, !book_disabled);
+
+        /* Store language if enabled */
+        if (!book_disabled) {
+                book_manager_inc_language (book_manager,
+                                           dh_book_get_language (book));
+        }
 
         /* Get notifications of book being deleted or updated */
         g_signal_connect (book,
@@ -765,6 +804,86 @@ dh_book_manager_set_group_by_language (DhBookManager *book_manager,
 
         priv->group_by_language = group_by_language;
         g_object_notify (G_OBJECT (book_manager), "group-by-language");
+}
+
+static void
+book_manager_inc_language (DhBookManager *book_manager,
+                           const gchar   *language)
+{
+        GList *li;
+        DhBookManagerLanguage *lang_data;
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+
+        for (li = priv->languages; li; li = g_list_next (li)) {
+                lang_data = li->data;
+
+                if (strcmp (language, lang_data->name) == 0) {
+                        /* Already in list. */
+                        lang_data->n_books_enabled++;
+                        break;
+                }
+        }
+
+        /* Add new element to list if not found */
+        if (!li) {
+                lang_data = g_new (DhBookManagerLanguage, 1);
+                lang_data->name = g_strdup (language);
+                lang_data->n_books_enabled = 0;
+                priv->languages = g_list_prepend (priv->languages,
+                                                  lang_data);
+        }
+}
+
+static void
+book_manager_dec_language (DhBookManager *book_manager,
+                           const gchar   *language)
+{
+        GList *li;
+        DhBookManagerLanguage *lang_data;
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+
+        for (li = priv->languages; li; li = g_list_next (li)) {
+                lang_data = li->data;
+
+                if (strcmp (language, lang_data->name) == 0) {
+                        /* Already in list. */
+                        lang_data->n_books_enabled--;
+                        break;
+                }
+        }
+
+        /* Language must always be found */
+        g_assert (li != NULL);
+        g_assert (lang_data->n_books_enabled >= 0);
+
+        /* If language count reaches zero, remove from list */
+        if (lang_data->n_books_enabled == 0) {
+                g_free (lang_data->name);
+                g_free (lang_data);
+                priv->languages = g_list_delete_link (priv->languages, li);
+        }
+}
+
+GList *
+dh_book_manager_get_languages (DhBookManager *book_manager)
+{
+        g_return_val_if_fail (book_manager, NULL);
+
+        return GET_PRIVATE (book_manager)->languages;
+}
+
+const gchar *
+dh_book_manager_language_get_name (DhBookManagerLanguage *language)
+{
+        g_return_val_if_fail (language != NULL, NULL);
+        return language->name;
+}
+
+gint
+dh_book_manager_language_get_n_books_enabled (DhBookManagerLanguage *language)
+{
+        g_return_val_if_fail (language != NULL, 0);
+        return language->n_books_enabled;
 }
 
 DhBookManager *
