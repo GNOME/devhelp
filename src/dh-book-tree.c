@@ -3,6 +3,7 @@
  * Copyright (C) 2001-2003 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2003      CodeFactory AB
  * Copyright (C) 2008      Imendio AB
+ * Copyright (C) 2010      Lanedo GmbH
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as

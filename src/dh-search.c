@@ -3,6 +3,7 @@
  * Copyright (C) 2001-2003 CodeFactory AB
  * Copyright (C) 2001-2003 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2005-2008 Imendio AB
+ * Copyright (C) 2010 Lanedo GmbH
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -83,7 +84,6 @@ static void         search_entry_text_inserted_cb   (GtkEntry         *entry,
                                                      DhSearch         *search);
 static gboolean     search_complete_idle            (DhSearch         *search);
 static gboolean     search_filter_idle              (DhSearch         *search);
-static const gchar *search_complete_func            (DhLink           *link);
 
 enum {
         LINK_SELECTED,
@@ -98,11 +98,11 @@ enum {
 };
 
 enum {
-	COL_TITLE,
-	COL_BOOK_ID,
+        COL_TITLE,
+        COL_BOOK_ID,
         COL_BOOK,
         COL_ROW_TYPE,
-	N_COLUMNS
+        N_COLUMNS
 };
 
 G_DEFINE_TYPE (DhSearch, dh_search, GTK_TYPE_VBOX);
@@ -283,56 +283,6 @@ search_entry_key_press_event_cb (GtkEntry    *entry,
 }
 
 static void
-search_combo_set_active_book_id (DhSearch    *search,
-                                 const gchar *book_id)
-{
-        DhSearchPriv *priv = GET_PRIVATE (search);
-        GtkTreeIter   iter;
-        GtkTreeModel *model;
-        gboolean      has_next;
-
-        g_signal_handlers_block_by_func (priv->book_combo,
-                                         search_combo_changed_cb,
-                                         search);
-
-        if (book_id != NULL) {
-                model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->book_combo));
-
-                has_next = gtk_tree_model_get_iter_first (model, &iter);
-                while (has_next) {
-                        gchar *id;
-                        gint row_type;
-
-                        gtk_tree_model_get (model,
-                                            &iter,
-                                            COL_BOOK_ID,  &id,
-                                            COL_ROW_TYPE, &row_type,
-                                            -1);
-
-                        if (row_type == ROW_TYPE_BOOK &&
-                            id &&
-                            strcmp (book_id, id) == 0) {
-                                g_free (id);
-
-                                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (priv->book_combo),
-                                                               &iter);
-                                break;
-                        }
-
-                        g_free (id);
-
-                        has_next = gtk_tree_model_iter_next (model, &iter);
-                }
-        } else {
-                gtk_combo_box_set_active (GTK_COMBO_BOX (priv->book_combo), 0);
-        }
-
-        g_signal_handlers_unblock_by_func (priv->book_combo,
-                                           search_combo_changed_cb,
-                                           search);
-}
-
-static void
 search_combo_get_active (DhSearch  *search,
                          gchar    **book_id,
                          gchar    **language)
@@ -483,12 +433,6 @@ search_filter_idle (DhSearch *search)
         }
 
         return FALSE;
-}
-
-static const gchar *
-search_complete_func (DhLink *link)
-{
-        return dh_link_get_name (link);
 }
 
 static void
@@ -1028,15 +972,15 @@ search_completion_add_book (DhSearch *search,
                             DhBook   *book)
 {
         DhSearchPriv *priv = GET_PRIVATE (search);
-        GList        *keywords;
+        GList        *completions;
 
         if (G_UNLIKELY (!priv->completion)) {
-                priv->completion = g_completion_new ((GCompletionFunc) search_complete_func);
+                priv->completion = g_completion_new (NULL);
         }
 
-        keywords = dh_book_get_keywords (book);
-        if (keywords) {
-                g_completion_add_items (priv->completion, keywords);
+        completions = dh_book_get_completions (book);
+        if (completions) {
+                g_completion_add_items (priv->completion, completions);
         }
 }
 
@@ -1045,15 +989,15 @@ search_completion_delete_book (DhSearch *search,
                                DhBook   *book)
 {
         DhSearchPriv *priv = GET_PRIVATE (search);
-        GList        *keywords;
+        GList        *completions;
 
         if (G_UNLIKELY (!priv->completion)) {
                 return;
         }
 
-        keywords = dh_book_get_keywords (book);
-        if (keywords) {
-                g_completion_remove_items (priv->completion, keywords);
+        completions = dh_book_get_completions (book);
+        if (completions) {
+                g_completion_remove_items (priv->completion, completions);
         }
 }
 
@@ -1246,14 +1190,16 @@ dh_search_new (DhBookManager *book_manager)
 
 void
 dh_search_set_search_string (DhSearch    *search,
-                             const gchar *str,
-                             const gchar *book_id)
+                             const gchar *str)
 {
         DhSearchPriv *priv;
 
         g_return_if_fail (DH_IS_SEARCH (search));
 
         priv = GET_PRIVATE (search);
+
+        /* Mark "All books" as active */
+        gtk_combo_box_set_active (GTK_COMBO_BOX (priv->book_combo), 0);
 
         g_signal_handlers_block_by_func (priv->entry,
                                          search_entry_changed_cb,
@@ -1267,8 +1213,6 @@ dh_search_set_search_string (DhSearch    *search,
         g_signal_handlers_unblock_by_func (priv->entry,
                                            search_entry_changed_cb,
                                            search);
-
-        search_combo_set_active_book_id (search, book_id);
 
         if (!priv->idle_filter) {
                 priv->idle_filter =

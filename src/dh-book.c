@@ -67,6 +67,8 @@ typedef struct {
         GNode        *tree;
         /* Generated list of keywords in the book */
         GList        *keywords;
+        /* Generated list of keyword completions in the book */
+        GList        *completions;
 
         /* Monitor of this specific book */
         GFileMonitor *monitor;
@@ -113,6 +115,11 @@ book_finalize (GObject *object)
         if (priv->keywords) {
                 g_list_foreach (priv->keywords, (GFunc)dh_link_unref, NULL);
                 g_list_free (priv->keywords);
+        }
+
+        if (priv->completions) {
+                g_list_foreach (priv->completions, (GFunc)g_free, NULL);
+                g_list_free (priv->completions);
         }
 
         if (priv->monitor) {
@@ -188,6 +195,7 @@ dh_book_init (DhBook *book)
         priv->enabled = TRUE;
         priv->tree = NULL;
         priv->keywords = NULL;
+        priv->completions = NULL;
         priv->monitor = NULL;
         priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
         priv->monitor_event_timeout_id = 0;
@@ -353,6 +361,45 @@ dh_book_get_keywords (DhBook *book)
         priv = GET_PRIVATE (book);
 
         return priv->enabled ? priv->keywords : NULL;
+}
+
+GList *
+dh_book_get_completions (DhBook *book)
+{
+        DhBookPriv *priv;
+
+        g_return_val_if_fail (DH_IS_BOOK (book), NULL);
+
+        priv = GET_PRIVATE (book);
+
+        if (!priv->enabled)
+                return NULL;
+
+        if (!priv->completions) {
+                GList *l;
+                for (l = priv->keywords; l; l = g_list_next (l)) {
+                        DhLink *link = l->data;
+
+                        /* Add additional "page:" and "book:" completions */
+                        if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
+                                priv->completions =
+                                        g_list_prepend (priv->completions,
+                                                        g_strdup_printf ("book:%s",
+                                                                         dh_link_get_name (link)));
+                        }
+                        else if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE) {
+                                priv->completions =
+                                        g_list_prepend (priv->completions,
+                                                        g_strdup_printf ("page:%s",
+                                                                         dh_link_get_name (link)));
+                        }
+
+                        priv->completions =  g_list_prepend (priv->completions,
+                                                          g_strdup (dh_link_get_name (link)));
+                }
+        }
+
+        return priv->completions;
 }
 
 GNode *
