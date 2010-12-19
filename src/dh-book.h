@@ -24,7 +24,7 @@
 #ifndef _DH_BOOK_H_
 #define _DH_BOOK_H_
 
-#include <gtk/gtk.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
