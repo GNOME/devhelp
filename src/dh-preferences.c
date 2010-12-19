@@ -28,24 +28,23 @@
 #include "dh-base.h"
 
 typedef struct {
-	GtkWidget *dialog;
+        GtkWidget     *dialog;
+        DhBookManager *book_manager;
 
         /* Fonts tab */
-	GtkWidget *system_fonts_button;
-	GtkWidget *fonts_table;
-	GtkWidget *variable_font_button;
-	GtkWidget *fixed_font_button;
-	guint      use_system_fonts_id;
-	guint      system_var_id;
-	guint      system_fixed_id;
-	guint      var_id;
-	guint      fixed_id;
+        GtkWidget *system_fonts_button;
+        GtkWidget *fonts_table;
+        GtkWidget *variable_font_button;
+        GtkWidget *fixed_font_button;
+        guint      use_system_fonts_id;
+        guint      system_var_id;
+        guint      system_fixed_id;
+        guint      var_id;
+        guint      fixed_id;
 
         /* Book Shelf tab */
-        DhBookManager *book_manager;
-        GtkTreeView   *booklist_treeview;
-        GtkListStore  *booklist_store;
-        GtkWidget     *group_by_language_button;
+        GtkListStore *bookshelf_store;
+        GtkWidget    *bookshelf_group_by_language_button;
 } DhPreferences;
 
 /* Fonts-tab related */
@@ -145,7 +144,7 @@ preferences_shutdown (void)
                 return;
         }
 
-        gtk_list_store_clear (prefs->booklist_store);
+        gtk_list_store_clear (prefs->bookshelf_store);
         gtk_widget_destroy (GTK_WIDGET (prefs->dialog));
 
         g_free (prefs);
@@ -344,12 +343,12 @@ preferences_bookshelf_set_language_inconsistent (const gchar *language)
         }
 
         loop_iter = language_iter;
-        while (gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->booklist_store),
+        while (gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->bookshelf_store),
                                          &loop_iter)) {
                 DhBook   *book;
                 gboolean  enabled;
 
-                gtk_tree_model_get (GTK_TREE_MODEL (prefs->booklist_store),
+                gtk_tree_model_get (GTK_TREE_MODEL (prefs->bookshelf_store),
                                     &loop_iter,
                                     LTCOLUMN_BOOK,       &book,
                                     LTCOLUMN_ENABLED,    &enabled,
@@ -372,13 +371,13 @@ preferences_bookshelf_set_language_inconsistent (const gchar *language)
         /* If at least one book is enabled AND another book is disabled,
          * we need to set inconsistent state */
         if (one_book_enabled == one_book_disabled) {
-                gtk_list_store_set (prefs->booklist_store, &language_iter,
+                gtk_list_store_set (prefs->bookshelf_store, &language_iter,
                                     LTCOLUMN_INCONSISTENT, TRUE,
                                     -1);
                 return;
         }
 
-        gtk_list_store_set (prefs->booklist_store, &language_iter,
+        gtk_list_store_set (prefs->bookshelf_store, &language_iter,
                             LTCOLUMN_ENABLED, one_book_enabled,
                             LTCOLUMN_INCONSISTENT, FALSE,
                             -1);
@@ -391,14 +390,14 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
 {
         GtkTreeIter iter;
 
-        if (gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (prefs->booklist_store),
+        if (gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (prefs->bookshelf_store),
                                                  &iter,
                                                  path))
         {
                 gpointer book = NULL;
                 gboolean enabled;
 
-                gtk_tree_model_get (GTK_TREE_MODEL (prefs->booklist_store),
+                gtk_tree_model_get (GTK_TREE_MODEL (prefs->bookshelf_store),
                                     &iter,
                                     LTCOLUMN_BOOK,       &book,
                                     LTCOLUMN_ENABLED,    &enabled,
@@ -408,7 +407,7 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
                         /* Update book conf */
                         dh_book_set_enabled (book, !enabled);
 
-                        gtk_list_store_set (prefs->booklist_store, &iter,
+                        gtk_list_store_set (prefs->bookshelf_store, &iter,
                                             LTCOLUMN_ENABLED, !enabled,
                                             -1);
                         /* Now we need to look for the language group of this item,
@@ -424,16 +423,16 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
                         g_assert (dh_book_manager_get_group_by_language (prefs->book_manager) == TRUE);
 
                         /* Set new status in the language group item */
-                        gtk_list_store_set (prefs->booklist_store, &iter,
+                        gtk_list_store_set (prefs->bookshelf_store, &iter,
                                             LTCOLUMN_ENABLED,      !enabled,
                                             LTCOLUMN_INCONSISTENT, FALSE,
                                             -1);
 
                         /* And set new status in all books of the same language */
                         loop_iter = iter;
-                        while (gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->booklist_store),
+                        while (gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->bookshelf_store),
                                                          &loop_iter)) {
-                                gtk_tree_model_get (GTK_TREE_MODEL (prefs->booklist_store),
+                                gtk_tree_model_get (GTK_TREE_MODEL (prefs->bookshelf_store),
                                                     &loop_iter,
                                                     LTCOLUMN_BOOK, &book,
                                                     -1);
@@ -445,7 +444,7 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
                                 /* Update book conf */
                                 dh_book_set_enabled (book, !enabled);
 
-                                gtk_list_store_set (prefs->booklist_store,
+                                gtk_list_store_set (prefs->bookshelf_store,
                                                     &loop_iter,
                                                     LTCOLUMN_ENABLED, !enabled,
                                                     -1);
@@ -488,7 +487,7 @@ preferences_bookshelf_book_deleted_cb (DhBookManager *book_manager,
                                          NULL,
                                          NULL);
         if (exact_iter_found) {
-                gtk_list_store_remove (prefs->booklist_store, &exact_iter);
+                gtk_list_store_remove (prefs->bookshelf_store, &exact_iter);
                 preferences_bookshelf_set_language_inconsistent (dh_book_get_language (book));
         }
 }
@@ -515,7 +514,7 @@ preferences_bookshelf_find_language_group (const gchar *language,
         if (next_found)
                 *next_found = FALSE;
 
-        if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (prefs->booklist_store),
+        if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (prefs->bookshelf_store),
                                             &loop_iter)) {
                 /* Store is empty, not found */
                 return;
@@ -527,7 +526,7 @@ preferences_bookshelf_find_language_group (const gchar *language,
 
                 /* Look for language titles, which are those where there
                  * is no book object associated in the row */
-                gtk_tree_model_get (GTK_TREE_MODEL (prefs->booklist_store),
+                gtk_tree_model_get (GTK_TREE_MODEL (prefs->bookshelf_store),
                                     &loop_iter,
                                     LTCOLUMN_TITLE, &title,
                                     LTCOLUMN_BOOK,  &book,
@@ -560,7 +559,7 @@ preferences_bookshelf_find_language_group (const gchar *language,
                 }
 
                 g_free (title);
-        } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->booklist_store),
+        } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->bookshelf_store),
                                            &loop_iter));
 }
 
@@ -594,7 +593,7 @@ preferences_bookshelf_find_book (DhBook            *book,
         /* Setup iteration start */
         if (!first) {
                 /* If no first given, start iterating from the start of the model */
-                if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (prefs->booklist_store), &loop_iter)) {
+                if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (prefs->bookshelf_store), &loop_iter)) {
                         /* Store is empty, not found */
                         return;
                 }
@@ -605,7 +604,7 @@ preferences_bookshelf_find_book (DhBook            *book,
         do {
                 DhBook *in_list_book = NULL;
 
-                gtk_tree_model_get (GTK_TREE_MODEL (prefs->booklist_store),
+                gtk_tree_model_get (GTK_TREE_MODEL (prefs->bookshelf_store),
                                     &loop_iter,
                                     LTCOLUMN_BOOK, &in_list_book,
                                     -1);
@@ -638,7 +637,7 @@ preferences_bookshelf_find_book (DhBook            *book,
 
                 if (in_list_book)
                         g_object_unref (in_list_book);
-        } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->booklist_store),
+        } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->bookshelf_store),
                                            &loop_iter));
 }
 
@@ -669,15 +668,15 @@ preferences_bookshelf_add_book_to_store (DhBook   *book,
                 /* New language group needs to be created? */
                 if (!language_iter_found) {
                         if (!next_language_iter_found) {
-                                gtk_list_store_append (prefs->booklist_store,
+                                gtk_list_store_append (prefs->bookshelf_store,
                                                        &language_iter);
                         } else {
-                                gtk_list_store_insert_before (prefs->booklist_store,
+                                gtk_list_store_insert_before (prefs->bookshelf_store,
                                                               &language_iter,
                                                               &next_language_iter);
                         }
 
-                        gtk_list_store_set (prefs->booklist_store,
+                        gtk_list_store_set (prefs->bookshelf_store,
                                             &language_iter,
                                             LTCOLUMN_ENABLED,      dh_book_get_enabled (book),
                                             LTCOLUMN_TITLE,        language_title,
@@ -691,7 +690,7 @@ preferences_bookshelf_add_book_to_store (DhBook   *book,
 
                 /* If we got to add first book in a given language group, just append it. */
                 if (first_in_language) {
-                        gtk_list_store_insert_after (prefs->booklist_store,
+                        gtk_list_store_insert_after (prefs->bookshelf_store,
                                                      &book_iter,
                                                      &language_iter);
                 } else {
@@ -702,7 +701,7 @@ preferences_bookshelf_add_book_to_store (DhBook   *book,
                         gboolean    language_enabled = FALSE;
 
                         /* We may need to reset the inconsistent status of the language item */
-                        gtk_tree_model_get (GTK_TREE_MODEL (prefs->booklist_store),
+                        gtk_tree_model_get (GTK_TREE_MODEL (prefs->bookshelf_store),
                                             &language_iter,
                                             LTCOLUMN_ENABLED, &language_enabled,
                                             LTCOLUMN_INCONSISTENT, &language_inconsistent,
@@ -710,7 +709,7 @@ preferences_bookshelf_add_book_to_store (DhBook   *book,
                         /* If inconsistent already, do nothing */
                         if (!language_inconsistent) {
                                 if (language_enabled != dh_book_get_enabled (book)) {
-                                        gtk_list_store_set (prefs->booklist_store,
+                                        gtk_list_store_set (prefs->bookshelf_store,
                                                             &language_iter,
                                                             LTCOLUMN_INCONSISTENT, TRUE,
                                                             -1);
@@ -719,7 +718,7 @@ preferences_bookshelf_add_book_to_store (DhBook   *book,
 
                         /* The language will have at least one book, so we move iter to it */
                         first_book_iter = language_iter;
-                        gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->booklist_store), &first_book_iter);
+                        gtk_tree_model_iter_next (GTK_TREE_MODEL (prefs->bookshelf_store), &first_book_iter);
 
                         /* Find next possible book in language group */
                         preferences_bookshelf_find_book (book,
@@ -729,10 +728,10 @@ preferences_bookshelf_add_book_to_store (DhBook   *book,
                                                          &next_book_iter,
                                                          &next_book_iter_found);
                         if (!next_book_iter_found) {
-                                gtk_list_store_append (prefs->booklist_store,
+                                gtk_list_store_append (prefs->bookshelf_store,
                                                        &book_iter);
                         } else {
-                                gtk_list_store_insert_before (prefs->booklist_store,
+                                gtk_list_store_insert_before (prefs->bookshelf_store,
                                                               &book_iter,
                                                               &next_book_iter);
                         }
@@ -740,7 +739,7 @@ preferences_bookshelf_add_book_to_store (DhBook   *book,
 
                 /* Add new item with indented title */
                 indented_title = g_strdup_printf ("     %s", dh_book_get_title (book));
-                gtk_list_store_set (prefs->booklist_store,
+                gtk_list_store_set (prefs->bookshelf_store,
                                     &book_iter,
                                     LTCOLUMN_ENABLED,      dh_book_get_enabled (book),
                                     LTCOLUMN_TITLE,        indented_title,
@@ -761,15 +760,15 @@ preferences_bookshelf_add_book_to_store (DhBook   *book,
                                                  &next_book_iter,
                                                  &next_book_iter_found);
                 if (!next_book_iter_found) {
-                        gtk_list_store_append (prefs->booklist_store,
+                        gtk_list_store_append (prefs->bookshelf_store,
                                                &book_iter);
                 } else {
-                        gtk_list_store_insert_before (prefs->booklist_store,
+                        gtk_list_store_insert_before (prefs->bookshelf_store,
                                                       &book_iter,
                                                       &next_book_iter);
                 }
 
-                gtk_list_store_set (prefs->booklist_store,
+                gtk_list_store_set (prefs->bookshelf_store,
                                     &book_iter,
                                     LTCOLUMN_ENABLED,  dh_book_get_enabled (book),
                                     LTCOLUMN_TITLE,    dh_book_get_title (book),
@@ -807,7 +806,7 @@ preferences_dialog_response (GtkDialog *dialog,
 static void
 preferences_bookshelf_clean_store (void)
 {
-        gtk_list_store_clear (prefs->booklist_store);
+        gtk_list_store_clear (prefs->bookshelf_store);
 }
 
 static void
@@ -852,9 +851,8 @@ dh_preferences_show_dialog (GtkWindow *parent)
                 "system_fonts_button", &prefs->system_fonts_button,
                 "variable_font_button", &prefs->variable_font_button,
                 "fixed_font_button", &prefs->fixed_font_button,
-                "book_manager_store", &prefs->booklist_store,
-                "book_manager_treeview", &prefs->booklist_treeview,
-                "group_by_language_button", &prefs->group_by_language_button,
+                "bookshelf_store", &prefs->bookshelf_store,
+                "bookshelf_group_by_language_button", &prefs->bookshelf_group_by_language_button,
                 NULL);
         g_free (path);
 
@@ -864,8 +862,8 @@ dh_preferences_show_dialog (GtkWindow *parent)
                 "variable_font_button", "font_set", preferences_fonts_font_set_cb,
                 "fixed_font_button", "font_set", preferences_fonts_font_set_cb,
                 "system_fonts_button", "toggled", preferences_fonts_system_fonts_toggled_cb,
-                "book_manager_toggle", "toggled", preferences_bookshelf_tree_selection_toggled_cb,
-                "group_by_language_button", "toggled", preferences_bookshelf_group_by_language_toggled_cb,
+                "bookshelf_enabled_toggle", "toggled", preferences_bookshelf_tree_selection_toggled_cb,
+                "bookshelf_group_by_language_button", "toggled", preferences_bookshelf_group_by_language_toggled_cb,
                 NULL);
 
 	ige_conf_get_bool (ige_conf_get (),
@@ -889,7 +887,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
 		g_free (fixed_font_name);
 	}
 
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prefs->group_by_language_button),
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prefs->bookshelf_group_by_language_button),
                                       dh_book_manager_get_group_by_language (prefs->book_manager));
         preferences_bookshelf_populate_store ();
 
