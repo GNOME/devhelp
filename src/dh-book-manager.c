@@ -27,6 +27,7 @@
 #include "dh-link.h"
 #include "dh-util.h"
 #include "dh-book.h"
+#include "dh-language.h"
 #include "dh-book-manager.h"
 #include "dh-marshal.h"
 
@@ -36,11 +37,6 @@ typedef struct {
         DhBookManager *book_manager;
         GFile         *file;
 } NewPossibleBookData;
-
-struct _DhBookManagerLanguage {
-        gchar *name;
-        gint   n_books_enabled;
-};
 
 typedef struct {
         /* The list of all DhBooks found in the system */
@@ -86,9 +82,9 @@ static void    book_manager_add_from_filepath (DhBookManager *book_manager,
 static void    book_manager_add_from_dir      (DhBookManager *book_manager,
                                                const gchar   *dir_path);
 static void    book_manager_inc_language      (DhBookManager *book_manager,
-                                               const gchar   *language);
+                                               const gchar   *language_name);
 static void    book_manager_dec_language      (DhBookManager *book_manager,
-                                               const gchar   *language);
+                                               const gchar   *language_name);
 static void    book_manager_get_property      (GObject        *object,
                                                guint           prop_id,
                                                GValue         *value,
@@ -119,12 +115,9 @@ book_manager_finalize (GObject *object)
         g_list_free (priv->books);
 
         /* Free all languages */
-        for (l = priv->languages; l; l = g_list_next (l)) {
-                DhBookManagerLanguage *lang = l->data;
-
-                g_free (lang->name);
-                g_free (lang);
-        }
+        g_list_foreach (priv->languages,
+                        (GFunc)dh_language_free,
+                        NULL);
         g_list_free (priv->languages);
 
         /* Destroy the monitors HT */
@@ -774,36 +767,6 @@ dh_book_manager_get_books (DhBookManager *book_manager)
         return GET_PRIVATE (book_manager)->books;
 }
 
-DhBook *
-dh_book_manager_get_book_by_name (DhBookManager *book_manager,
-                                  const gchar   *name)
-{
-        GList  *l;
-
-        g_return_val_if_fail (book_manager, NULL);
-
-        l = g_list_find_custom (GET_PRIVATE (book_manager)->books,
-                                name,
-                                (GCompareFunc)dh_book_cmp_by_name_str);
-
-        return l ? l->data : NULL;
-}
-
-DhBook *
-dh_book_manager_get_book_by_path (DhBookManager *book_manager,
-                                  const gchar   *path)
-{
-        GList  *l;
-
-        g_return_val_if_fail (book_manager, NULL);
-
-        l = g_list_find_custom (GET_PRIVATE (book_manager)->books,
-                                path,
-                                (GCompareFunc)dh_book_cmp_by_path_str);
-
-        return l ? l->data : NULL;
-}
-
 gboolean
 dh_book_manager_get_group_by_language (DhBookManager *book_manager)
 {
@@ -831,70 +794,57 @@ dh_book_manager_set_group_by_language (DhBookManager *book_manager,
 
 static void
 book_manager_inc_language (DhBookManager *book_manager,
-                           const gchar   *language)
+                           const gchar   *language_name)
 {
         GList *li;
-        DhBookManagerLanguage *lang_data;
+        DhLanguage *language;
         DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
 
-        for (li = priv->languages; li; li = g_list_next (li)) {
-                lang_data = li->data;
+        li = g_list_find_custom (priv->languages,
+                                 language_name,
+                                 (GCompareFunc)dh_language_compare_by_name);
 
-                if (strcmp (language, lang_data->name) == 0) {
-                        /* Already in list. */
-                        lang_data->n_books_enabled++;
-                        break;
-                }
+        /* If already in list, increase count */
+        if (li) {
+                dh_language_inc_n_books_enabled (li->data);
+                return;
         }
 
         /* Add new element to list if not found */
-        if (!li) {
-                lang_data = g_new (DhBookManagerLanguage, 1);
-                lang_data->name = g_strdup (language);
-                lang_data->n_books_enabled = 1;
-                priv->languages = g_list_prepend (priv->languages,
-                                                  lang_data);
-                /* Emit signal to notify others */
-                g_signal_emit (book_manager,
-                               signals[LANGUAGE_ENABLED],
-                               0,
-                               language);
-        }
+        language = dh_language_new (language_name);
+        priv->languages = g_list_prepend (priv->languages,
+                                          language);
+        /* Emit signal to notify others */
+        g_signal_emit (book_manager,
+                       signals[LANGUAGE_ENABLED],
+                       0,
+                       language_name);
 }
 
 static void
 book_manager_dec_language (DhBookManager *book_manager,
-                           const gchar   *language)
+                           const gchar   *language_name)
 {
         GList *li;
-        DhBookManagerLanguage *lang_data;
         DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
 
-        for (li = priv->languages; li; li = g_list_next (li)) {
-                lang_data = li->data;
-
-                if (strcmp (language, lang_data->name) == 0) {
-                        /* Already in list. */
-                        lang_data->n_books_enabled--;
-                        break;
-                }
-        }
-
-        /* Language  */
+        /* Language must exist in list */
+        li = g_list_find_custom (priv->languages,
+                                 language_name,
+                                 (GCompareFunc)dh_language_compare_by_name);
         g_assert (li != NULL);
-        g_assert (lang_data->n_books_enabled >= 0);
 
         /* If language count reaches zero, remove from list */
-        if (lang_data->n_books_enabled == 0) {
-                g_free (lang_data->name);
-                g_free (lang_data);
+        if (dh_language_dec_n_books_enabled (li->data))
+        {
+                dh_language_free (li->data);
                 priv->languages = g_list_delete_link (priv->languages, li);
 
                 /* Emit signal to notify others */
                 g_signal_emit (book_manager,
                                signals[LANGUAGE_DISABLED],
                                0,
-                               language);
+                               language_name);
         }
 }
 
@@ -904,20 +854,6 @@ dh_book_manager_get_languages (DhBookManager *book_manager)
         g_return_val_if_fail (book_manager, NULL);
 
         return GET_PRIVATE (book_manager)->languages;
-}
-
-const gchar *
-dh_book_manager_language_get_name (DhBookManagerLanguage *language)
-{
-        g_return_val_if_fail (language != NULL, NULL);
-        return language->name;
-}
-
-gint
-dh_book_manager_language_get_n_books_enabled (DhBookManagerLanguage *language)
-{
-        g_return_val_if_fail (language != NULL, 0);
-        return language->n_books_enabled;
 }
 
 DhBookManager *

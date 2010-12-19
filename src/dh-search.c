@@ -34,6 +34,7 @@
 #include "dh-util.h"
 #include "dh-book-manager.h"
 #include "dh-book.h"
+#include "dh-language.h"
 
 typedef struct {
         DhKeywordModel *model;
@@ -516,7 +517,7 @@ search_combo_populate (DhSearch *search)
              l;
              l = g_list_next (l)) {
                 search_combo_add_language (search,
-                                           dh_book_manager_language_get_name (l->data));
+                                           dh_language_get_name (l->data));
         }
 
         /* Add book items */
