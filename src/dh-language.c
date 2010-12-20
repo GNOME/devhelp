@@ -34,28 +34,28 @@ void
 dh_language_free (DhLanguage *language)
 {
         g_free (language->name);
-	g_slice_free (DhLanguage, language);
+        g_slice_free (DhLanguage, language);
 }
 
 DhLanguage *
 dh_language_new (const gchar *name)
 {
-	DhLanguage *language;
+        DhLanguage *language;
 
-	g_return_val_if_fail (name != NULL, NULL);
+        g_return_val_if_fail (name != NULL, NULL);
 
-	language = g_slice_new0 (DhLanguage);
-	language->name = g_strdup (name);
+        language = g_slice_new0 (DhLanguage);
+        language->name = g_strdup (name);
 
-	return language;
+        return language;
 }
 
 gint
 dh_language_compare (const DhLanguage *language_a,
                      const DhLanguage *language_b)
 {
-	g_return_val_if_fail (language_a != NULL, NULL);
-	g_return_val_if_fail (language_b != NULL, NULL);
+        g_return_val_if_fail (language_a != NULL, NULL);
+        g_return_val_if_fail (language_b != NULL, NULL);
 
         return strcmp (language_a->name, language_b->name);
 }
@@ -64,8 +64,8 @@ gint
 dh_language_compare_by_name (const DhLanguage *language_a,
                              const gchar      *language_name_b)
 {
-	g_return_val_if_fail (language_a != NULL, NULL);
-	g_return_val_if_fail (language_name_b != NULL, NULL);
+        g_return_val_if_fail (language_a != NULL, NULL);
+        g_return_val_if_fail (language_name_b != NULL, NULL);
 
         return strcmp (language_a->name, language_name_b);
 }
@@ -89,7 +89,8 @@ dh_language_get_n_books_enabled (DhLanguage *language)
 
 void
 dh_language_inc_n_books_enabled (DhLanguage *language)
-{        g_return_if_fail (language != NULL);
+{
+        g_return_if_fail (language != NULL);
 
         language->n_books_enabled++;
 }
@@ -100,6 +101,5 @@ dh_language_dec_n_books_enabled (DhLanguage *language)
         g_return_val_if_fail (language != NULL, FALSE);
 
         language->n_books_enabled--;
-
         return (language->n_books_enabled <= 0) ? TRUE : FALSE;
 }

@@ -29,12 +29,11 @@ DhLanguage  *dh_language_new                 (const gchar      *name);
 void         dh_language_free                (DhLanguage       *language);
 const gchar *dh_language_get_name            (DhLanguage       *language);
 gint         dh_language_compare             (const DhLanguage *language_a,
-					      const DhLanguage *language_b);
+                                              const DhLanguage *language_b);
 gint         dh_language_compare_by_name     (const DhLanguage *language_a,
                                               const gchar      *language_name_b);
 gint         dh_language_get_n_books_enabled (DhLanguage       *language);
 void         dh_language_inc_n_books_enabled (DhLanguage       *language);
 gboolean     dh_language_dec_n_books_enabled (DhLanguage       *language);
-
 
 #endif /* __DH_LANGUAGE_H__ */
