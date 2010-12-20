@@ -472,7 +472,7 @@ dh_util_state_load_books_disabled (void)
 
         key = util_state_get_key ("main/contents", "books_disabled");
         ige_conf_get_string_list (ige_conf_get (), key, &books_disabled);
-        g_free(key);
+        g_free (key);
 
         return books_disabled;
 }
@@ -484,7 +484,30 @@ dh_util_state_store_books_disabled (GSList *books_disabled)
 
         key = util_state_get_key ("main/contents", "books_disabled");
         ige_conf_set_string_list (ige_conf_get (), key, books_disabled);
-        g_free(key);
+        g_free (key);
+}
+
+gboolean
+dh_util_state_load_group_books_by_language (void)
+{
+        gchar *key;
+        gboolean group_books_by_language = FALSE;
+
+        key = util_state_get_key ("main/contents", "group_books_by_language");
+        ige_conf_get_bool (ige_conf_get (), key, &group_books_by_language);
+        g_free (key);
+
+        return group_books_by_language;
+}
+
+void
+dh_util_state_store_group_books_by_language (gboolean group_books_by_language)
+{
+        gchar *key;
+
+        key = util_state_get_key ("main/contents", "group_books_by_language");
+        ige_conf_set_bool (ige_conf_get (), key, group_books_by_language);
+        g_free (key);
 }
 
 static gboolean
@@ -810,3 +833,28 @@ dh_util_cmp_book (DhLink *a, DhLink *b)
         return rc;
 }
 
+/* We're only going to expect ASCII strings here, so there's no point in
+ * playing with g_unichar_totitle() and such.
+ * Note that we modify the string in place.
+ */
+void
+dh_util_ascii_strtitle (gchar *str)
+{
+        gboolean word_start;
+
+        if (!str)
+                return;
+
+        word_start = TRUE;
+        while (*str != '\0') {
+                if (g_ascii_isalpha (*str)) {
+                        *str = (word_start ?
+                                g_ascii_toupper (*str) :
+                                g_ascii_tolower (*str));
+                        word_start = FALSE;
+                } else {
+                        word_start = TRUE;
+                }
+                str++;
+        }
+}

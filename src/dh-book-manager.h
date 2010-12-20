@@ -27,8 +27,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _DhBookManager      DhBookManager;
-typedef struct _DhBookManagerClass DhBookManagerClass;
+typedef struct _DhBookManager         DhBookManager;
+typedef struct _DhBookManagerClass    DhBookManagerClass;
 
 #define DH_TYPE_BOOK_MANAGER         (dh_book_manager_get_type ())
 #define DH_BOOK_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), DH_TYPE_BOOK_MANAGER, DhBookManager))
@@ -43,18 +43,17 @@ struct _DhBookManager {
 
 struct _DhBookManagerClass {
         GObjectClass parent_class;
-
-        /* Signals */
-        void (* disabled_book_list_updated) (DhBookManager *book_manager);
 };
 
-GType          dh_book_manager_get_type         (void) G_GNUC_CONST;
-DhBookManager *dh_book_manager_new              (void);
-void           dh_book_manager_populate         (DhBookManager *book_manager);
-GList         *dh_book_manager_get_books        (DhBookManager *book_manager);
-DhBook        *dh_book_manager_get_book_by_name (DhBookManager *book_manager,
-                                                 const gchar *name);
-void           dh_book_manager_update           (DhBookManager *book_manager);
+GType          dh_book_manager_get_type              (void) G_GNUC_CONST;
+DhBookManager *dh_book_manager_new                   (void);
+void           dh_book_manager_populate              (DhBookManager *book_manager);
+GList         *dh_book_manager_get_books             (DhBookManager *book_manager);
+GList         *dh_book_manager_get_languages         (DhBookManager *book_manager);
+
+gboolean       dh_book_manager_get_group_by_language (DhBookManager *book_manager);
+void           dh_book_manager_set_group_by_language (DhBookManager *book_manager,
+                                                      gboolean       group_by_language);
 
 G_END_DECLS
 

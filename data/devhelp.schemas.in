@@ -24,7 +24,7 @@
          <long>The width of the main window.</long>
       </locale>
     </schema>
-                                                                                
+
     <schema>
       <key>/schemas/apps/devhelp/state/main/window/height</key>
       <applyto>/apps/devhelp/state/main/window/height</applyto>
@@ -126,6 +126,7 @@
          <long>Which of the tabs is selected: "content" or "search".</long>
       </locale>
     </schema>
+
     <schema>
       <key>/schemas/apps/devhelp/state/main/contents/books_disabled</key>
       <applyto>/apps/devhelp/state/main/contents/books_disabled</applyto>
@@ -136,6 +137,17 @@
       <locale name="C">
          <short>Books disabled</short>
          <long>List of books disabled by the user.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/devhelp/state/main/contents/group_books_by_language</key>
+      <applyto>/apps/devhelp/state/main/contents/group_books_by_language</applyto>
+      <owner>devhelp</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+         <short>Group by language</short>
+         <long>Whether books should be grouped by language in the UI</long>
       </locale>
     </schema>
 

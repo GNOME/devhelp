@@ -27,17 +27,44 @@
 #include "dh-link.h"
 #include "dh-util.h"
 #include "dh-book.h"
+#include "dh-language.h"
 #include "dh-book-manager.h"
 #include "dh-marshal.h"
 
+#define NEW_POSSIBLE_BOOK_TIMEOUT_SECS 5
+
+typedef struct {
+        DhBookManager *book_manager;
+        GFile         *file;
+} NewPossibleBookData;
+
 typedef struct {
         /* The list of all DhBooks found in the system */
-        GList *books;
+        GList      *books;
+        /* HT with the monitors setup */
+        GHashTable *monitors;
+        /* List of book names currently disabled */
+        GSList     *books_disabled;
+        /* Whether books should be grouped by language */
+        gboolean    group_by_language;
+        /* List of programming languages with at least one book enabled */
+        GList      *languages;
 } DhBookManagerPriv;
 
 enum {
-        DISABLED_BOOK_LIST_UPDATED,
+        BOOK_CREATED,
+        BOOK_DELETED,
+        BOOK_ENABLED,
+        BOOK_DISABLED,
+        LANGUAGE_ENABLED,
+        LANGUAGE_DISABLED,
+        BOOKLIST_GROUP_BY_LANGUAGE,
         LAST_SIGNAL
+};
+
+enum {
+        PROP_0,
+        PROP_GROUP_BY_LANGUAGE
 };
 
 static gint signals[LAST_SIGNAL] = { 0 };
@@ -47,13 +74,25 @@ G_DEFINE_TYPE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE       \
         (instance, DH_TYPE_BOOK_MANAGER, DhBookManagerPriv)
 
-static void    dh_book_manager_init       (DhBookManager      *book_manager);
-static void    dh_book_manager_class_init (DhBookManagerClass *klass);
+static void    dh_book_manager_init           (DhBookManager      *book_manager);
+static void    dh_book_manager_class_init     (DhBookManagerClass *klass);
 
-static void    book_manager_add_from_filepath     (DhBookManager *book_manager,
-                                                   const gchar   *book_path);
-static void    book_manager_add_from_dir          (DhBookManager *book_manager,
-                                                   const gchar   *dir_path);
+static void    book_manager_add_from_filepath (DhBookManager *book_manager,
+                                               const gchar   *book_path);
+static void    book_manager_add_from_dir      (DhBookManager *book_manager,
+                                               const gchar   *dir_path);
+static void    book_manager_inc_language      (DhBookManager *book_manager,
+                                               const gchar   *language_name);
+static void    book_manager_dec_language      (DhBookManager *book_manager,
+                                               const gchar   *language_name);
+static void    book_manager_get_property      (GObject        *object,
+                                               guint           prop_id,
+                                               GValue         *value,
+                                               GParamSpec     *pspec);
+static void    book_manager_set_property      (GObject        *object,
+                                               guint           prop_id,
+                                               const GValue   *value,
+                                               GParamSpec     *pspec);
 
 #ifdef GDK_WINDOWING_QUARTZ
 static void    book_manager_add_from_xcode_docset (DhBookManager *book_manager,
@@ -65,6 +104,7 @@ book_manager_finalize (GObject *object)
 {
         DhBookManagerPriv *priv;
         GList             *l;
+        GSList            *sl;
 
         priv = GET_PRIVATE (object);
 
@@ -73,6 +113,23 @@ book_manager_finalize (GObject *object)
                 g_object_unref (l->data);
         }
         g_list_free (priv->books);
+
+        /* Free all languages */
+        g_list_foreach (priv->languages,
+                        (GFunc)dh_language_free,
+                        NULL);
+        g_list_free (priv->languages);
+
+        /* Destroy the monitors HT */
+        if (priv->monitors) {
+                g_hash_table_destroy (priv->monitors);
+        }
+
+        /* Clean the list of books disabled */
+        for (sl = priv->books_disabled; sl; sl = g_slist_next (sl)) {
+                g_free (sl->data);
+        }
+        g_slist_free (priv->books_disabled);
 
         G_OBJECT_CLASS (dh_book_manager_parent_class)->finalize (object);
 }
@@ -83,16 +140,81 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = book_manager_finalize;
+        object_class->set_property = book_manager_set_property;
+        object_class->get_property = book_manager_get_property;
 
-        signals[DISABLED_BOOK_LIST_UPDATED] =
-                g_signal_new ("disabled-book-list-updated",
+        signals[BOOK_CREATED] =
+                g_signal_new ("book-created",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (DhBookManagerClass, disabled_book_list_updated),
+                              0,
                               NULL, NULL,
-                              _dh_marshal_VOID__VOID,
+                              _dh_marshal_VOID__OBJECT,
                               G_TYPE_NONE,
-                              0);
+                              1,
+                              G_TYPE_OBJECT);
+        signals[BOOK_DELETED] =
+                g_signal_new ("book-deleted",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
+                              _dh_marshal_VOID__OBJECT,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_OBJECT);
+        signals[BOOK_ENABLED] =
+                g_signal_new ("book-enabled",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
+                              _dh_marshal_VOID__OBJECT,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_OBJECT);
+        signals[BOOK_DISABLED] =
+                g_signal_new ("book-disabled",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
+                              _dh_marshal_VOID__OBJECT,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_OBJECT);
+
+        signals[LANGUAGE_ENABLED] =
+                g_signal_new ("language-enabled",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
+                              _dh_marshal_VOID__STRING,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_STRING);
+        signals[LANGUAGE_DISABLED] =
+                g_signal_new ("language-disabled",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
+                              _dh_marshal_VOID__STRING,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_STRING);
+
+        g_object_class_install_property (object_class,
+                                         PROP_GROUP_BY_LANGUAGE,
+                                         g_param_spec_boolean ("group-by-language",
+                                                               ("Group by language"),
+                                                               ("TRUE if books should be grouped by language"),
+                                                               FALSE,
+                                                               (G_PARAM_READWRITE |
+                                                                G_PARAM_STATIC_NAME |
+                                                                G_PARAM_STATIC_NICK |
+                                                                G_PARAM_STATIC_BLURB)));
 
 	g_type_class_add_private (klass, sizeof (DhBookManagerPriv));
 }
@@ -103,37 +225,67 @@ dh_book_manager_init (DhBookManager *book_manager)
         DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
 
         priv->books = NULL;
+        priv->monitors = NULL;
+        priv->languages = NULL;
+
+        priv->books_disabled = dh_util_state_load_books_disabled ();
 }
 
 static void
-book_manager_clean_list_of_books_disabled (GSList *books_disabled)
+book_manager_set_property (GObject      *object,
+                           guint         prop_id,
+                           const GValue *value,
+                           GParamSpec   *pspec)
 {
-        GSList *sl;
+        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
 
-        for (sl = books_disabled; sl; sl = g_slist_next (sl)) {
-                g_free (sl->data);
+        switch (prop_id)
+        {
+        case PROP_GROUP_BY_LANGUAGE:
+                dh_book_manager_set_group_by_language (book_manager,
+                                                       g_value_get_boolean (value));
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
         }
-        g_slist_free (sl);
 }
 
 static void
-book_manager_check_status_from_conf (DhBookManager *book_manager)
+book_manager_get_property (GObject    *object,
+                           guint       prop_id,
+                           GValue     *value,
+                           GParamSpec *pspec)
 {
-        GSList *books_disabled, *sl;
+        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
 
-        books_disabled = dh_util_state_load_books_disabled ();
+        switch (prop_id)
+        {
+        case PROP_GROUP_BY_LANGUAGE:
+                g_value_set_boolean (value,
+                                     dh_book_manager_get_group_by_language (book_manager));
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
 
-        for (sl = books_disabled; sl; sl = g_slist_next (sl)) {
-                DhBook *book;
+static gboolean
+book_manager_is_book_disabled_in_conf (DhBookManager *book_manager,
+                                       DhBook        *book)
+{
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        GSList            *li;
 
-                book = dh_book_manager_get_book_by_name (book_manager,
-                                                         (const gchar *)sl->data);
-                if (book) {
-                        dh_book_set_enabled (book, FALSE);
+        for (li = priv->books_disabled; li; li = g_slist_next (li)) {
+                if (g_strcmp0 (dh_book_get_name (book),
+                               (const gchar *)li->data) == 0) {
+                        return TRUE;
                 }
         }
 
-        book_manager_clean_list_of_books_disabled (books_disabled);
+        return FALSE;
 }
 
 static void
@@ -171,9 +323,6 @@ dh_book_manager_populate (DhBookManager *book_manager)
                 book_manager,
                 "/Library/Developer/Shared/Documentation/DocSets");
 #endif
-
-        /* Once all books are loaded, check enabled status from conf */
-        book_manager_check_status_from_conf (book_manager);
 }
 
 static gchar *
@@ -192,7 +341,7 @@ book_manager_get_book_path (const gchar *base_path,
         guint  i;
 
         for (i = 0; suffixes[i]; i++) {
-                tmp = g_build_filename (base_path, name, name, NULL);
+                tmp = g_build_filename (base_path, name, NULL);
                 book_path = g_strconcat (tmp, ".", suffixes[i], NULL);
                 g_free (tmp);
 
@@ -202,6 +351,114 @@ book_manager_get_book_path (const gchar *base_path,
                 g_free (book_path);
         }
         return NULL;
+}
+
+static gboolean
+book_manager_new_possible_book_cb (gpointer user_data)
+{
+        NewPossibleBookData *data = user_data;
+        gchar               *file_path;
+        gchar               *file_basename;
+        gchar               *book_path;
+
+        file_path = g_file_get_path (data->file);
+        file_basename = g_file_get_basename (data->file);
+
+        /* Compute book path, will return NULL if it's not a proper path */
+        book_path = book_manager_get_book_path (file_path, file_basename);
+        if (book_path) {
+                /* Add book from filepath */
+                book_manager_add_from_filepath (data->book_manager,
+                                                book_path);
+                g_free (book_path);
+        }
+
+        g_free (file_path);
+        g_free (file_basename);
+        g_object_unref (data->book_manager);
+        g_object_unref (data->file);
+        g_slice_free (NewPossibleBookData, data);
+
+        return FALSE;
+}
+
+static void
+book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
+                                        GFile             *file,
+                                        GFile             *other_file,
+                                        GFileMonitorEvent  event_type,
+                                        gpointer	   user_data)
+{
+        DhBookManager       *book_manager = user_data;
+        NewPossibleBookData *data;
+
+        /* In the book manager we only handle events for new directories
+         * created. Books removed or updated are handled by the book objects
+         * themselves */
+        if (event_type != G_FILE_MONITOR_EVENT_CREATED) {
+                return;
+        }
+
+        data = g_slice_new (NewPossibleBookData);
+        data->book_manager = g_object_ref (book_manager);
+        data->file = g_object_ref (file);
+
+        /* We add a timeout of several seconds so that we give time to the
+         * whole documentation to get installed. If we don't do this, we may
+         * end up trying to add the new book when even the .devhelp file is
+         * not installed yet */
+        g_timeout_add_seconds (NEW_POSSIBLE_BOOK_TIMEOUT_SECS,
+                               book_manager_new_possible_book_cb,
+                               data);
+}
+
+static void
+book_manager_monitor_path (DhBookManager *book_manager,
+                           const gchar   *path)
+{
+        GFileMonitor      *file_monitor;
+        GFile             *file;
+        DhBookManagerPriv *priv;
+
+        priv = GET_PRIVATE (book_manager);
+
+        file = g_file_new_for_path (path);
+
+        /* If monitor already exists, do not re-add it */
+        if (priv->monitors &&
+            g_hash_table_lookup (priv->monitors, file)) {
+                return;
+        }
+
+        /* Create new monitor for the given directory */
+        file_monitor = g_file_monitor_directory (file,
+                                                 G_FILE_MONITOR_NONE,
+                                                 NULL,
+                                                 NULL);
+        if (file_monitor) {
+                /* Setup changed signal callback */
+                g_signal_connect (file_monitor, "changed",
+                                  G_CALLBACK (book_manager_booklist_monitor_event_cb),
+                                  book_manager);
+
+                /* Create HT if not already there */
+                if (G_UNLIKELY (!priv->monitors)) {
+                        priv->monitors = g_hash_table_new_full (g_file_hash,
+                                                                (GEqualFunc) g_file_equal,
+                                                                (GDestroyNotify) g_object_unref,
+                                                                (GDestroyNotify) g_object_unref);
+                }
+
+                /* Add the directory to the monitors HT */
+                g_hash_table_insert (priv->monitors,
+                                     g_object_ref (file),
+                                     file_monitor);
+        } else {
+                g_warning ("Couldn't setup to monitor changes on directory '%s'",
+                           path);
+        }
+
+        g_object_unref (file);
 }
 
 static void
@@ -220,17 +477,29 @@ book_manager_add_from_dir (DhBookManager *book_manager,
                 return;
         }
 
+        /* Monitor the directory for changes */
+        book_manager_monitor_path (book_manager, dir_path);
+
         /* And iterate it */
         while ((name = g_dir_read_name (dir)) != NULL) {
+                gchar *book_dir_path;
                 gchar *book_path;
 
-                book_path = book_manager_get_book_path (dir_path, name);
+                /* Build the path of the directory where the final
+                 * devhelp book resides */
+                book_dir_path = g_build_filename (G_DIR_SEPARATOR_S,
+                                                  dir_path,
+                                                  name,
+                                                  NULL);
+
+                book_path = book_manager_get_book_path (book_dir_path, name);
                 if (book_path) {
                         /* Add book from filepath */
                         book_manager_add_from_filepath (book_manager,
                                                         book_path);
                         g_free (book_path);
                 }
+                g_free (book_dir_path);
         }
 
         g_dir_close (dir);
@@ -283,6 +552,11 @@ book_manager_add_from_xcode_docset (DhBookManager *book_manager,
                 return;
         }
 
+        /* Monitor the directory for changes (if it works on MacOSX,
+         * not sure if GIO implements GFileMonitor based on FSEvents
+         * or what */
+        book_manager_monitor_path (book_manager, dir_path);
+
         /* And iterate it, looking for files ending with .devhelp2 */
         while ((name = g_dir_read_name (dir)) != NULL) {
                 if (g_strcmp0 (strrchr (name, '.'),
@@ -302,11 +576,122 @@ book_manager_add_from_xcode_docset (DhBookManager *book_manager,
 #endif
 
 static void
+book_manager_book_deleted_cb (DhBook   *book,
+                              gpointer  user_data)
+{
+        DhBookManager     *book_manager = user_data;
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        GList *li;
+
+        /* Look for the item we want to remove */
+        li = g_list_find (priv->books, book);
+        if (li) {
+                /* Decrement language count */
+                book_manager_inc_language (book_manager,
+                                           dh_book_get_language (book));
+
+                /* Emit signal to notify others */
+                g_signal_emit (book_manager,
+                               signals[BOOK_DELETED],
+                               0,
+                               book);
+
+                /* Remove the item and unref our reference */
+                priv->books = g_list_delete_link (priv->books, li);
+                g_object_unref (book);
+        }
+}
+
+static void
+book_manager_book_updated_cb (DhBook   *book,
+                              gpointer  user_data)
+{
+        DhBookManager *book_manager = user_data;
+        gchar         *book_path;
+
+        /* When we update a book, we need to delete it and then
+         * create it again. */
+        book_path = g_strdup (dh_book_get_path (book));
+        book_manager_book_deleted_cb (book, book_manager);
+        book_manager_add_from_filepath (book_manager, book_path);
+        g_free (book_path);
+}
+
+static GSList *
+book_manager_find_book_in_disabled_list (GSList *books_disabled,
+                                         DhBook *book)
+{
+        GSList *li;
+
+        for (li = books_disabled; li; li = g_slist_next (li)) {
+                if (g_strcmp0 (dh_book_get_name (book),
+                               (const gchar *)li->data) == 0) {
+                        return li;
+                }
+        }
+        return NULL;
+}
+
+static void
+book_manager_book_enabled_cb (DhBook   *book,
+                              gpointer  user_data)
+{
+        DhBookManager     *book_manager = user_data;
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        GSList            *li;
+
+        li = book_manager_find_book_in_disabled_list (priv->books_disabled,
+                                                      book);
+        /* When setting as enabled a given book, we should have it in the
+         * disabled books list! */
+        g_assert (li != NULL);
+        priv->books_disabled = g_slist_delete_link (priv->books_disabled, li);
+        dh_util_state_store_books_disabled (priv->books_disabled);
+
+        /* Increment language count */
+        book_manager_inc_language (book_manager,
+                                   dh_book_get_language (book));
+
+        g_signal_emit (book_manager,
+                       signals[BOOK_ENABLED],
+                       0,
+                       book);
+}
+
+static void
+book_manager_book_disabled_cb (DhBook   *book,
+                               gpointer  user_data)
+{
+        DhBookManager     *book_manager = user_data;
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        GSList            *li;
+
+        li = book_manager_find_book_in_disabled_list (priv->books_disabled,
+                                                      book);
+        /* When setting as disabled a given book, we shouldn't have it in the
+         * disabled books list! */
+        g_assert (li == NULL);
+        priv->books_disabled = g_slist_append (priv->books_disabled,
+                                               g_strdup (dh_book_get_name (book)));
+        dh_util_state_store_books_disabled (priv->books_disabled);
+
+        /* Decrement language count */
+        book_manager_dec_language (book_manager,
+                                   dh_book_get_language (book));
+
+        g_signal_emit (book_manager,
+                       signals[BOOK_DISABLED],
+                       0,
+                       book);
+}
+
+static void
 book_manager_add_from_filepath (DhBookManager *book_manager,
                                 const gchar   *book_path)
 {
         DhBookManagerPriv *priv;
         DhBook            *book;
+        gboolean           book_disabled;
 
         g_return_if_fail (book_manager);
         g_return_if_fail (book_path);
@@ -337,6 +722,41 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
         priv->books = g_list_insert_sorted (priv->books,
                                             book,
                                             (GCompareFunc)dh_book_cmp_by_title);
+
+        /* Set the proper enabled/disabled state, depending on conf */
+        book_disabled = book_manager_is_book_disabled_in_conf (book_manager,
+                                                               book);
+        dh_book_set_enabled (book, !book_disabled);
+
+        /* Store language if enabled */
+        if (!book_disabled) {
+                book_manager_inc_language (book_manager,
+                                           dh_book_get_language (book));
+        }
+
+        /* Get notifications of book being deleted or updated */
+        g_signal_connect (book,
+                          "deleted",
+                          G_CALLBACK (book_manager_book_deleted_cb),
+                          book_manager);
+        g_signal_connect (book,
+                          "updated",
+                          G_CALLBACK (book_manager_book_updated_cb),
+                          book_manager);
+        g_signal_connect (book,
+                          "enabled",
+                          G_CALLBACK (book_manager_book_enabled_cb),
+                          book_manager);
+        g_signal_connect (book,
+                          "disabled",
+                          G_CALLBACK (book_manager_book_disabled_cb),
+                          book_manager);
+
+        /* Emit signal to notify others */
+        g_signal_emit (book_manager,
+                       signals[BOOK_CREATED],
+                       0,
+                       book);
 }
 
 GList *
@@ -347,62 +767,100 @@ dh_book_manager_get_books (DhBookManager *book_manager)
         return GET_PRIVATE (book_manager)->books;
 }
 
-DhBook *
-dh_book_manager_get_book_by_name (DhBookManager *book_manager,
-                                  const gchar *name)
+gboolean
+dh_book_manager_get_group_by_language (DhBookManager *book_manager)
 {
-        DhBook *book = NULL;
-        GList  *l;
+        g_return_val_if_fail (book_manager, FALSE);
 
-        g_return_val_if_fail (book_manager, NULL);
-
-        for (l = GET_PRIVATE (book_manager)->books;
-             l && !book;
-             l = g_list_next (l)) {
-                if (g_strcmp0 (name,
-                               dh_book_get_name (DH_BOOK (l->data))) == 0) {
-                        book = l->data;
-                }
-        }
-
-        return book;
+        return GET_PRIVATE (book_manager)->group_by_language;
 }
 
 void
-dh_book_manager_update (DhBookManager *book_manager)
+dh_book_manager_set_group_by_language (DhBookManager *book_manager,
+                                       gboolean       group_by_language)
 {
         DhBookManagerPriv *priv;
-        GSList *books_disabled = NULL;
-        GList  *l;
 
         g_return_if_fail (book_manager);
 
         priv = GET_PRIVATE (book_manager);
 
-        /* Create list of disabled books */
-        for (l = priv->books; l; l = g_list_next (l)) {
-                DhBook *book = DH_BOOK (l->data);
+        /* Store in conf */
+        dh_util_state_store_group_books_by_language (group_by_language);
 
-                if (!dh_book_get_enabled (book)) {
-                        books_disabled = g_slist_append (books_disabled,
-                                                         g_strdup (dh_book_get_name (book)));
-                }
+        priv->group_by_language = group_by_language;
+        g_object_notify (G_OBJECT (book_manager), "group-by-language");
+}
+
+static void
+book_manager_inc_language (DhBookManager *book_manager,
+                           const gchar   *language_name)
+{
+        GList *li;
+        DhLanguage *language;
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+
+        li = g_list_find_custom (priv->languages,
+                                 language_name,
+                                 (GCompareFunc)dh_language_compare_by_name);
+
+        /* If already in list, increase count */
+        if (li) {
+                dh_language_inc_n_books_enabled (li->data);
+                return;
         }
 
-        /* Store in conf */
-        dh_util_state_store_books_disabled (books_disabled);
-
+        /* Add new element to list if not found */
+        language = dh_language_new (language_name);
+        priv->languages = g_list_prepend (priv->languages,
+                                          language);
         /* Emit signal to notify others */
         g_signal_emit (book_manager,
-                       signals[DISABLED_BOOK_LIST_UPDATED],
-                       0);
+                       signals[LANGUAGE_ENABLED],
+                       0,
+                       language_name);
+}
 
-        book_manager_clean_list_of_books_disabled (books_disabled);
+static void
+book_manager_dec_language (DhBookManager *book_manager,
+                           const gchar   *language_name)
+{
+        GList *li;
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+
+        /* Language must exist in list */
+        li = g_list_find_custom (priv->languages,
+                                 language_name,
+                                 (GCompareFunc)dh_language_compare_by_name);
+        g_assert (li != NULL);
+
+        /* If language count reaches zero, remove from list */
+        if (dh_language_dec_n_books_enabled (li->data))
+        {
+                dh_language_free (li->data);
+                priv->languages = g_list_delete_link (priv->languages, li);
+
+                /* Emit signal to notify others */
+                g_signal_emit (book_manager,
+                               signals[LANGUAGE_DISABLED],
+                               0,
+                               language_name);
+        }
+}
+
+GList *
+dh_book_manager_get_languages (DhBookManager *book_manager)
+{
+        g_return_val_if_fail (book_manager, NULL);
+
+        return GET_PRIVATE (book_manager)->languages;
 }
 
 DhBookManager *
 dh_book_manager_new (void)
 {
-        return g_object_new (DH_TYPE_BOOK_MANAGER, NULL);
+        return g_object_new (DH_TYPE_BOOK_MANAGER,
+                             "group-by-language", dh_util_state_load_group_books_by_language (),
+                             NULL);
 }
 

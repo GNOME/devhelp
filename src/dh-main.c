@@ -71,54 +71,14 @@ static GOptionEntry options[] = {
 };
 
 static void
-extract_book_id (const gchar  *str,
-                 gchar       **term,
-                 gchar       **book_id)
-{
-        gchar   **strv;
-        gint      i;
-        GString  *term_string;
-
-        *term = NULL;
-        *book_id = NULL;
-
-        term_string = g_string_new (NULL);
-
-        strv = g_strsplit (str, " ", 0);
-
-        i = 0;
-        while (strv[i]) {
-                if (!*book_id && g_str_has_prefix (strv[i], "book:")) {
-                        *book_id = g_strdup (strv[i] + 5);
-                } else {
-                        if (i > 0 && term_string->len > 0) {
-                                g_string_append_c (term_string, ' ');
-                        }
-                        g_string_append (term_string, strv[i]);
-                }
-
-                i++;
-        }
-
-        g_strfreev (strv);
-
-        *term = g_string_free (term_string, FALSE);
-}
-
-static void
 search_normal (DhWindow    *window,
                const gchar *str)
 {
-        gchar *term, *book_id;
-
         if (str[0] == '\0') {
                 return;
         }
 
-        extract_book_id (str, &term, &book_id);
-        dh_window_search (window, term, book_id);
-        g_free (term);
-        g_free (book_id);
+        dh_window_search (window, str);
 }
 
 static gboolean

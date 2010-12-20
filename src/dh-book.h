@@ -24,7 +24,7 @@
 #ifndef _DH_BOOK_H_
 #define _DH_BOOK_H_
 
-#include <gtk/gtk.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
@@ -46,21 +46,28 @@ struct _DhBookClass {
         GObjectClass parent_class;
 };
 
-GType        dh_book_get_type     (void) G_GNUC_CONST;
-DhBook      *dh_book_new          (const gchar  *book_path);
-GList       *dh_book_get_keywords (DhBook *book);
-GNode       *dh_book_get_tree     (DhBook *book);
-const gchar *dh_book_get_name     (DhBook *book);
-const gchar *dh_book_get_title    (DhBook *book);
-gboolean     dh_book_get_enabled  (DhBook *book);
-void         dh_book_set_enabled  (DhBook *book,
-                                   gboolean enabled);
-gint         dh_book_cmp_by_path  (const DhBook *a,
-                                   const DhBook *b);
-gint         dh_book_cmp_by_name  (const DhBook *a,
-                                   const DhBook *b);
-gint         dh_book_cmp_by_title (const DhBook *a,
-                                   const DhBook *b);
+GType        dh_book_get_type        (void) G_GNUC_CONST;
+DhBook      *dh_book_new             (const gchar  *book_path);
+GList       *dh_book_get_keywords    (DhBook *book);
+GList       *dh_book_get_completions (DhBook *book);
+GNode       *dh_book_get_tree        (DhBook *book);
+const gchar *dh_book_get_name        (DhBook *book);
+const gchar *dh_book_get_title       (DhBook *book);
+const gchar *dh_book_get_language    (DhBook *book);
+const gchar *dh_book_get_path        (DhBook *book);
+gboolean     dh_book_get_enabled     (DhBook *book);
+void         dh_book_set_enabled     (DhBook *book,
+                                      gboolean enabled);
+gint         dh_book_cmp_by_path     (const DhBook *a,
+                                      const DhBook *b);
+gint         dh_book_cmp_by_path_str (const DhBook *a,
+                                      const gchar  *b_path);
+gint         dh_book_cmp_by_name     (const DhBook *a,
+                                      const DhBook *b);
+gint         dh_book_cmp_by_name_str (const DhBook *a,
+                                      const gchar  *b_name);
+gint         dh_book_cmp_by_title    (const DhBook *a,
+                                      const DhBook *b);
 
 G_END_DECLS
 

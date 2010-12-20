@@ -33,6 +33,7 @@ struct _DhLink {
         gchar       *base;
 
         gchar       *name;
+        gchar       *name_collation_key;
         gchar       *filename;
 
         DhLink      *book;
@@ -61,10 +62,11 @@ dh_link_get_type (void)
 static void
 link_free (DhLink *link)
 {
-	g_free (link->base);
-	g_free (link->id);
-	g_free (link->name);
-	g_free (link->filename);
+        g_free (link->base);
+        g_free (link->id);
+        g_free (link->name);
+        g_free (link->filename);
+        g_free (link->name_collation_key);
 
         if (link->book) {
                 dh_link_unref (link->book);
@@ -131,13 +133,20 @@ dh_link_compare (gconstpointer a,
 	gint    flags_diff;
 
         /* Sort deprecated hits last. */
-        flags_diff = (la->flags & DH_LINK_FLAGS_DEPRECATED) - 
+        flags_diff = (la->flags & DH_LINK_FLAGS_DEPRECATED) -
                 (lb->flags & DH_LINK_FLAGS_DEPRECATED);
         if (flags_diff != 0) {
                 return flags_diff;
         }
 
-        return strcmp (la->name, lb->name);
+        /* Collation-based sorting */
+        if (G_UNLIKELY (!la->name_collation_key))
+                la->name_collation_key = g_utf8_collate_key (la->name, -1);
+        if (G_UNLIKELY (!lb->name_collation_key))
+                lb->name_collation_key = g_utf8_collate_key (lb->name, -1);
+
+        return strcmp (la->name_collation_key,
+                       lb->name_collation_key);
 }
 
 DhLink *
@@ -191,7 +200,10 @@ dh_link_get_page_name (DhLink *link)
 const gchar *
 dh_link_get_file_name (DhLink *link)
 {
-        if (link->page) {
+        /* Return filename if the link is itself a page
+         * or if the link is within a page */
+        if (link->page ||
+            link->type == DH_LINK_TYPE_PAGE) {
                 return link->filename;
         }
 
