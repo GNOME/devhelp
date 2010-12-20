@@ -931,9 +931,10 @@ search_combo_delete_book (DhSearch *search,
                                 NULL,
                                 NULL);
 
-        g_assert (found);
-
-        gtk_list_store_remove (store, &iter);
+        /* Book may not be found in the combobox if it wasn't enabled */
+        if (found) {
+                gtk_list_store_remove (store, &iter);
+        }
 }
 
 static void
