@@ -54,8 +54,8 @@ gint
 dh_language_compare (const DhLanguage *language_a,
                      const DhLanguage *language_b)
 {
-        g_return_val_if_fail (language_a != NULL, NULL);
-        g_return_val_if_fail (language_b != NULL, NULL);
+        g_return_val_if_fail (language_a != NULL, -1);
+        g_return_val_if_fail (language_b != NULL, -1);
 
         return strcmp (language_a->name, language_b->name);
 }
@@ -64,8 +64,8 @@ gint
 dh_language_compare_by_name (const DhLanguage *language_a,
                              const gchar      *language_name_b)
 {
-        g_return_val_if_fail (language_a != NULL, NULL);
-        g_return_val_if_fail (language_name_b != NULL, NULL);
+        g_return_val_if_fail (language_a != NULL, -1);
+        g_return_val_if_fail (language_name_b != NULL, -1);
 
         return strcmp (language_a->name, language_name_b);
 }
@@ -82,7 +82,7 @@ dh_language_get_name (DhLanguage *language)
 gint
 dh_language_get_n_books_enabled (DhLanguage *language)
 {
-        g_return_val_if_fail (language != NULL, NULL);
+        g_return_val_if_fail (language != NULL, -1);
 
         return language->n_books_enabled;
 }
