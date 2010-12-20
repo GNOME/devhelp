@@ -810,8 +810,10 @@ book_manager_inc_language (DhBookManager *book_manager,
                 return;
         }
 
-        /* Add new element to list if not found */
+        /* Add new element to list if not found. Language must start with
+         * with n_books_enabled=1. */
         language = dh_language_new (language_name);
+        dh_language_inc_n_books_enabled (language);
         priv->languages = g_list_prepend (priv->languages,
                                           language);
         /* Emit signal to notify others */
@@ -835,8 +837,7 @@ book_manager_dec_language (DhBookManager *book_manager,
         g_assert (li != NULL);
 
         /* If language count reaches zero, remove from list */
-        if (dh_language_dec_n_books_enabled (li->data))
-        {
+        if (dh_language_dec_n_books_enabled (li->data)) {
                 dh_language_free (li->data);
                 priv->languages = g_list_delete_link (priv->languages, li);
 
