@@ -1963,7 +1963,7 @@ dh_window_search (DhWindow    *window,
         priv = window->priv;
 
         gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
-        dh_search_set_search_string (DH_SEARCH (priv->search), str);
+        dh_search_set_search_string (DH_SEARCH (priv->search), str, NULL);
 }
 
 void

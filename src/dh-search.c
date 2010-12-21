@@ -1192,7 +1192,8 @@ dh_search_new (DhBookManager *book_manager)
 
 void
 dh_search_set_search_string (DhSearch    *search,
-                             const gchar *str)
+                             const gchar *str,
+                             const gchar *unused)
 {
         DhSearchPriv *priv;
 
