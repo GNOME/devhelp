@@ -8,6 +8,7 @@ misc/gedit-plugin/devhelp/devhelp.py
 src/dh-assistant.c
 src/dh-assistant-view.c
 src/dh-base.c
+src/dh-book.c
 src/dh-book-tree.c
 src/dh-keyword-model.c
 src/dh-link.c
