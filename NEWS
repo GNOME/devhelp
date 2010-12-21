@@ -1,4 +1,26 @@
 ==============
+Version 2.91.4
+==============
+
+Fixed bugs:
+
+ - #90469, Search function to allow selecting books for search
+ - #349608, Monitor books and update when they change
+ - #353108, Search by language
+ - #601201, [PATCH] inadequate search result ordering
+ - #633834, L10N: msgid "Enabled"
+ - #635162, Devhelp won't build due to the new GApplication API
+ - #636339, Fix default value for list type key
+            state/main/contents/books_disabled
+ - #636933, [PATCH] Crash when closing the preferences dialog with the
+            titlebar close button
+
+Updated translations: et, he, th, zh_HK, zh_TW
+
+Many thanks to all contributors: Ivar Smolin, Yanko Kaneti, Akom
+Chotiphantawanon, Chao-Hsiung Liao, Yaron Shahrabani, Aleksander Morgado
+
+==============
 Version 2.91.3
 ==============
 
