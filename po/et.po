@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: devhelp MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-12-14 23:42+0000\n"
-"PO-Revision-Date: 2010-11-04 15:44+0200\n"
+"POT-Creation-Date: 2010-12-20 14:31+0000\n"
+"PO-Revision-Date: 2010-12-21 09:40+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
-"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
 
 msgid "Developer's Help program"
 msgstr "Arendaja abiteabe programm"
@@ -47,6 +47,9 @@ msgstr ""
 
 msgid "Font for text with variable width."
 msgstr "Muutuva laiusega teksti korral kasutatav kirjatüüp."
+
+msgid "Group by language"
+msgstr "Rühmitamine keelte kaupa"
 
 msgid "Height of assistant window"
 msgstr "Assistendiakna kõrgus"
@@ -96,6 +99,9 @@ msgstr "Süsteemsete kirjatüüpide kasutamine"
 msgid "Use the system default fonts."
 msgstr "Süsteemsete vaikimisi kirjatüüpide kasutamine"
 
+msgid "Whether books should be grouped by language in the UI"
+msgstr "Kas raamatud tuleks kasutajaliideses rühmitada keelte kaupa või mitte"
+
 msgid "Whether the main window should start maximized."
 msgstr "Kas peaaken peab käivitamisel saama maksimeeritud või mitte."
 
@@ -127,20 +133,17 @@ msgstr "Peaakna asukoht Y-teljel"
 msgid "Book Shelf"
 msgstr "Raamaturiiul"
 
-msgid "Enabled"
-msgstr "Lubatud"
-
 msgid "Fonts"
 msgstr "Kirjatüübid"
 
 msgid "Preferences"
 msgstr "Eelistused"
 
-msgid "Title"
-msgstr "Pealkiri"
-
 msgid "_Fixed width:"
 msgstr "_Määratud laiusega:"
+
+msgid "_Group by language"
+msgstr "_Rühmita keelte kaupa"
 
 msgid "_Use system fonts"
 msgstr "_Süsteemsete kirjatüüpide kasutamine"
@@ -418,3 +421,9 @@ msgstr "_Tõstutundlik"
 
 msgid "Toggle case sensitive search"
 msgstr "Tõstutundliku otsingu sisse- ja väljalülitamine"
+
+#~ msgid "Enabled"
+#~ msgstr "Lubatud"
+
+#~ msgid "Title"
+#~ msgstr "Pealkiri"
