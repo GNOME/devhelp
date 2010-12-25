@@ -14,10 +14,11 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-10-16 10:24+0000\n"
-"PO-Revision-Date: 2010-10-17 07:22+0800\n"
+"POT-Creation-Date: 2010-12-23 18:52+0000\n"
+"PO-Revision-Date: 2010-12-26 00:29+0800\n"
 "Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,8 +29,8 @@ msgstr "开发者帮助程序"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
-#: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
+#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -58,102 +59,110 @@ msgid "Font for text with variable width."
 msgstr "变动宽度文本使用的字体。"
 
 #: ../data/devhelp.schemas.in.h:6
+msgid "Group by language"
+msgstr "按语言分组"
+
+#: ../data/devhelp.schemas.in.h:7
 msgid "Height of assistant window"
 msgstr "辅助窗口高度"
 
-#: ../data/devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:8
 msgid "Height of main window"
 msgstr "主窗口高度"
 
-#: ../data/devhelp.schemas.in.h:8
+#: ../data/devhelp.schemas.in.h:9
 msgid "List of books disabled by the user."
 msgstr "用户禁用的书籍列表。"
 
-#: ../data/devhelp.schemas.in.h:9
+#: ../data/devhelp.schemas.in.h:10
 msgid "Main window maximized state"
 msgstr "主窗口最大化"
 
-#: ../data/devhelp.schemas.in.h:10
+#: ../data/devhelp.schemas.in.h:11
 msgid "Selected tab: \"content\" or \"search\""
 msgstr "所选的标签，是“内容”还是“搜索”"
 
-#: ../data/devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:12
 msgid "The X position of the assistant window."
 msgstr "辅助窗口的 X 坐标。"
 
-#: ../data/devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:13
 msgid "The X position of the main window."
 msgstr "主窗口的 X 坐标。"
 
-#: ../data/devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:14
 msgid "The Y position of the assistant window."
 msgstr "辅助窗口的 Y 坐标。"
 
-#: ../data/devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:15
 msgid "The Y position of the main window."
 msgstr "主窗口的 Y 坐标。"
 
-#: ../data/devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:16
 msgid "The height of the assistant window."
 msgstr "辅助窗口高度。"
 
-#: ../data/devhelp.schemas.in.h:16
+#: ../data/devhelp.schemas.in.h:17
 msgid "The height of the main window."
 msgstr "主窗口高度。"
 
-#: ../data/devhelp.schemas.in.h:17
+#: ../data/devhelp.schemas.in.h:18
 msgid "The width of the assistant window."
 msgstr "辅助窗口宽度。"
 
-#: ../data/devhelp.schemas.in.h:18
+#: ../data/devhelp.schemas.in.h:19
 msgid "The width of the index and search pane."
 msgstr "索引和搜索面板宽度。"
 
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/devhelp.schemas.in.h:20
 msgid "The width of the main window."
 msgstr "主窗口宽度。"
 
-#: ../data/devhelp.schemas.in.h:20
+#: ../data/devhelp.schemas.in.h:21
 msgid "Use system fonts"
 msgstr "使用系统字体"
 
-#: ../data/devhelp.schemas.in.h:21
+#: ../data/devhelp.schemas.in.h:22
 msgid "Use the system default fonts."
 msgstr "使用系统默认字体。"
 
-#: ../data/devhelp.schemas.in.h:22
+#: ../data/devhelp.schemas.in.h:23
+msgid "Whether books should be grouped by language in the UI"
+msgstr "在界面上是否应按语言将书分组"
+
+#: ../data/devhelp.schemas.in.h:24
 msgid "Whether the main window should start maximized."
 msgstr "是否以最大化启动主窗口。"
 
-#: ../data/devhelp.schemas.in.h:23
+#: ../data/devhelp.schemas.in.h:25
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "选中哪个标签，“内容”还是“搜索”？"
 
-#: ../data/devhelp.schemas.in.h:24
+#: ../data/devhelp.schemas.in.h:26
 msgid "Width of the assistant window"
 msgstr "辅助窗口宽度"
 
-#: ../data/devhelp.schemas.in.h:25
+#: ../data/devhelp.schemas.in.h:27
 msgid "Width of the index and search pane"
 msgstr "索引和搜索面板宽度"
 
-#: ../data/devhelp.schemas.in.h:26
+#: ../data/devhelp.schemas.in.h:28
 msgid "Width of the main window"
 msgstr "主窗口宽度"
 
-#: ../data/devhelp.schemas.in.h:27
+#: ../data/devhelp.schemas.in.h:29
 msgid "X position of assistant window"
 msgstr "辅助窗口的 X 坐标"
 
-#: ../data/devhelp.schemas.in.h:28
+#: ../data/devhelp.schemas.in.h:30
 msgid "X position of main window"
 msgstr "主窗口的 X 坐标"
 
-#: ../data/devhelp.schemas.in.h:29
+#: ../data/devhelp.schemas.in.h:31
 msgid "Y position of assistant window"
 msgstr "辅助窗口的 Y 坐标"
 
-#: ../data/devhelp.schemas.in.h:30
+#: ../data/devhelp.schemas.in.h:32
 msgid "Y position of main window"
 msgstr "主窗口的 Y 坐标"
 
@@ -162,30 +171,26 @@ msgid "Book Shelf"
 msgstr "书架"
 
 #: ../data/ui/devhelp.builder.h:2
-msgid "Enabled"
-msgstr "已启用"
-
-#: ../data/ui/devhelp.builder.h:3
 msgid "Fonts"
 msgstr "字体"
 
-#: ../data/ui/devhelp.builder.h:4
+#: ../data/ui/devhelp.builder.h:3
 msgid "Preferences"
 msgstr "首选项"
 
-#: ../data/ui/devhelp.builder.h:5
-msgid "Title"
-msgstr "标题"
-
-#: ../data/ui/devhelp.builder.h:6
+#: ../data/ui/devhelp.builder.h:4
 msgid "_Fixed width:"
 msgstr "等宽字体(_F)："
 
-#: ../data/ui/devhelp.builder.h:7
+#: ../data/ui/devhelp.builder.h:5
+msgid "_Group by language"
+msgstr "按语言分组(_G)"
+
+#: ../data/ui/devhelp.builder.h:6
 msgid "_Use system fonts"
 msgstr "使用系统字体(_U)"
 
-#: ../data/ui/devhelp.builder.h:8
+#: ../data/ui/devhelp.builder.h:7
 msgid "_Variable width: "
 msgstr "变宽字体(_V)："
 
@@ -214,122 +219,131 @@ msgstr "Devhelp - 助手"
 msgid "Book:"
 msgstr "书籍："
 
+#: ../src/dh-book.c:252
+#, c-format
+msgid "Language: %s"
+msgstr "语言：%s"
+
+#: ../src/dh-book.c:253
+msgid "Language: Undefined"
+msgstr "语言：未定义"
+
 #. i18n: a documentation book
-#: ../src/dh-link.c:255
+#: ../src/dh-link.c:267
 msgid "Book"
 msgstr "书籍"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:258
+#: ../src/dh-link.c:270
 msgid "Page"
 msgstr "页面"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:262
+#: ../src/dh-link.c:274
 msgid "Keyword"
 msgstr "关键词"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:279
 msgid "Function"
 msgstr "函数"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:284
 msgid "Struct"
 msgstr "结构体"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:289
 msgid "Macro"
 msgstr "宏"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:294
 msgid "Enum"
 msgstr "枚举"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:299
 msgid "Type"
 msgstr "类型"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:47
 msgid "Search for a keyword"
 msgstr "搜索一个关键词"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:52
 msgid "Quit any running Devhelp"
 msgstr "退出正在运行的 Devhelp"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:57
 msgid "Display the version and exit"
 msgstr "显示版本后退出"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:62
 msgid "Focus the Devhelp window with the search field active"
 msgstr "使 Devhelp 窗口获得焦点并让搜索域激活"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:67
 msgid "Search and display any hit in the assistant window"
 msgstr "在辅助窗口中搜索并显示任何命中内容"
 
-#: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
-#: ../src/dh-parser.c:263
+#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
+#: ../src/dh-parser.c:273
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "需要“%s”但得到“%s”(第%d行，第%d列)"
 
-#: ../src/dh-parser.c:109
+#: ../src/dh-parser.c:114
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "非法命名空间“%s”(第%d行，第%d列)"
 
-#: ../src/dh-parser.c:140
+#: ../src/dh-parser.c:143
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr "在第%d行，第%d列，需要指定元素“title”，“name”，和“link”"
 
-#: ../src/dh-parser.c:208
+#: ../src/dh-parser.c:218
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+"%d"
 msgstr "在<sub>内第%d行，第%d列，需要指定元素“name”和“link”"
 
-#: ../src/dh-parser.c:288
+#: ../src/dh-parser.c:298
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr "在“%s”内第%d行，第%d列，需要指定元素“name”和“link”"
 
-#: ../src/dh-parser.c:301
+#: ../src/dh-parser.c:311
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "在 <keyword> 内第%d行，第%d列，需要指定元素“name”和“link”"
 
-#: ../src/dh-parser.c:504
+#: ../src/dh-parser.c:514
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "无法解压缩书籍“%s”：%s"
 
-#: ../src/dh-search.c:508
+#: ../src/dh-search.c:500
 msgid "All books"
 msgstr "所有书籍"
 
-#: ../src/dh-search.c:630
+#: ../src/dh-search.c:1117
 msgid "Search in:"
 msgstr "在范围内搜索："
 
@@ -384,130 +398,134 @@ msgstr ""
 msgid "A developers' help browser for GNOME"
 msgstr "GNOME 开发者帮助浏览器"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:749
+msgid "DevHelp Website"
+msgstr "DevHelp 网站"
+
+#: ../src/dh-window.c:773
 msgid "_File"
 msgstr "文件(_F)"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:774
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:775
 msgid "_View"
 msgstr "视图(_V)"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:776
 msgid "_Go"
 msgstr "转到(_G)"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:777
 msgid "_Help"
 msgstr "帮助(_H)"
 
 #. File menu
-#: ../src/dh-window.c:779
+#: ../src/dh-window.c:780
 msgid "_New Window"
 msgstr "新建窗口(_N)"
 
-#: ../src/dh-window.c:781
+#: ../src/dh-window.c:782
 msgid "New _Tab"
 msgstr "新建标签(_T)"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:784
 msgid "_Print…"
 msgstr "打印(_P)..."
 
-#: ../src/dh-window.c:795 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "查找下一个"
 
-#: ../src/dh-window.c:797 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "查找上一个"
 
-#: ../src/dh-window.c:804
+#: ../src/dh-window.c:805
 msgid "Go to the previous page"
 msgstr "到上一页面"
 
-#: ../src/dh-window.c:807
+#: ../src/dh-window.c:808
 msgid "Go to the next page"
 msgstr "到下一页面"
 
-#: ../src/dh-window.c:810
+#: ../src/dh-window.c:811
 msgid "_Contents Tab"
 msgstr "内容标签(_C)"
 
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:814
 msgid "_Search Tab"
 msgstr "搜索标签(_S)"
 
 #. View menu
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:818
 msgid "_Larger Text"
 msgstr "更大的文本(_L)"
 
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:819
 msgid "Increase the text size"
 msgstr "加大文本大小"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:821
 msgid "S_maller Text"
 msgstr "更小的文本(_M)"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:822
 msgid "Decrease the text size"
 msgstr "减小文本大小"
 
-#: ../src/dh-window.c:823
+#: ../src/dh-window.c:824
 msgid "_Normal Size"
 msgstr "正常大小(_N)"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:825
 msgid "Use the normal text size"
 msgstr "使用正常文本大小"
 
-#: ../src/dh-window.c:833
+#: ../src/dh-window.c:834
 msgid "Leave fullscreen mode"
 msgstr "离开全屏模式"
 
-#: ../src/dh-window.c:840
+#: ../src/dh-window.c:841
 msgid "Display in full screen"
 msgstr "在全屏中显示"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:960
+#: ../src/dh-window.c:961
 msgid "Larger"
 msgstr "更大"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:963
+#: ../src/dh-window.c:964
 msgid "Smaller"
 msgstr "更小"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1108
+#: ../src/dh-window.c:1109
 msgid "About Devhelp"
 msgstr "关于 Devhelp"
 
-#: ../src/dh-window.c:1113
+#: ../src/dh-window.c:1114
 msgid "Preferences…"
 msgstr "首选项..."
 
-#: ../src/dh-window.c:1155
+#: ../src/dh-window.c:1156
 msgid "Contents"
 msgstr "目录"
 
-#: ../src/dh-window.c:1165
+#: ../src/dh-window.c:1166
 msgid "Search"
 msgstr "搜索"
 
-#: ../src/dh-window.c:1343
+#: ../src/dh-window.c:1344
 msgid "Error opening the requested link."
 msgstr "在打开需要的链接时出错。"
 
-#: ../src/dh-window.c:1665 ../src/dh-window.c:1907
+#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
 msgid "Empty Page"
 msgstr "空白页"
 
@@ -531,6 +549,12 @@ msgstr "区分大小写(_A)"
 msgid "Toggle case sensitive search"
 msgstr "切换区分大小写搜索"
 
+#~ msgid "Enabled"
+#~ msgstr "已启用"
+
+#~ msgid "Title"
+#~ msgstr "标题"
+
 #~ msgid "Show advanced search options"
 #~ msgstr "显示高级搜索选项"
 
@@ -553,8 +577,8 @@ msgstr "切换区分大小写搜索"
 #~ msgstr "显示高级搜索选项(_S)"
 
 #~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %"
-#~ "d"
+#~ "name and link elements are required inside <function> on line %d, column "
+#~ "%d"
 #~ msgstr "在 <function> 内需要指定 name 和 link 元素 (第%d行，第%d列)"
 
 #~ msgid "Could not create book parser"
