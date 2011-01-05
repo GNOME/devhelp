@@ -959,6 +959,7 @@ search_combo_create (DhSearch *search)
                                               NULL, NULL);
 
         cell = gtk_cell_renderer_text_new ();
+        g_object_set (cell, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
         gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->book_combo),
                                     cell,
                                     TRUE);
