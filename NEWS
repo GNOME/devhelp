@@ -1,4 +1,19 @@
 ==============
+Version 2.91.5
+==============
+
+Fixed bugs:
+
+ - #638748, Adapt to new multi backend GTK+
+ - #638761, Add ellipsize to search combo
+
+Updated translations: cs, es, et, gl, id, nb, sl, sv, ug, zh_CN
+
+Many thanks to all contributors: Andika Triwidada, Aron Xu, Jorge Gonzalez,
+Ivar Smolin, Daniel Nylander, Fran Diéguez, Matej Urbančič, Kjartan
+Maraas, Gheyret T.Kenji, Marek Černocký, Matthias Clasen, Johannes Schmid
+
+==============
 Version 2.91.4
 ==============
 
