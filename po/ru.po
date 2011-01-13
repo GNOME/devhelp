@@ -8,17 +8,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-08-16 10:58+0000\n"
-"PO-Revision-Date: 2010-08-08 21:05+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
+"POT-Creation-Date: 2010-12-21 10:07+0000\n"
+"PO-Revision-Date: 2011-01-13 19:50+0300\n"
 "Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
-"Language-Team: Russian <en@li.org>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
@@ -27,8 +25,11 @@ msgstr "Программа справки для разработчиков"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:307
-#: ../src/dh-window.c:740 ../src/dh-window.c:1047 ../src/dh-window.c:1879
+#: ../data/devhelp.desktop.in.in.h:2
+#: ../src/dh-main.c:281
+#: ../src/dh-window.c:740
+#: ../src/dh-window.c:1048
+#: ../src/dh-window.c:1880
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -57,104 +58,143 @@ msgid "Font for text with variable width."
 msgstr "Шрифт для текста с переменной шириной."
 
 #: ../data/devhelp.schemas.in.h:6
+msgid "Group by language"
+msgstr "Группировать по языкам"
+
+#: ../data/devhelp.schemas.in.h:7
 msgid "Height of assistant window"
 msgstr "Высота окна помощника"
 
-#: ../data/devhelp.schemas.in.h:7
+#: ../data/devhelp.schemas.in.h:8
 msgid "Height of main window"
 msgstr "Высота главного окна"
 
-#: ../data/devhelp.schemas.in.h:8
+#: ../data/devhelp.schemas.in.h:9
 msgid "List of books disabled by the user."
 msgstr "Список книг, выключенных пользователем."
 
-#: ../data/devhelp.schemas.in.h:9
+#: ../data/devhelp.schemas.in.h:10
 msgid "Main window maximized state"
 msgstr "Главное окно в развёрнутом состоянии"
 
-#: ../data/devhelp.schemas.in.h:10
+#: ../data/devhelp.schemas.in.h:11
 msgid "Selected tab: \"content\" or \"search\""
 msgstr "Выбранная вкладка: «содержание» или «поиск»"
 
-#: ../data/devhelp.schemas.in.h:11
+#: ../data/devhelp.schemas.in.h:12
 msgid "The X position of the assistant window."
 msgstr "Положение окна помощника по оси X."
 
-#: ../data/devhelp.schemas.in.h:12
+#: ../data/devhelp.schemas.in.h:13
 msgid "The X position of the main window."
 msgstr "Положение главного окна по оси X."
 
-#: ../data/devhelp.schemas.in.h:13
+#: ../data/devhelp.schemas.in.h:14
 msgid "The Y position of the assistant window."
 msgstr "Положение окна помощника по оси Y."
 
-#: ../data/devhelp.schemas.in.h:14
+#: ../data/devhelp.schemas.in.h:15
 msgid "The Y position of the main window."
 msgstr "Положение главного окна по оси Y."
 
-#: ../data/devhelp.schemas.in.h:15
+#: ../data/devhelp.schemas.in.h:16
 msgid "The height of the assistant window."
 msgstr "Высота окна помощника."
 
-#: ../data/devhelp.schemas.in.h:16
+#: ../data/devhelp.schemas.in.h:17
 msgid "The height of the main window."
 msgstr "Высота главного окна."
 
-#: ../data/devhelp.schemas.in.h:17
+#: ../data/devhelp.schemas.in.h:18
 msgid "The width of the assistant window."
 msgstr "Ширина главного окна."
 
-#: ../data/devhelp.schemas.in.h:18
+#: ../data/devhelp.schemas.in.h:19
 msgid "The width of the index and search pane."
 msgstr "Ширина панели содержания и поиска."
 
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/devhelp.schemas.in.h:20
 msgid "The width of the main window."
 msgstr "Ширина главного окна."
 
-#: ../data/devhelp.schemas.in.h:20
+#: ../data/devhelp.schemas.in.h:21
 msgid "Use system fonts"
 msgstr "Использовать системные шрифты"
 
-#: ../data/devhelp.schemas.in.h:21
+#: ../data/devhelp.schemas.in.h:22
 msgid "Use the system default fonts."
 msgstr "Использовать системные шрифты по умолчанию."
 
-#: ../data/devhelp.schemas.in.h:22
+#: ../data/devhelp.schemas.in.h:23
+msgid "Whether books should be grouped by language in the UI"
+msgstr "Должны ли книги быть сгруппированы в интерфейсе по языкам"
+
+#: ../data/devhelp.schemas.in.h:24
 msgid "Whether the main window should start maximized."
 msgstr "Разворачивать ли главное окно при запуске."
 
-#: ../data/devhelp.schemas.in.h:23
+#: ../data/devhelp.schemas.in.h:25
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "Какая из вкладок выбрана: «содержание» или «поиск»."
 
-#: ../data/devhelp.schemas.in.h:24
+#: ../data/devhelp.schemas.in.h:26
 msgid "Width of the assistant window"
 msgstr "Ширина окна помощника"
 
-#: ../data/devhelp.schemas.in.h:25
+#: ../data/devhelp.schemas.in.h:27
 msgid "Width of the index and search pane"
 msgstr "Ширина панели содержания и поиска"
 
-#: ../data/devhelp.schemas.in.h:26
+#: ../data/devhelp.schemas.in.h:28
 msgid "Width of the main window"
 msgstr "Ширина главного окна"
 
-#: ../data/devhelp.schemas.in.h:27
+#: ../data/devhelp.schemas.in.h:29
 msgid "X position of assistant window"
 msgstr "Положение окна помощника по оси X"
 
-#: ../data/devhelp.schemas.in.h:28
+#: ../data/devhelp.schemas.in.h:30
 msgid "X position of main window"
 msgstr "Положение главного окна по оси X"
 
-#: ../data/devhelp.schemas.in.h:29
+#: ../data/devhelp.schemas.in.h:31
 msgid "Y position of assistant window"
 msgstr "Положение окна помощника по оси Y"
 
-#: ../data/devhelp.schemas.in.h:30
+#: ../data/devhelp.schemas.in.h:32
 msgid "Y position of main window"
 msgstr "Положение главного окна по оси Y"
+
+#: ../data/ui/devhelp.builder.h:1
+msgid "Book Shelf"
+msgstr "Книжная полка"
+
+#: ../data/ui/devhelp.builder.h:2
+#| msgid "Contents"
+msgid "Fonts"
+msgstr "Шрифты"
+
+#: ../data/ui/devhelp.builder.h:3
+#| msgid "Preferences…"
+msgid "Preferences"
+msgstr "Параметры"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "_Fixed width:"
+msgstr "_Постоянная ширина:"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "_Group by language"
+msgstr "_Группировать по языкам"
+
+#: ../data/ui/devhelp.builder.h:6
+#| msgid "Use system fonts"
+msgid "_Use system fonts"
+msgstr "_Использовать системные шрифты"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Variable width: "
+msgstr "_Переменная ширина:"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -177,126 +217,133 @@ msgstr "Показать документацию по API для слова п�
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Помощник"
 
-#: ../src/dh-assistant-view.c:330
+#: ../src/dh-assistant-view.c:336
 msgid "Book:"
 msgstr "Книга:"
 
+#: ../src/dh-book.c:252
+#, c-format
+msgid "Language: %s"
+msgstr "Язык: %s"
+
+#: ../src/dh-book.c:253
+msgid "Language: Undefined"
+msgstr "Язык: не определён"
+
 #. i18n: a documentation book
-#: ../src/dh-link.c:255
+#: ../src/dh-link.c:267
 msgid "Book"
 msgstr "Книга"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:258
+#: ../src/dh-link.c:270
 msgid "Page"
 msgstr "Страница"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:262
+#: ../src/dh-link.c:274
 msgid "Keyword"
 msgstr "Ключевое слово"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:279
 msgid "Function"
 msgstr "Функция"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:284
 msgid "Struct"
 msgstr "Структура"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:289
 msgid "Macro"
 msgstr "Макрос"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:294
 msgid "Enum"
 msgstr "Перечисление"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:299
 msgid "Type"
 msgstr "Тип"
 
-#: ../src/dh-main.c:247
+#: ../src/dh-main.c:47
 msgid "Search for a keyword"
 msgstr "Поиск по ключевому слову"
 
-#: ../src/dh-main.c:252
+#: ../src/dh-main.c:52
 msgid "Quit any running Devhelp"
 msgstr "Выйти из Devhelp"
 
-#: ../src/dh-main.c:257
+#: ../src/dh-main.c:57
 msgid "Display the version and exit"
 msgstr "Показать версию и выйти"
 
-#: ../src/dh-main.c:262
+#: ../src/dh-main.c:62
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Переводить фокус на окно Devhelp и активировать поле поиска"
 
-#: ../src/dh-main.c:267
+#: ../src/dh-main.c:67
 msgid "Search and display any hit in the assistant window"
 msgstr "Поиск и отображение любого совпадения в окне помощника"
 
-#: ../src/dh-parser.c:92 ../src/dh-parser.c:189 ../src/dh-parser.c:253
+#: ../src/dh-parser.c:97
+#: ../src/dh-parser.c:199
 #: ../src/dh-parser.c:263
+#: ../src/dh-parser.c:273
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Ожидалось «%s», получено «%s» в строке %d, столбец %d"
 
-#: ../src/dh-parser.c:109
+#: ../src/dh-parser.c:114
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Недопустимое пространство имён «%s» в строке %d, столбце %d"
 
-#: ../src/dh-parser.c:140
+#: ../src/dh-parser.c:143
 #, c-format
-msgid ""
-"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr "Элементы «title», «name» и «link» требуются в строке %d, столбец %d"
 
-#: ../src/dh-parser.c:208
+#: ../src/dh-parser.c:218
 #, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
+msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
 msgstr "Элементы «name» и «link» требуются в <sub> в строке %d, столбец %d"
 
-#: ../src/dh-parser.c:288
+#: ../src/dh-parser.c:298
 #, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr "Элементы «name» и «link» требуются в «%s» в строке %d, столбец %d"
 
-#: ../src/dh-parser.c:301
+#: ../src/dh-parser.c:311
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "Элемент «type» требуется в <keyword> в строке %d, столбце %d"
 
-#: ../src/dh-parser.c:504
+#: ../src/dh-parser.c:514
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Не удалось распаковать книгу «%s»: %s"
 
-#: ../src/dh-search.c:508
+#: ../src/dh-search.c:500
 msgid "All books"
 msgstr "Все книги"
 
-#: ../src/dh-search.c:630
+#: ../src/dh-search.c:1117
 msgid "Search in:"
 msgstr "Искать в:"
 
@@ -346,130 +393,138 @@ msgstr ""
 msgid "A developers' help browser for GNOME"
 msgstr "Программа просмотра справки GNOME для разработчиков"
 
-#: ../src/dh-window.c:772
+#: ../src/dh-window.c:749
+#| msgid "Devhelp support"
+msgid "DevHelp Website"
+msgstr "Веб-сайт Devhelp"
+
+#: ../src/dh-window.c:773
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:774
 msgid "_Edit"
 msgstr "_Правка"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:775
 msgid "_View"
 msgstr "_Вид"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:776
 msgid "_Go"
 msgstr "_Перейти"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:777
 msgid "_Help"
 msgstr "_Справка"
 
 #. File menu
-#: ../src/dh-window.c:779
+#: ../src/dh-window.c:780
 msgid "_New Window"
 msgstr "_Новое окно"
 
-#: ../src/dh-window.c:781
+#: ../src/dh-window.c:782
 msgid "New _Tab"
 msgstr "Новая _вкладка"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:784
 msgid "_Print…"
 msgstr "_Печать..."
 
-#: ../src/dh-window.c:795 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:796
+#: ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Найти далее"
 
-#: ../src/dh-window.c:797 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:798
+#: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Найти предыдущее"
 
-#: ../src/dh-window.c:804
+#: ../src/dh-window.c:805
 msgid "Go to the previous page"
 msgstr "Перейти на предыдущую страницу"
 
-#: ../src/dh-window.c:807
+#: ../src/dh-window.c:808
 msgid "Go to the next page"
 msgstr "Перейти на следующую страницу"
 
-#: ../src/dh-window.c:810
+#: ../src/dh-window.c:811
 msgid "_Contents Tab"
 msgstr "Сод_ержание"
 
-#: ../src/dh-window.c:813
+#: ../src/dh-window.c:814
 msgid "_Search Tab"
 msgstr "П_оиск"
 
 #. View menu
-#: ../src/dh-window.c:817
+#: ../src/dh-window.c:818
 msgid "_Larger Text"
 msgstr "_Увеличить текст"
 
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:819
 msgid "Increase the text size"
 msgstr "Увеличить размер текста"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:821
 msgid "S_maller Text"
 msgstr "У_меньшить текст"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:822
 msgid "Decrease the text size"
 msgstr "Уменьшить размер текста"
 
-#: ../src/dh-window.c:823
+#: ../src/dh-window.c:824
 msgid "_Normal Size"
 msgstr "_Обычный размер"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:825
 msgid "Use the normal text size"
 msgstr "Использовать обычный размер текста"
 
-#: ../src/dh-window.c:833
+#: ../src/dh-window.c:834
 msgid "Leave fullscreen mode"
 msgstr "Выйти из полноэкранного режима"
 
-#: ../src/dh-window.c:840
+#: ../src/dh-window.c:841
 msgid "Display in full screen"
 msgstr "Показать на весь экран"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:960
+#: ../src/dh-window.c:961
 msgid "Larger"
 msgstr "Больше"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:963
+#: ../src/dh-window.c:964
 msgid "Smaller"
 msgstr "Меньше"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1108
+#: ../src/dh-window.c:1109
 msgid "About Devhelp"
 msgstr "О программе Devhelp"
 
-#: ../src/dh-window.c:1113
+#: ../src/dh-window.c:1114
 msgid "Preferences…"
 msgstr "Параметры..."
 
-#: ../src/dh-window.c:1155
+#: ../src/dh-window.c:1156
 msgid "Contents"
 msgstr "Содержание"
 
-#: ../src/dh-window.c:1165
+#: ../src/dh-window.c:1166
 msgid "Search"
 msgstr "Поиск"
 
-#: ../src/dh-window.c:1343
+#: ../src/dh-window.c:1344
 msgid "Error opening the requested link."
 msgstr "Ошибка при открытии запрошенной ссылки."
 
-#: ../src/dh-window.c:1665 ../src/dh-window.c:1907
+#: ../src/dh-window.c:1666
+#: ../src/dh-window.c:1908
 msgid "Empty Page"
 msgstr "Пустая страница"
 
@@ -477,11 +532,13 @@ msgstr "Пустая страница"
 msgid "Find:"
 msgstr "Найти:"
 
-#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
+#: ../src/eggfindbar.c:333
+#: ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Найти предыдущее вхождение строки поиска"
 
-#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
+#: ../src/eggfindbar.c:346
+#: ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "Найти следующее вхождение строки поиска"
 
@@ -489,6 +546,8 @@ msgstr "Найти следующее вхождение строки поиск
 msgid "C_ase Sensitive"
 msgstr "С у_чётом регистра"
 
-#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
+#: ../src/eggfindbar.c:362
+#: ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Включить поиск, чувствительный к регистру"
+
