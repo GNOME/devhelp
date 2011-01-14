@@ -2,12 +2,13 @@
 # Copyright (C) 2001-2009 Free Software Foundation, Inc.
 # Gheyret Kenji <gheyret@gmail.com>, 2010.
 # Sahran <sahran.ug@gmail.com>, 2010
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-12-21 10:07+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&component=general\n"
+"POT-Creation-Date: 2011-01-14 09:04+0000\n"
 "PO-Revision-Date: 2009-03-12 08:15+0900\n"
 "Last-Translator: Sahran <sahran.ug@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -44,7 +45,9 @@ msgstr "تېكىست خەت نۇسخىسى"
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with fixed width, such as code examples."
-msgstr "تېكىست ئۈچۈن ئىشلىتىدىغان ھەرپ كەڭلىكى ئوخشاش فونت، مەسىلەن ئەسلى كود قاتارلىقلاردا."
+msgstr ""
+"تېكىست ئۈچۈن ئىشلىتىدىغان ھەرپ كەڭلىكى ئوخشاش فونت، مەسىلەن ئەسلى كود "
+"قاتارلىقلاردا."
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Font for text with variable width."
@@ -52,7 +55,7 @@ msgstr "ئۆزگىرىشچان كەڭلىكتىكى تېكىست خەت نۇسخ
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Group by language"
-msgstr ""
+msgstr "تىل بويىچە گۇرۇپپىلا"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Height of assistant window"
@@ -120,7 +123,7 @@ msgstr "سىستېمىنىڭ كۆڭۈلدىكى فونتىنى ئىشلىتىش"
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Whether books should be grouped by language in the UI"
-msgstr ""
+msgstr "كىتابلار كۆرۈنمە يۈزدە تىل بويىچە گۇرۇپپىلىنامدۇ يوق"
 
 #: ../data/devhelp.schemas.in.h:24
 msgid "Whether the main window should start maximized."
@@ -176,7 +179,7 @@ msgstr "مۇقىم كەڭلىك(_F)"
 
 #: ../data/ui/devhelp.builder.h:5
 msgid "_Group by language"
-msgstr ""
+msgstr "تىل بويىچە گۇرۇپپىلا(_G)"
 
 #: ../data/ui/devhelp.builder.h:6
 msgid "_Use system fonts"
@@ -192,7 +195,8 @@ msgstr "Devhelp تېخنىكىلىق ياردەملىرى"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "[F2] نى باسسا نۇر بەلگىسى تۇرغان ئورۇندىكى سۆزنى  Devhelp تىن ئىزدەيدۇ."
+msgstr ""
+"[F2] نى باسسا نۇر بەلگىسى تۇرغان ئورۇندىكى سۆزنى  Devhelp تىن ئىزدەيدۇ."
 
 #: ../misc/gedit-plugin/devhelp/devhelp.py:38
 msgid "Show API Documentation"
@@ -218,7 +222,7 @@ msgstr "تىل: %s"
 
 #: ../src/dh-book.c:253
 msgid "Language: Undefined"
-msgstr ""
+msgstr "تىل: ئېنىقلانمىغان"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:267
@@ -285,7 +289,8 @@ msgstr "نەشر ئۇچۇرنى كۆرسىتىپ ئاخىرلاشتۇرماق"
 
 #: ../src/dh-main.c:62
 msgid "Focus the Devhelp window with the search field active"
-msgstr "Devhelp كۆزنىكىدە فوكۇسقا ئېرىشىدۇ ھەمدە ئىزدەش دائىرىسىنى ئاكتىپلايدۇ."
+msgstr ""
+"Devhelp كۆزنىكىدە فوكۇسقا ئېرىشىدۇ ھەمدە ئىزدەش دائىرىسىنى ئاكتىپلايدۇ."
 
 #: ../src/dh-main.c:67
 msgid "Search and display any hit in the assistant window"
@@ -335,7 +340,7 @@ msgstr "كىتاب '%s' نى يايالمىدى: %s"
 msgid "All books"
 msgstr "بارلىق كىتاب"
 
-#: ../src/dh-search.c:1117
+#: ../src/dh-search.c:1118
 msgid "Search in:"
 msgstr "ئىزدەش:"
 
@@ -377,7 +382,8 @@ msgstr "400%"
 
 #: ../src/dh-window.c:735
 msgid "translator_credits"
-msgstr "Sahran <sahran@live.com>\n"
+msgstr ""
+"Sahran <sahran@live.com>\n"
 "Gheyret T.Kenji <gheyret@yahoo.com>\n"
 "Zeper <zeper@msn.com>\n"
 "Abduxukur Abdurixit <abduxukur.abdurixit@t-systems.ch>"
