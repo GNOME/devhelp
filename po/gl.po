@@ -12,14 +12,14 @@
 #
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
-# Fran Diéguez <frandieguez@ubuntu.com>, 2010.
+# Fran Diéguez <frandieguez@ubuntu.com>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp-master-po-gl-1953\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-26 17:16+0100\n"
-"PO-Revision-Date: 2010-12-26 17:17+0100\n"
+"POT-Creation-Date: 2011-01-26 23:57+0100\n"
+"PO-Revision-Date: 2011-01-26 13:50+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -87,7 +87,7 @@ msgstr "Estado maximizado da xanela principal"
 # (pofilter) gconf: do not translate gconf attribute: "content", "search"
 #: ../data/devhelp.schemas.in.h:11
 msgid "Selected tab: \"content\" or \"search\""
-msgstr "O separador seleccionado: «content» (contido) ou «search» (busca)"
+msgstr "A lapela seleccionada: «content» (contido) ou «search» (busca)"
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The X position of the assistant window."
@@ -131,7 +131,7 @@ msgstr "Usar os tipos de letra do sistema"
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Use the system default fonts."
-msgstr "Usar os tipos de letra predefinidos do sistema."
+msgstr "Usar os tipos de letra predeterminados do sistema."
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Whether books should be grouped by language in the UI"
@@ -145,8 +145,7 @@ msgstr "Indica se a xanela principal debería iniciarse maximizada."
 #: ../data/devhelp.schemas.in.h:25
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr ""
-"Cal dos separadores está seleccionado: «content» (contidos) ou "
-"«search» (busca)."
+"Cal das lapela está seleccionada: «content» (contidos) ou «search» (busca)."
 
 #: ../data/devhelp.schemas.in.h:26
 msgid "Width of the assistant window"
@@ -352,13 +351,13 @@ msgstr "requírese o elemento «tipo» dentro de <keyword> na liña %d, columna 
 #: ../src/dh-parser.c:514
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr "Non se puido descomprimir o libro «%s»: %s"
+msgstr "Non foi posíbel descomprimir o libro «%s»: %s"
 
 #: ../src/dh-search.c:500
 msgid "All books"
 msgstr "Todos os libros"
 
-#: ../src/dh-search.c:1117
+#: ../src/dh-search.c:1118
 msgid "Search in:"
 msgstr "Buscar en:"
 
@@ -445,11 +444,11 @@ msgstr "_Nova xanela"
 
 #: ../src/dh-window.c:782
 msgid "New _Tab"
-msgstr "Novo _separador"
+msgstr "Nova _lapela"
 
 #: ../src/dh-window.c:784
 msgid "_Print…"
-msgstr "Im_primir..."
+msgstr "Im_primir…"
 
 #: ../src/dh-window.c:796 ../src/eggfindbar.c:342
 msgid "Find Next"
@@ -469,11 +468,11 @@ msgstr "Ir á páxina seguinte"
 
 #: ../src/dh-window.c:811
 msgid "_Contents Tab"
-msgstr "Separador de _contido"
+msgstr "Lapela de _contido"
 
 #: ../src/dh-window.c:814
 msgid "_Search Tab"
-msgstr "Separador de _busca"
+msgstr "Lapela de _busca"
 
 #. View menu
 #: ../src/dh-window.c:818
@@ -527,7 +526,7 @@ msgstr "Sobre Devhelp"
 
 #: ../src/dh-window.c:1114
 msgid "Preferences…"
-msgstr "Preferencias..."
+msgstr "Preferencias…"
 
 #: ../src/dh-window.c:1156
 msgid "Contents"
