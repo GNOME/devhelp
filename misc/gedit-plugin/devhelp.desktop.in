@@ -1,7 +1,7 @@
-[Gedit Plugin]
+[Plugin]
 Loader=python
 Module=devhelp
-IAge=2
+IAge=3
 _Name=Devhelp support
 _Description=Makes F2 bring up Devhelp for the word at the cursor
 Authors=Richard Hult

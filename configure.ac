@@ -133,7 +133,6 @@ data/ui/Makefile
 data/dtd/Makefile
 misc/Makefile
 misc/gedit-plugin/Makefile
-misc/gedit-plugin/devhelp/Makefile
 contrib/Makefile
 ])
 

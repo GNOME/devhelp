@@ -2,8 +2,10 @@
 #
 #    Gedit devhelp plugin
 #    Copyright (C) 2006 Imendio AB
+#    Copyright (C) 2011 Red Hat, Inc.
 #
 #    Author: Richard Hult <richard@imendio.com>
+#    Author: Dan Williams <dcbw@redhat.com>
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,50 +21,68 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import gedit
-import gtk
+from gi.repository import GObject, Gtk, Gedit
 import os
 import gettext
 
-class DevhelpInstance:
-    def __init__(self, window):
-        self._window = window
+ui_str = """
+<ui>
+  <menubar name="MenuBar">
+    <menu name="ToolsMenu" action="Tools">
+      <placeholder name="ToolsOps_5">
+        <menuitem name="Devhelp" action="Devhelp"/>
+      </placeholder>
+    </menu>
+  </menubar>
+</ui>
+"""
 
-    def activate(self):
-        manager = self._window.get_ui_manager()
+import pdb
+
+class DevhelpPlugin(GObject.Object, Gedit.WindowActivatable):
+    __gtype_name__ = "DevhelpPlugin"
+
+    window = GObject.property(type=GObject.GObject)
+
+    def __init__(self):
+        GObject.Object.__init__(self)
+
+    def do_activate(self):
+        self._insert_menu()
+
+    def do_deactivate(self):
+        self._remove_menu()
+
+    def _remove_menu(self):
+        manager = self.window.get_ui_manager()
+        manager.remove_ui(self._ui_id)
+        manager.remove_action_group(self._action_group)
+        self._action_group = None
+        manager.ensure_update()
+
+    def _insert_menu(self):
+        manager = self.window.get_ui_manager()
+
 	# Translate actions below, hardcoding domain here to avoid complications now
 	_ = lambda s: gettext.dgettext('devhelp', s);
 
-        self._action_group = gtk.ActionGroup("GeditDevhelpPluginActions")
-        self._action_group.add_actions([('Devhelp', None,
-                                         _('Show API Documentation'),
-                                         'F2',
-                                         _('Show API Documentation for the word at the cursor'),
-                                         self.on_action_devhelp_activate)])
-        
-        self._merge_id = manager.new_merge_id()
-        manager.insert_action_group(self._action_group, -1)		
-        manager.add_ui(self._merge_id, '/MenuBar/ToolsMenu/ToolsOps_5',
-                       'Devhelp', 'Devhelp', gtk.UI_MANAGER_MENUITEM, False)
-        
-    def deactivate(self):
-        manager = self._window.get_ui_manager()
-        manager.remove_ui(self._merge_id)
-        manager.remove_action_group(self._action_group)
-        self._action_group = None
+        self._action_group = Gtk.ActionGroup(name="GeditDevhelpPluginActions")
+	self._action_group.add_actions([('Devhelp', None,
+	                                 _('Show API Documentation'),
+	                                 'F2',
+	                                 _('Show API Documentation for the word at the cursor'),
+	                                 lambda a, w: self.do_devhelp(w.get_active_document()))],
+	                                 self.window)
+        manager.insert_action_group(self._action_group, -1)
+        self._ui_id = manager.add_ui_from_string(ui_str)
 
     def _is_word_separator(self, c):
         return not (c.isalnum() or c == '_')
 
-    def on_action_devhelp_activate(self, *args):
-        view = self._window.get_active_view()
-        buffer = view.get_buffer()
-
+    def do_devhelp(self, document):
         # Get the word at the cursor
-        insert = buffer.get_iter_at_mark(buffer.get_insert())
-
-        start = insert.copy()
-        end = insert.copy()
+        start = document.get_iter_at_mark(document.get_insert())
+        end = start.copy()
 
         # If just after a word, move back into it
         c = start.get_char()
@@ -89,9 +109,7 @@ class DevhelpInstance:
                 break
 
         if end.compare(start) > 0:
-            text = buffer.get_text(start,end).strip()
+            text = document.get_text(start,end,False).strip()
             if text:
                 # FIXME: We need a dbus interface for devhelp soon...
                 os.spawnlp(os.P_NOWAIT, 'devhelp', 'devhelp', '-s', text)
-            
-

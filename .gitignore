@@ -52,7 +52,7 @@ libtool
 /po/quot.sed
 /po/remove-potcdate.sin
 /misc/gedit-plugin/devhelp.desktop
-/misc/gedit-plugin/devhelp.gedit-plugin
+/misc/gedit-plugin/devhelp.plugin
 /src/devhelp
 /src/dh-marshal.c
 /src/dh-marshal.h
