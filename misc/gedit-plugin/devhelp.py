@@ -37,8 +37,6 @@ ui_str = """
 </ui>
 """
 
-import pdb
-
 class DevhelpPlugin(GObject.Object, Gedit.WindowActivatable):
     __gtype_name__ = "DevhelpPlugin"
 
