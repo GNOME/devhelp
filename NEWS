@@ -1,3 +1,20 @@
+===============
+Version 2.91.90
+===============
+
+Fixed bugs:
+
+ - #642002, [PATCH] port gedit plugin to GObject Introspection and latest
+            GEdit
+
+Updated translations: ar, bg, ca, el, eo, es, fa, fr, gl, ko, nl, ru,
+ug, uk, zh_HK, zh_TW
+
+Many thanks to all contributors: Changwoo Ryu, Kristjan SCHMIDT, Gil
+Forcada, Khaled Hosny, Alexander Shopov, Wouter Bolsterlee, Jorge González,
+Fran Diéguez, Sahran, Claude Paroz, Yuri Myasoedov, Daniel Korostil,
+Michael Kotsarinis, Chao-Hsiung Liao, Mahyar Moghimi, Dan Williams
+
 ==============
 Version 2.91.5
 ==============
