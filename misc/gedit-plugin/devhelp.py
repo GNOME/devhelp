@@ -40,7 +40,7 @@ ui_str = """
 class DevhelpPlugin(GObject.Object, Gedit.WindowActivatable):
     __gtype_name__ = "DevhelpPlugin"
 
-    window = GObject.property(type=GObject.GObject)
+    window = GObject.property(type=Gedit.Window)
 
     def __init__(self):
         GObject.Object.__init__(self)
