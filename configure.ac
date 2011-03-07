@@ -71,13 +71,13 @@ AC_SUBST(REQUIRES_LIBWNCK)
 
 PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
-  gtk+-3.0
+  gtk+-3.0 >= 3.0.2
   webkitgtk-3.0
   glib-2.0 >= 2.25.11
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-  gtk+-3.0
+  gtk+-3.0 >= 3.0.2
   $gconf_pkgconfig
   $libwnck_pkgconfig
   $igemacintegration_pkgconfig

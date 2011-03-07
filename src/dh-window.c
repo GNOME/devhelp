@@ -1085,6 +1085,9 @@ window_populate (DhWindow *window)
         gtk_box_pack_start (GTK_BOX (priv->menu_box), toolbar,
                             FALSE, FALSE, 0);
 
+	gtk_style_context_add_class (gtk_widget_get_style_context (toolbar),
+				     GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
+
 #ifdef GDK_WINDOWING_QUARTZ
         {
                 GtkWidget       *widget;
