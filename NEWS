@@ -1,4 +1,18 @@
 ===============
+Version 2.91.91
+===============
+
+Fixed bugs:
+
+ - #643145, [gedit plugin] check for the right type
+ - #644026, Needs a 256x256 size icon
+
+Updated translations: hu, pt
+
+Many thanks to all contributors: Ignacio Casal Quinteiro, Andreas Nilsson,
+Duarte Loreto, Cosimo Cecchi, Gabor Kelemen
+
+===============
 Version 2.91.90
 ===============
 
