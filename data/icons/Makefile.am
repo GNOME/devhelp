@@ -13,6 +13,9 @@ icon32_DATA = 32x32/devhelp.png
 icon48dir = $(datadir)/icons/hicolor/48x48/apps
 icon48_DATA = 48x48/devhelp.png
 
+icon256dir = $(datadir)/icons/hicolor/256x256/apps
+icon256_DATA = 256x256/devhelp.png
+
 gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
 
 install-data-hook: update-icon-cache
@@ -32,4 +35,5 @@ EXTRA_DIST = \
 	$(icon24_DATA)  	\
 	$(icon32_DATA)  	\
 	$(icon48_DATA)  	\
+	$(icon256_DATA)  	\
 	devhelp.svg
