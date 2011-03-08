@@ -49,6 +49,7 @@
 #include "ige-conf.h"
 
 #define FULLSCREEN_ANIMATION_SPEED 4
+#define TAB_WIDTH_N_CHARS 15
 
 struct _DhWindowPriv {
         DhBase         *base;
@@ -1728,32 +1729,31 @@ close_button_clicked_cb (GtkButton *button,
 
 static void
 tab_label_style_set_cb (GtkWidget *hbox,
-                        GtkStyle  *previous_style,
-                        gpointer   user_data)
+			GtkStyle *previous_style,
+			gpointer user_data)
 {
-        PangoFontMetrics *metrics;
-        PangoContext     *context;
-        GtkWidget        *button;
-        GtkStyle         *style;
-        gint              char_width;
-        gint              h, w;
+	PangoFontMetrics *metrics;
+	PangoContext *context;
+	GtkStyleContext *style;
+	GtkWidget *button;
+	int char_width, h, w;
 
-        context = gtk_widget_get_pango_context (hbox);
-        style = gtk_widget_get_style (hbox);
-        metrics = pango_context_get_metrics (context,
-                                             style->font_desc,
-                                             pango_context_get_language (context));
+	context = gtk_widget_get_pango_context (hbox);
+	style = gtk_widget_get_style_context (hbox);
+	metrics = pango_context_get_metrics (context,
+					     gtk_style_context_get_font (style, GTK_STATE_FLAG_NORMAL),
+					     pango_context_get_language (context));
+	char_width = pango_font_metrics_get_approximate_digit_width (metrics);
+	pango_font_metrics_unref (metrics);
 
-        char_width = pango_font_metrics_get_approximate_digit_width (metrics);
-        pango_font_metrics_unref (metrics);
+	gtk_icon_size_lookup_for_settings (gtk_widget_get_settings (hbox),
+					   GTK_ICON_SIZE_MENU, &w, &h);
 
-        gtk_icon_size_lookup_for_settings (gtk_widget_get_settings (hbox),
-                                           GTK_ICON_SIZE_MENU, &w, &h);
+	gtk_widget_set_size_request
+		(hbox, TAB_WIDTH_N_CHARS * PANGO_PIXELS(char_width) + 2 * w, -1);
 
-        gtk_widget_set_size_request (hbox, 15 * PANGO_PIXELS (char_width) + 2 * w, -1);
-
-        button = g_object_get_data (G_OBJECT (hbox), "close-button");
-        gtk_widget_set_size_request (button, w + 2, h + 2);
+	button = g_object_get_data (G_OBJECT (hbox), "close-button");
+	gtk_widget_set_size_request (button, w + 2, h + 2);
 }
 #endif
 
