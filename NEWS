@@ -1,4 +1,13 @@
 =================
+Version 2.91.91.2
+=================
+
+Fixed bugs:
+
+ - partial update for gtk-style-context, some deprecated functions are still
+   being used.
+
+=================
 Version 2.91.91.1
 =================
 
