@@ -2,21 +2,21 @@
 # Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
 # This file is distributed under the same license as the devhelp package.
 # Adi Roiban , https://launchpad.net/~adiroiban
-# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2010.
+# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2010, 2011.
 # Daniel Șerbănescu <cyber19rider@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
+"Report-Msgid-Bugs-To: "
+"http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
 "POT-Creation-Date: 2010-12-21 10:07+0000\n"
-"PO-Revision-Date: 2010-11-22 19:51+0300\n"
+"PO-Revision-Date: 2011-03-11 11:00+0200\n"
 "Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Virtaal 0.6.1\n"
@@ -58,7 +58,7 @@ msgstr "Font pentru text cu lățime variabilă"
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Group by language"
-msgstr ""
+msgstr "Grupează după limbă"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Height of assistant window"
@@ -127,6 +127,8 @@ msgstr "Folosește setul de fonturi implicit al sistemului."
 #: ../data/devhelp.schemas.in.h:23
 msgid "Whether books should be grouped by language in the UI"
 msgstr ""
+"Dacă cărțile ar trebui să fie grupate după limbă în interfața cu "
+"utilizatorul"
 
 #: ../data/devhelp.schemas.in.h:24
 msgid "Whether the main window should start maximized."
@@ -182,7 +184,7 @@ msgstr "Lățime _fixă:"
 
 #: ../data/ui/devhelp.builder.h:5
 msgid "_Group by language"
-msgstr ""
+msgstr "_Grupează după limbă"
 
 #: ../data/ui/devhelp.builder.h:6
 msgid "_Use system fonts"
@@ -220,11 +222,11 @@ msgstr "Carte:"
 #: ../src/dh-book.c:252
 #, c-format
 msgid "Language: %s"
-msgstr ""
+msgstr "Limbă: %s"
 
 #: ../src/dh-book.c:253
 msgid "Language: Undefined"
-msgstr ""
+msgstr "Limbă: nedefinită"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:267
