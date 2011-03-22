@@ -1,3 +1,16 @@
+===============
+Version 2.91.92
+===============
+
+Fixed bugs:
+
+ - #644221, window: set the style class before adding to the parent box
+
+Updated translations: de, en_GB, pl, ro, sk, sq
+
+Many thanks to all contributors: Laurent Dhima, Lucian Adrian Grijincu, Roman
+Mátyus, Mario Blättermann, Bruce Cowan, Cosimo Cecchi
+
 =================
 Version 2.91.91.2
 =================
