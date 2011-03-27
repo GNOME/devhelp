@@ -1,16 +1,16 @@
 # Slovak translation for devhelp.
-# Copyright (C) 2001, 2002, 2003, 2004, 2005, 2010 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2002, 2003, 2004, 2005, 2010, 2011 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 # Marcel Telka <marcel@telka.sk>, 2001, 2002, 2003, 2004, 2005.
-# Roman Mátyus <romanmatyus@gmail.com>, 2010.
+# Roman Mátyus <romanmatyus@gmail.com>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-11 10:00+0000\n"
-"PO-Revision-Date: 2010-11-02 19:27+0100\n"
+"POT-Creation-Date: 2011-03-22 21:04+0000\n"
+"PO-Revision-Date: 2011-03-20 12:10+0100\n"
 "Last-Translator: Roman Mátyus <romanmatyus@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Program pomocníka pre vývojárov"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:741 ../src/dh-window.c:1049 ../src/dh-window.c:1883
+#: ../src/dh-window.c:741 ../src/dh-window.c:1049 ../src/dh-window.c:1884
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -54,7 +54,7 @@ msgstr "Písmo pre text s premenlivou šírkou."
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Group by language"
-msgstr ""
+msgstr "Zoskupiť podla jazyka"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Height of assistant window"
@@ -122,7 +122,7 @@ msgstr "Použiť predvolené systémové písma."
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Whether books should be grouped by language in the UI"
-msgstr ""
+msgstr "Či by sa mali knihy v používateľskom rozhraní zoskupovať podla jazyka"
 
 #: ../data/devhelp.schemas.in.h:24
 msgid "Whether the main window should start maximized."
@@ -180,7 +180,7 @@ msgstr "_Pevná šírka:"
 
 #: ../data/ui/devhelp.builder.h:5
 msgid "_Group by language"
-msgstr ""
+msgstr "_Zoskupiť podla jazyka"
 
 #: ../data/ui/devhelp.builder.h:6
 msgid "_Use system fonts"
@@ -218,11 +218,11 @@ msgstr "Kniha:"
 #: ../src/dh-book.c:252
 #, c-format
 msgid "Language: %s"
-msgstr ""
+msgstr "Jazyk: %s"
 
 #: ../src/dh-book.c:253
 msgid "Language: Undefined"
-msgstr ""
+msgstr "Jazyk: Nedefinovaný"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:267
@@ -494,42 +494,40 @@ msgstr "Opustiť režim celej obrazovky"
 msgid "Display in full screen"
 msgstr "Zobraziť v režime celej obrazovky"
 
-# ja by som dal Zväčšiť, lepšie to zapadne do panela nástrojov
 #. Translators: This refers to text size
 #: ../src/dh-window.c:962
 msgid "Larger"
-msgstr "Väčší"
+msgstr "Zväčšiť"
 
-# ja by som dal Zmenšiť, lepšie to zapadne do panela nástrojov
 #. Translators: This refers to text size
 #: ../src/dh-window.c:965
 msgid "Smaller"
-msgstr "Menší"
+msgstr "Zmenšiť"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1113
+#: ../src/dh-window.c:1114
 msgid "About Devhelp"
 msgstr "O programe Devhelp"
 
-#: ../src/dh-window.c:1118
+#: ../src/dh-window.c:1119
 msgid "Preferences…"
 msgstr "Nastavenia…"
 
-#: ../src/dh-window.c:1160
+#: ../src/dh-window.c:1161
 msgid "Contents"
 msgstr "Obsah"
 
-#: ../src/dh-window.c:1170
+#: ../src/dh-window.c:1171
 msgid "Search"
 msgstr "Hľadať"
 
-#: ../src/dh-window.c:1348
+#: ../src/dh-window.c:1349
 msgid "Error opening the requested link."
 msgstr "Chyba pri otváraní požadovaného odkazu."
 
-#: ../src/dh-window.c:1670 ../src/dh-window.c:1911
+#: ../src/dh-window.c:1671 ../src/dh-window.c:1912
 msgid "Empty Page"
 msgstr "Prázdna strana"
 
@@ -552,42 +550,3 @@ msgstr "Citlivé na _veľkosť písmen"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Prepnúť citlivosť na veľkosť písmen vyhľadávanie"
-
-# PK: aky je tu rod?
-# https://bugzilla.gnome.org/show_bug.cgi?id=633834
-#~ msgid "Enabled"
-#~ msgstr "Povolené"
-
-#~ msgid "Title"
-#~ msgstr "Titulok"
-
-#~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %"
-#~ "d"
-#~ msgstr ""
-#~ "Elementy name a link sú vyžadované vo vnútri <function> na riadku %d, "
-#~ "stĺpec %d"
-
-#~ msgid "Could not create book parser"
-#~ msgstr "Nepodarilo sa vytvoriť analyzátor pre knihu"
-
-#~ msgid "Could not create markup parser"
-#~ msgstr "Nepodarilo sa vytvoriť analyzátor pre značky"
-
-#~ msgid "Devhelp is not built with zlib support"
-#~ msgstr "Devhelp nie je skompilovaný s podporou zlib"
-
-#~ msgid "Browse Contents"
-#~ msgstr "Prehliadať obsah"
-
-#~ msgid "    "
-#~ msgstr "    "
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Písma</b>"
-
-#~ msgid "_Back"
-#~ msgstr "_Späť"
-
-#~ msgid "_Forward"
-#~ msgstr "Ďa_lej"
