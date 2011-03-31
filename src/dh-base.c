@@ -27,10 +27,6 @@
 #ifdef GDK_WINDOWING_X11
 #include <unistd.h>
 #include <gdk/gdkx.h>
-#ifdef HAVE_WNCK
-#define WNCK_I_KNOW_THIS_IS_UNSTABLE
-#include <libwnck/libwnck.h>
-#endif
 #endif
 
 #include "dh-window.h"
@@ -104,22 +100,6 @@ dh_base_init (DhBase *base)
 
         priv->book_manager = dh_book_manager_new ();
         dh_book_manager_populate (priv->book_manager);
-
-#ifdef HAVE_WNCK
-        {
-                gint n_screens, i;
-
-                /* For some reason, libwnck doesn't seem to update its list of
-                 * workspaces etc if we don't do this.
-                 */
-                n_screens = gdk_display_get_n_screens (gdk_display_get_default ());
-                for (i = 0; i < n_screens; i++) {
-                        WnckScreen *screen;
-
-                        screen = wnck_screen_get (i);
-                }
-        }
-#endif
 }
 
 static void
@@ -222,60 +202,7 @@ dh_base_get_window_on_current_workspace (DhBase *base)
         if (!priv->windows) {
                 return NULL;
         }
-
-#ifdef HAVE_WNCK
-        {
-                WnckWorkspace *workspace;
-                WnckScreen    *screen;
-                GtkWidget     *window;
-                GList         *windows, *w;
-                GSList        *l;
-                gulong         xid;
-                pid_t          pid;
-
-                screen = wnck_screen_get (0);
-                if (!screen) {
-                        return NULL;
-                }
-
-                workspace = wnck_screen_get_active_workspace (screen);
-                if (!workspace) {
-                        return NULL;
-                }
-
-                xid = 0;
-                pid = getpid ();
-
-                /* Use _stacked so we can use the one on top. */
-                windows = wnck_screen_get_windows_stacked (screen);
-                windows = g_list_last (windows);
-
-                for (w = windows; w; w = w->prev) {
-                        if (wnck_window_is_on_workspace (w->data, workspace) &&
-                            wnck_window_get_pid (w->data) == pid) {
-                                xid = wnck_window_get_xid (w->data);
-                                break;
-                        }
-                }
-
-                if (!xid) {
-                        return NULL;
-                }
-
-                /* Return the first matching window we have. */
-                for (l = priv->windows; l; l = l->next) {
-                        window = l->data;
-
-                        if (GDK_WINDOW_XID (gtk_widget_get_window (window)) == xid) {
-                                return window;
-                        }
-                }
-        }
-
-        return NULL;
-#else
         return priv->windows->data;
-#endif
 }
 
 GtkWidget *

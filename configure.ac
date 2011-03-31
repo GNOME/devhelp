@@ -50,19 +50,12 @@ dnl -----------------------------------------------------------
 IGE_PLATFORM_CHECK
 if test "x$IGE_PLATFORM" = xx11; then
    gconf_pkgconfig="gconf-2.0 >= 2.6.0"
-   libwnck_pkgconfig=
    gtkmacintegration_pkgconfig=
-   REQUIRES_LIBWNCK=
-   HAVE_WNCK=no
 else
    gconf_pkgconfig=
-   libwnck_pkgconfig=
    gtkmacintegration_pkgconfig="gtk-mac-integration >= 1.0.0"
-   REQUIRES_LIBWNCK=
-   HAVE_WNCK=no
 fi
 AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, test "x$IGE_PLATFORM" = xx11)
-AC_SUBST(REQUIRES_LIBWNCK)
 
 PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
@@ -74,14 +67,9 @@ PKG_CHECK_MODULES(DEVHELP, [
 PKG_CHECK_MODULES(LIBDEVHELP, [
   gtk+-3.0 >= 3.0.2
   $gconf_pkgconfig
-  $libwnck_pkgconfig
   $gtkmacintegration_pkgconfig
   webkitgtk-3.0
 ])
-
-if test "x$HAVE_WNCK" = "xyes" ; then
-    AC_DEFINE(HAVE_WNCK, 1, [Defined if libwnck is available])
-fi
 
 AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)
 have_zlib=no
