@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-12-21 10:07+0000\n"
+"product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-20 09:51+0000\n"
 "PO-Revision-Date: 2011-03-17 11:01+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
@@ -31,7 +31,7 @@ msgstr "Hilfeprogramm für Entwickler"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
+#: ../src/dh-window.c:741 ../src/dh-window.c:1049 ../src/dh-window.c:1883
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -173,7 +173,7 @@ msgstr "Vertikale Position des Hauptfensters"
 
 #: ../data/ui/devhelp.builder.h:1
 msgid "Book Shelf"
-msgstr "Büchersammlung"
+msgstr "Büchersammlung"
 
 #: ../data/ui/devhelp.builder.h:2
 msgid "Fonts"
@@ -207,11 +207,11 @@ msgstr "Devhelp-Unterstützung"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "F2 schlägt das Wort unter der Eingabemarke in Devhelp nach"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp.py:69
 msgid "Show API Documentation"
 msgstr "API-Dokumentation anzeigen"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+#: ../misc/gedit-plugin/devhelp.py:71
 msgid "Show API Documentation for the word at the cursor"
 msgstr "API-Dokumentation für das Wort an der Zeigerposition anzeigen"
 
@@ -325,10 +325,11 @@ msgstr ""
 #: ../src/dh-parser.c:218
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
 msgstr ""
-"»name« sowie »link«-Elemente innerhalb <sub> erforderlich in Zeile %d, Spalte "
-"%d"
+"»name« sowie »link«-Elemente innerhalb <sub> erforderlich in Zeile %d, Spalte %"
+"d"
 
 #: ../src/dh-parser.c:298
 #, c-format
@@ -352,47 +353,47 @@ msgstr "Buch »%s« konnte nicht entpackt werden: %s"
 msgid "All books"
 msgstr "Alle Bücher"
 
-#: ../src/dh-search.c:1117
+#: ../src/dh-search.c:1118
 msgid "Search in:"
 msgstr "Suchen in:"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:99
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:100
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:101
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:102
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:103
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:104
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:105
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:106
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:107
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:735
+#: ../src/dh-window.c:736
 msgid "translator_credits"
 msgstr ""
 "Christian Meyer\n"
@@ -400,138 +401,138 @@ msgstr ""
 "Christian Kirbach\n"
 "Mario Blättermann"
 
-#: ../src/dh-window.c:742
+#: ../src/dh-window.c:743
 msgid "A developers' help browser for GNOME"
 msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
 
-#: ../src/dh-window.c:749
+#: ../src/dh-window.c:750
 msgid "DevHelp Website"
 msgstr "DevHelp-Webseite"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:774
 msgid "_File"
 msgstr "_Datei"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:775
 msgid "_Edit"
 msgstr "B_earbeiten"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:776
 msgid "_View"
 msgstr "_Ansicht"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:777
 msgid "_Go"
 msgstr "_Gehe zu"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:778
 msgid "_Help"
 msgstr "_Hilfe"
 
 #. File menu
-#: ../src/dh-window.c:780
+#: ../src/dh-window.c:781
 msgid "_New Window"
 msgstr "_Neues Fenster"
 
-#: ../src/dh-window.c:782
+#: ../src/dh-window.c:783
 msgid "New _Tab"
 msgstr "Neuer _Reiter"
 
-#: ../src/dh-window.c:784
+#: ../src/dh-window.c:785
 msgid "_Print…"
 msgstr "_Drucken …"
 
-#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:797 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Weitersuchen"
 
-#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:799 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Rückwärts suchen"
 
-#: ../src/dh-window.c:805
+#: ../src/dh-window.c:806
 msgid "Go to the previous page"
 msgstr "Zur vorherigen Seite gehen"
 
-#: ../src/dh-window.c:808
+#: ../src/dh-window.c:809
 msgid "Go to the next page"
 msgstr "Zur nächsten Seite gehen"
 
-#: ../src/dh-window.c:811
+#: ../src/dh-window.c:812
 msgid "_Contents Tab"
 msgstr "Reiter _Inhalt"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:815
 msgid "_Search Tab"
 msgstr "Reiter _Suchen"
 
 #. View menu
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:819
 msgid "_Larger Text"
 msgstr "_Größerer Text"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:820
 msgid "Increase the text size"
 msgstr "Text vergrößern"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:822
 msgid "S_maller Text"
 msgstr "_Kleinerer Text"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:823
 msgid "Decrease the text size"
 msgstr "Text verkleinern"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:825
 msgid "_Normal Size"
 msgstr "_Normale Größe"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:826
 msgid "Use the normal text size"
 msgstr "Die normale Textgröße verwenden"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:835
 msgid "Leave fullscreen mode"
 msgstr "Vollbildmodus verlassen"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:842
 msgid "Display in full screen"
 msgstr "Im Vollbildmodus darstellen"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:961
+#: ../src/dh-window.c:962
 msgid "Larger"
 msgstr "Größer"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:964
+#: ../src/dh-window.c:965
 msgid "Smaller"
 msgstr "Kleiner"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1109
+#: ../src/dh-window.c:1113
 msgid "About Devhelp"
 msgstr "Info zu Devhelp"
 
-#: ../src/dh-window.c:1114
+#: ../src/dh-window.c:1118
 msgid "Preferences…"
 msgstr "Einstellungen …"
 
-#: ../src/dh-window.c:1156
+#: ../src/dh-window.c:1160
 msgid "Contents"
 msgstr "Inhalt"
 
-#: ../src/dh-window.c:1166
+#: ../src/dh-window.c:1170
 msgid "Search"
 msgstr "Suche"
 
-#: ../src/dh-window.c:1344
+#: ../src/dh-window.c:1348
 msgid "Error opening the requested link."
 msgstr "Fehler beim Öffnen des angeforderten Verweises."
 
-#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
+#: ../src/dh-window.c:1670 ../src/dh-window.c:1911
 msgid "Empty Page"
 msgstr "Leere Seite"
 
@@ -583,10 +584,11 @@ msgstr "Groß-/Kleinschreibung bei Suche berücksichtigen"
 #~ msgstr "Weitere Such_einstellungen anzeigen"
 
 #~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %d"
+#~ "name and link elements are required inside <function> on line %d, column %"
+#~ "d"
 #~ msgstr ""
-#~ "»name« sowie »link«-Elemente in <function> erforderlich - Zeile %d, Spalte "
-#~ "%d"
+#~ "»name« sowie »link«-Elemente in <function> erforderlich - Zeile %d, Spalte %"
+#~ "d"
 
 #~ msgid "Could not create book parser"
 #~ msgstr "Buchverarbeiter konnte nicht angelegt werden"
