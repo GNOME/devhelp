@@ -563,7 +563,7 @@ book_manager_add_from_xcode_docset (DhBookManager *book_manager,
                                ".devhelp2") == 0) {
                         gchar *book_path;
 
-                        book_path = g_build_filename (path, name, NULL);
+                        book_path = g_build_filename (dir_path, name, NULL);
                         /* Add book from filepath */
                         book_manager_add_from_filepath (book_manager,
                                                         book_path);
