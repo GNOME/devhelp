@@ -80,7 +80,7 @@
                                     <child>
                                       <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                                         <property name="min_width">60</property>
-                                        <property name="title">Enabled</property>
+                                        <property name="title" translatable="yes">Enabled</property>
                                         <property name="expand">True</property>
                                         <child>
                                           <object class="GtkCellRendererToggle" id="bookshelf_enabled_toggle">
@@ -95,7 +95,7 @@
                                     </child>
                                     <child>
                                       <object class="GtkTreeViewColumn" id="treeviewcolumn2">
-                                        <property name="title">Title</property>
+                                        <property name="title" translatable="yes">Title</property>
                                         <property name="expand">True</property>
                                         <child>
                                           <object class="GtkCellRendererText" id="bookshelf_title_text"/>
