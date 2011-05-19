@@ -47,6 +47,7 @@
                         <child>
                           <object class="GtkVBox" id="vbox1">
                             <property name="visible">True</property>
+                            <property name="spacing">6</property>
                             <child>
                               <object class="GtkCheckButton" id="bookshelf_group_by_language_button">
                                 <property name="label" translatable="yes">_Group by language</property>
@@ -63,16 +64,6 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHSeparator" id="hseparator1">
-                                <property name="height_request">10</property>
-                                <property name="visible">True</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkScrolledWindow" id="scrolledwindow1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
@@ -86,7 +77,6 @@
                                     <property name="model">bookshelf_store</property>
                                     <property name="headers_clickable">False</property>
                                     <property name="search_column">0</property>
-                                    <property name="enable_grid_lines">vertical</property>
                                     <child>
                                       <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                                         <property name="min_width">60</property>
