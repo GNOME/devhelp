@@ -78,6 +78,7 @@
                                 <property name="can_focus">True</property>
                                 <property name="hscrollbar_policy">automatic</property>
                                 <property name="vscrollbar_policy">automatic</property>
+                                <property name="shadow-type">in</property>
                                 <child>
                                   <object class="GtkTreeView" id="bookshelf_treeview">
                                     <property name="visible">True</property>
