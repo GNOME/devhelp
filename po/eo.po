@@ -1,5 +1,5 @@
-# Esperanto translation for devhelp
-# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# Esperanto translation for devhelp.
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009.
 # This file is distributed under the same license as the devhelp package.
 # Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2009, 2011.
 #
@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2011-01-14 21:36+0000\n"
-"PO-Revision-Date: 2011-01-23 12:31+0100\n"
+"product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-05-02 09:33+0000\n"
+"PO-Revision-Date: 2011-05-28 10:46+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-31 16:12+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-05-28 08:20+0000\n"
+"X-Generator: Launchpad (build 13117)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
@@ -27,7 +27,7 @@ msgstr "Programisto-Helpilo"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
+#: ../src/dh-window.c:741 ../src/dh-window.c:1049 ../src/dh-window.c:1884
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -61,55 +61,55 @@ msgstr "Grupigi laŭ lingvo"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Height of assistant window"
-msgstr ""
+msgstr "Alto de la asistanta fenestro"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Height of main window"
-msgstr "Alteco de la ĉefa fenestro"
+msgstr "Alto de la ĉefa fenestro"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "List of books disabled by the user."
-msgstr ""
+msgstr "La librolisto estas elŝaltite de la uzanto."
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "Main window maximized state"
-msgstr ""
+msgstr "Maksimumig-stato de la ĉefa fenestro"
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "Selected tab: \"content\" or \"search\""
-msgstr ""
+msgstr "Elektita langeto: \"content\" (enhavo) aŭ \"search\" (serĉo)"
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The X position of the assistant window."
-msgstr ""
+msgstr "La horizontala pozicio de la asistanta fenestro."
 
 #: ../data/devhelp.schemas.in.h:13
 msgid "The X position of the main window."
-msgstr ""
+msgstr "La horizontala pozicio de la ĉefa fenestro."
 
 #: ../data/devhelp.schemas.in.h:14
 msgid "The Y position of the assistant window."
-msgstr ""
+msgstr "La vertikala pozicio de la asistanta fenestro."
 
 #: ../data/devhelp.schemas.in.h:15
 msgid "The Y position of the main window."
-msgstr ""
+msgstr "La vertikala pozicio de la ĉefa fenestro."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "The height of the assistant window."
-msgstr ""
+msgstr "La alto de la asistanta fenestro."
 
 #: ../data/devhelp.schemas.in.h:17
 msgid "The height of the main window."
-msgstr ""
+msgstr "La alto de la ĉefa fenestro."
 
 #: ../data/devhelp.schemas.in.h:18
 msgid "The width of the assistant window."
-msgstr ""
+msgstr "La larĝo de la asistanta fenestro."
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "The width of the index and search pane."
-msgstr ""
+msgstr "La larĝo de la indeksa kaj serĉa panelo."
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "The width of the main window."
@@ -125,47 +125,48 @@ msgstr "Uzi la sistemajn defaŭlt-tiparojn."
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Whether books should be grouped by language in the UI"
-msgstr ""
+msgstr "Ĉu grupigi librojn laŭ lingvo en la uzantointerfaco?"
 
 #: ../data/devhelp.schemas.in.h:24
 msgid "Whether the main window should start maximized."
-msgstr ""
+msgstr "Ĉu la ĉefa fenestro startu maksimume?"
 
 #: ../data/devhelp.schemas.in.h:25
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr ""
+"Kiu de la langeto estas elektite: \"content\" (enhavo) aŭ \"search\" (serĉo)."
 
 #: ../data/devhelp.schemas.in.h:26
 msgid "Width of the assistant window"
-msgstr ""
+msgstr "Larĝo de la asistanta fenestro"
 
 #: ../data/devhelp.schemas.in.h:27
 msgid "Width of the index and search pane"
-msgstr ""
+msgstr "Larĝo de la indeksa kaj serĉa panelo"
 
 #: ../data/devhelp.schemas.in.h:28
 msgid "Width of the main window"
-msgstr "Larĝeco de la ĉefa fenestro"
+msgstr "Larĝo de la ĉefa fenestro"
 
 #: ../data/devhelp.schemas.in.h:29
 msgid "X position of assistant window"
-msgstr ""
+msgstr "Horizontala pozicio de la asistanta fenestro"
 
 #: ../data/devhelp.schemas.in.h:30
 msgid "X position of main window"
-msgstr ""
+msgstr "Horizontala pozicio de la ĉefa fenestro"
 
 #: ../data/devhelp.schemas.in.h:31
 msgid "Y position of assistant window"
-msgstr ""
+msgstr "Vertikala pozicio de la asistanta fenestro"
 
 #: ../data/devhelp.schemas.in.h:32
 msgid "Y position of main window"
-msgstr ""
+msgstr "Vertikala pozicio de la ĉefa fenestro"
 
 #: ../data/ui/devhelp.builder.h:1
 msgid "Book Shelf"
-msgstr ""
+msgstr "Libraro"
 
 #: ../data/ui/devhelp.builder.h:2
 msgid "Fonts"
@@ -177,7 +178,7 @@ msgstr "Agordoj"
 
 #: ../data/ui/devhelp.builder.h:4
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Fiksa larĝo:"
 
 #: ../data/ui/devhelp.builder.h:5
 msgid "_Group by language"
@@ -189,7 +190,7 @@ msgstr "_Uzi sistemajn tiparojn"
 
 #: ../data/ui/devhelp.builder.h:7
 msgid "_Variable width: "
-msgstr ""
+msgstr "_Variebla larĝo: "
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -197,20 +198,20 @@ msgstr "Devhelp-subteno"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr ""
+msgstr "\"F2\" serĉigis Devhelp por la vorto ĉe la kursoro"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp.py:69
 msgid "Show API Documentation"
-msgstr ""
+msgstr "Montri la API-dokumentadon"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+#: ../misc/gedit-plugin/devhelp.py:71
 msgid "Show API Documentation for the word at the cursor"
-msgstr ""
+msgstr "Montri la API-dokumentadon pri la vorto ĉe la kursoro"
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
 msgid "Devhelp — Assistant"
-msgstr ""
+msgstr "Devhelp — Asistanto"
 
 #: ../src/dh-assistant-view.c:336
 msgid "Book:"
@@ -223,7 +224,7 @@ msgstr "Lingvo: %s"
 
 #: ../src/dh-book.c:253
 msgid "Language: Undefined"
-msgstr ""
+msgstr "Lingvo: nedifinite"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:267
@@ -282,7 +283,7 @@ msgstr "Serĉi slosilvorton"
 
 #: ../src/dh-main.c:52
 msgid "Quit any running Devhelp"
-msgstr ""
+msgstr "Ĉesi ĉiujn aperojn de Devhelp"
 
 #: ../src/dh-main.c:57
 msgid "Display the version and exit"
@@ -290,28 +291,29 @@ msgstr "Montri la version kaj eliri"
 
 #: ../src/dh-main.c:62
 msgid "Focus the Devhelp window with the search field active"
-msgstr ""
+msgstr "Enfokusigi la serĉkampon en la Devhelp-fenestro"
 
 #: ../src/dh-main.c:67
 msgid "Search and display any hit in the assistant window"
-msgstr ""
+msgstr "Serĉi kaj montri ĉiun trafon en la asistanta fenestro"
 
 #: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
 #: ../src/dh-parser.c:273
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Atendis '%s', ricevis '%s' ĉe linio %d, kolumno %d"
 
 #: ../src/dh-parser.c:114
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Nevalida nomspaco '%s' ĉe linio %d, kolumno %d"
 
 #: ../src/dh-parser.c:143
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
+"»title«-, »name«- kaj »link«-elementoj bezonatas ĉe linio %d, kolumno %d"
 
 #: ../src/dh-parser.c:218
 #, c-format
@@ -319,22 +321,24 @@ msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
 "%d"
 msgstr ""
+"\"name\"- kaj \"link\"-elementoj bezonatas en <sub> ĉe linio %d, kolumno %d"
 
 #: ../src/dh-parser.c:298
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
+"\"name\"- kaj \"link\"-elementoj bezonatas en \"%s\" ĉe linio %d, kolumno %d"
 
 #: ../src/dh-parser.c:311
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr ""
+msgstr "\"tipo\"-elemento bezonatas en <keyword> ĉe linio %d, kolumno %d"
 
 #: ../src/dh-parser.c:514
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Ne eblas malkompaktigi libron '%s': %s"
 
 #: ../src/dh-search.c:500
 msgid "All books"
@@ -344,180 +348,180 @@ msgstr "Ĉiuj libroj"
 msgid "Search in:"
 msgstr "Serĉi en:"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:99
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:100
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:101
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:102
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:103
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:104
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:105
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:106
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:107
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:735
+#: ../src/dh-window.c:736
 msgid "translator_credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Kristjan https://launchpad.net/~kristjan-eo"
+"  Kristjan SCHMIDT https://launchpad.net/~kristjan-eo"
 
-#: ../src/dh-window.c:742
+#: ../src/dh-window.c:743
 msgid "A developers' help browser for GNOME"
-msgstr ""
+msgstr "Programista helpfoliumilo por GNOMEo"
 
-#: ../src/dh-window.c:749
+#: ../src/dh-window.c:750
 msgid "DevHelp Website"
 msgstr "DevHelp-retpaĝaro"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:774
 msgid "_File"
 msgstr "_Dosiero"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:775
 msgid "_Edit"
 msgstr "R_edakti"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:776
 msgid "_View"
 msgstr "_Vido"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:777
 msgid "_Go"
 msgstr "E_k"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:778
 msgid "_Help"
 msgstr "_Helpo"
 
 #. File menu
-#: ../src/dh-window.c:780
+#: ../src/dh-window.c:781
 msgid "_New Window"
 msgstr "_Nova fenestro"
 
-#: ../src/dh-window.c:782
+#: ../src/dh-window.c:783
 msgid "New _Tab"
 msgstr "Nova lange_to"
 
-#: ../src/dh-window.c:784
+#: ../src/dh-window.c:785
 msgid "_Print…"
 msgstr "_Printi…"
 
-#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:797 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Trovi la sekvan"
 
-#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:799 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Trovi la antaŭan"
 
-#: ../src/dh-window.c:805
+#: ../src/dh-window.c:806
 msgid "Go to the previous page"
 msgstr "Iri al la antaŭa paĝo"
 
-#: ../src/dh-window.c:808
+#: ../src/dh-window.c:809
 msgid "Go to the next page"
 msgstr "Iri al la sekva paĝo"
 
-#: ../src/dh-window.c:811
+#: ../src/dh-window.c:812
 msgid "_Contents Tab"
 msgstr "_Enhav-langeto"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:815
 msgid "_Search Tab"
 msgstr "_Serĉ-langeto"
 
 #. View menu
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:819
 msgid "_Larger Text"
 msgstr "Pli _granda teksto"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:820
 msgid "Increase the text size"
 msgstr "Pligrandigi la tekston"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:822
 msgid "S_maller Text"
 msgstr "Pli _malgranda teksto"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:823
 msgid "Decrease the text size"
 msgstr "Plimalgrandigi la tekston"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:825
 msgid "_Normal Size"
 msgstr "_Normala grando"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:826
 msgid "Use the normal text size"
-msgstr "Uzi la normalan tekst-grando"
+msgstr "Uzi la normalan tekst-grandon"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:835
 msgid "Leave fullscreen mode"
 msgstr "Forlasi plenekranan reĝimon"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:842
 msgid "Display in full screen"
 msgstr "Montri en plenekrana reĝimo"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:961
+#: ../src/dh-window.c:962
 msgid "Larger"
 msgstr "Pli grande"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:964
+#: ../src/dh-window.c:965
 msgid "Smaller"
 msgstr "Malpli grande"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1109
+#: ../src/dh-window.c:1114
 msgid "About Devhelp"
 msgstr "Pri Devhelp"
 
-#: ../src/dh-window.c:1114
+#: ../src/dh-window.c:1119
 msgid "Preferences…"
 msgstr "Agordoj…"
 
-#: ../src/dh-window.c:1156
+#: ../src/dh-window.c:1161
 msgid "Contents"
 msgstr "Enhavoj"
 
-#: ../src/dh-window.c:1166
+#: ../src/dh-window.c:1171
 msgid "Search"
 msgstr "Serĉo"
 
-#: ../src/dh-window.c:1344
+#: ../src/dh-window.c:1349
 msgid "Error opening the requested link."
-msgstr ""
+msgstr "Eraro dum malfermo de la petita ligilo."
 
-#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
+#: ../src/dh-window.c:1671 ../src/dh-window.c:1912
 msgid "Empty Page"
 msgstr "Malplena paĝo"
 
@@ -535,8 +539,17 @@ msgstr "Trovi sekvan aperon de la serĉata ĉeno"
 
 #: ../src/eggfindbar.c:358
 msgid "C_ase Sensitive"
-msgstr "Us_klecodistinga"
+msgstr "Us_klecodistinge"
 
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
-msgstr "Baskuli usklecodistingan traserĉon"
+msgstr "Baskuli usklecodistingan serĉon"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Tiparoj</b>"
+
+#~ msgid "Enabled"
+#~ msgstr "Enŝaltite"
+
+#~ msgid "Title"
+#~ msgstr "Titolo"
