@@ -266,11 +266,7 @@ dh_base_get_window_on_current_workspace (DhBase *base)
                 for (l = priv->windows; l; l = l->next) {
                         window = l->data;
 
-#if GTK_CHECK_VERSION (2,14,0)
                         if (GDK_WINDOW_XID (gtk_widget_get_window (window)) == xid) {
-#else
-                        if (GDK_WINDOW_XID (window->window) == xid) {
-#endif
                                 return window;
                         }
                 }

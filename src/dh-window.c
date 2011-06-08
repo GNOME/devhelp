@@ -111,10 +111,6 @@ zoom_levels[] =
 #define ZOOM_MAXIMAL    (zoom_levels[8].level)
 #define ZOOM_DEFAULT    (zoom_levels[2].level)
 
-#if GTK_CHECK_VERSION (2,17,5)
-#define ERRORS_IN_INFOBAR
-#endif
-
 static void           dh_window_class_init           (DhWindowClass   *klass);
 static void           dh_window_init                 (DhWindow        *window);
 static void           window_populate                (DhWindow        *window);
@@ -150,9 +146,7 @@ static int            window_open_new_tab            (DhWindow        *window,
                                                       const gchar     *location,
                                                       gboolean         switch_focus);
 static WebKitWebView *window_get_active_web_view     (DhWindow        *window);
-#ifdef ERRORS_IN_INFOBAR
 static GtkWidget *    window_get_active_info_bar     (DhWindow *window);
-#endif
 static void           window_update_title            (DhWindow        *window,
                                                       WebKitWebView   *web_view,
                                                       const gchar     *title);
@@ -527,11 +521,7 @@ window_is_fullscreen (DhWindow *window)
 
         g_return_val_if_fail (DH_IS_WINDOW (window), FALSE);
 
-#if GTK_CHECK_VERSION (2,14,0)
         state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
-#else
-        state = gdk_window_get_state (GTK_WIDGET (window)->window);
-#endif
 
         return state & GDK_WINDOW_STATE_FULLSCREEN;
 }
@@ -1290,10 +1280,8 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
 
         uri = webkit_network_request_get_uri (request);
 
-#ifdef ERRORS_IN_INFOBAR
         /* make sure to hide the info bar on page change */
         gtk_widget_hide (window_get_active_info_bar (window));
-#endif
 
         if (webkit_web_navigation_action_get_button (navigation_action) == 2) { /* middle click */
                 webkit_web_policy_decision_ignore (policy_decision);
@@ -1337,7 +1325,6 @@ window_web_view_load_error_cb (WebKitWebView  *web_view,
                                gpointer       *web_error,
                                DhWindow       *window)
 {
-#ifdef ERRORS_IN_INFOBAR
         GtkWidget *info_bar;
         GtkWidget *content_area;
         GtkWidget *message_label;
@@ -1363,9 +1350,6 @@ window_web_view_load_error_cb (WebKitWebView  *web_view,
         g_free (markup);
 
         return TRUE;
-#else
-	return FALSE;
-#endif
 }
 
 static void
@@ -1614,9 +1598,7 @@ window_open_new_tab (DhWindow    *window,
         GtkWidget    *scrolled_window;
         GtkWidget    *label;
         gint          num;
-#ifdef ERRORS_IN_INFOBAR
         GtkWidget    *info_bar;
-#endif
 
         priv = window->priv;
 
@@ -1625,7 +1607,6 @@ window_open_new_tab (DhWindow    *window,
         gtk_widget_show (view);
         dh_util_font_add_web_view (WEBKIT_WEB_VIEW (view));
 
-#ifdef ERRORS_IN_INFOBAR
         /* Prepare the info bar */
         info_bar = gtk_info_bar_new ();
         gtk_widget_set_no_show_all (info_bar, TRUE);
@@ -1635,7 +1616,6 @@ window_open_new_tab (DhWindow    *window,
                                        GTK_MESSAGE_ERROR);
         g_signal_connect (info_bar, "response",
                           G_CALLBACK (gtk_widget_hide), NULL);
-#endif
 
 #if 0
         /* Leave this in for now to make it easier to experiment. */
@@ -1654,11 +1634,9 @@ window_open_new_tab (DhWindow    *window,
 
         /* XXX: Really it would be much better to use real structures */
         g_object_set_data (G_OBJECT (vbox), "web_view", view);
-#ifdef ERRORS_IN_INFOBAR
         g_object_set_data (G_OBJECT (vbox), "info_bar", info_bar);
 
         gtk_box_pack_start (GTK_BOX(vbox), info_bar, FALSE, TRUE, 0);
-#endif
 
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
@@ -1829,7 +1807,6 @@ window_get_active_web_view (DhWindow *window)
         return g_object_get_data (G_OBJECT (page), "web_view");
 }
 
-#ifdef ERRORS_IN_INFOBAR
 static GtkWidget *
 window_get_active_info_bar (DhWindow *window)
 {
@@ -1848,7 +1825,6 @@ window_get_active_info_bar (DhWindow *window)
 
         return g_object_get_data (G_OBJECT (page), "info_bar");
 }
-#endif
 
 static void
 window_update_title (DhWindow      *window,

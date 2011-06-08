@@ -286,11 +286,7 @@ util_state_save_window (GtkWindow   *window,
         gint            width, height;
         gint            x, y;
 
-#if GTK_CHECK_VERSION (2,14,0)
         state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
-#else
-        state = gdk_window_get_state (GTK_WIDGET (window)->window);
-#endif
         if (state & GDK_WINDOW_STATE_MAXIMIZED) {
                 maximized = TRUE;
         } else {
