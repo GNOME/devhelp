@@ -53,21 +53,15 @@ if test "x$IGE_PLATFORM" = xx11; then
    libwnck_pkgconfig=
    igemacintegration_pkgconfig=
    REQUIRES_LIBWNCK=
-   PLATFORM_CFLAGS=
-   PLATFORM_LDFLAGS=
    HAVE_WNCK=no
 else
    gconf_pkgconfig=
    libwnck_pkgconfig=
    igemacintegration_pkgconfig="ige-mac-integration >= 0.8.2"
    REQUIRES_LIBWNCK=
-   PLATFORM_CFLAGS=
-   PLATFORM_LDFLAGS=
    HAVE_WNCK=no
 fi
 AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, test "x$IGE_PLATFORM" = xx11)
-AC_SUBST(PLATFORM_CFLAGS)
-AC_SUBST(PLATFORM_LDFLAGS)
 AC_SUBST(REQUIRES_LIBWNCK)
 
 PKG_CHECK_MODULES(DEVHELP, [
