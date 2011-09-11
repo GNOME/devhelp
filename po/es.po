@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2011-02-20 13:51+0000\n"
-"PO-Revision-Date: 2011-02-20 14:55+0100\n"
+"product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-07-12 12:49+0000\n"
+"PO-Revision-Date: 2011-09-11 11:40+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
@@ -27,7 +27,7 @@ msgstr "Programa de ayuda del desarrollador"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
+#: ../src/dh-window.c:731 ../src/dh-window.c:1039 ../src/dh-window.c:1860
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -172,7 +172,7 @@ msgstr "Biblioteca"
 
 #: ../data/ui/devhelp.builder.h:2
 msgid "Fonts"
-msgstr "Tipografías"
+msgstr "Tipografías"
 
 #: ../data/ui/devhelp.builder.h:3
 msgid "Preferences"
@@ -355,180 +355,180 @@ msgstr "Todos los libros"
 msgid "Search in:"
 msgstr "Buscar en:"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:99
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:100
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:101
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:102
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:103
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:104
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:105
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:106
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:107
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:735
+#: ../src/dh-window.c:726
 msgid "translator_credits"
 msgstr ""
 "Jorge González <jorgegonz@svn.gnome.org>, 2007-2009\n"
 "Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006"
 
-#: ../src/dh-window.c:742
+#: ../src/dh-window.c:733
 msgid "A developers' help browser for GNOME"
 msgstr "Un visor de ayuda para desarrolladores de GNOME"
 
-#: ../src/dh-window.c:749
+#: ../src/dh-window.c:740
 msgid "DevHelp Website"
 msgstr "Página web de DevHelp"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:764
 msgid "_File"
 msgstr "_Archivo"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:765
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:766
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:767
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:768
 msgid "_Help"
 msgstr "Ay_uda"
 
 #. File menu
-#: ../src/dh-window.c:780
+#: ../src/dh-window.c:771
 msgid "_New Window"
 msgstr "_Ventana nueva"
 
-#: ../src/dh-window.c:782
+#: ../src/dh-window.c:773
 msgid "New _Tab"
 msgstr "_Pestaña nueva"
 
-#: ../src/dh-window.c:784
+#: ../src/dh-window.c:775
 msgid "_Print…"
 msgstr "_Imprimir…"
 
-#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:787 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Buscar siguiente"
 
-#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:789 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Buscar anterior"
 
-#: ../src/dh-window.c:805
+#: ../src/dh-window.c:796
 msgid "Go to the previous page"
 msgstr "Ir a la página anterior"
 
-#: ../src/dh-window.c:808
+#: ../src/dh-window.c:799
 msgid "Go to the next page"
 msgstr "Ir a la página siguiente"
 
-#: ../src/dh-window.c:811
+#: ../src/dh-window.c:802
 msgid "_Contents Tab"
 msgstr "Pestaña de _contenido"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:805
 msgid "_Search Tab"
 msgstr "Pestaña de _búsqueda"
 
 #. View menu
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:809
 msgid "_Larger Text"
 msgstr "Texto más _grande"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:810
 msgid "Increase the text size"
 msgstr "Aumentar el tamaño del texto"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:812
 msgid "S_maller Text"
 msgstr "Texto más _pequeño"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:813
 msgid "Decrease the text size"
 msgstr "Disminuir el tamaño del texto"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:815
 msgid "_Normal Size"
 msgstr "Tamaño _normal"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:816
 msgid "Use the normal text size"
 msgstr "Usar el tamaño de texto normal"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:825
 msgid "Leave fullscreen mode"
 msgstr "Salir del modo a pantalla completa"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:832
 msgid "Display in full screen"
 msgstr "Ver a pantalla completa"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:961
+#: ../src/dh-window.c:952
 msgid "Larger"
 msgstr "Más grande"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:964
+#: ../src/dh-window.c:955
 msgid "Smaller"
 msgstr "Más pequeño"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1109
+#: ../src/dh-window.c:1104
 msgid "About Devhelp"
 msgstr "Acerca de DevHelp"
 
-#: ../src/dh-window.c:1114
+#: ../src/dh-window.c:1109
 msgid "Preferences…"
 msgstr "Preferencias…"
 
-#: ../src/dh-window.c:1156
+#: ../src/dh-window.c:1151
 msgid "Contents"
 msgstr "Índice"
 
-#: ../src/dh-window.c:1166
+#: ../src/dh-window.c:1161
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:1344
+#: ../src/dh-window.c:1336
 msgid "Error opening the requested link."
 msgstr "Error al abrir el enlace solicitado."
 
-#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
+#: ../src/dh-window.c:1649 ../src/dh-window.c:1888
 msgid "Empty Page"
 msgstr "Página vacía"
 
@@ -556,7 +556,7 @@ msgstr "Conmutar búsqueda discriminando capitalización"
 #~ msgstr "Activada"
 
 #~ msgid "Title"
-#~ msgstr "Título"
+#~ msgstr "Título"
 
 #~ msgid "Preferences..."
 #~ msgstr "Preferencias…"
