@@ -2,36 +2,36 @@
 # Copyright (C) 2001-2011 devhelp's COPYRIGHT HOLDE
 # Takeshi Aihana <takeshi.aihana@gmail.com>, 2001-2009.
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010.
-# Jiro Matsuzawa <matsuzawa.jr@gmail.com>, 2011.
+# Jiro Matsuzawa <jmatsuzawa@src.gnome.org>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-04-25 06:32+0000\n"
-"PO-Revision-Date: 2011-05-01 23:56+0900\n"
-"Last-Translator: Jiro Matsuzawa <matsuzawa.jr@gmail.com>\n"
+"POT-Creation-Date: 2011-09-01 20:05+0000\n"
+"PO-Revision-Date: 2011-09-11 00:09+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
-msgstr "開発者向けのヘルプ・ブラウザです"
+msgstr "開発者向けのヘルプ・ブラウザーです"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:741 ../src/dh-window.c:1049 ../src/dh-window.c:1884
+#: ../src/dh-window.c:731 ../src/dh-window.c:1039 ../src/dh-window.c:1860
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr "ドキュメント・ブラウザ"
+msgstr "ドキュメント・ブラウザー"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Books disabled"
@@ -67,7 +67,7 @@ msgstr "メイン・ウィンドウの高さ"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "List of books disabled by the user."
-msgstr "ユーザによって無効化されたブックの一覧"
+msgstr "ユーザーによって無効化されたブックの一覧"
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "Main window maximized state"
@@ -314,8 +314,8 @@ msgstr "要素 \"title\" と \"name と \"link\" が %d 行 %d 桁で要求さ�
 #: ../src/dh-parser.c:218
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
-"%d"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
 msgstr "\"name\" と \"link\" が <sub> の中の %d 行 %d 桁で要求されました"
 
 #: ../src/dh-parser.c:298
@@ -378,146 +378,146 @@ msgstr "300%"
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:736
+#: ../src/dh-window.c:726
 msgid "translator_credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
-"松澤 二郎 <matsuzawa.jr@gmail.com>\n"
+"松澤 二郎 <jmatsuzawa@src.gnome.org>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp/>"
 
-#: ../src/dh-window.c:743
+#: ../src/dh-window.c:733
 msgid "A developers' help browser for GNOME"
-msgstr "GNOME の開発者用ヘルプブラウザ"
+msgstr "GNOME の開発者用ヘルプブラウザー"
 
-#: ../src/dh-window.c:750
+#: ../src/dh-window.c:740
 msgid "DevHelp Website"
 msgstr "Devhelp のウェブサイト"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:764
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:765
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:766
 msgid "_View"
 msgstr "表示(_V)"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:767
 msgid "_Go"
 msgstr "移動(_G)"
 
-#: ../src/dh-window.c:778
+#: ../src/dh-window.c:768
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
 #. File menu
-#: ../src/dh-window.c:781
+#: ../src/dh-window.c:771
 msgid "_New Window"
 msgstr "新しいウィンドウ(_N)"
 
-#: ../src/dh-window.c:783
+#: ../src/dh-window.c:773
 msgid "New _Tab"
 msgstr "新しいタブ(_T)"
 
-#: ../src/dh-window.c:785
+#: ../src/dh-window.c:775
 msgid "_Print…"
 msgstr "印刷(_P)…"
 
-#: ../src/dh-window.c:797 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:787 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "後方検索"
 
-#: ../src/dh-window.c:799 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:789 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "前方検索"
 
-#: ../src/dh-window.c:806
+#: ../src/dh-window.c:796
 msgid "Go to the previous page"
 msgstr "前のページに移動します"
 
-#: ../src/dh-window.c:809
+#: ../src/dh-window.c:799
 msgid "Go to the next page"
 msgstr "次のページに移動します"
 
-#: ../src/dh-window.c:812
+#: ../src/dh-window.c:802
 msgid "_Contents Tab"
 msgstr "目次タブ(_C)"
 
-#: ../src/dh-window.c:815
+#: ../src/dh-window.c:805
 msgid "_Search Tab"
 msgstr "検索タブ(_S)"
 
 #. View menu
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:809
 msgid "_Larger Text"
 msgstr "文字を大きくする(_L)"
 
-#: ../src/dh-window.c:820
+#: ../src/dh-window.c:810
 msgid "Increase the text size"
 msgstr "文字を一段階大きくします"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:812
 msgid "S_maller Text"
 msgstr "文字を小さくする(_M)"
 
-#: ../src/dh-window.c:823
+#: ../src/dh-window.c:813
 msgid "Decrease the text size"
 msgstr "文字を一段階小さくします"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:815
 msgid "_Normal Size"
 msgstr "通常の大きさ(_N)"
 
-#: ../src/dh-window.c:826
+#: ../src/dh-window.c:816
 msgid "Use the normal text size"
 msgstr "文字を標準の大きさにリセットします"
 
-#: ../src/dh-window.c:835
+#: ../src/dh-window.c:825
 msgid "Leave fullscreen mode"
 msgstr "フルスクリーンモードを解除"
 
-#: ../src/dh-window.c:842
+#: ../src/dh-window.c:832
 msgid "Display in full screen"
 msgstr "フルスクリーンモードで表示"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:962
+#: ../src/dh-window.c:952
 msgid "Larger"
 msgstr "拡大"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:965
+#: ../src/dh-window.c:955
 msgid "Smaller"
 msgstr "縮小"
 
 #. i18n: please don't translate
 #. * "Devhelp", it's a name, not a
 #. * generic word.
-#: ../src/dh-window.c:1114
+#: ../src/dh-window.c:1104
 msgid "About Devhelp"
 msgstr "Devhelp について"
 
-#: ../src/dh-window.c:1119
+#: ../src/dh-window.c:1109
 msgid "Preferences…"
 msgstr "設定…"
 
-#: ../src/dh-window.c:1161
+#: ../src/dh-window.c:1151
 msgid "Contents"
 msgstr "目次"
 
-#: ../src/dh-window.c:1171
+#: ../src/dh-window.c:1161
 msgid "Search"
 msgstr "検索"
 
-#: ../src/dh-window.c:1349
+#: ../src/dh-window.c:1336
 msgid "Error opening the requested link."
 msgstr "要求されたリンクを開くのに失敗しました。"
 
-#: ../src/dh-window.c:1671 ../src/dh-window.c:1912
+#: ../src/dh-window.c:1649 ../src/dh-window.c:1888
 msgid "Empty Page"
 msgstr "空のページ"
 
