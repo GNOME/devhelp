@@ -1,4 +1,23 @@
 =============
+Version 3.2.0
+=============
+
+Fixed bugs:
+
+ - #592897, window is reused only if on the current page
+ - #646399, [patch] remove unused PLATFORM_{C,LD}FLAGS
+ - #646400, [patch] remove dead GTK+ code
+ - #646962, Doesn't build on Mac OS/Quartz
+ - #650542, Some small UI tweaks
+
+Updated translations: ast, ca@valencia, en_CA, eo, es, eu, fi, ja, lt
+
+Many thanks to all contributors: Kristjan SCHMIDT, Tiffany Antopolski,
+Carles Ferrando, P. F. Chimento, Tommi Vainikainen, Jorge González, Xandru
+Armesto, Javier Jardón, Inaki Larranaga Murgoitio, OKANO Takayoshi, Jiro
+Matsuzawa, Cosimo Cecchi, Aurimas Černius, Saleem Abdulrasool
+
+=============
 Version 3.0.0
 =============
 
