@@ -24,7 +24,7 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #ifdef GDK_WINDOWING_QUARTZ
-#include <CoreFoundation/CoreFoundation.h>
+#include <gtkosxapplication.h>
 #endif
 #include "ige-conf.h"
 #include "dh-util.h"
@@ -120,34 +120,10 @@ dh_util_builder_connect (GtkBuilder *builder,
 
 #ifdef GDK_WINDOWING_QUARTZ
 static gchar *
-cf_string_to_utf8 (CFStringRef str)
-{
-  CFIndex  len;
-  gchar   *ret;
-
-  len = CFStringGetMaximumSizeForEncoding (CFStringGetLength (str),
-                                           kCFStringEncodingUTF8) + 1;
-
-  ret = g_malloc (len);
-  ret[len] = '\0';
-
-  if (CFStringGetCString (str, ret, len, kCFStringEncodingUTF8))
-    return ret;
-
-  g_free (ret);
-  return NULL;
-}
-
-static gchar *
 util_get_mac_data_dir (void)
 {
-        const gchar *env;
-        CFBundleRef  cf_bundle;
-        UInt32       type;
-        UInt32       creator;
-        CFURLRef     cf_url;
-        CFStringRef  cf_string;
-        gchar       *ret, *tmp;
+        const gchar *env, *ret;
+        gchar       *tmp;
 
         /* The environment variable overrides all. */
         env = g_getenv ("DEVHELP_DATADIR");
@@ -155,25 +131,14 @@ util_get_mac_data_dir (void)
                 return g_strdup (env);
         }
 
-        cf_bundle = CFBundleGetMainBundle ();
-        if (!cf_bundle) {
+        /* If we are not in a bundle, then follow the normal rules. */
+        if (quartz_application_get_bundle_id () == NULL) {
                 return NULL;
         }
 
-        /* Only point into the bundle if it's an application. */
-        CFBundleGetPackageInfo (cf_bundle, &type, &creator);
-        if (type != 'APPL') {
-                return NULL;
-        }
-
-        cf_url = CFBundleCopyBundleURL (cf_bundle);
-        cf_string = CFURLCopyFileSystemPath (cf_url, kCFURLPOSIXPathStyle);
-        ret = cf_string_to_utf8 (cf_string);
-        CFRelease (cf_string);
-        CFRelease (cf_url);
-
-        tmp = g_build_filename (ret, "Contents", "Resources", NULL);
-        g_free (ret);
+        ret = quartz_application_get_resource_path ();
+        tmp = g_strdup (ret);
+        g_printerr("ret: %s\n", tmp);
 
         return tmp;
 }

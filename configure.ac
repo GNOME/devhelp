@@ -51,13 +51,13 @@ IGE_PLATFORM_CHECK
 if test "x$IGE_PLATFORM" = xx11; then
    gconf_pkgconfig="gconf-2.0 >= 2.6.0"
    libwnck_pkgconfig=
-   igemacintegration_pkgconfig=
+   gtkmacintegration_pkgconfig=
    REQUIRES_LIBWNCK=
    HAVE_WNCK=no
 else
    gconf_pkgconfig=
    libwnck_pkgconfig=
-   igemacintegration_pkgconfig="ige-mac-integration >= 0.8.2"
+   gtkmacintegration_pkgconfig="gtk-mac-integration >= 1.0.0"
    REQUIRES_LIBWNCK=
    HAVE_WNCK=no
 fi
@@ -75,7 +75,7 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
   gtk+-3.0 >= 3.0.2
   $gconf_pkgconfig
   $libwnck_pkgconfig
-  $igemacintegration_pkgconfig
+  $gtkmacintegration_pkgconfig
   webkitgtk-3.0
 ])
 

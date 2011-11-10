@@ -33,7 +33,7 @@
 #include <webkit/webkit.h>
 
 #ifdef GDK_WINDOWING_QUARTZ
-#include <ige-mac-integration.h>
+#include <gtkosxapplication.h>
 #endif
 
 #include "dh-book-tree.h"
@@ -1082,33 +1082,41 @@ window_populate (DhWindow *window)
 
 #ifdef GDK_WINDOWING_QUARTZ
         {
-                GtkWidget       *widget;
-                IgeMacMenuGroup *group;
+                GtkWidget         *widget, *sep;
+                GtkOSXApplication *theApp;
 
                 /* Hide toolbar labels. */
                 gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_ICONS);
 
                 /* Setup menubar. */
-                ige_mac_menu_set_menu_bar (GTK_MENU_SHELL (menubar));
+                theApp = g_object_new (GTK_TYPE_OSX_APPLICATION, NULL);
+                gtk_osxapplication_set_menu_bar (theApp, GTK_MENU_SHELL (menubar));
                 gtk_widget_hide (menubar);
 
                 widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/FileMenu/Quit");
-                ige_mac_menu_set_quit_menu_item (GTK_MENU_ITEM (widget));
+                gtk_widget_hide (widget);
 
-                group =  ige_mac_menu_add_app_menu_group ();
                 widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/HelpMenu/About");
-                ige_mac_menu_add_app_menu_item (group, GTK_MENU_ITEM (widget),
-                                                /* i18n: please don't translate
-                                                 * "Devhelp", it's a name, not a
-                                                 * generic word. */
-                                                _("About Devhelp"));
+                gtk_osxapplication_insert_app_menu_item (theApp, widget, 0);
+                sep = gtk_separator_menu_item_new ();
+                g_object_ref (sep);
+                gtk_osxapplication_insert_app_menu_item (theApp, sep, 1);
 
-                group =  ige_mac_menu_add_app_menu_group ();
                 widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/EditMenu/Preferences");
-                ige_mac_menu_add_app_menu_item (group, GTK_MENU_ITEM (widget),
-                                                _("Preferences…"));
+                gtk_osxapplication_insert_app_menu_item (theApp, widget, 2);
+                sep = gtk_separator_menu_item_new ();
+                g_object_ref (sep);
+                gtk_osxapplication_insert_app_menu_item (theApp, sep, 3);
 
-                ige_mac_menu_set_global_key_handler_enabled (TRUE);
+                widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/HelpMenu");
+                gtk_osxapplication_set_help_menu (theApp, GTK_MENU_ITEM (widget));
+
+                g_signal_connect (theApp,
+                                  "NSApplicationWillTerminate",
+                                  G_CALLBACK (window_activate_quit),
+                                  window);
+
+                gtk_osxapplication_ready (theApp);
         }
 #endif
 
