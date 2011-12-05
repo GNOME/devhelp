@@ -38,12 +38,25 @@ struct _DhKeywordModelPriv {
         gint   stamp;
 };
 
+/* Store a keyword as well as glob
+ * patterns that match at the start of a word
+ * and one that matches in any position of a
+ * word */
+struct _DhKeywordGlobPattern {
+        gchar *keyword;
+        gboolean has_glob;
+        GPatternSpec *glob_pattern_start;
+        GPatternSpec *glob_pattern_any;
+};
+
 #define G_LIST(x) ((GList *) x)
 #define MAX_HITS 100
 
 static void dh_keyword_model_init            (DhKeywordModel      *list_store);
 static void dh_keyword_model_class_init      (DhKeywordModelClass *class);
 static void dh_keyword_model_tree_model_init (GtkTreeModelIface   *iface);
+static GList *dh_globbed_keywords_new        (GStrv                keywords);
+static void dh_globbed_keywords_free         (GList               *keyword_globs);
 
 G_DEFINE_TYPE_WITH_CODE (DhKeywordModel, dh_keyword_model, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL,
@@ -337,6 +350,60 @@ dh_keyword_model_set_words (DhKeywordModel *model,
         model->priv->book_manager = g_object_ref (book_manager);
 }
 
+/* Returns a GList of struct _DhKeywordGlobPattern
+ * with GPatternSpec's allocated if there are any
+ * special glob characters ('*', '?') in a keyword in keywords.
+ * The list returned is the same length as keywords */
+static GList *
+dh_globbed_keywords_new (GStrv keywords)
+{
+        gint i;
+        gchar *glob;
+        GList *list = NULL;
+        struct _DhKeywordGlobPattern *glob_struct;
+
+        for (i = 0; keywords[i] != NULL; i++) {
+                glob_struct = g_slice_new (struct _DhKeywordGlobPattern);
+                glob_struct->keyword = keywords[i];
+                if (g_strrstr (keywords[i], "*") || g_strrstr (keywords[i], "?")) {
+                        glob_struct->has_glob = TRUE;
+                        /* g_pattern_match matches whole strings only, so
+                         * for globs, we need to end with a star for partial matches */
+                        glob = g_strdup_printf ("%s*", keywords[i]);
+                        glob_struct->glob_pattern_start = g_pattern_spec_new (glob);
+                        g_free (glob);
+
+                        glob = g_strdup_printf ("*%s*", keywords[i]);
+                        glob_struct->glob_pattern_any = g_pattern_spec_new (glob);
+                        g_free (glob);
+                } else {
+                        glob_struct->has_glob = FALSE;
+                }
+
+                list = g_list_append (list, (gpointer)glob_struct);
+        }
+
+        return list;
+}
+
+/* Frees all the datastructures and patterns associated with
+ * keyword_globs as well as keyword_globs itself.  It does not free
+ * _DhKeywordGlobPattern->keyword however (only the pattern spects) */
+static void
+dh_globbed_keywords_free (GList *keyword_globs)
+{
+        GList *list;
+        for (list = keyword_globs; list != NULL; list = g_list_next (list)) {
+                struct _DhKeywordGlobPattern *data = (struct _DhKeywordGlobPattern *)list->data;
+                if (data->has_glob) {
+                        g_pattern_spec_free (data->glob_pattern_start);
+                        g_pattern_spec_free (data->glob_pattern_any);
+                }
+                g_slice_free (struct _DhKeywordGlobPattern, data);
+        }
+        g_list_free (keyword_globs);
+}
+
 /* The Search rationale is as follows:
  *
  * - If 'book_id' is given, but no 'page_id' or 'keywords', the main page of
@@ -376,6 +443,9 @@ keyword_model_search_books (DhKeywordModel  *model,
         gchar              *page_filename_prefix = NULL;
 
         priv = model->priv;
+
+        /* Compile each keyword into a GPatternSpec if necessary */
+        GList *keyword_globs = dh_globbed_keywords_new (keywords);
 
         if (page_id) {
                 page_filename_prefix = g_strdup_printf("%s.", page_id);
@@ -459,7 +529,7 @@ keyword_model_search_books (DhKeywordModel  *model,
                                 gboolean  all_found;
                                 gboolean  prefix_found;
                                 gchar    *name;
-                                gint      i;
+                                GList    *list;
 
                                 name = (case_sensitive ?
                                         g_strdup (dh_link_get_name (link)) :
@@ -467,16 +537,31 @@ keyword_model_search_books (DhKeywordModel  *model,
 
                                 all_found = TRUE;
                                 prefix_found = FALSE;
-                                for (i = 0; keywords[i] != NULL; i++) {
-                                        if (g_str_has_prefix (name, keywords[i])) {
-                                                prefix_found = TRUE;
-                                                /* If we get a prefix match and we're not
-                                                 * looking for prefix, stop. */
-                                                if (!prefix)
+                                for (list = keyword_globs; list != NULL; list = g_list_next (list)) {
+                                        struct _DhKeywordGlobPattern *data = (struct _DhKeywordGlobPattern *)list->data;
+
+                                        /* If our keyword is a glob pattern, use
+                                         * it.  Otherwise, do more efficient string searching */
+                                        if (data->has_glob) {
+                                                if (g_pattern_match_string (data->glob_pattern_start, name)) {
+                                                        prefix_found = TRUE;
+                                                        /* If we get a prefix match and we're not
+                                                         * looking for prefix, stop. */
+                                                        if (!prefix)
+                                                                break;
+                                                } else if (!g_pattern_match_string (data->glob_pattern_any, name)) {
+                                                        all_found = FALSE;
                                                         break;
-                                        } else if (!g_strrstr (name, keywords[i])) {
-                                                all_found = FALSE;
-                                                break;
+                                                }
+                                        } else {
+                                                if (g_str_has_prefix (name, data->keyword)) {
+                                                        prefix_found = TRUE;
+                                                        if (!prefix)
+                                                                break;
+                                                } else if (!g_strrstr (name, data->keyword)) {
+                                                        all_found = FALSE;
+                                                        break;
+                                                }
                                         }
                                 }
 
@@ -513,6 +598,8 @@ keyword_model_search_books (DhKeywordModel  *model,
         }
 
         g_free (page_filename_prefix);
+
+        dh_globbed_keywords_free (keyword_globs);
 
         if (n_hits)
                 *n_hits = hits;
