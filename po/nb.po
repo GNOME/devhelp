@@ -1,15 +1,15 @@
-# Norwegian/Bokmaal translation of devhelp.
+# Norwegian bokmål translation of devhelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 #
-# Kjartan Maraas <kmaraas@gnome.org>, 2001-2010.
+# Kjartan Maraas <kmaraas@gnome.org>, 2001-2011.
 # Torstein Adolf Winterseth <kvikende@fsfe.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 2.91.x\n"
+"Project-Id-Version: devhelp 3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-02 18:19+0100\n"
-"PO-Revision-Date: 2011-01-02 18:19+0100\n"
-"Last-Translator: Torstein Adolf Winterseth <kvikende@fsfe.org>\n"
+"POT-Creation-Date: 2011-12-18 12:05+0100\n"
+"PO-Revision-Date: 2011-12-18 12:06+0100\n"
+"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language:\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Hjelpleser for utviklere"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
+#: ../src/dh-window.c:731 ../src/dh-window.c:1039 ../src/dh-window.c:1868
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -166,26 +166,34 @@ msgid "Book Shelf"
 msgstr "Bokhylle"
 
 #: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "Slått på"
+
+#: ../data/ui/devhelp.builder.h:3
 msgid "Fonts"
 msgstr "Skrifter"
 
-#: ../data/ui/devhelp.builder.h:3
+#: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
 msgstr "Brukervalg"
 
-#: ../data/ui/devhelp.builder.h:4
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Tittel"
+
+#: ../data/ui/devhelp.builder.h:6
 msgid "_Fixed width:"
 msgstr "_Fast bredde:"
 
-#: ../data/ui/devhelp.builder.h:5
+#: ../data/ui/devhelp.builder.h:7
 msgid "_Group by language"
 msgstr "_Grupper etter språk"
 
-#: ../data/ui/devhelp.builder.h:6
+#: ../data/ui/devhelp.builder.h:8
 msgid "_Use system fonts"
 msgstr "Br_uk systemets skrifter"
 
-#: ../data/ui/devhelp.builder.h:7
+#: ../data/ui/devhelp.builder.h:9
 msgid "_Variable width: "
 msgstr "_Variabel bredde: "
 
@@ -197,11 +205,11 @@ msgstr "Støtte for Devhelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Start Devhelp for ordet ved markøren med F2"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp.py:69
 msgid "Show API Documentation"
 msgstr "Vis API-dokumentasjon"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+#: ../misc/gedit-plugin/devhelp.py:71
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Vis API-dokumentasjon for ordet ved markøren"
 
@@ -339,176 +347,165 @@ msgstr "Kan ikke dekomprimere bok «%s»: %s"
 msgid "All books"
 msgstr "Alle bøker"
 
-#: ../src/dh-search.c:1117
+#: ../src/dh-search.c:1118
 msgid "Search in:"
 msgstr "Søk i:"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:99
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:100
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:101
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:102
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:103
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:104
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:105
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:106
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:107
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:735
+#: ../src/dh-window.c:726
 msgid "translator_credits"
 msgstr ""
 "Kjartan Maraas <kmaraas@gnome.org>\n"
 "Torstein Adolf Winterseth <kvikende@fsfe.org>"
 
-#: ../src/dh-window.c:742
+#: ../src/dh-window.c:733
 msgid "A developers' help browser for GNOME"
 msgstr "GNOME's hjelpleser for utviklere"
 
-#: ../src/dh-window.c:749
+#: ../src/dh-window.c:740
 msgid "DevHelp Website"
 msgstr "Nettsted for Devhelp"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:764
 msgid "_File"
 msgstr "_Fil"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:765
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:766
 msgid "_View"
 msgstr "_Vis"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:767
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:768
 msgid "_Help"
 msgstr "_Hjelp"
 
 #. File menu
-#: ../src/dh-window.c:780
+#: ../src/dh-window.c:771
 msgid "_New Window"
 msgstr "_Nytt vindu"
 
-#: ../src/dh-window.c:782
+#: ../src/dh-window.c:773
 msgid "New _Tab"
 msgstr "Ny _fane"
 
-#: ../src/dh-window.c:784
+#: ../src/dh-window.c:775
 msgid "_Print…"
 msgstr "S_kriv ut …"
 
-#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:787 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Finn neste"
 
-#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:789 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Finn forrige"
 
-#: ../src/dh-window.c:805
+#: ../src/dh-window.c:796
 msgid "Go to the previous page"
 msgstr "Gå til forrige side"
 
-#: ../src/dh-window.c:808
+#: ../src/dh-window.c:799
 msgid "Go to the next page"
 msgstr "Gå til neste side"
 
-#: ../src/dh-window.c:811
+#: ../src/dh-window.c:802
 msgid "_Contents Tab"
 msgstr "_Innholdsfane"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:805
 msgid "_Search Tab"
 msgstr "_Søkefane"
 
 #. View menu
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:809
 msgid "_Larger Text"
 msgstr "S_tørre tekst"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:810
 msgid "Increase the text size"
 msgstr "Bruk større tekst"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:812
 msgid "S_maller Text"
 msgstr "_Mindre tekst"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:813
 msgid "Decrease the text size"
 msgstr "Bruk mindre tekst"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:815
 msgid "_Normal Size"
 msgstr "_Normal størrelse"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:816
 msgid "Use the normal text size"
 msgstr "Bruk normal tekststørrelse"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:825
 msgid "Leave fullscreen mode"
 msgstr "Forlat fullskjerm modus"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:832
 msgid "Display in full screen"
 msgstr "Vis i fullskjerm modus"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:961
+#: ../src/dh-window.c:952
 msgid "Larger"
 msgstr "Større"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:964
+#: ../src/dh-window.c:955
 msgid "Smaller"
 msgstr "Mindre"
 
-#. i18n: please don't translate
-#. * "Devhelp", it's a name, not a
-#. * generic word.
-#: ../src/dh-window.c:1109
-msgid "About Devhelp"
-msgstr "Om Devhelp"
-
-#: ../src/dh-window.c:1114
-msgid "Preferences…"
-msgstr "Brukervalg …"
-
-#: ../src/dh-window.c:1156
+#: ../src/dh-window.c:1159
 msgid "Contents"
 msgstr "Innhold"
 
-#: ../src/dh-window.c:1166
+#: ../src/dh-window.c:1169
 msgid "Search"
 msgstr "Søk"
 
@@ -516,7 +513,7 @@ msgstr "Søk"
 msgid "Error opening the requested link."
 msgstr "Feil ved åpning av forespurt lenke."
 
-#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
+#: ../src/dh-window.c:1657 ../src/dh-window.c:1896
 msgid "Empty Page"
 msgstr "Tom side"
 
