@@ -1,4 +1,25 @@
 =============
+Version 3.3.3
+=============
+
+Fixed bugs:
+
+ - #456282, Add globbing/wildcards to search fields
+ - #646398, [patch] build: libwnck is no longer user
+ - #649064, Some messages have gone untranslatable.
+ - #652999, building against GTK3 with x11 and broadway backend enabled
+            fails
+ - #663789, Change IgeMacIntegration to GtkOSXApplication
+ - #666446, libdevhelp-3.0.pc Requires.private: @REQUIRES_LIBWNCK@ not
+            expanded
+
+Updated translations: nb, te, tr
+
+Many thanks to all contributors: Philip Chimento, Muhammet Kara, krishnababu
+k, Jiro Matsuzawa, Kjartan Maraas, Jason Siefken, Vincent Untz, Saleem
+Abdulrasool
+
+=============
 Version 3.2.0
 =============
 
