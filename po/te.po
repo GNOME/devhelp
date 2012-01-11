@@ -3,24 +3,27 @@
 # This file is distributed under the same license as the devhelp package.
 # Matapathi Pramod <pramod@swecha.net>, 2007.
 # Hari Krishna <hari@swecha.net>, 2011.
+# GVS.Giri <gvs.giri947@gmail.com>,2011.
+# Praveen Illa <mail2ipn@gmail.com>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-26 17:18+0000\n"
-"PO-Revision-Date: 2007-08-23 11:30+0530\n"
-"Last-Translator: Matapathi Pramod <pramod@swecha.net>\n"
-"Language-Team: Swecha Telugu Localisation Team <localisation@swecha.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2011-10-25 12:19+0000\n"
+"PO-Revision-Date: 2012-01-11 23:23+0530\n"
+"Last-Translator:Praveen Illa <mail2ipn@gmail.com>\n"
+"Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/devhelp.desktop.in.in.h:1
 msgid "Developer's Help program"
-msgstr "విస్తరింపజేయువారి సహాయ కార్యం"
+msgstr "అభివృద్ధికారుల సహాయ కార్యక్రమం"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
@@ -31,23 +34,23 @@ msgstr "డెవ్ సహాయం"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr "పత్రరచన అన్వ్వేషి"
+msgstr "పత్రీకరణ విహారకం"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Books disabled"
-msgstr "పుస్తకాలు నిరుపయోగమైనది "
+msgstr "పుస్తకాలు అచేతనపరచివున్నాయి"
 
 #: ../data/devhelp.schemas.in.h:2
 msgid "Font for fixed width text"
-msgstr "వెడల్పు స్థిరతత పాఠం కొరకు అక్షరశైలి"
+msgstr "వెడల్పు స్థిరతత పాఠం కొరకు ఫాంటు"
 
 #: ../data/devhelp.schemas.in.h:3
 msgid "Font for text"
-msgstr "పాఠం కొరకు అక్షరశైలి"
+msgstr "పాఠం కొరకు ఫాంటు"
 
 #: ../data/devhelp.schemas.in.h:4
 msgid "Font for text with fixed width, such as code examples."
-msgstr "స్థిర పాఠం కొరకు అక్షరశైలి,కోడ్ ఉదాహరణలు లాంటివి"
+msgstr "స్థిర పాఠం కొరకు ఫాంటు,కోడ్ ఉదాహరణలు లాంటివి"
 
 #: ../data/devhelp.schemas.in.h:5
 msgid "Font for text with variable width."
@@ -55,15 +58,15 @@ msgstr "చలరాశి పొడవు తో పాఠం కొరకు �
 
 #: ../data/devhelp.schemas.in.h:6
 msgid "Group by language"
-msgstr "భాష తో వర్గము "
+msgstr "భాషతో వర్గము"
 
 #: ../data/devhelp.schemas.in.h:7
 msgid "Height of assistant window"
-msgstr "సాహాయ  గవాక్షం యొక్క ఎత్తు"
+msgstr "సాహాయ కిటికీ యొక్క ఎత్తు"
 
 #: ../data/devhelp.schemas.in.h:8
 msgid "Height of main window"
-msgstr "మూల గవాక్షం యొక్క ఎత్తు"
+msgstr "మూల కిటికీ యొక్క ఎత్తు"
 
 #: ../data/devhelp.schemas.in.h:9
 msgid "List of books disabled by the user."
@@ -71,7 +74,7 @@ msgstr "వినియోగదారుడు నిరుపయోగపర�
 
 #: ../data/devhelp.schemas.in.h:10
 msgid "Main window maximized state"
-msgstr "మూల గవాక్షం పెద్దదిచేయబడిన స్థితి"
+msgstr "మూల కిటికీ పెద్దదిచేయబడిన స్థితి"
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "Selected tab: \"content\" or \"search\""
@@ -79,31 +82,31 @@ msgstr "నెట్టులలో ఏది ఎంచుకొనబడిన�
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The X position of the assistant window."
-msgstr "సహాయ  గవాక్షం యొక్క X స్థానం."
+msgstr "సహాయ కిటికీ యొక్క X స్థానం."
 
 #: ../data/devhelp.schemas.in.h:13
 msgid "The X position of the main window."
-msgstr "మూల గవాక్షం యొక్క X స్థానం."
+msgstr "మూల కిటికీ యొక్క X స్థానం."
 
 #: ../data/devhelp.schemas.in.h:14
 msgid "The Y position of the assistant window."
-msgstr "సహాయ గవాక్షం యొక్క Y స్థానం."
+msgstr "సహాయ కిటికీ యొక్క Y స్థానం."
 
 #: ../data/devhelp.schemas.in.h:15
 msgid "The Y position of the main window."
-msgstr "మూల గవాక్షం యొక్క Y స్థానం."
+msgstr "మూల కిటికీ యొక్క Y స్థానం."
 
 #: ../data/devhelp.schemas.in.h:16
 msgid "The height of the assistant window."
-msgstr "సహాయ  గవాక్షం యొక్క ఎత్తు."
+msgstr "సహాయ  కిటికీ యొక్క ఎత్తు."
 
 #: ../data/devhelp.schemas.in.h:17
 msgid "The height of the main window."
-msgstr "మూల గవాక్షం యొక్క ఎత్తు."
+msgstr "మూల కిటికీ యొక్క ఎత్తు."
 
 #: ../data/devhelp.schemas.in.h:18
 msgid "The width of the assistant window."
-msgstr "సహాయ  గవాక్షం యొక్క పొడవు."
+msgstr "సహాయ కిటికీ యొక్క పొడవు."
 
 #: ../data/devhelp.schemas.in.h:19
 msgid "The width of the index and search pane."
@@ -111,15 +114,15 @@ msgstr "వెతుకు అస్థిత్వం మరియు చూచ
 
 #: ../data/devhelp.schemas.in.h:20
 msgid "The width of the main window."
-msgstr "మూల గవాక్షం యొక్క పొడవు."
+msgstr "మూల కిటికీ యొక్క పొడవు."
 
 #: ../data/devhelp.schemas.in.h:21
 msgid "Use system fonts"
-msgstr "వ్యవస్థ అక్షరశైలి వాడుము"
+msgstr "వ్యవస్థ ఫాంటుని వాడు"
 
 #: ../data/devhelp.schemas.in.h:22
 msgid "Use the system default fonts."
-msgstr "వ్యవస్థల అప్రమేయ అక్షరశైలిలను వాడుము."
+msgstr "వ్యవస్థ అప్రమేయ ఫాంట్లను వాడు."
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Whether books should be grouped by language in the UI"
@@ -127,7 +130,7 @@ msgstr "UI లో పుస్తకాలు భాషతో ఒక గుం�
 
 #: ../data/devhelp.schemas.in.h:24
 msgid "Whether the main window should start maximized."
-msgstr "మూల గవాక్షం ప్రారంభించ వలెను సూక్ష్మీకరించబడనదా లేదా."
+msgstr "మూల కిటికీ ప్రారంభించవలెను సూక్ష్మీకరించబడనదా లేదా."
 
 #: ../data/devhelp.schemas.in.h:25
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
@@ -135,7 +138,7 @@ msgstr "నెట్టులలో ఏది ఎంచుకొనబడిన�
 
 #: ../data/devhelp.schemas.in.h:26
 msgid "Width of the assistant window"
-msgstr "సహాయ  గవాక్షం యొక్క వెడల్పు"
+msgstr "సహాయ కిటికీ యొక్క వెడల్పు"
 
 #: ../data/devhelp.schemas.in.h:27
 msgid "Width of the index and search pane"
@@ -143,23 +146,23 @@ msgstr "వెతుకు అస్థిత్వం మరియు సూచ
 
 #: ../data/devhelp.schemas.in.h:28
 msgid "Width of the main window"
-msgstr "మూల గవాక్షం యొక్క పొడవు"
+msgstr "మూల కిటికీ యొక్క పొడవు"
 
 #: ../data/devhelp.schemas.in.h:29
 msgid "X position of assistant window"
-msgstr "సహాయ  గవాక్షం యొక్క X స్థానము"
+msgstr "సహాయ కిటికీ యొక్క X స్థానము"
 
 #: ../data/devhelp.schemas.in.h:30
 msgid "X position of main window"
-msgstr "మూల గవాక్షం యొక్క X స్థానము"
+msgstr "మూల కిటికీ యొక్క X స్థానము"
 
 #: ../data/devhelp.schemas.in.h:31
 msgid "Y position of assistant window"
-msgstr "సహాయ  గవాక్షం యొక్క Y స్థానము"
+msgstr "సహాయ కిటికీ యొక్క Y స్థానము"
 
 #: ../data/devhelp.schemas.in.h:32
 msgid "Y position of main window"
-msgstr "మూల గవాక్షం యొక్క Y స్థానము"
+msgstr "మూల కిటికీ యొక్క Y స్థానము"
 
 #: ../data/ui/devhelp.builder.h:1
 msgid "Book Shelf"
@@ -167,11 +170,11 @@ msgstr "పుస్తకాల అర "
 
 #: ../data/ui/devhelp.builder.h:2
 msgid "Fonts"
-msgstr "అక్షరశైలులు "
+msgstr "ఫాంట్లు"
 
 #: ../data/ui/devhelp.builder.h:3
 msgid "Preferences"
-msgstr "అభీష్టాలు"
+msgstr "ప్రాధాన్యతలు"
 
 #: ../data/ui/devhelp.builder.h:4
 msgid "_Fixed width:"
@@ -183,7 +186,7 @@ msgstr "భాషతో సమీకరించు (_G)"
 
 #: ../data/ui/devhelp.builder.h:6
 msgid "_Use system fonts"
-msgstr "వ్యవస్థ అక్షరశైలి వాడుము (_U)"
+msgstr "వ్యవస్థ అక్షరశైలి వాడు (_U)"
 
 #: ../data/ui/devhelp.builder.h:7
 msgid "_Variable width: "
@@ -208,7 +211,7 @@ msgstr "ములుకు వద్ద పదము కొరకు  APIపత�
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:74
 msgid "Devhelp — Assistant"
-msgstr "డెవ్ హెల్ప్ - సహకారి "
+msgstr "డెవ్ హెల్ప్ - సహాయకం"
 
 #: ../src/dh-assistant-view.c:336
 msgid "Book:"
@@ -244,14 +247,14 @@ msgstr "ముఖ్యపదం "
 #. * untranslated.
 #: ../src/dh-link.c:279
 msgid "Function"
-msgstr "కార్యం "
+msgstr "ప్రమేయం"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:284
 msgid "Struct"
-msgstr "శ్ట్రక్ట్ "
+msgstr "స్ట్రక్ట్"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -272,7 +275,7 @@ msgstr "ఈనం "
 #. * untranslated.
 #: ../src/dh-link.c:299
 msgid "Type"
-msgstr "టైప్ "
+msgstr "రకం"
 
 #: ../src/dh-main.c:47
 msgid "Search for a keyword"
@@ -280,7 +283,7 @@ msgstr "ఒక మీట పలకం  కొరకు వెతుకు"
 
 #: ../src/dh-main.c:52
 msgid "Quit any running Devhelp"
-msgstr "నడుచుచున్న డెవ్ సహాయం"
+msgstr "నడుచుచున్న డెవ్ సహాయం నుండి నిష్క్రమించు"
 
 #: ../src/dh-main.c:57
 msgid "Display the version and exit"
@@ -288,11 +291,11 @@ msgstr "బయటకు మరియు వివరణం ప్రదర్శ
 
 #: ../src/dh-main.c:62
 msgid "Focus the Devhelp window with the search field active"
-msgstr "వెతుకు క్షేత్ర క్రియాశీలం తో  డెవ్ సహాయ గవాక్షం కేంద్రము"
+msgstr "వెతుకు క్షేత్ర క్రియాశీలంతో డెవ్ సహాయ కిటికీ కేంద్రము"
 
 #: ../src/dh-main.c:67
 msgid "Search and display any hit in the assistant window"
-msgstr "సహాయ గవాక్షములో ఏదైనా హిట్ ను వెతుకు మరియు ప్రదర్శించు  "
+msgstr "సహాయ కిటికీలో ఏదైనా హిట్ ను వెతుకు మరియు ప్రదర్శించు  "
 
 #: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
 #: ../src/dh-parser.c:273
@@ -310,7 +313,7 @@ msgstr "'%s' నిస్సారమైన నామముఖాళీ %d గ�
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"%d గీత, %d నిలువుపట్టీ వద్ద\" శీర్షిక\", \"నామము\", మరియు \"జోడి\" మూలపదార్ధములు "
+"%d గీత, %d నిలువుపట్టీ వద్ద\" శీర్షిక\", \"పేరు\", మరియు \"జోడి\" మూలపదార్ధములు "
 "ఆపేక్షించుచున్నవి"
 
 #: ../src/dh-parser.c:218
@@ -322,11 +325,9 @@ msgstr ""
 "%d గీత పై <ఉప> లోపల \"నామము\" మరియు\" జోడి \"మూలపదార్థములు ఆపేక్షించుచున్నవి, %d నిలువుపట్టీ"
 
 #: ../src/dh-parser.c:298
-#, fuzzy, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr ""
-"%d గీత పై <ఉప> లోపల \"నామము \"మరియు \"జోడి\" మూలపదార్థములు ఆపేక్షించుచున్నవి, %d నిలువుపట్టీ"
+msgstr "%s లోపల %d గీతలో, %d నిలువుపట్టీ పై \"పేరు\" మరియు \"జోడి\" మూలపదార్థములు అవసరము"
 
 #: ../src/dh-parser.c:311
 #, c-format
@@ -344,7 +345,7 @@ msgstr "అన్నీ పుస్తకాలు "
 
 #: ../src/dh-search.c:1118
 msgid "Search in:"
-msgstr "ఇందులోవెతుకు:"
+msgstr "ఇందులో వెతుకు:"
 
 #: ../src/dh-window.c:99
 msgid "50%"
@@ -388,7 +389,7 @@ msgstr "Pramod <pramod@swecha.net>"
 
 #: ../src/dh-window.c:733
 msgid "A developers' help browser for GNOME"
-msgstr "గ్నోం  కొరకు సహాయ అన్వ్వేషి విస్తరింపజేయువారు"
+msgstr "గ్నోమ్ కొరకు అభివృద్ధికారుల సహాయ విహారకం"
 
 #: ../src/dh-window.c:740
 msgid "DevHelp Website"
@@ -396,15 +397,15 @@ msgstr "డెవ్ సహాయ వెబ్ సైట్"
 
 #: ../src/dh-window.c:764
 msgid "_File"
-msgstr "ఫైలు (_F)"
+msgstr "ఫైల్ (_F)"
 
 #: ../src/dh-window.c:765
 msgid "_Edit"
-msgstr "సరిచేయు (_E)"
+msgstr "సవరణ (_E)"
 
 #: ../src/dh-window.c:766
 msgid "_View"
-msgstr "దర్శనం(_V)"
+msgstr "వీక్షణం (_V)"
 
 #: ../src/dh-window.c:767
 msgid "_Go"
@@ -412,12 +413,12 @@ msgstr "వెళ్ళు (_G)"
 
 #: ../src/dh-window.c:768
 msgid "_Help"
-msgstr "సహాయము (_H)"
+msgstr "సహాయం (_H)"
 
 #. File menu
 #: ../src/dh-window.c:771
 msgid "_New Window"
-msgstr "కొత్త గవాక్షం (_N)"
+msgstr "కొత్త కిటికీ (_N)"
 
 #: ../src/dh-window.c:773
 msgid "New _Tab"
@@ -425,11 +426,11 @@ msgstr "కొత్త నెట్టు (_T)"
 
 #: ../src/dh-window.c:775
 msgid "_Print…"
-msgstr "ముద్రించు (_P)"
+msgstr "ముద్రించు...(_P)"
 
 #: ../src/dh-window.c:787 ../src/eggfindbar.c:342
 msgid "Find Next"
-msgstr "తరువాత వెతుకు"
+msgstr "తరువాతది వెతుకు"
 
 #: ../src/dh-window.c:789 ../src/eggfindbar.c:329
 msgid "Find Previous"
@@ -437,11 +438,11 @@ msgstr "ముందుది వెతుకు"
 
 #: ../src/dh-window.c:796
 msgid "Go to the previous page"
-msgstr "ముందు పుటమునకు వెళ్ళుము "
+msgstr "ముందు పుటకు వెళ్ళు"
 
 #: ../src/dh-window.c:799
 msgid "Go to the next page"
-msgstr "తరువాత పుటమునకు వెళ్ళుము "
+msgstr "తరువాత పుటకు వెళ్ళు"
 
 #: ../src/dh-window.c:802
 msgid "_Contents Tab"
@@ -478,11 +479,11 @@ msgstr "సాధారణ పాఠ్య పరిమాణము ఉపయో
 
 #: ../src/dh-window.c:825
 msgid "Leave fullscreen mode"
-msgstr "ఫుల్ స్క్రీన్ విధమును వదులుము "
+msgstr "పూర్తితెర విధమును వదిలివెళ్ళు"
 
 #: ../src/dh-window.c:832
 msgid "Display in full screen"
-msgstr "ఫుల్ స్క్రీన్ లో ప్రదర్శించుము"
+msgstr "ఫుల్ స్క్రీన్ లో ప్రదర్శించు"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:952
@@ -503,15 +504,15 @@ msgstr "డెవ్ సహాయంగురించి"
 
 #: ../src/dh-window.c:1109
 msgid "Preferences…"
-msgstr "అభీష్టాలు..."
+msgstr "ప్రాధాన్యతలు..."
 
 #: ../src/dh-window.c:1151
 msgid "Contents"
-msgstr "సారములు"
+msgstr "విషయసూచిక"
 
 #: ../src/dh-window.c:1161
 msgid "Search"
-msgstr "వెతుకు"
+msgstr "శోధించు"
 
 #: ../src/dh-window.c:1336
 msgid "Error opening the requested link."
@@ -519,7 +520,7 @@ msgstr "అడిగిన లింక్ తెరువుటలో దోష
 
 #: ../src/dh-window.c:1649 ../src/dh-window.c:1888
 msgid "Empty Page"
-msgstr "శూన్యమైన పుట"
+msgstr "ఖాళీ పుట"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
