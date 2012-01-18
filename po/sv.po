@@ -1,9 +1,9 @@
 # Swedish messages for Devhelp.
-# Copyright (C) 2001-2010 Free Software Foundation, Inc.
+# Copyright (C) 2001-2012 Free Software Foundation, Inc.
 # Richard Hult <richard@imendio.com>, 2001, 2004.
 # Johan Dahlin <zilch.am@home.se>, 2001.
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2008, 2009, 2010.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2008, 2009, 2010, 2011, 2012.
 #
 # Översätt inte "Devhelp", det är ett namn.
 #
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-29 14:30+0100\n"
-"PO-Revision-Date: 2010-12-29 17:12+0100\n"
+"POT-Creation-Date: 2012-01-18 12:20+0100\n"
+"PO-Revision-Date: 2012-01-18 12:20+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -28,9 +28,9 @@ msgstr "Hjälpprogram för utvecklare"
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2
 #: ../src/dh-main.c:281
-#: ../src/dh-window.c:740
-#: ../src/dh-window.c:1048
-#: ../src/dh-window.c:1880
+#: ../src/dh-window.c:731
+#: ../src/dh-window.c:1039
+#: ../src/dh-window.c:1868
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -171,26 +171,34 @@ msgid "Book Shelf"
 msgstr "Bokhylla"
 
 #: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "Aktiverad"
+
+#: ../data/ui/devhelp.builder.h:3
 msgid "Fonts"
 msgstr "Typsnitt"
 
-#: ../data/ui/devhelp.builder.h:3
+#: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: ../data/ui/devhelp.builder.h:4
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Titel"
+
+#: ../data/ui/devhelp.builder.h:6
 msgid "_Fixed width:"
 msgstr "_Fast bredd:"
 
-#: ../data/ui/devhelp.builder.h:5
+#: ../data/ui/devhelp.builder.h:7
 msgid "_Group by language"
 msgstr "_Gruppera efter språk"
 
-#: ../data/ui/devhelp.builder.h:6
+#: ../data/ui/devhelp.builder.h:8
 msgid "_Use system fonts"
 msgstr "_Använd systemets typsnitt"
 
-#: ../data/ui/devhelp.builder.h:7
+#: ../data/ui/devhelp.builder.h:9
 msgid "_Variable width: "
 msgstr "_Variabel bredd:"
 
@@ -202,11 +210,11 @@ msgstr "Stöd för Devhelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Gör så att F2 tar fram Devhelp för ordet vid markören"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp.py:69
 msgid "Show API Documentation"
 msgstr "Visa API-dokumentation"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+#: ../misc/gedit-plugin/devhelp.py:71
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Visa API-dokumentation för ordet vid markören"
 
@@ -341,47 +349,47 @@ msgstr "Kan inte dekomprimera boken \"%s\": %s"
 msgid "All books"
 msgstr "Alla böcker"
 
-#: ../src/dh-search.c:1117
+#: ../src/dh-search.c:1118
 msgid "Search in:"
 msgstr "Sök i:"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:99
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:100
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:101
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:102
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:103
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:104
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:105
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:106
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:107
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:735
+#: ../src/dh-window.c:726
 msgid "translator_credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -389,132 +397,121 @@ msgstr ""
 "Richard Hult <richard@imendio.com>\n"
 "Johan Dahlin <johan@gnome.org>"
 
-#: ../src/dh-window.c:742
+#: ../src/dh-window.c:733
 msgid "A developers' help browser for GNOME"
 msgstr "Ett hjälpprogram för utvecklare för GNOME"
 
-#: ../src/dh-window.c:749
+#: ../src/dh-window.c:740
 msgid "DevHelp Website"
 msgstr "Webbplatsen för DevHelp"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:764
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:765
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:766
 msgid "_View"
 msgstr "_Visa"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:767
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:768
 msgid "_Help"
 msgstr "_Hjälp"
 
 #. File menu
-#: ../src/dh-window.c:780
+#: ../src/dh-window.c:771
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/dh-window.c:782
+#: ../src/dh-window.c:773
 msgid "New _Tab"
 msgstr "Ny _flik"
 
-#: ../src/dh-window.c:784
+#: ../src/dh-window.c:775
 msgid "_Print…"
 msgstr "S_kriv ut..."
 
-#: ../src/dh-window.c:796
+#: ../src/dh-window.c:787
 #: ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Sök nästa"
 
-#: ../src/dh-window.c:798
+#: ../src/dh-window.c:789
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Sök föregående"
 
-#: ../src/dh-window.c:805
+#: ../src/dh-window.c:796
 msgid "Go to the previous page"
 msgstr "Gå till föregående sida"
 
-#: ../src/dh-window.c:808
+#: ../src/dh-window.c:799
 msgid "Go to the next page"
 msgstr "Gå till nästa sida"
 
-#: ../src/dh-window.c:811
+#: ../src/dh-window.c:802
 msgid "_Contents Tab"
 msgstr "_Innehållsflik"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:805
 msgid "_Search Tab"
 msgstr "_Sökflik"
 
 #. View menu
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:809
 msgid "_Larger Text"
 msgstr "_Större text"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:810
 msgid "Increase the text size"
 msgstr "Öka textstorleken"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:812
 msgid "S_maller Text"
 msgstr "_Mindre text"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:813
 msgid "Decrease the text size"
 msgstr "Minska textstorleken"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:815
 msgid "_Normal Size"
 msgstr "_Normal storlek"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:816
 msgid "Use the normal text size"
 msgstr "Använd normal textstorlek"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:825
 msgid "Leave fullscreen mode"
 msgstr "Lämna helskärmsläge"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:832
 msgid "Display in full screen"
 msgstr "Visa i helskärmsläge"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:961
+#: ../src/dh-window.c:952
 msgid "Larger"
 msgstr "Större"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:964
+#: ../src/dh-window.c:955
 msgid "Smaller"
 msgstr "Mindre"
 
-#. i18n: please don't translate
-#. * "Devhelp", it's a name, not a
-#. * generic word.
-#: ../src/dh-window.c:1109
-msgid "About Devhelp"
-msgstr "Om Devhelp"
-
-#: ../src/dh-window.c:1114
-msgid "Preferences…"
-msgstr "Inställningar..."
-
-#: ../src/dh-window.c:1156
+#: ../src/dh-window.c:1159
 msgid "Contents"
 msgstr "Innehåll"
 
-#: ../src/dh-window.c:1166
+#: ../src/dh-window.c:1169
 msgid "Search"
 msgstr "Sök"
 
@@ -522,8 +519,8 @@ msgstr "Sök"
 msgid "Error opening the requested link."
 msgstr "Fel vid öppnadet av begärd länk."
 
-#: ../src/dh-window.c:1666
-#: ../src/dh-window.c:1908
+#: ../src/dh-window.c:1657
+#: ../src/dh-window.c:1896
 msgid "Empty Page"
 msgstr "Tom sida"
 
@@ -550,12 +547,20 @@ msgstr "Skift_lägeskänslig"
 msgid "Toggle case sensitive search"
 msgstr "Växla skiftlägeskänslighet"
 
+#~ msgid "About Devhelp"
+#~ msgstr "Om Devhelp"
+
+#~ msgid "Preferences…"
+#~ msgstr "Inställningar..."
+
 #~ msgid "Preferences..."
 #~ msgstr "Inställningar..."
+
 #~ msgid "<b>Fonts</b>"
 #~ msgstr "<b>Typsnitt</b>"
+
 #~ msgid "Could not create book parser"
 #~ msgstr "Kunde inte skapa boktolk"
+
 #~ msgid "Could not create markup parser"
 #~ msgstr "Kunde inte skapa markuptolk"
-
