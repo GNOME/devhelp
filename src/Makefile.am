@@ -28,6 +28,10 @@ AM_CPPFLAGS = 						\
 	-DGTK_DISABLE_SINGLE_INCLUDES			\
 	$(WARN_CFLAGS)
 
+if WITH_WEBKIT2
+AM_CPPFLAGS += -DHAVE_WEBKIT2
+endif
+
 bin_PROGRAMS = devhelp
 
 devhelp_SOURCES =					\

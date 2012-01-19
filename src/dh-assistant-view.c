@@ -22,7 +22,6 @@
 #include "config.h"
 #include <string.h>
 #include <glib/gi18n-lib.h>
-#include <webkit/webkit.h>
 #include "dh-assistant-view.h"
 #include "dh-link.h"
 #include "dh-util.h"
@@ -60,6 +59,9 @@ view_finalize (GObject *object)
         G_OBJECT_CLASS (dh_assistant_view_parent_class)->finalize (object);
 }
 
+#ifdef HAVE_WEBKIT2
+/* TODO: Policy Client */
+#else
 static WebKitNavigationResponse
 assistant_navigation_requested (WebKitWebView        *web_view,
                                 WebKitWebFrame       *frame,
@@ -87,6 +89,7 @@ assistant_navigation_requested (WebKitWebView        *web_view,
 
         return WEBKIT_NAVIGATION_RESPONSE_IGNORE;
 }
+#endif /* HAVE_WEBKIT2 */
 
 static gboolean
 assistant_button_press_event (GtkWidget      *widget,
@@ -110,8 +113,11 @@ dh_assistant_view_class_init (DhAssistantViewClass* klass)
         object_class->finalize = view_finalize;
 
         widget_class->button_press_event = assistant_button_press_event;
-
+#ifdef HAVE_WEBKIT2
+/* TODO: Policy Client */
+#else
         web_view_class->navigation_requested = assistant_navigation_requested;
+#endif
 
         g_type_class_add_private (klass, sizeof (DhAssistantViewPriv));
 }
@@ -362,12 +368,19 @@ dh_assistant_view_set_link (DhAssistantView *view,
                 g_free (javascript_html);
 
                 priv->snippet_loaded = FALSE;
+#ifdef HAVE_WEBKIT2
+                webkit_web_view_load_html (
+                        WEBKIT_WEB_VIEW (view),
+                        html,
+                        filename);
+#else
                 webkit_web_view_load_string (
                         WEBKIT_WEB_VIEW (view),
                         html,
                         "text/html",
                         NULL,
                         filename);
+#endif
 
                 g_free (html);
         } else {

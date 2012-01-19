@@ -31,7 +31,11 @@
 #include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
+#ifdef HAVE_WEBKIT2
+#include <webkit2/webkit2.h>
+#else
 #include <webkit/webkit.h>
+#endif
 
 #ifdef GDK_WINDOWING_QUARTZ
 #include <gtkosxapplication.h>
@@ -192,10 +196,14 @@ static void
 window_activate_print (GtkAction *action,
                        DhWindow  *window)
 {
+#ifdef HAVE_WEBKIT2
+/* TODO: Printing API */
+#else
     WebKitWebView *web_view;
 
     web_view = window_get_active_web_view (window);
     webkit_web_view_execute_script (web_view, "print();");
+#endif
 }
 
 static void
@@ -257,10 +265,14 @@ window_activate_copy (GtkAction *action,
                 gtk_clipboard_set_text (clipboard,
                                 dh_link_get_name(priv->selected_search_link), -1);
         } else {
+#ifdef HAVE_WEBKIT2
+/* TODO: Editor API */
+#else
                 WebKitWebView *web_view;
 
                 web_view = window_get_active_web_view (window);
                 webkit_web_view_copy_clipboard (web_view);
+#endif
         }
 }
 
@@ -268,6 +280,9 @@ static void
 window_activate_find (GtkAction *action,
                       DhWindow  *window)
 {
+#ifdef HAVE_WEBKIT2
+/* TODO: Find API */
+#else
         DhWindowPriv  *priv;
         WebKitWebView *web_view;
 
@@ -278,6 +293,7 @@ window_activate_find (GtkAction *action,
         gtk_widget_grab_focus (priv->findbar);
 
         webkit_web_view_set_highlight_text_matches (web_view, TRUE);
+#endif /* HAVE_WEBKIT2 */
 }
 
 static int
@@ -1021,14 +1037,12 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
         new_page = gtk_notebook_get_nth_page (notebook, new_page_num);
         if (new_page) {
                 WebKitWebView  *new_web_view;
-                WebKitWebFrame *web_frame;
                 const gchar    *location;
 
                 new_web_view = g_object_get_data (G_OBJECT (new_page), "web_view");
 
                 /* Sync the book tree. */
-                web_frame = webkit_web_view_get_main_frame (new_web_view);
-                location = webkit_web_frame_get_uri (web_frame);
+                location = webkit_web_view_get_uri (new_web_view);
 
                 if (location) {
                         dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree),
@@ -1276,7 +1290,9 @@ find_library_equivalent (DhWindow    *window,
         return local_uri;
 }
 
-
+#ifdef HAVE_WEBKIT2
+/* TODO: Policy Client */
+#else
 static gboolean
 window_web_view_navigation_policy_decision_requested (WebKitWebView             *web_view,
                                                       WebKitWebFrame            *frame,
@@ -1328,14 +1344,23 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
 
         return FALSE;
 }
+#endif /* HAVE_WEBKIT2 */
 
-
+#ifdef HAVE_WEBKIT2
+static gboolean
+window_web_view_load_failed_cb (WebKitWebView   *web_view,
+                                WebKitLoadEvent  load_event,
+                                const gchar     *uri,
+                                GError          *web_error,
+                                DhWindow        *window)
+#else
 static gboolean
 window_web_view_load_error_cb (WebKitWebView  *web_view,
                                WebKitWebFrame *frame,
                                gchar          *uri,
                                gpointer       *web_error,
                                DhWindow       *window)
+#endif
 {
         GtkWidget *info_bar;
         GtkWidget *content_area;
@@ -1427,11 +1452,12 @@ window_check_history (DhWindow      *window,
 }
 
 static void
-window_web_view_title_changed_cb (WebKitWebView  *web_view,
-                                  WebKitWebFrame *web_frame,
-                                  const gchar    *title,
-                                  DhWindow       *window)
+window_web_view_title_changed_cb (WebKitWebView *web_view,
+                                  GParamSpec    *param_spec,
+                                  DhWindow      *window)
 {
+        const gchar *title = webkit_web_view_get_title (web_view);
+
         if (web_view == window_get_active_web_view (window)) {
                 window_update_title (window, web_view, title);
         }
@@ -1454,6 +1480,9 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
 static gboolean
 do_search (DhWindow *window)
 {
+#ifdef HAVE_WEBKIT2
+/* TODO: Find API */
+#else
         DhWindowPriv  *priv = window->priv;
         WebKitWebView *web_view;
 
@@ -1472,6 +1501,7 @@ do_search (DhWindow *window)
                 web_view, egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)),
                 egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)),
                 TRUE, TRUE);
+#endif /* HAVE_WEBKIT2 */
 
 	return FALSE;
 }
@@ -1505,10 +1535,13 @@ window_find_case_changed_cb (GObject    *object,
 
         string = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
         case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
-
+#ifdef HAVE_WEBKIT2
+/* TODO: Find API */
+#else
         webkit_web_view_unmark_text_matches (view);
         webkit_web_view_mark_text_matches (view, string, case_sensitive, 0);
         webkit_web_view_set_highlight_text_matches (view, TRUE);
+#endif
 }
 
 static void
@@ -1526,8 +1559,11 @@ window_find_next_cb (GtkEntry *entry,
 
         string = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
         case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
-
+#ifdef HAVE_WEBKIT2
+/* TODO: Find API */
+#else
         webkit_web_view_search_text (view, string, case_sensitive, TRUE, TRUE);
+#endif
 }
 
 static void
@@ -1545,8 +1581,11 @@ window_find_previous_cb (GtkEntry *entry,
 
         string = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
         case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
-
+#ifdef HAVE_WEBKIT2
+/* TODO: Find API */
+#else
         webkit_web_view_search_text (view, string, case_sensitive, FALSE, TRUE);
+#endif
 }
 
 static void
@@ -1559,8 +1598,11 @@ window_findbar_close_cb (GtkWidget *widget,
         view = window_get_active_web_view (window);
 
         gtk_widget_hide (priv->findbar);
-
+#ifdef HAVE_WEBKIT2
+/* TODO: Find API */
+#else
         webkit_web_view_set_highlight_text_matches (view, FALSE);
+#endif
 }
 
 #if 0
@@ -1607,10 +1649,12 @@ window_open_new_tab (DhWindow    *window,
         DhWindowPriv *priv;
         GtkWidget    *view;
         GtkWidget    *vbox;
-        GtkWidget    *scrolled_window;
         GtkWidget    *label;
         gint          num;
         GtkWidget    *info_bar;
+#ifndef HAVE_WEBKIT2
+        GtkWidget    *scrolled_window;
+#endif
 
         priv = window->priv;
 
@@ -1650,6 +1694,9 @@ window_open_new_tab (DhWindow    *window,
 
         gtk_box_pack_start (GTK_BOX(vbox), info_bar, FALSE, TRUE, 0);
 
+#ifdef HAVE_WEBKIT2
+        gtk_box_pack_start (GTK_BOX(vbox), view, TRUE, TRUE, 0);
+#else
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                         GTK_POLICY_AUTOMATIC,
@@ -1657,22 +1704,33 @@ window_open_new_tab (DhWindow    *window,
         gtk_container_add (GTK_CONTAINER (scrolled_window), view);
         gtk_widget_show (scrolled_window);
         gtk_box_pack_start (GTK_BOX(vbox), scrolled_window, TRUE, TRUE, 0);
+#endif
 
         label = window_new_tab_label (window, _("Empty Page"), vbox);
         gtk_widget_show_all (label);
 
-        g_signal_connect (view, "title-changed",
+        g_signal_connect (view, "notify::title",
                           G_CALLBACK (window_web_view_title_changed_cb),
                           window);
         g_signal_connect (view, "button-press-event",
                           G_CALLBACK (window_web_view_button_press_event_cb),
                           window);
+#ifdef HAVE_WEBKIT2
+/* TODO: Policy Client */
+#else
         g_signal_connect (view, "navigation-policy-decision-requested",
                           G_CALLBACK (window_web_view_navigation_policy_decision_requested),
                           window);
+#endif
+#ifdef HAVE_WEBKIT2
+        g_signal_connect (view, "load-failed",
+                          G_CALLBACK (window_web_view_load_failed_cb),
+                          window);
+#else
         g_signal_connect (view, "load-error",
                           G_CALLBACK (window_web_view_load_error_cb),
                           window);
+#endif
 
         num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
                                         vbox, NULL);
@@ -1848,12 +1906,8 @@ window_update_title (DhWindow      *window,
 
         priv = window->priv;
 
-        if (!web_view_title) {
-                WebKitWebFrame *web_frame;
-
-                web_frame = webkit_web_view_get_main_frame (web_view);
-                web_view_title = webkit_web_frame_get_title (web_frame);
-        }
+        if (!web_view_title)
+                web_view_title = webkit_web_view_get_title (web_view);
 
         if (web_view_title && *web_view_title == '\0') {
                 web_view_title = NULL;

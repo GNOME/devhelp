@@ -57,10 +57,24 @@ else
 fi
 AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, test "x$IGE_PLATFORM" = xx11)
 
+AC_ARG_WITH(webkit2,
+        [AC_HELP_STRING([--with-webkit2], [build with WebKit2 [default=no]])],
+        [],[with_webkit2=no])
+
+if test "x$with_webkit2" != xno; then
+   WEBKITGTK_PC_NAME=webkit2gtk-3.0
+   WEBKITGTK_REQUIRED_VERSION=1.7.91
+   AC_DEFINE([HAVE_WEBKIT2],[1],[Define if building with WebKit2])
+else
+   WEBKITGTK_PC_NAME=webkitgtk-3.0
+   WEBKITGTK_REQUIRED_VERSION=1.6.0
+fi
+AM_CONDITIONAL(WITH_WEBKIT2, test "x$with_webkit2" != xno)
+
 PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
   gtk+-3.0 >= 3.0.2
-  webkitgtk-3.0
+  $WEBKITGTK_PC_NAME >= $WEBKITGTK_REQUIRED_VERSION
   glib-2.0 >= 2.25.11
 ])
 
@@ -68,7 +82,7 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
   gtk+-3.0 >= 3.0.2
   $gconf_pkgconfig
   $gtkmacintegration_pkgconfig
-  webkitgtk-3.0
+  $WEBKITGTK_PC_NAME >= $WEBKITGTK_REQUIRED_VERSION
 ])
 
 AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)
@@ -124,4 +138,5 @@ AC_OUTPUT
 echo
 echo "Prefix:    $prefix"
 echo "Platform:  $IGE_PLATFORM_NAME"
+echo "WebKit2:   $with_webkit2"
 echo

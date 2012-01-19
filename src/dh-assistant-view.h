@@ -21,7 +21,11 @@
 #ifndef __DH_ASSISTANT_VIEW_H__
 #define __DH_ASSISTANT_VIEW_H__
 
+#ifdef HAVE_WEBKIT2
+#include <webkit2/webkit2.h>
+#else
 #include <webkit/webkit.h>
+#endif
 #include "dh-base.h"
 #include "dh-link.h"
 
