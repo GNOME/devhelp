@@ -5,16 +5,16 @@
 #
 # Miloslav Trmac <mitr@volny.cz>, 2002, 2003, 2004, 2006.
 # Petr Kovar <pknbe@volny.cz>, 2009.
-# Marek Černocký <marek@manet.cz>, 2010.
 # Lucas Lommer <llommer@svn.gnome.org>, 2008, 2009, 2010.
+# Marek Černocký <marek@manet.cz>, 2010, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-12-26 16:18+0000\n"
-"PO-Revision-Date: 2010-12-27 11:55+0100\n"
+"product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-12-17 15:53+0000\n"
+"PO-Revision-Date: 2012-01-19 15:51+0100\n"
 "Last-Translator: Lucas Lommer <llommer@svn.gnome.org>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Program nápovědy pro vývojáře"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
+#: ../src/dh-window.c:731 ../src/dh-window.c:1039 ../src/dh-window.c:1868
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -80,7 +80,7 @@ msgstr "Stav maximalizace hlavního okna"
 
 #: ../data/devhelp.schemas.in.h:11
 msgid "Selected tab: \"content\" or \"search\""
-msgstr "Vybraná karta: „content“ nebo „search“"
+msgstr "Vybraná karta: „content“ (obsah) nebo „search“ (hledat)"
 
 #: ../data/devhelp.schemas.in.h:12
 msgid "The X position of the assistant window."
@@ -136,7 +136,7 @@ msgstr "Jestli má hlavní okno být po spuštění maximalizované."
 
 #: ../data/devhelp.schemas.in.h:25
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "Která z karet je vybrána: „content“ nebo „search“."
+msgstr "Která z karet je vybrána: „content“ (obsah) nebo „search“ (hledat)."
 
 #: ../data/devhelp.schemas.in.h:26
 msgid "Width of the assistant window"
@@ -171,26 +171,34 @@ msgid "Book Shelf"
 msgstr "Knihovnička"
 
 #: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "Zapnuto"
+
+#: ../data/ui/devhelp.builder.h:3
 msgid "Fonts"
 msgstr "Písma"
 
-#: ../data/ui/devhelp.builder.h:3
+#: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: ../data/ui/devhelp.builder.h:4
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Název"
+
+#: ../data/ui/devhelp.builder.h:6
 msgid "_Fixed width:"
 msgstr "P_evná šířka:"
 
-#: ../data/ui/devhelp.builder.h:5
+#: ../data/ui/devhelp.builder.h:7
 msgid "_Group by language"
 msgstr "_Seskupit podle jazyka"
 
-#: ../data/ui/devhelp.builder.h:6
+#: ../data/ui/devhelp.builder.h:8
 msgid "_Use system fonts"
 msgstr "Po_užívat systémová písma"
 
-#: ../data/ui/devhelp.builder.h:7
+#: ../data/ui/devhelp.builder.h:9
 msgid "_Variable width: "
 msgstr "Pr_oměnná šířka:"
 
@@ -202,11 +210,11 @@ msgstr "Podpora DevHelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Způsobí, že F2 spustí DevHelp pro slovo pod kurzorem"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp.py:69
 msgid "Show API Documentation"
 msgstr "Zobrazit dokumentaci API"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+#: ../misc/gedit-plugin/devhelp.py:71
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Zobrazit dokumentaci API pro slovo pod kurzorem"
 
@@ -320,8 +328,8 @@ msgstr ""
 #: ../src/dh-parser.c:218
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+"%d"
 msgstr ""
 "Elementy „name“ a „link“ jsou vyžadovány uvnitř <sub> na řádce %d, pozice %d"
 
@@ -345,176 +353,166 @@ msgstr "Nelze dekomprimovat knihu „%s“: %s"
 msgid "All books"
 msgstr "Všechny knihy"
 
-#: ../src/dh-search.c:1117
+#: ../src/dh-search.c:1118
 msgid "Search in:"
 msgstr "Hledat v:"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:99
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:100
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:101
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:102
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:103
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:104
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:105
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:106
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:107
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:735
+#: ../src/dh-window.c:726
 msgid "translator_credits"
 msgstr ""
 "Miloslav Trmač <mitr@volny.cz>\n"
-"Lucas Lommer <llommer@svn.gnome.org>"
+"Lucas Lommer <llommer@svn.gnome.org>\n"
+"Marek Černocký <marek@manet.cz>"
 
-#: ../src/dh-window.c:742
+#: ../src/dh-window.c:733
 msgid "A developers' help browser for GNOME"
 msgstr "Prohlížeč nápovědy vývojáře pro GNOME"
 
-#: ../src/dh-window.c:749
+#: ../src/dh-window.c:740
 msgid "DevHelp Website"
 msgstr "Webové stránky DevHelp"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:764
 msgid "_File"
 msgstr "_Soubor"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:765
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:766
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:767
 msgid "_Go"
 msgstr "_Jít"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:768
 msgid "_Help"
 msgstr "_Nápověda"
 
 #. File menu
-#: ../src/dh-window.c:780
+#: ../src/dh-window.c:771
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: ../src/dh-window.c:782
+#: ../src/dh-window.c:773
 msgid "New _Tab"
 msgstr "Nová _karta"
 
-#: ../src/dh-window.c:784
+#: ../src/dh-window.c:775
 msgid "_Print…"
 msgstr "_Tisk…"
 
-#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:787 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Hledat následující"
 
-#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:789 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Hledat předchozí"
 
-#: ../src/dh-window.c:805
+#: ../src/dh-window.c:796
 msgid "Go to the previous page"
 msgstr "Přejít na předchozí stránku"
 
-#: ../src/dh-window.c:808
+#: ../src/dh-window.c:799
 msgid "Go to the next page"
 msgstr "Přejít na další stránku"
 
-#: ../src/dh-window.c:811
+#: ../src/dh-window.c:802
 msgid "_Contents Tab"
 msgstr "Karta _obsahu"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:805
 msgid "_Search Tab"
 msgstr "Karta vyhledává_ní"
 
 #. View menu
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:809
 msgid "_Larger Text"
 msgstr "Větší t_ext"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:810
 msgid "Increase the text size"
 msgstr "Zvětšit velikost textu"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:812
 msgid "S_maller Text"
 msgstr "_Menší text"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:813
 msgid "Decrease the text size"
 msgstr "Zmenšit velikost textu"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:815
 msgid "_Normal Size"
 msgstr "_Normální velikost"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:816
 msgid "Use the normal text size"
 msgstr "Použít normální velikost textu"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:825
 msgid "Leave fullscreen mode"
 msgstr "Opustit režim celé obrazovky"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:832
 msgid "Display in full screen"
 msgstr "Zobrazit v režimu celé obrazovky"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:961
+#: ../src/dh-window.c:952
 msgid "Larger"
 msgstr "Větší"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:964
+#: ../src/dh-window.c:955
 msgid "Smaller"
 msgstr "Menší"
 
-#. i18n: please don't translate
-#. * "Devhelp", it's a name, not a
-#. * generic word.
-#: ../src/dh-window.c:1109
-msgid "About Devhelp"
-msgstr "A aplikaci DevHelp"
-
-#: ../src/dh-window.c:1114
-msgid "Preferences…"
-msgstr "Předvolby…"
-
-#: ../src/dh-window.c:1156
+#: ../src/dh-window.c:1159
 msgid "Contents"
 msgstr "Obsah"
 
-#: ../src/dh-window.c:1166
+#: ../src/dh-window.c:1169
 msgid "Search"
 msgstr "Hledat"
 
@@ -522,7 +520,7 @@ msgstr "Hledat"
 msgid "Error opening the requested link."
 msgstr "Chyba při otevírání požadovaného odkazu."
 
-#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
+#: ../src/dh-window.c:1657 ../src/dh-window.c:1896
 msgid "Empty Page"
 msgstr "Prázdná strana"
 
@@ -545,4 +543,3 @@ msgstr "Rozlišov_at malá a velká písmena"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Přepnout citlivost na velikost písmen"
-
