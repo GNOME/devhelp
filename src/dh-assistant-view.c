@@ -214,7 +214,6 @@ dh_assistant_view_set_link (DhAssistantView *view,
         if (anchor) {
                 filename = g_strndup (uri, anchor - uri);
                 anchor++;
-                g_free (uri);
         } else {
                 g_free (uri);
                 return FALSE;
@@ -226,6 +225,7 @@ dh_assistant_view_set_link (DhAssistantView *view,
         file = g_mapped_file_new (filename + offset, FALSE, NULL);
         if (!file) {
                 g_free (filename);
+                g_free (uri);
                 return FALSE;
         }
 
@@ -233,6 +233,7 @@ dh_assistant_view_set_link (DhAssistantView *view,
         length = g_mapped_file_get_length (file);
 
         key = g_strdup_printf ("<a name=\"%s\"", anchor);
+        g_free (uri);
         key_length = strlen (key);
 
         start = find_in_buffer (contents, key, length, key_length);
