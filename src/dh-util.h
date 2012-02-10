@@ -68,6 +68,8 @@ gint         dh_util_cmp_book                     (DhLink *a,
                                                    DhLink *b);
 
 void         dh_util_ascii_strtitle               (gchar *str);
+gchar       *dh_util_create_data_uri_for_filename (const gchar *filename,
+                                                   const gchar *mime_type);
 
 G_END_DECLS
 
