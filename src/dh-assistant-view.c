@@ -274,7 +274,11 @@ dh_assistant_view_set_link (DhAssistantView *view,
                 gboolean     break_line;
                 const gchar *function;
                 gchar       *stylesheet;
+                gchar       *stylesheet_uri;
+                gchar       *stylesheet_html = NULL;
                 gchar       *javascript;
+                gchar       *javascript_uri;
+                gchar       *javascript_html = NULL;
                 gchar       *html;
 
                 buf = g_strndup (start, end-start);
@@ -311,16 +315,31 @@ dh_assistant_view_set_link (DhAssistantView *view,
                                                           "assistant",
                                                           "assistant.css",
                                                           NULL);
+                stylesheet_uri = dh_util_create_data_uri_for_filename (stylesheet,
+                                                                       "text/css");
+                g_free (stylesheet);
+                if (stylesheet_uri)
+                        stylesheet_html = g_strdup_printf ("<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\"/>",
+                                                           stylesheet_uri);
+                g_free (stylesheet_uri);
+
                 javascript = dh_util_build_data_filename ("devhelp",
                                                           "assistant",
                                                           "assistant.js",
                                                           NULL);
+                javascript_uri = dh_util_create_data_uri_for_filename (javascript,
+                                                                       "application/javascript");
+                g_free (javascript);
+
+                if (javascript_uri)
+                        javascript_html = g_strdup_printf ("<script src=\"%s\"></script>", javascript_uri);
+                g_free (javascript_uri);
 
                 html = g_strdup_printf (
                         "<html>"
                         "<head>"
-                        "<link rel=\"stylesheet\" type=\"text/css\" href=\"file://%s\"/>"
-                        "<script src=\"file://%s\"></script>"
+                        "%s"
+                        "%s"
                         "</head>"
                         "<body %s>"
                         "<div class=\"title\">%s: <a href=\"%s\">%s</a></div>"
@@ -328,8 +347,8 @@ dh_assistant_view_set_link (DhAssistantView *view,
                         "<div class=\"content\">%s</div>"
                         "</body>"
                         "</html>",
-                        stylesheet,
-                        javascript,
+                        stylesheet_html,
+                        javascript_html,
                         function,
                         dh_link_get_type_as_string (link),
                         dh_link_get_uri (link),
@@ -339,8 +358,8 @@ dh_assistant_view_set_link (DhAssistantView *view,
                         buf);
                 g_free (buf);
 
-                g_free (stylesheet);
-                g_free (javascript);
+                g_free (stylesheet_html);
+                g_free (javascript_html);
 
                 priv->snippet_loaded = FALSE;
                 webkit_web_view_load_string (
