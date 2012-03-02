@@ -162,6 +162,7 @@ static void           window_tab_set_title           (DhWindow        *window,
                                                       const gchar     *title);
 static void           window_close_tab               (DhWindow *window,
                                                       gint      page_num);
+static gboolean       do_search                      (DhWindow *window);
 
 G_DEFINE_TYPE (DhWindow, dh_window, GTK_TYPE_WINDOW);
 
@@ -282,18 +283,22 @@ static void
 window_activate_find (GtkAction *action,
                       DhWindow  *window)
 {
-#ifdef HAVE_WEBKIT2
-/* TODO: Find API */
-#else
         DhWindowPriv  *priv;
+#ifndef HAVE_WEBKIT2
         WebKitWebView *web_view;
-
+#endif
         priv = window->priv;
-        web_view = window_get_active_web_view (window);
 
         gtk_widget_show (priv->findbar);
         gtk_widget_grab_focus (priv->findbar);
 
+#ifdef HAVE_WEBKIT2
+        /* The behaviour for WebKit1 is to re-enable highlighting without
+           starting a new search. WebKit2 API does not allow that
+           without invoking a new search. */
+        do_search (window);
+#else
+        web_view = window_get_active_web_view (window);
         webkit_web_view_set_highlight_text_matches (web_view, TRUE);
 #endif /* HAVE_WEBKIT2 */
 }
@@ -1510,13 +1515,20 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
 static gboolean
 do_search (DhWindow *window)
 {
+        DhWindowPriv         *priv = window->priv;
 #ifdef HAVE_WEBKIT2
-/* TODO: Find API */
-#else
-        DhWindowPriv  *priv = window->priv;
-        WebKitWebView *web_view;
+        WebKitFindController *find_controller;
+        guint                 find_options = WEBKIT_FIND_OPTIONS_WRAP_AROUND;
+        const gchar          *search_text;
 
-        priv->find_source_id = 0;
+        find_controller = webkit_web_view_get_find_controller (window_get_active_web_view (window));
+        if (!egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)))
+                find_options |= WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE;
+
+        search_text = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
+        webkit_find_controller_search (find_controller, search_text, find_options, G_MAXUINT);
+#else
+        WebKitWebView *web_view;
 
         web_view = window_get_active_web_view (window);
 
@@ -1532,6 +1544,8 @@ do_search (DhWindow *window)
                 egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)),
                 TRUE, TRUE);
 #endif /* HAVE_WEBKIT2 */
+
+        priv->find_source_id = 0;
 
 	return FALSE;
 }
@@ -1556,6 +1570,9 @@ window_find_case_changed_cb (GObject    *object,
                              GParamSpec *pspec,
                              DhWindow   *window)
 {
+#ifdef HAVE_WEBKIT2
+        do_search (window);
+#else
         DhWindowPriv  *priv = window->priv;;
         WebKitWebView *view;
         const gchar   *string;
@@ -1565,9 +1582,7 @@ window_find_case_changed_cb (GObject    *object,
 
         string = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
         case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
-#ifdef HAVE_WEBKIT2
-/* TODO: Find API */
-#else
+
         webkit_web_view_unmark_text_matches (view);
         webkit_web_view_mark_text_matches (view, string, case_sensitive, 0);
         webkit_web_view_set_highlight_text_matches (view, TRUE);
@@ -1578,20 +1593,23 @@ static void
 window_find_next_cb (GtkEntry *entry,
                      DhWindow *window)
 {
-        DhWindowPriv  *priv = window->priv;
-        WebKitWebView *view;
-        const gchar   *string;
-        gboolean       case_sensitive;
-
+        DhWindowPriv         *priv = window->priv;
+        WebKitWebView        *view;
+#ifdef HAVE_WEBKIT2
+        WebKitFindController *find_controller;
+#else
+        const gchar          *string;
+        gboolean              case_sensitive;
+#endif
         view = window_get_active_web_view (window);
 
         gtk_widget_show (priv->findbar);
-
+#ifdef HAVE_WEBKIT2
+        find_controller = webkit_web_view_get_find_controller (view);
+        webkit_find_controller_search_next(find_controller);
+#else
         string = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
         case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
-#ifdef HAVE_WEBKIT2
-/* TODO: Find API */
-#else
         webkit_web_view_search_text (view, string, case_sensitive, TRUE, TRUE);
 #endif
 }
@@ -1600,20 +1618,24 @@ static void
 window_find_previous_cb (GtkEntry *entry,
                          DhWindow *window)
 {
-        DhWindowPriv  *priv = window->priv;
-        WebKitWebView *view;
-        const gchar   *string;
-        gboolean       case_sensitive;
-
+        DhWindowPriv         *priv = window->priv;
+        WebKitWebView        *view;
+#ifdef HAVE_WEBKIT2
+        WebKitFindController *find_controller;
+#else
+        const gchar          *string;
+        gboolean             case_sensitive;
+#endif
         view = window_get_active_web_view (window);
 
         gtk_widget_show (priv->findbar);
 
+#ifdef HAVE_WEBKIT2
+        find_controller = webkit_web_view_get_find_controller (view);
+        webkit_find_controller_search_previous(find_controller);
+#else
         string = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
         case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
-#ifdef HAVE_WEBKIT2
-/* TODO: Find API */
-#else
         webkit_web_view_search_text (view, string, case_sensitive, FALSE, TRUE);
 #endif
 }
@@ -1622,14 +1644,17 @@ static void
 window_findbar_close_cb (GtkWidget *widget,
                          DhWindow  *window)
 {
-        DhWindowPriv  *priv = window->priv;
-        WebKitWebView *view;
-
+        DhWindowPriv         *priv = window->priv;
+        WebKitWebView        *view;
+#ifdef HAVE_WEBKIT2
+        WebKitFindController *find_controller;
+#endif
         view = window_get_active_web_view (window);
 
         gtk_widget_hide (priv->findbar);
 #ifdef HAVE_WEBKIT2
-/* TODO: Find API */
+        find_controller = webkit_web_view_get_find_controller (view);
+        webkit_find_controller_search_finish (find_controller);
 #else
         webkit_web_view_set_highlight_text_matches (view, FALSE);
 #endif
