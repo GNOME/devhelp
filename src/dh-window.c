@@ -1291,7 +1291,11 @@ find_library_equivalent (DhWindow    *window,
 }
 
 #ifdef HAVE_WEBKIT2
-/* TODO: Policy Client */
+static gboolean
+window_web_view_decide_policy_cb (WebKitWebView           *web_view,
+                                  WebKitPolicyDecision    *policy_decision,
+                                  WebKitPolicyDecisionType type,
+                                  DhWindow                *window)
 #else
 static gboolean
 window_web_view_navigation_policy_decision_requested (WebKitWebView             *web_view,
@@ -1300,19 +1304,36 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
                                                       WebKitWebNavigationAction *navigation_action,
                                                       WebKitWebPolicyDecision   *policy_decision,
                                                       DhWindow                  *window)
+#endif
 {
         DhWindowPriv *priv;
         const char   *uri;
+#ifdef HAVE_WEBKIT2
+        WebKitNavigationPolicyDecision *navigation_decision;
+#endif
 
         priv = window->priv;
 
+#ifdef HAVE_WEBKIT2
+        if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
+                return FALSE;
+
+        navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (policy_decision);
+        uri = webkit_uri_request_get_uri (webkit_navigation_policy_decision_get_request (navigation_decision));
+#else
         uri = webkit_network_request_get_uri (request);
+#endif
 
         /* make sure to hide the info bar on page change */
         gtk_widget_hide (window_get_active_info_bar (window));
 
+#ifdef HAVE_WEBKIT2
+        if (webkit_navigation_policy_decision_get_mouse_button (navigation_decision) == 2) { /* middle click */
+                webkit_policy_decision_ignore (policy_decision);
+#else
         if (webkit_web_navigation_action_get_button (navigation_action) == 2) { /* middle click */
                 webkit_web_policy_decision_ignore (policy_decision);
+#endif
                 g_signal_emit (window, signals[OPEN_LINK], 0, uri, DH_OPEN_LINK_NEW_TAB);
                 return TRUE;
         }
@@ -1324,7 +1345,11 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
         if (strncmp (uri, "http://library.gnome.org/devel/", 31) == 0) {
                 gchar *local_uri = find_library_equivalent (window, uri);
                 if (local_uri) {
+#ifdef HAVE_WEBKIT2
+                        webkit_policy_decision_ignore (policy_decision);
+#else
                         webkit_web_policy_decision_ignore (policy_decision);
+#endif
                         _dh_window_display_uri (window, local_uri);
                         g_free (local_uri);
                         return TRUE;
@@ -1332,7 +1357,11 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
         }
 
         if (strncmp (uri, "file://", 7) != 0) {
+#ifdef HAVE_WEBKIT2
+                webkit_policy_decision_ignore (policy_decision);
+#else
                 webkit_web_policy_decision_ignore (policy_decision);
+#endif
                 gtk_show_uri (NULL, uri, GDK_CURRENT_TIME, NULL);
                 return TRUE;
         }
@@ -1344,7 +1373,6 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
 
         return FALSE;
 }
-#endif /* HAVE_WEBKIT2 */
 
 #ifdef HAVE_WEBKIT2
 static gboolean
@@ -1716,7 +1744,9 @@ window_open_new_tab (DhWindow    *window,
                           G_CALLBACK (window_web_view_button_press_event_cb),
                           window);
 #ifdef HAVE_WEBKIT2
-/* TODO: Policy Client */
+        g_signal_connect (view, "decide-policy",
+                          G_CALLBACK (window_web_view_decide_policy_cb),
+                          window);
 #else
         g_signal_connect (view, "navigation-policy-decision-requested",
                           G_CALLBACK (window_web_view_navigation_policy_decision_requested),
