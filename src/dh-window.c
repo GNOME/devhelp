@@ -92,23 +92,25 @@ static const
 struct
 {
         gchar *name;
-        int    level;
+        double level;
 }
 zoom_levels[] =
 {
-        { N_("50%"), 70 },
-        { N_("75%"), 84 },
-        { N_("100%"), 100 },
-        { N_("125%"), 119 },
-        { N_("150%"), 141 },
-        { N_("175%"), 168 },
-        { N_("200%"), 200 },
-        { N_("300%"), 283 },
-        { N_("400%"), 400 }
+        { N_("50%"), 0.5 },
+        { N_("75%"), 0.8408964152 },
+        { N_("100%"), 1.0 },
+        { N_("125%"), 1.1892071149 },
+        { N_("150%"), 1.4142135623 },
+        { N_("175%"), 1.6817928304 },
+        { N_("200%"), 2.0 },
+        { N_("300%"), 2.8284271247 },
+        { N_("400%"), 4.0 }
 };
 
+static const guint n_zoom_levels = G_N_ELEMENTS (zoom_levels);
+
 #define ZOOM_MINIMAL    (zoom_levels[0].level)
-#define ZOOM_MAXIMAL    (zoom_levels[8].level)
+#define ZOOM_MAXIMAL    (zoom_levels[n_zoom_levels - 1].level)
 #define ZOOM_DEFAULT    (zoom_levels[2].level)
 
 static void           dh_window_class_init           (DhWindowClass   *klass);
@@ -281,21 +283,26 @@ static int
 window_get_current_zoom_level_index (DhWindow *window)
 {
         WebKitWebView *web_view;
-        float zoom_level;
-        int zoom_level_as_int = ZOOM_DEFAULT;
+        double previous, current, mean;
+        double zoom_level = ZOOM_DEFAULT;
         int i;
 
         web_view = window_get_active_web_view (window);
-        if (web_view) {
-                g_object_get (web_view, "zoom-level", &zoom_level, NULL);
-                zoom_level_as_int = (int)(zoom_level*100);
+        if (web_view)
+                zoom_level = webkit_web_view_get_zoom_level (web_view);
+
+        previous = zoom_levels[0].level;
+        for (i = 1; i < n_zoom_levels; i++) {
+                current = zoom_levels[i].level;
+                mean = sqrt (previous * current);
+
+                if (zoom_level <= mean)
+                        return i - 1;
+
+                previous = current;
         }
 
-        for (i=0; zoom_levels[i].level != ZOOM_MAXIMAL; i++) {
-                if (zoom_levels[i].level == zoom_level_as_int)
-                        return i;
-        }
-        return i;
+        return n_zoom_levels - 1;
 }
 
 static void
@@ -334,9 +341,7 @@ window_activate_zoom_in (GtkAction *action,
                 WebKitWebView *web_view;
 
                 web_view = window_get_active_web_view (window);
-                g_object_set (web_view,
-                              "zoom-level", (float)(zoom_levels[zoom_level_idx+1].level)/100,
-                              NULL);
+                webkit_web_view_set_zoom_level (web_view, zoom_levels[zoom_level_idx + 1].level);
                 window_update_zoom_actions_sensitiveness (window);
         }
 
@@ -356,9 +361,7 @@ window_activate_zoom_out (GtkAction *action,
                 WebKitWebView *web_view;
 
                 web_view = window_get_active_web_view (window);
-                g_object_set (web_view,
-                              "zoom-level", (float)(zoom_levels[zoom_level_idx-1].level)/100,
-                              NULL);
+                webkit_web_view_set_zoom_level (web_view, zoom_levels[zoom_level_idx - 1].level);
                 window_update_zoom_actions_sensitiveness (window);
         }
 }
@@ -373,7 +376,7 @@ window_activate_zoom_default (GtkAction *action,
         priv = window->priv;
 
         web_view = window_get_active_web_view (window);
-        g_object_set (web_view, "zoom-level", (float)(ZOOM_DEFAULT)/100, NULL);
+        webkit_web_view_set_zoom_level (web_view, ZOOM_DEFAULT);
         window_update_zoom_actions_sensitiveness (window);
 }
 
