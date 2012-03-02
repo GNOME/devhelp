@@ -60,7 +60,52 @@ view_finalize (GObject *object)
 }
 
 #ifdef HAVE_WEBKIT2
-/* TODO: Policy Client */
+static gboolean
+assistant_decide_policy (WebKitWebView           *web_view,
+                         WebKitPolicyDecision    *decision,
+                         WebKitPolicyDecisionType decision_type)
+{
+        DhAssistantViewPriv            *priv;
+        const gchar                    *uri;
+        WebKitNavigationPolicyDecision *navigation_decision;
+        WebKitNavigationType            navigation_type;
+        WebKitURIRequest               *request;
+        GtkWidget                      *window;
+
+        if (decision_type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION) {
+                webkit_policy_decision_ignore (decision);
+
+                return TRUE;
+        }
+
+        priv = GET_PRIVATE (web_view);
+        navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (decision);
+        navigation_type = webkit_navigation_policy_decision_get_navigation_type (navigation_decision);
+        if (navigation_type != WEBKIT_NAVIGATION_TYPE_LINK_CLICKED) {
+                if (! priv->snippet_loaded) {
+                        priv->snippet_loaded = TRUE;
+                        webkit_policy_decision_use (decision);
+                }
+
+                webkit_policy_decision_ignore (decision);
+
+                return TRUE;
+        }
+
+        request = webkit_navigation_policy_decision_get_request (navigation_decision);
+        uri = webkit_uri_request_get_uri (request);
+        if (strcmp (uri, "about:blank") == 0) {
+                webkit_policy_decision_use (decision);
+
+                return TRUE;
+        }
+
+        window = dh_base_get_window (priv->base);
+        _dh_window_display_uri (DH_WINDOW (window), uri);
+        webkit_policy_decision_ignore (decision);
+
+        return TRUE;
+}
 #else
 static WebKitNavigationResponse
 assistant_navigation_requested (WebKitWebView        *web_view,
@@ -114,7 +159,7 @@ dh_assistant_view_class_init (DhAssistantViewClass* klass)
 
         widget_class->button_press_event = assistant_button_press_event;
 #ifdef HAVE_WEBKIT2
-/* TODO: Policy Client */
+        web_view_class->decide_policy = assistant_decide_policy;
 #else
         web_view_class->navigation_requested = assistant_navigation_requested;
 #endif
