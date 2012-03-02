@@ -196,13 +196,15 @@ static void
 window_activate_print (GtkAction *action,
                        DhWindow  *window)
 {
+        WebKitWebView *web_view = window_get_active_web_view (window);
 #ifdef HAVE_WEBKIT2
-/* TODO: Printing API */
-#else
-    WebKitWebView *web_view;
+        WebKitPrintOperation *print_operation;
 
-    web_view = window_get_active_web_view (window);
-    webkit_web_view_execute_script (web_view, "print();");
+        print_operation = webkit_print_operation_new (web_view);
+        webkit_print_operation_run_dialog (print_operation, GTK_WIDGET (window));
+        g_object_unref (print_operation);
+#else
+        webkit_web_view_execute_script (web_view, "print();");
 #endif
 }
 
