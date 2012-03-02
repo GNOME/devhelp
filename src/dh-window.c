@@ -265,12 +265,12 @@ window_activate_copy (GtkAction *action,
                 gtk_clipboard_set_text (clipboard,
                                 dh_link_get_name(priv->selected_search_link), -1);
         } else {
-#ifdef HAVE_WEBKIT2
-/* TODO: Editor API */
-#else
                 WebKitWebView *web_view;
 
                 web_view = window_get_active_web_view (window);
+#ifdef HAVE_WEBKIT2
+                webkit_web_view_execute_editing_command (web_view, WEBKIT_EDITING_COMMAND_COPY);
+#else
                 webkit_web_view_copy_clipboard (web_view);
 #endif
         }
