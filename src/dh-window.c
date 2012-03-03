@@ -186,10 +186,6 @@ static void
 window_activate_new_tab (GtkAction *action,
                          DhWindow  *window)
 {
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
         window_open_new_tab (window, NULL, TRUE);
 }
 
@@ -355,10 +351,7 @@ static void
 window_activate_zoom_in (GtkAction *action,
                          DhWindow  *window)
 {
-        DhWindowPriv *priv;
         int zoom_level_idx;
-
-        priv = window->priv;
 
         zoom_level_idx = window_get_current_zoom_level_index (window);
         if (zoom_levels[zoom_level_idx].level < ZOOM_MAXIMAL) {
@@ -375,10 +368,7 @@ static void
 window_activate_zoom_out (GtkAction *action,
                           DhWindow  *window)
 {
-        DhWindowPriv *priv;
         int zoom_level_idx;
-
-        priv = window->priv;
 
         zoom_level_idx = window_get_current_zoom_level_index (window);
         if (zoom_levels[zoom_level_idx].level > ZOOM_MINIMAL) {
@@ -394,10 +384,7 @@ static void
 window_activate_zoom_default (GtkAction *action,
                               DhWindow  *window)
 {
-        DhWindowPriv  *priv;
         WebKitWebView *web_view;
-
-        priv = window->priv;
 
         web_view = window_get_active_web_view (window);
         webkit_web_view_set_zoom_level (web_view, ZOOM_DEFAULT);
@@ -1429,11 +1416,8 @@ window_tree_link_selected_cb (GObject  *ignored,
                               DhLink   *link,
                               DhWindow *window)
 {
-        DhWindowPriv  *priv;
         WebKitWebView *view;
         gchar         *uri;
-
-        priv = window->priv;
 
         view = window_get_active_web_view (window);
 

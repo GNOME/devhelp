@@ -358,12 +358,11 @@ search_entry_activated_cb (GtkEntry *entry,
         gchar        *book_id;
         gchar        *language;
         const gchar  *str;
-        DhLink       *link;
 
         /* Always sets book_id and language */
         search_combo_get_active (search, &book_id, &language);
         str = gtk_entry_get_text (GTK_ENTRY (priv->entry));
-        link = dh_keyword_model_filter (priv->model, str, book_id, language);
+        dh_keyword_model_filter (priv->model, str, book_id, language);
         g_free (book_id);
         g_free (language);
 }
@@ -390,12 +389,11 @@ search_complete_idle (DhSearch *search)
         DhSearchPriv *priv = GET_PRIVATE (search);
         const gchar  *str;
         gchar        *completed = NULL;
-        GList        *list;
         gsize         length;
 
         str = gtk_entry_get_text (GTK_ENTRY (priv->entry));
 
-        list = g_completion_complete (priv->completion, str, &completed);
+        g_completion_complete (priv->completion, str, &completed);
         if (completed) {
                 length = strlen (str);
 
@@ -443,13 +441,8 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
                        GtkTreeIter       *iter,
                        gpointer           data)
 {
-        DhSearch     *search;
-        DhSearchPriv *priv;
         DhLink       *link;
         PangoStyle    style;
-
-        search = data;
-        priv = GET_PRIVATE (search);
 
         gtk_tree_model_get (tree_model, iter,
                             DH_KEYWORD_MODEL_COL_LINK, &link,
