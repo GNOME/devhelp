@@ -27,6 +27,7 @@
 
 #include "config.h"
 #include <string.h>
+#include <math.h>
 #include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
