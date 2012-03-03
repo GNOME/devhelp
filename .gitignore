@@ -12,14 +12,7 @@ autom4te.cache/
 /ABOUT-NLS
 /aclocal.m4
 /m4
-/build/compile
-/build/config.guess
-/build/config.sub
-/build/depcomp
-/build/install-sh
-/build/ltmain.sh
-/build/missing
-/build/py-compile
+/build-aux
 /compile
 /config.*
 /configure
