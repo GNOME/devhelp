@@ -1,3 +1,22 @@
+==============
+Version 3.3.91
+==============
+
+This release can be built using WebKit2 (pass --with-webkit2 to configure),
+thanks to Carlos Garcia Campos for the port.
+
+Fixed bugs:
+
+ - #647383, Should not use DISABLE_DEPRECATED in releases
+ - #669696, Use of freed memory in dh_assistant_view_set_link()
+
+Updated translations: bg, cs, hu, ja, nb, pl, ru, si, sr@latin, sr, sv, te, tr
+
+Many thanks to all contributors: Praveen Illa, Muhammet Kara, Мирослав Николић,
+Carlos Garcia Campos, Alexander Shopov, Daniel Nylander, Yuri Myasoedov, Piotr
+Drąg, Martin Robinson, OKANO Takayoshi, Danishka Navin, Kjartan Maraas, Sergio
+Villar Senin, Marek Černocký, Gabor Kelemen, Aleksander Morgado
+
 =============
 Version 3.3.3
 =============
