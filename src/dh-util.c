@@ -667,6 +667,7 @@ view_destroy_cb (GtkWidget *view,
         views = g_list_remove (views, view);
 }
 
+#ifdef HAVE_WEBKIT2
 static gdouble
 get_screen_dpi (GdkScreen *screen)
 {
@@ -682,6 +683,7 @@ get_screen_dpi (GdkScreen *screen)
 
         return dp / di;
 }
+#endif
 
 static guint
 dh_util_convert_font_size_to_pixels (GtkWidget *widget,
