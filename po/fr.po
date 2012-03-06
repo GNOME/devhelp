@@ -1,5 +1,5 @@
 # French translation of devhelp.
-# Copyright (C) 2001-2010 Free Software Foundation, Inc.
+# Copyright (C) 2001-2012 Free Software Foundation, Inc.
 # This file is distributed under the GNU General Public License Version 2.
 #
 # Christophe Fergeau <christophe.fergeau@laposte.net>, 2001.
@@ -11,16 +11,16 @@
 # Jonathan Ernst <jonathan@ernstfamily.ch>, 2006-2007.
 # Damien Durand <splinux@fedoraproject.org>, 2006.
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007.
-# Bruno Brouard <annoa.b@gmail.com>, 2010
+# Bruno Brouard <annoa.b@gmail.com>, 2010,2012
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-12-21 10:07+0000\n"
-"PO-Revision-Date: 2011-01-14 10:03+0100\n"
-"Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
+"product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-12-17 15:53+0000\n"
+"PO-Revision-Date: 2012-03-06 20:28+0100\n"
+"Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +33,7 @@ msgstr "Programme d'aide pour les développeurs"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
+#: ../src/dh-window.c:731 ../src/dh-window.c:1039 ../src/dh-window.c:1868
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -132,7 +132,8 @@ msgstr "Utiliser les polices de caractères par défaut du système."
 
 #: ../data/devhelp.schemas.in.h:23
 msgid "Whether books should be grouped by language in the UI"
-msgstr "Indique si les livres doivent être groupés par langage dans l'interface"
+msgstr ""
+"Indique si les livres doivent être groupés par langage dans l'interface"
 
 #: ../data/devhelp.schemas.in.h:24
 msgid "Whether the main window should start maximized."
@@ -176,26 +177,34 @@ msgid "Book Shelf"
 msgstr "Bibliothèque"
 
 #: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "Activé"
+
+#: ../data/ui/devhelp.builder.h:3
 msgid "Fonts"
 msgstr "Polices"
 
-#: ../data/ui/devhelp.builder.h:3
+#: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
 msgstr "Préférences"
 
-#: ../data/ui/devhelp.builder.h:4
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Titre"
+
+#: ../data/ui/devhelp.builder.h:6
 msgid "_Fixed width:"
 msgstr "Largeur _fixe :"
 
-#: ../data/ui/devhelp.builder.h:5
+#: ../data/ui/devhelp.builder.h:7
 msgid "_Group by language"
 msgstr "_Grouper par langage"
 
-#: ../data/ui/devhelp.builder.h:6
+#: ../data/ui/devhelp.builder.h:8
 msgid "_Use system fonts"
 msgstr "_Utiliser les polices de caractères du système"
 
-#: ../data/ui/devhelp.builder.h:7
+#: ../data/ui/devhelp.builder.h:9
 msgid "_Variable width: "
 msgstr "Largeur _variable : "
 
@@ -209,11 +218,11 @@ msgstr ""
 "Un appui sur la touche F2 permet de lancer Devhelp pour le mot à "
 "l'emplacement du curseur."
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp.py:69
 msgid "Show API Documentation"
 msgstr "Afficher la documentation des API"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+#: ../misc/gedit-plugin/devhelp.py:71
 msgid "Show API Documentation for the word at the cursor"
 msgstr ""
 "Affiche la documentation des API pour le mot à l'emplacement du curseur"
@@ -358,47 +367,47 @@ msgstr "Impossible de décompresser le livre « %s » : %s"
 msgid "All books"
 msgstr "Tous les livres"
 
-#: ../src/dh-search.c:1117
+#: ../src/dh-search.c:1118
 msgid "Search in:"
 msgstr "Rechercher dans :"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:99
 msgid "50%"
 msgstr "50 %"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:100
 msgid "75%"
 msgstr "75 %"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:101
 msgid "100%"
 msgstr "100 %"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:102
 msgid "125%"
 msgstr "125 %"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:103
 msgid "150%"
 msgstr "150 %"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:104
 msgid "175%"
 msgstr "175 %"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:105
 msgid "200%"
 msgstr "200 %"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:106
 msgid "300%"
 msgstr "300 %"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:107
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:735
+#: ../src/dh-window.c:726
 msgid "translator_credits"
 msgstr ""
 "Christophe Fergeau <christophe.fergeau@laposte.net>\n"
@@ -411,130 +420,119 @@ msgstr ""
 "Damien Durand <splinux@fedoraproject.org>\n"
 "Stéphane Raimbault <stephane.raimbault@gmail.com>"
 
-#: ../src/dh-window.c:742
+#: ../src/dh-window.c:733
 msgid "A developers' help browser for GNOME"
 msgstr "Un navigateur d'aide pour les développeurs GNOME"
 
-#: ../src/dh-window.c:749
+#: ../src/dh-window.c:740
 msgid "DevHelp Website"
 msgstr "Site Web de Devhelp"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:764
 msgid "_File"
 msgstr "_Fichier"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:765
 msgid "_Edit"
 msgstr "É_dition"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:766
 msgid "_View"
 msgstr "_Affichage"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:767
 msgid "_Go"
 msgstr "A_ller à"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:768
 msgid "_Help"
 msgstr "Aid_e"
 
 #. File menu
-#: ../src/dh-window.c:780
+#: ../src/dh-window.c:771
 msgid "_New Window"
 msgstr "_Nouvelle fenêtre"
 
-#: ../src/dh-window.c:782
+#: ../src/dh-window.c:773
 msgid "New _Tab"
 msgstr "Nouvel ongle_t"
 
-#: ../src/dh-window.c:784
+#: ../src/dh-window.c:775
 msgid "_Print…"
 msgstr "_Imprimer…"
 
-#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:787 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "Rechercher le suivant"
 
-#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:789 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "Rechercher le précédent"
 
-#: ../src/dh-window.c:805
+#: ../src/dh-window.c:796
 msgid "Go to the previous page"
 msgstr "Va à la page précédente"
 
-#: ../src/dh-window.c:808
+#: ../src/dh-window.c:799
 msgid "Go to the next page"
 msgstr "Va à la page suivante"
 
-#: ../src/dh-window.c:811
+#: ../src/dh-window.c:802
 msgid "_Contents Tab"
 msgstr "Onglet du _sommaire"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:805
 msgid "_Search Tab"
 msgstr "Onglet de _recherche"
 
 #. View menu
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:809
 msgid "_Larger Text"
 msgstr "A_grandir le texte"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:810
 msgid "Increase the text size"
 msgstr "Augmente la taille du texte"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:812
 msgid "S_maller Text"
 msgstr "_Réduire le texte"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:813
 msgid "Decrease the text size"
 msgstr "Diminue la taille du texte"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:815
 msgid "_Normal Size"
 msgstr "Taille _normale"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:816
 msgid "Use the normal text size"
 msgstr "Utilise la taille standard pour le texte"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:825
 msgid "Leave fullscreen mode"
 msgstr "Quitte le mode plein écran"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:832
 msgid "Display in full screen"
 msgstr "Passe en mode d'affichage plein écran"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:961
+#: ../src/dh-window.c:952
 msgid "Larger"
 msgstr "Plus grand"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:964
+#: ../src/dh-window.c:955
 msgid "Smaller"
 msgstr "Plus petit"
 
-#. i18n: please don't translate
-#. * "Devhelp", it's a name, not a
-#. * generic word.
-#: ../src/dh-window.c:1109
-msgid "About Devhelp"
-msgstr "À propos de Devhelp"
-
-#: ../src/dh-window.c:1114
-msgid "Preferences…"
-msgstr "Préférences…"
-
-#: ../src/dh-window.c:1156
+#: ../src/dh-window.c:1159
 msgid "Contents"
 msgstr "Sommaire"
 
-#: ../src/dh-window.c:1166
+#: ../src/dh-window.c:1169
 msgid "Search"
 msgstr "Rechercher"
 
@@ -542,7 +540,7 @@ msgstr "Rechercher"
 msgid "Error opening the requested link."
 msgstr "Erreur lors de l'ouverture du lien demandé."
 
-#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
+#: ../src/dh-window.c:1657 ../src/dh-window.c:1896
 msgid "Empty Page"
 msgstr "Page vide"
 
@@ -565,3 +563,4 @@ msgstr "_Sensible à la casse"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Bascule la sensibilité à la casse de la recherche"
+
