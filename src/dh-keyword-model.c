@@ -362,6 +362,10 @@ dh_globbed_keywords_new (GStrv keywords)
         GList *list = NULL;
         struct _DhKeywordGlobPattern *glob_struct;
 
+        if (keywords == NULL) {
+                return NULL;
+        }
+
         for (i = 0; keywords[i] != NULL; i++) {
                 glob_struct = g_slice_new (struct _DhKeywordGlobPattern);
                 glob_struct->keyword = keywords[i];
