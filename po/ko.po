@@ -3,7 +3,7 @@
 #
 # Kang Jeong-Hee <Keizi@mail.co.kr>, 2003.
 # Seongchong Park <spark@tapl01.kaist.ac.kr>, 2004.
-# Changwoo Ryu <cwryu@debian.org>, 2006, 2008, 2009, 2010, 2011.
+# Changwoo Ryu <cwryu@debian.org>, 2006, 2008-2012.
 #
 # 주의:
 # - 이 프로그램의 이름인 Devhelp는 "개발자 도움말"로 풀어서 번역
@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
-"POT-Creation-Date: 2011-02-13 06:40+0900\n"
-"PO-Revision-Date: 2011-02-13 06:43+0900\n"
+"POT-Creation-Date: 2012-03-10 16:37+0900\n"
+"PO-Revision-Date: 2012-03-10 16:37+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: Korean\n"
@@ -22,168 +22,168 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/devhelp.desktop.in.in.h:1
-msgid "Developer's Help program"
-msgstr "개발자를 위한 도움말 프로그램"
-
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-main.c:281
+#: ../src/dh-window.c:745 ../src/dh-window.c:1051 ../src/dh-window.c:1967
 msgid "Devhelp"
 msgstr "개발 도움말"
+
+#: ../data/devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "개발자를 위한 도움말 프로그램"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "문서 보기"
 
 #: ../data/devhelp.schemas.in.h:1
-msgid "Books disabled"
-msgstr "사용하지 않는 책 목록"
-
-#: ../data/devhelp.schemas.in.h:2
-msgid "Font for fixed width text"
-msgstr "고정폭 텍스트에 사용할 글꼴"
-
-#: ../data/devhelp.schemas.in.h:3
-msgid "Font for text"
-msgstr "텍스트에 사용할 글꼴"
-
-#: ../data/devhelp.schemas.in.h:4
-msgid "Font for text with fixed width, such as code examples."
-msgstr "고정폭 텍스트에 사용할 글꼴 (코드 예제 등)."
-
-#: ../data/devhelp.schemas.in.h:5
-msgid "Font for text with variable width."
-msgstr "가변폭의 텍스트에 사용할 글꼴."
-
-#: ../data/devhelp.schemas.in.h:6
-msgid "Group by language"
-msgstr "언어별 모음"
-
-#: ../data/devhelp.schemas.in.h:7
-msgid "Height of assistant window"
-msgstr "도우미 창의 높이"
-
-#: ../data/devhelp.schemas.in.h:8
-msgid "Height of main window"
-msgstr "메인 창의 높이"
-
-#: ../data/devhelp.schemas.in.h:9
-msgid "List of books disabled by the user."
-msgstr "사용자에 의해 사용하지 않도록 표시된 책 목록."
-
-#: ../data/devhelp.schemas.in.h:10
 msgid "Main window maximized state"
 msgstr "메인 창의 최대화 상태"
 
-#: ../data/devhelp.schemas.in.h:11
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "선택한 탭: \"content\" 혹은 \"search\""
-
-#: ../data/devhelp.schemas.in.h:12
-msgid "The X position of the assistant window."
-msgstr "도우미 창의 가로 위치."
-
-#: ../data/devhelp.schemas.in.h:13
-msgid "The X position of the main window."
-msgstr "메인 창의 가로 위치."
-
-#: ../data/devhelp.schemas.in.h:14
-msgid "The Y position of the assistant window."
-msgstr "도우미 창의 세로 위치."
-
-#: ../data/devhelp.schemas.in.h:15
-msgid "The Y position of the main window."
-msgstr "메인 창의 세로 위치."
-
-#: ../data/devhelp.schemas.in.h:16
-msgid "The height of the assistant window."
-msgstr "도우미 창의 높이."
-
-#: ../data/devhelp.schemas.in.h:17
-msgid "The height of the main window."
-msgstr "메인 창의 높이."
-
-#: ../data/devhelp.schemas.in.h:18
-msgid "The width of the assistant window."
-msgstr "도우미 창의 너비."
-
-#: ../data/devhelp.schemas.in.h:19
-msgid "The width of the index and search pane."
-msgstr "색인 및 검색 창의 너비."
-
-#: ../data/devhelp.schemas.in.h:20
-msgid "The width of the main window."
-msgstr "메인 창의 너비."
-
-#: ../data/devhelp.schemas.in.h:21
-msgid "Use system fonts"
-msgstr "시스템 글꼴 사용"
-
-#: ../data/devhelp.schemas.in.h:22
-msgid "Use the system default fonts."
-msgstr "시스템 기본 글꼴을 사용합니다."
-
-#: ../data/devhelp.schemas.in.h:23
-msgid "Whether books should be grouped by language in the UI"
-msgstr "UI에서 문서를 언어별로 모을지 여부"
-
-#: ../data/devhelp.schemas.in.h:24
+#: ../data/devhelp.schemas.in.h:2
 msgid "Whether the main window should start maximized."
 msgstr "시작할 때 메인 창을 최대화할 지 여부."
 
-#: ../data/devhelp.schemas.in.h:25
-msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "어느 탭을 선택할 지 지정, \"content\" 혹은 \"search\"."
-
-#: ../data/devhelp.schemas.in.h:26
-msgid "Width of the assistant window"
-msgstr "도우미 창의 너비"
-
-#: ../data/devhelp.schemas.in.h:27
-msgid "Width of the index and search pane"
-msgstr "색인 및 검색 창의 너비"
-
-#: ../data/devhelp.schemas.in.h:28
+#: ../data/devhelp.schemas.in.h:3
 msgid "Width of the main window"
 msgstr "메인 창의 너비"
 
-#: ../data/devhelp.schemas.in.h:29
-msgid "X position of assistant window"
-msgstr "도우미 창의 가로 위치"
+#: ../data/devhelp.schemas.in.h:4
+msgid "The width of the main window."
+msgstr "메인 창의 너비."
 
-#: ../data/devhelp.schemas.in.h:30
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "메인 창의 높이"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "The height of the main window."
+msgstr "메인 창의 높이."
+
+#: ../data/devhelp.schemas.in.h:7
 msgid "X position of main window"
 msgstr "메인 창의 가로 위치"
 
-#: ../data/devhelp.schemas.in.h:31
-msgid "Y position of assistant window"
-msgstr "도우미 창의 세로 위치"
+#: ../data/devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "메인 창의 가로 위치."
 
-#: ../data/devhelp.schemas.in.h:32
+#: ../data/devhelp.schemas.in.h:9
 msgid "Y position of main window"
 msgstr "메인 창의 세로 위치"
 
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "메인 창의 세로 위치."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "Width of the assistant window"
+msgstr "도우미 창의 너비"
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the assistant window."
+msgstr "도우미 창의 너비."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "Height of assistant window"
+msgstr "도우미 창의 높이"
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "The height of the assistant window."
+msgstr "도우미 창의 높이."
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "X position of assistant window"
+msgstr "도우미 창의 가로 위치"
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "The X position of the assistant window."
+msgstr "도우미 창의 가로 위치."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Y position of assistant window"
+msgstr "도우미 창의 세로 위치"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "The Y position of the assistant window."
+msgstr "도우미 창의 세로 위치."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "색인 및 검색 창의 너비"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "The width of the index and search pane."
+msgstr "색인 및 검색 창의 너비."
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "선택한 탭: \"content\" 혹은 \"search\""
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr "어느 탭을 선택할 지 지정, \"content\" 혹은 \"search\"."
+
+#: ../data/devhelp.schemas.in.h:23
+msgid "Books disabled"
+msgstr "사용하지 않는 책 목록"
+
+#: ../data/devhelp.schemas.in.h:24
+msgid "List of books disabled by the user."
+msgstr "사용자에 의해 사용하지 않도록 표시된 책 목록."
+
+#: ../data/devhelp.schemas.in.h:25
+msgid "Group by language"
+msgstr "언어별 모음"
+
+#: ../data/devhelp.schemas.in.h:26
+msgid "Whether books should be grouped by language in the UI"
+msgstr "UI에서 문서를 언어별로 모을지 여부"
+
+#: ../data/devhelp.schemas.in.h:27
+msgid "Use system fonts"
+msgstr "시스템 글꼴 사용"
+
+#: ../data/devhelp.schemas.in.h:28
+msgid "Use the system default fonts."
+msgstr "시스템 기본 글꼴을 사용합니다."
+
+#: ../data/devhelp.schemas.in.h:29
+msgid "Font for text"
+msgstr "텍스트에 사용할 글꼴"
+
+#: ../data/devhelp.schemas.in.h:30
+msgid "Font for text with variable width."
+msgstr "가변폭의 텍스트에 사용할 글꼴."
+
+#: ../data/devhelp.schemas.in.h:31
+msgid "Font for fixed width text"
+msgstr "고정폭 텍스트에 사용할 글꼴"
+
+#: ../data/devhelp.schemas.in.h:32
+msgid "Font for text with fixed width, such as code examples."
+msgstr "고정폭 텍스트에 사용할 글꼴 (코드 예제 등)."
+
 #: ../data/ui/devhelp.builder.h:1
-msgid "Book Shelf"
-msgstr "책장"
-
-#: ../data/ui/devhelp.builder.h:2
-msgid "Fonts"
-msgstr "글꼴"
-
-#: ../data/ui/devhelp.builder.h:3
 msgid "Preferences"
 msgstr "기본 설정"
 
-#: ../data/ui/devhelp.builder.h:4
-msgid "_Fixed width:"
-msgstr "고정폭(_F):"
-
-#: ../data/ui/devhelp.builder.h:5
+#: ../data/ui/devhelp.builder.h:2
 msgid "_Group by language"
 msgstr "언어별 모음(_G)"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Enabled"
+msgstr "사용"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Title"
+msgstr "제목"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Book Shelf"
+msgstr "책장"
 
 #: ../data/ui/devhelp.builder.h:6
 msgid "_Use system fonts"
@@ -192,6 +192,14 @@ msgstr "시스템 글꼴 사용(_U)"
 #: ../data/ui/devhelp.builder.h:7
 msgid "_Variable width: "
 msgstr "가변폭(_V):"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Fixed width:"
+msgstr "고정폭(_F):"
+
+#: ../data/ui/devhelp.builder.h:9
+msgid "Fonts"
+msgstr "글꼴"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -202,20 +210,20 @@ msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr ""
 "F2을 누르면 커서 위치에 있는 단어에 대해 개발 도움말 프로그램을 실행합니다"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp.py:69
 msgid "Show API Documentation"
 msgstr "API 문서 보기"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+#: ../misc/gedit-plugin/devhelp.py:71
 msgid "Show API Documentation for the word at the cursor"
 msgstr "커서 위치에 있는 단어의 API 문서를 봅니다"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:74
+#: ../src/dh-assistant.c:76
 msgid "Devhelp — Assistant"
 msgstr "개발 도움말 — 도우미"
 
-#: ../src/dh-assistant-view.c:336
+#: ../src/dh-assistant-view.c:407
 msgid "Book:"
 msgstr "문서:"
 
@@ -340,189 +348,178 @@ msgstr "%d번째 줄, %d번째 열의 <keyword>에 \"type\" 요소가 필요합�
 msgid "Cannot uncompress book '%s': %s"
 msgstr "문서 파일 '%s'을(를) 압축해제할 수 없습니다 : %s"
 
-#: ../src/dh-search.c:500
+#: ../src/dh-search.c:493
 msgid "All books"
 msgstr "모든 문서"
 
-#: ../src/dh-search.c:1118
+#: ../src/dh-search.c:1111
 msgid "Search in:"
 msgstr "찾을 범위:"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:104
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:105
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:106
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:107
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:108
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:109
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:110
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:111
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:112
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:735
+#: ../src/dh-window.c:740
 msgid "translator_credits"
 msgstr ""
 "강정희\n"
 "류창우\n"
 "박성종"
 
-#: ../src/dh-window.c:742
+#: ../src/dh-window.c:747
 msgid "A developers' help browser for GNOME"
 msgstr "그놈 개발자 도움말 브라우저"
 
-#: ../src/dh-window.c:749
+#: ../src/dh-window.c:754
 msgid "DevHelp Website"
 msgstr "개발 도움말 웹사이트"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:778
 msgid "_File"
 msgstr "파일(_F)"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:779
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:780
 msgid "_View"
 msgstr "보기(_V)"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:781
 msgid "_Go"
 msgstr "이동(_G)"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:782
 msgid "_Help"
 msgstr "도움말(_H)"
 
 #. File menu
-#: ../src/dh-window.c:780
+#: ../src/dh-window.c:785
 msgid "_New Window"
 msgstr "새 창(_N)"
 
-#: ../src/dh-window.c:782
+#: ../src/dh-window.c:787
 msgid "New _Tab"
 msgstr "새 탭(_T)"
 
-#: ../src/dh-window.c:784
+#: ../src/dh-window.c:789
 msgid "_Print…"
 msgstr "인쇄(_P)…"
 
-#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
+#: ../src/dh-window.c:801 ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "다음 찾기"
 
-#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
+#: ../src/dh-window.c:803 ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "이전 찾기"
 
-#: ../src/dh-window.c:805
+#: ../src/dh-window.c:810
 msgid "Go to the previous page"
 msgstr "이전 페이지로 이동"
 
-#: ../src/dh-window.c:808
+#: ../src/dh-window.c:813
 msgid "Go to the next page"
 msgstr "다음 페이지로 이동"
 
-#: ../src/dh-window.c:811
+#: ../src/dh-window.c:816
 msgid "_Contents Tab"
 msgstr "차례 탭(_C)"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:819
 msgid "_Search Tab"
 msgstr "검색 탭(_S)"
 
 #. View menu
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:823
 msgid "_Larger Text"
 msgstr "글씨 크게 (_L)"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:824
 msgid "Increase the text size"
 msgstr "글씨 크기를 늘립니다"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:826
 msgid "S_maller Text"
 msgstr "글씨 작게(_M)"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:827
 msgid "Decrease the text size"
 msgstr "글씨 크기를 줄입니다"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:829
 msgid "_Normal Size"
 msgstr "보통 크기(_N)"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:830
 msgid "Use the normal text size"
 msgstr "보통 글씨 크기를 사용합니다"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:839
 msgid "Leave fullscreen mode"
 msgstr "전체 화면 모드 나가기"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:846
 msgid "Display in full screen"
 msgstr "전체 화면에서 표시"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:961
+#: ../src/dh-window.c:966
 msgid "Larger"
 msgstr "더 큰 글씨"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:964
+#: ../src/dh-window.c:969
 msgid "Smaller"
 msgstr "더 작은 글씨"
 
-#. i18n: please don't translate
-#. * "Devhelp", it's a name, not a
-#. * generic word.
-#: ../src/dh-window.c:1109
-msgid "About Devhelp"
-msgstr "개발 도움말 정보"
-
-#: ../src/dh-window.c:1114
-msgid "Preferences…"
-msgstr "기본 설정…"
-
-#: ../src/dh-window.c:1156
+#: ../src/dh-window.c:1171
 msgid "Contents"
 msgstr "내용"
 
-#: ../src/dh-window.c:1166
+#: ../src/dh-window.c:1181
 msgid "Search"
 msgstr "검색"
 
-#: ../src/dh-window.c:1344
+#: ../src/dh-window.c:1395
 msgid "Error opening the requested link."
 msgstr "요청한 링크를 여는데 오류가 발생했습니다."
 
-#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
+#: ../src/dh-window.c:1748 ../src/dh-window.c:1995
 msgid "Empty Page"
 msgstr "빈 페이지"
 
@@ -545,3 +542,9 @@ msgstr "대소문자 구별(_A)"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "대소문자를 구별해서 찾을 지 토글합니다"
+
+#~ msgid "About Devhelp"
+#~ msgstr "개발 도움말 정보"
+
+#~ msgid "Preferences…"
+#~ msgstr "기본 설정…"
