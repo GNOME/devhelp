@@ -1,0 +1,539 @@
+# translation of devhelp.master.po to Khmer
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Khoem Sokhem <khoemsokhem@khmeros.info>, 2012.
+# Seng Sutha <sutha@khmeros.info>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp.master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-01-11 18:02+0000\n"
+"PO-Revision-Date: 2012-01-25 10:14+0700\n"
+"Last-Translator: Seng Sutha <sutha@khmeros.info>\n"
+"Language-Team: Khmer <supprot@khmeros.info>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: WordForge 0.8 RC1\n"
+"X-Language: km-KH\n"
+
+#: ../data/devhelp.desktop.in.in.h:1
+msgid "Developer's Help program"
+msgstr "កម្មវិធី​ជំនួយ​​របស់​អ្នក​អភិវឌ្ឍន៍"
+
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
+#: ../src/dh-window.c:731 ../src/dh-window.c:1039 ../src/dh-window.c:1868
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "កម្មវិធី​រុករក​ឯកសារ"
+
+#: ../data/devhelp.schemas.in.h:1
+msgid "Books disabled"
+msgstr "បាន​បិទ​សៀវភៅ"
+
+#: ../data/devhelp.schemas.in.h:2
+msgid "Font for fixed width text"
+msgstr "ពុម្ពអក្សរ​សម្រាប់​អត្ថបទ​ទឹង​ថេរ"
+
+#: ../data/devhelp.schemas.in.h:3
+msgid "Font for text"
+msgstr "ពុម្ពអក្សរ​សម្រាប់​អត្ថបទ"
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "Font for text with fixed width, such as code examples."
+msgstr "ពុម្ពអក្សរ​សម្រាប់​អត្ថបទ​ដែល​មាន​ទទឹង​ថេរ ដូច​ជា​​ឧទាហរណ៍​របស់​កូដ ។"
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Font for text with variable width."
+msgstr "ពុម្ពអក្សរ​សម្រាប់​អត្ថបទ​ដែល​មាន​ទទឹង​​អថេរ ។"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "Group by language"
+msgstr "ដាក់​ជា​ក្រុម​តាម​ភាសា"
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "Height of assistant window"
+msgstr "កម្ពស់​របស់​​បង្អួច​ជំនួយ"
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "Height of main window"
+msgstr "កម្ពស់​​របស់​បង្អួច​​​មេ"
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "List of books disabled by the user."
+msgstr "បញ្ជី​សៀវភៅ​បាន​បិទ​ដោយ​អ្នក​ប្រើ ។"
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "Main window maximized state"
+msgstr "បាន​កំណត់​សភាព​អតិបរមា​​នៃ​បង្អួច​មេ"
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "ផ្ទាំង​ដែល​បាន​ជ្រើស ៖ \"មាតិកា\" ឬ \"ការ​ស្វែងរក\""
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The X position of the assistant window."
+msgstr " X ទីតាំង​របស់​បង្អួច​ជំនួយ ។"
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "The X position of the main window."
+msgstr "X ទីតាំង​របស់​បង្អួច​មេ ។"
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "The Y position of the assistant window."
+msgstr "Y ទីតាំង​របស់​បង្អួច​ជំនួយ ។"
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "The Y position of the main window."
+msgstr "Y ទីតាំង​របស់​បង្អួច​មេ ។"
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "The height of the assistant window."
+msgstr "កម្ពស់​របស់​បង្អួច​ជំនួយ ។"
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "The height of the main window."
+msgstr "កម្ពស់​របស់​បង្អួច​មេ ។"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "The width of the assistant window."
+msgstr "ទទឹង​របស់​បង្អួច​ជំនួយ ។"
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "The width of the index and search pane."
+msgstr "ទទឹង​របស់​លិបិក្រម និងការ​​​​ស្វែងរក​ស្លាបព្រិល ។"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "The width of the main window."
+msgstr "ទទឹង​របស់​បង្អួច​មេ ។"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "Use system fonts"
+msgstr "ប្រើ​ពុម្ពអក្សរ​ប្រព័ន្ធ"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Use the system default fonts."
+msgstr "ប្រើ​ពុម្ពអក្សរ​លំនាំដើម​ប្រព័ន្ធ ។"
+
+#: ../data/devhelp.schemas.in.h:23
+msgid "Whether books should be grouped by language in the UI"
+msgstr "ថា​តើ​សៀវភៅ​គួរតែ​ត្រូវ​បាន​ដាក់​ជា​ក្រុម​តាម​ភាសា​នៅក្នុង UI"
+
+#: ../data/devhelp.schemas.in.h:24
+msgid "Whether the main window should start maximized."
+msgstr "ថា​តើ​បង្អួច​មេ​គួរតែ​ត្រូវ​​ចាប់ផ្ដើម​ពង្រីក​អតិបរមា ។"
+
+#: ../data/devhelp.schemas.in.h:25
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr "ផ្ទាំង​ណាមួយ​ត្រូវ​បាន​ជ្រើស ៖ \"មាតិកា\" ឬ \"ការ​ស្វែងរក\" ។"
+
+#: ../data/devhelp.schemas.in.h:26
+msgid "Width of the assistant window"
+msgstr "ទទឹង​របស់​បង្អួច​ជំនួយ"
+
+#: ../data/devhelp.schemas.in.h:27
+msgid "Width of the index and search pane"
+msgstr "ទទឹង​របស់​លិបិក្រម និង​ការ​ស្វែងរក​ស្លាបព្រិល"
+
+#: ../data/devhelp.schemas.in.h:28
+msgid "Width of the main window"
+msgstr "ទទឹង​របស់​បង្អួច​មេ"
+
+#: ../data/devhelp.schemas.in.h:29
+msgid "X position of assistant window"
+msgstr "X ទីតាំង​របស់​បង្អួច​ជំនួយ"
+
+#: ../data/devhelp.schemas.in.h:30
+msgid "X position of main window"
+msgstr "X ទីតាំង​របស់​បង្អួច​មេ"
+
+#: ../data/devhelp.schemas.in.h:31
+msgid "Y position of assistant window"
+msgstr "Y ទីតាំង​របស់​បង្អួច​ជំនួយ"
+
+#: ../data/devhelp.schemas.in.h:32
+msgid "Y position of main window"
+msgstr "Y ទីតាំង​របស់​បង្អួច​មេ"
+
+#: ../data/ui/devhelp.builder.h:1
+msgid "Book Shelf"
+msgstr "ថត​ដាក់​សៀវភៅ"
+
+#: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "បាន​បើក"
+
+#: ../data/ui/devhelp.builder.h:3
+msgid "Fonts"
+msgstr "ពុម្ពអក្សរ"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Preferences"
+msgstr "ចំណូលចិត្ត"
+
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "ចំណងជើង"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "_Fixed width:"
+msgstr "ទទឹង​ថេរ ៖"
+
+#: ../data/ui/devhelp.builder.h:7
+msgid "_Group by language"
+msgstr "ក្រុម​តាម​ភាសា"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Use system fonts"
+msgstr "ប្រើ​ពុម្ពអក្សរ​ប្រព័ន្ធ"
+
+#: ../data/ui/devhelp.builder.h:9
+msgid "_Variable width: "
+msgstr "ទទឹង​អថេរ ៖"
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "ការ​គាំទ្រ Devhelp"
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "បង្កើត​ F2 នាំ​យក Devhelp សម្រាប់​ពាក្យ​នៅ​ទស្សន៍ទ្រនិច"
+
+#: ../misc/gedit-plugin/devhelp.py:69
+msgid "Show API Documentation"
+msgstr "បង្ហាញ​ឯកសារ API"
+
+#: ../misc/gedit-plugin/devhelp.py:71
+msgid "Show API Documentation for the word at the cursor"
+msgstr "បង្ហាញ​ឯកសារ API សម្រាប់​ពាក្យ​នៅ​ទស្សន៍ទ្រនិច"
+
+#. i18n: Please don't translate "Devhelp".
+#: ../src/dh-assistant.c:74
+msgid "Devhelp — Assistant"
+msgstr "ជំនួយ​របស់ Devhelp"
+
+#: ../src/dh-assistant-view.c:336
+msgid "Book:"
+msgstr "សៀវភៅ ៖"
+
+#: ../src/dh-book.c:252
+#, c-format
+msgid "Language: %s"
+msgstr "ភាសា ៖ %s"
+
+#: ../src/dh-book.c:253
+msgid "Language: Undefined"
+msgstr "ភាសា ៖ ដែល​មិន​បាន​កំណត់"
+
+#. i18n: a documentation book
+#: ../src/dh-link.c:267
+msgid "Book"
+msgstr "សៀវភៅ"
+
+#. i18n: a "page" in a documentation book
+#: ../src/dh-link.c:270
+msgid "Page"
+msgstr "ទំព័រ"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: ../src/dh-link.c:274
+msgid "Keyword"
+msgstr "ពាក្យ​គន្លឹះ"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:279
+msgid "Function"
+msgstr "មុខងារ"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:284
+msgid "Struct"
+msgstr "រចនាសម្ព័ន្ធ"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:289
+msgid "Macro"
+msgstr "ម៉ាក្រូ​"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:294
+msgid "Enum"
+msgstr "Enum"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:299
+msgid "Type"
+msgstr "ប្រភេទ"
+
+#: ../src/dh-main.c:47
+msgid "Search for a keyword"
+msgstr "ស្វែងរក​ពាក្យគន្លឹះ"
+
+#: ../src/dh-main.c:52
+msgid "Quit any running Devhelp"
+msgstr "បោះបង់​ការ​ដំណើរការ Devhelp មួយ​ចំនួន"
+
+#: ../src/dh-main.c:57
+msgid "Display the version and exit"
+msgstr "បង្ហាញ​កំណែ ហើយ​ចេញ"
+
+#: ../src/dh-main.c:62
+msgid "Focus the Devhelp window with the search field active"
+msgstr "ផ្ដោត​លើ​បង្អួច​របស់ Devhelp ដែល​មាន​វាល​ស្វែងរក​សកម្ម"
+
+#: ../src/dh-main.c:67
+msgid "Search and display any hit in the assistant window"
+msgstr "ស្វែងរក និង​បង្ហាញ​ការ​វាយ​មួយ​ចំនួន​នៅ​ក្នុង​បង្អួច​ជំនួយ"
+
+#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
+#: ../src/dh-parser.c:273
+#, c-format
+msgid "Expected '%s', got '%s' at line %d, column %d"
+msgstr " '%s' ដែល​រំពឹង ទទួល​បាន '%s' នៅ​បន្ទាត់ %d ជួរឈរ %d"
+
+#: ../src/dh-parser.c:114
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "namespace មិន​ត្រឹមត្រូវ '%s' នៅ​បន្ទាត់ %d ជួរឈរ %d"
+
+#: ../src/dh-parser.c:143
+#, c-format
+msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr ""
+"ធាតុ \"ចំណងជើង\" \"ឈ្មោះ\" និង \"តំណ\" ត្រូវ​បាន​ទាមទារ​នៅ​បន្ទាប់ %d ជួរឈរ %d"
+
+#: ../src/dh-parser.c:218
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
+msgstr ""
+"ធាតុ \"ឈ្មោះ\" និង \"តំណ\" ​ត្រូវ​បាន​ទាមទារ​ខាងក្នុង <sub> លើ​បន្ទាត់ %d ជួរឈរ "
+"%d"
+
+#: ../src/dh-parser.c:298
+#, c-format
+msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+"ធាតុ \"ឈ្មោះ\" និង \"តំណ\" ​ត្រូវ​បាន​ទាមទារ​​​ខាងក្នុង '%s' លើ​បន្ទាត់ %d ជួរឈរ "
+"%d"
+
+#: ../src/dh-parser.c:311
+#, c-format
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+msgstr "ធាតុ \"ប្រភេទ\" ត្រូវ​បាន​ទាមទារ <keyword> លើ​បន្ទាត់ %d ជួរឈរ %d"
+
+#: ../src/dh-parser.c:514
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "មិន​អាច​​មិន​បង្ហាប់​សៀវភៅ '%s' ៖ %s បាន​ទេ"
+
+#: ../src/dh-search.c:500
+msgid "All books"
+msgstr "សៀវភៅ​ទាំងអស់"
+
+#: ../src/dh-search.c:1118
+msgid "Search in:"
+msgstr "ស្វែងរក​ក្នុង ៖"
+
+#: ../src/dh-window.c:99
+msgid "50%"
+msgstr "៥០%"
+
+#: ../src/dh-window.c:100
+msgid "75%"
+msgstr "៧៥​%"
+
+#: ../src/dh-window.c:101
+msgid "100%"
+msgstr "១០០%"
+
+#: ../src/dh-window.c:102
+msgid "125%"
+msgstr "១២៥​%"
+
+#: ../src/dh-window.c:103
+msgid "150%"
+msgstr "១៥០%"
+
+#: ../src/dh-window.c:104
+msgid "175%"
+msgstr "១៧៥​%"
+
+#: ../src/dh-window.c:105
+msgid "200%"
+msgstr "២០០%"
+
+#: ../src/dh-window.c:106
+msgid "300%"
+msgstr "៣០០​%"
+
+#: ../src/dh-window.c:107
+msgid "400%"
+msgstr "៤០០​%"
+
+#: ../src/dh-window.c:726
+msgid "translator_credits"
+msgstr "ខឹម សុខែម, ម៉ន ម៉េត, សេង សុត្ថា, ចាន់ សម្បត្តិរតនៈ, សុខ សុភា"
+
+#: ../src/dh-window.c:733
+msgid "A developers' help browser for GNOME"
+msgstr "កម្មវិធី​រុករក​ជំនួយ​របស់​អ្នក​អភិវឌ្ឍន៍​សម្រាប់ GNOME"
+
+#: ../src/dh-window.c:740
+msgid "DevHelp Website"
+msgstr "តំបន់បណ្ដាញ​របស់ DevHelp"
+
+#: ../src/dh-window.c:764
+msgid "_File"
+msgstr "ឯកសារ"
+
+#: ../src/dh-window.c:765
+msgid "_Edit"
+msgstr "កែសម្រួល"
+
+#: ../src/dh-window.c:766
+msgid "_View"
+msgstr "មើល"
+
+#: ../src/dh-window.c:767
+msgid "_Go"
+msgstr "ទៅ"
+
+#: ../src/dh-window.c:768
+msgid "_Help"
+msgstr "ជំនួយ"
+
+#. File menu
+#: ../src/dh-window.c:771
+msgid "_New Window"
+msgstr "បង្អួច​ថ្មី"
+
+#: ../src/dh-window.c:773
+msgid "New _Tab"
+msgstr "ផ្ទាំង​ថ្មី"
+
+#: ../src/dh-window.c:775
+msgid "_Print…"
+msgstr "បោះពុម្ព…"
+
+#: ../src/dh-window.c:787 ../src/eggfindbar.c:342
+msgid "Find Next"
+msgstr "រក​បន្ទាប់"
+
+#: ../src/dh-window.c:789 ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "រក​ខាងដើម"
+
+#: ../src/dh-window.c:796
+msgid "Go to the previous page"
+msgstr "ទៅកាន់​ទំព័រ​មុន"
+
+#: ../src/dh-window.c:799
+msgid "Go to the next page"
+msgstr "ទៅកាន់​ទំព័រ​បន្ទាប់"
+
+#: ../src/dh-window.c:802
+msgid "_Contents Tab"
+msgstr "ផ្ទាំង​មាតិកា"
+
+#: ../src/dh-window.c:805
+msgid "_Search Tab"
+msgstr "ផ្ទាំង​ស្វែងរក"
+
+#. View menu
+#: ../src/dh-window.c:809
+msgid "_Larger Text"
+msgstr "អត្ថបទ​ធំជាង"
+
+#: ../src/dh-window.c:810
+msgid "Increase the text size"
+msgstr "បង្កើន​ទំហំ​អត្ថបទ"
+
+#: ../src/dh-window.c:812
+msgid "S_maller Text"
+msgstr "ទំហំ​អត្ថបទ​តូច​ជាង"
+
+#: ../src/dh-window.c:813
+msgid "Decrease the text size"
+msgstr "បន្ថយ​ទំហំ​អត្ថបទ"
+
+#: ../src/dh-window.c:815
+msgid "_Normal Size"
+msgstr "ទំហំ​ធម្មតា"
+
+#: ../src/dh-window.c:816
+msgid "Use the normal text size"
+msgstr "ប្រើ​ទំហំ​អត្ថបទ​ធម្មតា"
+
+#: ../src/dh-window.c:825
+msgid "Leave fullscreen mode"
+msgstr "ទុក​របៀប​ពេញ​អេក្រង់"
+
+#: ../src/dh-window.c:832
+msgid "Display in full screen"
+msgstr "បង្ហាញ​ជា​របៀប​ពេញ​អេក្រង់"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:952
+msgid "Larger"
+msgstr "ធំជាង"
+
+#. Translators: This refers to text size
+#: ../src/dh-window.c:955
+msgid "Smaller"
+msgstr "តូចជាង"
+
+#: ../src/dh-window.c:1159
+msgid "Contents"
+msgstr "មាតិកា"
+
+#: ../src/dh-window.c:1169
+msgid "Search"
+msgstr "ស្វែងរក"
+
+#: ../src/dh-window.c:1344
+msgid "Error opening the requested link."
+msgstr "កំហុស​ក្នុង​ការ​បើក​តំណ​ដែល​បាន​​ស្នើ ។"
+
+#: ../src/dh-window.c:1657 ../src/dh-window.c:1896
+msgid "Empty Page"
+msgstr "ទំព័រ​ទទេ"
+
+#: ../src/eggfindbar.c:320
+msgid "Find:"
+msgstr "រក ៖"
+
+#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
+msgid "Find previous occurrence of the search string"
+msgstr "រក​ខាងដើម​ដែល​មាន​នៅ​​ខ្សែ​អក្សរ​ស្វែងរក"
+
+#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
+msgid "Find next occurrence of the search string"
+msgstr "រក​បន្ទាប់​ដែល​មាន​នៅ​ខ្សែ​អក្សរ​ស្វែងរក"
+
+#: ../src/eggfindbar.c:358
+msgid "C_ase Sensitive"
+msgstr "ប្រកាន់​តួ​អក្សរ​តូច​ធំ"
+
+#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
+msgid "Toggle case sensitive search"
+msgstr "បិទ​/​​បើក​ការ​ស្វែងរក​ប្រកាន់​តួ​អក្សរ​តូច​ធំ"
+
