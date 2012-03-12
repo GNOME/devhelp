@@ -29,7 +29,6 @@
 #include "dh-book.h"
 #include "dh-language.h"
 #include "dh-book-manager.h"
-#include "dh-marshal.h"
 #include "dh-settings.h"
 
 #define NEW_POSSIBLE_BOOK_TIMEOUT_SECS 5
@@ -150,7 +149,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_SIGNAL_RUN_LAST,
                               0,
                               NULL, NULL,
-                              _dh_marshal_VOID__OBJECT,
+                              g_cclosure_marshal_VOID__OBJECT,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
@@ -160,7 +159,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_SIGNAL_RUN_LAST,
                               0,
                               NULL, NULL,
-                              _dh_marshal_VOID__OBJECT,
+                              g_cclosure_marshal_VOID__OBJECT,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
@@ -170,7 +169,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_SIGNAL_RUN_LAST,
                               0,
                               NULL, NULL,
-                              _dh_marshal_VOID__OBJECT,
+                              g_cclosure_marshal_VOID__OBJECT,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
@@ -180,7 +179,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_SIGNAL_RUN_LAST,
                               0,
                               NULL, NULL,
-                              _dh_marshal_VOID__OBJECT,
+                              g_cclosure_marshal_VOID__OBJECT,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
@@ -191,7 +190,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_SIGNAL_RUN_LAST,
                               0,
                               NULL, NULL,
-                              _dh_marshal_VOID__STRING,
+                              g_cclosure_marshal_VOID__STRING,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_STRING);
@@ -201,7 +200,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_SIGNAL_RUN_LAST,
                               0,
                               NULL, NULL,
-                              _dh_marshal_VOID__STRING,
+                              g_cclosure_marshal_VOID__STRING,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_STRING);

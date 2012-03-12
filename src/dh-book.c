@@ -29,7 +29,6 @@
 #include "dh-link.h"
 #include "dh-parser.h"
 #include "dh-book.h"
-#include "dh-marshal.h"
 #include "dh-util.h"
 
 /* Timeout to wait for new events in the book so that
@@ -150,7 +149,7 @@ dh_book_class_init (DhBookClass *klass)
 		              G_SIGNAL_RUN_LAST,
 		              0,
 		              NULL, NULL,
-                              _dh_marshal_VOID__VOID,
+                              g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
                               0);
 
@@ -160,7 +159,7 @@ dh_book_class_init (DhBookClass *klass)
 		              G_SIGNAL_RUN_LAST,
 		              0,
 		              NULL, NULL,
-                              _dh_marshal_VOID__VOID,
+                              g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
                               0);
 
@@ -171,7 +170,7 @@ dh_book_class_init (DhBookClass *klass)
 		              G_SIGNAL_RUN_LAST,
 		              0,
 		              NULL, NULL,
-                              _dh_marshal_VOID__VOID,
+                              g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
                               0);
 
@@ -181,7 +180,7 @@ dh_book_class_init (DhBookClass *klass)
 		              G_SIGNAL_RUN_LAST,
 		              0,
 		              NULL, NULL,
-                              _dh_marshal_VOID__VOID,
+                              g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
 		              0);
 

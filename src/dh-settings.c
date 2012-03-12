@@ -22,7 +22,6 @@
 
 
 #include "dh-settings.h"
-#include "dh-marshal.h"
 
 G_DEFINE_TYPE (DhSettings, dh_settings, G_TYPE_OBJECT);
 
@@ -123,7 +122,7 @@ dh_settings_class_init (DhSettingsClass *klass)
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (DhSettingsClass, fonts_changed),
                               NULL, NULL,
-                              _dh_marshal_VOID__STRING_STRING,
+                              g_cclosure_marshal_generic,
                               G_TYPE_NONE,
                               2,
                               G_TYPE_STRING,
@@ -216,4 +215,3 @@ dh_settings_peek_assistant_settings (DhSettings *self)
 {
         return self->priv->settings_assistant;
 }
-

@@ -29,7 +29,6 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include "dh-marshal.h"
 #include "dh-keyword-model.h"
 #include "dh-sidebar.h"
 #include "dh-util.h"
@@ -577,7 +576,7 @@ dh_sidebar_class_init (DhSidebarClass *klass)
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (DhSidebarClass, link_selected),
                               NULL, NULL,
-                              _dh_marshal_VOID__POINTER,
+                              g_cclosure_marshal_VOID__POINTER,
                               G_TYPE_NONE,
                               1, G_TYPE_POINTER);
 }

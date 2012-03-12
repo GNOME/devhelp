@@ -26,7 +26,6 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include "dh-marshal.h"
 #include "dh-book-tree.h"
 #include "dh-book.h"
 
@@ -99,7 +98,7 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
 			      G_SIGNAL_RUN_LAST,
 			      0,
 			      NULL, NULL,
-			      _dh_marshal_VOID__POINTER,
+			      g_cclosure_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
 

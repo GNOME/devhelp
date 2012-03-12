@@ -39,7 +39,6 @@
 #include "dh-sidebar.h"
 #include "dh-window.h"
 #include "dh-util.h"
-#include "dh-marshal.h"
 #include "dh-enum-types.h"
 #include "dh-settings.h"
 #include "eggfindbar.h"
@@ -573,7 +572,7 @@ dh_window_class_init (DhWindowClass *klass)
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (DhWindowClass, open_link),
                               NULL, NULL,
-                              _dh_marshal_VOID__STRING_FLAGS,
+                              g_cclosure_marshal_generic,
                               G_TYPE_NONE,
                               2,
                               G_TYPE_STRING,

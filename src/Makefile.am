@@ -1,9 +1,3 @@
-dh-marshal.h: dh-marshal.list
-	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=_dh_marshal dh-marshal.list > $@
-
-dh-marshal.c: dh-marshal.list
-	$(AM_V_GEN) echo "#include \"dh-marshal.h\"" > $@ && \
-	$(GLIB_GENMARSHAL) $< --body --prefix=_dh_marshal dh-marshal.list >> $@
 
 resource_files = $(shell glib-compile-resources --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/dh.gresource.xml)
 dh-resources.c: dh.gresource.xml $(resource_files)
@@ -12,8 +6,6 @@ dh-resources.h: dh.gresource.xml $(resource_files)
 	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-header --c-name dh $(srcdir)/dh.gresource.xml
 
 BUILT_SOURCES = 		\
-	dh-marshal.h		\
-	dh-marshal.c		\
 	dh-enum-types.h		\
 	dh-enum-types.c		\
 	dh-resources.c	 	\
@@ -21,7 +13,6 @@ BUILT_SOURCES = 		\
 	$(NULL)
 
 EXTRA_DIST =			\
-	dh-marshal.list		\
 	dh-enum-types.c.template \
 	dh-enum-types.h.template \
 	$(resource_files)	\
@@ -78,8 +69,6 @@ devhelpincludedir = $(includedir)/devhelp-3.0/devhelp
 devhelpinclude_HEADERS = $(INST_H_FILES)
 
 libdevhelp_3_la_SOURCES =				\
-	dh-marshal.c					\
-	dh-marshal.h					\
 	dh-enum-types.c					\
 	dh-enum-types.h					\
 	dh-app.c					\
