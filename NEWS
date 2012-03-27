@@ -1,3 +1,14 @@
+=============
+Version 3.4.0
+=============
+
+Fixed bugs:
+
+- #671256, Fix compilation warnings with -Wunused-but-set-variable
+
+Updated translations: ar, as, fa, fi, fr, it, km, ko, lv, pt, uk
+
+
 ==============
 Version 3.3.91
 ==============
