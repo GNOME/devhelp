@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
-"POT-Creation-Date: 2011-01-29 09:22+0000\n"
-"PO-Revision-Date: 2011-02-13 17:41+0330\n"
-"Last-Translator: Mahyar Moghimi <mahyar.moqimi@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-12-17 15:53+0000\n"
+"PO-Revision-Date: 2012-03-31 14:24+0330\n"
+"Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: Persian <translate@ifsug.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,9 +28,9 @@ msgstr "برنامه‌ی راهنمای توسعه‌دهندگان"
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2
 #: ../src/dh-main.c:281
-#: ../src/dh-window.c:740
-#: ../src/dh-window.c:1048
-#: ../src/dh-window.c:1880
+#: ../src/dh-window.c:731
+#: ../src/dh-window.c:1039
+#: ../src/dh-window.c:1868
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -171,26 +171,35 @@ msgid "Book Shelf"
 msgstr "قفسه‌ی کتاب"
 
 #: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "فعال شد"
+
+#: ../data/ui/devhelp.builder.h:3
 msgid "Fonts"
 msgstr "قلم‌ها"
 
-#: ../data/ui/devhelp.builder.h:3
+#: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
 msgstr "ترجیح‌ها"
 
-#: ../data/ui/devhelp.builder.h:4
+#: ../data/ui/devhelp.builder.h:5
+#| msgid "_File"
+msgid "Title"
+msgstr "عنوان"
+
+#: ../data/ui/devhelp.builder.h:6
 msgid "_Fixed width:"
 msgstr "_پهنای ثابت:"
 
-#: ../data/ui/devhelp.builder.h:5
+#: ../data/ui/devhelp.builder.h:7
 msgid "_Group by language"
 msgstr "_گروه‌بندی بر اساس زبان"
 
-#: ../data/ui/devhelp.builder.h:6
+#: ../data/ui/devhelp.builder.h:8
 msgid "_Use system fonts"
 msgstr "_استفاده از قلم‌های سیستم"
 
-#: ../data/ui/devhelp.builder.h:7
+#: ../data/ui/devhelp.builder.h:9
 msgid "_Variable width: "
 msgstr "_پهنای متغیر: "
 
@@ -202,11 +211,11 @@ msgstr "پشتیبانی DevHelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "کاری می‌کند تا F2 باعث بالا آمدن DevHelp برای کلمه مشخص شده توسط مکان‌نما شود"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: ../misc/gedit-plugin/devhelp.py:69
 msgid "Show API Documentation"
 msgstr "نمایش مستندات API"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:40
+#: ../misc/gedit-plugin/devhelp.py:71
 msgid "Show API Documentation for the word at the cursor"
 msgstr "نمایش مستندات API برای کلمه مشخص شده توسط مکان‌نما"
 
@@ -345,174 +354,163 @@ msgstr "تمام کتاب‌ها"
 msgid "Search in:"
 msgstr "جستجو در:"
 
-#: ../src/dh-window.c:98
+#: ../src/dh-window.c:99
 msgid "50%"
 msgstr "۵۰٪"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:100
 msgid "75%"
 msgstr "۷۵٪"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:101
 msgid "100%"
 msgstr "۱۰۰٪"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:102
 msgid "125%"
 msgstr "۱۲۵٪"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:103
 msgid "150%"
 msgstr "۱۵۰٪"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:104
 msgid "175%"
 msgstr "۱۷۵٪"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:105
 msgid "200%"
 msgstr "۲۰۰٪"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:106
 msgid "300%"
 msgstr "۳۰۰٪"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:107
 msgid "400%"
 msgstr "۴۰۰٪"
 
-#: ../src/dh-window.c:735
+#: ../src/dh-window.c:726
 msgid "translator_credits"
 msgstr ""
 "آرش موسوی <mousavi.arash@gmail.com> \n"
 "مهیار مقیمی <mahyar .moqimi@gmail.com>"
 
-#: ../src/dh-window.c:742
+#: ../src/dh-window.c:733
 msgid "A developers' help browser for GNOME"
 msgstr "یک مرورگر راهنما برای توسعه‌دهنده‌گان گنوم"
 
-#: ../src/dh-window.c:749
+#: ../src/dh-window.c:740
 msgid "DevHelp Website"
 msgstr "پایگاه وب DevHelp"
 
-#: ../src/dh-window.c:773
+#: ../src/dh-window.c:764
 msgid "_File"
 msgstr "_پرونده"
 
-#: ../src/dh-window.c:774
+#: ../src/dh-window.c:765
 msgid "_Edit"
 msgstr "_ویرایش"
 
-#: ../src/dh-window.c:775
+#: ../src/dh-window.c:766
 msgid "_View"
 msgstr "_نما"
 
-#: ../src/dh-window.c:776
+#: ../src/dh-window.c:767
 msgid "_Go"
 msgstr "_رفتن"
 
-#: ../src/dh-window.c:777
+#: ../src/dh-window.c:768
 msgid "_Help"
 msgstr "_راهنما"
 
 #. File menu
-#: ../src/dh-window.c:780
+#: ../src/dh-window.c:771
 msgid "_New Window"
 msgstr "_پنجره جدید"
 
-#: ../src/dh-window.c:782
+#: ../src/dh-window.c:773
 msgid "New _Tab"
 msgstr "_زبانه‌ی جدید"
 
-#: ../src/dh-window.c:784
+#: ../src/dh-window.c:775
 msgid "_Print…"
 msgstr "_چاپ..."
 
-#: ../src/dh-window.c:796
+#: ../src/dh-window.c:787
 #: ../src/eggfindbar.c:342
 msgid "Find Next"
 msgstr "جستجوی بعدی"
 
-#: ../src/dh-window.c:798
+#: ../src/dh-window.c:789
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
 msgstr "جستجوی قبلی"
 
-#: ../src/dh-window.c:805
+#: ../src/dh-window.c:796
 msgid "Go to the previous page"
 msgstr "رفتن به صفحه‌ی پیشین"
 
-#: ../src/dh-window.c:808
+#: ../src/dh-window.c:799
 msgid "Go to the next page"
 msgstr "رفتن به صفحه‌ی بعدی"
 
-#: ../src/dh-window.c:811
+#: ../src/dh-window.c:802
 msgid "_Contents Tab"
 msgstr "_زبانه‌ی محتویات"
 
-#: ../src/dh-window.c:814
+#: ../src/dh-window.c:805
 msgid "_Search Tab"
 msgstr "_زبانه‌ی جستجو"
 
 #. View menu
-#: ../src/dh-window.c:818
+#: ../src/dh-window.c:809
 msgid "_Larger Text"
 msgstr "_متن بزرگتر"
 
-#: ../src/dh-window.c:819
+#: ../src/dh-window.c:810
 msgid "Increase the text size"
 msgstr "افزایش اندازه‌ی متن"
 
-#: ../src/dh-window.c:821
+#: ../src/dh-window.c:812
 msgid "S_maller Text"
 msgstr "م_تن کوچکتر"
 
-#: ../src/dh-window.c:822
+#: ../src/dh-window.c:813
 msgid "Decrease the text size"
 msgstr "کاهش اندازه‌ی متن"
 
-#: ../src/dh-window.c:824
+#: ../src/dh-window.c:815
 msgid "_Normal Size"
 msgstr "اندازه‌ی _عادی"
 
-#: ../src/dh-window.c:825
+#: ../src/dh-window.c:816
 msgid "Use the normal text size"
 msgstr "استفاده از اندازه‌ی عادی متن"
 
-#: ../src/dh-window.c:834
+#: ../src/dh-window.c:825
 msgid "Leave fullscreen mode"
 msgstr "خروج از حالت تمام‌صفحه"
 
-#: ../src/dh-window.c:841
+#: ../src/dh-window.c:832
 msgid "Display in full screen"
 msgstr "نمایش در حالت تمام‌صفحه"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:961
+#: ../src/dh-window.c:952
 msgid "Larger"
 msgstr "بزرگ‌تر"
 
 #. Translators: This refers to text size
-#: ../src/dh-window.c:964
+#: ../src/dh-window.c:955
 msgid "Smaller"
 msgstr "کوچک‌تر"
 
-#. i18n: please don't translate
-#. * "Devhelp", it's a name, not a
-#. * generic word.
-#: ../src/dh-window.c:1109
-msgid "About Devhelp"
-msgstr "درباره‌ی DevHelp"
-
-#: ../src/dh-window.c:1114
-msgid "Preferences…"
-msgstr "ترجیح‌ها..."
-
-#: ../src/dh-window.c:1156
+#: ../src/dh-window.c:1159
 msgid "Contents"
 msgstr "محتویات"
 
-#: ../src/dh-window.c:1166
+#: ../src/dh-window.c:1169
 msgid "Search"
 msgstr "جستجو"
 
@@ -520,8 +518,8 @@ msgstr "جستجو"
 msgid "Error opening the requested link."
 msgstr "خطا در هنگام بازکردن لینک درخواست شده."
 
-#: ../src/dh-window.c:1666
-#: ../src/dh-window.c:1908
+#: ../src/dh-window.c:1657
+#: ../src/dh-window.c:1896
 msgid "Empty Page"
 msgstr "صفحه‌ی خالی"
 
@@ -548,3 +546,8 @@ msgstr "_حساس به بزرگی و کوچکی حروف"
 msgid "Toggle case sensitive search"
 msgstr "تغییر حالت به جستجو به شکل حساس به بزرگی و کوچکی حروف"
 
+#~ msgid "About Devhelp"
+#~ msgstr "درباره‌ی DevHelp"
+
+#~ msgid "Preferences…"
+#~ msgstr "ترجیح‌ها..."
