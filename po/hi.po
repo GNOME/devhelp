@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp HEAD\n"
 "POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2012-04-05 19:59+0530\n"
+"PO-Revision-Date: 2012-04-05 20:11+0530\n"
 "Last-Translator: chandankumar <chandankumar.093047@gmail.com>\n"
 "Language-Team: Hindi <kde-i18n-doc@kde.org>\n"
 "net>\n"
@@ -114,7 +114,7 @@ msgstr "कोइ चालू डेवहेल्प बंद करें"
 #: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
 #, c-format
 msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "उम्मीद '%s' %d पंक्ति, कॉलम %d पर '%s' मिला"
+msgstr "उम्मीद '%s' मिला '%s' पंक्ति %d, कॉलम %d पर"
 
 #: src/dh-parser.c:120
 #, c-format
