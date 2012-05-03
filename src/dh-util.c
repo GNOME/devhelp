@@ -603,6 +603,7 @@ dh_util_font_get_variable (gchar    **name,
 {
 	IgeConf *conf;
 	gchar   *name_and_size;
+	GSettings *settings;
 
 	conf = ige_conf_get ();
 
@@ -610,9 +611,9 @@ dh_util_font_get_variable (gchar    **name,
 #ifdef GDK_WINDOWING_QUARTZ
                 name_and_size = g_strdup ("Lucida Grande 14");
 #else
-		ige_conf_get_string (conf,
-                                     DH_CONF_SYSTEM_VARIABLE_FONT,
-                                     &name_and_size);
+		settings = g_settings_new ("org.gnome.desktop.interface");
+		name_and_size = g_settings_get_string (settings, "font-name");
+		g_object_unref (settings);
 #endif
 	} else {
 		ige_conf_get_string (conf,
@@ -635,6 +636,7 @@ dh_util_font_get_fixed (gchar    **name,
 {
 	IgeConf *conf;
 	gchar   *name_and_size;
+	GSettings *settings;
 
 	conf = ige_conf_get ();
 
@@ -642,9 +644,9 @@ dh_util_font_get_fixed (gchar    **name,
 #ifdef GDK_WINDOWING_QUARTZ
                 name_and_size = g_strdup ("Monaco 14");
 #else
-		ige_conf_get_string (conf,
-                                     DH_CONF_SYSTEM_FIXED_FONT,
-                                     &name_and_size);
+		settings = g_settings_new ("org.gnome.desktop.interface");
+		name_and_size = g_settings_get_string (settings, "monospace-font-name");
+		g_object_unref (settings);
 #endif
 	} else {
 		ige_conf_get_string (conf,

@@ -287,41 +287,21 @@ preferences_connect_conf_listeners (void)
 }
 #endif
 
-/* FIXME: Use the functions in dh-util.c for this. */
 static void
 preferences_fonts_get_font_names (gboolean   use_system_fonts,
                                   gchar    **variable,
                                   gchar    **fixed)
 {
-	gchar   *var_font_name;
-        gchar   *fixed_font_name;
-	IgeConf *conf;
+	gchar   *name;
+	gdouble  size;
 
-	conf = ige_conf_get ();
+	dh_util_font_get_variable (&name, &size, use_system_fonts);
+	*variable = g_strdup_printf ("%s %u", name, (guint)size);
+	g_free (name);
 
-	if (use_system_fonts) {
-#ifdef GDK_WINDOWING_QUARTZ
-                var_font_name = g_strdup ("Lucida Grande 14");
-                fixed_font_name = g_strdup ("Monaco 14");
-#else
-		ige_conf_get_string (conf,
-                                     DH_CONF_SYSTEM_VARIABLE_FONT,
-                                     &var_font_name);
-		ige_conf_get_string (conf,
-                                     DH_CONF_SYSTEM_FIXED_FONT,
-                                     &fixed_font_name);
-#endif
-	} else {
-		ige_conf_get_string (conf,
-                                     DH_CONF_VARIABLE_FONT,
-                                     &var_font_name);
-                ige_conf_get_string (conf,
-                                     DH_CONF_FIXED_FONT,
-                                     &fixed_font_name);
-	}
-
-	*variable = var_font_name;
-	*fixed = fixed_font_name;
+	dh_util_font_get_fixed (&name, &size, use_system_fonts);
+	*fixed = g_strdup_printf ("%s %u", name, (guint)size);
+	g_free (name);
 }
 
 static void
