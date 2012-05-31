@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-12 12:49+0000\n"
+"POT-Creation-Date: 2011-12-17 15:53+0000\n"
 "PO-Revision-Date: 2011-09-11 11:40+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
@@ -27,7 +27,7 @@ msgstr "Programa de ayuda del desarrollador"
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:731 ../src/dh-window.c:1039 ../src/dh-window.c:1860
+#: ../src/dh-window.c:731 ../src/dh-window.c:1039 ../src/dh-window.c:1868
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -171,26 +171,34 @@ msgid "Book Shelf"
 msgstr "Biblioteca"
 
 #: ../data/ui/devhelp.builder.h:2
+msgid "Enabled"
+msgstr "Activada"
+
+#: ../data/ui/devhelp.builder.h:3
 msgid "Fonts"
 msgstr "Tipografías"
 
-#: ../data/ui/devhelp.builder.h:3
+#: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../data/ui/devhelp.builder.h:4
+#: ../data/ui/devhelp.builder.h:5
+msgid "Title"
+msgstr "Título"
+
+#: ../data/ui/devhelp.builder.h:6
 msgid "_Fixed width:"
 msgstr "Anchura _fija:"
 
-#: ../data/ui/devhelp.builder.h:5
+#: ../data/ui/devhelp.builder.h:7
 msgid "_Group by language"
 msgstr "_Agrupar por idioma"
 
-#: ../data/ui/devhelp.builder.h:6
+#: ../data/ui/devhelp.builder.h:8
 msgid "_Use system fonts"
 msgstr "_Usar tipografía del sistema"
 
-#: ../data/ui/devhelp.builder.h:7
+#: ../data/ui/devhelp.builder.h:9
 msgid "_Variable width: "
 msgstr "Anchura _variable: "
 
@@ -308,7 +316,7 @@ msgstr "Se esperaba «%s» se obtuvo «%s» en la línea %d, columna %d"
 #: ../src/dh-parser.c:114
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Espacio de nombres inválido «%s» en la línea %d, columna %d"
+msgstr "Espacio de nombres no válido «%s» en la línea %d, columna %d"
 
 #: ../src/dh-parser.c:143
 #, c-format
@@ -321,19 +329,19 @@ msgstr ""
 #: ../src/dh-parser.c:218
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
-"%d"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
 msgstr ""
-"son necesarios los elementos «nombre» y «enlace» dentro de <sub> en la línea "
-"%d, columna %d"
+"son necesarios los elementos «nombre» y «enlace» dentro de <sub> en la línea %"
+"d, columna %d"
 
 #: ../src/dh-parser.c:298
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"son necesarios los elementos «nombre» y «enlace» dentro de «%s» en la línea "
-"%d, columna %d"
+"son necesarios los elementos «nombre» y «enlace» dentro de «%s» en la línea %d, "
+"columna %d"
 
 #: ../src/dh-parser.c:311
 #, c-format
@@ -505,30 +513,19 @@ msgstr "Más grande"
 msgid "Smaller"
 msgstr "Más pequeño"
 
-#. i18n: please don't translate
-#. * "Devhelp", it's a name, not a
-#. * generic word.
-#: ../src/dh-window.c:1104
-msgid "About Devhelp"
-msgstr "Acerca de DevHelp"
-
-#: ../src/dh-window.c:1109
-msgid "Preferences…"
-msgstr "Preferencias…"
-
-#: ../src/dh-window.c:1151
+#: ../src/dh-window.c:1159
 msgid "Contents"
 msgstr "Índice"
 
-#: ../src/dh-window.c:1161
+#: ../src/dh-window.c:1169
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/dh-window.c:1336
+#: ../src/dh-window.c:1344
 msgid "Error opening the requested link."
 msgstr "Error al abrir el enlace solicitado."
 
-#: ../src/dh-window.c:1649 ../src/dh-window.c:1888
+#: ../src/dh-window.c:1657 ../src/dh-window.c:1896
 msgid "Empty Page"
 msgstr "Página vacía"
 
@@ -552,11 +549,11 @@ msgstr "Coincidir con c_apitalización"
 msgid "Toggle case sensitive search"
 msgstr "Conmutar búsqueda discriminando capitalización"
 
-#~ msgid "Enabled"
-#~ msgstr "Activada"
+#~ msgid "About Devhelp"
+#~ msgstr "Acerca de DevHelp"
 
-#~ msgid "Title"
-#~ msgstr "Título"
+#~ msgid "Preferences…"
+#~ msgstr "Preferencias…"
 
 #~ msgid "Preferences..."
 #~ msgstr "Preferencias…"
@@ -583,8 +580,8 @@ msgstr "Conmutar búsqueda discriminando capitalización"
 #~ msgstr "_Mostrar las opciones de búsqueda avanzadas"
 
 #~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column "
-#~ "%d"
+#~ "name and link elements are required inside <function> on line %d, column %"
+#~ "d"
 #~ msgstr ""
 #~ "los elementos nombre y enlace se requieren dentro de <function> en la "
 #~ "línea %d, columna %d"
