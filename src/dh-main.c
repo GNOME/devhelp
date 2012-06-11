@@ -108,7 +108,7 @@ dh_quit (GAction  *action,
          GVariant *parameter,
          gpointer  data)
 {
-	gtk_main_quit ();
+        gtk_main_quit ();
 }
 
 static void
@@ -117,12 +117,12 @@ dh_search (GAction  *action,
            gpointer  data)
 {
         DhBase *base = data;
-	GtkWidget *window;
+        GtkWidget *window;
 
-	window = dh_base_get_window (base);
-	search_normal (DH_WINDOW (window),
+        window = dh_base_get_window (base);
+        search_normal (DH_WINDOW (window),
                        g_variant_get_string (parameter, NULL));
-	gtk_window_present (GTK_WINDOW (window));
+        gtk_window_present (GTK_WINDOW (window));
 }
 
 static void
@@ -132,7 +132,7 @@ dh_search_assistant (GAction  *action,
 {
         DhBase *base = data;
 
-	search_assistant (base,
+        search_assistant (base,
                           g_variant_get_string (parameter, NULL));
 }
 
@@ -142,11 +142,11 @@ dh_focus_search (GAction  *action,
                  gpointer  data)
 {
         DhBase *base = data;
-	GtkWidget *window;
+        GtkWidget *window;
 
-	window = dh_base_get_window (base);
-	dh_window_focus_search (DH_WINDOW (window));
-	gtk_window_present (GTK_WINDOW (window));
+        window = dh_base_get_window (base);
+        dh_window_focus_search (DH_WINDOW (window));
+        gtk_window_present (GTK_WINDOW (window));
 }
 
 static void
@@ -155,51 +155,51 @@ dh_raise (GAction  *action,
           gpointer  data)
 {
         DhBase *base = data;
-	GtkWidget *window;
+        GtkWidget *window;
 
-	window = dh_base_get_window (base);
-	gtk_window_present (GTK_WINDOW (window));
+        window = dh_base_get_window (base);
+        gtk_window_present (GTK_WINDOW (window));
 }
 
 enum
 {
-	ACTION_QUIT,
-	ACTION_SEARCH,
-	ACTION_SEARCH_ASSISTANT,
-	ACTION_FOCUS_SEARCH,
-	ACTION_RAISE,
-	N_ACTIONS,
+        ACTION_QUIT,
+        ACTION_SEARCH,
+        ACTION_SEARCH_ASSISTANT,
+        ACTION_FOCUS_SEARCH,
+        ACTION_RAISE,
+        N_ACTIONS,
 };
 
 static const struct dh_action {
-	const gchar * const name;
+        const gchar * const name;
         const GVariantType *expected_type;
-	void (* handler) (GAction *action, GVariant *parameter, gpointer data);
+        void (* handler) (GAction *action, GVariant *parameter, gpointer data);
 } actions[N_ACTIONS] = {
-	[ACTION_QUIT]                  = { "quit",             NULL,                  dh_quit },
-	[ACTION_SEARCH]                = { "search",           G_VARIANT_TYPE_STRING, dh_search },
-	[ACTION_SEARCH_ASSISTANT]      = { "search-assistant", G_VARIANT_TYPE_STRING, dh_search_assistant },
-	[ACTION_FOCUS_SEARCH]          = { "focus-search",     NULL,                  dh_focus_search },
-	[ACTION_RAISE]                 = { "raise",            NULL,                  dh_raise },
+        [ACTION_QUIT]                  = { "quit",             NULL,                  dh_quit },
+        [ACTION_SEARCH]                = { "search",           G_VARIANT_TYPE_STRING, dh_search },
+        [ACTION_SEARCH_ASSISTANT]      = { "search-assistant", G_VARIANT_TYPE_STRING, dh_search_assistant },
+        [ACTION_FOCUS_SEARCH]          = { "focus-search",     NULL,                  dh_focus_search },
+        [ACTION_RAISE]                 = { "raise",            NULL,                  dh_raise },
 };
 
 static void
 dh_register_actions (GApplication *application,
                      DhBase       *base)
 {
-	guint i;
+        guint i;
 
         GSimpleActionGroup *action_group;
         GSimpleAction *action;
 
         action_group = g_simple_action_group_new ();
 
-	for (i = 0; i < G_N_ELEMENTS (actions); i++) {
+        for (i = 0; i < G_N_ELEMENTS (actions); i++) {
                 action = g_simple_action_new (actions[i].name, actions[i].expected_type);
                 g_signal_connect (action, "activate",  G_CALLBACK (actions[i].handler), base);
                 g_simple_action_group_insert (action_group, G_ACTION (action));
                 g_object_unref (action);
-	}
+        }
 
         g_application_set_action_group (application, G_ACTION_GROUP (action_group));
         g_object_unref (action_group);
@@ -211,26 +211,26 @@ activate (GApplication *application,
 {
         DhBase *base = data;
 
-	if (option_quit) {
-		/* No running Devhelps so just quit */
-		return EXIT_SUCCESS;
-	}
+        if (option_quit) {
+                /* No running Devhelps so just quit */
+                return EXIT_SUCCESS;
+        }
 
-	if (!option_search_assistant) {
+        if (!option_search_assistant) {
                 GtkWidget *window;
 
-		window = dh_base_new_window (base);
+                window = dh_base_new_window (base);
 
-		if (option_search) {
-			search_normal (DH_WINDOW (window), option_search);
-		}
+                if (option_search) {
+                        search_normal (DH_WINDOW (window), option_search);
+                }
 
-		gtk_widget_show (window);
-	} else {
-		if (!search_assistant (base, option_search_assistant)) {
-			return EXIT_SUCCESS;
-		}
-	}
+                gtk_widget_show (window);
+        } else {
+                if (!search_assistant (base, option_search_assistant)) {
+                        return EXIT_SUCCESS;
+                }
+        }
 
         gtk_main ();
 
@@ -240,8 +240,8 @@ activate (GApplication *application,
 int
 main (int argc, char **argv)
 {
-	DhBase                 *base;
-	GError                 *error = NULL;
+        DhBase                 *base;
+        GError                 *error = NULL;
         int                     status;
 
 #ifdef GDK_WINDOWING_QUARTZ
@@ -260,30 +260,30 @@ main (int argc, char **argv)
         }
 #endif
 
-	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain (GETTEXT_PACKAGE);
+        bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+        textdomain (GETTEXT_PACKAGE);
 
-	g_thread_init (NULL);
+        g_thread_init (NULL);
 
-	if (!gtk_init_with_args (&argc, &argv, NULL, options, GETTEXT_PACKAGE, &error)) {
-		g_printerr ("%s\n", error->message);
-		return EXIT_FAILURE;
-	}
+        if (!gtk_init_with_args (&argc, &argv, NULL, options, GETTEXT_PACKAGE, &error)) {
+                g_printerr ("%s\n", error->message);
+                return EXIT_FAILURE;
+        }
 
-	if (option_version) {
-		g_print ("%s\n", PACKAGE_STRING);
-		return EXIT_SUCCESS;
-	}
+        if (option_version) {
+                g_print ("%s\n", PACKAGE_STRING);
+                return EXIT_SUCCESS;
+        }
 
-	/* i18n: Please don't translate "Devhelp" (it's marked as translatable
-	 * for transliteration only) */
-	g_set_application_name (_("Devhelp"));
-	gtk_window_set_default_icon_name ("devhelp");
+        /* i18n: Please don't translate "Devhelp" (it's marked as translatable
+         * for transliteration only) */
+        g_set_application_name (_("Devhelp"));
+        gtk_window_set_default_icon_name ("devhelp");
 
         /* Create our base application. Needs to be created before the GApplication,
          * as we will pass it as data to the 'activate' callback */
-	base = dh_base_new ();
+        base = dh_base_new ();
 
         /* Create new GApplication */
         application = g_application_new ("org.gnome.Devhelp", 0);
@@ -296,48 +296,47 @@ main (int argc, char **argv)
         if (!g_application_register (application, NULL, &error)) {
                 g_printerr ("Couldn't register Devhelp instance: '%s'\n",
                             error ? error->message : "");
-		g_object_unref (application);
+                g_object_unref (application);
                 g_object_unref (base);
                 return EXIT_FAILURE;
         }
 
         /* Actions on a remote Devhelp already running? */
-	if (g_application_get_is_remote (G_APPLICATION (application))) {
-		if (option_quit) {
+        if (g_application_get_is_remote (G_APPLICATION (application))) {
+                if (option_quit) {
                         g_action_group_activate_action (G_ACTION_GROUP (application),
                                                         actions[ACTION_QUIT].name,
                                                         NULL);
-		} else if (option_search) {
+                } else if (option_search) {
                         g_debug ("Searching in remote instance... '%s'", option_search);
                         g_action_group_activate_action (G_ACTION_GROUP (application),
                                                         actions[ACTION_SEARCH].name,
                                                         g_variant_new_string (option_search));
-		} else if (option_search_assistant) {
+                } else if (option_search_assistant) {
                         g_action_group_activate_action (G_ACTION_GROUP (application),
                                                         actions[ACTION_SEARCH_ASSISTANT].name,
                                                         g_variant_new_string (option_search_assistant));
-		} else if (option_focus_search) {
+                } else if (option_focus_search) {
                         g_action_group_activate_action (G_ACTION_GROUP (application),
                                                         actions[ACTION_FOCUS_SEARCH].name,
                                                         NULL);
-		} else {
+                } else {
                         g_action_group_activate_action (G_ACTION_GROUP (application),
                                                         actions[ACTION_RAISE].name,
                                                         NULL);
-		}
+                }
 
-		gdk_notify_startup_complete ();
-		g_object_unref (application);
+                gdk_notify_startup_complete ();
+                g_object_unref (application);
                 g_object_unref (base);
-		return EXIT_SUCCESS;
-	}
+                return EXIT_SUCCESS;
+        }
 
         /* And run the GApplication */
         status = g_application_run (application, argc, argv);
 
-	g_object_unref (base);
-	g_object_unref (application);
+        g_object_unref (base);
+        g_object_unref (application);
 
-	return status;
+        return status;
 }
-
