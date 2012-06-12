@@ -36,11 +36,11 @@
 #include "dh-window.h"
 #include "dh-assistant.h"
 
-static gchar    *option_search = NULL;
-static gchar    *option_search_assistant = NULL;
-static gboolean  option_quit = FALSE;
-static gboolean  option_focus_search = FALSE;
-static gboolean  option_version = FALSE;
+static gchar    *option_search;
+static gchar    *option_search_assistant;
+static gboolean  option_quit;
+static gboolean  option_focus_search;
+static gboolean  option_version;
 
 static GOptionEntry options[] = {
         { "search", 's',
