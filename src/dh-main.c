@@ -22,6 +22,7 @@
 #include "config.h"
 
 #include <stdlib.h>
+#include <locale.h>
 #include <string.h>
 
 #include <glib/gi18n.h>
@@ -260,6 +261,7 @@ main (int argc, char **argv)
         }
 #endif
 
+        setlocale (LC_ALL, "");
         bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
