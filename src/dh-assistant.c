@@ -36,7 +36,7 @@ typedef struct {
 static void dh_assistant_class_init (DhAssistantClass *klass);
 static void dh_assistant_init       (DhAssistant      *assistant);
 
-G_DEFINE_TYPE (DhAssistant, dh_assistant, GTK_TYPE_WINDOW);
+G_DEFINE_TYPE (DhAssistant, dh_assistant, GTK_TYPE_APPLICATION_WINDOW);
 
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
   (instance, DH_TYPE_ASSISTANT, DhAssistantPriv)
@@ -103,7 +103,7 @@ dh_assistant_init (DhAssistant *assistant)
 }
 
 GtkWidget *
-dh_assistant_new (DhBase *base)
+dh_assistant_new (DhApp *application)
 {
         GtkWidget       *assistant;
         DhAssistantPriv *priv;
@@ -112,7 +112,7 @@ dh_assistant_new (DhBase *base)
 
         priv = GET_PRIVATE (assistant);
 
-        dh_assistant_view_set_base (DH_ASSISTANT_VIEW (priv->view), base);
+        dh_assistant_view_set_app (DH_ASSISTANT_VIEW (priv->view), application);
 
         return assistant;
 }

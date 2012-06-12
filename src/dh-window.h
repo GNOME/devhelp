@@ -24,7 +24,7 @@
 #define __DH_WINDOW_H__
 
 #include <gtk/gtk.h>
-#include "dh-base.h"
+#include "dh-app.h"
 
 G_BEGIN_DECLS
 
@@ -46,12 +46,12 @@ typedef enum
 } DhOpenLinkFlags;
 
 struct _DhWindow {
-        GtkWindow     parent_instance;
+        GtkApplicationWindow parent_instance;
         DhWindowPriv *priv;
 };
 
 struct _DhWindowClass {
-        GtkWindowClass parent_class;
+        GtkApplicationWindowClass parent_class;
 
         /* Signals */
         void (*open_link) (DhWindow        *window,
@@ -60,7 +60,7 @@ struct _DhWindowClass {
 };
 
 GType      dh_window_get_type     (void) G_GNUC_CONST;
-GtkWidget *dh_window_new          (DhBase      *base);
+GtkWidget *dh_window_new          (DhApp       *application);
 void       dh_window_search       (DhWindow    *window,
                                    const gchar *str);
 void       dh_window_focus_search (DhWindow    *window);

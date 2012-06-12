@@ -22,7 +22,7 @@
 #define __DH_ASSISTANT_H__
 
 #include <gtk/gtk.h>
-#include "dh-base.h"
+#include "dh-app.h"
 
 G_BEGIN_DECLS
 
@@ -37,15 +37,15 @@ typedef struct _DhAssistant      DhAssistant;
 typedef struct _DhAssistantClass DhAssistantClass;
 
 struct _DhAssistant {
-        GtkWindow parent_instance;
+        GtkApplicationWindow parent_instance;
 };
 
 struct _DhAssistantClass {
-        GtkWindowClass parent_class;
+        GtkApplicationWindowClass parent_class;
 };
 
 GType      dh_assistant_get_type  (void) G_GNUC_CONST;
-GtkWidget *dh_assistant_new       (DhBase      *base);
+GtkWidget *dh_assistant_new       (DhApp       *application);
 gboolean   dh_assistant_search    (DhAssistant *assistant,
                                    const gchar *str);
 

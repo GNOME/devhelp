@@ -26,7 +26,7 @@
 #else
 #include <webkit/webkit.h>
 #endif
-#include "dh-base.h"
+#include "dh-app.h"
 #include "dh-link.h"
 
 G_BEGIN_DECLS
@@ -53,9 +53,9 @@ GType      dh_assistant_view_get_type (void) G_GNUC_CONST;
 GtkWidget* dh_assistant_view_new      (void);
 gboolean   dh_assistant_view_search   (DhAssistantView *view,
                                        const gchar     *str);
-DhBase*    dh_assistant_view_get_base (DhAssistantView *view);
-void       dh_assistant_view_set_base (DhAssistantView *view,
-                                       DhBase          *base);
+DhApp*     dh_assistant_view_peek_app (DhAssistantView *view);
+void       dh_assistant_view_set_app  (DhAssistantView *view,
+                                       DhApp           *application);
 gboolean   dh_assistant_view_set_link (DhAssistantView *view,
                                        DhLink          *link);
 G_END_DECLS

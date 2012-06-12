@@ -30,7 +30,6 @@
 #include "dh-keyword-model.h"
 #include "dh-search.h"
 #include "dh-preferences.h"
-#include "dh-base.h"
 #include "dh-util.h"
 #include "dh-book-manager.h"
 #include "dh-book.h"

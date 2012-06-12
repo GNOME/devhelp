@@ -30,7 +30,7 @@
 #include "dh-window.h"
 
 typedef struct {
-        DhBase   *base;
+        DhApp    *application;
         DhLink   *link;
         gchar    *current_search;
         gboolean  snippet_loaded;
@@ -50,8 +50,8 @@ view_finalize (GObject *object)
                 g_object_unref (priv->link);
         }
 
-        if (priv->base) {
-                g_object_unref (priv->base);
+        if (priv->application) {
+                g_object_unref (priv->application);
         }
 
         g_free (priv->current_search);
@@ -100,7 +100,7 @@ assistant_decide_policy (WebKitWebView           *web_view,
                 return TRUE;
         }
 
-        window = dh_base_get_window (priv->base);
+        window = GTK_WIDGET (dh_app_peek_first_window (priv->application));
         _dh_window_display_uri (DH_WINDOW (window), uri);
         webkit_policy_decision_ignore (decision);
 
@@ -128,7 +128,7 @@ assistant_navigation_requested (WebKitWebView        *web_view,
         else if (g_str_has_prefix (uri, "file://")) {
                 GtkWidget *window;
 
-                window = dh_base_get_window (priv->base);
+                window = GTK_WIDGET (dh_app_peek_first_window (priv->application));
                 _dh_window_display_uri (DH_WINDOW (window), uri);
         }
 
@@ -170,18 +170,6 @@ dh_assistant_view_class_init (DhAssistantViewClass* klass)
 static void
 dh_assistant_view_init (DhAssistantView *view)
 {
-}
-
-DhBase*
-dh_assistant_view_get_base (DhAssistantView *view)
-{
-        DhAssistantViewPriv *priv;
-
-        g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), NULL);
-
-        priv = GET_PRIVATE (view);
-
-        return priv->base;
 }
 
 GtkWidget*
@@ -471,7 +459,7 @@ dh_assistant_view_search (DhAssistantView *view,
         g_free (priv->current_search);
         priv->current_search = g_strdup (str);
 
-        book_manager = dh_base_get_book_manager (dh_assistant_view_get_base (view));
+        book_manager = dh_app_peek_book_manager (priv->application);
 
         prefix_link = NULL;
         exact_link = NULL;
@@ -529,15 +517,15 @@ dh_assistant_view_search (DhAssistantView *view,
 }
 
 void
-dh_assistant_view_set_base (DhAssistantView *view,
-                            DhBase          *base)
+dh_assistant_view_set_app (DhAssistantView *view,
+                           DhApp           *application)
 {
         DhAssistantViewPriv *priv;
 
         g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
-        g_return_if_fail (DH_IS_BASE (base));
+        g_return_if_fail (DH_IS_APP (application));
 
         priv = GET_PRIVATE (view);
 
-        priv->base = g_object_ref (base);
+        priv->application = g_object_ref (application);
 }

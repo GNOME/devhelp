@@ -26,9 +26,8 @@
 
 G_BEGIN_DECLS
 
-void dh_preferences_show_dialog (GtkWindow *parent);
+void dh_preferences_show_dialog (void);
 
 G_END_DECLS
 
 #endif /* __DH_PREFERENCES_H__ */
-

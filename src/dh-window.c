@@ -44,21 +44,17 @@
 #include "dh-book-tree.h"
 #include "dh-book-manager.h"
 #include "dh-book.h"
-#include "dh-preferences.h"
 #include "dh-search.h"
 #include "dh-window.h"
 #include "dh-util.h"
 #include "dh-marshal.h"
 #include "dh-enum-types.h"
 #include "eggfindbar.h"
-#include "ige-conf.h"
 
 #define FULLSCREEN_ANIMATION_SPEED 4
 #define TAB_WIDTH_N_CHARS 15
 
 struct _DhWindowPriv {
-        DhBase         *base;
-
         GtkWidget      *main_box;
         GtkWidget      *menu_box;
         GtkWidget      *hpaned;
@@ -164,23 +160,10 @@ static void           window_close_tab               (DhWindow *window,
                                                       gint      page_num);
 static gboolean       do_search                      (DhWindow *window);
 
-G_DEFINE_TYPE (DhWindow, dh_window, GTK_TYPE_WINDOW);
+G_DEFINE_TYPE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
   (instance, DH_TYPE_WINDOW, DhWindowPriv);
-
-static void
-window_activate_new_window (GtkAction *action,
-                            DhWindow  *window)
-{
-        DhWindowPriv *priv;
-        GtkWidget    *new_window;
-
-        priv = window->priv;
-
-        new_window = dh_base_new_window (priv->base);
-        gtk_widget_show (new_window);
-}
 
 static void
 window_activate_new_tab (GtkAction *action,
@@ -234,13 +217,6 @@ window_activate_close (GtkAction *action,
 
         page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (window->priv->notebook));
         window_close_tab (window, page_num);
-}
-
-static void
-window_activate_quit (GtkAction *action,
-                      DhWindow  *window)
-{
-        dh_base_quit (window->priv->base);
 }
 
 static void
@@ -658,13 +634,6 @@ window_leave_fullscreen_mode (GtkAction *action,
 }
 
 static void
-window_activate_preferences (GtkAction *action,
-                             DhWindow  *window)
-{
-        dh_preferences_show_dialog (GTK_WINDOW (window));
-}
-
-static void
 window_activate_back (GtkAction *action,
                       DhWindow  *window)
 {
@@ -725,52 +694,15 @@ window_activate_show_search (GtkAction *action,
 }
 
 static void
-window_activate_about (GtkAction *action,
-                       DhWindow  *window)
-{
-        const gchar  *authors[] = {
-                "Mikael Hallendal <micke@imendio.com>",
-                "Richard Hult <richard@imendio.com>",
-                "Johan Dahlin <johan@gnome.org>",
-                "Ross Burton <ross@burtonini.com>",
-                "Aleksander Morgado <aleksander@lanedo.com>",
-                NULL
-        };
-        const gchar **documenters = NULL;
-        const gchar  *translator_credits = _("translator_credits");
-
-        /* i18n: Please don't translate "Devhelp" (it's marked as translatable
-         * for transliteration only) */
-        gtk_show_about_dialog (GTK_WINDOW (window),
-                               "name", _("Devhelp"),
-                               "version", PACKAGE_VERSION,
-                               "comments", _("A developers' help browser for GNOME"),
-                               "authors", authors,
-                               "documenters", documenters,
-                               "translator-credits",
-                               strcmp (translator_credits, "translator_credits") != 0 ?
-                               translator_credits : NULL,
-                               "website", PACKAGE_URL,
-                               "website-label", _("DevHelp Website"),
-                               "logo-icon-name", PACKAGE_TARNAME,
-                               NULL);
-}
-
-static void
 window_open_link_cb (DhWindow *window,
                      const char *location,
                      DhOpenLinkFlags flags)
 {
-        DhWindowPriv *priv;
-        priv = window->priv;
-
         if (flags & DH_OPEN_LINK_NEW_TAB) {
                 window_open_new_tab (window, location, FALSE);
         }
         else if (flags & DH_OPEN_LINK_NEW_WINDOW) {
-                GtkWidget *new_window;
-                new_window = dh_base_new_window (priv->base);
-                gtk_widget_show (new_window);
+                dh_app_new_window (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
         }
 }
 
@@ -782,16 +714,12 @@ static const GtkActionEntry actions[] = {
         { "HelpMenu", NULL, N_("_Help") },
 
         /* File menu */
-        { "NewWindow", GTK_STOCK_NEW, N_("_New Window"), "<control>N", NULL,
-          G_CALLBACK (window_activate_new_window) },
         { "NewTab", GTK_STOCK_NEW, N_("New _Tab"), "<control>T", NULL,
           G_CALLBACK (window_activate_new_tab) },
         { "Print", GTK_STOCK_PRINT, N_("_Print…"), "<control>P", NULL,
           G_CALLBACK (window_activate_print) },
         { "Close", GTK_STOCK_CLOSE, NULL, NULL, NULL,
           G_CALLBACK (window_activate_close) },
-        { "Quit", GTK_STOCK_QUIT, NULL, NULL, NULL,
-          G_CALLBACK (window_activate_quit) },
 
         /* Edit menu */
         { "Copy", GTK_STOCK_COPY, NULL, "<control>C", NULL,
@@ -802,8 +730,6 @@ static const GtkActionEntry actions[] = {
           G_CALLBACK (window_find_next_cb) },
         { "Find Previous", GTK_STOCK_GO_BACK, N_("Find Previous"), "<shift><control>G", NULL,
           G_CALLBACK (window_find_previous_cb) },
-        { "Preferences", GTK_STOCK_PREFERENCES, NULL, NULL, NULL,
-          G_CALLBACK (window_activate_preferences) },
 
         /* Go menu */
         { "Back", GTK_STOCK_GO_BACK, NULL, "<alt>Left",
@@ -830,10 +756,6 @@ static const GtkActionEntry actions[] = {
           N_("Use the normal text size"),
           G_CALLBACK (window_activate_zoom_default) },
 
-        /* About menu */
-        { "About", GTK_STOCK_ABOUT, NULL, NULL, NULL,
-          G_CALLBACK (window_activate_about) },
-
         /* Fullscreen toolbar */
         { "LeaveFullscreen", GTK_STOCK_LEAVE_FULLSCREEN, NULL,
           NULL, N_("Leave fullscreen mode"),
@@ -853,22 +775,8 @@ static const gchar* important_actions[] = {
 };
 
 static void
-window_finalize (GObject *object)
-{
-        DhWindowPriv *priv = GET_PRIVATE (object);
-
-        g_object_unref (priv->base);
-
-        G_OBJECT_CLASS (dh_window_parent_class)->finalize (object);
-}
-
-static void
 dh_window_class_init (DhWindowClass *klass)
 {
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-        object_class->finalize = window_finalize;
-
         signals[OPEN_LINK] =
                 g_signal_new ("open-link",
                               G_TYPE_FROM_CLASS (klass),
@@ -1094,7 +1002,6 @@ window_populate (DhWindow *window)
 
 #ifdef GDK_WINDOWING_QUARTZ
         {
-                GtkWidget         *widget, *sep;
                 GtkOSXApplication *theApp;
 
                 /* Hide toolbar labels. */
@@ -1103,25 +1010,6 @@ window_populate (DhWindow *window)
                 /* Setup menubar. */
                 theApp = g_object_new (GTK_TYPE_OSX_APPLICATION, NULL);
                 gtk_osxapplication_set_menu_bar (theApp, GTK_MENU_SHELL (menubar));
-                gtk_widget_hide (menubar);
-
-                widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/FileMenu/Quit");
-                gtk_widget_hide (widget);
-
-                widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/HelpMenu/About");
-                gtk_osxapplication_insert_app_menu_item (theApp, widget, 0);
-                sep = gtk_separator_menu_item_new ();
-                g_object_ref (sep);
-                gtk_osxapplication_insert_app_menu_item (theApp, sep, 1);
-
-                widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/EditMenu/Preferences");
-                gtk_osxapplication_insert_app_menu_item (theApp, widget, 2);
-                sep = gtk_separator_menu_item_new ();
-                g_object_ref (sep);
-                gtk_osxapplication_insert_app_menu_item (theApp, sep, 3);
-
-                widget = gtk_ui_manager_get_widget (priv->manager, "/MenuBar/HelpMenu");
-                gtk_osxapplication_set_help_menu (theApp, GTK_MENU_ITEM (widget));
 
                 g_signal_connect (theApp,
                                   "NSApplicationWillTerminate",
@@ -1160,7 +1048,7 @@ window_populate (DhWindow *window)
                                              GTK_SHADOW_IN);
         gtk_container_set_border_width (GTK_CONTAINER (book_tree_sw), 2);
 
-        book_manager = dh_base_get_book_manager (priv->base);
+        book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
 
         priv->book_tree = dh_book_tree_new (book_manager);
         gtk_container_add (GTK_CONTAINER (book_tree_sw),
@@ -1236,12 +1124,10 @@ window_populate (DhWindow *window)
         window_open_new_tab (window, NULL, TRUE);
 }
 
-
 static gchar *
 find_library_equivalent (DhWindow    *window,
                          const gchar *uri)
 {
-        DhWindowPriv *priv;
         gchar **components;
         GList *iter;
         DhLink *link;
@@ -1255,8 +1141,7 @@ find_library_equivalent (DhWindow    *window,
         book_id = components[4];
         filename = components[6];
 
-        priv = window->priv;
-        book_manager = dh_base_get_book_manager (priv->base);
+        book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
 
         /* use list pointer to iterate */
         for (books = dh_book_manager_get_books (book_manager);
@@ -2016,7 +1901,7 @@ window_tab_set_title (DhWindow      *window,
 }
 
 GtkWidget *
-dh_window_new (DhBase *base)
+dh_window_new (DhApp *application)
 {
         DhWindow     *window;
         DhWindowPriv *priv;
@@ -2024,7 +1909,7 @@ dh_window_new (DhBase *base)
         window = g_object_new (DH_TYPE_WINDOW, NULL);
         priv = window->priv;
 
-        priv->base = g_object_ref (base);
+        gtk_window_set_application (GTK_WINDOW (window), GTK_APPLICATION (application));
 
         window_populate (window);
 

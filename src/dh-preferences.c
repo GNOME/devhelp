@@ -25,7 +25,7 @@
 #include "dh-util.h"
 #include "dh-preferences.h"
 #include "ige-conf.h"
-#include "dh-base.h"
+#include "dh-app.h"
 
 typedef struct {
         GtkWidget     *dialog;
@@ -119,22 +119,32 @@ static DhPreferences *prefs;
 static void
 preferences_init (void)
 {
-        if (!prefs) {
-                prefs = g_new0 (DhPreferences, 1);
-                prefs->book_manager = dh_base_get_book_manager (dh_base_get ());
-                g_signal_connect (prefs->book_manager,
-                                  "book-created",
-                                  G_CALLBACK (preferences_bookshelf_book_created_cb),
-                                  NULL);
-                g_signal_connect (prefs->book_manager,
-                                  "book-deleted",
-                                  G_CALLBACK (preferences_bookshelf_book_deleted_cb),
-                                  NULL);
-                g_signal_connect (prefs->book_manager,
-                                  "notify::group-by-language",
-                                  G_CALLBACK (preferences_bookshelf_group_by_language_cb),
-                                  NULL);
+        GApplication *app;
+
+        if (prefs) {
+                return;
         }
+
+        app = g_application_get_default ();
+        if (!app) {
+                g_warning ("Cannot launch Preferences: No default application found");
+                return;
+        }
+
+        prefs = g_new0 (DhPreferences, 1);
+        prefs->book_manager = g_object_ref (dh_app_peek_book_manager (DH_APP (app)));
+        g_signal_connect (prefs->book_manager,
+                          "book-created",
+                          G_CALLBACK (preferences_bookshelf_book_created_cb),
+                          NULL);
+        g_signal_connect (prefs->book_manager,
+                          "book-deleted",
+                          G_CALLBACK (preferences_bookshelf_book_deleted_cb),
+                          NULL);
+        g_signal_connect (prefs->book_manager,
+                          "notify::group-by-language",
+                          G_CALLBACK (preferences_bookshelf_group_by_language_cb),
+                          NULL);
 }
 
 static void
@@ -144,6 +154,7 @@ preferences_shutdown (void)
                 return;
         }
 
+        g_object_unref (prefs->book_manager);
         gtk_list_store_clear (prefs->bookshelf_store);
         gtk_widget_destroy (GTK_WIDGET (prefs->dialog));
 
@@ -805,7 +816,7 @@ preferences_bookshelf_group_by_language_toggled_cb (GtkToggleButton *button,
 }
 
 void
-dh_preferences_show_dialog (GtkWindow *parent)
+dh_preferences_show_dialog (void)
 {
         gchar      *path;
 	GtkBuilder *builder;
@@ -880,6 +891,5 @@ dh_preferences_show_dialog (GtkWindow *parent)
                           G_CALLBACK (preferences_dialog_response),
                           NULL);
 
-	gtk_window_set_transient_for (GTK_WINDOW (prefs->dialog), parent);
 	gtk_widget_show_all (prefs->dialog);
 }

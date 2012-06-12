@@ -2,13 +2,11 @@
 <ui>
   <menubar name="MenuBar">
     <menu action="FileMenu">
-      <menuitem action="NewWindow"/>
       <menuitem action="NewTab"/>
       <separator/>
       <menuitem action="Print"/>
       <separator/>
       <menuitem action="Close"/>
-      <menuitem action="Quit"/>
     </menu>
     <menu action="EditMenu">
       <menuitem action="Copy"/>
@@ -16,8 +14,6 @@
       <menuitem action="Find"/>
       <menuitem action="Find Next"/>
       <menuitem action="Find Previous"/>
-      <separator/>
-      <menuitem action="Preferences"/>
     </menu>
     <menu action="ViewMenu">
       <menuitem action="ZoomIn"/>
@@ -32,9 +28,6 @@
       <separator/>
       <menuitem action="ShowSearchTab"/>
       <menuitem action="ShowContentsTab"/>
-    </menu>
-    <menu action="HelpMenu">
-      <menuitem action="About"/>
     </menu>
   </menubar>
 

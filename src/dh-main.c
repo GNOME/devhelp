@@ -32,7 +32,7 @@
 #include <gdk/gdkx.h>
 #endif
 
-#include "dh-base.h"
+#include "dh-app.h"
 #include "dh-window.h"
 #include "dh-assistant.h"
 
@@ -72,178 +72,39 @@ static GOptionEntry options[] = {
 };
 
 static void
-search_normal (DhWindow    *window,
-               const gchar *str)
+run_action (DhApp *application,
+            gboolean is_remote)
 {
-        if (str[0] == '\0') {
-                return;
-        }
-
-        dh_window_search (window, str);
-}
-
-static gboolean
-search_assistant (DhBase      *base,
-                  const gchar *str)
-{
-        static GtkWidget *assistant;
-
-        if (str[0] == '\0') {
-                return FALSE;
-        }
-
-        if (!assistant) {
-                assistant = dh_base_new_assistant (base);
-                g_signal_connect (assistant, "destroy",
-                                  G_CALLBACK (gtk_widget_destroyed),
-                                  &assistant);
-        }
-
-        return dh_assistant_search (DH_ASSISTANT (assistant), str);
-}
-
-static GApplication *application = NULL;
-
-static void
-dh_quit (GAction  *action,
-         GVariant *parameter,
-         gpointer  data)
-{
-        gtk_main_quit ();
-}
-
-static void
-dh_search (GAction  *action,
-           GVariant *parameter,
-           gpointer  data)
-{
-        DhBase *base = data;
-        GtkWidget *window;
-
-        window = dh_base_get_window (base);
-        search_normal (DH_WINDOW (window),
-                       g_variant_get_string (parameter, NULL));
-        gtk_window_present (GTK_WINDOW (window));
-}
-
-static void
-dh_search_assistant (GAction  *action,
-                     GVariant *parameter,
-                     gpointer  data)
-{
-        DhBase *base = data;
-
-        search_assistant (base,
-                          g_variant_get_string (parameter, NULL));
-}
-
-static void
-dh_focus_search (GAction  *action,
-                 GVariant *parameter,
-                 gpointer  data)
-{
-        DhBase *base = data;
-        GtkWidget *window;
-
-        window = dh_base_get_window (base);
-        dh_window_focus_search (DH_WINDOW (window));
-        gtk_window_present (GTK_WINDOW (window));
-}
-
-static void
-dh_raise (GAction  *action,
-          GVariant *parameter,
-          gpointer  data)
-{
-        DhBase *base = data;
-        GtkWidget *window;
-
-        window = dh_base_get_window (base);
-        gtk_window_present (GTK_WINDOW (window));
-}
-
-enum
-{
-        ACTION_QUIT,
-        ACTION_SEARCH,
-        ACTION_SEARCH_ASSISTANT,
-        ACTION_FOCUS_SEARCH,
-        ACTION_RAISE,
-        N_ACTIONS,
-};
-
-static const struct dh_action {
-        const gchar * const name;
-        const GVariantType *expected_type;
-        void (* handler) (GAction *action, GVariant *parameter, gpointer data);
-} actions[N_ACTIONS] = {
-        [ACTION_QUIT]                  = { "quit",             NULL,                  dh_quit },
-        [ACTION_SEARCH]                = { "search",           G_VARIANT_TYPE_STRING, dh_search },
-        [ACTION_SEARCH_ASSISTANT]      = { "search-assistant", G_VARIANT_TYPE_STRING, dh_search_assistant },
-        [ACTION_FOCUS_SEARCH]          = { "focus-search",     NULL,                  dh_focus_search },
-        [ACTION_RAISE]                 = { "raise",            NULL,                  dh_raise },
-};
-
-static void
-dh_register_actions (GApplication *application,
-                     DhBase       *base)
-{
-        guint i;
-
-        GSimpleActionGroup *action_group;
-        GSimpleAction *action;
-
-        action_group = g_simple_action_group_new ();
-
-        for (i = 0; i < G_N_ELEMENTS (actions); i++) {
-                action = g_simple_action_new (actions[i].name, actions[i].expected_type);
-                g_signal_connect (action, "activate",  G_CALLBACK (actions[i].handler), base);
-                g_simple_action_group_insert (action_group, G_ACTION (action));
-                g_object_unref (action);
-        }
-
-        g_application_set_action_group (application, G_ACTION_GROUP (action_group));
-        g_object_unref (action_group);
-}
-
-static int
-activate (GApplication *application,
-          gpointer      data)
-{
-        DhBase *base = data;
-
         if (option_quit) {
-                /* No running Devhelps so just quit */
-                return EXIT_SUCCESS;
-        }
-
-        if (!option_search_assistant) {
-                GtkWidget *window;
-
-                window = dh_base_new_window (base);
-
-                if (option_search) {
-                        search_normal (DH_WINDOW (window), option_search);
-                }
-
-                gtk_widget_show (window);
+                dh_app_quit (application);
+        } else if (option_search) {
+                dh_app_search (application, option_search);
+        } else if (option_search_assistant) {
+                dh_app_search_assistant (application, option_search_assistant);
+        } else if (option_focus_search) {
+                dh_app_focus_search (application);
         } else {
-                if (!search_assistant (base, option_search_assistant)) {
-                        return EXIT_SUCCESS;
-                }
+                if (is_remote)
+                        dh_app_raise (application);
         }
+}
 
-        gtk_main ();
+static void
+activate_cb (GtkApplication *application)
+{
+        /* This is the primary instance */
+        dh_app_new_window (DH_APP (application));
 
-        return EXIT_SUCCESS;
+        /* Run the requested action from the command line */
+        run_action (DH_APP (application), FALSE);
 }
 
 int
 main (int argc, char **argv)
 {
-        DhBase                 *base;
-        GError                 *error = NULL;
-        int                     status;
+        DhApp   *application;
+        GError  *error = NULL;
+        gint     status;
 
 #ifdef GDK_WINDOWING_QUARTZ
         {
@@ -266,8 +127,6 @@ main (int argc, char **argv)
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
 
-        g_thread_init (NULL);
-
         if (!gtk_init_with_args (&argc, &argv, NULL, options, GETTEXT_PACKAGE, &error)) {
                 g_printerr ("%s\n", error->message);
                 return EXIT_FAILURE;
@@ -278,66 +137,32 @@ main (int argc, char **argv)
                 return EXIT_SUCCESS;
         }
 
-        /* i18n: Please don't translate "Devhelp" (it's marked as translatable
-         * for transliteration only) */
-        g_set_application_name (_("Devhelp"));
-        gtk_window_set_default_icon_name ("devhelp");
+        /* Create new DhApp */
+        application = dh_app_new ();
+        g_signal_connect (application, "activate", G_CALLBACK (activate_cb), NULL);
 
-        /* Create our base application. Needs to be created before the GApplication,
-         * as we will pass it as data to the 'activate' callback */
-        base = dh_base_new ();
-
-        /* Create new GApplication */
-        application = g_application_new ("org.gnome.Devhelp", 0);
-
-        /* Register all known actions */
-        g_signal_connect (application, "activate", G_CALLBACK (activate), base);
-        dh_register_actions (application, base);
+        /* Set it as the default application */
+        g_application_set_default (G_APPLICATION (application));
 
         /* Try to register the application... */
-        if (!g_application_register (application, NULL, &error)) {
+        if (!g_application_register (G_APPLICATION (application), NULL, &error)) {
                 g_printerr ("Couldn't register Devhelp instance: '%s'\n",
                             error ? error->message : "");
                 g_object_unref (application);
-                g_object_unref (base);
                 return EXIT_FAILURE;
         }
 
         /* Actions on a remote Devhelp already running? */
         if (g_application_get_is_remote (G_APPLICATION (application))) {
-                if (option_quit) {
-                        g_action_group_activate_action (G_ACTION_GROUP (application),
-                                                        actions[ACTION_QUIT].name,
-                                                        NULL);
-                } else if (option_search) {
-                        g_debug ("Searching in remote instance... '%s'", option_search);
-                        g_action_group_activate_action (G_ACTION_GROUP (application),
-                                                        actions[ACTION_SEARCH].name,
-                                                        g_variant_new_string (option_search));
-                } else if (option_search_assistant) {
-                        g_action_group_activate_action (G_ACTION_GROUP (application),
-                                                        actions[ACTION_SEARCH_ASSISTANT].name,
-                                                        g_variant_new_string (option_search_assistant));
-                } else if (option_focus_search) {
-                        g_action_group_activate_action (G_ACTION_GROUP (application),
-                                                        actions[ACTION_FOCUS_SEARCH].name,
-                                                        NULL);
-                } else {
-                        g_action_group_activate_action (G_ACTION_GROUP (application),
-                                                        actions[ACTION_RAISE].name,
-                                                        NULL);
-                }
-
-                gdk_notify_startup_complete ();
+                /* Run the requested action from the command line */
+                run_action (application, TRUE);
                 g_object_unref (application);
-                g_object_unref (base);
                 return EXIT_SUCCESS;
         }
 
-        /* And run the GApplication */
-        status = g_application_run (application, argc, argv);
+        /* And run the GtkApplication */
+        status = g_application_run (G_APPLICATION (application), argc, argv);
 
-        g_object_unref (base);
         g_object_unref (application);
 
         return status;

@@ -52,7 +52,7 @@ lib_LTLIBRARIES = libdevhelp-3.la
 INST_H_FILES = 						\
 	dh-assistant.h					\
 	dh-assistant-view.h				\
-	dh-base.h					\
+	dh-app.h					\
 	dh-book-manager.h				\
 	dh-language.h					\
 	dh-book.h					\
@@ -73,7 +73,7 @@ libdevhelp_3_la_SOURCES =				\
 	dh-enum-types.h					\
 	dh-assistant.c					\
 	dh-assistant-view.c				\
-	dh-base.c					\
+	dh-app.c					\
 	dh-book-manager.c				\
 	dh-language.c					\
 	dh-book.c					\
@@ -126,4 +126,3 @@ endif
 if HAVE_PLATFORM_X11
 conf_platform_sources = ige-conf-gconf.c
 endif
-
