@@ -49,30 +49,30 @@ static GOptionEntry options[] = {
           N_("Opens a new Devhelp window"),
           NULL
         },
+        { "focus-search",       'f',
+          0, G_OPTION_ARG_NONE, &option_focus_search,
+          N_("Focus the Devhelp window with the search field active"),
+          NULL
+        },
         { "search", 's',
           0, G_OPTION_ARG_STRING, &option_search,
           N_("Search for a keyword"),
           N_("KEYWORD")
         },
-        { "quit", 'q',
-          0, G_OPTION_ARG_NONE, &option_quit,
-          N_("Quit any running Devhelp"),
-          NULL
+        { "search-assistant", 'a',
+          0, G_OPTION_ARG_STRING, &option_search_assistant,
+          N_("Search and display any hit in the assistant window"),
+          N_("KEYWORD")
         },
         { "version", 'v',
           0, G_OPTION_ARG_NONE, &option_version,
           N_("Display the version and exit"),
           NULL
         },
-        { "focus-search",       'f',
-          0, G_OPTION_ARG_NONE, &option_focus_search,
-          N_("Focus the Devhelp window with the search field active"),
+        { "quit", 'q',
+          0, G_OPTION_ARG_NONE, &option_quit,
+          N_("Quit any running Devhelp"),
           NULL
-        },
-        { "search-assistant", 'a',
-          0, G_OPTION_ARG_STRING, &option_search_assistant,
-          N_("Search and display any hit in the assistant window"),
-          N_("KEYWORD")
         },
         { NULL }
 };
