@@ -52,7 +52,7 @@ static GOptionEntry options[] = {
         { "search", 's',
           0, G_OPTION_ARG_STRING, &option_search,
           N_("Search for a keyword"),
-          NULL
+          N_("KEYWORD")
         },
         { "quit", 'q',
           0, G_OPTION_ARG_NONE, &option_quit,
@@ -72,7 +72,7 @@ static GOptionEntry options[] = {
         { "search-assistant", 'a',
           0, G_OPTION_ARG_STRING, &option_search_assistant,
           N_("Search and display any hit in the assistant window"),
-          NULL
+          N_("KEYWORD")
         },
         { NULL }
 };
