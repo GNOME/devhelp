@@ -50,9 +50,10 @@ devhelp_LDADD = 					\
 lib_LTLIBRARIES = libdevhelp-3.la
 
 INST_H_FILES = 						\
+	devhelp.h					\
+	dh-app.h					\
 	dh-assistant.h					\
 	dh-assistant-view.h				\
-	dh-app.h					\
 	dh-book-manager.h				\
 	dh-language.h					\
 	dh-book.h					\
@@ -67,13 +68,14 @@ devhelpincludedir = $(includedir)/devhelp-3.0/devhelp
 devhelpinclude_HEADERS = $(INST_H_FILES)
 
 libdevhelp_3_la_SOURCES =				\
+	dh-common.c					\
 	dh-marshal.c					\
 	dh-marshal.h					\
 	dh-enum-types.c					\
 	dh-enum-types.h					\
+	dh-app.c					\
 	dh-assistant.c					\
 	dh-assistant-view.c				\
-	dh-app.c					\
 	dh-book-manager.c				\
 	dh-language.c					\
 	dh-book.c					\

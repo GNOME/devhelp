@@ -25,12 +25,9 @@
 
 #include <glib/gi18n.h>
 
-#include "ige-conf.h"
-#include "dh-util.h"
+#include "devhelp.h"
 #include "dh-app.h"
 #include "dh-preferences.h"
-#include "dh-window.h"
-#include "dh-assistant.h"
 
 struct _DhAppPrivate {
         DhBookManager *book_manager;
@@ -295,18 +292,6 @@ setup_actions (DhApp *self)
 /******************************************************************************/
 
 static void
-load_config_defaults (void)
-{
-        IgeConf    *conf;
-        gchar      *path;
-
-        conf = ige_conf_get ();
-        path = dh_util_build_data_filename ("devhelp", "devhelp.defaults", NULL);
-        ige_conf_add_defaults (conf, path);
-        g_free (path);
-}
-
-static void
 create_application_menu (DhApp *self)
 {
         GMenu *menu, *section;
@@ -343,9 +328,6 @@ startup (GApplication *application)
 
         /* Create application menu */
         create_application_menu (self);
-
-        /* Setup default configuration */
-        load_config_defaults ();
 
         /* Load the book manager */
         g_assert (self->priv->book_manager == NULL);

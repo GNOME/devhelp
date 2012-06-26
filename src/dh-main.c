@@ -32,9 +32,8 @@
 #include <gdk/gdkx.h>
 #endif
 
+#include "devhelp.h"
 #include "dh-app.h"
-#include "dh-window.h"
-#include "dh-assistant.h"
 
 static gboolean  option_new_window;
 static gchar    *option_search;
@@ -145,6 +144,9 @@ main (int argc, char **argv)
                 g_print ("%s\n", PACKAGE_STRING);
                 return EXIT_SUCCESS;
         }
+
+        /* Initialize Devhelp support */
+        dh_init ();
 
         /* Create new DhApp */
         application = dh_app_new ();
