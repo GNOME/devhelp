@@ -75,11 +75,12 @@ PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
   gtk+-3.0 >= 3.0.2
   $WEBKITGTK_PC_NAME >= $WEBKITGTK_REQUIRED_VERSION
-  glib-2.0 >= 2.25.11
+  gio-2.0 >= 2.32
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
   gtk+-3.0 >= 3.0.2
+  gio-2.0 >= 2.32
   $gconf_pkgconfig
   $gtkmacintegration_pkgconfig
   $WEBKITGTK_PC_NAME >= $WEBKITGTK_REQUIRED_VERSION
