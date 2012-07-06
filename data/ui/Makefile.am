@@ -1,7 +1,4 @@
 uidir = $(datadir)/devhelp/ui
-ui_DATA = 				\
-	window.ui			\
-	devhelp.builder
+ui_DATA = devhelp.builder
 
 EXTRA_DIST = $(ui_DATA)
-

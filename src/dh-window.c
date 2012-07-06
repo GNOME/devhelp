@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2001-2008 Imendio AB
+ * Copyright (C) 2012 Aleksander Morgado <aleksander@gnu.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -56,7 +57,6 @@
 
 struct _DhWindowPriv {
         GtkWidget      *main_box;
-        GtkWidget      *menu_box;
         GtkWidget      *hpaned;
         GtkWidget      *control_notebook;
         GtkWidget      *book_tree;
@@ -70,7 +70,7 @@ struct _DhWindowPriv {
         guint           fullscreen_animation_timeout_id;
         gboolean        fullscreen_animation_enter;
 
-        GtkUIManager   *manager;
+        GtkBuilder     *builder;
         GtkActionGroup *action_group;
 
         DhLink         *selected_search_link;
@@ -136,10 +136,12 @@ static void           window_find_search_changed_cb  (GObject         *object,
 static void           window_find_case_changed_cb    (GObject         *object,
                                                       GParamSpec      *arg1,
                                                       DhWindow        *window);
-static void           window_find_previous_cb        (GtkEntry        *entry,
+static void           window_find_next_cb            (GtkWidget       *widget,
                                                       DhWindow        *window);
-static void           window_find_next_cb            (GtkEntry        *entry,
+static void           findbar_find_next              (DhWindow        *window);
+static void           window_find_previous_cb        (GtkWidget       *widget,
                                                       DhWindow        *window);
+static void           findbar_find_previous          (DhWindow        *window);
 static void           window_findbar_close_cb        (GtkWidget       *widget,
                                                       DhWindow        *window);
 static GtkWidget *    window_new_tab_label           (DhWindow        *window,
@@ -160,22 +162,30 @@ static void           window_close_tab               (DhWindow *window,
                                                       gint      page_num);
 static gboolean       do_search                      (DhWindow *window);
 
+static void           window_fullscreen_controls_build (DhWindow *window);
+static void           window_fullscreen_controls_show (DhWindow *window);
+
 G_DEFINE_TYPE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
 #define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
   (instance, DH_TYPE_WINDOW, DhWindowPriv);
 
 static void
-window_activate_new_tab (GtkAction *action,
-                         DhWindow  *window)
+new_tab_cb (GSimpleAction *action,
+            GVariant      *parameter,
+            gpointer       user_data)
 {
+        DhWindow *window = user_data;
+
         window_open_new_tab (window, NULL, TRUE);
 }
 
 static void
-window_activate_print (GtkAction *action,
-                       DhWindow  *window)
+print_cb (GSimpleAction *action,
+          GVariant      *parameter,
+          gpointer       user_data)
 {
+        DhWindow *window = user_data;
         WebKitWebView *web_view = window_get_active_web_view (window);
 #ifdef HAVE_WEBKIT2
         WebKitPrintOperation *print_operation;
@@ -210,19 +220,23 @@ window_close_tab (DhWindow *window,
 }
 
 static void
-window_activate_close (GtkAction *action,
-                       DhWindow  *window)
+close_cb (GSimpleAction *action,
+          GVariant      *parameter,
+          gpointer       user_data)
 {
-        gint          page_num;
+        DhWindow *window = user_data;
+        gint page_num;
 
         page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (window->priv->notebook));
         window_close_tab (window, page_num);
 }
 
 static void
-window_activate_copy (GtkAction *action,
-                      DhWindow  *window)
+copy_cb (GSimpleAction *action,
+         GVariant      *parameter,
+         gpointer       user_data)
 {
+        DhWindow *window = user_data;
         GtkWidget *widget;
         DhWindowPriv  *priv;
 
@@ -252,9 +266,11 @@ window_activate_copy (GtkAction *action,
 }
 
 static void
-window_activate_find (GtkAction *action,
-                      DhWindow  *window)
+find_cb (GSimpleAction *action,
+         GVariant      *parameter,
+         gpointer       user_data)
 {
+        DhWindow *window = user_data;
         DhWindowPriv  *priv;
 #ifndef HAVE_WEBKIT2
         WebKitWebView *web_view;
@@ -273,6 +289,22 @@ window_activate_find (GtkAction *action,
         web_view = window_get_active_web_view (window);
         webkit_web_view_set_highlight_text_matches (web_view, TRUE);
 #endif /* HAVE_WEBKIT2 */
+}
+
+static void
+find_previous_cb (GSimpleAction *action,
+                  GVariant      *parameter,
+                  gpointer       user_data)
+{
+        findbar_find_previous (DH_WINDOW (user_data));
+}
+
+static void
+find_next_cb (GSimpleAction *action,
+              GVariant      *parameter,
+              gpointer       user_data)
+{
+        findbar_find_next (DH_WINDOW (user_data));
 }
 
 static int
@@ -302,31 +334,48 @@ window_get_current_zoom_level_index (DhWindow *window)
 }
 
 static void
-window_update_zoom_actions_sensitiveness (DhWindow *window)
+window_update_zoom_actions_state (DhWindow *window)
 {
         DhWindowPriv *priv;
-        GtkAction *zoom_in, *zoom_out, *zoom_default;
+        GAction *action;
         int zoom_level_idx;
+        gboolean enabled;
 
         priv = window->priv;
-        zoom_in = gtk_action_group_get_action (priv->action_group, "ZoomIn");
-        zoom_out = gtk_action_group_get_action (priv->action_group, "ZoomOut");
-        zoom_default = gtk_action_group_get_action (priv->action_group, "ZoomDefault");
 
         zoom_level_idx = window_get_current_zoom_level_index (window);
 
-        gtk_action_set_sensitive (zoom_in,
-                                  zoom_levels[zoom_level_idx].level < ZOOM_MAXIMAL);
-        gtk_action_set_sensitive (zoom_out,
-                                  zoom_levels[zoom_level_idx].level > ZOOM_MINIMAL);
-        gtk_action_set_sensitive (zoom_default,
-                                  zoom_levels[zoom_level_idx].level != ZOOM_DEFAULT);
+        enabled = zoom_levels[zoom_level_idx].level < ZOOM_MAXIMAL;
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-in");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        if (priv->fullscreen_controls) {
+                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "zoom-in");
+                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        }
+
+        enabled = zoom_levels[zoom_level_idx].level > ZOOM_MINIMAL;
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-out");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        if (priv->fullscreen_controls) {
+                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "zoom-out");
+                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        }
+
+        enabled = zoom_levels[zoom_level_idx].level != ZOOM_DEFAULT;
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-default");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        if (priv->fullscreen_controls) {
+                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "zoom-default");
+                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        }
 }
 
 static void
-window_activate_zoom_in (GtkAction *action,
-                         DhWindow  *window)
+zoom_in_cb (GSimpleAction *action,
+            GVariant      *parameter,
+            gpointer       user_data)
 {
+	DhWindow *window = user_data;
         int zoom_level_idx;
 
         zoom_level_idx = window_get_current_zoom_level_index (window);
@@ -335,15 +384,17 @@ window_activate_zoom_in (GtkAction *action,
 
                 web_view = window_get_active_web_view (window);
                 webkit_web_view_set_zoom_level (web_view, zoom_levels[zoom_level_idx + 1].level);
-                window_update_zoom_actions_sensitiveness (window);
+                window_update_zoom_actions_state (window);
         }
 
 }
 
 static void
-window_activate_zoom_out (GtkAction *action,
-                          DhWindow  *window)
+zoom_out_cb (GSimpleAction *action,
+             GVariant      *parameter,
+             gpointer       user_data)
 {
+	DhWindow *window = user_data;
         int zoom_level_idx;
 
         zoom_level_idx = window_get_current_zoom_level_index (window);
@@ -352,20 +403,203 @@ window_activate_zoom_out (GtkAction *action,
 
                 web_view = window_get_active_web_view (window);
                 webkit_web_view_set_zoom_level (web_view, zoom_levels[zoom_level_idx - 1].level);
-                window_update_zoom_actions_sensitiveness (window);
+                window_update_zoom_actions_state (window);
         }
 }
 
 static void
-window_activate_zoom_default (GtkAction *action,
-                              DhWindow  *window)
+zoom_default_cb (GSimpleAction *action,
+                 GVariant      *parameter,
+                 gpointer       user_data)
 {
+	DhWindow *window = user_data;
         WebKitWebView *web_view;
 
         web_view = window_get_active_web_view (window);
         webkit_web_view_set_zoom_level (web_view, ZOOM_DEFAULT);
-        window_update_zoom_actions_sensitiveness (window);
+        window_update_zoom_actions_state (window);
 }
+
+static gboolean
+window_is_fullscreen (DhWindow *window)
+{
+        GdkWindowState  state;
+
+        g_return_val_if_fail (DH_IS_WINDOW (window), FALSE);
+
+        state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
+
+        return state & GDK_WINDOW_STATE_FULLSCREEN;
+}
+
+static void
+window_fullscreen (DhWindow *window)
+{
+        if (window_is_fullscreen (window))
+                return;
+
+        gtk_window_fullscreen (GTK_WINDOW (window));
+        gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbar")));
+        gtk_application_window_set_show_menubar (GTK_APPLICATION_WINDOW (window), FALSE);
+
+        window_fullscreen_controls_build (window);
+        window_fullscreen_controls_show (window);
+}
+
+static void
+window_unfullscreen (DhWindow *window)
+{
+        if (! window_is_fullscreen (window))
+                return;
+
+        gtk_window_unfullscreen (GTK_WINDOW (window));
+        gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbar")));
+        gtk_application_window_set_show_menubar (GTK_APPLICATION_WINDOW (window), TRUE);
+
+        gtk_widget_hide (window->priv->fullscreen_controls);
+}
+
+static void
+go_back_cb (GSimpleAction *action,
+            GVariant      *parameter,
+            gpointer       user_data)
+{
+        DhWindow      *window = user_data;
+        DhWindowPriv  *priv;
+        WebKitWebView *web_view;
+        GtkWidget     *frame;
+
+        priv = window->priv;
+
+        frame = gtk_notebook_get_nth_page (
+                GTK_NOTEBOOK (priv->notebook),
+                gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)));
+        web_view = g_object_get_data (G_OBJECT (frame), "web_view");
+
+        webkit_web_view_go_back (web_view);
+}
+
+static void
+go_forward_cb (GSimpleAction *action,
+               GVariant      *parameter,
+               gpointer       user_data)
+{
+        DhWindow      *window = user_data;
+        DhWindowPriv  *priv;
+        WebKitWebView *web_view;
+        GtkWidget     *frame;
+
+        priv = window->priv;
+
+        frame = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook),
+                                           gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)));
+        web_view = g_object_get_data (G_OBJECT (frame), "web_view");
+
+        webkit_web_view_go_forward (web_view);
+}
+
+static void
+go_contents_tab_cb (GSimpleAction *action,
+                    GVariant      *parameter,
+                    gpointer       user_data)
+{
+        DhWindow     *window = user_data;
+        DhWindowPriv *priv;
+
+        priv = window->priv;
+
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 0);
+        gtk_widget_grab_focus (priv->book_tree);
+}
+
+static void
+go_search_tab_cb (GSimpleAction *action,
+                  GVariant      *parameter,
+                  gpointer       user_data)
+{
+        DhWindow     *window = user_data;
+        DhWindowPriv *priv;
+
+        priv = window->priv;
+
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
+        gtk_widget_grab_focus (priv->search);
+}
+
+static void
+window_open_link_cb (DhWindow *window,
+                     const char *location,
+                     DhOpenLinkFlags flags)
+{
+        if (flags & DH_OPEN_LINK_NEW_TAB) {
+                window_open_new_tab (window, location, FALSE);
+        }
+        else if (flags & DH_OPEN_LINK_NEW_WINDOW) {
+                dh_app_new_window (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
+        }
+}
+
+static void
+fullscreen_cb (GSimpleAction *action,
+               GVariant      *parameter,
+               gpointer       data)
+{
+        GVariant *state = g_action_get_state (G_ACTION (action));
+        gboolean value = g_variant_get_boolean (state);
+
+        g_action_change_state (G_ACTION (action), g_variant_new_boolean (!value));
+        g_variant_unref (state);
+}
+
+static void
+fullscreen_change_state_cb (GSimpleAction *action,
+                            GVariant      *state,
+                            gpointer       data)
+{
+        DhWindow *self = data;
+        gboolean is_active = g_variant_get_boolean (state);
+
+        if (is_active)
+                window_fullscreen (self);
+        else
+                window_unfullscreen (self);
+        g_simple_action_set_state (action, state);
+}
+
+static void
+leave_fullscreen_cb (GSimpleAction *action,
+                     GVariant      *parameter,
+                     gpointer       data)
+{
+        DhWindow *self = data;
+        GAction *fs_action;
+
+        fs_action = g_action_map_lookup_action (G_ACTION_MAP (self), "fullscreen");
+        g_action_change_state (G_ACTION (fs_action), g_variant_new_boolean (FALSE));
+}
+
+static GActionEntry win_entries[] = {
+        /* file */
+        { "new-tab",          new_tab_cb,          NULL, NULL, NULL },
+        { "print",            print_cb,            NULL, NULL, NULL },
+        { "close",            close_cb,            NULL, NULL, NULL },
+        /* edit */
+        { "copy",             copy_cb,             NULL, NULL, NULL },
+        { "find",             find_cb,             NULL, NULL, NULL },
+        { "find-next",        find_next_cb,        NULL, NULL, NULL },
+        { "find-previous",    find_previous_cb,    NULL, NULL, NULL },
+        /* view */
+        { "zoom-in",          zoom_in_cb,          NULL, NULL, NULL },
+        { "zoom-out",         zoom_out_cb,         NULL, NULL, NULL },
+        { "zoom-default",     zoom_default_cb,     NULL, NULL, NULL },
+        { "fullscreen",       fullscreen_cb,       NULL, "false", fullscreen_change_state_cb },
+        { "leave-fullscreen", leave_fullscreen_cb, NULL, NULL, NULL },
+        /* go */
+        { "go-back",          go_back_cb,          NULL, "false", NULL },
+        { "go-forward",       go_forward_cb,       NULL, "false", NULL },
+        { "go-contents-tab",  go_contents_tab_cb,  NULL, NULL, NULL },
+        { "go-search-tab",    go_search_tab_cb,    NULL, NULL, NULL },
+};
 
 static gboolean
 run_fullscreen_animation (gpointer data)
@@ -458,14 +692,13 @@ show_hide_fullscreen_toolbar (DhWindow *window,
 
                 if (show)
                         gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
-                                 fs_rect.x, fs_rect.y);
+                                         fs_rect.x, fs_rect.y);
                 else
                         gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
                                          fs_rect.x, fs_rect.y - height + 1);
         }
 
 }
-
 
 static gboolean
 on_fullscreen_controls_enter_notify_event (GtkWidget        *widget,
@@ -504,39 +737,35 @@ on_fullscreen_controls_leave_notify_event (GtkWidget        *widget,
         return FALSE;
 }
 
-static gboolean
-window_is_fullscreen (DhWindow *window)
-{
-        GdkWindowState  state;
-
-        g_return_val_if_fail (DH_IS_WINDOW (window), FALSE);
-
-        state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
-
-        return state & GDK_WINDOW_STATE_FULLSCREEN;
-}
-
 static void
 window_fullscreen_controls_build (DhWindow *window)
 {
         GtkWidget *toolbar;
-        GtkAction *action;
         DhWindowPriv  *priv;
 
         priv = window->priv;
         if (priv->fullscreen_controls != NULL)
                 return;
 
-        priv->fullscreen_controls = gtk_window_new (GTK_WINDOW_POPUP);
+        /* Note: the Fullscreen Controls window needs to be a
+         * GtkApplicationWindow, in order to be able to process GActions.
+         * Moreover, the window needs to get destroyed with the parent, or
+         * we'll end up leaving a reference to the GtkApplication around and
+         * it will not get closed properly. */
+        priv->fullscreen_controls = g_object_new (GTK_TYPE_APPLICATION_WINDOW,
+                                                  "type", GTK_WINDOW_POPUP,
+                                                  "application", gtk_window_get_application (GTK_WINDOW (window)),
+                                                  "show-menubar", FALSE,
+                                                  NULL);
         gtk_window_set_transient_for (GTK_WINDOW (priv->fullscreen_controls),
                                       GTK_WINDOW (window));
+        gtk_window_set_destroy_with_parent (GTK_WINDOW (priv->fullscreen_controls),
+                                            TRUE);
 
-        toolbar = gtk_ui_manager_get_widget (priv->manager, "/FullscreenToolBar");
+        toolbar = GTK_WIDGET (gtk_builder_get_object (priv->builder,
+                                                      "fullscreen-toolbar"));
         gtk_container_add (GTK_CONTAINER (priv->fullscreen_controls),
                            toolbar);
-        action = gtk_action_group_get_action (priv->action_group,
-                                              "LeaveFullscreen");
-        g_object_set (action, "is-important", TRUE, NULL);
 
         /* Set the toolbar style */
         gtk_toolbar_set_style (GTK_TOOLBAR (toolbar),
@@ -548,6 +777,12 @@ window_fullscreen_controls_build (DhWindow *window)
         g_signal_connect (priv->fullscreen_controls, "leave-notify-event",
                           G_CALLBACK (on_fullscreen_controls_leave_notify_event),
                           window);
+
+        g_action_map_add_action_entries (G_ACTION_MAP (priv->fullscreen_controls),
+                                         win_entries, G_N_ELEMENTS (win_entries),
+                                         window);
+
+        window_check_history (window, NULL);
 }
 
 static void
@@ -559,10 +794,10 @@ window_fullscreen_controls_show (DhWindow *window)
 
         screen = gtk_window_get_screen (GTK_WINDOW (window));
         gdk_screen_get_monitor_geometry (screen,
-                        gdk_screen_get_monitor_at_window (
-                                screen,
-                                gtk_widget_get_window (GTK_WIDGET (window))),
-                        &fs_rect);
+                                         gdk_screen_get_monitor_at_window (
+                                                 screen,
+                                                 gtk_widget_get_window (GTK_WIDGET (window))),
+                                         &fs_rect);
 
         gtk_window_get_size (GTK_WINDOW (window->priv->fullscreen_controls), &w, &h);
 
@@ -576,207 +811,62 @@ window_fullscreen_controls_show (DhWindow *window)
 }
 
 static void
-window_fullscreen (DhWindow *window)
-{
-        if (window_is_fullscreen (window))
-                return;
-
-        gtk_window_fullscreen (GTK_WINDOW (window));
-        gtk_widget_hide (gtk_ui_manager_get_widget (window->priv->manager, "/MenuBar"));
-        gtk_widget_hide (gtk_ui_manager_get_widget (window->priv->manager, "/Toolbar"));
-
-        window_fullscreen_controls_build (window);
-        window_fullscreen_controls_show (window);
-}
-
-static void
-window_unfullscreen (DhWindow *window)
-{
-        if (! window_is_fullscreen (window))
-                return;
-
-        gtk_window_unfullscreen (GTK_WINDOW (window));
-        gtk_widget_show (gtk_ui_manager_get_widget (window->priv->manager, "/MenuBar"));
-        gtk_widget_show (gtk_ui_manager_get_widget (window->priv->manager, "/Toolbar"));
-
-        gtk_widget_hide (window->priv->fullscreen_controls);
-}
-
-
-static void
-window_toggle_fullscreen_mode (GtkAction *action,
-                               DhWindow  *window)
-{
-        if (window_is_fullscreen (window)) {
-                window_unfullscreen (window);
-        } else {
-                window_fullscreen (window);
-        }
-}
-
-static void
-window_leave_fullscreen_mode (GtkAction *action,
-                              DhWindow *window)
-{
-        GtkAction *view_action;
-
-        view_action = gtk_action_group_get_action (window->priv->action_group,
-                                                   "ViewFullscreen");
-        g_signal_handlers_block_by_func (view_action,
-                        G_CALLBACK (window_toggle_fullscreen_mode),
-                        window);
-        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (view_action),
-                                      FALSE);
-        window_unfullscreen (window);
-        g_signal_handlers_unblock_by_func (view_action,
-                        G_CALLBACK (window_toggle_fullscreen_mode),
-                        window);
-}
-
-static void
-window_activate_back (GtkAction *action,
-                      DhWindow  *window)
+dh_window_init (DhWindow *window)
 {
         DhWindowPriv  *priv;
-        WebKitWebView *web_view;
-        GtkWidget     *frame;
+        GtkAccelGroup *accel_group;
+        GClosure      *closure;
+        gint           i;
+        gchar         *path;
+        GError        *error = NULL;
 
-        priv = window->priv;
+        priv = GET_PRIVATE (window);
+        window->priv = priv;
 
-        frame = gtk_notebook_get_nth_page (
-                GTK_NOTEBOOK (priv->notebook),
-                gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)));
-        web_view = g_object_get_data (G_OBJECT (frame), "web_view");
+        priv->selected_search_link = NULL;
 
-        webkit_web_view_go_back (web_view);
-}
-
-static void
-window_activate_forward (GtkAction *action,
-                         DhWindow  *window)
-{
-        DhWindowPriv  *priv;
-        WebKitWebView *web_view;
-        GtkWidget     *frame;
-
-        priv = window->priv;
-
-        frame = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook),
-                                           gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook))
-                                          );
-        web_view = g_object_get_data (G_OBJECT (frame), "web_view");
-
-        webkit_web_view_go_forward (web_view);
-}
-
-static void
-window_activate_show_contents (GtkAction *action,
-                               DhWindow  *window)
-{
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 0);
-        gtk_widget_grab_focus (priv->book_tree);
-}
-
-static void
-window_activate_show_search (GtkAction *action,
-                             DhWindow  *window)
-{
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
-        gtk_widget_grab_focus (priv->search);
-}
-
-static void
-window_open_link_cb (DhWindow *window,
-                     const char *location,
-                     DhOpenLinkFlags flags)
-{
-        if (flags & DH_OPEN_LINK_NEW_TAB) {
-                window_open_new_tab (window, location, FALSE);
+        /* Setup builder */
+        priv->builder = gtk_builder_new ();
+        path = dh_util_build_data_filename ("devhelp", "ui", "devhelp.builder", NULL);
+        if (!gtk_builder_add_from_file (priv->builder, path, &error)) {
+                g_error ("Cannot create builder from '%s': %s",
+                         path, error ? error->message : "unknown error");
         }
-        else if (flags & DH_OPEN_LINK_NEW_WINDOW) {
-                dh_app_new_window (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
+        g_free (path);
+
+        priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+        gtk_widget_show (priv->main_box);
+
+        gtk_container_add (GTK_CONTAINER (window), priv->main_box);
+
+        g_signal_connect (window,
+                          "open-link",
+                          G_CALLBACK (window_open_link_cb),
+                          window);
+
+        g_action_map_add_action_entries (G_ACTION_MAP (window),
+                                         win_entries, G_N_ELEMENTS (win_entries),
+                                         window);
+
+        accel_group = gtk_accel_group_new ();
+        gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
+        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
+                closure =  g_cclosure_new (G_CALLBACK (window_web_view_tab_accel_cb),
+                                           window,
+                                           NULL);
+                gtk_accel_group_connect (accel_group,
+                                         tab_accel_keys[i],
+                                         GDK_MOD1_MASK,
+                                         0,
+                                         closure);
         }
 }
-
-static const GtkActionEntry actions[] = {
-        { "FileMenu", NULL, N_("_File") },
-        { "EditMenu", NULL, N_("_Edit") },
-        { "ViewMenu", NULL, N_("_View") },
-        { "GoMenu",   NULL, N_("_Go") },
-        { "HelpMenu", NULL, N_("_Help") },
-
-        /* File menu */
-        { "NewTab", GTK_STOCK_NEW, N_("New _Tab"), "<control>T", NULL,
-          G_CALLBACK (window_activate_new_tab) },
-        { "Print", GTK_STOCK_PRINT, N_("_Print…"), "<control>P", NULL,
-          G_CALLBACK (window_activate_print) },
-        { "Close", GTK_STOCK_CLOSE, NULL, NULL, NULL,
-          G_CALLBACK (window_activate_close) },
-
-        /* Edit menu */
-        { "Copy", GTK_STOCK_COPY, NULL, "<control>C", NULL,
-          G_CALLBACK (window_activate_copy) },
-        { "Find", GTK_STOCK_FIND, NULL, "<control>F", NULL,
-          G_CALLBACK (window_activate_find) },
-        { "Find Next", GTK_STOCK_GO_FORWARD, N_("Find Next"), "<control>G", NULL,
-          G_CALLBACK (window_find_next_cb) },
-        { "Find Previous", GTK_STOCK_GO_BACK, N_("Find Previous"), "<shift><control>G", NULL,
-          G_CALLBACK (window_find_previous_cb) },
-
-        /* Go menu */
-        { "Back", GTK_STOCK_GO_BACK, NULL, "<alt>Left",
-          N_("Go to the previous page"),
-          G_CALLBACK (window_activate_back) },
-        { "Forward", GTK_STOCK_GO_FORWARD, NULL, "<alt>Right",
-          N_("Go to the next page"),
-          G_CALLBACK (window_activate_forward) },
-
-        { "ShowContentsTab", NULL, N_("_Contents Tab"), "<ctrl>B", NULL,
-          G_CALLBACK (window_activate_show_contents) },
-
-        { "ShowSearchTab", NULL, N_("_Search Tab"), "<ctrl>S", NULL,
-          G_CALLBACK (window_activate_show_search) },
-
-        /* View menu */
-        { "ZoomIn", GTK_STOCK_ZOOM_IN, N_("_Larger Text"), "<ctrl>plus",
-          N_("Increase the text size"),
-          G_CALLBACK (window_activate_zoom_in) },
-        { "ZoomOut", GTK_STOCK_ZOOM_OUT, N_("S_maller Text"), "<ctrl>minus",
-          N_("Decrease the text size"),
-          G_CALLBACK (window_activate_zoom_out) },
-        { "ZoomDefault", GTK_STOCK_ZOOM_100, N_("_Normal Size"), "<ctrl>0",
-          N_("Use the normal text size"),
-          G_CALLBACK (window_activate_zoom_default) },
-
-        /* Fullscreen toolbar */
-        { "LeaveFullscreen", GTK_STOCK_LEAVE_FULLSCREEN, NULL,
-          NULL, N_("Leave fullscreen mode"),
-          G_CALLBACK (window_leave_fullscreen_mode) }
-};
-
-static const GtkToggleActionEntry always_sensitive_toggle_menu_entries[] =
-{
-        { "ViewFullscreen", GTK_STOCK_FULLSCREEN, NULL, "F11",
-          N_("Display in full screen"),
-          G_CALLBACK (window_toggle_fullscreen_mode), FALSE },
-};
-
-static const gchar* important_actions[] = {
-        "Back",
-        "Forward"
-};
 
 static void
 dh_window_class_init (DhWindowClass *klass)
 {
+        g_type_class_add_private (klass, sizeof (DhWindowPriv));
+
         signals[OPEN_LINK] =
                 g_signal_new ("open-link",
                               G_TYPE_FROM_CLASS (klass),
@@ -798,97 +888,6 @@ dh_window_class_init (DhWindowClass *klass)
                              "}\n"
                              "widget \"*.devhelp-tab-close-button\" "
                              "style \"devhelp-tab-close-button-style\"");
-
-        g_type_class_add_private (klass, sizeof (DhWindowPriv));
-}
-
-static void
-dh_window_init (DhWindow *window)
-{
-        DhWindowPriv  *priv;
-        GtkAction     *action;
-        GtkAccelGroup *accel_group;
-        GClosure      *closure;
-        gint           i;
-
-        priv = GET_PRIVATE (window);
-        window->priv = priv;
-
-        priv->selected_search_link = NULL;
-
-        priv->manager = gtk_ui_manager_new ();
-
-        accel_group = gtk_ui_manager_get_accel_group (priv->manager);
-        gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
-
-        priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-        gtk_widget_show (priv->main_box);
-
-        priv->menu_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-        gtk_widget_show (priv->menu_box);
-        gtk_container_set_border_width (GTK_CONTAINER (priv->menu_box), 0);
-        gtk_box_pack_start (GTK_BOX (priv->main_box), priv->menu_box,
-                            FALSE, TRUE, 0);
-
-        gtk_container_add (GTK_CONTAINER (window), priv->main_box);
-
-        g_signal_connect (window,
-                          "open-link",
-                          G_CALLBACK (window_open_link_cb),
-                          window);
-
-        priv->action_group = gtk_action_group_new ("MainWindow");
-
-        gtk_action_group_set_translation_domain (priv->action_group,
-                                                 GETTEXT_PACKAGE);
-
-        gtk_action_group_add_actions (priv->action_group,
-                                      actions,
-                                      G_N_ELEMENTS (actions),
-                                      window);
-        gtk_action_group_add_toggle_actions (priv->action_group,
-                                             always_sensitive_toggle_menu_entries,
-                                             G_N_ELEMENTS (always_sensitive_toggle_menu_entries),
-                                             window);
-
-        for (i = 0; i < G_N_ELEMENTS (important_actions); i++) {
-                action = gtk_action_group_get_action (priv->action_group,
-                                                      important_actions[i]);
-                g_object_set (action, "is-important", TRUE, NULL);
-        }
-
-        gtk_ui_manager_insert_action_group (priv->manager,
-                                            priv->action_group,
-                                            0);
-
-        action = gtk_action_group_get_action (priv->action_group,
-                                              "Back");
-        g_object_set (action, "sensitive", FALSE, NULL);
-
-        action = gtk_action_group_get_action (priv->action_group,
-                                              "Forward");
-        g_object_set (action, "sensitive", FALSE, NULL);
-
-        action = gtk_action_group_get_action (priv->action_group, "ZoomIn");
-        /* Translators: This refers to text size */
-        g_object_set (action, "short_label", _("Larger"), NULL);
-        action = gtk_action_group_get_action (priv->action_group, "ZoomOut");
-        /* Translators: This refers to text size */
-        g_object_set (action, "short_label", _("Smaller"), NULL);
-
-        accel_group = gtk_accel_group_new ();
-        gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
-
-        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
-                closure =  g_cclosure_new (G_CALLBACK (window_web_view_tab_accel_cb),
-                                           window,
-                                           NULL);
-                gtk_accel_group_connect (accel_group,
-                                         tab_accel_keys[i],
-                                         GDK_MOD1_MASK,
-                                         0,
-                                         closure);
-        }
 }
 
 /* The ugliest hack. When switching tabs, the selection and cursor is changed
@@ -967,37 +966,25 @@ window_web_view_switch_page_after_cb (GtkNotebook     *notebook,
                                       guint            new_page_num,
                                       DhWindow        *window)
 {
-        window_update_zoom_actions_sensitiveness (window);
+        window_update_zoom_actions_state (window);
 }
 
 static void
 window_populate (DhWindow *window)
 {
         DhWindowPriv  *priv;
-        gchar         *path;
         GtkWidget     *book_tree_sw;
         DhBookManager *book_manager;
-        GtkWidget     *menubar;
         GtkWidget     *toolbar;
 
         priv = window->priv;
 
-        path = dh_util_build_data_filename ("devhelp", "ui", "window.ui", NULL);
-        gtk_ui_manager_add_ui_from_file (priv->manager,
-                                         path,
-                                         NULL);
-        g_free (path);
-        gtk_ui_manager_ensure_update (priv->manager);
+        toolbar = GTK_WIDGET (gtk_builder_get_object (priv->builder, "toolbar"));
 
-        menubar = gtk_ui_manager_get_widget (priv->manager, "/MenuBar");
-        gtk_box_pack_start (GTK_BOX (priv->menu_box), menubar,
-                            FALSE, FALSE, 0);
-        toolbar = gtk_ui_manager_get_widget (priv->manager, "/Toolbar");
-
-	gtk_style_context_add_class (gtk_widget_get_style_context (toolbar),
-				     GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
-
-        gtk_box_pack_start (GTK_BOX (priv->menu_box), toolbar,
+        /* Add toolbar to main box */
+        gtk_style_context_add_class (gtk_widget_get_style_context (toolbar),
+                                     GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
+        gtk_box_pack_start (GTK_BOX (priv->main_box), toolbar,
                             FALSE, FALSE, 0);
 
 #ifdef GDK_WINDOWING_QUARTZ
@@ -1091,7 +1078,6 @@ window_populate (DhWindow *window)
                                 G_CALLBACK (window_web_view_switch_page_after_cb),
                                 window);
 
-
         /* Create findbar. */
         priv->findbar = egg_find_bar_new ();
         gtk_widget_set_no_show_all (priv->findbar, TRUE);
@@ -1120,7 +1106,7 @@ window_populate (DhWindow *window)
 
         gtk_widget_show_all (priv->hpaned);
 
-        window_update_zoom_actions_sensitiveness (window);
+        window_update_zoom_actions_state (window);
         window_open_new_tab (window, NULL, TRUE);
 }
 
@@ -1339,20 +1325,27 @@ static void
 window_check_history (DhWindow      *window,
                       WebKitWebView *web_view)
 {
-        DhWindowPriv *priv;
-        GtkAction    *action;
+        GAction       *action;
+        gboolean       enabled;
+        DhWindowPriv  *priv;
 
         priv = window->priv;
 
-        action = gtk_action_group_get_action (priv->action_group, "Forward");
-        g_object_set (action,
-                      "sensitive", web_view ? webkit_web_view_can_go_forward (web_view) : FALSE,
-                      NULL);
+        enabled = web_view ? webkit_web_view_can_go_forward (web_view) : FALSE;
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-forward");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        if (priv->fullscreen_controls) {
+                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "go-forward");
+                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        }
 
-        action = gtk_action_group_get_action (priv->action_group, "Back");
-        g_object_set (action,
-                      "sensitive", web_view ? webkit_web_view_can_go_back (web_view) : FALSE,
-                      NULL);
+        enabled = web_view ? webkit_web_view_can_go_back (web_view) : FALSE;
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-back");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        if (priv->fullscreen_controls) {
+                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "go-back");
+                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+        }
 }
 
 static void
@@ -1459,8 +1452,7 @@ window_find_case_changed_cb (GObject    *object,
 }
 
 static void
-window_find_next_cb (GtkEntry *entry,
-                     DhWindow *window)
+findbar_find_next (DhWindow *window)
 {
         DhWindowPriv         *priv = window->priv;
         WebKitWebView        *view;
@@ -1484,8 +1476,14 @@ window_find_next_cb (GtkEntry *entry,
 }
 
 static void
-window_find_previous_cb (GtkEntry *entry,
-                         DhWindow *window)
+window_find_next_cb (GtkWidget *widget,
+                     DhWindow  *window)
+{
+        findbar_find_next (window);
+}
+
+static void
+findbar_find_previous (DhWindow *window)
 {
         DhWindowPriv         *priv = window->priv;
         WebKitWebView        *view;
@@ -1507,6 +1505,13 @@ window_find_previous_cb (GtkEntry *entry,
         case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
         webkit_web_view_search_text (view, string, case_sensitive, FALSE, TRUE);
 #endif
+}
+
+static void
+window_find_previous_cb (GtkWidget *widget,
+                         DhWindow  *window)
+{
+        findbar_find_previous (window);
 }
 
 static void
