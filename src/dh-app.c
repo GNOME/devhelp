@@ -187,9 +187,7 @@ quit_cb (GSimpleAction *action,
         GList *l;
 
         /* Remove all windows registered in the application */
-        for (l = gtk_application_get_windows (GTK_APPLICATION (self));
-             l;
-             l = g_list_next (l)) {
+        while ((l = gtk_application_get_windows (GTK_APPLICATION (self)))) {
                 gtk_application_remove_window (GTK_APPLICATION (self),
                                                GTK_WINDOW (l->data));
         }
