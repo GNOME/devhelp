@@ -73,13 +73,13 @@ AM_CONDITIONAL(WITH_WEBKIT2, test "x$with_webkit2" != xno)
 
 PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
-  gtk+-3.0 >= 3.0.2
+  gtk+-3.0 >= 3.4
   $WEBKITGTK_PC_NAME >= $WEBKITGTK_REQUIRED_VERSION
   gio-2.0 >= 2.32
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-  gtk+-3.0 >= 3.0.2
+  gtk+-3.0 >= 3.4
   gio-2.0 >= 2.32
   $gconf_pkgconfig
   $gtkmacintegration_pkgconfig
