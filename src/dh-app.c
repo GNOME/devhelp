@@ -28,6 +28,7 @@
 #include "devhelp.h"
 #include "dh-app.h"
 #include "dh-preferences.h"
+#include "dh-util.h"
 
 struct _DhAppPrivate {
         DhBookManager *book_manager;
@@ -290,27 +291,27 @@ setup_actions (DhApp *self)
 /******************************************************************************/
 
 static void
-create_application_menu (DhApp *self)
+setup_menu (DhApp *self)
 {
-        GMenu *menu, *section;
+        GtkBuilder *builder;
+        GMenuModel *model;
+        gchar *path;
+        GError *error = NULL;
 
-        menu = g_menu_new ();
+        builder = gtk_builder_new ();
 
-        section = g_menu_new ();
-        g_menu_append (section, _("New window"), "app.new-window");
-        g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
+        path = dh_util_build_data_filename ("devhelp", "ui", "devhelp.builder", NULL);
+        if (!gtk_builder_add_from_file (builder, path, &error)) {
+                g_error ("Cannot create builder from '%s': %s",
+                         path, error ? error->message : "unknown error");
+        }
 
-        section = g_menu_new ();
-        g_menu_append (section, _("Preferences"), "app.preferences");
-        g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
+        model = G_MENU_MODEL (gtk_builder_get_object (builder, "app-menu"));
+        gtk_application_set_app_menu (GTK_APPLICATION (self), model);
 
-        section = g_menu_new ();
-        g_menu_append (section, _("About Devhelp"), "app.about");
-        g_menu_append (section, _("Quit"), "app.quit");
-        g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
 
-        gtk_application_set_app_menu (GTK_APPLICATION (self),
-                                      G_MENU_MODEL (menu));
+        g_free (path);
+        g_object_unref (builder);
 }
 
 static void
@@ -321,11 +322,11 @@ startup (GApplication *application)
         /* Chain up parent's startup */
         G_APPLICATION_CLASS (dh_app_parent_class)->startup (application);
 
-        /* Setup application level actions */
+        /* Setup actions */
         setup_actions (self);
 
-        /* Create application menu */
-        create_application_menu (self);
+        /* Setup menu */
+        setup_menu (self);
 
         /* Load the book manager */
         g_assert (self->priv->book_manager == NULL);

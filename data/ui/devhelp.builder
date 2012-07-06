@@ -23,6 +23,33 @@
 <interface>
   <requires lib="gtk+" version="3.0"/>
 
+  <menu id="app-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">New window</attribute>
+        <attribute name="action">app.new-window</attribute>
+        <attribute name="accel">&lt;Primary&gt;n</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">About Devhelp</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Quit</attribute>
+        <attribute name="action">app.quit</attribute>
+        <attribute name="accel">&lt;Primary&gt;q</attribute>
+      </item>
+    </section>
+  </menu>
+
   <object class="GtkListStore" id="bookshelf_store">
     <columns>
       <!-- column-name enabled -->
