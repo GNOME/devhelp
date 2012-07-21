@@ -5,9 +5,9 @@ data/devhelp.schemas.in
 [type: gettext/glade]data/ui/devhelp.builder
 misc/gedit-plugin/devhelp.desktop.in
 misc/gedit-plugin/devhelp.py
+src/dh-app.c
 src/dh-assistant.c
 src/dh-assistant-view.c
-src/dh-base.c
 src/dh-book.c
 src/dh-book-tree.c
 src/dh-keyword-model.c
