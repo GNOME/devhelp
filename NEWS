@@ -1,4 +1,21 @@
 =============
+Version 3.5.5
+=============
+
+Fixed bugs:
+
+ - #677927, (patch) Implement application menu
+
+Updated translations: el, es, gl, ja, lt, nb, nn, sk, sr@latin, sr,
+zh_HK, zh_TW
+
+Many thanks to all contributors: Åsmund Skjæveland, Tom Tryfonidis,
+Мирослав Николић, Roman Mátyus, Fran Diéguez, Piotr Drąg,
+Daniel Mustieles, Aurimas Černius, Jiro Matsuzawa, Kjartan Maraas, Chao-
+Hsiung Liao, Rafał Mużyło, Aleksander Morgado
+
+
+=============
 Version 3.4.1
 =============
 
