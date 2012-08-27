@@ -567,7 +567,7 @@ msgid "Toggle case sensitive search"
 msgstr "ফলা সংবেদ্য সন্ধান অদল বদল কৰক"
 
 #~ msgid "_File"
-#~ msgstr "নথিপত্ৰ (_F)"
+#~ msgstr "ফাইল (_F)"
 
 #~ msgid "_Help"
 #~ msgstr "সহায় (_H)"
