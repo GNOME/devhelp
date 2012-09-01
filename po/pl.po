@@ -4,12 +4,18 @@
 # pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
 # gnomepl@aviary.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>, 2001-2003.
+# Artur Flinta <aflinta@at.kernel.pl>, 2003.
+# Wadim Dziedzic <wdziedzic@aviary.pl>, 2007.
+# Tomasz Dominikowski <dominikowski@gmail.com>, 2008-2009.
+# Piotr Drąg <piotrdrag@gmail.com>, 2009-2012.
+# Aviary.pl <gnomepl@aviary.pl>, 2007-2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-23 02:44+0200\n"
-"PO-Revision-Date: 2012-08-23 02:45+0200\n"
+"POT-Creation-Date: 2012-09-01 21:39+0200\n"
+"PO-Revision-Date: 2012-09-01 21:40+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -326,7 +332,13 @@ msgstr "Wyświetlanie dokumentacji API dla słowa pod kursorem"
 
 #: ../src/dh-app.c:162
 msgid "translator_credits"
-msgstr "Aviary.pl <gnomepl@aviary.pl>, 2009, 2010, 2011, 2012"
+msgstr ""
+"Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>, 2001-2003\n"
+"Artur Flinta <aflinta@at.kernel.pl>, 2003\n"
+"Wadim Dziedzic <wdziedzic@aviary.pl>, 2007\n"
+"Tomasz Dominikowski <dominikowski@gmail.com>, 2008-2009\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2009-2012\n"
+"Aviary.pl <gnomepl@aviary.pl>, 2007-2012"
 
 #: ../src/dh-app.c:169
 msgid "A developers' help browser for GNOME"
