@@ -6,196 +6,311 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-04 02:33+0100\n"
-"PO-Revision-Date: 2012-03-04 02:34+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-07-21 14:17+0000\n"
+"PO-Revision-Date: 2012-09-04 01:32+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
-"Language: \n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-
-#: ../data/devhelp.desktop.in.in.h:1
-msgid "Developer's Help program"
-msgstr "Fejlesztők súgóprogramja"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:735 ../src/dh-window.c:1043 ../src/dh-window.c:1872
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:167 ../src/dh-app.c:350
+#: ../src/dh-window.c:958 ../src/dh-window.c:1857
 msgid "Devhelp"
 msgstr "Devhelp"
+
+#: ../data/devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "Fejlesztők súgóprogramja"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Dokumentációböngésző"
 
 #: ../data/devhelp.schemas.in.h:1
-msgid "Books disabled"
-msgstr "Letiltott könyvek"
-
-#: ../data/devhelp.schemas.in.h:2
-msgid "Font for fixed width text"
-msgstr "Rögzített szélességű szöveg betűkészlete"
-
-#: ../data/devhelp.schemas.in.h:3
-msgid "Font for text"
-msgstr "Szöveg betűkészlete"
-
-#: ../data/devhelp.schemas.in.h:4
-msgid "Font for text with fixed width, such as code examples."
-msgstr "Rögzített szélességű szöveg, mint a példakódok betűkészlete."
-
-#: ../data/devhelp.schemas.in.h:5
-msgid "Font for text with variable width."
-msgstr "Változó szélességű szöveg betűkészlete."
-
-#: ../data/devhelp.schemas.in.h:6
-msgid "Group by language"
-msgstr "Csoportosítás nyelv szerint"
-
-#: ../data/devhelp.schemas.in.h:7
-msgid "Height of assistant window"
-msgstr "Asszisztensablak magassága"
-
-#: ../data/devhelp.schemas.in.h:8
-msgid "Height of main window"
-msgstr "Főablak magassága"
-
-#: ../data/devhelp.schemas.in.h:9
-msgid "List of books disabled by the user."
-msgstr "A felhasználó által letiltott könyvek listája."
-
-#: ../data/devhelp.schemas.in.h:10
 msgid "Main window maximized state"
 msgstr "Főablak maximalizált állapota"
 
-#: ../data/devhelp.schemas.in.h:11
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "Kiválasztott lap: „content” (tartalom) vagy „search” (keresés)"
-
-#: ../data/devhelp.schemas.in.h:12
-msgid "The X position of the assistant window."
-msgstr "Az asszisztensablak X-pozíciója."
-
-#: ../data/devhelp.schemas.in.h:13
-msgid "The X position of the main window."
-msgstr "A főablak X-pozíciója."
-
-#: ../data/devhelp.schemas.in.h:14
-msgid "The Y position of the assistant window."
-msgstr "Az asszisztensablak Y-pozíciója."
-
-#: ../data/devhelp.schemas.in.h:15
-msgid "The Y position of the main window."
-msgstr "A főablak Y-pozíciója."
-
-#: ../data/devhelp.schemas.in.h:16
-msgid "The height of the assistant window."
-msgstr "Az asszisztensablak magassága."
-
-#: ../data/devhelp.schemas.in.h:17
-msgid "The height of the main window."
-msgstr "A főablak magassága."
-
-#: ../data/devhelp.schemas.in.h:18
-msgid "The width of the assistant window."
-msgstr "Az asszisztensablak szélessége."
-
-#: ../data/devhelp.schemas.in.h:19
-msgid "The width of the index and search pane."
-msgstr "Az index és a kereső oldalsáv szélessége."
-
-#: ../data/devhelp.schemas.in.h:20
-msgid "The width of the main window."
-msgstr "A főablak szélessége."
-
-#: ../data/devhelp.schemas.in.h:21
-msgid "Use system fonts"
-msgstr "A rendszer betűkészletének használata"
-
-#: ../data/devhelp.schemas.in.h:22
-msgid "Use the system default fonts."
-msgstr "A rendszer alapértelmezett betűkészleteinek használata."
-
-#: ../data/devhelp.schemas.in.h:23
-msgid "Whether books should be grouped by language in the UI"
-msgstr "A könyvek nyelv szerint csoportosítandók-e a felületen"
-
-#: ../data/devhelp.schemas.in.h:24
+#: ../data/devhelp.schemas.in.h:2
 msgid "Whether the main window should start maximized."
 msgstr "A főablak teljes méretben induljon-e?"
 
-#: ../data/devhelp.schemas.in.h:25
-msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "Melyik lap van kiválasztva: „content” (tartalom) vagy „search” (keresés)."
-
-#: ../data/devhelp.schemas.in.h:26
-msgid "Width of the assistant window"
-msgstr "Asszisztensablak szélessége"
-
-#: ../data/devhelp.schemas.in.h:27
-msgid "Width of the index and search pane"
-msgstr "Az index és a kereső oldalsáv szélessége"
-
-#: ../data/devhelp.schemas.in.h:28
+#: ../data/devhelp.schemas.in.h:3
 msgid "Width of the main window"
 msgstr "Főablak szélessége"
 
-#: ../data/devhelp.schemas.in.h:29
-msgid "X position of assistant window"
-msgstr "Asszisztensablak X-pozíciója"
+#: ../data/devhelp.schemas.in.h:4
+msgid "The width of the main window."
+msgstr "A főablak szélessége."
 
-#: ../data/devhelp.schemas.in.h:30
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Főablak magassága"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "The height of the main window."
+msgstr "A főablak magassága."
+
+#: ../data/devhelp.schemas.in.h:7
 msgid "X position of main window"
 msgstr "Főablak X-pozíciója"
 
-#: ../data/devhelp.schemas.in.h:31
-msgid "Y position of assistant window"
-msgstr "Asszisztensablak Y-pozíciója"
+#: ../data/devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "A főablak X-pozíciója."
 
-#: ../data/devhelp.schemas.in.h:32
+#: ../data/devhelp.schemas.in.h:9
 msgid "Y position of main window"
 msgstr "Főablak Y-pozíciója"
 
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "A főablak Y-pozíciója."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "Width of the assistant window"
+msgstr "Asszisztensablak szélessége"
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the assistant window."
+msgstr "Az asszisztensablak szélessége."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "Height of assistant window"
+msgstr "Asszisztensablak magassága"
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "The height of the assistant window."
+msgstr "Az asszisztensablak magassága."
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "X position of assistant window"
+msgstr "Asszisztensablak X-pozíciója"
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "The X position of the assistant window."
+msgstr "Az asszisztensablak X-pozíciója."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Y position of assistant window"
+msgstr "Asszisztensablak Y-pozíciója"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "The Y position of the assistant window."
+msgstr "Az asszisztensablak Y-pozíciója."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Az index és a kereső oldalsáv szélessége"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "The width of the index and search pane."
+msgstr "Az index és a kereső oldalsáv szélessége."
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Kiválasztott lap: „content” (tartalom) vagy „search” (keresés)"
+
+#: ../data/devhelp.schemas.in.h:22
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr ""
+"Melyik lap van kiválasztva: „content” (tartalom) vagy „search” (keresés)."
+
+#: ../data/devhelp.schemas.in.h:23
+msgid "Books disabled"
+msgstr "Letiltott könyvek"
+
+#: ../data/devhelp.schemas.in.h:24
+msgid "List of books disabled by the user."
+msgstr "A felhasználó által letiltott könyvek listája."
+
+#: ../data/devhelp.schemas.in.h:25
+msgid "Group by language"
+msgstr "Csoportosítás nyelv szerint"
+
+#: ../data/devhelp.schemas.in.h:26
+msgid "Whether books should be grouped by language in the UI"
+msgstr "A könyvek nyelv szerint csoportosítandók-e a felületen"
+
+#: ../data/devhelp.schemas.in.h:27
+msgid "Use system fonts"
+msgstr "A rendszer betűkészletének használata"
+
+#: ../data/devhelp.schemas.in.h:28
+msgid "Use the system default fonts."
+msgstr "A rendszer alapértelmezett betűkészleteinek használata."
+
+#: ../data/devhelp.schemas.in.h:29
+msgid "Font for text"
+msgstr "Szöveg betűkészlete"
+
+#: ../data/devhelp.schemas.in.h:30
+msgid "Font for text with variable width."
+msgstr "Változó szélességű szöveg betűkészlete."
+
+#: ../data/devhelp.schemas.in.h:31
+msgid "Font for fixed width text"
+msgstr "Rögzített szélességű szöveg betűkészlete"
+
+#: ../data/devhelp.schemas.in.h:32
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Rögzített szélességű szöveg, mint a példakódok betűkészlete."
+
 #: ../data/ui/devhelp.builder.h:1
-msgid "Book Shelf"
-msgstr "Könyvespolc"
+#| msgid "_New Window"
+msgid "New window"
+msgstr "Új ablak"
 
 #: ../data/ui/devhelp.builder.h:2
-msgid "Enabled"
-msgstr "Engedélyezve"
-
-#: ../data/ui/devhelp.builder.h:3
-msgid "Fonts"
-msgstr "Betűkészletek"
-
-#: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
 msgstr "Beállítások"
 
+#: ../data/ui/devhelp.builder.h:3
+msgid "About Devhelp"
+msgstr "A Devhelp névjegye"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Quit"
+msgstr "Kilépés"
+
 #: ../data/ui/devhelp.builder.h:5
-msgid "Title"
-msgstr "Cím"
+#| msgid "_New Window"
+msgid "_Window"
+msgstr "_Ablak"
 
 #: ../data/ui/devhelp.builder.h:6
-msgid "_Fixed width:"
-msgstr "_Rögzített szélességű:"
+msgid "New _Tab"
+msgstr "Új _lap"
 
 #: ../data/ui/devhelp.builder.h:7
+#| msgid "_Print…"
+msgid "_Print"
+msgstr "_Nyomtatás"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Close"
+msgstr "_Bezárás"
+
+#: ../data/ui/devhelp.builder.h:9
+msgid "_Edit"
+msgstr "S_zerkesztés"
+
+#: ../data/ui/devhelp.builder.h:10
+msgid "_Copy"
+msgstr "_Másolás"
+
+#: ../data/ui/devhelp.builder.h:11
+#| msgid "Find:"
+msgid "_Find"
+msgstr "_Keresés"
+
+#: ../data/ui/devhelp.builder.h:12
+#| msgid "Find Next"
+msgid "Find _Next"
+msgstr "_Következő találat"
+
+#: ../data/ui/devhelp.builder.h:13
+#| msgid "Find Previous"
+msgid "Find _Previous"
+msgstr "_Előző találat"
+
+#: ../data/ui/devhelp.builder.h:14
+msgid "_View"
+msgstr "_Nézet"
+
+#: ../data/ui/devhelp.builder.h:15
+#| msgid "_Larger Text"
+msgid "_Larger text"
+msgstr "_Nagyobb szöveg"
+
+#: ../data/ui/devhelp.builder.h:16
+#| msgid "S_maller Text"
+msgid "S_maller text"
+msgstr "Kisebb szöve_g"
+
+#: ../data/ui/devhelp.builder.h:17
+#| msgid "_Normal Size"
+msgid "_Normal size"
+msgstr "_Normál méret"
+
+#: ../data/ui/devhelp.builder.h:18
+msgid "Fullscreen"
+msgstr "Teljes képernyő"
+
+#: ../data/ui/devhelp.builder.h:19
+msgid "_Go"
+msgstr "_Ugrás"
+
+#: ../data/ui/devhelp.builder.h:20
+msgid "_Back"
+msgstr "_Vissza"
+
+#: ../data/ui/devhelp.builder.h:21
+msgid "_Forward"
+msgstr "_Előre"
+
+#: ../data/ui/devhelp.builder.h:22
+msgid "_Search Tab"
+msgstr "_Keresés fül"
+
+#: ../data/ui/devhelp.builder.h:23
+msgid "_Contents Tab"
+msgstr "_Tartalom fül"
+
+#: ../data/ui/devhelp.builder.h:24
+msgid "Go to the previous page"
+msgstr "Ugrás az előző oldalra"
+
+#: ../data/ui/devhelp.builder.h:25
+msgid "Go to the next page"
+msgstr "Ugrás a következő oldalra"
+
+#: ../data/ui/devhelp.builder.h:26
+msgid "Decrease the text size"
+msgstr "A szöveg méretének csökkentése"
+
+#: ../data/ui/devhelp.builder.h:27
+msgid "Increase the text size"
+msgstr "A szöveg méretének nagyítása"
+
+#: ../data/ui/devhelp.builder.h:28
 msgid "_Group by language"
 msgstr "_Csoportosítás nyelv szerint"
 
-#: ../data/ui/devhelp.builder.h:8
+#: ../data/ui/devhelp.builder.h:29
+msgid "Enabled"
+msgstr "Engedélyezve"
+
+#: ../data/ui/devhelp.builder.h:30
+msgid "Title"
+msgstr "Cím"
+
+#: ../data/ui/devhelp.builder.h:31
+msgid "Book Shelf"
+msgstr "Könyvespolc"
+
+#: ../data/ui/devhelp.builder.h:32
 msgid "_Use system fonts"
 msgstr "A _rendszer betűkészletének használata"
 
-#: ../data/ui/devhelp.builder.h:9
+#: ../data/ui/devhelp.builder.h:33
 msgid "_Variable width: "
 msgstr "_Változó szélességű: "
+
+#: ../data/ui/devhelp.builder.h:34
+msgid "_Fixed width:"
+msgstr "_Rögzített szélességű:"
+
+#: ../data/ui/devhelp.builder.h:35
+msgid "Fonts"
+msgstr "Betűkészletek"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -213,12 +328,24 @@ msgstr "API dokumentáció megjelenítése"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "API dokumentáció megjelenítése a kurzornál található szóhoz"
 
+#: ../src/dh-app.c:162
+msgid "translator_credits"
+msgstr "Kelemen Gábor <kelemeng at gnome dot hu>"
+
+#: ../src/dh-app.c:169
+msgid "A developers' help browser for GNOME"
+msgstr "Fejlesztők súgóböngészője GNOME-hoz"
+
+#: ../src/dh-app.c:177
+msgid "DevHelp Website"
+msgstr "A Devhelp weboldala"
+
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:74
+#: ../src/dh-assistant.c:76
 msgid "Devhelp — Assistant"
 msgstr "Devhelp – Asszisztens"
 
-#: ../src/dh-assistant-view.c:337
+#: ../src/dh-assistant-view.c:395
 msgid "Book:"
 msgstr "Könyv:"
 
@@ -282,25 +409,33 @@ msgstr "Felsorolás"
 msgid "Type"
 msgstr "Típus"
 
-#: ../src/dh-main.c:47
-msgid "Search for a keyword"
-msgstr "Kulcsszó keresése"
+#: ../src/dh-main.c:48
+msgid "Opens a new Devhelp window"
+msgstr "Új Devhelp ablak megnyitása"
 
-#: ../src/dh-main.c:52
-msgid "Quit any running Devhelp"
-msgstr "Kilépés bármely futó Devhelpből"
-
-#: ../src/dh-main.c:57
-msgid "Display the version and exit"
-msgstr "Verziószám megjelenítése és kilépés"
-
-#: ../src/dh-main.c:62
+#: ../src/dh-main.c:53
 msgid "Focus the Devhelp window with the search field active"
 msgstr "A Devhelp ablakának előtérbe hozása aktív keresőmezővel"
 
-#: ../src/dh-main.c:67
+#: ../src/dh-main.c:58
+msgid "Search for a keyword"
+msgstr "Kulcsszó keresése"
+
+#: ../src/dh-main.c:59 ../src/dh-main.c:64
+msgid "KEYWORD"
+msgstr "KULCSSZÓ"
+
+#: ../src/dh-main.c:63
 msgid "Search and display any hit in the assistant window"
 msgstr "Keresés és találatok megjelenítése az asszisztens ablakban"
+
+#: ../src/dh-main.c:68
+msgid "Display the version and exit"
+msgstr "Verziószám megjelenítése és kilépés"
+
+#: ../src/dh-main.c:73
+msgid "Quit any running Devhelp"
+msgstr "Kilépés bármely futó Devhelpből"
 
 #: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
 #: ../src/dh-parser.c:273
@@ -315,8 +450,10 @@ msgstr "„%s” érvénytelen névtér a(z) %d. sor %d. oszlopában"
 
 #: ../src/dh-parser.c:143
 #, c-format
-msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr "A „title”, „name” és „link” elemek szükségesek a(z) %d. sor %d. oszlopában"
+msgid ""
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr ""
+"A „title”, „name” és „link” elemek szükségesek a(z) %d. sor %d. oszlopában"
 
 #: ../src/dh-parser.c:218
 #, c-format
@@ -329,7 +466,8 @@ msgstr ""
 
 #: ../src/dh-parser.c:298
 #, c-format
-msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
 "„name” és „link” elemek szükségesek az elemen („%s”) belül a(z) %d. sor %d. "
 "oszlopában"
@@ -337,18 +475,19 @@ msgstr ""
 #: ../src/dh-parser.c:311
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "„type” elem szükséges a <keyword> elemen belül a(z) %d. sor %d. oszlopában"
+msgstr ""
+"„type” elem szükséges a <keyword> elemen belül a(z) %d. sor %d. oszlopában"
 
 #: ../src/dh-parser.c:514
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nem lehet kicsomagolni a könyvet („%s”): %s"
 
-#: ../src/dh-search.c:500
+#: ../src/dh-search.c:492
 msgid "All books"
 msgstr "Minden könyv"
 
-#: ../src/dh-search.c:1118
+#: ../src/dh-search.c:1110
 msgid "Search in:"
 msgstr "Keresés itt:"
 
@@ -388,131 +527,19 @@ msgstr "300%"
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:730
-msgid "translator_credits"
-msgstr "Kelemen Gábor <kelemeng at gnome dot hu>"
-
-#: ../src/dh-window.c:737
-msgid "A developers' help browser for GNOME"
-msgstr "Fejlesztők súgóböngészője GNOME-hoz"
-
-#: ../src/dh-window.c:744
-msgid "DevHelp Website"
-msgstr "A Devhelp weboldala"
-
-#: ../src/dh-window.c:768
-msgid "_File"
-msgstr "_Fájl"
-
-#: ../src/dh-window.c:769
-msgid "_Edit"
-msgstr "S_zerkesztés"
-
-#: ../src/dh-window.c:770
-msgid "_View"
-msgstr "_Nézet"
-
-#: ../src/dh-window.c:771
-msgid "_Go"
-msgstr "_Ugrás"
-
-#: ../src/dh-window.c:772
-msgid "_Help"
-msgstr "_Súgó"
-
-#. File menu
-#: ../src/dh-window.c:775
-msgid "_New Window"
-msgstr "Új _ablak"
-
-#: ../src/dh-window.c:777
-msgid "New _Tab"
-msgstr "Új _lap"
-
-#: ../src/dh-window.c:779
-msgid "_Print…"
-msgstr "_Nyomtatás…"
-
-#: ../src/dh-window.c:791 ../src/eggfindbar.c:342
-msgid "Find Next"
-msgstr "Következő keresése"
-
-#: ../src/dh-window.c:793 ../src/eggfindbar.c:329
-msgid "Find Previous"
-msgstr "Előző keresése"
-
-#: ../src/dh-window.c:800
-msgid "Go to the previous page"
-msgstr "Ugrás az előző oldalra"
-
-#: ../src/dh-window.c:803
-msgid "Go to the next page"
-msgstr "Ugrás a következő oldalra"
-
-#: ../src/dh-window.c:806
-msgid "_Contents Tab"
-msgstr "_Tartalom fül"
-
-#: ../src/dh-window.c:809
-msgid "_Search Tab"
-msgstr "_Keresés fül"
-
-#. View menu
-#: ../src/dh-window.c:813
-msgid "_Larger Text"
-msgstr "_Nagyobb szöveg"
-
-#: ../src/dh-window.c:814
-msgid "Increase the text size"
-msgstr "A szöveg méretének nagyítása"
-
-#: ../src/dh-window.c:816
-msgid "S_maller Text"
-msgstr "Kisebb szöve_g"
-
-#: ../src/dh-window.c:817
-msgid "Decrease the text size"
-msgstr "A szöveg méretének csökkentése"
-
-#: ../src/dh-window.c:819
-msgid "_Normal Size"
-msgstr "_Normál méret"
-
-#: ../src/dh-window.c:820
-msgid "Use the normal text size"
-msgstr "A normál szövegméret használata"
-
-#: ../src/dh-window.c:829
-msgid "Leave fullscreen mode"
-msgstr "Teljes képernyő elhagyása"
-
-#: ../src/dh-window.c:836
-msgid "Display in full screen"
-msgstr "Megjelenítés teljes képernyőn"
-
-#. Translators: This refers to text size
-#: ../src/dh-window.c:956
-msgid "Larger"
-msgstr "Nagyobb"
-
-#. Translators: This refers to text size
-#: ../src/dh-window.c:959
-msgid "Smaller"
-msgstr "Kisebb"
-
-#: ../src/dh-window.c:1163
+#: ../src/dh-window.c:1046
 msgid "Contents"
 msgstr "Tartalom"
 
-#: ../src/dh-window.c:1173
+#: ../src/dh-window.c:1056
 msgid "Search"
 msgstr "Keresés"
 
-#: ../src/dh-window.c:1348
+#: ../src/dh-window.c:1266
 msgid "Error opening the requested link."
 msgstr "Hiba a kért hivatkozás megnyitásakor."
 
-#: ../src/dh-window.c:1661 ../src/dh-window.c:1900
+#: ../src/dh-window.c:1638 ../src/dh-window.c:1885
 msgid "Empty Page"
 msgstr "Üres oldal"
 
@@ -520,9 +547,17 @@ msgstr "Üres oldal"
 msgid "Find:"
 msgstr "Keresés:"
 
+#: ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Előző keresése"
+
 #: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "A keresendő karakterlánc előző előfordulásának keresése"
+
+#: ../src/eggfindbar.c:342
+msgid "Find Next"
+msgstr "Következő keresése"
 
 #: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
@@ -536,9 +571,26 @@ msgstr "Na_gybetűérzékeny"
 msgid "Toggle case sensitive search"
 msgstr "Váltás a kis- és nagybetűérzékeny keresés között"
 
-#~ msgid "About Devhelp"
-#~ msgstr "A Devhelp névjegye"
+#~ msgid "_File"
+#~ msgstr "_Fájl"
+
+#~ msgid "_Help"
+#~ msgstr "_Súgó"
+
+#~ msgid "Use the normal text size"
+#~ msgstr "A normál szövegméret használata"
+
+#~ msgid "Leave fullscreen mode"
+#~ msgstr "Teljes képernyő elhagyása"
+
+#~ msgid "Display in full screen"
+#~ msgstr "Megjelenítés teljes képernyőn"
+
+#~ msgid "Larger"
+#~ msgstr "Nagyobb"
+
+#~ msgid "Smaller"
+#~ msgstr "Kisebb"
 
 #~ msgid "Preferences…"
 #~ msgstr "Beállítások…"
-
