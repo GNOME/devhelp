@@ -6,27 +6,28 @@
 #
 # Gnome 2012-03 Finnish translation sprint participants:
 # Niklas Laxström
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2012.
 msgid ""
 msgstr ""
-""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-12-17 15:53+0000\n"
-"PO-Revision-Date: 2012-03-12 08:36:44+0000\n"
-"Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
-"Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-07-21 14:17+0000\n"
+"PO-Revision-Date: 2012-09-14 00:57+0300\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fi\n"
 "X-POT-Import-Date: 2012-02-19 15:17:00+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r113129); Translate 2012-03-02\n"
+"X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-main.c:281
-#: ../src/dh-window.c:735 ../src/dh-window.c:1043 ../src/dh-window.c:1872
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:167 ../src/dh-app.c:350
+#: ../src/dh-window.c:958 ../src/dh-window.c:1857
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -164,41 +165,157 @@ msgstr "Tasalevyisen tekstin kirjasin"
 
 #: ../data/devhelp.schemas.in.h:32
 msgid "Font for text with fixed width, such as code examples."
-msgstr "Kirjasin tasalevyisillä kirjasinta käyttäville teksteille kuten esimerkiksi koodiesimerkit."
+msgstr ""
+"Kirjasin tasalevyisillä kirjasinta käyttäville teksteille kuten esimerkiksi "
+"koodiesimerkit."
 
 #: ../data/ui/devhelp.builder.h:1
+#| msgid "_New Window"
+msgid "New window"
+msgstr "Uusi ikkuna"
+
+#: ../data/ui/devhelp.builder.h:2
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: ../data/ui/devhelp.builder.h:2
+#: ../data/ui/devhelp.builder.h:3
+#| msgid "Devhelp"
+msgid "About Devhelp"
+msgstr "Tietoja Devhelpistä"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Quit"
+msgstr "Lopeta"
+
+#: ../data/ui/devhelp.builder.h:5
+#| msgid "_New Window"
+msgid "_Window"
+msgstr "_Ikkuna"
+
+#: ../data/ui/devhelp.builder.h:6
+msgid "New _Tab"
+msgstr "Uusi _välilehti"
+
+#: ../data/ui/devhelp.builder.h:7
+#| msgid "_Print…"
+msgid "_Print"
+msgstr "_Tulosta"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Close"
+msgstr "_Sulje"
+
+#: ../data/ui/devhelp.builder.h:9
+msgid "_Edit"
+msgstr "_Muokkaa"
+
+#: ../data/ui/devhelp.builder.h:10
+msgid "_Copy"
+msgstr "_Kopioi"
+
+#: ../data/ui/devhelp.builder.h:11
+#| msgid "Find:"
+msgid "_Find"
+msgstr "_Etsi"
+
+#: ../data/ui/devhelp.builder.h:12
+#| msgid "Find Next"
+msgid "Find _Next"
+msgstr "Etsi seu_raava"
+
+#: ../data/ui/devhelp.builder.h:13
+#| msgid "Find Previous"
+msgid "Find _Previous"
+msgstr "Etsi e_dellinen"
+
+#: ../data/ui/devhelp.builder.h:14
+msgid "_View"
+msgstr "_Näytä"
+
+#: ../data/ui/devhelp.builder.h:15
+#| msgid "_Larger Text"
+msgid "_Larger text"
+msgstr "_Suurempi teksti"
+
+#: ../data/ui/devhelp.builder.h:16
+#| msgid "S_maller Text"
+msgid "S_maller text"
+msgstr "_Pienempi teksti"
+
+#: ../data/ui/devhelp.builder.h:17
+#| msgid "_Normal Size"
+msgid "_Normal size"
+msgstr "_Tavallinen koko"
+
+#: ../data/ui/devhelp.builder.h:18
+msgid "Fullscreen"
+msgstr "Koko näyttö"
+
+#: ../data/ui/devhelp.builder.h:19
+msgid "_Go"
+msgstr "_Siirry"
+
+#: ../data/ui/devhelp.builder.h:20
+msgid "_Back"
+msgstr "_Edellinen"
+
+#: ../data/ui/devhelp.builder.h:21
+msgid "_Forward"
+msgstr "_Seuraava"
+
+#: ../data/ui/devhelp.builder.h:22
+msgid "_Search Tab"
+msgstr "_Hakuvälilehti"
+
+#: ../data/ui/devhelp.builder.h:23
+msgid "_Contents Tab"
+msgstr "_Sisällysluettelovälilehti"
+
+#: ../data/ui/devhelp.builder.h:24
+msgid "Go to the previous page"
+msgstr "Siirry edelliselle sivulle"
+
+#: ../data/ui/devhelp.builder.h:25
+msgid "Go to the next page"
+msgstr "Siirry seuraavalle sivulle"
+
+#: ../data/ui/devhelp.builder.h:26
+msgid "Decrease the text size"
+msgstr "Pienennä tekstin kokoa"
+
+#: ../data/ui/devhelp.builder.h:27
+msgid "Increase the text size"
+msgstr "Kasvata tekstin kokoa"
+
+#: ../data/ui/devhelp.builder.h:28
 msgid "_Group by language"
 msgstr "_Ryhmittele kielen mukaan"
 
-#: ../data/ui/devhelp.builder.h:3
+#: ../data/ui/devhelp.builder.h:29
 msgid "Enabled"
 msgstr "Käytössä"
 
-#: ../data/ui/devhelp.builder.h:4
+#: ../data/ui/devhelp.builder.h:30
 msgid "Title"
 msgstr "Otsikko"
 
-#: ../data/ui/devhelp.builder.h:5
+#: ../data/ui/devhelp.builder.h:31
 msgid "Book Shelf"
 msgstr "Kirjahylly"
 
-#: ../data/ui/devhelp.builder.h:6
+#: ../data/ui/devhelp.builder.h:32
 msgid "_Use system fonts"
 msgstr "_Käytä järjestelmän kirjasimia"
 
-#: ../data/ui/devhelp.builder.h:7
+#: ../data/ui/devhelp.builder.h:33
 msgid "_Variable width: "
 msgstr "_Vaihtelevan levyinen: "
 
-#: ../data/ui/devhelp.builder.h:8
+#: ../data/ui/devhelp.builder.h:34
 msgid "_Fixed width:"
 msgstr "_Tasalevyinen:"
 
-#: ../data/ui/devhelp.builder.h:9
+#: ../data/ui/devhelp.builder.h:35
 msgid "Fonts"
 msgstr "Kirjasimet"
 
@@ -218,12 +335,28 @@ msgstr "Näytä API-dokumentaatio"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Näytä API-dokumentaatio kohdistimen kohdalla olevalle sanalle"
 
+#: ../src/dh-app.c:162
+msgid "translator_credits"
+msgstr ""
+"Tommi Vainikainen, 2010-2011.\n"
+"Ilkka Tuohela, 2004-2005.\n"
+"\n"
+"http://gnome.fi/"
+
+#: ../src/dh-app.c:169
+msgid "A developers' help browser for GNOME"
+msgstr "Gnomen ohjeselain kehittäjille"
+
+#: ../src/dh-app.c:177
+msgid "DevHelp Website"
+msgstr "Devhelp-sivusto"
+
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:74
+#: ../src/dh-assistant.c:76
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — apuikkuna"
 
-#: ../src/dh-assistant-view.c:337
+#: ../src/dh-assistant-view.c:395
 msgid "Book:"
 msgstr "Kirja:"
 
@@ -287,25 +420,33 @@ msgstr "Enum"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/dh-main.c:47
-msgid "Search for a keyword"
-msgstr "Etsi avainsanalla"
+#: ../src/dh-main.c:48
+msgid "Opens a new Devhelp window"
+msgstr "Avaa uuden Devhelp-ikkunan"
 
-#: ../src/dh-main.c:52
-msgid "Quit any running Devhelp"
-msgstr "Sulje avoinna olevat Devhelp-ohjelmat"
-
-#: ../src/dh-main.c:57
-msgid "Display the version and exit"
-msgstr "Näytä versio ja lopeta"
-
-#: ../src/dh-main.c:62
+#: ../src/dh-main.c:53
 msgid "Focus the Devhelp window with the search field active"
 msgstr "Aktivoi Devhelp-ikkuna ja siirrä osoitin hakukentään"
 
-#: ../src/dh-main.c:67
+#: ../src/dh-main.c:58
+msgid "Search for a keyword"
+msgstr "Etsi avainsanalla"
+
+#: ../src/dh-main.c:59 ../src/dh-main.c:64
+msgid "KEYWORD"
+msgstr "AVAINSANA"
+
+#: ../src/dh-main.c:63
 msgid "Search and display any hit in the assistant window"
 msgstr "Etsi ja näytä osumat apuikkunassa"
+
+#: ../src/dh-main.c:68
+msgid "Display the version and exit"
+msgstr "Näytä versio ja lopeta"
+
+#: ../src/dh-main.c:73
+msgid "Quit any running Devhelp"
+msgstr "Sulje avoinna olevat Devhelp-ohjelmat"
 
 #: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
 #: ../src/dh-parser.c:273
@@ -320,34 +461,45 @@ msgstr "Virheellinen nimiavaruus ”%s” rivillä %d, sarakkeessa %d"
 
 #: ../src/dh-parser.c:143
 #, c-format
-msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr "”title”-, ”name”- ja ”link”-elementit vaaditaan rivillä %d, sarakkeessa %d"
+msgid ""
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr ""
+"”title”-, ”name”- ja ”link”-elementit vaaditaan rivillä %d, sarakkeessa %d"
 
 #: ../src/dh-parser.c:218
 #, c-format
-msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
-msgstr "”name” ja ”link” -elementit vaaditaan elementin <sub> sisällä rivillä %d, sarakkeessa %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+"%d"
+msgstr ""
+"”name” ja ”link” -elementit vaaditaan elementin <sub> sisällä rivillä %d, "
+"sarakkeessa %d"
 
 #: ../src/dh-parser.c:298
 #, c-format
-msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr "”name” ja ”link” -elementit vaaditaan elementin ”%s” sisällä rivillä %d, sarakkeessa %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+"”name” ja ”link” -elementit vaaditaan elementin ”%s” sisällä rivillä %d, "
+"sarakkeessa %d"
 
 #: ../src/dh-parser.c:311
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "”type”-elementti vaaditaan elementin <keyword> sisällä rivillä %d, sarakkeessa %d"
+msgstr ""
+"”type”-elementti vaaditaan elementin <keyword> sisällä rivillä %d, "
+"sarakkeessa %d"
 
 #: ../src/dh-parser.c:514
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kirjan ”%s” pakkausta ei voitu avata: %s"
 
-#: ../src/dh-search.c:500
+#: ../src/dh-search.c:492
 msgid "All books"
 msgstr "Kaikki kirjat"
 
-#: ../src/dh-search.c:1118
+#: ../src/dh-search.c:1110
 msgid "Search in:"
 msgstr "Etsi kohteista:"
 
@@ -387,131 +539,19 @@ msgstr "300 %"
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:730
-msgid "translator_credits"
-msgstr "Tommi Vainikainen, 2010-2011.\nIlkka Tuohela, 2004-2005.\n\nhttp://gnome.fi/"
-
-#: ../src/dh-window.c:737
-msgid "A developers' help browser for GNOME"
-msgstr "Gnomen ohjeselain kehittäjille"
-
-#: ../src/dh-window.c:744
-msgid "DevHelp Website"
-msgstr "Devhelp-sivusto"
-
-#: ../src/dh-window.c:768
-msgid "_File"
-msgstr "_Tiedosto"
-
-#: ../src/dh-window.c:769
-msgid "_Edit"
-msgstr "_Muokkaa"
-
-#: ../src/dh-window.c:770
-msgid "_View"
-msgstr "_Näytä"
-
-#: ../src/dh-window.c:771
-msgid "_Go"
-msgstr "_Siirry"
-
-#: ../src/dh-window.c:772
-msgid "_Help"
-msgstr "O_hje"
-
-#. File menu
-#: ../src/dh-window.c:775
-msgid "_New Window"
-msgstr "_Uusi ikkuna"
-
-#: ../src/dh-window.c:777
-msgid "New _Tab"
-msgstr "Uusi _välilehti"
-
-#: ../src/dh-window.c:779
-msgid "_Print…"
-msgstr "_Tulosta…"
-
-#: ../src/dh-window.c:791 ../src/eggfindbar.c:342
-msgid "Find Next"
-msgstr "Etsi seuraava"
-
-#: ../src/dh-window.c:793 ../src/eggfindbar.c:329
-msgid "Find Previous"
-msgstr "Etsi edellinen"
-
-#: ../src/dh-window.c:800
-msgid "Go to the previous page"
-msgstr "Siirry edelliselle sivulle"
-
-#: ../src/dh-window.c:803
-msgid "Go to the next page"
-msgstr "Siirry seuraavalle sivulle"
-
-#: ../src/dh-window.c:806
-msgid "_Contents Tab"
-msgstr "_Sisällysluettelovälilehti"
-
-#: ../src/dh-window.c:809
-msgid "_Search Tab"
-msgstr "_Hakuvälilehti"
-
-#. View menu
-#: ../src/dh-window.c:813
-msgid "_Larger Text"
-msgstr "_Suurempi teksti"
-
-#: ../src/dh-window.c:814
-msgid "Increase the text size"
-msgstr "Kasvata tekstin kokoa"
-
-#: ../src/dh-window.c:816
-msgid "S_maller Text"
-msgstr "_Pienempi teksti"
-
-#: ../src/dh-window.c:817
-msgid "Decrease the text size"
-msgstr "Pienennä tekstin kokoa"
-
-#: ../src/dh-window.c:819
-msgid "_Normal Size"
-msgstr "_Oletuskoko"
-
-#: ../src/dh-window.c:820
-msgid "Use the normal text size"
-msgstr "Käytä tekstin oletuskokoa"
-
-#: ../src/dh-window.c:829
-msgid "Leave fullscreen mode"
-msgstr "Poistu koko näytön tilasta"
-
-#: ../src/dh-window.c:836
-msgid "Display in full screen"
-msgstr "Koko näytön tila"
-
-#. Translators: This refers to text size
-#: ../src/dh-window.c:956
-msgid "Larger"
-msgstr "Suurempi"
-
-#. Translators: This refers to text size
-#: ../src/dh-window.c:959
-msgid "Smaller"
-msgstr "Pienempi"
-
-#: ../src/dh-window.c:1163
+#: ../src/dh-window.c:1046
 msgid "Contents"
 msgstr "Sisällysluettelo"
 
-#: ../src/dh-window.c:1173
+#: ../src/dh-window.c:1056
 msgid "Search"
 msgstr "Haku"
 
-#: ../src/dh-window.c:1348
+#: ../src/dh-window.c:1266
 msgid "Error opening the requested link."
 msgstr "Linkin avaaminen epäonnistui."
 
-#: ../src/dh-window.c:1661 ../src/dh-window.c:1900
+#: ../src/dh-window.c:1638 ../src/dh-window.c:1885
 msgid "Empty Page"
 msgstr "Tyhjä sivu"
 
@@ -519,9 +559,17 @@ msgstr "Tyhjä sivu"
 msgid "Find:"
 msgstr "Etsi:"
 
+#: ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Etsi edellinen"
+
 #: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Etsi haettavan merkkijonon edellinen osuma"
+
+#: ../src/eggfindbar.c:342
+msgid "Find Next"
+msgstr "Etsi seuraava"
 
 #: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
@@ -535,3 +583,23 @@ msgstr "_Huomioi kirjainkoko"
 msgid "Toggle case sensitive search"
 msgstr "Huomioidaanko kirjainkoko hauissa"
 
+#~ msgid "_File"
+#~ msgstr "_Tiedosto"
+
+#~ msgid "_Help"
+#~ msgstr "O_hje"
+
+#~ msgid "Use the normal text size"
+#~ msgstr "Käytä tekstin oletuskokoa"
+
+#~ msgid "Leave fullscreen mode"
+#~ msgstr "Poistu koko näytön tilasta"
+
+#~ msgid "Display in full screen"
+#~ msgstr "Koko näytön tila"
+
+#~ msgid "Larger"
+#~ msgstr "Suurempi"
+
+#~ msgid "Smaller"
+#~ msgstr "Pienempi"
