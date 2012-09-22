@@ -8,20 +8,22 @@
 # Richard Ma <richard.ma.19850509@gmail.com>, 2009
 # Tao Wang <dancefire@gmail.com>, 2010
 # Aron Xu <aronxu@gnome.org>, 2010.
+# Cheng Lu <chenglu1990@gmail.com>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-02 02:09+0000\n"
-"PO-Revision-Date: 2010-12-26 00:29+0800\n"
-"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
-"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2012-09-17 13:25+0000\n"
+"PO-Revision-Date: 2012-09-22 13:30+0800\n"
+"Last-Translator: Cheng Lu <chenglu1990@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <i18n-zh@googlegroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
@@ -180,7 +182,7 @@ msgstr "关于 Devhelp"
 
 #: ../data/ui/devhelp.builder.h:4
 msgid "Quit"
-msgstr ""
+msgstr "退出"
 
 #: ../data/ui/devhelp.builder.h:5
 msgid "_Window"
@@ -196,7 +198,7 @@ msgstr "打印(_P)"
 
 #: ../data/ui/devhelp.builder.h:8
 msgid "_Close"
-msgstr ""
+msgstr "关闭(_C)"
 
 #: ../data/ui/devhelp.builder.h:9
 msgid "_Edit"
@@ -204,7 +206,7 @@ msgstr "编辑(_E)"
 
 #: ../data/ui/devhelp.builder.h:10
 msgid "_Copy"
-msgstr ""
+msgstr "复制(_C)"
 
 #: ../data/ui/devhelp.builder.h:11
 msgid "_Find"
@@ -331,7 +333,8 @@ msgstr ""
 "Den Xiyue <manphiz@gmail.com>, 2008\n"
 "Richard Ma <richard.ma.19850509@gmail.com>, 2009\n"
 "Tao Wang <dancefire@gmail.com>, 2010\n"
-"Aron Xu <aronxu@gnome.org>, 2010"
+"Aron Xu <aronxu@gnome.org>, 2010\n"
+"Cheng Lu <chenglu1990@gmail.com>, 2012"
 
 #: ../src/dh-app.c:169
 msgid "A developers' help browser for GNOME"
@@ -412,7 +415,7 @@ msgstr "类型"
 
 #: ../src/dh-main.c:48
 msgid "Opens a new Devhelp window"
-msgstr ""
+msgstr "打开新的 Devhelp 窗口"
 
 #: ../src/dh-main.c:53
 msgid "Focus the Devhelp window with the search field active"
@@ -424,7 +427,7 @@ msgstr "搜索一个关键词"
 
 #: ../src/dh-main.c:59 ../src/dh-main.c:64
 msgid "KEYWORD"
-msgstr ""
+msgstr "关键字"
 
 #: ../src/dh-main.c:63
 msgid "Search and display any hit in the assistant window"
