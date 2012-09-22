@@ -10,197 +10,301 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-08 08:39+0200\n"
-"PO-Revision-Date: 2012-01-08 08:39+0200\n"
+"POT-Creation-Date: 2012-09-22 12:43+0300\n"
+"PO-Revision-Date: 2012-09-22 12:43+0300\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: ../data/devhelp.desktop.in.in.h:1
-msgid "Developer's Help program"
-msgstr "Програма за помощ на разработчика"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:731 ../src/dh-window.c:1039 ../src/dh-window.c:1868
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:167 ../src/dh-app.c:350
+#: ../src/dh-window.c:958 ../src/dh-window.c:1857
 msgid "Devhelp"
 msgstr "Devhelp"
+
+#: ../data/devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "Програма за помощ на разработчика"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Браузър за документация"
 
 #: ../data/devhelp.schemas.in.h:1
-msgid "Books disabled"
-msgstr "Изключени ръководства"
-
-#: ../data/devhelp.schemas.in.h:2
-msgid "Font for fixed width text"
-msgstr "Шрифт за текст с фиксирана широчина"
-
-#: ../data/devhelp.schemas.in.h:3
-msgid "Font for text"
-msgstr "Шрифт за текст"
-
-#: ../data/devhelp.schemas.in.h:4
-msgid "Font for text with fixed width, such as code examples."
-msgstr "Шрифт за текст с фиксирана широчина, като примери с програмен код."
-
-#: ../data/devhelp.schemas.in.h:5
-msgid "Font for text with variable width."
-msgstr "Шрифт за текст с променлива широчина."
-
-#: ../data/devhelp.schemas.in.h:6
-msgid "Group by language"
-msgstr "Групиране по език"
-
-#: ../data/devhelp.schemas.in.h:7
-msgid "Height of assistant window"
-msgstr "Височина на спомагателния прозорец"
-
-#: ../data/devhelp.schemas.in.h:8
-msgid "Height of main window"
-msgstr "Височина на главния прозорец"
-
-#: ../data/devhelp.schemas.in.h:9
-msgid "List of books disabled by the user."
-msgstr ""
-"Списък с ръководства, които да не се показват по желание на потребителя."
-
-#: ../data/devhelp.schemas.in.h:10
 msgid "Main window maximized state"
 msgstr "Степен на уголемяване на главния прозорец"
 
-#: ../data/devhelp.schemas.in.h:11
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "Избран подпрозорец, „content“ (Съдържание) или „search“ (Търсене)"
-
-#: ../data/devhelp.schemas.in.h:12
-msgid "The X position of the assistant window."
-msgstr "Позиция на спомагателния прозорец по хоризонтала."
-
-#: ../data/devhelp.schemas.in.h:13
-msgid "The X position of the main window."
-msgstr "Позиция на главния прозорец по хоризонтала."
-
-#: ../data/devhelp.schemas.in.h:14
-msgid "The Y position of the assistant window."
-msgstr "Позиция на спомагателния прозорец по вертикала."
-
-#: ../data/devhelp.schemas.in.h:15
-msgid "The Y position of the main window."
-msgstr "Позиция на главния прозорец по вертикала."
-
-#: ../data/devhelp.schemas.in.h:16
-msgid "The height of the assistant window."
-msgstr "Височината на спомагателния прозорец."
-
-#: ../data/devhelp.schemas.in.h:17
-msgid "The height of the main window."
-msgstr "Височината на главния прозорец."
-
-#: ../data/devhelp.schemas.in.h:18
-msgid "The width of the assistant window."
-msgstr "Широчината на спомагателния прозорец."
-
-#: ../data/devhelp.schemas.in.h:19
-msgid "The width of the index and search pane."
-msgstr "Широчината на панела със съдържание и търсене"
-
-#: ../data/devhelp.schemas.in.h:20
-msgid "The width of the main window."
-msgstr "Широчината на главния прозорец."
-
-#: ../data/devhelp.schemas.in.h:21
-msgid "Use system fonts"
-msgstr "Използване на системни шрифтове"
-
-#: ../data/devhelp.schemas.in.h:22
-msgid "Use the system default fonts."
-msgstr "Използване на стандартните системни шрифтове."
-
-#: ../data/devhelp.schemas.in.h:23
-msgid "Whether books should be grouped by language in the UI"
-msgstr "Дали в потребителския интерфейс книгите да се групират по език"
-
-#: ../data/devhelp.schemas.in.h:24
+#: ../data/devhelp.schemas.in.h:2
 msgid "Whether the main window should start maximized."
 msgstr "Дали главният прозорец да се стартира максимизиран."
 
-#: ../data/devhelp.schemas.in.h:25
+#: ../data/devhelp.schemas.in.h:3
+msgid "Width of the main window"
+msgstr "Широчина на главния прозорец"
+
+#: ../data/devhelp.schemas.in.h:4
+msgid "The width of the main window."
+msgstr "Широчината на главния прозорец."
+
+#: ../data/devhelp.schemas.in.h:5
+msgid "Height of main window"
+msgstr "Височина на главния прозорец"
+
+#: ../data/devhelp.schemas.in.h:6
+msgid "The height of the main window."
+msgstr "Височината на главния прозорец."
+
+#: ../data/devhelp.schemas.in.h:7
+msgid "X position of main window"
+msgstr "Позиция на главния прозорец по хоризонтала"
+
+#: ../data/devhelp.schemas.in.h:8
+msgid "The X position of the main window."
+msgstr "Позиция на главния прозорец по хоризонтала."
+
+#: ../data/devhelp.schemas.in.h:9
+msgid "Y position of main window"
+msgstr "Позиция на главния прозорец по вертикала"
+
+#: ../data/devhelp.schemas.in.h:10
+msgid "The Y position of the main window."
+msgstr "Позиция на главния прозорец по вертикала."
+
+#: ../data/devhelp.schemas.in.h:11
+msgid "Width of the assistant window"
+msgstr "Широчина на спомагателния прозорец"
+
+#: ../data/devhelp.schemas.in.h:12
+msgid "The width of the assistant window."
+msgstr "Широчината на спомагателния прозорец."
+
+#: ../data/devhelp.schemas.in.h:13
+msgid "Height of assistant window"
+msgstr "Височина на спомагателния прозорец"
+
+#: ../data/devhelp.schemas.in.h:14
+msgid "The height of the assistant window."
+msgstr "Височината на спомагателния прозорец."
+
+#: ../data/devhelp.schemas.in.h:15
+msgid "X position of assistant window"
+msgstr "Позиция на спомагателния прозорец по хоризонтала"
+
+#: ../data/devhelp.schemas.in.h:16
+msgid "The X position of the assistant window."
+msgstr "Позиция на спомагателния прозорец по хоризонтала."
+
+#: ../data/devhelp.schemas.in.h:17
+msgid "Y position of assistant window"
+msgstr "Позиция на спомагателния прозорец по вертикала"
+
+#: ../data/devhelp.schemas.in.h:18
+msgid "The Y position of the assistant window."
+msgstr "Позиция на спомагателния прозорец по вертикала."
+
+#: ../data/devhelp.schemas.in.h:19
+msgid "Width of the index and search pane"
+msgstr "Широчина на панела за съдържание и търсене"
+
+#: ../data/devhelp.schemas.in.h:20
+msgid "The width of the index and search pane."
+msgstr "Широчината на панела със съдържание и търсене"
+
+#: ../data/devhelp.schemas.in.h:21
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Избран подпрозорец, „content“ (Съдържание) или „search“ (Търсене)"
+
+#: ../data/devhelp.schemas.in.h:22
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr ""
 "Кой от подпрозорците да бъде избран, „content“ (Съдържание) или "
 "„search“ (Търсене)."
 
+#: ../data/devhelp.schemas.in.h:23
+msgid "Books disabled"
+msgstr "Изключени ръководства"
+
+#: ../data/devhelp.schemas.in.h:24
+msgid "List of books disabled by the user."
+msgstr ""
+"Списък с ръководства, които да не се показват по желание на потребителя."
+
+#: ../data/devhelp.schemas.in.h:25
+msgid "Group by language"
+msgstr "Групиране по език"
+
 #: ../data/devhelp.schemas.in.h:26
-msgid "Width of the assistant window"
-msgstr "Широчина на спомагателния прозорец"
+msgid "Whether books should be grouped by language in the UI"
+msgstr "Дали в потребителския интерфейс книгите да се групират по език"
 
 #: ../data/devhelp.schemas.in.h:27
-msgid "Width of the index and search pane"
-msgstr "Широчина на панела за съдържание и търсене"
+msgid "Use system fonts"
+msgstr "Използване на системни шрифтове"
 
 #: ../data/devhelp.schemas.in.h:28
-msgid "Width of the main window"
-msgstr "Широчина на главния прозорец"
+msgid "Use the system default fonts."
+msgstr "Използване на стандартните системни шрифтове."
 
 #: ../data/devhelp.schemas.in.h:29
-msgid "X position of assistant window"
-msgstr "Позиция на спомагателния прозорец по хоризонтала"
+msgid "Font for text"
+msgstr "Шрифт за текст"
 
 #: ../data/devhelp.schemas.in.h:30
-msgid "X position of main window"
-msgstr "Позиция на главния прозорец по хоризонтала"
+msgid "Font for text with variable width."
+msgstr "Шрифт за текст с променлива широчина."
 
 #: ../data/devhelp.schemas.in.h:31
-msgid "Y position of assistant window"
-msgstr "Позиция на спомагателния прозорец по вертикала"
+msgid "Font for fixed width text"
+msgstr "Шрифт за текст с фиксирана широчина"
 
 #: ../data/devhelp.schemas.in.h:32
-msgid "Y position of main window"
-msgstr "Позиция на главния прозорец по вертикала"
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Шрифт за текст с фиксирана широчина, като примери с програмен код."
 
 #: ../data/ui/devhelp.builder.h:1
-msgid "Book Shelf"
-msgstr "Набор от ръководства"
+msgid "New window"
+msgstr "Нов прозорец"
 
 #: ../data/ui/devhelp.builder.h:2
-msgid "Enabled"
-msgstr "Включено"
-
-#: ../data/ui/devhelp.builder.h:3
-msgid "Fonts"
-msgstr "Шрифтове"
-
-#: ../data/ui/devhelp.builder.h:4
 msgid "Preferences"
 msgstr "Настройки"
 
+#: ../data/ui/devhelp.builder.h:3
+msgid "About Devhelp"
+msgstr "Относно Devhelp"
+
+#: ../data/ui/devhelp.builder.h:4
+msgid "Quit"
+msgstr "Спиране на програмата"
+
 #: ../data/ui/devhelp.builder.h:5
-msgid "Title"
-msgstr "Заглавие"
+msgid "_Window"
+msgstr "_Прозорец"
 
 #: ../data/ui/devhelp.builder.h:6
-msgid "_Fixed width:"
-msgstr "_Фиксирана широчина:"
+msgid "New _Tab"
+msgstr "Нов _подпрозорец"
 
 #: ../data/ui/devhelp.builder.h:7
+msgid "_Print"
+msgstr "_Печат"
+
+#: ../data/ui/devhelp.builder.h:8
+msgid "_Close"
+msgstr "_Затваряне"
+
+#: ../data/ui/devhelp.builder.h:9
+msgid "_Edit"
+msgstr "_Редактиране"
+
+#: ../data/ui/devhelp.builder.h:10
+msgid "_Copy"
+msgstr "_Копиране"
+
+#: ../data/ui/devhelp.builder.h:11
+msgid "_Find"
+msgstr "_Търсене"
+
+#: ../data/ui/devhelp.builder.h:12
+msgid "Find _Next"
+msgstr "_Следващо съвпадение"
+
+#: ../data/ui/devhelp.builder.h:13
+msgid "Find _Previous"
+msgstr "_Предходно съвпадение"
+
+#: ../data/ui/devhelp.builder.h:14
+msgid "_View"
+msgstr "_Изглед"
+
+#: ../data/ui/devhelp.builder.h:15
+msgid "_Larger text"
+msgstr "По-_голям текст"
+
+#: ../data/ui/devhelp.builder.h:16
+msgid "S_maller text"
+msgstr "По-_малък текст"
+
+#: ../data/ui/devhelp.builder.h:17
+msgid "_Normal size"
+msgstr "_Нормален размер"
+
+#: ../data/ui/devhelp.builder.h:18
+msgid "Fullscreen"
+msgstr "На цял екран"
+
+#: ../data/ui/devhelp.builder.h:19
+msgid "_Go"
+msgstr "_Отиване"
+
+#: ../data/ui/devhelp.builder.h:20
+msgid "_Back"
+msgstr "На_зад"
+
+#: ../data/ui/devhelp.builder.h:21
+msgid "_Forward"
+msgstr "На_пред"
+
+#: ../data/ui/devhelp.builder.h:22
+msgid "_Search Tab"
+msgstr "_Търсене"
+
+#: ../data/ui/devhelp.builder.h:23
+msgid "_Contents Tab"
+msgstr "_Съдържание"
+
+#: ../data/ui/devhelp.builder.h:24
+msgid "Go to the previous page"
+msgstr "Отиване на предходната страница"
+
+#: ../data/ui/devhelp.builder.h:25
+msgid "Go to the next page"
+msgstr "Отиване на следващата страница"
+
+#: ../data/ui/devhelp.builder.h:26
+msgid "Decrease the text size"
+msgstr "Намаляване на размера на текста"
+
+#: ../data/ui/devhelp.builder.h:27
+msgid "Increase the text size"
+msgstr "Увеличаване на размера на текста"
+
+#: ../data/ui/devhelp.builder.h:28
 msgid "_Group by language"
 msgstr "_Групиране по език"
 
-#: ../data/ui/devhelp.builder.h:8
+#: ../data/ui/devhelp.builder.h:29
+msgid "Enabled"
+msgstr "Включено"
+
+#: ../data/ui/devhelp.builder.h:30
+msgid "Title"
+msgstr "Заглавие"
+
+#: ../data/ui/devhelp.builder.h:31
+msgid "Book Shelf"
+msgstr "Набор от ръководства"
+
+#: ../data/ui/devhelp.builder.h:32
 msgid "_Use system fonts"
 msgstr "Използване на _системните шрифтове"
 
-#: ../data/ui/devhelp.builder.h:9
+#: ../data/ui/devhelp.builder.h:33
 msgid "_Variable width: "
 msgstr "_Променлива широчина:"
+
+#: ../data/ui/devhelp.builder.h:34
+msgid "_Fixed width:"
+msgstr "_Фиксирана широчина:"
+
+#: ../data/ui/devhelp.builder.h:35
+msgid "Fonts"
+msgstr "Шрифтове"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
@@ -219,12 +323,32 @@ msgstr "Документация за API"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Показване на документацията за API за думата при курсора"
 
+#: ../src/dh-app.c:162
+msgid "translator_credits"
+msgstr ""
+"Явор Доганов <yavor@gnu.org>\n"
+"Александър Шопов <ash@kambanaria.org>\n"
+"\n"
+"Проектът за превод на GNOME има нужда от подкрепа.\n"
+"Научете повече за нас на <a href=\"http://gnome.cult.bg\">http://gnome.cult."
+"bg</a>\n"
+"Докладвайте за грешки на <a href=\"http://gnome.cult.bg/bugs\">http://gnome."
+"cult.bg/bugs</a>"
+
+#: ../src/dh-app.c:169
+msgid "A developers' help browser for GNOME"
+msgstr "Браузър на ръководства за разработчици на GNOME"
+
+#: ../src/dh-app.c:177
+msgid "DevHelp Website"
+msgstr "Сайт на Devhelp"
+
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:74
+#: ../src/dh-assistant.c:76
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — спомагателен прозорец"
 
-#: ../src/dh-assistant-view.c:336
+#: ../src/dh-assistant-view.c:395
 msgid "Book:"
 msgstr "Ръководство:"
 
@@ -288,29 +412,37 @@ msgstr "Изброен тип"
 msgid "Type"
 msgstr "Тип"
 
-#: ../src/dh-main.c:47
-msgid "Search for a keyword"
-msgstr "Търсене за ключова дума"
+#: ../src/dh-main.c:48
+msgid "Opens a new Devhelp window"
+msgstr "Отваряне на нов прозорец на Devhelp"
 
-#: ../src/dh-main.c:52
-msgid "Quit any running Devhelp"
-msgstr "Изход от всички стартирани програми Devhelp"
-
-#: ../src/dh-main.c:57
-msgid "Display the version and exit"
-msgstr "Показване на версията и изход"
-
-#: ../src/dh-main.c:62
+#: ../src/dh-main.c:53
 msgid "Focus the Devhelp window with the search field active"
 msgstr ""
 "Фокусиране на прозореца на Devhelp с активирано\n"
 "                             поле за търсене"
 
-#: ../src/dh-main.c:67
+#: ../src/dh-main.c:58
+msgid "Search for a keyword"
+msgstr "Търсене за ключова дума"
+
+#: ../src/dh-main.c:59 ../src/dh-main.c:64
+msgid "KEYWORD"
+msgstr "КЛЮЧОВА_ДУМА_"
+
+#: ../src/dh-main.c:63
 msgid "Search and display any hit in the assistant window"
 msgstr ""
 "Търсене и изобразяване на съвпадения в\n"
 "                             спомагателния прозорец"
+
+#: ../src/dh-main.c:68
+msgid "Display the version and exit"
+msgstr "Показване на версията и изход"
+
+#: ../src/dh-main.c:73
+msgid "Quit any running Devhelp"
+msgstr "Изход от всички стартирани програми Devhelp"
 
 #: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
 #: ../src/dh-parser.c:273
@@ -358,181 +490,63 @@ msgstr "необходим е елемент „type“ (тип) в <keyword> н
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Ръководството „%s“ не може да се разкомпресира: %s"
 
-#: ../src/dh-search.c:500
+#: ../src/dh-search.c:492
 msgid "All books"
 msgstr "Всички ръководства"
 
-#: ../src/dh-search.c:1118
+#: ../src/dh-search.c:1110
 msgid "Search in:"
 msgstr "Търсене в:"
 
-#: ../src/dh-window.c:99
+#: ../src/dh-window.c:100
 msgid "50%"
 msgstr "50 %"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:101
 msgid "75%"
 msgstr "75 %"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:102
 msgid "100%"
 msgstr "100 %"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:103
 msgid "125%"
 msgstr "125 %"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:104
 msgid "150%"
 msgstr "150 %"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:105
 msgid "175%"
 msgstr "175 %"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:106
 msgid "200%"
 msgstr "200 %"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:107
 msgid "300%"
 msgstr "300 %"
 
-#: ../src/dh-window.c:107
+#: ../src/dh-window.c:108
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:726
-msgid "translator_credits"
-msgstr ""
-"Явор Доганов <yavor@gnu.org>\n"
-"Александър Шопов <ash@kambanaria.org>\n"
-"\n"
-"Проектът за превод на GNOME има нужда от подкрепа.\n"
-"Научете повече за нас на http://gnome.cult.bg\n"
-"Докладвайте за грешки на http://gnome.cult.bg/bugs"
-
-#: ../src/dh-window.c:733
-msgid "A developers' help browser for GNOME"
-msgstr "Браузър на ръководства за разработчици на GNOME"
-
-#: ../src/dh-window.c:740
-msgid "DevHelp Website"
-msgstr "Сайт на Devhelp"
-
-#: ../src/dh-window.c:764
-msgid "_File"
-msgstr "_Файл"
-
-#: ../src/dh-window.c:765
-msgid "_Edit"
-msgstr "_Редактиране"
-
-#: ../src/dh-window.c:766
-msgid "_View"
-msgstr "_Изглед"
-
-#: ../src/dh-window.c:767
-msgid "_Go"
-msgstr "_Отиване"
-
-#: ../src/dh-window.c:768
-msgid "_Help"
-msgstr "Помо_щ"
-
-#. File menu
-#: ../src/dh-window.c:771
-msgid "_New Window"
-msgstr "Нов п_розорец"
-
-#: ../src/dh-window.c:773
-msgid "New _Tab"
-msgstr "Нов _подпрозорец"
-
-#: ../src/dh-window.c:775
-msgid "_Print…"
-msgstr "_Печат…"
-
-#: ../src/dh-window.c:787 ../src/eggfindbar.c:342
-msgid "Find Next"
-msgstr "Следващо съвпадение"
-
-#: ../src/dh-window.c:789 ../src/eggfindbar.c:329
-msgid "Find Previous"
-msgstr "Предходно съвпадение"
-
-#: ../src/dh-window.c:796
-msgid "Go to the previous page"
-msgstr "Отиване на предходната страница"
-
-#: ../src/dh-window.c:799
-msgid "Go to the next page"
-msgstr "Отиване на следващата страница"
-
-#: ../src/dh-window.c:802
-msgid "_Contents Tab"
-msgstr "_Съдържание"
-
-#: ../src/dh-window.c:805
-msgid "_Search Tab"
-msgstr "_Търсене"
-
-#. View menu
-#: ../src/dh-window.c:809
-msgid "_Larger Text"
-msgstr "По-_голям текст"
-
-#: ../src/dh-window.c:810
-msgid "Increase the text size"
-msgstr "Увеличаване на размера на текста"
-
-#: ../src/dh-window.c:812
-msgid "S_maller Text"
-msgstr "По-_малък текст"
-
-#: ../src/dh-window.c:813
-msgid "Decrease the text size"
-msgstr "Намаляване на размера на текста"
-
-#: ../src/dh-window.c:815
-msgid "_Normal Size"
-msgstr "_Нормален размер"
-
-#: ../src/dh-window.c:816
-msgid "Use the normal text size"
-msgstr "Използване на нормалния размер на текста"
-
-#: ../src/dh-window.c:825
-msgid "Leave fullscreen mode"
-msgstr "Изход от цял екран"
-
-#: ../src/dh-window.c:832
-msgid "Display in full screen"
-msgstr "На цял екран"
-
-#. Translators: This refers to text size
-#: ../src/dh-window.c:952
-msgid "Larger"
-msgstr "По-голям текст"
-
-#. Translators: This refers to text size
-#: ../src/dh-window.c:955
-msgid "Smaller"
-msgstr "По-малък текст"
-
-#: ../src/dh-window.c:1159
+#: ../src/dh-window.c:1046
 msgid "Contents"
 msgstr "Съдържание"
 
-#: ../src/dh-window.c:1169
+#: ../src/dh-window.c:1056
 msgid "Search"
 msgstr "Търсене"
 
-#: ../src/dh-window.c:1344
+#: ../src/dh-window.c:1266
 msgid "Error opening the requested link."
 msgstr "Грешка при отваряне на връзката."
 
-#: ../src/dh-window.c:1657 ../src/dh-window.c:1896
+#: ../src/dh-window.c:1638 ../src/dh-window.c:1885
 msgid "Empty Page"
 msgstr "Празна страница"
 
@@ -540,9 +554,17 @@ msgstr "Празна страница"
 msgid "Find:"
 msgstr "Търсене:"
 
+#: ../src/eggfindbar.c:329
+msgid "Find Previous"
+msgstr "Предходно съвпадение"
+
 #: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Намиране на предходното съвпадение на търсения низ"
+
+#: ../src/eggfindbar.c:342
+msgid "Find Next"
+msgstr "Следващо съвпадение"
 
 #: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
@@ -555,9 +577,3 @@ msgstr "_Зачитане на малки/големи"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Търсене със зачитане на малки/големи букви"
-
-#~ msgid "About Devhelp"
-#~ msgstr "Относно Devhelp"
-
-#~ msgid "Preferences…"
-#~ msgstr "Настройки…"
