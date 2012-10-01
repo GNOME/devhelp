@@ -153,7 +153,7 @@
         <item>
           <attribute name="label" translatable="yes">_Contents Tab</attribute>
           <attribute name="action">win.go-contents-tab</attribute>
-          <attribute name="accel">&lt;Primary&gt;c</attribute>
+          <attribute name="accel">&lt;Primary&gt;b</attribute>
         </item>
       </section>
     </submenu>
