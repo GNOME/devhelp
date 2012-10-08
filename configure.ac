@@ -58,12 +58,12 @@ fi
 AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, test "x$IGE_PLATFORM" = xx11)
 
 AC_ARG_WITH(webkit2,
-        [AC_HELP_STRING([--with-webkit2], [build with WebKit2 [default=no]])],
-        [],[with_webkit2=no])
+        [AC_HELP_STRING([--with-webkit2], [build with WebKit2 [default=yes]])],
+        [],[with_webkit2=yes])
 
 if test "x$with_webkit2" != xno; then
    WEBKITGTK_PC_NAME=webkit2gtk-3.0
-   WEBKITGTK_REQUIRED_VERSION=1.7.91
+   WEBKITGTK_REQUIRED_VERSION=1.10.0
    AC_DEFINE([HAVE_WEBKIT2],[1],[Define if building with WebKit2])
 else
    WEBKITGTK_PC_NAME=webkitgtk-3.0
