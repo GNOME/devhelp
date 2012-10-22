@@ -1,4 +1,18 @@
 =============
+Version 3.7.1
+=============
+
+Fixed bugs:
+
+ - #685710, Switch to WebKit2 by default for 3.7.x
+
+Updated translations: lv, ml, sk
+
+Many thanks to all contributors: Carlos Garcia Campos, Rūdolfs Mazurs,
+Roman Mátyus, Anish A
+
+
+=============
 Version 3.6.0
 =============
 
