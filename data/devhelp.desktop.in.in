@@ -2,6 +2,7 @@
 _Name=Devhelp
 _Comment=Developer's Help program
 _GenericName=Documentation Browser
+_Keywords=documentation;information;manual;developer;api;
 Exec=devhelp
 Terminal=false
 Type=Application
