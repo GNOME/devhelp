@@ -68,7 +68,6 @@ devhelpincludedir = $(includedir)/devhelp-3.0/devhelp
 devhelpinclude_HEADERS = $(INST_H_FILES)
 
 libdevhelp_3_la_SOURCES =				\
-	dh-common.c					\
 	dh-marshal.c					\
 	dh-marshal.h					\
 	dh-enum-types.c					\
@@ -91,12 +90,10 @@ libdevhelp_3_la_SOURCES =				\
 	dh-parser.h					\
 	dh-preferences.h                                \
 	dh-util.h					\
+	dh-settings.c					\
+	dh-settings.h					\
 	eggfindbar.c					\
-	eggfindbar.h					\
-	ige-conf.c					\
-	ige-conf.h					\
-	ige-conf-private.h				\
-	$(conf_platform_sources)
+	eggfindbar.h
 
 libdevhelp_3_la_CPPFLAGS =				\
 	$(AM_CPPFLAGS)					\
@@ -123,9 +120,5 @@ dh-enum-types.c: dh-enum-types.c.template $(INST_H_FILES) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.c.template $(INST_H_FILES)) > $@
 
 if HAVE_PLATFORM_OSX
-conf_platform_sources = ige-conf-mac.c
 libdevhelp_3_la_CPPFLAGS += -xobjective-c
-endif
-if HAVE_PLATFORM_X11
-conf_platform_sources = ige-conf-gconf.c
 endif

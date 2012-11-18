@@ -145,9 +145,6 @@ main (int argc, char **argv)
                 return EXIT_SUCCESS;
         }
 
-        /* Initialize Devhelp support */
-        dh_init ();
-
         /* Create new DhApp */
         application = dh_app_new ();
         g_signal_connect (application, "activate", G_CALLBACK (activate_cb), NULL);

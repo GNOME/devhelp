@@ -1,0 +1,111 @@
+<schemalist gettext-domain="devhelp">
+  <schema id="org.gnome.devhelp" path="/org/gnome/devhelp/">
+    <child name="state" schema="org.gnome.devhelp.state"/>
+    <child name="ui" schema="org.gnome.devhelp.fonts"/>
+  </schema>
+  <schema id="org.gnome.devhelp.state" path="/org/gnome/devhelp/state/">
+    <child name="main" schema="org.gnome.devhelp.state.main"/>
+    <child name="assistant" schema="org.gnome.devhelp.state.assistant"/>
+  </schema>
+  <schema id="org.gnome.devhelp.state.main" path="/org/gnome/devhelp/state/main/">
+    <child name="window" schema="org.gnome.devhelp.state.main.window"/>
+    <child name="paned" schema="org.gnome.devhelp.state.main.paned"/>
+    <child name="search-notebook" schema="org.gnome.devhelp.state.main.search-notebook"/>
+    <child name="contents" schema="org.gnome.devhelp.state.main.contents"/>
+  </schema>
+  <schema id="org.gnome.devhelp.state.main.window" path="/org/gnome/devhelp/state/main/window/">
+    <key name="maximized" type="b">
+      <default>false</default>
+      <_summary>Main window maximized state</_summary>
+      <_description>Whether the main window should start maximized.</_description>
+    </key>
+    <key name="width" type="i">
+      <default>700</default>
+      <_summary>Width of the main window</_summary>
+      <_description>The width of the main window.</_description>
+    </key>
+    <key name="height" type="i">
+      <default>500</default>
+      <_summary>Height of main window</_summary>
+      <_description>The height of the main window.</_description>
+    </key>
+    <key name="x-position" type="i">
+      <default>100</default>
+      <_summary>X position of main window</_summary>
+      <_description>The X position of the main window.</_description>
+    </key>
+    <key name="y-position" type="i">
+      <default>100</default>
+      <_summary>Y position of main window</_summary>
+      <_description>The Y position of the main window.</_description>
+    </key>
+  </schema>
+  <schema id="org.gnome.devhelp.state.main.paned" path="/org/gnome/devhelp/state/main/paned/">
+    <key name="position" type="i">
+      <default>250</default>
+      <_summary>Width of the index and search pane</_summary>
+      <_description>The width of the index and search pane.</_description>
+    </key>
+  </schema>
+  <schema id="org.gnome.devhelp.state.main.search-notebook" path="/org/gnome/devhelp/state/main/search-notebook/">
+    <key name="selected-tab" type="s">
+      <default>'content'</default>
+      <_summary>Selected tab: "content" or "search"</_summary>
+      <_description>Which of the tabs is selected: "content" or "search".</_description>
+    </key>
+  </schema>
+  <schema id="org.gnome.devhelp.state.main.contents" path="/org/gnome/devhelp/state/main/contents/">
+    <key name="books-disabled" type="as">
+      <default>[]</default>
+      <_summary>Books disabled</_summary>
+      <_description>List of books disabled by the user.</_description>
+    </key>
+    <key name="group-books-by-language" type="b">
+      <default>false</default>
+      <_summary>Group by language</_summary>
+      <_description>Whether books should be grouped by language in the UI</_description>
+    </key>
+  </schema>
+  <schema id="org.gnome.devhelp.state.assistant" path="/org/gnome/devhelp/state/assistant/">
+    <child name="window" schema="org.gnome.devhelp.state.assistant.window"/>
+  </schema>
+  <schema id="org.gnome.devhelp.state.assistant.window" path="/org/gnome/devhelp/state/assistant/window/">
+    <key name="width" type="i">
+      <default>350</default>
+      <_summary>Width of the assistant window</_summary>
+      <_description>The width of the assistant window.</_description>
+    </key>
+    <key name="height" type="i">
+      <default>400</default>
+      <_summary>Height of assistant window</_summary>
+      <_description>The height of the assistant window.</_description>
+    </key>
+    <key name="x-position" type="i">
+      <default>0</default>
+      <_summary>X position of assistant window</_summary>
+      <_description>The X position of the assistant window.</_description>
+    </key>
+    <key name="y-position" type="i">
+      <default>0</default>
+      <_summary>Y position of assistant window</_summary>
+      <_description>The Y position of the assistant window.</_description>
+    </key>
+  </schema>
+  <schema id="org.gnome.devhelp.fonts" path="/org/gnome/devhelp/fonts/">
+    <key name="use-system-fonts" type="b">
+      <default>true</default>
+      <_summary>Use system fonts</_summary>
+      <_description>Use the system default fonts.</_description>
+    </key>
+    <key name="variable-font" type="s">
+      <default>'Sans 12'</default>
+      <_summary>Font for text</_summary>
+      <_description>Font for text with variable width.</_description>
+    </key>
+    <key name="fixed-font" type="s">
+      <default>'Monospace 12'</default>
+      <_summary>Font for fixed width text</_summary>
+      <_description>Font for text with fixed width, such as code examples.</_description>
+    </key>
+  </schema>
+</schemalist>

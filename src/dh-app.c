@@ -156,6 +156,7 @@ about_cb (GSimpleAction *action,
                 "Johan Dahlin <johan@gnome.org>",
                 "Ross Burton <ross@burtonini.com>",
                 "Aleksander Morgado <aleksander@lanedo.com>",
+                "Thomas Bechtold <toabctl@gnome.org>",
                 NULL
         };
         const gchar **documenters = NULL;

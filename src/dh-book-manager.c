@@ -4,6 +4,7 @@
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2004-2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
+ * Copyright (C) 2012 Thomas Bechtold <toabctl@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -25,11 +26,11 @@
 #include <string.h>
 
 #include "dh-link.h"
-#include "dh-util.h"
 #include "dh-book.h"
 #include "dh-language.h"
 #include "dh-book-manager.h"
 #include "dh-marshal.h"
+#include "dh-settings.h"
 
 #define NEW_POSSIBLE_BOOK_TIMEOUT_SECS 5
 
@@ -49,6 +50,7 @@ typedef struct {
         gboolean    group_by_language;
         /* List of programming languages with at least one book enabled */
         GList      *languages;
+        DhSettings *settings;
 } DhBookManagerPriv;
 
 enum {
@@ -76,6 +78,8 @@ G_DEFINE_TYPE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
 static void    dh_book_manager_init           (DhBookManager      *book_manager);
 static void    dh_book_manager_class_init     (DhBookManagerClass *klass);
+
+static void    book_manager_load_books_disabled (DhBookManager *book_manager);
 
 static void    book_manager_add_from_filepath (DhBookManager *book_manager,
                                                const gchar   *book_path);
@@ -130,6 +134,8 @@ book_manager_finalize (GObject *object)
                 g_free (sl->data);
         }
         g_slist_free (priv->books_disabled);
+
+        g_clear_object (&priv->settings);
 
         G_OBJECT_CLASS (dh_book_manager_parent_class)->finalize (object);
 }
@@ -227,8 +233,13 @@ dh_book_manager_init (DhBookManager *book_manager)
         priv->books = NULL;
         priv->monitors = NULL;
         priv->languages = NULL;
+        priv->books_disabled = NULL;
+        priv->settings = dh_settings_get ();
 
-        priv->books_disabled = dh_util_state_load_books_disabled ();
+        book_manager_load_books_disabled (book_manager);
+        g_settings_bind (dh_settings_peek_contents_settings (priv->settings),
+                         "group-books-by-language", book_manager,
+                         "group-by-language", G_SETTINGS_BIND_DEFAULT);
 }
 
 static void
@@ -269,6 +280,43 @@ book_manager_get_property (GObject    *object,
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
         }
+}
+
+static void
+book_manager_load_books_disabled (DhBookManager *book_manager)
+{
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+
+        gchar **books_disabled_strv = g_settings_get_strv (
+                dh_settings_peek_contents_settings (priv->settings),
+                "books-disabled");
+        while (*books_disabled_strv != NULL) {
+                priv->books_disabled = g_slist_append (priv->books_disabled, *books_disabled_strv);
+                books_disabled_strv++;
+        }
+}
+
+static void
+book_manager_store_books_disabled (DhBookManager *book_manager)
+{
+        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        GVariantBuilder *builder;
+        GVariant *variant;
+        int i;
+
+        builder = g_variant_builder_new (G_VARIANT_TYPE_STRING_ARRAY);
+        for (i = 0; i < g_slist_length (priv->books_disabled); i++)
+        {
+                gchar *book = (gchar*) g_slist_nth_data (priv->books_disabled, i);
+                g_variant_builder_add (builder, "s", book);
+        }
+
+        variant = g_variant_builder_end (builder);
+
+        g_settings_set_value (
+                dh_settings_peek_contents_settings (priv->settings),
+                "books-disabled",
+                variant);
 }
 
 static gboolean
@@ -646,7 +694,7 @@ book_manager_book_enabled_cb (DhBook   *book,
          * disabled books list! */
         g_assert (li != NULL);
         priv->books_disabled = g_slist_delete_link (priv->books_disabled, li);
-        dh_util_state_store_books_disabled (priv->books_disabled);
+        book_manager_store_books_disabled (book_manager);
 
         /* Increment language count */
         book_manager_inc_language (book_manager,
@@ -673,7 +721,7 @@ book_manager_book_disabled_cb (DhBook   *book,
         g_assert (li == NULL);
         priv->books_disabled = g_slist_append (priv->books_disabled,
                                                g_strdup (dh_book_get_name (book)));
-        dh_util_state_store_books_disabled (priv->books_disabled);
+        book_manager_store_books_disabled (book_manager);
 
         /* Decrement language count */
         book_manager_dec_language (book_manager,
@@ -785,9 +833,6 @@ dh_book_manager_set_group_by_language (DhBookManager *book_manager,
 
         priv = GET_PRIVATE (book_manager);
 
-        /* Store in conf */
-        dh_util_state_store_group_books_by_language (group_by_language);
-
         priv->group_by_language = group_by_language;
         g_object_notify (G_OBJECT (book_manager), "group-by-language");
 }
@@ -860,8 +905,6 @@ dh_book_manager_get_languages (DhBookManager *book_manager)
 DhBookManager *
 dh_book_manager_new (void)
 {
-        return g_object_new (DH_TYPE_BOOK_MANAGER,
-                             "group-by-language", dh_util_state_load_group_books_by_language (),
-                             NULL);
+        return g_object_new (DH_TYPE_BOOK_MANAGER, NULL);
 }
 

@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2001-2008 Imendio AB
  * Copyright (C) 2012 Aleksander Morgado <aleksander@gnu.org>
+ * Copyright (C) 2012 Thomas Bechtold <toabctl@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -50,6 +51,7 @@
 #include "dh-util.h"
 #include "dh-marshal.h"
 #include "dh-enum-types.h"
+#include "dh-settings.h"
 #include "eggfindbar.h"
 
 #define FULLSCREEN_ANIMATION_SPEED 4
@@ -75,6 +77,7 @@ struct _DhWindowPriv {
 
         DhLink         *selected_search_link;
         guint           find_source_id;
+        DhSettings     *settings;
 };
 
 enum {
@@ -191,7 +194,7 @@ print_cb (GSimpleAction *action,
         WebKitPrintOperation *print_operation;
 
         print_operation = webkit_print_operation_new (web_view);
-        webkit_print_operation_run_dialog (print_operation, GTK_WIDGET (window));
+        webkit_print_operation_run_dialog (print_operation, GTK_WINDOW (window));
         g_object_unref (print_operation);
 #else
         webkit_web_view_execute_script (web_view, "print();");
@@ -811,6 +814,40 @@ window_fullscreen_controls_show (DhWindow *window)
 }
 
 static void
+settings_fonts_changed_cb (DhSettings *settings,
+                           const gchar *font_name_fixed,
+                           const gchar *font_name_variable,
+                           gpointer user_data)
+{
+        DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPriv *priv = window->priv;
+        gint i;
+        WebKitWebView *view;
+        /* change font for all pages */
+        for (i = 0; i < gtk_notebook_get_n_pages (GTK_NOTEBOOK(priv->notebook)); i++) {
+                GtkWidget *page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), i);
+                view = WEBKIT_WEB_VIEW (g_object_get_data (G_OBJECT (page), "web_view"));
+                dh_util_view_set_font (view, font_name_fixed, font_name_variable);
+        }
+}
+
+static gboolean
+window_configure_event_cb (GtkWidget *window,
+                           GdkEventConfigure *event,
+                           gpointer user_data)
+{
+        DhWindow *dhwindow;
+        DhWindowPriv  *priv;
+
+        dhwindow = DH_WINDOW (user_data);
+        priv = GET_PRIVATE (dhwindow);
+        dh_util_window_settings_save (
+                GTK_WINDOW (window),
+                dh_settings_peek_window_settings (priv->settings), TRUE);
+	return FALSE;
+}
+
+static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPriv  *priv;
@@ -824,6 +861,13 @@ dh_window_init (DhWindow *window)
         window->priv = priv;
 
         priv->selected_search_link = NULL;
+
+        /* handle settings */
+        priv->settings = dh_settings_get ();
+        g_signal_connect (priv->settings,
+                          "fonts-changed",
+                          G_CALLBACK (settings_fonts_changed_cb),
+                          window);
 
         /* Setup builder */
         priv->builder = gtk_builder_new ();
@@ -863,9 +907,21 @@ dh_window_init (DhWindow *window)
 }
 
 static void
+dispose (GObject *object)
+{
+	DhWindow *self = DH_WINDOW (object);
+        g_clear_object (&self->priv->settings);
+
+	/* Chain up to the parent class */
+	G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
+}
+
+static void
 dh_window_class_init (DhWindowClass *klass)
 {
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
         g_type_class_add_private (klass, sizeof (DhWindowPriv));
+        object_class->dispose = dispose;
 
         signals[OPEN_LINK] =
                 g_signal_new ("open-link",
@@ -922,6 +978,11 @@ window_control_after_switch_page_cb (GtkWidget       *notebook,
         g_signal_handlers_unblock_by_func (priv->book_tree,
                                            window_tree_link_selected_cb,
                                            window);
+        /* save the current selected tab */
+        const gchar *label = gtk_notebook_get_tab_label_text (GTK_NOTEBOOK (notebook), page);
+        g_settings_set_string (
+                dh_settings_peek_search_notebook_settings (priv->settings),
+                "selected-tab", label);
 }
 
 static void
@@ -976,6 +1037,8 @@ window_populate (DhWindow *window)
         GtkWidget     *book_tree_sw;
         DhBookManager *book_manager;
         GtkWidget     *toolbar;
+        gchar         *selected_tab;
+        guint         i;
 
         priv = window->priv;
 
@@ -1016,16 +1079,6 @@ window_populate (DhWindow *window)
 
         gtk_paned_add1 (GTK_PANED (priv->hpaned), priv->control_notebook);
 
-        g_signal_connect (priv->control_notebook,
-                          "switch-page",
-                          G_CALLBACK (window_control_switch_page_cb),
-                          window);
-
-        g_signal_connect_after (priv->control_notebook,
-                                "switch-page",
-                                G_CALLBACK (window_control_after_switch_page_cb),
-                                window);
-
         book_tree_sw = gtk_scrolled_window_new (NULL, NULL);
 
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (book_tree_sw),
@@ -1040,7 +1093,6 @@ window_populate (DhWindow *window)
         priv->book_tree = dh_book_tree_new (book_manager);
         gtk_container_add (GTK_CONTAINER (book_tree_sw),
                            priv->book_tree);
-        dh_util_state_set_notebook_page_name (book_tree_sw, "content");
         gtk_notebook_append_page (GTK_NOTEBOOK (priv->control_notebook),
                                   book_tree_sw,
                                   gtk_label_new (_("Contents")));
@@ -1050,7 +1102,6 @@ window_populate (DhWindow *window)
                           window);
 
         priv->search = dh_search_new (book_manager);
-        dh_util_state_set_notebook_page_name (priv->search, "search");
         gtk_notebook_append_page (GTK_NOTEBOOK (priv->control_notebook),
                                   priv->search,
                                   gtk_label_new (_("Search")));
@@ -1061,6 +1112,36 @@ window_populate (DhWindow *window)
 
         priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_paned_add2 (GTK_PANED (priv->hpaned), priv->vbox);
+
+        g_signal_connect (priv->control_notebook,
+                          "switch-page",
+                          G_CALLBACK (window_control_switch_page_cb),
+                          window);
+
+        g_signal_connect_after (priv->control_notebook,
+                                "switch-page",
+                                G_CALLBACK (window_control_after_switch_page_cb),
+                                window);
+
+        /* restore selected control notebook page */
+        selected_tab = g_settings_get_string (
+                dh_settings_peek_search_notebook_settings (priv->settings),
+                "selected-tab");
+        for (i = 0; i < gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->control_notebook)); i++) {
+                GtkWidget   *page;
+                const gchar *page_name;
+
+                page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->control_notebook), i);
+                page_name = gtk_notebook_get_tab_label_text (GTK_NOTEBOOK (priv->control_notebook), page);
+
+                if (page_name && strcmp (page_name, selected_tab) == 0) {
+                        gtk_widget_set_visible (GTK_WIDGET (page), TRUE);
+                        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), i);
+                        gtk_widget_grab_focus (page);
+                        break;
+                }
+        }
+        g_free (selected_tab);
 
         /* HTML tabs notebook. */
         priv->notebook = gtk_notebook_new ();
@@ -1581,6 +1662,8 @@ window_open_new_tab (DhWindow    *window,
         GtkWidget    *label;
         gint          num;
         GtkWidget    *info_bar;
+        gchar *font_fixed = NULL;
+        gchar *font_variable = NULL;
 #ifndef HAVE_WEBKIT2
         GtkWidget    *scrolled_window;
 #endif
@@ -1590,7 +1673,11 @@ window_open_new_tab (DhWindow    *window,
         /* Prepare the web view */
         view = webkit_web_view_new ();
         gtk_widget_show (view);
-        dh_util_font_add_web_view (WEBKIT_WEB_VIEW (view));
+        /* get the current fonts and set them on the new view */
+        dh_settings_get_selected_fonts (priv->settings, &font_fixed, &font_variable);
+        dh_util_view_set_font (WEBKIT_WEB_VIEW (view), font_fixed, font_variable);
+        g_free (font_fixed);
+        g_free (font_variable);
 
         /* Prepare the info bar */
         info_bar = gtk_info_bar_new ();
@@ -1920,11 +2007,17 @@ dh_window_new (DhApp *application)
 
         gtk_window_set_icon_name (GTK_WINDOW (window), "devhelp");
 
-        dh_util_state_manage_window (GTK_WINDOW (window), "main/window");
-        dh_util_state_manage_paned (GTK_PANED (priv->hpaned), "main/paned");
-        dh_util_state_manage_notebook (GTK_NOTEBOOK (priv->control_notebook),
-                                       "main/search_notebook",
-                                       "content");
+        g_signal_connect (window, "configure-event",
+                          G_CALLBACK (window_configure_event_cb),
+                          window);
+
+        dh_util_window_settings_restore (
+                GTK_WINDOW (window),
+                dh_settings_peek_window_settings (priv->settings), TRUE);
+
+        g_settings_bind (dh_settings_peek_paned_settings (priv->settings),
+                         "position", G_OBJECT (priv->hpaned),
+                         "position", G_SETTINGS_BIND_DEFAULT);
 
         return GTK_WIDGET (window);
 }

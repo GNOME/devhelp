@@ -27,10 +27,12 @@
 #include "dh-util.h"
 #include "dh-assistant-view.h"
 #include "dh-assistant.h"
+#include "dh-settings.h"
 
 typedef struct {
         GtkWidget *main_box;
         GtkWidget *view;
+        DhSettings *settings;
 } DhAssistantPriv;
 
 static void dh_assistant_class_init (DhAssistantClass *klass);
@@ -54,10 +56,38 @@ assistant_key_press_event_cb (GtkWidget   *widget,
         return FALSE;
 }
 
+static gboolean
+window_configure_event_cb (GtkWidget *window,
+                           GdkEventConfigure *event,
+                           gpointer user_data)
+{
+        DhAssistant *assistant;
+        DhAssistantPriv  *priv;
+
+        assistant = DH_ASSISTANT (user_data);
+        priv = GET_PRIVATE (assistant);
+        dh_util_window_settings_save (
+                GTK_WINDOW (assistant),
+                dh_settings_peek_assistant_settings (priv->settings), FALSE);
+	return FALSE;
+}
+
+static void
+dispose (GObject *object)
+{
+        DhAssistant *assistant = DH_ASSISTANT (object);
+        DhAssistantPriv *priv = GET_PRIVATE (assistant);
+        g_clear_object (&priv->settings);
+
+        G_OBJECT_CLASS (dh_assistant_parent_class)->dispose (object);
+}
+
 static void
 dh_assistant_class_init (DhAssistantClass *klass)
 {
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
         g_type_class_add_private (klass, sizeof (DhAssistantPriv));
+        object_class->dispose = dispose;
 }
 
 static void
@@ -67,7 +97,7 @@ dh_assistant_init (DhAssistant *assistant)
 #ifndef HAVE_WEBKIT2
         GtkWidget       *scrolled_window;
 #endif
-
+        priv->settings = dh_settings_get ();
         priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_widget_show (priv->main_box);
         gtk_container_add (GTK_CONTAINER (assistant), priv->main_box);
@@ -98,8 +128,13 @@ dh_assistant_init (DhAssistant *assistant)
                             scrolled_window, TRUE, TRUE, 0);
 #endif
 
-        dh_util_state_manage_window (GTK_WINDOW (assistant),
-                                     "assistant/window");
+        dh_util_window_settings_restore (
+                GTK_WINDOW (assistant),
+                dh_settings_peek_assistant_settings (priv->settings), FALSE);
+
+        g_signal_connect (GTK_WINDOW (assistant), "configure-event",
+                          G_CALLBACK (window_configure_event_cb),
+                          assistant);
 }
 
 GtkWidget *
