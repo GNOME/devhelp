@@ -107,7 +107,8 @@ libdevhelp_3_la_CFLAGS =				\
 
 libdevhelp_3_la_LIBADD =				\
 	$(LIBDEVHELP_LIBS)				\
-	$(ZLIB_LIBS)
+	$(ZLIB_LIBS)					\
+	$(LIBM)
 
 libdevhelp_3_la_LDFLAGS =				\
 	-no-undefined					\
