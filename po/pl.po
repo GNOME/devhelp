@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-01 21:39+0200\n"
-"PO-Revision-Date: 2012-09-01 21:40+0200\n"
+"POT-Creation-Date: 2012-11-27 16:43+0100\n"
+"PO-Revision-Date: 2012-11-27 16:44+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -41,6 +41,10 @@ msgstr "Program pomocy dla programistów"
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Przeglądarka dokumentacji"
+
+#: ../data/devhelp.desktop.in.in.h:4
+msgid "documentation;information;manual;developer;api;"
+msgstr "dokumentacja;informacje;podręcznik;programista;developer;api;"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Main window maximized state"
