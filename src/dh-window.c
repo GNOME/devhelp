@@ -911,6 +911,7 @@ dispose (GObject *object)
 {
 	DhWindow *self = DH_WINDOW (object);
         g_clear_object (&self->priv->settings);
+        g_clear_object (&self->priv->builder);
 
 	/* Chain up to the parent class */
 	G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
