@@ -126,7 +126,11 @@ book_finalize (GObject *object)
                 g_object_unref (priv->monitor);
         }
 
+        g_free (priv->language);
+
         g_free (priv->title);
+
+        g_free (priv->name);
 
         g_free (priv->path);
 
