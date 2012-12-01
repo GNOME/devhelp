@@ -756,6 +756,8 @@ keyword_model_process_search_string (const gchar  *string,
                 *keywords = NULL;
         }
 
+        g_strfreev (strv);
+
         return TRUE;
 }
 
