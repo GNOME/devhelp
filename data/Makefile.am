@@ -26,15 +26,13 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 EXTRA_DIST =			\
 	libdevhelp-3.0.pc.in    \
 	$(desktop_in_files)	\
-	org.gnome.devhelp.gschema.xml.in \
+	$(gsettings_SCHEMAS)    \
 	devhelp.convert \
 	$(assistant_DATA)
 
 CLEANFILES =			\
 	$(DESKTOP_FILES)	\
-	$(gsettings_SCHEMAS)    \
 	$(defaults_DATA)
 
 DISTCLEANFILES =		\
-	$(desktop_DATA)		\
-	$(gsettings_SCHEMAS)
+	$(desktop_DATA)

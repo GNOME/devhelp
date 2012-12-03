@@ -16,54 +16,54 @@
   <schema id="org.gnome.devhelp.state.main.window" path="/org/gnome/devhelp/state/main/window/">
     <key name="maximized" type="b">
       <default>false</default>
-      <_summary>Main window maximized state</_summary>
-      <_description>Whether the main window should start maximized.</_description>
+      <summary>Main window maximized state</summary>
+      <description>Whether the main window should start maximized.</description>
     </key>
     <key name="width" type="i">
       <default>700</default>
-      <_summary>Width of the main window</_summary>
-      <_description>The width of the main window.</_description>
+      <summary>Width of the main window</summary>
+      <description>The width of the main window.</description>
     </key>
     <key name="height" type="i">
       <default>500</default>
-      <_summary>Height of main window</_summary>
-      <_description>The height of the main window.</_description>
+      <summary>Height of main window</summary>
+      <description>The height of the main window.</description>
     </key>
     <key name="x-position" type="i">
       <default>100</default>
-      <_summary>X position of main window</_summary>
-      <_description>The X position of the main window.</_description>
+      <summary>X position of main window</summary>
+      <description>The X position of the main window.</description>
     </key>
     <key name="y-position" type="i">
       <default>100</default>
-      <_summary>Y position of main window</_summary>
-      <_description>The Y position of the main window.</_description>
+      <summary>Y position of main window</summary>
+      <description>The Y position of the main window.</description>
     </key>
   </schema>
   <schema id="org.gnome.devhelp.state.main.paned" path="/org/gnome/devhelp/state/main/paned/">
     <key name="position" type="i">
       <default>250</default>
-      <_summary>Width of the index and search pane</_summary>
-      <_description>The width of the index and search pane.</_description>
+      <summary>Width of the index and search pane</summary>
+      <description>The width of the index and search pane.</description>
     </key>
   </schema>
   <schema id="org.gnome.devhelp.state.main.search-notebook" path="/org/gnome/devhelp/state/main/search-notebook/">
     <key name="selected-tab" type="s">
       <default>'content'</default>
-      <_summary>Selected tab: "content" or "search"</_summary>
-      <_description>Which of the tabs is selected: "content" or "search".</_description>
+      <summary>Selected tab: "content" or "search"</summary>
+      <description>Which of the tabs is selected: "content" or "search".</description>
     </key>
   </schema>
   <schema id="org.gnome.devhelp.state.main.contents" path="/org/gnome/devhelp/state/main/contents/">
     <key name="books-disabled" type="as">
       <default>[]</default>
-      <_summary>Books disabled</_summary>
-      <_description>List of books disabled by the user.</_description>
+      <summary>Books disabled</summary>
+      <description>List of books disabled by the user.</description>
     </key>
     <key name="group-books-by-language" type="b">
       <default>false</default>
-      <_summary>Group by language</_summary>
-      <_description>Whether books should be grouped by language in the UI</_description>
+      <summary>Group by language</summary>
+      <description>Whether books should be grouped by language in the UI</description>
     </key>
   </schema>
   <schema id="org.gnome.devhelp.state.assistant" path="/org/gnome/devhelp/state/assistant/">
@@ -72,40 +72,40 @@
   <schema id="org.gnome.devhelp.state.assistant.window" path="/org/gnome/devhelp/state/assistant/window/">
     <key name="width" type="i">
       <default>350</default>
-      <_summary>Width of the assistant window</_summary>
-      <_description>The width of the assistant window.</_description>
+      <summary>Width of the assistant window</summary>
+      <description>The width of the assistant window.</description>
     </key>
     <key name="height" type="i">
       <default>400</default>
-      <_summary>Height of assistant window</_summary>
-      <_description>The height of the assistant window.</_description>
+      <summary>Height of assistant window</summary>
+      <description>The height of the assistant window.</description>
     </key>
     <key name="x-position" type="i">
       <default>0</default>
-      <_summary>X position of assistant window</_summary>
-      <_description>The X position of the assistant window.</_description>
+      <summary>X position of assistant window</summary>
+      <description>The X position of the assistant window.</description>
     </key>
     <key name="y-position" type="i">
       <default>0</default>
-      <_summary>Y position of assistant window</_summary>
-      <_description>The Y position of the assistant window.</_description>
+      <summary>Y position of assistant window</summary>
+      <description>The Y position of the assistant window.</description>
     </key>
   </schema>
   <schema id="org.gnome.devhelp.fonts" path="/org/gnome/devhelp/fonts/">
     <key name="use-system-fonts" type="b">
       <default>true</default>
-      <_summary>Use system fonts</_summary>
-      <_description>Use the system default fonts.</_description>
+      <summary>Use system fonts</summary>
+      <description>Use the system default fonts.</description>
     </key>
     <key name="variable-font" type="s">
       <default>'Sans 12'</default>
-      <_summary>Font for text</_summary>
-      <_description>Font for text with variable width.</_description>
+      <summary>Font for text</summary>
+      <description>Font for text with variable width.</description>
     </key>
     <key name="fixed-font" type="s">
       <default>'Monospace 12'</default>
-      <_summary>Font for fixed width text</_summary>
-      <_description>Font for text with fixed width, such as code examples.</_description>
+      <summary>Font for fixed width text</summary>
+      <description>Font for text with fixed width, such as code examples.</description>
     </key>
   </schema>
 </schemalist>
