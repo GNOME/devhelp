@@ -8,9 +8,6 @@ assistant_DATA = 		\
 	assistant.js		\
 	assistant.css
 
-@INTLTOOL_SCHEMAS_RULE@
-@INTLTOOL_XML_NOMERGE_RULE@
-
 gsettings_SCHEMAS = org.gnome.devhelp.gschema.xml
 @GSETTINGS_RULES@
 
