@@ -7,27 +7,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-05 18:15+0000\n"
-"PO-Revision-Date: 2012-09-06 21:33+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-12-16 20:01+0000\n"
+"PO-Revision-Date: 2012-12-18 08:27+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: \n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
-"X-Poedit-Language: Slovenian\n"
-"X-Poedit-Country: SLOVENIA\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1
-#: ../src/dh-app.c:167
-#: ../src/dh-app.c:350
-#: ../src/dh-window.c:958
-#: ../src/dh-window.c:1857
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:167 ../src/dh-app.c:350
+#: ../src/dh-window.c:958 ../src/dh-window.c:1857
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -38,6 +36,10 @@ msgstr "Program za pomoč razvijalcem "
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Pregledovalnik dokumentacije"
+
+#: ../data/devhelp.desktop.in.in.h:4
+msgid "documentation;information;manual;developer;api;"
+msgstr "dokumentacija;podrobnosti;podatki;priročnik;razvoj;api;"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Main window maximized state"
@@ -416,8 +418,7 @@ msgstr "Osveži devhelp okno z dejavnim iskalnim poljem"
 msgid "Search for a keyword"
 msgstr "Iskanje ključne besede"
 
-#: ../src/dh-main.c:59
-#: ../src/dh-main.c:64
+#: ../src/dh-main.c:59 ../src/dh-main.c:64
 msgid "KEYWORD"
 msgstr "Ključna beseda"
 
@@ -433,9 +434,7 @@ msgstr "Pokaži pomoč in končaj program"
 msgid "Quit any running Devhelp"
 msgstr "Končaj zagnani Devhelp"
 
-#: ../src/dh-parser.c:97
-#: ../src/dh-parser.c:199
-#: ../src/dh-parser.c:263
+#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
 #: ../src/dh-parser.c:273
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
@@ -448,23 +447,35 @@ msgstr "Neveljaven imenski prostor '%s' v vrstici %d, stolpec %d"
 
 #: ../src/dh-parser.c:143
 #, c-format
-msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr "\"title\" (naslov), \"name\" (ime) in \"link\" (povezava) predmeta so zahtevani v vrstici %d in stolpcu %d"
+msgid ""
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr ""
+"\"title\" (naslov), \"name\" (ime) in \"link\" (povezava) predmeta so "
+"zahtevani v vrstici %d in stolpcu %d"
 
 #: ../src/dh-parser.c:218
 #, c-format
-msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
-msgstr "\"ime\" in \"povezava\" predmeta sta zahtevana znotraj <sub> v vrstici %d in stolpcu %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+"%d"
+msgstr ""
+"\"ime\" in \"povezava\" predmeta sta zahtevana znotraj <sub> v vrstici %d in "
+"stolpcu %d"
 
 #: ../src/dh-parser.c:298
 #, c-format
-msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr "\"ime\" in\"povezava\" predmeta sta zahtevana znotraj '%s' v vrstici %d in stolpcu %d"
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+"\"ime\" in\"povezava\" predmeta sta zahtevana znotraj '%s' v vrstici %d in "
+"stolpcu %d"
 
 #: ../src/dh-parser.c:311
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "\"vrstni\" element je zahtevan znotraj <ključne besede> v vrstici %d in stolpcu %d"
+msgstr ""
+"\"vrstni\" element je zahtevan znotraj <ključne besede> v vrstici %d in "
+"stolpcu %d"
 
 #: ../src/dh-parser.c:514
 #, c-format
@@ -527,8 +538,7 @@ msgstr "Iskanje"
 msgid "Error opening the requested link."
 msgstr "Napaka med odpiranjem zahtevane povezave."
 
-#: ../src/dh-window.c:1638
-#: ../src/dh-window.c:1885
+#: ../src/dh-window.c:1638 ../src/dh-window.c:1885
 msgid "Empty Page"
 msgstr "Prazna stran"
 
@@ -540,8 +550,7 @@ msgstr "Najdi:"
 msgid "Find Previous"
 msgstr "Najdi predhodne"
 
-#: ../src/eggfindbar.c:333
-#: ../src/eggfindbar.c:336
+#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
 msgstr "Najdi predhodno ponovitev iskanega niza"
 
@@ -549,8 +558,7 @@ msgstr "Najdi predhodno ponovitev iskanega niza"
 msgid "Find Next"
 msgstr "Najdi naslednje"
 
-#: ../src/eggfindbar.c:346
-#: ../src/eggfindbar.c:349
+#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
 msgstr "Najdi naslednjo ponovitev iskanega niza"
 
@@ -558,8 +566,7 @@ msgstr "Najdi naslednjo ponovitev iskanega niza"
 msgid "C_ase Sensitive"
 msgstr "_Razlikovanje velikosti črk"
 
-#: ../src/eggfindbar.c:362
-#: ../src/eggfindbar.c:365
+#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Preklopi iskanje z razlikovanjem velikih in malih črk"
 
