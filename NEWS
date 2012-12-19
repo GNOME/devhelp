@@ -1,4 +1,22 @@
 =============
+Version 3.7.3
+=============
+
+Fixed bugs:
+
+ - #646402, port devhelp to gsettings
+ - #683882, Can't Ctrl+C to copy
+ - #687607, add keywords to the desktop file
+ - #688919, devhelp fails to build with GNU gold due to underlinking
+
+Updated translations: es, et, nl, pl, ru, sl
+
+Many thanks to all contributors: Mattias Põldaru, Aleksej Kabanov, Thomas
+Bechtold, Wouter Bolsterlee, Piotr Drąg, Matej Urbančič, Daniel
+Mustieles, Alexandre Rostovtsev, Pavel Vasin, Matthias Clasen
+
+
+=============
 Version 3.7.1
 =============
 
