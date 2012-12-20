@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-15 07:56+0300\n"
-"PO-Revision-Date: 2012-08-15 08:02+0200\n"
+"POT-Creation-Date: 2012-12-20 13:19+0200\n"
+"PO-Revision-Date: 2012-12-20 13:20+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -20,10 +20,10 @@ msgstr ""
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:1
-#: ../src/dh-app.c:167
-#: ../src/dh-app.c:350
-#: ../src/dh-window.c:958
-#: ../src/dh-window.c:1857
+#: ../src/dh-app.c:168
+#: ../src/dh-app.c:351
+#: ../src/dh-window.c:1019
+#: ../src/dh-window.c:1944
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -36,131 +36,135 @@ msgstr "תכנית עזרה למפתחים"
 msgid "Documentation Browser"
 msgstr "דפדפן תיעוד"
 
-#: ../data/devhelp.schemas.in.h:1
+#: ../data/devhelp.desktop.in.in.h:4
+msgid "documentation;information;manual;developer;api;"
+msgstr "תיעוד;מידע;פרטים;הדרכה;מדריך;פיתוח;תכנות;מפתח;מתכנת;api;"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:1
 msgid "Main window maximized state"
 msgstr "Main window maximized state"
 
-#: ../data/devhelp.schemas.in.h:2
+#: ../data/org.gnome.devhelp.gschema.xml.h:2
 msgid "Whether the main window should start maximized."
 msgstr "Whether the main window should start maximized."
 
-#: ../data/devhelp.schemas.in.h:3
+#: ../data/org.gnome.devhelp.gschema.xml.h:3
 msgid "Width of the main window"
 msgstr "Width of the main window"
 
-#: ../data/devhelp.schemas.in.h:4
+#: ../data/org.gnome.devhelp.gschema.xml.h:4
 msgid "The width of the main window."
 msgstr "The width of the main window."
 
-#: ../data/devhelp.schemas.in.h:5
+#: ../data/org.gnome.devhelp.gschema.xml.h:5
 msgid "Height of main window"
 msgstr "Height of main window"
 
-#: ../data/devhelp.schemas.in.h:6
+#: ../data/org.gnome.devhelp.gschema.xml.h:6
 msgid "The height of the main window."
 msgstr "The height of the main window."
 
-#: ../data/devhelp.schemas.in.h:7
+#: ../data/org.gnome.devhelp.gschema.xml.h:7
 msgid "X position of main window"
 msgstr "X position of main window"
 
-#: ../data/devhelp.schemas.in.h:8
+#: ../data/org.gnome.devhelp.gschema.xml.h:8
 msgid "The X position of the main window."
 msgstr "The X position of the main window."
 
-#: ../data/devhelp.schemas.in.h:9
+#: ../data/org.gnome.devhelp.gschema.xml.h:9
 msgid "Y position of main window"
 msgstr "Y position of main window"
 
-#: ../data/devhelp.schemas.in.h:10
+#: ../data/org.gnome.devhelp.gschema.xml.h:10
 msgid "The Y position of the main window."
 msgstr "The Y position of the main window."
 
-#: ../data/devhelp.schemas.in.h:11
-msgid "Width of the assistant window"
-msgstr "Width of the assistant window"
-
-#: ../data/devhelp.schemas.in.h:12
-msgid "The width of the assistant window."
-msgstr "The width of the assistant window."
-
-#: ../data/devhelp.schemas.in.h:13
-msgid "Height of assistant window"
-msgstr "Height of assistant window"
-
-#: ../data/devhelp.schemas.in.h:14
-msgid "The height of the assistant window."
-msgstr "The height of the assistant window."
-
-#: ../data/devhelp.schemas.in.h:15
-msgid "X position of assistant window"
-msgstr "X position of assistant window"
-
-#: ../data/devhelp.schemas.in.h:16
-msgid "The X position of the assistant window."
-msgstr "The X position of the assistant window."
-
-#: ../data/devhelp.schemas.in.h:17
-msgid "Y position of assistant window"
-msgstr "Y position of assistant window"
-
-#: ../data/devhelp.schemas.in.h:18
-msgid "The Y position of the assistant window."
-msgstr "The Y position of the assistant window."
-
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/org.gnome.devhelp.gschema.xml.h:11
 msgid "Width of the index and search pane"
 msgstr "Width of the index and search pane"
 
-#: ../data/devhelp.schemas.in.h:20
+#: ../data/org.gnome.devhelp.gschema.xml.h:12
 msgid "The width of the index and search pane."
 msgstr "The width of the index and search pane."
 
-#: ../data/devhelp.schemas.in.h:21
+#: ../data/org.gnome.devhelp.gschema.xml.h:13
 msgid "Selected tab: \"content\" or \"search\""
 msgstr "Selected tab: \"content\" or \"search\""
 
-#: ../data/devhelp.schemas.in.h:22
+#: ../data/org.gnome.devhelp.gschema.xml.h:14
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "Which of the tabs is selected: \"content\" or \"search\"."
 
-#: ../data/devhelp.schemas.in.h:23
+#: ../data/org.gnome.devhelp.gschema.xml.h:15
 msgid "Books disabled"
 msgstr "Books disabled"
 
-#: ../data/devhelp.schemas.in.h:24
+#: ../data/org.gnome.devhelp.gschema.xml.h:16
 msgid "List of books disabled by the user."
 msgstr "List of books disabled by the user."
 
-#: ../data/devhelp.schemas.in.h:25
+#: ../data/org.gnome.devhelp.gschema.xml.h:17
 msgid "Group by language"
 msgstr "Group by language"
 
-#: ../data/devhelp.schemas.in.h:26
+#: ../data/org.gnome.devhelp.gschema.xml.h:18
 msgid "Whether books should be grouped by language in the UI"
 msgstr "Whether books should be grouped by language in the UI"
 
-#: ../data/devhelp.schemas.in.h:27
+#: ../data/org.gnome.devhelp.gschema.xml.h:19
+msgid "Width of the assistant window"
+msgstr "Width of the assistant window"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:20
+msgid "The width of the assistant window."
+msgstr "The width of the assistant window."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:21
+msgid "Height of assistant window"
+msgstr "Height of assistant window"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:22
+msgid "The height of the assistant window."
+msgstr "The height of the assistant window."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:23
+msgid "X position of assistant window"
+msgstr "X position of assistant window"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:24
+msgid "The X position of the assistant window."
+msgstr "The X position of the assistant window."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:25
+msgid "Y position of assistant window"
+msgstr "Y position of assistant window"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:26
+msgid "The Y position of the assistant window."
+msgstr "The Y position of the assistant window."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:27
 msgid "Use system fonts"
 msgstr "Use system fonts"
 
-#: ../data/devhelp.schemas.in.h:28
+#: ../data/org.gnome.devhelp.gschema.xml.h:28
 msgid "Use the system default fonts."
 msgstr "Use the system default fonts."
 
-#: ../data/devhelp.schemas.in.h:29
+#: ../data/org.gnome.devhelp.gschema.xml.h:29
 msgid "Font for text"
 msgstr "Font for text"
 
-#: ../data/devhelp.schemas.in.h:30
+#: ../data/org.gnome.devhelp.gschema.xml.h:30
 msgid "Font for text with variable width."
 msgstr "Font for text with variable width."
 
-#: ../data/devhelp.schemas.in.h:31
+#: ../data/org.gnome.devhelp.gschema.xml.h:31
 msgid "Font for fixed width text"
 msgstr "Font for fixed width text"
 
-#: ../data/devhelp.schemas.in.h:32
+#: ../data/org.gnome.devhelp.gschema.xml.h:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Font for text with fixed width, such as code examples."
 
@@ -320,7 +324,7 @@ msgstr "הצגת תיעוד API"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "הצגת תיעוד API עבור המילה שתחת הסמן"
 
-#: ../src/dh-app.c:162
+#: ../src/dh-app.c:163
 msgid "translator_credits"
 msgstr ""
 "יאיר הרשקוביץ  <yairhr@gmail.com>\n"
@@ -329,16 +333,16 @@ msgstr ""
 "פרויקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/dh-app.c:169
+#: ../src/dh-app.c:170
 msgid "A developers' help browser for GNOME"
 msgstr "דפדפן עזרה למפתחים עבור GNOME"
 
-#: ../src/dh-app.c:177
+#: ../src/dh-app.c:178
 msgid "DevHelp Website"
 msgstr "האתר של Devhelp"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:76
+#: ../src/dh-assistant.c:106
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — המסייע"
 
@@ -481,56 +485,56 @@ msgstr "כל הספרים"
 msgid "Search in:"
 msgstr "חיפוש תחת:"
 
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:103
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:104
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:105
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:106
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:107
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:108
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:109
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:107
+#: ../src/dh-window.c:110
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:108
+#: ../src/dh-window.c:111
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:1046
+#: ../src/dh-window.c:1098
 msgid "Contents"
 msgstr "תכנים"
 
-#: ../src/dh-window.c:1056
+#: ../src/dh-window.c:1107
 msgid "Search"
 msgstr "חיפוש"
 
-#: ../src/dh-window.c:1266
+#: ../src/dh-window.c:1347
 msgid "Error opening the requested link."
 msgstr "שגיאה בפתיחת הקישור המבוקש."
 
-#: ../src/dh-window.c:1638
-#: ../src/dh-window.c:1885
+#: ../src/dh-window.c:1725
+#: ../src/dh-window.c:1972
 msgid "Empty Page"
 msgstr "דף ריק"
 
