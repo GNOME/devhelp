@@ -316,6 +316,7 @@ book_manager_store_books_disabled (DhBookManager *book_manager)
         }
 
         variant = g_variant_builder_end (builder);
+        g_variant_builder_unref (builder);
 
         g_settings_set_value (
                 dh_settings_peek_contents_settings (priv->settings),
