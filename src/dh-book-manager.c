@@ -290,10 +290,14 @@ book_manager_load_books_disabled (DhBookManager *book_manager)
         gchar **books_disabled_strv = g_settings_get_strv (
                 dh_settings_peek_contents_settings (priv->settings),
                 "books-disabled");
-        while (*books_disabled_strv != NULL) {
-                priv->books_disabled = g_slist_append (priv->books_disabled, *books_disabled_strv);
-                books_disabled_strv++;
+
+        gchar **i = books_disabled_strv;
+        while (*i != NULL) {
+                priv->books_disabled = g_slist_append (priv->books_disabled, *i);
+                i++;
         }
+
+        g_free (books_disabled_strv);
 }
 
 static void
