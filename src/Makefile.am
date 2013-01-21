@@ -76,6 +76,7 @@ libdevhelp_3_la_SOURCES =				\
 	dh-assistant.c					\
 	dh-assistant-view.c				\
 	dh-book-manager.c				\
+	dh-common.c						\
 	dh-language.c					\
 	dh-book.c					\
 	dh-book-tree.c					\
