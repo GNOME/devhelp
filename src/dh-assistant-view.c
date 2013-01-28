@@ -27,14 +27,19 @@
 #include "dh-util.h"
 #include "dh-book-manager.h"
 #include "dh-book.h"
-#include "dh-window.h"
 
 typedef struct {
-        DhApp    *application;
-        DhLink   *link;
-        gchar    *current_search;
-        gboolean  snippet_loaded;
+        DhBookManager *book_manager;
+        DhLink        *link;
+        gchar         *current_search;
+        gboolean       snippet_loaded;
 } DhAssistantViewPriv;
+
+enum {
+        SIGNAL_OPEN_URI,
+        SIGNAL_LAST
+};
+static guint signals[SIGNAL_LAST] = { 0 };
 
 G_DEFINE_TYPE (DhAssistantView, dh_assistant_view, WEBKIT_TYPE_WEB_VIEW);
 
@@ -50,8 +55,8 @@ view_finalize (GObject *object)
                 g_object_unref (priv->link);
         }
 
-        if (priv->application) {
-                g_object_unref (priv->application);
+        if (priv->book_manager) {
+                g_object_unref (priv->book_manager);
         }
 
         g_free (priv->current_search);
@@ -70,7 +75,6 @@ assistant_decide_policy (WebKitWebView           *web_view,
         WebKitNavigationPolicyDecision *navigation_decision;
         WebKitNavigationType            navigation_type;
         WebKitURIRequest               *request;
-        GtkWidget                      *window;
 
         if (decision_type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION) {
                 webkit_policy_decision_ignore (decision);
@@ -100,8 +104,7 @@ assistant_decide_policy (WebKitWebView           *web_view,
                 return TRUE;
         }
 
-        window = GTK_WIDGET (dh_app_peek_first_window (priv->application));
-        _dh_window_display_uri (DH_WINDOW (window), uri);
+        g_signal_emit (web_view, signals[SIGNAL_OPEN_URI], 0, uri);
         webkit_policy_decision_ignore (decision);
 
         return TRUE;
@@ -126,10 +129,7 @@ assistant_navigation_requested (WebKitWebView        *web_view,
                 return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
         }
         else if (g_str_has_prefix (uri, "file://")) {
-                GtkWidget *window;
-
-                window = GTK_WIDGET (dh_app_peek_first_window (priv->application));
-                _dh_window_display_uri (DH_WINDOW (window), uri);
+                g_signal_emit (web_view, signals[SIGNAL_OPEN_URI], 0, uri);
         }
 
         return WEBKIT_NAVIGATION_RESPONSE_IGNORE;
@@ -165,6 +165,14 @@ dh_assistant_view_class_init (DhAssistantViewClass* klass)
 #endif
 
         g_type_class_add_private (klass, sizeof (DhAssistantViewPriv));
+
+        signals[SIGNAL_OPEN_URI] = g_signal_new ("open-uri",
+                                                 G_TYPE_FROM_CLASS (object_class),
+                                                 0, 0,
+                                                 NULL, NULL,
+                                                 NULL,
+                                                 G_TYPE_NONE, 1,
+                                                 G_TYPE_STRING);
 }
 
 static void
@@ -440,7 +448,6 @@ dh_assistant_view_search (DhAssistantView *view,
         DhLink              *link;
         DhLink              *exact_link;
         DhLink              *prefix_link;
-        DhBookManager       *book_manager;
         GList               *books;
 
         g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), FALSE);
@@ -459,12 +466,10 @@ dh_assistant_view_search (DhAssistantView *view,
         g_free (priv->current_search);
         priv->current_search = g_strdup (str);
 
-        book_manager = dh_app_peek_book_manager (priv->application);
-
         prefix_link = NULL;
         exact_link = NULL;
 
-        for (books = dh_book_manager_get_books (book_manager);
+        for (books = dh_book_manager_get_books (priv->book_manager);
              !exact_link && books;
              books = g_list_next (books)) {
                 GList *l;
@@ -517,15 +522,15 @@ dh_assistant_view_search (DhAssistantView *view,
 }
 
 void
-dh_assistant_view_set_app (DhAssistantView *view,
-                           DhApp           *application)
+dh_assistant_view_set_book_manager (DhAssistantView *view,
+                                    DhBookManager   *book_manager)
 {
         DhAssistantViewPriv *priv;
 
         g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
-        g_return_if_fail (DH_IS_APP (application));
+        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
 
         priv = GET_PRIVATE (view);
 
-        priv->application = g_object_ref (application);
+        priv->book_manager = g_object_ref (book_manager);
 }

@@ -26,7 +26,7 @@
 #else
 #include <webkit/webkit.h>
 #endif
-#include "dh-app.h"
+#include "dh-book-manager.h"
 #include "dh-link.h"
 
 G_BEGIN_DECLS
@@ -53,9 +53,8 @@ GType      dh_assistant_view_get_type (void) G_GNUC_CONST;
 GtkWidget* dh_assistant_view_new      (void);
 gboolean   dh_assistant_view_search   (DhAssistantView *view,
                                        const gchar     *str);
-DhApp*     dh_assistant_view_peek_app (DhAssistantView *view);
-void       dh_assistant_view_set_app  (DhAssistantView *view,
-                                       DhApp           *application);
+void       dh_assistant_view_set_book_manager  (DhAssistantView *view,
+                                                DhBookManager   *book_manager);
 gboolean   dh_assistant_view_set_link (DhAssistantView *view,
                                        DhLink          *link);
 G_END_DECLS

@@ -30,9 +30,10 @@
 #include "dh-settings.h"
 
 typedef struct {
-        GtkWidget *main_box;
-        GtkWidget *view;
-        DhSettings *settings;
+        DhApp         *application;
+        GtkWidget     *main_box;
+        GtkWidget     *view;
+        DhSettings    *settings;
 } DhAssistantPriv;
 
 static void dh_assistant_class_init (DhAssistantClass *klass);
@@ -56,6 +57,19 @@ assistant_key_press_event_cb (GtkWidget   *widget,
         return FALSE;
 }
 
+static void
+assistant_view_open_uri_cb (DhAssistantView *view,
+                            const char      *uri,
+                            DhAssistant     *assistant)
+{
+        DhAssistantPriv  *priv;
+        GtkWindow* window;
+
+        priv = GET_PRIVATE (assistant);
+        window = dh_app_peek_first_window (priv->application);
+        _dh_window_display_uri (DH_WINDOW (window), uri);
+}
+
 static gboolean
 window_configure_event_cb (GtkWidget *window,
                            GdkEventConfigure *event,
@@ -77,6 +91,7 @@ dispose (GObject *object)
 {
         DhAssistant *assistant = DH_ASSISTANT (object);
         DhAssistantPriv *priv = GET_PRIVATE (assistant);
+        g_clear_object (&priv->application);
         g_clear_object (&priv->settings);
 
         G_OBJECT_CLASS (dh_assistant_parent_class)->dispose (object);
@@ -107,6 +122,10 @@ dh_assistant_init (DhAssistant *assistant)
         gtk_window_set_icon_name (GTK_WINDOW (assistant), "devhelp");
 
         priv->view = dh_assistant_view_new ();
+
+        g_signal_connect (priv->view, "open-uri",
+                          G_CALLBACK (assistant_view_open_uri_cb),
+                          assistant);
 
         g_signal_connect (assistant, "key-press-event",
                           G_CALLBACK (assistant_key_press_event_cb),
@@ -146,8 +165,10 @@ dh_assistant_new (DhApp *application)
         assistant = g_object_new (DH_TYPE_ASSISTANT, NULL);
 
         priv = GET_PRIVATE (assistant);
+        priv->application = g_object_ref (application);
 
-        dh_assistant_view_set_app (DH_ASSISTANT_VIEW (priv->view), application);
+        dh_assistant_view_set_book_manager (DH_ASSISTANT_VIEW (priv->view),
+                                            dh_app_peek_book_manager (application));
 
         return assistant;
 }
