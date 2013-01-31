@@ -20,13 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/*
- * Fullscreen mode code adapted from gedit
- *  Copyright (C) 1998, 1999 Alex Roberts, Evan Lawrence
- *  Copyright (C) 2000, 2001 Chema Celorio, Paolo Maggi
- *  Copyright (C) 2002-2005 Paolo Maggi
- */
-
 #include "config.h"
 #include <string.h>
 #include <math.h>
@@ -54,7 +47,6 @@
 #include "dh-settings.h"
 #include "eggfindbar.h"
 
-#define FULLSCREEN_ANIMATION_SPEED 4
 #define TAB_WIDTH_N_CHARS 15
 
 struct _DhWindowPriv {
@@ -67,10 +59,6 @@ struct _DhWindowPriv {
 
         GtkWidget      *vbox;
         GtkWidget      *findbar;
-
-        GtkWidget      *fullscreen_controls;
-        guint           fullscreen_animation_timeout_id;
-        gboolean        fullscreen_animation_enter;
 
         GtkBuilder     *builder;
         GtkActionGroup *action_group;
@@ -164,9 +152,6 @@ static void           window_tab_set_title           (DhWindow        *window,
 static void           window_close_tab               (DhWindow *window,
                                                       gint      page_num);
 static gboolean       do_search                      (DhWindow *window);
-
-static void           window_fullscreen_controls_build (DhWindow *window);
-static void           window_fullscreen_controls_show (DhWindow *window);
 
 G_DEFINE_TYPE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
@@ -339,38 +324,23 @@ window_get_current_zoom_level_index (DhWindow *window)
 static void
 window_update_zoom_actions_state (DhWindow *window)
 {
-        DhWindowPriv *priv;
         GAction *action;
         int zoom_level_idx;
         gboolean enabled;
-
-        priv = window->priv;
 
         zoom_level_idx = window_get_current_zoom_level_index (window);
 
         enabled = zoom_levels[zoom_level_idx].level < ZOOM_MAXIMAL;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-in");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        if (priv->fullscreen_controls) {
-                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "zoom-in");
-                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        }
 
         enabled = zoom_levels[zoom_level_idx].level > ZOOM_MINIMAL;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-out");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        if (priv->fullscreen_controls) {
-                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "zoom-out");
-                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        }
 
         enabled = zoom_levels[zoom_level_idx].level != ZOOM_DEFAULT;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-default");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        if (priv->fullscreen_controls) {
-                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "zoom-default");
-                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        }
 }
 
 static void
@@ -421,45 +391,6 @@ zoom_default_cb (GSimpleAction *action,
         web_view = window_get_active_web_view (window);
         webkit_web_view_set_zoom_level (web_view, ZOOM_DEFAULT);
         window_update_zoom_actions_state (window);
-}
-
-static gboolean
-window_is_fullscreen (DhWindow *window)
-{
-        GdkWindowState  state;
-
-        g_return_val_if_fail (DH_IS_WINDOW (window), FALSE);
-
-        state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
-
-        return state & GDK_WINDOW_STATE_FULLSCREEN;
-}
-
-static void
-window_fullscreen (DhWindow *window)
-{
-        if (window_is_fullscreen (window))
-                return;
-
-        gtk_window_fullscreen (GTK_WINDOW (window));
-        gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbar")));
-        gtk_application_window_set_show_menubar (GTK_APPLICATION_WINDOW (window), FALSE);
-
-        window_fullscreen_controls_build (window);
-        window_fullscreen_controls_show (window);
-}
-
-static void
-window_unfullscreen (DhWindow *window)
-{
-        if (! window_is_fullscreen (window))
-                return;
-
-        gtk_window_unfullscreen (GTK_WINDOW (window));
-        gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbar")));
-        gtk_application_window_set_show_menubar (GTK_APPLICATION_WINDOW (window), TRUE);
-
-        gtk_widget_hide (window->priv->fullscreen_controls);
 }
 
 static void
@@ -542,45 +473,6 @@ window_open_link_cb (DhWindow *window,
         }
 }
 
-static void
-fullscreen_cb (GSimpleAction *action,
-               GVariant      *parameter,
-               gpointer       data)
-{
-        GVariant *state = g_action_get_state (G_ACTION (action));
-        gboolean value = g_variant_get_boolean (state);
-
-        g_action_change_state (G_ACTION (action), g_variant_new_boolean (!value));
-        g_variant_unref (state);
-}
-
-static void
-fullscreen_change_state_cb (GSimpleAction *action,
-                            GVariant      *state,
-                            gpointer       data)
-{
-        DhWindow *self = data;
-        gboolean is_active = g_variant_get_boolean (state);
-
-        if (is_active)
-                window_fullscreen (self);
-        else
-                window_unfullscreen (self);
-        g_simple_action_set_state (action, state);
-}
-
-static void
-leave_fullscreen_cb (GSimpleAction *action,
-                     GVariant      *parameter,
-                     gpointer       data)
-{
-        DhWindow *self = data;
-        GAction *fs_action;
-
-        fs_action = g_action_map_lookup_action (G_ACTION_MAP (self), "fullscreen");
-        g_action_change_state (G_ACTION (fs_action), g_variant_new_boolean (FALSE));
-}
-
 static GActionEntry win_entries[] = {
         /* file */
         { "new-tab",          new_tab_cb,          NULL, NULL, NULL },
@@ -595,223 +487,12 @@ static GActionEntry win_entries[] = {
         { "zoom-in",          zoom_in_cb,          NULL, NULL, NULL },
         { "zoom-out",         zoom_out_cb,         NULL, NULL, NULL },
         { "zoom-default",     zoom_default_cb,     NULL, NULL, NULL },
-        { "fullscreen",       fullscreen_cb,       NULL, "false", fullscreen_change_state_cb },
-        { "leave-fullscreen", leave_fullscreen_cb, NULL, NULL, NULL },
         /* go */
         { "go-back",          go_back_cb,          NULL, "false", NULL },
         { "go-forward",       go_forward_cb,       NULL, "false", NULL },
         { "go-contents-tab",  go_contents_tab_cb,  NULL, NULL, NULL },
         { "go-search-tab",    go_search_tab_cb,    NULL, NULL, NULL },
 };
-
-static gboolean
-run_fullscreen_animation (gpointer data)
-{
-	DhWindow *window = DH_WINDOW (data);
-	GdkScreen *screen;
-	GdkRectangle fs_rect;
-	gint x, y;
-
-	screen = gtk_window_get_screen (GTK_WINDOW (window));
-	gdk_screen_get_monitor_geometry (screen,
-					 gdk_screen_get_monitor_at_window (screen,
-									   gtk_widget_get_window (GTK_WIDGET (window))),
-					 &fs_rect);
-
-	gtk_window_get_position (GTK_WINDOW (window->priv->fullscreen_controls),
-				 &x, &y);
-
-	if (window->priv->fullscreen_animation_enter)
-	{
-		if (y == fs_rect.y)
-		{
-			window->priv->fullscreen_animation_timeout_id = 0;
-			return FALSE;
-		}
-		else
-		{
-			gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
-					 x, y + 1);
-			return TRUE;
-		}
-	}
-	else
-	{
-		gint w, h;
-
-		gtk_window_get_size (GTK_WINDOW (window->priv->fullscreen_controls),
-				     &w, &h);
-
-		if (y == fs_rect.y - h + 1)
-		{
-			window->priv->fullscreen_animation_timeout_id = 0;
-			return FALSE;
-		}
-		else
-		{
-			gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
-					 x, y - 1);
-			return TRUE;
-		}
-	}
-}
-
-static void
-show_hide_fullscreen_toolbar (DhWindow *window,
-                              gboolean     show,
-                              gint         height)
-{
-        GtkSettings *settings;
-        gboolean enable_animations;
-
-        settings = gtk_widget_get_settings (GTK_WIDGET (window));
-        g_object_get (G_OBJECT (settings),
-                      "gtk-enable-animations",
-                      &enable_animations,
-                      NULL);
-
-        if (enable_animations)
-        {
-                window->priv->fullscreen_animation_enter = show;
-
-                if (window->priv->fullscreen_animation_timeout_id == 0)
-                {
-                        window->priv->fullscreen_animation_timeout_id =
-                                g_timeout_add (FULLSCREEN_ANIMATION_SPEED,
-                                               (GSourceFunc) run_fullscreen_animation,
-                                               window);
-                }
-        }
-        else
-        {
-                GdkRectangle fs_rect;
-                GdkScreen *screen;
-
-                screen = gtk_window_get_screen (GTK_WINDOW (window));
-                gdk_screen_get_monitor_geometry (screen,
-                                                 gdk_screen_get_monitor_at_window (screen,
-                                                                                   gtk_widget_get_window (GTK_WIDGET (window))),
-                                                 &fs_rect);
-
-                if (show)
-                        gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
-                                         fs_rect.x, fs_rect.y);
-                else
-                        gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
-                                         fs_rect.x, fs_rect.y - height + 1);
-        }
-
-}
-
-static gboolean
-on_fullscreen_controls_enter_notify_event (GtkWidget        *widget,
-                                           GdkEventCrossing *event,
-                                           DhWindow      *window)
-{
-        show_hide_fullscreen_toolbar (window, TRUE, 0);
-
-        return FALSE;
-}
-
-static gboolean
-on_fullscreen_controls_leave_notify_event (GtkWidget        *widget,
-                                           GdkEventCrossing *event,
-                                           DhWindow      *window)
-{
-        GdkDisplay *display;
-        GdkScreen *screen;
-        gint w, h;
-        gint x, y;
-
-        display = gdk_display_get_default ();
-        screen = gtk_window_get_screen (GTK_WINDOW (window));
-
-        gtk_window_get_size (GTK_WINDOW (window->priv->fullscreen_controls), &w, &h);
-        gdk_display_get_pointer (display, &screen, &x, &y, NULL);
-
-        /* gtk seems to emit leave notify when clicking on tool items,
-         * work around it by checking the coordinates
-         */
-        if (y >= h)
-        {
-                show_hide_fullscreen_toolbar (window, FALSE, h);
-        }
-
-        return FALSE;
-}
-
-static void
-window_fullscreen_controls_build (DhWindow *window)
-{
-        GtkWidget *toolbar;
-        DhWindowPriv  *priv;
-
-        priv = window->priv;
-        if (priv->fullscreen_controls != NULL)
-                return;
-
-        /* Note: the Fullscreen Controls window needs to be a
-         * GtkApplicationWindow, in order to be able to process GActions.
-         * Moreover, the window needs to get destroyed with the parent, or
-         * we'll end up leaving a reference to the GtkApplication around and
-         * it will not get closed properly. */
-        priv->fullscreen_controls = g_object_new (GTK_TYPE_APPLICATION_WINDOW,
-                                                  "type", GTK_WINDOW_POPUP,
-                                                  "application", gtk_window_get_application (GTK_WINDOW (window)),
-                                                  "show-menubar", FALSE,
-                                                  NULL);
-        gtk_window_set_transient_for (GTK_WINDOW (priv->fullscreen_controls),
-                                      GTK_WINDOW (window));
-        gtk_window_set_destroy_with_parent (GTK_WINDOW (priv->fullscreen_controls),
-                                            TRUE);
-
-        toolbar = GTK_WIDGET (gtk_builder_get_object (priv->builder,
-                                                      "fullscreen-toolbar"));
-        gtk_container_add (GTK_CONTAINER (priv->fullscreen_controls),
-                           toolbar);
-
-        /* Set the toolbar style */
-        gtk_toolbar_set_style (GTK_TOOLBAR (toolbar),
-                               GTK_TOOLBAR_BOTH_HORIZ);
-
-        g_signal_connect (priv->fullscreen_controls, "enter-notify-event",
-                          G_CALLBACK (on_fullscreen_controls_enter_notify_event),
-                          window);
-        g_signal_connect (priv->fullscreen_controls, "leave-notify-event",
-                          G_CALLBACK (on_fullscreen_controls_leave_notify_event),
-                          window);
-
-        g_action_map_add_action_entries (G_ACTION_MAP (priv->fullscreen_controls),
-                                         win_entries, G_N_ELEMENTS (win_entries),
-                                         window);
-
-        window_check_history (window, NULL);
-}
-
-static void
-window_fullscreen_controls_show (DhWindow *window)
-{
-        GdkScreen *screen;
-        GdkRectangle fs_rect;
-        gint w, h;
-
-        screen = gtk_window_get_screen (GTK_WINDOW (window));
-        gdk_screen_get_monitor_geometry (screen,
-                                         gdk_screen_get_monitor_at_window (
-                                                 screen,
-                                                 gtk_widget_get_window (GTK_WIDGET (window))),
-                                         &fs_rect);
-
-        gtk_window_get_size (GTK_WINDOW (window->priv->fullscreen_controls), &w, &h);
-
-        gtk_window_resize (GTK_WINDOW (window->priv->fullscreen_controls),
-                           fs_rect.width, h);
-
-        gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls),
-                         fs_rect.x, fs_rect.y - h + 1);
-
-        gtk_widget_show_all (window->priv->fullscreen_controls);
-}
 
 static void
 settings_fonts_changed_cb (DhSettings *settings,
@@ -1409,25 +1090,14 @@ window_check_history (DhWindow      *window,
 {
         GAction       *action;
         gboolean       enabled;
-        DhWindowPriv  *priv;
-
-        priv = window->priv;
 
         enabled = web_view ? webkit_web_view_can_go_forward (web_view) : FALSE;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-forward");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        if (priv->fullscreen_controls) {
-                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "go-forward");
-                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        }
 
         enabled = web_view ? webkit_web_view_can_go_back (web_view) : FALSE;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-back");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        if (priv->fullscreen_controls) {
-                action = g_action_map_lookup_action (G_ACTION_MAP (priv->fullscreen_controls), "go-back");
-                g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-        }
 }
 
 static void
