@@ -110,12 +110,6 @@ dh_app_search_assistant (DhApp *self,
 }
 
 void
-dh_app_focus_search (DhApp *self)
-{
-        g_action_group_activate_action (G_ACTION_GROUP (self), "focus-search", NULL);
-}
-
-void
 dh_app_raise (DhApp *self)
 {
         g_action_group_activate_action (G_ACTION_GROUP (self), "raise", NULL);
@@ -243,19 +237,6 @@ search_assistant_cb (GSimpleAction *action,
 }
 
 static void
-focus_search_cb (GSimpleAction *action,
-                 GVariant      *parameter,
-                 gpointer       user_data)
-{
-        DhApp *self = DH_APP (user_data);
-        GtkWindow *window;
-
-        window = dh_app_peek_first_window (self);
-        dh_window_focus_search (DH_WINDOW (window));
-        gtk_window_present (window);
-}
-
-static void
 raise_cb (GSimpleAction *action,
           GVariant      *parameter,
           gpointer       user_data)
@@ -277,7 +258,6 @@ static GActionEntry app_entries[] = {
         /* additional commandline-specific actions */
         { "search",           search_cb,           "s",  NULL, NULL },
         { "search-assistant", search_assistant_cb, "s",  NULL, NULL },
-        { "focus-search",     focus_search_cb,     NULL, NULL, NULL },
         { "raise",            raise_cb,            NULL, NULL, NULL },
 };
 

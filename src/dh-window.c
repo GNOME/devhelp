@@ -1708,19 +1708,6 @@ dh_window_search (DhWindow    *window,
         dh_search_set_search_string (DH_SEARCH (priv->search), str, NULL);
 }
 
-void
-dh_window_focus_search (DhWindow *window)
-{
-        DhWindowPriv *priv;
-
-        g_return_if_fail (DH_IS_WINDOW (window));
-
-        priv = window->priv;
-
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
-        gtk_widget_grab_focus (priv->search);
-}
-
 /* Only call this with a URI that is known to be in the docs. */
 void
 _dh_window_display_uri (DhWindow    *window,

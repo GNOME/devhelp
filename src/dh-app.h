@@ -61,7 +61,6 @@ void           dh_app_search            (DhApp *self,
                                          const gchar *keyword);
 void           dh_app_search_assistant  (DhApp *self,
                                          const gchar *keyword);
-void           dh_app_focus_search      (DhApp *self);
 void           dh_app_raise             (DhApp *self);
 
 G_END_DECLS

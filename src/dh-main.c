@@ -39,18 +39,12 @@ static gboolean  option_new_window;
 static gchar    *option_search;
 static gchar    *option_search_assistant;
 static gboolean  option_quit;
-static gboolean  option_focus_search;
 static gboolean  option_version;
 
 static GOptionEntry options[] = {
         { "new-window", 'n',
           0, G_OPTION_ARG_NONE, &option_new_window,
           N_("Opens a new Devhelp window"),
-          NULL
-        },
-        { "focus-search",       'f',
-          0, G_OPTION_ARG_NONE, &option_focus_search,
-          N_("Focus the Devhelp window with the search field active"),
           NULL
         },
         { "search", 's',
@@ -89,8 +83,6 @@ run_action (DhApp *application,
                 dh_app_search (application, option_search);
         } else if (option_search_assistant) {
                 dh_app_search_assistant (application, option_search_assistant);
-        } else if (option_focus_search) {
-                dh_app_focus_search (application);
         } else {
                 if (is_remote)
                         dh_app_raise (application);
