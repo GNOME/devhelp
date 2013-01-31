@@ -61,16 +61,16 @@ class DevhelpPlugin(GObject.Object, Gedit.WindowActivatable):
     def _insert_menu(self):
         manager = self.window.get_ui_manager()
 
-	# Translate actions below, hardcoding domain here to avoid complications now
-	_ = lambda s: gettext.dgettext('devhelp', s);
+        # Translate actions below, hardcoding domain here to avoid complications now
+        _ = lambda s: gettext.dgettext('devhelp', s)
 
         self._action_group = Gtk.ActionGroup(name="GeditDevhelpPluginActions")
-	self._action_group.add_actions([('Devhelp', None,
-	                                 _('Show API Documentation'),
-	                                 'F2',
-	                                 _('Show API Documentation for the word at the cursor'),
-	                                 lambda a, w: self.do_devhelp(w.get_active_document()))],
-	                                 self.window)
+        self._action_group.add_actions([('Devhelp', None,
+                                         _('Show API Documentation'),
+                                         'F2',
+                                         _('Show API Documentation for the word at the cursor'),
+                                         lambda a, w: self.do_devhelp(w.get_active_document()))],
+                                         self.window)
         manager.insert_action_group(self._action_group, -1)
         self._ui_id = manager.add_ui_from_string(ui_str)
 
