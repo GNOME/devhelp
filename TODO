@@ -21,8 +21,19 @@ January 31st 2013
  * Search box always visible
     ** Only search in ALL shown books
 
+ * When multiple tabs, expand them
+
+ * Search within document moved to top
+
  * Online download
    ** List available bundles
    ** Download bundles to user directory
    ** Remove bundles
    ** Select only one set of books (either 'local' or a given bundle)
+
+ * Use GResource
+
+ * Remove Mac OS X specific handling
+
+ * libdevhelp
+   ** Only really used by Anjuta
