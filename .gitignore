@@ -54,3 +54,4 @@ libtool
 /src/dh-resources.c
 /src/dh-resources.h
 /stamp-h1
+/data/org.gnome.devhelp.gschema.valid
