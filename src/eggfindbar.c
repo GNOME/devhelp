@@ -319,7 +319,7 @@ egg_find_bar_init (EggFindBar *find_bar)
 
   label = gtk_label_new_with_mnemonic (_("Find:"));
 
-  priv->find_entry = gtk_entry_new ();
+  priv->find_entry = gtk_search_entry_new ();
   gtk_entry_set_width_chars (GTK_ENTRY (priv->find_entry), 32);
   gtk_entry_set_max_length (GTK_ENTRY (priv->find_entry), 512);
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->find_entry);
