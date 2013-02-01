@@ -1267,7 +1267,9 @@ window_open_new_tab (DhWindow    *window,
 
         num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
                                         vbox, NULL);
-
+        gtk_container_child_set (GTK_CONTAINER (priv->notebook), vbox,
+                                 "tab-expand", TRUE,
+                                 NULL);
         gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
                                     vbox, label);
 
@@ -1308,35 +1310,6 @@ close_button_clicked_cb (GtkButton *button,
         }
 }
 
-static void
-tab_label_style_set_cb (GtkWidget *hbox,
-			GtkStyle *previous_style,
-			gpointer user_data)
-{
-	PangoFontMetrics *metrics;
-	PangoContext *context;
-	GtkStyleContext *style;
-	GtkWidget *button;
-	int char_width, h, w;
-
-	context = gtk_widget_get_pango_context (hbox);
-	style = gtk_widget_get_style_context (hbox);
-	metrics = pango_context_get_metrics (context,
-					     gtk_style_context_get_font (style, GTK_STATE_FLAG_NORMAL),
-					     pango_context_get_language (context));
-	char_width = pango_font_metrics_get_approximate_digit_width (metrics);
-	pango_font_metrics_unref (metrics);
-
-	gtk_icon_size_lookup_for_settings (gtk_widget_get_settings (hbox),
-					   GTK_ICON_SIZE_MENU, &w, &h);
-
-	gtk_widget_set_size_request
-		(hbox, TAB_WIDTH_N_CHARS * PANGO_PIXELS(char_width) + 2 * w, -1);
-
-	button = g_object_get_data (G_OBJECT (hbox), "close-button");
-	gtk_widget_set_size_request (button, w + 2, h + 2);
-}
-
 static GtkWidget*
 window_new_tab_label (DhWindow        *window,
                       const gchar     *str,
@@ -1367,11 +1340,6 @@ window_new_tab_label (DhWindow        *window,
         gtk_container_add (GTK_CONTAINER (close_button), image);
 
         gtk_box_pack_start (GTK_BOX (hbox), close_button, FALSE, FALSE, 0);
-
-        /* Set minimal size */
-        g_signal_connect (hbox, "style-set",
-                          G_CALLBACK (tab_label_style_set_cb),
-                          NULL);
 
         g_object_set_data (G_OBJECT (hbox), "label", label);
         g_object_set_data (G_OBJECT (hbox), "close-button", close_button);
