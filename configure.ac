@@ -45,19 +45,6 @@ AM_GCONF_SOURCE_2
 
 GNOME_COMPILE_WARNINGS([maximum])
 
-dnl -----------------------------------------------------------
-dnl Platform (GTK+ X11 or GTK OS X)
-dnl -----------------------------------------------------------
-IGE_PLATFORM_CHECK
-if test "x$IGE_PLATFORM" = xx11; then
-   gconf_pkgconfig="gconf-2.0 >= 2.6.0"
-   gtkmacintegration_pkgconfig=
-else
-   gconf_pkgconfig=
-   gtkmacintegration_pkgconfig="gtk-mac-integration >= 1.0.0"
-fi
-AM_CONDITIONAL(GCONF_SCHEMAS_INSTALL, test "x$IGE_PLATFORM" = xx11)
-
 AC_ARG_WITH(webkit2,
         [AC_HELP_STRING([--with-webkit2], [build with WebKit2 [default=yes]])],
         [],[with_webkit2=yes])
@@ -86,7 +73,6 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
   gtk+-3.0 >= 3.5.6
   gio-2.0 >= 2.32
   $gconf_pkgconfig
-  $gtkmacintegration_pkgconfig
   $WEBKITGTK_PC_NAME >= $WEBKITGTK_REQUIRED_VERSION
 ])
 
