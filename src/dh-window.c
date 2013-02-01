@@ -1391,8 +1391,6 @@ window_update_title (DhWindow      *window,
                      const gchar   *web_view_title)
 {
         DhWindowPriv *priv;
-        DhLink       *book_link;
-        const gchar  *book_title;
 
         priv = window->priv;
 
