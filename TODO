@@ -3,26 +3,6 @@ GNOME3 styling update
 January 31st 2013
 ----------------------------------------------
 
-* Remove menu bar
-
-* Tool title bar
-   ** Forward and backward
-   ** Remove view ++ --
-   ** Title of the book
-   ** Configuration button
-
- * Configuration
-   ** New tab
-   ** Print...
-   ** Find...
-   ** View
-       Larger, Smaller, Normal
-
- * Search box always visible
-    ** Only search in ALL shown books
-
- * When multiple tabs, expand them
-
  * Search within document moved to top
 
  * Online download
@@ -30,8 +10,6 @@ January 31st 2013
    ** Download bundles to user directory
    ** Remove bundles
    ** Select only one set of books (either 'local' or a given bundle)
-
- * Remove Mac OS X specific handling
 
  * libdevhelp
    ** Only really used by Anjuta
