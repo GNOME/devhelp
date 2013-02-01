@@ -642,6 +642,8 @@ window_populate (DhWindow *window)
         GtkWidget     *back;
         GtkWidget     *forward;
         GtkWidget     *box;
+        GtkWidget     *menu_button;
+        GtkWidget     *menu;
 
         priv = window->priv;
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
@@ -661,11 +663,14 @@ window_populate (DhWindow *window)
         gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
         gtk_widget_reparent (back, box);
         gtk_widget_reparent (forward, box);
+
         gd_main_toolbar_add_widget (GD_MAIN_TOOLBAR (priv->toolbar), box, TRUE);
-        gd_main_toolbar_add_menu (GD_MAIN_TOOLBAR (priv->toolbar),
-                                  "emblem-system-symbolic",
-                                  "",
-                                  FALSE);
+        menu_button = gd_main_toolbar_add_menu (GD_MAIN_TOOLBAR (priv->toolbar),
+                                                "emblem-system-symbolic",
+                                                "",
+                                                FALSE);
+        menu = gtk_builder_get_object (priv->builder, "window-menu");
+        gtk_menu_button_set_menu_model (menu_button, menu);
 
         /* Add toolbar to main box */
         gtk_box_pack_start (GTK_BOX (priv->main_box), priv->toolbar,

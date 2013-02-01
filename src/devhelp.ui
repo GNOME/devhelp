@@ -51,161 +51,44 @@
   </menu>
 
   <menu id="window-menu">
-    <submenu>
-      <attribute name="label" translatable="yes">_Window</attribute>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">New _Tab</attribute>
-          <attribute name="action">win.new-tab</attribute>
-          <attribute name="accel">&lt;Primary&gt;t</attribute>
-          <attribute name="use-underline">True</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">_Print</attribute>
-          <attribute name="action">win.print</attribute>
-          <attribute name="accel">&lt;Primary&gt;p</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">_Close</attribute>
-          <attribute name="action">win.close</attribute>
-          <attribute name="accel">&lt;Primary&gt;w</attribute>
-        </item>
-      </section>
-    </submenu>
-    <submenu>
-      <attribute name="label" translatable="yes">_Edit</attribute>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">_Copy</attribute>
-          <attribute name="action">win.copy</attribute>
-          <attribute name="accel">&lt;Primary&gt;c</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">_Find</attribute>
-          <attribute name="action">win.find</attribute>
-          <attribute name="accel">&lt;Primary&gt;f</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Find _Next</attribute>
-          <attribute name="action">win.find-next</attribute>
-          <attribute name="accel">&lt;Primary&gt;g</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Find _Previous</attribute>
-          <attribute name="action">win.find-previous</attribute>
-          <attribute name="accel">&lt;Primary&gt;&lt;Alt&gt;g</attribute>
-        </item>
-      </section>
-    </submenu>
-    <submenu>
-      <attribute name="label" translatable="yes">_View</attribute>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">_Larger text</attribute>
-          <attribute name="action">win.zoom-in</attribute>
-          <attribute name="accel">&lt;Primary&gt;plus</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">S_maller text</attribute>
-          <attribute name="action">win.zoom-out</attribute>
-          <attribute name="accel">&lt;Primary&gt;minus</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">_Normal size</attribute>
-          <attribute name="action">win.zoom-default</attribute>
-          <attribute name="accel">&lt;Primary&gt;0</attribute>
-        </item>
-      </section>
-    </submenu>
-    <submenu>
-      <attribute name="label" translatable="yes">_Go</attribute>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">_Back</attribute>
-          <attribute name="action">win.go-back</attribute>
-          <attribute name="accel">&lt;Alt&gt;Left</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">_Forward</attribute>
-          <attribute name="action">win.go-forward</attribute>
-          <attribute name="accel">&lt;Alt&gt;Right</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">_Search Tab</attribute>
-          <attribute name="action">win.go-search-tab</attribute>
-          <attribute name="accel">&lt;Primary&gt;s</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">_Contents Tab</attribute>
-          <attribute name="action">win.go-contents-tab</attribute>
-          <attribute name="accel">&lt;Primary&gt;b</attribute>
-        </item>
-      </section>
-    </submenu>
+    <section>
+      <item>
+	<attribute name="label" translatable="yes">New _Tab</attribute>
+	<attribute name="action">win.new-tab</attribute>
+	<attribute name="accel">&lt;Primary&gt;t</attribute>
+	<attribute name="use-underline">True</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+	<attribute name="label" translatable="yes">_Print</attribute>
+	<attribute name="action">win.print</attribute>
+	<attribute name="accel">&lt;Primary&gt;p</attribute>
+      </item>
+      <item>
+	<attribute name="label" translatable="yes">_Find</attribute>
+	<attribute name="action">win.find</attribute>
+	<attribute name="accel">&lt;Primary&gt;f</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+	<attribute name="label" translatable="yes">_Larger text</attribute>
+	<attribute name="action">win.zoom-in</attribute>
+	<attribute name="accel">&lt;Primary&gt;plus</attribute>
+      </item>
+      <item>
+	<attribute name="label" translatable="yes">S_maller text</attribute>
+	<attribute name="action">win.zoom-out</attribute>
+	<attribute name="accel">&lt;Primary&gt;minus</attribute>
+      </item>
+      <item>
+	<attribute name="label" translatable="yes">_Normal size</attribute>
+	<attribute name="action">win.zoom-default</attribute>
+	<attribute name="accel">&lt;Primary&gt;0</attribute>
+      </item>
+    </section>
   </menu>
-
-  <object class="GtkToolbar" id="toolbar">
-    <property name="visible">True</property>
-    <property name="expand">False</property>
-    <child>
-      <object class="GtkToolButton" id="back-button">
-	<property name="is-important">True</property>
-        <property name="stock_id">gtk-go-back</property>
-        <property name="action_name">win.go-back</property>
-        <property name="use_action_appearance">True</property>
-        <property name="tooltip_text" translatable="yes">Go to the previous page</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="homogeneous">True</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkToolButton" id="forward-button">
-	<property name="is-important">True</property>
-        <property name="stock_id">gtk-go-forward</property>
-        <property name="action_name">win.go-forward</property>
-        <property name="use_action_appearance">True</property>
-        <property name="tooltip_text" translatable="yes">Go to the next page</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="homogeneous">True</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkToolButton" id="zoom-out-button">
-        <property name="stock_id">gtk-zoom-out</property>
-        <property name="action_name">win.zoom-out</property>
-        <property name="use_action_appearance">True</property>
-        <property name="tooltip_text" translatable="yes">Decrease the text size</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="homogeneous">True</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkToolButton" id="zoom-in-button">
-        <property name="stock_id">gtk-zoom-in</property>
-        <property name="action_name">win.zoom-in</property>
-        <property name="use_action_appearance">True</property>
-        <property name="tooltip_text" translatable="yes">Increase the text size</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="homogeneous">True</property>
-      </packing>
-    </child>
-  </object>
 
   <object class="GtkListStore" id="bookshelf_store">
     <columns>

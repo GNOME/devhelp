@@ -289,9 +289,6 @@ setup_menu (DhApp *self)
         model = G_MENU_MODEL (gtk_builder_get_object (builder, "app-menu"));
         gtk_application_set_app_menu (GTK_APPLICATION (self), model);
 
-        model = G_MENU_MODEL (gtk_builder_get_object (builder, "window-menu"));
-        gtk_application_set_menubar (GTK_APPLICATION (self), model);
-
         g_object_unref (builder);
 }
 
