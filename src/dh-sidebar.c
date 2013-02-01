@@ -466,7 +466,6 @@ dh_sidebar_new (DhBookManager *book_manager)
         g_signal_connect (self->priv->entry, "insert-text",
                           G_CALLBACK (sidebar_entry_text_inserted_cb),
                           self);
-        gtk_box_pack_start (GTK_BOX (self), self->priv->entry, FALSE, FALSE, 0);
 
 	/* Setup the Current/All Files selector */
 	self->priv->search_current_button = gtk_radio_button_new_with_label (NULL, _("Current"));
