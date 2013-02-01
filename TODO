@@ -31,8 +31,6 @@ January 31st 2013
    ** Remove bundles
    ** Select only one set of books (either 'local' or a given bundle)
 
- * Use GResource
-
  * Remove Mac OS X specific handling
 
  * libdevhelp
