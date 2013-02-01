@@ -18,4 +18,6 @@ which gnome-autogen.sh || {
     exit 1
 }
 
+git submodule update --init --recursive
+
 . gnome-autogen.sh
