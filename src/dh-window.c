@@ -1051,10 +1051,12 @@ window_populate (DhWindow *window)
                         "go-previous-symbolic",
                         _("Back"),
                         TRUE);
+        gtk_actionable_set_action_name ( GTK_ACTIONABLE (back), "win.go-back");
         forward = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
                         "go-next-symbolic",
                         _("Forward"),
                         TRUE);
+        gtk_actionable_set_action_name ( GTK_ACTIONABLE (forward), "win.go-forward");
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
         gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
         gtk_widget_reparent (back, box);
