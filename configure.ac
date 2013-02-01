@@ -133,6 +133,5 @@ AC_OUTPUT
 
 echo
 echo "Prefix:    $prefix"
-echo "Platform:  $IGE_PLATFORM_NAME"
 echo "WebKit2:   $with_webkit2"
 echo
