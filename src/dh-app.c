@@ -272,6 +272,20 @@ setup_actions (DhApp *self)
 /******************************************************************************/
 
 static void
+setup_accelerators (DhApp *self)
+{
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>0",     "win.zoom-default", NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>minus", "win.zoom-out",     NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>plus",  "win.zoom-in",      NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>f",     "win.find",         NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>c",     "win.copy",         NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>p",     "win.print",        NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>t",     "win.new-tab",      NULL);
+}
+
+/******************************************************************************/
+
+static void
 setup_menu (DhApp *self)
 {
         GtkBuilder *builder;
@@ -304,6 +318,9 @@ startup (GApplication *application)
 
         /* Setup menu */
         setup_menu (self);
+
+        /* Setup accelerators */
+        setup_accelerators (self);
 
         /* Load the book manager */
         g_assert (self->priv->book_manager == NULL);
