@@ -648,14 +648,14 @@ window_populate (DhWindow *window)
 
         priv->toolbar = gd_main_toolbar_new ();
         back = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (priv->toolbar),
-                        "go-previous-symbolic",
-                        _("Back"),
-                        TRUE);
+                                           "go-previous-symbolic",
+                                           _("Back"),
+                                           TRUE);
         gtk_actionable_set_action_name ( GTK_ACTIONABLE (back), "win.go-back");
         forward = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (priv->toolbar),
-                        "go-next-symbolic",
-                        _("Forward"),
-                        TRUE);
+                                              "go-next-symbolic",
+                                              _("Forward"),
+                                              TRUE);
         gtk_actionable_set_action_name ( GTK_ACTIONABLE (forward), "win.go-forward");
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
         gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
@@ -663,9 +663,9 @@ window_populate (DhWindow *window)
         gtk_widget_reparent (forward, box);
         gd_main_toolbar_add_widget (GD_MAIN_TOOLBAR (priv->toolbar), box, TRUE);
         gd_main_toolbar_add_menu (GD_MAIN_TOOLBAR (priv->toolbar),
-                        "emblem-system-symbolic",
-                        "",
-                        FALSE);
+                                  "emblem-system-symbolic",
+                                  "",
+                                  FALSE);
 
         /* Add toolbar to main box */
         gtk_box_pack_start (GTK_BOX (priv->main_box), priv->toolbar,
