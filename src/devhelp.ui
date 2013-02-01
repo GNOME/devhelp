@@ -122,13 +122,6 @@
           <attribute name="accel">&lt;Primary&gt;0</attribute>
         </item>
       </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">Fullscreen</attribute>
-          <attribute name="action">win.fullscreen</attribute>
-          <attribute name="accel">F11</attribute>
-        </item>
-      </section>
     </submenu>
     <submenu>
       <attribute name="label" translatable="yes">_Go</attribute>
@@ -206,88 +199,6 @@
         <property name="action_name">win.zoom-in</property>
         <property name="use_action_appearance">True</property>
         <property name="tooltip_text" translatable="yes">Increase the text size</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="homogeneous">True</property>
-      </packing>
-    </child>
-  </object>
-
-  <object class="GtkToolbar" id="fullscreen-toolbar">
-    <property name="visible">True</property>
-    <property name="expand">False</property>
-    <child>
-      <object class="GtkToolButton" id="fullscreen-back-button">
-	<property name="is-important">True</property>
-        <property name="stock_id">gtk-go-back</property>
-        <property name="action_name">win.go-back</property>
-        <property name="use_action_appearance">True</property>
-        <property name="tooltip_text" translatable="yes">Go to the previous page</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="homogeneous">True</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkToolButton" id="fullscreen-forward-button">
-	<property name="is-important">True</property>
-        <property name="stock_id">gtk-go-forward</property>
-        <property name="action_name">win.go-forward</property>
-        <property name="use_action_appearance">True</property>
-        <property name="tooltip_text" translatable="yes">Go to the next page</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="homogeneous">True</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkSeparatorToolItem" id="separator1" />
-      <packing>
-        <property name="expand">False</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkToolButton" id="fullscreen-zoom-out-button">
-        <property name="stock_id">gtk-zoom-out</property>
-        <property name="action_name">win.zoom-out</property>
-        <property name="use_action_appearance">True</property>
-        <property name="tooltip_text" translatable="yes">Decrease the text size</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="homogeneous">True</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkToolButton" id="fullscreen-zoom-in-button">
-        <property name="stock_id">gtk-zoom-in</property>
-        <property name="action_name">win.zoom-in</property>
-        <property name="use_action_appearance">True</property>
-        <property name="tooltip_text" translatable="yes">Increase the text size</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="homogeneous">True</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkSeparatorToolItem" id="separator2">
-        <property name="draw">False</property>
-      </object>
-      <packing>
-        <property name="expand">True</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkToolButton" id="fullscreen-leave-fullscreen-button">
-	<property name="is-important">True</property>
-        <property name="stock_id">gtk-leave-fullscreen</property>
-	<property name="visible">True</property>
-        <property name="action_name">win.leave-fullscreen</property>
-        <property name="use_action_appearance">True</property>
       </object>
       <packing>
         <property name="expand">False</property>
