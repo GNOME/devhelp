@@ -502,6 +502,8 @@ dh_window_init (DhWindow *window)
         priv = GET_PRIVATE (window);
         window->priv = priv;
 
+        gtk_window_set_hide_titlebar_when_maximized (GTK_WINDOW (window), TRUE);
+
         priv->selected_search_link = NULL;
 
         /* handle settings */
