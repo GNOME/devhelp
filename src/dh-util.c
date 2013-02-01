@@ -24,9 +24,6 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <math.h>
-#ifdef GDK_WINDOWING_QUARTZ
-#include <gtkosxapplication.h>
-#endif
 #include "dh-util.h"
 
 
@@ -120,32 +117,6 @@ dh_util_builder_connect (GtkBuilder *builder,
         va_end (args);
 }
 
-#ifdef GDK_WINDOWING_QUARTZ
-static gchar *
-util_get_mac_data_dir (void)
-{
-        const gchar *env, *ret;
-        gchar       *tmp;
-
-        /* The environment variable overrides all. */
-        env = g_getenv ("DEVHELP_DATADIR");
-        if (env) {
-                return g_strdup (env);
-        }
-
-        /* If we are not in a bundle, then follow the normal rules. */
-        if (quartz_application_get_bundle_id () == NULL) {
-                return NULL;
-        }
-
-        ret = quartz_application_get_resource_path ();
-        tmp = g_strdup (ret);
-        g_printerr("ret: %s\n", tmp);
-
-        return tmp;
-}
-#endif
-
 gchar *
 dh_util_build_data_filename (const gchar *first_part,
                              ...)
@@ -158,10 +129,6 @@ dh_util_build_data_filename (const gchar *first_part,
         gchar        *ret;
 
         va_start (args, first_part);
-
-#ifdef GDK_WINDOWING_QUARTZ
-        datadir = util_get_mac_data_dir ();
-#endif
 
         if (datadir == NULL) {
                 datadir = g_strdup (DATADIR);

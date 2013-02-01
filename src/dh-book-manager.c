@@ -98,11 +98,6 @@ static void    book_manager_set_property      (GObject        *object,
                                                const GValue   *value,
                                                GParamSpec     *pspec);
 
-#ifdef GDK_WINDOWING_QUARTZ
-static void    book_manager_add_from_xcode_docset (DhBookManager *book_manager,
-                                                   const gchar   *dir_path);
-#endif
-
 static void
 book_manager_finalize (GObject *object)
 {
@@ -370,12 +365,6 @@ dh_book_manager_populate (DhBookManager *book_manager)
                                                     *system_dirs);
                 system_dirs++;
         }
-
-#ifdef GDK_WINDOWING_QUARTZ
-        book_manager_add_from_xcode_docset (
-                book_manager,
-                "/Library/Developer/Shared/Documentation/DocSets");
-#endif
 }
 
 static gchar *
@@ -557,76 +546,6 @@ book_manager_add_from_dir (DhBookManager *book_manager,
 
         g_dir_close (dir);
 }
-
-#ifdef GDK_WINDOWING_QUARTZ
-static gboolean
-seems_docset_dir (const gchar *path)
-{
-        gchar    *tmp;
-        gboolean  seems_like_devhelp = FALSE;
-
-        g_return_val_if_fail (path, FALSE);
-
-        /* Do some sanity checking on the directory first so we don't have
-         * to go through several hundreds of files in every docset.
-         */
-        tmp = g_build_filename (path, "style.css", NULL);
-        if (g_file_test (tmp, G_FILE_TEST_EXISTS)) {
-                gchar *tmp;
-
-                tmp = g_build_filename (path, "index.sgml", NULL);
-                if (g_file_test (tmp, G_FILE_TEST_EXISTS)) {
-                        seems_like_devhelp = TRUE;
-                }
-                g_free (tmp);
-        }
-        g_free (tmp);
-
-        return seems_like_devhelp;
-}
-
-static void
-book_manager_add_from_xcode_docset (DhBookManager *book_manager,
-                                    const gchar   *dir_path)
-{
-        GDir        *dir;
-        const gchar *name;
-
-        g_return_if_fail (book_manager);
-        g_return_if_fail (dir_path);
-
-        if (!seems_docset_dir (dir_path)) {
-                return;
-        }
-
-        /* Open directory */
-        dir = g_dir_open (dir_path, 0, NULL);
-        if (!dir) {
-                return;
-        }
-
-        /* Monitor the directory for changes (if it works on MacOSX,
-         * not sure if GIO implements GFileMonitor based on FSEvents
-         * or what */
-        book_manager_monitor_path (book_manager, dir_path);
-
-        /* And iterate it, looking for files ending with .devhelp2 */
-        while ((name = g_dir_read_name (dir)) != NULL) {
-                if (g_strcmp0 (strrchr (name, '.'),
-                               ".devhelp2") == 0) {
-                        gchar *book_path;
-
-                        book_path = g_build_filename (dir_path, name, NULL);
-                        /* Add book from filepath */
-                        book_manager_add_from_filepath (book_manager,
-                                                        book_path);
-                        g_free (book_path);
-                }
-        }
-
-        g_dir_close (dir);
-}
-#endif
 
 static void
 book_manager_book_deleted_cb (DhBook   *book,
@@ -912,4 +831,3 @@ dh_book_manager_new (void)
 {
         return g_object_new (DH_TYPE_BOOK_MANAGER, NULL);
 }
-

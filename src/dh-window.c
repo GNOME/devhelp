@@ -32,10 +32,6 @@
 #include <webkit/webkit.h>
 #endif
 
-#ifdef GDK_WINDOWING_QUARTZ
-#include <gtkosxapplication.h>
-#endif
-
 #include <libgd/gd.h>
 
 #include "dh-book-manager.h"
@@ -1293,7 +1289,6 @@ window_open_new_tab (DhWindow    *window,
         return num;
 }
 
-#ifndef GDK_WINDOWING_QUARTZ
 static void
 close_button_clicked_cb (GtkButton *button,
                          DhWindow  *window)
@@ -1340,18 +1335,13 @@ tab_label_style_set_cb (GtkWidget *hbox,
 	button = g_object_get_data (G_OBJECT (hbox), "close-button");
 	gtk_widget_set_size_request (button, w + 2, h + 2);
 }
-#endif
 
-/* Don't create a close button on quartz, it looks very much out of
- * place.
- */
 static GtkWidget*
 window_new_tab_label (DhWindow        *window,
                       const gchar     *str,
                       const GtkWidget *parent)
 {
         GtkWidget *label;
-#ifndef GDK_WINDOWING_QUARTZ
         GtkWidget *hbox;
         GtkWidget *close_button;
         GtkWidget *image;
@@ -1386,12 +1376,6 @@ window_new_tab_label (DhWindow        *window,
         g_object_set_data (G_OBJECT (hbox), "close-button", close_button);
 
         return hbox;
-#else
-        label = gtk_label_new (str);
-        g_object_set_data (G_OBJECT (label), "label", label);
-
-        return label;
-#endif
 }
 
 static WebKitWebView *

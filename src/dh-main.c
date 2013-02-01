@@ -106,22 +106,6 @@ main (int argc, char **argv)
         GError  *error = NULL;
         gint     status;
 
-#ifdef GDK_WINDOWING_QUARTZ
-        {
-                gint i;
-
-                for (i = 0; i < argc; i++) {
-                        if (g_str_has_prefix (argv[i], "-psn_")) {
-                                for (; i < argc-1; i++) {
-                                        argv[i] = argv[i+1];
-                                }
-                                argc--;
-                                break;
-                        }
-                }
-        }
-#endif
-
         setlocale (LC_ALL, "");
         bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
