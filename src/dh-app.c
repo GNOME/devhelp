@@ -276,7 +276,6 @@ setup_menu (DhApp *self)
 {
         GtkBuilder *builder;
         GMenuModel *model;
-        gchar *path;
         GError *error = NULL;
 
         builder = gtk_builder_new ();
