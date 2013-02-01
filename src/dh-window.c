@@ -51,6 +51,7 @@ struct _DhWindowPriv {
         GtkWidget      *hpaned;
         GtkWidget      *sidebar;
         GtkWidget      *notebook;
+        GtkWidget      *toolbar;
 
         GtkWidget      *vbox;
         GtkWidget      *findbar;
@@ -638,7 +639,6 @@ window_populate (DhWindow *window)
 {
         DhWindowPriv  *priv;
         DhBookManager *book_manager;
-        GtkWidget     *toolbar;
         GtkWidget     *back;
         GtkWidget     *forward;
         GtkWidget     *box;
@@ -646,13 +646,13 @@ window_populate (DhWindow *window)
         priv = window->priv;
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
 
-        toolbar = gd_main_toolbar_new ();
-        back = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
+        priv->toolbar = gd_main_toolbar_new ();
+        back = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (priv->toolbar),
                         "go-previous-symbolic",
                         _("Back"),
                         TRUE);
         gtk_actionable_set_action_name ( GTK_ACTIONABLE (back), "win.go-back");
-        forward = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
+        forward = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (priv->toolbar),
                         "go-next-symbolic",
                         _("Forward"),
                         TRUE);
@@ -661,15 +661,14 @@ window_populate (DhWindow *window)
         gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
         gtk_widget_reparent (back, box);
         gtk_widget_reparent (forward, box);
-        gd_main_toolbar_add_widget (GD_MAIN_TOOLBAR (toolbar), box, TRUE);
-        gd_main_toolbar_add_menu (GD_MAIN_TOOLBAR (toolbar),
+        gd_main_toolbar_add_widget (GD_MAIN_TOOLBAR (priv->toolbar), box, TRUE);
+        gd_main_toolbar_add_menu (GD_MAIN_TOOLBAR (priv->toolbar),
                         "emblem-system-symbolic",
                         "",
                         FALSE);
 
-
         /* Add toolbar to main box */
-        gtk_box_pack_start (GTK_BOX (priv->main_box), toolbar,
+        gtk_box_pack_start (GTK_BOX (priv->main_box), priv->toolbar,
                             FALSE, FALSE, 0);
 
         priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
@@ -1436,28 +1435,8 @@ window_update_title (DhWindow      *window,
                 web_view_title = NULL;
         }
 
-        book_link = dh_sidebar_get_selected_book (DH_SIDEBAR (priv->sidebar));
-        book_title = book_link ? dh_link_get_name (book_link) : NULL;
-
-        /* Don't use both titles if they are the same. */
-        if (book_title && web_view_title && strcmp (book_title, web_view_title) == 0) {
-                web_view_title = NULL;
-        }
-
-        if (!book_title) {
-                /* i18n: Please don't translate "Devhelp" (it's marked as translatable
-                 * for transliteration only) */
-                book_title = _("Devhelp");
-        }
-
-        if (web_view_title) {
-                gchar *full_title;
-                full_title = g_strdup_printf ("%s - %s", book_title, web_view_title);
-                gtk_window_set_title (GTK_WINDOW (window), full_title);
-                g_free (full_title);
-        } else {
-                gtk_window_set_title (GTK_WINDOW (window), book_title);
-        }
+        gd_main_toolbar_set_labels (GD_MAIN_TOOLBAR (priv->toolbar),
+                web_view_title, NULL);
 }
 
 static void
