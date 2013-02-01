@@ -5,17 +5,27 @@ dh-marshal.c: dh-marshal.list
 	$(AM_V_GEN) echo "#include \"dh-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=_dh_marshal dh-marshal.list >> $@
 
+resource_files = $(shell glib-compile-resources --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/dh.gresource.xml)
+dh-resources.c: dh.gresource.xml $(resource_files)
+	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-source --c-name dh $(srcdir)/dh.gresource.xml
+dh-resources.h: dh.gresource.xml $(resource_files)
+	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-header --c-name dh $(srcdir)/dh.gresource.xml
+
 BUILT_SOURCES = 		\
 	dh-marshal.h		\
 	dh-marshal.c		\
 	dh-enum-types.h		\
 	dh-enum-types.c		\
+	dh-resources.c	 	\
+	dh-resources.h 		\
 	$(NULL)
 
 EXTRA_DIST =			\
 	dh-marshal.list		\
 	dh-enum-types.c.template \
 	dh-enum-types.h.template \
+	$(resource_files)	\
+	dh.gresource.xml	\
 	$(NULL)
 
 AM_CPPFLAGS = 						\
@@ -93,6 +103,8 @@ libdevhelp_3_la_SOURCES =				\
 	dh-util.h					\
 	dh-settings.c					\
 	dh-settings.h					\
+	dh-resources.c				 	\
+	dh-resources.h 					\
 	eggfindbar.c					\
 	eggfindbar.h
 

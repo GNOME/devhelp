@@ -871,12 +871,10 @@ dh_window_init (DhWindow *window)
 
         /* Setup builder */
         priv->builder = gtk_builder_new ();
-        path = dh_util_build_data_filename ("devhelp", "ui", "devhelp.builder", NULL);
-        if (!gtk_builder_add_from_file (priv->builder, path, &error)) {
-                g_error ("Cannot create builder from '%s': %s",
-                         path, error ? error->message : "unknown error");
+        if (!gtk_builder_add_from_resource (priv->builder, "/org/gnome/devhelp/devhelp.ui", &error)) {
+                g_error ("Cannot add resource to builder: %s", error ? error->message : "unknown error");
+                g_clear_error (&error);
         }
-        g_free (path);
 
         priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_widget_show (priv->main_box);

@@ -301,10 +301,9 @@ setup_menu (DhApp *self)
 
         builder = gtk_builder_new ();
 
-        path = dh_util_build_data_filename ("devhelp", "ui", "devhelp.builder", NULL);
-        if (!gtk_builder_add_from_file (builder, path, &error)) {
-                g_error ("Cannot create builder from '%s': %s",
-                         path, error ? error->message : "unknown error");
+        if (!gtk_builder_add_from_resource (builder, "/org/gnome/devhelp/devhelp.ui", &error)) {
+                g_error ("%s",error ? error->message : "unknown error");
+                g_clear_error (&error);
         }
 
         model = G_MENU_MODEL (gtk_builder_get_object (builder, "app-menu"));
@@ -313,7 +312,6 @@ setup_menu (DhApp *self)
         model = G_MENU_MODEL (gtk_builder_get_object (builder, "window-menu"));
         gtk_application_set_menubar (GTK_APPLICATION (self), model);
 
-        g_free (path);
         g_object_unref (builder);
 }
 

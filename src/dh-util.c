@@ -40,11 +40,14 @@ get_builder_file (const gchar *filename,
         GtkBuilder  *builder;
         const char  *name;
         GObject    **object_ptr;
+        GError      *error = NULL;
 
         builder = gtk_builder_new ();
-        if (!gtk_builder_add_from_file (builder, filename, NULL)) {
-                g_warning ("Couldn't find necessary UI file '%s'", filename);
+
+        if (!gtk_builder_add_from_resource (builder, "/org/gnome/devhelp/devhelp.ui", &error)) {
+                g_warning ("Couldn't add resource: %s", error ? error->message : "unknown");
                 g_object_unref (builder);
+                g_clear_error (&error);
                 return NULL;
         }
 

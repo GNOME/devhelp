@@ -2,7 +2,7 @@
 # Please keep this file sorted alphabetically.
 data/devhelp.desktop.in.in
 [type: gettext/gsettings]data/org.gnome.devhelp.gschema.xml
-[type: gettext/glade]data/ui/devhelp.builder
+[type: gettext/glade]src/devhelp.ui
 misc/gedit-plugin/devhelp.desktop.in
 misc/gedit-plugin/devhelp.py
 src/dh-app.c
