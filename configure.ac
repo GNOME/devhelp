@@ -123,6 +123,11 @@ AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 
 AM_PATH_PYTHON([2.3],[],[no])
 
+LIBGD_INIT([
+  main-toolbar
+  static
+])
+
 AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
@@ -133,6 +138,7 @@ data/devhelp.desktop.in
 data/icons/Makefile
 data/ui/Makefile
 data/dtd/Makefile
+libgd/Makefile
 misc/Makefile
 misc/gedit-plugin/Makefile
 contrib/Makefile

@@ -43,6 +43,8 @@
 #include <gtkosxapplication.h>
 #endif
 
+#include <libgd/gd.h>
+
 #include "dh-book-tree.h"
 #include "dh-book-manager.h"
 #include "dh-book.h"
@@ -1041,33 +1043,24 @@ window_populate (DhWindow *window)
 
         priv = window->priv;
 
-        toolbar = GTK_WIDGET (gtk_builder_get_object (priv->builder, "toolbar"));
+        toolbar = gd_main_toolbar_new ();
+        gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
+                        "go-previous-symbolic",
+                        _("Back"),
+                        TRUE);
+        gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
+                        "go-next-symbolic",
+                        _("Forward"),
+                        TRUE);
+        gd_main_toolbar_add_menu (GD_MAIN_TOOLBAR (toolbar),
+                        "emblem-system-symbolic",
+                        "",
+                        FALSE);
+
 
         /* Add toolbar to main box */
-        gtk_style_context_add_class (gtk_widget_get_style_context (toolbar),
-                                     GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
         gtk_box_pack_start (GTK_BOX (priv->main_box), toolbar,
                             FALSE, FALSE, 0);
-
-#ifdef GDK_WINDOWING_QUARTZ
-        {
-                GtkOSXApplication *theApp;
-
-                /* Hide toolbar labels. */
-                gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_ICONS);
-
-                /* Setup menubar. */
-                theApp = g_object_new (GTK_TYPE_OSX_APPLICATION, NULL);
-                gtk_osxapplication_set_menu_bar (theApp, GTK_MENU_SHELL (menubar));
-
-                g_signal_connect (theApp,
-                                  "NSApplicationWillTerminate",
-                                  G_CALLBACK (window_activate_quit),
-                                  window);
-
-                gtk_osxapplication_ready (theApp);
-        }
-#endif
 
         priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
 

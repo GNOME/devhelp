@@ -54,7 +54,8 @@ devhelp_CFLAGS =					\
 	$(DEVHELP_CFLAGS)
 
 devhelp_LDADD = 					\
-        $(DEVHELP_LIBS)					\
+	$(DEVHELP_LIBS)					\
+	$(top_builddir)/libgd/libgd.la \
         libdevhelp-3.la
 
 lib_LTLIBRARIES = libdevhelp-3.la
@@ -113,6 +114,8 @@ libdevhelp_3_la_CPPFLAGS =				\
 	$(ZLIB_CPPFLAGS)
 
 libdevhelp_3_la_CFLAGS =				\
+	-I$(top_srcdir)/libgd \
+	$(top_builddir)/libgd/libgd.la \
 	$(LIBDEVHELP_CFLAGS)
 
 libdevhelp_3_la_LIBADD =				\
