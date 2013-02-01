@@ -869,6 +869,26 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
 }
 
 #ifdef HAVE_WEBKIT2
+static void
+window_web_view_load_changed_cb (WebKitWebView   *web_view,
+                                 WebKitLoadEvent  load_event,
+                                 DhWindow        *window)
+{
+        const gchar *uri;
+        DhWindowPriv *priv;
+
+        priv = window->priv;
+
+        if (load_event != WEBKIT_LOAD_COMMITTED)
+                return;
+
+        uri = webkit_web_view_get_uri (web_view);
+        dh_sidebar_select_uri (DH_SIDEBAR (priv->sidebar), uri);
+        window_check_history (window, web_view);
+}
+#endif
+
+#ifdef HAVE_WEBKIT2
 static gboolean
 window_web_view_load_failed_cb (WebKitWebView   *web_view,
                                 WebKitLoadEvent  load_event,
@@ -1261,6 +1281,9 @@ window_open_new_tab (DhWindow    *window,
                           window);
 #endif
 #ifdef HAVE_WEBKIT2
+        g_signal_connect (view, "load-changed",
+                          G_CALLBACK (window_web_view_load_changed_cb),
+                          window);
         g_signal_connect (view, "load-failed",
                           G_CALLBACK (window_web_view_load_failed_cb),
                           window);
