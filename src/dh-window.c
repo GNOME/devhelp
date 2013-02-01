@@ -860,10 +860,13 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
                 return TRUE;
         }
 
+#ifndef HAVE_WEBKIT2
+        /* We already do this in load_changed_cb() for webkit2 */
         if (web_view == window_get_active_web_view (window)) {
                 dh_sidebar_select_uri (DH_SIDEBAR (priv->sidebar), uri);
                 window_check_history (window, web_view);
         }
+#endif
 
         return FALSE;
 }
