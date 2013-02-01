@@ -800,13 +800,11 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
                                                       DhWindow                  *window)
 #endif
 {
-        DhWindowPriv *priv;
         const char   *uri;
 #ifdef HAVE_WEBKIT2
         WebKitNavigationPolicyDecision *navigation_decision;
 #endif
 
-        priv = window->priv;
 
 #ifdef HAVE_WEBKIT2
         if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
@@ -863,6 +861,9 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
 #ifndef HAVE_WEBKIT2
         /* We already do this in load_changed_cb() for webkit2 */
         if (web_view == window_get_active_web_view (window)) {
+                DhWindowPriv *priv;
+
+                priv = window->priv;
                 dh_sidebar_select_uri (DH_SIDEBAR (priv->sidebar), uri);
                 window_check_history (window, web_view);
         }
