@@ -136,7 +136,6 @@ data/Makefile
 data/libdevhelp-3.0.pc
 data/devhelp.desktop.in
 data/icons/Makefile
-data/ui/Makefile
 data/dtd/Makefile
 libgd/Makefile
 misc/Makefile
