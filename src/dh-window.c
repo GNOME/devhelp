@@ -1040,18 +1040,26 @@ window_populate (DhWindow *window)
         GtkWidget     *toolbar;
         gchar         *selected_tab;
         guint         i;
+        GtkWidget     *back;
+        GtkWidget     *forward;
+        GtkWidget     *box;
 
         priv = window->priv;
 
         toolbar = gd_main_toolbar_new ();
-        gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
+        back = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
                         "go-previous-symbolic",
                         _("Back"),
                         TRUE);
-        gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
+        forward = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
                         "go-next-symbolic",
                         _("Forward"),
                         TRUE);
+        box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+        gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
+        gtk_widget_reparent (back, box);
+        gtk_widget_reparent (forward, box);
+        gd_main_toolbar_add_widget (GD_MAIN_TOOLBAR (toolbar), box, TRUE);
         gd_main_toolbar_add_menu (GD_MAIN_TOOLBAR (toolbar),
                         "emblem-system-symbolic",
                         "",
