@@ -44,11 +44,11 @@ struct _DhBookTreeClass {
         GtkTreeViewClass parent_class;
 };
 
-GType        dh_book_tree_get_type                (void) G_GNUC_CONST;
-GtkWidget *  dh_book_tree_new                     (DhBookManager *book_manager);
-void         dh_book_tree_select_uri              (DhBookTree    *book_tree,
-                                                   const gchar   *uri);
-const gchar *dh_book_tree_get_selected_book_title (DhBookTree    *tree);
+GType        dh_book_tree_get_type          (void) G_GNUC_CONST;
+GtkWidget *  dh_book_tree_new               (DhBookManager *book_manager);
+void         dh_book_tree_select_uri        (DhBookTree    *book_tree,
+                                             const gchar   *uri);
+DhLink      *dh_book_tree_get_selected_book (DhBookTree    *tree);
 
 G_END_DECLS
 

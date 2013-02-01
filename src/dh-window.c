@@ -38,10 +38,9 @@
 
 #include <libgd/gd.h>
 
-#include "dh-book-tree.h"
 #include "dh-book-manager.h"
 #include "dh-book.h"
-#include "dh-search.h"
+#include "dh-sidebar.h"
 #include "dh-window.h"
 #include "dh-util.h"
 #include "dh-marshal.h"
@@ -54,9 +53,7 @@
 struct _DhWindowPriv {
         GtkWidget      *main_box;
         GtkWidget      *hpaned;
-        GtkWidget      *control_notebook;
-        GtkWidget      *book_tree;
-        GtkWidget      *search;
+        GtkWidget      *sidebar;
         GtkWidget      *notebook;
 
         GtkWidget      *vbox;
@@ -110,9 +107,6 @@ static const guint n_zoom_levels = G_N_ELEMENTS (zoom_levels);
 static void           dh_window_class_init           (DhWindowClass   *klass);
 static void           dh_window_init                 (DhWindow        *window);
 static void           window_populate                (DhWindow        *window);
-static void           window_tree_link_selected_cb   (GObject         *ignored,
-                                                      DhLink          *link,
-                                                      DhWindow        *window);
 static void           window_search_link_selected_cb (GObject         *ignored,
                                                       DhLink          *link,
                                                       DhWindow        *window);
@@ -237,7 +231,7 @@ copy_cb (GSimpleAction *action,
         if (GTK_IS_EDITABLE (widget)) {
                 gtk_editable_copy_clipboard (GTK_EDITABLE (widget));
         } else if (GTK_IS_TREE_VIEW (widget) &&
-                   gtk_widget_is_ancestor (widget, priv->search) &&
+                   gtk_widget_is_ancestor (widget, priv->sidebar) &&
                    priv->selected_search_link) {
                 GtkClipboard *clipboard;
                 clipboard = gtk_widget_get_clipboard (widget, GDK_SELECTION_CLIPBOARD);
@@ -435,34 +429,6 @@ go_forward_cb (GSimpleAction *action,
 }
 
 static void
-go_contents_tab_cb (GSimpleAction *action,
-                    GVariant      *parameter,
-                    gpointer       user_data)
-{
-        DhWindow     *window = user_data;
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 0);
-        gtk_widget_grab_focus (priv->book_tree);
-}
-
-static void
-go_search_tab_cb (GSimpleAction *action,
-                  GVariant      *parameter,
-                  gpointer       user_data)
-{
-        DhWindow     *window = user_data;
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
-        gtk_widget_grab_focus (priv->search);
-}
-
-static void
 window_open_link_cb (DhWindow *window,
                      const char *location,
                      DhOpenLinkFlags flags)
@@ -492,8 +458,6 @@ static GActionEntry win_entries[] = {
         /* go */
         { "go-back",          go_back_cb,          NULL, "false", NULL },
         { "go-forward",       go_forward_cb,       NULL, "false", NULL },
-        { "go-contents-tab",  go_contents_tab_cb,  NULL, NULL, NULL },
-        { "go-search-tab",    go_search_tab_cb,    NULL, NULL, NULL },
 };
 
 static void
@@ -537,7 +501,6 @@ dh_window_init (DhWindow *window)
         GtkAccelGroup *accel_group;
         GClosure      *closure;
         gint           i;
-        gchar         *path;
         GError        *error = NULL;
 
         priv = GET_PRIVATE (window);
@@ -628,45 +591,6 @@ dh_window_class_init (DhWindowClass *klass)
                              "style \"devhelp-tab-close-button-style\"");
 }
 
-/* The ugliest hack. When switching tabs, the selection and cursor is changed
- * for the tree view so the web_view content is changed. Block the signal during
- * switch.
- */
-static void
-window_control_switch_page_cb (GtkWidget       *notebook,
-                               gpointer         page,
-                               guint            page_num,
-                               DhWindow        *window)
-{
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
-        g_signal_handlers_block_by_func (priv->book_tree,
-                                         window_tree_link_selected_cb,
-                                         window);
-}
-
-static void
-window_control_after_switch_page_cb (GtkWidget       *notebook,
-                                     gpointer         page,
-                                     guint            page_num,
-                                     DhWindow        *window)
-{
-        DhWindowPriv *priv;
-
-        priv = window->priv;
-
-        g_signal_handlers_unblock_by_func (priv->book_tree,
-                                           window_tree_link_selected_cb,
-                                           window);
-        /* save the current selected tab */
-        const gchar *label = gtk_notebook_get_tab_label_text (GTK_NOTEBOOK (notebook), page);
-        g_settings_set_string (
-                dh_settings_peek_search_notebook_settings (priv->settings),
-                "selected-tab", label);
-}
-
 static void
 window_web_view_switch_page_cb (GtkNotebook     *notebook,
                                 gpointer         page,
@@ -685,13 +609,12 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
 
                 new_web_view = g_object_get_data (G_OBJECT (new_page), "web_view");
 
-                /* Sync the book tree. */
+                /* Sync the book tree */
                 location = webkit_web_view_get_uri (new_web_view);
 
-                if (location) {
-                        dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree),
-                                                 location);
-                }
+                if (location)
+                        dh_sidebar_select_uri (DH_SIDEBAR (priv->sidebar), location);
+
                 window_check_history (window, new_web_view);
 
                 window_update_title (window, new_web_view, NULL);
@@ -716,16 +639,14 @@ static void
 window_populate (DhWindow *window)
 {
         DhWindowPriv  *priv;
-        GtkWidget     *book_tree_sw;
         DhBookManager *book_manager;
         GtkWidget     *toolbar;
-        gchar         *selected_tab;
-        guint         i;
         GtkWidget     *back;
         GtkWidget     *forward;
         GtkWidget     *box;
 
         priv = window->priv;
+        book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
 
         toolbar = gd_main_toolbar_new ();
         back = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (toolbar),
@@ -754,77 +675,19 @@ window_populate (DhWindow *window)
                             FALSE, FALSE, 0);
 
         priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
-
         gtk_box_pack_start (GTK_BOX (priv->main_box), priv->hpaned, TRUE, TRUE, 0);
 
-        /* Search and contents notebook. */
-        priv->control_notebook = gtk_notebook_new ();
-
-        gtk_paned_add1 (GTK_PANED (priv->hpaned), priv->control_notebook);
-
-        book_tree_sw = gtk_scrolled_window_new (NULL, NULL);
-
-        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (book_tree_sw),
-                                        GTK_POLICY_NEVER,
-                                        GTK_POLICY_AUTOMATIC);
-        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (book_tree_sw),
-                                             GTK_SHADOW_IN);
-        gtk_container_set_border_width (GTK_CONTAINER (book_tree_sw), 2);
-
-        book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
-
-        priv->book_tree = dh_book_tree_new (book_manager);
-        gtk_container_add (GTK_CONTAINER (book_tree_sw),
-                           priv->book_tree);
-        gtk_notebook_append_page (GTK_NOTEBOOK (priv->control_notebook),
-                                  book_tree_sw,
-                                  gtk_label_new (_("Contents")));
-        g_signal_connect (priv->book_tree,
-                          "link-selected",
-                          G_CALLBACK (window_tree_link_selected_cb),
-                          window);
-
-        priv->search = dh_search_new (book_manager);
-        gtk_notebook_append_page (GTK_NOTEBOOK (priv->control_notebook),
-                                  priv->search,
-                                  gtk_label_new (_("Search")));
-        g_signal_connect (priv->search,
+        /* Sidebar */
+        priv->sidebar = dh_sidebar_new (book_manager);
+        gtk_paned_add1 (GTK_PANED (priv->hpaned), priv->sidebar);
+        g_signal_connect (priv->sidebar,
                           "link-selected",
                           G_CALLBACK (window_search_link_selected_cb),
                           window);
 
+        /* Document view */
         priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_paned_add2 (GTK_PANED (priv->hpaned), priv->vbox);
-
-        g_signal_connect (priv->control_notebook,
-                          "switch-page",
-                          G_CALLBACK (window_control_switch_page_cb),
-                          window);
-
-        g_signal_connect_after (priv->control_notebook,
-                                "switch-page",
-                                G_CALLBACK (window_control_after_switch_page_cb),
-                                window);
-
-        /* restore selected control notebook page */
-        selected_tab = g_settings_get_string (
-                dh_settings_peek_search_notebook_settings (priv->settings),
-                "selected-tab");
-        for (i = 0; i < gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->control_notebook)); i++) {
-                GtkWidget   *page;
-                const gchar *page_name;
-
-                page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->control_notebook), i);
-                page_name = gtk_notebook_get_tab_label_text (GTK_NOTEBOOK (priv->control_notebook), page);
-
-                if (page_name && strcmp (page_name, selected_tab) == 0) {
-                        gtk_widget_set_visible (GTK_WIDGET (page), TRUE);
-                        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), i);
-                        gtk_widget_grab_focus (page);
-                        break;
-                }
-        }
-        g_free (selected_tab);
 
         /* HTML tabs notebook. */
         priv->notebook = gtk_notebook_new ();
@@ -842,7 +705,7 @@ window_populate (DhWindow *window)
                                 G_CALLBACK (window_web_view_switch_page_after_cb),
                                 window);
 
-        /* Create findbar. */
+        /* Create findbar */
         priv->findbar = egg_find_bar_new ();
         gtk_widget_set_no_show_all (priv->findbar, TRUE);
         gtk_box_pack_start (GTK_BOX (priv->vbox), priv->findbar, FALSE, FALSE, 0);
@@ -996,7 +859,7 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
         }
 
         if (web_view == window_get_active_web_view (window)) {
-                dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree), uri);
+                dh_sidebar_select_uri (DH_SIDEBAR (priv->sidebar), uri);
                 window_check_history (window, web_view);
         }
 
@@ -1044,23 +907,6 @@ window_web_view_load_error_cb (WebKitWebView  *web_view,
         g_free (markup);
 
         return TRUE;
-}
-
-static void
-window_tree_link_selected_cb (GObject  *ignored,
-                              DhLink   *link,
-                              DhWindow *window)
-{
-        WebKitWebView *view;
-        gchar         *uri;
-
-        view = window_get_active_web_view (window);
-
-        uri = dh_link_get_uri (link);
-        webkit_web_view_load_uri (view, uri);
-        g_free (uri);
-
-        window_check_history (window, view);
 }
 
 static void
@@ -1592,6 +1438,7 @@ window_update_title (DhWindow      *window,
                      const gchar   *web_view_title)
 {
         DhWindowPriv *priv;
+        DhLink       *book_link;
         const gchar  *book_title;
 
         priv = window->priv;
@@ -1603,7 +1450,8 @@ window_update_title (DhWindow      *window,
                 web_view_title = NULL;
         }
 
-        book_title = dh_book_tree_get_selected_book_title (DH_BOOK_TREE (priv->book_tree));
+        book_link = dh_sidebar_get_selected_book (DH_SIDEBAR (priv->sidebar));
+        book_title = book_link ? dh_link_get_name (book_link) : NULL;
 
         /* Don't use both titles if they are the same. */
         if (book_title && web_view_title && strcmp (book_title, web_view_title) == 0) {
@@ -1704,8 +1552,7 @@ dh_window_search (DhWindow    *window,
 
         priv = window->priv;
 
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->control_notebook), 1);
-        dh_search_set_search_string (DH_SEARCH (priv->search), str, NULL);
+        dh_sidebar_set_search_string (DH_SIDEBAR (priv->sidebar), str);
 }
 
 /* Only call this with a URI that is known to be in the docs. */
@@ -1723,5 +1570,5 @@ _dh_window_display_uri (DhWindow    *window,
 
         web_view = window_get_active_web_view (window);
         webkit_web_view_load_uri (web_view, uri);
-        dh_book_tree_select_uri (DH_BOOK_TREE (priv->book_tree), uri);
+        dh_sidebar_select_uri (DH_SIDEBAR (priv->sidebar), uri);
 }

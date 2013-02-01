@@ -765,8 +765,8 @@ dh_book_tree_select_uri (DhBookTree  *tree,
 	gtk_tree_path_free (data.path);
 }
 
-const gchar *
-dh_book_tree_get_selected_book_title (DhBookTree *tree)
+DhLink *
+dh_book_tree_get_selected_book (DhBookTree *tree)
 {
 	GtkTreeSelection *selection;
 	GtkTreeModel     *model;
@@ -797,5 +797,5 @@ dh_book_tree_get_selected_book_title (DhBookTree *tree)
 			    COL_LINK, &link,
 			    -1);
 
-	return link ? dh_link_get_name (link) : NULL;
+	return link;
 }

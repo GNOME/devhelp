@@ -72,7 +72,7 @@ INST_H_FILES = 						\
 	dh-error.h					\
 	dh-keyword-model.h				\
 	dh-link.h					\
-	dh-search.h					\
+	dh-sidebar.h					\
 	dh-window.h
 
 devhelpincludedir = $(includedir)/devhelp-3.0/devhelp
@@ -94,7 +94,7 @@ libdevhelp_3_la_SOURCES =				\
 	dh-error.c					\
 	dh-keyword-model.c				\
 	dh-link.c					\
-	dh-search.c					\
+	dh-sidebar.c					\
 	dh-parser.c					\
 	dh-preferences.c				\
 	dh-util.c					\

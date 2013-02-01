@@ -33,7 +33,7 @@
 #include "dh-error.h"
 #include "dh-keyword-model.h"
 #include "dh-link.h"
-#include "dh-search.h"
+#include "dh-sidebar.h"
 #include "dh-window.h"
 
 G_BEGIN_DECLS
