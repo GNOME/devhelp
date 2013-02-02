@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-20 13:19+0200\n"
-"PO-Revision-Date: 2012-12-20 13:20+0200\n"
+"POT-Creation-Date: 2013-02-02 12:01+0200\n"
+"PO-Revision-Date: 2013-02-02 12:01+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -20,10 +20,9 @@ msgstr ""
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:1
-#: ../src/dh-app.c:168
-#: ../src/dh-app.c:351
-#: ../src/dh-window.c:1019
-#: ../src/dh-window.c:1944
+#: ../src/dh-app.c:162
+#: ../src/dh-app.c:342
+#: ../src/dh-window.c:623
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -168,146 +167,6 @@ msgstr "Font for fixed width text"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Font for text with fixed width, such as code examples."
 
-#: ../data/ui/devhelp.builder.h:1
-msgid "New window"
-msgstr "חלון חדש"
-
-#: ../data/ui/devhelp.builder.h:2
-msgid "Preferences"
-msgstr "העדפות"
-
-#: ../data/ui/devhelp.builder.h:3
-msgid "About Devhelp"
-msgstr "על אודות DevHelp"
-
-#: ../data/ui/devhelp.builder.h:4
-msgid "Quit"
-msgstr "יציאה"
-
-#: ../data/ui/devhelp.builder.h:5
-msgid "_Window"
-msgstr "_חלון"
-
-#: ../data/ui/devhelp.builder.h:6
-msgid "New _Tab"
-msgstr "_לשונית חדשה"
-
-#: ../data/ui/devhelp.builder.h:7
-msgid "_Print"
-msgstr "ה_דפסה"
-
-#: ../data/ui/devhelp.builder.h:8
-msgid "_Close"
-msgstr "_סגירה"
-
-#: ../data/ui/devhelp.builder.h:9
-msgid "_Edit"
-msgstr "ע_ריכה"
-
-#: ../data/ui/devhelp.builder.h:10
-msgid "_Copy"
-msgstr "ה_עתקה"
-
-#: ../data/ui/devhelp.builder.h:11
-msgid "_Find"
-msgstr "_חיפוש"
-
-#: ../data/ui/devhelp.builder.h:12
-msgid "Find _Next"
-msgstr "חיפוש ה_בא"
-
-#: ../data/ui/devhelp.builder.h:13
-msgid "Find _Previous"
-msgstr "חיפוש ה_קודם"
-
-#: ../data/ui/devhelp.builder.h:14
-msgid "_View"
-msgstr "_תצוגה"
-
-#: ../data/ui/devhelp.builder.h:15
-msgid "_Larger text"
-msgstr "ה_גדלת הטקסט"
-
-#: ../data/ui/devhelp.builder.h:16
-msgid "S_maller text"
-msgstr "ה_קטנת טקסט"
-
-#: ../data/ui/devhelp.builder.h:17
-msgid "_Normal size"
-msgstr "גודל _רגיל"
-
-#: ../data/ui/devhelp.builder.h:18
-msgid "Fullscreen"
-msgstr "מסך מלא"
-
-#: ../data/ui/devhelp.builder.h:19
-msgid "_Go"
-msgstr "מע_בר"
-
-#: ../data/ui/devhelp.builder.h:20
-msgid "_Back"
-msgstr "_אחורה"
-
-#: ../data/ui/devhelp.builder.h:21
-msgid "_Forward"
-msgstr "_קדימה"
-
-#: ../data/ui/devhelp.builder.h:22
-msgid "_Search Tab"
-msgstr "לשונית _חיפוש"
-
-#: ../data/ui/devhelp.builder.h:23
-msgid "_Contents Tab"
-msgstr "לשונית _תכנים"
-
-#: ../data/ui/devhelp.builder.h:24
-msgid "Go to the previous page"
-msgstr "מעבר לדף הקודם"
-
-#: ../data/ui/devhelp.builder.h:25
-msgid "Go to the next page"
-msgstr "מעבר לדף הבא"
-
-#: ../data/ui/devhelp.builder.h:26
-msgid "Decrease the text size"
-msgstr "הקטנת גודל הטקסט"
-
-#: ../data/ui/devhelp.builder.h:27
-msgid "Increase the text size"
-msgstr "הגדלת גודל הטקסט"
-
-#: ../data/ui/devhelp.builder.h:28
-msgid "_Group by language"
-msgstr "_קיבוץ לפי שפה"
-
-#: ../data/ui/devhelp.builder.h:29
-msgid "Enabled"
-msgstr "פעיל"
-
-#: ../data/ui/devhelp.builder.h:30
-msgid "Title"
-msgstr "כותרת"
-
-#: ../data/ui/devhelp.builder.h:31
-msgid "Book Shelf"
-msgstr "מדף ספרים"
-
-#: ../data/ui/devhelp.builder.h:32
-msgid "_Use system fonts"
-msgstr "שימוש ב_גופני המערכת"
-
-#: ../data/ui/devhelp.builder.h:33
-msgid "_Variable width: "
-msgstr "רוחב _משתנה: "
-
-#: ../data/ui/devhelp.builder.h:34
-msgid "_Fixed width:"
-msgstr "_רוחב קבוע:"
-
-#: ../data/ui/devhelp.builder.h:35
-msgid "Fonts"
-msgstr "גופנים"
-
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "תמיכת Devhelp"
@@ -324,7 +183,79 @@ msgstr "הצגת תיעוד API"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "הצגת תיעוד API עבור המילה שתחת הסמן"
 
-#: ../src/dh-app.c:163
+#: ../src/devhelp.ui.h:1
+msgid "New window"
+msgstr "חלון חדש"
+
+#: ../src/devhelp.ui.h:2
+msgid "Preferences"
+msgstr "העדפות"
+
+#: ../src/devhelp.ui.h:3
+msgid "About Devhelp"
+msgstr "על אודות DevHelp"
+
+#: ../src/devhelp.ui.h:4
+msgid "Quit"
+msgstr "יציאה"
+
+#: ../src/devhelp.ui.h:5
+msgid "New _Tab"
+msgstr "_לשונית חדשה"
+
+#: ../src/devhelp.ui.h:6
+msgid "_Print"
+msgstr "ה_דפסה"
+
+#: ../src/devhelp.ui.h:7
+msgid "_Find"
+msgstr "_חיפוש"
+
+#: ../src/devhelp.ui.h:8
+msgid "_Larger text"
+msgstr "ה_גדלת הטקסט"
+
+#: ../src/devhelp.ui.h:9
+msgid "S_maller text"
+msgstr "ה_קטנת טקסט"
+
+#: ../src/devhelp.ui.h:10
+msgid "_Normal size"
+msgstr "גודל _רגיל"
+
+#: ../src/devhelp.ui.h:11
+msgid "_Group by language"
+msgstr "_קיבוץ לפי שפה"
+
+#: ../src/devhelp.ui.h:12
+msgid "Enabled"
+msgstr "פעיל"
+
+#: ../src/devhelp.ui.h:13
+msgid "Title"
+msgstr "כותרת"
+
+#: ../src/devhelp.ui.h:14
+msgid "Book Shelf"
+msgstr "מדף ספרים"
+
+#: ../src/devhelp.ui.h:15
+msgid "_Use system fonts"
+msgstr "שימוש ב_גופני המערכת"
+
+#: ../src/devhelp.ui.h:16
+msgid "_Variable width: "
+msgstr "רוחב _משתנה: "
+
+#: ../src/devhelp.ui.h:17
+msgid "_Fixed width:"
+msgstr "_רוחב קבוע:"
+
+#: ../src/devhelp.ui.h:18
+msgid "Fonts"
+msgstr "גופנים"
+
+#: ../src/dh-app.c:157
 msgid "translator_credits"
 msgstr ""
 "יאיר הרשקוביץ  <yairhr@gmail.com>\n"
@@ -333,29 +264,29 @@ msgstr ""
 "פרויקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/dh-app.c:170
+#: ../src/dh-app.c:164
 msgid "A developers' help browser for GNOME"
 msgstr "דפדפן עזרה למפתחים עבור GNOME"
 
-#: ../src/dh-app.c:178
+#: ../src/dh-app.c:172
 msgid "DevHelp Website"
 msgstr "האתר של Devhelp"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:106
+#: ../src/dh-assistant.c:121
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — המסייע"
 
-#: ../src/dh-assistant-view.c:395
+#: ../src/dh-assistant-view.c:403
 msgid "Book:"
 msgstr "ספר:"
 
-#: ../src/dh-book.c:252
+#: ../src/dh-book.c:256
 #, c-format
 msgid "Language: %s"
 msgstr "שפה: %s"
 
-#: ../src/dh-book.c:253
+#: ../src/dh-book.c:257
 msgid "Language: Undefined"
 msgstr "שפה: בלתי מוגדרת"
 
@@ -410,32 +341,28 @@ msgstr "מניה"
 msgid "Type"
 msgstr "סוג"
 
-#: ../src/dh-main.c:48
+#: ../src/dh-main.c:43
 msgid "Opens a new Devhelp window"
 msgstr "פתיחת חלון חדש של Devhelp"
 
-#: ../src/dh-main.c:53
-msgid "Focus the Devhelp window with the search field active"
-msgstr "Focus the Devhelp window with the search field active"
-
-#: ../src/dh-main.c:58
+#: ../src/dh-main.c:48
 msgid "Search for a keyword"
 msgstr "Search for a keyword"
 
-#: ../src/dh-main.c:59
-#: ../src/dh-main.c:64
+#: ../src/dh-main.c:49
+#: ../src/dh-main.c:54
 msgid "KEYWORD"
 msgstr "KEYWORD"
 
-#: ../src/dh-main.c:63
+#: ../src/dh-main.c:53
 msgid "Search and display any hit in the assistant window"
 msgstr "Search and display any hit in the assistant window"
 
-#: ../src/dh-main.c:68
+#: ../src/dh-main.c:58
 msgid "Display the version and exit"
 msgstr "Display the version and exit"
 
-#: ../src/dh-main.c:73
+#: ../src/dh-main.c:63
 msgid "Quit any running Devhelp"
 msgstr "Quit any running Devhelp"
 
@@ -477,64 +404,65 @@ msgstr "\"type\" element is required inside <keyword> on line %d, column %d"
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Cannot uncompress book '%s': %s"
 
-#: ../src/dh-search.c:492
-msgid "All books"
+#. Setup the Current/All Files selector
+#: ../src/dh-sidebar.c:471
+msgid "Current"
+msgstr "נוכחי"
+
+#: ../src/dh-sidebar.c:474
+msgid "All Books"
 msgstr "כל הספרים"
 
-#: ../src/dh-search.c:1110
-msgid "Search in:"
-msgstr "חיפוש תחת:"
-
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:87
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:88
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:89
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:90
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:107
+#: ../src/dh-window.c:91
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:108
+#: ../src/dh-window.c:92
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:109
+#: ../src/dh-window.c:93
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:110
+#: ../src/dh-window.c:94
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:111
+#: ../src/dh-window.c:95
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:1098
-msgid "Contents"
-msgstr "תכנים"
+#: ../src/dh-window.c:654
+msgid "Back"
+msgstr "חזרה"
 
-#: ../src/dh-window.c:1107
-msgid "Search"
-msgstr "חיפוש"
+#: ../src/dh-window.c:659
+msgid "Forward"
+msgstr "קדימה"
 
-#: ../src/dh-window.c:1347
+#: ../src/dh-window.c:919
 msgid "Error opening the requested link."
 msgstr "שגיאה בפתיחת הקישור המבוקש."
 
-#: ../src/dh-window.c:1725
-#: ../src/dh-window.c:1972
+#: ../src/dh-window.c:1269
+#: ../src/dh-window.c:1455
 msgid "Empty Page"
 msgstr "דף ריק"
 
@@ -568,6 +496,63 @@ msgstr "תלוי ר_שיות"
 #: ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "הפעלה/כיבוי של חיפוש תלוי רשיות"
+
+#~ msgid "_Window"
+#~ msgstr "_חלון"
+
+#~ msgid "_Close"
+#~ msgstr "_סגירה"
+
+#~ msgid "_Edit"
+#~ msgstr "ע_ריכה"
+
+#~ msgid "_Copy"
+#~ msgstr "ה_עתקה"
+
+#~ msgid "Find _Next"
+#~ msgstr "חיפוש ה_בא"
+
+#~ msgid "Find _Previous"
+#~ msgstr "חיפוש ה_קודם"
+
+#~ msgid "_View"
+#~ msgstr "_תצוגה"
+
+#~ msgid "Fullscreen"
+#~ msgstr "מסך מלא"
+
+#~ msgid "_Go"
+#~ msgstr "מע_בר"
+
+#~ msgid "_Search Tab"
+#~ msgstr "לשונית _חיפוש"
+
+#~ msgid "_Contents Tab"
+#~ msgstr "לשונית _תכנים"
+
+#~ msgid "Go to the previous page"
+#~ msgstr "מעבר לדף הקודם"
+
+#~ msgid "Go to the next page"
+#~ msgstr "מעבר לדף הבא"
+
+#~ msgid "Decrease the text size"
+#~ msgstr "הקטנת גודל הטקסט"
+
+#~ msgid "Increase the text size"
+#~ msgstr "הגדלת גודל הטקסט"
+
+#~ msgid "Focus the Devhelp window with the search field active"
+#~ msgstr "Focus the Devhelp window with the search field active"
+
+#~ msgid "Search in:"
+#~ msgstr "חיפוש תחת:"
+
+#~ msgid "Contents"
+#~ msgstr "תכנים"
+
+#~ msgid "Search"
+#~ msgstr "חיפוש"
 
 #~ msgid "_File"
 #~ msgstr "_קובץ"
