@@ -643,7 +643,7 @@ window_populate (DhWindow *window)
         GtkWidget     *forward;
         GtkWidget     *box;
         GtkWidget     *menu_button;
-        GtkWidget     *menu;
+        GObject       *menu;
 
         priv = window->priv;
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
@@ -670,7 +670,7 @@ window_populate (DhWindow *window)
                                                 "",
                                                 FALSE);
         menu = gtk_builder_get_object (priv->builder, "window-menu");
-        gtk_menu_button_set_menu_model (menu_button, menu);
+        gtk_menu_button_set_menu_model (GTK_MENU_BUTTON (menu_button), G_MENU_MODEL (menu));
 
         /* Add toolbar to main box */
         gtk_box_pack_start (GTK_BOX (priv->main_box), priv->toolbar,
