@@ -1,4 +1,40 @@
 =============
+Version 3.7.5
+=============
+
+This release sees a revamp of the UI according to match GNOME 3 applications,
+thanks to the work of Aleksander Morgado and Thomas Bechtold during the
+developer experience hackfest in Brussels.
+
+Fixed bugs:
+
+ - #569021, header links don't jump to correct point in text
+ - #646402, [patch] port devhelp to gsettings
+ - #664080, Window title not updated when opening pages using search
+ - #671907, Do not use custom marshallers
+ - #679955, Use search entry for search entries
+ - #679956, Would be nice not to have to switch a tab to search
+ - #688955, Font selection does nothing
+ - #690599, memory leaks
+ - #690980, port to python3
+ - #692242, libdevhelp: Remove dh_init() from header since it doesn't exist
+            anymore.
+ - #692732, assistant-view: don't reference DhApplication
+ - #693017, Navigation back/forward seems broken with webkit2
+ - #693023, libdevhelp: Fix .pc file "Requires" when building with
+            webkitgtk2
+
+Updated translations: bg, el, es, gl, he, it, lt, nb, pl, sr@latin,
+sr, ug, zh_HK, zh_TW
+
+Many thanks to all contributors: Gheyret Kenji, Kjartan Maraas, Thomas
+Bechtold, Carl-Anton Ingmarsson, Alexander Shopov, Pavel Vasin,
+Мирослав Николић, Fran Diéguez, Piotr Drąg, Aurimas
+Černius, Daniel Mustieles, Milo Casagrande, Dimitris Spingos, Chao-Hsiung
+Liao, Yaron Shahrabani, Aleksander Morgado, Javier Jardón
+
+
+=============
 Version 3.7.3
 =============
 
