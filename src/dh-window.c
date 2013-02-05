@@ -746,7 +746,7 @@ window_populate (DhWindow *window)
         gtk_widget_show_all (priv->hpaned);
 
         /* Focus search in sidebar by default */
-        dh_sidebar_set_search_focus (priv->sidebar);
+        dh_sidebar_set_search_focus (DH_SIDEBAR (priv->sidebar));
 
         window_update_zoom_actions_state (window);
         window_open_new_tab (window, NULL, TRUE);
