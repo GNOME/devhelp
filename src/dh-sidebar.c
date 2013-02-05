@@ -345,6 +345,14 @@ dh_sidebar_set_search_string (DhSidebar   *self,
 
 /******************************************************************************/
 
+void
+dh_sidebar_set_search_focus (DhSidebar *self)
+{
+        gtk_widget_grab_focus (self->priv->entry);
+}
+
+/******************************************************************************/
+
 static void
 search_cell_data_func (GtkTreeViewColumn *tree_column,
                        GtkCellRenderer   *cell,

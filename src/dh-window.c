@@ -386,6 +386,16 @@ zoom_default_cb (GSimpleAction *action,
 }
 
 static void
+focus_search_cb (GSimpleAction *action,
+                 GVariant      *parameter,
+                 gpointer       user_data)
+{
+        DhWindow *window = user_data;
+
+        dh_sidebar_set_search_focus (DH_SIDEBAR (window->priv->sidebar));
+}
+
+static void
 go_back_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
@@ -451,6 +461,7 @@ static GActionEntry win_entries[] = {
         { "zoom-in",          zoom_in_cb,          NULL, NULL, NULL },
         { "zoom-out",         zoom_out_cb,         NULL, NULL, NULL },
         { "zoom-default",     zoom_default_cb,     NULL, NULL, NULL },
+        { "focus-search",     focus_search_cb,     NULL, NULL, NULL },
         /* go */
         { "go-back",          go_back_cb,          NULL, "false", NULL },
         { "go-forward",       go_forward_cb,       NULL, "false", NULL },
@@ -733,6 +744,9 @@ window_populate (DhWindow *window)
                           window);
 
         gtk_widget_show_all (priv->hpaned);
+
+        /* Focus search in sidebar by default */
+        dh_sidebar_set_search_focus (priv->sidebar);
 
         window_update_zoom_actions_state (window);
         window_open_new_tab (window, NULL, TRUE);

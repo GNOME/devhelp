@@ -60,6 +60,7 @@ void       dh_sidebar_select_uri        (DhSidebar   *self,
                                          const gchar *uri);
 void       dh_sidebar_set_search_string (DhSidebar   *self,
                                          const gchar *str);
+void       dh_sidebar_set_search_focus  (DhSidebar   *self);
 
 G_END_DECLS
 
