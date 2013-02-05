@@ -37,7 +37,7 @@ msgstr "Documentatie-browser"
 
 #: ../data/devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
-msgstr "documentatie;informatie;handleiding;ontwikkeling;api"
+msgstr "documentatie;informatie;handleiding;ontwikkeling;api;"
 
 #: ../data/devhelp.schemas.in.h:1
 msgid "Main window maximized state"

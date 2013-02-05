@@ -33,7 +33,7 @@ msgstr "پۈتۈك كۆرگۈ"
 
 #: ../data/devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
-msgstr "documentation;information;manual;developer;api;قوللانما؛ئۇچۇر؛چۈشەندۈرۈشى؛ئىجادىيەتچى؛پروگرامما ئېغىزى؛"
+msgstr "documentation;information;manual;developer;api;قوللانما;ئۇچۇر;چۈشەندۈرۈشى;ئىجادىيەتچى;پروگرامما ئېغىزى;"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:1
 msgid "Main window maximized state"
