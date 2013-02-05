@@ -917,7 +917,7 @@ static gboolean
 window_web_view_load_error_cb (WebKitWebView  *web_view,
                                WebKitWebFrame *frame,
                                gchar          *uri,
-                               gpointer       *web_error,
+                               GError         *web_error,
                                DhWindow       *window)
 #endif
 {
@@ -926,6 +926,10 @@ window_web_view_load_error_cb (WebKitWebView  *web_view,
         GtkWidget *message_label;
         GList     *children;
         gchar     *markup;
+
+        /* Ignore cancellation errors; which happen when typing fast in the search entry */
+        if (g_error_matches (web_error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
+                return TRUE;
 
         info_bar = window_get_active_info_bar (window);
         markup = g_strdup_printf ("<b>%s</b>",
