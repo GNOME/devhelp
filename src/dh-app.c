@@ -283,6 +283,7 @@ setup_accelerators (DhApp *self)
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>c",     "win.copy",         NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>p",     "win.print",        NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>t",     "win.new-tab",      NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>w",     "win.close",        NULL);
 }
 
 /******************************************************************************/
