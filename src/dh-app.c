@@ -278,7 +278,6 @@ setup_accelerators (DhApp *self)
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>minus", "win.zoom-out",     NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>plus",  "win.zoom-in",      NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>k",     "win.focus-search", NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>l",     "win.focus-search", NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>f",     "win.find",         NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>c",     "win.copy",         NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>p",     "win.print",        NULL);
