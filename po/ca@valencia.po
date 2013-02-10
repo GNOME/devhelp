@@ -4,26 +4,26 @@
 # Jordi Mallach <jordi@sindominio.ne>, 2003.
 # Aleix Badia i Bosch <a.badia@callusdigital.org>, 2005.
 # Xavier Conde Rueda <xavi.conde@gmail.com>, 2006
-# Gil Forcada <gilforcada@guifi.net>, 2007, 2008, 2009, 2010, 2012.
+# Gil Forcada <gilforcada@guifi.net>, 2007, 2008, 2009, 2010, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-18 01:49+0200\n"
-"PO-Revision-Date: 2012-08-15 00:26+0200\n"
+"POT-Creation-Date: 2013-02-10 18:28+0100\n"
+"PO-Revision-Date: 2013-02-10 18:27+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca-XV\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bits\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:167 ../src/dh-app.c:350
-#: ../src/dh-window.c:958 ../src/dh-window.c:1857
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:344
+#: ../src/dh-window.c:633
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -35,276 +35,140 @@ msgstr "Programa d'ajuda per als desenvolupadors"
 msgid "Documentation Browser"
 msgstr "Navegador de documentació"
 
-#: ../data/devhelp.schemas.in.h:1
+#: ../data/devhelp.desktop.in.in.h:4
+msgid "documentation;information;manual;developer;api;"
+msgstr "documentació;informació;manual;desenvolupador;api;"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:1
 msgid "Main window maximized state"
 msgstr "Estat maximitzat de la finestra principal"
 
-#: ../data/devhelp.schemas.in.h:2
+#: ../data/org.gnome.devhelp.gschema.xml.h:2
 msgid "Whether the main window should start maximized."
 msgstr "Si la finestra principal s'ha d'iniciar maximitzada."
 
-#: ../data/devhelp.schemas.in.h:3
+#: ../data/org.gnome.devhelp.gschema.xml.h:3
 msgid "Width of the main window"
 msgstr "Amplada de la finestra principal"
 
-#: ../data/devhelp.schemas.in.h:4
+#: ../data/org.gnome.devhelp.gschema.xml.h:4
 msgid "The width of the main window."
 msgstr "L'amplada de la finestra principal."
 
-#: ../data/devhelp.schemas.in.h:5
+#: ../data/org.gnome.devhelp.gschema.xml.h:5
 msgid "Height of main window"
 msgstr "Alçada de la finestra principal"
 
-#: ../data/devhelp.schemas.in.h:6
+#: ../data/org.gnome.devhelp.gschema.xml.h:6
 msgid "The height of the main window."
 msgstr "Alçada de la finestra principal."
 
-#: ../data/devhelp.schemas.in.h:7
+#: ../data/org.gnome.devhelp.gschema.xml.h:7
 msgid "X position of main window"
 msgstr "Posició X de la finestra principal"
 
-#: ../data/devhelp.schemas.in.h:8
+#: ../data/org.gnome.devhelp.gschema.xml.h:8
 msgid "The X position of the main window."
 msgstr "La posició X de la finestra principal."
 
-#: ../data/devhelp.schemas.in.h:9
+#: ../data/org.gnome.devhelp.gschema.xml.h:9
 msgid "Y position of main window"
 msgstr "Posició Y de la finestra principal"
 
-#: ../data/devhelp.schemas.in.h:10
+#: ../data/org.gnome.devhelp.gschema.xml.h:10
 msgid "The Y position of the main window."
 msgstr "La posició Y de la finestra principal."
 
-#: ../data/devhelp.schemas.in.h:11
-msgid "Width of the assistant window"
-msgstr "Amplada de la finestra auxiliar"
-
-#: ../data/devhelp.schemas.in.h:12
-msgid "The width of the assistant window."
-msgstr "L'amplada de la finestra auxiliar."
-
-#: ../data/devhelp.schemas.in.h:13
-msgid "Height of assistant window"
-msgstr "Alçada de la finestra auxiliar"
-
-#: ../data/devhelp.schemas.in.h:14
-msgid "The height of the assistant window."
-msgstr "Alçada de la finestra auxiliar."
-
-#: ../data/devhelp.schemas.in.h:15
-msgid "X position of assistant window"
-msgstr "Posició X de la finestra auxiliar"
-
-#: ../data/devhelp.schemas.in.h:16
-msgid "The X position of the assistant window."
-msgstr "La posició X de la finestra auxiliar."
-
-#: ../data/devhelp.schemas.in.h:17
-msgid "Y position of assistant window"
-msgstr "Posició Y de la finestra auxiliar"
-
-#: ../data/devhelp.schemas.in.h:18
-msgid "The Y position of the assistant window."
-msgstr "La posició Y de la finestra auxiliar."
-
-#: ../data/devhelp.schemas.in.h:19
+#: ../data/org.gnome.devhelp.gschema.xml.h:11
 msgid "Width of the index and search pane"
 msgstr "Amplada de la subfinestra d'índex i cerca"
 
-#: ../data/devhelp.schemas.in.h:20
+#: ../data/org.gnome.devhelp.gschema.xml.h:12
 msgid "The width of the index and search pane."
 msgstr "L'amplada de la subfinestra d'índex i cerca."
 
-#: ../data/devhelp.schemas.in.h:21
+#: ../data/org.gnome.devhelp.gschema.xml.h:13
 msgid "Selected tab: \"content\" or \"search\""
 msgstr "Pestanya seleccionada: «content» (contingut) o «search» (cerca)"
 
-#: ../data/devhelp.schemas.in.h:22
+#: ../data/org.gnome.devhelp.gschema.xml.h:14
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr ""
 "Quina pestanya està seleccionada: «content» (contingut) o «search» (cerca)."
 
-#: ../data/devhelp.schemas.in.h:23
+#: ../data/org.gnome.devhelp.gschema.xml.h:15
 msgid "Books disabled"
 msgstr "Llibres inhabilitats"
 
-#: ../data/devhelp.schemas.in.h:24
+#: ../data/org.gnome.devhelp.gschema.xml.h:16
 msgid "List of books disabled by the user."
 msgstr "Llibres que l'usuari ha inhabilitat."
 
-#: ../data/devhelp.schemas.in.h:25
+#: ../data/org.gnome.devhelp.gschema.xml.h:17
 msgid "Group by language"
 msgstr "Agrupa per llenguatge"
 
-#: ../data/devhelp.schemas.in.h:26
+#: ../data/org.gnome.devhelp.gschema.xml.h:18
 msgid "Whether books should be grouped by language in the UI"
 msgstr ""
 "Si a la interfície d'usuari els llibres s'haurien d'agrupar per llenguatge"
 
-#: ../data/devhelp.schemas.in.h:27
+#: ../data/org.gnome.devhelp.gschema.xml.h:19
+msgid "Width of the assistant window"
+msgstr "Amplada de la finestra auxiliar"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:20
+msgid "The width of the assistant window."
+msgstr "L'amplada de la finestra auxiliar."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:21
+msgid "Height of assistant window"
+msgstr "Alçada de la finestra auxiliar"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:22
+msgid "The height of the assistant window."
+msgstr "Alçada de la finestra auxiliar."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:23
+msgid "X position of assistant window"
+msgstr "Posició X de la finestra auxiliar"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:24
+msgid "The X position of the assistant window."
+msgstr "La posició X de la finestra auxiliar."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:25
+msgid "Y position of assistant window"
+msgstr "Posició Y de la finestra auxiliar"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:26
+msgid "The Y position of the assistant window."
+msgstr "La posició Y de la finestra auxiliar."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:27
 msgid "Use system fonts"
 msgstr "Utilitza els tipus de lletra del sistema"
 
-#: ../data/devhelp.schemas.in.h:28
+#: ../data/org.gnome.devhelp.gschema.xml.h:28
 msgid "Use the system default fonts."
 msgstr "Utilitza els tipus de lletra predeterminats del sistema."
 
-#: ../data/devhelp.schemas.in.h:29
+#: ../data/org.gnome.devhelp.gschema.xml.h:29
 msgid "Font for text"
 msgstr "Tipus de lletra per al text"
 
-#: ../data/devhelp.schemas.in.h:30
+#: ../data/org.gnome.devhelp.gschema.xml.h:30
 msgid "Font for text with variable width."
 msgstr "Tipus de lletra per al text d'amplada variable."
 
-#: ../data/devhelp.schemas.in.h:31
+#: ../data/org.gnome.devhelp.gschema.xml.h:31
 msgid "Font for fixed width text"
 msgstr "Tipus de lletra per al text de mida fixa"
 
-#: ../data/devhelp.schemas.in.h:32
+#: ../data/org.gnome.devhelp.gschema.xml.h:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Tipus de lletra per al text d'amplada fixa, com ara en els exemples de codi."
-
-#: ../data/ui/devhelp.builder.h:1
-msgid "New window"
-msgstr "Finestra nova"
-
-#: ../data/ui/devhelp.builder.h:2
-msgid "Preferences"
-msgstr "Preferències"
-
-#: ../data/ui/devhelp.builder.h:3
-msgid "About Devhelp"
-msgstr "Quant al Devhelp"
-
-#: ../data/ui/devhelp.builder.h:4
-msgid "Quit"
-msgstr "Ix"
-
-#: ../data/ui/devhelp.builder.h:5
-msgid "_Window"
-msgstr "_Finestra"
-
-#: ../data/ui/devhelp.builder.h:6
-msgid "New _Tab"
-msgstr "_Pestanya nova"
-
-#: ../data/ui/devhelp.builder.h:7
-msgid "_Print"
-msgstr "Im_primeix"
-
-#: ../data/ui/devhelp.builder.h:8
-msgid "_Close"
-msgstr "Tan_ca"
-
-#: ../data/ui/devhelp.builder.h:9
-msgid "_Edit"
-msgstr "_Edita"
-
-#: ../data/ui/devhelp.builder.h:10
-msgid "_Copy"
-msgstr "_Copia"
-
-#: ../data/ui/devhelp.builder.h:11
-msgid "_Find"
-msgstr "_Cerca"
-
-#: ../data/ui/devhelp.builder.h:12
-msgid "Find _Next"
-msgstr "Cerca el següe_nt"
-
-#: ../data/ui/devhelp.builder.h:13
-msgid "Find _Previous"
-msgstr "Cerca l'_anterior"
-
-#: ../data/ui/devhelp.builder.h:14
-msgid "_View"
-msgstr "_Visualitza"
-
-#: ../data/ui/devhelp.builder.h:15
-msgid "_Larger text"
-msgstr "Text més _gran"
-
-#: ../data/ui/devhelp.builder.h:16
-msgid "S_maller text"
-msgstr "Text més _petit"
-
-#: ../data/ui/devhelp.builder.h:17
-msgid "_Normal size"
-msgstr "Mida _normal"
-
-#: ../data/ui/devhelp.builder.h:18
-msgid "Fullscreen"
-msgstr "Pantalla completa"
-
-#: ../data/ui/devhelp.builder.h:19
-msgid "_Go"
-msgstr "_Vés a"
-
-#: ../data/ui/devhelp.builder.h:20
-msgid "_Back"
-msgstr "_Enrere"
-
-#: ../data/ui/devhelp.builder.h:21
-msgid "_Forward"
-msgstr "E_ndavant"
-
-#: ../data/ui/devhelp.builder.h:22
-msgid "_Search Tab"
-msgstr "Pestanya de _cerca"
-
-#: ../data/ui/devhelp.builder.h:23
-msgid "_Contents Tab"
-msgstr "Pestanya de _continguts"
-
-#: ../data/ui/devhelp.builder.h:24
-msgid "Go to the previous page"
-msgstr "Vés a la pàgina anterior"
-
-#: ../data/ui/devhelp.builder.h:25
-msgid "Go to the next page"
-msgstr "Vés a la pàgina següent"
-
-#: ../data/ui/devhelp.builder.h:26
-msgid "Decrease the text size"
-msgstr "Redueix la mida del text"
-
-#: ../data/ui/devhelp.builder.h:27
-msgid "Increase the text size"
-msgstr "Augmenta la mida del text"
-
-#: ../data/ui/devhelp.builder.h:28
-msgid "_Group by language"
-msgstr "A_grupa per llenguatge"
-
-#: ../data/ui/devhelp.builder.h:29
-msgid "Enabled"
-msgstr "Habilitat"
-
-#: ../data/ui/devhelp.builder.h:30
-msgid "Title"
-msgstr "Títol"
-
-#: ../data/ui/devhelp.builder.h:31
-msgid "Book Shelf"
-msgstr "Prestatgeria"
-
-#: ../data/ui/devhelp.builder.h:32
-msgid "_Use system fonts"
-msgstr "_Utilitza els tipus de lletra del sistema"
-
-#: ../data/ui/devhelp.builder.h:33
-msgid "_Variable width: "
-msgstr "Amplada _variable: "
-
-#: ../data/ui/devhelp.builder.h:34
-msgid "_Fixed width:"
-msgstr "Amplada _fixa:"
-
-#: ../data/ui/devhelp.builder.h:35
-msgid "Fonts"
-msgstr "Tipus de lletra"
 
 # gil: al ser un connector per el gedit i que fa el que diu la següent
 #     cadena, trobo que així tot i no ser correcte s'entendrà més
@@ -325,36 +189,108 @@ msgstr "Mostra la documentació de l'API"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Mostra la documentació de l'API per a la paraula sota el cursor"
 
-#: ../src/dh-app.c:162
+#: ../src/devhelp.ui.h:1
+msgid "New window"
+msgstr "Finestra nova"
+
+#: ../src/devhelp.ui.h:2
+msgid "Preferences"
+msgstr "Preferències"
+
+#: ../src/devhelp.ui.h:3
+msgid "About Devhelp"
+msgstr "Quant al Devhelp"
+
+#: ../src/devhelp.ui.h:4
+msgid "Quit"
+msgstr "Ix"
+
+#: ../src/devhelp.ui.h:5
+msgid "New _Tab"
+msgstr "_Pestanya nova"
+
+#: ../src/devhelp.ui.h:6
+msgid "_Print"
+msgstr "Im_primeix"
+
+#: ../src/devhelp.ui.h:7
+msgid "_Find"
+msgstr "_Cerca"
+
+#: ../src/devhelp.ui.h:8
+msgid "_Larger text"
+msgstr "Text més _gran"
+
+#: ../src/devhelp.ui.h:9
+msgid "S_maller text"
+msgstr "Text més _petit"
+
+#: ../src/devhelp.ui.h:10
+msgid "_Normal size"
+msgstr "Mida _normal"
+
+#: ../src/devhelp.ui.h:11
+msgid "_Group by language"
+msgstr "A_grupa per llenguatge"
+
+#: ../src/devhelp.ui.h:12
+msgid "Enabled"
+msgstr "Habilitat"
+
+#: ../src/devhelp.ui.h:13
+msgid "Title"
+msgstr "Títol"
+
+#: ../src/devhelp.ui.h:14
+msgid "Book Shelf"
+msgstr "Prestatgeria"
+
+#: ../src/devhelp.ui.h:15
+msgid "_Use system fonts"
+msgstr "_Utilitza els tipus de lletra del sistema"
+
+#: ../src/devhelp.ui.h:16
+msgid "_Variable width: "
+msgstr "Amplada _variable: "
+
+#: ../src/devhelp.ui.h:17
+msgid "_Fixed width:"
+msgstr "Amplada _fixa:"
+
+#: ../src/devhelp.ui.h:18
+msgid "Fonts"
+msgstr "Tipus de lletra"
+
+#: ../src/dh-app.c:157
 msgid "translator_credits"
 msgstr ""
 "Aleix Badia i Bosch <a.badia@callusdigital.org>\n"
 "Xavier Conde Rueda <xavi.conde@gmail.com>\n"
 "Gil Forcada <gilforcada@guifi.net>"
 
-#: ../src/dh-app.c:169
+#: ../src/dh-app.c:164
 msgid "A developers' help browser for GNOME"
 msgstr "Un navegador d'ajuda per a desenvolupadors del GNOME"
 
-#: ../src/dh-app.c:177
+#: ../src/dh-app.c:172
 msgid "DevHelp Website"
 msgstr "Pàgina web del Devhelp"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:76
+#: ../src/dh-assistant.c:121
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Auxiliar"
 
-#: ../src/dh-assistant-view.c:395
+#: ../src/dh-assistant-view.c:403
 msgid "Book:"
 msgstr "Llibre:"
 
-#: ../src/dh-book.c:252
+#: ../src/dh-book.c:255
 #, c-format
 msgid "Language: %s"
 msgstr "Llenguatge: %s"
 
-#: ../src/dh-book.c:253
+#: ../src/dh-book.c:256
 msgid "Language: Undefined"
 msgstr "Llenguatge: no definit"
 
@@ -409,31 +345,27 @@ msgstr "Enumeració"
 msgid "Type"
 msgstr "Tipus"
 
-#: ../src/dh-main.c:48
+#: ../src/dh-main.c:43
 msgid "Opens a new Devhelp window"
 msgstr "Obri una finestra del Devhelp nova"
 
-#: ../src/dh-main.c:53
-msgid "Focus the Devhelp window with the search field active"
-msgstr "Dóna el focus a la finestra del Devhelp amb el camp de cerca actiu"
-
-#: ../src/dh-main.c:58
+#: ../src/dh-main.c:48
 msgid "Search for a keyword"
 msgstr "Cerca una paraula clau"
 
-#: ../src/dh-main.c:59 ../src/dh-main.c:64
+#: ../src/dh-main.c:49 ../src/dh-main.c:54
 msgid "KEYWORD"
 msgstr "PARAULA CLAU"
 
-#: ../src/dh-main.c:63
+#: ../src/dh-main.c:53
 msgid "Search and display any hit in the assistant window"
 msgstr "Cerca i visualitza qualsevol coincidència a la finestra auxiliar"
 
-#: ../src/dh-main.c:68
+#: ../src/dh-main.c:58
 msgid "Display the version and exit"
 msgstr "Mostra la versió i ix"
 
-#: ../src/dh-main.c:73
+#: ../src/dh-main.c:63
 msgid "Quit any running Devhelp"
 msgstr "Ix de tots els Devhelp en execució"
 
@@ -485,63 +417,64 @@ msgstr ""
 msgid "Cannot uncompress book '%s': %s"
 msgstr "No s'ha pogut descomprimir el llibre «%s»: %s"
 
-#: ../src/dh-search.c:492
-msgid "All books"
+#. Setup the Current/All Files selector
+#: ../src/dh-sidebar.c:478
+msgid "Current"
+msgstr "Actual"
+
+#: ../src/dh-sidebar.c:481
+msgid "All Books"
 msgstr "Tots els llibres"
 
-#: ../src/dh-search.c:1110
-msgid "Search in:"
-msgstr "Cerca a:"
-
-#: ../src/dh-window.c:100
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:101
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:102
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:107
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:108
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:1046
-msgid "Contents"
-msgstr "Continguts"
+#: ../src/dh-window.c:664
+msgid "Back"
+msgstr "Arrere"
 
-#: ../src/dh-window.c:1056
-msgid "Search"
-msgstr "Cerca"
+#: ../src/dh-window.c:669
+msgid "Forward"
+msgstr "Avant"
 
-#: ../src/dh-window.c:1266
+#: ../src/dh-window.c:936
 msgid "Error opening the requested link."
 msgstr "S'ha produït un error en obrir l'enllaç sol·licitat."
 
-#: ../src/dh-window.c:1638 ../src/dh-window.c:1885
+#: ../src/dh-window.c:1286 ../src/dh-window.c:1472
 msgid "Empty Page"
 msgstr "Pàgina buida"
 
@@ -572,6 +505,63 @@ msgstr "_Diferencia entre minúscules i majúscules"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Commuta la cerca diferenciant les minúscules de les majúscules"
+
+#~ msgid "_Window"
+#~ msgstr "_Finestra"
+
+#~ msgid "_Close"
+#~ msgstr "Tan_ca"
+
+#~ msgid "_Edit"
+#~ msgstr "_Edita"
+
+#~ msgid "_Copy"
+#~ msgstr "_Copia"
+
+#~ msgid "Find _Next"
+#~ msgstr "Cerca el següe_nt"
+
+#~ msgid "Find _Previous"
+#~ msgstr "Cerca l'_anterior"
+
+#~ msgid "_View"
+#~ msgstr "_Visualitza"
+
+#~ msgid "Fullscreen"
+#~ msgstr "Pantalla completa"
+
+#~ msgid "_Go"
+#~ msgstr "_Vés a"
+
+#~ msgid "_Search Tab"
+#~ msgstr "Pestanya de _cerca"
+
+#~ msgid "_Contents Tab"
+#~ msgstr "Pestanya de _continguts"
+
+#~ msgid "Go to the previous page"
+#~ msgstr "Vés a la pàgina anterior"
+
+#~ msgid "Go to the next page"
+#~ msgstr "Vés a la pàgina següent"
+
+#~ msgid "Decrease the text size"
+#~ msgstr "Redueix la mida del text"
+
+#~ msgid "Increase the text size"
+#~ msgstr "Augmenta la mida del text"
+
+#~ msgid "Focus the Devhelp window with the search field active"
+#~ msgstr "Dóna el focus a la finestra del Devhelp amb el camp de cerca actiu"
+
+#~ msgid "Search in:"
+#~ msgstr "Cerca a:"
+
+#~ msgid "Contents"
+#~ msgstr "Continguts"
+
+#~ msgid "Search"
+#~ msgstr "Cerca"
 
 #~ msgid "_File"
 #~ msgstr "_Fitxer"
