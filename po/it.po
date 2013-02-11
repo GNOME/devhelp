@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-27 18:14+0100\n"
-"PO-Revision-Date: 2013-01-27 18:15+0100\n"
+"POT-Creation-Date: 2013-02-11 21:26+0100\n"
+"PO-Revision-Date: 2013-02-11 21:26+0100\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -22,8 +22,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:168 ../src/dh-app.c:351
-#: ../src/dh-window.c:1020 ../src/dh-window.c:1945
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:344
+#: ../src/dh-window.c:633
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -172,157 +172,6 @@ msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Tipo di carattere per il testo ad ampiezza fissa, come esempi di codice."
 
-#: ../data/ui/devhelp.builder.h:1
-msgid "New window"
-msgstr "Nuova finestra"
-
-#: ../data/ui/devhelp.builder.h:2
-msgid "Preferences"
-msgstr "Preferenze"
-
-#: ../data/ui/devhelp.builder.h:3
-msgid "About Devhelp"
-msgstr "Informazioni su Devhelp"
-
-#: ../data/ui/devhelp.builder.h:4
-msgid "Quit"
-msgstr "Esci"
-
-#: ../data/ui/devhelp.builder.h:5
-msgid "_Window"
-msgstr "_Finestra"
-
-#: ../data/ui/devhelp.builder.h:6
-msgid "New _Tab"
-msgstr "Nuova _scheda"
-
-#: ../data/ui/devhelp.builder.h:7
-msgid "_Print"
-msgstr "Stam_pa"
-
-#: ../data/ui/devhelp.builder.h:8
-msgid "_Close"
-msgstr "_Chiudi"
-
-#: ../data/ui/devhelp.builder.h:9
-msgid "_Edit"
-msgstr "_Modifica"
-
-#: ../data/ui/devhelp.builder.h:10
-msgid "_Copy"
-msgstr "_Copia"
-
-#: ../data/ui/devhelp.builder.h:11
-msgid "_Find"
-msgstr "Tr_ova"
-
-#: ../data/ui/devhelp.builder.h:12
-msgid "Find _Next"
-msgstr "Trova _successiva"
-
-#: ../data/ui/devhelp.builder.h:13
-msgid "Find _Previous"
-msgstr "Trova _precedente"
-
-# GNOME-2-22
-#: ../data/ui/devhelp.builder.h:14
-msgid "_View"
-msgstr "_Visualizza"
-
-# GNOME-2-22
-# tradotto come in Ephy, non so se anche
-# gli originali coincidono --Luca
-#: ../data/ui/devhelp.builder.h:15
-msgid "_Larger text"
-msgstr "Testo più _grande"
-
-# GNOME-2-22
-#: ../data/ui/devhelp.builder.h:16
-msgid "S_maller text"
-msgstr "Testo più _piccolo"
-
-# GNOME-2-22
-#: ../data/ui/devhelp.builder.h:17
-msgid "_Normal size"
-msgstr "Dimensione _normale"
-
-#: ../data/ui/devhelp.builder.h:18
-msgid "Fullscreen"
-msgstr "Schermo intero"
-
-# GNOME-2-22
-#: ../data/ui/devhelp.builder.h:19
-msgid "_Go"
-msgstr "V_ai"
-
-#: ../data/ui/devhelp.builder.h:20
-msgid "_Back"
-msgstr "In_dietro"
-
-#: ../data/ui/devhelp.builder.h:21
-msgid "_Forward"
-msgstr "A_vanti"
-
-#: ../data/ui/devhelp.builder.h:22
-msgid "_Search Tab"
-msgstr "Scheda _ricerca"
-
-#: ../data/ui/devhelp.builder.h:23
-msgid "_Contents Tab"
-msgstr "Scheda _sommario"
-
-# GNOME-2-22
-#: ../data/ui/devhelp.builder.h:24
-msgid "Go to the previous page"
-msgstr "Va alla pagina precedente"
-
-# GNOME-2-22
-#: ../data/ui/devhelp.builder.h:25
-msgid "Go to the next page"
-msgstr "Va alla pagina successiva"
-
-# GNOME-2-22
-#: ../data/ui/devhelp.builder.h:26
-msgid "Decrease the text size"
-msgstr "Riduce la dimensione del testo"
-
-# GNOME-2-22
-#: ../data/ui/devhelp.builder.h:27
-msgid "Increase the text size"
-msgstr "Aumenta la dimensione del testo"
-
-#: ../data/ui/devhelp.builder.h:28
-msgid "_Group by language"
-msgstr "Ra_ggruppare per linguaggio"
-
-#: ../data/ui/devhelp.builder.h:29
-msgid "Enabled"
-msgstr "Abilitato"
-
-#: ../data/ui/devhelp.builder.h:30
-msgid "Title"
-msgstr "Titolo"
-
-#: ../data/ui/devhelp.builder.h:31
-msgid "Book Shelf"
-msgstr "Raccolta libri"
-
-#: ../data/ui/devhelp.builder.h:32
-msgid "_Use system fonts"
-msgstr "_Usare i tipi di carattere di sistema"
-
-#: ../data/ui/devhelp.builder.h:33
-msgid "_Variable width: "
-msgstr "Larghezza _variabile:"
-
-#: ../data/ui/devhelp.builder.h:34
-msgid "_Fixed width:"
-msgstr "Larghezza _fissa:"
-
-#: ../data/ui/devhelp.builder.h:35
-msgid "Fonts"
-msgstr "Tipi di carattere"
-
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Supporto DevHelp"
@@ -343,35 +192,112 @@ msgid "Show API Documentation for the word at the cursor"
 msgstr ""
 "Mostra la documentazione delle API per la parola alla posizione del cursore"
 
-#: ../src/dh-app.c:163
+#: ../src/devhelp.ui.h:1
+msgid "New window"
+msgstr "Nuova finestra"
+
+#: ../src/devhelp.ui.h:2
+msgid "Preferences"
+msgstr "Preferenze"
+
+#: ../src/devhelp.ui.h:3
+msgid "About Devhelp"
+msgstr "Informazioni su Devhelp"
+
+#: ../src/devhelp.ui.h:4
+msgid "Quit"
+msgstr "Esci"
+
+#: ../src/devhelp.ui.h:5
+msgid "New _Tab"
+msgstr "Nuova _scheda"
+
+#: ../src/devhelp.ui.h:6
+msgid "_Print"
+msgstr "Stam_pa"
+
+#: ../src/devhelp.ui.h:7
+msgid "_Find"
+msgstr "Tr_ova"
+
+# GNOME-2-22
+# tradotto come in Ephy, non so se anche
+# gli originali coincidono --Luca
+#: ../src/devhelp.ui.h:8
+msgid "_Larger text"
+msgstr "Testo più _grande"
+
+# GNOME-2-22
+#: ../src/devhelp.ui.h:9
+msgid "S_maller text"
+msgstr "Testo più _piccolo"
+
+# GNOME-2-22
+#: ../src/devhelp.ui.h:10
+msgid "_Normal size"
+msgstr "Dimensione _normale"
+
+#: ../src/devhelp.ui.h:11
+msgid "_Group by language"
+msgstr "Ra_ggruppare per linguaggio"
+
+#: ../src/devhelp.ui.h:12
+msgid "Enabled"
+msgstr "Abilitato"
+
+#: ../src/devhelp.ui.h:13
+msgid "Title"
+msgstr "Titolo"
+
+#: ../src/devhelp.ui.h:14
+msgid "Book Shelf"
+msgstr "Raccolta libri"
+
+#: ../src/devhelp.ui.h:15
+msgid "_Use system fonts"
+msgstr "_Usare i tipi di carattere di sistema"
+
+#: ../src/devhelp.ui.h:16
+msgid "_Variable width: "
+msgstr "Larghezza _variabile:"
+
+#: ../src/devhelp.ui.h:17
+msgid "_Fixed width:"
+msgstr "Larghezza _fissa:"
+
+#: ../src/devhelp.ui.h:18
+msgid "Fonts"
+msgstr "Tipi di carattere"
+
+#: ../src/dh-app.c:157
 msgid "translator_credits"
 msgstr ""
 "Milo Casagrande <milo@ubuntu.com>\n"
 "Francesco Marletta <francesco.marletta@tiscali.it>"
 
-#: ../src/dh-app.c:170
+#: ../src/dh-app.c:164
 msgid "A developers' help browser for GNOME"
 msgstr "Un visualizzatore per la documentazione di sviluppo per GNOME"
 
-#: ../src/dh-app.c:178
+#: ../src/dh-app.c:172
 msgid "DevHelp Website"
 msgstr "Sito web di DevHelp"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:106
+#: ../src/dh-assistant.c:121
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Assistente"
 
-#: ../src/dh-assistant-view.c:395
+#: ../src/dh-assistant-view.c:403
 msgid "Book:"
 msgstr "Libro:"
 
-#: ../src/dh-book.c:256
+#: ../src/dh-book.c:255
 #, c-format
 msgid "Language: %s"
 msgstr "Linguaggio: %s"
 
-#: ../src/dh-book.c:257
+#: ../src/dh-book.c:256
 msgid "Language: Undefined"
 msgstr "Linguaggio: non definito"
 
@@ -426,31 +352,27 @@ msgstr "Enum"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/dh-main.c:48
+#: ../src/dh-main.c:43
 msgid "Opens a new Devhelp window"
 msgstr "Apre una nuova finestra di Devhelp"
 
-#: ../src/dh-main.c:53
-msgid "Focus the Devhelp window with the search field active"
-msgstr "Dà il focus alla finestra di Devhelp con il campo di ricerca attivo"
-
-#: ../src/dh-main.c:58
+#: ../src/dh-main.c:48
 msgid "Search for a keyword"
 msgstr "Cerca per parola chiave"
 
-#: ../src/dh-main.c:59 ../src/dh-main.c:64
+#: ../src/dh-main.c:49 ../src/dh-main.c:54
 msgid "KEYWORD"
 msgstr "PAROLACHIAVE"
 
-#: ../src/dh-main.c:63
+#: ../src/dh-main.c:53
 msgid "Search and display any hit in the assistant window"
 msgstr "Cerca e mostra ogni corrispondenza nella finestra assistente"
 
-#: ../src/dh-main.c:68
+#: ../src/dh-main.c:58
 msgid "Display the version and exit"
 msgstr "Mostra la versione ed esce"
 
-#: ../src/dh-main.c:73
+#: ../src/dh-main.c:63
 msgid "Quit any running Devhelp"
 msgstr "Termina ogni Devhelp in esecuzione"
 
@@ -504,63 +426,64 @@ msgstr ""
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Impossibile decomprimere il libro «%s»: %s"
 
-#: ../src/dh-search.c:492
-msgid "All books"
+#. Setup the Current/All Files selector
+#: ../src/dh-sidebar.c:478
+msgid "Current"
+msgstr "Attuale"
+
+#: ../src/dh-sidebar.c:481
+msgid "All Books"
 msgstr "Tutti i libri"
 
-#: ../src/dh-search.c:1110
-msgid "Search in:"
-msgstr "Cerca in:"
-
-#: ../src/dh-window.c:103
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:104
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:105
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:106
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:107
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:108
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:109
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:110
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:111
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:1099
-msgid "Contents"
-msgstr "Sommario"
+#: ../src/dh-window.c:664
+msgid "Back"
+msgstr "Indietro"
 
-#: ../src/dh-window.c:1108
-msgid "Search"
-msgstr "Cerca"
+#: ../src/dh-window.c:669
+msgid "Forward"
+msgstr "Avanti"
 
-#: ../src/dh-window.c:1348
+#: ../src/dh-window.c:936
 msgid "Error opening the requested link."
 msgstr "Errore nell'aprire il collegamento richiesto."
 
-#: ../src/dh-window.c:1726 ../src/dh-window.c:1973
+#: ../src/dh-window.c:1286 ../src/dh-window.c:1472
 msgid "Empty Page"
 msgstr "Pagina vuota"
 
