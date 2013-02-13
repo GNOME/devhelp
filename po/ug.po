@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-02 03:10+0000\n"
-"PO-Revision-Date: 2013-02-02 13:24+0900\n"
+"POT-Creation-Date: 2013-02-06 10:10+0000\n"
+"PO-Revision-Date: 2013-02-13 19:47+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: \n"
@@ -18,8 +18,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:342
-#: ../src/dh-window.c:623
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:345
+#: ../src/dh-window.c:633
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -280,12 +280,12 @@ msgstr "Devhelp –  ياردەمچىسى"
 msgid "Book:"
 msgstr "كىتاب:"
 
-#: ../src/dh-book.c:256
+#: ../src/dh-book.c:255
 #, c-format
 msgid "Language: %s"
 msgstr "تىل: %s"
 
-#: ../src/dh-book.c:257
+#: ../src/dh-book.c:256
 msgid "Language: Undefined"
 msgstr "تىل: ئېنىقلانمىغان"
 
@@ -405,63 +405,63 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "كىتاب ‹%s› نى يايالمىدى: %s"
 
 #. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:471
+#: ../src/dh-sidebar.c:478
 msgid "Current"
 msgstr "نۆۋەتتىكى"
 
-#: ../src/dh-sidebar.c:474
+#: ../src/dh-sidebar.c:481
 msgid "All Books"
 msgstr "بارلىق كىتابلار"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:664
 msgid "Back"
 msgstr "كەينى"
 
-#: ../src/dh-window.c:659
+#: ../src/dh-window.c:669
 msgid "Forward"
 msgstr "ئالدى"
 
-#: ../src/dh-window.c:919
+#: ../src/dh-window.c:936
 msgid "Error opening the requested link."
 msgstr "تەلەپ قىلىنغان ئۇلانمىنى ئېچىشتا خاتالىق كۆرۈلدى"
 
-#: ../src/dh-window.c:1269 ../src/dh-window.c:1455
+#: ../src/dh-window.c:1286 ../src/dh-window.c:1472
 msgid "Empty Page"
 msgstr "قۇرۇق بەت"
 
