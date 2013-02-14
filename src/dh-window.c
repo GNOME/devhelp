@@ -56,7 +56,6 @@ struct _DhWindowPriv {
         GtkWidget      *findbar;
 
         GtkBuilder     *builder;
-        GtkActionGroup *action_group;
 
         DhLink         *selected_search_link;
         guint           find_source_id;
