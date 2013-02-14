@@ -434,6 +434,19 @@ go_forward_cb (GSimpleAction *action,
 }
 
 static void
+gear_menu_cb (GSimpleAction *action,
+              GVariant      *parameter,
+              gpointer       user_data)
+{
+        GVariant *state;
+
+        state = g_action_get_state (G_ACTION (action));
+        g_action_change_state (G_ACTION (action),
+                               g_variant_new_boolean (!g_variant_get_boolean (state)));
+        g_variant_unref (state);
+}
+
+static void
 window_open_link_cb (DhWindow *window,
                      const char *location,
                      DhOpenLinkFlags flags)
@@ -464,6 +477,8 @@ static GActionEntry win_entries[] = {
         /* go */
         { "go-back",          go_back_cb,          NULL, "false", NULL },
         { "go-forward",       go_forward_cb,       NULL, "false", NULL },
+        /* gear menu */
+        { "gear-menu",        gear_menu_cb,        NULL, "false", NULL },
 };
 
 static void
@@ -678,6 +693,8 @@ window_populate (DhWindow *window)
                                                 "emblem-system-symbolic",
                                                 "",
                                                 FALSE);
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (menu_button), "win.gear-menu");
+
         menu = gtk_builder_get_object (priv->builder, "window-menu");
         gtk_menu_button_set_menu_model (GTK_MENU_BUTTON (menu_button), G_MENU_MODEL (menu));
 
