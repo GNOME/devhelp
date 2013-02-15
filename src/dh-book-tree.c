@@ -749,6 +749,11 @@ dh_book_tree_select_uri (DhBookTree  *tree,
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
 
+        /* Do not re-select (which will expand current additionally) if already
+         * there. */
+        if (gtk_tree_selection_iter_is_selected (selection, &data.iter))
+                return;
+
 	g_signal_handlers_block_by_func	(selection,
 					 book_tree_selection_changed_cb,
 					 tree);
