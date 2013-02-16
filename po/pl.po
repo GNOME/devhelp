@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-03 00:15+0100\n"
-"PO-Revision-Date: 2013-02-03 00:16+0100\n"
+"POT-Creation-Date: 2013-02-16 21:32+0100\n"
+"PO-Revision-Date: 2013-02-16 21:33+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -29,8 +29,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:342
-#: ../src/dh-window.c:623
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:345
+#: ../src/dh-window.c:647
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -60,7 +60,7 @@ msgstr "Szerokość głównego okna"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:4
 msgid "The width of the main window."
-msgstr "Szerokość głównego okna"
+msgstr "Szerokość głównego okna."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:5
 msgid "Height of main window"
@@ -293,12 +293,12 @@ msgstr "Devhelp — asystent"
 msgid "Book:"
 msgstr "Książka:"
 
-#: ../src/dh-book.c:256
+#: ../src/dh-book.c:255
 #, c-format
 msgid "Language: %s"
 msgstr "Język: %s"
 
-#: ../src/dh-book.c:257
+#: ../src/dh-book.c:256
 msgid "Language: Undefined"
 msgstr "Język: nieokreślony"
 
@@ -424,63 +424,63 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Nie można dekompresować książki \"%s\": %s"
 
 #. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:471
+#: ../src/dh-sidebar.c:478
 msgid "Current"
 msgstr "Bieżące"
 
-#: ../src/dh-sidebar.c:474
+#: ../src/dh-sidebar.c:481
 msgid "All Books"
 msgstr "Wszystkie książki"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:85
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:86
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:87
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:88
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:89
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:90
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:91
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:92
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:93
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:678
 msgid "Back"
 msgstr "Wstecz"
 
-#: ../src/dh-window.c:659
+#: ../src/dh-window.c:683
 msgid "Forward"
 msgstr "Dalej"
 
-#: ../src/dh-window.c:919
+#: ../src/dh-window.c:952
 msgid "Error opening the requested link."
 msgstr "Błąd podczas otwierania żądanego odnośnika."
 
-#: ../src/dh-window.c:1269 ../src/dh-window.c:1455
+#: ../src/dh-window.c:1302 ../src/dh-window.c:1488
 msgid "Empty Page"
 msgstr "Pusta strona"
 
