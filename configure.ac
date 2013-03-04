@@ -9,7 +9,7 @@ AC_INIT([Devhelp],
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
 #   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
 #   (No interfaces changed:                   REVISION++)
-LIBDEVHELP_CURRENT=1
+LIBDEVHELP_CURRENT=2
 LIBDEVHELP_AGE=0
 LIBDEVHELP_REVISION=0
 
