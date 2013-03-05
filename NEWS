@@ -1,3 +1,27 @@
+==============
+Version 3.7.91
+==============
+
+Fixed bugs:
+
+ - #569021, header links don't jump to correct point in text
+ - #600309, impossible or very cumbersome to navigate from keyboard
+ - #640567, Error shown when changing books/pages too fast
+ - #665531, devhelp: change ShowSearchTab key to ctrl+K
+ - #671907, Do not use custom marshallers
+ - #673320, Nodes in side tree should not expand on focus
+ - #693237, Syntax errors in the desktop file
+
+Updated translations: ca, ca@valencia, cs, de, el, gl, it, lt, nb, nl,
+pl, sl, sr@latin, sr, th, ug
+
+Many thanks to all contributors: Gil Forcada, Gheyret Kenji, Kalev Lember,
+Thomas Bechtold, Мирослав Николић, Matej Urbančič, Mario
+Blättermann, Piotr Drąg, Theppitak Karoonboonyanan, Aurimas Černius, Fran
+Diéguez, Kjartan Maraas, Javier Jardón, Carles Ferrando, Marek Černocký,
+Milo Casagrande, Aleksander Morgado
+
+
 =============
 Version 3.7.5
 =============
