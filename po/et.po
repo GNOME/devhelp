@@ -5,15 +5,15 @@
 # This file is distributed under the same license as the devhelp package.
 #
 # Ivar Smolin <okul linux ee>, 2007–2010.
-# Mattias Põldaru <mahfiaz gmail com>, 2008.
+# Mattias Põldaru <mahfiaz gmail com>, 2008, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-25 12:02+0000\n"
-"PO-Revision-Date: 2012-10-18 02:14+0300\n"
+"POT-Creation-Date: 2013-03-12 10:24+0000\n"
+"PO-Revision-Date: 2013-03-12 22:35+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "Language: et\n"
@@ -31,6 +31,11 @@ msgstr "Arendaja abiteabe programm"
 
 msgid "Documentation Browser"
 msgstr "Dokumentatsioonisirvija"
+
+msgid "documentation;information;manual;developer;api;"
+msgstr ""
+"dokumentatsioon;informatsioon;andmed;käsiraamat;manuaal;arendajad;arendus;"
+"api;"
 
 msgid "Main window maximized state"
 msgstr "Peaakna maksimeeritud olek"
@@ -62,30 +67,6 @@ msgstr "Peaakna asukoht Y-teljel"
 msgid "The Y position of the main window."
 msgstr "Peaakna asukoht Y-teljel."
 
-msgid "Width of the assistant window"
-msgstr "Assistendiakna laius."
-
-msgid "The width of the assistant window."
-msgstr "Assistendiakna laius."
-
-msgid "Height of assistant window"
-msgstr "Assistendiakna kõrgus"
-
-msgid "The height of the assistant window."
-msgstr "Assistendiakna kõrgus."
-
-msgid "X position of assistant window"
-msgstr "Assistendiakna asukoht X-teljel"
-
-msgid "The X position of the assistant window."
-msgstr "Assistendiakna asukoht X-teljel."
-
-msgid "Y position of assistant window"
-msgstr "Assistendiakna asukoht Y-teljel"
-
-msgid "The Y position of the assistant window."
-msgstr "Assistendiakna asukoht Y-teljel."
-
 msgid "Width of the index and search pane"
 msgstr "Indeksi- ja otsimispaani laius"
 
@@ -111,6 +92,30 @@ msgstr "Rühmitamine keelte kaupa"
 msgid "Whether books should be grouped by language in the UI"
 msgstr "Kas raamatud tuleks kasutajaliideses rühmitada keelte kaupa või mitte"
 
+msgid "Width of the assistant window"
+msgstr "Assistendiakna laius."
+
+msgid "The width of the assistant window."
+msgstr "Assistendiakna laius."
+
+msgid "Height of assistant window"
+msgstr "Assistendiakna kõrgus"
+
+msgid "The height of the assistant window."
+msgstr "Assistendiakna kõrgus."
+
+msgid "X position of assistant window"
+msgstr "Assistendiakna asukoht X-teljel"
+
+msgid "The X position of the assistant window."
+msgstr "Assistendiakna asukoht X-teljel."
+
+msgid "Y position of assistant window"
+msgstr "Assistendiakna asukoht Y-teljel"
+
+msgid "The Y position of the assistant window."
+msgstr "Assistendiakna asukoht Y-teljel."
+
 msgid "Use system fonts"
 msgstr "Süsteemsete kirjatüüpide kasutamine"
 
@@ -130,6 +135,18 @@ msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Määratud laiusega teksti, nagu koodilõigud, korral kasutatav kirjatüüp."
 
+msgid "Devhelp support"
+msgstr "Devhelpi tugi"
+
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "F2 korral Devhelpi avamine kursori all oleva sõna kohta"
+
+msgid "Show API Documentation"
+msgstr "Näita API dokumentatsiooni"
+
+msgid "Show API Documentation for the word at the cursor"
+msgstr "Kursori all oleva sõna kohta API dokumentatsiooni näitamine"
+
 msgid "New window"
 msgstr "Uus aken"
 
@@ -142,35 +159,14 @@ msgstr "Devhelpist lähemalt"
 msgid "Quit"
 msgstr "Lõpeta"
 
-msgid "_Window"
-msgstr "_Aken"
-
 msgid "New _Tab"
 msgstr "Uus _kaart"
 
 msgid "_Print"
 msgstr "_Printimine"
 
-msgid "_Close"
-msgstr "_Sulge"
-
-msgid "_Edit"
-msgstr "_Redaktor"
-
-msgid "_Copy"
-msgstr "_Kopeeri"
-
 msgid "_Find"
 msgstr "_Otsi"
-
-msgid "Find _Next"
-msgstr "Leia _järgmine"
-
-msgid "Find _Previous"
-msgstr "Leia _eelmine"
-
-msgid "_View"
-msgstr "_Vaade"
 
 msgid "_Larger text"
 msgstr "_Suurem kiri"
@@ -180,36 +176,6 @@ msgstr "_Väiksem kiri"
 
 msgid "_Normal size"
 msgstr "_Tavasuurus"
-
-msgid "Fullscreen"
-msgstr "Täisekraan"
-
-msgid "_Go"
-msgstr "_Liikumine"
-
-msgid "_Back"
-msgstr "_Tagasi"
-
-msgid "_Forward"
-msgstr "_Edasi"
-
-msgid "_Search Tab"
-msgstr "_Otsingu kaart"
-
-msgid "_Contents Tab"
-msgstr "_Sisukorra kaart"
-
-msgid "Go to the previous page"
-msgstr "Liigu järgmisele lehele"
-
-msgid "Go to the next page"
-msgstr "Liigu eelmisele lehele"
-
-msgid "Decrease the text size"
-msgstr "Kirja suuruse vähendamine"
-
-msgid "Increase the text size"
-msgstr "Kirja suuruse suurendamine"
 
 msgid "_Group by language"
 msgstr "_Rühmita keelte kaupa"
@@ -234,18 +200,6 @@ msgstr "_Määratud laiusega:"
 
 msgid "Fonts"
 msgstr "Kirjatüübid"
-
-msgid "Devhelp support"
-msgstr "Devhelpi tugi"
-
-msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "F2 korral Devhelpi avamine kursori all oleva sõna kohta"
-
-msgid "Show API Documentation"
-msgstr "Näita API dokumentatsiooni"
-
-msgid "Show API Documentation for the word at the cursor"
-msgstr "Kursori all oleva sõna kohta API dokumentatsiooni näitamine"
 
 msgid "translator_credits"
 msgstr ""
@@ -318,9 +272,6 @@ msgstr "Tüüp"
 msgid "Opens a new Devhelp window"
 msgstr "Uue Devhelp akna avamine"
 
-msgid "Focus the Devhelp window with the search field active"
-msgstr "Devhelpi akna fokuseerimine koos aktiivse otsinguväljaga"
-
 msgid "Search for a keyword"
 msgstr "Võtmesõna otsimine"
 
@@ -374,11 +325,12 @@ msgstr "%d. rea %d. veerul <keyword> sees on \"type\" element kohustuslik"
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Raamatut '%s' pole võimalik lahti pakkida: %s"
 
-msgid "All books"
-msgstr "Kõik raamatud"
+#. Setup the Current/All Files selector
+msgid "Current"
+msgstr "Praegune"
 
-msgid "Search in:"
-msgstr "Otsi kohast:"
+msgid "All Books"
+msgstr "Kõik raamatud"
 
 msgid "50%"
 msgstr "50%"
@@ -407,11 +359,11 @@ msgstr "300%"
 msgid "400%"
 msgstr "400%"
 
-msgid "Contents"
-msgstr "Sisukord"
+msgid "Back"
+msgstr "Tagasi"
 
-msgid "Search"
-msgstr "Otsing"
+msgid "Forward"
+msgstr "Edasi"
 
 msgid "Error opening the requested link."
 msgstr "Viga küsitud viida avamisel."
@@ -439,3 +391,60 @@ msgstr "_Tõstutundlik"
 
 msgid "Toggle case sensitive search"
 msgstr "Tõstutundliku otsingu sisse- ja väljalülitamine"
+
+#~ msgid "_Window"
+#~ msgstr "_Aken"
+
+#~ msgid "_Close"
+#~ msgstr "_Sulge"
+
+#~ msgid "_Edit"
+#~ msgstr "_Redaktor"
+
+#~ msgid "_Copy"
+#~ msgstr "_Kopeeri"
+
+#~ msgid "Find _Next"
+#~ msgstr "Leia _järgmine"
+
+#~ msgid "Find _Previous"
+#~ msgstr "Leia _eelmine"
+
+#~ msgid "_View"
+#~ msgstr "_Vaade"
+
+#~ msgid "Fullscreen"
+#~ msgstr "Täisekraan"
+
+#~ msgid "_Go"
+#~ msgstr "_Liikumine"
+
+#~ msgid "_Search Tab"
+#~ msgstr "_Otsingu kaart"
+
+#~ msgid "_Contents Tab"
+#~ msgstr "_Sisukorra kaart"
+
+#~ msgid "Go to the previous page"
+#~ msgstr "Liigu järgmisele lehele"
+
+#~ msgid "Go to the next page"
+#~ msgstr "Liigu eelmisele lehele"
+
+#~ msgid "Decrease the text size"
+#~ msgstr "Kirja suuruse vähendamine"
+
+#~ msgid "Increase the text size"
+#~ msgstr "Kirja suuruse suurendamine"
+
+#~ msgid "Focus the Devhelp window with the search field active"
+#~ msgstr "Devhelpi akna fokuseerimine koos aktiivse otsinguväljaga"
+
+#~ msgid "Search in:"
+#~ msgstr "Otsi kohast:"
+
+#~ msgid "Contents"
+#~ msgstr "Sisukord"
+
+#~ msgid "Search"
+#~ msgstr "Otsing"
