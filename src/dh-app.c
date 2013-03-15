@@ -284,6 +284,8 @@ setup_accelerators (DhApp *self)
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>t",     "win.new-tab",      NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>w",     "win.close",        NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "F10",            "win.gear-menu",    NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Alt>Right",     "win.go-forward",   NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Alt>Left",      "win.go-back",      NULL);
 }
 
 /******************************************************************************/
