@@ -1,7 +1,7 @@
 <schemalist gettext-domain="devhelp">
   <schema id="org.gnome.devhelp" path="/org/gnome/devhelp/">
     <child name="state" schema="org.gnome.devhelp.state"/>
-    <child name="ui" schema="org.gnome.devhelp.fonts"/>
+    <child name="fonts" schema="org.gnome.devhelp.fonts"/>
   </schema>
   <schema id="org.gnome.devhelp.state" path="/org/gnome/devhelp/state/">
     <child name="main" schema="org.gnome.devhelp.state.main"/>
