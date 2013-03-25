@@ -108,7 +108,7 @@ AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 AM_PATH_PYTHON([2.3],[],[no])
 
 LIBGD_INIT([
-  main-toolbar
+  header-bar
   static
 ])
 
