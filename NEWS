@@ -1,3 +1,22 @@
+=============
+Version 3.8.0
+=============
+
+Fixed bugs:
+
+ - #695455, gedit-plugin: Set loader to python3
+ - #696367, devhelp's gschema crashes gsettings tool
+
+Updated translations: as, be, da, el, et, fa, fi, fr, hu, ko, pt_BR,
+pt, tg
+
+Many thanks to all contributors: Balázs Úr, Changwoo Ryu, Mattias
+Põldaru, Dimitris Spingos, Alexandre Franke, Thomas Bechtold, Ville-Pekka
+Vainio, Victor Ibragimov, Arash Mousavi, Ask H. Larsen, Ihar Hrachyshka,
+Duarte Loreto, Nilamdyuti Goswami, Enrico Nicoletto, Jeremy Bicha,
+Aleksander Morgado
+
+
 ==============
 Version 3.7.91
 ==============
