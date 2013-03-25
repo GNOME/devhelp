@@ -46,7 +46,7 @@ struct _DhWindowPriv {
         GtkWidget      *hpaned;
         GtkWidget      *sidebar;
         GtkWidget      *notebook;
-        GtkWidget      *toolbar;
+        GtkWidget      *header_bar;
 
         GtkWidget      *vbox;
         GtkWidget      *findbar;
@@ -661,34 +661,41 @@ window_populate (DhWindow *window)
         priv = window->priv;
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
 
-        priv->toolbar = gd_main_toolbar_new ();
-        back = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (priv->toolbar),
-                                           "go-previous-symbolic",
-                                           _("Back"),
-                                           TRUE);
-        gtk_actionable_set_action_name ( GTK_ACTIONABLE (back), "win.go-back");
-        forward = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (priv->toolbar),
-                                              "go-next-symbolic",
-                                              _("Forward"),
-                                              TRUE);
-        gtk_actionable_set_action_name ( GTK_ACTIONABLE (forward), "win.go-forward");
+        // TODO: port to GtkHeaderBar in the future
+        priv->header_bar = gd_header_bar_new ();
+
+        back = gd_header_simple_button_new ();
+        gd_header_button_set_label (GD_HEADER_BUTTON (back),
+                                    _("Back"));
+        gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (back),
+                                                 "go-previous-symbolic");
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (back), "win.go-back");
+
+        forward = gd_header_simple_button_new ();
+        gd_header_button_set_label (GD_HEADER_BUTTON (forward),
+                                    _("Forward"));
+        gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (forward),
+                                                 "go-next-symbolic");
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (forward), "win.go-forward");
+
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
         gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
-        gtk_widget_reparent (back, box);
-        gtk_widget_reparent (forward, box);
+        gtk_box_pack_start (GTK_BOX (box), back, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (box), forward, FALSE, FALSE, 0);
+        gd_header_bar_pack_start (GD_HEADER_BAR (priv->header_bar), box);
 
-        gd_main_toolbar_add_widget (GD_MAIN_TOOLBAR (priv->toolbar), box, TRUE);
-        menu_button = gd_main_toolbar_add_menu (GD_MAIN_TOOLBAR (priv->toolbar),
-                                                "emblem-system-symbolic",
-                                                "",
-                                                FALSE);
+        menu_button = gd_header_menu_button_new ();
+        gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (menu_button),
+                                                 "emblem-system-symbolic");
         gtk_actionable_set_action_name (GTK_ACTIONABLE (menu_button), "win.gear-menu");
+
+        gd_header_bar_pack_end (GD_HEADER_BAR (priv->header_bar), menu_button);
 
         menu = gtk_builder_get_object (priv->builder, "window-menu");
         gtk_menu_button_set_menu_model (GTK_MENU_BUTTON (menu_button), G_MENU_MODEL (menu));
 
         /* Add toolbar to main box */
-        gtk_box_pack_start (GTK_BOX (priv->main_box), priv->toolbar,
+        gtk_box_pack_start (GTK_BOX (priv->main_box), priv->header_bar,
                             FALSE, FALSE, 0);
 
         priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
@@ -1320,8 +1327,8 @@ window_update_title (DhWindow      *window,
                 web_view_title = NULL;
         }
 
-        gd_main_toolbar_set_labels (GD_MAIN_TOOLBAR (priv->toolbar),
-                web_view_title, NULL);
+        gd_header_bar_set_title (GD_HEADER_BAR (priv->header_bar),
+                                 web_view_title);
 }
 
 static void
