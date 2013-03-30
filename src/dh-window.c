@@ -1195,6 +1195,7 @@ window_open_new_tab (DhWindow    *window,
                                         vbox, NULL);
         gtk_container_child_set (GTK_CONTAINER (priv->notebook), vbox,
                                  "tab-expand", TRUE,
+                                 "reorderable", TRUE,
                                  NULL);
         gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
                                     vbox, label);
