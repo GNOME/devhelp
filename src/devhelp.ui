@@ -26,24 +26,24 @@
   <menu id="app-menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">New window</attribute>
+        <attribute name="label" translatable="yes">New _Window</attribute>
         <attribute name="action">app.new-window</attribute>
         <attribute name="accel">&lt;Primary&gt;n</attribute>
       </item>
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Preferences</attribute>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
         <attribute name="action">app.preferences</attribute>
       </item>
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">About Devhelp</attribute>
+        <attribute name="label" translatable="yes">_About Devhelp</attribute>
         <attribute name="action">app.about</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Quit</attribute>
+        <attribute name="label" translatable="yes">_Quit</attribute>
         <attribute name="action">app.quit</attribute>
         <attribute name="accel">&lt;Primary&gt;q</attribute>
       </item>
@@ -73,17 +73,17 @@
     </section>
     <section>
       <item>
-	<attribute name="label" translatable="yes">_Larger text</attribute>
+	<attribute name="label" translatable="yes">_Larger Text</attribute>
 	<attribute name="action">win.zoom-in</attribute>
 	<attribute name="accel">&lt;Primary&gt;plus</attribute>
       </item>
       <item>
-	<attribute name="label" translatable="yes">S_maller text</attribute>
+	<attribute name="label" translatable="yes">S_maller Text</attribute>
 	<attribute name="action">win.zoom-out</attribute>
 	<attribute name="accel">&lt;Primary&gt;minus</attribute>
       </item>
       <item>
-	<attribute name="label" translatable="yes">_Normal size</attribute>
+	<attribute name="label" translatable="yes">_Normal Size</attribute>
 	<attribute name="action">win.zoom-default</attribute>
 	<attribute name="accel">&lt;Primary&gt;0</attribute>
       </item>
