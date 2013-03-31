@@ -64,7 +64,6 @@ view_finalize (GObject *object)
         G_OBJECT_CLASS (dh_assistant_view_parent_class)->finalize (object);
 }
 
-#ifdef HAVE_WEBKIT2
 static gboolean
 assistant_decide_policy (WebKitWebView           *web_view,
                          WebKitPolicyDecision    *decision,
@@ -109,32 +108,6 @@ assistant_decide_policy (WebKitWebView           *web_view,
 
         return TRUE;
 }
-#else
-static WebKitNavigationResponse
-assistant_navigation_requested (WebKitWebView        *web_view,
-                                WebKitWebFrame       *frame,
-                                WebKitNetworkRequest *request)
-{
-        DhAssistantViewPriv *priv;
-        const gchar         *uri;
-
-        priv = GET_PRIVATE (web_view);
-
-        uri = webkit_network_request_get_uri (request);
-        if (strcmp (uri, "about:blank") == 0) {
-                return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
-        }
-        else if (! priv->snippet_loaded) {
-                priv->snippet_loaded = TRUE;
-                return WEBKIT_NAVIGATION_RESPONSE_ACCEPT;
-        }
-        else if (g_str_has_prefix (uri, "file://")) {
-                g_signal_emit (web_view, signals[SIGNAL_OPEN_URI], 0, uri);
-        }
-
-        return WEBKIT_NAVIGATION_RESPONSE_IGNORE;
-}
-#endif /* HAVE_WEBKIT2 */
 
 static gboolean
 assistant_button_press_event (GtkWidget      *widget,
@@ -158,11 +131,7 @@ dh_assistant_view_class_init (DhAssistantViewClass* klass)
         object_class->finalize = view_finalize;
 
         widget_class->button_press_event = assistant_button_press_event;
-#ifdef HAVE_WEBKIT2
         web_view_class->decide_policy = assistant_decide_policy;
-#else
-        web_view_class->navigation_requested = assistant_navigation_requested;
-#endif
 
         g_type_class_add_private (klass, sizeof (DhAssistantViewPriv));
 
@@ -409,20 +378,10 @@ dh_assistant_view_set_link (DhAssistantView *view,
                 g_free (javascript_html);
 
                 priv->snippet_loaded = FALSE;
-#ifdef HAVE_WEBKIT2
                 webkit_web_view_load_html (
                         WEBKIT_WEB_VIEW (view),
                         html,
                         filename);
-#else
-                webkit_web_view_load_string (
-                        WEBKIT_WEB_VIEW (view),
-                        html,
-                        "text/html",
-                        NULL,
-                        filename);
-#endif
-
                 g_free (html);
         } else {
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), "about:blank");

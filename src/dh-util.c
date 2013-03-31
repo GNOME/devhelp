@@ -240,7 +240,6 @@ dh_util_create_data_uri_for_filename (const gchar *filename,
         return uri;
 }
 
-#ifdef HAVE_WEBKIT2
 static gdouble
 get_screen_dpi (GdkScreen *screen)
 {
@@ -256,25 +255,20 @@ get_screen_dpi (GdkScreen *screen)
 
         return dp / di;
 }
-#endif
 
 static guint
 convert_font_size_to_pixels (GtkWidget *widget,
                              gdouble    font_size)
 {
-#ifdef HAVE_WEBKIT2
-        /* WebKit2 uses font sizes in pixels */
         GdkScreen *screen;
         gdouble    dpi;
 
+        /* WebKit2 uses font sizes in pixels */
         screen = gtk_widget_has_screen (widget) ?
                 gtk_widget_get_screen (widget) : gdk_screen_get_default ();
         dpi = screen ? get_screen_dpi (screen) : 96;
 
         return font_size / 72.0 * dpi;
-#else
-        return font_size;
-#endif
 }
 
 /* set the given fonts on the given view */
@@ -294,9 +288,7 @@ dh_util_view_set_font (WebKitWebView *view, const gchar *font_name_fixed, const 
 
         /* set the fonts */
         g_object_set (webkit_web_view_get_settings (view),
-#ifdef HAVE_WEBKIT2
                       "zoom-text-only", TRUE,
-#endif
                       "monospace-font-family", font_name_fixed,
                       "default-monospace-font-size", font_size_fixed_px,
                       "serif-font-family", font_name_variable,

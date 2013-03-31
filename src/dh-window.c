@@ -26,11 +26,7 @@
 #include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#ifdef HAVE_WEBKIT2
 #include <webkit2/webkit2.h>
-#else
-#include <webkit/webkit.h>
-#endif
 
 #include <libgd/gd.h>
 
@@ -167,15 +163,11 @@ print_cb (GSimpleAction *action,
 {
         DhWindow *window = user_data;
         WebKitWebView *web_view = window_get_active_web_view (window);
-#ifdef HAVE_WEBKIT2
         WebKitPrintOperation *print_operation;
 
         print_operation = webkit_print_operation_new (web_view);
         webkit_print_operation_run_dialog (print_operation, GTK_WINDOW (window));
         g_object_unref (print_operation);
-#else
-        webkit_web_view_execute_script (web_view, "print();");
-#endif
 }
 
 static void
@@ -237,11 +229,7 @@ copy_cb (GSimpleAction *action,
                 WebKitWebView *web_view;
 
                 web_view = window_get_active_web_view (window);
-#ifdef HAVE_WEBKIT2
                 webkit_web_view_execute_editing_command (web_view, WEBKIT_EDITING_COMMAND_COPY);
-#else
-                webkit_web_view_copy_clipboard (web_view);
-#endif
         }
 }
 
@@ -252,23 +240,16 @@ find_cb (GSimpleAction *action,
 {
         DhWindow *window = user_data;
         DhWindowPriv  *priv;
-#ifndef HAVE_WEBKIT2
-        WebKitWebView *web_view;
-#endif
+
         priv = window->priv;
 
         gtk_widget_show (priv->findbar);
         gtk_widget_grab_focus (priv->findbar);
 
-#ifdef HAVE_WEBKIT2
         /* The behaviour for WebKit1 is to re-enable highlighting without
            starting a new search. WebKit2 API does not allow that
            without invoking a new search. */
         do_search (window);
-#else
-        web_view = window_get_active_web_view (window);
-        webkit_web_view_set_highlight_text_matches (web_view, TRUE);
-#endif /* HAVE_WEBKIT2 */
 }
 
 static void
@@ -821,48 +802,26 @@ find_library_equivalent (DhWindow    *window,
         return local_uri;
 }
 
-#ifdef HAVE_WEBKIT2
 static gboolean
 window_web_view_decide_policy_cb (WebKitWebView           *web_view,
                                   WebKitPolicyDecision    *policy_decision,
                                   WebKitPolicyDecisionType type,
                                   DhWindow                *window)
-#else
-static gboolean
-window_web_view_navigation_policy_decision_requested (WebKitWebView             *web_view,
-                                                      WebKitWebFrame            *frame,
-                                                      WebKitNetworkRequest      *request,
-                                                      WebKitWebNavigationAction *navigation_action,
-                                                      WebKitWebPolicyDecision   *policy_decision,
-                                                      DhWindow                  *window)
-#endif
 {
         const char   *uri;
-#ifdef HAVE_WEBKIT2
         WebKitNavigationPolicyDecision *navigation_decision;
-#endif
 
-
-#ifdef HAVE_WEBKIT2
         if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
                 return FALSE;
 
         navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (policy_decision);
         uri = webkit_uri_request_get_uri (webkit_navigation_policy_decision_get_request (navigation_decision));
-#else
-        uri = webkit_network_request_get_uri (request);
-#endif
 
         /* make sure to hide the info bar on page change */
         gtk_widget_hide (window_get_active_info_bar (window));
 
-#ifdef HAVE_WEBKIT2
         if (webkit_navigation_policy_decision_get_mouse_button (navigation_decision) == 2) { /* middle click */
                 webkit_policy_decision_ignore (policy_decision);
-#else
-        if (webkit_web_navigation_action_get_button (navigation_action) == 2) { /* middle click */
-                webkit_web_policy_decision_ignore (policy_decision);
-#endif
                 g_signal_emit (window, signals[OPEN_LINK], 0, uri, DH_OPEN_LINK_NEW_TAB);
                 return TRUE;
         }
@@ -874,11 +833,7 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
         if (strncmp (uri, "http://library.gnome.org/devel/", 31) == 0) {
                 gchar *local_uri = find_library_equivalent (window, uri);
                 if (local_uri) {
-#ifdef HAVE_WEBKIT2
                         webkit_policy_decision_ignore (policy_decision);
-#else
-                        webkit_web_policy_decision_ignore (policy_decision);
-#endif
                         _dh_window_display_uri (window, local_uri);
                         g_free (local_uri);
                         return TRUE;
@@ -886,30 +841,14 @@ window_web_view_navigation_policy_decision_requested (WebKitWebView             
         }
 
         if (strncmp (uri, "file://", 7) != 0) {
-#ifdef HAVE_WEBKIT2
                 webkit_policy_decision_ignore (policy_decision);
-#else
-                webkit_web_policy_decision_ignore (policy_decision);
-#endif
                 gtk_show_uri (NULL, uri, GDK_CURRENT_TIME, NULL);
                 return TRUE;
         }
 
-#ifndef HAVE_WEBKIT2
-        /* We already do this in load_changed_cb() for webkit2 */
-        if (web_view == window_get_active_web_view (window)) {
-                DhWindowPriv *priv;
-
-                priv = window->priv;
-                dh_sidebar_select_uri (DH_SIDEBAR (priv->sidebar), uri);
-                window_check_history (window, web_view);
-        }
-#endif
-
         return FALSE;
 }
 
-#ifdef HAVE_WEBKIT2
 static void
 window_web_view_load_changed_cb (WebKitWebView   *web_view,
                                  WebKitLoadEvent  load_event,
@@ -927,23 +866,13 @@ window_web_view_load_changed_cb (WebKitWebView   *web_view,
         dh_sidebar_select_uri (DH_SIDEBAR (priv->sidebar), uri);
         window_check_history (window, web_view);
 }
-#endif
 
-#ifdef HAVE_WEBKIT2
 static gboolean
 window_web_view_load_failed_cb (WebKitWebView   *web_view,
                                 WebKitLoadEvent  load_event,
                                 const gchar     *uri,
                                 GError          *web_error,
                                 DhWindow        *window)
-#else
-static gboolean
-window_web_view_load_error_cb (WebKitWebView  *web_view,
-                               WebKitWebFrame *frame,
-                               gchar          *uri,
-                               GError         *web_error,
-                               DhWindow       *window)
-#endif
 {
         GtkWidget *info_bar;
         GtkWidget *content_area;
@@ -1044,7 +973,6 @@ static gboolean
 do_search (DhWindow *window)
 {
         DhWindowPriv         *priv = window->priv;
-#ifdef HAVE_WEBKIT2
         WebKitFindController *find_controller;
         guint                 find_options = WEBKIT_FIND_OPTIONS_WRAP_AROUND;
         const gchar          *search_text;
@@ -1055,23 +983,6 @@ do_search (DhWindow *window)
 
         search_text = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
         webkit_find_controller_search (find_controller, search_text, find_options, G_MAXUINT);
-#else
-        WebKitWebView *web_view;
-
-        web_view = window_get_active_web_view (window);
-
-        webkit_web_view_unmark_text_matches (web_view);
-        webkit_web_view_mark_text_matches (
-                web_view,
-                egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)),
-                egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)), 0);
-        webkit_web_view_set_highlight_text_matches (web_view, TRUE);
-
-        webkit_web_view_search_text (
-                web_view, egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar)),
-                egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)),
-                TRUE, TRUE);
-#endif /* HAVE_WEBKIT2 */
 
         priv->find_source_id = 0;
 
@@ -1098,23 +1009,7 @@ window_find_case_changed_cb (GObject    *object,
                              GParamSpec *pspec,
                              DhWindow   *window)
 {
-#ifdef HAVE_WEBKIT2
         do_search (window);
-#else
-        DhWindowPriv  *priv = window->priv;;
-        WebKitWebView *view;
-        const gchar   *string;
-        gboolean       case_sensitive;
-
-        view = window_get_active_web_view (window);
-
-        string = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
-        case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
-
-        webkit_web_view_unmark_text_matches (view);
-        webkit_web_view_mark_text_matches (view, string, case_sensitive, 0);
-        webkit_web_view_set_highlight_text_matches (view, TRUE);
-#endif
 }
 
 static void
@@ -1122,23 +1017,14 @@ findbar_find_next (DhWindow *window)
 {
         DhWindowPriv         *priv = window->priv;
         WebKitWebView        *view;
-#ifdef HAVE_WEBKIT2
         WebKitFindController *find_controller;
-#else
-        const gchar          *string;
-        gboolean              case_sensitive;
-#endif
+
         view = window_get_active_web_view (window);
 
         gtk_widget_show (priv->findbar);
-#ifdef HAVE_WEBKIT2
+
         find_controller = webkit_web_view_get_find_controller (view);
         webkit_find_controller_search_next(find_controller);
-#else
-        string = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
-        case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
-        webkit_web_view_search_text (view, string, case_sensitive, TRUE, TRUE);
-#endif
 }
 
 static void
@@ -1153,24 +1039,14 @@ findbar_find_previous (DhWindow *window)
 {
         DhWindowPriv         *priv = window->priv;
         WebKitWebView        *view;
-#ifdef HAVE_WEBKIT2
         WebKitFindController *find_controller;
-#else
-        const gchar          *string;
-        gboolean             case_sensitive;
-#endif
+
         view = window_get_active_web_view (window);
 
         gtk_widget_show (priv->findbar);
 
-#ifdef HAVE_WEBKIT2
         find_controller = webkit_web_view_get_find_controller (view);
         webkit_find_controller_search_previous(find_controller);
-#else
-        string = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
-        case_sensitive = egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar));
-        webkit_web_view_search_text (view, string, case_sensitive, FALSE, TRUE);
-#endif
 }
 
 static void
@@ -1186,18 +1062,14 @@ window_findbar_close_cb (GtkWidget *widget,
 {
         DhWindowPriv         *priv = window->priv;
         WebKitWebView        *view;
-#ifdef HAVE_WEBKIT2
         WebKitFindController *find_controller;
-#endif
+
         view = window_get_active_web_view (window);
 
         gtk_widget_hide (priv->findbar);
-#ifdef HAVE_WEBKIT2
+
         find_controller = webkit_web_view_get_find_controller (view);
         webkit_find_controller_search_finish (find_controller);
-#else
-        webkit_web_view_set_highlight_text_matches (view, FALSE);
-#endif
 }
 
 #if 0
@@ -1249,9 +1121,6 @@ window_open_new_tab (DhWindow    *window,
         GtkWidget    *info_bar;
         gchar *font_fixed = NULL;
         gchar *font_variable = NULL;
-#ifndef HAVE_WEBKIT2
-        GtkWidget    *scrolled_window;
-#endif
 
         priv = window->priv;
 
@@ -1294,18 +1163,7 @@ window_open_new_tab (DhWindow    *window,
         g_object_set_data (G_OBJECT (vbox), "info_bar", info_bar);
 
         gtk_box_pack_start (GTK_BOX(vbox), info_bar, FALSE, TRUE, 0);
-
-#ifdef HAVE_WEBKIT2
         gtk_box_pack_start (GTK_BOX(vbox), view, TRUE, TRUE, 0);
-#else
-        scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
-                                        GTK_POLICY_AUTOMATIC,
-                                        GTK_POLICY_AUTOMATIC);
-        gtk_container_add (GTK_CONTAINER (scrolled_window), view);
-        gtk_widget_show (scrolled_window);
-        gtk_box_pack_start (GTK_BOX(vbox), scrolled_window, TRUE, TRUE, 0);
-#endif
 
         label = window_new_tab_label (window, _("Empty Page"), vbox);
         gtk_widget_show_all (label);
@@ -1316,27 +1174,15 @@ window_open_new_tab (DhWindow    *window,
         g_signal_connect (view, "button-press-event",
                           G_CALLBACK (window_web_view_button_press_event_cb),
                           window);
-#ifdef HAVE_WEBKIT2
         g_signal_connect (view, "decide-policy",
                           G_CALLBACK (window_web_view_decide_policy_cb),
                           window);
-#else
-        g_signal_connect (view, "navigation-policy-decision-requested",
-                          G_CALLBACK (window_web_view_navigation_policy_decision_requested),
-                          window);
-#endif
-#ifdef HAVE_WEBKIT2
         g_signal_connect (view, "load-changed",
                           G_CALLBACK (window_web_view_load_changed_cb),
                           window);
         g_signal_connect (view, "load-failed",
                           G_CALLBACK (window_web_view_load_failed_cb),
                           window);
-#else
-        g_signal_connect (view, "load-error",
-                          G_CALLBACK (window_web_view_load_error_cb),
-                          window);
-#endif
 
         num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
                                         vbox, NULL);

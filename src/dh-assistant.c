@@ -109,9 +109,7 @@ static void
 dh_assistant_init (DhAssistant *assistant)
 {
         DhAssistantPriv *priv = GET_PRIVATE (assistant);
-#ifndef HAVE_WEBKIT2
-        GtkWidget       *scrolled_window;
-#endif
+
         priv->settings = dh_settings_get ();
         priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_widget_show (priv->main_box);
@@ -130,22 +128,10 @@ dh_assistant_init (DhAssistant *assistant)
         g_signal_connect (assistant, "key-press-event",
                           G_CALLBACK (assistant_key_press_event_cb),
                           assistant);
-#ifdef HAVE_WEBKIT2
+
         gtk_box_pack_start (GTK_BOX (priv->main_box),
                             priv->view, TRUE, TRUE, 0);
         gtk_widget_show (priv->view);
-#else
-        scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
-                                        GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-
-        gtk_container_add (GTK_CONTAINER (scrolled_window), priv->view);
-
-        gtk_widget_show_all (scrolled_window);
-
-        gtk_box_pack_start (GTK_BOX (priv->main_box),
-                            scrolled_window, TRUE, TRUE, 0);
-#endif
 
         dh_util_window_settings_restore (
                 GTK_WINDOW (assistant),

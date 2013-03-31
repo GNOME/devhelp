@@ -44,35 +44,20 @@ PKG_PROG_PKG_CONFIG
 
 GNOME_COMPILE_WARNINGS([maximum])
 
-AC_ARG_WITH(webkit2,
-        [AC_HELP_STRING([--with-webkit2], [build with WebKit2 [default=yes]])],
-        [],[with_webkit2=yes])
-
-if test "x$with_webkit2" != xno; then
-   WEBKITGTK_PC_NAME=webkit2gtk-3.0
-   WEBKITGTK_REQUIRED_VERSION=1.10.0
-   AC_DEFINE([HAVE_WEBKIT2],[1],[Define if building with WebKit2])
-else
-   WEBKITGTK_PC_NAME=webkitgtk-3.0
-   WEBKITGTK_REQUIRED_VERSION=1.6.0
-fi
-AM_CONDITIONAL(WITH_WEBKIT2, test "x$with_webkit2" != xno)
-AC_SUBST(WEBKITGTK_PC_NAME)
-
 AC_CHECK_LIBM
 AC_SUBST(LIBM)
 
 PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
   gtk+-3.0 >= 3.5.6
-  $WEBKITGTK_PC_NAME >= $WEBKITGTK_REQUIRED_VERSION
+  webkit2gtk-3.0 >= 2.0.0
   gio-2.0 >= 2.32
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
   gtk+-3.0 >= 3.5.6
   gio-2.0 >= 2.32
-  $WEBKITGTK_PC_NAME >= $WEBKITGTK_REQUIRED_VERSION
+  webkit2gtk-3.0 >= 2.0.0
 ])
 
 AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)
@@ -131,5 +116,4 @@ AC_OUTPUT
 
 echo
 echo "Prefix:    $prefix"
-echo "WebKit2:   $with_webkit2"
 echo
