@@ -240,6 +240,43 @@ dh_util_create_data_uri_for_filename (const gchar *filename,
         return uri;
 }
 
+#ifdef HAVE_WEBKIT2
+static gdouble
+get_screen_dpi (GdkScreen *screen)
+{
+        gdouble dpi;
+        gdouble dp, di;
+
+        dpi = gdk_screen_get_resolution (screen);
+        if (dpi != -1)
+                return dpi;
+
+        dp = hypot (gdk_screen_get_width (screen), gdk_screen_get_height (screen));
+        di = hypot (gdk_screen_get_width_mm (screen), gdk_screen_get_height_mm (screen)) / 25.4;
+
+        return dp / di;
+}
+#endif
+
+static guint
+convert_font_size_to_pixels (GtkWidget *widget,
+                             gdouble    font_size)
+{
+#ifdef HAVE_WEBKIT2
+        /* WebKit2 uses font sizes in pixels */
+        GdkScreen *screen;
+        gdouble    dpi;
+
+        screen = gtk_widget_has_screen (widget) ?
+                gtk_widget_get_screen (widget) : gdk_screen_get_default ();
+        dpi = screen ? get_screen_dpi (screen) : 96;
+
+        return font_size / 72.0 * dpi;
+#else
+        return font_size;
+#endif
+}
+
 /* set the given fonts on the given view */
 void
 dh_util_view_set_font (WebKitWebView *view, const gchar *font_name_fixed, const gchar *font_name_variable)
@@ -247,30 +284,26 @@ dh_util_view_set_font (WebKitWebView *view, const gchar *font_name_fixed, const 
         /* get the font size */
         PangoFontDescription *font_desc_fixed = pango_font_description_from_string (font_name_fixed);
         PangoFontDescription *font_desc_variable = pango_font_description_from_string (font_name_variable);
-        gint font_size_fixed = PANGO_PIXELS (pango_font_description_get_size (font_desc_fixed));
-        gint font_size_variable = PANGO_PIXELS (pango_font_description_get_size (font_desc_variable));
+        gdouble font_size_fixed = (double)pango_font_description_get_size (font_desc_fixed) / PANGO_SCALE;
+        gdouble font_size_variable = (double)pango_font_description_get_size (font_desc_variable) / PANGO_SCALE;
+        guint font_size_fixed_px = convert_font_size_to_pixels (GTK_WIDGET (view), font_size_fixed);
+        guint font_size_variable_px = convert_font_size_to_pixels (GTK_WIDGET (view), font_size_variable);
+
         pango_font_description_free (font_desc_fixed);
         pango_font_description_free (font_desc_variable);
 
-        /* get the settings from the view */
-        #ifdef HAVE_WEBKIT2
-                WebKitSettings    *settings;
-#else
-                WebKitWebSettings *settings;
-#endif
-                settings = webkit_web_view_get_settings (view);
-                /* set the fonts */
-                g_object_set (settings,
+        /* set the fonts */
+        g_object_set (webkit_web_view_get_settings (view),
 #ifdef HAVE_WEBKIT2
-                              "zoom-text-only", TRUE,
+                      "zoom-text-only", TRUE,
 #endif
-                              "monospace-font-family", font_name_fixed,
-                              "default-monospace-font-size", font_size_fixed,
-                              "serif-font-family", font_name_variable,
-                              "default-font-size", font_size_variable,
-                              NULL);
+                      "monospace-font-family", font_name_fixed,
+                      "default-monospace-font-size", font_size_fixed_px,
+                      "serif-font-family", font_name_variable,
+                      "default-font-size", font_size_variable_px,
+                      NULL);
         g_debug ("Set font-fixed to '%s' (%i) and font-variable to '%s' (%i).",
-                 font_name_fixed, font_size_fixed, font_name_variable, font_size_variable);
+                 font_name_fixed, font_size_fixed_px, font_name_variable, font_size_variable_px);
 }
 
 void
