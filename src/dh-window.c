@@ -60,6 +60,7 @@ struct _DhWindowPriv {
         DhLink         *selected_search_link;
         guint           find_source_id;
         DhSettings     *settings;
+        guint           fonts_changed_id;
 };
 
 enum {
@@ -533,10 +534,10 @@ dh_window_init (DhWindow *window)
 
         /* handle settings */
         priv->settings = dh_settings_get ();
-        g_signal_connect (priv->settings,
-                          "fonts-changed",
-                          G_CALLBACK (settings_fonts_changed_cb),
-                          window);
+        priv->fonts_changed_id = g_signal_connect (priv->settings,
+                                                   "fonts-changed",
+                                                   G_CALLBACK (settings_fonts_changed_cb),
+                                                   window);
 
         /* Setup builder */
         priv->builder = gtk_builder_new ();
@@ -577,6 +578,13 @@ static void
 dispose (GObject *object)
 {
 	DhWindow *self = DH_WINDOW (object);
+
+        if (self->priv->fonts_changed_id) {
+                if (self->priv->settings && g_signal_handler_is_connected (self->priv->settings, self->priv->fonts_changed_id))
+                        g_signal_handler_disconnect (self->priv->settings, self->priv->fonts_changed_id);
+                self->priv->fonts_changed_id = 0;
+        }
+
         g_clear_object (&self->priv->settings);
         g_clear_object (&self->priv->builder);
 
