@@ -1,4 +1,19 @@
 =============
+Version 3.8.1
+=============
+
+Fixed bugs:
+
+ - #697026, font size is too small by default and don't match system font
+            size
+ - #697541, changing preferences crashes/fails after closing one of
+            multiple windows
+
+Many thanks to all contributors: Carlos Garcia Campos, Ignacio Casal
+Quinteiro, Aleksander Morgado
+
+
+=============
 Version 3.8.0
 =============
 
