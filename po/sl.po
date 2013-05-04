@@ -9,22 +9,23 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-07 11:25+0000\n"
-"PO-Revision-Date: 2013-02-07 20:39+0100\n"
+"POT-Creation-Date: 2013-05-03 16:15+0000\n"
+"PO-Revision-Date: 2013-05-04 21:29+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.4\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:344
-#: ../src/dh-window.c:633
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:347
+#: ../src/dh-window.c:636
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -185,20 +186,20 @@ msgid "Show API Documentation for the word at the cursor"
 msgstr "Pokaži API dokumentacijo za besedo ob kazalki"
 
 #: ../src/devhelp.ui.h:1
-msgid "New window"
-msgstr "Novo okno"
+msgid "New _Window"
+msgstr "Novo _okno"
 
 #: ../src/devhelp.ui.h:2
-msgid "Preferences"
-msgstr "Možnosti"
+msgid "_Preferences"
+msgstr "_Možnosti"
 
 #: ../src/devhelp.ui.h:3
-msgid "About Devhelp"
-msgstr "O programu Devhelp"
+msgid "_About Devhelp"
+msgstr "_O programu"
 
 #: ../src/devhelp.ui.h:4
-msgid "Quit"
-msgstr "Končaj"
+msgid "_Quit"
+msgstr "_Končaj"
 
 #: ../src/devhelp.ui.h:5
 msgid "New _Tab"
@@ -213,46 +214,50 @@ msgid "_Find"
 msgstr "_Najdi"
 
 #: ../src/devhelp.ui.h:8
-msgid "_Larger text"
-msgstr "_Večje besedilo"
+msgid "_Larger Text"
+msgstr "_Večja pisava"
 
 #: ../src/devhelp.ui.h:9
-msgid "S_maller text"
-msgstr "_Manjše besedilo"
+msgid "S_maller Text"
+msgstr "_Manjša pisava"
 
 #: ../src/devhelp.ui.h:10
-msgid "_Normal size"
-msgstr "_Običajna velikost"
+msgid "_Normal Size"
+msgstr "_Običajna pisava"
 
 #: ../src/devhelp.ui.h:11
+msgid "Preferences"
+msgstr "Možnosti"
+
+#: ../src/devhelp.ui.h:12
 msgid "_Group by language"
 msgstr "_Združi po jeziku"
 
-#: ../src/devhelp.ui.h:12
+#: ../src/devhelp.ui.h:13
 msgid "Enabled"
 msgstr "Omogočeno"
 
-#: ../src/devhelp.ui.h:13
+#: ../src/devhelp.ui.h:14
 msgid "Title"
 msgstr "Naslov"
 
-#: ../src/devhelp.ui.h:14
+#: ../src/devhelp.ui.h:15
 msgid "Book Shelf"
 msgstr "Knjižna polica"
 
-#: ../src/devhelp.ui.h:15
+#: ../src/devhelp.ui.h:16
 msgid "_Use system fonts"
 msgstr "_Uporabi sistemske pisave"
 
-#: ../src/devhelp.ui.h:16
+#: ../src/devhelp.ui.h:17
 msgid "_Variable width: "
 msgstr "_Spremenljiva širina:"
 
-#: ../src/devhelp.ui.h:17
+#: ../src/devhelp.ui.h:18
 msgid "_Fixed width:"
 msgstr "_Določena širina:"
 
-#: ../src/devhelp.ui.h:18
+#: ../src/devhelp.ui.h:19
 msgid "Fonts"
 msgstr "Pisave"
 
@@ -269,11 +274,11 @@ msgid "DevHelp Website"
 msgstr "Spletišče Devhelp"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:121
+#: ../src/dh-assistant.c:119
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - pomočnik"
 
-#: ../src/dh-assistant-view.c:403
+#: ../src/dh-assistant-view.c:372
 msgid "Book:"
 msgstr "Knjiga:"
 
@@ -418,55 +423,55 @@ msgstr "Trenutna"
 msgid "All Books"
 msgstr "Vse knjige"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:82
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:83
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:84
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:85
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:86
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:87
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:88
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:89
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:90
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:664
+#: ../src/dh-window.c:669
 msgid "Back"
 msgstr "Nazaj"
 
-#: ../src/dh-window.c:669
+#: ../src/dh-window.c:676
 msgid "Forward"
 msgstr "Naprej"
 
-#: ../src/dh-window.c:936
+#: ../src/dh-window.c:896
 msgid "Error opening the requested link."
 msgstr "Napaka med odpiranjem zahtevane povezave."
 
-#: ../src/dh-window.c:1286 ../src/dh-window.c:1472
+#: ../src/dh-window.c:1175 ../src/dh-window.c:1349
 msgid "Empty Page"
 msgstr "Prazna stran"
 
