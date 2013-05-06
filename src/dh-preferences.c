@@ -33,6 +33,11 @@ typedef struct {
         DhBookManager *book_manager;
         DhSettings    *settings;
 
+        /* signals */
+        gulong book_created_id;
+        gulong book_deleted_id;
+        gulong group_by_language_id;
+
         /* Fonts tab */
         GtkWidget *system_fonts_button;
         GtkWidget *fonts_table;
@@ -105,18 +110,18 @@ preferences_init (void)
         prefs = g_new0 (DhPreferences, 1);
         prefs->settings = dh_settings_get ();
         prefs->book_manager = g_object_ref (dh_app_peek_book_manager (DH_APP (app)));
-        g_signal_connect (prefs->book_manager,
-                          "book-created",
-                          G_CALLBACK (preferences_bookshelf_book_created_cb),
-                          NULL);
-        g_signal_connect (prefs->book_manager,
-                          "book-deleted",
-                          G_CALLBACK (preferences_bookshelf_book_deleted_cb),
-                          NULL);
-        g_signal_connect (prefs->book_manager,
-                          "notify::group-by-language",
-                          G_CALLBACK (preferences_bookshelf_group_by_language_cb),
-                          NULL);
+        prefs->book_created_id = g_signal_connect (prefs->book_manager,
+                                                   "book-created",
+                                                   G_CALLBACK (preferences_bookshelf_book_created_cb),
+                                                   NULL);
+        prefs->book_deleted_id = g_signal_connect (prefs->book_manager,
+                                                   "book-deleted",
+                                                   G_CALLBACK (preferences_bookshelf_book_deleted_cb),
+                                                   NULL);
+        prefs->group_by_language_id = g_signal_connect (prefs->book_manager,
+                                                        "notify::group-by-language",
+                                                        G_CALLBACK (preferences_bookshelf_group_by_language_cb),
+                                                        NULL);
 }
 
 static void
@@ -127,7 +132,12 @@ preferences_shutdown (void)
         }
 
         g_clear_object (&prefs->settings);
+
+        g_signal_handler_disconnect (prefs->book_manager, prefs->book_created_id);
+        g_signal_handler_disconnect (prefs->book_manager, prefs->book_deleted_id);
+        g_signal_handler_disconnect (prefs->book_manager, prefs->group_by_language_id);
         g_clear_object (&prefs->book_manager);
+
         gtk_list_store_clear (prefs->bookshelf_store);
         gtk_widget_destroy (GTK_WIDGET (prefs->dialog));
 
