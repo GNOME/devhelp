@@ -1,4 +1,17 @@
 =============
+Version 3.8.2
+=============
+
+Fixed bugs:
+
+ - disconnect signals when preferences dialog is shutdown
+
+Updated translations: ru
+
+Many thanks to all contributors: Dmitriy S. Seregin, Aleksander Morgado
+
+
+=============
 Version 3.8.1
 =============
 
