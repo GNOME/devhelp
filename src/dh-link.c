@@ -227,14 +227,16 @@ dh_link_get_book_id (DhLink *link)
 gchar *
 dh_link_get_uri (DhLink *link)
 {
-	gchar *base, *uri;
+	gchar *base, *filename, *uri;
 
         if (link->type == DH_LINK_TYPE_BOOK)
                 base = link->base;
         else
                 base = link->book->base;
 
-	uri = g_strconcat ("file://", base, "/", link->filename, NULL, NULL);
+	filename = g_build_filename (base, link->filename, NULL);
+	uri = g_filename_to_uri (filename, NULL, NULL);
+	g_free (filename);
 
 	return uri;
 }
