@@ -528,8 +528,7 @@ book_manager_add_from_dir (DhBookManager *book_manager,
 
                 /* Build the path of the directory where the final
                  * devhelp book resides */
-                book_dir_path = g_build_filename (G_DIR_SEPARATOR_S,
-                                                  dir_path,
+                book_dir_path = g_build_filename (dir_path,
                                                   name,
                                                   NULL);
 
