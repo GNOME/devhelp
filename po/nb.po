@@ -5,10 +5,10 @@
 # Torstein Adolf Winterseth <kvikende@fsfe.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 3.7.x\n"
+"Project-Id-Version: devhelp 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-25 17:17+0100\n"
-"PO-Revision-Date: 2013-02-25 17:17+0100\n"
+"POT-Creation-Date: 2013-05-20 14:49+0200\n"
+"PO-Revision-Date: 2013-05-20 14:50+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language:\n"
@@ -20,8 +20,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:345
-#: ../src/dh-window.c:647
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:347
+#: ../src/dh-window.c:636
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -182,20 +182,20 @@ msgid "Show API Documentation for the word at the cursor"
 msgstr "Vis API-dokumentasjon for ordet ved markøren"
 
 #: ../src/devhelp.ui.h:1
-msgid "New window"
-msgstr "Nytt vindu"
+msgid "New _Window"
+msgstr "Nytt _vindu"
 
 #: ../src/devhelp.ui.h:2
-msgid "Preferences"
-msgstr "Brukervalg"
+msgid "_Preferences"
+msgstr "_Brukervalg"
 
 #: ../src/devhelp.ui.h:3
-msgid "About Devhelp"
-msgstr "Om Devhelp"
+msgid "_About Devhelp"
+msgstr "_Om Devhelp"
 
 #: ../src/devhelp.ui.h:4
-msgid "Quit"
-msgstr "Avslutt"
+msgid "_Quit"
+msgstr "A_vslutt"
 
 #: ../src/devhelp.ui.h:5
 msgid "New _Tab"
@@ -210,46 +210,50 @@ msgid "_Find"
 msgstr "_Finn"
 
 #: ../src/devhelp.ui.h:8
-msgid "_Larger text"
+msgid "_Larger Text"
 msgstr "S_tørre tekst"
 
 #: ../src/devhelp.ui.h:9
-msgid "S_maller text"
+msgid "S_maller Text"
 msgstr "_Mindre tekst"
 
 #: ../src/devhelp.ui.h:10
-msgid "_Normal size"
+msgid "_Normal Size"
 msgstr "_Normal størrelse"
 
 #: ../src/devhelp.ui.h:11
+msgid "Preferences"
+msgstr "Brukervalg"
+
+#: ../src/devhelp.ui.h:12
 msgid "_Group by language"
 msgstr "_Grupper etter språk"
 
-#: ../src/devhelp.ui.h:12
+#: ../src/devhelp.ui.h:13
 msgid "Enabled"
 msgstr "Slått på"
 
-#: ../src/devhelp.ui.h:13
+#: ../src/devhelp.ui.h:14
 msgid "Title"
 msgstr "Tittel"
 
-#: ../src/devhelp.ui.h:14
+#: ../src/devhelp.ui.h:15
 msgid "Book Shelf"
 msgstr "Bokhylle"
 
-#: ../src/devhelp.ui.h:15
+#: ../src/devhelp.ui.h:16
 msgid "_Use system fonts"
 msgstr "Br_uk systemets skrifter"
 
-#: ../src/devhelp.ui.h:16
+#: ../src/devhelp.ui.h:17
 msgid "_Variable width: "
 msgstr "_Variabel bredde: "
 
-#: ../src/devhelp.ui.h:17
+#: ../src/devhelp.ui.h:18
 msgid "_Fixed width:"
 msgstr "_Fast bredde:"
 
-#: ../src/devhelp.ui.h:18
+#: ../src/devhelp.ui.h:19
 msgid "Fonts"
 msgstr "Skrifter"
 
@@ -268,11 +272,11 @@ msgid "DevHelp Website"
 msgstr "Nettsted for Devhelp"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:121
+#: ../src/dh-assistant.c:119
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - Assistent"
 
-#: ../src/dh-assistant-view.c:403
+#: ../src/dh-assistant-view.c:372
 msgid "Book:"
 msgstr "Bok:"
 
@@ -286,53 +290,53 @@ msgid "Language: Undefined"
 msgstr "Språk: Udefinert"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:269
 msgid "Book"
 msgstr "Bok"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:272
 msgid "Page"
 msgstr "Side"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:274
+#: ../src/dh-link.c:276
 msgid "Keyword"
 msgstr "Nøkkelord"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:281
 msgid "Function"
 msgstr "Funksjon"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:286
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:291
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:296
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:301
 msgid "Type"
 msgstr "Type"
 
@@ -410,55 +414,55 @@ msgstr "Aktiv"
 msgid "All Books"
 msgstr "Alle bøker"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:82
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:83
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:84
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:85
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:86
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:87
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:88
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:89
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:90
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:678
+#: ../src/dh-window.c:669
 msgid "Back"
 msgstr "Tilbake"
 
-#: ../src/dh-window.c:683
+#: ../src/dh-window.c:676
 msgid "Forward"
 msgstr "Fremover"
 
-#: ../src/dh-window.c:952
+#: ../src/dh-window.c:896
 msgid "Error opening the requested link."
 msgstr "Feil ved åpning av forespurt lenke."
 
-#: ../src/dh-window.c:1302 ../src/dh-window.c:1488
+#: ../src/dh-window.c:1175 ../src/dh-window.c:1350
 msgid "Empty Page"
 msgstr "Tom side"
 
