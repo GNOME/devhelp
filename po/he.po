@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-02 13:33+0200\n"
-"PO-Revision-Date: 2013-02-02 13:33+0200\n"
+"POT-Creation-Date: 2013-05-25 11:29+0300\n"
+"PO-Revision-Date: 2013-05-25 11:30+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -21,8 +21,8 @@ msgstr ""
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:1
 #: ../src/dh-app.c:162
-#: ../src/dh-app.c:342
-#: ../src/dh-window.c:623
+#: ../src/dh-app.c:347
+#: ../src/dh-window.c:636
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -184,20 +184,20 @@ msgid "Show API Documentation for the word at the cursor"
 msgstr "הצגת תיעוד API עבור המילה שתחת הסמן"
 
 #: ../src/devhelp.ui.h:1
-msgid "New window"
-msgstr "חלון חדש"
+msgid "New _Window"
+msgstr "חלון _חדש"
 
 #: ../src/devhelp.ui.h:2
-msgid "Preferences"
-msgstr "העדפות"
+msgid "_Preferences"
+msgstr "ה_עדפות"
 
 #: ../src/devhelp.ui.h:3
-msgid "About Devhelp"
-msgstr "על אודות DevHelp"
+msgid "_About Devhelp"
+msgstr "על _אודות DevHelp"
 
 #: ../src/devhelp.ui.h:4
-msgid "Quit"
-msgstr "יציאה"
+msgid "_Quit"
+msgstr "י_ציאה"
 
 #: ../src/devhelp.ui.h:5
 msgid "New _Tab"
@@ -212,46 +212,50 @@ msgid "_Find"
 msgstr "_חיפוש"
 
 #: ../src/devhelp.ui.h:8
-msgid "_Larger text"
+msgid "_Larger Text"
 msgstr "ה_גדלת הטקסט"
 
 #: ../src/devhelp.ui.h:9
-msgid "S_maller text"
+msgid "S_maller Text"
 msgstr "ה_קטנת טקסט"
 
 #: ../src/devhelp.ui.h:10
-msgid "_Normal size"
+msgid "_Normal Size"
 msgstr "גודל _רגיל"
 
 #: ../src/devhelp.ui.h:11
+msgid "Preferences"
+msgstr "העדפות"
+
+#: ../src/devhelp.ui.h:12
 msgid "_Group by language"
 msgstr "_קיבוץ לפי שפה"
 
-#: ../src/devhelp.ui.h:12
+#: ../src/devhelp.ui.h:13
 msgid "Enabled"
 msgstr "פעיל"
 
-#: ../src/devhelp.ui.h:13
+#: ../src/devhelp.ui.h:14
 msgid "Title"
 msgstr "כותרת"
 
-#: ../src/devhelp.ui.h:14
+#: ../src/devhelp.ui.h:15
 msgid "Book Shelf"
 msgstr "מדף ספרים"
 
-#: ../src/devhelp.ui.h:15
+#: ../src/devhelp.ui.h:16
 msgid "_Use system fonts"
 msgstr "שימוש ב_גופני המערכת"
 
-#: ../src/devhelp.ui.h:16
+#: ../src/devhelp.ui.h:17
 msgid "_Variable width: "
 msgstr "רוחב _משתנה: "
 
-#: ../src/devhelp.ui.h:17
+#: ../src/devhelp.ui.h:18
 msgid "_Fixed width:"
 msgstr "_רוחב קבוע:"
 
-#: ../src/devhelp.ui.h:18
+#: ../src/devhelp.ui.h:19
 msgid "Fonts"
 msgstr "גופנים"
 
@@ -273,71 +277,71 @@ msgid "DevHelp Website"
 msgstr "האתר של Devhelp"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:121
+#: ../src/dh-assistant.c:119
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — המסייע"
 
-#: ../src/dh-assistant-view.c:403
+#: ../src/dh-assistant-view.c:372
 msgid "Book:"
 msgstr "ספר:"
 
-#: ../src/dh-book.c:256
+#: ../src/dh-book.c:255
 #, c-format
 msgid "Language: %s"
 msgstr "שפה: %s"
 
-#: ../src/dh-book.c:257
+#: ../src/dh-book.c:256
 msgid "Language: Undefined"
 msgstr "שפה: בלתי מוגדרת"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:284
 msgid "Book"
 msgstr "ספר"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:287
 msgid "Page"
 msgstr "עמוד"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:274
+#: ../src/dh-link.c:291
 msgid "Keyword"
 msgstr "מילת מפתח"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:296
 msgid "Function"
 msgstr "פונקציה"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:301
 msgid "Struct"
 msgstr "מבנה"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:306
 msgid "Macro"
 msgstr "מקרו"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:311
 msgid "Enum"
 msgstr "מניה"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:316
 msgid "Type"
 msgstr "סוג"
 
@@ -405,64 +409,64 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Cannot uncompress book '%s': %s"
 
 #. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:471
+#: ../src/dh-sidebar.c:478
 msgid "Current"
 msgstr "נוכחי"
 
-#: ../src/dh-sidebar.c:474
+#: ../src/dh-sidebar.c:481
 msgid "All Books"
 msgstr "כל הספרים"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:82
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:83
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:84
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:85
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:86
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:87
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:88
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:89
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:90
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:669
 msgid "Back"
 msgstr "חזרה"
 
-#: ../src/dh-window.c:659
+#: ../src/dh-window.c:676
 msgid "Forward"
 msgstr "קדימה"
 
-#: ../src/dh-window.c:919
+#: ../src/dh-window.c:896
 msgid "Error opening the requested link."
 msgstr "שגיאה בפתיחת הקישור המבוקש."
 
-#: ../src/dh-window.c:1269
-#: ../src/dh-window.c:1455
+#: ../src/dh-window.c:1175
+#: ../src/dh-window.c:1350
 msgid "Empty Page"
 msgstr "דף ריק"
 
