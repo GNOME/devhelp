@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-02 01:39+0000\n"
-"PO-Revision-Date: 2013-02-18 09:52+0100\n"
+"POT-Creation-Date: 2013-05-03 10:01+0000\n"
+"PO-Revision-Date: 2013-05-29 12:37+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -26,8 +26,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:342
-#: ../src/dh-window.c:623
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:347
+#: ../src/dh-window.c:636
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -188,20 +188,20 @@ msgid "Show API Documentation for the word at the cursor"
 msgstr "Zobrazit dokumentaci API pro slovo pod kurzorem"
 
 #: ../src/devhelp.ui.h:1
-msgid "New window"
-msgstr "Nové okno"
+msgid "New _Window"
+msgstr "Nové _okno"
 
 #: ../src/devhelp.ui.h:2
-msgid "Preferences"
-msgstr "Předvolby"
+msgid "_Preferences"
+msgstr "_Předvolby"
 
 #: ../src/devhelp.ui.h:3
-msgid "About Devhelp"
-msgstr "O aplikaci DevHelp"
+msgid "_About Devhelp"
+msgstr "O _aplikaci DevHelp"
 
 #: ../src/devhelp.ui.h:4
-msgid "Quit"
-msgstr "Ukončit"
+msgid "_Quit"
+msgstr "U_končit"
 
 #: ../src/devhelp.ui.h:5
 msgid "New _Tab"
@@ -216,46 +216,50 @@ msgid "_Find"
 msgstr "_Hledat"
 
 #: ../src/devhelp.ui.h:8
-msgid "_Larger text"
+msgid "_Larger Text"
 msgstr "Větší t_ext"
 
 #: ../src/devhelp.ui.h:9
-msgid "S_maller text"
+msgid "S_maller Text"
 msgstr "_Menší text"
 
 #: ../src/devhelp.ui.h:10
-msgid "_Normal size"
+msgid "_Normal Size"
 msgstr "_Normální velikost"
 
 #: ../src/devhelp.ui.h:11
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: ../src/devhelp.ui.h:12
 msgid "_Group by language"
 msgstr "_Seskupit podle jazyka"
 
-#: ../src/devhelp.ui.h:12
+#: ../src/devhelp.ui.h:13
 msgid "Enabled"
 msgstr "Zapnuto"
 
-#: ../src/devhelp.ui.h:13
+#: ../src/devhelp.ui.h:14
 msgid "Title"
 msgstr "Název"
 
-#: ../src/devhelp.ui.h:14
+#: ../src/devhelp.ui.h:15
 msgid "Book Shelf"
 msgstr "Knihovnička"
 
-#: ../src/devhelp.ui.h:15
+#: ../src/devhelp.ui.h:16
 msgid "_Use system fonts"
 msgstr "Po_užívat systémová písma"
 
-#: ../src/devhelp.ui.h:16
+#: ../src/devhelp.ui.h:17
 msgid "_Variable width: "
 msgstr "Pr_oměnná šířka:"
 
-#: ../src/devhelp.ui.h:17
+#: ../src/devhelp.ui.h:18
 msgid "_Fixed width:"
 msgstr "P_evná šířka:"
 
-#: ../src/devhelp.ui.h:18
+#: ../src/devhelp.ui.h:19
 msgid "Fonts"
 msgstr "Písma"
 
@@ -275,20 +279,20 @@ msgid "DevHelp Website"
 msgstr "Webové stránky DevHelp"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:121
+#: ../src/dh-assistant.c:119
 msgid "Devhelp — Assistant"
 msgstr "DevHelp — Asistent"
 
-#: ../src/dh-assistant-view.c:403
+#: ../src/dh-assistant-view.c:372
 msgid "Book:"
 msgstr "Kniha:"
 
-#: ../src/dh-book.c:256
+#: ../src/dh-book.c:255
 #, c-format
 msgid "Language: %s"
 msgstr "Jazyk: %s"
 
-#: ../src/dh-book.c:257
+#: ../src/dh-book.c:256
 msgid "Language: Undefined"
 msgstr "Jazyk: neurčen"
 
@@ -410,63 +414,63 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Nelze dekomprimovat knihu „%s“: %s"
 
 #. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:471
+#: ../src/dh-sidebar.c:478
 msgid "Current"
 msgstr "Aktuální"
 
-#: ../src/dh-sidebar.c:474
+#: ../src/dh-sidebar.c:481
 msgid "All Books"
 msgstr "Všechny knihy"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:82
 msgid "50%"
 msgstr "50 %"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:83
 msgid "75%"
 msgstr "75 %"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:84
 msgid "100%"
 msgstr "100 %"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:85
 msgid "125%"
 msgstr "125 %"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:86
 msgid "150%"
 msgstr "150 %"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:87
 msgid "175%"
 msgstr "175 %"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:88
 msgid "200%"
 msgstr "200 %"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:89
 msgid "300%"
 msgstr "300 %"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:90
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:654
+#: ../src/dh-window.c:669
 msgid "Back"
 msgstr "Zpět"
 
-#: ../src/dh-window.c:659
+#: ../src/dh-window.c:676
 msgid "Forward"
 msgstr "Vpřed"
 
-#: ../src/dh-window.c:919
+#: ../src/dh-window.c:896
 msgid "Error opening the requested link."
 msgstr "Chyba při otevírání požadovaného odkazu."
 
-#: ../src/dh-window.c:1269 ../src/dh-window.c:1455
+#: ../src/dh-window.c:1175 ../src/dh-window.c:1349
 msgid "Empty Page"
 msgstr "Prázdná strana"
 
