@@ -149,12 +149,12 @@ static void
 preferences_fonts_system_fonts_toggled_cb (GtkToggleButton *button,
                                            gpointer         user_data)
 {
-	DhPreferences *prefs = user_data;
-	gboolean       active;
+        DhPreferences *prefs = user_data;
+        gboolean       active;
 
-	active = gtk_toggle_button_get_active (button);
+        active = gtk_toggle_button_get_active (button);
 
-	gtk_widget_set_sensitive (prefs->fonts_table, !active);
+        gtk_widget_set_sensitive (prefs->fonts_table, !active);
 }
 
 static void
@@ -646,20 +646,20 @@ void
 dh_preferences_show_dialog (void)
 {
         gchar      *path;
-	GtkBuilder *builder;
-	gboolean    use_system_fonts;
+        GtkBuilder *builder;
+        gboolean    use_system_fonts;
 
         preferences_init ();
 
-	if (prefs->dialog != NULL) {
-		gtk_window_present (GTK_WINDOW (prefs->dialog));
-		return;
-	}
+        if (prefs->dialog != NULL) {
+                gtk_window_present (GTK_WINDOW (prefs->dialog));
+                return;
+        }
 
         path = dh_util_build_data_filename ("devhelp", "ui",
                                             "devhelp.builder",
                                             NULL);
-	builder = dh_util_builder_get_file (
+        builder = dh_util_builder_get_file (
                 path,
                 "preferences_dialog",
                 NULL,
@@ -690,14 +690,14 @@ dh_preferences_show_dialog (void)
                          "group-books-by-language", G_OBJECT (prefs->bookshelf_group_by_language_button),
                          "active", G_SETTINGS_BIND_DEFAULT);
 
-	dh_util_builder_connect (
+        dh_util_builder_connect (
                 builder,
                 prefs,
                 "system_fonts_button", "toggled", preferences_fonts_system_fonts_toggled_cb,
                 "bookshelf_enabled_toggle", "toggled", preferences_bookshelf_tree_selection_toggled_cb,
                 NULL);
 
-	/* set initial sensitive */
+        /* set initial sensitive */
         use_system_fonts = g_settings_get_boolean (settings_fonts, "use-system-fonts");
         gtk_widget_set_sensitive (prefs->fonts_table, !use_system_fonts);
 
@@ -705,7 +705,7 @@ dh_preferences_show_dialog (void)
                                       dh_book_manager_get_group_by_language (prefs->book_manager));
         preferences_bookshelf_populate_store ();
 
-	g_object_unref (builder);
+        g_object_unref (builder);
 
         /* Connect to the response signal to get notified when the dialog is
          * closed or deleted */
@@ -714,5 +714,5 @@ dh_preferences_show_dialog (void)
                           G_CALLBACK (preferences_dialog_response),
                           NULL);
 
-	gtk_widget_show_all (prefs->dialog);
+        gtk_widget_show_all (prefs->dialog);
 }
