@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-03 10:01+0000\n"
-"PO-Revision-Date: 2013-05-03 18:07+0200\n"
+"POT-Creation-Date: 2013-05-15 11:11+0000\n"
+"PO-Revision-Date: 2013-06-16 15:36+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Gtranslator 2.91.5\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
@@ -109,11 +109,11 @@ msgstr "Lista de libros desactivados por el usuario."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:17
 msgid "Group by language"
-msgstr "Agrupar por idioma"
+msgstr "Agrupar por lenguaje"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:18
 msgid "Whether books should be grouped by language in the UI"
-msgstr "Indica si se deben agrupar por idioma los libros en la IU"
+msgstr "Indica si se deben agrupar por lenguaje los libros en la IU"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:19
 msgid "Width of the assistant window"
@@ -149,7 +149,7 @@ msgstr "La posición Y de la ventana del asistente."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:27
 msgid "Use system fonts"
-msgstr "Usar tipografía del sistema"
+msgstr "Usar la tipografía del sistema"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:28
 msgid "Use the system default fonts."
@@ -189,22 +189,18 @@ msgid "Show API Documentation for the word at the cursor"
 msgstr "Muestra la documentación de la API para la palabra bajo el cursor"
 
 #: ../src/devhelp.ui.h:1
-#| msgid "New window"
 msgid "New _Window"
 msgstr "_Ventana nueva"
 
 #: ../src/devhelp.ui.h:2
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "Prefere_ncias"
 
 #: ../src/devhelp.ui.h:3
-#| msgid "About Devhelp"
 msgid "_About Devhelp"
 msgstr "_Acerca de DevHelp"
 
 #: ../src/devhelp.ui.h:4
-#| msgid "Quit"
 msgid "_Quit"
 msgstr "_Salir"
 
@@ -221,17 +217,14 @@ msgid "_Find"
 msgstr "_Buscar"
 
 #: ../src/devhelp.ui.h:8
-#| msgid "_Larger text"
 msgid "_Larger Text"
 msgstr "Texto más _grande"
 
 #: ../src/devhelp.ui.h:9
-#| msgid "S_maller text"
 msgid "S_maller Text"
 msgstr "Texto más _pequeño"
 
 #: ../src/devhelp.ui.h:10
-#| msgid "_Normal size"
 msgid "_Normal Size"
 msgstr "Tamaño _normal"
 
@@ -241,7 +234,7 @@ msgstr "Preferencias"
 
 #: ../src/devhelp.ui.h:12
 msgid "_Group by language"
-msgstr "_Agrupar por idioma"
+msgstr "_Agrupar por lenguaje"
 
 #: ../src/devhelp.ui.h:13
 msgid "Enabled"
@@ -297,11 +290,11 @@ msgstr "Libro:"
 #: ../src/dh-book.c:255
 #, c-format
 msgid "Language: %s"
-msgstr "Idioma: %s"
+msgstr "lenguaje: %s"
 
 #: ../src/dh-book.c:256
 msgid "Language: Undefined"
-msgstr "Idioma: indefinido"
+msgstr "Lenguaje: indefinido"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:267
@@ -400,19 +393,19 @@ msgstr ""
 #: ../src/dh-parser.c:218
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+"%d"
 msgstr ""
-"son necesarios los elementos «nombre» y «enlace» dentro de <sub> en la línea %"
-"d, columna %d"
+"son necesarios los elementos «nombre» y «enlace» dentro de <sub> en la línea "
+"%d, columna %d"
 
 #: ../src/dh-parser.c:298
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"son necesarios los elementos «nombre» y «enlace» dentro de «%s» en la línea %d, "
-"columna %d"
+"son necesarios los elementos «nombre» y «enlace» dentro de «%s» en la línea "
+"%d, columna %d"
 
 #: ../src/dh-parser.c:311
 #, c-format
@@ -483,7 +476,7 @@ msgstr "Adelante"
 msgid "Error opening the requested link."
 msgstr "Error al abrir el enlace solicitado."
 
-#: ../src/dh-window.c:1175 ../src/dh-window.c:1349
+#: ../src/dh-window.c:1175 ../src/dh-window.c:1350
 msgid "Empty Page"
 msgstr "Página vacía"
 
@@ -615,8 +608,8 @@ msgstr "Conmutar búsqueda discriminando capitalización"
 #~ msgstr "_Mostrar las opciones de búsqueda avanzadas"
 
 #~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %"
-#~ "d"
+#~ "name and link elements are required inside <function> on line %d, column "
+#~ "%d"
 #~ msgstr ""
 #~ "los elementos nombre y enlace se requieren dentro de <function> en la "
 #~ "línea %d, columna %d"
