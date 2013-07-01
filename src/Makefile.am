@@ -98,11 +98,9 @@ libdevhelp_3_la_CPPFLAGS =				\
 	$(ZLIB_CPPFLAGS)
 
 libdevhelp_3_la_CFLAGS =				\
-	-I$(top_srcdir)/libgd 				\
 	$(LIBDEVHELP_CFLAGS)
 
 libdevhelp_3_la_LIBADD =				\
-	$(top_builddir)/libgd/libgd.la 			\
 	$(LIBDEVHELP_LIBS)				\
 	$(ZLIB_LIBS)					\
 	$(LIBM)

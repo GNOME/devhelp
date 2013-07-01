@@ -5,7 +5,6 @@ srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
 PKG_NAME="Devhelp"
-ACLOCAL_FLAGS="-I libgd $ACLOCAL_FLAGS"
 
 (test -f $srcdir/src/dh-main.c) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
