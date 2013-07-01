@@ -28,8 +28,6 @@
 #include <gtk/gtk.h>
 #include <webkit2/webkit2.h>
 
-#include <libgd/gd.h>
-
 #include "dh-book-manager.h"
 #include "dh-book.h"
 #include "dh-sidebar.h"
@@ -652,41 +650,60 @@ window_populate (DhWindow *window)
 {
         DhWindowPriv  *priv;
         DhBookManager *book_manager;
-        GtkWidget     *back;
-        GtkWidget     *forward;
+        GtkWidget     *back_button;
+        GtkWidget     *back_image;
+        GtkWidget     *forward_button;
+        GtkWidget     *forward_image;
         GtkWidget     *box;
         GtkWidget     *menu_button;
+        GtkWidget     *menu_image;
         GObject       *menu;
+        const char *prev_icon, *next_icon;
 
         priv = window->priv;
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
 
         priv->header_bar = gtk_header_bar_new ();
 
-        back = gd_header_simple_button_new ();
-        gd_header_button_set_label (GD_HEADER_BUTTON (back),
-                                    _("Back"));
-        gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (back),
-                                                 "go-previous-symbolic");
-        gtk_actionable_set_action_name (GTK_ACTIONABLE (back), "win.go-back");
+        if (gtk_widget_get_direction (GTK_WIDGET (window)) == GTK_TEXT_DIR_RTL) {
+                prev_icon = "go-previous-rtl-symbolic";
+                next_icon = "go-next-rtl-symbolic";
+        } else {
+                prev_icon = "go-previous-symbolic";
+                next_icon = "go-next-symbolic";
+        }
 
-        forward = gd_header_simple_button_new ();
-        gd_header_button_set_label (GD_HEADER_BUTTON (forward),
-                                    _("Forward"));
-        gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (forward),
-                                                 "go-next-symbolic");
-        gtk_actionable_set_action_name (GTK_ACTIONABLE (forward), "win.go-forward");
+        back_button = gtk_button_new ();
+        back_image = gtk_image_new_from_icon_name (prev_icon, GTK_ICON_SIZE_MENU);
+        gtk_button_set_image (GTK_BUTTON (back_button), back_image);
+        gtk_widget_set_tooltip_text (back_button, _("Back"));
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (back_button), "win.go-back");
+        gtk_widget_set_valign (back_button, GTK_ALIGN_CENTER);
+        gtk_style_context_add_class (gtk_widget_get_style_context (back_button),
+				     "image-button");
+
+        forward_button = gtk_button_new ();
+        forward_image = gtk_image_new_from_icon_name (next_icon, GTK_ICON_SIZE_MENU);
+        gtk_button_set_image (GTK_BUTTON (forward_button), forward_image);
+        gtk_widget_set_tooltip_text (forward_button, _("Forward"));
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (forward_button), "win.go-forward");
+        gtk_widget_set_valign (forward_button, GTK_ALIGN_CENTER);
+        gtk_style_context_add_class (gtk_widget_get_style_context (forward_button),
+				     "image-button");
 
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
         gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
-        gtk_box_pack_start (GTK_BOX (box), back, FALSE, FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (box), forward, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (box), back_button, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (box), forward_button, FALSE, FALSE, 0);
         gtk_header_bar_pack_start (GTK_HEADER_BAR (priv->header_bar), box);
 
-        menu_button = gd_header_menu_button_new ();
-        gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (menu_button),
-                                                 "emblem-system-symbolic");
+        menu_button = gtk_menu_button_new ();
+        menu_image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
+        gtk_button_set_image (GTK_BUTTON (menu_button), menu_image);
         gtk_actionable_set_action_name (GTK_ACTIONABLE (menu_button), "win.gear-menu");
+        gtk_widget_set_valign (menu_button, GTK_ALIGN_CENTER);
+        gtk_style_context_add_class (gtk_widget_get_style_context (menu_button),
+				     "image-button");
 
         gtk_header_bar_pack_end (GTK_HEADER_BAR (priv->header_bar), menu_button);
 
