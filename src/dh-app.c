@@ -340,8 +340,6 @@ dh_app_new (void)
 {
         DhApp *application;
 
-        g_type_init ();
-
         /* i18n: Please don't translate "Devhelp" (it's marked as translatable
          * for transliteration only) */
         g_set_application_name (_("Devhelp"));

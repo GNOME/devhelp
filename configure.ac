@@ -51,12 +51,12 @@ PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
   gtk+-3.0 >= 3.9.2
   webkit2gtk-3.0 >= 2.0.0
-  gio-2.0 >= 2.32
+  gio-2.0 >= 2.36
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
   gtk+-3.0 >= 3.9.2
-  gio-2.0 >= 2.32
+  gio-2.0 >= 2.36
   webkit2gtk-3.0 >= 2.0.0
 ])
 
