@@ -676,6 +676,7 @@ window_populate (DhWindow *window)
         GtkWidget     *box;
         GtkWidget     *menu_button;
         GObject       *menu;
+        const char    *prev_icon, *next_icon;
 
         priv = window->priv;
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
@@ -683,18 +684,26 @@ window_populate (DhWindow *window)
         // TODO: port to GtkHeaderBar in the future
         priv->header_bar = gd_header_bar_new ();
 
+        if (gtk_widget_get_direction (GTK_WIDGET (window)) == GTK_TEXT_DIR_RTL) {
+                prev_icon = "go-previous-rtl-symbolic";
+                next_icon = "go-next-rtl-symbolic";
+        } else {
+                prev_icon = "go-previous-symbolic";
+                next_icon = "go-next-symbolic";
+        }
+
         back = gd_header_simple_button_new ();
         gd_header_button_set_label (GD_HEADER_BUTTON (back),
                                     _("Back"));
         gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (back),
-                                                 "go-previous-symbolic");
+                                                 prev_icon);
         gtk_actionable_set_action_name (GTK_ACTIONABLE (back), "win.go-back");
 
         forward = gd_header_simple_button_new ();
         gd_header_button_set_label (GD_HEADER_BUTTON (forward),
                                     _("Forward"));
         gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (forward),
-                                                 "go-next-symbolic");
+                                                 next_icon);
         gtk_actionable_set_action_name (GTK_ACTIONABLE (forward), "win.go-forward");
 
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
