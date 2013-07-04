@@ -454,6 +454,7 @@ static GActionEntry win_entries[] = {
         { "zoom-out",         zoom_out_cb,         NULL, NULL, NULL },
         { "zoom-default",     zoom_default_cb,     NULL, NULL, NULL },
         { "focus-search",     focus_search_cb,     NULL, NULL, NULL },
+        { "focus-search-alt", focus_search_cb,     NULL, NULL, NULL },
         /* go */
         { "go-back",          go_back_cb,          NULL, "false", NULL },
         { "go-forward",       go_forward_cb,       NULL, "false", NULL },
