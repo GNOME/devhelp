@@ -1,4 +1,24 @@
 =============
+Version 3.9.4
+=============
+
+Fixed bugs:
+
+ - #665531, devhelp: change ShowSearchTab key to ctrl+K
+ - #695758, Ctrl+F/Ctrl+S don't focus the search entry
+ - #696922, Tabs should be reorderable
+ - #700430, .pc uses WEBKITGTK_PC_NAME which is no longer defined
+
+Updated translations: cs, es, eu, gl, he, hu, ml, nb, ru, sl
+
+Many thanks to all contributors: Balázs Úr, Kjartan Maraas, Carlos Garcia
+Campos, Ignacio Casal Quinteiro, Fran Diéguez, Javier Jardón, Matej
+Urbančič, Yuri Myasoedov, Daniel Mustieles, Yosef Or Boczko, Adam Dingle,
+Marek Černocký, Arnel A. Borja, Yaron Shahrabani, Anish A, Aleksander
+Morgado
+
+
+=============
 Version 3.8.2
 =============
 
