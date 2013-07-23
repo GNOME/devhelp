@@ -419,21 +419,8 @@ GtkWidget *
 dh_sidebar_new (DhBookManager *book_manager)
 {
         DhSidebar        *self;
-        GtkCellRenderer  *cell;
-        GtkWidget        *hbox;
-        GtkWidget        *button_box;
 
         self = g_object_new (DH_TYPE_SIDEBAR, "orientation", GTK_ORIENTATION_VERTICAL, NULL);
-        gtk_container_set_border_width (GTK_CONTAINER (self), 2);
-        gtk_box_set_spacing (GTK_BOX (self), 4);
-
-        /* Setup keyword model */
-        self->priv->model = dh_keyword_model_new ();
-
-        /* Setup hitlist */
-        self->priv->hitlist = gtk_tree_view_new ();
-        gtk_tree_view_set_model (GTK_TREE_VIEW (self->priv->hitlist), GTK_TREE_MODEL (self->priv->model));
-        gtk_tree_view_set_enable_search (GTK_TREE_VIEW (self->priv->hitlist), FALSE);
 
         /* Setup book manager */
         self->priv->book_manager = g_object_ref (book_manager);
@@ -454,13 +441,62 @@ dh_sidebar_new (DhBookManager *book_manager)
                           G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
                           self);
 
+        self->priv->book_tree = dh_book_tree_new (self->priv->book_manager);
+        gtk_widget_show (self->priv->book_tree);
+        g_signal_connect (self->priv->book_tree,
+                          "link-selected",
+                          G_CALLBACK (sidebar_book_tree_link_selected_cb),
+                          self);
+        gtk_container_add (GTK_CONTAINER (self->priv->sw_book_tree), self->priv->book_tree);
+        gtk_box_pack_end (GTK_BOX (self), self->priv->sw_book_tree, TRUE, TRUE, 0);
+
+        sidebar_completion_populate (self);
+
+        dh_keyword_model_set_words (self->priv->model, self->priv->book_manager);
+
+        return GTK_WIDGET (self);
+}
+
+static void
+sidebar_finalize (GObject *object)
+{
+        DhSidebar *self = DH_SIDEBAR (object);
+
+        g_completion_free (self->priv->completion);
+        g_object_unref (self->priv->book_manager);
+
+        G_OBJECT_CLASS (dh_sidebar_parent_class)->finalize (object);
+}
+
+static void
+dh_sidebar_init (DhSidebar *self)
+{
+        GtkCellRenderer  *cell;
+        GtkWidget        *hbox;
+        GtkWidget        *button_box;
+
+        self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
+                                                  DH_TYPE_SIDEBAR,
+                                                  DhSidebarPrivate);
+
+        gtk_container_set_border_width (GTK_CONTAINER (self), 2);
+        gtk_box_set_spacing (GTK_BOX (self), 4);
+
+        /* Setup keyword model */
+        self->priv->model = dh_keyword_model_new ();
+
+        /* Setup hitlist */
+        self->priv->hitlist = gtk_tree_view_new ();
+        gtk_tree_view_set_model (GTK_TREE_VIEW (self->priv->hitlist), GTK_TREE_MODEL (self->priv->model));
+        gtk_tree_view_set_enable_search (GTK_TREE_VIEW (self->priv->hitlist), FALSE);
+
         /* Setup the top-level box with entry search and Current|All buttons */
-	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+        hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
         gtk_box_pack_start (GTK_BOX (self), hbox, FALSE, FALSE, 0);
 
         /* Setup the search entry */
         self->priv->entry = gtk_search_entry_new ();
-	gtk_box_pack_start (GTK_BOX (hbox), self->priv->entry, TRUE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (hbox), self->priv->entry, TRUE, TRUE, 0);
         g_signal_connect (self->priv->entry, "key-press-event",
                           G_CALLBACK (sidebar_entry_key_press_event_cb),
                           self);
@@ -474,25 +510,25 @@ dh_sidebar_new (DhBookManager *book_manager)
                           G_CALLBACK (sidebar_entry_text_inserted_cb),
                           self);
 
-	/* Setup the Current/All Files selector */
-	self->priv->search_current_button = gtk_radio_button_new_with_label (NULL, _("Current"));
-	gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (self->priv->search_current_button), FALSE);
-	self->priv->search_all_button = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (self->priv->search_current_button),
+        /* Setup the Current/All Files selector */
+        self->priv->search_current_button = gtk_radio_button_new_with_label (NULL, _("Current"));
+        gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (self->priv->search_current_button), FALSE);
+        self->priv->search_all_button = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (self->priv->search_current_button),
                                                                                      _("All Books"));
-	gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (self->priv->search_all_button), FALSE);
+        gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (self->priv->search_all_button), FALSE);
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->priv->search_all_button), TRUE);
-	g_signal_connect (self->priv->search_current_button,
+        g_signal_connect (self->priv->search_current_button,
                           "toggled",
-			  G_CALLBACK (search_filter_button_toggled),
+                          G_CALLBACK (search_filter_button_toggled),
                           self);
-	button_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), button_box, FALSE, FALSE, 0);
-	gtk_style_context_add_class (gtk_widget_get_style_context (button_box),
-				     GTK_STYLE_CLASS_LINKED);
-	gtk_style_context_add_class (gtk_widget_get_style_context (button_box),
-				     GTK_STYLE_CLASS_RAISED);
-	gtk_box_pack_start (GTK_BOX (button_box), self->priv->search_current_button, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (button_box), self->priv->search_all_button, FALSE, FALSE, 0);
+        button_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+        gtk_box_pack_start (GTK_BOX (hbox), button_box, FALSE, FALSE, 0);
+        gtk_style_context_add_class (gtk_widget_get_style_context (button_box),
+                                     GTK_STYLE_CLASS_LINKED);
+        gtk_style_context_add_class (gtk_widget_get_style_context (button_box),
+                                     GTK_STYLE_CLASS_RAISED);
+        gtk_box_pack_start (GTK_BOX (button_box), self->priv->search_current_button, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (button_box), self->priv->search_all_button, FALSE, FALSE, 0);
 
         /* Setup the hitlist */
         self->priv->sw_hitlist = gtk_scrolled_window_new (NULL, NULL);
@@ -533,50 +569,16 @@ dh_sidebar_new (DhBookManager *book_manager)
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (self->priv->sw_book_tree),
                                              GTK_SHADOW_IN);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->sw_book_tree), 2);
-        self->priv->book_tree = dh_book_tree_new (self->priv->book_manager);
-        gtk_widget_show (self->priv->book_tree);
-        g_signal_connect (self->priv->book_tree,
-                          "link-selected",
-                          G_CALLBACK (sidebar_book_tree_link_selected_cb),
-                          self);
-        gtk_container_add (GTK_CONTAINER (self->priv->sw_book_tree), self->priv->book_tree);
-        gtk_box_pack_end (GTK_BOX (self), self->priv->sw_book_tree, TRUE, TRUE, 0);
-
-        sidebar_completion_populate (self);
-
-        dh_keyword_model_set_words (self->priv->model, self->priv->book_manager);
 
         gtk_widget_show_all (GTK_WIDGET (self));
-
-        return GTK_WIDGET (self);
-}
-
-static void
-sidebar_finalize (GObject *object)
-{
-        DhSidebar *self = DH_SIDEBAR (object);
-
-        g_completion_free (self->priv->completion);
-        g_object_unref (self->priv->book_manager);
-
-        G_OBJECT_CLASS (dh_sidebar_parent_class)->finalize (object);
-}
-
-static void
-dh_sidebar_init (DhSidebar *self)
-{
-        self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
-                                                  DH_TYPE_SIDEBAR,
-                                                  DhSidebarPrivate);
 }
 
 static void
 dh_sidebar_class_init (DhSidebarClass *klass)
 {
-        GObjectClass   *object_class = (GObjectClass *) klass;
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = sidebar_finalize;
-        g_type_class_add_private (klass, sizeof (DhSidebarPrivate));
 
         signals[LINK_SELECTED] =
                 g_signal_new ("link_selected",
@@ -587,4 +589,6 @@ dh_sidebar_class_init (DhSidebarClass *klass)
                               g_cclosure_marshal_VOID__POINTER,
                               G_TYPE_NONE,
                               1, G_TYPE_POINTER);
+
+        g_type_class_add_private (klass, sizeof (DhSidebarPrivate));
 }
