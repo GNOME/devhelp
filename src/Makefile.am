@@ -91,7 +91,9 @@ libdevhelp_3_la_SOURCES =				\
 	dh-resources.c				 	\
 	dh-resources.h 					\
 	eggfindbar.c					\
-	eggfindbar.h
+	eggfindbar.h					\
+	gedit-close-button.h				\
+	gedit-close-button.c
 
 libdevhelp_3_la_CPPFLAGS =				\
 	$(AM_CPPFLAGS)					\

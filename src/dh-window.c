@@ -36,6 +36,7 @@
 #include "dh-enum-types.h"
 #include "dh-settings.h"
 #include "eggfindbar.h"
+#include "gedit-close-button.h"
 
 #define TAB_WIDTH_N_CHARS 15
 
@@ -579,16 +580,6 @@ dh_window_class_init (DhWindowClass *klass)
                               2,
                               G_TYPE_STRING,
                               DH_TYPE_OPEN_LINK_FLAGS);
-
-        gtk_rc_parse_string ("style \"devhelp-tab-close-button-style\"\n"
-                             "{\n"
-                             "GtkWidget::focus-padding = 0\n"
-                             "GtkWidget::focus-line-width = 0\n"
-                             "xthickness = 0\n"
-                             "ythickness = 0\n"
-                             "}\n"
-                             "widget \"*.devhelp-tab-close-button\" "
-                             "style \"devhelp-tab-close-button-style\"");
 
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class,
@@ -1210,7 +1201,6 @@ window_new_tab_label (DhWindow        *window,
         GtkWidget *label;
         GtkWidget *hbox;
         GtkWidget *close_button;
-        GtkWidget *image;
 
         hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
 
@@ -1219,17 +1209,12 @@ window_new_tab_label (DhWindow        *window,
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 
-        close_button = gtk_button_new ();
-        gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
-        gtk_button_set_focus_on_click (GTK_BUTTON (close_button), FALSE);
-        gtk_widget_set_name (close_button, "devhelp-tab-close-button");
+        close_button = gedit_close_button_new ();
         g_object_set_data (G_OBJECT (close_button), "parent_tab", (gpointer) parent);
 
-        image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
         g_signal_connect (close_button, "clicked",
                           G_CALLBACK (close_button_clicked_cb),
                           window);
-        gtk_container_add (GTK_CONTAINER (close_button), image);
 
         gtk_box_pack_start (GTK_BOX (hbox), close_button, FALSE, FALSE, 0);
 
