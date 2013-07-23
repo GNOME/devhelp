@@ -40,12 +40,12 @@ typedef struct _DhSidebarClass   DhSidebarClass;
 typedef struct _DhSidebarPrivate DhSidebarPrivate;
 
 struct _DhSidebar {
-        GtkVBox           parent_instance;
+        GtkBox            parent_instance;
         DhSidebarPrivate *priv;
 };
 
 struct _DhSidebarClass {
-        GtkVBoxClass parent_class;
+        GtkBoxClass parent_class;
 
         /* Signals */
         void (*link_selected) (DhSidebar *search,

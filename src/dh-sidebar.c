@@ -36,7 +36,7 @@
 #include "dh-book.h"
 #include "dh-book-tree.h"
 
-G_DEFINE_TYPE (DhSidebar, dh_sidebar, GTK_TYPE_VBOX)
+G_DEFINE_TYPE (DhSidebar, dh_sidebar, GTK_TYPE_BOX)
 
 enum {
         LINK_SELECTED,
@@ -423,7 +423,7 @@ dh_sidebar_new (DhBookManager *book_manager)
         GtkWidget        *hbox;
         GtkWidget        *button_box;
 
-        self = g_object_new (DH_TYPE_SIDEBAR, NULL);
+        self = g_object_new (DH_TYPE_SIDEBAR, "orientation", GTK_ORIENTATION_VERTICAL, NULL);
         gtk_container_set_border_width (GTK_CONTAINER (self), 2);
         gtk_box_set_spacing (GTK_BOX (self), 4);
 
