@@ -1346,8 +1346,6 @@ dh_window_new (DhApp *application)
 
         window_populate (window);
 
-        gtk_window_set_icon_name (GTK_WINDOW (window), "devhelp");
-
         g_signal_connect (window, "configure-event",
                           G_CALLBACK (window_configure_event_cb),
                           window);
