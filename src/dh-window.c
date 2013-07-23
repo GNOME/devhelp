@@ -40,16 +40,17 @@
 #define TAB_WIDTH_N_CHARS 15
 
 struct _DhWindowPriv {
-        GtkWidget      *main_box;
         GtkWidget      *hpaned;
         GtkWidget      *sidebar;
         GtkWidget      *notebook;
         GtkWidget      *header_bar;
-
-        GtkWidget      *vbox;
+        GtkWidget      *back_button;
+        GtkImage       *back_button_image;
+        GtkWidget      *forward_button;
+        GtkImage       *forward_button_image;
+        GtkWidget      *grid_sidebar;
+        GtkWidget      *grid_documents;
         GtkWidget      *findbar;
-
-        GtkBuilder     *builder;
 
         DhLink         *selected_search_link;
         guint           find_source_id;
@@ -503,12 +504,11 @@ dh_window_init (DhWindow *window)
         GtkAccelGroup *accel_group;
         GClosure      *closure;
         gint           i;
-        GError        *error = NULL;
 
         priv = GET_PRIVATE (window);
         window->priv = priv;
 
-        gtk_window_set_hide_titlebar_when_maximized (GTK_WINDOW (window), TRUE);
+        gtk_widget_init_template (GTK_WIDGET (window));
 
         priv->selected_search_link = NULL;
 
@@ -518,18 +518,6 @@ dh_window_init (DhWindow *window)
                                                    "fonts-changed",
                                                    G_CALLBACK (settings_fonts_changed_cb),
                                                    window);
-
-        /* Setup builder */
-        priv->builder = gtk_builder_new ();
-        if (!gtk_builder_add_from_resource (priv->builder, "/org/gnome/devhelp/devhelp.ui", &error)) {
-                g_error ("Cannot add resource to builder: %s", error ? error->message : "unknown error");
-                g_clear_error (&error);
-        }
-
-        priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-        gtk_widget_show (priv->main_box);
-
-        gtk_container_add (GTK_CONTAINER (window), priv->main_box);
 
         g_signal_connect (window,
                           "open-link",
@@ -566,7 +554,6 @@ dispose (GObject *object)
         }
 
         g_clear_object (&self->priv->settings);
-        g_clear_object (&self->priv->builder);
 
 	/* Chain up to the parent class */
 	G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
@@ -576,7 +563,8 @@ static void
 dh_window_class_init (DhWindowClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
-        g_type_class_add_private (klass, sizeof (DhWindowPriv));
+        GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
         object_class->dispose = dispose;
 
         signals[OPEN_LINK] =
@@ -600,6 +588,21 @@ dh_window_class_init (DhWindowClass *klass)
                              "}\n"
                              "widget \"*.devhelp-tab-close-button\" "
                              "style \"devhelp-tab-close-button-style\"");
+
+        /* Bind class to template */
+        gtk_widget_class_set_template_from_resource (widget_class,
+                                                     "/org/gnome/devhelp/dh-window.ui");
+        gtk_widget_class_bind_child (widget_class, DhWindowPriv, header_bar);
+        gtk_widget_class_bind_child (widget_class, DhWindowPriv, back_button);
+        gtk_widget_class_bind_child (widget_class, DhWindowPriv, back_button_image);
+        gtk_widget_class_bind_child (widget_class, DhWindowPriv, forward_button);
+        gtk_widget_class_bind_child (widget_class, DhWindowPriv, forward_button_image);
+        gtk_widget_class_bind_child (widget_class, DhWindowPriv, hpaned);
+        gtk_widget_class_bind_child (widget_class, DhWindowPriv, grid_sidebar);
+        gtk_widget_class_bind_child (widget_class, DhWindowPriv, grid_documents);
+        gtk_widget_class_bind_child (widget_class, DhWindowPriv, notebook);
+
+        g_type_class_add_private (klass, sizeof (DhWindowPriv));
 }
 
 static void
@@ -651,20 +654,10 @@ window_populate (DhWindow *window)
 {
         DhWindowPriv  *priv;
         DhBookManager *book_manager;
-        GtkWidget     *back_button;
-        GtkWidget     *back_image;
-        GtkWidget     *forward_button;
-        GtkWidget     *forward_image;
-        GtkWidget     *box;
-        GtkWidget     *menu_button;
-        GtkWidget     *menu_image;
-        GObject       *menu;
         const char *prev_icon, *next_icon;
 
         priv = window->priv;
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
-
-        priv->header_bar = gtk_header_bar_new ();
 
         if (gtk_widget_get_direction (GTK_WIDGET (window)) == GTK_TEXT_DIR_RTL) {
                 prev_icon = "go-previous-rtl-symbolic";
@@ -674,69 +667,21 @@ window_populate (DhWindow *window)
                 next_icon = "go-next-symbolic";
         }
 
-        back_button = gtk_button_new ();
-        back_image = gtk_image_new_from_icon_name (prev_icon, GTK_ICON_SIZE_MENU);
-        gtk_button_set_image (GTK_BUTTON (back_button), back_image);
-        gtk_widget_set_tooltip_text (back_button, _("Back"));
-        gtk_actionable_set_action_name (GTK_ACTIONABLE (back_button), "win.go-back");
-        gtk_widget_set_valign (back_button, GTK_ALIGN_CENTER);
-        gtk_style_context_add_class (gtk_widget_get_style_context (back_button),
-				     "image-button");
-
-        forward_button = gtk_button_new ();
-        forward_image = gtk_image_new_from_icon_name (next_icon, GTK_ICON_SIZE_MENU);
-        gtk_button_set_image (GTK_BUTTON (forward_button), forward_image);
-        gtk_widget_set_tooltip_text (forward_button, _("Forward"));
-        gtk_actionable_set_action_name (GTK_ACTIONABLE (forward_button), "win.go-forward");
-        gtk_widget_set_valign (forward_button, GTK_ALIGN_CENTER);
-        gtk_style_context_add_class (gtk_widget_get_style_context (forward_button),
-				     "image-button");
-
-        box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-        gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
-        gtk_box_pack_start (GTK_BOX (box), back_button, FALSE, FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (box), forward_button, FALSE, FALSE, 0);
-        gtk_header_bar_pack_start (GTK_HEADER_BAR (priv->header_bar), box);
-
-        menu_button = gtk_menu_button_new ();
-        menu_image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
-        gtk_button_set_image (GTK_BUTTON (menu_button), menu_image);
-        gtk_actionable_set_action_name (GTK_ACTIONABLE (menu_button), "win.gear-menu");
-        gtk_widget_set_valign (menu_button, GTK_ALIGN_CENTER);
-        gtk_style_context_add_class (gtk_widget_get_style_context (menu_button),
-				     "image-button");
-
-        gtk_header_bar_pack_end (GTK_HEADER_BAR (priv->header_bar), menu_button);
-
-        menu = gtk_builder_get_object (priv->builder, "window-menu");
-        gtk_menu_button_set_menu_model (GTK_MENU_BUTTON (menu_button), G_MENU_MODEL (menu));
-
-        /* Add toolbar to main box */
-        gtk_box_pack_start (GTK_BOX (priv->main_box), priv->header_bar,
-                            FALSE, FALSE, 0);
-
-        priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
-        gtk_box_pack_start (GTK_BOX (priv->main_box), priv->hpaned, TRUE, TRUE, 0);
+        gtk_image_set_from_icon_name (priv->back_button_image, prev_icon, GTK_ICON_SIZE_MENU);
+        gtk_image_set_from_icon_name (priv->forward_button_image, next_icon, GTK_ICON_SIZE_MENU);
 
         /* Sidebar */
         priv->sidebar = dh_sidebar_new (book_manager);
-        gtk_paned_add1 (GTK_PANED (priv->hpaned), priv->sidebar);
+        gtk_widget_set_vexpand (priv->sidebar, TRUE);
+        gtk_widget_set_hexpand (priv->sidebar, TRUE);
+        gtk_widget_show (priv->sidebar);
+        gtk_container_add (GTK_CONTAINER (priv->grid_sidebar), priv->sidebar);
         g_signal_connect (priv->sidebar,
                           "link-selected",
                           G_CALLBACK (window_search_link_selected_cb),
                           window);
 
-        /* Document view */
-        priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-        gtk_paned_add2 (GTK_PANED (priv->hpaned), priv->vbox);
-
         /* HTML tabs notebook. */
-        priv->notebook = gtk_notebook_new ();
-        gtk_container_set_border_width (GTK_CONTAINER (priv->notebook), 0);
-        gtk_notebook_set_show_border (GTK_NOTEBOOK (priv->notebook), FALSE);
-        gtk_notebook_set_scrollable (GTK_NOTEBOOK (priv->notebook), TRUE);
-        gtk_box_pack_start (GTK_BOX (priv->vbox), priv->notebook, TRUE, TRUE, 0);
-
         g_signal_connect (priv->notebook,
                           "switch-page",
                           G_CALLBACK (window_web_view_switch_page_cb),
@@ -749,7 +694,7 @@ window_populate (DhWindow *window)
         /* Create findbar */
         priv->findbar = egg_find_bar_new ();
         gtk_widget_set_no_show_all (priv->findbar, TRUE);
-        gtk_box_pack_start (GTK_BOX (priv->vbox), priv->findbar, FALSE, FALSE, 0);
+        gtk_container_add (GTK_CONTAINER (priv->grid_documents), priv->findbar);
 
         g_signal_connect (priv->findbar,
                           "notify::search-string",
@@ -771,8 +716,6 @@ window_populate (DhWindow *window)
                           "close",
                           G_CALLBACK (window_findbar_close_cb),
                           window);
-
-        gtk_widget_show_all (priv->hpaned);
 
         /* Focus search in sidebar by default */
         dh_sidebar_set_search_focus (DH_SIDEBAR (priv->sidebar));
@@ -1393,10 +1336,8 @@ dh_window_new (DhApp *application)
         DhWindow     *window;
         DhWindowPriv *priv;
 
-        window = g_object_new (DH_TYPE_WINDOW, NULL);
+        window = g_object_new (DH_TYPE_WINDOW, "application", application, NULL);
         priv = window->priv;
-
-        gtk_window_set_application (GTK_WINDOW (window), GTK_APPLICATION (application));
 
         window_populate (window);
 

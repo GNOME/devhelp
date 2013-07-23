@@ -50,46 +50,6 @@
     </section>
   </menu>
 
-  <menu id="window-menu">
-    <section>
-      <item>
-	<attribute name="label" translatable="yes">New _Tab</attribute>
-	<attribute name="action">win.new-tab</attribute>
-	<attribute name="accel">&lt;Primary&gt;t</attribute>
-	<attribute name="use-underline">True</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-	<attribute name="label" translatable="yes">_Print</attribute>
-	<attribute name="action">win.print</attribute>
-	<attribute name="accel">&lt;Primary&gt;p</attribute>
-      </item>
-      <item>
-	<attribute name="label" translatable="yes">_Find</attribute>
-	<attribute name="action">win.find</attribute>
-	<attribute name="accel">&lt;Primary&gt;f</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-	<attribute name="label" translatable="yes">_Larger Text</attribute>
-	<attribute name="action">win.zoom-in</attribute>
-	<attribute name="accel">&lt;Primary&gt;plus</attribute>
-      </item>
-      <item>
-	<attribute name="label" translatable="yes">S_maller Text</attribute>
-	<attribute name="action">win.zoom-out</attribute>
-	<attribute name="accel">&lt;Primary&gt;minus</attribute>
-      </item>
-      <item>
-	<attribute name="label" translatable="yes">_Normal Size</attribute>
-	<attribute name="action">win.zoom-default</attribute>
-	<attribute name="accel">&lt;Primary&gt;0</attribute>
-      </item>
-    </section>
-  </menu>
-
   <object class="GtkListStore" id="bookshelf_store">
     <columns>
       <!-- column-name enabled -->
