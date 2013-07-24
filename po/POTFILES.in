@@ -17,4 +17,5 @@ src/dh-parser.c
 src/dh-sidebar.c
 src/dh-util.c
 src/dh-window.c
+[type: gettext/glade]src/dh-window.ui
 src/eggfindbar.c
