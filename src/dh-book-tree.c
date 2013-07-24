@@ -84,26 +84,45 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhBookTree, dh_book_tree, GTK_TYPE_TREE_VIEW);
 static gint signals[LAST_SIGNAL] = { 0 };
 
 static void
-dh_book_tree_finalize (GObject *object)
+dh_book_tree_dispose (GObject *object)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
 
         /* Disconnect signals */
-        if (g_signal_handler_is_connected (priv->book_manager, priv->book_created_id))
+        if (priv->book_created_id != 0 &&
+            g_signal_handler_is_connected (priv->book_manager, priv->book_created_id)) {
                 g_signal_handler_disconnect (priv->book_manager, priv->book_created_id);
-        if (g_signal_handler_is_connected (priv->book_manager, priv->book_deleted_id))
+                priv->book_created_id = 0;
+        }
+
+        if (priv->book_deleted_id &&
+            g_signal_handler_is_connected (priv->book_manager, priv->book_deleted_id)) {
                 g_signal_handler_disconnect (priv->book_manager, priv->book_deleted_id);
-        if (g_signal_handler_is_connected (priv->book_manager, priv->book_enabled_id))
+                priv->book_deleted_id = 0;
+        }
+
+        if (priv->book_enabled_id != 0 &&
+            g_signal_handler_is_connected (priv->book_manager, priv->book_enabled_id)) {
                 g_signal_handler_disconnect (priv->book_manager, priv->book_enabled_id);
-        if (g_signal_handler_is_connected (priv->book_manager, priv->book_disabled_id))
+                priv->book_enabled_id = 0;
+        }
+
+        if (priv->book_disabled_id != 0 &&
+            g_signal_handler_is_connected (priv->book_manager, priv->book_disabled_id)) {
                 g_signal_handler_disconnect (priv->book_manager, priv->book_disabled_id);
-        if (g_signal_handler_is_connected (priv->book_manager, priv->group_by_language_id))
+                priv->book_disabled_id = 0;
+        }
+
+        if (priv->group_by_language_id != 0 &&
+            g_signal_handler_is_connected (priv->book_manager, priv->group_by_language_id)) {
                 g_signal_handler_disconnect (priv->book_manager, priv->group_by_language_id);
+                priv->group_by_language_id = 0;
+        }
 
-        g_object_unref (priv->store);
-        g_object_unref (priv->book_manager);
+        g_clear_object (&priv->store);
+        g_clear_object (&priv->book_manager);
 
-        G_OBJECT_CLASS (dh_book_tree_parent_class)->finalize (object);
+        G_OBJECT_CLASS (dh_book_tree_parent_class)->dispose (object);
 }
 
 static void
@@ -148,7 +167,7 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-        object_class->finalize = dh_book_tree_finalize;
+        object_class->dispose = dh_book_tree_dispose;
         object_class->get_property = dh_book_tree_get_property;
         object_class->set_property = dh_book_tree_set_property;
 
