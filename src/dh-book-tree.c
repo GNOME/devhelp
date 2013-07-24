@@ -47,7 +47,7 @@ typedef struct {
         guint book_enabled_id;
         guint book_disabled_id;
         guint group_by_language_id;
-} DhBookTreePriv;
+} DhBookTreePrivate;
 
 static void dh_book_tree_class_init        (DhBookTreeClass  *klass);
 static void dh_book_tree_init              (DhBookTree       *tree);
@@ -74,17 +74,14 @@ enum {
 	N_COLUMNS
 };
 
-G_DEFINE_TYPE (DhBookTree, dh_book_tree, GTK_TYPE_TREE_VIEW);
-
-#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
-  (instance, DH_TYPE_BOOK_TREE, DhBookTreePriv);
+G_DEFINE_TYPE_WITH_PRIVATE (DhBookTree, dh_book_tree, GTK_TYPE_TREE_VIEW);
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
 static void
 book_tree_finalize (GObject *object)
 {
-        DhBookTreePriv *priv = GET_PRIVATE (object);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
 
         /* Disconnect signals */
         if (g_signal_handler_is_connected (priv->book_manager, priv->book_created_id))
@@ -120,16 +117,14 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
 			      g_cclosure_marshal_VOID__POINTER,
 			      G_TYPE_NONE,
 			      1, G_TYPE_POINTER);
-
-	g_type_class_add_private (klass, sizeof (DhBookTreePriv));
 }
 
 static void
 dh_book_tree_init (DhBookTree *tree)
 {
-        DhBookTreePriv *priv;
+        DhBookTreePrivate *priv;
 
-        priv = GET_PRIVATE (tree);
+        priv = dh_book_tree_get_instance_private (tree);
 
 	priv->store = gtk_tree_store_new (N_COLUMNS,
 					  G_TYPE_STRING,
@@ -197,7 +192,7 @@ book_tree_find_language_group (DhBookTree  *tree,
                                GtkTreeIter *next_iter,
                                gboolean    *next_found)
 {
-        DhBookTreePriv *priv = GET_PRIVATE (tree);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeIter     loop_iter;
 
         g_assert ((exact_iter && exact_found) || (next_iter && next_found));
@@ -267,7 +262,7 @@ book_tree_find_book (DhBookTree        *tree,
                      GtkTreeIter       *next_iter,
                      gboolean          *next_found)
 {
-        DhBookTreePriv *priv = GET_PRIVATE (tree);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeIter     loop_iter;
 
         g_assert ((exact_iter && exact_found) || (next_iter && next_found));
@@ -328,7 +323,7 @@ book_tree_add_book_to_store (DhBookTree *tree,
                              DhBook     *book,
                              gboolean    group_by_language)
 {
-        DhBookTreePriv *priv = GET_PRIVATE (tree);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeIter     book_iter;
 
         /* If grouping by language we need to add the language categories */
@@ -453,7 +448,7 @@ book_tree_add_book_to_store (DhBookTree *tree,
 static void
 book_tree_populate_tree (DhBookTree *tree)
 {
-        DhBookTreePriv *priv = GET_PRIVATE (tree);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GList          *l;
         gboolean        group_by_language;
 
@@ -501,7 +496,7 @@ book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
                                        gpointer       user_data)
 {
         DhBookTree     *tree = user_data;
-        DhBookTreePriv *priv = GET_PRIVATE (tree);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         DhBook         *book = DH_BOOK (book_object);
         GtkTreeIter     exact_iter;
         gboolean        exact_iter_found = FALSE;
@@ -565,7 +560,7 @@ book_tree_insert_node (DhBookTree  *tree,
                        DhBook      *book)
 
 {
-        DhBookTreePriv *priv = GET_PRIVATE (tree);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
 	DhLink         *link;
         PangoWeight     weight;
 	GNode          *child;
@@ -602,7 +597,7 @@ static void
 book_tree_selection_changed_cb (GtkTreeSelection *selection,
 				DhBookTree       *tree)
 {
-        DhBookTreePriv *priv = GET_PRIVATE (tree);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeIter     iter;
 
 	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
@@ -633,13 +628,13 @@ book_tree_group_by_language_cb (GObject    *object,
 static void
 book_tree_init_selection (DhBookTree *tree)
 {
-        DhBookTreePriv   *priv;
+        DhBookTreePrivate   *priv;
         GtkTreeSelection *selection;
         GtkTreeIter       iter;
         gboolean          iter_found = FALSE;
         DhLink           *link;
 
-        priv = GET_PRIVATE (tree);
+        priv = dh_book_tree_get_instance_private (tree);
 
 	/* Mark the first item as selected, or it would get automatically
 	 * selected when the treeview will get focus; but that's not even
@@ -686,10 +681,10 @@ GtkWidget *
 dh_book_tree_new (DhBookManager *book_manager)
 {
         DhBookTree       *tree;
-        DhBookTreePriv   *priv;
+        DhBookTreePrivate   *priv;
 
 	tree = g_object_new (DH_TYPE_BOOK_TREE, NULL);
-        priv = GET_PRIVATE (tree);
+        priv = dh_book_tree_get_instance_private (tree);
 
         priv->book_manager = g_object_ref (book_manager);
 
@@ -751,7 +746,7 @@ void
 dh_book_tree_select_uri (DhBookTree  *tree,
 			 const gchar *uri)
 {
-        DhBookTreePriv   *priv = GET_PRIVATE (tree);
+        DhBookTreePrivate   *priv = dh_book_tree_get_instance_private (tree);
 	GtkTreeSelection *selection;
 	FindURIData       data;
 
