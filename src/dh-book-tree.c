@@ -74,12 +74,17 @@ enum {
 	N_COLUMNS
 };
 
+enum {
+        PROP_0,
+        PROP_BOOK_MANAGER
+};
+
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookTree, dh_book_tree, GTK_TYPE_TREE_VIEW);
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
 static void
-book_tree_finalize (GObject *object)
+dh_book_tree_finalize (GObject *object)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
 
@@ -102,11 +107,59 @@ book_tree_finalize (GObject *object)
 }
 
 static void
+dh_book_tree_get_property (GObject    *object,
+                           guint       prop_id,
+                           GValue     *value,
+                           GParamSpec *pspec)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
+
+        switch (prop_id) {
+                case PROP_BOOK_MANAGER:
+                        g_value_set_object (value, priv->book_manager);
+                        break;
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_book_tree_set_property (GObject      *object,
+                           guint         prop_id,
+                           const GValue *value,
+                           GParamSpec   *pspec)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
+
+        switch (prop_id) {
+                case PROP_BOOK_MANAGER:
+                        g_return_if_fail (priv->book_manager == NULL);
+                        priv->book_manager = g_value_dup_object (value);
+                        break;
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
 dh_book_tree_class_init (DhBookTreeClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->finalize = book_tree_finalize;
+        object_class->finalize = dh_book_tree_finalize;
+        object_class->get_property = dh_book_tree_get_property;
+        object_class->set_property = dh_book_tree_set_property;
+
+        g_object_class_install_property (object_class,
+                                         PROP_BOOK_MANAGER,
+                                         g_param_spec_object ("book-manager",
+                                                              "Book Manager",
+                                                              "The book maanger",
+                                                              DH_TYPE_BOOK_MANAGER,
+                                                              G_PARAM_READWRITE |
+                                                              G_PARAM_CONSTRUCT_ONLY));
 
         signals[LINK_SELECTED] =
                 g_signal_new ("link-selected",
@@ -683,10 +736,8 @@ dh_book_tree_new (DhBookManager *book_manager)
         DhBookTree       *tree;
         DhBookTreePrivate   *priv;
 
-	tree = g_object_new (DH_TYPE_BOOK_TREE, NULL);
+	tree = g_object_new (DH_TYPE_BOOK_TREE, "book-manager", book_manager, NULL);
         priv = dh_book_tree_get_instance_private (tree);
-
-        priv->book_manager = g_object_ref (book_manager);
 
         priv->book_created_id = g_signal_connect (priv->book_manager,
                                                   "book-created",
