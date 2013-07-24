@@ -163,35 +163,6 @@ dh_book_tree_set_property (GObject      *object,
 }
 
 static void
-dh_book_tree_class_init (DhBookTreeClass *klass)
-{
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-        object_class->dispose = dh_book_tree_dispose;
-        object_class->get_property = dh_book_tree_get_property;
-        object_class->set_property = dh_book_tree_set_property;
-
-        g_object_class_install_property (object_class,
-                                         PROP_BOOK_MANAGER,
-                                         g_param_spec_object ("book-manager",
-                                                              "Book Manager",
-                                                              "The book maanger",
-                                                              DH_TYPE_BOOK_MANAGER,
-                                                              G_PARAM_READWRITE |
-                                                              G_PARAM_CONSTRUCT_ONLY));
-
-        signals[LINK_SELECTED] =
-                g_signal_new ("link-selected",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST,
-			      0,
-			      NULL, NULL,
-			      g_cclosure_marshal_VOID__POINTER,
-			      G_TYPE_NONE,
-			      1, G_TYPE_POINTER);
-}
-
-static void
 dh_book_tree_init (DhBookTree *tree)
 {
         DhBookTreePrivate *priv;
@@ -749,14 +720,11 @@ book_tree_init_selection (DhBookTree *tree)
 					   tree);
 }
 
-GtkWidget *
-dh_book_tree_new (DhBookManager *book_manager)
+static void
+dh_book_tree_constructed (GObject *object)
 {
-        DhBookTree       *tree;
-        DhBookTreePrivate   *priv;
-
-	tree = g_object_new (DH_TYPE_BOOK_TREE, "book-manager", book_manager, NULL);
-        priv = dh_book_tree_get_instance_private (tree);
+        DhBookTree *tree = DH_BOOK_TREE (object);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
 
         priv->book_created_id = g_signal_connect (priv->book_manager,
                                                   "book-created",
@@ -783,7 +751,43 @@ dh_book_tree_new (DhBookManager *book_manager)
 
         book_tree_init_selection (tree);
 
-        return GTK_WIDGET (tree);
+        G_OBJECT_CLASS (dh_book_tree_parent_class)->constructed (object);
+}
+
+static void
+dh_book_tree_class_init (DhBookTreeClass *klass)
+{
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+        object_class->dispose = dh_book_tree_dispose;
+        object_class->get_property = dh_book_tree_get_property;
+        object_class->set_property = dh_book_tree_set_property;
+        object_class->constructed = dh_book_tree_constructed;
+
+        g_object_class_install_property (object_class,
+                                         PROP_BOOK_MANAGER,
+                                         g_param_spec_object ("book-manager",
+                                                              "Book Manager",
+                                                              "The book maanger",
+                                                              DH_TYPE_BOOK_MANAGER,
+                                                              G_PARAM_READWRITE |
+                                                              G_PARAM_CONSTRUCT_ONLY));
+
+        signals[LINK_SELECTED] =
+                g_signal_new ("link-selected",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      0,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__POINTER,
+			      G_TYPE_NONE,
+			      1, G_TYPE_POINTER);
+}
+
+GtkWidget *
+dh_book_tree_new (DhBookManager *book_manager)
+{
+        return GTK_WIDGET (g_object_new (DH_TYPE_BOOK_TREE, "book-manager", book_manager, NULL));
 }
 
 static gboolean
