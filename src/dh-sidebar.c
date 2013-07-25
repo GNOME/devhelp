@@ -36,13 +36,6 @@
 #include "dh-book.h"
 #include "dh-book-tree.h"
 
-G_DEFINE_TYPE (DhSidebar, dh_sidebar, GTK_TYPE_BOX)
-
-enum {
-        LINK_SELECTED,
-        LAST_SIGNAL
-};
-
 struct _DhSidebarPrivate {
         DhKeywordModel *model;
 
@@ -63,7 +56,19 @@ struct _DhSidebarPrivate {
         guint           idle_filter;
 };
 
+enum {
+        PROP_0,
+        PROP_BOOK_MANAGER
+};
+
+enum {
+        LINK_SELECTED,
+        LAST_SIGNAL
+};
+
 static gint signals[LAST_SIGNAL] = { 0 };
+
+G_DEFINE_TYPE (DhSidebar, dh_sidebar, GTK_TYPE_BOX)
 
 /******************************************************************************/
 
@@ -418,43 +423,10 @@ dh_sidebar_select_uri (DhSidebar   *self,
 GtkWidget *
 dh_sidebar_new (DhBookManager *book_manager)
 {
-        DhSidebar        *self;
-
-        self = g_object_new (DH_TYPE_SIDEBAR, "orientation", GTK_ORIENTATION_VERTICAL, NULL);
-
-        /* Setup book manager */
-        self->priv->book_manager = g_object_ref (book_manager);
-        g_signal_connect (self->priv->book_manager,
-                          "book-created",
-                          G_CALLBACK (sidebar_book_created_or_enabled_cb),
-                          self);
-        g_signal_connect (self->priv->book_manager,
-                          "book-deleted",
-                          G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
-                          self);
-        g_signal_connect (self->priv->book_manager,
-                          "book-enabled",
-                          G_CALLBACK (sidebar_book_created_or_enabled_cb),
-                          self);
-        g_signal_connect (self->priv->book_manager,
-                          "book-disabled",
-                          G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
-                          self);
-
-        self->priv->book_tree = dh_book_tree_new (self->priv->book_manager);
-        gtk_widget_show (self->priv->book_tree);
-        g_signal_connect (self->priv->book_tree,
-                          "link-selected",
-                          G_CALLBACK (sidebar_book_tree_link_selected_cb),
-                          self);
-        gtk_container_add (GTK_CONTAINER (self->priv->sw_book_tree), self->priv->book_tree);
-        gtk_box_pack_end (GTK_BOX (self), self->priv->sw_book_tree, TRUE, TRUE, 0);
-
-        sidebar_completion_populate (self);
-
-        dh_keyword_model_set_words (self->priv->model, self->priv->book_manager);
-
-        return GTK_WIDGET (self);
+        return GTK_WIDGET (g_object_new (DH_TYPE_SIDEBAR,
+                                         "orientation", GTK_ORIENTATION_VERTICAL,
+                                         "book-manager", book_manager,
+                                         NULL));
 }
 
 static void
@@ -574,11 +546,100 @@ dh_sidebar_init (DhSidebar *self)
 }
 
 static void
+dh_sidebar_get_property (GObject    *object,
+                         guint       prop_id,
+                         GValue     *value,
+                         GParamSpec *pspec)
+{
+        DhSidebarPrivate *priv = DH_SIDEBAR (object)->priv;
+
+        switch (prop_id) {
+                case PROP_BOOK_MANAGER:
+                        g_value_set_object (value, priv->book_manager);
+                        break;
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_sidebar_set_property (GObject      *object,
+                         guint         prop_id,
+                         const GValue *value,
+                         GParamSpec   *pspec)
+{
+        DhSidebarPrivate *priv = DH_SIDEBAR (object)->priv;
+
+        switch (prop_id) {
+                case PROP_BOOK_MANAGER:
+                        g_return_if_fail (priv->book_manager == NULL);
+                        priv->book_manager = g_value_dup_object (value);
+                        break;
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_sidebar_constructed (GObject *object)
+{
+        DhSidebar *sidebar = DH_SIDEBAR (object);
+        DhSidebarPrivate *priv = sidebar->priv;
+
+        /* Setup book manager */
+        g_signal_connect (priv->book_manager,
+                          "book-created",
+                          G_CALLBACK (sidebar_book_created_or_enabled_cb),
+                          sidebar);
+        g_signal_connect (priv->book_manager,
+                          "book-deleted",
+                          G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
+                          sidebar);
+        g_signal_connect (priv->book_manager,
+                          "book-enabled",
+                          G_CALLBACK (sidebar_book_created_or_enabled_cb),
+                          sidebar);
+        g_signal_connect (priv->book_manager,
+                          "book-disabled",
+                          G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
+                          sidebar);
+
+        priv->book_tree = dh_book_tree_new (priv->book_manager);
+        gtk_widget_show (priv->book_tree);
+        g_signal_connect (priv->book_tree,
+                          "link-selected",
+                          G_CALLBACK (sidebar_book_tree_link_selected_cb),
+                          sidebar);
+        gtk_container_add (GTK_CONTAINER (priv->sw_book_tree), priv->book_tree);
+        gtk_box_pack_end (GTK_BOX (sidebar), priv->sw_book_tree, TRUE, TRUE, 0);
+
+        sidebar_completion_populate (sidebar);
+
+        dh_keyword_model_set_words (priv->model, priv->book_manager);
+
+        G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed (object);
+}
+
+static void
 dh_sidebar_class_init (DhSidebarClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = sidebar_finalize;
+        object_class->get_property = dh_sidebar_get_property;
+        object_class->set_property = dh_sidebar_set_property;
+        object_class->constructed = dh_sidebar_constructed;
+
+        g_object_class_install_property (object_class,
+                                         PROP_BOOK_MANAGER,
+                                         g_param_spec_object ("book-manager",
+                                                              "Book Manager",
+                                                              "The book maanger",
+                                                              DH_TYPE_BOOK_MANAGER,
+                                                              G_PARAM_READWRITE |
+                                                              G_PARAM_CONSTRUCT_ONLY));
 
         signals[LINK_SELECTED] =
                 g_signal_new ("link_selected",
