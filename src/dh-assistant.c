@@ -98,6 +98,11 @@ dh_assistant_class_init (DhAssistantClass *klass)
 
         widget_class->key_press_event = dh_assistant_key_press_event;
         widget_class->configure_event = dh_assistant_configure_event;
+
+        /* Bind class to template */
+        gtk_widget_class_set_template_from_resource (widget_class,
+                                                     "/org/gnome/devhelp/dh-assistant.ui");
+        gtk_widget_class_bind_template_child_private (widget_class, DhAssistant, view);
 }
 
 static void
@@ -105,24 +110,13 @@ dh_assistant_init (DhAssistant *assistant)
 {
         DhAssistantPrivate *priv = dh_assistant_get_instance_private (assistant);
 
+        gtk_widget_init_template (GTK_WIDGET (assistant));
+
         priv->settings = dh_settings_get ();
-        priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-        gtk_widget_show (priv->main_box);
-        gtk_container_add (GTK_CONTAINER (assistant), priv->main_box);
-
-        /* i18n: Please don't translate "Devhelp". */
-        gtk_window_set_title (GTK_WINDOW (assistant), _("Devhelp — Assistant"));
-        gtk_window_set_icon_name (GTK_WINDOW (assistant), "devhelp");
-
-        priv->view = dh_assistant_view_new ();
 
         g_signal_connect (priv->view, "open-uri",
                           G_CALLBACK (assistant_view_open_uri_cb),
                           assistant);
-
-        gtk_box_pack_start (GTK_BOX (priv->main_box),
-                            priv->view, TRUE, TRUE, 0);
-        gtk_widget_show (priv->view);
 
         dh_util_window_settings_restore (GTK_WINDOW (assistant),
                                          dh_settings_peek_assistant_settings (priv->settings),

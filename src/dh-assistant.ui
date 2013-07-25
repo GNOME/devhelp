@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.8 -->
+  <template class="DhAssistant" parent="GtkApplicationWindow">
+    <property name="can_focus">False</property>
+    <property name="has_focus">False</property>
+    <property name="is_focus">False</property>
+    <property name="title" translatable="yes" comments="Please don't translate &quot;Devhelp&quot;">Devhelp — Assistant</property>
+    <property name="icon_name">devhelp</property>
+    <child>
+      <object class="DhAssistantView" id="view">
+        <property name="visible">True</property>
+      </object>
+    </child>
+  </template>
+</interface>
