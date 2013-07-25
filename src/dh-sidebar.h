@@ -37,11 +37,9 @@ G_BEGIN_DECLS
 
 typedef struct _DhSidebar        DhSidebar;
 typedef struct _DhSidebarClass   DhSidebarClass;
-typedef struct _DhSidebarPrivate DhSidebarPrivate;
 
 struct _DhSidebar {
         GtkBox            parent_instance;
-        DhSidebarPrivate *priv;
 };
 
 struct _DhSidebarClass {
