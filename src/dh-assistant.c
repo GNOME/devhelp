@@ -30,8 +30,6 @@
 #include "dh-settings.h"
 
 typedef struct {
-        DhApp         *application;
-        GtkWidget     *main_box;
         GtkWidget     *view;
         DhSettings    *settings;
 } DhAssistantPrivate;
@@ -43,11 +41,12 @@ assistant_view_open_uri_cb (DhAssistantView *view,
                             const char      *uri,
                             DhAssistant     *assistant)
 {
-        DhAssistantPrivate *priv;
-        GtkWindow* window;
+        DhApp *app;
+        GtkWindow *window;
 
-        priv = dh_assistant_get_instance_private (assistant);
-        window = dh_app_peek_first_window (priv->application);
+        app = DH_APP (gtk_window_get_application (GTK_WINDOW (assistant)));
+
+        window = dh_app_peek_first_window (app);
         _dh_window_display_uri (DH_WINDOW (window), uri);
 }
 
@@ -82,7 +81,6 @@ dh_assistant_dispose (GObject *object)
         DhAssistant *assistant = DH_ASSISTANT (object);
         DhAssistantPrivate *priv = dh_assistant_get_instance_private (assistant);
 
-        g_clear_object (&priv->application);
         g_clear_object (&priv->settings);
 
         G_OBJECT_CLASS (dh_assistant_parent_class)->dispose (object);
@@ -129,11 +127,9 @@ dh_assistant_new (DhApp *application)
         GtkWidget          *assistant;
         DhAssistantPrivate *priv;
 
-        assistant = g_object_new (DH_TYPE_ASSISTANT, NULL);
+        assistant = g_object_new (DH_TYPE_ASSISTANT, "application", application, NULL);
 
         priv = dh_assistant_get_instance_private (DH_ASSISTANT (assistant));
-        priv->application = g_object_ref (application);
-
         dh_assistant_view_set_book_manager (DH_ASSISTANT_VIEW (priv->view),
                                             dh_app_peek_book_manager (application));
 
