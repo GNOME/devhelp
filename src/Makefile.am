@@ -90,8 +90,6 @@ libdevhelp_3_la_SOURCES =				\
 	dh-settings.h					\
 	dh-resources.c				 	\
 	dh-resources.h 					\
-	eggfindbar.c					\
-	eggfindbar.h					\
 	gedit-close-button.h				\
 	gedit-close-button.c
 

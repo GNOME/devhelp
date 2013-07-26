@@ -35,7 +35,6 @@
 #include "dh-util.h"
 #include "dh-enum-types.h"
 #include "dh-settings.h"
-#include "eggfindbar.h"
 #include "gedit-close-button.h"
 
 #define TAB_WIDTH_N_CHARS 15
@@ -52,7 +51,10 @@ typedef struct {
         GtkWidget      *close_button;
         GtkWidget      *grid_sidebar;
         GtkWidget      *grid_documents;
-        GtkWidget      *findbar;
+        GtkWidget      *search_bar;
+        GtkWidget      *search_entry;
+        GtkWidget      *go_up_button;
+        GtkWidget      *go_down_button;
 
         DhLink         *selected_search_link;
         guint           find_source_id;
@@ -110,11 +112,7 @@ static void           window_web_view_tab_accel_cb   (GtkAccelGroup   *accel_gro
                                                       guint            key,
                                                       GdkModifierType  mod,
                                                       DhWindow        *window);
-static void           window_find_search_changed_cb  (GObject         *object,
-                                                      GParamSpec      *arg1,
-                                                      DhWindow        *window);
-static void           window_find_case_changed_cb    (GObject         *object,
-                                                      GParamSpec      *arg1,
+static void           window_find_search_changed_cb  (GtkEntry        *entry,
                                                       DhWindow        *window);
 static void           window_find_next_cb            (GtkWidget       *widget,
                                                       DhWindow        *window);
@@ -122,7 +120,10 @@ static void           findbar_find_next              (DhWindow        *window);
 static void           window_find_previous_cb        (GtkWidget       *widget,
                                                       DhWindow        *window);
 static void           findbar_find_previous          (DhWindow        *window);
-static void           window_findbar_close_cb        (GtkWidget       *widget,
+static void           on_search_mode_enabled_changed (GtkSearchBar    *search_bar,
+                                                      GParamSpec      *pspec,
+                                                      DhWindow        *window);
+static void           on_search_entry_activated      (GtkEntry        *entry,
                                                       DhWindow        *window);
 static GtkWidget *    window_new_tab_label           (DhWindow        *window,
                                                       const gchar     *label,
@@ -244,8 +245,8 @@ find_cb (GSimpleAction *action,
 
         priv = dh_window_get_instance_private (window);
 
-        gtk_widget_show (priv->findbar);
-        gtk_widget_grab_focus (priv->findbar);
+        gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
+        gtk_widget_grab_focus (priv->search_entry);
 
         /* The behaviour for WebKit1 is to re-enable highlighting without
            starting a new search. WebKit2 API does not allow that
@@ -602,6 +603,10 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_documents);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_bar);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_entry);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, go_up_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, go_down_button);
 }
 
 static void
@@ -694,29 +699,27 @@ window_populate (DhWindow *window)
                                 window);
 
         /* Create findbar */
-        priv->findbar = egg_find_bar_new ();
-        gtk_widget_set_no_show_all (priv->findbar, TRUE);
-        gtk_container_add (GTK_CONTAINER (priv->grid_documents), priv->findbar);
-
-        g_signal_connect (priv->findbar,
-                          "notify::search-string",
-                          G_CALLBACK(window_find_search_changed_cb),
+        gtk_search_bar_connect_entry (GTK_SEARCH_BAR (priv->search_bar),
+                                      GTK_ENTRY (priv->search_entry));
+        g_signal_connect (priv->search_bar,
+                          "notify::search-mode-enabled",
+                          G_CALLBACK (on_search_mode_enabled_changed),
                           window);
-        g_signal_connect (priv->findbar,
-                          "notify::case-sensitive",
-                          G_CALLBACK (window_find_case_changed_cb),
+        g_signal_connect (priv->search_entry,
+                          "changed",
+                          G_CALLBACK (window_find_search_changed_cb),
                           window);
-        g_signal_connect (priv->findbar,
-                          "previous",
+        g_signal_connect (priv->search_entry,
+                          "activate",
+                          G_CALLBACK (on_search_entry_activated),
+                          window);
+        g_signal_connect (priv->go_up_button,
+                          "clicked",
                           G_CALLBACK (window_find_previous_cb),
                           window);
-        g_signal_connect (priv->findbar,
-                          "next",
+        g_signal_connect (priv->go_down_button,
+                          "clicked",
                           G_CALLBACK (window_find_next_cb),
-                          window);
-        g_signal_connect (priv->findbar,
-                          "close",
-                          G_CALLBACK (window_findbar_close_cb),
                           window);
 
         /* Focus search in sidebar by default */
@@ -948,21 +951,20 @@ do_search (DhWindow *window)
         priv = dh_window_get_instance_private (window);
 
         find_controller = webkit_web_view_get_find_controller (window_get_active_web_view (window));
-        if (!egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)))
-                find_options |= WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE;
+        /* FIXME: do we want an option to set this? */
+        find_options |= WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE;
 
-        search_text = egg_find_bar_get_search_string (EGG_FIND_BAR (priv->findbar));
+        search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
         webkit_find_controller_search (find_controller, search_text, find_options, G_MAXUINT);
 
         priv->find_source_id = 0;
 
-	return FALSE;
+        return FALSE;
 }
 
 static void
-window_find_search_changed_cb (GObject    *object,
-                               GParamSpec *pspec,
-                               DhWindow   *window)
+window_find_search_changed_cb (GtkEntry *entry,
+                               DhWindow *window)
 {
         DhWindowPrivate *priv;
 
@@ -977,14 +979,6 @@ window_find_search_changed_cb (GObject    *object,
 }
 
 static void
-window_find_case_changed_cb (GObject    *object,
-                             GParamSpec *pspec,
-                             DhWindow   *window)
-{
-        do_search (window);
-}
-
-static void
 findbar_find_next (DhWindow *window)
 {
         DhWindowPrivate *priv;
@@ -995,10 +989,10 @@ findbar_find_next (DhWindow *window)
 
         view = window_get_active_web_view (window);
 
-        gtk_widget_show (priv->findbar);
+        gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
 
         find_controller = webkit_web_view_get_find_controller (view);
-        webkit_find_controller_search_next(find_controller);
+        webkit_find_controller_search_next (find_controller);
 }
 
 static void
@@ -1019,10 +1013,10 @@ findbar_find_previous (DhWindow *window)
 
         view = window_get_active_web_view (window);
 
-        gtk_widget_show (priv->findbar);
+        gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
 
         find_controller = webkit_web_view_get_find_controller (view);
-        webkit_find_controller_search_previous(find_controller);
+        webkit_find_controller_search_previous (find_controller);
 }
 
 static void
@@ -1033,21 +1027,26 @@ window_find_previous_cb (GtkWidget *widget,
 }
 
 static void
-window_findbar_close_cb (GtkWidget *widget,
-                         DhWindow  *window)
+on_search_mode_enabled_changed (GtkSearchBar *search_bar,
+                                GParamSpec   *pspec,
+                                DhWindow     *window)
 {
-        DhWindowPrivate *priv;
-        WebKitWebView        *view;
-        WebKitFindController *find_controller;
+        if (!gtk_search_bar_get_search_mode (search_bar)) {
+                WebKitWebView        *view;
+                WebKitFindController *find_controller;
 
-        priv = dh_window_get_instance_private (window);
+                view = window_get_active_web_view (window);
 
-        view = window_get_active_web_view (window);
+                find_controller = webkit_web_view_get_find_controller (view);
+                webkit_find_controller_search_finish (find_controller);
+        }
+}
 
-        gtk_widget_hide (priv->findbar);
-
-        find_controller = webkit_web_view_get_find_controller (view);
-        webkit_find_controller_search_finish (find_controller);
+static void
+on_search_entry_activated (GtkEntry *entry,
+                           DhWindow *window)
+{
+        findbar_find_next (window);
 }
 
 #if 0
