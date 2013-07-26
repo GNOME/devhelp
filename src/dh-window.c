@@ -40,7 +40,7 @@
 
 #define TAB_WIDTH_N_CHARS 15
 
-struct _DhWindowPriv {
+typedef struct {
         GtkWidget      *hpaned;
         GtkWidget      *sidebar;
         GtkWidget      *notebook;
@@ -58,7 +58,7 @@ struct _DhWindowPriv {
         guint           find_source_id;
         DhSettings     *settings;
         guint           fonts_changed_id;
-};
+} DhWindowPrivate;
 
 enum {
         OPEN_LINK,
@@ -142,10 +142,7 @@ static void           window_close_tab               (DhWindow *window,
                                                       gint      page_num);
 static gboolean       do_search                      (DhWindow *window);
 
-G_DEFINE_TYPE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
-
-#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
-  (instance, DH_TYPE_WINDOW, DhWindowPriv);
+G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
 static void
 new_tab_cb (GSimpleAction *action,
@@ -175,10 +172,10 @@ static void
 window_close_tab (DhWindow *window,
                   gint      page_num)
 {
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
         gint          pages;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         gtk_notebook_remove_page (GTK_NOTEBOOK (priv->notebook), page_num);
 
@@ -198,9 +195,12 @@ close_cb (GSimpleAction *action,
           gpointer       user_data)
 {
         DhWindow *window = user_data;
+        DhWindowPrivate *priv;
         gint page_num;
 
-        page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (window->priv->notebook));
+        priv = dh_window_get_instance_private (window);
+
+        page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
         window_close_tab (window, page_num);
 }
 
@@ -211,9 +211,9 @@ copy_cb (GSimpleAction *action,
 {
         DhWindow *window = user_data;
         GtkWidget *widget;
-        DhWindowPriv  *priv;
+        DhWindowPrivate *priv;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         widget = gtk_window_get_focus (GTK_WINDOW (window));
 
@@ -240,9 +240,9 @@ find_cb (GSimpleAction *action,
          gpointer       user_data)
 {
         DhWindow *window = user_data;
-        DhWindowPriv  *priv;
+        DhWindowPrivate *priv;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         gtk_widget_show (priv->findbar);
         gtk_widget_grab_focus (priv->findbar);
@@ -373,8 +373,11 @@ focus_search_cb (GSimpleAction *action,
                  gpointer       user_data)
 {
         DhWindow *window = user_data;
+        DhWindowPrivate *priv;
 
-        dh_sidebar_set_search_focus (DH_SIDEBAR (window->priv->sidebar));
+        priv = dh_window_get_instance_private (window);
+
+        dh_sidebar_set_search_focus (DH_SIDEBAR (priv->sidebar));
 }
 
 static void
@@ -383,11 +386,11 @@ go_back_cb (GSimpleAction *action,
             gpointer       user_data)
 {
         DhWindow      *window = user_data;
-        DhWindowPriv  *priv;
+        DhWindowPrivate *priv;
         WebKitWebView *web_view;
         GtkWidget     *frame;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         frame = gtk_notebook_get_nth_page (
                 GTK_NOTEBOOK (priv->notebook),
@@ -403,11 +406,11 @@ go_forward_cb (GSimpleAction *action,
                gpointer       user_data)
 {
         DhWindow      *window = user_data;
-        DhWindowPriv  *priv;
+        DhWindowPrivate *priv;
         WebKitWebView *web_view;
         GtkWidget     *frame;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         frame = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook),
                                            gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)));
@@ -472,9 +475,12 @@ settings_fonts_changed_cb (DhSettings *settings,
                            gpointer user_data)
 {
         DhWindow *window = DH_WINDOW (user_data);
-        DhWindowPriv *priv = window->priv;
+        DhWindowPrivate *priv;
         gint i;
         WebKitWebView *view;
+
+        priv = dh_window_get_instance_private (window);
+
         /* change font for all pages */
         for (i = 0; i < gtk_notebook_get_n_pages (GTK_NOTEBOOK(priv->notebook)); i++) {
                 GtkWidget *page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), i);
@@ -489,10 +495,11 @@ window_configure_event_cb (GtkWidget *window,
                            gpointer user_data)
 {
         DhWindow *dhwindow;
-        DhWindowPriv  *priv;
+        DhWindowPrivate  *priv;
 
         dhwindow = DH_WINDOW (user_data);
-        priv = GET_PRIVATE (dhwindow);
+        priv = dh_window_get_instance_private (dhwindow);
+
         dh_util_window_settings_save (
                 GTK_WINDOW (window),
                 dh_settings_peek_window_settings (priv->settings), TRUE);
@@ -502,16 +509,14 @@ window_configure_event_cb (GtkWidget *window,
 static void
 dh_window_init (DhWindow *window)
 {
-        DhWindowPriv  *priv;
+        DhWindowPrivate  *priv;
         GtkAccelGroup *accel_group;
         GClosure      *closure;
         gint           i;
 
-        priv = GET_PRIVATE (window);
-        window->priv = priv;
-
         gtk_widget_init_template (GTK_WIDGET (window));
 
+        priv = dh_window_get_instance_private (window);
         priv->selected_search_link = NULL;
 
         /* handle settings */
@@ -545,17 +550,20 @@ dh_window_init (DhWindow *window)
 }
 
 static void
-dispose (GObject *object)
+dh_window_dispose (GObject *object)
 {
-	DhWindow *self = DH_WINDOW (object);
+        DhWindow *window = DH_WINDOW (object);
+        DhWindowPrivate *priv;
 
-        if (self->priv->fonts_changed_id) {
-                if (self->priv->settings && g_signal_handler_is_connected (self->priv->settings, self->priv->fonts_changed_id))
-                        g_signal_handler_disconnect (self->priv->settings, self->priv->fonts_changed_id);
-                self->priv->fonts_changed_id = 0;
+        priv = dh_window_get_instance_private (window);
+
+        if (priv->fonts_changed_id) {
+                if (priv->settings && g_signal_handler_is_connected (priv->settings, priv->fonts_changed_id))
+                        g_signal_handler_disconnect (priv->settings, priv->fonts_changed_id);
+                priv->fonts_changed_id = 0;
         }
 
-        g_clear_object (&self->priv->settings);
+        g_clear_object (&priv->settings);
 
 	/* Chain up to the parent class */
 	G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
@@ -567,7 +575,7 @@ dh_window_class_init (DhWindowClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-        object_class->dispose = dispose;
+        object_class->dispose = dh_window_dispose;
 
         signals[OPEN_LINK] =
                 g_signal_new ("open-link",
@@ -584,18 +592,16 @@ dh_window_class_init (DhWindowClass *klass)
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class,
                                                      "/org/gnome/devhelp/dh-window.ui");
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, header_bar);
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, back_button);
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, back_button_image);
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, forward_button);
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, forward_button_image);
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, close_button);
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, hpaned);
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, grid_sidebar);
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, grid_documents);
-        gtk_widget_class_bind_child (widget_class, DhWindowPriv, notebook);
-
-        g_type_class_add_private (klass, sizeof (DhWindowPriv));
+        gtk_widget_class_bind_child (widget_class, DhWindow, header_bar);
+        gtk_widget_class_bind_child (widget_class, DhWindow, back_button);
+        gtk_widget_class_bind_child (widget_class, DhWindow, back_button_image);
+        gtk_widget_class_bind_child (widget_class, DhWindow, forward_button);
+        gtk_widget_class_bind_child (widget_class, DhWindow, forward_button_image);
+        gtk_widget_class_bind_child (widget_class, DhWindow, close_button);
+        gtk_widget_class_bind_child (widget_class, DhWindow, hpaned);
+        gtk_widget_class_bind_child (widget_class, DhWindow, grid_sidebar);
+        gtk_widget_class_bind_child (widget_class, DhWindow, grid_documents);
+        gtk_widget_class_bind_child (widget_class, DhWindow, notebook);
 }
 
 static void
@@ -604,10 +610,10 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
                                 guint            new_page_num,
                                 DhWindow        *window)
 {
-        DhWindowPriv *priv;
-        GtkWidget    *new_page;
+        DhWindowPrivate *priv;
+        GtkWidget *new_page;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         new_page = gtk_notebook_get_nth_page (notebook, new_page_num);
         if (new_page) {
@@ -645,11 +651,11 @@ window_web_view_switch_page_after_cb (GtkNotebook     *notebook,
 static void
 window_populate (DhWindow *window)
 {
-        DhWindowPriv  *priv;
+        DhWindowPrivate *priv;
         DhBookManager *book_manager;
         const char *prev_icon, *next_icon;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
 
         if (gtk_widget_get_direction (GTK_WIDGET (window)) == GTK_TEXT_DIR_RTL) {
@@ -818,9 +824,9 @@ window_web_view_load_changed_cb (WebKitWebView   *web_view,
                                  DhWindow        *window)
 {
         const gchar *uri;
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         if (load_event != WEBKIT_LOAD_COMMITTED)
                 return;
@@ -873,12 +879,11 @@ window_search_link_selected_cb (GObject  *ignored,
                                 DhLink   *link,
                                 DhWindow *window)
 {
-        DhWindowPriv  *priv;
+        DhWindowPrivate  *priv;
         WebKitWebView *view;
         gchar         *uri;
 
-        priv = window->priv;
-
+        priv = dh_window_get_instance_private (window);
         priv->selected_search_link = link;
 
         view = window_get_active_web_view (window);
@@ -935,10 +940,12 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
 static gboolean
 do_search (DhWindow *window)
 {
-        DhWindowPriv         *priv = window->priv;
+        DhWindowPrivate *priv;
         WebKitFindController *find_controller;
         guint                 find_options = WEBKIT_FIND_OPTIONS_WRAP_AROUND;
         const gchar          *search_text;
+
+        priv = dh_window_get_instance_private (window);
 
         find_controller = webkit_web_view_get_find_controller (window_get_active_web_view (window));
         if (!egg_find_bar_get_case_sensitive (EGG_FIND_BAR (priv->findbar)))
@@ -957,7 +964,9 @@ window_find_search_changed_cb (GObject    *object,
                                GParamSpec *pspec,
                                DhWindow   *window)
 {
-        DhWindowPriv *priv = window->priv;
+        DhWindowPrivate *priv;
+
+        priv = dh_window_get_instance_private (window);
 
         if (priv->find_source_id != 0) {
                 g_source_remove (priv->find_source_id);
@@ -978,9 +987,11 @@ window_find_case_changed_cb (GObject    *object,
 static void
 findbar_find_next (DhWindow *window)
 {
-        DhWindowPriv         *priv = window->priv;
+        DhWindowPrivate *priv;
         WebKitWebView        *view;
         WebKitFindController *find_controller;
+
+        priv = dh_window_get_instance_private (window);
 
         view = window_get_active_web_view (window);
 
@@ -1000,9 +1011,11 @@ window_find_next_cb (GtkWidget *widget,
 static void
 findbar_find_previous (DhWindow *window)
 {
-        DhWindowPriv         *priv = window->priv;
+        DhWindowPrivate *priv;
         WebKitWebView        *view;
         WebKitFindController *find_controller;
+
+        priv = dh_window_get_instance_private (window);
 
         view = window_get_active_web_view (window);
 
@@ -1023,9 +1036,11 @@ static void
 window_findbar_close_cb (GtkWidget *widget,
                          DhWindow  *window)
 {
-        DhWindowPriv         *priv = window->priv;
+        DhWindowPrivate *priv;
         WebKitWebView        *view;
         WebKitFindController *find_controller;
+
+        priv = dh_window_get_instance_private (window);
 
         view = window_get_active_web_view (window);
 
@@ -1052,10 +1067,10 @@ window_web_view_tab_accel_cb (GtkAccelGroup   *accel_group,
                               GdkModifierType  mod,
                               DhWindow        *window)
 {
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
         gint          i, num;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         num = -1;
         for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
@@ -1076,7 +1091,7 @@ window_open_new_tab (DhWindow    *window,
                      const gchar *location,
                      gboolean     switch_focus)
 {
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
         GtkWidget    *view;
         GtkWidget    *vbox;
         GtkWidget    *label;
@@ -1085,7 +1100,7 @@ window_open_new_tab (DhWindow    *window,
         gchar *font_fixed = NULL;
         gchar *font_variable = NULL;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         /* Prepare the web view */
         view = webkit_web_view_new ();
@@ -1179,14 +1194,17 @@ static void
 close_button_clicked_cb (GtkButton *button,
                          DhWindow  *window)
 {
+        DhWindowPrivate *priv;
         GtkWidget *parent_tab;
         gint       pages;
         gint       i;
 
+        priv = dh_window_get_instance_private (window);
+
         parent_tab = g_object_get_data (G_OBJECT (button), "parent_tab");
-        pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (window->priv->notebook));
+        pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
         for (i=0; i<pages; i++) {
-                if (gtk_notebook_get_nth_page (GTK_NOTEBOOK (window->priv->notebook), i) == parent_tab) {
+                if (gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), i) == parent_tab) {
                         window_close_tab (window, i);
                         break;
                 }
@@ -1227,11 +1245,11 @@ window_new_tab_label (DhWindow        *window,
 static WebKitWebView *
 window_get_active_web_view (DhWindow *window)
 {
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
         gint          page_num;
         GtkWidget    *page;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
         if (page_num == -1) {
@@ -1246,11 +1264,11 @@ window_get_active_web_view (DhWindow *window)
 static GtkWidget *
 window_get_active_info_bar (DhWindow *window)
 {
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
         gint          page_num;
         GtkWidget    *page;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
         if (page_num == -1) {
@@ -1267,9 +1285,9 @@ window_update_title (DhWindow      *window,
                      WebKitWebView *web_view,
                      const gchar   *web_view_title)
 {
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         if (!web_view_title)
                 web_view_title = webkit_web_view_get_title (web_view);
@@ -1287,14 +1305,14 @@ window_tab_set_title (DhWindow      *window,
                       WebKitWebView *web_view,
                       const gchar   *title)
 {
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
         gint          num_pages, i;
         GtkWidget    *page;
         GtkWidget    *hbox;
         GtkWidget    *label;
         GtkWidget    *page_web_view;
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         if (!title || title[0] == '\0') {
                 title = _("Empty Page");
@@ -1324,10 +1342,10 @@ GtkWidget *
 dh_window_new (DhApp *application)
 {
         DhWindow     *window;
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
 
         window = g_object_new (DH_TYPE_WINDOW, "application", application, NULL);
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         window_populate (window);
 
@@ -1350,11 +1368,11 @@ void
 dh_window_search (DhWindow    *window,
                   const gchar *str)
 {
-        DhWindowPriv *priv;
+        DhWindowPrivate *priv;
 
         g_return_if_fail (DH_IS_WINDOW (window));
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         dh_sidebar_set_search_string (DH_SIDEBAR (priv->sidebar), str);
 }
@@ -1364,13 +1382,13 @@ void
 _dh_window_display_uri (DhWindow    *window,
                         const gchar *uri)
 {
-        DhWindowPriv  *priv;
+        DhWindowPrivate  *priv;
         WebKitWebView *web_view;
 
         g_return_if_fail (DH_IS_WINDOW (window));
         g_return_if_fail (uri != NULL);
 
-        priv = window->priv;
+        priv = dh_window_get_instance_private (window);
 
         web_view = window_get_active_web_view (window);
         webkit_web_view_load_uri (web_view, uri);

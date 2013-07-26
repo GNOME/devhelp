@@ -37,7 +37,6 @@ G_BEGIN_DECLS
 
 typedef struct _DhWindow       DhWindow;
 typedef struct _DhWindowClass  DhWindowClass;
-typedef struct _DhWindowPriv   DhWindowPriv;
 
 typedef enum
 {
@@ -47,7 +46,6 @@ typedef enum
 
 struct _DhWindow {
         GtkApplicationWindow parent_instance;
-        DhWindowPriv *priv;
 };
 
 struct _DhWindowClass {
