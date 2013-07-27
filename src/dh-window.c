@@ -592,16 +592,16 @@ dh_window_class_init (DhWindowClass *klass)
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class,
                                                      "/org/gnome/devhelp/dh-window.ui");
-        gtk_widget_class_bind_child (widget_class, DhWindow, header_bar);
-        gtk_widget_class_bind_child (widget_class, DhWindow, back_button);
-        gtk_widget_class_bind_child (widget_class, DhWindow, back_button_image);
-        gtk_widget_class_bind_child (widget_class, DhWindow, forward_button);
-        gtk_widget_class_bind_child (widget_class, DhWindow, forward_button_image);
-        gtk_widget_class_bind_child (widget_class, DhWindow, close_button);
-        gtk_widget_class_bind_child (widget_class, DhWindow, hpaned);
-        gtk_widget_class_bind_child (widget_class, DhWindow, grid_sidebar);
-        gtk_widget_class_bind_child (widget_class, DhWindow, grid_documents);
-        gtk_widget_class_bind_child (widget_class, DhWindow, notebook);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, back_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, back_button_image);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, forward_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, forward_button_image);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, close_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_documents);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
 }
 
 static void
