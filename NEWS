@@ -1,4 +1,18 @@
 =============
+Version 3.9.5
+=============
+
+Fixed bugs:
+
+ - #703609, Set button arrow icons according to locale's text direction
+ - #704752, Make window a template and other stuff
+ - #704805, The notebook in the preferences does not expand properly
+
+Many thanks to all contributors: Garrett Regier, Ignacio Casal Quinteiro,
+Piotr Drąg
+
+
+=============
 Version 3.9.4
 =============
 
