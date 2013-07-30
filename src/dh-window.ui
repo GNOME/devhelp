@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.8 -->
-  <menu id="gear-menu">
+  <menu id="gear_menu">
     <section>
       <item>
         <attribute name="label" translatable="yes">New _Tab</attribute>
@@ -37,6 +37,67 @@
         <attribute name="label" translatable="yes">_Normal Size</attribute>
         <attribute name="action">win.zoom-default</attribute>
         <attribute name="accel">&lt;Primary&gt;0</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="gear_app_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">New _Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+        <attribute name="accel">&lt;Primary&gt;n</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New _Tab</attribute>
+        <attribute name="action">win.new-tab</attribute>
+        <attribute name="accel">&lt;Primary&gt;t</attribute>
+        <attribute name="use-underline">True</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Print</attribute>
+        <attribute name="action">win.print</attribute>
+        <attribute name="accel">&lt;Primary&gt;p</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Find</attribute>
+        <attribute name="action">win.find</attribute>
+        <attribute name="accel">&lt;Primary&gt;f</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Larger Text</attribute>
+        <attribute name="action">win.zoom-in</attribute>
+        <attribute name="accel">&lt;Primary&gt;plus</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">S_maller Text</attribute>
+        <attribute name="action">win.zoom-out</attribute>
+        <attribute name="accel">&lt;Primary&gt;minus</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Normal Size</attribute>
+        <attribute name="action">win.zoom-default</attribute>
+        <attribute name="accel">&lt;Primary&gt;0</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_About Devhelp</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Quit</attribute>
+        <attribute name="action">app.quit</attribute>
+        <attribute name="accel">&lt;Primary&gt;q</attribute>
       </item>
     </section>
   </menu>
@@ -100,12 +161,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkMenuButton" id="gear_menu">
+          <object class="GtkMenuButton" id="gear_menu_button">
             <property name="visible">True</property>
             <property name="valign">center</property>
             <property name="can_focus">False</property>
             <property name="action_name">win.gear-menu</property>
-            <property name="menu_model">gear-menu</property>
+            <property name="menu_model">gear_menu</property>
             <style>
               <class name="image-button"/>
             </style>

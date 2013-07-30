@@ -40,6 +40,7 @@
 #define TAB_WIDTH_N_CHARS 15
 
 typedef struct {
+        GMenuModel     *gear_app_menu;
         GtkWidget      *hpaned;
         GtkWidget      *sidebar;
         GtkWidget      *notebook;
@@ -48,6 +49,7 @@ typedef struct {
         GtkImage       *back_button_image;
         GtkWidget      *forward_button;
         GtkImage       *forward_button_image;
+        GtkMenuButton  *gear_menu_button;
         GtkWidget      *close_button;
         GtkWidget      *grid_sidebar;
         GtkWidget      *grid_documents;
@@ -520,6 +522,10 @@ dh_window_init (DhWindow *window)
         priv = dh_window_get_instance_private (window);
         priv->selected_search_link = NULL;
 
+        if (!_dh_app_has_app_menu (DH_APP (g_application_get_default ()))) {
+                gtk_menu_button_set_menu_model (priv->gear_menu_button, priv->gear_app_menu);
+        }
+
         /* handle settings */
         priv->settings = dh_settings_get ();
         priv->fonts_changed_id = g_signal_connect (priv->settings,
@@ -593,11 +599,13 @@ dh_window_class_init (DhWindowClass *klass)
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class,
                                                      "/org/gnome/devhelp/dh-window.ui");
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, gear_app_menu);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, back_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, back_button_image);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, forward_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, forward_button_image);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, gear_menu_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, close_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
