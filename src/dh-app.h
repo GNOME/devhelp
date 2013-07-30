@@ -61,6 +61,8 @@ void           dh_app_search_assistant  (DhApp *self,
                                          const gchar *keyword);
 void           dh_app_raise             (DhApp *self);
 
+gboolean      _dh_app_has_app_menu      (DhApp *app);
+
 G_END_DECLS
 
 #endif /* __DH_APP_H__ */

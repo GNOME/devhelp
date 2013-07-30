@@ -86,6 +86,29 @@ dh_app_peek_assistant (DhApp *app)
         return NULL;
 }
 
+gboolean
+_dh_app_has_app_menu (DhApp *app)
+{
+        GtkSettings *gtk_settings;
+        gboolean show_app_menu;
+        gboolean show_menubar;
+
+        g_return_val_if_fail (DH_IS_APP (app), FALSE);
+
+        /* We have three cases:
+         * - GNOME 3: show-app-menu true, show-menubar false -> use the app menu
+         * - Unity, OSX: show-app-menu and show-menubar true -> use the normal menu
+         * - Other WM, Windows: show-app-menu and show-menubar false -> use the normal menu
+         */
+        gtk_settings = gtk_settings_get_default ();
+        g_object_get (G_OBJECT (gtk_settings),
+                      "gtk-shell-shows-app-menu", &show_app_menu,
+                      "gtk-shell-shows-menubar", &show_menubar,
+                      NULL);
+
+        return show_app_menu && !show_menubar;
+}
+
 /******************************************************************************/
 /* Application action activators */
 
@@ -267,14 +290,6 @@ static GActionEntry app_entries[] = {
         { "raise",            raise_cb,            NULL, NULL, NULL },
 };
 
-static void
-setup_actions (DhApp *app)
-{
-        g_action_map_add_action_entries (G_ACTION_MAP (app),
-                                         app_entries, G_N_ELEMENTS (app_entries),
-                                         app);
-}
-
 /******************************************************************************/
 
 static void
@@ -298,26 +313,6 @@ setup_accelerators (DhApp *self)
 /******************************************************************************/
 
 static void
-setup_menu (DhApp *app)
-{
-        GtkBuilder *builder;
-        GMenuModel *model;
-        GError *error = NULL;
-
-        builder = gtk_builder_new ();
-
-        if (!gtk_builder_add_from_resource (builder, "/org/gnome/devhelp/devhelp.ui", &error)) {
-                g_error ("%s",error ? error->message : "unknown error");
-                g_clear_error (&error);
-        }
-
-        model = G_MENU_MODEL (gtk_builder_get_object (builder, "app-menu"));
-        gtk_application_set_app_menu (GTK_APPLICATION (app), model);
-
-        g_object_unref (builder);
-}
-
-static void
 startup (GApplication *application)
 {
         DhApp *app = DH_APP (application);
@@ -327,16 +322,37 @@ startup (GApplication *application)
         G_APPLICATION_CLASS (dh_app_parent_class)->startup (application);
 
         /* Setup actions */
-        setup_actions (app);
+        g_action_map_add_action_entries (G_ACTION_MAP (app),
+                                         app_entries, G_N_ELEMENTS (app_entries),
+                                         app);
 
-        /* Setup menu */
-        setup_menu (app);
+        if (_dh_app_has_app_menu (app)) {
+                GtkBuilder *builder;
+                GError *error = NULL;
+
+                /* Setup menu */
+                builder = gtk_builder_new ();
+
+                if (!gtk_builder_add_from_resource (builder,
+                                                    "/org/gnome/devhelp/devhelp-menu.ui",
+                                                    &error)) {
+                        g_warning ("loading menu builder file: %s", error->message);
+                        g_error_free (error);
+                } else {
+                        GMenuModel *app_menu;
+
+                        app_menu = G_MENU_MODEL (gtk_builder_get_object (builder, "app-menu"));
+                        gtk_application_set_app_menu (GTK_APPLICATION (application),
+                                                      app_menu);
+                }
+
+                g_object_unref (builder);
+        }
 
         /* Setup accelerators */
         setup_accelerators (app);
 
         /* Load the book manager */
-        g_assert (priv->book_manager == NULL);
         priv->book_manager = dh_book_manager_new ();
         dh_book_manager_populate (priv->book_manager);
 }

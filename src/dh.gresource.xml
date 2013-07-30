@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/org/gnome/devhelp">
     <file>devhelp.ui</file>
+    <file preprocess="xml-stripblanks">devhelp-menu.ui</file>
     <file preprocess="xml-stripblanks">dh-assistant.ui</file>
     <file preprocess="xml-stripblanks">dh-window.ui</file>
   </gresource>
