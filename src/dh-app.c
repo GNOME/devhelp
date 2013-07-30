@@ -173,6 +173,7 @@ about_cb (GSimpleAction *action,
           GVariant      *parameter,
           gpointer       user_data)
 {
+        DhApp *app = DH_APP (user_data);
         const gchar  *authors[] = {
                 "Mikael Hallendal <micke@imendio.com>",
                 "Richard Hult <richard@imendio.com>",
@@ -184,10 +185,13 @@ about_cb (GSimpleAction *action,
         };
         const gchar **documenters = NULL;
         const gchar  *translator_credits = _("translator_credits");
+        GtkWindow *parent;
+
+        parent = dh_app_peek_first_window (app);
 
         /* i18n: Please don't translate "Devhelp" (it's marked as translatable
          * for transliteration only) */
-        gtk_show_about_dialog (NULL,
+        gtk_show_about_dialog (parent,
                                "name", _("Devhelp"),
                                "version", PACKAGE_VERSION,
                                "comments", _("A developers' help browser for GNOME"),
