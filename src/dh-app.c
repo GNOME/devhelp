@@ -30,26 +30,32 @@
 #include "dh-preferences.h"
 #include "dh-util.h"
 
-struct _DhAppPrivate {
+typedef struct {
         DhBookManager *book_manager;
-};
+} DhAppPrivate;
 
-G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
+G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
 /******************************************************************************/
 
 DhBookManager *
-dh_app_peek_book_manager (DhApp *self)
+dh_app_peek_book_manager (DhApp *app)
 {
-        return self->priv->book_manager;
+        DhAppPrivate *priv;
+
+        g_return_val_if_fail (DH_IS_APP (app), NULL);
+
+        priv = dh_app_get_instance_private (app);
+
+        return priv->book_manager;
 }
 
 GtkWindow *
-dh_app_peek_first_window (DhApp *self)
+dh_app_peek_first_window (DhApp *app)
 {
         GList *l;
 
-        for (l = gtk_application_get_windows (GTK_APPLICATION (self));
+        for (l = gtk_application_get_windows (GTK_APPLICATION (app));
              l;
              l = g_list_next (l)) {
                 if (DH_IS_WINDOW (l->data)) {
@@ -58,18 +64,18 @@ dh_app_peek_first_window (DhApp *self)
         }
 
         /* Create a new window */
-        dh_app_new_window (self);
+        dh_app_new_window (app);
 
         /* And look for the newly created window again */
-        return dh_app_peek_first_window (self);
+        return dh_app_peek_first_window (app);
 }
 
 GtkWindow *
-dh_app_peek_assistant (DhApp *self)
+dh_app_peek_assistant (DhApp *app)
 {
         GList *l;
 
-        for (l = gtk_application_get_windows (GTK_APPLICATION (self));
+        for (l = gtk_application_get_windows (GTK_APPLICATION (app));
              l;
              l = g_list_next (l)) {
                 if (DH_IS_ASSISTANT (l->data)) {
@@ -84,35 +90,35 @@ dh_app_peek_assistant (DhApp *self)
 /* Application action activators */
 
 void
-dh_app_new_window (DhApp *self)
+dh_app_new_window (DhApp *app)
 {
-        g_action_group_activate_action (G_ACTION_GROUP (self), "new-window", NULL);
+        g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 }
 
 void
-dh_app_quit (DhApp *self)
+dh_app_quit (DhApp *app)
 {
-        g_action_group_activate_action (G_ACTION_GROUP (self), "quit", NULL);
+        g_action_group_activate_action (G_ACTION_GROUP (app), "quit", NULL);
 }
 
 void
-dh_app_search (DhApp *self,
+dh_app_search (DhApp *app,
                const gchar *keyword)
 {
-        g_action_group_activate_action (G_ACTION_GROUP (self), "search", g_variant_new_string (keyword));
+        g_action_group_activate_action (G_ACTION_GROUP (app), "search", g_variant_new_string (keyword));
 }
 
 void
-dh_app_search_assistant (DhApp *self,
+dh_app_search_assistant (DhApp *app,
                          const gchar *keyword)
 {
-        g_action_group_activate_action (G_ACTION_GROUP (self), "search-assistant", g_variant_new_string (keyword));
+        g_action_group_activate_action (G_ACTION_GROUP (app), "search-assistant", g_variant_new_string (keyword));
 }
 
 void
-dh_app_raise (DhApp *self)
+dh_app_raise (DhApp *app)
 {
-        g_action_group_activate_action (G_ACTION_GROUP (self), "raise", NULL);
+        g_action_group_activate_action (G_ACTION_GROUP (app), "raise", NULL);
 }
 
 /******************************************************************************/
@@ -123,11 +129,11 @@ new_window_cb (GSimpleAction *action,
                GVariant      *parameter,
                gpointer       user_data)
 {
-        DhApp *self = DH_APP (user_data);
+        DhApp *app = DH_APP (user_data);
         GtkWidget *window;
 
-        window = dh_window_new (self);
-        gtk_application_add_window (GTK_APPLICATION (self), GTK_WINDOW (window));
+        window = dh_window_new (app);
+        gtk_application_add_window (GTK_APPLICATION (app), GTK_WINDOW (window));
         gtk_widget_show_all (window);
 }
 
@@ -179,12 +185,12 @@ quit_cb (GSimpleAction *action,
          GVariant      *parameter,
          gpointer       user_data)
 {
-        DhApp *self = DH_APP (user_data);
+        DhApp *app = DH_APP (user_data);
         GList *l;
 
         /* Remove all windows registered in the application */
-        while ((l = gtk_application_get_windows (GTK_APPLICATION (self)))) {
-                gtk_application_remove_window (GTK_APPLICATION (self),
+        while ((l = gtk_application_get_windows (GTK_APPLICATION (app)))) {
+                gtk_application_remove_window (GTK_APPLICATION (app),
                                                GTK_WINDOW (l->data));
         }
 }
@@ -194,11 +200,11 @@ search_cb (GSimpleAction *action,
            GVariant      *parameter,
            gpointer       user_data)
 {
-        DhApp *self = DH_APP (user_data);
+        DhApp *app = DH_APP (user_data);
         GtkWindow *window;
         const gchar *str;
 
-        window = dh_app_peek_first_window (self);
+        window = dh_app_peek_first_window (app);
         str = g_variant_get_string (parameter, NULL);
         if (str[0] == '\0') {
                 g_warning ("Cannot search in application window: "
@@ -215,7 +221,7 @@ search_assistant_cb (GSimpleAction *action,
                      GVariant      *parameter,
                      gpointer       user_data)
 {
-        DhApp *self = DH_APP (user_data);
+        DhApp *app = DH_APP (user_data);
         GtkWindow *assistant;
         const gchar *str;
 
@@ -227,10 +233,10 @@ search_assistant_cb (GSimpleAction *action,
         }
 
         /* Look for an already registered assistant */
-        assistant = dh_app_peek_assistant (self);
+        assistant = dh_app_peek_assistant (app);
         if (!assistant) {
-                assistant = GTK_WINDOW (dh_assistant_new (self));
-                gtk_application_add_window (GTK_APPLICATION (self), assistant);
+                assistant = GTK_WINDOW (dh_assistant_new (app));
+                gtk_application_add_window (GTK_APPLICATION (app), assistant);
         }
 
         dh_assistant_search (DH_ASSISTANT (assistant), str);
@@ -241,11 +247,11 @@ raise_cb (GSimpleAction *action,
           GVariant      *parameter,
           gpointer       user_data)
 {
-        DhApp *self = DH_APP (user_data);
+        DhApp *app = DH_APP (user_data);
         GtkWindow *window;
 
         /* Look for the first application window available and show it */
-        window = dh_app_peek_first_window (self);
+        window = dh_app_peek_first_window (app);
         gtk_window_present (window);
 }
 
@@ -262,11 +268,11 @@ static GActionEntry app_entries[] = {
 };
 
 static void
-setup_actions (DhApp *self)
+setup_actions (DhApp *app)
 {
-        g_action_map_add_action_entries (G_ACTION_MAP (self),
+        g_action_map_add_action_entries (G_ACTION_MAP (app),
                                          app_entries, G_N_ELEMENTS (app_entries),
-                                         self);
+                                         app);
 }
 
 /******************************************************************************/
@@ -292,7 +298,7 @@ setup_accelerators (DhApp *self)
 /******************************************************************************/
 
 static void
-setup_menu (DhApp *self)
+setup_menu (DhApp *app)
 {
         GtkBuilder *builder;
         GMenuModel *model;
@@ -306,7 +312,7 @@ setup_menu (DhApp *self)
         }
 
         model = G_MENU_MODEL (gtk_builder_get_object (builder, "app-menu"));
-        gtk_application_set_app_menu (GTK_APPLICATION (self), model);
+        gtk_application_set_app_menu (GTK_APPLICATION (app), model);
 
         g_object_unref (builder);
 }
@@ -314,24 +320,25 @@ setup_menu (DhApp *self)
 static void
 startup (GApplication *application)
 {
-        DhApp *self = DH_APP (application);
+        DhApp *app = DH_APP (application);
+        DhAppPrivate *priv = dh_app_get_instance_private (app);
 
         /* Chain up parent's startup */
         G_APPLICATION_CLASS (dh_app_parent_class)->startup (application);
 
         /* Setup actions */
-        setup_actions (self);
+        setup_actions (app);
 
         /* Setup menu */
-        setup_menu (self);
+        setup_menu (app);
 
         /* Setup accelerators */
-        setup_accelerators (self);
+        setup_accelerators (app);
 
         /* Load the book manager */
-        g_assert (self->priv->book_manager == NULL);
-        self->priv->book_manager = dh_book_manager_new ();
-        dh_book_manager_populate (self->priv->book_manager);
+        g_assert (priv->book_manager == NULL);
+        priv->book_manager = dh_book_manager_new ();
+        dh_book_manager_populate (priv->book_manager);
 }
 
 /******************************************************************************/
@@ -356,17 +363,17 @@ dh_app_new (void)
 }
 
 static void
-dh_app_init (DhApp *self)
+dh_app_init (DhApp *app)
 {
-        self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, DH_TYPE_APP, DhAppPrivate);
 }
 
 static void
-dispose (GObject *object)
+dh_app_dispose (GObject *object)
 {
-        DhApp *self = DH_APP (object);
+        DhApp *app = DH_APP (object);
+        DhAppPrivate *priv = dh_app_get_instance_private (app);
 
-        g_clear_object (&self->priv->book_manager);
+        g_clear_object (&priv->book_manager);
 
         G_OBJECT_CLASS (dh_app_parent_class)->dispose (object);
 }
@@ -377,9 +384,7 @@ dh_app_class_init (DhAppClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
 
-	g_type_class_add_private (klass, sizeof (DhAppPrivate));
-
         application_class->startup = startup;
 
-        object_class->dispose = dispose;
+        object_class->dispose = dh_app_dispose;
 }
