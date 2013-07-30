@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 21:26+0100\n"
-"PO-Revision-Date: 2013-02-11 21:26+0100\n"
+"POT-Creation-Date: 2013-07-30 21:47+0200\n"
+"PO-Revision-Date: 2013-07-30 21:47+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -19,11 +19,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:344
-#: ../src/dh-window.c:633
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:346
+#: ../src/dh-window.c:637
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -193,79 +194,54 @@ msgstr ""
 "Mostra la documentazione delle API per la parola alla posizione del cursore"
 
 #: ../src/devhelp.ui.h:1
-msgid "New window"
-msgstr "Nuova finestra"
+msgid "New _Window"
+msgstr "Nuova _finestra"
 
 #: ../src/devhelp.ui.h:2
+msgid "_Preferences"
+msgstr "Preferen_ze"
+
+#: ../src/devhelp.ui.h:3
+msgid "_About Devhelp"
+msgstr "I_nformazioni su Devhelp"
+
+#: ../src/devhelp.ui.h:4
+msgid "_Quit"
+msgstr "_Esci"
+
+#: ../src/devhelp.ui.h:5
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: ../src/devhelp.ui.h:3
-msgid "About Devhelp"
-msgstr "Informazioni su Devhelp"
-
-#: ../src/devhelp.ui.h:4
-msgid "Quit"
-msgstr "Esci"
-
-#: ../src/devhelp.ui.h:5
-msgid "New _Tab"
-msgstr "Nuova _scheda"
-
 #: ../src/devhelp.ui.h:6
-msgid "_Print"
-msgstr "Stam_pa"
-
-#: ../src/devhelp.ui.h:7
-msgid "_Find"
-msgstr "Tr_ova"
-
-# GNOME-2-22
-# tradotto come in Ephy, non so se anche
-# gli originali coincidono --Luca
-#: ../src/devhelp.ui.h:8
-msgid "_Larger text"
-msgstr "Testo più _grande"
-
-# GNOME-2-22
-#: ../src/devhelp.ui.h:9
-msgid "S_maller text"
-msgstr "Testo più _piccolo"
-
-# GNOME-2-22
-#: ../src/devhelp.ui.h:10
-msgid "_Normal size"
-msgstr "Dimensione _normale"
-
-#: ../src/devhelp.ui.h:11
 msgid "_Group by language"
 msgstr "Ra_ggruppare per linguaggio"
 
-#: ../src/devhelp.ui.h:12
+#: ../src/devhelp.ui.h:7
 msgid "Enabled"
 msgstr "Abilitato"
 
-#: ../src/devhelp.ui.h:13
+#: ../src/devhelp.ui.h:8
 msgid "Title"
 msgstr "Titolo"
 
-#: ../src/devhelp.ui.h:14
+#: ../src/devhelp.ui.h:9
 msgid "Book Shelf"
 msgstr "Raccolta libri"
 
-#: ../src/devhelp.ui.h:15
+#: ../src/devhelp.ui.h:10
 msgid "_Use system fonts"
 msgstr "_Usare i tipi di carattere di sistema"
 
-#: ../src/devhelp.ui.h:16
+#: ../src/devhelp.ui.h:11
 msgid "_Variable width: "
 msgstr "Larghezza _variabile:"
 
-#: ../src/devhelp.ui.h:17
+#: ../src/devhelp.ui.h:12
 msgid "_Fixed width:"
 msgstr "Larghezza _fissa:"
 
-#: ../src/devhelp.ui.h:18
+#: ../src/devhelp.ui.h:13
 msgid "Fonts"
 msgstr "Tipi di carattere"
 
@@ -284,11 +260,11 @@ msgid "DevHelp Website"
 msgstr "Sito web di DevHelp"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:121
+#: ../src/dh-assistant.c:119
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Assistente"
 
-#: ../src/dh-assistant-view.c:403
+#: ../src/dh-assistant-view.c:372
 msgid "Book:"
 msgstr "Libro:"
 
@@ -302,53 +278,53 @@ msgid "Language: Undefined"
 msgstr "Linguaggio: non definito"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:284
 msgid "Book"
 msgstr "Libro"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:287
 msgid "Page"
 msgstr "Pagina"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:274
+#: ../src/dh-link.c:291
 msgid "Keyword"
 msgstr "Parola chiave"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:296
 msgid "Function"
 msgstr "Function"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:301
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:306
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:311
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:316
 msgid "Type"
 msgstr "Type"
 
@@ -427,65 +403,94 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Impossibile decomprimere il libro «%s»: %s"
 
 #. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:478
+#: ../src/dh-sidebar.c:514
 msgid "Current"
 msgstr "Attuale"
 
-#: ../src/dh-sidebar.c:481
+#: ../src/dh-sidebar.c:517
 msgid "All Books"
 msgstr "Tutti i libri"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:83
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:84
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:85
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:86
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:87
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:88
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:89
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:90
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:91
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:664
-msgid "Back"
-msgstr "Indietro"
-
-#: ../src/dh-window.c:669
-msgid "Forward"
-msgstr "Avanti"
-
-#: ../src/dh-window.c:936
+#: ../src/dh-window.c:858
 msgid "Error opening the requested link."
 msgstr "Errore nell'aprire il collegamento richiesto."
 
-#: ../src/dh-window.c:1286 ../src/dh-window.c:1472
+#: ../src/dh-window.c:1146 ../src/dh-window.c:1318
 msgid "Empty Page"
 msgstr "Pagina vuota"
+
+#: ../src/dh-window.ui.h:1
+msgid "New _Tab"
+msgstr "Nuova _scheda"
+
+#: ../src/dh-window.ui.h:2
+msgid "_Print"
+msgstr "Stam_pa"
+
+#: ../src/dh-window.ui.h:3
+msgid "_Find"
+msgstr "Tr_ova"
+
+# GNOME-2-22
+# tradotto come in Ephy, non so se anche
+# gli originali coincidono --Luca
+#: ../src/dh-window.ui.h:4
+msgid "_Larger Text"
+msgstr "Testo più _grande"
+
+# GNOME-2-22
+#: ../src/dh-window.ui.h:5
+msgid "S_maller Text"
+msgstr "Testo più _piccolo"
+
+# GNOME-2-22
+#: ../src/dh-window.ui.h:6
+msgid "_Normal Size"
+msgstr "Dimensione _normale"
+
+#: ../src/dh-window.ui.h:7
+msgid "Back"
+msgstr "Indietro"
+
+#: ../src/dh-window.ui.h:8
+msgid "Forward"
+msgstr "Avanti"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
