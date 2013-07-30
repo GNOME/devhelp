@@ -346,25 +346,20 @@ startup (GApplication *application)
 DhApp *
 dh_app_new (void)
 {
-        DhApp *application;
-
-        /* i18n: Please don't translate "Devhelp" (it's marked as translatable
-         * for transliteration only) */
-        g_set_application_name (_("Devhelp"));
-        gtk_window_set_default_icon_name ("devhelp");
-
-        application = g_object_new (DH_TYPE_APP,
-                                    "application-id",   "org.gnome.Devhelp",
-                                    "flags",            G_APPLICATION_FLAGS_NONE,
-                                    "register-session", TRUE,
-                                    NULL);
-
-        return application;
+        return g_object_new (DH_TYPE_APP,
+                             "application-id",   "org.gnome.Devhelp",
+                             "flags",            G_APPLICATION_FLAGS_NONE,
+                             "register-session", TRUE,
+                             NULL);
 }
 
 static void
 dh_app_init (DhApp *app)
 {
+        /* i18n: Please don't translate "Devhelp" (it's marked as translatable
+         * for transliteration only) */
+        g_set_application_name (_("Devhelp"));
+        gtk_window_set_default_icon_name ("devhelp");
 }
 
 static void
