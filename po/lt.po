@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-02 01:39+0000\n"
-"PO-Revision-Date: 2013-03-02 23:03+0200\n"
+"POT-Creation-Date: 2013-08-06 16:16+0000\n"
+"PO-Revision-Date: 2013-08-11 20:50+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: \n"
@@ -27,8 +27,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:342
-#: ../src/dh-window.c:623
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:346
+#: ../src/dh-window.c:637
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -189,74 +189,58 @@ msgid "Show API Documentation for the word at the cursor"
 msgstr "Rodyti API dokumentaciją žodžiui ties kursoriumi"
 
 #: ../src/devhelp.ui.h:1
-msgid "New window"
-msgstr "Naujas langas"
+#| msgid "New window"
+msgid "New _Window"
+msgstr "Naujas _langas"
 
 #: ../src/devhelp.ui.h:2
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "_Nustatymai"
+
+#: ../src/devhelp.ui.h:3
+#| msgid "About Devhelp"
+msgid "_About Devhelp"
+msgstr "_Apie Devhelp"
+
+#: ../src/devhelp.ui.h:4
+#| msgid "Quit"
+msgid "_Quit"
+msgstr "Iš_eiti"
+
+#: ../src/devhelp.ui.h:5
 msgid "Preferences"
 msgstr "Nustatymai"
 
-#: ../src/devhelp.ui.h:3
-msgid "About Devhelp"
-msgstr "Apie Devhelp"
-
-#: ../src/devhelp.ui.h:4
-msgid "Quit"
-msgstr "Išeiti"
-
-#: ../src/devhelp.ui.h:5
-msgid "New _Tab"
-msgstr "Nauja _kortelė"
-
 #: ../src/devhelp.ui.h:6
-msgid "_Print"
-msgstr "S_pausdinti"
-
-#: ../src/devhelp.ui.h:7
-msgid "_Find"
-msgstr "_Ieškoti"
-
-#: ../src/devhelp.ui.h:8
-msgid "_Larger text"
-msgstr "_Didesnis tekstas"
-
-#: ../src/devhelp.ui.h:9
-msgid "S_maller text"
-msgstr "_Mažesnis tekstas"
-
-#: ../src/devhelp.ui.h:10
-msgid "_Normal size"
-msgstr "_Normalus dydis"
-
-#: ../src/devhelp.ui.h:11
 msgid "_Group by language"
 msgstr "_Grupuoti pagal kalbą"
 
-#: ../src/devhelp.ui.h:12
+#: ../src/devhelp.ui.h:7
 msgid "Enabled"
 msgstr "Įjungta"
 
-#: ../src/devhelp.ui.h:13
+#: ../src/devhelp.ui.h:8
 msgid "Title"
 msgstr "Pavadinimas"
 
-#: ../src/devhelp.ui.h:14
+#: ../src/devhelp.ui.h:9
 msgid "Book Shelf"
 msgstr "Knygos lentyna"
 
-#: ../src/devhelp.ui.h:15
+#: ../src/devhelp.ui.h:10
 msgid "_Use system fonts"
 msgstr "_Naudoti sisteminius šriftus"
 
-#: ../src/devhelp.ui.h:16
+#: ../src/devhelp.ui.h:11
 msgid "_Variable width: "
 msgstr "_Kintamo pločio šriftas"
 
-#: ../src/devhelp.ui.h:17
+#: ../src/devhelp.ui.h:12
 msgid "_Fixed width:"
 msgstr "_Fiksuoto pločio šriftas"
 
-#: ../src/devhelp.ui.h:18
+#: ../src/devhelp.ui.h:13
 msgid "Fonts"
 msgstr "Šriftai"
 
@@ -276,71 +260,71 @@ msgid "DevHelp Website"
 msgstr "DevHelp žiniatinklis"
 
 #. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:121
+#: ../src/dh-assistant.c:119
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - pagalbininkas"
 
-#: ../src/dh-assistant-view.c:403
+#: ../src/dh-assistant-view.c:372
 msgid "Book:"
 msgstr "Knyga:"
 
-#: ../src/dh-book.c:256
+#: ../src/dh-book.c:255
 #, c-format
 msgid "Language: %s"
 msgstr "Kalba: %s"
 
-#: ../src/dh-book.c:257
+#: ../src/dh-book.c:256
 msgid "Language: Undefined"
 msgstr "Kalba: Nenurodyta"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:284
 msgid "Book"
 msgstr "Knyga"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:287
 msgid "Page"
 msgstr "Puslapis"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:274
+#: ../src/dh-link.c:291
 msgid "Keyword"
 msgstr "Raktažodis"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:296
 msgid "Function"
 msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:301
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:306
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:311
 msgid "Enum"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:316
 msgid "Type"
 msgstr "Type"
 
@@ -413,68 +397,92 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Nepavyko išpakuoti knygos '%s': %s"
 
 #. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:471
+#: ../src/dh-sidebar.c:514
 msgid "Current"
 msgstr "Dabartinė"
 
-#: ../src/dh-sidebar.c:474
-#| msgid "All books"
+#: ../src/dh-sidebar.c:517
 msgid "All Books"
 msgstr "Visos knygos"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:83
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:84
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:85
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:86
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:87
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:88
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:89
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:90
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:91
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:654
-#| msgid "_Back"
-msgid "Back"
-msgstr "Atgal"
-
-#: ../src/dh-window.c:659
-#| msgid "_Forward"
-msgid "Forward"
-msgstr "Pirmyn"
-
-#: ../src/dh-window.c:919
+#: ../src/dh-window.c:858
 msgid "Error opening the requested link."
 msgstr "Klaida atverčiant nuorodą."
 
-#: ../src/dh-window.c:1269 ../src/dh-window.c:1455
+#: ../src/dh-window.c:1146 ../src/dh-window.c:1318
 msgid "Empty Page"
 msgstr "Tuščias puslapis"
+
+#: ../src/dh-window.ui.h:1
+msgid "New _Tab"
+msgstr "Nauja _kortelė"
+
+#: ../src/dh-window.ui.h:2
+msgid "_Print"
+msgstr "S_pausdinti"
+
+#: ../src/dh-window.ui.h:3
+msgid "_Find"
+msgstr "_Ieškoti"
+
+#: ../src/dh-window.ui.h:4
+#| msgid "_Larger text"
+msgid "_Larger Text"
+msgstr "_Didesnis tekstas"
+
+#: ../src/dh-window.ui.h:5
+#| msgid "S_maller text"
+msgid "S_maller Text"
+msgstr "_Mažesnis tekstas"
+
+#: ../src/dh-window.ui.h:6
+#| msgid "_Normal size"
+msgid "_Normal Size"
+msgstr "Į_prastinis dydis"
+
+#: ../src/dh-window.ui.h:7
+msgid "Back"
+msgstr "Atgal"
+
+#: ../src/dh-window.ui.h:8
+msgid "Forward"
+msgstr "Pirmyn"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
@@ -503,4 +511,3 @@ msgstr "Skirti r_aidžių dydį"
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
 msgstr "Skirti raidžių dydį"
-
