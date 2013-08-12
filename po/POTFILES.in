@@ -4,9 +4,11 @@ data/devhelp.desktop.in.in
 [type: gettext/gsettings]data/org.gnome.devhelp.gschema.xml
 misc/gedit-plugin/devhelp.desktop.in
 misc/gedit-plugin/devhelp.py
+[type: gettext/glade]src/devhelp-menu.ui
 [type: gettext/glade]src/devhelp.ui
 src/dh-app.c
 src/dh-assistant.c
+[type: gettext/glade]src/dh-assistant.ui
 src/dh-assistant-view.c
 src/dh-book.c
 src/dh-book-tree.c
@@ -18,4 +20,3 @@ src/dh-sidebar.c
 src/dh-util.c
 src/dh-window.c
 [type: gettext/glade]src/dh-window.ui
-src/eggfindbar.c
