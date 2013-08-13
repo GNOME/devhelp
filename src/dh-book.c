@@ -75,12 +75,9 @@ typedef struct {
         DhBookMonitorEvent monitor_event;
         /* ID of the event source */
         guint         monitor_event_timeout_id;
-} DhBookPriv;
+} DhBookPrivate;
 
-G_DEFINE_TYPE (DhBook, dh_book, G_TYPE_OBJECT);
-
-#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE       \
-        (instance, DH_TYPE_BOOK, DhBookPriv)
+G_DEFINE_TYPE_WITH_PRIVATE (DhBook, dh_book, G_TYPE_OBJECT);
 
 static void    dh_book_init          (DhBook            *book);
 static void    dh_book_class_init    (DhBookClass       *klass);
@@ -95,11 +92,11 @@ static void    unref_node_link       (GNode             *node,
 static guint signals[BOOK_LAST_SIGNAL] = { 0 };
 
 static void
-book_finalize (GObject *object)
+dh_book_finalize (GObject *object)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
 
-        priv = GET_PRIVATE (object);
+        priv = dh_book_get_instance_private (DH_BOOK (object));
 
         if (priv->tree) {
                 g_node_traverse (priv->tree,
@@ -141,7 +138,7 @@ dh_book_class_init (DhBookClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-        object_class->finalize = book_finalize;
+        object_class->finalize = dh_book_finalize;
 
 	signals[BOOK_ENABLED] =
 		g_signal_new ("enabled",
@@ -183,14 +180,12 @@ dh_book_class_init (DhBookClass *klass)
                               g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
 		              0);
-
-	g_type_class_add_private (klass, sizeof (DhBookPriv));
 }
 
 static void
 dh_book_init (DhBook *book)
 {
-        DhBookPriv *priv = GET_PRIVATE (book);
+        DhBookPrivate *priv = dh_book_get_instance_private (book);
 
         priv->name = NULL;
         priv->path = NULL;
@@ -214,7 +209,7 @@ unref_node_link (GNode    *node,
 DhBook *
 dh_book_new (const gchar *book_path)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
         DhBook     *book;
         GError     *error = NULL;
         GFile      *book_path_file;
@@ -223,7 +218,7 @@ dh_book_new (const gchar *book_path)
         g_return_val_if_fail (book_path, NULL);
 
         book = g_object_new (DH_TYPE_BOOK, NULL);
-        priv = GET_PRIVATE (book);
+        priv = dh_book_get_instance_private (book);
 
         /* Parse file storing contents in the book struct */
         if (!dh_parser_read_file  (book_path,
@@ -281,7 +276,7 @@ static gboolean
 book_monitor_event_timeout_cb  (gpointer data)
 {
         DhBook     *book = data;
-        DhBookPriv *priv = GET_PRIVATE (book);
+        DhBookPrivate *priv = dh_book_get_instance_private (book);
 
         /* We'll get either is_deleted OR is_updated,
          * not possible to have both or none */
@@ -321,7 +316,7 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                        gpointer	          user_data)
 {
         DhBook     *book = user_data;
-        DhBookPriv *priv = GET_PRIVATE (book);
+        DhBookPrivate *priv = dh_book_get_instance_private (book);
         gboolean    reset_timer = FALSE;
 
         switch (event_type) {
@@ -357,11 +352,11 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
 GList *
 dh_book_get_keywords (DhBook *book)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
 
         g_return_val_if_fail (DH_IS_BOOK (book), NULL);
 
-        priv = GET_PRIVATE (book);
+        priv = dh_book_get_instance_private (book);
 
         return priv->enabled ? priv->keywords : NULL;
 }
@@ -369,11 +364,11 @@ dh_book_get_keywords (DhBook *book)
 GList *
 dh_book_get_completions (DhBook *book)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
 
         g_return_val_if_fail (DH_IS_BOOK (book), NULL);
 
-        priv = GET_PRIVATE (book);
+        priv = dh_book_get_instance_private (book);
 
         if (!priv->enabled)
                 return NULL;
@@ -408,11 +403,11 @@ dh_book_get_completions (DhBook *book)
 GNode *
 dh_book_get_tree (DhBook *book)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
 
         g_return_val_if_fail (DH_IS_BOOK (book), NULL);
 
-        priv = GET_PRIVATE (book);
+        priv = dh_book_get_instance_private (book);
 
         return priv->enabled ? priv->tree : NULL;
 }
@@ -420,11 +415,11 @@ dh_book_get_tree (DhBook *book)
 const gchar *
 dh_book_get_name (DhBook *book)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
 
         g_return_val_if_fail (DH_IS_BOOK (book), NULL);
 
-        priv = GET_PRIVATE (book);
+        priv = dh_book_get_instance_private (book);
 
         return priv->name;
 }
@@ -432,11 +427,11 @@ dh_book_get_name (DhBook *book)
 const gchar *
 dh_book_get_title (DhBook *book)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
 
         g_return_val_if_fail (DH_IS_BOOK (book), NULL);
 
-        priv = GET_PRIVATE (book);
+        priv = dh_book_get_instance_private (book);
 
         return priv->title;
 }
@@ -444,11 +439,11 @@ dh_book_get_title (DhBook *book)
 const gchar *
 dh_book_get_language (DhBook *book)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
 
         g_return_val_if_fail (DH_IS_BOOK (book), NULL);
 
-        priv = GET_PRIVATE (book);
+        priv = dh_book_get_instance_private (book);
 
         return priv->language;
 }
@@ -456,11 +451,11 @@ dh_book_get_language (DhBook *book)
 const gchar *
 dh_book_get_path (DhBook *book)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
 
         g_return_val_if_fail (DH_IS_BOOK (book), NULL);
 
-        priv = GET_PRIVATE (book);
+        priv = dh_book_get_instance_private (book);
 
         return priv->path;
 }
@@ -468,20 +463,24 @@ dh_book_get_path (DhBook *book)
 gboolean
 dh_book_get_enabled (DhBook *book)
 {
+        DhBookPrivate *priv;
+
         g_return_val_if_fail (DH_IS_BOOK (book), FALSE);
 
-        return GET_PRIVATE (book)->enabled;
+        priv = dh_book_get_instance_private (book);
+
+        return priv->enabled;
 }
 
 void
 dh_book_set_enabled (DhBook   *book,
                      gboolean  enabled)
 {
-        DhBookPriv *priv;
+        DhBookPrivate *priv;
 
         g_return_if_fail (DH_IS_BOOK (book));
 
-        priv = GET_PRIVATE (book);
+        priv = dh_book_get_instance_private (book);
         if (priv->enabled != enabled) {
                 priv->enabled = enabled;
                 g_signal_emit (book,
@@ -491,46 +490,72 @@ dh_book_set_enabled (DhBook   *book,
 }
 
 gint
-dh_book_cmp_by_path (const DhBook *a,
-                     const DhBook *b)
+dh_book_cmp_by_path (DhBook *a,
+                     DhBook *b)
 {
+        DhBookPrivate *priv_a;
+        DhBookPrivate *priv_b;
+
+        priv_a = dh_book_get_instance_private (a);
+        priv_b = dh_book_get_instance_private (b);
+
         return ((a && b) ?
-                g_strcmp0 (GET_PRIVATE (a)->path, GET_PRIVATE (b)->path) :
+                g_strcmp0 (priv_a->path, priv_b->path) :
                 -1);
 }
 
 gint
-dh_book_cmp_by_path_str (const DhBook *a,
+dh_book_cmp_by_path_str (DhBook *a,
                          const gchar  *b_path)
 {
+        DhBookPrivate *priv_a;
+
+        priv_a = dh_book_get_instance_private (a);
+
         return ((a && b_path) ?
-                g_strcmp0 (GET_PRIVATE (a)->path, b_path) :
+                g_strcmp0 (priv_a->path, b_path) :
                 -1);
 }
 
 gint
-dh_book_cmp_by_name (const DhBook *a,
-                     const DhBook *b)
+dh_book_cmp_by_name (DhBook *a,
+                     DhBook *b)
 {
+        DhBookPrivate *priv_a;
+        DhBookPrivate *priv_b;
+
+        priv_a = dh_book_get_instance_private (a);
+        priv_b = dh_book_get_instance_private (b);
+
         return ((a && b) ?
-                g_ascii_strcasecmp (GET_PRIVATE (a)->name, GET_PRIVATE (b)->name) :
+                g_ascii_strcasecmp (priv_a->name, priv_b->name) :
                 -1);
 }
 
 gint
-dh_book_cmp_by_name_str (const DhBook *a,
+dh_book_cmp_by_name_str (DhBook *a,
                          const gchar  *b_name)
 {
+        DhBookPrivate *priv_a;
+
+        priv_a = dh_book_get_instance_private (a);
+
         return ((a && b_name) ?
-                g_ascii_strcasecmp (GET_PRIVATE (a)->name, b_name) :
+                g_ascii_strcasecmp (priv_a->name, b_name) :
                 -1);
 }
 
 gint
-dh_book_cmp_by_title (const DhBook *a,
-                      const DhBook *b)
+dh_book_cmp_by_title (DhBook *a,
+                      DhBook *b)
 {
+        DhBookPrivate *priv_a;
+        DhBookPrivate *priv_b;
+
+        priv_a = dh_book_get_instance_private (a);
+        priv_b = dh_book_get_instance_private (b);
+
         return ((a && b) ?
-                g_utf8_collate (GET_PRIVATE (a)->title, GET_PRIVATE (b)->title) :
+                g_utf8_collate (priv_a->title, priv_b->title) :
                 -1);
 }
