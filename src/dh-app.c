@@ -317,7 +317,7 @@ setup_accelerators (DhApp *self)
 /******************************************************************************/
 
 static void
-startup (GApplication *application)
+dh_app_startup (GApplication *application)
 {
         DhApp *app = DH_APP (application);
         DhAppPrivate *priv = dh_app_get_instance_private (app);
@@ -399,7 +399,7 @@ dh_app_class_init (DhAppClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
 
-        application_class->startup = startup;
+        application_class->startup = dh_app_startup;
 
         object_class->dispose = dh_app_dispose;
 }
