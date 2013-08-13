@@ -55,6 +55,8 @@ dh_app_peek_first_window (DhApp *app)
 {
         GList *l;
 
+        g_return_val_if_fail (DH_IS_APP (app), NULL);
+
         for (l = gtk_application_get_windows (GTK_APPLICATION (app));
              l;
              l = g_list_next (l)) {
@@ -74,6 +76,8 @@ GtkWindow *
 dh_app_peek_assistant (DhApp *app)
 {
         GList *l;
+
+        g_return_val_if_fail (DH_IS_APP (app), NULL);
 
         for (l = gtk_application_get_windows (GTK_APPLICATION (app));
              l;
@@ -115,12 +119,16 @@ _dh_app_has_app_menu (DhApp *app)
 void
 dh_app_new_window (DhApp *app)
 {
+        g_return_if_fail (DH_IS_APP (app));
+
         g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 }
 
 void
 dh_app_quit (DhApp *app)
 {
+        g_return_if_fail (DH_IS_APP (app));
+
         g_action_group_activate_action (G_ACTION_GROUP (app), "quit", NULL);
 }
 
@@ -128,6 +136,8 @@ void
 dh_app_search (DhApp *app,
                const gchar *keyword)
 {
+        g_return_if_fail (DH_IS_APP (app));
+
         g_action_group_activate_action (G_ACTION_GROUP (app), "search", g_variant_new_string (keyword));
 }
 
@@ -135,12 +145,16 @@ void
 dh_app_search_assistant (DhApp *app,
                          const gchar *keyword)
 {
+        g_return_if_fail (DH_IS_APP (app));
+
         g_action_group_activate_action (G_ACTION_GROUP (app), "search-assistant", g_variant_new_string (keyword));
 }
 
 void
 dh_app_raise (DhApp *app)
 {
+        g_return_if_fail (DH_IS_APP (app));
+
         g_action_group_activate_action (G_ACTION_GROUP (app), "raise", NULL);
 }
 
