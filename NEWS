@@ -1,3 +1,22 @@
+==============
+Version 3.9.90
+==============
+
+Ignacio Casal Quinteiro ported devhelp to GtkHeaderBar, GtkSearchBar,
+and more.
+
+Fixed bugs:
+
+ - #700588, Error regarding gsetting schema when gsettings-data-convert
+            starts
+
+Updated translations: it, lt, pt_BR, zh_HK, zh_TW
+
+Many thanks to all contributors: Milo Casagrande, Ignacio Casal Quinteiro,
+Rafael Ferreira, Piotr Drąg, Baptiste Mille-Mathias, Aurimas Černius,
+Chao-Hsiung Liao
+
+
 =============
 Version 3.9.5
 =============
