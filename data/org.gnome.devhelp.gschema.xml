@@ -72,8 +72,8 @@
   <schema id="org.gnome.devhelp.state.assistant.window" path="/org/gnome/devhelp/state/assistant/window/">
     <key name="maximized" type="b">
       <default>false</default>
-      <summary>Whether the assistant window should be maximixed</summary>
-      <description>Whether the assistant window should be maximixed.</description>
+      <summary>Whether the assistant window should be maximized</summary>
+      <description>Whether the assistant window should be maximized.</description>
     </key>
     <key name="width" type="i">
       <default>350</default>
