@@ -45,19 +45,8 @@ struct _DhLink {
         DhLinkFlags  flags : 8;
 };
 
-GType
-dh_link_get_type (void)
-{
-        static GType type = 0;
-
-        if (G_UNLIKELY (type == 0)) {
-                type = g_boxed_type_register_static (
-                        "DhLink",
-                        (GBoxedCopyFunc) dh_link_ref,
-                        (GBoxedFreeFunc) dh_link_unref);
-        }
-        return type;
-}
+G_DEFINE_BOXED_TYPE (DhLink, dh_link,
+                     dh_link_ref, dh_link_unref)
 
 static void
 link_free (DhLink *link)
@@ -71,26 +60,26 @@ link_free (DhLink *link)
         if (link->book) {
                 dh_link_unref (link->book);
         }
-	if (link->page) {
+        if (link->page) {
                 dh_link_unref (link->page);
         }
 
-	g_slice_free (DhLink, link);
+        g_slice_free (DhLink, link);
 }
 
 DhLink *
 dh_link_new (DhLinkType   type,
              const gchar *base,
-	     const gchar *id,
-	     const gchar *name,
-	     DhLink      *book,
-	     DhLink      *page,
-	     const gchar *filename)
+             const gchar *id,
+             const gchar *name,
+             DhLink      *book,
+             DhLink      *page,
+             const gchar *filename)
 {
-	DhLink *link;
+        DhLink *link;
 
-	g_return_val_if_fail (name != NULL, NULL);
-	g_return_val_if_fail (filename != NULL, NULL);
+        g_return_val_if_fail (name != NULL, NULL);
+        g_return_val_if_fail (filename != NULL, NULL);
 
         if (type == DH_LINK_TYPE_BOOK) {
                 g_return_val_if_fail (base != NULL, NULL);
@@ -101,27 +90,27 @@ dh_link_new (DhLinkType   type,
                 g_return_val_if_fail (page != NULL, NULL);
         }
 
-	link = g_slice_new0 (DhLink);
+        link = g_slice_new0 (DhLink);
 
-	link->ref_count = 1;
-	link->type = type;
+        link->ref_count = 1;
+        link->type = type;
 
         if (type == DH_LINK_TYPE_BOOK) {
                 link->base = g_strdup (base);
                 link->id = g_strdup (id);
         }
 
-	link->name = g_strdup (name);
-	link->filename = g_strdup (filename);
+        link->name = g_strdup (name);
+        link->filename = g_strdup (filename);
 
-	if (book) {
+        if (book) {
                 link->book = dh_link_ref (book);
         }
-	if (page) {
+        if (page) {
                 link->page = dh_link_ref (page);
         }
 
-	return link;
+        return link;
 }
 
 gint
@@ -130,7 +119,7 @@ dh_link_compare (gconstpointer a,
 {
         DhLink *la = (DhLink *) a;
         DhLink *lb = (DhLink *) b;
-	gint    flags_diff;
+        gint    flags_diff;
 
         /* Sort deprecated hits last. */
         flags_diff = (la->flags & DH_LINK_FLAGS_DEPRECATED) -
@@ -152,23 +141,22 @@ dh_link_compare (gconstpointer a,
 DhLink *
 dh_link_ref (DhLink *link)
 {
-	g_return_val_if_fail (link != NULL, NULL);
+        g_return_val_if_fail (link != NULL, NULL);
 
-	link->ref_count++;
+        g_atomic_int_inc (&link->ref_count);
 
-	return link;
+        return link;
 }
 
 void
 dh_link_unref (DhLink *link)
 {
-	g_return_if_fail (link != NULL);
+        g_return_if_fail (link != NULL);
 
-	link->ref_count--;
-
-	if (link->ref_count == 0) {
-		link_free (link);
-	}
+        if (g_atomic_int_dec_and_test (&link->ref_count))
+        {
+                link_free (link);
+        }
 }
 
 const gchar *
@@ -227,14 +215,14 @@ dh_link_get_book_id (DhLink *link)
 gchar *
 dh_link_get_uri (DhLink *link)
 {
-	gchar *base, *filename, *uri, *anchor;
+        gchar *base, *filename, *uri, *anchor;
 
         if (link->type == DH_LINK_TYPE_BOOK)
                 base = link->base;
         else
                 base = link->book->base;
 
-	filename = g_build_filename (base, link->filename, NULL);
+        filename = g_build_filename (base, link->filename, NULL);
 
         anchor = strrchr (filename, '#');
         if (anchor) {
@@ -242,7 +230,7 @@ dh_link_get_uri (DhLink *link)
                 anchor++;
         }
 
-	uri = g_filename_to_uri (filename, NULL, NULL);
+        uri = g_filename_to_uri (filename, NULL, NULL);
 
         if (anchor) {
                 gchar *uri_with_anchor;
@@ -251,9 +239,9 @@ dh_link_get_uri (DhLink *link)
                 g_free (uri);
                 uri = uri_with_anchor;
         }
-	g_free (filename);
+        g_free (filename);
 
-	return uri;
+        return uri;
 }
 
 DhLinkType
@@ -265,7 +253,7 @@ dh_link_get_link_type (DhLink *link)
 DhLinkFlags
 dh_link_get_flags (DhLink *link)
 {
-	return link->flags;
+        return link->flags;
 }
 
 void
@@ -282,10 +270,10 @@ dh_link_get_type_as_string (DhLink *link)
         case DH_LINK_TYPE_BOOK:
                 /* i18n: a documentation book */
                 return _("Book");
-	case DH_LINK_TYPE_PAGE:
+        case DH_LINK_TYPE_PAGE:
                 /* i18n: a "page" in a documentation book */
                 return _("Page");
-	case DH_LINK_TYPE_KEYWORD:
+        case DH_LINK_TYPE_KEYWORD:
                 /* i18n: a search hit in the documentation, could be a
                  * function, macro, struct, etc */
                 return _("Keyword");
@@ -294,22 +282,22 @@ dh_link_get_type_as_string (DhLink *link)
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Function");
-	case DH_LINK_TYPE_STRUCT:
+        case DH_LINK_TYPE_STRUCT:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Struct");
-	case DH_LINK_TYPE_MACRO:
+        case DH_LINK_TYPE_MACRO:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Macro");
-	case DH_LINK_TYPE_ENUM:
+        case DH_LINK_TYPE_ENUM:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                return _("Enum");
-	case DH_LINK_TYPE_TYPEDEF:
+        case DH_LINK_TYPE_TYPEDEF:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
