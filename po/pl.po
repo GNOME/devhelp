@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-20 20:45+0200\n"
-"PO-Revision-Date: 2013-08-20 20:48+0200\n"
+"POT-Creation-Date: 2013-08-31 23:29+0200\n"
+"PO-Revision-Date: 2013-08-31 23:30+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -122,11 +122,11 @@ msgstr ""
 "użytkownika"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:19
-msgid "Whether the assistant window should be maximixed"
+msgid "Whether the assistant window should be maximized"
 msgstr "Określa, czy okno asystenta powinno być zmaksymalizowane"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:20
-msgid "Whether the assistant window should be maximixed."
+msgid "Whether the assistant window should be maximized."
 msgstr "Określa, czy okno asystenta powinno być zmaksymalizowane."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:21
@@ -292,53 +292,53 @@ msgid "Language: Undefined"
 msgstr "Język: nieokreślony"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:272
 msgid "Book"
 msgstr "Książka"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:275
 msgid "Page"
 msgstr "Strona"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:291
+#: ../src/dh-link.c:279
 msgid "Keyword"
 msgstr "Słowo kluczowe"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:296
+#: ../src/dh-link.c:284
 msgid "Function"
 msgstr "Procedura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:301
+#: ../src/dh-link.c:289
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:306
+#: ../src/dh-link.c:294
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:311
+#: ../src/dh-link.c:299
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:316
+#: ../src/dh-link.c:304
 msgid "Type"
 msgstr "Typ"
 
