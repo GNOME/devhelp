@@ -50,7 +50,6 @@ typedef struct {
         GtkWidget      *forward_button;
         GtkImage       *forward_button_image;
         GtkMenuButton  *gear_menu_button;
-        GtkWidget      *close_button;
         GtkWidget      *grid_sidebar;
         GtkWidget      *grid_documents;
         GtkWidget      *search_bar;
@@ -606,7 +605,6 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, forward_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, forward_button_image);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, gear_menu_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, close_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_documents);
@@ -681,9 +679,6 @@ window_populate (DhWindow *window)
 
         gtk_image_set_from_icon_name (priv->back_button_image, prev_icon, GTK_ICON_SIZE_MENU);
         gtk_image_set_from_icon_name (priv->forward_button_image, next_icon, GTK_ICON_SIZE_MENU);
-
-        g_signal_connect_swapped (priv->close_button, "clicked",
-                                  G_CALLBACK (gtk_window_close), window);
 
         /* Sidebar */
         priv->sidebar = dh_sidebar_new (book_manager);
