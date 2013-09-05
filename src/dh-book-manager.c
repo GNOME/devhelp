@@ -50,7 +50,7 @@ typedef struct {
         /* List of programming languages with at least one book enabled */
         GList      *languages;
         DhSettings *settings;
-} DhBookManagerPriv;
+} DhBookManagerPrivate;
 
 enum {
         BOOK_CREATED,
@@ -70,10 +70,7 @@ enum {
 
 static gint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
-
-#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE       \
-        (instance, DH_TYPE_BOOK_MANAGER, DhBookManagerPriv)
+G_DEFINE_TYPE_WITH_PRIVATE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
 static void    dh_book_manager_init           (DhBookManager      *book_manager);
 static void    dh_book_manager_class_init     (DhBookManagerClass *klass);
@@ -88,23 +85,23 @@ static void    book_manager_inc_language      (DhBookManager *book_manager,
                                                const gchar   *language_name);
 static void    book_manager_dec_language      (DhBookManager *book_manager,
                                                const gchar   *language_name);
-static void    book_manager_get_property      (GObject        *object,
+static void    dh_book_manager_get_property   (GObject        *object,
                                                guint           prop_id,
                                                GValue         *value,
                                                GParamSpec     *pspec);
-static void    book_manager_set_property      (GObject        *object,
+static void    dh_book_manager_set_property   (GObject        *object,
                                                guint           prop_id,
                                                const GValue   *value,
                                                GParamSpec     *pspec);
 
 static void
-book_manager_finalize (GObject *object)
+dh_book_manager_finalize (GObject *object)
 {
-        DhBookManagerPriv *priv;
+        DhBookManagerPrivate *priv;
         GList             *l;
         GSList            *sl;
 
-        priv = GET_PRIVATE (object);
+        priv = dh_book_manager_get_instance_private (DH_BOOK_MANAGER (object));
 
         /* Destroy all books */
         for (l = priv->books; l; l = g_list_next (l)) {
@@ -139,9 +136,9 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-        object_class->finalize = book_manager_finalize;
-        object_class->set_property = book_manager_set_property;
-        object_class->get_property = book_manager_get_property;
+        object_class->finalize = dh_book_manager_finalize;
+        object_class->set_property = dh_book_manager_set_property;
+        object_class->get_property = dh_book_manager_get_property;
 
         signals[BOOK_CREATED] =
                 g_signal_new ("book-created",
@@ -215,14 +212,12 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                                                                 G_PARAM_STATIC_NAME |
                                                                 G_PARAM_STATIC_NICK |
                                                                 G_PARAM_STATIC_BLURB)));
-
-	g_type_class_add_private (klass, sizeof (DhBookManagerPriv));
 }
 
 static void
 dh_book_manager_init (DhBookManager *book_manager)
 {
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
 
         priv->books = NULL;
         priv->monitors = NULL;
@@ -237,10 +232,10 @@ dh_book_manager_init (DhBookManager *book_manager)
 }
 
 static void
-book_manager_set_property (GObject      *object,
-                           guint         prop_id,
-                           const GValue *value,
-                           GParamSpec   *pspec)
+dh_book_manager_set_property (GObject      *object,
+                              guint         prop_id,
+                              const GValue *value,
+                              GParamSpec   *pspec)
 {
         DhBookManager *book_manager = DH_BOOK_MANAGER (object);
 
@@ -257,10 +252,10 @@ book_manager_set_property (GObject      *object,
 }
 
 static void
-book_manager_get_property (GObject    *object,
-                           guint       prop_id,
-                           GValue     *value,
-                           GParamSpec *pspec)
+dh_book_manager_get_property (GObject    *object,
+                              guint       prop_id,
+                              GValue     *value,
+                              GParamSpec *pspec)
 {
         DhBookManager *book_manager = DH_BOOK_MANAGER (object);
 
@@ -279,7 +274,7 @@ book_manager_get_property (GObject    *object,
 static void
 book_manager_load_books_disabled (DhBookManager *book_manager)
 {
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
 
         gchar **books_disabled_strv = g_settings_get_strv (
                 dh_settings_peek_contents_settings (priv->settings),
@@ -297,7 +292,7 @@ book_manager_load_books_disabled (DhBookManager *book_manager)
 static void
 book_manager_store_books_disabled (DhBookManager *book_manager)
 {
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         GVariantBuilder *builder;
         GVariant *variant;
         int i;
@@ -322,7 +317,7 @@ static gboolean
 book_manager_is_book_disabled_in_conf (DhBookManager *book_manager,
                                        DhBook        *book)
 {
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         GSList            *li;
 
         for (li = priv->books_disabled; li; li = g_slist_next (li)) {
@@ -459,9 +454,9 @@ book_manager_monitor_path (DhBookManager *book_manager,
 {
         GFileMonitor      *file_monitor;
         GFile             *file;
-        DhBookManagerPriv *priv;
+        DhBookManagerPrivate *priv;
 
-        priv = GET_PRIVATE (book_manager);
+        priv = dh_book_manager_get_instance_private (book_manager);
 
         file = g_file_new_for_path (path);
 
@@ -550,7 +545,7 @@ book_manager_book_deleted_cb (DhBook   *book,
                               gpointer  user_data)
 {
         DhBookManager     *book_manager = user_data;
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         GList *li;
 
         /* Look for the item we want to remove */
@@ -607,7 +602,7 @@ book_manager_book_enabled_cb (DhBook   *book,
                               gpointer  user_data)
 {
         DhBookManager     *book_manager = user_data;
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         GSList            *li;
 
         li = book_manager_find_book_in_disabled_list (priv->books_disabled,
@@ -633,7 +628,7 @@ book_manager_book_disabled_cb (DhBook   *book,
                                gpointer  user_data)
 {
         DhBookManager     *book_manager = user_data;
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         GSList            *li;
 
         li = book_manager_find_book_in_disabled_list (priv->books_disabled,
@@ -659,14 +654,14 @@ static void
 book_manager_add_from_filepath (DhBookManager *book_manager,
                                 const gchar   *book_path)
 {
-        DhBookManagerPriv *priv;
+        DhBookManagerPrivate *priv;
         DhBook            *book;
         gboolean           book_disabled;
 
         g_return_if_fail (book_manager);
         g_return_if_fail (book_path);
 
-        priv = GET_PRIVATE (book_manager);
+        priv = dh_book_manager_get_instance_private (book_manager);
 
         /* Allocate new book struct */
         book = dh_book_new (book_path);
@@ -732,28 +727,36 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
 GList *
 dh_book_manager_get_books (DhBookManager *book_manager)
 {
+        DhBookManagerPrivate *priv;
+
         g_return_val_if_fail (book_manager, NULL);
 
-        return GET_PRIVATE (book_manager)->books;
+        priv = dh_book_manager_get_instance_private (book_manager);
+
+        return priv->books;
 }
 
 gboolean
 dh_book_manager_get_group_by_language (DhBookManager *book_manager)
 {
+        DhBookManagerPrivate *priv;
+
         g_return_val_if_fail (book_manager, FALSE);
 
-        return GET_PRIVATE (book_manager)->group_by_language;
+        priv = dh_book_manager_get_instance_private (book_manager);
+
+        return priv->group_by_language;
 }
 
 void
 dh_book_manager_set_group_by_language (DhBookManager *book_manager,
                                        gboolean       group_by_language)
 {
-        DhBookManagerPriv *priv;
+        DhBookManagerPrivate *priv;
 
         g_return_if_fail (book_manager);
 
-        priv = GET_PRIVATE (book_manager);
+        priv = dh_book_manager_get_instance_private (book_manager);
 
         priv->group_by_language = group_by_language;
         g_object_notify (G_OBJECT (book_manager), "group-by-language");
@@ -765,7 +768,7 @@ book_manager_inc_language (DhBookManager *book_manager,
 {
         GList *li;
         DhLanguage *language;
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
 
         li = g_list_find_custom (priv->languages,
                                  language_name,
@@ -795,7 +798,7 @@ book_manager_dec_language (DhBookManager *book_manager,
                            const gchar   *language_name)
 {
         GList *li;
-        DhBookManagerPriv *priv = GET_PRIVATE (book_manager);
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
 
         /* Language must exist in list */
         li = g_list_find_custom (priv->languages,
@@ -819,9 +822,13 @@ book_manager_dec_language (DhBookManager *book_manager,
 GList *
 dh_book_manager_get_languages (DhBookManager *book_manager)
 {
+        DhBookManagerPrivate *priv;
+
         g_return_val_if_fail (book_manager, NULL);
 
-        return GET_PRIVATE (book_manager)->languages;
+        priv = dh_book_manager_get_instance_private (book_manager);
+
+        return priv->languages;
 }
 
 DhBookManager *
