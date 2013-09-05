@@ -98,33 +98,18 @@ static void
 dh_book_manager_finalize (GObject *object)
 {
         DhBookManagerPrivate *priv;
-        GList             *l;
-        GSList            *sl;
 
         priv = dh_book_manager_get_instance_private (DH_BOOK_MANAGER (object));
 
-        /* Destroy all books */
-        for (l = priv->books; l; l = g_list_next (l)) {
-                g_object_unref (l->data);
-        }
-        g_list_free (priv->books);
-
-        /* Free all languages */
-        g_list_foreach (priv->languages,
-                        (GFunc)dh_language_free,
-                        NULL);
-        g_list_free (priv->languages);
+        g_list_free_full (priv->books, g_object_unref);
+        g_list_free_full (priv->languages, (GDestroyNotify)dh_language_free);
 
         /* Destroy the monitors HT */
         if (priv->monitors) {
                 g_hash_table_destroy (priv->monitors);
         }
 
-        /* Clean the list of books disabled */
-        for (sl = priv->books_disabled; sl; sl = g_slist_next (sl)) {
-                g_free (sl->data);
-        }
-        g_slist_free (priv->books_disabled);
+        g_slist_free_full (priv->books_disabled, g_free);
 
         g_clear_object (&priv->settings);
 
