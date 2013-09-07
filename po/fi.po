@@ -6,28 +6,29 @@
 #
 # Gnome 2012-03 Finnish translation sprint participants:
 # Niklas Laxström
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2012, 2013.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-02 01:39+0000\n"
-"PO-Revision-Date: 2013-03-09 17:22+0200\n"
+"POT-Creation-Date: 2013-08-21 14:28+0000\n"
+"PO-Revision-Date: 2013-09-05 22:59+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
-"Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-02-19 15:17:00+0000\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Gtranslator 2.91.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:342
-#: ../src/dh-window.c:623
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:209 ../src/dh-app.c:395
+#: ../src/dh-window.c:650
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -42,8 +43,8 @@ msgstr "Dokumentaatioselain"
 #: ../data/devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
 msgstr ""
-"documentation;information;manual;developer;api;dokumentaatio;käsikirja;ohje;ke"
-"hittäjä;kehitys;ohjelmointirajapinta;"
+"documentation;information;manual;developer;api;dokumentaatio;käsikirja;ohje;"
+"kehittäjä;kehitys;ohjelmointirajapinta;"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:1
 msgid "Main window maximized state"
@@ -118,58 +119,68 @@ msgid "Whether books should be grouped by language in the UI"
 msgstr "Ryhmitelläänkö kirjat kielen mukaan käyttöliittymässä"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:19
+#| msgid "Whether the main window should start maximized."
+msgid "Whether the assistant window should be maximized"
+msgstr "Näytetäänkö apuikkuna suurennettuna"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:20
+#| msgid "Whether the main window should start maximized."
+msgid "Whether the assistant window should be maximized."
+msgstr "Näytetäänkö apuikkuna suurennettuna."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:21
 msgid "Width of the assistant window"
 msgstr "Apuikkunan leveys"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:20
+#: ../data/org.gnome.devhelp.gschema.xml.h:22
 msgid "The width of the assistant window."
 msgstr "Apuikkunan leveys."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:21
+#: ../data/org.gnome.devhelp.gschema.xml.h:23
 msgid "Height of assistant window"
 msgstr "Apuikkunan korkeus"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:22
+#: ../data/org.gnome.devhelp.gschema.xml.h:24
 msgid "The height of the assistant window."
 msgstr "Apuikkunan korkeus."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:23
+#: ../data/org.gnome.devhelp.gschema.xml.h:25
 msgid "X position of assistant window"
 msgstr "Apuikkunan X-koordinaatti"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:24
+#: ../data/org.gnome.devhelp.gschema.xml.h:26
 msgid "The X position of the assistant window."
 msgstr "Apuikkunan X-koordinaatti."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:25
+#: ../data/org.gnome.devhelp.gschema.xml.h:27
 msgid "Y position of assistant window"
 msgstr "Apuikkunan Y-koordinaatti"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:26
+#: ../data/org.gnome.devhelp.gschema.xml.h:28
 msgid "The Y position of the assistant window."
 msgstr "Apuikkunan Y-koordinaatti."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:27
+#: ../data/org.gnome.devhelp.gschema.xml.h:29
 msgid "Use system fonts"
 msgstr "Käytä järjestelmän kirjasimia"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:28
+#: ../data/org.gnome.devhelp.gschema.xml.h:30
 msgid "Use the system default fonts."
 msgstr "Käytä järjestelmän oletuskirjasimia."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:29
+#: ../data/org.gnome.devhelp.gschema.xml.h:31
 msgid "Font for text"
 msgstr "Tekstin kirjasin"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:30
+#: ../data/org.gnome.devhelp.gschema.xml.h:32
 msgid "Font for text with variable width."
 msgstr "Kirjasin vaihtelevan levyistä kirjasinta käyttäville teksteille."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:31
+#: ../data/org.gnome.devhelp.gschema.xml.h:33
 msgid "Font for fixed width text"
 msgstr "Tasalevyisen tekstin kirjasin"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:32
+#: ../data/org.gnome.devhelp.gschema.xml.h:34
 msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Kirjasin tasalevyisillä kirjasinta käyttäville teksteille kuten esimerkiksi "
@@ -191,160 +202,145 @@ msgstr "Näytä API-dokumentaatio"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Näytä API-dokumentaatio kohdistimen kohdalla olevalle sanalle"
 
-#: ../src/devhelp.ui.h:1
-msgid "New window"
-msgstr "Uusi ikkuna"
+#: ../src/devhelp-menu.ui.h:1 ../src/devhelp.ui.h:1 ../src/dh-window.ui.h:7
+#| msgid "New window"
+msgid "New _Window"
+msgstr "_Uusi ikkuna"
 
-#: ../src/devhelp.ui.h:2
+#: ../src/devhelp-menu.ui.h:2 ../src/devhelp.ui.h:2 ../src/dh-window.ui.h:8
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "_Asetukset"
+
+#: ../src/devhelp-menu.ui.h:3 ../src/devhelp.ui.h:3 ../src/dh-window.ui.h:9
+#| msgid "About Devhelp"
+msgid "_About Devhelp"
+msgstr "_Tietoja - Devhelp"
+
+#: ../src/devhelp-menu.ui.h:4 ../src/devhelp.ui.h:4 ../src/dh-window.ui.h:10
+#| msgid "Quit"
+msgid "_Quit"
+msgstr "_Lopeta"
+
+#: ../src/devhelp.ui.h:5
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: ../src/devhelp.ui.h:3
-msgid "About Devhelp"
-msgstr "Tietoja Devhelpistä"
-
-#: ../src/devhelp.ui.h:4
-msgid "Quit"
-msgstr "Lopeta"
-
-#: ../src/devhelp.ui.h:5
-msgid "New _Tab"
-msgstr "Uusi _välilehti"
-
 #: ../src/devhelp.ui.h:6
-msgid "_Print"
-msgstr "_Tulosta"
-
-#: ../src/devhelp.ui.h:7
-msgid "_Find"
-msgstr "_Etsi"
-
-#: ../src/devhelp.ui.h:8
-msgid "_Larger text"
-msgstr "_Suurempi teksti"
-
-#: ../src/devhelp.ui.h:9
-msgid "S_maller text"
-msgstr "_Pienempi teksti"
-
-#: ../src/devhelp.ui.h:10
-msgid "_Normal size"
-msgstr "_Tavallinen koko"
-
-#: ../src/devhelp.ui.h:11
 msgid "_Group by language"
 msgstr "_Ryhmittele kielen mukaan"
 
-#: ../src/devhelp.ui.h:12
+#: ../src/devhelp.ui.h:7
 msgid "Enabled"
 msgstr "Käytössä"
 
-#: ../src/devhelp.ui.h:13
+#: ../src/devhelp.ui.h:8
 msgid "Title"
 msgstr "Otsikko"
 
-#: ../src/devhelp.ui.h:14
+#: ../src/devhelp.ui.h:9
 msgid "Book Shelf"
 msgstr "Kirjahylly"
 
-#: ../src/devhelp.ui.h:15
+#: ../src/devhelp.ui.h:10
 msgid "_Use system fonts"
 msgstr "_Käytä järjestelmän kirjasimia"
 
-#: ../src/devhelp.ui.h:16
+#: ../src/devhelp.ui.h:11
 msgid "_Variable width: "
 msgstr "_Vaihtelevan levyinen: "
 
-#: ../src/devhelp.ui.h:17
+#: ../src/devhelp.ui.h:12
 msgid "_Fixed width:"
 msgstr "_Tasalevyinen:"
 
-#: ../src/devhelp.ui.h:18
+#: ../src/devhelp.ui.h:13
 msgid "Fonts"
 msgstr "Kirjasimet"
 
-#: ../src/dh-app.c:157
+#: ../src/dh-app.c:201
 msgid "translator_credits"
 msgstr ""
+"Jiri Grönroos 2012-2013\n"
 "Tommi Vainikainen, 2010-2011.\n"
 "Ilkka Tuohela, 2004-2005.\n"
 "\n"
 "http://gnome.fi/"
 
-#: ../src/dh-app.c:164
+#: ../src/dh-app.c:211
 msgid "A developers' help browser for GNOME"
 msgstr "Gnomen ohjeselain kehittäjille"
 
-#: ../src/dh-app.c:172
+#: ../src/dh-app.c:219
 msgid "DevHelp Website"
 msgstr "Devhelp-sivusto"
 
-#. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:121
+#. Please don't translate "Devhelp"
+#: ../src/dh-assistant.ui.h:2
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — apuikkuna"
 
-#: ../src/dh-assistant-view.c:403
+#: ../src/dh-assistant-view.c:372
 msgid "Book:"
 msgstr "Kirja:"
 
-#: ../src/dh-book.c:256
+#: ../src/dh-book.c:250
 #, c-format
 msgid "Language: %s"
 msgstr "Kieli: %s"
 
-#: ../src/dh-book.c:257
+#: ../src/dh-book.c:251
 msgid "Language: Undefined"
 msgstr "Kieli: määrittelemätön"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:284
 msgid "Book"
 msgstr "Kirja"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:287
 msgid "Page"
 msgstr "Sivu"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:274
+#: ../src/dh-link.c:291
 msgid "Keyword"
 msgstr "Avainsana"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:296
 msgid "Function"
 msgstr "Funktio"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:301
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:306
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:311
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:316
 msgid "Type"
 msgstr "Type"
 
@@ -420,12 +416,11 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "Kirjan ”%s” pakkausta ei voitu avata: %s"
 
 #. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:471
+#: ../src/dh-sidebar.c:531
 msgid "Current"
 msgstr "Nykyinen"
 
-#: ../src/dh-sidebar.c:474
-#| msgid "All books"
+#: ../src/dh-sidebar.c:534
 msgid "All Books"
 msgstr "Kaikki kirjat"
 
@@ -465,51 +460,69 @@ msgstr "300 %"
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:654
-#| msgid "_Back"
-msgid "Back"
-msgstr "Edellinen"
-
-#: ../src/dh-window.c:659
-#| msgid "_Forward"
-msgid "Forward"
-msgstr "Seuraava"
-
-#: ../src/dh-window.c:919
+#: ../src/dh-window.c:869
 msgid "Error opening the requested link."
 msgstr "Linkin avaaminen epäonnistui."
 
-#: ../src/dh-window.c:1269 ../src/dh-window.c:1455
+#: ../src/dh-window.c:1153 ../src/dh-window.c:1325
 msgid "Empty Page"
 msgstr "Tyhjä sivu"
 
-#: ../src/eggfindbar.c:320
-msgid "Find:"
-msgstr "Etsi:"
+#: ../src/dh-window.ui.h:1
+msgid "New _Tab"
+msgstr "Uusi _välilehti"
 
-#: ../src/eggfindbar.c:329
-msgid "Find Previous"
-msgstr "Etsi edellinen"
+#: ../src/dh-window.ui.h:2
+msgid "_Print"
+msgstr "_Tulosta"
 
-#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
-msgid "Find previous occurrence of the search string"
-msgstr "Etsi haettavan merkkijonon edellinen osuma"
+#: ../src/dh-window.ui.h:3
+msgid "_Find"
+msgstr "_Etsi"
 
-#: ../src/eggfindbar.c:342
-msgid "Find Next"
-msgstr "Etsi seuraava"
+#: ../src/dh-window.ui.h:4
+#| msgid "_Larger text"
+msgid "_Larger Text"
+msgstr "_Suurempi teksti"
 
-#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
-msgid "Find next occurrence of the search string"
-msgstr "Etsi haettavan merkkijonon seuraava osuma"
+#: ../src/dh-window.ui.h:5
+#| msgid "S_maller text"
+msgid "S_maller Text"
+msgstr "_Pienempi teksti"
 
-#: ../src/eggfindbar.c:358
-msgid "C_ase Sensitive"
-msgstr "_Huomioi kirjainkoko"
+#: ../src/dh-window.ui.h:6
+#| msgid "_Normal size"
+msgid "_Normal Size"
+msgstr "_Tavallinen koko"
 
-#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
-msgid "Toggle case sensitive search"
-msgstr "Huomioidaanko kirjainkoko hauissa"
+#: ../src/dh-window.ui.h:11
+msgid "Back"
+msgstr "Edellinen"
+
+#: ../src/dh-window.ui.h:12
+msgid "Forward"
+msgstr "Seuraava"
+
+#~ msgid "Find:"
+#~ msgstr "Etsi:"
+
+#~ msgid "Find Previous"
+#~ msgstr "Etsi edellinen"
+
+#~ msgid "Find previous occurrence of the search string"
+#~ msgstr "Etsi haettavan merkkijonon edellinen osuma"
+
+#~ msgid "Find Next"
+#~ msgstr "Etsi seuraava"
+
+#~ msgid "Find next occurrence of the search string"
+#~ msgstr "Etsi haettavan merkkijonon seuraava osuma"
+
+#~ msgid "C_ase Sensitive"
+#~ msgstr "_Huomioi kirjainkoko"
+
+#~ msgid "Toggle case sensitive search"
+#~ msgstr "Huomioidaanko kirjainkoko hauissa"
 
 #~| msgid "_New Window"
 #~ msgid "_Window"
