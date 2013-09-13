@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-02 01:39+0000\n"
-"PO-Revision-Date: 2013-03-12 15:56+0530\n"
+"POT-Creation-Date: 2013-08-21 14:28+0000\n"
+"PO-Revision-Date: 2013-09-13 15:39+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: Assamese <kde-i18n-doc@kde.org>\n"
 "Language: as\n"
@@ -22,8 +22,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:162 ../src/dh-app.c:342
-#: ../src/dh-window.c:623
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:209 ../src/dh-app.c:395
+#: ../src/dh-window.c:650
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -112,58 +112,68 @@ msgid "Whether books should be grouped by language in the UI"
 msgstr "কিতাপসমূহ UI ত ভাষা দ্বাৰা দলবদ্ধ কৰা হব নে"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:19
+#| msgid "Whether the main window should start maximized."
+msgid "Whether the assistant window should be maximized"
+msgstr "সহায়ক উইন্ডোক ডাঙৰ কৰা হব নে"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:20
+#| msgid "Whether the main window should start maximized."
+msgid "Whether the assistant window should be maximized."
+msgstr "সহায়ক উইন্ডোক ডাঙৰ কৰা হব নে।"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:21
 msgid "Width of the assistant window"
 msgstr "সহায়ক উইন্ডোৰ প্ৰস্থ"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:20
+#: ../data/org.gnome.devhelp.gschema.xml.h:22
 msgid "The width of the assistant window."
 msgstr "সহায়ক উইন্ডোৰ প্ৰস্থ।"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:21
+#: ../data/org.gnome.devhelp.gschema.xml.h:23
 msgid "Height of assistant window"
 msgstr "সহায়ক উইন্ডোৰ উচ্চতা"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:22
+#: ../data/org.gnome.devhelp.gschema.xml.h:24
 msgid "The height of the assistant window."
 msgstr "সহায়ক উইন্ডোৰ উচ্চতা।"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:23
+#: ../data/org.gnome.devhelp.gschema.xml.h:25
 msgid "X position of assistant window"
 msgstr "সহায়ক উইন্ডোৰ X অৱস্থান"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:24
+#: ../data/org.gnome.devhelp.gschema.xml.h:26
 msgid "The X position of the assistant window."
 msgstr "সহায়ক উইন্ডোৰ X অৱস্থান।"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:25
+#: ../data/org.gnome.devhelp.gschema.xml.h:27
 msgid "Y position of assistant window"
 msgstr "সহায়ক উইন্ডোৰ Y অৱস্থান"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:26
+#: ../data/org.gnome.devhelp.gschema.xml.h:28
 msgid "The Y position of the assistant window."
 msgstr "সহায়ক উইন্ডোৰ Y অৱস্থান।"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:27
+#: ../data/org.gnome.devhelp.gschema.xml.h:29
 msgid "Use system fonts"
 msgstr "চিস্টেম ফন্টসমূহ ব্যৱহাৰ কৰক"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:28
+#: ../data/org.gnome.devhelp.gschema.xml.h:30
 msgid "Use the system default fonts."
 msgstr "চিস্টেম অবিকল্পিত ফন্টসমূহ ব্যৱহাৰ কৰক।"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:29
+#: ../data/org.gnome.devhelp.gschema.xml.h:31
 msgid "Font for text"
 msgstr "লিখনীৰ বাবে ফন্ট"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:30
+#: ../data/org.gnome.devhelp.gschema.xml.h:32
 msgid "Font for text with variable width."
 msgstr "ভিন্ন প্ৰস্থৰ সৈতে লিখনীৰ বাবে ফন্ট।"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:31
+#: ../data/org.gnome.devhelp.gschema.xml.h:33
 msgid "Font for fixed width text"
 msgstr "নিৰ্দিষ্ট প্ৰস্থ লিখনীৰ বাবে ফন্ট"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:32
+#: ../data/org.gnome.devhelp.gschema.xml.h:34
 msgid "Font for text with fixed width, such as code examples."
 msgstr "নিৰ্দিষ্ট প্ৰস্থৰ সৈতে লিখনীৰ বাবে ফন্ট, যেনে ক'ড উদাহৰণসমূহ।"
 
@@ -183,156 +193,140 @@ msgstr "API তথ্যচিত্ৰ দেখুৱাওক"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "কাৰ্চাৰত শব্দৰ বাবে API তথ্যচিত্ৰ দেখুৱাওক"
 
-#: ../src/devhelp.ui.h:1
-msgid "New window"
-msgstr "নতুন উইন্ডো"
+#: ../src/devhelp-menu.ui.h:1 ../src/devhelp.ui.h:1 ../src/dh-window.ui.h:7
+#| msgid "New window"
+msgid "New _Window"
+msgstr "নতুন উইন্ডো (_W)"
 
-#: ../src/devhelp.ui.h:2
+#: ../src/devhelp-menu.ui.h:2 ../src/devhelp.ui.h:2 ../src/dh-window.ui.h:8
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "পছন্দসমূহ (_P)"
+
+#: ../src/devhelp-menu.ui.h:3 ../src/devhelp.ui.h:3 ../src/dh-window.ui.h:9
+#| msgid "About Devhelp"
+msgid "_About Devhelp"
+msgstr "Devhelp ৰ বিষয়ে (_A)"
+
+#: ../src/devhelp-menu.ui.h:4 ../src/devhelp.ui.h:4 ../src/dh-window.ui.h:10
+#| msgid "Quit"
+msgid "_Quit"
+msgstr "প্ৰস্থান কৰক (_Q)"
+
+#: ../src/devhelp.ui.h:5
 msgid "Preferences"
 msgstr "পছন্দসমূহ"
 
-#: ../src/devhelp.ui.h:3
-msgid "About Devhelp"
-msgstr "Devhelp ৰ বিষয়ে"
-
-#: ../src/devhelp.ui.h:4
-msgid "Quit"
-msgstr "প্ৰস্থান কৰক"
-
-#: ../src/devhelp.ui.h:5
-msgid "New _Tab"
-msgstr "নতুন টেব (_T)"
-
 #: ../src/devhelp.ui.h:6
-msgid "_Print"
-msgstr "প্ৰিন্ট কৰক (_P)"
-
-#: ../src/devhelp.ui.h:7
-msgid "_Find"
-msgstr "সন্ধান কৰক (_F)"
-
-#: ../src/devhelp.ui.h:8
-msgid "_Larger text"
-msgstr "ডাঙৰ লিখনী (_L)"
-
-#: ../src/devhelp.ui.h:9
-msgid "S_maller text"
-msgstr "সৰু লিখনী (_m)"
-
-#: ../src/devhelp.ui.h:10
-msgid "_Normal size"
-msgstr "স্বাভাৱিক আকাৰ (_N)"
-
-#: ../src/devhelp.ui.h:11
 msgid "_Group by language"
 msgstr "ভাষা দ্বাৰা দলবদ্ধ কৰক (_G)"
 
-#: ../src/devhelp.ui.h:12
+#: ../src/devhelp.ui.h:7
 msgid "Enabled"
 msgstr "সামৰ্থবান"
 
-#: ../src/devhelp.ui.h:13
+#: ../src/devhelp.ui.h:8
 msgid "Title"
 msgstr "শীৰ্ষক"
 
-#: ../src/devhelp.ui.h:14
+#: ../src/devhelp.ui.h:9
 msgid "Book Shelf"
 msgstr "কিতাপ নিচাঙ"
 
-#: ../src/devhelp.ui.h:15
+#: ../src/devhelp.ui.h:10
 msgid "_Use system fonts"
 msgstr "চিস্টেম ফন্টসমূহ ব্যৱহাৰ কৰক (_U)"
 
-#: ../src/devhelp.ui.h:16
+#: ../src/devhelp.ui.h:11
 msgid "_Variable width: "
 msgstr "ভিন্ন প্ৰস্থ (_V):"
 
-#: ../src/devhelp.ui.h:17
+#: ../src/devhelp.ui.h:12
 msgid "_Fixed width:"
 msgstr "নিৰ্দিষ্ট প্ৰস্থ (_F):"
 
-#: ../src/devhelp.ui.h:18
+#: ../src/devhelp.ui.h:13
 msgid "Fonts"
 msgstr "ফন্টসমূহ"
 
-#: ../src/dh-app.c:157
+#: ../src/dh-app.c:201
 msgid "translator_credits"
 msgstr "নীলমদ্যুতি গোস্বামী (ngoswami@redhat.com)"
 
-#: ../src/dh-app.c:164
+#: ../src/dh-app.c:211
 msgid "A developers' help browser for GNOME"
 msgstr "GNOME ৰ বাবে এজন উন্নয়নকাৰীৰ সহায় ব্ৰাউছাৰ"
 
-#: ../src/dh-app.c:172
+#: ../src/dh-app.c:219
 msgid "DevHelp Website"
 msgstr "DevHelp ৱেবছাইট"
 
-#. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:121
+#. Please don't translate "Devhelp"
+#: ../src/dh-assistant.ui.h:2
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — সহায়ক"
 
-#: ../src/dh-assistant-view.c:403
+#: ../src/dh-assistant-view.c:372
 msgid "Book:"
 msgstr "কিতাপ:"
 
-#: ../src/dh-book.c:256
+#: ../src/dh-book.c:250
 #, c-format
 msgid "Language: %s"
 msgstr "ভাষা:%s"
 
-#: ../src/dh-book.c:257
+#: ../src/dh-book.c:251
 msgid "Language: Undefined"
 msgstr "ভাষা: অবিৱৰিত"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:267
+#: ../src/dh-link.c:284
 msgid "Book"
 msgstr "কিতাপ"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:287
 msgid "Page"
 msgstr "পৃষ্ঠা"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:274
+#: ../src/dh-link.c:291
 msgid "Keyword"
 msgstr "কিৱাৰ্ড"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:296
 msgid "Function"
 msgstr "ফলন"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:301
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:306
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:311
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:316
 msgid "Type"
 msgstr "ধৰণ"
 
@@ -402,12 +396,11 @@ msgid "Cannot uncompress book '%s': %s"
 msgstr "কিতাপ অসংকোচিত কৰিব নোৱাৰি '%s': %s"
 
 #. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:471
+#: ../src/dh-sidebar.c:531
 msgid "Current"
 msgstr "বৰ্তমান"
 
-#: ../src/dh-sidebar.c:474
-#| msgid "All books"
+#: ../src/dh-sidebar.c:534
 msgid "All Books"
 msgstr "সকলো কিতাপ"
 
@@ -447,51 +440,69 @@ msgstr "৩০০%"
 msgid "400%"
 msgstr "৪০০%"
 
-#: ../src/dh-window.c:654
-#| msgid "_Back"
-msgid "Back"
-msgstr "পিছলৈ"
-
-#: ../src/dh-window.c:659
-#| msgid "_Forward"
-msgid "Forward"
-msgstr "আগলৈ"
-
-#: ../src/dh-window.c:919
+#: ../src/dh-window.c:869
 msgid "Error opening the requested link."
 msgstr "অনুৰোধ কৰা সংযোগ খোলোতে ত্ৰুটি।"
 
-#: ../src/dh-window.c:1269 ../src/dh-window.c:1455
+#: ../src/dh-window.c:1153 ../src/dh-window.c:1325
 msgid "Empty Page"
 msgstr "ৰিক্ত পৃষ্ঠা"
 
-#: ../src/eggfindbar.c:320
-msgid "Find:"
-msgstr "সন্ধান কৰক:"
+#: ../src/dh-window.ui.h:1
+msgid "New _Tab"
+msgstr "নতুন টেব (_T)"
 
-#: ../src/eggfindbar.c:329
-msgid "Find Previous"
-msgstr "পূৰ্বৱৰ্তী বিচাৰক"
+#: ../src/dh-window.ui.h:2
+msgid "_Print"
+msgstr "প্ৰিন্ট কৰক (_P)"
 
-#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
-msgid "Find previous occurrence of the search string"
-msgstr "সন্ধান স্ট্ৰিংৰ পূৰ্বৱৰ্তী উপস্থিতি সন্ধান কৰক"
+#: ../src/dh-window.ui.h:3
+msgid "_Find"
+msgstr "সন্ধান কৰক (_F)"
 
-#: ../src/eggfindbar.c:342
-msgid "Find Next"
-msgstr "পৰৱৰ্তী বিচাৰক"
+#: ../src/dh-window.ui.h:4
+#| msgid "_Larger text"
+msgid "_Larger Text"
+msgstr "ডাঙৰ লিখনী (_L)"
 
-#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
-msgid "Find next occurrence of the search string"
-msgstr "সন্ধান স্ট্ৰিংৰ পৰৱৰ্তী উপস্থিতি সন্ধান কৰক"
+#: ../src/dh-window.ui.h:5
+#| msgid "S_maller text"
+msgid "S_maller Text"
+msgstr "সৰু লিখনী (_m)"
 
-#: ../src/eggfindbar.c:358
-msgid "C_ase Sensitive"
-msgstr "ফলা সংবেদ্য (_a)"
+#: ../src/dh-window.ui.h:6
+#| msgid "_Normal size"
+msgid "_Normal Size"
+msgstr "স্বাভাৱিক আকাৰ (_N)"
 
-#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
-msgid "Toggle case sensitive search"
-msgstr "ফলা সংবেদ্য সন্ধান অদল বদল কৰক"
+#: ../src/dh-window.ui.h:11
+msgid "Back"
+msgstr "পিছলৈ"
+
+#: ../src/dh-window.ui.h:12
+msgid "Forward"
+msgstr "আগলৈ"
+
+#~ msgid "Find:"
+#~ msgstr "সন্ধান কৰক:"
+
+#~ msgid "Find Previous"
+#~ msgstr "পূৰ্বৱৰ্তী বিচাৰক"
+
+#~ msgid "Find previous occurrence of the search string"
+#~ msgstr "সন্ধান স্ট্ৰিংৰ পূৰ্বৱৰ্তী উপস্থিতি সন্ধান কৰক"
+
+#~ msgid "Find Next"
+#~ msgstr "পৰৱৰ্তী বিচাৰক"
+
+#~ msgid "Find next occurrence of the search string"
+#~ msgstr "সন্ধান স্ট্ৰিংৰ পৰৱৰ্তী উপস্থিতি সন্ধান কৰক"
+
+#~ msgid "C_ase Sensitive"
+#~ msgstr "ফলা সংবেদ্য (_a)"
+
+#~ msgid "Toggle case sensitive search"
+#~ msgstr "ফলা সংবেদ্য সন্ধান অদল বদল কৰক"
 
 #~| msgid "_New Window"
 #~ msgid "_Window"
