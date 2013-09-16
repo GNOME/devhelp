@@ -37,12 +37,10 @@ G_BEGIN_DECLS
 
 typedef struct _DhKeywordModel      DhKeywordModel;
 typedef struct _DhKeywordModelClass DhKeywordModelClass;
-typedef struct _DhKeywordModelPriv  DhKeywordModelPriv;
 
 struct _DhKeywordModel
 {
         GObject             parent_instance;
-        DhKeywordModelPriv *priv;
 };
 
 struct _DhKeywordModelClass

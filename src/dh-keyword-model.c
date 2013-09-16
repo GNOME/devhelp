@@ -29,14 +29,14 @@
 #include "dh-book.h"
 #include "dh-keyword-model.h"
 
-struct _DhKeywordModelPriv {
+typedef struct {
         DhBookManager *book_manager;
 
         GList *keyword_words;
         gint   keyword_words_length;
 
         gint   stamp;
-};
+} DhKeywordModelPrivate;
 
 /* Store a keyword as well as glob
  * patterns that match at the start of a word
@@ -59,32 +59,26 @@ static GList *dh_globbed_keywords_new        (GStrv                keywords);
 static void dh_globbed_keywords_free         (GList               *keyword_globs);
 
 G_DEFINE_TYPE_WITH_CODE (DhKeywordModel, dh_keyword_model, G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (DhKeywordModel)
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL,
                                                 dh_keyword_model_tree_model_init));
 
 static void
-keyword_model_dispose (GObject *object)
+dh_keyword_model_dispose (GObject *object)
 {
-        DhKeywordModel     *model = DH_KEYWORD_MODEL (object);
-        DhKeywordModelPriv *priv = model->priv;
+        DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (object));
 
-        if (priv->book_manager) {
-                g_object_unref (priv->book_manager);
-                priv->book_manager = NULL;
-        }
+        g_clear_object (&priv->book_manager);
 
         G_OBJECT_CLASS (dh_keyword_model_parent_class)->dispose (object);
 }
 
 static void
-keyword_model_finalize (GObject *object)
+dh_keyword_model_finalize (GObject *object)
 {
-        DhKeywordModel     *model = DH_KEYWORD_MODEL (object);
-        DhKeywordModelPriv *priv = model->priv;
+        DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (object));
 
         g_list_free (priv->keyword_words);
-
-        g_free (model->priv);
 
         G_OBJECT_CLASS (dh_keyword_model_parent_class)->finalize (object);
 }
@@ -94,17 +88,14 @@ dh_keyword_model_class_init (DhKeywordModelClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);;
 
-        object_class->finalize = keyword_model_finalize;
-        object_class->dispose = keyword_model_dispose;
+        object_class->finalize = dh_keyword_model_finalize;
+        object_class->dispose = dh_keyword_model_dispose;
 }
 
 static void
 dh_keyword_model_init (DhKeywordModel *model)
 {
-        DhKeywordModelPriv *priv;
-
-        priv = g_new0 (DhKeywordModelPriv, 1);
-        model->priv = priv;
+        DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (model);
 
         do {
                 priv->stamp = g_random_int ();
@@ -143,13 +134,11 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
                         GtkTreeIter  *iter,
                         GtkTreePath  *path)
 {
-        DhKeywordModel     *model;
-        DhKeywordModelPriv *priv;
-        GList              *node;
-        const gint         *indices;
+        DhKeywordModelPrivate *priv;
+        GList                 *node;
+        const gint            *indices;
 
-        model = DH_KEYWORD_MODEL (tree_model);
-        priv = model->priv;
+        priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         indices = gtk_tree_path_get_indices (path);
 
@@ -173,14 +162,13 @@ static GtkTreePath *
 keyword_model_get_path (GtkTreeModel *tree_model,
                         GtkTreeIter  *iter)
 {
-        DhKeywordModel     *model = DH_KEYWORD_MODEL (tree_model);
-        DhKeywordModelPriv *priv;
-        GtkTreePath        *path;
-        gint                i = 0;
+        DhKeywordModelPrivate *priv;
+        GtkTreePath           *path;
+        gint                   i = 0;
 
-        g_return_val_if_fail (iter->stamp == model->priv->stamp, NULL);
+        priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
-        priv = model->priv;
+        g_return_val_if_fail (iter->stamp == priv->stamp, NULL);
 
         i = g_list_position (priv->keyword_words, iter->user_data);
         if (i < 0) {
@@ -221,9 +209,11 @@ static gboolean
 keyword_model_iter_next (GtkTreeModel *tree_model,
                          GtkTreeIter  *iter)
 {
-        DhKeywordModel *model = DH_KEYWORD_MODEL (tree_model);
+        DhKeywordModelPrivate *priv;
 
-        g_return_val_if_fail (model->priv->stamp == iter->stamp, FALSE);
+        priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
+
+        g_return_val_if_fail (priv->stamp == iter->stamp, FALSE);
 
         iter->user_data = G_LIST (iter->user_data)->next;
 
@@ -235,9 +225,9 @@ keyword_model_iter_children (GtkTreeModel *tree_model,
                              GtkTreeIter  *iter,
                              GtkTreeIter  *parent)
 {
-        DhKeywordModelPriv *priv;
+        DhKeywordModelPrivate *priv;
 
-        priv = DH_KEYWORD_MODEL (tree_model)->priv;
+        priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         /* This is a list, nodes have no children. */
         if (parent) {
@@ -267,9 +257,9 @@ static gint
 keyword_model_iter_n_children (GtkTreeModel *tree_model,
                                GtkTreeIter  *iter)
 {
-        DhKeywordModelPriv *priv;
+        DhKeywordModelPrivate *priv;
 
-        priv = DH_KEYWORD_MODEL (tree_model)->priv;
+        priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         if (iter == NULL) {
                 return priv->keyword_words_length;
@@ -286,10 +276,10 @@ keyword_model_iter_nth_child (GtkTreeModel *tree_model,
                               GtkTreeIter  *parent,
                               gint          n)
 {
-        DhKeywordModelPriv *priv;
-        GList              *child;
+        DhKeywordModelPrivate *priv;
+        GList                 *child;
 
-        priv = DH_KEYWORD_MODEL (tree_model)->priv;
+        priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         if (parent) {
                 return FALSE;
@@ -345,9 +335,13 @@ void
 dh_keyword_model_set_words (DhKeywordModel *model,
                             DhBookManager  *book_manager)
 {
+        DhKeywordModelPrivate *priv;
+
         g_return_if_fail (DH_IS_KEYWORD_MODEL (model));
 
-        model->priv->book_manager = g_object_ref (book_manager);
+        priv = dh_keyword_model_get_instance_private (model);
+
+        priv->book_manager = g_object_ref (book_manager);
 }
 
 /* Returns a GList of struct _DhKeywordGlobPattern
@@ -441,12 +435,12 @@ keyword_model_search_books (DhKeywordModel  *model,
                             guint           *n_hits,
                             DhLink         **exact_link)
 {
-        DhKeywordModelPriv *priv;
-        GList              *new_list = NULL, *b;
-        gint                hits = 0;
-        gchar              *page_filename_prefix = NULL;
+        DhKeywordModelPrivate *priv;
+        GList                 *new_list = NULL, *b;
+        gint                   hits = 0;
+        gchar                 *page_filename_prefix = NULL;
 
-        priv = model->priv;
+        priv = dh_keyword_model_get_instance_private (model);
 
         /* Compile each keyword into a GPatternSpec if necessary */
         GList *keyword_globs = dh_globbed_keywords_new (keywords);
@@ -767,22 +761,22 @@ dh_keyword_model_filter (DhKeywordModel *model,
                          const gchar    *book_id,
                          const gchar    *language)
 {
-        DhKeywordModelPriv  *priv;
-        GList               *new_list = NULL;
-        gint                 old_length;
-        DhLink              *exact_link = NULL;
-        gint                 hits;
-        gint                 i;
-        GtkTreePath         *path;
-        GtkTreeIter          iter;
-        gchar               *book_id_in_string = NULL;
-        gchar               *page_id_in_string = NULL;
-        GStrv                keywords = NULL;
+        DhKeywordModelPrivate *priv;
+        GList                 *new_list = NULL;
+        gint                   old_length;
+        DhLink                *exact_link = NULL;
+        gint                   hits;
+        gint                   i;
+        GtkTreePath           *path;
+        GtkTreeIter            iter;
+        gchar                 *book_id_in_string = NULL;
+        gchar                 *page_id_in_string = NULL;
+        GStrv                  keywords = NULL;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
         g_return_val_if_fail (string != NULL, NULL);
 
-        priv = model->priv;
+        priv = dh_keyword_model_get_instance_private (model);
 
         /* Do the minimum amount of work: call update on all rows that are
          * kept and remove the rest.
