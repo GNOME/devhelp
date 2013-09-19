@@ -108,19 +108,11 @@ dh_book_finalize (GObject *object)
                 g_node_destroy (priv->tree);
         }
 
-        if (priv->keywords) {
-                g_list_foreach (priv->keywords, (GFunc)dh_link_unref, NULL);
-                g_list_free (priv->keywords);
-        }
+        g_list_free_full (priv->keywords, (GDestroyNotify)dh_link_unref);
 
-        if (priv->completions) {
-                g_list_foreach (priv->completions, (GFunc)g_free, NULL);
-                g_list_free (priv->completions);
-        }
+        g_list_free_full (priv->completions, g_free);
 
-        if (priv->monitor) {
-                g_object_unref (priv->monitor);
-        }
+        g_clear_object (&priv->monitor);
 
         g_free (priv->language);
 
