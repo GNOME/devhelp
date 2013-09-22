@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-21 13:11+0300\n"
-"PO-Revision-Date: 2013-08-21 13:11+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"POT-Creation-Date: 2013-09-22 13:40+0300\n"
+"PO-Revision-Date: 2013-09-22 13:41+0300\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:209 ../src/dh-app.c:395
-#: ../src/dh-window.c:650
+#: ../src/dh-window.c:648
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -110,11 +110,11 @@ msgid "Whether books should be grouped by language in the UI"
 msgstr "Whether books should be grouped by language in the UI"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:19
-msgid "Whether the assistant window should be maximixed"
+msgid "Whether the assistant window should be maximized"
 msgstr "Whether the assistant window should be maximixed"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:20
-msgid "Whether the assistant window should be maximixed."
+msgid "Whether the assistant window should be maximized."
 msgstr "Whether the assistant window should be maximixed."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:21
@@ -267,63 +267,63 @@ msgstr "Devhelp — המסייע"
 msgid "Book:"
 msgstr "ספר:"
 
-#: ../src/dh-book.c:250
+#: ../src/dh-book.c:242
 #, c-format
 msgid "Language: %s"
 msgstr "שפה: %s"
 
-#: ../src/dh-book.c:251
+#: ../src/dh-book.c:243
 msgid "Language: Undefined"
 msgstr "שפה: בלתי מוגדרת"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:272
 msgid "Book"
 msgstr "ספר"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:275
 msgid "Page"
 msgstr "עמוד"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:291
+#: ../src/dh-link.c:279
 msgid "Keyword"
 msgstr "מילת מפתח"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:296
+#: ../src/dh-link.c:284
 msgid "Function"
 msgstr "פונקציה"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:301
+#: ../src/dh-link.c:289
 msgid "Struct"
 msgstr "מבנה"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:306
+#: ../src/dh-link.c:294
 msgid "Macro"
 msgstr "מקרו"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:311
+#: ../src/dh-link.c:299
 msgid "Enum"
 msgstr "מניה"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:316
+#: ../src/dh-link.c:304
 msgid "Type"
 msgstr "סוג"
 
@@ -404,47 +404,47 @@ msgstr "נוכחי"
 msgid "All Books"
 msgstr "כל הספרים"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:869
+#: ../src/dh-window.c:864
 msgid "Error opening the requested link."
 msgstr "שגיאה בפתיחת הקישור המבוקש."
 
-#: ../src/dh-window.c:1153 ../src/dh-window.c:1325
+#: ../src/dh-window.c:1148 ../src/dh-window.c:1320
 msgid "Empty Page"
 msgstr "דף ריק"
 
