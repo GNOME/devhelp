@@ -1,8 +1,0 @@
-Makefile
-Makefile.in
-.deps
-.libs
-devhelp
-test-profile
-*.loT
-default-prefs.js
