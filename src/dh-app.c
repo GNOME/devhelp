@@ -179,7 +179,12 @@ preferences_cb (GSimpleAction *action,
                 GVariant      *parameter,
                 gpointer       user_data)
 {
-        dh_preferences_show_dialog ();
+        DhApp *app = DH_APP (user_data);
+        GtkWindow *window;
+
+        window = dh_app_peek_first_window (app);
+
+        dh_preferences_show_dialog (window);
 }
 
 static void
