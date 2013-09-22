@@ -677,17 +677,18 @@ dh_preferences_show_dialog (void)
         GSettings *settings_fonts = dh_settings_peek_fonts_settings (prefs->settings);
         GSettings *settings_contents = dh_settings_peek_contents_settings (prefs->settings);
         g_settings_bind (settings_fonts, "use-system-fonts",
-                         G_OBJECT (prefs->system_fonts_button),
+                         prefs->system_fonts_button,
                          "active", G_SETTINGS_BIND_DEFAULT);
         g_settings_bind (settings_fonts, "fixed-font",
-                         G_OBJECT (prefs->fixed_font_button),
+                         prefs->fixed_font_button,
                          "font-name", G_SETTINGS_BIND_DEFAULT);
         g_settings_bind (settings_fonts, "variable-font",
-                         G_OBJECT (prefs->variable_font_button),
+                         prefs->variable_font_button,
                          "font-name", G_SETTINGS_BIND_DEFAULT);
 
         g_settings_bind (settings_contents,
-                         "group-books-by-language", G_OBJECT (prefs->bookshelf_group_by_language_button),
+                         "group-books-by-language",
+                         prefs->bookshelf_group_by_language_button,
                          "active", G_SETTINGS_BIND_DEFAULT);
 
         dh_util_builder_connect (
