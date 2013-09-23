@@ -1,4 +1,22 @@
 ==============
+Version 3.10.0
+==============
+
+Fixed bugs:
+
+ - #707490, [PATCH] Don't use AM_GNU_GETTEXT
+
+Updated translations: as, be, da, fi, he, id, ja, ko, lv, ru, sk,
+sr@latin, sr, th
+
+Many thanks to all contributors: Changwoo Ryu, Ville-Pekka Vainio, Andika
+Triwidada, Мирослав Николић, Ignacio Casal Quinteiro, Pavol
+Klačanský, Ihar Hrachyshka, Ask H. Larsen, Theppitak Karoonboonyanan,
+Nilamdyuti Goswami, Jiro Matsuzawa, Yosef Or Boczko, Rūdolfs Mazurs,
+Kerrick Staley, Yuri Myasoedov
+
+
+==============
 Version 3.9.91
 ==============
 
