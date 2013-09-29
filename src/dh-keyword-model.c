@@ -859,15 +859,14 @@ dh_keyword_model_filter (DhKeywordModel *model,
         new_list = NULL;
         hits = 0;
 
-        /* Parse input search string, and make sure either one of the
-         * book ids is set; or both are set and are equal */
+        g_free (priv->current_book_id);
+        priv->current_book_id = NULL;
+
+        /* Parse input search string */
         if (keyword_model_process_search_string (string,
                                                  &book_id_in_string,
                                                  &page_id_in_string,
-                                                 &keywords) &&
-            ((!book_id && book_id_in_string) ||
-             (book_id && !book_id_in_string) ||
-             g_strcmp0 (book_id, book_id_in_string) == 0)) {
+                                                 &keywords)) {
                 gboolean case_sensitive;
 
                 /* Searches are case sensitive when any uppercase
@@ -882,10 +881,13 @@ dh_keyword_model_filter (DhKeywordModel *model,
                         }
                 }
 
+                /* Keep new current book id */
+                priv->current_book_id = g_strdup (book_id_in_string ? book_id_in_string : book_id);
+
                 new_list = keyword_model_search (model,
                                                  string,
                                                  keywords,
-                                                 book_id ? book_id : book_id_in_string,
+                                                 priv->current_book_id,
                                                  page_id_in_string,
                                                  language,
                                                  case_sensitive,
@@ -901,8 +903,6 @@ dh_keyword_model_filter (DhKeywordModel *model,
         g_list_free (priv->keyword_words);
         priv->keyword_words = new_list;
         priv->keyword_words_length = hits;
-        g_free (priv->current_book_id);
-        priv->current_book_id = g_strdup (book_id ? book_id : book_id_in_string);
 
         /* Update model: rows 0 -> hits. */
         for (i = 0; i < hits; ++i) {
