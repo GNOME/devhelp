@@ -628,6 +628,8 @@ keyword_model_search (DhKeywordModel  *model,
         GList *in_book_non_prefixed = NULL;
         GList *other_books_prefixed = NULL;
         GList *other_books_non_prefixed = NULL;
+        DhLink *in_book_exact_link = NULL;
+        DhLink *other_books_exact_link = NULL;
 
         /* If book_id given; first look for items in the given book id */
         if (book_id) {
@@ -643,7 +645,7 @@ keyword_model_search (DhKeywordModel  *model,
                                                                TRUE,
                                                                n_hits_left,
                                                                &n_hits,
-                                                               exact_link);
+                                                               &in_book_exact_link);
                 n_hits_left -= n_hits;
 
                 /* If not enough hits, get non-prefixed ones */
@@ -679,7 +681,7 @@ keyword_model_search (DhKeywordModel  *model,
                                                                    TRUE,
                                                                    n_hits_left,
                                                                    &n_hits,
-                                                                   exact_link);
+                                                                   &other_books_exact_link);
                 n_hits_left -= n_hits;
 
                 /* If not enough hits, get non-prefixed ones */
@@ -697,6 +699,14 @@ keyword_model_search (DhKeywordModel  *model,
                                                                                NULL);
                 }
         }
+
+        /* Prefer in-book exact link */
+        if (in_book_exact_link)
+                *exact_link = in_book_exact_link;
+        else if (other_books_exact_link)
+                *exact_link = other_books_exact_link;
+        else
+                *exact_link = NULL;
 
         /* Build resulting list */
         return (g_list_concat (
