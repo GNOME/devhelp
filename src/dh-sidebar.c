@@ -381,21 +381,35 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
                        GtkTreeIter       *iter,
                        gpointer           data)
 {
+        DhSidebar    *sidebar = DH_SIDEBAR (data);
         DhLink       *link;
         PangoStyle    style;
+        PangoWeight   weight;
+        gboolean      current_book_flag;
 
         gtk_tree_model_get (tree_model, iter,
                             DH_KEYWORD_MODEL_COL_LINK, &link,
+                            DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG, &current_book_flag,
                             -1);
 
-        style = PANGO_STYLE_NORMAL;
-
         if (dh_link_get_flags (link) & DH_LINK_FLAGS_DEPRECATED)
-                style |= PANGO_STYLE_ITALIC;
+                style = PANGO_STYLE_ITALIC;
+        else
+                style = PANGO_STYLE_NORMAL;
+
+        /* Matches on the current book are given in bold. Note that we check the
+         * current book as it was given to the DhKeywordModel. Do *not* rely on
+         * the current book as given by the DhSidebar, as that will change
+         * whenever a hit is clicked. */
+        if (current_book_flag)
+                weight = PANGO_WEIGHT_BOLD;
+        else
+                weight = PANGO_WEIGHT_NORMAL;
 
         g_object_set (cell,
                       "text", dh_link_get_name (link),
                       "style", style,
+                      "weight", weight,
                       NULL);
 }
 
