@@ -427,6 +427,7 @@ keyword_model_search_books (DhKeywordModel  *model,
                             const gchar     *string,
                             const GStrv      keywords,
                             const gchar     *book_id,
+                            const gchar     *skip_book_id,
                             const gchar     *page_id,
                             const gchar     *language,
                             gboolean         case_sensitive,
@@ -482,6 +483,12 @@ keyword_model_search_books (DhKeywordModel  *model,
                                         return g_list_prepend (NULL, node->data);
                                 }
                         }
+                }
+
+                /* Skipping a given book? */
+                if (skip_book_id &&
+                    g_strcmp0 (skip_book_id, dh_book_get_name (book)) == 0) {
+                        continue;
                 }
 
                 /* Filtering by language? */
@@ -614,42 +621,89 @@ keyword_model_search (DhKeywordModel  *model,
                       gboolean         case_sensitive,
                       DhLink         **exact_link)
 {
-        guint max_hits = MAX_HITS;
+        guint n_hits_left = MAX_HITS;
         guint n_hits;
-        GList *list;
+        GList *in_book_prefixed = NULL;
+        GList *in_book_non_prefixed = NULL;
+        GList *other_books_prefixed = NULL;
+        GList *other_books_non_prefixed = NULL;
 
-        /* First, look for prefixed items */
-        list = keyword_model_search_books (model,
-                                           string,
-                                           keywords,
-                                           book_id,
-                                           page_id,
-                                           language,
-                                           case_sensitive,
-                                           TRUE,
-                                           max_hits,
-                                           &n_hits,
-                                           exact_link);
-
-        if (n_hits < max_hits) {
-                GList *non_prefixed_list;
+        /* If book_id given; first look for items in the given book id */
+        if (book_id) {
+                /* First, look for prefixed items */
+                n_hits = 0;
+                in_book_prefixed = keyword_model_search_books (model,
+                                                               string,
+                                                               keywords,
+                                                               book_id, NULL,
+                                                               page_id,
+                                                               language,
+                                                               case_sensitive,
+                                                               TRUE,
+                                                               n_hits_left,
+                                                               &n_hits,
+                                                               exact_link);
+                n_hits_left -= n_hits;
 
                 /* If not enough hits, get non-prefixed ones */
-                non_prefixed_list = keyword_model_search_books (model,
-                                                                string,
-                                                                keywords,
-                                                                book_id,
-                                                                page_id,
-                                                                language,
-                                                                case_sensitive,
-                                                                FALSE,
-                                                                max_hits - n_hits,
-                                                                NULL,
-                                                                NULL);
-                list = g_list_concat (list, non_prefixed_list);
+                if (n_hits_left > 0) {
+                        n_hits = 0;
+                        in_book_non_prefixed = keyword_model_search_books (model,
+                                                                           string,
+                                                                           keywords,
+                                                                           book_id, NULL,
+                                                                           page_id,
+                                                                           language,
+                                                                           case_sensitive,
+                                                                           FALSE,
+                                                                           n_hits_left,
+                                                                           &n_hits,
+                                                                           NULL);
+                        n_hits_left -= n_hits;
+
+                }
         }
 
-        return list;
+        /* If still room for more items; look for prefixed items in OTHER books */
+        if (n_hits_left > 0) {
+                /* First, look for prefixed items */
+                n_hits = 0;
+                other_books_prefixed = keyword_model_search_books (model,
+                                                                   string,
+                                                                   keywords,
+                                                                   NULL, book_id,
+                                                                   page_id,
+                                                                   language,
+                                                                   case_sensitive,
+                                                                   TRUE,
+                                                                   n_hits_left,
+                                                                   &n_hits,
+                                                                   exact_link);
+                n_hits_left -= n_hits;
+
+                /* If not enough hits, get non-prefixed ones */
+                if (n_hits_left > 0) {
+                        other_books_non_prefixed = keyword_model_search_books (model,
+                                                                               string,
+                                                                               keywords,
+                                                                               NULL, book_id,
+                                                                               page_id,
+                                                                               language,
+                                                                               case_sensitive,
+                                                                               FALSE,
+                                                                               n_hits_left,
+                                                                               NULL,
+                                                                               NULL);
+                }
+        }
+
+        /* Build resulting list */
+        return (g_list_concat (
+                        g_list_concat (
+                                g_list_concat (in_book_prefixed,
+                                               in_book_non_prefixed),
+                                other_books_prefixed),
+                        other_books_non_prefixed));
 }
 
 /* Process the input search string and extract:
