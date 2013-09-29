@@ -440,11 +440,12 @@ keyword_model_search_books (DhKeywordModel  *model,
         GList                 *new_list = NULL, *b;
         gint                   hits = 0;
         gchar                 *page_filename_prefix = NULL;
+        GList                 *keyword_globs;
 
         priv = dh_keyword_model_get_instance_private (model);
 
         /* Compile each keyword into a GPatternSpec if necessary */
-        GList *keyword_globs = dh_globbed_keywords_new (keywords);
+        keyword_globs = dh_globbed_keywords_new (keywords);
 
         if (page_id) {
                 page_filename_prefix = g_strdup_printf("%s.", page_id);
