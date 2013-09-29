@@ -43,8 +43,6 @@ typedef struct {
 
         DhLink         *selected_link;
 
-        GtkWidget      *search_all_button;
-        GtkWidget      *search_current_button;
         GtkWidget      *entry;
         GtkWidget      *hitlist;
         GtkWidget      *sw_hitlist;
@@ -86,9 +84,7 @@ sidebar_filter_idle (DhSidebar *sidebar)
 
         str = gtk_entry_get_text (GTK_ENTRY (priv->entry));
 
-        book_link = (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->search_all_button)) ?
-                     NULL :
-                     dh_sidebar_get_selected_book (sidebar));
+        book_link = dh_sidebar_get_selected_book (sidebar);
 
         link = dh_keyword_model_filter (priv->model,
                                         str,
@@ -351,9 +347,6 @@ dh_sidebar_set_search_string (DhSidebar   *sidebar,
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
-        /* Mark "All books" as active */
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->search_all_button), TRUE);
-
         g_signal_handlers_block_by_func (priv->entry,
                                          sidebar_entry_changed_cb,
                                          sidebar);
@@ -404,15 +397,6 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
                       "text", dh_link_get_name (link),
                       "style", style,
                       NULL);
-}
-
-/******************************************************************************/
-
-static void
-search_filter_button_toggled (GtkToggleButton *button,
-                              DhSidebar       *sidebar)
-{
-        sidebar_search_run_idle (sidebar);
 }
 
 /******************************************************************************/
@@ -492,7 +476,6 @@ dh_sidebar_init (DhSidebar *sidebar)
         DhSidebarPrivate *priv;
         GtkCellRenderer  *cell;
         GtkWidget        *hbox;
-        GtkWidget        *button_box;
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
@@ -526,26 +509,6 @@ dh_sidebar_init (DhSidebar *sidebar)
         g_signal_connect (priv->entry, "insert-text",
                           G_CALLBACK (sidebar_entry_text_inserted_cb),
                           sidebar);
-
-        /* Setup the Current/All Files selector */
-        priv->search_current_button = gtk_radio_button_new_with_label (NULL, _("Current"));
-        gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (priv->search_current_button), FALSE);
-        priv->search_all_button = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (priv->search_current_button),
-                                                                                     _("All Books"));
-        gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (priv->search_all_button), FALSE);
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->search_all_button), TRUE);
-        g_signal_connect (priv->search_current_button,
-                          "toggled",
-                          G_CALLBACK (search_filter_button_toggled),
-                          sidebar);
-        button_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-        gtk_box_pack_start (GTK_BOX (hbox), button_box, FALSE, FALSE, 0);
-        gtk_style_context_add_class (gtk_widget_get_style_context (button_box),
-                                     GTK_STYLE_CLASS_LINKED);
-        gtk_style_context_add_class (gtk_widget_get_style_context (button_box),
-                                     GTK_STYLE_CLASS_RAISED);
-        gtk_box_pack_start (GTK_BOX (button_box), priv->search_current_button, FALSE, FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (button_box), priv->search_all_button, FALSE, FALSE, 0);
 
         /* Setup the hitlist */
         priv->sw_hitlist = gtk_scrolled_window_new (NULL, NULL);
