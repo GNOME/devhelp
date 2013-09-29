@@ -32,6 +32,7 @@
 typedef struct {
         DhBookManager *book_manager;
 
+        gchar *current_book_id;
         GList *keyword_words;
         gint   keyword_words_length;
 
@@ -78,6 +79,7 @@ dh_keyword_model_finalize (GObject *object)
 {
         DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (object));
 
+        g_free (priv->current_book_id);
         g_list_free (priv->keyword_words);
 
         G_OBJECT_CLASS (dh_keyword_model_parent_class)->finalize (object);
@@ -121,9 +123,10 @@ keyword_model_get_column_type (GtkTreeModel *tree_model,
         switch (column) {
         case DH_KEYWORD_MODEL_COL_NAME:
                 return G_TYPE_STRING;
-                break;
         case DH_KEYWORD_MODEL_COL_LINK:
                 return G_TYPE_POINTER;
+        case DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG:
+                return G_TYPE_BOOLEAN;
         default:
                 return G_TYPE_INVALID;
         }
@@ -187,9 +190,11 @@ keyword_model_get_value (GtkTreeModel *tree_model,
                          gint          column,
                          GValue       *value)
 {
+        DhKeywordModelPrivate *priv;
         DhLink *link;
 
         link = G_LIST (iter->user_data)->data;
+        priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         switch (column) {
         case DH_KEYWORD_MODEL_COL_NAME:
@@ -199,6 +204,10 @@ keyword_model_get_value (GtkTreeModel *tree_model,
         case DH_KEYWORD_MODEL_COL_LINK:
                 g_value_init (value, G_TYPE_POINTER);
                 g_value_set_pointer (value, link);
+                break;
+        case DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG:
+                g_value_init (value, G_TYPE_BOOLEAN);
+                g_value_set_boolean (value, (g_strcmp0 (dh_link_get_book_id (link), priv->current_book_id) == 0));
                 break;
         default:
                 g_warning ("Bad column %d requested", column);
@@ -892,6 +901,8 @@ dh_keyword_model_filter (DhKeywordModel *model,
         g_list_free (priv->keyword_words);
         priv->keyword_words = new_list;
         priv->keyword_words_length = hits;
+        g_free (priv->current_book_id);
+        priv->current_book_id = g_strdup (book_id ? book_id : book_id_in_string);
 
         /* Update model: rows 0 -> hits. */
         for (i = 0; i < hits; ++i) {

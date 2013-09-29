@@ -51,6 +51,7 @@ struct _DhKeywordModelClass
 enum {
         DH_KEYWORD_MODEL_COL_NAME,
         DH_KEYWORD_MODEL_COL_LINK,
+        DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG,
         DH_KEYWORD_MODEL_NUM_COLS
 };
 
