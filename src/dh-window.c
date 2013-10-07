@@ -1117,7 +1117,7 @@ window_open_new_tab (DhWindow    *window,
         info_bar = gtk_info_bar_new ();
         gtk_widget_set_no_show_all (info_bar, TRUE);
         gtk_info_bar_add_button (GTK_INFO_BAR (info_bar),
-                                 "_Close", GTK_RESPONSE_OK);
+                                 _("_Close"), GTK_RESPONSE_OK);
         gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar),
                                        GTK_MESSAGE_ERROR);
         g_signal_connect (info_bar, "response",
