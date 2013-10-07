@@ -381,7 +381,6 @@ search_cell_data_func (GtkTreeViewColumn *tree_column,
                        GtkTreeIter       *iter,
                        gpointer           data)
 {
-        DhSidebar    *sidebar = DH_SIDEBAR (data);
         DhLink       *link;
         PangoStyle    style;
         PangoWeight   weight;
