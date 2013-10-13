@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-13 22:28+0200\n"
-"PO-Revision-Date: 2013-10-13 22:26+0200\n"
+"POT-Creation-Date: 2013-10-13 22:29+0200\n"
+"PO-Revision-Date: 2013-10-13 22:28+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca-XV\n"
@@ -408,12 +408,11 @@ msgstr "Tipus de lletra"
 #. Setup the Current/All Files selector
 #: ../src/dh-sidebar.c:531
 msgid "Current"
-msgstr ""
+msgstr "Actual"
 
 #: ../src/dh-sidebar.c:534
-#, fuzzy
 msgid "All Books"
-msgstr "Llibre"
+msgstr "Tots els llibres"
 
 #: ../src/dh-window.c:86
 msgid "50%"
@@ -490,6 +489,3 @@ msgstr "Arrere"
 #: ../src/dh-window.ui.h:12
 msgid "Forward"
 msgstr "Avant"
-
-#~ msgid "_Close"
-#~ msgstr "_Tanca"
