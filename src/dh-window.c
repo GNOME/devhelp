@@ -58,7 +58,6 @@ typedef struct {
         GtkWidget      *go_down_button;
 
         DhLink         *selected_search_link;
-        guint           find_source_id;
         DhSettings     *settings;
         guint           fonts_changed_id;
 } DhWindowPrivate;
@@ -709,7 +708,7 @@ window_populate (DhWindow *window)
                           G_CALLBACK (on_search_mode_enabled_changed),
                           window);
         g_signal_connect (priv->search_entry,
-                          "changed",
+                          "search-changed",
                           G_CALLBACK (window_find_search_changed_cb),
                           window);
         g_signal_connect (priv->search_entry,
@@ -960,8 +959,6 @@ do_search (DhWindow *window)
         search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
         webkit_find_controller_search (find_controller, search_text, find_options, G_MAXUINT);
 
-        priv->find_source_id = 0;
-
         return FALSE;
 }
 
@@ -969,16 +966,7 @@ static void
 window_find_search_changed_cb (GtkEntry *entry,
                                DhWindow *window)
 {
-        DhWindowPrivate *priv;
-
-        priv = dh_window_get_instance_private (window);
-
-        if (priv->find_source_id != 0) {
-                g_source_remove (priv->find_source_id);
-                priv->find_source_id = 0;
-        }
-
-        priv->find_source_id = g_timeout_add (300, (GSourceFunc)do_search, window);
+        do_search (window);
 }
 
 static void
