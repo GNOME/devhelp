@@ -10,6 +10,6 @@ tabbed interface and allows to print results.</_p>
 </description>
 <url type="homepage">https://wiki.gnome.org/Apps/Devhelp/</url>
 <screenshots>
-<_screenshot type="default">https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&do=view&target=devhelp.png</_screenshot>
+<_screenshot type="default">https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;target=devhelp.png</_screenshot>
 </screenshots>
 </application>
