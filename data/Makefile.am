@@ -14,6 +14,15 @@ gsettings_SCHEMAS = org.gnome.devhelp.gschema.xml
 gsettingsconvertdir = $(datadir)/GConf/gsettings
 gsettingsconvert_DATA = devhelp.convert
 
+app_data_in_files = devhelp.appdata.xml.in
+app_data_files = $(app_data_in_files:.xml.in=.xml)
+
+appdatadir = $(datadir)/appdata
+appdata_DATA = $(app_data_files)
+
+@INTLTOOL_XML_RULE@
+
+
 @INTLTOOL_DESKTOP_RULE@
 
 desktopdir = $(datadir)/applications
@@ -25,11 +34,13 @@ EXTRA_DIST =			\
 	$(desktop_in_files)	\
 	$(gsettings_SCHEMAS)    \
 	devhelp.convert \
-	$(assistant_DATA)
+	$(assistant_DATA) \
+	$(app_data_in_files)
 
 CLEANFILES =			\
 	$(DESKTOP_FILES)	\
 	$(defaults_DATA)
 
 DISTCLEANFILES =		\
-	$(desktop_DATA)
+	$(desktop_DATA) \
+	$(app_data_files)

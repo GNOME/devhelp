@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+<id type="desktop">devhelp.desktop</id>
+<licence>CC0</licence>
+<description>
+<_p>Devhelp is an API documentation browser. It  provides an easy way to
+navigate through libraries, search by function, struct, or macro. It provides a
+tabbed interface and allows to print results.</_p>
+<_p>Devhelp integrates with other applications such as Glade, Anjuta, or Geany.</_p>
+</description>
+<url type="homepage">https://wiki.gnome.org/Apps/Devhelp/</url>
+<screenshots>
+<_screenshot type="default">https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&do=view&target=devhelp.png</_screenshot>
+</screenshots>
+</application>
