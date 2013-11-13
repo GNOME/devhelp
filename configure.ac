@@ -3,7 +3,7 @@ AC_INIT([Devhelp],
         [3.10.2],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],
         [devhelp],
-        [http://live.gnome.org/devhelp])
+        [http://live.gnome.org/Apps/Devhelp])
 
 # LT Version numbers, remember to change them just *before* a release.
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
