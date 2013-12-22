@@ -200,6 +200,9 @@
             <child>
               <object class="GtkGrid" id="grid_sidebar">
                 <property name="visible">True</property>
+                <style>
+                  <class name="sidebar"/>
+                </style>
               </object>
               <packing>
 		<property name="shrink">False</property>
