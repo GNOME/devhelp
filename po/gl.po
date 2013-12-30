@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp-master-po-gl-1953\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-01 15:33+0100\n"
-"PO-Revision-Date: 2013-11-01 15:34+0200\n"
+"POT-Creation-Date: 2013-12-30 01:01+0100\n"
+"PO-Revision-Date: 2013-12-30 01:02+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -46,8 +46,8 @@ msgid ""
 "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
 "target=devhelp.png"
 msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;targ"
-"et=devhelp.png"
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
@@ -232,9 +232,9 @@ msgstr "Nova _xanela"
 msgid "_Preferences"
 msgstr "_Preferencias"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
-msgstr "Sobre _Devhelp"
+#: ../src/devhelp-menu.ui.h:3
+msgid "_About"
+msgstr "_Sobre"
 
 #: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
 msgid "_Quit"
@@ -505,6 +505,10 @@ msgstr "Texto máis _pequeno"
 #: ../src/dh-window.ui.h:6
 msgid "_Normal Size"
 msgstr "Tamaño _normal"
+
+#: ../src/dh-window.ui.h:9
+msgid "_About Devhelp"
+msgstr "Sobre _Devhelp"
 
 #: ../src/dh-window.ui.h:11
 msgid "Back"
