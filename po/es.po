@@ -11,15 +11,15 @@ msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-23 15:29+0000\n"
-"PO-Revision-Date: 2013-10-25 11:11+0200\n"
+"POT-Creation-Date: 2013-12-28 02:19+0000\n"
+"PO-Revision-Date: 2013-12-30 11:18+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.5\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/devhelp.appdata.xml.in.h:1
@@ -228,9 +228,10 @@ msgstr "_Ventana nueva"
 msgid "_Preferences"
 msgstr "Prefere_ncias"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
-msgstr "_Acerca de DevHelp"
+#: ../src/devhelp-menu.ui.h:3
+#| msgid "_About Devhelp"
+msgid "_About"
+msgstr "_Acerca de"
 
 #: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
 msgid "_Quit"
@@ -365,19 +366,19 @@ msgstr ""
 #: ../src/dh-parser.c:218
 #, c-format
 msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+"%d"
 msgstr ""
-"son necesarios los elementos «nombre» y «enlace» dentro de <sub> en la línea %"
-"d, columna %d"
+"son necesarios los elementos «nombre» y «enlace» dentro de <sub> en la línea "
+"%d, columna %d"
 
 #: ../src/dh-parser.c:298
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"son necesarios los elementos «nombre» y «enlace» dentro de «%s» en la línea %d, "
-"columna %d"
+"son necesarios los elementos «nombre» y «enlace» dentro de «%s» en la línea "
+"%d, columna %d"
 
 #: ../src/dh-parser.c:311
 #, c-format
@@ -498,6 +499,10 @@ msgstr "Texto más _pequeño"
 #: ../src/dh-window.ui.h:6
 msgid "_Normal Size"
 msgstr "Tamaño _normal"
+
+#: ../src/dh-window.ui.h:9
+msgid "_About Devhelp"
+msgstr "_Acerca de DevHelp"
 
 #: ../src/dh-window.ui.h:11
 msgid "Back"
@@ -631,8 +636,8 @@ msgstr "Adelante"
 #~ msgstr "_Mostrar las opciones de búsqueda avanzadas"
 
 #~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column %"
-#~ "d"
+#~ "name and link elements are required inside <function> on line %d, column "
+#~ "%d"
 #~ msgstr ""
 #~ "los elementos nombre y enlace se requieren dentro de <function> en la "
 #~ "línea %d, columna %d"
