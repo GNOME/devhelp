@@ -1,5 +1,5 @@
 # Brazilian Portuguese translation of devhelp
-# Copyright (C) 2002-2013 Free Software Foundation, Inc.
+# Copyright (C) 2002-2014 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 # Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002-2003.
 # based on the GNOME 2.0 translation to Portuguese (pt) by
@@ -11,7 +11,7 @@
 # Taylon Silmer <taylonsilva@gmail.com>, 2008.
 # Leonardo Ferreira Fontenelle <leonardof@gnome.org>, 2009.
 # Jonh Wendell <jwendell@gnome.org>, 2010.
-# Rafael Ferreira <rafael.f.f1@gmail.com>, 2012.
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013, 2014.
 # Enrico Nicoletto <liverig@gmail.com>, 2013
 #
 msgid ""
@@ -19,21 +19,45 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-21 14:28+0000\n"
-"PO-Revision-Date: 2013-08-21 11:32-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2013-12-28 02:19+0000\n"
+"PO-Revision-Date: 2013-12-19 09:03-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: ../data/devhelp.appdata.xml.in.h:1
+msgid ""
+"Devhelp is an API documentation browser. It provides an easy way to navigate "
+"through libraries, search by function, struct, or macro. It provides a "
+"tabbed interface and allows to print results."
+msgstr ""
+"Devhelp é um navegador de documentação de API. Ele fornece uma forma fácil "
+"de navegar pelas bibliotecas, pesquisar por funções, structs ou macros. Ele "
+"fornece uma interface com abas e permite imprimir resultados."
+
+#: ../data/devhelp.appdata.xml.in.h:2
+msgid ""
+"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+msgstr ""
+"Devhelp se integra com outros aplicativos, tais como Glade, Anjuta e Geany."
+
+#: ../data/devhelp.appdata.xml.in.h:3
+msgid ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
+msgstr ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:209 ../src/dh-app.c:395
-#: ../src/dh-window.c:650
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:214 ../src/dh-app.c:400
+#: ../src/dh-window.c:647
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -203,59 +227,23 @@ msgstr "Mostrar documentação da API"
 msgid "Show API Documentation for the word at the cursor"
 msgstr "Mostrar a documentação da API para a palavra sob o cursor"
 
-#: ../src/devhelp-menu.ui.h:1 ../src/devhelp.ui.h:1 ../src/dh-window.ui.h:7
+#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
 msgid "New _Window"
 msgstr "Nova _janela"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/devhelp.ui.h:2 ../src/dh-window.ui.h:8
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:8
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/devhelp.ui.h:3 ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
-msgstr "S_obre o Devhelp"
+#: ../src/devhelp-menu.ui.h:3
+msgid "_About"
+msgstr "S_obre"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/devhelp.ui.h:4 ../src/dh-window.ui.h:10
+#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
 msgid "_Quit"
 msgstr "_Sair"
 
-#: ../src/devhelp.ui.h:5
-msgid "Preferences"
-msgstr "Preferências"
-
-#: ../src/devhelp.ui.h:6
-msgid "_Group by language"
-msgstr "A_grupar por idioma"
-
-#: ../src/devhelp.ui.h:7
-msgid "Enabled"
-msgstr "Habilitado"
-
-#: ../src/devhelp.ui.h:8
-msgid "Title"
-msgstr "Título"
-
-#: ../src/devhelp.ui.h:9
-msgid "Book Shelf"
-msgstr "Estante de livros"
-
-#: ../src/devhelp.ui.h:10
-msgid "_Use system fonts"
-msgstr "_Usar fontes do sistema"
-
-#: ../src/devhelp.ui.h:11
-msgid "_Variable width: "
-msgstr "Largura _variável: "
-
-#: ../src/devhelp.ui.h:12
-msgid "_Fixed width:"
-msgstr "Largura _fixa:"
-
-#: ../src/devhelp.ui.h:13
-msgid "Fonts"
-msgstr "Fontes"
-
-#: ../src/dh-app.c:201
+#: ../src/dh-app.c:206
 msgid "translator_credits"
 msgstr ""
 "Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
@@ -268,11 +256,11 @@ msgstr ""
 "Jonh Wendell <wendell@bani.com.br>\n"
 "Rafael Ferreira <rafael.f.f1@gmail.com>"
 
-#: ../src/dh-app.c:211
+#: ../src/dh-app.c:216
 msgid "A developers' help browser for GNOME"
 msgstr "Um navegador de ajuda para desenvolvedores do GNOME"
 
-#: ../src/dh-app.c:219
+#: ../src/dh-app.c:224
 msgid "DevHelp Website"
 msgstr "Site do DevHelp"
 
@@ -285,63 +273,63 @@ msgstr "Devhelp — Assistente"
 msgid "Book:"
 msgstr "Livro:"
 
-#: ../src/dh-book.c:250
+#: ../src/dh-book.c:242
 #, c-format
 msgid "Language: %s"
 msgstr "Idioma: %s"
 
-#: ../src/dh-book.c:251
+#: ../src/dh-book.c:243
 msgid "Language: Undefined"
 msgstr "Idioma: Indefinido"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:272
 msgid "Book"
 msgstr "Livro"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:275
 msgid "Page"
 msgstr "Página"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:291
+#: ../src/dh-link.c:279
 msgid "Keyword"
 msgstr "Palavra-chave"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:296
+#: ../src/dh-link.c:284
 msgid "Function"
 msgstr "Função"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:301
+#: ../src/dh-link.c:289
 msgid "Struct"
 msgstr "Estrutura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:306
+#: ../src/dh-link.c:294
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:311
+#: ../src/dh-link.c:299
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:316
+#: ../src/dh-link.c:304
 msgid "Type"
 msgstr "Tipo"
 
@@ -417,56 +405,87 @@ msgstr ""
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Não é possível descompactar o livro \"%s\": %s"
 
-#. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:531
-msgid "Current"
-msgstr "Atual"
+#: ../src/dh-preferences.ui.h:1
+msgid "Preferences"
+msgstr "Preferências"
 
-#: ../src/dh-sidebar.c:534
-msgid "All Books"
-msgstr "Todos os livros"
+#: ../src/dh-preferences.ui.h:2
+msgid "_Group by language"
+msgstr "A_grupar por idioma"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-preferences.ui.h:3
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: ../src/dh-preferences.ui.h:4
+msgid "Title"
+msgstr "Título"
+
+#: ../src/dh-preferences.ui.h:5
+msgid "Book Shelf"
+msgstr "Estante de livros"
+
+#: ../src/dh-preferences.ui.h:6
+msgid "_Use system fonts"
+msgstr "_Usar fontes do sistema"
+
+#: ../src/dh-preferences.ui.h:7
+msgid "_Variable width: "
+msgstr "Largura _variável: "
+
+#: ../src/dh-preferences.ui.h:8
+msgid "_Fixed width:"
+msgstr "Largura _fixa:"
+
+#: ../src/dh-preferences.ui.h:9
+msgid "Fonts"
+msgstr "Fontes"
+
+#: ../src/dh-window.c:85
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:86
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:87
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:88
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:89
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:90
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:91
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:92
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:95
+#: ../src/dh-window.c:93
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:869
+#: ../src/dh-window.c:863
 msgid "Error opening the requested link."
 msgstr "Erro ao abrir o link requisitado."
 
-#: ../src/dh-window.c:1153 ../src/dh-window.c:1325
+#: ../src/dh-window.c:1108
+msgid "_Close"
+msgstr "_Fechar"
+
+#: ../src/dh-window.c:1136 ../src/dh-window.c:1308
 msgid "Empty Page"
 msgstr "Página vazia"
 
@@ -495,6 +514,10 @@ msgstr "Texto _menor"
 msgid "_Normal Size"
 msgstr "Texto _normal"
 
+#: ../src/dh-window.ui.h:9
+msgid "_About Devhelp"
+msgstr "S_obre o Devhelp"
+
 #: ../src/dh-window.ui.h:11
 msgid "Back"
 msgstr "Retroceder"
@@ -502,6 +525,12 @@ msgstr "Retroceder"
 #: ../src/dh-window.ui.h:12
 msgid "Forward"
 msgstr "Avançar"
+
+#~ msgid "Current"
+#~ msgstr "Atual"
+
+#~ msgid "All Books"
+#~ msgstr "Todos os livros"
 
 #~ msgid "Find:"
 #~ msgstr "Localizar:"
@@ -527,9 +556,6 @@ msgstr "Avançar"
 
 #~ msgid "_Window"
 #~ msgstr "_Janela"
-
-#~ msgid "_Close"
-#~ msgstr "_Fechar"
 
 #~ msgid "_Edit"
 #~ msgstr "_Editar"
