@@ -203,7 +203,7 @@ about_cb (GSimpleAction *action,
                 NULL
         };
         const gchar **documenters = NULL;
-        const gchar  *translator_credits = _("translator_credits");
+        const gchar  *translator_credits = _("translator-credits");
         GtkWindow *parent;
 
         parent = dh_app_peek_first_window (app);
@@ -217,7 +217,7 @@ about_cb (GSimpleAction *action,
                                "authors", authors,
                                "documenters", documenters,
                                "translator-credits",
-                               (strcmp (translator_credits, "translator_credits") != 0 ?
+                               (strcmp (translator_credits, "translator-credits") != 0 ?
                                 translator_credits :
                                 NULL),
                                "website", PACKAGE_URL,
