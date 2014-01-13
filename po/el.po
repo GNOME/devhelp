@@ -7,14 +7,14 @@
 # George Fragos <fragos.george@gmail.com>, 2007.
 # Athanasios Lefteris <alefteris@gmail.com>, 2007, 2009.
 # Michael Kotsarinis <mk73628@gmail.com>, 2011.
-# Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2012, 2013.
+# Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2012, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhel"
 "p&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-11-11 15:47+0000\n"
-"PO-Revision-Date: 2013-11-14 10:55+0300\n"
+"POT-Creation-Date: 2014-01-13 06:28+0000\n"
+"PO-Revision-Date: 2014-01-13 09:58+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
@@ -41,15 +41,16 @@ msgstr ""
 #: ../data/devhelp.appdata.xml.in.h:2
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
-msgstr "Το Devhelp ενσωματώνεται με άλλες εφαρμογές όπως Glade, Anjuta ή Geany."
+msgstr ""
+"Το Devhelp ενσωματώνεται με άλλες εφαρμογές όπως Glade, Anjuta ή Geany."
 
 #: ../data/devhelp.appdata.xml.in.h:3
 msgid ""
 "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
 "target=devhelp.png"
 msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;targ"
-"et=devhelp.png"
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
@@ -144,12 +145,10 @@ msgstr ""
 "Αν τα βιβλία θα πρέπει να ομαδοποιούνται κατά γλώσσα στη διεπαφή χρήστη"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:19
-#| msgid "Whether the main window should start maximized."
 msgid "Whether the assistant window should be maximized"
 msgstr "Εάν το βοηθητικό παράθυρο θα πρέπει να εμφανίζεται μεγιστοποιημένο."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:20
-#| msgid "Whether the main window should start maximized."
 msgid "Whether the assistant window should be maximized."
 msgstr "Εάν το βοηθητικό παράθυρο θα πρέπει να εμφανίζεται μεγιστοποιημένο."
 
@@ -228,27 +227,24 @@ msgstr ""
 "στην οποία βρίσκεται ο δρομέας"
 
 #: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
-#| msgid "New window"
 msgid "New _Window"
 msgstr "Νέο _παράθυρο"
 
 #: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:8
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "Π_ροτιμήσεις"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/dh-window.ui.h:9
-#| msgid "About Devhelp"
-msgid "_About Devhelp"
-msgstr "_Περί DevHelp"
+#: ../src/devhelp-menu.ui.h:3
+msgid "_About"
+msgstr "_Περί"
 
 #: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
-#| msgid "Quit"
 msgid "_Quit"
 msgstr "Έ_ξοδος"
 
 #: ../src/dh-app.c:206
-msgid "translator_credits"
+#| msgid "translator_credits"
+msgid "translator-credits"
 msgstr ""
 "Δημήτρης Σπίγγος <dmtrs32@gmail.com>\n"
 "Kostas Papadimas <pkst@gmx.net>\n"
@@ -502,19 +498,20 @@ msgid "_Find"
 msgstr "_Εύρεση"
 
 #: ../src/dh-window.ui.h:4
-#| msgid "_Larger text"
 msgid "_Larger Text"
 msgstr "_Μεγαλύτερο κείμενο"
 
 #: ../src/dh-window.ui.h:5
-#| msgid "S_maller text"
 msgid "S_maller Text"
 msgstr "Μικ_ρότερο κείμενο"
 
 #: ../src/dh-window.ui.h:6
-#| msgid "_Normal size"
 msgid "_Normal Size"
 msgstr "_Κανονικό μέγεθος"
+
+#: ../src/dh-window.ui.h:9
+msgid "_About Devhelp"
+msgstr "_Περί DevHelp"
 
 #: ../src/dh-window.ui.h:11
 msgid "Back"
