@@ -4,15 +4,15 @@
 # Spanish/Spain translation of devhelp.
 # Copyright (C) 2001,2003, 2004, 2006, 2007, 2008 Free Software Foundation, Inc.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2009, 2010, 2011.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-28 02:19+0000\n"
-"PO-Revision-Date: 2013-12-30 11:18+0100\n"
+"POT-Creation-Date: 2014-01-13 06:28+0000\n"
+"PO-Revision-Date: 2014-01-13 13:36+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -229,7 +229,6 @@ msgid "_Preferences"
 msgstr "Prefere_ncias"
 
 #: ../src/devhelp-menu.ui.h:3
-#| msgid "_About Devhelp"
 msgid "_About"
 msgstr "_Acerca de"
 
@@ -238,8 +237,10 @@ msgid "_Quit"
 msgstr "_Salir"
 
 #: ../src/dh-app.c:206
-msgid "translator_credits"
+#| msgid "translator_credits"
+msgid "translator-credits"
 msgstr ""
+"Daniel Mustieles <daniel.mustieles@gmail.com>, 2014\n"
 "Jorge González <jorgegonz@svn.gnome.org>, 2007-2009\n"
 "Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006"
 
