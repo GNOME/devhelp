@@ -1,4 +1,24 @@
 ==============
+Version 3.11.4
+==============
+
+Fixed bugs:
+
+ - #712183, about devhelp, wrong URL
+ - #720167, App menu: standardize Help/About/Quit
+ - #720948, Add "sidebar" style class to the sidebar
+
+Updated translations: ca, ca@valencia, cs, el, es, gl, he, it, pt_BR,
+sl, zh_CN
+
+Many thanks to all contributors: Gil Forcada, Dimitris Spingos, Carles
+Ferrando, Rafael Ferreira, Ignacio Casal Quinteiro, Fran Diéguez, Milo
+Casagrande, Matej Urbančič, Sphinx Jiang, Bastien Nocera, Daniel
+Mustieles, Yosef Or Boczko, Michael Catanzaro, Marek Černocký, Piotr
+Drąg, Pierre-Yves Luyten, Aleksander Morgado
+
+
+==============
 Version 3.10.2
 ==============
 
