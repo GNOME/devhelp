@@ -1,13 +1,41 @@
-Devhelp information
-===================
+How to compile newest version of devhelp in Ubuntu 13.10 64-bit using devhelp sources on github
+================================================================================================
 
-The following packages are required to compile Devhelp:
 
-glib 2.10.0 (or greater)
-gtk+ 2.10.0 (or greater)
-libwnck 2.10.0 (or greater, only for X11 build)
-gconf 2.6.0 (or greater, only for X11 build)
-webkit
+sudo apt-get update
+
+sudo apt-get remove devhelp
+
+sudo apt-get install gnome-common libwebkit2gtk-3.0-dev cdbs dh-translations gnome-pkg-tools libpython3-dev libpython3.3-dev libwebkit2gtk-3.0-dev libwebkit2gtk-3.0-25  python-scour python3-dev python3.3-dev libgconfmm-2.6-dev
+
+sudo add-apt-repository ppa:gnome3-team/gnome3
+
+sudo apt-get update
+
+sudo apt-get build-dep devhelp
+
+git clone https://github.com/GNOME/devhelp.git
+
+cd devhelp
+
+./autogen.sh
+
+sudo make
+
+sudo make install
+
+Close all Terminal windows.
+
+Open new Terminal window.
+
+Check version of devhelp using this command:
+
+devhelp -v
+
+
+
+Devhelp extra information
+===========================
 
 Devhelp's primary goal is to be an API documentation browser for
 GNOME. When you build (or install) a GNOME library, it will build an
