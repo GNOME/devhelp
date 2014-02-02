@@ -24,6 +24,10 @@
 #include <zlib.h>
 #include <glib/gi18n-lib.h>
 
+#ifdef HAVE_DOCSET
+#include <docset.h>
+#endif
+
 #include "dh-error.h"
 #include "dh-link.h"
 #include "dh-parser.h"
@@ -529,14 +533,14 @@ parser_read_gz_file (DhParser     *parser,
 	return TRUE;
 }
 
-gboolean
-dh_parser_read_file (const gchar  *path,
-                     gchar       **book_title,
-                     gchar       **book_name,
-                     gchar       **book_language,
-		     GNode       **book_tree,
-		     GList       **keywords,
-		     GError      **error)
+static gboolean
+parser_read_devhelp_file (const gchar  *path,
+                          gchar       **book_title,
+                          gchar       **book_name,
+                          gchar       **book_language,
+                          GNode       **book_tree,
+                          GList       **keywords,
+                          GError      **error)
 {
 	DhParser   *parser;
         gboolean    gz;
@@ -626,4 +630,161 @@ dh_parser_read_file (const gchar  *path,
 	dh_parser_free (parser);
 
 	return result;
+}
+
+#ifdef HAVE_DOCSET
+
+static DhLinkType
+convert_entry_type (DocSetEntryType type)
+{
+        switch (type) {
+        case DOCSET_TYPE_FUNCTION:
+                return DH_LINK_TYPE_FUNCTION;
+        case DOCSET_TYPE_STRUCT:
+        case DOCSET_TYPE_CLASS:
+                return DH_LINK_TYPE_STRUCT;
+        case DOCSET_TYPE_MACRO:
+                return DH_LINK_TYPE_MACRO;
+        case DOCSET_TYPE_ENUM:
+                return DH_LINK_TYPE_ENUM;
+        case DOCSET_TYPE_GUIDE:
+        case DOCSET_TYPE_SECTION:
+        case DOCSET_TYPE_PACKAGE:
+        case DOCSET_TYPE_LIBRARY:
+        case DOCSET_TYPE_MODULE:
+                return DH_LINK_TYPE_PAGE;
+        default:
+                return DH_LINK_TYPE_KEYWORD;
+        }
+}
+
+static void
+set_docset_error (void       *ctx,
+                  const char *message)
+{
+        GError **error = (GError **)ctx;
+        g_set_error (error,
+                     DH_ERROR,
+                     DH_ERROR_INTERNAL_ERROR,
+                     _("Cannot open docset bundle: %s"),
+                     message);
+}
+
+static gboolean
+parser_read_docset_bundle (const char     *path,
+                           gchar         **book_title,
+                           gchar         **book_name,
+                           gchar         **book_language,
+                           GNode         **book_tree,
+                           GList         **keywords,
+                           GError        **error)
+{
+        DocSet         *docset;
+        DocSetCursor   *cursor;
+        DocSetEntry    *entry;
+        DocSetEntryType entry_type;
+        gchar          *base;
+        DhLink         *link;
+        DhLink         *book_link;
+        DhLinkType      link_type;
+        GNode          *node;
+        const char     *name;
+        gboolean        result = TRUE;
+
+        docset = docset_open (path);
+        if (!docset) {
+                set_docset_error (error, path);
+                return FALSE;
+        }
+
+        docset_set_error_handler (docset, set_docset_error, error);
+
+        cursor = docset_list_entries (docset);
+
+        if (!cursor) {
+                result = FALSE;
+                goto exit;
+        }
+
+        *book_title    = g_strdup (docset_name (docset));
+        *book_name     = g_strdup (docset_name (docset));
+        *book_language = g_strdup (docset_platform_family (docset));
+
+        base = g_strdup_printf ("%s/Contents/Resources/Documents",
+                                path);
+
+        book_link = dh_link_new (DH_LINK_TYPE_BOOK,
+                                 base,
+                                 *book_name,
+                                 *book_title,
+                                 NULL,
+                                 NULL,
+                                 path);
+
+        *book_tree = g_node_new (dh_link_ref (book_link));
+
+        *keywords = g_list_prepend (*keywords, dh_link_ref (book_link));
+        g_free (base);
+
+        while (docset_cursor_step (cursor)) {
+                entry = docset_cursor_entry (cursor);
+                entry_type = docset_entry_type (entry);
+                link_type  = convert_entry_type (entry_type);
+                name = docset_entry_name (entry);
+
+                link = dh_link_new (link_type,
+                                    NULL,
+                                    NULL,
+                                    name,
+                                    book_link,
+                                    book_link,
+                                    docset_entry_path (entry));
+
+                *keywords = g_list_prepend (*keywords, dh_link_ref (link));
+
+                if (link_type == DH_LINK_TYPE_PAGE) {
+                        node = g_node_new (dh_link_ref (link));
+                        g_node_prepend (*book_tree, node);
+                }
+
+                dh_link_unref (link);
+        }
+
+        g_node_reverse_children (*book_tree);
+        dh_link_unref (book_link);
+        docset_cursor_dispose (cursor);
+exit:
+        docset_close (docset);
+        return result;
+}
+
+#endif
+
+gboolean
+dh_parser_read_file (const gchar  *path,
+                     gchar       **book_title,
+                     gchar       **book_name,
+                     gchar       **book_language,
+                     GNode       **book_tree,
+                     GList       **keywords,
+                     GError      **error)
+{
+#ifdef HAVE_DOCSET
+        if (g_str_has_suffix(path, ".docset")) {
+                return parser_read_docset_bundle (path,
+                                                  book_title,
+                                                  book_name,
+                                                  book_language,
+                                                  book_tree,
+                                                  keywords,
+                                                  error);
+        }
+#endif
+        return parser_read_devhelp_file (path,
+                                         book_title,
+                                         book_name,
+                                         book_language,
+                                         book_tree,
+                                         keywords,
+                                         error);
 }

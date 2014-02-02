@@ -60,7 +60,16 @@ PKG_CHECK_MODULES(LIBDEVHELP, [
   webkit2gtk-3.0 >= 2.0.0
 ])
 
-AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)
+PKG_CHECK_MODULES(LIBDOCSET,
+  [libdocset >= 0.1.0],
+  [AC_DEFINE([HAVE_DOCSET], [1], [Use docset])],
+  []
+)
+
+AC_ARG_WITH([zlib],
+  AS_HELP_STRING([--with-zlib=DIR], [use zlib in DIR]),
+  [zlibdir=$with_zlib])
+
 have_zlib=no
 if test "x$zlibdir" != x; then
     ZLIB_CPPFLAGS=-I$zlibdir/include

@@ -98,11 +98,13 @@ libdevhelp_3_la_CPPFLAGS =				\
 	$(ZLIB_CPPFLAGS)
 
 libdevhelp_3_la_CFLAGS =				\
-	$(LIBDEVHELP_CFLAGS)
+	$(LIBDEVHELP_CFLAGS)                            \
+	$(LIBDOCSET_CFLAGS)
 
 libdevhelp_3_la_LIBADD =				\
 	$(LIBDEVHELP_LIBS)				\
 	$(ZLIB_LIBS)					\
+	$(LIBDOCSET_LIBS)                               \
 	$(LIBM)
 
 libdevhelp_3_la_LDFLAGS =				\
