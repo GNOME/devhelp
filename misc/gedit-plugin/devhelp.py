@@ -21,24 +21,32 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-from gi.repository import GObject, Gtk, Gedit
+from gi.repository import GObject, Gio, Gtk, Gedit
 import os
 import gettext
 
-ui_str = """
-<ui>
-  <menubar name="MenuBar">
-    <menu name="ToolsMenu" action="Tools">
-      <placeholder name="ToolsOps_5">
-        <menuitem name="Devhelp" action="Devhelp"/>
-      </placeholder>
-    </menu>
-  </menubar>
-</ui>
-"""
+class DevhelpAppActivatable(GObject.Object, Gedit.AppActivatable):
 
-class DevhelpPlugin(GObject.Object, Gedit.WindowActivatable):
-    __gtype_name__ = "DevhelpPlugin"
+    app = GObject.property(type=Gedit.App)
+
+    def __init__(self):
+        GObject.Object.__init__(self)
+ 
+    def do_activate(self):
+        self.app.add_accelerator("F2", "win.devhelp", None)
+
+        # Translate actions below, hardcoding domain here to avoid complications now
+        _ = lambda s: gettext.dgettext('devhelp', s)
+
+        self.menu_ext = self.extend_menu("tools-section")
+        item = Gio.MenuItem.new(_("Show API Documentation"), "win.devhelp")
+        self.menu_ext.prepend_menu_item(item)
+
+    def do_deactivate(self):
+        self.app.remove_accelerator("win.devhelp", None)
+        self.menu_ext = None
+
+class DevhelpWindowActivatable(GObject.Object, Gedit.WindowActivatable):
 
     window = GObject.property(type=Gedit.Window)
 
@@ -46,33 +54,15 @@ class DevhelpPlugin(GObject.Object, Gedit.WindowActivatable):
         GObject.Object.__init__(self)
 
     def do_activate(self):
-        self._insert_menu()
+        action = Gio.SimpleAction(name="devhelp")
+        action.connect('activate', lambda a, p: self.do_devhelp(self.window.get_active_document()))
+        self.window.add_action(action)
 
     def do_deactivate(self):
-        self._remove_menu()
+        self.window.remove_action("devhelp")
 
-    def _remove_menu(self):
-        manager = self.window.get_ui_manager()
-        manager.remove_ui(self._ui_id)
-        manager.remove_action_group(self._action_group)
-        self._action_group = None
-        manager.ensure_update()
-
-    def _insert_menu(self):
-        manager = self.window.get_ui_manager()
-
-        # Translate actions below, hardcoding domain here to avoid complications now
-        _ = lambda s: gettext.dgettext('devhelp', s)
-
-        self._action_group = Gtk.ActionGroup(name="GeditDevhelpPluginActions")
-        self._action_group.add_actions([('Devhelp', None,
-                                         _('Show API Documentation'),
-                                         'F2',
-                                         _('Show API Documentation for the word at the cursor'),
-                                         lambda a, w: self.do_devhelp(w.get_active_document()))],
-                                         self.window)
-        manager.insert_action_group(self._action_group, -1)
-        self._ui_id = manager.add_ui_from_string(ui_str)
+    def do_update_state(self):
+        self.window.lookup_action("devhelp").set_enabled(self.window.get_active_document() is not None)
 
     def _is_word_separator(self, c):
         return not (c.isalnum() or c == '_')
@@ -111,3 +101,5 @@ class DevhelpPlugin(GObject.Object, Gedit.WindowActivatable):
             if text:
                 # FIXME: We need a dbus interface for devhelp soon...
                 os.spawnlp(os.P_NOWAIT, 'devhelp', 'devhelp', '-s', text)
+
+# ex:ts=4:et:
