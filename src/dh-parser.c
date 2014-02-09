@@ -165,7 +165,6 @@ parser_start_node_book (DhParser             *parser,
                             NULL,
                             uri);
         g_free (base);
-
         *parser->keywords = g_list_prepend (*parser->keywords, dh_link_ref (link));
 
         parser->book_node = g_node_new (dh_link_ref (link));
@@ -596,25 +595,23 @@ dh_parser_read_file (const gchar  *path,
                         GIOStatus io_status;
                         gsize     bytes_read;
 
-                        io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
-                                                             &bytes_read, error);
+                        do {
+                                io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
+                                                                     &bytes_read, error);
+                        } while (io_status == G_IO_STATUS_AGAIN);
+
                         if (io_status == G_IO_STATUS_ERROR) {
                                 result = FALSE;
                                 goto exit;
                         }
-                        if (io_status != G_IO_STATUS_NORMAL) {
+                        if (io_status == G_IO_STATUS_EOF || io_status == G_IO_STATUS_ERROR) {
                                 break;
                         }
-
                         g_markup_parse_context_parse (parser->context, buf,
                                                       bytes_read, error);
                         if (error != NULL && *error != NULL) {
                                 result = FALSE;
                                 goto exit;
-                        }
-
-                        if (bytes_read < BYTES_PER_READ) {
-                                break;
                         }
                 }
         }
