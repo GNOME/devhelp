@@ -396,7 +396,7 @@ msgstr "400%"
 #: ../src/dh-window.c:740
 msgid "translator_credits"
 msgstr ""
-"Yuriy Syrota <rasta@cvs.gnome.org>\n"
+"_Yuriy Syrota <rasta@cvs.gnome.org>\n"
 "Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Daniel Korostil <ted.korostiled@gmail.com>"
 
