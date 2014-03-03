@@ -1,3 +1,22 @@
+===============
+Version 3.11.91
+===============
+
+Fixed bugs:
+
+ - #696573, search toggle buttons
+ - #723225, License text contains obsolete FSF postal address
+ - #723933, Don't assume we can always read BYTES_PER_READ
+
+Updated translations: as, fi, gl, hu, it, lt, nb, pt_BR, uk, zh_HK,
+zh_TW
+
+Many thanks to all contributors: Balázs Úr, Jiri Grönroos, Daniel
+Mustieles, William Jon McCann, Ignacio Casal Quinteiro, Rafael Ferreira,
+ngoswami, Fran Diéguez, Milo Casagrande, Aurimas Černius, Kjartan Maraas,
+Daniel Korostil, Chao-Hsiung Liao
+
+
 ==============
 Version 3.11.4
 ==============
