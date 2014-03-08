@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-11-14 08:56+0000\n"
-"PO-Revision-Date: 2013-11-30 23:19+0800\n"
+"POT-Creation-Date: 2014-03-08 04:14+0000\n"
+"PO-Revision-Date: 2014-03-08 21:00+0800\n"
 "Last-Translator: Sphinx Jiang <yishanj13@gmail.com>\n"
 "Language-Team: Chinese Simplified <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -52,8 +52,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:214 ../src/dh-app.c:400
-#: ../src/dh-window.c:647
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:398
+#: ../src/dh-window.c:645
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -213,14 +213,11 @@ msgstr "Devhelp 支持"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "使用 F2 为光标处单词启动 Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.py:69
+#: ../misc/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "显示 API 文档"
 
-#: ../misc/gedit-plugin/devhelp.py:71
-msgid "Show API Documentation for the word at the cursor"
-msgstr "显示光标处单词的 API 文档"
-
+#. ex:ts=4:et:
 #: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
 msgid "New _Window"
 msgstr "新建窗口(_W)"
@@ -229,16 +226,18 @@ msgstr "新建窗口(_W)"
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
-msgstr "关于 Devhelp(_A)"
+#: ../src/devhelp-menu.ui.h:3
+#| msgid "_About Devhelp"
+msgid "_About"
+msgstr "关于(_A)"
 
 #: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: ../src/dh-app.c:206
-msgid "translator_credits"
+#: ../src/dh-app.c:204
+#| msgid "translator_credits"
+msgid "translator-credits"
 msgstr ""
 "Zipeco <Zipeco@btamail.net.cn>, 2002\n"
 "Funda Wang <fundawang@linux.net.cn>, 2004\n"
@@ -247,13 +246,14 @@ msgstr ""
 "Richard Ma <richard.ma.19850509@gmail.com>, 2009\n"
 "Tao Wang <dancefire@gmail.com>, 2010\n"
 "Aron Xu <aronxu@gnome.org>, 2010\n"
-"Cheng Lu <chenglu1990@gmail.com>, 2012"
+"Cheng Lu <chenglu1990@gmail.com>, 2012\n"
+"Sphinx Jiang <yishanj13@gmail.com>, 2013"
 
-#: ../src/dh-app.c:216
+#: ../src/dh-app.c:214
 msgid "A developers' help browser for GNOME"
 msgstr "GNOME 开发者帮助浏览器"
 
-#: ../src/dh-app.c:224
+#: ../src/dh-app.c:222
 msgid "DevHelp Website"
 msgstr "DevHelp 网站"
 
@@ -266,126 +266,126 @@ msgstr "Devhelp - 助手"
 msgid "Book:"
 msgstr "书籍："
 
-#: ../src/dh-book.c:242
+#: ../src/dh-book.c:240
 #, c-format
 msgid "Language: %s"
 msgstr "语言：%s"
 
-#: ../src/dh-book.c:243
+#: ../src/dh-book.c:241
 msgid "Language: Undefined"
 msgstr "语言：未定义"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:270
 msgid "Book"
 msgstr "书籍"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:275
+#: ../src/dh-link.c:273
 msgid "Page"
 msgstr "页面"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:277
 msgid "Keyword"
 msgstr "关键词"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:282
 msgid "Function"
 msgstr "函数"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:287
 msgid "Struct"
 msgstr "结构体"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:292
 msgid "Macro"
 msgstr "宏"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:297
 msgid "Enum"
 msgstr "枚举"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:304
+#: ../src/dh-link.c:302
 msgid "Type"
 msgstr "类型"
 
-#: ../src/dh-main.c:43
+#: ../src/dh-main.c:41
 msgid "Opens a new Devhelp window"
 msgstr "打开新的 Devhelp 窗口"
 
-#: ../src/dh-main.c:48
+#: ../src/dh-main.c:46
 msgid "Search for a keyword"
 msgstr "搜索一个关键词"
 
-#: ../src/dh-main.c:49 ../src/dh-main.c:54
+#: ../src/dh-main.c:47 ../src/dh-main.c:52
 msgid "KEYWORD"
 msgstr "关键字"
 
-#: ../src/dh-main.c:53
+#: ../src/dh-main.c:51
 msgid "Search and display any hit in the assistant window"
 msgstr "在辅助窗口中搜索并显示任何命中内容"
 
-#: ../src/dh-main.c:58
+#: ../src/dh-main.c:56
 msgid "Display the version and exit"
 msgstr "显示版本后退出"
 
-#: ../src/dh-main.c:63
+#: ../src/dh-main.c:61
 msgid "Quit any running Devhelp"
 msgstr "退出正在运行的 Devhelp"
 
-#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
-#: ../src/dh-parser.c:273
+#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
+#: ../src/dh-parser.c:270
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "需要“%s”但得到“%s”(第%d行，第%d列)"
 
-#: ../src/dh-parser.c:114
+#: ../src/dh-parser.c:112
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "非法命名空间“%s”(第%d行，第%d列)"
 
-#: ../src/dh-parser.c:143
+#: ../src/dh-parser.c:141
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr "在第%d行，第%d列，需要指定元素“title”，“name”，和“link”"
 
-#: ../src/dh-parser.c:218
+#: ../src/dh-parser.c:215
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
 "%d"
 msgstr "在<sub>内第%d行，第%d列，需要指定元素“name”和“link”"
 
-#: ../src/dh-parser.c:298
+#: ../src/dh-parser.c:295
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr "在“%s”内第%d行，第%d列，需要指定元素“name”和“link”"
 
-#: ../src/dh-parser.c:311
+#: ../src/dh-parser.c:308
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "在 <keyword> 内第%d行，第%d列，需要指定元素“name”和“link”"
 
-#: ../src/dh-parser.c:514
+#: ../src/dh-parser.c:511
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "无法解压缩书籍“%s”：%s"
@@ -426,51 +426,51 @@ msgstr "等宽字体(_F)："
 msgid "Fonts"
 msgstr "字体"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:83
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:84
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:85
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:86
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:87
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:88
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:89
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:90
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:91
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:863
+#: ../src/dh-window.c:861
 msgid "Error opening the requested link."
 msgstr "在打开需要的链接时出错。"
 
-#: ../src/dh-window.c:1108
+#: ../src/dh-window.c:1106
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: ../src/dh-window.c:1136 ../src/dh-window.c:1308
+#: ../src/dh-window.c:1134 ../src/dh-window.c:1306
 msgid "Empty Page"
 msgstr "空白页"
 
@@ -498,6 +498,10 @@ msgstr "缩小文本(_M)"
 msgid "_Normal Size"
 msgstr "正常大小(_N)"
 
+#: ../src/dh-window.ui.h:9
+msgid "_About Devhelp"
+msgstr "关于 Devhelp(_A)"
+
 #: ../src/dh-window.ui.h:11
 msgid "Back"
 msgstr "后退"
@@ -505,6 +509,9 @@ msgstr "后退"
 #: ../src/dh-window.ui.h:12
 msgid "Forward"
 msgstr "前进"
+
+#~ msgid "Show API Documentation for the word at the cursor"
+#~ msgstr "显示光标处单词的 API 文档"
 
 #~ msgid "Current"
 #~ msgstr "当前"
