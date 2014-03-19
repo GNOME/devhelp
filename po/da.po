@@ -1,10 +1,10 @@
 # Danish translation of DevHelp.
-# Copyright (C) 2001-2013 Free Software Foundation, Inc.
+# Copyright (C) 2001-2014 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 #
 # Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08, 09, 10, 12, 13.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08, 09, 10, 12, 13, 14.
 #
 # Konventioner
 # ------------
@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 18:27+0200\n"
-"PO-Revision-Date: 2013-09-16 22:04+0200\n"
+"POT-Creation-Date: 2014-03-19 22:28+0100\n"
+"PO-Revision-Date: 2014-03-15 14:08+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -25,10 +25,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../data/devhelp.appdata.xml.in.h:1
+msgid ""
+"Devhelp is an API documentation browser. It provides an easy way to navigate "
+"through libraries, search by function, struct, or macro. It provides a "
+"tabbed interface and allows to print results."
+msgstr ""
+"Devhelp er en program til at vise applikationsprogrammeringsgrænseflader "
+"(API). Det har en nem måde at navigere mellem biblioteker, søgning efter "
+"funktion, struct eller makro. Det tilbyder en grænseflade med faneblade og "
+"tillader udskrift af resultater."
+
+#: ../data/devhelp.appdata.xml.in.h:2
+msgid ""
+"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+msgstr "Devhelp integrerer med andre programmer såsom Glade, Anjuta og Geany."
+
+#: ../data/devhelp.appdata.xml.in.h:3
+msgid ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
+msgstr ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
+
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:209 ../src/dh-app.c:395
-#: ../src/dh-window.c:648
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:398
+#: ../src/dh-window.c:645
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -189,68 +213,29 @@ msgstr "Hjælp til Devhelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Får F2 til at starte Devhelp for ordet ved markøren"
 
-#: ../misc/gedit-plugin/devhelp.py:69
+#: ../misc/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "Vis API-dokumentation"
 
-#: ../misc/gedit-plugin/devhelp.py:71
-msgid "Show API Documentation for the word at the cursor"
-msgstr "Vis API-dokumentation for ordet ved markøren"
-
-#: ../src/devhelp-menu.ui.h:1 ../src/devhelp.ui.h:1 ../src/dh-window.ui.h:7
+#. ex:ts=4:et:
+#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
 msgid "New _Window"
 msgstr "Nyt _vindue"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/devhelp.ui.h:2 ../src/dh-window.ui.h:8
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:8
 msgid "_Preferences"
 msgstr "_Indstillinger"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/devhelp.ui.h:3 ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
-msgstr "_Om Devhelp"
+#: ../src/devhelp-menu.ui.h:3
+msgid "_About"
+msgstr "_Om"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/devhelp.ui.h:4 ../src/dh-window.ui.h:10
+#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
 msgid "_Quit"
 msgstr "_Afslut"
 
-#: ../src/devhelp.ui.h:5
-msgid "Preferences"
-msgstr "Indstillinger"
-
-#: ../src/devhelp.ui.h:6
-msgid "_Group by language"
-msgstr "_Gruppér efter sprog"
-
-#: ../src/devhelp.ui.h:7
-msgid "Enabled"
-msgstr "Aktiveret"
-
-#: ../src/devhelp.ui.h:8
-msgid "Title"
-msgstr "Titel"
-
-#: ../src/devhelp.ui.h:9
-msgid "Book Shelf"
-msgstr "Boghylde"
-
-#: ../src/devhelp.ui.h:10
-msgid "_Use system fonts"
-msgstr "_Brug systemskrifttype"
-
-#: ../src/devhelp.ui.h:11
-msgid "_Variable width: "
-msgstr "_Variabel bredde: "
-
-#: ../src/devhelp.ui.h:12
-msgid "_Fixed width:"
-msgstr "_Fast bredde:"
-
-#: ../src/devhelp.ui.h:13
-msgid "Fonts"
-msgstr "Skifttyper"
-
-#: ../src/dh-app.c:201
-msgid "translator_credits"
+#: ../src/dh-app.c:204
+msgid "translator-credits"
 msgstr ""
 "Ole Laursen\n"
 "Martin Willemoes Hansen\n"
@@ -259,11 +244,11 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/dh-app.c:211
+#: ../src/dh-app.c:214
 msgid "A developers' help browser for GNOME"
 msgstr "En hjælpefremviser for udviklere til GNOME"
 
-#: ../src/dh-app.c:219
+#: ../src/dh-app.c:222
 msgid "DevHelp Website"
 msgstr "Hjemmeside for Devhelp"
 
@@ -276,109 +261,109 @@ msgstr "Devhelp — Udviklerhjælp"
 msgid "Book:"
 msgstr "Bog:"
 
-#: ../src/dh-book.c:250
+#: ../src/dh-book.c:240
 #, c-format
 msgid "Language: %s"
 msgstr "Sprog: %s"
 
-#: ../src/dh-book.c:251
+#: ../src/dh-book.c:241
 msgid "Language: Undefined"
 msgstr "Sprog: udefineret"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:270
 msgid "Book"
 msgstr "Bog"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:275
+#: ../src/dh-link.c:273
 msgid "Page"
 msgstr "Side"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:277
 msgid "Keyword"
 msgstr "Nøgleord"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:282
 msgid "Function"
 msgstr "Funktion"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:287
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:292
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:297
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:304
+#: ../src/dh-link.c:302
 msgid "Type"
 msgstr "Type"
 
-#: ../src/dh-main.c:43
+#: ../src/dh-main.c:41
 msgid "Opens a new Devhelp window"
 msgstr "Åbner et nyt Devhelp-vindue"
 
-#: ../src/dh-main.c:48
+#: ../src/dh-main.c:46
 msgid "Search for a keyword"
 msgstr "Søg efter et nøgleord"
 
-#: ../src/dh-main.c:49 ../src/dh-main.c:54
+#: ../src/dh-main.c:47 ../src/dh-main.c:52
 msgid "KEYWORD"
 msgstr "NØGLEORD"
 
-#: ../src/dh-main.c:53
+#: ../src/dh-main.c:51
 msgid "Search and display any hit in the assistant window"
 msgstr "Søg og vis resultater i hjælpervinduet"
 
-#: ../src/dh-main.c:58
+#: ../src/dh-main.c:56
 msgid "Display the version and exit"
 msgstr "Vis versionsnummeret og afslut"
 
-#: ../src/dh-main.c:63
+#: ../src/dh-main.c:61
 msgid "Quit any running Devhelp"
 msgstr "Afslut enhver kørende Devhelp"
 
-#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
-#: ../src/dh-parser.c:273
+#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
+#: ../src/dh-parser.c:270
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Forventede \"%s\", modtog \"%s\" ved linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:114
+#: ../src/dh-parser.c:112
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Ugyldigt navnerum \"%s\" ved linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:143
+#: ../src/dh-parser.c:141
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
 "\"title\"-, \"name\"- og \"link\"-elementer kræves ved linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:218
+#: ../src/dh-parser.c:215
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -386,7 +371,7 @@ msgid ""
 msgstr ""
 "\"name\"- og \"link\"-elementer kræves inden i <sub> ved linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:298
+#: ../src/dh-parser.c:295
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
@@ -394,66 +379,97 @@ msgstr ""
 "\"name\"- og \"link\"-elementer kræves inden i \"%s\" ved linje %d, kolonne "
 "%d"
 
-#: ../src/dh-parser.c:311
+#: ../src/dh-parser.c:308
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "Et \"type\"-element kræves inden i <keyword> ved linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:514
+#: ../src/dh-parser.c:511
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan ikke udpakke bogen \"%s\": %s"
 
-#. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:531
-msgid "Current"
-msgstr "Nuværende"
+#: ../src/dh-preferences.ui.h:1
+msgid "Preferences"
+msgstr "Indstillinger"
 
-#: ../src/dh-sidebar.c:534
-msgid "All Books"
-msgstr "Alle bøger"
+#: ../src/dh-preferences.ui.h:2
+msgid "_Group by language"
+msgstr "_Gruppér efter sprog"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-preferences.ui.h:3
+msgid "Enabled"
+msgstr "Aktiveret"
+
+#: ../src/dh-preferences.ui.h:4
+msgid "Title"
+msgstr "Titel"
+
+#: ../src/dh-preferences.ui.h:5
+msgid "Book Shelf"
+msgstr "Boghylde"
+
+#: ../src/dh-preferences.ui.h:6
+msgid "_Use system fonts"
+msgstr "_Brug systemskrifttype"
+
+#: ../src/dh-preferences.ui.h:7
+msgid "_Variable width: "
+msgstr "_Variabel bredde: "
+
+#: ../src/dh-preferences.ui.h:8
+msgid "_Fixed width:"
+msgstr "_Fast bredde:"
+
+#: ../src/dh-preferences.ui.h:9
+msgid "Fonts"
+msgstr "Skifttyper"
+
+#: ../src/dh-window.c:83
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:84
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:85
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:86
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:87
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:88
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:89
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:90
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:91
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:864
+#: ../src/dh-window.c:861
 msgid "Error opening the requested link."
 msgstr "Fejl ved åbning af den forespurgte henvisning."
 
-#: ../src/dh-window.c:1148 ../src/dh-window.c:1320
+#: ../src/dh-window.c:1106
+msgid "_Close"
+msgstr "_Luk"
+
+#: ../src/dh-window.c:1134 ../src/dh-window.c:1306
 msgid "Empty Page"
 msgstr "Tom side"
 
@@ -481,6 +497,10 @@ msgstr "_Mindre tekst"
 msgid "_Normal Size"
 msgstr "_Normal størrelse"
 
+#: ../src/dh-window.ui.h:9
+msgid "_About Devhelp"
+msgstr "_Om Devhelp"
+
 #: ../src/dh-window.ui.h:11
 msgid "Back"
 msgstr "Tilbage"
@@ -488,6 +508,15 @@ msgstr "Tilbage"
 #: ../src/dh-window.ui.h:12
 msgid "Forward"
 msgstr "Fremad"
+
+#~ msgid "Show API Documentation for the word at the cursor"
+#~ msgstr "Vis API-dokumentation for ordet ved markøren"
+
+#~ msgid "Current"
+#~ msgstr "Nuværende"
+
+#~ msgid "All Books"
+#~ msgstr "Alle bøger"
 
 #~ msgid "Find:"
 #~ msgstr "Find:"
@@ -512,9 +541,6 @@ msgstr "Fremad"
 
 #~ msgid "_Window"
 #~ msgstr "_Vindue"
-
-#~ msgid "_Close"
-#~ msgstr "_Luk"
 
 #~ msgid "_Edit"
 #~ msgstr "_Redigér"
@@ -646,9 +672,6 @@ msgstr "Fremad"
 #~ msgstr ""
 #~ "Vælg et emne i indholdet til venstre eller skift til søgefanen for at "
 #~ "finde hvad du leder efter."
-
-#~ msgid "_About"
-#~ msgstr "_Om"
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search pane "
