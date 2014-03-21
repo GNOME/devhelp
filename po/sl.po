@@ -2,15 +2,15 @@
 # Copyright (C) 2005-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 #
-# Matej Urbančič <mateju@svn.gnome.org>, 2007-2013.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007-2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-23 15:29+0000\n"
-"PO-Revision-Date: 2013-10-24 21:08+0100\n"
+"POT-Creation-Date: 2014-03-21 16:13+0000\n"
+"PO-Revision-Date: 2014-03-21 22:42+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -44,8 +44,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:214 ../src/dh-app.c:400
-#: ../src/dh-window.c:647
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:398
+#: ../src/dh-window.c:645
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -205,14 +205,11 @@ msgstr "Devhelp podpora"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Tipka F2 prikaže pomoč Devhelp za besedo ob kazalki"
 
-#: ../misc/gedit-plugin/devhelp.py:69
+#: ../misc/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "Pokaži API dokumentacijo"
 
-#: ../misc/gedit-plugin/devhelp.py:71
-msgid "Show API Documentation for the word at the cursor"
-msgstr "Pokaži API dokumentacijo za besedo ob kazalki"
-
+#. ex:ts=4:et:
 #: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
 msgid "New _Window"
 msgstr "Novo _okno"
@@ -221,23 +218,23 @@ msgstr "Novo _okno"
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
+#: ../src/devhelp-menu.ui.h:3
+msgid "_About"
 msgstr "_O programu"
 
 #: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
 msgid "_Quit"
 msgstr "_Končaj"
 
-#: ../src/dh-app.c:206
-msgid "translator_credits"
-msgstr "Matej Urbančič, <mateju@svn.gnome.org>"
+#: ../src/dh-app.c:204
+msgid "translator-credits"
+msgstr "Matej Urbančič"
 
-#: ../src/dh-app.c:216
+#: ../src/dh-app.c:214
 msgid "A developers' help browser for GNOME"
 msgstr "Pregledovalnik pomoči razvijalcem za GNOME"
 
-#: ../src/dh-app.c:224
+#: ../src/dh-app.c:222
 msgid "DevHelp Website"
 msgstr "Spletišče Devhelp"
 
@@ -250,102 +247,102 @@ msgstr "Devhelp - pomočnik"
 msgid "Book:"
 msgstr "Knjiga:"
 
-#: ../src/dh-book.c:242
+#: ../src/dh-book.c:240
 #, c-format
 msgid "Language: %s"
 msgstr "Jezik: %s"
 
-#: ../src/dh-book.c:243
+#: ../src/dh-book.c:241
 msgid "Language: Undefined"
 msgstr "Jezik: nedoločen"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:270
 msgid "Book"
 msgstr "Knjiga"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:275
+#: ../src/dh-link.c:273
 msgid "Page"
 msgstr "Stran"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:277
 msgid "Keyword"
 msgstr "Ključna beseda"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:282
 msgid "Function"
 msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:287
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:292
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:297
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:304
+#: ../src/dh-link.c:302
 msgid "Type"
 msgstr "Vrsta"
 
-#: ../src/dh-main.c:43
+#: ../src/dh-main.c:41
 msgid "Opens a new Devhelp window"
 msgstr "Odpre novo okno Devhelp"
 
-#: ../src/dh-main.c:48
+#: ../src/dh-main.c:46
 msgid "Search for a keyword"
 msgstr "Iskanje ključne besede"
 
-#: ../src/dh-main.c:49 ../src/dh-main.c:54
+#: ../src/dh-main.c:47 ../src/dh-main.c:52
 msgid "KEYWORD"
 msgstr "Ključna beseda"
 
-#: ../src/dh-main.c:53
+#: ../src/dh-main.c:51
 msgid "Search and display any hit in the assistant window"
 msgstr "Poišči in prikaži vse zadetke v oknu pomočnika"
 
-#: ../src/dh-main.c:58
+#: ../src/dh-main.c:56
 msgid "Display the version and exit"
 msgstr "Pokaži pomoč in končaj program"
 
-#: ../src/dh-main.c:63
+#: ../src/dh-main.c:61
 msgid "Quit any running Devhelp"
 msgstr "Končaj zagnani Devhelp"
 
-#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
-#: ../src/dh-parser.c:273
+#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
+#: ../src/dh-parser.c:270
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Pričakovano '%s', vpisano '%s' v vrstici %d, stolpec %d"
 
-#: ../src/dh-parser.c:114
+#: ../src/dh-parser.c:112
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neveljaven imenski prostor '%s' v vrstici %d, stolpec %d"
 
-#: ../src/dh-parser.c:143
+#: ../src/dh-parser.c:141
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
@@ -353,7 +350,7 @@ msgstr ""
 "\"title\" (naslov), \"name\" (ime) in \"link\" (povezava) predmeta so "
 "zahtevani v vrstici %d in stolpcu %d"
 
-#: ../src/dh-parser.c:218
+#: ../src/dh-parser.c:215
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -362,7 +359,7 @@ msgstr ""
 "\"ime\" in \"povezava\" predmeta sta zahtevana znotraj <sub> v vrstici %d in "
 "stolpcu %d"
 
-#: ../src/dh-parser.c:298
+#: ../src/dh-parser.c:295
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
@@ -370,14 +367,14 @@ msgstr ""
 "\"ime\" in\"povezava\" predmeta sta zahtevana znotraj '%s' v vrstici %d in "
 "stolpcu %d"
 
-#: ../src/dh-parser.c:311
+#: ../src/dh-parser.c:308
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "\"vrstni\" element je zahtevan znotraj <ključne besede> v vrstici %d in "
 "stolpcu %d"
 
-#: ../src/dh-parser.c:514
+#: ../src/dh-parser.c:511
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Ni mogoče razširiti knjige '%s': %s"
@@ -418,51 +415,51 @@ msgstr "_Določena širina:"
 msgid "Fonts"
 msgstr "Pisave"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:83
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:84
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:85
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:86
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:87
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:88
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:89
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:90
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:91
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:863
+#: ../src/dh-window.c:861
 msgid "Error opening the requested link."
 msgstr "Napaka med odpiranjem zahtevane povezave."
 
-#: ../src/dh-window.c:1108
+#: ../src/dh-window.c:1106
 msgid "_Close"
 msgstr "_Zapri"
 
-#: ../src/dh-window.c:1136 ../src/dh-window.c:1308
+#: ../src/dh-window.c:1134 ../src/dh-window.c:1306
 msgid "Empty Page"
 msgstr "Prazna stran"
 
@@ -490,6 +487,10 @@ msgstr "_Manjša pisava"
 msgid "_Normal Size"
 msgstr "_Običajna pisava"
 
+#: ../src/dh-window.ui.h:9
+msgid "_About Devhelp"
+msgstr "_O programu"
+
 #: ../src/dh-window.ui.h:11
 msgid "Back"
 msgstr "Nazaj"
@@ -497,6 +498,9 @@ msgstr "Nazaj"
 #: ../src/dh-window.ui.h:12
 msgid "Forward"
 msgstr "Naprej"
+
+#~ msgid "Show API Documentation for the word at the cursor"
+#~ msgstr "Pokaži API dokumentacijo za besedo ob kazalki"
 
 #~ msgid "Current"
 #~ msgstr "Trenutna"
