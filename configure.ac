@@ -55,7 +55,7 @@ PKG_CHECK_MODULES(DEVHELP, [
 ])
 
 PKG_CHECK_MODULES(LIBDEVHELP, [
-  gtk+-3.0 >= 3.9.8
+  gtk+-3.0 >= 3.12.0
   gio-2.0 >= 2.37.3
   webkit2gtk-3.0 >= 2.0.0
 ])
