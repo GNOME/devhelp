@@ -21,6 +21,7 @@
 
 #include "config.h"
 
+#include <stdlib.h>
 #include <glib/gi18n.h>
 
 #include "devhelp.h"
@@ -388,9 +389,84 @@ dh_app_new (void)
 {
         return g_object_new (DH_TYPE_APP,
                              "application-id",   "org.gnome.Devhelp",
-                             "flags",            G_APPLICATION_FLAGS_NONE,
+                             "flags",            G_APPLICATION_HANDLES_COMMAND_LINE,
                              "register-session", TRUE,
                              NULL);
+}
+
+static gboolean  option_version;
+
+static GOptionEntry options[] = {
+        { "new-window", 'n',
+          0, G_OPTION_ARG_NONE, NULL,
+          N_("Opens a new Devhelp window"),
+          NULL
+        },
+        { "search", 's',
+          0, G_OPTION_ARG_STRING, NULL,
+          N_("Search for a keyword"),
+          N_("KEYWORD")
+        },
+        { "search-assistant", 'a',
+          0, G_OPTION_ARG_STRING, NULL,
+          N_("Search and display any hit in the assistant window"),
+          N_("KEYWORD")
+        },
+        { "version", 'v',
+          0, G_OPTION_ARG_NONE, &option_version,
+          N_("Display the version and exit"),
+          NULL
+        },
+        { "quit", 'q',
+          0, G_OPTION_ARG_NONE, NULL,
+          N_("Quit any running Devhelp"),
+          NULL
+        },
+        { NULL }
+};
+
+static gint
+dh_app_handle_local_options (GApplication *app,
+                             GVariantDict *options)
+{
+  if (option_version)
+    {
+      g_print ("%s %s\n", g_get_application_name (), PACKAGE_VERSION);
+      exit (0);
+    }
+
+  return -1;
+}
+
+static gint
+dh_app_command_line (GApplication            *app,
+                     GApplicationCommandLine *command_line)
+{
+        gboolean option_new_window = FALSE;
+        const gchar *option_search = NULL;
+        const gchar *option_search_assistant = NULL;
+        gboolean option_quit = FALSE;
+        GVariantDict *options;
+
+        options = g_application_command_line_get_options_dict (command_line);
+        g_variant_dict_lookup (options, "new-window", "b", &option_new_window);
+        g_variant_dict_lookup (options, "search", "&s", &option_search);
+        g_variant_dict_lookup (options, "search-assistant", "&s", &option_search_assistant);
+        g_variant_dict_lookup (options, "quit", "b", &option_quit);
+
+        if (option_new_window) {
+                dh_app_new_window (DH_APP (app));
+        } else if (option_quit) {
+                dh_app_quit (DH_APP (app));
+        } else if (option_search) {
+                dh_app_search (DH_APP (app), option_search);
+        } else if (option_search_assistant) {
+                dh_app_search_assistant (DH_APP (app), option_search_assistant);
+        } else {
+                dh_app_raise (DH_APP (app));
+        }
+
+        return 0;
 }
 
 static void
@@ -400,6 +476,8 @@ dh_app_init (DhApp *app)
          * for transliteration only) */
         g_set_application_name (_("Devhelp"));
         gtk_window_set_default_icon_name ("devhelp");
+
+        g_application_add_main_option_entries (G_APPLICATION (app), options);
 }
 
 static void
@@ -420,6 +498,8 @@ dh_app_class_init (DhAppClass *klass)
         GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
 
         application_class->startup = dh_app_startup;
+        application_class->handle_local_options = dh_app_handle_local_options;
+        application_class->command_line = dh_app_command_line;
 
         object_class->dispose = dh_app_dispose;
 }

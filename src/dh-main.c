@@ -29,75 +29,10 @@
 #include "devhelp.h"
 #include "dh-app.h"
 
-static gboolean  option_new_window;
-static gchar    *option_search;
-static gchar    *option_search_assistant;
-static gboolean  option_quit;
-static gboolean  option_version;
-
-static GOptionEntry options[] = {
-        { "new-window", 'n',
-          0, G_OPTION_ARG_NONE, &option_new_window,
-          N_("Opens a new Devhelp window"),
-          NULL
-        },
-        { "search", 's',
-          0, G_OPTION_ARG_STRING, &option_search,
-          N_("Search for a keyword"),
-          N_("KEYWORD")
-        },
-        { "search-assistant", 'a',
-          0, G_OPTION_ARG_STRING, &option_search_assistant,
-          N_("Search and display any hit in the assistant window"),
-          N_("KEYWORD")
-        },
-        { "version", 'v',
-          0, G_OPTION_ARG_NONE, &option_version,
-          N_("Display the version and exit"),
-          NULL
-        },
-        { "quit", 'q',
-          0, G_OPTION_ARG_NONE, &option_quit,
-          N_("Quit any running Devhelp"),
-          NULL
-        },
-        { NULL }
-};
-
-static void
-run_action (DhApp *application,
-            gboolean is_remote)
-{
-        if (option_new_window) {
-                if (is_remote)
-                        dh_app_new_window (application);
-        } else if (option_quit) {
-                dh_app_quit (application);
-        } else if (option_search) {
-                dh_app_search (application, option_search);
-        } else if (option_search_assistant) {
-                dh_app_search_assistant (application, option_search_assistant);
-        } else {
-                if (is_remote)
-                        dh_app_raise (application);
-        }
-}
-
-static void
-activate_cb (GtkApplication *application)
-{
-        /* This is the primary instance */
-        dh_app_new_window (DH_APP (application));
-
-        /* Run the requested action from the command line */
-        run_action (DH_APP (application), FALSE);
-}
-
 int
 main (int argc, char **argv)
 {
         DhApp   *application;
-        GError  *error = NULL;
         gint     status;
 
         setlocale (LC_ALL, "");
@@ -105,38 +40,8 @@ main (int argc, char **argv)
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
 
-        if (!gtk_init_with_args (&argc, &argv, NULL, options, GETTEXT_PACKAGE, &error)) {
-                g_printerr ("%s\n", error->message);
-                return EXIT_FAILURE;
-        }
-
-        if (option_version) {
-                g_print ("%s\n", PACKAGE_STRING);
-                return EXIT_SUCCESS;
-        }
-
         /* Create new DhApp */
         application = dh_app_new ();
-        g_signal_connect (application, "activate", G_CALLBACK (activate_cb), NULL);
-
-        /* Set it as the default application */
-        g_application_set_default (G_APPLICATION (application));
-
-        /* Try to register the application... */
-        if (!g_application_register (G_APPLICATION (application), NULL, &error)) {
-                g_printerr ("Couldn't register Devhelp instance: '%s'\n",
-                            error ? error->message : "");
-                g_object_unref (application);
-                return EXIT_FAILURE;
-        }
-
-        /* Actions on a remote Devhelp already running? */
-        if (g_application_get_is_remote (G_APPLICATION (application))) {
-                /* Run the requested action from the command line */
-                run_action (application, TRUE);
-                g_object_unref (application);
-                return EXIT_SUCCESS;
-        }
 
         /* And run the GtkApplication */
         status = g_application_run (G_APPLICATION (application), argc, argv);
