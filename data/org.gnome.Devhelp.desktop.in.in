@@ -13,3 +13,4 @@ X-GNOME-Bugzilla-Bugzilla=GNOME
 X-GNOME-Bugzilla-Product=devhelp
 X-GNOME-Bugzilla-Component=General
 X-GNOME-Bugzilla-Version=@VERSION@
+DBusActivatable=true

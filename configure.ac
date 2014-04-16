@@ -103,7 +103,7 @@ po/Makefile.in
 src/Makefile
 data/Makefile
 data/libdevhelp-3.0.pc
-data/devhelp.desktop.in
+data/org.gnome.Devhelp.desktop.in
 data/icons/Makefile
 data/dtd/Makefile
 misc/Makefile

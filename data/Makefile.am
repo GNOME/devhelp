@@ -26,8 +26,17 @@ appdata_DATA = $(app_data_files)
 @INTLTOOL_DESKTOP_RULE@
 
 desktopdir = $(datadir)/applications
-desktop_in_files = devhelp.desktop.in
+desktop_in_files = org.gnome.Devhelp.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+
+dbusservicedir = $(datadir)/dbus-1/services
+dbusservice_DATA = org.gnome.Devhelp.service
+
+org.gnome.Devhelp.service: Makefile
+	$(AM_V_GEN) (echo '[D-BUS Service]'; \
+		     echo 'Name=org.gnome.Devhelp'; \
+		     echo 'Exec=${bindir}/devhelp --gapplication-service') > $@.tmp && \
+		     mv $@.tmp $@
 
 EXTRA_DIST =			\
 	libdevhelp-3.0.pc.in    \
@@ -43,4 +52,5 @@ CLEANFILES =			\
 
 DISTCLEANFILES =		\
 	$(desktop_DATA) \
+	$(dbusservice_DATA)	\
 	$(app_data_files)
