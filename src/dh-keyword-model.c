@@ -629,99 +629,95 @@ keyword_model_search (DhKeywordModel  *model,
                       gboolean         case_sensitive,
                       DhLink         **exact_link)
 {
-        guint n_hits_left = MAX_HITS;
-        guint n_hits;
-        GList *in_book_prefixed = NULL;
-        GList *in_book_non_prefixed = NULL;
-        GList *other_books_prefixed = NULL;
-        GList *other_books_non_prefixed = NULL;
+        guint n_hits_left;
+        guint in_book_n_hits = 0;
+        guint other_books_n_hits = 0;
+        GList *in_book = NULL;
+        GList *other_books = NULL;
         DhLink *in_book_exact_link = NULL;
         DhLink *other_books_exact_link = NULL;
+        GList *out = NULL;
 
-        /* If book_id given; first look for items in the given book id */
+        /* If book_id given; first look for prefixed items in the given book id */
         if (book_id) {
-                /* First, look for prefixed items */
-                n_hits = 0;
-                in_book_prefixed = keyword_model_search_books (model,
-                                                               string,
-                                                               keywords,
-                                                               book_id, NULL,
-                                                               page_id,
-                                                               language,
-                                                               case_sensitive,
-                                                               TRUE,
-                                                               n_hits_left,
-                                                               &n_hits,
-                                                               &in_book_exact_link);
-                n_hits_left -= n_hits;
-
-                /* If not enough hits, get non-prefixed ones */
-                if (n_hits_left > 0) {
-                        n_hits = 0;
-                        in_book_non_prefixed = keyword_model_search_books (model,
-                                                                           string,
-                                                                           keywords,
-                                                                           book_id, NULL,
-                                                                           page_id,
-                                                                           language,
-                                                                           case_sensitive,
-                                                                           FALSE,
-                                                                           n_hits_left,
-                                                                           &n_hits,
-                                                                           NULL);
-                        n_hits_left -= n_hits;
-
-                }
+                in_book = keyword_model_search_books (model,
+                                                      string,
+                                                      keywords,
+                                                      book_id, NULL,
+                                                      page_id,
+                                                      language,
+                                                      case_sensitive,
+                                                      TRUE,
+                                                      MAX_HITS,
+                                                      &in_book_n_hits,
+                                                      &in_book_exact_link);
         }
 
-        /* If still room for more items; look for prefixed items in OTHER books */
-        if (n_hits_left > 0) {
-                /* First, look for prefixed items */
-                n_hits = 0;
-                other_books_prefixed = keyword_model_search_books (model,
-                                                                   string,
-                                                                   keywords,
-                                                                   NULL, book_id,
-                                                                   page_id,
-                                                                   language,
-                                                                   case_sensitive,
-                                                                   TRUE,
-                                                                   n_hits_left,
-                                                                   &n_hits,
-                                                                   &other_books_exact_link);
-                n_hits_left -= n_hits;
+        /* Next, always check other books as well, as the exact match may be in there */
+        other_books = keyword_model_search_books (model,
+                                                  string,
+                                                  keywords,
+                                                  NULL, book_id,
+                                                  page_id,
+                                                  language,
+                                                  case_sensitive,
+                                                  TRUE,
+                                                  MAX_HITS,
+                                                  &other_books_n_hits,
+                                                  &other_books_exact_link);
 
-                /* If not enough hits, get non-prefixed ones */
-                if (n_hits_left > 0) {
-                        other_books_non_prefixed = keyword_model_search_books (model,
-                                                                               string,
-                                                                               keywords,
-                                                                               NULL, book_id,
-                                                                               page_id,
-                                                                               language,
-                                                                               case_sensitive,
-                                                                               FALSE,
-                                                                               n_hits_left,
-                                                                               NULL,
-                                                                               NULL);
-                }
-        }
-
-        /* Prefer in-book exact link */
-        if (in_book_exact_link)
+        /* Now that we got prefix searches in current and other books, decide
+         * which the preferred exact link is. If the exact match is in other
+         * books; prefer those to the current book. */
+        if (in_book_exact_link) {
                 *exact_link = in_book_exact_link;
-        else if (other_books_exact_link)
+                out = g_list_concat (in_book, other_books);
+        } else if (other_books_exact_link) {
                 *exact_link = other_books_exact_link;
-        else
+                out = g_list_concat (other_books, in_book);
+        } else {
                 *exact_link = NULL;
+                out = g_list_concat (in_book, other_books);
+        }
 
-        /* Build resulting list */
-        return (g_list_concat (
-                        g_list_concat (
-                                g_list_concat (in_book_prefixed,
-                                               in_book_non_prefixed),
-                                other_books_prefixed),
-                        other_books_non_prefixed));
+        /* If we already have more than MAX_HITS, don't look for any more */
+        if (in_book_n_hits + other_books_n_hits >= MAX_HITS)
+                return out;
+        n_hits_left = MAX_HITS - in_book_n_hits - other_books_n_hits;
+
+        /* Look for non-prefixed matches in current book */
+        if (book_id) {
+                in_book_n_hits = 0;
+                in_book = keyword_model_search_books (model,
+                                                      string,
+                                                      keywords,
+                                                      book_id, NULL,
+                                                      page_id,
+                                                      language,
+                                                      case_sensitive,
+                                                      FALSE,
+                                                      n_hits_left,
+                                                      &in_book_n_hits,
+                                                      NULL);
+                n_hits_left -= in_book_n_hits;
+                out = g_list_concat (out, in_book);
+                if (!n_hits_left)
+                        return out;
+        }
+
+        /* If still room for more items; look for non-prefixed items in other books */
+        other_books = keyword_model_search_books (model,
+                                                  string,
+                                                  keywords,
+                                                  NULL, book_id,
+                                                  page_id,
+                                                  language,
+                                                  case_sensitive,
+                                                  FALSE,
+                                                  n_hits_left,
+                                                  NULL,
+                                                  NULL);
+        return g_list_concat (out, other_books);
 }
 
 /* Process the input search string and extract:
