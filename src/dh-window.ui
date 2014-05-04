@@ -85,6 +85,11 @@
     </section>
     <section>
       <item>
+        <attribute name="label" translatable="yes">_Side pane</attribute>
+        <attribute name="action">win.show-sidebar</attribute>
+        <attribute name="stateful">true</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">_Preferences</attribute>
         <attribute name="action">app.preferences</attribute>
       </item>

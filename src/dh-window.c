@@ -315,6 +315,20 @@ window_update_zoom_actions_state (DhWindow *window)
 }
 
 static void
+show_sidebar_cb (GSimpleAction *action,
+                    GVariant      *parameter,
+                    gpointer       user_data)
+{
+        DhWindow *window = user_data;
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+
+        gboolean visible = !gtk_widget_get_visible (priv->grid_sidebar);
+
+        g_simple_action_set_state (action, g_variant_new_boolean(visible));
+        gtk_widget_set_visible (priv->grid_sidebar, visible);
+}
+
+static void
 zoom_in_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
@@ -453,6 +467,7 @@ static GActionEntry win_entries[] = {
         { "find-next",        find_next_cb,        NULL, NULL, NULL },
         { "find-previous",    find_previous_cb,    NULL, NULL, NULL },
         /* view */
+        { "show-sidebar",     NULL,     NULL, "false", show_sidebar_cb },
         { "zoom-in",          zoom_in_cb,          NULL, NULL, NULL },
         { "zoom-out",         zoom_out_cb,         NULL, NULL, NULL },
         { "zoom-default",     zoom_default_cb,     NULL, NULL, NULL },
