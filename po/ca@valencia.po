@@ -10,20 +10,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-13 22:27+0200\n"
-"PO-Revision-Date: 2013-10-13 22:26+0200\n"
-"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
+"POT-Creation-Date: 2014-05-10 00:58+0200\n"
+"PO-Revision-Date: 2014-03-21 06:42+0100\n"
+"Last-Translator: Pau Iranzo <paugnu@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca-XV\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../data/devhelp.appdata.xml.in.h:1
+msgid ""
+"Devhelp is an API documentation browser. It provides an easy way to navigate "
+"through libraries, search by function, struct, or macro. It provides a "
+"tabbed interface and allows to print results."
+msgstr ""
+"El Devhelp s'un navegador de documentació API. Facilita la navegació per "
+"biblioteques, cercar funcions, estructures o macros. Té una interfície amb "
+"pestanyes i permet imprimir els resultats."
+
+#: ../data/devhelp.appdata.xml.in.h:2
+msgid ""
+"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+msgstr ""
+"El Devhelp s'integra amb altres aplicacions com el Glade, l'Anjuta o el "
+"Geany."
+
+#: ../data/devhelp.appdata.xml.in.h:3
+msgid ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
+msgstr ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:214 ../src/dh-app.c:400
-#: ../src/dh-window.c:648
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:398
+#: ../src/dh-window.c:645
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -189,14 +214,11 @@ msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr ""
 "En prémer F2 apareixerà l'ajuda del Devhelp per a la paraula sota el cursor"
 
-#: ../misc/gedit-plugin/devhelp.py:69
+#: ../misc/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "Mostra la documentació de l'API"
 
-#: ../misc/gedit-plugin/devhelp.py:71
-msgid "Show API Documentation for the word at the cursor"
-msgstr "Mostra la documentació de l'API per a la paraula sota el cursor"
-
+#. ex:ts=4:et:
 #: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
 msgid "New _Window"
 msgstr "Finestra _nova"
@@ -205,26 +227,27 @@ msgstr "Finestra _nova"
 msgid "_Preferences"
 msgstr "_Preferències"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
-msgstr "_Quant al Devhelp"
+#: ../src/devhelp-menu.ui.h:3
+msgid "_About"
+msgstr "_Quant a"
 
 #: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
 msgid "_Quit"
 msgstr "I_x"
 
-#: ../src/dh-app.c:206
-msgid "translator_credits"
+#: ../src/dh-app.c:204
+msgid "translator-credits"
 msgstr ""
 "Aleix Badia i Bosch <a.badia@callusdigital.org>\n"
 "Xavier Conde Rueda <xavi.conde@gmail.com>\n"
-"Gil Forcada <gilforcada@guifi.net>"
+"Gil Forcada <gilforcada@guifi.net>\n"
+"Pau Iranzo <pau.iranzo@softcatala.org>"
 
-#: ../src/dh-app.c:216
+#: ../src/dh-app.c:214
 msgid "A developers' help browser for GNOME"
 msgstr "Un navegador d'ajuda per a desenvolupadors del GNOME"
 
-#: ../src/dh-app.c:224
+#: ../src/dh-app.c:222
 msgid "DevHelp Website"
 msgstr "Pàgina web del Devhelp"
 
@@ -237,102 +260,102 @@ msgstr "Devhelp — Auxiliar"
 msgid "Book:"
 msgstr "Llibre:"
 
-#: ../src/dh-book.c:242
+#: ../src/dh-book.c:240
 #, c-format
 msgid "Language: %s"
 msgstr "Llenguatge: %s"
 
-#: ../src/dh-book.c:243
+#: ../src/dh-book.c:241
 msgid "Language: Undefined"
 msgstr "Llenguatge: no definit"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:270
 msgid "Book"
 msgstr "Llibre"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:275
+#: ../src/dh-link.c:273
 msgid "Page"
 msgstr "Pàgina"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:277
 msgid "Keyword"
 msgstr "Paraula clau"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:282
 msgid "Function"
 msgstr "Funció"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:287
 msgid "Struct"
 msgstr "Estructura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:292
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:297
 msgid "Enum"
 msgstr "Enumeració"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:304
+#: ../src/dh-link.c:302
 msgid "Type"
 msgstr "Tipus"
 
-#: ../src/dh-main.c:43
+#: ../src/dh-main.c:41
 msgid "Opens a new Devhelp window"
 msgstr "Obri una finestra del Devhelp nova"
 
-#: ../src/dh-main.c:48
+#: ../src/dh-main.c:46
 msgid "Search for a keyword"
 msgstr "Cerca una paraula clau"
 
-#: ../src/dh-main.c:49 ../src/dh-main.c:54
+#: ../src/dh-main.c:47 ../src/dh-main.c:52
 msgid "KEYWORD"
 msgstr "PARAULA CLAU"
 
-#: ../src/dh-main.c:53
+#: ../src/dh-main.c:51
 msgid "Search and display any hit in the assistant window"
 msgstr "Cerca i visualitza qualsevol coincidència a la finestra auxiliar"
 
-#: ../src/dh-main.c:58
+#: ../src/dh-main.c:56
 msgid "Display the version and exit"
 msgstr "Mostra la versió i ix"
 
-#: ../src/dh-main.c:63
+#: ../src/dh-main.c:61
 msgid "Quit any running Devhelp"
 msgstr "Ix de tots els Devhelp en execució"
 
-#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
-#: ../src/dh-parser.c:273
+#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
+#: ../src/dh-parser.c:270
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "S'esperava «%s» però s'ha obtingut «%s» a la línia %d, columna %d"
 
-#: ../src/dh-parser.c:114
+#: ../src/dh-parser.c:112
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "L'espai de noms «%s» no és vàlid a la línia %d, columna %d"
 
-#: ../src/dh-parser.c:143
+#: ../src/dh-parser.c:141
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
@@ -340,7 +363,7 @@ msgstr ""
 "Els elements «title» (títol), «name» (nom) i «link» (enllaç) són necessaris "
 "a la línia %d, columna %d"
 
-#: ../src/dh-parser.c:218
+#: ../src/dh-parser.c:215
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -349,7 +372,7 @@ msgstr ""
 "Els elements «name» (nom) i «link» (enllaç) són necessaris dins de <sub> a "
 "la línia %d, columna %d"
 
-#: ../src/dh-parser.c:298
+#: ../src/dh-parser.c:295
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
@@ -357,14 +380,14 @@ msgstr ""
 "Els elements «name» (nom) i «link» (enllaç) són necessaris dins de «%s» a la "
 "línia %d, columna %d"
 
-#: ../src/dh-parser.c:311
+#: ../src/dh-parser.c:308
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "L'element «type» (tipus) és necessari dins de <keyword> a la línia %d, "
 "columna %d"
 
-#: ../src/dh-parser.c:514
+#: ../src/dh-parser.c:511
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "No s'ha pogut descomprimir el llibre «%s»: %s"
@@ -405,51 +428,51 @@ msgstr "Amplada _fixa:"
 msgid "Fonts"
 msgstr "Tipus de lletra"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:83
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:84
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:85
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:86
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:87
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:88
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:89
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:90
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:91
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:864
+#: ../src/dh-window.c:861
 msgid "Error opening the requested link."
 msgstr "S'ha produït un error en obrir l'enllaç sol·licitat."
 
-#: ../src/dh-window.c:1120
+#: ../src/dh-window.c:1106
 msgid "_Close"
 msgstr "_Tanca"
 
-#: ../src/dh-window.c:1148 ../src/dh-window.c:1320
+#: ../src/dh-window.c:1134 ../src/dh-window.c:1306
 msgid "Empty Page"
 msgstr "Pàgina buida"
 
@@ -476,6 +499,10 @@ msgstr "Text més _petit"
 #: ../src/dh-window.ui.h:6
 msgid "_Normal Size"
 msgstr "Mida _normal"
+
+#: ../src/dh-window.ui.h:9
+msgid "_About Devhelp"
+msgstr "_Quant al Devhelp"
 
 #: ../src/dh-window.ui.h:11
 msgid "Back"
