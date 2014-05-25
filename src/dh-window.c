@@ -121,6 +121,9 @@ static void           on_search_mode_enabled_changed (GtkSearchBar    *search_ba
                                                       DhWindow        *window);
 static void           on_search_entry_activated      (GtkEntry        *entry,
                                                       DhWindow        *window);
+static gboolean      on_search_entry_key_press       (GtkEntry    *entry,
+                                                      GdkEventKey *event,
+                                                      DhWindow    *window);
 static GtkWidget *    window_new_tab_label           (DhWindow        *window,
                                                       const gchar     *label,
                                                       const GtkWidget *parent);
@@ -713,6 +716,10 @@ window_populate (DhWindow *window)
                           "activate",
                           G_CALLBACK (on_search_entry_activated),
                           window);
+        g_signal_connect (priv->search_entry,
+                          "key-press-event",
+                          G_CALLBACK (on_search_entry_key_press),
+                          window);
         g_signal_connect (priv->go_up_button,
                           "clicked",
                           G_CALLBACK (window_find_previous_cb),
@@ -1036,6 +1043,19 @@ on_search_entry_activated (GtkEntry *entry,
                            DhWindow *window)
 {
         findbar_find_next (window);
+}
+
+static gboolean
+on_search_entry_key_press (GtkEntry    *entry,
+                           GdkEventKey *event,
+                           DhWindow    *window)
+{
+        if (event->keyval == GDK_KEY_Return && event->state & GDK_SHIFT_MASK) {
+                findbar_find_previous (window);
+                return TRUE;
+        }
+
+        return FALSE;
 }
 
 #if 0
