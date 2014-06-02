@@ -44,9 +44,7 @@ typedef struct {
         GtkWidget      *notebook;
         GtkWidget      *header_bar;
         GtkWidget      *back_button;
-        GtkImage       *back_button_image;
         GtkWidget      *forward_button;
-        GtkImage       *forward_button_image;
         GtkMenuButton  *gear_menu_button;
         GtkWidget      *grid_sidebar;
         GtkWidget      *grid_documents;
@@ -598,9 +596,7 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, gear_app_menu);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, back_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, back_button_image);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, forward_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, forward_button_image);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, gear_menu_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
@@ -665,17 +661,6 @@ window_populate (DhWindow *window)
 
         priv = dh_window_get_instance_private (window);
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
-
-        if (gtk_widget_get_direction (GTK_WIDGET (window)) == GTK_TEXT_DIR_RTL) {
-                prev_icon = "go-previous-rtl-symbolic";
-                next_icon = "go-next-rtl-symbolic";
-        } else {
-                prev_icon = "go-previous-symbolic";
-                next_icon = "go-next-symbolic";
-        }
-
-        gtk_image_set_from_icon_name (priv->back_button_image, prev_icon, GTK_ICON_SIZE_MENU);
-        gtk_image_set_from_icon_name (priv->forward_button_image, next_icon, GTK_ICON_SIZE_MENU);
 
         /* Sidebar */
         priv->sidebar = dh_sidebar_new (book_manager);

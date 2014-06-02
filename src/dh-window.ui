@@ -134,6 +134,7 @@
                   <object class="GtkImage" id="back_button_image">
                     <property name="visible">True</property>
                     <property name="icon_size">1</property>
+                    <property name="icon_name">go-previous-symbolic</property>
                   </object>
                 </child>
               </object>
@@ -152,6 +153,7 @@
                   <object class="GtkImage" id="forward_button_image">
                     <property name="visible">True</property>
                     <property name="icon_size">1</property>
+                    <property name="icon_name">go-next-symbolic</property>
                   </object>
                 </child>
               </object>
