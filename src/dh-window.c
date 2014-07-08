@@ -1212,6 +1212,7 @@ window_new_tab_label (DhWindow        *window,
 
         label = gtk_label_new (str);
         gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
+        gtk_widget_set_halign (label, GTK_ALIGN_CENTER);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 
