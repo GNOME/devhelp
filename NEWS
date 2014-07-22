@@ -1,4 +1,25 @@
 ==============
+Version 3.13.4
+==============
+
+Fixed bugs:
+
+ - #724098, center tab labels
+ - #724538, Use popver for the gear menu
+ - #727064, Use headerbar in the preference dialog
+ - #730445, Expand tabs in the pref dialog
+ - #730723, window: Allow Shift-Return to previous find
+ - #730772, Use the new support for RTL icons in GtkIconTheme
+ - #732897, Use view-context-menu-symbolic for the gear menu
+
+Updated translations: ca, ca@valencia, el, es, he, pt_BR, sl
+
+Many thanks to all contributors: MarMav, Carles Ferrando, Pau Iranzo,
+chrysn, Damián Nohales, Matej Urbančič, Daniel Mustieles, Enrico
+Nicoletto, Yosef Or Boczko
+
+
+==============
 Version 3.12.1
 ==============
 
