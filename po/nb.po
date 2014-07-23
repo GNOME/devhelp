@@ -5,10 +5,10 @@
 # Torstein Adolf Winterseth <kvikende@fsfe.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 3.11.x\n"
+"Project-Id-Version: devhelp 3.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-12 20:36+0100\n"
-"PO-Revision-Date: 2014-02-12 20:36+0100\n"
+"POT-Creation-Date: 2014-07-23 14:52+0200\n"
+"PO-Revision-Date: 2014-07-23 14:54+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language:\n"
@@ -28,18 +28,18 @@ msgstr ""
 #: ../data/devhelp.appdata.xml.in.h:2
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
-msgstr ""
+msgstr "Devhelp integrerer med andre programmer som Glade, Anjuta eller Geany."
 
 #: ../data/devhelp.appdata.xml.in.h:3
 msgid ""
 "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
 "target=devhelp.png"
-msgstr ""
+msgstr "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;target=devhelp.png"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:398
-#: ../src/dh-window.c:645
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
+#: ../src/dh-window.c:659
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -208,7 +208,7 @@ msgstr "Vis API-dokumentasjon"
 msgid "New _Window"
 msgstr "Nytt _vindu"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:8
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
 msgid "_Preferences"
 msgstr "_Brukervalg"
 
@@ -216,7 +216,7 @@ msgstr "_Brukervalg"
 msgid "_About"
 msgstr "_Om"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
+#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "A_vslutt"
 
@@ -404,51 +404,51 @@ msgstr "_Fast bredde:"
 msgid "Fonts"
 msgstr "Skrifter"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:81
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:82
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:83
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:84
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:85
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:86
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:87
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:88
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:89
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:861
+#: ../src/dh-window.c:868
 msgid "Error opening the requested link."
 msgstr "Feil ved åpning av forespurt lenke."
 
-#: ../src/dh-window.c:1106
+#: ../src/dh-window.c:1126
 msgid "_Close"
 msgstr "_Lukk"
 
-#: ../src/dh-window.c:1134 ../src/dh-window.c:1306
+#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
 msgid "Empty Page"
 msgstr "Tom side"
 
@@ -476,14 +476,18 @@ msgstr "_Mindre tekst"
 msgid "_Normal Size"
 msgstr "_Normal størrelse"
 
-#: ../src/dh-window.ui.h:9
+#: ../src/dh-window.ui.h:8
+msgid "_Side pane"
+msgstr "_Sideområde"
+
+#: ../src/dh-window.ui.h:10
 msgid "_About Devhelp"
 msgstr "_Om Devhelp"
 
-#: ../src/dh-window.ui.h:11
+#: ../src/dh-window.ui.h:12
 msgid "Back"
 msgstr "Tilbake"
 
-#: ../src/dh-window.ui.h:12
+#: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Fremover"
