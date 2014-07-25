@@ -674,7 +674,9 @@ dh_preferences_show_dialog (GtkWindow *parent)
         g_return_if_fail (GTK_IS_WINDOW (parent));
 
         if (prefs_dialog == NULL) {
-                prefs_dialog = GTK_WIDGET (g_object_new (DH_TYPE_PREFERENCES, NULL));
+                prefs_dialog = GTK_WIDGET (g_object_new (DH_TYPE_PREFERENCES,
+                                                         "use-header-bar", 1,
+                                                         NULL));
                 g_signal_connect (prefs_dialog,
                                   "destroy",
                                   G_CALLBACK (gtk_widget_destroyed),
