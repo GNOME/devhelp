@@ -4,21 +4,21 @@
 # Jordi Mallach <jordi@sindominio.ne>, 2003.
 # Aleix Badia i Bosch <a.badia@callusdigital.org>, 2005.
 # Xavier Conde Rueda <xavi.conde@gmail.com>, 2006
-# Gil Forcada <gilforcada@guifi.net>, 2007, 2008, 2009, 2010, 2012, 2013.
+# Gil Forcada <gilforcada@guifi.net>, 2007, 2008, 2009, 2010, 2012, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-21 04:14+0000\n"
-"PO-Revision-Date: 2014-03-21 06:42+0100\n"
-"Last-Translator: Pau Iranzo <paugnu@gmail.com>\n"
+"POT-Creation-Date: 2014-08-17 03:11+0000\n"
+"PO-Revision-Date: 2014-08-17 13:05+0200\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bits\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/devhelp.appdata.xml.in.h:1
@@ -48,8 +48,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:398
-#: ../src/dh-window.c:645
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
+#: ../src/dh-window.c:659
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -224,7 +224,7 @@ msgstr "Mostra la documentació de l'API"
 msgid "New _Window"
 msgstr "Finestra _nova"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:8
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
 msgid "_Preferences"
 msgstr "_Preferències"
 
@@ -232,7 +232,7 @@ msgstr "_Preferències"
 msgid "_About"
 msgstr "_Quant a"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
+#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "_Surt"
 
@@ -429,51 +429,51 @@ msgstr "Amplada _fixa:"
 msgid "Fonts"
 msgstr "Tipus de lletra"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:81
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:82
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:83
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:84
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:85
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:86
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:87
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:88
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:89
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:861
+#: ../src/dh-window.c:868
 msgid "Error opening the requested link."
 msgstr "S'ha produït un error en obrir l'enllaç sol·licitat."
 
-#: ../src/dh-window.c:1106
+#: ../src/dh-window.c:1126
 msgid "_Close"
 msgstr "_Tanca"
 
-#: ../src/dh-window.c:1134 ../src/dh-window.c:1306
+#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
 msgid "Empty Page"
 msgstr "Pàgina buida"
 
@@ -501,14 +501,18 @@ msgstr "Text més _petit"
 msgid "_Normal Size"
 msgstr "Mida _normal"
 
-#: ../src/dh-window.ui.h:9
+#: ../src/dh-window.ui.h:8
+msgid "_Side pane"
+msgstr "_Subfinestra lateral"
+
+#: ../src/dh-window.ui.h:10
 msgid "_About Devhelp"
 msgstr "_Quant al Devhelp"
 
-#: ../src/dh-window.ui.h:11
+#: ../src/dh-window.ui.h:12
 msgid "Back"
 msgstr "Enrere"
 
-#: ../src/dh-window.ui.h:12
+#: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Endavant"
