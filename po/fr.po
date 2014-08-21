@@ -19,8 +19,8 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-15 04:13+0000\n"
-"PO-Revision-Date: 2014-03-15 17:04+0100\n"
+"POT-Creation-Date: 2014-08-21 03:11+0000\n"
+"PO-Revision-Date: 2014-08-21 15:23+0200\n"
 "Last-Translator: Alain Lojewski <allomervan@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: \n"
@@ -34,8 +34,8 @@ msgid ""
 "through libraries, search by function, struct, or macro. It provides a "
 "tabbed interface and allows to print results."
 msgstr ""
-"Devhelp est un navigateur pour la documentation des API. Il permet de naviguer "
-"facilement à travers les bibliothèques, chercher par fonction, "
+"Devhelp est un navigateur pour la documentation des API. Il permet de "
+"naviguer facilement à travers les bibliothèques, chercher par fonction, "
 "structure ou macro. Il fournit une interface à onglets et permet d'imprimer "
 "les résultats."
 
@@ -43,7 +43,8 @@ msgstr ""
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
-"Devhelp s'intègre avec d'autres applications, telles que Glade, Anjuta ou Geany."
+"Devhelp s'intègre avec d'autres applications, telles que Glade, Anjuta ou "
+"Geany."
 
 #: ../data/devhelp.appdata.xml.in.h:3
 msgid ""
@@ -55,8 +56,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:398
-#: ../src/dh-window.c:645
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
+#: ../src/dh-window.c:659
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -231,7 +232,7 @@ msgstr "Afficher la documentation des API"
 msgid "New _Window"
 msgstr "Nouvelle _fenêtre"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:8
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
 msgid "_Preferences"
 msgstr "_Préférences"
 
@@ -239,7 +240,7 @@ msgstr "_Préférences"
 msgid "_About"
 msgstr "À _propos"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
+#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "_Quitter"
 
@@ -440,51 +441,51 @@ msgstr "Largeur _fixe :"
 msgid "Fonts"
 msgstr "Polices"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:81
 msgid "50%"
 msgstr "50 %"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:82
 msgid "75%"
 msgstr "75 %"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:83
 msgid "100%"
 msgstr "100 %"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:84
 msgid "125%"
 msgstr "125 %"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:85
 msgid "150%"
 msgstr "150 %"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:86
 msgid "175%"
 msgstr "175 %"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:87
 msgid "200%"
 msgstr "200 %"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:88
 msgid "300%"
 msgstr "300 %"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:89
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:861
+#: ../src/dh-window.c:868
 msgid "Error opening the requested link."
 msgstr "Erreur lors de l'ouverture du lien demandé."
 
-#: ../src/dh-window.c:1106
+#: ../src/dh-window.c:1126
 msgid "_Close"
 msgstr "F_ermer"
 
-#: ../src/dh-window.c:1134 ../src/dh-window.c:1306
+#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
 msgid "Empty Page"
 msgstr "Page vide"
 
@@ -512,42 +513,25 @@ msgstr "Ré_duire le texte"
 msgid "_Normal Size"
 msgstr "Taille _normale"
 
-#: ../src/dh-window.ui.h:9
+#: ../src/dh-window.ui.h:8
+msgid "_Side pane"
+msgstr "Panneau _latéral"
+
+#: ../src/dh-window.ui.h:10
 msgid "_About Devhelp"
 msgstr "À _propos de Devhelp"
 
-#: ../src/dh-window.ui.h:11
+#: ../src/dh-window.ui.h:12
 msgid "Back"
 msgstr "Précédent"
 
-#: ../src/dh-window.ui.h:12
+#: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Suivant"
 
 #~ msgid "Show API Documentation for the word at the cursor"
 #~ msgstr ""
 #~ "Affiche la documentation des API pour le mot à l'emplacement du curseur"
-
-#~ msgid "Current"
-#~ msgstr "Actuel"
-
-#~ msgid "All Books"
-#~ msgstr "Tous les livres"
-
-#~ msgid "Find:"
-#~ msgstr "Rechercher :"
-
-#~ msgid "Find Previous"
-#~ msgstr "Rechercher le précédent"
-
-#~ msgid "Find previous occurrence of the search string"
-#~ msgstr "Recherche la précédente occurrence de la chaîne"
-
-#~ msgid "Find Next"
-#~ msgstr "Rechercher le suivant"
-
-#~ msgid "Find next occurrence of the search string"
-#~ msgstr "Recherche l'occurrence suivante de la chaîne"
 
 #~ msgid "C_ase Sensitive"
 #~ msgstr "_Sensible à la casse"
