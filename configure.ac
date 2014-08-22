@@ -53,6 +53,7 @@ PKG_CHECK_EXISTS([webkit2gtk-4.0], [
 ], [
 	WEBKIT_PKGCONFIG=webkit2gtk-3.0
 ])
+AC_SUBST(WEBKIT_PKGCONFIG)
 
 PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
