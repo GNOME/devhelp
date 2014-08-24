@@ -1,3 +1,19 @@
+===============
+Version 3.13.90
+===============
+
+Fixed bugs:
+
+ - #734324, Build against webkit2gtk-4.0
+
+Updated translations: as, ca, ca@valencia, cs, eu, fi, fr, lt, nb
+
+Many thanks to all contributors: Gil Forcada, Lasse Liehu, Alexandre Franke,
+Kalev Lember, Andre Klapper, ngoswami, Inaki Larranaga Murgoitio, Aurimas
+Černius, Olav Vitters, Kjartan Maraas, Michael Catanzaro, Carles Ferrando,
+Marek Černocký, Ignacio Casal Quinteiro
+
+
 ==============
 Version 3.13.4
 ==============
