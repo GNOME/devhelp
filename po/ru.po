@@ -5,15 +5,15 @@
 # Valek Filippov <frob@df.ru>, 2001-2003.
 # Yuri Kozlov <kozlov.y@gmail.com>, 2008.
 # Leonid Kanter <leon@asplinux.ru>, 2010.
-# Yuri Myasoedov <omerta13@yandex.ru>, 2012.
+# Yuri Myasoedov <ymyasoedov@yandex.ru>, 2012-2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-10 16:13+0000\n"
-"PO-Revision-Date: 2014-03-10 22:03+0300\n"
+"POT-Creation-Date: 2014-09-09 03:11+0000\n"
+"PO-Revision-Date: 2014-09-09 17:25+0300\n"
 "Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -52,8 +52,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:398
-#: ../src/dh-window.c:645
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
+#: ../src/dh-window.c:659
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -222,21 +222,19 @@ msgstr "Показать документацию по API"
 msgid "New _Window"
 msgstr "_Создать окно"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:8
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
 msgid "_Preferences"
 msgstr "_Параметры"
 
 #: ../src/devhelp-menu.ui.h:3
-#| msgid "_About Devhelp"
 msgid "_About"
 msgstr "_О приложении"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
+#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
 msgid "_Quit"
-msgstr "_Закончить"
+msgstr "_Завершить"
 
 #: ../src/dh-app.c:204
-#| msgid "translator_credits"
 msgid "translator-credits"
 msgstr ""
 "Валек Филиппов <frob@df.ru>\n"
@@ -245,7 +243,7 @@ msgstr ""
 
 #: ../src/dh-app.c:214
 msgid "A developers' help browser for GNOME"
-msgstr "Программа просмотра справки GNOME для разработчиков"
+msgstr "Приложение для просмотра справки GNOME для разработчиков"
 
 #: ../src/dh-app.c:222
 msgid "DevHelp Website"
@@ -420,51 +418,51 @@ msgstr "_Постоянная ширина:"
 msgid "Fonts"
 msgstr "Шрифты"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:81
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:82
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:83
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:84
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:85
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:86
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:87
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:88
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:89
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:861
+#: ../src/dh-window.c:868
 msgid "Error opening the requested link."
 msgstr "Ошибка при открытии запрошенной ссылки."
 
-#: ../src/dh-window.c:1106
+#: ../src/dh-window.c:1126
 msgid "_Close"
 msgstr "_Закрыть"
 
-#: ../src/dh-window.c:1134 ../src/dh-window.c:1306
+#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
 msgid "Empty Page"
 msgstr "Пустая страница"
 
@@ -492,23 +490,18 @@ msgstr "У_меньшить текст"
 msgid "_Normal Size"
 msgstr "О_бычный размер"
 
-#: ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
-msgstr "_О программе"
+#: ../src/dh-window.ui.h:8
+msgid "_Side pane"
+msgstr "_Боковая панель"
 
-#: ../src/dh-window.ui.h:11
+#: ../src/dh-window.ui.h:10
+msgid "_About Devhelp"
+msgstr "_О приложении"
+
+#: ../src/dh-window.ui.h:12
 msgid "Back"
 msgstr "Назад"
 
-#: ../src/dh-window.ui.h:12
+#: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Вперёд"
-
-#~ msgid "Show API Documentation for the word at the cursor"
-#~ msgstr "Показать документацию по API для слова под курсором"
-
-#~ msgid "Current"
-#~ msgstr "Текущий"
-
-#~ msgid "All Books"
-#~ msgstr "Все книги"
