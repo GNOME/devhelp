@@ -1,4 +1,20 @@
 ===============
+Version 3.13.92
+===============
+
+Fixed bugs:
+
+ - #735252, libdevhelp: Fix .pc file requires when building with
+            webkit2gtk-4.0
+
+Updated translations: fi, gl, hu, id, ko, lv, pl, ru, sv, zh_HK, zh_TW
+
+Many thanks to all contributors: Balázs Úr, Ville-Pekka Vainio, Andika
+Triwidada, Fran Diéguez, Changwoo Ryu, Yuri Myasoedov, Piotr Drąg,
+Sebastian Rasmussen, Rūdolfs Mazurs, Chao-Hsiung Liao
+
+
+===============
 Version 3.13.90
 ===============
 
