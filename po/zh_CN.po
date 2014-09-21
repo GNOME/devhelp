@@ -17,9 +17,9 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-08 04:14+0000\n"
-"PO-Revision-Date: 2014-03-08 21:00+0800\n"
-"Last-Translator: Sphinx Jiang <yishanj13@gmail.com>\n"
+"POT-Creation-Date: 2014-08-25 15:11+0000\n"
+"PO-Revision-Date: 2014-08-26 02:12+0800\n"
+"Last-Translator: Tong Hui <tonghuix@gmail.com>\n"
 "Language-Team: Chinese Simplified <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -52,8 +52,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:398
-#: ../src/dh-window.c:645
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
+#: ../src/dh-window.c:659
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -222,21 +222,19 @@ msgstr "显示 API 文档"
 msgid "New _Window"
 msgstr "新建窗口(_W)"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:8
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
 #: ../src/devhelp-menu.ui.h:3
-#| msgid "_About Devhelp"
 msgid "_About"
 msgstr "关于(_A)"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:10
+#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "退出(_Q)"
 
 #: ../src/dh-app.c:204
-#| msgid "translator_credits"
 msgid "translator-credits"
 msgstr ""
 "Zipeco <Zipeco@btamail.net.cn>, 2002\n"
@@ -426,51 +424,51 @@ msgstr "等宽字体(_F)："
 msgid "Fonts"
 msgstr "字体"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:81
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:82
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:83
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:84
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:85
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:86
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:87
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:88
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:89
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:861
+#: ../src/dh-window.c:868
 msgid "Error opening the requested link."
 msgstr "在打开需要的链接时出错。"
 
-#: ../src/dh-window.c:1106
+#: ../src/dh-window.c:1126
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: ../src/dh-window.c:1134 ../src/dh-window.c:1306
+#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
 msgid "Empty Page"
 msgstr "空白页"
 
@@ -498,15 +496,19 @@ msgstr "缩小文本(_M)"
 msgid "_Normal Size"
 msgstr "正常大小(_N)"
 
-#: ../src/dh-window.ui.h:9
+#: ../src/dh-window.ui.h:8
+msgid "_Side pane"
+msgstr "侧面板(_S)"
+
+#: ../src/dh-window.ui.h:10
 msgid "_About Devhelp"
 msgstr "关于 Devhelp(_A)"
 
-#: ../src/dh-window.ui.h:11
+#: ../src/dh-window.ui.h:12
 msgid "Back"
 msgstr "后退"
 
-#: ../src/dh-window.ui.h:12
+#: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "前进"
 
