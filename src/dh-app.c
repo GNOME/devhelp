@@ -330,6 +330,8 @@ setup_accelerators (DhApp *self)
         gtk_application_add_accelerator (GTK_APPLICATION (self), "F10",            "win.gear-menu",        NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Alt>Right",     "win.go-forward",       NULL);
         gtk_application_add_accelerator (GTK_APPLICATION (self), "<Alt>Left",      "win.go-back",          NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "Forward",        "win.go-forward",       NULL);
+        gtk_application_add_accelerator (GTK_APPLICATION (self), "Back",           "win.go-back",          NULL);
 }
 
 /******************************************************************************/
