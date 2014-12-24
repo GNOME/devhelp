@@ -4,22 +4,24 @@
 #
 # Baris Cicek <baris@teamforce.name.tr>, 2007, 2008, 2009.
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2012, 2014.
+# Necdet Yücel <necdetyucel@gmail.com>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-08 16:14+0000\n"
-"PO-Revision-Date: 2014-12-08 22:45+0200\n"
-"Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp"
+"&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-12-21 16:14+0000\n"
+"PO-Revision-Date: 2014-12-22 20:02+0000\n"
+"Last-Translator: Necdet Yücel <necdetyucel@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1419278523.000000\n"
 
 #: ../data/devhelp.appdata.xml.in.h:1
 msgid ""
@@ -27,11 +29,14 @@ msgid ""
 "through libraries, search by function, struct, or macro. It provides a "
 "tabbed interface and allows to print results."
 msgstr ""
+"Devhelp bir API belgelendirme tarayıcısıdır. Kitaplıklar arasında gezinti; "
+"fonksiyon, yapı ve makrolar ile arama için kolay bir yol sunar. Sekmeli bir "
+"arayüz sunar ve çıktıları yazdırmanıza imkan verir."
 
 #: ../data/devhelp.appdata.xml.in.h:2
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
-msgstr ""
+msgstr "Devhelp, Glade, Anjuta ve Geany gibi uygulamalarla tümleşik çalışır."
 
 #: ../data/devhelp.appdata.xml.in.h:3
 msgid ""
@@ -133,16 +138,14 @@ msgid "Whether books should be grouped by language in the UI"
 msgstr "Kitapların kullanıcı arayüzü (UI) içinde dile göre gruplandırılması"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:19
-#, fuzzy
 #| msgid "Whether the main window should start maximized."
 msgid "Whether the assistant window should be maximized"
-msgstr "Gezinme penceresi boyutunun büyültülüp büyültülmeyeceği."
+msgstr "Yardımcı pencerenin boyutunun büyültülüp büyütülmeyeceği"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:20
-#, fuzzy
 #| msgid "Whether the main window should start maximized."
 msgid "Whether the assistant window should be maximized."
-msgstr "Gezinme penceresi boyutunun büyültülüp büyültülmeyeceği."
+msgstr "Yardımcı pencerenin boyutunun büyültülüp büyütülmeyeceği."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:21
 msgid "Width of the assistant window"
@@ -214,12 +217,10 @@ msgstr "API Belgelendirmesini Göster"
 
 #. ex:ts=4:et:
 #: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
-#| msgid "_New Window"
 msgid "New _Window"
 msgstr "Yeni _Pencere"
 
 #: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_Tercihler"
 
@@ -232,7 +233,6 @@ msgid "_Quit"
 msgstr "_Çıkış"
 
 #: ../src/dh-app.c:204
-#| msgid "translator_credits"
 msgid "translator-credits"
 msgstr ""
 "Barış Çiçek <baris@teamforce.name.tr>\n"
@@ -316,18 +316,16 @@ msgid "Type"
 msgstr "Tür"
 
 #: ../src/dh-main.c:41
-#, fuzzy
 msgid "Opens a new Devhelp window"
-msgstr "Yeni Pencerede Aç"
+msgstr "Yeni bir Devhelp penceresi açar"
 
 #: ../src/dh-main.c:46
 msgid "Search for a keyword"
 msgstr "Bir anahtar kelime için ara"
 
 #: ../src/dh-main.c:47 ../src/dh-main.c:52
-#, fuzzy
 msgid "KEYWORD"
-msgstr "Anahtar kelime"
+msgstr "ANAHTAR SÖZCÜK"
 
 #: ../src/dh-main.c:51
 msgid "Search and display any hit in the assistant window"
@@ -470,12 +468,10 @@ msgid "New _Tab"
 msgstr "Yeni _Sekme"
 
 #: ../src/dh-window.ui.h:2
-#| msgid "_Print…"
 msgid "_Print"
 msgstr "_Yazdır"
 
 #: ../src/dh-window.ui.h:3
-#| msgid "Find:"
 msgid "_Find"
 msgstr "_Bul"
 
@@ -496,17 +492,14 @@ msgid "_Side pane"
 msgstr "Kenar _paneli"
 
 #: ../src/dh-window.ui.h:10
-#| msgid "About Devhelp"
 msgid "_About Devhelp"
 msgstr "Devhelp _Hakkında"
 
 #: ../src/dh-window.ui.h:12
-#| msgid "_Back"
 msgid "Back"
 msgstr "Geri"
 
 #: ../src/dh-window.ui.h:13
-#| msgid "_Forward"
 msgid "Forward"
 msgstr "İleri"
 
