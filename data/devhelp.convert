@@ -24,5 +24,5 @@ group-books-by-language=/apps/devhelp/state/main/contents/group_books_by_languag
 
 [org.gnome.devhelp.fonts]
 use-system-fonts=/apps/devhelp/fonts/use_system_fonts
-variable-fonts=/apps/devhelp/fonts/variable_font
+variable-font=/apps/devhelp/fonts/variable_font
 fixed-font=/apps/devhelp/fonts/fixed_font
