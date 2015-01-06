@@ -648,6 +648,8 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
 
         /* Allocate new book struct */
         book = dh_book_new (book_path);
+        if (book == NULL)
+                return;
 
         /* Check if book with same path was already loaded in the manager */
         if (g_list_find_custom (priv->books,

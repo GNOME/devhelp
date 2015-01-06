@@ -468,17 +468,6 @@ parser_end_node_cb (GMarkupParseContext  *context,
 	}
 }
 
-static void
-parser_error_cb (GMarkupParseContext *context,
-		 GError              *error,
-		 gpointer             user_data)
-{
-	DhParser *parser = user_data;
-
-	g_markup_parse_context_free (parser->context);
- 	parser->context = NULL;
-}
-
 static gboolean
 parser_read_gz_file (DhParser     *parser,
                      const gchar  *path,
@@ -565,7 +554,6 @@ dh_parser_read_file (const gchar  *path,
 
 	parser->m_parser->start_element = parser_start_node_cb;
 	parser->m_parser->end_element = parser_end_node_cb;
-	parser->m_parser->error = parser_error_cb;
 
 	parser->context = g_markup_parse_context_new (parser->m_parser, 0,
 						      parser, NULL);
@@ -613,6 +601,11 @@ dh_parser_read_file (const gchar  *path,
                                 result = FALSE;
                                 goto exit;
                         }
+                }
+
+                if (!g_markup_parse_context_end_parse (parser->context, error)) {
+                        result = FALSE;
+                        goto exit;
                 }
         }
 
