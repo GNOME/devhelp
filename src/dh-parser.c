@@ -595,9 +595,8 @@ dh_parser_read_file (const gchar  *path,
                         if (io_status == G_IO_STATUS_EOF || io_status == G_IO_STATUS_ERROR) {
                                 break;
                         }
-                        g_markup_parse_context_parse (parser->context, buf,
-                                                      bytes_read, error);
-                        if (error != NULL && *error != NULL) {
+                        if (!g_markup_parse_context_parse (parser->context, buf,
+                                                           bytes_read, error)) {
                                 result = FALSE;
                                 goto exit;
                         }
