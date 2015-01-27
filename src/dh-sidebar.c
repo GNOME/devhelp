@@ -490,9 +490,6 @@ dh_sidebar_init (DhSidebar *sidebar)
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
-        gtk_container_set_border_width (GTK_CONTAINER (sidebar), 2);
-        gtk_box_set_spacing (GTK_BOX (sidebar), 4);
-
         /* Setup keyword model */
         priv->model = dh_keyword_model_new ();
 
@@ -503,6 +500,7 @@ dh_sidebar_init (DhSidebar *sidebar)
 
         /* Setup the top-level box with entry search and Current|All buttons */
         hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+        gtk_container_set_border_width (GTK_CONTAINER (hbox), 6);
         gtk_box_pack_start (GTK_BOX (sidebar), hbox, FALSE, FALSE, 0);
 
         /* Setup the search entry */
@@ -524,7 +522,6 @@ dh_sidebar_init (DhSidebar *sidebar)
         /* Setup the hitlist */
         priv->sw_hitlist = gtk_scrolled_window_new (NULL, NULL);
         gtk_widget_set_no_show_all (priv->sw_hitlist, TRUE);
-        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->sw_hitlist), GTK_SHADOW_IN);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw_hitlist),
                                         GTK_POLICY_NEVER,
                                         GTK_POLICY_AUTOMATIC);
@@ -557,9 +554,6 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw_book_tree),
                                         GTK_POLICY_NEVER,
                                         GTK_POLICY_AUTOMATIC);
-        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->sw_book_tree),
-                                             GTK_SHADOW_IN);
-        gtk_container_set_border_width (GTK_CONTAINER (priv->sw_book_tree), 2);
 
         gtk_widget_show_all (GTK_WIDGET (sidebar));
 }
