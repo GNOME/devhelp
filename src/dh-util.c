@@ -241,10 +241,17 @@ dh_util_create_data_uri_for_filename (const gchar *filename,
 static gdouble
 get_screen_dpi (GdkScreen *screen)
 {
-        gdouble dpi;
+        GtkSettings *settings = NULL;
+        gdouble dpi = -1;
         gdouble dp, di;
+        gint gtk_xft_dpi;
 
-        dpi = gdk_screen_get_resolution (screen);
+        settings = gtk_settings_get_for_screen (screen);
+        if (settings != NULL) {
+                g_object_get (settings, "gtk-xft-dpi", &gtk_xft_dpi, NULL);
+                dpi = (gtk_xft_dpi != -1) ? gtk_xft_dpi / 1024.0 : -1;
+        }
+
         if (dpi != -1)
                 return dpi;
 

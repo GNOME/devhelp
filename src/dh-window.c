@@ -55,7 +55,11 @@ typedef struct {
 
         DhLink         *selected_search_link;
         DhSettings     *settings;
+        GtkSettings    *gtk_settings;
         guint           fonts_changed_id;
+        gulong          screen_changed_id;
+        gulong          xft_dpi_changed_id;
+
 } DhWindowPrivate;
 
 enum {
@@ -504,6 +508,73 @@ settings_fonts_changed_cb (DhSettings *settings,
         }
 }
 
+static void
+update_fonts_on_dpi_change (DhWindow *window)
+{
+        DhWindowPrivate *priv;
+        gchar *font_fixed = NULL;
+        gchar *font_variable = NULL;
+        WebKitWebView *view;
+        gint i;
+
+        priv = dh_window_get_instance_private (window);
+        dh_settings_get_selected_fonts (priv->settings, &font_fixed, &font_variable);
+        if (font_fixed != NULL && font_variable != NULL) {
+                /* change font for all pages */
+                for (i = 0; i < gtk_notebook_get_n_pages (GTK_NOTEBOOK(priv->notebook)); i++) {
+                        GtkWidget *page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), i);
+                        view = WEBKIT_WEB_VIEW (g_object_get_data (G_OBJECT (page), "web_view"));
+                        dh_util_view_set_font (view, font_fixed, font_variable);
+                }
+        }
+
+        g_free (font_fixed);
+        g_free (font_variable);
+}
+
+static void
+gtk_xft_dpi_changed_cb (GtkSettings *gtk_settings,
+                        GParamSpec  *pspec,
+                        gpointer     user_data)
+{
+        DhWindow *window = DH_WINDOW (user_data);
+        update_fonts_on_dpi_change (window);
+}
+
+static void
+screen_changed_cb (GtkWidget *window,
+                   GdkScreen *previous_screen,
+                   gpointer   user_data)
+{
+        DhWindow *dh_window = DH_WINDOW(window);
+        DhWindowPrivate *priv = dh_window_get_instance_private (dh_window);
+        GtkSettings *previous_settings = gtk_settings_get_for_screen (previous_screen);
+        GtkSettings *current_settings = gtk_widget_get_settings (window);
+
+        /* if the screen has changed we need to re-retrieve the GtkSettings object,
+           and disconnect the old signal handlers before re-connecting again */
+        if (current_settings != previous_settings) {
+                if (priv->xft_dpi_changed_id) {
+                        if (priv->gtk_settings != NULL && g_signal_handler_is_connected (priv->gtk_settings, priv->xft_dpi_changed_id))
+                                g_signal_handler_disconnect (priv->gtk_settings, priv->xft_dpi_changed_id);
+                        priv->xft_dpi_changed_id = 0;
+                }
+                priv->gtk_settings = NULL;
+        }
+
+        /* now store the new GtkSettings and (re)connect the signals if needed */
+        if (priv->gtk_settings == NULL) {
+                GdkScreen *screen = gtk_widget_get_screen (window);
+                priv->gtk_settings = gtk_settings_get_for_screen (screen);
+                priv->xft_dpi_changed_id =
+                        g_signal_connect (priv->gtk_settings, "notify::gtk-xft-dpi",
+                                          G_CALLBACK (gtk_xft_dpi_changed_cb), window);
+
+        }
+
+        update_fonts_on_dpi_change (dh_window);
+}
+
 static gboolean
 window_configure_event_cb (GtkWidget *window,
                            GdkEventConfigure *event,
@@ -544,6 +615,17 @@ dh_window_init (DhWindow *window)
                                                    "fonts-changed",
                                                    G_CALLBACK (settings_fonts_changed_cb),
                                                    window);
+        /* monitor GdkScreen and GtkSettings for DPI changes */
+        priv->screen_changed_id =
+                g_signal_connect (window, "screen-changed",
+                                  G_CALLBACK (screen_changed_cb), NULL);
+
+        /* we can't get the GdkScreen for the widget here, so get the
+         * GtkSettings associated to the default one instead for now */
+        priv->gtk_settings = gtk_settings_get_default ();
+        priv->xft_dpi_changed_id =
+                g_signal_connect (priv->gtk_settings, "notify::gtk-xft-dpi",
+                                  G_CALLBACK (gtk_xft_dpi_changed_cb), window);
 
         g_signal_connect (window,
                           "open-link",
@@ -580,6 +662,18 @@ dh_window_dispose (GObject *object)
                 if (priv->settings && g_signal_handler_is_connected (priv->settings, priv->fonts_changed_id))
                         g_signal_handler_disconnect (priv->settings, priv->fonts_changed_id);
                 priv->fonts_changed_id = 0;
+        }
+
+        if (priv->screen_changed_id) {
+                if (g_signal_handler_is_connected (window, priv->screen_changed_id))
+                        g_signal_handler_disconnect (window, priv->screen_changed_id);
+                priv->screen_changed_id = 0;
+        }
+
+        if (priv->xft_dpi_changed_id) {
+                if (priv->gtk_settings != NULL && g_signal_handler_is_connected (priv->gtk_settings, priv->xft_dpi_changed_id))
+                        g_signal_handler_disconnect (priv->gtk_settings, priv->xft_dpi_changed_id);
+                priv->xft_dpi_changed_id = 0;
         }
 
         g_clear_object (&priv->settings);
