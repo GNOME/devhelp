@@ -1,4 +1,17 @@
 ===============
+Version 3.15.91
+===============
+
+Fixed bugs:
+
+ - #745256, Update font size automatically when Xft resolution changes
+
+Updated translations: sv
+
+Many thanks to all contributors: Mario Sanchez Prada, Anders Jonsson
+
+
+===============
 Version 3.15.90
 ===============
 
