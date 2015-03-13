@@ -27,7 +27,7 @@ import gettext
 
 class DevhelpAppActivatable(GObject.Object, Gedit.AppActivatable):
 
-    app = GObject.property(type=Gedit.App)
+    app = GObject.Property(type=Gedit.App)
 
     def __init__(self):
         GObject.Object.__init__(self)
@@ -48,7 +48,7 @@ class DevhelpAppActivatable(GObject.Object, Gedit.AppActivatable):
 
 class DevhelpWindowActivatable(GObject.Object, Gedit.WindowActivatable):
 
-    window = GObject.property(type=Gedit.Window)
+    window = GObject.Property(type=Gedit.Window)
 
     def __init__(self):
         GObject.Object.__init__(self)
