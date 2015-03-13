@@ -1188,6 +1188,18 @@ window_web_view_tab_accel_cb (GtkAccelGroup   *accel_group,
         }
 }
 
+static void
+apply_webview_settings (WebKitWebView *view)
+{
+        /* Disable some things we have no need for */
+        g_object_set (webkit_web_view_get_settings (view),
+                      "enable-html5-database", FALSE,
+                      "enable-html5-local-storage", FALSE,
+                      "enable-javascript", FALSE,
+                      "enable-plugins", FALSE,
+                      NULL);
+}
+
 static int
 window_open_new_tab (DhWindow    *window,
                      const gchar *location,
@@ -1206,6 +1218,7 @@ window_open_new_tab (DhWindow    *window,
 
         /* Prepare the web view */
         view = webkit_web_view_new ();
+        apply_webview_settings (WEBKIT_WEB_VIEW (view));
         gtk_widget_show (view);
         /* get the current fonts and set them on the new view */
         dh_settings_get_selected_fonts (priv->settings, &font_fixed, &font_variable);
