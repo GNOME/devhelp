@@ -1,0 +1,503 @@
+# Bosnian translation for bosnianuniversetranslation
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the bosnianuniversetranslation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bosnianuniversetranslation\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-02-27 04:14+0000\n"
+"PO-Revision-Date: 2014-10-22 14:21+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-02-15 06:17+0000\n"
+
+#: ../data/devhelp.appdata.xml.in.h:1
+msgid ""
+"Devhelp is an API documentation browser. It provides an easy way to navigate "
+"through libraries, search by function, struct, or macro. It provides a "
+"tabbed interface and allows to print results."
+msgstr ""
+"Devhelp je preglednik API dokumentacije. Obezbeđuje lak način za kretanje "
+"kroz biblioteke, pretragu prema funkciji, strukturi, ili makrou. Obezbeđuje "
+"sučelje sa jezičcima i omogućava štampanje rezultata."
+
+#: ../data/devhelp.appdata.xml.in.h:2
+msgid ""
+"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+msgstr ""
+"Devhelp se sjedinjuje sa drugim programima kao što je Glejd, Anjuta, ili "
+"Džini."
+
+#: ../data/devhelp.appdata.xml.in.h:3
+msgid ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
+msgstr ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
+
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:401
+#: ../src/dh-window.c:659
+msgid "Devhelp"
+msgstr "DevHelp"
+
+#: ../data/devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "Program za pomoć programerima"
+
+#: ../data/devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Preglednik dokumentacije"
+
+#: ../data/devhelp.desktop.in.in.h:4
+msgid "documentation;information;manual;developer;api;"
+msgstr "dokumentacija;informacija;priručnik;razvoj;api"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:1
+msgid "Main window maximized state"
+msgstr "Stanje uvećanja glavnog prozora"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:2
+msgid "Whether the main window should start maximized."
+msgstr "Da li se glavni prozor pokreće uvećan."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:3
+msgid "Width of the main window"
+msgstr "Širina glavnog prozora"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:4
+msgid "The width of the main window."
+msgstr "Širina glavnog prozora."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:5
+msgid "Height of main window"
+msgstr "Visina glavnog prozora"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:6
+msgid "The height of the main window."
+msgstr "Visina glavnog prozora."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:7
+msgid "X position of main window"
+msgstr "Vodoravni položaj glavnog prozora"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:8
+msgid "The X position of the main window."
+msgstr "X (vodoravan) položaj glavnog prozora."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:9
+msgid "Y position of main window"
+msgstr "Uspravni položaj glavnog prozora"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:10
+msgid "The Y position of the main window."
+msgstr "Y (uspravan) položaj glavnog prozora."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:11
+msgid "Width of the index and search pane"
+msgstr "Širina glavnog prozora"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:12
+msgid "The width of the index and search pane."
+msgstr "Širina panela za sadržaj i pretragu."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:13
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Izabrani list: „content“ (sadržaj) ili „search“ (pretraga)"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:14
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr ""
+"Određuje koji list je izabran: „content“ (sadržaj) ili „search“ (pretraga)."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:15
+msgid "Books disabled"
+msgstr "Onemogućene knjige"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:16
+msgid "List of books disabled by the user."
+msgstr "Popis knjiga koje je onemogućio korisnik."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:17
+msgid "Group by language"
+msgstr "Grupiši po jeziku"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:18
+msgid "Whether books should be grouped by language in the UI"
+msgstr "Da li knjige treba grupisati po jeziku u korisničkom interfejsu"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:19
+msgid "Whether the assistant window should be maximized"
+msgstr "Da li prozor pomoćnika treba uvećati."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:20
+msgid "Whether the assistant window should be maximized."
+msgstr "Da li prozor pomoćnika treba uvećati."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:21
+msgid "Width of the assistant window"
+msgstr "Širina prozora asistenta"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:22
+msgid "The width of the assistant window."
+msgstr "Širina prozora asistenta."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:23
+msgid "Height of assistant window"
+msgstr "Visina prozora asistenta"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:24
+msgid "The height of the assistant window."
+msgstr "Visina prozora asistenta."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:25
+msgid "X position of assistant window"
+msgstr "Vodoravni položaj prozora asistenta"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:26
+msgid "The X position of the assistant window."
+msgstr "X (vodoravan) položaj prozora asistenta."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:27
+msgid "Y position of assistant window"
+msgstr "Uspravni položaj prozora asistenta"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:28
+msgid "The Y position of the assistant window."
+msgstr "Y (uspravan) položaj prozora asistenta."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:29
+msgid "Use system fonts"
+msgstr "Koristi sistemski font"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:30
+msgid "Use the system default fonts."
+msgstr "Koristi podrazumijevane fontove iz okruženja."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:31
+msgid "Font for text"
+msgstr "Font za tekst"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:32
+msgid "Font for text with variable width."
+msgstr "Font za tekst promjenljive širine."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:33
+msgid "Font for fixed width text"
+msgstr "Font za tekst utvrđene širine"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:34
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Font za tekst utvrđene širine, kao što su primjeri programskog koda."
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "DevHelp ispomoć"
+
+#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr "F2 će pozvati DevHelp i tražiti riječ pod kursorom"
+
+#: ../misc/gedit-plugin/devhelp.py:42
+msgid "Show API Documentation"
+msgstr "Prikaži API dokumentaciju"
+
+#. ex:ts=4:et:
+#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
+msgid "New _Window"
+msgstr "Novi _prozor"
+
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
+msgid "_Preferences"
+msgstr "_Postavke"
+
+#: ../src/devhelp-menu.ui.h:3
+msgid "_About"
+msgstr "_O Devhelpu"
+
+#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
+msgid "_Quit"
+msgstr "_Izlaz"
+
+#: ../src/dh-app.c:204
+msgid "translator-credits"
+msgstr "   Samir Ribić https://launchpad.net/~megaribi"
+
+#: ../src/dh-app.c:214
+msgid "A developers' help browser for GNOME"
+msgstr "Preglednik pomoći za programere u Gnom okruženju"
+
+#: ../src/dh-app.c:222
+msgid "DevHelp Website"
+msgstr "DevHelpweb stranica"
+
+#. Please don't translate "Devhelp"
+#: ../src/dh-assistant.ui.h:2
+msgid "Devhelp — Assistant"
+msgstr "Devhelp — asistent"
+
+#: ../src/dh-assistant-view.c:372
+msgid "Book:"
+msgstr "Knjiga:"
+
+#: ../src/dh-book.c:240
+#, c-format
+msgid "Language: %s"
+msgstr "Jezik: %s"
+
+#: ../src/dh-book.c:241
+msgid "Language: Undefined"
+msgstr "Jezik: Nedefinisan"
+
+#. i18n: a documentation book
+#: ../src/dh-link.c:270
+msgid "Book"
+msgstr "Knjiga"
+
+#. i18n: a "page" in a documentation book
+#: ../src/dh-link.c:273
+msgid "Page"
+msgstr "Strana"
+
+#. i18n: a search hit in the documentation, could bje a
+#. * function, macro, struct, etc
+#: ../src/dh-link.c:277
+msgid "Keyword"
+msgstr "Ključna riječ"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:282
+msgid "Function"
+msgstr "Funkcija"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:287
+msgid "Struct"
+msgstr "Struktura"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:292
+msgid "Macro"
+msgstr "Makro"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:297
+msgid "Enum"
+msgstr "Nabrajanje"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:302
+msgid "Type"
+msgstr "Tip"
+
+#: ../src/dh-main.c:41
+msgid "Opens a new Devhelp window"
+msgstr "Otvara novi Devhelp prpzor"
+
+#: ../src/dh-main.c:46
+msgid "Search for a keyword"
+msgstr "Traži ključnu riječ"
+
+#: ../src/dh-main.c:47 ../src/dh-main.c:52
+msgid "KEYWORD"
+msgstr "KLJUČNARIJEČ"
+
+#: ../src/dh-main.c:51
+msgid "Search and display any hit in the assistant window"
+msgstr "Pretražuj i prikaži sve pogotke u prozoru asistenta"
+
+#: ../src/dh-main.c:56
+msgid "Display the version and exit"
+msgstr "Prikaži oznaku verzije i izađi"
+
+#: ../src/dh-main.c:61
+msgid "Quit any running Devhelp"
+msgstr "Zatvori sve DevHelp prozore"
+
+#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
+#: ../src/dh-parser.c:270
+#, c-format
+msgid "Expected '%s', got '%s' at line %d, column %d"
+msgstr "Očekivano je „%s“, a dobio sam „%s“ u %d. liniji %d. kolone"
+
+#: ../src/dh-parser.c:112
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr "Neispravan prostor imena „%s“ u liniji %d, koloni %d"
+
+#: ../src/dh-parser.c:141
+#, c-format
+msgid ""
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr "Elementi „title“, „name“ i „link“ su obavezni u %d. liniji %d. kolone"
+
+#: ../src/dh-parser.c:215
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
+"d"
+msgstr ""
+"Elementi „title“, „name“ i „link“ su obavezni unutar <sub> u %d. liniji %d. "
+"kolone"
+
+#: ../src/dh-parser.c:295
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+"Elementi „title“, „name“ i „link“ su obavezni unutar „%s“ u %d. liniji %d. "
+"kolone"
+
+#: ../src/dh-parser.c:308
+#, c-format
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+msgstr "Element „type“ je obavezan unutar <keyword> u %d. liniji %d. kolone"
+
+#: ../src/dh-parser.c:500
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr "Ne može da dekompresuje knjigu „%s“: %s"
+
+#: ../src/dh-preferences.ui.h:1
+msgid "Preferences"
+msgstr "Postavke"
+
+#: ../src/dh-preferences.ui.h:2
+msgid "_Group by language"
+msgstr "_Grupiši po jeziku"
+
+#: ../src/dh-preferences.ui.h:3
+msgid "Enabled"
+msgstr "Omogućeno"
+
+#: ../src/dh-preferences.ui.h:4
+msgid "Title"
+msgstr "Naslov"
+
+#: ../src/dh-preferences.ui.h:5
+msgid "Book Shelf"
+msgstr "Polica"
+
+#: ../src/dh-preferences.ui.h:6
+msgid "_Use system fonts"
+msgstr "_Koristi sistemske fontove"
+
+#: ../src/dh-preferences.ui.h:7
+msgid "_Variable width: "
+msgstr "_Proporcionalno širok: "
+
+#: ../src/dh-preferences.ui.h:8
+msgid "_Fixed width:"
+msgstr "_Konstantna širina:"
+
+#: ../src/dh-preferences.ui.h:9
+msgid "Fonts"
+msgstr "Fontovi"
+
+#: ../src/dh-window.c:81
+msgid "50%"
+msgstr "50%"
+
+#: ../src/dh-window.c:82
+msgid "75%"
+msgstr "75%"
+
+#: ../src/dh-window.c:83
+msgid "100%"
+msgstr "100%"
+
+#: ../src/dh-window.c:84
+msgid "125%"
+msgstr "125%"
+
+#: ../src/dh-window.c:85
+msgid "150%"
+msgstr "150%"
+
+#: ../src/dh-window.c:86
+msgid "175%"
+msgstr "175%"
+
+#: ../src/dh-window.c:87
+msgid "200%"
+msgstr "200%"
+
+#: ../src/dh-window.c:88
+msgid "300%"
+msgstr "300%"
+
+#: ../src/dh-window.c:89
+msgid "400%"
+msgstr "400%"
+
+#: ../src/dh-window.c:868
+msgid "Error opening the requested link."
+msgstr "Greška prilikom otvaranja zahtjevane veze."
+
+#: ../src/dh-window.c:1126
+msgid "_Close"
+msgstr "_Zatvori"
+
+#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
+msgid "Empty Page"
+msgstr "Prazna strana"
+
+#: ../src/dh-window.ui.h:1
+msgid "New _Tab"
+msgstr "Nova _kartica"
+
+#: ../src/dh-window.ui.h:2
+msgid "_Print"
+msgstr "Š_tampaj"
+
+#: ../src/dh-window.ui.h:3
+msgid "_Find"
+msgstr "_Nađi"
+
+#: ../src/dh-window.ui.h:4
+msgid "_Larger Text"
+msgstr "_Uvećaj tekst"
+
+#: ../src/dh-window.ui.h:5
+msgid "S_maller Text"
+msgstr "U_manji tekst"
+
+#: ../src/dh-window.ui.h:6
+msgid "_Normal Size"
+msgstr "_Normalna veličina"
+
+#: ../src/dh-window.ui.h:8
+msgid "_Side pane"
+msgstr "_Bočna površ"
+
+#: ../src/dh-window.ui.h:10
+msgid "_About Devhelp"
+msgstr "_O programu Devhelp"
+
+#: ../src/dh-window.ui.h:12
+msgid "Back"
+msgstr "Nazad"
+
+#: ../src/dh-window.ui.h:13
+msgid "Forward"
+msgstr "Naprijed"
