@@ -1,4 +1,18 @@
 ===============
+Version 3.15.92
+===============
+
+Fixed bugs:
+
+ - #746166, Disable some WebKit features we don't need
+
+Updated translations: bs
+
+Many thanks to all contributors: Michael Catanzaro, Samir Ribic, Sebastien
+Lafargue
+
+
+===============
 Version 3.15.91
 ===============
 
