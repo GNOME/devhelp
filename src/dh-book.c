@@ -219,7 +219,7 @@ dh_book_new (const gchar *book_path)
                                    &priv->keywords,
                                    &error)) {
                 g_warning ("Failed to read '%s': %s",
-                           priv->path, error->message);
+                           book_path, error->message);
                 g_error_free (error);
 
                 /* Deallocate the book, as we are not going to add it
