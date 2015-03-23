@@ -1,3 +1,16 @@
+==============
+Version 3.16.0
+==============
+
+Fixed bugs:
+
+ - #746609, Fix warning when book cannot be read
+
+Updated translations: bs
+
+Many thanks to all contributors: Michael Catanzaro, Kalev Lember
+
+
 ===============
 Version 3.15.92
 ===============
