@@ -769,7 +769,6 @@ window_populate (DhWindow *window)
 {
         DhWindowPrivate *priv;
         DhBookManager *book_manager;
-        const char *prev_icon, *next_icon;
 
         priv = dh_window_get_instance_private (window);
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
