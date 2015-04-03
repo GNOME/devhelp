@@ -844,8 +844,17 @@ find_library_equivalent (DhWindow    *window,
         GList *books;
 
         components = g_strsplit (uri, "/", 0);
-        book_id = components[4];
-        filename = components[6];
+        if (strncmp (uri, "http://library.gnome.org/devel/", 31) == 0 ||
+            strncmp (uri, "https://library.gnome.org/devel/", 32) == 0) {
+                book_id = components[4];
+                filename = components[6];
+        } else if (strncmp (uri, "http://developer.gnome.org/", 27 ) == 0 ||
+                   strncmp (uri, "https://developer.gnome.org/", 28 ) == 0) {
+                book_id = components[3];
+                filename = components[5];
+        } else {
+                return NULL;
+        }
 
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
 
@@ -903,7 +912,10 @@ window_web_view_decide_policy_cb (WebKitWebView           *web_view,
                 return FALSE;
         }
 
-        if (strncmp (uri, "http://library.gnome.org/devel/", 31) == 0) {
+        if (strncmp (uri, "http://library.gnome.org/devel/", 31) == 0 ||
+            strncmp (uri, "https://library.gnome.org/devel/", 32) == 0 ||
+            strncmp (uri, "http://developer.gnome.org/", 27 ) == 0 ||
+            strncmp (uri, "https://developer.gnome.org/", 28 ) == 0) {
                 gchar *local_uri = find_library_equivalent (window, uri);
                 if (local_uri) {
                         webkit_policy_decision_ignore (policy_decision);
