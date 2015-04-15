@@ -359,13 +359,19 @@ book_manager_get_book_path (const gchar *base_path,
         gchar *book_path;
         guint  i;
 
+#ifdef HAVE_DOCSET
+        if (g_str_has_suffix (name, ".docset")) {
+                return g_strdup(base_path);
+        }
+#endif
+
         for (i = 0; suffixes[i]; i++) {
                 tmp = g_build_filename (base_path, name, NULL);
                 book_path = g_strconcat (tmp, ".", suffixes[i], NULL);
                 g_free (tmp);
 
                 if (g_file_test (book_path, G_FILE_TEST_EXISTS)) {
-                        return book_path;;
+                        return book_path;
                 }
                 g_free (book_path);
         }
