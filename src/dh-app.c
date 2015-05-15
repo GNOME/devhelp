@@ -317,22 +317,55 @@ static GActionEntry app_entries[] = {
 static void
 setup_accelerators (DhApp *self)
 {
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>0",     "win.zoom-default",     NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>minus", "win.zoom-out",         NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>plus",  "win.zoom-in",          NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>k",     "win.focus-search",     NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>s",     "win.focus-search-alt", NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>f",     "win.find",             NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>c",     "win.copy",             NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>p",     "win.print",            NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>t",     "win.new-tab",          NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "F9",             "win.show-sidebar",     NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Primary>w",     "win.close",            NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "F10",            "win.gear-menu",        NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Alt>Right",     "win.go-forward",       NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "<Alt>Left",      "win.go-back",          NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "Forward",        "win.go-forward",       NULL);
-        gtk_application_add_accelerator (GTK_APPLICATION (self), "Back",           "win.go-back",          NULL);
+        const gchar *accels[] = {NULL, NULL};
+
+        accels[0] = "<Primary>0";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-default", accels);
+
+        accels[0] = "<Primary>minus";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-out", accels);
+
+        accels[0] = "<Primary>plus";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-in", accels);
+
+        accels[0] = "<Primary>k";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.focus-search", accels);
+
+        accels[0] = "<Primary>s";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.focus-search-alt", accels);
+
+        accels[0] = "<Primary>f";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.find", accels);
+
+        accels[0] = "<Primary>c";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.copy", accels);
+
+        accels[0] = "<Primary>p";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.print", accels);
+
+        accels[0] = "<Primary>t";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.new-tab", accels);
+
+        accels[0] = "F9";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.show-sidebar", accels);
+
+        accels[0] = "<Primary>w";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.close", accels);
+
+        accels[0] = "F10";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.gear-menu", accels);
+
+        accels[0] = "<Alt>Right";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-forward", accels);
+
+        accels[0] = "<Alt>Left";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-back", accels);
+
+        accels[0] = "Forward";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-forward", accels);
+
+        accels[0] = "Back";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-back", accels);
 }
 
 /******************************************************************************/
