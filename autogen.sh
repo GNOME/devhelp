@@ -4,11 +4,9 @@
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
-PKG_NAME="Devhelp"
-
 (test -f $srcdir/src/dh-main.c) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
-    echo " top-level $PKG_NAME directory"
+    echo " top-level Devhelp directory."
     exit 1
 }
 
