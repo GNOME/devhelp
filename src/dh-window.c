@@ -972,7 +972,7 @@ window_web_view_load_failed_cb (WebKitWebView   *web_view,
         markup = g_strdup_printf ("<b>%s</b>",
                        _("Error opening the requested link."));
         message_label = gtk_label_new (markup);
-        gtk_misc_set_alignment (GTK_MISC (message_label), 0, 0.5);
+        gtk_label_set_xalign (GTK_LABEL (message_label), 0.0);
         gtk_label_set_use_markup (GTK_LABEL (message_label), TRUE);
         content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (info_bar));
         children = gtk_container_get_children (GTK_CONTAINER (content_area));
