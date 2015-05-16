@@ -24,9 +24,7 @@ AM_CPPFLAGS = 						\
 	-DLOCALEDIR=\""$(localedir)"\" 	  		\
 	-DDATADIR=\""$(datadir)"\"                      \
 	-DG_LOG_DOMAIN=\"Devhelp\"			\
-	-DG_DISABLE_SINGLE_INCLUDES			\
 	-DGDK_PIXBUF_DISABLE_SINGLE_INCLUDES		\
-	-DGTK_DISABLE_SINGLE_INCLUDES			\
 	$(WARN_CFLAGS)
 
 bin_PROGRAMS = devhelp
