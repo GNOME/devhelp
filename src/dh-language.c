@@ -17,9 +17,8 @@
  */
 
 #include "config.h"
-#include <string.h>
-
 #include "dh-language.h"
+#include <string.h>
 
 struct _DhLanguage {
         /* Name of the language */

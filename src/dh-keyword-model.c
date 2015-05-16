@@ -20,12 +20,13 @@
  */
 
 #include "config.h"
+#include "dh-keyword-model.h"
+
 #include <gtk/gtk.h>
 #include <string.h>
 
 #include "dh-link.h"
 #include "dh-book.h"
-#include "dh-keyword-model.h"
 
 typedef struct {
         DhBookManager *book_manager;

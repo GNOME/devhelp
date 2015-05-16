@@ -21,6 +21,7 @@
  */
 
 #include "config.h"
+#include "dh-sidebar.h"
 
 #include <string.h>
 #include <glib/gi18n-lib.h>
@@ -28,7 +29,6 @@
 #include <gtk/gtk.h>
 
 #include "dh-keyword-model.h"
-#include "dh-sidebar.h"
 #include "dh-util.h"
 #include "dh-book-manager.h"
 #include "dh-book.h"

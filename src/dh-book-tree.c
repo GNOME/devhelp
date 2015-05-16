@@ -20,11 +20,12 @@
  */
 
 #include "config.h"
+#include "dh-book-tree.h"
+
 #include <string.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include "dh-book-tree.h"
 #include "dh-book.h"
 
 typedef struct {

@@ -17,8 +17,6 @@
  */
 
 #include "config.h"
-
-
 #include "dh-settings.h"
 
 G_DEFINE_TYPE (DhSettings, dh_settings, G_TYPE_OBJECT);

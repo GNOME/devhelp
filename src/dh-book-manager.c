@@ -21,12 +21,13 @@
  */
 
 #include "config.h"
+#include "dh-book-manager.h"
+
 #include <string.h>
 
 #include "dh-link.h"
 #include "dh-book.h"
 #include "dh-language.h"
-#include "dh-book-manager.h"
 #include "dh-settings.h"
 
 #define NEW_POSSIBLE_BOOK_TIMEOUT_SECS 5

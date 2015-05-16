@@ -20,12 +20,12 @@
  */
 
 #include "config.h"
+#include "dh-app.h"
 
 #include <stdlib.h>
 #include <glib/gi18n.h>
 
 #include "devhelp.h"
-#include "dh-app.h"
 #include "dh-preferences.h"
 #include "dh-util.h"
 

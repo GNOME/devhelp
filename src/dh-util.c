@@ -18,12 +18,11 @@
  */
 
 #include "config.h"
+#include "dh-util.h"
 #include <string.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <math.h>
-#include "dh-util.h"
-
 
 static GtkBuilder *
 get_builder_file (const gchar *filename,

@@ -17,6 +17,7 @@
  */
 
 #include "config.h"
+#include "dh-assistant.h"
 #include <string.h>
 #include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
@@ -24,7 +25,6 @@
 #include "dh-window.h"
 #include "dh-util.h"
 #include "dh-assistant-view.h"
-#include "dh-assistant.h"
 #include "dh-settings.h"
 
 typedef struct {

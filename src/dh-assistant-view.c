@@ -20,9 +20,9 @@
  */
 
 #include "config.h"
+#include "dh-assistant-view.h"
 #include <string.h>
 #include <glib/gi18n-lib.h>
-#include "dh-assistant-view.h"
 #include "dh-link.h"
 #include "dh-util.h"
 #include "dh-book-manager.h"

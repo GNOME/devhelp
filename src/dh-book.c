@@ -20,13 +20,13 @@
  */
 
 #include "config.h"
-#include <string.h>
+#include "dh-book.h"
 
+#include <string.h>
 #include <glib/gi18n.h>
 
 #include "dh-link.h"
 #include "dh-parser.h"
-#include "dh-book.h"
 #include "dh-util.h"
 
 /* Timeout to wait for new events in the book so that

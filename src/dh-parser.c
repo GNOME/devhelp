@@ -19,6 +19,8 @@
  */
 
 #include "config.h"
+#include "dh-parser.h"
+
 #include <string.h>
 #include <errno.h>
 #include <zlib.h>
@@ -26,7 +28,6 @@
 
 #include "dh-error.h"
 #include "dh-link.h"
-#include "dh-parser.h"
 
 #define NAMESPACE      "http://www.devhelp.net/book"
 #define BYTES_PER_READ 4096

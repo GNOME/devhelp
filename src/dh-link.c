@@ -18,10 +18,10 @@
  */
 
 #include "config.h"
+#include "dh-link.h"
 #include <string.h>
 #include <glib-object.h>
 #include <glib/gi18n-lib.h>
-#include "dh-link.h"
 
 struct _DhLink {
         /* FIXME: Those two could exist only for book to save some
