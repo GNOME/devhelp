@@ -406,7 +406,7 @@ book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
                                         GFile             *file,
                                         GFile             *other_file,
                                         GFileMonitorEvent  event_type,
-                                        gpointer	   user_data)
+                                        gpointer           user_data)
 {
         DhBookManager       *book_manager = user_data;
         NewPossibleBookData *data;

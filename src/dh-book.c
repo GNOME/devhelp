@@ -37,9 +37,9 @@
 enum {
         BOOK_ENABLED,
         BOOK_DISABLED,
-	BOOK_UPDATED,
+        BOOK_UPDATED,
         BOOK_DELETED,
-	BOOK_LAST_SIGNAL
+        BOOK_LAST_SIGNAL
 };
 
 typedef enum {
@@ -83,7 +83,7 @@ static void    book_monitor_event_cb (GFileMonitor      *file_monitor,
                                       GFile             *file,
                                       GFile             *other_file,
                                       GFileMonitorEvent  event_type,
-                                      gpointer	         user_data);
+                                      gpointer                 user_data);
 static void    unref_node_link       (GNode             *node,
                                       gpointer           data);
 
@@ -130,46 +130,46 @@ dh_book_class_init (DhBookClass *klass)
 
         object_class->finalize = dh_book_finalize;
 
-	signals[BOOK_ENABLED] =
-		g_signal_new ("enabled",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST,
-		              0,
-		              NULL, NULL,
+        signals[BOOK_ENABLED] =
+                g_signal_new ("enabled",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
                               g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE,
+                              G_TYPE_NONE,
                               0);
 
-	signals[BOOK_DISABLED] =
-		g_signal_new ("disabled",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST,
-		              0,
-		              NULL, NULL,
+        signals[BOOK_DISABLED] =
+                g_signal_new ("disabled",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
                               g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE,
+                              G_TYPE_NONE,
                               0);
 
 
-	signals[BOOK_UPDATED] =
-		g_signal_new ("updated",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST,
-		              0,
-		              NULL, NULL,
+        signals[BOOK_UPDATED] =
+                g_signal_new ("updated",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
                               g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE,
+                              G_TYPE_NONE,
                               0);
 
-	signals[BOOK_DELETED] =
-		g_signal_new ("deleted",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST,
-		              0,
-		              NULL, NULL,
+        signals[BOOK_DELETED] =
+                g_signal_new ("deleted",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
                               g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE,
-		              0);
+                              G_TYPE_NONE,
+                              0);
 }
 
 static void
@@ -276,14 +276,14 @@ book_monitor_event_timeout_cb  (gpointer data)
                 /* Emit the signal, but make sure we hold a reference
                  * while doing it */
                 g_object_ref (book);
-		g_signal_emit (book, signals[BOOK_DELETED], 0);
+                g_signal_emit (book, signals[BOOK_DELETED], 0);
                 g_object_unref (book);
                 break;
         case BOOK_MONITOR_EVENT_UPDATED:
                 /* Emit the signal, but make sure we hold a reference
                  * while doing it */
                 g_object_ref (book);
-		g_signal_emit (book, signals[BOOK_UPDATED], 0);
+                g_signal_emit (book, signals[BOOK_UPDATED], 0);
                 g_object_unref (book);
                 break;
         default:
@@ -303,7 +303,7 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                        GFile             *file,
                        GFile             *other_file,
                        GFileMonitorEvent  event_type,
-                       gpointer	          user_data)
+                       gpointer                  user_data)
 {
         DhBook     *book = user_data;
         DhBookPrivate *priv = dh_book_get_instance_private (book);

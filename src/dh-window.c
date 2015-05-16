@@ -340,7 +340,7 @@ zoom_in_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
 {
-	DhWindow *window = user_data;
+        DhWindow *window = user_data;
         int zoom_level_idx;
 
         zoom_level_idx = window_get_current_zoom_level_index (window);
@@ -359,7 +359,7 @@ zoom_out_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
 {
-	DhWindow *window = user_data;
+        DhWindow *window = user_data;
         int zoom_level_idx;
 
         zoom_level_idx = window_get_current_zoom_level_index (window);
@@ -377,7 +377,7 @@ zoom_default_cb (GSimpleAction *action,
                  GVariant      *parameter,
                  gpointer       user_data)
 {
-	DhWindow *window = user_data;
+        DhWindow *window = user_data;
         WebKitWebView *web_view;
 
         web_view = window_get_active_web_view (window);
@@ -589,7 +589,7 @@ window_configure_event_cb (GtkWidget *window,
         dh_util_window_settings_save (
                 GTK_WINDOW (window),
                 dh_settings_peek_window_settings (priv->settings), TRUE);
-	return FALSE;
+        return FALSE;
 }
 
 static void
@@ -678,8 +678,8 @@ dh_window_dispose (GObject *object)
 
         g_clear_object (&priv->settings);
 
-	/* Chain up to the parent class */
-	G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
+        /* Chain up to the parent class */
+        G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
 }
 
 static void

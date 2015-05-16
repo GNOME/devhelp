@@ -64,12 +64,12 @@ enum {
 };
 
 enum {
-	COL_TITLE,
-	COL_LINK,
+        COL_TITLE,
+        COL_LINK,
         COL_BOOK,
-	COL_WEIGHT,
+        COL_WEIGHT,
         COL_UNDERLINE,
-	N_COLUMNS
+        N_COLUMNS
 };
 
 enum {
@@ -167,57 +167,57 @@ dh_book_tree_init (DhBookTree *tree)
 
         priv = dh_book_tree_get_instance_private (tree);
 
-	priv->store = gtk_tree_store_new (N_COLUMNS,
-					  G_TYPE_STRING,
-					  G_TYPE_POINTER,
+        priv->store = gtk_tree_store_new (N_COLUMNS,
+                                          G_TYPE_STRING,
+                                          G_TYPE_POINTER,
                                           G_TYPE_OBJECT,
                                           PANGO_TYPE_WEIGHT,
                                           PANGO_TYPE_UNDERLINE);
-	priv->selected_link = NULL;
-	gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
-				 GTK_TREE_MODEL (priv->store));
+        priv->selected_link = NULL;
+        gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
+                                 GTK_TREE_MODEL (priv->store));
 
-	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
+        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
 
-	book_tree_add_columns (tree);
+        book_tree_add_columns (tree);
 
-	book_tree_setup_selection (tree);
+        book_tree_setup_selection (tree);
 }
 
 static void
 book_tree_add_columns (DhBookTree *tree)
 {
-	GtkCellRenderer   *cell;
-	GtkTreeViewColumn *column;
+        GtkCellRenderer   *cell;
+        GtkTreeViewColumn *column;
 
-	column = gtk_tree_view_column_new ();
+        column = gtk_tree_view_column_new ();
 
-	cell = gtk_cell_renderer_text_new ();
-	g_object_set (cell,
-		      "ellipsize", PANGO_ELLIPSIZE_END,
-		      NULL);
-	gtk_tree_view_column_pack_start (column, cell, TRUE);
-	gtk_tree_view_column_set_attributes (column, cell,
-					     "text", COL_TITLE,
+        cell = gtk_cell_renderer_text_new ();
+        g_object_set (cell,
+                      "ellipsize", PANGO_ELLIPSIZE_END,
+                      NULL);
+        gtk_tree_view_column_pack_start (column, cell, TRUE);
+        gtk_tree_view_column_set_attributes (column, cell,
+                                             "text", COL_TITLE,
                                              "weight", COL_WEIGHT,
                                              "underline", COL_UNDERLINE,
-					     NULL);
+                                             NULL);
 
-	gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
+        gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
 }
 
 static void
 book_tree_setup_selection (DhBookTree *tree)
 {
-	GtkTreeSelection *selection;
+        GtkTreeSelection *selection;
 
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
 
-	gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
+        gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
-	g_signal_connect (selection, "changed",
-			  G_CALLBACK (book_tree_selection_changed_cb),
-			  tree);
+        g_signal_connect (selection, "changed",
+                          G_CALLBACK (book_tree_selection_changed_cb),
+                          tree);
 }
 
 /* Tries to find:
@@ -596,21 +596,21 @@ book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
 
 static void
 book_tree_insert_node (DhBookTree  *tree,
-		       GNode       *node,
+                       GNode       *node,
                        GtkTreeIter *current_iter,
                        DhBook      *book)
 
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-	DhLink         *link;
+        DhLink         *link;
         PangoWeight     weight;
-	GNode          *child;
+        GNode          *child;
 
-	link = node->data;
+        link = node->data;
 
-	if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
+        if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
                 weight = PANGO_WEIGHT_BOLD;
-	} else {
+        } else {
                 weight = PANGO_WEIGHT_NORMAL;
         }
 
@@ -623,29 +623,29 @@ book_tree_insert_node (DhBookTree  *tree,
                             COL_UNDERLINE, PANGO_UNDERLINE_NONE,
                             -1);
 
-	for (child = g_node_first_child (node);
-	     child;
-	     child = g_node_next_sibling (child)) {
+        for (child = g_node_first_child (node);
+             child;
+             child = g_node_next_sibling (child)) {
                 GtkTreeIter iter;
 
                 /* Append new iter */
                 gtk_tree_store_append (priv->store, &iter, current_iter);
-		book_tree_insert_node (tree, child, &iter, NULL);
-	}
+                book_tree_insert_node (tree, child, &iter, NULL);
+        }
 }
 
 static void
 book_tree_selection_changed_cb (GtkTreeSelection *selection,
-				DhBookTree       *tree)
+                                DhBookTree       *tree)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeIter     iter;
 
-	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
+        if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
                 DhLink *link;
 
-		gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
-				    &iter,
+                gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
+                                    &iter,
                                     COL_LINK, &link,
                                     -1);
                 if (link) {
@@ -654,7 +654,7 @@ book_tree_selection_changed_cb (GtkTreeSelection *selection,
                         }
                         priv->selected_link = link;
                 }
-	}
+        }
 }
 
 static void
@@ -677,17 +677,17 @@ book_tree_init_selection (DhBookTree *tree)
 
         priv = dh_book_tree_get_instance_private (tree);
 
-	/* Mark the first item as selected, or it would get automatically
-	 * selected when the treeview will get focus; but that's not even
-	 * enough as a selection changed would still be emitted when there
-	 * is no change, hence the manual tracking of selection in
-	 * selected_link.
-	 *   https://bugzilla.gnome.org/show_bug.cgi?id=492206
-	 */
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
-	g_signal_handlers_block_by_func	(selection,
-					 book_tree_selection_changed_cb,
-					 tree);
+        /* Mark the first item as selected, or it would get automatically
+         * selected when the treeview will get focus; but that's not even
+         * enough as a selection changed would still be emitted when there
+         * is no change, hence the manual tracking of selection in
+         * selected_link.
+         *   https://bugzilla.gnome.org/show_bug.cgi?id=492206
+         */
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
+        g_signal_handlers_block_by_func        (selection,
+                                         book_tree_selection_changed_cb,
+                                         tree);
 
         /* If grouping by languages, get first book in the first language */
         if (dh_book_manager_get_group_by_language (priv->book_manager)) {
@@ -713,9 +713,9 @@ book_tree_init_selection (DhBookTree *tree)
                 gtk_tree_selection_select_iter (selection, &iter);
         }
 
-	g_signal_handlers_unblock_by_func (selection,
-					   book_tree_selection_changed_cb,
-					   tree);
+        g_signal_handlers_unblock_by_func (selection,
+                                           book_tree_selection_changed_cb,
+                                           tree);
 }
 
 static void
@@ -773,13 +773,13 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
 
         signals[LINK_SELECTED] =
                 g_signal_new ("link-selected",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST,
-			      0,
-			      NULL, NULL,
-			      g_cclosure_marshal_VOID__POINTER,
-			      G_TYPE_NONE,
-			      1, G_TYPE_POINTER);
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__POINTER,
+                              G_TYPE_NONE,
+                              1, G_TYPE_POINTER);
 }
 
 GtkWidget *
@@ -790,15 +790,15 @@ dh_book_tree_new (DhBookManager *book_manager)
 
 static gboolean
 book_tree_find_uri_foreach (GtkTreeModel *model,
-			    GtkTreePath  *path,
-			    GtkTreeIter  *iter,
-			    FindURIData  *data)
+                            GtkTreePath  *path,
+                            GtkTreeIter  *iter,
+                            FindURIData  *data)
 {
-	DhLink *link;
+        DhLink *link;
 
-	gtk_tree_model_get (model, iter,
-			    COL_LINK, &link,
-			    -1);
+        gtk_tree_model_get (model, iter,
+                            COL_LINK, &link,
+                            -1);
         if (link) {
                 gchar *link_uri;
 
@@ -811,81 +811,81 @@ book_tree_find_uri_foreach (GtkTreeModel *model,
                 g_free (link_uri);
         }
 
-	return data->found;
+        return data->found;
 }
 
 void
 dh_book_tree_select_uri (DhBookTree  *tree,
-			 const gchar *uri)
+                         const gchar *uri)
 {
         DhBookTreePrivate   *priv = dh_book_tree_get_instance_private (tree);
-	GtkTreeSelection *selection;
-	FindURIData       data;
+        GtkTreeSelection *selection;
+        FindURIData       data;
 
-	data.found = FALSE;
-	data.uri = uri;
+        data.found = FALSE;
+        data.uri = uri;
 
-	gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
-				(GtkTreeModelForeachFunc) book_tree_find_uri_foreach,
-				&data);
+        gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                                (GtkTreeModelForeachFunc) book_tree_find_uri_foreach,
+                                &data);
 
-	if (!data.found) {
-		return;
-	}
+        if (!data.found) {
+                return;
+        }
 
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
 
         /* Do not re-select (which will expand current additionally) if already
          * there. */
         if (gtk_tree_selection_iter_is_selected (selection, &data.iter))
                 return;
 
-	g_signal_handlers_block_by_func	(selection,
-					 book_tree_selection_changed_cb,
-					 tree);
+        g_signal_handlers_block_by_func        (selection,
+                                         book_tree_selection_changed_cb,
+                                         tree);
 
-	gtk_tree_view_expand_to_path (GTK_TREE_VIEW (tree), data.path);
-	gtk_tree_selection_select_iter (selection, &data.iter);
-	gtk_tree_view_set_cursor (GTK_TREE_VIEW (tree), data.path, NULL, 0);
+        gtk_tree_view_expand_to_path (GTK_TREE_VIEW (tree), data.path);
+        gtk_tree_selection_select_iter (selection, &data.iter);
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW (tree), data.path, NULL, 0);
 
-	g_signal_handlers_unblock_by_func (selection,
-					   book_tree_selection_changed_cb,
-					   tree);
+        g_signal_handlers_unblock_by_func (selection,
+                                           book_tree_selection_changed_cb,
+                                           tree);
 
-	gtk_tree_path_free (data.path);
+        gtk_tree_path_free (data.path);
 }
 
 DhLink *
 dh_book_tree_get_selected_book (DhBookTree *tree)
 {
-	GtkTreeSelection *selection;
-	GtkTreeModel     *model;
-	GtkTreeIter       iter;
-	GtkTreePath      *path;
-	DhLink           *link;
+        GtkTreeSelection *selection;
+        GtkTreeModel     *model;
+        GtkTreeIter       iter;
+        GtkTreePath      *path;
+        DhLink           *link;
 
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
-	if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
-		return NULL;
-	}
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
+        if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
+                return NULL;
+        }
 
-	path = gtk_tree_model_get_path (model, &iter);
+        path = gtk_tree_model_get_path (model, &iter);
 
-	/* Get the book node for this link. */
-	while (1) {
-		if (gtk_tree_path_get_depth (path) <= 1) {
-			break;
-		}
+        /* Get the book node for this link. */
+        while (1) {
+                if (gtk_tree_path_get_depth (path) <= 1) {
+                        break;
+                }
 
-		gtk_tree_path_up (path);
-	}
+                gtk_tree_path_up (path);
+        }
 
-	gtk_tree_model_get_iter (model, &iter, path);
-	gtk_tree_path_free (path);
+        gtk_tree_model_get_iter (model, &iter, path);
+        gtk_tree_path_free (path);
 
-	gtk_tree_model_get (model, &iter,
-			    COL_LINK, &link,
-			    -1);
+        gtk_tree_model_get (model, &iter,
+                            COL_LINK, &link,
+                            -1);
 
-	return link;
+        return link;
 }

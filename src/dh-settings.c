@@ -44,7 +44,7 @@ static void fonts_changed_cb (GSettings *settings, gchar *key, gpointer user_dat
 struct _DhSettingsPrivate {
         GSettings *settings_desktop_interface;
         GSettings *settings_fonts;
-	GSettings *settings_window;
+        GSettings *settings_window;
         GSettings *settings_contents;
         GSettings *settings_paned;
         GSettings *settings_search_notebook;
@@ -82,37 +82,37 @@ dh_settings_init (DhSettings *self)
 static void
 dispose (GObject *object)
 {
-	DhSettings *self = DH_SETTINGS (object);
+        DhSettings *self = DH_SETTINGS (object);
         g_clear_object (&self->priv->settings_desktop_interface);
         g_clear_object (&self->priv->settings_fonts);
-	g_clear_object (&self->priv->settings_window);
+        g_clear_object (&self->priv->settings_window);
         g_clear_object (&self->priv->settings_contents);
         g_clear_object (&self->priv->settings_paned);
         g_clear_object (&self->priv->settings_search_notebook);
         g_clear_object (&self->priv->settings_assistant);
 
-	G_OBJECT_CLASS (dh_settings_parent_class)->dispose (object);
+        G_OBJECT_CLASS (dh_settings_parent_class)->dispose (object);
 }
 
 
 static void
 finalize (GObject *object)
 {
-	singleton = NULL;
+        singleton = NULL;
 
-	/* Chain up to the parent class */
-	G_OBJECT_CLASS (dh_settings_parent_class)->finalize(object);
+        /* Chain up to the parent class */
+        G_OBJECT_CLASS (dh_settings_parent_class)->finalize(object);
 }
 
 
 static void
 dh_settings_class_init (DhSettingsClass *klass)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	g_type_class_add_private (object_class, sizeof (DhSettingsPrivate));
-	object_class->dispose = dispose;
-	object_class->finalize = finalize;
+        g_type_class_add_private (object_class, sizeof (DhSettingsPrivate));
+        object_class->dispose = dispose;
+        object_class->finalize = finalize;
 
         signals[FONTS_CHANGED] =
                 g_signal_new ("fonts-changed",
@@ -146,13 +146,13 @@ fonts_changed_cb (GSettings *settings, gchar *key, gpointer user_data)
 DhSettings *
 dh_settings_get (void)
 {
-	if (!singleton) {
-		singleton = DH_SETTINGS (g_object_new (DH_TYPE_SETTINGS, NULL));
-	} else {
-		g_object_ref (singleton);
-	}
-	g_assert (singleton);
-	return singleton;
+        if (!singleton) {
+                singleton = DH_SETTINGS (g_object_new (DH_TYPE_SETTINGS, NULL));
+        } else {
+                g_object_ref (singleton);
+        }
+        g_assert (singleton);
+        return singleton;
 }
 
 void

@@ -38,13 +38,13 @@ typedef struct _DhSettingsPrivate DhSettingsPrivate;
 
 
 struct _DhSettings{
-	GObject parent;
-	/*<private>*/
-	DhSettingsPrivate *priv;
+        GObject parent;
+        /*<private>*/
+        DhSettingsPrivate *priv;
 };
 
 struct _DhSettingsClass{
-	GObjectClass parent;
+        GObjectClass parent;
         /* Signals */
         void (*fonts_changed) (DhSettings *settings,
                                const gchar *font_name_fixed,
