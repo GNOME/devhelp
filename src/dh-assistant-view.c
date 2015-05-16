@@ -72,6 +72,7 @@ assistant_decide_policy (WebKitWebView           *web_view,
         DhAssistantViewPriv            *priv;
         const gchar                    *uri;
         WebKitNavigationPolicyDecision *navigation_decision;
+        WebKitNavigationAction         *navigation_action;
         WebKitNavigationType            navigation_type;
         WebKitURIRequest               *request;
 
@@ -83,7 +84,8 @@ assistant_decide_policy (WebKitWebView           *web_view,
 
         priv = GET_PRIVATE (web_view);
         navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (decision);
-        navigation_type = webkit_navigation_policy_decision_get_navigation_type (navigation_decision);
+        navigation_action = webkit_navigation_policy_decision_get_navigation_action (navigation_decision);
+        navigation_type = webkit_navigation_action_get_navigation_type (navigation_action);
         if (navigation_type != WEBKIT_NAVIGATION_TYPE_LINK_CLICKED) {
                 if (! priv->snippet_loaded) {
                         priv->snippet_loaded = TRUE;
@@ -95,7 +97,7 @@ assistant_decide_policy (WebKitWebView           *web_view,
                 return TRUE;
         }
 
-        request = webkit_navigation_policy_decision_get_request (navigation_decision);
+        request = webkit_navigation_action_get_request (navigation_action);
         uri = webkit_uri_request_get_uri (request);
         if (strcmp (uri, "about:blank") == 0) {
                 webkit_policy_decision_use (decision);

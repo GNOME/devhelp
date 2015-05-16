@@ -5,7 +5,7 @@ The following packages are required to compile Devhelp:
 
 glib 2.38 (or greater)
 gtk+ 3.14 (or greater)
-webkit2gtk-3.0 (or greater)
+webkit2gtk-4.0 2.6 (or greater)
 
 Devhelp's primary goal is to be an API documentation browser for
 GNOME. When you build (or install) a GNOME library, it will build an

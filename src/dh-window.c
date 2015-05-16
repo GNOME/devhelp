@@ -891,17 +891,19 @@ window_web_view_decide_policy_cb (WebKitWebView           *web_view,
 {
         const char   *uri;
         WebKitNavigationPolicyDecision *navigation_decision;
+        WebKitNavigationAction *navigation_action;
 
         if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
                 return FALSE;
 
         navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (policy_decision);
-        uri = webkit_uri_request_get_uri (webkit_navigation_policy_decision_get_request (navigation_decision));
+        navigation_action = webkit_navigation_policy_decision_get_navigation_action (navigation_decision);
+        uri = webkit_uri_request_get_uri (webkit_navigation_action_get_request (navigation_action));
 
         /* make sure to hide the info bar on page change */
         gtk_widget_hide (window_get_active_info_bar (window));
 
-        if (webkit_navigation_policy_decision_get_mouse_button (navigation_decision) == 2) { /* middle click */
+        if (webkit_navigation_action_get_mouse_button (navigation_action) == 2) { /* middle click */
                 webkit_policy_decision_ignore (policy_decision);
                 g_signal_emit (window, signals[OPEN_LINK], 0, uri, DH_OPEN_LINK_NEW_TAB);
                 return TRUE;
