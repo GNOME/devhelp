@@ -271,16 +271,19 @@ static void
 book_manager_load_books_disabled (DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
+        gchar **books_disabled_strv;
+        gchar **i;
 
-        gchar **books_disabled_strv = g_settings_get_strv (
+        books_disabled_strv = g_settings_get_strv (
                 dh_settings_peek_contents_settings (priv->settings),
                 "books-disabled");
 
-        gchar **i = books_disabled_strv;
-        while (*i != NULL) {
-                priv->books_disabled = g_slist_append (priv->books_disabled, *i);
-                i++;
+        for (i = books_disabled_strv; *i != NULL; i++) {
+                gchar *book = *i;
+                priv->books_disabled = g_slist_prepend (priv->books_disabled, book);
         }
+
+        priv->books_disabled = g_slist_reverse (priv->books_disabled);
 
         g_free (books_disabled_strv);
 }
@@ -291,12 +294,12 @@ book_manager_store_books_disabled (DhBookManager *book_manager)
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         GVariantBuilder *builder;
         GVariant *variant;
-        int i;
+        GSList *l;
 
         builder = g_variant_builder_new (G_VARIANT_TYPE_STRING_ARRAY);
-        for (i = 0; i < g_slist_length (priv->books_disabled); i++)
-        {
-                gchar *book = (gchar*) g_slist_nth_data (priv->books_disabled, i);
+
+        for (l = priv->books_disabled; l != NULL; l = l->next) {
+                gchar *book = l->data;
                 g_variant_builder_add (builder, "s", book);
         }
 
@@ -314,13 +317,16 @@ book_manager_is_book_disabled_in_conf (DhBookManager *book_manager,
                                        DhBook        *book)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GSList            *li;
+        const gchar *name;
+        GSList *l;
 
-        for (li = priv->books_disabled; li; li = g_slist_next (li)) {
-                if (g_strcmp0 (dh_book_get_name (book),
-                               (const gchar *)li->data) == 0) {
+        name = dh_book_get_name (book);
+
+        for (l = priv->books_disabled; l != NULL; l = l->next) {
+                gchar *cur_name = l->data;
+
+                if (g_strcmp0 (name, cur_name) == 0)
                         return TRUE;
-                }
         }
 
         return FALSE;
