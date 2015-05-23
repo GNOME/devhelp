@@ -77,13 +77,11 @@ typedef struct {
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBook, dh_book, G_TYPE_OBJECT);
 
-static void    dh_book_init          (DhBook            *book);
-static void    dh_book_class_init    (DhBookClass       *klass);
 static void    book_monitor_event_cb (GFileMonitor      *file_monitor,
                                       GFile             *file,
                                       GFile             *other_file,
                                       GFileMonitorEvent  event_type,
-                                      gpointer                 user_data);
+                                      gpointer           user_data);
 static void    unref_node_link       (GNode             *node,
                                       gpointer           data);
 
@@ -303,7 +301,7 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                        GFile             *file,
                        GFile             *other_file,
                        GFileMonitorEvent  event_type,
-                       gpointer                  user_data)
+                       gpointer           user_data)
 {
         DhBook     *book = user_data;
         DhBookPrivate *priv = dh_book_get_instance_private (book);
