@@ -96,6 +96,11 @@ dh_book_dispose (GObject *object)
 
         g_clear_object (&priv->monitor);
 
+        if (priv->monitor_event_timeout_id != 0) {
+                g_source_remove (priv->monitor_event_timeout_id);
+                priv->monitor_event_timeout_id = 0;
+        }
+
         G_OBJECT_CLASS (dh_book_parent_class)->dispose (object);
 }
 
@@ -272,14 +277,19 @@ dh_book_new (const gchar *book_path)
 }
 
 static gboolean
-book_monitor_event_timeout_cb  (gpointer data)
+book_monitor_event_timeout_cb (gpointer data)
 {
-        DhBook     *book = data;
+        DhBook *book = data;
         DhBookPrivate *priv = dh_book_get_instance_private (book);
+        DhBookMonitorEvent monitor_event = priv->monitor_event;
+
+        /* Reset event */
+        priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
+        priv->monitor_event_timeout_id = 0;
 
         /* We'll get either is_deleted OR is_updated,
          * not possible to have both or none */
-        switch (priv->monitor_event)
+        switch (monitor_event)
         {
         case BOOK_MONITOR_EVENT_DELETED:
                 /* Emit the signal, but make sure we hold a reference
@@ -299,12 +309,9 @@ book_monitor_event_timeout_cb  (gpointer data)
                 break;
         }
 
-        /* Reset event */
-        priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
+        /* book can be destroyed here */
 
-        /* Destroy the reference we got in the timeout */
-        g_object_unref (book);
-        return FALSE;
+        return G_SOURCE_REMOVE;
 }
 
 static void
@@ -344,7 +351,7 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                 }
                 priv->monitor_event_timeout_id = g_timeout_add_seconds (EVENT_MERGE_TIMEOUT_SECS,
                                                                         book_monitor_event_timeout_cb,
-                                                                        g_object_ref (book));
+                                                                        book);
         }
 }
 
