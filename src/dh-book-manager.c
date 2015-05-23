@@ -71,9 +71,6 @@ static gint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
-static void    dh_book_manager_init           (DhBookManager      *book_manager);
-static void    dh_book_manager_class_init     (DhBookManagerClass *klass);
-
 static void    book_manager_load_books_disabled (DhBookManager *book_manager);
 
 static void    book_manager_add_from_filepath (DhBookManager *book_manager,
@@ -189,8 +186,8 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
         g_object_class_install_property (object_class,
                                          PROP_GROUP_BY_LANGUAGE,
                                          g_param_spec_boolean ("group-by-language",
-                                                               ("Group by language"),
-                                                               ("TRUE if books should be grouped by language"),
+                                                               "Group by language",
+                                                               "TRUE if books should be grouped by language",
                                                                FALSE,
                                                                (G_PARAM_READWRITE |
                                                                 G_PARAM_STATIC_NAME |
@@ -211,8 +208,10 @@ dh_book_manager_init (DhBookManager *book_manager)
 
         book_manager_load_books_disabled (book_manager);
         g_settings_bind (dh_settings_peek_contents_settings (priv->settings),
-                         "group-books-by-language", book_manager,
-                         "group-by-language", G_SETTINGS_BIND_DEFAULT);
+                         "group-books-by-language",
+                         book_manager,
+                         "group-by-language",
+                         G_SETTINGS_BIND_DEFAULT);
 }
 
 static void
@@ -366,7 +365,7 @@ book_manager_get_book_path (const gchar *base_path,
                 g_free (tmp);
 
                 if (g_file_test (book_path, G_FILE_TEST_EXISTS)) {
-                        return book_path;;
+                        return book_path;
                 }
                 g_free (book_path);
         }
