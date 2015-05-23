@@ -502,25 +502,27 @@ dh_book_cmp_by_path (DhBook *a,
         DhBookPrivate *priv_a;
         DhBookPrivate *priv_b;
 
+        if (a == NULL || b == NULL)
+                return -1;
+
         priv_a = dh_book_get_instance_private (a);
         priv_b = dh_book_get_instance_private (b);
 
-        return ((a && b) ?
-                g_strcmp0 (priv_a->path, priv_b->path) :
-                -1);
+        return g_strcmp0 (priv_a->path, priv_b->path);
 }
 
 gint
-dh_book_cmp_by_path_str (DhBook *a,
-                         const gchar  *b_path)
+dh_book_cmp_by_path_str (DhBook      *a,
+                         const gchar *b_path)
 {
         DhBookPrivate *priv_a;
 
+        if (a == NULL)
+                return -1;
+
         priv_a = dh_book_get_instance_private (a);
 
-        return ((a && b_path) ?
-                g_strcmp0 (priv_a->path, b_path) :
-                -1);
+        return g_strcmp0 (priv_a->path, b_path);
 }
 
 gint
@@ -530,25 +532,33 @@ dh_book_cmp_by_name (DhBook *a,
         DhBookPrivate *priv_a;
         DhBookPrivate *priv_b;
 
+        if (a == NULL || b == NULL)
+                return -1;
+
         priv_a = dh_book_get_instance_private (a);
         priv_b = dh_book_get_instance_private (b);
 
-        return ((a && b) ?
-                g_ascii_strcasecmp (priv_a->name, priv_b->name) :
-                -1);
+        if (priv_a->name == NULL || priv_b->name == NULL)
+                return -1;
+
+        return g_ascii_strcasecmp (priv_a->name, priv_b->name);
 }
 
 gint
-dh_book_cmp_by_name_str (DhBook *a,
-                         const gchar  *b_name)
+dh_book_cmp_by_name_str (DhBook      *a,
+                         const gchar *b_name)
 {
         DhBookPrivate *priv_a;
 
+        if (a == NULL)
+                return -1;
+
         priv_a = dh_book_get_instance_private (a);
 
-        return ((a && b_name) ?
-                g_ascii_strcasecmp (priv_a->name, b_name) :
-                -1);
+        if (priv_a->name == NULL || b_name == NULL)
+                return -1;
+
+        return g_ascii_strcasecmp (priv_a->name, b_name);
 }
 
 gint
@@ -558,10 +568,14 @@ dh_book_cmp_by_title (DhBook *a,
         DhBookPrivate *priv_a;
         DhBookPrivate *priv_b;
 
+        if (a == NULL || b == NULL)
+                return -1;
+
         priv_a = dh_book_get_instance_private (a);
         priv_b = dh_book_get_instance_private (b);
 
-        return ((a && b) ?
-                g_utf8_collate (priv_a->title, priv_b->title) :
-                -1);
+        if (priv_a->title == NULL || priv_b->title == NULL)
+                return -1;
+
+        return g_utf8_collate (priv_a->title, priv_b->title);
 }
