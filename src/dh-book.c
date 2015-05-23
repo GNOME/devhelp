@@ -88,6 +88,18 @@ static void    unref_node_link       (GNode             *node,
 static guint signals[BOOK_LAST_SIGNAL] = { 0 };
 
 static void
+dh_book_dispose (GObject *object)
+{
+        DhBookPrivate *priv;
+
+        priv = dh_book_get_instance_private (DH_BOOK (object));
+
+        g_clear_object (&priv->monitor);
+
+        G_OBJECT_CLASS (dh_book_parent_class)->dispose (object);
+}
+
+static void
 dh_book_finalize (GObject *object)
 {
         DhBookPrivate *priv;
@@ -108,8 +120,6 @@ dh_book_finalize (GObject *object)
 
         g_list_free_full (priv->completions, g_free);
 
-        g_clear_object (&priv->monitor);
-
         g_free (priv->language);
 
         g_free (priv->title);
@@ -126,6 +136,7 @@ dh_book_class_init (DhBookClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+        object_class->dispose = dh_book_dispose;
         object_class->finalize = dh_book_finalize;
 
         signals[BOOK_ENABLED] =
