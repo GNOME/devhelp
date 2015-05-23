@@ -382,6 +382,17 @@ dh_app_startup (GApplication *application)
         dh_book_manager_populate (priv->book_manager);
 }
 
+static void
+dh_app_activate (GApplication *application)
+{
+        DhApp *app = DH_APP (application);
+        GtkWidget *window;
+
+        window = dh_window_new (app);
+        gtk_application_add_window (GTK_APPLICATION (app), GTK_WINDOW (window));
+        gtk_widget_show_all (window);
+}
+
 /******************************************************************************/
 
 DhApp *
@@ -498,6 +509,7 @@ dh_app_class_init (DhAppClass *klass)
         GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
 
         application_class->startup = dh_app_startup;
+        application_class->activate = dh_app_activate;
         application_class->handle_local_options = dh_app_handle_local_options;
         application_class->command_line = dh_app_command_line;
 
