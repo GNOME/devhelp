@@ -91,23 +91,35 @@ static void    dh_book_manager_set_property   (GObject        *object,
                                                GParamSpec     *pspec);
 
 static void
-dh_book_manager_finalize (GObject *object)
+dh_book_manager_dispose (GObject *object)
 {
         DhBookManagerPrivate *priv;
 
         priv = dh_book_manager_get_instance_private (DH_BOOK_MANAGER (object));
 
         g_list_free_full (priv->books, g_object_unref);
-        g_list_free_full (priv->languages, (GDestroyNotify)dh_language_free);
+        priv->books = NULL;
 
-        /* Destroy the monitors HT */
-        if (priv->monitors) {
+        if (priv->monitors != NULL) {
                 g_hash_table_destroy (priv->monitors);
+                priv->monitors = NULL;
         }
 
-        g_slist_free_full (priv->books_disabled, g_free);
-
         g_clear_object (&priv->settings);
+
+        G_OBJECT_CLASS (dh_book_manager_parent_class)->dispose (object);
+}
+
+static void
+dh_book_manager_finalize (GObject *object)
+{
+        DhBookManagerPrivate *priv;
+
+        priv = dh_book_manager_get_instance_private (DH_BOOK_MANAGER (object));
+
+        g_list_free_full (priv->languages, (GDestroyNotify)dh_language_free);
+
+        g_slist_free_full (priv->books_disabled, g_free);
 
         G_OBJECT_CLASS (dh_book_manager_parent_class)->finalize (object);
 }
@@ -117,6 +129,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+        object_class->dispose = dh_book_manager_dispose;
         object_class->finalize = dh_book_manager_finalize;
         object_class->set_property = dh_book_manager_set_property;
         object_class->get_property = dh_book_manager_get_property;
