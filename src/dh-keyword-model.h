@@ -20,7 +20,7 @@
 #ifndef __DH_KEYWORD_MODEL_H__
 #define __DH_KEYWORD_MODEL_H__
 
-#include <gtk/gtk.h>
+#include <glib-object.h>
 #include "dh-link.h"
 #include "dh-book-manager.h"
 
@@ -38,7 +38,7 @@ typedef struct _DhKeywordModelClass DhKeywordModelClass;
 
 struct _DhKeywordModel
 {
-        GObject             parent_instance;
+        GObject parent_instance;
 };
 
 struct _DhKeywordModelClass

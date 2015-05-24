@@ -25,7 +25,6 @@
 #include <gtk/gtk.h>
 #include <string.h>
 
-#include "dh-link.h"
 #include "dh-book.h"
 
 typedef struct {
@@ -52,11 +51,7 @@ struct _DhKeywordGlobPattern {
 #define G_LIST(x) ((GList *) x)
 #define MAX_HITS 100
 
-static void dh_keyword_model_init            (DhKeywordModel      *list_store);
-static void dh_keyword_model_class_init      (DhKeywordModelClass *class);
 static void dh_keyword_model_tree_model_init (GtkTreeModelIface   *iface);
-static GList *dh_globbed_keywords_new        (GStrv                keywords);
-static void dh_globbed_keywords_free         (GList               *keyword_globs);
 
 G_DEFINE_TYPE_WITH_CODE (DhKeywordModel, dh_keyword_model, G_TYPE_OBJECT,
                          G_ADD_PRIVATE (DhKeywordModel)
