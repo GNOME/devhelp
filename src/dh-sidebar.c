@@ -92,7 +92,7 @@ sidebar_filter_idle (DhSidebar *sidebar)
         if (link)
                 g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
 
-        return FALSE;
+        return G_SOURCE_REMOVE;
 }
 
 static void
@@ -316,7 +316,7 @@ sidebar_complete_idle (DhSidebar *sidebar)
 
         priv->idle_complete = 0;
 
-        return FALSE;
+        return G_SOURCE_REMOVE;
 }
 
 static void

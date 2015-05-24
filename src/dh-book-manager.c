@@ -421,7 +421,7 @@ book_manager_new_possible_book_cb (gpointer user_data)
         g_object_unref (data->file);
         g_slice_free (NewPossibleBookData, data);
 
-        return FALSE;
+        return G_SOURCE_REMOVE;
 }
 
 static void
