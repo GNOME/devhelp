@@ -58,7 +58,6 @@ enum {
         BOOK_DISABLED,
         LANGUAGE_ENABLED,
         LANGUAGE_DISABLED,
-        BOOKLIST_GROUP_BY_LANGUAGE,
         LAST_SIGNAL
 };
 
