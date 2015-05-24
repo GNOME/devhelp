@@ -39,13 +39,6 @@ typedef struct {
         GtkTreeStore  *store;
         DhBookManager *book_manager;
         DhLink        *selected_link;
-
-        /* Signals */
-        guint book_created_id;
-        guint book_deleted_id;
-        guint book_enabled_id;
-        guint book_disabled_id;
-        guint group_by_language_id;
 } DhBookTreePrivate;
 
 static void dh_book_tree_class_init        (DhBookTreeClass  *klass);
@@ -86,37 +79,6 @@ static void
 dh_book_tree_dispose (GObject *object)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
-
-        /* Disconnect signals */
-        if (priv->book_created_id != 0 &&
-            g_signal_handler_is_connected (priv->book_manager, priv->book_created_id)) {
-                g_signal_handler_disconnect (priv->book_manager, priv->book_created_id);
-                priv->book_created_id = 0;
-        }
-
-        if (priv->book_deleted_id &&
-            g_signal_handler_is_connected (priv->book_manager, priv->book_deleted_id)) {
-                g_signal_handler_disconnect (priv->book_manager, priv->book_deleted_id);
-                priv->book_deleted_id = 0;
-        }
-
-        if (priv->book_enabled_id != 0 &&
-            g_signal_handler_is_connected (priv->book_manager, priv->book_enabled_id)) {
-                g_signal_handler_disconnect (priv->book_manager, priv->book_enabled_id);
-                priv->book_enabled_id = 0;
-        }
-
-        if (priv->book_disabled_id != 0 &&
-            g_signal_handler_is_connected (priv->book_manager, priv->book_disabled_id)) {
-                g_signal_handler_disconnect (priv->book_manager, priv->book_disabled_id);
-                priv->book_disabled_id = 0;
-        }
-
-        if (priv->group_by_language_id != 0 &&
-            g_signal_handler_is_connected (priv->book_manager, priv->group_by_language_id)) {
-                g_signal_handler_disconnect (priv->book_manager, priv->group_by_language_id);
-                priv->group_by_language_id = 0;
-        }
 
         g_clear_object (&priv->store);
         g_clear_object (&priv->book_manager);
@@ -216,9 +178,11 @@ book_tree_setup_selection (DhBookTree *tree)
 
         gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
-        g_signal_connect (selection, "changed",
-                          G_CALLBACK (book_tree_selection_changed_cb),
-                          tree);
+        g_signal_connect_object (selection,
+                                 "changed",
+                                 G_CALLBACK (book_tree_selection_changed_cb),
+                                 tree,
+                                 0);
 }
 
 /* Tries to find:
@@ -725,26 +689,35 @@ dh_book_tree_constructed (GObject *object)
         DhBookTree *tree = DH_BOOK_TREE (object);
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
 
-        priv->book_created_id = g_signal_connect (priv->book_manager,
-                                                  "book-created",
-                                                  G_CALLBACK (book_tree_book_created_or_enabled_cb),
-                                                  tree);
-        priv->book_deleted_id = g_signal_connect (priv->book_manager,
-                                                  "book-deleted",
-                                                  G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
-                                                  tree);
-        priv->book_enabled_id = g_signal_connect (priv->book_manager,
-                                                  "book-enabled",
-                                                  G_CALLBACK (book_tree_book_created_or_enabled_cb),
-                                                  tree);
-        priv->book_disabled_id = g_signal_connect (priv->book_manager,
-                                                   "book-disabled",
-                                                   G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
-                                                   tree);
-        priv->group_by_language_id = g_signal_connect (priv->book_manager,
-                                                       "notify::group-by-language",
-                                                       G_CALLBACK (book_tree_group_by_language_cb),
-                                                       tree);
+        g_signal_connect_object (priv->book_manager,
+                                 "book-created",
+                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (priv->book_manager,
+                                 "book-deleted",
+                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (priv->book_manager,
+                                 "book-enabled",
+                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (priv->book_manager,
+                                 "book-disabled",
+                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (priv->book_manager,
+                                 "notify::group-by-language",
+                                 G_CALLBACK (book_tree_group_by_language_cb),
+                                 tree,
+                                 0);
 
         book_tree_populate_tree (tree);
 
