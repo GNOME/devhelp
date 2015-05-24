@@ -38,12 +38,15 @@ org.gnome.Devhelp.service: Makefile
 		     echo 'Exec=${bindir}/devhelp --gapplication-service') > $@.tmp && \
 		     mv $@.tmp $@
 
+man_MANS = devhelp.1
+
 EXTRA_DIST =			\
 	libdevhelp-3.0.pc.in    \
 	$(desktop_in_files)	\
 	$(gsettings_SCHEMAS)    \
 	devhelp.convert \
 	$(assistant_DATA) \
+	$(man_MANS) \
 	$(app_data_in_files)
 
 CLEANFILES =			\
