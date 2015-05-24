@@ -468,6 +468,16 @@ dh_sidebar_dispose (GObject *object)
 
         g_clear_object (&priv->book_manager);
 
+        if (priv->idle_complete_id != 0) {
+                g_source_remove (priv->idle_complete_id);
+                priv->idle_complete_id = 0;
+        }
+
+        if (priv->idle_filter_id != 0) {
+                g_source_remove (priv->idle_filter_id);
+                priv->idle_filter_id = 0;
+        }
+
         G_OBJECT_CLASS (dh_sidebar_parent_class)->dispose (object);
 }
 
