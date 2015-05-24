@@ -657,7 +657,7 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
 {
         DhBookManagerPrivate *priv;
         DhBook            *book;
-        gboolean           book_disabled;
+        gboolean           book_enabled;
 
         g_return_if_fail (book_manager);
         g_return_if_fail (book_path);
@@ -692,12 +692,11 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
                                             (GCompareFunc)dh_book_cmp_by_title);
 
         /* Set the proper enabled/disabled state, depending on conf */
-        book_disabled = book_manager_is_book_disabled_in_conf (book_manager,
-                                                               book);
-        dh_book_set_enabled (book, !book_disabled);
+        book_enabled = !book_manager_is_book_disabled_in_conf (book_manager, book);
+        dh_book_set_enabled (book, book_enabled);
 
         /* Store language if enabled */
-        if (!book_disabled) {
+        if (book_enabled) {
                 book_manager_inc_language (book_manager,
                                            dh_book_get_language (book));
         }
