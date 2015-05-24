@@ -21,7 +21,6 @@
 #define __DH_UTIL_H__
 
 #include <gtk/gtk.h>
-#include <gio/gio.h>
 #include <webkit2/webkit2.h>
 #include "dh-link.h"
 

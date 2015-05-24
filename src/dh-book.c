@@ -22,7 +22,6 @@
 #include "config.h"
 #include "dh-book.h"
 
-#include <string.h>
 #include <glib/gi18n.h>
 
 #include "dh-link.h"

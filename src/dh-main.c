@@ -19,14 +19,10 @@
 
 #include "config.h"
 
-#include <stdlib.h>
 #include <locale.h>
-#include <string.h>
-
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include "devhelp.h"
 #include "dh-app.h"
 
 int

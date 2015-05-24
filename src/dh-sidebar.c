@@ -24,13 +24,8 @@
 #include "dh-sidebar.h"
 
 #include <string.h>
-#include <glib/gi18n-lib.h>
-#include <gdk/gdkkeysyms.h>
-#include <gtk/gtk.h>
 
 #include "dh-keyword-model.h"
-#include "dh-util.h"
-#include "dh-book-manager.h"
 #include "dh-book.h"
 #include "dh-book-tree.h"
 

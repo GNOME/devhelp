@@ -27,7 +27,6 @@
 
 #include "devhelp.h"
 #include "dh-preferences.h"
-#include "dh-util.h"
 
 typedef struct {
         DhBookManager *book_manager;
