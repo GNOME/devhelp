@@ -1,7 +1,7 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 data/devhelp.appdata.xml.in
-data/devhelp.desktop.in.in
+data/org.gnome.Devhelp.desktop.in.in
 [type: gettext/gsettings]data/org.gnome.devhelp.gschema.xml
 misc/gedit-plugin/devhelp.desktop.in
 misc/gedit-plugin/devhelp.py

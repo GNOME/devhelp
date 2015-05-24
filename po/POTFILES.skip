@@ -1,2 +1,2 @@
-data/devhelp.desktop.in
+data/org.gnome.Devhelp.desktop.in
 src/dh-gecko-utils.cpp
