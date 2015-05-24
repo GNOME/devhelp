@@ -41,8 +41,6 @@ typedef struct {
         DhLink        *selected_link;
 } DhBookTreePrivate;
 
-static void dh_book_tree_class_init        (DhBookTreeClass  *klass);
-static void dh_book_tree_init              (DhBookTree       *tree);
 static void book_tree_add_columns          (DhBookTree       *tree);
 static void book_tree_setup_selection      (DhBookTree       *tree);
 static void book_tree_insert_node          (DhBookTree       *tree,
@@ -187,8 +185,8 @@ book_tree_setup_selection (DhBookTree *tree)
 
 /* Tries to find:
  *  - An exact match of the language group
- *  - The language group which should be just after our given language group.
- *  - Both.
+ *  - Or the language group which should be just after our given language group.
+ *  - Or both.
  */
 static void
 book_tree_find_language_group (DhBookTree  *tree,
@@ -220,7 +218,7 @@ book_tree_find_language_group (DhBookTree  *tree,
         }
 
         do {
-                gchar  *title = NULL;
+                gchar *title = NULL;
 
                 /* Look for language titles, which are those where there
                  * is no book object associated in the row */
@@ -256,8 +254,8 @@ book_tree_find_language_group (DhBookTree  *tree,
 /* Tries to find, starting at 'first' (if given), and always in the same
  * level of the tree:
  *  - An exact match of the book
- *  - The book which should be just after our given book
- *  - Both.
+ *  - Or the book which should be just after our given book
+ *  - Or both.
  */
 static void
 book_tree_find_book (DhBookTree        *tree,
@@ -630,7 +628,6 @@ book_tree_group_by_language_cb (GObject    *object,
         book_tree_populate_tree (DH_BOOK_TREE (user_data));
 }
 
-
 static void
 book_tree_init_selection (DhBookTree *tree)
 {
@@ -650,7 +647,7 @@ book_tree_init_selection (DhBookTree *tree)
          *   https://bugzilla.gnome.org/show_bug.cgi?id=492206
          */
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
-        g_signal_handlers_block_by_func        (selection,
+        g_signal_handlers_block_by_func (selection,
                                          book_tree_selection_changed_cb,
                                          tree);
 
@@ -740,7 +737,7 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
                                          PROP_BOOK_MANAGER,
                                          g_param_spec_object ("book-manager",
                                                               "Book Manager",
-                                                              "The book maanger",
+                                                              "The book manager",
                                                               DH_TYPE_BOOK_MANAGER,
                                                               G_PARAM_READWRITE |
                                                               G_PARAM_CONSTRUCT_ONLY));
@@ -759,7 +756,9 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
 GtkWidget *
 dh_book_tree_new (DhBookManager *book_manager)
 {
-        return GTK_WIDGET (g_object_new (DH_TYPE_BOOK_TREE, "book-manager", book_manager, NULL));
+        return GTK_WIDGET (g_object_new (DH_TYPE_BOOK_TREE,
+                                         "book-manager", book_manager,
+                                         NULL));
 }
 
 static gboolean
@@ -777,7 +776,9 @@ book_tree_find_uri_foreach (GtkTreeModel *model,
                 gchar *link_uri;
 
                 link_uri = dh_link_get_uri (link);
-                if (g_str_has_prefix (data->uri, link_uri)) {
+
+                if (link_uri != NULL &&
+                    g_str_has_prefix (data->uri, link_uri)) {
                         data->found = TRUE;
                         data->iter = *iter;
                         data->path = gtk_tree_path_copy (path);
@@ -814,7 +815,7 @@ dh_book_tree_select_uri (DhBookTree  *tree,
         if (gtk_tree_selection_iter_is_selected (selection, &data.iter))
                 return;
 
-        g_signal_handlers_block_by_func        (selection,
+        g_signal_handlers_block_by_func (selection,
                                          book_tree_selection_changed_cb,
                                          tree);
 
@@ -846,7 +847,7 @@ dh_book_tree_get_selected_book (DhBookTree *tree)
         path = gtk_tree_model_get_path (model, &iter);
 
         /* Get the book node for this link. */
-        while (1) {
+        while (TRUE) {
                 if (gtk_tree_path_get_depth (path) <= 1) {
                         break;
                 }
