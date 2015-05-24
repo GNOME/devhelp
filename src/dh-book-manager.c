@@ -38,16 +38,21 @@ typedef struct {
 } NewPossibleBookData;
 
 typedef struct {
-        /* The list of all DhBooks found in the system */
+        /* The list of all DhBooks* found in the system */
         GList      *books;
-        /* HT with the monitors setup */
+
+        /* GFile* -> GFileMonitor* */
         GHashTable *monitors;
-        /* List of book names currently disabled */
+
+        /* List of book names (gchar*) currently disabled */
         GSList     *books_disabled;
+
         /* Whether books should be grouped by language */
         gboolean    group_by_language;
-        /* List of programming languages with at least one book enabled */
+
+        /* List of DhLanguage* with at least one book enabled */
         GList      *languages;
+
         DhSettings *settings;
 } DhBookManagerPrivate;
 
