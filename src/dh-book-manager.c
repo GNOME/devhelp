@@ -707,22 +707,26 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
         }
 
         /* Get notifications of book being deleted or updated */
-        g_signal_connect (book,
-                          "deleted",
-                          G_CALLBACK (book_manager_book_deleted_cb),
-                          book_manager);
-        g_signal_connect (book,
-                          "updated",
-                          G_CALLBACK (book_manager_book_updated_cb),
-                          book_manager);
-        g_signal_connect (book,
-                          "enabled",
-                          G_CALLBACK (book_manager_book_enabled_cb),
-                          book_manager);
-        g_signal_connect (book,
-                          "disabled",
-                          G_CALLBACK (book_manager_book_disabled_cb),
-                          book_manager);
+        g_signal_connect_object (book,
+                                 "deleted",
+                                 G_CALLBACK (book_manager_book_deleted_cb),
+                                 book_manager,
+                                 0);
+        g_signal_connect_object (book,
+                                 "updated",
+                                 G_CALLBACK (book_manager_book_updated_cb),
+                                 book_manager,
+                                 0);
+        g_signal_connect_object (book,
+                                 "enabled",
+                                 G_CALLBACK (book_manager_book_enabled_cb),
+                                 book_manager,
+                                 0);
+        g_signal_connect_object (book,
+                                 "disabled",
+                                 G_CALLBACK (book_manager_book_disabled_cb),
+                                 book_manager,
+                                 0);
 
         /* Emit signal to notify others */
         g_signal_emit (book_manager,
