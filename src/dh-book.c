@@ -50,27 +50,27 @@ typedef enum {
 
 /* Structure defining basic contents to store about every book */
 typedef struct {
-        /* File path of the book */
         gchar        *path;
-        /* Enable or disabled? */
         gboolean      enabled;
-        /* Book name */
         gchar        *name;
-        /* Book title */
         gchar        *title;
-        /* Book language */
         gchar        *language;
-        /* Generated book tree */
+
+        /* The book tree of DhLink* */
         GNode        *tree;
-        /* Generated list of keywords in the book */
+
+        /* List of DhLink* */
         GList        *keywords;
-        /* Generated list of keyword completions in the book */
+
+        /* Generated list of keyword completions (gchar*) in the book */
         GList        *completions;
 
         /* Monitor of this specific book */
         GFileMonitor *monitor;
+
         /* Last received event */
         DhBookMonitorEvent monitor_event;
+
         /* ID of the event source */
         guint         monitor_event_timeout_id;
 } DhBookPrivate;
