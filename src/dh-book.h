@@ -58,12 +58,18 @@ void         dh_book_set_enabled     (DhBook *book,
                                       gboolean enabled);
 gint         dh_book_cmp_by_path     (DhBook *a,
                                       DhBook *b);
+
+G_DEPRECATED
 gint         dh_book_cmp_by_path_str (DhBook *a,
                                       const gchar  *b_path);
+
 gint         dh_book_cmp_by_name     (DhBook *a,
                                       DhBook *b);
+
+G_DEPRECATED
 gint         dh_book_cmp_by_name_str (DhBook *a,
                                       const gchar  *b_name);
+
 gint         dh_book_cmp_by_title    (DhBook *a,
                                       DhBook *b);
 
