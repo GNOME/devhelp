@@ -554,8 +554,7 @@ book_manager_book_deleted_cb (DhBook   *book,
         li = g_list_find (priv->books, book);
         if (li) {
                 /* Decrement language count */
-                /* FIXME */
-                book_manager_inc_language (book_manager,
+                book_manager_dec_language (book_manager,
                                            dh_book_get_language (book));
 
                 /* Emit signal to notify others */
