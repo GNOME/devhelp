@@ -84,8 +84,8 @@ dh_keyword_model_class_init (DhKeywordModelClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);;
 
-        object_class->finalize = dh_keyword_model_finalize;
         object_class->dispose = dh_keyword_model_dispose;
+        object_class->finalize = dh_keyword_model_finalize;
 }
 
 static void

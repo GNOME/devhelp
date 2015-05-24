@@ -462,16 +462,6 @@ dh_sidebar_new (DhBookManager *book_manager)
 }
 
 static void
-dh_sidebar_finalize (GObject *object)
-{
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
-
-        g_completion_free (priv->completion);
-
-        G_OBJECT_CLASS (dh_sidebar_parent_class)->finalize (object);
-}
-
-static void
 dh_sidebar_dispose (GObject *object)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
@@ -479,6 +469,16 @@ dh_sidebar_dispose (GObject *object)
         g_clear_object (&priv->book_manager);
 
         G_OBJECT_CLASS (dh_sidebar_parent_class)->dispose (object);
+}
+
+static void
+dh_sidebar_finalize (GObject *object)
+{
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
+
+        g_completion_free (priv->completion);
+
+        G_OBJECT_CLASS (dh_sidebar_parent_class)->finalize (object);
 }
 
 static void
@@ -640,8 +640,8 @@ dh_sidebar_class_init (DhSidebarClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-        object_class->finalize = dh_sidebar_finalize;
         object_class->dispose = dh_sidebar_dispose;
+        object_class->finalize = dh_sidebar_finalize;
         object_class->get_property = dh_sidebar_get_property;
         object_class->set_property = dh_sidebar_set_property;
         object_class->constructed = dh_sidebar_constructed;
