@@ -48,8 +48,8 @@ typedef struct {
         GtkWidget      *sw_book_tree;
 
         GCompletion    *completion;
-        guint           idle_complete;
-        guint           idle_filter;
+        guint           idle_complete_id;
+        guint           idle_filter_id;
 } DhSidebarPrivate;
 
 enum {
@@ -69,7 +69,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhSidebar, dh_sidebar, GTK_TYPE_BOX)
 /******************************************************************************/
 
 static gboolean
-sidebar_filter_idle (DhSidebar *sidebar)
+sidebar_filter_idle_cb (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv;
         const gchar *str;
@@ -78,7 +78,7 @@ sidebar_filter_idle (DhSidebar *sidebar)
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
-        priv->idle_filter = 0;
+        priv->idle_filter_id = 0;
 
         str = gtk_entry_get_text (GTK_ENTRY (priv->entry));
 
@@ -100,9 +100,9 @@ sidebar_search_run_idle (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
-        if (!priv->idle_filter)
-                priv->idle_filter =
-                        g_idle_add ((GSourceFunc) sidebar_filter_idle, sidebar);
+        if (priv->idle_filter_id == 0)
+                priv->idle_filter_id =
+                        g_idle_add ((GSourceFunc) sidebar_filter_idle_cb, sidebar);
 }
 
 /******************************************************************************/
@@ -294,7 +294,7 @@ sidebar_entry_changed_cb (GtkEntry  *entry,
 }
 
 static gboolean
-sidebar_complete_idle (DhSidebar *sidebar)
+sidebar_complete_idle_cb (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         const gchar  *str;
@@ -314,7 +314,7 @@ sidebar_complete_idle (DhSidebar *sidebar)
                 g_free (completed);
         }
 
-        priv->idle_complete = 0;
+        priv->idle_complete_id = 0;
 
         return G_SOURCE_REMOVE;
 }
@@ -328,9 +328,9 @@ sidebar_entry_text_inserted_cb (GtkEntry    *entry,
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
-        if (!priv->idle_complete)
-                priv->idle_complete =
-                        g_idle_add ((GSourceFunc) sidebar_complete_idle, sidebar);
+        if (priv->idle_complete_id == 0)
+                priv->idle_complete_id =
+                        g_idle_add ((GSourceFunc) sidebar_complete_idle_cb, sidebar);
 }
 
 /******************************************************************************/
