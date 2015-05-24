@@ -30,8 +30,9 @@ libtool
 /data/devhelp.defaults
 /data/devhelp.schemas
 /data/libdevhelp-3.0.pc
-/data/devhelp.desktop
-/data/devhelp.desktop.in
+/data/org.gnome.Devhelp.desktop
+/data/org.gnome.Devhelp.desktop.in
+/data/org.gnome.Devhelp.service
 /po/*.gmo
 /po/.intltool-merge-cache
 /po/Makefile.in.in
