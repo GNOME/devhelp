@@ -753,6 +753,7 @@ dh_book_tree_new (DhBookManager *book_manager)
 {
         return GTK_WIDGET (g_object_new (DH_TYPE_BOOK_TREE,
                                          "book-manager", book_manager,
+                                         "enable-search", FALSE,
                                          NULL));
 }
 
