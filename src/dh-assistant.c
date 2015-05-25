@@ -54,7 +54,7 @@ dh_assistant_key_press_event (GtkWidget   *widget,
 {
         if (event->keyval == GDK_KEY_Escape) {
                 gtk_widget_destroy (widget);
-                return TRUE;
+                return GDK_EVENT_STOP;
         }
 
         return GTK_WIDGET_CLASS (dh_assistant_parent_class)->key_press_event (widget, event);
