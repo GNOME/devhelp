@@ -191,7 +191,9 @@ about_cb (GSimpleAction *action,
           gpointer       user_data)
 {
         DhApp *app = DH_APP (user_data);
-        const gchar  *authors[] = {
+        GtkWindow *parent;
+
+        const gchar *authors[] = {
                 "Mikael Hallendal <micke@imendio.com>",
                 "Richard Hult <richard@imendio.com>",
                 "Johan Dahlin <johan@gnome.org>",
@@ -200,9 +202,6 @@ about_cb (GSimpleAction *action,
                 "Thomas Bechtold <toabctl@gnome.org>",
                 NULL
         };
-        const gchar **documenters = NULL;
-        const gchar  *translator_credits = _("translator-credits");
-        GtkWindow *parent;
 
         parent = dh_app_peek_first_window (app);
 
@@ -213,14 +212,12 @@ about_cb (GSimpleAction *action,
                                "version", PACKAGE_VERSION,
                                "comments", _("A developers' help browser for GNOME"),
                                "authors", authors,
-                               "documenters", documenters,
-                               "translator-credits",
-                               (strcmp (translator_credits, "translator-credits") != 0 ?
-                                translator_credits :
-                                NULL),
+                               "translator-credits", _("translator-credits"),
                                "website", PACKAGE_URL,
-                               "website-label", _("DevHelp Website"),
+                               "website-label", _("Devhelp Website"),
                                "logo-icon-name", PACKAGE_TARNAME,
+                               "license-type", GTK_LICENSE_GPL_2_0,
+                               "copyright", "Copyright 2001-2015 – the Devhelp team",
                                NULL);
 }
 
