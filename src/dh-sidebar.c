@@ -613,22 +613,29 @@ dh_sidebar_constructed (GObject *object)
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
         /* Setup book manager */
-        g_signal_connect (priv->book_manager,
-                          "book-created",
-                          G_CALLBACK (sidebar_book_created_or_enabled_cb),
-                          sidebar);
-        g_signal_connect (priv->book_manager,
-                          "book-deleted",
-                          G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
-                          sidebar);
-        g_signal_connect (priv->book_manager,
-                          "book-enabled",
-                          G_CALLBACK (sidebar_book_created_or_enabled_cb),
-                          sidebar);
-        g_signal_connect (priv->book_manager,
-                          "book-disabled",
-                          G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
-                          sidebar);
+        g_signal_connect_object (priv->book_manager,
+                                 "book-created",
+                                 G_CALLBACK (sidebar_book_created_or_enabled_cb),
+                                 sidebar,
+                                 0);
+
+        g_signal_connect_object (priv->book_manager,
+                                 "book-deleted",
+                                 G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
+                                 sidebar,
+                                 0);
+
+        g_signal_connect_object (priv->book_manager,
+                                 "book-enabled",
+                                 G_CALLBACK (sidebar_book_created_or_enabled_cb),
+                                 sidebar,
+                                 0);
+
+        g_signal_connect_object (priv->book_manager,
+                                 "book-disabled",
+                                 G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
+                                 sidebar,
+                                 0);
 
         priv->book_tree = dh_book_tree_new (priv->book_manager);
         gtk_widget_show (priv->book_tree);
