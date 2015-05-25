@@ -209,7 +209,7 @@ sidebar_tree_button_press_cb (GtkTreeView    *view,
         gtk_tree_view_get_path_at_pos (view, event->x, event->y, &path,
                                        NULL, NULL, NULL);
         if (!path)
-                return FALSE;
+                return GDK_EVENT_PROPAGATE;
 
         gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->model), &iter, path);
         gtk_tree_path_free (path);
@@ -223,10 +223,10 @@ sidebar_tree_button_press_cb (GtkTreeView    *view,
 
         g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
 
-        /* Always return FALSE so the tree view gets the event and can update
+        /* Always propagate the event so the tree view can update
          * the selection etc.
          */
-        return FALSE;
+        return GDK_EVENT_PROPAGATE;
 }
 
 static gboolean
@@ -243,7 +243,8 @@ sidebar_entry_key_press_event_cb (GtkEntry    *entry,
                         gtk_editable_set_position (GTK_EDITABLE (entry), -1);
                         gtk_editable_select_region (GTK_EDITABLE (entry), -1, -1);
                 }
-                return TRUE;
+
+                return GDK_EVENT_STOP;
         }
 
         if (event->keyval == GDK_KEY_Return ||
@@ -268,11 +269,11 @@ sidebar_entry_key_press_event_cb (GtkEntry    *entry,
 
                         g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
 
-                        return TRUE;
+                        return GDK_EVENT_STOP;
                 }
         }
 
-        return FALSE;
+        return GDK_EVENT_PROPAGATE;
 }
 
 static void
