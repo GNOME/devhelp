@@ -417,12 +417,7 @@ dh_app_startup (GApplication *application)
 static void
 dh_app_activate (GApplication *application)
 {
-        DhApp *app = DH_APP (application);
-        GtkWidget *window;
-
-        window = dh_window_new (app);
-        gtk_application_add_window (GTK_APPLICATION (app), GTK_WINDOW (window));
-        gtk_widget_show_all (window);
+        dh_app_new_window (DH_APP (application));
 }
 
 /******************************************************************************/
