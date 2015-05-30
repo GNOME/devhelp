@@ -43,12 +43,12 @@ typedef struct {
  * patterns that match at the start of a word
  * and one that matches in any position of a
  * word */
-struct _DhKeywordGlobPattern {
+typedef struct {
         gchar *keyword;
         gboolean has_glob;
         GPatternSpec *glob_pattern_start;
         GPatternSpec *glob_pattern_any;
-};
+} DhKeywordGlobPattern;
 
 #define MAX_HITS 100
 
@@ -364,7 +364,7 @@ dh_keyword_model_set_words (DhKeywordModel *model,
         priv->book_manager = g_object_ref (book_manager);
 }
 
-/* Returns a GList of struct _DhKeywordGlobPattern
+/* Returns a GList of DhKeywordGlobPattern
  * with GPatternSpec's allocated if there are any
  * special glob characters ('*', '?') in a keyword in keywords.
  * The list returned is the same length as keywords */
@@ -374,14 +374,14 @@ dh_globbed_keywords_new (GStrv keywords)
         gint i;
         gchar *glob;
         GList *list = NULL;
-        struct _DhKeywordGlobPattern *glob_struct;
+        DhKeywordGlobPattern *glob_struct;
 
         if (keywords == NULL) {
                 return NULL;
         }
 
         for (i = 0; keywords[i] != NULL; i++) {
-                glob_struct = g_slice_new (struct _DhKeywordGlobPattern);
+                glob_struct = g_slice_new (DhKeywordGlobPattern);
                 glob_struct->keyword = keywords[i];
                 if (g_strrstr (keywords[i], "*") || g_strrstr (keywords[i], "?")) {
                         glob_struct->has_glob = TRUE;
@@ -406,18 +406,18 @@ dh_globbed_keywords_new (GStrv keywords)
 
 /* Frees all the datastructures and patterns associated with
  * keyword_globs as well as keyword_globs itself.  It does not free
- * _DhKeywordGlobPattern->keyword however (only the pattern spects) */
+ * DhKeywordGlobPattern->keyword however (only the pattern spects) */
 static void
 dh_globbed_keywords_free (GList *keyword_globs)
 {
         GList *list;
         for (list = keyword_globs; list != NULL; list = g_list_next (list)) {
-                struct _DhKeywordGlobPattern *data = (struct _DhKeywordGlobPattern *)list->data;
+                DhKeywordGlobPattern *data = list->data;
                 if (data->has_glob) {
                         g_pattern_spec_free (data->glob_pattern_start);
                         g_pattern_spec_free (data->glob_pattern_any);
                 }
-                g_slice_free (struct _DhKeywordGlobPattern, data);
+                g_slice_free (DhKeywordGlobPattern, data);
         }
         g_list_free (keyword_globs);
 }
@@ -564,7 +564,7 @@ keyword_model_search_books (DhKeywordModel  *model,
                                 all_found = TRUE;
                                 prefix_found = FALSE;
                                 for (list = keyword_globs; list != NULL; list = g_list_next (list)) {
-                                        struct _DhKeywordGlobPattern *data = (struct _DhKeywordGlobPattern *)list->data;
+                                        DhKeywordGlobPattern *data = list->data;
 
                                         /* If our keyword is a glob pattern, use
                                          * it.  Otherwise, do more efficient string searching */
