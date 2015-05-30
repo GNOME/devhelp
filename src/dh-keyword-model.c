@@ -31,6 +31,8 @@ typedef struct {
         DhBookManager *book_manager;
 
         gchar *current_book_id;
+
+        /* List of DhLink* */
         GList *keyword_words;
         gint   keyword_words_length;
 
@@ -48,7 +50,6 @@ struct _DhKeywordGlobPattern {
         GPatternSpec *glob_pattern_any;
 };
 
-#define G_LIST(x) ((GList *) x)
 #define MAX_HITS 100
 
 static void dh_keyword_model_tree_model_init (GtkTreeModelIface   *iface);
@@ -115,10 +116,13 @@ keyword_model_get_column_type (GtkTreeModel *tree_model,
         switch (column) {
         case DH_KEYWORD_MODEL_COL_NAME:
                 return G_TYPE_STRING;
+
         case DH_KEYWORD_MODEL_COL_LINK:
                 return G_TYPE_POINTER;
+
         case DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG:
                 return G_TYPE_BOOLEAN;
+
         default:
                 return G_TYPE_INVALID;
         }
@@ -158,20 +162,23 @@ keyword_model_get_path (GtkTreeModel *tree_model,
                         GtkTreeIter  *iter)
 {
         DhKeywordModelPrivate *priv;
+        GList                 *node;
         GtkTreePath           *path;
-        gint                   i = 0;
+        gint                   pos;
 
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         g_return_val_if_fail (iter->stamp == priv->stamp, NULL);
 
-        i = g_list_position (priv->keyword_words, iter->user_data);
-        if (i < 0) {
+        node = iter->user_data;
+        pos = g_list_position (priv->keyword_words, node);
+
+        if (pos < 0) {
                 return NULL;
         }
 
         path = gtk_tree_path_new ();
-        gtk_tree_path_append_index (path, i);
+        gtk_tree_path_append_index (path, pos);
 
         return path;
 }
@@ -183,24 +190,34 @@ keyword_model_get_value (GtkTreeModel *tree_model,
                          GValue       *value)
 {
         DhKeywordModelPrivate *priv;
+        GList *node;
         DhLink *link;
+        gboolean in_current_book;
 
-        link = G_LIST (iter->user_data)->data;
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
+
+        g_return_if_fail (iter->stamp == priv->stamp);
+
+        node = iter->user_data;
+        link = node->data;
 
         switch (column) {
         case DH_KEYWORD_MODEL_COL_NAME:
                 g_value_init (value, G_TYPE_STRING);
                 g_value_set_string (value, dh_link_get_name (link));
                 break;
+
         case DH_KEYWORD_MODEL_COL_LINK:
                 g_value_init (value, G_TYPE_POINTER);
                 g_value_set_pointer (value, link);
                 break;
+
         case DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG:
+                in_current_book = g_strcmp0 (dh_link_get_book_id (link), priv->current_book_id) == 0;
                 g_value_init (value, G_TYPE_BOOLEAN);
-                g_value_set_boolean (value, (g_strcmp0 (dh_link_get_book_id (link), priv->current_book_id) == 0));
+                g_value_set_boolean (value, in_current_book);
                 break;
+
         default:
                 g_warning ("Bad column %d requested", column);
         }
@@ -211,14 +228,16 @@ keyword_model_iter_next (GtkTreeModel *tree_model,
                          GtkTreeIter  *iter)
 {
         DhKeywordModelPrivate *priv;
+        GList *node;
 
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         g_return_val_if_fail (priv->stamp == iter->stamp, FALSE);
 
-        iter->user_data = G_LIST (iter->user_data)->next;
+        node = iter->user_data;
+        iter->user_data = node->next;
 
-        return (iter->user_data != NULL);
+        return iter->user_data != NULL;
 }
 
 static gboolean
@@ -231,14 +250,14 @@ keyword_model_iter_children (GtkTreeModel *tree_model,
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         /* This is a list, nodes have no children. */
-        if (parent) {
+        if (parent != NULL) {
                 return FALSE;
         }
 
         /* But if parent == NULL we return the list itself as children of
          * the "root".
          */
-        if (priv->keyword_words) {
+        if (priv->keyword_words != NULL) {
                 iter->stamp = priv->stamp;
                 iter->user_data = priv->keyword_words;
                 return TRUE;
@@ -282,13 +301,13 @@ keyword_model_iter_nth_child (GtkTreeModel *tree_model,
 
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
-        if (parent) {
+        if (parent != NULL) {
                 return FALSE;
         }
 
         child = g_list_nth (priv->keyword_words, n);
 
-        if (child) {
+        if (child != NULL) {
                 iter->stamp = priv->stamp;
                 iter->user_data = child;
                 return TRUE;
