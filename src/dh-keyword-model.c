@@ -441,7 +441,7 @@ dh_globbed_keywords_free (GList *keyword_globs)
  */
 static GList *
 keyword_model_search_books (DhKeywordModel  *model,
-                            const gchar     *string,
+                            const gchar     *search_string,
                             const GStrv      keywords,
                             const gchar     *book_id,
                             const gchar     *skip_book_id,
@@ -610,10 +610,10 @@ keyword_model_search_books (DhKeywordModel  *model,
                                  * not the struct. */
                                 if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
                                     ((page_id && strcmp (dh_link_get_name (link), page_id) == 0) ||
-                                     (strcmp (dh_link_get_name (link), string) == 0))) {
+                                     (strcmp (dh_link_get_name (link), search_string) == 0))) {
                                         *exact_link = link;
                                 } else if (!*exact_link &&
-                                           strcmp (dh_link_get_name (link), string) == 0) {
+                                           strcmp (dh_link_get_name (link), search_string) == 0) {
                                         *exact_link = link;
                                 }
                         }
@@ -631,7 +631,7 @@ keyword_model_search_books (DhKeywordModel  *model,
 
 static GList *
 keyword_model_search (DhKeywordModel  *model,
-                      const gchar     *string,
+                      const gchar     *search_string,
                       const GStrv      keywords,
                       const gchar     *book_id,
                       const gchar     *page_id,
@@ -651,7 +651,7 @@ keyword_model_search (DhKeywordModel  *model,
         /* If book_id given; first look for prefixed items in the given book id */
         if (book_id != NULL) {
                 in_book = keyword_model_search_books (model,
-                                                      string,
+                                                      search_string,
                                                       keywords,
                                                       book_id, NULL,
                                                       page_id,
@@ -665,7 +665,7 @@ keyword_model_search (DhKeywordModel  *model,
 
         /* Next, always check other books as well, as the exact match may be in there */
         other_books = keyword_model_search_books (model,
-                                                  string,
+                                                  search_string,
                                                   keywords,
                                                   NULL, book_id,
                                                   page_id,
@@ -700,7 +700,7 @@ keyword_model_search (DhKeywordModel  *model,
         if (book_id != NULL) {
                 in_book_n_hits = 0;
                 in_book = keyword_model_search_books (model,
-                                                      string,
+                                                      search_string,
                                                       keywords,
                                                       book_id, NULL,
                                                       page_id,
@@ -718,7 +718,7 @@ keyword_model_search (DhKeywordModel  *model,
 
         /* If still room for more items; look for non-prefixed items in other books */
         other_books = keyword_model_search_books (model,
-                                                  string,
+                                                  search_string,
                                                   keywords,
                                                   NULL, book_id,
                                                   page_id,
