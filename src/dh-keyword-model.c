@@ -746,11 +746,12 @@ keyword_model_process_search_string (const gchar  *string,
                                      gchar       **page_id,
                                      GStrv        *keywords)
 {
-        gchar *processed;
+        gchar *processed = NULL;
         gchar *aux;
-        GStrv  strv;
-        gint   i;
-        gint   j;
+        GStrv  tokens = NULL;
+        gint   token_num;
+        gint   keyword_num;
+        gboolean ret = TRUE;
 
         *book_id = NULL;
         *page_id = NULL;
@@ -770,70 +771,91 @@ keyword_model_process_search_string (const gchar  *string,
 
         /* If after all this we get an empty string, nothing else to do */
         if (processed[0] == '\0') {
-                g_free (processed);
-                return FALSE;
+                ret = FALSE;
+                goto out;
         }
 
         /* Split the input string into tokens */
-        strv = g_strsplit (processed, " ", 0);
-        g_free (processed);
+        tokens = g_strsplit (processed, " ", 0);
 
         /* Allocate output keywords */
-        *keywords = g_new0 (gchar *, g_strv_length (strv) + 1);
+        *keywords = g_new0 (gchar *, g_strv_length (tokens) + 1);
+        keyword_num = 0;
 
-        for (i = 0, j = 0; strv[i]; i++) {
+        for (token_num = 0; tokens[token_num] != NULL; token_num++) {
+                gchar *cur_token;
+                const gchar *prefix;
+                gint prefix_len;
+
+                cur_token = tokens[token_num];
+
                 /* Book prefix? */
-                if (g_str_has_prefix (strv[i], "book:")) {
+                prefix = "book:";
+                if (g_str_has_prefix (cur_token, prefix)) {
+                        prefix_len = strlen (prefix);
+
                         /* If keyword given but no content, skip it. */
-                        if (strv[i][5] == '\0') {
+                        if (cur_token[prefix_len] == '\0') {
                                 continue;
                         }
 
                         /* We got a second request of book, don't allow
                          * this. */
-                        if (*book_id) {
-                                g_free (*book_id);
-                                g_free (*page_id);
-                                g_strfreev (*keywords);
-                                return FALSE;
+                        if (*book_id != NULL) {
+                                ret = FALSE;
+                                goto out;
                         }
 
-                        *book_id = g_strdup (&strv[i][5]);
+                        *book_id = g_strdup (cur_token + prefix_len);
                         continue;
                 }
 
                 /* Page prefix? */
-                if (g_str_has_prefix (strv[i], "page:")) {
+                prefix = "page:";
+                if (g_str_has_prefix (cur_token, prefix)) {
+                        prefix_len = strlen (prefix);
+
                         /* If keyword given but no content, skip it. */
-                        if (strv[i][5] == '\0') {
+                        if (cur_token[prefix_len] == '\0') {
                                 continue;
                         }
 
                         /* We got a second request of page, don't allow
                          * this. */
-                        if (*page_id) {
-                                g_free (*book_id);
-                                g_free (*page_id);
-                                g_strfreev (*keywords);
-                                return FALSE;
+                        if (*page_id != NULL) {
+                                ret = FALSE;
+                                goto out;
                         }
 
-                        *page_id = g_strdup (&strv[i][5]);
+                        *page_id = g_strdup (cur_token + prefix_len);
                         continue;
                 }
 
                 /* Then, a new keyword to look for */
-                (*keywords)[j++] = g_strdup (strv[i]);
+                (*keywords)[keyword_num] = g_strdup (cur_token);
+                keyword_num++;
         }
 
-        if (j == 0) {
+        if (keyword_num == 0) {
                 g_free (*keywords);
                 *keywords = NULL;
         }
 
-        g_strfreev (strv);
+out:
+        if (ret == FALSE) {
+                g_free (*book_id);
+                g_free (*page_id);
+                g_strfreev (*keywords);
 
-        return TRUE;
+                *book_id = NULL;
+                *page_id = NULL;
+                *keywords = NULL;
+        }
+
+        g_free (processed);
+        g_strfreev (tokens);
+
+        return ret;
 }
 
 DhLink *
