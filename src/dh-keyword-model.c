@@ -93,9 +93,7 @@ dh_keyword_model_init (DhKeywordModel *model)
 {
         DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (model);
 
-        do {
-                priv->stamp = g_random_int ();
-        } while (priv->stamp == 0);
+        priv->stamp = g_random_int_range (1, G_MAXINT32);
 }
 
 static GtkTreeModelFlags
