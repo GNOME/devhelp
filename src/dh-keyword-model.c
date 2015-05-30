@@ -858,112 +858,128 @@ out:
         return ret;
 }
 
+static void
+set_keywords_list (DhKeywordModel *model,
+                   GList          *new_keyword_list)
+{
+        DhKeywordModelPrivate *priv;
+        gint old_length;
+        gint new_length;
+        gint row_num;
+
+        priv = dh_keyword_model_get_instance_private (model);
+
+        old_length = priv->keyword_words_length;
+        new_length = g_list_length (new_keyword_list);
+
+        g_list_free (priv->keyword_words);
+        priv->keyword_words = new_keyword_list;
+        priv->keyword_words_length = new_length;
+
+        /* Update model: common rows */
+        /* FIXME this loop runs in O(n^2) */
+        for (row_num = 0; row_num < MIN (old_length, new_length); row_num++) {
+                GtkTreePath *path;
+                GtkTreeIter iter;
+
+                path = gtk_tree_path_new ();
+                gtk_tree_path_append_index (path, row_num);
+                keyword_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
+                gtk_tree_model_row_changed (GTK_TREE_MODEL (model), path, &iter);
+                gtk_tree_path_free (path);
+        }
+
+        if (old_length > new_length) {
+                /* Remove old rows */
+                for (row_num = old_length - 1; row_num >= new_length; row_num--) {
+                        GtkTreePath *path = gtk_tree_path_new ();
+                        gtk_tree_path_append_index (path, row_num);
+                        gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), path);
+                        gtk_tree_path_free (path);
+                }
+        }
+        else if (old_length < new_length) {
+                /* Insert new rows */
+                /* FIXME this loop runs in O(n^2) */
+                for (row_num = old_length; row_num < new_length; row_num++) {
+                        GtkTreePath *path;
+                        GtkTreeIter iter;
+
+                        path = gtk_tree_path_new ();
+                        gtk_tree_path_append_index (path, row_num);
+                        keyword_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
+                        gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
+                        gtk_tree_path_free (path);
+                }
+        }
+}
+
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
-                         const gchar    *string,
+                         const gchar    *search_string,
                          const gchar    *book_id,
                          const gchar    *language)
 {
         DhKeywordModelPrivate *priv;
-        GList                 *new_list = NULL;
-        gint                   old_length;
-        DhLink                *exact_link = NULL;
-        gint                   hits;
-        gint                   i;
-        GtkTreePath           *path;
-        GtkTreeIter            iter;
-        gchar                 *book_id_in_string = NULL;
-        gchar                 *page_id_in_string = NULL;
-        GStrv                  keywords = NULL;
+        GList *new_list = NULL;
+        gchar *book_id_in_search_string = NULL;
+        gchar *page_id_in_search_string = NULL;
+        GStrv keywords = NULL;
+        DhLink *exact_link = NULL;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
-        g_return_val_if_fail (string != NULL, NULL);
+        g_return_val_if_fail (search_string != NULL, NULL);
 
         priv = dh_keyword_model_get_instance_private (model);
-
-        /* Do the minimum amount of work: call update on all rows that are
-         * kept and remove the rest.
-         */
-        old_length = priv->keyword_words_length;
-        new_list = NULL;
-        hits = 0;
 
         g_free (priv->current_book_id);
         priv->current_book_id = NULL;
 
-        /* Parse input search string */
-        if (keyword_model_process_search_string (string,
-                                                 &book_id_in_string,
-                                                 &page_id_in_string,
+        if (keyword_model_process_search_string (search_string,
+                                                 &book_id_in_search_string,
+                                                 &page_id_in_search_string,
                                                  &keywords)) {
                 gboolean case_sensitive;
+                gint i;
 
                 /* Searches are case sensitive when any uppercase
                  * letter is used in the search terms, matching vim
                  * smartcase behaviour.
                  */
                 case_sensitive = FALSE;
-                for (i = 0; string[i] != '\0'; i++) {
-                        if (g_ascii_isupper (string[i])) {
+                for (i = 0; search_string[i] != '\0'; i++) {
+                        if (g_ascii_isupper (search_string[i])) {
                                 case_sensitive = TRUE;
                                 break;
                         }
                 }
 
-                /* Keep new current book id */
-                priv->current_book_id = g_strdup (book_id_in_string ? book_id_in_string : book_id);
+                if (book_id_in_search_string != NULL) {
+                        priv->current_book_id = book_id_in_search_string;
+                        book_id_in_search_string = NULL;
+                } else {
+                        priv->current_book_id = g_strdup (book_id);
+                }
 
                 new_list = keyword_model_search (model,
-                                                 string,
+                                                 search_string,
                                                  keywords,
                                                  priv->current_book_id,
-                                                 page_id_in_string,
+                                                 page_id_in_search_string,
                                                  language,
                                                  case_sensitive,
                                                  &exact_link);
-                hits = g_list_length (new_list);
         }
 
-        g_free (book_id_in_string);
-        g_free (page_id_in_string);
+        set_keywords_list (model, new_list);
+
+        g_free (book_id_in_search_string);
+        g_free (page_id_in_search_string);
         g_strfreev (keywords);
 
-        /* Update the list of hits. */
-        g_list_free (priv->keyword_words);
-        priv->keyword_words = new_list;
-        priv->keyword_words_length = hits;
-
-        /* Update model: rows 0 -> hits. */
-        for (i = 0; i < hits; ++i) {
-                path = gtk_tree_path_new ();
-                gtk_tree_path_append_index (path, i);
-                keyword_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
-                gtk_tree_model_row_changed (GTK_TREE_MODEL (model), path, &iter);
-                gtk_tree_path_free (path);
-        }
-
-        if (old_length > hits) {
-                /* Update model: remove rows hits -> old_length. */
-                for (i = old_length - 1; i >= hits; i--) {
-                        path = gtk_tree_path_new ();
-                        gtk_tree_path_append_index (path, i);
-                        gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), path);
-                        gtk_tree_path_free (path);
-                }
-        }
-        else if (old_length < hits) {
-                /* Update model: add rows old_length -> hits. */
-                for (i = old_length; i < hits; i++) {
-                        path = gtk_tree_path_new ();
-                        gtk_tree_path_append_index (path, i);
-                        keyword_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
-                        gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
-                        gtk_tree_path_free (path);
-                }
-        }
-
-        if (hits == 1) {
-                return priv->keyword_words->data;
+        /* One hit */
+        if (new_list != NULL && new_list->next == NULL) {
+                return new_list->data;
         }
 
         return exact_link;
