@@ -344,11 +344,7 @@ dh_keyword_model_tree_model_init (GtkTreeModelIface *iface)
 DhKeywordModel *
 dh_keyword_model_new (void)
 {
-        DhKeywordModel *model;
-
-        model = g_object_new (DH_TYPE_KEYWORD_MODEL, NULL);
-
-        return model;
+        return g_object_new (DH_TYPE_KEYWORD_MODEL, NULL);
 }
 
 void
@@ -358,6 +354,7 @@ dh_keyword_model_set_words (DhKeywordModel *model,
         DhKeywordModelPrivate *priv;
 
         g_return_if_fail (DH_IS_KEYWORD_MODEL (model));
+        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
 
         priv = dh_keyword_model_get_instance_private (model);
 
@@ -652,7 +649,7 @@ keyword_model_search (DhKeywordModel  *model,
         GList *out = NULL;
 
         /* If book_id given; first look for prefixed items in the given book id */
-        if (book_id) {
+        if (book_id != NULL) {
                 in_book = keyword_model_search_books (model,
                                                       string,
                                                       keywords,
@@ -682,10 +679,10 @@ keyword_model_search (DhKeywordModel  *model,
         /* Now that we got prefix searches in current and other books, decide
          * which the preferred exact link is. If the exact match is in other
          * books; prefer those to the current book. */
-        if (in_book_exact_link) {
+        if (in_book_exact_link != NULL) {
                 *exact_link = in_book_exact_link;
                 out = g_list_concat (in_book, other_books);
-        } else if (other_books_exact_link) {
+        } else if (other_books_exact_link != NULL) {
                 *exact_link = other_books_exact_link;
                 out = g_list_concat (other_books, in_book);
         } else {
@@ -696,10 +693,11 @@ keyword_model_search (DhKeywordModel  *model,
         /* If we already have more than MAX_HITS, don't look for any more */
         if (in_book_n_hits + other_books_n_hits >= MAX_HITS)
                 return out;
+
         n_hits_left = MAX_HITS - in_book_n_hits - other_books_n_hits;
 
         /* Look for non-prefixed matches in current book */
-        if (book_id) {
+        if (book_id != NULL) {
                 in_book_n_hits = 0;
                 in_book = keyword_model_search_books (model,
                                                       string,
@@ -714,7 +712,7 @@ keyword_model_search (DhKeywordModel  *model,
                                                       NULL);
                 n_hits_left -= in_book_n_hits;
                 out = g_list_concat (out, in_book);
-                if (!n_hits_left)
+                if (n_hits_left <= 0)
                         return out;
         }
 
