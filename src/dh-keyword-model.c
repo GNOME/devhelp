@@ -866,6 +866,8 @@ set_keywords_list (DhKeywordModel *model,
         gint old_length;
         gint new_length;
         gint row_num;
+        GList *node;
+        GtkTreePath *path;
 
         priv = dh_keyword_model_get_instance_private (model);
 
@@ -877,40 +879,64 @@ set_keywords_list (DhKeywordModel *model,
         priv->keyword_words_length = new_length;
 
         /* Update model: common rows */
-        /* FIXME this loop runs in O(n^2) */
-        for (row_num = 0; row_num < MIN (old_length, new_length); row_num++) {
-                GtkTreePath *path;
+        row_num = 0;
+        node = priv->keyword_words;
+        path = gtk_tree_path_new_first ();
+
+        while (row_num < MIN (old_length, new_length)) {
                 GtkTreeIter iter;
 
-                path = gtk_tree_path_new ();
-                gtk_tree_path_append_index (path, row_num);
-                keyword_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
+                g_assert (node != NULL);
+
+                iter.stamp = priv->stamp;
+                iter.user_data = node;
+
                 gtk_tree_model_row_changed (GTK_TREE_MODEL (model), path, &iter);
+
+                row_num++;
+                node = node->next;
+                gtk_tree_path_next (path);
+        }
+
+        gtk_tree_path_free (path);
+
+        /* Insert new rows */
+        if (old_length < new_length) {
+                row_num = old_length;
+                g_assert_cmpint (g_list_position (priv->keyword_words, node), ==, row_num);
+                path = gtk_tree_path_new_from_indices (row_num, -1);
+
+                while (row_num < new_length) {
+                        GtkTreeIter iter;
+
+                        g_assert (node != NULL);
+
+                        iter.stamp = priv->stamp;
+                        iter.user_data = node;
+
+                        gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
+
+                        row_num++;
+                        node = node->next;
+                        gtk_tree_path_next (path);
+                }
+
                 gtk_tree_path_free (path);
         }
 
-        if (old_length > new_length) {
-                /* Remove old rows */
-                for (row_num = old_length - 1; row_num >= new_length; row_num--) {
-                        GtkTreePath *path = gtk_tree_path_new ();
-                        gtk_tree_path_append_index (path, row_num);
-                        gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), path);
-                        gtk_tree_path_free (path);
-                }
-        }
-        else if (old_length < new_length) {
-                /* Insert new rows */
-                /* FIXME this loop runs in O(n^2) */
-                for (row_num = old_length; row_num < new_length; row_num++) {
-                        GtkTreePath *path;
-                        GtkTreeIter iter;
+        /* Delete old rows */
+        else if (old_length > new_length) {
+                row_num = old_length - 1;
+                path = gtk_tree_path_new_from_indices (row_num, -1);
 
-                        path = gtk_tree_path_new ();
-                        gtk_tree_path_append_index (path, row_num);
-                        keyword_model_get_iter (GTK_TREE_MODEL (model), &iter, path);
-                        gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
-                        gtk_tree_path_free (path);
+                while (row_num >= new_length) {
+                        gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), path);
+
+                        row_num--;
+                        gtk_tree_path_prev (path);
                 }
+
+                gtk_tree_path_free (path);
         }
 }
 
