@@ -22,7 +22,7 @@
 #include "config.h"
 #include "dh-book.h"
 
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 
 #include "dh-link.h"
 #include "dh-parser.h"

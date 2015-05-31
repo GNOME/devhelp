@@ -23,7 +23,7 @@
 #include "dh-app.h"
 
 #include <stdlib.h>
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 
 #include "devhelp.h"
 #include "dh-preferences.h"
