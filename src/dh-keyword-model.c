@@ -35,8 +35,7 @@ typedef struct {
         gchar *current_book_id;
 
         /* List of DhLink* */
-        GList *keyword_words;
-        gint   keyword_words_length;
+        GQueue keywords;
 
         gint   stamp;
 } DhKeywordModelPrivate;
@@ -90,7 +89,7 @@ dh_keyword_model_finalize (GObject *object)
         DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (object));
 
         g_free (priv->current_book_id);
-        g_list_free (priv->keyword_words);
+        g_queue_clear (&priv->keywords);
 
         G_OBJECT_CLASS (dh_keyword_model_parent_class)->finalize (object);
 }
@@ -160,11 +159,11 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
                 return FALSE;
         }
 
-        if (indices[0] >= priv->keyword_words_length) {
+        if (indices[0] >= priv->keywords.length) {
                 return FALSE;
         }
 
-        node = g_list_nth (priv->keyword_words, indices[0]);
+        node = g_queue_peek_nth_link (&priv->keywords, indices[0]);
 
         iter->stamp     = priv->stamp;
         iter->user_data = node;
@@ -186,7 +185,7 @@ keyword_model_get_path (GtkTreeModel *tree_model,
         g_return_val_if_fail (iter->stamp == priv->stamp, NULL);
 
         node = iter->user_data;
-        pos = g_list_position (priv->keyword_words, node);
+        pos = g_queue_link_index (&priv->keywords, node);
 
         if (pos < 0) {
                 return NULL;
@@ -272,9 +271,9 @@ keyword_model_iter_children (GtkTreeModel *tree_model,
         /* But if parent == NULL we return the list itself as children of
          * the "root".
          */
-        if (priv->keyword_words != NULL) {
+        if (priv->keywords.head != NULL) {
                 iter->stamp = priv->stamp;
-                iter->user_data = priv->keyword_words;
+                iter->user_data = priv->keywords.head;
                 return TRUE;
         }
 
@@ -297,7 +296,7 @@ keyword_model_iter_n_children (GtkTreeModel *tree_model,
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         if (iter == NULL) {
-                return priv->keyword_words_length;
+                return priv->keywords.length;
         }
 
         g_return_val_if_fail (priv->stamp == iter->stamp, -1);
@@ -320,7 +319,7 @@ keyword_model_iter_nth_child (GtkTreeModel *tree_model,
                 return FALSE;
         }
 
-        child = g_list_nth (priv->keyword_words, n);
+        child = g_queue_peek_nth_link (&priv->keywords, n);
 
         if (child != NULL) {
                 iter->stamp = priv->stamp;
@@ -649,7 +648,7 @@ keyword_model_search_books (DhKeywordModel  *model,
         return ret;
 }
 
-static GList *
+static GQueue *
 keyword_model_search (DhKeywordModel  *model,
                       const gchar     *search_string,
                       const GStrv      keywords,
@@ -665,7 +664,7 @@ keyword_model_search (DhKeywordModel  *model,
         GQueue *other_books = NULL;
         DhLink *in_book_exact_link = NULL;
         DhLink *other_books_exact_link = NULL;
-        GQueue out = G_QUEUE_INIT;
+        GQueue *out = g_queue_new ();
 
         settings.search_string = search_string;
         settings.keywords = keywords;
@@ -711,19 +710,19 @@ keyword_model_search (DhKeywordModel  *model,
          * books; prefer those to the current book. */
         if (in_book_exact_link != NULL) {
                 *exact_link = in_book_exact_link;
-                dh_util_queue_concat (&out, in_book);
-                dh_util_queue_concat (&out, other_books);
+                dh_util_queue_concat (out, in_book);
+                dh_util_queue_concat (out, other_books);
         } else if (other_books_exact_link != NULL) {
                 *exact_link = other_books_exact_link;
-                dh_util_queue_concat (&out, other_books);
-                dh_util_queue_concat (&out, in_book);
+                dh_util_queue_concat (out, other_books);
+                dh_util_queue_concat (out, in_book);
         } else {
                 *exact_link = NULL;
-                dh_util_queue_concat (&out, in_book);
-                dh_util_queue_concat (&out, other_books);
+                dh_util_queue_concat (out, in_book);
+                dh_util_queue_concat (out, other_books);
         }
 
-        if (out.length >= max_hits)
+        if (out->length >= max_hits)
                 goto out;
 
         /* Look for non-prefixed matches in current book */
@@ -735,11 +734,11 @@ keyword_model_search (DhKeywordModel  *model,
 
                 in_book = keyword_model_search_books (model,
                                                       &settings,
-                                                      max_hits - out.length,
+                                                      max_hits - out->length,
                                                       NULL);
 
-                dh_util_queue_concat (&out, in_book);
-                if (out.length >= max_hits)
+                dh_util_queue_concat (out, in_book);
+                if (out->length >= max_hits)
                         goto out;
         }
 
@@ -748,15 +747,15 @@ keyword_model_search (DhKeywordModel  *model,
         settings.skip_book_id = book_id;
         other_books = keyword_model_search_books (model,
                                                   &settings,
-                                                  max_hits - out.length,
+                                                  max_hits - out->length,
                                                   NULL);
-        dh_util_queue_concat (&out, other_books);
+        dh_util_queue_concat (out, other_books);
 
 out:
         dh_globbed_keywords_free (settings.keyword_globs);
         g_free (settings.page_filename_prefix);
 
-        return out.head;
+        return out;
 }
 
 /* Process the input search string and extract:
@@ -886,7 +885,7 @@ out:
 
 static void
 set_keywords_list (DhKeywordModel *model,
-                   GList          *new_keyword_list)
+                   GQueue         *new_keywords)
 {
         DhKeywordModelPrivate *priv;
         gint old_length;
@@ -897,16 +896,16 @@ set_keywords_list (DhKeywordModel *model,
 
         priv = dh_keyword_model_get_instance_private (model);
 
-        old_length = priv->keyword_words_length;
-        new_length = g_list_length (new_keyword_list);
+        old_length = priv->keywords.length;
+        new_length = new_keywords->length;
 
-        g_list_free (priv->keyword_words);
-        priv->keyword_words = new_keyword_list;
-        priv->keyword_words_length = new_length;
+        g_queue_clear (&priv->keywords);
+        dh_util_queue_concat (&priv->keywords, new_keywords);
+        new_keywords = NULL;
 
         /* Update model: common rows */
         row_num = 0;
-        node = priv->keyword_words;
+        node = priv->keywords.head;
         path = gtk_tree_path_new_first ();
 
         while (row_num < MIN (old_length, new_length)) {
@@ -929,7 +928,7 @@ set_keywords_list (DhKeywordModel *model,
         /* Insert new rows */
         if (old_length < new_length) {
                 row_num = old_length;
-                g_assert_cmpint (g_list_position (priv->keyword_words, node), ==, row_num);
+                g_assert_cmpint (g_queue_link_index (&priv->keywords, node), ==, row_num);
                 path = gtk_tree_path_new_from_indices (row_num, -1);
 
                 while (row_num < new_length) {
@@ -973,7 +972,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                          const gchar    *language)
 {
         DhKeywordModelPrivate *priv;
-        GList *new_list = NULL;
+        GQueue *new_list = NULL;
         gchar *book_id_in_search_string = NULL;
         gchar *page_id_in_search_string = NULL;
         GStrv keywords = NULL;
@@ -1021,17 +1020,20 @@ dh_keyword_model_filter (DhKeywordModel *model,
                                                  language,
                                                  case_sensitive,
                                                  &exact_link);
+        } else {
+                new_list = g_queue_new ();
         }
 
         set_keywords_list (model, new_list);
+        new_list = NULL;
 
         g_free (book_id_in_search_string);
         g_free (page_id_in_search_string);
         g_strfreev (keywords);
 
         /* One hit */
-        if (new_list != NULL && new_list->next == NULL) {
-                return new_list->data;
+        if (priv->keywords.length == 1) {
+                return g_queue_peek_head (&priv->keywords);
         }
 
         return exact_link;
