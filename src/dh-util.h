@@ -46,6 +46,9 @@ void         dh_util_window_settings_restore      (GtkWindow *window,
                                                    GSettings *settings,
                                                    gboolean has_maximize);
 
+void         dh_util_queue_concat                 (GQueue *q1,
+                                                   GQueue *q2);
+
 G_END_DECLS
 
 #endif /* __DH_UTIL_H__ */

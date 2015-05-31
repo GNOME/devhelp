@@ -27,6 +27,7 @@
 #include <string.h>
 
 #include "dh-book.h"
+#include "dh-util.h"
 
 typedef struct {
         DhBookManager *book_manager;
@@ -442,18 +443,20 @@ dh_globbed_keywords_free (GList *keyword_globs)
         g_list_free (keyword_globs);
 }
 
-static GList *
+static GQueue *
 keyword_model_search_book (DhBook          *book,
                            SearchSettings  *settings,
-                           GList           *new_list,
                            guint            max_hits,
                            guint           *n_hits,
                            DhLink         **exact_link)
 {
+        GQueue *ret;
         GList *l;
 
         g_assert (n_hits != NULL);
         *n_hits = 0;
+
+        ret = g_queue_new ();
 
         for (l = dh_book_get_keywords (book);
              l != NULL && *n_hits < max_hits;
@@ -536,8 +539,7 @@ keyword_model_search_book (DhBook          *book,
                 }
 
                 if (found) {
-                        /* Include in the new list. */
-                        new_list = g_list_prepend (new_list, link);
+                        g_queue_push_tail (ret, link);
                         (*n_hits)++;
 
                         if (exact_link == NULL || dh_link_get_name (link) == NULL)
@@ -559,7 +561,7 @@ keyword_model_search_book (DhBook          *book,
                 }
         }
 
-        return new_list;
+        return ret;
 }
 
 /* The Search rationale is as follows:
@@ -582,7 +584,7 @@ keyword_model_search_book (DhBook          *book,
  *   will be shown. If keyword matches both a page link and a non-page one,
  *   the page link is the one given as exact match.
  */
-static GList *
+static GQueue *
 keyword_model_search_books (DhKeywordModel  *model,
                             SearchSettings  *settings,
                             guint            max_hits,
@@ -590,20 +592,23 @@ keyword_model_search_books (DhKeywordModel  *model,
                             DhLink         **exact_link)
 {
         DhKeywordModelPrivate *priv;
-        GList *new_list = NULL;
-        GList *b;
+        GQueue *ret;
+        GList *l;
         gint hits = 0;
 
         priv = dh_keyword_model_get_instance_private (model);
 
-        for (b = dh_book_manager_get_books (priv->book_manager);
-             b != NULL && hits < max_hits;
-             b = g_list_next (b)) {
+        ret = g_queue_new ();
+
+        for (l = dh_book_manager_get_books (priv->book_manager);
+             l != NULL && hits < max_hits;
+             l = l->next) {
                 DhBook *book;
+                GQueue *book_result;
                 guint n_hits_left;
                 guint book_hits = 0;
 
-                book = DH_BOOK (b->data);
+                book = DH_BOOK (l->data);
 
                 /* Filtering by book? */
                 if (settings->book_id != NULL) {
@@ -621,7 +626,10 @@ keyword_model_search_books (DhKeywordModel  *model,
                                 if (node != NULL) {
                                         if (exact_link != NULL)
                                                 *exact_link = node->data;
-                                        return g_list_prepend (NULL, node->data);
+
+                                        g_queue_clear (ret);
+                                        g_queue_push_tail (ret, node->data);
+                                        return ret;
                                 }
                         }
                 }
@@ -640,20 +648,21 @@ keyword_model_search_books (DhKeywordModel  *model,
 
                 n_hits_left = max_hits - hits;
 
-                new_list = keyword_model_search_book (book,
-                                                      settings,
-                                                      new_list,
-                                                      n_hits_left,
-                                                      &book_hits,
-                                                      exact_link);
+                book_result = keyword_model_search_book (book,
+                                                         settings,
+                                                         n_hits_left,
+                                                         &book_hits,
+                                                         exact_link);
 
+                dh_util_queue_concat (ret, book_result);
                 hits += book_hits;
         }
 
         if (n_hits != NULL)
                 *n_hits = hits;
 
-        return g_list_sort (new_list, dh_link_compare);
+        g_queue_sort (ret, (GCompareDataFunc) dh_link_compare, NULL);
+        return ret;
 }
 
 static GList *
@@ -670,11 +679,11 @@ keyword_model_search (DhKeywordModel  *model,
         gint n_hits_left = MAX_HITS;
         guint in_book_n_hits = 0;
         guint other_books_n_hits = 0;
-        GList *in_book = NULL;
-        GList *other_books = NULL;
+        GQueue *in_book = NULL;
+        GQueue *other_books = NULL;
         DhLink *in_book_exact_link = NULL;
         DhLink *other_books_exact_link = NULL;
-        GList *out = NULL;
+        GQueue out = G_QUEUE_INIT;
 
         settings.search_string = search_string;
         settings.keywords = keywords;
@@ -716,18 +725,22 @@ keyword_model_search (DhKeywordModel  *model,
                                                   &other_books_n_hits,
                                                   &other_books_exact_link);
 
+
         /* Now that we got prefix searches in current and other books, decide
          * which the preferred exact link is. If the exact match is in other
          * books; prefer those to the current book. */
         if (in_book_exact_link != NULL) {
                 *exact_link = in_book_exact_link;
-                out = g_list_concat (in_book, other_books);
+                dh_util_queue_concat (&out, in_book);
+                dh_util_queue_concat (&out, other_books);
         } else if (other_books_exact_link != NULL) {
                 *exact_link = other_books_exact_link;
-                out = g_list_concat (other_books, in_book);
+                dh_util_queue_concat (&out, other_books);
+                dh_util_queue_concat (&out, in_book);
         } else {
                 *exact_link = NULL;
-                out = g_list_concat (in_book, other_books);
+                dh_util_queue_concat (&out, in_book);
+                dh_util_queue_concat (&out, other_books);
         }
 
         n_hits_left -= (in_book_n_hits + other_books_n_hits);
@@ -748,7 +761,7 @@ keyword_model_search (DhKeywordModel  *model,
                                                       &in_book_n_hits,
                                                       NULL);
                 n_hits_left -= in_book_n_hits;
-                out = g_list_concat (out, in_book);
+                dh_util_queue_concat (&out, in_book);
                 if (n_hits_left <= 0)
                         goto out;
         }
@@ -761,13 +774,13 @@ keyword_model_search (DhKeywordModel  *model,
                                                   n_hits_left,
                                                   NULL,
                                                   NULL);
-        out = g_list_concat (out, other_books);
+        dh_util_queue_concat (&out, other_books);
 
 out:
         dh_globbed_keywords_free (settings.keyword_globs);
         g_free (settings.page_filename_prefix);
 
-        return out;
+        return out.head;
 }
 
 /* Process the input search string and extract:
