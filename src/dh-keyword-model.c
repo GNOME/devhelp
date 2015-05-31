@@ -4,6 +4,7 @@
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
+ * Copyright (C) 2015 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -49,6 +50,19 @@ typedef struct {
         GPatternSpec *glob_pattern_any;
         guint has_glob : 1;
 } DhKeywordGlobPattern;
+
+typedef struct {
+        const gchar *search_string;
+        GStrv keywords;
+        GList *keyword_globs;
+        const gchar *book_id;
+        const gchar *skip_book_id;
+        const gchar *page_id;
+        const gchar *language;
+        guint max_hits;
+        guint case_sensitive : 1;
+        guint prefix : 1;
+} SearchSettings;
 
 #define MAX_HITS 100
 
@@ -444,37 +458,27 @@ dh_globbed_keywords_free (GList *keyword_globs)
  * - If 'page_id' and 'keywords' are given but no 'book_id', all the items
  *   matching the keywords in the given page will be shown.
  *
- * - If 'keywords' only are given, up to MAX_HITS items matching the keywords
+ * - If 'keywords' only are given, up to max_hits items matching the keywords
  *   will be shown. If keyword matches both a page link and a non-page one,
  *   the page link is the one given as exact match.
  */
 static GList *
 keyword_model_search_books (DhKeywordModel  *model,
-                            const gchar     *search_string,
-                            const GStrv      keywords,
-                            const gchar     *book_id,
-                            const gchar     *skip_book_id,
-                            const gchar     *page_id,
-                            const gchar     *language,
-                            gboolean         case_sensitive,
-                            gboolean         prefix,
-                            guint            max_hits,
+                            SearchSettings  *settings,
                             guint           *n_hits,
                             DhLink         **exact_link)
 {
         DhKeywordModelPrivate *priv;
-        GList                 *new_list = NULL, *b;
-        gint                   hits = 0;
-        gchar                 *page_filename_prefix = NULL;
-        GList                 *keyword_globs;
+        GList *new_list = NULL;
+        GList *b;
+        gint max_hits = settings->max_hits;
+        gint hits = 0;
+        gchar *page_filename_prefix = NULL;
 
         priv = dh_keyword_model_get_instance_private (model);
 
-        /* Compile each keyword into a GPatternSpec if necessary */
-        keyword_globs = dh_globbed_keywords_new (keywords);
-
-        if (page_id) {
-                page_filename_prefix = g_strdup_printf("%s.", page_id);
+        if (settings->page_id != NULL) {
+                page_filename_prefix = g_strdup_printf("%s.", settings->page_id);
                 /* If filtering per page, increase the maximum number of
                  * hits. This is due to the fact that a page may have
                  * more than MAX_HITS keywords, and the page link may be
@@ -484,7 +488,7 @@ keyword_model_search_books (DhKeywordModel  *model,
         }
 
         for (b = dh_book_manager_get_books (priv->book_manager);
-             b && hits < max_hits;
+             b != NULL && hits < max_hits;
              b = g_list_next (b)) {
                 DhBook *book;
                 GList *l;
@@ -492,20 +496,20 @@ keyword_model_search_books (DhKeywordModel  *model,
                 book = DH_BOOK (b->data);
 
                 /* Filtering by book? */
-                if (book_id) {
-                        if (g_strcmp0 (book_id, dh_book_get_name (book)) != 0) {
+                if (settings->book_id != NULL) {
+                        if (g_strcmp0 (settings->book_id, dh_book_get_name (book)) != 0) {
                                 continue;
                         }
 
                         /* Looking only for some specific book, without page or
                          * keywords? Return only the match of the first book page.
                          */
-                        if (!page_id && !keywords) {
+                        if (settings->page_id == NULL && settings->keywords == NULL) {
                                 GNode *node;
 
                                 node = dh_book_get_tree (book);
-                                if (node) {
-                                        if (exact_link)
+                                if (node != NULL) {
+                                        if (exact_link != NULL)
                                                 *exact_link = node->data;
                                         return g_list_prepend (NULL, node->data);
                                 }
@@ -513,19 +517,19 @@ keyword_model_search_books (DhKeywordModel  *model,
                 }
 
                 /* Skipping a given book? */
-                if (skip_book_id &&
-                    g_strcmp0 (skip_book_id, dh_book_get_name (book)) == 0) {
+                if (settings->skip_book_id != NULL &&
+                    g_strcmp0 (settings->skip_book_id, dh_book_get_name (book)) == 0) {
                         continue;
                 }
 
                 /* Filtering by language? */
-                if (language &&
-                    g_strcmp0 (language, dh_book_get_language (book)) != 0) {
+                if (settings->language != NULL &&
+                    g_strcmp0 (settings->language, dh_book_get_language (book)) != 0) {
                         continue;
                 }
 
                 for (l = dh_book_get_keywords (book);
-                     l && hits < max_hits;
+                     l != NULL && hits < max_hits;
                      l = g_list_next (l)) {
                         DhLink   *link;
                         gboolean  found;
@@ -534,10 +538,10 @@ keyword_model_search_books (DhKeywordModel  *model,
                         found = FALSE;
 
                         /* Filter by page? */
-                        if (page_id) {
+                        if (settings->page_id != NULL) {
                                 gchar *file_name;
 
-                                file_name = (case_sensitive ?
+                                file_name = (settings->case_sensitive ?
                                              g_strdup (dh_link_get_file_name (link)) :
                                              g_ascii_strdown (dh_link_get_file_name (link), -1));
 
@@ -551,25 +555,25 @@ keyword_model_search_books (DhKeywordModel  *model,
                                 g_free (file_name);
 
                                 /* This means we got no keywords to look for. */
-                                if (!keywords) {
+                                if (settings->keywords == NULL) {
                                         /* Show all in the page */
                                         found = TRUE;
                                 }
                         }
 
-                        if (!found && keywords) {
+                        if (!found && settings->keywords != NULL) {
                                 gboolean  all_found;
                                 gboolean  prefix_found;
                                 gchar    *name;
                                 GList    *list;
 
-                                name = (case_sensitive ?
+                                name = (settings->case_sensitive ?
                                         g_strdup (dh_link_get_name (link)) :
                                         g_ascii_strdown (dh_link_get_name (link), -1));
 
                                 all_found = TRUE;
                                 prefix_found = FALSE;
-                                for (list = keyword_globs; list != NULL; list = g_list_next (list)) {
+                                for (list = settings->keyword_globs; list != NULL; list = g_list_next (list)) {
                                         DhKeywordGlobPattern *data = list->data;
 
                                         /* If our keyword is a glob pattern, use
@@ -579,7 +583,7 @@ keyword_model_search_books (DhKeywordModel  *model,
                                                         prefix_found = TRUE;
                                                         /* If we get a prefix match and we're not
                                                          * looking for prefix, stop. */
-                                                        if (!prefix)
+                                                        if (!settings->prefix)
                                                                 break;
                                                 } else if (!g_pattern_match_string (data->glob_pattern_any, name)) {
                                                         all_found = FALSE;
@@ -588,9 +592,9 @@ keyword_model_search_books (DhKeywordModel  *model,
                                         } else {
                                                 if (g_str_has_prefix (name, data->keyword)) {
                                                         prefix_found = TRUE;
-                                                        if (!prefix)
+                                                        if (!settings->prefix)
                                                                 break;
-                                                } else if (!g_strrstr (name, data->keyword)) {
+                                                } else if (g_strrstr (name, data->keyword) == NULL) {
                                                         all_found = FALSE;
                                                         break;
                                                 }
@@ -599,10 +603,9 @@ keyword_model_search_books (DhKeywordModel  *model,
 
                                 g_free (name);
 
-                                found = (all_found &&
-                                         ((prefix && prefix_found) ||
-                                          (!prefix && !prefix_found)) ?
-                                         TRUE : FALSE);
+                                found = all_found &&
+                                        ((settings->prefix && prefix_found) ||
+                                         (!settings->prefix && !prefix_found));
                         }
 
                         if (found) {
@@ -610,19 +613,20 @@ keyword_model_search_books (DhKeywordModel  *model,
                                 new_list = g_list_prepend (new_list, link);
                                 hits++;
 
-                                if (!exact_link || !dh_link_get_name (link))
-                                    continue;
+                                if (exact_link == NULL || dh_link_get_name (link) == NULL)
+                                        continue;
 
                                 /* Look for an exact link match. If the link is a PAGE,
                                  * we can overwrite any previous exact link set. For
                                  * example, when looking for GFile, we want the page,
                                  * not the struct. */
                                 if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
-                                    ((page_id && strcmp (dh_link_get_name (link), page_id) == 0) ||
-                                     (strcmp (dh_link_get_name (link), search_string) == 0))) {
+                                    ((settings->page_id != NULL &&
+                                      strcmp (dh_link_get_name (link), settings->page_id) == 0) ||
+                                     (strcmp (dh_link_get_name (link), settings->search_string) == 0))) {
                                         *exact_link = link;
-                                } else if (!*exact_link &&
-                                           strcmp (dh_link_get_name (link), search_string) == 0) {
+                                } else if (*exact_link == NULL &&
+                                           strcmp (dh_link_get_name (link), settings->search_string) == 0) {
                                         *exact_link = link;
                                 }
                         }
@@ -631,10 +635,9 @@ keyword_model_search_books (DhKeywordModel  *model,
 
         g_free (page_filename_prefix);
 
-        dh_globbed_keywords_free (keyword_globs);
-
-        if (n_hits)
+        if (n_hits != NULL)
                 *n_hits = hits;
+
         return g_list_sort (new_list, dh_link_compare);
 }
 
@@ -648,6 +651,7 @@ keyword_model_search (DhKeywordModel  *model,
                       gboolean         case_sensitive,
                       DhLink         **exact_link)
 {
+        SearchSettings settings;
         guint n_hits_left;
         guint in_book_n_hits = 0;
         guint other_books_n_hits = 0;
@@ -657,31 +661,30 @@ keyword_model_search (DhKeywordModel  *model,
         DhLink *other_books_exact_link = NULL;
         GList *out = NULL;
 
+        settings.search_string = search_string;
+        settings.keywords = keywords;
+        settings.keyword_globs = dh_globbed_keywords_new (keywords);
+        settings.book_id = book_id;
+        settings.skip_book_id = NULL;
+        settings.page_id = page_id;
+        settings.language = language;
+        settings.max_hits = MAX_HITS;
+        settings.case_sensitive = case_sensitive;
+        settings.prefix = TRUE;
+
         /* If book_id given; first look for prefixed items in the given book id */
         if (book_id != NULL) {
                 in_book = keyword_model_search_books (model,
-                                                      search_string,
-                                                      keywords,
-                                                      book_id, NULL,
-                                                      page_id,
-                                                      language,
-                                                      case_sensitive,
-                                                      TRUE,
-                                                      MAX_HITS,
+                                                      &settings,
                                                       &in_book_n_hits,
                                                       &in_book_exact_link);
         }
 
         /* Next, always check other books as well, as the exact match may be in there */
+        settings.book_id = NULL;
+        settings.skip_book_id = book_id;
         other_books = keyword_model_search_books (model,
-                                                  search_string,
-                                                  keywords,
-                                                  NULL, book_id,
-                                                  page_id,
-                                                  language,
-                                                  case_sensitive,
-                                                  TRUE,
-                                                  MAX_HITS,
+                                                  &settings,
                                                   &other_books_n_hits,
                                                   &other_books_exact_link);
 
@@ -700,44 +703,44 @@ keyword_model_search (DhKeywordModel  *model,
         }
 
         /* If we already have more than MAX_HITS, don't look for any more */
-        if (in_book_n_hits + other_books_n_hits >= MAX_HITS)
-                return out;
+        if (in_book_n_hits + other_books_n_hits >= settings.max_hits)
+                goto out;
 
-        n_hits_left = MAX_HITS - in_book_n_hits - other_books_n_hits;
+        n_hits_left = settings.max_hits - in_book_n_hits - other_books_n_hits;
 
         /* Look for non-prefixed matches in current book */
+        settings.prefix = FALSE;
+
         if (book_id != NULL) {
+                settings.book_id = book_id;
+                settings.skip_book_id = NULL;
+                settings.max_hits = n_hits_left;
+
                 in_book_n_hits = 0;
                 in_book = keyword_model_search_books (model,
-                                                      search_string,
-                                                      keywords,
-                                                      book_id, NULL,
-                                                      page_id,
-                                                      language,
-                                                      case_sensitive,
-                                                      FALSE,
-                                                      n_hits_left,
+                                                      &settings,
                                                       &in_book_n_hits,
                                                       NULL);
                 n_hits_left -= in_book_n_hits;
                 out = g_list_concat (out, in_book);
                 if (n_hits_left <= 0)
-                        return out;
+                        goto out;
         }
 
         /* If still room for more items; look for non-prefixed items in other books */
+        settings.book_id = NULL;
+        settings.skip_book_id = book_id;
+        settings.max_hits = n_hits_left;
         other_books = keyword_model_search_books (model,
-                                                  search_string,
-                                                  keywords,
-                                                  NULL, book_id,
-                                                  page_id,
-                                                  language,
-                                                  case_sensitive,
-                                                  FALSE,
-                                                  n_hits_left,
+                                                  &settings,
                                                   NULL,
                                                   NULL);
-        return g_list_concat (out, other_books);
+        out = g_list_concat (out, other_books);
+
+out:
+        dh_globbed_keywords_free (settings.keyword_globs);
+
+        return out;
 }
 
 /* Process the input search string and extract:
