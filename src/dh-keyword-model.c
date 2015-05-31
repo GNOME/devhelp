@@ -58,6 +58,7 @@ typedef struct {
         const gchar *book_id;
         const gchar *skip_book_id;
         const gchar *page_id;
+        gchar *page_filename_prefix;
         const gchar *language;
         guint max_hits;
         guint case_sensitive : 1;
@@ -445,7 +446,6 @@ dh_globbed_keywords_free (GList *keyword_globs)
 static GList *
 keyword_model_search_book (DhBook          *book,
                            SearchSettings  *settings,
-                           gchar           *page_filename_prefix,
                            GList           *new_list,
                            gint            *hits,
                            DhLink         **exact_link)
@@ -471,7 +471,7 @@ keyword_model_search_book (DhBook          *book,
 
                         /* First, filter out all keywords not belonging
                          * to this given page. */
-                        if (!g_str_has_prefix (file_name, page_filename_prefix)) {
+                        if (!g_str_has_prefix (file_name, settings->page_filename_prefix)) {
                                 /* No need of this keyword. */
                                 g_free (file_name);
                                 continue;
@@ -589,13 +589,8 @@ keyword_model_search_books (DhKeywordModel  *model,
         GList *new_list = NULL;
         GList *b;
         gint hits = 0;
-        gchar *page_filename_prefix = NULL;
 
         priv = dh_keyword_model_get_instance_private (model);
-
-        if (settings->page_id != NULL) {
-                page_filename_prefix = g_strdup_printf ("%s.", settings->page_id);
-        }
 
         for (b = dh_book_manager_get_books (priv->book_manager);
              b != NULL && hits < settings->max_hits;
@@ -639,13 +634,10 @@ keyword_model_search_books (DhKeywordModel  *model,
 
                 new_list = keyword_model_search_book (book,
                                                       settings,
-                                                      page_filename_prefix,
                                                       new_list,
                                                       &hits,
                                                       exact_link);
         }
-
-        g_free (page_filename_prefix);
 
         if (n_hits != NULL)
                 *n_hits = hits;
@@ -679,12 +671,15 @@ keyword_model_search (DhKeywordModel  *model,
         settings.book_id = book_id;
         settings.skip_book_id = NULL;
         settings.page_id = page_id;
+        settings.page_filename_prefix = NULL;
         settings.language = language;
         settings.max_hits = MAX_HITS;
         settings.case_sensitive = case_sensitive;
         settings.prefix = TRUE;
 
         if (page_id != NULL) {
+                settings.page_filename_prefix = g_strdup_printf ("%s.", page_id);
+
                 /* If filtering per page, increase the maximum number of
                  * hits. This is due to the fact that a page may have
                  * more than MAX_HITS keywords, and the page link may be
@@ -760,6 +755,7 @@ keyword_model_search (DhKeywordModel  *model,
 
 out:
         dh_globbed_keywords_free (settings.keyword_globs);
+        g_free (settings.page_filename_prefix);
 
         return out;
 }
