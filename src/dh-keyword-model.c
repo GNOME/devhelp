@@ -380,8 +380,8 @@ dh_globbed_keywords_new (GStrv keywords)
                 data = g_slice_new (DhKeywordGlobPattern);
                 data->keyword = keywords[i];
 
-                if (g_strrstr (keywords[i], "*") != NULL ||
-                    g_strrstr (keywords[i], "?") != NULL) {
+                if (strchr (keywords[i], '*') != NULL ||
+                    strchr (keywords[i], '?') != NULL) {
                         gchar *glob;
 
                         data->has_glob = TRUE;
