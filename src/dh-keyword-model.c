@@ -60,7 +60,6 @@ typedef struct {
         const gchar *page_id;
         gchar *page_filename_prefix;
         const gchar *language;
-        guint max_hits;
         guint case_sensitive : 1;
         guint prefix : 1;
 } SearchSettings;
@@ -447,13 +446,17 @@ static GList *
 keyword_model_search_book (DhBook          *book,
                            SearchSettings  *settings,
                            GList           *new_list,
-                           gint            *hits,
+                           guint            max_hits,
+                           guint           *n_hits,
                            DhLink         **exact_link)
 {
         GList *l;
 
+        g_assert (n_hits != NULL);
+        *n_hits = 0;
+
         for (l = dh_book_get_keywords (book);
-             l != NULL && *hits < settings->max_hits;
+             l != NULL && *n_hits < max_hits;
              l = g_list_next (l)) {
                 DhLink   *link;
                 gboolean  found;
@@ -535,7 +538,7 @@ keyword_model_search_book (DhBook          *book,
                 if (found) {
                         /* Include in the new list. */
                         new_list = g_list_prepend (new_list, link);
-                        (*hits)++;
+                        (*n_hits)++;
 
                         if (exact_link == NULL || dh_link_get_name (link) == NULL)
                                 continue;
@@ -582,6 +585,7 @@ keyword_model_search_book (DhBook          *book,
 static GList *
 keyword_model_search_books (DhKeywordModel  *model,
                             SearchSettings  *settings,
+                            guint            max_hits,
                             guint           *n_hits,
                             DhLink         **exact_link)
 {
@@ -593,9 +597,11 @@ keyword_model_search_books (DhKeywordModel  *model,
         priv = dh_keyword_model_get_instance_private (model);
 
         for (b = dh_book_manager_get_books (priv->book_manager);
-             b != NULL && hits < settings->max_hits;
+             b != NULL && hits < max_hits;
              b = g_list_next (b)) {
                 DhBook *book;
+                guint n_hits_left;
+                guint book_hits = 0;
 
                 book = DH_BOOK (b->data);
 
@@ -632,11 +638,16 @@ keyword_model_search_books (DhKeywordModel  *model,
                         continue;
                 }
 
+                n_hits_left = max_hits - hits;
+
                 new_list = keyword_model_search_book (book,
                                                       settings,
                                                       new_list,
-                                                      &hits,
+                                                      n_hits_left,
+                                                      &book_hits,
                                                       exact_link);
+
+                hits += book_hits;
         }
 
         if (n_hits != NULL)
@@ -656,7 +667,7 @@ keyword_model_search (DhKeywordModel  *model,
                       DhLink         **exact_link)
 {
         SearchSettings settings;
-        guint n_hits_left;
+        gint n_hits_left = MAX_HITS;
         guint in_book_n_hits = 0;
         guint other_books_n_hits = 0;
         GList *in_book = NULL;
@@ -673,7 +684,6 @@ keyword_model_search (DhKeywordModel  *model,
         settings.page_id = page_id;
         settings.page_filename_prefix = NULL;
         settings.language = language;
-        settings.max_hits = MAX_HITS;
         settings.case_sensitive = case_sensitive;
         settings.prefix = TRUE;
 
@@ -685,13 +695,14 @@ keyword_model_search (DhKeywordModel  *model,
                  * more than MAX_HITS keywords, and the page link may be
                  * the last one in the list, but we always want to get it.
                  */
-                settings.max_hits = G_MAXINT;
+                n_hits_left = G_MAXINT;
         }
 
         /* If book_id given; first look for prefixed items in the given book id */
         if (book_id != NULL) {
                 in_book = keyword_model_search_books (model,
                                                       &settings,
+                                                      n_hits_left,
                                                       &in_book_n_hits,
                                                       &in_book_exact_link);
         }
@@ -701,6 +712,7 @@ keyword_model_search (DhKeywordModel  *model,
         settings.skip_book_id = book_id;
         other_books = keyword_model_search_books (model,
                                                   &settings,
+                                                  n_hits_left,
                                                   &other_books_n_hits,
                                                   &other_books_exact_link);
 
@@ -718,11 +730,9 @@ keyword_model_search (DhKeywordModel  *model,
                 out = g_list_concat (in_book, other_books);
         }
 
-        /* If we already have more than MAX_HITS, don't look for any more */
-        if (in_book_n_hits + other_books_n_hits >= settings.max_hits)
+        n_hits_left -= (in_book_n_hits + other_books_n_hits);
+        if (n_hits_left <= 0)
                 goto out;
-
-        n_hits_left = settings.max_hits - in_book_n_hits - other_books_n_hits;
 
         /* Look for non-prefixed matches in current book */
         settings.prefix = FALSE;
@@ -730,11 +740,11 @@ keyword_model_search (DhKeywordModel  *model,
         if (book_id != NULL) {
                 settings.book_id = book_id;
                 settings.skip_book_id = NULL;
-                settings.max_hits = n_hits_left;
 
                 in_book_n_hits = 0;
                 in_book = keyword_model_search_books (model,
                                                       &settings,
+                                                      n_hits_left,
                                                       &in_book_n_hits,
                                                       NULL);
                 n_hits_left -= in_book_n_hits;
@@ -746,9 +756,9 @@ keyword_model_search (DhKeywordModel  *model,
         /* If still room for more items; look for non-prefixed items in other books */
         settings.book_id = NULL;
         settings.skip_book_id = book_id;
-        settings.max_hits = n_hits_left;
         other_books = keyword_model_search_books (model,
                                                   &settings,
+                                                  n_hits_left,
                                                   NULL,
                                                   NULL);
         out = g_list_concat (out, other_books);
