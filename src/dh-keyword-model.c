@@ -442,6 +442,124 @@ dh_globbed_keywords_free (GList *keyword_globs)
         g_list_free (keyword_globs);
 }
 
+static GList *
+keyword_model_search_book (DhBook          *book,
+                           SearchSettings  *settings,
+                           gint             max_hits,
+                           gchar           *page_filename_prefix,
+                           GList           *new_list,
+                           gint            *hits,
+                           DhLink         **exact_link)
+{
+        GList *l;
+
+        for (l = dh_book_get_keywords (book);
+             l != NULL && *hits < max_hits;
+             l = g_list_next (l)) {
+                DhLink   *link;
+                gboolean  found;
+
+                link = l->data;
+                found = FALSE;
+
+                /* Filter by page? */
+                if (settings->page_id != NULL) {
+                        gchar *file_name;
+
+                        file_name = (settings->case_sensitive ?
+                                     g_strdup (dh_link_get_file_name (link)) :
+                                     g_ascii_strdown (dh_link_get_file_name (link), -1));
+
+                        /* First, filter out all keywords not belonging
+                         * to this given page. */
+                        if (!g_str_has_prefix (file_name, page_filename_prefix)) {
+                                /* No need of this keyword. */
+                                g_free (file_name);
+                                continue;
+                        }
+                        g_free (file_name);
+
+                        /* This means we got no keywords to look for. */
+                        if (settings->keywords == NULL) {
+                                /* Show all in the page */
+                                found = TRUE;
+                        }
+                }
+
+                if (!found && settings->keywords != NULL) {
+                        gboolean  all_found;
+                        gboolean  prefix_found;
+                        gchar    *name;
+                        GList    *list;
+
+                        name = (settings->case_sensitive ?
+                                g_strdup (dh_link_get_name (link)) :
+                                g_ascii_strdown (dh_link_get_name (link), -1));
+
+                        all_found = TRUE;
+                        prefix_found = FALSE;
+                        for (list = settings->keyword_globs; list != NULL; list = g_list_next (list)) {
+                                DhKeywordGlobPattern *data = list->data;
+
+                                /* If our keyword is a glob pattern, use
+                                 * it.  Otherwise, do more efficient string searching */
+                                if (data->has_glob) {
+                                        if (g_pattern_match_string (data->glob_pattern_start, name)) {
+                                                prefix_found = TRUE;
+                                                /* If we get a prefix match and we're not
+                                                 * looking for prefix, stop. */
+                                                if (!settings->prefix)
+                                                        break;
+                                        } else if (!g_pattern_match_string (data->glob_pattern_any, name)) {
+                                                all_found = FALSE;
+                                                break;
+                                        }
+                                } else {
+                                        if (g_str_has_prefix (name, data->keyword)) {
+                                                prefix_found = TRUE;
+                                                if (!settings->prefix)
+                                                        break;
+                                        } else if (g_strrstr (name, data->keyword) == NULL) {
+                                                all_found = FALSE;
+                                                break;
+                                        }
+                                }
+                        }
+
+                        g_free (name);
+
+                        found = all_found &&
+                                ((settings->prefix && prefix_found) ||
+                                 (!settings->prefix && !prefix_found));
+                }
+
+                if (found) {
+                        /* Include in the new list. */
+                        new_list = g_list_prepend (new_list, link);
+                        (*hits)++;
+
+                        if (exact_link == NULL || dh_link_get_name (link) == NULL)
+                                continue;
+
+                        /* Look for an exact link match. If the link is a PAGE,
+                         * we can overwrite any previous exact link set. For
+                         * example, when looking for GFile, we want the page,
+                         * not the struct. */
+                        if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
+                            ((settings->page_id != NULL &&
+                              strcmp (dh_link_get_name (link), settings->page_id) == 0) ||
+                             (strcmp (dh_link_get_name (link), settings->search_string) == 0))) {
+                                *exact_link = link;
+                        } else if (*exact_link == NULL &&
+                                   strcmp (dh_link_get_name (link), settings->search_string) == 0) {
+                                *exact_link = link;
+                        }
+                }
+        }
+
+        return new_list;
+}
+
 /* The Search rationale is as follows:
  *
  * - If 'book_id' is given, but no 'page_id' or 'keywords', the main page of
@@ -478,7 +596,7 @@ keyword_model_search_books (DhKeywordModel  *model,
         priv = dh_keyword_model_get_instance_private (model);
 
         if (settings->page_id != NULL) {
-                page_filename_prefix = g_strdup_printf("%s.", settings->page_id);
+                page_filename_prefix = g_strdup_printf ("%s.", settings->page_id);
                 /* If filtering per page, increase the maximum number of
                  * hits. This is due to the fact that a page may have
                  * more than MAX_HITS keywords, and the page link may be
@@ -491,7 +609,6 @@ keyword_model_search_books (DhKeywordModel  *model,
              b != NULL && hits < max_hits;
              b = g_list_next (b)) {
                 DhBook *book;
-                GList *l;
 
                 book = DH_BOOK (b->data);
 
@@ -528,109 +645,13 @@ keyword_model_search_books (DhKeywordModel  *model,
                         continue;
                 }
 
-                for (l = dh_book_get_keywords (book);
-                     l != NULL && hits < max_hits;
-                     l = g_list_next (l)) {
-                        DhLink   *link;
-                        gboolean  found;
-
-                        link = l->data;
-                        found = FALSE;
-
-                        /* Filter by page? */
-                        if (settings->page_id != NULL) {
-                                gchar *file_name;
-
-                                file_name = (settings->case_sensitive ?
-                                             g_strdup (dh_link_get_file_name (link)) :
-                                             g_ascii_strdown (dh_link_get_file_name (link), -1));
-
-                                /* First, filter out all keywords not belonging
-                                 * to this given page. */
-                                if (!g_str_has_prefix (file_name, page_filename_prefix)) {
-                                        /* No need of this keyword. */
-                                        g_free (file_name);
-                                        continue;
-                                }
-                                g_free (file_name);
-
-                                /* This means we got no keywords to look for. */
-                                if (settings->keywords == NULL) {
-                                        /* Show all in the page */
-                                        found = TRUE;
-                                }
-                        }
-
-                        if (!found && settings->keywords != NULL) {
-                                gboolean  all_found;
-                                gboolean  prefix_found;
-                                gchar    *name;
-                                GList    *list;
-
-                                name = (settings->case_sensitive ?
-                                        g_strdup (dh_link_get_name (link)) :
-                                        g_ascii_strdown (dh_link_get_name (link), -1));
-
-                                all_found = TRUE;
-                                prefix_found = FALSE;
-                                for (list = settings->keyword_globs; list != NULL; list = g_list_next (list)) {
-                                        DhKeywordGlobPattern *data = list->data;
-
-                                        /* If our keyword is a glob pattern, use
-                                         * it.  Otherwise, do more efficient string searching */
-                                        if (data->has_glob) {
-                                                if (g_pattern_match_string (data->glob_pattern_start, name)) {
-                                                        prefix_found = TRUE;
-                                                        /* If we get a prefix match and we're not
-                                                         * looking for prefix, stop. */
-                                                        if (!settings->prefix)
-                                                                break;
-                                                } else if (!g_pattern_match_string (data->glob_pattern_any, name)) {
-                                                        all_found = FALSE;
-                                                        break;
-                                                }
-                                        } else {
-                                                if (g_str_has_prefix (name, data->keyword)) {
-                                                        prefix_found = TRUE;
-                                                        if (!settings->prefix)
-                                                                break;
-                                                } else if (g_strrstr (name, data->keyword) == NULL) {
-                                                        all_found = FALSE;
-                                                        break;
-                                                }
-                                        }
-                                }
-
-                                g_free (name);
-
-                                found = all_found &&
-                                        ((settings->prefix && prefix_found) ||
-                                         (!settings->prefix && !prefix_found));
-                        }
-
-                        if (found) {
-                                /* Include in the new list. */
-                                new_list = g_list_prepend (new_list, link);
-                                hits++;
-
-                                if (exact_link == NULL || dh_link_get_name (link) == NULL)
-                                        continue;
-
-                                /* Look for an exact link match. If the link is a PAGE,
-                                 * we can overwrite any previous exact link set. For
-                                 * example, when looking for GFile, we want the page,
-                                 * not the struct. */
-                                if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
-                                    ((settings->page_id != NULL &&
-                                      strcmp (dh_link_get_name (link), settings->page_id) == 0) ||
-                                     (strcmp (dh_link_get_name (link), settings->search_string) == 0))) {
-                                        *exact_link = link;
-                                } else if (*exact_link == NULL &&
-                                           strcmp (dh_link_get_name (link), settings->search_string) == 0) {
-                                        *exact_link = link;
-                                }
-                        }
-                }
+                new_list = keyword_model_search_book (book,
+                                                      settings,
+                                                      max_hits,
+                                                      page_filename_prefix,
+                                                      new_list,
+                                                      &hits,
+                                                      exact_link);
         }
 
         g_free (page_filename_prefix);
