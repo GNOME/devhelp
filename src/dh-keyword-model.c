@@ -361,61 +361,70 @@ dh_keyword_model_set_words (DhKeywordModel *model,
         priv->book_manager = g_object_ref (book_manager);
 }
 
-/* Returns a GList of DhKeywordGlobPattern
- * with GPatternSpec's allocated if there are any
- * special glob characters ('*', '?') in a keyword in keywords.
- * The list returned is the same length as keywords */
+/* For each keyword, creates a DhKeywordGlobPattern with GPatternSpec's
+ * allocated if there are any special glob characters ('*', '?') in the keyword.
+ */
 static GList *
 dh_globbed_keywords_new (GStrv keywords)
 {
-        gint i;
-        gchar *glob;
         GList *list = NULL;
-        DhKeywordGlobPattern *glob_struct;
+        gint i;
 
         if (keywords == NULL) {
                 return NULL;
         }
 
         for (i = 0; keywords[i] != NULL; i++) {
-                glob_struct = g_slice_new (DhKeywordGlobPattern);
-                glob_struct->keyword = keywords[i];
-                if (g_strrstr (keywords[i], "*") || g_strrstr (keywords[i], "?")) {
-                        glob_struct->has_glob = TRUE;
+                DhKeywordGlobPattern *data;
+
+                data = g_slice_new (DhKeywordGlobPattern);
+                data->keyword = keywords[i];
+
+                if (g_strrstr (keywords[i], "*") != NULL ||
+                    g_strrstr (keywords[i], "?") != NULL) {
+                        gchar *glob;
+
+                        data->has_glob = TRUE;
+
                         /* g_pattern_match matches whole strings only, so
                          * for globs, we need to end with a star for partial matches */
                         glob = g_strdup_printf ("%s*", keywords[i]);
-                        glob_struct->glob_pattern_start = g_pattern_spec_new (glob);
+                        data->glob_pattern_start = g_pattern_spec_new (glob);
                         g_free (glob);
 
                         glob = g_strdup_printf ("*%s*", keywords[i]);
-                        glob_struct->glob_pattern_any = g_pattern_spec_new (glob);
+                        data->glob_pattern_any = g_pattern_spec_new (glob);
                         g_free (glob);
                 } else {
-                        glob_struct->has_glob = FALSE;
+                        data->has_glob = FALSE;
                 }
 
-                list = g_list_append (list, (gpointer)glob_struct);
+                list = g_list_prepend (list, data);
         }
 
-        return list;
+        return g_list_reverse (list);
 }
 
 /* Frees all the datastructures and patterns associated with
  * keyword_globs as well as keyword_globs itself.  It does not free
- * DhKeywordGlobPattern->keyword however (only the pattern spects) */
+ * DhKeywordGlobPattern->keyword however (only the pattern specs).
+ */
 static void
 dh_globbed_keywords_free (GList *keyword_globs)
 {
-        GList *list;
-        for (list = keyword_globs; list != NULL; list = g_list_next (list)) {
-                DhKeywordGlobPattern *data = list->data;
+        GList *l;
+
+        for (l = keyword_globs; l != NULL; l = l->next) {
+                DhKeywordGlobPattern *data = l->data;
+
                 if (data->has_glob) {
                         g_pattern_spec_free (data->glob_pattern_start);
                         g_pattern_spec_free (data->glob_pattern_any);
                 }
+
                 g_slice_free (DhKeywordGlobPattern, data);
         }
+
         g_list_free (keyword_globs);
 }
 
