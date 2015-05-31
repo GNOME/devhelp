@@ -447,19 +447,15 @@ static GQueue *
 keyword_model_search_book (DhBook          *book,
                            SearchSettings  *settings,
                            guint            max_hits,
-                           guint           *n_hits,
                            DhLink         **exact_link)
 {
         GQueue *ret;
         GList *l;
 
-        g_assert (n_hits != NULL);
-        *n_hits = 0;
-
         ret = g_queue_new ();
 
         for (l = dh_book_get_keywords (book);
-             l != NULL && *n_hits < max_hits;
+             l != NULL && ret->length < max_hits;
              l = g_list_next (l)) {
                 DhLink   *link;
                 gboolean  found;
@@ -540,7 +536,6 @@ keyword_model_search_book (DhBook          *book,
 
                 if (found) {
                         g_queue_push_tail (ret, link);
-                        (*n_hits)++;
 
                         if (exact_link == NULL || dh_link_get_name (link) == NULL)
                                 continue;
@@ -588,25 +583,21 @@ static GQueue *
 keyword_model_search_books (DhKeywordModel  *model,
                             SearchSettings  *settings,
                             guint            max_hits,
-                            guint           *n_hits,
                             DhLink         **exact_link)
 {
         DhKeywordModelPrivate *priv;
         GQueue *ret;
         GList *l;
-        gint hits = 0;
 
         priv = dh_keyword_model_get_instance_private (model);
 
         ret = g_queue_new ();
 
         for (l = dh_book_manager_get_books (priv->book_manager);
-             l != NULL && hits < max_hits;
+             l != NULL && ret->length < max_hits;
              l = l->next) {
                 DhBook *book;
                 GQueue *book_result;
-                guint n_hits_left;
-                guint book_hits = 0;
 
                 book = DH_BOOK (l->data);
 
@@ -646,20 +637,13 @@ keyword_model_search_books (DhKeywordModel  *model,
                         continue;
                 }
 
-                n_hits_left = max_hits - hits;
-
                 book_result = keyword_model_search_book (book,
                                                          settings,
-                                                         n_hits_left,
-                                                         &book_hits,
+                                                         max_hits - ret->length,
                                                          exact_link);
 
                 dh_util_queue_concat (ret, book_result);
-                hits += book_hits;
         }
-
-        if (n_hits != NULL)
-                *n_hits = hits;
 
         g_queue_sort (ret, (GCompareDataFunc) dh_link_compare, NULL);
         return ret;
@@ -676,9 +660,7 @@ keyword_model_search (DhKeywordModel  *model,
                       DhLink         **exact_link)
 {
         SearchSettings settings;
-        gint n_hits_left = MAX_HITS;
-        guint in_book_n_hits = 0;
-        guint other_books_n_hits = 0;
+        gint max_hits = MAX_HITS;
         GQueue *in_book = NULL;
         GQueue *other_books = NULL;
         DhLink *in_book_exact_link = NULL;
@@ -704,15 +686,14 @@ keyword_model_search (DhKeywordModel  *model,
                  * more than MAX_HITS keywords, and the page link may be
                  * the last one in the list, but we always want to get it.
                  */
-                n_hits_left = G_MAXINT;
+                max_hits = G_MAXINT;
         }
 
         /* If book_id given; first look for prefixed items in the given book id */
         if (book_id != NULL) {
                 in_book = keyword_model_search_books (model,
                                                       &settings,
-                                                      n_hits_left,
-                                                      &in_book_n_hits,
+                                                      max_hits,
                                                       &in_book_exact_link);
         }
 
@@ -721,8 +702,7 @@ keyword_model_search (DhKeywordModel  *model,
         settings.skip_book_id = book_id;
         other_books = keyword_model_search_books (model,
                                                   &settings,
-                                                  n_hits_left,
-                                                  &other_books_n_hits,
+                                                  max_hits,
                                                   &other_books_exact_link);
 
 
@@ -743,8 +723,7 @@ keyword_model_search (DhKeywordModel  *model,
                 dh_util_queue_concat (&out, other_books);
         }
 
-        n_hits_left -= (in_book_n_hits + other_books_n_hits);
-        if (n_hits_left <= 0)
+        if (out.length >= max_hits)
                 goto out;
 
         /* Look for non-prefixed matches in current book */
@@ -754,15 +733,13 @@ keyword_model_search (DhKeywordModel  *model,
                 settings.book_id = book_id;
                 settings.skip_book_id = NULL;
 
-                in_book_n_hits = 0;
                 in_book = keyword_model_search_books (model,
                                                       &settings,
-                                                      n_hits_left,
-                                                      &in_book_n_hits,
+                                                      max_hits - out.length,
                                                       NULL);
-                n_hits_left -= in_book_n_hits;
+
                 dh_util_queue_concat (&out, in_book);
-                if (n_hits_left <= 0)
+                if (out.length >= max_hits)
                         goto out;
         }
 
@@ -771,8 +748,7 @@ keyword_model_search (DhKeywordModel  *model,
         settings.skip_book_id = book_id;
         other_books = keyword_model_search_books (model,
                                                   &settings,
-                                                  n_hits_left,
-                                                  NULL,
+                                                  max_hits - out.length,
                                                   NULL);
         dh_util_queue_concat (&out, other_books);
 
