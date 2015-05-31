@@ -30,7 +30,7 @@ typedef struct {
         DhBookManager *book_manager;
         DhLink        *link;
         gchar         *current_search;
-        gboolean       snippet_loaded;
+        guint          snippet_loaded : 1;
 } DhAssistantViewPriv;
 
 enum {

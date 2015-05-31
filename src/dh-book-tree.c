@@ -25,9 +25,9 @@
 
 typedef struct {
         const gchar *uri;
-        gboolean     found;
         GtkTreeIter  iter;
         GtkTreePath *path;
+        guint        found : 1;
 } FindURIData;
 
 typedef struct {

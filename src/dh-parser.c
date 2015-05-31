@@ -49,14 +49,14 @@ typedef struct {
         /* Current sub section node */
         GNode               *parent;
 
-        gboolean             parsing_chapters;
-        gboolean             parsing_keywords;
-
-         GNode              **book_tree;
+        GNode              **book_tree;
         GList              **keywords;
 
         /* Version 2 uses <keyword> instead of <function>. */
         gint                 version;
+
+        guint                parsing_chapters : 1;
+        guint                parsing_keywords : 1;
 } DhParser;
 
 static void

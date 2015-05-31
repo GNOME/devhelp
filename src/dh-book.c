@@ -50,7 +50,6 @@ typedef enum {
 /* Structure defining basic contents to store about every book */
 typedef struct {
         gchar        *path;
-        gboolean      enabled;
         gchar        *name;
         gchar        *title;
         gchar        *language;
@@ -72,6 +71,8 @@ typedef struct {
 
         /* ID of the event source */
         guint         monitor_event_timeout_id;
+
+        guint         enabled : 1;
 } DhBookPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBook, dh_book, G_TYPE_OBJECT);

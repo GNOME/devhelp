@@ -45,9 +45,9 @@ typedef struct {
  * word */
 typedef struct {
         gchar *keyword;
-        gboolean has_glob;
         GPatternSpec *glob_pattern_start;
         GPatternSpec *glob_pattern_any;
+        guint has_glob : 1;
 } DhKeywordGlobPattern;
 
 #define MAX_HITS 100

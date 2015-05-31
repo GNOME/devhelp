@@ -44,13 +44,13 @@ typedef struct {
         /* List of book names (gchar*) currently disabled */
         GSList     *books_disabled;
 
-        /* Whether books should be grouped by language */
-        gboolean    group_by_language;
-
         /* List of DhLanguage* with at least one book enabled */
         GList      *languages;
 
         DhSettings *settings;
+
+        /* Whether books should be grouped by language */
+        guint       group_by_language : 1;
 } DhBookManagerPrivate;
 
 enum {
