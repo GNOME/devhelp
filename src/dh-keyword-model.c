@@ -445,7 +445,6 @@ dh_globbed_keywords_free (GList *keyword_globs)
 static GList *
 keyword_model_search_book (DhBook          *book,
                            SearchSettings  *settings,
-                           gint             max_hits,
                            gchar           *page_filename_prefix,
                            GList           *new_list,
                            gint            *hits,
@@ -454,7 +453,7 @@ keyword_model_search_book (DhBook          *book,
         GList *l;
 
         for (l = dh_book_get_keywords (book);
-             l != NULL && *hits < max_hits;
+             l != NULL && *hits < settings->max_hits;
              l = g_list_next (l)) {
                 DhLink   *link;
                 gboolean  found;
@@ -589,7 +588,6 @@ keyword_model_search_books (DhKeywordModel  *model,
         DhKeywordModelPrivate *priv;
         GList *new_list = NULL;
         GList *b;
-        gint max_hits = settings->max_hits;
         gint hits = 0;
         gchar *page_filename_prefix = NULL;
 
@@ -597,16 +595,10 @@ keyword_model_search_books (DhKeywordModel  *model,
 
         if (settings->page_id != NULL) {
                 page_filename_prefix = g_strdup_printf ("%s.", settings->page_id);
-                /* If filtering per page, increase the maximum number of
-                 * hits. This is due to the fact that a page may have
-                 * more than MAX_HITS keywords, and the page link may be
-                 * the last one in the list, but we always want to get it.
-                 */
-                max_hits = G_MAXINT;
         }
 
         for (b = dh_book_manager_get_books (priv->book_manager);
-             b != NULL && hits < max_hits;
+             b != NULL && hits < settings->max_hits;
              b = g_list_next (b)) {
                 DhBook *book;
 
@@ -647,7 +639,6 @@ keyword_model_search_books (DhKeywordModel  *model,
 
                 new_list = keyword_model_search_book (book,
                                                       settings,
-                                                      max_hits,
                                                       page_filename_prefix,
                                                       new_list,
                                                       &hits,
@@ -692,6 +683,15 @@ keyword_model_search (DhKeywordModel  *model,
         settings.max_hits = MAX_HITS;
         settings.case_sensitive = case_sensitive;
         settings.prefix = TRUE;
+
+        if (page_id != NULL) {
+                /* If filtering per page, increase the maximum number of
+                 * hits. This is due to the fact that a page may have
+                 * more than MAX_HITS keywords, and the page link may be
+                 * the last one in the list, but we always want to get it.
+                 */
+                settings.max_hits = G_MAXINT;
+        }
 
         /* If book_id given; first look for prefixed items in the given book id */
         if (book_id != NULL) {
