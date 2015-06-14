@@ -118,6 +118,7 @@ dh_link_compare (gconstpointer a,
         DhLink *la = (DhLink *) a;
         DhLink *lb = (DhLink *) b;
         gint    flags_diff;
+        gint    diff;
 
         /* Sort deprecated hits last. */
         flags_diff = (la->flags & DH_LINK_FLAGS_DEPRECATED) -
@@ -132,8 +133,26 @@ dh_link_compare (gconstpointer a,
         if (G_UNLIKELY (!lb->name_collation_key))
                 lb->name_collation_key = g_utf8_collate_key (lb->name, -1);
 
-        return strcmp (la->name_collation_key,
+        diff = strcmp (la->name_collation_key,
                        lb->name_collation_key);
+
+        /* For the same names, sort page links before other links. The page is
+         * more important than a symbol (typically contained in that page).
+         */
+        if (diff == 0) {
+                if (la->type == lb->type)
+                        return 0;
+
+                if (la->type == DH_LINK_TYPE_PAGE)
+                        return -1;
+
+                if (lb->type == DH_LINK_TYPE_PAGE)
+                        return 1;
+
+                return 0;
+        }
+
+        return diff;
 }
 
 DhLink *
