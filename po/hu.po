@@ -1,19 +1,18 @@
 # Hungarian translation of devhelp.
-# Copyright (C) 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012 Free Software Foundation, Inc.
+# Copyright (C) 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 #
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
-# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014.
-# Balázs Úr <urbalazs@gmail.com>, 2014.
+# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-09 15:11+0000\n"
-"PO-Revision-Date: 2014-09-10 00:17+0200\n"
+"POT-Creation-Date: 2015-06-24 15:18+0000\n"
+"PO-Revision-Date: 2015-06-24 19:46+0200\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
-"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language-Team: Hungarian <openscope at gmail dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,20 +48,20 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
-#: ../src/dh-window.c:659
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:512 ../src/dh-window.c:754
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
 msgid "Developer's Help program"
 msgstr "Fejlesztők súgóprogramja"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Dokumentációböngésző"
 
-#: ../data/devhelp.desktop.in.in.h:4
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentáció;információ;kézikönyv;fejlesztő;api;"
 
@@ -232,19 +231,44 @@ msgstr "_Névjegy"
 msgid "_Quit"
 msgstr "_Kilépés"
 
-#: ../src/dh-app.c:204
+#: ../src/dh-app.c:213
+msgid "A developers' help browser for GNOME"
+msgstr "Fejlesztők súgóböngészője GNOME-hoz"
+
+#: ../src/dh-app.c:215
 msgid "translator-credits"
 msgstr ""
 "Kelemen Gábor <kelemeng at gnome dot hu>\n"
 "Úr Balázs <urbalazs at gmail dot com>"
 
-#: ../src/dh-app.c:214
-msgid "A developers' help browser for GNOME"
-msgstr "Fejlesztők súgóböngészője GNOME-hoz"
-
-#: ../src/dh-app.c:222
-msgid "DevHelp Website"
+#: ../src/dh-app.c:217
+#| msgid "DevHelp Website"
+msgid "Devhelp Website"
 msgstr "A Devhelp weboldala"
+
+#: ../src/dh-app.c:437
+msgid "Opens a new Devhelp window"
+msgstr "Új Devhelp ablak megnyitása"
+
+#: ../src/dh-app.c:442
+msgid "Search for a keyword"
+msgstr "Kulcsszó keresése"
+
+#: ../src/dh-app.c:443 ../src/dh-app.c:448
+msgid "KEYWORD"
+msgstr "KULCSSZÓ"
+
+#: ../src/dh-app.c:447
+msgid "Search and display any hit in the assistant window"
+msgstr "Keresés és találatok megjelenítése az asszisztens ablakban"
+
+#: ../src/dh-app.c:452
+msgid "Display the version and exit"
+msgstr "Verziószám megjelenítése és kilépés"
+
+#: ../src/dh-app.c:457
+msgid "Quit any running Devhelp"
+msgstr "Kilépés bármely futó Devhelpből"
 
 #. Please don't translate "Devhelp"
 #: ../src/dh-assistant.ui.h:2
@@ -255,109 +279,85 @@ msgstr "Devhelp – Asszisztens"
 msgid "Book:"
 msgstr "Könyv:"
 
-#: ../src/dh-book.c:240
+#: ../src/dh-book.c:254
 #, c-format
 msgid "Language: %s"
 msgstr "Nyelv: %s"
 
-#: ../src/dh-book.c:241
+#: ../src/dh-book.c:255
 msgid "Language: Undefined"
 msgstr "Nyelv: nincs megadva"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:289
 msgid "Book"
 msgstr "Könyv"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:273
+#: ../src/dh-link.c:292
 msgid "Page"
 msgstr "Oldal"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:296
 msgid "Keyword"
 msgstr "Kulcsszó"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:301
 msgid "Function"
 msgstr "Függvény"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:306
 msgid "Struct"
 msgstr "Struktúra"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:292
+#: ../src/dh-link.c:311
 msgid "Macro"
 msgstr "Makró"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:297
+#: ../src/dh-link.c:316
 msgid "Enum"
 msgstr "Felsorolás"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:302
+#: ../src/dh-link.c:321
 msgid "Type"
 msgstr "Típus"
 
-#: ../src/dh-main.c:41
-msgid "Opens a new Devhelp window"
-msgstr "Új Devhelp ablak megnyitása"
-
-#: ../src/dh-main.c:46
-msgid "Search for a keyword"
-msgstr "Kulcsszó keresése"
-
-#: ../src/dh-main.c:47 ../src/dh-main.c:52
-msgid "KEYWORD"
-msgstr "KULCSSZÓ"
-
-#: ../src/dh-main.c:51
-msgid "Search and display any hit in the assistant window"
-msgstr "Keresés és találatok megjelenítése az asszisztens ablakban"
-
-#: ../src/dh-main.c:56
-msgid "Display the version and exit"
-msgstr "Verziószám megjelenítése és kilépés"
-
-#: ../src/dh-main.c:61
-msgid "Quit any running Devhelp"
-msgstr "Kilépés bármely futó Devhelpből"
-
-#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
-#: ../src/dh-parser.c:270
+#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "„%s” helyett „%s” található a(z) %d. sor %d. oszlopában"
 
-#: ../src/dh-parser.c:112
+#: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "„%s” érvénytelen névtér a(z) %d. sor %d. oszlopában"
 
-#: ../src/dh-parser.c:141
+#: ../src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
 "A „title”, „name” és „link” elemek szükségesek a(z) %d. sor %d. oszlopában"
 
-#: ../src/dh-parser.c:215
+#: ../src/dh-parser.c:216
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -366,7 +366,7 @@ msgstr ""
 "„name” és „link” elemek szükségesek a <sub>-on belül a(z) %d. sor %d. "
 "oszlopában"
 
-#: ../src/dh-parser.c:295
+#: ../src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
@@ -374,13 +374,13 @@ msgstr ""
 "„name” és „link” elemek szükségesek az elemen („%s”) belül a(z) %d. sor %d. "
 "oszlopában"
 
-#: ../src/dh-parser.c:308
+#: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "„type” elem szükséges a <keyword> elemen belül a(z) %d. sor %d. oszlopában"
 
-#: ../src/dh-parser.c:511
+#: ../src/dh-parser.c:501
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nem lehet kicsomagolni a könyvet („%s”): %s"
@@ -421,51 +421,51 @@ msgstr "_Rögzített szélességű:"
 msgid "Fonts"
 msgstr "Betűkészletek"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:868
+#: ../src/dh-window.c:976
 msgid "Error opening the requested link."
 msgstr "Hiba a kért hivatkozás megnyitásakor."
 
-#: ../src/dh-window.c:1126
+#: ../src/dh-window.c:1247
 msgid "_Close"
 msgstr "_Bezárás"
 
-#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
+#: ../src/dh-window.c:1275 ../src/dh-window.c:1447
 msgid "Empty Page"
 msgstr "Üres oldal"
 
