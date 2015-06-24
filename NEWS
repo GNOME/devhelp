@@ -1,4 +1,21 @@
 ==============
+Version 3.17.3
+==============
+
+Fixed bugs:
+
+ - #593267, devhelp manpage
+ - #728384, Make DBus-activatable
+ - #749452, Misc maintenance stuff
+ - #749797, Misc code improvements
+
+Updated translations: oc, uk
+
+Many thanks to all contributors: Sébastien Wilmet, Cédric Valmary,
+Matthias Clasen, Colin Walters
+
+
+==============
 Version 3.16.1
 ==============
 
