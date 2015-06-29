@@ -14,7 +14,7 @@ gsettings_SCHEMAS = org.gnome.devhelp.gschema.xml
 gsettingsconvertdir = $(datadir)/GConf/gsettings
 gsettingsconvert_DATA = devhelp.convert
 
-app_data_in_files = devhelp.appdata.xml.in
+app_data_in_files = org.gnome.Devhelp.appdata.xml.in
 app_data_files = $(app_data_in_files:.xml.in=.xml)
 
 appdatadir = $(datadir)/appdata

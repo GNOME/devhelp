@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
-<id type="desktop">devhelp.desktop</id>
+<id type="desktop">org.gnome.Devhelp.desktop</id>
 <licence>CC0</licence>
 <description>
 <_p>Devhelp is an API documentation browser. It  provides an easy way to
