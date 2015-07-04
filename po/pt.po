@@ -2,7 +2,6 @@
 # Copyright © 2001, 2002, 2003, 2004, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014 devhelp
 # Diatributed under the same licence as the devhelp package
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
-# 
 # Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
 #
 msgid ""
@@ -10,8 +9,8 @@ msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-06-08 03:18+0000\n"
-"PO-Revision-Date: 2015-06-22 11:12+0100\n"
+"POT-Creation-Date: 2015-07-04 03:19+0000\n"
+"PO-Revision-Date: 2015-07-04 08:56+0100\n"
 "Last-Translator: Pedro Albuquerque <palbuquerque73@openmailbox.com>\n"
 "Language-Team: Português <palbuquerque73@openmailbox.com>\n"
 "Language: pt\n"
@@ -21,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 2.91.6\n"
 
-#: ../data/devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -32,14 +31,14 @@ msgstr ""
 "bibliotecas, procurar por função, estrutura ou macro. Apresenta um ambiente "
 "com separadores e permite imprimir resultados."
 
-#: ../data/devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
 "O Devhelp integra-se com outras aplicações tais como o Glade, Anjuta, ou "
 "Geany."
 
-#: ../data/devhelp.appdata.xml.in.h:3
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
 "target=devhelp.png"
@@ -49,8 +48,8 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:213
-#: ../src/dh-app.c:521 ../src/dh-window.c:754
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:512 ../src/dh-window.c:754
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -232,41 +231,42 @@ msgstr "_Sobre"
 msgid "_Quit"
 msgstr "_Sair"
 
-#: ../src/dh-app.c:205
+#: ../src/dh-app.c:213
+msgid "A developers' help browser for GNOME"
+msgstr "Um navegador de ajuda para programadores do GNOME"
+
+#: ../src/dh-app.c:215
 msgid "translator-credits"
 msgstr ""
 "Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Pedro Albuquerque <palbuquerque73@gmail.com>"
 
-#: ../src/dh-app.c:215
-msgid "A developers' help browser for GNOME"
-msgstr "Um navegador de ajuda para programadores do GNOME"
+#: ../src/dh-app.c:217
+#| msgid "DevHelp Website"
+msgid "Devhelp Website"
+msgstr "Página Web do Devhelp"
 
-#: ../src/dh-app.c:223
-msgid "DevHelp Website"
-msgstr "Página do Devhelp"
-
-#: ../src/dh-app.c:446
+#: ../src/dh-app.c:437
 msgid "Opens a new Devhelp window"
 msgstr "Abre uma nova janela Devhelp"
 
-#: ../src/dh-app.c:451
+#: ../src/dh-app.c:442
 msgid "Search for a keyword"
 msgstr "Procurar uma palavra-chave"
 
-#: ../src/dh-app.c:452 ../src/dh-app.c:457
+#: ../src/dh-app.c:443 ../src/dh-app.c:448
 msgid "KEYWORD"
 msgstr "PALAVRA-CHAVE"
 
-#: ../src/dh-app.c:456
+#: ../src/dh-app.c:447
 msgid "Search and display any hit in the assistant window"
 msgstr "Procurar e mostrar os resultados na janela do assistente"
 
-#: ../src/dh-app.c:461
+#: ../src/dh-app.c:452
 msgid "Display the version and exit"
 msgstr "Mostrar a versão e sair"
 
-#: ../src/dh-app.c:466
+#: ../src/dh-app.c:457
 msgid "Quit any running Devhelp"
 msgstr "Sair de qualquer Devhelp em execução"
 
@@ -275,7 +275,7 @@ msgstr "Sair de qualquer Devhelp em execução"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — assistente"
 
-#: ../src/dh-assistant-view.c:374
+#: ../src/dh-assistant-view.c:372
 msgid "Book:"
 msgstr "Livro:"
 
@@ -289,53 +289,53 @@ msgid "Language: Undefined"
 msgstr "Linguagem: indefinida"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:289
 msgid "Book"
 msgstr "Livro"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:273
+#: ../src/dh-link.c:292
 msgid "Page"
 msgstr "Página"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:296
 msgid "Keyword"
 msgstr "Palavra-chave"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:301
 msgid "Function"
 msgstr "Função"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:306
 msgid "Struct"
 msgstr "Estrutura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:292
+#: ../src/dh-link.c:311
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:297
+#: ../src/dh-link.c:316
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:302
+#: ../src/dh-link.c:321
 msgid "Type"
 msgstr "Tipo"
 
