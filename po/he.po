@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-09 15:52+0300\n"
-"PO-Revision-Date: 2014-07-09 15:52+0300\n"
+"POT-Creation-Date: 2015-07-19 12:03+0300\n"
+"PO-Revision-Date: 2015-07-19 12:04+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Gtranslator 2.91.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -28,12 +28,12 @@ msgstr ""
 "‏DevHelp הוא דפדפן תיעוד API. הוא מספק דרך קלה לנווט בספריות, לחפש פונקציות, "
 "מבנים או הגדרות מקרו. הוא מספק ממשק לשוניות ומאפשר להדפיס תוצאות."
 
-#: ../data/devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr "‏DevHelp משולב עם יישומים נוספים כגון Glade, Anjuta או Geany."
 
-#: ../data/devhelp.appdata.xml.in.h:3
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
 "target=devhelp.png"
@@ -43,21 +43,21 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
-#: ../src/dh-window.c:659
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:512 ../src/dh-window.c:754
 msgid "Devhelp"
 msgstr "DevHelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
 msgid "Developer's Help program"
 msgstr "תכנית עזרה למפתחים"
 
 # בכל מקרה עם י כי המילה המקורית מופיע עם חיריק ודגש ב־ת
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "דפדפן תיעוד"
 
-#: ../data/devhelp.desktop.in.in.h:4
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
 msgstr "תיעוד;מידע;פרטים;הדרכה;מדריך;פיתוח;תכנות;מפתח;מתכנת;api;"
 
@@ -226,7 +226,11 @@ msgstr "על _אודות"
 msgid "_Quit"
 msgstr "י_ציאה"
 
-#: ../src/dh-app.c:204
+#: ../src/dh-app.c:213
+msgid "A developers' help browser for GNOME"
+msgstr "דפדפן עזרה למפתחים עבור GNOME"
+
+#: ../src/dh-app.c:215
 msgid "translator-credits"
 msgstr ""
 "יאיר הרשקוביץ  <yairhr@gmail.com>\n"
@@ -236,13 +240,33 @@ msgstr ""
 "פרויקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/dh-app.c:214
-msgid "A developers' help browser for GNOME"
-msgstr "דפדפן עזרה למפתחים עבור GNOME"
+#: ../src/dh-app.c:217
+msgid "Devhelp Website"
+msgstr "אתר האינטרנט של DevHelp"
 
-#: ../src/dh-app.c:222
-msgid "DevHelp Website"
-msgstr "האתר של Devhelp"
+#: ../src/dh-app.c:437
+msgid "Opens a new Devhelp window"
+msgstr "פתיחת חלון חדש של Devhelp"
+
+#: ../src/dh-app.c:442
+msgid "Search for a keyword"
+msgstr "Search for a keyword"
+
+#: ../src/dh-app.c:443 ../src/dh-app.c:448
+msgid "KEYWORD"
+msgstr "KEYWORD"
+
+#: ../src/dh-app.c:447
+msgid "Search and display any hit in the assistant window"
+msgstr "Search and display any hit in the assistant window"
+
+#: ../src/dh-app.c:452
+msgid "Display the version and exit"
+msgstr "Display the version and exit"
+
+#: ../src/dh-app.c:457
+msgid "Quit any running Devhelp"
+msgstr "Quit any running Devhelp"
 
 #. Please don't translate "Devhelp"
 #: ../src/dh-assistant.ui.h:2
@@ -253,109 +277,85 @@ msgstr "Devhelp — המסייע"
 msgid "Book:"
 msgstr "ספר:"
 
-#: ../src/dh-book.c:240
+#: ../src/dh-book.c:254
 #, c-format
 msgid "Language: %s"
 msgstr "שפה: %s"
 
-#: ../src/dh-book.c:241
+#: ../src/dh-book.c:255
 msgid "Language: Undefined"
 msgstr "שפה: בלתי מוגדרת"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:289
 msgid "Book"
 msgstr "ספר"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:273
+#: ../src/dh-link.c:292
 msgid "Page"
 msgstr "עמוד"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:296
 msgid "Keyword"
 msgstr "מילת מפתח"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:301
 msgid "Function"
 msgstr "פונקציה"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:306
 msgid "Struct"
 msgstr "מבנה"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:292
+#: ../src/dh-link.c:311
 msgid "Macro"
 msgstr "מקרו"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:297
+#: ../src/dh-link.c:316
 msgid "Enum"
 msgstr "מניה"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:302
+#: ../src/dh-link.c:321
 msgid "Type"
 msgstr "סוג"
 
-#: ../src/dh-main.c:41
-msgid "Opens a new Devhelp window"
-msgstr "פתיחת חלון חדש של Devhelp"
-
-#: ../src/dh-main.c:46
-msgid "Search for a keyword"
-msgstr "Search for a keyword"
-
-#: ../src/dh-main.c:47 ../src/dh-main.c:52
-msgid "KEYWORD"
-msgstr "KEYWORD"
-
-#: ../src/dh-main.c:51
-msgid "Search and display any hit in the assistant window"
-msgstr "Search and display any hit in the assistant window"
-
-#: ../src/dh-main.c:56
-msgid "Display the version and exit"
-msgstr "Display the version and exit"
-
-#: ../src/dh-main.c:61
-msgid "Quit any running Devhelp"
-msgstr "Quit any running Devhelp"
-
-#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
-#: ../src/dh-parser.c:270
+#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Expected '%s', got '%s' at line %d, column %d"
 
-#: ../src/dh-parser.c:112
+#: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Invalid namespace '%s' at line %d, column %d"
 
-#: ../src/dh-parser.c:141
+#: ../src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 
-#: ../src/dh-parser.c:215
+#: ../src/dh-parser.c:216
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -364,19 +364,19 @@ msgstr ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
 "%d"
 
-#: ../src/dh-parser.c:295
+#: ../src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 
-#: ../src/dh-parser.c:308
+#: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "\"type\" element is required inside <keyword> on line %d, column %d"
 
-#: ../src/dh-parser.c:511
+#: ../src/dh-parser.c:501
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Cannot uncompress book '%s': %s"
@@ -417,51 +417,51 @@ msgstr "_רוחב קבוע:"
 msgid "Fonts"
 msgstr "גופנים"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:868
+#: ../src/dh-window.c:976
 msgid "Error opening the requested link."
 msgstr "שגיאה בפתיחת הקישור המבוקש."
 
-#: ../src/dh-window.c:1126
+#: ../src/dh-window.c:1247
 msgid "_Close"
 msgstr "_סגירה"
 
-#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
+#: ../src/dh-window.c:1275 ../src/dh-window.c:1447
 msgid "Empty Page"
 msgstr "דף ריק"
 
