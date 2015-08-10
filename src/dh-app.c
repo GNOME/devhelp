@@ -313,7 +313,7 @@ static GActionEntry app_entries[] = {
 static void
 setup_accelerators (DhApp *self)
 {
-        const gchar *accels[] = {NULL, NULL};
+        const gchar *accels[] = {NULL, NULL, NULL, NULL};
 
         accels[0] = "<Primary>0";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-default", accels);
@@ -323,12 +323,6 @@ setup_accelerators (DhApp *self)
 
         accels[0] = "<Primary>plus";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-in", accels);
-
-        accels[0] = "<Primary>k";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.focus-search", accels);
-
-        accels[0] = "<Primary>s";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.focus-search-alt", accels);
 
         accels[0] = "<Primary>f";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.find", accels);
@@ -362,6 +356,11 @@ setup_accelerators (DhApp *self)
 
         accels[0] = "Back";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-back", accels);
+
+        accels[0] = "<Primary>k";
+        accels[1] = "<Primary>s";
+        accels[2] = "<Primary>l";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.focus-search", accels);
 }
 
 /******************************************************************************/
