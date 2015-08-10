@@ -346,15 +346,11 @@ setup_accelerators (DhApp *self)
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.gear-menu", accels);
 
         accels[0] = "<Alt>Right";
+        accels[1] = "Forward";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-forward", accels);
 
         accels[0] = "<Alt>Left";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-back", accels);
-
-        accels[0] = "Forward";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-forward", accels);
-
-        accels[0] = "Back";
+        accels[1] = "Back";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-back", accels);
 
         accels[0] = "<Primary>k";
