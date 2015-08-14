@@ -4,15 +4,15 @@
 # Mikiya <eien.mihoshi@gmail.com> 2010
 # Dirgita <dirgitadevina@gmail.com>, 2010.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010.
-# Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013, 2014.
+# Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-02 03:11+0000\n"
-"PO-Revision-Date: 2014-09-04 16:52+0700\n"
+"POT-Creation-Date: 2015-08-14 03:19+0000\n"
+"PO-Revision-Date: 2015-08-14 18:22+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id_ID\n"
@@ -21,9 +21,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.7.1\n"
 
-#: ../data/devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -33,13 +33,13 @@ msgstr ""
 "menavigasi pustaka, mencari berdasarkan fungsi, struct, atau makro. Ini "
 "menyediakan antar muka bertab dan mengijinkan pencetakan hasil."
 
-#: ../data/devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
 "Devhelp terintegrasi dengan aplikasi lain seperti Glade, Anjuta, atau Geany."
 
-#: ../data/devhelp.appdata.xml.in.h:3
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
 "target=devhelp.png"
@@ -49,20 +49,20 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
-#: ../src/dh-window.c:659
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:507 ../src/dh-window.c:753
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
 msgid "Developer's Help program"
 msgstr "Program Bantuan untuk Pengembang"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Peramban Dokumentasi"
 
-#: ../data/devhelp.desktop.in.in.h:4
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentasi;informasi;manual;pengembang;api;"
 
@@ -231,20 +231,44 @@ msgstr "Tent_ang"
 msgid "_Quit"
 msgstr "_Keluar"
 
-#: ../src/dh-app.c:204
+#: ../src/dh-app.c:213
+msgid "A developers' help browser for GNOME"
+msgstr "Peramban bantuan GNOME bagi pengembang"
+
+#: ../src/dh-app.c:215
 msgid "translator-credits"
 msgstr ""
 "Mikiya <eien.mihoshi@gmail.com>, 2010.\n"
 "Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013, 2014.\n"
 "Dirgita <dirgitadevina@yahoo.co.id>, 2010."
 
-#: ../src/dh-app.c:214
-msgid "A developers' help browser for GNOME"
-msgstr "Peramban bantuan GNOME bagi pengembang"
-
-#: ../src/dh-app.c:222
-msgid "DevHelp Website"
+#: ../src/dh-app.c:217
+msgid "Devhelp Website"
 msgstr "Situs Web Devhelp"
+
+#: ../src/dh-app.c:432
+msgid "Opens a new Devhelp window"
+msgstr "Buka jendela Devhelp baru"
+
+#: ../src/dh-app.c:437
+msgid "Search for a keyword"
+msgstr "Mencari kata kunci"
+
+#: ../src/dh-app.c:438 ../src/dh-app.c:443
+msgid "KEYWORD"
+msgstr "KATA KUNCI"
+
+#: ../src/dh-app.c:442
+msgid "Search and display any hit in the assistant window"
+msgstr "Mencari dan menampilkan semua hasil di jendela pembantu"
+
+#: ../src/dh-app.c:447
+msgid "Display the version and exit"
+msgstr "Menampilkan versi dan keluar"
+
+#: ../src/dh-app.c:452
+msgid "Quit any running Devhelp"
+msgstr "Keluar dari semua Devhelp yang sedang berjalan"
 
 #. Please don't translate "Devhelp"
 #: ../src/dh-assistant.ui.h:2
@@ -255,109 +279,85 @@ msgstr "Devhelp — Pembantu"
 msgid "Book:"
 msgstr "Buku:"
 
-#: ../src/dh-book.c:240
+#: ../src/dh-book.c:254
 #, c-format
 msgid "Language: %s"
 msgstr "Bahasa: %s"
 
-#: ../src/dh-book.c:241
+#: ../src/dh-book.c:255
 msgid "Language: Undefined"
 msgstr "Bahasa: Tak didefinisikan"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:289
 msgid "Book"
 msgstr "Buku"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:273
+#: ../src/dh-link.c:292
 msgid "Page"
 msgstr "Halaman"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:296
 msgid "Keyword"
 msgstr "Kata Kunci"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:301
 msgid "Function"
 msgstr "Fungsi"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:306
 msgid "Struct"
 msgstr "Struktur"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:292
+#: ../src/dh-link.c:311
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:297
+#: ../src/dh-link.c:316
 msgid "Enum"
 msgstr "Enumerasi"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:302
+#: ../src/dh-link.c:321
 msgid "Type"
 msgstr "Jenis"
 
-#: ../src/dh-main.c:41
-msgid "Opens a new Devhelp window"
-msgstr "Buka jendela Devhelp baru"
-
-#: ../src/dh-main.c:46
-msgid "Search for a keyword"
-msgstr "Mencari kata kunci"
-
-#: ../src/dh-main.c:47 ../src/dh-main.c:52
-msgid "KEYWORD"
-msgstr "KATA KUNCI"
-
-#: ../src/dh-main.c:51
-msgid "Search and display any hit in the assistant window"
-msgstr "Mencari dan menampilkan semua hasil di jendela pembantu"
-
-#: ../src/dh-main.c:56
-msgid "Display the version and exit"
-msgstr "Menampilkan versi dan keluar"
-
-#: ../src/dh-main.c:61
-msgid "Quit any running Devhelp"
-msgstr "Keluar dari semua Devhelp yang sedang berjalan"
-
-#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
-#: ../src/dh-parser.c:270
+#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Diharapkan '%s', memperoleh '%s' pada baris %d, kolom %d"
 
-#: ../src/dh-parser.c:112
+#: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Namespace '%s' tidak sah pada baris %d, kolom %d"
 
-#: ../src/dh-parser.c:141
+#: ../src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
 "Elemen \"title\", \"name\", dan \"link\" diperlukan pada baris %d, kolom %d"
 
-#: ../src/dh-parser.c:215
+#: ../src/dh-parser.c:216
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -365,19 +365,19 @@ msgid ""
 msgstr ""
 "Elemen \"name\" dan \"link\" diperlukan dalam <sub> pada baris %d, kolom %d"
 
-#: ../src/dh-parser.c:295
+#: ../src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
 "Elemen \"name\" dan \"link\" diperlukan dalam '%s' pada baris %d, kolom %d"
 
-#: ../src/dh-parser.c:308
+#: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "Elemen \"type\" diperlukan dalam <keyword> pada baris %d, kolom %d"
 
-#: ../src/dh-parser.c:511
+#: ../src/dh-parser.c:501
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Tidak dapat mendekompresi buku '%s': %s"
@@ -418,51 +418,51 @@ msgstr "_Lebar tetap:"
 msgid "Fonts"
 msgstr "Fonta"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:868
+#: ../src/dh-window.c:975
 msgid "Error opening the requested link."
 msgstr "Galat sewaktu membuka tautan yang diminta."
 
-#: ../src/dh-window.c:1126
+#: ../src/dh-window.c:1246
 msgid "_Close"
 msgstr "_Tutup"
 
-#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
+#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
 msgid "Empty Page"
 msgstr "Halaman Kosong"
 
