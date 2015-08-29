@@ -3,37 +3,65 @@
 # This file is distributed under the same license as the devhelp package.
 # Marcel Telka <marcel@telka.sk>, 2001-2005.
 # Roman Mátyus <romanmatyus@gmail.com>, 2010-2012.
+# Dušan Kazik <prescott66@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-12 16:36+0000\n"
-"PO-Revision-Date: 2013-09-13 10:04+0100\n"
-"Last-Translator: Roman Mátyus <romanmatyus@gmail.com>\n"
-"Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
+"POT-Creation-Date: 2015-08-29 15:20+0000\n"
+"PO-Revision-Date: 2015-08-29 18:12+0200\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: slovenčina <>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Generator: Gtranslator 2.91.7\n"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
+msgid ""
+"Devhelp is an API documentation browser. It provides an easy way to navigate "
+"through libraries, search by function, struct, or macro. It provides a "
+"tabbed interface and allows to print results."
+msgstr ""
+"Devhelp je prehliadač dokumentácie API. Poskytuje jednoduchý spôsob pre "
+"prechádzanie knižnicami, vyhľadávanie podľa funkci, štruktúry, alebo makra. "
+"Poskytuje rozhranie so záložkami a umožňuje tlačiť výsledky."
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+msgid ""
+"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+msgstr ""
+"Devhelp je integrovaný s inými aplikáciami, ako sú Glade, Anjuta, alebo "
+"Geany."
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
+msgid ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
+msgstr ""
+"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+"target=devhelp.png"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:209 ../src/dh-app.c:395
-#: ../src/dh-window.c:648
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:507 ../src/dh-window.c:753
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
 msgid "Developer's Help program"
 msgstr "Program pomocníka pre vývojárov"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Prehliadač dokumentácie"
 
-#: ../data/devhelp.desktop.in.in.h:4
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentácia;informácie;návod;vývojár;api;rozhranie;"
 
@@ -185,79 +213,68 @@ msgstr "Podpora pre Devhelp"
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Zariadi, že F2 vyvolá Devhelp pre slovo, na ktorom je kurzor"
 
-#: ../misc/gedit-plugin/devhelp.py:69
+#: ../misc/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "Zobraziť dokumentáciu API"
 
-#: ../misc/gedit-plugin/devhelp.py:71
-msgid "Show API Documentation for the word at the cursor"
-msgstr "Zobraziť dokumentáciu API pre slovo, na ktorom je kurzor"
-
-#: ../src/devhelp-menu.ui.h:1 ../src/devhelp.ui.h:1 ../src/dh-window.ui.h:7
+#. ex:ts=4:et:
+#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
 msgid "New _Window"
 msgstr "Nové _okno"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/devhelp.ui.h:2 ../src/dh-window.ui.h:8
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
 msgid "_Preferences"
 msgstr "Nas_tavenia"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/devhelp.ui.h:3 ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
-msgstr "_O programe Devhelp"
+#: ../src/devhelp-menu.ui.h:3
+#| msgid "_About Devhelp"
+msgid "_About"
+msgstr "_O programe"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/devhelp.ui.h:4 ../src/dh-window.ui.h:10
+#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "U_končiť"
 
-#: ../src/devhelp.ui.h:5
-msgid "Preferences"
-msgstr "Nastavenia"
-
-#: ../src/devhelp.ui.h:6
-msgid "_Group by language"
-msgstr "_Zoskupiť podla jazyka"
-
-#: ../src/devhelp.ui.h:7
-msgid "Enabled"
-msgstr "Povolené"
-
-#: ../src/devhelp.ui.h:8
-msgid "Title"
-msgstr "Titulok"
-
-#: ../src/devhelp.ui.h:9
-msgid "Book Shelf"
-msgstr "Knižnica"
-
-#: ../src/devhelp.ui.h:10
-msgid "_Use system fonts"
-msgstr "Použiť _systémové písma"
-
-#: ../src/devhelp.ui.h:11
-msgid "_Variable width: "
-msgstr "Premenli_vá šírka: "
-
-#: ../src/devhelp.ui.h:12
-msgid "_Fixed width:"
-msgstr "_Pevná šírka:"
-
-#: ../src/devhelp.ui.h:13
-msgid "Fonts"
-msgstr "Písma"
-
-#: ../src/dh-app.c:201
-msgid "translator_credits"
-msgstr ""
-"Marcel Telka <marcel@telka.sk>\n"
-"Roman Mátyus <romanmatyus@gmail.com>"
-
-#: ../src/dh-app.c:211
+#: ../src/dh-app.c:213
 msgid "A developers' help browser for GNOME"
 msgstr "Prehliadač pomocníka pre vývojárov pre GNOME"
 
-#: ../src/dh-app.c:219
-msgid "DevHelp Website"
+#: ../src/dh-app.c:215
+#| msgid "translator_credits"
+msgid "translator-credits"
+msgstr ""
+"Marcel Telka <marcel@telka.sk>\n"
+"Roman Mátyus <romanmatyus@gmail.com>\n"
+"Dušan Kazik <prescott66@gmail.com>"
+
+#: ../src/dh-app.c:217
+#| msgid "DevHelp Website"
+msgid "Devhelp Website"
 msgstr "Webová stránka Devhelp"
+
+#: ../src/dh-app.c:432
+msgid "Opens a new Devhelp window"
+msgstr "Otvoriť nové okno Devhelp"
+
+#: ../src/dh-app.c:437
+msgid "Search for a keyword"
+msgstr "Vyhľadať kľúčové slovo"
+
+#: ../src/dh-app.c:438 ../src/dh-app.c:443
+msgid "KEYWORD"
+msgstr "KĽÚČOVÉ SLOVO"
+
+#: ../src/dh-app.c:442
+msgid "Search and display any hit in the assistant window"
+msgstr "Nájsť a zobraziť každý výskyt v okne asistenta"
+
+#: ../src/dh-app.c:447
+msgid "Display the version and exit"
+msgstr "Zobraziť verziu a ukončiť"
+
+#: ../src/dh-app.c:452
+msgid "Quit any running Devhelp"
+msgstr "Ukončiť každý bežiaci Devhelp"
 
 #. Please don't translate "Devhelp"
 #: ../src/dh-assistant.ui.h:2
@@ -268,49 +285,49 @@ msgstr "Devhelp — asistent"
 msgid "Book:"
 msgstr "Kniha:"
 
-#: ../src/dh-book.c:250
+#: ../src/dh-book.c:254
 #, c-format
 msgid "Language: %s"
 msgstr "Jazyk: %s"
 
-#: ../src/dh-book.c:251
+#: ../src/dh-book.c:255
 msgid "Language: Undefined"
 msgstr "Jazyk: Nedefinovaný"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:272
+#: ../src/dh-link.c:289
 msgid "Book"
 msgstr "Kniha"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:275
+#: ../src/dh-link.c:292
 msgid "Page"
 msgstr "Strana"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:279
+#: ../src/dh-link.c:296
 msgid "Keyword"
 msgstr "Kľúčové slovo"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: ../src/dh-link.c:301
 msgid "Function"
 msgstr "Funkcia"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: ../src/dh-link.c:306
 msgid "Struct"
 msgstr "Štruktúra"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: ../src/dh-link.c:311
 msgid "Macro"
 msgstr "Makro"
 
@@ -318,54 +335,30 @@ msgstr "Makro"
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: ../src/dh-link.c:316
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:304
+#: ../src/dh-link.c:321
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/dh-main.c:43
-msgid "Opens a new Devhelp window"
-msgstr "Otvoriť nové okno Devhelp"
-
-#: ../src/dh-main.c:48
-msgid "Search for a keyword"
-msgstr "Vyhľadať kľúčové slovo"
-
-#: ../src/dh-main.c:49 ../src/dh-main.c:54
-msgid "KEYWORD"
-msgstr "KĽÚČOVÉ SLOVO"
-
-#: ../src/dh-main.c:53
-msgid "Search and display any hit in the assistant window"
-msgstr "Nájsť a zobraziť každý výskyt v okne asistenta"
-
-#: ../src/dh-main.c:58
-msgid "Display the version and exit"
-msgstr "Zobraziť verziu a ukončiť"
-
-#: ../src/dh-main.c:63
-msgid "Quit any running Devhelp"
-msgstr "Ukončiť každý bežiaci Devhelp"
-
-#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
-#: ../src/dh-parser.c:273
+#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Očakávané „%s“, vyskytlo sa „%s“ na riadku %d, stĺpci %d"
 
-#: ../src/dh-parser.c:114
+#: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Neplatný menný priestor „%s“ na riadku %d, stĺpci %d"
 
 # Sú to názvy elementov, nie je dôvod na ich prekladanie
-#: ../src/dh-parser.c:143
+#: ../src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
@@ -373,7 +366,7 @@ msgstr ""
 "Elementy „title“, „name“ a „link“ sú vyžadované na riadku %d, stĺpci %d"
 
 # Sú to názvy elementov, nie je dôvod na ich prekladanie
-#: ../src/dh-parser.c:218
+#: ../src/dh-parser.c:216
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -383,7 +376,7 @@ msgstr ""
 "%d"
 
 # Sú to názvy elementov, nie je dôvod na ich prekladanie
-#: ../src/dh-parser.c:298
+#: ../src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
@@ -391,25 +384,52 @@ msgstr ""
 "Elementy „name“ a „link“ sú vyžadované vo vnútri „%s“ na riadku %d, stĺpci %d"
 
 # Sú to názvy elementov, nie je dôvod na ich prekladanie
-#: ../src/dh-parser.c:311
+#: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "Element „type“ je vyžadovaný vo vnútri <keyword> na riadku %d, stĺpci %d"
 
-#: ../src/dh-parser.c:514
+#: ../src/dh-parser.c:501
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nedá sa rozbaliť knihu „%s“: %s"
 
-#. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:531
-msgid "Current"
-msgstr "Aktuálne"
+#: ../src/dh-preferences.ui.h:1
+msgid "Preferences"
+msgstr "Nastavenia"
 
-#: ../src/dh-sidebar.c:534
-msgid "All Books"
-msgstr "Všetky knihy"
+#: ../src/dh-preferences.ui.h:2
+msgid "_Group by language"
+msgstr "_Zoskupiť podla jazyka"
+
+#: ../src/dh-preferences.ui.h:3
+msgid "Enabled"
+msgstr "Povolené"
+
+#: ../src/dh-preferences.ui.h:4
+msgid "Title"
+msgstr "Titulok"
+
+#: ../src/dh-preferences.ui.h:5
+msgid "Book Shelf"
+msgstr "Knižnica"
+
+#: ../src/dh-preferences.ui.h:6
+msgid "_Use system fonts"
+msgstr "Použiť _systémové písma"
+
+#: ../src/dh-preferences.ui.h:7
+msgid "_Variable width: "
+msgstr "Premenli_vá šírka: "
+
+#: ../src/dh-preferences.ui.h:8
+msgid "_Fixed width:"
+msgstr "_Pevná šírka:"
+
+#: ../src/dh-preferences.ui.h:9
+msgid "Fonts"
+msgstr "Písma"
 
 #: ../src/dh-window.c:86
 msgid "50%"
@@ -447,11 +467,15 @@ msgstr "300 %"
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:864
+#: ../src/dh-window.c:975
 msgid "Error opening the requested link."
 msgstr "Chyba pri otváraní požadovaného odkazu."
 
-#: ../src/dh-window.c:1148 ../src/dh-window.c:1320
+#: ../src/dh-window.c:1246
+msgid "_Close"
+msgstr "_Zavrieť"
+
+#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
 msgid "Empty Page"
 msgstr "Prázdna strana"
 
@@ -479,10 +503,27 @@ msgstr "_Menší text"
 msgid "_Normal Size"
 msgstr "_Normálna veľkosť"
 
-#: ../src/dh-window.ui.h:11
+#: ../src/dh-window.ui.h:8
+msgid "_Side pane"
+msgstr "_Bočný panel"
+
+#: ../src/dh-window.ui.h:10
+msgid "_About Devhelp"
+msgstr "_O programe Devhelp"
+
+#: ../src/dh-window.ui.h:12
 msgid "Back"
 msgstr "Späť"
 
-#: ../src/dh-window.ui.h:12
+#: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Dopredu"
+
+#~ msgid "Show API Documentation for the word at the cursor"
+#~ msgstr "Zobraziť dokumentáciu API pre slovo, na ktorom je kurzor"
+
+#~ msgid "Current"
+#~ msgstr "Aktuálne"
+
+#~ msgid "All Books"
+#~ msgstr "Všetky knihy"
