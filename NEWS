@@ -1,3 +1,23 @@
+===============
+Version 3.17.91
+===============
+
+Fixed bugs:
+
+ - #704833, books sidebar shouldn't have type ahead find
+ - #727243, gedit plugin needs to be ported to new menu API
+ - #749797, Misc code improvements
+ - #751446, AppData file needs updating for new desktop file name
+
+Updated translations: cs, el, es, fr, gl, he, hu, id, nb, pl, pt, sk,
+sv, zh_TW
+
+Many thanks to all contributors: Balázs Úr, Andika Triwidada, Alexandre
+Franke, Fran Dieguez, Anders Jonsson, Richard Hughes, Piotr Drąg, Daniel
+Mustieles, Pedro Albuquerque, Kjartan Maraas, Yosef Or Boczko, Marek
+Černocký, Chao-Hsiung Liao, Dušan Kazik, Tom Tryfonidis
+
+
 ==============
 Version 3.17.3
 ==============
