@@ -10,24 +10,25 @@
 # Mario Blättermann <mario.blaettermann@gmail.co>, 2009-2013.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2009, 2010.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2014.
+# Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-19 03:11+0000\n"
-"PO-Revision-Date: 2014-09-21 08:08+0100\n"
-"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
+"POT-Creation-Date: 2015-09-02 03:19+0000\n"
+"PO-Revision-Date: 2015-09-02 09:55+0100\n"
+"Last-Translator: Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.10\n"
 
-#: ../data/devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -38,14 +39,14 @@ msgstr ""
 "Makro durchsucht werden. Die Oberfläche verwendet Reiter und Suchergebnisse "
 "können ausgedruckt werden."
 
-#: ../data/devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
 "Devhelp ist automatisch in anderen Anwendungen wie Glade, Anjuta oder Geany "
 "integriert."
 
-#: ../data/devhelp.appdata.xml.in.h:3
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
 "target=devhelp.png"
@@ -55,20 +56,20 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
-#: ../src/dh-window.c:659
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:507 ../src/dh-window.c:753
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
 msgid "Developer's Help program"
 msgstr "Hilfeprogramm für Entwickler"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Dokumentation durchsuchen"
 
-#: ../data/devhelp.desktop.in.in.h:4
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
 msgstr "Dokumentation;Information;Handbuch;Entwickler;API;"
 
@@ -241,7 +242,11 @@ msgstr "_Info"
 msgid "_Quit"
 msgstr "_Beenden"
 
-#: ../src/dh-app.c:204
+#: ../src/dh-app.c:213
+msgid "A developers' help browser for GNOME"
+msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
+
+#: ../src/dh-app.c:215
 msgid "translator-credits"
 msgstr ""
 "Christian Meyer\n"
@@ -249,13 +254,33 @@ msgstr ""
 "Christian Kirbach\n"
 "Mario Blättermann"
 
-#: ../src/dh-app.c:214
-msgid "A developers' help browser for GNOME"
-msgstr "Ein GNOME-Hilfe-Browser für Entwickler"
+#: ../src/dh-app.c:217
+msgid "Devhelp Website"
+msgstr "Devhelp-Webseite"
 
-#: ../src/dh-app.c:222
-msgid "DevHelp Website"
-msgstr "DevHelp-Webseite"
+#: ../src/dh-app.c:432
+msgid "Opens a new Devhelp window"
+msgstr "Öffnet ein neues Devhelp-Fenster"
+
+#: ../src/dh-app.c:437
+msgid "Search for a keyword"
+msgstr "Nach einem Schlüsselwort suchen"
+
+#: ../src/dh-app.c:438 ../src/dh-app.c:443
+msgid "KEYWORD"
+msgstr "SCHLÜSSELWORT"
+
+#: ../src/dh-app.c:442
+msgid "Search and display any hit in the assistant window"
+msgstr "Suchen und jeden Treffer im Zusatzfenster anzeigen"
+
+#: ../src/dh-app.c:447
+msgid "Display the version and exit"
+msgstr "Programmversion anzeigen und beenden"
+
+#: ../src/dh-app.c:452
+msgid "Quit any running Devhelp"
+msgstr "Alle laufenden Devhelp-Instanzen beenden"
 
 #. Please don't translate "Devhelp"
 #: ../src/dh-assistant.ui.h:2
@@ -266,109 +291,85 @@ msgstr "Devhelp — Assistent"
 msgid "Book:"
 msgstr "Buch:"
 
-#: ../src/dh-book.c:240
+#: ../src/dh-book.c:254
 #, c-format
 msgid "Language: %s"
 msgstr "Sprache: %s"
 
-#: ../src/dh-book.c:241
+#: ../src/dh-book.c:255
 msgid "Language: Undefined"
 msgstr "Sprache: Nicht definiert"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:289
 msgid "Book"
 msgstr "Buch"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:273
+#: ../src/dh-link.c:292
 msgid "Page"
 msgstr "Seite"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:296
 msgid "Keyword"
 msgstr "Schlüsselwort"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:301
 msgid "Function"
 msgstr "Funktion"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:306
 msgid "Struct"
 msgstr "Struct (Datenstruktur)"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:292
+#: ../src/dh-link.c:311
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:297
+#: ../src/dh-link.c:316
 msgid "Enum"
 msgstr "Enum (Aufzählung)"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:302
+#: ../src/dh-link.c:321
 msgid "Type"
 msgstr "Type (Datentyp)"
 
-#: ../src/dh-main.c:41
-msgid "Opens a new Devhelp window"
-msgstr "Öffnet ein neues Devhelp-Fenster"
-
-#: ../src/dh-main.c:46
-msgid "Search for a keyword"
-msgstr "Nach einem Schlüsselwort suchen"
-
-#: ../src/dh-main.c:47 ../src/dh-main.c:52
-msgid "KEYWORD"
-msgstr "SCHLÜSSELWORT"
-
-#: ../src/dh-main.c:51
-msgid "Search and display any hit in the assistant window"
-msgstr "Suchen und jeden Treffer im Zusatzfenster anzeigen"
-
-#: ../src/dh-main.c:56
-msgid "Display the version and exit"
-msgstr "Programmversion anzeigen und beenden"
-
-#: ../src/dh-main.c:61
-msgid "Quit any running Devhelp"
-msgstr "Alle laufenden Devhelp-Instanzen beenden"
-
-#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
-#: ../src/dh-parser.c:270
+#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "»%s« wurde erwartet, »%s« erhalten in Zeile %d, Spalte %d"
 
-#: ../src/dh-parser.c:112
+#: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Ungültiger Namensraum »%s« - Zeile %d, Spalte %d"
 
-#: ../src/dh-parser.c:141
+#: ../src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
 "»title«-, »name«- sowie »link«-Elemente erforderlich in Zeile %d, Spalte %d"
 
-#: ../src/dh-parser.c:215
+#: ../src/dh-parser.c:216
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -377,7 +378,7 @@ msgstr ""
 "»name« sowie »link«-Elemente innerhalb <sub> erforderlich in Zeile %d, "
 "Spalte %d"
 
-#: ../src/dh-parser.c:295
+#: ../src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
@@ -385,13 +386,13 @@ msgstr ""
 "»name« sowie »link«-Elemente innerhalb »%s« erforderlich - Zeile %d, Spalte "
 "%d"
 
-#: ../src/dh-parser.c:308
+#: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "Elemente »type« ist innerhalb <keyword> erforderlich in Zeile %d, Spalte %d"
 
-#: ../src/dh-parser.c:511
+#: ../src/dh-parser.c:501
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Buch »%s« konnte nicht entpackt werden: %s"
@@ -432,51 +433,51 @@ msgstr "_Dicktengleichheit:"
 msgid "Fonts"
 msgstr "Schriften"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:868
+#: ../src/dh-window.c:975
 msgid "Error opening the requested link."
 msgstr "Fehler beim Öffnen des angeforderten Verweises."
 
-#: ../src/dh-window.c:1126
+#: ../src/dh-window.c:1246
 msgid "_Close"
 msgstr "S_chließen"
 
-#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
+#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
 msgid "Empty Page"
 msgstr "Leere Seite"
 
