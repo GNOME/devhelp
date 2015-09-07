@@ -6,26 +6,26 @@
 #
 # Gintautas Miliauskas <gintas@akl.lt>, 2007, 2008.
 # Vytautas Liuolia <vytautas.liuolia@gmail.com>, 2007, 2010.
-# Aurimas Černius <aurisc4@gmail.com>, 2010, 2013, 2014.
+# Aurimas Černius <aurisc4@gmail.com>, 2010, 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-07-26 15:11+0000\n"
-"PO-Revision-Date: 2014-07-27 00:56+0300\n"
+"POT-Creation-Date: 2015-09-07 03:19+0000\n"
+"PO-Revision-Date: 2015-09-07 17:35+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../data/devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -35,14 +35,14 @@ msgstr ""
 "bibliotekas, ieškoti pagal funkciją, struktūrą ar makrokomandą. Ji turi "
 "sąsają su kortelėmis bei leidžia spausdinti rezultatus."
 
-#: ../data/devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
 "Devhelp integruojasi su kitomis programomis, tokiomis kaip Glade, Anjuta ar "
 "Geany."
 
-#: ../data/devhelp.appdata.xml.in.h:3
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
 "target=devhelp.png"
@@ -52,20 +52,20 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
-#: ../src/dh-window.c:659
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:507 ../src/dh-window.c:753
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
 msgid "Developer's Help program"
 msgstr "Programuotojo žinynas"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Dokumentacijos naršyklė"
 
-#: ../data/devhelp.desktop.in.in.h:4
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentacija;informacija;vadovas;kūrėjas;api;"
 
@@ -234,20 +234,45 @@ msgstr "_Apie"
 msgid "_Quit"
 msgstr "Iš_eiti"
 
-#: ../src/dh-app.c:204
+#: ../src/dh-app.c:213
+msgid "A developers' help browser for GNOME"
+msgstr "GNOME programuotojo žinynas"
+
+#: ../src/dh-app.c:215
 msgid "translator-credits"
 msgstr ""
 "Išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>\n"
 "Vytautas Liuolia <vytautas.liuolia@gmail.com>"
 
-#: ../src/dh-app.c:214
-msgid "A developers' help browser for GNOME"
-msgstr "GNOME programuotojo žinynas"
-
-#: ../src/dh-app.c:222
-msgid "DevHelp Website"
+#: ../src/dh-app.c:217
+#| msgid "DevHelp Website"
+msgid "Devhelp Website"
 msgstr "DevHelp žiniatinklis"
+
+#: ../src/dh-app.c:432
+msgid "Opens a new Devhelp window"
+msgstr "Atveria naują Devhelp langą"
+
+#: ../src/dh-app.c:437
+msgid "Search for a keyword"
+msgstr "Ieškoti raktažodžio"
+
+#: ../src/dh-app.c:438 ../src/dh-app.c:443
+msgid "KEYWORD"
+msgstr "RAKTINIS ŽODIS"
+
+#: ../src/dh-app.c:442
+msgid "Search and display any hit in the assistant window"
+msgstr "Ieškoti ir rodyti bet kokį sutapimą pagalbiniame lange"
+
+#: ../src/dh-app.c:447
+msgid "Display the version and exit"
+msgstr "Parodyti versijos informaciją ir išeiti"
+
+#: ../src/dh-app.c:452
+msgid "Quit any running Devhelp"
+msgstr "Uždaryti paleistus Devhelp"
 
 #. Please don't translate "Devhelp"
 #: ../src/dh-assistant.ui.h:2
@@ -258,102 +283,78 @@ msgstr "Devhelp - pagalbininkas"
 msgid "Book:"
 msgstr "Knyga:"
 
-#: ../src/dh-book.c:240
+#: ../src/dh-book.c:254
 #, c-format
 msgid "Language: %s"
 msgstr "Kalba: %s"
 
-#: ../src/dh-book.c:241
+#: ../src/dh-book.c:255
 msgid "Language: Undefined"
 msgstr "Kalba: Nenurodyta"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:289
 msgid "Book"
 msgstr "Knyga"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:273
+#: ../src/dh-link.c:292
 msgid "Page"
 msgstr "Puslapis"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:296
 msgid "Keyword"
 msgstr "Raktažodis"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:301
 msgid "Function"
 msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:306
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:292
+#: ../src/dh-link.c:311
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:297
+#: ../src/dh-link.c:316
 msgid "Enum"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:302
+#: ../src/dh-link.c:321
 msgid "Type"
 msgstr "Type"
 
-#: ../src/dh-main.c:41
-msgid "Opens a new Devhelp window"
-msgstr "Atveria naują Devhelp langą"
-
-#: ../src/dh-main.c:46
-msgid "Search for a keyword"
-msgstr "Ieškoti raktažodžio"
-
-#: ../src/dh-main.c:47 ../src/dh-main.c:52
-msgid "KEYWORD"
-msgstr "RAKTINIS ŽODIS"
-
-#: ../src/dh-main.c:51
-msgid "Search and display any hit in the assistant window"
-msgstr "Ieškoti ir rodyti bet kokį sutapimą pagalbiniame lange"
-
-#: ../src/dh-main.c:56
-msgid "Display the version and exit"
-msgstr "Parodyti versijos informaciją ir išeiti"
-
-#: ../src/dh-main.c:61
-msgid "Quit any running Devhelp"
-msgstr "Uždaryti paleistus Devhelp"
-
-#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
-#: ../src/dh-parser.c:270
+#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Tikėtasi '%s', rasta '%s' eilutėje %d, stulpelyje %d"
 
-#: ../src/dh-parser.c:112
+#: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Klaidinga vardų erdvė '%s' eilutėje %d, stulpelyje %d"
 
-#: ../src/dh-parser.c:141
+#: ../src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
@@ -361,7 +362,7 @@ msgstr ""
 "„pavadinimas“, „vardas“ ir „saitas“ elementai reikalingi eilutėje %d, "
 "stulpelyje %d"
 
-#: ../src/dh-parser.c:215
+#: ../src/dh-parser.c:216
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -369,19 +370,19 @@ msgid ""
 msgstr ""
 "„vardas“ ir „saitas“ elementai būtini <sub> viduje eilutėje %d, stulpelyje %d"
 
-#: ../src/dh-parser.c:295
+#: ../src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
 "„vardas“ ir „saitas“ elementai būtini '%s' viduje eilutėje %d, stulpelyje %d"
 
-#: ../src/dh-parser.c:308
+#: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "Elementas „tipas“ būtinas viduje <keyword> eilutėje %d, stulpelyje %d"
 
-#: ../src/dh-parser.c:511
+#: ../src/dh-parser.c:501
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nepavyko išpakuoti knygos '%s': %s"
@@ -422,51 +423,51 @@ msgstr "_Fiksuoto pločio šriftas"
 msgid "Fonts"
 msgstr "Šriftai"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:868
+#: ../src/dh-window.c:975
 msgid "Error opening the requested link."
 msgstr "Klaida atverčiant nuorodą."
 
-#: ../src/dh-window.c:1126
+#: ../src/dh-window.c:1246
 msgid "_Close"
 msgstr "_Užverti"
 
-#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
+#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
 msgid "Empty Page"
 msgstr "Tuščias puslapis"
 
