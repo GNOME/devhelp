@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-01-01 04:13+0000\n"
-"PO-Revision-Date: 2015-01-03 22:12+0900\n"
+"POT-Creation-Date: 2015-09-14 15:21+0000\n"
+"PO-Revision-Date: 2015-09-15 01:20+0900\n"
 "Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -17,34 +17,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
 msgid "Devhelp is an API documentation browser. It provides an easy way to navigate through libraries, search by function, struct, or macro. It provides a tabbed interface and allows to print results."
 msgstr "Devhelp は、API ドキュメントブラウザーです。ライブラリの API を簡単に調べることができ、関数や構造体、マクロなどを検索することもできます。ユーザーインターフェースはタブ表示が可能で、ドキュメントの印刷機能も備えています。"
 
-#: ../data/devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
 msgid "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr "Devhelp では他のアプリケーションとの統合も実現されており、Glade や、Anjuta、Geany などと連携して使用することができます。"
 
-#: ../data/devhelp.appdata.xml.in.h:3
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;target=devhelp.png"
 msgstr "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;target=devhelp.png"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
-#: ../src/dh-window.c:659
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:507 ../src/dh-window.c:753
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
 msgid "Developer's Help program"
 msgstr "開発者向けのヘルプブラウザーです"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "ドキュメントブラウザー"
 
-#: ../data/devhelp.desktop.in.in.h:4
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
 msgstr "documentation;information;manual;developer;api;ドキュメンテーション;ドキュメント;情報;リファレンスマニュアル;開発者;"
 
@@ -213,7 +213,11 @@ msgstr "このアプリケーションについて(_A)"
 msgid "_Quit"
 msgstr "終了(_Q)"
 
-#: ../src/dh-app.c:204
+#: ../src/dh-app.c:213
+msgid "A developers' help browser for GNOME"
+msgstr "GNOME の開発者用ヘルプブラウザー"
+
+#: ../src/dh-app.c:215
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
@@ -221,13 +225,33 @@ msgstr ""
 "松澤 二郎 <jmatsuzawa@gnome.org>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp/>"
 
-#: ../src/dh-app.c:214
-msgid "A developers' help browser for GNOME"
-msgstr "GNOME の開発者用ヘルプブラウザー"
-
-#: ../src/dh-app.c:222
-msgid "DevHelp Website"
+#: ../src/dh-app.c:217
+msgid "Devhelp Website"
 msgstr "Devhelp のウェブサイト"
+
+#: ../src/dh-app.c:432
+msgid "Opens a new Devhelp window"
+msgstr "Devhelp の新しいウィンドウを開く"
+
+#: ../src/dh-app.c:437
+msgid "Search for a keyword"
+msgstr "キーワードを検索する"
+
+#: ../src/dh-app.c:438 ../src/dh-app.c:443
+msgid "KEYWORD"
+msgstr "KEYWORD"
+
+#: ../src/dh-app.c:442
+msgid "Search and display any hit in the assistant window"
+msgstr "検索結果をアシスタントウィンドウの中に表示する"
+
+#: ../src/dh-app.c:447
+msgid "Display the version and exit"
+msgstr "バージョンを表示して終了する"
+
+#: ../src/dh-app.c:452
+msgid "Quit any running Devhelp"
+msgstr "Devhelp を終了する"
 
 #. Please don't translate "Devhelp"
 #: ../src/dh-assistant.ui.h:2
@@ -238,122 +262,98 @@ msgstr "Devhelp — アシスタント"
 msgid "Book:"
 msgstr "ブック:"
 
-#: ../src/dh-book.c:240
+#: ../src/dh-book.c:254
 #, c-format
 msgid "Language: %s"
 msgstr "言語: %s"
 
-#: ../src/dh-book.c:241
+#: ../src/dh-book.c:255
 msgid "Language: Undefined"
 msgstr "言語: 未定義"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:289
 msgid "Book"
 msgstr "ブック"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:273
+#: ../src/dh-link.c:292
 msgid "Page"
 msgstr "ページ"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:296
 msgid "Keyword"
 msgstr "キーワード"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:301
 msgid "Function"
 msgstr "関数"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:306
 msgid "Struct"
 msgstr "構造体"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:292
+#: ../src/dh-link.c:311
 msgid "Macro"
 msgstr "マクロ"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:297
+#: ../src/dh-link.c:316
 msgid "Enum"
 msgstr "列挙子"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:302
+#: ../src/dh-link.c:321
 msgid "Type"
 msgstr "型"
 
-#: ../src/dh-main.c:41
-msgid "Opens a new Devhelp window"
-msgstr "Devhelp の新しいウィンドウを開く"
-
-#: ../src/dh-main.c:46
-msgid "Search for a keyword"
-msgstr "キーワードを検索する"
-
-#: ../src/dh-main.c:47 ../src/dh-main.c:52
-msgid "KEYWORD"
-msgstr "KEYWORD"
-
-#: ../src/dh-main.c:51
-msgid "Search and display any hit in the assistant window"
-msgstr "検索結果をアシスタントウィンドウの中に表示する"
-
-#: ../src/dh-main.c:56
-msgid "Display the version and exit"
-msgstr "バージョンを表示して終了する"
-
-#: ../src/dh-main.c:61
-msgid "Quit any running Devhelp"
-msgstr "Devhelp を終了する"
-
-#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
-#: ../src/dh-parser.c:270
+#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "'%s' を期待しましたが '%s' を受け取りました (%d 行 %d 桁)"
 
-#: ../src/dh-parser.c:112
+#: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "名前空間 '%s' が正しくありません (%d 行 %d 桁)"
 
-#: ../src/dh-parser.c:141
+#: ../src/dh-parser.c:142
 #, c-format
 msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr "要素 \"title\" と \"name\" と \"link\" が %d 行 %d 桁で要求されました"
 
-#: ../src/dh-parser.c:215
+#: ../src/dh-parser.c:216
 #, c-format
 msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
 msgstr "\"name\" と \"link\" が <sub> の中の %d 行 %d 桁で要求されました"
 
-#: ../src/dh-parser.c:295
+#: ../src/dh-parser.c:296
 #, c-format
 msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr "\"name\" と \"link\" が '%s' の中の %d 行 %d 桁で要求されました"
 
-#: ../src/dh-parser.c:308
+#: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "\"type\" が <keyword> の中の %d 行 %d 桁で要求されました"
 
-#: ../src/dh-parser.c:511
+#: ../src/dh-parser.c:501
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "'%s' というブックを展開できません: %s"
@@ -394,51 +394,51 @@ msgstr "固定幅(_F):"
 msgid "Fonts"
 msgstr "フォント"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:868
+#: ../src/dh-window.c:975
 msgid "Error opening the requested link."
 msgstr "要求されたリンクを開くのに失敗しました。"
 
-#: ../src/dh-window.c:1126
+#: ../src/dh-window.c:1246
 msgid "_Close"
 msgstr "閉じる(_C)"
 
-#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
+#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
 msgid "Empty Page"
 msgstr "空のページ"
 
