@@ -1,14 +1,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Rudolfs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014.
+# Rudolfs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-07 03:10+0000\n"
-"PO-Revision-Date: 2014-09-07 15:38+0300\n"
+"POT-Creation-Date: 2015-09-18 15:21+0000\n"
+"PO-Revision-Date: 2015-09-18 22:30+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: ../data/devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -29,13 +29,13 @@ msgstr ""
 "bibliotēkas, meklējot pēc funkcijām, struktūrām vai makrosiem. Tam ir ciļņu "
 "saskarne un ļauj drukāt rezultātus."
 
-#: ../data/devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
 "Devhelp ir integrēts ar citām lietotnēm, piemēram, Glade, Anjuta un Geany."
 
-#: ../data/devhelp.appdata.xml.in.h:3
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
 "target=devhelp.png"
@@ -45,20 +45,20 @@ msgstr ""
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:212 ../src/dh-app.c:399
-#: ../src/dh-window.c:659
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:507 ../src/dh-window.c:753
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
 msgid "Developer's Help program"
 msgstr "Izstrādātāju palīdzības programma"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
 msgstr "Dokumentācijas pārlūks"
 
-#: ../data/devhelp.desktop.in.in.h:4
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentācija;informācija;rokasgrāmata;izstrāde;api;"
 
@@ -227,17 +227,42 @@ msgstr "_Par"
 msgid "_Quit"
 msgstr "I_ziet"
 
-#: ../src/dh-app.c:204
-msgid "translator-credits"
-msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
-
-#: ../src/dh-app.c:214
+#: ../src/dh-app.c:213
 msgid "A developers' help browser for GNOME"
 msgstr "Izstrādātāju palīdzības pārlūks GNOME videi"
 
-#: ../src/dh-app.c:222
-msgid "DevHelp Website"
-msgstr "DevHelp tīmekļa vietne"
+#: ../src/dh-app.c:215
+msgid "translator-credits"
+msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
+
+#: ../src/dh-app.c:217
+#| msgid "DevHelp Website"
+msgid "Devhelp Website"
+msgstr "Devhelp tīmekļa vietne"
+
+#: ../src/dh-app.c:432
+msgid "Opens a new Devhelp window"
+msgstr "Atver jaunu Devhelp logu"
+
+#: ../src/dh-app.c:437
+msgid "Search for a keyword"
+msgstr "Meklēt atslēgvārdu"
+
+#: ../src/dh-app.c:438 ../src/dh-app.c:443
+msgid "KEYWORD"
+msgstr "ATSLĒGVĀRDS"
+
+#: ../src/dh-app.c:442
+msgid "Search and display any hit in the assistant window"
+msgstr "Meklēt un parādīt jebkuru rezultātu asistenta logā"
+
+#: ../src/dh-app.c:447
+msgid "Display the version and exit"
+msgstr "Rādīt versiju un iziet"
+
+#: ../src/dh-app.c:452
+msgid "Quit any running Devhelp"
+msgstr "Iziet no jebkura palaista Devhelp"
 
 #. Please don't translate "Devhelp"
 #: ../src/dh-assistant.ui.h:2
@@ -248,109 +273,85 @@ msgstr "Devhelp — asistents"
 msgid "Book:"
 msgstr "Grāmata:"
 
-#: ../src/dh-book.c:240
+#: ../src/dh-book.c:254
 #, c-format
 msgid "Language: %s"
 msgstr "Valoda: %s"
 
-#: ../src/dh-book.c:241
+#: ../src/dh-book.c:255
 msgid "Language: Undefined"
 msgstr "Valoda: nedefinēta"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:270
+#: ../src/dh-link.c:289
 msgid "Book"
 msgstr "Grāmata"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:273
+#: ../src/dh-link.c:292
 msgid "Page"
 msgstr "Lapa"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:277
+#: ../src/dh-link.c:296
 msgid "Keyword"
 msgstr "Atslēgvārds"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:282
+#: ../src/dh-link.c:301
 msgid "Function"
 msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:287
+#: ../src/dh-link.c:306
 msgid "Struct"
 msgstr "Struktūra"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:292
+#: ../src/dh-link.c:311
 msgid "Macro"
 msgstr "Makross"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:297
+#: ../src/dh-link.c:316
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:302
+#: ../src/dh-link.c:321
 msgid "Type"
 msgstr "Tips"
 
-#: ../src/dh-main.c:41
-msgid "Opens a new Devhelp window"
-msgstr "Atver jaunu Devhelp logu"
-
-#: ../src/dh-main.c:46
-msgid "Search for a keyword"
-msgstr "Meklēt atslēgvārdu"
-
-#: ../src/dh-main.c:47 ../src/dh-main.c:52
-msgid "KEYWORD"
-msgstr "ATSLĒGVĀRDS"
-
-#: ../src/dh-main.c:51
-msgid "Search and display any hit in the assistant window"
-msgstr "Meklēt un parādīt jebkuru rezultātu asistenta logā"
-
-#: ../src/dh-main.c:56
-msgid "Display the version and exit"
-msgstr "Rādīt versiju un iziet"
-
-#: ../src/dh-main.c:61
-msgid "Quit any running Devhelp"
-msgstr "Iziet no jebkura palaista Devhelp"
-
-#: ../src/dh-parser.c:95 ../src/dh-parser.c:196 ../src/dh-parser.c:260
-#: ../src/dh-parser.c:270
+#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
+#: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Gaidīja “%s”, saņēma “%s” rindā %d, kolonnā %d"
 
-#: ../src/dh-parser.c:112
+#: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Nederīga vārdtelpa “%s” rindā %d, kolonnā %d"
 
-#: ../src/dh-parser.c:141
+#: ../src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
 "“title”, “name” un “link” elementi ir nepieciešami rindā %d, kolonnā %d"
 
-#: ../src/dh-parser.c:215
+#: ../src/dh-parser.c:216
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -358,19 +359,19 @@ msgid ""
 msgstr ""
 "“name” un “link” elementi ir nepieciešami iekš <sub> rindā %d, kolonnā %d"
 
-#: ../src/dh-parser.c:295
+#: ../src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
 "“name” un “link” elementi ir nepieciešami iekš “%s” rindā %d, kolonnā %d"
 
-#: ../src/dh-parser.c:308
+#: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "“type” elements ir nepieciešams iekš <keyword> rindā %d, kolonnā %d"
 
-#: ../src/dh-parser.c:511
+#: ../src/dh-parser.c:501
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nevar atspiest grāmatu “%s” — %s"
@@ -411,51 +412,51 @@ msgstr "_Fiksēts platums:"
 msgid "Fonts"
 msgstr "Fonti"
 
-#: ../src/dh-window.c:81
+#: ../src/dh-window.c:86
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:82
+#: ../src/dh-window.c:87
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:83
+#: ../src/dh-window.c:88
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:84
+#: ../src/dh-window.c:89
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:85
+#: ../src/dh-window.c:90
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:91
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:92
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:93
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:94
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:868
+#: ../src/dh-window.c:975
 msgid "Error opening the requested link."
 msgstr "Kļūda, atverot pieprasīto saiti."
 
-#: ../src/dh-window.c:1126
+#: ../src/dh-window.c:1246
 msgid "_Close"
 msgstr "_Aizvērt"
 
-#: ../src/dh-window.c:1154 ../src/dh-window.c:1327
+#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
 msgid "Empty Page"
 msgstr "Tukša lapa"
 
@@ -498,155 +499,3 @@ msgstr "Atpakaļ"
 #: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Uz priekšu"
-
-#~ msgid "Show API Documentation for the word at the cursor"
-#~ msgstr "Rādīt API dokumentāciju vārdam pie kursora"
-
-#~ msgid "Current"
-#~ msgstr "Pašreizējais"
-
-#~| msgid "All books"
-#~ msgid "All Books"
-#~ msgstr "Visas grāmatas"
-
-#~ msgid "_Window"
-#~ msgstr "_Logs"
-
-#~ msgid "_Edit"
-#~ msgstr "R_ediģēt"
-
-#~ msgid "_Copy"
-#~ msgstr "_Kopēt"
-
-#~ msgid "Find _Next"
-#~ msgstr "Meklēt _nākamo"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Meklēt ie_priekšējo"
-
-#~ msgid "_View"
-#~ msgstr "_Skats"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Pilnekrāns"
-
-#~ msgid "_Go"
-#~ msgstr "_Iet"
-
-#~ msgid "_Search Tab"
-#~ msgstr "_Meklēšanas cilne"
-
-#~ msgid "_Contents Tab"
-#~ msgstr "_Satura cilne"
-
-#~ msgid "Go to the previous page"
-#~ msgstr "Iet uz iepriekšējo lapu"
-
-#~ msgid "Go to the next page"
-#~ msgstr "Iet uz nākamo lapu"
-
-#~ msgid "Decrease the text size"
-#~ msgstr "Samazināt teksta izmēru"
-
-#~ msgid "Increase the text size"
-#~ msgstr "Palielināt teksta izmēru"
-
-#~ msgid "Focus the Devhelp window with the search field active"
-#~ msgstr "Fokusēt Devhelp logu ar aktīviem meklēšanas laukiem"
-
-#~ msgid "Search in:"
-#~ msgstr "Meklēt iekš:"
-
-#~ msgid "Contents"
-#~ msgstr "Saturs"
-
-#~ msgid "Search"
-#~ msgstr "Meklēt"
-
-#~ msgid "Find:"
-#~ msgstr "Meklēt:"
-
-#~ msgid "Find Previous"
-#~ msgstr "Meklēt iepriekšējo"
-
-#~ msgid "Find previous occurrence of the search string"
-#~ msgstr "Meklēt iepriekšējo meklētās virknes parādīšanos"
-
-#~ msgid "Find Next"
-#~ msgstr "Meklēt nākamo"
-
-#~ msgid "Find next occurrence of the search string"
-#~ msgstr "Meklēt nākamo meklētās virknes parādīšanos"
-
-#~ msgid "C_ase Sensitive"
-#~ msgstr "Reģistr_jutīgs"
-
-#~ msgid "Toggle case sensitive search"
-#~ msgstr "Pārslēgt meklēšanas lielo-mazo burtu jutību"
-
-#~ msgid "_File"
-#~ msgstr "_Fails"
-
-#~ msgid "_Help"
-#~ msgstr "P_alīdzība"
-
-#~ msgid "Use the normal text size"
-#~ msgstr "Lietot normālu teksta izmēru"
-
-#~ msgid "Leave fullscreen mode"
-#~ msgstr "Pamest pilnekrāna režīmu"
-
-#~ msgid "Display in full screen"
-#~ msgstr "Rādīt uz visa ekrāna"
-
-#~ msgid "Larger"
-#~ msgstr "Lielāks"
-
-#~ msgid "Smaller"
-#~ msgstr "Mazāks"
-
-#~ msgid "Preferences…"
-#~ msgstr "Iestatījumi…"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Meklēt:"
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Izvēlieties subjektu kreisajā pusē vai arī pārslēdzaties uz meklēšanas "
-#~ "skaldni, lai sameklētu, ko jūs meklējiet.<p>Izmantojiet <b>Shift+uz augšu/"
-#~ "leju</b> lai pārvietotos pa koku kreisajā pusē, un <b>Shift+pa kreisi/"
-#~ "labi</b> lai izplestu un savilktu grāmatas kokā."
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "'%s' nav derīga grāmata"
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Nevarēju atrast failu '%s'"
-
-#~ msgid "Book '%s' is malformed, the parse context is invalid."
-#~ msgstr "Grāmata '%s' ir izkropļota, parsējamais konteksts ir nederīgs."
-
-#~ msgid "Book '%s' is malformed, the XML is invalid."
-#~ msgstr "Grāmata '%s' ir izkropļota, XML ir nederīgs."
-
-#~ msgid "Book '%s' is malformed, it does not conform to the DTD (%s)."
-#~ msgstr "Grāmata '%s' ir izkropļota, tā neatbilst DTD (%s)."
-
-#~ msgid ""
-#~ "<b>Could not read all books</b>\n"
-#~ "\n"
-#~ "The following errors occured whilst reading the books:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Nevarēju nolasīt visas grāmatas</b>\n"
-#~ "\n"
-#~ "Lasot grāmatas, atgadījās sekojošas kļūdas:\n"
-#~ "%s"
-
-#~ msgid "Open %s"
-#~ msgstr "Atvērt %s"
