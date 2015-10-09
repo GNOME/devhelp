@@ -38,8 +38,8 @@ typedef struct {
         GtkScrolledWindow       *sw_book_tree;
 
         GtkEntry                *entry;
-        DhKeywordModel          *model;
-        GtkTreeView             *hitlist;
+        DhKeywordModel          *hitlist_model;
+        GtkTreeView             *hitlist_view;
         GtkScrolledWindow       *sw_hitlist;
 
         GCompletion             *completion;
@@ -79,7 +79,7 @@ sidebar_filter_idle_cb (DhSidebar *sidebar)
 
         book_link = dh_sidebar_get_selected_book (sidebar);
 
-        link = dh_keyword_model_filter (priv->model,
+        link = dh_keyword_model_filter (priv->hitlist_model,
                                         str,
                                         book_link ? dh_link_get_book_id (book_link) : NULL,
                                         NULL);
@@ -177,7 +177,7 @@ sidebar_selection_changed_cb (GtkTreeSelection *selection,
         if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
                 DhLink *link;
 
-                gtk_tree_model_get (GTK_TREE_MODEL (priv->model), &iter,
+                gtk_tree_model_get (GTK_TREE_MODEL (priv->hitlist_model), &iter,
                                     DH_KEYWORD_MODEL_COL_LINK, &link,
                                     -1);
 
@@ -206,10 +206,10 @@ sidebar_tree_button_press_cb (GtkTreeView    *view,
         if (!path)
                 return GDK_EVENT_PROPAGATE;
 
-        gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->model), &iter, path);
+        gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->hitlist_model), &iter, path);
         gtk_tree_path_free (path);
 
-        gtk_tree_model_get (GTK_TREE_MODEL (priv->model),
+        gtk_tree_model_get (GTK_TREE_MODEL (priv->hitlist_model),
                             &iter,
                             DH_KEYWORD_MODEL_COL_LINK, &link,
                             -1);
@@ -233,7 +233,7 @@ sidebar_entry_key_press_event_cb (GtkEntry    *entry,
 
         if (event->keyval == GDK_KEY_Tab) {
                 if (event->state & GDK_CONTROL_MASK) {
-                        gtk_widget_grab_focus (GTK_WIDGET (priv->hitlist));
+                        gtk_widget_grab_focus (GTK_WIDGET (priv->hitlist_view));
                 } else {
                         gtk_editable_set_position (GTK_EDITABLE (entry), -1);
                         gtk_editable_select_region (GTK_EDITABLE (entry), -1, -1);
@@ -249,8 +249,8 @@ sidebar_entry_key_press_event_cb (GtkEntry    *entry,
                 gchar       *name;
 
                 /* Get the first entry found. */
-                if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->model), &iter)) {
-                        gtk_tree_model_get (GTK_TREE_MODEL (priv->model),
+                if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->hitlist_model), &iter)) {
+                        gtk_tree_model_get (GTK_TREE_MODEL (priv->hitlist_model),
                                             &iter,
                                             DH_KEYWORD_MODEL_COL_LINK, &link,
                                             DH_KEYWORD_MODEL_COL_NAME, &name,
@@ -497,12 +497,12 @@ dh_sidebar_init (DhSidebar *sidebar)
         priv = dh_sidebar_get_instance_private (sidebar);
 
         /* Setup keyword model */
-        priv->model = dh_keyword_model_new ();
+        priv->hitlist_model = dh_keyword_model_new ();
 
         /* Setup hitlist */
-        priv->hitlist = GTK_TREE_VIEW (gtk_tree_view_new ());
-        gtk_tree_view_set_model (priv->hitlist, GTK_TREE_MODEL (priv->model));
-        gtk_tree_view_set_enable_search (priv->hitlist, FALSE);
+        priv->hitlist_view = GTK_TREE_VIEW (gtk_tree_view_new ());
+        gtk_tree_view_set_model (priv->hitlist_view, GTK_TREE_MODEL (priv->hitlist_model));
+        gtk_tree_view_set_enable_search (priv->hitlist_view, FALSE);
 
         /* Setup the top-level box with entry search and Current|All buttons */
         hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
@@ -515,7 +515,7 @@ dh_sidebar_init (DhSidebar *sidebar)
         g_signal_connect (priv->entry, "key-press-event",
                           G_CALLBACK (sidebar_entry_key_press_event_cb),
                           sidebar);
-        g_signal_connect (priv->hitlist, "button-press-event",
+        g_signal_connect (priv->hitlist_view, "button-press-event",
                           G_CALLBACK (sidebar_tree_button_press_cb),
                           sidebar);
         g_signal_connect (priv->entry, "changed",
@@ -535,22 +535,22 @@ dh_sidebar_init (DhSidebar *sidebar)
         g_object_set (cell,
                       "ellipsize", PANGO_ELLIPSIZE_END,
                       NULL);
-        gtk_tree_view_insert_column_with_data_func (priv->hitlist,
+        gtk_tree_view_insert_column_with_data_func (priv->hitlist_view,
                                                     -1,
                                                     NULL,
                                                     cell,
                                                     search_cell_data_func,
                                                     sidebar,
                                                     NULL);
-        gtk_tree_view_set_headers_visible (priv->hitlist, FALSE);
-        gtk_tree_view_set_search_column (priv->hitlist, DH_KEYWORD_MODEL_COL_NAME);
-        g_signal_connect (gtk_tree_view_get_selection (priv->hitlist),
+        gtk_tree_view_set_headers_visible (priv->hitlist_view, FALSE);
+        gtk_tree_view_set_search_column (priv->hitlist_view, DH_KEYWORD_MODEL_COL_NAME);
+        g_signal_connect (gtk_tree_view_get_selection (priv->hitlist_view),
                           "changed",
                           G_CALLBACK (sidebar_selection_changed_cb),
                           sidebar);
-        gtk_widget_show (GTK_WIDGET (priv->hitlist));
+        gtk_widget_show (GTK_WIDGET (priv->hitlist_view));
         gtk_container_add (GTK_CONTAINER (priv->sw_hitlist),
-                           GTK_WIDGET (priv->hitlist));
+                           GTK_WIDGET (priv->hitlist_view));
         gtk_box_pack_start (GTK_BOX (sidebar), GTK_WIDGET (priv->sw_hitlist), TRUE, TRUE, 0);
 
         /* Setup the book tree */
@@ -643,7 +643,7 @@ dh_sidebar_constructed (GObject *object)
 
         sidebar_completion_populate (sidebar);
 
-        dh_keyword_model_set_words (priv->model, priv->book_manager);
+        dh_keyword_model_set_words (priv->hitlist_model, priv->book_manager);
 
         G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed (object);
 }
