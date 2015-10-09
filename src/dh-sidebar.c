@@ -343,19 +343,9 @@ dh_sidebar_set_search_string (DhSidebar   *sidebar,
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
-        g_signal_handlers_block_by_func (priv->entry,
-                                         sidebar_entry_changed_cb,
-                                         sidebar);
-
         gtk_entry_set_text (priv->entry, str);
         gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
         gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
-
-        g_signal_handlers_unblock_by_func (priv->entry,
-                                           sidebar_entry_changed_cb,
-                                           sidebar);
-
-        sidebar_search_run_idle (sidebar);
 }
 
 /******************************************************************************/
