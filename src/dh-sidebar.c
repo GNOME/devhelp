@@ -233,7 +233,8 @@ sidebar_entry_key_press_event_cb (GtkEntry    *entry,
 
         if (event->keyval == GDK_KEY_Tab) {
                 if (event->state & GDK_CONTROL_MASK) {
-                        gtk_widget_grab_focus (GTK_WIDGET (priv->hitlist_view));
+                        if (gtk_widget_is_visible (GTK_WIDGET (priv->hitlist_view)))
+                                gtk_widget_grab_focus (GTK_WIDGET (priv->hitlist_view));
                 } else {
                         gtk_editable_set_position (GTK_EDITABLE (entry), -1);
                         gtk_editable_select_region (GTK_EDITABLE (entry), -1, -1);
@@ -249,7 +250,8 @@ sidebar_entry_key_press_event_cb (GtkEntry    *entry,
                 gchar       *name;
 
                 /* Get the first entry found. */
-                if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->hitlist_model), &iter)) {
+                if (gtk_widget_is_visible (GTK_WIDGET (priv->hitlist_view)) &&
+                    gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->hitlist_model), &iter)) {
                         gtk_tree_model_get (GTK_TREE_MODEL (priv->hitlist_model),
                                             &iter,
                                             DH_KEYWORD_MODEL_COL_LINK, &link,
