@@ -491,20 +491,12 @@ static void
 dh_sidebar_init (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv;
-        GtkCellRenderer  *cell;
         GtkWidget        *hbox;
+        GtkCellRenderer  *cell;
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
-        /* Setup keyword model */
-        priv->hitlist_model = dh_keyword_model_new ();
-
-        /* Setup hitlist */
-        priv->hitlist_view = GTK_TREE_VIEW (gtk_tree_view_new ());
-        gtk_tree_view_set_model (priv->hitlist_view, GTK_TREE_MODEL (priv->hitlist_model));
-        gtk_tree_view_set_enable_search (priv->hitlist_view, FALSE);
-
-        /* Setup the top-level box with entry search and Current|All buttons */
+        /* Setup the top-level box with search entry */
         hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
         gtk_container_set_border_width (GTK_CONTAINER (hbox), 6);
         gtk_box_pack_start (GTK_BOX (sidebar), hbox, FALSE, FALSE, 0);
@@ -515,9 +507,6 @@ dh_sidebar_init (DhSidebar *sidebar)
         g_signal_connect (priv->entry, "key-press-event",
                           G_CALLBACK (sidebar_entry_key_press_event_cb),
                           sidebar);
-        g_signal_connect (priv->hitlist_view, "button-press-event",
-                          G_CALLBACK (sidebar_tree_button_press_cb),
-                          sidebar);
         g_signal_connect (priv->entry, "changed",
                           G_CALLBACK (sidebar_entry_changed_cb),
                           sidebar);
@@ -525,12 +514,24 @@ dh_sidebar_init (DhSidebar *sidebar)
                           G_CALLBACK (sidebar_entry_text_inserted_cb),
                           sidebar);
 
-        /* Setup the hitlist */
-        priv->sw_hitlist = GTK_SCROLLED_WINDOW (gtk_scrolled_window_new (NULL, NULL));
-        gtk_widget_set_no_show_all (GTK_WIDGET (priv->sw_hitlist), TRUE);
-        gtk_scrolled_window_set_policy (priv->sw_hitlist,
-                                        GTK_POLICY_NEVER,
-                                        GTK_POLICY_AUTOMATIC);
+        /* Setup hitlist */
+        priv->hitlist_model = dh_keyword_model_new ();
+        priv->hitlist_view = GTK_TREE_VIEW (gtk_tree_view_new ());
+        gtk_tree_view_set_model (priv->hitlist_view, GTK_TREE_MODEL (priv->hitlist_model));
+        gtk_tree_view_set_headers_visible (priv->hitlist_view, FALSE);
+        gtk_tree_view_set_enable_search (priv->hitlist_view, FALSE);
+        gtk_tree_view_set_search_column (priv->hitlist_view, DH_KEYWORD_MODEL_COL_NAME);
+        gtk_widget_show (GTK_WIDGET (priv->hitlist_view));
+
+        g_signal_connect (priv->hitlist_view, "button-press-event",
+                          G_CALLBACK (sidebar_tree_button_press_cb),
+                          sidebar);
+
+        g_signal_connect (gtk_tree_view_get_selection (priv->hitlist_view),
+                          "changed",
+                          G_CALLBACK (sidebar_selection_changed_cb),
+                          sidebar);
+
         cell = gtk_cell_renderer_text_new ();
         g_object_set (cell,
                       "ellipsize", PANGO_ELLIPSIZE_END,
@@ -542,13 +543,13 @@ dh_sidebar_init (DhSidebar *sidebar)
                                                     search_cell_data_func,
                                                     sidebar,
                                                     NULL);
-        gtk_tree_view_set_headers_visible (priv->hitlist_view, FALSE);
-        gtk_tree_view_set_search_column (priv->hitlist_view, DH_KEYWORD_MODEL_COL_NAME);
-        g_signal_connect (gtk_tree_view_get_selection (priv->hitlist_view),
-                          "changed",
-                          G_CALLBACK (sidebar_selection_changed_cb),
-                          sidebar);
-        gtk_widget_show (GTK_WIDGET (priv->hitlist_view));
+
+        /* Hitlist packing */
+        priv->sw_hitlist = GTK_SCROLLED_WINDOW (gtk_scrolled_window_new (NULL, NULL));
+        gtk_widget_set_no_show_all (GTK_WIDGET (priv->sw_hitlist), TRUE);
+        gtk_scrolled_window_set_policy (priv->sw_hitlist,
+                                        GTK_POLICY_NEVER,
+                                        GTK_POLICY_AUTOMATIC);
         gtk_container_add (GTK_CONTAINER (priv->sw_hitlist),
                            GTK_WIDGET (priv->hitlist_view));
         gtk_box_pack_start (GTK_BOX (sidebar), GTK_WIDGET (priv->sw_hitlist), TRUE, TRUE, 0);
@@ -615,14 +616,14 @@ dh_sidebar_constructed (GObject *object)
                                  0);
 
         g_signal_connect_object (priv->book_manager,
-                                 "book-deleted",
-                                 G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
+                                 "book-enabled",
+                                 G_CALLBACK (sidebar_book_created_or_enabled_cb),
                                  sidebar,
                                  0);
 
         g_signal_connect_object (priv->book_manager,
-                                 "book-enabled",
-                                 G_CALLBACK (sidebar_book_created_or_enabled_cb),
+                                 "book-deleted",
+                                 G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
                                  sidebar,
                                  0);
 
