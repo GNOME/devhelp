@@ -491,19 +491,18 @@ static void
 dh_sidebar_init (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv;
-        GtkWidget        *hbox;
         GtkCellRenderer  *cell;
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
-        /* Setup the top-level box with search entry */
-        hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
-        gtk_container_set_border_width (GTK_CONTAINER (hbox), 6);
-        gtk_box_pack_start (GTK_BOX (sidebar), hbox, FALSE, FALSE, 0);
-
         /* Setup the search entry */
         priv->entry = GTK_ENTRY (gtk_search_entry_new ());
-        gtk_box_pack_start (GTK_BOX (hbox), GTK_WIDGET (priv->entry), TRUE, TRUE, 0);
+        gtk_widget_set_hexpand (GTK_WIDGET (priv->entry), TRUE);
+        g_object_set (priv->entry,
+                      "margin", 6,
+                      NULL);
+        gtk_box_pack_start (GTK_BOX (sidebar), GTK_WIDGET (priv->entry), FALSE, FALSE, 0);
+
         g_signal_connect (priv->entry, "key-press-event",
                           G_CALLBACK (sidebar_entry_key_press_event_cb),
                           sidebar);
