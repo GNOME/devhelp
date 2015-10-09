@@ -519,7 +519,6 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_tree_view_set_model (priv->hitlist_view, GTK_TREE_MODEL (priv->hitlist_model));
         gtk_tree_view_set_headers_visible (priv->hitlist_view, FALSE);
         gtk_tree_view_set_enable_search (priv->hitlist_view, FALSE);
-        gtk_tree_view_set_search_column (priv->hitlist_view, DH_KEYWORD_MODEL_COL_NAME);
         gtk_widget_show (GTK_WIDGET (priv->hitlist_view));
 
         g_signal_connect (priv->hitlist_view, "button-press-event",
