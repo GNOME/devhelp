@@ -30,17 +30,17 @@
 #include "dh-book-tree.h"
 
 typedef struct {
-        DhKeywordModel          *model;
-
         DhBookManager           *book_manager;
 
         DhLink                  *selected_link;
 
-        GtkEntry                *entry;
-        GtkTreeView             *hitlist;
-        GtkScrolledWindow       *sw_hitlist;
         DhBookTree              *book_tree;
         GtkScrolledWindow       *sw_book_tree;
+
+        GtkEntry                *entry;
+        DhKeywordModel          *model;
+        GtkTreeView             *hitlist;
+        GtkScrolledWindow       *sw_hitlist;
 
         GCompletion             *completion;
         guint                    idle_complete_id;
