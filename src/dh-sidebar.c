@@ -5,6 +5,7 @@
  * Copyright (C) 2005-2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
  * Copyright (C) 2013 Aleksander Morgado <aleksander@gnu.org>
+ * Copyright (C) 2015 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -31,8 +32,6 @@
 
 typedef struct {
         DhBookManager           *book_manager;
-
-        DhLink                  *selected_link;
 
         DhBookTree              *book_tree;
         GtkScrolledWindow       *sw_book_tree;
@@ -185,10 +184,7 @@ sidebar_hitlist_selection_changed_cb (GtkTreeSelection *selection,
                                     DH_KEYWORD_MODEL_COL_LINK, &link,
                                     -1);
 
-                if (link != priv->selected_link) {
-                        priv->selected_link = link;
-                        g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
-                }
+                g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
         }
 }
 
@@ -217,8 +213,6 @@ sidebar_hitlist_button_press_cb (GtkTreeView    *hitlist_view,
                             &iter,
                             DH_KEYWORD_MODEL_COL_LINK, &link,
                             -1);
-
-        priv->selected_link = link;
 
         g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
 
@@ -405,16 +399,11 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
 /******************************************************************************/
 
 static void
-sidebar_book_tree_link_selected_cb (GObject   *ignored,
-                                    DhLink    *link,
-                                    DhSidebar *sidebar)
+sidebar_book_tree_link_selected_cb (DhBookTree *book_tree,
+                                    DhLink     *link,
+                                    DhSidebar  *sidebar)
 {
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-
-        if (link != priv->selected_link) {
-                priv->selected_link = link;
-                g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
-        }
+        g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
 }
 
 DhLink *
