@@ -318,11 +318,11 @@ sidebar_complete_idle_cb (DhSidebar *sidebar)
 }
 
 static void
-sidebar_entry_text_inserted_cb (GtkEntry    *entry,
-                                const gchar *text,
-                                gint         length,
-                                gint        *position,
-                                DhSidebar   *sidebar)
+sidebar_entry_insert_text_cb (GtkEntry    *entry,
+                              const gchar *text,
+                              gint         length,
+                              gint        *position,
+                              DhSidebar   *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
@@ -502,7 +502,7 @@ dh_sidebar_init (DhSidebar *sidebar)
                           G_CALLBACK (sidebar_entry_changed_cb),
                           sidebar);
         g_signal_connect (priv->entry, "insert-text",
-                          G_CALLBACK (sidebar_entry_text_inserted_cb),
+                          G_CALLBACK (sidebar_entry_insert_text_cb),
                           sidebar);
 
         /* Setup hitlist */
