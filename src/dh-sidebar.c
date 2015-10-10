@@ -172,8 +172,8 @@ sidebar_completion_populate (DhSidebar *sidebar)
 /******************************************************************************/
 
 static void
-sidebar_selection_changed_cb (GtkTreeSelection *selection,
-                              DhSidebar        *sidebar)
+sidebar_hitlist_selection_changed_cb (GtkTreeSelection *selection,
+                                      DhSidebar        *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         GtkTreeIter iter;
@@ -365,18 +365,18 @@ dh_sidebar_set_search_focus (DhSidebar *sidebar)
 /******************************************************************************/
 
 static void
-search_cell_data_func (GtkTreeViewColumn *tree_column,
-                       GtkCellRenderer   *cell,
-                       GtkTreeModel      *tree_model,
-                       GtkTreeIter       *iter,
-                       gpointer           data)
+hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
+                        GtkCellRenderer   *cell,
+                        GtkTreeModel      *hitlist_model,
+                        GtkTreeIter       *iter,
+                        gpointer           data)
 {
         DhLink       *link;
         PangoStyle    style;
         PangoWeight   weight;
         gboolean      current_book_flag;
 
-        gtk_tree_model_get (tree_model, iter,
+        gtk_tree_model_get (hitlist_model, iter,
                             DH_KEYWORD_MODEL_COL_LINK, &link,
                             DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG, &current_book_flag,
                             -1);
@@ -523,7 +523,7 @@ dh_sidebar_init (DhSidebar *sidebar)
 
         g_signal_connect (gtk_tree_view_get_selection (priv->hitlist_view),
                           "changed",
-                          G_CALLBACK (sidebar_selection_changed_cb),
+                          G_CALLBACK (sidebar_hitlist_selection_changed_cb),
                           sidebar);
 
         cell = gtk_cell_renderer_text_new ();
@@ -534,7 +534,7 @@ dh_sidebar_init (DhSidebar *sidebar)
                                                     -1,
                                                     NULL,
                                                     cell,
-                                                    search_cell_data_func,
+                                                    hitlist_cell_data_func,
                                                     sidebar,
                                                     NULL);
 
