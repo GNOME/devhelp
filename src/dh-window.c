@@ -145,6 +145,51 @@ new_tab_cb (GSimpleAction *action,
 }
 
 static void
+next_tab_cb (GSimpleAction *action,
+             GVariant      *parameter,
+             gpointer       user_data)
+{
+        gint current_page, n_pages;
+        GtkNotebook *notebook;
+        DhWindowPrivate *priv;
+        DhWindow *window = user_data;
+
+        priv = dh_window_get_instance_private (window);
+        notebook = GTK_NOTEBOOK (priv->notebook);
+
+        current_page = gtk_notebook_get_current_page (notebook);
+        n_pages = gtk_notebook_get_n_pages (notebook);
+
+        if (current_page < n_pages - 1)
+                gtk_notebook_next_page (notebook);
+        else
+                /* Wrap around to the first tab */
+                gtk_notebook_set_current_page (notebook, 0);
+}
+
+static void
+prev_tab_cb (GSimpleAction *action,
+             GVariant      *parameter,
+             gpointer       user_data)
+{
+        gint current_page;
+        GtkNotebook *notebook;
+        DhWindowPrivate *priv;
+        DhWindow *window = user_data;
+
+        priv = dh_window_get_instance_private (window);
+        notebook = GTK_NOTEBOOK (priv->notebook);
+
+        current_page = gtk_notebook_get_current_page (notebook);
+
+        if (current_page > 0)
+                gtk_notebook_prev_page (notebook);
+        else
+                /* Wrap around to the last tab */
+                gtk_notebook_set_current_page (notebook, -1);
+}
+
+static void
 print_cb (GSimpleAction *action,
           GVariant      *parameter,
           gpointer       user_data)
@@ -466,8 +511,10 @@ dh_window_open_link (DhWindow        *window,
 }
 
 static GActionEntry win_entries[] = {
-        /* file */
+        /* tabs */
         { "new-tab",          new_tab_cb },
+        { "next-tab",         next_tab_cb,         NULL, NULL, NULL },
+        { "prev-tab",         prev_tab_cb,         NULL, NULL, NULL },
         { "print",            print_cb },
         { "close",            close_cb },
 

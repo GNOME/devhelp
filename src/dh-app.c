@@ -375,6 +375,12 @@ setup_accelerators (DhApp *self)
         accels[0] = "<Primary>t";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.new-tab", accels);
 
+        accels[0] = "<Primary>Page_Down";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.next-tab", accels);
+
+        accels[0] = "<Primary>Page_Up";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.prev-tab", accels);
+
         accels[0] = "F9";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.show-sidebar", accels);
 
