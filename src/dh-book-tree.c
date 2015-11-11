@@ -783,6 +783,7 @@ dh_book_tree_select_uri (DhBookTree  *tree,
         DhBookTreePrivate   *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeSelection *selection;
         FindURIData       data;
+        DhLink           *link;
 
         data.found = FALSE;
         data.uri = uri;
@@ -807,7 +808,14 @@ dh_book_tree_select_uri (DhBookTree  *tree,
                                          tree);
 
         gtk_tree_view_expand_to_path (GTK_TREE_VIEW (tree), data.path);
+
+        gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
+                            &data.iter,
+                            COL_LINK, &link,
+                            -1);
+        priv->selected_link = link;
         gtk_tree_selection_select_iter (selection, &data.iter);
+
         gtk_tree_view_set_cursor (GTK_TREE_VIEW (tree), data.path, NULL, 0);
 
         g_signal_handlers_unblock_by_func (selection,
