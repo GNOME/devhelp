@@ -375,14 +375,13 @@ book_tree_insert_node (DhBookTree  *tree,
 
 static void
 book_tree_add_book_to_store (DhBookTree *tree,
-                             DhBook     *book,
-                             gboolean    group_by_language)
+                             DhBook     *book)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeIter     book_iter;
 
         /* If grouping by language we need to add the language categories */
-        if (group_by_language) {
+        if (dh_book_manager_get_group_by_language (priv->book_manager)) {
                 GtkTreeIter  language_iter;
                 gboolean     language_iter_found;
                 GtkTreeIter  next_language_iter;
@@ -506,10 +505,7 @@ static void
 book_tree_populate_tree (DhBookTree *tree)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        GList          *l;
-        gboolean        group_by_language;
-
-        group_by_language = dh_book_manager_get_group_by_language (priv->book_manager);
+        GList *l;
 
         gtk_tree_store_clear (priv->store);
 
@@ -520,11 +516,8 @@ book_tree_populate_tree (DhBookTree *tree)
                 DhBook *book = DH_BOOK (l->data);
 
                 /* Only add enabled books to the tree */
-                if (dh_book_get_enabled (book)) {
-                        book_tree_add_book_to_store (tree,
-                                                     book,
-                                                     group_by_language);
-                }
+                if (dh_book_get_enabled (book))
+                        book_tree_add_book_to_store (tree, book);
         }
 }
 
@@ -533,17 +526,12 @@ book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
                                       GObject       *book_object,
                                       DhBookTree    *tree)
 {
-        DhBook         *book = DH_BOOK (book_object);
-        gboolean        group_by_language;
+        DhBook *book = DH_BOOK (book_object);
 
         if (!dh_book_get_enabled (book))
                 return;
 
-        group_by_language = dh_book_manager_get_group_by_language (book_manager);
-
-        book_tree_add_book_to_store (tree,
-                                     book,
-                                     group_by_language);
+        book_tree_add_book_to_store (tree, book);
 }
 
 static void
