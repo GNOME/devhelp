@@ -230,13 +230,21 @@ book_tree_find_language_group (DhBookTree  *tree,
 
         do {
                 gchar *title = NULL;
+                DhLink *link;
 
                 /* Look for language titles, which are those where there
                  * is no book object associated in the row */
                 gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
                                     &loop_iter,
                                     COL_TITLE, &title,
+                                    COL_LINK, &link,
                                     -1);
+
+                if (link != NULL) {
+                        /* Not a language */
+                        g_free (title);
+                        g_return_if_reached ();
+                }
 
                 if (exact_iter != NULL &&
                     g_ascii_strcasecmp (title, language) == 0) {
@@ -309,6 +317,8 @@ book_tree_find_book (DhBookTree        *tree,
                                     COL_BOOK, &in_tree_book,
                                     -1);
 
+                g_return_if_fail (DH_IS_BOOK (in_tree_book));
+
                 /* We can compare pointers directly as we're playing with references
                  * of the same object */
                 if (exact_iter != NULL &&
@@ -317,18 +327,18 @@ book_tree_find_book (DhBookTree        *tree,
                         *exact_found = TRUE;
                         if (next_iter == NULL) {
                                 /* If we were not requested to look for the next one, end here */
-                                g_clear_object (&in_tree_book);
+                                g_object_unref (in_tree_book);
                                 return;
                         }
                 } else if (next_iter != NULL &&
                            dh_book_cmp_by_title (in_tree_book, book) > 0) {
                         *next_iter = loop_iter;
                         *next_found = TRUE;
-                        g_clear_object (&in_tree_book);
+                        g_object_unref (in_tree_book);
                         return;
                 }
 
-                g_clear_object (&in_tree_book);
+                g_object_unref (in_tree_book);
         } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store),
                                            &loop_iter));
 }
@@ -346,6 +356,7 @@ book_tree_insert_node (DhBookTree  *tree,
         GNode          *child;
 
         link = node->data;
+        g_assert (link != NULL);
 
         if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
                 weight = PANGO_WEIGHT_BOLD;
@@ -611,7 +622,6 @@ book_tree_init_selection (DhBookTree *tree)
         GtkTreeSelection *selection;
         GtkTreeIter       iter;
         gboolean          iter_found = FALSE;
-        DhLink           *link;
 
         priv = dh_book_tree_get_instance_private (tree);
 
@@ -643,12 +653,18 @@ book_tree_init_selection (DhBookTree *tree)
         }
 
         if (iter_found) {
+                DhLink *link;
+
                 gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
                                     &iter,
                                     COL_LINK, &link,
                                     -1);
+
                 priv->selected_link = link;
                 gtk_tree_selection_select_iter (selection, &iter);
+
+                if (dh_link_get_link_type (link) != DH_LINK_TYPE_BOOK)
+                        g_warn_if_reached ();
         }
 
         g_signal_handlers_unblock_by_func (selection,
