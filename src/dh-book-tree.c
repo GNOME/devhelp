@@ -82,6 +82,7 @@ dh_book_tree_get_property (GObject    *object,
                 case PROP_BOOK_MANAGER:
                         g_value_set_object (value, priv->book_manager);
                         break;
+
                 default:
                         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                         break;
@@ -101,6 +102,7 @@ dh_book_tree_set_property (GObject      *object,
                         g_return_if_fail (priv->book_manager == NULL);
                         priv->book_manager = g_value_dup_object (value);
                         break;
+
                 default:
                         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                         break;
@@ -143,11 +145,11 @@ book_tree_selection_changed_cb (GtkTreeSelection *selection,
                                     &iter,
                                     COL_LINK, &link,
                                     -1);
-                if (link) {
-                        if (link != priv->selected_link) {
-                                g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
-                        }
+
+                if (link != NULL &&
+                    link != priv->selected_link) {
                         priv->selected_link = link;
+                        g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
                 }
         }
 }
@@ -188,7 +190,6 @@ dh_book_tree_init (DhBookTree *tree)
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
 
         book_tree_add_columns (tree);
-
         book_tree_setup_selection (tree);
 }
 
@@ -208,12 +209,13 @@ book_tree_find_language_group (DhBookTree  *tree,
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeIter     loop_iter;
 
-        g_assert ((exact_iter && exact_found) || (next_iter && next_found));
+        g_assert ((exact_iter != NULL && exact_found != NULL) ||
+                  (next_iter != NULL && next_found != NULL));
 
         /* Reset all flags to not found */
-        if (exact_found)
+        if (exact_found != NULL)
                 *exact_found = FALSE;
-        if (next_found)
+        if (next_found != NULL)
                 *next_found = FALSE;
 
         /* If we're not doing language grouping, return not found */
@@ -236,17 +238,17 @@ book_tree_find_language_group (DhBookTree  *tree,
                                     COL_TITLE, &title,
                                     -1);
 
-                if (exact_iter &&
+                if (exact_iter != NULL &&
                     g_ascii_strcasecmp (title, language) == 0) {
                         /* Exact match found! */
                         *exact_iter = loop_iter;
                         *exact_found = TRUE;
-                        if (!next_iter) {
+                        if (next_iter == NULL) {
                                 /* If we were not requested to look for the next one, end here */
                                 g_free (title);
                                 return;
                         }
-                } else if (next_iter &&
+                } else if (next_iter != NULL &&
                            g_ascii_strcasecmp (title, language) > 0) {
                         *next_iter = loop_iter;
                         *next_found = TRUE;
@@ -278,16 +280,17 @@ book_tree_find_book (DhBookTree        *tree,
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeIter     loop_iter;
 
-        g_assert ((exact_iter && exact_found) || (next_iter && next_found));
+        g_assert ((exact_iter != NULL && exact_found != NULL) ||
+                  (next_iter != NULL && next_found != NULL));
 
         /* Reset all flags to not found */
-        if (exact_found)
+        if (exact_found != NULL)
                 *exact_found = FALSE;
-        if (next_found)
+        if (next_found != NULL)
                 *next_found = FALSE;
 
         /* Setup iteration start */
-        if (!first) {
+        if (first == NULL) {
                 /* If no first given, start iterating from the start of the model */
                 if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store),
                                                     &loop_iter)) {
@@ -308,25 +311,24 @@ book_tree_find_book (DhBookTree        *tree,
 
                 /* We can compare pointers directly as we're playing with references
                  * of the same object */
-                if (exact_iter &&
+                if (exact_iter != NULL &&
                     in_tree_book == book) {
                         *exact_iter = loop_iter;
                         *exact_found = TRUE;
-                        if (!next_iter) {
+                        if (next_iter == NULL) {
                                 /* If we were not requested to look for the next one, end here */
-                                g_object_unref (in_tree_book);
+                                g_clear_object (&in_tree_book);
                                 return;
                         }
-                } else if (next_iter &&
+                } else if (next_iter != NULL &&
                            dh_book_cmp_by_title (in_tree_book, book) > 0) {
                         *next_iter = loop_iter;
                         *next_found = TRUE;
-                        g_object_unref (in_tree_book);
+                        g_clear_object (&in_tree_book);
                         return;
                 }
 
-                if (in_tree_book)
-                        g_object_unref (in_tree_book);
+                g_clear_object (&in_tree_book);
         } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store),
                                            &loop_iter));
 }
@@ -361,7 +363,7 @@ book_tree_insert_node (DhBookTree  *tree,
                             -1);
 
         for (child = g_node_first_child (node);
-             child;
+             child != NULL;
              child = g_node_next_sibling (child)) {
                 GtkTreeIter iter;
 
@@ -455,6 +457,7 @@ book_tree_add_book_to_store (DhBookTree *tree,
                                              NULL,
                                              &next_book_iter,
                                              &next_book_iter_found);
+
                         if (!next_book_iter_found) {
                                 gtk_tree_store_append (priv->store,
                                                        &book_iter,
@@ -478,6 +481,7 @@ book_tree_add_book_to_store (DhBookTree *tree,
                                      NULL,
                                      &next_book_iter,
                                      &next_book_iter_found);
+
                 if (!next_book_iter_found) {
                         gtk_tree_store_append (priv->store,
                                                &book_iter,
@@ -511,8 +515,8 @@ book_tree_populate_tree (DhBookTree *tree)
 
         /* This list comes in order, but we don't really mind */
         for (l = dh_book_manager_get_books (priv->book_manager);
-             l;
-             l = g_list_next (l)) {
+             l != NULL;
+             l = l->next) {
                 DhBook *book = DH_BOOK (l->data);
 
                 /* Only add enabled books to the tree */
@@ -527,9 +531,8 @@ book_tree_populate_tree (DhBookTree *tree)
 static void
 book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
                                       GObject       *book_object,
-                                      gpointer       user_data)
+                                      DhBookTree    *tree)
 {
-        DhBookTree     *tree = user_data;
         DhBook         *book = DH_BOOK (book_object);
         gboolean        group_by_language;
 
@@ -546,9 +549,8 @@ book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
 static void
 book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
                                        GObject       *book_object,
-                                       gpointer       user_data)
+                                       DhBookTree    *tree)
 {
-        DhBookTree     *tree = user_data;
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         DhBook         *book = DH_BOOK (book_object);
         GtkTreeIter     exact_iter;
@@ -609,9 +611,9 @@ book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
 static void
 book_tree_group_by_language_cb (GObject    *object,
                                 GParamSpec *pspec,
-                                gpointer    user_data)
+                                DhBookTree *tree)
 {
-        book_tree_populate_tree (DH_BOOK_TREE (user_data));
+        book_tree_populate_tree (tree);
 }
 
 static void
@@ -679,14 +681,14 @@ dh_book_tree_constructed (GObject *object)
                                  0);
 
         g_signal_connect_object (priv->book_manager,
-                                 "book-deleted",
-                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
+                                 "book-enabled",
+                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
                                  tree,
                                  0);
 
         g_signal_connect_object (priv->book_manager,
-                                 "book-enabled",
-                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
+                                 "book-deleted",
+                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
                                  tree,
                                  0);
 
@@ -703,7 +705,6 @@ dh_book_tree_constructed (GObject *object)
                                  0);
 
         book_tree_populate_tree (tree);
-
         book_tree_init_selection (tree);
 
         G_OBJECT_CLASS (dh_book_tree_parent_class)->constructed (object);
@@ -759,7 +760,8 @@ book_tree_find_uri_foreach (GtkTreeModel *model,
         gtk_tree_model_get (model, iter,
                             COL_LINK, &link,
                             -1);
-        if (link) {
+
+        if (link != NULL) {
                 gchar *link_uri;
 
                 link_uri = dh_link_get_uri (link);
@@ -770,6 +772,7 @@ book_tree_find_uri_foreach (GtkTreeModel *model,
                         data->iter = *iter;
                         data->path = gtk_tree_path_copy (path);
                 }
+
                 g_free (link_uri);
         }
 
@@ -842,13 +845,8 @@ dh_book_tree_get_selected_book (DhBookTree *tree)
         path = gtk_tree_model_get_path (model, &iter);
 
         /* Get the book node for this link. */
-        while (TRUE) {
-                if (gtk_tree_path_get_depth (path) <= 1) {
-                        break;
-                }
-
+        while (gtk_tree_path_get_depth (path) > 1)
                 gtk_tree_path_up (path);
-        }
 
         gtk_tree_model_get_iter (model, &iter, path);
         gtk_tree_path_free (path);
