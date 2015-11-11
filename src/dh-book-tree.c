@@ -822,26 +822,31 @@ dh_book_tree_get_selected_book (DhBookTree *tree)
         GtkTreeSelection *selection;
         GtkTreeModel     *model;
         GtkTreeIter       iter;
-        GtkTreePath      *path;
-        DhLink           *link;
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
-        if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
+        if (!gtk_tree_selection_get_selected (selection, &model, &iter))
                 return NULL;
+
+        /* Depending on whether books are grouped by language, the book link can
+         * be at a different depth. And it's safer to check that the returned
+         * link has the good type. So walk up the tree to find the book.
+         */
+        while (TRUE) {
+                DhLink *link;
+                GtkTreeIter parent;
+
+                gtk_tree_model_get (model, &iter,
+                                    COL_LINK, &link,
+                                    -1);
+
+                if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK)
+                        return link;
+
+                if (!gtk_tree_model_iter_parent (model, &parent, &iter))
+                        break;
+
+                iter = parent;
         }
 
-        path = gtk_tree_model_get_path (model, &iter);
-
-        /* Get the book node for this link. */
-        while (gtk_tree_path_get_depth (path) > 1)
-                gtk_tree_path_up (path);
-
-        gtk_tree_model_get_iter (model, &iter, path);
-        gtk_tree_path_free (path);
-
-        gtk_tree_model_get (model, &iter,
-                            COL_LINK, &link,
-                            -1);
-
-        return link;
+        g_return_val_if_reached (NULL);
 }
