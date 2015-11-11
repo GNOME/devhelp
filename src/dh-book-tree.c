@@ -36,15 +36,6 @@ typedef struct {
         DhLink        *selected_link;
 } DhBookTreePrivate;
 
-static void book_tree_add_columns          (DhBookTree       *tree);
-static void book_tree_setup_selection      (DhBookTree       *tree);
-static void book_tree_insert_node          (DhBookTree       *tree,
-                                            GNode            *node,
-                                            GtkTreeIter      *current_iter,
-                                            DhBook           *book);
-static void book_tree_selection_changed_cb (GtkTreeSelection *selection,
-                                            DhBookTree       *tree);
-
 enum {
         LINK_SELECTED,
         LAST_SIGNAL
@@ -117,30 +108,6 @@ dh_book_tree_set_property (GObject      *object,
 }
 
 static void
-dh_book_tree_init (DhBookTree *tree)
-{
-        DhBookTreePrivate *priv;
-
-        priv = dh_book_tree_get_instance_private (tree);
-
-        priv->store = gtk_tree_store_new (N_COLUMNS,
-                                          G_TYPE_STRING,
-                                          G_TYPE_POINTER,
-                                          G_TYPE_OBJECT,
-                                          PANGO_TYPE_WEIGHT,
-                                          PANGO_TYPE_UNDERLINE);
-        priv->selected_link = NULL;
-        gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
-                                 GTK_TREE_MODEL (priv->store));
-
-        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
-
-        book_tree_add_columns (tree);
-
-        book_tree_setup_selection (tree);
-}
-
-static void
 book_tree_add_columns (DhBookTree *tree)
 {
         GtkCellRenderer   *cell;
@@ -163,6 +130,29 @@ book_tree_add_columns (DhBookTree *tree)
 }
 
 static void
+book_tree_selection_changed_cb (GtkTreeSelection *selection,
+                                DhBookTree       *tree)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
+        GtkTreeIter     iter;
+
+        if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
+                DhLink *link;
+
+                gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
+                                    &iter,
+                                    COL_LINK, &link,
+                                    -1);
+                if (link) {
+                        if (link != priv->selected_link) {
+                                g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
+                        }
+                        priv->selected_link = link;
+                }
+        }
+}
+
+static void
 book_tree_setup_selection (DhBookTree *tree)
 {
         GtkTreeSelection *selection;
@@ -176,6 +166,30 @@ book_tree_setup_selection (DhBookTree *tree)
                                  G_CALLBACK (book_tree_selection_changed_cb),
                                  tree,
                                  0);
+}
+
+static void
+dh_book_tree_init (DhBookTree *tree)
+{
+        DhBookTreePrivate *priv;
+
+        priv = dh_book_tree_get_instance_private (tree);
+
+        priv->store = gtk_tree_store_new (N_COLUMNS,
+                                          G_TYPE_STRING,
+                                          G_TYPE_POINTER,
+                                          G_TYPE_OBJECT,
+                                          PANGO_TYPE_WEIGHT,
+                                          PANGO_TYPE_UNDERLINE);
+        priv->selected_link = NULL;
+        gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
+                                 GTK_TREE_MODEL (priv->store));
+
+        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
+
+        book_tree_add_columns (tree);
+
+        book_tree_setup_selection (tree);
 }
 
 /* Tries to find:
@@ -315,6 +329,46 @@ book_tree_find_book (DhBookTree        *tree,
                         g_object_unref (in_tree_book);
         } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store),
                                            &loop_iter));
+}
+
+static void
+book_tree_insert_node (DhBookTree  *tree,
+                       GNode       *node,
+                       GtkTreeIter *current_iter,
+                       DhBook      *book)
+
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
+        DhLink         *link;
+        PangoWeight     weight;
+        GNode          *child;
+
+        link = node->data;
+
+        if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
+                weight = PANGO_WEIGHT_BOLD;
+        } else {
+                weight = PANGO_WEIGHT_NORMAL;
+        }
+
+        gtk_tree_store_set (priv->store,
+                            current_iter,
+                            COL_TITLE, dh_link_get_name (link),
+                            COL_LINK, link,
+                            COL_BOOK, book,
+                            COL_WEIGHT, weight,
+                            COL_UNDERLINE, PANGO_UNDERLINE_NONE,
+                            -1);
+
+        for (child = g_node_first_child (node);
+             child;
+             child = g_node_next_sibling (child)) {
+                GtkTreeIter iter;
+
+                /* Append new iter */
+                gtk_tree_store_append (priv->store, &iter, current_iter);
+                book_tree_insert_node (tree, child, &iter, NULL);
+        }
 }
 
 static void
@@ -548,69 +602,6 @@ book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
                                 /* Oh, well, no more books in this language... remove! */
                                 gtk_tree_store_remove (priv->store, &language_iter);
                         }
-                }
-        }
-}
-
-static void
-book_tree_insert_node (DhBookTree  *tree,
-                       GNode       *node,
-                       GtkTreeIter *current_iter,
-                       DhBook      *book)
-
-{
-        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhLink         *link;
-        PangoWeight     weight;
-        GNode          *child;
-
-        link = node->data;
-
-        if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
-                weight = PANGO_WEIGHT_BOLD;
-        } else {
-                weight = PANGO_WEIGHT_NORMAL;
-        }
-
-        gtk_tree_store_set (priv->store,
-                            current_iter,
-                            COL_TITLE, dh_link_get_name (link),
-                            COL_LINK, link,
-                            COL_BOOK, book,
-                            COL_WEIGHT, weight,
-                            COL_UNDERLINE, PANGO_UNDERLINE_NONE,
-                            -1);
-
-        for (child = g_node_first_child (node);
-             child;
-             child = g_node_next_sibling (child)) {
-                GtkTreeIter iter;
-
-                /* Append new iter */
-                gtk_tree_store_append (priv->store, &iter, current_iter);
-                book_tree_insert_node (tree, child, &iter, NULL);
-        }
-}
-
-static void
-book_tree_selection_changed_cb (GtkTreeSelection *selection,
-                                DhBookTree       *tree)
-{
-        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        GtkTreeIter     iter;
-
-        if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
-                DhLink *link;
-
-                gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
-                                    &iter,
-                                    COL_LINK, &link,
-                                    -1);
-                if (link) {
-                        if (link != priv->selected_link) {
-                                g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
-                        }
-                        priv->selected_link = link;
                 }
         }
 }
