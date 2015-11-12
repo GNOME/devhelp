@@ -513,6 +513,63 @@ book_tree_add_book_to_store (DhBookTree *tree,
 }
 
 static void
+book_tree_init_selection (DhBookTree *tree)
+{
+        DhBookTreePrivate   *priv;
+        GtkTreeSelection *selection;
+        GtkTreeIter       iter;
+        gboolean          iter_found = FALSE;
+
+        priv = dh_book_tree_get_instance_private (tree);
+
+        /* Mark the first item as selected, or it would get automatically
+         * selected when the treeview will get focus; but that's not even
+         * enough as a selection changed would still be emitted when there
+         * is no change, hence the manual tracking of selection in
+         * selected_link.
+         *   https://bugzilla.gnome.org/show_bug.cgi?id=492206
+         */
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
+        g_signal_handlers_block_by_func (selection,
+                                         book_tree_selection_changed_cb,
+                                         tree);
+
+        /* If grouping by languages, get first book in the first language */
+        if (dh_book_manager_get_group_by_language (priv->book_manager)) {
+                GtkTreeIter language_iter;
+
+                if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store),
+                                                   &language_iter)) {
+                        iter_found = gtk_tree_model_iter_children (GTK_TREE_MODEL (priv->store),
+                                                                   &iter,
+                                                                   &language_iter);
+                }
+        } else {
+                iter_found = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store),
+                                                            &iter);
+        }
+
+        if (iter_found) {
+                DhLink *link;
+
+                gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
+                                    &iter,
+                                    COL_LINK, &link,
+                                    -1);
+
+                priv->selected_link = link;
+                gtk_tree_selection_select_iter (selection, &iter);
+
+                if (dh_link_get_link_type (link) != DH_LINK_TYPE_BOOK)
+                        g_warn_if_reached ();
+        }
+
+        g_signal_handlers_unblock_by_func (selection,
+                                           book_tree_selection_changed_cb,
+                                           tree);
+}
+
+static void
 book_tree_populate_tree (DhBookTree *tree)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
@@ -533,6 +590,8 @@ book_tree_populate_tree (DhBookTree *tree)
                 if (dh_book_get_enabled (book))
                         book_tree_add_book_to_store (tree, book);
         }
+
+        book_tree_init_selection (tree);
 }
 
 static void
@@ -611,69 +670,11 @@ book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
 }
 
 static void
-book_tree_init_selection (DhBookTree *tree)
-{
-        DhBookTreePrivate   *priv;
-        GtkTreeSelection *selection;
-        GtkTreeIter       iter;
-        gboolean          iter_found = FALSE;
-
-        priv = dh_book_tree_get_instance_private (tree);
-
-        /* Mark the first item as selected, or it would get automatically
-         * selected when the treeview will get focus; but that's not even
-         * enough as a selection changed would still be emitted when there
-         * is no change, hence the manual tracking of selection in
-         * selected_link.
-         *   https://bugzilla.gnome.org/show_bug.cgi?id=492206
-         */
-        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
-        g_signal_handlers_block_by_func (selection,
-                                         book_tree_selection_changed_cb,
-                                         tree);
-
-        /* If grouping by languages, get first book in the first language */
-        if (dh_book_manager_get_group_by_language (priv->book_manager)) {
-                GtkTreeIter language_iter;
-
-                if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store),
-                                                   &language_iter)) {
-                        iter_found = gtk_tree_model_iter_children (GTK_TREE_MODEL (priv->store),
-                                                                   &iter,
-                                                                   &language_iter);
-                }
-        } else {
-                iter_found = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store),
-                                                            &iter);
-        }
-
-        if (iter_found) {
-                DhLink *link;
-
-                gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
-                                    &iter,
-                                    COL_LINK, &link,
-                                    -1);
-
-                priv->selected_link = link;
-                gtk_tree_selection_select_iter (selection, &iter);
-
-                if (dh_link_get_link_type (link) != DH_LINK_TYPE_BOOK)
-                        g_warn_if_reached ();
-        }
-
-        g_signal_handlers_unblock_by_func (selection,
-                                           book_tree_selection_changed_cb,
-                                           tree);
-}
-
-static void
 book_tree_group_by_language_cb (GObject    *object,
                                 GParamSpec *pspec,
                                 DhBookTree *tree)
 {
         book_tree_populate_tree (tree);
-        book_tree_init_selection (tree);
 }
 
 static void
@@ -713,7 +714,6 @@ dh_book_tree_constructed (GObject *object)
                                  0);
 
         book_tree_populate_tree (tree);
-        book_tree_init_selection (tree);
 
         G_OBJECT_CLASS (dh_book_tree_parent_class)->constructed (object);
 }
