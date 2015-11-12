@@ -457,6 +457,7 @@ dh_sidebar_dispose (GObject *object)
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
 
         g_clear_object (&priv->book_manager);
+        g_clear_object (&priv->hitlist_model);
 
         if (priv->idle_complete_id != 0) {
                 g_source_remove (priv->idle_complete_id);
