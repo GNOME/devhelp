@@ -80,10 +80,19 @@ sidebar_filter_idle_cb (DhSidebar *sidebar)
         book_link = dh_sidebar_get_selected_book (sidebar);
         book_id = book_link != NULL ? dh_link_get_book_id (book_link) : NULL;
 
+        /* Disconnect the model during the filter, for:
+         * 1. better performances.
+         * 2. clearing the selection.
+         */
+        gtk_tree_view_set_model (priv->hitlist_view, NULL);
+
         link = dh_keyword_model_filter (priv->hitlist_model,
                                         search_text,
                                         book_id,
                                         NULL);
+
+        gtk_tree_view_set_model (priv->hitlist_view,
+                                 GTK_TREE_MODEL (priv->hitlist_model));
 
         if (link != NULL)
                 g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
