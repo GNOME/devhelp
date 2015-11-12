@@ -518,7 +518,10 @@ book_tree_populate_tree (DhBookTree *tree)
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GList *l;
 
+        gtk_tree_view_set_model (GTK_TREE_VIEW (tree), NULL);
         gtk_tree_store_clear (priv->store);
+        gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
+                                 GTK_TREE_MODEL (priv->store));
 
         /* This list comes in order, but we don't really mind */
         for (l = dh_book_manager_get_books (priv->book_manager);
@@ -608,14 +611,6 @@ book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
 }
 
 static void
-book_tree_group_by_language_cb (GObject    *object,
-                                GParamSpec *pspec,
-                                DhBookTree *tree)
-{
-        book_tree_populate_tree (tree);
-}
-
-static void
 book_tree_init_selection (DhBookTree *tree)
 {
         DhBookTreePrivate   *priv;
@@ -670,6 +665,15 @@ book_tree_init_selection (DhBookTree *tree)
         g_signal_handlers_unblock_by_func (selection,
                                            book_tree_selection_changed_cb,
                                            tree);
+}
+
+static void
+book_tree_group_by_language_cb (GObject    *object,
+                                GParamSpec *pspec,
+                                DhBookTree *tree)
+{
+        book_tree_populate_tree (tree);
+        book_tree_init_selection (tree);
 }
 
 static void
