@@ -91,9 +91,6 @@ static const guint n_zoom_levels = G_N_ELEMENTS (zoom_levels);
 #define ZOOM_MAXIMAL    (zoom_levels[n_zoom_levels - 1].level)
 #define ZOOM_DEFAULT    (zoom_levels[2].level)
 
-static void           dh_window_class_init           (DhWindowClass   *klass);
-static void           dh_window_init                 (DhWindow        *window);
-static void           window_populate                (DhWindow        *window);
 static void           window_search_link_selected_cb (GObject         *ignored,
                                                       DhLink          *link,
                                                       DhWindow        *window);
@@ -117,7 +114,7 @@ static void           on_search_mode_enabled_changed (GtkSearchBar    *search_ba
                                                       DhWindow        *window);
 static void           on_search_entry_activated      (GtkEntry        *entry,
                                                       DhWindow        *window);
-static gboolean      on_search_entry_key_press       (GtkEntry    *entry,
+static gboolean       on_search_entry_key_press      (GtkEntry    *entry,
                                                       GdkEventKey *event,
                                                       DhWindow    *window);
 static GtkWidget *    window_new_tab_label           (DhWindow        *window,
@@ -134,8 +131,6 @@ static void           window_update_title            (DhWindow        *window,
 static void           window_tab_set_title           (DhWindow        *window,
                                                       WebKitWebView   *web_view,
                                                       const gchar     *title);
-static void           window_close_tab               (DhWindow *window,
-                                                      gint      page_num);
 static void           do_search                      (DhWindow *window);
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
