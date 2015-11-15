@@ -552,10 +552,10 @@ gtk_xft_dpi_changed_cb (GtkSettings *gtk_settings,
         update_fonts_on_dpi_change (window);
 }
 
+/* Monitor GdkScreen and GtkSettings for DPI changes. */
 static void
-screen_changed_cb (GtkWidget *window,
-                   GdkScreen *previous_screen,
-                   gpointer   user_data)
+dh_window_screen_changed (GtkWidget *window,
+                          GdkScreen *previous_screen)
 {
         DhWindow *dh_window = DH_WINDOW(window);
         DhWindowPrivate *priv = dh_window_get_instance_private (dh_window);
@@ -589,6 +589,10 @@ screen_changed_cb (GtkWidget *window,
         }
 
         update_fonts_on_dpi_change (dh_window);
+
+        if (GTK_WIDGET_CLASS (dh_window_parent_class)->screen_changed != NULL)
+                GTK_WIDGET_CLASS (dh_window_parent_class)->screen_changed (window,
+                                                                           previous_screen);
 }
 
 static gboolean
@@ -630,12 +634,6 @@ dh_window_init (DhWindow *window)
                                  G_CALLBACK (settings_fonts_changed_cb),
                                  window,
                                  0);
-
-        /* monitor GdkScreen and GtkSettings for DPI changes */
-        g_signal_connect (window,
-                          "screen-changed",
-                          G_CALLBACK (screen_changed_cb),
-                          NULL);
 
         /* we can't get the GdkScreen for the widget here, so get the
          * GtkSettings associated to the default one instead for now */
@@ -694,6 +692,8 @@ dh_window_class_init (DhWindowClass *klass)
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
         object_class->dispose = dh_window_dispose;
+
+        widget_class->screen_changed = dh_window_screen_changed;
 
         signals[OPEN_LINK] =
                 g_signal_new ("open-link",
