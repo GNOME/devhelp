@@ -25,7 +25,6 @@
 #include <math.h>
 #include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
-#include <gtk/gtk.h>
 #include <webkit2/webkit2.h>
 
 #include "dh-book-manager.h"
@@ -56,7 +55,6 @@ typedef struct {
         DhSettings     *settings;
         GtkSettings    *gtk_settings;
         gulong          xft_dpi_changed_id;
-
 } DhWindowPrivate;
 
 enum {
@@ -128,7 +126,7 @@ static gboolean      on_search_entry_key_press       (GtkEntry    *entry,
 static GtkWidget *    window_new_tab_label           (DhWindow        *window,
                                                       const gchar     *label,
                                                       const GtkWidget *parent);
-static int            window_open_new_tab            (DhWindow        *window,
+static void           window_open_new_tab            (DhWindow        *window,
                                                       const gchar     *location,
                                                       gboolean         switch_focus);
 static WebKitWebView *window_get_active_web_view     (DhWindow        *window);
@@ -141,7 +139,7 @@ static void           window_tab_set_title           (DhWindow        *window,
                                                       const gchar     *title);
 static void           window_close_tab               (DhWindow *window,
                                                       gint      page_num);
-static gboolean       do_search                      (DhWindow *window);
+static void           do_search                      (DhWindow *window);
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
@@ -182,12 +180,10 @@ window_close_tab (DhWindow *window,
 
         pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
 
-        if (pages == 0) {
+        if (pages == 0)
                 gtk_widget_destroy (GTK_WIDGET (window));
-        }
-        else if (pages == 1) {
+        else if (pages == 1)
                 gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
-        }
 }
 
 static void
@@ -222,11 +218,12 @@ copy_cb (GSimpleAction *action,
                 gtk_editable_copy_clipboard (GTK_EDITABLE (widget));
         } else if (GTK_IS_TREE_VIEW (widget) &&
                    gtk_widget_is_ancestor (widget, priv->sidebar) &&
-                   priv->selected_search_link) {
+                   priv->selected_search_link != NULL) {
                 GtkClipboard *clipboard;
                 clipboard = gtk_widget_get_clipboard (widget, GDK_SELECTION_CLIPBOARD);
                 gtk_clipboard_set_text (clipboard,
-                                dh_link_get_name(priv->selected_search_link), -1);
+                                        dh_link_get_name (priv->selected_search_link),
+                                        -1);
         } else {
                 WebKitWebView *web_view;
 
@@ -249,8 +246,9 @@ find_cb (GSimpleAction *action,
         gtk_widget_grab_focus (priv->search_entry);
 
         /* The behaviour for WebKit1 is to re-enable highlighting without
-           starting a new search. WebKit2 API does not allow that
-           without invoking a new search. */
+         * starting a new search. WebKit2 API does not allow that
+         * without invoking a new search.
+         */
         do_search (window);
 }
 
@@ -274,18 +272,18 @@ static int
 window_get_current_zoom_level_index (DhWindow *window)
 {
         WebKitWebView *web_view;
-        double previous, current, mean;
+        double previous;
         double zoom_level = ZOOM_DEFAULT;
         int i;
 
         web_view = window_get_active_web_view (window);
-        if (web_view)
+        if (web_view != NULL)
                 zoom_level = webkit_web_view_get_zoom_level (web_view);
 
         previous = zoom_levels[0].level;
         for (i = 1; i < n_zoom_levels; i++) {
-                current = zoom_levels[i].level;
-                mean = sqrt (previous * current);
+                double current = zoom_levels[i].level;
+                double mean = sqrt (previous * current);
 
                 if (zoom_level <= mean)
                         return i - 1;
@@ -300,36 +298,37 @@ static void
 window_update_zoom_actions_state (DhWindow *window)
 {
         GAction *action;
-        int zoom_level_idx;
+        int zoom_level_index;
         gboolean enabled;
 
-        zoom_level_idx = window_get_current_zoom_level_index (window);
+        zoom_level_index = window_get_current_zoom_level_index (window);
 
-        enabled = zoom_levels[zoom_level_idx].level < ZOOM_MAXIMAL;
+        enabled = zoom_levels[zoom_level_index].level < ZOOM_MAXIMAL;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-in");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 
-        enabled = zoom_levels[zoom_level_idx].level > ZOOM_MINIMAL;
+        enabled = zoom_levels[zoom_level_index].level > ZOOM_MINIMAL;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-out");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 
-        enabled = zoom_levels[zoom_level_idx].level != ZOOM_DEFAULT;
+        enabled = zoom_levels[zoom_level_index].level != ZOOM_DEFAULT;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-default");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 }
 
 static void
 show_sidebar_cb (GSimpleAction *action,
-                    GVariant      *parameter,
-                    gpointer       user_data)
+                 GVariant      *parameter,
+                 gpointer       user_data)
 {
         DhWindow *window = user_data;
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        gboolean visible;
 
-        gboolean visible = !gtk_widget_get_visible (priv->grid_sidebar);
+        visible = gtk_widget_get_visible (priv->grid_sidebar);
 
-        g_simple_action_set_state (action, g_variant_new_boolean(visible));
-        gtk_widget_set_visible (priv->grid_sidebar, visible);
+        g_simple_action_set_state (action, g_variant_new_boolean (!visible));
+        gtk_widget_set_visible (priv->grid_sidebar, !visible);
 }
 
 static void
@@ -338,14 +337,17 @@ zoom_in_cb (GSimpleAction *action,
             gpointer       user_data)
 {
         DhWindow *window = user_data;
-        int zoom_level_idx;
+        int zoom_level_index;
 
-        zoom_level_idx = window_get_current_zoom_level_index (window);
-        if (zoom_levels[zoom_level_idx].level < ZOOM_MAXIMAL) {
+        zoom_level_index = window_get_current_zoom_level_index (window);
+        if (zoom_levels[zoom_level_index].level < ZOOM_MAXIMAL) {
+                double new_zoom_level;
                 WebKitWebView *web_view;
 
+                new_zoom_level = zoom_levels[zoom_level_index + 1].level;
+
                 web_view = window_get_active_web_view (window);
-                webkit_web_view_set_zoom_level (web_view, zoom_levels[zoom_level_idx + 1].level);
+                webkit_web_view_set_zoom_level (web_view, new_zoom_level);
                 window_update_zoom_actions_state (window);
         }
 
@@ -357,14 +359,17 @@ zoom_out_cb (GSimpleAction *action,
              gpointer       user_data)
 {
         DhWindow *window = user_data;
-        int zoom_level_idx;
+        int zoom_level_index;
 
-        zoom_level_idx = window_get_current_zoom_level_index (window);
-        if (zoom_levels[zoom_level_idx].level > ZOOM_MINIMAL) {
+        zoom_level_index = window_get_current_zoom_level_index (window);
+        if (zoom_levels[zoom_level_index].level > ZOOM_MINIMAL) {
+                double new_zoom_level;
                 WebKitWebView *web_view;
 
+                new_zoom_level = zoom_levels[zoom_level_index - 1].level;
+
                 web_view = window_get_active_web_view (window);
-                webkit_web_view_set_zoom_level (web_view, zoom_levels[zoom_level_idx - 1].level);
+                webkit_web_view_set_zoom_level (web_view, new_zoom_level);
                 window_update_zoom_actions_state (window);
         }
 }
@@ -402,14 +407,16 @@ go_back_cb (GSimpleAction *action,
 {
         DhWindow      *window = user_data;
         DhWindowPrivate *priv;
+        gint current_page_num;
         WebKitWebView *web_view;
         GtkWidget     *frame;
 
         priv = dh_window_get_instance_private (window);
 
-        frame = gtk_notebook_get_nth_page (
-                GTK_NOTEBOOK (priv->notebook),
-                gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)));
+        current_page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
+        frame = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook),
+                                           current_page_num);
+
         web_view = g_object_get_data (G_OBJECT (frame), "web_view");
 
         webkit_web_view_go_back (web_view);
@@ -422,13 +429,16 @@ go_forward_cb (GSimpleAction *action,
 {
         DhWindow      *window = user_data;
         DhWindowPrivate *priv;
+        gint current_page_num;
         WebKitWebView *web_view;
         GtkWidget     *frame;
 
         priv = dh_window_get_instance_private (window);
 
+        current_page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
         frame = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook),
-                                           gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)));
+                                           current_page_num);
+
         web_view = g_object_get_data (G_OBJECT (frame), "web_view");
 
         webkit_web_view_go_forward (web_view);
@@ -448,46 +458,56 @@ gear_menu_cb (GSimpleAction *action,
 }
 
 static void
-window_open_link_cb (DhWindow *window,
-                     const char *location,
-                     DhOpenLinkFlags flags)
+window_open_link_cb (DhWindow        *window,
+                     const char      *location,
+                     DhOpenLinkFlags  flags)
 {
-        if (flags & DH_OPEN_LINK_NEW_TAB) {
-                window_open_new_tab (window, location, FALSE);
-        }
-        else if (flags & DH_OPEN_LINK_NEW_WINDOW) {
-                dh_app_new_window (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
+        switch (flags) {
+                case DH_OPEN_LINK_NEW_WINDOW:
+                        dh_app_new_window (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
+                        break;
+
+                case DH_OPEN_LINK_NEW_TAB:
+                        window_open_new_tab (window, location, FALSE);
+                        break;
+
+                default:
+                        g_assert_not_reached ();
         }
 }
 
 static GActionEntry win_entries[] = {
         /* file */
-        { "new-tab",          new_tab_cb,          NULL, NULL, NULL },
-        { "print",            print_cb,            NULL, NULL, NULL },
-        { "close",            close_cb,            NULL, NULL, NULL },
+        { "new-tab",          new_tab_cb },
+        { "print",            print_cb },
+        { "close",            close_cb },
+
         /* edit */
-        { "copy",             copy_cb,             NULL, NULL, NULL },
-        { "find",             find_cb,             NULL, NULL, NULL },
-        { "find-next",        find_next_cb,        NULL, NULL, NULL },
-        { "find-previous",    find_previous_cb,    NULL, NULL, NULL },
+        { "copy",             copy_cb },
+        { "find",             find_cb },
+        { "find-previous",    find_previous_cb },
+        { "find-next",        find_next_cb },
+
         /* view */
-        { "show-sidebar",     NULL,     NULL, "false", show_sidebar_cb },
-        { "zoom-in",          zoom_in_cb,          NULL, NULL, NULL },
-        { "zoom-out",         zoom_out_cb,         NULL, NULL, NULL },
-        { "zoom-default",     zoom_default_cb,     NULL, NULL, NULL },
-        { "focus-search",     focus_search_cb,     NULL, NULL, NULL },
+        { "show-sidebar",     NULL, NULL, "false", show_sidebar_cb },
+        { "zoom-in",          zoom_in_cb },
+        { "zoom-out",         zoom_out_cb },
+        { "zoom-default",     zoom_default_cb },
+        { "focus-search",     focus_search_cb },
+
         /* go */
-        { "go-back",          go_back_cb,          NULL, "false", NULL },
-        { "go-forward",       go_forward_cb,       NULL, "false", NULL },
+        { "go-back",          go_back_cb, NULL, "false" },
+        { "go-forward",       go_forward_cb, NULL, "false" },
+
         /* gear menu */
-        { "gear-menu",        gear_menu_cb,        NULL, "false", NULL },
+        { "gear-menu",        gear_menu_cb, NULL, "false" },
 };
 
 static void
-settings_fonts_changed_cb (DhSettings *settings,
+settings_fonts_changed_cb (DhSettings  *settings,
                            const gchar *font_name_fixed,
                            const gchar *font_name_variable,
-                           gpointer user_data)
+                           gpointer     user_data)
 {
         DhWindow *window = DH_WINDOW (user_data);
         DhWindowPrivate *priv;
@@ -497,7 +517,7 @@ settings_fonts_changed_cb (DhSettings *settings,
         priv = dh_window_get_instance_private (window);
 
         /* change font for all pages */
-        for (i = 0; i < gtk_notebook_get_n_pages (GTK_NOTEBOOK(priv->notebook)); i++) {
+        for (i = 0; i < gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook)); i++) {
                 GtkWidget *page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), i);
                 view = WEBKIT_WEB_VIEW (g_object_get_data (G_OBJECT (page), "web_view"));
                 dh_util_view_set_font (view, font_name_fixed, font_name_variable);
@@ -547,24 +567,29 @@ screen_changed_cb (GtkWidget *window,
         GtkSettings *previous_settings = gtk_settings_get_for_screen (previous_screen);
         GtkSettings *current_settings = gtk_widget_get_settings (window);
 
-        /* if the screen has changed we need to re-retrieve the GtkSettings object,
-           and disconnect the old signal handlers before re-connecting again */
+        /* If the screen has changed we need to re-retrieve the GtkSettings object,
+         * and disconnect the old signal handlers before re-connecting again.
+         */
         if (current_settings != previous_settings) {
-                if (priv->xft_dpi_changed_id) {
-                        if (priv->gtk_settings != NULL && g_signal_handler_is_connected (priv->gtk_settings, priv->xft_dpi_changed_id))
+                if (priv->xft_dpi_changed_id != 0) {
+                        if (priv->gtk_settings != NULL &&
+                            g_signal_handler_is_connected (priv->gtk_settings, priv->xft_dpi_changed_id))
                                 g_signal_handler_disconnect (priv->gtk_settings, priv->xft_dpi_changed_id);
                         priv->xft_dpi_changed_id = 0;
                 }
+
                 priv->gtk_settings = NULL;
         }
 
-        /* now store the new GtkSettings and (re)connect the signals if needed */
+        /* Now store the new GtkSettings and (re)connect the signals if needed. */
         if (priv->gtk_settings == NULL) {
                 GdkScreen *screen = gtk_widget_get_screen (window);
                 priv->gtk_settings = gtk_settings_get_for_screen (screen);
                 priv->xft_dpi_changed_id =
-                        g_signal_connect (priv->gtk_settings, "notify::gtk-xft-dpi",
-                                          G_CALLBACK (gtk_xft_dpi_changed_cb), window);
+                        g_signal_connect (priv->gtk_settings,
+                                          "notify::gtk-xft-dpi",
+                                          G_CALLBACK (gtk_xft_dpi_changed_cb),
+                                          window);
 
         }
 
@@ -572,20 +597,18 @@ screen_changed_cb (GtkWidget *window,
 }
 
 static gboolean
-window_configure_event_cb (GtkWidget *window,
-                           GdkEventConfigure *event,
-                           gpointer user_data)
+window_configure_event_cb (GtkWidget         *window,
+                           GdkEventConfigure *event)
 {
-        DhWindow *dhwindow;
-        DhWindowPrivate  *priv;
+        DhWindowPrivate *priv;
 
-        dhwindow = DH_WINDOW (user_data);
-        priv = dh_window_get_instance_private (dhwindow);
+        priv = dh_window_get_instance_private (DH_WINDOW (window));
 
-        dh_util_window_settings_save (
-                GTK_WINDOW (window),
-                dh_settings_peek_window_settings (priv->settings), TRUE);
-        return FALSE;
+        dh_util_window_settings_save (GTK_WINDOW (window),
+                                      dh_settings_peek_window_settings (priv->settings),
+                                      TRUE);
+
+        return GDK_EVENT_PROPAGATE;
 }
 
 static void
@@ -638,9 +661,9 @@ dh_window_init (DhWindow *window)
         accel_group = gtk_accel_group_new ();
         gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
         for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
-                closure =  g_cclosure_new (G_CALLBACK (window_web_view_tab_accel_cb),
-                                           window,
-                                           NULL);
+                closure = g_cclosure_new (G_CALLBACK (window_web_view_tab_accel_cb),
+                                          window,
+                                          NULL);
                 gtk_accel_group_connect (accel_group,
                                          tab_accel_keys[i],
                                          GDK_MOD1_MASK,
@@ -657,15 +680,15 @@ dh_window_dispose (GObject *object)
 
         priv = dh_window_get_instance_private (window);
 
-        if (priv->xft_dpi_changed_id) {
-                if (priv->gtk_settings != NULL && g_signal_handler_is_connected (priv->gtk_settings, priv->xft_dpi_changed_id))
+        if (priv->xft_dpi_changed_id != 0) {
+                if (priv->gtk_settings != NULL &&
+                    g_signal_handler_is_connected (priv->gtk_settings, priv->xft_dpi_changed_id))
                         g_signal_handler_disconnect (priv->gtk_settings, priv->xft_dpi_changed_id);
                 priv->xft_dpi_changed_id = 0;
         }
 
         g_clear_object (&priv->settings);
 
-        /* Chain up to the parent class */
         G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
 }
 
@@ -708,10 +731,10 @@ dh_window_class_init (DhWindowClass *klass)
 }
 
 static void
-window_web_view_switch_page_cb (GtkNotebook     *notebook,
-                                gpointer         page,
-                                guint            new_page_num,
-                                DhWindow        *window)
+window_web_view_switch_page_cb (GtkNotebook *notebook,
+                                gpointer     page,
+                                guint        new_page_num,
+                                DhWindow    *window)
 {
         DhWindowPrivate *priv;
         GtkWidget *new_page;
@@ -719,7 +742,7 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
         priv = dh_window_get_instance_private (window);
 
         new_page = gtk_notebook_get_nth_page (notebook, new_page_num);
-        if (new_page) {
+        if (new_page != NULL) {
                 WebKitWebView  *new_web_view;
                 const gchar    *location;
 
@@ -728,7 +751,7 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
                 /* Sync the book tree */
                 location = webkit_web_view_get_uri (new_web_view);
 
-                if (location)
+                if (location != NULL)
                         dh_sidebar_select_uri (DH_SIDEBAR (priv->sidebar), location);
 
                 window_check_history (window, new_web_view);
@@ -743,10 +766,10 @@ window_web_view_switch_page_cb (GtkNotebook     *notebook,
 }
 
 static void
-window_web_view_switch_page_after_cb (GtkNotebook     *notebook,
-                                      gpointer         page,
-                                      guint            new_page_num,
-                                      DhWindow        *window)
+window_web_view_switch_page_after_cb (GtkNotebook *notebook,
+                                      gpointer     page,
+                                      guint        new_page_num,
+                                      DhWindow    *window)
 {
         window_update_zoom_actions_state (window);
 }
@@ -875,17 +898,17 @@ find_library_equivalent (DhWindow    *window,
 }
 
 static gboolean
-window_web_view_decide_policy_cb (WebKitWebView           *web_view,
-                                  WebKitPolicyDecision    *policy_decision,
-                                  WebKitPolicyDecisionType type,
-                                  DhWindow                *window)
+window_web_view_decide_policy_cb (WebKitWebView            *web_view,
+                                  WebKitPolicyDecision     *policy_decision,
+                                  WebKitPolicyDecisionType  type,
+                                  DhWindow                 *window)
 {
         const char   *uri;
         WebKitNavigationPolicyDecision *navigation_decision;
         WebKitNavigationAction *navigation_action;
 
         if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
-                return FALSE;
+                return GDK_EVENT_PROPAGATE;
 
         navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (policy_decision);
         navigation_action = webkit_navigation_policy_decision_get_navigation_action (navigation_decision);
@@ -894,36 +917,37 @@ window_web_view_decide_policy_cb (WebKitWebView           *web_view,
         /* make sure to hide the info bar on page change */
         gtk_widget_hide (window_get_active_info_bar (window));
 
-        if (webkit_navigation_action_get_mouse_button (navigation_action) == 2) { /* middle click */
+        /* middle click */
+        if (webkit_navigation_action_get_mouse_button (navigation_action) == 2) {
                 webkit_policy_decision_ignore (policy_decision);
                 g_signal_emit (window, signals[OPEN_LINK], 0, uri, DH_OPEN_LINK_NEW_TAB);
-                return TRUE;
+                return GDK_EVENT_STOP;
         }
 
-        if (strcmp (uri, "about:blank") == 0) {
-                return FALSE;
+        if (g_str_equal (uri, "about:blank")) {
+                return GDK_EVENT_PROPAGATE;
         }
 
-        if (strncmp (uri, "http://library.gnome.org/devel/", 31) == 0 ||
-            strncmp (uri, "https://library.gnome.org/devel/", 32) == 0 ||
-            strncmp (uri, "http://developer.gnome.org/", 27 ) == 0 ||
-            strncmp (uri, "https://developer.gnome.org/", 28 ) == 0) {
+        if (g_str_has_prefix (uri, "http://library.gnome.org/devel/") ||
+            g_str_has_prefix (uri, "https://library.gnome.org/devel/") ||
+            g_str_has_prefix (uri, "http://developer.gnome.org/") ||
+            g_str_has_prefix (uri, "https://developer.gnome.org/")) {
                 gchar *local_uri = find_library_equivalent (window, uri);
-                if (local_uri) {
+                if (local_uri != NULL) {
                         webkit_policy_decision_ignore (policy_decision);
                         _dh_window_display_uri (window, local_uri);
                         g_free (local_uri);
-                        return TRUE;
+                        return GDK_EVENT_STOP;
                 }
         }
 
-        if (strncmp (uri, "file://", 7) != 0) {
+        if (!g_str_has_prefix (uri, "file://")) {
                 webkit_policy_decision_ignore (policy_decision);
                 gtk_show_uri (NULL, uri, GDK_CURRENT_TIME, NULL);
-                return TRUE;
+                return GDK_EVENT_STOP;
         }
 
-        return FALSE;
+        return GDK_EVENT_PROPAGATE;
 }
 
 static void
@@ -959,17 +983,16 @@ window_web_view_load_failed_cb (WebKitWebView   *web_view,
 
         /* Ignore cancellation errors; which happen when typing fast in the search entry */
         if (g_error_matches (web_error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
-                return TRUE;
+                return GDK_EVENT_STOP;
 
         info_bar = window_get_active_info_bar (window);
-        markup = g_strdup_printf ("<b>%s</b>",
-                       _("Error opening the requested link."));
+        markup = g_strdup_printf ("<b>%s</b>", _("Error opening the requested link."));
         message_label = gtk_label_new (markup);
         gtk_label_set_xalign (GTK_LABEL (message_label), 0.0);
         gtk_label_set_use_markup (GTK_LABEL (message_label), TRUE);
         content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (info_bar));
         children = gtk_container_get_children (GTK_CONTAINER (content_area));
-        if (children) {
+        if (children != NULL) {
                 gtk_container_remove (GTK_CONTAINER (content_area), children->data);
                 g_list_free (children);
         }
@@ -979,7 +1002,7 @@ window_web_view_load_failed_cb (WebKitWebView   *web_view,
         gtk_widget_show (info_bar);
         g_free (markup);
 
-        return TRUE;
+        return GDK_EVENT_STOP;
 }
 
 static void
@@ -1007,14 +1030,14 @@ static void
 window_check_history (DhWindow      *window,
                       WebKitWebView *web_view)
 {
-        GAction       *action;
-        gboolean       enabled;
+        GAction *action;
+        gboolean enabled;
 
-        enabled = web_view ? webkit_web_view_can_go_forward (web_view) : FALSE;
+        enabled = web_view != NULL ? webkit_web_view_can_go_forward (web_view) : FALSE;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-forward");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 
-        enabled = web_view ? webkit_web_view_can_go_back (web_view) : FALSE;
+        enabled = web_view != NULL ? webkit_web_view_can_go_back (web_view) : FALSE;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-back");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 }
@@ -1038,14 +1061,13 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
                                        GdkEventButton *event,
                                        DhWindow       *window)
 {
-        if (event->button == 3) {
-                return TRUE;
-        }
+        if (event->button == 3)
+                return GDK_EVENT_STOP;
 
-        return FALSE;
+        return GDK_EVENT_PROPAGATE;
 }
 
-static gboolean
+static void
 do_search (DhWindow *window)
 {
         DhWindowPrivate *priv;
@@ -1061,8 +1083,6 @@ do_search (DhWindow *window)
 
         search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
         webkit_find_controller_search (find_controller, search_text, find_options, G_MAXUINT);
-
-        return FALSE;
 }
 
 static void
@@ -1148,12 +1168,13 @@ on_search_entry_key_press (GtkEntry    *entry,
                            GdkEventKey *event,
                            DhWindow    *window)
 {
-        if (event->keyval == GDK_KEY_Return && event->state & GDK_SHIFT_MASK) {
+        if (event->keyval == GDK_KEY_Return &&
+            event->state & GDK_SHIFT_MASK) {
                 findbar_find_previous (window);
-                return TRUE;
+                return GDK_EVENT_STOP;
         }
 
-        return FALSE;
+        return GDK_EVENT_PROPAGATE;
 }
 
 static void
@@ -1164,22 +1185,21 @@ window_web_view_tab_accel_cb (GtkAccelGroup   *accel_group,
                               DhWindow        *window)
 {
         DhWindowPrivate *priv;
-        gint          i, num;
+        gint page_num;
+        gint i;
 
         priv = dh_window_get_instance_private (window);
 
-        num = -1;
+        page_num = -1;
         for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
                 if (tab_accel_keys[i] == key) {
-                        num = i;
+                        page_num = i;
                         break;
                 }
         }
 
-        if (num != -1) {
-                gtk_notebook_set_current_page (
-                        GTK_NOTEBOOK (priv->notebook), num);
-        }
+        if (page_num != -1)
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), page_num);
 }
 
 static void
@@ -1194,7 +1214,7 @@ apply_webview_settings (WebKitWebView *view)
                       NULL);
 }
 
-static int
+static void
 window_open_new_tab (DhWindow    *window,
                      const gchar *location,
                      gboolean     switch_focus)
@@ -1227,20 +1247,10 @@ window_open_new_tab (DhWindow    *window,
                                  _("_Close"), GTK_RESPONSE_OK);
         gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar),
                                        GTK_MESSAGE_ERROR);
-        g_signal_connect (info_bar, "response",
-                          G_CALLBACK (gtk_widget_hide), NULL);
-
-#if 0
-        /* Leave this in for now to make it easier to experiment. */
-        {
-                WebKitWebSettings *settings;
-                settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
-
-                g_object_set (settings,
-                              "user-stylesheet-uri", "file://" DATADIR "/devhelp/devhelp.css",
-                              NULL);
-        }
-#endif
+        g_signal_connect (info_bar,
+                          "response",
+                          G_CALLBACK (gtk_widget_hide),
+                          NULL);
 
         vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_widget_show (vbox);
@@ -1249,8 +1259,8 @@ window_open_new_tab (DhWindow    *window,
         g_object_set_data (G_OBJECT (vbox), "web_view", view);
         g_object_set_data (G_OBJECT (vbox), "info_bar", info_bar);
 
-        gtk_box_pack_start (GTK_BOX(vbox), info_bar, FALSE, TRUE, 0);
-        gtk_box_pack_start (GTK_BOX(vbox), view, TRUE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox), info_bar, FALSE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox), view, TRUE, TRUE, 0);
 
         label = window_new_tab_label (window, _("Empty Page"), vbox);
         gtk_widget_show_all (label);
@@ -1286,7 +1296,7 @@ window_open_new_tab (DhWindow    *window,
                 gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
         }
 
-        if (location) {
+        if (location != NULL) {
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), location);
         } else {
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), "about:blank");
@@ -1295,8 +1305,6 @@ window_open_new_tab (DhWindow    *window,
         if (switch_focus) {
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), num);
         }
-
-        return num;
 }
 
 static void
@@ -1320,7 +1328,7 @@ close_button_clicked_cb (GtkButton *button,
         }
 }
 
-static GtkWidget*
+static GtkWidget *
 window_new_tab_label (DhWindow        *window,
                       const gchar     *str,
                       const GtkWidget *parent)
@@ -1398,15 +1406,14 @@ window_update_title (DhWindow      *window,
 
         priv = dh_window_get_instance_private (window);
 
-        if (!web_view_title)
+        if (web_view_title == NULL)
                 web_view_title = webkit_web_view_get_title (web_view);
 
-        if (web_view_title && *web_view_title == '\0') {
+        if (web_view_title != NULL && web_view_title[0] == '\0')
                 web_view_title = NULL;
-        }
 
         gtk_header_bar_set_title (GTK_HEADER_BAR (priv->header_bar),
-                                 web_view_title);
+                                  web_view_title);
 }
 
 static void
@@ -1415,32 +1422,31 @@ window_tab_set_title (DhWindow      *window,
                       const gchar   *title)
 {
         DhWindowPrivate *priv;
-        gint          num_pages, i;
-        GtkWidget    *page;
-        GtkWidget    *hbox;
-        GtkWidget    *label;
-        GtkWidget    *page_web_view;
+        gint num_pages;
+        gint i;
 
         priv = dh_window_get_instance_private (window);
 
-        if (!title || title[0] == '\0') {
+        if (title == NULL || title[0] == '\0')
                 title = _("Empty Page");
-        }
 
         num_pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
         for (i = 0; i < num_pages; i++) {
-                page = gtk_notebook_get_nth_page (
-                        GTK_NOTEBOOK (priv->notebook), i);
+                GtkWidget *page;
+                GtkWidget *page_web_view;
+
+                page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), i);
                 page_web_view = g_object_get_data (G_OBJECT (page), "web_view");
 
                 /* The web_view widget is inside a frame. */
                 if (page_web_view == GTK_WIDGET (web_view)) {
-                        hbox = gtk_notebook_get_tab_label (
-                                GTK_NOTEBOOK (priv->notebook), page);
+                        GtkWidget *hbox;
 
-                        if (hbox) {
-                                label = g_object_get_data (G_OBJECT (hbox), "label");
-                                gtk_label_set_text (GTK_LABEL (label), title);
+                        hbox = gtk_notebook_get_tab_label (GTK_NOTEBOOK (priv->notebook), page);
+
+                        if (hbox != NULL) {
+                                GtkLabel *label = g_object_get_data (G_OBJECT (hbox), "label");
+                                gtk_label_set_text (label, title);
                         }
                         break;
                 }
@@ -1453,22 +1459,26 @@ dh_window_new (DhApp *application)
         DhWindow     *window;
         DhWindowPrivate *priv;
 
-        window = g_object_new (DH_TYPE_WINDOW, "application", application, NULL);
+        window = g_object_new (DH_TYPE_WINDOW,
+                               "application", application,
+                               NULL);
+
         priv = dh_window_get_instance_private (window);
 
         window_populate (window);
 
-        g_signal_connect (window, "configure-event",
+        g_signal_connect (window,
+                          "configure-event",
                           G_CALLBACK (window_configure_event_cb),
-                          window);
+                          NULL);
 
-        dh_util_window_settings_restore (
-                GTK_WINDOW (window),
-                dh_settings_peek_window_settings (priv->settings), TRUE);
+        dh_util_window_settings_restore (GTK_WINDOW (window),
+                                         dh_settings_peek_window_settings (priv->settings),
+                                         TRUE);
 
-        g_settings_bind (dh_settings_peek_paned_settings (priv->settings),
-                         "position", G_OBJECT (priv->hpaned),
-                         "position", G_SETTINGS_BIND_DEFAULT);
+        g_settings_bind (dh_settings_peek_paned_settings (priv->settings), "position",
+                         priv->hpaned, "position",
+                         G_SETTINGS_BIND_DEFAULT);
 
         return GTK_WIDGET (window);
 }
