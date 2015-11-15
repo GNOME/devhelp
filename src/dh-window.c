@@ -36,8 +36,6 @@
 #include "dh-settings.h"
 #include "gedit-close-button.h"
 
-#define TAB_WIDTH_N_CHARS 15
-
 typedef struct {
         GMenuModel     *gear_app_menu;
         GtkWidget      *hpaned;
@@ -1164,16 +1162,6 @@ on_search_entry_key_press (GtkEntry    *entry,
 
         return FALSE;
 }
-
-#if 0
-static void
-window_web_view_open_new_tab_cb (WebKitWebView *web_view,
-                                 const gchar   *location,
-                                 DhWindow      *window)
-{
-        window_open_new_tab (window, location);
-}
-#endif
 
 static void
 window_web_view_tab_accel_cb (GtkAccelGroup   *accel_group,
