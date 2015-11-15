@@ -821,46 +821,50 @@ find_library_equivalent (DhWindow    *window,
                          const gchar *uri)
 {
         gchar **components;
-        GList *iter;
-        DhLink *link;
-        DhBookManager *book_manager;
+        guint n_components;
         gchar *book_id;
         gchar *filename;
-        gchar *local_uri = NULL;
+        DhBookManager *book_manager;
         GList *books;
+        gchar *local_uri = NULL;
 
         components = g_strsplit (uri, "/", 0);
-        if (strncmp (uri, "http://library.gnome.org/devel/", 31) == 0 ||
-            strncmp (uri, "https://library.gnome.org/devel/", 32) == 0) {
+        n_components = g_strv_length (components);
+        if ((g_str_has_prefix (uri, "http://library.gnome.org/devel/") ||
+             g_str_has_prefix (uri, "https://library.gnome.org/devel/")) &&
+            n_components >= 7) {
                 book_id = components[4];
                 filename = components[6];
-        } else if (strncmp (uri, "http://developer.gnome.org/", 27 ) == 0 ||
-                   strncmp (uri, "https://developer.gnome.org/", 28 ) == 0) {
+        } else if ((g_str_has_prefix (uri, "http://developer.gnome.org/") ||
+                    g_str_has_prefix (uri, "https://developer.gnome.org/")) &&
+                   n_components >= 6) {
                 book_id = components[3];
                 filename = components[5];
         } else {
+                g_strfreev (components);
                 return NULL;
         }
 
         book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
 
-        /* use list pointer to iterate */
         for (books = dh_book_manager_get_books (book_manager);
-             !local_uri && books;
-             books = g_list_next (books)) {
-                DhBook *book = DH_BOOK (books->data);
+             local_uri == NULL && books != NULL;
+             books = books->next) {
+                DhBook *cur_book = DH_BOOK (books->data);
+                GList *keywords;
 
-                for (iter = dh_book_get_keywords (book);
-                     iter;
-                     iter = g_list_next (iter)) {
-                        link = iter->data;
-                        if (g_strcmp0 (dh_link_get_book_id (link), book_id) != 0) {
+                for (keywords = dh_book_get_keywords (cur_book);
+                     keywords != NULL;
+                     keywords = keywords->next) {
+                        DhLink *cur_link = keywords->data;
+
+                        if (g_strcmp0 (dh_link_get_book_id (cur_link), book_id) != 0)
                                 continue;
-                        }
-                        if (g_strcmp0 (dh_link_get_file_name (link), filename) != 0) {
+
+                        if (g_strcmp0 (dh_link_get_file_name (cur_link), filename) != 0)
                                 continue;
-                        }
-                        local_uri = dh_link_get_uri (link);
+
+                        local_uri = dh_link_get_uri (cur_link);
                         break;
                 }
         }
