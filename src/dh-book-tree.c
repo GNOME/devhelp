@@ -4,6 +4,7 @@
  * Copyright (C) 2003      CodeFactory AB
  * Copyright (C) 2008      Imendio AB
  * Copyright (C) 2010      Lanedo GmbH
+ * Copyright (C) 2015      Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -60,78 +61,6 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhBookTree, dh_book_tree, GTK_TYPE_TREE_VIEW);
 static gint signals[LAST_SIGNAL] = { 0 };
 
 static void
-dh_book_tree_dispose (GObject *object)
-{
-        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
-
-        g_clear_object (&priv->store);
-        g_clear_object (&priv->book_manager);
-
-        G_OBJECT_CLASS (dh_book_tree_parent_class)->dispose (object);
-}
-
-static void
-dh_book_tree_get_property (GObject    *object,
-                           guint       prop_id,
-                           GValue     *value,
-                           GParamSpec *pspec)
-{
-        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
-
-        switch (prop_id) {
-                case PROP_BOOK_MANAGER:
-                        g_value_set_object (value, priv->book_manager);
-                        break;
-
-                default:
-                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                        break;
-        }
-}
-
-static void
-dh_book_tree_set_property (GObject      *object,
-                           guint         prop_id,
-                           const GValue *value,
-                           GParamSpec   *pspec)
-{
-        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
-
-        switch (prop_id) {
-                case PROP_BOOK_MANAGER:
-                        g_return_if_fail (priv->book_manager == NULL);
-                        priv->book_manager = g_value_dup_object (value);
-                        break;
-
-                default:
-                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                        break;
-        }
-}
-
-static void
-book_tree_add_columns (DhBookTree *tree)
-{
-        GtkCellRenderer   *cell;
-        GtkTreeViewColumn *column;
-
-        column = gtk_tree_view_column_new ();
-
-        cell = gtk_cell_renderer_text_new ();
-        g_object_set (cell,
-                      "ellipsize", PANGO_ELLIPSIZE_END,
-                      NULL);
-        gtk_tree_view_column_pack_start (column, cell, TRUE);
-        gtk_tree_view_column_set_attributes (column, cell,
-                                             "text", COL_TITLE,
-                                             "weight", COL_WEIGHT,
-                                             "underline", COL_UNDERLINE,
-                                             NULL);
-
-        gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
-}
-
-static void
 book_tree_selection_changed_cb (GtkTreeSelection *selection,
                                 DhBookTree       *tree)
 {
@@ -168,29 +97,6 @@ book_tree_setup_selection (DhBookTree *tree)
                                  G_CALLBACK (book_tree_selection_changed_cb),
                                  tree,
                                  0);
-}
-
-static void
-dh_book_tree_init (DhBookTree *tree)
-{
-        DhBookTreePrivate *priv;
-
-        priv = dh_book_tree_get_instance_private (tree);
-
-        priv->store = gtk_tree_store_new (N_COLUMNS,
-                                          G_TYPE_STRING,
-                                          G_TYPE_POINTER,
-                                          G_TYPE_OBJECT,
-                                          PANGO_TYPE_WEIGHT,
-                                          PANGO_TYPE_UNDERLINE);
-        priv->selected_link = NULL;
-        gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
-                                 GTK_TREE_MODEL (priv->store));
-
-        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
-
-        book_tree_add_columns (tree);
-        book_tree_setup_selection (tree);
 }
 
 /* Tries to find:
@@ -513,6 +419,81 @@ book_tree_add_book_to_store (DhBookTree *tree,
 }
 
 static void
+book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
+                                      GObject       *book_object,
+                                      DhBookTree    *tree)
+{
+        DhBook *book = DH_BOOK (book_object);
+
+        if (!dh_book_get_enabled (book))
+                return;
+
+        book_tree_add_book_to_store (tree, book);
+}
+
+static void
+book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
+                                       GObject       *book_object,
+                                       DhBookTree    *tree)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
+        DhBook         *book = DH_BOOK (book_object);
+        GtkTreeIter     exact_iter;
+        gboolean        exact_iter_found = FALSE;
+        GtkTreeIter     language_iter;
+        gboolean        language_iter_found = FALSE;
+
+        if (dh_book_manager_get_group_by_language (book_manager)) {
+                GtkTreeIter first_book_iter;
+
+                book_tree_find_language_group (tree,
+                                               dh_book_get_language (book),
+                                               &language_iter,
+                                               &language_iter_found,
+                                               NULL,
+                                               NULL);
+
+                if (language_iter_found &&
+                    gtk_tree_model_iter_children (GTK_TREE_MODEL (priv->store),
+                                                  &first_book_iter,
+                                                  &language_iter)) {
+                        book_tree_find_book (tree,
+                                             book,
+                                             &first_book_iter,
+                                             &exact_iter,
+                                             &exact_iter_found,
+                                             NULL,
+                                             NULL);
+                }
+        } else {
+                book_tree_find_book (tree,
+                                     book,
+                                     NULL,
+                                     &exact_iter,
+                                     &exact_iter_found,
+                                     NULL,
+                                     NULL);
+        }
+
+        if (exact_iter_found) {
+                /* Remove the book from the tree */
+                gtk_tree_store_remove (priv->store, &exact_iter);
+                /* If this book was inside a language group, check if the group
+                 * is now empty and so removable */
+                if (language_iter_found) {
+                        GtkTreeIter first_book_iter;
+
+                        if (!gtk_tree_model_iter_children (GTK_TREE_MODEL (priv->store),
+                                                           &first_book_iter,
+                                                           &language_iter)) {
+                                /* Oh, well, no more books in this language... remove! */
+                                gtk_tree_store_remove (priv->store, &language_iter);
+                        }
+                }
+        }
+}
+
+static void
 book_tree_init_selection (DhBookTree *tree)
 {
         DhBookTreePrivate   *priv;
@@ -595,86 +576,50 @@ book_tree_populate_tree (DhBookTree *tree)
 }
 
 static void
-book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
-                                      GObject       *book_object,
-                                      DhBookTree    *tree)
-{
-        DhBook *book = DH_BOOK (book_object);
-
-        if (!dh_book_get_enabled (book))
-                return;
-
-        book_tree_add_book_to_store (tree, book);
-}
-
-static void
-book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
-                                       GObject       *book_object,
-                                       DhBookTree    *tree)
-{
-        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhBook         *book = DH_BOOK (book_object);
-        GtkTreeIter     exact_iter;
-        gboolean        exact_iter_found = FALSE;
-        GtkTreeIter     language_iter;
-        gboolean        language_iter_found = FALSE;
-
-        if (dh_book_manager_get_group_by_language (book_manager)) {
-                GtkTreeIter first_book_iter;
-
-                book_tree_find_language_group (tree,
-                                               dh_book_get_language (book),
-                                               &language_iter,
-                                               &language_iter_found,
-                                               NULL,
-                                               NULL);
-
-                if (language_iter_found &&
-                    gtk_tree_model_iter_children (GTK_TREE_MODEL (priv->store),
-                                                  &first_book_iter,
-                                                  &language_iter)) {
-                        book_tree_find_book (tree,
-                                             book,
-                                             &first_book_iter,
-                                             &exact_iter,
-                                             &exact_iter_found,
-                                             NULL,
-                                             NULL);
-                }
-        } else {
-                book_tree_find_book (tree,
-                                     book,
-                                     NULL,
-                                     &exact_iter,
-                                     &exact_iter_found,
-                                     NULL,
-                                     NULL);
-        }
-
-        if (exact_iter_found) {
-                /* Remove the book from the tree */
-                gtk_tree_store_remove (priv->store, &exact_iter);
-                /* If this book was inside a language group, check if the group
-                 * is now empty and so removable */
-                if (language_iter_found) {
-                        GtkTreeIter first_book_iter;
-
-                        if (!gtk_tree_model_iter_children (GTK_TREE_MODEL (priv->store),
-                                                           &first_book_iter,
-                                                           &language_iter)) {
-                                /* Oh, well, no more books in this language... remove! */
-                                gtk_tree_store_remove (priv->store, &language_iter);
-                        }
-                }
-        }
-}
-
-static void
 book_tree_group_by_language_cb (GObject    *object,
                                 GParamSpec *pspec,
                                 DhBookTree *tree)
 {
         book_tree_populate_tree (tree);
+}
+
+static void
+dh_book_tree_get_property (GObject    *object,
+                           guint       prop_id,
+                           GValue     *value,
+                           GParamSpec *pspec)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
+
+        switch (prop_id) {
+                case PROP_BOOK_MANAGER:
+                        g_value_set_object (value, priv->book_manager);
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_book_tree_set_property (GObject      *object,
+                           guint         prop_id,
+                           const GValue *value,
+                           GParamSpec   *pspec)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
+
+        switch (prop_id) {
+                case PROP_BOOK_MANAGER:
+                        g_return_if_fail (priv->book_manager == NULL);
+                        priv->book_manager = g_value_dup_object (value);
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
 }
 
 static void
@@ -719,14 +664,25 @@ dh_book_tree_constructed (GObject *object)
 }
 
 static void
+dh_book_tree_dispose (GObject *object)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
+
+        g_clear_object (&priv->store);
+        g_clear_object (&priv->book_manager);
+
+        G_OBJECT_CLASS (dh_book_tree_parent_class)->dispose (object);
+}
+
+static void
 dh_book_tree_class_init (DhBookTreeClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-        object_class->dispose = dh_book_tree_dispose;
         object_class->get_property = dh_book_tree_get_property;
         object_class->set_property = dh_book_tree_set_property;
         object_class->constructed = dh_book_tree_constructed;
+        object_class->dispose = dh_book_tree_dispose;
 
         g_object_class_install_property (object_class,
                                          PROP_BOOK_MANAGER,
@@ -746,6 +702,51 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
                               g_cclosure_marshal_VOID__POINTER,
                               G_TYPE_NONE,
                               1, G_TYPE_POINTER);
+}
+
+static void
+book_tree_add_columns (DhBookTree *tree)
+{
+        GtkCellRenderer   *cell;
+        GtkTreeViewColumn *column;
+
+        column = gtk_tree_view_column_new ();
+
+        cell = gtk_cell_renderer_text_new ();
+        g_object_set (cell,
+                      "ellipsize", PANGO_ELLIPSIZE_END,
+                      NULL);
+        gtk_tree_view_column_pack_start (column, cell, TRUE);
+        gtk_tree_view_column_set_attributes (column, cell,
+                                             "text", COL_TITLE,
+                                             "weight", COL_WEIGHT,
+                                             "underline", COL_UNDERLINE,
+                                             NULL);
+
+        gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
+}
+
+static void
+dh_book_tree_init (DhBookTree *tree)
+{
+        DhBookTreePrivate *priv;
+
+        priv = dh_book_tree_get_instance_private (tree);
+
+        priv->store = gtk_tree_store_new (N_COLUMNS,
+                                          G_TYPE_STRING,
+                                          G_TYPE_POINTER,
+                                          G_TYPE_OBJECT,
+                                          PANGO_TYPE_WEIGHT,
+                                          PANGO_TYPE_UNDERLINE);
+        priv->selected_link = NULL;
+        gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
+                                 GTK_TREE_MODEL (priv->store));
+
+        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
+
+        book_tree_add_columns (tree);
+        book_tree_setup_selection (tree);
 }
 
 GtkWidget *
