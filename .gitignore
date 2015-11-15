@@ -46,8 +46,8 @@ libtool
 /po/insert-header.sin
 /po/quot.sed
 /po/remove-potcdate.sin
-/misc/gedit-plugin/devhelp.desktop
 /misc/gedit-plugin/devhelp.plugin
+/misc/gedit-plugin/devhelp.plugin.desktop
 /src/devhelp
 /src/dh-enum-types.c
 /src/dh-enum-types.h
