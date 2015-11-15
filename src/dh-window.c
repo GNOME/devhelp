@@ -596,7 +596,7 @@ dh_window_screen_changed (GtkWidget *window,
 }
 
 static gboolean
-window_configure_event_cb (GtkWidget         *window,
+dh_window_configure_event (GtkWidget         *window,
                            GdkEventConfigure *event)
 {
         DhWindowPrivate *priv;
@@ -607,7 +607,10 @@ window_configure_event_cb (GtkWidget         *window,
                                       dh_settings_peek_window_settings (priv->settings),
                                       TRUE);
 
-        return GDK_EVENT_PROPAGATE;
+        if (GTK_WIDGET_CLASS (dh_window_parent_class)->configure_event == NULL)
+                return GDK_EVENT_PROPAGATE;
+
+        return GTK_WIDGET_CLASS (dh_window_parent_class)->configure_event (window, event);
 }
 
 static void
@@ -689,6 +692,7 @@ dh_window_class_init (DhWindowClass *klass)
         object_class->dispose = dh_window_dispose;
 
         widget_class->screen_changed = dh_window_screen_changed;
+        widget_class->configure_event = dh_window_configure_event;
 
         klass->open_link = dh_window_open_link;
 
@@ -1442,11 +1446,6 @@ dh_window_new (DhApp *application)
         priv = dh_window_get_instance_private (window);
 
         window_populate (window);
-
-        g_signal_connect (window,
-                          "configure-event",
-                          G_CALLBACK (window_configure_event_cb),
-                          NULL);
 
         dh_util_window_settings_restore (GTK_WINDOW (window),
                                          dh_settings_peek_window_settings (priv->settings),
