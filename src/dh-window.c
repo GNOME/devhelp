@@ -906,6 +906,7 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
         const char   *uri;
         WebKitNavigationPolicyDecision *navigation_decision;
         WebKitNavigationAction *navigation_action;
+        gchar *local_uri;
 
         if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
                 return GDK_EVENT_PROPAGATE;
@@ -928,17 +929,12 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
                 return GDK_EVENT_PROPAGATE;
         }
 
-        if (g_str_has_prefix (uri, "http://library.gnome.org/devel/") ||
-            g_str_has_prefix (uri, "https://library.gnome.org/devel/") ||
-            g_str_has_prefix (uri, "http://developer.gnome.org/") ||
-            g_str_has_prefix (uri, "https://developer.gnome.org/")) {
-                gchar *local_uri = find_library_equivalent (window, uri);
-                if (local_uri != NULL) {
-                        webkit_policy_decision_ignore (policy_decision);
-                        _dh_window_display_uri (window, local_uri);
-                        g_free (local_uri);
-                        return GDK_EVENT_STOP;
-                }
+        local_uri = find_library_equivalent (window, uri);
+        if (local_uri != NULL) {
+                webkit_policy_decision_ignore (policy_decision);
+                _dh_window_display_uri (window, local_uri);
+                g_free (local_uri);
+                return GDK_EVENT_STOP;
         }
 
         if (!g_str_has_prefix (uri, "file://")) {
