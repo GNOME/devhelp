@@ -55,8 +55,6 @@ typedef struct {
         DhLink         *selected_search_link;
         DhSettings     *settings;
         GtkSettings    *gtk_settings;
-        guint           fonts_changed_id;
-        gulong          screen_changed_id;
         gulong          xft_dpi_changed_id;
 
 } DhWindowPrivate;
@@ -609,14 +607,17 @@ dh_window_init (DhWindow *window)
 
         /* handle settings */
         priv->settings = dh_settings_get ();
-        priv->fonts_changed_id = g_signal_connect (priv->settings,
-                                                   "fonts-changed",
-                                                   G_CALLBACK (settings_fonts_changed_cb),
-                                                   window);
+        g_signal_connect_object (priv->settings,
+                                 "fonts-changed",
+                                 G_CALLBACK (settings_fonts_changed_cb),
+                                 window,
+                                 0);
+
         /* monitor GdkScreen and GtkSettings for DPI changes */
-        priv->screen_changed_id =
-                g_signal_connect (window, "screen-changed",
-                                  G_CALLBACK (screen_changed_cb), NULL);
+        g_signal_connect (window,
+                          "screen-changed",
+                          G_CALLBACK (screen_changed_cb),
+                          NULL);
 
         /* we can't get the GdkScreen for the widget here, so get the
          * GtkSettings associated to the default one instead for now */
@@ -655,18 +656,6 @@ dh_window_dispose (GObject *object)
         DhWindowPrivate *priv;
 
         priv = dh_window_get_instance_private (window);
-
-        if (priv->fonts_changed_id) {
-                if (priv->settings && g_signal_handler_is_connected (priv->settings, priv->fonts_changed_id))
-                        g_signal_handler_disconnect (priv->settings, priv->fonts_changed_id);
-                priv->fonts_changed_id = 0;
-        }
-
-        if (priv->screen_changed_id) {
-                if (g_signal_handler_is_connected (window, priv->screen_changed_id))
-                        g_signal_handler_disconnect (window, priv->screen_changed_id);
-                priv->screen_changed_id = 0;
-        }
 
         if (priv->xft_dpi_changed_id) {
                 if (priv->gtk_settings != NULL && g_signal_handler_is_connected (priv->gtk_settings, priv->xft_dpi_changed_id))
