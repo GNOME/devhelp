@@ -1335,7 +1335,6 @@ window_new_tab_label (DhWindow        *window,
         gtk_box_pack_start (GTK_BOX (hbox), close_button, FALSE, FALSE, 0);
 
         g_object_set_data (G_OBJECT (hbox), "label", label);
-        g_object_set_data (G_OBJECT (hbox), "close-button", close_button);
 
         return hbox;
 }
