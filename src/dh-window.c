@@ -1309,19 +1309,13 @@ close_button_clicked_cb (GtkButton *button,
 {
         DhWindowPrivate *priv;
         GtkWidget *parent_tab;
-        gint       pages;
-        gint       i;
+        gint page_num;
 
         priv = dh_window_get_instance_private (window);
 
         parent_tab = g_object_get_data (G_OBJECT (button), "parent_tab");
-        pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
-        for (i=0; i<pages; i++) {
-                if (gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), i) == parent_tab) {
-                        window_close_tab (window, i);
-                        break;
-                }
-        }
+        page_num = gtk_notebook_page_num (GTK_NOTEBOOK (priv->notebook), parent_tab);
+        window_close_tab (window, page_num);
 }
 
 static GtkWidget *
