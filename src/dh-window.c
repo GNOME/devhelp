@@ -453,7 +453,7 @@ gear_menu_cb (GSimpleAction *action,
 }
 
 static void
-window_open_link_cb (DhWindow        *window,
+dh_window_open_link (DhWindow        *window,
                      const char      *location,
                      DhOpenLinkFlags  flags)
 {
@@ -642,11 +642,6 @@ dh_window_init (DhWindow *window)
                 g_signal_connect (priv->gtk_settings, "notify::gtk-xft-dpi",
                                   G_CALLBACK (gtk_xft_dpi_changed_cb), window);
 
-        g_signal_connect (window,
-                          "open-link",
-                          G_CALLBACK (window_open_link_cb),
-                          window);
-
         g_action_map_add_action_entries (G_ACTION_MAP (window),
                                          win_entries, G_N_ELEMENTS (win_entries),
                                          window);
@@ -694,6 +689,8 @@ dh_window_class_init (DhWindowClass *klass)
         object_class->dispose = dh_window_dispose;
 
         widget_class->screen_changed = dh_window_screen_changed;
+
+        klass->open_link = dh_window_open_link;
 
         signals[OPEN_LINK] =
                 g_signal_new ("open-link",
