@@ -2,17 +2,17 @@
 # Copyright © 2001, 2002, 2003, 2004, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014 devhelp
 # Diatributed under the same licence as the devhelp package
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
-# Pedro Albuquerque <palbuquerque73@gmail.com>, 2015.
+# Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-04 03:19+0000\n"
+"POT-Creation-Date: 2015-11-03 04:24+0000\n"
 "PO-Revision-Date: 2015-07-04 08:56+0100\n"
 "Last-Translator: Pedro Albuquerque <palbuquerque73@openmailbox.com>\n"
-"Language-Team: Português <palbuquerque73@gmail.com>\n"
+"Language-Team: Português <>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +49,7 @@ msgstr ""
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:512 ../src/dh-window.c:754
+#: ../src/dh-app.c:507 ../src/dh-window.c:753
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -241,35 +241,34 @@ msgstr "Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Pedro Albuquerque <palbuquerque73@gmail.com>"
 
 #: ../src/dh-app.c:217
-#| msgid "DevHelp Website"
 msgid "Devhelp Website"
-msgstr "Página Web do Devhelp"
+msgstr "Página web do Devhelp"
 
-#: ../src/dh-app.c:437
+#: ../src/dh-app.c:432
 msgid "Opens a new Devhelp window"
 msgstr "Abre uma nova janela Devhelp"
 
-#: ../src/dh-app.c:442
+#: ../src/dh-app.c:437
 msgid "Search for a keyword"
 msgstr "Procurar uma palavra-chave"
 
-#: ../src/dh-app.c:443 ../src/dh-app.c:448
+#: ../src/dh-app.c:438 ../src/dh-app.c:443
 msgid "KEYWORD"
 msgstr "PALAVRA-CHAVE"
 
-#: ../src/dh-app.c:447
+#: ../src/dh-app.c:442
 msgid "Search and display any hit in the assistant window"
 msgstr "Procurar e mostrar os resultados na janela do assistente"
 
-#: ../src/dh-app.c:452
+#: ../src/dh-app.c:447
 msgid "Display the version and exit"
 msgstr "Mostrar a versão e sair"
 
-#: ../src/dh-app.c:457
+#: ../src/dh-app.c:452
 msgid "Quit any running Devhelp"
 msgstr "Sair de qualquer Devhelp em execução"
 
-#. Please don't translate "Devhelp"
+#. Please don
 #: ../src/dh-assistant.ui.h:2
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — assistente"
@@ -457,15 +456,15 @@ msgstr "300%"
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:976
+#: ../src/dh-window.c:975
 msgid "Error opening the requested link."
 msgstr "Erro ao abrir a ligação indicada."
 
-#: ../src/dh-window.c:1247
+#: ../src/dh-window.c:1246
 msgid "_Close"
 msgstr "_Fechar"
 
-#: ../src/dh-window.c:1275 ../src/dh-window.c:1447
+#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
 msgid "Empty Page"
 msgstr "Página vazia"
 
