@@ -233,8 +233,7 @@ msgstr "_Sair"
 
 #: ../src/dh-app.c:204
 msgid "translator-credits"
-msgstr ""
-"Duarte Loreto <happyguy_pt@hotmail.com>\n"
+msgstr "Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Pedro Albuquerque <palbuquerque73@gmail.com>"
 
 #: ../src/dh-app.c:214
@@ -243,7 +242,7 @@ msgstr "Um navegador de ajuda para programadores do GNOME"
 
 #: ../src/dh-app.c:222
 msgid "DevHelp Website"
-msgstr "Página Web do Devhelp"
+msgstr "Página web do Devhelp"
 
 #. Please don't translate "Devhelp"
 #: ../src/dh-assistant.ui.h:2
@@ -328,11 +327,11 @@ msgstr "PALAVRA-CHAVE"
 
 #: ../src/dh-main.c:51
 msgid "Search and display any hit in the assistant window"
-msgstr "Procurar e apresentar os resultados na janela do assistente"
+msgstr "Procurar e mostrar os resultados na janela do assistente"
 
 #: ../src/dh-main.c:56
 msgid "Display the version and exit"
-msgstr "Apresentar a versão e sair"
+msgstr "Mostrar a versão e sair"
 
 #: ../src/dh-main.c:61
 msgid "Quit any running Devhelp"
@@ -495,7 +494,7 @@ msgstr "Tamanho _Normal"
 
 #: ../src/dh-window.ui.h:8
 msgid "_Side pane"
-msgstr "Painel lateral"
+msgstr "_Painel lateral"
 
 #: ../src/dh-window.ui.h:10
 msgid "_About Devhelp"
