@@ -1,4 +1,21 @@
 ==============
+Version 3.19.3
+==============
+
+Fixed bugs:
+
+ - #709658, gedit plugin: too many .plugin files (some generated, some
+            weird)
+ - #755872, Sometimes a page doesn't get opened
+ - #756341, Various code improvements and bug fixes
+
+Updated translations: eu, pt, th, zh_CN
+
+Many thanks to all contributors: Pedro Albuquerque, Sébastien Wilmet, Akom
+Chotiphantawanon, Inaki Larranaga Murgoitio, YunQiang Su
+
+
+==============
 Version 3.18.1
 ==============
 
