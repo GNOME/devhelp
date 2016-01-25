@@ -25,4 +25,5 @@
     </_screenshot>
   </screenshots>
   <project_group>GNOME</project_group>
+  <translation type="gettext">devhelp</translation>
 </component>
