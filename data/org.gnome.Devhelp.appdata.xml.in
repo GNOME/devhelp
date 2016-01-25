@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-<id type="desktop">org.gnome.Devhelp.desktop</id>
-<licence>CC0</licence>
-<description>
-<_p>Devhelp is an API documentation browser. It  provides an easy way to
-navigate through libraries, search by function, struct, or macro. It provides a
-tabbed interface and allows to print results.</_p>
-<_p>Devhelp integrates with other applications such as Glade, Anjuta, or Geany.</_p>
-</description>
-<url type="homepage">https://wiki.gnome.org/Apps/Devhelp/</url>
-<screenshots>
-<_screenshot type="default">https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;target=devhelp.png</_screenshot>
-</screenshots>
-</application>
+<component type="desktop">
+  <id>org.gnome.Devhelp.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <_name>Devhelp</_name>
+  <_summary>Developer's Help program</_summary>
+  <description>
+    <_p>
+      Devhelp is an API documentation browser.
+      It provides an easy way to navigate through libraries, search by function,
+      struct, or macro.
+      It provides a tabbed interface and allows to print results.
+    </_p>
+    <_p>
+      Devhelp integrates with other applications such as Glade, Anjuta, or Geany.
+    </_p>
+  </description>
+  <url type="homepage">https://wiki.gnome.org/Apps/Devhelp/</url>
+  <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=devhelp</url>
+  <url type="donation">http://www.gnome.org/friends/</url>
+  <screenshots>
+    <_screenshot type="default">
+      <image>https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&amp;do=view&amp;target=devhelp.png</image>
+    </_screenshot>
+  </screenshots>
+  <project_group>GNOME</project_group>
+</component>
