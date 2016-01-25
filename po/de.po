@@ -7,7 +7,7 @@
 # Johannes Schmid <jhs@gnome.org>, 2007.
 # Andre Klapper <ak-47@gmx.net>, 2008.
 # Philipp Kerling <k.philipp@gmail.com>, 2008.
-# Mario Blättermann <mario.blaettermann@gmail.co>, 2009-2013.
+# Mario Blättermann <mario.blaettermann@gmail.co>, 2009-2013, 2016.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2009, 2010.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2014.
 # Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>, 2015.
@@ -17,18 +17,31 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-02 03:19+0000\n"
-"PO-Revision-Date: 2015-09-02 09:55+0100\n"
-"Last-Translator: Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>\n"
+"POT-Creation-Date: 2016-01-25 16:26+0000\n"
+"PO-Revision-Date: 2016-01-25 21:06+0100\n"
+"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.8.6\n"
 
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
 #: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
+#: ../src/dh-app.c:507 ../src/dh-window.c:753
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "Hilfeprogramm für Entwickler"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -39,31 +52,23 @@ msgstr ""
 "Makro durchsucht werden. Die Oberfläche verwendet Reiter und Suchergebnisse "
 "können ausgedruckt werden."
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
 "Devhelp ist automatisch in anderen Anwendungen wie Glade, Anjuta oder Geany "
 "integriert."
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:5
+#| msgid ""
+#| "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#| "target=devhelp.png"
 msgid ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
+"<image>https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&amp;do=view&amp;"
+"target=devhelp.png</image>"
 msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:507 ../src/dh-window.c:753
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "Hilfeprogramm für Entwickler"
+"<image>https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&amp;do=view&amp;"
+"target=devhelp.png</image>"
 
 #: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -213,11 +218,11 @@ msgstr "Schrift für dicktengleichen Text"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Schrift für Text gleicher Schriftzeichenbreite wie z.B. Programmcode."
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Devhelp-Unterstützung"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "F2 schlägt das Wort unter der Eingabemarke in Devhelp nach"
 
@@ -282,7 +287,7 @@ msgstr "Programmversion anzeigen und beenden"
 msgid "Quit any running Devhelp"
 msgstr "Alle laufenden Devhelp-Instanzen beenden"
 
-#. Please don't translate "Devhelp"
+#. Please don
 #: ../src/dh-assistant.ui.h:2
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Assistent"
