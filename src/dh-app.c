@@ -186,6 +186,42 @@ preferences_cb (GSimpleAction *action,
 }
 
 static void
+shortcuts_cb (GSimpleAction *action,
+              GVariant      *parameter,
+              gpointer       user_data)
+{
+        DhApp *app = DH_APP (user_data);
+        static GtkWidget *shortcuts_window;
+        GtkWindow *window;
+
+        window = dh_app_peek_first_window (app);
+
+        if (shortcuts_window == NULL)
+        {
+                GtkBuilder *builder;
+
+                builder = gtk_builder_new_from_resource ("/org/gnome/devhelp/help-overlay.ui");
+                shortcuts_window = GTK_WIDGET (gtk_builder_get_object (builder, "help_overlay"));
+
+                g_signal_connect (shortcuts_window,
+                                  "destroy",
+                                  G_CALLBACK (gtk_widget_destroyed),
+                                  &shortcuts_window);
+
+                g_object_unref (builder);
+        }
+
+        if (GTK_WINDOW (window) != gtk_window_get_transient_for (GTK_WINDOW (shortcuts_window)))
+        {
+                gtk_window_set_transient_for (GTK_WINDOW (shortcuts_window), GTK_WINDOW (window));
+        }
+
+        gtk_widget_show_all (shortcuts_window);
+        gtk_window_present (GTK_WINDOW (shortcuts_window));
+}
+
+
+static void
 about_cb (GSimpleAction *action,
           GVariant      *parameter,
           gpointer       user_data)
@@ -300,6 +336,7 @@ static GActionEntry app_entries[] = {
         /* general  actions */
         { "new-window",       new_window_cb,       NULL, NULL, NULL },
         { "preferences",      preferences_cb,      NULL, NULL, NULL },
+        { "shortcuts",        shortcuts_cb,        NULL, NULL, NULL },
         { "about",            about_cb,            NULL, NULL, NULL },
         { "quit",             quit_cb,             NULL, NULL, NULL },
         /* additional commandline-specific actions */
@@ -345,6 +382,9 @@ setup_accelerators (DhApp *self)
         accels[0] = "F10";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.gear-menu", accels);
 
+        accels[0] = "<Primary>F1";
+        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.shortcuts", accels);
+
         accels[0] = "<Alt>Right";
         accels[1] = "Forward";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-forward", accels);
@@ -366,6 +406,8 @@ dh_app_startup (GApplication *application)
 {
         DhApp *app = DH_APP (application);
         DhAppPrivate *priv = dh_app_get_instance_private (app);
+
+        g_application_set_resource_base_path (application, "/org/gnome/devhelp");
 
         /* Chain up parent's startup */
         G_APPLICATION_CLASS (dh_app_parent_class)->startup (application);

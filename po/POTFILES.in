@@ -6,6 +6,7 @@ data/org.gnome.Devhelp.desktop.in.in
 misc/gedit-plugin/devhelp.plugin.desktop.in
 misc/gedit-plugin/devhelp.py
 [type: gettext/glade]src/devhelp-menu.ui
+[type: gettext/glade]src/help-overlay.ui
 src/dh-app.c
 src/dh-assistant.c
 [type: gettext/glade]src/dh-assistant.ui
