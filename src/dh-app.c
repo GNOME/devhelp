@@ -359,7 +359,9 @@ setup_accelerators (DhApp *self)
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-out", accels);
 
         accels[0] = "<Primary>plus";
+        accels[1] = "<Primary>equal";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-in", accels);
+        accels[0] = NULL;
 
         accels[0] = "<Primary>f";
         gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.find", accels);
