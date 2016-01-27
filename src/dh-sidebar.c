@@ -375,9 +375,11 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
                         gpointer           data)
 {
         DhLink       *link;
+        DhLinkType    link_type;
         PangoStyle    style;
         PangoWeight   weight;
         gboolean      current_book_flag;
+        gchar        *name;
 
         gtk_tree_model_get (hitlist_model, iter,
                             DH_KEYWORD_MODEL_COL_LINK, &link,
@@ -398,11 +400,23 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
         else
                 weight = PANGO_WEIGHT_NORMAL;
 
+        link_type = dh_link_get_link_type (link);
+        if (link_type == DH_LINK_TYPE_STRUCT || link_type == DH_LINK_TYPE_PROPERTY ||
+            link_type == DH_LINK_TYPE_SIGNAL) {
+                name = g_markup_printf_escaped (
+                                "%s <i><small><span weight=\"normal\">(%s)</span></small></i>",
+                                dh_link_get_name (link),
+                                dh_link_get_type_as_string (link));
+        } else {
+                name = g_strdup (dh_link_get_name (link));
+        }
+
         g_object_set (cell,
-                      "text", dh_link_get_name (link),
+                      "markup", name,
                       "style", style,
                       "weight", weight,
                       NULL);
+        g_free (name);
 }
 
 /******************************************************************************/
