@@ -334,8 +334,17 @@ parser_start_node_keyword (DhParser             *parser,
                 link_type = DH_LINK_TYPE_KEYWORD;
         }
 
-        /* Strip out trailing " () or "()". */
-        if (g_str_has_suffix (name, " ()")) {
+        /* Strip out trailing "() (handling variants with space or non-breaking
+         * space before the parentheses) */
+        if (g_str_has_suffix (name, "\xc2\xa0()")) {
+                tmp = g_strndup (name, strlen (name) - 4);
+
+                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                        link_type = DH_LINK_TYPE_FUNCTION;
+                }
+                name = tmp;
+        }
+        else if (g_str_has_suffix (name, " ()")) {
                 tmp = g_strndup (name, strlen (name) - 3);
 
                 if (link_type == DH_LINK_TYPE_KEYWORD) {
