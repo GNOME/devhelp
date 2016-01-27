@@ -49,7 +49,7 @@ AC_SUBST(LIBM)
 
 PKG_CHECK_MODULES(DEVHELP, [
   gthread-2.0 >= 2.10.0
-  gtk+-3.0 >= 3.13.4
+  gtk+-3.0 >= 3.19.3
   webkit2gtk-4.0 >= 2.6.0
   gio-2.0 >= 2.37.3
 ])
