@@ -33,7 +33,6 @@
 #include "dh-util.h"
 #include "dh-enum-types.h"
 #include "dh-settings.h"
-#include "gedit-close-button.h"
 
 typedef struct {
         GMenuModel     *gear_app_menu;
@@ -1313,6 +1312,9 @@ window_new_tab_label (DhWindow        *window,
         GtkWidget *label;
         GtkWidget *hbox;
         GtkWidget *close_button;
+        GtkWidget *image;
+        GIcon *icon;
+        GtkStyleContext *context;
 
         hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
 
@@ -1321,7 +1323,19 @@ window_new_tab_label (DhWindow        *window,
         gtk_widget_set_halign (label, GTK_ALIGN_CENTER);
         gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 
-        close_button = gedit_close_button_new ();
+        close_button = GTK_WIDGET (g_object_new (GTK_TYPE_BUTTON,
+                                "focus-on-click", FALSE,
+                                NULL));
+        context = gtk_widget_get_style_context (close_button);
+        gtk_style_context_add_class (context, "small-button");
+        gtk_style_context_add_class (context, "flat");
+
+        icon = g_themed_icon_new_with_default_fallbacks ("window-close-symbolic");
+        image = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_MENU);
+        gtk_widget_show (image);
+        g_object_unref (icon);
+        gtk_container_add (GTK_CONTAINER (close_button), image);
+
         g_object_set_data (G_OBJECT (close_button), "parent_tab", (gpointer) parent);
 
         g_signal_connect (close_button, "clicked",

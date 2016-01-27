@@ -83,9 +83,7 @@ libdevhelp_3_la_SOURCES =				\
 	dh-sidebar.c					\
 	dh-util.c					\
 	dh-util.h					\
-	dh-window.c					\
-	gedit-close-button.c				\
-	gedit-close-button.h
+	dh-window.c
 
 # do not distribute generated files
 nodist_libdevhelp_3_la_SOURCES =			\
