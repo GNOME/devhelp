@@ -319,6 +319,16 @@ dh_link_get_type_as_string (DhLink *link)
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Type");
+        case DH_LINK_TYPE_PROPERTY:
+                /* i18n: in the programming language context, if you don't
+                 * have an ESTABLISHED term for it, leave it
+                 * untranslated. */
+                return _("Property");
+        case DH_LINK_TYPE_SIGNAL:
+                /* i18n: in the programming language context, if you don't
+                 * have an ESTABLISHED term for it, leave it
+                 * untranslated. */
+                return _("Signal");
         }
 
         return "";

@@ -30,7 +30,9 @@ typedef enum {
         DH_LINK_TYPE_STRUCT,
         DH_LINK_TYPE_MACRO,
         DH_LINK_TYPE_ENUM,
-        DH_LINK_TYPE_TYPEDEF
+        DH_LINK_TYPE_TYPEDEF,
+        DH_LINK_TYPE_PROPERTY,
+        DH_LINK_TYPE_SIGNAL
 } DhLinkType;
 
 typedef enum {

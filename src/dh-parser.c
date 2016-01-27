@@ -327,6 +327,12 @@ parser_start_node_keyword (DhParser             *parser,
                 }
                 else if (strcmp (type, "typedef") == 0) {
                         link_type = DH_LINK_TYPE_TYPEDEF;
+                }
+                else if (strcmp (type, "property") == 0) {
+                        link_type = DH_LINK_TYPE_PROPERTY;
+                }
+                else if (strcmp (type, "signal") == 0) {
+                        link_type = DH_LINK_TYPE_ENUM;
                 } else {
                         link_type = DH_LINK_TYPE_KEYWORD;
                 }
