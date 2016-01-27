@@ -408,7 +408,7 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
                                 dh_link_get_name (link),
                                 dh_link_get_type_as_string (link));
         } else {
-                name = g_strdup (dh_link_get_name (link));
+                name = g_markup_printf_escaped ("%s", dh_link_get_name (link));
         }
 
         g_object_set (cell,
