@@ -895,6 +895,8 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
         WebKitNavigationPolicyDecision *navigation_decision;
         WebKitNavigationAction *navigation_action;
         gchar *local_uri;
+        gint button;
+        gint state;
 
         if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
                 return GDK_EVENT_PROPAGATE;
@@ -906,8 +908,10 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
         /* make sure to hide the info bar on page change */
         gtk_widget_hide (window_get_active_info_bar (window));
 
-        /* middle click */
-        if (webkit_navigation_action_get_mouse_button (navigation_action) == 2) {
+        /* middle click or ctrl-click -> new tab */
+        button = webkit_navigation_action_get_mouse_button (navigation_action);
+        state = webkit_navigation_action_get_modifiers (navigation_action);
+        if (button == 2 || (button == 1 && state == GDK_CONTROL_MASK)) {
                 webkit_policy_decision_ignore (policy_decision);
                 g_signal_emit (window, signals[OPEN_LINK], 0, uri, DH_OPEN_LINK_NEW_TAB);
                 return GDK_EVENT_STOP;
