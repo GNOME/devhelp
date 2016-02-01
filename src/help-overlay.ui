@@ -11,75 +11,75 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">1</property>
-            <property name="title" translatable="yes">General</property>
+            <property name="title" translatable="yes" context="shortcut window">General</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;Primary&gt;K</property>
-                <property name="title" translatable="yes">Focus global search</property>
+                <property name="title" translatable="yes" context="shortcut window">Focus global search</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;Primary&gt;F</property>
-                <property name="title" translatable="yes">Find in current page</property>
+                <property name="title" translatable="yes" context="shortcut window">Find in current page</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;Primary&gt;N</property>
-                <property name="title" translatable="yes">Open a new window</property>
+                <property name="title" translatable="yes" context="shortcut window">Open a new window</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;Primary&gt;T</property>
-                <property name="title" translatable="yes">Open a new tab</property>
+                <property name="title" translatable="yes" context="shortcut window">Open a new tab</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;Primary&gt;F9</property>
-                <property name="title" translatable="yes">Toggle sidebar visibility</property>
+                <property name="title" translatable="yes" context="shortcut window">Toggle sidebar visibility</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;alt&gt;Left</property>
-                <property name="title" translatable="yes">Go back</property>
+                <property name="title" translatable="yes" context="shortcut window">Go back</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;alt&gt;Right</property>
-                <property name="title" translatable="yes">Go forward</property>
+                <property name="title" translatable="yes" context="shortcut window">Go forward</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;Primary&gt;P</property>
-                <property name="title" translatable="yes">Print</property>
+                <property name="title" translatable="yes" context="shortcut window">Print</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;Primary&gt;W</property>
-                <property name="title" translatable="yes">Close the current window</property>
+                <property name="title" translatable="yes" context="shortcut window">Close the current window</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;Primary&gt;Q</property>
-                <property name="title" translatable="yes">Close all windows</property>
+                <property name="title" translatable="yes" context="shortcut window">Close all windows</property>
               </object>
             </child>
           </object>
@@ -87,26 +87,26 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">1</property>
-            <property name="title" translatable="yes">Zoom</property>
+            <property name="title" translatable="yes" context="shortcut window">Zoom</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;ctrl&gt;plus</property>
-                <property name="title" translatable="yes">Zoom in</property>
+                <property name="title" translatable="yes" context="shortcut window">Zoom in</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;ctrl&gt;minus</property>
-                <property name="title" translatable="yes">Zoom out</property>
+                <property name="title" translatable="yes" context="shortcut window">Zoom out</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;ctrl&gt;0</property>
-                <property name="title" translatable="yes">Reset Zoom</property>
+                <property name="title" translatable="yes" context="shortcut window">Reset Zoom</property>
               </object>
             </child>
           </object>
