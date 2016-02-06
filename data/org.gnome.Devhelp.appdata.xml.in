@@ -20,9 +20,9 @@
   <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=devhelp</url>
   <url type="donation">http://www.gnome.org/friends/</url>
   <screenshots>
-    <_screenshot type="default">
+    <screenshot type="default">
       <image>https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&amp;do=view&amp;target=devhelp.png</image>
-    </_screenshot>
+    </screenshot>
   </screenshots>
   <project_group>GNOME</project_group>
   <translation type="gettext">devhelp</translation>
