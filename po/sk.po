@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-01-31 16:25+0000\n"
-"PO-Revision-Date: 2016-01-31 19:56+0100\n"
+"POT-Creation-Date: 2016-02-07 04:25+0000\n"
+"PO-Revision-Date: 2016-02-07 13:36+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -50,17 +50,6 @@ msgid ""
 msgstr ""
 "Devhelp je integrovaný s inými aplikáciami, ako sú Glade, Anjuta, alebo "
 "Geany."
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:5
-#| msgid ""
-#| "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-#| "target=devhelp.png"
-msgid ""
-"<image>https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&amp;do=view&amp;"
-"target=devhelp.png</image>"
-msgstr ""
-"<image>https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&amp;do=view&amp;"
-"target=devhelp.png</image>"
 
 #: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -244,62 +233,77 @@ msgid "_Quit"
 msgstr "U_končiť"
 
 #: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
 msgid "General"
 msgstr "Všeobecné"
 
 #: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
 msgid "Focus global search"
 msgstr "Zameranie globálneho vyhľadávania"
 
 #: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
 msgid "Find in current page"
 msgstr "Nájdenie v aktuálnej stránke"
 
 #: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
 msgid "Open a new window"
 msgstr "Otvorenie nového okna"
 
 #: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
 msgid "Open a new tab"
 msgstr "Otvorenie novej karty"
 
 #: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
 msgid "Toggle sidebar visibility"
 msgstr "Prepnutie viditeľnosti bočného panelu"
 
 #: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Prejdenie späť"
 
 #: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
 msgid "Go forward"
 msgstr "Prejdenie dopredu"
 
 #: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
 msgid "Print"
 msgstr "Tlač"
 
 #: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
 msgid "Close the current window"
 msgstr "Zatvorenie aktuálneho okna"
 
 #: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
 msgid "Close all windows"
 msgstr "Zatvorenie všetkých okien"
 
 #: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Priblíženie"
 
 #: ../src/help-overlay.ui.h:13
+msgctxt "shortcut window"
 msgid "Zoom in"
 msgstr "Zväčšenie"
 
 #: ../src/help-overlay.ui.h:14
+msgctxt "shortcut window"
 msgid "Zoom out"
 msgstr "Zmenšenie"
 
 #: ../src/help-overlay.ui.h:15
+msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Vynulovanie priblíženia"
 
@@ -598,6 +602,16 @@ msgstr "Späť"
 #: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Dopredu"
+
+#~| msgid ""
+#~| "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~| "target=devhelp.png"
+#~ msgid ""
+#~ "<image>https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&amp;"
+#~ "do=view&amp;target=devhelp.png</image>"
+#~ msgstr ""
+#~ "<image>https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&amp;"
+#~ "do=view&amp;target=devhelp.png</image>"
 
 #~ msgid "Show API Documentation for the word at the cursor"
 #~ msgstr "Zobraziť dokumentáciu API pre slovo, na ktorom je kurzor"
