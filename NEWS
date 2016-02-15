@@ -1,3 +1,30 @@
+===============
+Version 3.19.90
+===============
+
+Fixed bugs:
+
+ - #645620, Mis-handling of external-URL <book base=> in .devhelp2
+ - #696904, each class name is listed twice
+ - #723135, Ctrl-K shortcut is not discoverable
+ - #741806, Add support for XF86Back/XF86Forward keys
+ - #743704, Add "Ctrl =" keyboard shortcut for zoom in
+ - #757177, Add keyboard shortcuts for switching tabs (Ctrl+PgUp/PgDn)
+ - #757877, Provide a shortcuts window
+ - #758141, Misc code enhancements
+ - #759691, Search problem: do not jump to the exact link if another link
+            with a longer name exists
+ - #759692, Search: a trailing space is sometimes added to the entry
+ - #761407, Add context to strings in the shortcut window
+
+Updated translations: de, el, es, hu, lt, lv, pl, pt_BR, sk
+
+Many thanks to all contributors: Balázs Meskó, Tom Tryfonidis, Rafael
+Fontenelle, Sébastien Wilmet, Richard Hughes, Mario Blättermann, Piotr
+Drąg, Aurimas Černius, Nirbheek Chauhan, Daniel Mustieles, Rūdolfs
+Mazurs, Dušan Kazik
+
+
 ==============
 Version 3.19.3
 ==============
