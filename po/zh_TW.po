@@ -13,17 +13,30 @@ msgstr ""
 "Project-Id-Version: devhelp 2.91.6\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-21 15:19+0000\n"
-"PO-Revision-Date: 2015-08-11 09:17+0800\n"
+"POT-Creation-Date: 2016-02-20 16:25+0000\n"
+"PO-Revision-Date: 2016-02-23 09:07+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8\n"
+"X-Generator: Poedit 1.8.7\n"
 
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
 #: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
+#: ../src/dh-app.c:557 ../src/dh-window.c:797
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "程式開發者的說明書瀏覽程式"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -32,29 +45,10 @@ msgstr ""
 "Devhelp 是 API 文件瀏覽器。它提供簡單的方式來瀏覽程式庫，依函式、結構或巨集搜"
 "尋。它提供分頁式的介面並允許將結果列印出來。"
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr "Devhelp 整合了其他的應用程式，像是 Glade、Anjuta 或 Geany。"
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
-msgid ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:512 ../src/dh-window.c:754
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "程式開發者的說明書瀏覽程式"
 
 #: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -200,11 +194,11 @@ msgstr "固定寬度字型"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "固定寬度文字所使用的字型，例如源碼範例。"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Devhelp 支援"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "使得按 F2 會以游標所在的文字啟動 Devhelp"
 
@@ -222,53 +216,132 @@ msgid "_Preferences"
 msgstr "偏好設定(_P)"
 
 #: ../src/devhelp-menu.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "鍵盤捷徑鍵(_K)"
+
+#: ../src/devhelp-menu.ui.h:4
 msgid "_About"
 msgstr "關於(_A)"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
+#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "結束(_Q)"
 
-#: ../src/dh-app.c:213
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr "一般"
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "聚焦到全域搜尋"
+
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "在目前的頁面尋找"
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "開啟新的視窗"
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "在新的分頁開啟"
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Toggle sidebar visibility"
+msgstr "切換側邊欄的可見度"
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "向後"
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "向前"
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "列印"
+
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "關閉目前的視窗"
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "關閉所有視窗"
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "縮放"
+
+#: ../src/help-overlay.ui.h:13
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "拉近"
+
+#: ../src/help-overlay.ui.h:14
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "拉遠"
+
+#: ../src/help-overlay.ui.h:15
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "重設縮放"
+
+#: ../src/dh-app.c:249
 msgid "A developers' help browser for GNOME"
 msgstr "GNOME 的程式開發者說明文件瀏覽程式"
 
-#: ../src/dh-app.c:215
+#: ../src/dh-app.c:251
 msgid "translator-credits"
 msgstr ""
 "如對翻譯有任何意見，請送一封電子郵件給\n"
 "以下地址，GNOME 翻譯團隊會盡快回覆您：\n"
 "zh-l10n@lists.linux.org.tw"
 
-#: ../src/dh-app.c:217
+#: ../src/dh-app.c:253
 msgid "Devhelp Website"
 msgstr "Devhelp 網站"
 
-#: ../src/dh-app.c:437
+#: ../src/dh-app.c:482
 msgid "Opens a new Devhelp window"
 msgstr "開啟新的 Devhelp 視窗"
 
-#: ../src/dh-app.c:442
+#: ../src/dh-app.c:487
 msgid "Search for a keyword"
 msgstr "搜尋關鍵字"
 
-#: ../src/dh-app.c:443 ../src/dh-app.c:448
+#: ../src/dh-app.c:488 ../src/dh-app.c:493
 msgid "KEYWORD"
 msgstr "KEYWORD"
 
-#: ../src/dh-app.c:447
+#: ../src/dh-app.c:492
 msgid "Search and display any hit in the assistant window"
 msgstr "在助理視窗中搜尋並顯示任何提示"
 
-#: ../src/dh-app.c:452
+#: ../src/dh-app.c:497
 msgid "Display the version and exit"
 msgstr "顯示版本號及離開"
 
-#: ../src/dh-app.c:457
+#: ../src/dh-app.c:502
 msgid "Quit any running Devhelp"
 msgstr "結束所有執行中的 Devhelp 進程"
 
-#. Please don't translate "Devhelp"
+#. Please don
 #: ../src/dh-assistant.ui.h:2
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — 助理"
@@ -337,6 +410,20 @@ msgstr "Enum"
 msgid "Type"
 msgstr "類型"
 
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:326
+msgid "Property"
+msgstr "屬性"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:331
+msgid "Signal"
+msgstr "信號"
+
 #: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
 #: ../src/dh-parser.c:271
 #, c-format
@@ -372,7 +459,7 @@ msgstr "「%s」的第 %d 列第 %d 字需要指定\"name\"及\"link\"元素"
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "<keyword> 的第 %d 列第 %d 字需要指定\"type\"元素"
 
-#: ../src/dh-parser.c:501
+#: ../src/dh-parser.c:516
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "無法將說明書‘%s’解壓：%s"
@@ -413,51 +500,51 @@ msgstr "固定寬度(_F)："
 msgid "Fonts"
 msgstr "字型"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:76
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:77
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:78
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:79
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:80
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:81
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:82
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:83
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:84
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:976
+#: ../src/dh-window.c:1024
 msgid "Error opening the requested link."
 msgstr "開啟要求的連結時發生錯誤。"
 
-#: ../src/dh-window.c:1247
+#: ../src/dh-window.c:1282
 msgid "_Close"
 msgstr "關閉(_C)"
 
-#: ../src/dh-window.c:1275 ../src/dh-window.c:1447
+#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
 msgid "Empty Page"
 msgstr "空白頁"
 
@@ -500,6 +587,13 @@ msgstr "上一頁"
 #: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "下一頁"
+
+#~ msgid ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
+#~ msgstr ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
 
 #~ msgid "Show API Documentation for the word at the cursor"
 #~ msgstr "以游標所在的文字顯示其 API 文件"
