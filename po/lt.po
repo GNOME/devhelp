@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-01-06 16:25+0000\n"
-"PO-Revision-Date: 2016-01-06 19:36+0200\n"
+"POT-Creation-Date: 2016-02-12 16:25+0000\n"
+"PO-Revision-Date: 2016-02-13 01:44+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -25,7 +25,20 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
 #: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
+#: ../src/dh-app.c:557 ../src/dh-window.c:797
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "Programuotojo žinynas"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -35,31 +48,12 @@ msgstr ""
 "bibliotekas, ieškoti pagal funkciją, struktūrą ar makrokomandą. Ji turi "
 "sąsają su kortelėmis bei leidžia spausdinti rezultatus."
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
 "Devhelp integruojasi su kitomis programomis, tokiomis kaip Glade, Anjuta ar "
 "Geany."
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
-msgid ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:507 ../src/dh-window.c:753
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "Programuotojo žinynas"
 
 #: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -227,49 +221,128 @@ msgid "_Preferences"
 msgstr "_Nuostatos"
 
 #: ../src/devhelp-menu.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "_Klaviatūros trumpiniai"
+
+#: ../src/devhelp-menu.ui.h:4
 msgid "_About"
 msgstr "_Apie"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
+#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "Iš_eiti"
 
-#: ../src/dh-app.c:213
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Bendra"
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Fokusuoti visuotinę paiešką"
+
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Rasti esamame puslapyje"
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Atverti naują langą"
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Atverti naują kortelę"
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Toggle sidebar visibility"
+msgstr "Perjungti šoninės juostos matomumą"
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Grįžti atgal"
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Eiti pirmyn"
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Spausdinti"
+
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Užverti esamą langą"
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Užverti visus langus"
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Mastelis"
+
+#: ../src/help-overlay.ui.h:13
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Didinti"
+
+#: ../src/help-overlay.ui.h:14
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Mažinti"
+
+#: ../src/help-overlay.ui.h:15
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Atstatyti mastelį"
+
+#: ../src/dh-app.c:249
 msgid "A developers' help browser for GNOME"
 msgstr "GNOME programuotojo žinynas"
 
-#: ../src/dh-app.c:215
+#: ../src/dh-app.c:251
 msgid "translator-credits"
 msgstr ""
 "Išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>\n"
 "Vytautas Liuolia <vytautas.liuolia@gmail.com>"
 
-#: ../src/dh-app.c:217
+#: ../src/dh-app.c:253
 msgid "Devhelp Website"
 msgstr "DevHelp žiniatinklis"
 
-#: ../src/dh-app.c:432
+#: ../src/dh-app.c:482
 msgid "Opens a new Devhelp window"
 msgstr "Atveria naują Devhelp langą"
 
-#: ../src/dh-app.c:437
+#: ../src/dh-app.c:487
 msgid "Search for a keyword"
 msgstr "Ieškoti raktažodžio"
 
-#: ../src/dh-app.c:438 ../src/dh-app.c:443
+#: ../src/dh-app.c:488 ../src/dh-app.c:493
 msgid "KEYWORD"
 msgstr "RAKTINIS ŽODIS"
 
-#: ../src/dh-app.c:442
+#: ../src/dh-app.c:492
 msgid "Search and display any hit in the assistant window"
 msgstr "Ieškoti ir rodyti bet kokį sutapimą pagalbiniame lange"
 
-#: ../src/dh-app.c:447
+#: ../src/dh-app.c:497
 msgid "Display the version and exit"
 msgstr "Parodyti versijos informaciją ir išeiti"
 
-#: ../src/dh-app.c:452
+#: ../src/dh-app.c:502
 msgid "Quit any running Devhelp"
 msgstr "Uždaryti paleistus Devhelp"
 
@@ -342,6 +415,20 @@ msgstr "Macro"
 msgid "Type"
 msgstr "Type"
 
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:326
+msgid "Property"
+msgstr "Savybė"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:331
+msgid "Signal"
+msgstr "Signalas"
+
 #: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
 #: ../src/dh-parser.c:271
 #, c-format
@@ -381,7 +468,7 @@ msgstr ""
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "Elementas „tipas“ būtinas viduje <keyword> eilutėje %d, stulpelyje %d"
 
-#: ../src/dh-parser.c:501
+#: ../src/dh-parser.c:516
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Nepavyko išpakuoti knygos '%s': %s"
@@ -422,51 +509,51 @@ msgstr "_Fiksuoto pločio šriftas"
 msgid "Fonts"
 msgstr "Šriftai"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:76
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:77
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:78
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:79
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:80
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:81
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:82
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:83
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:84
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:975
+#: ../src/dh-window.c:1024
 msgid "Error opening the requested link."
 msgstr "Klaida atverčiant nuorodą."
 
-#: ../src/dh-window.c:1246
+#: ../src/dh-window.c:1282
 msgid "_Close"
 msgstr "_Užverti"
 
-#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
+#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
 msgid "Empty Page"
 msgstr "Tuščias puslapis"
 
@@ -509,3 +596,10 @@ msgstr "Atgal"
 #: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Pirmyn"
+
+#~ msgid ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
+#~ msgstr ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
