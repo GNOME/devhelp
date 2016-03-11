@@ -27,7 +27,7 @@ msgid ""
 "through libraries, search by function, struct, or macro. It provides a "
 "tabbed interface and allows to print results."
 msgstr ""
-"El Devhelp es un navegador de documentació API. Facilita la navegació per "
+"El Devhelp és un navegador de documentació API. Facilita la navegació per "
 "biblioteques, cercar funcions, estructures o macros. Té una interfície amb "
 "pestanyes i permet imprimir els resultats."
 
