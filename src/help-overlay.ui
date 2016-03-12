@@ -43,7 +43,7 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;Primary&gt;F9</property>
+                <property name="accelerator">F9</property>
                 <property name="title" translatable="yes" context="shortcut window">Toggle sidebar visibility</property>
               </object>
             </child>
