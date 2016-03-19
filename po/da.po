@@ -1,10 +1,11 @@
-# Danish translation of DevHelp.
-# Copyright (C) 2001-2014 Free Software Foundation, Inc.
+# Danish translation for DevHelp.
+# Copyright (C) 2001-2016 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 #
 # Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08, 09, 10, 12, 13, 14.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08, 09, 10, 12, 13, 14, 16.
+# scootergrisen, 2016.
 #
 # Konventioner
 # ------------
@@ -16,49 +17,44 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-20 20:16+0200\n"
-"PO-Revision-Date: 2015-09-20 19:06+0200\n"
-"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 01:48+0100\n"
+"PO-Revision-Date: 2016-03-19 01:46+0100\n"
+"Last-Translator: Ask Hjorth Larsen\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
 #: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
+#: ../src/dh-app.c:557 ../src/dh-window.c:797
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "Hjælpeprogram til udviklere"
+
+# scootergrisen: skulle det ikke hellere starte med "Devhelp er en fremviser for API-dokumentation."?
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
 "tabbed interface and allows to print results."
 msgstr ""
-"Devhelp er en program til at vise applikationsprogrammeringsgrænseflader "
-"(API). Det har en nem måde at navigere mellem biblioteker, søgning efter "
-"funktion, struct eller makro. Det tilbyder en grænseflade med faneblade og "
-"tillader udskrift af resultater."
+"Devhelp er en fremviser for API-dokumentation. Den har en nem måde at "
+"navigere mellem biblioteker, søgning efter funktion, struct eller makro. Det "
+"tilbyder en grænseflade med faneblade og tillader udskrift af resultater."
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr "Devhelp integrerer med andre programmer såsom Glade, Anjuta og Geany."
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
-msgid ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:507 ../src/dh-window.c:753
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "Hjælpeprogram til udviklere"
 
 #: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -108,10 +104,12 @@ msgstr "Hovedvinduets y-position"
 msgid "The Y position of the main window."
 msgstr "Hovedvinduets y-position."
 
+# scootergrisen: måske "søgerude"
 #: ../data/org.gnome.devhelp.gschema.xml.h:11
 msgid "Width of the index and search pane"
 msgstr "Bredden af indeks- og søgepanelerne"
 
+# scootergrisen: måske "søgerude"
 #: ../data/org.gnome.devhelp.gschema.xml.h:12
 msgid "The width of the index and search pane."
 msgstr "Bredden af indeks- og søgepanelerne."
@@ -125,6 +123,7 @@ msgstr "Valgt faneblad: \"indhold\" eller \"søg\""
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "Hvilket af fanebladene der er valgt: \"indhold\" eller \"søg\"."
 
+# jf. "List of books disabled by the user"
 #: ../data/org.gnome.devhelp.gschema.xml.h:15
 msgid "Books disabled"
 msgstr "Bøger som er slået fra"
@@ -183,7 +182,7 @@ msgstr "Hjælpervinduets y-position."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:29
 msgid "Use system fonts"
-msgstr "Brug systemskrifttyper"
+msgstr "Brug systemets skrifttyper"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:30
 msgid "Use the system default fonts."
@@ -195,7 +194,7 @@ msgstr "Skrifttype for tekst"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:32
 msgid "Font for text with variable width."
-msgstr "Skrifttype til tekst med variabel bredde."
+msgstr "Skrifttype for tekst med variabel bredde."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:33
 msgid "Font for fixed width text"
@@ -203,13 +202,13 @@ msgstr "Skrifttype for tekst med fast bredde"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:34
 msgid "Font for text with fixed width, such as code examples."
-msgstr "Skrifttype til tekst med fast bredde, såsom kodeeksempler."
+msgstr "Skrifttype for tekst med fast bredde, såsom kodeeksempler."
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Hjælp til Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Får F2 til at starte Devhelp for ordet ved markøren"
 
@@ -227,52 +226,134 @@ msgid "_Preferences"
 msgstr "_Indstillinger"
 
 #: ../src/devhelp-menu.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "_Tastaturgenveje"
+
+#: ../src/devhelp-menu.ui.h:4
 msgid "_About"
 msgstr "_Om"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
+#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "_Afslut"
 
-#: ../src/dh-app.c:213
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Generelt"
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Giv fokus til global søgning"
+
+# scootergrisen: måske aktuelle
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Find på nuværende side"
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Åbn et nyt vindue"
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Åbn et nyt faneblad"
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Toggle sidebar visibility"
+msgstr "Gør sidebjælken synlig/usynlig"
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Gå tilbage"
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Gå fremad"
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Udskriv"
+
+# scootergrisen: måske aktuelle
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Luk det nuværende vindue"
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Luk alle vinduer"
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Zoom"
+
+#: ../src/help-overlay.ui.h:13
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Zoom ind"
+
+#: ../src/help-overlay.ui.h:14
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Zoom ud"
+
+#: ../src/help-overlay.ui.h:15
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Nulstil zoom"
+
+#: ../src/dh-app.c:249
 msgid "A developers' help browser for GNOME"
 msgstr "En hjælpefremviser for udviklere til GNOME"
 
-#: ../src/dh-app.c:215
+#: ../src/dh-app.c:251
 msgid "translator-credits"
 msgstr ""
 "Ole Laursen\n"
 "Martin Willemoes Hansen\n"
 "Ask Hjorth Larsen\n"
+"scootergrisen\n"
 "\n"
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/dh-app.c:217
+#: ../src/dh-app.c:253
 msgid "Devhelp Website"
 msgstr "Hjemmeside for Devhelp"
 
-#: ../src/dh-app.c:432
+#: ../src/dh-app.c:482
 msgid "Opens a new Devhelp window"
 msgstr "Åbner et nyt Devhelp-vindue"
 
-#: ../src/dh-app.c:437
+#: ../src/dh-app.c:487
 msgid "Search for a keyword"
 msgstr "Søg efter et nøgleord"
 
-#: ../src/dh-app.c:438 ../src/dh-app.c:443
+#: ../src/dh-app.c:488 ../src/dh-app.c:493
 msgid "KEYWORD"
 msgstr "NØGLEORD"
 
-#: ../src/dh-app.c:442
+#: ../src/dh-app.c:492
 msgid "Search and display any hit in the assistant window"
 msgstr "Søg og vis resultater i hjælpervinduet"
 
-#: ../src/dh-app.c:447
+#: ../src/dh-app.c:497
 msgid "Display the version and exit"
 msgstr "Vis versionsnummeret og afslut"
 
-#: ../src/dh-app.c:452
+#: ../src/dh-app.c:502
 msgid "Quit any running Devhelp"
 msgstr "Afslut enhver kørende Devhelp"
 
@@ -345,23 +426,37 @@ msgstr "Enum"
 msgid "Type"
 msgstr "Type"
 
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:326
+msgid "Property"
+msgstr "Egenskab"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:331
+msgid "Signal"
+msgstr "Signal"
+
 #: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
 #: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "Forventede \"%s\", modtog \"%s\" ved linje %d, kolonne %d"
+msgstr "Forventede \"%s\", modtog \"%s\" på linje %d, kolonne %d"
 
 #: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Ugyldigt navnerum \"%s\" ved linje %d, kolonne %d"
+msgstr "Ugyldigt navnerum \"%s\" på linje %d, kolonne %d"
 
 #: ../src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
-"\"title\"-, \"name\"- og \"link\"-elementer kræves ved linje %d, kolonne %d"
+"Elementerne \"title\", \"name\" og \"link\" kræves på linje %d, kolonne %d"
 
 #: ../src/dh-parser.c:216
 #, c-format
@@ -369,22 +464,22 @@ msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
 "%d"
 msgstr ""
-"\"name\"- og \"link\"-elementer kræves inden i <sub> ved linje %d, kolonne %d"
+"Elementerne \"name\" og \"link\" kræves inden i <sub> på linje %d, kolonne %d"
 
 #: ../src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
-"\"name\"- og \"link\"-elementer kræves inden i \"%s\" ved linje %d, kolonne "
+"Elementerne \"name\" og \"link\" kræves inden i \"%s\" på linje %d, kolonne "
 "%d"
 
 #: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "Et \"type\"-element kræves inden i <keyword> ved linje %d, kolonne %d"
+msgstr "Elementet \"type\" kræves inden i <keyword> på linje %d, kolonne %d"
 
-#: ../src/dh-parser.c:501
+#: ../src/dh-parser.c:516
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Kan ikke udpakke bogen \"%s\": %s"
@@ -411,7 +506,7 @@ msgstr "Boghylde"
 
 #: ../src/dh-preferences.ui.h:6
 msgid "_Use system fonts"
-msgstr "_Brug systemskrifttype"
+msgstr "_Brug systemets skrifttyper"
 
 #: ../src/dh-preferences.ui.h:7
 msgid "_Variable width: "
@@ -425,51 +520,51 @@ msgstr "_Fast bredde:"
 msgid "Fonts"
 msgstr "Skifttyper"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:76
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:77
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:78
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:79
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:80
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:81
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:82
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:83
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:84
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:975
+#: ../src/dh-window.c:1024
 msgid "Error opening the requested link."
 msgstr "Fejl ved åbning af den forespurgte henvisning."
 
-#: ../src/dh-window.c:1246
+#: ../src/dh-window.c:1282
 msgid "_Close"
 msgstr "_Luk"
 
-#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
+#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
 msgid "Empty Page"
 msgstr "Tom side"
 
@@ -497,6 +592,7 @@ msgstr "_Mindre tekst"
 msgid "_Normal Size"
 msgstr "_Normal størrelse"
 
+# scootergrisen: måske "_Siderude"
 #: ../src/dh-window.ui.h:8
 msgid "_Side pane"
 msgstr "_Sidepanel"
@@ -512,343 +608,3 @@ msgstr "Tilbage"
 #: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Fremad"
-
-#~ msgid "Show API Documentation for the word at the cursor"
-#~ msgstr "Vis API-dokumentation for ordet ved markøren"
-
-#~ msgid "Current"
-#~ msgstr "Nuværende"
-
-#~ msgid "All Books"
-#~ msgstr "Alle bøger"
-
-#~ msgid "Find:"
-#~ msgstr "Find:"
-
-#~ msgid "Find Previous"
-#~ msgstr "Find forrige"
-
-#~ msgid "Find previous occurrence of the search string"
-#~ msgstr "Find forrige træfning af søgestrengen"
-
-#~ msgid "Find Next"
-#~ msgstr "Find næste"
-
-#~ msgid "Find next occurrence of the search string"
-#~ msgstr "Find næste træfning af søgestrengen"
-
-#~ msgid "C_ase Sensitive"
-#~ msgstr "_Versalfølsom"
-
-#~ msgid "Toggle case sensitive search"
-#~ msgstr "Slå versalfølsom søgning til/fra"
-
-#~ msgid "_Window"
-#~ msgstr "_Vindue"
-
-#~ msgid "_Edit"
-#~ msgstr "_Redigér"
-
-#~ msgid "_Copy"
-#~ msgstr "_Kopiér"
-
-#~ msgid "Find _Next"
-#~ msgstr "Find _næste"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Find _forrige"
-
-#~ msgid "_View"
-#~ msgstr "_Vis"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Fuldskærm"
-
-#~ msgid "_Go"
-#~ msgstr "_Gå til"
-
-#~ msgid "_Search Tab"
-#~ msgstr "_Søgefaneblad"
-
-#~ msgid "_Contents Tab"
-#~ msgstr "_Indholdsfaneblad"
-
-#~ msgid "Go to the previous page"
-#~ msgstr "Gå til forrige side"
-
-#~ msgid "Go to the next page"
-#~ msgstr "Gå til næste side"
-
-#~ msgid "Decrease the text size"
-#~ msgstr "Formindsk skriftstørrelsen"
-
-#~ msgid "Increase the text size"
-#~ msgstr "Forøg skriftstørrelsen"
-
-#~ msgid "Focus the Devhelp window with the search field active"
-#~ msgstr "Fokusér Devhelp-vinduet når søgefeltet er aktivt"
-
-#~ msgid "Search in:"
-#~ msgstr "Søg i:"
-
-#~ msgid "Contents"
-#~ msgstr "Indhold"
-
-#~ msgid "Search"
-#~ msgstr "Søg"
-
-#~ msgid "_File"
-#~ msgstr "_Fil"
-
-#~ msgid "_Help"
-#~ msgstr "_Hjælp"
-
-#~ msgid "Use the normal text size"
-#~ msgstr "Brug normal skriftstørrelse"
-
-#~ msgid "Leave fullscreen mode"
-#~ msgstr "Forlad fuldskærmstilstand"
-
-#~ msgid "Display in full screen"
-#~ msgstr "Vis i fuldskærmstilstand"
-
-#~ msgid "Larger"
-#~ msgstr "Større"
-
-#~ msgid "Smaller"
-#~ msgstr "Mindre"
-
-#~ msgid "Preferences…"
-#~ msgstr "Indstillinger…"
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Skrifttyper</b>"
-
-#~ msgid "Show advanced search options"
-#~ msgstr "Vis avancerede søgeindstillinger"
-
-#~ msgid "Whether the advanced search options are shown."
-#~ msgstr "Om de avancerede søgeindstillinger vises."
-
-#~ msgid "<b>Searching</b>"
-#~ msgstr "<b>Søger</b>"
-
-#~ msgid "_Show advanced search options"
-#~ msgstr "_Vis avancerede søgeindstillinger"
-
-#~ msgid ""
-#~ "name and link elements are required inside <function> on line %d, column "
-#~ "%d"
-#~ msgstr ""
-#~ "name og link-elementer er påkrævet inden i <function> ved linje %d, "
-#~ "kolonne %d"
-
-#~ msgid "Could not create book parser"
-#~ msgstr "Kunne ikke oprette bogfortolker"
-
-#~ msgid "Could not create markup parser"
-#~ msgstr "Kunne ikke oprette opmærkningsfortolker"
-
-#~ msgid "Browse Contents"
-#~ msgstr "Vis indhold"
-
-#~ msgid "Specify the size and location of the window"
-#~ msgstr "Angiv størrelsen og placeringen af vinduet"
-
-#~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
-#~ msgstr "BREDDExHØJDE+XOFF+YOFF"
-
-#~ msgid "Cannot set UI: %s"
-#~ msgstr "Kan ikke anvende grænseflade: %s"
-
-#~ msgid "Location of the paned"
-#~ msgstr "Feltets position"
-
-#~ msgid "The location of the paned separator."
-#~ msgstr "Felt-adskillerens position."
-
-#~ msgid "    "
-#~ msgstr "    "
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search tab "
-#~ "to find what you are looking for."
-#~ msgstr ""
-#~ "Vælg et emne i indholdet til venstre eller skift til søgefanen for at "
-#~ "finde hvad du leder efter."
-
-#~ msgid ""
-#~ "Select a subject in the contents to the left or switch to the search pane "
-#~ "to find what you are looking for.<p>Use <b>Shift Up/Down</b> to navigate "
-#~ "the tree to the left, and <b>Shift Left/Right</b> to expand and collapse "
-#~ "the books in the tree."
-#~ msgstr ""
-#~ "Vælg et emne i indholdet til venstre eller skift over til søgepanelet for "
-#~ "at finde hvad du leder efter.<p>Brug <b>skift + op/ned</b> for at "
-#~ "navigere i træet til venstre og <b>skift + venstre/højre</b> for at "
-#~ "udfolde eller sammenklappe bøgerne i træet."
-
-#~ msgid "'%s' is not a valid book"
-#~ msgstr "'%s' er ikke en gyldig bog"
-
-#~ msgid "Couldn't find file '%s'"
-#~ msgstr "Kunne ikke finde filen '%s'"
-
-#~ msgid "Open %s"
-#~ msgstr "Åbn %s"
-
-#~ msgid "Choose a book..."
-#~ msgstr "Vælg en bog..."
-
-#~ msgid "Problems when reading books: %s\n"
-#~ msgstr "Problem ved indlæsning af bøger: %s\n"
-
-#~ msgid "Empty document: %s"
-#~ msgstr "Tomt dokument: %s"
-
-#~ msgid "Document wrong type, got %s, expected 'booklist': %s"
-#~ msgstr ""
-#~ "Dokumentet er af en forkert type, modtog %s, forventede 'booklist': %s"
-
-#~ msgid ""
-#~ "I found an old version of your spec file (%s)\n"
-#~ "I removed it, so you have to hide the books you want to be hidden again."
-#~ msgstr ""
-#~ "En gammel version af specifikationsfilen (%s) blev fundet.\n"
-#~ "Den er nu fjernet så du bliver nødt til at skjule de bøger du vil have "
-#~ "skjult, igen."
-
-#~ msgid "Ok"
-#~ msgstr "O.k."
-
-#~ msgid "Failed to open file %s for writing."
-#~ msgstr "Det mislykkedes at åbne filen %s til skrivning."
-
-#~ msgid "The book is already installed."
-#~ msgstr "Bogen er allerede installeret."
-
-#~ msgid "Failed to move book. This should never happen."
-#~ msgstr "Det mislykkedes at flytte bogen. Dette burde aldrig ske."
-
-#~ msgid "Failed to extract spec file from book."
-#~ msgstr "Det mislykkedes at udtrække specifikationsfilen fra bogen."
-
-#~ msgid "Error, the book is corrupted or very old."
-#~ msgstr "Fejl, bogen er ødelagt eller meget gammel."
-
-#~ msgid "Failed to extract the book."
-#~ msgstr "Det mislykkedes at udtrække bogen."
-
-#~ msgid "Wrong type (mime_type=%s)."
-#~ msgstr "Forkert type (mime_type=%s)."
-
-#~ msgid "Tiny"
-#~ msgstr "Bitte"
-
-#~ msgid "Medium"
-#~ msgstr "Mellem"
-
-#~ msgid "Huge"
-#~ msgstr "Enorm"
-
-#~ msgid "<< _Show"
-#~ msgstr "<< _Vis"
-
-#~ msgid "Author:"
-#~ msgstr "Forfatter:"
-
-#~ msgid "Book info"
-#~ msgstr "Boginfo"
-
-#~ msgid "Bookmarks"
-#~ msgstr "Bogmærker"
-
-#~ msgid "Hidden"
-#~ msgstr "Skjult"
-
-#~ msgid "Install new book..."
-#~ msgstr "Installér ny bog..."
-
-#~ msgid "Move down"
-#~ msgstr "Flyt ned"
-
-#~ msgid "Move up"
-#~ msgstr "Flyt upp"
-
-#~ msgid "Name:"
-#~ msgstr "Navn:"
-
-#~ msgid "Path:"
-#~ msgstr "Sti:"
-
-#~ msgid "Remove"
-#~ msgstr "Fjern"
-
-#~ msgid "Reset to defaults"
-#~ msgstr "Gendan standardværdier"
-
-#~ msgid "Show _sidebar"
-#~ msgstr "Vis _sidepanel"
-
-#~ msgid "Version:"
-#~ msgstr "Version:"
-
-#~ msgid "View"
-#~ msgstr "Vis"
-
-#~ msgid "Visible"
-#~ msgstr "Synlig"
-
-#~ msgid "_Edit book..."
-#~ msgstr "_Rediger bog..."
-
-#~ msgid "_Hide >>"
-#~ msgstr "_Skjul >>"
-
-#~ msgid "_Limit the number of hits to:"
-#~ msgstr "_Begræns antallet af træffere til:"
-
-#~ msgid "_Text size: "
-#~ msgstr "_Tekststørrelse:"
-
-#~ msgid "About this application"
-#~ msgstr "Om dette program"
-
-#~ msgid "Open preferences dialog"
-#~ msgstr "Åbn vinduet med indstillinger"
-
-#~ msgid "Show sidebar"
-#~ msgstr "Vis sidepanel"
-
-#~ msgid "Book Manager..."
-#~ msgstr "Boghåndtering..."
-
-#~ msgid "Go to next page in the history"
-#~ msgstr "Gå til næste side i historikken"
-
-#~ msgid "Open the book manager dialog"
-#~ msgstr "Åbn boghåndteringsvinduet"
-
-#~ msgid "&lt;&lt; _Show"
-#~ msgstr "&lt;&lt; _Vis"
-
-#~ msgid "_Hide &gt;&gt;"
-#~ msgstr "_Skjul &gt;&gt;"
-
-#~ msgid "(C) Copyright 2001, Johan Dahlin"
-#~ msgstr "© Copyright 2001, Johan Dahlin"
-
-#~ msgid "Print Help"
-#~ msgstr "Udskriv hjælp"
-
-#~ msgid "Printing failed."
-#~ msgstr "Udskift mislykkedes."
-
-#~ msgid "Add book ..."
-#~ msgstr "Tilføj bog..."
-
-#~ msgid "Use autocompletion"
-#~ msgstr "Brug automatisk fuldførelse"
-
-#~ msgid "_Book manager..."
-#~ msgstr "_Boghåndtering..."
