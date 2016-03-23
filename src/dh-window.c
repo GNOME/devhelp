@@ -150,21 +150,19 @@ next_tab_cb (GSimpleAction *action,
              gpointer       user_data)
 {
         gint current_page, n_pages;
-        GtkNotebook *notebook;
         DhWindowPrivate *priv;
         DhWindow *window = user_data;
 
         priv = dh_window_get_instance_private (window);
-        notebook = GTK_NOTEBOOK (priv->notebook);
 
-        current_page = gtk_notebook_get_current_page (notebook);
-        n_pages = gtk_notebook_get_n_pages (notebook);
+        current_page = gtk_notebook_get_current_page (priv->notebook);
+        n_pages = gtk_notebook_get_n_pages (priv->notebook);
 
         if (current_page < n_pages - 1)
-                gtk_notebook_next_page (notebook);
+                gtk_notebook_next_page (priv->notebook);
         else
                 /* Wrap around to the first tab */
-                gtk_notebook_set_current_page (notebook, 0);
+                gtk_notebook_set_current_page (priv->notebook, 0);
 }
 
 static void
@@ -173,20 +171,18 @@ prev_tab_cb (GSimpleAction *action,
              gpointer       user_data)
 {
         gint current_page;
-        GtkNotebook *notebook;
         DhWindowPrivate *priv;
         DhWindow *window = user_data;
 
         priv = dh_window_get_instance_private (window);
-        notebook = GTK_NOTEBOOK (priv->notebook);
 
-        current_page = gtk_notebook_get_current_page (notebook);
+        current_page = gtk_notebook_get_current_page (priv->notebook);
 
         if (current_page > 0)
-                gtk_notebook_prev_page (notebook);
+                gtk_notebook_prev_page (priv->notebook);
         else
                 /* Wrap around to the last tab */
-                gtk_notebook_set_current_page (notebook, -1);
+                gtk_notebook_set_current_page (priv->notebook, -1);
 }
 
 static void
