@@ -3,24 +3,39 @@
 # Diatributed under the same licence as the devhelp package
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
 # Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
+# Sérgio Cardeira <cardeira dot sergio at gmail dot com>, 2016.
+# Tiago Santos <tiagofsantos81@sapo.pt>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-11-03 04:24+0000\n"
-"PO-Revision-Date: 2015-07-04 08:56+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73@openmailbox.com>\n"
+"POT-Creation-Date: 2016-02-18 16:24+0000\n"
+"PO-Revision-Date: 2016-04-27 23:08+0100\n"
+"Last-Translator: Tiago Santos <tiagofsantos81@sapo.pt>\n"
 "Language-Team: Português <>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Poedit 1.5.4\n"
 
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
 #: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
+#: ../src/dh-app.c:557 ../src/dh-window.c:797
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "Aplicação de ajuda aos programadores"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -31,31 +46,12 @@ msgstr ""
 "bibliotecas, procurar por função, estrutura ou macro. Apresenta um ambiente "
 "com separadores e permite imprimir resultados."
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
 "O Devhelp integra-se com outras aplicações tais como o Glade, Anjuta, ou "
 "Geany."
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
-msgid ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:507 ../src/dh-window.c:753
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "Aplicação de ajuda aos programadores"
 
 #: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -202,11 +198,11 @@ msgstr "Letra para o texto de largura fixa"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Letra para o texto de largura fixa, tal como exemplos de código."
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Assistência do Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Faz com que F2 abra o Devhelp para a palavra sob o cursor"
 
@@ -217,54 +213,134 @@ msgstr "Mostrar a documentação de API"
 #. ex:ts=4:et:
 #: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
 msgid "New _Window"
-msgstr "Nova _Janela"
+msgstr "Nova _janela"
 
 #: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
 msgid "_Preferences"
 msgstr "_Preferências"
 
 #: ../src/devhelp-menu.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "_Atalhos de teclado"
+
+#: ../src/devhelp-menu.ui.h:4
 msgid "_About"
 msgstr "_Sobre"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
+#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "_Sair"
 
-#: ../src/dh-app.c:213
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Geral"
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Focar na procura global"
+
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Encontrar na página atual"
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Abre uma nova janela"
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Abrir um novo separador"
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Toggle sidebar visibility"
+msgstr "Alterar a visibilidade da barra lateral"
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Recuar"
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Avançar"
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Imprimir"
+
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Fechar a janela atual"
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Fechar todas as janelas"
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Zoom"
+
+#: ../src/help-overlay.ui.h:13
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Ampliar"
+
+#: ../src/help-overlay.ui.h:14
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Reduzir"
+
+#: ../src/help-overlay.ui.h:15
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Repor Zoom"
+
+#: ../src/dh-app.c:249
 msgid "A developers' help browser for GNOME"
 msgstr "Um navegador de ajuda para programadores do GNOME"
 
-#: ../src/dh-app.c:215
+#: ../src/dh-app.c:251
 msgid "translator-credits"
-msgstr "Duarte Loreto <happyguy_pt@hotmail.com>\n"
+msgstr ""
+"Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Pedro Albuquerque <palbuquerque73@gmail.com>"
 
-#: ../src/dh-app.c:217
+#: ../src/dh-app.c:253
 msgid "Devhelp Website"
 msgstr "Página web do Devhelp"
 
-#: ../src/dh-app.c:432
+#: ../src/dh-app.c:482
 msgid "Opens a new Devhelp window"
 msgstr "Abre uma nova janela Devhelp"
 
-#: ../src/dh-app.c:437
+#: ../src/dh-app.c:487
 msgid "Search for a keyword"
 msgstr "Procurar uma palavra-chave"
 
-#: ../src/dh-app.c:438 ../src/dh-app.c:443
+#: ../src/dh-app.c:488 ../src/dh-app.c:493
 msgid "KEYWORD"
 msgstr "PALAVRA-CHAVE"
 
-#: ../src/dh-app.c:442
+#: ../src/dh-app.c:492
 msgid "Search and display any hit in the assistant window"
 msgstr "Procurar e mostrar os resultados na janela do assistente"
 
-#: ../src/dh-app.c:447
+#: ../src/dh-app.c:497
 msgid "Display the version and exit"
 msgstr "Mostrar a versão e sair"
 
-#: ../src/dh-app.c:452
+#: ../src/dh-app.c:502
 msgid "Quit any running Devhelp"
 msgstr "Sair de qualquer Devhelp em execução"
 
@@ -337,6 +413,20 @@ msgstr "Enum"
 msgid "Type"
 msgstr "Tipo"
 
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:326
+msgid "Property"
+msgstr "Propriedade"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:331
+msgid "Signal"
+msgstr "Sinal"
+
 #: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
 #: ../src/dh-parser.c:271
 #, c-format
@@ -379,7 +469,7 @@ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "O elemento \"type\" é obrigatório dentro da <keyword> na linha %d, coluna %d"
 
-#: ../src/dh-parser.c:501
+#: ../src/dh-parser.c:516
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Impossível descomprimir o livro \"%s\": %s"
@@ -410,67 +500,67 @@ msgstr "_Utilizar as fontes do sistema"
 
 #: ../src/dh-preferences.ui.h:7
 msgid "_Variable width: "
-msgstr "Largura _Variável: "
+msgstr "Largura _variável: "
 
 #: ../src/dh-preferences.ui.h:8
 msgid "_Fixed width:"
-msgstr "Largura _Fixa:"
+msgstr "Largura _fixa:"
 
 #: ../src/dh-preferences.ui.h:9
 msgid "Fonts"
 msgstr "Letras"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:76
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:77
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:78
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:79
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:80
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:81
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:82
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:83
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:84
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:975
+#: ../src/dh-window.c:1024
 msgid "Error opening the requested link."
 msgstr "Erro ao abrir a ligação indicada."
 
-#: ../src/dh-window.c:1246
+#: ../src/dh-window.c:1282
 msgid "_Close"
 msgstr "_Fechar"
 
-#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
+#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
 msgid "Empty Page"
 msgstr "Página vazia"
 
 #: ../src/dh-window.ui.h:1
 msgid "New _Tab"
-msgstr "Novo _Separador"
+msgstr "Novo _separador"
 
 #: ../src/dh-window.ui.h:2
 msgid "_Print"
@@ -482,7 +572,7 @@ msgstr "_Localizar"
 
 #: ../src/dh-window.ui.h:4
 msgid "_Larger Text"
-msgstr "Texto _Maior"
+msgstr "Texto _maior"
 
 #: ../src/dh-window.ui.h:5
 msgid "S_maller Text"
@@ -490,7 +580,7 @@ msgstr "_Texto menor"
 
 #: ../src/dh-window.ui.h:6
 msgid "_Normal Size"
-msgstr "Tamanho _Normal"
+msgstr "Tamanho _normal"
 
 #: ../src/dh-window.ui.h:8
 msgid "_Side pane"
@@ -507,6 +597,13 @@ msgstr "Recuar"
 #: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "Avançar"
+
+#~ msgid ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
+#~ msgstr ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
 
 #~ msgid "Show API Documentation for the word at the cursor"
 #~ msgstr "Apresentar a Documentação de API para a palavra sob o cursor"
