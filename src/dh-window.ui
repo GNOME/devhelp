@@ -7,6 +7,11 @@
         <attribute name="label" translatable="yes">New _Tab</attribute>
         <attribute name="action">win.new-tab</attribute>
         <attribute name="accel">&lt;Primary&gt;t</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Side _Panel</attribute>
+        <attribute name="action">win.show-sidebar</attribute>
+        <attribute name="accel">F9</attribute>
         <attribute name="use-underline">True</attribute>
       </item>
     </section>

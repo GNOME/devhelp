@@ -521,7 +521,7 @@ static GActionEntry win_entries[] = {
         { "find-next",        find_next_cb },
 
         /* view */
-        { "show-sidebar",     NULL, NULL, "false", show_sidebar_cb },
+        { "show-sidebar",     NULL, NULL, "true", show_sidebar_cb },
         { "zoom-in",          zoom_in_cb },
         { "zoom-out",         zoom_out_cb },
         { "zoom-default",     zoom_default_cb },
