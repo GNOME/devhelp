@@ -364,25 +364,36 @@ show_sidebar_cb (GSimpleAction *action,
 }
 
 static void
-zoom_in_cb (GSimpleAction *action,
-            GVariant      *parameter,
-            gpointer       user_data)
+bump_zoom_level (DhWindow *window,
+                 int bump_amount)
 {
-        DhWindow *window = user_data;
         int zoom_level_index;
+        double new_zoom_level;
+
+        if (bump_amount == 0)
+                return;
 
         zoom_level_index = window_get_current_zoom_level_index (window);
-        if (zoom_levels[zoom_level_index].level < ZOOM_MAXIMAL) {
-                double new_zoom_level;
-                WebKitWebView *web_view;
+        new_zoom_level = zoom_levels[zoom_level_index + bump_amount].level;
 
-                new_zoom_level = zoom_levels[zoom_level_index + 1].level;
+        if (new_zoom_level >= ZOOM_MINIMAL &&
+                new_zoom_level <= ZOOM_MAXIMAL) {
+                WebKitWebView *web_view;
 
                 web_view = window_get_active_web_view (window);
                 webkit_web_view_set_zoom_level (web_view, new_zoom_level);
                 window_update_zoom_actions_state (window);
         }
+}
 
+static void
+zoom_in_cb (GSimpleAction *action,
+            GVariant      *parameter,
+            gpointer       user_data)
+{
+        DhWindow *window = user_data;
+
+        bump_zoom_level (window, 1);
 }
 
 static void
@@ -391,19 +402,8 @@ zoom_out_cb (GSimpleAction *action,
              gpointer       user_data)
 {
         DhWindow *window = user_data;
-        int zoom_level_index;
 
-        zoom_level_index = window_get_current_zoom_level_index (window);
-        if (zoom_levels[zoom_level_index].level > ZOOM_MINIMAL) {
-                double new_zoom_level;
-                WebKitWebView *web_view;
-
-                new_zoom_level = zoom_levels[zoom_level_index - 1].level;
-
-                web_view = window_get_active_web_view (window);
-                webkit_web_view_set_zoom_level (web_view, new_zoom_level);
-                window_update_zoom_actions_state (window);
-        }
+        bump_zoom_level (window, -1);
 }
 
 static void
@@ -1036,6 +1036,65 @@ window_web_view_load_failed_cb (WebKitWebView   *web_view,
         return GDK_EVENT_STOP;
 }
 
+static gboolean
+window_web_view_scroll_event_cb (GtkWidget *widget,
+                                 GdkEvent  *event,
+                                 gpointer   user_data) {
+        static gdouble total_delta_y = 0.f;
+
+        GdkEventScroll *scroll_event;
+        DhWindow *window;
+        gdouble delta_y;
+
+        scroll_event = (GdkEventScroll *)event;
+
+        if (scroll_event->state & GDK_CONTROL_MASK) {
+                window = user_data;
+
+                switch (scroll_event->direction) {
+                        case GDK_SCROLL_UP:
+                                bump_zoom_level (window, 1);
+
+                                return TRUE;
+
+                        case GDK_SCROLL_DOWN:
+                                bump_zoom_level (window, -1);
+
+                                return TRUE;
+
+                        case GDK_SCROLL_LEFT:
+                        case GDK_SCROLL_RIGHT:
+                                break;
+
+                        case GDK_SCROLL_SMOOTH:
+                                gdk_event_get_scroll_deltas (event, NULL, &delta_y);
+
+                                total_delta_y += delta_y;
+
+                                /*
+                                 * Avoiding direct float comparison.
+                                 * -1 and 1 are the thresholds for bumping the zoom level,
+                                 *  which can be adjusted for taste.
+                                 */
+                                if ((int)total_delta_y <= -1) {
+                                        total_delta_y = 0.f;
+
+                                        bump_zoom_level (window, 1);
+                                } else if ((int)total_delta_y >= 1) {
+                                        total_delta_y = 0.f;
+
+                                        bump_zoom_level (window, -1);
+                                }
+                                return TRUE;
+
+                        default:
+                                g_assert_not_reached ();
+            }
+        }
+
+        return FALSE;
+}
+
 static void
 window_search_link_selected_cb (GObject  *ignored,
                                 DhLink   *link,
@@ -1310,6 +1369,9 @@ window_open_new_tab (DhWindow    *window,
                           window);
         g_signal_connect (view, "load-failed",
                           G_CALLBACK (window_web_view_load_failed_cb),
+                          window);
+        g_signal_connect (view, "scroll-event",
+                          G_CALLBACK (window_web_view_scroll_event_cb),
                           window);
 
         num = gtk_notebook_append_page (priv->notebook, vbox, NULL);
