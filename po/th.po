@@ -1,7 +1,7 @@
 # Thai translation of devhelp
-# Copyright (C) 2007-2015 Free Software Foundation, Inc.
+# Copyright (C) 2007-2016 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
-# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2007-2013.
+# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2007-2013, 2016.
 # Visal Srivisal <srivisal@yahoo.com>, 2008.
 # Akom Chotiphantawanon <knight2000@gmail.com>, 2015.
 #
@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-25 04:24+0000\n"
-"PO-Revision-Date: 2015-11-11 15:30+0700\n"
-"Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
+"POT-Creation-Date: 2016-05-19 15:25+0000\n"
+"PO-Revision-Date: 2016-05-27 15:06+0700\n"
+"Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,20 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Gtranslator 2.91.6\n"
 
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
 #: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
+#: ../src/dh-app.c:557 ../src/dh-window.c:797
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "โปรแกรมช่วยเหลือนักพัฒนา"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -30,29 +43,10 @@ msgstr ""
 "Devhelp เป็นเบราว์เซอร์เอกสาร API ซึ่งช่วยให้ง่ายในการท่องดูส่วนต่างๆ ของไลบรารี, "
 "ค้นหาด้วยชื่อฟังก์ชั่น, struct หรือแมโคร มีส่วนติดต่อแบบแท็บ และสามารถพิมพ์ผลการค้นหาได้"
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr "Devhelp มีการเชื่อมรวมกับโปรแกรมอื่น เช่น Glade, Anjuta หรือ Geany"
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
-msgid ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:507 ../src/dh-window.c:753
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "โปรแกรมช่วยเหลือนักพัฒนา"
 
 #: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -198,11 +192,11 @@ msgstr "แบบอักษรสำหรับอักษรความก
 msgid "Font for text with fixed width, such as code examples."
 msgstr "แบบอักษรสำหรับข้อความที่ใช้อักษรความกว้างคงที่ เช่น ตัวอย่างโค้ด"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "การรองรับ Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "ทำให้ใช้ F2 เปิด Devhelp สำหรับคำที่ตำแหน่งเคอร์เซอร์ได้"
 
@@ -220,49 +214,128 @@ msgid "_Preferences"
 msgstr "_ปรับแต่ง"
 
 #: ../src/devhelp-menu.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "ปุ่ม_ลัดแป้นพิมพ์"
+
+#: ../src/devhelp-menu.ui.h:4
 msgid "_About"
 msgstr "เ_กี่ยวกับ"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
+#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "_ออก"
 
-#: ../src/dh-app.c:213
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr "ทั่วไป"
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "โฟกัสที่ช่องค้นหารวม"
+
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "ค้นหาในหน้าปัจจุบัน"
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "เปิดหน้าต่างบานใหม่"
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "เปิดแท็บใหม่"
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Toggle sidebar visibility"
+msgstr "เปิด-ปิดการแสดงช่องด้านข้าง"
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "ย้อนกลับ"
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "ต่อไป"
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "พิมพ์"
+
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "ปิดหน้าต่างปัจจุบัน"
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "ปิดหน้าต่างทั้งหมด"
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "ซูม"
+
+#: ../src/help-overlay.ui.h:13
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "ซูมเข้า"
+
+#: ../src/help-overlay.ui.h:14
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "ซูมออก"
+
+#: ../src/help-overlay.ui.h:15
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "ซูมปกติ"
+
+#: ../src/dh-app.c:249
 msgid "A developers' help browser for GNOME"
 msgstr "เบราว์เซอร์คู่มือนักพัฒนาสำหรับ GNOME"
 
-#: ../src/dh-app.c:215
+#: ../src/dh-app.c:251
 msgid "translator-credits"
 msgstr ""
 "Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
 "Visal Srivisal <srivisal@yahoo.com>\n"
 "Akom Chotiphantawanon <knight2000@gmail.com>"
 
-#: ../src/dh-app.c:217
+#: ../src/dh-app.c:253
 msgid "Devhelp Website"
 msgstr "เว็บไซต์ Devhelp"
 
-#: ../src/dh-app.c:432
+#: ../src/dh-app.c:482
 msgid "Opens a new Devhelp window"
 msgstr "เปิดหน้าต่าง Devhelp บานใหม่"
 
-#: ../src/dh-app.c:437
+#: ../src/dh-app.c:487
 msgid "Search for a keyword"
 msgstr "ค้นหาคำหลัก"
 
-#: ../src/dh-app.c:438 ../src/dh-app.c:443
+#: ../src/dh-app.c:488 ../src/dh-app.c:493
 msgid "KEYWORD"
 msgstr "คำหลัก"
 
-#: ../src/dh-app.c:442
+#: ../src/dh-app.c:492
 msgid "Search and display any hit in the assistant window"
 msgstr "ค้นหาและแสดงรายการที่พบในหน้าต่างผู้ช่วย"
 
-#: ../src/dh-app.c:447
+#: ../src/dh-app.c:497
 msgid "Display the version and exit"
 msgstr "แสดงข้อมูลรุ่นโปรแกรมแล้วจบการทำงาน"
 
-#: ../src/dh-app.c:452
+#: ../src/dh-app.c:502
 msgid "Quit any running Devhelp"
 msgstr "ปิด Devhelp ทุกตัวที่กำลังทำงานอยู่"
 
@@ -335,6 +408,20 @@ msgstr "Enum"
 msgid "Type"
 msgstr "ชนิด"
 
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:326
+msgid "Property"
+msgstr "คุณสมบัติ"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:331
+msgid "Signal"
+msgstr "สัญญาณ"
+
 #: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
 #: ../src/dh-parser.c:271
 #, c-format
@@ -370,7 +457,7 @@ msgstr "ต้องมีอิลิเมนต์ \"name\" และ \"link\
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "ต้องมีอิลิเมนต์ \"type\" ภายใต้ <keyword> ที่บรรทัด %d, คอลัมน์ %d"
 
-#: ../src/dh-parser.c:501
+#: ../src/dh-parser.c:516
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "ไม่สามารถคลายข้อมูลหนังสือ '%s': %s"
@@ -411,51 +498,51 @@ msgstr "ความกว้าง_คงที่:"
 msgid "Fonts"
 msgstr "แบบอักษร"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:76
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:77
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:78
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:79
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:80
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:81
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:82
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:83
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:84
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:975
+#: ../src/dh-window.c:1024
 msgid "Error opening the requested link."
 msgstr "เกิดข้อผิดพลาดขณะเปิดลิงก์ที่ร้องขอ"
 
-#: ../src/dh-window.c:1246
+#: ../src/dh-window.c:1282
 msgid "_Close"
 msgstr "ปิ_ด"
 
-#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
+#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
 msgid "Empty Page"
 msgstr "หน้าว่าง"
 
@@ -485,7 +572,7 @@ msgstr "ขนาด_ปกติ"
 
 #: ../src/dh-window.ui.h:8
 msgid "_Side pane"
-msgstr "แถบด้าน_ข้าง"
+msgstr "ช่องด้าน_ข้าง"
 
 #: ../src/dh-window.ui.h:10
 msgid "_About Devhelp"
@@ -498,6 +585,13 @@ msgstr "ย้อนกลับ"
 #: ../src/dh-window.ui.h:13
 msgid "Forward"
 msgstr "ถัดไป"
+
+#~ msgid ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
+#~ msgstr ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
 
 #~ msgid "Show API Documentation for the word at the cursor"
 #~ msgstr "แสดงเอกสารของ API สำหรับคำที่ตำแหน่งเคอร์เซอร์"
