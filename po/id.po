@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-14 03:19+0000\n"
-"PO-Revision-Date: 2015-08-14 18:22+0700\n"
+"POT-Creation-Date: 2016-05-19 15:25+0000\n"
+"PO-Revision-Date: 2016-06-23 04:17+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id_ID\n"
@@ -21,9 +21,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
 #: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
+#: ../src/dh-app.c:557 ../src/dh-window.c:797
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "Program Bantuan untuk Pengembang"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
 msgid ""
 "Devhelp is an API documentation browser. It provides an easy way to navigate "
 "through libraries, search by function, struct, or macro. It provides a "
@@ -33,30 +46,11 @@ msgstr ""
 "menavigasi pustaka, mencari berdasarkan fungsi, struct, atau makro. Ini "
 "menyediakan antar muka bertab dan mengijinkan pencetakan hasil."
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
 msgid ""
 "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
 msgstr ""
 "Devhelp terintegrasi dengan aplikasi lain seperti Glade, Anjuta, atau Geany."
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
-msgid ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:507 ../src/dh-window.c:753
-msgid "Devhelp"
-msgstr "Devhelp"
-
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "Program Bantuan untuk Pengembang"
 
 #: ../data/org.gnome.Devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
@@ -202,11 +196,11 @@ msgstr "Fonta untuk teks dengan lebar tetap"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Fonta untuk teks lebar tetap, seperti contoh kode."
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:1
 msgid "Devhelp support"
 msgstr "Dukungan Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
 msgstr "Dengan tombol F2, membuka Devhelp untuk kata pada kursor"
 
@@ -224,53 +218,132 @@ msgid "_Preferences"
 msgstr "_Preferensi"
 
 #: ../src/devhelp-menu.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "Pintasan Papan Ti_k"
+
+#: ../src/devhelp-menu.ui.h:4
 msgid "_About"
 msgstr "Tent_ang"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
+#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
 msgid "_Quit"
 msgstr "_Keluar"
 
-#: ../src/dh-app.c:213
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Umum"
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Fokus pencarian global"
+
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Temukan di halaman saat ini"
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Buka jendela baru"
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Buka tab baru"
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Toggle sidebar visibility"
+msgstr "Jungkitkan kenampakan bilah sisi"
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Mundur"
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Maju"
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Cetak"
+
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Tutup jendela ini"
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Tutup semua jendela"
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Zum"
+
+#: ../src/help-overlay.ui.h:13
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Perbesar"
+
+#: ../src/help-overlay.ui.h:14
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Perkecil"
+
+#: ../src/help-overlay.ui.h:15
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Reset Zum"
+
+#: ../src/dh-app.c:249
 msgid "A developers' help browser for GNOME"
 msgstr "Peramban bantuan GNOME bagi pengembang"
 
-#: ../src/dh-app.c:215
+#: ../src/dh-app.c:251
 msgid "translator-credits"
 msgstr ""
 "Mikiya <eien.mihoshi@gmail.com>, 2010.\n"
 "Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013, 2014.\n"
 "Dirgita <dirgitadevina@yahoo.co.id>, 2010."
 
-#: ../src/dh-app.c:217
+#: ../src/dh-app.c:253
 msgid "Devhelp Website"
 msgstr "Situs Web Devhelp"
 
-#: ../src/dh-app.c:432
+#: ../src/dh-app.c:482
 msgid "Opens a new Devhelp window"
 msgstr "Buka jendela Devhelp baru"
 
-#: ../src/dh-app.c:437
+#: ../src/dh-app.c:487
 msgid "Search for a keyword"
 msgstr "Mencari kata kunci"
 
-#: ../src/dh-app.c:438 ../src/dh-app.c:443
+#: ../src/dh-app.c:488 ../src/dh-app.c:493
 msgid "KEYWORD"
 msgstr "KATA KUNCI"
 
-#: ../src/dh-app.c:442
+#: ../src/dh-app.c:492
 msgid "Search and display any hit in the assistant window"
 msgstr "Mencari dan menampilkan semua hasil di jendela pembantu"
 
-#: ../src/dh-app.c:447
+#: ../src/dh-app.c:497
 msgid "Display the version and exit"
 msgstr "Menampilkan versi dan keluar"
 
-#: ../src/dh-app.c:452
+#: ../src/dh-app.c:502
 msgid "Quit any running Devhelp"
 msgstr "Keluar dari semua Devhelp yang sedang berjalan"
 
-#. Please don't translate "Devhelp"
+#. Please don
 #: ../src/dh-assistant.ui.h:2
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Pembantu"
@@ -339,6 +412,20 @@ msgstr "Enumerasi"
 msgid "Type"
 msgstr "Jenis"
 
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:326
+msgid "Property"
+msgstr "Properti"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:331
+msgid "Signal"
+msgstr "Sinyal"
+
 #: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
 #: ../src/dh-parser.c:271
 #, c-format
@@ -377,7 +464,7 @@ msgstr ""
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr "Elemen \"type\" diperlukan dalam <keyword> pada baris %d, kolom %d"
 
-#: ../src/dh-parser.c:501
+#: ../src/dh-parser.c:516
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Tidak dapat mendekompresi buku '%s': %s"
@@ -418,51 +505,51 @@ msgstr "_Lebar tetap:"
 msgid "Fonts"
 msgstr "Fonta"
 
-#: ../src/dh-window.c:86
+#: ../src/dh-window.c:76
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:87
+#: ../src/dh-window.c:77
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:88
+#: ../src/dh-window.c:78
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:89
+#: ../src/dh-window.c:79
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:90
+#: ../src/dh-window.c:80
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:91
+#: ../src/dh-window.c:81
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:92
+#: ../src/dh-window.c:82
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:93
+#: ../src/dh-window.c:83
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:94
+#: ../src/dh-window.c:84
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:975
+#: ../src/dh-window.c:1024
 msgid "Error opening the requested link."
 msgstr "Galat sewaktu membuka tautan yang diminta."
 
-#: ../src/dh-window.c:1246
+#: ../src/dh-window.c:1282
 msgid "_Close"
 msgstr "_Tutup"
 
-#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
+#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
 msgid "Empty Page"
 msgstr "Halaman Kosong"
 
