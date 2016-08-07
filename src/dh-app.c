@@ -236,6 +236,8 @@ about_cb (GSimpleAction *action,
                 "Ross Burton <ross@burtonini.com>",
                 "Aleksander Morgado <aleksander@lanedo.com>",
                 "Thomas Bechtold <toabctl@gnome.org>",
+                "Frédéric Péters <fpeters@0d.be>",
+                "Sébastien Wilmet <swilmet@gnome.org>",
                 NULL
         };
 
