@@ -1,3 +1,19 @@
+===============
+Version 3.21.90
+===============
+
+Fixed bugs:
+
+ - #763942, Let Control+scroll change the zoom level
+ - #769606, 3 trivial commits
+
+Updated translations: eu, id, it, nb, oc, pt, th
+
+Many thanks to all contributors: Ernestas Kulik, Andika Triwidada, Sébastien
+Wilmet, Piotr Drąg, Theppitak Karoonboonyanan, Inaki Larranaga Murgoitio,
+Kjartan Maraas, Cédric Valmary, Milo Casagrande
+
+
 ==============
 Version 3.20.0
 ==============
