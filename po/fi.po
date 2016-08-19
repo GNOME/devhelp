@@ -14,11 +14,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-13 04:25+0000\n"
-"PO-Revision-Date: 2016-03-13 15:14+0200\n"
+"product=devhelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-08-15 08:52+0000\n"
+"PO-Revision-Date: 2016-08-19 19:26+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
-"Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,8 +30,8 @@ msgstr ""
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
-#: ../src/dh-app.c:557 ../src/dh-window.c:797
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:249
+#: ../src/dh-app.c:559 ../src/dh-window.c:793
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -254,7 +254,6 @@ msgid "Find in current page"
 msgstr "Etsi nykyiseltä sivulta"
 
 #: ../src/help-overlay.ui.h:4
-#| msgid "Opens a new Devhelp window"
 msgctxt "shortcut window"
 msgid "Open a new window"
 msgstr "Avaa uusi ikkuna"
@@ -275,13 +274,11 @@ msgid "Go back"
 msgstr "Siirry taaksepäin"
 
 #: ../src/help-overlay.ui.h:8
-#| msgid "Forward"
 msgctxt "shortcut window"
 msgid "Go forward"
 msgstr "Siirry eteenpäin"
 
 #: ../src/help-overlay.ui.h:9
-#| msgid "_Print"
 msgctxt "shortcut window"
 msgid "Print"
 msgstr "Tulosta"
@@ -316,44 +313,44 @@ msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Palauta mittakaava"
 
-#: ../src/dh-app.c:249
+#: ../src/dh-app.c:251
 msgid "A developers' help browser for GNOME"
 msgstr "Gnomen ohjeselain kehittäjille"
 
-#: ../src/dh-app.c:251
+#: ../src/dh-app.c:253
 msgid "translator-credits"
 msgstr ""
-"Jiri Grönroos 2012-2015\n"
+"Jiri Grönroos 2012-2016\n"
 "Tommi Vainikainen, 2010-2011\n"
 "Ilkka Tuohela, 2004-2005\n"
 "\n"
 "https://l10n.gnome.org/teams/fi/"
 
-#: ../src/dh-app.c:253
+#: ../src/dh-app.c:255
 msgid "Devhelp Website"
 msgstr "Devhelp-verkkosivusto"
 
-#: ../src/dh-app.c:482
+#: ../src/dh-app.c:484
 msgid "Opens a new Devhelp window"
 msgstr "Avaa uuden Devhelp-ikkunan"
 
-#: ../src/dh-app.c:487
+#: ../src/dh-app.c:489
 msgid "Search for a keyword"
 msgstr "Etsi avainsanalla"
 
-#: ../src/dh-app.c:488 ../src/dh-app.c:493
+#: ../src/dh-app.c:490 ../src/dh-app.c:495
 msgid "KEYWORD"
 msgstr "AVAINSANA"
 
-#: ../src/dh-app.c:492
+#: ../src/dh-app.c:494
 msgid "Search and display any hit in the assistant window"
 msgstr "Etsi ja näytä osumat apuikkunassa"
 
-#: ../src/dh-app.c:497
+#: ../src/dh-app.c:499
 msgid "Display the version and exit"
 msgstr "Näytä versio ja lopeta"
 
-#: ../src/dh-app.c:502
+#: ../src/dh-app.c:504
 msgid "Quit any running Devhelp"
 msgstr "Sulje avoinna olevat Devhelp-ohjelmat"
 
@@ -438,7 +435,7 @@ msgstr "Ominaisuus"
 #. * untranslated.
 #: ../src/dh-link.c:331
 msgid "Signal"
-msgstr ""
+msgstr "Signaali"
 
 #: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
 #: ../src/dh-parser.c:271
@@ -559,15 +556,15 @@ msgstr "300 %"
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:1024
+#: ../src/dh-window.c:1020
 msgid "Error opening the requested link."
 msgstr "Linkin avaaminen epäonnistui."
 
-#: ../src/dh-window.c:1282
+#: ../src/dh-window.c:1337
 msgid "_Close"
 msgstr "_Sulje"
 
-#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
+#: ../src/dh-window.c:1355 ../src/dh-window.c:1529
 msgid "Empty Page"
 msgstr "Tyhjä sivu"
 
