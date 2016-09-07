@@ -1,0 +1,586 @@
+# Friulian translation for devhelp.
+# Copyright (C) 2016 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# Fabio Tomat <f.t.public@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-09-07 02:44+0000\n"
+"PO-Revision-Date: 2016-09-07 15:05+0200\n"
+"Language-Team: Friulian <fur@li.org>\n"
+"Language: fur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. i18n: Please don't translate "Devhelp" (it's marked as translatable
+#. * for transliteration only)
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:249
+#: ../src/dh-app.c:559 ../src/dh-window.c:793
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
+msgid "Developer's Help program"
+msgstr "Program par guidis di svilup"
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
+msgid ""
+"Devhelp is an API documentation browser. It provides an easy way to navigate "
+"through libraries, search by function, struct, or macro. It provides a "
+"tabbed interface and allows to print results."
+msgstr ""
+"Devhelp al è un navigadôr di documentazion des API. Al permet di esplorâ, in "
+"maniere facile, lis librariis e di eseguî ricercjis par funzions, struturis "
+"o macro. Al è dotât di une interface a schedis e al permet la stampe dai "
+"risultâts."
+
+#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
+msgid ""
+"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+msgstr "Devhelp si integre cun altris aplicazions come Glade, Anjuta o Geany."
+
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
+msgid "Documentation Browser"
+msgstr "Navigadôr di documentazion"
+
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
+msgid "documentation;information;manual;developer;api;"
+msgstr "documentazion;informazion;manuâl;svilupadôr;api;"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:1
+msgid "Main window maximized state"
+msgstr "Stât di slargjadure dal barcon principâl"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:2
+msgid "Whether the main window should start maximized."
+msgstr "Indiche se il barcon principâl al à di jessi inviât slargjât."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:3
+msgid "Width of the main window"
+msgstr "Largjece dal barcon principâl"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:4
+msgid "The width of the main window."
+msgstr "La largjece dal barcon principâl."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:5
+msgid "Height of main window"
+msgstr "Altece dal barcon principâl"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:6
+msgid "The height of the main window."
+msgstr "La altece dal barcon principâl."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:7
+msgid "X position of main window"
+msgstr "Posizion X dal barcon principâl"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:8
+msgid "The X position of the main window."
+msgstr "La posizion X dal barcon principâl"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:9
+msgid "Y position of main window"
+msgstr "Posizion Y dal barcon principâl"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:10
+msgid "The Y position of the main window."
+msgstr "La posizion Y dal barcon principâl."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:11
+msgid "Width of the index and search pane"
+msgstr "Largjece dal ricuadri di ricercje e indiç"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:12
+msgid "The width of the index and search pane."
+msgstr "La largjece dal ricuadri di ricercje e de metude in indiç."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:13
+msgid "Selected tab: \"content\" or \"search\""
+msgstr "Schede selezionade:\"content\" (contignût) o \"search\" (ricercje)"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:14
+msgid "Which of the tabs is selected: \"content\" or \"search\"."
+msgstr ""
+"Cualis des schedis e je selezionade:\"content\" (contignût) o \"search"
+"\" (ricercje)."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:15
+msgid "Books disabled"
+msgstr "Libris disabilitâts"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:16
+msgid "List of books disabled by the user."
+msgstr "Liste di libris disabilitâts dal utent."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:17
+msgid "Group by language"
+msgstr "Met dongje par lenghe"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:18
+msgid "Whether books should be grouped by language in the UI"
+msgstr ""
+"Indiche se meti dongje lis guidis inte interface utent in base ae lenghe"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:19
+msgid "Whether the assistant window should be maximized"
+msgstr "Indiche se il barcon dal assistent al à di jessi slargjât"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:20
+msgid "Whether the assistant window should be maximized."
+msgstr "Indiche se il barcon dal assistent al à di jessi slargjât."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:21
+msgid "Width of the assistant window"
+msgstr "Largjece dal barcon dal assistent"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:22
+msgid "The width of the assistant window."
+msgstr "La largjece dal barcon dal assistent."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:23
+msgid "Height of assistant window"
+msgstr "Altece dal barcon dal assistent"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:24
+msgid "The height of the assistant window."
+msgstr "La altece dal barcon dal assistent."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:25
+msgid "X position of assistant window"
+msgstr "Posizion X dal barcon dal assistent"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:26
+msgid "The X position of the assistant window."
+msgstr "La posizion X dal barcon dal assistent."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:27
+msgid "Y position of assistant window"
+msgstr "Posizion Y dal barcon dal assistent"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:28
+msgid "The Y position of the assistant window."
+msgstr "La posizion Y dal barcon dal assistent."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:29
+msgid "Use system fonts"
+msgstr "Dopre i caratars di sisteme"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:30
+msgid "Use the system default fonts."
+msgstr "Dopre i caratars di sisteme predefinîts."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:31
+msgid "Font for text"
+msgstr "Gjenar di caratar pal test"
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:32
+msgid "Font for text with variable width."
+msgstr "Gjenar di caratar pal test a largjece variabil."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:33
+msgid "Font for fixed width text"
+msgstr "Gjenar di caratar pal test a largjece fisse."
+
+#: ../data/org.gnome.devhelp.gschema.xml.h:34
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Gjenar di caratar pal test a largjece fisse, come esemplis di codiç."
+
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:1
+msgid "Devhelp support"
+msgstr "Supuart Devhelp"
+
+#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
+msgid "Makes F2 bring up Devhelp for the word at the cursor"
+msgstr ""
+
+#: ../misc/gedit-plugin/devhelp.py:42
+msgid "Show API Documentation"
+msgstr "Mostre documentazion API"
+
+#. ex:ts=4:et:
+#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
+msgid "New _Window"
+msgstr ""
+
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
+msgid "_Preferences"
+msgstr ""
+
+#: ../src/devhelp-menu.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+#: ../src/devhelp-menu.ui.h:4
+msgid "_About"
+msgstr ""
+
+#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
+msgid "_Quit"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Toggle sidebar visibility"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Print"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:13
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:14
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr ""
+
+#: ../src/help-overlay.ui.h:15
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr ""
+
+#: ../src/dh-app.c:251
+msgid "A developers' help browser for GNOME"
+msgstr ""
+
+#: ../src/dh-app.c:253
+msgid "translator-credits"
+msgstr ""
+
+#: ../src/dh-app.c:255
+msgid "Devhelp Website"
+msgstr ""
+
+#: ../src/dh-app.c:484
+msgid "Opens a new Devhelp window"
+msgstr ""
+
+#: ../src/dh-app.c:489
+msgid "Search for a keyword"
+msgstr ""
+
+#: ../src/dh-app.c:490 ../src/dh-app.c:495
+msgid "KEYWORD"
+msgstr ""
+
+#: ../src/dh-app.c:494
+msgid "Search and display any hit in the assistant window"
+msgstr ""
+
+#: ../src/dh-app.c:499
+msgid "Display the version and exit"
+msgstr ""
+
+#: ../src/dh-app.c:504
+msgid "Quit any running Devhelp"
+msgstr ""
+
+#. Please don
+#: ../src/dh-assistant.ui.h:2
+msgid "Devhelp — Assistant"
+msgstr ""
+
+#: ../src/dh-assistant-view.c:372
+msgid "Book:"
+msgstr ""
+
+#: ../src/dh-book.c:254
+#, c-format
+msgid "Language: %s"
+msgstr ""
+
+#: ../src/dh-book.c:255
+msgid "Language: Undefined"
+msgstr ""
+
+#. i18n: a documentation book
+#: ../src/dh-link.c:289
+msgid "Book"
+msgstr ""
+
+#. i18n: a "page" in a documentation book
+#: ../src/dh-link.c:292
+msgid "Page"
+msgstr ""
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: ../src/dh-link.c:296
+msgid "Keyword"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:301
+msgid "Function"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:306
+msgid "Struct"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:311
+msgid "Macro"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:316
+msgid "Enum"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:321
+msgid "Type"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:326
+msgid "Property"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: ../src/dh-link.c:331
+msgid "Signal"
+msgstr ""
+
+#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
+#: ../src/dh-parser.c:271
+#, c-format
+msgid "Expected '%s', got '%s' at line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:113
+#, c-format
+msgid "Invalid namespace '%s' at line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:142
+#, c-format
+msgid ""
+"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:216
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+"%d"
+msgstr ""
+
+#: ../src/dh-parser.c:296
+#, c-format
+msgid ""
+"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:309
+#, c-format
+msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+msgstr ""
+
+#: ../src/dh-parser.c:516
+#, c-format
+msgid "Cannot uncompress book '%s': %s"
+msgstr ""
+
+#: ../src/dh-preferences.ui.h:1
+msgid "Preferences"
+msgstr ""
+
+#: ../src/dh-preferences.ui.h:2
+msgid "_Group by language"
+msgstr ""
+
+#: ../src/dh-preferences.ui.h:3
+msgid "Enabled"
+msgstr ""
+
+#: ../src/dh-preferences.ui.h:4
+msgid "Title"
+msgstr ""
+
+#: ../src/dh-preferences.ui.h:5
+msgid "Book Shelf"
+msgstr ""
+
+#: ../src/dh-preferences.ui.h:6
+msgid "_Use system fonts"
+msgstr ""
+
+#: ../src/dh-preferences.ui.h:7
+msgid "_Variable width: "
+msgstr ""
+
+#: ../src/dh-preferences.ui.h:8
+msgid "_Fixed width:"
+msgstr ""
+
+#: ../src/dh-preferences.ui.h:9
+msgid "Fonts"
+msgstr ""
+
+#: ../src/dh-window.c:76
+msgid "50%"
+msgstr ""
+
+#: ../src/dh-window.c:77
+msgid "75%"
+msgstr ""
+
+#: ../src/dh-window.c:78
+msgid "100%"
+msgstr ""
+
+#: ../src/dh-window.c:79
+msgid "125%"
+msgstr ""
+
+#: ../src/dh-window.c:80
+msgid "150%"
+msgstr ""
+
+#: ../src/dh-window.c:81
+msgid "175%"
+msgstr ""
+
+#: ../src/dh-window.c:82
+msgid "200%"
+msgstr ""
+
+#: ../src/dh-window.c:83
+msgid "300%"
+msgstr ""
+
+#: ../src/dh-window.c:84
+msgid "400%"
+msgstr ""
+
+#: ../src/dh-window.c:1020
+msgid "Error opening the requested link."
+msgstr ""
+
+#: ../src/dh-window.c:1337
+msgid "_Close"
+msgstr ""
+
+#: ../src/dh-window.c:1355 ../src/dh-window.c:1529
+msgid "Empty Page"
+msgstr ""
+
+#: ../src/dh-window.ui.h:1
+msgid "New _Tab"
+msgstr ""
+
+#: ../src/dh-window.ui.h:2
+msgid "_Print"
+msgstr ""
+
+#: ../src/dh-window.ui.h:3
+msgid "_Find"
+msgstr ""
+
+#: ../src/dh-window.ui.h:4
+msgid "_Larger Text"
+msgstr ""
+
+#: ../src/dh-window.ui.h:5
+msgid "S_maller Text"
+msgstr ""
+
+#: ../src/dh-window.ui.h:6
+msgid "_Normal Size"
+msgstr ""
+
+#: ../src/dh-window.ui.h:8
+msgid "_Side pane"
+msgstr ""
+
+#: ../src/dh-window.ui.h:10
+msgid "_About Devhelp"
+msgstr ""
+
+#: ../src/dh-window.ui.h:12
+msgid "Back"
+msgstr ""
+
+#: ../src/dh-window.ui.h:13
+msgid "Forward"
+msgstr ""
