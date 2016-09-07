@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2016-09-07 02:44+0000\n"
-"PO-Revision-Date: 2016-09-07 15:05+0200\n"
+"PO-Revision-Date: 2016-09-07 15:20+0200\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -209,28 +209,28 @@ msgstr "Mostre documentazion API"
 #. ex:ts=4:et:
 #: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
 msgid "New _Window"
-msgstr ""
+msgstr "Gnûf _barcon"
 
 #: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
 msgid "_Preferences"
-msgstr ""
+msgstr "_Preferencis"
 
 #: ../src/devhelp-menu.ui.h:3
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Scurtis di tastiere"
 
 #: ../src/devhelp-menu.ui.h:4
 msgid "_About"
-msgstr ""
+msgstr "_Informazions"
 
 #: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
 msgid "_Quit"
-msgstr ""
+msgstr "_Jes"
 
 #: ../src/help-overlay.ui.h:1
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Gjenerâl"
 
 #: ../src/help-overlay.ui.h:2
 msgctxt "shortcut window"
@@ -240,17 +240,17 @@ msgstr ""
 #: ../src/help-overlay.ui.h:3
 msgctxt "shortcut window"
 msgid "Find in current page"
-msgstr ""
+msgstr "Cjate te pagjine atuâl"
 
 #: ../src/help-overlay.ui.h:4
 msgctxt "shortcut window"
 msgid "Open a new window"
-msgstr ""
+msgstr "Vierç un gnûf barcon"
 
 #: ../src/help-overlay.ui.h:5
 msgctxt "shortcut window"
 msgid "Open a new tab"
-msgstr ""
+msgstr "Vierç une gnove schede"
 
 #: ../src/help-overlay.ui.h:6
 msgctxt "shortcut window"
@@ -260,17 +260,17 @@ msgstr ""
 #: ../src/help-overlay.ui.h:7
 msgctxt "shortcut window"
 msgid "Go back"
-msgstr ""
+msgstr "Torne indaûr"
 
 #: ../src/help-overlay.ui.h:8
 msgctxt "shortcut window"
 msgid "Go forward"
-msgstr ""
+msgstr "Va Indevant"
 
 #: ../src/help-overlay.ui.h:9
 msgctxt "shortcut window"
 msgid "Print"
-msgstr ""
+msgstr "Stampe"
 
 #: ../src/help-overlay.ui.h:10
 msgctxt "shortcut window"
@@ -280,27 +280,27 @@ msgstr ""
 #: ../src/help-overlay.ui.h:11
 msgctxt "shortcut window"
 msgid "Close all windows"
-msgstr ""
+msgstr "Siere ducj i barcons"
 
 #: ../src/help-overlay.ui.h:12
 msgctxt "shortcut window"
 msgid "Zoom"
-msgstr ""
+msgstr "Ingrandiment"
 
 #: ../src/help-overlay.ui.h:13
 msgctxt "shortcut window"
 msgid "Zoom in"
-msgstr ""
+msgstr "Ingrandìs"
 
 #: ../src/help-overlay.ui.h:14
 msgctxt "shortcut window"
 msgid "Zoom out"
-msgstr ""
+msgstr "Impiçulìs"
 
 #: ../src/help-overlay.ui.h:15
 msgctxt "shortcut window"
 msgid "Reset Zoom"
-msgstr ""
+msgstr "Azerâ ingrandiment"
 
 #: ../src/dh-app.c:251
 msgid "A developers' help browser for GNOME"
@@ -308,11 +308,11 @@ msgstr ""
 
 #: ../src/dh-app.c:253
 msgid "translator-credits"
-msgstr ""
+msgstr "Fabio Tomat <f.t.public@gmail.com>"
 
 #: ../src/dh-app.c:255
 msgid "Devhelp Website"
-msgstr ""
+msgstr "Sît web di Devhelp"
 
 #: ../src/dh-app.c:484
 msgid "Opens a new Devhelp window"
@@ -345,7 +345,7 @@ msgstr ""
 
 #: ../src/dh-assistant-view.c:372
 msgid "Book:"
-msgstr ""
+msgstr "Libri:"
 
 #: ../src/dh-book.c:254
 #, c-format
