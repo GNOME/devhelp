@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2016-09-07 02:44+0000\n"
-"PO-Revision-Date: 2016-09-07 15:20+0200\n"
+"PO-Revision-Date: 2016-09-07 18:22+0200\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -123,12 +123,12 @@ msgstr "Liste di libris disabilitâts dal utent."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:17
 msgid "Group by language"
-msgstr "Met dongje par lenghe"
+msgstr "Met dongje par lengaç"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:18
 msgid "Whether books should be grouped by language in the UI"
 msgstr ""
-"Indiche se meti dongje lis guidis inte interface utent in base ae lenghe"
+"Indiche se meti dongje lis guidis inte interface utent in base al lengaç"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:19
 msgid "Whether the assistant window should be maximized"
@@ -200,7 +200,7 @@ msgstr "Supuart Devhelp"
 
 #: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr ""
+msgstr "Fâs che F2 al ativi Devhelp pe peraule sot dal cursôr"
 
 #: ../misc/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
@@ -235,7 +235,7 @@ msgstr "Gjenerâl"
 #: ../src/help-overlay.ui.h:2
 msgctxt "shortcut window"
 msgid "Focus global search"
-msgstr ""
+msgstr "Da il focus ae ricercje globâl"
 
 #: ../src/help-overlay.ui.h:3
 msgctxt "shortcut window"
@@ -255,7 +255,7 @@ msgstr "Vierç une gnove schede"
 #: ../src/help-overlay.ui.h:6
 msgctxt "shortcut window"
 msgid "Toggle sidebar visibility"
-msgstr ""
+msgstr "Comute la visibilitât de sbare laterâl"
 
 #: ../src/help-overlay.ui.h:7
 msgctxt "shortcut window"
@@ -275,7 +275,7 @@ msgstr "Stampe"
 #: ../src/help-overlay.ui.h:10
 msgctxt "shortcut window"
 msgid "Close the current window"
-msgstr ""
+msgstr "Siere il barcon atuâl"
 
 #: ../src/help-overlay.ui.h:11
 msgctxt "shortcut window"
@@ -304,7 +304,7 @@ msgstr "Azerâ ingrandiment"
 
 #: ../src/dh-app.c:251
 msgid "A developers' help browser for GNOME"
-msgstr ""
+msgstr "Un navigadôr pe documentazion di svilup par GNOME"
 
 #: ../src/dh-app.c:253
 msgid "translator-credits"
@@ -316,32 +316,32 @@ msgstr "Sît web di Devhelp"
 
 #: ../src/dh-app.c:484
 msgid "Opens a new Devhelp window"
-msgstr ""
+msgstr "Vierç un gnûf barcon di Devhelp"
 
 #: ../src/dh-app.c:489
 msgid "Search for a keyword"
-msgstr ""
+msgstr "Cîr par peraule clâf"
 
 #: ../src/dh-app.c:490 ../src/dh-app.c:495
 msgid "KEYWORD"
-msgstr ""
+msgstr "PERAULECLÂF"
 
 #: ../src/dh-app.c:494
 msgid "Search and display any hit in the assistant window"
-msgstr ""
+msgstr "Cîr e mostre ogni corispuindince tal barcon assistent"
 
 #: ../src/dh-app.c:499
 msgid "Display the version and exit"
-msgstr ""
+msgstr "Mostre la version e jes"
 
 #: ../src/dh-app.c:504
 msgid "Quit any running Devhelp"
-msgstr ""
+msgstr "Jes di ogni Devhelp in esecuzion"
 
 #. Please don
 #: ../src/dh-assistant.ui.h:2
 msgid "Devhelp — Assistant"
-msgstr ""
+msgstr "Devhelp — Assistent"
 
 #: ../src/dh-assistant-view.c:372
 msgid "Book:"
@@ -350,93 +350,95 @@ msgstr "Libri:"
 #: ../src/dh-book.c:254
 #, c-format
 msgid "Language: %s"
-msgstr ""
+msgstr "Lengaç: %s"
 
 #: ../src/dh-book.c:255
 msgid "Language: Undefined"
-msgstr ""
+msgstr "Lengaç: no definît"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:289
 msgid "Book"
-msgstr ""
+msgstr "Libri"
 
 #. i18n: a "page" in a documentation book
 #: ../src/dh-link.c:292
 msgid "Page"
-msgstr ""
+msgstr "Pagjine"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
 #: ../src/dh-link.c:296
 msgid "Keyword"
-msgstr ""
+msgstr "Peraule clâf"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:301
 msgid "Function"
-msgstr ""
+msgstr "Function"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:306
 msgid "Struct"
-msgstr ""
+msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:311
 msgid "Macro"
-msgstr ""
+msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:316
 msgid "Enum"
-msgstr ""
+msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:321
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:326
 msgid "Property"
-msgstr ""
+msgstr "Proprietât"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:331
 msgid "Signal"
-msgstr ""
+msgstr "Segnâl"
 
 #: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
 #: ../src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Spietât '%s', vût '%s' ae rie %d, colone %d"
 
 #: ../src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Namespace '%s' no voalit ae rie %d, colone %d"
 
 #: ../src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
+"I elements \"title\", \"name\" e \"link\" a scugnin jessi presints ae rie "
+"%d, colone %d"
 
 #: ../src/dh-parser.c:216
 #, c-format
@@ -444,143 +446,148 @@ msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
 "%d"
 msgstr ""
+"I elements \"name\" e \"link\" a scugnin jessi presints dentri <sub> ae rie "
+"%d, colone %d"
 
 #: ../src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
+"I elements \"name\" e \"link\" a scugnin jessi presints dentri '%s' ae rie "
+"%d, colone %d"
 
 #: ../src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
+"L'element \"type\" al scugne jessi dentri <keyword> ae rie %d, colone %d"
 
 #: ../src/dh-parser.c:516
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Impussibil decomprimi il libri '%s': %s"
 
 #: ../src/dh-preferences.ui.h:1
 msgid "Preferences"
-msgstr ""
+msgstr "Preferencis"
 
 #: ../src/dh-preferences.ui.h:2
 msgid "_Group by language"
-msgstr ""
+msgstr "_Met dongje par lengaç"
 
 #: ../src/dh-preferences.ui.h:3
 msgid "Enabled"
-msgstr ""
+msgstr "Abilitât"
 
 #: ../src/dh-preferences.ui.h:4
 msgid "Title"
-msgstr ""
+msgstr "Titul"
 
 #: ../src/dh-preferences.ui.h:5
 msgid "Book Shelf"
-msgstr ""
+msgstr "Racuelte libris"
 
 #: ../src/dh-preferences.ui.h:6
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Dopre i caratars di sisteme"
 
 #: ../src/dh-preferences.ui.h:7
 msgid "_Variable width: "
-msgstr ""
+msgstr "Largjece _variabil: "
 
 #: ../src/dh-preferences.ui.h:8
 msgid "_Fixed width:"
-msgstr ""
+msgstr "Largjece _fisse:"
 
 #: ../src/dh-preferences.ui.h:9
 msgid "Fonts"
-msgstr ""
+msgstr "Caratars"
 
 #: ../src/dh-window.c:76
 msgid "50%"
-msgstr ""
+msgstr "50%"
 
 #: ../src/dh-window.c:77
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: ../src/dh-window.c:78
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: ../src/dh-window.c:79
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: ../src/dh-window.c:80
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: ../src/dh-window.c:81
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: ../src/dh-window.c:82
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: ../src/dh-window.c:83
 msgid "300%"
-msgstr ""
+msgstr "300%"
 
 #: ../src/dh-window.c:84
 msgid "400%"
-msgstr ""
+msgstr "400%"
 
 #: ../src/dh-window.c:1020
 msgid "Error opening the requested link."
-msgstr ""
+msgstr "Erôr tal vierzi il colegament domandât."
 
 #: ../src/dh-window.c:1337
 msgid "_Close"
-msgstr ""
+msgstr "_Siere"
 
 #: ../src/dh-window.c:1355 ../src/dh-window.c:1529
 msgid "Empty Page"
-msgstr ""
+msgstr "Pagjine vueide"
 
 #: ../src/dh-window.ui.h:1
 msgid "New _Tab"
-msgstr ""
+msgstr "Gnove _schede"
 
 #: ../src/dh-window.ui.h:2
 msgid "_Print"
-msgstr ""
+msgstr "_Stampe"
 
 #: ../src/dh-window.ui.h:3
 msgid "_Find"
-msgstr ""
+msgstr "_Cjate"
 
 #: ../src/dh-window.ui.h:4
 msgid "_Larger Text"
-msgstr ""
+msgstr "Test plui _grant"
 
 #: ../src/dh-window.ui.h:5
 msgid "S_maller Text"
-msgstr ""
+msgstr "Test plui _piçul"
 
 #: ../src/dh-window.ui.h:6
 msgid "_Normal Size"
-msgstr ""
+msgstr "Dimension _normâl"
 
 #: ../src/dh-window.ui.h:8
 msgid "_Side pane"
-msgstr ""
+msgstr "Ricuadri _laterâl"
 
 #: ../src/dh-window.ui.h:10
 msgid "_About Devhelp"
-msgstr ""
+msgstr "I_nformazions su Devhelp"
 
 #: ../src/dh-window.ui.h:12
 msgid "Back"
-msgstr ""
+msgstr "Indaûr"
 
 #: ../src/dh-window.ui.h:13
 msgid "Forward"
-msgstr ""
+msgstr "Indenant"
