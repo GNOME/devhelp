@@ -1299,7 +1299,6 @@ apply_webview_settings (WebKitWebView *view)
         g_object_set (webkit_web_view_get_settings (view),
                       "enable-html5-database", FALSE,
                       "enable-html5-local-storage", FALSE,
-                      "enable-javascript", FALSE,
                       "enable-plugins", FALSE,
                       NULL);
 }
