@@ -1,4 +1,18 @@
 ===============
+Version 3.21.92
+===============
+
+Fixed bugs:
+
+ - #771327, dh-window: do not disable javascript.
+
+Updated translations: es, fur, pl
+
+Many thanks to all contributors: Jeremy Bicha, Fabio Tomat, Mathieu
+Duponchelle, Piotr Drąg
+
+
+===============
 Version 3.21.91
 ===============
 
