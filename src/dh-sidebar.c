@@ -491,7 +491,7 @@ dh_sidebar_finalize (GObject *object)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
 
-        g_completion_free (priv->completion);
+        g_clear_pointer (&priv->completion, g_completion_free);
 
         G_OBJECT_CLASS (dh_sidebar_parent_class)->finalize (object);
 }
