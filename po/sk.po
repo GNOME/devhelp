@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-07 04:25+0000\n"
-"PO-Revision-Date: 2016-02-07 13:36+0100\n"
+"product=devhelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-09-30 20:27+0000\n"
+"PO-Revision-Date: 2016-09-30 22:33+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
-#: ../src/dh-app.c:557 ../src/dh-window.c:797
+#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:249
+#: ../src/dh-app.c:559 ../src/dh-window.c:793
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -212,11 +212,11 @@ msgid "Show API Documentation"
 msgstr "Zobraziť dokumentáciu API"
 
 #. ex:ts=4:et:
-#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
+#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:8
 msgid "New _Window"
 msgstr "Nové _okno"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
+#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:10
 msgid "_Preferences"
 msgstr "Nas_tavenia"
 
@@ -228,7 +228,7 @@ msgstr "_Klávesové skratky"
 msgid "_About"
 msgstr "_O programe"
 
-#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
+#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:12
 msgid "_Quit"
 msgstr "U_končiť"
 
@@ -307,42 +307,42 @@ msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Vynulovanie priblíženia"
 
-#: ../src/dh-app.c:249
+#: ../src/dh-app.c:251
 msgid "A developers' help browser for GNOME"
 msgstr "Prehliadač pomocníka pre vývojárov pre GNOME"
 
-#: ../src/dh-app.c:251
+#: ../src/dh-app.c:253
 msgid "translator-credits"
 msgstr ""
 "Marcel Telka <marcel@telka.sk>\n"
 "Roman Mátyus <romanmatyus@gmail.com>\n"
 "Dušan Kazik <prescott66@gmail.com>"
 
-#: ../src/dh-app.c:253
+#: ../src/dh-app.c:255
 msgid "Devhelp Website"
 msgstr "Webová stránka Devhelp"
 
-#: ../src/dh-app.c:482
+#: ../src/dh-app.c:484
 msgid "Opens a new Devhelp window"
 msgstr "Otvoriť nové okno Devhelp"
 
-#: ../src/dh-app.c:487
+#: ../src/dh-app.c:489
 msgid "Search for a keyword"
 msgstr "Vyhľadať kľúčové slovo"
 
-#: ../src/dh-app.c:488 ../src/dh-app.c:493
+#: ../src/dh-app.c:490 ../src/dh-app.c:495
 msgid "KEYWORD"
 msgstr "KĽÚČOVÉ SLOVO"
 
-#: ../src/dh-app.c:492
+#: ../src/dh-app.c:494
 msgid "Search and display any hit in the assistant window"
 msgstr "Nájsť a zobraziť každý výskyt v okne asistenta"
 
-#: ../src/dh-app.c:497
+#: ../src/dh-app.c:499
 msgid "Display the version and exit"
 msgstr "Zobraziť verziu a ukončiť"
 
-#: ../src/dh-app.c:502
+#: ../src/dh-app.c:504
 msgid "Quit any running Devhelp"
 msgstr "Ukončiť každý bežiaci Devhelp"
 
@@ -551,15 +551,15 @@ msgstr "300 %"
 msgid "400%"
 msgstr "400 %"
 
-#: ../src/dh-window.c:1024
+#: ../src/dh-window.c:1020
 msgid "Error opening the requested link."
 msgstr "Chyba pri otváraní požadovaného odkazu."
 
-#: ../src/dh-window.c:1282
+#: ../src/dh-window.c:1336
 msgid "_Close"
 msgstr "_Zavrieť"
 
-#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
+#: ../src/dh-window.c:1354 ../src/dh-window.c:1528
 msgid "Empty Page"
 msgstr "Prázdna strana"
 
@@ -568,38 +568,42 @@ msgid "New _Tab"
 msgstr "Nová _karta"
 
 #: ../src/dh-window.ui.h:2
+msgid "Side _Panel"
+msgstr "_Bočný panel"
+
+#: ../src/dh-window.ui.h:3
 msgid "_Print"
 msgstr "_Tlačiť"
 
-#: ../src/dh-window.ui.h:3
+#: ../src/dh-window.ui.h:4
 msgid "_Find"
 msgstr "_Nájsť"
 
-#: ../src/dh-window.ui.h:4
+#: ../src/dh-window.ui.h:5
 msgid "_Larger Text"
 msgstr "_Väčší text"
 
-#: ../src/dh-window.ui.h:5
+#: ../src/dh-window.ui.h:6
 msgid "S_maller Text"
 msgstr "_Menší text"
 
-#: ../src/dh-window.ui.h:6
+#: ../src/dh-window.ui.h:7
 msgid "_Normal Size"
 msgstr "_Normálna veľkosť"
 
-#: ../src/dh-window.ui.h:8
+#: ../src/dh-window.ui.h:9
 msgid "_Side pane"
 msgstr "_Bočný panel"
 
-#: ../src/dh-window.ui.h:10
+#: ../src/dh-window.ui.h:11
 msgid "_About Devhelp"
 msgstr "_O programe Devhelp"
 
-#: ../src/dh-window.ui.h:12
+#: ../src/dh-window.ui.h:13
 msgid "Back"
 msgstr "Späť"
 
-#: ../src/dh-window.ui.h:13
+#: ../src/dh-window.ui.h:14
 msgid "Forward"
 msgstr "Dopredu"
 
