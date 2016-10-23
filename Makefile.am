@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = po src data misc contrib
+SUBDIRS = po src data misc contrib docs
 
 EXTRA_DIST = autogen.sh
 

@@ -40,6 +40,11 @@ struct _DhSidebar {
         GtkBox            parent_instance;
 };
 
+/**
+ * DhSidebarClass:
+ * @parent_class: The parent class
+ * @link_selected: Class handler for the #DhSidebar::link-selected signal
+ */
 struct _DhSidebarClass {
         GtkBoxClass parent_class;
 

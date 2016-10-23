@@ -43,6 +43,11 @@ struct _DhSettings{
         DhSettingsPrivate *priv;
 };
 
+/**
+ * DhSettingsClass:
+ * @parent: The parent class
+ * @fonts_changed: Class handler for the #DhSettings::fonts-changed signal
+ */
 struct _DhSettingsClass{
         GObjectClass parent;
         /* Signals */

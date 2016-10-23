@@ -24,8 +24,22 @@
 
 G_BEGIN_DECLS
 
+/**
+ * DH_ERROR:
+ *
+ * Error domain for book parsing errors.
+ */
 #define DH_ERROR dh_error_quark ()
 
+/**
+ * DhError:
+ * @DH_ERROR_FILE_NOT_FOUND:  Requested file did not exist
+ * @DH_ERROR_MALFORMED_BOOK: Referred book is invalid
+ * @DH_ERROR_INVALID_BOOK_TYPE: Referred book has an invalid type
+ * @DH_ERROR_INTERNAL_ERROR: An internal error occured
+ *
+ * Error codes returned the parser.
+ */
 typedef enum {
         DH_ERROR_FILE_NOT_FOUND,
         DH_ERROR_MALFORMED_BOOK,

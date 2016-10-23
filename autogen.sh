@@ -17,4 +17,6 @@ which gnome-autogen.sh || {
 
 git submodule update --init --recursive
 
+gtkdocize || exit 1
+
 . gnome-autogen.sh

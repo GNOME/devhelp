@@ -22,6 +22,21 @@
 
 #include <glib-object.h>
 
+/**
+ * DhLinkType:
+ * @DH_LINK_TYPE_BOOK: a book
+ * @DH_LINK_TYPE_PAGE: a page
+ * @DH_LINK_TYPE_KEYWORD: a keyword
+ * @DH_LINK_TYPE_FUNCTION: a function
+ * @DH_LINK_TYPE_STRUCT: a struct
+ * @DH_LINK_TYPE_MACRO: a macro
+ * @DH_LINK_TYPE_ENUM: an enum
+ * @DH_LINK_TYPE_TYPEDEF: a typedef
+ * @DH_LINK_TYPE_PROPERTY: a property
+ * @DH_LINK_TYPE_SIGNAL: a signal
+ *
+ * The type of the content the link points to.
+ */
 typedef enum {
         DH_LINK_TYPE_BOOK,
         DH_LINK_TYPE_PAGE,
@@ -35,6 +50,11 @@ typedef enum {
         DH_LINK_TYPE_SIGNAL
 } DhLinkType;
 
+/**
+ * DhLinkFlags:
+ * @DH_LINK_FLAGS_NONE: no flag set
+ * @DH_LINK_FLAGS_DEPRECATED: deprecated link
+ */
 typedef enum {
         DH_LINK_FLAGS_NONE       = 0,
         DH_LINK_FLAGS_DEPRECATED = 1 << 0
