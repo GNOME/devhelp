@@ -49,6 +49,8 @@ libtool
 /misc/gedit-plugin/devhelp.plugin
 /misc/gedit-plugin/devhelp.plugin.desktop
 /src/devhelp
+/src/Devhelp-3.0.gir
+/src/Devhelp-3.0.typelib
 /src/dh-enum-types.c
 /src/dh-enum-types.h
 /src/dh-resources.c
