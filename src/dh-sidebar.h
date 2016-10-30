@@ -56,12 +56,12 @@ struct _DhSidebarClass {
 GType      dh_sidebar_get_type (void);
 GtkWidget *dh_sidebar_new      (DhBookManager *book_manager);
 
-DhLink    *dh_sidebar_get_selected_book (DhSidebar *self);
-void       dh_sidebar_select_uri        (DhSidebar   *self,
+DhLink    *dh_sidebar_get_selected_book (DhSidebar *sidebar);
+void       dh_sidebar_select_uri        (DhSidebar   *sidebar,
                                          const gchar *uri);
-void       dh_sidebar_set_search_string (DhSidebar   *self,
+void       dh_sidebar_set_search_string (DhSidebar   *sidebar,
                                          const gchar *str);
-void       dh_sidebar_set_search_focus  (DhSidebar   *self);
+void       dh_sidebar_set_search_focus  (DhSidebar   *sidebar);
 
 G_END_DECLS
 

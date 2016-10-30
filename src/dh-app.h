@@ -47,17 +47,17 @@ GType dh_app_get_type (void) G_GNUC_CONST;
 
 DhApp         *dh_app_new               (void);
 
-DhBookManager *dh_app_peek_book_manager (DhApp *self);
-GtkWindow     *dh_app_peek_first_window (DhApp *self);
-GtkWindow     *dh_app_peek_assistant    (DhApp *self);
+DhBookManager *dh_app_peek_book_manager (DhApp *app);
+GtkWindow     *dh_app_peek_first_window (DhApp *app);
+GtkWindow     *dh_app_peek_assistant    (DhApp *app);
 
-void           dh_app_new_window        (DhApp *self);
-void           dh_app_quit              (DhApp *self);
-void           dh_app_search            (DhApp *self,
+void           dh_app_new_window        (DhApp *app);
+void           dh_app_quit              (DhApp *app);
+void           dh_app_search            (DhApp *app,
                                          const gchar *keyword);
-void           dh_app_search_assistant  (DhApp *self,
+void           dh_app_search_assistant  (DhApp *app,
                                          const gchar *keyword);
-void           dh_app_raise             (DhApp *self);
+void           dh_app_raise             (DhApp *app);
 
 gboolean      _dh_app_has_app_menu      (DhApp *app);
 
