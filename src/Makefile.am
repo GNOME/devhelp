@@ -124,3 +124,36 @@ dh-enum-types.c: dh-enum-types.c.template $(libdevhelp_public_headers) $(GLIB_MK
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.c.template $(libdevhelp_public_headers)) > $@
 
 DISTCLEANFILES = $(BUILT_SOURCES)
+
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS =
+INTROSPECTION_SCANNER_ARGS =			\
+	--add-include-path=$(srcdir)		\
+	--warn-all				\
+	--identifier-prefix Dh			\
+	--identifier-prefix dh			\
+	--pkg-export libdevhelp-3.0		\
+	--c-include="devhelp/devhelp.h"
+
+INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
+
+if HAVE_INTROSPECTION
+introspection_sources = 			\
+	$(libdevhelp_public_c_files)		\
+	$(libdevhelp_public_headers)
+
+Devhelp-3.0.gir: libdevhelp-3.la
+Devhelp_3_0_gir_INCLUDES = Gtk-3.0 WebKit2-4.0
+Devhelp_3_0_gir_CFLAGS = $(INCLUDES)
+Devhelp_3_0_gir_LIBS = libdevhelp-3.la
+Devhelp_3_0_gir_FILES = $(introspection_sources)
+INTROSPECTION_GIRS += Devhelp-3.0.gir
+
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+DISTCLEANFILES += $(gir_DATA) $(typelib_DATA)
+endif
