@@ -355,12 +355,26 @@ dh_keyword_model_tree_model_init (GtkTreeModelIface *iface)
         iface->iter_parent     = keyword_model_iter_parent;
 }
 
+/**
+ * dh_keyword_model_new:
+ *
+ * Create a new #DhKeywordModel object.
+ *
+ * Returns: a new #DhKeywordModel object
+ */
 DhKeywordModel *
 dh_keyword_model_new (void)
 {
         return g_object_new (DH_TYPE_KEYWORD_MODEL, NULL);
 }
 
+/**
+ * dh_keyword_model_set_words:
+ * @model: a #DhKeywordModel object
+ * @book_manager: a #DhBookManager to analyze
+ *
+ * Set the #DhBookManager object on which words are analyzed.
+ */
 void
 dh_keyword_model_set_words (DhKeywordModel *model,
                             DhBookManager  *book_manager)
@@ -965,6 +979,18 @@ set_keywords_list (DhKeywordModel *model,
         }
 }
 
+/**
+ * dh_keyword_model_filter:
+ * @model: a #DhKeywordModel object
+ * @search_string: a search query
+ * @book_id: (nullable): the id of a specific book or %NULL for all books
+ * @language: (nullable): the name of a language or %NULL for all languages
+ *
+ * Find the book matching the given criteria.
+ *
+ * Returns: (nullable) (transfer none): the corresponding #DhLink or %NULL if
+ * no link corresponding to the criteria is found
+ */
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
                          const gchar    *search_string,

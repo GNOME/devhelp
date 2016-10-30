@@ -135,6 +135,11 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
         object_class->set_property = dh_book_manager_set_property;
         object_class->get_property = dh_book_manager_get_property;
 
+        /**
+         * DhBookManager::book-created:
+         * @book_manager: the book manager on which the signal is emitted
+         * @book: (type DhBook): the created book
+         */
         signals[BOOK_CREATED] =
                 g_signal_new ("book-created",
                               G_TYPE_FROM_CLASS (klass),
@@ -145,6 +150,11 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
+        /**
+         * DhBookManager::book-deleted:
+         * @book_manager: the book manager on which the signal is emitted
+         * @book: (type DhBook): the deleted book
+         */
         signals[BOOK_DELETED] =
                 g_signal_new ("book-deleted",
                               G_TYPE_FROM_CLASS (klass),
@@ -155,6 +165,11 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
+        /**
+         * DhBookManager::book-enabled:
+         * @book_manager: the book manager on which the signal is emitted
+         * @book: (type DhBook): the enabled book
+         */
         signals[BOOK_ENABLED] =
                 g_signal_new ("book-enabled",
                               G_TYPE_FROM_CLASS (klass),
@@ -165,6 +180,11 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
+        /**
+         * DhBookManager::book-disabled:
+         * @book_manager: the book manager on which the signal is emitted
+         * @book: (type DhBook): the disabled book
+         */
         signals[BOOK_DISABLED] =
                 g_signal_new ("book-disabled",
                               G_TYPE_FROM_CLASS (klass),
@@ -176,6 +196,11 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               1,
                               G_TYPE_OBJECT);
 
+        /**
+         * DhBookManager::language-enabled:
+         * @book_manager: the book manager on which the signal is emitted
+         * @language_name: the enabled language name
+         */
         signals[LANGUAGE_ENABLED] =
                 g_signal_new ("language-enabled",
                               G_TYPE_FROM_CLASS (klass),
@@ -186,6 +211,11 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_NONE,
                               1,
                               G_TYPE_STRING);
+        /**
+         * DhBookManager::language-disabled:
+         * @book_manager: the book manager on which the signal is emitted
+         * @language_name: the disabled language name
+         */
         signals[LANGUAGE_DISABLED] =
                 g_signal_new ("language-disabled",
                               G_TYPE_FROM_CLASS (klass),
@@ -348,6 +378,13 @@ book_manager_add_books_in_data_dir (DhBookManager *book_manager,
         g_free (dir);
 }
 
+/**
+ * dh_book_manager_populate:
+ * @book_manager: a #DhBookManager object
+ *
+ * Populate the #DhBookManager with all books found on the system and user
+ * directories.
+ */
 void
 dh_book_manager_populate (DhBookManager *book_manager)
 {
@@ -732,6 +769,14 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
                        book);
 }
 
+/**
+ * dh_book_manager_get_books:
+ * @book_manager: a #DhBookManager object
+ *
+ * Get the #GList of books.
+ *
+ * Returns: (element-type DhBook) (transfer none): the books
+ */
 GList *
 dh_book_manager_get_books (DhBookManager *book_manager)
 {
@@ -744,6 +789,14 @@ dh_book_manager_get_books (DhBookManager *book_manager)
         return priv->books;
 }
 
+/**
+ * dh_book_manager_get_group_by_language:
+ * @book_manager: a #DhBookManager object
+ *
+ * Get whether books should be grouped by language.
+ *
+ * Returns: %TRUE if books should be grouped by language, %FALSE otherwise
+ */
 gboolean
 dh_book_manager_get_group_by_language (DhBookManager *book_manager)
 {
@@ -756,6 +809,13 @@ dh_book_manager_get_group_by_language (DhBookManager *book_manager)
         return priv->group_by_language;
 }
 
+/**
+ * dh_book_manager_set_group_by_language:
+ * @book_manager: a #DhBookManager object
+ * @group_by_language: %TRUE if books should be grouped by language, %FALSE otherwise
+ *
+ * Set whether books should be grouped by language.
+ */
 void
 dh_book_manager_set_group_by_language (DhBookManager *book_manager,
                                        gboolean       group_by_language)
@@ -827,6 +887,15 @@ book_manager_dec_language (DhBookManager *book_manager,
         }
 }
 
+/**
+ * dh_book_manager_get_languages:
+ * @book_manager: a #DhBookManager object
+ *
+ * Get the #GList of languages.
+ *
+ * Returns: (element-type DhLanguage) (transfer none): the list of languages
+ * Deprecated: 3.18: Not used anywhere
+ */
 GList *
 dh_book_manager_get_languages (DhBookManager *book_manager)
 {
@@ -839,6 +908,13 @@ dh_book_manager_get_languages (DhBookManager *book_manager)
         return priv->languages;
 }
 
+/**
+ * dh_book_manager_new:
+ *
+ * Create a new #DhBookManager object.
+ *
+ * Returns: a new #DhBookManager object
+ */
 DhBookManager *
 dh_book_manager_new (void)
 {

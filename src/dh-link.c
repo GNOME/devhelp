@@ -65,6 +65,23 @@ link_free (DhLink *link)
         g_slice_free (DhLink, link);
 }
 
+/**
+ * dh_link_new:
+ * @type: the type of the content the link is pointing to
+ * @base: the base path of the link
+ * @id: the id of the link
+ * @name: the name of the link
+ * @book: (nullable): the link to the associated book or %NULL
+ * @page: (nullable): the link to the associated page or %NULL
+ * @filename: the filename of the link
+ *
+ * Create a new #DhLink object.
+ *
+ * If type is one of #DH_LINK_TYPE_BOOK or #DH_LINK_TYPE_PAGE then the @book and
+ * @page links have to be provided.
+ *
+ * Returns: a new #DhLink object
+ */
 DhLink *
 dh_link_new (DhLinkType   type,
              const gchar *base,
@@ -111,6 +128,15 @@ dh_link_new (DhLinkType   type,
         return link;
 }
 
+/**
+ * dh_link_compare:
+ * @a: (type DhLink): a #DhLink object
+ * @b: (type DhLink): the #DhLink to compare
+ *
+ * Compare the link @a and @b.
+ *
+ * Returns: an integer less than, equal to, or greater than zero, if @a is <, == or > than @b.
+ */
 gint
 dh_link_compare (gconstpointer a,
                  gconstpointer b)
@@ -155,6 +181,14 @@ dh_link_compare (gconstpointer a,
         return diff;
 }
 
+/**
+ * dh_link_ref:
+ * @link: a #DhLink object
+ *
+ * Increase the reference count of @link.
+ *
+ * Returns: (transfer full): the @link object
+ */
 DhLink *
 dh_link_ref (DhLink *link)
 {
@@ -165,6 +199,12 @@ dh_link_ref (DhLink *link)
         return link;
 }
 
+/**
+ * dh_link_unref:
+ * @link: a #DhLink object
+ *
+ * Decrease the reference count of @link.
+ */
 void
 dh_link_unref (DhLink *link)
 {
@@ -176,12 +216,28 @@ dh_link_unref (DhLink *link)
         }
 }
 
+/**
+ * dh_link_get_name:
+ * @link: a #DhLink object
+ *
+ * Get the name of the link.
+ *
+ * Returns: the name of the link
+ */
 const gchar *
 dh_link_get_name (DhLink *link)
 {
         return link->name;
 }
 
+/**
+ * dh_link_get_book_name:
+ * @link: a #DhLink object
+ *
+ * Get the book name the link is pointing to.
+ *
+ * Returns: the book name the link is pointing to
+ */
 const gchar *
 dh_link_get_book_name (DhLink *link)
 {
@@ -192,6 +248,14 @@ dh_link_get_book_name (DhLink *link)
         return "";
 }
 
+/**
+ * dh_link_get_page_name:
+ * @link: a #DhLink object
+ *
+ * Get the page name the link is pointing to.
+ *
+ * Returns: the page name the link is pointing to
+ */
 const gchar *
 dh_link_get_page_name (DhLink *link)
 {
@@ -202,6 +266,14 @@ dh_link_get_page_name (DhLink *link)
         return "";
 }
 
+/**
+ * dh_link_get_file_name:
+ * @link: a #DhLink object
+ *
+ * Get the file name of the link.
+ *
+ * Returns: the file name of the link
+ */
 const gchar *
 dh_link_get_file_name (DhLink *link)
 {
@@ -215,6 +287,14 @@ dh_link_get_file_name (DhLink *link)
         return "";
 }
 
+/**
+ * dh_link_get_book_id:
+ * @link: a #DhLink object
+ *
+ * Get the book id the link is pointing to.
+ *
+ * Returns: the book id the link is pointing to
+ */
 const gchar *
 dh_link_get_book_id (DhLink *link)
 {
@@ -229,6 +309,14 @@ dh_link_get_book_id (DhLink *link)
         return "";
 }
 
+/**
+ * dh_link_get_uri:
+ * @link: a #DhLink object
+ *
+ * Get the uri of the link.
+ *
+ * Returns: the uri of the link
+ */
 gchar *
 dh_link_get_uri (DhLink *link)
 {
@@ -261,18 +349,41 @@ dh_link_get_uri (DhLink *link)
         return uri;
 }
 
+/**
+ * dh_link_get_link_type:
+ * @link: a #DhLink object
+ *
+ * Get the type of the link.
+ *
+ * Returns: the type of the link
+ */
 DhLinkType
 dh_link_get_link_type (DhLink *link)
 {
         return link->type;
 }
 
+/**
+ * dh_link_get_flags:
+ * @link: a #DhLink object
+ *
+ * Get the flags of the link.
+ *
+ * Returns: the flags of the link
+ */
 DhLinkFlags
 dh_link_get_flags (DhLink *link)
 {
         return link->flags;
 }
 
+/**
+ * dh_link_set_flags:
+ * @link: a #DhLink object
+ * @flags: the new flags of the link
+ *
+ * Set the flags of the link.
+ */
 void
 dh_link_set_flags (DhLink      *link,
                    DhLinkFlags  flags)
@@ -280,6 +391,14 @@ dh_link_set_flags (DhLink      *link,
         link->flags = flags;
 }
 
+/**
+ * dh_link_get_type_as_string:
+ * @link: a #DhLink object
+ *
+ * Get the link type name.
+ *
+ * Returns: the link type name translated in the current language
+ */
 const gchar *
 dh_link_get_type_as_string (DhLink *link)
 {

@@ -34,8 +34,14 @@ typedef struct {
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
-/******************************************************************************/
-
+/**
+ * dh_app_peek_book_manager:
+ * @app: a #DhApp object
+ *
+ * Get the associated #DhBookManager.
+ *
+ * Returns: (transfer none): the book manager associated with this
+ */
 DhBookManager *
 dh_app_peek_book_manager (DhApp *app)
 {
@@ -48,6 +54,14 @@ dh_app_peek_book_manager (DhApp *app)
         return priv->book_manager;
 }
 
+/**
+ * dh_app_peek_first_window:
+ * @app: a #DhApp object
+ *
+ * Get the first #DhWindow.
+ *
+ * Returns: (transfer none): the first window
+ */
 GtkWindow *
 dh_app_peek_first_window (DhApp *app)
 {
@@ -70,6 +84,14 @@ dh_app_peek_first_window (DhApp *app)
         return dh_app_peek_first_window (app);
 }
 
+/**
+ * dh_app_peek_assistant:
+ * @app: a #DhApp object
+ *
+ * Get the associated #DhAssistant.
+ *
+ * Returns: (transfer none): the assistant
+ */
 GtkWindow *
 dh_app_peek_assistant (DhApp *app)
 {
@@ -114,6 +136,12 @@ _dh_app_has_app_menu (DhApp *app)
 /******************************************************************************/
 /* Application action activators */
 
+/**
+ * dh_app_new_window:
+ * @app: a #DhApp object
+ *
+ * Create a new #DhWindow.
+ */
 void
 dh_app_new_window (DhApp *app)
 {
@@ -122,6 +150,12 @@ dh_app_new_window (DhApp *app)
         g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 }
 
+/**
+ * dh_app_quit:
+ * @app: a #DhApp object
+ *
+ * Quit the application.
+ */
 void
 dh_app_quit (DhApp *app)
 {
@@ -130,6 +164,13 @@ dh_app_quit (DhApp *app)
         g_action_group_activate_action (G_ACTION_GROUP (app), "quit", NULL);
 }
 
+/**
+ * dh_app_search:
+ * @app: a #DhApp object
+ * @keyword: the search request
+ *
+ * Search for @keyword in the entire application.
+ */
 void
 dh_app_search (DhApp *app,
                const gchar *keyword)
@@ -139,6 +180,13 @@ dh_app_search (DhApp *app,
         g_action_group_activate_action (G_ACTION_GROUP (app), "search", g_variant_new_string (keyword));
 }
 
+/**
+ * dh_app_search_assistant:
+ * @app: a #DhApp object
+ * @keyword: the search request
+ *
+ * Search for @keyword in the entire application with a #DhAssistant.
+ */
 void
 dh_app_search_assistant (DhApp *app,
                          const gchar *keyword)
@@ -148,6 +196,12 @@ dh_app_search_assistant (DhApp *app,
         g_action_group_activate_action (G_ACTION_GROUP (app), "search-assistant", g_variant_new_string (keyword));
 }
 
+/**
+ * dh_app_raise:
+ * @app: a #DhApp object
+ *
+ * Present the main window of the application.
+ */
 void
 dh_app_raise (DhApp *app)
 {
@@ -466,6 +520,13 @@ dh_app_activate (GApplication *application)
 
 /******************************************************************************/
 
+/**
+ * dh_app_new:
+ *
+ * Create a new #DhApp object.
+ *
+ * Returns: a new #DhApp object
+ */
 DhApp *
 dh_app_new (void)
 {

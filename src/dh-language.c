@@ -27,6 +27,12 @@ struct _DhLanguage {
         gint   n_books_enabled;
 };
 
+/**
+ * dh_language_free:
+ * @language: a #DhLanguage object
+ *
+ * Free memory associated with the language.
+ */
 void
 dh_language_free (DhLanguage *language)
 {
@@ -34,6 +40,14 @@ dh_language_free (DhLanguage *language)
         g_slice_free (DhLanguage, language);
 }
 
+/**
+ * dh_language_new:
+ * @name: the name of the language
+ *
+ * Create a new #DhLanguage object.
+ *
+ * Returns: a new #DhLanguage object
+ */
 DhLanguage *
 dh_language_new (const gchar *name)
 {
@@ -47,6 +61,16 @@ dh_language_new (const gchar *name)
         return language;
 }
 
+/**
+ * dh_language_compare:
+ * @language_a: a #DhLanguage object
+ * @language_b: the #DhLanguage object to compare with
+ *
+ * Compares the name of @language_a with the name @language_b.
+ *
+ * Returns: an integer less than, equal to, or greater than zero, if the name
+ * of @language_a is <, == or > than the name of @language_b
+ */
 gint
 dh_language_compare (const DhLanguage *language_a,
                      const DhLanguage *language_b)
@@ -57,6 +81,16 @@ dh_language_compare (const DhLanguage *language_a,
         return strcmp (language_a->name, language_b->name);
 }
 
+/**
+ * dh_language_compare_by_name:
+ * @language_a: a #DhLanguage object
+ * @language_name_b: the language name to compare with
+ *
+ * Compares the name of @language_a with @language_name_b.
+ *
+ * Returns: an integer less than, equal to, or greater than zero, if the name
+ * of @language_a is <, == or > than @language_name_b
+ */
 gint
 dh_language_compare_by_name (const DhLanguage *language_a,
                              const gchar      *language_name_b)
@@ -67,6 +101,14 @@ dh_language_compare_by_name (const DhLanguage *language_a,
         return strcmp (language_a->name, language_name_b);
 }
 
+/**
+ * dh_language_get_name:
+ * @language: a #DhLanguage object
+ *
+ * Get the language name.
+ *
+ * Returns: The name of the language
+ */
 const gchar *
 dh_language_get_name (DhLanguage *language)
 {
@@ -75,7 +117,14 @@ dh_language_get_name (DhLanguage *language)
         return language->name;
 }
 
-
+/**
+ * dh_language_get_n_books_enabled:
+ * @language: a #DhLanguage object
+ *
+ * Get the number of enabled books
+ *
+ * Returns: The number of enabled books
+ */
 gint
 dh_language_get_n_books_enabled (DhLanguage *language)
 {
@@ -84,6 +133,12 @@ dh_language_get_n_books_enabled (DhLanguage *language)
         return language->n_books_enabled;
 }
 
+/**
+ * dh_language_inc_n_books_enabled:
+ * @language: a #DhLanguage object
+ *
+ * Increase the number of enabled books for this language.
+ */
 void
 dh_language_inc_n_books_enabled (DhLanguage *language)
 {
@@ -92,6 +147,14 @@ dh_language_inc_n_books_enabled (DhLanguage *language)
         language->n_books_enabled++;
 }
 
+/**
+ * dh_language_dec_n_books_enabled:
+ * @language: a #DhLanguage object
+ *
+ * Decrease the number of enabled books for this language.
+ *
+ * Returns: %TRUE if the counter is decreased to zero, %FALSE otherwise.
+ */
 gboolean
 dh_language_dec_n_books_enabled (DhLanguage *language)
 {

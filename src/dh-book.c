@@ -144,6 +144,10 @@ dh_book_class_init (DhBookClass *klass)
         object_class->dispose = dh_book_dispose;
         object_class->finalize = dh_book_finalize;
 
+        /**
+         * DhBook::enabled:
+         * @book: the book on which the signal is emitted
+         */
         signals[BOOK_ENABLED] =
                 g_signal_new ("enabled",
                               G_TYPE_FROM_CLASS (klass),
@@ -154,6 +158,10 @@ dh_book_class_init (DhBookClass *klass)
                               G_TYPE_NONE,
                               0);
 
+        /**
+         * DhBook::disabled:
+         * @book: the book on which the signal is emitted
+         */
         signals[BOOK_DISABLED] =
                 g_signal_new ("disabled",
                               G_TYPE_FROM_CLASS (klass),
@@ -164,7 +172,10 @@ dh_book_class_init (DhBookClass *klass)
                               G_TYPE_NONE,
                               0);
 
-
+        /**
+         * DhBook::updated:
+         * @book: the book on which the signal is emitted
+         */
         signals[BOOK_UPDATED] =
                 g_signal_new ("updated",
                               G_TYPE_FROM_CLASS (klass),
@@ -175,6 +186,10 @@ dh_book_class_init (DhBookClass *klass)
                               G_TYPE_NONE,
                               0);
 
+        /**
+         * DhBook::deleted:
+         * @book: the book on which the signal is emitted
+         */
         signals[BOOK_DELETED] =
                 g_signal_new ("deleted",
                               G_TYPE_FROM_CLASS (klass),
@@ -210,6 +225,14 @@ unref_node_link (GNode    *node,
         dh_link_unref (node->data);
 }
 
+/**
+ * dh_book_new:
+ * @book_path: the path of the book
+ *
+ * Create a new #DhBook object.
+ *
+ * Returns: a new #DhBook object
+ */
 DhBook *
 dh_book_new (const gchar *book_path)
 {
@@ -355,6 +378,14 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
         }
 }
 
+/**
+ * dh_book_get_keywords:
+ * @book: a #DhBook object
+ *
+ * Get the #GList of keywords associated with the book.
+ *
+ * Returns: (element-type utf8) (transfer none) (nullable): the keywords associated with the book
+ */
 GList *
 dh_book_get_keywords (DhBook *book)
 {
@@ -367,6 +398,14 @@ dh_book_get_keywords (DhBook *book)
         return priv->enabled ? priv->keywords : NULL;
 }
 
+/**
+ * dh_book_get_completions:
+ * @book: a #DhBook object
+ *
+ * Get the #GList of completions associated with the book.
+ *
+ * Returns: (element-type utf8) (transfer full) (nullable): the completions associated with the book
+ */
 GList *
 dh_book_get_completions (DhBook *book)
 {
@@ -406,6 +445,14 @@ dh_book_get_completions (DhBook *book)
         return priv->completions;
 }
 
+/**
+ * dh_book_get_tree:
+ * @book: a #DhBook object
+ *
+ * Get the #GNode representing the book tree.
+ *
+ * Returns: (transfer none) (nullable): the book tree
+ */
 GNode *
 dh_book_get_tree (DhBook *book)
 {
@@ -418,6 +465,14 @@ dh_book_get_tree (DhBook *book)
         return priv->enabled ? priv->tree : NULL;
 }
 
+/**
+ * dh_book_get_name:
+ * @book: a #DhBook object
+ *
+ * Get the book name.
+ *
+ * Returns: the book name
+ */
 const gchar *
 dh_book_get_name (DhBook *book)
 {
@@ -430,6 +485,14 @@ dh_book_get_name (DhBook *book)
         return priv->name;
 }
 
+/**
+ * dh_book_get_title:
+ * @book: a #DhBook object
+ *
+ * Get the book title.
+ *
+ * Returns: the book title
+ */
 const gchar *
 dh_book_get_title (DhBook *book)
 {
@@ -442,6 +505,14 @@ dh_book_get_title (DhBook *book)
         return priv->title;
 }
 
+/**
+ * dh_book_get_language:
+ * @book: a #DhBook object
+ *
+ * Get the book language.
+ *
+ * Returns: the book language
+ */
 const gchar *
 dh_book_get_language (DhBook *book)
 {
@@ -454,6 +525,14 @@ dh_book_get_language (DhBook *book)
         return priv->language;
 }
 
+/**
+ * dh_book_get_path:
+ * @book: a #DhBook object
+ *
+ * Get the book path.
+ *
+ * Returns: the book path
+ */
 const gchar *
 dh_book_get_path (DhBook *book)
 {
@@ -466,6 +545,14 @@ dh_book_get_path (DhBook *book)
         return priv->path;
 }
 
+/**
+ * dh_book_get_enabled:
+ * @book: a #DhBook object
+ *
+ * Get the current state of the book.
+ *
+ * Returns: %TRUE if the book is enabled
+ */
 gboolean
 dh_book_get_enabled (DhBook *book)
 {
@@ -478,6 +565,13 @@ dh_book_get_enabled (DhBook *book)
         return priv->enabled;
 }
 
+/**
+ * dh_book_set_enabled:
+ * @book: a #DhBook object
+ * @enabled: %TRUE to enable the book
+ *
+ * Enable or disable completely the book.
+ */
 void
 dh_book_set_enabled (DhBook   *book,
                      gboolean  enabled)
@@ -495,6 +589,15 @@ dh_book_set_enabled (DhBook   *book,
         }
 }
 
+/**
+ * dh_book_cmp_by_path:
+ * @a: a #DhBook object
+ * @b: a second #DhBook object
+ *
+ * Compare the #DhBook @a and @b by their paths.
+ *
+ * Returns: an integer less than, equal to, or greater than zero, if @a is <, == or > than @b.
+ */
 gint
 dh_book_cmp_by_path (DhBook *a,
                      DhBook *b)
@@ -511,6 +614,15 @@ dh_book_cmp_by_path (DhBook *a,
         return g_strcmp0 (priv_a->path, priv_b->path);
 }
 
+/**
+ * dh_book_cmp_by_path_str:
+ * @a: a #DhBook object
+ * @b_path: a path to a book
+ *
+ * Compare the path of the #DhBook a with @b_path.
+ *
+ * Returns: an integer less than, equal to, or greater than zero, if the path of @a is <, == or > than @b_path.
+ */
 gint
 dh_book_cmp_by_path_str (DhBook      *a,
                          const gchar *b_path)
@@ -525,6 +637,15 @@ dh_book_cmp_by_path_str (DhBook      *a,
         return g_strcmp0 (priv_a->path, b_path);
 }
 
+/**
+ * dh_book_cmp_by_name:
+ * @a: a #DhBook object
+ * @b: a second #DhBook object
+ *
+ * Compare the #DhBook @a and @b by their name.
+ *
+ * Returns: an integer less than, equal to, or greater than zero, if @a is <, == or > than @b.
+ */
 gint
 dh_book_cmp_by_name (DhBook *a,
                      DhBook *b)
@@ -544,6 +665,15 @@ dh_book_cmp_by_name (DhBook *a,
         return g_ascii_strcasecmp (priv_a->name, priv_b->name);
 }
 
+/**
+ * dh_book_cmp_by_name_str:
+ * @a: a #DhBook object
+ * @b_name: a path to a book
+ *
+ * Compare the name of the #DhBook a with @b_name.
+ *
+ * Returns: an integer less than, equal to, or greater than zero, if the name of @a is <, == or > than @b_name.
+ */
 gint
 dh_book_cmp_by_name_str (DhBook      *a,
                          const gchar *b_name)
@@ -561,6 +691,15 @@ dh_book_cmp_by_name_str (DhBook      *a,
         return g_ascii_strcasecmp (priv_a->name, b_name);
 }
 
+/**
+ * dh_book_cmp_by_title:
+ * @a: a #DhBook object
+ * @b: a second #DhBook object
+ *
+ * Compare the #DhBook @a and @b by their title.
+ *
+ * Returns: an integer less than, equal to, or greater than zero, if @a is <, == or > than @b.
+ */
 gint
 dh_book_cmp_by_title (DhBook *a,
                       DhBook *b)

@@ -135,6 +135,11 @@ dh_assistant_view_class_init (DhAssistantViewClass* klass)
 
         g_type_class_add_private (klass, sizeof (DhAssistantViewPriv));
 
+        /**
+         * DhAssistantView::open-uri:
+         * @view: the view on which the signal is emitted
+         * @uri: the uri to open
+         */
         signals[SIGNAL_OPEN_URI] = g_signal_new ("open-uri",
                                                  G_TYPE_FROM_CLASS (object_class),
                                                  0, 0,
@@ -149,6 +154,13 @@ dh_assistant_view_init (DhAssistantView *view)
 {
 }
 
+/**
+ * dh_assistant_view_new:
+ *
+ * Create a new #DhAssistantView object.
+ *
+ * Returns: a new #DhAssistantView object
+ */
 GtkWidget*
 dh_assistant_view_new (void)
 {
@@ -181,13 +193,13 @@ find_in_buffer (const gchar *buffer,
 
 /**
  * dh_assistant_view_set_link:
- * @view: an devhelp assistant view
- * @link: the #DhLink
+ * @view: a #DhAssistantView object
+ * @link: (nullable): a #DhLink to set or %NULL
  *
  * Open @link in the assistant view, if %NULL the view will be blanked.
  *
- * Return value: %TRUE if the requested link is open, %FALSE otherwise.
- **/
+ * Returns: %TRUE if the requested link is open, %FALSE otherwise
+ */
 gboolean
 dh_assistant_view_set_link (DhAssistantView *view,
                             DhLink          *link)
@@ -398,6 +410,15 @@ dh_assistant_view_set_link (DhAssistantView *view,
         return TRUE;
 }
 
+/**
+ * dh_assistant_view_search:
+ * @view: a #DhAssistantView object
+ * @str: the search query
+ *
+ * Search for @str in the current assistant view.
+ *
+ * Returns: %TRUE if @str was found, %FALSE otherwise
+ */
 gboolean
 dh_assistant_view_search (DhAssistantView *view,
                           const gchar     *str)
@@ -480,6 +501,13 @@ dh_assistant_view_search (DhAssistantView *view,
         return TRUE;
 }
 
+/**
+ * dh_assistant_view_set_book_manager:
+ * @view: a #DhAssistantView object
+ * @book_manager: the new book manager
+ *
+ * Set a new book manager to search in.
+ */
 void
 dh_assistant_view_set_book_manager (DhAssistantView *view,
                                     DhBookManager   *book_manager)
