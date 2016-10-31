@@ -56,7 +56,7 @@ struct _DhSettingsClass{
                                const gchar *font_name_variable);
 } ;
 
-GType dh_settings_get_type (void) G_GNUC_CONST;;
+GType dh_settings_get_type (void) G_GNUC_CONST;
 
 DhSettings * dh_settings_get (void);
 
