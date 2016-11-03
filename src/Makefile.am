@@ -104,10 +104,10 @@ libdevhelp_3_la_CPPFLAGS =				\
 	$(ZLIB_CPPFLAGS)
 
 libdevhelp_3_la_CFLAGS =				\
-	$(LIBDEVHELP_CFLAGS)
+	$(DEVHELP_CFLAGS)
 
 libdevhelp_3_la_LIBADD =				\
-	$(LIBDEVHELP_LIBS)				\
+	$(DEVHELP_LIBS)					\
 	$(ZLIB_LIBS)					\
 	$(LIBM)
 

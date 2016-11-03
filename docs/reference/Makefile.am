@@ -73,12 +73,12 @@ GTKDOC_CFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_builddir) \
 	-I$(top_builddir)/src \
-	$(LIBDEVHELP_CFLAGS) \
+	$(DEVHELP_CFLAGS) \
 	$(NULL)
 
 GTKDOC_LIBS = \
 	$(top_builddir)/src/libdevhelp-3.la \
-	$(LIBDEVHELP_LIBS) \
+	$(DEVHELP_LIBS) \
 	$(NULL)
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
