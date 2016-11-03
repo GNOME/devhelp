@@ -22,7 +22,7 @@ AC_CONFIG_SRCDIR(src/dh-main.c)
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
 
-AM_INIT_AUTOMAKE([1.11 -Wall foreign no-define tar-ustar no-dist-gzip dist-xz -Wno-portability])
+AM_INIT_AUTOMAKE([1.14 -Wall foreign no-define tar-ustar no-dist-gzip dist-xz -Wno-portability])
 
 # Support silent build rules, requires at least automake-1.11. Disable
 # by either passing --disable-silent-rules to configure or passing V=1
@@ -32,7 +32,6 @@ AM_SILENT_RULES([yes])
 # Check for programs
 AC_PROG_CC
 AC_PROG_CPP
-AM_PROG_CC_C_O
 
 # Initialize libtool
 LT_PREREQ([2.2])
