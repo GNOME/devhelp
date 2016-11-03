@@ -17,7 +17,7 @@
   </bookinfo>
 
   <chapter>
-    <title>DevHelp</title>
+    <title>Devhelp</title>
     <xi:include href="xml/init.xml"/>
     <xi:include href="xml/dh-app.xml"/>
     <xi:include href="xml/dh-assistant.xml"/>
