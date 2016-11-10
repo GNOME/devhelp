@@ -18,14 +18,15 @@ appstream_in_files = org.gnome.Devhelp.appdata.xml.in
 appstream_XML = $(appstream_in_files:.xml.in=.xml)
 @APPSTREAM_XML_RULES@
 
-@INTLTOOL_XML_RULE@
-
-
-@INTLTOOL_DESKTOP_RULE@
+$(appstream_XML): $(appstream_in_files)
+	$(AM_V_GEN) $(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
 desktopdir = $(datadir)/applications
 desktop_in_files = org.gnome.Devhelp.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+
+$(desktop_DATA): $(desktop_in_files)
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 dbusservicedir = $(datadir)/dbus-1/services
 dbusservice_DATA = org.gnome.Devhelp.service

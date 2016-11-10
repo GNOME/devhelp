@@ -6,7 +6,3 @@ AM_DISTCHECK_CONFIGURE_FLAGS =	\
 SUBDIRS = po src data misc contrib docs
 
 EXTRA_DIST = autogen.sh
-
-DISTCLEANFILES = intltool-extract  \
-		 intltool-merge    \
-		 intltool-update

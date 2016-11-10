@@ -1,6 +1,8 @@
-@INTLTOOL_DESKTOP_RULE@
 DESKTOP_IN_FILES = devhelp.plugin.desktop.in
 DESKTOP_FILES = devhelp.plugin.desktop
+
+$(DESKTOP_FILES): $(DESKTOP_IN_FILES)
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 plugindir = $(libdir)/gedit/plugins
 plugin_PYTHON = devhelp.py
