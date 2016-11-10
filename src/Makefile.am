@@ -27,6 +27,9 @@ AM_CPPFLAGS = 						\
 	-DGDK_PIXBUF_DISABLE_SINGLE_INCLUDES		\
 	$(WARN_CFLAGS)
 
+AM_LDFLAGS =						\
+	$(WARN_LDFLAGS)
+
 bin_PROGRAMS = devhelp
 
 devhelp_SOURCES =					\
@@ -41,6 +44,9 @@ devhelp_CFLAGS =					\
 devhelp_LDADD = 					\
 	$(DEVHELP_LIBS)					\
         libdevhelp-3.la
+
+devhelp_LDFLAGS =					\
+	$(AM_LDFLAGS)
 
 lib_LTLIBRARIES = libdevhelp-3.la
 
@@ -112,6 +118,7 @@ libdevhelp_3_la_LIBADD =				\
 	$(LIBM)
 
 libdevhelp_3_la_LDFLAGS =				\
+	$(AM_LDFLAGS)					\
 	-no-undefined					\
 	-version-info ${LIBDEVHELP_CURRENT}:${LIBDEVHELP_REVISION}:${LIBDEVHELP_AGE} \
 	-export-symbols-regex ^dh_ \
@@ -147,6 +154,7 @@ Devhelp_3_0_gir_INCLUDES = Gtk-3.0 WebKit2-4.0
 Devhelp_3_0_gir_CFLAGS = $(INCLUDES)
 Devhelp_3_0_gir_LIBS = libdevhelp-3.la
 Devhelp_3_0_gir_FILES = $(introspection_sources)
+Devhelp_3_0_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
 INTROSPECTION_GIRS += Devhelp-3.0.gir
 
 girdir = $(datadir)/gir-1.0
