@@ -4,5 +4,3 @@ AM_DISTCHECK_CONFIGURE_FLAGS =	\
 	--disable-Werror
 
 SUBDIRS = po src data misc contrib docs
-
-EXTRA_DIST = autogen.sh
