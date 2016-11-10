@@ -14,11 +14,9 @@ gsettings_SCHEMAS = org.gnome.devhelp.gschema.xml
 gsettingsconvertdir = $(datadir)/GConf/gsettings
 gsettingsconvert_DATA = devhelp.convert
 
-app_data_in_files = org.gnome.Devhelp.appdata.xml.in
-app_data_files = $(app_data_in_files:.xml.in=.xml)
-
-appdatadir = $(datadir)/appdata
-appdata_DATA = $(app_data_files)
+appstream_in_files = org.gnome.Devhelp.appdata.xml.in
+appstream_XML = $(appstream_in_files:.xml.in=.xml)
+@APPSTREAM_XML_RULES@
 
 @INTLTOOL_XML_RULE@
 
@@ -47,11 +45,11 @@ EXTRA_DIST =			\
 	devhelp.convert \
 	$(assistant_DATA) \
 	$(man_MANS) \
-	$(app_data_in_files)
+	$(appstream_in_files)
 
 CLEANFILES =			\
 	$(DESKTOP_FILES)	\
 	$(defaults_DATA)	\
 	$(desktop_DATA) 	\
 	$(dbusservice_DATA)	\
-	$(app_data_files)
+	$(appstream_XML)
