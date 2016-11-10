@@ -51,9 +51,7 @@ EXTRA_DIST =			\
 
 CLEANFILES =			\
 	$(DESKTOP_FILES)	\
-	$(defaults_DATA)
-
-DISTCLEANFILES =		\
-	$(desktop_DATA) \
+	$(defaults_DATA)	\
+	$(desktop_DATA) 	\
 	$(dbusservice_DATA)	\
 	$(app_data_files)
