@@ -26,4 +26,5 @@
   </screenshots>
   <project_group>GNOME</project_group>
   <translation type="gettext">devhelp</translation>
+  <update_contact>swilmet@gnome.org</update_contact>
 </component>
