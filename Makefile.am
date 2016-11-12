@@ -1,4 +1,4 @@
-AM_DISTCHECK_CONFIGURE_FLAGS = --enable-introspection
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-introspection --disable-Werror
 
 SUBDIRS = po src data misc contrib docs
 
