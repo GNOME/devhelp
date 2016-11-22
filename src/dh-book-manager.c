@@ -118,7 +118,7 @@ dh_book_manager_finalize (GObject *object)
 
         priv = dh_book_manager_get_instance_private (DH_BOOK_MANAGER (object));
 
-        g_list_free_full (priv->languages, (GDestroyNotify)dh_language_free);
+        g_list_free_full (priv->languages, g_object_unref);
 
         g_slist_free_full (priv->books_disabled, g_free);
 
@@ -876,7 +876,7 @@ book_manager_dec_language (DhBookManager *book_manager,
 
         /* If language count reaches zero, remove from list */
         if (dh_language_dec_n_books_enabled (li->data)) {
-                dh_language_free (li->data);
+                g_object_unref (li->data);
                 priv->languages = g_list_delete_link (priv->languages, li);
 
                 /* Emit signal to notify others */

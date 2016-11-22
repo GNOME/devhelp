@@ -21,17 +21,39 @@
 
 #include <glib-object.h>
 
-typedef struct _DhLanguage DhLanguage;
+G_BEGIN_DECLS
 
-DhLanguage  *dh_language_new                 (const gchar      *name);
-void         dh_language_free                (DhLanguage       *language);
-const gchar *dh_language_get_name            (DhLanguage       *language);
-gint         dh_language_compare             (const DhLanguage *language_a,
-                                              const DhLanguage *language_b);
-gint         dh_language_compare_by_name     (const DhLanguage *language_a,
-                                              const gchar      *language_name_b);
-gint         dh_language_get_n_books_enabled (DhLanguage       *language);
-void         dh_language_inc_n_books_enabled (DhLanguage       *language);
-gboolean     dh_language_dec_n_books_enabled (DhLanguage       *language);
+#define DH_TYPE_LANGUAGE                (dh_language_get_type ())
+#define DH_LANGUAGE(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_LANGUAGE, DhLanguage))
+#define DH_LANGUAGE_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_LANGUAGE, DhLanguageClass))
+#define DH_IS_LANGUAGE(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_LANGUAGE))
+#define DH_IS_LANGUAGE_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_LANGUAGE))
+#define DH_LANGUAGE_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), DH_TYPE_LANGUAGE, DhLanguageClass))
+
+typedef struct _DhLanguage DhLanguage;
+typedef struct _DhLanguageClass DhLanguageClass;
+
+struct _DhLanguage {
+        GObject parent_instance;
+};
+
+struct _DhLanguageClass {
+        GObjectClass parent_class;
+};
+
+GType        dh_language_get_type            (void) G_GNUC_CONST;
+DhLanguage  *dh_language_new                 (const gchar *name);
+G_DEPRECATED_FOR (g_object_unref)
+void         dh_language_free                (DhLanguage *language);
+const gchar *dh_language_get_name            (DhLanguage *language);
+gint         dh_language_compare             (DhLanguage *language_a,
+                                              DhLanguage *language_b);
+gint         dh_language_compare_by_name     (DhLanguage  *language_a,
+                                              const gchar *language_name_b);
+gint         dh_language_get_n_books_enabled (DhLanguage *language);
+void         dh_language_inc_n_books_enabled (DhLanguage *language);
+gboolean     dh_language_dec_n_books_enabled (DhLanguage *language);
+
+G_END_DECLS
 
 #endif /* __DH_LANGUAGE_H__ */
