@@ -328,6 +328,7 @@ book_monitor_event_timeout_cb (gpointer data)
                 g_signal_emit (book, signals[BOOK_UPDATED], 0);
                 g_object_unref (book);
                 break;
+        case BOOK_MONITOR_EVENT_NONE:
         default:
                 break;
         }
