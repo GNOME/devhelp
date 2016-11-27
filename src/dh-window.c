@@ -68,7 +68,7 @@ static guint tab_accel_keys[] = {
 static const
 struct
 {
-        gchar *name;
+        const gchar *name;
         double level;
 }
 zoom_levels[] =
