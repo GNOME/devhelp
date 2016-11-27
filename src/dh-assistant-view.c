@@ -324,6 +324,14 @@ dh_assistant_view_set_link (DhAssistantView *view,
                         break_line = TRUE;
                         function = "onload=\"cleanupSignature()\"";
                         break;
+                case DH_LINK_TYPE_BOOK:
+                case DH_LINK_TYPE_PAGE:
+                case DH_LINK_TYPE_KEYWORD:
+                case DH_LINK_TYPE_STRUCT:
+                case DH_LINK_TYPE_ENUM:
+                case DH_LINK_TYPE_TYPEDEF:
+                case DH_LINK_TYPE_PROPERTY:
+                case DH_LINK_TYPE_SIGNAL:
                 default:
                         break_line = FALSE;
                         function = "";
