@@ -156,11 +156,13 @@ dh_settings_get (void)
 void
 dh_settings_get_selected_fonts (DhSettings *self, gchar **font_name_fixed, gchar **font_name_variable)
 {
+        gboolean use_system_font;
+
         g_return_if_fail (font_name_fixed != NULL && *font_name_fixed == NULL);
         g_return_if_fail (font_name_variable != NULL && *font_name_variable == NULL);
 
-        gboolean use_system_font = g_settings_get_boolean (
-                self->priv->settings_fonts, "use-system-fonts");
+        use_system_font = g_settings_get_boolean (self->priv->settings_fonts, "use-system-fonts");
+
         if (use_system_font) {
                 *font_name_fixed = g_settings_get_string (
                         self->priv->settings_desktop_interface,
