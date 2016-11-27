@@ -159,7 +159,7 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
                 return FALSE;
         }
 
-        if (indices[0] >= priv->keywords.length) {
+        if (indices[0] >= (gint)priv->keywords.length) {
                 return FALSE;
         }
 
