@@ -349,23 +349,17 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
         DhBookPrivate *priv = dh_book_get_instance_private (book);
         gboolean    reset_timer = FALSE;
 
-        switch (event_type) {
-        case G_FILE_MONITOR_EVENT_CREATED:
-                /* This may happen if the file is deleted and then
-                 * created right away, as we're merging events.
-                 * Treat in the same way as a CHANGES_DONE_HINT, so
-                 * fall through the case.  */
-        case G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT:
+        /* CREATED may happen if the file is deleted and then created right
+         * away, as we're merging events.  Treat in the same way as a
+         * CHANGES_DONE_HINT.
+         */
+        if (event_type == G_FILE_MONITOR_EVENT_CREATED ||
+            event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT) {
                 priv->monitor_event = BOOK_MONITOR_EVENT_UPDATED;
                 reset_timer = TRUE;
-                break;
-        case G_FILE_MONITOR_EVENT_DELETED:
+        } else if (event_type == G_FILE_MONITOR_EVENT_DELETED) {
                 priv->monitor_event = BOOK_MONITOR_EVENT_DELETED;
                 reset_timer = TRUE;
-                break;
-        default:
-                /* Ignore all the other events */
-                break;
         }
 
         /* Reset timer if any of the flags changed */
