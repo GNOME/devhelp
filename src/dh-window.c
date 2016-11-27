@@ -306,7 +306,7 @@ window_get_current_zoom_level_index (DhWindow *window)
         WebKitWebView *web_view;
         double previous;
         double zoom_level = ZOOM_DEFAULT;
-        int i;
+        guint i;
 
         web_view = window_get_active_web_view (window);
         if (web_view != NULL)
@@ -656,7 +656,7 @@ dh_window_init (DhWindow *window)
         DhWindowPrivate  *priv;
         GtkAccelGroup *accel_group;
         GClosure      *closure;
-        gint           i;
+        guint          i;
 
         gtk_widget_init_template (GTK_WIDGET (window));
 
@@ -1282,7 +1282,7 @@ window_web_view_tab_accel_cb (GtkAccelGroup   *accel_group,
 {
         DhWindowPrivate *priv;
         gint page_num;
-        gint i;
+        guint i;
 
         priv = dh_window_get_instance_private (window);
 
