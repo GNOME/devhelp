@@ -570,7 +570,7 @@ static GOptionEntry options[] = {
 
 static gint
 dh_app_handle_local_options (GApplication *app,
-                             GVariantDict *options)
+                             GVariantDict *local_options)
 {
   if (option_version)
     {
@@ -589,13 +589,13 @@ dh_app_command_line (GApplication            *app,
         const gchar *option_search = NULL;
         const gchar *option_search_assistant = NULL;
         gboolean option_quit = FALSE;
-        GVariantDict *options;
+        GVariantDict *options_dict;
 
-        options = g_application_command_line_get_options_dict (command_line);
-        g_variant_dict_lookup (options, "new-window", "b", &option_new_window);
-        g_variant_dict_lookup (options, "search", "&s", &option_search);
-        g_variant_dict_lookup (options, "search-assistant", "&s", &option_search_assistant);
-        g_variant_dict_lookup (options, "quit", "b", &option_quit);
+        options_dict = g_application_command_line_get_options_dict (command_line);
+        g_variant_dict_lookup (options_dict, "new-window", "b", &option_new_window);
+        g_variant_dict_lookup (options_dict, "search", "&s", &option_search);
+        g_variant_dict_lookup (options_dict, "search-assistant", "&s", &option_search_assistant);
+        g_variant_dict_lookup (options_dict, "quit", "b", &option_quit);
 
         if (option_new_window) {
                 dh_app_new_window (DH_APP (app));
