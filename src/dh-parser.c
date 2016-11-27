@@ -502,7 +502,7 @@ parser_read_gz_file (DhParser     *parser,
         }
 
         while (TRUE) {
-                gsize bytes_read;
+                gint bytes_read;
 
                 bytes_read = gzread (file, buf, BYTES_PER_READ);
                 if (bytes_read == -1) {
