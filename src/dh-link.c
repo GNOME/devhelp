@@ -448,6 +448,8 @@ dh_link_get_type_as_string (DhLink *link)
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Signal");
+        default:
+                break;
         }
 
         return "";
