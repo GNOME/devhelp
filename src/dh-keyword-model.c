@@ -673,7 +673,7 @@ keyword_model_search (DhKeywordModel  *model,
                       DhLink         **exact_link)
 {
         SearchSettings settings;
-        gint max_hits = MAX_HITS;
+        guint max_hits = MAX_HITS;
         GQueue *in_book = NULL;
         GQueue *other_books = NULL;
         DhLink *in_book_exact_link = NULL;
@@ -699,7 +699,7 @@ keyword_model_search (DhKeywordModel  *model,
                  * more than MAX_HITS keywords, and the page link may be
                  * the last one in the list, but we always want to get it.
                  */
-                max_hits = G_MAXINT;
+                max_hits = G_MAXUINT;
         }
 
         /* If book_id given; first look for prefixed items in the given book id */
