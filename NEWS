@@ -1,3 +1,28 @@
+===============
+Version 3.23.91
+===============
+
+Fixed bugs:
+
+ - #763518, Add sidebar toggler to the menu
+ - #770785, Add GTK-Doc API reference and GObject Introspection support
+ - #771503, fix warning in finalize of sidebar
+ - #773900, Small build system update
+ - #774069, unable to build devhelp by jhbuild
+ - #775261, Make DhLanguage a GObject subclass
+
+Updated translations: cs, de, es, eu, fi, fur, hr, hu, it, kk, nb, pl,
+pt_BR, sk, sl, sr@latin, sr, sv
+
+Many thanks to all contributors: Balázs Meskó, Мирослав
+Николић, Corentin Noël, Mario Blättermann, Milo Casagrande, Kjartan
+Maraas, Enrico Nicoletto, Balázs Úr, Piotr Drąg, Marek Černocký,
+Christian Hergert, Fabio Tomat, Sébastien Wilmet, gogo, Matej Urbančič,
+Michael Catanzaro, Fábio Nogueira, Anders Jonsson, Rafael Fontenelle,
+Miguel Vaello Martínez, Inaki Larranaga Murgoitio, Daniel Mustieles,
+Baurzhan Muftakhidinov, Jiri Grönroos, Dušan Kazik
+
+
 ==============
 Version 3.22.0
 ==============
