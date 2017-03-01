@@ -91,7 +91,7 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Package name for gettext
 AM_PATH_PYTHON([2.3],[],[no])
 
 AX_REQUIRE_DEFINED([GTK_DOC_CHECK])
-GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
+GTK_DOC_CHECK([1.25],[--flavour no-tmpl])
 
 AC_CONFIG_FILES([
 Makefile
