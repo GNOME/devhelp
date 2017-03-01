@@ -93,19 +93,19 @@ AX_REQUIRE_DEFINED([GTK_DOC_CHECK])
 GTK_DOC_CHECK([1.25],[--flavour no-tmpl])
 
 AC_CONFIG_FILES([
-Makefile
-po/Makefile.in
-src/Makefile
-data/Makefile
-data/libdevhelp-3.0.pc
-data/org.gnome.Devhelp.desktop.in
-data/icons/Makefile
-data/dtd/Makefile
-misc/Makefile
-misc/gedit-plugin/Makefile
-contrib/Makefile
-docs/Makefile
-docs/reference/Makefile
+	Makefile
+	contrib/Makefile
+	data/libdevhelp-3.0.pc
+	data/Makefile
+	data/org.gnome.Devhelp.desktop.in
+	data/dtd/Makefile
+	data/icons/Makefile
+	docs/Makefile
+	docs/reference/Makefile
+	misc/Makefile
+	misc/gedit-plugin/Makefile
+	po/Makefile.in
+	src/Makefile
 ])
 
 AC_OUTPUT
