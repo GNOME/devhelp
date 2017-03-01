@@ -1,12 +1,12 @@
-AX_REQUIRE_DEFINED([AX_IS_RELEASE])
-AX_IS_RELEASE([git-directory])
-
 AC_PREREQ([2.64])
 AC_INIT([Devhelp],
         [3.23.92],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],
         [devhelp],
         [https://wiki.gnome.org/Apps/Devhelp])
+
+AX_REQUIRE_DEFINED([AX_IS_RELEASE])
+AX_IS_RELEASE([git-directory])
 
 # LT Version numbers, remember to change them just *before* a release.
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
