@@ -111,6 +111,15 @@ docs/reference/Makefile
 
 AC_OUTPUT
 
-echo
-echo "Prefix:    $prefix"
-echo
+# Print a summary of the configuration
+echo "
+Configuration:
+
+	${PACKAGE_NAME} version ${PACKAGE_VERSION}
+
+	Source code location:	${srcdir}
+	Prefix:			${prefix}
+	Compiler:		${CC}
+	API documentation:	${enable_gtk_doc}
+	GObject introspection:	${found_introspection}
+"
