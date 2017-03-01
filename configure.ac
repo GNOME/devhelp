@@ -34,6 +34,7 @@ AM_SILENT_RULES([yes])
 
 # Check for programs
 AC_PROG_CC
+AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 
 # Initialize libtool
 LT_PREREQ([2.2])
@@ -86,8 +87,6 @@ AM_GNU_GETTEXT_VERSION([0.19.7])
 GETTEXT_PACKAGE=devhelp
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Package name for gettext])
-
-AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 
 AM_PATH_PYTHON([2.3],[],[no])
 
