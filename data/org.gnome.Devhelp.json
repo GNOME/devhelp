@@ -1,0 +1,43 @@
+{
+    "app-id": "org.gnome.Devhelp",
+    "runtime": "org.gnome.Sdk",
+    "runtime-version": "3.22",
+    "branch": "stable",
+    "sdk": "org.gnome.Sdk",
+    "command": "devhelp",
+    "rename-icon": "devhelp",
+    "tags": [],
+    "finish-args": [
+        /* X11 + XShm access */
+        "--share=ipc", "--socket=x11",
+        /* Wayland access */
+        "--socket=wayland",
+        /* Needed for dconf to work */
+        "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+    ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "V": "1"
+        }
+    },
+    "cleanup": ["/include", "/lib/pkgconfig",
+                "/share/pkgconfig", "/share/aclocal",
+                "/man", "/share/man",
+                "*.la", "*.a"],
+    "modules": [
+        {
+            "name": "devhelp",
+            "config-opts": ["--disable-man-pages"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/devhelp/3.22/devhelp-3.22.0.tar.xz",
+                    "sha256": "59cae02e12d238cc5fc3f049d779895ba89701426d9173f5b534d4ab90c5ffb0"
+                }
+            ]
+        }
+    ]
+}
