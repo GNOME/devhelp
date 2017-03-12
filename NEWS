@@ -1,4 +1,20 @@
 ===============
+Version 3.23.92
+===============
+
+Fixed bugs:
+
+ - #779378, devhelp 3.23.91 fails to build because of -Werror
+ - #779563, Add Flatpak build manifest
+
+Updated translations: da, fr, gl, id, ko, lt, zh_TW
+
+Many thanks to all contributors: Changwoo Ryu, Kukuh Syafaat, Fran Dieguez,
+Sébastien Wilmet, Ask Hjorth Larsen, Aurimas Černius, Chao-Hsiung Liao,
+Charles Monzat
+
+
+===============
 Version 3.23.91
 ===============
 
