@@ -1,6 +1,6 @@
 AC_PREREQ([2.64])
 AC_INIT([Devhelp],
-        [3.23.92],
+        [3.24.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],
         [devhelp],
         [https://wiki.gnome.org/Apps/Devhelp])
@@ -12,7 +12,7 @@ AX_IS_RELEASE([git-directory])
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
 #   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
 #   (No interfaces changed:                   REVISION++)
-LIBDEVHELP_CURRENT=2
+LIBDEVHELP_CURRENT=3
 LIBDEVHELP_AGE=0
 LIBDEVHELP_REVISION=0
 
