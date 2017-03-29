@@ -34,7 +34,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/GNOME/devhelp.git",
+                    "url": "git://git.gnome.org/devhelp",
                     "branch": "master"
                 }
             ]
