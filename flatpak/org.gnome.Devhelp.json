@@ -1,12 +1,12 @@
 {
     "app-id": "org.gnome.Devhelp",
     "runtime": "org.gnome.Sdk",
-    "runtime-version": "master",
+    "runtime-version": "3.24",
+    "branch": "stable",
     "sdk": "org.gnome.Sdk",
     "command": "devhelp",
     "rename-icon": "devhelp",
-    "tags": ["nightly"],
-    "desktop-file-name-prefix": "(Nightly) ",
+    "tags": [],
     "finish-args": [
         /* X11 + XShm access */
         "--share=ipc", "--socket=x11",
@@ -30,12 +30,11 @@
     "modules": [
         {
             "name": "devhelp",
-            "config-opts": ["--disable-Werror"],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "git://git.gnome.org/devhelp",
-                    "branch": "master"
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/devhelp/3.24/devhelp-3.24.0.tar.xz",
+                    "sha256": "4858de1c815532ad160d1bf9facd28859972e3a052908a8edf73f866c8cce430"
                 }
             ]
         }
