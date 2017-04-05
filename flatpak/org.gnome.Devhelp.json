@@ -30,7 +30,6 @@
     "modules": [
         {
             "name": "devhelp",
-            "config-opts": ["--disable-Werror"],
             "sources": [
                 {
                     "type": "git",
