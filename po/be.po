@@ -3,366 +3,443 @@
 # Vital Khilko <dojlid@mova.org>, 2003.
 # Wladzimir Manulenka <vlma@tut.by>, 2010.
 # Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2012, 2013.
+# Yuras Shumovich <shumovichy@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-21 14:28+0000\n"
-"PO-Revision-Date: 2012-09-09 14:51+0300\n"
-"Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-03-29 11:04+0000\n"
+"PO-Revision-Date: 2017-04-15 19:16+0300\n"
+"Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:209 ../src/dh-app.c:395
-#: ../src/dh-window.c:650
+#: data/org.gnome.Devhelp.appdata.xml.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:303 src/dh-app.c:620
+#: src/dh-window.c:799
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
+#: data/org.gnome.Devhelp.appdata.xml.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4
 msgid "Developer's Help program"
 msgstr "Памочнік праграміста"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: data/org.gnome.Devhelp.appdata.xml.in:9
+msgid ""
+"Devhelp is an API documentation browser. It provides an easy way to navigate "
+"through libraries, search by function, struct, or macro. It provides a "
+"tabbed interface and allows to print results."
+msgstr ""
+"Devhelp гэта аглядальнік дакументацыі да праграмных інтэрфейсаў. З яго "
+"дапамогай можна лёгка аглядаць бібліятэкі, шукаць функцыі, структуры і "
+"макраазначэнні ў інтэрфейсе з карткамі, а таксама друкаваць вынікі."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:15
+msgid ""
+"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+msgstr "Devhelp інтэгруецца з Glade, Anjuta і Geany."
+
+#: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "Documentation Browser"
 msgstr "Аглядальнік дакументацыі"
 
-#: ../data/devhelp.desktop.in.in.h:4
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr ""
 "дакументацыя;інфармацыя;звесткі;даведнік;падручнік;распрацоўшчык;праграміст;"
 "api;"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:1
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.Devhelp.desktop.in.in:12
+#: misc/gedit-plugin/devhelp.plugin.desktop.in:10
+#| msgid "Devhelp"
+msgid "devhelp"
+msgstr "devhelp"
+
+#: data/org.gnome.devhelp.gschema.xml:19
 msgid "Main window maximized state"
 msgstr "Стан максімалізацыі галоўнага акна"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:2
+#: data/org.gnome.devhelp.gschema.xml:20
 msgid "Whether the main window should start maximized."
 msgstr "Ці трэба адкрываць галоўнае акно максімалізаваным."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:3
+#: data/org.gnome.devhelp.gschema.xml:24
 msgid "Width of the main window"
 msgstr "Шырыня галоўнага акна"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:4
+#: data/org.gnome.devhelp.gschema.xml:25
 msgid "The width of the main window."
 msgstr "Шырыня галоўнага акна."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:5
+#: data/org.gnome.devhelp.gschema.xml:29
 msgid "Height of main window"
 msgstr "Вышыня галоўнага акна"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:6
+#: data/org.gnome.devhelp.gschema.xml:30
 msgid "The height of the main window."
 msgstr "Вышыня галоўнага акна."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:7
+#: data/org.gnome.devhelp.gschema.xml:34
 msgid "X position of main window"
 msgstr "Размяшчэнне галоўнага акна па X-восі"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:8
+#: data/org.gnome.devhelp.gschema.xml:35
 msgid "The X position of the main window."
 msgstr "Размяшчэнне галоўнага акна па X-восі."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:9
+#: data/org.gnome.devhelp.gschema.xml:39
 msgid "Y position of main window"
 msgstr "Размяшчэнне галоўнага акна па Y-восі"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:10
+#: data/org.gnome.devhelp.gschema.xml:40
 msgid "The Y position of the main window."
 msgstr "Размяшчэнне галоўнага акна па Y-восі."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:11
+#: data/org.gnome.devhelp.gschema.xml:46
 msgid "Width of the index and search pane"
 msgstr "Шырыня паліцы зместу і пошуку"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:12
+#: data/org.gnome.devhelp.gschema.xml:47
 msgid "The width of the index and search pane."
 msgstr "Шырыня паліцы зместу і пошуку."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:13
+#: data/org.gnome.devhelp.gschema.xml:53
 msgid "Selected tab: \"content\" or \"search\""
 msgstr "Выбраная картка: \"content\" (зместу) ці \"search\" (пошуку)"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:14
+#: data/org.gnome.devhelp.gschema.xml:54
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
 msgstr "Якая картка выбрана: \"content\" (зместу) ці \"search\" (пошуку)."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:15
+#: data/org.gnome.devhelp.gschema.xml:60
 msgid "Books disabled"
 msgstr "Выключаныя кнігі"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:16
+#: data/org.gnome.devhelp.gschema.xml:61
 msgid "List of books disabled by the user."
 msgstr "Спіс кніг, выключаных карыстальнікам."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:17
+#: data/org.gnome.devhelp.gschema.xml:65
 msgid "Group by language"
 msgstr "Групаваць па мове"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:18
+#: data/org.gnome.devhelp.gschema.xml:66
 msgid "Whether books should be grouped by language in the UI"
 msgstr "Ці трэба групаваць кнігі па мове ў інтэрфейсе праграмы"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:19
+#: data/org.gnome.devhelp.gschema.xml:75
 msgid "Whether the assistant window should be maximized"
 msgstr "Ці трэба максімалізаваць дапаможнае акно"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:20
+#: data/org.gnome.devhelp.gschema.xml:76
 msgid "Whether the assistant window should be maximized."
 msgstr "Ці трэба максімалізаваць дапаможнае акно."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:21
+#: data/org.gnome.devhelp.gschema.xml:80
 msgid "Width of the assistant window"
 msgstr "Шырыня дапаможнага акна"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:22
+#: data/org.gnome.devhelp.gschema.xml:81
 msgid "The width of the assistant window."
 msgstr "Шырыня дапаможнага акна."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:23
+#: data/org.gnome.devhelp.gschema.xml:85
 msgid "Height of assistant window"
 msgstr "Вышыня дапаможнага акна"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:24
+#: data/org.gnome.devhelp.gschema.xml:86
 msgid "The height of the assistant window."
 msgstr "Вышыня дапаможнага акна."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:25
+#: data/org.gnome.devhelp.gschema.xml:90
 msgid "X position of assistant window"
 msgstr "Размяшчэнне дапаможнага акна па X-восі"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:26
+#: data/org.gnome.devhelp.gschema.xml:91
 msgid "The X position of the assistant window."
 msgstr "Размяшчэнне дапаможнага акна па X-восі."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:27
+#: data/org.gnome.devhelp.gschema.xml:95
 msgid "Y position of assistant window"
 msgstr "Размяшчэнне дапаможнага акна па Y-восі"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:28
+#: data/org.gnome.devhelp.gschema.xml:96
 msgid "The Y position of the assistant window."
 msgstr "Размяшчэнне дапаможнага акна па Y-восі."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:29
+#: data/org.gnome.devhelp.gschema.xml:102
 msgid "Use system fonts"
 msgstr "Ужыць сістэмныя шрыфты"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:30
+#: data/org.gnome.devhelp.gschema.xml:103
 msgid "Use the system default fonts."
 msgstr "Ужыць прадвызначаныя сістэмныя шрыфты."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:31
+#: data/org.gnome.devhelp.gschema.xml:107
 msgid "Font for text"
 msgstr "Шрыфт тэксту"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:32
+#: data/org.gnome.devhelp.gschema.xml:108
 msgid "Font for text with variable width."
 msgstr "Шрыфт зменнай шырыні."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:33
+#: data/org.gnome.devhelp.gschema.xml:112
 msgid "Font for fixed width text"
 msgstr "Роўнашырокі шрыфт"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:34
+#: data/org.gnome.devhelp.gschema.xml:113
 msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Роўнашырокі шрыфт з літарамі аднаго памеру, напрыклад, для ўзораў коду."
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: misc/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Падтрымка Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
-msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "Запуск Devhelp для слова пад курсорам пры націску клавішы F2"
-
-#: ../misc/gedit-plugin/devhelp.py:69
+#: misc/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "Паказаць дакументацыю API"
 
-#: ../misc/gedit-plugin/devhelp.py:71
-msgid "Show API Documentation for the word at the cursor"
-msgstr "Паказаць дакументацыю API для слова пад курсорам"
-
-#: ../src/devhelp-menu.ui.h:1 ../src/devhelp.ui.h:1 ../src/dh-window.ui.h:7
+#: src/devhelp-menu.ui:28 src/dh-window.ui:51
 msgid "New _Window"
 msgstr "Новае _акно"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/devhelp.ui.h:2 ../src/dh-window.ui.h:8
+#: src/devhelp-menu.ui:35 src/dh-window.ui:98
 msgid "_Preferences"
 msgstr "_Настройкі"
 
-#: ../src/devhelp-menu.ui.h:3 ../src/devhelp.ui.h:3 ../src/dh-window.ui.h:9
-msgid "_About Devhelp"
-msgstr "_Аб Devhelp"
+#: src/devhelp-menu.ui:41
+msgid "_Keyboard Shortcuts"
+msgstr "_Клавіятурныя скароты"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/devhelp.ui.h:4 ../src/dh-window.ui.h:10
+#: src/devhelp-menu.ui:45
+msgid "_About"
+msgstr "_Аб праграме"
+
+#: src/devhelp-menu.ui:49 src/dh-window.ui:108
 msgid "_Quit"
 msgstr "_Выйсці"
 
-#: ../src/devhelp.ui.h:5
-msgid "Preferences"
-msgstr "Настройкі"
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Агульнае"
 
-#: ../src/devhelp.ui.h:6
-msgid "_Group by language"
-msgstr "_Групаваць па мове"
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Перанесці фокус на глабальны пошук"
 
-#: ../src/devhelp.ui.h:7
-msgid "Enabled"
-msgstr "Уключана"
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Шукаць на бягучай старонцы"
 
-#: ../src/devhelp.ui.h:8
-msgid "Title"
-msgstr "Назва"
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Адкрыць новае акно"
 
-#: ../src/devhelp.ui.h:9
-msgid "Book Shelf"
-msgstr "Кніжная паліца"
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Адкрыць новую картку"
 
-#: ../src/devhelp.ui.h:10
-msgid "_Use system fonts"
-msgstr "_Ужыць сістэмныя шрыфты"
+#: src/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Toggle sidebar visibility"
+msgstr "Пераключыць бачнасць бакавой паліцы"
 
-#: ../src/devhelp.ui.h:11
-msgid "_Variable width: "
-msgstr "Шрыфт _зменнай шырыні: "
+#: src/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Назад"
 
-#: ../src/devhelp.ui.h:12
-msgid "_Fixed width:"
-msgstr "_Роўнашырокі шрыфт:"
+#: src/help-overlay.ui:61
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Наперад"
 
-#: ../src/devhelp.ui.h:13
-msgid "Fonts"
-msgstr "Шрыфты"
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Друкаваць"
 
-#: ../src/dh-app.c:201
-msgid "translator_credits"
-msgstr ""
-"Ігар Грачышка <ihar.hrachyshka@gmail.com>\n"
-"Уладзімір Мануленка <wladzimir.manulenka@gmail.com>"
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Закрыць бягучае акно"
 
-#: ../src/dh-app.c:211
+#: src/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Схаваць усе вокны"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Маштабаванне"
+
+#: src/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Наблізіць"
+
+#: src/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Аддаліць"
+
+#: src/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Натуральны маштаб"
+
+#: src/dh-app.c:305
 msgid "A developers' help browser for GNOME"
 msgstr "Памочнік праграміста GNOME"
 
-#: ../src/dh-app.c:219
-msgid "DevHelp Website"
+#: src/dh-app.c:307
+msgid "translator-credits"
+msgstr ""
+"Ігар Грачышка <ihar.hrachyshka@gmail.com>\n"
+"Уладзімір Мануленка <wladzimir.manulenka@gmail.com>\n"
+"Юрась Шумовіч <shumovichy@gmail.com>"
+
+#: src/dh-app.c:309
+msgid "Devhelp Website"
 msgstr "Сеціўная пляцоўка Devhelp"
 
+#: src/dh-app.c:545
+msgid "Opens a new Devhelp window"
+msgstr "Адкрыць новае акно Devhelp"
+
+#: src/dh-app.c:550
+msgid "Search for a keyword"
+msgstr "Адшукаць ключавое слова"
+
+#: src/dh-app.c:551 src/dh-app.c:556
+msgid "KEYWORD"
+msgstr "КЛЮЧАВОЕ_СЛОВА"
+
+#: src/dh-app.c:555
+msgid "Search and display any hit in the assistant window"
+msgstr "Адшукаць і паказаць знойдзенае ў дапаможным акне"
+
+#: src/dh-app.c:560
+msgid "Display the version and exit"
+msgstr "Паказаць нумар версіі праграмы і выйсці"
+
+#: src/dh-app.c:565
+msgid "Quit any running Devhelp"
+msgstr "Выйсці з Devhelp"
+
 #. Please don't translate "Devhelp"
-#: ../src/dh-assistant.ui.h:2
+#: src/dh-assistant.ui:8
 msgid "Devhelp — Assistant"
 msgstr "Devhelp: Памочнік"
 
-#: ../src/dh-assistant-view.c:372
+#: src/dh-assistant-view.c:392
 msgid "Book:"
 msgstr "Кніга:"
 
-#: ../src/dh-book.c:250
+#: src/dh-book.c:277
 #, c-format
 msgid "Language: %s"
 msgstr "Мова: %s"
 
-#: ../src/dh-book.c:251
+#: src/dh-book.c:278
 msgid "Language: Undefined"
 msgstr "Мова: невядома"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:284
+#: src/dh-link.c:408
 msgid "Book"
 msgstr "Кніга"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:287
+#: src/dh-link.c:411
 msgid "Page"
 msgstr "Старонка"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:291
+#: src/dh-link.c:415
 msgid "Keyword"
 msgstr "Ключавое слова"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:296
+#: src/dh-link.c:420
 msgid "Function"
 msgstr "Функцыя"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:301
+#: src/dh-link.c:425
 msgid "Struct"
 msgstr "Структура"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:306
+#: src/dh-link.c:430
 msgid "Macro"
 msgstr "Макраазначэнне"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:311
+#: src/dh-link.c:435
 msgid "Enum"
 msgstr "Пералік"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:316
+#: src/dh-link.c:440
 msgid "Type"
 msgstr "Тып"
 
-#: ../src/dh-main.c:43
-msgid "Opens a new Devhelp window"
-msgstr "Адкрыць новае акно Devhelp"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:445
+msgid "Property"
+msgstr "Уласьцівасць"
 
-#: ../src/dh-main.c:48
-msgid "Search for a keyword"
-msgstr "Адшукаць ключавое слова"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:450
+msgid "Signal"
+msgstr "Сігнал"
 
-#: ../src/dh-main.c:49 ../src/dh-main.c:54
-msgid "KEYWORD"
-msgstr "КЛЮЧАВОЕ_СЛОВА"
-
-#: ../src/dh-main.c:53
-msgid "Search and display any hit in the assistant window"
-msgstr "Адшукаць і паказаць знойдзенае ў дапаможным акне"
-
-#: ../src/dh-main.c:58
-msgid "Display the version and exit"
-msgstr "Паказаць нумар версіі праграмы і выйсці"
-
-#: ../src/dh-main.c:63
-msgid "Quit any running Devhelp"
-msgstr "Выйсці з Devhelp"
-
-#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
-#: ../src/dh-parser.c:273
+#: src/dh-parser.c:96 src/dh-parser.c:197 src/dh-parser.c:261
+#: src/dh-parser.c:271
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
 msgstr "Чакалася \"%s\", атрымана \"%s\" у радку %d (слупок %d)"
 
-#: ../src/dh-parser.c:114
+#: src/dh-parser.c:113
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
 msgstr "Памылковая прастора назваў \"%s\" у радку %d (слупок %d)"
 
-#: ../src/dh-parser.c:143
+#: src/dh-parser.c:142
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
@@ -370,7 +447,7 @@ msgstr ""
 "У радку %d (слупок %d) патрабуюцца наступныя элементы: \"title\", \"name\" і "
 "\"link\""
 
-#: ../src/dh-parser.c:218
+#: src/dh-parser.c:216
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
@@ -379,7 +456,7 @@ msgstr ""
 "Унутры <sub> у радку %d (слупок %d) патрабуюцца наступныя элементы: \"name\" "
 "і \"link\""
 
-#: ../src/dh-parser.c:298
+#: src/dh-parser.c:296
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
@@ -387,100 +464,154 @@ msgstr ""
 "Унутры \"%s\" у радку %d (слупок %d) патрабуюцца наступныя элементы: \"name"
 "\" і \"link\""
 
-#: ../src/dh-parser.c:311
+#: src/dh-parser.c:309
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
 msgstr ""
 "Унутры <keyword> у радку %d (слупок %d) патрабуецца наступны элемент: \"type"
 "\""
 
-#: ../src/dh-parser.c:514
+#: src/dh-parser.c:516
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
 msgstr "Не ўдалося распакаваць кнігу \"%s\": %s"
 
-#. Setup the Current/All Files selector
-#: ../src/dh-sidebar.c:531
-msgid "Current"
-msgstr "Бягучы"
+#: src/dh-preferences.ui:40
+msgid "Preferences"
+msgstr "Настройкі"
 
-#: ../src/dh-sidebar.c:534
-msgid "All Books"
-msgstr "Усе кнігі"
+#: src/dh-preferences.ui:76
+msgid "_Group by language"
+msgstr "_Групаваць па мове"
 
-#: ../src/dh-window.c:87
+#: src/dh-preferences.ui:107
+msgid "Enabled"
+msgstr "Уключана"
+
+#: src/dh-preferences.ui:122
+msgid "Title"
+msgstr "Назва"
+
+#: src/dh-preferences.ui:151
+msgid "Book Shelf"
+msgstr "Кніжная паліца"
+
+#: src/dh-preferences.ui:172
+msgid "_Use system fonts"
+msgstr "_Ужыць сістэмныя шрыфты"
+
+#: src/dh-preferences.ui:196
+msgid "_Variable width: "
+msgstr "Шрыфт _зменнай шырыні: "
+
+#: src/dh-preferences.ui:209
+msgid "_Fixed width:"
+msgstr "_Роўнашырокі шрыфт:"
+
+#: src/dh-preferences.ui:270
+msgid "Fonts"
+msgstr "Шрыфты"
+
+#: src/dh-window.c:76
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:88
+#: src/dh-window.c:77
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:89
+#: src/dh-window.c:78
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:90
+#: src/dh-window.c:79
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:91
+#: src/dh-window.c:80
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:92
+#: src/dh-window.c:81
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:93
+#: src/dh-window.c:82
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:94
+#: src/dh-window.c:83
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:95
+#: src/dh-window.c:84
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:869
+#: src/dh-window.c:1026
 msgid "Error opening the requested link."
 msgstr "Памылка адкрыцця запатрабаванай спасылкі."
 
-#: ../src/dh-window.c:1153 ../src/dh-window.c:1325
+#: src/dh-window.c:1342
+msgid "_Close"
+msgstr "_Закрыць"
+
+#: src/dh-window.c:1360 src/dh-window.c:1534
 msgid "Empty Page"
 msgstr "Пустая старонка"
 
-#: ../src/dh-window.ui.h:1
+#: src/dh-window.ui:7 src/dh-window.ui:56
 msgid "New _Tab"
 msgstr "Новая _картка"
 
-#: ../src/dh-window.ui.h:2
+#: src/dh-window.ui:12
+msgid "Side _Panel"
+msgstr "Бакавая _панэль"
+
+#: src/dh-window.ui:20 src/dh-window.ui:64
 msgid "_Print"
 msgstr "_Надрукаваць"
 
-#: ../src/dh-window.ui.h:3
+#: src/dh-window.ui:25 src/dh-window.ui:69
 msgid "_Find"
 msgstr "_Шукаць"
 
-#: ../src/dh-window.ui.h:4
+#: src/dh-window.ui:32 src/dh-window.ui:76
 msgid "_Larger Text"
 msgstr "_Большы тэкст"
 
-#: ../src/dh-window.ui.h:5
+#: src/dh-window.ui:37 src/dh-window.ui:81
 msgid "S_maller Text"
 msgstr "_Меншы тэкст"
 
-#: ../src/dh-window.ui.h:6
+#: src/dh-window.ui:42 src/dh-window.ui:86
 msgid "_Normal Size"
 msgstr "_Звычайны памер"
 
-#: ../src/dh-window.ui.h:11
+#: src/dh-window.ui:93
+msgid "_Side pane"
+msgstr "_Бакавая панэль"
+
+#: src/dh-window.ui:104
+msgid "_About Devhelp"
+msgstr "_Аб Devhelp"
+
+#: src/dh-window.ui:138
 msgid "Back"
 msgstr "Назад"
 
-#: ../src/dh-window.ui.h:12
+#: src/dh-window.ui:157
 msgid "Forward"
 msgstr "Наперад"
 
+#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
+#~ msgstr "Запуск Devhelp для слова пад курсорам пры націску клавішы F2"
+
+#~ msgid "Show API Documentation for the word at the cursor"
+#~ msgstr "Паказаць дакументацыю API для слова пад курсорам"
+
+#~ msgid "Current"
+#~ msgstr "Бягучы"
+
+#~ msgid "All Books"
+#~ msgstr "Усе кнігі"
