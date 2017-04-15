@@ -1,11 +1,15 @@
 Devhelp information
 ===================
 
+The Devhelp web page:
+
+  https://wiki.gnome.org/Apps/Devhelp
+
 The following packages are required to compile Devhelp:
 
-glib 2.38 (or greater)
-gtk+ 3.19.3 (or greater)
-webkit2gtk-4.0 2.6 (or greater)
+glib >= 2.38
+gtk+ >= 3.20
+webkit2gtk-4.0 >= 2.6
 
 Devhelp's primary goal is to be an API documentation browser for
 GNOME. When you build (or install) a GNOME library, it will build an
@@ -20,7 +24,7 @@ for those index files and display the books they represent.
 Devhelp uses the "XDG Base Directory Specification" to find
 documentation. You can read more about that specification here:
 
-  http://standards.freedesktop.org/basedir-spec/latest/
+  https://specifications.freedesktop.org/basedir-spec/latest/
 
 The list of locations searched for devhelp books is:
 
