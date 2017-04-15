@@ -22,6 +22,14 @@
     </foaf:Person>
   </maintainer>
 
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Sébastien Wilmet</foaf:name>
+      <foaf:mbox rdf:resource="mailto:swilmet@gnome.org" />
+      <gnome:userid>swilmet</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
   <author>
     <foaf:Person>
       <foaf:name>Richard Hult</foaf:name>
