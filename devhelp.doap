@@ -11,8 +11,8 @@
 and GNOME. It works natively with GTK-Doc.</description>
 
   <homepage rdf:resource="https://wiki.gnome.org/Apps/Devhelp" />
-  <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/gnome-devtools" />
-  <download-page rdf:resource="http://download.gnome.org/sources/devhelp/" />
+  <mailing-list rdf:resource="https://mail.gnome.org/mailman/listinfo/gnome-devtools" />
+  <download-page rdf:resource="https://download.gnome.org/sources/devhelp/" />
   <bug-database rdf:resource="https://bugzilla.gnome.org/browse.cgi?product=devhelp" />
   <category rdf:resource="http://api.gnome.org/doap-extensions#apps" />
   <programming-language>C</programming-language>
