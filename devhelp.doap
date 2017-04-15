@@ -7,6 +7,9 @@
 
   <name xml:lang="en">devhelp</name>
   <shortdesc xml:lang="en">API documentation browser</shortdesc>
+  <description xml:lang="en">Devhelp is an API documentation browser for GTK+
+and GNOME. It works natively with GTK-Doc.</description>
+
   <homepage rdf:resource="https://wiki.gnome.org/Apps/Devhelp" />
   <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/gnome-devtools" />
   <download-page rdf:resource="http://download.gnome.org/sources/devhelp/" />
