@@ -52,8 +52,8 @@ typedef enum {
 
 /**
  * DhLinkFlags:
- * @DH_LINK_FLAGS_NONE: no flag set
- * @DH_LINK_FLAGS_DEPRECATED: deprecated link
+ * @DH_LINK_FLAGS_NONE: No flags set.
+ * @DH_LINK_FLAGS_DEPRECATED: The symbol that the link points to is deprecated.
  */
 typedef enum {
         DH_LINK_FLAGS_NONE       = 0,

@@ -67,20 +67,20 @@ link_free (DhLink *link)
 
 /**
  * dh_link_new:
- * @type: the type of the content the link is pointing to
- * @base: the base path of the link
- * @id: the id of the link
- * @name: the name of the link
- * @book: (nullable): the link to the associated book or %NULL
- * @page: (nullable): the link to the associated page or %NULL
- * @filename: the filename of the link
+ * @type: the type of the content the link is pointing to.
+ * @base: the base path of the link.
+ * @id: the id of the link.
+ * @name: the name of the link.
+ * @book: (nullable): the book that the link is contained in, or %NULL.
+ * @page: (nullable): the page that the link is contained in, or %NULL.
+ * @filename: the filename.
  *
- * Create a new #DhLink object.
+ * Creates a new #DhLink.
  *
- * If type is one of #DH_LINK_TYPE_BOOK or #DH_LINK_TYPE_PAGE then the @book and
- * @page links have to be provided.
+ * If @type is not a #DH_LINK_TYPE_BOOK and not a #DH_LINK_TYPE_PAGE, then the
+ * @book and @page links must be provided.
  *
- * Returns: a new #DhLink object
+ * Returns: a new #DhLink.
  */
 DhLink *
 dh_link_new (DhLinkType   type,
@@ -130,12 +130,15 @@ dh_link_new (DhLinkType   type,
 
 /**
  * dh_link_compare:
- * @a: (type DhLink): a #DhLink object
- * @b: (type DhLink): the #DhLink to compare
+ * @a: (type DhLink): a #DhLink.
+ * @b: (type DhLink): a #DhLink.
  *
- * Compare the link @a and @b.
+ * Compares the links @a and @b. This function is used to determine in which
+ * order the links should be displayed.
  *
- * Returns: an integer less than, equal to, or greater than zero, if @a is <, == or > than @b.
+ * Returns: an integer less than zero if @a should appear before @b; zero if
+ * there are no preferences; an integer greater than zero if @b should appear
+ * before @a.
  */
 gint
 dh_link_compare (gconstpointer a,
@@ -183,11 +186,11 @@ dh_link_compare (gconstpointer a,
 
 /**
  * dh_link_ref:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Increase the reference count of @link.
+ * Increases the reference count of @link.
  *
- * Returns: (transfer full): the @link object
+ * Returns: (transfer full): the @link.
  */
 DhLink *
 dh_link_ref (DhLink *link)
@@ -201,9 +204,9 @@ dh_link_ref (DhLink *link)
 
 /**
  * dh_link_unref:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Decrease the reference count of @link.
+ * Decreases the reference count of @link.
  */
 void
 dh_link_unref (DhLink *link)
@@ -218,11 +221,9 @@ dh_link_unref (DhLink *link)
 
 /**
  * dh_link_get_name:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Get the name of the link.
- *
- * Returns: the name of the link
+ * Returns: the name of the @link.
  */
 const gchar *
 dh_link_get_name (DhLink *link)
@@ -232,11 +233,9 @@ dh_link_get_name (DhLink *link)
 
 /**
  * dh_link_get_book_name:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Get the book name the link is pointing to.
- *
- * Returns: the book name the link is pointing to
+ * Returns: the name of the book that the @link is contained in.
  */
 const gchar *
 dh_link_get_book_name (DhLink *link)
@@ -250,11 +249,9 @@ dh_link_get_book_name (DhLink *link)
 
 /**
  * dh_link_get_page_name:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Get the page name the link is pointing to.
- *
- * Returns: the page name the link is pointing to
+ * Returns: the name of the page that the @link is contained in.
  */
 const gchar *
 dh_link_get_page_name (DhLink *link)
@@ -268,11 +265,9 @@ dh_link_get_page_name (DhLink *link)
 
 /**
  * dh_link_get_file_name:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Get the file name of the link.
- *
- * Returns: the file name of the link
+ * Returns: the name of the file that the @link is contained in.
  */
 const gchar *
 dh_link_get_file_name (DhLink *link)
@@ -289,11 +284,9 @@ dh_link_get_file_name (DhLink *link)
 
 /**
  * dh_link_get_book_id:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Get the book id the link is pointing to.
- *
- * Returns: the book id the link is pointing to
+ * Returns: the book ID.
  */
 const gchar *
 dh_link_get_book_id (DhLink *link)
@@ -311,11 +304,9 @@ dh_link_get_book_id (DhLink *link)
 
 /**
  * dh_link_get_uri:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Get the uri of the link.
- *
- * Returns: the uri of the link
+ * Returns: the @link URI.
  */
 gchar *
 dh_link_get_uri (DhLink *link)
@@ -351,11 +342,9 @@ dh_link_get_uri (DhLink *link)
 
 /**
  * dh_link_get_link_type:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Get the type of the link.
- *
- * Returns: the type of the link
+ * Returns: the #DhLinkType of @link.
  */
 DhLinkType
 dh_link_get_link_type (DhLink *link)
@@ -365,11 +354,9 @@ dh_link_get_link_type (DhLink *link)
 
 /**
  * dh_link_get_flags:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Get the flags of the link.
- *
- * Returns: the flags of the link
+ * Returns: the #DhLinkFlags of @link.
  */
 DhLinkFlags
 dh_link_get_flags (DhLink *link)
@@ -379,10 +366,10 @@ dh_link_get_flags (DhLink *link)
 
 /**
  * dh_link_set_flags:
- * @link: a #DhLink object
- * @flags: the new flags of the link
+ * @link: a #DhLink.
+ * @flags: the new flags of the link.
  *
- * Set the flags of the link.
+ * Sets the flags of the link.
  */
 void
 dh_link_set_flags (DhLink      *link,
@@ -393,11 +380,10 @@ dh_link_set_flags (DhLink      *link,
 
 /**
  * dh_link_get_type_as_string:
- * @link: a #DhLink object
+ * @link: a #DhLink.
  *
- * Get the link type name.
- *
- * Returns: the link type name translated in the current language
+ * Returns: a string representation of the #DhLinkType of @link, translated in
+ * the current language.
  */
 const gchar *
 dh_link_get_type_as_string (DhLink *link)
