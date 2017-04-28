@@ -104,7 +104,7 @@ dh_assistant_init (DhAssistant *assistant)
 
         gtk_widget_init_template (GTK_WIDGET (assistant));
 
-        priv->settings = dh_settings_get ();
+        priv->settings = dh_settings_get_instance ();
 
         g_signal_connect (priv->view, "open-uri",
                           G_CALLBACK (assistant_view_open_uri_cb),

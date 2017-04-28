@@ -248,7 +248,7 @@ dh_book_manager_init (DhBookManager *book_manager)
         priv->monitors = NULL;
         priv->languages = NULL;
         priv->books_disabled = NULL;
-        priv->settings = dh_settings_get ();
+        priv->settings = dh_settings_get_instance ();
 
         book_manager_load_books_disabled (book_manager);
         g_settings_bind (dh_settings_peek_contents_settings (priv->settings),

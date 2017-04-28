@@ -668,7 +668,7 @@ dh_window_init (DhWindow *window)
         }
 
         /* handle settings */
-        priv->settings = dh_settings_get ();
+        priv->settings = dh_settings_get_instance ();
         g_signal_connect_object (priv->settings,
                                  "fonts-changed",
                                  G_CALLBACK (settings_fonts_changed_cb),
