@@ -150,30 +150,35 @@ dh_settings_free_singleton (void)
 GSettings *
 dh_settings_peek_window_settings (DhSettings *self)
 {
+        g_return_val_if_fail (DH_IS_SETTINGS (self), NULL);
         return self->priv->settings_window;
 }
 
 GSettings *
 dh_settings_peek_paned_settings (DhSettings *self)
 {
+        g_return_val_if_fail (DH_IS_SETTINGS (self), NULL);
         return self->priv->settings_paned;
 }
 
 GSettings *
 dh_settings_peek_contents_settings (DhSettings *self)
 {
+        g_return_val_if_fail (DH_IS_SETTINGS (self), NULL);
         return self->priv->settings_contents;
 }
 
 GSettings *
 dh_settings_peek_assistant_settings (DhSettings *self)
 {
+        g_return_val_if_fail (DH_IS_SETTINGS (self), NULL);
         return self->priv->settings_assistant;
 }
 
 GSettings *
 dh_settings_peek_fonts_settings (DhSettings *self)
 {
+        g_return_val_if_fail (DH_IS_SETTINGS (self), NULL);
         return self->priv->settings_fonts;
 }
 
@@ -184,6 +189,7 @@ dh_settings_get_selected_fonts (DhSettings  *self,
 {
         gboolean use_system_font;
 
+        g_return_if_fail (DH_IS_SETTINGS (self));
         g_return_if_fail (font_name_fixed != NULL && *font_name_fixed == NULL);
         g_return_if_fail (font_name_variable != NULL && *font_name_variable == NULL);
 
