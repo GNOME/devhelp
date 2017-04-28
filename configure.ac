@@ -60,6 +60,7 @@ PKG_CHECK_MODULES(DEVHELP, [
   gio-2.0 >= 2.38
   gtk+-3.0 >= 3.20
   webkit2gtk-4.0 >= 2.6
+  gsettings-desktop-schemas
 ])
 
 AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)

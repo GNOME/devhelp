@@ -5,11 +5,11 @@ The Devhelp web page:
 
   https://wiki.gnome.org/Apps/Devhelp
 
-The following packages are required to compile Devhelp:
-
-glib >= 2.38
-gtk+ >= 3.20
-webkit2gtk-4.0 >= 2.6
+Dependencies:
+- glib >= 2.38
+- gtk+ >= 3.20
+- webkit2gtk-4.0 >= 2.6
+- gsettings-desktop-schemas
 
 Devhelp's primary goal is to be an API documentation browser for
 GNOME. When you build (or install) a GNOME library, it will build an
