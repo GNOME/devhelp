@@ -20,7 +20,6 @@
 #include "config.h"
 #include "dh-link.h"
 #include <string.h>
-#include <glib-object.h>
 #include <glib/gi18n-lib.h>
 
 struct _DhLink {
@@ -118,10 +117,10 @@ dh_link_new (DhLinkType   type,
         link->name = g_strdup (name);
         link->filename = g_strdup (filename);
 
-        if (book) {
+        if (book != NULL) {
                 link->book = dh_link_ref (book);
         }
-        if (page) {
+        if (page != NULL) {
                 link->page = dh_link_ref (page);
         }
 
@@ -157,9 +156,9 @@ dh_link_compare (gconstpointer a,
         }
 
         /* Collation-based sorting */
-        if (G_UNLIKELY (!la->name_collation_key))
+        if (G_UNLIKELY (la->name_collation_key == NULL))
                 la->name_collation_key = g_utf8_collate_key (la->name, -1);
-        if (G_UNLIKELY (!lb->name_collation_key))
+        if (G_UNLIKELY (lb->name_collation_key == NULL))
                 lb->name_collation_key = g_utf8_collate_key (lb->name, -1);
 
         diff = strcmp (la->name_collation_key,
@@ -240,7 +239,7 @@ dh_link_get_name (DhLink *link)
 const gchar *
 dh_link_get_book_name (DhLink *link)
 {
-        if (link->book) {
+        if (link->book != NULL) {
                 return link->book->name;
         }
 
@@ -256,7 +255,7 @@ dh_link_get_book_name (DhLink *link)
 const gchar *
 dh_link_get_page_name (DhLink *link)
 {
-        if (link->page) {
+        if (link->page != NULL) {
                 return link->page->name;
         }
 
@@ -272,9 +271,10 @@ dh_link_get_page_name (DhLink *link)
 const gchar *
 dh_link_get_file_name (DhLink *link)
 {
-        /* Return filename if the link is itself a page
-         * or if the link is within a page */
-        if (link->page ||
+        /* Return filename if the link is itself a page or if the link is within
+         * a page.
+         */
+        if (link->page != NULL ||
             link->type == DH_LINK_TYPE_PAGE) {
                 return link->filename;
         }
@@ -311,7 +311,10 @@ dh_link_get_book_id (DhLink *link)
 gchar *
 dh_link_get_uri (DhLink *link)
 {
-        gchar *base, *filename, *uri, *anchor;
+        const gchar *base;
+        gchar *filename;
+        gchar *uri;
+        gchar *anchor;
 
         if (link->type == DH_LINK_TYPE_BOOK)
                 base = link->base;
@@ -321,14 +324,14 @@ dh_link_get_uri (DhLink *link)
         filename = g_build_filename (base, link->filename, NULL);
 
         anchor = strrchr (filename, '#');
-        if (anchor) {
+        if (anchor != NULL) {
                 *anchor = '\0';
                 anchor++;
         }
 
         uri = g_filename_to_uri (filename, NULL, NULL);
 
-        if (anchor) {
+        if (anchor != NULL) {
                 gchar *uri_with_anchor;
 
                 uri_with_anchor = g_strconcat (uri, "#", anchor, NULL);
