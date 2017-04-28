@@ -122,10 +122,11 @@ dh_settings_init (DhSettings *self)
         self->priv->settings_paned = g_settings_new (SETTINGS_SCHEMA_ID_PANED);
         self->priv->settings_assistant = g_settings_new (SETTINGS_SCHEMA_ID_ASSISTANT);
 
-        g_signal_connect (self->priv->settings_fonts,
-                          "changed",
-                          G_CALLBACK (fonts_changed_cb),
-                          self);
+        g_signal_connect_object (self->priv->settings_fonts,
+                                 "changed",
+                                 G_CALLBACK (fonts_changed_cb),
+                                 self,
+                                 0);
 }
 
 DhSettings *
