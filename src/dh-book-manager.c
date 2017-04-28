@@ -47,8 +47,6 @@ typedef struct {
         /* List of DhLanguage* with at least one book enabled */
         GList      *languages;
 
-        DhSettings *settings;
-
         /* Whether books should be grouped by language */
         guint       group_by_language : 1;
 } DhBookManagerPrivate;
@@ -105,8 +103,6 @@ dh_book_manager_dispose (GObject *object)
                 g_hash_table_destroy (priv->monitors);
                 priv->monitors = NULL;
         }
-
-        g_clear_object (&priv->settings);
 
         G_OBJECT_CLASS (dh_book_manager_parent_class)->dispose (object);
 }
@@ -243,15 +239,17 @@ static void
 dh_book_manager_init (DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
+        DhSettings *settings;
 
         priv->books = NULL;
         priv->monitors = NULL;
         priv->languages = NULL;
         priv->books_disabled = NULL;
-        priv->settings = dh_settings_get_instance ();
 
         book_manager_load_books_disabled (book_manager);
-        g_settings_bind (dh_settings_peek_contents_settings (priv->settings),
+
+        settings = dh_settings_get_instance ();
+        g_settings_bind (dh_settings_peek_contents_settings (settings),
                          "group-books-by-language",
                          book_manager,
                          "group-by-language",
@@ -302,11 +300,13 @@ static void
 book_manager_load_books_disabled (DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
+        DhSettings *settings;
         gchar **books_disabled_strv;
         gchar **i;
 
+        settings = dh_settings_get_instance ();
         books_disabled_strv = g_settings_get_strv (
-                dh_settings_peek_contents_settings (priv->settings),
+                dh_settings_peek_contents_settings (settings),
                 "books-disabled");
 
         for (i = books_disabled_strv; *i != NULL; i++) {
@@ -323,6 +323,7 @@ static void
 book_manager_store_books_disabled (DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
+        DhSettings *settings;
         GVariantBuilder *builder;
         GVariant *variant;
         GSList *l;
@@ -337,10 +338,10 @@ book_manager_store_books_disabled (DhBookManager *book_manager)
         variant = g_variant_builder_end (builder);
         g_variant_builder_unref (builder);
 
-        g_settings_set_value (
-                dh_settings_peek_contents_settings (priv->settings),
-                "books-disabled",
-                variant);
+        settings = dh_settings_get_instance ();
+        g_settings_set_value (dh_settings_peek_contents_settings (settings),
+                              "books-disabled",
+                              variant);
 }
 
 static gboolean

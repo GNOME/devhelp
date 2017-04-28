@@ -132,13 +132,9 @@ dh_settings_init (DhSettings *self)
 DhSettings *
 dh_settings_get_instance (void)
 {
-        if (singleton == NULL) {
+        if (singleton == NULL)
                 singleton = g_object_new (DH_TYPE_SETTINGS, NULL);
-        } else {
-                g_object_ref (singleton);
-        }
 
-        g_return_val_if_fail (DH_IS_SETTINGS (singleton), NULL);
         return singleton;
 }
 

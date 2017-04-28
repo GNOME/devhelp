@@ -41,7 +41,6 @@ enum {
 
 typedef struct {
         DhBookManager *book_manager;
-        DhSettings    *settings;
 
         /* signals */
         gulong book_created_id;
@@ -73,8 +72,6 @@ dh_preferences_finalize (GObject *object)
         DhPreferencesPrivate *priv;
 
         priv = dh_preferences_get_instance_private (DH_PREFERENCES (object));
-
-        g_clear_object (&priv->settings);
 
         g_signal_handler_disconnect (priv->book_manager, priv->book_created_id);
         g_signal_handler_disconnect (priv->book_manager, priv->book_deleted_id);
@@ -617,6 +614,7 @@ dh_preferences_init (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv;
         GApplication *app;
+        DhSettings *settings;
         GSettings *settings_fonts;
         GSettings *settings_contents;
 
@@ -626,7 +624,6 @@ dh_preferences_init (DhPreferences *prefs)
 
         app = g_application_get_default ();
 
-        priv->settings = dh_settings_get_instance ();
         priv->book_manager = g_object_ref (dh_app_peek_book_manager (DH_APP (app)));
         priv->book_created_id = g_signal_connect (priv->book_manager,
                                                   "book-created",
@@ -642,25 +639,25 @@ dh_preferences_init (DhPreferences *prefs)
                                                        prefs);
 
         /* setup GSettings bindings */
-        settings_fonts = dh_settings_peek_fonts_settings (priv->settings);
-        settings_contents = dh_settings_peek_contents_settings (priv->settings);
+        settings = dh_settings_get_instance ();
+        settings_fonts = dh_settings_peek_fonts_settings (settings);
+        settings_contents = dh_settings_peek_contents_settings (settings);
         g_settings_bind (settings_fonts, "use-system-fonts",
-                         priv->system_fonts_button,
-                         "active", G_SETTINGS_BIND_DEFAULT);
+                         priv->system_fonts_button, "active",
+                         G_SETTINGS_BIND_DEFAULT);
         g_settings_bind (settings_fonts, "use-system-fonts",
-                         priv->fonts_grid,
-                         "sensitive", G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_INVERT_BOOLEAN);
+                         priv->fonts_grid, "sensitive",
+                         G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_INVERT_BOOLEAN);
         g_settings_bind (settings_fonts, "fixed-font",
-                         priv->fixed_font_button,
-                         "font-name", G_SETTINGS_BIND_DEFAULT);
+                         priv->fixed_font_button, "font-name",
+                         G_SETTINGS_BIND_DEFAULT);
         g_settings_bind (settings_fonts, "variable-font",
-                         priv->variable_font_button,
-                         "font-name", G_SETTINGS_BIND_DEFAULT);
+                         priv->variable_font_button, "font-name",
+                         G_SETTINGS_BIND_DEFAULT);
 
-        g_settings_bind (settings_contents,
-                         "group-books-by-language",
-                         priv->bookshelf_group_by_language_button,
-                         "active", G_SETTINGS_BIND_DEFAULT);
+        g_settings_bind (settings_contents, "group-books-by-language",
+                         priv->bookshelf_group_by_language_button, "active",
+                         G_SETTINGS_BIND_DEFAULT);
 
         g_signal_connect (priv->bookshelf_enabled_toggle,
                           "toggled",
