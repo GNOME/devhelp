@@ -31,23 +31,22 @@ typedef struct {
         DhLink        *link;
         gchar         *current_search;
         guint          snippet_loaded : 1;
-} DhAssistantViewPriv;
+} DhAssistantViewPrivate;
 
 enum {
         SIGNAL_OPEN_URI,
         SIGNAL_LAST
 };
+
 static guint signals[SIGNAL_LAST] = { 0 };
 
-G_DEFINE_TYPE (DhAssistantView, dh_assistant_view, WEBKIT_TYPE_WEB_VIEW);
-
-#define GET_PRIVATE(instance) G_TYPE_INSTANCE_GET_PRIVATE \
-  (instance, DH_TYPE_ASSISTANT_VIEW, DhAssistantViewPriv)
+G_DEFINE_TYPE_WITH_PRIVATE (DhAssistantView, dh_assistant_view, WEBKIT_TYPE_WEB_VIEW);
 
 static void
 view_finalize (GObject *object)
 {
-        DhAssistantViewPriv *priv = GET_PRIVATE (object);
+        DhAssistantView *view = DH_ASSISTANT_VIEW (object);
+        DhAssistantViewPrivate *priv = dh_assistant_view_get_instance_private (view);
 
         if (priv->link) {
                 g_object_unref (priv->link);
@@ -67,7 +66,7 @@ assistant_decide_policy (WebKitWebView           *web_view,
                          WebKitPolicyDecision    *decision,
                          WebKitPolicyDecisionType decision_type)
 {
-        DhAssistantViewPriv            *priv;
+        DhAssistantViewPrivate         *priv;
         const gchar                    *uri;
         WebKitNavigationPolicyDecision *navigation_decision;
         WebKitNavigationAction         *navigation_action;
@@ -80,7 +79,8 @@ assistant_decide_policy (WebKitWebView           *web_view,
                 return TRUE;
         }
 
-        priv = GET_PRIVATE (web_view);
+        priv = dh_assistant_view_get_instance_private (DH_ASSISTANT_VIEW (web_view));
+
         navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (decision);
         navigation_action = webkit_navigation_policy_decision_get_navigation_action (navigation_decision);
         navigation_type = webkit_navigation_action_get_navigation_type (navigation_action);
@@ -132,8 +132,6 @@ dh_assistant_view_class_init (DhAssistantViewClass* klass)
 
         widget_class->button_press_event = assistant_button_press_event;
         web_view_class->decide_policy = assistant_decide_policy;
-
-        g_type_class_add_private (klass, sizeof (DhAssistantViewPriv));
 
         /**
          * DhAssistantView::open-uri:
@@ -204,7 +202,7 @@ gboolean
 dh_assistant_view_set_link (DhAssistantView *view,
                             DhLink          *link)
 {
-        DhAssistantViewPriv *priv;
+        DhAssistantViewPrivate *priv;
         gchar               *uri;
         const gchar         *anchor;
         gchar               *filename;
@@ -219,7 +217,7 @@ dh_assistant_view_set_link (DhAssistantView *view,
 
         g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), FALSE);
 
-        priv = GET_PRIVATE (view);
+        priv = dh_assistant_view_get_instance_private (view);
 
         if (priv->link == link) {
                 return TRUE;
@@ -431,7 +429,7 @@ gboolean
 dh_assistant_view_search (DhAssistantView *view,
                           const gchar     *str)
 {
-        DhAssistantViewPriv *priv;
+        DhAssistantViewPrivate *priv;
         const gchar         *name;
         DhLink              *link;
         DhLink              *exact_link;
@@ -441,7 +439,7 @@ dh_assistant_view_search (DhAssistantView *view,
         g_return_val_if_fail (DH_IS_ASSISTANT_VIEW (view), FALSE);
         g_return_val_if_fail (str, FALSE);
 
-        priv = GET_PRIVATE (view);
+        priv = dh_assistant_view_get_instance_private (view);
 
         /* Filter out very short strings. */
         if (strlen (str) < 4) {
@@ -520,12 +518,12 @@ void
 dh_assistant_view_set_book_manager (DhAssistantView *view,
                                     DhBookManager   *book_manager)
 {
-        DhAssistantViewPriv *priv;
+        DhAssistantViewPrivate *priv;
 
         g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
         g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
 
-        priv = GET_PRIVATE (view);
+        priv = dh_assistant_view_get_instance_private (view);
 
         priv->book_manager = g_object_ref (book_manager);
 }
