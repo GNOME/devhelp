@@ -49,29 +49,6 @@ static DhSettings *singleton = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhSettings, dh_settings, G_TYPE_OBJECT);
 
-/* Prototypes */
-static void fonts_changed_cb (GSettings *settings,
-                              gchar     *key,
-                              gpointer   user_data);
-
-static void
-dh_settings_init (DhSettings *self)
-{
-        self->priv = dh_settings_get_instance_private (self);
-
-        self->priv->settings_desktop_interface = g_settings_new (SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE);
-        self->priv->settings_fonts = g_settings_new (SETTINGS_SCHEMA_ID_FONTS);
-        self->priv->settings_window = g_settings_new (SETTINGS_SCHEMA_ID_WINDOW);
-        self->priv->settings_contents = g_settings_new (SETTINGS_SCHEMA_ID_CONTENTS);
-        self->priv->settings_paned = g_settings_new (SETTINGS_SCHEMA_ID_PANED);
-        self->priv->settings_assistant = g_settings_new (SETTINGS_SCHEMA_ID_ASSISTANT);
-
-        g_signal_connect (self->priv->settings_fonts,
-                          "changed",
-                          G_CALLBACK (fonts_changed_cb),
-                          self);
-}
-
 static void
 dh_settings_dispose (GObject *object)
 {
@@ -131,6 +108,24 @@ fonts_changed_cb (GSettings *settings,
 
         g_free (fixed_font);
         g_free (variable_font);
+}
+
+static void
+dh_settings_init (DhSettings *self)
+{
+        self->priv = dh_settings_get_instance_private (self);
+
+        self->priv->settings_desktop_interface = g_settings_new (SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE);
+        self->priv->settings_fonts = g_settings_new (SETTINGS_SCHEMA_ID_FONTS);
+        self->priv->settings_window = g_settings_new (SETTINGS_SCHEMA_ID_WINDOW);
+        self->priv->settings_contents = g_settings_new (SETTINGS_SCHEMA_ID_CONTENTS);
+        self->priv->settings_paned = g_settings_new (SETTINGS_SCHEMA_ID_PANED);
+        self->priv->settings_assistant = g_settings_new (SETTINGS_SCHEMA_ID_ASSISTANT);
+
+        g_signal_connect (self->priv->settings_fonts,
+                          "changed",
+                          G_CALLBACK (fonts_changed_cb),
+                          self);
 }
 
 DhSettings *
