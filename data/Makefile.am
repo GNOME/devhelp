@@ -54,3 +54,5 @@ CLEANFILES =			\
 	$(desktop_DATA) 	\
 	$(dbusservice_DATA)	\
 	$(appstream_XML)
+
+-include $(top_srcdir)/git.mk

@@ -41,3 +41,5 @@ EXTRA_DIST = \
 	$(icon256_DATA)  	\
 	$(iconscalable_DATA)  	\
 	devhelp.svg
+
+-include $(top_srcdir)/git.mk

@@ -10,3 +10,5 @@ plugin_DATA = $(PLUGIN_FILE)
 
 CLEANFILES = $(PLUGIN_FILE)
 EXTRA_DIST = $(DESKTOP_IN_FILES)
+
+-include $(top_srcdir)/git.mk

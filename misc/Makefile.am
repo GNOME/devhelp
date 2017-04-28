@@ -6,3 +6,5 @@ EXTRA_DIST =		\
 	html2funcs.py	\
 	html2xml.py	\
 	man2xml.py
+
+-include $(top_srcdir)/git.mk
