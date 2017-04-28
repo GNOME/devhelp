@@ -139,6 +139,13 @@ dh_settings_get_instance (void)
 }
 
 void
+dh_settings_free_singleton (void)
+{
+        if (singleton != NULL)
+                g_object_unref (singleton);
+}
+
+void
 dh_settings_get_selected_fonts (DhSettings  *self,
                                 gchar      **font_name_fixed,
                                 gchar      **font_name_variable)

@@ -24,6 +24,7 @@
 #include <gtk/gtk.h>
 
 #include "dh-app.h"
+#include "dh-settings.h"
 
 int
 main (int argc, char **argv)
@@ -43,6 +44,8 @@ main (int argc, char **argv)
         status = g_application_run (G_APPLICATION (application), argc, argv);
 
         g_object_unref (application);
+
+        dh_settings_free_singleton ();
 
         return status;
 }

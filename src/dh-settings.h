@@ -53,6 +53,8 @@ GType           dh_settings_get_type                    (void) G_GNUC_CONST;
 
 DhSettings *    dh_settings_get_instance                (void);
 
+void            dh_settings_free_singleton              (void);
+
 void            dh_settings_get_selected_fonts          (DhSettings  *self,
                                                          gchar      **font_name_fixed,
                                                          gchar      **font_name_variable);
