@@ -70,8 +70,6 @@ GSettings * dh_settings_peek_contents_settings (DhSettings *self);
 
 GSettings * dh_settings_peek_paned_settings (DhSettings *self);
 
-GSettings * dh_settings_peek_search_notebook_settings (DhSettings *self);
-
 GSettings * dh_settings_peek_assistant_settings (DhSettings *self);
 
 

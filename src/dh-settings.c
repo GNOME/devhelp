@@ -29,7 +29,6 @@ G_DEFINE_TYPE (DhSettings, dh_settings, G_TYPE_OBJECT);
 #define SETTINGS_SCHEMA_ID_WINDOW "org.gnome.devhelp.state.main.window"
 #define SETTINGS_SCHEMA_ID_CONTENTS "org.gnome.devhelp.state.main.contents"
 #define SETTINGS_SCHEMA_ID_PANED "org.gnome.devhelp.state.main.paned"
-#define SETTINGS_SCHEMA_ID_SEARCH_NOTEBOOK "org.gnome.devhelp.state.main.search-notebook"
 #define SETTINGS_SCHEMA_ID_ASSISTANT "org.gnome.devhelp.state.assistant.window"
 
 /* singleton object - all consumers of DhSettings get the same object (refcounted) */
@@ -45,7 +44,6 @@ struct _DhSettingsPrivate {
         GSettings *settings_window;
         GSettings *settings_contents;
         GSettings *settings_paned;
-        GSettings *settings_search_notebook;
         GSettings *settings_assistant;
 };
 
@@ -67,7 +65,6 @@ dh_settings_init (DhSettings *self)
         self->priv->settings_window = g_settings_new (SETTINGS_SCHEMA_ID_WINDOW);
         self->priv->settings_contents = g_settings_new (SETTINGS_SCHEMA_ID_CONTENTS);
         self->priv->settings_paned = g_settings_new (SETTINGS_SCHEMA_ID_PANED);
-        self->priv->settings_search_notebook = g_settings_new (SETTINGS_SCHEMA_ID_SEARCH_NOTEBOOK);
         self->priv->settings_assistant = g_settings_new (SETTINGS_SCHEMA_ID_ASSISTANT);
 
         /* setup GSettings notifications */
@@ -86,7 +83,6 @@ dispose (GObject *object)
         g_clear_object (&self->priv->settings_window);
         g_clear_object (&self->priv->settings_contents);
         g_clear_object (&self->priv->settings_paned);
-        g_clear_object (&self->priv->settings_search_notebook);
         g_clear_object (&self->priv->settings_assistant);
 
         G_OBJECT_CLASS (dh_settings_parent_class)->dispose (object);
@@ -200,12 +196,6 @@ GSettings *
 dh_settings_peek_paned_settings (DhSettings *self)
 {
         return self->priv->settings_paned;
-}
-
-GSettings *
-dh_settings_peek_search_notebook_settings (DhSettings *self)
-{
-        return self->priv->settings_search_notebook;
 }
 
 GSettings *

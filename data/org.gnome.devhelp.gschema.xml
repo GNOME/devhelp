@@ -10,7 +10,6 @@
   <schema id="org.gnome.devhelp.state.main" path="/org/gnome/devhelp/state/main/">
     <child name="window" schema="org.gnome.devhelp.state.main.window"/>
     <child name="paned" schema="org.gnome.devhelp.state.main.paned"/>
-    <child name="search-notebook" schema="org.gnome.devhelp.state.main.search-notebook"/>
     <child name="contents" schema="org.gnome.devhelp.state.main.contents"/>
   </schema>
   <schema id="org.gnome.devhelp.state.main.window" path="/org/gnome/devhelp/state/main/window/">
@@ -45,13 +44,6 @@
       <default>250</default>
       <summary>Width of the index and search pane</summary>
       <description>The width of the index and search pane.</description>
-    </key>
-  </schema>
-  <schema id="org.gnome.devhelp.state.main.search-notebook" path="/org/gnome/devhelp/state/main/search-notebook/">
-    <key name="selected-tab" type="s">
-      <default>'content'</default>
-      <summary>Selected tab: "content" or "search"</summary>
-      <description>Which of the tabs is selected: "content" or "search".</description>
     </key>
   </schema>
   <schema id="org.gnome.devhelp.state.main.contents" path="/org/gnome/devhelp/state/main/contents/">

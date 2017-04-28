@@ -15,9 +15,6 @@ y-position=/apps/devhelp/state/assistant/window/y_position
 [org.gnome.devhelp.state.main.paned]
 position=/apps/devhelp/state/main/paned/position
 
-[org.gnome.devhelp.state.search_notebook]
-selected-tab=/apps/devhelp/state/main/search_notebook/selected_tab
-
 [org.gnome.devhelp.state.main.contents]
 books-disabled=/apps/devhelp/state/main/contents/books_disabled
 group-books-by-language=/apps/devhelp/state/main/contents/group_books_by_language
