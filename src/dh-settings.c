@@ -20,21 +20,23 @@
 #include "config.h"
 #include "dh-settings.h"
 
-/* schema-ids for settings we need */
-#define SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE "org.gnome.desktop.interface"
-#define SETTINGS_SCHEMA_ID_FONTS "org.gnome.devhelp.fonts"
-#define SETTINGS_SCHEMA_ID_WINDOW "org.gnome.devhelp.state.main.window"
-#define SETTINGS_SCHEMA_ID_CONTENTS "org.gnome.devhelp.state.main.contents"
-#define SETTINGS_SCHEMA_ID_PANED "org.gnome.devhelp.state.main.paned"
-#define SETTINGS_SCHEMA_ID_ASSISTANT "org.gnome.devhelp.state.assistant.window"
+/* Devhelp GSettings schema IDs */
+#define SETTINGS_SCHEMA_ID_WINDOW               "org.gnome.devhelp.state.main.window"
+#define SETTINGS_SCHEMA_ID_PANED                "org.gnome.devhelp.state.main.paned"
+#define SETTINGS_SCHEMA_ID_CONTENTS             "org.gnome.devhelp.state.main.contents"
+#define SETTINGS_SCHEMA_ID_ASSISTANT            "org.gnome.devhelp.state.assistant.window"
+#define SETTINGS_SCHEMA_ID_FONTS                "org.gnome.devhelp.fonts"
+
+/* Provided by the gsettings-desktop-schemas module. */
+#define SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE    "org.gnome.desktop.interface"
 
 struct _DhSettingsPrivate {
-        GSettings *settings_desktop_interface;
-        GSettings *settings_fonts;
         GSettings *settings_window;
-        GSettings *settings_contents;
         GSettings *settings_paned;
+        GSettings *settings_contents;
         GSettings *settings_assistant;
+        GSettings *settings_fonts;
+        GSettings *settings_desktop_interface;
 };
 
 enum {
@@ -54,12 +56,12 @@ dh_settings_dispose (GObject *object)
 {
         DhSettings *self = DH_SETTINGS (object);
 
-        g_clear_object (&self->priv->settings_desktop_interface);
-        g_clear_object (&self->priv->settings_fonts);
         g_clear_object (&self->priv->settings_window);
-        g_clear_object (&self->priv->settings_contents);
         g_clear_object (&self->priv->settings_paned);
+        g_clear_object (&self->priv->settings_contents);
         g_clear_object (&self->priv->settings_assistant);
+        g_clear_object (&self->priv->settings_fonts);
+        g_clear_object (&self->priv->settings_desktop_interface);
 
         G_OBJECT_CLASS (dh_settings_parent_class)->dispose (object);
 }
@@ -115,12 +117,12 @@ dh_settings_init (DhSettings *self)
 {
         self->priv = dh_settings_get_instance_private (self);
 
-        self->priv->settings_desktop_interface = g_settings_new (SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE);
-        self->priv->settings_fonts = g_settings_new (SETTINGS_SCHEMA_ID_FONTS);
         self->priv->settings_window = g_settings_new (SETTINGS_SCHEMA_ID_WINDOW);
-        self->priv->settings_contents = g_settings_new (SETTINGS_SCHEMA_ID_CONTENTS);
         self->priv->settings_paned = g_settings_new (SETTINGS_SCHEMA_ID_PANED);
+        self->priv->settings_contents = g_settings_new (SETTINGS_SCHEMA_ID_CONTENTS);
         self->priv->settings_assistant = g_settings_new (SETTINGS_SCHEMA_ID_ASSISTANT);
+        self->priv->settings_fonts = g_settings_new (SETTINGS_SCHEMA_ID_FONTS);
+        self->priv->settings_desktop_interface = g_settings_new (SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE);
 
         g_signal_connect_object (self->priv->settings_fonts,
                                  "changed",
@@ -143,6 +145,36 @@ dh_settings_free_singleton (void)
 {
         if (singleton != NULL)
                 g_object_unref (singleton);
+}
+
+GSettings *
+dh_settings_peek_window_settings (DhSettings *self)
+{
+        return self->priv->settings_window;
+}
+
+GSettings *
+dh_settings_peek_paned_settings (DhSettings *self)
+{
+        return self->priv->settings_paned;
+}
+
+GSettings *
+dh_settings_peek_contents_settings (DhSettings *self)
+{
+        return self->priv->settings_contents;
+}
+
+GSettings *
+dh_settings_peek_assistant_settings (DhSettings *self)
+{
+        return self->priv->settings_assistant;
+}
+
+GSettings *
+dh_settings_peek_fonts_settings (DhSettings *self)
+{
+        return self->priv->settings_fonts;
 }
 
 void
@@ -168,34 +200,4 @@ dh_settings_get_selected_fonts (DhSettings  *self,
                 *font_name_variable = g_settings_get_string (self->priv->settings_fonts,
                                                              "variable-font");
         }
-}
-
-GSettings *
-dh_settings_peek_fonts_settings (DhSettings *self)
-{
-        return self->priv->settings_fonts;
-}
-
-GSettings *
-dh_settings_peek_window_settings (DhSettings *self)
-{
-        return self->priv->settings_window;
-}
-
-GSettings *
-dh_settings_peek_contents_settings (DhSettings *self)
-{
-        return self->priv->settings_contents;
-}
-
-GSettings *
-dh_settings_peek_paned_settings (DhSettings *self)
-{
-        return self->priv->settings_paned;
-}
-
-GSettings *
-dh_settings_peek_assistant_settings (DhSettings *self)
-{
-        return self->priv->settings_assistant;
 }

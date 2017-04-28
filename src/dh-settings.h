@@ -55,19 +55,19 @@ DhSettings *    dh_settings_get_singleton               (void);
 
 void            dh_settings_free_singleton              (void);
 
-void            dh_settings_get_selected_fonts          (DhSettings  *self,
-                                                         gchar      **font_name_fixed,
-                                                         gchar      **font_name_variable);
-
-GSettings *     dh_settings_peek_fonts_settings         (DhSettings *self);
-
 GSettings *     dh_settings_peek_window_settings        (DhSettings *self);
-
-GSettings *     dh_settings_peek_contents_settings      (DhSettings *self);
 
 GSettings *     dh_settings_peek_paned_settings         (DhSettings *self);
 
+GSettings *     dh_settings_peek_contents_settings      (DhSettings *self);
+
 GSettings *     dh_settings_peek_assistant_settings     (DhSettings *self);
+
+GSettings *     dh_settings_peek_fonts_settings         (DhSettings *self);
+
+void            dh_settings_get_selected_fonts          (DhSettings  *self,
+                                                         gchar      **font_name_fixed,
+                                                         gchar      **font_name_variable);
 
 G_END_DECLS
 
