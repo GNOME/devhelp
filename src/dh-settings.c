@@ -94,7 +94,7 @@ dh_settings_class_init (DhSettingsClass *klass)
 }
 
 static void
-fonts_changed_cb (GSettings *settings,
+fonts_changed_cb (GSettings *settings_fonts,
                   gchar     *key,
                   gpointer   user_data)
 {
