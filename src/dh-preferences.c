@@ -639,7 +639,7 @@ dh_preferences_init (DhPreferences *prefs)
                                                        prefs);
 
         /* setup GSettings bindings */
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
         settings_fonts = dh_settings_peek_fonts_settings (settings);
         settings_contents = dh_settings_peek_contents_settings (settings);
         g_settings_bind (settings_fonts, "use-system-fonts",

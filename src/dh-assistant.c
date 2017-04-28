@@ -61,7 +61,7 @@ dh_assistant_configure_event (GtkWidget         *widget,
 {
         DhSettings *settings;
 
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
 
         dh_util_window_settings_save (GTK_WINDOW (widget),
                                       dh_settings_peek_assistant_settings (settings),
@@ -96,7 +96,7 @@ dh_assistant_init (DhAssistant *assistant)
                           G_CALLBACK (assistant_view_open_uri_cb),
                           assistant);
 
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
 
         dh_util_window_settings_restore (GTK_WINDOW (assistant),
                                          dh_settings_peek_assistant_settings (settings),

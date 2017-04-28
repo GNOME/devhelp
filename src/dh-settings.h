@@ -51,7 +51,7 @@ struct _DhSettingsClass {
 
 GType           dh_settings_get_type                    (void) G_GNUC_CONST;
 
-DhSettings *    dh_settings_get_instance                (void);
+DhSettings *    dh_settings_get_singleton               (void);
 
 void            dh_settings_free_singleton              (void);
 

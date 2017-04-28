@@ -248,7 +248,7 @@ dh_book_manager_init (DhBookManager *book_manager)
 
         book_manager_load_books_disabled (book_manager);
 
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
         g_settings_bind (dh_settings_peek_contents_settings (settings),
                          "group-books-by-language",
                          book_manager,
@@ -304,7 +304,7 @@ book_manager_load_books_disabled (DhBookManager *book_manager)
         gchar **books_disabled_strv;
         gchar **i;
 
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
         books_disabled_strv = g_settings_get_strv (
                 dh_settings_peek_contents_settings (settings),
                 "books-disabled");
@@ -338,7 +338,7 @@ book_manager_store_books_disabled (DhBookManager *book_manager)
         variant = g_variant_builder_end (builder);
         g_variant_builder_unref (builder);
 
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
         g_settings_set_value (dh_settings_peek_contents_settings (settings),
                               "books-disabled",
                               variant);

@@ -567,7 +567,7 @@ update_fonts_on_dpi_change (DhWindow *window)
 
         priv = dh_window_get_instance_private (window);
 
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
         dh_settings_get_selected_fonts (settings, &font_fixed, &font_variable);
 
         if (font_fixed != NULL && font_variable != NULL) {
@@ -641,7 +641,7 @@ dh_window_configure_event (GtkWidget         *window,
 {
         DhSettings *settings;
 
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
         dh_util_window_settings_save (GTK_WINDOW (window),
                                       dh_settings_peek_window_settings (settings),
                                       TRUE);
@@ -671,7 +671,7 @@ dh_window_init (DhWindow *window)
         }
 
         /* handle settings */
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
         g_signal_connect_object (settings,
                                  "fonts-changed",
                                  G_CALLBACK (settings_fonts_changed_cb),
@@ -1333,7 +1333,7 @@ window_open_new_tab (DhWindow    *window,
         gtk_widget_show (view);
 
         /* get the current fonts and set them on the new view */
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
         dh_settings_get_selected_fonts (settings, &font_fixed, &font_variable);
         dh_util_view_set_font (WEBKIT_WEB_VIEW (view), font_fixed, font_variable);
         g_free (font_fixed);
@@ -1583,7 +1583,7 @@ dh_window_new (DhApp *application)
 
         window_populate (window);
 
-        settings = dh_settings_get_instance ();
+        settings = dh_settings_get_singleton ();
         dh_util_window_settings_restore (GTK_WINDOW (window),
                                          dh_settings_peek_window_settings (settings),
                                          TRUE);
