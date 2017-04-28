@@ -22,6 +22,8 @@
 
 #include <glib-object.h>
 
+G_BEGIN_DECLS
+
 /**
  * DhLinkType:
  * @DH_LINK_TYPE_BOOK: a book
@@ -72,11 +74,10 @@ DhLink *     dh_link_new                (DhLinkType     type,
                                          DhLink        *book,
                                          DhLink        *page,
                                          const gchar   *filename);
-void         dh_link_free               (DhLink        *link);
-gint         dh_link_compare            (gconstpointer  a,
-                                         gconstpointer  b);
 DhLink *     dh_link_ref                (DhLink        *link);
 void         dh_link_unref              (DhLink        *link);
+gint         dh_link_compare            (gconstpointer  a,
+                                         gconstpointer  b);
 const gchar *dh_link_get_name           (DhLink        *link);
 const gchar *dh_link_get_book_name      (DhLink        *link);
 const gchar *dh_link_get_page_name      (DhLink        *link);
@@ -88,5 +89,7 @@ void         dh_link_set_flags          (DhLink        *link,
                                          DhLinkFlags    flags);
 DhLinkType   dh_link_get_link_type      (DhLink        *link);
 const gchar *dh_link_get_type_as_string (DhLink        *link);
+
+G_END_DECLS
 
 #endif /* DH_LINK_H */
