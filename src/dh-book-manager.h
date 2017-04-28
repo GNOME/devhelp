@@ -16,8 +16,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_BOOK_MANAGER_H__
-#define __DH_BOOK_MANAGER_H__
+#ifndef DH_BOOK_MANAGER_H
+#define DH_BOOK_MANAGER_H
 
 #include <glib-object.h>
 
@@ -55,4 +55,4 @@ void           dh_book_manager_set_group_by_language (DhBookManager *book_manage
 
 G_END_DECLS
 
-#endif /* __DH_BOOK_MANAGER_H__ */
+#endif /* DH_BOOK_MANAGER_H */

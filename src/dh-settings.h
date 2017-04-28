@@ -17,8 +17,8 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_SETTINGS_H__
-#define __DH_SETTINGS_H__
+#ifndef DH_SETTINGS_H
+#define DH_SETTINGS_H
 
 #include <gio/gio.h>
 
@@ -71,4 +71,4 @@ void            dh_settings_get_selected_fonts          (DhSettings  *self,
 
 G_END_DECLS
 
-#endif /* __DH_SETTINGS_H__ */
+#endif /* DH_SETTINGS_H */

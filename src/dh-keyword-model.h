@@ -17,8 +17,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_KEYWORD_MODEL_H__
-#define __DH_KEYWORD_MODEL_H__
+#ifndef DH_KEYWORD_MODEL_H
+#define DH_KEYWORD_MODEL_H
 
 #include <glib-object.h>
 #include "dh-link.h"
@@ -64,4 +64,4 @@ DhLink *        dh_keyword_model_filter    (DhKeywordModel *model,
 
 G_END_DECLS
 
-#endif /* __DH_KEYWORD_MODEL_H__ */
+#endif /* DH_KEYWORD_MODEL_H */

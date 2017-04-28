@@ -18,8 +18,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_SIDEBAR_H__
-#define __DH_SIDEBAR_H__
+#ifndef DH_SIDEBAR_H
+#define DH_SIDEBAR_H
 
 #include <gtk/gtk.h>
 #include "dh-link.h"
@@ -65,4 +65,4 @@ void       dh_sidebar_set_search_focus  (DhSidebar   *sidebar);
 
 G_END_DECLS
 
-#endif /* __DH_SIDEBAR_H__ */
+#endif /* DH_SIDEBAR_H */

@@ -16,8 +16,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_BOOK_TREE_H__
-#define __DH_BOOK_TREE_H__
+#ifndef DH_BOOK_TREE_H
+#define DH_BOOK_TREE_H
 
 #include <gtk/gtk.h>
 #include "dh-link.h"
@@ -50,4 +50,4 @@ DhLink      *dh_book_tree_get_selected_book (DhBookTree    *tree);
 
 G_END_DECLS
 
-#endif /* __DH_BOOK_TREE_H__ */
+#endif /* DH_BOOK_TREE_H */

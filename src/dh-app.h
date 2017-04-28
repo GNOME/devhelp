@@ -16,8 +16,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_APP_H__
-#define __DH_APP_H__
+#ifndef DH_APP_H
+#define DH_APP_H
 
 #include <gtk/gtk.h>
 
@@ -63,4 +63,4 @@ gboolean      _dh_app_has_app_menu      (DhApp *app);
 
 G_END_DECLS
 
-#endif /* __DH_APP_H__ */
+#endif /* DH_APP_H */

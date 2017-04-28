@@ -16,8 +16,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_ASSISTANT_H__
-#define __DH_ASSISTANT_H__
+#ifndef DH_ASSISTANT_H
+#define DH_ASSISTANT_H
 
 #include <gtk/gtk.h>
 #include "dh-app.h"
@@ -49,4 +49,4 @@ gboolean   dh_assistant_search    (DhAssistant *assistant,
 
 G_END_DECLS
 
-#endif /* __DH_ASSISTANT_H__ */
+#endif /* DH_ASSISTANT_H */

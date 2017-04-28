@@ -17,8 +17,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_PARSER_H__
-#define __DH_PARSER_H__
+#ifndef DH_PARSER_H
+#define DH_PARSER_H
 
 #include <glib.h>
 
@@ -34,4 +34,4 @@ gboolean dh_parser_read_file (const gchar  *path,
 
 G_END_DECLS
 
-#endif /* __DH_PARSER_H__ */
+#endif /* DH_PARSER_H */

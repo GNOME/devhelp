@@ -17,8 +17,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_ERROR_H__
-#define __DH_ERROR_H__
+#ifndef DH_ERROR_H
+#define DH_ERROR_H
 
 #include <glib.h>
 
@@ -51,4 +51,4 @@ GQuark dh_error_quark (void) G_GNUC_CONST;
 
 G_END_DECLS
 
-#endif /* __DH_ERROR_H__ */
+#endif /* DH_ERROR_H */

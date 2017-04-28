@@ -17,8 +17,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_UTIL_H__
-#define __DH_UTIL_H__
+#ifndef DH_UTIL_H
+#define DH_UTIL_H
 
 #include <gtk/gtk.h>
 #include <webkit2/webkit2.h>
@@ -51,4 +51,4 @@ void         dh_util_queue_concat                 (GQueue *q1,
 
 G_END_DECLS
 
-#endif /* __DH_UTIL_H__ */
+#endif /* DH_UTIL_H */

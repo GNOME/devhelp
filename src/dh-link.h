@@ -17,8 +17,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_LINK_H__
-#define __DH_LINK_H__
+#ifndef DH_LINK_H
+#define DH_LINK_H
 
 #include <glib-object.h>
 
@@ -89,4 +89,4 @@ void         dh_link_set_flags          (DhLink        *link,
 DhLinkType   dh_link_get_link_type      (DhLink        *link);
 const gchar *dh_link_get_type_as_string (DhLink        *link);
 
-#endif /* __DH_LINK_H__ */
+#endif /* DH_LINK_H */

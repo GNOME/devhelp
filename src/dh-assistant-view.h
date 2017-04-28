@@ -18,8 +18,8 @@
  * USA
  */
 
-#ifndef __DH_ASSISTANT_VIEW_H__
-#define __DH_ASSISTANT_VIEW_H__
+#ifndef DH_ASSISTANT_VIEW_H
+#define DH_ASSISTANT_VIEW_H
 
 #include <webkit2/webkit2.h>
 #include "dh-book-manager.h"
@@ -55,4 +55,4 @@ gboolean   dh_assistant_view_set_link (DhAssistantView *view,
                                        DhLink          *link);
 G_END_DECLS
 
-#endif /* __DH_ASSISTANT_VIEW_H__ */
+#endif /* DH_ASSISTANT_VIEW_H */

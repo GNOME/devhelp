@@ -18,8 +18,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_WINDOW_H__
-#define __DH_WINDOW_H__
+#ifndef DH_WINDOW_H
+#define DH_WINDOW_H
 
 #include <gtk/gtk.h>
 #include "dh-app.h"
@@ -74,4 +74,4 @@ void       _dh_window_display_uri (DhWindow    *window,
 
 G_END_DECLS
 
-#endif /* __DH_WINDOW_H__ */
+#endif /* DH_WINDOW_H */

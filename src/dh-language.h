@@ -16,8 +16,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DH_LANGUAGE_H__
-#define __DH_LANGUAGE_H__
+#ifndef DH_LANGUAGE_H
+#define DH_LANGUAGE_H
 
 #include <glib-object.h>
 
@@ -56,4 +56,4 @@ gboolean     dh_language_dec_n_books_enabled (DhLanguage *language);
 
 G_END_DECLS
 
-#endif /* __DH_LANGUAGE_H__ */
+#endif /* DH_LANGUAGE_H */

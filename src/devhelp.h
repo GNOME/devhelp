@@ -16,8 +16,8 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DEVHELP_H__
-#define __DEVHELP_H__
+#ifndef DEVHELP_H
+#define DEVHELP_H
 
 #include <glib.h>
 
@@ -40,4 +40,4 @@ void dh_init (void);
 
 G_END_DECLS
 
-#endif /* __DEVHELP_H__ */
+#endif /* DEVHELP_H */
