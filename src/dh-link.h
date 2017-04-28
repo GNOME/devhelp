@@ -80,7 +80,6 @@ gint         dh_link_compare            (gconstpointer  a,
                                          gconstpointer  b);
 const gchar *dh_link_get_name           (DhLink        *link);
 const gchar *dh_link_get_book_name      (DhLink        *link);
-const gchar *dh_link_get_page_name      (DhLink        *link);
 const gchar *dh_link_get_file_name      (DhLink        *link);
 const gchar *dh_link_get_book_id        (DhLink        *link);
 gchar       *dh_link_get_uri            (DhLink        *link);
@@ -89,6 +88,9 @@ void         dh_link_set_flags          (DhLink        *link,
                                          DhLinkFlags    flags);
 DhLinkType   dh_link_get_link_type      (DhLink        *link);
 const gchar *dh_link_get_type_as_string (DhLink        *link);
+
+G_DEPRECATED
+const gchar *dh_link_get_page_name      (DhLink        *link);
 
 G_END_DECLS
 
