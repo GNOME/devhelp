@@ -77,12 +77,6 @@ typedef struct {
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBook, dh_book, G_TYPE_OBJECT);
 
-static void    book_monitor_event_cb (GFileMonitor      *file_monitor,
-                                      GFile             *file,
-                                      GFile             *other_file,
-                                      GFileMonitorEvent  event_type,
-                                      gpointer           user_data);
-
 static guint signals[BOOK_LAST_SIGNAL] = { 0 };
 
 static void
@@ -211,78 +205,6 @@ dh_book_init (DhBook *book)
         priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
 }
 
-/**
- * dh_book_new:
- * @book_path: the path of the book
- *
- * Returns: a new #DhBook object.
- */
-DhBook *
-dh_book_new (const gchar *book_path)
-{
-        DhBookPrivate *priv;
-        DhBook     *book;
-        GError     *error = NULL;
-        GFile      *book_path_file;
-        gchar      *language;
-
-        g_return_val_if_fail (book_path, NULL);
-
-        book = g_object_new (DH_TYPE_BOOK, NULL);
-        priv = dh_book_get_instance_private (book);
-
-        /* Parse file storing contents in the book struct */
-        if (!dh_parser_read_file  (book_path,
-                                   &priv->title,
-                                   &priv->name,
-                                   &language,
-                                   &priv->tree,
-                                   &priv->keywords,
-                                   &error)) {
-                g_warning ("Failed to read '%s': %s",
-                           book_path, error->message);
-                g_error_free (error);
-
-                /* Deallocate the book, as we are not going to add it
-                 *  in the manager */
-                g_object_unref (book);
-                return NULL;
-        }
-
-        /* Store path */
-        priv->path = g_strdup (book_path);
-
-        /* Rewrite language, if any, including the prefix we want
-         * to use when seeing it. It is pretty ugly to do it here,
-         * but it's the only way of making sure we standarize how
-         * the language group is shown */
-        dh_util_ascii_strtitle (language);
-        priv->language = (language ?
-                          g_strdup_printf (_("Language: %s"), language) :
-                          g_strdup (_("Language: Undefined")));
-        g_free (language);
-
-        /* Setup monitor for changes */
-        book_path_file = g_file_new_for_path (book_path);
-        priv->monitor = g_file_monitor_file (book_path_file,
-                                             G_FILE_MONITOR_NONE,
-                                             NULL,
-                                             NULL);
-        if (priv->monitor) {
-                /* Setup changed signal callback */
-                g_signal_connect (priv->monitor,
-                                  "changed",
-                                  G_CALLBACK (book_monitor_event_cb),
-                                  book);
-        } else {
-                g_warning ("Couldn't setup monitoring of changes in book '%s'",
-                           priv->title);
-        }
-        g_object_unref (book_path_file);
-
-        return book;
-}
-
 static gboolean
 book_monitor_event_timeout_cb (gpointer data)
 {
@@ -355,6 +277,78 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                                                                         book_monitor_event_timeout_cb,
                                                                         book);
         }
+}
+
+/**
+ * dh_book_new:
+ * @book_path: the path of the book
+ *
+ * Returns: a new #DhBook object.
+ */
+DhBook *
+dh_book_new (const gchar *book_path)
+{
+        DhBookPrivate *priv;
+        DhBook     *book;
+        GError     *error = NULL;
+        GFile      *book_path_file;
+        gchar      *language;
+
+        g_return_val_if_fail (book_path, NULL);
+
+        book = g_object_new (DH_TYPE_BOOK, NULL);
+        priv = dh_book_get_instance_private (book);
+
+        /* Parse file storing contents in the book struct */
+        if (!dh_parser_read_file  (book_path,
+                                   &priv->title,
+                                   &priv->name,
+                                   &language,
+                                   &priv->tree,
+                                   &priv->keywords,
+                                   &error)) {
+                g_warning ("Failed to read '%s': %s",
+                           book_path, error->message);
+                g_error_free (error);
+
+                /* Deallocate the book, as we are not going to add it
+                 *  in the manager */
+                g_object_unref (book);
+                return NULL;
+        }
+
+        /* Store path */
+        priv->path = g_strdup (book_path);
+
+        /* Rewrite language, if any, including the prefix we want
+         * to use when seeing it. It is pretty ugly to do it here,
+         * but it's the only way of making sure we standarize how
+         * the language group is shown */
+        dh_util_ascii_strtitle (language);
+        priv->language = (language ?
+                          g_strdup_printf (_("Language: %s"), language) :
+                          g_strdup (_("Language: Undefined")));
+        g_free (language);
+
+        /* Setup monitor for changes */
+        book_path_file = g_file_new_for_path (book_path);
+        priv->monitor = g_file_monitor_file (book_path_file,
+                                             G_FILE_MONITOR_NONE,
+                                             NULL,
+                                             NULL);
+        if (priv->monitor) {
+                /* Setup changed signal callback */
+                g_signal_connect (priv->monitor,
+                                  "changed",
+                                  G_CALLBACK (book_monitor_event_cb),
+                                  book);
+        } else {
+                g_warning ("Couldn't setup monitoring of changes in book '%s'",
+                           priv->title);
+        }
+        g_object_unref (book_path_file);
+
+        return book;
 }
 
 /**
