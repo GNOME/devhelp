@@ -358,9 +358,7 @@ dh_keyword_model_tree_model_init (GtkTreeModelIface *iface)
 /**
  * dh_keyword_model_new:
  *
- * Create a new #DhKeywordModel object.
- *
- * Returns: a new #DhKeywordModel object
+ * Returns: a new #DhKeywordModel object.
  */
 DhKeywordModel *
 dh_keyword_model_new (void)
@@ -370,10 +368,10 @@ dh_keyword_model_new (void)
 
 /**
  * dh_keyword_model_set_words:
- * @model: a #DhKeywordModel object
- * @book_manager: a #DhBookManager to analyze
+ * @model: a #DhKeywordModel.
+ * @book_manager: a #DhBookManager.
  *
- * Set the #DhBookManager object on which words are analyzed.
+ * Sets the #DhBookManager in which symbols are searched.
  */
 void
 dh_keyword_model_set_words (DhKeywordModel *model,
@@ -981,15 +979,17 @@ set_keywords_list (DhKeywordModel *model,
 
 /**
  * dh_keyword_model_filter:
- * @model: a #DhKeywordModel object
- * @search_string: a search query
- * @book_id: (nullable): the id of a specific book or %NULL for all books
- * @language: (nullable): the name of a language or %NULL for all languages
+ * @model: a #DhKeywordModel.
+ * @search_string: a search query.
+ * @book_id: (nullable): the id of a specific book or %NULL for all books.
+ * @language: (nullable): the name of a programming language or %NULL for all
+ * languages.
  *
- * Find the book matching the given criteria.
+ * Searches in the #DhBookManager the list of #DhLink's that correspond to the
+ * given critera, and fills the @model with that list.
  *
- * Returns: (nullable) (transfer none): the corresponding #DhLink or %NULL if
- * no link corresponding to the criteria is found
+ * Returns: (nullable) (transfer none): the #DhLink that corresponds exactly to
+ * the given criteria, or %NULL if there is no such #DhLink.
  */
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
