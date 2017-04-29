@@ -691,7 +691,8 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
                                                               "The book manager",
                                                               DH_TYPE_BOOK_MANAGER,
                                                               G_PARAM_READWRITE |
-                                                              G_PARAM_CONSTRUCT_ONLY));
+                                                              G_PARAM_CONSTRUCT_ONLY |
+                                                              G_PARAM_STATIC_STRINGS));
         /**
          * DhBookTree::link-selected:
          * @tree: a #DhBookTree object

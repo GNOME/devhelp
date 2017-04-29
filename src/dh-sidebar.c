@@ -700,7 +700,8 @@ dh_sidebar_class_init (DhSidebarClass *klass)
                                                               "The book maanger",
                                                               DH_TYPE_BOOK_MANAGER,
                                                               G_PARAM_READWRITE |
-                                                              G_PARAM_CONSTRUCT_ONLY));
+                                                              G_PARAM_CONSTRUCT_ONLY |
+                                                              G_PARAM_STATIC_STRINGS));
 
         /**
          * DhSidebar::link-selected:

@@ -223,10 +223,8 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                                                                "Group by language",
                                                                "TRUE if books should be grouped by language",
                                                                FALSE,
-                                                               (G_PARAM_READWRITE |
-                                                                G_PARAM_STATIC_NAME |
-                                                                G_PARAM_STATIC_NICK |
-                                                                G_PARAM_STATIC_BLURB)));
+                                                               G_PARAM_READWRITE |
+                                                               G_PARAM_STATIC_STRINGS));
 }
 
 static void
