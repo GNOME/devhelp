@@ -340,10 +340,8 @@ sidebar_entry_insert_text_cb (GtkEntry    *entry,
 
 /**
  * dh_sidebar_set_search_string:
- * @sidebar: a #DhSidebar object
- * @str: the string to seach
- *
- * Set the search string to @str.
+ * @sidebar: a #DhSidebar.
+ * @str: the string to search.
  */
 void
 dh_sidebar_set_search_string (DhSidebar   *sidebar,
@@ -362,9 +360,9 @@ dh_sidebar_set_search_string (DhSidebar   *sidebar,
 
 /**
  * dh_sidebar_set_search_focus:
- * @sidebar: a #DhSidebar object
+ * @sidebar: a #DhSidebar.
  *
- * Give the focus to the search entry.
+ * Gives the focus to the search entry.
  */
 void
 dh_sidebar_set_search_focus (DhSidebar *sidebar)
@@ -436,11 +434,10 @@ sidebar_book_tree_link_selected_cb (DhBookTree *book_tree,
 
 /**
  * dh_sidebar_get_selected_book:
- * @sidebar: a #DhSidebar object
+ * @sidebar: a #DhSidebar.
  *
- * Get the link pointing to the selected book.
- *
- * Returns: (nullable) (transfer full): the selected book link
+ * Returns: (nullable) (transfer none): the #DhLink of the selected book, or
+ * %NULL if there is no selection.
  */
 DhLink *
 dh_sidebar_get_selected_book (DhSidebar *sidebar)
@@ -456,10 +453,8 @@ dh_sidebar_get_selected_book (DhSidebar *sidebar)
 
 /**
  * dh_sidebar_select_uri:
- * @sidebar: a #DhSidebar object
- * @uri: the uri to select
- *
- * Select the given @uri.
+ * @sidebar: a #DhSidebar.
+ * @uri: the URI to select.
  */
 void
 dh_sidebar_select_uri (DhSidebar   *sidebar,
@@ -476,11 +471,9 @@ dh_sidebar_select_uri (DhSidebar   *sidebar,
 
 /**
  * dh_sidebar_new:
- * @book_manager: the book manager
+ * @book_manager: a #DhBookManager.
  *
- * Create a new #DhSidebar object.
- *
- * Returns: a new #DhSidebar object
+ * Returns: (transfer floating): a new #DhSidebar widget.
  */
 GtkWidget *
 dh_sidebar_new (DhBookManager *book_manager)
@@ -693,11 +686,16 @@ dh_sidebar_class_init (DhSidebarClass *klass)
         object_class->set_property = dh_sidebar_set_property;
         object_class->constructed = dh_sidebar_constructed;
 
+        /**
+         * DhSidebar:book-manager:
+         *
+         * The #DhBookManager.
+         */
         g_object_class_install_property (object_class,
                                          PROP_BOOK_MANAGER,
                                          g_param_spec_object ("book-manager",
                                                               "Book Manager",
-                                                              "The book maanger",
+                                                              "",
                                                               DH_TYPE_BOOK_MANAGER,
                                                               G_PARAM_READWRITE |
                                                               G_PARAM_CONSTRUCT_ONLY |
@@ -705,8 +703,8 @@ dh_sidebar_class_init (DhSidebarClass *klass)
 
         /**
          * DhSidebar::link-selected:
-         * @sidebar: a #DhSidebar object
-         * @link: the selected #DhLink
+         * @sidebar: a #DhSidebar.
+         * @link: the selected #DhLink.
          */
         signals[LINK_SELECTED] =
                 g_signal_new ("link_selected",
