@@ -80,14 +80,46 @@ static void    book_manager_inc_language      (DhBookManager *book_manager,
                                                const gchar   *language_name);
 static void    book_manager_dec_language      (DhBookManager *book_manager,
                                                const gchar   *language_name);
-static void    dh_book_manager_get_property   (GObject        *object,
-                                               guint           prop_id,
-                                               GValue         *value,
-                                               GParamSpec     *pspec);
-static void    dh_book_manager_set_property   (GObject        *object,
-                                               guint           prop_id,
-                                               const GValue   *value,
-                                               GParamSpec     *pspec);
+
+static void
+dh_book_manager_get_property (GObject    *object,
+                              guint       prop_id,
+                              GValue     *value,
+                              GParamSpec *pspec)
+{
+        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
+
+        switch (prop_id)
+        {
+        case PROP_GROUP_BY_LANGUAGE:
+                g_value_set_boolean (value, dh_book_manager_get_group_by_language (book_manager));
+                break;
+
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
+dh_book_manager_set_property (GObject      *object,
+                              guint         prop_id,
+                              const GValue *value,
+                              GParamSpec   *pspec)
+{
+        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
+
+        switch (prop_id)
+        {
+        case PROP_GROUP_BY_LANGUAGE:
+                dh_book_manager_set_group_by_language (book_manager, g_value_get_boolean (value));
+                break;
+
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
 
 static void
 dh_book_manager_dispose (GObject *object)
@@ -126,10 +158,10 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+        object_class->get_property = dh_book_manager_get_property;
+        object_class->set_property = dh_book_manager_set_property;
         object_class->dispose = dh_book_manager_dispose;
         object_class->finalize = dh_book_manager_finalize;
-        object_class->set_property = dh_book_manager_set_property;
-        object_class->get_property = dh_book_manager_get_property;
 
         /**
          * DhBookManager::book-created:
@@ -255,46 +287,6 @@ dh_book_manager_init (DhBookManager *book_manager)
                          book_manager,
                          "group-by-language",
                          G_SETTINGS_BIND_DEFAULT);
-}
-
-static void
-dh_book_manager_set_property (GObject      *object,
-                              guint         prop_id,
-                              const GValue *value,
-                              GParamSpec   *pspec)
-{
-        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
-
-        switch (prop_id)
-        {
-        case PROP_GROUP_BY_LANGUAGE:
-                dh_book_manager_set_group_by_language (book_manager,
-                                                       g_value_get_boolean (value));
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
-}
-
-static void
-dh_book_manager_get_property (GObject    *object,
-                              guint       prop_id,
-                              GValue     *value,
-                              GParamSpec *pspec)
-{
-        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
-
-        switch (prop_id)
-        {
-        case PROP_GROUP_BY_LANGUAGE:
-                g_value_set_boolean (value,
-                                     dh_book_manager_get_group_by_language (book_manager));
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
 }
 
 static void
