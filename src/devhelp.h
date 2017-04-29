@@ -28,7 +28,6 @@
 #include "dh-language.h"
 #include "dh-book.h"
 #include "dh-book-tree.h"
-#include "dh-error.h"
 #include "dh-keyword-model.h"
 #include "dh-link.h"
 #include "dh-sidebar.h"

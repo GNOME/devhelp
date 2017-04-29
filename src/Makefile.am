@@ -58,7 +58,6 @@ libdevhelp_public_headers =		\
 	dh-book.h			\
 	dh-book-manager.h		\
 	dh-book-tree.h			\
-	dh-error.h			\
 	dh-keyword-model.h		\
 	dh-language.h			\
 	dh-link.h			\
@@ -73,7 +72,6 @@ libdevhelp_public_c_files =		\
 	dh-book-manager.c		\
 	dh-book-tree.c			\
 	dh-common.c			\
-	dh-error.c			\
 	dh-keyword-model.c		\
 	dh-language.c			\
 	dh-link.c			\
@@ -81,12 +79,14 @@ libdevhelp_public_c_files =		\
 	dh-window.c
 
 libdevhelp_private_headers =		\
+	dh-error.h			\
 	dh-parser.h			\
 	dh-preferences.h		\
 	dh-settings.h			\
 	dh-util.h
 
 libdevhelp_private_c_files =		\
+	dh-error.c			\
 	dh-parser.c			\
 	dh-preferences.c		\
 	dh-util.c			\

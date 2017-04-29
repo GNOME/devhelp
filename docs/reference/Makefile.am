@@ -46,6 +46,7 @@ EXTRA_HFILES =
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code
 IGNORE_HFILES = \
 	dh-enum-types.h \
+	dh-error.h \
 	dh-parser.h \
 	dh-preferences.h \
 	dh-resources.h \

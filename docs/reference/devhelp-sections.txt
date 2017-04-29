@@ -133,17 +133,6 @@ dh_book_tree_get_type
 </SECTION>
 
 <SECTION>
-<FILE>dh-error</FILE>
-<TITLE>DhError</TITLE>
-DhError
-DH_ERROR
-<SUBSECTION Standard>
-dh_error_get_type
-dh_error_quark
-DH_TYPE_ERROR
-</SECTION>
-
-<SECTION>
 <FILE>dh-keyword-model</FILE>
 <TITLE>DhKeywordModel</TITLE>
 DhKeywordModel
