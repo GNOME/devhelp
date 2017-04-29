@@ -684,19 +684,25 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
         object_class->constructed = dh_book_tree_constructed;
         object_class->dispose = dh_book_tree_dispose;
 
+        /**
+         * DhBookTree:book-manager:
+         *
+         * The #DhBookManager.
+         */
         g_object_class_install_property (object_class,
                                          PROP_BOOK_MANAGER,
                                          g_param_spec_object ("book-manager",
                                                               "Book Manager",
-                                                              "The book manager",
+                                                              "",
                                                               DH_TYPE_BOOK_MANAGER,
                                                               G_PARAM_READWRITE |
                                                               G_PARAM_CONSTRUCT_ONLY |
                                                               G_PARAM_STATIC_STRINGS));
+
         /**
          * DhBookTree::link-selected:
-         * @tree: a #DhBookTree object
-         * @link: (type DhLink): the selected #DhLink
+         * @tree: the #DhBookTree.
+         * @link: the selected #DhLink.
          */
         signals[LINK_SELECTED] =
                 g_signal_new ("link-selected",
@@ -705,7 +711,7 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
                               0,
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
-                              1, G_TYPE_POINTER);
+                              1, DH_TYPE_LINK);
 }
 
 static void
@@ -755,11 +761,9 @@ dh_book_tree_init (DhBookTree *tree)
 
 /**
  * dh_book_tree_new:
- * @book_manager: the parent #DhBookManager
+ * @book_manager: a #DhBookManager.
  *
- * Create a new #DhBookManager object.
- *
- * Returns: a new #DhBookManager object
+ * Returns: (transfer floating): a new #DhBookTree widget.
  */
 GtkWidget *
 dh_book_tree_new (DhBookManager *book_manager)
@@ -802,10 +806,10 @@ book_tree_find_uri_foreach (GtkTreeModel *model,
 
 /**
  * dh_book_tree_select_uri:
- * @tree: a #DhBookTree object
- * @uri: the uri to select
+ * @tree: a #DhBookTree.
+ * @uri: the URI to select.
  *
- * Select the given @uri.
+ * Selects the given @uri.
  */
 void
 dh_book_tree_select_uri (DhBookTree  *tree,
@@ -858,11 +862,10 @@ dh_book_tree_select_uri (DhBookTree  *tree,
 
 /**
  * dh_book_tree_get_selected_book:
- * @tree: a #DhBookTree object
+ * @tree: a #DhBookTree.
  *
- * Get the link pointing to the selected book.
- *
- * Returns: (nullable) (transfer full): the selected book link
+ * Returns: (nullable) (transfer none): the #DhLink of the selected book, or
+ * %NULL if there is no selection.
  */
 DhLink *
 dh_book_tree_get_selected_book (DhBookTree *tree)
