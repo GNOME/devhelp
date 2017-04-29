@@ -148,8 +148,7 @@ dh_book_class_init (DhBookClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               0);
 
@@ -162,8 +161,7 @@ dh_book_class_init (DhBookClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               0);
 
@@ -176,8 +174,7 @@ dh_book_class_init (DhBookClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               0);
 
@@ -190,8 +187,7 @@ dh_book_class_init (DhBookClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               0);
 }

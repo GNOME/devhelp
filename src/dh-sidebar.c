@@ -712,8 +712,7 @@ dh_sidebar_class_init (DhSidebarClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (DhSidebarClass, link_selected),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__POINTER,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_POINTER);
 }

@@ -702,8 +702,7 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__POINTER,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_POINTER);
 }

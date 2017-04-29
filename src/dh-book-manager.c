@@ -141,8 +141,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__OBJECT,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
@@ -156,8 +155,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__OBJECT,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
@@ -171,8 +169,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__OBJECT,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
@@ -186,8 +183,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__OBJECT,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_OBJECT);
@@ -202,8 +198,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__STRING,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_STRING);
@@ -217,8 +212,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               0,
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__STRING,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
                               G_TYPE_STRING);
