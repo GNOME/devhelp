@@ -111,7 +111,7 @@ dh_book_finalize (GObject *object)
 
         priv = dh_book_get_instance_private (DH_BOOK (object));
 
-        if (priv->tree) {
+        if (priv->tree != NULL) {
                 g_node_traverse (priv->tree,
                                  G_IN_ORDER,
                                  G_TRAVERSE_ALL,
@@ -122,15 +122,10 @@ dh_book_finalize (GObject *object)
         }
 
         g_list_free_full (priv->keywords, (GDestroyNotify)dh_link_unref);
-
         g_list_free_full (priv->completions, g_free);
-
         g_free (priv->language);
-
         g_free (priv->title);
-
         g_free (priv->name);
-
         g_free (priv->path);
 
         G_OBJECT_CLASS (dh_book_parent_class)->finalize (object);
@@ -413,27 +408,25 @@ dh_book_get_completions (DhBook *book)
         if (!priv->enabled)
                 return NULL;
 
-        if (!priv->completions) {
+        if (priv->completions == NULL) {
                 GList *l;
-                for (l = priv->keywords; l; l = g_list_next (l)) {
+
+                for (l = priv->keywords; l != NULL; l = l->next) {
                         DhLink *link = l->data;
+                        gchar *str;
 
                         /* Add additional "page:" and "book:" completions */
                         if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
-                                priv->completions =
-                                        g_list_prepend (priv->completions,
-                                                        g_strdup_printf ("book:%s",
-                                                                         dh_link_get_name (link)));
+                                str = g_strdup_printf ("book:%s", dh_link_get_name (link));
+                                priv->completions = g_list_prepend (priv->completions, str);
                         }
                         else if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE) {
-                                priv->completions =
-                                        g_list_prepend (priv->completions,
-                                                        g_strdup_printf ("page:%s",
-                                                                         dh_link_get_name (link)));
+                                str = g_strdup_printf ("page:%s", dh_link_get_name (link));
+                                priv->completions = g_list_prepend (priv->completions, str);
                         }
 
-                        priv->completions =  g_list_prepend (priv->completions,
-                                                          g_strdup (dh_link_get_name (link)));
+                        str = g_strdup (dh_link_get_name (link));
+                        priv->completions = g_list_prepend (priv->completions, str);
                 }
         }
 
