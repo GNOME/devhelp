@@ -366,9 +366,9 @@ book_manager_add_books_in_data_dir (DhBookManager *book_manager,
 
 /**
  * dh_book_manager_populate:
- * @book_manager: a #DhBookManager object
+ * @book_manager: a #DhBookManager.
  *
- * Populate the #DhBookManager with all books found on the system and user
+ * Populates the #DhBookManager with all books found on the system and user
  * directories.
  */
 void
@@ -757,11 +757,10 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
 
 /**
  * dh_book_manager_get_books:
- * @book_manager: a #DhBookManager object
+ * @book_manager: a #DhBookManager.
  *
- * Get the #GList of books.
- *
- * Returns: (element-type DhBook) (transfer none): the books
+ * Returns: (element-type DhBook) (transfer none): the list of all #DhBook's
+ * found.
  */
 GList *
 dh_book_manager_get_books (DhBookManager *book_manager)
@@ -777,11 +776,9 @@ dh_book_manager_get_books (DhBookManager *book_manager)
 
 /**
  * dh_book_manager_get_group_by_language:
- * @book_manager: a #DhBookManager object
+ * @book_manager: a #DhBookManager.
  *
- * Get whether books should be grouped by language.
- *
- * Returns: %TRUE if books should be grouped by language, %FALSE otherwise
+ * Returns: whether the books should be grouped by programming language.
  */
 gboolean
 dh_book_manager_get_group_by_language (DhBookManager *book_manager)
@@ -797,10 +794,10 @@ dh_book_manager_get_group_by_language (DhBookManager *book_manager)
 
 /**
  * dh_book_manager_set_group_by_language:
- * @book_manager: a #DhBookManager object
- * @group_by_language: %TRUE if books should be grouped by language, %FALSE otherwise
+ * @book_manager: a #DhBookManager.
+ * @group_by_language: the new value.
  *
- * Set whether books should be grouped by language.
+ * Sets whether the books should be grouped by programming language.
  */
 void
 dh_book_manager_set_group_by_language (DhBookManager *book_manager,
@@ -897,9 +894,7 @@ dh_book_manager_get_languages (DhBookManager *book_manager)
 /**
  * dh_book_manager_new:
  *
- * Create a new #DhBookManager object.
- *
- * Returns: a new #DhBookManager object
+ * Returns: a new #DhBookManager object.
  */
 DhBookManager *
 dh_book_manager_new (void)
