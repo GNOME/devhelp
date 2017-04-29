@@ -251,7 +251,7 @@ dh_link_get_book_name (DhLink *link)
  * @link: a #DhLink.
  *
  * Returns: the name of the page that the @link is contained in.
- * Deprecated: this function is used nowhere.
+ * Deprecated: 3.26: This function is used nowhere.
  */
 const gchar *
 dh_link_get_page_name (DhLink *link)

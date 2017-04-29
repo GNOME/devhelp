@@ -577,7 +577,7 @@ dh_book_cmp_by_path (DhBook *a,
  *
  * Returns: an integer less than, equal to, or greater than zero, if the path of
  * @a is <, == or > than @b_path.
- * Deprecated: Use dh_book_cmp_by_path() instead.
+ * Deprecated: 3.18: Use dh_book_cmp_by_path() instead.
  */
 gint
 dh_book_cmp_by_path_str (DhBook      *a,
@@ -631,7 +631,7 @@ dh_book_cmp_by_name (DhBook *a,
  *
  * Returns: an integer less than, equal to, or greater than zero, if the name of
  * @a is <, == or > than @b_name.
- * Deprecated: Use dh_book_cmp_by_name() instead.
+ * Deprecated: 3.18: Use dh_book_cmp_by_name() instead.
  */
 gint
 dh_book_cmp_by_name_str (DhBook      *a,
