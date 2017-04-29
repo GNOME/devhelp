@@ -207,16 +207,8 @@ dh_book_init (DhBook *book)
 {
         DhBookPrivate *priv = dh_book_get_instance_private (book);
 
-        priv->name = NULL;
-        priv->path = NULL;
-        priv->title = NULL;
         priv->enabled = TRUE;
-        priv->tree = NULL;
-        priv->keywords = NULL;
-        priv->completions = NULL;
-        priv->monitor = NULL;
         priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
-        priv->monitor_event_timeout_id = 0;
 }
 
 /**
