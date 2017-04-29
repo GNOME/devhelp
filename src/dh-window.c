@@ -980,7 +980,7 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
 
         if (!g_str_has_prefix (uri, "file://")) {
                 webkit_policy_decision_ignore (policy_decision);
-                gtk_show_uri (NULL, uri, GDK_CURRENT_TIME, NULL);
+                gtk_show_uri_on_window (GTK_WINDOW (window), uri, GDK_CURRENT_TIME, NULL);
                 return GDK_EVENT_STOP;
         }
 

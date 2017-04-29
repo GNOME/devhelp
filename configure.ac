@@ -58,7 +58,7 @@ LT_LIB_M
 AX_REQUIRE_DEFINED([PKG_CHECK_MODULES])
 PKG_CHECK_MODULES(DEVHELP, [
   gio-2.0 >= 2.38
-  gtk+-3.0 >= 3.20
+  gtk+-3.0 >= 3.22
   webkit2gtk-4.0 >= 2.6
   gsettings-desktop-schemas
 ])
