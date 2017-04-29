@@ -707,11 +707,11 @@ dh_sidebar_class_init (DhSidebarClass *klass)
          * @link: the selected #DhLink.
          */
         signals[LINK_SELECTED] =
-                g_signal_new ("link_selected",
+                g_signal_new ("link-selected",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (DhSidebarClass, link_selected),
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
-                              1, G_TYPE_POINTER);
+                              1, DH_TYPE_LINK);
 }
