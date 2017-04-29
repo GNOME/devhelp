@@ -8,7 +8,6 @@ dh_init
 <FILE>dh-app</FILE>
 <TITLE>DhApp</TITLE>
 DhApp
-DhAppClass
 dh_app_new
 dh_app_peek_book_manager
 dh_app_peek_first_window
@@ -19,13 +18,13 @@ dh_app_search
 dh_app_search_assistant
 dh_app_raise
 <SUBSECTION Standard>
+DhAppClass
 DH_APP
 DH_APP_CLASS
 DH_APP_GET_CLASS
 DH_IS_APP
 DH_IS_APP_CLASS
 DH_TYPE_APP
-<SUBSECTION Private>
 dh_app_get_type
 </SECTION>
 
@@ -33,17 +32,16 @@ dh_app_get_type
 <FILE>dh-assistant</FILE>
 <TITLE>DhAssistant</TITLE>
 DhAssistant
-DhAssistantClass
 dh_assistant_new
 dh_assistant_search
 <SUBSECTION Standard>
+DhAssistantClass
 DH_ASSISTANT
 DH_ASSISTANT_CLASS
 DH_ASSISTANT_GET_CLASS
 DH_IS_ASSISTANT
 DH_IS_ASSISTANT_CLASS
 DH_TYPE_ASSISTANT
-<SUBSECTION Private>
 dh_assistant_get_type
 </SECTION>
 
@@ -51,19 +49,18 @@ dh_assistant_get_type
 <FILE>dh-assistant-view</FILE>
 <TITLE>DhAssistantView</TITLE>
 DhAssistantView
-DhAssistantViewClass
 dh_assistant_view_new
 dh_assistant_view_search
 dh_assistant_view_set_book_manager
 dh_assistant_view_set_link
 <SUBSECTION Standard>
+DhAssistantViewClass
 DH_ASSISTANT_VIEW
 DH_ASSISTANT_VIEW_CLASS
 DH_ASSISTANT_VIEW_GET_CLASS
 DH_IS_ASSISTANT_VIEW
 DH_IS_ASSISTANT_VIEW_CLASS
 DH_TYPE_ASSISTANT_VIEW
-<SUBSECTION Private>
 dh_assistant_view_get_type
 </SECTION>
 
@@ -71,7 +68,6 @@ dh_assistant_view_get_type
 <FILE>dh-book</FILE>
 <TITLE>DhBook</TITLE>
 DhBook
-DhBookClass
 dh_book_new
 dh_book_get_keywords
 dh_book_get_completions
@@ -88,13 +84,13 @@ dh_book_cmp_by_name
 dh_book_cmp_by_name_str
 dh_book_cmp_by_title
 <SUBSECTION Standard>
+DhBookClass
 DH_BOOK
 DH_BOOK_CLASS
 DH_BOOK_GET_CLASS
 DH_IS_BOOK
 DH_IS_BOOK_CLASS
 DH_TYPE_BOOK
-<SUBSECTION Private>
 dh_book_get_type
 </SECTION>
 
@@ -102,7 +98,6 @@ dh_book_get_type
 <FILE>dh-book-manager</FILE>
 <TITLE>DhBookManager</TITLE>
 DhBookManager
-DhBookManagerClass
 dh_book_manager_new
 dh_book_manager_populate
 dh_book_manager_get_books
@@ -110,13 +105,13 @@ dh_book_manager_get_languages
 dh_book_manager_get_group_by_language
 dh_book_manager_set_group_by_language
 <SUBSECTION Standard>
+DhBookManagerClass
 DH_BOOK_MANAGER
 DH_BOOK_MANAGER_CLASS
 DH_BOOK_MANAGER_GET_CLASS
 DH_IS_BOOK_MANAGER
 DH_IS_BOOK_MANAGER_CLASS
 DH_TYPE_BOOK_MANAGER
-<SUBSECTION Private>
 dh_book_manager_get_type
 </SECTION>
 
@@ -124,17 +119,16 @@ dh_book_manager_get_type
 <FILE>dh-book-tree</FILE>
 <TITLE>DhBookTree</TITLE>
 DhBookTree
-DhBookTreeClass
 dh_book_tree_new
 dh_book_tree_select_uri
 dh_book_tree_get_selected_book
 <SUBSECTION Standard>
+DhBookTreeClass
 DH_BOOK_TREE
 DH_BOOK_TREE_CLASS
 DH_IS_BOOK_TREE
 DH_IS_BOOK_TREE_CLASS
 DH_TYPE_BOOK_TREE
-<SUBSECTION Private>
 dh_book_tree_get_type
 </SECTION>
 
@@ -142,30 +136,28 @@ dh_book_tree_get_type
 <FILE>dh-error</FILE>
 <TITLE>DhError</TITLE>
 DhError
-dh_error_quark
-<SUBSECTION Standard>
 DH_ERROR
-DH_TYPE_ERROR
-<SUBSECTION Private>
+<SUBSECTION Standard>
 dh_error_get_type
+dh_error_quark
+DH_TYPE_ERROR
 </SECTION>
 
 <SECTION>
 <FILE>dh-keyword-model</FILE>
 <TITLE>DhKeywordModel</TITLE>
 DhKeywordModel
-DhKeywordModelClass
 dh_keyword_model_new
 dh_keyword_model_set_words
 dh_keyword_model_filter
 <SUBSECTION Standard>
+DhKeywordModelClass
 DH_IS_KEYWORD_MODEL
 DH_IS_KEYWORD_MODEL_CLASS
 DH_KEYWORD_MODEL
 DH_KEYWORD_MODEL_CLASS
 DH_KEYWORD_MODEL_GET_CLASS
 DH_TYPE_KEYWORD_MODEL
-<SUBSECTION Private>
 dh_keyword_model_get_type
 </SECTION>
 
@@ -195,6 +187,8 @@ dh_language_get_type
 <FILE>dh-link</FILE>
 <TITLE>DhLink</TITLE>
 DhLink
+DhLinkType
+DhLinkFlags
 dh_link_new
 dh_link_ref
 dh_link_unref
@@ -209,13 +203,10 @@ dh_link_get_flags
 dh_link_set_flags
 dh_link_get_link_type
 dh_link_get_type_as_string
-DhLinkType
-DhLinkFlags
 <SUBSECTION Standard>
 DH_TYPE_LINK
 DH_TYPE_LINK_FLAGS
 DH_TYPE_LINK_TYPE
-<SUBSECTION Private>
 dh_link_get_type
 dh_link_flags_get_type
 dh_link_type_get_type
@@ -225,19 +216,18 @@ dh_link_type_get_type
 <FILE>dh-sidebar</FILE>
 <TITLE>DhSidebar</TITLE>
 DhSidebar
-DhSidebarClass
 dh_sidebar_new
 dh_sidebar_get_selected_book
 dh_sidebar_select_uri
 dh_sidebar_set_search_string
 dh_sidebar_set_search_focus
 <SUBSECTION Standard>
+DhSidebarClass
 DH_IS_SIDEBAR
 DH_IS_SIDEBAR_CLASS
 DH_SIDEBAR
 DH_SIDEBAR_CLASS
 DH_TYPE_SIDEBAR
-<SUBSECTION Private>
 dh_sidebar_get_type
 </SECTION>
 
@@ -245,11 +235,11 @@ dh_sidebar_get_type
 <FILE>dh-window</FILE>
 <TITLE>DhWindow</TITLE>
 DhWindow
-DhWindowClass
+DhOpenLinkFlags
 dh_window_new
 dh_window_search
-DhOpenLinkFlags
 <SUBSECTION Standard>
+DhWindowClass
 DH_IS_WINDOW
 DH_IS_WINDOW_CLASS
 DH_TYPE_WINDOW
@@ -257,8 +247,6 @@ DH_WINDOW
 DH_WINDOW_CLASS
 DH_WINDOW_GET_CLASS
 DH_TYPE_OPEN_LINK_FLAGS
-<SUBSECTION Private>
 dh_window_get_type
 dh_open_link_flags_get_type
 </SECTION>
-
