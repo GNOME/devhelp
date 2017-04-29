@@ -57,7 +57,7 @@ enum {
         LAST_SIGNAL
 };
 
-static gint signals[LAST_SIGNAL] = { 0 };
+static guint signals[LAST_SIGNAL] = { 0 };
 
 static guint tab_accel_keys[] = {
         GDK_KEY_1, GDK_KEY_2, GDK_KEY_3, GDK_KEY_4, GDK_KEY_5,

@@ -58,7 +58,7 @@ enum {
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookTree, dh_book_tree, GTK_TYPE_TREE_VIEW);
 
-static gint signals[LAST_SIGNAL] = { 0 };
+static guint signals[LAST_SIGNAL] = { 0 };
 
 static void
 book_tree_selection_changed_cb (GtkTreeSelection *selection,
