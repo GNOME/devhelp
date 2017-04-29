@@ -37,14 +37,9 @@ typedef struct _DhSidebar        DhSidebar;
 typedef struct _DhSidebarClass   DhSidebarClass;
 
 struct _DhSidebar {
-        GtkBox            parent_instance;
+        GtkBox parent_instance;
 };
 
-/**
- * DhSidebarClass:
- * @parent_class: The parent class
- * @link_selected: Class handler for the #DhSidebar::link-selected signal
- */
 struct _DhSidebarClass {
         GtkBoxClass parent_class;
 
