@@ -70,8 +70,6 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
-static void    book_manager_load_books_disabled (DhBookManager *book_manager);
-
 static void    book_manager_add_from_filepath (DhBookManager *book_manager,
                                                const gchar   *book_path);
 static void    book_manager_add_from_dir      (DhBookManager *book_manager,
@@ -269,27 +267,6 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
 }
 
 static void
-dh_book_manager_init (DhBookManager *book_manager)
-{
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        DhSettings *settings;
-
-        priv->books = NULL;
-        priv->monitors = NULL;
-        priv->languages = NULL;
-        priv->books_disabled = NULL;
-
-        book_manager_load_books_disabled (book_manager);
-
-        settings = dh_settings_get_singleton ();
-        g_settings_bind (dh_settings_peek_contents_settings (settings),
-                         "group-books-by-language",
-                         book_manager,
-                         "group-by-language",
-                         G_SETTINGS_BIND_DEFAULT);
-}
-
-static void
 book_manager_load_books_disabled (DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
@@ -310,6 +287,27 @@ book_manager_load_books_disabled (DhBookManager *book_manager)
         priv->books_disabled = g_slist_reverse (priv->books_disabled);
 
         g_free (books_disabled_strv);
+}
+
+static void
+dh_book_manager_init (DhBookManager *book_manager)
+{
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
+        DhSettings *settings;
+
+        priv->books = NULL;
+        priv->monitors = NULL;
+        priv->languages = NULL;
+        priv->books_disabled = NULL;
+
+        book_manager_load_books_disabled (book_manager);
+
+        settings = dh_settings_get_singleton ();
+        g_settings_bind (dh_settings_peek_contents_settings (settings),
+                         "group-books-by-language",
+                         book_manager,
+                         "group-by-language",
+                         G_SETTINGS_BIND_DEFAULT);
 }
 
 static void
