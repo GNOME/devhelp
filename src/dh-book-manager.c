@@ -133,8 +133,8 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
 
         /**
          * DhBookManager::book-created:
-         * @book_manager: the book manager on which the signal is emitted
-         * @book: (type DhBook): the created book
+         * @book_manager: the #DhBookManager.
+         * @book: the created #DhBook.
          */
         signals[BOOK_CREATED] =
                 g_signal_new ("book-created",
@@ -144,11 +144,12 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
-                              G_TYPE_OBJECT);
+                              DH_TYPE_BOOK);
+
         /**
          * DhBookManager::book-deleted:
-         * @book_manager: the book manager on which the signal is emitted
-         * @book: (type DhBook): the deleted book
+         * @book_manager: the #DhBookManager.
+         * @book: the deleted #DhBook.
          */
         signals[BOOK_DELETED] =
                 g_signal_new ("book-deleted",
@@ -158,11 +159,12 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
-                              G_TYPE_OBJECT);
+                              DH_TYPE_BOOK);
+
         /**
          * DhBookManager::book-enabled:
-         * @book_manager: the book manager on which the signal is emitted
-         * @book: (type DhBook): the enabled book
+         * @book_manager: the #DhBookManager.
+         * @book: the enabled #DhBook.
          */
         signals[BOOK_ENABLED] =
                 g_signal_new ("book-enabled",
@@ -172,11 +174,12 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
-                              G_TYPE_OBJECT);
+                              DH_TYPE_BOOK);
+
         /**
          * DhBookManager::book-disabled:
-         * @book_manager: the book manager on which the signal is emitted
-         * @book: (type DhBook): the disabled book
+         * @book_manager: the #DhBookManager.
+         * @book: the disabled #DhBook.
          */
         signals[BOOK_DISABLED] =
                 g_signal_new ("book-disabled",
@@ -186,12 +189,12 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1,
-                              G_TYPE_OBJECT);
+                              DH_TYPE_BOOK);
 
         /**
          * DhBookManager::language-enabled:
-         * @book_manager: the book manager on which the signal is emitted
-         * @language_name: the enabled language name
+         * @book_manager: the #DhBookManager.
+         * @language_name: the enabled programming language name.
          */
         signals[LANGUAGE_ENABLED] =
                 g_signal_new ("language-enabled",
@@ -202,10 +205,11 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_NONE,
                               1,
                               G_TYPE_STRING);
+
         /**
          * DhBookManager::language-disabled:
-         * @book_manager: the book manager on which the signal is emitted
-         * @language_name: the disabled language name
+         * @book_manager: the #DhBookManager.
+         * @language_name: the disabled programming language name.
          */
         signals[LANGUAGE_DISABLED] =
                 g_signal_new ("language-disabled",
@@ -217,11 +221,16 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               1,
                               G_TYPE_STRING);
 
+        /**
+         * DhBookManager:group-by-language:
+         *
+         * Whether books should be grouped by programming language.
+         */
         g_object_class_install_property (object_class,
                                          PROP_GROUP_BY_LANGUAGE,
                                          g_param_spec_boolean ("group-by-language",
                                                                "Group by language",
-                                                               "TRUE if books should be grouped by language",
+                                                               "",
                                                                FALSE,
                                                                G_PARAM_READWRITE |
                                                                G_PARAM_STATIC_STRINGS));
