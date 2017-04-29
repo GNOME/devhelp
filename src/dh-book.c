@@ -82,8 +82,6 @@ static void    book_monitor_event_cb (GFileMonitor      *file_monitor,
                                       GFile             *other_file,
                                       GFileMonitorEvent  event_type,
                                       gpointer           user_data);
-static void    unref_node_link       (GNode             *node,
-                                      gpointer           data);
 
 static guint signals[BOOK_LAST_SIGNAL] = { 0 };
 
@@ -104,6 +102,14 @@ dh_book_dispose (GObject *object)
         G_OBJECT_CLASS (dh_book_parent_class)->dispose (object);
 }
 
+static gboolean
+unref_node_link (GNode    *node,
+                 gpointer  data)
+{
+        dh_link_unref (node->data);
+        return FALSE;
+}
+
 static void
 dh_book_finalize (GObject *object)
 {
@@ -116,7 +122,7 @@ dh_book_finalize (GObject *object)
                                  G_IN_ORDER,
                                  G_TRAVERSE_ALL,
                                  -1,
-                                 (GNodeTraverseFunc)unref_node_link,
+                                 unref_node_link,
                                  NULL);
                 g_node_destroy (priv->tree);
         }
@@ -211,13 +217,6 @@ dh_book_init (DhBook *book)
         priv->monitor = NULL;
         priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
         priv->monitor_event_timeout_id = 0;
-}
-
-static void
-unref_node_link (GNode    *node,
-                 gpointer  data)
-{
-        dh_link_unref (node->data);
 }
 
 /**
