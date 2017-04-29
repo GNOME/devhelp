@@ -292,13 +292,7 @@ book_manager_load_books_disabled (DhBookManager *book_manager)
 static void
 dh_book_manager_init (DhBookManager *book_manager)
 {
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         DhSettings *settings;
-
-        priv->books = NULL;
-        priv->monitors = NULL;
-        priv->languages = NULL;
-        priv->books_disabled = NULL;
 
         book_manager_load_books_disabled (book_manager);
 
