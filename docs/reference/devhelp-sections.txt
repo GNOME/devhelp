@@ -99,7 +99,6 @@ DhBookManager
 dh_book_manager_new
 dh_book_manager_populate
 dh_book_manager_get_books
-dh_book_manager_get_languages
 dh_book_manager_get_group_by_language
 dh_book_manager_set_group_by_language
 <SUBSECTION Standard>

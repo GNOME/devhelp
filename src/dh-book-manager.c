@@ -871,27 +871,6 @@ book_manager_dec_language (DhBookManager *book_manager,
 }
 
 /**
- * dh_book_manager_get_languages:
- * @book_manager: a #DhBookManager object
- *
- * Get the #GList of languages.
- *
- * Returns: (element-type DhLanguage) (transfer none): the list of languages
- * Deprecated: 3.18: Not used anywhere
- */
-GList *
-dh_book_manager_get_languages (DhBookManager *book_manager)
-{
-        DhBookManagerPrivate *priv;
-
-        g_return_val_if_fail (book_manager, NULL);
-
-        priv = dh_book_manager_get_instance_private (book_manager);
-
-        return priv->languages;
-}
-
-/**
  * dh_book_manager_new:
  *
  * Returns: a new #DhBookManager object.
