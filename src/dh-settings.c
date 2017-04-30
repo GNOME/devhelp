@@ -29,6 +29,8 @@
 
 /* Provided by the gsettings-desktop-schemas module. */
 #define SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE    "org.gnome.desktop.interface"
+#define SYSTEM_FIXED_FONT_KEY                   "monospace-font-name"
+#define SYSTEM_VARIABLE_FONT_KEY                "font-name"
 
 struct _DhSettingsPrivate {
         GSettings *settings_window;
@@ -95,7 +97,7 @@ dh_settings_class_init (DhSettingsClass *klass)
 }
 
 static void
-fonts_changed_cb (GSettings *settings_fonts,
+fonts_changed_cb (GSettings *gsettings,
                   gchar     *key,
                   gpointer   user_data)
 {
@@ -125,6 +127,18 @@ dh_settings_init (DhSettings *self)
 
         g_signal_connect_object (self->priv->settings_fonts,
                                  "changed",
+                                 G_CALLBACK (fonts_changed_cb),
+                                 self,
+                                 0);
+
+        g_signal_connect_object (self->priv->settings_desktop_interface,
+                                 "changed::" SYSTEM_FIXED_FONT_KEY,
+                                 G_CALLBACK (fonts_changed_cb),
+                                 self,
+                                 0);
+
+        g_signal_connect_object (self->priv->settings_desktop_interface,
+                                 "changed::" SYSTEM_VARIABLE_FONT_KEY,
                                  G_CALLBACK (fonts_changed_cb),
                                  self,
                                  0);
@@ -196,9 +210,9 @@ dh_settings_get_selected_fonts (DhSettings  *self,
 
         if (use_system_font) {
                 *font_name_fixed = g_settings_get_string (self->priv->settings_desktop_interface,
-                                                          "monospace-font-name");
+                                                          SYSTEM_FIXED_FONT_KEY);
                 *font_name_variable = g_settings_get_string (self->priv->settings_desktop_interface,
-                                                             "font-name");
+                                                             SYSTEM_VARIABLE_FONT_KEY);
         } else {
                 *font_name_fixed = g_settings_get_string (self->priv->settings_fonts,
                                                           "fixed-font");
