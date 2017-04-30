@@ -569,31 +569,6 @@ dh_book_cmp_by_path (DhBook *a,
 }
 
 /**
- * dh_book_cmp_by_path_str:
- * @a: a #DhBook.
- * @b_path: a path to a book.
- *
- * Compares the paths of the #DhBook @a with @b_path.
- *
- * Returns: an integer less than, equal to, or greater than zero, if the path of
- * @a is <, == or > than @b_path.
- * Deprecated: 3.18: Use dh_book_cmp_by_path() instead.
- */
-gint
-dh_book_cmp_by_path_str (DhBook      *a,
-                         const gchar *b_path)
-{
-        DhBookPrivate *priv_a;
-
-        if (a == NULL)
-                return -1;
-
-        priv_a = dh_book_get_instance_private (a);
-
-        return g_strcmp0 (priv_a->path, b_path);
-}
-
-/**
  * dh_book_cmp_by_name:
  * @a: a #DhBook.
  * @b: a #DhBook.
@@ -620,34 +595,6 @@ dh_book_cmp_by_name (DhBook *a,
                 return -1;
 
         return g_ascii_strcasecmp (priv_a->name, priv_b->name);
-}
-
-/**
- * dh_book_cmp_by_name_str:
- * @a: a #DhBook object
- * @b_name: a path to a book
- *
- * Compare the name of the #DhBook a with @b_name.
- *
- * Returns: an integer less than, equal to, or greater than zero, if the name of
- * @a is <, == or > than @b_name.
- * Deprecated: 3.18: Use dh_book_cmp_by_name() instead.
- */
-gint
-dh_book_cmp_by_name_str (DhBook      *a,
-                         const gchar *b_name)
-{
-        DhBookPrivate *priv_a;
-
-        if (a == NULL)
-                return -1;
-
-        priv_a = dh_book_get_instance_private (a);
-
-        if (priv_a->name == NULL || b_name == NULL)
-                return -1;
-
-        return g_ascii_strcasecmp (priv_a->name, b_name);
 }
 
 /**
