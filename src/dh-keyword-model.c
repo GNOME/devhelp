@@ -981,15 +981,14 @@ set_keywords_list (DhKeywordModel *model,
  * dh_keyword_model_filter:
  * @model: a #DhKeywordModel.
  * @search_string: a search query.
- * @book_id: (nullable): the id of a specific book or %NULL for all books.
- * @language: (nullable): the name of a programming language or %NULL for all
- * languages.
+ * @book_id: (nullable): the ID of the book currently selected, or %NULL.
+ * @language: (nullable):
  *
- * Searches in the #DhBookManager the list of #DhLink's that correspond to the
- * given critera, and fills the @model with that list.
+ * Searches in the #DhBookManager the list of #DhLink's that correspond to
+ * @search_string, and fills the @model with that list.
  *
- * Returns: (nullable) (transfer none): the #DhLink that corresponds exactly to
- * the given criteria, or %NULL if there is no such #DhLink.
+ * Returns: (nullable) (transfer none): the #DhLink that matches exactly
+ * @search_string, or %NULL if there is no such #DhLink.
  */
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
