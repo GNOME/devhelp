@@ -43,8 +43,6 @@ struct _DhLanguageClass {
 
 GType        dh_language_get_type            (void) G_GNUC_CONST;
 DhLanguage  *dh_language_new                 (const gchar *name);
-G_DEPRECATED_FOR (g_object_unref)
-void         dh_language_free                (DhLanguage *language);
 const gchar *dh_language_get_name            (DhLanguage *language);
 gint         dh_language_compare             (DhLanguage *language_a,
                                               DhLanguage *language_b);

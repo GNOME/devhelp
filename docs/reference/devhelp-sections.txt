@@ -152,7 +152,6 @@ dh_keyword_model_get_type
 <TITLE>DhLanguage</TITLE>
 DhLanguage
 dh_language_new
-dh_language_free
 dh_language_get_name
 dh_language_compare
 dh_language_compare_by_name

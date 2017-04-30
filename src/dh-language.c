@@ -54,20 +54,6 @@ dh_language_init (DhLanguage *language)
 }
 
 /**
- * dh_language_free:
- * @language: a #DhLanguage object
- *
- * Free memory associated with the language.
- *
- * Deprecated: 3.24: Use g_object_unref() instead.
- */
-void
-dh_language_free (DhLanguage *language)
-{
-        g_object_unref (language);
-}
-
-/**
  * dh_language_new:
  * @name: the name of the language
  *
