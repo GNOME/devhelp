@@ -703,12 +703,12 @@ dh_book_tree_init (DhBookTree *tree)
  *
  * Returns: (transfer floating): a new #DhBookTree widget.
  */
-GtkWidget *
+DhBookTree *
 dh_book_tree_new (void)
 {
-        return GTK_WIDGET (g_object_new (DH_TYPE_BOOK_TREE,
-                                         "enable-search", FALSE,
-                                         NULL));
+        return g_object_new (DH_TYPE_BOOK_TREE,
+                             "enable-search", FALSE,
+                             NULL);
 }
 
 static gboolean

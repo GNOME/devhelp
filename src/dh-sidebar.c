@@ -659,7 +659,7 @@ dh_sidebar_constructed (GObject *object)
                                  sidebar,
                                  0);
 
-        priv->book_tree = DH_BOOK_TREE (dh_book_tree_new ());
+        priv->book_tree = dh_book_tree_new ();
         gtk_widget_show (GTK_WIDGET (priv->book_tree));
         g_signal_connect (priv->book_tree,
                           "link-selected",
