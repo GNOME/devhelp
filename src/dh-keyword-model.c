@@ -30,8 +30,6 @@
 #include "dh-util.h"
 
 typedef struct {
-        DhBookManager *book_manager;
-
         gchar *current_book_id;
 
         /* List of DhLink* */
@@ -74,16 +72,6 @@ G_DEFINE_TYPE_WITH_CODE (DhKeywordModel, dh_keyword_model, G_TYPE_OBJECT,
                                                 dh_keyword_model_tree_model_init));
 
 static void
-dh_keyword_model_dispose (GObject *object)
-{
-        DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (object));
-
-        g_clear_object (&priv->book_manager);
-
-        G_OBJECT_CLASS (dh_keyword_model_parent_class)->dispose (object);
-}
-
-static void
 dh_keyword_model_finalize (GObject *object)
 {
         DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (object));
@@ -99,7 +87,6 @@ dh_keyword_model_class_init (DhKeywordModelClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);;
 
-        object_class->dispose = dh_keyword_model_dispose;
         object_class->finalize = dh_keyword_model_finalize;
 }
 
@@ -366,27 +353,6 @@ dh_keyword_model_new (void)
         return g_object_new (DH_TYPE_KEYWORD_MODEL, NULL);
 }
 
-/**
- * dh_keyword_model_set_words:
- * @model: a #DhKeywordModel.
- * @book_manager: a #DhBookManager.
- *
- * Sets the #DhBookManager in which symbols are searched.
- */
-void
-dh_keyword_model_set_words (DhKeywordModel *model,
-                            DhBookManager  *book_manager)
-{
-        DhKeywordModelPrivate *priv;
-
-        g_return_if_fail (DH_IS_KEYWORD_MODEL (model));
-        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
-
-        priv = dh_keyword_model_get_instance_private (model);
-
-        priv->book_manager = g_object_ref (book_manager);
-}
-
 /* For each keyword, creates a DhKeywordGlobPattern with GPatternSpec's
  * allocated if there are any special glob characters ('*', '?') in the keyword.
  */
@@ -596,15 +562,14 @@ keyword_model_search_books (DhKeywordModel  *model,
                             guint            max_hits,
                             DhLink         **exact_link)
 {
-        DhKeywordModelPrivate *priv;
+        DhBookManager *book_manager;
         GQueue *ret;
         GList *l;
 
-        priv = dh_keyword_model_get_instance_private (model);
-
+        book_manager = dh_book_manager_get_singleton ();
         ret = g_queue_new ();
 
-        for (l = dh_book_manager_get_books (priv->book_manager);
+        for (l = dh_book_manager_get_books (book_manager);
              l != NULL && ret->length < max_hits;
              l = l->next) {
                 DhBook *book;

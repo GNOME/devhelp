@@ -670,8 +670,6 @@ dh_sidebar_constructed (GObject *object)
 
         sidebar_completion_populate (sidebar);
 
-        dh_keyword_model_set_words (priv->hitlist_model, priv->book_manager);
-
         G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed (object);
 }
 
