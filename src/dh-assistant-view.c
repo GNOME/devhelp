@@ -155,11 +155,9 @@ dh_assistant_view_init (DhAssistantView *view)
 /**
  * dh_assistant_view_new:
  *
- * Create a new #DhAssistantView object.
- *
- * Returns: a new #DhAssistantView object
+ * Returns: (transfer floating): a new #DhAssistantView widget.
  */
-GtkWidget*
+GtkWidget *
 dh_assistant_view_new (void)
 {
         return g_object_new (DH_TYPE_ASSISTANT_VIEW, NULL);
@@ -191,12 +189,12 @@ find_in_buffer (const gchar *buffer,
 
 /**
  * dh_assistant_view_set_link:
- * @view: a #DhAssistantView object
- * @link: (nullable): a #DhLink to set or %NULL
+ * @view: a #DhAssistantView.
+ * @link: (nullable): a #DhLink to set or %NULL.
  *
  * Open @link in the assistant view, if %NULL the view will be blanked.
  *
- * Returns: %TRUE if the requested link is open, %FALSE otherwise
+ * Returns: %TRUE if the requested link is open, %FALSE otherwise.
  */
 gboolean
 dh_assistant_view_set_link (DhAssistantView *view,
@@ -418,12 +416,12 @@ dh_assistant_view_set_link (DhAssistantView *view,
 
 /**
  * dh_assistant_view_search:
- * @view: a #DhAssistantView object
- * @str: the search query
+ * @view: a #DhAssistantView.
+ * @str: the search query.
  *
  * Search for @str in the current assistant view.
  *
- * Returns: %TRUE if @str was found, %FALSE otherwise
+ * Returns: %TRUE if @str was found, %FALSE otherwise.
  */
 gboolean
 dh_assistant_view_search (DhAssistantView *view,
@@ -509,10 +507,10 @@ dh_assistant_view_search (DhAssistantView *view,
 
 /**
  * dh_assistant_view_set_book_manager:
- * @view: a #DhAssistantView object
- * @book_manager: the new book manager
+ * @view: a #DhAssistantView.
+ * @book_manager: the #DhBookManager.
  *
- * Set a new book manager to search in.
+ * Set the #DhBookManager to search in.
  */
 void
 dh_assistant_view_set_book_manager (DhAssistantView *view,
