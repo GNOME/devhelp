@@ -28,11 +28,7 @@
 #include "devhelp.h"
 #include "dh-preferences.h"
 
-typedef struct {
-        DhBookManager *book_manager;
-} DhAppPrivate;
-
-G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
+G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
 /**
  * dh_app_peek_book_manager:
@@ -45,13 +41,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 DhBookManager *
 dh_app_peek_book_manager (DhApp *app)
 {
-        DhAppPrivate *priv;
-
-        g_return_val_if_fail (DH_IS_APP (app), NULL);
-
-        priv = dh_app_get_instance_private (app);
-
-        return priv->book_manager;
+        return dh_book_manager_get_singleton ();
 }
 
 /**
@@ -469,7 +459,6 @@ static void
 dh_app_startup (GApplication *application)
 {
         DhApp *app = DH_APP (application);
-        DhAppPrivate *priv = dh_app_get_instance_private (app);
 
         g_application_set_resource_base_path (application, "/org/gnome/devhelp");
 
@@ -506,8 +495,6 @@ dh_app_startup (GApplication *application)
 
         /* Setup accelerators */
         setup_accelerators (app);
-
-        priv->book_manager = dh_book_manager_new ();
 }
 
 static void
@@ -622,26 +609,12 @@ dh_app_init (DhApp *app)
 }
 
 static void
-dh_app_dispose (GObject *object)
-{
-        DhApp *app = DH_APP (object);
-        DhAppPrivate *priv = dh_app_get_instance_private (app);
-
-        g_clear_object (&priv->book_manager);
-
-        G_OBJECT_CLASS (dh_app_parent_class)->dispose (object);
-}
-
-static void
 dh_app_class_init (DhAppClass *klass)
 {
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
 
         application_class->startup = dh_app_startup;
         application_class->activate = dh_app_activate;
         application_class->handle_local_options = dh_app_handle_local_options;
         application_class->command_line = dh_app_command_line;
-
-        object_class->dispose = dh_app_dispose;
 }
