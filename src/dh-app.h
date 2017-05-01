@@ -21,8 +21,6 @@
 
 #include <gtk/gtk.h>
 
-#include "dh-book-manager.h"
-
 G_BEGIN_DECLS
 
 #define DH_TYPE_APP         (dh_app_get_type ())
@@ -47,7 +45,6 @@ GType dh_app_get_type (void) G_GNUC_CONST;
 
 DhApp         *dh_app_new               (void);
 
-DhBookManager *dh_app_peek_book_manager (DhApp *app);
 GtkWindow     *dh_app_peek_first_window (DhApp *app);
 GtkWindow     *dh_app_peek_assistant    (DhApp *app);
 

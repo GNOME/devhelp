@@ -9,7 +9,6 @@ dh_init
 <TITLE>DhApp</TITLE>
 DhApp
 dh_app_new
-dh_app_peek_book_manager
 dh_app_peek_first_window
 dh_app_peek_assistant
 dh_app_new_window

@@ -31,20 +31,6 @@
 G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
 /**
- * dh_app_peek_book_manager:
- * @app: a #DhApp object
- *
- * Get the associated #DhBookManager.
- *
- * Returns: (transfer none): the book manager associated with this
- */
-DhBookManager *
-dh_app_peek_book_manager (DhApp *app)
-{
-        return dh_book_manager_get_singleton ();
-}
-
-/**
  * dh_app_peek_first_window:
  * @app: a #DhApp object
  *
