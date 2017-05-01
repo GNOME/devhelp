@@ -21,7 +21,6 @@
 
 #include <gtk/gtk.h>
 #include "dh-link.h"
-#include "dh-book-manager.h"
 
 G_BEGIN_DECLS
 
@@ -43,7 +42,7 @@ struct _DhBookTreeClass {
 };
 
 GType        dh_book_tree_get_type          (void) G_GNUC_CONST;
-GtkWidget *  dh_book_tree_new               (DhBookManager *book_manager);
+GtkWidget *  dh_book_tree_new               (void);
 void         dh_book_tree_select_uri        (DhBookTree    *tree,
                                              const gchar   *uri);
 DhLink      *dh_book_tree_get_selected_book (DhBookTree    *tree);
