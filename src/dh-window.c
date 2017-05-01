@@ -813,14 +813,10 @@ window_web_view_switch_page_after_cb (GtkNotebook *notebook,
 static void
 window_populate (DhWindow *window)
 {
-        DhWindowPrivate *priv;
-        DhBookManager *book_manager;
-
-        priv = dh_window_get_instance_private (window);
-        book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
         /* Sidebar */
-        priv->sidebar = DH_SIDEBAR (dh_sidebar_new (book_manager));
+        priv->sidebar = DH_SIDEBAR (dh_sidebar_new (NULL));
         gtk_widget_set_vexpand (GTK_WIDGET (priv->sidebar), TRUE);
         gtk_widget_set_hexpand (GTK_WIDGET (priv->sidebar), TRUE);
         gtk_widget_show (GTK_WIDGET (priv->sidebar));
