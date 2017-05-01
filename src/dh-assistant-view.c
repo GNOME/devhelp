@@ -163,6 +163,27 @@ dh_assistant_view_new (void)
         return g_object_new (DH_TYPE_ASSISTANT_VIEW, NULL);
 }
 
+/**
+ * dh_assistant_view_set_book_manager:
+ * @view: a #DhAssistantView.
+ * @book_manager: the #DhBookManager.
+ *
+ * Set the #DhBookManager to search in.
+ */
+void
+dh_assistant_view_set_book_manager (DhAssistantView *view,
+                                    DhBookManager   *book_manager)
+{
+        DhAssistantViewPrivate *priv;
+
+        g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
+        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
+
+        priv = dh_assistant_view_get_instance_private (view);
+
+        priv->book_manager = g_object_ref (book_manager);
+}
+
 static const gchar *
 find_in_buffer (const gchar *buffer,
                 const gchar *key,
@@ -503,25 +524,4 @@ dh_assistant_view_search (DhAssistantView *view,
         }
 
         return TRUE;
-}
-
-/**
- * dh_assistant_view_set_book_manager:
- * @view: a #DhAssistantView.
- * @book_manager: the #DhBookManager.
- *
- * Set the #DhBookManager to search in.
- */
-void
-dh_assistant_view_set_book_manager (DhAssistantView *view,
-                                    DhBookManager   *book_manager)
-{
-        DhAssistantViewPrivate *priv;
-
-        g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
-        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
-
-        priv = dh_assistant_view_get_instance_private (view);
-
-        priv->book_manager = g_object_ref (book_manager);
 }
