@@ -78,6 +78,7 @@ static void    book_manager_inc_language      (DhBookManager *book_manager,
                                                const gchar   *language_name);
 static void    book_manager_dec_language      (DhBookManager *book_manager,
                                                const gchar   *language_name);
+static void    populate                       (DhBookManager *book_manager);
 
 static void
 dh_book_manager_get_property (GObject    *object,
@@ -302,6 +303,8 @@ dh_book_manager_init (DhBookManager *book_manager)
                          book_manager,
                          "group-by-language",
                          G_SETTINGS_BIND_DEFAULT);
+
+        populate (book_manager);
 }
 
 static void
@@ -364,15 +367,8 @@ book_manager_add_books_in_data_dir (DhBookManager *book_manager,
         g_free (dir);
 }
 
-/**
- * dh_book_manager_populate:
- * @book_manager: a #DhBookManager.
- *
- * Populates the #DhBookManager with all books found on the system and user
- * directories.
- */
-void
-dh_book_manager_populate (DhBookManager *book_manager)
+static void
+populate (DhBookManager *book_manager)
 {
         const gchar * const * system_dirs;
 
@@ -385,6 +381,21 @@ dh_book_manager_populate (DhBookManager *book_manager)
                                                     *system_dirs);
                 system_dirs++;
         }
+}
+
+/**
+ * dh_book_manager_populate:
+ * @book_manager: a #DhBookManager.
+ *
+ * Populates the #DhBookManager with all books found on the system and user
+ * directories.
+ *
+ * Deprecated: 3.26: The #DhBookManager is now automatically populated when the
+ * object is created, there is no need to call this function anymore.
+ */
+void
+dh_book_manager_populate (DhBookManager *book_manager)
+{
 }
 
 static gchar *

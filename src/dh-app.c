@@ -507,9 +507,7 @@ dh_app_startup (GApplication *application)
         /* Setup accelerators */
         setup_accelerators (app);
 
-        /* Load the book manager */
         priv->book_manager = dh_book_manager_new ();
-        dh_book_manager_populate (priv->book_manager);
 }
 
 static void
