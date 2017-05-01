@@ -807,12 +807,14 @@ dh_book_manager_init (DhBookManager *book_manager)
 /**
  * dh_book_manager_new:
  *
- * Returns: a new #DhBookManager object.
+ * Returns: (transfer full): the #DhBookManager singleton instance. You need to
+ * unref it when no longer needed.
+ * Deprecated: 3.26: Call dh_book_manager_get_singleton() instead.
  */
 DhBookManager *
 dh_book_manager_new (void)
 {
-        return g_object_new (DH_TYPE_BOOK_MANAGER, NULL);
+        return g_object_ref (dh_book_manager_get_singleton ());
 }
 
 /**
