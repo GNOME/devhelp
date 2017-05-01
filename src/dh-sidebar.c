@@ -512,7 +512,8 @@ static void
 dh_sidebar_init (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv;
-        GtkCellRenderer  *cell;
+        GtkCellRenderer *cell;
+        DhBookManager *book_manager;
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
@@ -573,27 +574,6 @@ dh_sidebar_init (DhSidebar *sidebar)
                            GTK_WIDGET (priv->hitlist_view));
         gtk_box_pack_start (GTK_BOX (sidebar), GTK_WIDGET (priv->sw_hitlist), TRUE, TRUE, 0);
 
-        /* Setup the book tree */
-        priv->sw_book_tree = GTK_SCROLLED_WINDOW (gtk_scrolled_window_new (NULL, NULL));
-        gtk_widget_show (GTK_WIDGET (priv->sw_book_tree));
-        gtk_widget_set_no_show_all (GTK_WIDGET (priv->sw_book_tree), TRUE);
-        gtk_scrolled_window_set_policy (priv->sw_book_tree,
-                                        GTK_POLICY_NEVER,
-                                        GTK_POLICY_AUTOMATIC);
-
-        gtk_widget_show_all (GTK_WIDGET (sidebar));
-}
-
-/* TODO the code of this function can be moved to init(), we now have the
- * book_manager directly.
- */
-static void
-dh_sidebar_constructed (GObject *object)
-{
-        DhSidebar *sidebar = DH_SIDEBAR (object);
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-        DhBookManager *book_manager;
-
         /* Setup book manager */
         book_manager = dh_book_manager_get_singleton ();
 
@@ -621,6 +601,14 @@ dh_sidebar_constructed (GObject *object)
                                  sidebar,
                                  0);
 
+        /* Setup the book tree */
+        priv->sw_book_tree = GTK_SCROLLED_WINDOW (gtk_scrolled_window_new (NULL, NULL));
+        gtk_widget_show (GTK_WIDGET (priv->sw_book_tree));
+        gtk_widget_set_no_show_all (GTK_WIDGET (priv->sw_book_tree), TRUE);
+        gtk_scrolled_window_set_policy (priv->sw_book_tree,
+                                        GTK_POLICY_NEVER,
+                                        GTK_POLICY_AUTOMATIC);
+
         priv->book_tree = dh_book_tree_new ();
         gtk_widget_show (GTK_WIDGET (priv->book_tree));
         g_signal_connect (priv->book_tree,
@@ -632,7 +620,7 @@ dh_sidebar_constructed (GObject *object)
 
         sidebar_completion_populate (sidebar);
 
-        G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed (object);
+        gtk_widget_show_all (GTK_WIDGET (sidebar));
 }
 
 static void
@@ -642,7 +630,6 @@ dh_sidebar_class_init (DhSidebarClass *klass)
 
         object_class->dispose = dh_sidebar_dispose;
         object_class->finalize = dh_sidebar_finalize;
-        object_class->constructed = dh_sidebar_constructed;
 
         /**
          * DhSidebar::link-selected:
