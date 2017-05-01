@@ -49,9 +49,6 @@ GType           dh_assistant_view_get_type              (void) G_GNUC_CONST;
 
 GtkWidget *     dh_assistant_view_new                   (void);
 
-void            dh_assistant_view_set_book_manager      (DhAssistantView *view,
-                                                         DhBookManager   *book_manager);
-
 gboolean        dh_assistant_view_set_link              (DhAssistantView *view,
                                                          DhLink          *link);
 

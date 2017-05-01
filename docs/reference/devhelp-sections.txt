@@ -50,7 +50,6 @@ dh_assistant_get_type
 <TITLE>DhAssistantView</TITLE>
 DhAssistantView
 dh_assistant_view_new
-dh_assistant_view_set_book_manager
 dh_assistant_view_set_link
 dh_assistant_view_search
 <SUBSECTION Standard>

@@ -25,12 +25,12 @@
 #include <glib/gi18n-lib.h>
 #include "dh-util.h"
 #include "dh-book.h"
+#include "dh-book-manager.h"
 
 typedef struct {
-        DhBookManager *book_manager;
-        DhLink        *link;
-        gchar         *current_search;
-        guint          snippet_loaded : 1;
+        DhLink *link;
+        gchar *current_search;
+        guint snippet_loaded : 1;
 } DhAssistantViewPrivate;
 
 enum {
@@ -50,10 +50,6 @@ view_finalize (GObject *object)
 
         if (priv->link) {
                 g_object_unref (priv->link);
-        }
-
-        if (priv->book_manager) {
-                g_object_unref (priv->book_manager);
         }
 
         g_free (priv->current_search);
@@ -161,27 +157,6 @@ GtkWidget *
 dh_assistant_view_new (void)
 {
         return g_object_new (DH_TYPE_ASSISTANT_VIEW, NULL);
-}
-
-/**
- * dh_assistant_view_set_book_manager:
- * @view: a #DhAssistantView.
- * @book_manager: the #DhBookManager.
- *
- * Set the #DhBookManager to search in.
- */
-void
-dh_assistant_view_set_book_manager (DhAssistantView *view,
-                                    DhBookManager   *book_manager)
-{
-        DhAssistantViewPrivate *priv;
-
-        g_return_if_fail (DH_IS_ASSISTANT_VIEW (view));
-        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
-
-        priv = dh_assistant_view_get_instance_private (view);
-
-        priv->book_manager = g_object_ref (book_manager);
 }
 
 static const gchar *
@@ -444,6 +419,7 @@ dh_assistant_view_search (DhAssistantView *view,
                           const gchar     *str)
 {
         DhAssistantViewPrivate *priv;
+        DhBookManager       *book_manager;
         const gchar         *name;
         DhLink              *link;
         DhLink              *exact_link;
@@ -469,7 +445,9 @@ dh_assistant_view_search (DhAssistantView *view,
         prefix_link = NULL;
         exact_link = NULL;
 
-        for (books = dh_book_manager_get_books (priv->book_manager);
+        book_manager = dh_book_manager_get_singleton ();
+
+        for (books = dh_book_manager_get_books (book_manager);
              !exact_link && books;
              books = g_list_next (books)) {
                 GList *l;

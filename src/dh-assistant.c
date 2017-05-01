@@ -114,16 +114,9 @@ dh_assistant_init (DhAssistant *assistant)
 GtkWidget *
 dh_assistant_new (DhApp *application)
 {
-        GtkWidget          *assistant;
-        DhAssistantPrivate *priv;
-
-        assistant = g_object_new (DH_TYPE_ASSISTANT, "application", application, NULL);
-
-        priv = dh_assistant_get_instance_private (DH_ASSISTANT (assistant));
-        dh_assistant_view_set_book_manager (DH_ASSISTANT_VIEW (priv->view),
-                                            dh_app_peek_book_manager (application));
-
-        return assistant;
+        return g_object_new (DH_TYPE_ASSISTANT,
+                             "application", application,
+                             NULL);
 }
 
 /**
