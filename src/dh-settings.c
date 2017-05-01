@@ -71,7 +71,8 @@ dh_settings_dispose (GObject *object)
 static void
 dh_settings_finalize (GObject *object)
 {
-        singleton = NULL;
+        if (singleton == DH_SETTINGS (object))
+                singleton = NULL;
 
         G_OBJECT_CLASS (dh_settings_parent_class)->finalize (object);
 }
