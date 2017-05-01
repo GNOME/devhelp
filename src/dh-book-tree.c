@@ -586,53 +586,6 @@ book_tree_group_by_language_cb (GObject    *object,
         book_tree_populate_tree (tree);
 }
 
-/* TODO move the code in this function in init(), we have now access to the
- * book_manager directly.
- */
-static void
-dh_book_tree_constructed (GObject *object)
-{
-        DhBookTree *tree = DH_BOOK_TREE (object);
-        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhBookManager *book_manager;
-
-        book_manager = dh_book_manager_get_singleton ();
-
-        g_signal_connect_object (book_manager,
-                                 "book-created",
-                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
-                                 tree,
-                                 0);
-
-        g_signal_connect_object (book_manager,
-                                 "book-enabled",
-                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
-                                 tree,
-                                 0);
-
-        g_signal_connect_object (book_manager,
-                                 "book-deleted",
-                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
-                                 tree,
-                                 0);
-
-        g_signal_connect_object (book_manager,
-                                 "book-disabled",
-                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
-                                 tree,
-                                 0);
-
-        g_signal_connect_object (book_manager,
-                                 "notify::group-by-language",
-                                 G_CALLBACK (book_tree_group_by_language_cb),
-                                 tree,
-                                 0);
-
-        book_tree_populate_tree (tree);
-
-        G_OBJECT_CLASS (dh_book_tree_parent_class)->constructed (object);
-}
-
 static void
 dh_book_tree_dispose (GObject *object)
 {
@@ -648,7 +601,6 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-        object_class->constructed = dh_book_tree_constructed;
         object_class->dispose = dh_book_tree_dispose;
 
         /**
@@ -692,6 +644,7 @@ static void
 dh_book_tree_init (DhBookTree *tree)
 {
         DhBookTreePrivate *priv;
+        DhBookManager *book_manager;
 
         priv = dh_book_tree_get_instance_private (tree);
 
@@ -709,6 +662,40 @@ dh_book_tree_init (DhBookTree *tree)
 
         book_tree_add_columns (tree);
         book_tree_setup_selection (tree);
+
+        book_manager = dh_book_manager_get_singleton ();
+
+        g_signal_connect_object (book_manager,
+                                 "book-created",
+                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (book_manager,
+                                 "book-enabled",
+                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (book_manager,
+                                 "book-deleted",
+                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (book_manager,
+                                 "book-disabled",
+                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (book_manager,
+                                 "notify::group-by-language",
+                                 G_CALLBACK (book_tree_group_by_language_cb),
+                                 tree,
+                                 0);
+
+        book_tree_populate_tree (tree);
 }
 
 /**
