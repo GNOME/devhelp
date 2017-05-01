@@ -24,6 +24,7 @@
 #include <gtk/gtk.h>
 
 #include "dh-app.h"
+#include "dh-book-manager.h"
 #include "dh-settings.h"
 
 int
@@ -45,6 +46,7 @@ main (int argc, char **argv)
 
         g_object_unref (application);
 
+        dh_book_manager_free_singleton ();
         dh_settings_free_singleton ();
 
         return status;
