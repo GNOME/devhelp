@@ -901,7 +901,7 @@ find_library_equivalent (DhWindow    *window,
                 return NULL;
         }
 
-        book_manager = dh_app_peek_book_manager (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
+        book_manager = dh_book_manager_get_singleton ();
 
         for (books = dh_book_manager_get_books (book_manager);
              local_uri == NULL && books != NULL;
