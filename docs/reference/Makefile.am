@@ -48,6 +48,7 @@ IGNORE_HFILES = \
 	dh-app.h \
 	dh-assistant.h \
 	dh-enum-types.h \
+	dh-enum-types-app.h \
 	dh-error.h \
 	dh-parser.h \
 	dh-preferences.h \

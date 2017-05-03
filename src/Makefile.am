@@ -63,15 +63,36 @@ libdevhelp_built_public_c_files =	\
 	dh-enum-types.c			\
 	$(NULL)
 
-app_c_files =		\
-	dh-main.c	\
-	$(NULL)
-
-BUILT_SOURCES = 				\
+libdevhelp_built_sources =			\
 	$(libdevhelp_built_public_headers)	\
 	$(libdevhelp_built_public_c_files)	\
 	dh-resources.c	 			\
 	dh-resources.h 				\
+	$(NULL)
+
+app_headers =		\
+	$(NULL)
+
+app_c_files =		\
+	dh-main.c	\
+	$(NULL)
+
+app_built_headers =		\
+	dh-enum-types-app.h	\
+	$(NULL)
+
+app_built_c_files =		\
+	dh-enum-types-app.c	\
+	$(NULL)
+
+app_built_sources =		\
+	$(app_built_headers)	\
+	$(app_built_c_files)	\
+	$(NULL)
+
+BUILT_SOURCES = 			\
+	$(libdevhelp_built_sources)	\
+	$(app_built_sources)		\
 	$(NULL)
 
 # The library
@@ -89,7 +110,7 @@ libdevhelp_3_la_SOURCES =		\
 
 # Do not distribute generated files.
 nodist_libdevhelp_3_la_SOURCES =	\
-	$(BUILT_SOURCES)
+	$(libdevhelp_built_sources)
 
 libdevhelp_3_la_CPPFLAGS =	\
 	$(AM_CPPFLAGS)		\
@@ -114,8 +135,12 @@ libdevhelp_3_la_LDFLAGS =								\
 bin_PROGRAMS = devhelp
 
 devhelp_SOURCES =	\
+	$(app_headers)	\
 	$(app_c_files)	\
 	$(NULL)
+
+nodist_devhelp_SOURCES =	\
+	$(app_built_sources)
 
 devhelp_CPPFLAGS =	\
 	$(AM_CPPFLAGS)
@@ -142,9 +167,17 @@ dh-enum-types.h: dh-enum-types.h.template $(libdevhelp_public_headers) $(GLIB_MK
 dh-enum-types.c: dh-enum-types.c.template $(libdevhelp_public_headers) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.c.template $(libdevhelp_public_headers)) > $@
 
+dh-enum-types-app.h: dh-enum-types-app.h.template $(app_headers) $(GLIB_MKENUMS)
+	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types-app.h.template $(app_headers)) > $@
+
+dh-enum-types-app.c: dh-enum-types-app.c.template $(app_headers) $(GLIB_MKENUMS)
+	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types-app.c.template $(app_headers)) > $@
+
 EXTRA_DIST =				\
 	dh-enum-types.c.template	\
 	dh-enum-types.h.template	\
+	dh-enum-types-app.c.template	\
+	dh-enum-types-app.h.template	\
 	dh.gresource.xml		\
 	$(resource_files)		\
 	$(NULL)
