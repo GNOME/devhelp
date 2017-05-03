@@ -28,23 +28,6 @@ dh_app_get_type
 </SECTION>
 
 <SECTION>
-<FILE>dh-assistant</FILE>
-<TITLE>DhAssistant</TITLE>
-DhAssistant
-dh_assistant_new
-dh_assistant_search
-<SUBSECTION Standard>
-DhAssistantClass
-DH_ASSISTANT
-DH_ASSISTANT_CLASS
-DH_ASSISTANT_GET_CLASS
-DH_IS_ASSISTANT
-DH_IS_ASSISTANT_CLASS
-DH_TYPE_ASSISTANT
-dh_assistant_get_type
-</SECTION>
-
-<SECTION>
 <FILE>dh-assistant-view</FILE>
 <TITLE>DhAssistantView</TITLE>
 DhAssistantView

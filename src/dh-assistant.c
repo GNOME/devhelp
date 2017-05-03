@@ -103,14 +103,6 @@ dh_assistant_init (DhAssistant *assistant)
                                          FALSE);
 }
 
-/**
- * dh_assistant_new:
- * @application: the parent #DhApp
- *
- * Create a new #DhAssistant object.
- *
- * Returns: a new #DhAssistant object
- */
 GtkWidget *
 dh_assistant_new (DhApp *application)
 {
@@ -119,15 +111,6 @@ dh_assistant_new (DhApp *application)
                              NULL);
 }
 
-/**
- * dh_assistant_search:
- * @assistant: a #DhAssistant object
- * @str: the search query
- *
- * Search for @str in the current assistant.
- *
- * Returns: %TRUE if @str was found, %FALSE otherwise
- */
 gboolean
 dh_assistant_search (DhAssistant *assistant,
                      const gchar *str)
