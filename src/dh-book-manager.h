@@ -54,8 +54,8 @@ DhBookManager *dh_book_manager_new                   (void);
 G_DEPRECATED
 void           dh_book_manager_populate              (DhBookManager *book_manager);
 
-/* Normally private */
-void           dh_book_manager_free_singleton       (void);
+G_GNUC_INTERNAL
+void           _dh_book_manager_free_singleton       (void);
 
 G_END_DECLS
 

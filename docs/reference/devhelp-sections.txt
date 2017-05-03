@@ -70,8 +70,6 @@ DH_IS_BOOK_MANAGER
 DH_IS_BOOK_MANAGER_CLASS
 DH_TYPE_BOOK_MANAGER
 dh_book_manager_get_type
-<SUBSECTION Private>
-dh_book_manager_free_singleton
 </SECTION>
 
 <SECTION>

@@ -54,6 +54,6 @@ dh_init (void)
 void
 dh_free_resources (void)
 {
-        dh_book_manager_free_singleton ();
-        dh_settings_free_singleton ();
+        _dh_book_manager_free_singleton ();
+        _dh_settings_free_singleton ();
 }

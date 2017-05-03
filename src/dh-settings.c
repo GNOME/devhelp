@@ -155,7 +155,7 @@ dh_settings_get_singleton (void)
 }
 
 void
-dh_settings_free_singleton (void)
+_dh_settings_free_singleton (void)
 {
         if (singleton != NULL)
                 g_object_unref (singleton);

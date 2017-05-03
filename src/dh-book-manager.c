@@ -832,7 +832,7 @@ dh_book_manager_get_singleton (void)
 }
 
 void
-dh_book_manager_free_singleton (void)
+_dh_book_manager_free_singleton (void)
 {
         if (singleton != NULL)
                 g_object_unref (singleton);
