@@ -1,24 +1,3 @@
-
-resource_files = $(shell glib-compile-resources --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/dh.gresource.xml)
-dh-resources.c: dh.gresource.xml $(resource_files)
-	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-source --c-name dh $(srcdir)/dh.gresource.xml
-dh-resources.h: dh.gresource.xml $(resource_files)
-	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-header --c-name dh $(srcdir)/dh.gresource.xml
-
-BUILT_SOURCES = 		\
-	dh-enum-types.c		\
-	dh-enum-types.h		\
-	dh-resources.c	 	\
-	dh-resources.h 		\
-	$(NULL)
-
-EXTRA_DIST =				\
-	dh-enum-types.c.template	\
-	dh-enum-types.h.template	\
-	dh.gresource.xml		\
-	$(resource_files)		\
-	$(NULL)
-
 AM_CPPFLAGS = 						\
 	-I$(top_srcdir)					\
 	-DLOCALEDIR=\""$(localedir)"\" 	  		\
@@ -29,26 +8,6 @@ AM_CPPFLAGS = 						\
 
 AM_LDFLAGS =						\
 	$(WARN_LDFLAGS)
-
-bin_PROGRAMS = devhelp
-
-devhelp_SOURCES =					\
-	dh-main.c
-
-devhelp_CPPFLAGS =					\
-	$(AM_CPPFLAGS)
-
-devhelp_CFLAGS =					\
-	$(DEVHELP_CFLAGS)
-
-devhelp_LDADD = 					\
-	$(DEVHELP_LIBS)					\
-        libdevhelp-3.la
-
-devhelp_LDFLAGS =					\
-	$(AM_LDFLAGS)
-
-lib_LTLIBRARIES = libdevhelp-3.la
 
 libdevhelp_public_headers =		\
 	devhelp.h			\
@@ -62,7 +21,8 @@ libdevhelp_public_headers =		\
 	dh-language.h			\
 	dh-link.h			\
 	dh-sidebar.h			\
-	dh-window.h
+	dh-window.h			\
+	$(NULL)
 
 libdevhelp_public_c_files =		\
 	dh-app.c			\
@@ -76,53 +36,105 @@ libdevhelp_public_c_files =		\
 	dh-language.c			\
 	dh-link.c			\
 	dh-sidebar.c			\
-	dh-window.c
+	dh-window.c			\
+	$(NULL)
 
 libdevhelp_private_headers =		\
 	dh-error.h			\
 	dh-parser.h			\
 	dh-preferences.h		\
 	dh-settings.h			\
-	dh-util.h
+	dh-util.h			\
+	$(NULL)
 
 libdevhelp_private_c_files =		\
 	dh-error.c			\
 	dh-parser.c			\
 	dh-preferences.c		\
 	dh-util.c			\
-	dh-settings.c
+	dh-settings.c			\
+	$(NULL)
+
+libdevhelp_built_public_headers =	\
+	dh-enum-types.h			\
+	$(NULL)
+
+libdevhelp_built_public_c_files =	\
+	dh-enum-types.c			\
+	$(NULL)
+
+app_c_files =		\
+	dh-main.c	\
+	$(NULL)
+
+BUILT_SOURCES = 				\
+	$(libdevhelp_built_public_headers)	\
+	$(libdevhelp_built_public_c_files)	\
+	dh-resources.c	 			\
+	dh-resources.h 				\
+	$(NULL)
+
+# The library
+lib_LTLIBRARIES = libdevhelp-3.la
 
 devhelpincludedir = $(includedir)/devhelp-3.0/devhelp
 devhelpinclude_HEADERS = $(libdevhelp_public_headers)
+nodist_devhelpinclude_HEADERS = $(libdevhelp_built_public_headers)
 
-libdevhelp_3_la_SOURCES =			\
-	$(libdevhelp_public_headers)		\
-	$(libdevhelp_public_c_files)		\
-	$(libdevhelp_private_headers)		\
+libdevhelp_3_la_SOURCES =		\
+	$(libdevhelp_public_headers)	\
+	$(libdevhelp_public_c_files)	\
+	$(libdevhelp_private_headers)	\
 	$(libdevhelp_private_c_files)
 
-# do not distribute generated files
-nodist_libdevhelp_3_la_SOURCES =			\
+# Do not distribute generated files.
+nodist_libdevhelp_3_la_SOURCES =	\
 	$(BUILT_SOURCES)
 
-libdevhelp_3_la_CPPFLAGS =				\
-	$(AM_CPPFLAGS)					\
+libdevhelp_3_la_CPPFLAGS =	\
+	$(AM_CPPFLAGS)		\
 	$(ZLIB_CPPFLAGS)
 
-libdevhelp_3_la_CFLAGS =				\
+libdevhelp_3_la_CFLAGS =	\
 	$(DEVHELP_CFLAGS)
 
-libdevhelp_3_la_LIBADD =				\
-	$(DEVHELP_LIBS)					\
-	$(ZLIB_LIBS)					\
+libdevhelp_3_la_LIBADD =	\
+	$(DEVHELP_LIBS)		\
+	$(ZLIB_LIBS)		\
 	$(LIBM)
 
-libdevhelp_3_la_LDFLAGS =				\
-	$(AM_LDFLAGS)					\
-	-no-undefined					\
-	-version-info ${LIBDEVHELP_CURRENT}:${LIBDEVHELP_REVISION}:${LIBDEVHELP_AGE} \
-	-export-symbols-regex ^dh_ \
+libdevhelp_3_la_LDFLAGS =								\
+	$(AM_LDFLAGS)									\
+	-no-undefined									\
+	-version-info ${LIBDEVHELP_CURRENT}:${LIBDEVHELP_REVISION}:${LIBDEVHELP_AGE}	\
+	-export-symbols-regex ^dh_							\
 	$(ZLIB_LDFLAGS)
+
+# The application
+bin_PROGRAMS = devhelp
+
+devhelp_SOURCES =	\
+	$(app_c_files)	\
+	$(NULL)
+
+devhelp_CPPFLAGS =	\
+	$(AM_CPPFLAGS)
+
+devhelp_CFLAGS =		\
+	$(DEVHELP_CFLAGS)
+
+devhelp_LDADD = 		\
+	$(DEVHELP_LIBS)		\
+        libdevhelp-3.la
+
+devhelp_LDFLAGS =	\
+	$(AM_LDFLAGS)
+
+resource_files = $(shell glib-compile-resources --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/dh.gresource.xml)
+dh-resources.c: dh.gresource.xml $(resource_files)
+	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-source --c-name dh $(srcdir)/dh.gresource.xml
+dh-resources.h: dh.gresource.xml $(resource_files)
+	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-header --c-name dh $(srcdir)/dh.gresource.xml
 
 dh-enum-types.h: dh-enum-types.h.template $(libdevhelp_public_headers) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.h.template $(libdevhelp_public_headers)) > $@
@@ -130,8 +142,16 @@ dh-enum-types.h: dh-enum-types.h.template $(libdevhelp_public_headers) $(GLIB_MK
 dh-enum-types.c: dh-enum-types.c.template $(libdevhelp_public_headers) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.c.template $(libdevhelp_public_headers)) > $@
 
+EXTRA_DIST =				\
+	dh-enum-types.c.template	\
+	dh-enum-types.h.template	\
+	dh.gresource.xml		\
+	$(resource_files)		\
+	$(NULL)
+
 CLEANFILES = $(BUILT_SOURCES)
 
+# GObject Introspection
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS =
 INTROSPECTION_SCANNER_ARGS =			\
@@ -164,6 +184,6 @@ typelibdir = $(libdir)/girepository-1.0
 typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
 
 CLEANFILES += $(gir_DATA) $(typelib_DATA)
-endif
+endif # HAVE_INTROSPECTION
 
 -include $(top_srcdir)/git.mk
