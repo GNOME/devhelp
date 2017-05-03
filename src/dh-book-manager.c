@@ -821,6 +821,7 @@ dh_book_manager_new (void)
  * dh_book_manager_get_singleton:
  *
  * Returns: (transfer none): the #DhBookManager singleton instance.
+ * Since: 3.26
  */
 DhBookManager *
 dh_book_manager_get_singleton (void)
