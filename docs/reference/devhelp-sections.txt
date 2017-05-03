@@ -5,29 +5,6 @@ dh_init
 </SECTION>
 
 <SECTION>
-<FILE>dh-app</FILE>
-<TITLE>DhApp</TITLE>
-DhApp
-dh_app_new
-dh_app_peek_first_window
-dh_app_peek_assistant
-dh_app_new_window
-dh_app_quit
-dh_app_search
-dh_app_search_assistant
-dh_app_raise
-<SUBSECTION Standard>
-DhAppClass
-DH_APP
-DH_APP_CLASS
-DH_APP_GET_CLASS
-DH_IS_APP
-DH_IS_APP_CLASS
-DH_TYPE_APP
-dh_app_get_type
-</SECTION>
-
-<SECTION>
 <FILE>dh-assistant-view</FILE>
 <TITLE>DhAssistantView</TITLE>
 DhAssistantView

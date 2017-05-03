@@ -19,7 +19,6 @@
   <chapter>
     <title>API Reference</title>
     <xi:include href="xml/init.xml"/>
-    <xi:include href="xml/dh-app.xml"/>
     <xi:include href="xml/dh-assistant-view.xml"/>
     <xi:include href="xml/dh-book.xml"/>
     <xi:include href="xml/dh-book-manager.xml"/>
