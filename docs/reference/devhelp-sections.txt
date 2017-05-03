@@ -108,27 +108,6 @@ dh_keyword_model_get_type
 </SECTION>
 
 <SECTION>
-<FILE>dh-language</FILE>
-<TITLE>DhLanguage</TITLE>
-DhLanguage
-dh_language_new
-dh_language_get_name
-dh_language_compare
-dh_language_compare_by_name
-dh_language_get_n_books_enabled
-dh_language_inc_n_books_enabled
-dh_language_dec_n_books_enabled
-<SUBSECTION Standard>
-DH_IS_LANGUAGE
-DH_IS_LANGUAGE_CLASS
-DH_LANGUAGE
-DH_LANGUAGE_CLASS
-DH_LANGUAGE_GET_CLASS
-DH_TYPE_LANGUAGE
-dh_language_get_type
-</SECTION>
-
-<SECTION>
 <FILE>dh-link</FILE>
 <TITLE>DhLink</TITLE>
 DhLink
