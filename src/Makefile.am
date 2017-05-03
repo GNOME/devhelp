@@ -25,7 +25,7 @@ libdevhelp_public_c_files =		\
 	dh-book.c			\
 	dh-book-manager.c		\
 	dh-book-tree.c			\
-	dh-common.c			\
+	dh-init.c			\
 	dh-keyword-model.c		\
 	dh-link.c			\
 	dh-sidebar.c			\
