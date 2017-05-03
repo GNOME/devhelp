@@ -1,7 +1,8 @@
 <SECTION>
 <FILE>init</FILE>
-<TITLE>Initialization</TITLE>
+<TITLE>Initialization and De-initialization</TITLE>
 dh_init
+dh_free_resources
 </SECTION>
 
 <SECTION>
