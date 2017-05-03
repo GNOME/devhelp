@@ -24,7 +24,6 @@
 /* Explicitly include all the exported headers */
 #include "dh-assistant-view.h"
 #include "dh-book-manager.h"
-#include "dh-language.h"
 #include "dh-book.h"
 #include "dh-book-tree.h"
 #include "dh-keyword-model.h"
