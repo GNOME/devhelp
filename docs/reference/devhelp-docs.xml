@@ -28,7 +28,6 @@
     <xi:include href="xml/dh-language.xml"/>
     <xi:include href="xml/dh-link.xml"/>
     <xi:include href="xml/dh-sidebar.xml"/>
-    <xi:include href="xml/dh-window.xml"/>
   </chapter>
 
   <chapter id="object-tree">

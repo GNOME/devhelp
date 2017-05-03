@@ -52,7 +52,8 @@ IGNORE_HFILES = \
 	dh-preferences.h \
 	dh-resources.h \
 	dh-settings.h \
-	dh-util.h
+	dh-util.h \
+	dh-window.h
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png

@@ -734,12 +734,6 @@ dh_window_class_init (DhWindowClass *klass)
 
         klass->open_link = dh_window_open_link;
 
-        /**
-         * DhWindow::open-link:
-         * @window: a #DhWindow object
-         * @location: the location of the link
-         * @flags: a #DhOpenLinkFlags
-         */
         signals[OPEN_LINK] =
                 g_signal_new ("open-link",
                               G_TYPE_FROM_CLASS (klass),
@@ -1555,14 +1549,6 @@ window_tab_set_title (DhWindow      *window,
         }
 }
 
-/**
- * dh_window_new:
- * @application: the #DhApp owning this window
- *
- * Create a new #DhWindow object.
- *
- * Returns: a new #DhWindow object
- */
 GtkWidget *
 dh_window_new (DhApp *application)
 {
@@ -1590,13 +1576,6 @@ dh_window_new (DhApp *application)
         return GTK_WIDGET (window);
 }
 
-/**
- * dh_window_search:
- * @window: a #DhWindow object
- * @str: the string to search
- *
- * Search for @str in the current window.
- */
 void
 dh_window_search (DhWindow    *window,
                   const gchar *str)
@@ -1610,15 +1589,7 @@ dh_window_search (DhWindow    *window,
         dh_sidebar_set_search_string (priv->sidebar, str);
 }
 
-/*< private >
- * _dh_window_display_uri:
- * @window: a #DhWindow object
- * @uri: the uri to display
- *
- * Open the @uri in the current window.
- *
- * Only call this with a URI that is known to be in the docs.
- */
+/* Only call this with a URI that is known to be in the docs. */
 void
 _dh_window_display_uri (DhWindow    *window,
                         const gchar *uri)

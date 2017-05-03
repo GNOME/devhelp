@@ -36,11 +36,6 @@ G_BEGIN_DECLS
 typedef struct _DhWindow       DhWindow;
 typedef struct _DhWindowClass  DhWindowClass;
 
-/**
- * DhOpenLinkFlags:
- * @DH_OPEN_LINK_NEW_WINDOW: Open the link in a new window
- * @DH_OPEN_LINK_NEW_TAB: Open the link in a new tab
- */
 typedef enum
 {
         DH_OPEN_LINK_NEW_WINDOW = 1 << 0,
@@ -51,11 +46,6 @@ struct _DhWindow {
         GtkApplicationWindow parent_instance;
 };
 
-/**
- * DhWindowClass:
- * @parent_class: The parent class
- * @open_link: Class handler for the #DhWindow::open-link signal
- */
 struct _DhWindowClass {
         GtkApplicationWindowClass parent_class;
 

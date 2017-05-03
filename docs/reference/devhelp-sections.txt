@@ -198,23 +198,3 @@ DH_SIDEBAR_CLASS
 DH_TYPE_SIDEBAR
 dh_sidebar_get_type
 </SECTION>
-
-<SECTION>
-<FILE>dh-window</FILE>
-<TITLE>DhWindow</TITLE>
-DhWindow
-DhOpenLinkFlags
-dh_window_new
-dh_window_search
-<SUBSECTION Standard>
-DhWindowClass
-DH_IS_WINDOW
-DH_IS_WINDOW_CLASS
-DH_TYPE_WINDOW
-DH_WINDOW
-DH_WINDOW_CLASS
-DH_WINDOW_GET_CLASS
-DH_TYPE_OPEN_LINK_FLAGS
-dh_window_get_type
-dh_open_link_flags_get_type
-</SECTION>
