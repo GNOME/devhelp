@@ -22,7 +22,6 @@
 #include <glib.h>
 
 /* Explicitly include all the exported headers */
-#include "dh-assistant.h"
 #include "dh-assistant-view.h"
 #include "dh-book-manager.h"
 #include "dh-language.h"
@@ -31,7 +30,6 @@
 #include "dh-keyword-model.h"
 #include "dh-link.h"
 #include "dh-sidebar.h"
-#include "dh-window.h"
 
 G_BEGIN_DECLS
 

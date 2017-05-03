@@ -31,8 +31,8 @@
 #include "dh-book.h"
 #include "dh-sidebar.h"
 #include "dh-util.h"
-#include "dh-enum-types.h"
 #include "dh-settings.h"
+#include "dh-enum-types-app.h"
 
 typedef struct {
         GMenuModel     *gear_app_menu;

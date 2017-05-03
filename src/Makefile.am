@@ -11,8 +11,6 @@ AM_LDFLAGS =						\
 
 libdevhelp_public_headers =		\
 	devhelp.h			\
-	dh-app.h			\
-	dh-assistant.h			\
 	dh-assistant-view.h		\
 	dh-book.h			\
 	dh-book-manager.h		\
@@ -21,12 +19,9 @@ libdevhelp_public_headers =		\
 	dh-language.h			\
 	dh-link.h			\
 	dh-sidebar.h			\
-	dh-window.h			\
 	$(NULL)
 
 libdevhelp_public_c_files =		\
-	dh-app.c			\
-	dh-assistant.c			\
 	dh-assistant-view.c		\
 	dh-book.c			\
 	dh-book-manager.c		\
@@ -36,7 +31,6 @@ libdevhelp_public_c_files =		\
 	dh-language.c			\
 	dh-link.c			\
 	dh-sidebar.c			\
-	dh-window.c			\
 	$(NULL)
 
 libdevhelp_private_headers =		\
@@ -70,11 +64,17 @@ libdevhelp_built_sources =			\
 	dh-resources.h 				\
 	$(NULL)
 
-app_headers =		\
+app_headers =			\
+	dh-app.h		\
+	dh-assistant.h		\
+	dh-window.h		\
 	$(NULL)
 
-app_c_files =		\
-	dh-main.c	\
+app_c_files =			\
+	dh-app.c		\
+	dh-assistant.c		\
+	dh-main.c		\
+	dh-window.c		\
 	$(NULL)
 
 app_built_headers =		\
