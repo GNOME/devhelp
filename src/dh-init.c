@@ -17,7 +17,7 @@
  */
 
 #include "config.h"
-#include "devhelp.h"
+#include "dh-init.h"
 
 void
 dh_init (void)

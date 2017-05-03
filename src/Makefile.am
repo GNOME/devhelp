@@ -15,6 +15,7 @@ libdevhelp_public_headers =		\
 	dh-book.h			\
 	dh-book-manager.h		\
 	dh-book-tree.h			\
+	dh-init.h			\
 	dh-keyword-model.h		\
 	dh-link.h			\
 	dh-sidebar.h			\

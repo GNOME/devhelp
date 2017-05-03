@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2012 Aleksander Morgado <aleksander@gnu.org>
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -12,22 +12,19 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU General Public
- * License along with this program; if not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DEVHELP_H
-#define DEVHELP_H
+#ifndef DH_INIT_H
+#define DH_INIT_H
 
-/* Include all the public headers. */
+#include <glib.h>
 
-#include "dh-assistant-view.h"
-#include "dh-book.h"
-#include "dh-book-manager.h"
-#include "dh-book-tree.h"
-#include "dh-init.h"
-#include "dh-keyword-model.h"
-#include "dh-link.h"
-#include "dh-sidebar.h"
+G_BEGIN_DECLS
 
-#endif /* DEVHELP_H */
+void    dh_init         (void);
+
+G_END_DECLS
+
+#endif /* DH_INIT_H */
