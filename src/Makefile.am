@@ -200,7 +200,9 @@ INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
 if HAVE_INTROSPECTION
 introspection_sources = 			\
 	$(libdevhelp_public_c_files)		\
-	$(libdevhelp_public_headers)
+	$(libdevhelp_public_headers)		\
+	$(libdevhelp_built_public_c_files)	\
+	$(libdevhelp_built_public_headers)
 
 Devhelp-3.0.gir: libdevhelp-3.la
 Devhelp_3_0_gir_INCLUDES = Gtk-3.0 WebKit2-4.0
