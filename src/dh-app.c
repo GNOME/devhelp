@@ -25,8 +25,9 @@
 #include <stdlib.h>
 #include <glib/gi18n-lib.h>
 
-#include "devhelp.h"
+#include "dh-assistant.h"
 #include "dh-preferences.h"
+#include "dh-window.h"
 
 G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
