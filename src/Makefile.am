@@ -151,6 +151,7 @@ devhelp_CFLAGS =		\
 
 devhelp_LDADD = 		\
 	$(DEVHELP_LIBS)		\
+	$(LIBM)			\
         libdevhelp-3.la
 
 devhelp_LDFLAGS =	\
