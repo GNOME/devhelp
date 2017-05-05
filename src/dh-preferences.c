@@ -482,11 +482,10 @@ preferences_bookshelf_set_language_inconsistent (DhPreferences *prefs,
 
 static void
 preferences_bookshelf_book_deleted_cb (DhBookManager *book_manager,
-                                       GObject       *book_object,
+                                       DhBook        *book,
                                        DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
-        DhBook      *book = DH_BOOK (book_object);
         GtkTreeIter  exact_iter;
         gboolean     exact_iter_found;
 
@@ -505,12 +504,13 @@ preferences_bookshelf_book_deleted_cb (DhBookManager *book_manager,
 
 static void
 preferences_bookshelf_book_created_cb (DhBookManager *book_manager,
-                                       GObject       *book_object,
+                                       DhBook        *book,
                                        DhPreferences *prefs)
 {
-        preferences_bookshelf_add_book_to_store (prefs,
-                                                 DH_BOOK (book_object),
-                                                 dh_book_manager_get_group_by_language (book_manager));
+        gboolean group_by_language;
+
+        group_by_language = dh_book_manager_get_group_by_language (book_manager);
+        preferences_bookshelf_add_book_to_store (prefs, book, group_by_language);
 }
 
 static void

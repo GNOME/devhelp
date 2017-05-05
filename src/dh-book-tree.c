@@ -419,11 +419,9 @@ book_tree_add_book_to_store (DhBookTree *tree,
 
 static void
 book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
-                                      GObject       *book_object,
+                                      DhBook        *book,
                                       DhBookTree    *tree)
 {
-        DhBook *book = DH_BOOK (book_object);
-
         if (!dh_book_get_enabled (book))
                 return;
 
@@ -432,11 +430,10 @@ book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
 
 static void
 book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
-                                       GObject       *book_object,
+                                       DhBook        *book,
                                        DhBookTree    *tree)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhBook         *book = DH_BOOK (book_object);
         GtkTreeIter     exact_iter;
         gboolean        exact_iter_found = FALSE;
         GtkTreeIter     language_iter;
