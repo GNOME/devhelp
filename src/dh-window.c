@@ -92,8 +92,6 @@ static const guint n_zoom_levels = G_N_ELEMENTS (zoom_levels);
 static void           window_search_link_selected_cb (GObject         *ignored,
                                                       DhLink          *link,
                                                       DhWindow        *window);
-static void           window_check_history           (DhWindow        *window,
-                                                      WebKitWebView   *web_view);
 static void           window_web_view_tab_accel_cb   (GtkAccelGroup   *accel_group,
                                                       GObject         *object,
                                                       guint            key,
@@ -344,6 +342,24 @@ window_update_zoom_actions_state (DhWindow *window)
 
         enabled = zoom_levels[zoom_level_index].level != ZOOM_DEFAULT;
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-default");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+}
+
+static void
+window_update_back_forward_actions_state (DhWindow *window)
+{
+        WebKitWebView *web_view;
+        GAction *action;
+        gboolean enabled;
+
+        web_view = window_get_active_web_view (window);
+
+        enabled = web_view != NULL ? webkit_web_view_can_go_back (web_view) : FALSE;
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-back");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+
+        enabled = web_view != NULL ? webkit_web_view_can_go_forward (web_view) : FALSE;
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-forward");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 }
 
@@ -784,14 +800,11 @@ window_web_view_switch_page_cb (GtkNotebook *notebook,
                 if (location != NULL)
                         dh_sidebar_select_uri (priv->sidebar, location);
 
-                window_check_history (window, new_web_view);
-
                 window_update_title (window, new_web_view, NULL);
         } else {
                 /* i18n: Please don't translate "Devhelp" (it's marked as translatable
                  * for transliteration only) */
                 gtk_window_set_title (GTK_WINDOW (window), _("Devhelp"));
-                window_check_history (window, NULL);
         }
 }
 
@@ -802,6 +815,7 @@ window_web_view_switch_page_after_cb (GtkNotebook *notebook,
                                       DhWindow    *window)
 {
         window_update_zoom_actions_state (window);
+        window_update_back_forward_actions_state (window);
 }
 
 static void
@@ -992,7 +1006,6 @@ window_web_view_load_changed_cb (WebKitWebView   *web_view,
 
         uri = webkit_web_view_get_uri (web_view);
         dh_sidebar_select_uri (priv->sidebar, uri);
-        window_check_history (window, web_view);
 }
 
 static gboolean
@@ -1108,24 +1121,6 @@ window_search_link_selected_cb (GObject  *ignored,
         uri = dh_link_get_uri (link);
         webkit_web_view_load_uri (view, uri);
         g_free (uri);
-
-        window_check_history (window, view);
-}
-
-static void
-window_check_history (DhWindow      *window,
-                      WebKitWebView *web_view)
-{
-        GAction *action;
-        gboolean enabled;
-
-        enabled = web_view != NULL ? webkit_web_view_can_go_forward (web_view) : FALSE;
-        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-forward");
-        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-
-        enabled = web_view != NULL ? webkit_web_view_can_go_back (web_view) : FALSE;
-        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-back");
-        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 }
 
 static void
@@ -1313,6 +1308,7 @@ window_open_new_tab (DhWindow    *window,
         GtkWidget    *info_bar;
         gchar *font_fixed = NULL;
         gchar *font_variable = NULL;
+        WebKitBackForwardList *back_forward_list;
 
         priv = dh_window_get_instance_private (window);
 
@@ -1371,6 +1367,13 @@ window_open_new_tab (DhWindow    *window,
         g_signal_connect (view, "scroll-event",
                           G_CALLBACK (window_web_view_scroll_event_cb),
                           window);
+
+        back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (view));
+        g_signal_connect_object (back_forward_list,
+                                 "changed",
+                                 G_CALLBACK (window_update_back_forward_actions_state),
+                                 window,
+                                 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
         num = gtk_notebook_append_page (priv->notebook, vbox, NULL);
         gtk_container_child_set (GTK_CONTAINER (priv->notebook), vbox,
