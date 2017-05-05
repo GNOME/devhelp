@@ -645,6 +645,9 @@ dh_book_tree_init (DhBookTree *tree)
 
         priv = dh_book_tree_get_instance_private (tree);
 
+        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
+        gtk_tree_view_set_enable_search (GTK_TREE_VIEW (tree), FALSE);
+
         priv->store = gtk_tree_store_new (N_COLUMNS,
                                           G_TYPE_STRING, /* Title */
                                           G_TYPE_POINTER, /* DhLink */
@@ -654,8 +657,6 @@ dh_book_tree_init (DhBookTree *tree)
         priv->selected_link = NULL;
         gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
                                  GTK_TREE_MODEL (priv->store));
-
-        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
 
         book_tree_add_columns (tree);
         book_tree_setup_selection (tree);
@@ -703,9 +704,7 @@ dh_book_tree_init (DhBookTree *tree)
 DhBookTree *
 dh_book_tree_new (void)
 {
-        return g_object_new (DH_TYPE_BOOK_TREE,
-                             "enable-search", FALSE,
-                             NULL);
+        return g_object_new (DH_TYPE_BOOK_TREE, NULL);
 }
 
 static gboolean
