@@ -22,6 +22,7 @@
 
 #include "config.h"
 #include "dh-book-tree.h"
+#include <glib/gi18n-lib.h>
 #include "dh-book-manager.h"
 #include "dh-book.h"
 
@@ -35,6 +36,7 @@ typedef struct {
 typedef struct {
         GtkTreeStore *store;
         DhLink *selected_link;
+        GtkMenu *context_menu;
 } DhBookTreePrivate;
 
 enum {
@@ -589,16 +591,99 @@ dh_book_tree_dispose (GObject *object)
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
 
         g_clear_object (&priv->store);
+        priv->context_menu = NULL;
 
         G_OBJECT_CLASS (dh_book_tree_parent_class)->dispose (object);
+}
+
+static void
+collapse_all_activate_cb (GtkMenuItem *menu_item,
+                          DhBookTree  *tree)
+{
+        gtk_tree_view_collapse_all (GTK_TREE_VIEW (tree));
+}
+
+static void
+do_popup_menu (DhBookTree     *tree,
+               GdkEventButton *event)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
+
+        if (priv->context_menu == NULL) {
+                GtkWidget *menu_item;
+
+                /* Create the menu only once. At first I wanted to create a new
+                 * menu each time this function is called, connect to the
+                 * GtkMenuShell::deactivate signal to call gtk_widget_destroy().
+                 * But GtkMenuShell::deactivate is emitted before
+                 * collapse_all_activate_cb(), so collapse_all_activate_cb() was
+                 * never called... It's maybe a GTK+ bug.
+                 */
+                priv->context_menu = GTK_MENU (gtk_menu_new ());
+
+                /* When tree is destroyed, the context menu is destroyed too. */
+                gtk_menu_attach_to_widget (priv->context_menu, GTK_WIDGET (tree), NULL);
+
+                menu_item = gtk_menu_item_new_with_mnemonic (_("_Collapse All"));
+                gtk_menu_shell_append (GTK_MENU_SHELL (priv->context_menu), menu_item);
+                gtk_widget_show (menu_item);
+
+                g_signal_connect_object (menu_item,
+                                         "activate",
+                                         G_CALLBACK (collapse_all_activate_cb),
+                                         tree,
+                                         0);
+        }
+
+        if (event != NULL) {
+                gtk_menu_popup_at_pointer (priv->context_menu, (GdkEvent *) event);
+        } else {
+                gtk_menu_popup_at_widget (priv->context_menu,
+                                          GTK_WIDGET (tree),
+                                          GDK_GRAVITY_NORTH_EAST,
+                                          GDK_GRAVITY_NORTH_WEST,
+                                          NULL);
+        }
+}
+
+static gboolean
+dh_book_tree_button_press_event (GtkWidget      *widget,
+                                 GdkEventButton *event)
+{
+        DhBookTree *tree = DH_BOOK_TREE (widget);
+
+        if (gdk_event_triggers_context_menu ((GdkEvent *) event) &&
+            event->type == GDK_BUTTON_PRESS) {
+                do_popup_menu (tree, event);
+                return GDK_EVENT_STOP;
+        }
+
+        if (GTK_WIDGET_CLASS (dh_book_tree_parent_class)->button_press_event != NULL)
+                return GTK_WIDGET_CLASS (dh_book_tree_parent_class)->button_press_event (widget, event);
+
+        return GDK_EVENT_PROPAGATE;
+}
+
+static gboolean
+dh_book_tree_popup_menu (GtkWidget *widget)
+{
+        if (GTK_WIDGET_CLASS (dh_book_tree_parent_class)->popup_menu != NULL)
+                g_warning ("%s(): chain-up?", G_STRFUNC);
+
+        do_popup_menu (DH_BOOK_TREE (widget), NULL);
+        return TRUE;
 }
 
 static void
 dh_book_tree_class_init (DhBookTreeClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
+        GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
         object_class->dispose = dh_book_tree_dispose;
+
+        widget_class->button_press_event = dh_book_tree_button_press_event;
+        widget_class->popup_menu = dh_book_tree_popup_menu;
 
         /**
          * DhBookTree::link-selected:
