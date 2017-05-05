@@ -350,6 +350,16 @@ dh_sidebar_set_search_string (DhSidebar   *sidebar,
         gtk_entry_set_text (priv->entry, str);
         gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
         gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
+
+        /* If the GtkEntry text was already equal to @str, the
+         * GtkEditable::changed signal was not emitted, so force to emit it to
+         * call sidebar_entry_changed_cb(), forcing a new search. If an exact
+         * match is found, the DhSidebar::link-selected signal will be emitted,
+         * to re-jump to that symbol (even if the GtkEntry text was equal, it
+         * doesn't mean that the WebKitWebView was showing the exact match).
+         * https://bugzilla.gnome.org/show_bug.cgi?id=776596
+         */
+        g_signal_emit_by_name (priv->entry, "changed");
 }
 
 /**
