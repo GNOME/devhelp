@@ -646,9 +646,9 @@ dh_book_tree_init (DhBookTree *tree)
         priv = dh_book_tree_get_instance_private (tree);
 
         priv->store = gtk_tree_store_new (N_COLUMNS,
-                                          G_TYPE_STRING,
-                                          G_TYPE_POINTER,
-                                          G_TYPE_OBJECT,
+                                          G_TYPE_STRING, /* Title */
+                                          G_TYPE_POINTER, /* DhLink */
+                                          DH_TYPE_BOOK,
                                           PANGO_TYPE_WEIGHT,
                                           PANGO_TYPE_UNDERLINE);
         priv->selected_link = NULL;
