@@ -46,10 +46,10 @@ typedef struct {
 
 enum {
         LINK_SELECTED,
-        LAST_SIGNAL
+        N_SIGNALS
 };
 
-static guint signals[LAST_SIGNAL] = { 0 };
+static guint signals[N_SIGNALS] = { 0 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhSidebar, dh_sidebar, GTK_TYPE_BOX)
 

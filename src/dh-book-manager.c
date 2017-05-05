@@ -58,7 +58,7 @@ enum {
         BOOK_DISABLED,
         LANGUAGE_ENABLED,
         LANGUAGE_DISABLED,
-        LAST_SIGNAL
+        N_SIGNALS
 };
 
 enum {
@@ -66,7 +66,7 @@ enum {
         PROP_GROUP_BY_LANGUAGE
 };
 
-static guint signals[LAST_SIGNAL] = { 0 };
+static guint signals[N_SIGNALS] = { 0 };
 
 static DhBookManager *singleton = NULL;
 

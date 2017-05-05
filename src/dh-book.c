@@ -38,7 +38,7 @@ enum {
         BOOK_DISABLED,
         BOOK_UPDATED,
         BOOK_DELETED,
-        BOOK_LAST_SIGNAL
+        N_SIGNALS
 };
 
 typedef enum {
@@ -77,7 +77,7 @@ typedef struct {
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBook, dh_book, G_TYPE_OBJECT);
 
-static guint signals[BOOK_LAST_SIGNAL] = { 0 };
+static guint signals[N_SIGNALS] = { 0 };
 
 static void
 dh_book_dispose (GObject *object)

@@ -35,10 +35,10 @@ typedef struct {
 
 enum {
         SIGNAL_OPEN_URI,
-        SIGNAL_LAST
+        N_SIGNALS
 };
 
-static guint signals[SIGNAL_LAST] = { 0 };
+static guint signals[N_SIGNALS] = { 0 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhAssistantView, dh_assistant_view, WEBKIT_TYPE_WEB_VIEW);
 

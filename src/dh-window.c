@@ -54,10 +54,10 @@ typedef struct {
 
 enum {
         OPEN_LINK,
-        LAST_SIGNAL
+        N_SIGNALS
 };
 
-static guint signals[LAST_SIGNAL] = { 0 };
+static guint signals[N_SIGNALS] = { 0 };
 
 static guint tab_accel_keys[] = {
         GDK_KEY_1, GDK_KEY_2, GDK_KEY_3, GDK_KEY_4, GDK_KEY_5,
