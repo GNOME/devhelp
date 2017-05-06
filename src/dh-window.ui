@@ -90,7 +90,7 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">_Side panel</attribute>
+        <attribute name="label" translatable="yes">_Side Panel</attribute>
         <attribute name="action">win.show-sidebar</attribute>
         <attribute name="stateful">true</attribute>
       </item>
