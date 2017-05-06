@@ -55,13 +55,10 @@ AX_COMPILER_FLAGS([WARN_CFLAGS], [WARN_LDFLAGS], [yes])
 
 LT_LIB_M
 
-AX_REQUIRE_DEFINED([PKG_CHECK_MODULES])
-PKG_CHECK_MODULES(DEVHELP, [
-  gio-2.0 >= 2.38
-  gtk+-3.0 >= 3.22
-  webkit2gtk-4.0 >= 2.6
-  gsettings-desktop-schemas
-])
+AX_REQUIRE_DEFINED([AX_PKG_CHECK_MODULES])
+AX_PKG_CHECK_MODULES([DEVHELP],
+		     [gio-2.0 >= 2.38  gtk+-3.0 >= 3.22  webkit2gtk-4.0 >= 2.6],
+		     [gsettings-desktop-schemas])
 
 AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)
 have_zlib=no
