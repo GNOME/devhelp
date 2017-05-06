@@ -22,6 +22,18 @@
 #include <string.h>
 #include <glib/gi18n-lib.h>
 
+/**
+ * SECTION:dh-link
+ * @Title: DhLink
+ * @Short_description: A link inside a #DhBook
+ *
+ * A #DhLink represents a link to an HTML page or somewhere inside a page (with
+ * an anchor) that is inside a #DhBook. The link can point to a specific symbol,
+ * or a page, or the #DhBook itself.
+ *
+ * A #DhLink has a type that can be retrieved with dh_link_get_link_type().
+ */
+
 struct _DhLink {
         /* FIXME: Those two could exist only for book to save some
          * memory.

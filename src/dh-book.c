@@ -28,6 +28,17 @@
 #include "dh-parser.h"
 #include "dh-util.h"
 
+/**
+ * SECTION:dh-book
+ * @Title: DhBook
+ * @Short_description: A book, usually the documentation for one library
+ *
+ * A #DhBook usually contains the documentation for one library (or
+ * application), for example GLib or GTK+. There is one #DhBook for each index
+ * file found and parsed (an index file is a file with the extension `*.devhelp`
+ * or `*.devhelp2`).
+ */
+
 /* Timeout to wait for new events in the book so that
  * they are merged and we don't spam unneeded signals */
 #define EVENT_MERGE_TIMEOUT_SECS 2

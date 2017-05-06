@@ -27,6 +27,14 @@
 #include "dh-language.h"
 #include "dh-settings.h"
 
+/**
+ * SECTION:dh-book-manager
+ * @Title: DhBookManager
+ * @Short_description: Aggregation of all #DhBook's
+ *
+ * #DhBookManager is a singleton class containing all the #DhBook's.
+ */
+
 #define NEW_POSSIBLE_BOOK_TIMEOUT_SECS 5
 
 typedef struct {

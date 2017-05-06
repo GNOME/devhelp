@@ -25,7 +25,6 @@ dh_assistant_view_get_type
 
 <SECTION>
 <FILE>dh-book</FILE>
-<TITLE>DhBook</TITLE>
 DhBook
 dh_book_new
 dh_book_get_keywords
@@ -53,7 +52,6 @@ dh_book_get_type
 
 <SECTION>
 <FILE>dh-book-manager</FILE>
-<TITLE>DhBookManager</TITLE>
 DhBookManager
 dh_book_manager_new
 dh_book_manager_get_singleton
@@ -108,7 +106,6 @@ dh_keyword_model_get_type
 
 <SECTION>
 <FILE>dh-link</FILE>
-<TITLE>DhLink</TITLE>
 DhLink
 DhLinkType
 DhLinkFlags
