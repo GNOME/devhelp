@@ -10,23 +10,39 @@
   <bookinfo>
     <title>&package_name; Reference Manual</title>
     <releaseinfo>
-      for &package_string;.
+      For &package_string;.
       The latest version of this documentation can be found on-line at
-      <ulink role="online-location" url="http://developer.gnome.org/devhelp/index.html">http://developer.gnome.org/devhelp/</ulink>.
+      <ulink role="online-location" url="https://developer.gnome.org/devhelp/">https://developer.gnome.org/devhelp/</ulink>.
     </releaseinfo>
   </bookinfo>
 
-  <chapter>
+  <part>
     <title>API Reference</title>
-    <xi:include href="xml/init.xml"/>
-    <xi:include href="xml/dh-assistant-view.xml"/>
-    <xi:include href="xml/dh-book.xml"/>
-    <xi:include href="xml/dh-book-manager.xml"/>
-    <xi:include href="xml/dh-book-tree.xml"/>
-    <xi:include href="xml/dh-keyword-model.xml"/>
-    <xi:include href="xml/dh-link.xml"/>
-    <xi:include href="xml/dh-sidebar.xml"/>
-  </chapter>
+
+    <chapter>
+      <title>General</title>
+      <xi:include href="xml/init.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>The Data</title>
+      <xi:include href="xml/dh-book-manager.xml"/>
+      <xi:include href="xml/dh-book.xml"/>
+      <xi:include href="xml/dh-link.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>Side Panel</title>
+      <xi:include href="xml/dh-sidebar.xml"/>
+      <xi:include href="xml/dh-book-tree.xml"/>
+      <xi:include href="xml/dh-keyword-model.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>Assistant</title>
+      <xi:include href="xml/dh-assistant-view.xml"/>
+    </chapter>
+  </part>
 
   <chapter id="object-tree">
     <title>Object Hierarchy</title>
