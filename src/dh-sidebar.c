@@ -30,6 +30,31 @@
 #include "dh-book.h"
 #include "dh-book-tree.h"
 
+/**
+ * SECTION:dh-sidebar
+ * @Title: DhSidebar
+ * @Short_description: The sidebar
+ *
+ * In the Devhelp application, there is one #DhSidebar per main window,
+ * displayed in the left side panel.
+ *
+ * A #DhSidebar contains:
+ * - a #GtkSearchEntry at the top;
+ * - a #DhBookTree (a subclass of #GtkTreeView);
+ * - another #GtkTreeView (displaying a list, not a tree) with a #DhKeywordModel
+ *   as its model.
+ *
+ * When the #GtkSearchEntry is empty, the #DhBookTree is shown. When the
+ * #GtkSearchEntry is not empty, it shows the search results in the other
+ * #GtkTreeView. The two #GtkTreeView's cannot be both visible at the same time,
+ * it's either one or the other.
+ *
+ * The #DhSidebar::link-selected signal is emitted when one element in one of
+ * the #GtkTreeView's is selected. When that happens, the Devhelp application
+ * opens the link in a #WebKitWebView shown at the right side of the main
+ * window.
+ */
+
 typedef struct {
         DhBookTree              *book_tree;
         GtkScrolledWindow       *sw_book_tree;

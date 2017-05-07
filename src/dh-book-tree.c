@@ -26,6 +26,23 @@
 #include "dh-book-manager.h"
 #include "dh-book.h"
 
+/**
+ * SECTION:dh-book-tree
+ * @Title: DhBookTree
+ * @Short_description: A #GtkTreeView containing the tree structure of all
+ * enabled #DhBook's
+ *
+ * #DhBookTree is a #GtkTreeView (showing a tree, not a list) containing the
+ * general tree structure of all enabled #DhBook's.
+ *
+ * The dh_book_get_tree() function is called to get the tree structure of a
+ * #DhBook. As such the tree contains only #DhLink's of type %DH_LINK_TYPE_BOOK
+ * or %DH_LINK_TYPE_PAGE.
+ *
+ * When an element is selected, the #DhBookTree::link-selected signal is
+ * emitted. Only one element can be selected at a time.
+ */
+
 typedef struct {
         const gchar *uri;
         GtkTreeIter  iter;

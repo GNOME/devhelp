@@ -427,7 +427,7 @@ dh_book_get_completions (DhBook *book)
  * @book: a #DhBook.
  *
  * Gets the general structure of the book, as a tree. The tree contains only
- * #DhLink's with type %DH_LINK_TYPE_BOOK or %DH_LINK_TYPE_PAGE. The other
+ * #DhLink's of type %DH_LINK_TYPE_BOOK or %DH_LINK_TYPE_PAGE. The other
  * #DhLink's are not contained in the tree. To have a list of
  * <emphasis>all</emphasis> #DhLink's part of the book, you need to call
  * dh_book_get_keywords().

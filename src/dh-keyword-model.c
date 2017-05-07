@@ -29,6 +29,18 @@
 #include "dh-book.h"
 #include "dh-util.h"
 
+/**
+ * SECTION:dh-keyword-model
+ * @Title: DhKeywordModel
+ * @Short_description: A custom #GtkTreeModel implementation for searching a
+ * keyword
+ *
+ * #DhKeywordModel is a custom #GtkTreeModel implementation (as a list, not a
+ * tree) for searching a keyword.
+ *
+ * The dh_keyword_model_filter() function is used to set the search criteria.
+ */
+
 typedef struct {
         gchar *current_book_id;
 

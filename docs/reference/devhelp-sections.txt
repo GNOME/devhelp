@@ -72,7 +72,6 @@ dh_book_manager_get_type
 
 <SECTION>
 <FILE>dh-book-tree</FILE>
-<TITLE>DhBookTree</TITLE>
 DhBookTree
 dh_book_tree_new
 dh_book_tree_select_uri
@@ -89,7 +88,6 @@ dh_book_tree_get_type
 
 <SECTION>
 <FILE>dh-keyword-model</FILE>
-<TITLE>DhKeywordModel</TITLE>
 DhKeywordModel
 dh_keyword_model_new
 dh_keyword_model_filter
@@ -134,7 +132,6 @@ dh_link_type_get_type
 
 <SECTION>
 <FILE>dh-sidebar</FILE>
-<TITLE>DhSidebar</TITLE>
 DhSidebar
 dh_sidebar_new
 dh_sidebar_get_selected_book
