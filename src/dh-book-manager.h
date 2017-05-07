@@ -55,7 +55,7 @@ G_DEPRECATED
 void           dh_book_manager_populate              (DhBookManager *book_manager);
 
 G_GNUC_INTERNAL
-void           _dh_book_manager_free_singleton       (void);
+void           _dh_book_manager_unref_singleton      (void);
 
 G_END_DECLS
 

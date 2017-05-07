@@ -79,8 +79,8 @@ dh_free_resources (void)
          * accordingly, at the right place.
          */
         if (!done) {
-                _dh_book_manager_free_singleton ();
-                _dh_settings_free_singleton ();
+                _dh_book_manager_unref_singleton ();
+                _dh_settings_unref_singleton ();
                 done = TRUE;
         }
 }

@@ -841,10 +841,15 @@ dh_book_manager_get_singleton (void)
 }
 
 void
-_dh_book_manager_free_singleton (void)
+_dh_book_manager_unref_singleton (void)
 {
         if (singleton != NULL)
                 g_object_unref (singleton);
+
+        /* singleton is not set to NULL here, it is set to NULL in
+         * dh_book_manager_finalize() (i.e. when we are sure that the ref count
+         * reaches 0).
+         */
 }
 
 /**

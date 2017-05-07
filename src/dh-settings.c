@@ -155,10 +155,15 @@ dh_settings_get_singleton (void)
 }
 
 void
-_dh_settings_free_singleton (void)
+_dh_settings_unref_singleton (void)
 {
         if (singleton != NULL)
                 g_object_unref (singleton);
+
+        /* singleton is not set to NULL here, it is set to NULL in
+         * dh_settings_finalize() (i.e. when we are sure that the ref count
+         * reaches 0).
+         */
 }
 
 GSettings *
