@@ -363,7 +363,8 @@ dh_book_new (const gchar *book_path)
  * @book: a #DhBook.
  *
  * Returns: (element-type DhLink) (transfer none) (nullable): the list of
- * #DhLink's part of @book.
+ * <emphasis>all</emphasis> #DhLink's part of @book, or %NULL if the book is
+ * disabled.
  */
 GList *
 dh_book_get_keywords (DhBook *book)
@@ -425,7 +426,14 @@ dh_book_get_completions (DhBook *book)
  * dh_book_get_tree:
  * @book: a #DhBook.
  *
- * Returns: (transfer none) (nullable): the tree of #DhLink's part of the @book.
+ * Gets the general structure of the book, as a tree. The tree contains only
+ * #DhLink's with type %DH_LINK_TYPE_BOOK or %DH_LINK_TYPE_PAGE. The other
+ * #DhLink's are not contained in the tree. To have a list of
+ * <emphasis>all</emphasis> #DhLink's part of the book, you need to call
+ * dh_book_get_keywords().
+ *
+ * Returns: (transfer none) (nullable): the tree of #DhLink's part of the @book,
+ * or %NULL if the book is disabled.
  */
 GNode *
 dh_book_get_tree (DhBook *book)
