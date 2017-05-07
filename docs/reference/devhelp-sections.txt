@@ -1,3 +1,5 @@
+<INCLUDE>devhelp/devhelp.h</INCLUDE>
+
 <SECTION>
 <FILE>init</FILE>
 <TITLE>Initialization and Finalization</TITLE>
