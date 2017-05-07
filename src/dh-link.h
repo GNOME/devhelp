@@ -26,16 +26,16 @@ G_BEGIN_DECLS
 
 /**
  * DhLinkType:
- * @DH_LINK_TYPE_BOOK: a book
- * @DH_LINK_TYPE_PAGE: a page
- * @DH_LINK_TYPE_KEYWORD: a keyword
- * @DH_LINK_TYPE_FUNCTION: a function
- * @DH_LINK_TYPE_STRUCT: a struct
- * @DH_LINK_TYPE_MACRO: a macro
- * @DH_LINK_TYPE_ENUM: an enum
- * @DH_LINK_TYPE_TYPEDEF: a typedef
- * @DH_LINK_TYPE_PROPERTY: a property
- * @DH_LINK_TYPE_SIGNAL: a signal
+ * @DH_LINK_TYPE_BOOK: A book.
+ * @DH_LINK_TYPE_PAGE: A page.
+ * @DH_LINK_TYPE_KEYWORD: Another kind of keyword.
+ * @DH_LINK_TYPE_FUNCTION: A function keyword.
+ * @DH_LINK_TYPE_STRUCT: A struct keyword.
+ * @DH_LINK_TYPE_MACRO: A macro keyword.
+ * @DH_LINK_TYPE_ENUM: An enum keyword.
+ * @DH_LINK_TYPE_TYPEDEF: A typedef keyword.
+ * @DH_LINK_TYPE_PROPERTY: A property keyword.
+ * @DH_LINK_TYPE_SIGNAL: A signal keyword.
  *
  * The type of the content the link points to.
  */
