@@ -19,12 +19,28 @@
 
 #include "config.h"
 #include "dh-init.h"
+#include <glib/gi18n-lib.h>
 #include "dh-book-manager.h"
 #include "dh-settings.h"
 
+/**
+ * dh_init:
+ *
+ * Initializes the Devhelp library (e.g. for the internationalization).
+ *
+ * This function can be called several times, but is meant to be called at the
+ * beginning of main(), before any other Devhelp function call.
+ */
 void
 dh_init (void)
 {
+        static gboolean done = FALSE;
+
+        if (!done) {
+                bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+                bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+                done = TRUE;
+        }
 }
 
 /**

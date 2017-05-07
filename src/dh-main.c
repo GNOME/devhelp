@@ -20,7 +20,7 @@
 #include "config.h"
 
 #include <locale.h>
-#include <glib/gi18n-lib.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include "devhelp.h"
@@ -29,20 +29,16 @@
 int
 main (int argc, char **argv)
 {
-        DhApp   *application;
-        gint     status;
+        DhApp *application;
+        gint status;
 
         setlocale (LC_ALL, "");
-        bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
 
-        /* Create new DhApp */
+        dh_init ();
+
         application = dh_app_new ();
-
-        /* And run the GtkApplication */
         status = g_application_run (G_APPLICATION (application), argc, argv);
-
         g_object_unref (application);
 
         dh_free_resources ();
