@@ -27,6 +27,21 @@
 #include "dh-book.h"
 #include "dh-book-manager.h"
 
+/**
+ * SECTION:dh-assistant-view
+ * @Title: DhAssistantView
+ * @Short_description: A small “assistant” widget for displaying just one hit
+ *
+ * #DhAssistantView is a subclass of #WebKitWebView for displaying the
+ * documentation of just one symbol.
+ *
+ * A possible use-case: in a text editor, pressing a keyboard shortcut could
+ * display this widget for the symbol under the cursor.
+ *
+ * With the Devhelp application, an assistant can easily be launched with the
+ * command line option `--search-assistant`.
+ */
+
 typedef struct {
         DhLink *link;
         gchar *current_search;

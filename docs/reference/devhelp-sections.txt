@@ -7,7 +7,6 @@ dh_free_resources
 
 <SECTION>
 <FILE>dh-assistant-view</FILE>
-<TITLE>DhAssistantView</TITLE>
 DhAssistantView
 dh_assistant_view_new
 dh_assistant_view_set_link
