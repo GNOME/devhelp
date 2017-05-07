@@ -70,6 +70,17 @@ dh_init (void)
 void
 dh_free_resources (void)
 {
-        _dh_book_manager_free_singleton ();
-        _dh_settings_free_singleton ();
+        static gboolean done = FALSE;
+
+        /* Unref the singletons only once, even if this function is called
+         * multiple times, to see if a reference is not released correctly.
+         * Normally the singletons have a ref count of 1. If for some reason the
+         * ref count is increased somewhere, it needs to be decreased
+         * accordingly, at the right place.
+         */
+        if (!done) {
+                _dh_book_manager_free_singleton ();
+                _dh_settings_free_singleton ();
+                done = TRUE;
+        }
 }
