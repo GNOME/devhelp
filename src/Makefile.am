@@ -157,11 +157,18 @@ devhelp_LDADD = 		\
 devhelp_LDFLAGS =	\
 	$(AM_LDFLAGS)
 
-resource_files = $(shell glib-compile-resources --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/dh.gresource.xml)
+resource_files =		\
+	devhelp-menu.ui		\
+	dh-assistant.ui		\
+	dh-preferences.ui	\
+	dh-window.ui		\
+	help-overlay.ui		\
+	$(NULL)
+
 dh-resources.c: dh.gresource.xml $(resource_files)
-	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-source --c-name dh $(srcdir)/dh.gresource.xml
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source --c-name dh $(srcdir)/dh.gresource.xml
 dh-resources.h: dh.gresource.xml $(resource_files)
-	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-header --c-name dh $(srcdir)/dh.gresource.xml
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-header --c-name dh $(srcdir)/dh.gresource.xml
 
 dh-enum-types.h: dh-enum-types.h.template $(libdevhelp_public_headers) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.h.template $(libdevhelp_public_headers)) > $@

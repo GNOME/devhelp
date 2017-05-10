@@ -33,7 +33,8 @@ AM_SILENT_RULES([yes])
 
 # Check for programs
 AC_PROG_CC
-AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
+AC_PATH_PROG([GLIB_MKENUMS], [glib-mkenums])
+AC_PATH_PROG([GLIB_COMPILE_RESOURCES], [glib-compile-resources])
 
 # Initialize libtool
 LT_PREREQ([2.2])
