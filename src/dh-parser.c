@@ -21,9 +21,8 @@
 #include "config.h"
 #include "dh-parser.h"
 
+#include <gio/gio.h>
 #include <string.h>
-#include <errno.h>
-#include <zlib.h>
 #include <glib/gi18n-lib.h>
 
 #include "dh-error.h"
@@ -482,55 +481,6 @@ parser_end_node_cb (GMarkupParseContext  *context,
         }
 }
 
-static gboolean
-parser_read_gz_file (DhParser     *parser,
-                     const gchar  *path,
-                     GError      **error)
-{
-        gchar  buf[BYTES_PER_READ];
-        gzFile file;
-
-        file = gzopen (path, "r");
-        if (!file) {
-                g_set_error (error,
-                             DH_ERROR,
-                             DH_ERROR_FILE_NOT_FOUND,
-                             "%s", g_strerror (errno));
-                return FALSE;
-        }
-
-        while (TRUE) {
-                gint bytes_read;
-
-                bytes_read = gzread (file, buf, BYTES_PER_READ);
-                if (bytes_read == -1) {
-                        gint         err;
-                        const gchar *message;
-
-                        message = gzerror (file, &err);
-                        g_set_error (error,
-                                     DH_ERROR,
-                                     DH_ERROR_INTERNAL_ERROR,
-                                     _("Cannot uncompress book '%s': %s"),
-                                     path, message);
-                        return FALSE;
-                }
-
-                g_markup_parse_context_parse (parser->context, buf,
-                                              bytes_read, error);
-                if (error != NULL && *error != NULL) {
-                        return FALSE;
-                }
-                if (bytes_read < BYTES_PER_READ) {
-                        break;
-                }
-        }
-
-        gzclose (file);
-
-        return TRUE;
-}
-
 gboolean
 dh_parser_read_file (const gchar  *index_file_path,
                      gchar       **book_title,
@@ -540,11 +490,12 @@ dh_parser_read_file (const gchar  *index_file_path,
                      GList       **keywords,
                      GError      **error)
 {
-        DhParser   *parser;
-        gboolean    gz;
-        GIOChannel *io = NULL;
-        gchar       buf[BYTES_PER_READ];
-        gboolean    result = TRUE;
+        DhParser *parser;
+        gboolean gz;
+        GFile *index_file = NULL;
+        GFileInputStream *file_input_stream = NULL;
+        GInputStream *input_stream = NULL;
+        gboolean ok = TRUE;
 
         parser = g_new0 (DhParser, 1);
 
@@ -565,7 +516,6 @@ dh_parser_read_file (const gchar  *index_file_path,
         }
 
         parser->markup_parser = g_new0 (GMarkupParser, 1);
-
         parser->markup_parser->start_element = parser_start_node_cb;
         parser->markup_parser->end_element = parser_end_node_cb;
 
@@ -578,54 +528,60 @@ dh_parser_read_file (const gchar  *index_file_path,
         parser->book_tree = book_tree;
         parser->keywords = keywords;
 
-        if (gz) {
-                if (!parser_read_gz_file (parser,
-                                          index_file_path,
-                                          error)) {
-                        result = FALSE;
-                }
+        index_file = g_file_new_for_path (index_file_path);
+        file_input_stream = g_file_read (index_file, NULL, error);
+        if (file_input_stream == NULL) {
+                ok = FALSE;
                 goto exit;
+        }
+
+        if (gz) {
+                GZlibDecompressor *zlib_decompressor;
+
+                zlib_decompressor = g_zlib_decompressor_new (G_ZLIB_COMPRESSOR_FORMAT_GZIP);
+                input_stream = g_converter_input_stream_new (G_INPUT_STREAM (file_input_stream),
+                                                             G_CONVERTER (zlib_decompressor));
+                g_object_unref (zlib_decompressor);
         } else {
-                io = g_io_channel_new_file (index_file_path, "r", error);
-                if (io == NULL) {
-                        result = FALSE;
-                        goto exit;
-                }
+                input_stream = G_INPUT_STREAM (g_object_ref (file_input_stream));
+        }
 
-                while (TRUE) {
-                        GIOStatus io_status;
-                        gsize     bytes_read;
+        while (TRUE) {
+                gchar buffer[BYTES_PER_READ];
+                gssize bytes_read;
 
-                        do {
-                                io_status = g_io_channel_read_chars (io, buf, BYTES_PER_READ,
-                                                                     &bytes_read, error);
-                        } while (io_status == G_IO_STATUS_AGAIN);
+                bytes_read = g_input_stream_read (input_stream,
+                                                  buffer,
+                                                  BYTES_PER_READ,
+                                                  NULL,
+                                                  error);
 
-                        if (io_status == G_IO_STATUS_ERROR) {
-                                result = FALSE;
+                if (bytes_read > 0) {
+                        if (!g_markup_parse_context_parse (parser->context,
+                                                           buffer,
+                                                           bytes_read,
+                                                           error)) {
+                                ok = FALSE;
                                 goto exit;
                         }
-                        if (io_status == G_IO_STATUS_EOF || io_status == G_IO_STATUS_ERROR) {
-                                break;
-                        }
-                        if (!g_markup_parse_context_parse (parser->context, buf,
-                                                           bytes_read, error)) {
-                                result = FALSE;
-                                goto exit;
-                        }
-                }
 
-                if (!g_markup_parse_context_end_parse (parser->context, error)) {
-                        result = FALSE;
+                } else if (bytes_read == 0) {
+                        /* End of file */
+                        break;
+                } else {
+                        ok = FALSE;
                         goto exit;
                 }
         }
 
- exit:
-        if (io != NULL) {
-                g_io_channel_unref (io);
-        }
+        if (!g_markup_parse_context_end_parse (parser->context, error))
+                ok = FALSE;
+
+exit:
+        g_clear_object (&index_file);
+        g_clear_object (&file_input_stream);
+        g_clear_object (&input_stream);
         dh_parser_free (parser);
 
-        return result;
+        return ok;
 }

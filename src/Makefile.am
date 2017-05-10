@@ -113,23 +113,20 @@ nodist_libdevhelp_3_la_SOURCES =	\
 	$(libdevhelp_built_sources)
 
 libdevhelp_3_la_CPPFLAGS =	\
-	$(AM_CPPFLAGS)		\
-	$(ZLIB_CPPFLAGS)
+	$(AM_CPPFLAGS)
 
 libdevhelp_3_la_CFLAGS =	\
 	$(DEVHELP_CFLAGS)
 
 libdevhelp_3_la_LIBADD =	\
 	$(DEVHELP_LIBS)		\
-	$(ZLIB_LIBS)		\
 	$(LIBM)
 
 libdevhelp_3_la_LDFLAGS =			\
 	$(AM_LDFLAGS)				\
 	-no-undefined				\
 	-version-info $(LIBDEVHELP_LT_VERSION)	\
-	-export-symbols-regex ^dh_		\
-	$(ZLIB_LDFLAGS)
+	-export-symbols-regex ^dh_
 
 # The application
 bin_PROGRAMS = devhelp

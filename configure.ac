@@ -59,24 +59,6 @@ AX_PKG_CHECK_MODULES([DEVHELP],
 		     [gio-2.0 >= 2.38  gtk+-3.0 >= 3.22  webkit2gtk-4.0 >= 2.6],
 		     [gsettings-desktop-schemas])
 
-AC_ARG_WITH(zlib, [  --with-zlib=DIR         use zlib in DIR], zlibdir=$with_zlib)
-have_zlib=no
-if test "x$zlibdir" != x; then
-    ZLIB_CPPFLAGS=-I$zlibdir/include
-    ZLIB_LDFLAGS=-L$zlibdir/lib
-fi
-save_CPPFLAGS="$CPPFLAGS"
-save_LDFLAGS="$LDFLAGS"
-CPPFLAGS="$CPPFLAGS $ZLIB_CPPFLAGS"
-LDFLAGS="$LDFLAGS $ZLIB_LDFLAGS"
-AC_CHECK_HEADERS(zlib.h, AC_CHECK_LIB(z, gzread, have_zlib=yes))
-CPPFLAGS="$save_CPPFLAGS"
-LDFLAGS="$save_LDFLAGS"
-ZLIB_LIBS=-lz
-AC_SUBST(ZLIB_CFLAGS)
-AC_SUBST(ZLIB_LDFLAGS)
-AC_SUBST(ZLIB_LIBS)
-
 # i18n stuff
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.19.7])
