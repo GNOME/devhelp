@@ -60,7 +60,7 @@ typedef enum {
 
 /* Structure defining basic contents to store about every book */
 typedef struct {
-        gchar        *path;
+        gchar        *index_file_path;
         gchar        *name;
         gchar        *title;
         gchar        *language;
@@ -137,7 +137,7 @@ dh_book_finalize (GObject *object)
         g_free (priv->language);
         g_free (priv->title);
         g_free (priv->name);
-        g_free (priv->path);
+        g_free (priv->index_file_path);
 
         G_OBJECT_CLASS (dh_book_parent_class)->finalize (object);
 }
@@ -288,26 +288,26 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
 
 /**
  * dh_book_new:
- * @book_path: the path to the index file.
+ * @index_file_path: the path to the index file.
  *
  * Returns: a new #DhBook object.
  */
 DhBook *
-dh_book_new (const gchar *book_path)
+dh_book_new (const gchar *index_file_path)
 {
         DhBookPrivate *priv;
         DhBook     *book;
         GError     *error = NULL;
-        GFile      *book_path_file;
+        GFile      *index_file;
         gchar      *language;
 
-        g_return_val_if_fail (book_path, NULL);
+        g_return_val_if_fail (index_file_path, NULL);
 
         book = g_object_new (DH_TYPE_BOOK, NULL);
         priv = dh_book_get_instance_private (book);
 
         /* Parse file storing contents in the book struct */
-        if (!dh_parser_read_file (book_path,
+        if (!dh_parser_read_file (index_file_path,
                                   &priv->title,
                                   &priv->name,
                                   &language,
@@ -315,7 +315,7 @@ dh_book_new (const gchar *book_path)
                                   &priv->keywords,
                                   &error)) {
                 g_warning ("Failed to read '%s': %s",
-                           book_path,
+                           index_file_path,
                            error->message);
                 g_error_free (error);
 
@@ -326,7 +326,7 @@ dh_book_new (const gchar *book_path)
                 return NULL;
         }
 
-        priv->path = g_strdup (book_path);
+        priv->index_file_path = g_strdup (index_file_path);
 
         /* Rewrite language, if any, including the prefix we want
          * to use when seeing it. It is pretty ugly to do it here,
@@ -339,8 +339,8 @@ dh_book_new (const gchar *book_path)
         g_free (language);
 
         /* Setup monitor for changes */
-        book_path_file = g_file_new_for_path (book_path);
-        priv->monitor = g_file_monitor_file (book_path_file,
+        index_file = g_file_new_for_path (index_file_path);
+        priv->monitor = g_file_monitor_file (index_file,
                                              G_FILE_MONITOR_NONE,
                                              NULL,
                                              NULL);
@@ -353,7 +353,7 @@ dh_book_new (const gchar *book_path)
                 g_warning ("Couldn't setup monitoring of changes in book '%s'",
                            priv->title);
         }
-        g_object_unref (book_path_file);
+        g_object_unref (index_file);
 
         return book;
 }
@@ -516,7 +516,7 @@ dh_book_get_path (DhBook *book)
 
         priv = dh_book_get_instance_private (book);
 
-        return priv->path;
+        return priv->index_file_path;
 }
 
 /**
@@ -584,7 +584,7 @@ dh_book_cmp_by_path (DhBook *a,
         priv_a = dh_book_get_instance_private (a);
         priv_b = dh_book_get_instance_private (b);
 
-        return g_strcmp0 (priv_a->path, priv_b->path);
+        return g_strcmp0 (priv_a->index_file_path, priv_b->index_file_path);
 }
 
 /**
