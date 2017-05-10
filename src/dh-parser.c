@@ -36,7 +36,7 @@ typedef struct {
         GMarkupParser       *m_parser;
         GMarkupParseContext *context;
 
-        const gchar         *path;
+        const gchar         *index_file_path;
 
         /* Primary metadata of the book */
         gchar              **book_title;
@@ -155,7 +155,7 @@ parser_start_node_book (DhParser             *parser,
         *(parser->book_language) = language ? g_strdup (language) : NULL;
 
         if (!base) {
-                base = g_path_get_dirname (parser->path);
+                base = g_path_get_dirname (parser->index_file_path);
         }
 
         link = dh_link_new (DH_LINK_TYPE_BOOK,
@@ -534,7 +534,7 @@ parser_read_gz_file (DhParser     *parser,
 }
 
 gboolean
-dh_parser_read_file (const gchar  *path,
+dh_parser_read_file (const gchar  *index_file_path,
                      gchar       **book_title,
                      gchar       **book_name,
                      gchar       **book_language,
@@ -550,15 +550,15 @@ dh_parser_read_file (const gchar  *path,
 
         parser = g_new0 (DhParser, 1);
 
-        if (g_str_has_suffix (path, ".devhelp2")) {
+        if (g_str_has_suffix (index_file_path, ".devhelp2")) {
                 parser->version = 2;
                 gz = FALSE;
         }
-        else if (g_str_has_suffix (path, ".devhelp")) {
+        else if (g_str_has_suffix (index_file_path, ".devhelp")) {
                 parser->version = 1;
                 gz = FALSE;
         }
-        else if (g_str_has_suffix (path, ".devhelp2.gz")) {
+        else if (g_str_has_suffix (index_file_path, ".devhelp2.gz")) {
                 parser->version = 2;
                 gz = TRUE;
         } else {
@@ -574,7 +574,7 @@ dh_parser_read_file (const gchar  *path,
         parser->context = g_markup_parse_context_new (parser->m_parser, 0,
                                                       parser, NULL);
 
-        parser->path = path;
+        parser->index_file_path = index_file_path;
         parser->book_tree = book_tree;
         parser->keywords = keywords;
         parser->book_title = book_title;
@@ -583,13 +583,13 @@ dh_parser_read_file (const gchar  *path,
 
         if (gz) {
                 if (!parser_read_gz_file (parser,
-                                          path,
+                                          index_file_path,
                                           error)) {
                         result = FALSE;
                 }
                 goto exit;
         } else {
-                io = g_io_channel_new_file (path, "r", error);
+                io = g_io_channel_new_file (index_file_path, "r", error);
                 if (!io) {
                         result = FALSE;
                         goto exit;

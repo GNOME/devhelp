@@ -24,7 +24,7 @@
 
 G_BEGIN_DECLS
 
-gboolean dh_parser_read_file (const gchar  *path,
+gboolean dh_parser_read_file (const gchar  *index_file_path,
                               gchar       **book_title,
                               gchar       **book_name,
                               gchar       **book_language,
