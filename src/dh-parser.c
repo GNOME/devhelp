@@ -33,30 +33,28 @@
 #define BYTES_PER_READ 4096
 
 typedef struct {
-        GMarkupParser       *markup_parser;
+        GMarkupParser *markup_parser;
         GMarkupParseContext *context;
 
-        const gchar         *index_file_path;
-
-        /* Primary metadata of the book */
-        gchar              **book_title;
-        gchar              **book_name;
-        gchar              **book_language;
+        /* Parameters of dh_parser_read_file(). */
+        const gchar *index_file_path;
+        gchar **book_title;
+        gchar **book_name;
+        gchar **book_language;
+        GNode **book_tree;
+        GList **keywords;
 
         /* Top node of book */
-        GNode               *book_node;
+        GNode *book_node;
 
         /* Current sub section node */
-        GNode               *parent;
-
-        GNode              **book_tree;
-        GList              **keywords;
+        GNode *parent;
 
         /* Version 2 uses <keyword> instead of <function>. */
-        gint                 version;
+        gint version;
 
-        guint                parsing_chapters : 1;
-        guint                parsing_keywords : 1;
+        guint parsing_chapters : 1;
+        guint parsing_keywords : 1;
 } DhParser;
 
 static void
@@ -571,15 +569,14 @@ dh_parser_read_file (const gchar  *index_file_path,
         parser->markup_parser->start_element = parser_start_node_cb;
         parser->markup_parser->end_element = parser_end_node_cb;
 
-        parser->context = g_markup_parse_context_new (parser->markup_parser, 0,
-                                                      parser, NULL);
+        parser->context = g_markup_parse_context_new (parser->markup_parser, 0, parser, NULL);
 
         parser->index_file_path = index_file_path;
-        parser->book_tree = book_tree;
-        parser->keywords = keywords;
         parser->book_title = book_title;
         parser->book_name = book_name;
         parser->book_language = book_language;
+        parser->book_tree = book_tree;
+        parser->keywords = keywords;
 
         if (gz) {
                 if (!parser_read_gz_file (parser,
@@ -590,7 +587,7 @@ dh_parser_read_file (const gchar  *index_file_path,
                 goto exit;
         } else {
                 io = g_io_channel_new_file (index_file_path, "r", error);
-                if (!io) {
+                if (io == NULL) {
                         result = FALSE;
                         goto exit;
                 }
@@ -625,7 +622,7 @@ dh_parser_read_file (const gchar  *index_file_path,
         }
 
  exit:
-        if (io) {
+        if (io != NULL) {
                 g_io_channel_unref (io);
         }
         dh_parser_free (parser);
