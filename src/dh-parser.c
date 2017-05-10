@@ -33,7 +33,7 @@
 #define BYTES_PER_READ 4096
 
 typedef struct {
-        GMarkupParser       *m_parser;
+        GMarkupParser       *markup_parser;
         GMarkupParseContext *context;
 
         const gchar         *index_file_path;
@@ -67,7 +67,7 @@ dh_parser_free (DhParser *parser)
         // params of dh_parser_read_file()
 
         g_markup_parse_context_free (parser->context);
-        g_free (parser->m_parser);
+        g_free (parser->markup_parser);
         g_free (parser);
 }
 
@@ -566,12 +566,12 @@ dh_parser_read_file (const gchar  *index_file_path,
                 gz = TRUE;
         }
 
-        parser->m_parser = g_new0 (GMarkupParser, 1);
+        parser->markup_parser = g_new0 (GMarkupParser, 1);
 
-        parser->m_parser->start_element = parser_start_node_cb;
-        parser->m_parser->end_element = parser_end_node_cb;
+        parser->markup_parser->start_element = parser_start_node_cb;
+        parser->markup_parser->end_element = parser_end_node_cb;
 
-        parser->context = g_markup_parse_context_new (parser->m_parser, 0,
+        parser->context = g_markup_parse_context_new (parser->markup_parser, 0,
                                                       parser, NULL);
 
         parser->index_file_path = index_file_path;
