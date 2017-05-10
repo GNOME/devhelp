@@ -288,7 +288,7 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
 
 /**
  * dh_book_new:
- * @book_path: the path of the book
+ * @book_path: the path to the index file.
  *
  * Returns: a new #DhBook object.
  */
@@ -505,7 +505,7 @@ dh_book_get_language (DhBook *book)
  * dh_book_get_path:
  * @book: a #DhBook.
  *
- * Returns: the book path.
+ * Returns: the path to the index file.
  */
 const gchar *
 dh_book_get_path (DhBook *book)
@@ -566,7 +566,7 @@ dh_book_set_enabled (DhBook   *book,
  * @a: a #DhBook.
  * @b: a #DhBook.
  *
- * Compares the #DhBook's by their paths.
+ * Compares the #DhBook's by their path to the index file.
  *
  * Returns: an integer less than, equal to, or greater than zero, if @a is <, ==
  * or > than @b.
