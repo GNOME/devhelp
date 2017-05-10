@@ -62,7 +62,6 @@ libdevhelp_built_sources =			\
 	$(libdevhelp_built_public_headers)	\
 	$(libdevhelp_built_public_c_files)	\
 	dh-resources.c	 			\
-	dh-resources.h 				\
 	$(NULL)
 
 app_headers =			\
@@ -167,8 +166,6 @@ resource_files =		\
 
 dh-resources.c: dh.gresource.xml $(resource_files)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source --c-name dh $(srcdir)/dh.gresource.xml
-dh-resources.h: dh.gresource.xml $(resource_files)
-	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-header --c-name dh $(srcdir)/dh.gresource.xml
 
 dh-enum-types.h: dh-enum-types.h.template $(libdevhelp_public_headers) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.h.template $(libdevhelp_public_headers)) > $@

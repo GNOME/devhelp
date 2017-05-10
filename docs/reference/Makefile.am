@@ -54,7 +54,6 @@ IGNORE_HFILES = \
 	dh-language.h \
 	dh-parser.h \
 	dh-preferences.h \
-	dh-resources.h \
 	dh-settings.h \
 	dh-util.h \
 	dh-window.h
