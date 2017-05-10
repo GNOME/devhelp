@@ -307,24 +307,25 @@ dh_book_new (const gchar *book_path)
         priv = dh_book_get_instance_private (book);
 
         /* Parse file storing contents in the book struct */
-        if (!dh_parser_read_file  (book_path,
-                                   &priv->title,
-                                   &priv->name,
-                                   &language,
-                                   &priv->tree,
-                                   &priv->keywords,
-                                   &error)) {
+        if (!dh_parser_read_file (book_path,
+                                  &priv->title,
+                                  &priv->name,
+                                  &language,
+                                  &priv->tree,
+                                  &priv->keywords,
+                                  &error)) {
                 g_warning ("Failed to read '%s': %s",
-                           book_path, error->message);
+                           book_path,
+                           error->message);
                 g_error_free (error);
 
-                /* Deallocate the book, as we are not going to add it
-                 *  in the manager */
+                /* Deallocate the book, as we are not going to add it in the
+                 * manager.
+                 */
                 g_object_unref (book);
                 return NULL;
         }
 
-        /* Store path */
         priv->path = g_strdup (book_path);
 
         /* Rewrite language, if any, including the prefix we want
@@ -332,7 +333,7 @@ dh_book_new (const gchar *book_path)
          * but it's the only way of making sure we standarize how
          * the language group is shown */
         dh_util_ascii_strtitle (language);
-        priv->language = (language ?
+        priv->language = (language != NULL ?
                           g_strdup_printf (_("Language: %s"), language) :
                           g_strdup (_("Language: Undefined")));
         g_free (language);
@@ -343,8 +344,7 @@ dh_book_new (const gchar *book_path)
                                              G_FILE_MONITOR_NONE,
                                              NULL,
                                              NULL);
-        if (priv->monitor) {
-                /* Setup changed signal callback */
+        if (priv->monitor != NULL) {
                 g_signal_connect (priv->monitor,
                                   "changed",
                                   G_CALLBACK (book_monitor_event_cb),
