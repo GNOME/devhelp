@@ -125,11 +125,11 @@ libdevhelp_3_la_LIBADD =	\
 	$(ZLIB_LIBS)		\
 	$(LIBM)
 
-libdevhelp_3_la_LDFLAGS =								\
-	$(AM_LDFLAGS)									\
-	-no-undefined									\
-	-version-info ${LIBDEVHELP_CURRENT}:${LIBDEVHELP_REVISION}:${LIBDEVHELP_AGE}	\
-	-export-symbols-regex ^dh_							\
+libdevhelp_3_la_LDFLAGS =			\
+	$(AM_LDFLAGS)				\
+	-no-undefined				\
+	-version-info $(LIBDEVHELP_LT_VERSION)	\
+	-export-symbols-regex ^dh_		\
 	$(ZLIB_LDFLAGS)
 
 # The application
