@@ -188,38 +188,38 @@ parser_start_node_chapter (DhParser             *parser,
                            const gchar         **attribute_values,
                            GError              **error)
 {
-        gint         i;
-        gint         line, col;
+        gint line;
+        gint col;
+        gint attr_num;
         const gchar *name = NULL;
         const gchar *uri = NULL;
-        DhLink      *link;
-        GNode       *node;
+        DhLink *link;
+        GNode *node;
 
         if (g_ascii_strcasecmp (node_name, "sub") != 0) {
                 g_markup_parse_context_get_position (context, &line, &col);
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected “%s”, got “%s” at line %d, column %d"),
+                             _("Expected “%s” element, got “%s” at line %d, column %d"),
                              "sub", node_name, line, col);
                 return;
         }
 
-        for (i = 0; attribute_names[i]; ++i) {
-                if (g_ascii_strcasecmp (attribute_names[i], "name") == 0) {
-                        name = attribute_values[i];
-                } else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
-                        uri = attribute_values[i];
-                }
+        for (attr_num = 0; attribute_names[attr_num] != NULL; attr_num++) {
+                if (g_ascii_strcasecmp (attribute_names[attr_num], "name") == 0)
+                        name = attribute_values[attr_num];
+                else if (g_ascii_strcasecmp (attribute_names[attr_num], "link") == 0)
+                        uri = attribute_values[attr_num];
         }
 
-        if (!name || !uri) {
+        if (name == NULL || uri == NULL) {
                 g_markup_parse_context_get_position (context, &line, &col);
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
                              _("“name” and “link” elements are required "
-                               "inside <sub> on line %d, column %d"),
+                               "inside the <sub> element at line %d, column %d"),
                              line, col);
                 return;
         }
@@ -234,6 +234,7 @@ parser_start_node_chapter (DhParser             *parser,
 
         *parser->keywords = g_list_prepend (*parser->keywords, link);
 
+        /* FIXME probably need to ref the link here */
         node = g_node_new (link);
         g_node_prepend (parser->parent, node);
         parser->parent = node;
