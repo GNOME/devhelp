@@ -247,15 +247,16 @@ parser_start_node_keyword (DhParser             *parser,
                            const gchar         **attribute_values,
                            GError              **error)
 {
-        gint         i;
-        gint         line, col;
+        gint line;
+        gint col;
+        gint attr_num;
+        const gchar *type = NULL;
         const gchar *name = NULL;
         const gchar *uri = NULL;
-        const gchar *type = NULL;
         const gchar *deprecated = NULL;
-        DhLinkType   link_type;
-        DhLink      *link;
-        gchar       *tmp;
+        DhLinkType link_type;
+        DhLink *link;
+        gchar *name_to_free = NULL;
 
         if (parser->version == 2 &&
             g_ascii_strcasecmp (node_name, "keyword") != 0) {
@@ -263,7 +264,7 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected “%s”, got “%s” at line %d, column %d"),
+                             _("Expected “%s” element, got “%s” at line %d, column %d"),
                              "keyword", node_name, line, col);
                 return;
         } else if (parser->version == 1 &&
@@ -272,60 +273,59 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected “%s”, got “%s” at line %d, column %d"),
+                             _("Expected “%s” element, got “%s” at line %d, column %d"),
                              "function", node_name, line, col);
                 return;
         }
 
-        for (i = 0; attribute_names[i]; ++i) {
-                if (g_ascii_strcasecmp (attribute_names[i], "type") == 0)
-                        type = attribute_values[i];
-                else if (g_ascii_strcasecmp (attribute_names[i], "name") == 0)
-                        name = attribute_values[i];
-                else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0)
-                        uri = attribute_values[i];
-                else if (g_ascii_strcasecmp (attribute_names[i], "deprecated") == 0)
-                        deprecated = attribute_values[i];
+        for (attr_num = 0; attribute_names[attr_num] != NULL; attr_num++) {
+                if (g_ascii_strcasecmp (attribute_names[attr_num], "type") == 0)
+                        type = attribute_values[attr_num];
+                else if (g_ascii_strcasecmp (attribute_names[attr_num], "name") == 0)
+                        name = attribute_values[attr_num];
+                else if (g_ascii_strcasecmp (attribute_names[attr_num], "link") == 0)
+                        uri = attribute_values[attr_num];
+                else if (g_ascii_strcasecmp (attribute_names[attr_num], "deprecated") == 0)
+                        deprecated = attribute_values[attr_num];
         }
 
-        if (!name || !uri) {
+        if (name == NULL || uri == NULL) {
                 g_markup_parse_context_get_position (context, &line, &col);
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("“name” and “link” elements are required "
-                               "inside “%s” on line %d, column %d"),
+                             _("“name” and “link” attributes are required "
+                               "inside “%s” element on line %d, column %d"),
                              parser->version == 2 ? "keyword" : "function",
                              line, col);
                 return;
         }
 
-        if (parser->version == 2 && !type) {
-                /* Required */
+        if (parser->version == 2 && type == NULL) {
                 g_markup_parse_context_get_position (context, &line, &col);
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("“type” element is required "
-                               "inside <keyword> on line %d, column %d"),
+                             _("“type” attribute is required inside "
+                               "<keyword> element on line %d, column %d"),
                              line, col);
                 return;
         }
 
         if (parser->version == 2) {
-                if (strcmp (type, "function") == 0)
+                if (g_str_equal (type, "function"))
                         link_type = DH_LINK_TYPE_FUNCTION;
-                else if (strcmp (type, "struct") == 0)
+                else if (g_str_equal (type, "struct"))
                         link_type = DH_LINK_TYPE_STRUCT;
-                else if (strcmp (type, "macro") == 0)
+                else if (g_str_equal (type, "macro"))
                         link_type = DH_LINK_TYPE_MACRO;
-                else if (strcmp (type, "enum") == 0)
+                else if (g_str_equal (type, "enum"))
                         link_type = DH_LINK_TYPE_ENUM;
-                else if (strcmp (type, "typedef") == 0)
+                else if (g_str_equal (type, "typedef"))
                         link_type = DH_LINK_TYPE_TYPEDEF;
-                else if (strcmp (type, "property") == 0)
+                else if (g_str_equal (type, "property"))
                         link_type = DH_LINK_TYPE_PROPERTY;
-                else if (strcmp (type, "signal") == 0)
+                else if (g_str_equal (type, "signal"))
                         link_type = DH_LINK_TYPE_SIGNAL;
                 else
                         link_type = DH_LINK_TYPE_KEYWORD;
@@ -334,23 +334,24 @@ parser_start_node_keyword (DhParser             *parser,
         }
 
         /* Strip out trailing "() (handling variants with space or non-breaking
-         * space before the parentheses) */
+         * space before the parentheses).
+         */
         if (g_str_has_suffix (name, "\xc2\xa0()")) {
-                tmp = g_strndup (name, strlen (name) - 4);
+                name_to_free = g_strndup (name, strlen (name) - 4);
 
                 if (link_type == DH_LINK_TYPE_KEYWORD)
                         link_type = DH_LINK_TYPE_FUNCTION;
 
-                name = tmp;
+                name = name_to_free;
         } else if (g_str_has_suffix (name, " ()")) {
-                tmp = g_strndup (name, strlen (name) - 3);
+                name_to_free = g_strndup (name, strlen (name) - 3);
 
                 if (link_type == DH_LINK_TYPE_KEYWORD)
                         link_type = DH_LINK_TYPE_FUNCTION;
 
-                name = tmp;
+                name = name_to_free;
         } else if (g_str_has_suffix (name, "()")) {
-                tmp = g_strndup (name, strlen (name) - 2);
+                name_to_free = g_strndup (name, strlen (name) - 2);
 
                 /* With old devhelp format, take a guess that this is a
                  * macro.
@@ -358,9 +359,7 @@ parser_start_node_keyword (DhParser             *parser,
                 if (link_type == DH_LINK_TYPE_KEYWORD)
                         link_type = DH_LINK_TYPE_MACRO;
 
-                name = tmp;
-        } else {
-                tmp = NULL;
+                name = name_to_free;
         }
 
         /* Strip out prefixing "struct", "union", "enum", to make searching
@@ -386,12 +385,12 @@ parser_start_node_keyword (DhParser             *parser,
                             NULL,
                             name,
                             parser->book_node->data,
-                            parser->parent->data,
+                            parser->parent->data, /* FIXME looks wrong */
                             uri);
 
-        g_free (tmp);
+        g_free (name_to_free);
 
-        if (deprecated)
+        if (deprecated != NULL)
                 dh_link_set_flags (link, dh_link_get_flags (link) | DH_LINK_FLAGS_DEPRECATED);
 
         *parser->keywords = g_list_prepend (*parser->keywords, link);
