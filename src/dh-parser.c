@@ -90,7 +90,7 @@ parser_start_node_book (DhParser             *parser,
                 return;
         }
 
-        for (i = 0; attribute_names[i]; ++i) {
+        for (i = 0; attribute_names[i] != NULL; i++) {
                 const gchar *xmlns;
 
                 if (g_ascii_strcasecmp (attribute_names[i], "xmlns") == 0) {
@@ -107,21 +107,16 @@ parser_start_node_book (DhParser             *parser,
                                              xmlns, line, col);
                                 return;
                         }
-                }
-                else if (g_ascii_strcasecmp (attribute_names[i], "name") == 0) {
+                } else if (g_ascii_strcasecmp (attribute_names[i], "name") == 0) {
                         name = attribute_values[i];
-                }
-                else if (g_ascii_strcasecmp (attribute_names[i], "title") == 0) {
+                } else if (g_ascii_strcasecmp (attribute_names[i], "title") == 0) {
                         title = attribute_values[i];
-                }
-                else if (g_ascii_strcasecmp (attribute_names[i], "base") == 0) {
+                } else if (g_ascii_strcasecmp (attribute_names[i], "base") == 0) {
                         /* Dup this one */
                         base = g_strdup (attribute_values[i]);
-                }
-                else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
+                } else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
                         uri = attribute_values[i];
-                }
-                else if (g_ascii_strcasecmp (attribute_names[i], "language") == 0) {
+                } else if (g_ascii_strcasecmp (attribute_names[i], "language") == 0) {
                         language = attribute_values[i];
                 }
         }
@@ -198,8 +193,7 @@ parser_start_node_chapter (DhParser             *parser,
         for (i = 0; attribute_names[i]; ++i) {
                 if (g_ascii_strcasecmp (attribute_names[i], "name") == 0) {
                         name = attribute_values[i];
-                }
-                else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
+                } else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
                         uri = attribute_values[i];
                 }
         }
@@ -257,9 +251,8 @@ parser_start_node_keyword (DhParser             *parser,
                              _("Expected '%s', got '%s' at line %d, column %d"),
                              "keyword", node_name, line, col);
                 return;
-        }
-        else if (parser->version == 1 &&
-            g_ascii_strcasecmp (node_name, "function") != 0) {
+        } else if (parser->version == 1 &&
+                   g_ascii_strcasecmp (node_name, "function") != 0) {
                 g_markup_parse_context_get_position (context, &line, &col);
                 g_set_error (error,
                              DH_ERROR,
@@ -270,18 +263,14 @@ parser_start_node_keyword (DhParser             *parser,
         }
 
         for (i = 0; attribute_names[i]; ++i) {
-                if (g_ascii_strcasecmp (attribute_names[i], "type") == 0) {
+                if (g_ascii_strcasecmp (attribute_names[i], "type") == 0)
                         type = attribute_values[i];
-                }
-                else if (g_ascii_strcasecmp (attribute_names[i], "name") == 0) {
+                else if (g_ascii_strcasecmp (attribute_names[i], "name") == 0)
                         name = attribute_values[i];
-                }
-                else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
+                else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0)
                         uri = attribute_values[i];
-                }
-                else if (g_ascii_strcasecmp (attribute_names[i], "deprecated") == 0) {
+                else if (g_ascii_strcasecmp (attribute_names[i], "deprecated") == 0)
                         deprecated = attribute_values[i];
-                }
         }
 
         if (!name || !uri) {
@@ -309,29 +298,22 @@ parser_start_node_keyword (DhParser             *parser,
         }
 
         if (parser->version == 2) {
-                if (strcmp (type, "function") == 0) {
+                if (strcmp (type, "function") == 0)
                         link_type = DH_LINK_TYPE_FUNCTION;
-                }
-                else if (strcmp (type, "struct") == 0) {
+                else if (strcmp (type, "struct") == 0)
                         link_type = DH_LINK_TYPE_STRUCT;
-                }
-                else if (strcmp (type, "macro") == 0) {
+                else if (strcmp (type, "macro") == 0)
                         link_type = DH_LINK_TYPE_MACRO;
-                }
-                else if (strcmp (type, "enum") == 0) {
+                else if (strcmp (type, "enum") == 0)
                         link_type = DH_LINK_TYPE_ENUM;
-                }
-                else if (strcmp (type, "typedef") == 0) {
+                else if (strcmp (type, "typedef") == 0)
                         link_type = DH_LINK_TYPE_TYPEDEF;
-                }
-                else if (strcmp (type, "property") == 0) {
+                else if (strcmp (type, "property") == 0)
                         link_type = DH_LINK_TYPE_PROPERTY;
-                }
-                else if (strcmp (type, "signal") == 0) {
+                else if (strcmp (type, "signal") == 0)
                         link_type = DH_LINK_TYPE_SIGNAL;
-                } else {
+                else
                         link_type = DH_LINK_TYPE_KEYWORD;
-                }
         } else {
                 link_type = DH_LINK_TYPE_KEYWORD;
         }
@@ -341,28 +323,26 @@ parser_start_node_keyword (DhParser             *parser,
         if (g_str_has_suffix (name, "\xc2\xa0()")) {
                 tmp = g_strndup (name, strlen (name) - 4);
 
-                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                if (link_type == DH_LINK_TYPE_KEYWORD)
                         link_type = DH_LINK_TYPE_FUNCTION;
-                }
+
                 name = tmp;
-        }
-        else if (g_str_has_suffix (name, " ()")) {
+        } else if (g_str_has_suffix (name, " ()")) {
                 tmp = g_strndup (name, strlen (name) - 3);
 
-                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                if (link_type == DH_LINK_TYPE_KEYWORD)
                         link_type = DH_LINK_TYPE_FUNCTION;
-                }
+
                 name = tmp;
-        }
-        else if (g_str_has_suffix (name, "()")) {
+        } else if (g_str_has_suffix (name, "()")) {
                 tmp = g_strndup (name, strlen (name) - 2);
 
                 /* With old devhelp format, take a guess that this is a
                  * macro.
                  */
-                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                if (link_type == DH_LINK_TYPE_KEYWORD)
                         link_type = DH_LINK_TYPE_MACRO;
-                }
+
                 name = tmp;
         } else {
                 tmp = NULL;
@@ -374,21 +354,16 @@ parser_start_node_keyword (DhParser             *parser,
          */
         if (g_str_has_prefix (name, "struct ")) {
                 name = name + 7;
-                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                if (link_type == DH_LINK_TYPE_KEYWORD)
                         link_type = DH_LINK_TYPE_STRUCT;
-                }
-        }
-        else if (g_str_has_prefix (name, "union ")) {
+        } else if (g_str_has_prefix (name, "union ")) {
                 name = name + 6;
-                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                if (link_type == DH_LINK_TYPE_KEYWORD)
                         link_type = DH_LINK_TYPE_STRUCT;
-                }
-        }
-        else if (g_str_has_prefix (name, "enum ")) {
+        } else if (g_str_has_prefix (name, "enum ")) {
                 name = name + 5;
-                if (link_type == DH_LINK_TYPE_KEYWORD) {
+                if (link_type == DH_LINK_TYPE_KEYWORD)
                         link_type = DH_LINK_TYPE_ENUM;
-                }
         }
 
         link = dh_link_new (link_type,
@@ -401,11 +376,8 @@ parser_start_node_keyword (DhParser             *parser,
 
         g_free (tmp);
 
-        if (deprecated) {
-                dh_link_set_flags (
-                        link,
-                        dh_link_get_flags (link) | DH_LINK_FLAGS_DEPRECATED);
-        }
+        if (deprecated)
+                dh_link_set_flags (link, dh_link_get_flags (link) | DH_LINK_FLAGS_DEPRECATED);
 
         *parser->keywords = g_list_prepend (*parser->keywords, link);
 }
@@ -428,8 +400,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
                                            attribute_values,
                                            error);
                 return;
-        }
-        else if (parser->parsing_chapters) {
+        } else if (parser->parsing_chapters) {
                 parser_start_node_chapter (parser,
                                            context,
                                            node_name,
@@ -437,14 +408,13 @@ parser_start_node_cb (GMarkupParseContext  *context,
                                            attribute_values,
                                            error);
                 return;
-        }
-        else if (g_ascii_strcasecmp (node_name, "functions") == 0) {
+        } else if (g_ascii_strcasecmp (node_name, "functions") == 0) {
                 parser->parsing_keywords = TRUE;
-        }
-        else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
+        } else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
                 parser->parsing_chapters = TRUE;
         }
-        if (!parser->book_node) {
+
+        if (parser->book_node == NULL) {
                 parser_start_node_book (parser,
                                         context,
                                         node_name,
@@ -464,17 +434,15 @@ parser_end_node_cb (GMarkupParseContext  *context,
         DhParser *parser = user_data;
 
         if (parser->parsing_keywords) {
-                if (g_ascii_strcasecmp (node_name, "functions") == 0) {
+                if (g_ascii_strcasecmp (node_name, "functions") == 0)
                         parser->parsing_keywords = FALSE;
-                }
-        }
-        else if (parser->parsing_chapters) {
+        } else if (parser->parsing_chapters) {
                 g_node_reverse_children (parser->parent);
+
                 if (g_ascii_strcasecmp (node_name, "sub") == 0) {
-                        parser->parent = parser->parent->parent;
                         /* Move up in the tree */
-                }
-                else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
+                        parser->parent = parser->parent->parent;
+                } else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
                         parser->parsing_chapters = FALSE;
                 }
         }
