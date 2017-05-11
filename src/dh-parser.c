@@ -32,8 +32,9 @@ typedef struct {
         GMarkupParser *markup_parser;
         GMarkupParseContext *context;
 
-        /* Parameters of dh_parser_read_file(). */
         GFile *index_file;
+
+        /* Out parameters of dh_parser_read_file(). */
         gchar **book_title;
         gchar **book_name;
         gchar **book_language;
@@ -56,12 +57,9 @@ typedef struct {
 static void
 dh_parser_free (DhParser *parser)
 {
-        // NOTE: priv->book_tree and priv->keywords do not need to be freed
-        // because they're only used to store the locations for the return
-        // params of dh_parser_read_file()
-
         g_markup_parse_context_free (parser->context);
         g_free (parser->markup_parser);
+        g_object_unref (parser->index_file);
         g_free (parser);
 }
 
@@ -530,7 +528,9 @@ dh_parser_read_file (GFile   *index_file,
 
         parser->context = g_markup_parse_context_new (parser->markup_parser, 0, parser, NULL);
 
-        parser->index_file = index_file;
+        parser->index_file = g_object_ref (index_file);
+
+        /* Out parameters */
         parser->book_title = book_title;
         parser->book_name = book_name;
         parser->book_language = book_language;
