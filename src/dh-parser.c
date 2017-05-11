@@ -100,7 +100,7 @@ parser_start_node_book (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected '%s', got '%s' at line %d, column %d"),
+                             _("Expected “%s”, got “%s” at line %d, column %d"),
                              "book", node_name, line, col);
                 return;
         }
@@ -115,7 +115,7 @@ parser_start_node_book (DhParser             *parser,
                                 g_set_error (error,
                                              DH_ERROR,
                                              DH_ERROR_MALFORMED_BOOK,
-                                             _("Invalid namespace '%s' at line %d, column %d"),
+                                             _("Invalid namespace “%s” at line %d, column %d"),
                                              xmlns, line, col);
                                 return;
                         }
@@ -138,7 +138,7 @@ parser_start_node_book (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("\"title\", \"name\" and \"link\" elements are "
+                             _("“title”, “name” and “link” elements are "
                                "required at line %d, column %d"),
                              line, col);
                 return;
@@ -200,7 +200,7 @@ parser_start_node_chapter (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected '%s', got '%s' at line %d, column %d"),
+                             _("Expected “%s”, got “%s” at line %d, column %d"),
                              "sub", node_name, line, col);
                 return;
         }
@@ -218,7 +218,7 @@ parser_start_node_chapter (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("\"name\" and \"link\" elements are required "
+                             _("“name” and “link” elements are required "
                                "inside <sub> on line %d, column %d"),
                              line, col);
                 return;
@@ -263,7 +263,7 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected '%s', got '%s' at line %d, column %d"),
+                             _("Expected “%s”, got “%s” at line %d, column %d"),
                              "keyword", node_name, line, col);
                 return;
         } else if (parser->version == 1 &&
@@ -272,7 +272,7 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("Expected '%s', got '%s' at line %d, column %d"),
+                             _("Expected “%s”, got “%s” at line %d, column %d"),
                              "function", node_name, line, col);
                 return;
         }
@@ -293,8 +293,8 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("\"name\" and \"link\" elements are required "
-                               "inside '%s' on line %d, column %d"),
+                             _("“name” and “link” elements are required "
+                               "inside “%s” on line %d, column %d"),
                              parser->version == 2 ? "keyword" : "function",
                              line, col);
                 return;
@@ -306,7 +306,7 @@ parser_start_node_keyword (DhParser             *parser,
                 g_set_error (error,
                              DH_ERROR,
                              DH_ERROR_MALFORMED_BOOK,
-                             _("\"type\" element is required "
+                             _("“type” element is required "
                                "inside <keyword> on line %d, column %d"),
                              line, col);
                 return;
