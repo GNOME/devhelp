@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2003 CodeFactory AB
  * Copyright (C) 2003 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -20,17 +21,17 @@
 #ifndef DH_PARSER_H
 #define DH_PARSER_H
 
-#include <glib.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS
 
-gboolean dh_parser_read_file (const gchar  *index_file_path,
-                              gchar       **book_title,
-                              gchar       **book_name,
-                              gchar       **book_language,
-                              GNode       **book_tree,
-                              GList       **keywords,
-                              GError      **error);
+gboolean dh_parser_read_file (GFile   *index_file,
+                              gchar  **book_title,
+                              gchar  **book_name,
+                              gchar  **book_language,
+                              GNode  **book_tree,
+                              GList  **keywords,
+                              GError **error);
 
 G_END_DECLS
 

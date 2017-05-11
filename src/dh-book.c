@@ -297,17 +297,19 @@ dh_book_new (const gchar *index_file_path)
 {
         DhBookPrivate *priv;
         DhBook     *book;
-        GError     *error = NULL;
         GFile      *index_file;
         gchar      *language;
+        GError     *error = NULL;
 
         g_return_val_if_fail (index_file_path, NULL);
 
         book = g_object_new (DH_TYPE_BOOK, NULL);
         priv = dh_book_get_instance_private (book);
 
+        index_file = g_file_new_for_path (index_file_path);
+
         /* Parse file storing contents in the book struct */
-        if (!dh_parser_read_file (index_file_path,
+        if (!dh_parser_read_file (index_file,
                                   &priv->title,
                                   &priv->name,
                                   &language,
@@ -339,7 +341,6 @@ dh_book_new (const gchar *index_file_path)
         g_free (language);
 
         /* Setup monitor for changes */
-        index_file = g_file_new_for_path (index_file_path);
         priv->monitor = g_file_monitor_file (index_file,
                                              G_FILE_MONITOR_NONE,
                                              NULL,
@@ -353,8 +354,8 @@ dh_book_new (const gchar *index_file_path)
                 g_warning ("Couldn't setup monitoring of changes in book '%s'",
                            priv->title);
         }
-        g_object_unref (index_file);
 
+        g_object_unref (index_file);
         return book;
 }
 

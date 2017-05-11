@@ -20,11 +20,8 @@
 
 #include "config.h"
 #include "dh-parser.h"
-
-#include <gio/gio.h>
 #include <string.h>
 #include <glib/gi18n-lib.h>
-
 #include "dh-error.h"
 #include "dh-link.h"
 
@@ -36,7 +33,7 @@ typedef struct {
         GMarkupParseContext *context;
 
         /* Parameters of dh_parser_read_file(). */
-        const gchar *index_file_path;
+        GFile *index_file;
         gchar **book_title;
         gchar **book_name;
         gchar **book_language;
@@ -151,8 +148,12 @@ parser_start_node_book (DhParser             *parser,
         *(parser->book_name) = g_strdup (name);
         *(parser->book_language) = language ? g_strdup (language) : NULL;
 
-        if (!base) {
-                base = g_path_get_dirname (parser->index_file_path);
+        if (base == NULL) {
+                GFile *directory;
+
+                directory = g_file_get_parent (parser->index_file);
+                base = g_file_get_path (directory);
+                g_object_unref (directory);
         }
 
         link = dh_link_new (DH_LINK_TYPE_BOOK,
@@ -482,32 +483,32 @@ parser_end_node_cb (GMarkupParseContext  *context,
 }
 
 gboolean
-dh_parser_read_file (const gchar  *index_file_path,
-                     gchar       **book_title,
-                     gchar       **book_name,
-                     gchar       **book_language,
-                     GNode       **book_tree,
-                     GList       **keywords,
-                     GError      **error)
+dh_parser_read_file (GFile   *index_file,
+                     gchar  **book_title,
+                     gchar  **book_name,
+                     gchar  **book_language,
+                     GNode  **book_tree,
+                     GList  **keywords,
+                     GError **error)
 {
         DhParser *parser;
+        gchar *index_file_uri;
         gboolean gz;
-        GFile *index_file = NULL;
         GFileInputStream *file_input_stream = NULL;
         GInputStream *input_stream = NULL;
         gboolean ok = TRUE;
 
         parser = g_new0 (DhParser, 1);
 
-        if (g_str_has_suffix (index_file_path, ".devhelp2")) {
+        index_file_uri = g_file_get_uri (index_file);
+
+        if (g_str_has_suffix (index_file_uri, ".devhelp2")) {
                 parser->version = 2;
                 gz = FALSE;
-        }
-        else if (g_str_has_suffix (index_file_path, ".devhelp")) {
+        } else if (g_str_has_suffix (index_file_uri, ".devhelp")) {
                 parser->version = 1;
                 gz = FALSE;
-        }
-        else if (g_str_has_suffix (index_file_path, ".devhelp2.gz")) {
+        } else if (g_str_has_suffix (index_file_uri, ".devhelp2.gz")) {
                 parser->version = 2;
                 gz = TRUE;
         } else {
@@ -521,14 +522,13 @@ dh_parser_read_file (const gchar  *index_file_path,
 
         parser->context = g_markup_parse_context_new (parser->markup_parser, 0, parser, NULL);
 
-        parser->index_file_path = index_file_path;
+        parser->index_file = index_file;
         parser->book_title = book_title;
         parser->book_name = book_name;
         parser->book_language = book_language;
         parser->book_tree = book_tree;
         parser->keywords = keywords;
 
-        index_file = g_file_new_for_path (index_file_path);
         file_input_stream = g_file_read (index_file, NULL, error);
         if (file_input_stream == NULL) {
                 ok = FALSE;
@@ -578,7 +578,7 @@ dh_parser_read_file (const gchar  *index_file_path,
                 ok = FALSE;
 
 exit:
-        g_clear_object (&index_file);
+        g_free (index_file_uri);
         g_clear_object (&file_input_stream);
         g_clear_object (&input_stream);
         dh_parser_free (parser);
