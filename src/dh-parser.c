@@ -64,6 +64,20 @@ dh_parser_free (DhParser *parser)
 }
 
 static void
+replace_newlines_by_spaces (gchar *str)
+{
+        gint i;
+
+        if (str == NULL)
+                return;
+
+        for (i = 0; str[i] != '\0'; i++) {
+                if (str[i] == '\n')
+                        str[i] = ' ';
+        }
+}
+
+static void
 parser_start_node_book (DhParser             *parser,
                         GMarkupParseContext  *context,
                         const gchar          *node_name,
@@ -71,14 +85,15 @@ parser_start_node_book (DhParser             *parser,
                         const gchar         **attribute_values,
                         GError              **error)
 {
-        gint         i, j;
-        gint         line, col;
-        gchar       *base = NULL;
-        const gchar *uri = NULL;
-        const gchar *title = NULL;
+        gint line;
+        gint col;
+        gint attr_num;
+        gchar *base = NULL;
         const gchar *name = NULL;
+        const gchar *title = NULL;
+        const gchar *uri = NULL;
         const gchar *language = NULL;
-        DhLink      *link;
+        DhLink *link;
 
         if (g_ascii_strcasecmp (node_name, "book") != 0) {
                 g_markup_parse_context_get_position (context, &line, &col);
@@ -90,38 +105,35 @@ parser_start_node_book (DhParser             *parser,
                 return;
         }
 
-        for (i = 0; attribute_names[i] != NULL; i++) {
-                const gchar *xmlns;
+        for (attr_num = 0; attribute_names[attr_num] != NULL; attr_num++) {
+                if (g_ascii_strcasecmp (attribute_names[attr_num], "xmlns") == 0) {
+                        const gchar *xmlns;
 
-                if (g_ascii_strcasecmp (attribute_names[i], "xmlns") == 0) {
-                        xmlns = attribute_values[i];
+                        xmlns = attribute_values[attr_num];
                         if (g_ascii_strcasecmp (xmlns, NAMESPACE) != 0) {
-                                g_markup_parse_context_get_position (context,
-                                                                     &line,
-                                                                     &col);
+                                g_markup_parse_context_get_position (context, &line, &col);
                                 g_set_error (error,
                                              DH_ERROR,
                                              DH_ERROR_MALFORMED_BOOK,
-                                             _("Invalid namespace '%s' at"
-                                               " line %d, column %d"),
+                                             _("Invalid namespace '%s' at line %d, column %d"),
                                              xmlns, line, col);
                                 return;
                         }
-                } else if (g_ascii_strcasecmp (attribute_names[i], "name") == 0) {
-                        name = attribute_values[i];
-                } else if (g_ascii_strcasecmp (attribute_names[i], "title") == 0) {
-                        title = attribute_values[i];
-                } else if (g_ascii_strcasecmp (attribute_names[i], "base") == 0) {
+                } else if (g_ascii_strcasecmp (attribute_names[attr_num], "name") == 0) {
+                        name = attribute_values[attr_num];
+                } else if (g_ascii_strcasecmp (attribute_names[attr_num], "title") == 0) {
+                        title = attribute_values[attr_num];
+                } else if (g_ascii_strcasecmp (attribute_names[attr_num], "base") == 0) {
                         /* Dup this one */
-                        base = g_strdup (attribute_values[i]);
-                } else if (g_ascii_strcasecmp (attribute_names[i], "link") == 0) {
-                        uri = attribute_values[i];
-                } else if (g_ascii_strcasecmp (attribute_names[i], "language") == 0) {
-                        language = attribute_values[i];
+                        base = g_strdup (attribute_values[attr_num]);
+                } else if (g_ascii_strcasecmp (attribute_names[attr_num], "link") == 0) {
+                        uri = attribute_values[attr_num];
+                } else if (g_ascii_strcasecmp (attribute_names[attr_num], "language") == 0) {
+                        language = attribute_values[attr_num];
                 }
         }
 
-        if (!title || !name || !uri) {
+        if (name == NULL || title == NULL || uri == NULL) {
                 g_markup_parse_context_get_position (context, &line, &col);
                 g_set_error (error,
                              DH_ERROR,
@@ -133,13 +145,15 @@ parser_start_node_book (DhParser             *parser,
         }
 
         /* Store book metadata */
+        g_free (*(parser->book_title));
         *(parser->book_title) = g_strdup (title);
-        for (j = 0; (*(parser->book_title))[j]; j++) {
-                if ((*(parser->book_title))[j] == '\n')
-                        (*(parser->book_title))[j] = ' ';
-        }
+        replace_newlines_by_spaces (*(parser->book_title));
+
+        g_free (*(parser->book_name));
         *(parser->book_name) = g_strdup (name);
-        *(parser->book_language) = language ? g_strdup (language) : NULL;
+
+        g_free (*(parser->book_language));
+        *(parser->book_language) = g_strdup (language);
 
         if (base == NULL) {
                 GFile *directory;
@@ -159,6 +173,7 @@ parser_start_node_book (DhParser             *parser,
         g_free (base);
         *parser->keywords = g_list_prepend (*parser->keywords, dh_link_ref (link));
 
+        g_assert (parser->book_node == NULL);
         parser->book_node = g_node_new (dh_link_ref (link));
         *parser->book_tree = parser->book_node;
         parser->parent = parser->book_node;
