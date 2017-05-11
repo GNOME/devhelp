@@ -498,6 +498,14 @@ dh_parser_read_file (GFile   *index_file,
         GInputStream *input_stream = NULL;
         gboolean ok = TRUE;
 
+        g_return_val_if_fail (G_IS_FILE (index_file), FALSE);
+        g_return_val_if_fail (book_title != NULL && *book_title == NULL, FALSE);
+        g_return_val_if_fail (book_name != NULL && *book_name == NULL, FALSE);
+        g_return_val_if_fail (book_language != NULL && *book_language == NULL, FALSE);
+        g_return_val_if_fail (book_tree != NULL && *book_tree == NULL, FALSE);
+        g_return_val_if_fail (keywords != NULL && *keywords == NULL, FALSE);
+        g_return_val_if_fail (error != NULL && *error == NULL, FALSE);
+
         parser = g_new0 (DhParser, 1);
 
         index_file_uri = g_file_get_uri (index_file);

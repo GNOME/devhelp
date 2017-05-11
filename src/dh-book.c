@@ -298,7 +298,7 @@ dh_book_new (const gchar *index_file_path)
         DhBookPrivate *priv;
         DhBook     *book;
         GFile      *index_file;
-        gchar      *language;
+        gchar      *language = NULL;
         GError     *error = NULL;
 
         g_return_val_if_fail (index_file_path, NULL);
@@ -316,10 +316,12 @@ dh_book_new (const gchar *index_file_path)
                                   &priv->tree,
                                   &priv->keywords,
                                   &error)) {
-                g_warning ("Failed to read '%s': %s",
-                           index_file_path,
-                           error->message);
-                g_error_free (error);
+                if (error != NULL) {
+                        g_warning ("Failed to read '%s': %s",
+                                   index_file_path,
+                                   error->message);
+                        g_error_free (error);
+                }
 
                 /* Deallocate the book, as we are not going to add it in the
                  * manager.
