@@ -224,6 +224,8 @@ parser_start_node_chapter (DhParser             *parser,
                 return;
         }
 
+        g_assert (parser->book_node != NULL);
+
         link = dh_link_new (DH_LINK_TYPE_PAGE,
                             NULL,
                             NULL,
@@ -381,6 +383,9 @@ parser_start_node_keyword (DhParser             *parser,
                         link_type = DH_LINK_TYPE_ENUM;
         }
 
+        g_assert (parser->book_node != NULL);
+        g_assert (parser->parent != NULL);
+
         link = dh_link_new (link_type,
                             NULL,
                             NULL,
@@ -407,6 +412,16 @@ parser_start_node_cb (GMarkupParseContext  *context,
 {
         DhParser *parser = user_data;
 
+        if (parser->book_node == NULL) {
+                parser_start_node_book (parser,
+                                        context,
+                                        node_name,
+                                        attribute_names,
+                                        attribute_values,
+                                        error);
+                return;
+        }
+
         if (parser->parsing_keywords) {
                 parser_start_node_keyword (parser,
                                            context,
@@ -427,16 +442,6 @@ parser_start_node_cb (GMarkupParseContext  *context,
                 parser->parsing_keywords = TRUE;
         } else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
                 parser->parsing_chapters = TRUE;
-        }
-
-        if (parser->book_node == NULL) {
-                parser_start_node_book (parser,
-                                        context,
-                                        node_name,
-                                        attribute_names,
-                                        attribute_values,
-                                        error);
-                return;
         }
 }
 
