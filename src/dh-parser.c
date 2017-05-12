@@ -1,8 +1,9 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
- * Copyright (c) 2002-2003 Mikael Hallendal <micke@imendio.com>
- * Copyright (c) 2002-2003 CodeFactory AB
+ * Copyright (C) 2002-2003 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2002-2003 CodeFactory AB
  * Copyright (C) 2005,2008 Imendio AB
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -14,8 +15,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU General Public
- * License along with this program; if not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "config.h"
@@ -71,7 +72,7 @@ replace_newlines_by_spaces (gchar *str)
                 return;
 
         for (i = 0; str[i] != '\0'; i++) {
-                if (str[i] == '\n')
+                if (str[i] == '\n' || str[i] == '\r')
                         str[i] = ' ';
         }
 }
