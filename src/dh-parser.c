@@ -25,7 +25,21 @@
 #include "dh-error.h"
 #include "dh-link.h"
 
-#define NAMESPACE      "http://www.devhelp.net/book"
+/* It's the xmlns attribute. It is currently (well, in 2015 at least) used on
+ * developer.gnome.org to look for <keyword> elements attached to that
+ * namespace.
+ *
+ * devhelp.net was initially the Devhelp website, but it is now no longer the
+ * case. But it is not a problem, a namespace qualifies a node name, it doesn't
+ * have to be a real site. And it is now too late to change it, at least for the
+ * format version 2.
+ *
+ * See:
+ * https://bugzilla.gnome.org/show_bug.cgi?id=566447
+ * https://bugzilla.gnome.org/show_bug.cgi?id=749591#c1
+ */
+#define NAMESPACE "http://www.devhelp.net/book"
+
 #define BYTES_PER_READ 4096
 
 typedef struct {
