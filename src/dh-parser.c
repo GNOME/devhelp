@@ -175,8 +175,11 @@ parser_start_node_book (DhParser             *parser,
         *parser->keywords = g_list_prepend (*parser->keywords, link);
 
         g_assert (parser->book_node == NULL);
+        g_assert (*(parser->book_tree) == NULL);
+        g_assert (parser->parent_node == NULL);
+
         parser->book_node = g_node_new (dh_link_ref (link));
-        *parser->book_tree = parser->book_node;
+        *(parser->book_tree) = parser->book_node;
         parser->parent_node = parser->book_node;
 }
 
@@ -235,6 +238,8 @@ parser_start_node_chapter (DhParser             *parser,
                             uri);
 
         *parser->keywords = g_list_prepend (*parser->keywords, link);
+
+        g_assert (parser->parent_node != NULL);
 
         node = g_node_new (dh_link_ref (link));
         g_node_prepend (parser->parent_node, node);
@@ -456,13 +461,27 @@ parser_end_node_cb (GMarkupParseContext  *context,
                 if (g_ascii_strcasecmp (node_name, "functions") == 0)
                         parser->parsing_keywords = FALSE;
         } else if (parser->parsing_chapters) {
+                g_assert (parser->parent_node != NULL);
                 g_node_reverse_children (parser->parent_node);
 
                 if (g_ascii_strcasecmp (node_name, "sub") == 0) {
                         /* Move up in the tree */
                         parser->parent_node = parser->parent_node->parent;
+                        g_assert (parser->parent_node != NULL);
                 } else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
                         parser->parsing_chapters = FALSE;
+
+                        /* All <sub> elements should be closed, we should have
+                         * come back to the top node (corresponding to the
+                         * <book> element).
+                         *
+                         * It could be a g_assert(), normally GMarkupParser
+                         * already catches malformed XML files (if a <sub>
+                         * element is not correctly closed). But just in case
+                         * GMarkupParser is not smart enough, it's safer to have
+                         * a g_return_if_fail() to avoid a crash.
+                         */
+                        g_return_if_fail (parser->parent_node == parser->book_node);
                 }
         }
 }
