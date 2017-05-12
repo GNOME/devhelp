@@ -426,15 +426,7 @@ parser_start_node_cb (GMarkupParseContext  *context,
                 return;
         }
 
-        if (parser->parsing_keywords) {
-                parser_start_node_keyword (parser,
-                                           context,
-                                           node_name,
-                                           attribute_names,
-                                           attribute_values,
-                                           error);
-                return;
-        } else if (parser->parsing_chapters) {
+        if (parser->parsing_chapters) {
                 parser_start_node_chapter (parser,
                                            context,
                                            node_name,
@@ -442,10 +434,18 @@ parser_start_node_cb (GMarkupParseContext  *context,
                                            attribute_values,
                                            error);
                 return;
-        } else if (g_ascii_strcasecmp (node_name, "functions") == 0) {
-                parser->parsing_keywords = TRUE;
+        } else if (parser->parsing_keywords) {
+                parser_start_node_keyword (parser,
+                                           context,
+                                           node_name,
+                                           attribute_names,
+                                           attribute_values,
+                                           error);
+                return;
         } else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
                 parser->parsing_chapters = TRUE;
+        } else if (g_ascii_strcasecmp (node_name, "functions") == 0) {
+                parser->parsing_keywords = TRUE;
         }
 }
 
