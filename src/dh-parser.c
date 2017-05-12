@@ -390,12 +390,42 @@ parser_start_node_keyword (DhParser             *parser,
         g_assert (parser->book_node != NULL);
         g_assert (parser->parent_node != NULL);
 
+        /* FIXME the before last parameter, the page DhLink, is broken.
+         * parser->parent_node == parser->book_node here, see the
+         * g_return_if_fail() in parser_end_node_cb().
+         *
+         * So parser->parent_node->data is actually the book DhLink.
+         *
+         * dh_link_get_page_name() is deprecated because it's used nowhere. But
+         * that function is broken, since it actually returns the book name.
+         *
+         * It's not really clear what to do. When creating a keyword DhLink, we
+         * don't know the page DhLink, but with the link attribute (the variable
+         * 'uri' below) we can remove the anchor and have the html page as a
+         * string, for example:
+         *
+         * <keyword type="function" name="dh_init ()"
+         * link="devhelp-Initialization-and-Finalization.html#dh-init"/>
+         *
+         * --> the page is: devhelp-Initialization-and-Finalization.html
+         *
+         * And with the page as a string, DhBook is able to search the DhLink
+         * for the page. Not sure that's useful though, maybe all that stuff can
+         * be removed altogether.
+         *
+         * A potential use-case to have the page name is to show in search
+         * results the page name alongside a signal or property (but ideally it
+         * should be the *class* name, not the page name, but usually a page
+         * contains only one class). But gtk-doc could directly add the class
+         * name in the name of signals and properties. See:
+         * https://bugzilla.gnome.org/show_bug.cgi?id=782546
+         */
         link = dh_link_new (link_type,
                             NULL,
                             NULL,
                             name,
                             parser->book_node->data,
-                            parser->parent_node->data, /* FIXME looks wrong */
+                            parser->parent_node->data, /* FIXME broken */
                             uri);
 
         g_free (name_to_free);
