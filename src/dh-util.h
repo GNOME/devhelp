@@ -49,6 +49,9 @@ void         dh_util_window_settings_restore      (GtkWindow *window,
 void         dh_util_queue_concat                 (GQueue *q1,
                                                    GQueue *q2);
 
+G_GNUC_INTERNAL
+void         _dh_util_free_book_tree              (GNode *book_tree);
+
 G_END_DECLS
 
 #endif /* DH_UTIL_H */

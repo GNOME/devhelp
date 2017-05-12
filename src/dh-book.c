@@ -107,14 +107,6 @@ dh_book_dispose (GObject *object)
         G_OBJECT_CLASS (dh_book_parent_class)->dispose (object);
 }
 
-static gboolean
-unref_node_link (GNode    *node,
-                 gpointer  data)
-{
-        dh_link_unref (node->data);
-        return FALSE;
-}
-
 static void
 dh_book_finalize (GObject *object)
 {
@@ -122,16 +114,7 @@ dh_book_finalize (GObject *object)
 
         priv = dh_book_get_instance_private (DH_BOOK (object));
 
-        if (priv->tree != NULL) {
-                g_node_traverse (priv->tree,
-                                 G_IN_ORDER,
-                                 G_TRAVERSE_ALL,
-                                 -1,
-                                 unref_node_link,
-                                 NULL);
-                g_node_destroy (priv->tree);
-        }
-
+        _dh_util_free_book_tree (priv->tree);
         g_list_free_full (priv->keywords, (GDestroyNotify)dh_link_unref);
         g_list_free_full (priv->completions, g_free);
         g_free (priv->language);

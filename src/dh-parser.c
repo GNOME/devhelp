@@ -24,6 +24,7 @@
 #include <string.h>
 #include "dh-error.h"
 #include "dh-link.h"
+#include "dh-util.h"
 
 /* It's the xmlns attribute. It is currently (well, in 2015 at least) used on
  * developer.gnome.org to look for <keyword> elements attached to that
@@ -70,14 +71,6 @@ typedef struct {
         guint parsing_keywords : 1;
 } DhParser;
 
-static gboolean
-unref_node_link (GNode    *node,
-                 gpointer  data)
-{
-        dh_link_unref (node->data);
-        return FALSE;
-}
-
 static void
 dh_parser_free (DhParser *parser)
 {
@@ -91,17 +84,7 @@ dh_parser_free (DhParser *parser)
         g_free (parser->book_language);
 
         g_list_free_full (parser->keywords, (GDestroyNotify)dh_link_unref);
-
-        if (parser->book_node != NULL) {
-                g_node_traverse (parser->book_node,
-                                 G_IN_ORDER,
-                                 G_TRAVERSE_ALL,
-                                 -1,
-                                 unref_node_link,
-                                 NULL);
-
-                g_node_destroy (parser->book_node);
-        }
+        _dh_util_free_book_tree (parser->book_node);
 
         g_free (parser);
 }

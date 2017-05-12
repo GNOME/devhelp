@@ -1,8 +1,8 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
- * Copyright (C) 2001      Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2004,2008 Imendio AB
- * Copyright (C) 2015      Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2001 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2004, 2008 Imendio AB
+ * Copyright (C) 2015, 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -290,4 +290,28 @@ dh_util_queue_concat (GQueue *q1,
         q2->tail = NULL;
         q2->length = 0;
         g_queue_free (q2);
+}
+
+static gboolean
+unref_node_link (GNode    *node,
+                 gpointer  data)
+{
+        dh_link_unref (node->data);
+        return FALSE;
+}
+
+void
+_dh_util_free_book_tree (GNode *book_tree)
+{
+        if (book_tree == NULL)
+                return;
+
+        g_node_traverse (book_tree,
+                         G_IN_ORDER,
+                         G_TRAVERSE_ALL,
+                         -1,
+                         unref_node_link,
+                         NULL);
+
+        g_node_destroy (book_tree);
 }
