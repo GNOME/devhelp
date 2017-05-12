@@ -373,6 +373,11 @@ parser_start_node_keyword (DhParser             *parser,
 
         /* Strip out trailing "() (handling variants with space or non-breaking
          * space before the parentheses).
+         *
+         * FIXME: gtk-doc still adds those parentheses. I thought that the code
+         * was needed to support the format version 1. Maybe gtk-doc should no
+         * longer add those trailing parentheses, since with the format version
+         * 2 we already know the link type.
          */
         if (g_str_has_suffix (name, "\xc2\xa0()")) {
                 name_to_free = g_strndup (name, strlen (name) - 4);
