@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 /**
  * DhLinkType:
- * @DH_LINK_TYPE_BOOK: A book.
+ * @DH_LINK_TYPE_BOOK: The top-level page of a #DhBook.
  * @DH_LINK_TYPE_PAGE: A page.
  * @DH_LINK_TYPE_KEYWORD: Another kind of keyword.
  * @DH_LINK_TYPE_FUNCTION: A function keyword.
@@ -68,12 +68,12 @@ typedef struct _DhLink DhLink;
 
 GType        dh_link_get_type           (void);
 DhLink *     dh_link_new                (DhLinkType     type,
-                                         const gchar   *base,
-                                         const gchar   *id,
+                                         const gchar   *base_path,
+                                         const gchar   *book_id,
                                          const gchar   *name,
                                          DhLink        *book,
                                          DhLink        *page,
-                                         const gchar   *filename);
+                                         const gchar   *relative_url);
 DhLink *     dh_link_ref                (DhLink        *link);
 void         dh_link_unref              (DhLink        *link);
 gint         dh_link_compare            (gconstpointer  a,

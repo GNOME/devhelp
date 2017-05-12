@@ -29,9 +29,11 @@
  *
  * A #DhLink represents a link to an HTML page or somewhere inside a page (with
  * an anchor) that is inside a #DhBook. The link can point to a specific symbol,
- * or a page, or the #DhBook itself.
+ * or a page, or the top-level page of the #DhBook.
  *
  * A #DhLink has a type that can be retrieved with dh_link_get_link_type().
+ *
+ * There is exactly one #DhLink of type %DH_LINK_TYPE_BOOK per #DhBook object.
  */
 
 struct _DhLink {
@@ -78,40 +80,48 @@ link_free (DhLink *link)
 
 /**
  * dh_link_new:
- * @type: the type of the content the link is pointing to.
- * @base: the base path of the link.
- * @id: the id of the link.
+ * @type: the #DhLinkType.
+ * @base_path: (nullable): the base path for the book, or %NULL.
+ * @book_id: (nullable): the book ID, or %NULL.
  * @name: the name of the link.
  * @book: (nullable): the book that the link is contained in, or %NULL.
- * @page: (nullable): the page that the link is contained in, or %NULL.
- * @filename: the filename.
+ * @page: (nullable): the page that the link is contained in, or %NULL. This
+ * parameter is actually broken.
+ * @relative_url: the URL relative to the book @base_path. Can contain an
+ * anchor.
  *
  * Creates a new #DhLink.
  *
+ * @base_path and @book_id must be provided only for a link of type
+ * %DH_LINK_TYPE_BOOK.
+ *
  * If @type is not a #DH_LINK_TYPE_BOOK and not a #DH_LINK_TYPE_PAGE, then the
  * @book and @page links must be provided.
+ *
+ * @name and @relative_url must always be provided.
  *
  * Returns: a new #DhLink.
  */
 DhLink *
 dh_link_new (DhLinkType   type,
-             const gchar *base,
-             const gchar *id,
+             const gchar *base_path,
+             const gchar *book_id,
              const gchar *name,
              DhLink      *book,
              DhLink      *page,
-             const gchar *filename)
+             const gchar *relative_url)
 {
         DhLink *link;
 
         g_return_val_if_fail (name != NULL, NULL);
-        g_return_val_if_fail (filename != NULL, NULL);
+        g_return_val_if_fail (relative_url != NULL, NULL);
 
         if (type == DH_LINK_TYPE_BOOK) {
-                g_return_val_if_fail (base != NULL, NULL);
-                g_return_val_if_fail (id != NULL, NULL);
+                g_return_val_if_fail (base_path != NULL, NULL);
+                g_return_val_if_fail (book_id != NULL, NULL);
         }
-        if (type != DH_LINK_TYPE_BOOK && type != DH_LINK_TYPE_PAGE) {
+        if (type != DH_LINK_TYPE_BOOK &&
+            type != DH_LINK_TYPE_PAGE) {
                 g_return_val_if_fail (book != NULL, NULL);
                 g_return_val_if_fail (page != NULL, NULL);
         }
@@ -122,12 +132,12 @@ dh_link_new (DhLinkType   type,
         link->type = type;
 
         if (type == DH_LINK_TYPE_BOOK) {
-                link->base = g_strdup (base);
-                link->id = g_strdup (id);
+                link->base = g_strdup (base_path);
+                link->id = g_strdup (book_id);
         }
 
         link->name = g_strdup (name);
-        link->filename = g_strdup (filename);
+        link->filename = g_strdup (relative_url);
 
         if (book != NULL) {
                 link->book = dh_link_ref (book);
@@ -263,7 +273,8 @@ dh_link_get_book_name (DhLink *link)
  * @link: a #DhLink.
  *
  * Returns: the name of the page that the @link is contained in.
- * Deprecated: 3.26: This function is used nowhere.
+ * Deprecated: 3.26: This function is used nowhere and is actually broken, it
+ * returns the book name.
  */
 const gchar *
 dh_link_get_page_name (DhLink *link)
@@ -319,7 +330,7 @@ dh_link_get_book_id (DhLink *link)
  * dh_link_get_uri:
  * @link: a #DhLink.
  *
- * Returns: the @link URI.
+ * Returns: the @link URI. Free with g_free() when no longer needed.
  */
 gchar *
 dh_link_get_uri (DhLink *link)
