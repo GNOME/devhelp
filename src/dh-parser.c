@@ -26,6 +26,13 @@
 #include "dh-link.h"
 #include "dh-util.h"
 
+/* Possible things to do for the version 3 of the Devhelp index file format (if
+ * one day there is a strong desire to create a new version):
+ * - Replace <functions> element by <keywords>.
+ * - Maybe have an up-to-date URI for the NAMESPACE (an URI to the git repo?
+ *   probably more stable than the web site).
+ */
+
 /* It's the xmlns attribute. It is currently (well, in 2015 at least) used on
  * developer.gnome.org to look for <keyword> elements attached to that
  * namespace.
