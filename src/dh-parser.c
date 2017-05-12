@@ -172,13 +172,12 @@ parser_start_node_book (DhParser             *parser,
                             NULL,
                             uri);
         g_free (base);
-        *parser->keywords = g_list_prepend (*parser->keywords, dh_link_ref (link));
+        *parser->keywords = g_list_prepend (*parser->keywords, link);
 
         g_assert (parser->book_node == NULL);
         parser->book_node = g_node_new (dh_link_ref (link));
         *parser->book_tree = parser->book_node;
         parser->parent = parser->book_node;
-        dh_link_unref (link);
 }
 
 static void
@@ -237,8 +236,7 @@ parser_start_node_chapter (DhParser             *parser,
 
         *parser->keywords = g_list_prepend (*parser->keywords, link);
 
-        /* FIXME probably need to ref the link here */
-        node = g_node_new (link);
+        node = g_node_new (dh_link_ref (link));
         g_node_prepend (parser->parent, node);
         parser->parent = node;
 }
