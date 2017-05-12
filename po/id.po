@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-05-06 11:06+0000\n"
-"PO-Revision-Date: 2017-05-07 09:34+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"POT-Creation-Date: 2017-05-11 17:34+0000\n"
+"PO-Revision-Date: 2017-05-12 17:50+0700\n"
+"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
@@ -33,7 +33,7 @@ msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7
 #: data/org.gnome.Devhelp.desktop.in.in:4
-msgid "Developer's Help program"
+msgid "Developer’s Help program"
 msgstr "Program Bantuan untuk Pengembang"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:9
@@ -299,8 +299,8 @@ msgid "Reset Zoom"
 msgstr "Reset Zum"
 
 #: src/dh-app.c:234
-msgid "A developers' help browser for GNOME"
-msgstr "Peramban bantuan GNOME bagi pengembang"
+msgid "A developers’ help browser for GNOME"
+msgstr "Peramban bantuan pengembang untuk GNOME"
 
 #: src/dh-app.c:236
 msgid "translator-credits"
@@ -343,130 +343,87 @@ msgstr "Keluar dari semua Devhelp yang sedang berjalan"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Pembantu"
 
-#: src/dh-assistant-view.c:384
+#: src/dh-assistant-view.c:399
 msgid "Book:"
 msgstr "Buku:"
 
-#: src/dh-book.c:325
+#: src/dh-book.c:341
 #, c-format
 msgid "Language: %s"
 msgstr "Bahasa: %s"
 
-#: src/dh-book.c:326
+#: src/dh-book.c:342
 msgid "Language: Undefined"
 msgstr "Bahasa: Tak didefinisikan"
 
-#: src/dh-book-tree.c:627
+#: src/dh-book-tree.c:644
 msgid "_Collapse All"
 msgstr "_Kuncupkan Semua"
 
 #. i18n: a documentation book
-#: src/dh-link.c:398
+#: src/dh-link.c:410
 msgid "Book"
 msgstr "Buku"
 
 #. i18n: a "page" in a documentation book
-#: src/dh-link.c:401
+#: src/dh-link.c:413
 msgid "Page"
 msgstr "Halaman"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: src/dh-link.c:405
+#: src/dh-link.c:417
 msgid "Keyword"
 msgstr "Kata Kunci"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:410
+#: src/dh-link.c:422
 msgid "Function"
 msgstr "Fungsi"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:415
+#: src/dh-link.c:427
 msgid "Struct"
 msgstr "Struktur"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:420
+#: src/dh-link.c:432
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:425
+#: src/dh-link.c:437
 msgid "Enum"
 msgstr "Enumerasi"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:430
+#: src/dh-link.c:442
 msgid "Type"
 msgstr "Jenis"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:435
+#: src/dh-link.c:447
 msgid "Property"
 msgstr "Properti"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:440
+#: src/dh-link.c:452
 msgid "Signal"
 msgstr "Sinyal"
-
-#: src/dh-parser.c:96 src/dh-parser.c:197 src/dh-parser.c:261
-#: src/dh-parser.c:271
-#, c-format
-msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "Diharapkan '%s', memperoleh '%s' pada baris %d, kolom %d"
-
-#: src/dh-parser.c:113
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Namespace '%s' tidak sah pada baris %d, kolom %d"
-
-#: src/dh-parser.c:142
-#, c-format
-msgid ""
-"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr ""
-"Elemen \"title\", \"name\", dan \"link\" diperlukan pada baris %d, kolom %d"
-
-#: src/dh-parser.c:216
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
-"%d"
-msgstr ""
-"Elemen \"name\" dan \"link\" diperlukan dalam <sub> pada baris %d, kolom %d"
-
-#: src/dh-parser.c:296
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr ""
-"Elemen \"name\" dan \"link\" diperlukan dalam '%s' pada baris %d, kolom %d"
-
-#: src/dh-parser.c:309
-#, c-format
-msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "Elemen \"type\" diperlukan dalam <keyword> pada baris %d, kolom %d"
-
-#: src/dh-parser.c:516
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "Tidak dapat mendekompresi buku '%s': %s"
 
 #: src/dh-preferences.ui:40
 msgid "Preferences"
@@ -595,3 +552,35 @@ msgstr "Mundur"
 #: src/dh-window.ui:157
 msgid "Forward"
 msgstr "Maju"
+
+#~ msgid "Expected '%s', got '%s' at line %d, column %d"
+#~ msgstr "Diharapkan '%s', memperoleh '%s' pada baris %d, kolom %d"
+
+#~ msgid "Invalid namespace '%s' at line %d, column %d"
+#~ msgstr "Namespace '%s' tidak sah pada baris %d, kolom %d"
+
+#~ msgid ""
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
+#~ "%d"
+#~ msgstr ""
+#~ "Elemen \"title\", \"name\", dan \"link\" diperlukan pada baris %d, kolom "
+#~ "%d"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
+#~ "column %d"
+#~ msgstr ""
+#~ "Elemen \"name\" dan \"link\" diperlukan dalam <sub> pada baris %d, kolom "
+#~ "%d"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
+#~ "column %d"
+#~ msgstr ""
+#~ "Elemen \"name\" dan \"link\" diperlukan dalam '%s' pada baris %d, kolom %d"
+
+#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+#~ msgstr "Elemen \"type\" diperlukan dalam <keyword> pada baris %d, kolom %d"
+
+#~ msgid "Cannot uncompress book '%s': %s"
+#~ msgstr "Tidak dapat mendekompresi buku '%s': %s"
