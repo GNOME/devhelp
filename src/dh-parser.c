@@ -48,14 +48,16 @@ typedef struct {
 
         GFile *index_file;
 
-        /* Out parameters of dh_parser_read_file(). */
-        gchar **book_title;
-        gchar **book_name;
-        gchar **book_language;
-        GNode **book_tree;
-        GList **keywords;
+        gchar *book_title;
+        gchar *book_name;
+        gchar *book_language;
 
-        /* Top node of book */
+        /* List of all DhLink* */
+        GList *keywords;
+
+        /* Tree of DhLink* (not including keywords).
+         * The top node of the book.
+         */
         GNode *book_node;
 
         /* Current sub section node */
@@ -68,12 +70,39 @@ typedef struct {
         guint parsing_keywords : 1;
 } DhParser;
 
+static gboolean
+unref_node_link (GNode    *node,
+                 gpointer  data)
+{
+        dh_link_unref (node->data);
+        return FALSE;
+}
+
 static void
 dh_parser_free (DhParser *parser)
 {
         g_markup_parse_context_free (parser->context);
         g_free (parser->markup_parser);
-        g_object_unref (parser->index_file);
+
+        g_clear_object (&parser->index_file);
+
+        g_free (parser->book_title);
+        g_free (parser->book_name);
+        g_free (parser->book_language);
+
+        g_list_free_full (parser->keywords, (GDestroyNotify)dh_link_unref);
+
+        if (parser->book_node != NULL) {
+                g_node_traverse (parser->book_node,
+                                 G_IN_ORDER,
+                                 G_TRAVERSE_ALL,
+                                 -1,
+                                 unref_node_link,
+                                 NULL);
+
+                g_node_destroy (parser->book_node);
+        }
+
         g_free (parser);
 }
 
@@ -160,15 +189,15 @@ parser_start_node_book (DhParser             *parser,
         }
 
         /* Store book metadata */
-        g_free (*(parser->book_title));
-        *(parser->book_title) = g_strdup (title);
-        replace_newlines_by_spaces (*(parser->book_title));
+        g_free (parser->book_title);
+        parser->book_title = g_strdup (title);
+        replace_newlines_by_spaces (parser->book_title);
 
-        g_free (*(parser->book_name));
-        *(parser->book_name) = g_strdup (name);
+        g_free (parser->book_name);
+        parser->book_name = g_strdup (name);
 
-        g_free (*(parser->book_language));
-        *(parser->book_language) = g_strdup (language);
+        g_free (parser->book_language);
+        parser->book_language = g_strdup (language);
 
         if (base == NULL) {
                 GFile *directory;
@@ -180,20 +209,18 @@ parser_start_node_book (DhParser             *parser,
 
         link = dh_link_new (DH_LINK_TYPE_BOOK,
                             base,
-                            *(parser->book_name),
-                            *(parser->book_title),
+                            parser->book_name,
+                            parser->book_title,
                             NULL,
                             NULL,
                             uri);
         g_free (base);
-        *parser->keywords = g_list_prepend (*parser->keywords, link);
+        parser->keywords = g_list_prepend (parser->keywords, link);
 
         g_assert (parser->book_node == NULL);
-        g_assert (*(parser->book_tree) == NULL);
         g_assert (parser->parent_node == NULL);
 
         parser->book_node = g_node_new (dh_link_ref (link));
-        *(parser->book_tree) = parser->book_node;
         parser->parent_node = parser->book_node;
 }
 
@@ -251,7 +278,7 @@ parser_start_node_chapter (DhParser             *parser,
                             NULL,
                             uri);
 
-        *parser->keywords = g_list_prepend (*parser->keywords, link);
+        parser->keywords = g_list_prepend (parser->keywords, link);
 
         g_assert (parser->parent_node != NULL);
 
@@ -447,7 +474,7 @@ parser_start_node_keyword (DhParser             *parser,
         if (deprecated != NULL)
                 dh_link_set_flags (link, dh_link_get_flags (link) | DH_LINK_FLAGS_DEPRECATED);
 
-        *parser->keywords = g_list_prepend (*parser->keywords, link);
+        parser->keywords = g_list_prepend (parser->keywords, link);
 }
 
 static void
@@ -580,13 +607,6 @@ dh_parser_read_file (GFile   *index_file,
 
         parser->index_file = g_object_ref (index_file);
 
-        /* Out parameters */
-        parser->book_title = book_title;
-        parser->book_name = book_name;
-        parser->book_language = book_language;
-        parser->book_tree = book_tree;
-        parser->keywords = keywords;
-
         file_input_stream = g_file_read (index_file, NULL, error);
         if (file_input_stream == NULL) {
                 ok = FALSE;
@@ -632,8 +652,28 @@ dh_parser_read_file (GFile   *index_file,
                 }
         }
 
-        if (!g_markup_parse_context_end_parse (parser->context, error))
+        if (!g_markup_parse_context_end_parse (parser->context, error)) {
                 ok = FALSE;
+                goto exit;
+        }
+
+        /* Index file successfully read. Set out parameters. */
+
+        *book_title = parser->book_title;
+        parser->book_title = NULL;
+
+        *book_name = parser->book_name;
+        parser->book_name = NULL;
+
+        *book_language = parser->book_language;
+        parser->book_language = NULL;
+
+        *book_tree = parser->book_node;
+        parser->book_node = NULL;
+        parser->parent_node = NULL;
+
+        *keywords = parser->keywords;
+        parser->keywords = NULL;
 
 exit:
         g_free (index_file_uri);
