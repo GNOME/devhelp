@@ -45,7 +45,7 @@ typedef struct {
         GNode *book_node;
 
         /* Current sub section node */
-        GNode *parent;
+        GNode *parent_node;
 
         /* Version 2 uses <keyword> instead of <function>. */
         gint version;
@@ -177,7 +177,7 @@ parser_start_node_book (DhParser             *parser,
         g_assert (parser->book_node == NULL);
         parser->book_node = g_node_new (dh_link_ref (link));
         *parser->book_tree = parser->book_node;
-        parser->parent = parser->book_node;
+        parser->parent_node = parser->book_node;
 }
 
 static void
@@ -237,8 +237,8 @@ parser_start_node_chapter (DhParser             *parser,
         *parser->keywords = g_list_prepend (*parser->keywords, link);
 
         node = g_node_new (dh_link_ref (link));
-        g_node_prepend (parser->parent, node);
-        parser->parent = node;
+        g_node_prepend (parser->parent_node, node);
+        parser->parent_node = node;
 }
 
 static void
@@ -383,14 +383,14 @@ parser_start_node_keyword (DhParser             *parser,
         }
 
         g_assert (parser->book_node != NULL);
-        g_assert (parser->parent != NULL);
+        g_assert (parser->parent_node != NULL);
 
         link = dh_link_new (link_type,
                             NULL,
                             NULL,
                             name,
                             parser->book_node->data,
-                            parser->parent->data, /* FIXME looks wrong */
+                            parser->parent_node->data, /* FIXME looks wrong */
                             uri);
 
         g_free (name_to_free);
@@ -456,11 +456,11 @@ parser_end_node_cb (GMarkupParseContext  *context,
                 if (g_ascii_strcasecmp (node_name, "functions") == 0)
                         parser->parsing_keywords = FALSE;
         } else if (parser->parsing_chapters) {
-                g_node_reverse_children (parser->parent);
+                g_node_reverse_children (parser->parent_node);
 
                 if (g_ascii_strcasecmp (node_name, "sub") == 0) {
                         /* Move up in the tree */
-                        parser->parent = parser->parent->parent;
+                        parser->parent_node = parser->parent_node->parent;
                 } else if (g_ascii_strcasecmp (node_name, "chapters") == 0) {
                         parser->parsing_chapters = FALSE;
                 }
