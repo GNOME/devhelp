@@ -26,7 +26,7 @@ dh_error_quark (void)
         static GQuark q = 0;
 
         if (q == 0) {
-                q = g_quark_from_static_string ("dh-error-quark");
+                q = g_quark_from_static_string ("devhelp-error-quark");
         }
 
         return q;
