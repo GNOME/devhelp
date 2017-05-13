@@ -500,8 +500,8 @@ dh_sidebar_select_uri (DhSidebar   *sidebar,
 
 /**
  * dh_sidebar_new:
- * @book_manager: a #DhBookManager. This parameter is deprecated, you can just
- * pass %NULL.
+ * @book_manager: (nullable): a #DhBookManager. This parameter is deprecated,
+ * you should just pass %NULL.
  *
  * Returns: (transfer floating): a new #DhSidebar widget.
  */
