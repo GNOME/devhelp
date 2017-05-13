@@ -31,6 +31,11 @@
  * - Replace <functions> element by <keywords>.
  * - Maybe have an up-to-date URI for the NAMESPACE (an URI to the git repo?
  *   probably more stable than the web site).
+ * - Rename some attributes of <book>:
+ *      - name -> id
+ *      - title -> name
+ *   Because with version 2 it's confusing that dh_link_get_name() returns the
+ *   title, and dh_link_get_book_id() returns the book name.
  */
 
 /* It's the xmlns attribute. It is currently (well, in 2015 at least) used on
