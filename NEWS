@@ -2,19 +2,26 @@
 Version 3.25.x (not yet released)
 ==============
 
-- Several fixes in the GTK-Doc comments and GObject Introspection annotations.
+- Book tree in the side panel: add context menu with Collapse All action.
+- Update GUI when system fonts change.
 - Lots of code clean-up and refactorings.
 - Clean up the GSettings schema.
-- Update GUI when system fonts change.
+- Use GIO to load the index files.
+- Several bug fixes in the parser.
 - Build system:
 	- Disable -Werror by default.
 	- Use git.mk.
 	- Check for gsettings-desktop-schemas with pkg-config.
 
-API changes:
+API:
 - There has been some API breaks documented in the reference manual, but both
   Anjuta and gnome-builder should still compile and work fine.
+- Several fixes in the GTK-Doc comments and GObject Introspection annotations.
+- Improve documentation, write class descriptions for public classes.
+- DhBookManager is now a singleton.
 - Deprecate dh_link_get_page_name().
+- dh_init() now initializes the i18n.
+- New function: dh_free_resources().
 
 
 ==============

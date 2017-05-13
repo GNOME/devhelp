@@ -42,14 +42,28 @@
       </listitem>
       <listitem>
         <para>
+          The <code>DhApp</code>, <code>DhAssistant</code> and
+          <code>DhWindow</code> classes are now private. <code>DhApp</code> is a
+          subclass of <code>GtkApplication</code>, and an application can have
+          only one <code>GtkApplication</code> instance, so as-is
+          <code>DhApp</code> didn't make sense in the library (what if two
+          different libraries have both a subclass of
+          <code>GtkApplication</code>?). Since <code>DhAssistant</code> and
+          <code>DhWindow</code> depend on <code>DhApp</code>, they are now also
+          private.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <code>DhLanguage</code> class is now private, it's currently used
+          only internally by <link linkend="DhBookManager">DhBookManager</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           Due to <link linkend="DhBookManager">DhBookManager</link> being now a
           singleton, there has been the following API changes:
           <itemizedlist>
-            <listitem>
-              <para>
-                <code>dh_app_peek_book_manager()</code> has been removed.
-              </para>
-            </listitem>
             <listitem>
               <para>
                 <code>dh_assistant_view_set_book_manager()</code> has been
