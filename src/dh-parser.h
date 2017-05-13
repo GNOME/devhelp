@@ -30,7 +30,7 @@ gboolean dh_parser_read_file (GFile   *index_file,
                               gchar  **book_name,
                               gchar  **book_language,
                               GNode  **book_tree,
-                              GList  **keywords,
+                              GList  **all_links,
                               GError **error);
 
 G_END_DECLS

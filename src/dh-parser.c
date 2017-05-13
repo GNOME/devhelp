@@ -66,7 +66,7 @@ typedef struct {
         gchar *book_language;
 
         /* List of all DhLink* */
-        GList *keywords;
+        GList *all_links;
 
         /* Tree of DhLink* (not including keywords).
          * The top node of the book.
@@ -95,7 +95,7 @@ dh_parser_free (DhParser *parser)
         g_free (parser->book_name);
         g_free (parser->book_language);
 
-        g_list_free_full (parser->keywords, (GDestroyNotify)dh_link_unref);
+        g_list_free_full (parser->all_links, (GDestroyNotify)dh_link_unref);
         _dh_util_free_book_tree (parser->book_node);
 
         g_free (parser);
@@ -210,7 +210,7 @@ parser_start_node_book (DhParser             *parser,
                             NULL,
                             uri);
         g_free (base);
-        parser->keywords = g_list_prepend (parser->keywords, link);
+        parser->all_links = g_list_prepend (parser->all_links, link);
 
         g_assert (parser->book_node == NULL);
         g_assert (parser->parent_node == NULL);
@@ -273,7 +273,7 @@ parser_start_node_chapter (DhParser             *parser,
                             NULL,
                             uri);
 
-        parser->keywords = g_list_prepend (parser->keywords, link);
+        parser->all_links = g_list_prepend (parser->all_links, link);
 
         g_assert (parser->parent_node != NULL);
 
@@ -474,7 +474,7 @@ parser_start_node_keyword (DhParser             *parser,
         if (deprecated != NULL)
                 dh_link_set_flags (link, dh_link_get_flags (link) | DH_LINK_FLAGS_DEPRECATED);
 
-        parser->keywords = g_list_prepend (parser->keywords, link);
+        parser->all_links = g_list_prepend (parser->all_links, link);
 }
 
 static void
@@ -563,7 +563,7 @@ dh_parser_read_file (GFile   *index_file,
                      gchar  **book_name,
                      gchar  **book_language,
                      GNode  **book_tree,
-                     GList  **keywords,
+                     GList  **all_links,
                      GError **error)
 {
         DhParser *parser;
@@ -578,7 +578,7 @@ dh_parser_read_file (GFile   *index_file,
         g_return_val_if_fail (book_name != NULL && *book_name == NULL, FALSE);
         g_return_val_if_fail (book_language != NULL && *book_language == NULL, FALSE);
         g_return_val_if_fail (book_tree != NULL && *book_tree == NULL, FALSE);
-        g_return_val_if_fail (keywords != NULL && *keywords == NULL, FALSE);
+        g_return_val_if_fail (all_links != NULL && *all_links == NULL, FALSE);
         g_return_val_if_fail (error != NULL && *error == NULL, FALSE);
 
         parser = g_new0 (DhParser, 1);
@@ -672,8 +672,8 @@ dh_parser_read_file (GFile   *index_file,
         parser->book_node = NULL;
         parser->parent_node = NULL;
 
-        *keywords = parser->keywords;
-        parser->keywords = NULL;
+        *all_links = parser->all_links;
+        parser->all_links = NULL;
 
 exit:
         g_free (index_file_uri);
