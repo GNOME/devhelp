@@ -41,7 +41,7 @@ struct _DhLink {
          * memory.
          */
         gchar       *book_id;
-        gchar       *base;
+        gchar       *base_path;
 
         gchar       *name;
         gchar       *name_collation_key;
@@ -62,7 +62,7 @@ G_DEFINE_BOXED_TYPE (DhLink, dh_link,
 static void
 link_free (DhLink *link)
 {
-        g_free (link->base);
+        g_free (link->base_path);
         g_free (link->book_id);
         g_free (link->name);
         g_free (link->filename);
@@ -132,7 +132,7 @@ dh_link_new (DhLinkType   type,
         link->type = type;
 
         if (type == DH_LINK_TYPE_BOOK) {
-                link->base = g_strdup (base_path);
+                link->base_path = g_strdup (base_path);
                 link->book_id = g_strdup (book_id);
         }
 
@@ -335,17 +335,17 @@ dh_link_get_book_id (DhLink *link)
 gchar *
 dh_link_get_uri (DhLink *link)
 {
-        const gchar *base;
+        const gchar *base_path;
         gchar *filename;
         gchar *uri;
         gchar *anchor;
 
         if (link->type == DH_LINK_TYPE_BOOK)
-                base = link->base;
+                base_path = link->base_path;
         else
-                base = link->book->base;
+                base_path = link->book->base_path;
 
-        filename = g_build_filename (base, link->filename, NULL);
+        filename = g_build_filename (base_path, link->filename, NULL);
 
         anchor = strrchr (filename, '#');
         if (anchor != NULL) {
