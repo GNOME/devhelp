@@ -40,7 +40,7 @@ struct _DhLink {
         /* FIXME: Those two could exist only for book to save some
          * memory.
          */
-        gchar       *id;
+        gchar       *book_id;
         gchar       *base;
 
         gchar       *name;
@@ -63,7 +63,7 @@ static void
 link_free (DhLink *link)
 {
         g_free (link->base);
-        g_free (link->id);
+        g_free (link->book_id);
         g_free (link->name);
         g_free (link->filename);
         g_free (link->name_collation_key);
@@ -133,7 +133,7 @@ dh_link_new (DhLinkType   type,
 
         if (type == DH_LINK_TYPE_BOOK) {
                 link->base = g_strdup (base_path);
-                link->id = g_strdup (book_id);
+                link->book_id = g_strdup (book_id);
         }
 
         link->name = g_strdup (name);
@@ -316,11 +316,11 @@ const gchar *
 dh_link_get_book_id (DhLink *link)
 {
         if (link->type == DH_LINK_TYPE_BOOK) {
-                return link->id;
+                return link->book_id;
         }
 
         if (link->book) {
-                return link->book->id;
+                return link->book->book_id;
         }
 
         return "";
