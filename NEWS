@@ -12,28 +12,9 @@ Version 3.25.x (not yet released)
 	- Check for gsettings-desktop-schemas with pkg-config.
 
 API changes:
-
- There has been some API breaks, but both Anjuta and gnome-builder should still
- compile and work fine.
-
- - Make dh-error.h private.
- - Deprecate dh_link_get_page_name().
- - Remove the following deprecated functions:
-	- dh_book_cmp_by_path_str()
-	- dh_book_cmp_by_name_str()
-	- dh_book_manager_get_languages()
-	- dh_language_free()
-
- - Make DhBookManager a singleton.
- - Remove dh_app_peek_book_manager().
- - Remove dh_assistant_view_set_book_manager().
- - Remove dh_keyword_model_set_words().
- - DhBookTree:
-	- Remove book-manager property.
-	- API break for dh_book_tree_new().
- - DhSidebar:
-	- Remove book-manager property.
-	- Deprecate the book_manager parameter of dh_sidebar_new().
+- There has been some API breaks documented in the reference manual, but both
+  Anjuta and gnome-builder should still compile and work fine.
+- Deprecate dh_link_get_page_name().
 
 
 ==============

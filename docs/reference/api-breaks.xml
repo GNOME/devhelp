@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+   "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+ <!ENTITY % local.common.attrib "xmlns:xi CDATA #FIXED 'http://www.w3.org/2003/XInclude'">
+ <!ENTITY % gtkdocentities SYSTEM "xml/gtkdocentities.ent">
+ %gtkdocentities;
+]>
+
+<part>
+  <title>API Breaks</title>
+
+  <para>
+    Devhelp is a quite old piece of software (created in 2001), and as every
+    software, the code evolves during its lifetime. So there are sometimes API
+    breaks. We try to not break applications depending on the Devhelp API. But
+    if we see that a certain API is used nowhere else than the Devhelp
+    application itself (or is dead code), we don't hesitate to break the API to
+    improve the code.
+  </para>
+
+  <para>
+    Currently we try to not break
+    <ulink url="https://wiki.gnome.org/Apps/Anjuta">Anjuta</ulink>
+    and <ulink url="https://wiki.gnome.org/Apps/Builder">gnome-builder</ulink>.
+    If your application is not listed and depends on the Devhelp API and is Free
+    Software, please speak up.
+  </para>
+
+  <refsect1>
+    <title>3.24 -> 3.25.1</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          All deprecated APIs have been removed.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          dh-error.h is now private.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Due to <link linkend="DhBookManager">DhBookManager</link> being now a
+          singleton, there has been the following API changes:
+          <itemizedlist>
+            <listitem>
+              <para>
+                <code>dh_app_peek_book_manager()</code> has been removed.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <code>dh_assistant_view_set_book_manager()</code> has been
+                removed.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <code>dh_keyword_model_set_words()</code> has been removed.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                The <code>DhBookTree:book-manager</code> property has been
+                removed.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                API break for
+                <link linkend="dh-book-tree-new">dh_book_tree_new()</link>.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                The <code>DhSidebar:book-manager</code> property has been
+                removed.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                The <code>book_manager</code> parameter of
+                <link linkend="dh-sidebar-new">dh_sidebar_new()</link> is now
+                deprecated.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsect1>
+</part>
