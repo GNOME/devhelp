@@ -45,7 +45,7 @@ struct _DhLink {
 
         gchar       *name;
         gchar       *name_collation_key;
-        gchar       *filename;
+        gchar       *relative_url;
 
         DhLink      *book;
         DhLink      *page;
@@ -65,7 +65,7 @@ link_free (DhLink *link)
         g_free (link->base_path);
         g_free (link->book_id);
         g_free (link->name);
-        g_free (link->filename);
+        g_free (link->relative_url);
         g_free (link->name_collation_key);
 
         if (link->book) {
@@ -137,7 +137,7 @@ dh_link_new (DhLinkType   type,
         }
 
         link->name = g_strdup (name);
-        link->filename = g_strdup (relative_url);
+        link->relative_url = g_strdup (relative_url);
 
         if (book != NULL) {
                 link->book = dh_link_ref (book);
@@ -300,7 +300,7 @@ dh_link_get_file_name (DhLink *link)
          */
         if (link->page != NULL ||
             link->type == DH_LINK_TYPE_PAGE) {
-                return link->filename;
+                return link->relative_url;
         }
 
         return "";
@@ -345,7 +345,7 @@ dh_link_get_uri (DhLink *link)
         else
                 base_path = link->book->base_path;
 
-        filename = g_build_filename (base_path, link->filename, NULL);
+        filename = g_build_filename (base_path, link->relative_url, NULL);
 
         anchor = strrchr (filename, '#');
         if (anchor != NULL) {
