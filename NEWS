@@ -1,5 +1,5 @@
 ==============
-Version 3.25.x (not yet released)
+Version 3.25.1
 ==============
 
 - Book tree in the side panel: add context menu with Collapse All action.
@@ -23,6 +23,18 @@ API:
 - dh_init() now initializes the i18n.
 - New function: dh_free_resources().
 
+Fixed bugs:
+
+ - #761292, Book tree in sidebar: add right click -> collapse all
+ - #775175, Problems with back/forward buttons sensitivity
+ - #776596, devhelp --search sometimes doesn't jump to symbol
+ - #782511, Take advantage of Unicode
+
+Updated translations: be, de, el, hu, id, pl
+
+Many thanks to all contributors: Balázs Úr, Andika Triwidada, Tom
+Tryfonidis, Yuras Shumovich, Sébastien Wilmet, Mario Blättermann, Piotr
+Drąg, Kukuh Syafaat, Rico Tzschichholz
 
 ==============
 Version 3.24.0
