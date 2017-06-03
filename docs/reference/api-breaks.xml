@@ -113,6 +113,8 @@
         <para>
           The <code>page</code> parameter of <link linkend="dh-link-new">dh_link_new()</link>
           has been removed because it was broken in <code>dh-parser.c</code>.
+          The <code>book</code> parameter has also been moved, to group related
+          parameters together.
         </para>
       </listitem>
       <listitem>

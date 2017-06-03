@@ -70,8 +70,8 @@ GType        dh_link_get_type           (void);
 DhLink *     dh_link_new                (DhLinkType     type,
                                          const gchar   *base_path,
                                          const gchar   *book_id,
-                                         const gchar   *name,
                                          DhLink        *book,
+                                         const gchar   *name,
                                          const gchar   *relative_url);
 DhLink *     dh_link_ref                (DhLink        *link);
 void         dh_link_unref              (DhLink        *link);

@@ -205,8 +205,8 @@ parser_start_node_book (DhParser             *parser,
         link = dh_link_new (DH_LINK_TYPE_BOOK,
                             base,
                             parser->book_name,
-                            parser->book_title,
                             NULL,
+                            parser->book_title,
                             uri);
         g_free (base);
         parser->all_links = g_list_prepend (parser->all_links, link);
@@ -267,8 +267,8 @@ parser_start_node_chapter (DhParser             *parser,
         link = dh_link_new (DH_LINK_TYPE_PAGE,
                             NULL,
                             NULL,
-                            name,
                             parser->book_node->data,
+                            name,
                             uri);
 
         parser->all_links = g_list_prepend (parser->all_links, link);
@@ -431,8 +431,8 @@ parser_start_node_keyword (DhParser             *parser,
         link = dh_link_new (link_type,
                             NULL,
                             NULL,
-                            name,
                             parser->book_node->data,
+                            name,
                             uri);
 
         g_free (name_to_free);

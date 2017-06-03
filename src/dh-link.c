@@ -43,11 +43,11 @@ struct _DhLink {
         gchar       *book_id;
         gchar       *base_path;
 
+        DhLink      *book;
+
         gchar       *name;
         gchar       *name_collation_key;
         gchar       *relative_url;
-
-        DhLink      *book;
 
         guint        ref_count;
 
@@ -98,14 +98,11 @@ DhLink *
 dh_link_new (DhLinkType   type,
              const gchar *base_path,
              const gchar *book_id,
-             const gchar *name,
              DhLink      *book,
+             const gchar *name,
              const gchar *relative_url)
 {
         DhLink *link;
-
-        g_return_val_if_fail (name != NULL, NULL);
-        g_return_val_if_fail (relative_url != NULL, NULL);
 
         if (type == DH_LINK_TYPE_BOOK) {
                 g_return_val_if_fail (base_path != NULL, NULL);
@@ -117,6 +114,9 @@ dh_link_new (DhLinkType   type,
                 g_return_val_if_fail (book != NULL, NULL);
         }
 
+        g_return_val_if_fail (name != NULL, NULL);
+        g_return_val_if_fail (relative_url != NULL, NULL);
+
         link = g_slice_new0 (DhLink);
 
         link->ref_count = 1;
@@ -127,11 +127,11 @@ dh_link_new (DhLinkType   type,
                 link->book_id = g_strdup (book_id);
         }
 
-        link->name = g_strdup (name);
-        link->relative_url = g_strdup (relative_url);
-
         if (book != NULL)
                 link->book = dh_link_ref (book);
+
+        link->name = g_strdup (name);
+        link->relative_url = g_strdup (relative_url);
 
         return link;
 }
