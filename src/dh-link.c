@@ -88,8 +88,7 @@ link_free (DhLink *link)
  * @base_path and @book_id must be provided only for a link of type
  * %DH_LINK_TYPE_BOOK.
  *
- * If @type is not a #DH_LINK_TYPE_BOOK and not a #DH_LINK_TYPE_PAGE, then the
- * @book link must be provided.
+ * If @type is not a #DH_LINK_TYPE_BOOK, then the @book link must be provided.
  *
  * @name and @relative_url must always be provided.
  *
@@ -111,9 +110,10 @@ dh_link_new (DhLinkType   type,
         if (type == DH_LINK_TYPE_BOOK) {
                 g_return_val_if_fail (base_path != NULL, NULL);
                 g_return_val_if_fail (book_id != NULL, NULL);
-        }
-        if (type != DH_LINK_TYPE_BOOK &&
-            type != DH_LINK_TYPE_PAGE) {
+                g_return_val_if_fail (book == NULL, NULL);
+        } else {
+                g_return_val_if_fail (base_path == NULL, NULL);
+                g_return_val_if_fail (book_id == NULL, NULL);
                 g_return_val_if_fail (book != NULL, NULL);
         }
 
