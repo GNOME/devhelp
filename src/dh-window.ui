@@ -4,11 +4,6 @@
   <menu id="gear_menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">New _Tab</attribute>
-        <attribute name="action">win.new-tab</attribute>
-        <attribute name="accel">&lt;Primary&gt;t</attribute>
-      </item>
-      <item>
         <attribute name="label" translatable="yes">Side _Panel</attribute>
         <attribute name="action">win.show-sidebar</attribute>
         <attribute name="accel">F9</attribute>
@@ -51,12 +46,6 @@
         <attribute name="label" translatable="yes">New _Window</attribute>
         <attribute name="action">app.new-window</attribute>
         <attribute name="accel">&lt;Primary&gt;n</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">New _Tab</attribute>
-        <attribute name="action">win.new-tab</attribute>
-        <attribute name="accel">&lt;Primary&gt;t</attribute>
-        <attribute name="use-underline">True</attribute>
       </item>
     </section>
     <section>
@@ -166,6 +155,28 @@
                     <property name="icon_name">go-next-symbolic</property>
                   </object>
                 </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">start</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="new_tab_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">New Tab</property>
+            <property name="action_name">win.new-tab</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="new_tab_button_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+                <property name="icon_name">tab-new-symbolic</property>
               </object>
             </child>
           </object>
