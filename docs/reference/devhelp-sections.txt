@@ -114,7 +114,6 @@ dh_link_unref
 dh_link_compare
 dh_link_get_name
 dh_link_get_book_name
-dh_link_get_page_name
 dh_link_get_file_name
 dh_link_get_book_id
 dh_link_get_uri

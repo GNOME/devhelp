@@ -48,7 +48,6 @@ struct _DhLink {
         gchar       *relative_url;
 
         DhLink      *book;
-        DhLink      *page;
 
         guint        ref_count;
 
@@ -68,12 +67,8 @@ link_free (DhLink *link)
         g_free (link->relative_url);
         g_free (link->name_collation_key);
 
-        if (link->book) {
+        if (link->book != NULL)
                 dh_link_unref (link->book);
-        }
-        if (link->page) {
-                dh_link_unref (link->page);
-        }
 
         g_slice_free (DhLink, link);
 }
@@ -85,8 +80,6 @@ link_free (DhLink *link)
  * @book_id: (nullable): the book ID, or %NULL.
  * @name: the name of the link.
  * @book: (nullable): the book that the link is contained in, or %NULL.
- * @page: (nullable): the page that the link is contained in, or %NULL. This
- * parameter is actually broken.
  * @relative_url: the URL relative to the book @base_path. Can contain an
  * anchor.
  *
@@ -96,7 +89,7 @@ link_free (DhLink *link)
  * %DH_LINK_TYPE_BOOK.
  *
  * If @type is not a #DH_LINK_TYPE_BOOK and not a #DH_LINK_TYPE_PAGE, then the
- * @book and @page links must be provided.
+ * @book link must be provided.
  *
  * @name and @relative_url must always be provided.
  *
@@ -108,7 +101,6 @@ dh_link_new (DhLinkType   type,
              const gchar *book_id,
              const gchar *name,
              DhLink      *book,
-             DhLink      *page,
              const gchar *relative_url)
 {
         DhLink *link;
@@ -123,7 +115,6 @@ dh_link_new (DhLinkType   type,
         if (type != DH_LINK_TYPE_BOOK &&
             type != DH_LINK_TYPE_PAGE) {
                 g_return_val_if_fail (book != NULL, NULL);
-                g_return_val_if_fail (page != NULL, NULL);
         }
 
         link = g_slice_new0 (DhLink);
@@ -139,12 +130,8 @@ dh_link_new (DhLinkType   type,
         link->name = g_strdup (name);
         link->relative_url = g_strdup (relative_url);
 
-        if (book != NULL) {
+        if (book != NULL)
                 link->book = dh_link_ref (book);
-        }
-        if (page != NULL) {
-                link->page = dh_link_ref (page);
-        }
 
         return link;
 }
@@ -269,24 +256,6 @@ dh_link_get_book_name (DhLink *link)
 }
 
 /**
- * dh_link_get_page_name:
- * @link: a #DhLink.
- *
- * Returns: the name of the page that the @link is contained in.
- * Deprecated: 3.26: This function is used nowhere and is actually broken, it
- * returns the book name.
- */
-const gchar *
-dh_link_get_page_name (DhLink *link)
-{
-        if (link->page != NULL) {
-                return link->page->name;
-        }
-
-        return "";
-}
-
-/**
  * dh_link_get_file_name:
  * @link: a #DhLink.
  *
@@ -296,12 +265,10 @@ const gchar *
 dh_link_get_file_name (DhLink *link)
 {
         /* Return filename if the link is itself a page or if the link is within
-         * a page.
+         * a page (i.e. every link type except a book).
          */
-        if (link->page != NULL ||
-            link->type == DH_LINK_TYPE_PAGE) {
+        if (link->type != DH_LINK_TYPE_BOOK)
                 return link->relative_url;
-        }
 
         return "";
 }
