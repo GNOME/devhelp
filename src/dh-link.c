@@ -61,11 +61,11 @@ G_DEFINE_BOXED_TYPE (DhLink, dh_link,
 static void
 link_free (DhLink *link)
 {
-        g_free (link->base_path);
         g_free (link->book_id);
+        g_free (link->base_path);
         g_free (link->name);
-        g_free (link->relative_url);
         g_free (link->name_collation_key);
+        g_free (link->relative_url);
 
         if (link->book != NULL)
                 dh_link_unref (link->book);
@@ -154,15 +154,17 @@ dh_link_compare (gconstpointer a,
 {
         DhLink *la = (DhLink *) a;
         DhLink *lb = (DhLink *) b;
-        gint    flags_diff;
-        gint    diff;
+        gint flags_diff;
+        gint diff;
+
+        g_return_val_if_fail (a != NULL, 0);
+        g_return_val_if_fail (b != NULL, 0);
 
         /* Sort deprecated hits last. */
-        flags_diff = (la->flags & DH_LINK_FLAGS_DEPRECATED) -
-                (lb->flags & DH_LINK_FLAGS_DEPRECATED);
-        if (flags_diff != 0) {
+        flags_diff = ((la->flags & DH_LINK_FLAGS_DEPRECATED) -
+                      (lb->flags & DH_LINK_FLAGS_DEPRECATED));
+        if (flags_diff != 0)
                 return flags_diff;
-        }
 
         /* Collation-based sorting */
         if (G_UNLIKELY (la->name_collation_key == NULL))
@@ -236,6 +238,8 @@ dh_link_unref (DhLink *link)
 const gchar *
 dh_link_get_name (DhLink *link)
 {
+        g_return_val_if_fail (link != NULL, NULL);
+
         return link->name;
 }
 
@@ -248,9 +252,10 @@ dh_link_get_name (DhLink *link)
 const gchar *
 dh_link_get_book_name (DhLink *link)
 {
-        if (link->book != NULL) {
+        g_return_val_if_fail (link != NULL, NULL);
+
+        if (link->book != NULL)
                 return link->book->name;
-        }
 
         return "";
 }
@@ -264,6 +269,8 @@ dh_link_get_book_name (DhLink *link)
 const gchar *
 dh_link_get_file_name (DhLink *link)
 {
+        g_return_val_if_fail (link != NULL, NULL);
+
         /* Return filename if the link is itself a page or if the link is within
          * a page (i.e. every link type except a book).
          */
@@ -282,13 +289,13 @@ dh_link_get_file_name (DhLink *link)
 const gchar *
 dh_link_get_book_id (DhLink *link)
 {
-        if (link->type == DH_LINK_TYPE_BOOK) {
-                return link->book_id;
-        }
+        g_return_val_if_fail (link != NULL, NULL);
 
-        if (link->book) {
+        if (link->type == DH_LINK_TYPE_BOOK)
+                return link->book_id;
+
+        if (link->book != NULL)
                 return link->book->book_id;
-        }
 
         return "";
 }
@@ -306,6 +313,8 @@ dh_link_get_uri (DhLink *link)
         gchar *filename;
         gchar *uri;
         gchar *anchor;
+
+        g_return_val_if_fail (link != NULL, NULL);
 
         if (link->type == DH_LINK_TYPE_BOOK)
                 base_path = link->base_path;
@@ -329,8 +338,8 @@ dh_link_get_uri (DhLink *link)
                 g_free (uri);
                 uri = uri_with_anchor;
         }
-        g_free (filename);
 
+        g_free (filename);
         return uri;
 }
 
@@ -343,6 +352,8 @@ dh_link_get_uri (DhLink *link)
 DhLinkType
 dh_link_get_link_type (DhLink *link)
 {
+        g_return_val_if_fail (link != NULL, 0);
+
         return link->type;
 }
 
@@ -355,6 +366,8 @@ dh_link_get_link_type (DhLink *link)
 DhLinkFlags
 dh_link_get_flags (DhLink *link)
 {
+        g_return_val_if_fail (link != NULL, DH_LINK_FLAGS_NONE);
+
         return link->flags;
 }
 
@@ -369,6 +382,8 @@ void
 dh_link_set_flags (DhLink      *link,
                    DhLinkFlags  flags)
 {
+        g_return_if_fail (link != NULL);
+
         link->flags = flags;
 }
 
@@ -382,54 +397,66 @@ dh_link_set_flags (DhLink      *link,
 const gchar *
 dh_link_get_type_as_string (DhLink *link)
 {
+        g_return_val_if_fail (link != NULL, NULL);
+
         switch (link->type) {
         case DH_LINK_TYPE_BOOK:
                 /* i18n: a documentation book */
                 return _("Book");
+
         case DH_LINK_TYPE_PAGE:
                 /* i18n: a "page" in a documentation book */
                 return _("Page");
+
         case DH_LINK_TYPE_KEYWORD:
                 /* i18n: a search hit in the documentation, could be a
                  * function, macro, struct, etc */
                 return _("Keyword");
+
         case DH_LINK_TYPE_FUNCTION:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Function");
+
         case DH_LINK_TYPE_STRUCT:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Struct");
+
         case DH_LINK_TYPE_MACRO:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Macro");
+
         case DH_LINK_TYPE_ENUM:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
-               return _("Enum");
+                return _("Enum");
+
         case DH_LINK_TYPE_TYPEDEF:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Type");
+
         case DH_LINK_TYPE_PROPERTY:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Property");
+
         case DH_LINK_TYPE_SIGNAL:
                 /* i18n: in the programming language context, if you don't
                  * have an ESTABLISHED term for it, leave it
                  * untranslated. */
                 return _("Signal");
+
         default:
-                break;
+                g_assert_not_reached ();
         }
 
         return "";
