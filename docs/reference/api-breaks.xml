@@ -123,6 +123,14 @@
           because it was broken and used nowhere.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          The <code>dh_link_get_type_as_string()</code> function (which took a
+          <link linkend="DhLink">DhLink</link> parameter) has been removed, it
+          has been replaced by <link linkend="dh-link-type-to-string">dh_link_type_to_string()</link>
+          which takes a <link linkend="DhLinkType">DhLinkType</link> parameter.
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>

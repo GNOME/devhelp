@@ -86,7 +86,7 @@ DhLinkFlags  dh_link_get_flags          (DhLink        *link);
 void         dh_link_set_flags          (DhLink        *link,
                                          DhLinkFlags    flags);
 DhLinkType   dh_link_get_link_type      (DhLink        *link);
-const gchar *dh_link_get_type_as_string (DhLink        *link);
+const gchar *dh_link_type_to_string     (DhLinkType     link_type);
 
 G_END_DECLS
 

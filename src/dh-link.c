@@ -388,18 +388,16 @@ dh_link_set_flags (DhLink      *link,
 }
 
 /**
- * dh_link_get_type_as_string:
- * @link: a #DhLink.
+ * dh_link_type_to_string:
+ * @link_type: a #DhLinkType.
  *
- * Returns: a string representation of the #DhLinkType of @link, translated in
- * the current language.
+ * Returns: a string representation of the #DhLinkType, translated in the
+ * current language.
  */
 const gchar *
-dh_link_get_type_as_string (DhLink *link)
+dh_link_type_to_string (DhLinkType link_type)
 {
-        g_return_val_if_fail (link != NULL, NULL);
-
-        switch (link->type) {
+        switch (link_type) {
         case DH_LINK_TYPE_BOOK:
                 /* i18n: a documentation book */
                 return _("Book");
@@ -456,8 +454,8 @@ dh_link_get_type_as_string (DhLink *link)
                 return _("Signal");
 
         default:
-                g_assert_not_reached ();
+                break;
         }
 
-        return "";
+        g_return_val_if_reached ("");
 }
