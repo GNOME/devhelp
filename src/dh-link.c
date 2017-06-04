@@ -137,6 +137,199 @@ dh_link_new (DhLinkType   type,
 }
 
 /**
+ * dh_link_ref:
+ * @link: a #DhLink.
+ *
+ * Increases the reference count of @link.
+ *
+ * Returns: (transfer full): the @link.
+ */
+DhLink *
+dh_link_ref (DhLink *link)
+{
+        g_return_val_if_fail (link != NULL, NULL);
+
+        g_atomic_int_inc (&link->ref_count);
+
+        return link;
+}
+
+/**
+ * dh_link_unref:
+ * @link: a #DhLink.
+ *
+ * Decreases the reference count of @link.
+ */
+void
+dh_link_unref (DhLink *link)
+{
+        g_return_if_fail (link != NULL);
+
+        if (g_atomic_int_dec_and_test (&link->ref_count))
+        {
+                link_free (link);
+        }
+}
+
+/**
+ * dh_link_get_link_type:
+ * @link: a #DhLink.
+ *
+ * Returns: the #DhLinkType of @link.
+ */
+DhLinkType
+dh_link_get_link_type (DhLink *link)
+{
+        g_return_val_if_fail (link != NULL, 0);
+
+        return link->type;
+}
+
+/**
+ * dh_link_get_flags:
+ * @link: a #DhLink.
+ *
+ * Returns: the #DhLinkFlags of @link.
+ */
+DhLinkFlags
+dh_link_get_flags (DhLink *link)
+{
+        g_return_val_if_fail (link != NULL, DH_LINK_FLAGS_NONE);
+
+        return link->flags;
+}
+
+/**
+ * dh_link_set_flags:
+ * @link: a #DhLink.
+ * @flags: the new flags of the link.
+ *
+ * Sets the flags of the link.
+ */
+void
+dh_link_set_flags (DhLink      *link,
+                   DhLinkFlags  flags)
+{
+        g_return_if_fail (link != NULL);
+
+        link->flags = flags;
+}
+
+/**
+ * dh_link_get_name:
+ * @link: a #DhLink.
+ *
+ * Returns: the name of the @link.
+ */
+const gchar *
+dh_link_get_name (DhLink *link)
+{
+        g_return_val_if_fail (link != NULL, NULL);
+
+        return link->name;
+}
+
+/**
+ * dh_link_get_file_name:
+ * @link: a #DhLink.
+ *
+ * Returns: the name of the file that the @link is contained in.
+ */
+const gchar *
+dh_link_get_file_name (DhLink *link)
+{
+        g_return_val_if_fail (link != NULL, NULL);
+
+        /* Return filename if the link is itself a page or if the link is within
+         * a page (i.e. every link type except a book).
+         */
+        if (link->type != DH_LINK_TYPE_BOOK)
+                return link->relative_url;
+
+        return "";
+}
+
+/**
+ * dh_link_get_uri:
+ * @link: a #DhLink.
+ *
+ * Returns: the @link URI. Free with g_free() when no longer needed.
+ */
+gchar *
+dh_link_get_uri (DhLink *link)
+{
+        const gchar *base_path;
+        gchar *filename;
+        gchar *uri;
+        gchar *anchor;
+
+        g_return_val_if_fail (link != NULL, NULL);
+
+        if (link->type == DH_LINK_TYPE_BOOK)
+                base_path = link->base_path;
+        else
+                base_path = link->book->base_path;
+
+        filename = g_build_filename (base_path, link->relative_url, NULL);
+
+        anchor = strrchr (filename, '#');
+        if (anchor != NULL) {
+                *anchor = '\0';
+                anchor++;
+        }
+
+        uri = g_filename_to_uri (filename, NULL, NULL);
+
+        if (anchor != NULL) {
+                gchar *uri_with_anchor;
+
+                uri_with_anchor = g_strconcat (uri, "#", anchor, NULL);
+                g_free (uri);
+                uri = uri_with_anchor;
+        }
+
+        g_free (filename);
+        return uri;
+}
+
+/**
+ * dh_link_get_book_name:
+ * @link: a #DhLink.
+ *
+ * Returns: the name of the book that the @link is contained in.
+ */
+const gchar *
+dh_link_get_book_name (DhLink *link)
+{
+        g_return_val_if_fail (link != NULL, NULL);
+
+        if (link->book != NULL)
+                return link->book->name;
+
+        return "";
+}
+
+/**
+ * dh_link_get_book_id:
+ * @link: a #DhLink.
+ *
+ * Returns: the book ID.
+ */
+const gchar *
+dh_link_get_book_id (DhLink *link)
+{
+        g_return_val_if_fail (link != NULL, NULL);
+
+        if (link->type == DH_LINK_TYPE_BOOK)
+                return link->book_id;
+
+        if (link->book != NULL)
+                return link->book->book_id;
+
+        return "";
+}
+
+/**
  * dh_link_compare:
  * @a: (type DhLink): a #DhLink.
  * @b: (type DhLink): a #DhLink.
@@ -192,199 +385,6 @@ dh_link_compare (gconstpointer a,
         }
 
         return diff;
-}
-
-/**
- * dh_link_ref:
- * @link: a #DhLink.
- *
- * Increases the reference count of @link.
- *
- * Returns: (transfer full): the @link.
- */
-DhLink *
-dh_link_ref (DhLink *link)
-{
-        g_return_val_if_fail (link != NULL, NULL);
-
-        g_atomic_int_inc (&link->ref_count);
-
-        return link;
-}
-
-/**
- * dh_link_unref:
- * @link: a #DhLink.
- *
- * Decreases the reference count of @link.
- */
-void
-dh_link_unref (DhLink *link)
-{
-        g_return_if_fail (link != NULL);
-
-        if (g_atomic_int_dec_and_test (&link->ref_count))
-        {
-                link_free (link);
-        }
-}
-
-/**
- * dh_link_get_name:
- * @link: a #DhLink.
- *
- * Returns: the name of the @link.
- */
-const gchar *
-dh_link_get_name (DhLink *link)
-{
-        g_return_val_if_fail (link != NULL, NULL);
-
-        return link->name;
-}
-
-/**
- * dh_link_get_book_name:
- * @link: a #DhLink.
- *
- * Returns: the name of the book that the @link is contained in.
- */
-const gchar *
-dh_link_get_book_name (DhLink *link)
-{
-        g_return_val_if_fail (link != NULL, NULL);
-
-        if (link->book != NULL)
-                return link->book->name;
-
-        return "";
-}
-
-/**
- * dh_link_get_file_name:
- * @link: a #DhLink.
- *
- * Returns: the name of the file that the @link is contained in.
- */
-const gchar *
-dh_link_get_file_name (DhLink *link)
-{
-        g_return_val_if_fail (link != NULL, NULL);
-
-        /* Return filename if the link is itself a page or if the link is within
-         * a page (i.e. every link type except a book).
-         */
-        if (link->type != DH_LINK_TYPE_BOOK)
-                return link->relative_url;
-
-        return "";
-}
-
-/**
- * dh_link_get_book_id:
- * @link: a #DhLink.
- *
- * Returns: the book ID.
- */
-const gchar *
-dh_link_get_book_id (DhLink *link)
-{
-        g_return_val_if_fail (link != NULL, NULL);
-
-        if (link->type == DH_LINK_TYPE_BOOK)
-                return link->book_id;
-
-        if (link->book != NULL)
-                return link->book->book_id;
-
-        return "";
-}
-
-/**
- * dh_link_get_uri:
- * @link: a #DhLink.
- *
- * Returns: the @link URI. Free with g_free() when no longer needed.
- */
-gchar *
-dh_link_get_uri (DhLink *link)
-{
-        const gchar *base_path;
-        gchar *filename;
-        gchar *uri;
-        gchar *anchor;
-
-        g_return_val_if_fail (link != NULL, NULL);
-
-        if (link->type == DH_LINK_TYPE_BOOK)
-                base_path = link->base_path;
-        else
-                base_path = link->book->base_path;
-
-        filename = g_build_filename (base_path, link->relative_url, NULL);
-
-        anchor = strrchr (filename, '#');
-        if (anchor != NULL) {
-                *anchor = '\0';
-                anchor++;
-        }
-
-        uri = g_filename_to_uri (filename, NULL, NULL);
-
-        if (anchor != NULL) {
-                gchar *uri_with_anchor;
-
-                uri_with_anchor = g_strconcat (uri, "#", anchor, NULL);
-                g_free (uri);
-                uri = uri_with_anchor;
-        }
-
-        g_free (filename);
-        return uri;
-}
-
-/**
- * dh_link_get_link_type:
- * @link: a #DhLink.
- *
- * Returns: the #DhLinkType of @link.
- */
-DhLinkType
-dh_link_get_link_type (DhLink *link)
-{
-        g_return_val_if_fail (link != NULL, 0);
-
-        return link->type;
-}
-
-/**
- * dh_link_get_flags:
- * @link: a #DhLink.
- *
- * Returns: the #DhLinkFlags of @link.
- */
-DhLinkFlags
-dh_link_get_flags (DhLink *link)
-{
-        g_return_val_if_fail (link != NULL, DH_LINK_FLAGS_NONE);
-
-        return link->flags;
-}
-
-/**
- * dh_link_set_flags:
- * @link: a #DhLink.
- * @flags: the new flags of the link.
- *
- * Sets the flags of the link.
- */
-void
-dh_link_set_flags (DhLink      *link,
-                   DhLinkFlags  flags)
-{
-        g_return_if_fail (link != NULL);
-
-        link->flags = flags;
 }
 
 /**

@@ -67,25 +67,38 @@ typedef struct _DhLink DhLink;
 #define DH_TYPE_LINK (dh_link_get_type ())
 
 GType        dh_link_get_type           (void);
+
 DhLink *     dh_link_new                (DhLinkType     type,
                                          const gchar   *base_path,
                                          const gchar   *book_id,
                                          DhLink        *book,
                                          const gchar   *name,
                                          const gchar   *relative_url);
+
 DhLink *     dh_link_ref                (DhLink        *link);
+
 void         dh_link_unref              (DhLink        *link);
-gint         dh_link_compare            (gconstpointer  a,
-                                         gconstpointer  b);
-const gchar *dh_link_get_name           (DhLink        *link);
-const gchar *dh_link_get_book_name      (DhLink        *link);
-const gchar *dh_link_get_file_name      (DhLink        *link);
-const gchar *dh_link_get_book_id        (DhLink        *link);
-gchar       *dh_link_get_uri            (DhLink        *link);
+
+DhLinkType   dh_link_get_link_type      (DhLink        *link);
+
 DhLinkFlags  dh_link_get_flags          (DhLink        *link);
+
 void         dh_link_set_flags          (DhLink        *link,
                                          DhLinkFlags    flags);
-DhLinkType   dh_link_get_link_type      (DhLink        *link);
+
+const gchar *dh_link_get_name           (DhLink        *link);
+
+const gchar *dh_link_get_file_name      (DhLink        *link);
+
+gchar *      dh_link_get_uri            (DhLink        *link);
+
+const gchar *dh_link_get_book_name      (DhLink        *link);
+
+const gchar *dh_link_get_book_id        (DhLink        *link);
+
+gint         dh_link_compare            (gconstpointer  a,
+                                         gconstpointer  b);
+
 const gchar *dh_link_type_to_string     (DhLinkType     link_type);
 
 G_END_DECLS
