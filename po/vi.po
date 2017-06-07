@@ -2,609 +2,697 @@
 # Copyright © 2008 Gnome i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002, 2012.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp 0.15\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-21 14:17+0000\n"
-"PO-Revision-Date: 2012-08-25 13:32+0700\n"
-"Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
-"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
+"Project-Id-Version: devhelp master\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-06-06 10:04+0000\n"
+"PO-Revision-Date: 2017-06-07 14:02+0700\n"
+"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
+"Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.7b3\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:1 ../src/dh-app.c:167 ../src/dh-app.c:350
-#: ../src/dh-window.c:958 ../src/dh-window.c:1857
+#: data/org.gnome.Devhelp.appdata.xml.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:232 src/dh-app.c:537
+#: src/dh-window.c:807
 msgid "Devhelp"
-msgstr "Trợ giúp phát triển"
+msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
+#: data/org.gnome.Devhelp.appdata.xml.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4
+msgid "Developer’s Help program"
 msgstr "Chương trình trợ giúp cho nhà phát triển"
 
-#: ../data/devhelp.desktop.in.in.h:3
+#: data/org.gnome.Devhelp.appdata.xml.in:9
+msgid ""
+"Devhelp is an API documentation browser. It provides an easy way to navigate "
+"through libraries, search by function, struct, or macro. It provides a "
+"tabbed interface and allows to print results."
+msgstr ""
+"Devhelp là một bộ duyệt tài liệu API. Nó cung cấp một cách thức dễ dàng để "
+"duyệt xuyên suốt các thư viện, tìm kiếm theo hàm, cấu trúc, hay vĩ lệnh. Nó "
+"cung cấp một giao diện bản kiểm kê và cho phép in kết quả."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:15
+msgid ""
+"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+msgstr ""
+"Devhelp được tổ hợp cùng các ứng dụng khác như là Glade, Anjuta, hay Geany."
+
+#: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "Documentation Browser"
 msgstr "Bộ duyệt tài liệu"
 
-#: ../data/devhelp.schemas.in.h:1
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in.in:7
+msgid "documentation;information;manual;developer;api;"
+msgstr ""
+"documentation;information;manual;developer;api;tài liệu;tai lieu;thông tin;"
+"thong tin;hướng dẫn sử dụng;huong dan su dung;phát triển;phat trien;"
+
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.Devhelp.desktop.in.in:12
+#: misc/gedit-plugin/devhelp.plugin.desktop.in:10
+msgid "devhelp"
+msgstr "devhelp"
+
+#: data/org.gnome.devhelp.gschema.xml:18
 msgid "Main window maximized state"
 msgstr "Tình trạng được cực đại hóa của cửa sổ chính"
 
-#: ../data/devhelp.schemas.in.h:2
-#| msgid "Whether the main window should start maximized or not."
+#: data/org.gnome.devhelp.gschema.xml:19
 msgid "Whether the main window should start maximized."
 msgstr "Khi nào cửa sổ chính bắt đầu với kích cỡ lớn nhất."
 
-#: ../data/devhelp.schemas.in.h:3
+#: data/org.gnome.devhelp.gschema.xml:23
 msgid "Width of the main window"
 msgstr "Độ rộng của cửa sổ chính"
 
-#: ../data/devhelp.schemas.in.h:4
+#: data/org.gnome.devhelp.gschema.xml:24
 msgid "The width of the main window."
 msgstr "Độ rộng của cửa sổ chính."
 
-#: ../data/devhelp.schemas.in.h:5
+#: data/org.gnome.devhelp.gschema.xml:28
 msgid "Height of main window"
 msgstr "Độ cao của cửa sổ chính"
 
-#: ../data/devhelp.schemas.in.h:6
+#: data/org.gnome.devhelp.gschema.xml:29
 msgid "The height of the main window."
 msgstr "Độ cao của cửa sổ chính."
 
-#: ../data/devhelp.schemas.in.h:7
+#: data/org.gnome.devhelp.gschema.xml:33
 msgid "X position of main window"
 msgstr "Vị trí X của cửa sổ chính"
 
-#: ../data/devhelp.schemas.in.h:8
+#: data/org.gnome.devhelp.gschema.xml:34
 msgid "The X position of the main window."
 msgstr "Vị trí X của cửa sổ chính."
 
-#: ../data/devhelp.schemas.in.h:9
+#: data/org.gnome.devhelp.gschema.xml:38
 msgid "Y position of main window"
 msgstr "Vị trí Y của cửa sổ chính"
 
-#: ../data/devhelp.schemas.in.h:10
+#: data/org.gnome.devhelp.gschema.xml:39
 msgid "The Y position of the main window."
 msgstr "Vị trí Y của cửa sổ chính."
 
-#: ../data/devhelp.schemas.in.h:11
-#| msgid "Width of the main window"
-msgid "Width of the assistant window"
-msgstr "Độ rộng của cửa sổ trợ giúp"
-
-#: ../data/devhelp.schemas.in.h:12
-#| msgid "The width of the main window."
-msgid "The width of the assistant window."
-msgstr "Độ rộng của cửa sổ trợ giúp."
-
-#: ../data/devhelp.schemas.in.h:13
-#| msgid "Height of main window"
-msgid "Height of assistant window"
-msgstr "Độ cao của cửa sổ trợ giúp"
-
-#: ../data/devhelp.schemas.in.h:14
-#| msgid "The height of the main window."
-msgid "The height of the assistant window."
-msgstr "Độ cao của cửa sổ trợ giúp."
-
-#: ../data/devhelp.schemas.in.h:15
-#| msgid "X position of main window"
-msgid "X position of assistant window"
-msgstr "Vị trí X của cửa sổ trợ giúp"
-
-#: ../data/devhelp.schemas.in.h:16
-#| msgid "The X position of the main window."
-msgid "The X position of the assistant window."
-msgstr "Vị trí X của cửa sổ trợ giúp."
-
-#: ../data/devhelp.schemas.in.h:17
-#| msgid "Y position of main window"
-msgid "Y position of assistant window"
-msgstr "Vị trí Y của cửa sổ trợ giúp"
-
-#: ../data/devhelp.schemas.in.h:18
-#| msgid "The Y position of the main window."
-msgid "The Y position of the assistant window."
-msgstr "Vị trí Y của cửa sổ trợ giúp."
-
-#: ../data/devhelp.schemas.in.h:19
+#: data/org.gnome.devhelp.gschema.xml:45
 msgid "Width of the index and search pane"
 msgstr "Độ rộng của mục lục và ô tìm kiếm"
 
-#: ../data/devhelp.schemas.in.h:20
+#: data/org.gnome.devhelp.gschema.xml:46
 msgid "The width of the index and search pane."
 msgstr "Độ rộng của mục lục và ô tìm kiếm."
 
-#: ../data/devhelp.schemas.in.h:21
-#| msgid "Selected tab, \"content\" or \"search\""
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "Thanh đã chọn: \"nội dung\" hoặc \"tìm kiếm\""
-
-#: ../data/devhelp.schemas.in.h:22
-#| msgid "Which of the tabs that is selected, \"content\" or \"search\"."
-msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "Đối với thanh đã chọn: 'nội dung' hoặc 'tìm kiếm'."
-
-#: ../data/devhelp.schemas.in.h:23
+#: data/org.gnome.devhelp.gschema.xml:52
 msgid "Books disabled"
-msgstr "Tắt sách"
+msgstr "Các sách bị tắt"
 
-#: ../data/devhelp.schemas.in.h:24
+#: data/org.gnome.devhelp.gschema.xml:53
 msgid "List of books disabled by the user."
-msgstr "Tắt danh mục sách bởi người dùng."
+msgstr "Danh mục sách bị tắt bởi người dùng."
 
-#: ../data/devhelp.schemas.in.h:25
+#: data/org.gnome.devhelp.gschema.xml:57
 msgid "Group by language"
 msgstr "Nhóm theo ngôn ngữ"
 
-#: ../data/devhelp.schemas.in.h:26
+#: data/org.gnome.devhelp.gschema.xml:58
 msgid "Whether books should be grouped by language in the UI"
-msgstr "Có nhóm sách theo ngôn ngữ không"
+msgstr "Có nhóm sách theo ngôn ngữ không trong giao diện người dùng hay không"
 
-#: ../data/devhelp.schemas.in.h:27
+#: data/org.gnome.devhelp.gschema.xml:67
+msgid "Whether the assistant window should be maximized"
+msgstr "Có để cửa sổ trợ giúp phóng to hết cỡ không"
+
+#: data/org.gnome.devhelp.gschema.xml:68
+msgid "Whether the assistant window should be maximized."
+msgstr "Có để cửa sổ trợ giúp phóng to hết cỡ không."
+
+#: data/org.gnome.devhelp.gschema.xml:72
+msgid "Width of the assistant window"
+msgstr "Độ rộng của cửa sổ trợ giúp"
+
+#: data/org.gnome.devhelp.gschema.xml:73
+msgid "The width of the assistant window."
+msgstr "Độ rộng của cửa sổ trợ giúp."
+
+#: data/org.gnome.devhelp.gschema.xml:77
+msgid "Height of assistant window"
+msgstr "Độ cao của cửa sổ trợ giúp"
+
+#: data/org.gnome.devhelp.gschema.xml:78
+msgid "The height of the assistant window."
+msgstr "Độ cao của cửa sổ trợ giúp."
+
+#: data/org.gnome.devhelp.gschema.xml:82
+msgid "X position of assistant window"
+msgstr "Vị trí X của cửa sổ trợ giúp"
+
+#: data/org.gnome.devhelp.gschema.xml:83
+msgid "The X position of the assistant window."
+msgstr "Vị trí X của cửa sổ trợ giúp."
+
+#: data/org.gnome.devhelp.gschema.xml:87
+msgid "Y position of assistant window"
+msgstr "Vị trí Y của cửa sổ trợ giúp"
+
+#: data/org.gnome.devhelp.gschema.xml:88
+msgid "The Y position of the assistant window."
+msgstr "Vị trí Y của cửa sổ trợ giúp."
+
+#: data/org.gnome.devhelp.gschema.xml:94
 msgid "Use system fonts"
 msgstr "Dùng phông hệ thống"
 
-#: ../data/devhelp.schemas.in.h:28
+#: data/org.gnome.devhelp.gschema.xml:95
 msgid "Use the system default fonts."
 msgstr "Sử dụng các phông mặc định của hệ thống."
 
-#: ../data/devhelp.schemas.in.h:29
+#: data/org.gnome.devhelp.gschema.xml:99
 msgid "Font for text"
 msgstr "Phông cho văn bản"
 
-#: ../data/devhelp.schemas.in.h:30
+#: data/org.gnome.devhelp.gschema.xml:100
 msgid "Font for text with variable width."
 msgstr "Phông cho văn bản có độ rộng thay đổi."
 
-#: ../data/devhelp.schemas.in.h:31
-#| msgid "Font for fixed text"
+#: data/org.gnome.devhelp.gschema.xml:104
 msgid "Font for fixed width text"
 msgstr "Phông cho văn bản cố định"
 
-#: ../data/devhelp.schemas.in.h:32
-#| msgid "Font for text with fixed width."
+#: data/org.gnome.devhelp.gschema.xml:105
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Phông cho văn bản có độ rộng cố định, như mã ví dụ."
 
-#: ../data/ui/devhelp.builder.h:1
-#| msgid "_New Window"
-msgid "New window"
-msgstr "Cửa sổ mới"
-
-#: ../data/ui/devhelp.builder.h:2
-msgid "Preferences"
-msgstr "Cấu hình"
-
-#: ../data/ui/devhelp.builder.h:3
-msgid "About Devhelp"
-msgstr "Giới thiệu Trợ giúp Phát triển"
-
-#: ../data/ui/devhelp.builder.h:4
-msgid "Quit"
-msgstr "Thoát"
-
-#: ../data/ui/devhelp.builder.h:5
-#| msgid "_New Window"
-msgid "_Window"
-msgstr "_Cửa sổ"
-
-#: ../data/ui/devhelp.builder.h:6
-msgid "New _Tab"
-msgstr "_Thanh mới"
-
-#: ../data/ui/devhelp.builder.h:7
-#| msgid "_Print..."
-msgid "_Print"
-msgstr "_In"
-
-#: ../data/ui/devhelp.builder.h:8
-msgid "_Close"
-msgstr "Đón_g"
-
-#: ../data/ui/devhelp.builder.h:9
-msgid "_Edit"
-msgstr "_Sửa"
-
-#: ../data/ui/devhelp.builder.h:10
-msgid "_Copy"
-msgstr "_Chép"
-
-#: ../data/ui/devhelp.builder.h:11
-#| msgid "Find:"
-msgid "_Find"
-msgstr "_Tìm"
-
-#: ../data/ui/devhelp.builder.h:12
-#| msgid "Find Next"
-msgid "Find _Next"
-msgstr "Tìm _tiếp"
-
-#: ../data/ui/devhelp.builder.h:13
-#| msgid "Find Previous"
-msgid "Find _Previous"
-msgstr "Tìm _lùi"
-
-#: ../data/ui/devhelp.builder.h:14
-msgid "_View"
-msgstr "_Xem"
-
-#: ../data/ui/devhelp.builder.h:15
-#| msgid "_Larger Text"
-msgid "_Larger text"
-msgstr "Chữ _lớn hơn"
-
-#: ../data/ui/devhelp.builder.h:16
-#| msgid "S_maller Text"
-msgid "S_maller text"
-msgstr "Chữ _nhỏ hơn"
-
-#: ../data/ui/devhelp.builder.h:17
-msgid "_Normal size"
-msgstr "_Kích cỡ chuẩn"
-
-#: ../data/ui/devhelp.builder.h:18
-msgid "Fullscreen"
-msgstr "Toàn màn hình"
-
-#: ../data/ui/devhelp.builder.h:19
-msgid "_Go"
-msgstr "Tớ_i"
-
-#: ../data/ui/devhelp.builder.h:20
-msgid "_Back"
-msgstr "_Lùi"
-
-#: ../data/ui/devhelp.builder.h:21
-msgid "_Forward"
-msgstr "_Tiếp"
-
-#: ../data/ui/devhelp.builder.h:22
-msgid "_Search Tab"
-msgstr "Thẻ Tìm _kiếm"
-
-#: ../data/ui/devhelp.builder.h:23
-msgid "_Contents Tab"
-msgstr "Thẻ Mụ_c lục"
-
-#: ../data/ui/devhelp.builder.h:24
-msgid "Go to the previous page"
-msgstr "Đi về trang trước"
-
-#: ../data/ui/devhelp.builder.h:25
-msgid "Go to the next page"
-msgstr "Đi tới trang kế tiếp"
-
-#: ../data/ui/devhelp.builder.h:26
-msgid "Decrease the text size"
-msgstr "Giảm kích cỡ của các chữ"
-
-#: ../data/ui/devhelp.builder.h:27
-msgid "Increase the text size"
-msgstr "Tăng kích cỡ của các chữ"
-
-#: ../data/ui/devhelp.builder.h:28
-msgid "_Group by language"
-msgstr "_Nhóm theo ngôn ngữ"
-
-#: ../data/ui/devhelp.builder.h:29
-msgid "Enabled"
-msgstr "Bật"
-
-#: ../data/ui/devhelp.builder.h:30
-msgid "Title"
-msgstr "Tựa"
-
-#: ../data/ui/devhelp.builder.h:31
-msgid "Book Shelf"
-msgstr "Kệ sách"
-
-#: ../data/ui/devhelp.builder.h:32
-msgid "_Use system fonts"
-msgstr "_Dùng phông hệ thống"
-
-#: ../data/ui/devhelp.builder.h:33
-msgid "_Variable width: "
-msgstr "Độ rộng _không cố định: "
-
-#: ../data/ui/devhelp.builder.h:34
-msgid "_Fixed width:"
-msgstr "Độ rộng _cố định:"
-
-#: ../data/ui/devhelp.builder.h:35
-msgid "Fonts"
-msgstr "Phông"
-
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: misc/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Hỗ trợ của Trợ giúp phát triển"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
-msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "Đặt phím F2 để hiển thị Trợ giúp Phát triển cho từ ở vị trí con trỏ"
-
-#: ../misc/gedit-plugin/devhelp.py:69
+#: misc/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "Hiển thị tài liệu hướng dẫn API"
 
-#: ../misc/gedit-plugin/devhelp.py:71
-msgid "Show API Documentation for the word at the cursor"
-msgstr "Hiển thị tài liệu hướng dẫn API cho từ ở vị trí con trỏ"
+#: src/devhelp-menu.ui:28 src/dh-window.ui:46
+msgid "New _Window"
+msgstr "Cửa _sổ mới"
 
-#: ../src/dh-app.c:162
-msgid "translator_credits"
-msgstr "Nhóm Việt hóa Gnome <gnomevi-list@lists.sourceforge.net>"
+#: src/devhelp-menu.ui:35 src/dh-window.ui:89
+msgid "_Preferences"
+msgstr "Tù_y thích"
 
-#: ../src/dh-app.c:169
-#| msgid "A developer's help browser for GNOME 2"
-msgid "A developers' help browser for GNOME"
+#: src/devhelp-menu.ui:41 src/dh-window.ui:95
+msgid "_Keyboard Shortcuts"
+msgstr "_Phím tắt"
+
+#: src/devhelp-menu.ui:45
+msgid "_About"
+msgstr "G_iới thiệu"
+
+#: src/devhelp-menu.ui:49 src/dh-window.ui:103
+msgid "_Quit"
+msgstr "T_hoát"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Chung"
+
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Nhắm vào tìm kiếm toàn thể"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Tìm trong trang hiện tại"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Mở một cửa sổ mới"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Mở một thẻ mới"
+
+#: src/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "Bật tắt việc hiển thị khung bên"
+
+#: src/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Quay lại"
+
+#: src/help-overlay.ui:61
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Đi tiếp"
+
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "In"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Đóng cửa sổ hiện tại"
+
+#: src/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Đóng mọi cửa sổ"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Phóng đại"
+
+#: src/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Phóng to"
+
+#: src/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Thu nhỏ"
+
+#: src/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Đặt lại phóng đại"
+
+#: src/dh-app.c:234
+msgid "A developers’ help browser for GNOME"
 msgstr "Bộ duyệt trợ giúp của GNOME dành cho nhà phát triển"
 
-#: ../src/dh-app.c:177
-#| msgid "Devhelp support"
-msgid "DevHelp Website"
-msgstr "Hỗ trợ của Trợ giúp phát triển"
+#: src/dh-app.c:236
+msgid "translator-credits"
+msgstr "Nhóm Việt hóa Gnome <gnomevi-list@lists.sourceforge.net>"
 
-#. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:76
+#: src/dh-app.c:238
+msgid "Devhelp Website"
+msgstr "Trang web Devhelp"
+
+#: src/dh-app.c:462
+msgid "Opens a new Devhelp window"
+msgstr "Mở cửa sổ Devhelp mới"
+
+#: src/dh-app.c:467
+msgid "Search for a keyword"
+msgstr "Tìm từ khóa"
+
+#: src/dh-app.c:468 src/dh-app.c:473
+msgid "KEYWORD"
+msgstr "TỪ_KHÓA"
+
+#: src/dh-app.c:472
+msgid "Search and display any hit in the assistant window"
+msgstr "Tìm và hiển thị kết quả trong cửa sổ hỗ trợ"
+
+#: src/dh-app.c:477
+msgid "Display the version and exit"
+msgstr "Hiển thị phiên bản rồi thoát"
+
+#: src/dh-app.c:482
+msgid "Quit any running Devhelp"
+msgstr "Thoát bất kì chương trình trợ giúp phát triển nào đang chạy"
+
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:8
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - Trợ giúp"
 
-#: ../src/dh-assistant-view.c:395
-#| msgid "_Book:"
+#: src/dh-assistant-view.c:399
 msgid "Book:"
 msgstr "Sách:"
 
-#: ../src/dh-book.c:252
+#: src/dh-book.c:324
 #, c-format
 msgid "Language: %s"
 msgstr "Ngôn ngữ: %s"
 
-#: ../src/dh-book.c:253
+#: src/dh-book.c:325
 msgid "Language: Undefined"
 msgstr "Ngôn ngữ: Không xác định"
 
+#: src/dh-book-tree.c:644
+msgid "_Collapse All"
+msgstr "_Co lại tất cả"
+
 #. i18n: a documentation book
-#: ../src/dh-link.c:267
-#| msgid "_Book:"
+#: src/dh-link.c:403
 msgid "Book"
 msgstr "Sách"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:270
-#| msgid "_Page:"
+#: src/dh-link.c:407
 msgid "Page"
 msgstr "Trang"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:274
+#: src/dh-link.c:412
 msgid "Keyword"
-msgstr "Từ khoá"
+msgstr "Từ khóa"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:279
+#: src/dh-link.c:418
 msgid "Function"
 msgstr "Hàm"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:284
+#: src/dh-link.c:424
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:289
+#: src/dh-link.c:430
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:294
+#: src/dh-link.c:436
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:299
+#: src/dh-link.c:442
 msgid "Type"
 msgstr "Kiểu"
 
-#: ../src/dh-main.c:48
-msgid "Opens a new Devhelp window"
-msgstr "Mở cửa sổ Devhelp mới"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:448
+msgid "Property"
+msgstr "Thuộc tính"
 
-#: ../src/dh-main.c:53
-#| msgid "Focus the devhelp window with the search field active"
-msgid "Focus the Devhelp window with the search field active"
-msgstr ""
-"Đặt tiêu điểm trong cửa sổ trợ giúp phát triển, có trường tìm kiếm còn hoạt "
-"động"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:454
+msgid "Signal"
+msgstr "Tín hiệu"
 
-#: ../src/dh-main.c:58
-#| msgid "Search for a function"
-msgid "Search for a keyword"
-msgstr "Tìm từ khoá"
+#: src/dh-preferences.ui:40
+msgid "Preferences"
+msgstr "Cấu hình"
 
-#: ../src/dh-main.c:59 ../src/dh-main.c:64
-msgid "KEYWORD"
-msgstr "TỪ KHOÁ"
+#: src/dh-preferences.ui:76
+msgid "_Group by language"
+msgstr "_Nhóm theo ngôn ngữ"
 
-#: ../src/dh-main.c:63
-msgid "Search and display any hit in the assistant window"
-msgstr "Tìm và hiển thị kết quả trong cửa sổ hỗ trợ"
+#: src/dh-preferences.ui:107
+msgid "Enabled"
+msgstr "Bật"
 
-#: ../src/dh-main.c:68
-msgid "Display the version and exit"
-msgstr "Hiển thị phiên bản rồi thoát"
+#: src/dh-preferences.ui:122
+msgid "Title"
+msgstr "Tựa"
 
-#: ../src/dh-main.c:73
-msgid "Quit any running Devhelp"
-msgstr "Thoát bất kì chương trình trợ giúp phát triển nào đang chạy"
+#: src/dh-preferences.ui:151
+msgid "Book Shelf"
+msgstr "Tủ sách"
 
-#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
-#: ../src/dh-parser.c:273
-#, c-format
-#| msgid "Expected '%s' got '%s' at line %d, column %d"
-msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "Đợi '%s', nhận '%s' tại dòng %d, cột %d"
+#: src/dh-preferences.ui:172
+msgid "_Use system fonts"
+msgstr "_Dùng phông hệ thống"
 
-#: ../src/dh-parser.c:114
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Miền tên không hợp lệ '%s' tại dòng %d, cột %d"
+#: src/dh-preferences.ui:196
+msgid "_Variable width: "
+msgstr "Độ rộng _không cố định: "
 
-#: ../src/dh-parser.c:143
-#, c-format
-#| msgid "title, name, and link elements are required at line %d, column %d"
-msgid ""
-"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr ""
-"các yếu tố \"title\", \"name\" và \"link\" đều phải có tại dòng %d, cột %d"
+#: src/dh-preferences.ui:209
+msgid "_Fixed width:"
+msgstr "Độ rộng _cố định:"
 
-#: ../src/dh-parser.c:218
-#, c-format
-#| msgid ""
-#| "name and link elements are required inside <sub> on line %d, column %d"
-msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
-"%d"
-msgstr ""
-"các yếu tố \"name\" và \"link\" đều phải có bên trong <sub> tại dòng %d, cột "
-"%d"
+#: src/dh-preferences.ui:270
+msgid "Fonts"
+msgstr "Phông chữ"
 
-#: ../src/dh-parser.c:298
-#, c-format
-#| msgid ""
-#| "name and link elements are required inside <sub> on line %d, column %d"
-msgid ""
-"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr ""
-"các yếu tố \"name\" và \"link\" đều phải có bên trong '%s' tại dòng %d, cột "
-"%d"
-
-#: ../src/dh-parser.c:311
-#, c-format
-#| msgid ""
-#| "name and link elements are required inside <sub> on line %d, column %d"
-msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "yếu tố \"type\" phải có bên trong <keyword> tại dòng %d, cột %d"
-
-#: ../src/dh-parser.c:514
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "Không thể giải nén quyển sách '%s': %s"
-
-#: ../src/dh-search.c:492
-msgid "All books"
-msgstr "Tất cả sách"
-
-#: ../src/dh-search.c:1110
-#| msgid "Search"
-msgid "Search in:"
-msgstr "Tìm trong:"
-
-#: ../src/dh-window.c:100
+#: src/dh-window.c:75
 msgid "50%"
 msgstr "50%"
 
-#: ../src/dh-window.c:101
+#: src/dh-window.c:76
 msgid "75%"
 msgstr "75%"
 
-#: ../src/dh-window.c:102
+#: src/dh-window.c:77
 msgid "100%"
 msgstr "100%"
 
-#: ../src/dh-window.c:103
+#: src/dh-window.c:78
 msgid "125%"
 msgstr "125%"
 
-#: ../src/dh-window.c:104
+#: src/dh-window.c:79
 msgid "150%"
 msgstr "150%"
 
-#: ../src/dh-window.c:105
+#: src/dh-window.c:80
 msgid "175%"
 msgstr "175%"
 
-#: ../src/dh-window.c:106
+#: src/dh-window.c:81
 msgid "200%"
 msgstr "200%"
 
-#: ../src/dh-window.c:107
+#: src/dh-window.c:82
 msgid "300%"
 msgstr "300%"
 
-#: ../src/dh-window.c:108
+#: src/dh-window.c:83
 msgid "400%"
 msgstr "400%"
 
-#: ../src/dh-window.c:1046
-msgid "Contents"
-msgstr "Mục lục"
-
-#: ../src/dh-window.c:1056
-msgid "Search"
-msgstr "Tìm kiếm"
-
-#: ../src/dh-window.c:1266
+#: src/dh-window.c:1029
 msgid "Error opening the requested link."
 msgstr "Lỗi mở liên kết yêu cầu"
 
-#: ../src/dh-window.c:1638 ../src/dh-window.c:1885
+#: src/dh-window.c:1331
+msgid "_Close"
+msgstr "Đón_g"
+
+#: src/dh-window.c:1349 src/dh-window.c:1530
 msgid "Empty Page"
 msgstr "Trang trắng"
 
-#: ../src/eggfindbar.c:320
-msgid "Find:"
-msgstr "Tìm:"
+#: src/dh-window.ui:7
+msgid "Side _Panel"
+msgstr "Khung _lề"
 
-#: ../src/eggfindbar.c:329
-msgid "Find Previous"
-msgstr "Tìm lùi"
+#: src/dh-window.ui:15 src/dh-window.ui:60
+msgid "_Print"
+msgstr "_In"
 
-#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
-msgid "Find previous occurrence of the search string"
-msgstr "Tìm lần trước gặp chuỗi tìm kiếm"
+#: src/dh-window.ui:20 src/dh-window.ui:65
+msgid "_Find"
+msgstr "_Tìm"
 
-#: ../src/eggfindbar.c:342
-msgid "Find Next"
-msgstr "Tìm kế"
+#: src/dh-window.ui:27 src/dh-window.ui:72
+msgid "_Larger Text"
+msgstr "Chữ _lớn hơn"
 
-#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
-msgid "Find next occurrence of the search string"
-msgstr "Tìm lần kế tiếp gặp chuỗi tìm kiếm"
+#: src/dh-window.ui:32 src/dh-window.ui:77
+msgid "S_maller Text"
+msgstr "Chữ _nhỏ hơn"
 
-#: ../src/eggfindbar.c:358
-#| msgid "Case Sensitive"
-msgid "C_ase Sensitive"
-msgstr "_Phân biệt chữ hoa/thường"
+#: src/dh-window.ui:37 src/dh-window.ui:82
+msgid "_Normal Size"
+msgstr "_Kích cỡ chuẩn"
 
-#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
-msgid "Toggle case sensitive search"
-msgstr "Bật/tắt phân biệt chữ hoa/thường"
+#: src/dh-window.ui:53
+msgid "_Side Panel"
+msgstr "_Khung lề"
+
+#: src/dh-window.ui:99
+msgid "_About Devhelp"
+msgstr "G_iới thiệu Devhelp"
+
+#: src/dh-window.ui:133
+msgid "Back"
+msgstr "Kế trước"
+
+#: src/dh-window.ui:152
+msgid "Forward"
+msgstr "Kế tiếp"
+
+#: src/dh-window.ui:176
+msgid "New Tab"
+msgstr "Thanh mới"
+
+#~| msgid "Selected tab, \"content\" or \"search\""
+#~ msgid "Selected tab: \"content\" or \"search\""
+#~ msgstr "Thanh đã chọn: \"nội dung\" hoặc \"tìm kiếm\""
+
+#~| msgid "Which of the tabs that is selected, \"content\" or \"search\"."
+#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
+#~ msgstr "Đối với thanh đã chọn: “nội dung” hoặc “tìm kiếm”."
+
+#~| msgid "_New Window"
+#~ msgid "_Window"
+#~ msgstr "_Cửa sổ"
+
+#~ msgid "_Edit"
+#~ msgstr "_Sửa"
+
+#~ msgid "_Copy"
+#~ msgstr "_Chép"
+
+#~| msgid "Find Next"
+#~ msgid "Find _Next"
+#~ msgstr "Tìm _tiếp"
+
+#~| msgid "Find Previous"
+#~ msgid "Find _Previous"
+#~ msgstr "Tìm _lùi"
+
+#~ msgid "_View"
+#~ msgstr "_Xem"
+
+#~ msgid "Fullscreen"
+#~ msgstr "Toàn màn hình"
+
+#~ msgid "_Go"
+#~ msgstr "Tớ_i"
+
+#~ msgid "_Search Tab"
+#~ msgstr "Thẻ Tìm _kiếm"
+
+#~ msgid "_Contents Tab"
+#~ msgstr "Thẻ Mụ_c lục"
+
+#~ msgid "Go to the previous page"
+#~ msgstr "Đi về trang trước"
+
+#~ msgid "Go to the next page"
+#~ msgstr "Đi tới trang kế tiếp"
+
+#~ msgid "Decrease the text size"
+#~ msgstr "Giảm kích cỡ của các chữ"
+
+#~ msgid "Increase the text size"
+#~ msgstr "Tăng kích cỡ của các chữ"
+
+#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
+#~ msgstr "Đặt phím F2 để hiển thị Trợ giúp Phát triển cho từ ở vị trí con trỏ"
+
+#~ msgid "Show API Documentation for the word at the cursor"
+#~ msgstr "Hiển thị tài liệu hướng dẫn API cho từ ở vị trí con trỏ"
+
+#~| msgid "Focus the devhelp window with the search field active"
+#~ msgid "Focus the Devhelp window with the search field active"
+#~ msgstr ""
+#~ "Đặt tiêu điểm trong cửa sổ trợ giúp phát triển, có trường tìm kiếm còn "
+#~ "hoạt động"
+
+#~| msgid "Expected '%s' got '%s' at line %d, column %d"
+#~ msgid "Expected '%s', got '%s' at line %d, column %d"
+#~ msgstr "Đợi “%s”, nhận “%s” tại dòng %d, cột %d"
+
+#~ msgid "Invalid namespace '%s' at line %d, column %d"
+#~ msgstr "Miền tên không hợp lệ “%s” tại dòng %d, cột %d"
+
+#~| msgid "title, name, and link elements are required at line %d, column %d"
+#~ msgid ""
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
+#~ "%d"
+#~ msgstr ""
+#~ "các yếu tố \"title\", \"name\" và \"link\" đều phải có tại dòng %d, cột %d"
+
+#~| msgid ""
+#~| "name and link elements are required inside <sub> on line %d, column %d"
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
+#~ "column %d"
+#~ msgstr ""
+#~ "các yếu tố \"name\" và \"link\" đều phải có bên trong <sub> tại dòng %d, "
+#~ "cột %d"
+
+#~| msgid ""
+#~| "name and link elements are required inside <sub> on line %d, column %d"
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
+#~ "column %d"
+#~ msgstr ""
+#~ "các yếu tố \"name\" và \"link\" đều phải có bên trong “%s” tại dòng %d, "
+#~ "cột %d"
+
+#~| msgid ""
+#~| "name and link elements are required inside <sub> on line %d, column %d"
+#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+#~ msgstr "yếu tố \"type\" phải có bên trong <keyword> tại dòng %d, cột %d"
+
+#~ msgid "Cannot uncompress book '%s': %s"
+#~ msgstr "Không thể giải nén quyển sách “%s”: %s"
+
+#~ msgid "All books"
+#~ msgstr "Tất cả sách"
+
+#~| msgid "Search"
+#~ msgid "Search in:"
+#~ msgstr "Tìm trong:"
+
+#~ msgid "Contents"
+#~ msgstr "Mục lục"
+
+#~ msgid "Search"
+#~ msgstr "Tìm kiếm"
+
+#~ msgid "Find:"
+#~ msgstr "Tìm:"
+
+#~ msgid "Find Previous"
+#~ msgstr "Tìm lùi"
+
+#~ msgid "Find previous occurrence of the search string"
+#~ msgstr "Tìm lần trước gặp chuỗi tìm kiếm"
+
+#~ msgid "Find Next"
+#~ msgstr "Tìm kế"
+
+#~ msgid "Find next occurrence of the search string"
+#~ msgstr "Tìm lần kế tiếp gặp chuỗi tìm kiếm"
+
+#~| msgid "Case Sensitive"
+#~ msgid "C_ase Sensitive"
+#~ msgstr "_Phân biệt chữ hoa/thường"
+
+#~ msgid "Toggle case sensitive search"
+#~ msgstr "Bật/tắt phân biệt chữ hoa/thường"
 
 #~ msgid "Show advanced search options"
-#~ msgstr "Hiện các tuỳ chọn tìm kiếm nâng cao"
+#~ msgstr "Hiện các tùy chọn tìm kiếm nâng cao"
 
 #~ msgid "Whether the advanced search options are shown."
-#~ msgstr "Hiện/ẩn các tuỳ chọn tìm kiếm nâng cao."
+#~ msgstr "Hiện/ẩn các tùy chọn tìm kiếm nâng cao."
 
 #~ msgid "<b>Fonts</b>"
 #~ msgstr "<b>Phông</b>"
@@ -613,7 +701,7 @@ msgstr "Bật/tắt phân biệt chữ hoa/thường"
 #~ msgstr "<b>Tìm kiếm</b>"
 
 #~ msgid "_Show advanced search options"
-#~ msgstr "_Hiện tuỳ chọn tìm kiếm nâng cao"
+#~ msgstr "_Hiện tùy chọn tìm kiếm nâng cao"
 
 #~ msgid ""
 #~ "name and link elements are required inside <function> on line %d, column "
@@ -641,4 +729,4 @@ msgstr "Bật/tắt phân biệt chữ hoa/thường"
 #~ msgstr "Dùng kích cỡ chữ tiêu chuẩn"
 
 #~ msgid "Preferences..."
-#~ msgstr "Tuỳ thích..."
+#~ msgstr "Tùy thích…"
