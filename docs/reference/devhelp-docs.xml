@@ -16,29 +16,29 @@
     </releaseinfo>
   </bookinfo>
 
-  <part>
+  <part id="api-reference">
     <title>API Reference</title>
 
-    <chapter>
+    <chapter id="general">
       <title>General</title>
       <xi:include href="xml/init.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="data">
       <title>The Data</title>
       <xi:include href="xml/dh-book-manager.xml"/>
       <xi:include href="xml/dh-book.xml"/>
       <xi:include href="xml/dh-link.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="side-panel">
       <title>Side Panel</title>
       <xi:include href="xml/dh-sidebar.xml"/>
       <xi:include href="xml/dh-book-tree.xml"/>
       <xi:include href="xml/dh-keyword-model.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="assistant">
       <title>Assistant</title>
       <xi:include href="xml/dh-assistant-view.xml"/>
     </chapter>

@@ -7,7 +7,7 @@
  %gtkdocentities;
 ]>
 
-<part>
+<part id="api-breaks">
   <title>API Breaks</title>
 
   <para>
