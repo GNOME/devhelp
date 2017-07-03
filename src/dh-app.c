@@ -226,9 +226,9 @@ about_cb (GSimpleAction *action,
 
         parent = dh_app_peek_first_window (app);
 
-        /* i18n: Please don't translate "Devhelp" (it's marked as translatable
-         * for transliteration only) */
         gtk_show_about_dialog (parent,
+                               /* i18n: Please don't translate "Devhelp" (it's marked as translatable
+                                * for transliteration only) */
                                "name", _("Devhelp"),
                                "version", PACKAGE_VERSION,
                                "comments", _("A developers’ help browser for GNOME"),
