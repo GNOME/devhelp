@@ -117,6 +117,10 @@ book_tree_setup_selection (DhBookTree *tree)
  *  - An exact match of the language group
  *  - Or the language group which should be just after our given language group.
  *  - Or both.
+ *
+ * FIXME: not great code. Maybe add a new column in the GtkTreeModel storing a
+ * DhLanguage object. Instead of @language as a string, it would be a
+ * DhLanguage.
  */
 static void
 book_tree_find_language_group (DhBookTree  *tree,
