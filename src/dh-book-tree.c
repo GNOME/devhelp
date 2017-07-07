@@ -873,6 +873,9 @@ dh_book_tree_select_uri (DhBookTree  *tree,
         if (gtk_tree_selection_iter_is_selected (selection, &data.iter))
                 return;
 
+        /* FIXME: it's strange to block the signal here. The signal handler
+         * should probably be blocked in DhWindow instead.
+         */
         g_signal_handlers_block_by_func (selection,
                                          book_tree_selection_changed_cb,
                                          tree);
