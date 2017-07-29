@@ -51,7 +51,7 @@ dh_init (void)
  *
  * It is not mandatory to call this function, it's just to be friendlier to
  * memory debugging tools. This function is meant to be called at the end of
- * main().
+ * main(). It can be called several times.
  *
  * Since: 3.26
  */
