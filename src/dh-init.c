@@ -44,7 +44,7 @@ dh_init (void)
 }
 
 /**
- * dh_free_resources:
+ * dh_finalize:
  *
  * Free the resources allocated by Devhelp. For example it unrefs the singleton
  * objects.
@@ -58,7 +58,7 @@ dh_init (void)
 
 /* Another way is to use a DSO destructor, see gconstructor.h in GLib.
  *
- * The advantage of calling dh_free_resources() at the end of main() is that
+ * The advantage of calling dh_finalize() at the end of main() is that
  * gobject-list [1] correctly reports that all Dh* objects have been finalized
  * when quitting the application. On the other hand a DSO destructor runs after
  * the gobject-list's last output, so it's much less convenient, see:
@@ -68,7 +68,7 @@ dh_init (void)
  * https://github.com/danni/gobject-list
  */
 void
-dh_free_resources (void)
+dh_finalize (void)
 {
         static gboolean done = FALSE;
 

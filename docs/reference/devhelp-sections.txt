@@ -4,7 +4,7 @@
 <FILE>init</FILE>
 <TITLE>Initialization and Finalization</TITLE>
 dh_init
-dh_free_resources
+dh_finalize
 </SECTION>
 
 <SECTION>

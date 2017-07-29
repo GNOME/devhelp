@@ -41,7 +41,7 @@ main (int argc, char **argv)
         status = g_application_run (G_APPLICATION (application), argc, argv);
         g_object_unref (application);
 
-        dh_free_resources ();
+        dh_finalize ();
 
         return status;
 }

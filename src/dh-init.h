@@ -23,8 +23,8 @@
 
 G_BEGIN_DECLS
 
-void    dh_init                 (void);
-void    dh_free_resources       (void);
+void    dh_init         (void);
+void    dh_finalize     (void);
 
 G_END_DECLS
 
