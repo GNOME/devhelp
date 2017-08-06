@@ -1,4 +1,26 @@
 ==============
+Version 3.25.2
+==============
+
+- Move New Tab action as a button in the headerbar (it's no longer in the
+  hamburger menu).
+- Refactorings in DhLink.
+- Rename dh_free_resources() to dh_finalize().
+
+Fixed bugs:
+
+ - #721082, a couple of scripts to add javadocs as Devhelp books
+ - #779386, Consider moving contents of "hamburger" menu elsewhere
+ - #783964, [PATCH] mouse forward/back buttons don't work
+
+Updated translations: cs, de, es, fr, fur, id, kk, sl, sv, vi
+
+Many thanks to all contributors: Fabio Tomat, Anders Jonsson, Sébastien
+Wilmet, Mario Blättermann, Piotr Drąg, Kukuh Syafaat, Matej Urbančič,
+Trần Ngọc Quân, Claude Paroz, Daniel Mustieles, Lubomir Rintel,
+Baurzhan Muftakhidinov, Marek Cernocky
+
+==============
 Version 3.25.1
 ==============
 
