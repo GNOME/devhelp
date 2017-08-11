@@ -49,6 +49,7 @@ typedef struct {
 
         DhLink         *selected_search_link;
         GtkSettings    *gtk_settings;
+        guint           configure_id;
         gulong          xft_dpi_changed_id;
 } DhWindowPrivate;
 
@@ -58,6 +59,8 @@ enum {
 };
 
 static guint signals[N_SIGNALS] = { 0 };
+
+#define WINDOW_SETTINGS_SAVE_TIMEOUT_MSECS 100
 
 static guint tab_accel_keys[] = {
         GDK_KEY_1, GDK_KEY_2, GDK_KEY_3, GDK_KEY_4, GDK_KEY_5,
@@ -652,20 +655,72 @@ dh_window_screen_changed (GtkWidget *window,
 }
 
 static gboolean
-dh_window_configure_event (GtkWidget         *window,
-                           GdkEventConfigure *event)
+window_settings_save_cb (gpointer user_data)
 {
+        DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPrivate *priv;
         DhSettings *settings;
+
+        priv = dh_window_get_instance_private (window);
+
+        priv->configure_id = 0;
 
         settings = dh_settings_get_singleton ();
         dh_util_window_settings_save (GTK_WINDOW (window),
                                       dh_settings_peek_window_settings (settings),
                                       TRUE);
 
+        return G_SOURCE_REMOVE;
+}
+
+static gboolean
+dh_window_configure_event (GtkWidget         *window,
+                           GdkEventConfigure *event)
+{
+        DhWindow *dh_window = DH_WINDOW (window);
+        DhWindowPrivate *priv;
+
+        priv = dh_window_get_instance_private (dh_window);
+
+        if (priv->configure_id != 0) {
+                g_source_remove (priv->configure_id);
+                priv->configure_id = 0;
+        }
+
+        priv->configure_id = g_timeout_add (WINDOW_SETTINGS_SAVE_TIMEOUT_MSECS,
+                                            window_settings_save_cb,
+                                            dh_window);
+
         if (GTK_WIDGET_CLASS (dh_window_parent_class)->configure_event == NULL)
                 return GDK_EVENT_PROPAGATE;
 
         return GTK_WIDGET_CLASS (dh_window_parent_class)->configure_event (window, event);
+}
+
+static gboolean
+dh_window_delete_event (GtkWidget         *window,
+                        GdkEventAny       *event)
+{
+        DhWindow *dh_window = DH_WINDOW (window);
+        DhWindowPrivate *priv;
+        DhSettings *settings;
+
+        priv = dh_window_get_instance_private (dh_window);
+
+        if (priv->configure_id != 0) {
+                g_source_remove (priv->configure_id);
+                priv->configure_id = 0;
+        }
+
+        settings = dh_settings_get_singleton ();
+        dh_util_window_settings_save (GTK_WINDOW (window),
+                                      dh_settings_peek_window_settings (settings),
+                                      TRUE);
+
+        if (GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event == NULL)
+                return GDK_EVENT_PROPAGATE;
+
+        return GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event (window, event);
 }
 
 static void
@@ -727,6 +782,11 @@ dh_window_dispose (GObject *object)
 
         priv = dh_window_get_instance_private (window);
 
+        if (priv->configure_id != 0) {
+                g_source_remove (priv->configure_id);
+                priv->configure_id = 0;
+        }
+
         if (priv->xft_dpi_changed_id != 0) {
                 if (priv->gtk_settings != NULL &&
                     g_signal_handler_is_connected (priv->gtk_settings, priv->xft_dpi_changed_id))
@@ -747,6 +807,7 @@ dh_window_class_init (DhWindowClass *klass)
 
         widget_class->screen_changed = dh_window_screen_changed;
         widget_class->configure_event = dh_window_configure_event;
+        widget_class->delete_event = dh_window_delete_event;
 
         klass->open_link = dh_window_open_link;
 
