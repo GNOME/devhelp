@@ -17,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=devhel"
 "p&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2017-07-27 13:58+0000\n"
-"PO-Revision-Date: 2017-08-12 12:27+0200\n"
+"PO-Revision-Date: 2017-08-12 12:30+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician\n"
 "Language: gl\n"
@@ -307,7 +307,6 @@ msgid "Reset Zoom"
 msgstr "Restabelecer ampliación"
 
 #: src/dh-app.c:234
-#, fuzzy
 #| msgid "A developers' help browser for GNOME"
 msgid "A developers’ help browser for GNOME"
 msgstr "Un visor de axuda para desenvolvedores de GNOME"
@@ -372,7 +371,7 @@ msgstr "Idioma: non definido"
 
 #: src/dh-book-tree.c:648
 msgid "_Collapse All"
-msgstr ""
+msgstr "_Contraer todo"
 
 #. i18n: a documentation book
 #: src/dh-link.c:403
@@ -548,7 +547,6 @@ msgid "_Normal Size"
 msgstr "Tamaño _normal"
 
 #: src/dh-window.ui:53
-#, fuzzy
 #| msgid "Side _Panel"
 msgid "_Side Panel"
 msgstr "Panel _lateral"
@@ -566,10 +564,9 @@ msgid "Forward"
 msgstr "Adiante"
 
 #: src/dh-window.ui:176
-#, fuzzy
 #| msgid "New _Tab"
 msgid "New Tab"
-msgstr "Nova _lapela"
+msgstr "Nova lapela"
 
 # (pofilter) gconf: do not translate gconf attribute: "content", "search"
 #~ msgid "Selected tab: \"content\" or \"search\""
