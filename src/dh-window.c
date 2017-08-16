@@ -654,6 +654,16 @@ dh_window_screen_changed (GtkWidget *window,
                                                                            previous_screen);
 }
 
+/* FIXME: this is a bit complicated just for saving the window state.
+ * Implement something (hopefully) simpler, by saving the GSettings only when
+ * needed:
+ * - when closing a DhWindow.
+ * - just before creating a second/third/... DhWindow, save the GSettings of the
+ *   active DhWindow.
+ *
+ * There is also a HowDoI:
+ * https://wiki.gnome.org/HowDoI/SaveWindowState
+ */
 static gboolean
 window_settings_save_cb (gpointer user_data)
 {
@@ -674,13 +684,13 @@ window_settings_save_cb (gpointer user_data)
 }
 
 static gboolean
-dh_window_configure_event (GtkWidget         *window,
+dh_window_configure_event (GtkWidget         *widget,
                            GdkEventConfigure *event)
 {
-        DhWindow *dh_window = DH_WINDOW (window);
+        DhWindow *window = DH_WINDOW (widget);
         DhWindowPrivate *priv;
 
-        priv = dh_window_get_instance_private (dh_window);
+        priv = dh_window_get_instance_private (window);
 
         if (priv->configure_id != 0) {
                 g_source_remove (priv->configure_id);
@@ -689,23 +699,23 @@ dh_window_configure_event (GtkWidget         *window,
 
         priv->configure_id = g_timeout_add (WINDOW_SETTINGS_SAVE_TIMEOUT_MSECS,
                                             window_settings_save_cb,
-                                            dh_window);
+                                            window);
 
         if (GTK_WIDGET_CLASS (dh_window_parent_class)->configure_event == NULL)
                 return GDK_EVENT_PROPAGATE;
 
-        return GTK_WIDGET_CLASS (dh_window_parent_class)->configure_event (window, event);
+        return GTK_WIDGET_CLASS (dh_window_parent_class)->configure_event (widget, event);
 }
 
 static gboolean
-dh_window_delete_event (GtkWidget         *window,
-                        GdkEventAny       *event)
+dh_window_delete_event (GtkWidget   *widget,
+                        GdkEventAny *event)
 {
-        DhWindow *dh_window = DH_WINDOW (window);
+        DhWindow *window = DH_WINDOW (widget);
         DhWindowPrivate *priv;
         DhSettings *settings;
 
-        priv = dh_window_get_instance_private (dh_window);
+        priv = dh_window_get_instance_private (window);
 
         if (priv->configure_id != 0) {
                 g_source_remove (priv->configure_id);
@@ -720,7 +730,7 @@ dh_window_delete_event (GtkWidget         *window,
         if (GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event == NULL)
                 return GDK_EVENT_PROPAGATE;
 
-        return GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event (window, event);
+        return GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event (widget, event);
 }
 
 static void
