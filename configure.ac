@@ -1,6 +1,6 @@
 AC_PREREQ([2.64])
 AC_INIT([Devhelp],
-        [3.25.2],
+        [3.25.91],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp],
         [devhelp],
         [https://wiki.gnome.org/Apps/Devhelp])
@@ -9,10 +9,12 @@ AX_REQUIRE_DEFINED([AX_IS_RELEASE])
 AX_IS_RELEASE([git-directory])
 
 # LT Version numbers, remember to change them just *before* a release.
+# A good time to update it is for the GNOME x.y.90 version, at API freeze,
+# so that packagers have the time to update the package.
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
 #   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
 #   (No interfaces changed:                   REVISION++)
-LIBDEVHELP_LT_CURRENT=3
+LIBDEVHELP_LT_CURRENT=4
 LIBDEVHELP_LT_REVISION=0
 LIBDEVHELP_LT_AGE=0
 LIBDEVHELP_LT_VERSION="$LIBDEVHELP_LT_CURRENT:$LIBDEVHELP_LT_REVISION:$LIBDEVHELP_LT_AGE"

@@ -1,3 +1,19 @@
+===============
+Version 3.25.91
+===============
+
+- Bump Libtool version.
+
+Fixed bugs:
+
+ - #786008, Constant updating of window positions causing high CPU load
+   Fixed by adding a timeout to save the GSettings for the window state.
+
+Updated translations: ca, gl, ne, pl, sr@latin, sr
+
+Many thanks to all contributors: Fran Dieguez, Мирослав
+Николић, Sébastien Wilmet, Pawan Chitrakar, Jordi Mas, Debarshi Ray
+
 ==============
 Version 3.25.2
 ==============
