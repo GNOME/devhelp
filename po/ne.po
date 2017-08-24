@@ -62,7 +62,7 @@ msgstr ""
 #: data/org.gnome.Devhelp.desktop.in.in:12
 #: misc/gedit-plugin/devhelp.plugin.desktop.in:10
 msgid "devhelp"
-msgstr "डेवहेल्प"
+msgstr "devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:18
 msgid "Main window maximized state"
