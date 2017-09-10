@@ -16,10 +16,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: "
-"https://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-07-27 13:58+0000\n"
-"PO-Revision-Date: 2017-03-05 23:51+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-08-27 16:13+0000\n"
+"PO-Revision-Date: 2017-09-03 20:16+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -32,14 +32,12 @@ msgstr ""
 #. * for transliteration only)
 #: data/org.gnome.Devhelp.appdata.xml.in:6
 #: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:232 src/dh-app.c:537
-#: src/dh-window.c:807
+#: src/dh-window.c:878
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7
 #: data/org.gnome.Devhelp.desktop.in.in:4
-#, fuzzy
-#| msgid "Developer's Help program"
 msgid "Developer’s Help program"
 msgstr "Hjælpeprogram til udviklere"
 
@@ -260,9 +258,6 @@ msgid "Open a new tab"
 msgstr "Åbn et nyt faneblad"
 
 #: src/help-overlay.ui:47
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Toggle sidebar visibility"
 msgctxt "shortcut window"
 msgid "Toggle side panel visibility"
 msgstr "Gør sidebjælken synlig/usynlig"
@@ -314,8 +309,6 @@ msgid "Reset Zoom"
 msgstr "Nulstil zoom"
 
 #: src/dh-app.c:234
-#, fuzzy
-#| msgid "A developers' help browser for GNOME"
 msgid "A developers’ help browser for GNOME"
 msgstr "En hjælpefremviser for udviklere til GNOME"
 
@@ -378,7 +371,7 @@ msgstr "Sprog: udefineret"
 
 #: src/dh-book-tree.c:648
 msgid "_Collapse All"
-msgstr ""
+msgstr "_Sammenfold alle"
 
 #. i18n: a documentation book
 #: src/dh-link.c:403
@@ -481,51 +474,51 @@ msgstr "_Fast bredde:"
 msgid "Fonts"
 msgstr "Skifttyper"
 
-#: src/dh-window.c:75
+#: src/dh-window.c:78
 msgid "50%"
 msgstr "50%"
 
-#: src/dh-window.c:76
+#: src/dh-window.c:79
 msgid "75%"
 msgstr "75%"
 
-#: src/dh-window.c:77
+#: src/dh-window.c:80
 msgid "100%"
 msgstr "100%"
 
-#: src/dh-window.c:78
+#: src/dh-window.c:81
 msgid "125%"
 msgstr "125%"
 
-#: src/dh-window.c:79
+#: src/dh-window.c:82
 msgid "150%"
 msgstr "150%"
 
-#: src/dh-window.c:80
+#: src/dh-window.c:83
 msgid "175%"
 msgstr "175%"
 
-#: src/dh-window.c:81
+#: src/dh-window.c:84
 msgid "200%"
 msgstr "200%"
 
-#: src/dh-window.c:82
+#: src/dh-window.c:85
 msgid "300%"
 msgstr "300%"
 
-#: src/dh-window.c:83
+#: src/dh-window.c:86
 msgid "400%"
 msgstr "400%"
 
-#: src/dh-window.c:1029
+#: src/dh-window.c:1100
 msgid "Error opening the requested link."
 msgstr "Fejl ved åbning af den forespurgte henvisning."
 
-#: src/dh-window.c:1346
+#: src/dh-window.c:1417
 msgid "_Close"
 msgstr "_Luk"
 
-#: src/dh-window.c:1364 src/dh-window.c:1545
+#: src/dh-window.c:1435 src/dh-window.c:1616
 msgid "Empty Page"
 msgstr "Tom side"
 
@@ -556,8 +549,6 @@ msgstr "_Normal størrelse"
 
 # scootergrisen: måske "_Siderude"
 #: src/dh-window.ui:53
-#, fuzzy
-#| msgid "Side _Panel"
 msgid "_Side Panel"
 msgstr "Side_panel"
 
@@ -574,12 +565,10 @@ msgid "Forward"
 msgstr "Fremad"
 
 #: src/dh-window.ui:176
-#, fuzzy
-#| msgid "New _Tab"
 msgid "New Tab"
-msgstr "Nyt _Faneblad"
+msgstr "Nyt faneblad"
 
-#~ # Kan også betyde "faneblad valgt", men at dømme efter en senere msgid (which of the tabs that is selected), er dette ikke tilfældet
+# Kan også betyde "faneblad valgt", men at dømme efter en senere msgid (which of the tabs that is selected), er dette ikke tilfældet
 #~ msgid "Selected tab: \"content\" or \"search\""
 #~ msgstr "Valgt faneblad: “indhold” eller “søg”"
 
@@ -593,17 +582,21 @@ msgstr "Nyt _Faneblad"
 #~ msgstr "Ugyldigt navnerum “%s” på linje %d, kolonne %d"
 
 #~ msgid ""
-#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-#~ msgstr "Elementerne “title”, “name” og “link” kræves på linje %d, kolonne %d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
 #~ "%d"
 #~ msgstr ""
-#~ "Elementerne \"name\" og \"link\" kræves inden i <sub> på linje %d, kolonne %d"
+#~ "Elementerne “title”, “name” og “link” kræves på linje %d, kolonne %d"
 
 #~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
+#~ "column %d"
+#~ msgstr ""
+#~ "Elementerne \"name\" og \"link\" kræves inden i <sub> på linje %d, "
+#~ "kolonne %d"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
+#~ "column %d"
 #~ msgstr ""
 #~ "Elementerne “name” og “link” kræves inden i “%s” på linje %d, kolonne %d"
 
@@ -613,11 +606,9 @@ msgstr "Nyt _Faneblad"
 #~ msgid "Cannot uncompress book '%s': %s"
 #~ msgstr "Kan ikke udpakke bogen “%s”: %s"
 
-#~ # scootergrisen: måske "_Siderude"
+# scootergrisen: måske "_Siderude"
 #~ msgid "_Side pane"
 #~ msgstr "_Sidepanel"
 
 #~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
 #~ msgstr "Får F2 til at starte Devhelp for ordet ved markøren"
-
-
