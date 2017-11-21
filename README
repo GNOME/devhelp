@@ -8,7 +8,7 @@ The Devhelp web page:
 Dependencies:
 - glib >= 2.38
 - gtk+ >= 3.22
-- webkit2gtk-4.0 >= 2.6
+- webkit2gtk-4.0 >= 2.19.2
 - gsettings-desktop-schemas
 
 Devhelp's primary goal is to be an API documentation browser for
