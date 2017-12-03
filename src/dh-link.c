@@ -73,65 +73,80 @@ link_free (DhLink *link)
         g_slice_free (DhLink, link);
 }
 
+static DhLink *
+dh_link_new_common (DhLinkType   type,
+                    const gchar *name,
+                    const gchar *relative_url)
+{
+        DhLink *link;
+
+        link = g_slice_new0 (DhLink);
+        link->ref_count = 1;
+        link->type = type;
+        link->name = g_strdup (name);
+        link->relative_url = g_strdup (relative_url);
+
+        return link;
+}
+
 /**
- * dh_link_new:
- * @type: the #DhLinkType.
- * @base_path: (nullable): the base path for the book, or %NULL.
- * @book_id: (nullable): the book ID, or %NULL.
+ * dh_link_new_book:
+ * @base_path: the base path for the book.
+ * @book_id: the book ID.
  * @name: the name of the link.
- * @book: (nullable): the book that the link is contained in, or %NULL.
  * @relative_url: the URL relative to the book @base_path. Can contain an
  * anchor.
  *
- * Creates a new #DhLink.
- *
- * @base_path and @book_id must be provided only for a link of type
- * %DH_LINK_TYPE_BOOK.
- *
- * If @type is not a #DH_LINK_TYPE_BOOK, then the @book link must be provided.
- *
- * @name and @relative_url must always be provided.
+ * Returns: a new #DhLink of type %DH_LINK_TYPE_BOOK.
+ * Since: 3.28
+ */
+DhLink *
+dh_link_new_book (const gchar *base_path,
+                  const gchar *book_id,
+                  const gchar *name,
+                  const gchar *relative_url)
+{
+        DhLink *link;
+
+        g_return_val_if_fail (base_path != NULL, NULL);
+        g_return_val_if_fail (book_id != NULL, NULL);
+        g_return_val_if_fail (name != NULL, NULL);
+        g_return_val_if_fail (relative_url != NULL, NULL);
+
+        link = dh_link_new_common (DH_LINK_TYPE_BOOK, name, relative_url);
+
+        link->base_path = g_strdup (base_path);
+        link->book_id = g_strdup (book_id);
+
+        return link;
+}
+
+/**
+ * dh_link_new:
+ * @type: the #DhLinkType. Must be different than %DH_LINK_TYPE_BOOK.
+ * @book: the book that the link is contained in.
+ * @name: the name of the link.
+ * @relative_url: the URL relative to the book @base_path. Can contain an
+ * anchor.
  *
  * Returns: a new #DhLink.
  */
 DhLink *
 dh_link_new (DhLinkType   type,
-             const gchar *base_path,
-             const gchar *book_id,
              DhLink      *book,
              const gchar *name,
              const gchar *relative_url)
 {
         DhLink *link;
 
-        if (type == DH_LINK_TYPE_BOOK) {
-                g_return_val_if_fail (base_path != NULL, NULL);
-                g_return_val_if_fail (book_id != NULL, NULL);
-                g_return_val_if_fail (book == NULL, NULL);
-        } else {
-                g_return_val_if_fail (base_path == NULL, NULL);
-                g_return_val_if_fail (book_id == NULL, NULL);
-                g_return_val_if_fail (book != NULL, NULL);
-        }
-
+        g_return_val_if_fail (type != DH_LINK_TYPE_BOOK, NULL);
+        g_return_val_if_fail (book != NULL, NULL);
         g_return_val_if_fail (name != NULL, NULL);
         g_return_val_if_fail (relative_url != NULL, NULL);
 
-        link = g_slice_new0 (DhLink);
+        link = dh_link_new_common (type, name, relative_url);
 
-        link->ref_count = 1;
-        link->type = type;
-
-        if (type == DH_LINK_TYPE_BOOK) {
-                link->base_path = g_strdup (base_path);
-                link->book_id = g_strdup (book_id);
-        }
-
-        if (book != NULL)
-                link->book = dh_link_ref (book);
-
-        link->name = g_strdup (name);
-        link->relative_url = g_strdup (relative_url);
+        link->book = dh_link_ref (book);
 
         return link;
 }

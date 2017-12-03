@@ -133,4 +133,18 @@
       </listitem>
     </itemizedlist>
   </refsect1>
+
+  <refsect1>
+    <title>3.26.0 -> 3.27.1</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="dh-link-new">dh_link_new()</link> has been split in
+          two, with <link linkend="dh-link-new-book">dh_link_new_book()</link>
+          to create a <link linkend="DhLink">DhLink</link> of type
+          <link linkend="DH-LINK-TYPE-BOOK:CAPS">DH_LINK_TYPE_BOOK</link>.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsect1>
 </part>

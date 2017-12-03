@@ -108,6 +108,7 @@ dh_keyword_model_get_type
 DhLink
 DhLinkType
 DhLinkFlags
+dh_link_new_book
 dh_link_new
 dh_link_ref
 dh_link_unref

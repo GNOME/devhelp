@@ -201,12 +201,10 @@ parser_start_node_book (DhParser             *parser,
                 g_object_unref (directory);
         }
 
-        link = dh_link_new (DH_LINK_TYPE_BOOK,
-                            base,
-                            parser->book_name,
-                            NULL,
-                            parser->book_title,
-                            uri);
+        link = dh_link_new_book (base,
+                                 parser->book_name,
+                                 parser->book_title,
+                                 uri);
         g_free (base);
         parser->all_links = g_list_prepend (parser->all_links, link);
 
@@ -264,8 +262,6 @@ parser_start_node_chapter (DhParser             *parser,
         g_assert (parser->book_node != NULL);
 
         link = dh_link_new (DH_LINK_TYPE_PAGE,
-                            NULL,
-                            NULL,
                             parser->book_node->data,
                             name,
                             uri);
@@ -428,8 +424,6 @@ parser_start_node_keyword (DhParser             *parser,
         g_assert (parser->book_node != NULL);
 
         link = dh_link_new (link_type,
-                            NULL,
-                            NULL,
                             parser->book_node->data,
                             name,
                             uri);
