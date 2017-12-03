@@ -952,51 +952,54 @@ window_populate (DhWindow *window)
 }
 
 static gchar *
-find_library_equivalent (DhWindow    *window,
-                         const gchar *uri)
+find_equivalent_local_uri (const gchar *uri)
 {
         gchar **components;
         guint n_components;
-        gchar *book_id;
-        gchar *filename;
+        const gchar *book_id;
+        const gchar *relative_url;
         DhBookManager *book_manager;
         GList *books;
+        GList *book_node;
         gchar *local_uri = NULL;
+
+        g_return_val_if_fail (uri != NULL, NULL);
 
         components = g_strsplit (uri, "/", 0);
         n_components = g_strv_length (components);
+
         if ((g_str_has_prefix (uri, "http://library.gnome.org/devel/") ||
              g_str_has_prefix (uri, "https://library.gnome.org/devel/")) &&
             n_components >= 7) {
                 book_id = components[4];
-                filename = components[6];
+                relative_url = components[6];
         } else if ((g_str_has_prefix (uri, "http://developer.gnome.org/") ||
                     g_str_has_prefix (uri, "https://developer.gnome.org/")) &&
                    n_components >= 6) {
+                /* E.g. http://developer.gnome.org/gio/stable/ch02.html */
                 book_id = components[3];
-                filename = components[5];
+                relative_url = components[5];
         } else {
-                g_strfreev (components);
-                return NULL;
+                goto out;
         }
 
         book_manager = dh_book_manager_get_singleton ();
+        books = dh_book_manager_get_books (book_manager);
 
-        for (books = dh_book_manager_get_books (book_manager);
-             local_uri == NULL && books != NULL;
-             books = books->next) {
-                DhBook *cur_book = DH_BOOK (books->data);
+        for (book_node = books; book_node != NULL; book_node = book_node->next) {
+                DhBook *cur_book = DH_BOOK (book_node->data);
                 GList *keywords;
+                GList *keyword_node;
 
-                for (keywords = dh_book_get_keywords (cur_book);
-                     keywords != NULL;
-                     keywords = keywords->next) {
-                        DhLink *cur_link = keywords->data;
+                if (g_strcmp0 (dh_book_get_name (cur_book), book_id) != 0)
+                        continue;
 
-                        if (g_strcmp0 (dh_link_get_book_id (cur_link), book_id) != 0)
-                                continue;
+                keywords = dh_book_get_keywords (cur_book);
 
-                        if (g_strcmp0 (dh_link_get_file_name (cur_link), filename) != 0)
+                for (keyword_node = keywords; keyword_node != NULL; keyword_node = keyword_node->next) {
+                        DhLink *cur_link = keyword_node->data;
+
+                        if (g_strcmp0 (dh_link_get_file_name (cur_link), relative_url) != 0)
                                 continue;
 
                         local_uri = dh_link_get_uri (cur_link);
@@ -1004,8 +1007,8 @@ find_library_equivalent (DhWindow    *window,
                 }
         }
 
+out:
         g_strfreev (components);
-
         return local_uri;
 }
 
@@ -1045,7 +1048,7 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
                 return GDK_EVENT_PROPAGATE;
         }
 
-        local_uri = find_library_equivalent (window, uri);
+        local_uri = find_equivalent_local_uri (uri);
         if (local_uri != NULL) {
                 webkit_policy_decision_ignore (policy_decision);
                 _dh_window_display_uri (window, local_uri);
