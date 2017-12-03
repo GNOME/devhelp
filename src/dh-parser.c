@@ -29,8 +29,7 @@
 /* Possible things to do for the version 3 of the Devhelp index file format (if
  * one day there is a strong desire to create a new version):
  * - Replace <functions> element by <keywords>.
- * - Maybe have an up-to-date URI for the NAMESPACE (an URI to the git repo?
- *   probably more stable than the web site).
+ * - Maybe have an up-to-date URI for the NAMESPACE.
  * - Rename some attributes of <book>:
  *      - name -> id
  *      - title -> name
