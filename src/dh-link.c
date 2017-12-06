@@ -265,6 +265,45 @@ dh_link_get_file_name (DhLink *link)
 }
 
 /**
+ * dh_link_match_relative_url:
+ * @link: a #DhLink.
+ * @relative_url: an URL relative to the book base path. Can contain an anchor.
+ *
+ * Returns: whether the relative URL of @link matches with @relative_url. There
+ * is a special case for the index.html page, it can also match the empty
+ * string.
+ * Since: 3.28
+ */
+gboolean
+dh_link_match_relative_url (DhLink      *link,
+                            const gchar *relative_url)
+{
+        g_return_val_if_fail (link != NULL, FALSE);
+        g_return_val_if_fail (link->relative_url != NULL, FALSE);
+        g_return_val_if_fail (relative_url != NULL, FALSE);
+
+        if (g_str_equal (link->relative_url, relative_url))
+                return TRUE;
+
+        /* Special case for index.html, can also match the empty string.
+         * Example of full URLs:
+         * file:///usr/share/gtk-doc/html/glib/
+         * file:///usr/share/gtk-doc/html/glib/index.html
+         *
+         * This supports only the root index.html page of a DhBook, this doesn't
+         * support index.html inside a sub-directory, if the relative_url
+         * contains a sub-directory. But apparently GTK-Doc doesn't create
+         * sub-directories, all the *.html pages are in the same directory.
+         */
+        if (relative_url[0] == '\0')
+                return g_str_equal (link->relative_url, "index.html");
+        else if (link->relative_url[0] == '\0')
+                return g_str_equal (relative_url, "index.html");
+
+        return FALSE;
+}
+
+/**
  * dh_link_get_uri:
  * @link: a #DhLink.
  *

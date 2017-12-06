@@ -93,6 +93,9 @@ const gchar *dh_link_get_name           (DhLink        *link);
 
 const gchar *dh_link_get_file_name      (DhLink        *link);
 
+gboolean     dh_link_match_relative_url (DhLink        *link,
+                                         const gchar   *relative_url);
+
 gchar *      dh_link_get_uri            (DhLink        *link);
 
 const gchar *dh_link_get_book_name      (DhLink        *link);
