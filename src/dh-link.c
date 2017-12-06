@@ -55,6 +55,9 @@ struct _DhLink {
         DhLinkFlags  flags : 8;
 };
 
+/* If the relative_url is empty. */
+#define DEFAULT_PAGE "index.html"
+
 G_DEFINE_BOXED_TYPE (DhLink, dh_link,
                      dh_link_ref, dh_link_unref)
 
@@ -296,9 +299,9 @@ dh_link_match_relative_url (DhLink      *link,
          * sub-directories, all the *.html pages are in the same directory.
          */
         if (relative_url[0] == '\0')
-                return g_str_equal (link->relative_url, "index.html");
+                return g_str_equal (link->relative_url, DEFAULT_PAGE);
         else if (link->relative_url[0] == '\0')
-                return g_str_equal (relative_url, "index.html");
+                return g_str_equal (relative_url, DEFAULT_PAGE);
 
         return FALSE;
 }
@@ -336,7 +339,7 @@ dh_link_belongs_to_page (DhLink      *link,
 
         relative_url = link->relative_url;
         if (relative_url[0] == '\0')
-                relative_url = "index.html";
+                relative_url = DEFAULT_PAGE;
 
         page_id_len = strlen (page_id);
 
