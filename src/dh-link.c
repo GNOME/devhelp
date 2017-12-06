@@ -304,6 +304,55 @@ dh_link_match_relative_url (DhLink      *link,
 }
 
 /**
+ * dh_link_belongs_to_page:
+ * @link: a #DhLink.
+ * @page_id: a page ID, i.e. the filename without its extension.
+ * @case_sensitive: whether @page_id is case sensitive.
+ *
+ * This function permits to know if @link belongs to a certain page.
+ *
+ * @page_id is usually the HTML filename without the `.html` extension. More
+ * generally, @page_id must be a relative URL (relative to the book base path),
+ * without the anchor nor the file extension.
+ *
+ * For example if @link has the relative URL `"DhLink.html#dh-link-ref"`, then
+ * this function will return %TRUE if the @page_id is `"DhLink"`.
+ *
+ * Returns: whether @link belongs to @page_id.
+ * Since: 3.28
+ */
+gboolean
+dh_link_belongs_to_page (DhLink      *link,
+                         const gchar *page_id,
+                         gboolean     case_sensitive)
+{
+        const gchar *relative_url;
+        gsize page_id_len;
+        gboolean has_prefix;
+
+        g_return_val_if_fail (link != NULL, FALSE);
+        g_return_val_if_fail (link->relative_url != NULL, FALSE);
+        g_return_val_if_fail (page_id != NULL, FALSE);
+
+        relative_url = link->relative_url;
+        if (relative_url[0] == '\0')
+                relative_url = "index.html";
+
+        page_id_len = strlen (page_id);
+
+        if (case_sensitive)
+                has_prefix = strncmp (relative_url, page_id, page_id_len) == 0;
+        else
+                has_prefix = g_ascii_strncasecmp (relative_url, page_id, page_id_len) == 0;
+
+        /* Check that a file extension follows. */
+        if (has_prefix)
+                return relative_url[page_id_len] == '.';
+
+        return FALSE;
+}
+
+/**
  * dh_link_get_uri:
  * @link: a #DhLink.
  *

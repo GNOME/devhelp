@@ -96,6 +96,10 @@ const gchar *dh_link_get_file_name      (DhLink        *link);
 gboolean     dh_link_match_relative_url (DhLink        *link,
                                          const gchar   *relative_url);
 
+gboolean     dh_link_belongs_to_page    (DhLink        *link,
+                                         const gchar   *page_id,
+                                         gboolean       case_sensitive);
+
 gchar *      dh_link_get_uri            (DhLink        *link);
 
 const gchar *dh_link_get_book_name      (DhLink        *link);
