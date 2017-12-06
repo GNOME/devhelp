@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2008 Imendio AB
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -90,8 +91,6 @@ void         dh_link_set_flags          (DhLink        *link,
                                          DhLinkFlags    flags);
 
 const gchar *dh_link_get_name           (DhLink        *link);
-
-const gchar *dh_link_get_file_name      (DhLink        *link);
 
 gboolean     dh_link_match_relative_url (DhLink        *link,
                                          const gchar   *relative_url);

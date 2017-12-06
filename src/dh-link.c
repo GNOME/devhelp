@@ -1,7 +1,8 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2008      Imendio AB
+ * Copyright (C) 2008 Imendio AB
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -245,26 +246,6 @@ dh_link_get_name (DhLink *link)
         g_return_val_if_fail (link != NULL, NULL);
 
         return link->name;
-}
-
-/**
- * dh_link_get_file_name:
- * @link: a #DhLink.
- *
- * Returns: the name of the file that the @link is contained in.
- */
-const gchar *
-dh_link_get_file_name (DhLink *link)
-{
-        g_return_val_if_fail (link != NULL, NULL);
-
-        /* Return filename if the link is itself a page or if the link is within
-         * a page (i.e. every link type except a book).
-         */
-        if (link->type != DH_LINK_TYPE_BOOK)
-                return link->relative_url;
-
-        return "";
 }
 
 /**
