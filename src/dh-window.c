@@ -999,11 +999,10 @@ find_equivalent_local_uri (const gchar *uri)
                 for (keyword_node = keywords; keyword_node != NULL; keyword_node = keyword_node->next) {
                         DhLink *cur_link = keyword_node->data;
 
-                        if (g_strcmp0 (dh_link_get_file_name (cur_link), relative_url) != 0)
-                                continue;
-
-                        local_uri = dh_link_get_uri (cur_link);
-                        break;
+                        if (dh_link_match_relative_url (cur_link, relative_url)) {
+                                local_uri = dh_link_get_uri (cur_link);
+                                goto out;
+                        }
                 }
         }
 
