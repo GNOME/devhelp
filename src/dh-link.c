@@ -432,6 +432,25 @@ dh_link_get_book_id (DhLink *link)
         return "";
 }
 
+static gint
+dh_link_type_compare (DhLinkType a,
+                      DhLinkType b)
+{
+        if (a == b)
+                return 0;
+
+        /* Sort page links before other links. The page is more important than a
+         * symbol (typically contained in that page).
+         */
+        if (a == DH_LINK_TYPE_PAGE)
+                return -1;
+
+        if (b == DH_LINK_TYPE_PAGE)
+                return 1;
+
+        return 0;
+}
+
 /**
  * dh_link_compare:
  * @a: (type DhLink): a #DhLink.
@@ -471,23 +490,10 @@ dh_link_compare (gconstpointer a,
         diff = strcmp (la->name_collation_key,
                        lb->name_collation_key);
 
-        /* For the same names, sort page links before other links. The page is
-         * more important than a symbol (typically contained in that page).
-         */
-        if (diff == 0) {
-                if (la->type == lb->type)
-                        return 0;
+        if (diff != 0)
+                return diff;
 
-                if (la->type == DH_LINK_TYPE_PAGE)
-                        return -1;
-
-                if (lb->type == DH_LINK_TYPE_PAGE)
-                        return 1;
-
-                return 0;
-        }
-
-        return diff;
+        return dh_link_type_compare (la->type, lb->type);
 }
 
 /**
