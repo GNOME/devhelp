@@ -38,22 +38,29 @@
  */
 
 struct _DhLink {
-        /* FIXME: Those two could exist only for book to save some
-         * memory.
+        guint ref_count;
+
+        /* FIXME: it is possible to optimize this struct to use less memory, by
+         * having only one pointer for the book, for example with an union and a
+         * secondary struct for @base_path + @book_id.
          */
-        gchar       *book_id;
-        gchar       *base_path;
 
-        DhLink      *book;
+        /* @base_path and @book_id are set only for links of @type
+         * DH_LINK_TYPE_BOOK.
+         */
+        gchar *base_path;
+        gchar *book_id;
 
-        gchar       *name;
-        gchar       *name_collation_key;
-        gchar       *relative_url;
+        /* @book is set only for links of @type != DH_LINK_TYPE_BOOK. */
+        DhLink *book;
 
-        guint        ref_count;
+        gchar *name;
+        gchar *name_collation_key;
 
-        DhLinkType   type : 8;
-        DhLinkFlags  flags : 8;
+        gchar *relative_url;
+
+        DhLinkType type : 8;
+        DhLinkFlags flags : 8;
 };
 
 /* If the relative_url is empty. */
@@ -65,8 +72,8 @@ G_DEFINE_BOXED_TYPE (DhLink, dh_link,
 static void
 link_free (DhLink *link)
 {
-        g_free (link->book_id);
         g_free (link->base_path);
+        g_free (link->book_id);
         g_free (link->name);
         g_free (link->name_collation_key);
         g_free (link->relative_url);
