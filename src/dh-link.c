@@ -37,10 +37,15 @@
  * There is exactly one #DhLink of type %DH_LINK_TYPE_BOOK per #DhBook object.
  */
 
+/* Fields used only by DhLink's of type DH_LINK_TYPE_BOOK. */
+typedef struct {
+        gchar *base_path;
+        gchar *book_id;
+} BookData;
+
 struct _DhLink {
         /* FIXME: it is possible to optimize this struct to use less memory, by
-         * having only one pointer for the book, for example with an union and a
-         * secondary struct for @base_path + @book_id.
+         * having only one pointer for the book, for example with an union.
          */
 
         /* To avoid some memory padding inside the struct, to use less memory,
@@ -50,11 +55,8 @@ struct _DhLink {
          * 3. Bit fields.
          */
 
-        /* @base_path and @book_id are set only for links of @type
-         * DH_LINK_TYPE_BOOK.
-         */
-        gchar *base_path;
-        gchar *book_id;
+        /* @book_data is set only for links of @type DH_LINK_TYPE_BOOK. */
+        BookData *book_data;
 
         /* @book is set only for links of @type != DH_LINK_TYPE_BOOK. */
         DhLink *book;
@@ -76,17 +78,41 @@ struct _DhLink {
 G_DEFINE_BOXED_TYPE (DhLink, dh_link,
                      dh_link_ref, dh_link_unref)
 
+static BookData *
+book_data_new (const gchar *base_path,
+               const gchar *book_id)
+{
+        BookData *data;
+
+        data = g_slice_new (BookData);
+        data->base_path = g_strdup (base_path);
+        data->book_id = g_strdup (book_id);
+
+        return data;
+}
+
+static void
+book_data_free (BookData *data)
+{
+        if (data == NULL)
+                return;
+
+        g_free (data->base_path);
+        g_free (data->book_id);
+        g_slice_free (BookData, data);
+}
+
 static void
 link_free (DhLink *link)
 {
-        g_free (link->base_path);
-        g_free (link->book_id);
-        g_free (link->name);
-        g_free (link->name_collation_key);
-        g_free (link->relative_url);
+        book_data_free (link->book_data);
 
         if (link->book != NULL)
                 dh_link_unref (link->book);
+
+        g_free (link->name);
+        g_free (link->name_collation_key);
+        g_free (link->relative_url);
 
         g_slice_free (DhLink, link);
 }
@@ -133,8 +159,7 @@ dh_link_new_book (const gchar *base_path,
 
         link = dh_link_new_common (DH_LINK_TYPE_BOOK, name, relative_url);
 
-        link->base_path = g_strdup (base_path);
-        link->book_id = g_strdup (book_id);
+        link->book_data = book_data_new (base_path, book_id);
 
         return link;
 }
@@ -376,9 +401,9 @@ dh_link_get_uri (DhLink *link)
         g_return_val_if_fail (link != NULL, NULL);
 
         if (link->type == DH_LINK_TYPE_BOOK)
-                base_path = link->base_path;
+                base_path = link->book_data->base_path;
         else
-                base_path = link->book->base_path;
+                base_path = link->book->book_data->base_path;
 
         filename = g_build_filename (base_path, link->relative_url, NULL);
 
@@ -438,10 +463,10 @@ dh_link_get_book_id (DhLink *link)
         g_return_val_if_fail (link != NULL, NULL);
 
         if (link->type == DH_LINK_TYPE_BOOK)
-                return link->book_id;
+                return link->book_data->book_id;
 
         if (link->book != NULL)
-                return link->book->book_id;
+                return link->book->book_data->book_id;
 
         return "";
 }
