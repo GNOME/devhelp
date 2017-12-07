@@ -403,6 +403,9 @@ dh_link_get_book_name (DhLink *link)
 {
         g_return_val_if_fail (link != NULL, NULL);
 
+        if (link->type == DH_LINK_TYPE_BOOK)
+                return link->name;
+
         if (link->book != NULL)
                 return link->book->name;
 
