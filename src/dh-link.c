@@ -161,6 +161,8 @@ dh_link_new (DhLinkType   type,
  *
  * Increases the reference count of @link.
  *
+ * Not thread-safe.
+ *
  * Returns: (transfer full): the @link.
  */
 DhLink *
@@ -168,7 +170,7 @@ dh_link_ref (DhLink *link)
 {
         g_return_val_if_fail (link != NULL, NULL);
 
-        g_atomic_int_inc (&link->ref_count);
+        link->ref_count++;
 
         return link;
 }
@@ -178,16 +180,18 @@ dh_link_ref (DhLink *link)
  * @link: a #DhLink.
  *
  * Decreases the reference count of @link.
+ *
+ * Not thread-safe.
  */
 void
 dh_link_unref (DhLink *link)
 {
         g_return_if_fail (link != NULL);
 
-        if (g_atomic_int_dec_and_test (&link->ref_count))
-        {
+        if (link->ref_count == 1)
                 link_free (link);
-        }
+        else
+                link->ref_count--;
 }
 
 /**
