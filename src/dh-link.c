@@ -38,11 +38,16 @@
  */
 
 struct _DhLink {
-        guint ref_count;
-
         /* FIXME: it is possible to optimize this struct to use less memory, by
          * having only one pointer for the book, for example with an union and a
          * secondary struct for @base_path + @book_id.
+         */
+
+        /* To avoid some memory padding inside the struct, to use less memory,
+         * the fields are placed in this order:
+         * 1. All the pointers.
+         * 2. Other types.
+         * 3. Bit fields.
          */
 
         /* @base_path and @book_id are set only for links of @type
@@ -58,6 +63,8 @@ struct _DhLink {
         gchar *name_collation_key;
 
         gchar *relative_url;
+
+        guint ref_count;
 
         DhLinkType type : 8;
         DhLinkFlags flags : 8;
