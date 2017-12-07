@@ -439,12 +439,17 @@ dh_link_type_compare (DhLinkType a,
         if (a == b)
                 return 0;
 
-        /* Sort page links before other links. The page is more important than a
-         * symbol (typically contained in that page).
+        /* Same order as in a tree: first the top-level book node, then pages,
+         * then keywords (keywords are contained in a page).
          */
+
+        if (a == DH_LINK_TYPE_BOOK)
+                return -1;
+        if (b == DH_LINK_TYPE_BOOK)
+                return 1;
+
         if (a == DH_LINK_TYPE_PAGE)
                 return -1;
-
         if (b == DH_LINK_TYPE_PAGE)
                 return 1;
 
