@@ -244,6 +244,7 @@ dh_assistant_view_set_link (DhAssistantView *view,
                 return TRUE;
         }
 
+        /* FIXME uri can be NULL. */
         uri = dh_link_get_uri (link);
         anchor = strrchr (uri, '#');
         if (anchor) {

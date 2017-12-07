@@ -1192,7 +1192,8 @@ window_search_link_selected_cb (GObject  *ignored,
         view = window_get_active_web_view (window);
 
         uri = dh_link_get_uri (link);
-        webkit_web_view_load_uri (view, uri);
+        if (uri != NULL)
+                webkit_web_view_load_uri (view, uri);
         g_free (uri);
 }
 
