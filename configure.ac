@@ -92,6 +92,7 @@ AC_CONFIG_FILES([
 	misc/gedit-plugin/Makefile
 	po/Makefile.in
 	src/Makefile
+	unit-tests/Makefile
 ])
 
 AC_OUTPUT
