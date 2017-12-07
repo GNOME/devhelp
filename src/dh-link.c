@@ -344,7 +344,11 @@ dh_link_belongs_to_page (DhLink      *link,
  * dh_link_get_uri:
  * @link: a #DhLink.
  *
- * Returns: the @link URI. Free with g_free() when no longer needed.
+ * Gets the @link URI, by concateneting the book base path with the @link
+ * relative URL.
+ *
+ * Returns: (nullable): the @link URI, or %NULL if getting the URI failed. Free
+ * with g_free() when no longer needed.
  */
 gchar *
 dh_link_get_uri (DhLink *link)
@@ -353,6 +357,7 @@ dh_link_get_uri (DhLink *link)
         gchar *filename;
         gchar *uri;
         gchar *anchor;
+        GError *error = NULL;
 
         g_return_val_if_fail (link != NULL, NULL);
 
@@ -369,9 +374,13 @@ dh_link_get_uri (DhLink *link)
                 anchor++;
         }
 
-        uri = g_filename_to_uri (filename, NULL, NULL);
+        uri = g_filename_to_uri (filename, NULL, &error);
+        if (error != NULL) {
+                g_warning ("Failed to get DhLink URI: %s", error->message);
+                g_clear_error (&error);
+        }
 
-        if (anchor != NULL) {
+        if (uri != NULL && anchor != NULL) {
                 gchar *uri_with_anchor;
 
                 uri_with_anchor = g_strconcat (uri, "#", anchor, NULL);
