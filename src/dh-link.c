@@ -58,8 +58,8 @@ struct _DhLink {
         /* @book_data is set only for links of @type DH_LINK_TYPE_BOOK. */
         BookData *book_data;
 
-        /* @book is set only for links of @type != DH_LINK_TYPE_BOOK. */
-        DhLink *book;
+        /* @book_link is set only for links of @type != DH_LINK_TYPE_BOOK. */
+        DhLink *book_link;
 
         gchar *name;
         gchar *name_collation_key;
@@ -107,8 +107,8 @@ link_free (DhLink *link)
 {
         book_data_free (link->book_data);
 
-        if (link->book != NULL)
-                dh_link_unref (link->book);
+        if (link->book_link != NULL)
+                dh_link_unref (link->book_link);
 
         g_free (link->name);
         g_free (link->name_collation_key);
@@ -189,7 +189,7 @@ dh_link_new (DhLinkType   type,
 
         link = dh_link_new_common (type, name, relative_url);
 
-        link->book = dh_link_ref (book);
+        link->book_link = dh_link_ref (book);
 
         return link;
 }
@@ -403,7 +403,7 @@ dh_link_get_uri (DhLink *link)
         if (link->type == DH_LINK_TYPE_BOOK)
                 base_path = link->book_data->base_path;
         else
-                base_path = link->book->book_data->base_path;
+                base_path = link->book_link->book_data->base_path;
 
         filename = g_build_filename (base_path, link->relative_url, NULL);
 
@@ -445,8 +445,8 @@ dh_link_get_book_name (DhLink *link)
         if (link->type == DH_LINK_TYPE_BOOK)
                 return link->name;
 
-        if (link->book != NULL)
-                return link->book->name;
+        if (link->book_link != NULL)
+                return link->book_link->name;
 
         return "";
 }
@@ -465,8 +465,8 @@ dh_link_get_book_id (DhLink *link)
         if (link->type == DH_LINK_TYPE_BOOK)
                 return link->book_data->book_id;
 
-        if (link->book != NULL)
-                return link->book->book_data->book_id;
+        if (link->book_link != NULL)
+                return link->book_link->book_data->book_id;
 
         return "";
 }
