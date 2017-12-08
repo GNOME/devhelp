@@ -140,7 +140,7 @@ dh_link_new_common (DhLinkType   type,
  * @book_id: the book ID.
  * @book_title: the name of the link.
  * @relative_url: the URL relative to the book @base_path. Can contain an
- * anchor.
+ * anchor. Usually the index.html page.
  *
  * Returns: a new #DhLink of type %DH_LINK_TYPE_BOOK.
  * Since: 3.28
@@ -458,7 +458,7 @@ dh_link_get_book_title (DhLink *link)
  * dh_link_get_book_id:
  * @link: a #DhLink.
  *
- * Returns: the book ID.
+ * Returns: the ID of the book that the @link is contained in.
  */
 const gchar *
 dh_link_get_book_id (DhLink *link)
