@@ -15,15 +15,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU General Public
- * License along with this program; if not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "config.h"
 #include "dh-book.h"
-
 #include <glib/gi18n-lib.h>
-
 #include "dh-link.h"
 #include "dh-parser.h"
 #include "dh-util.h"
@@ -39,11 +37,11 @@
  * or `*.devhelp2`).
  */
 
-/* Timeout to wait for new events in the book so that
- * they are merged and we don't spam unneeded signals */
+/* Timeout to wait for new events in the book so that they are merged and we
+ * don't spam unneeded signals.
+ */
 #define EVENT_MERGE_TIMEOUT_SECS 2
 
-/* Signals managed by the DhBook */
 enum {
         BOOK_ENABLED,
         BOOK_DISABLED,
@@ -58,32 +56,30 @@ typedef enum {
         BOOK_MONITOR_EVENT_DELETED
 } DhBookMonitorEvent;
 
-/* Structure defining basic contents to store about every book */
 typedef struct {
-        gchar        *index_file_path;
-        gchar        *name;
-        gchar        *title;
-        gchar        *language;
+        gchar *index_file_path;
+        gchar *name;
+        gchar *title;
+        gchar *language;
 
-        /* The book tree of DhLink* */
-        GNode        *tree;
+        /* The book tree of DhLink*. */
+        GNode *tree;
 
-        /* List of DhLink* */
-        GList        *keywords;
+        /* List of DhLink*. */
+        GList *keywords;
 
-        /* Generated list of keyword completions (gchar*) in the book */
-        GList        *completions;
+        /* Generated list of keyword completions (gchar*) in the book. */
+        GList *completions;
 
-        /* Monitor of this specific book */
+        /* Monitor of this specific book. */
         GFileMonitor *monitor;
 
-        /* Last received event */
+        /* Last received event. */
         DhBookMonitorEvent monitor_event;
 
-        /* ID of the event source */
-        guint         monitor_event_timeout_id;
+        guint monitor_event_timeout_id;
 
-        guint         enabled : 1;
+        guint enabled : 1;
 } DhBookPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBook, dh_book, G_TYPE_OBJECT);
@@ -206,20 +202,23 @@ book_monitor_event_timeout_cb (gpointer data)
         priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
         priv->monitor_event_timeout_id = 0;
 
-        /* We'll get either is_deleted OR is_updated,
-         * not possible to have both or none */
+        /* We'll get either is_deleted OR is_updated, not possible to have both
+         * or none.
+         */
         switch (monitor_event)
         {
         case BOOK_MONITOR_EVENT_DELETED:
-                /* Emit the signal, but make sure we hold a reference
-                 * while doing it */
+                /* Emit the signal, but make sure we hold a reference while
+                 * doing it.
+                 */
                 g_object_ref (book);
                 g_signal_emit (book, signals[BOOK_DELETED], 0);
                 g_object_unref (book);
                 break;
         case BOOK_MONITOR_EVENT_UPDATED:
-                /* Emit the signal, but make sure we hold a reference
-                 * while doing it */
+                /* Emit the signal, but make sure we hold a reference while
+                 * doing it.
+                 */
                 g_object_ref (book);
                 g_signal_emit (book, signals[BOOK_UPDATED], 0);
                 g_object_unref (book);
@@ -229,7 +228,7 @@ book_monitor_event_timeout_cb (gpointer data)
                 break;
         }
 
-        /* book can be destroyed here */
+        /* book can be destroyed here. */
 
         return G_SOURCE_REMOVE;
 }
@@ -241,9 +240,9 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                        GFileMonitorEvent  event_type,
                        gpointer           user_data)
 {
-        DhBook     *book = user_data;
+        DhBook *book = user_data;
         DhBookPrivate *priv = dh_book_get_instance_private (book);
-        gboolean    reset_timer = FALSE;
+        gboolean reset_timer = FALSE;
 
         /* CREATED may happen if the file is deleted and then created right
          * away, as we're merging events.  Treat in the same way as a
@@ -258,7 +257,7 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
                 reset_timer = TRUE;
         }
 
-        /* Reset timer if any of the flags changed */
+        /* Reset timer if any of the flags changed. */
         if (reset_timer) {
                 if (priv->monitor_event_timeout_id != 0) {
                         g_source_remove (priv->monitor_event_timeout_id);
@@ -279,10 +278,10 @@ DhBook *
 dh_book_new (const gchar *index_file_path)
 {
         DhBookPrivate *priv;
-        DhBook     *book;
-        GFile      *index_file;
-        gchar      *language = NULL;
-        GError     *error = NULL;
+        DhBook *book;
+        GFile *index_file;
+        gchar *language = NULL;
+        GError *error = NULL;
 
         g_return_val_if_fail (index_file_path, NULL);
 
@@ -291,7 +290,7 @@ dh_book_new (const gchar *index_file_path)
 
         index_file = g_file_new_for_path (index_file_path);
 
-        /* Parse file storing contents in the book struct */
+        /* Parse file storing contents in the book struct. */
         if (!dh_parser_read_file (index_file,
                                   &priv->title,
                                   &priv->name,
@@ -315,10 +314,10 @@ dh_book_new (const gchar *index_file_path)
 
         priv->index_file_path = g_strdup (index_file_path);
 
-        /* Rewrite language, if any, including the prefix we want
-         * to use when seeing it. It is pretty ugly to do it here,
-         * but it's the only way of making sure we standarize how
-         * the language group is shown */
+        /* Rewrite language, if any, including the prefix we want to use when
+         * seeing it. It is pretty ugly to do it here, but it's the only way of
+         * making sure we standarize how the language group is shown.
+         */
         dh_util_ascii_strtitle (language);
         priv->language = (language != NULL ?
                           g_strdup_printf (_("Language: %s"), language) :
@@ -390,7 +389,7 @@ dh_book_get_completions (DhBook *book)
                         DhLink *link = l->data;
                         gchar *str;
 
-                        /* Add additional "page:" and "book:" completions */
+                        /* Add additional "page:" and "book:" completions. */
                         if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
                                 str = g_strdup_printf ("book:%s", dh_link_get_name (link));
                                 priv->completions = g_list_prepend (priv->completions, str);

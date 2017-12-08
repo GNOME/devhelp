@@ -15,8 +15,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU General Public
- * License along with this program; if not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef DH_BOOK_H
@@ -45,15 +45,25 @@ struct _DhBookClass {
 };
 
 GType        dh_book_get_type        (void) G_GNUC_CONST;
-DhBook      *dh_book_new             (const gchar *index_file_path);
-GList       *dh_book_get_keywords    (DhBook *book);
-GList       *dh_book_get_completions (DhBook *book);
-GNode       *dh_book_get_tree        (DhBook *book);
+
+DhBook *     dh_book_new             (const gchar *index_file_path);
+
+GList *      dh_book_get_keywords    (DhBook *book);
+
+GList *      dh_book_get_completions (DhBook *book);
+
+GNode *      dh_book_get_tree        (DhBook *book);
+
 const gchar *dh_book_get_name        (DhBook *book);
+
 const gchar *dh_book_get_title       (DhBook *book);
+
 const gchar *dh_book_get_language    (DhBook *book);
+
 const gchar *dh_book_get_path        (DhBook *book);
+
 gboolean     dh_book_get_enabled     (DhBook *book);
+
 void         dh_book_set_enabled     (DhBook   *book,
                                       gboolean  enabled);
 
