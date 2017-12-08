@@ -27,7 +27,7 @@ G_BEGIN_DECLS
 
 gboolean dh_parser_read_file (GFile   *index_file,
                               gchar  **book_title,
-                              gchar  **book_name,
+                              gchar  **book_id,
                               gchar  **book_language,
                               GNode  **book_tree,
                               GList  **all_links,

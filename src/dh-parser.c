@@ -64,7 +64,7 @@ typedef struct {
         GFile *index_file;
 
         gchar *book_title;
-        gchar *book_name;
+        gchar *book_id;
         gchar *book_language;
 
         /* List of all DhLink* */
@@ -94,7 +94,7 @@ dh_parser_free (DhParser *parser)
         g_clear_object (&parser->index_file);
 
         g_free (parser->book_title);
-        g_free (parser->book_name);
+        g_free (parser->book_id);
         g_free (parser->book_language);
 
         g_list_free_full (parser->all_links, (GDestroyNotify)dh_link_unref);
@@ -190,8 +190,8 @@ parser_start_node_book (DhParser             *parser,
         parser->book_title = g_strdup (title);
         replace_newlines_by_spaces (parser->book_title);
 
-        g_free (parser->book_name);
-        parser->book_name = g_strdup (name);
+        g_free (parser->book_id);
+        parser->book_id = g_strdup (name);
 
         g_free (parser->book_language);
         parser->book_language = g_strdup (language);
@@ -205,7 +205,7 @@ parser_start_node_book (DhParser             *parser,
         }
 
         link = dh_link_new_book (base,
-                                 parser->book_name,
+                                 parser->book_id,
                                  parser->book_title,
                                  uri);
         g_free (base);
@@ -522,7 +522,7 @@ parser_end_node_cb (GMarkupParseContext  *context,
 gboolean
 dh_parser_read_file (GFile   *index_file,
                      gchar  **book_title,
-                     gchar  **book_name,
+                     gchar  **book_id,
                      gchar  **book_language,
                      GNode  **book_tree,
                      GList  **all_links,
@@ -537,7 +537,7 @@ dh_parser_read_file (GFile   *index_file,
 
         g_return_val_if_fail (G_IS_FILE (index_file), FALSE);
         g_return_val_if_fail (book_title != NULL && *book_title == NULL, FALSE);
-        g_return_val_if_fail (book_name != NULL && *book_name == NULL, FALSE);
+        g_return_val_if_fail (book_id != NULL && *book_id == NULL, FALSE);
         g_return_val_if_fail (book_language != NULL && *book_language == NULL, FALSE);
         g_return_val_if_fail (book_tree != NULL && *book_tree == NULL, FALSE);
         g_return_val_if_fail (all_links != NULL && *all_links == NULL, FALSE);
@@ -624,8 +624,8 @@ dh_parser_read_file (GFile   *index_file,
         *book_title = parser->book_title;
         parser->book_title = NULL;
 
-        *book_name = parser->book_name;
-        parser->book_name = NULL;
+        *book_id = parser->book_id;
+        parser->book_id = NULL;
 
         *book_language = parser->book_language;
         parser->book_language = NULL;
