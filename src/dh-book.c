@@ -270,24 +270,25 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
 
 /**
  * dh_book_new:
- * @index_file_path: the path to the index file.
+ * @index_file: the index file.
  *
- * Returns: a new #DhBook object.
+ * Returns: (nullable): a new #DhBook object, or %NULL if parsing the index file
+ * failed.
  */
 DhBook *
-dh_book_new (const gchar *index_file_path)
+dh_book_new (GFile *index_file)
 {
         DhBookPrivate *priv;
         DhBook *book;
         gchar *language = NULL;
         GError *error = NULL;
 
-        g_return_val_if_fail (index_file_path, NULL);
+        g_return_val_if_fail (G_IS_FILE (index_file), NULL);
 
         book = g_object_new (DH_TYPE_BOOK, NULL);
         priv = dh_book_get_instance_private (book);
 
-        priv->index_file = g_file_new_for_path (index_file_path);
+        priv->index_file = g_object_ref (index_file);
 
         /* Parse file storing contents in the book struct. */
         if (!dh_parser_read_file (priv->index_file,
@@ -298,10 +299,14 @@ dh_book_new (const gchar *index_file_path)
                                   &priv->keywords,
                                   &error)) {
                 if (error != NULL) {
-                        g_warning ("Failed to read '%s': %s",
-                                   index_file_path,
-                                   error->message);
-                        g_error_free (error);
+                        gchar *path;
+
+                        path = g_file_get_path (priv->index_file);
+
+                        g_warning ("Failed to read '%s': %s", path, error->message);
+
+                        g_free (path);
+                        g_clear_error (&error);
                 }
 
                 /* Deallocate the book, as we are not going to add it in the

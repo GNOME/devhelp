@@ -156,6 +156,12 @@
           <link linkend="dh-book-get-index-file">dh_book_get_index_file()</link>.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          The <link linkend="dh-book-new">dh_book_new()</link> constructor now
+          takes a <code>GFile</code> argument instead of a path.
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>

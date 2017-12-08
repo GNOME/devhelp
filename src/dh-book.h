@@ -46,7 +46,7 @@ struct _DhBookClass {
 
 GType        dh_book_get_type        (void) G_GNUC_CONST;
 
-DhBook *     dh_book_new             (const gchar *index_file_path);
+DhBook *     dh_book_new             (GFile *index_file);
 
 GList *      dh_book_get_keywords    (DhBook *book);
 

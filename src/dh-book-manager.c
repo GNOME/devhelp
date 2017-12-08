@@ -541,16 +541,19 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
                                 const gchar   *book_path)
 {
         DhBookManagerPrivate *priv;
-        DhBook            *book;
-        gboolean           book_enabled;
+        GFile *index_file;
+        DhBook *book;
+        gboolean book_enabled;
 
         g_return_if_fail (book_manager);
         g_return_if_fail (book_path);
 
         priv = dh_book_manager_get_instance_private (book_manager);
 
-        /* Allocate new book struct */
-        book = dh_book_new (book_path);
+        index_file = g_file_new_for_path (book_path);
+        book = dh_book_new (index_file);
+        g_object_unref (index_file);
+
         if (book == NULL)
                 return;
 
