@@ -168,29 +168,30 @@ dh_link_new_book (const gchar *base_path,
 /**
  * dh_link_new:
  * @type: the #DhLinkType. Must be different than %DH_LINK_TYPE_BOOK.
- * @book: the book that the link is contained in.
+ * @book_link: the #DhLink of type %DH_LINK_TYPE_BOOK for the book that the link
+ *   is contained in.
  * @name: the name of the link.
- * @relative_url: the URL relative to the book @base_path. Can contain an
- * anchor.
+ * @relative_url: the URL relative to the book base path. Can contain an anchor.
  *
  * Returns: a new #DhLink.
  */
 DhLink *
 dh_link_new (DhLinkType   type,
-             DhLink      *book,
+             DhLink      *book_link,
              const gchar *name,
              const gchar *relative_url)
 {
         DhLink *link;
 
         g_return_val_if_fail (type != DH_LINK_TYPE_BOOK, NULL);
-        g_return_val_if_fail (book != NULL, NULL);
+        g_return_val_if_fail (book_link != NULL, NULL);
+        g_return_val_if_fail (book_link->type == DH_LINK_TYPE_BOOK, NULL);
         g_return_val_if_fail (name != NULL, NULL);
         g_return_val_if_fail (relative_url != NULL, NULL);
 
         link = dh_link_new_common (type, name, relative_url);
 
-        link->book.link = dh_link_ref (book);
+        link->book.link = dh_link_ref (book_link);
 
         return link;
 }

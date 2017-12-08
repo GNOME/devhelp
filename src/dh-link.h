@@ -75,7 +75,7 @@ DhLink *     dh_link_new_book           (const gchar   *base_path,
                                          const gchar   *relative_url);
 
 DhLink *     dh_link_new                (DhLinkType     type,
-                                         DhLink        *book,
+                                         DhLink        *book_link,
                                          const gchar   *name,
                                          const gchar   *relative_url);
 
