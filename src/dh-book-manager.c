@@ -456,11 +456,13 @@ book_manager_book_updated_cb (DhBook   *book,
                               gpointer  user_data)
 {
         DhBookManager *book_manager = user_data;
-        gchar         *book_path;
+        GFile *index_file;
+        gchar *book_path;
 
         /* When we update a book, we need to delete it and then
          * create it again. */
-        book_path = g_strdup (dh_book_get_path (book));
+        index_file = dh_book_get_index_file (book);
+        book_path = g_file_get_path (index_file);
         book_manager_book_deleted_cb (book, book_manager);
         book_manager_add_from_filepath (book_manager, book_path);
         g_free (book_path);

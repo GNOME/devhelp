@@ -150,6 +150,12 @@
           The <code>dh_link_get_file_name()</code> function has been removed.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          The <code>dh_book_get_path()</code> function has been replaced by
+          <link linkend="dh-book-get-index-file">dh_book_get_index_file()</link>.
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>

@@ -34,7 +34,7 @@ dh_book_get_tree
 dh_book_get_name
 dh_book_get_title
 dh_book_get_language
-dh_book_get_path
+dh_book_get_index_file
 dh_book_get_enabled
 dh_book_set_enabled
 dh_book_cmp_by_path

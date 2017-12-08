@@ -22,7 +22,7 @@
 #ifndef DH_BOOK_H
 #define DH_BOOK_H
 
-#include <glib-object.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS
 
@@ -60,7 +60,7 @@ const gchar *dh_book_get_title       (DhBook *book);
 
 const gchar *dh_book_get_language    (DhBook *book);
 
-const gchar *dh_book_get_path        (DhBook *book);
+GFile *      dh_book_get_index_file  (DhBook *book);
 
 gboolean     dh_book_get_enabled     (DhBook *book);
 

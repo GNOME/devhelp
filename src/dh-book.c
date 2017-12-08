@@ -57,7 +57,7 @@ typedef enum {
 } DhBookMonitorEvent;
 
 typedef struct {
-        gchar *index_file_path;
+        GFile *index_file;
         gchar *name;
         gchar *title;
         gchar *language;
@@ -110,13 +110,13 @@ dh_book_finalize (GObject *object)
 
         priv = dh_book_get_instance_private (DH_BOOK (object));
 
+        g_clear_object (&priv->index_file);
         _dh_util_free_book_tree (priv->tree);
         g_list_free_full (priv->keywords, (GDestroyNotify)dh_link_unref);
         g_list_free_full (priv->completions, g_free);
         g_free (priv->language);
         g_free (priv->title);
         g_free (priv->name);
-        g_free (priv->index_file_path);
 
         G_OBJECT_CLASS (dh_book_parent_class)->finalize (object);
 }
@@ -279,7 +279,6 @@ dh_book_new (const gchar *index_file_path)
 {
         DhBookPrivate *priv;
         DhBook *book;
-        GFile *index_file;
         gchar *language = NULL;
         GError *error = NULL;
 
@@ -288,10 +287,10 @@ dh_book_new (const gchar *index_file_path)
         book = g_object_new (DH_TYPE_BOOK, NULL);
         priv = dh_book_get_instance_private (book);
 
-        index_file = g_file_new_for_path (index_file_path);
+        priv->index_file = g_file_new_for_path (index_file_path);
 
         /* Parse file storing contents in the book struct. */
-        if (!dh_parser_read_file (index_file,
+        if (!dh_parser_read_file (priv->index_file,
                                   &priv->title,
                                   &priv->name,
                                   &language,
@@ -312,8 +311,6 @@ dh_book_new (const gchar *index_file_path)
                 return NULL;
         }
 
-        priv->index_file_path = g_strdup (index_file_path);
-
         /* Rewrite language, if any, including the prefix we want to use when
          * seeing it. It is pretty ugly to do it here, but it's the only way of
          * making sure we standarize how the language group is shown.
@@ -325,7 +322,7 @@ dh_book_new (const gchar *index_file_path)
         g_free (language);
 
         /* Setup monitor for changes */
-        priv->monitor = g_file_monitor_file (index_file,
+        priv->monitor = g_file_monitor_file (priv->index_file,
                                              G_FILE_MONITOR_NONE,
                                              NULL,
                                              NULL);
@@ -339,7 +336,6 @@ dh_book_new (const gchar *index_file_path)
                            priv->title);
         }
 
-        g_object_unref (index_file);
         return book;
 }
 
@@ -487,13 +483,13 @@ dh_book_get_language (DhBook *book)
 }
 
 /**
- * dh_book_get_path:
+ * dh_book_get_index_file:
  * @book: a #DhBook.
  *
- * Returns: the path to the index file.
+ * Returns: (transfer none): the index file.
  */
-const gchar *
-dh_book_get_path (DhBook *book)
+GFile *
+dh_book_get_index_file (DhBook *book)
 {
         DhBookPrivate *priv;
 
@@ -501,7 +497,7 @@ dh_book_get_path (DhBook *book)
 
         priv = dh_book_get_instance_private (book);
 
-        return priv->index_file_path;
+        return priv->index_file;
 }
 
 /**
@@ -562,6 +558,9 @@ dh_book_cmp_by_path (DhBook *a,
 {
         DhBookPrivate *priv_a;
         DhBookPrivate *priv_b;
+        gchar *path_a;
+        gchar *path_b;
+        gint diff;
 
         if (a == NULL || b == NULL)
                 return -1;
@@ -569,7 +568,14 @@ dh_book_cmp_by_path (DhBook *a,
         priv_a = dh_book_get_instance_private (a);
         priv_b = dh_book_get_instance_private (b);
 
-        return g_strcmp0 (priv_a->index_file_path, priv_b->index_file_path);
+        path_a = g_file_get_path (priv_a->index_file);
+        path_b = g_file_get_path (priv_b->index_file);
+
+        diff = g_strcmp0 (path_a, path_b);
+
+        g_free (path_a);
+        g_free (path_b);
+        return diff;
 }
 
 /**
