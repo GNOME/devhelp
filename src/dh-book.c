@@ -58,7 +58,7 @@ typedef enum {
 
 typedef struct {
         GFile *index_file;
-        gchar *name;
+        gchar *id;
         gchar *title;
         gchar *language;
 
@@ -116,7 +116,7 @@ dh_book_finalize (GObject *object)
         g_list_free_full (priv->completions, g_free);
         g_free (priv->language);
         g_free (priv->title);
-        g_free (priv->name);
+        g_free (priv->id);
 
         G_OBJECT_CLASS (dh_book_parent_class)->finalize (object);
 }
@@ -293,7 +293,7 @@ dh_book_new (GFile *index_file)
         /* Parse file storing contents in the book struct. */
         if (!dh_parser_read_file (priv->index_file,
                                   &priv->title,
-                                  &priv->name,
+                                  &priv->id,
                                   &language,
                                   &priv->tree,
                                   &priv->keywords,
@@ -434,13 +434,17 @@ dh_book_get_tree (DhBook *book)
 }
 
 /**
- * dh_book_get_name:
+ * dh_book_get_id:
  * @book: a #DhBook.
  *
- * Returns: the book name.
+ * Gets the book ID. In the Devhelp index file format version 2, it is actually
+ * the “name”, not the ID, but “book ID” is clearer, “book name” can be confused
+ * with the title.
+ *
+ * Returns: the book ID.
  */
 const gchar *
-dh_book_get_name (DhBook *book)
+dh_book_get_id (DhBook *book)
 {
         DhBookPrivate *priv;
 
@@ -448,7 +452,7 @@ dh_book_get_name (DhBook *book)
 
         priv = dh_book_get_instance_private (book);
 
-        return priv->name;
+        return priv->id;
 }
 
 /**
@@ -584,18 +588,18 @@ dh_book_cmp_by_path (DhBook *a,
 }
 
 /**
- * dh_book_cmp_by_name:
+ * dh_book_cmp_by_id:
  * @a: a #DhBook.
  * @b: a #DhBook.
  *
- * Compares the #DhBook's by their name.
+ * Compares the #DhBook's by their IDs.
  *
  * Returns: an integer less than, equal to, or greater than zero, if @a is <, ==
  * or > than @b.
  */
 gint
-dh_book_cmp_by_name (DhBook *a,
-                     DhBook *b)
+dh_book_cmp_by_id (DhBook *a,
+                   DhBook *b)
 {
         DhBookPrivate *priv_a;
         DhBookPrivate *priv_b;
@@ -606,10 +610,10 @@ dh_book_cmp_by_name (DhBook *a,
         priv_a = dh_book_get_instance_private (a);
         priv_b = dh_book_get_instance_private (b);
 
-        if (priv_a->name == NULL || priv_b->name == NULL)
+        if (priv_a->id == NULL || priv_b->id == NULL)
                 return -1;
 
-        return g_ascii_strcasecmp (priv_a->name, priv_b->name);
+        return g_ascii_strcasecmp (priv_a->id, priv_b->id);
 }
 
 /**

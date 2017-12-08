@@ -991,7 +991,7 @@ find_equivalent_local_uri (const gchar *uri)
                 GList *keywords;
                 GList *keyword_node;
 
-                if (g_strcmp0 (dh_book_get_name (cur_book), book_id) != 0)
+                if (g_strcmp0 (dh_book_get_id (cur_book), book_id) != 0)
                         continue;
 
                 keywords = dh_book_get_keywords (cur_book);

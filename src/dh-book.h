@@ -54,7 +54,7 @@ GList *      dh_book_get_completions (DhBook *book);
 
 GNode *      dh_book_get_tree        (DhBook *book);
 
-const gchar *dh_book_get_name        (DhBook *book);
+const gchar *dh_book_get_id          (DhBook *book);
 
 const gchar *dh_book_get_title       (DhBook *book);
 
@@ -70,7 +70,7 @@ void         dh_book_set_enabled     (DhBook   *book,
 gint         dh_book_cmp_by_path     (DhBook *a,
                                       DhBook *b);
 
-gint         dh_book_cmp_by_name     (DhBook *a,
+gint         dh_book_cmp_by_id       (DhBook *a,
                                       DhBook *b);
 
 gint         dh_book_cmp_by_title    (DhBook *a,

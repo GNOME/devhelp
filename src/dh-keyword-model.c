@@ -582,7 +582,7 @@ keyword_model_search_books (DhKeywordModel  *model,
 
                 /* Filtering by book? */
                 if (settings->book_id != NULL) {
-                        if (g_strcmp0 (settings->book_id, dh_book_get_name (book)) != 0) {
+                        if (g_strcmp0 (settings->book_id, dh_book_get_id (book)) != 0) {
                                 continue;
                         }
 
@@ -606,7 +606,7 @@ keyword_model_search_books (DhKeywordModel  *model,
 
                 /* Skipping a given book? */
                 if (settings->skip_book_id != NULL &&
-                    g_strcmp0 (settings->skip_book_id, dh_book_get_name (book)) == 0) {
+                    g_strcmp0 (settings->skip_book_id, dh_book_get_id (book)) == 0) {
                         continue;
                 }
 

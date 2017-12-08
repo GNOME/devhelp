@@ -162,6 +162,18 @@
           takes a <code>GFile</code> argument instead of a path.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <code>dh_book_get_name()</code> has been renamed to
+          <link linkend="dh-book-get-id">dh_book_get_id()</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <code>dh_book_cmp_by_name()</code> has been renamed to
+          <link linkend="dh-book-cmp-by-id">dh_book_cmp_by_id()</link>.
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>

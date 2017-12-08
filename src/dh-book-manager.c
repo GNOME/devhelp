@@ -409,15 +409,15 @@ book_manager_is_book_disabled_in_conf (DhBookManager *book_manager,
                                        DhBook        *book)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        const gchar *name;
+        const gchar *book_id;
         GSList *l;
 
-        name = dh_book_get_name (book);
+        book_id = dh_book_get_id (book);
 
         for (l = priv->books_disabled; l != NULL; l = l->next) {
-                gchar *cur_name = l->data;
+                gchar *cur_book_id = l->data;
 
-                if (g_strcmp0 (name, cur_name) == 0)
+                if (g_strcmp0 (book_id, cur_book_id) == 0)
                         return TRUE;
         }
 
@@ -475,7 +475,7 @@ book_manager_find_book_in_disabled_list (GSList *books_disabled,
         GSList *li;
 
         for (li = books_disabled; li; li = g_slist_next (li)) {
-                if (g_strcmp0 (dh_book_get_name (book),
+                if (g_strcmp0 (dh_book_get_id (book),
                                (const gchar *)li->data) == 0) {
                         return li;
                 }
@@ -523,7 +523,7 @@ book_manager_book_disabled_cb (DhBook   *book,
          * disabled books list! */
         g_assert (li == NULL);
         priv->books_disabled = g_slist_append (priv->books_disabled,
-                                               g_strdup (dh_book_get_name (book)));
+                                               g_strdup (dh_book_get_id (book)));
         book_manager_store_books_disabled (book_manager);
 
         /* Decrement language count */
@@ -565,11 +565,12 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
                 return;
         }
 
-        /* Check if book with same bookname was already loaded in the manager
-         * (we need to force unique book names) */
+        /* Check if book with same ID was already loaded in the manager (we need
+         * to force unique book IDs).
+         */
         if (g_list_find_custom (priv->books,
                                 book,
-                                (GCompareFunc)dh_book_cmp_by_name)) {
+                                (GCompareFunc)dh_book_cmp_by_id)) {
                 g_object_unref (book);
                 return;
         }
