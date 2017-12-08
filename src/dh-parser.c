@@ -30,11 +30,14 @@
  * one day there is a strong desire to create a new version):
  * - Replace <functions> element by <keywords>.
  * - Maybe have an up-to-date URI for the NAMESPACE.
- * - Rename some attributes of <book>:
- *      - name -> id
- *      - title -> name
- *   Because with version 2 it's confusing that dh_link_get_name() returns the
- *   title, and dh_link_get_book_id() returns the book name.
+ * - Rename <book> attribute 'name' to 'id', because "book name" can be confused
+ *   with the book title or other 'name' attributes (for <sub> and <keyword>,
+ *   the 'name' attribute has a different meaning). With "book ID" there is no
+ *   ambiguity.
+ * - Maybe rename <book> attribute 'title' to 'name', to be consistent with
+ *   the <sub> and <keyword> elements. dh_link_get_name() would also have a
+ *   clearer meaning for book top-level links. But "book title" has the
+ *   advantage that there is no ambiguity.
  */
 
 /* It's the xmlns attribute. It is currently (well, in 2015 at least) used on
