@@ -434,13 +434,13 @@ dh_link_get_uri (DhLink *link)
 }
 
 /**
- * dh_link_get_book_name:
+ * dh_link_get_book_title:
  * @link: a #DhLink.
  *
- * Returns: the name of the book that the @link is contained in.
+ * Returns: the title of the book that the @link is contained in.
  */
 const gchar *
-dh_link_get_book_name (DhLink *link)
+dh_link_get_book_title (DhLink *link)
 {
         g_return_val_if_fail (link != NULL, NULL);
 

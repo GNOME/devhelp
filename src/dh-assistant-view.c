@@ -398,7 +398,7 @@ dh_assistant_view_set_link (DhAssistantView *view,
                         dh_link_get_uri (link),
                         dh_link_get_name (link),
                         _("Book:"),
-                        dh_link_get_book_name (link),
+                        dh_link_get_book_title (link),
                         buf);
                 g_free (buf);
 

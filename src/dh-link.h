@@ -101,7 +101,7 @@ gboolean     dh_link_belongs_to_page    (DhLink        *link,
 
 gchar *      dh_link_get_uri            (DhLink        *link);
 
-const gchar *dh_link_get_book_name      (DhLink        *link);
+const gchar *dh_link_get_book_title     (DhLink        *link);
 
 const gchar *dh_link_get_book_id        (DhLink        *link);
 
