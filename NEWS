@@ -1,4 +1,15 @@
 ==============
+Version 3.26.1
+==============
+
+- Move New Tab button on the right side of the headerbar.
+
+Updated translations: ca, ca@valencia, da, el, nb, nl
+
+Many thanks to all contributors: Sébastien Wilmet, Ask Hjorth Larsen,
+Efstathios Iosifidis, Nathan Follens, Kjartan Maraas, Xavi Ivars
+
+==============
 Version 3.26.0
 ==============
 
