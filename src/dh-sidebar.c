@@ -115,6 +115,9 @@ sidebar_filter_idle_cb (DhSidebar *sidebar)
         if (link != NULL)
                 g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
 
+        if (book_link != NULL)
+                dh_link_unref (book_link);
+
         return G_SOURCE_REMOVE;
 }
 
@@ -465,8 +468,9 @@ sidebar_book_tree_link_selected_cb (DhBookTree *book_tree,
  * dh_sidebar_get_selected_book:
  * @sidebar: a #DhSidebar.
  *
- * Returns: (nullable) (transfer none): the #DhLink of the selected book, or
- * %NULL if there is no selection.
+ * Returns: (nullable) (transfer full): the #DhLink of the selected book, or
+ * %NULL if there is no selection. Unref with dh_link_unref() when no longer
+ * needed.
  */
 DhLink *
 dh_sidebar_get_selected_book (DhSidebar *sidebar)

@@ -186,6 +186,14 @@
           <link linkend="dh-book-get-links">dh_book_get_links()</link>.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          The ownership transfer of the return values of
+          <link linkend="dh-book-tree-get-selected-book">dh_book_tree_get_selected_book()</link>
+          and <link linkend="dh-sidebar-get-selected-book">dh_sidebar_get_selected_book()</link>
+          have been changed from (transfer none) to (transfer full).
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>

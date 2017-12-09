@@ -1,10 +1,10 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2001-2003 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2003      CodeFactory AB
- * Copyright (C) 2008      Imendio AB
- * Copyright (C) 2010      Lanedo GmbH
- * Copyright (C) 2015      Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2003 CodeFactory AB
+ * Copyright (C) 2008 Imendio AB
+ * Copyright (C) 2010 Lanedo GmbH
+ * Copyright (C) 2015, 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -91,9 +91,13 @@ book_tree_selection_changed_cb (GtkTreeSelection *selection,
 
                 if (link != NULL &&
                     link != priv->selected_link) {
-                        priv->selected_link = link;
+                        g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
+                        priv->selected_link = dh_link_ref (link);
                         g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
                 }
+
+                if (link != NULL)
+                        dh_link_unref (link);
         }
 }
 
@@ -169,6 +173,7 @@ book_tree_find_language_group (DhBookTree  *tree,
                 if (link != NULL) {
                         /* Not a language */
                         g_free (title);
+                        dh_link_unref (link);
                         g_return_if_reached ();
                 }
 
@@ -559,6 +564,7 @@ book_tree_init_selection (DhBookTree *tree)
                                     COL_LINK, &link,
                                     -1);
 
+                g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
                 priv->selected_link = link;
                 gtk_tree_selection_select_iter (selection, &iter);
 
@@ -612,6 +618,7 @@ dh_book_tree_dispose (GObject *object)
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
 
         g_clear_object (&priv->store);
+        g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
         priv->context_menu = NULL;
 
         G_OBJECT_CLASS (dh_book_tree_parent_class)->dispose (object);
@@ -756,7 +763,7 @@ dh_book_tree_init (DhBookTree *tree)
 
         priv->store = gtk_tree_store_new (N_COLUMNS,
                                           G_TYPE_STRING, /* Title */
-                                          G_TYPE_POINTER, /* DhLink */
+                                          DH_TYPE_LINK,
                                           DH_TYPE_BOOK,
                                           PANGO_TYPE_WEIGHT,
                                           PANGO_TYPE_UNDERLINE);
@@ -838,6 +845,7 @@ book_tree_find_uri_foreach (GtkTreeModel *model,
                 }
 
                 g_free (link_uri);
+                dh_link_unref (link);
         }
 
         return data->found;
@@ -890,6 +898,7 @@ dh_book_tree_select_uri (DhBookTree  *tree,
                             &data.iter,
                             COL_LINK, &link,
                             -1);
+        g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
         priv->selected_link = link;
         gtk_tree_selection_select_iter (selection, &data.iter);
 
@@ -906,8 +915,9 @@ dh_book_tree_select_uri (DhBookTree  *tree,
  * dh_book_tree_get_selected_book:
  * @tree: a #DhBookTree.
  *
- * Returns: (nullable) (transfer none): the #DhLink of the selected book, or
- * %NULL if there is no selection.
+ * Returns: (nullable) (transfer full): the #DhLink of the selected book, or
+ * %NULL if there is no selection. Unref with dh_link_unref() when no longer
+ * needed.
  */
 DhLink *
 dh_book_tree_get_selected_book (DhBookTree *tree)
@@ -934,6 +944,8 @@ dh_book_tree_get_selected_book (DhBookTree *tree)
 
                 if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK)
                         return link;
+
+                dh_link_unref (link);
 
                 if (!gtk_tree_model_iter_parent (model, &parent, &iter))
                         break;
