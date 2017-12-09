@@ -13,8 +13,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU General Public
- * License along with this program; if not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef DH_KEYWORD_MODEL_H
@@ -36,13 +36,11 @@ G_BEGIN_DECLS
 typedef struct _DhKeywordModel      DhKeywordModel;
 typedef struct _DhKeywordModelClass DhKeywordModelClass;
 
-struct _DhKeywordModel
-{
+struct _DhKeywordModel {
         GObject parent_instance;
 };
 
-struct _DhKeywordModelClass
-{
+struct _DhKeywordModelClass {
         GObjectClass parent_class;
 };
 
@@ -54,7 +52,9 @@ enum {
 };
 
 GType           dh_keyword_model_get_type  (void);
+
 DhKeywordModel *dh_keyword_model_new       (void);
+
 DhLink *        dh_keyword_model_filter    (DhKeywordModel *model,
                                             const gchar    *search_string,
                                             const gchar    *book_id,
