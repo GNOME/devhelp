@@ -468,7 +468,7 @@ dh_assistant_view_search (DhAssistantView *view,
              books = g_list_next (books)) {
                 GList *l;
 
-                for (l = dh_book_get_keywords (DH_BOOK (books->data));
+                for (l = dh_book_get_links (DH_BOOK (books->data));
                      l && exact_link == NULL;
                      l = l->next) {
                         DhLinkType type;

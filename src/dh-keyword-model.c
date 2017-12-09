@@ -442,7 +442,7 @@ keyword_model_search_book (DhBook          *book,
 
         ret = g_queue_new ();
 
-        for (l = dh_book_get_keywords (book);
+        for (l = dh_book_get_links (book);
              l != NULL && ret->length < max_hits;
              l = g_list_next (l)) {
                 DhLink   *link;

@@ -988,16 +988,16 @@ find_equivalent_local_uri (const gchar *uri)
 
         for (book_node = books; book_node != NULL; book_node = book_node->next) {
                 DhBook *cur_book = DH_BOOK (book_node->data);
-                GList *keywords;
-                GList *keyword_node;
+                GList *links;
+                GList *link_node;
 
                 if (g_strcmp0 (dh_book_get_id (cur_book), book_id) != 0)
                         continue;
 
-                keywords = dh_book_get_keywords (cur_book);
+                links = dh_book_get_links (cur_book);
 
-                for (keyword_node = keywords; keyword_node != NULL; keyword_node = keyword_node->next) {
-                        DhLink *cur_link = keyword_node->data;
+                for (link_node = links; link_node != NULL; link_node = link_node->next) {
+                        DhLink *cur_link = link_node->data;
 
                         if (dh_link_match_relative_url (cur_link, relative_url)) {
                                 local_uri = dh_link_get_uri (cur_link);

@@ -28,7 +28,7 @@ dh_assistant_view_get_type
 <FILE>dh-book</FILE>
 DhBook
 dh_book_new
-dh_book_get_keywords
+dh_book_get_links
 dh_book_get_completions
 dh_book_get_tree
 dh_book_get_id

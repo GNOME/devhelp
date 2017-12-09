@@ -48,7 +48,7 @@ GType        dh_book_get_type        (void) G_GNUC_CONST;
 
 DhBook *     dh_book_new             (GFile *index_file);
 
-GList *      dh_book_get_keywords    (DhBook *book);
+GList *      dh_book_get_links       (DhBook *book);
 
 GList *      dh_book_get_completions (DhBook *book);
 

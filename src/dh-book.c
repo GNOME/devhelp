@@ -66,9 +66,9 @@ typedef struct {
         GNode *tree;
 
         /* List of DhLink*. */
-        GList *keywords;
+        GList *links;
 
-        /* Generated list of keyword completions (gchar*) in the book. */
+        /* Generated list of completions (gchar*) in the book. */
         GList *completions;
 
         /* Monitor of this specific book. */
@@ -112,7 +112,7 @@ dh_book_finalize (GObject *object)
 
         g_clear_object (&priv->index_file);
         _dh_util_free_book_tree (priv->tree);
-        g_list_free_full (priv->keywords, (GDestroyNotify)dh_link_unref);
+        g_list_free_full (priv->links, (GDestroyNotify)dh_link_unref);
         g_list_free_full (priv->completions, g_free);
         g_free (priv->language);
         g_free (priv->title);
@@ -296,7 +296,7 @@ dh_book_new (GFile *index_file)
                                   &priv->id,
                                   &language,
                                   &priv->tree,
-                                  &priv->keywords,
+                                  &priv->links,
                                   &error)) {
                 if (error != NULL) {
                         gchar *path;
@@ -345,7 +345,7 @@ dh_book_new (GFile *index_file)
 }
 
 /**
- * dh_book_get_keywords:
+ * dh_book_get_links:
  * @book: a #DhBook.
  *
  * Returns: (element-type DhLink) (transfer none) (nullable): the list of
@@ -353,7 +353,7 @@ dh_book_new (GFile *index_file)
  * disabled.
  */
 GList *
-dh_book_get_keywords (DhBook *book)
+dh_book_get_links (DhBook *book)
 {
         DhBookPrivate *priv;
 
@@ -361,7 +361,7 @@ dh_book_get_keywords (DhBook *book)
 
         priv = dh_book_get_instance_private (book);
 
-        return priv->enabled ? priv->keywords : NULL;
+        return priv->enabled ? priv->links : NULL;
 }
 
 /**
@@ -386,7 +386,7 @@ dh_book_get_completions (DhBook *book)
         if (priv->completions == NULL) {
                 GList *l;
 
-                for (l = priv->keywords; l != NULL; l = l->next) {
+                for (l = priv->links; l != NULL; l = l->next) {
                         DhLink *link = l->data;
                         gchar *str;
 
@@ -416,7 +416,7 @@ dh_book_get_completions (DhBook *book)
  * #DhLink's of type %DH_LINK_TYPE_BOOK or %DH_LINK_TYPE_PAGE. The other
  * #DhLink's are not contained in the tree. To have a list of
  * <emphasis>all</emphasis> #DhLink's part of the book, you need to call
- * dh_book_get_keywords().
+ * dh_book_get_links().
  *
  * Returns: (transfer none) (nullable): the tree of #DhLink's part of the @book,
  * or %NULL if the book is disabled.
