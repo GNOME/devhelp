@@ -43,6 +43,9 @@ typedef struct {
         gchar *current_book_id;
 
         /* List of DhLink* */
+        /* FIXME ref the DhLinks, in case a DhBook is destroyed while the
+         * DhLinks are still stored here.
+         */
         GQueue keywords;
 
         gint stamp;
@@ -110,6 +113,7 @@ dh_keyword_model_init (DhKeywordModel *model)
 static GtkTreeModelFlags
 keyword_model_get_flags (GtkTreeModel *tree_model)
 {
+        /* FIXME: check if GTK_TREE_MODEL_ITERS_PERSIST is correct. */
         return GTK_TREE_MODEL_ITERS_PERSIST | GTK_TREE_MODEL_LIST_ONLY;
 }
 
@@ -128,6 +132,10 @@ keyword_model_get_column_type (GtkTreeModel *tree_model,
                 return G_TYPE_STRING;
 
         case DH_KEYWORD_MODEL_COL_LINK:
+                /* FIXME: use DH_TYPE_LINK boxed type, to take advantage of ref
+                 * counting, to have safer code in case a DhLink is freed when
+                 * still stored in the GtkTreeModel.
+                 */
                 return G_TYPE_POINTER;
 
         case DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG:
