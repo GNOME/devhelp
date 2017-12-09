@@ -12,8 +12,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU General Public
- * License along with this program; if not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef DH_BOOK_TREE_H
@@ -41,11 +41,14 @@ struct _DhBookTreeClass {
         GtkTreeViewClass parent_class;
 };
 
-GType        dh_book_tree_get_type          (void) G_GNUC_CONST;
-DhBookTree * dh_book_tree_new               (void);
-void         dh_book_tree_select_uri        (DhBookTree    *tree,
-                                             const gchar   *uri);
-DhLink      *dh_book_tree_get_selected_book (DhBookTree    *tree);
+GType           dh_book_tree_get_type           (void) G_GNUC_CONST;
+
+DhBookTree *    dh_book_tree_new                (void);
+
+void            dh_book_tree_select_uri         (DhBookTree  *tree,
+                                                 const gchar *uri);
+
+DhLink *        dh_book_tree_get_selected_book  (DhBookTree *tree);
 
 G_END_DECLS
 
