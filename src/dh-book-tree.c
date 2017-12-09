@@ -874,16 +874,15 @@ dh_book_tree_select_uri (DhBookTree  *tree,
                                 (GtkTreeModelForeachFunc) book_tree_find_uri_foreach,
                                 &data);
 
-        if (!data.found) {
+        if (!data.found)
                 return;
-        }
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
 
         /* Do not re-select (which will expand current additionally) if already
          * there. */
         if (gtk_tree_selection_iter_is_selected (selection, &data.iter))
-                return;
+                goto out;
 
         /* FIXME: it's strange to block the signal here. The signal handler
          * should probably be blocked in DhWindow instead.
@@ -908,6 +907,7 @@ dh_book_tree_select_uri (DhBookTree  *tree,
                                            book_tree_selection_changed_cb,
                                            tree);
 
+out:
         gtk_tree_path_free (data.path);
 }
 
