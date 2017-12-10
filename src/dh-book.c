@@ -317,8 +317,9 @@ dh_book_new (GFile *index_file)
         }
 
         /* Rewrite language, if any, including the prefix we want to use when
-         * seeing it. It is pretty ugly to do it here, but it's the only way of
-         * making sure we standarize how the language group is shown.
+         * seeing it, to standarize how the language group is shown.
+         * FIXME: do this in DhLanguage instead (this may require to implement
+         * DhLanguage differently).
          */
         dh_util_ascii_strtitle (language);
         priv->language = (language != NULL ?
