@@ -58,6 +58,7 @@ typedef enum {
 
 typedef struct {
         GFile *index_file;
+
         gchar *id;
         gchar *title;
         gchar *language;
@@ -71,8 +72,7 @@ typedef struct {
         /* Generated list of completions (gchar*) in the book. */
         GList *completions;
 
-        /* Monitor of this specific book. */
-        GFileMonitor *monitor;
+        GFileMonitor *index_file_monitor;
 
         /* Last received event. */
         BookMonitorEvent monitor_event;
@@ -93,7 +93,7 @@ dh_book_dispose (GObject *object)
 
         priv = dh_book_get_instance_private (DH_BOOK (object));
 
-        g_clear_object (&priv->monitor);
+        g_clear_object (&priv->index_file_monitor);
 
         if (priv->monitor_event_timeout_id != 0) {
                 g_source_remove (priv->monitor_event_timeout_id);
@@ -331,10 +331,10 @@ dh_book_new (GFile *index_file)
 
         /* Setup monitor for changes */
 
-        priv->monitor = g_file_monitor_file (priv->index_file,
-                                             G_FILE_MONITOR_NONE,
-                                             NULL,
-                                             &error);
+        priv->index_file_monitor = g_file_monitor_file (priv->index_file,
+                                                        G_FILE_MONITOR_NONE,
+                                                        NULL,
+                                                        &error);
 
         if (error != NULL) {
                 gchar *parse_name;
@@ -349,8 +349,8 @@ dh_book_new (GFile *index_file)
                 g_clear_error (&error);
         }
 
-        if (priv->monitor != NULL) {
-                g_signal_connect_object (priv->monitor,
+        if (priv->index_file_monitor != NULL) {
+                g_signal_connect_object (priv->index_file_monitor,
                                          "changed",
                                          G_CALLBACK (book_monitor_event_cb),
                                          book,
