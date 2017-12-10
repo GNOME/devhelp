@@ -603,7 +603,7 @@ dh_book_cmp_by_path (DhBook *a,
  * @a: a #DhBook.
  * @b: a #DhBook.
  *
- * Compares the #DhBook's by their IDs.
+ * Compares the #DhBook's by their IDs, with g_ascii_strcasecmp().
  *
  * Returns: an integer less than, equal to, or greater than zero, if @a is <, ==
  * or > than @b.
