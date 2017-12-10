@@ -43,10 +43,10 @@
 #define EVENT_MERGE_TIMEOUT_SECS 2
 
 enum {
-        BOOK_ENABLED,
-        BOOK_DISABLED,
-        BOOK_UPDATED,
-        BOOK_DELETED,
+        SIGNAL_BOOK_ENABLED,
+        SIGNAL_BOOK_DISABLED,
+        SIGNAL_BOOK_UPDATED,
+        SIGNAL_BOOK_DELETED,
         N_SIGNALS
 };
 
@@ -133,7 +133,7 @@ dh_book_class_init (DhBookClass *klass)
          * DhBook::enabled:
          * @book: the book on which the signal is emitted.
          */
-        signals[BOOK_ENABLED] =
+        signals[SIGNAL_BOOK_ENABLED] =
                 g_signal_new ("enabled",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -146,7 +146,7 @@ dh_book_class_init (DhBookClass *klass)
          * DhBook::disabled:
          * @book: the book on which the signal is emitted.
          */
-        signals[BOOK_DISABLED] =
+        signals[SIGNAL_BOOK_DISABLED] =
                 g_signal_new ("disabled",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -159,7 +159,7 @@ dh_book_class_init (DhBookClass *klass)
          * DhBook::updated:
          * @book: the book on which the signal is emitted.
          */
-        signals[BOOK_UPDATED] =
+        signals[SIGNAL_BOOK_UPDATED] =
                 g_signal_new ("updated",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -172,7 +172,7 @@ dh_book_class_init (DhBookClass *klass)
          * DhBook::deleted:
          * @book: the book on which the signal is emitted.
          */
-        signals[BOOK_DELETED] =
+        signals[SIGNAL_BOOK_DELETED] =
                 g_signal_new ("deleted",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -212,7 +212,7 @@ book_monitor_event_timeout_cb (gpointer data)
                  * doing it.
                  */
                 g_object_ref (book);
-                g_signal_emit (book, signals[BOOK_DELETED], 0);
+                g_signal_emit (book, signals[SIGNAL_BOOK_DELETED], 0);
                 g_object_unref (book);
                 break;
         case BOOK_MONITOR_EVENT_UPDATED:
@@ -220,7 +220,7 @@ book_monitor_event_timeout_cb (gpointer data)
                  * doing it.
                  */
                 g_object_ref (book);
-                g_signal_emit (book, signals[BOOK_UPDATED], 0);
+                g_signal_emit (book, signals[SIGNAL_BOOK_UPDATED], 0);
                 g_object_unref (book);
                 break;
         case BOOK_MONITOR_EVENT_NONE:
@@ -546,7 +546,7 @@ dh_book_set_enabled (DhBook   *book,
         if (priv->enabled != enabled) {
                 priv->enabled = enabled;
                 g_signal_emit (book,
-                               enabled ? signals[BOOK_ENABLED] : signals[BOOK_DISABLED],
+                               enabled ? signals[SIGNAL_BOOK_ENABLED] : signals[SIGNAL_BOOK_DISABLED],
                                0);
         }
 }
