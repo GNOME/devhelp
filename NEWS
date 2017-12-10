@@ -1,4 +1,15 @@
 ==============
+Version 3.27.1
+==============
+
+- Lots of code refactorings.
+- Write first unit test.
+- DhLink: use a union inside the struct to use less memory.
+- Improve API documentation.
+- Some minor bug fixes.
+- Translation updates.
+
+==============
 Version 3.26.1
 ==============
 
