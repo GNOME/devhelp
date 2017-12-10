@@ -131,7 +131,7 @@ dh_book_class_init (DhBookClass *klass)
 
         /**
          * DhBook::enabled:
-         * @book: the book on which the signal is emitted.
+         * @book: the #DhBook emitting the signal.
          */
         signals[SIGNAL_BOOK_ENABLED] =
                 g_signal_new ("enabled",
@@ -144,7 +144,7 @@ dh_book_class_init (DhBookClass *klass)
 
         /**
          * DhBook::disabled:
-         * @book: the book on which the signal is emitted.
+         * @book: the #DhBook emitting the signal.
          */
         signals[SIGNAL_BOOK_DISABLED] =
                 g_signal_new ("disabled",
@@ -157,7 +157,7 @@ dh_book_class_init (DhBookClass *klass)
 
         /**
          * DhBook::updated:
-         * @book: the book on which the signal is emitted.
+         * @book: the #DhBook emitting the signal.
          */
         signals[SIGNAL_BOOK_UPDATED] =
                 g_signal_new ("updated",
@@ -170,7 +170,7 @@ dh_book_class_init (DhBookClass *klass)
 
         /**
          * DhBook::deleted:
-         * @book: the book on which the signal is emitted.
+         * @book: the #DhBook emitting the signal.
          */
         signals[SIGNAL_BOOK_DELETED] =
                 g_signal_new ("deleted",
