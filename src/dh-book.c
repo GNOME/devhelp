@@ -73,10 +73,7 @@ typedef struct {
         GList *completions;
 
         GFileMonitor *index_file_monitor;
-
-        /* Last received event. */
-        BookMonitorEvent monitor_event;
-
+        BookMonitorEvent last_monitor_event;
         guint monitor_event_timeout_id;
 
         guint enabled : 1;
@@ -188,7 +185,7 @@ dh_book_init (DhBook *book)
         DhBookPrivate *priv = dh_book_get_instance_private (book);
 
         priv->enabled = TRUE;
-        priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
+        priv->last_monitor_event = BOOK_MONITOR_EVENT_NONE;
 }
 
 static gboolean
@@ -196,16 +193,16 @@ monitor_event_timeout_cb (gpointer data)
 {
         DhBook *book = DH_BOOK (data);
         DhBookPrivate *priv = dh_book_get_instance_private (book);
-        BookMonitorEvent monitor_event = priv->monitor_event;
+        BookMonitorEvent last_monitor_event = priv->last_monitor_event;
 
         /* Reset event */
-        priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
+        priv->last_monitor_event = BOOK_MONITOR_EVENT_NONE;
         priv->monitor_event_timeout_id = 0;
 
         /* We'll get either is_deleted OR is_updated, not possible to have both
          * or none.
          */
-        switch (monitor_event)
+        switch (last_monitor_event)
         {
         case BOOK_MONITOR_EVENT_DELETED:
                 /* Emit the signal, but make sure we hold a reference while
@@ -250,10 +247,10 @@ index_file_changed_cb (GFileMonitor      *file_monitor,
          */
         if (event_type == G_FILE_MONITOR_EVENT_CHANGED ||
             event_type == G_FILE_MONITOR_EVENT_CREATED) {
-                priv->monitor_event = BOOK_MONITOR_EVENT_UPDATED;
+                priv->last_monitor_event = BOOK_MONITOR_EVENT_UPDATED;
                 reset_timeout = TRUE;
         } else if (event_type == G_FILE_MONITOR_EVENT_DELETED) {
-                priv->monitor_event = BOOK_MONITOR_EVENT_DELETED;
+                priv->last_monitor_event = BOOK_MONITOR_EVENT_DELETED;
                 reset_timeout = TRUE;
         }
 
