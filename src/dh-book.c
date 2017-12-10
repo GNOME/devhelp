@@ -328,18 +328,25 @@ dh_book_new (GFile *index_file)
         g_free (language);
 
         /* Setup monitor for changes */
+
         priv->monitor = g_file_monitor_file (priv->index_file,
                                              G_FILE_MONITOR_NONE,
                                              NULL,
-                                             NULL);
+                                             &error);
+
+        if (error != NULL) {
+                g_warning ("Couldn't setup monitoring of changes in book '%s': %s",
+                           priv->id,
+                           error->message);
+                g_clear_error (&error);
+        }
+
         if (priv->monitor != NULL) {
-                g_signal_connect (priv->monitor,
-                                  "changed",
-                                  G_CALLBACK (book_monitor_event_cb),
-                                  book);
-        } else {
-                g_warning ("Couldn't setup monitoring of changes in book '%s'",
-                           priv->title);
+                g_signal_connect_object (priv->monitor,
+                                         "changed",
+                                         G_CALLBACK (book_monitor_event_cb),
+                                         book,
+                                         0);
         }
 
         return book;
