@@ -299,13 +299,15 @@ dh_book_new (GFile *index_file)
                                   &priv->links,
                                   &error)) {
                 if (error != NULL) {
-                        gchar *path;
+                        gchar *parse_name;
 
-                        path = g_file_get_path (priv->index_file);
+                        parse_name = g_file_get_parse_name (priv->index_file);
 
-                        g_warning ("Failed to read '%s': %s", path, error->message);
+                        g_warning ("Failed to read “%s”: %s",
+                                   parse_name,
+                                   error->message);
 
-                        g_free (path);
+                        g_free (parse_name);
                         g_clear_error (&error);
                 }
 
@@ -335,9 +337,15 @@ dh_book_new (GFile *index_file)
                                              &error);
 
         if (error != NULL) {
-                g_warning ("Couldn't setup monitoring of changes in book '%s': %s",
-                           priv->id,
+                gchar *parse_name;
+
+                parse_name = g_file_get_parse_name (priv->index_file);
+
+                g_warning ("Failed to create file monitor for file “%s”: %s",
+                           parse_name,
                            error->message);
+
+                g_free (parse_name);
                 g_clear_error (&error);
         }
 
