@@ -111,12 +111,12 @@ dh_book_finalize (GObject *object)
         priv = dh_book_get_instance_private (DH_BOOK (object));
 
         g_clear_object (&priv->index_file);
+        g_free (priv->id);
+        g_free (priv->title);
+        g_free (priv->language);
         _dh_util_free_book_tree (priv->tree);
         g_list_free_full (priv->links, (GDestroyNotify)dh_link_unref);
         g_list_free_full (priv->completions, g_free);
-        g_free (priv->language);
-        g_free (priv->title);
-        g_free (priv->id);
 
         G_OBJECT_CLASS (dh_book_parent_class)->finalize (object);
 }
