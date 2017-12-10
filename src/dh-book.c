@@ -246,11 +246,10 @@ index_file_changed_cb (GFileMonitor      *file_monitor,
         gboolean reset_timeout = FALSE;
 
         /* CREATED may happen if the file is deleted and then created right
-         * away, as we're merging events.  Treat in the same way as a
-         * CHANGES_DONE_HINT.
+         * away, as we're merging events.
          */
-        if (event_type == G_FILE_MONITOR_EVENT_CREATED ||
-            event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT) {
+        if (event_type == G_FILE_MONITOR_EVENT_CHANGED ||
+            event_type == G_FILE_MONITOR_EVENT_CREATED) {
                 priv->monitor_event = BOOK_MONITOR_EVENT_UPDATED;
                 reset_timeout = TRUE;
         } else if (event_type == G_FILE_MONITOR_EVENT_DELETED) {
