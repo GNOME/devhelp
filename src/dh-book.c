@@ -37,10 +37,10 @@
  * or `*.devhelp2`).
  */
 
-/* Timeout to wait for new events in the book so that they are merged and we
- * don't spam unneeded signals.
+/* Timeout to wait for new events on the index file so that they are merged and
+ * we don't spam unneeded signals.
  */
-#define EVENT_MERGE_TIMEOUT_SECS 2
+#define EVENT_MERGE_TIMEOUT_SECS (2)
 
 enum {
         SIGNAL_BOOK_ENABLED,
@@ -192,9 +192,9 @@ dh_book_init (DhBook *book)
 }
 
 static gboolean
-book_monitor_event_timeout_cb (gpointer data)
+monitor_event_timeout_cb (gpointer data)
 {
-        DhBook *book = data;
+        DhBook *book = DH_BOOK (data);
         DhBookPrivate *priv = dh_book_get_instance_private (book);
         BookMonitorEvent monitor_event = priv->monitor_event;
 
@@ -215,6 +215,7 @@ book_monitor_event_timeout_cb (gpointer data)
                 g_signal_emit (book, signals[SIGNAL_BOOK_DELETED], 0);
                 g_object_unref (book);
                 break;
+
         case BOOK_MONITOR_EVENT_UPDATED:
                 /* Emit the signal, but make sure we hold a reference while
                  * doing it.
@@ -223,6 +224,7 @@ book_monitor_event_timeout_cb (gpointer data)
                 g_signal_emit (book, signals[SIGNAL_BOOK_UPDATED], 0);
                 g_object_unref (book);
                 break;
+
         case BOOK_MONITOR_EVENT_NONE:
         default:
                 break;
@@ -234,15 +236,14 @@ book_monitor_event_timeout_cb (gpointer data)
 }
 
 static void
-book_monitor_event_cb (GFileMonitor      *file_monitor,
+index_file_changed_cb (GFileMonitor      *file_monitor,
                        GFile             *file,
                        GFile             *other_file,
                        GFileMonitorEvent  event_type,
-                       gpointer           user_data)
+                       DhBook            *book)
 {
-        DhBook *book = user_data;
         DhBookPrivate *priv = dh_book_get_instance_private (book);
-        gboolean reset_timer = FALSE;
+        gboolean reset_timeout = FALSE;
 
         /* CREATED may happen if the file is deleted and then created right
          * away, as we're merging events.  Treat in the same way as a
@@ -251,19 +252,18 @@ book_monitor_event_cb (GFileMonitor      *file_monitor,
         if (event_type == G_FILE_MONITOR_EVENT_CREATED ||
             event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT) {
                 priv->monitor_event = BOOK_MONITOR_EVENT_UPDATED;
-                reset_timer = TRUE;
+                reset_timeout = TRUE;
         } else if (event_type == G_FILE_MONITOR_EVENT_DELETED) {
                 priv->monitor_event = BOOK_MONITOR_EVENT_DELETED;
-                reset_timer = TRUE;
+                reset_timeout = TRUE;
         }
 
-        /* Reset timer if any of the flags changed. */
-        if (reset_timer) {
-                if (priv->monitor_event_timeout_id != 0) {
+        if (reset_timeout) {
+                if (priv->monitor_event_timeout_id != 0)
                         g_source_remove (priv->monitor_event_timeout_id);
-                }
+
                 priv->monitor_event_timeout_id = g_timeout_add_seconds (EVENT_MERGE_TIMEOUT_SECS,
-                                                                        book_monitor_event_timeout_cb,
+                                                                        monitor_event_timeout_cb,
                                                                         book);
         }
 }
@@ -352,7 +352,7 @@ dh_book_new (GFile *index_file)
         if (priv->index_file_monitor != NULL) {
                 g_signal_connect_object (priv->index_file_monitor,
                                          "changed",
-                                         G_CALLBACK (book_monitor_event_cb),
+                                         G_CALLBACK (index_file_changed_cb),
                                          book,
                                          0);
         }
