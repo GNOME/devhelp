@@ -551,6 +551,9 @@ dh_book_set_enabled (DhBook   *book,
         g_return_if_fail (DH_IS_BOOK (book));
 
         priv = dh_book_get_instance_private (book);
+
+        enabled = enabled != FALSE;
+
         if (priv->enabled != enabled) {
                 priv->enabled = enabled;
                 g_signal_emit (book,
