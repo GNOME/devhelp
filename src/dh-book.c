@@ -54,7 +54,7 @@ typedef enum {
         BOOK_MONITOR_EVENT_NONE,
         BOOK_MONITOR_EVENT_UPDATED,
         BOOK_MONITOR_EVENT_DELETED
-} DhBookMonitorEvent;
+} BookMonitorEvent;
 
 typedef struct {
         GFile *index_file;
@@ -75,7 +75,7 @@ typedef struct {
         GFileMonitor *monitor;
 
         /* Last received event. */
-        DhBookMonitorEvent monitor_event;
+        BookMonitorEvent monitor_event;
 
         guint monitor_event_timeout_id;
 
@@ -196,7 +196,7 @@ book_monitor_event_timeout_cb (gpointer data)
 {
         DhBook *book = data;
         DhBookPrivate *priv = dh_book_get_instance_private (book);
-        DhBookMonitorEvent monitor_event = priv->monitor_event;
+        BookMonitorEvent monitor_event = priv->monitor_event;
 
         /* Reset event */
         priv->monitor_event = BOOK_MONITOR_EVENT_NONE;
