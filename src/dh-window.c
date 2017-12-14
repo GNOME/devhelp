@@ -1120,9 +1120,6 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
                                        DhWindow       *window)
 {
         switch (event->button) {
-                case 3:
-                        return GDK_EVENT_STOP;
-
                 /* Some mice emit button presses when the scroll wheel is tilted
                  * to the side. Web browsers use them to navigate in history.
                  */
