@@ -74,7 +74,7 @@ typedef struct {
         guint prefix : 1;
 } SearchSettings;
 
-#define MAX_HITS 100
+#define MAX_HITS 1000
 
 static void dh_keyword_model_tree_model_init (GtkTreeModelIface *iface);
 
