@@ -43,8 +43,14 @@
 #define EVENT_MERGE_TIMEOUT_SECS (2)
 
 enum {
+        /* FIXME: a boolean property would be a better API instead of the
+         * ::enabled and ::disabled signals. Or this whole concept can be
+         * removed from DhBook, by introducing DhBookSelection, see:
+         * https://bugzilla.gnome.org/show_bug.cgi?id=784491#c3
+         */
         SIGNAL_BOOK_ENABLED,
         SIGNAL_BOOK_DISABLED,
+
         SIGNAL_BOOK_UPDATED,
         SIGNAL_BOOK_DELETED,
         N_SIGNALS
@@ -402,7 +408,11 @@ dh_book_get_completions (DhBook *book)
                         DhLink *link = l->data;
                         gchar *str;
 
-                        /* Add additional "page:" and "book:" completions. */
+                        /* Add additional "page:" and "book:" completions.
+                         * FIXME: broken, doesn't match what DhKeywordModel
+                         * does. But maybe the feature will be removed, see:
+                         * https://bugzilla.gnome.org/show_bug.cgi?id=791442
+                         */
                         if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
                                 str = g_strdup_printf ("book:%s", dh_link_get_name (link));
                                 priv->completions = g_list_prepend (priv->completions, str);
