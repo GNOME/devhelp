@@ -102,14 +102,6 @@ dh_app_new_window (DhApp *app)
 }
 
 void
-dh_app_quit (DhApp *app)
-{
-        g_return_if_fail (DH_IS_APP (app));
-
-        g_action_group_activate_action (G_ACTION_GROUP (app), "quit", NULL);
-}
-
-void
 dh_app_search (DhApp *app,
                const gchar *keyword)
 {
@@ -513,7 +505,7 @@ dh_app_command_line (GApplication            *app,
         if (option_new_window) {
                 dh_app_new_window (DH_APP (app));
         } else if (option_quit) {
-                dh_app_quit (DH_APP (app));
+                g_action_group_activate_action (G_ACTION_GROUP (app), "quit", NULL);
         } else if (option_search) {
                 dh_app_search (DH_APP (app), option_search);
         } else if (option_search_assistant) {

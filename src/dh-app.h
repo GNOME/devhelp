@@ -49,8 +49,6 @@ GtkWindow *     dh_app_peek_first_window        (DhApp *app);
 
 void            dh_app_new_window               (DhApp *app);
 
-void            dh_app_quit                     (DhApp *app);
-
 void            dh_app_search                   (DhApp       *app,
                                                  const gchar *keyword);
 
