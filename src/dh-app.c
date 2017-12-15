@@ -119,14 +119,6 @@ search_assistant (DhApp       *app,
                                         g_variant_new_string (keyword));
 }
 
-void
-dh_app_raise (DhApp *app)
-{
-        g_return_if_fail (DH_IS_APP (app));
-
-        g_action_group_activate_action (G_ACTION_GROUP (app), "raise", NULL);
-}
-
 /******************************************************************************/
 /* Application actions setup */
 
@@ -511,7 +503,7 @@ dh_app_command_line (GApplication            *app,
         } else if (option_search_assistant) {
                 search_assistant (DH_APP (app), option_search_assistant);
         } else {
-                dh_app_raise (DH_APP (app));
+                g_action_group_activate_action (G_ACTION_GROUP (app), "raise", NULL);
         }
 
         return 0;
