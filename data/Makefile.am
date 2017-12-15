@@ -11,9 +11,6 @@ assistant_DATA = 		\
 gsettings_SCHEMAS = org.gnome.devhelp.gschema.xml
 @GSETTINGS_RULES@
 
-gsettingsconvertdir = $(datadir)/GConf/gsettings
-gsettingsconvert_DATA = devhelp.convert
-
 appstream_in_files = org.gnome.Devhelp.appdata.xml.in
 appstream_XML = $(appstream_in_files:.xml.in=.xml)
 @APPSTREAM_XML_RULES@
@@ -43,7 +40,6 @@ EXTRA_DIST =			\
 	libdevhelp-3.0.pc.in    \
 	$(desktop_in_files)	\
 	$(gsettings_SCHEMAS)    \
-	devhelp.convert \
 	$(assistant_DATA) \
 	$(man_MANS) \
 	$(appstream_in_files)
