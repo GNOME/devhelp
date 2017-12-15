@@ -138,15 +138,41 @@ dh_util_view_set_font (WebKitWebView *view, const gchar *font_name_fixed, const 
                  font_name_fixed, font_size_fixed_px, font_name_variable, font_size_variable_px);
 }
 
+static void
+introspect_window_gsettings (GSettings *window_settings,
+                             gboolean  *has_required_keys,
+                             gboolean  *has_maximized_key)
+{
+        GSettingsSchema *schema = NULL;
+
+        g_object_get (window_settings,
+                      "settings-schema", &schema,
+                      NULL);
+
+        *has_required_keys = (g_settings_schema_has_key (schema, "width") &&
+                              g_settings_schema_has_key (schema, "height"));
+
+        *has_maximized_key = g_settings_schema_has_key (schema, "maximized");
+
+        g_settings_schema_unref (schema);
+}
+
 void
 dh_util_window_settings_save (GtkWindow *window,
-                              GSettings *settings,
-                              gboolean   has_maximize)
+                              GSettings *settings)
 {
+        gboolean has_required_keys;
+        gboolean has_maximized_key;
         gint width;
         gint height;
 
-        if (has_maximize) {
+        g_return_if_fail (GTK_IS_WINDOW (window));
+        g_return_if_fail (G_IS_SETTINGS (settings));
+
+        introspect_window_gsettings (settings, &has_required_keys, &has_maximized_key);
+        g_return_if_fail (has_required_keys);
+
+        if (has_maximized_key) {
                 GdkWindowState state;
                 gboolean maximized;
 
@@ -168,11 +194,18 @@ dh_util_window_settings_save (GtkWindow *window,
 
 void
 dh_util_window_settings_restore (GtkWindow *window,
-                                 GSettings *settings,
-                                 gboolean   has_maximize)
+                                 GSettings *settings)
 {
+        gboolean has_required_keys;
+        gboolean has_maximized_key;
         gint width;
         gint height;
+
+        g_return_if_fail (GTK_IS_WINDOW (window));
+        g_return_if_fail (G_IS_SETTINGS (settings));
+
+        introspect_window_gsettings (settings, &has_required_keys, &has_maximized_key);
+        g_return_if_fail (has_required_keys);
 
         width = g_settings_get_int (settings, "width");
         height = g_settings_get_int (settings, "height");
@@ -192,7 +225,7 @@ dh_util_window_settings_restore (GtkWindow *window,
                 gtk_window_set_default_size (window, width, height);
         }
 
-        if (has_maximize && g_settings_get_boolean (settings, "maximized"))
+        if (has_maximized_key && g_settings_get_boolean (settings, "maximized"))
                 gtk_window_maximize (window);
 }
 

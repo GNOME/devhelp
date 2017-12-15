@@ -595,8 +595,7 @@ window_settings_save_cb (gpointer user_data)
 
         settings = dh_settings_get_singleton ();
         dh_util_window_settings_save (GTK_WINDOW (window),
-                                      dh_settings_peek_window_settings (settings),
-                                      TRUE);
+                                      dh_settings_peek_window_settings (settings));
 
         return G_SOURCE_REMOVE;
 }
@@ -642,8 +641,7 @@ dh_window_delete_event (GtkWidget   *widget,
 
         settings = dh_settings_get_singleton ();
         dh_util_window_settings_save (GTK_WINDOW (window),
-                                      dh_settings_peek_window_settings (settings),
-                                      TRUE);
+                                      dh_settings_peek_window_settings (settings));
 
         if (GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event == NULL)
                 return GDK_EVENT_PROPAGATE;
@@ -1558,8 +1556,7 @@ dh_window_new (DhApp *application)
 
         settings = dh_settings_get_singleton ();
         dh_util_window_settings_restore (GTK_WINDOW (window),
-                                         dh_settings_peek_window_settings (settings),
-                                         TRUE);
+                                         dh_settings_peek_window_settings (settings));
 
         g_settings_bind (dh_settings_peek_paned_settings (settings), "position",
                          priv->hpaned, "position",

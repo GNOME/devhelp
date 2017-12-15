@@ -64,8 +64,7 @@ dh_assistant_configure_event (GtkWidget         *widget,
         settings = dh_settings_get_singleton ();
 
         dh_util_window_settings_save (GTK_WINDOW (widget),
-                                      dh_settings_peek_assistant_settings (settings),
-                                      FALSE);
+                                      dh_settings_peek_assistant_settings (settings));
 
         return GTK_WIDGET_CLASS (dh_assistant_parent_class)->configure_event (widget, event);
 }
@@ -97,10 +96,8 @@ dh_assistant_init (DhAssistant *assistant)
                           assistant);
 
         settings = dh_settings_get_singleton ();
-
         dh_util_window_settings_restore (GTK_WINDOW (assistant),
-                                         dh_settings_peek_assistant_settings (settings),
-                                         FALSE);
+                                         dh_settings_peek_assistant_settings (settings));
 }
 
 GtkWidget *

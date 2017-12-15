@@ -39,12 +39,10 @@ void         dh_util_view_set_font                (WebKitWebView *view,
                                                    const gchar *font_name_variable);
 
 void         dh_util_window_settings_save         (GtkWindow *window,
-                                                   GSettings *settings,
-                                                   gboolean has_maximize);
+                                                   GSettings *settings);
 
 void         dh_util_window_settings_restore      (GtkWindow *window,
-                                                   GSettings *settings,
-                                                   gboolean has_maximize);
+                                                   GSettings *settings);
 
 void         dh_util_queue_concat                 (GQueue *q1,
                                                    GQueue *q2);
