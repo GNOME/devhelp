@@ -21,10 +21,8 @@
 
 #include "config.h"
 #include "dh-app.h"
-
 #include <stdlib.h>
 #include <glib/gi18n-lib.h>
-
 #include "dh-assistant.h"
 #include "dh-preferences.h"
 #include "dh-window.h"

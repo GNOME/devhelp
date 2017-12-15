@@ -41,22 +41,27 @@ struct _DhAppClass {
         GtkApplicationClass parent_class;
 };
 
-GType dh_app_get_type (void) G_GNUC_CONST;
+GType           dh_app_get_type                 (void) G_GNUC_CONST;
 
-DhApp         *dh_app_new               (void);
+DhApp *         dh_app_new                      (void);
 
-GtkWindow     *dh_app_peek_first_window (DhApp *app);
-GtkWindow     *dh_app_peek_assistant    (DhApp *app);
+GtkWindow *     dh_app_peek_first_window        (DhApp *app);
 
-void           dh_app_new_window        (DhApp *app);
-void           dh_app_quit              (DhApp *app);
-void           dh_app_search            (DhApp *app,
-                                         const gchar *keyword);
-void           dh_app_search_assistant  (DhApp *app,
-                                         const gchar *keyword);
-void           dh_app_raise             (DhApp *app);
+GtkWindow *     dh_app_peek_assistant           (DhApp *app);
 
-gboolean      _dh_app_has_app_menu      (DhApp *app);
+void            dh_app_new_window               (DhApp *app);
+
+void            dh_app_quit                     (DhApp *app);
+
+void            dh_app_search                   (DhApp       *app,
+                                                 const gchar *keyword);
+
+void            dh_app_search_assistant         (DhApp       *app,
+                                                 const gchar *keyword);
+
+void            dh_app_raise                    (DhApp *app);
+
+gboolean        _dh_app_has_app_menu            (DhApp *app);
 
 G_END_DECLS
 
