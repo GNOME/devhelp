@@ -49,12 +49,6 @@ GtkWindow *     dh_app_peek_first_window        (DhApp *app);
 
 void            dh_app_new_window               (DhApp *app);
 
-void            dh_app_search                   (DhApp       *app,
-                                                 const gchar *keyword);
-
-void            dh_app_search_assistant         (DhApp       *app,
-                                                 const gchar *keyword);
-
 void            dh_app_raise                    (DhApp *app);
 
 gboolean        _dh_app_has_app_menu            (DhApp *app);

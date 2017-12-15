@@ -101,22 +101,22 @@ dh_app_new_window (DhApp *app)
         g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 }
 
-void
-dh_app_search (DhApp *app,
-               const gchar *keyword)
+static void
+search (DhApp       *app,
+        const gchar *keyword)
 {
-        g_return_if_fail (DH_IS_APP (app));
-
-        g_action_group_activate_action (G_ACTION_GROUP (app), "search", g_variant_new_string (keyword));
+        g_action_group_activate_action (G_ACTION_GROUP (app),
+                                        "search",
+                                        g_variant_new_string (keyword));
 }
 
-void
-dh_app_search_assistant (DhApp *app,
-                         const gchar *keyword)
+static void
+search_assistant (DhApp       *app,
+                  const gchar *keyword)
 {
-        g_return_if_fail (DH_IS_APP (app));
-
-        g_action_group_activate_action (G_ACTION_GROUP (app), "search-assistant", g_variant_new_string (keyword));
+        g_action_group_activate_action (G_ACTION_GROUP (app),
+                                        "search-assistant",
+                                        g_variant_new_string (keyword));
 }
 
 void
@@ -507,9 +507,9 @@ dh_app_command_line (GApplication            *app,
         } else if (option_quit) {
                 g_action_group_activate_action (G_ACTION_GROUP (app), "quit", NULL);
         } else if (option_search) {
-                dh_app_search (DH_APP (app), option_search);
+                search (DH_APP (app), option_search);
         } else if (option_search_assistant) {
-                dh_app_search_assistant (DH_APP (app), option_search_assistant);
+                search_assistant (DH_APP (app), option_search_assistant);
         } else {
                 dh_app_raise (DH_APP (app));
         }
