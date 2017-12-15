@@ -139,58 +139,49 @@ dh_util_view_set_font (WebKitWebView *view, const gchar *font_name_fixed, const 
 }
 
 void
-dh_util_window_settings_save (GtkWindow *window, GSettings *settings, gboolean has_maximize)
+dh_util_window_settings_save (GtkWindow *window,
+                              GSettings *settings,
+                              gboolean   has_maximize)
 {
-        GdkWindowState  state;
-        gboolean        maximized;
-        gint            width, height;
-        gint            x, y;
-
+        gint width;
+        gint height;
 
         if (has_maximize) {
+                GdkWindowState state;
+                gboolean maximized;
+
                 state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
-                if (state & GDK_WINDOW_STATE_MAXIMIZED) {
-                        maximized = TRUE;
-                } else {
-                        maximized = FALSE;
-                }
+                maximized = (state & GDK_WINDOW_STATE_MAXIMIZED) != 0;
 
                 g_settings_set_boolean (settings, "maximized", maximized);
 
-                /* If maximized don't save the size and position. */
-                if (maximized) {
+                /* If maximized don't save the size. */
+                if (maximized)
                         return;
-                }
         }
 
-        /* store the dimensions */
+        /* Store the dimensions */
         gtk_window_get_size (GTK_WINDOW (window), &width, &height);
         g_settings_set_int (settings, "width", width);
         g_settings_set_int (settings, "height", height);
-
-        /* store the position */
-        gtk_window_get_position (GTK_WINDOW (window), &x, &y);
-        g_settings_set_int (settings, "x-position", x);
-        g_settings_set_int (settings, "y-position", y);
 }
 
 void
 dh_util_window_settings_restore (GtkWindow *window,
                                  GSettings *settings,
-                                 gboolean has_maximize)
+                                 gboolean   has_maximize)
 {
-        gboolean   maximized;
-        gint       width, height;
-        gint       x, y;
-        GdkScreen *screen;
-        gint       max_width, max_height;
+        gint width;
+        gint height;
 
         width = g_settings_get_int (settings, "width");
         height = g_settings_get_int (settings, "height");
-        x = g_settings_get_int (settings, "x-position");
-        y = g_settings_get_int (settings, "y-position");
 
         if (width > 1 && height > 1) {
+                GdkScreen *screen;
+                gint max_width;
+                gint max_height;
+
                 screen = gtk_widget_get_screen (GTK_WIDGET (window));
                 max_width = gdk_screen_get_width (screen);
                 max_height = gdk_screen_get_height (screen);
@@ -198,21 +189,11 @@ dh_util_window_settings_restore (GtkWindow *window,
                 width = CLAMP (width, 0, max_width);
                 height = CLAMP (height, 0, max_height);
 
-                x = CLAMP (x, 0, max_width - width);
-                y = CLAMP (y, 0, max_height - height);
-
                 gtk_window_set_default_size (window, width, height);
         }
 
-        gtk_window_move (window, x, y);
-
-        if (has_maximize) {
-                maximized = g_settings_get_boolean (settings, "maximized");
-
-                if (maximized) {
-                        gtk_window_maximize (window);
-                }
-        }
+        if (has_maximize && g_settings_get_boolean (settings, "maximized"))
+                gtk_window_maximize (window);
 }
 
 /* Adds q2 onto the end of q1, and frees q2. */

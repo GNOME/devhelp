@@ -2,15 +2,11 @@
 maximized=/apps/devhelp/state/main/window/maximized
 width=/apps/devhelp/state/main/window/width
 height=/apps/devhelp/state/main/window/height
-x-position=/apps/devhelp/state/main/window/x_position
-y-position=/apps/devhelp/state/main/window/y_position
 
 [org.gnome.devhelp.state.assistant.window]
 maximized=/apps/devhelp/state/assistant/window/maximized
 width=/apps/devhelp/state/assistant/window/width
 height=/apps/devhelp/state/assistant/window/height
-x-position=/apps/devhelp/state/assistant/window/x_position
-y-position=/apps/devhelp/state/assistant/window/y_position
 
 [org.gnome.devhelp.state.main.paned]
 position=/apps/devhelp/state/main/paned/position
