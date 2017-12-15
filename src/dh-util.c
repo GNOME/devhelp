@@ -192,8 +192,12 @@ dh_util_window_settings_save (GtkWindow *window,
         g_settings_set_int (settings, "height", height);
 }
 
+/* This should be called when @gtk_window is realized (i.e. its GdkWindow is
+ * created) but not yet mapped (i.e. gtk_widget_show() has not yet been called,
+ * so that when it is shown it already has the good size).
+ */
 void
-dh_util_window_settings_restore (GtkWindow *window,
+dh_util_window_settings_restore (GtkWindow *gtk_window,
                                  GSettings *settings)
 {
         gboolean has_required_keys;
@@ -201,7 +205,8 @@ dh_util_window_settings_restore (GtkWindow *window,
         gint width;
         gint height;
 
-        g_return_if_fail (GTK_IS_WINDOW (window));
+        g_return_if_fail (GTK_IS_WINDOW (gtk_window));
+        g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET (gtk_window)));
         g_return_if_fail (G_IS_SETTINGS (settings));
 
         introspect_window_gsettings (settings, &has_required_keys, &has_maximized_key);
@@ -211,22 +216,30 @@ dh_util_window_settings_restore (GtkWindow *window,
         height = g_settings_get_int (settings, "height");
 
         if (width > 1 && height > 1) {
-                GdkScreen *screen;
+                GdkDisplay *display;
+                GdkWindow *gdk_window;
+                GdkMonitor *monitor;
+                GdkRectangle monitor_geometry;
                 gint max_width;
                 gint max_height;
 
-                screen = gtk_widget_get_screen (GTK_WIDGET (window));
-                max_width = gdk_screen_get_width (screen);
-                max_height = gdk_screen_get_height (screen);
+                display = gtk_widget_get_display (GTK_WIDGET (gtk_window));
+                /* To get the GdkWindow the widget must be realized. */
+                gdk_window = gtk_widget_get_window (GTK_WIDGET (gtk_window));
+                monitor = gdk_display_get_monitor_at_window (display, gdk_window);
+                gdk_monitor_get_geometry (monitor, &monitor_geometry);
+
+                max_width = monitor_geometry.width;
+                max_height = monitor_geometry.height;
 
                 width = CLAMP (width, 0, max_width);
                 height = CLAMP (height, 0, max_height);
 
-                gtk_window_set_default_size (window, width, height);
+                gtk_window_set_default_size (gtk_window, width, height);
         }
 
         if (has_maximized_key && g_settings_get_boolean (settings, "maximized"))
-                gtk_window_maximize (window);
+                gtk_window_maximize (gtk_window);
 }
 
 /* Adds q2 onto the end of q1, and frees q2. */

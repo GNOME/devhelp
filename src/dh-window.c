@@ -1555,6 +1555,7 @@ dh_window_new (DhApp *application)
         window_populate (window);
 
         settings = dh_settings_get_singleton ();
+        gtk_widget_realize (GTK_WIDGET (window));
         dh_util_window_settings_restore (GTK_WINDOW (window),
                                          dh_settings_peek_window_settings (settings));
 

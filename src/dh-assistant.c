@@ -87,25 +87,30 @@ static void
 dh_assistant_init (DhAssistant *assistant)
 {
         DhAssistantPrivate *priv = dh_assistant_get_instance_private (assistant);
-        DhSettings *settings;
 
         gtk_widget_init_template (GTK_WIDGET (assistant));
 
         g_signal_connect (priv->view, "open-uri",
                           G_CALLBACK (assistant_view_open_uri_cb),
                           assistant);
-
-        settings = dh_settings_get_singleton ();
-        dh_util_window_settings_restore (GTK_WINDOW (assistant),
-                                         dh_settings_peek_assistant_settings (settings));
 }
 
 GtkWidget *
 dh_assistant_new (DhApp *application)
 {
-        return g_object_new (DH_TYPE_ASSISTANT,
-                             "application", application,
-                             NULL);
+        GtkWidget *assistant;
+        DhSettings *settings;
+
+        assistant = g_object_new (DH_TYPE_ASSISTANT,
+                                  "application", application,
+                                  NULL);
+
+        settings = dh_settings_get_singleton ();
+        gtk_widget_realize (assistant);
+        dh_util_window_settings_restore (GTK_WINDOW (assistant),
+                                         dh_settings_peek_assistant_settings (settings));
+
+        return assistant;
 }
 
 gboolean

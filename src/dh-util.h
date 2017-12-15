@@ -41,7 +41,7 @@ void         dh_util_view_set_font                (WebKitWebView *view,
 void         dh_util_window_settings_save         (GtkWindow *window,
                                                    GSettings *settings);
 
-void         dh_util_window_settings_restore      (GtkWindow *window,
+void         dh_util_window_settings_restore      (GtkWindow *gtk_window,
                                                    GSettings *settings);
 
 void         dh_util_queue_concat                 (GQueue *q1,
