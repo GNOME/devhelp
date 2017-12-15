@@ -51,12 +51,10 @@ dh_app_peek_first_window (DhApp *app)
         return dh_app_peek_first_window (app);
 }
 
-GtkWindow *
-dh_app_peek_assistant (DhApp *app)
+static GtkWindow *
+peek_assistant (DhApp *app)
 {
         GList *l;
-
-        g_return_val_if_fail (DH_IS_APP (app), NULL);
 
         for (l = gtk_application_get_windows (GTK_APPLICATION (app));
              l;
@@ -293,7 +291,7 @@ search_assistant_cb (GSimpleAction *action,
         }
 
         /* Look for an already registered assistant */
-        assistant = dh_app_peek_assistant (app);
+        assistant = peek_assistant (app);
         if (!assistant) {
                 assistant = GTK_WINDOW (dh_assistant_new (app));
                 gtk_application_add_window (GTK_APPLICATION (app), assistant);

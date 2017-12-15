@@ -47,8 +47,6 @@ DhApp *         dh_app_new                      (void);
 
 GtkWindow *     dh_app_peek_first_window        (DhApp *app);
 
-GtkWindow *     dh_app_peek_assistant           (DhApp *app);
-
 void            dh_app_new_window               (DhApp *app);
 
 void            dh_app_quit                     (DhApp *app);
