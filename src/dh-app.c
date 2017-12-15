@@ -352,45 +352,35 @@ setup_accelerators (DhApp *self)
 /******************************************************************************/
 
 static void
+set_app_menu_if_needed (GtkApplication *app)
+{
+	GMenu *manual_app_menu;
+
+	manual_app_menu = gtk_application_get_menu_by_id (app, "manual-app-menu");
+
+        /* Have the g_return in all cases, to catch problems in all cases. */
+	g_return_if_fail (manual_app_menu != NULL);
+
+	if (gtk_application_prefers_app_menu (app))
+		gtk_application_set_app_menu (app, G_MENU_MODEL (manual_app_menu));
+}
+
+static void
 dh_app_startup (GApplication *application)
 {
         DhApp *app = DH_APP (application);
 
         g_application_set_resource_base_path (application, "/org/gnome/devhelp");
 
-        /* Chain up parent's startup */
-        G_APPLICATION_CLASS (dh_app_parent_class)->startup (application);
+        if (G_APPLICATION_CLASS (dh_app_parent_class)->startup != NULL)
+                G_APPLICATION_CLASS (dh_app_parent_class)->startup (application);
 
-        /* Setup actions */
         g_action_map_add_action_entries (G_ACTION_MAP (app),
                                          app_entries, G_N_ELEMENTS (app_entries),
                                          app);
 
-        if (gtk_application_prefers_app_menu (GTK_APPLICATION (app))) {
-                GtkBuilder *builder;
-                GError *error = NULL;
-
-                /* Setup menu */
-                builder = gtk_builder_new ();
-
-                if (!gtk_builder_add_from_resource (builder,
-                                                    "/org/gnome/devhelp/devhelp-menu.ui",
-                                                    &error)) {
-                        g_warning ("loading menu builder file: %s", error->message);
-                        g_error_free (error);
-                } else {
-                        GMenuModel *app_menu;
-
-                        app_menu = G_MENU_MODEL (gtk_builder_get_object (builder, "app-menu"));
-                        gtk_application_set_app_menu (GTK_APPLICATION (application),
-                                                      app_menu);
-                }
-
-                g_object_unref (builder);
-        }
-
-        /* Setup accelerators */
         setup_accelerators (app);
+        set_app_menu_if_needed (GTK_APPLICATION (app));
 }
 
 static void

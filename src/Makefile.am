@@ -154,11 +154,11 @@ devhelp_LDFLAGS =	\
 	$(AM_LDFLAGS)
 
 resource_files =		\
-	devhelp-menu.ui		\
 	dh-assistant.ui		\
 	dh-preferences.ui	\
 	dh-window.ui		\
 	help-overlay.ui		\
+	menus.ui		\
 	$(NULL)
 
 dh-resources.c: dh.gresource.xml $(resource_files)

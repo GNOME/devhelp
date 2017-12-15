@@ -5,8 +5,6 @@ data/org.gnome.Devhelp.desktop.in.in
 data/org.gnome.devhelp.gschema.xml
 misc/gedit-plugin/devhelp.plugin.desktop.in
 misc/gedit-plugin/devhelp.py
-src/devhelp-menu.ui
-src/help-overlay.ui
 src/dh-app.c
 src/dh-assistant.c
 src/dh-assistant.ui
@@ -22,3 +20,5 @@ src/dh-sidebar.c
 src/dh-util.c
 src/dh-window.c
 src/dh-window.ui
+src/help-overlay.ui
+src/menus.ui
