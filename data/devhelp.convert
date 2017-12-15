@@ -4,7 +4,6 @@ width=/apps/devhelp/state/main/window/width
 height=/apps/devhelp/state/main/window/height
 
 [org.gnome.devhelp.state.assistant.window]
-maximized=/apps/devhelp/state/assistant/window/maximized
 width=/apps/devhelp/state/assistant/window/width
 height=/apps/devhelp/state/assistant/window/height
 
