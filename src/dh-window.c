@@ -653,6 +653,7 @@ static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv;
+        GtkApplication *app;
         DhSettings    *settings;
         GtkAccelGroup *accel_group;
         GClosure      *closure;
@@ -663,7 +664,8 @@ dh_window_init (DhWindow *window)
         priv = dh_window_get_instance_private (window);
         priv->selected_search_link = NULL;
 
-        if (!_dh_app_has_app_menu (DH_APP (g_application_get_default ()))) {
+        app = GTK_APPLICATION (g_application_get_default ());
+        if (!gtk_application_prefers_app_menu (app)) {
                 gtk_menu_button_set_menu_model (priv->gear_menu_button, priv->gear_app_menu);
         }
 

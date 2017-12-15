@@ -49,8 +49,6 @@ GtkWindow *     dh_app_peek_first_window        (DhApp *app);
 
 void            dh_app_new_window               (DhApp *app);
 
-gboolean        _dh_app_has_app_menu            (DhApp *app);
-
 G_END_DECLS
 
 #endif /* DH_APP_H */
