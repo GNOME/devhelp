@@ -29,24 +29,6 @@
 G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
 static void
-search (DhApp       *app,
-        const gchar *keyword)
-{
-        g_action_group_activate_action (G_ACTION_GROUP (app),
-                                        "search",
-                                        g_variant_new_string (keyword));
-}
-
-static void
-search_assistant (DhApp       *app,
-                  const gchar *keyword)
-{
-        g_action_group_activate_action (G_ACTION_GROUP (app),
-                                        "search-assistant",
-                                        g_variant_new_string (keyword));
-}
-
-static void
 new_window_cb (GSimpleAction *action,
                GVariant      *parameter,
                gpointer       user_data)
@@ -189,8 +171,10 @@ raise_cb (GSimpleAction *action,
         DhApp *app = DH_APP (user_data);
         GtkWindow *window;
 
-        /* Look for the first application window available and show it */
-        window = dh_app_peek_first_window (app);
+        window = gtk_application_get_active_window (GTK_APPLICATION (app));
+        if (window == NULL)
+                window = dh_app_peek_first_window (app);
+
         gtk_window_present (window);
 }
 
@@ -352,32 +336,42 @@ dh_app_handle_local_options (GApplication *app,
 }
 
 static gint
-dh_app_command_line (GApplication            *app,
+dh_app_command_line (GApplication            *g_app,
                      GApplicationCommandLine *command_line)
 {
+        DhApp *app = DH_APP (g_app);
+        GVariantDict *options_dict;
         gboolean option_new_window = FALSE;
         const gchar *option_search = NULL;
         const gchar *option_search_assistant = NULL;
         gboolean option_quit = FALSE;
-        GVariantDict *options_dict;
 
         options_dict = g_application_command_line_get_options_dict (command_line);
+
         g_variant_dict_lookup (options_dict, "new-window", "b", &option_new_window);
         g_variant_dict_lookup (options_dict, "search", "&s", &option_search);
         g_variant_dict_lookup (options_dict, "search-assistant", "&s", &option_search_assistant);
         g_variant_dict_lookup (options_dict, "quit", "b", &option_quit);
 
-        if (option_new_window) {
-                dh_app_new_window (DH_APP (app));
-        } else if (option_quit) {
+        if (option_quit) {
                 g_action_group_activate_action (G_ACTION_GROUP (app), "quit", NULL);
-        } else if (option_search) {
-                search (DH_APP (app), option_search);
-        } else if (option_search_assistant) {
-                search_assistant (DH_APP (app), option_search_assistant);
-        } else {
-                g_action_group_activate_action (G_ACTION_GROUP (app), "raise", NULL);
+                return 0;
         }
+
+        if (option_new_window)
+                dh_app_new_window (app);
+
+        if (option_search != NULL)
+                g_action_group_activate_action (G_ACTION_GROUP (app),
+                                                "search",
+                                                g_variant_new_string (option_search));
+
+        if (option_search_assistant != NULL)
+                g_action_group_activate_action (G_ACTION_GROUP (app),
+                                                "search-assistant",
+                                                g_variant_new_string (option_search_assistant));
+
+        g_action_group_activate_action (G_ACTION_GROUP (app), "raise", NULL);
 
         return 0;
 }
