@@ -73,42 +73,6 @@ preferences_cb (GSimpleAction *action,
 }
 
 static void
-shortcuts_cb (GSimpleAction *action,
-              GVariant      *parameter,
-              gpointer       user_data)
-{
-        DhApp *app = DH_APP (user_data);
-        static GtkWidget *shortcuts_window;
-        GtkWindow *window;
-
-        window = dh_app_peek_first_window (app);
-
-        if (shortcuts_window == NULL)
-        {
-                GtkBuilder *builder;
-
-                builder = gtk_builder_new_from_resource ("/org/gnome/devhelp/help-overlay.ui");
-                shortcuts_window = GTK_WIDGET (gtk_builder_get_object (builder, "help_overlay"));
-
-                g_signal_connect (shortcuts_window,
-                                  "destroy",
-                                  G_CALLBACK (gtk_widget_destroyed),
-                                  &shortcuts_window);
-
-                g_object_unref (builder);
-        }
-
-        if (GTK_WINDOW (window) != gtk_window_get_transient_for (GTK_WINDOW (shortcuts_window)))
-        {
-                gtk_window_set_transient_for (GTK_WINDOW (shortcuts_window), GTK_WINDOW (window));
-        }
-
-        gtk_widget_show_all (shortcuts_window);
-        gtk_window_present (GTK_WINDOW (shortcuts_window));
-}
-
-
-static void
 about_cb (GSimpleAction *action,
           GVariant      *parameter,
           gpointer       user_data)
@@ -243,7 +207,6 @@ add_action_entries (DhApp *app)
                 /* General actions */
                 { "new-window", new_window_cb },
                 { "preferences", preferences_cb },
-                { "shortcuts", shortcuts_cb },
                 { "about", about_cb },
                 { "quit", quit_cb },
 
@@ -301,9 +264,6 @@ setup_accelerators (GtkApplication *app)
 
         accels[0] = "F10";
         gtk_application_set_accels_for_action (app, "win.gear-menu", accels);
-
-        accels[0] = "<Primary>F1";
-        gtk_application_set_accels_for_action (app, "app.shortcuts", accels);
 
         accels[0] = "<Alt>Right";
         accels[1] = "Forward";
