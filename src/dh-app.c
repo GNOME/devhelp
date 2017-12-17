@@ -95,8 +95,9 @@ about_cb (GSimpleAction *action,
         parent = dh_app_peek_first_window (app);
 
         gtk_show_about_dialog (parent,
-                               /* i18n: Please don't translate "Devhelp" (it's marked as translatable
-                                * for transliteration only) */
+                               /* Translators: please don't translate "Devhelp" (it's marked as
+                                * translatable for transliteration only).
+                                */
                                "name", _("Devhelp"),
                                "version", PACKAGE_VERSION,
                                "comments", _("A developers’ help browser for GNOME"),
@@ -308,7 +309,7 @@ dh_app_activate (GApplication *application)
         dh_app_new_window (DH_APP (application));
 }
 
-static gboolean  option_version;
+static gboolean option_version;
 
 static GOptionEntry options[] = {
         { "new-window", 'n',
@@ -397,8 +398,9 @@ dh_app_class_init (DhAppClass *klass)
 static void
 dh_app_init (DhApp *app)
 {
-        /* i18n: Please don't translate "Devhelp" (it's marked as translatable
-         * for transliteration only) */
+        /* Translators: please don't translate "Devhelp" (it's marked as
+         * translatable for transliteration only).
+         */
         g_set_application_name (_("Devhelp"));
         gtk_window_set_default_icon_name ("devhelp");
 
