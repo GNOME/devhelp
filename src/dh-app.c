@@ -56,7 +56,6 @@ new_window_cb (GSimpleAction *action,
         GtkWidget *window;
 
         window = dh_window_new (app);
-        gtk_application_add_window (GTK_APPLICATION (app), GTK_WINDOW (window));
         gtk_widget_show_all (window);
 }
 
