@@ -405,7 +405,6 @@ dh_app_new (void)
         return g_object_new (DH_TYPE_APP,
                              "application-id", "org.gnome.Devhelp",
                              "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
-                             "register-session", TRUE,
                              NULL);
 }
 
