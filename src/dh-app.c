@@ -278,18 +278,28 @@ raise_cb (GSimpleAction *action,
         gtk_window_present (window);
 }
 
-static GActionEntry app_entries[] = {
-        /* general  actions */
-        { "new-window",       new_window_cb,       NULL, NULL, NULL },
-        { "preferences",      preferences_cb,      NULL, NULL, NULL },
-        { "shortcuts",        shortcuts_cb,        NULL, NULL, NULL },
-        { "about",            about_cb,            NULL, NULL, NULL },
-        { "quit",             quit_cb,             NULL, NULL, NULL },
-        /* additional commandline-specific actions */
-        { "search",           search_cb,           "s",  NULL, NULL },
-        { "search-assistant", search_assistant_cb, "s",  NULL, NULL },
-        { "raise",            raise_cb,            NULL, NULL, NULL },
-};
+static void
+add_action_entries (DhApp *app)
+{
+        const GActionEntry app_entries[] = {
+                /* General actions */
+                { "new-window", new_window_cb },
+                { "preferences", preferences_cb },
+                { "shortcuts", shortcuts_cb },
+                { "about", about_cb },
+                { "quit", quit_cb },
+
+                /* Additional commandline-specific actions */
+                { "search", search_cb, "s" },
+                { "search-assistant", search_assistant_cb, "s" },
+                { "raise", raise_cb },
+        };
+
+        g_action_map_add_action_entries (G_ACTION_MAP (app),
+                                         app_entries,
+                                         G_N_ELEMENTS (app_entries),
+                                         app);
+}
 
 /******************************************************************************/
 
@@ -379,10 +389,7 @@ dh_app_startup (GApplication *application)
         if (G_APPLICATION_CLASS (dh_app_parent_class)->startup != NULL)
                 G_APPLICATION_CLASS (dh_app_parent_class)->startup (application);
 
-        g_action_map_add_action_entries (G_ACTION_MAP (app),
-                                         app_entries, G_N_ELEMENTS (app_entries),
-                                         app);
-
+        add_action_entries (app);
         setup_accelerators (app);
         set_app_menu_if_needed (GTK_APPLICATION (app));
 }
