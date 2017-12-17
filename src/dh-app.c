@@ -116,13 +116,8 @@ quit_cb (GSimpleAction *action,
          gpointer       user_data)
 {
         DhApp *app = DH_APP (user_data);
-        GList *l;
 
-        /* Remove all windows registered in the application */
-        while ((l = gtk_application_get_windows (GTK_APPLICATION (app)))) {
-                gtk_application_remove_window (GTK_APPLICATION (app),
-                                               GTK_WINDOW (l->data));
-        }
+        g_application_quit (G_APPLICATION (app));
 }
 
 static void
