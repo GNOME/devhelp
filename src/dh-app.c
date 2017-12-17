@@ -304,63 +304,63 @@ add_action_entries (DhApp *app)
 /******************************************************************************/
 
 static void
-setup_accelerators (DhApp *self)
+setup_accelerators (GtkApplication *app)
 {
         const gchar *accels[] = {NULL, NULL, NULL, NULL};
 
         accels[0] = "<Primary>0";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-default", accels);
+        gtk_application_set_accels_for_action (app, "win.zoom-default", accels);
 
         accels[0] = "<Primary>minus";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-out", accels);
+        gtk_application_set_accels_for_action (app, "win.zoom-out", accels);
 
         accels[0] = "<Primary>plus";
         accels[1] = "<Primary>equal";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.zoom-in", accels);
-        accels[0] = NULL;
+        gtk_application_set_accels_for_action (app, "win.zoom-in", accels);
+        accels[1] = NULL;
 
         accels[0] = "<Primary>f";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.find", accels);
+        gtk_application_set_accels_for_action (app, "win.find", accels);
 
         accels[0] = "<Primary>c";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.copy", accels);
+        gtk_application_set_accels_for_action (app, "win.copy", accels);
 
         accels[0] = "<Primary>p";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.print", accels);
+        gtk_application_set_accels_for_action (app, "win.print", accels);
 
         accels[0] = "<Primary>t";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.new-tab", accels);
+        gtk_application_set_accels_for_action (app, "win.new-tab", accels);
 
         accels[0] = "<Primary>Page_Down";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.next-tab", accels);
+        gtk_application_set_accels_for_action (app, "win.next-tab", accels);
 
         accels[0] = "<Primary>Page_Up";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.prev-tab", accels);
+        gtk_application_set_accels_for_action (app, "win.prev-tab", accels);
 
         accels[0] = "F9";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.show-sidebar", accels);
+        gtk_application_set_accels_for_action (app, "win.show-sidebar", accels);
 
         accels[0] = "<Primary>w";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.close", accels);
+        gtk_application_set_accels_for_action (app, "win.close", accels);
 
         accels[0] = "F10";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.gear-menu", accels);
+        gtk_application_set_accels_for_action (app, "win.gear-menu", accels);
 
         accels[0] = "<Primary>F1";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.shortcuts", accels);
+        gtk_application_set_accels_for_action (app, "app.shortcuts", accels);
 
         accels[0] = "<Alt>Right";
         accels[1] = "Forward";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-forward", accels);
+        gtk_application_set_accels_for_action (app, "win.go-forward", accels);
 
         accels[0] = "<Alt>Left";
         accels[1] = "Back";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.go-back", accels);
+        gtk_application_set_accels_for_action (app, "win.go-back", accels);
 
         accels[0] = "<Primary>k";
         accels[1] = "<Primary>s";
         accels[2] = "<Primary>l";
-        gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.focus-search", accels);
+        gtk_application_set_accels_for_action (app, "win.focus-search", accels);
 }
 
 /******************************************************************************/
@@ -390,7 +390,7 @@ dh_app_startup (GApplication *application)
                 G_APPLICATION_CLASS (dh_app_parent_class)->startup (application);
 
         add_action_entries (app);
-        setup_accelerators (app);
+        setup_accelerators (GTK_APPLICATION (app));
         set_app_menu_if_needed (GTK_APPLICATION (app));
 }
 
