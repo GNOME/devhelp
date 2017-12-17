@@ -221,6 +221,7 @@ search_assistant_cb (GSimpleAction *action,
                 assistant = dh_assistant_new (app);
 
         dh_assistant_search (assistant, keyword);
+        gtk_window_present (GTK_WINDOW (assistant));
 }
 
 static void
