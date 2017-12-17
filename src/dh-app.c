@@ -29,30 +29,6 @@
 
 G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
-GtkWindow *
-dh_app_peek_first_window (DhApp *app)
-{
-        GList *windows;
-        GList *l;
-
-        g_return_val_if_fail (DH_IS_APP (app), NULL);
-
-        windows = gtk_application_get_windows (GTK_APPLICATION (app));
-
-        for (l = windows; l != NULL; l = l->next) {
-                GtkWindow *cur_window = GTK_WINDOW (l->data);
-
-                if (DH_IS_WINDOW (cur_window))
-                        return cur_window;
-        }
-
-        /* Create a new window */
-        dh_app_new_window (app);
-
-        /* And look for the newly created window again */
-        return dh_app_peek_first_window (app);
-}
-
 static GtkWindow *
 peek_assistant (DhApp *app)
 {
@@ -69,17 +45,6 @@ peek_assistant (DhApp *app)
         }
 
         return NULL;
-}
-
-/******************************************************************************/
-/* Application action activators */
-
-void
-dh_app_new_window (DhApp *app)
-{
-        g_return_if_fail (DH_IS_APP (app));
-
-        g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 }
 
 static void
@@ -99,9 +64,6 @@ search_assistant (DhApp       *app,
                                         "search-assistant",
                                         g_variant_new_string (keyword));
 }
-
-/******************************************************************************/
-/* Application actions setup */
 
 static void
 new_window_cb (GSimpleAction *action,
@@ -301,8 +263,6 @@ add_action_entries (DhApp *app)
                                          app);
 }
 
-/******************************************************************************/
-
 static void
 setup_accelerators (GtkApplication *app)
 {
@@ -363,8 +323,6 @@ setup_accelerators (GtkApplication *app)
         gtk_application_set_accels_for_action (app, "win.focus-search", accels);
 }
 
-/******************************************************************************/
-
 static void
 set_app_menu_if_needed (GtkApplication *app)
 {
@@ -398,18 +356,6 @@ static void
 dh_app_activate (GApplication *application)
 {
         dh_app_new_window (DH_APP (application));
-}
-
-/******************************************************************************/
-
-DhApp *
-dh_app_new (void)
-{
-        return g_object_new (DH_TYPE_APP,
-                             "application-id",   "org.gnome.Devhelp",
-                             "flags",            G_APPLICATION_HANDLES_COMMAND_LINE,
-                             "register-session", TRUE,
-                             NULL);
 }
 
 static gboolean  option_version;
@@ -488,6 +434,17 @@ dh_app_command_line (GApplication            *app,
 }
 
 static void
+dh_app_class_init (DhAppClass *klass)
+{
+        GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
+
+        application_class->startup = dh_app_startup;
+        application_class->activate = dh_app_activate;
+        application_class->handle_local_options = dh_app_handle_local_options;
+        application_class->command_line = dh_app_command_line;
+}
+
+static void
 dh_app_init (DhApp *app)
 {
         /* i18n: Please don't translate "Devhelp" (it's marked as translatable
@@ -498,13 +455,44 @@ dh_app_init (DhApp *app)
         g_application_add_main_option_entries (G_APPLICATION (app), options);
 }
 
-static void
-dh_app_class_init (DhAppClass *klass)
+DhApp *
+dh_app_new (void)
 {
-        GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
+        return g_object_new (DH_TYPE_APP,
+                             "application-id", "org.gnome.Devhelp",
+                             "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
+                             "register-session", TRUE,
+                             NULL);
+}
 
-        application_class->startup = dh_app_startup;
-        application_class->activate = dh_app_activate;
-        application_class->handle_local_options = dh_app_handle_local_options;
-        application_class->command_line = dh_app_command_line;
+GtkWindow *
+dh_app_peek_first_window (DhApp *app)
+{
+        GList *windows;
+        GList *l;
+
+        g_return_val_if_fail (DH_IS_APP (app), NULL);
+
+        windows = gtk_application_get_windows (GTK_APPLICATION (app));
+
+        for (l = windows; l != NULL; l = l->next) {
+                GtkWindow *cur_window = GTK_WINDOW (l->data);
+
+                if (DH_IS_WINDOW (cur_window))
+                        return cur_window;
+        }
+
+        /* Create a new window */
+        dh_app_new_window (app);
+
+        /* And look for the newly created window again */
+        return dh_app_peek_first_window (app);
+}
+
+void
+dh_app_new_window (DhApp *app)
+{
+        g_return_if_fail (DH_IS_APP (app));
+
+        g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 }
