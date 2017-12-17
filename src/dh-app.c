@@ -32,16 +32,18 @@ G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 GtkWindow *
 dh_app_peek_first_window (DhApp *app)
 {
+        GList *windows;
         GList *l;
 
         g_return_val_if_fail (DH_IS_APP (app), NULL);
 
-        for (l = gtk_application_get_windows (GTK_APPLICATION (app));
-             l;
-             l = g_list_next (l)) {
-                if (DH_IS_WINDOW (l->data)) {
-                        return GTK_WINDOW (l->data);
-                }
+        windows = gtk_application_get_windows (GTK_APPLICATION (app));
+
+        for (l = windows; l != NULL; l = l->next) {
+                GtkWindow *cur_window = GTK_WINDOW (l->data);
+
+                if (DH_IS_WINDOW (cur_window))
+                        return cur_window;
         }
 
         /* Create a new window */
@@ -54,14 +56,16 @@ dh_app_peek_first_window (DhApp *app)
 static GtkWindow *
 peek_assistant (DhApp *app)
 {
+        GList *windows;
         GList *l;
 
-        for (l = gtk_application_get_windows (GTK_APPLICATION (app));
-             l;
-             l = g_list_next (l)) {
-                if (DH_IS_ASSISTANT (l->data)) {
-                        return GTK_WINDOW (l->data);
-                }
+        windows = gtk_application_get_windows (GTK_APPLICATION (app));
+
+        for (l = windows; l != NULL; l = l->next) {
+                GtkWindow *cur_window = GTK_WINDOW (l->data);
+
+                if (DH_IS_ASSISTANT (cur_window))
+                        return cur_window;
         }
 
         return NULL;
