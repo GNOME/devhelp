@@ -126,18 +126,17 @@ search_cb (GSimpleAction *action,
            gpointer       user_data)
 {
         DhApp *app = DH_APP (user_data);
+        const gchar *keyword;
         GtkWindow *window;
-        const gchar *str;
 
-        window = dh_app_peek_first_window (app);
-        str = g_variant_get_string (parameter, NULL);
-        if (str[0] == '\0') {
-                g_warning ("Cannot search in application window: "
-                           "No keyword given");
+        keyword = g_variant_get_string (parameter, NULL);
+        if (keyword == NULL || keyword[0] == '\0') {
+                g_warning ("Cannot search in application window: no keyword given.");
                 return;
         }
 
-        dh_window_search (DH_WINDOW (window), str);
+        window = dh_app_peek_first_window (app);
+        dh_window_search (DH_WINDOW (window), keyword);
         gtk_window_present (window);
 }
 
