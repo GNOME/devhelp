@@ -29,24 +29,6 @@
 
 G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
-static GtkWindow *
-peek_assistant (DhApp *app)
-{
-        GList *windows;
-        GList *l;
-
-        windows = gtk_application_get_windows (GTK_APPLICATION (app));
-
-        for (l = windows; l != NULL; l = l->next) {
-                GtkWindow *cur_window = GTK_WINDOW (l->data);
-
-                if (DH_IS_ASSISTANT (cur_window))
-                        return cur_window;
-        }
-
-        return NULL;
-}
-
 static void
 search (DhApp       *app,
         const gchar *keyword)
@@ -201,30 +183,44 @@ search_cb (GSimpleAction *action,
         gtk_window_present (window);
 }
 
+static DhAssistant *
+get_active_assistant_window (DhApp *app)
+{
+        GList *windows;
+        GList *l;
+
+        windows = gtk_application_get_windows (GTK_APPLICATION (app));
+
+        for (l = windows; l != NULL; l = l->next) {
+                GtkWindow *cur_window = GTK_WINDOW (l->data);
+
+                if (DH_IS_ASSISTANT (cur_window))
+                        return DH_ASSISTANT (cur_window);
+        }
+
+        return NULL;
+}
+
 static void
 search_assistant_cb (GSimpleAction *action,
                      GVariant      *parameter,
                      gpointer       user_data)
 {
         DhApp *app = DH_APP (user_data);
-        GtkWindow *assistant;
-        const gchar *str;
+        DhAssistant *assistant;
+        const gchar *keyword;
 
-        str = g_variant_get_string (parameter, NULL);
-        if (str[0] == '\0') {
-                g_warning ("Cannot look for keyword in Search Assistant: "
-                           "No keyword given");
+        keyword = g_variant_get_string (parameter, NULL);
+        if (keyword == NULL || keyword[0] == '\0') {
+                g_warning ("Cannot look for keyword in Search Assistant: no keyword given.");
                 return;
         }
 
-        /* Look for an already registered assistant */
-        assistant = peek_assistant (app);
-        if (!assistant) {
-                assistant = GTK_WINDOW (dh_assistant_new (app));
-                gtk_application_add_window (GTK_APPLICATION (app), assistant);
-        }
+        assistant = get_active_assistant_window (app);
+        if (assistant == NULL)
+                assistant = DH_ASSISTANT (dh_assistant_new (app));
 
-        dh_assistant_search (DH_ASSISTANT (assistant), str);
+        dh_assistant_search (assistant, keyword);
 }
 
 static void
