@@ -218,7 +218,7 @@ search_assistant_cb (GSimpleAction *action,
 
         assistant = get_active_assistant_window (app);
         if (assistant == NULL)
-                assistant = DH_ASSISTANT (dh_assistant_new (app));
+                assistant = dh_assistant_new (app);
 
         dh_assistant_search (assistant, keyword);
 }

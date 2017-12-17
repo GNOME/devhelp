@@ -42,10 +42,12 @@ struct _DhAssistantClass {
         GtkApplicationWindowClass parent_class;
 };
 
-GType      dh_assistant_get_type  (void) G_GNUC_CONST;
-GtkWidget *dh_assistant_new       (DhApp       *application);
-gboolean   dh_assistant_search    (DhAssistant *assistant,
-                                   const gchar *str);
+GType           dh_assistant_get_type   (void) G_GNUC_CONST;
+
+DhAssistant *   dh_assistant_new        (DhApp *application);
+
+gboolean        dh_assistant_search     (DhAssistant *assistant,
+                                         const gchar *str);
 
 G_END_DECLS
 

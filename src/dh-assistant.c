@@ -95,10 +95,10 @@ dh_assistant_init (DhAssistant *assistant)
                           assistant);
 }
 
-GtkWidget *
+DhAssistant *
 dh_assistant_new (DhApp *application)
 {
-        GtkWidget *assistant;
+        DhAssistant *assistant;
         DhSettings *settings;
 
         assistant = g_object_new (DH_TYPE_ASSISTANT,
@@ -106,7 +106,7 @@ dh_assistant_new (DhApp *application)
                                   NULL);
 
         settings = dh_settings_get_singleton ();
-        gtk_widget_realize (assistant);
+        gtk_widget_realize (GTK_WIDGET (assistant));
         dh_util_window_settings_restore (GTK_WINDOW (assistant),
                                          dh_settings_peek_assistant_settings (settings));
 
