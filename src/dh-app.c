@@ -21,7 +21,6 @@
 
 #include "config.h"
 #include "dh-app.h"
-#include <stdlib.h>
 #include <glib/gi18n-lib.h>
 #include "dh-assistant.h"
 #include "dh-preferences.h"
@@ -344,13 +343,12 @@ static gint
 dh_app_handle_local_options (GApplication *app,
                              GVariantDict *local_options)
 {
-  if (option_version)
-    {
-      g_print ("%s %s\n", g_get_application_name (), PACKAGE_VERSION);
-      exit (0);
-    }
+        if (option_version) {
+                g_print ("%s %s\n", g_get_application_name (), PACKAGE_VERSION);
+                return 0;
+        }
 
-  return -1;
+        return -1;
 }
 
 static gint
