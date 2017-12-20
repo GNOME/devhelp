@@ -219,7 +219,7 @@ dh_util_window_settings_restore (GtkWindow *gtk_window,
                 GdkDisplay *display;
                 GdkWindow *gdk_window;
                 GdkMonitor *monitor;
-                GdkRectangle monitor_geometry;
+                GdkRectangle monitor_workarea;
                 gint max_width;
                 gint max_height;
 
@@ -227,10 +227,10 @@ dh_util_window_settings_restore (GtkWindow *gtk_window,
                 /* To get the GdkWindow the widget must be realized. */
                 gdk_window = gtk_widget_get_window (GTK_WIDGET (gtk_window));
                 monitor = gdk_display_get_monitor_at_window (display, gdk_window);
-                gdk_monitor_get_geometry (monitor, &monitor_geometry);
+                gdk_monitor_get_workarea (monitor, &monitor_workarea);
 
-                max_width = monitor_geometry.width;
-                max_height = monitor_geometry.height;
+                max_width = monitor_workarea.width;
+                max_height = monitor_workarea.height;
 
                 width = CLAMP (width, 0, max_width);
                 height = CLAMP (height, 0, max_height);
