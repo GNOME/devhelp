@@ -1502,11 +1502,13 @@ window_tab_set_title (DhWindow      *window,
 }
 
 GtkWidget *
-dh_window_new (DhApp *application)
+dh_window_new (GtkApplication *application)
 {
         DhWindow *window;
         DhWindowPrivate *priv;
         DhSettings *settings;
+
+        g_return_val_if_fail (GTK_IS_APPLICATION (application), NULL);
 
         window = g_object_new (DH_TYPE_WINDOW,
                                "application", application,

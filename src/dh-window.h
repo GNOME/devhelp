@@ -22,7 +22,6 @@
 #define DH_WINDOW_H
 
 #include <gtk/gtk.h>
-#include "dh-app.h"
 
 G_BEGIN_DECLS
 
@@ -45,7 +44,7 @@ struct _DhWindowClass {
 };
 
 GType      dh_window_get_type     (void) G_GNUC_CONST;
-GtkWidget *dh_window_new          (DhApp       *application);
+GtkWidget *dh_window_new          (GtkApplication *application);
 void       dh_window_search       (DhWindow    *window,
                                    const gchar *str);
 void       _dh_window_display_uri (DhWindow    *window,
