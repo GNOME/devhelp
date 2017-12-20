@@ -29,7 +29,6 @@
       <item>
         <attribute name="label" translatable="yes">New _Window</attribute>
         <attribute name="action">app.new-window</attribute>
-        <attribute name="accel">&lt;Primary&gt;n</attribute>
       </item>
     </section>
     <section>
@@ -50,7 +49,6 @@
       <item>
         <attribute name="label" translatable="yes">_Quit</attribute>
         <attribute name="action">app.quit</attribute>
-        <attribute name="accel">&lt;Primary&gt;q</attribute>
       </item>
     </section>
   </menu>
