@@ -227,6 +227,9 @@ setup_accelerators (GtkApplication *app)
         accels[0] = "<Control>t";
         gtk_application_set_accels_for_action (app, "win.new-tab", accels);
 
+        accels[0] = "<Control>n";
+        gtk_application_set_accels_for_action (app, "app.new-window", accels);
+
         accels[0] = "<Control>Page_Down";
         gtk_application_set_accels_for_action (app, "win.next-tab", accels);
 
@@ -238,6 +241,9 @@ setup_accelerators (GtkApplication *app)
 
         accels[0] = "<Control>w";
         gtk_application_set_accels_for_action (app, "win.close", accels);
+
+        accels[0] = "<Control>q";
+        gtk_application_set_accels_for_action (app, "app.quit", accels);
 
         accels[0] = "F10";
         gtk_application_set_accels_for_action (app, "win.gear-menu", accels);
