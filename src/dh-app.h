@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2012 Aleksander Morgado <aleksander@gnu.org>
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -46,8 +47,6 @@ GType           dh_app_get_type                 (void) G_GNUC_CONST;
 DhApp *         dh_app_new                      (void);
 
 GtkWindow *     dh_app_peek_first_window        (DhApp *app);
-
-void            dh_app_new_window               (DhApp *app);
 
 G_END_DECLS
 

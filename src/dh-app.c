@@ -4,6 +4,7 @@
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2004-2008 Imendio AB
  * Copyright (C) 2012 Aleksander Morgado <aleksander@gnu.org>
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -287,9 +288,9 @@ dh_app_startup (GApplication *application)
 }
 
 static void
-dh_app_activate (GApplication *application)
+dh_app_activate (GApplication *app)
 {
-        dh_app_new_window (DH_APP (application));
+        g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 }
 
 static gboolean option_version;
@@ -359,7 +360,7 @@ dh_app_command_line (GApplication            *g_app,
         }
 
         if (option_new_window)
-                dh_app_new_window (app);
+                g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 
         if (option_search != NULL)
                 g_action_group_activate_action (G_ACTION_GROUP (app),
@@ -426,16 +427,8 @@ dh_app_peek_first_window (DhApp *app)
         }
 
         /* Create a new window */
-        dh_app_new_window (app);
+        g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 
         /* And look for the newly created window again */
         return dh_app_peek_first_window (app);
-}
-
-void
-dh_app_new_window (DhApp *app)
-{
-        g_return_if_fail (DH_IS_APP (app));
-
-        g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 }
