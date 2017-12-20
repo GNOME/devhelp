@@ -77,22 +77,8 @@ app_c_files =			\
 	dh-window.c		\
 	$(NULL)
 
-app_built_headers =		\
-	dh-enum-types-app.h	\
-	$(NULL)
-
-app_built_c_files =		\
-	dh-enum-types-app.c	\
-	$(NULL)
-
-app_built_sources =		\
-	$(app_built_headers)	\
-	$(app_built_c_files)	\
-	$(NULL)
-
 BUILT_SOURCES = 			\
 	$(libdevhelp_built_sources)	\
-	$(app_built_sources)		\
 	$(NULL)
 
 # The library
@@ -136,9 +122,6 @@ devhelp_SOURCES =	\
 	$(app_c_files)	\
 	$(NULL)
 
-nodist_devhelp_SOURCES =	\
-	$(app_built_sources)
-
 devhelp_CPPFLAGS =	\
 	$(AM_CPPFLAGS)
 
@@ -170,17 +153,9 @@ dh-enum-types.h: dh-enum-types.h.template $(libdevhelp_public_headers) $(GLIB_MK
 dh-enum-types.c: dh-enum-types.c.template $(libdevhelp_public_headers) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.c.template $(libdevhelp_public_headers)) > $@
 
-dh-enum-types-app.h: dh-enum-types-app.h.template $(app_headers) $(GLIB_MKENUMS)
-	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types-app.h.template $(app_headers)) > $@
-
-dh-enum-types-app.c: dh-enum-types-app.c.template $(app_headers) $(GLIB_MKENUMS)
-	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types-app.c.template $(app_headers)) > $@
-
 EXTRA_DIST =				\
 	dh-enum-types.c.template	\
 	dh-enum-types.h.template	\
-	dh-enum-types-app.c.template	\
-	dh-enum-types-app.h.template	\
 	dh.gresource.xml		\
 	$(resource_files)		\
 	$(NULL)

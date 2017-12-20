@@ -49,7 +49,6 @@ EXTRA_HFILES = \
 IGNORE_HFILES = \
 	dh-app.h \
 	dh-assistant.h \
-	dh-enum-types-app.h \
 	dh-error.h \
 	dh-language.h \
 	dh-parser.h \

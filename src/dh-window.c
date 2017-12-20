@@ -32,7 +32,6 @@
 #include "dh-sidebar.h"
 #include "dh-util.h"
 #include "dh-settings.h"
-#include "dh-enum-types-app.h"
 
 typedef struct {
         GMenuModel     *gear_app_menu;
@@ -50,13 +49,6 @@ typedef struct {
         DhLink         *selected_search_link;
         guint           configure_id;
 } DhWindowPrivate;
-
-enum {
-        OPEN_LINK,
-        N_SIGNALS
-};
-
-static guint signals[N_SIGNALS] = { 0 };
 
 #define WINDOW_SETTINGS_SAVE_TIMEOUT_MSECS 100
 
@@ -503,25 +495,6 @@ gear_menu_cb (GSimpleAction *action,
         g_variant_unref (state);
 }
 
-static void
-dh_window_open_link (DhWindow        *window,
-                     const char      *location,
-                     DhOpenLinkFlags  flags)
-{
-        switch (flags) {
-                case DH_OPEN_LINK_NEW_WINDOW:
-                        dh_app_new_window (DH_APP (gtk_window_get_application (GTK_WINDOW (window))));
-                        break;
-
-                case DH_OPEN_LINK_NEW_TAB:
-                        window_open_new_tab (window, location, FALSE);
-                        break;
-
-                default:
-                        g_assert_not_reached ();
-        }
-}
-
 static GActionEntry win_entries[] = {
         /* tabs */
         { "new-tab",          new_tab_cb },
@@ -721,19 +694,6 @@ dh_window_class_init (DhWindowClass *klass)
 
         widget_class->configure_event = dh_window_configure_event;
         widget_class->delete_event = dh_window_delete_event;
-
-        klass->open_link = dh_window_open_link;
-
-        signals[OPEN_LINK] =
-                g_signal_new ("open-link",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (DhWindowClass, open_link),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              2,
-                              G_TYPE_STRING,
-                              DH_TYPE_OPEN_LINK_FLAGS);
 
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class,
@@ -942,7 +902,7 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
         state = webkit_navigation_action_get_modifiers (navigation_action);
         if (button == 2 || (button == 1 && state == GDK_CONTROL_MASK)) {
                 webkit_policy_decision_ignore (policy_decision);
-                g_signal_emit (window, signals[OPEN_LINK], 0, uri, DH_OPEN_LINK_NEW_TAB);
+                window_open_new_tab (window, uri, FALSE);
                 return GDK_EVENT_STOP;
         }
 
