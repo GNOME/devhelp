@@ -25,7 +25,6 @@
 #include <glib/gi18n-lib.h>
 #include "dh-assistant.h"
 #include "dh-preferences.h"
-#include "dh-window.h"
 
 G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
@@ -47,11 +46,10 @@ preferences_cb (GSimpleAction *action,
                 gpointer       user_data)
 {
         DhApp *app = DH_APP (user_data);
-        GtkWindow *window;
+        GtkWindow *parent_window;
 
-        window = dh_app_peek_first_window (app);
-
-        dh_preferences_show_dialog (window);
+        parent_window = (GtkWindow *) dh_app_get_active_main_window (app, FALSE);
+        dh_preferences_show_dialog (parent_window);
 }
 
 static void
@@ -60,7 +58,7 @@ about_cb (GSimpleAction *action,
           gpointer       user_data)
 {
         DhApp *app = DH_APP (user_data);
-        GtkWindow *parent;
+        GtkWindow *parent_window;
 
         const gchar *authors[] = {
                 "Mikael Hallendal <micke@imendio.com>",
@@ -74,9 +72,9 @@ about_cb (GSimpleAction *action,
                 NULL
         };
 
-        parent = dh_app_peek_first_window (app);
+        parent_window = (GtkWindow *) dh_app_get_active_main_window (app, FALSE);
 
-        gtk_show_about_dialog (parent,
+        gtk_show_about_dialog (parent_window,
                                /* Translators: please don't translate "Devhelp" (it's marked as
                                 * translatable for transliteration only).
                                 */
@@ -110,7 +108,7 @@ search_cb (GSimpleAction *action,
 {
         DhApp *app = DH_APP (user_data);
         const gchar *keyword;
-        GtkWindow *window;
+        DhWindow *window;
 
         keyword = g_variant_get_string (parameter, NULL);
         if (keyword == NULL || keyword[0] == '\0') {
@@ -118,9 +116,9 @@ search_cb (GSimpleAction *action,
                 return;
         }
 
-        window = dh_app_peek_first_window (app);
-        dh_window_search (DH_WINDOW (window), keyword);
-        gtk_window_present (window);
+        window = dh_app_get_active_main_window (app, TRUE);
+        dh_window_search (window, keyword);
+        gtk_window_present (GTK_WINDOW (window));
 }
 
 static DhAssistant *
@@ -174,7 +172,7 @@ raise_cb (GSimpleAction *action,
 
         window = gtk_application_get_active_window (GTK_APPLICATION (app));
         if (window == NULL)
-                window = dh_app_peek_first_window (app);
+                window = (GtkWindow *) dh_app_get_active_main_window (app, TRUE);
 
         gtk_window_present (window);
 }
@@ -409,8 +407,10 @@ dh_app_new (void)
                              NULL);
 }
 
-GtkWindow *
-dh_app_peek_first_window (DhApp *app)
+/* Returns: (transfer none) (nullable). */
+DhWindow *
+dh_app_get_active_main_window (DhApp    *app,
+                               gboolean  create_if_none)
 {
         GList *windows;
         GList *l;
@@ -423,12 +423,17 @@ dh_app_peek_first_window (DhApp *app)
                 GtkWindow *cur_window = GTK_WINDOW (l->data);
 
                 if (DH_IS_WINDOW (cur_window))
-                        return cur_window;
+                        return DH_WINDOW (cur_window);
         }
 
-        /* Create a new window */
-        g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
+        if (create_if_none) {
+                g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
 
-        /* And look for the newly created window again */
-        return dh_app_peek_first_window (app);
+                /* Look again, but with create_if_none = FALSE to avoid an
+                 * infinite recursion in case creating a new main window fails.
+                 */
+                return dh_app_get_active_main_window (app, FALSE);
+        }
+
+        return NULL;
 }

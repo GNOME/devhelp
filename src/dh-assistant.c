@@ -35,12 +35,12 @@ assistant_view_open_uri_cb (DhAssistantView *view,
                             DhAssistant     *assistant)
 {
         DhApp *app;
-        GtkWindow *window;
+        DhWindow *window;
 
         app = DH_APP (gtk_window_get_application (GTK_WINDOW (assistant)));
 
-        window = dh_app_peek_first_window (app);
-        _dh_window_display_uri (DH_WINDOW (window), uri);
+        window = dh_app_get_active_main_window (app, TRUE);
+        _dh_window_display_uri (window, uri);
 }
 
 static gboolean

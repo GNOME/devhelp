@@ -21,6 +21,7 @@
 #define DH_APP_H
 
 #include <gtk/gtk.h>
+#include "dh-window.h"
 
 G_BEGIN_DECLS
 
@@ -46,7 +47,8 @@ GType           dh_app_get_type                 (void) G_GNUC_CONST;
 
 DhApp *         dh_app_new                      (void);
 
-GtkWindow *     dh_app_peek_first_window        (DhApp *app);
+DhWindow *      dh_app_get_active_main_window   (DhApp    *app,
+                                                 gboolean  create_if_none);
 
 G_END_DECLS
 
