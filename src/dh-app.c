@@ -204,39 +204,39 @@ setup_accelerators (GtkApplication *app)
 {
         const gchar *accels[] = {NULL, NULL, NULL, NULL};
 
-        accels[0] = "<Primary>0";
+        accels[0] = "<Control>0";
         gtk_application_set_accels_for_action (app, "win.zoom-default", accels);
 
-        accels[0] = "<Primary>minus";
+        accels[0] = "<Control>minus";
         gtk_application_set_accels_for_action (app, "win.zoom-out", accels);
 
-        accels[0] = "<Primary>plus";
-        accels[1] = "<Primary>equal";
+        accels[0] = "<Control>plus";
+        accels[1] = "<Control>equal";
         gtk_application_set_accels_for_action (app, "win.zoom-in", accels);
         accels[1] = NULL;
 
-        accels[0] = "<Primary>f";
+        accels[0] = "<Control>f";
         gtk_application_set_accels_for_action (app, "win.find", accels);
 
-        accels[0] = "<Primary>c";
+        accels[0] = "<Control>c";
         gtk_application_set_accels_for_action (app, "win.copy", accels);
 
-        accels[0] = "<Primary>p";
+        accels[0] = "<Control>p";
         gtk_application_set_accels_for_action (app, "win.print", accels);
 
-        accels[0] = "<Primary>t";
+        accels[0] = "<Control>t";
         gtk_application_set_accels_for_action (app, "win.new-tab", accels);
 
-        accels[0] = "<Primary>Page_Down";
+        accels[0] = "<Control>Page_Down";
         gtk_application_set_accels_for_action (app, "win.next-tab", accels);
 
-        accels[0] = "<Primary>Page_Up";
+        accels[0] = "<Control>Page_Up";
         gtk_application_set_accels_for_action (app, "win.prev-tab", accels);
 
         accels[0] = "F9";
         gtk_application_set_accels_for_action (app, "win.show-sidebar", accels);
 
-        accels[0] = "<Primary>w";
+        accels[0] = "<Control>w";
         gtk_application_set_accels_for_action (app, "win.close", accels);
 
         accels[0] = "F10";
@@ -250,9 +250,9 @@ setup_accelerators (GtkApplication *app)
         accels[1] = "Back";
         gtk_application_set_accels_for_action (app, "win.go-back", accels);
 
-        accels[0] = "<Primary>k";
-        accels[1] = "<Primary>s";
-        accels[2] = "<Primary>l";
+        accels[0] = "<Control>k";
+        accels[1] = "<Control>s";
+        accels[2] = "<Control>l";
         gtk_application_set_accels_for_action (app, "win.focus-search", accels);
 }
 
