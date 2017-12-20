@@ -18,20 +18,15 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
 #include "dh-window.h"
-
-#include <string.h>
 #include <math.h>
-#include <glib/gi18n-lib.h>
-#include <gdk/gdkkeysyms.h>
+#include <glib/gi18n.h>
 #include <webkit2/webkit2.h>
-
-#include "dh-book-manager.h"
 #include "dh-book.h"
+#include "dh-book-manager.h"
+#include "dh-settings.h"
 #include "dh-sidebar.h"
 #include "dh-util.h"
-#include "dh-settings.h"
 
 typedef struct {
         GMenuModel     *gear_app_menu;

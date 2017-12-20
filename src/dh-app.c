@@ -22,7 +22,7 @@
 
 #include "config.h"
 #include "dh-app.h"
-#include <glib/gi18n-lib.h>
+#include <glib/gi18n.h>
 #include "dh-assistant.h"
 #include "dh-preferences.h"
 
