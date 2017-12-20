@@ -15,28 +15,28 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;Primary&gt;K</property>
+                <property name="accelerator">&lt;Control&gt;K</property>
                 <property name="title" translatable="yes" context="shortcut window">Focus global search</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;Primary&gt;F</property>
+                <property name="accelerator">&lt;Control&gt;F</property>
                 <property name="title" translatable="yes" context="shortcut window">Find in current page</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;Primary&gt;N</property>
+                <property name="accelerator">&lt;Control&gt;N</property>
                 <property name="title" translatable="yes" context="shortcut window">Open a new window</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;Primary&gt;T</property>
+                <property name="accelerator">&lt;Control&gt;T</property>
                 <property name="title" translatable="yes" context="shortcut window">Open a new tab</property>
               </object>
             </child>
@@ -64,21 +64,21 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;Primary&gt;P</property>
+                <property name="accelerator">&lt;Control&gt;P</property>
                 <property name="title" translatable="yes" context="shortcut window">Print</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;Primary&gt;W</property>
+                <property name="accelerator">&lt;Control&gt;W</property>
                 <property name="title" translatable="yes" context="shortcut window">Close the current window</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;Primary&gt;Q</property>
+                <property name="accelerator">&lt;Control&gt;Q</property>
                 <property name="title" translatable="yes" context="shortcut window">Close all windows</property>
               </object>
             </child>
