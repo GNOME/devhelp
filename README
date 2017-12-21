@@ -1,28 +1,46 @@
-Devhelp information
-===================
+Devhelp
+=======
 
 The Devhelp web page:
 
-  https://wiki.gnome.org/Apps/Devhelp
+    https://wiki.gnome.org/Apps/Devhelp
 
-Dependencies:
+Dependencies
+------------
+
 - glib >= 2.38
 - gtk+ >= 3.22
 - webkit2gtk-4.0 >= 2.19.2
 - gsettings-desktop-schemas
 
-Devhelp is a developer tool for browsing and searching API documentation.
+Description
+-----------
 
-Its primary goal is to well support GTK+ and GNOME libraries, but other
-development platforms can be supported, as long as the API documentation is
-available in HTML and a *.devhelp2 index file is generated.
+Devhelp is a developer tool for browsing and searching API documentation.
+It provides an easy way to navigate through libraries and to search by
+function, struct, or macro.
+
+The documentation must be installed locally, so an internet connection is
+not needed to use Devhelp.
+
+Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are
+well supported. But other development platforms can be supported as well,
+as long as the API documentation is available in HTML and a *.devhelp2
+index file is generated.
+
+Devhelp integrates with other applications such as Glade, Builder or
+Anjuta, and plugins are available for different text editors (gedit, Vim,
+Emacs, Geany, …).
+
+How it works
+------------
 
 When you build (or install) a GNOME library, GTK-Doc will build an API
 reference for you and install it into:
 
-  $datadir/gtk-doc/html/$PACKAGE. 
+  $datadir/gtk-doc/html/$PACKAGE/
 
-Along with the HTML files, a .devhelp and/or .devhelp2 index file is
+Along with the HTML files, a *.devhelp and/or *.devhelp2 index file is
 also generated automatically. Thus Devhelp can simply scan that folder
 for those index files and display the books they represent.
 
@@ -34,20 +52,20 @@ documentation. You can read more about that specification here:
 The list of locations searched for devhelp books is:
 
 $XDG_DATA_HOME/devhelp/books
-   e.g. /home/ross/.local/share/devhelp/books/glib-2.0/glib-2.0.devhelp
+   e.g. /home/ross/.local/share/devhelp/books/glib-2.0/glib-2.0.devhelp2
 
 $XDG_DATA_HOME/gtk-doc/html
-   e.g. /home/ross/.local/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp
+   e.g. /home/ross/.local/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp2
 
 $XDG_DATA_DIRS/devhelp/books
-   e.g. /usr/local/share/devhelp/books/glib-2.0/glib-2.0.devhelp
+   e.g. /usr/local/share/devhelp/books/glib-2.0/glib-2.0.devhelp2
 
 $XDG_DATA_DIRS/gtk-doc/html
-   e.g. /usr/local/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp
+   e.g. /usr/local/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp2
 
 Note that the two latter consist of :-separated lists of directories to
 look for. Those environment variables are normally set up by the
 desktop environment or distribution.
 
-Note that the name of the directory the .devhelp file is in and the
-name of the .devhelp file (minus the extension) must match.
+Note that the name of the directory the *.devhelp2 file is in and the
+name of the *.devhelp2 file (minus the extension) must match.

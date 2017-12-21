@@ -9,6 +9,20 @@
   <shortdesc xml:lang="en">A developer tool for browsing and searching API documentation</shortdesc>
   <description xml:lang="en">
 Devhelp is a developer tool for browsing and searching API documentation.
+It provides an easy way to navigate through libraries and to search by
+function, struct, or macro.
+
+The documentation must be installed locally, so an internet connection is
+not needed to use Devhelp.
+
+Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are
+well supported. But other development platforms can be supported as well,
+as long as the API documentation is available in HTML and a *.devhelp2
+index file is generated.
+
+Devhelp integrates with other applications such as Glade, Builder or
+Anjuta, and plugins are available for different text editors (gedit, Vim,
+Emacs, Geany, …).
   </description>
 
   <homepage rdf:resource="https://wiki.gnome.org/Apps/Devhelp" />
