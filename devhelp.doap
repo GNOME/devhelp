@@ -6,10 +6,10 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">devhelp</name>
-  <shortdesc xml:lang="en">A developer tool for browsing and searching API
-documentation</shortdesc>
-  <description xml:lang="en">Devhelp is a developer tool for browsing and
-searching API documentation.</description>
+  <shortdesc xml:lang="en">A developer tool for browsing and searching API documentation</shortdesc>
+  <description xml:lang="en">
+Devhelp is a developer tool for browsing and searching API documentation.
+  </description>
 
   <homepage rdf:resource="https://wiki.gnome.org/Apps/Devhelp" />
   <mailing-list rdf:resource="https://mail.gnome.org/mailman/listinfo/gnome-devtools" />
