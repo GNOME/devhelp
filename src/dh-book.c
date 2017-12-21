@@ -33,9 +33,15 @@
  * @Short_description: A book, usually the documentation for one library
  *
  * A #DhBook usually contains the documentation for one library (or
- * application), for example GLib or GTK+. There is one #DhBook for each index
- * file found and parsed (an index file is a file with the extension `*.devhelp`
- * or `*.devhelp2`).
+ * application), for example GLib or GTK+. A #DhBook corresponds to one index
+ * file. An index file is a file with the extension `*.devhelp`, `*.devhelp2`,
+ * `*.devhelp.gz` or `*.devhelp2.gz`.
+ *
+ * #DhBook creates a #GFileMonitor on the index file, and emits the
+ * #DhBook::updated or #DhBook::deleted signal in case the index file has
+ * changed on the filesystem. #DhBookManager listens to those #DhBook signals,
+ * and emits in turn the #DhBookManager::book-deleted and
+ * #DhBookManager::book-created signals.
  */
 
 /* Timeout to wait for new events on the index file so that they are merged and
@@ -162,6 +168,9 @@ dh_book_class_init (DhBookClass *klass)
         /**
          * DhBook::updated:
          * @book: the #DhBook emitting the signal.
+         *
+         * The ::updated signal is emitted when the index file has been
+         * modified (but the file still exists).
          */
         signals[SIGNAL_UPDATED] =
                 g_signal_new ("updated",
@@ -175,6 +184,9 @@ dh_book_class_init (DhBookClass *klass)
         /**
          * DhBook::deleted:
          * @book: the #DhBook emitting the signal.
+         *
+         * The ::deleted signal is emitted when the index file has been deleted
+         * from the filesystem.
          */
         signals[SIGNAL_DELETED] =
                 g_signal_new ("deleted",
