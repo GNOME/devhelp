@@ -210,6 +210,12 @@ setup_accelerators (GtkApplication *app)
         accels[0] = "<Control>minus";
         gtk_application_set_accels_for_action (app, "win.zoom-out", accels);
 
+        /* For "<Control>equal": Epiphany also has this keyboard shortcut for
+         * zoom-in. On keyboards the = and + are usually on the same key, but +
+         * is less convenient to type because Shift must be pressed too.
+         * Apparently it's usual on Windows to press Ctrl+= to zoom in.
+         * https://bugzilla.gnome.org/show_bug.cgi?id=743704
+         */
         accels[0] = "<Control>plus";
         accels[1] = "<Control>equal";
         gtk_application_set_accels_for_action (app, "win.zoom-in", accels);
