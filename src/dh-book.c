@@ -4,6 +4,7 @@
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2004-2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -48,11 +49,11 @@ enum {
          * removed from DhBook, by introducing DhBookSelection, see:
          * https://bugzilla.gnome.org/show_bug.cgi?id=784491#c3
          */
-        SIGNAL_BOOK_ENABLED,
-        SIGNAL_BOOK_DISABLED,
+        SIGNAL_ENABLED,
+        SIGNAL_DISABLED,
 
-        SIGNAL_BOOK_UPDATED,
-        SIGNAL_BOOK_DELETED,
+        SIGNAL_UPDATED,
+        SIGNAL_DELETED,
         N_SIGNALS
 };
 
@@ -136,7 +137,7 @@ dh_book_class_init (DhBookClass *klass)
          * DhBook::enabled:
          * @book: the #DhBook emitting the signal.
          */
-        signals[SIGNAL_BOOK_ENABLED] =
+        signals[SIGNAL_ENABLED] =
                 g_signal_new ("enabled",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -149,7 +150,7 @@ dh_book_class_init (DhBookClass *klass)
          * DhBook::disabled:
          * @book: the #DhBook emitting the signal.
          */
-        signals[SIGNAL_BOOK_DISABLED] =
+        signals[SIGNAL_DISABLED] =
                 g_signal_new ("disabled",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -162,7 +163,7 @@ dh_book_class_init (DhBookClass *klass)
          * DhBook::updated:
          * @book: the #DhBook emitting the signal.
          */
-        signals[SIGNAL_BOOK_UPDATED] =
+        signals[SIGNAL_UPDATED] =
                 g_signal_new ("updated",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -175,7 +176,7 @@ dh_book_class_init (DhBookClass *klass)
          * DhBook::deleted:
          * @book: the #DhBook emitting the signal.
          */
-        signals[SIGNAL_BOOK_DELETED] =
+        signals[SIGNAL_DELETED] =
                 g_signal_new ("deleted",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -215,7 +216,7 @@ monitor_event_timeout_cb (gpointer data)
                  * doing it.
                  */
                 g_object_ref (book);
-                g_signal_emit (book, signals[SIGNAL_BOOK_DELETED], 0);
+                g_signal_emit (book, signals[SIGNAL_DELETED], 0);
                 g_object_unref (book);
                 break;
 
@@ -224,7 +225,7 @@ monitor_event_timeout_cb (gpointer data)
                  * doing it.
                  */
                 g_object_ref (book);
-                g_signal_emit (book, signals[SIGNAL_BOOK_UPDATED], 0);
+                g_signal_emit (book, signals[SIGNAL_UPDATED], 0);
                 g_object_unref (book);
                 break;
 
@@ -571,7 +572,7 @@ dh_book_set_enabled (DhBook   *book,
         if (priv->enabled != enabled) {
                 priv->enabled = enabled;
                 g_signal_emit (book,
-                               enabled ? signals[SIGNAL_BOOK_ENABLED] : signals[SIGNAL_BOOK_DISABLED],
+                               enabled ? signals[SIGNAL_ENABLED] : signals[SIGNAL_DISABLED],
                                0);
         }
 }
