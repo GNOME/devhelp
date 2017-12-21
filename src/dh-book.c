@@ -376,15 +376,13 @@ dh_book_new (GFile *index_file)
 }
 
 /**
- * dh_book_get_links:
+ * dh_book_get_index_file:
  * @book: a #DhBook.
  *
- * Returns: (element-type DhLink) (transfer none) (nullable): the list of
- * <emphasis>all</emphasis> #DhLink's part of @book, or %NULL if the book is
- * disabled.
+ * Returns: (transfer none): the index file.
  */
-GList *
-dh_book_get_links (DhBook *book)
+GFile *
+dh_book_get_index_file (DhBook *book)
 {
         DhBookPrivate *priv;
 
@@ -392,80 +390,7 @@ dh_book_get_links (DhBook *book)
 
         priv = dh_book_get_instance_private (book);
 
-        return priv->enabled ? priv->links : NULL;
-}
-
-/**
- * dh_book_get_completions:
- * @book: a #DhBook.
- *
- * Returns: (element-type utf8) (transfer none) (nullable): the completions
- * associated with the book.
- */
-GList *
-dh_book_get_completions (DhBook *book)
-{
-        DhBookPrivate *priv;
-
-        g_return_val_if_fail (DH_IS_BOOK (book), NULL);
-
-        priv = dh_book_get_instance_private (book);
-
-        if (!priv->enabled)
-                return NULL;
-
-        if (priv->completions == NULL) {
-                GList *l;
-
-                for (l = priv->links; l != NULL; l = l->next) {
-                        DhLink *link = l->data;
-                        gchar *str;
-
-                        /* Add additional "page:" and "book:" completions.
-                         * FIXME: broken, doesn't match what DhKeywordModel
-                         * does. But maybe the feature will be removed, see:
-                         * https://bugzilla.gnome.org/show_bug.cgi?id=791442
-                         */
-                        if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
-                                str = g_strdup_printf ("book:%s", dh_link_get_name (link));
-                                priv->completions = g_list_prepend (priv->completions, str);
-                        }
-                        else if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE) {
-                                str = g_strdup_printf ("page:%s", dh_link_get_name (link));
-                                priv->completions = g_list_prepend (priv->completions, str);
-                        }
-
-                        str = g_strdup (dh_link_get_name (link));
-                        priv->completions = g_list_prepend (priv->completions, str);
-                }
-        }
-
-        return priv->completions;
-}
-
-/**
- * dh_book_get_tree:
- * @book: a #DhBook.
- *
- * Gets the general structure of the book, as a tree. The tree contains only
- * #DhLink's of type %DH_LINK_TYPE_BOOK or %DH_LINK_TYPE_PAGE. The other
- * #DhLink's are not contained in the tree. To have a list of
- * <emphasis>all</emphasis> #DhLink's part of the book, you need to call
- * dh_book_get_links().
- *
- * Returns: (transfer none) (nullable): the tree of #DhLink's part of the @book,
- * or %NULL if the book is disabled.
- */
-GNode *
-dh_book_get_tree (DhBook *book)
-{
-        DhBookPrivate *priv;
-
-        g_return_val_if_fail (DH_IS_BOOK (book), NULL);
-
-        priv = dh_book_get_instance_private (book);
-
-        return priv->enabled ? priv->tree : NULL;
+        return priv->index_file;
 }
 
 /**
@@ -527,13 +452,15 @@ dh_book_get_language (DhBook *book)
 }
 
 /**
- * dh_book_get_index_file:
+ * dh_book_get_links:
  * @book: a #DhBook.
  *
- * Returns: (transfer none): the index file.
+ * Returns: (element-type DhLink) (transfer none) (nullable): the list of
+ * <emphasis>all</emphasis> #DhLink's part of @book, or %NULL if the book is
+ * disabled.
  */
-GFile *
-dh_book_get_index_file (DhBook *book)
+GList *
+dh_book_get_links (DhBook *book)
 {
         DhBookPrivate *priv;
 
@@ -541,7 +468,80 @@ dh_book_get_index_file (DhBook *book)
 
         priv = dh_book_get_instance_private (book);
 
-        return priv->index_file;
+        return priv->enabled ? priv->links : NULL;
+}
+
+/**
+ * dh_book_get_tree:
+ * @book: a #DhBook.
+ *
+ * Gets the general structure of the book, as a tree. The tree contains only
+ * #DhLink's of type %DH_LINK_TYPE_BOOK or %DH_LINK_TYPE_PAGE. The other
+ * #DhLink's are not contained in the tree. To have a list of
+ * <emphasis>all</emphasis> #DhLink's part of the book, you need to call
+ * dh_book_get_links().
+ *
+ * Returns: (transfer none) (nullable): the tree of #DhLink's part of the @book,
+ * or %NULL if the book is disabled.
+ */
+GNode *
+dh_book_get_tree (DhBook *book)
+{
+        DhBookPrivate *priv;
+
+        g_return_val_if_fail (DH_IS_BOOK (book), NULL);
+
+        priv = dh_book_get_instance_private (book);
+
+        return priv->enabled ? priv->tree : NULL;
+}
+
+/**
+ * dh_book_get_completions:
+ * @book: a #DhBook.
+ *
+ * Returns: (element-type utf8) (transfer none) (nullable): the completions
+ * associated with the book.
+ */
+GList *
+dh_book_get_completions (DhBook *book)
+{
+        DhBookPrivate *priv;
+
+        g_return_val_if_fail (DH_IS_BOOK (book), NULL);
+
+        priv = dh_book_get_instance_private (book);
+
+        if (!priv->enabled)
+                return NULL;
+
+        if (priv->completions == NULL) {
+                GList *l;
+
+                for (l = priv->links; l != NULL; l = l->next) {
+                        DhLink *link = l->data;
+                        gchar *str;
+
+                        /* Add additional "page:" and "book:" completions.
+                         * FIXME: broken, doesn't match what DhKeywordModel
+                         * does. But maybe the feature will be removed, see:
+                         * https://bugzilla.gnome.org/show_bug.cgi?id=791442
+                         */
+                        if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
+                                str = g_strdup_printf ("book:%s", dh_link_get_name (link));
+                                priv->completions = g_list_prepend (priv->completions, str);
+                        }
+                        else if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE) {
+                                str = g_strdup_printf ("page:%s", dh_link_get_name (link));
+                                priv->completions = g_list_prepend (priv->completions, str);
+                        }
+
+                        str = g_strdup (dh_link_get_name (link));
+                        priv->completions = g_list_prepend (priv->completions, str);
+                }
+        }
+
+        return priv->completions;
 }
 
 /**

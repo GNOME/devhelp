@@ -4,6 +4,7 @@
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2005-2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -48,11 +49,7 @@ GType        dh_book_get_type        (void) G_GNUC_CONST;
 
 DhBook *     dh_book_new             (GFile *index_file);
 
-GList *      dh_book_get_links       (DhBook *book);
-
-GList *      dh_book_get_completions (DhBook *book);
-
-GNode *      dh_book_get_tree        (DhBook *book);
+GFile *      dh_book_get_index_file  (DhBook *book);
 
 const gchar *dh_book_get_id          (DhBook *book);
 
@@ -60,7 +57,11 @@ const gchar *dh_book_get_title       (DhBook *book);
 
 const gchar *dh_book_get_language    (DhBook *book);
 
-GFile *      dh_book_get_index_file  (DhBook *book);
+GList *      dh_book_get_links       (DhBook *book);
+
+GNode *      dh_book_get_tree        (DhBook *book);
+
+GList *      dh_book_get_completions (DhBook *book);
 
 gboolean     dh_book_get_enabled     (DhBook *book);
 
