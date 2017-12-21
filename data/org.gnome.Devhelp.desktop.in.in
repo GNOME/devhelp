@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Devhelp
-Comment=Developer’s Help program
-GenericName=Documentation Browser
+Comment=A developer tool for browsing and searching API documentation
+GenericName=API Documentation Browser
 # Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 Keywords=documentation;information;manual;developer;api;
 Exec=devhelp

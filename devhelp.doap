@@ -6,9 +6,10 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">devhelp</name>
-  <shortdesc xml:lang="en">API documentation browser</shortdesc>
-  <description xml:lang="en">Devhelp is an API documentation browser for GTK+
-and GNOME. It works natively with GTK-Doc.</description>
+  <shortdesc xml:lang="en">A developer tool for browsing and searching API
+documentation</shortdesc>
+  <description xml:lang="en">Devhelp is a developer tool for browsing and
+searching API documentation.</description>
 
   <homepage rdf:resource="https://wiki.gnome.org/Apps/Devhelp" />
   <mailing-list rdf:resource="https://mail.gnome.org/mailman/listinfo/gnome-devtools" />
@@ -24,7 +25,6 @@ and GNOME. It works natively with GTK-Doc.</description>
       <gnome:userid>fpeters</gnome:userid>
     </foaf:Person>
   </maintainer>
-
   <maintainer>
     <foaf:Person>
       <foaf:name>Sébastien Wilmet</foaf:name>
@@ -32,13 +32,4 @@ and GNOME. It works natively with GTK-Doc.</description>
       <gnome:userid>swilmet</gnome:userid>
     </foaf:Person>
   </maintainer>
-
-  <author>
-    <foaf:Person>
-      <foaf:name>Richard Hult</foaf:name>
-      <foaf:mbox rdf:resource="mailto:richard@imendio.com" />
-      <gnome:userid>rhult</gnome:userid>
-    </foaf:Person>
-  </author>
-
 </Project>
