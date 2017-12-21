@@ -522,20 +522,6 @@ dh_book_get_completions (DhBook *book)
                         DhLink *link = l->data;
                         gchar *str;
 
-                        /* Add additional "page:" and "book:" completions.
-                         * FIXME: broken, doesn't match what DhKeywordModel
-                         * does. But maybe the feature will be removed, see:
-                         * https://bugzilla.gnome.org/show_bug.cgi?id=791442
-                         */
-                        if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK) {
-                                str = g_strdup_printf ("book:%s", dh_link_get_name (link));
-                                priv->completions = g_list_prepend (priv->completions, str);
-                        }
-                        else if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE) {
-                                str = g_strdup_printf ("page:%s", dh_link_get_name (link));
-                                priv->completions = g_list_prepend (priv->completions, str);
-                        }
-
                         str = g_strdup (dh_link_get_name (link));
                         priv->completions = g_list_prepend (priv->completions, str);
                 }
