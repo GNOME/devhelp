@@ -11,9 +11,14 @@ Dependencies:
 - webkit2gtk-4.0 >= 2.19.2
 - gsettings-desktop-schemas
 
-Devhelp's primary goal is to be an API documentation browser for
-GNOME. When you build (or install) a GNOME library, it will build an
-API reference for you and install it into:
+Devhelp is a developer tool for browsing and searching API documentation.
+
+Its primary goal is to well support GTK+ and GNOME libraries, but other
+development platforms can be supported, as long as the API documentation is
+available in HTML and a *.devhelp2 index file is generated.
+
+When you build (or install) a GNOME library, GTK-Doc will build an API
+reference for you and install it into:
 
   $datadir/gtk-doc/html/$PACKAGE. 
 

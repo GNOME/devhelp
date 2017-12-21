@@ -80,7 +80,7 @@ about_cb (GSimpleAction *action,
                                 */
                                "name", _("Devhelp"),
                                "version", PACKAGE_VERSION,
-                               "comments", _("A developers’ help browser for GNOME"),
+                               "comments", _("A developer tool for browsing and searching API documentation"),
                                "authors", authors,
                                "translator-credits", _("translator-credits"),
                                "website", PACKAGE_URL,
