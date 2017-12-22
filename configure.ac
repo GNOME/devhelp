@@ -83,7 +83,6 @@ AC_CONFIG_FILES([
 	data/libdevhelp-3.0.pc
 	data/Makefile
 	data/org.gnome.Devhelp.desktop.in
-	data/dtd/Makefile
 	data/icons/Makefile
 	docs/Makefile
 	docs/reference/Makefile

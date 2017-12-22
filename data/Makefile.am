@@ -1,4 +1,4 @@
-SUBDIRS = dtd icons
+SUBDIRS = icons
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libdevhelp-3.0.pc
