@@ -87,8 +87,8 @@ AC_CONFIG_FILES([
 	data/icons/Makefile
 	docs/Makefile
 	docs/reference/Makefile
-	misc/Makefile
-	misc/gedit-plugin/Makefile
+	plugins/Makefile
+	plugins/gedit-plugin/Makefile
 	po/Makefile.in
 	src/Makefile
 	unit-tests/Makefile

@@ -3,8 +3,8 @@
 data/org.gnome.Devhelp.appdata.xml.in
 data/org.gnome.Devhelp.desktop.in.in
 data/org.gnome.devhelp.gschema.xml
-misc/gedit-plugin/devhelp.plugin.desktop.in
-misc/gedit-plugin/devhelp.py
+plugins/gedit-plugin/devhelp.plugin.desktop.in
+plugins/gedit-plugin/devhelp.py
 src/dh-app.c
 src/dh-assistant.c
 src/dh-assistant.ui
