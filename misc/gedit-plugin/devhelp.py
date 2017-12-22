@@ -31,7 +31,7 @@ class DevhelpAppActivatable(GObject.Object, Gedit.AppActivatable):
 
     def __init__(self):
         GObject.Object.__init__(self)
- 
+
     def do_activate(self):
         self.app.add_accelerator("F2", "win.devhelp", None)
 
