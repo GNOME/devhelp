@@ -929,6 +929,10 @@ dh_book_manager_set_group_by_language (DhBookManager *book_manager,
 
         priv = dh_book_manager_get_instance_private (book_manager);
 
-        priv->group_by_language = group_by_language;
-        g_object_notify (G_OBJECT (book_manager), "group-by-language");
+        group_by_language = group_by_language != FALSE;
+
+        if (priv->group_by_language != group_by_language) {
+                priv->group_by_language = group_by_language;
+                g_object_notify (G_OBJECT (book_manager), "group-by-language");
+        }
 }
