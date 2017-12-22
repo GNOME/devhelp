@@ -57,6 +57,15 @@
 
 #define BYTES_PER_READ 4096
 
+typedef enum {
+        FORMAT_VERSION_1,
+
+        /* The main change is that version 2 uses <keyword> instead of
+         * <function>.
+         */
+        FORMAT_VERSION_2
+} FormatVersion;
+
 typedef struct {
         GMarkupParser *markup_parser;
         GMarkupParseContext *context;
@@ -78,8 +87,7 @@ typedef struct {
         /* Current sub section node */
         GNode *parent_node;
 
-        /* Version 2 uses <keyword> instead of <function>. */
-        gint version;
+        FormatVersion version;
 
         guint parsing_chapters : 1;
         guint parsing_keywords : 1;
@@ -297,7 +305,7 @@ parser_start_node_keyword (DhParser             *parser,
         DhLink *link;
         gchar *name_to_free = NULL;
 
-        if (parser->version == 2 &&
+        if (parser->version == FORMAT_VERSION_2 &&
             g_ascii_strcasecmp (node_name, "keyword") != 0) {
                 g_markup_parse_context_get_position (context, &line, &col);
                 g_set_error (error,
@@ -306,7 +314,7 @@ parser_start_node_keyword (DhParser             *parser,
                              "Expected <keyword> element, got <%s> at line %d, column %d.",
                              node_name, line, col);
                 return;
-        } else if (parser->version == 1 &&
+        } else if (parser->version == FORMAT_VERSION_1 &&
                    g_ascii_strcasecmp (node_name, "function") != 0) {
                 g_markup_parse_context_get_position (context, &line, &col);
                 g_set_error (error,
@@ -335,12 +343,12 @@ parser_start_node_keyword (DhParser             *parser,
                              DH_ERROR_MALFORMED_BOOK,
                              "“name” and “link” attributes are required inside "
                              "the <%s> element at line %d, column %d.",
-                             parser->version == 2 ? "keyword" : "function",
+                             parser->version == FORMAT_VERSION_2 ? "keyword" : "function",
                              line, col);
                 return;
         }
 
-        if (parser->version == 2 && type == NULL) {
+        if (parser->version == FORMAT_VERSION_2 && type == NULL) {
                 g_markup_parse_context_get_position (context, &line, &col);
                 g_set_error (error,
                              DH_ERROR,
@@ -351,7 +359,7 @@ parser_start_node_keyword (DhParser             *parser,
                 return;
         }
 
-        if (parser->version == 2) {
+        if (parser->version == FORMAT_VERSION_2) {
                 if (g_str_equal (type, "function"))
                         link_type = DH_LINK_TYPE_FUNCTION;
                 else if (g_str_equal (type, "struct"))
@@ -548,16 +556,16 @@ dh_parser_read_file (GFile   *index_file,
         index_file_uri = g_file_get_uri (index_file);
 
         if (g_str_has_suffix (index_file_uri, ".devhelp2")) {
-                parser->version = 2;
+                parser->version = FORMAT_VERSION_2;
                 gz = FALSE;
         } else if (g_str_has_suffix (index_file_uri, ".devhelp")) {
-                parser->version = 1;
+                parser->version = FORMAT_VERSION_1;
                 gz = FALSE;
         } else if (g_str_has_suffix (index_file_uri, ".devhelp2.gz")) {
-                parser->version = 2;
+                parser->version = FORMAT_VERSION_2;
                 gz = TRUE;
         } else {
-                parser->version = 1;
+                parser->version = FORMAT_VERSION_1;
                 gz = TRUE;
         }
 
