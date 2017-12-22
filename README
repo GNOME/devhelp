@@ -32,8 +32,19 @@ Devhelp integrates with other applications such as Glade, Builder or
 Anjuta, and plugins are available for different text editors (gedit, Vim,
 Emacs, Geany, …).
 
-How it works
-------------
+Integration with other developer tools
+--------------------------------------
+
+Devhelp provides some command line options, such as --search and
+--search-assistant. A text editor plugin can for example launch the command
+`devhelp --search function_name` when a keyboard shortcut is pressed, with the
+function_name under the cursor.
+
+Devhelp also provides a shared library, to integrate the GTK+ widgets inside an
+IDE. It is used for example by Builder and Anjuta.
+
+How it finds the API documentation
+----------------------------------
 
 When you build (or install) a GNOME library, GTK-Doc will build an API
 reference for you and install it into:
@@ -69,3 +80,8 @@ desktop environment or distribution.
 
 Note that the name of the directory the *.devhelp2 file is in and the
 name of the *.devhelp2 file (minus the extension) must match.
+
+The first version of the index file format (with the *.devhelp file
+extension) is deprecated and its support will probably be removed in a
+future version. You should use the second version, with the *.devhelp2
+file extension.
