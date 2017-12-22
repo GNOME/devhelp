@@ -547,8 +547,8 @@ book_manager_add_from_filepath (DhBookManager *book_manager,
         DhBook *book;
         gboolean book_enabled;
 
-        g_return_if_fail (book_manager);
-        g_return_if_fail (book_path);
+        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
+        g_return_if_fail (book_path != NULL);
 
         priv = dh_book_manager_get_instance_private (book_manager);
 
@@ -736,8 +736,8 @@ book_manager_add_from_dir (DhBookManager *book_manager,
         GDir *dir;
         const gchar *name;
 
-        g_return_if_fail (book_manager);
-        g_return_if_fail (dir_path);
+        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
+        g_return_if_fail (dir_path != NULL);
 
         /* Open directory */
         dir = g_dir_open (dir_path, 0, NULL);
@@ -887,7 +887,7 @@ dh_book_manager_get_books (DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv;
 
-        g_return_val_if_fail (book_manager, NULL);
+        g_return_val_if_fail (DH_IS_BOOK_MANAGER (book_manager), NULL);
 
         priv = dh_book_manager_get_instance_private (book_manager);
 
@@ -905,7 +905,7 @@ dh_book_manager_get_group_by_language (DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv;
 
-        g_return_val_if_fail (book_manager, FALSE);
+        g_return_val_if_fail (DH_IS_BOOK_MANAGER (book_manager), FALSE);
 
         priv = dh_book_manager_get_instance_private (book_manager);
 
@@ -925,7 +925,7 @@ dh_book_manager_set_group_by_language (DhBookManager *book_manager,
 {
         DhBookManagerPrivate *priv;
 
-        g_return_if_fail (book_manager);
+        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
 
         priv = dh_book_manager_get_instance_private (book_manager);
 
