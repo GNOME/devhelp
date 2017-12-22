@@ -41,21 +41,25 @@ struct _DhBookManagerClass {
         GObjectClass parent_class;
 };
 
-GType          dh_book_manager_get_type              (void) G_GNUC_CONST;
-DhBookManager *dh_book_manager_get_singleton         (void);
-GList         *dh_book_manager_get_books             (DhBookManager *book_manager);
-gboolean       dh_book_manager_get_group_by_language (DhBookManager *book_manager);
-void           dh_book_manager_set_group_by_language (DhBookManager *book_manager,
-                                                      gboolean       group_by_language);
+GType           dh_book_manager_get_type                (void) G_GNUC_CONST;
+
+DhBookManager * dh_book_manager_get_singleton           (void);
+
+GList *         dh_book_manager_get_books               (DhBookManager *book_manager);
+
+gboolean        dh_book_manager_get_group_by_language   (DhBookManager *book_manager);
+
+void            dh_book_manager_set_group_by_language   (DhBookManager *book_manager,
+                                                         gboolean       group_by_language);
 
 G_DEPRECATED
-DhBookManager *dh_book_manager_new                   (void);
+DhBookManager * dh_book_manager_new                     (void);
 
 G_DEPRECATED
-void           dh_book_manager_populate              (DhBookManager *book_manager);
+void            dh_book_manager_populate                (DhBookManager *book_manager);
 
 G_GNUC_INTERNAL
-void           _dh_book_manager_unref_singleton      (void);
+void            _dh_book_manager_unref_singleton        (void);
 
 G_END_DECLS
 

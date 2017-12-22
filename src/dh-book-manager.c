@@ -39,24 +39,24 @@
 
 typedef struct {
         DhBookManager *book_manager;
-        GFile         *file;
+        GFile *file;
 } NewPossibleBookData;
 
 typedef struct {
         /* The list of all DhBooks* found in the system */
-        GList      *books;
+        GList *books;
 
         /* GFile* -> GFileMonitor* */
         GHashTable *monitors;
 
         /* List of book names (gchar*) currently disabled */
-        GSList     *books_disabled;
+        GSList *books_disabled;
 
         /* List of DhLanguage* with at least one book enabled */
-        GList      *languages;
+        GList *languages;
 
         /* Whether books should be grouped by language */
-        guint       group_by_language : 1;
+        guint group_by_language : 1;
 } DhBookManagerPrivate;
 
 enum {
@@ -284,7 +284,7 @@ book_manager_get_book_path (const gchar *base_path,
         };
         gchar *tmp;
         gchar *book_path;
-        guint  i;
+        guint i;
 
         for (i = 0; suffixes[i]; i++) {
                 tmp = g_build_filename (base_path, name, NULL);
@@ -296,6 +296,7 @@ book_manager_get_book_path (const gchar *base_path,
                 }
                 g_free (book_path);
         }
+
         return NULL;
 }
 
@@ -428,7 +429,7 @@ static void
 book_manager_book_deleted_cb (DhBook   *book,
                               gpointer  user_data)
 {
-        DhBookManager     *book_manager = user_data;
+        DhBookManager *book_manager = user_data;
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         GList *li;
 
@@ -480,6 +481,7 @@ book_manager_find_book_in_disabled_list (GSList *books_disabled,
                         return li;
                 }
         }
+
         return NULL;
 }
 
@@ -487,9 +489,9 @@ static void
 book_manager_book_enabled_cb (DhBook   *book,
                               gpointer  user_data)
 {
-        DhBookManager     *book_manager = user_data;
+        DhBookManager *book_manager = user_data;
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GSList            *li;
+        GSList *li;
 
         li = book_manager_find_book_in_disabled_list (priv->books_disabled,
                                                       book);
@@ -513,9 +515,9 @@ static void
 book_manager_book_disabled_cb (DhBook   *book,
                                gpointer  user_data)
 {
-        DhBookManager     *book_manager = user_data;
+        DhBookManager *book_manager = user_data;
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GSList            *li;
+        GSList *li;
 
         li = book_manager_find_book_in_disabled_list (priv->books_disabled,
                                                       book);
@@ -623,9 +625,9 @@ static gboolean
 book_manager_new_possible_book_cb (gpointer user_data)
 {
         NewPossibleBookData *data = user_data;
-        gchar               *file_path;
-        gchar               *file_basename;
-        gchar               *book_path;
+        gchar *file_path;
+        gchar *file_basename;
+        gchar *book_path;
 
         file_path = g_file_get_path (data->file);
         file_basename = g_file_get_basename (data->file);
@@ -655,7 +657,7 @@ book_manager_booklist_monitor_event_cb (GFileMonitor      *file_monitor,
                                         GFileMonitorEvent  event_type,
                                         gpointer           user_data)
 {
-        DhBookManager       *book_manager = user_data;
+        DhBookManager *book_manager = user_data;
         NewPossibleBookData *data;
 
         /* In the book manager we only handle events for new directories
@@ -682,9 +684,9 @@ static void
 book_manager_monitor_path (DhBookManager *book_manager,
                            const gchar   *path)
 {
-        GFileMonitor      *file_monitor;
-        GFile             *file;
         DhBookManagerPrivate *priv;
+        GFileMonitor *file_monitor;
+        GFile *file;
 
         priv = dh_book_manager_get_instance_private (book_manager);
 
@@ -731,7 +733,7 @@ static void
 book_manager_add_from_dir (DhBookManager *book_manager,
                            const gchar   *dir_path)
 {
-        GDir        *dir;
+        GDir *dir;
         const gchar *name;
 
         g_return_if_fail (book_manager);
@@ -788,7 +790,7 @@ book_manager_add_books_in_data_dir (DhBookManager *book_manager,
 static void
 populate (DhBookManager *book_manager)
 {
-        const gchar * const * system_dirs;
+        const gchar * const *system_dirs;
 
         book_manager_add_books_in_data_dir (book_manager,
                                             g_get_user_data_dir ());
