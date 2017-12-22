@@ -80,7 +80,6 @@ PKG_CHECK_VAR([WEBKITGTK_PREFIX], [webkit2gtk-4.0], [prefix])
 
 AC_CONFIG_FILES([
 	Makefile
-	contrib/Makefile
 	data/libdevhelp-3.0.pc
 	data/Makefile
 	data/org.gnome.Devhelp.desktop.in
