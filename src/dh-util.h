@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2004,2008 Imendio AB
+ * Copyright (C) 2015, 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -49,6 +50,8 @@ void         dh_util_queue_concat                 (GQueue *q1,
 
 G_GNUC_INTERNAL
 void         _dh_util_free_book_tree              (GNode *book_tree);
+
+GSList *     dh_util_get_possible_index_files     (GFile *book_directory);
 
 G_END_DECLS
 

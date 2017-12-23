@@ -304,3 +304,47 @@ _dh_util_free_book_tree (GNode *book_tree)
 
         g_node_destroy (book_tree);
 }
+
+/* Returns: (transfer full) (element-type GFile): the list of possible Devhelp
+ * index files in @book_directory, in order of preference.
+ */
+GSList *
+dh_util_get_possible_index_files (GFile *book_directory)
+{
+        const gchar *extensions[] = {
+                ".devhelp2",
+                ".devhelp2.gz",
+                ".devhelp",
+                ".devhelp.gz",
+                NULL
+        };
+        gchar *directory_name;
+        GSList *list = NULL;
+        gint i;
+
+        g_return_val_if_fail (G_IS_FILE (book_directory), NULL);
+
+        directory_name = g_file_get_basename (book_directory);
+        g_return_val_if_fail (directory_name != NULL, NULL);
+
+        for (i = 0; extensions[i] != NULL; i++) {
+                const gchar *cur_extension = extensions[i];
+                gchar *index_file_name;
+                GFile *index_file;
+
+                /* The name of the directory the index file is in and the name
+                 * of the index file (minus the extension) must match.
+                 */
+                index_file_name = g_strconcat (directory_name, cur_extension, NULL);
+
+                index_file = g_file_get_child (book_directory, index_file_name);
+                list = g_slist_prepend (list, index_file);
+
+                g_free (index_file_name);
+        }
+
+        list = g_slist_reverse (list);
+
+        g_free (directory_name);
+        return list;
+}

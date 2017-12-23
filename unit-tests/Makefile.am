@@ -15,6 +15,9 @@ UNIT_TEST_PROGS =
 UNIT_TEST_PROGS += test-link
 test_link_SOURCES = test-link.c
 
+UNIT_TEST_PROGS += test-util
+test_util_SOURCES = test-util.c
+
 noinst_PROGRAMS = $(UNIT_TEST_PROGS)
 TESTS = $(UNIT_TEST_PROGS)
 
