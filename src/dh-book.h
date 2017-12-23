@@ -68,9 +68,6 @@ gboolean     dh_book_get_enabled     (DhBook *book);
 void         dh_book_set_enabled     (DhBook   *book,
                                       gboolean  enabled);
 
-gint         dh_book_cmp_by_path     (DhBook *a,
-                                      DhBook *b);
-
 gint         dh_book_cmp_by_id       (DhBook *a,
                                       DhBook *b);
 

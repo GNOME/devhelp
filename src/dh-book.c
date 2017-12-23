@@ -576,42 +576,6 @@ dh_book_set_enabled (DhBook   *book,
 }
 
 /**
- * dh_book_cmp_by_path:
- * @a: a #DhBook.
- * @b: a #DhBook.
- *
- * Compares the #DhBook's by their path to the index file.
- *
- * Returns: an integer less than, equal to, or greater than zero, if @a is <, ==
- * or > than @b.
- */
-gint
-dh_book_cmp_by_path (DhBook *a,
-                     DhBook *b)
-{
-        DhBookPrivate *priv_a;
-        DhBookPrivate *priv_b;
-        gchar *path_a;
-        gchar *path_b;
-        gint diff;
-
-        if (a == NULL || b == NULL)
-                return -1;
-
-        priv_a = dh_book_get_instance_private (a);
-        priv_b = dh_book_get_instance_private (b);
-
-        path_a = g_file_get_path (priv_a->index_file);
-        path_b = g_file_get_path (priv_b->index_file);
-
-        diff = g_strcmp0 (path_a, path_b);
-
-        g_free (path_a);
-        g_free (path_b);
-        return diff;
-}
-
-/**
  * dh_book_cmp_by_id:
  * @a: a #DhBook.
  * @b: a #DhBook.

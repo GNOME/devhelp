@@ -37,7 +37,6 @@ dh_book_get_tree
 dh_book_get_completions
 dh_book_get_enabled
 dh_book_set_enabled
-dh_book_cmp_by_path
 dh_book_cmp_by_id
 dh_book_cmp_by_title
 <SUBSECTION Standard>
