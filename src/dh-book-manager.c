@@ -80,8 +80,8 @@ static DhBookManager *singleton = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
-static void add_from_filepath (DhBookManager *book_manager,
-                               const gchar   *book_path);
+static void create_book (DhBookManager *book_manager,
+                         GFile         *index_file);
 
 static void
 dh_book_manager_get_property (GObject    *object,
@@ -457,15 +457,16 @@ book_updated_cb (DhBook   *book,
 {
         DhBookManager *book_manager = user_data;
         GFile *index_file;
-        gchar *book_path;
 
-        /* When we update a book, we need to delete it and then
-         * create it again. */
+        /* When we update a book, we need to delete it and then create it again. */
+
         index_file = dh_book_get_index_file (book);
-        book_path = g_file_get_path (index_file);
+        g_object_ref (index_file);
+
         book_deleted_cb (book, book_manager);
-        add_from_filepath (book_manager, book_path);
-        g_free (book_path);
+
+        create_book (book_manager, index_file);
+        g_object_unref (index_file);
 }
 
 static GSList *
@@ -534,33 +535,30 @@ book_disabled_cb (DhBook   *book,
 }
 
 static void
-add_from_filepath (DhBookManager *book_manager,
-                   const gchar   *book_path)
+create_book (DhBookManager *book_manager,
+             GFile         *index_file)
 {
         DhBookManagerPrivate *priv;
-        GFile *index_file;
         DhBook *book;
         gboolean book_enabled;
-
-        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
-        g_return_if_fail (book_path != NULL);
+        GList *l;
 
         priv = dh_book_manager_get_instance_private (book_manager);
 
-        index_file = g_file_new_for_path (book_path);
-        book = dh_book_new (index_file);
-        g_object_unref (index_file);
+        /* Check if a DhBook at the same location has already been loaded. */
+        for (l = priv->books; l != NULL; l = l->next) {
+                DhBook *cur_book = DH_BOOK (l->data);
+                GFile *cur_index_file;
 
+                cur_index_file = dh_book_get_index_file (cur_book);
+
+                if (g_file_equal (index_file, cur_index_file))
+                        return;
+        }
+
+        book = dh_book_new (index_file);
         if (book == NULL)
                 return;
-
-        /* Check if book with same path was already loaded in the manager */
-        if (g_list_find_custom (priv->books,
-                                book,
-                                (GCompareFunc)dh_book_cmp_by_path)) {
-                g_object_unref (book);
-                return;
-        }
 
         /* Check if book with same ID was already loaded in the manager (we need
          * to force unique book IDs).
@@ -572,43 +570,40 @@ add_from_filepath (DhBookManager *book_manager,
                 return;
         }
 
-        /* Add the book to the book list */
         priv->books = g_list_insert_sorted (priv->books,
                                             book,
                                             (GCompareFunc)dh_book_cmp_by_title);
 
-        /* Set the proper enabled/disabled state, depending on conf */
         book_enabled = !is_book_disabled_in_conf (book_manager, book);
         dh_book_set_enabled (book, book_enabled);
 
-        /* Store language if enabled */
-        if (book_enabled) {
+        if (book_enabled)
                 inc_language (book_manager, dh_book_get_language (book));
-        }
 
-        /* Get notifications of book being deleted or updated */
         g_signal_connect_object (book,
                                  "deleted",
                                  G_CALLBACK (book_deleted_cb),
                                  book_manager,
                                  0);
+
         g_signal_connect_object (book,
                                  "updated",
                                  G_CALLBACK (book_updated_cb),
                                  book_manager,
                                  0);
+
         g_signal_connect_object (book,
                                  "enabled",
                                  G_CALLBACK (book_enabled_cb),
                                  book_manager,
                                  0);
+
         g_signal_connect_object (book,
                                  "disabled",
                                  G_CALLBACK (book_disabled_cb),
                                  book_manager,
                                  0);
 
-        /* Emit signal to notify others */
         g_signal_emit (book_manager,
                        signals[BOOK_CREATED],
                        0,
@@ -628,9 +623,13 @@ new_possible_book_cb (gpointer user_data)
 
         /* Compute book path, will return NULL if it's not a proper path */
         book_path = get_book_path (file_path, file_basename);
-        if (book_path) {
-                /* Add book from filepath */
-                add_from_filepath (data->book_manager, book_path);
+        if (book_path != NULL) {
+                GFile *index_file;
+
+                index_file = g_file_new_for_path (book_path);
+                create_book (data->book_manager, index_file);
+                g_object_unref (index_file);
+
                 g_free (book_path);
         }
 
@@ -752,9 +751,13 @@ add_books_in_dir (DhBookManager *book_manager,
                                                   NULL);
 
                 book_path = get_book_path (book_dir_path, name);
-                if (book_path) {
-                        /* Add book from filepath */
-                        add_from_filepath (book_manager, book_path);
+                if (book_path != NULL) {
+                        GFile *index_file;
+
+                        index_file = g_file_new_for_path (book_path);
+                        create_book (book_manager, index_file);
+                        g_object_unref (index_file);
+
                         g_free (book_path);
                 }
                 g_free (book_dir_path);
