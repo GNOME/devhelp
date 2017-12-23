@@ -730,13 +730,12 @@ book_manager_monitor_path (DhBookManager *book_manager,
 }
 
 static void
-book_manager_add_from_dir (DhBookManager *book_manager,
-                           const gchar   *dir_path)
+add_books_in_dir (DhBookManager *book_manager,
+                  const gchar   *dir_path)
 {
         GDir *dir;
         const gchar *name;
 
-        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
         g_return_if_fail (dir_path != NULL);
 
         /* Open directory */
@@ -773,17 +772,19 @@ book_manager_add_from_dir (DhBookManager *book_manager,
 }
 
 static void
-book_manager_add_books_in_data_dir (DhBookManager *book_manager,
-                                    const gchar   *data_dir)
+add_books_in_data_dir (DhBookManager *book_manager,
+                       const gchar   *data_dir)
 {
         gchar *dir;
 
+        g_return_if_fail (data_dir != NULL);
+
         dir = g_build_filename (data_dir, "gtk-doc", "html", NULL);
-        book_manager_add_from_dir (book_manager, dir);
+        add_books_in_dir (book_manager, dir);
         g_free (dir);
 
         dir = g_build_filename (data_dir, "devhelp", "books", NULL);
-        book_manager_add_from_dir (book_manager, dir);
+        add_books_in_dir (book_manager, dir);
         g_free (dir);
 }
 
@@ -791,15 +792,15 @@ static void
 populate (DhBookManager *book_manager)
 {
         const gchar * const *system_dirs;
+        gint i;
 
-        book_manager_add_books_in_data_dir (book_manager,
-                                            g_get_user_data_dir ());
+        add_books_in_data_dir (book_manager, g_get_user_data_dir ());
 
         system_dirs = g_get_system_data_dirs ();
-        while (*system_dirs) {
-                book_manager_add_books_in_data_dir (book_manager,
-                                                    *system_dirs);
-                system_dirs++;
+        g_return_if_fail (system_dirs != NULL);
+
+        for (i = 0; system_dirs[i] != NULL; i++) {
+                add_books_in_data_dir (book_manager, system_dirs[i]);
         }
 }
 
