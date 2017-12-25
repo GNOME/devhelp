@@ -22,10 +22,11 @@
 
 #include "config.h"
 #include "dh-book-manager.h"
-#include "dh-link.h"
 #include "dh-book.h"
 #include "dh-language.h"
+#include "dh-link.h"
 #include "dh-settings.h"
+#include "dh-util.h"
 
 /**
  * SECTION:dh-book-manager
@@ -80,8 +81,8 @@ static DhBookManager *singleton = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
-static void create_book (DhBookManager *book_manager,
-                         GFile         *index_file);
+static gboolean create_book_from_index_file (DhBookManager *book_manager,
+                                             GFile         *index_file);
 
 static void
 dh_book_manager_get_property (GObject    *object,
@@ -271,35 +272,6 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                                                                G_PARAM_STATIC_STRINGS));
 }
 
-static gchar *
-get_book_path (const gchar *base_path,
-               const gchar *name)
-{
-        static const gchar *suffixes[] = {
-                "devhelp2",
-                "devhelp2.gz",
-                "devhelp",
-                "devhelp.gz",
-                NULL
-        };
-        gchar *tmp;
-        gchar *book_path;
-        guint i;
-
-        for (i = 0; suffixes[i]; i++) {
-                tmp = g_build_filename (base_path, name, NULL);
-                book_path = g_strconcat (tmp, ".", suffixes[i], NULL);
-                g_free (tmp);
-
-                if (g_file_test (book_path, G_FILE_TEST_EXISTS)) {
-                        return book_path;
-                }
-                g_free (book_path);
-        }
-
-        return NULL;
-}
-
 static void
 load_books_disabled (DhBookManager *book_manager)
 {
@@ -465,7 +437,7 @@ book_updated_cb (DhBook   *book,
 
         book_deleted_cb (book, book_manager);
 
-        create_book (book_manager, index_file);
+        create_book_from_index_file (book_manager, index_file);
         g_object_unref (index_file);
 }
 
@@ -534,9 +506,12 @@ book_disabled_cb (DhBook   *book,
                        book);
 }
 
-static void
-create_book (DhBookManager *book_manager,
-             GFile         *index_file)
+/* Returns TRUE if "successful", FALSE if the next possible index file in the
+ * book directory needs to be tried.
+ */
+static gboolean
+create_book_from_index_file (DhBookManager *book_manager,
+                             GFile         *index_file)
 {
         DhBookManagerPrivate *priv;
         DhBook *book;
@@ -553,12 +528,12 @@ create_book (DhBookManager *book_manager,
                 cur_index_file = dh_book_get_index_file (cur_book);
 
                 if (g_file_equal (index_file, cur_index_file))
-                        return;
+                        return TRUE;
         }
 
         book = dh_book_new (index_file);
         if (book == NULL)
-                return;
+                return FALSE;
 
         /* Check if book with same ID was already loaded in the manager (we need
          * to force unique book IDs).
@@ -567,7 +542,7 @@ create_book (DhBookManager *book_manager,
                                 book,
                                 (GCompareFunc)dh_book_cmp_by_id)) {
                 g_object_unref (book);
-                return;
+                return TRUE;
         }
 
         priv->books = g_list_insert_sorted (priv->books,
@@ -608,37 +583,39 @@ create_book (DhBookManager *book_manager,
                        signals[BOOK_CREATED],
                        0,
                        book);
+
+        return TRUE;
+}
+
+static void
+create_book_from_directory (DhBookManager *book_manager,
+                            GFile         *book_directory)
+{
+        GSList *possible_index_files;
+        GSList *l;
+
+        possible_index_files = dh_util_get_possible_index_files (book_directory);
+
+        for (l = possible_index_files; l != NULL; l = l->next) {
+                GFile *index_file = G_FILE (l->data);
+
+                if (create_book_from_index_file (book_manager, index_file))
+                        break;
+        }
+
+        g_slist_free_full (possible_index_files, g_object_unref);
 }
 
 static gboolean
 new_possible_book_cb (gpointer user_data)
 {
         NewPossibleBookData *data = user_data;
-        gchar *file_path;
-        gchar *file_basename;
-        gchar *book_path;
 
-        file_path = g_file_get_path (data->file);
-        file_basename = g_file_get_basename (data->file);
+        create_book_from_directory (data->book_manager, data->file);
 
-        /* Compute book path, will return NULL if it's not a proper path */
-        book_path = get_book_path (file_path, file_basename);
-        if (book_path != NULL) {
-                GFile *index_file;
-
-                index_file = g_file_new_for_path (book_path);
-                create_book (data->book_manager, index_file);
-                g_object_unref (index_file);
-
-                g_free (book_path);
-        }
-
-        g_free (file_path);
-        g_free (file_basename);
         g_object_unref (data->book_manager);
         g_object_unref (data->file);
         g_slice_free (NewPossibleBookData, data);
-
         return G_SOURCE_REMOVE;
 }
 
@@ -742,25 +719,17 @@ add_books_in_dir (DhBookManager *book_manager,
         /* And iterate it */
         while ((name = g_dir_read_name (dir)) != NULL) {
                 gchar *book_dir_path;
-                gchar *book_path;
+                GFile *book_directory;
 
                 /* Build the path of the directory where the final
                  * devhelp book resides */
-                book_dir_path = g_build_filename (dir_path,
-                                                  name,
-                                                  NULL);
+                book_dir_path = g_build_filename (dir_path, name, NULL);
+                book_directory = g_file_new_for_path (book_dir_path);
 
-                book_path = get_book_path (book_dir_path, name);
-                if (book_path != NULL) {
-                        GFile *index_file;
+                create_book_from_directory (book_manager, book_directory);
 
-                        index_file = g_file_new_for_path (book_path);
-                        create_book (book_manager, index_file);
-                        g_object_unref (index_file);
-
-                        g_free (book_path);
-                }
                 g_free (book_dir_path);
+                g_object_unref (book_directory);
         }
 
         g_dir_close (dir);

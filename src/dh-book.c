@@ -313,7 +313,12 @@ dh_book_new (GFile *index_file)
                                   &priv->tree,
                                   &priv->links,
                                   &error)) {
-                if (error != NULL) {
+                /* It's fine if the file doesn't exist, as DhBookManager tries
+                 * to create a DhBook for each possible index file in a certain
+                 * book directory.
+                 */
+                if (error != NULL &&
+                    !g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND)) {
                         gchar *parse_name;
 
                         parse_name = g_file_get_parse_name (priv->index_file);
@@ -323,8 +328,9 @@ dh_book_new (GFile *index_file)
                                    error->message);
 
                         g_free (parse_name);
-                        g_clear_error (&error);
                 }
+
+                g_clear_error (&error);
 
                 /* Deallocate the book, as we are not going to add it in the
                  * manager.

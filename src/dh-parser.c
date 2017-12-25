@@ -569,13 +569,6 @@ dh_parser_read_file (GFile   *index_file,
                 gz = TRUE;
         }
 
-        if (parser->version == FORMAT_VERSION_1)
-                g_warning ("The file '%s' uses the Devhelp index file format version 1, "
-                           "which is deprecated. A future version of Devhelp may remove "
-                           "the support for the format version 1. The index file should "
-                           "be ported to the Devhelp index file format version 2.",
-                           index_file_uri);
-
         parser->markup_parser = g_new0 (GMarkupParser, 1);
         parser->markup_parser->start_element = parser_start_node_cb;
         parser->markup_parser->end_element = parser_end_node_cb;
@@ -589,6 +582,16 @@ dh_parser_read_file (GFile   *index_file,
                 ok = FALSE;
                 goto exit;
         }
+
+        /* At this point we know that the file exists, the G_IO_ERROR_NOT_FOUND
+         * has been catched earlier. So print warning.
+         */
+        if (parser->version == FORMAT_VERSION_1)
+                g_warning ("The file '%s' uses the Devhelp index file format version 1, "
+                           "which is deprecated. A future version of Devhelp may remove "
+                           "the support for the format version 1. The index file should "
+                           "be ported to the Devhelp index file format version 2.",
+                           index_file_uri);
 
         if (gz) {
                 GZlibDecompressor *zlib_decompressor;
