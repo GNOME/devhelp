@@ -702,37 +702,58 @@ static void
 add_books_in_dir (DhBookManager *book_manager,
                   const gchar   *dir_path)
 {
-        GDir *dir;
-        const gchar *name;
+        GFile *directory;
+        GFileEnumerator *enumerator;
+        GError *error = NULL;
 
         g_return_if_fail (dir_path != NULL);
 
-        /* Open directory */
-        dir = g_dir_open (dir_path, 0, NULL);
-        if (!dir) {
-                return;
+        directory = g_file_new_for_path (dir_path);
+
+        enumerator = g_file_enumerate_children (directory,
+                                                G_FILE_ATTRIBUTE_STANDARD_NAME,
+                                                G_FILE_QUERY_INFO_NONE,
+                                                NULL,
+                                                &error);
+
+        if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND)) {
+                g_clear_error (&error);
+                goto out;
+        }
+
+        if (error != NULL) {
+                g_warning ("Error when reading directory '%s': %s",
+                           dir_path,
+                           error->message);
+                g_clear_error (&error);
+                goto out;
         }
 
         /* Monitor the directory for changes */
         monitor_path (book_manager, dir_path);
 
-        /* And iterate it */
-        while ((name = g_dir_read_name (dir)) != NULL) {
-                gchar *book_dir_path;
-                GFile *book_directory;
+        while (TRUE) {
+                GFile *book_directory = NULL;
 
-                /* Build the path of the directory where the final
-                 * devhelp book resides */
-                book_dir_path = g_build_filename (dir_path, name, NULL);
-                book_directory = g_file_new_for_path (book_dir_path);
+                g_file_enumerator_iterate (enumerator, NULL, &book_directory, NULL, &error);
+
+                if (error != NULL) {
+                        g_warning ("Error when enumerating directory '%s': %s",
+                                   dir_path,
+                                   error->message);
+                        g_clear_error (&error);
+                        break;
+                }
+
+                if (book_directory == NULL)
+                        break;
 
                 create_book_from_directory (book_manager, book_directory);
-
-                g_free (book_dir_path);
-                g_object_unref (book_directory);
         }
 
-        g_dir_close (dir);
+out:
+        g_object_unref (directory);
+        g_clear_object (&enumerator);
 }
 
 static void
