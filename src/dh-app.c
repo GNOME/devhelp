@@ -96,9 +96,17 @@ quit_cb (GSimpleAction *action,
          GVariant      *parameter,
          gpointer       user_data)
 {
-        DhApp *app = DH_APP (user_data);
+        GtkApplication *app = GTK_APPLICATION (user_data);
+        GList *windows;
 
-        g_application_quit (G_APPLICATION (app));
+        /* Do not call g_application_quit(). If g_application_quit() is called
+         * the GtkWindows are not finalized. A GtkWindow subclass may want to
+         * save some GSettings when the window is closed, so it's better to
+         * properly close all the windows. And it's also more friendly to memory
+         * debugging tools.
+         */
+        while ((windows = gtk_application_get_windows (app)) != NULL)
+                gtk_widget_destroy (GTK_WIDGET (windows->data));
 }
 
 static void
