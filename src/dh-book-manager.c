@@ -703,8 +703,8 @@ monitor_path (DhBookManager *book_manager,
 }
 
 static void
-add_books_in_dir (DhBookManager *book_manager,
-                  const gchar   *dir_path)
+find_books_in_dir (DhBookManager *book_manager,
+                   const gchar   *dir_path)
 {
         GFile *directory;
         GFileEnumerator *enumerator;
@@ -761,19 +761,19 @@ out:
 }
 
 static void
-add_books_in_data_dir (DhBookManager *book_manager,
-                       const gchar   *data_dir)
+find_books_in_data_dir (DhBookManager *book_manager,
+                        const gchar   *data_dir)
 {
         gchar *dir;
 
         g_return_if_fail (data_dir != NULL);
 
         dir = g_build_filename (data_dir, "gtk-doc", "html", NULL);
-        add_books_in_dir (book_manager, dir);
+        find_books_in_dir (book_manager, dir);
         g_free (dir);
 
         dir = g_build_filename (data_dir, "devhelp", "books", NULL);
-        add_books_in_dir (book_manager, dir);
+        find_books_in_dir (book_manager, dir);
         g_free (dir);
 }
 
@@ -783,13 +783,13 @@ populate (DhBookManager *book_manager)
         const gchar * const *system_dirs;
         gint i;
 
-        add_books_in_data_dir (book_manager, g_get_user_data_dir ());
+        find_books_in_data_dir (book_manager, g_get_user_data_dir ());
 
         system_dirs = g_get_system_data_dirs ();
         g_return_if_fail (system_dirs != NULL);
 
         for (i = 0; system_dirs[i] != NULL; i++) {
-                add_books_in_data_dir (book_manager, system_dirs[i]);
+                find_books_in_data_dir (book_manager, system_dirs[i]);
         }
 }
 
