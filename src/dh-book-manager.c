@@ -39,8 +39,9 @@
 #define NEW_POSSIBLE_BOOK_TIMEOUT_SECS 5
 
 typedef struct {
-        DhBookManager *book_manager;
+        DhBookManager *book_manager; /* unowned */
         GFile *book_directory;
+        guint timeout_id;
 } NewPossibleBookData;
 
 typedef struct {
@@ -49,6 +50,9 @@ typedef struct {
 
         /* GFile* -> GFileMonitor* */
         GHashTable *monitors;
+
+        /* List of NewPossibleBookData* */
+        GSList *new_possible_books_data;
 
         /* List of book IDs (gchar*) currently disabled */
         GSList *books_disabled;
@@ -82,6 +86,35 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
 static gboolean create_book_from_index_file (DhBookManager *book_manager,
                                              GFile         *index_file);
+
+static NewPossibleBookData *
+new_possible_book_data_new (DhBookManager *book_manager,
+                            GFile         *book_directory)
+{
+        NewPossibleBookData *data;
+
+        data = g_new0 (NewPossibleBookData, 1);
+        data->book_manager = book_manager;
+        data->book_directory = g_object_ref (book_directory);
+
+        return data;
+}
+
+static void
+new_possible_book_data_free (gpointer _data)
+{
+        NewPossibleBookData *data = _data;
+
+        if (data == NULL)
+                return;
+
+        g_clear_object (&data->book_directory);
+
+        if (data->timeout_id != 0)
+                g_source_remove (data->timeout_id);
+
+        g_free (data);
+}
 
 static void
 dh_book_manager_get_property (GObject    *object,
@@ -137,6 +170,9 @@ dh_book_manager_dispose (GObject *object)
                 g_hash_table_destroy (priv->monitors);
                 priv->monitors = NULL;
         }
+
+        g_slist_free_full (priv->new_possible_books_data, new_possible_book_data_free);
+        priv->new_possible_books_data = NULL;
 
         G_OBJECT_CLASS (dh_book_manager_parent_class)->dispose (object);
 }
@@ -611,15 +647,18 @@ create_book_from_directory (DhBookManager *book_manager,
 }
 
 static gboolean
-new_possible_book_cb (gpointer user_data)
+new_possible_book_timeout_cb (gpointer user_data)
 {
         NewPossibleBookData *data = user_data;
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (data->book_manager);
+
+        data->timeout_id = 0;
 
         create_book_from_directory (data->book_manager, data->book_directory);
 
-        g_object_unref (data->book_manager);
-        g_object_unref (data->book_directory);
-        g_slice_free (NewPossibleBookData, data);
+        priv->new_possible_books_data = g_slist_remove (priv->new_possible_books_data, data);
+        new_possible_book_data_free (data);
+
         return G_SOURCE_REMOVE;
 }
 
@@ -630,6 +669,7 @@ books_directory_changed_cb (GFileMonitor      *directory_monitor,
                             GFileMonitorEvent  event_type,
                             DhBookManager     *book_manager)
 {
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         NewPossibleBookData *data;
 
         /* With the GFileMonitor here we only handle events for new directories
@@ -639,18 +679,18 @@ books_directory_changed_cb (GFileMonitor      *directory_monitor,
         if (event_type != G_FILE_MONITOR_EVENT_CREATED)
                 return;
 
-        data = g_slice_new (NewPossibleBookData);
-        data->book_manager = g_object_ref (book_manager);
-        data->book_directory = g_object_ref (file);
+        data = new_possible_book_data_new (book_manager, file);
 
         /* We add a timeout of several seconds so that we give time to the whole
          * documentation to get installed. If we don't do this, we may end up
          * trying to add the new book when even the *.devhelp2 index file is not
          * installed yet.
          */
-        g_timeout_add_seconds (NEW_POSSIBLE_BOOK_TIMEOUT_SECS,
-                               new_possible_book_cb,
-                               data);
+        data->timeout_id = g_timeout_add_seconds (NEW_POSSIBLE_BOOK_TIMEOUT_SECS,
+                                                  new_possible_book_timeout_cb,
+                                                  data);
+
+        priv->new_possible_books_data = g_slist_prepend (priv->new_possible_books_data, data);
 }
 
 static void
