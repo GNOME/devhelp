@@ -654,52 +654,48 @@ booklist_monitor_event_cb (GFileMonitor      *file_monitor,
 }
 
 static void
-monitor_path (DhBookManager *book_manager,
-              const gchar   *path)
+monitor_books_directory (DhBookManager *book_manager,
+                         GFile         *books_directory)
 {
-        DhBookManagerPrivate *priv;
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         GFileMonitor *file_monitor;
-        GFile *file;
 
-        priv = dh_book_manager_get_instance_private (book_manager);
-
-        file = g_file_new_for_path (path);
-
-        /* If monitor already exists, do not re-add it */
-        if (priv->monitors &&
-            g_hash_table_lookup (priv->monitors, file)) {
+        /* If monitor already exists, do not re-create it. */
+        if (priv->monitors != NULL &&
+            g_hash_table_lookup (priv->monitors, books_directory)) {
                 return;
         }
 
-        /* Create new monitor for the given directory */
-        file_monitor = g_file_monitor_directory (file,
+        file_monitor = g_file_monitor_directory (books_directory,
                                                  G_FILE_MONITOR_NONE,
                                                  NULL,
                                                  NULL);
-        if (file_monitor) {
-                /* Setup changed signal callback */
-                g_signal_connect (file_monitor, "changed",
-                                  G_CALLBACK (booklist_monitor_event_cb),
-                                  book_manager);
 
-                /* Create HT if not already there */
-                if (G_UNLIKELY (!priv->monitors)) {
+        if (file_monitor != NULL) {
+                g_signal_connect_object (file_monitor,
+                                         "changed",
+                                         G_CALLBACK (booklist_monitor_event_cb),
+                                         book_manager,
+                                         0);
+
+                if (G_UNLIKELY (priv->monitors == NULL)) {
                         priv->monitors = g_hash_table_new_full (g_file_hash,
                                                                 (GEqualFunc) g_file_equal,
-                                                                (GDestroyNotify) g_object_unref,
-                                                                (GDestroyNotify) g_object_unref);
+                                                                g_object_unref,
+                                                                g_object_unref);
                 }
 
-                /* Add the directory to the monitors HT */
                 g_hash_table_insert (priv->monitors,
-                                     g_object_ref (file),
+                                     g_object_ref (books_directory),
                                      file_monitor);
         } else {
-                g_warning ("Couldn't setup to monitor changes on directory '%s'",
-                           path);
-        }
+                gchar *parse_name;
 
-        g_object_unref (file);
+                parse_name = g_file_get_parse_name (books_directory);
+                g_warning ("Couldn't setup to monitor changes on directory '%s'.",
+                           parse_name);
+                g_free (parse_name);
+        }
 }
 
 static void
@@ -733,8 +729,7 @@ find_books_in_dir (DhBookManager *book_manager,
                 goto out;
         }
 
-        /* Monitor the directory for changes */
-        monitor_path (book_manager, dir_path);
+        monitor_books_directory (book_manager, directory);
 
         while (TRUE) {
                 GFile *book_directory = NULL;
