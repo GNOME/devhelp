@@ -40,7 +40,7 @@
 
 typedef struct {
         DhBookManager *book_manager;
-        GFile *file;
+        GFile *book_directory;
 } NewPossibleBookData;
 
 typedef struct {
@@ -615,39 +615,39 @@ new_possible_book_cb (gpointer user_data)
 {
         NewPossibleBookData *data = user_data;
 
-        create_book_from_directory (data->book_manager, data->file);
+        create_book_from_directory (data->book_manager, data->book_directory);
 
         g_object_unref (data->book_manager);
-        g_object_unref (data->file);
+        g_object_unref (data->book_directory);
         g_slice_free (NewPossibleBookData, data);
         return G_SOURCE_REMOVE;
 }
 
 static void
-booklist_monitor_event_cb (GFileMonitor      *file_monitor,
-                           GFile             *file,
-                           GFile             *other_file,
-                           GFileMonitorEvent  event_type,
-                           gpointer           user_data)
+books_directory_changed_cb (GFileMonitor      *directory_monitor,
+                            GFile             *file,
+                            GFile             *other_file,
+                            GFileMonitorEvent  event_type,
+                            DhBookManager     *book_manager)
 {
-        DhBookManager *book_manager = user_data;
         NewPossibleBookData *data;
 
-        /* In the book manager we only handle events for new directories
-         * created. Books removed or updated are handled by the book objects
-         * themselves */
-        if (event_type != G_FILE_MONITOR_EVENT_CREATED) {
+        /* With the GFileMonitor here we only handle events for new directories
+         * created. Book deletions and updates are handled by the GFileMonitor
+         * in each DhBook object.
+         */
+        if (event_type != G_FILE_MONITOR_EVENT_CREATED)
                 return;
-        }
 
         data = g_slice_new (NewPossibleBookData);
         data->book_manager = g_object_ref (book_manager);
-        data->file = g_object_ref (file);
+        data->book_directory = g_object_ref (file);
 
-        /* We add a timeout of several seconds so that we give time to the
-         * whole documentation to get installed. If we don't do this, we may
-         * end up trying to add the new book when even the .devhelp file is
-         * not installed yet */
+        /* We add a timeout of several seconds so that we give time to the whole
+         * documentation to get installed. If we don't do this, we may end up
+         * trying to add the new book when even the *.devhelp2 index file is not
+         * installed yet.
+         */
         g_timeout_add_seconds (NEW_POSSIBLE_BOOK_TIMEOUT_SECS,
                                new_possible_book_cb,
                                data);
@@ -658,26 +658,34 @@ monitor_books_directory (DhBookManager *book_manager,
                          GFile         *books_directory)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GFileMonitor *file_monitor;
+        GFileMonitor *directory_monitor;
+        GError *error = NULL;
 
         /* If monitor already exists, do not re-create it. */
         if (priv->monitors != NULL &&
-            g_hash_table_lookup (priv->monitors, books_directory)) {
+            g_hash_table_lookup (priv->monitors, books_directory) != NULL) {
                 return;
         }
 
-        file_monitor = g_file_monitor_directory (books_directory,
-                                                 G_FILE_MONITOR_NONE,
-                                                 NULL,
-                                                 NULL);
+        directory_monitor = g_file_monitor_directory (books_directory,
+                                                      G_FILE_MONITOR_NONE,
+                                                      NULL,
+                                                      &error);
 
-        if (file_monitor != NULL) {
-                g_signal_connect_object (file_monitor,
-                                         "changed",
-                                         G_CALLBACK (booklist_monitor_event_cb),
-                                         book_manager,
-                                         0);
+        if (error != NULL) {
+                gchar *parse_name;
 
+                parse_name = g_file_get_parse_name (books_directory);
+
+                g_warning ("Failed to create file monitor on directory “%s”: %s",
+                           parse_name,
+                           error->message);
+
+                g_free (parse_name);
+                g_clear_error (&error);
+        }
+
+        if (directory_monitor != NULL) {
                 if (G_UNLIKELY (priv->monitors == NULL)) {
                         priv->monitors = g_hash_table_new_full (g_file_hash,
                                                                 (GEqualFunc) g_file_equal,
@@ -687,14 +695,13 @@ monitor_books_directory (DhBookManager *book_manager,
 
                 g_hash_table_insert (priv->monitors,
                                      g_object_ref (books_directory),
-                                     file_monitor);
-        } else {
-                gchar *parse_name;
+                                     directory_monitor);
 
-                parse_name = g_file_get_parse_name (books_directory);
-                g_warning ("Couldn't setup to monitor changes on directory '%s'.",
-                           parse_name);
-                g_free (parse_name);
+                g_signal_connect_object (directory_monitor,
+                                         "changed",
+                                         G_CALLBACK (books_directory_changed_cb),
+                                         book_manager,
+                                         0);
         }
 }
 
