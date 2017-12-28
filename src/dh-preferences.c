@@ -666,6 +666,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
         if (parent != gtk_window_get_transient_for (GTK_WINDOW (prefs_dialog))) {
                 gtk_window_set_transient_for (GTK_WINDOW (prefs_dialog),
                                               parent);
+                gtk_window_set_destroy_with_parent (GTK_WINDOW (prefs_dialog), TRUE);
         }
 
         gtk_window_present (GTK_WINDOW (prefs_dialog));
