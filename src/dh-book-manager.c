@@ -50,13 +50,12 @@ typedef struct {
         /* GFile* -> GFileMonitor* */
         GHashTable *monitors;
 
-        /* List of book names (gchar*) currently disabled */
+        /* List of book IDs (gchar*) currently disabled */
         GSList *books_disabled;
 
         /* List of DhLanguage* with at least one book enabled */
         GList *languages;
 
-        /* Whether books should be grouped by language */
         guint group_by_language : 1;
 } DhBookManagerPrivate;
 
@@ -277,17 +276,22 @@ load_books_disabled (DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         DhSettings *settings;
+        GSettings *contents_settings;
         gchar **books_disabled_strv;
-        gchar **i;
+        gint i;
+
+        g_assert (priv->books_disabled == NULL);
 
         settings = dh_settings_get_singleton ();
-        books_disabled_strv = g_settings_get_strv (
-                dh_settings_peek_contents_settings (settings),
-                "books-disabled");
+        contents_settings = dh_settings_peek_contents_settings (settings);
+        books_disabled_strv = g_settings_get_strv (contents_settings, "books-disabled");
 
-        for (i = books_disabled_strv; *i != NULL; i++) {
-                gchar *book = *i;
-                priv->books_disabled = g_slist_prepend (priv->books_disabled, book);
+        if (books_disabled_strv == NULL)
+                return;
+
+        for (i = 0; books_disabled_strv[i] != NULL; i++) {
+                gchar *book_id = books_disabled_strv[i];
+                priv->books_disabled = g_slist_prepend (priv->books_disabled, book_id);
         }
 
         priv->books_disabled = g_slist_reverse (priv->books_disabled);
@@ -300,6 +304,7 @@ store_books_disabled (DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         DhSettings *settings;
+        GSettings *contents_settings;
         GVariantBuilder *builder;
         GVariant *variant;
         GSList *l;
@@ -307,17 +312,16 @@ store_books_disabled (DhBookManager *book_manager)
         builder = g_variant_builder_new (G_VARIANT_TYPE_STRING_ARRAY);
 
         for (l = priv->books_disabled; l != NULL; l = l->next) {
-                gchar *book = l->data;
-                g_variant_builder_add (builder, "s", book);
+                const gchar *book_id = l->data;
+                g_variant_builder_add (builder, "s", book_id);
         }
 
         variant = g_variant_builder_end (builder);
         g_variant_builder_unref (builder);
 
         settings = dh_settings_get_singleton ();
-        g_settings_set_value (dh_settings_peek_contents_settings (settings),
-                              "books-disabled",
-                              variant);
+        contents_settings = dh_settings_peek_contents_settings (settings);
+        g_settings_set_value (contents_settings, "books-disabled", variant);
 }
 
 static void
@@ -793,14 +797,14 @@ static void
 dh_book_manager_init (DhBookManager *book_manager)
 {
         DhSettings *settings;
+        GSettings *contents_settings;
 
         load_books_disabled (book_manager);
 
         settings = dh_settings_get_singleton ();
-        g_settings_bind (dh_settings_peek_contents_settings (settings),
-                         "group-books-by-language",
-                         book_manager,
-                         "group-by-language",
+        contents_settings = dh_settings_peek_contents_settings (settings);
+        g_settings_bind (contents_settings, "group-books-by-language",
+                         book_manager, "group-by-language",
                          G_SETTINGS_BIND_DEFAULT);
 
         populate (book_manager);
