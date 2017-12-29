@@ -205,6 +205,13 @@
           <code>dh_book_cmp_by_path()</code> has been removed (dead code).
         </para>
       </listitem>
+      <listitem>
+        <para>
+          The <code>DhBookManager::language-enabled</code> and
+          <code>DhBookManager::language-disabled</code> signals have been
+          removed (dead code).
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>

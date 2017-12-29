@@ -68,8 +68,6 @@ enum {
         BOOK_DELETED,
         BOOK_ENABLED,
         BOOK_DISABLED,
-        LANGUAGE_ENABLED,
-        LANGUAGE_DISABLED,
         N_SIGNALS
 };
 
@@ -263,36 +261,6 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               DH_TYPE_BOOK);
 
         /**
-         * DhBookManager::language-enabled:
-         * @book_manager: the #DhBookManager.
-         * @language_name: the enabled programming language name.
-         */
-        signals[LANGUAGE_ENABLED] =
-                g_signal_new ("language-enabled",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              0,
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1,
-                              G_TYPE_STRING);
-
-        /**
-         * DhBookManager::language-disabled:
-         * @book_manager: the #DhBookManager.
-         * @language_name: the disabled programming language name.
-         */
-        signals[LANGUAGE_DISABLED] =
-                g_signal_new ("language-disabled",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              0,
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1,
-                              G_TYPE_STRING);
-
-        /**
          * DhBookManager:group-by-language:
          *
          * Whether books should be grouped by programming language.
@@ -384,11 +352,6 @@ inc_language (DhBookManager *book_manager,
         dh_language_inc_n_books_enabled (language);
         priv->languages = g_list_prepend (priv->languages,
                                           language);
-        /* Emit signal to notify others */
-        g_signal_emit (book_manager,
-                       signals[LANGUAGE_ENABLED],
-                       0,
-                       language_name);
 }
 
 static void
@@ -408,12 +371,6 @@ dec_language (DhBookManager *book_manager,
         if (dh_language_dec_n_books_enabled (li->data)) {
                 g_object_unref (li->data);
                 priv->languages = g_list_delete_link (priv->languages, li);
-
-                /* Emit signal to notify others */
-                g_signal_emit (book_manager,
-                               signals[LANGUAGE_DISABLED],
-                               0,
-                               language_name);
         }
 }
 
