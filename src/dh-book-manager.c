@@ -60,10 +60,10 @@ typedef struct {
 } DhBookManagerPrivate;
 
 enum {
-        BOOK_CREATED,
-        BOOK_DELETED,
-        BOOK_ENABLED,
-        BOOK_DISABLED,
+        SIGNAL_BOOK_CREATED,
+        SIGNAL_BOOK_DELETED,
+        SIGNAL_BOOK_ENABLED,
+        SIGNAL_BOOK_DISABLED,
         N_SIGNALS
 };
 
@@ -200,7 +200,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
          * @book_manager: the #DhBookManager.
          * @book: the created #DhBook.
          */
-        signals[BOOK_CREATED] =
+        signals[SIGNAL_BOOK_CREATED] =
                 g_signal_new ("book-created",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -215,7 +215,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
          * @book_manager: the #DhBookManager.
          * @book: the deleted #DhBook.
          */
-        signals[BOOK_DELETED] =
+        signals[SIGNAL_BOOK_DELETED] =
                 g_signal_new ("book-deleted",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -230,7 +230,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
          * @book_manager: the #DhBookManager.
          * @book: the enabled #DhBook.
          */
-        signals[BOOK_ENABLED] =
+        signals[SIGNAL_BOOK_ENABLED] =
                 g_signal_new ("book-enabled",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -245,7 +245,7 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
          * @book_manager: the #DhBookManager.
          * @book: the disabled #DhBook.
          */
-        signals[BOOK_DISABLED] =
+        signals[SIGNAL_BOOK_DISABLED] =
                 g_signal_new ("book-disabled",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
@@ -362,7 +362,7 @@ remove_book (DhBookManager *book_manager,
 
         if (node != NULL) {
                 g_signal_emit (book_manager,
-                               signals[BOOK_DELETED],
+                               signals[SIGNAL_BOOK_DELETED],
                                0,
                                book);
 
@@ -417,7 +417,7 @@ book_enabled_cb (DhBook        *book,
         store_books_disabled (book_manager);
 
         g_signal_emit (book_manager,
-                       signals[BOOK_ENABLED],
+                       signals[SIGNAL_BOOK_ENABLED],
                        0,
                        book);
 }
@@ -443,7 +443,7 @@ book_disabled_cb (DhBook        *book,
         store_books_disabled (book_manager);
 
         g_signal_emit (book_manager,
-                       signals[BOOK_DISABLED],
+                       signals[SIGNAL_BOOK_DISABLED],
                        0,
                        book);
 }
@@ -519,7 +519,7 @@ create_book_from_index_file (DhBookManager *book_manager,
                                  0);
 
         g_signal_emit (book_manager,
-                       signals[BOOK_CREATED],
+                       signals[SIGNAL_BOOK_CREATED],
                        0,
                        book);
 
