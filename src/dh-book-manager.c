@@ -417,102 +417,101 @@ dec_language (DhBookManager *book_manager,
         }
 }
 
-static gboolean
-is_book_disabled_in_conf (DhBookManager *book_manager,
-                          DhBook        *book)
-{
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        const gchar *book_id;
-        GSList *l;
-
-        book_id = dh_book_get_id (book);
-
-        for (l = priv->books_disabled; l != NULL; l = l->next) {
-                gchar *cur_book_id = l->data;
-
-                if (g_strcmp0 (book_id, cur_book_id) == 0)
-                        return TRUE;
-        }
-
-        return FALSE;
-}
-
-static void
-book_deleted_cb (DhBook   *book,
-                 gpointer  user_data)
-{
-        DhBookManager *book_manager = user_data;
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GList *li;
-
-        /* Look for the item we want to remove */
-        li = g_list_find (priv->books, book);
-        if (li) {
-                /* Decrement language count */
-                dec_language (book_manager, dh_book_get_language (book));
-
-                /* Emit signal to notify others */
-                g_signal_emit (book_manager,
-                               signals[BOOK_DELETED],
-                               0,
-                               book);
-
-                /* Remove the item and unref our reference */
-                priv->books = g_list_delete_link (priv->books, li);
-                g_object_unref (book);
-        }
-}
-
-static void
-book_updated_cb (DhBook   *book,
-                 gpointer  user_data)
-{
-        DhBookManager *book_manager = user_data;
-        GFile *index_file;
-
-        /* When we update a book, we need to delete it and then create it again. */
-
-        index_file = dh_book_get_index_file (book);
-        g_object_ref (index_file);
-
-        book_deleted_cb (book, book_manager);
-
-        create_book_from_index_file (book_manager, index_file);
-        g_object_unref (index_file);
-}
-
 static GSList *
 find_book_in_disabled_list (GSList *books_disabled,
                             DhBook *book)
 {
-        GSList *li;
+        const gchar *book_id;
+        GSList *node;
 
-        for (li = books_disabled; li; li = g_slist_next (li)) {
-                if (g_strcmp0 (dh_book_get_id (book),
-                               (const gchar *)li->data) == 0) {
-                        return li;
-                }
+        book_id = dh_book_get_id (book);
+
+        for (node = books_disabled; node != NULL; node = node->next) {
+                const gchar *cur_book_id = node->data;
+
+                if (g_strcmp0 (book_id, cur_book_id) == 0)
+                        return node;
         }
 
         return NULL;
 }
 
-static void
-book_enabled_cb (DhBook   *book,
-                 gpointer  user_data)
+static gboolean
+is_book_disabled_in_conf (DhBookManager *book_manager,
+                          DhBook        *book)
 {
-        DhBookManager *book_manager = user_data;
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GSList *li;
 
-        li = find_book_in_disabled_list (priv->books_disabled, book);
+        return find_book_in_disabled_list (priv->books_disabled, book) != NULL;
+}
+
+static void
+remove_book (DhBookManager *book_manager,
+             DhBook        *book)
+{
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
+        GList *node;
+
+        node = g_list_find (priv->books, book);
+
+        if (node != NULL) {
+                dec_language (book_manager, dh_book_get_language (book));
+
+                g_signal_emit (book_manager,
+                               signals[BOOK_DELETED],
+                               0,
+                               book);
+
+                priv->books = g_list_delete_link (priv->books, node);
+                g_object_unref (book);
+        }
+}
+
+static void
+book_deleted_cb (DhBook        *book,
+                 DhBookManager *book_manager)
+{
+        remove_book (book_manager, book);
+}
+
+static void
+book_updated_cb (DhBook        *book,
+                 DhBookManager *book_manager)
+{
+        GFile *index_file;
+
+        /* Re-create the DhBook to parse again the index file. */
+
+        index_file = dh_book_get_index_file (book);
+        g_object_ref (index_file);
+
+        remove_book (book_manager, book);
+
+        create_book_from_index_file (book_manager, index_file);
+        g_object_unref (index_file);
+}
+
+static void
+book_enabled_cb (DhBook        *book,
+                 DhBookManager *book_manager)
+{
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
+        GSList *node;
+        gchar *book_id;
+
+        node = find_book_in_disabled_list (priv->books_disabled, book);
+
         /* When setting as enabled a given book, we should have it in the
-         * disabled books list! */
-        g_assert (li != NULL);
-        priv->books_disabled = g_slist_delete_link (priv->books_disabled, li);
+         * disabled books list!
+         */
+        g_return_if_fail (node != NULL);
+
+        book_id = node->data;
+        g_free (book_id);
+        priv->books_disabled = g_slist_delete_link (priv->books_disabled, node);
+
         store_books_disabled (book_manager);
 
-        /* Increment language count */
         inc_language (book_manager, dh_book_get_language (book));
 
         g_signal_emit (book_manager,
@@ -522,22 +521,25 @@ book_enabled_cb (DhBook   *book,
 }
 
 static void
-book_disabled_cb (DhBook   *book,
-                  gpointer  user_data)
+book_disabled_cb (DhBook        *book,
+                  DhBookManager *book_manager)
 {
-        DhBookManager *book_manager = user_data;
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GSList *li;
+        GSList *node;
+        const gchar *book_id;
 
-        li = find_book_in_disabled_list (priv->books_disabled, book);
+        node = find_book_in_disabled_list (priv->books_disabled, book);
+
         /* When setting as disabled a given book, we shouldn't have it in the
-         * disabled books list! */
-        g_assert (li == NULL);
+         * disabled books list!
+         */
+        g_return_if_fail (node == NULL);
+
+        book_id = dh_book_get_id (book);
         priv->books_disabled = g_slist_append (priv->books_disabled,
-                                               g_strdup (dh_book_get_id (book)));
+                                               g_strdup (book_id));
         store_books_disabled (book_manager);
 
-        /* Decrement language count */
         dec_language (book_manager, dh_book_get_language (book));
 
         g_signal_emit (book_manager,
