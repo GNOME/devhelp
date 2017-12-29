@@ -443,7 +443,7 @@ dh_book_get_title (DhBook *book)
  * dh_book_get_language:
  * @book: a #DhBook.
  *
- * Returns: the book language.
+ * Returns: the programming language used in @book.
  */
 const gchar *
 dh_book_get_language (DhBook *book)
