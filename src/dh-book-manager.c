@@ -5,6 +5,7 @@
  * Copyright (C) 2004-2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
  * Copyright (C) 2012 Thomas Bechtold <toabctl@gnome.org>
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,7 +24,6 @@
 #include "config.h"
 #include "dh-book-manager.h"
 #include "dh-book.h"
-#include "dh-language.h"
 #include "dh-link.h"
 #include "dh-settings.h"
 #include "dh-util.h"
@@ -56,9 +56,6 @@ typedef struct {
 
         /* List of book IDs (gchar*) currently disabled */
         GList *books_disabled;
-
-        /* List of DhLanguage* with at least one book enabled */
-        GList *languages;
 
         guint group_by_language : 1;
 } DhBookManagerPrivate;
@@ -181,7 +178,6 @@ dh_book_manager_finalize (GObject *object)
         DhBookManager *book_manager = DH_BOOK_MANAGER (object);
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
 
-        g_list_free_full (priv->languages, g_object_unref);
         g_list_free_full (priv->books_disabled, g_free);
 
         if (singleton == book_manager)
@@ -328,52 +324,6 @@ store_books_disabled (DhBookManager *book_manager)
         g_settings_set_value (contents_settings, "books-disabled", variant);
 }
 
-static void
-inc_language (DhBookManager *book_manager,
-              const gchar   *language_name)
-{
-        GList *li;
-        DhLanguage *language;
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-
-        li = g_list_find_custom (priv->languages,
-                                 language_name,
-                                 (GCompareFunc)dh_language_compare_by_name);
-
-        /* If already in list, increase count */
-        if (li) {
-                dh_language_inc_n_books_enabled (li->data);
-                return;
-        }
-
-        /* Add new element to list if not found. Language must start with
-         * with n_books_enabled=1. */
-        language = dh_language_new (language_name);
-        dh_language_inc_n_books_enabled (language);
-        priv->languages = g_list_prepend (priv->languages,
-                                          language);
-}
-
-static void
-dec_language (DhBookManager *book_manager,
-              const gchar   *language_name)
-{
-        GList *li;
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-
-        /* Language must exist in list */
-        li = g_list_find_custom (priv->languages,
-                                 language_name,
-                                 (GCompareFunc)dh_language_compare_by_name);
-        g_assert (li != NULL);
-
-        /* If language count reaches zero, remove from list */
-        if (dh_language_dec_n_books_enabled (li->data)) {
-                g_object_unref (li->data);
-                priv->languages = g_list_delete_link (priv->languages, li);
-        }
-}
-
 static GList *
 find_book_in_disabled_list (GList  *books_disabled,
                             DhBook *book)
@@ -412,8 +362,6 @@ remove_book (DhBookManager *book_manager,
         node = g_list_find (priv->books, book);
 
         if (node != NULL) {
-                dec_language (book_manager, dh_book_get_language (book));
-
                 g_signal_emit (book_manager,
                                signals[BOOK_DELETED],
                                0,
@@ -469,8 +417,6 @@ book_enabled_cb (DhBook        *book,
 
         store_books_disabled (book_manager);
 
-        inc_language (book_manager, dh_book_get_language (book));
-
         g_signal_emit (book_manager,
                        signals[BOOK_ENABLED],
                        0,
@@ -496,8 +442,6 @@ book_disabled_cb (DhBook        *book,
         priv->books_disabled = g_list_append (priv->books_disabled,
                                               g_strdup (book_id));
         store_books_disabled (book_manager);
-
-        dec_language (book_manager, dh_book_get_language (book));
 
         g_signal_emit (book_manager,
                        signals[BOOK_DISABLED],
@@ -550,9 +494,6 @@ create_book_from_index_file (DhBookManager *book_manager,
 
         book_enabled = !is_book_disabled_in_conf (book_manager, book);
         dh_book_set_enabled (book, book_enabled);
-
-        if (book_enabled)
-                inc_language (book_manager, dh_book_get_language (book));
 
         g_signal_connect_object (book,
                                  "deleted",

@@ -50,7 +50,6 @@ IGNORE_HFILES = \
 	dh-app.h \
 	dh-assistant.h \
 	dh-error.h \
-	dh-language.h \
 	dh-parser.h \
 	dh-preferences.h \
 	dh-settings.h \

@@ -34,7 +34,6 @@ libdevhelp_public_c_files =		\
 
 libdevhelp_private_headers =		\
 	dh-error.h			\
-	dh-language.h			\
 	dh-parser.h			\
 	dh-preferences.h		\
 	dh-settings.h			\
@@ -43,7 +42,6 @@ libdevhelp_private_headers =		\
 
 libdevhelp_private_c_files =		\
 	dh-error.c			\
-	dh-language.c			\
 	dh-parser.c			\
 	dh-preferences.c		\
 	dh-util.c			\
