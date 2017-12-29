@@ -55,7 +55,7 @@ typedef struct {
         GSList *new_possible_books_data;
 
         /* List of book IDs (gchar*) currently disabled */
-        GSList *books_disabled;
+        GList *books_disabled;
 
         /* List of DhLanguage* with at least one book enabled */
         GList *languages;
@@ -184,7 +184,7 @@ dh_book_manager_finalize (GObject *object)
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
 
         g_list_free_full (priv->languages, g_object_unref);
-        g_slist_free_full (priv->books_disabled, g_free);
+        g_list_free_full (priv->books_disabled, g_free);
 
         if (singleton == book_manager)
                 singleton = NULL;
@@ -327,10 +327,10 @@ load_books_disabled (DhBookManager *book_manager)
 
         for (i = 0; books_disabled_strv[i] != NULL; i++) {
                 gchar *book_id = books_disabled_strv[i];
-                priv->books_disabled = g_slist_prepend (priv->books_disabled, book_id);
+                priv->books_disabled = g_list_prepend (priv->books_disabled, book_id);
         }
 
-        priv->books_disabled = g_slist_reverse (priv->books_disabled);
+        priv->books_disabled = g_list_reverse (priv->books_disabled);
 
         g_free (books_disabled_strv);
 }
@@ -343,7 +343,7 @@ store_books_disabled (DhBookManager *book_manager)
         GSettings *contents_settings;
         GVariantBuilder *builder;
         GVariant *variant;
-        GSList *l;
+        GList *l;
 
         builder = g_variant_builder_new (G_VARIANT_TYPE_STRING_ARRAY);
 
@@ -417,12 +417,12 @@ dec_language (DhBookManager *book_manager,
         }
 }
 
-static GSList *
-find_book_in_disabled_list (GSList *books_disabled,
+static GList *
+find_book_in_disabled_list (GList  *books_disabled,
                             DhBook *book)
 {
         const gchar *book_id;
-        GSList *node;
+        GList *node;
 
         book_id = dh_book_get_id (book);
 
@@ -496,7 +496,7 @@ book_enabled_cb (DhBook        *book,
                  DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GSList *node;
+        GList *node;
         gchar *book_id;
 
         node = find_book_in_disabled_list (priv->books_disabled, book);
@@ -508,7 +508,7 @@ book_enabled_cb (DhBook        *book,
 
         book_id = node->data;
         g_free (book_id);
-        priv->books_disabled = g_slist_delete_link (priv->books_disabled, node);
+        priv->books_disabled = g_list_delete_link (priv->books_disabled, node);
 
         store_books_disabled (book_manager);
 
@@ -525,7 +525,7 @@ book_disabled_cb (DhBook        *book,
                   DhBookManager *book_manager)
 {
         DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GSList *node;
+        GList *node;
         const gchar *book_id;
 
         node = find_book_in_disabled_list (priv->books_disabled, book);
@@ -536,8 +536,8 @@ book_disabled_cb (DhBook        *book,
         g_return_if_fail (node == NULL);
 
         book_id = dh_book_get_id (book);
-        priv->books_disabled = g_slist_append (priv->books_disabled,
-                                               g_strdup (book_id));
+        priv->books_disabled = g_list_append (priv->books_disabled,
+                                              g_strdup (book_id));
         store_books_disabled (book_manager);
 
         dec_language (book_manager, dh_book_get_language (book));
