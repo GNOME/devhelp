@@ -35,6 +35,78 @@
  * #DhBookManager is a singleton class containing all the #DhBook's.
  */
 
+/* TODO: Re-architect DhBookManager and DhBook.
+ *
+ * DhBookManager and DhBook are not very flexible:
+ * 1. Whether a DhBook is enabled or disabled is hard-coded into the DhBook
+ * objects. It's bound to the "books-disabled" GSetting.
+ *
+ * 2. The list of directories where DhBookManager searches the books is more or
+ * less hard-coded inside DhBookManager (it's just configurable with XDG env
+ * variables, see the populate() function, it's documented in the README). It
+ * would be nice to have total control over which directories are searched,
+ * without duplicating them if two different "views" have a directory in common
+ * (especially not duplicating GFileMonitor's).
+ *
+ * Ideas:
+ * - Create a DhBookSelection class (or set of classes, with maybe an interface
+ *   or base class), and remove the "enabled" property from DhBook. The
+ *   books-disabled GSetting would be implemented by one implementation of
+ *   DhBookSelection. A :book-selection property could be added to some classes,
+ *   and if that property is NULL take the "default selection" (by default the
+ *   one for the books-disabled GSetting). Another possible name: DhBookFilter
+ *   (or have both).
+ *
+ *   Have ::book-added and ::book-removed signals. A single ::changed signal is
+ *   I think not appropriate: for example for DhBookTree, a full repopulate
+ *   could be done when ::changed is emitted, but in that case DhBookTree would
+ *   loose its selection.
+ *
+ * - Factor out a DhBookListDirectory class, finding and monitoring a list of
+ *   books in one directory. The constructor would roughly be
+ *   find_books_in_dir(). DhBookManager would just contain a list of
+ *   DhBookListDirectory objects, ensuring that there are no duplicates. A list
+ *   of DhBookListDirectory's could be added to a DhBookSelection, and it's
+ *   DhBookSelection which applies priorities. So two different DhBookSelection
+ *   objects could apply different priorities between the directories.
+ *   Ensuring that a book ID is unique would be done by each DhBookListDirectory
+ *   object, and also by DhBookSelection; which means that Devhelp would use
+ *   more memory since some DhBooks would not be freed since they are contained
+ *   in different DhBookListDirectory objects, but the index files anyway needed
+ *   to be parsed to know the book ID, so it's not a big issue.
+ *
+ * Relevant bugzilla tickets:
+ * - https://bugzilla.gnome.org/show_bug.cgi?id=784491
+ *   "BookManager: allow custom search paths for documentation"
+ *
+ *   For gnome-builder needs.
+ *
+ * - https://bugzilla.gnome.org/show_bug.cgi?id=792068
+ *   "Make it work with Flatpak"
+ *
+ *   The directories probably need to be adjusted.
+ *
+ * - https://bugzilla.gnome.org/show_bug.cgi?id=761284
+ *   "Have the latest stable/unstable GNOME API references"
+ *
+ *   The books can be downloaded in different directories, one directory for
+ *   "GNOME stable" and another directory for "GNOME unstable" (or for specific
+ *   versions). Switching between versions would just be a matter of changing
+ *   the DhBookSelection.
+ *
+ * - https://bugzilla.gnome.org/show_bug.cgi?id=118423
+ *   "Individual bookshelfs"
+ *
+ * - https://bugzilla.gnome.org/show_bug.cgi?id=764441
+ *   "Implement language switching feature"
+ *
+ *   Basically have the same book ID/name available for different programming
+ *   languages. DhBookSelection could filter by programming language. Out of
+ *   scope for now, because language switching is implemented in JavaScript for
+ *   hot-doc, and gtk-doc doesn't support yet producing documentation for
+ *   different programming languages.
+ */
+
 #define NEW_POSSIBLE_BOOK_TIMEOUT_SECS 5
 
 typedef struct {
