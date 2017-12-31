@@ -3,6 +3,7 @@
  * Copyright (C) 2001-2002 CodeFactory AB
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2013 Aleksander Morgado <aleksander@gnu.org>
+ * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -37,11 +38,11 @@ typedef struct _DhSidebar        DhSidebar;
 typedef struct _DhSidebarClass   DhSidebarClass;
 
 struct _DhSidebar {
-        GtkBox parent_instance;
+        GtkGrid parent_instance;
 };
 
 struct _DhSidebarClass {
-        GtkBoxClass parent_class;
+        GtkGridClass parent_class;
 
         /* Signals */
         void (*link_selected) (DhSidebar *sidebar,

@@ -212,6 +212,13 @@
           removed (dead code).
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <link linkend="DhSidebar">DhSidebar</link> is now a subclass of
+          <link linkend="GtkGrid">GtkGrid</link>, not
+          <link linkend="GtkBox">GtkBox</link>.
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>

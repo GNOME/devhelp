@@ -74,7 +74,7 @@ enum {
 
 static guint signals[N_SIGNALS] = { 0 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (DhSidebar, dh_sidebar, GTK_TYPE_BOX)
+G_DEFINE_TYPE_WITH_PRIVATE (DhSidebar, dh_sidebar, GTK_TYPE_GRID)
 
 static void
 dh_sidebar_dispose (GObject *object)
@@ -480,13 +480,16 @@ dh_sidebar_init (DhSidebar *sidebar)
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
+        gtk_orientable_set_orientation (GTK_ORIENTABLE (sidebar),
+                                        GTK_ORIENTATION_VERTICAL);
+
         /* Setup the search entry */
         priv->entry = GTK_ENTRY (gtk_search_entry_new ());
         gtk_widget_set_hexpand (GTK_WIDGET (priv->entry), TRUE);
         g_object_set (priv->entry,
                       "margin", 6,
                       NULL);
-        gtk_box_pack_start (GTK_BOX (sidebar), GTK_WIDGET (priv->entry), FALSE, FALSE, 0);
+        gtk_container_add (GTK_CONTAINER (sidebar), GTK_WIDGET (priv->entry));
 
         g_signal_connect (priv->entry, "key-press-event",
                           G_CALLBACK (entry_key_press_event_cb),
@@ -535,7 +538,9 @@ dh_sidebar_init (DhSidebar *sidebar)
                                         GTK_POLICY_AUTOMATIC);
         gtk_container_add (GTK_CONTAINER (priv->sw_hitlist),
                            GTK_WIDGET (priv->hitlist_view));
-        gtk_box_pack_start (GTK_BOX (sidebar), GTK_WIDGET (priv->sw_hitlist), TRUE, TRUE, 0);
+        gtk_widget_set_hexpand (GTK_WIDGET (priv->sw_hitlist), TRUE);
+        gtk_widget_set_vexpand (GTK_WIDGET (priv->sw_hitlist), TRUE);
+        gtk_container_add (GTK_CONTAINER (sidebar), GTK_WIDGET (priv->sw_hitlist));
 
         /* Setup book manager */
         book_manager = dh_book_manager_get_singleton ();
@@ -579,7 +584,9 @@ dh_sidebar_init (DhSidebar *sidebar)
                           G_CALLBACK (book_tree_link_selected_cb),
                           sidebar);
         gtk_container_add (GTK_CONTAINER (priv->sw_book_tree), GTK_WIDGET (priv->book_tree));
-        gtk_box_pack_end (GTK_BOX (sidebar), GTK_WIDGET (priv->sw_book_tree), TRUE, TRUE, 0);
+        gtk_widget_set_hexpand (GTK_WIDGET (priv->sw_book_tree), TRUE);
+        gtk_widget_set_vexpand (GTK_WIDGET (priv->sw_book_tree), TRUE);
+        gtk_container_add (GTK_CONTAINER (sidebar), GTK_WIDGET (priv->sw_book_tree));
 
         completion_populate (sidebar);
 
@@ -596,9 +603,7 @@ dh_sidebar_init (DhSidebar *sidebar)
 GtkWidget *
 dh_sidebar_new (DhBookManager *book_manager)
 {
-        return GTK_WIDGET (g_object_new (DH_TYPE_SIDEBAR,
-                                         "orientation", GTK_ORIENTATION_VERTICAL,
-                                         NULL));
+        return g_object_new (DH_TYPE_SIDEBAR, NULL);
 }
 
 /**
