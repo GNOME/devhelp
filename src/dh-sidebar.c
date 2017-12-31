@@ -76,6 +76,59 @@ static guint signals[N_SIGNALS] = { 0 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhSidebar, dh_sidebar, GTK_TYPE_BOX)
 
+static void
+dh_sidebar_dispose (GObject *object)
+{
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
+
+        g_clear_object (&priv->hitlist_model);
+
+        if (priv->idle_complete_id != 0) {
+                g_source_remove (priv->idle_complete_id);
+                priv->idle_complete_id = 0;
+        }
+
+        if (priv->idle_filter_id != 0) {
+                g_source_remove (priv->idle_filter_id);
+                priv->idle_filter_id = 0;
+        }
+
+        G_OBJECT_CLASS (dh_sidebar_parent_class)->dispose (object);
+}
+
+static void
+dh_sidebar_finalize (GObject *object)
+{
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
+
+        g_clear_pointer (&priv->completion, g_completion_free);
+
+        G_OBJECT_CLASS (dh_sidebar_parent_class)->finalize (object);
+}
+
+static void
+dh_sidebar_class_init (DhSidebarClass *klass)
+{
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+        object_class->dispose = dh_sidebar_dispose;
+        object_class->finalize = dh_sidebar_finalize;
+
+        /**
+         * DhSidebar::link-selected:
+         * @sidebar: a #DhSidebar.
+         * @link: the selected #DhLink.
+         */
+        signals[SIGNAL_LINK_SELECTED] =
+                g_signal_new ("link-selected",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (DhSidebarClass, link_selected),
+                              NULL, NULL, NULL,
+                              G_TYPE_NONE,
+                              1, DH_TYPE_LINK);
+}
+
 /******************************************************************************/
 
 static gboolean
@@ -358,50 +411,6 @@ sidebar_entry_insert_text_cb (GtkEntry    *entry,
                         g_idle_add ((GSourceFunc) sidebar_complete_idle_cb, sidebar);
 }
 
-/**
- * dh_sidebar_set_search_string:
- * @sidebar: a #DhSidebar.
- * @str: the string to search.
- */
-void
-dh_sidebar_set_search_string (DhSidebar   *sidebar,
-                              const gchar *str)
-{
-        DhSidebarPrivate *priv;
-
-        g_return_if_fail (DH_IS_SIDEBAR (sidebar));
-
-        priv = dh_sidebar_get_instance_private (sidebar);
-
-        gtk_entry_set_text (priv->entry, str);
-        gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
-        gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
-
-        /* If the GtkEntry text was already equal to @str, the
-         * GtkEditable::changed signal was not emitted, so force to emit it to
-         * call sidebar_entry_changed_cb(), forcing a new search. If an exact
-         * match is found, the DhSidebar::link-selected signal will be emitted,
-         * to re-jump to that symbol (even if the GtkEntry text was equal, it
-         * doesn't mean that the WebKitWebView was showing the exact match).
-         * https://bugzilla.gnome.org/show_bug.cgi?id=776596
-         */
-        g_signal_emit_by_name (priv->entry, "changed");
-}
-
-/**
- * dh_sidebar_set_search_focus:
- * @sidebar: a #DhSidebar.
- *
- * Gives the focus to the search entry.
- */
-void
-dh_sidebar_set_search_focus (DhSidebar *sidebar)
-{
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-
-        gtk_widget_grab_focus (GTK_WIDGET (priv->entry));
-}
-
 static void
 hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
                         GtkCellRenderer   *cell,
@@ -460,89 +469,6 @@ sidebar_book_tree_link_selected_cb (DhBookTree *book_tree,
                                     DhSidebar  *sidebar)
 {
         g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
-}
-
-/**
- * dh_sidebar_get_selected_book:
- * @sidebar: a #DhSidebar.
- *
- * Returns: (nullable) (transfer full): the #DhLink of the selected book, or
- * %NULL if there is no selection. Unref with dh_link_unref() when no longer
- * needed.
- */
-DhLink *
-dh_sidebar_get_selected_book (DhSidebar *sidebar)
-{
-        DhSidebarPrivate *priv;
-
-        g_return_val_if_fail (DH_IS_SIDEBAR (sidebar), NULL);
-
-        priv = dh_sidebar_get_instance_private (sidebar);
-
-        return dh_book_tree_get_selected_book (priv->book_tree);
-}
-
-/**
- * dh_sidebar_select_uri:
- * @sidebar: a #DhSidebar.
- * @uri: the URI to select.
- */
-void
-dh_sidebar_select_uri (DhSidebar   *sidebar,
-                       const gchar *uri)
-{
-        DhSidebarPrivate *priv;
-
-        g_return_if_fail (DH_IS_SIDEBAR (sidebar));
-
-        priv = dh_sidebar_get_instance_private (sidebar);
-
-        dh_book_tree_select_uri (priv->book_tree, uri);
-}
-
-/**
- * dh_sidebar_new:
- * @book_manager: (nullable): a #DhBookManager. This parameter is deprecated,
- * you should just pass %NULL.
- *
- * Returns: (transfer floating): a new #DhSidebar widget.
- */
-GtkWidget *
-dh_sidebar_new (DhBookManager *book_manager)
-{
-        return GTK_WIDGET (g_object_new (DH_TYPE_SIDEBAR,
-                                         "orientation", GTK_ORIENTATION_VERTICAL,
-                                         NULL));
-}
-
-static void
-dh_sidebar_dispose (GObject *object)
-{
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
-
-        g_clear_object (&priv->hitlist_model);
-
-        if (priv->idle_complete_id != 0) {
-                g_source_remove (priv->idle_complete_id);
-                priv->idle_complete_id = 0;
-        }
-
-        if (priv->idle_filter_id != 0) {
-                g_source_remove (priv->idle_filter_id);
-                priv->idle_filter_id = 0;
-        }
-
-        G_OBJECT_CLASS (dh_sidebar_parent_class)->dispose (object);
-}
-
-static void
-dh_sidebar_finalize (GObject *object)
-{
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
-
-        g_clear_pointer (&priv->completion, g_completion_free);
-
-        G_OBJECT_CLASS (dh_sidebar_parent_class)->finalize (object);
 }
 
 static void
@@ -660,25 +586,99 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_widget_show_all (GTK_WIDGET (sidebar));
 }
 
-static void
-dh_sidebar_class_init (DhSidebarClass *klass)
+/**
+ * dh_sidebar_new:
+ * @book_manager: (nullable): a #DhBookManager. This parameter is deprecated,
+ * you should just pass %NULL.
+ *
+ * Returns: (transfer floating): a new #DhSidebar widget.
+ */
+GtkWidget *
+dh_sidebar_new (DhBookManager *book_manager)
 {
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
+        return GTK_WIDGET (g_object_new (DH_TYPE_SIDEBAR,
+                                         "orientation", GTK_ORIENTATION_VERTICAL,
+                                         NULL));
+}
 
-        object_class->dispose = dh_sidebar_dispose;
-        object_class->finalize = dh_sidebar_finalize;
+/**
+ * dh_sidebar_get_selected_book:
+ * @sidebar: a #DhSidebar.
+ *
+ * Returns: (nullable) (transfer full): the #DhLink of the selected book, or
+ * %NULL if there is no selection. Unref with dh_link_unref() when no longer
+ * needed.
+ */
+DhLink *
+dh_sidebar_get_selected_book (DhSidebar *sidebar)
+{
+        DhSidebarPrivate *priv;
 
-        /**
-         * DhSidebar::link-selected:
-         * @sidebar: a #DhSidebar.
-         * @link: the selected #DhLink.
+        g_return_val_if_fail (DH_IS_SIDEBAR (sidebar), NULL);
+
+        priv = dh_sidebar_get_instance_private (sidebar);
+
+        return dh_book_tree_get_selected_book (priv->book_tree);
+}
+
+/**
+ * dh_sidebar_select_uri:
+ * @sidebar: a #DhSidebar.
+ * @uri: the URI to select.
+ */
+void
+dh_sidebar_select_uri (DhSidebar   *sidebar,
+                       const gchar *uri)
+{
+        DhSidebarPrivate *priv;
+
+        g_return_if_fail (DH_IS_SIDEBAR (sidebar));
+
+        priv = dh_sidebar_get_instance_private (sidebar);
+
+        dh_book_tree_select_uri (priv->book_tree, uri);
+}
+
+/**
+ * dh_sidebar_set_search_string:
+ * @sidebar: a #DhSidebar.
+ * @str: the string to search.
+ */
+void
+dh_sidebar_set_search_string (DhSidebar   *sidebar,
+                              const gchar *str)
+{
+        DhSidebarPrivate *priv;
+
+        g_return_if_fail (DH_IS_SIDEBAR (sidebar));
+
+        priv = dh_sidebar_get_instance_private (sidebar);
+
+        gtk_entry_set_text (priv->entry, str);
+        gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
+        gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
+
+        /* If the GtkEntry text was already equal to @str, the
+         * GtkEditable::changed signal was not emitted, so force to emit it to
+         * call sidebar_entry_changed_cb(), forcing a new search. If an exact
+         * match is found, the DhSidebar::link-selected signal will be emitted,
+         * to re-jump to that symbol (even if the GtkEntry text was equal, it
+         * doesn't mean that the WebKitWebView was showing the exact match).
+         * https://bugzilla.gnome.org/show_bug.cgi?id=776596
          */
-        signals[SIGNAL_LINK_SELECTED] =
-                g_signal_new ("link-selected",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (DhSidebarClass, link_selected),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, DH_TYPE_LINK);
+        g_signal_emit_by_name (priv->entry, "changed");
+}
+
+/**
+ * dh_sidebar_set_search_focus:
+ * @sidebar: a #DhSidebar.
+ *
+ * Gives the focus to the search entry.
+ */
+void
+dh_sidebar_set_search_focus (DhSidebar *sidebar)
+{
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+
+        gtk_widget_grab_focus (GTK_WIDGET (priv->entry));
 }
