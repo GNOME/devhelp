@@ -68,7 +68,7 @@ typedef struct {
 } DhSidebarPrivate;
 
 enum {
-        LINK_SELECTED,
+        SIGNAL_LINK_SELECTED,
         N_SIGNALS
 };
 
@@ -111,7 +111,7 @@ sidebar_filter_idle_cb (DhSidebar *sidebar)
                                  GTK_TREE_MODEL (priv->hitlist_model));
 
         if (link != NULL)
-                g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
+                g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
 
         if (book_link != NULL)
                 dh_link_unref (book_link);
@@ -213,7 +213,7 @@ sidebar_hitlist_selection_changed_cb (GtkTreeSelection *selection,
                                     DH_KEYWORD_MODEL_COL_LINK, &link,
                                     -1);
 
-                g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
+                g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
         }
 }
 
@@ -243,7 +243,7 @@ sidebar_hitlist_button_press_cb (GtkTreeView    *hitlist_view,
                             DH_KEYWORD_MODEL_COL_LINK, &link,
                             -1);
 
-        g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
+        g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
 
         /* Always propagate the event so the tree view can update
          * the selection etc.
@@ -291,7 +291,7 @@ sidebar_entry_key_press_event_cb (GtkEntry    *entry,
                         gtk_editable_set_position (GTK_EDITABLE (entry), -1);
                         gtk_editable_select_region (GTK_EDITABLE (entry), -1, -1);
 
-                        g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
+                        g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
 
                         return GDK_EVENT_STOP;
                 }
@@ -459,7 +459,7 @@ sidebar_book_tree_link_selected_cb (DhBookTree *book_tree,
                                     DhLink     *link,
                                     DhSidebar  *sidebar)
 {
-        g_signal_emit (sidebar, signals[LINK_SELECTED], 0, link);
+        g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
 }
 
 /**
@@ -673,7 +673,7 @@ dh_sidebar_class_init (DhSidebarClass *klass)
          * @sidebar: a #DhSidebar.
          * @link: the selected #DhLink.
          */
-        signals[LINK_SELECTED] =
+        signals[SIGNAL_LINK_SELECTED] =
                 g_signal_new ("link-selected",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
