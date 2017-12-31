@@ -132,7 +132,7 @@ dh_sidebar_class_init (DhSidebarClass *klass)
 /******************************************************************************/
 
 static gboolean
-sidebar_filter_idle_cb (DhSidebar *sidebar)
+filter_idle_cb (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv;
         const gchar *search_text;
@@ -173,20 +173,20 @@ sidebar_filter_idle_cb (DhSidebar *sidebar)
 }
 
 static void
-sidebar_search_run_idle (DhSidebar *sidebar)
+search_run_idle (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
         if (priv->idle_filter_id == 0)
                 priv->idle_filter_id =
-                        g_idle_add ((GSourceFunc) sidebar_filter_idle_cb, sidebar);
+                        g_idle_add ((GSourceFunc) filter_idle_cb, sidebar);
 }
 
 /******************************************************************************/
 
 static void
-sidebar_completion_add_book (DhSidebar *sidebar,
-                             DhBook    *book)
+completion_add_book (DhSidebar *sidebar,
+                     DhBook    *book)
 {
         GList *completions;
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
@@ -200,8 +200,8 @@ sidebar_completion_add_book (DhSidebar *sidebar,
 }
 
 static void
-sidebar_completion_delete_book (DhSidebar *sidebar,
-                                DhBook    *book)
+completion_delete_book (DhSidebar *sidebar,
+                        DhBook    *book)
 {
         GList *completions;
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
@@ -215,29 +215,29 @@ sidebar_completion_delete_book (DhSidebar *sidebar,
 }
 
 static void
-sidebar_book_created_or_enabled_cb (DhBookManager *book_manager,
-                                    DhBook        *book,
-                                    DhSidebar     *sidebar)
+book_created_or_enabled_cb (DhBookManager *book_manager,
+                            DhBook        *book,
+                            DhSidebar     *sidebar)
 {
-        sidebar_completion_add_book (sidebar, book);
+        completion_add_book (sidebar, book);
 
         /* Update current search if any */
-        sidebar_search_run_idle (sidebar);
+        search_run_idle (sidebar);
 }
 
 static void
-sidebar_book_deleted_or_disabled_cb (DhBookManager *book_manager,
-                                     DhBook        *book,
-                                     DhSidebar     *sidebar)
+book_deleted_or_disabled_cb (DhBookManager *book_manager,
+                             DhBook        *book,
+                             DhSidebar     *sidebar)
 {
-        sidebar_completion_delete_book (sidebar, book);
+        completion_delete_book (sidebar, book);
 
         /* Update current search if any */
-        sidebar_search_run_idle (sidebar);
+        search_run_idle (sidebar);
 }
 
 static void
-sidebar_completion_populate (DhSidebar *sidebar)
+completion_populate (DhSidebar *sidebar)
 {
         DhBookManager *book_manager;
         GList *books;
@@ -247,14 +247,14 @@ sidebar_completion_populate (DhSidebar *sidebar)
         books = dh_book_manager_get_books (book_manager);
 
         for (l = books; l != NULL; l = l->next)
-                sidebar_completion_add_book (sidebar, DH_BOOK (l->data));
+                completion_add_book (sidebar, DH_BOOK (l->data));
 }
 
 /******************************************************************************/
 
 static void
-sidebar_hitlist_selection_changed_cb (GtkTreeSelection *selection,
-                                      DhSidebar        *sidebar)
+hitlist_selection_changed_cb (GtkTreeSelection *selection,
+                              DhSidebar        *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         GtkTreeIter iter;
@@ -274,9 +274,9 @@ sidebar_hitlist_selection_changed_cb (GtkTreeSelection *selection,
  * html view has been scrolled away.
  */
 static gboolean
-sidebar_hitlist_button_press_cb (GtkTreeView    *hitlist_view,
-                                 GdkEventButton *event,
-                                 DhSidebar      *sidebar)
+hitlist_button_press_cb (GtkTreeView    *hitlist_view,
+                         GdkEventButton *event,
+                         DhSidebar      *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         GtkTreePath *path;
@@ -305,9 +305,9 @@ sidebar_hitlist_button_press_cb (GtkTreeView    *hitlist_view,
 }
 
 static gboolean
-sidebar_entry_key_press_event_cb (GtkEntry    *entry,
-                                  GdkEventKey *event,
-                                  DhSidebar   *sidebar)
+entry_key_press_event_cb (GtkEntry    *entry,
+                          GdkEventKey *event,
+                          DhSidebar   *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
@@ -354,8 +354,8 @@ sidebar_entry_key_press_event_cb (GtkEntry    *entry,
 }
 
 static void
-sidebar_entry_changed_cb (GtkEntry  *entry,
-                          DhSidebar *sidebar)
+entry_changed_cb (GtkEntry  *entry,
+                  DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         const gchar *search_text;
@@ -368,12 +368,12 @@ sidebar_entry_changed_cb (GtkEntry  *entry,
         } else {
                 gtk_widget_hide (GTK_WIDGET (priv->sw_book_tree));
                 gtk_widget_show (GTK_WIDGET (priv->sw_hitlist));
-                sidebar_search_run_idle (sidebar);
+                search_run_idle (sidebar);
         }
 }
 
 static gboolean
-sidebar_complete_idle_cb (DhSidebar *sidebar)
+complete_idle_cb (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         const gchar *search_text;
@@ -398,17 +398,17 @@ sidebar_complete_idle_cb (DhSidebar *sidebar)
 }
 
 static void
-sidebar_entry_insert_text_cb (GtkEntry    *entry,
-                              const gchar *text,
-                              gint         length,
-                              gint        *position,
-                              DhSidebar   *sidebar)
+entry_insert_text_cb (GtkEntry    *entry,
+                      const gchar *text,
+                      gint         length,
+                      gint        *position,
+                      DhSidebar   *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
         if (priv->idle_complete_id == 0)
                 priv->idle_complete_id =
-                        g_idle_add ((GSourceFunc) sidebar_complete_idle_cb, sidebar);
+                        g_idle_add ((GSourceFunc) complete_idle_cb, sidebar);
 }
 
 static void
@@ -464,9 +464,9 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
 }
 
 static void
-sidebar_book_tree_link_selected_cb (DhBookTree *book_tree,
-                                    DhLink     *link,
-                                    DhSidebar  *sidebar)
+book_tree_link_selected_cb (DhBookTree *book_tree,
+                            DhLink     *link,
+                            DhSidebar  *sidebar)
 {
         g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
 }
@@ -489,13 +489,13 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_box_pack_start (GTK_BOX (sidebar), GTK_WIDGET (priv->entry), FALSE, FALSE, 0);
 
         g_signal_connect (priv->entry, "key-press-event",
-                          G_CALLBACK (sidebar_entry_key_press_event_cb),
+                          G_CALLBACK (entry_key_press_event_cb),
                           sidebar);
         g_signal_connect (priv->entry, "changed",
-                          G_CALLBACK (sidebar_entry_changed_cb),
+                          G_CALLBACK (entry_changed_cb),
                           sidebar);
         g_signal_connect (priv->entry, "insert-text",
-                          G_CALLBACK (sidebar_entry_insert_text_cb),
+                          G_CALLBACK (entry_insert_text_cb),
                           sidebar);
 
         /* Setup hitlist */
@@ -507,12 +507,12 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_widget_show (GTK_WIDGET (priv->hitlist_view));
 
         g_signal_connect (priv->hitlist_view, "button-press-event",
-                          G_CALLBACK (sidebar_hitlist_button_press_cb),
+                          G_CALLBACK (hitlist_button_press_cb),
                           sidebar);
 
         g_signal_connect (gtk_tree_view_get_selection (priv->hitlist_view),
                           "changed",
-                          G_CALLBACK (sidebar_hitlist_selection_changed_cb),
+                          G_CALLBACK (hitlist_selection_changed_cb),
                           sidebar);
 
         cell = gtk_cell_renderer_text_new ();
@@ -542,25 +542,25 @@ dh_sidebar_init (DhSidebar *sidebar)
 
         g_signal_connect_object (book_manager,
                                  "book-created",
-                                 G_CALLBACK (sidebar_book_created_or_enabled_cb),
+                                 G_CALLBACK (book_created_or_enabled_cb),
                                  sidebar,
                                  0);
 
         g_signal_connect_object (book_manager,
                                  "book-enabled",
-                                 G_CALLBACK (sidebar_book_created_or_enabled_cb),
+                                 G_CALLBACK (book_created_or_enabled_cb),
                                  sidebar,
                                  0);
 
         g_signal_connect_object (book_manager,
                                  "book-deleted",
-                                 G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
+                                 G_CALLBACK (book_deleted_or_disabled_cb),
                                  sidebar,
                                  0);
 
         g_signal_connect_object (book_manager,
                                  "book-disabled",
-                                 G_CALLBACK (sidebar_book_deleted_or_disabled_cb),
+                                 G_CALLBACK (book_deleted_or_disabled_cb),
                                  sidebar,
                                  0);
 
@@ -576,12 +576,12 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_widget_show (GTK_WIDGET (priv->book_tree));
         g_signal_connect (priv->book_tree,
                           "link-selected",
-                          G_CALLBACK (sidebar_book_tree_link_selected_cb),
+                          G_CALLBACK (book_tree_link_selected_cb),
                           sidebar);
         gtk_container_add (GTK_CONTAINER (priv->sw_book_tree), GTK_WIDGET (priv->book_tree));
         gtk_box_pack_end (GTK_BOX (sidebar), GTK_WIDGET (priv->sw_book_tree), TRUE, TRUE, 0);
 
-        sidebar_completion_populate (sidebar);
+        completion_populate (sidebar);
 
         gtk_widget_show_all (GTK_WIDGET (sidebar));
 }
@@ -660,9 +660,9 @@ dh_sidebar_set_search_string (DhSidebar   *sidebar,
 
         /* If the GtkEntry text was already equal to @str, the
          * GtkEditable::changed signal was not emitted, so force to emit it to
-         * call sidebar_entry_changed_cb(), forcing a new search. If an exact
-         * match is found, the DhSidebar::link-selected signal will be emitted,
-         * to re-jump to that symbol (even if the GtkEntry text was equal, it
+         * call entry_changed_cb(), forcing a new search. If an exact match is
+         * found, the DhSidebar::link-selected signal will be emitted, to
+         * re-jump to that symbol (even if the GtkEntry text was equal, it
          * doesn't mean that the WebKitWebView was showing the exact match).
          * https://bugzilla.gnome.org/show_bug.cgi?id=776596
          */
