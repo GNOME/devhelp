@@ -47,6 +47,9 @@ struct _DhSidebarClass {
         /* Signals */
         void (*link_selected) (DhSidebar *sidebar,
                                DhLink    *link);
+
+        /* Padding for future expansion */
+        gpointer padding[12];
 };
 
 GType           dh_sidebar_get_type             (void);

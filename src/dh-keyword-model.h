@@ -42,6 +42,9 @@ struct _DhKeywordModel {
 
 struct _DhKeywordModelClass {
         GObjectClass parent_class;
+
+        /* Padding for future expansion */
+        gpointer padding[12];
 };
 
 enum {

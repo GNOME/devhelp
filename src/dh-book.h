@@ -43,6 +43,9 @@ struct _DhBook {
 
 struct _DhBookClass {
         GObjectClass parent_class;
+
+        /* Padding for future expansion */
+        gpointer padding[12];
 };
 
 GType        dh_book_get_type        (void) G_GNUC_CONST;

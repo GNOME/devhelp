@@ -39,6 +39,9 @@ struct _DhBookTree {
 
 struct _DhBookTreeClass {
         GtkTreeViewClass parent_class;
+
+        /* Padding for future expansion */
+        gpointer padding[12];
 };
 
 GType           dh_book_tree_get_type           (void) G_GNUC_CONST;

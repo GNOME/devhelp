@@ -43,6 +43,9 @@ struct _DhAssistantView {
 
 struct _DhAssistantViewClass {
         WebKitWebViewClass parent_class;
+
+        /* Padding for future expansion */
+        gpointer padding[12];
 };
 
 GType           dh_assistant_view_get_type              (void) G_GNUC_CONST;
