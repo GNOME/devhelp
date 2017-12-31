@@ -21,11 +21,8 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
 #include "dh-sidebar.h"
-
 #include <string.h>
-
 #include "dh-keyword-model.h"
 #include "dh-book.h"
 #include "dh-book-tree.h"
@@ -56,17 +53,18 @@
  */
 
 typedef struct {
-        DhBookTree              *book_tree;
-        GtkScrolledWindow       *sw_book_tree;
+        GtkEntry *entry;
 
-        GtkEntry                *entry;
-        DhKeywordModel          *hitlist_model;
-        GtkTreeView             *hitlist_view;
-        GtkScrolledWindow       *sw_hitlist;
+        DhBookTree *book_tree;
+        GtkScrolledWindow *sw_book_tree;
 
-        GCompletion             *completion;
-        guint                    idle_complete_id;
-        guint                    idle_filter_id;
+        DhKeywordModel *hitlist_model;
+        GtkTreeView *hitlist_view;
+        GtkScrolledWindow *sw_hitlist;
+
+        GCompletion *completion;
+        guint idle_complete_id;
+        guint idle_filter_id;
 } DhSidebarPrivate;
 
 enum {
@@ -86,8 +84,8 @@ sidebar_filter_idle_cb (DhSidebar *sidebar)
         DhSidebarPrivate *priv;
         const gchar *search_text;
         const gchar *book_id;
-        DhLink      *book_link;
-        DhLink      *link;
+        DhLink *book_link;
+        DhLink *link;
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
@@ -228,9 +226,9 @@ sidebar_hitlist_button_press_cb (GtkTreeView    *hitlist_view,
                                  DhSidebar      *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-        GtkTreePath  *path;
-        GtkTreeIter   iter;
-        DhLink       *link;
+        GtkTreePath *path;
+        GtkTreeIter iter;
+        DhLink *link;
 
         gtk_tree_view_get_path_at_pos (hitlist_view, event->x, event->y, &path,
                                        NULL, NULL, NULL);
@@ -274,9 +272,9 @@ sidebar_entry_key_press_event_cb (GtkEntry    *entry,
 
         if (event->keyval == GDK_KEY_Return ||
             event->keyval == GDK_KEY_KP_Enter) {
-                GtkTreeIter  iter;
-                DhLink      *link;
-                gchar       *name;
+                GtkTreeIter iter;
+                DhLink *link;
+                gchar *name;
 
                 /* Get the first entry found. */
                 if (gtk_widget_is_visible (GTK_WIDGET (priv->hitlist_view)) &&
@@ -325,8 +323,8 @@ static gboolean
 sidebar_complete_idle_cb (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-        const gchar  *search_text;
-        gchar        *completed = NULL;
+        const gchar *search_text;
+        gchar *completed = NULL;
 
         search_text = gtk_entry_get_text (priv->entry);
 
@@ -411,12 +409,12 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
                         GtkTreeIter       *iter,
                         gpointer           data)
 {
-        DhLink       *link;
-        DhLinkType    link_type;
-        PangoStyle    style;
-        PangoWeight   weight;
-        gboolean      current_book_flag;
-        gchar        *name;
+        DhLink *link;
+        DhLinkType link_type;
+        PangoStyle style;
+        PangoWeight weight;
+        gboolean current_book_flag;
+        gchar *name;
 
         gtk_tree_model_get (hitlist_model, iter,
                             DH_KEYWORD_MODEL_COL_LINK, &link,
