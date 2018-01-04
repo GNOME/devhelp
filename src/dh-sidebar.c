@@ -372,10 +372,25 @@ entry_changed_cb (GtkEntry  *entry,
 
         search_text = gtk_entry_get_text (entry);
 
+        /* We don't want a delay when the search text becomes empty, to show the
+         * book tree. So do it here and not in entry_search_changed_cb().
+         */
         if (search_text == NULL || search_text[0] == '\0') {
                 gtk_widget_hide (GTK_WIDGET (priv->sw_hitlist));
                 gtk_widget_show (GTK_WIDGET (priv->sw_book_tree));
-        } else {
+        }
+}
+
+static void
+entry_search_changed_cb (GtkSearchEntry *search_entry,
+                         DhSidebar      *sidebar)
+{
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+        const gchar *search_text;
+
+        search_text = gtk_entry_get_text (GTK_ENTRY (search_entry));
+
+        if (search_text != NULL && search_text[0] != '\0') {
                 gtk_widget_hide (GTK_WIDGET (priv->sw_book_tree));
                 gtk_widget_show (GTK_WIDGET (priv->sw_hitlist));
                 setup_search_idle (sidebar);
@@ -512,6 +527,11 @@ dh_sidebar_init (DhSidebar *sidebar)
         g_signal_connect (priv->entry,
                           "changed",
                           G_CALLBACK (entry_changed_cb),
+                          sidebar);
+
+        g_signal_connect (priv->entry,
+                          "search-changed",
+                          G_CALLBACK (entry_search_changed_cb),
                           sidebar);
 
         g_signal_connect (priv->entry,
@@ -666,10 +686,11 @@ dh_sidebar_set_search_string (DhSidebar   *sidebar,
 
         /* If the GtkEntry text was already equal to @str, the
          * GtkEditable::changed signal was not emitted, so force to emit it to
-         * call entry_changed_cb(), forcing a new search. If an exact match is
-         * found, the DhSidebar::link-selected signal will be emitted, to
-         * re-jump to that symbol (even if the GtkEntry text was equal, it
-         * doesn't mean that the WebKitWebView was showing the exact match).
+         * call entry_changed_cb() and entry_search_changed_cb(), forcing a new
+         * search. If an exact match is found, the DhSidebar::link-selected
+         * signal will be emitted, to re-jump to that symbol (even if the
+         * GtkEntry text was equal, it doesn't mean that the WebKitWebView was
+         * showing the exact match).
          * https://bugzilla.gnome.org/show_bug.cgi?id=776596
          */
         g_signal_emit_by_name (priv->entry, "changed");
