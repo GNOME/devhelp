@@ -22,7 +22,6 @@
  */
 
 #include "dh-sidebar.h"
-#include <string.h>
 #include "dh-book.h"
 #include "dh-book-tree.h"
 #include "dh-keyword-model.h"
@@ -395,12 +394,14 @@ complete_idle_cb (gpointer user_data)
 
         g_completion_complete (priv->completion, search_text, &completed);
         if (completed != NULL) {
-                gsize length = strlen (search_text);
+                guint16 n_chars_before;
+
+                n_chars_before = gtk_entry_get_text_length (priv->entry);
 
                 gtk_entry_set_text (priv->entry, completed);
-                gtk_editable_set_position (GTK_EDITABLE (priv->entry), length);
+                gtk_editable_set_position (GTK_EDITABLE (priv->entry), n_chars_before);
                 gtk_editable_select_region (GTK_EDITABLE (priv->entry),
-                                            length, -1);
+                                            n_chars_before, -1);
                 g_free (completed);
         }
 
