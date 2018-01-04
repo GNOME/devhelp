@@ -53,6 +53,7 @@
  */
 
 typedef struct {
+        /* A GtkSearchEntry. */
         GtkEntry *entry;
 
         DhBookTree *book_tree;
