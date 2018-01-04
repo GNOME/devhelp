@@ -23,9 +23,9 @@
 
 #include "dh-sidebar.h"
 #include <string.h>
-#include "dh-keyword-model.h"
 #include "dh-book.h"
 #include "dh-book-tree.h"
+#include "dh-keyword-model.h"
 
 /**
  * SECTION:dh-sidebar
@@ -132,15 +132,14 @@ dh_sidebar_class_init (DhSidebarClass *klass)
 /******************************************************************************/
 
 static gboolean
-filter_idle_cb (DhSidebar *sidebar)
+filter_idle_cb (gpointer user_data)
 {
-        DhSidebarPrivate *priv;
+        DhSidebar *sidebar = DH_SIDEBAR (user_data);
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         const gchar *search_text;
         const gchar *book_id;
         DhLink *book_link;
         DhLink *link;
-
-        priv = dh_sidebar_get_instance_private (sidebar);
 
         priv->idle_filter_id = 0;
 
@@ -178,8 +177,7 @@ search_run_idle (DhSidebar *sidebar)
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
         if (priv->idle_filter_id == 0)
-                priv->idle_filter_id =
-                        g_idle_add ((GSourceFunc) filter_idle_cb, sidebar);
+                priv->idle_filter_id = g_idle_add (filter_idle_cb, sidebar);
 }
 
 /******************************************************************************/
@@ -188,8 +186,8 @@ static void
 completion_add_book (DhSidebar *sidebar,
                      DhBook    *book)
 {
-        GList *completions;
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+        GList *completions;
 
         if (G_UNLIKELY (priv->completion == NULL))
                 priv->completion = g_completion_new (NULL);
@@ -203,8 +201,8 @@ static void
 completion_delete_book (DhSidebar *sidebar,
                         DhBook    *book)
 {
-        GList *completions;
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+        GList *completions;
 
         if (G_UNLIKELY (priv->completion == NULL))
                 return;
@@ -373,8 +371,9 @@ entry_changed_cb (GtkEntry  *entry,
 }
 
 static gboolean
-complete_idle_cb (DhSidebar *sidebar)
+complete_idle_cb (gpointer user_data)
 {
+        DhSidebar *sidebar = DH_SIDEBAR (user_data);
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         const gchar *search_text;
         gchar *completed = NULL;
@@ -407,8 +406,7 @@ entry_insert_text_cb (GtkEntry    *entry,
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
         if (priv->idle_complete_id == 0)
-                priv->idle_complete_id =
-                        g_idle_add ((GSourceFunc) complete_idle_cb, sidebar);
+                priv->idle_complete_id = g_idle_add (complete_idle_cb, sidebar);
 }
 
 static void
@@ -438,19 +436,21 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
         /* Matches on the current book are given in bold. Note that we check the
          * current book as it was given to the DhKeywordModel. Do *not* rely on
          * the current book as given by the DhSidebar, as that will change
-         * whenever a hit is clicked. */
+         * whenever a hit is clicked.
+         */
         if (current_book_flag)
                 weight = PANGO_WEIGHT_BOLD;
         else
                 weight = PANGO_WEIGHT_NORMAL;
 
         link_type = dh_link_get_link_type (link);
-        if (link_type == DH_LINK_TYPE_STRUCT || link_type == DH_LINK_TYPE_PROPERTY ||
+
+        if (link_type == DH_LINK_TYPE_STRUCT ||
+            link_type == DH_LINK_TYPE_PROPERTY ||
             link_type == DH_LINK_TYPE_SIGNAL) {
-                name = g_markup_printf_escaped (
-                                "%s <i><small><span weight=\"normal\">(%s)</span></small></i>",
-                                dh_link_get_name (link),
-                                dh_link_type_to_string (dh_link_get_link_type (link)));
+                name = g_markup_printf_escaped ("%s <i><small><span weight=\"normal\">(%s)</span></small></i>",
+                                                dh_link_get_name (link),
+                                                dh_link_type_to_string (dh_link_get_link_type (link)));
         } else {
                 name = g_markup_printf_escaped ("%s", dh_link_get_name (link));
         }
@@ -460,6 +460,7 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
                       "style", style,
                       "weight", weight,
                       NULL);
+
         g_free (name);
 }
 
@@ -474,11 +475,9 @@ book_tree_link_selected_cb (DhBookTree *book_tree,
 static void
 dh_sidebar_init (DhSidebar *sidebar)
 {
-        DhSidebarPrivate *priv;
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         GtkCellRenderer *cell;
         DhBookManager *book_manager;
-
-        priv = dh_sidebar_get_instance_private (sidebar);
 
         gtk_orientable_set_orientation (GTK_ORIENTABLE (sidebar),
                                         GTK_ORIENTATION_VERTICAL);
@@ -491,13 +490,18 @@ dh_sidebar_init (DhSidebar *sidebar)
                       NULL);
         gtk_container_add (GTK_CONTAINER (sidebar), GTK_WIDGET (priv->entry));
 
-        g_signal_connect (priv->entry, "key-press-event",
+        g_signal_connect (priv->entry,
+                          "key-press-event",
                           G_CALLBACK (entry_key_press_event_cb),
                           sidebar);
-        g_signal_connect (priv->entry, "changed",
+
+        g_signal_connect (priv->entry,
+                          "changed",
                           G_CALLBACK (entry_changed_cb),
                           sidebar);
-        g_signal_connect (priv->entry, "insert-text",
+
+        g_signal_connect (priv->entry,
+                          "insert-text",
                           G_CALLBACK (entry_insert_text_cb),
                           sidebar);
 
@@ -509,7 +513,8 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_tree_view_set_enable_search (priv->hitlist_view, FALSE);
         gtk_widget_show (GTK_WIDGET (priv->hitlist_view));
 
-        g_signal_connect (priv->hitlist_view, "button-press-event",
+        g_signal_connect (priv->hitlist_view,
+                          "button-press-event",
                           G_CALLBACK (hitlist_button_press_cb),
                           sidebar);
 
@@ -638,6 +643,7 @@ dh_sidebar_select_uri (DhSidebar   *sidebar,
         DhSidebarPrivate *priv;
 
         g_return_if_fail (DH_IS_SIDEBAR (sidebar));
+        g_return_if_fail (uri != NULL);
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
@@ -656,6 +662,7 @@ dh_sidebar_set_search_string (DhSidebar   *sidebar,
         DhSidebarPrivate *priv;
 
         g_return_if_fail (DH_IS_SIDEBAR (sidebar));
+        g_return_if_fail (str != NULL);
 
         priv = dh_sidebar_get_instance_private (sidebar);
 
@@ -683,7 +690,11 @@ dh_sidebar_set_search_string (DhSidebar   *sidebar,
 void
 dh_sidebar_set_search_focus (DhSidebar *sidebar)
 {
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+        DhSidebarPrivate *priv;
+
+        g_return_if_fail (DH_IS_SIDEBAR (sidebar));
+
+        priv = dh_sidebar_get_instance_private (sidebar);
 
         gtk_widget_grab_focus (GTK_WIDGET (priv->entry));
 }
