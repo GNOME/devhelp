@@ -328,7 +328,19 @@ entry_key_press_event_cb (GtkEntry    *entry,
                 DhLink *link;
                 gchar *name;
 
-                /* Get the first entry found. */
+                /* Get the first entry found.
+                 *
+                 * FIXME: is it really useful to do that? If there is an exact
+                 * match it already gets selected, so it seems that the feature
+                 * here just selects a random symbol (the one that appears to be
+                 * the first in the list).
+                 * I've never used this feature -- swilmet.
+                 * This has been implemented in
+                 * commit 455440a93d1b55d5a1e53ecabb2ee33093eec965
+                 * and https://bugzilla.gnome.org/show_bug.cgi?id=114558
+                 * but maybe at that time the search didn't jump to the exact
+                 * match if there was one.
+                 */
                 if (gtk_widget_is_visible (GTK_WIDGET (priv->hitlist_view)) &&
                     gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->hitlist_model), &iter)) {
                         gtk_tree_model_get (GTK_TREE_MODEL (priv->hitlist_model),
