@@ -190,7 +190,7 @@
         <para>
           The ownership transfer of the return values of
           <link linkend="dh-book-tree-get-selected-book">dh_book_tree_get_selected_book()</link>
-          and <link linkend="dh-sidebar-get-selected-book">dh_sidebar_get_selected_book()</link>
+          and <code>dh_sidebar_get_selected_book()</code>
           have been changed from (transfer none) to (transfer full).
         </para>
       </listitem>
@@ -217,6 +217,12 @@
           <link linkend="DhSidebar">DhSidebar</link> is now a subclass of
           <link linkend="GtkGrid">GtkGrid</link>, not
           <link linkend="GtkBox">GtkBox</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <code>dh_sidebar_get_selected_book()</code> has been removed (it was
+          used only inside DhSidebar).
         </para>
       </listitem>
     </itemizedlist>

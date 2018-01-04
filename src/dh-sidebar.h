@@ -56,8 +56,6 @@ GType           dh_sidebar_get_type             (void);
 
 GtkWidget *     dh_sidebar_new                  (DhBookManager *book_manager);
 
-DhLink *        dh_sidebar_get_selected_book    (DhSidebar *sidebar);
-
 void            dh_sidebar_select_uri           (DhSidebar   *sidebar,
                                                  const gchar *uri);
 

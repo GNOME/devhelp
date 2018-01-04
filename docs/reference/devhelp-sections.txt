@@ -135,7 +135,6 @@ dh_link_type_get_type
 <FILE>dh-sidebar</FILE>
 DhSidebar
 dh_sidebar_new
-dh_sidebar_get_selected_book
 dh_sidebar_select_uri
 dh_sidebar_set_search_string
 dh_sidebar_set_search_focus

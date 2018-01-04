@@ -145,7 +145,7 @@ filter_idle_cb (gpointer user_data)
 
         search_text = gtk_entry_get_text (priv->entry);
 
-        book_link = dh_sidebar_get_selected_book (sidebar);
+        book_link = dh_book_tree_get_selected_book (priv->book_tree);
         book_id = book_link != NULL ? dh_link_get_book_id (book_link) : NULL;
 
         /* Disconnect the model during the filter, for:
@@ -609,26 +609,6 @@ GtkWidget *
 dh_sidebar_new (DhBookManager *book_manager)
 {
         return g_object_new (DH_TYPE_SIDEBAR, NULL);
-}
-
-/**
- * dh_sidebar_get_selected_book:
- * @sidebar: a #DhSidebar.
- *
- * Returns: (nullable) (transfer full): the #DhLink of the selected book, or
- * %NULL if there is no selection. Unref with dh_link_unref() when no longer
- * needed.
- */
-DhLink *
-dh_sidebar_get_selected_book (DhSidebar *sidebar)
-{
-        DhSidebarPrivate *priv;
-
-        g_return_val_if_fail (DH_IS_SIDEBAR (sidebar), NULL);
-
-        priv = dh_sidebar_get_instance_private (sidebar);
-
-        return dh_book_tree_get_selected_book (priv->book_tree);
 }
 
 /**
