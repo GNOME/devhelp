@@ -315,8 +315,8 @@ entry_key_press_event_cb (GtkEntry    *entry,
                         if (gtk_widget_is_visible (GTK_WIDGET (priv->hitlist_view)))
                                 gtk_widget_grab_focus (GTK_WIDGET (priv->hitlist_view));
                 } else {
+                        gtk_editable_select_region (GTK_EDITABLE (entry), 0, 0);
                         gtk_editable_set_position (GTK_EDITABLE (entry), -1);
-                        gtk_editable_select_region (GTK_EDITABLE (entry), -1, -1);
                 }
 
                 return GDK_EVENT_STOP;
@@ -340,8 +340,8 @@ entry_key_press_event_cb (GtkEntry    *entry,
                         gtk_entry_set_text (entry, name);
                         g_free (name);
 
+                        gtk_editable_select_region (GTK_EDITABLE (entry), 0, 0);
                         gtk_editable_set_position (GTK_EDITABLE (entry), -1);
-                        gtk_editable_select_region (GTK_EDITABLE (entry), -1, -1);
 
                         g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
 
@@ -648,8 +648,8 @@ dh_sidebar_set_search_string (DhSidebar   *sidebar,
         priv = dh_sidebar_get_instance_private (sidebar);
 
         gtk_entry_set_text (priv->entry, str);
+        gtk_editable_select_region (GTK_EDITABLE (priv->entry), 0, 0);
         gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
-        gtk_editable_select_region (GTK_EDITABLE (priv->entry), -1, -1);
 
         /* If the GtkEntry text was already equal to @str, the
          * GtkEditable::changed signal was not emitted, so force to emit it to
