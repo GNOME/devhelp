@@ -65,7 +65,7 @@ typedef struct {
 
         GCompletion *completion;
         guint idle_complete_id;
-        guint idle_filter_id;
+        guint idle_search_id;
 } DhSidebarPrivate;
 
 enum {
@@ -89,9 +89,9 @@ dh_sidebar_dispose (GObject *object)
                 priv->idle_complete_id = 0;
         }
 
-        if (priv->idle_filter_id != 0) {
-                g_source_remove (priv->idle_filter_id);
-                priv->idle_filter_id = 0;
+        if (priv->idle_search_id != 0) {
+                g_source_remove (priv->idle_search_id);
+                priv->idle_search_id = 0;
         }
 
         G_OBJECT_CLASS (dh_sidebar_parent_class)->dispose (object);
@@ -133,16 +133,16 @@ dh_sidebar_class_init (DhSidebarClass *klass)
 /******************************************************************************/
 
 static gboolean
-filter_idle_cb (gpointer user_data)
+search_idle_cb (gpointer user_data)
 {
         DhSidebar *sidebar = DH_SIDEBAR (user_data);
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         const gchar *search_text;
         const gchar *book_id;
         DhLink *book_link;
-        DhLink *link;
+        DhLink *exact_link;
 
-        priv->idle_filter_id = 0;
+        priv->idle_search_id = 0;
 
         search_text = gtk_entry_get_text (priv->entry);
 
@@ -155,16 +155,16 @@ filter_idle_cb (gpointer user_data)
          */
         gtk_tree_view_set_model (priv->hitlist_view, NULL);
 
-        link = dh_keyword_model_filter (priv->hitlist_model,
-                                        search_text,
-                                        book_id,
-                                        NULL);
+        exact_link = dh_keyword_model_filter (priv->hitlist_model,
+                                              search_text,
+                                              book_id,
+                                              NULL);
 
         gtk_tree_view_set_model (priv->hitlist_view,
                                  GTK_TREE_MODEL (priv->hitlist_model));
 
-        if (link != NULL)
-                g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
+        if (exact_link != NULL)
+                g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, exact_link);
 
         if (book_link != NULL)
                 dh_link_unref (book_link);
@@ -173,12 +173,12 @@ filter_idle_cb (gpointer user_data)
 }
 
 static void
-search_run_idle (DhSidebar *sidebar)
+setup_search_idle (DhSidebar *sidebar)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
 
-        if (priv->idle_filter_id == 0)
-                priv->idle_filter_id = g_idle_add (filter_idle_cb, sidebar);
+        if (priv->idle_search_id == 0)
+                priv->idle_search_id = g_idle_add (search_idle_cb, sidebar);
 }
 
 /******************************************************************************/
@@ -221,7 +221,7 @@ book_created_or_enabled_cb (DhBookManager *book_manager,
         completion_add_book (sidebar, book);
 
         /* Update current search if any */
-        search_run_idle (sidebar);
+        setup_search_idle (sidebar);
 }
 
 static void
@@ -232,7 +232,7 @@ book_deleted_or_disabled_cb (DhBookManager *book_manager,
         completion_delete_book (sidebar, book);
 
         /* Update current search if any */
-        search_run_idle (sidebar);
+        setup_search_idle (sidebar);
 }
 
 static void
@@ -379,7 +379,7 @@ entry_changed_cb (GtkEntry  *entry,
         } else {
                 gtk_widget_hide (GTK_WIDGET (priv->sw_book_tree));
                 gtk_widget_show (GTK_WIDGET (priv->sw_hitlist));
-                search_run_idle (sidebar);
+                setup_search_idle (sidebar);
         }
 }
 
