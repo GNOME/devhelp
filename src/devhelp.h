@@ -25,6 +25,7 @@
 #include "dh-book.h"
 #include "dh-book-manager.h"
 #include "dh-book-tree.h"
+#include "dh-completion.h"
 #include "dh-init.h"
 #include "dh-keyword-model.h"
 #include "dh-link.h"

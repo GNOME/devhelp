@@ -42,6 +42,11 @@
       <title>Assistant</title>
       <xi:include href="xml/dh-assistant-view.xml"/>
     </chapter>
+
+    <chapter id="misc">
+      <title>Misc</title>
+      <xi:include href="xml/dh-completion.xml"/>
+    </chapter>
   </part>
 
   <xi:include href="api-breaks.xml"/>

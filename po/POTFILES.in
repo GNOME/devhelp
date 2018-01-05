@@ -11,6 +11,7 @@ src/dh-assistant.ui
 src/dh-assistant-view.c
 src/dh-book.c
 src/dh-book-tree.c
+src/dh-completion.c
 src/dh-keyword-model.c
 src/dh-link.c
 src/dh-main.c

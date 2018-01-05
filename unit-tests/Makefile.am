@@ -12,6 +12,9 @@ LDADD = $(top_builddir)/src/libdevhelp-core.la	\
 
 UNIT_TEST_PROGS =
 
+UNIT_TEST_PROGS += test-completion
+test_completion_SOURCES = test-completion.c
+
 UNIT_TEST_PROGS += test-link
 test_link_SOURCES = test-link.c
 

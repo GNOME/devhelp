@@ -15,6 +15,7 @@ libdevhelp_public_headers =		\
 	dh-book.h			\
 	dh-book-manager.h		\
 	dh-book-tree.h			\
+	dh-completion.h			\
 	dh-init.h			\
 	dh-keyword-model.h		\
 	dh-link.h			\
@@ -26,6 +27,7 @@ libdevhelp_public_c_files =		\
 	dh-book.c			\
 	dh-book-manager.c		\
 	dh-book-tree.c			\
+	dh-completion.c			\
 	dh-init.c			\
 	dh-keyword-model.c		\
 	dh-link.c			\
