@@ -479,7 +479,7 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
             link_type == DH_LINK_TYPE_SIGNAL) {
                 name = g_markup_printf_escaped ("%s <i><small><span weight=\"normal\">(%s)</span></small></i>",
                                                 dh_link_get_name (link),
-                                                dh_link_type_to_string (dh_link_get_link_type (link)));
+                                                dh_link_type_to_string (link_type));
         } else {
                 name = g_markup_printf_escaped ("%s", dh_link_get_name (link));
         }
