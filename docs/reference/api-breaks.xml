@@ -225,6 +225,12 @@
           used only inside DhSidebar).
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <code>dh_book_get_completions()</code> has been replaced by
+          <link linkend="dh-book-get-completion">dh_book_get_completion()</link>.
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>

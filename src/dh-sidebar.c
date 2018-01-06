@@ -5,7 +5,7 @@
  * Copyright (C) 2005-2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
  * Copyright (C) 2013 Aleksander Morgado <aleksander@gnu.org>
- * Copyright (C) 2015 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2015, 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -62,7 +62,6 @@ typedef struct {
         GtkTreeView *hitlist_view;
         GtkScrolledWindow *sw_hitlist;
 
-        GCompletion *completion;
         guint idle_complete_id;
         guint idle_search_id;
 } DhSidebarPrivate;
@@ -97,22 +96,11 @@ dh_sidebar_dispose (GObject *object)
 }
 
 static void
-dh_sidebar_finalize (GObject *object)
-{
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
-
-        g_clear_pointer (&priv->completion, g_completion_free);
-
-        G_OBJECT_CLASS (dh_sidebar_parent_class)->finalize (object);
-}
-
-static void
 dh_sidebar_class_init (DhSidebarClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->dispose = dh_sidebar_dispose;
-        object_class->finalize = dh_sidebar_finalize;
 
         /**
          * DhSidebar::link-selected:
@@ -180,72 +168,11 @@ setup_search_idle (DhSidebar *sidebar)
                 priv->idle_search_id = g_idle_add (search_idle_cb, sidebar);
 }
 
-/******************************************************************************/
-
 static void
-completion_add_book (DhSidebar *sidebar,
-                     DhBook    *book)
+book_manager_changed_cb (DhSidebar *sidebar)
 {
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-        GList *completions;
-
-        if (G_UNLIKELY (priv->completion == NULL))
-                priv->completion = g_completion_new (NULL);
-
-        completions = dh_book_get_completions (book);
-        if (completions != NULL)
-                g_completion_add_items (priv->completion, completions);
-}
-
-static void
-completion_delete_book (DhSidebar *sidebar,
-                        DhBook    *book)
-{
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-        GList *completions;
-
-        if (G_UNLIKELY (priv->completion == NULL))
-                return;
-
-        completions = dh_book_get_completions (book);
-        if (completions != NULL)
-                g_completion_remove_items (priv->completion, completions);
-}
-
-static void
-book_created_or_enabled_cb (DhBookManager *book_manager,
-                            DhBook        *book,
-                            DhSidebar     *sidebar)
-{
-        completion_add_book (sidebar, book);
-
-        /* Update current search if any */
+        /* Update current search if any. */
         setup_search_idle (sidebar);
-}
-
-static void
-book_deleted_or_disabled_cb (DhBookManager *book_manager,
-                             DhBook        *book,
-                             DhSidebar     *sidebar)
-{
-        completion_delete_book (sidebar, book);
-
-        /* Update current search if any */
-        setup_search_idle (sidebar);
-}
-
-static void
-completion_populate (DhSidebar *sidebar)
-{
-        DhBookManager *book_manager;
-        GList *books;
-        GList *l;
-
-        book_manager = dh_book_manager_get_singleton ();
-        books = dh_book_manager_get_books (book_manager);
-
-        for (l = books; l != NULL; l = l->next)
-                completion_add_book (sidebar, DH_BOOK (l->data));
 }
 
 /******************************************************************************/
@@ -402,12 +329,29 @@ complete_idle_cb (gpointer user_data)
 {
         DhSidebar *sidebar = DH_SIDEBAR (user_data);
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+        DhBookManager *book_manager;
+        GList *books;
+        GList *l;
+        GList *completion_objects = NULL;
         const gchar *search_text;
-        gchar *completed = NULL;
+        gchar *completed;
+
+        book_manager = dh_book_manager_get_singleton ();
+        books = dh_book_manager_get_books (book_manager);
+        for (l = books; l != NULL; l = l->next) {
+                DhBook *cur_book = DH_BOOK (l->data);
+
+                if (dh_book_get_enabled (cur_book)) {
+                        DhCompletion *completion;
+
+                        completion = dh_book_get_completion (cur_book);
+                        completion_objects = g_list_prepend (completion_objects, completion);
+                }
+        }
 
         search_text = gtk_entry_get_text (priv->entry);
+        completed = dh_completion_aggregate_complete (completion_objects, search_text);
 
-        g_completion_complete (priv->completion, search_text, &completed);
         if (completed != NULL) {
                 guint16 n_chars_before;
 
@@ -417,11 +361,12 @@ complete_idle_cb (gpointer user_data)
                 gtk_editable_set_position (GTK_EDITABLE (priv->entry), n_chars_before);
                 gtk_editable_select_region (GTK_EDITABLE (priv->entry),
                                             n_chars_before, -1);
-                g_free (completed);
         }
 
-        priv->idle_complete_id = 0;
+        g_list_free (completion_objects);
+        g_free (completed);
 
+        priv->idle_complete_id = 0;
         return G_SOURCE_REMOVE;
 }
 
@@ -586,27 +531,27 @@ dh_sidebar_init (DhSidebar *sidebar)
 
         g_signal_connect_object (book_manager,
                                  "book-created",
-                                 G_CALLBACK (book_created_or_enabled_cb),
+                                 G_CALLBACK (book_manager_changed_cb),
                                  sidebar,
-                                 0);
+                                 G_CONNECT_SWAPPED);
 
         g_signal_connect_object (book_manager,
                                  "book-enabled",
-                                 G_CALLBACK (book_created_or_enabled_cb),
+                                 G_CALLBACK (book_manager_changed_cb),
                                  sidebar,
-                                 0);
+                                 G_CONNECT_SWAPPED);
 
         g_signal_connect_object (book_manager,
                                  "book-deleted",
-                                 G_CALLBACK (book_deleted_or_disabled_cb),
+                                 G_CALLBACK (book_manager_changed_cb),
                                  sidebar,
-                                 0);
+                                 G_CONNECT_SWAPPED);
 
         g_signal_connect_object (book_manager,
                                  "book-disabled",
-                                 G_CALLBACK (book_deleted_or_disabled_cb),
+                                 G_CALLBACK (book_manager_changed_cb),
                                  sidebar,
-                                 0);
+                                 G_CONNECT_SWAPPED);
 
         /* Setup the book tree */
         priv->sw_book_tree = GTK_SCROLLED_WINDOW (gtk_scrolled_window_new (NULL, NULL));
@@ -626,8 +571,6 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_widget_set_hexpand (GTK_WIDGET (priv->sw_book_tree), TRUE);
         gtk_widget_set_vexpand (GTK_WIDGET (priv->sw_book_tree), TRUE);
         gtk_container_add (GTK_CONTAINER (sidebar), GTK_WIDGET (priv->sw_book_tree));
-
-        completion_populate (sidebar);
 
         gtk_widget_show_all (GTK_WIDGET (sidebar));
 }

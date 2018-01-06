@@ -4,7 +4,7 @@
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2005-2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,6 +24,7 @@
 #define DH_BOOK_H
 
 #include <gio/gio.h>
+#include "dh-completion.h"
 
 G_BEGIN_DECLS
 
@@ -64,7 +65,7 @@ GList *      dh_book_get_links       (DhBook *book);
 
 GNode *      dh_book_get_tree        (DhBook *book);
 
-GList *      dh_book_get_completions (DhBook *book);
+DhCompletion *dh_book_get_completion (DhBook *book);
 
 gboolean     dh_book_get_enabled     (DhBook *book);
 

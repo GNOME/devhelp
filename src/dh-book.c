@@ -4,7 +4,7 @@
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2004-2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -82,8 +82,7 @@ typedef struct {
         /* List of DhLink*. */
         GList *links;
 
-        /* Generated list of completions (gchar*) in the book. */
-        GList *completions;
+        DhCompletion *completion;
 
         GFileMonitor *index_file_monitor;
         BookMonitorEvent last_monitor_event;
@@ -103,6 +102,7 @@ dh_book_dispose (GObject *object)
 
         priv = dh_book_get_instance_private (DH_BOOK (object));
 
+        g_clear_object (&priv->completion);
         g_clear_object (&priv->index_file_monitor);
 
         if (priv->monitor_event_timeout_id != 0) {
@@ -126,7 +126,6 @@ dh_book_finalize (GObject *object)
         g_free (priv->language);
         _dh_util_free_book_tree (priv->tree);
         g_list_free_full (priv->links, (GDestroyNotify)dh_link_unref);
-        g_list_free_full (priv->completions, g_free);
 
         G_OBJECT_CLASS (dh_book_parent_class)->finalize (object);
 }
@@ -503,14 +502,14 @@ dh_book_get_tree (DhBook *book)
 }
 
 /**
- * dh_book_get_completions:
+ * dh_book_get_completion:
  * @book: a #DhBook.
  *
- * Returns: (element-type utf8) (transfer none) (nullable): the completions
- * associated with the book.
+ * Returns: (transfer none): the #DhCompletion of @book.
+ * Since: 3.28
  */
-GList *
-dh_book_get_completions (DhBook *book)
+DhCompletion *
+dh_book_get_completion (DhBook *book)
 {
         DhBookPrivate *priv;
 
@@ -518,22 +517,23 @@ dh_book_get_completions (DhBook *book)
 
         priv = dh_book_get_instance_private (book);
 
-        if (!priv->enabled)
-                return NULL;
-
-        if (priv->completions == NULL) {
+        if (priv->completion == NULL) {
                 GList *l;
+
+                priv->completion = dh_completion_new ();
 
                 for (l = priv->links; l != NULL; l = l->next) {
                         DhLink *link = l->data;
-                        gchar *str;
+                        const gchar *str;
 
-                        str = g_strdup (dh_link_get_name (link));
-                        priv->completions = g_list_prepend (priv->completions, str);
+                        str = dh_link_get_name (link);
+                        dh_completion_add_string (priv->completion, str);
                 }
+
+                dh_completion_sort (priv->completion);
         }
 
-        return priv->completions;
+        return priv->completion;
 }
 
 /**
