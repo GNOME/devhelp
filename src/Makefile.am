@@ -79,6 +79,30 @@ BUILT_SOURCES = 			\
 	$(libdevhelp_built_sources)	\
 	$(NULL)
 
+# Helper Libtool library, so that the private functions can be used in unit
+# tests.
+noinst_LTLIBRARIES = libdevhelp-core.la
+
+libdevhelp_core_la_SOURCES =		\
+	$(libdevhelp_public_headers)	\
+	$(libdevhelp_public_c_files)	\
+	$(libdevhelp_private_headers)	\
+	$(libdevhelp_private_c_files)
+
+# Do not distribute generated files.
+nodist_libdevhelp_core_la_SOURCES =	\
+	$(libdevhelp_built_sources)
+
+libdevhelp_core_la_CPPFLAGS =	\
+	$(AM_CPPFLAGS)
+
+libdevhelp_core_la_CFLAGS =	\
+	$(DEVHELP_CFLAGS)
+
+libdevhelp_core_la_LDFLAGS =	\
+	$(AM_LDFLAGS)		\
+	-no-undefined
+
 # The library
 lib_LTLIBRARIES = libdevhelp-3.la
 
@@ -86,23 +110,10 @@ devhelpincludedir = $(includedir)/devhelp-3.0/devhelp
 devhelpinclude_HEADERS = $(libdevhelp_public_headers)
 nodist_devhelpinclude_HEADERS = $(libdevhelp_built_public_headers)
 
-libdevhelp_3_la_SOURCES =		\
-	$(libdevhelp_public_headers)	\
-	$(libdevhelp_public_c_files)	\
-	$(libdevhelp_private_headers)	\
-	$(libdevhelp_private_c_files)
-
-# Do not distribute generated files.
-nodist_libdevhelp_3_la_SOURCES =	\
-	$(libdevhelp_built_sources)
-
-libdevhelp_3_la_CPPFLAGS =	\
-	$(AM_CPPFLAGS)
-
-libdevhelp_3_la_CFLAGS =	\
-	$(DEVHELP_CFLAGS)
+libdevhelp_3_la_SOURCES =
 
 libdevhelp_3_la_LIBADD =	\
+	libdevhelp-core.la	\
 	$(DEVHELP_LIBS)		\
 	$(LIBM)
 

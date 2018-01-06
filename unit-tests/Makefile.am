@@ -6,7 +6,7 @@ AM_CPPFLAGS = 			\
 
 AM_LDFLAGS = $(WARN_LDFLAGS)
 
-LDADD = $(top_builddir)/src/libdevhelp-3.la	\
+LDADD = $(top_builddir)/src/libdevhelp-core.la	\
 	$(DEVHELP_LIBS)				\
 	$(LIBM)
 
