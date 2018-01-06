@@ -573,6 +573,15 @@ dh_book_set_enabled (DhBook   *book,
 
         enabled = enabled != FALSE;
 
+        /* Create DhCompletion, because if all the DhCompletion objects need to
+         * be created (synchronously) at the time of the first completion, it
+         * can make the GUI not responsive (measured time was for example 40ms
+         * to create the DhCompletion's for 17 books, which is not a lot of
+         * books). On application startup it is less a problem.
+         */
+        if (enabled)
+                dh_book_get_completion (book);
+
         if (priv->enabled != enabled) {
                 priv->enabled = enabled;
                 g_signal_emit (book,
