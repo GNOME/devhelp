@@ -1,4 +1,39 @@
 ==============
+Version 3.27.2
+==============
+
+- Deprecate Devhelp index file format version 1 (with file extension *.devhelp
+  or *.devhelp.gz), print warning when loading such index files.
+- Lots of code refactorings.
+- Do not use deprecated GCompletion API, implement re-usable DhCompletion class
+  based on GSequence with an API better suited for Devhelp.
+- Do not use deprecated GdkScreen API, use GdkMonitor.
+- Use WebKit's new font size functionality.
+- Increase number of maximum search results (100 -> 1000).
+- Use the GtkSearchEntry::search-changed signal, adding a small delay to show
+  search results.
+- Make right-click menu work in the WebKitWebView.
+- Do not save/restore GtkWindows x/y positions.
+- Improve application description and documentation.
+- Some cleanup and file reorganisation in the git repository.
+- Fix several bugs.
+
+Fixed bugs:
+
+ - #606831, Devhelp applications lacks right-click context menu
+ - #668978, Add timeout to search entry.
+ - #784652, Searching "GFile" doesn't return an exact match (too many
+            results)
+ - #789862, dh-sidebar: Crashes when interacting with the GCompletion
+ - #790680, Start using WebKit's new font size functionality
+ - #791127, Assertion failed in DhBookManager
+
+Updated translations: cs, sr
+
+Many thanks to all contributors: Милош Поповић, Sébastien
+Wilmet, Marek Černocký, Gabriel Ivascu
+
+==============
 Version 3.27.1
 ==============
 
