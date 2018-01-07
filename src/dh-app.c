@@ -87,7 +87,7 @@ about_cb (GSimpleAction *action,
                                "website-label", _("Devhelp Website"),
                                "logo-icon-name", PACKAGE_TARNAME,
                                "license-type", GTK_LICENSE_GPL_2_0,
-                               "copyright", "Copyright 2001-2017 – the Devhelp team",
+                               "copyright", "Copyright 2001-2018 – the Devhelp team",
                                NULL);
 }
 
