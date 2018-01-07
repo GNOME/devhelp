@@ -305,7 +305,7 @@ _dh_util_free_book_tree (GNode *book_tree)
  * index files in @book_directory, in order of preference.
  */
 GSList *
-dh_util_get_possible_index_files (GFile *book_directory)
+_dh_util_get_possible_index_files (GFile *book_directory)
 {
         const gchar *extensions[] = {
                 ".devhelp2",

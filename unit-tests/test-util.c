@@ -27,7 +27,7 @@ check_get_possible_index_files (const gchar *book_directory_path,
         gint i;
 
         book_directory = g_file_new_for_path (book_directory_path);
-        list = dh_util_get_possible_index_files (book_directory);
+        list = _dh_util_get_possible_index_files (book_directory);
 
         g_assert_cmpint (g_slist_length (list), ==, 4);
 

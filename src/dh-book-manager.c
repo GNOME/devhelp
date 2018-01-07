@@ -605,7 +605,7 @@ create_book_from_directory (DhBookManager *book_manager,
         GSList *possible_index_files;
         GSList *l;
 
-        possible_index_files = dh_util_get_possible_index_files (book_directory);
+        possible_index_files = _dh_util_get_possible_index_files (book_directory);
 
         for (l = possible_index_files; l != NULL; l = l->next) {
                 GFile *index_file = G_FILE (l->data);
