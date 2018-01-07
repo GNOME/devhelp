@@ -46,8 +46,8 @@ libdevhelp_private_c_files =		\
 	dh-error.c			\
 	dh-parser.c			\
 	dh-preferences.c		\
-	dh-util.c			\
 	dh-settings.c			\
+	dh-util.c			\
 	$(NULL)
 
 libdevhelp_built_public_headers =	\
