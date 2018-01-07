@@ -18,12 +18,8 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
 #include "dh-util.h"
-#include <string.h>
-#include <stdlib.h>
-#include <gtk/gtk.h>
-#include <math.h>
+#include "dh-link.h"
 
 gchar *
 dh_util_build_data_filename (const gchar *first_part,

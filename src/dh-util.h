@@ -23,7 +23,6 @@
 
 #include <gtk/gtk.h>
 #include <webkit2/webkit2.h>
-#include "dh-link.h"
 
 G_BEGIN_DECLS
 
