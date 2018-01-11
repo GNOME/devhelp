@@ -804,6 +804,27 @@ populate (DhBookManager *book_manager)
         for (i = 0; system_dirs[i] != NULL; i++) {
                 find_books_in_data_dir (book_manager, system_dirs[i]);
         }
+
+        /* For Flatpak, to see the books installed on the host by traditional
+         * Linux distro packages.
+         *
+         * It is not a good idea to add the directory to XDG_DATA_DIRS, see:
+         * https://github.com/flatpak/flatpak/issues/1299
+         * "all sorts of things will break if we add all host config to each
+         * app, which is totally opposite to the entire point of flatpak."
+         * "i don't think XDG_DATA_DIRS is the right thing, because all sorts of
+         * libraries will start reading files from there, like dconf, dbus,
+         * service files, mimetypes, etc. It would be preferable to have
+         * something that targeted just gtk-doc files."
+         *
+         * So instead of adapting XDG_DATA_DIRS, add the directory here, with
+         * the path hard-coded.
+         *
+         * https://bugzilla.gnome.org/show_bug.cgi?id=792068
+         */
+#ifdef FLATPAK_BUILD
+        find_books_in_data_dir (book_manager, "/run/host/usr/share");
+#endif
 }
 
 static void
