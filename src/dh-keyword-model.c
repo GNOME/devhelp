@@ -743,7 +743,6 @@ process_search_string (const gchar  *string,
                        GStrv        *keywords)
 {
         gchar *processed = NULL;
-        gchar *aux;
         GStrv tokens = NULL;
         gint token_num;
         gint keyword_num;
@@ -753,19 +752,23 @@ process_search_string (const gchar  *string,
         *page_id = NULL;
         *keywords = NULL;
 
-        /* First, remove all leading and trailing whitespaces in
-         * the search string */
+        /* First, remove all leading and trailing whitespaces in the search
+         * string.
+         */
         processed = g_strdup (string);
         g_strstrip (processed);
 
-        /* Also avoid words being separated by more than one whitespace,
-         * or g_strsplit() will give us empty strings. */
-        aux = processed;
-        while ((aux = strchr (aux, ' ')) != NULL) {
-                g_strchug (++aux);
+        /* Also avoid words being separated by more than one whitespace, or
+         * g_strsplit() will give us empty strings.
+         */
+        {
+                gchar *aux = processed;
+                while ((aux = strchr (aux, ' ')) != NULL) {
+                        g_strchug (++aux);
+                }
         }
 
-        /* If after all this we get an empty string, nothing else to do */
+        /* If after all this we get an empty string, nothing else to do. */
         if (processed[0] == '\0') {
                 ret = FALSE;
                 goto out;
@@ -779,11 +782,9 @@ process_search_string (const gchar  *string,
         keyword_num = 0;
 
         for (token_num = 0; tokens[token_num] != NULL; token_num++) {
-                gchar *cur_token;
+                gchar *cur_token = tokens[token_num];
                 const gchar *prefix;
                 gint prefix_len;
-
-                cur_token = tokens[token_num];
 
                 /* Book prefix? */
                 prefix = "book:";
@@ -795,8 +796,7 @@ process_search_string (const gchar  *string,
                                 continue;
                         }
 
-                        /* We got a second request of book, don't allow
-                         * this. */
+                        /* We got a second request of book, don't allow this. */
                         if (*book_id != NULL) {
                                 ret = FALSE;
                                 goto out;
@@ -816,8 +816,7 @@ process_search_string (const gchar  *string,
                                 continue;
                         }
 
-                        /* We got a second request of page, don't allow
-                         * this. */
+                        /* We got a second request of page, don't allow this. */
                         if (*page_id != NULL) {
                                 ret = FALSE;
                                 goto out;
@@ -827,7 +826,7 @@ process_search_string (const gchar  *string,
                         continue;
                 }
 
-                /* Then, a new keyword to look for */
+                /* Then, a new keyword to look for. */
                 (*keywords)[keyword_num] = g_strdup (cur_token);
                 keyword_num++;
         }
