@@ -579,10 +579,8 @@ search_books (DhKeywordModel  *model,
         for (l = dh_book_manager_get_books (book_manager);
              l != NULL && ret->length < max_hits;
              l = l->next) {
-                DhBook *book;
+                DhBook *book = DH_BOOK (l->data);
                 GQueue *book_result;
-
-                book = DH_BOOK (l->data);
 
                 /* Filtering by book? */
                 if (settings->book_id != NULL) {
@@ -603,6 +601,7 @@ search_books (DhKeywordModel  *model,
 
                                         g_queue_clear (ret);
                                         g_queue_push_tail (ret, node->data);
+                                        /* FIXME: must stop the search after this. */
                                         return ret;
                                 }
                         }
@@ -661,7 +660,7 @@ keyword_model_search (DhKeywordModel  *model,
                 max_hits = G_MAXUINT;
         }
 
-        /* If book_id given; first look for prefixed items in the given book id */
+        /* If book_id given; first look for prefixed items in the given book id. */
         if (book_id != NULL) {
                 in_book = search_books (model,
                                         &settings,
@@ -669,7 +668,9 @@ keyword_model_search (DhKeywordModel  *model,
                                         &in_book_exact_link);
         }
 
-        /* Next, always check other books as well, as the exact match may be in there */
+        /* Next, always check other books as well, as the exact match may be in
+         * there.
+         */
         settings.book_id = NULL;
         settings.skip_book_id = book_id;
         other_books = search_books (model,
@@ -677,10 +678,10 @@ keyword_model_search (DhKeywordModel  *model,
                                     max_hits,
                                     &other_books_exact_link);
 
-
         /* Now that we got prefix searches in current and other books, decide
          * which the preferred exact link is. If the exact match is in other
-         * books; prefer those to the current book. */
+         * books, prefer those to the current book.
+         */
         if (in_book_exact_link != NULL) {
                 *exact_link = in_book_exact_link;
                 dh_util_queue_concat (out, in_book);
@@ -698,7 +699,7 @@ keyword_model_search (DhKeywordModel  *model,
         if (out->length >= max_hits)
                 goto out;
 
-        /* Look for non-prefixed matches in current book */
+        /* Look for non-prefixed matches in current book. */
         settings.prefix = FALSE;
 
         if (book_id != NULL) {
@@ -715,7 +716,9 @@ keyword_model_search (DhKeywordModel  *model,
                         goto out;
         }
 
-        /* If still room for more items; look for non-prefixed items in other books */
+        /* If still room for more items, look for non-prefixed items in other
+         * books.
+         */
         settings.book_id = NULL;
         settings.skip_book_id = book_id;
         other_books = search_books (model,
@@ -990,6 +993,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 }
 
                 if (book_id_in_search_string != NULL) {
+                        /* FIXME: must search only in this book, not others. */
                         priv->current_book_id = book_id_in_search_string;
                         book_id_in_search_string = NULL;
                 } else {
