@@ -109,21 +109,21 @@ dh_keyword_model_init (DhKeywordModel *model)
 }
 
 static GtkTreeModelFlags
-keyword_model_get_flags (GtkTreeModel *tree_model)
+dh_keyword_model_get_flags (GtkTreeModel *tree_model)
 {
         /* FIXME: check if GTK_TREE_MODEL_ITERS_PERSIST is correct. */
         return GTK_TREE_MODEL_ITERS_PERSIST | GTK_TREE_MODEL_LIST_ONLY;
 }
 
 static gint
-keyword_model_get_n_columns (GtkTreeModel *tree_model)
+dh_keyword_model_get_n_columns (GtkTreeModel *tree_model)
 {
         return DH_KEYWORD_MODEL_NUM_COLS;
 }
 
 static GType
-keyword_model_get_column_type (GtkTreeModel *tree_model,
-                               gint          column)
+dh_keyword_model_get_column_type (GtkTreeModel *tree_model,
+                                  gint          column)
 {
         switch (column) {
         case DH_KEYWORD_MODEL_COL_NAME:
@@ -145,9 +145,9 @@ keyword_model_get_column_type (GtkTreeModel *tree_model,
 }
 
 static gboolean
-keyword_model_get_iter (GtkTreeModel *tree_model,
-                        GtkTreeIter  *iter,
-                        GtkTreePath  *path)
+dh_keyword_model_get_iter (GtkTreeModel *tree_model,
+                           GtkTreeIter  *iter,
+                           GtkTreePath  *path)
 {
         DhKeywordModelPrivate *priv;
         GList *node;
@@ -174,8 +174,8 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
 }
 
 static GtkTreePath *
-keyword_model_get_path (GtkTreeModel *tree_model,
-                        GtkTreeIter  *iter)
+dh_keyword_model_get_path (GtkTreeModel *tree_model,
+                           GtkTreeIter  *iter)
 {
         DhKeywordModelPrivate *priv;
         GList *node;
@@ -200,10 +200,10 @@ keyword_model_get_path (GtkTreeModel *tree_model,
 }
 
 static void
-keyword_model_get_value (GtkTreeModel *tree_model,
-                         GtkTreeIter  *iter,
-                         gint          column,
-                         GValue       *value)
+dh_keyword_model_get_value (GtkTreeModel *tree_model,
+                            GtkTreeIter  *iter,
+                            gint          column,
+                            GValue       *value)
 {
         DhKeywordModelPrivate *priv;
         GList *node;
@@ -240,8 +240,8 @@ keyword_model_get_value (GtkTreeModel *tree_model,
 }
 
 static gboolean
-keyword_model_iter_next (GtkTreeModel *tree_model,
-                         GtkTreeIter  *iter)
+dh_keyword_model_iter_next (GtkTreeModel *tree_model,
+                            GtkTreeIter  *iter)
 {
         DhKeywordModelPrivate *priv;
         GList *node;
@@ -257,9 +257,9 @@ keyword_model_iter_next (GtkTreeModel *tree_model,
 }
 
 static gboolean
-keyword_model_iter_children (GtkTreeModel *tree_model,
-                             GtkTreeIter  *iter,
-                             GtkTreeIter  *parent)
+dh_keyword_model_iter_children (GtkTreeModel *tree_model,
+                                GtkTreeIter  *iter,
+                                GtkTreeIter  *parent)
 {
         DhKeywordModelPrivate *priv;
 
@@ -283,15 +283,15 @@ keyword_model_iter_children (GtkTreeModel *tree_model,
 }
 
 static gboolean
-keyword_model_iter_has_child (GtkTreeModel *tree_model,
-                              GtkTreeIter  *iter)
+dh_keyword_model_iter_has_child (GtkTreeModel *tree_model,
+                                 GtkTreeIter  *iter)
 {
         return FALSE;
 }
 
 static gint
-keyword_model_iter_n_children (GtkTreeModel *tree_model,
-                               GtkTreeIter  *iter)
+dh_keyword_model_iter_n_children (GtkTreeModel *tree_model,
+                                  GtkTreeIter  *iter)
 {
         DhKeywordModelPrivate *priv;
 
@@ -307,10 +307,10 @@ keyword_model_iter_n_children (GtkTreeModel *tree_model,
 }
 
 static gboolean
-keyword_model_iter_nth_child (GtkTreeModel *tree_model,
-                              GtkTreeIter  *iter,
-                              GtkTreeIter  *parent,
-                              gint          n)
+dh_keyword_model_iter_nth_child (GtkTreeModel *tree_model,
+                                 GtkTreeIter  *iter,
+                                 GtkTreeIter  *parent,
+                                 gint          n)
 {
         DhKeywordModelPrivate *priv;
         GList *child;
@@ -333,9 +333,9 @@ keyword_model_iter_nth_child (GtkTreeModel *tree_model,
 }
 
 static gboolean
-keyword_model_iter_parent (GtkTreeModel *tree_model,
-                           GtkTreeIter  *iter,
-                           GtkTreeIter  *child)
+dh_keyword_model_iter_parent (GtkTreeModel *tree_model,
+                              GtkTreeIter  *iter,
+                              GtkTreeIter  *child)
 {
         return FALSE;
 }
@@ -343,18 +343,18 @@ keyword_model_iter_parent (GtkTreeModel *tree_model,
 static void
 dh_keyword_model_tree_model_init (GtkTreeModelIface *iface)
 {
-        iface->get_flags = keyword_model_get_flags;
-        iface->get_n_columns = keyword_model_get_n_columns;
-        iface->get_column_type = keyword_model_get_column_type;
-        iface->get_iter = keyword_model_get_iter;
-        iface->get_path = keyword_model_get_path;
-        iface->get_value = keyword_model_get_value;
-        iface->iter_next = keyword_model_iter_next;
-        iface->iter_children = keyword_model_iter_children;
-        iface->iter_has_child = keyword_model_iter_has_child;
-        iface->iter_n_children = keyword_model_iter_n_children;
-        iface->iter_nth_child = keyword_model_iter_nth_child;
-        iface->iter_parent = keyword_model_iter_parent;
+        iface->get_flags = dh_keyword_model_get_flags;
+        iface->get_n_columns = dh_keyword_model_get_n_columns;
+        iface->get_column_type = dh_keyword_model_get_column_type;
+        iface->get_iter = dh_keyword_model_get_iter;
+        iface->get_path = dh_keyword_model_get_path;
+        iface->get_value = dh_keyword_model_get_value;
+        iface->iter_next = dh_keyword_model_iter_next;
+        iface->iter_children = dh_keyword_model_iter_children;
+        iface->iter_has_child = dh_keyword_model_iter_has_child;
+        iface->iter_n_children = dh_keyword_model_iter_n_children;
+        iface->iter_nth_child = dh_keyword_model_iter_nth_child;
+        iface->iter_parent = dh_keyword_model_iter_parent;
 }
 
 /**
@@ -436,10 +436,10 @@ dh_globbed_keywords_free (GList *keyword_globs)
 }
 
 static GQueue *
-keyword_model_search_book (DhBook          *book,
-                           SearchSettings  *settings,
-                           guint            max_hits,
-                           DhLink         **exact_link)
+search_single_book (DhBook          *book,
+                    SearchSettings  *settings,
+                    guint            max_hits,
+                    DhLink         **exact_link)
 {
         GQueue *ret;
         GList *l;
@@ -564,10 +564,10 @@ keyword_model_search_book (DhBook          *book,
  *   the page link is the one given as exact match.
  */
 static GQueue *
-keyword_model_search_books (DhKeywordModel  *model,
-                            SearchSettings  *settings,
-                            guint            max_hits,
-                            DhLink         **exact_link)
+search_books (DhKeywordModel  *model,
+              SearchSettings  *settings,
+              guint            max_hits,
+              DhLink         **exact_link)
 {
         DhBookManager *book_manager;
         GQueue *ret;
@@ -614,10 +614,10 @@ keyword_model_search_books (DhKeywordModel  *model,
                         continue;
                 }
 
-                book_result = keyword_model_search_book (book,
-                                                         settings,
-                                                         max_hits - ret->length,
-                                                         exact_link);
+                book_result = search_single_book (book,
+                                                  settings,
+                                                  max_hits - ret->length,
+                                                  exact_link);
 
                 dh_util_queue_concat (ret, book_result);
         }
@@ -663,19 +663,19 @@ keyword_model_search (DhKeywordModel  *model,
 
         /* If book_id given; first look for prefixed items in the given book id */
         if (book_id != NULL) {
-                in_book = keyword_model_search_books (model,
-                                                      &settings,
-                                                      max_hits,
-                                                      &in_book_exact_link);
+                in_book = search_books (model,
+                                        &settings,
+                                        max_hits,
+                                        &in_book_exact_link);
         }
 
         /* Next, always check other books as well, as the exact match may be in there */
         settings.book_id = NULL;
         settings.skip_book_id = book_id;
-        other_books = keyword_model_search_books (model,
-                                                  &settings,
-                                                  max_hits,
-                                                  &other_books_exact_link);
+        other_books = search_books (model,
+                                    &settings,
+                                    max_hits,
+                                    &other_books_exact_link);
 
 
         /* Now that we got prefix searches in current and other books, decide
@@ -705,10 +705,10 @@ keyword_model_search (DhKeywordModel  *model,
                 settings.book_id = book_id;
                 settings.skip_book_id = NULL;
 
-                in_book = keyword_model_search_books (model,
-                                                      &settings,
-                                                      max_hits - out->length,
-                                                      NULL);
+                in_book = search_books (model,
+                                        &settings,
+                                        max_hits - out->length,
+                                        NULL);
 
                 dh_util_queue_concat (out, in_book);
                 if (out->length >= max_hits)
@@ -718,10 +718,10 @@ keyword_model_search (DhKeywordModel  *model,
         /* If still room for more items; look for non-prefixed items in other books */
         settings.book_id = NULL;
         settings.skip_book_id = book_id;
-        other_books = keyword_model_search_books (model,
-                                                  &settings,
-                                                  max_hits - out->length,
-                                                  NULL);
+        other_books = search_books (model,
+                                    &settings,
+                                    max_hits - out->length,
+                                    NULL);
         dh_util_queue_concat (out, other_books);
 
 out:
@@ -737,10 +737,10 @@ out:
  * Returns TRUE when any of the output parameters are set.
  */
 static gboolean
-keyword_model_process_search_string (const gchar  *string,
-                                     gchar       **book_id,
-                                     gchar       **page_id,
-                                     GStrv        *keywords)
+process_search_string (const gchar  *string,
+                       gchar       **book_id,
+                       gchar       **page_id,
+                       GStrv        *keywords)
 {
         gchar *processed = NULL;
         gchar *aux;
@@ -971,10 +971,10 @@ dh_keyword_model_filter (DhKeywordModel *model,
         g_free (priv->current_book_id);
         priv->current_book_id = NULL;
 
-        if (keyword_model_process_search_string (search_string,
-                                                 &book_id_in_search_string,
-                                                 &page_id_in_search_string,
-                                                 &keywords)) {
+        if (process_search_string (search_string,
+                                   &book_id_in_search_string,
+                                   &page_id_in_search_string,
+                                   &keywords)) {
                 gboolean case_sensitive;
                 gint i;
 
