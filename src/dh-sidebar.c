@@ -384,6 +384,13 @@ entry_insert_text_cb (GtkEntry    *entry,
 }
 
 static void
+entry_stop_search_cb (GtkSearchEntry *entry,
+                      gpointer        user_data)
+{
+        gtk_entry_set_text (GTK_ENTRY (entry), "");
+}
+
+static void
 hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
                         GtkCellRenderer   *cell,
                         GtkTreeModel      *hitlist_model,
@@ -483,6 +490,11 @@ dh_sidebar_init (DhSidebar *sidebar)
                           "insert-text",
                           G_CALLBACK (entry_insert_text_cb),
                           sidebar);
+
+        g_signal_connect (priv->entry,
+                          "stop-search",
+                          G_CALLBACK (entry_stop_search_cb),
+                          NULL);
 
         /* Setup hitlist */
         priv->hitlist_model = dh_keyword_model_new ();
