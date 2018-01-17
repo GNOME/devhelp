@@ -69,7 +69,6 @@ typedef struct {
         const gchar *book_id;
         const gchar *skip_book_id;
         const gchar *page_id;
-        const gchar *language;
         guint case_sensitive : 1;
         guint prefix : 1;
 } SearchSettings;
@@ -616,12 +615,6 @@ keyword_model_search_books (DhKeywordModel  *model,
                         continue;
                 }
 
-                /* Filtering by language? */
-                if (settings->language != NULL &&
-                    g_strcmp0 (settings->language, dh_book_get_language (book)) != 0) {
-                        continue;
-                }
-
                 book_result = keyword_model_search_book (book,
                                                          settings,
                                                          max_hits - ret->length,
@@ -640,7 +633,6 @@ keyword_model_search (DhKeywordModel  *model,
                       const GStrv      keywords,
                       const gchar     *book_id,
                       const gchar     *page_id,
-                      const gchar     *language,
                       gboolean         case_sensitive,
                       DhLink         **exact_link)
 {
@@ -658,7 +650,6 @@ keyword_model_search (DhKeywordModel  *model,
         settings.book_id = book_id;
         settings.skip_book_id = NULL;
         settings.page_id = page_id;
-        settings.language = language;
         settings.case_sensitive = case_sensitive;
         settings.prefix = TRUE;
 
@@ -951,7 +942,7 @@ set_keywords_list (DhKeywordModel *model,
  * @model: a #DhKeywordModel.
  * @search_string: a search query.
  * @book_id: (nullable): the ID of the book currently selected, or %NULL.
- * @language: (nullable):
+ * @language: (nullable): deprecated, must be %NULL.
  *
  * Searches in the #DhBookManager the list of #DhLink's that correspond to
  * @search_string, and fills the @model with that list.
@@ -974,6 +965,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
         g_return_val_if_fail (search_string != NULL, NULL);
+        g_return_val_if_fail (language == NULL, NULL);
 
         priv = dh_keyword_model_get_instance_private (model);
 
@@ -1011,7 +1003,6 @@ dh_keyword_model_filter (DhKeywordModel *model,
                                                  keywords,
                                                  priv->current_book_id,
                                                  page_id_in_search_string,
-                                                 language,
                                                  case_sensitive,
                                                  &exact_link);
         } else {
