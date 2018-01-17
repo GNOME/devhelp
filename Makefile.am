@@ -1,4 +1,4 @@
-SUBDIRS = po src unit-tests data plugins docs
+SUBDIRS = data plugins po src unit-tests docs
 
 AM_DISTCHECK_CONFIGURE_FLAGS =	\
 	--enable-gtk-doc	\
