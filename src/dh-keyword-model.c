@@ -151,8 +151,8 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
                         GtkTreePath  *path)
 {
         DhKeywordModelPrivate *priv;
-        GList                 *node;
-        const gint            *indices;
+        GList *node;
+        const gint *indices;
 
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
@@ -168,7 +168,7 @@ keyword_model_get_iter (GtkTreeModel *tree_model,
 
         node = g_queue_peek_nth_link (&priv->keywords, indices[0]);
 
-        iter->stamp     = priv->stamp;
+        iter->stamp = priv->stamp;
         iter->user_data = node;
 
         return TRUE;
@@ -179,9 +179,9 @@ keyword_model_get_path (GtkTreeModel *tree_model,
                         GtkTreeIter  *iter)
 {
         DhKeywordModelPrivate *priv;
-        GList                 *node;
-        GtkTreePath           *path;
-        gint                   pos;
+        GList *node;
+        GtkTreePath *path;
+        gint pos;
 
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
@@ -314,7 +314,7 @@ keyword_model_iter_nth_child (GtkTreeModel *tree_model,
                               gint          n)
 {
         DhKeywordModelPrivate *priv;
-        GList                 *child;
+        GList *child;
 
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
@@ -344,18 +344,18 @@ keyword_model_iter_parent (GtkTreeModel *tree_model,
 static void
 dh_keyword_model_tree_model_init (GtkTreeModelIface *iface)
 {
-        iface->get_flags       = keyword_model_get_flags;
-        iface->get_n_columns   = keyword_model_get_n_columns;
+        iface->get_flags = keyword_model_get_flags;
+        iface->get_n_columns = keyword_model_get_n_columns;
         iface->get_column_type = keyword_model_get_column_type;
-        iface->get_iter        = keyword_model_get_iter;
-        iface->get_path        = keyword_model_get_path;
-        iface->get_value       = keyword_model_get_value;
-        iface->iter_next       = keyword_model_iter_next;
-        iface->iter_children   = keyword_model_iter_children;
-        iface->iter_has_child  = keyword_model_iter_has_child;
+        iface->get_iter = keyword_model_get_iter;
+        iface->get_path = keyword_model_get_path;
+        iface->get_value = keyword_model_get_value;
+        iface->iter_next = keyword_model_iter_next;
+        iface->iter_children = keyword_model_iter_children;
+        iface->iter_has_child = keyword_model_iter_has_child;
         iface->iter_n_children = keyword_model_iter_n_children;
-        iface->iter_nth_child  = keyword_model_iter_nth_child;
-        iface->iter_parent     = keyword_model_iter_parent;
+        iface->iter_nth_child = keyword_model_iter_nth_child;
+        iface->iter_parent = keyword_model_iter_parent;
 }
 
 /**
@@ -450,8 +450,8 @@ keyword_model_search_book (DhBook          *book,
         for (l = dh_book_get_links (book);
              l != NULL && ret->length < max_hits;
              l = g_list_next (l)) {
-                DhLink   *link;
-                gboolean  found;
+                DhLink *link;
+                gboolean found;
 
                 link = l->data;
                 found = FALSE;
@@ -473,10 +473,10 @@ keyword_model_search_book (DhBook          *book,
                 }
 
                 if (!found && settings->keywords != NULL) {
-                        gboolean  all_found;
-                        gboolean  prefix_found;
-                        gchar    *name;
-                        GList    *list;
+                        gboolean all_found;
+                        gboolean prefix_found;
+                        gchar *name;
+                        GList *list;
 
                         name = (settings->case_sensitive ?
                                 g_strdup (dh_link_get_name (link)) :
@@ -745,9 +745,9 @@ keyword_model_process_search_string (const gchar  *string,
 {
         gchar *processed = NULL;
         gchar *aux;
-        GStrv  tokens = NULL;
-        gint   token_num;
-        gint   keyword_num;
+        GStrv tokens = NULL;
+        gint token_num;
+        gint keyword_num;
         gboolean ret = TRUE;
 
         *book_id = NULL;
