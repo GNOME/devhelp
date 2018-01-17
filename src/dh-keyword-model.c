@@ -20,7 +20,6 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
 #include "dh-keyword-model.h"
 #include <gtk/gtk.h>
 #include <string.h>
