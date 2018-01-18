@@ -37,9 +37,11 @@ struct _DhSearchContext {
 };
 
 /* Process the input search string and extract:
- *  - If "book:" prefix given, a book_id;
- *  - If "page:" prefix given, a page_id;
- *  - All remaining keywords.
+ * - If "book:" prefix given, a book_id;
+ * - If "page:" prefix given, a page_id;
+ * - All remaining keywords.
+ *
+ * "book:" and "page:" must be before the other keywords.
  *
  * Returns TRUE if the extraction is successfull, FALSE if the @search_string is
  * invalid.
@@ -97,6 +99,12 @@ process_search_string (DhSearchContext *search,
                 /* Book prefix? */
                 prefix = "book:";
                 if (g_str_has_prefix (cur_token, prefix)) {
+                        /* Must be before normal keywords. */
+                        if (keyword_num > 0) {
+                                ret = FALSE;
+                                goto out;
+                        }
+
                         prefix_len = strlen (prefix);
 
                         /* If keyword given but no content, skip it. */
@@ -117,6 +125,12 @@ process_search_string (DhSearchContext *search,
                 /* Page prefix? */
                 prefix = "page:";
                 if (g_str_has_prefix (cur_token, prefix)) {
+                        /* Must be before normal keywords. */
+                        if (keyword_num > 0) {
+                                ret = FALSE;
+                                goto out;
+                        }
+
                         prefix_len = strlen (prefix);
 
                         /* If keyword given but no content, skip it. */
