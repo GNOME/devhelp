@@ -40,6 +40,9 @@ const gchar *           _dh_search_context_get_page_id          (DhSearchContext
 G_GNUC_INTERNAL
 GStrv                   _dh_search_context_get_keywords         (DhSearchContext *search);
 
+G_GNUC_INTERNAL
+gboolean                _dh_search_context_get_case_sensitive   (DhSearchContext *search);
+
 G_END_DECLS
 
 #endif /* DH_SEARCH_CONTEXT_H */

@@ -630,7 +630,6 @@ static GQueue *
 keyword_model_search (DhKeywordModel   *model,
                       const gchar      *search_string,
                       DhSearchContext  *search_context,
-                      gboolean          case_sensitive,
                       DhLink          **exact_link)
 {
         DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (model);
@@ -648,7 +647,7 @@ keyword_model_search (DhKeywordModel   *model,
         settings.book_id = priv->current_book_id;
         settings.skip_book_id = NULL;
         settings.page_id = _dh_search_context_get_page_id (search_context);
-        settings.case_sensitive = case_sensitive;
+        settings.case_sensitive = _dh_search_context_get_case_sensitive (search_context);
         settings.prefix = TRUE;
 
         if (settings.page_id != NULL) {
@@ -850,21 +849,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
         search_context = _dh_search_context_new (search_string);
 
         if (search_context != NULL) {
-                gboolean case_sensitive;
                 const gchar *book_id_in_search_string;
-                gint i;
-
-                /* Searches are case sensitive when any uppercase
-                 * letter is used in the search terms, matching vim
-                 * smartcase behaviour.
-                 */
-                case_sensitive = FALSE;
-                for (i = 0; search_string[i] != '\0'; i++) {
-                        if (g_ascii_isupper (search_string[i])) {
-                                case_sensitive = TRUE;
-                                break;
-                        }
-                }
 
                 book_id_in_search_string = _dh_search_context_get_book_id (search_context);
 
@@ -878,7 +863,6 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 new_list = keyword_model_search (model,
                                                  search_string,
                                                  search_context,
-                                                 case_sensitive,
                                                  &exact_link);
         } else {
                 new_list = g_queue_new ();

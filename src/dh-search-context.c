@@ -23,6 +23,7 @@ struct _DhSearchContext {
         gchar *book_id;
         gchar *page_id;
         GStrv keywords;
+        guint case_sensitive : 1;
 };
 
 /* Process the input search string and extract:
@@ -139,6 +140,42 @@ out:
         return ret;
 }
 
+static gboolean
+contains_uppercase_letter (const gchar *str)
+{
+        const gchar *p;
+
+        for (p = str; *p != '\0'; p++) {
+                if (g_ascii_isupper (*p))
+                        return TRUE;
+        }
+
+        return FALSE;
+}
+
+static void
+set_case_sensitive (DhSearchContext *search)
+{
+        gint i;
+
+        search->case_sensitive = FALSE;
+
+        if (search->keywords == NULL)
+                return;
+
+        /* Searches are case sensitive when any uppercase letter is used in the
+         * search terms, matching Vim smartcase behaviour.
+         */
+        for (i = 0; search->keywords[i] != NULL; i++) {
+                const gchar *cur_keyword = search->keywords[i];
+
+                if (contains_uppercase_letter (cur_keyword)) {
+                        search->case_sensitive = TRUE;
+                        break;
+                }
+        }
+}
+
 /* Returns: (transfer full) (nullable): a new #DhSearchContext, or %NULL if
  * @search_string is invalid.
  */
@@ -155,6 +192,8 @@ _dh_search_context_new (const gchar *search_string)
                 _dh_search_context_free (search);
                 return NULL;
         }
+
+        set_case_sensitive (search);
 
         return search;
 }
@@ -193,4 +232,12 @@ _dh_search_context_get_keywords (DhSearchContext *search)
         g_return_val_if_fail (search != NULL, NULL);
 
         return search->keywords;
+}
+
+gboolean
+_dh_search_context_get_case_sensitive (DhSearchContext *search)
+{
+        g_return_val_if_fail (search != NULL, FALSE);
+
+        return search->case_sensitive;
 }
