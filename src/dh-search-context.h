@@ -49,6 +49,10 @@ gboolean                _dh_search_context_match_link           (DhSearchContext
                                                                  DhLink          *link,
                                                                  gboolean         prefix);
 
+G_GNUC_INTERNAL
+gboolean                _dh_search_context_is_exact_link        (DhSearchContext *search,
+                                                                 DhLink          *link);
+
 G_END_DECLS
 
 #endif /* DH_SEARCH_CONTEXT_H */

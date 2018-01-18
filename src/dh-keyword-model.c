@@ -53,7 +53,6 @@ typedef struct {
 
 typedef struct {
         DhSearchContext *search_context;
-        const gchar *search_string;
         GStrv keywords;
         const gchar *book_id;
         const gchar *skip_book_id;
@@ -373,27 +372,24 @@ search_single_book (DhBook          *book,
              l = l->next) {
                 DhLink *link = l->data;
 
-                if (_dh_search_context_match_link (settings->search_context,
-                                                   link,
-                                                   settings->prefix)) {
-                        g_queue_push_tail (ret, link);
+                if (!_dh_search_context_match_link (settings->search_context,
+                                                    link,
+                                                    settings->prefix)) {
+                        continue;
+                }
 
-                        if (exact_link == NULL || dh_link_get_name (link) == NULL)
-                                continue;
+                g_queue_push_tail (ret, link);
 
-                        /* Look for an exact link match. If the link is a PAGE,
-                         * we can overwrite any previous exact link set. For
-                         * example, when looking for GFile, we want the page,
-                         * not the struct. */
-                        if (dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE &&
-                            ((settings->page_id != NULL &&
-                              strcmp (dh_link_get_name (link), settings->page_id) == 0) ||
-                             (strcmp (dh_link_get_name (link), settings->search_string) == 0))) {
-                                *exact_link = link;
-                        } else if (*exact_link == NULL &&
-                                   strcmp (dh_link_get_name (link), settings->search_string) == 0) {
-                                *exact_link = link;
-                        }
+                if (exact_link == NULL)
+                        continue;
+
+                /* Look for an exact link match. If the link is a PAGE, we can
+                 * overwrite any previous exact link set. For example, when
+                 * looking for GFile, we want the page, not the struct.
+                 */
+                if ((*exact_link == NULL || dh_link_get_link_type (link) == DH_LINK_TYPE_PAGE) &&
+                    _dh_search_context_is_exact_link (settings->search_context, link)) {
+                        *exact_link = link;
                 }
         }
 
@@ -498,7 +494,6 @@ keyword_model_search (DhKeywordModel   *model,
         GQueue *out = g_queue_new ();
 
         settings.search_context = search_context;
-        settings.search_string = search_string;
         settings.keywords = _dh_search_context_get_keywords (search_context);
         settings.book_id = priv->current_book_id;
         settings.skip_book_id = NULL;

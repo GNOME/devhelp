@@ -33,6 +33,8 @@ struct _DhSearchContext {
         GPatternSpec *pattern_spec_prefix;
         GPatternSpec *pattern_spec_nonprefix;
 
+        gchar *joined_keywords;
+
         guint case_sensitive : 1;
 };
 
@@ -233,6 +235,17 @@ create_pattern_specs (DhSearchContext *search)
         g_free (pattern_nonprefix_str);
 }
 
+static void
+join_keywords (DhSearchContext *search)
+{
+        g_assert (search->joined_keywords == NULL);
+
+        if (search->keywords == NULL)
+                return;
+
+        search->joined_keywords = g_strjoinv (" ", search->keywords);
+}
+
 /* Returns: (transfer full) (nullable): a new #DhSearchContext, or %NULL if
  * @search_string is invalid.
  */
@@ -252,6 +265,7 @@ _dh_search_context_new (const gchar *search_string)
 
         set_case_sensitive (search);
         create_pattern_specs (search);
+        join_keywords (search);
 
         return search;
 }
@@ -271,6 +285,8 @@ _dh_search_context_free (DhSearchContext *search)
 
         if (search->pattern_spec_nonprefix != NULL)
                 g_pattern_spec_free (search->pattern_spec_nonprefix);
+
+        g_free (search->joined_keywords);
 
         g_free (search);
 }
@@ -349,4 +365,35 @@ _dh_search_context_match_link (DhSearchContext *search,
 
         g_free (str_to_free);
         return match;
+}
+
+/* This function assumes:
+ * - That checking that the DhBook (book_id) matches has already been done (to
+ *   not check the book_id for each DhLink).
+ * - That _dh_search_context_match_link() returns TRUE for @link.
+ */
+gboolean
+_dh_search_context_is_exact_link (DhSearchContext *search,
+                                  DhLink          *link)
+{
+        const gchar *name;
+
+        g_return_val_if_fail (search != NULL, FALSE);
+        g_return_val_if_fail (link != NULL, FALSE);
+
+        if (search->page_id != NULL && search->keywords == NULL) {
+                DhLinkType link_type;
+
+                link_type = dh_link_get_link_type (link);
+
+                /* Can be DH_LINK_TYPE_BOOK for page_id "index". */
+                return (link_type == DH_LINK_TYPE_BOOK ||
+                        link_type == DH_LINK_TYPE_PAGE);
+        }
+
+        if (search->keywords == NULL)
+                return FALSE;
+
+        name = dh_link_get_name (link);
+        return g_strcmp0 (name, search->joined_keywords) == 0;
 }
