@@ -58,7 +58,6 @@ typedef struct {
         const gchar *book_id;
         const gchar *skip_book_id;
         const gchar *page_id;
-        guint case_sensitive : 1;
         guint prefix : 1;
 } SearchSettings;
 
@@ -504,7 +503,6 @@ keyword_model_search (DhKeywordModel   *model,
         settings.book_id = priv->current_book_id;
         settings.skip_book_id = NULL;
         settings.page_id = _dh_search_context_get_page_id (search_context);
-        settings.case_sensitive = _dh_search_context_get_case_sensitive (search_context);
         settings.prefix = TRUE;
 
         if (settings.page_id != NULL) {
