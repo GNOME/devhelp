@@ -370,7 +370,7 @@ _dh_search_context_match_link (DhSearchContext *search,
 /* This function assumes:
  * - That checking that the DhBook (book_id) matches has already been done (to
  *   not check the book_id for each DhLink).
- * - That _dh_search_context_match_link() returns TRUE for @link.
+ * - That _dh_search_context_match_link(prefix=TRUE) returns TRUE for @link.
  */
 gboolean
 _dh_search_context_is_exact_link (DhSearchContext *search,

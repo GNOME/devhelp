@@ -380,7 +380,7 @@ search_single_book (DhBook          *book,
 
                 g_queue_push_tail (ret, link);
 
-                if (exact_link == NULL)
+                if (exact_link == NULL || !settings->prefix)
                         continue;
 
                 /* Look for an exact link match. If the link is a PAGE, we can
