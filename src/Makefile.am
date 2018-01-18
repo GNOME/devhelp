@@ -38,6 +38,7 @@ libdevhelp_private_headers =		\
 	dh-error.h			\
 	dh-parser.h			\
 	dh-preferences.h		\
+	dh-search-context.h		\
 	dh-settings.h			\
 	dh-util.h			\
 	$(NULL)
@@ -46,6 +47,7 @@ libdevhelp_private_c_files =		\
 	dh-error.c			\
 	dh-parser.c			\
 	dh-preferences.c		\
+	dh-search-context.c		\
 	dh-settings.c			\
 	dh-util.c			\
 	$(NULL)

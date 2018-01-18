@@ -17,6 +17,7 @@ src/dh-link.c
 src/dh-main.c
 src/dh-parser.c
 src/dh-preferences.ui
+src/dh-search-context.c
 src/dh-sidebar.c
 src/dh-util.c
 src/dh-window.c
