@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2008 Imendio AB
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -337,7 +337,6 @@ dh_link_match_relative_url (DhLink      *link,
  * dh_link_belongs_to_page:
  * @link: a #DhLink.
  * @page_id: a page ID, i.e. the filename without its extension.
- * @case_sensitive: whether @page_id is case sensitive.
  *
  * This function permits to know if @link belongs to a certain page.
  *
@@ -353,12 +352,10 @@ dh_link_match_relative_url (DhLink      *link,
  */
 gboolean
 dh_link_belongs_to_page (DhLink      *link,
-                         const gchar *page_id,
-                         gboolean     case_sensitive)
+                         const gchar *page_id)
 {
         const gchar *relative_url;
         gsize page_id_len;
-        gboolean has_prefix;
 
         g_return_val_if_fail (link != NULL, FALSE);
         g_return_val_if_fail (link->relative_url != NULL, FALSE);
@@ -370,16 +367,9 @@ dh_link_belongs_to_page (DhLink      *link,
 
         page_id_len = strlen (page_id);
 
-        if (case_sensitive)
-                has_prefix = strncmp (relative_url, page_id, page_id_len) == 0;
-        else
-                has_prefix = g_ascii_strncasecmp (relative_url, page_id, page_id_len) == 0;
-
         /* Check that a file extension follows. */
-        if (has_prefix)
-                return relative_url[page_id_len] == '.';
-
-        return FALSE;
+        return (g_str_has_prefix (relative_url, page_id) &&
+                relative_url[page_id_len] == '.');
 }
 
 /**

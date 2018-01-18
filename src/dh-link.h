@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2008 Imendio AB
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -96,8 +96,7 @@ gboolean     dh_link_match_relative_url (DhLink        *link,
                                          const gchar   *relative_url);
 
 gboolean     dh_link_belongs_to_page    (DhLink        *link,
-                                         const gchar   *page_id,
-                                         gboolean       case_sensitive);
+                                         const gchar   *page_id);
 
 gchar *      dh_link_get_uri            (DhLink        *link);
 

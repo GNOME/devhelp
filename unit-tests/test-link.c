@@ -22,13 +22,10 @@
 static void
 check_belongs_to_page_book_link (DhLink *book_link)
 {
-        g_assert (dh_link_belongs_to_page (book_link, "index", TRUE));
-        g_assert (!dh_link_belongs_to_page (book_link, "Index", TRUE));
-        g_assert (dh_link_belongs_to_page (book_link, "Index", FALSE));
-        g_assert (!dh_link_belongs_to_page (book_link, "", TRUE));
-        g_assert (!dh_link_belongs_to_page (book_link, "kiwi", TRUE));
-        g_assert (!dh_link_belongs_to_page (book_link, "", FALSE));
-        g_assert (!dh_link_belongs_to_page (book_link, "kiwi", FALSE));
+        g_assert (dh_link_belongs_to_page (book_link, "index"));
+        g_assert (!dh_link_belongs_to_page (book_link, "Index"));
+        g_assert (!dh_link_belongs_to_page (book_link, ""));
+        g_assert (!dh_link_belongs_to_page (book_link, "kiwi"));
 }
 
 static void
@@ -58,13 +55,10 @@ test_belongs_to_page (void)
                             "dh_link_ref",
                             "DhLink.html#dh-link-ref");
 
-        g_assert (dh_link_belongs_to_page (link, "DhLink", TRUE));
-        g_assert (!dh_link_belongs_to_page (link, "dhlink", TRUE));
-        g_assert (dh_link_belongs_to_page (link, "dhlink", FALSE));
-        g_assert (!dh_link_belongs_to_page (link, "", TRUE));
-        g_assert (!dh_link_belongs_to_page (link, "kiwi", TRUE));
-        g_assert (!dh_link_belongs_to_page (link, "", FALSE));
-        g_assert (!dh_link_belongs_to_page (link, "kiwi", FALSE));
+        g_assert (dh_link_belongs_to_page (link, "DhLink"));
+        g_assert (!dh_link_belongs_to_page (link, "dhlink"));
+        g_assert (!dh_link_belongs_to_page (link, ""));
+        g_assert (!dh_link_belongs_to_page (link, "kiwi"));
 
         dh_link_unref (book_link);
         dh_link_unref (link);

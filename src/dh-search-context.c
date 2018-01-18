@@ -310,7 +310,7 @@ _dh_search_context_match_link (DhSearchContext *search,
 
         /* Filter by page? */
         if (search->page_id != NULL) {
-                if (!dh_link_belongs_to_page (link, search->page_id, TRUE))
+                if (!dh_link_belongs_to_page (link, search->page_id))
                         return FALSE;
 
                 if (search->keywords == NULL)
