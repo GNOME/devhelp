@@ -24,6 +24,7 @@
 #include <gtk/gtk.h>
 #include <string.h>
 #include "dh-book.h"
+#include "dh-search-context.h"
 #include "dh-util.h"
 
 /**
@@ -626,14 +627,13 @@ search_books (DhKeywordModel  *model,
 }
 
 static GQueue *
-keyword_model_search (DhKeywordModel  *model,
-                      const gchar     *search_string,
-                      const GStrv      keywords,
-                      const gchar     *book_id,
-                      const gchar     *page_id,
-                      gboolean         case_sensitive,
-                      DhLink         **exact_link)
+keyword_model_search (DhKeywordModel   *model,
+                      const gchar      *search_string,
+                      DhSearchContext  *search_context,
+                      gboolean          case_sensitive,
+                      DhLink          **exact_link)
 {
+        DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (model);
         SearchSettings settings;
         guint max_hits = MAX_HITS;
         GQueue *in_book = NULL;
@@ -643,15 +643,15 @@ keyword_model_search (DhKeywordModel  *model,
         GQueue *out = g_queue_new ();
 
         settings.search_string = search_string;
-        settings.keywords = keywords;
-        settings.keyword_globs = dh_globbed_keywords_new (keywords);
-        settings.book_id = book_id;
+        settings.keywords = _dh_search_context_get_keywords (search_context);
+        settings.keyword_globs = dh_globbed_keywords_new (settings.keywords);
+        settings.book_id = priv->current_book_id;
         settings.skip_book_id = NULL;
-        settings.page_id = page_id;
+        settings.page_id = _dh_search_context_get_page_id (search_context);
         settings.case_sensitive = case_sensitive;
         settings.prefix = TRUE;
 
-        if (page_id != NULL) {
+        if (settings.page_id != NULL) {
                 /* If filtering per page, increase the maximum number of
                  * hits. This is due to the fact that a page may have
                  * more than MAX_HITS keywords, and the page link may be
@@ -660,8 +660,8 @@ keyword_model_search (DhKeywordModel  *model,
                 max_hits = G_MAXUINT;
         }
 
-        /* If book_id given; first look for prefixed items in the given book id. */
-        if (book_id != NULL) {
+        /* First look for prefixed items in the given book id. */
+        if (priv->current_book_id != NULL) {
                 in_book = search_books (model,
                                         &settings,
                                         max_hits,
@@ -672,7 +672,7 @@ keyword_model_search (DhKeywordModel  *model,
          * there.
          */
         settings.book_id = NULL;
-        settings.skip_book_id = book_id;
+        settings.skip_book_id = priv->current_book_id;
         other_books = search_books (model,
                                     &settings,
                                     max_hits,
@@ -702,8 +702,8 @@ keyword_model_search (DhKeywordModel  *model,
         /* Look for non-prefixed matches in current book. */
         settings.prefix = FALSE;
 
-        if (book_id != NULL) {
-                settings.book_id = book_id;
+        if (priv->current_book_id != NULL) {
+                settings.book_id = priv->current_book_id;
                 settings.skip_book_id = NULL;
 
                 in_book = search_books (model,
@@ -720,7 +720,7 @@ keyword_model_search (DhKeywordModel  *model,
          * books.
          */
         settings.book_id = NULL;
-        settings.skip_book_id = book_id;
+        settings.skip_book_id = priv->current_book_id;
         other_books = search_books (model,
                                     &settings,
                                     max_hits - out->length,
@@ -730,130 +730,6 @@ keyword_model_search (DhKeywordModel  *model,
 out:
         dh_globbed_keywords_free (settings.keyword_globs);
         return out;
-}
-
-/* Process the input search string and extract:
- *  - If "book:" prefix given, a book_id
- *  - If "page:" prefix given, a page_id
- *  - All remaining keywords
- *
- * Returns TRUE when any of the output parameters are set.
- */
-static gboolean
-process_search_string (const gchar  *string,
-                       gchar       **book_id,
-                       gchar       **page_id,
-                       GStrv        *keywords)
-{
-        gchar *processed = NULL;
-        GStrv tokens = NULL;
-        gint token_num;
-        gint keyword_num;
-        gboolean ret = TRUE;
-
-        *book_id = NULL;
-        *page_id = NULL;
-        *keywords = NULL;
-
-        /* First, remove all leading and trailing whitespaces in the search
-         * string.
-         */
-        processed = g_strdup (string);
-        g_strstrip (processed);
-
-        /* Also avoid words being separated by more than one whitespace, or
-         * g_strsplit() will give us empty strings.
-         */
-        {
-                gchar *aux = processed;
-                while ((aux = strchr (aux, ' ')) != NULL) {
-                        g_strchug (++aux);
-                }
-        }
-
-        /* If after all this we get an empty string, nothing else to do. */
-        if (processed[0] == '\0') {
-                ret = FALSE;
-                goto out;
-        }
-
-        /* Split the input string into tokens */
-        tokens = g_strsplit (processed, " ", 0);
-
-        /* Allocate output keywords */
-        *keywords = g_new0 (gchar *, g_strv_length (tokens) + 1);
-        keyword_num = 0;
-
-        for (token_num = 0; tokens[token_num] != NULL; token_num++) {
-                gchar *cur_token = tokens[token_num];
-                const gchar *prefix;
-                gint prefix_len;
-
-                /* Book prefix? */
-                prefix = "book:";
-                if (g_str_has_prefix (cur_token, prefix)) {
-                        prefix_len = strlen (prefix);
-
-                        /* If keyword given but no content, skip it. */
-                        if (cur_token[prefix_len] == '\0') {
-                                continue;
-                        }
-
-                        /* We got a second request of book, don't allow this. */
-                        if (*book_id != NULL) {
-                                ret = FALSE;
-                                goto out;
-                        }
-
-                        *book_id = g_strdup (cur_token + prefix_len);
-                        continue;
-                }
-
-                /* Page prefix? */
-                prefix = "page:";
-                if (g_str_has_prefix (cur_token, prefix)) {
-                        prefix_len = strlen (prefix);
-
-                        /* If keyword given but no content, skip it. */
-                        if (cur_token[prefix_len] == '\0') {
-                                continue;
-                        }
-
-                        /* We got a second request of page, don't allow this. */
-                        if (*page_id != NULL) {
-                                ret = FALSE;
-                                goto out;
-                        }
-
-                        *page_id = g_strdup (cur_token + prefix_len);
-                        continue;
-                }
-
-                /* Then, a new keyword to look for. */
-                (*keywords)[keyword_num] = g_strdup (cur_token);
-                keyword_num++;
-        }
-
-        if (keyword_num == 0) {
-                g_free (*keywords);
-                *keywords = NULL;
-        }
-
-out:
-        if (ret == FALSE) {
-                g_free (*book_id);
-                g_free (*page_id);
-                g_strfreev (*keywords);
-
-                *book_id = NULL;
-                *page_id = NULL;
-                *keywords = NULL;
-        }
-
-        g_free (processed);
-        g_strfreev (tokens);
-
-        return ret;
 }
 
 static void
@@ -958,10 +834,8 @@ dh_keyword_model_filter (DhKeywordModel *model,
                          const gchar    *language)
 {
         DhKeywordModelPrivate *priv;
+        DhSearchContext *search_context;
         GQueue *new_list = NULL;
-        gchar *book_id_in_search_string = NULL;
-        gchar *page_id_in_search_string = NULL;
-        GStrv keywords = NULL;
         DhLink *exact_link = NULL;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
@@ -973,11 +847,11 @@ dh_keyword_model_filter (DhKeywordModel *model,
         g_free (priv->current_book_id);
         priv->current_book_id = NULL;
 
-        if (process_search_string (search_string,
-                                   &book_id_in_search_string,
-                                   &page_id_in_search_string,
-                                   &keywords)) {
+        search_context = _dh_search_context_new (search_string);
+
+        if (search_context != NULL) {
                 gboolean case_sensitive;
+                const gchar *book_id_in_search_string;
                 gint i;
 
                 /* Searches are case sensitive when any uppercase
@@ -992,19 +866,18 @@ dh_keyword_model_filter (DhKeywordModel *model,
                         }
                 }
 
+                book_id_in_search_string = _dh_search_context_get_book_id (search_context);
+
                 if (book_id_in_search_string != NULL) {
                         /* FIXME: must search only in this book, not others. */
-                        priv->current_book_id = book_id_in_search_string;
-                        book_id_in_search_string = NULL;
+                        priv->current_book_id = g_strdup (book_id_in_search_string);
                 } else {
                         priv->current_book_id = g_strdup (book_id);
                 }
 
                 new_list = keyword_model_search (model,
                                                  search_string,
-                                                 keywords,
-                                                 priv->current_book_id,
-                                                 page_id_in_search_string,
+                                                 search_context,
                                                  case_sensitive,
                                                  &exact_link);
         } else {
@@ -1014,9 +887,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
         set_keywords_list (model, new_list);
         new_list = NULL;
 
-        g_free (book_id_in_search_string);
-        g_free (page_id_in_search_string);
-        g_strfreev (keywords);
+        _dh_search_context_free (search_context);
 
         /* One hit */
         if (priv->keywords.length == 1) {
