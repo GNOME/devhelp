@@ -20,9 +20,19 @@
 #include <string.h>
 
 struct _DhSearchContext {
+        /* The content of the search string */
         gchar *book_id;
         gchar *page_id;
+
+        // If non-NULL, contains at least one non-empty string.
         GStrv keywords;
+
+        /* Derived data */
+
+        // The GPatternSpec's are NULL if @keywords is NULL.
+        GPatternSpec *pattern_spec_prefix;
+        GPatternSpec *pattern_spec_nonprefix;
+
         guint case_sensitive : 1;
 };
 
@@ -176,6 +186,39 @@ set_case_sensitive (DhSearchContext *search)
         }
 }
 
+static void
+create_pattern_specs (DhSearchContext *search)
+{
+        GString *pattern_prefix_string;
+        gchar *pattern_nonprefix_str;
+        gint i;
+
+        g_assert (search->pattern_spec_prefix == NULL);
+        g_assert (search->pattern_spec_nonprefix == NULL);
+
+        if (search->keywords == NULL)
+                return;
+
+        /* Prefix */
+        pattern_prefix_string = g_string_new (NULL);
+
+        for (i = 0; search->keywords[i] != NULL; i++) {
+                const gchar *cur_keyword = search->keywords[i];
+
+                g_string_append (pattern_prefix_string, cur_keyword);
+                g_string_append_c (pattern_prefix_string, '*');
+        }
+
+        search->pattern_spec_prefix = g_pattern_spec_new (pattern_prefix_string->str);
+
+        /* Non-prefix */
+        pattern_nonprefix_str = g_strconcat ("?*", pattern_prefix_string->str, NULL);
+        search->pattern_spec_nonprefix = g_pattern_spec_new (pattern_nonprefix_str);
+
+        g_string_free (pattern_prefix_string, TRUE);
+        g_free (pattern_nonprefix_str);
+}
+
 /* Returns: (transfer full) (nullable): a new #DhSearchContext, or %NULL if
  * @search_string is invalid.
  */
@@ -194,6 +237,7 @@ _dh_search_context_new (const gchar *search_string)
         }
 
         set_case_sensitive (search);
+        create_pattern_specs (search);
 
         return search;
 }
@@ -207,6 +251,13 @@ _dh_search_context_free (DhSearchContext *search)
         g_free (search->book_id);
         g_free (search->page_id);
         g_strfreev (search->keywords);
+
+        if (search->pattern_spec_prefix != NULL)
+                g_pattern_spec_free (search->pattern_spec_prefix);
+
+        if (search->pattern_spec_nonprefix != NULL)
+                g_pattern_spec_free (search->pattern_spec_nonprefix);
+
         g_free (search);
 }
 
@@ -240,4 +291,48 @@ _dh_search_context_get_case_sensitive (DhSearchContext *search)
         g_return_val_if_fail (search != NULL, FALSE);
 
         return search->case_sensitive;
+}
+
+/* This function assumes that checking that the DhBook (book_id) matches has
+ * already been done (to not check the book_id for each DhLink).
+ */
+gboolean
+_dh_search_context_match_link (DhSearchContext *search,
+                               DhLink          *link,
+                               gboolean         prefix)
+{
+        gchar *str_to_free = NULL;
+        const gchar *name;
+        gboolean match = FALSE;
+
+        g_return_val_if_fail (search != NULL, FALSE);
+        g_return_val_if_fail (link != NULL, FALSE);
+
+        /* Filter by page? */
+        if (search->page_id != NULL) {
+                if (!dh_link_belongs_to_page (link, search->page_id, TRUE))
+                        return FALSE;
+
+                if (search->keywords == NULL)
+                        /* Show all in the page. */
+                        return TRUE;
+        }
+
+        if (search->keywords == NULL)
+                return FALSE;
+
+        if (search->case_sensitive) {
+                name = dh_link_get_name (link);
+        } else {
+                str_to_free = g_ascii_strdown (dh_link_get_name (link), -1);
+                name = str_to_free;
+        }
+
+        if (prefix)
+                match = g_pattern_match_string (search->pattern_spec_prefix, name);
+        else
+                match = g_pattern_match_string (search->pattern_spec_nonprefix, name);
+
+        g_free (str_to_free);
+        return match;
 }

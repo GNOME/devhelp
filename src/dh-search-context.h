@@ -20,6 +20,7 @@
 #define DH_SEARCH_CONTEXT_H
 
 #include <glib.h>
+#include "dh-link.h"
 
 G_BEGIN_DECLS
 
@@ -42,6 +43,11 @@ GStrv                   _dh_search_context_get_keywords         (DhSearchContext
 
 G_GNUC_INTERNAL
 gboolean                _dh_search_context_get_case_sensitive   (DhSearchContext *search);
+
+G_GNUC_INTERNAL
+gboolean                _dh_search_context_match_link           (DhSearchContext *search,
+                                                                 DhLink          *link,
+                                                                 gboolean         prefix);
 
 G_END_DECLS
 

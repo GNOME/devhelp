@@ -51,21 +51,10 @@ typedef struct {
         gint stamp;
 } DhKeywordModelPrivate;
 
-/* Store a keyword as well as glob
- * patterns that match at the start of a word
- * and one that matches in any position of a
- * word */
 typedef struct {
-        gchar *keyword;
-        GPatternSpec *glob_pattern_start;
-        GPatternSpec *glob_pattern_any;
-        guint has_glob : 1;
-} DhKeywordGlobPattern;
-
-typedef struct {
+        DhSearchContext *search_context;
         const gchar *search_string;
         GStrv keywords;
-        GList *keyword_globs;
         const gchar *book_id;
         const gchar *skip_book_id;
         const gchar *page_id;
@@ -369,73 +358,6 @@ dh_keyword_model_new (void)
         return g_object_new (DH_TYPE_KEYWORD_MODEL, NULL);
 }
 
-/* For each keyword, creates a DhKeywordGlobPattern with GPatternSpec's
- * allocated if there are any special glob characters ('*', '?') in the keyword.
- */
-static GList *
-dh_globbed_keywords_new (GStrv keywords)
-{
-        GList *list = NULL;
-        gint i;
-
-        if (keywords == NULL) {
-                return NULL;
-        }
-
-        for (i = 0; keywords[i] != NULL; i++) {
-                DhKeywordGlobPattern *data;
-
-                data = g_slice_new (DhKeywordGlobPattern);
-                data->keyword = keywords[i];
-
-                if (strchr (keywords[i], '*') != NULL ||
-                    strchr (keywords[i], '?') != NULL) {
-                        gchar *glob;
-
-                        data->has_glob = TRUE;
-
-                        /* g_pattern_match matches whole strings only, so
-                         * for globs, we need to end with a star for partial matches */
-                        glob = g_strdup_printf ("%s*", keywords[i]);
-                        data->glob_pattern_start = g_pattern_spec_new (glob);
-                        g_free (glob);
-
-                        glob = g_strdup_printf ("*%s*", keywords[i]);
-                        data->glob_pattern_any = g_pattern_spec_new (glob);
-                        g_free (glob);
-                } else {
-                        data->has_glob = FALSE;
-                }
-
-                list = g_list_prepend (list, data);
-        }
-
-        return g_list_reverse (list);
-}
-
-/* Frees all the datastructures and patterns associated with
- * keyword_globs as well as keyword_globs itself.  It does not free
- * DhKeywordGlobPattern->keyword however (only the pattern specs).
- */
-static void
-dh_globbed_keywords_free (GList *keyword_globs)
-{
-        GList *l;
-
-        for (l = keyword_globs; l != NULL; l = l->next) {
-                DhKeywordGlobPattern *data = l->data;
-
-                if (data->has_glob) {
-                        g_pattern_spec_free (data->glob_pattern_start);
-                        g_pattern_spec_free (data->glob_pattern_any);
-                }
-
-                g_slice_free (DhKeywordGlobPattern, data);
-        }
-
-        g_list_free (keyword_globs);
-}
-
 static GQueue *
 search_single_book (DhBook          *book,
                     SearchSettings  *settings,
@@ -449,77 +371,12 @@ search_single_book (DhBook          *book,
 
         for (l = dh_book_get_links (book);
              l != NULL && ret->length < max_hits;
-             l = g_list_next (l)) {
-                DhLink *link;
-                gboolean found;
+             l = l->next) {
+                DhLink *link = l->data;
 
-                link = l->data;
-                found = FALSE;
-
-                /* Filter by page? */
-                if (settings->page_id != NULL) {
-                        if (!dh_link_belongs_to_page (link,
-                                                      settings->page_id,
-                                                      settings->case_sensitive)) {
-                                /* No need of this keyword. */
-                                continue;
-                        }
-
-                        /* This means we got no keywords to look for. */
-                        if (settings->keywords == NULL) {
-                                /* Show all in the page */
-                                found = TRUE;
-                        }
-                }
-
-                if (!found && settings->keywords != NULL) {
-                        gboolean all_found;
-                        gboolean prefix_found;
-                        gchar *name;
-                        GList *list;
-
-                        name = (settings->case_sensitive ?
-                                g_strdup (dh_link_get_name (link)) :
-                                g_ascii_strdown (dh_link_get_name (link), -1));
-
-                        all_found = TRUE;
-                        prefix_found = FALSE;
-                        for (list = settings->keyword_globs; list != NULL; list = g_list_next (list)) {
-                                DhKeywordGlobPattern *data = list->data;
-
-                                /* If our keyword is a glob pattern, use
-                                 * it.  Otherwise, do more efficient string searching */
-                                if (data->has_glob) {
-                                        if (g_pattern_match_string (data->glob_pattern_start, name)) {
-                                                prefix_found = TRUE;
-                                                /* If we get a prefix match and we're not
-                                                 * looking for prefix, stop. */
-                                                if (!settings->prefix)
-                                                        break;
-                                        } else if (!g_pattern_match_string (data->glob_pattern_any, name)) {
-                                                all_found = FALSE;
-                                                break;
-                                        }
-                                } else {
-                                        if (g_str_has_prefix (name, data->keyword)) {
-                                                prefix_found = TRUE;
-                                                if (!settings->prefix)
-                                                        break;
-                                        } else if (g_strrstr (name, data->keyword) == NULL) {
-                                                all_found = FALSE;
-                                                break;
-                                        }
-                                }
-                        }
-
-                        g_free (name);
-
-                        found = all_found &&
-                                ((settings->prefix && prefix_found) ||
-                                 (!settings->prefix && !prefix_found));
-                }
-
-                if (found) {
+                if (_dh_search_context_match_link (settings->search_context,
+                                                   link,
+                                                   settings->prefix)) {
                         g_queue_push_tail (ret, link);
 
                         if (exact_link == NULL || dh_link_get_name (link) == NULL)
@@ -641,9 +498,9 @@ keyword_model_search (DhKeywordModel   *model,
         DhLink *other_books_exact_link = NULL;
         GQueue *out = g_queue_new ();
 
+        settings.search_context = search_context;
         settings.search_string = search_string;
         settings.keywords = _dh_search_context_get_keywords (search_context);
-        settings.keyword_globs = dh_globbed_keywords_new (settings.keywords);
         settings.book_id = priv->current_book_id;
         settings.skip_book_id = NULL;
         settings.page_id = _dh_search_context_get_page_id (search_context);
@@ -696,7 +553,7 @@ keyword_model_search (DhKeywordModel   *model,
         }
 
         if (out->length >= max_hits)
-                goto out;
+                return out;
 
         /* Look for non-prefixed matches in current book. */
         settings.prefix = FALSE;
@@ -712,7 +569,7 @@ keyword_model_search (DhKeywordModel   *model,
 
                 dh_util_queue_concat (out, in_book);
                 if (out->length >= max_hits)
-                        goto out;
+                        return out;
         }
 
         /* If still room for more items, look for non-prefixed items in other
@@ -726,8 +583,6 @@ keyword_model_search (DhKeywordModel   *model,
                                     NULL);
         dh_util_queue_concat (out, other_books);
 
-out:
-        dh_globbed_keywords_free (settings.keyword_globs);
         return out;
 }
 
