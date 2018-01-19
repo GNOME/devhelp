@@ -506,7 +506,6 @@ handle_book_id_only (DhSearchContext  *search_context,
 
 static GQueue *
 keyword_model_search (DhKeywordModel   *model,
-                      const gchar      *search_string,
                       DhSearchContext  *search_context,
                       DhLink          **exact_link)
 {
@@ -732,10 +731,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 else
                         priv->current_book_id = g_strdup (book_id);
 
-                new_list = keyword_model_search (model,
-                                                 search_string,
-                                                 search_context,
-                                                 &exact_link);
+                new_list = keyword_model_search (model, search_context, &exact_link);
         } else {
                 new_list = g_queue_new ();
         }
