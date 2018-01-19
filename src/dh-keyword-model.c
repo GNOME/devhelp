@@ -22,8 +22,8 @@
 
 #include "dh-keyword-model.h"
 #include <gtk/gtk.h>
-#include <string.h>
 #include "dh-book.h"
+#include "dh-book-manager.h"
 #include "dh-search-context.h"
 #include "dh-util.h"
 

@@ -22,7 +22,6 @@
 
 #include <glib-object.h>
 #include "dh-link.h"
-#include "dh-book-manager.h"
 
 G_BEGIN_DECLS
 
