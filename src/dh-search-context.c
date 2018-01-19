@@ -19,15 +19,20 @@
 #include "dh-search-context.h"
 #include <string.h>
 
+/* DhSearchContext represents one search instance, with the search string as
+ * data.
+ */
+
 struct _DhSearchContext {
-        /* The content of the search string */
+        /* The content of the search string: */
+
         gchar *book_id;
         gchar *page_id;
 
         // If non-NULL, contains at least one non-empty string.
         GStrv keywords;
 
-        /* Derived data */
+        /* Derived data: */
 
         // The GPatternSpec's are NULL if @keywords is NULL.
         GPatternSpec *pattern_spec_prefix;
