@@ -53,10 +53,8 @@ typedef struct {
 
 typedef struct {
         DhSearchContext *search_context;
-        GStrv keywords;
         const gchar *book_id;
         const gchar *skip_book_id;
-        const gchar *page_id;
         guint prefix : 1;
 } SearchSettings;
 
@@ -523,13 +521,11 @@ keyword_model_search (DhKeywordModel   *model,
         out = g_queue_new ();
 
         settings.search_context = search_context;
-        settings.keywords = _dh_search_context_get_keywords (search_context);
         settings.book_id = priv->current_book_id;
         settings.skip_book_id = NULL;
-        settings.page_id = _dh_search_context_get_page_id (search_context);
         settings.prefix = TRUE;
 
-        if (settings.page_id != NULL) {
+        if (_dh_search_context_get_page_id (search_context) != NULL) {
                 /* If filtering per page, increase the maximum number of
                  * hits. This is due to the fact that a page may have
                  * more than MAX_HITS keywords, and the page link may be
