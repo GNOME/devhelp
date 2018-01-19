@@ -360,8 +360,10 @@ _dh_search_context_match_link (DhSearchContext *search,
                         return FALSE;
 
                 if (search->keywords == NULL)
-                        /* Show all in the page. */
-                        return TRUE;
+                        /* Show all in the page, but only if prefix=TRUE, to not
+                         * match two times the same link.
+                         */
+                        return prefix;
         }
 
         if (search->keywords == NULL)
