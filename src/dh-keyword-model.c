@@ -394,26 +394,6 @@ search_single_book (DhBook          *book,
         return ret;
 }
 
-/* The Search rationale is as follows:
- *
- * - If 'book_id' is given, but no 'page_id' or 'keywords', the main page of
- *   the book will only be shown, giving as exact match this book link.
- * - If 'book_id' and 'page_id' are given, but no 'keywords', all the items
- *   in the given page of the given book will be shown.
- * - If 'book_id' and 'keywords' are given, but no 'page_id', up to MAX_HITS
- *   items matching the keywords in the given book will be shown.
- * - If 'book_id' and 'page_id' and 'keywords' are given, all the items
- *   matching the keywords in the given page of the given book will be shown.
- *
- * - If 'page_id' is given, but no 'book_id' or 'keywords', all the items
- *   in the given page will be shown, giving as exact match the page link.
- * - If 'page_id' and 'keywords' are given but no 'book_id', all the items
- *   matching the keywords in the given page will be shown.
- *
- * - If 'keywords' only are given, up to max_hits items matching the keywords
- *   will be shown. If keyword matches both a page link and a non-page one,
- *   the page link is the one given as exact match.
- */
 static GQueue *
 search_books (SearchSettings  *settings,
               guint            max_hits,
@@ -504,6 +484,26 @@ handle_book_id_only (DhSearchContext  *search_context,
         return ret;
 }
 
+/* The Search rationale is as follows:
+ *
+ * - If 'book_id' is given, but no 'page_id' or 'keywords', the main page of
+ *   the book will only be shown, giving as exact match this book link.
+ * - If 'book_id' and 'page_id' are given, but no 'keywords', all the items
+ *   in the given page of the given book will be shown.
+ * - If 'book_id' and 'keywords' are given, but no 'page_id', up to MAX_HITS
+ *   items matching the keywords in the given book will be shown.
+ * - If 'book_id' and 'page_id' and 'keywords' are given, all the items
+ *   matching the keywords in the given page of the given book will be shown.
+ *
+ * - If 'page_id' is given, but no 'book_id' or 'keywords', all the items
+ *   in the given page will be shown, giving as exact match the page link.
+ * - If 'page_id' and 'keywords' are given but no 'book_id', all the items
+ *   matching the keywords in the given page will be shown.
+ *
+ * - If 'keywords' only are given, up to max_hits items matching the keywords
+ *   will be shown. If keyword matches both a page link and a non-page one,
+ *   the page link is the one given as exact match.
+ */
 static GQueue *
 keyword_model_search (DhKeywordModel   *model,
                       DhSearchContext  *search_context,
