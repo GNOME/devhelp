@@ -59,7 +59,7 @@ DhKeywordModel *dh_keyword_model_new       (void);
 
 DhLink *        dh_keyword_model_filter    (DhKeywordModel *model,
                                             const gchar    *search_string,
-                                            const gchar    *book_id,
+                                            const gchar    *current_book_id,
                                             const gchar    *language);
 
 G_END_DECLS

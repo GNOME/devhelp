@@ -690,7 +690,7 @@ set_keywords_list (DhKeywordModel *model,
  * dh_keyword_model_filter:
  * @model: a #DhKeywordModel.
  * @search_string: a search query.
- * @book_id: (nullable): the ID of the book currently selected, or %NULL.
+ * @current_book_id: (nullable): the ID of the book currently shown, or %NULL.
  * @language: (nullable): deprecated, must be %NULL.
  *
  * Searches in the #DhBookManager the list of #DhLink's that correspond to
@@ -702,7 +702,7 @@ set_keywords_list (DhKeywordModel *model,
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
                          const gchar    *search_string,
-                         const gchar    *book_id,
+                         const gchar    *current_book_id,
                          const gchar    *language)
 {
         DhKeywordModelPrivate *priv;
@@ -729,7 +729,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 if (book_id_in_search_string != NULL)
                         priv->current_book_id = g_strdup (book_id_in_search_string);
                 else
-                        priv->current_book_id = g_strdup (book_id);
+                        priv->current_book_id = g_strdup (current_book_id);
 
                 new_list = keyword_model_search (model, search_context, &exact_link);
         } else {
@@ -742,9 +742,8 @@ dh_keyword_model_filter (DhKeywordModel *model,
         _dh_search_context_free (search_context);
 
         /* One hit */
-        if (priv->keywords.length == 1) {
+        if (priv->keywords.length == 1)
                 return g_queue_peek_head (&priv->keywords);
-        }
 
         return exact_link;
 }
