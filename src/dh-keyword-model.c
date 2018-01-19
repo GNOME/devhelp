@@ -415,23 +415,28 @@ search_single_book (DhBook          *book,
  *   the page link is the one given as exact match.
  */
 static GQueue *
-search_books (DhKeywordModel  *model,
-              SearchSettings  *settings,
+search_books (SearchSettings  *settings,
               guint            max_hits,
               DhLink         **exact_link)
 {
         DhBookManager *book_manager;
-        GQueue *ret;
+        GList *books;
         GList *l;
+        GQueue *ret;
 
-        book_manager = dh_book_manager_get_singleton ();
         ret = g_queue_new ();
 
-        for (l = dh_book_manager_get_books (book_manager);
+        book_manager = dh_book_manager_get_singleton ();
+        books = dh_book_manager_get_books (book_manager);
+
+        for (l = books;
              l != NULL && ret->length < max_hits;
              l = l->next) {
                 DhBook *book = DH_BOOK (l->data);
                 GQueue *book_result;
+
+                if (!_dh_search_context_match_book (settings->search_context, book))
+                        continue;
 
                 /* Filtering by book? */
                 if (settings->book_id != NULL &&
@@ -536,8 +541,7 @@ keyword_model_search (DhKeywordModel   *model,
 
         /* First look for prefixed items in the given book id. */
         if (priv->current_book_id != NULL) {
-                in_book = search_books (model,
-                                        &settings,
+                in_book = search_books (&settings,
                                         max_hits,
                                         &in_book_exact_link);
         }
@@ -547,8 +551,7 @@ keyword_model_search (DhKeywordModel   *model,
          */
         settings.book_id = NULL;
         settings.skip_book_id = priv->current_book_id;
-        other_books = search_books (model,
-                                    &settings,
+        other_books = search_books (&settings,
                                     max_hits,
                                     &other_books_exact_link);
 
@@ -580,8 +583,7 @@ keyword_model_search (DhKeywordModel   *model,
                 settings.book_id = priv->current_book_id;
                 settings.skip_book_id = NULL;
 
-                in_book = search_books (model,
-                                        &settings,
+                in_book = search_books (&settings,
                                         max_hits - out->length,
                                         NULL);
 
@@ -595,8 +597,7 @@ keyword_model_search (DhKeywordModel   *model,
          */
         settings.book_id = NULL;
         settings.skip_book_id = priv->current_book_id;
-        other_books = search_books (model,
-                                    &settings,
+        other_books = search_books (&settings,
                                     max_hits - out->length,
                                     NULL);
         dh_util_queue_concat (out, other_books);
@@ -726,12 +727,10 @@ dh_keyword_model_filter (DhKeywordModel *model,
 
                 book_id_in_search_string = _dh_search_context_get_book_id (search_context);
 
-                if (book_id_in_search_string != NULL) {
-                        /* FIXME: must search only in this book, not others. */
+                if (book_id_in_search_string != NULL)
                         priv->current_book_id = g_strdup (book_id_in_search_string);
-                } else {
+                else
                         priv->current_book_id = g_strdup (book_id);
-                }
 
                 new_list = keyword_model_search (model,
                                                  search_string,
