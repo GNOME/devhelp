@@ -323,8 +323,24 @@ _dh_search_context_get_case_sensitive (DhSearchContext *search)
         return search->case_sensitive;
 }
 
-/* This function assumes that checking that the DhBook (book_id) matches has
- * already been done (to not check the book_id for each DhLink).
+gboolean
+_dh_search_context_match_book (DhSearchContext *search,
+                               DhBook          *book)
+{
+        g_return_val_if_fail (search != NULL, FALSE);
+        g_return_val_if_fail (DH_IS_BOOK (book), FALSE);
+
+        if (!dh_book_get_enabled (book))
+                return FALSE;
+
+        if (search->book_id == NULL)
+                return TRUE;
+
+        return g_strcmp0 (search->book_id, dh_book_get_id (book)) == 0;
+}
+
+/* This function assumes that _dh_search_context_match_book() returns TRUE for
+ * the DhBook containing @link (to avoid checking the book_id for each DhLink).
  */
 gboolean
 _dh_search_context_match_link (DhSearchContext *search,
@@ -368,8 +384,8 @@ _dh_search_context_match_link (DhSearchContext *search,
 }
 
 /* This function assumes:
- * - That checking that the DhBook (book_id) matches has already been done (to
- *   not check the book_id for each DhLink).
+ * - That _dh_search_context_match_book() returns TRUE for the DhBook containing
+ *   @link (to avoid checking the book_id for each DhLink).
  * - That _dh_search_context_match_link(prefix=TRUE) returns TRUE for @link.
  */
 gboolean

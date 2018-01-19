@@ -436,28 +436,9 @@ search_books (DhKeywordModel  *model,
                 GQueue *book_result;
 
                 /* Filtering by book? */
-                if (settings->book_id != NULL) {
-                        if (g_strcmp0 (settings->book_id, dh_book_get_id (book)) != 0) {
-                                continue;
-                        }
-
-                        /* Looking only for some specific book, without page or
-                         * keywords? Return only the match of the first book page.
-                         */
-                        if (settings->page_id == NULL && settings->keywords == NULL) {
-                                GNode *node;
-
-                                node = dh_book_get_tree (book);
-                                if (node != NULL) {
-                                        if (exact_link != NULL)
-                                                *exact_link = node->data;
-
-                                        g_queue_clear (ret);
-                                        g_queue_push_tail (ret, node->data);
-                                        /* FIXME: must stop the search after this. */
-                                        return ret;
-                                }
-                        }
+                if (settings->book_id != NULL &&
+                    g_strcmp0 (settings->book_id, dh_book_get_id (book)) != 0) {
+                        continue;
                 }
 
                 /* Skipping a given book? */
@@ -479,6 +460,48 @@ search_books (DhKeywordModel  *model,
 }
 
 static GQueue *
+handle_book_id_only (DhSearchContext  *search_context,
+                     DhLink          **exact_link)
+{
+        DhBookManager *book_manager;
+        GList *books;
+        GList *l;
+        GQueue *ret;
+
+        if (_dh_search_context_get_book_id (search_context) == NULL ||
+            _dh_search_context_get_page_id (search_context) != NULL ||
+            _dh_search_context_get_keywords (search_context) != NULL) {
+                return NULL;
+        }
+
+        ret = g_queue_new ();
+
+        book_manager = dh_book_manager_get_singleton ();
+        books = dh_book_manager_get_books (book_manager);
+
+        for (l = books; l != NULL; l = l->next) {
+                DhBook *book = DH_BOOK (l->data);
+                GNode *node;
+
+                if (!_dh_search_context_match_book (search_context, book))
+                        continue;
+
+                /* Return only the top-level book page. */
+                node = dh_book_get_tree (book);
+                if (node != NULL) {
+                        if (exact_link != NULL)
+                                *exact_link = node->data;
+
+                        g_queue_push_tail (ret, node->data);
+                }
+
+                break;
+        }
+
+        return ret;
+}
+
+static GQueue *
 keyword_model_search (DhKeywordModel   *model,
                       const gchar      *search_string,
                       DhSearchContext  *search_context,
@@ -491,7 +514,13 @@ keyword_model_search (DhKeywordModel   *model,
         GQueue *other_books = NULL;
         DhLink *in_book_exact_link = NULL;
         DhLink *other_books_exact_link = NULL;
-        GQueue *out = g_queue_new ();
+        GQueue *out;
+
+        out = handle_book_id_only (search_context, exact_link);
+        if (out != NULL)
+                return out;
+
+        out = g_queue_new ();
 
         settings.search_context = search_context;
         settings.keywords = _dh_search_context_get_keywords (search_context);
