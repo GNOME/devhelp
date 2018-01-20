@@ -4,7 +4,7 @@
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
- * Copyright (C) 2015 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2015-2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -134,11 +134,7 @@ dh_keyword_model_get_column_type (GtkTreeModel *tree_model,
                 return G_TYPE_STRING;
 
         case DH_KEYWORD_MODEL_COL_LINK:
-                /* FIXME: use DH_TYPE_LINK boxed type, to take advantage of ref
-                 * counting, to have safer code in case a DhLink is freed when
-                 * still stored in the GtkTreeModel.
-                 */
-                return G_TYPE_POINTER;
+                return DH_TYPE_LINK;
 
         case DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG:
                 return G_TYPE_BOOLEAN;
@@ -228,8 +224,8 @@ dh_keyword_model_get_value (GtkTreeModel *tree_model,
                 break;
 
         case DH_KEYWORD_MODEL_COL_LINK:
-                g_value_init (value, G_TYPE_POINTER);
-                g_value_set_pointer (value, link);
+                g_value_init (value, DH_TYPE_LINK);
+                g_value_set_boxed (value, link);
                 break;
 
         case DH_KEYWORD_MODEL_COL_CURRENT_BOOK_FLAG:

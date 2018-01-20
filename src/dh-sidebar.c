@@ -192,6 +192,7 @@ hitlist_selection_changed_cb (GtkTreeSelection *selection,
                                     -1);
 
                 g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
+                dh_link_unref (link);
         }
 }
 
@@ -222,6 +223,7 @@ hitlist_button_press_cb (GtkTreeView    *hitlist_view,
                             -1);
 
         g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
+        dh_link_unref (link);
 
         /* Always propagate the event so the tree view can update
          * the selection etc.
@@ -282,6 +284,7 @@ entry_key_press_event_cb (GtkEntry    *entry,
                         gtk_editable_set_position (GTK_EDITABLE (entry), -1);
 
                         g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
+                        dh_link_unref (link);
 
                         return GDK_EVENT_STOP;
                 }
@@ -442,6 +445,7 @@ hitlist_cell_data_func (GtkTreeViewColumn *tree_column,
                       "weight", weight,
                       NULL);
 
+        dh_link_unref (link);
         g_free (name);
 }
 
