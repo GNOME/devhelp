@@ -115,8 +115,7 @@ dh_keyword_model_init (DhKeywordModel *model)
 static GtkTreeModelFlags
 dh_keyword_model_get_flags (GtkTreeModel *tree_model)
 {
-        /* FIXME: check if GTK_TREE_MODEL_ITERS_PERSIST is correct. */
-        return GTK_TREE_MODEL_ITERS_PERSIST | GTK_TREE_MODEL_LIST_ONLY;
+        return GTK_TREE_MODEL_LIST_ONLY;
 }
 
 static gint
