@@ -149,10 +149,14 @@ dh_keyword_model_get_iter (GtkTreeModel *tree_model,
                            GtkTreePath  *path)
 {
         DhKeywordModelPrivate *priv;
-        GList *node;
         const gint *indices;
+        GList *node;
 
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
+
+        if (gtk_tree_path_get_depth (path) > 1) {
+                return FALSE;
+        }
 
         indices = gtk_tree_path_get_indices (path);
 
@@ -160,16 +164,15 @@ dh_keyword_model_get_iter (GtkTreeModel *tree_model,
                 return FALSE;
         }
 
-        if (indices[0] >= (gint)priv->links.length) {
-                return FALSE;
-        }
-
         node = g_queue_peek_nth_link (&priv->links, indices[0]);
 
-        iter->stamp = priv->stamp;
-        iter->user_data = node;
+        if (node != NULL) {
+                iter->stamp = priv->stamp;
+                iter->user_data = node;
+                return TRUE;
+        }
 
-        return TRUE;
+        return FALSE;
 }
 
 static GtkTreePath *
