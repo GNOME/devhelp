@@ -526,6 +526,13 @@ dh_book_get_completion (DhBook *book)
                         DhLink *link = l->data;
                         const gchar *str;
 
+                        /* Do not provide completion for book titles. Normally
+                         * the user doesn't need it, it's more convenient to
+                         * choose a book with the DhBookTree.
+                         */
+                        if (dh_link_get_link_type (link) == DH_LINK_TYPE_BOOK)
+                                continue;
+
                         str = dh_link_get_name (link);
                         dh_completion_add_string (priv->completion, str);
                 }
