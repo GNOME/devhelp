@@ -44,9 +44,10 @@
 typedef struct {
         gchar *current_book_id;
 
-        /* List of DhLink* */
-        /* FIXME ref the DhLinks, in case a DhBook is destroyed while the
-         * DhLinks are still stored here.
+        /* List of owned DhLink*.
+         *
+         * Note: GQueue, not GQueue* so we are sure that it always exists, we
+         * don't need to check if priv->links == NULL.
          */
         GQueue links;
 
@@ -70,12 +71,27 @@ G_DEFINE_TYPE_WITH_CODE (DhKeywordModel, dh_keyword_model, G_TYPE_OBJECT,
                                                 dh_keyword_model_tree_model_init));
 
 static void
+clear_links (DhKeywordModel *model)
+{
+        DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (model);
+        GList *l;
+
+        for (l = priv->links.head; l != NULL; l = l->next) {
+                DhLink *cur_link = l->data;
+                dh_link_unref (cur_link);
+        }
+
+        g_queue_clear (&priv->links);
+}
+
+static void
 dh_keyword_model_finalize (GObject *object)
 {
-        DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (object));
+        DhKeywordModel *model = DH_KEYWORD_MODEL (object);
+        DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (model);
 
         g_free (priv->current_book_id);
-        g_queue_clear (&priv->links);
+        clear_links (model);
 
         G_OBJECT_CLASS (dh_keyword_model_parent_class)->finalize (object);
 }
@@ -378,7 +394,7 @@ search_single_book (DhBook          *book,
                         continue;
                 }
 
-                g_queue_push_tail (ret, link);
+                g_queue_push_tail (ret, dh_link_ref (link));
 
                 if (exact_link == NULL || !settings->prefix)
                         continue;
@@ -474,10 +490,13 @@ handle_book_id_only (DhSearchContext  *search_context,
                 /* Return only the top-level book page. */
                 node = dh_book_get_tree (book);
                 if (node != NULL) {
-                        if (exact_link != NULL)
-                                *exact_link = node->data;
+                        DhLink *link;
 
-                        g_queue_push_tail (ret, node->data);
+                        link = node->data;
+                        g_queue_push_tail (ret, dh_link_ref (link));
+
+                        if (exact_link != NULL)
+                                *exact_link = link;
                 }
 
                 break;
@@ -668,7 +687,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 new_links = keyword_model_search (model, search_context, &exact_link);
         }
 
-        g_queue_clear (&priv->links);
+        clear_links (model);
         dh_util_queue_concat (&priv->links, new_links);
         new_links = NULL;
 
