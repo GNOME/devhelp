@@ -19,8 +19,8 @@
 #include "dh-search-context.h"
 #include <string.h>
 
-/* DhSearchContext represents one search instance, with the search string as
- * data.
+/* DhSearchContext is a helper class for a search instance, with the search
+ * string as data.
  */
 
 struct _DhSearchContext {
