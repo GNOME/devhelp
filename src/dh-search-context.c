@@ -34,14 +34,22 @@ struct _DhSearchContext {
 
         /* Derived data: */
 
-        // The GPatternSpec's are NULL if @keywords is NULL.
-        GPatternSpec *pattern_spec_prefix;
-        GPatternSpec *pattern_spec_nonprefix;
+        // Element-type: KeywordData*.
+        GSList *keywords_data;
 
         gchar *joined_keywords;
 
         guint case_sensitive : 1;
 };
+
+typedef struct _KeywordData {
+        /* Created only for the first keyword. */
+        GPatternSpec *pattern_spec_prefix;
+        GPatternSpec *pattern_spec_nonprefix;
+
+        /* Created only for the remaining keywords. */
+        GPatternSpec *pattern_spec_anywhere;
+} KeywordData;
 
 /* Process the input search string and extract:
  * - If "book:" prefix given, a book_id;
@@ -207,37 +215,71 @@ set_case_sensitive (DhSearchContext *search)
         }
 }
 
-static void
-create_pattern_specs (DhSearchContext *search)
+static KeywordData *
+keyword_data_new (const gchar *keyword,
+                  gboolean     first_keyword)
 {
-        GString *pattern_prefix_string;
-        gchar *pattern_nonprefix_str;
-        gint i;
+        KeywordData *data;
+        gchar *pattern;
 
-        g_assert (search->pattern_spec_prefix == NULL);
-        g_assert (search->pattern_spec_nonprefix == NULL);
+        data = g_new0 (KeywordData, 1);
+
+        if (first_keyword) {
+                pattern = g_strdup_printf ("%s*", keyword);
+                data->pattern_spec_prefix = g_pattern_spec_new (pattern);
+                g_free (pattern);
+
+                pattern = g_strdup_printf ("?*%s*", keyword);
+                data->pattern_spec_nonprefix = g_pattern_spec_new (pattern);
+                g_free (pattern);
+        } else {
+                pattern = g_strdup_printf ("*%s*", keyword);
+                data->pattern_spec_anywhere = g_pattern_spec_new (pattern);
+                g_free (pattern);
+        }
+
+        return data;
+}
+
+static void
+keyword_data_free (gpointer _data)
+{
+        KeywordData *data = _data;
+
+        if (data == NULL)
+                return;
+
+        if (data->pattern_spec_prefix != NULL)
+                g_pattern_spec_free (data->pattern_spec_prefix);
+
+        if (data->pattern_spec_nonprefix != NULL)
+                g_pattern_spec_free (data->pattern_spec_nonprefix);
+
+        if (data->pattern_spec_anywhere != NULL)
+                g_pattern_spec_free (data->pattern_spec_anywhere);
+
+        g_free (data);
+}
+
+static void
+create_keywords_data (DhSearchContext *search)
+{
+        gint keyword_num;
+
+        g_assert (search->keywords_data == NULL);
 
         if (search->keywords == NULL)
                 return;
 
-        /* Prefix */
-        pattern_prefix_string = g_string_new (NULL);
+        for (keyword_num = 0; search->keywords[keyword_num] != NULL; keyword_num++) {
+                const gchar *cur_keyword = search->keywords[keyword_num];
+                KeywordData *data;
 
-        for (i = 0; search->keywords[i] != NULL; i++) {
-                const gchar *cur_keyword = search->keywords[i];
-
-                g_string_append (pattern_prefix_string, cur_keyword);
-                g_string_append_c (pattern_prefix_string, '*');
+                data = keyword_data_new (cur_keyword, keyword_num == 0);
+                search->keywords_data = g_slist_prepend (search->keywords_data, data);
         }
 
-        search->pattern_spec_prefix = g_pattern_spec_new (pattern_prefix_string->str);
-
-        /* Non-prefix */
-        pattern_nonprefix_str = g_strconcat ("?*", pattern_prefix_string->str, NULL);
-        search->pattern_spec_nonprefix = g_pattern_spec_new (pattern_nonprefix_str);
-
-        g_string_free (pattern_prefix_string, TRUE);
-        g_free (pattern_nonprefix_str);
+        search->keywords_data = g_slist_reverse (search->keywords_data);
 }
 
 static void
@@ -269,7 +311,7 @@ _dh_search_context_new (const gchar *search_string)
         }
 
         set_case_sensitive (search);
-        create_pattern_specs (search);
+        create_keywords_data (search);
         join_keywords (search);
 
         return search;
@@ -284,13 +326,7 @@ _dh_search_context_free (DhSearchContext *search)
         g_free (search->book_id);
         g_free (search->page_id);
         g_strfreev (search->keywords);
-
-        if (search->pattern_spec_prefix != NULL)
-                g_pattern_spec_free (search->pattern_spec_prefix);
-
-        if (search->pattern_spec_nonprefix != NULL)
-                g_pattern_spec_free (search->pattern_spec_nonprefix);
-
+        g_slist_free_full (search->keywords_data, keyword_data_free);
         g_free (search->joined_keywords);
 
         g_free (search);
@@ -355,6 +391,7 @@ _dh_search_context_match_link (DhSearchContext *search,
         gchar *str_to_free = NULL;
         const gchar *name;
         gboolean match = FALSE;
+        GSList *l;
 
         g_return_val_if_fail (search != NULL, FALSE);
         g_return_val_if_fail (link != NULL, FALSE);
@@ -381,10 +418,62 @@ _dh_search_context_match_link (DhSearchContext *search,
                 name = str_to_free;
         }
 
-        if (prefix)
-                match = g_pattern_match_string (search->pattern_spec_prefix, name);
-        else
-                match = g_pattern_match_string (search->pattern_spec_nonprefix, name);
+        /* Why isn't there only one GPatternSpec (or two variants:
+         * prefix/nonprefix) for all the keywords? For example searching
+         * "dh_link_ book" (two keywords) would create the GPatternSpec
+         * "dh_link_*book*". Although the implementation would be simpler, doing
+         * so would be a regression in functionality, because with one
+         * GPatternSpec for each keyword, the keywords don't necessarily need to
+         * be in the same order as in the DhLink name. With "dh_link_*book*", it
+         * forces "book" to be after "dh_link_". And anyway if the user wants to
+         * enforce the appearance order of the keywords, she can use the '*'
+         * glob in the search string.
+         *
+         * A good example is the search string "gtk window application", it
+         * matches both gtk_window_get_application() and GtkApplicationWindow
+         * (among other symbols).
+         *
+         * To enforce the appearance order of the keywords, the '*' glob can be
+         * used: "gtk*window*application" will match
+         * gtk_window_get_application(), but not GtkApplicationWindow.
+         */
+
+        /* Why matching by prefix only for the first keyword and not the others?
+         * For several reasons:
+         * - When prefix=TRUE, if data->pattern_spec_prefix was used for all
+         *   keywords, it would be impossible to match the DhLink name (except
+         *   if all the keywords are equal, but it doesn't make sense to do such
+         *   a search).
+         * - At least with the GTK+/GNOME APIs, normally all the symbols start
+         *   with the namespace of the library. So when we search symbols, if we
+         *   know in which library the symbol(s) is located, we can type the
+         *   namespace as first keyword. With prefix=TRUE, this will match the
+         *   namespace.
+         */
+
+        /* Possible performance optimization (if it appears that there is a
+         * performance problem):
+         *
+         * If a keyword doesn't contain globs ('*' or '?'), use simple string
+         * functions like g_str_has_prefix() and strstr().
+         */
+
+        for (l = search->keywords_data; l != NULL; l = l->next) {
+                KeywordData *data = l->data;
+
+                /* For all keywords except the first. */
+                if (data->pattern_spec_anywhere != NULL)
+                        match = g_pattern_match_string (data->pattern_spec_anywhere, name);
+
+                /* For the first keyword. */
+                else if (prefix)
+                        match = g_pattern_match_string (data->pattern_spec_prefix, name);
+                else
+                        match = g_pattern_match_string (data->pattern_spec_nonprefix, name);
+
+                if (!match)
+                        break;
+        }
 
         g_free (str_to_free);
         return match;

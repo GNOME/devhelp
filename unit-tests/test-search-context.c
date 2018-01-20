@@ -247,6 +247,17 @@ test_link_simple (void)
         check_link_simple ("??_link_new", "dh_link_new", FALSE, FALSE, FALSE);
         check_link_simple ("??_link_new", "dh_link_compare", TRUE, FALSE, FALSE);
         check_link_simple ("??_link_new", "dh_link_compare", FALSE, FALSE, FALSE);
+
+        /* Several keywords, not necessarily in the same order. */
+        check_link_simple ("gtk window application", "gtk_window_get_application", TRUE, TRUE, FALSE);
+        check_link_simple ("gtk window application", "gtk_window_get_application", FALSE, FALSE, FALSE);
+        check_link_simple ("gtk window application", "GtkApplicationWindow", TRUE, TRUE, FALSE);
+        check_link_simple ("gtk window application", "GtkApplicationWindow", FALSE, FALSE, FALSE);
+
+        check_link_simple ("gtk*window*application", "gtk_window_get_application", TRUE, TRUE, FALSE);
+        check_link_simple ("gtk*window*application", "gtk_window_get_application", FALSE, FALSE, FALSE);
+        check_link_simple ("gtk*window*application", "GtkApplicationWindow", TRUE, FALSE, FALSE);
+        check_link_simple ("gtk*window*application", "GtkApplicationWindow", FALSE, FALSE, FALSE);
 }
 
 int
