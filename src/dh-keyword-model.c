@@ -606,88 +606,6 @@ keyword_model_search (DhKeywordModel   *model,
         return out;
 }
 
-static void
-set_links (DhKeywordModel *model,
-           GQueue         *new_links)
-{
-        DhKeywordModelPrivate *priv;
-        gint old_length;
-        gint new_length;
-        gint row_num;
-        GList *node;
-        GtkTreePath *path;
-
-        priv = dh_keyword_model_get_instance_private (model);
-
-        old_length = priv->links.length;
-        new_length = new_links->length;
-
-        g_queue_clear (&priv->links);
-        dh_util_queue_concat (&priv->links, new_links);
-        new_links = NULL;
-
-        /* Update model: common rows */
-        row_num = 0;
-        node = priv->links.head;
-        path = gtk_tree_path_new_first ();
-
-        while (row_num < MIN (old_length, new_length)) {
-                GtkTreeIter iter;
-
-                g_assert (node != NULL);
-
-                iter.stamp = priv->stamp;
-                iter.user_data = node;
-
-                gtk_tree_model_row_changed (GTK_TREE_MODEL (model), path, &iter);
-
-                row_num++;
-                node = node->next;
-                gtk_tree_path_next (path);
-        }
-
-        gtk_tree_path_free (path);
-
-        /* Insert new rows */
-        if (old_length < new_length) {
-                row_num = old_length;
-                g_assert_cmpint (g_queue_link_index (&priv->links, node), ==, row_num);
-                path = gtk_tree_path_new_from_indices (row_num, -1);
-
-                while (row_num < new_length) {
-                        GtkTreeIter iter;
-
-                        g_assert (node != NULL);
-
-                        iter.stamp = priv->stamp;
-                        iter.user_data = node;
-
-                        gtk_tree_model_row_inserted (GTK_TREE_MODEL (model), path, &iter);
-
-                        row_num++;
-                        node = node->next;
-                        gtk_tree_path_next (path);
-                }
-
-                gtk_tree_path_free (path);
-        }
-
-        /* Delete old rows */
-        else if (old_length > new_length) {
-                row_num = old_length - 1;
-                path = gtk_tree_path_new_from_indices (row_num, -1);
-
-                while (row_num >= new_length) {
-                        gtk_tree_model_row_deleted (GTK_TREE_MODEL (model), path);
-
-                        row_num--;
-                        gtk_tree_path_prev (path);
-                }
-
-                gtk_tree_path_free (path);
-        }
-}
-
 /**
  * dh_keyword_model_filter:
  * @model: a #DhKeywordModel.
@@ -698,6 +616,12 @@ set_links (DhKeywordModel *model,
  * Searches in the #DhBookManager the list of #DhLink's that correspond to
  * @search_string, and fills the @model with that list (erasing the previous
  * content).
+ *
+ * Attention, when calling this function the @model needs to be disconnected
+ * from the #GtkTreeView, because the #GtkTreeModel signals are not emitted, to
+ * improve the performances (sending a lot of signals is slow) and have a
+ * simpler implementation. The previous row selection is anyway no longer
+ * relevant.
  *
  * Note that there is a maximum number of matches (configured internally). When
  * the maximum is reached the search is stopped, to avoid blocking the GUI
@@ -717,7 +641,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
 {
         DhKeywordModelPrivate *priv;
         DhSearchContext *search_context;
-        GQueue *new_list = NULL;
+        GQueue *new_links = NULL;
         DhLink *exact_link = NULL;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
@@ -741,13 +665,12 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 else
                         priv->current_book_id = g_strdup (current_book_id);
 
-                new_list = keyword_model_search (model, search_context, &exact_link);
-        } else {
-                new_list = g_queue_new ();
+                new_links = keyword_model_search (model, search_context, &exact_link);
         }
 
-        set_links (model, new_list);
-        new_list = NULL;
+        g_queue_clear (&priv->links);
+        dh_util_queue_concat (&priv->links, new_links);
+        new_links = NULL;
 
         _dh_search_context_free (search_context);
 
