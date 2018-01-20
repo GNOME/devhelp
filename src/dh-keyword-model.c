@@ -686,6 +686,11 @@ dh_keyword_model_filter (DhKeywordModel *model,
         dh_util_queue_concat (&priv->links, new_links);
         new_links = NULL;
 
+        /* The content has been modified, change the stamp so that older
+         * GtkTreeIter's become invalid.
+         */
+        priv->stamp++;
+
         _dh_search_context_free (search_context);
 
         /* One hit */
