@@ -48,7 +48,7 @@ typedef struct {
         /* FIXME ref the DhLinks, in case a DhBook is destroyed while the
          * DhLinks are still stored here.
          */
-        GQueue keywords;
+        GQueue links;
 
         gint stamp;
 } DhKeywordModelPrivate;
@@ -75,7 +75,7 @@ dh_keyword_model_finalize (GObject *object)
         DhKeywordModelPrivate *priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (object));
 
         g_free (priv->current_book_id);
-        g_queue_clear (&priv->keywords);
+        g_queue_clear (&priv->links);
 
         G_OBJECT_CLASS (dh_keyword_model_parent_class)->finalize (object);
 }
@@ -149,11 +149,11 @@ dh_keyword_model_get_iter (GtkTreeModel *tree_model,
                 return FALSE;
         }
 
-        if (indices[0] >= (gint)priv->keywords.length) {
+        if (indices[0] >= (gint)priv->links.length) {
                 return FALSE;
         }
 
-        node = g_queue_peek_nth_link (&priv->keywords, indices[0]);
+        node = g_queue_peek_nth_link (&priv->links, indices[0]);
 
         iter->stamp = priv->stamp;
         iter->user_data = node;
@@ -175,7 +175,7 @@ dh_keyword_model_get_path (GtkTreeModel *tree_model,
         g_return_val_if_fail (iter->stamp == priv->stamp, NULL);
 
         node = iter->user_data;
-        pos = g_queue_link_index (&priv->keywords, node);
+        pos = g_queue_link_index (&priv->links, node);
 
         if (pos < 0) {
                 return NULL;
@@ -261,9 +261,9 @@ dh_keyword_model_iter_children (GtkTreeModel *tree_model,
         /* But if parent == NULL we return the list itself as children of
          * the "root".
          */
-        if (priv->keywords.head != NULL) {
+        if (priv->links.head != NULL) {
                 iter->stamp = priv->stamp;
-                iter->user_data = priv->keywords.head;
+                iter->user_data = priv->links.head;
                 return TRUE;
         }
 
@@ -286,7 +286,7 @@ dh_keyword_model_iter_n_children (GtkTreeModel *tree_model,
         priv = dh_keyword_model_get_instance_private (DH_KEYWORD_MODEL (tree_model));
 
         if (iter == NULL) {
-                return priv->keywords.length;
+                return priv->links.length;
         }
 
         g_return_val_if_fail (priv->stamp == iter->stamp, -1);
@@ -309,7 +309,7 @@ dh_keyword_model_iter_nth_child (GtkTreeModel *tree_model,
                 return FALSE;
         }
 
-        child = g_queue_peek_nth_link (&priv->keywords, n);
+        child = g_queue_peek_nth_link (&priv->links, n);
 
         if (child != NULL) {
                 iter->stamp = priv->stamp;
@@ -607,8 +607,8 @@ keyword_model_search (DhKeywordModel   *model,
 }
 
 static void
-set_keywords_list (DhKeywordModel *model,
-                   GQueue         *new_keywords)
+set_links (DhKeywordModel *model,
+           GQueue         *new_links)
 {
         DhKeywordModelPrivate *priv;
         gint old_length;
@@ -619,16 +619,16 @@ set_keywords_list (DhKeywordModel *model,
 
         priv = dh_keyword_model_get_instance_private (model);
 
-        old_length = priv->keywords.length;
-        new_length = new_keywords->length;
+        old_length = priv->links.length;
+        new_length = new_links->length;
 
-        g_queue_clear (&priv->keywords);
-        dh_util_queue_concat (&priv->keywords, new_keywords);
-        new_keywords = NULL;
+        g_queue_clear (&priv->links);
+        dh_util_queue_concat (&priv->links, new_links);
+        new_links = NULL;
 
         /* Update model: common rows */
         row_num = 0;
-        node = priv->keywords.head;
+        node = priv->links.head;
         path = gtk_tree_path_new_first ();
 
         while (row_num < MIN (old_length, new_length)) {
@@ -651,7 +651,7 @@ set_keywords_list (DhKeywordModel *model,
         /* Insert new rows */
         if (old_length < new_length) {
                 row_num = old_length;
-                g_assert_cmpint (g_queue_link_index (&priv->keywords, node), ==, row_num);
+                g_assert_cmpint (g_queue_link_index (&priv->links, node), ==, row_num);
                 path = gtk_tree_path_new_from_indices (row_num, -1);
 
                 while (row_num < new_length) {
@@ -746,14 +746,14 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 new_list = g_queue_new ();
         }
 
-        set_keywords_list (model, new_list);
+        set_links (model, new_list);
         new_list = NULL;
 
         _dh_search_context_free (search_context);
 
         /* One hit */
-        if (priv->keywords.length == 1)
-                return g_queue_peek_head (&priv->keywords);
+        if (priv->links.length == 1)
+                return g_queue_peek_head (&priv->links);
 
         return exact_link;
 }
