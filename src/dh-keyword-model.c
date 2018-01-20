@@ -30,13 +30,15 @@
 /**
  * SECTION:dh-keyword-model
  * @Title: DhKeywordModel
- * @Short_description: A custom #GtkTreeModel implementation for searching a
- * keyword
+ * @Short_description: A custom #GtkTreeModel implementation for searching
+ * #DhLink's
  *
  * #DhKeywordModel is a custom #GtkTreeModel implementation (as a list, not a
- * tree) for searching a keyword.
+ * tree) for searching #DhLink's.
  *
- * The dh_keyword_model_filter() function is used to set the search criteria.
+ * The dh_keyword_model_filter() function is used to set the search criteria. It
+ * fills the #GtkTreeModel with the list of #DhLink's that match the search
+ * criteria (up to a certain maximum number of matches).
  */
 
 typedef struct {
@@ -694,10 +696,18 @@ set_keywords_list (DhKeywordModel *model,
  * @language: (nullable): deprecated, must be %NULL.
  *
  * Searches in the #DhBookManager the list of #DhLink's that correspond to
- * @search_string, and fills the @model with that list.
+ * @search_string, and fills the @model with that list (erasing the previous
+ * content).
+ *
+ * Note that there is a maximum number of matches (configured internally). When
+ * the maximum is reached the search is stopped, to avoid blocking the GUI
+ * (since this function runs synchronously) if the @search_string contains for
+ * example only one character. (And it is anyway not very useful to show to the
+ * user tens of thousands search results).
  *
  * Returns: (nullable) (transfer none): the #DhLink that matches exactly
- * @search_string, or %NULL if there is no such #DhLink.
+ * @search_string, or %NULL if no such #DhLink was found within the maximum
+ * number of matches.
  */
 DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
