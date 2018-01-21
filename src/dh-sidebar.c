@@ -137,8 +137,9 @@ search_idle_cb (gpointer user_data)
         book_id = book_link != NULL ? dh_link_get_book_id (book_link) : NULL;
 
         /* Disconnect the model during the filter, for:
-         * 1. better performances.
-         * 2. clearing the selection.
+         * 1. Better performances.
+         * 2. Clearing the selection.
+         * 3. Because it's required by dh_keyword_model_filter().
          */
         gtk_tree_view_set_model (priv->hitlist_view, NULL);
 
