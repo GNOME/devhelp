@@ -1,0 +1,56 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="topic"
+      id="search">
+
+<info>
+  <link type="guide" xref="index" />
+</info>
+
+<title>Search in the side panel</title>
+
+<synopsis>
+  <p>How the search in the side panel works.</p>
+</synopsis>
+
+<section id="case-sensitivity">
+  <title>Case sensitivity</title>
+  <p>
+    The search is case sensitive when there is an uppercase letter. If the
+    search terms are all in lowercase, the search is case insensitive. It's
+    like the “smartcase” feature present in some text editors.
+  </p>
+</section>
+
+<section id="globs">
+  <title>Glob-style pattern matching</title>
+  <p>
+    A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’
+    matches an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary
+    character.
+  </p>
+</section>
+
+<section id="several-search-terms">
+  <title>Several search terms</title>
+  <p>
+    You can search with several search terms (separated by spaces). A symbol
+    will match only if <em>all</em> the search terms individually match (not
+    necessarily in the same order of appearance).
+  </p>
+  <p>
+    Note that it is different than searching with the ‘*’ wildcard: with the
+    ‘*’ wildcard it forces the keywords to be in the same order.
+  </p>
+  <p>
+    For example when searching “<input>gtk window application</input>”, it
+    matches both “<code>gtk_window_get_application()</code>” and
+    “<code>GtkApplicationWindow</code>” (among other symbols).
+  </p>
+  <p>
+    On the other hand, searching “<input>gtk*window*application</input>” will
+    match “<code>gtk_window_get_application()</code>” but not
+    “<code>GtkApplicationWindow</code>”.
+  </p>
+</section>
+</page>

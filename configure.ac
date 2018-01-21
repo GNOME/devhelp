@@ -49,6 +49,9 @@ GLIB_GSETTINGS
 AX_REQUIRE_DEFINED([GOBJECT_INTROSPECTION_CHECK])
 GOBJECT_INTROSPECTION_CHECK([1.30.0])
 
+AX_REQUIRE_DEFINED([YELP_HELP_INIT])
+YELP_HELP_INIT
+
 # Compile warnings. There can be deprecation warnings at any time, so disable
 # -Werror by default with the [yes] argument.
 AX_REQUIRE_DEFINED([AX_COMPILER_FLAGS])
@@ -96,6 +99,7 @@ AC_CONFIG_FILES([
 	data/icons/Makefile
 	docs/Makefile
 	docs/reference/Makefile
+	help/Makefile
 	plugins/Makefile
 	plugins/gedit-plugin/Makefile
 	po/Makefile.in
