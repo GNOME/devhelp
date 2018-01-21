@@ -43,12 +43,17 @@ struct _DhSearchContext {
 };
 
 typedef struct _KeywordData {
-        /* Created only for the first keyword. */
+        gchar *keyword;
+
+        /* Created only if has_glob and is_first. */
         GPatternSpec *pattern_spec_prefix;
         GPatternSpec *pattern_spec_nonprefix;
 
-        /* Created only for the remaining keywords. */
+        /* Created only if has_glob and !is_first. */
         GPatternSpec *pattern_spec_anywhere;
+
+        guint is_first : 1;
+        guint has_glob : 1;
 } KeywordData;
 
 /* Process the input search string and extract:
@@ -217,25 +222,35 @@ set_case_sensitive (DhSearchContext *search)
 
 static KeywordData *
 keyword_data_new (const gchar *keyword,
-                  gboolean     first_keyword)
+                  gboolean     is_first)
 {
         KeywordData *data;
-        gchar *pattern;
+
+        g_return_val_if_fail (keyword != NULL, NULL);
 
         data = g_new0 (KeywordData, 1);
 
-        if (first_keyword) {
-                pattern = g_strdup_printf ("%s*", keyword);
-                data->pattern_spec_prefix = g_pattern_spec_new (pattern);
-                g_free (pattern);
+        data->keyword = g_strdup (keyword);
+        data->is_first = is_first != FALSE;
+        data->has_glob = (strchr (keyword, '*') != NULL ||
+                          strchr (keyword, '?') != NULL);
 
-                pattern = g_strdup_printf ("?*%s*", keyword);
-                data->pattern_spec_nonprefix = g_pattern_spec_new (pattern);
-                g_free (pattern);
-        } else {
-                pattern = g_strdup_printf ("*%s*", keyword);
-                data->pattern_spec_anywhere = g_pattern_spec_new (pattern);
-                g_free (pattern);
+        if (data->has_glob) {
+                gchar *pattern;
+
+                if (is_first) {
+                        pattern = g_strdup_printf ("%s*", keyword);
+                        data->pattern_spec_prefix = g_pattern_spec_new (pattern);
+                        g_free (pattern);
+
+                        pattern = g_strdup_printf ("?*%s*", keyword);
+                        data->pattern_spec_nonprefix = g_pattern_spec_new (pattern);
+                        g_free (pattern);
+                } else {
+                        pattern = g_strdup_printf ("*%s*", keyword);
+                        data->pattern_spec_anywhere = g_pattern_spec_new (pattern);
+                        g_free (pattern);
+                }
         }
 
         return data;
@@ -248,6 +263,8 @@ keyword_data_free (gpointer _data)
 
         if (data == NULL)
                 return;
+
+        g_free (data->keyword);
 
         if (data->pattern_spec_prefix != NULL)
                 g_pattern_spec_free (data->pattern_spec_prefix);
@@ -276,7 +293,8 @@ create_keywords_data (DhSearchContext *search)
                 KeywordData *data;
 
                 data = keyword_data_new (cur_keyword, keyword_num == 0);
-                search->keywords_data = g_slist_prepend (search->keywords_data, data);
+                if (data != NULL)
+                        search->keywords_data = g_slist_prepend (search->keywords_data, data);
         }
 
         search->keywords_data = g_slist_reverse (search->keywords_data);
@@ -389,7 +407,7 @@ _dh_search_context_match_link (DhSearchContext *search,
                                gboolean         prefix)
 {
         gchar *str_to_free = NULL;
-        const gchar *name;
+        const gchar *link_name;
         gboolean match = FALSE;
         GSList *l;
 
@@ -412,11 +430,13 @@ _dh_search_context_match_link (DhSearchContext *search,
                 return FALSE;
 
         if (search->case_sensitive) {
-                name = dh_link_get_name (link);
+                link_name = dh_link_get_name (link);
         } else {
                 str_to_free = g_ascii_strdown (dh_link_get_name (link), -1);
-                name = str_to_free;
+                link_name = str_to_free;
         }
+
+        g_return_val_if_fail (link_name != NULL, FALSE);
 
         /* Why isn't there only one GPatternSpec (or two variants:
          * prefix/nonprefix) for all the keywords? For example searching
@@ -451,25 +471,36 @@ _dh_search_context_match_link (DhSearchContext *search,
          *   namespace.
          */
 
-        /* Possible performance optimization (if it appears that there is a
-         * performance problem):
-         *
-         * If a keyword doesn't contain globs ('*' or '?'), use simple string
-         * functions like g_str_has_prefix() and strstr().
+        /* Use simple string functions when the keyword doesn't contain globs,
+         * to improve performances (this function can be called on *every*
+         * DhLink).
          */
 
         for (l = search->keywords_data; l != NULL; l = l->next) {
                 KeywordData *data = l->data;
 
-                /* For all keywords except the first. */
-                if (data->pattern_spec_anywhere != NULL)
-                        match = g_pattern_match_string (data->pattern_spec_anywhere, name);
-
-                /* For the first keyword. */
-                else if (prefix)
-                        match = g_pattern_match_string (data->pattern_spec_prefix, name);
-                else
-                        match = g_pattern_match_string (data->pattern_spec_nonprefix, name);
+                if (data->is_first) {
+                        if (data->has_glob) {
+                                if (prefix) {
+                                        match = g_pattern_match_string (data->pattern_spec_prefix, link_name);
+                                } else {
+                                        match = g_pattern_match_string (data->pattern_spec_nonprefix, link_name);
+                                }
+                        } else {
+                                if (prefix) {
+                                        match = g_str_has_prefix (link_name, data->keyword);
+                                } else {
+                                        match = (!g_str_has_prefix (link_name, data->keyword) &&
+                                                 strstr (link_name, data->keyword) != NULL);
+                                }
+                        }
+                } else {
+                        if (data->has_glob) {
+                                match = g_pattern_match_string (data->pattern_spec_anywhere, link_name);
+                        } else {
+                                match = strstr (link_name, data->keyword) != NULL;
+                        }
+                }
 
                 if (!match)
                         break;
