@@ -39,6 +39,38 @@
  * The dh_keyword_model_filter() function is used to set the search criteria. It
  * fills the #GtkTreeModel with the list of #DhLink's that match the search
  * criteria (up to a certain maximum number of matches).
+ *
+ * How the search works (for end users) is explained in the user documentation
+ * of the Devhelp application.
+ *
+ * # Filter by book and page
+ *
+ * As a kind of API for integrating Devhelp with other applications, the search
+ * string supports additional features. Those features are not intended to be
+ * used directly by end users when typing the search string in the GUI, because
+ * it's not really convenient. It is intended to be used with the
+ * `devhelp --search "search-string"` command line, so that another application
+ * can launch Devhelp and set a specific search string.
+ *
+ * It is possible to filter by book by prefixing the search string with
+ * “book:the-book-ID”. For example “book:gtk3”. If there are no other search
+ * terms, it shows the top-level page of that book. If there are other search
+ * terms, it limits the search to the specified book. See also the
+ * dh_book_get_id() function (in the `*.devhelp2` index file format it's called
+ * the book “name”, not ID, but ID is clearer).
+ *
+ * Similarly, it is possible to filter by page, by prefixing the search string
+ * with “page:the-page-ID”. For example “page:GtkWindow”. If there are no other
+ * search terms, the top of the page is shown and the search matches all the
+ * symbols part of that page. If there are other search terms, it limits the
+ * search to the specified page. To know what is the “page ID”, see the
+ * dh_link_belongs_to_page() function.
+ *
+ * “book:” and “page:” can be combined. Normal search terms must be
+ * <emphasis>after</emphasis> “book:” and “page:”.
+ *
+ * The book and page IDs – even if they contain an uppercase letter – don't
+ * affect the case sensitivity for the other search terms.
  */
 
 typedef struct {
