@@ -258,6 +258,18 @@ test_link_simple (void)
         check_link_simple ("gtk*window*application", "gtk_window_get_application", FALSE, FALSE, FALSE);
         check_link_simple ("gtk*window*application", "GtkApplicationWindow", TRUE, FALSE, FALSE);
         check_link_simple ("gtk*window*application", "GtkApplicationWindow", FALSE, FALSE, FALSE);
+
+        /* Prefix appearing several times.
+         * The DhLink must not appear two times in the search results.
+         */
+        check_link_simple ("GTK CELL_RENDERER_ACCEL_MODE_GTK", "GTK_CELL_RENDERER_ACCEL_MODE_GTK",
+                           TRUE, TRUE, FALSE);
+        check_link_simple ("GTK CELL_RENDERER_ACCEL_MODE_GTK", "GTK_CELL_RENDERER_ACCEL_MODE_GTK",
+                           FALSE, FALSE, FALSE);
+        check_link_simple ("GTK* CELL_RENDERER_ACCEL_MODE_GTK", "GTK_CELL_RENDERER_ACCEL_MODE_GTK",
+                           TRUE, TRUE, FALSE);
+        check_link_simple ("GTK* CELL_RENDERER_ACCEL_MODE_GTK", "GTK_CELL_RENDERER_ACCEL_MODE_GTK",
+                           FALSE, FALSE, FALSE);
 }
 
 int

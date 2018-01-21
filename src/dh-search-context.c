@@ -47,9 +47,8 @@ typedef struct _KeywordData {
 
         /* Created only if has_glob and is_first. */
         GPatternSpec *pattern_spec_prefix;
-        GPatternSpec *pattern_spec_nonprefix;
 
-        /* Created only if has_glob and !is_first. */
+        /* Created only if has_glob. */
         GPatternSpec *pattern_spec_anywhere;
 
         guint is_first : 1;
@@ -242,15 +241,11 @@ keyword_data_new (const gchar *keyword,
                         pattern = g_strdup_printf ("%s*", keyword);
                         data->pattern_spec_prefix = g_pattern_spec_new (pattern);
                         g_free (pattern);
-
-                        pattern = g_strdup_printf ("?*%s*", keyword);
-                        data->pattern_spec_nonprefix = g_pattern_spec_new (pattern);
-                        g_free (pattern);
-                } else {
-                        pattern = g_strdup_printf ("*%s*", keyword);
-                        data->pattern_spec_anywhere = g_pattern_spec_new (pattern);
-                        g_free (pattern);
                 }
+
+                pattern = g_strdup_printf ("*%s*", keyword);
+                data->pattern_spec_anywhere = g_pattern_spec_new (pattern);
+                g_free (pattern);
         }
 
         return data;
@@ -268,9 +263,6 @@ keyword_data_free (gpointer _data)
 
         if (data->pattern_spec_prefix != NULL)
                 g_pattern_spec_free (data->pattern_spec_prefix);
-
-        if (data->pattern_spec_nonprefix != NULL)
-                g_pattern_spec_free (data->pattern_spec_nonprefix);
 
         if (data->pattern_spec_anywhere != NULL)
                 g_pattern_spec_free (data->pattern_spec_anywhere);
@@ -484,7 +476,8 @@ _dh_search_context_match_link (DhSearchContext *search,
                                 if (prefix) {
                                         match = g_pattern_match_string (data->pattern_spec_prefix, link_name);
                                 } else {
-                                        match = g_pattern_match_string (data->pattern_spec_nonprefix, link_name);
+                                        match = (!g_pattern_match_string (data->pattern_spec_prefix, link_name) &&
+                                                 g_pattern_match_string (data->pattern_spec_anywhere, link_name));
                                 }
                         } else {
                                 if (prefix) {
