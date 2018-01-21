@@ -4,7 +4,7 @@
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2004-2008 Imendio AB
  * Copyright (C) 2012 Aleksander Morgado <aleksander@gnu.org>
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -50,6 +50,25 @@ preferences_cb (GSimpleAction *action,
 
         parent_window = (GtkWindow *) dh_app_get_active_main_window (app, FALSE);
         dh_preferences_show_dialog (parent_window);
+}
+
+static void
+help_cb (GSimpleAction *action,
+         GVariant      *parameter,
+         gpointer       user_data)
+{
+        DhApp *app = DH_APP (user_data);
+        GtkWindow *window;
+        GError *error = NULL;
+
+        window = (GtkWindow *) dh_app_get_active_main_window (app, FALSE);
+
+        gtk_show_uri_on_window (window, "help:devhelp", GDK_CURRENT_TIME, &error);
+
+        if (error != NULL) {
+                g_warning ("Failed to open the documentation: %s", error->message);
+                g_clear_error (&error);
+        }
 }
 
 static void
@@ -192,6 +211,7 @@ add_action_entries (DhApp *app)
                 /* General actions */
                 { "new-window", new_window_cb },
                 { "preferences", preferences_cb },
+                { "help", help_cb },
                 { "about", about_cb },
                 { "quit", quit_cb },
 
@@ -250,14 +270,17 @@ setup_accelerators (GtkApplication *app)
         accels[0] = "<Control>Page_Up";
         gtk_application_set_accels_for_action (app, "win.prev-tab", accels);
 
-        accels[0] = "F9";
-        gtk_application_set_accels_for_action (app, "win.show-sidebar", accels);
-
         accels[0] = "<Control>w";
         gtk_application_set_accels_for_action (app, "win.close", accels);
 
         accels[0] = "<Control>q";
         gtk_application_set_accels_for_action (app, "app.quit", accels);
+
+        accels[0] = "F1";
+        gtk_application_set_accels_for_action (app, "app.help", accels);
+
+        accels[0] = "F9";
+        gtk_application_set_accels_for_action (app, "win.show-sidebar", accels);
 
         accels[0] = "F10";
         gtk_application_set_accels_for_action (app, "win.gear-menu", accels);
