@@ -225,7 +225,7 @@ keyword_data_new (const gchar *keyword,
 {
         KeywordData *data;
 
-        g_return_val_if_fail (keyword != NULL, NULL);
+        g_assert (keyword != NULL);
 
         data = g_new0 (KeywordData, 1);
 
@@ -285,8 +285,7 @@ create_keywords_data (DhSearchContext *search)
                 KeywordData *data;
 
                 data = keyword_data_new (cur_keyword, keyword_num == 0);
-                if (data != NULL)
-                        search->keywords_data = g_slist_prepend (search->keywords_data, data);
+                search->keywords_data = g_slist_prepend (search->keywords_data, data);
         }
 
         search->keywords_data = g_slist_reverse (search->keywords_data);
