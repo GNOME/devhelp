@@ -43,6 +43,10 @@ function_name under the cursor.
 Devhelp also provides a shared library, to integrate the GTK+ widgets inside an
 IDE. It is used for example by Builder and Anjuta.
 
+For the --search command line option, see the class description of
+DhKeywordModel, the search string supports additional features useful for IDEs
+or other developer tools.
+
 How it finds the API documentation
 ----------------------------------
 
