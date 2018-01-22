@@ -430,31 +430,19 @@ _dh_search_context_match_link (DhSearchContext *search,
         g_return_val_if_fail (link_name != NULL, FALSE);
 
         /* Why isn't there only one GPatternSpec (or two variants:
-         * prefix/nonprefix) for all the keywords? For example searching
+         * prefix/anywhere) for all the keywords? For example searching
          * "dh_link_ book" (two keywords) would create the GPatternSpec
          * "dh_link_*book*". Although the implementation would be simpler, doing
-         * so would be a regression in functionality, because with one
-         * GPatternSpec for each keyword, the keywords don't necessarily need to
-         * be in the same order as in the DhLink name. With "dh_link_*book*", it
-         * forces "book" to be after "dh_link_". And anyway if the user wants to
-         * enforce the appearance order of the keywords, she can use the '*'
-         * glob in the search string.
-         *
-         * A good example is the search string "gtk window application", it
-         * matches both gtk_window_get_application() and GtkApplicationWindow
-         * (among other symbols).
-         *
-         * To enforce the appearance order of the keywords, the '*' glob can be
-         * used: "gtk*window*application" will match
-         * gtk_window_get_application(), but not GtkApplicationWindow.
+         * so would be a regression in functionality. It is explained in details
+         * in the user documentation of the Devhelp app.
          */
 
         /* Why matching by prefix only for the first keyword and not the others?
          * For several reasons:
          * - When prefix=TRUE, if data->pattern_spec_prefix was used for all
          *   keywords, it would be impossible to match the DhLink name (except
-         *   if all the keywords are equal, but it doesn't make sense to do such
-         *   a search).
+         *   if all the keywords are equal for example, but it doesn't make
+         *   sense to do such a search).
          * - At least with the GTK+/GNOME APIs, normally all the symbols start
          *   with the namespace of the library. So when we search symbols, if we
          *   know in which library the symbol(s) is located, we can type the
