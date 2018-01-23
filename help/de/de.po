@@ -1,0 +1,121 @@
+# German translation for devhelp.
+# Copyright (C) 2018 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp master\n"
+"POT-Creation-Date: 2018-01-22 17:06+0000\n"
+"PO-Revision-Date: 2018-01-22 18:23+0100\n"
+"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
+"Language-Team: German <gnome-de@gnome.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.5\n"
+
+#. (itstool) path: page/title
+#: C/index.page:4
+msgid "Devhelp User Documentation"
+msgstr "Benutzerhandbuch für Devhelp"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Mario Blättermann <mario.blaettermann@gmail.com>, 2018."
+
+#. (itstool) path: page/title
+#: C/search.page:10
+msgid "Search in the side panel"
+msgstr "Suchen in der Seitenleiste"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:13
+msgid "How the search in the side panel works."
+msgstr "So funktioniert die Suche in der Seitenleiste."
+
+#. (itstool) path: section/title
+#: C/search.page:17
+msgid "Case sensitivity"
+msgstr "Berücksichtigung von Groß- und Kleinschreibung"
+
+#. (itstool) path: section/p
+#: C/search.page:18
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr ""
+"Bei der Suche werden Groß- oder Kleinschreibung berücksichtigt, wenn ein "
+"Großbuchstabe angegeben wird. Besteht der Suchbegriff nur aus "
+"Kleinbuchstaben, wird die Groß- oder Kleinschreibung ignoriert. Dies "
+"entspricht dem Verhalten des aus einigen Texteditoren bekannten »Smartcase«-"
+"Funktionsmerkmals."
+
+# CHECK
+#. (itstool) path: section/title
+#: C/search.page:26
+msgid "Glob-style pattern matching"
+msgstr "Treffersuche im Glob-Stil"
+
+#. (itstool) path: section/p
+#: C/search.page:27
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+"Ein Suchbegriff kann ein Muster sein, das die Platzhalter »*« und »?« "
+"enthält. Das »*« entspricht einer willkürlichen, auch leeren Zeichenkette, "
+"während das »?« für ein einzelnes, willkürliches Zeichen steht."
+
+#. (itstool) path: section/title
+#: C/search.page:35
+msgid "Several search terms"
+msgstr "Mehrere Suchbegriffe"
+
+#. (itstool) path: section/p
+#: C/search.page:36
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+"Sie können nach mehreren Begriffen suchen (durch Leerzeichen getrennt). Ein "
+"Symbol wird nur dann angezeigt, wenn <em>alle</em> Suchbegriffe gefunden "
+"werden (nicht zwangsläufig in der gleichen Reihenfolge des Auftretens)."
+
+#. (itstool) path: section/p
+#: C/search.page:41
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+"Beachten Sie den Unterschied bei der Suche mit dem Platzhalter »*«: Dadurch "
+"wird erzwungen, dass die Schlüsselwörter in der gleichen Reihenfolge "
+"auftreten."
+
+# Die Anführungszeichen für bereits formatierte Teile sind hier überflüssig.
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+"Wenn Sie beispielsweise nach <input>gtk window application</input> suchen, "
+"werden sowohl <code>gtk_window_get_application()</code> als auch "
+"<code>GtkApplicationWindow</code> gefunden (und weitere Symbole)."
+
+#. (itstool) path: section/p
+#: C/search.page:50
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
+"Andererseits liefert die Suche nach <input>gtk*window*application</input> "
+"auch <code>gtk_window_get_application()</code> als Ergebnis, aber nicht "
+"<code>GtkApplicationWindow</code>."
