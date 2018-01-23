@@ -56,17 +56,19 @@ dh_assistant_key_press_event (GtkWidget   *widget,
 }
 
 static gboolean
-dh_assistant_configure_event (GtkWidget         *widget,
-                              GdkEventConfigure *event)
+dh_assistant_delete_event (GtkWidget   *widget,
+                           GdkEventAny *event)
 {
         DhSettings *settings;
 
         settings = dh_settings_get_singleton ();
-
         dh_util_window_settings_save (GTK_WINDOW (widget),
                                       dh_settings_peek_assistant_settings (settings));
 
-        return GTK_WIDGET_CLASS (dh_assistant_parent_class)->configure_event (widget, event);
+        if (GTK_WIDGET_CLASS (dh_assistant_parent_class)->delete_event == NULL)
+                return GDK_EVENT_PROPAGATE;
+
+        return GTK_WIDGET_CLASS (dh_assistant_parent_class)->delete_event (widget, event);
 }
 
 static void
@@ -75,7 +77,7 @@ dh_assistant_class_init (DhAssistantClass *klass)
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
         widget_class->key_press_event = dh_assistant_key_press_event;
-        widget_class->configure_event = dh_assistant_configure_event;
+        widget_class->delete_event = dh_assistant_delete_event;
 
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class,
