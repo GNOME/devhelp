@@ -42,7 +42,6 @@ typedef struct {
         GtkButton      *go_down_button;
 
         DhLink         *selected_search_link;
-        guint           configure_id;
 } DhWindowPrivate;
 
 #define WINDOW_SETTINGS_SAVE_TIMEOUT_MSECS 100
@@ -540,75 +539,14 @@ settings_fonts_changed_cb (DhSettings  *settings,
         }
 }
 
-/* FIXME: this is a bit complicated just for saving the window state.
- * Implement something (hopefully) simpler, by saving the GSettings only when
- * needed:
- * - when closing a DhWindow.
- * - just before creating a second/third/... DhWindow, save the GSettings of the
- *   active DhWindow.
- *
- * There is also a HowDoI:
- * https://wiki.gnome.org/HowDoI/SaveWindowState
- */
-static gboolean
-window_settings_save_cb (gpointer user_data)
-{
-        DhWindow *window = DH_WINDOW (user_data);
-        DhWindowPrivate *priv;
-        DhSettings *settings;
-
-        priv = dh_window_get_instance_private (window);
-
-        priv->configure_id = 0;
-
-        settings = dh_settings_get_singleton ();
-        dh_util_window_settings_save (GTK_WINDOW (window),
-                                      dh_settings_peek_window_settings (settings));
-
-        return G_SOURCE_REMOVE;
-}
-
-static gboolean
-dh_window_configure_event (GtkWidget         *widget,
-                           GdkEventConfigure *event)
-{
-        DhWindow *window = DH_WINDOW (widget);
-        DhWindowPrivate *priv;
-
-        priv = dh_window_get_instance_private (window);
-
-        if (priv->configure_id != 0) {
-                g_source_remove (priv->configure_id);
-                priv->configure_id = 0;
-        }
-
-        priv->configure_id = g_timeout_add (WINDOW_SETTINGS_SAVE_TIMEOUT_MSECS,
-                                            window_settings_save_cb,
-                                            window);
-
-        if (GTK_WIDGET_CLASS (dh_window_parent_class)->configure_event == NULL)
-                return GDK_EVENT_PROPAGATE;
-
-        return GTK_WIDGET_CLASS (dh_window_parent_class)->configure_event (widget, event);
-}
-
 static gboolean
 dh_window_delete_event (GtkWidget   *widget,
                         GdkEventAny *event)
 {
-        DhWindow *window = DH_WINDOW (widget);
-        DhWindowPrivate *priv;
         DhSettings *settings;
 
-        priv = dh_window_get_instance_private (window);
-
-        if (priv->configure_id != 0) {
-                g_source_remove (priv->configure_id);
-                priv->configure_id = 0;
-        }
-
         settings = dh_settings_get_singleton ();
-        dh_util_window_settings_save (GTK_WINDOW (window),
+        dh_util_window_settings_save (GTK_WINDOW (widget),
                                       dh_settings_peek_window_settings (settings));
 
         if (GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event == NULL)
@@ -664,30 +602,10 @@ dh_window_init (DhWindow *window)
 }
 
 static void
-dh_window_dispose (GObject *object)
-{
-        DhWindow *window = DH_WINDOW (object);
-        DhWindowPrivate *priv;
-
-        priv = dh_window_get_instance_private (window);
-
-        if (priv->configure_id != 0) {
-                g_source_remove (priv->configure_id);
-                priv->configure_id = 0;
-        }
-
-        G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
-}
-
-static void
 dh_window_class_init (DhWindowClass *klass)
 {
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-        object_class->dispose = dh_window_dispose;
-
-        widget_class->configure_event = dh_window_configure_event;
         widget_class->delete_event = dh_window_delete_event;
 
         /* Bind class to template */
