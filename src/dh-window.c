@@ -418,19 +418,6 @@ go_forward_cb (GSimpleAction *action,
 }
 
 static void
-gear_menu_cb (GSimpleAction *action,
-              GVariant      *parameter,
-              gpointer       user_data)
-{
-        GVariant *state;
-
-        state = g_action_get_state (G_ACTION (action));
-        g_action_change_state (G_ACTION (action),
-                               g_variant_new_boolean (!g_variant_get_boolean (state)));
-        g_variant_unref (state);
-}
-
-static void
 add_action_entries (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
@@ -459,7 +446,7 @@ add_action_entries (DhWindow *window)
                 { "go-forward", go_forward_cb },
 
                 /* Menu */
-                { "gear-menu", gear_menu_cb, NULL, "false" },
+                { "gear-menu", NULL, NULL, "false" },
         };
 
         g_action_map_add_action_entries (G_ACTION_MAP (window),
