@@ -461,34 +461,43 @@ gear_menu_cb (GSimpleAction *action,
         g_variant_unref (state);
 }
 
-static GActionEntry win_entries[] = {
-        /* tabs */
-        { "new-tab",          new_tab_cb },
-        { "next-tab",         next_tab_cb },
-        { "prev-tab",         prev_tab_cb },
-        { "print",            print_cb },
-        { "close",            close_cb },
+static void
+add_action_entries (DhWindow *window)
+{
+        const GActionEntry win_entries[] = {
+                /* Tabs */
+                { "new-tab", new_tab_cb },
+                { "next-tab", next_tab_cb },
+                { "prev-tab", prev_tab_cb },
+                { "print", print_cb },
+                { "close", close_cb },
 
-        /* edit */
-        { "copy",             copy_cb },
-        { "find",             find_cb },
-        { "find-previous",    find_previous_cb },
-        { "find-next",        find_next_cb },
+                /* Edit */
+                { "copy", copy_cb },
+                { "find", find_cb },
+                { "find-previous", find_previous_cb },
+                { "find-next", find_next_cb },
 
-        /* view */
-        { "show-sidebar",     NULL, NULL, "true", show_sidebar_change_state_cb },
-        { "zoom-in",          zoom_in_cb },
-        { "zoom-out",         zoom_out_cb },
-        { "zoom-default",     zoom_default_cb },
-        { "focus-search",     focus_search_cb },
+                /* View */
+                { "show-sidebar", NULL, NULL, "true", show_sidebar_change_state_cb },
+                { "zoom-in", zoom_in_cb },
+                { "zoom-out", zoom_out_cb },
+                { "zoom-default", zoom_default_cb },
+                { "focus-search", focus_search_cb },
 
-        /* go */
-        { "go-back",          go_back_cb, NULL, "false" },
-        { "go-forward",       go_forward_cb, NULL, "false" },
+                /* Go */
+                { "go-back", go_back_cb, NULL, "false" },
+                { "go-forward", go_forward_cb, NULL, "false" },
 
-        /* gear menu */
-        { "gear-menu",        gear_menu_cb, NULL, "false" },
-};
+                /* Menu */
+                { "gear-menu", gear_menu_cb, NULL, "false" },
+        };
+
+        g_action_map_add_action_entries (G_ACTION_MAP (window),
+                                         win_entries,
+                                         G_N_ELEMENTS (win_entries),
+                                         window);
+}
 
 static void
 settings_fonts_changed_cb (DhSettings  *settings,
@@ -542,6 +551,8 @@ dh_window_init (DhWindow *window)
         priv = dh_window_get_instance_private (window);
         priv->selected_search_link = NULL;
 
+        add_action_entries (window);
+
         app = GTK_APPLICATION (g_application_get_default ());
         if (!gtk_application_prefers_app_menu (app)) {
                 gtk_menu_button_set_menu_model (priv->gear_menu_button, priv->gear_app_menu);
@@ -554,10 +565,6 @@ dh_window_init (DhWindow *window)
                                  G_CALLBACK (settings_fonts_changed_cb),
                                  window,
                                  0);
-
-        g_action_map_add_action_entries (G_ACTION_MAP (window),
-                                         win_entries, G_N_ELEMENTS (win_entries),
-                                         window);
 
         accel_group = gtk_accel_group_new ();
         gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
