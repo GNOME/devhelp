@@ -121,7 +121,7 @@ new_tab_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
 {
-        DhWindow *window = user_data;
+        DhWindow *window = DH_WINDOW (user_data);
 
         window_open_new_tab (window, NULL, TRUE);
 }
@@ -131,11 +131,10 @@ next_tab_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
 {
-        gint current_page, n_pages;
-        DhWindowPrivate *priv;
-        DhWindow *window = user_data;
-
-        priv = dh_window_get_instance_private (window);
+        DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        gint current_page;
+        gint n_pages;
 
         current_page = gtk_notebook_get_current_page (priv->notebook);
         n_pages = gtk_notebook_get_n_pages (priv->notebook);
@@ -143,7 +142,7 @@ next_tab_cb (GSimpleAction *action,
         if (current_page < n_pages - 1)
                 gtk_notebook_next_page (priv->notebook);
         else
-                /* Wrap around to the first tab */
+                /* Wrap around to the first tab. */
                 gtk_notebook_set_current_page (priv->notebook, 0);
 }
 
@@ -152,18 +151,16 @@ prev_tab_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
 {
+        DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint current_page;
-        DhWindowPrivate *priv;
-        DhWindow *window = user_data;
-
-        priv = dh_window_get_instance_private (window);
 
         current_page = gtk_notebook_get_current_page (priv->notebook);
 
         if (current_page > 0)
                 gtk_notebook_prev_page (priv->notebook);
         else
-                /* Wrap around to the last tab */
+                /* Wrap around to the last tab. */
                 gtk_notebook_set_current_page (priv->notebook, -1);
 }
 
@@ -172,10 +169,11 @@ print_cb (GSimpleAction *action,
           GVariant      *parameter,
           gpointer       user_data)
 {
-        DhWindow *window = user_data;
-        WebKitWebView *web_view = window_get_active_web_view (window);
+        DhWindow *window = DH_WINDOW (user_data);
+        WebKitWebView *web_view;
         WebKitPrintOperation *print_operation;
 
+        web_view = window_get_active_web_view (window);
         print_operation = webkit_print_operation_new (web_view);
         webkit_print_operation_run_dialog (print_operation, GTK_WINDOW (window));
         g_object_unref (print_operation);
@@ -185,10 +183,8 @@ static void
 window_close_tab (DhWindow *window,
                   gint      page_num)
 {
-        DhWindowPrivate *priv;
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint pages;
-
-        priv = dh_window_get_instance_private (window);
 
         gtk_notebook_remove_page (priv->notebook, page_num);
 
@@ -205,11 +201,9 @@ close_cb (GSimpleAction *action,
           GVariant      *parameter,
           gpointer       user_data)
 {
-        DhWindow *window = user_data;
-        DhWindowPrivate *priv;
+        DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint page_num;
-
-        priv = dh_window_get_instance_private (window);
 
         page_num = gtk_notebook_get_current_page (priv->notebook);
         window_close_tab (window, page_num);
@@ -220,11 +214,9 @@ copy_cb (GSimpleAction *action,
          GVariant      *parameter,
          gpointer       user_data)
 {
-        DhWindow *window = user_data;
+        DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
         GtkWidget *widget;
-        DhWindowPrivate *priv;
-
-        priv = dh_window_get_instance_private (window);
 
         widget = gtk_window_get_focus (GTK_WINDOW (window));
 
@@ -251,10 +243,8 @@ find_cb (GSimpleAction *action,
          GVariant      *parameter,
          gpointer       user_data)
 {
-        DhWindow *window = user_data;
-        DhWindowPrivate *priv;
-
-        priv = dh_window_get_instance_private (window);
+        DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
         gtk_search_bar_set_search_mode (priv->search_bar, TRUE);
         gtk_widget_grab_focus (GTK_WIDGET (priv->search_entry));
@@ -349,11 +339,11 @@ window_update_back_forward_actions_state (DhWindow *window)
 }
 
 static void
-show_sidebar_cb (GSimpleAction *action,
-                 GVariant      *parameter,
-                 gpointer       user_data)
+show_sidebar_change_state_cb (GSimpleAction *action,
+                              GVariant      *parameter,
+                              gpointer       user_data)
 {
-        DhWindow *window = user_data;
+        DhWindow *window = DH_WINDOW (user_data);
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gboolean visible;
 
@@ -365,7 +355,7 @@ show_sidebar_cb (GSimpleAction *action,
 
 static void
 bump_zoom_level (DhWindow *window,
-                 int bump_amount)
+                 int       bump_amount)
 {
         int zoom_level_index;
         double new_zoom_level;
@@ -391,7 +381,7 @@ zoom_in_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
 {
-        DhWindow *window = user_data;
+        DhWindow *window = DH_WINDOW (user_data);
 
         bump_zoom_level (window, 1);
 }
@@ -401,7 +391,7 @@ zoom_out_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
 {
-        DhWindow *window = user_data;
+        DhWindow *window = DH_WINDOW (user_data);
 
         bump_zoom_level (window, -1);
 }
@@ -411,7 +401,7 @@ zoom_default_cb (GSimpleAction *action,
                  GVariant      *parameter,
                  gpointer       user_data)
 {
-        DhWindow *window = user_data;
+        DhWindow *window = DH_WINDOW (user_data);
         WebKitWebView *web_view;
 
         web_view = window_get_active_web_view (window);
@@ -424,10 +414,8 @@ focus_search_cb (GSimpleAction *action,
                  GVariant      *parameter,
                  gpointer       user_data)
 {
-        DhWindow *window = user_data;
-        DhWindowPrivate *priv;
-
-        priv = dh_window_get_instance_private (window);
+        DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
         dh_sidebar_set_search_focus (priv->sidebar);
 }
@@ -437,18 +425,11 @@ go_back_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
 {
-        DhWindow *window = user_data;
-        DhWindowPrivate *priv;
-        gint current_page_num;
+        DhWindow *window = DH_WINDOW (user_data);
         WebKitWebView *web_view;
-        GtkWidget *frame;
 
-        priv = dh_window_get_instance_private (window);
-
-        current_page_num = gtk_notebook_get_current_page (priv->notebook);
-        frame = gtk_notebook_get_nth_page (priv->notebook, current_page_num);
-
-        web_view = g_object_get_data (G_OBJECT (frame), "web_view");
+        web_view = window_get_active_web_view (window);
+        g_return_if_fail (web_view != NULL);
 
         webkit_web_view_go_back (web_view);
 }
@@ -458,18 +439,11 @@ go_forward_cb (GSimpleAction *action,
                GVariant      *parameter,
                gpointer       user_data)
 {
-        DhWindow *window = user_data;
-        DhWindowPrivate *priv;
-        gint current_page_num;
+        DhWindow *window = DH_WINDOW (user_data);
         WebKitWebView *web_view;
-        GtkWidget *frame;
 
-        priv = dh_window_get_instance_private (window);
-
-        current_page_num = gtk_notebook_get_current_page (priv->notebook);
-        frame = gtk_notebook_get_nth_page (priv->notebook, current_page_num);
-
-        web_view = g_object_get_data (G_OBJECT (frame), "web_view");
+        web_view = window_get_active_web_view (window);
+        g_return_if_fail (web_view != NULL);
 
         webkit_web_view_go_forward (web_view);
 }
@@ -490,8 +464,8 @@ gear_menu_cb (GSimpleAction *action,
 static GActionEntry win_entries[] = {
         /* tabs */
         { "new-tab",          new_tab_cb },
-        { "next-tab",         next_tab_cb,         NULL, NULL, NULL },
-        { "prev-tab",         prev_tab_cb,         NULL, NULL, NULL },
+        { "next-tab",         next_tab_cb },
+        { "prev-tab",         prev_tab_cb },
         { "print",            print_cb },
         { "close",            close_cb },
 
@@ -502,7 +476,7 @@ static GActionEntry win_entries[] = {
         { "find-next",        find_next_cb },
 
         /* view */
-        { "show-sidebar",     NULL, NULL, "true", show_sidebar_cb },
+        { "show-sidebar",     NULL, NULL, "true", show_sidebar_change_state_cb },
         { "zoom-in",          zoom_in_cb },
         { "zoom-out",         zoom_out_cb },
         { "zoom-default",     zoom_default_cb },
