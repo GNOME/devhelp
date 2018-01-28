@@ -29,22 +29,20 @@
 #include "dh-util.h"
 
 typedef struct {
-        GMenuModel     *gear_app_menu;
-        GtkPaned       *hpaned;
-        DhSidebar      *sidebar;
-        GtkNotebook    *notebook;
-        GtkHeaderBar   *header_bar;
-        GtkMenuButton  *gear_menu_button;
-        GtkWidget      *grid_sidebar;
-        GtkSearchBar   *search_bar;
+        GMenuModel *gear_app_menu;
+        GtkPaned *hpaned;
+        DhSidebar *sidebar;
+        GtkNotebook *notebook;
+        GtkHeaderBar *header_bar;
+        GtkMenuButton *gear_menu_button;
+        GtkWidget *grid_sidebar;
+        GtkSearchBar *search_bar;
         GtkSearchEntry *search_entry;
-        GtkButton      *go_up_button;
-        GtkButton      *go_down_button;
+        GtkButton *go_up_button;
+        GtkButton *go_down_button;
 
-        DhLink         *selected_search_link;
+        DhLink *selected_search_link;
 } DhWindowPrivate;
-
-#define WINDOW_SETTINGS_SAVE_TIMEOUT_MSECS 100
 
 static guint tab_accel_keys[] = {
         GDK_KEY_1, GDK_KEY_2, GDK_KEY_3, GDK_KEY_4, GDK_KEY_5,
@@ -188,7 +186,7 @@ window_close_tab (DhWindow *window,
                   gint      page_num)
 {
         DhWindowPrivate *priv;
-        gint          pages;
+        gint pages;
 
         priv = dh_window_get_instance_private (window);
 
@@ -439,11 +437,11 @@ go_back_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
 {
-        DhWindow      *window = user_data;
+        DhWindow *window = user_data;
         DhWindowPrivate *priv;
         gint current_page_num;
         WebKitWebView *web_view;
-        GtkWidget     *frame;
+        GtkWidget *frame;
 
         priv = dh_window_get_instance_private (window);
 
@@ -460,11 +458,11 @@ go_forward_cb (GSimpleAction *action,
                GVariant      *parameter,
                gpointer       user_data)
 {
-        DhWindow      *window = user_data;
+        DhWindow *window = user_data;
         DhWindowPrivate *priv;
         gint current_page_num;
         WebKitWebView *web_view;
-        GtkWidget     *frame;
+        GtkWidget *frame;
 
         priv = dh_window_get_instance_private (window);
 
@@ -560,10 +558,10 @@ dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv;
         GtkApplication *app;
-        DhSettings    *settings;
+        DhSettings *settings;
         GtkAccelGroup *accel_group;
-        GClosure      *closure;
-        guint          i;
+        GClosure *closure;
+        guint i;
 
         gtk_widget_init_template (GTK_WIDGET (window));
 
@@ -636,8 +634,8 @@ window_web_view_switch_page_cb (GtkNotebook *notebook,
 
         new_page = gtk_notebook_get_nth_page (notebook, new_page_num);
         if (new_page != NULL) {
-                WebKitWebView  *new_web_view;
-                const gchar    *location;
+                WebKitWebView *new_web_view;
+                const gchar *location;
 
                 new_web_view = g_object_get_data (G_OBJECT (new_page), "web_view");
 
@@ -793,7 +791,7 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
                                   WebKitPolicyDecisionType  type,
                                   DhWindow                 *window)
 {
-        const char   *uri;
+        const char *uri;
         WebKitNavigationPolicyDecision *navigation_decision;
         WebKitNavigationAction *navigation_action;
         gchar *local_uri;
@@ -867,8 +865,8 @@ window_web_view_load_failed_cb (WebKitWebView   *web_view,
         GtkWidget *info_bar;
         GtkWidget *content_area;
         GtkWidget *message_label;
-        GList     *children;
-        gchar     *markup;
+        GList *children;
+        gchar *markup;
 
         /* Ignore cancellation errors; which happen when typing fast in the search entry */
         if (g_error_matches (web_error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
@@ -958,9 +956,9 @@ window_search_link_selected_cb (GObject  *ignored,
                                 DhLink   *link,
                                 DhWindow *window)
 {
-        DhWindowPrivate  *priv;
+        DhWindowPrivate *priv;
         WebKitWebView *view;
-        gchar         *uri;
+        gchar *uri;
 
         priv = dh_window_get_instance_private (window);
         priv->selected_search_link = link;
@@ -1015,8 +1013,8 @@ do_search (DhWindow *window)
 {
         DhWindowPrivate *priv;
         WebKitFindController *find_controller;
-        guint                 find_options = WEBKIT_FIND_OPTIONS_WRAP_AROUND;
-        const gchar          *search_text;
+        guint find_options = WEBKIT_FIND_OPTIONS_WRAP_AROUND;
+        const gchar *search_text;
 
         priv = dh_window_get_instance_private (window);
 
@@ -1039,7 +1037,7 @@ static void
 findbar_find_next (DhWindow *window)
 {
         DhWindowPrivate *priv;
-        WebKitWebView        *view;
+        WebKitWebView *view;
         WebKitFindController *find_controller;
 
         priv = dh_window_get_instance_private (window);
@@ -1063,7 +1061,7 @@ static void
 findbar_find_previous (DhWindow *window)
 {
         DhWindowPrivate *priv;
-        WebKitWebView        *view;
+        WebKitWebView *view;
         WebKitFindController *find_controller;
 
         priv = dh_window_get_instance_private (window);
@@ -1089,7 +1087,7 @@ on_search_mode_enabled_changed (GtkSearchBar *search_bar,
                                 DhWindow     *window)
 {
         if (!gtk_search_bar_get_search_mode (search_bar)) {
-                WebKitWebView        *view;
+                WebKitWebView *view;
                 WebKitFindController *find_controller;
 
                 view = window_get_active_web_view (window);
@@ -1162,12 +1160,12 @@ window_open_new_tab (DhWindow    *window,
                      gboolean     switch_focus)
 {
         DhWindowPrivate *priv;
-        DhSettings   *settings;
-        GtkWidget    *view;
-        GtkWidget    *vbox;
-        GtkWidget    *label;
-        gint          num;
-        GtkWidget    *info_bar;
+        DhSettings *settings;
+        GtkWidget *view;
+        GtkWidget *vbox;
+        GtkWidget *label;
+        gint num;
+        GtkWidget *info_bar;
         gchar *font_fixed = NULL;
         gchar *font_variable = NULL;
         WebKitBackForwardList *back_forward_list;
@@ -1325,8 +1323,8 @@ static WebKitWebView *
 window_get_active_web_view (DhWindow *window)
 {
         DhWindowPrivate *priv;
-        gint          page_num;
-        GtkWidget    *page;
+        gint page_num;
+        GtkWidget *page;
 
         priv = dh_window_get_instance_private (window);
 
@@ -1344,8 +1342,8 @@ static GtkWidget *
 window_get_active_info_bar (DhWindow *window)
 {
         DhWindowPrivate *priv;
-        gint          page_num;
-        GtkWidget    *page;
+        gint page_num;
+        GtkWidget *page;
 
         priv = dh_window_get_instance_private (window);
 
@@ -1461,7 +1459,7 @@ void
 _dh_window_display_uri (DhWindow    *window,
                         const gchar *uri)
 {
-        DhWindowPrivate  *priv;
+        DhWindowPrivate *priv;
         WebKitWebView *web_view;
 
         g_return_if_fail (DH_IS_WINDOW (window));

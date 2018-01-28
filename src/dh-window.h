@@ -43,12 +43,15 @@ struct _DhWindowClass {
         GtkApplicationWindowClass parent_class;
 };
 
-GType      dh_window_get_type     (void) G_GNUC_CONST;
-GtkWidget *dh_window_new          (GtkApplication *application);
-void       dh_window_search       (DhWindow    *window,
-                                   const gchar *str);
-void       _dh_window_display_uri (DhWindow    *window,
-                                   const gchar *uri);
+GType           dh_window_get_type              (void) G_GNUC_CONST;
+
+GtkWidget *     dh_window_new                   (GtkApplication *application);
+
+void            dh_window_search                (DhWindow    *window,
+                                                 const gchar *str);
+
+void            _dh_window_display_uri          (DhWindow    *window,
+                                                 const gchar *uri);
 
 G_END_DECLS
 
