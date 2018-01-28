@@ -444,9 +444,6 @@ add_action_entries (DhWindow *window)
                 /* Go */
                 { "go-back", go_back_cb },
                 { "go-forward", go_forward_cb },
-
-                /* Menu */
-                { "gear-menu", NULL, NULL, "false" },
         };
 
         g_action_map_add_action_entries (G_ACTION_MAP (window),
@@ -457,6 +454,12 @@ add_action_entries (DhWindow *window)
         property_action = g_property_action_new ("show-sidebar",
                                                  priv->grid_sidebar,
                                                  "visible");
+        g_action_map_add_action (G_ACTION_MAP (window), G_ACTION (property_action));
+        g_object_unref (property_action);
+
+        property_action = g_property_action_new ("gear-menu",
+                                                 priv->gear_menu_button,
+                                                 "active");
         g_action_map_add_action (G_ACTION_MAP (window), G_ACTION (property_action));
         g_object_unref (property_action);
 }
