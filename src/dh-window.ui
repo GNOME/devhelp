@@ -4,7 +4,7 @@
   <menu id="gear_menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">Side _Panel</attribute>
+        <attribute name="label" translatable="yes">_Side Panel</attribute>
         <attribute name="action">win.show-sidebar</attribute>
       </item>
     </section>
