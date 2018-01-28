@@ -256,22 +256,6 @@ find_cb (GSimpleAction *action,
         do_search (window);
 }
 
-static void
-find_previous_cb (GSimpleAction *action,
-                  GVariant      *parameter,
-                  gpointer       user_data)
-{
-        findbar_find_previous (DH_WINDOW (user_data));
-}
-
-static void
-find_next_cb (GSimpleAction *action,
-              GVariant      *parameter,
-              gpointer       user_data)
-{
-        findbar_find_next (DH_WINDOW (user_data));
-}
-
 static int
 window_get_current_zoom_level_index (DhWindow *window)
 {
@@ -475,8 +459,6 @@ add_action_entries (DhWindow *window)
                 /* Edit */
                 { "copy", copy_cb },
                 { "find", find_cb },
-                { "find-previous", find_previous_cb },
-                { "find-next", find_next_cb },
 
                 /* View */
                 { "show-sidebar", NULL, NULL, "true", show_sidebar_change_state_cb },
