@@ -1,0 +1,121 @@
+# Hungarian translation for devhelp.
+# Copyright (C) 2018 Free Software Foundation, Inc.
+# This file is distributed under the same license as the devhelp package.
+#
+# Balázs Úr <urbalazs at gmail dot com>, 2018.
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp master\n"
+"POT-Creation-Date: 2018-01-28 17:56+0000\n"
+"PO-Revision-Date: 2018-01-28 20:29+0100\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"Language-Team: Hungarian <gnome-hu-list@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.2\n"
+
+#. (itstool) path: page/title
+#: C/index.page:4
+msgid "Devhelp User Documentation"
+msgstr "Devhelp felhasználói dokumentáció"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Úr Balázs <urbalazs at gmail dot com>, 2018."
+
+#. (itstool) path: page/title
+#: C/search.page:10
+msgid "Search in the side panel"
+msgstr "Keresés az oldalpanelen"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:13
+msgid "How the search in the side panel works."
+msgstr "Hogyan működik a keresés az oldalpanelen."
+
+#. (itstool) path: section/title
+#: C/search.page:17
+msgid "Case sensitivity"
+msgstr "Kis- és nagybetű érzékenység"
+
+#. (itstool) path: section/p
+#: C/search.page:18
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr ""
+"A keresés érzékeny a kis- és nagybetűkre, amikor nagybetű található. Ha a "
+"keresési kifejezés teljesen kisbetűs, akkor a keresés nem érzékeny a kis- és "
+"nagybetűkre. Ez olyan mint az „okos betűegyezés” funkció, amely megtalálható "
+"néhány szövegszerkesztőben."
+
+#. (itstool) path: section/title
+#: C/search.page:26
+msgid "Glob-style pattern matching"
+msgstr "Glob-stílusú mintaillesztés"
+
+#. (itstool) path: section/p
+#: C/search.page:27
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+"Egy keresési kifejezés lehet „*” és „?” helyettesítő karaktereket tartalmazó "
+"minta is. A „*” egy tetszőleges, akár üres karakterláncra, a „?” egy "
+"tetszőleges karakterre illeszkedik."
+
+#. (itstool) path: section/title
+#: C/search.page:35
+msgid "Several search terms"
+msgstr "Több keresési kifejezés"
+
+#. (itstool) path: section/p
+#: C/search.page:36
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+"Kereshet több keresési kifejezéssel is (szóközökkel elválasztva). Egy "
+"szimbólum csak akkor illeszkedik, ha az <em>összes</em> keresési kifejezés "
+"egyénileg illeszkedik (nem szükséges, hogy azonos sorrendű megjelenésük "
+"legyen)."
+
+#. (itstool) path: section/p
+#: C/search.page:41
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+"Ne feledje, hogy ez eltérő a „*” helyettesítő karakterrel való kereséstől: a "
+"„*” helyettesítő karakterrel arra kényszeríti a kulcsszavakat, hogy "
+"ugyanolyan sorrendben legyenek."
+
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+"Például amikor a „<input>gtk window application</input>” kifejezésre keres "
+"rá, akkor az illeszkedik mind a „<code>gtk_window_get_application()</code>”, "
+"mind a „<code>GtkApplicationWindow</code>” szövegre (egyéb szimbólumok "
+"mellett)."
+
+#. (itstool) path: section/p
+#: C/search.page:50
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
+"Másrészről a „<input>gtk*window*application</input>” keresése illeszkedni fog "
+"a „<code>gtk_window_get_application()</code>” szövegre, de nem illeszkedik a "
+"„<code>GtkApplicationWindow</code>” szövegre."
+
