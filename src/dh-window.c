@@ -305,7 +305,7 @@ window_update_zoom_actions_state (DhWindow *window)
 }
 
 static void
-window_update_back_forward_actions_state (DhWindow *window)
+window_update_back_forward_actions_sensitivity (DhWindow *window)
 {
         WebKitWebView *web_view;
         GAction *action;
@@ -455,8 +455,8 @@ add_action_entries (DhWindow *window)
                 { "focus-search", focus_search_cb },
 
                 /* Go */
-                { "go-back", go_back_cb, NULL, "false" },
-                { "go-forward", go_forward_cb, NULL, "false" },
+                { "go-back", go_back_cb },
+                { "go-forward", go_forward_cb },
 
                 /* Menu */
                 { "gear-menu", gear_menu_cb, NULL, "false" },
@@ -616,7 +616,7 @@ window_web_view_switch_page_after_cb (GtkNotebook *notebook,
                                       DhWindow    *window)
 {
         window_update_zoom_actions_state (window);
-        window_update_back_forward_actions_state (window);
+        window_update_back_forward_actions_sensitivity (window);
 }
 
 static void
@@ -1187,7 +1187,7 @@ window_open_new_tab (DhWindow    *window,
         back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (view));
         g_signal_connect_object (back_forward_list,
                                  "changed",
-                                 G_CALLBACK (window_update_back_forward_actions_state),
+                                 G_CALLBACK (window_update_back_forward_actions_sensitivity),
                                  window,
                                  G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
