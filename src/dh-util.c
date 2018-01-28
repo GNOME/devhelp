@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2001 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2004, 2008 Imendio AB
- * Copyright (C) 2015, 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2015, 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -69,7 +69,7 @@ dh_util_ascii_strtitle (gchar *str)
 {
         gboolean word_start;
 
-        if (!str)
+        if (str == NULL)
                 return;
 
         word_start = TRUE;
@@ -107,11 +107,13 @@ dh_util_create_data_uri_for_filename (const gchar *filename,
         return uri;
 }
 
-/* set the given fonts on the given view */
+/* Set the given fonts on the given view. */
 void
-dh_util_view_set_font (WebKitWebView *view, const gchar *font_name_fixed, const gchar *font_name_variable)
+dh_util_view_set_font (WebKitWebView *view,
+                       const gchar   *font_name_fixed,
+                       const gchar   *font_name_variable)
 {
-        /* get the font size */
+        /* Get the font size. */
         PangoFontDescription *font_desc_fixed = pango_font_description_from_string (font_name_fixed);
         PangoFontDescription *font_desc_variable = pango_font_description_from_string (font_name_variable);
         guint font_size_fixed = pango_font_description_get_size (font_desc_fixed) / PANGO_SCALE;
@@ -122,7 +124,7 @@ dh_util_view_set_font (WebKitWebView *view, const gchar *font_name_fixed, const 
         pango_font_description_free (font_desc_fixed);
         pango_font_description_free (font_desc_variable);
 
-        /* set the fonts */
+        /* Set the fonts. */
         g_object_set (webkit_web_view_get_settings (view),
                       "zoom-text-only", TRUE,
                       "monospace-font-family", font_name_fixed,
@@ -130,6 +132,7 @@ dh_util_view_set_font (WebKitWebView *view, const gchar *font_name_fixed, const 
                       "serif-font-family", font_name_variable,
                       "default-font-size", font_size_variable_px,
                       NULL);
+
         g_debug ("Set font-fixed to '%s' (%i) and font-variable to '%s' (%i).",
                  font_name_fixed, font_size_fixed_px, font_name_variable, font_size_variable_px);
 }
