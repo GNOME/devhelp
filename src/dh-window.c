@@ -323,21 +323,6 @@ window_update_back_forward_actions_state (DhWindow *window)
 }
 
 static void
-show_sidebar_change_state_cb (GSimpleAction *action,
-                              GVariant      *parameter,
-                              gpointer       user_data)
-{
-        DhWindow *window = DH_WINDOW (user_data);
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        gboolean visible;
-
-        visible = gtk_widget_get_visible (priv->grid_sidebar);
-
-        g_simple_action_set_state (action, g_variant_new_boolean (!visible));
-        gtk_widget_set_visible (priv->grid_sidebar, !visible);
-}
-
-static void
 bump_zoom_level (DhWindow *window,
                  int       bump_amount)
 {
@@ -448,6 +433,9 @@ gear_menu_cb (GSimpleAction *action,
 static void
 add_action_entries (DhWindow *window)
 {
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        GPropertyAction *property_action;
+
         const GActionEntry win_entries[] = {
                 /* Tabs */
                 { "new-tab", new_tab_cb },
@@ -461,7 +449,6 @@ add_action_entries (DhWindow *window)
                 { "find", find_cb },
 
                 /* View */
-                { "show-sidebar", NULL, NULL, "true", show_sidebar_change_state_cb },
                 { "zoom-in", zoom_in_cb },
                 { "zoom-out", zoom_out_cb },
                 { "zoom-default", zoom_default_cb },
@@ -479,6 +466,12 @@ add_action_entries (DhWindow *window)
                                          win_entries,
                                          G_N_ELEMENTS (win_entries),
                                          window);
+
+        property_action = g_property_action_new ("show-sidebar",
+                                                 priv->grid_sidebar,
+                                                 "visible");
+        g_action_map_add_action (G_ACTION_MAP (window), G_ACTION (property_action));
+        g_object_unref (property_action);
 }
 
 static void
