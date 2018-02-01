@@ -29,17 +29,22 @@
 #include "dh-util.h"
 
 typedef struct {
-        GMenuModel *window_menu_plus_app_menu;
-        GtkPaned *hpaned;
-        DhSidebar *sidebar;
-        GtkNotebook *notebook;
         GtkHeaderBar *header_bar;
         GtkMenuButton *window_menu_button;
+        GMenuModel *window_menu_plus_app_menu;
+
+        GtkPaned *hpaned;
+
+        /* Left side of the @hpaned. */
         GtkWidget *grid_sidebar;
+        DhSidebar *sidebar;
+
+        /* Right side of the @hpaned. */
         GtkSearchBar *search_bar;
         GtkSearchEntry *search_entry;
         GtkButton *go_up_button;
         GtkButton *go_down_button;
+        GtkNotebook *notebook;
 
         DhLink *selected_search_link;
 } DhWindowPrivate;
@@ -554,18 +559,17 @@ dh_window_class_init (DhWindowClass *klass)
         widget_class->delete_event = dh_window_delete_event;
 
         /* Bind class to template */
-        gtk_widget_class_set_template_from_resource (widget_class,
-                                                     "/org/gnome/devhelp/dh-window.ui");
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_plus_app_menu);
+        gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-window.ui");
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_plus_app_menu);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_bar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_entry);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, go_up_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, go_down_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
 }
 
 static void
