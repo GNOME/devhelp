@@ -42,8 +42,8 @@ typedef struct {
         /* Right side of the @hpaned. */
         GtkSearchBar *search_bar;
         GtkSearchEntry *search_entry;
-        GtkButton *go_up_button;
-        GtkButton *go_down_button;
+        GtkButton *search_prev_button;
+        GtkButton *search_next_button;
         GtkNotebook *notebook;
 
         DhLink *selected_search_link;
@@ -567,8 +567,8 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_bar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_entry);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, go_up_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, go_down_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_prev_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_next_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
 }
 
@@ -660,11 +660,11 @@ window_populate (DhWindow *window)
                           "key-press-event",
                           G_CALLBACK (on_search_entry_key_press),
                           window);
-        g_signal_connect (priv->go_up_button,
+        g_signal_connect (priv->search_prev_button,
                           "clicked",
                           G_CALLBACK (window_find_previous_cb),
                           window);
-        g_signal_connect (priv->go_down_button,
+        g_signal_connect (priv->search_next_button,
                           "clicked",
                           G_CALLBACK (window_find_next_cb),
                           window);

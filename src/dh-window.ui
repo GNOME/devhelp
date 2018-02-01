@@ -252,7 +252,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkButton" id="go_up_button">
+                          <object class="GtkButton" id="search_prev_button">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <style>
@@ -269,7 +269,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkButton" id="go_down_button">
+                          <object class="GtkButton" id="search_next_button">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <style>
