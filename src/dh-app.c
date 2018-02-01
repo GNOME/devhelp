@@ -240,9 +240,39 @@ add_action_entries (DhApp *app)
 }
 
 static void
+setup_go_to_tab_accelerators (GtkApplication *app)
+{
+        const gchar *accels[] = {NULL, NULL};
+        gint key_num;
+
+        for (key_num = 1; key_num <= 9; key_num++) {
+                gchar *accel;
+                gchar *detailed_action_name;
+
+                accel = g_strdup_printf ("<Alt>%d", key_num);
+                accels[0] = accel;
+
+                detailed_action_name = g_strdup_printf ("win.go-to-tab(uint16 %d)", key_num - 1);
+
+                gtk_application_set_accels_for_action (app, detailed_action_name, accels);
+
+                g_free (accel);
+                g_free (detailed_action_name);
+        }
+
+        /* On a typical keyboard the 0 is after 9, so it's the equivalent of 10
+         * (9 starting from 0).
+         */
+        accels[0] = "<Alt>0";
+        gtk_application_set_accels_for_action (app, "win.go-to-tab(uint16 9)", accels);
+}
+
+static void
 setup_accelerators (GtkApplication *app)
 {
         const gchar *accels[] = {NULL, NULL, NULL, NULL};
+
+        setup_go_to_tab_accelerators (app);
 
         accels[0] = "<Control>0";
         gtk_application_set_accels_for_action (app, "win.zoom-default", accels);

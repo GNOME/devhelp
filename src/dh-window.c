@@ -49,11 +49,6 @@ typedef struct {
         DhLink *selected_search_link;
 } DhWindowPrivate;
 
-static guint tab_accel_keys[] = {
-        GDK_KEY_1, GDK_KEY_2, GDK_KEY_3, GDK_KEY_4, GDK_KEY_5,
-        GDK_KEY_6, GDK_KEY_7, GDK_KEY_8, GDK_KEY_9, GDK_KEY_0
-};
-
 static const
 struct
 {
@@ -232,6 +227,19 @@ prev_tab_cb (GSimpleAction *action,
         else
                 /* Wrap around to the last tab. */
                 gtk_notebook_set_current_page (priv->notebook, -1);
+}
+
+static void
+go_to_tab_cb (GSimpleAction *action,
+              GVariant      *parameter,
+              gpointer       user_data)
+{
+        DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        guint16 tab_num;
+
+        tab_num = g_variant_get_uint16 (parameter);
+        gtk_notebook_set_current_page (priv->notebook, tab_num);
 }
 
 static void
@@ -498,6 +506,7 @@ add_action_entries (DhWindow *window)
                 { "new-tab", new_tab_cb },
                 { "next-tab", next_tab_cb },
                 { "prev-tab", prev_tab_cb },
+                { "go-to-tab", go_to_tab_cb, "q" },
                 { "print", print_cb },
                 { "close", close_cb },
 
@@ -557,37 +566,11 @@ settings_fonts_changed_cb (DhSettings  *settings,
 }
 
 static void
-window_web_view_tab_accel_cb (GtkAccelGroup   *accel_group,
-                              GObject         *object,
-                              guint            key,
-                              GdkModifierType  mod,
-                              DhWindow        *window)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        gint page_num;
-        guint i;
-
-        page_num = -1;
-        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
-                if (tab_accel_keys[i] == key) {
-                        page_num = i;
-                        break;
-                }
-        }
-
-        if (page_num != -1)
-                gtk_notebook_set_current_page (priv->notebook, page_num);
-}
-
-static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         GtkApplication *app;
         DhSettings *settings;
-        GtkAccelGroup *accel_group;
-        GClosure *closure;
-        guint i;
 
         gtk_widget_init_template (GTK_WIDGET (window));
 
@@ -605,20 +588,6 @@ dh_window_init (DhWindow *window)
                                  G_CALLBACK (settings_fonts_changed_cb),
                                  window,
                                  0);
-
-        accel_group = gtk_accel_group_new ();
-        gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
-        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
-                closure = g_cclosure_new (G_CALLBACK (window_web_view_tab_accel_cb),
-                                          window,
-                                          NULL);
-
-                gtk_accel_group_connect (accel_group,
-                                         tab_accel_keys[i],
-                                         GDK_MOD1_MASK,
-                                         0,
-                                         closure);
-        }
 }
 
 static void
