@@ -113,16 +113,24 @@ dh_util_view_set_font (WebKitWebView *view,
                        const gchar   *font_name_fixed,
                        const gchar   *font_name_variable)
 {
-        /* Get the font size. */
-        PangoFontDescription *font_desc_fixed = pango_font_description_from_string (font_name_fixed);
-        PangoFontDescription *font_desc_variable = pango_font_description_from_string (font_name_variable);
-        guint font_size_fixed = pango_font_description_get_size (font_desc_fixed) / PANGO_SCALE;
-        guint font_size_variable = pango_font_description_get_size (font_desc_variable) / PANGO_SCALE;
-        guint font_size_fixed_px = webkit_settings_font_size_to_pixels (font_size_fixed);
-        guint font_size_variable_px = webkit_settings_font_size_to_pixels (font_size_variable);
+        PangoFontDescription *font_desc_fixed;
+        PangoFontDescription *font_desc_variable;
+        guint font_size_fixed;
+        guint font_size_variable;
+        guint font_size_fixed_px;
+        guint font_size_variable_px;
 
-        pango_font_description_free (font_desc_fixed);
-        pango_font_description_free (font_desc_variable);
+        g_return_if_fail (WEBKIT_IS_WEB_VIEW (view));
+        g_return_if_fail (font_name_fixed != NULL);
+        g_return_if_fail (font_name_variable != NULL);
+
+        /* Get the font size. */
+        font_desc_fixed = pango_font_description_from_string (font_name_fixed);
+        font_desc_variable = pango_font_description_from_string (font_name_variable);
+        font_size_fixed = pango_font_description_get_size (font_desc_fixed) / PANGO_SCALE;
+        font_size_variable = pango_font_description_get_size (font_desc_variable) / PANGO_SCALE;
+        font_size_fixed_px = webkit_settings_font_size_to_pixels (font_size_fixed);
+        font_size_variable_px = webkit_settings_font_size_to_pixels (font_size_variable);
 
         /* Set the fonts. */
         g_object_set (webkit_web_view_get_settings (view),
@@ -135,6 +143,9 @@ dh_util_view_set_font (WebKitWebView *view,
 
         g_debug ("Set font-fixed to '%s' (%i) and font-variable to '%s' (%i).",
                  font_name_fixed, font_size_fixed_px, font_name_variable, font_size_variable_px);
+
+        pango_font_description_free (font_desc_fixed);
+        pango_font_description_free (font_desc_variable);
 }
 
 static void
