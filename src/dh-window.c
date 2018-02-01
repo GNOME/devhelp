@@ -82,11 +82,6 @@ static const guint n_zoom_levels = G_N_ELEMENTS (zoom_levels);
 static void           window_search_link_selected_cb (GObject         *ignored,
                                                       DhLink          *link,
                                                       DhWindow        *window);
-static void           window_web_view_tab_accel_cb   (GtkAccelGroup   *accel_group,
-                                                      GObject         *object,
-                                                      guint            key,
-                                                      GdkModifierType  mod,
-                                                      DhWindow        *window);
 static void           window_find_search_changed_cb  (GtkEntry        *entry,
                                                       DhWindow        *window);
 static void           window_find_next_cb            (GtkWidget       *widget,
@@ -543,27 +538,51 @@ static void
 settings_fonts_changed_cb (DhSettings  *settings,
                            const gchar *font_name_fixed,
                            const gchar *font_name_variable,
-                           gpointer     user_data)
+                           DhWindow    *window)
 {
-        DhWindow *window = DH_WINDOW (user_data);
-        DhWindowPrivate *priv;
-        gint i;
-        WebKitWebView *view;
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        gint n_pages;
+        gint page_num;
 
-        priv = dh_window_get_instance_private (window);
+        n_pages = gtk_notebook_get_n_pages (priv->notebook);
 
-        /* change font for all pages */
-        for (i = 0; i < gtk_notebook_get_n_pages (priv->notebook); i++) {
-                GtkWidget *page = gtk_notebook_get_nth_page (priv->notebook, i);
-                view = WEBKIT_WEB_VIEW (g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY));
+        for (page_num = 0; page_num < n_pages; page_num++) {
+                GtkWidget *page;
+                WebKitWebView *view;
+
+                page = gtk_notebook_get_nth_page (priv->notebook, page_num);
+                view = g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY);
                 dh_util_view_set_font (view, font_name_fixed, font_name_variable);
         }
 }
 
 static void
+window_web_view_tab_accel_cb (GtkAccelGroup   *accel_group,
+                              GObject         *object,
+                              guint            key,
+                              GdkModifierType  mod,
+                              DhWindow        *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        gint page_num;
+        guint i;
+
+        page_num = -1;
+        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
+                if (tab_accel_keys[i] == key) {
+                        page_num = i;
+                        break;
+                }
+        }
+
+        if (page_num != -1)
+                gtk_notebook_set_current_page (priv->notebook, page_num);
+}
+
+static void
 dh_window_init (DhWindow *window)
 {
-        DhWindowPrivate *priv;
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
         GtkApplication *app;
         DhSettings *settings;
         GtkAccelGroup *accel_group;
@@ -571,9 +590,6 @@ dh_window_init (DhWindow *window)
         guint i;
 
         gtk_widget_init_template (GTK_WIDGET (window));
-
-        priv = dh_window_get_instance_private (window);
-        priv->selected_search_link = NULL;
 
         add_action_entries (window);
 
@@ -583,7 +599,6 @@ dh_window_init (DhWindow *window)
                                                 priv->window_menu_plus_app_menu);
         }
 
-        /* handle settings */
         settings = dh_settings_get_singleton ();
         g_signal_connect_object (settings,
                                  "fonts-changed",
@@ -597,6 +612,7 @@ dh_window_init (DhWindow *window)
                 closure = g_cclosure_new (G_CALLBACK (window_web_view_tab_accel_cb),
                                           window,
                                           NULL);
+
                 gtk_accel_group_connect (accel_group,
                                          tab_accel_keys[i],
                                          GDK_MOD1_MASK,
@@ -1100,31 +1116,6 @@ on_search_entry_key_press (GtkEntry    *entry,
         }
 
         return GDK_EVENT_PROPAGATE;
-}
-
-static void
-window_web_view_tab_accel_cb (GtkAccelGroup   *accel_group,
-                              GObject         *object,
-                              guint            key,
-                              GdkModifierType  mod,
-                              DhWindow        *window)
-{
-        DhWindowPrivate *priv;
-        gint page_num;
-        guint i;
-
-        priv = dh_window_get_instance_private (window);
-
-        page_num = -1;
-        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
-                if (tab_accel_keys[i] == key) {
-                        page_num = i;
-                        break;
-                }
-        }
-
-        if (page_num != -1)
-                gtk_notebook_set_current_page (priv->notebook, page_num);
 }
 
 static void
