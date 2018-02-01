@@ -122,6 +122,43 @@ static void           do_search                      (DhWindow *window);
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
+static gboolean
+dh_window_delete_event (GtkWidget   *widget,
+                        GdkEventAny *event)
+{
+        DhSettings *settings;
+
+        settings = dh_settings_get_singleton ();
+        dh_util_window_settings_save (GTK_WINDOW (widget),
+                                      dh_settings_peek_window_settings (settings));
+
+        if (GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event == NULL)
+                return GDK_EVENT_PROPAGATE;
+
+        return GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event (widget, event);
+}
+
+static void
+dh_window_class_init (DhWindowClass *klass)
+{
+        GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+        widget_class->delete_event = dh_window_delete_event;
+
+        /* Bind class to template */
+        gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-window.ui");
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_plus_app_menu);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_bar);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_entry);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_prev_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_next_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
+}
+
 static WebKitWebView *
 window_get_active_web_view (DhWindow *window)
 {
@@ -523,22 +560,6 @@ settings_fonts_changed_cb (DhSettings  *settings,
         }
 }
 
-static gboolean
-dh_window_delete_event (GtkWidget   *widget,
-                        GdkEventAny *event)
-{
-        DhSettings *settings;
-
-        settings = dh_settings_get_singleton ();
-        dh_util_window_settings_save (GTK_WINDOW (widget),
-                                      dh_settings_peek_window_settings (settings));
-
-        if (GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event == NULL)
-                return GDK_EVENT_PROPAGATE;
-
-        return GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event (widget, event);
-}
-
 static void
 dh_window_init (DhWindow *window)
 {
@@ -582,27 +603,6 @@ dh_window_init (DhWindow *window)
                                          0,
                                          closure);
         }
-}
-
-static void
-dh_window_class_init (DhWindowClass *klass)
-{
-        GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-
-        widget_class->delete_event = dh_window_delete_event;
-
-        /* Bind class to template */
-        gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-window.ui");
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_plus_app_menu);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_bar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_entry);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_prev_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_next_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
 }
 
 static void
