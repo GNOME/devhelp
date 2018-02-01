@@ -29,12 +29,12 @@
 #include "dh-util.h"
 
 typedef struct {
-        GMenuModel *gear_app_menu;
+        GMenuModel *window_menu_plus_app_menu;
         GtkPaned *hpaned;
         DhSidebar *sidebar;
         GtkNotebook *notebook;
         GtkHeaderBar *header_bar;
-        GtkMenuButton *gear_menu_button;
+        GtkMenuButton *window_menu_button;
         GtkWidget *grid_sidebar;
         GtkSearchBar *search_bar;
         GtkSearchEntry *search_entry;
@@ -457,8 +457,8 @@ add_action_entries (DhWindow *window)
         g_action_map_add_action (G_ACTION_MAP (window), G_ACTION (property_action));
         g_object_unref (property_action);
 
-        property_action = g_property_action_new ("gear-menu",
-                                                 priv->gear_menu_button,
+        property_action = g_property_action_new ("show-window-menu",
+                                                 priv->window_menu_button,
                                                  "active");
         g_action_map_add_action (G_ACTION_MAP (window), G_ACTION (property_action));
         g_object_unref (property_action);
@@ -520,7 +520,8 @@ dh_window_init (DhWindow *window)
 
         app = GTK_APPLICATION (g_application_get_default ());
         if (!gtk_application_prefers_app_menu (app)) {
-                gtk_menu_button_set_menu_model (priv->gear_menu_button, priv->gear_app_menu);
+                gtk_menu_button_set_menu_model (priv->window_menu_button,
+                                                priv->window_menu_plus_app_menu);
         }
 
         /* handle settings */
@@ -555,9 +556,9 @@ dh_window_class_init (DhWindowClass *klass)
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class,
                                                      "/org/gnome/devhelp/dh-window.ui");
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, gear_app_menu);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_plus_app_menu);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, gear_menu_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);

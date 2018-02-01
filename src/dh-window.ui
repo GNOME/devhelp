@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.8 -->
-  <menu id="gear_menu">
+  <menu id="window_menu_simple">
     <section>
       <item>
         <attribute name="label" translatable="yes">_Side Panel</attribute>
@@ -33,7 +33,7 @@
       </item>
     </section>
   </menu>
-  <menu id="gear_app_menu">
+  <menu id="window_menu_plus_app_menu">
     <section>
       <item>
         <attribute name="label" translatable="yes">New _Window</attribute>
@@ -158,17 +158,17 @@
           </packing>
         </child>
         <child>
-          <object class="GtkMenuButton" id="gear_menu_button">
+          <object class="GtkMenuButton" id="window_menu_button">
             <property name="visible">True</property>
             <property name="valign">center</property>
             <property name="can_focus">False</property>
-            <property name="menu_model">gear_menu</property>
+            <property name="menu_model">window_menu_simple</property>
             <property name="use_popover">True</property>
             <style>
               <class name="image-button"/>
             </style>
             <child>
-              <object class="GtkImage" id="gear_image">
+              <object class="GtkImage" id="window_menu_image">
                 <property name="visible">True</property>
                 <property name="icon_size">1</property>
                 <property name="icon_name">open-menu-symbolic</property>

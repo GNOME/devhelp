@@ -295,7 +295,7 @@ setup_accelerators (GtkApplication *app)
         gtk_application_set_accels_for_action (app, "win.show-sidebar", accels);
 
         accels[0] = "F10";
-        gtk_application_set_accels_for_action (app, "win.gear-menu", accels);
+        gtk_application_set_accels_for_action (app, "win.show-window-menu", accels);
 
         accels[0] = "<Alt>Right";
         accels[1] = "Forward";
