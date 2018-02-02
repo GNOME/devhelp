@@ -594,18 +594,26 @@ launch_search_in_active_web_view (DhWindow *window)
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         WebKitWebView *view;
         WebKitFindController *find_controller;
-        const gchar *search_text;
+        const gchar *cur_search_text;
+        const gchar *new_search_text;
 
         view = window_get_active_web_view (window);
         find_controller = webkit_web_view_get_find_controller (view);
 
-        search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
+        cur_search_text = webkit_find_controller_get_search_text (find_controller);
+        new_search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
 
-        webkit_find_controller_search (find_controller,
-                                       search_text,
-                                       WEBKIT_FIND_OPTIONS_WRAP_AROUND |
-                                       WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE,
-                                       G_MAXUINT);
+        if (g_strcmp0 (cur_search_text, new_search_text) != 0) {
+                /* If webkit_find_controller_search() is called a second time
+                 * with the same parameters it's not a NOP, it launches a new
+                 * search (apparently). So we must call it only once.
+                 */
+                webkit_find_controller_search (find_controller,
+                                               new_search_text,
+                                               WEBKIT_FIND_OPTIONS_WRAP_AROUND |
+                                               WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE,
+                                               G_MAXUINT);
+        }
 }
 
 static void
@@ -636,6 +644,9 @@ search_previous_in_active_web_view (DhWindow *window)
         WebKitWebView *view;
         WebKitFindController *find_controller;
 
+        /* Ensure that webkit_find_controller_search() is called before. */
+        launch_search_in_active_web_view (window);
+
         view = window_get_active_web_view (window);
         find_controller = webkit_web_view_get_find_controller (view);
 
@@ -647,6 +658,9 @@ search_next_in_active_web_view (DhWindow *window)
 {
         WebKitWebView *view;
         WebKitFindController *find_controller;
+
+        /* Ensure that webkit_find_controller_search() is called before. */
+        launch_search_in_active_web_view (window);
 
         view = window_get_active_web_view (window);
         find_controller = webkit_web_view_get_find_controller (view);
@@ -669,6 +683,7 @@ static void
 search_changed_cb (GtkEntry *entry,
                    DhWindow *window)
 {
+        /* Note that this callback is called after a small delay. */
         launch_search_in_active_web_view (window);
 }
 
