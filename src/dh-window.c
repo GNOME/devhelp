@@ -598,6 +598,44 @@ sidebar_link_selected_cb (DhSidebar *sidebar,
 }
 
 static void
+notebook_switch_page_before_cb (GtkNotebook *notebook,
+                                GtkWidget   *new_page,
+                                guint        new_page_num,
+                                DhWindow    *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+
+        if (new_page != NULL) {
+                WebKitWebView *new_web_view;
+                const gchar *uri;
+
+                new_web_view = g_object_get_data (G_OBJECT (new_page), TAB_WEB_VIEW_KEY);
+
+                /* Sync the book tree */
+                uri = webkit_web_view_get_uri (new_web_view);
+                if (uri != NULL)
+                        dh_sidebar_select_uri (priv->sidebar, uri);
+
+                window_update_title (window, new_web_view, NULL);
+        } else {
+                /* Translators: please don't translate "Devhelp" (it's marked as
+                 * translatable for transliteration only).
+                 */
+                gtk_window_set_title (GTK_WINDOW (window), _("Devhelp"));
+        }
+}
+
+static void
+notebook_switch_page_after_cb (GtkNotebook *notebook,
+                               GtkWidget   *new_page,
+                               guint        new_page_num,
+                               DhWindow    *window)
+{
+        window_update_zoom_actions_state (window);
+        window_update_back_forward_actions_sensitivity (window);
+}
+
+static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
@@ -631,64 +669,23 @@ dh_window_init (DhWindow *window)
                           "link-selected",
                           G_CALLBACK (sidebar_link_selected_cb),
                           window);
-}
 
-static void
-window_web_view_switch_page_cb (GtkNotebook *notebook,
-                                gpointer     page,
-                                guint        new_page_num,
-                                DhWindow    *window)
-{
-        DhWindowPrivate *priv;
-        GtkWidget *new_page;
+        /* HTML tabs GtkNotebook */
+        g_signal_connect (priv->notebook,
+                          "switch-page",
+                          G_CALLBACK (notebook_switch_page_before_cb),
+                          window);
 
-        priv = dh_window_get_instance_private (window);
-
-        new_page = gtk_notebook_get_nth_page (notebook, new_page_num);
-        if (new_page != NULL) {
-                WebKitWebView *new_web_view;
-                const gchar *location;
-
-                new_web_view = g_object_get_data (G_OBJECT (new_page), TAB_WEB_VIEW_KEY);
-
-                /* Sync the book tree */
-                location = webkit_web_view_get_uri (new_web_view);
-
-                if (location != NULL)
-                        dh_sidebar_select_uri (priv->sidebar, location);
-
-                window_update_title (window, new_web_view, NULL);
-        } else {
-                /* i18n: Please don't translate "Devhelp" (it's marked as translatable
-                 * for transliteration only) */
-                gtk_window_set_title (GTK_WINDOW (window), _("Devhelp"));
-        }
-}
-
-static void
-window_web_view_switch_page_after_cb (GtkNotebook *notebook,
-                                      gpointer     page,
-                                      guint        new_page_num,
-                                      DhWindow    *window)
-{
-        window_update_zoom_actions_state (window);
-        window_update_back_forward_actions_sensitivity (window);
+        g_signal_connect_after (priv->notebook,
+                                "switch-page",
+                                G_CALLBACK (notebook_switch_page_after_cb),
+                                window);
 }
 
 static void
 window_populate (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-
-        /* HTML tabs notebook. */
-        g_signal_connect (priv->notebook,
-                          "switch-page",
-                          G_CALLBACK (window_web_view_switch_page_cb),
-                          window);
-        g_signal_connect_after (priv->notebook,
-                                "switch-page",
-                                G_CALLBACK (window_web_view_switch_page_after_cb),
-                                window);
 
         /* Create findbar */
         gtk_search_bar_connect_entry (priv->search_bar, GTK_ENTRY (priv->search_entry));
