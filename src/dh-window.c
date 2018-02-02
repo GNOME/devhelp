@@ -199,12 +199,8 @@ update_window_title (DhWindow *window)
         if (web_view != NULL)
                 title = webkit_web_view_get_title (web_view);
 
-        if (title == NULL || title[0] == '\0') {
-                /* Translators: please don't translate "Devhelp" (it's marked as
-                 * translatable for transliteration only).
-                 */
-                title = _("Devhelp");
-        }
+        if (title == NULL || title[0] == '\0')
+                title = _("Empty Page");
 
         gtk_header_bar_set_title (priv->header_bar, title);
 }
