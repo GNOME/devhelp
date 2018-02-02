@@ -96,9 +96,6 @@ static GtkWidget *    window_new_tab_label           (DhWindow        *window,
 static void           window_open_new_tab            (DhWindow        *window,
                                                       const gchar     *location,
                                                       gboolean         switch_focus);
-static void           window_update_title            (DhWindow        *window,
-                                                      WebKitWebView   *web_view,
-                                                      const gchar     *title);
 static void           window_tab_set_title           (DhWindow        *window,
                                                       WebKitWebView   *web_view,
                                                       const gchar     *title);
@@ -189,6 +186,27 @@ window_get_active_info_bar (DhWindow *window)
         page = gtk_notebook_get_nth_page (priv->notebook, page_num);
 
         return g_object_get_data (G_OBJECT (page), TAB_INFO_BAR_KEY);
+}
+
+static void
+update_window_title (DhWindow *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        WebKitWebView *web_view;
+        const gchar *title = NULL;
+
+        web_view = window_get_active_web_view (window);
+        if (web_view != NULL)
+                title = webkit_web_view_get_title (web_view);
+
+        if (title == NULL || title[0] == '\0') {
+                /* Translators: please don't translate "Devhelp" (it's marked as
+                 * translatable for transliteration only).
+                 */
+                title = _("Devhelp");
+        }
+
+        gtk_header_bar_set_title (priv->header_bar, title);
 }
 
 static void
@@ -598,12 +616,16 @@ sidebar_link_selected_cb (DhSidebar *sidebar,
 }
 
 static void
-notebook_switch_page_before_cb (GtkNotebook *notebook,
-                                GtkWidget   *new_page,
-                                guint        new_page_num,
-                                DhWindow    *window)
+notebook_switch_page_after_cb (GtkNotebook *notebook,
+                               GtkWidget   *new_page,
+                               guint        new_page_num,
+                               DhWindow    *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
+
+        update_window_title (window);
+        window_update_zoom_actions_state (window);
+        window_update_back_forward_actions_sensitivity (window);
 
         if (new_page != NULL) {
                 WebKitWebView *new_web_view;
@@ -615,24 +637,7 @@ notebook_switch_page_before_cb (GtkNotebook *notebook,
                 uri = webkit_web_view_get_uri (new_web_view);
                 if (uri != NULL)
                         dh_sidebar_select_uri (priv->sidebar, uri);
-
-                window_update_title (window, new_web_view, NULL);
-        } else {
-                /* Translators: please don't translate "Devhelp" (it's marked as
-                 * translatable for transliteration only).
-                 */
-                gtk_window_set_title (GTK_WINDOW (window), _("Devhelp"));
         }
-}
-
-static void
-notebook_switch_page_after_cb (GtkNotebook *notebook,
-                               GtkWidget   *new_page,
-                               guint        new_page_num,
-                               DhWindow    *window)
-{
-        window_update_zoom_actions_state (window);
-        window_update_back_forward_actions_sensitivity (window);
 }
 
 static void
@@ -671,11 +676,6 @@ dh_window_init (DhWindow *window)
                           window);
 
         /* HTML tabs GtkNotebook */
-        g_signal_connect (priv->notebook,
-                          "switch-page",
-                          G_CALLBACK (notebook_switch_page_before_cb),
-                          window);
-
         g_signal_connect_after (priv->notebook,
                                 "switch-page",
                                 G_CALLBACK (notebook_switch_page_after_cb),
@@ -955,9 +955,8 @@ window_web_view_title_changed_cb (WebKitWebView *web_view,
 {
         const gchar *title = webkit_web_view_get_title (web_view);
 
-        if (web_view == window_get_active_web_view (window)) {
-                window_update_title (window, web_view, title);
-        }
+        if (web_view == window_get_active_web_view (window))
+                update_window_title (window);
 
         window_tab_set_title (window, web_view, title);
 }
@@ -1269,24 +1268,6 @@ window_new_tab_label (DhWindow        *window,
         g_object_set_data (G_OBJECT (hbox), "label", label);
 
         return hbox;
-}
-
-static void
-window_update_title (DhWindow      *window,
-                     WebKitWebView *web_view,
-                     const gchar   *web_view_title)
-{
-        DhWindowPrivate *priv;
-
-        priv = dh_window_get_instance_private (window);
-
-        if (web_view_title == NULL)
-                web_view_title = webkit_web_view_get_title (web_view);
-
-        if (web_view_title != NULL && web_view_title[0] == '\0')
-                web_view_title = NULL;
-
-        gtk_header_bar_set_title (priv->header_bar, web_view_title);
 }
 
 static void
