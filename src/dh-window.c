@@ -639,8 +639,6 @@ window_populate (DhWindow *window)
 
         /* Sidebar */
         priv->sidebar = DH_SIDEBAR (dh_sidebar_new (NULL));
-        gtk_widget_set_vexpand (GTK_WIDGET (priv->sidebar), TRUE);
-        gtk_widget_set_hexpand (GTK_WIDGET (priv->sidebar), TRUE);
         gtk_widget_show (GTK_WIDGET (priv->sidebar));
         gtk_container_add (GTK_CONTAINER (priv->grid_sidebar),
                            GTK_WIDGET (priv->sidebar));

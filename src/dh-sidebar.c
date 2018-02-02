@@ -464,6 +464,9 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_orientable_set_orientation (GTK_ORIENTABLE (sidebar),
                                         GTK_ORIENTATION_VERTICAL);
 
+        gtk_widget_set_hexpand (GTK_WIDGET (sidebar), TRUE);
+        gtk_widget_set_vexpand (GTK_WIDGET (sidebar), TRUE);
+
         /* Setup the search entry */
         priv->entry = GTK_ENTRY (gtk_search_entry_new ());
         gtk_widget_set_hexpand (GTK_WIDGET (priv->entry), TRUE);
