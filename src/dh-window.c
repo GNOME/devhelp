@@ -74,19 +74,6 @@ static const guint n_zoom_levels = G_N_ELEMENTS (zoom_levels);
 #define ZOOM_MAXIMAL    (zoom_levels[n_zoom_levels - 1].level)
 #define ZOOM_DEFAULT    (zoom_levels[2].level)
 
-static void           window_find_search_changed_cb  (GtkEntry        *entry,
-                                                      DhWindow        *window);
-static void           window_find_next_cb            (GtkWidget       *widget,
-                                                      DhWindow        *window);
-static void           findbar_find_next              (DhWindow        *window);
-static void           window_find_previous_cb        (GtkWidget       *widget,
-                                                      DhWindow        *window);
-static void           findbar_find_previous          (DhWindow        *window);
-static void           on_search_entry_activated      (GtkEntry        *entry,
-                                                      DhWindow        *window);
-static gboolean       on_search_entry_key_press      (GtkEntry    *entry,
-                                                      GdkEventKey *event,
-                                                      DhWindow    *window);
 static GtkWidget *    window_new_tab_label           (DhWindow        *window,
                                                       const gchar     *label,
                                                       const GtkWidget *parent);
@@ -636,6 +623,92 @@ search_mode_enabled_notify_cb (GtkSearchBar *search_bar,
 }
 
 static void
+do_search (DhWindow *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        WebKitWebView *view;
+        WebKitFindController *find_controller;
+        const gchar *search_text;
+
+        view = window_get_active_web_view (window);
+        find_controller = webkit_web_view_get_find_controller (view);
+
+        search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
+
+        webkit_find_controller_search (find_controller,
+                                       search_text,
+                                       WEBKIT_FIND_OPTIONS_WRAP_AROUND |
+                                       WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE,
+                                       G_MAXUINT);
+}
+
+static void
+search_changed_cb (GtkEntry *entry,
+                   DhWindow *window)
+{
+        do_search (window);
+}
+
+static void
+web_view_search_previous (DhWindow *window)
+{
+        WebKitWebView *view;
+        WebKitFindController *find_controller;
+
+        view = window_get_active_web_view (window);
+        find_controller = webkit_web_view_get_find_controller (view);
+
+        webkit_find_controller_search_previous (find_controller);
+}
+
+static void
+web_view_search_next (DhWindow *window)
+{
+        WebKitWebView *view;
+        WebKitFindController *find_controller;
+
+        view = window_get_active_web_view (window);
+        find_controller = webkit_web_view_get_find_controller (view);
+
+        webkit_find_controller_search_next (find_controller);
+}
+
+static void
+search_prev_button_clicked_cb (GtkButton *search_prev_button,
+                               DhWindow  *window)
+{
+        web_view_search_previous (window);
+}
+
+static void
+search_next_button_clicked_cb (GtkButton *search_next_button,
+                               DhWindow  *window)
+{
+        web_view_search_next (window);
+}
+
+static void
+search_entry_activate_cb (GtkEntry *entry,
+                          DhWindow *window)
+{
+        web_view_search_next (window);
+}
+
+static gboolean
+search_entry_key_press_event_cb (GtkEntry    *entry,
+                                 GdkEventKey *event,
+                                 DhWindow    *window)
+{
+        if (event->keyval == GDK_KEY_Return &&
+            event->state & GDK_SHIFT_MASK) {
+                web_view_search_previous (window);
+                return GDK_EVENT_STOP;
+        }
+
+        return GDK_EVENT_PROPAGATE;
+}
+
+static void
 notebook_switch_page_after_cb (GtkNotebook *notebook,
                                GtkWidget   *new_page,
                                guint        new_page_num,
@@ -705,27 +778,27 @@ dh_window_init (DhWindow *window)
 
         g_signal_connect (priv->search_entry,
                           "search-changed",
-                          G_CALLBACK (window_find_search_changed_cb),
-                          window);
-
-        g_signal_connect (priv->search_entry,
-                          "activate",
-                          G_CALLBACK (on_search_entry_activated),
-                          window);
-
-        g_signal_connect (priv->search_entry,
-                          "key-press-event",
-                          G_CALLBACK (on_search_entry_key_press),
+                          G_CALLBACK (search_changed_cb),
                           window);
 
         g_signal_connect (priv->search_prev_button,
                           "clicked",
-                          G_CALLBACK (window_find_previous_cb),
+                          G_CALLBACK (search_prev_button_clicked_cb),
                           window);
 
         g_signal_connect (priv->search_next_button,
                           "clicked",
-                          G_CALLBACK (window_find_next_cb),
+                          G_CALLBACK (search_next_button_clicked_cb),
+                          window);
+
+        g_signal_connect (priv->search_entry,
+                          "activate",
+                          G_CALLBACK (search_entry_activate_cb),
+                          window);
+
+        g_signal_connect (priv->search_entry,
+                          "key-press-event",
+                          G_CALLBACK (search_entry_key_press_event_cb),
                           window);
 
         /* HTML tabs GtkNotebook */
@@ -1004,100 +1077,6 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
 
                 default:
                         break;
-        }
-
-        return GDK_EVENT_PROPAGATE;
-}
-
-static void
-do_search (DhWindow *window)
-{
-        DhWindowPrivate *priv;
-        WebKitFindController *find_controller;
-        guint find_options = WEBKIT_FIND_OPTIONS_WRAP_AROUND;
-        const gchar *search_text;
-
-        priv = dh_window_get_instance_private (window);
-
-        find_controller = webkit_web_view_get_find_controller (window_get_active_web_view (window));
-        /* FIXME: do we want an option to set this? */
-        find_options |= WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE;
-
-        search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
-        webkit_find_controller_search (find_controller, search_text, find_options, G_MAXUINT);
-}
-
-static void
-window_find_search_changed_cb (GtkEntry *entry,
-                               DhWindow *window)
-{
-        do_search (window);
-}
-
-static void
-findbar_find_next (DhWindow *window)
-{
-        DhWindowPrivate *priv;
-        WebKitWebView *view;
-        WebKitFindController *find_controller;
-
-        priv = dh_window_get_instance_private (window);
-
-        view = window_get_active_web_view (window);
-
-        gtk_search_bar_set_search_mode (priv->search_bar, TRUE);
-
-        find_controller = webkit_web_view_get_find_controller (view);
-        webkit_find_controller_search_next (find_controller);
-}
-
-static void
-window_find_next_cb (GtkWidget *widget,
-                     DhWindow  *window)
-{
-        findbar_find_next (window);
-}
-
-static void
-findbar_find_previous (DhWindow *window)
-{
-        DhWindowPrivate *priv;
-        WebKitWebView *view;
-        WebKitFindController *find_controller;
-
-        priv = dh_window_get_instance_private (window);
-
-        view = window_get_active_web_view (window);
-
-        gtk_search_bar_set_search_mode (priv->search_bar, TRUE);
-
-        find_controller = webkit_web_view_get_find_controller (view);
-        webkit_find_controller_search_previous (find_controller);
-}
-
-static void
-window_find_previous_cb (GtkWidget *widget,
-                         DhWindow  *window)
-{
-        findbar_find_previous (window);
-}
-
-static void
-on_search_entry_activated (GtkEntry *entry,
-                           DhWindow *window)
-{
-        findbar_find_next (window);
-}
-
-static gboolean
-on_search_entry_key_press (GtkEntry    *entry,
-                           GdkEventKey *event,
-                           DhWindow    *window)
-{
-        if (event->keyval == GDK_KEY_Return &&
-            event->state & GDK_SHIFT_MASK) {
-                findbar_find_previous (window);
-                return GDK_EVENT_STOP;
         }
 
         return GDK_EVENT_PROPAGATE;
