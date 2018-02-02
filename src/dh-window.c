@@ -46,7 +46,7 @@ typedef struct {
         GtkButton *search_next_button;
         GtkNotebook *notebook;
 
-        DhLink *selected_search_link;
+        DhLink *selected_link;
 } DhWindowPrivate;
 
 static const
@@ -74,9 +74,6 @@ static const guint n_zoom_levels = G_N_ELEMENTS (zoom_levels);
 #define ZOOM_MAXIMAL    (zoom_levels[n_zoom_levels - 1].level)
 #define ZOOM_DEFAULT    (zoom_levels[2].level)
 
-static void           window_search_link_selected_cb (GObject         *ignored,
-                                                      DhLink          *link,
-                                                      DhWindow        *window);
 static void           window_find_search_changed_cb  (GtkEntry        *entry,
                                                       DhWindow        *window);
 static void           window_find_next_cb            (GtkWidget       *widget,
@@ -112,6 +109,16 @@ static void           do_search                      (DhWindow *window);
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
+static void
+dh_window_dispose (GObject *object)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (DH_WINDOW (object));
+
+        g_clear_pointer (&priv->selected_link, (GDestroyNotify) dh_link_unref);
+
+        G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
+}
+
 static gboolean
 dh_window_delete_event (GtkWidget   *widget,
                         GdkEventAny *event)
@@ -131,7 +138,10 @@ dh_window_delete_event (GtkWidget   *widget,
 static void
 dh_window_class_init (DhWindowClass *klass)
 {
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+        object_class->dispose = dh_window_dispose;
 
         widget_class->delete_event = dh_window_delete_event;
 
@@ -302,11 +312,11 @@ copy_cb (GSimpleAction *action,
                 gtk_editable_copy_clipboard (GTK_EDITABLE (widget));
         } else if (GTK_IS_TREE_VIEW (widget) &&
                    gtk_widget_is_ancestor (widget, GTK_WIDGET (priv->sidebar)) &&
-                   priv->selected_search_link != NULL) {
+                   priv->selected_link != NULL) {
                 GtkClipboard *clipboard;
                 clipboard = gtk_widget_get_clipboard (widget, GDK_SELECTION_CLIPBOARD);
                 gtk_clipboard_set_text (clipboard,
-                                        dh_link_get_name (priv->selected_search_link),
+                                        dh_link_get_name (priv->selected_link),
                                         -1);
         } else {
                 WebKitWebView *web_view;
@@ -566,6 +576,28 @@ settings_fonts_changed_cb (DhSettings  *settings,
 }
 
 static void
+sidebar_link_selected_cb (DhSidebar *sidebar,
+                          DhLink    *link,
+                          DhWindow  *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        gchar *uri;
+        WebKitWebView *view;
+
+        g_clear_pointer (&priv->selected_link, (GDestroyNotify) dh_link_unref);
+        priv->selected_link = dh_link_ref (link);
+
+        uri = dh_link_get_uri (link);
+        if (uri == NULL)
+                return;
+
+        view = window_get_active_web_view (window);
+        webkit_web_view_load_uri (view, uri);
+
+        g_free (uri);
+}
+
+static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
@@ -588,6 +620,17 @@ dh_window_init (DhWindow *window)
                                  G_CALLBACK (settings_fonts_changed_cb),
                                  window,
                                  0);
+
+        /* Sidebar */
+        priv->sidebar = DH_SIDEBAR (dh_sidebar_new (NULL));
+        gtk_widget_show (GTK_WIDGET (priv->sidebar));
+        gtk_container_add (GTK_CONTAINER (priv->grid_sidebar),
+                           GTK_WIDGET (priv->sidebar));
+
+        g_signal_connect (priv->sidebar,
+                          "link-selected",
+                          G_CALLBACK (sidebar_link_selected_cb),
+                          window);
 }
 
 static void
@@ -636,16 +679,6 @@ static void
 window_populate (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-
-        /* Sidebar */
-        priv->sidebar = DH_SIDEBAR (dh_sidebar_new (NULL));
-        gtk_widget_show (GTK_WIDGET (priv->sidebar));
-        gtk_container_add (GTK_CONTAINER (priv->grid_sidebar),
-                           GTK_WIDGET (priv->sidebar));
-        g_signal_connect (priv->sidebar,
-                          "link-selected",
-                          G_CALLBACK (window_search_link_selected_cb),
-                          window);
 
         /* HTML tabs notebook. */
         g_signal_connect (priv->notebook,
@@ -916,26 +949,6 @@ window_web_view_scroll_event_cb (GtkWidget *widget,
         }
 
         return FALSE;
-}
-
-static void
-window_search_link_selected_cb (GObject  *ignored,
-                                DhLink   *link,
-                                DhWindow *window)
-{
-        DhWindowPrivate *priv;
-        WebKitWebView *view;
-        gchar *uri;
-
-        priv = dh_window_get_instance_private (window);
-        priv->selected_search_link = link;
-
-        view = window_get_active_web_view (window);
-
-        uri = dh_link_get_uri (link);
-        if (uri != NULL)
-                webkit_web_view_load_uri (view, uri);
-        g_free (uri);
 }
 
 static void
