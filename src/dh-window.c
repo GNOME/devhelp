@@ -631,6 +631,30 @@ finish_search_in_all_web_views (DhWindow *window)
 }
 
 static void
+search_previous_in_active_web_view (DhWindow *window)
+{
+        WebKitWebView *view;
+        WebKitFindController *find_controller;
+
+        view = window_get_active_web_view (window);
+        find_controller = webkit_web_view_get_find_controller (view);
+
+        webkit_find_controller_search_previous (find_controller);
+}
+
+static void
+search_next_in_active_web_view (DhWindow *window)
+{
+        WebKitWebView *view;
+        WebKitFindController *find_controller;
+
+        view = window_get_active_web_view (window);
+        find_controller = webkit_web_view_get_find_controller (view);
+
+        webkit_find_controller_search_next (find_controller);
+}
+
+static void
 search_mode_enabled_notify_cb (GtkSearchBar *search_bar,
                                GParamSpec   *pspec,
                                DhWindow     *window)
@@ -649,48 +673,24 @@ search_changed_cb (GtkEntry *entry,
 }
 
 static void
-web_view_search_previous (DhWindow *window)
-{
-        WebKitWebView *view;
-        WebKitFindController *find_controller;
-
-        view = window_get_active_web_view (window);
-        find_controller = webkit_web_view_get_find_controller (view);
-
-        webkit_find_controller_search_previous (find_controller);
-}
-
-static void
-web_view_search_next (DhWindow *window)
-{
-        WebKitWebView *view;
-        WebKitFindController *find_controller;
-
-        view = window_get_active_web_view (window);
-        find_controller = webkit_web_view_get_find_controller (view);
-
-        webkit_find_controller_search_next (find_controller);
-}
-
-static void
 search_prev_button_clicked_cb (GtkButton *search_prev_button,
                                DhWindow  *window)
 {
-        web_view_search_previous (window);
+        search_previous_in_active_web_view (window);
 }
 
 static void
 search_next_button_clicked_cb (GtkButton *search_next_button,
                                DhWindow  *window)
 {
-        web_view_search_next (window);
+        search_next_in_active_web_view (window);
 }
 
 static void
 search_entry_activate_cb (GtkEntry *entry,
                           DhWindow *window)
 {
-        web_view_search_next (window);
+        search_next_in_active_web_view (window);
 }
 
 static gboolean
@@ -700,7 +700,7 @@ search_entry_key_press_event_cb (GtkEntry    *entry,
 {
         if (event->keyval == GDK_KEY_Return &&
             event->state & GDK_SHIFT_MASK) {
-                web_view_search_previous (window);
+                search_previous_in_active_web_view (window);
                 return GDK_EVENT_STOP;
         }
 
