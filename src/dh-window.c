@@ -83,7 +83,6 @@ static void           window_open_new_tab            (DhWindow        *window,
 static void           window_tab_set_title           (DhWindow        *window,
                                                       WebKitWebView   *web_view,
                                                       const gchar     *title);
-static void           do_search                      (DhWindow *window);
 
 #define TAB_WEB_VIEW_KEY "web_view"
 #define TAB_INFO_BAR_KEY "info_bar"
@@ -334,12 +333,6 @@ find_cb (GSimpleAction *action,
 
         gtk_search_bar_set_search_mode (priv->search_bar, TRUE);
         gtk_widget_grab_focus (GTK_WIDGET (priv->search_entry));
-
-        /* The behaviour for WebKit1 is to re-enable highlighting without
-         * starting a new search. WebKit2 API does not allow that
-         * without invoking a new search.
-         */
-        do_search (window);
 }
 
 static int
@@ -596,34 +589,7 @@ sidebar_link_selected_cb (DhSidebar *sidebar,
 }
 
 static void
-search_mode_enabled_notify_cb (GtkSearchBar *search_bar,
-                               GParamSpec   *pspec,
-                               DhWindow     *window)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        gint n_pages;
-        gint page_num;
-
-        if (gtk_search_bar_get_search_mode (search_bar))
-                return;
-
-        n_pages = gtk_notebook_get_n_pages (priv->notebook);
-
-        for (page_num = 0; page_num < n_pages; page_num++) {
-                GtkWidget *page;
-                WebKitWebView *view;
-                WebKitFindController *find_controller;
-
-                page = gtk_notebook_get_nth_page (priv->notebook, page_num);
-                view = g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY);
-
-                find_controller = webkit_web_view_get_find_controller (view);
-                webkit_find_controller_search_finish (find_controller);
-        }
-}
-
-static void
-do_search (DhWindow *window)
+launch_search_in_active_web_view (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         WebKitWebView *view;
@@ -643,10 +609,43 @@ do_search (DhWindow *window)
 }
 
 static void
+finish_search_in_all_web_views (DhWindow *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        gint n_pages;
+        gint page_num;
+
+        n_pages = gtk_notebook_get_n_pages (priv->notebook);
+
+        for (page_num = 0; page_num < n_pages; page_num++) {
+                GtkWidget *page;
+                WebKitWebView *view;
+                WebKitFindController *find_controller;
+
+                page = gtk_notebook_get_nth_page (priv->notebook, page_num);
+                view = g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY);
+
+                find_controller = webkit_web_view_get_find_controller (view);
+                webkit_find_controller_search_finish (find_controller);
+        }
+}
+
+static void
+search_mode_enabled_notify_cb (GtkSearchBar *search_bar,
+                               GParamSpec   *pspec,
+                               DhWindow     *window)
+{
+        if (gtk_search_bar_get_search_mode (search_bar))
+                launch_search_in_active_web_view (window);
+        else
+                finish_search_in_all_web_views (window);
+}
+
+static void
 search_changed_cb (GtkEntry *entry,
                    DhWindow *window)
 {
-        do_search (window);
+        launch_search_in_active_web_view (window);
 }
 
 static void
