@@ -745,6 +745,9 @@ notebook_switch_page_after_cb (GtkNotebook *notebook,
                 if (uri != NULL)
                         dh_sidebar_select_uri (priv->sidebar, uri);
         }
+
+        if (gtk_search_bar_get_search_mode (priv->search_bar))
+                launch_search_in_active_web_view (window);
 }
 
 static void
