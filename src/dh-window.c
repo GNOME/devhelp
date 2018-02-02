@@ -671,6 +671,39 @@ dh_window_init (DhWindow *window)
                           G_CALLBACK (sidebar_link_selected_cb),
                           window);
 
+        /* Search bar above GtkNotebook */
+        gtk_search_bar_connect_entry (priv->search_bar, GTK_ENTRY (priv->search_entry));
+
+        g_signal_connect (priv->search_bar,
+                          "notify::search-mode-enabled",
+                          G_CALLBACK (on_search_mode_enabled_changed),
+                          window);
+
+        g_signal_connect (priv->search_entry,
+                          "search-changed",
+                          G_CALLBACK (window_find_search_changed_cb),
+                          window);
+
+        g_signal_connect (priv->search_entry,
+                          "activate",
+                          G_CALLBACK (on_search_entry_activated),
+                          window);
+
+        g_signal_connect (priv->search_entry,
+                          "key-press-event",
+                          G_CALLBACK (on_search_entry_key_press),
+                          window);
+
+        g_signal_connect (priv->search_prev_button,
+                          "clicked",
+                          G_CALLBACK (window_find_previous_cb),
+                          window);
+
+        g_signal_connect (priv->search_next_button,
+                          "clicked",
+                          G_CALLBACK (window_find_next_cb),
+                          window);
+
         /* HTML tabs GtkNotebook */
         g_signal_connect_after (priv->notebook,
                                 "switch-page",
@@ -682,34 +715,6 @@ static void
 window_populate (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-
-        /* Create findbar */
-        gtk_search_bar_connect_entry (priv->search_bar, GTK_ENTRY (priv->search_entry));
-
-        g_signal_connect (priv->search_bar,
-                          "notify::search-mode-enabled",
-                          G_CALLBACK (on_search_mode_enabled_changed),
-                          window);
-        g_signal_connect (priv->search_entry,
-                          "search-changed",
-                          G_CALLBACK (window_find_search_changed_cb),
-                          window);
-        g_signal_connect (priv->search_entry,
-                          "activate",
-                          G_CALLBACK (on_search_entry_activated),
-                          window);
-        g_signal_connect (priv->search_entry,
-                          "key-press-event",
-                          G_CALLBACK (on_search_entry_key_press),
-                          window);
-        g_signal_connect (priv->search_prev_button,
-                          "clicked",
-                          G_CALLBACK (window_find_previous_cb),
-                          window);
-        g_signal_connect (priv->search_next_button,
-                          "clicked",
-                          G_CALLBACK (window_find_next_cb),
-                          window);
 
         /* Focus search in sidebar by default */
         dh_sidebar_set_search_focus (priv->sidebar);
