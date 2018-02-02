@@ -82,9 +82,6 @@ static void           findbar_find_next              (DhWindow        *window);
 static void           window_find_previous_cb        (GtkWidget       *widget,
                                                       DhWindow        *window);
 static void           findbar_find_previous          (DhWindow        *window);
-static void           on_search_mode_enabled_changed (GtkSearchBar    *search_bar,
-                                                      GParamSpec      *pspec,
-                                                      DhWindow        *window);
 static void           on_search_entry_activated      (GtkEntry        *entry,
                                                       DhWindow        *window);
 static gboolean       on_search_entry_key_press      (GtkEntry    *entry,
@@ -612,6 +609,33 @@ sidebar_link_selected_cb (DhSidebar *sidebar,
 }
 
 static void
+search_mode_enabled_notify_cb (GtkSearchBar *search_bar,
+                               GParamSpec   *pspec,
+                               DhWindow     *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        gint n_pages;
+        gint page_num;
+
+        if (gtk_search_bar_get_search_mode (search_bar))
+                return;
+
+        n_pages = gtk_notebook_get_n_pages (priv->notebook);
+
+        for (page_num = 0; page_num < n_pages; page_num++) {
+                GtkWidget *page;
+                WebKitWebView *view;
+                WebKitFindController *find_controller;
+
+                page = gtk_notebook_get_nth_page (priv->notebook, page_num);
+                view = g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY);
+
+                find_controller = webkit_web_view_get_find_controller (view);
+                webkit_find_controller_search_finish (find_controller);
+        }
+}
+
+static void
 notebook_switch_page_after_cb (GtkNotebook *notebook,
                                GtkWidget   *new_page,
                                guint        new_page_num,
@@ -676,7 +700,7 @@ dh_window_init (DhWindow *window)
 
         g_signal_connect (priv->search_bar,
                           "notify::search-mode-enabled",
-                          G_CALLBACK (on_search_mode_enabled_changed),
+                          G_CALLBACK (search_mode_enabled_notify_cb),
                           window);
 
         g_signal_connect (priv->search_entry,
@@ -1056,22 +1080,6 @@ window_find_previous_cb (GtkWidget *widget,
                          DhWindow  *window)
 {
         findbar_find_previous (window);
-}
-
-static void
-on_search_mode_enabled_changed (GtkSearchBar *search_bar,
-                                GParamSpec   *pspec,
-                                DhWindow     *window)
-{
-        if (!gtk_search_bar_get_search_mode (search_bar)) {
-                WebKitWebView *view;
-                WebKitFindController *find_controller;
-
-                view = window_get_active_web_view (window);
-
-                find_controller = webkit_web_view_get_find_controller (view);
-                webkit_find_controller_search_finish (find_controller);
-        }
 }
 
 static void
