@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-12-21 21:47+0000\n"
-"PO-Revision-Date: 2018-01-10 12:54+0100\n"
+"POT-Creation-Date: 2018-01-28 17:56+0000\n"
+"PO-Revision-Date: 2018-02-06 22:44+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -24,13 +24,13 @@ msgstr ""
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: data/org.gnome.Devhelp.appdata.xml.in:6
-#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:81 src/dh-app.c:407
-#: src/dh-window.c:736
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:112 src/dh-app.c:450
+#: src/dh-window.c:608
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7
-#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:83
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:114
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Un strument di svilupadôrs par navigâ e cirî la documentazion des API"
 
@@ -85,7 +85,7 @@ msgstr "documentazion;informazion;manuâl;svilupadôr;api;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Devhelp.desktop.in.in:12
-#: misc/gedit-plugin/devhelp.plugin.desktop.in:10
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
 msgid "devhelp"
 msgstr "devhelp"
 
@@ -178,43 +178,43 @@ msgstr "Gjenar di caratar pal test a largjece fisse"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Gjenar di caratar pal test a largjece fisse, come esemplis di codiç."
 
-#: misc/gedit-plugin/devhelp.plugin.desktop.in:6
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Supuart Devhelp"
 
-#: misc/gedit-plugin/devhelp.py:42
+#: plugins/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "Mostre documentazion API"
 
-#: src/dh-app.c:85
+#: src/dh-app.c:116
 msgid "translator-credits"
 msgstr "Fabio Tomat <f.t.public@gmail.com>"
 
-#: src/dh-app.c:87
+#: src/dh-app.c:118
 msgid "Devhelp Website"
 msgstr "Sît web di Devhelp"
 
-#: src/dh-app.c:311
+#: src/dh-app.c:354
 msgid "Opens a new Devhelp window"
 msgstr "Vierç un gnûf barcon di Devhelp"
 
-#: src/dh-app.c:316
+#: src/dh-app.c:359
 msgid "Search for a keyword"
 msgstr "Cîr par peraule clâf"
 
-#: src/dh-app.c:317 src/dh-app.c:322
+#: src/dh-app.c:360 src/dh-app.c:365
 msgid "KEYWORD"
 msgstr "PERAULECLÂF"
 
-#: src/dh-app.c:321
+#: src/dh-app.c:364
 msgid "Search and display any hit in the assistant window"
 msgstr "Cîr e mostre ogni corispuindince tal barcon assistent"
 
-#: src/dh-app.c:326
+#: src/dh-app.c:369
 msgid "Display the version and exit"
 msgstr "Mostre la version e jes"
 
-#: src/dh-app.c:331
+#: src/dh-app.c:374
 msgid "Quit any running Devhelp"
 msgstr "Jes di ogni Devhelp in esecuzion"
 
@@ -227,12 +227,12 @@ msgstr "Devhelp — Assistent"
 msgid "Book:"
 msgstr "Libri:"
 
-#: src/dh-book.c:343
+#: src/dh-book.c:348
 #, c-format
 msgid "Language: %s"
 msgstr "Lengaç: %s"
 
-#: src/dh-book.c:344
+#: src/dh-book.c:349
 msgid "Language: Undefined"
 msgstr "Lengaç: no definît"
 
@@ -241,67 +241,67 @@ msgid "_Collapse All"
 msgstr "_Strenç dut"
 
 #. i18n: a documentation book
-#: src/dh-link.c:559
+#: src/dh-link.c:549
 msgid "Book"
 msgstr "Libri"
 
 #. i18n: a "page" in a documentation book
-#: src/dh-link.c:563
+#: src/dh-link.c:553
 msgid "Page"
 msgstr "Pagjine"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: src/dh-link.c:568
+#: src/dh-link.c:558
 msgid "Keyword"
 msgstr "Peraule clâf"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:574
+#: src/dh-link.c:564
 msgid "Function"
 msgstr "Function"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:580
+#: src/dh-link.c:570
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:586
+#: src/dh-link.c:576
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:592
+#: src/dh-link.c:582
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:598
+#: src/dh-link.c:588
 msgid "Type"
 msgstr "Type"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:604
+#: src/dh-link.c:594
 msgid "Property"
 msgstr "Proprietât"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:610
+#: src/dh-link.c:600
 msgid "Signal"
 msgstr "Segnâl"
 
@@ -341,111 +341,111 @@ msgstr "Largjece _fisse:"
 msgid "Fonts"
 msgstr "Caratars"
 
-#: src/dh-window.c:63
+#: src/dh-window.c:60
 msgid "50%"
 msgstr "50%"
 
-#: src/dh-window.c:64
+#: src/dh-window.c:61
 msgid "75%"
 msgstr "75%"
 
-#: src/dh-window.c:65
+#: src/dh-window.c:62
 msgid "100%"
 msgstr "100%"
 
-#: src/dh-window.c:66
+#: src/dh-window.c:63
 msgid "125%"
 msgstr "125%"
 
-#: src/dh-window.c:67
+#: src/dh-window.c:64
 msgid "150%"
 msgstr "150%"
 
-#: src/dh-window.c:68
+#: src/dh-window.c:65
 msgid "175%"
 msgstr "175%"
 
-#: src/dh-window.c:69
+#: src/dh-window.c:66
 msgid "200%"
 msgstr "200%"
 
-#: src/dh-window.c:70
+#: src/dh-window.c:67
 msgid "300%"
 msgstr "300%"
 
-#: src/dh-window.c:71
+#: src/dh-window.c:68
 msgid "400%"
 msgstr "400%"
 
-#: src/dh-window.c:960
+#: src/dh-window.c:832
 msgid "Error opening the requested link."
 msgstr "Erôr tal vierzi il colegament domandât."
 
-#: src/dh-window.c:1275
+#: src/dh-window.c:1147
 msgid "_Close"
 msgstr "_Siere"
 
-#: src/dh-window.c:1293 src/dh-window.c:1474
+#: src/dh-window.c:1165 src/dh-window.c:1346
 msgid "Empty Page"
 msgstr "Pagjine vueide"
 
-#: src/dh-window.ui:7
-msgid "Side _Panel"
-msgstr "_Ricuadri laterâl"
-
-#: src/dh-window.ui:14 src/dh-window.ui:53
-msgid "_Print"
-msgstr "_Stampe"
-
-#: src/dh-window.ui:18 src/dh-window.ui:57
-msgid "_Find"
-msgstr "_Cjate"
-
-#: src/dh-window.ui:24 src/dh-window.ui:63
-msgid "_Larger Text"
-msgstr "Test plui _grant"
-
-#: src/dh-window.ui:28 src/dh-window.ui:67
-msgid "S_maller Text"
-msgstr "Test plui _piçul"
-
-#: src/dh-window.ui:32 src/dh-window.ui:71
-msgid "_Normal Size"
-msgstr "Dimension _normâl"
-
-#: src/dh-window.ui:40 src/menus.ui:30
-msgid "New _Window"
-msgstr "Gnûf _barcon"
-
-#: src/dh-window.ui:46
+#: src/dh-window.ui:7 src/dh-window.ui:45
 msgid "_Side Panel"
 msgstr "Panel _laterâl"
 
-#: src/dh-window.ui:77 src/menus.ui:36
+#: src/dh-window.ui:13 src/dh-window.ui:51
+msgid "_Print"
+msgstr "_Stampe"
+
+#: src/dh-window.ui:17 src/dh-window.ui:55
+msgid "_Find"
+msgstr "_Cjate"
+
+#: src/dh-window.ui:23 src/dh-window.ui:61
+msgid "_Larger Text"
+msgstr "Test plui _grant"
+
+#: src/dh-window.ui:27 src/dh-window.ui:65
+msgid "S_maller Text"
+msgstr "Test plui _piçul"
+
+#: src/dh-window.ui:31 src/dh-window.ui:69
+msgid "_Normal Size"
+msgstr "Dimension _normâl"
+
+#: src/dh-window.ui:39 src/menus.ui:30
+msgid "New _Window"
+msgstr "Gnûf _barcon"
+
+#: src/dh-window.ui:75 src/menus.ui:36
 msgid "_Preferences"
 msgstr "_Preferencis"
 
-#: src/dh-window.ui:83 src/menus.ui:42
+#: src/dh-window.ui:81 src/menus.ui:42
 msgid "_Keyboard Shortcuts"
 msgstr "_Scurtis di tastiere"
 
-#: src/dh-window.ui:87
+#: src/dh-window.ui:85 src/menus.ui:46
+msgid "_Help"
+msgstr "_Jutori"
+
+#: src/dh-window.ui:89
 msgid "_About Devhelp"
 msgstr "I_nformazions su Devhelp"
 
-#: src/dh-window.ui:91 src/menus.ui:50
+#: src/dh-window.ui:93 src/menus.ui:54
 msgid "_Quit"
 msgstr "_Jes"
 
-#: src/dh-window.ui:120
+#: src/dh-window.ui:122
 msgid "Back"
 msgstr "Indaûr"
 
-#: src/dh-window.ui:139
+#: src/dh-window.ui:141
 msgid "Forward"
 msgstr "Indenant"
 
-#: src/dh-window.ui:186
+#: src/dh-window.ui:188
 msgid "New Tab"
 msgstr "Gnove schede"
 
@@ -524,9 +524,12 @@ msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Azerâ ingrandiment"
 
-#: src/menus.ui:46
+#: src/menus.ui:50
 msgid "_About"
 msgstr "_Informazions"
+
+#~ msgid "Side _Panel"
+#~ msgstr "_Ricuadri laterâl"
 
 #~ msgid "Developer’s Help program"
 #~ msgstr "Program par vuidis di svilup"
