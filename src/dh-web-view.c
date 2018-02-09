@@ -25,6 +25,22 @@ struct _DhWebViewPrivate {
 G_DEFINE_TYPE_WITH_PRIVATE (DhWebView, dh_web_view, WEBKIT_TYPE_WEB_VIEW)
 
 static void
+dh_web_view_constructed (GObject *object)
+{
+        WebKitWebView *view = WEBKIT_WEB_VIEW (object);
+        WebKitSettings *settings;
+
+        if (G_OBJECT_CLASS (dh_web_view_parent_class)->constructed != NULL)
+                G_OBJECT_CLASS (dh_web_view_parent_class)->constructed (object);
+
+        /* Disable some things we have no need for. */
+        settings = webkit_web_view_get_settings (view);
+        webkit_settings_set_enable_html5_database (settings, FALSE);
+        webkit_settings_set_enable_html5_local_storage (settings, FALSE);
+        webkit_settings_set_enable_plugins (settings, FALSE);
+}
+
+static void
 dh_web_view_finalize (GObject *object)
 {
 
@@ -36,6 +52,7 @@ dh_web_view_class_init (DhWebViewClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+        object_class->constructed = dh_web_view_constructed;
         object_class->finalize = dh_web_view_finalize;
 }
 

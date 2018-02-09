@@ -27,6 +27,7 @@
 #include "dh-settings.h"
 #include "dh-sidebar.h"
 #include "dh-util.h"
+#include "dh-web-view.h"
 
 typedef struct {
         GtkHeaderBar *header_bar;
@@ -1100,25 +1101,13 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
 }
 
 static void
-apply_webview_settings (WebKitWebView *view)
-{
-        WebKitSettings *settings;
-
-        /* Disable some things we have no need for. */
-        settings = webkit_web_view_get_settings (view);
-        webkit_settings_set_enable_html5_database (settings, FALSE);
-        webkit_settings_set_enable_html5_local_storage (settings, FALSE);
-        webkit_settings_set_enable_plugins (settings, FALSE);
-}
-
-static void
 window_open_new_tab (DhWindow    *window,
                      const gchar *location,
                      gboolean     switch_focus)
 {
         DhWindowPrivate *priv;
         DhSettings *settings;
-        GtkWidget *view;
+        DhWebView *view;
         GtkWidget *vbox;
         GtkWidget *label;
         gint num;
@@ -1130,9 +1119,8 @@ window_open_new_tab (DhWindow    *window,
         priv = dh_window_get_instance_private (window);
 
         /* Prepare the web view */
-        view = webkit_web_view_new ();
-        apply_webview_settings (WEBKIT_WEB_VIEW (view));
-        gtk_widget_show (view);
+        view = dh_web_view_new ();
+        gtk_widget_show (GTK_WIDGET (view));
 
         /* get the current fonts and set them on the new view */
         settings = dh_settings_get_singleton ();
@@ -1161,7 +1149,7 @@ window_open_new_tab (DhWindow    *window,
         g_object_set_data (G_OBJECT (vbox), TAB_INFO_BAR_KEY, info_bar);
 
         gtk_box_pack_start (GTK_BOX (vbox), info_bar, FALSE, TRUE, 0);
-        gtk_box_pack_start (GTK_BOX (vbox), view, TRUE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (view), TRUE, TRUE, 0);
 
         label = window_new_tab_label (window, _("Empty Page"), vbox);
         gtk_widget_show_all (label);
