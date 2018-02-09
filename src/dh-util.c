@@ -119,6 +119,7 @@ dh_util_view_set_font (WebKitWebView *view,
         guint font_size_variable;
         guint font_size_fixed_px;
         guint font_size_variable_px;
+        WebKitSettings *settings;
 
         g_return_if_fail (WEBKIT_IS_WEB_VIEW (view));
         g_return_if_fail (font_name_fixed != NULL);
@@ -133,13 +134,12 @@ dh_util_view_set_font (WebKitWebView *view,
         font_size_variable_px = webkit_settings_font_size_to_pixels (font_size_variable);
 
         /* Set the fonts. */
-        g_object_set (webkit_web_view_get_settings (view),
-                      "zoom-text-only", TRUE,
-                      "monospace-font-family", font_name_fixed,
-                      "default-monospace-font-size", font_size_fixed_px,
-                      "serif-font-family", font_name_variable,
-                      "default-font-size", font_size_variable_px,
-                      NULL);
+        settings = webkit_web_view_get_settings (view);
+        webkit_settings_set_zoom_text_only (settings, TRUE);
+        webkit_settings_set_monospace_font_family (settings, font_name_fixed);
+        webkit_settings_set_default_monospace_font_size (settings, font_size_fixed_px);
+        webkit_settings_set_serif_font_family (settings, font_name_variable);
+        webkit_settings_set_default_font_size (settings, font_size_variable_px);
 
         g_debug ("Set font-fixed to '%s' (%i) and font-variable to '%s' (%i).",
                  font_name_fixed, font_size_fixed_px, font_name_variable, font_size_variable_px);
