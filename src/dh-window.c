@@ -756,6 +756,7 @@ dh_window_init (DhWindow *window)
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         GtkApplication *app;
         DhSettings *settings;
+        GSettings *paned_settings;
 
         gtk_widget_init_template (GTK_WIDGET (window));
 
@@ -773,6 +774,12 @@ dh_window_init (DhWindow *window)
                                  G_CALLBACK (settings_fonts_changed_cb),
                                  window,
                                  0);
+
+        paned_settings = dh_settings_peek_paned_settings (settings);
+        g_settings_bind (paned_settings, "position",
+                         priv->hpaned, "position",
+                         G_SETTINGS_BIND_DEFAULT |
+                         G_SETTINGS_BIND_NO_SENSITIVITY);
 
         /* Sidebar */
         priv->sidebar = DH_SIDEBAR (dh_sidebar_new (NULL));
@@ -823,18 +830,12 @@ dh_window_init (DhWindow *window)
                                 "switch-page",
                                 G_CALLBACK (notebook_switch_page_after_cb),
                                 window);
-}
-
-static void
-window_populate (DhWindow *window)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-
-        /* Focus search in sidebar by default */
-        dh_sidebar_set_search_focus (priv->sidebar);
 
         window_update_zoom_actions_state (window);
         window_open_new_tab (window, NULL, TRUE);
+
+        /* Focus search in sidebar by default. */
+        dh_sidebar_set_search_focus (priv->sidebar);
 }
 
 static gchar *
@@ -1316,7 +1317,6 @@ GtkWidget *
 dh_window_new (GtkApplication *application)
 {
         DhWindow *window;
-        DhWindowPrivate *priv;
         DhSettings *settings;
 
         g_return_val_if_fail (GTK_IS_APPLICATION (application), NULL);
@@ -1325,18 +1325,10 @@ dh_window_new (GtkApplication *application)
                                "application", application,
                                NULL);
 
-        priv = dh_window_get_instance_private (window);
-
-        window_populate (window);
-
         settings = dh_settings_get_singleton ();
         gtk_widget_realize (GTK_WIDGET (window));
         dh_util_window_settings_restore (GTK_WINDOW (window),
                                          dh_settings_peek_window_settings (settings));
-
-        g_settings_bind (dh_settings_peek_paned_settings (settings), "position",
-                         priv->hpaned, "position",
-                         G_SETTINGS_BIND_DEFAULT);
 
         return GTK_WIDGET (window);
 }
