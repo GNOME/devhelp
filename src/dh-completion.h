@@ -42,6 +42,9 @@ struct _DhCompletion {
 
 struct _DhCompletionClass {
         GObjectClass parent_class;
+
+        /* Padding for future expansion */
+        gpointer padding[12];
 };
 
 GType           dh_completion_get_type                  (void);
