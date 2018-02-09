@@ -590,35 +590,29 @@ sidebar_link_selected_cb (DhSidebar *sidebar,
 }
 
 static void
-launch_search_in_active_web_view (DhWindow *window)
+update_search_in_web_view (DhWindow  *window,
+                           DhWebView *view)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        WebKitWebView *view;
-        WebKitFindController *find_controller;
-        const gchar *cur_search_text;
-        const gchar *new_search_text;
+        const gchar *search_text = NULL;
 
-        view = window_get_active_web_view (window);
-        find_controller = webkit_web_view_get_find_controller (view);
+        if (gtk_search_bar_get_search_mode (priv->search_bar))
+                search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
 
-        cur_search_text = webkit_find_controller_get_search_text (find_controller);
-        new_search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
-
-        if (g_strcmp0 (cur_search_text, new_search_text) != 0) {
-                /* If webkit_find_controller_search() is called a second time
-                 * with the same parameters it's not a NOP, it launches a new
-                 * search (apparently). So we must call it only once.
-                 */
-                webkit_find_controller_search (find_controller,
-                                               new_search_text,
-                                               WEBKIT_FIND_OPTIONS_WRAP_AROUND |
-                                               WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE,
-                                               G_MAXUINT);
-        }
+        dh_web_view_set_search_text (view, search_text);
 }
 
 static void
-finish_search_in_all_web_views (DhWindow *window)
+update_search_in_active_web_view (DhWindow *window)
+{
+        DhWebView *view;
+
+        view = DH_WEB_VIEW (window_get_active_web_view (window));
+        update_search_in_web_view (window, view);
+}
+
+static void
+update_search_in_all_web_views (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint n_pages;
@@ -628,45 +622,35 @@ finish_search_in_all_web_views (DhWindow *window)
 
         for (page_num = 0; page_num < n_pages; page_num++) {
                 GtkWidget *page;
-                WebKitWebView *view;
-                WebKitFindController *find_controller;
+                DhWebView *view;
 
                 page = gtk_notebook_get_nth_page (priv->notebook, page_num);
                 view = g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY);
 
-                find_controller = webkit_web_view_get_find_controller (view);
-                webkit_find_controller_search_finish (find_controller);
+                update_search_in_web_view (window, view);
         }
 }
 
 static void
 search_previous_in_active_web_view (DhWindow *window)
 {
-        WebKitWebView *view;
-        WebKitFindController *find_controller;
+        DhWebView *view;
 
-        /* Ensure that webkit_find_controller_search() is called before. */
-        launch_search_in_active_web_view (window);
+        view = DH_WEB_VIEW (window_get_active_web_view (window));
 
-        view = window_get_active_web_view (window);
-        find_controller = webkit_web_view_get_find_controller (view);
-
-        webkit_find_controller_search_previous (find_controller);
+        update_search_in_web_view (window, view);
+        dh_web_view_search_previous (view);
 }
 
 static void
 search_next_in_active_web_view (DhWindow *window)
 {
-        WebKitWebView *view;
-        WebKitFindController *find_controller;
+        DhWebView *view;
 
-        /* Ensure that webkit_find_controller_search() is called before. */
-        launch_search_in_active_web_view (window);
+        view = DH_WEB_VIEW (window_get_active_web_view (window));
 
-        view = window_get_active_web_view (window);
-        find_controller = webkit_web_view_get_find_controller (view);
-
-        webkit_find_controller_search_next (find_controller);
+        update_search_in_web_view (window, view);
+        dh_web_view_search_next (view);
 }
 
 static void
@@ -675,9 +659,9 @@ search_mode_enabled_notify_cb (GtkSearchBar *search_bar,
                                DhWindow     *window)
 {
         if (gtk_search_bar_get_search_mode (search_bar))
-                launch_search_in_active_web_view (window);
+                update_search_in_active_web_view (window);
         else
-                finish_search_in_all_web_views (window);
+                update_search_in_all_web_views (window);
 }
 
 static void
@@ -685,7 +669,7 @@ search_changed_cb (GtkEntry *entry,
                    DhWindow *window)
 {
         /* Note that this callback is called after a small delay. */
-        launch_search_in_active_web_view (window);
+        update_search_in_active_web_view (window);
 }
 
 static void
@@ -734,6 +718,7 @@ notebook_switch_page_after_cb (GtkNotebook *notebook,
         update_window_title (window);
         window_update_zoom_actions_state (window);
         window_update_back_forward_actions_sensitivity (window);
+        update_search_in_active_web_view (window);
 
         if (new_page != NULL) {
                 WebKitWebView *new_web_view;
@@ -746,9 +731,6 @@ notebook_switch_page_after_cb (GtkNotebook *notebook,
                 if (uri != NULL)
                         dh_sidebar_select_uri (priv->sidebar, uri);
         }
-
-        if (gtk_search_bar_get_search_mode (priv->search_bar))
-                launch_search_in_active_web_view (window);
 }
 
 static void
