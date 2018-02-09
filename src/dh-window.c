@@ -831,7 +831,6 @@ dh_window_init (DhWindow *window)
                                 G_CALLBACK (notebook_switch_page_after_cb),
                                 window);
 
-        window_update_zoom_actions_state (window);
         window_open_new_tab (window, NULL, TRUE);
 
         /* Focus search in sidebar by default. */
