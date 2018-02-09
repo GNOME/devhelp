@@ -1102,12 +1102,13 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
 static void
 apply_webview_settings (WebKitWebView *view)
 {
-        /* Disable some things we have no need for */
-        g_object_set (webkit_web_view_get_settings (view),
-                      "enable-html5-database", FALSE,
-                      "enable-html5-local-storage", FALSE,
-                      "enable-plugins", FALSE,
-                      NULL);
+        WebKitSettings *settings;
+
+        /* Disable some things we have no need for. */
+        settings = webkit_web_view_get_settings (view);
+        webkit_settings_set_enable_html5_database (settings, FALSE);
+        webkit_settings_set_enable_html5_local_storage (settings, FALSE);
+        webkit_settings_set_enable_plugins (settings, FALSE);
 }
 
 static void
