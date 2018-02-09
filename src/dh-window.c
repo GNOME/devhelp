@@ -673,6 +673,20 @@ search_changed_cb (GtkEntry *entry,
 }
 
 static void
+search_previous_match_cb (GtkSearchEntry *entry,
+                          DhWindow       *window)
+{
+        search_previous_in_active_web_view (window);
+}
+
+static void
+search_next_match_cb (GtkSearchEntry *entry,
+                      DhWindow       *window)
+{
+        search_next_in_active_web_view (window);
+}
+
+static void
 search_prev_button_clicked_cb (GtkButton *search_prev_button,
                                DhWindow  *window)
 {
@@ -684,27 +698,6 @@ search_next_button_clicked_cb (GtkButton *search_next_button,
                                DhWindow  *window)
 {
         search_next_in_active_web_view (window);
-}
-
-static void
-search_entry_activate_cb (GtkEntry *entry,
-                          DhWindow *window)
-{
-        search_next_in_active_web_view (window);
-}
-
-static gboolean
-search_entry_key_press_event_cb (GtkEntry    *entry,
-                                 GdkEventKey *event,
-                                 DhWindow    *window)
-{
-        if (event->keyval == GDK_KEY_Return &&
-            event->state & GDK_SHIFT_MASK) {
-                search_previous_in_active_web_view (window);
-                return GDK_EVENT_STOP;
-        }
-
-        return GDK_EVENT_PROPAGATE;
 }
 
 static void
@@ -788,6 +781,16 @@ dh_window_init (DhWindow *window)
                           G_CALLBACK (search_changed_cb),
                           window);
 
+        g_signal_connect (priv->search_entry,
+                          "previous-match",
+                          G_CALLBACK (search_previous_match_cb),
+                          window);
+
+        g_signal_connect (priv->search_entry,
+                          "next-match",
+                          G_CALLBACK (search_next_match_cb),
+                          window);
+
         g_signal_connect (priv->search_prev_button,
                           "clicked",
                           G_CALLBACK (search_prev_button_clicked_cb),
@@ -796,16 +799,6 @@ dh_window_init (DhWindow *window)
         g_signal_connect (priv->search_next_button,
                           "clicked",
                           G_CALLBACK (search_next_button_clicked_cb),
-                          window);
-
-        g_signal_connect (priv->search_entry,
-                          "activate",
-                          G_CALLBACK (search_entry_activate_cb),
-                          window);
-
-        g_signal_connect (priv->search_entry,
-                          "key-press-event",
-                          G_CALLBACK (search_entry_key_press_event_cb),
                           window);
 
         /* HTML tabs GtkNotebook */
