@@ -85,16 +85,23 @@ web_view_load_failed_cb (WebKitWebView   *web_view,
         return GDK_EVENT_STOP;
 }
 
-static void
-web_view_load_changed_cb (WebKitWebView   *web_view,
-                          WebKitLoadEvent  load_event,
-                          DhTab           *tab)
+static gboolean
+web_view_decide_policy_cb (WebKitWebView            *web_view,
+                           WebKitPolicyDecision     *decision,
+                           WebKitPolicyDecisionType  decision_type,
+                           DhTab                    *tab)
 {
-        if (load_event == WEBKIT_LOAD_STARTED &&
+        if (decision_type == WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION &&
             tab->priv->info_bar != NULL) {
-                /* The error is no longer relevant. */
+                /* The error is no longer relevant. Do it here, not in
+                 * ::load-changed, so that it works when clicking on a link to
+                 * an anchor inside the same page too, not only when loading a
+                 * different page.
+                 */
                 gtk_widget_destroy (GTK_WIDGET (tab->priv->info_bar));
         }
+
+        return GDK_EVENT_PROPAGATE;
 }
 
 static void
@@ -113,9 +120,14 @@ dh_tab_init (DhTab *tab)
                           G_CALLBACK (web_view_load_failed_cb),
                           tab);
 
+        /* Other ::decide-policy signal handlers that return GDK_EVENT_STOP must
+         * be connected *after* this one. This code relies on the fact that
+         * GObject executes the handlers in the same order than the connection
+         * order (for all the handlers belonging to the same emission stage).
+         */
         g_signal_connect (tab->priv->web_view,
-                          "load-changed",
-                          G_CALLBACK (web_view_load_changed_cb),
+                          "decide-policy",
+                          G_CALLBACK (web_view_decide_policy_cb),
                           tab);
 }
 
