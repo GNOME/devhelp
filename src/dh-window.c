@@ -958,24 +958,22 @@ window_open_new_tab (DhWindow    *window,
                      const gchar *location,
                      gboolean     switch_focus)
 {
-        DhWindowPrivate *priv;
-        DhSettings *settings;
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
         DhWebView *view;
-        GtkWidget *vbox;
-        GtkWidget *label;
-        gint num;
-        GtkWidget *info_bar;
+        DhSettings *settings;
         gchar *font_fixed = NULL;
         gchar *font_variable = NULL;
+        GtkInfoBar *info_bar;
+        GtkWidget *vgrid;
+        GtkWidget *label;
+        gint page_num;
         WebKitBackForwardList *back_forward_list;
-
-        priv = dh_window_get_instance_private (window);
 
         /* Prepare the web view */
         view = dh_web_view_new ();
         gtk_widget_show (GTK_WIDGET (view));
 
-        /* get the current fonts and set them on the new view */
+        /* Set font */
         settings = dh_settings_get_singleton ();
         dh_settings_get_selected_fonts (settings, &font_fixed, &font_variable);
         dh_util_view_set_font (WEBKIT_WEB_VIEW (view), font_fixed, font_variable);
@@ -983,28 +981,29 @@ window_open_new_tab (DhWindow    *window,
         g_free (font_variable);
 
         /* Prepare the info bar */
-        info_bar = gtk_info_bar_new ();
-        gtk_widget_set_no_show_all (info_bar, TRUE);
-        gtk_info_bar_add_button (GTK_INFO_BAR (info_bar),
-                                 _("_Close"), GTK_RESPONSE_OK);
-        gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar),
-                                       GTK_MESSAGE_ERROR);
+        info_bar = GTK_INFO_BAR (gtk_info_bar_new ());
+        gtk_widget_set_no_show_all (GTK_WIDGET (info_bar), TRUE);
+        gtk_info_bar_set_show_close_button (info_bar, TRUE);
+        gtk_info_bar_set_message_type (info_bar, GTK_MESSAGE_ERROR);
+
         g_signal_connect (info_bar,
                           "response",
                           G_CALLBACK (gtk_widget_hide),
                           NULL);
 
-        vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-        gtk_widget_show (vbox);
+        /* Tab container */
+        vgrid = gtk_grid_new ();
+        gtk_orientable_set_orientation (GTK_ORIENTABLE (vgrid), GTK_ORIENTATION_VERTICAL);
+        gtk_widget_show (vgrid);
 
-        /* XXX: Really it would be much better to use real structures */
-        g_object_set_data (G_OBJECT (vbox), TAB_WEB_VIEW_KEY, view);
-        g_object_set_data (G_OBJECT (vbox), TAB_INFO_BAR_KEY, info_bar);
+        /* TODO: create DhTab class, subclass of GtkGrid. */
+        g_object_set_data (G_OBJECT (vgrid), TAB_WEB_VIEW_KEY, view);
+        g_object_set_data (G_OBJECT (vgrid), TAB_INFO_BAR_KEY, info_bar);
 
-        gtk_box_pack_start (GTK_BOX (vbox), info_bar, FALSE, TRUE, 0);
-        gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (view), TRUE, TRUE, 0);
+        gtk_container_add (GTK_CONTAINER (vgrid), GTK_WIDGET (info_bar));
+        gtk_container_add (GTK_CONTAINER (vgrid), GTK_WIDGET (view));
 
-        label = window_new_tab_label (window, _("Empty Page"), vbox);
+        label = window_new_tab_label (window, _("Empty Page"), vgrid);
         gtk_widget_show_all (label);
 
         g_signal_connect (view,
@@ -1017,16 +1016,23 @@ window_open_new_tab (DhWindow    *window,
                           G_CALLBACK (web_view_zoom_level_notify_cb),
                           window);
 
-        g_signal_connect (view, "button-press-event",
+        g_signal_connect (view,
+                          "button-press-event",
                           G_CALLBACK (window_web_view_button_press_event_cb),
                           window);
-        g_signal_connect (view, "decide-policy",
+
+        g_signal_connect (view,
+                          "decide-policy",
                           G_CALLBACK (window_web_view_decide_policy_cb),
                           window);
-        g_signal_connect (view, "load-changed",
+
+        g_signal_connect (view,
+                          "load-changed",
                           G_CALLBACK (window_web_view_load_changed_cb),
                           window);
-        g_signal_connect (view, "load-failed",
+
+        g_signal_connect (view,
+                          "load-failed",
                           G_CALLBACK (window_web_view_load_failed_cb),
                           window);
 
@@ -1037,28 +1043,25 @@ window_open_new_tab (DhWindow    *window,
                                  window,
                                  G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
-        num = gtk_notebook_append_page (priv->notebook, vbox, NULL);
-        gtk_container_child_set (GTK_CONTAINER (priv->notebook), vbox,
+        page_num = gtk_notebook_append_page (priv->notebook, vgrid, label);
+        gtk_container_child_set (GTK_CONTAINER (priv->notebook),
+                                 vgrid,
                                  "tab-expand", TRUE,
                                  "reorderable", TRUE,
                                  NULL);
-        gtk_notebook_set_tab_label (priv->notebook, vbox, label);
 
-        if (gtk_notebook_get_n_pages (priv->notebook) > 1) {
+        if (gtk_notebook_get_n_pages (priv->notebook) > 1)
                 gtk_notebook_set_show_tabs (priv->notebook, TRUE);
-        } else {
+        else
                 gtk_notebook_set_show_tabs (priv->notebook, FALSE);
-        }
 
-        if (location != NULL) {
+        if (location != NULL)
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), location);
-        } else {
+        else
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), "about:blank");
-        }
 
-        if (switch_focus) {
-                gtk_notebook_set_current_page (priv->notebook, num);
-        }
+        if (switch_focus)
+                gtk_notebook_set_current_page (priv->notebook, page_num);
 }
 
 static void

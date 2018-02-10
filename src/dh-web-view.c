@@ -176,6 +176,9 @@ dh_web_view_init (DhWebView *view)
 {
         view->priv = dh_web_view_get_instance_private (view);
         view->priv->total_scroll_delta_y = 0.f;
+
+        gtk_widget_set_hexpand (GTK_WIDGET (view), TRUE);
+        gtk_widget_set_vexpand (GTK_WIDGET (view), TRUE);
 }
 
 DhWebView *
