@@ -17,12 +17,121 @@
  */
 
 #include "dh-web-view.h"
+#include <math.h>
 
 struct _DhWebViewPrivate {
         gchar *search_text;
 };
 
+static const gdouble zoom_levels[] = {
+        0.5,            /* 50% */
+        0.8408964152,   /* 75% */
+        1.0,            /* 100% */
+        1.1892071149,   /* 125% */
+        1.4142135623,   /* 150% */
+        1.6817928304,   /* 175% */
+        2.0,            /* 200% */
+        2.8284271247,   /* 300% */
+        4.0             /* 400% */
+};
+
+static const guint n_zoom_levels = G_N_ELEMENTS (zoom_levels);
+
+#define ZOOM_DEFAULT (zoom_levels[2])
+
 G_DEFINE_TYPE_WITH_PRIVATE (DhWebView, dh_web_view, WEBKIT_TYPE_WEB_VIEW)
+
+static gint
+get_current_zoom_level_index (DhWebView *view)
+{
+        gdouble zoom_level;
+        gdouble previous;
+        guint i;
+
+        zoom_level = webkit_web_view_get_zoom_level (WEBKIT_WEB_VIEW (view));
+
+        previous = zoom_levels[0];
+        for (i = 1; i < n_zoom_levels; i++) {
+                gdouble current = zoom_levels[i];
+                gdouble mean = sqrt (previous * current);
+
+                if (zoom_level <= mean)
+                        return i - 1;
+
+                previous = current;
+        }
+
+        return n_zoom_levels - 1;
+}
+
+static void
+bump_zoom_level (DhWebView *view,
+                 gint       bump_amount)
+{
+        gint zoom_level_index;
+        gdouble new_zoom_level;
+
+        if (bump_amount == 0)
+                return;
+
+        zoom_level_index = get_current_zoom_level_index (view) + bump_amount;
+        zoom_level_index = CLAMP (zoom_level_index, 0, (gint)n_zoom_levels - 1);
+        new_zoom_level = zoom_levels[zoom_level_index];
+
+        webkit_web_view_set_zoom_level (WEBKIT_WEB_VIEW (view), new_zoom_level);
+}
+
+static gboolean
+dh_web_view_scroll_event (GtkWidget      *widget,
+                          GdkEventScroll *scroll_event)
+{
+        DhWebView *view = DH_WEB_VIEW (widget);
+        static gdouble total_delta_y = 0.f; /* FIXME: store in view->priv->total_scroll_delta_y */
+        gdouble delta_y;
+
+        if ((scroll_event->state & GDK_CONTROL_MASK) == 0)
+                goto chain_up;
+
+        switch (scroll_event->direction) {
+                case GDK_SCROLL_UP:
+                        bump_zoom_level (view, 1);
+                        return GDK_EVENT_STOP;
+
+                case GDK_SCROLL_DOWN:
+                        bump_zoom_level (view, -1);
+                        return GDK_EVENT_STOP;
+
+                case GDK_SCROLL_LEFT:
+                case GDK_SCROLL_RIGHT:
+                        break;
+
+                case GDK_SCROLL_SMOOTH:
+                        gdk_event_get_scroll_deltas ((GdkEvent *)scroll_event, NULL, &delta_y);
+                        total_delta_y += delta_y;
+
+                        /* Avoiding direct float comparison.
+                         * -1 and 1 are the thresholds for bumping the zoom level,
+                         * which can be adjusted for taste.
+                         */
+                        if ((gint)total_delta_y <= -1) {
+                                total_delta_y = 0.f;
+                                bump_zoom_level (view, 1);
+                        } else if ((gint)total_delta_y >= 1) {
+                                total_delta_y = 0.f;
+                                bump_zoom_level (view, -1);
+                        }
+                        return GDK_EVENT_STOP;
+
+                default:
+                        g_warn_if_reached ();
+        }
+
+chain_up:
+        if (GTK_WIDGET_CLASS (dh_web_view_parent_class)->scroll_event == NULL)
+                return GDK_EVENT_PROPAGATE;
+
+        return GTK_WIDGET_CLASS (dh_web_view_parent_class)->scroll_event (widget, scroll_event);
+}
 
 static void
 dh_web_view_constructed (GObject *object)
@@ -54,9 +163,12 @@ static void
 dh_web_view_class_init (DhWebViewClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
+        GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
         object_class->constructed = dh_web_view_constructed;
         object_class->finalize = dh_web_view_finalize;
+
+        widget_class->scroll_event = dh_web_view_scroll_event;
 }
 
 static void
@@ -144,4 +256,61 @@ dh_web_view_search_previous (DhWebView *view)
 
         find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (view));
         webkit_find_controller_search_previous (find_controller);
+}
+
+gboolean
+dh_web_view_can_zoom_in (DhWebView *view)
+{
+        gint zoom_level_index;
+
+        g_return_val_if_fail (DH_IS_WEB_VIEW (view), FALSE);
+
+        zoom_level_index = get_current_zoom_level_index (view);
+        return zoom_level_index < ((gint)n_zoom_levels - 1);
+}
+
+gboolean
+dh_web_view_can_zoom_out (DhWebView *view)
+{
+        gint zoom_level_index;
+
+        g_return_val_if_fail (DH_IS_WEB_VIEW (view), FALSE);
+
+        zoom_level_index = get_current_zoom_level_index (view);
+        return zoom_level_index > 0;
+}
+
+gboolean
+dh_web_view_can_reset_zoom (DhWebView *view)
+{
+        gint zoom_level_index;
+
+        g_return_val_if_fail (DH_IS_WEB_VIEW (view), FALSE);
+
+        zoom_level_index = get_current_zoom_level_index (view);
+        return zoom_levels[zoom_level_index] != ZOOM_DEFAULT;
+}
+
+void
+dh_web_view_zoom_in (DhWebView *view)
+{
+        g_return_if_fail (DH_IS_WEB_VIEW (view));
+
+        bump_zoom_level (view, 1);
+}
+
+void
+dh_web_view_zoom_out (DhWebView *view)
+{
+        g_return_if_fail (DH_IS_WEB_VIEW (view));
+
+        bump_zoom_level (view, -1);
+}
+
+void
+dh_web_view_reset_zoom (DhWebView *view)
+{
+        g_return_if_fail (DH_IS_WEB_VIEW (view));
+
+        webkit_web_view_set_zoom_level (WEBKIT_WEB_VIEW (view), ZOOM_DEFAULT);
 }

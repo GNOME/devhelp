@@ -58,6 +58,18 @@ void            dh_web_view_search_next         (DhWebView *view);
 
 void            dh_web_view_search_previous     (DhWebView *view);
 
+gboolean        dh_web_view_can_zoom_in         (DhWebView *view);
+
+gboolean        dh_web_view_can_zoom_out        (DhWebView *view);
+
+gboolean        dh_web_view_can_reset_zoom      (DhWebView *view);
+
+void            dh_web_view_zoom_in             (DhWebView *view);
+
+void            dh_web_view_zoom_out            (DhWebView *view);
+
+void            dh_web_view_reset_zoom          (DhWebView *view);
+
 G_END_DECLS
 
 #endif /* DH_WEB_VIEW_H */
