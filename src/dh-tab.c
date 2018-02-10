@@ -20,6 +20,8 @@
 #include <glib/gi18n.h>
 #include "tepl-info-bar.h"
 
+/* A DhWebView with a possible TeplInfoBar on top. */
+
 struct _DhTabPrivate {
         TeplInfoBar *info_bar;
         DhWebView *web_view;
