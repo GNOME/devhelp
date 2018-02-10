@@ -21,6 +21,7 @@
 
 struct _DhWebViewPrivate {
         gchar *search_text;
+        gdouble total_scroll_delta_y;
 };
 
 static const gdouble zoom_levels[] = {
@@ -86,7 +87,6 @@ dh_web_view_scroll_event (GtkWidget      *widget,
                           GdkEventScroll *scroll_event)
 {
         DhWebView *view = DH_WEB_VIEW (widget);
-        static gdouble total_delta_y = 0.f; /* FIXME: store in view->priv->total_scroll_delta_y */
         gdouble delta_y;
 
         if ((scroll_event->state & GDK_CONTROL_MASK) == 0)
@@ -107,17 +107,17 @@ dh_web_view_scroll_event (GtkWidget      *widget,
 
                 case GDK_SCROLL_SMOOTH:
                         gdk_event_get_scroll_deltas ((GdkEvent *)scroll_event, NULL, &delta_y);
-                        total_delta_y += delta_y;
+                        view->priv->total_scroll_delta_y += delta_y;
 
                         /* Avoiding direct float comparison.
                          * -1 and 1 are the thresholds for bumping the zoom level,
                          * which can be adjusted for taste.
                          */
-                        if ((gint)total_delta_y <= -1) {
-                                total_delta_y = 0.f;
+                        if ((gint)view->priv->total_scroll_delta_y <= -1) {
+                                view->priv->total_scroll_delta_y = 0.f;
                                 bump_zoom_level (view, 1);
-                        } else if ((gint)total_delta_y >= 1) {
-                                total_delta_y = 0.f;
+                        } else if ((gint)view->priv->total_scroll_delta_y >= 1) {
+                                view->priv->total_scroll_delta_y = 0.f;
                                 bump_zoom_level (view, -1);
                         }
                         return GDK_EVENT_STOP;
@@ -175,6 +175,7 @@ static void
 dh_web_view_init (DhWebView *view)
 {
         view->priv = dh_web_view_get_instance_private (view);
+        view->priv->total_scroll_delta_y = 0.f;
 }
 
 DhWebView *
