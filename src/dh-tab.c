@@ -17,9 +17,11 @@
  */
 
 #include "dh-tab.h"
+#include <glib/gi18n.h>
+#include "tepl-info-bar.h"
 
 struct _DhTabPrivate {
-        GtkInfoBar *info_bar;
+        TeplInfoBar *info_bar;
         DhWebView *web_view;
 };
 
@@ -44,6 +46,55 @@ dh_tab_class_init (DhTabClass *klass)
         object_class->dispose = dh_tab_dispose;
 }
 
+static gboolean
+web_view_load_failed_cb (WebKitWebView   *web_view,
+                         WebKitLoadEvent  load_event,
+                         const gchar     *failing_uri,
+                         GError          *error,
+                         DhTab           *tab)
+{
+        /* Ignore cancellation errors, which happen when typing fast in the
+         * search entry.
+         */
+        if (g_error_matches (error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
+                return GDK_EVENT_STOP;
+
+        if (tab->priv->info_bar != NULL)
+                gtk_widget_destroy (GTK_WIDGET (tab->priv->info_bar));
+
+        tab->priv->info_bar = tepl_info_bar_new_simple (GTK_MESSAGE_ERROR,
+                                                        _("Error opening the requested link."),
+                                                        error->message);
+        tepl_info_bar_add_close_button (tab->priv->info_bar);
+
+        g_signal_connect (tab->priv->info_bar,
+                          "destroy",
+                          G_CALLBACK (gtk_widget_destroyed),
+                          &tab->priv->info_bar);
+
+        gtk_grid_attach_next_to (GTK_GRID (tab),
+                                 GTK_WIDGET (tab->priv->info_bar),
+                                 GTK_WIDGET (tab->priv->web_view),
+                                 GTK_POS_TOP,
+                                 1, 1);
+
+        gtk_widget_show (GTK_WIDGET (tab->priv->info_bar));
+
+        return GDK_EVENT_STOP;
+}
+
+static void
+web_view_load_changed_cb (WebKitWebView   *web_view,
+                          WebKitLoadEvent  load_event,
+                          DhTab           *tab)
+{
+        if (load_event == WEBKIT_LOAD_STARTED &&
+            tab->priv->info_bar != NULL) {
+                /* The error is no longer relevant. */
+                gtk_widget_destroy (GTK_WIDGET (tab->priv->info_bar));
+        }
+}
+
 static void
 dh_tab_init (DhTab *tab)
 {
@@ -51,23 +102,19 @@ dh_tab_init (DhTab *tab)
 
         gtk_orientable_set_orientation (GTK_ORIENTABLE (tab), GTK_ORIENTATION_VERTICAL);
 
-        /* GtkInfoBar */
-        tab->priv->info_bar = GTK_INFO_BAR (gtk_info_bar_new ());
-        gtk_widget_set_no_show_all (GTK_WIDGET (tab->priv->info_bar), TRUE);
-        gtk_info_bar_set_show_close_button (tab->priv->info_bar, TRUE);
-        gtk_info_bar_set_message_type (tab->priv->info_bar, GTK_MESSAGE_ERROR);
-
-        g_signal_connect (tab->priv->info_bar,
-                          "response",
-                          G_CALLBACK (gtk_widget_hide),
-                          NULL);
-
-        /* DhWebView */
         tab->priv->web_view = dh_web_view_new ();
         gtk_widget_show (GTK_WIDGET (tab->priv->web_view));
-
-        gtk_container_add (GTK_CONTAINER (tab), GTK_WIDGET (tab->priv->info_bar));
         gtk_container_add (GTK_CONTAINER (tab), GTK_WIDGET (tab->priv->web_view));
+
+        g_signal_connect (tab->priv->web_view,
+                          "load-failed",
+                          G_CALLBACK (web_view_load_failed_cb),
+                          tab);
+
+        g_signal_connect (tab->priv->web_view,
+                          "load-changed",
+                          G_CALLBACK (web_view_load_changed_cb),
+                          tab);
 }
 
 DhTab *
@@ -82,12 +129,4 @@ dh_tab_get_web_view (DhTab *tab)
         g_return_val_if_fail (DH_IS_TAB (tab), NULL);
 
         return tab->priv->web_view;
-}
-
-GtkInfoBar *
-dh_tab_get_info_bar (DhTab *tab)
-{
-        g_return_val_if_fail (DH_IS_TAB (tab), NULL);
-
-        return tab->priv->info_bar;
 }

@@ -54,8 +54,6 @@ DhTab *         dh_tab_new              (void);
 
 DhWebView *     dh_tab_get_web_view     (DhTab *tab);
 
-GtkInfoBar *    dh_tab_get_info_bar     (DhTab *tab);
-
 G_END_DECLS
 
 #endif /* DH_TAB_H */

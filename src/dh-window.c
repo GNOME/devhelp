@@ -134,15 +134,6 @@ get_active_web_view (DhWindow *window)
         return tab != NULL ? dh_tab_get_web_view (tab) : NULL;
 }
 
-static GtkWidget *
-window_get_active_info_bar (DhWindow *window)
-{
-        DhTab *tab;
-
-        tab = get_active_tab (window);
-        return tab != NULL ? GTK_WIDGET (dh_tab_get_info_bar (tab)) : NULL;
-}
-
 static void
 update_window_title (DhWindow *window)
 {
@@ -802,9 +793,6 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
         navigation_action = webkit_navigation_policy_decision_get_navigation_action (navigation_decision);
         uri = webkit_uri_request_get_uri (webkit_navigation_action_get_request (navigation_action));
 
-        /* make sure to hide the info bar on page change */
-        gtk_widget_hide (window_get_active_info_bar (window));
-
         /* middle click or ctrl-click -> new tab */
         button = webkit_navigation_action_get_mouse_button (navigation_action);
         state = webkit_navigation_action_get_modifiers (navigation_action);
@@ -848,45 +836,6 @@ web_view_load_changed_cb (WebKitWebView   *web_view,
                 uri = webkit_web_view_get_uri (web_view);
                 dh_sidebar_select_uri (priv->sidebar, uri);
         }
-}
-
-static gboolean
-web_view_load_failed_cb (WebKitWebView   *web_view,
-                         WebKitLoadEvent  load_event,
-                         const gchar     *failing_uri,
-                         GError          *error,
-                         DhTab           *tab)
-{
-        GtkInfoBar *info_bar;
-        GtkWidget *content_area;
-        GtkWidget *message_label;
-        GList *children;
-        gchar *markup;
-
-        /* Ignore cancellation errors, which happen when typing fast in the
-         * search entry.
-         */
-        if (g_error_matches (error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
-                return GDK_EVENT_STOP;
-
-        info_bar = dh_tab_get_info_bar (tab);
-        markup = g_strdup_printf ("<b>%s</b>", _("Error opening the requested link."));
-        message_label = gtk_label_new (markup);
-        gtk_label_set_xalign (GTK_LABEL (message_label), 0.0);
-        gtk_label_set_use_markup (GTK_LABEL (message_label), TRUE);
-        content_area = gtk_info_bar_get_content_area (info_bar);
-        children = gtk_container_get_children (GTK_CONTAINER (content_area));
-        if (children != NULL) {
-                gtk_container_remove (GTK_CONTAINER (content_area), children->data);
-                g_list_free (children);
-        }
-        gtk_container_add (GTK_CONTAINER (content_area), message_label);
-        gtk_widget_show (message_label);
-
-        gtk_widget_show (GTK_WIDGET (info_bar));
-        g_free (markup);
-
-        return GDK_EVENT_STOP;
 }
 
 static void
@@ -989,11 +938,6 @@ window_open_new_tab (DhWindow    *window,
                           "load-changed",
                           G_CALLBACK (web_view_load_changed_cb),
                           window);
-
-        g_signal_connect (web_view,
-                          "load-failed",
-                          G_CALLBACK (web_view_load_failed_cb),
-                          tab);
 
         back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (web_view));
         g_signal_connect_object (back_forward_list,
