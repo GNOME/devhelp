@@ -57,7 +57,8 @@ IGNORE_HFILES = \
 	dh-tab.h \
 	dh-util.h \
 	dh-web-view.h \
-	dh-window.h
+	dh-window.h \
+	tepl-info-bar.h
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png

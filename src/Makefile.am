@@ -72,6 +72,7 @@ app_headers =			\
 	dh-tab.h		\
 	dh-web-view.h		\
 	dh-window.h		\
+	tepl-info-bar.h		\
 	$(NULL)
 
 app_c_files =			\
@@ -81,6 +82,7 @@ app_c_files =			\
 	dh-tab.c		\
 	dh-web-view.c		\
 	dh-window.c		\
+	tepl-info-bar.c		\
 	$(NULL)
 
 BUILT_SOURCES = 			\
