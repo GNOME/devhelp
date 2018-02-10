@@ -25,6 +25,7 @@
 #include "dh-book-manager.h"
 #include "dh-settings.h"
 #include "dh-sidebar.h"
+#include "dh-tab.h"
 #include "dh-util.h"
 #include "dh-web-view.h"
 
@@ -58,9 +59,6 @@ static void           window_open_new_tab            (DhWindow        *window,
 static void           window_tab_set_title           (DhWindow        *window,
                                                       WebKitWebView   *web_view,
                                                       const gchar     *title);
-
-#define TAB_WEB_VIEW_KEY "web_view"
-#define TAB_INFO_BAR_KEY "info_bar"
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
@@ -114,36 +112,35 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
 }
 
-static DhWebView *
-get_active_web_view (DhWindow *window)
+static DhTab *
+get_active_tab (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint page_num;
-        GtkWidget *page;
 
         page_num = gtk_notebook_get_current_page (priv->notebook);
         if (page_num == -1)
                 return NULL;
 
-        page = gtk_notebook_get_nth_page (priv->notebook, page_num);
+        return DH_TAB (gtk_notebook_get_nth_page (priv->notebook, page_num));
+}
 
-        return g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY);
+static DhWebView *
+get_active_web_view (DhWindow *window)
+{
+        DhTab *tab;
+
+        tab = get_active_tab (window);
+        return tab != NULL ? dh_tab_get_web_view (tab) : NULL;
 }
 
 static GtkWidget *
 window_get_active_info_bar (DhWindow *window)
 {
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        gint page_num;
-        GtkWidget *page;
+        DhTab *tab;
 
-        page_num = gtk_notebook_get_current_page (priv->notebook);
-        if (page_num == -1)
-                return NULL;
-
-        page = gtk_notebook_get_nth_page (priv->notebook, page_num);
-
-        return g_object_get_data (G_OBJECT (page), TAB_INFO_BAR_KEY);
+        tab = get_active_tab (window);
+        return tab != NULL ? GTK_WIDGET (dh_tab_get_info_bar (tab)) : NULL;
 }
 
 static void
@@ -476,12 +473,12 @@ settings_fonts_changed_cb (DhSettings  *settings,
         n_pages = gtk_notebook_get_n_pages (priv->notebook);
 
         for (page_num = 0; page_num < n_pages; page_num++) {
-                GtkWidget *page;
-                WebKitWebView *view;
+                DhTab *tab;
+                WebKitWebView *web_view;
 
-                page = gtk_notebook_get_nth_page (priv->notebook, page_num);
-                view = g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY);
-                dh_util_view_set_font (view, font_name_fixed, font_name_variable);
+                tab = DH_TAB (gtk_notebook_get_nth_page (priv->notebook, page_num));
+                web_view = WEBKIT_WEB_VIEW (dh_tab_get_web_view (tab));
+                dh_util_view_set_font (web_view, font_name_fixed, font_name_variable);
         }
 }
 
@@ -536,13 +533,10 @@ update_search_in_all_web_views (DhWindow *window)
         n_pages = gtk_notebook_get_n_pages (priv->notebook);
 
         for (page_num = 0; page_num < n_pages; page_num++) {
-                GtkWidget *page;
-                DhWebView *view;
+                DhTab *tab;
 
-                page = gtk_notebook_get_nth_page (priv->notebook, page_num);
-                view = g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY);
-
-                update_search_in_web_view (window, view);
+                tab = DH_TAB (gtk_notebook_get_nth_page (priv->notebook, page_num));
+                update_search_in_web_view (window, dh_tab_get_web_view (tab));
         }
 }
 
@@ -629,13 +623,13 @@ notebook_switch_page_after_cb (GtkNotebook *notebook,
         update_search_in_active_web_view (window);
 
         if (new_page != NULL) {
-                WebKitWebView *new_web_view;
+                DhWebView *web_view;
                 const gchar *uri;
 
-                new_web_view = g_object_get_data (G_OBJECT (new_page), TAB_WEB_VIEW_KEY);
+                web_view = dh_tab_get_web_view (DH_TAB (new_page));
 
                 /* Sync the book tree */
-                uri = webkit_web_view_get_uri (new_web_view);
+                uri = webkit_web_view_get_uri (WEBKIT_WEB_VIEW (web_view));
                 if (uri != NULL)
                         dh_sidebar_select_uri (priv->sidebar, uri);
         }
@@ -947,93 +941,73 @@ window_open_new_tab (DhWindow    *window,
                      gboolean     switch_focus)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        DhWebView *view;
+        DhTab *tab;
+        DhWebView *web_view;
         DhSettings *settings;
         gchar *font_fixed = NULL;
         gchar *font_variable = NULL;
-        GtkInfoBar *info_bar;
-        GtkWidget *vgrid;
         GtkWidget *label;
         gint page_num;
         WebKitBackForwardList *back_forward_list;
 
-        /* Prepare the web view */
-        view = dh_web_view_new ();
-        gtk_widget_show (GTK_WIDGET (view));
+        tab = dh_tab_new ();
+        gtk_widget_show (GTK_WIDGET (tab));
+
+        web_view = dh_tab_get_web_view (tab);
 
         /* Set font */
         settings = dh_settings_get_singleton ();
         dh_settings_get_selected_fonts (settings, &font_fixed, &font_variable);
-        dh_util_view_set_font (WEBKIT_WEB_VIEW (view), font_fixed, font_variable);
+        dh_util_view_set_font (WEBKIT_WEB_VIEW (web_view), font_fixed, font_variable);
         g_free (font_fixed);
         g_free (font_variable);
 
-        /* Prepare the info bar */
-        info_bar = GTK_INFO_BAR (gtk_info_bar_new ());
-        gtk_widget_set_no_show_all (GTK_WIDGET (info_bar), TRUE);
-        gtk_info_bar_set_show_close_button (info_bar, TRUE);
-        gtk_info_bar_set_message_type (info_bar, GTK_MESSAGE_ERROR);
-
-        g_signal_connect (info_bar,
-                          "response",
-                          G_CALLBACK (gtk_widget_hide),
-                          NULL);
-
-        /* Tab container */
-        vgrid = gtk_grid_new ();
-        gtk_orientable_set_orientation (GTK_ORIENTABLE (vgrid), GTK_ORIENTATION_VERTICAL);
-        gtk_widget_show (vgrid);
-
-        /* TODO: create DhTab class, subclass of GtkGrid. */
-        g_object_set_data (G_OBJECT (vgrid), TAB_WEB_VIEW_KEY, view);
-        g_object_set_data (G_OBJECT (vgrid), TAB_INFO_BAR_KEY, info_bar);
-
-        gtk_container_add (GTK_CONTAINER (vgrid), GTK_WIDGET (info_bar));
-        gtk_container_add (GTK_CONTAINER (vgrid), GTK_WIDGET (view));
-
-        label = window_new_tab_label (window, _("Empty Page"), vgrid);
+        label = window_new_tab_label (window, _("Empty Page"), GTK_WIDGET (tab));
         gtk_widget_show_all (label);
 
-        g_signal_connect (view,
+        g_signal_connect (web_view,
                           "notify::title",
                           G_CALLBACK (window_web_view_title_changed_cb),
                           window);
 
-        g_signal_connect (view,
+        g_signal_connect (web_view,
                           "notify::zoom-level",
                           G_CALLBACK (web_view_zoom_level_notify_cb),
                           window);
 
-        g_signal_connect (view,
+        g_signal_connect (web_view,
                           "button-press-event",
                           G_CALLBACK (window_web_view_button_press_event_cb),
                           window);
 
-        g_signal_connect (view,
+        g_signal_connect (web_view,
                           "decide-policy",
                           G_CALLBACK (window_web_view_decide_policy_cb),
                           window);
 
-        g_signal_connect (view,
+        g_signal_connect (web_view,
                           "load-changed",
                           G_CALLBACK (window_web_view_load_changed_cb),
                           window);
 
-        g_signal_connect (view,
+        g_signal_connect (web_view,
                           "load-failed",
                           G_CALLBACK (window_web_view_load_failed_cb),
                           window);
 
-        back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (view));
+        back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (web_view));
         g_signal_connect_object (back_forward_list,
                                  "changed",
                                  G_CALLBACK (window_update_back_forward_actions_sensitivity),
                                  window,
                                  G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
-        page_num = gtk_notebook_append_page (priv->notebook, vgrid, label);
+        page_num = gtk_notebook_append_page (priv->notebook,
+                                             GTK_WIDGET (tab),
+                                             label);
+
         gtk_container_child_set (GTK_CONTAINER (priv->notebook),
-                                 vgrid,
+                                 GTK_WIDGET (tab),
                                  "tab-expand", TRUE,
                                  "reorderable", TRUE,
                                  NULL);
@@ -1044,9 +1018,9 @@ window_open_new_tab (DhWindow    *window,
                 gtk_notebook_set_show_tabs (priv->notebook, FALSE);
 
         if (location != NULL)
-                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), location);
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), location);
         else
-                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), "about:blank");
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), "about:blank");
 
         if (switch_focus)
                 gtk_notebook_set_current_page (priv->notebook, page_num);
@@ -1128,17 +1102,17 @@ window_tab_set_title (DhWindow      *window,
 
         num_pages = gtk_notebook_get_n_pages (priv->notebook);
         for (i = 0; i < num_pages; i++) {
-                GtkWidget *page;
-                GtkWidget *page_web_view;
+                DhTab *cur_tab;
+                DhWebView *cur_web_view;
 
-                page = gtk_notebook_get_nth_page (priv->notebook, i);
-                page_web_view = g_object_get_data (G_OBJECT (page), TAB_WEB_VIEW_KEY);
+                cur_tab = DH_TAB (gtk_notebook_get_nth_page (priv->notebook, i));
+                cur_web_view = dh_tab_get_web_view (cur_tab);
 
                 /* The web_view widget is inside a frame. */
-                if (page_web_view == GTK_WIDGET (web_view)) {
+                if (WEBKIT_WEB_VIEW (cur_web_view) == web_view) {
                         GtkWidget *hbox;
 
-                        hbox = gtk_notebook_get_tab_label (priv->notebook, page);
+                        hbox = gtk_notebook_get_tab_label (priv->notebook, GTK_WIDGET (cur_tab));
 
                         if (hbox != NULL) {
                                 GtkLabel *label = g_object_get_data (G_OBJECT (hbox), "label");

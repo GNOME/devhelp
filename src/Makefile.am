@@ -69,6 +69,7 @@ libdevhelp_built_sources =			\
 app_headers =			\
 	dh-app.h		\
 	dh-assistant.h		\
+	dh-tab.h		\
 	dh-web-view.h		\
 	dh-window.h		\
 	$(NULL)
@@ -77,6 +78,7 @@ app_c_files =			\
 	dh-app.c		\
 	dh-assistant.c		\
 	dh-main.c		\
+	dh-tab.c		\
 	dh-web-view.c		\
 	dh-window.c		\
 	$(NULL)

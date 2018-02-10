@@ -19,6 +19,7 @@ src/dh-parser.c
 src/dh-preferences.ui
 src/dh-search-context.c
 src/dh-sidebar.c
+src/dh-tab.c
 src/dh-util.c
 src/dh-web-view.c
 src/dh-window.c
