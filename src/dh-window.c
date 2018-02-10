@@ -836,45 +836,45 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
 }
 
 static void
-window_web_view_load_changed_cb (WebKitWebView   *web_view,
-                                 WebKitLoadEvent  load_event,
-                                 DhWindow        *window)
+web_view_load_changed_cb (WebKitWebView   *web_view,
+                          WebKitLoadEvent  load_event,
+                          DhWindow        *window)
 {
-        const gchar *uri;
-        DhWindowPrivate *priv;
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
-        priv = dh_window_get_instance_private (window);
+        if (load_event == WEBKIT_LOAD_COMMITTED) {
+                const gchar *uri;
 
-        if (load_event != WEBKIT_LOAD_COMMITTED)
-                return;
-
-        uri = webkit_web_view_get_uri (web_view);
-        dh_sidebar_select_uri (priv->sidebar, uri);
+                uri = webkit_web_view_get_uri (web_view);
+                dh_sidebar_select_uri (priv->sidebar, uri);
+        }
 }
 
 static gboolean
-window_web_view_load_failed_cb (WebKitWebView   *web_view,
-                                WebKitLoadEvent  load_event,
-                                const gchar     *uri,
-                                GError          *web_error,
-                                DhWindow        *window)
+web_view_load_failed_cb (WebKitWebView   *web_view,
+                         WebKitLoadEvent  load_event,
+                         const gchar     *failing_uri,
+                         GError          *error,
+                         DhTab           *tab)
 {
-        GtkWidget *info_bar;
+        GtkInfoBar *info_bar;
         GtkWidget *content_area;
         GtkWidget *message_label;
         GList *children;
         gchar *markup;
 
-        /* Ignore cancellation errors; which happen when typing fast in the search entry */
-        if (g_error_matches (web_error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
+        /* Ignore cancellation errors, which happen when typing fast in the
+         * search entry.
+         */
+        if (g_error_matches (error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
                 return GDK_EVENT_STOP;
 
-        info_bar = window_get_active_info_bar (window);
+        info_bar = dh_tab_get_info_bar (tab);
         markup = g_strdup_printf ("<b>%s</b>", _("Error opening the requested link."));
         message_label = gtk_label_new (markup);
         gtk_label_set_xalign (GTK_LABEL (message_label), 0.0);
         gtk_label_set_use_markup (GTK_LABEL (message_label), TRUE);
-        content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (info_bar));
+        content_area = gtk_info_bar_get_content_area (info_bar);
         children = gtk_container_get_children (GTK_CONTAINER (content_area));
         if (children != NULL) {
                 gtk_container_remove (GTK_CONTAINER (content_area), children->data);
@@ -883,7 +883,7 @@ window_web_view_load_failed_cb (WebKitWebView   *web_view,
         gtk_container_add (GTK_CONTAINER (content_area), message_label);
         gtk_widget_show (message_label);
 
-        gtk_widget_show (info_bar);
+        gtk_widget_show (GTK_WIDGET (info_bar));
         g_free (markup);
 
         return GDK_EVENT_STOP;
@@ -987,13 +987,13 @@ window_open_new_tab (DhWindow    *window,
 
         g_signal_connect (web_view,
                           "load-changed",
-                          G_CALLBACK (window_web_view_load_changed_cb),
+                          G_CALLBACK (web_view_load_changed_cb),
                           window);
 
         g_signal_connect (web_view,
                           "load-failed",
-                          G_CALLBACK (window_web_view_load_failed_cb),
-                          window);
+                          G_CALLBACK (web_view_load_failed_cb),
+                          tab);
 
         back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (web_view));
         g_signal_connect_object (back_forward_list,
