@@ -1,3 +1,35 @@
+===============
+Version 3.27.90
+===============
+
+- Flatpak: see books installed on the host (usually installed by traditional
+  Linux distribution packages). The Flatpak needs to be built with the new
+  --enable-flatpak-build configure flag.
+- Lots of code refactorings, fixing various bugs along the way. Have more
+  classes, but smaller: from DhKeywordModel extract DhSearchContext; from
+  DhWindow extract DhWebView, DhTab and DhTabLabel.
+- All bugs in bugzilla fixed (only enhancement bugs remaining).
+- Write more unit tests.
+- Write first page of *user* documentation (in Mallard), to explain some
+  features of the search in the side panel.
+- Fix and document a feature useful for integration with other developer tools:
+  filtering by book and page when doing a search, see the README.
+- Improve error info bar (shown on top of the HTML page), use the TeplInfoBar
+  utility class, copied from the Tepl library.
+
+Fixed bugs:
+
+ - #696905, press Escape to cancel search
+ - #790902, writes window state settings on each configure event
+ - #792068, Make it work with Flatpak
+ - #792443, Missing emacs/vim plugins in 3.27.2 tarball
+
+Updated translations: de, fi, fur, hu, id, pl
+
+Many thanks to all contributors: Balázs Úr, Fabio Tomat, Tim Sabsch,
+Sébastien Wilmet, Mario Blättermann, Piotr Drąg, Kukuh Syafaat, Christian
+Kirbach, Jiri Grönroos
+
 ==============
 Version 3.27.2
 ==============
