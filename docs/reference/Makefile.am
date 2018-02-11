@@ -55,6 +55,7 @@ IGNORE_HFILES = \
 	dh-search-context.h \
 	dh-settings.h \
 	dh-tab.h \
+	dh-tab-label.h \
 	dh-util.h \
 	dh-web-view.h \
 	dh-window.h \

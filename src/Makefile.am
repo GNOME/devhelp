@@ -70,6 +70,7 @@ app_headers =			\
 	dh-app.h		\
 	dh-assistant.h		\
 	dh-tab.h		\
+	dh-tab-label.h		\
 	dh-web-view.h		\
 	dh-window.h		\
 	tepl-info-bar.h		\
@@ -80,6 +81,7 @@ app_c_files =			\
 	dh-assistant.c		\
 	dh-main.c		\
 	dh-tab.c		\
+	dh-tab-label.c		\
 	dh-web-view.c		\
 	dh-window.c		\
 	tepl-info-bar.c		\
