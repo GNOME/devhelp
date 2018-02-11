@@ -1,0 +1,117 @@
+# Brazilian Portuguese translation for devhelp.
+# Copyright (C) 2018 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2018.
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp master\n"
+"POT-Creation-Date: 2018-02-11 16:27+0000\n"
+"PO-Revision-Date: 2018-02-11 15:53-0200\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Virtaal 1.0.0-beta1\n"
+
+#. (itstool) path: page/title
+#: C/index.page:4
+msgid "Devhelp User Documentation"
+msgstr "Documentação do usuário do Devhelp"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Rafael Fontenelle <rafaelff@gnome.org>, 2018"
+
+#. (itstool) path: page/title
+#: C/search.page:10
+msgid "Search in the side panel"
+msgstr "Pesquisando no painel lateral"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:13
+msgid "How the search in the side panel works."
+msgstr "Como a pesquisa no painel lateral funciona."
+
+#. (itstool) path: section/title
+#: C/search.page:17
+msgid "Case sensitivity"
+msgstr "Diferenciando maiúsculas de minúsculas"
+
+#. (itstool) path: section/p
+#: C/search.page:18
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr ""
+"A pesquisa diferencia maiúsculas de minúsculas quando há uma letra "
+"maiúscula. Se os termos de pesquisa estiverem em letras minúsculas, a "
+"pesquisa não é insensível a maiúsculas e minúsculas. É como o recurso "
+"“smartcase” presente em alguns editores de texto."
+
+#. (itstool) path: section/title
+#: C/search.page:26
+msgid "Glob-style pattern matching"
+msgstr "Combinação de padrão de estilo glob"
+
+#. (itstool) path: section/p
+#: C/search.page:27
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+"Um termo de pesquisa pode ser um padrão contendo curingas “*” e “?”. “*” "
+"corresponde a uma string arbitrária, possivelmente vazia; e “?” corresponde "
+"a um caractere arbitrário."
+
+#. (itstool) path: section/title
+#: C/search.page:35
+msgid "Several search terms"
+msgstr "Vários termos de pesquisa"
+
+#. (itstool) path: section/p
+#: C/search.page:36
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+"Você pode pesquisar com vários termos de pesquisa (separados por espaços). "
+"Um símbolo irá coincidir apenas se <em>todos</em> os termos de pesquisa "
+"coincidirem individualmente (não necessariamente na mesma ordem de "
+"aparência)."
+
+#. (itstool) path: section/p
+#: C/search.page:41
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+"Observe que é diferente de pesquisar com o curinga “*”: com o curinga “*”, "
+"ele força as palavras-chave a estarem na mesma ordem."
+
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+"Por exemplo, ao pesquisar “<input>gtk window application</input>”, ele "
+"corresponde a “<code>gtk_window_get_application()</code>” e "
+"“<code>GtkApplicationWindow</code>” (entre outros símbolos)."
+
+#. (itstool) path: section/p
+#: C/search.page:50
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
+"Por outro lado, a pesquisa “<input>gtk*window*application</input>” combinará "
+"“<code>gtk_window_get_application()</code>” mas não "
+"“<code>GtkApplicationWindow</code>”."
