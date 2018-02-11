@@ -139,15 +139,13 @@ update_window_title (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         DhWebView *web_view;
-        const gchar *title = NULL;
+        const gchar *title;
 
         web_view = get_active_web_view (window);
-        if (web_view != NULL)
-                title = webkit_web_view_get_title (WEBKIT_WEB_VIEW (web_view));
+        if (web_view == NULL)
+                return;
 
-        if (title == NULL || title[0] == '\0')
-                title = _("Empty Page");
-
+        title = dh_web_view_get_devhelp_title (web_view);
         gtk_header_bar_set_title (priv->header_bar, title);
 }
 

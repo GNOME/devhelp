@@ -51,6 +51,8 @@ GType           dh_web_view_get_type            (void);
 
 DhWebView *     dh_web_view_new                 (void);
 
+const gchar *   dh_web_view_get_devhelp_title   (DhWebView *view);
+
 void            dh_web_view_set_search_text     (DhWebView   *view,
                                                  const gchar *search_text);
 

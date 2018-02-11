@@ -18,6 +18,7 @@
 
 #include "dh-web-view.h"
 #include <math.h>
+#include <glib/gi18n.h>
 
 struct _DhWebViewPrivate {
         gchar *search_text;
@@ -185,6 +186,21 @@ DhWebView *
 dh_web_view_new (void)
 {
         return g_object_new (DH_TYPE_WEB_VIEW, NULL);
+}
+
+const gchar *
+dh_web_view_get_devhelp_title (DhWebView *view)
+{
+        const gchar *title;
+
+        g_return_val_if_fail (DH_IS_WEB_VIEW (view), NULL);
+
+        title = webkit_web_view_get_title (WEBKIT_WEB_VIEW (view));
+
+        if (title == NULL || title[0] == '\0')
+                title = _("Empty Page");
+
+        return title;
 }
 
 /*
