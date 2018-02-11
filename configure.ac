@@ -1,6 +1,6 @@
 AC_PREREQ([2.64])
 AC_INIT([Devhelp],
-        [3.27.90],
+        [3.27.91],
         [https://bugzilla.gnome.org/browse.cgi?product=devhelp],
         [devhelp],
         [https://wiki.gnome.org/Apps/Devhelp])
