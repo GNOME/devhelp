@@ -30,23 +30,63 @@
 
 G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
+static DhAssistant *
+get_active_assistant_window (DhApp *app)
+{
+        GList *windows;
+        GList *l;
+
+        windows = gtk_application_get_windows (GTK_APPLICATION (app));
+
+        for (l = windows; l != NULL; l = l->next) {
+                GtkWindow *cur_window = GTK_WINDOW (l->data);
+
+                if (DH_IS_ASSISTANT (cur_window))
+                        return DH_ASSISTANT (cur_window);
+        }
+
+        return NULL;
+}
+
+static void
+save_active_main_window_gsettings (DhApp *app)
+{
+        DhWindow *active_window;
+        DhSettings *settings;
+
+        active_window = dh_app_get_active_main_window (app, FALSE);
+        if (active_window == NULL)
+                return;
+
+        settings = dh_settings_get_singleton ();
+        dh_util_window_settings_save (GTK_WINDOW (active_window),
+                                      dh_settings_peek_window_settings (settings));
+}
+
+static void
+save_active_assistant_window_gsettings (DhApp *app)
+{
+        DhAssistant *active_assistant;
+        DhSettings *settings;
+
+        active_assistant = get_active_assistant_window (app);
+        if (active_assistant == NULL)
+                return;
+
+        settings = dh_settings_get_singleton ();
+        dh_util_window_settings_save (GTK_WINDOW (active_assistant),
+                                      dh_settings_peek_assistant_settings (settings));
+}
+
 static void
 new_window_cb (GSimpleAction *action,
                GVariant      *parameter,
                gpointer       user_data)
 {
         DhApp *app = DH_APP (user_data);
-        DhWindow *active_window;
         GtkWidget *new_window;
 
-        active_window = dh_app_get_active_main_window (app, FALSE);
-        if (active_window != NULL) {
-                DhSettings *settings;
-
-                settings = dh_settings_get_singleton ();
-                dh_util_window_settings_save (GTK_WINDOW (active_window),
-                                              dh_settings_peek_window_settings (settings));
-        }
+        save_active_main_window_gsettings (app);
 
         new_window = dh_window_new (GTK_APPLICATION (app));
         gtk_widget_show_all (new_window);
@@ -127,17 +167,12 @@ quit_cb (GSimpleAction *action,
          GVariant      *parameter,
          gpointer       user_data)
 {
-        GtkApplication *app = GTK_APPLICATION (user_data);
-        GList *windows;
+        DhApp *app = DH_APP (user_data);
 
-        /* Do not call g_application_quit(). If g_application_quit() is called
-         * the GtkWindows are not finalized. A GtkWindow subclass may want to
-         * save some GSettings when the window is closed, so it's better to
-         * properly close all the windows. And it's also more friendly to memory
-         * debugging tools.
-         */
-        while ((windows = gtk_application_get_windows (app)) != NULL)
-                gtk_widget_destroy (GTK_WIDGET (windows->data));
+        save_active_main_window_gsettings (app);
+        save_active_assistant_window_gsettings (app);
+
+        g_application_quit (G_APPLICATION (app));
 }
 
 static void
@@ -158,24 +193,6 @@ search_cb (GSimpleAction *action,
         window = dh_app_get_active_main_window (app, TRUE);
         dh_window_search (window, keyword);
         gtk_window_present (GTK_WINDOW (window));
-}
-
-static DhAssistant *
-get_active_assistant_window (DhApp *app)
-{
-        GList *windows;
-        GList *l;
-
-        windows = gtk_application_get_windows (GTK_APPLICATION (app));
-
-        for (l = windows; l != NULL; l = l->next) {
-                GtkWindow *cur_window = GTK_WINDOW (l->data);
-
-                if (DH_IS_ASSISTANT (cur_window))
-                        return DH_ASSISTANT (cur_window);
-        }
-
-        return NULL;
 }
 
 static void
