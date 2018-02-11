@@ -26,6 +26,7 @@
 #include "dh-settings.h"
 #include "dh-sidebar.h"
 #include "dh-tab.h"
+#include "dh-tab-label.h"
 #include "dh-util.h"
 #include "dh-web-view.h"
 
@@ -50,15 +51,9 @@ typedef struct {
         DhLink *selected_link;
 } DhWindowPrivate;
 
-static GtkWidget *    window_new_tab_label           (DhWindow        *window,
-                                                      const gchar     *label,
-                                                      const GtkWidget *parent);
 static void           window_open_new_tab            (DhWindow        *window,
                                                       const gchar     *location,
                                                       gboolean         switch_focus);
-static void           window_tab_set_title           (DhWindow        *window,
-                                                      WebKitWebView   *web_view,
-                                                      const gchar     *title);
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
@@ -841,13 +836,8 @@ window_web_view_title_changed_cb (DhWebView  *web_view,
                                   GParamSpec *param_spec,
                                   DhWindow   *window)
 {
-        const gchar *title;
-
         if (web_view == get_active_web_view (window))
                 update_window_title (window);
-
-        title = webkit_web_view_get_title (WEBKIT_WEB_VIEW (web_view));
-        window_tab_set_title (window, WEBKIT_WEB_VIEW (web_view), title);
 }
 
 static void
@@ -909,9 +899,6 @@ window_open_new_tab (DhWindow    *window,
         g_free (font_fixed);
         g_free (font_variable);
 
-        label = window_new_tab_label (window, _("Empty Page"), GTK_WIDGET (tab));
-        gtk_widget_show_all (label);
-
         g_signal_connect (web_view,
                           "notify::title",
                           G_CALLBACK (window_web_view_title_changed_cb),
@@ -944,6 +931,9 @@ window_open_new_tab (DhWindow    *window,
                                  window,
                                  G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
+        label = dh_tab_label_new (tab);
+        gtk_widget_show (label);
+
         page_num = gtk_notebook_append_page (priv->notebook,
                                              GTK_WIDGET (tab),
                                              label);
@@ -966,103 +956,6 @@ window_open_new_tab (DhWindow    *window,
 
         if (switch_focus)
                 gtk_notebook_set_current_page (priv->notebook, page_num);
-}
-
-static void
-close_button_clicked_cb (GtkButton *button,
-                         DhWindow  *window)
-{
-        DhWindowPrivate *priv;
-        GtkWidget *parent_tab;
-        gint page_num;
-
-        priv = dh_window_get_instance_private (window);
-
-        parent_tab = g_object_get_data (G_OBJECT (button), "parent_tab");
-        page_num = gtk_notebook_page_num (priv->notebook, parent_tab);
-        window_close_tab (window, page_num);
-}
-
-static GtkWidget *
-window_new_tab_label (DhWindow        *window,
-                      const gchar     *str,
-                      const GtkWidget *parent)
-{
-        GtkWidget *label;
-        GtkWidget *hbox;
-        GtkWidget *close_button;
-        GtkWidget *image;
-        GIcon *icon;
-        GtkStyleContext *context;
-
-        hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
-
-        label = gtk_label_new (str);
-        gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
-        gtk_widget_set_halign (label, GTK_ALIGN_CENTER);
-        gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
-
-        close_button = GTK_WIDGET (g_object_new (GTK_TYPE_BUTTON,
-                                "focus-on-click", FALSE,
-                                NULL));
-        context = gtk_widget_get_style_context (close_button);
-        gtk_style_context_add_class (context, "small-button");
-        gtk_style_context_add_class (context, "flat");
-
-        icon = g_themed_icon_new_with_default_fallbacks ("window-close-symbolic");
-        image = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_MENU);
-        gtk_widget_show (image);
-        g_object_unref (icon);
-        gtk_container_add (GTK_CONTAINER (close_button), image);
-
-        g_object_set_data (G_OBJECT (close_button), "parent_tab", (gpointer) parent);
-
-        g_signal_connect (close_button, "clicked",
-                          G_CALLBACK (close_button_clicked_cb),
-                          window);
-
-        gtk_box_pack_start (GTK_BOX (hbox), close_button, FALSE, FALSE, 0);
-
-        g_object_set_data (G_OBJECT (hbox), "label", label);
-
-        return hbox;
-}
-
-static void
-window_tab_set_title (DhWindow      *window,
-                      WebKitWebView *web_view,
-                      const gchar   *title)
-{
-        DhWindowPrivate *priv;
-        gint num_pages;
-        gint i;
-
-        priv = dh_window_get_instance_private (window);
-
-        if (title == NULL || title[0] == '\0')
-                title = _("Empty Page");
-
-        num_pages = gtk_notebook_get_n_pages (priv->notebook);
-        for (i = 0; i < num_pages; i++) {
-                DhTab *cur_tab;
-                DhWebView *cur_web_view;
-
-                cur_tab = DH_TAB (gtk_notebook_get_nth_page (priv->notebook, i));
-                cur_web_view = dh_tab_get_web_view (cur_tab);
-
-                /* The web_view widget is inside a frame. */
-                if (WEBKIT_WEB_VIEW (cur_web_view) == web_view) {
-                        GtkWidget *hbox;
-
-                        hbox = gtk_notebook_get_tab_label (priv->notebook, GTK_WIDGET (cur_tab));
-
-                        if (hbox != NULL) {
-                                GtkLabel *label = g_object_get_data (G_OBJECT (hbox), "label");
-                                gtk_label_set_text (label, title);
-                        }
-                        break;
-                }
-        }
 }
 
 GtkWidget *
