@@ -47,8 +47,10 @@ static gboolean
 dh_assistant_key_press_event (GtkWidget   *widget,
                               GdkEventKey *event)
 {
+        DhAssistant *assistant = DH_ASSISTANT (widget);
+
         if (event->keyval == GDK_KEY_Escape) {
-                gtk_widget_destroy (widget);
+                gtk_window_close (GTK_WINDOW (assistant));
                 return GDK_EVENT_STOP;
         }
 

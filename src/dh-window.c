@@ -606,7 +606,7 @@ notebook_page_removed_after_cb (GtkNotebook *notebook,
         n_pages = gtk_notebook_get_n_pages (notebook);
 
         if (n_pages == 0)
-                gtk_widget_destroy (GTK_WIDGET (window));
+                gtk_window_close (GTK_WINDOW (window));
         else
                 show_or_hide_notebook_tabs (window);
 }
