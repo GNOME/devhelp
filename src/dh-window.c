@@ -108,6 +108,9 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
 }
 
+/* Can return NULL during initialization and finalization, so it's better to
+ * handle the NULL case with the return value of this function.
+ */
 static DhTab *
 get_active_tab (DhWindow *window)
 {
@@ -153,6 +156,8 @@ update_zoom_actions_sensitivity (DhWindow *window)
         gboolean enabled;
 
         web_view = get_active_web_view (window);
+        if (web_view == NULL)
+                return;
 
         enabled = dh_web_view_can_zoom_in (web_view);
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-in");
@@ -170,17 +175,19 @@ update_zoom_actions_sensitivity (DhWindow *window)
 static void
 update_back_forward_actions_sensitivity (DhWindow *window)
 {
-        WebKitWebView *web_view;
+        DhWebView *web_view;
         GAction *action;
         gboolean enabled;
 
-        web_view = WEBKIT_WEB_VIEW (get_active_web_view (window));
+        web_view = get_active_web_view (window);
+        if (web_view == NULL)
+                return;
 
-        enabled = web_view != NULL ? webkit_web_view_can_go_back (web_view) : FALSE;
+        enabled = webkit_web_view_can_go_back (WEBKIT_WEB_VIEW (web_view));
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-back");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 
-        enabled = web_view != NULL ? webkit_web_view_can_go_forward (web_view) : FALSE;
+        enabled = webkit_web_view_can_go_forward (WEBKIT_WEB_VIEW (web_view));
         action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-forward");
         g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 }
@@ -256,6 +263,9 @@ print_cb (GSimpleAction *action,
         WebKitPrintOperation *print_operation;
 
         web_view = get_active_web_view (window);
+        if (web_view == NULL)
+                return;
+
         print_operation = webkit_print_operation_new (WEBKIT_WEB_VIEW (web_view));
         webkit_print_operation_run_dialog (print_operation, GTK_WINDOW (window));
         g_object_unref (print_operation);
@@ -296,10 +306,14 @@ copy_cb (GSimpleAction *action,
                                         dh_link_get_name (priv->selected_link),
                                         -1);
         } else {
-                WebKitWebView *web_view;
+                DhWebView *web_view;
 
-                web_view = WEBKIT_WEB_VIEW (get_active_web_view (window));
-                webkit_web_view_execute_editing_command (web_view, WEBKIT_EDITING_COMMAND_COPY);
+                web_view = get_active_web_view (window);
+                if (web_view == NULL)
+                        return;
+
+                webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (web_view),
+                                                         WEBKIT_EDITING_COMMAND_COPY);
         }
 }
 
@@ -321,8 +335,11 @@ zoom_in_cb (GSimpleAction *action,
             gpointer       user_data)
 {
         DhWindow *window = DH_WINDOW (user_data);
+        DhWebView *web_view;
 
-        dh_web_view_zoom_in (get_active_web_view (window));
+        web_view = get_active_web_view (window);
+        if (web_view != NULL)
+                dh_web_view_zoom_in (web_view);
 }
 
 static void
@@ -331,8 +348,11 @@ zoom_out_cb (GSimpleAction *action,
              gpointer       user_data)
 {
         DhWindow *window = DH_WINDOW (user_data);
+        DhWebView *web_view;
 
-        dh_web_view_zoom_out (get_active_web_view (window));
+        web_view = get_active_web_view (window);
+        if (web_view != NULL)
+                dh_web_view_zoom_out (web_view);
 }
 
 static void
@@ -341,8 +361,11 @@ zoom_default_cb (GSimpleAction *action,
                  gpointer       user_data)
 {
         DhWindow *window = DH_WINDOW (user_data);
+        DhWebView *web_view;
 
-        dh_web_view_reset_zoom (get_active_web_view (window));
+        web_view = get_active_web_view (window);
+        if (web_view != NULL)
+                dh_web_view_reset_zoom (web_view);
 }
 
 static void
@@ -365,7 +388,8 @@ go_back_cb (GSimpleAction *action,
         DhWebView *web_view;
 
         web_view = get_active_web_view (window);
-        webkit_web_view_go_back (WEBKIT_WEB_VIEW (web_view));
+        if (web_view != NULL)
+                webkit_web_view_go_back (WEBKIT_WEB_VIEW (web_view));
 }
 
 static void
@@ -377,7 +401,8 @@ go_forward_cb (GSimpleAction *action,
         DhWebView *web_view;
 
         web_view = get_active_web_view (window);
-        webkit_web_view_go_forward (WEBKIT_WEB_VIEW (web_view));
+        if (web_view != NULL)
+                webkit_web_view_go_forward (WEBKIT_WEB_VIEW (web_view));
 }
 
 static void
@@ -467,7 +492,8 @@ sidebar_link_selected_cb (DhSidebar *sidebar,
                 return;
 
         web_view = get_active_web_view (window);
-        webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), uri);
+        if (web_view != NULL)
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), uri);
 
         g_free (uri);
 }
@@ -488,7 +514,11 @@ update_search_in_web_view (DhWindow  *window,
 static void
 update_search_in_active_web_view (DhWindow *window)
 {
-        update_search_in_web_view (window, get_active_web_view (window));
+        DhWebView *web_view;
+
+        web_view = get_active_web_view (window);
+        if (web_view != NULL)
+                update_search_in_web_view (window, web_view);
 }
 
 static void
@@ -514,6 +544,8 @@ search_previous_in_active_web_view (DhWindow *window)
         DhWebView *web_view;
 
         web_view = get_active_web_view (window);
+        if (web_view == NULL)
+                return;
 
         update_search_in_web_view (window, web_view);
         dh_web_view_search_previous (web_view);
@@ -525,6 +557,8 @@ search_next_in_active_web_view (DhWindow *window)
         DhWebView *web_view;
 
         web_view = get_active_web_view (window);
+        if (web_view == NULL)
+                return;
 
         update_search_in_web_view (window, web_view);
         dh_web_view_search_next (web_view);
@@ -1029,6 +1063,9 @@ _dh_window_display_uri (DhWindow    *window,
         priv = dh_window_get_instance_private (window);
 
         web_view = get_active_web_view (window);
+        if (web_view == NULL)
+                return;
+
         webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), uri);
         dh_sidebar_select_uri (priv->sidebar, uri);
 }
