@@ -52,9 +52,9 @@ typedef struct {
         DhLink *selected_link;
 } DhWindowPrivate;
 
-static void           open_new_tab            (DhWindow        *window,
-                                               const gchar     *location,
-                                               gboolean         switch_focus);
+static void open_new_tab (DhWindow    *window,
+                          const gchar *location,
+                          gboolean     switch_focus);
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
@@ -143,6 +143,46 @@ update_window_title (DhWindow *window)
 
         title = dh_web_view_get_devhelp_title (web_view);
         gtk_header_bar_set_title (priv->header_bar, title);
+}
+
+static void
+update_zoom_actions_sensitivity (DhWindow *window)
+{
+        DhWebView *web_view;
+        GAction *action;
+        gboolean enabled;
+
+        web_view = get_active_web_view (window);
+
+        enabled = dh_web_view_can_zoom_in (web_view);
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-in");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+
+        enabled = dh_web_view_can_zoom_out (web_view);
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-out");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+
+        enabled = dh_web_view_can_reset_zoom (web_view);
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-default");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+}
+
+static void
+update_back_forward_actions_sensitivity (DhWindow *window)
+{
+        WebKitWebView *web_view;
+        GAction *action;
+        gboolean enabled;
+
+        web_view = WEBKIT_WEB_VIEW (get_active_web_view (window));
+
+        enabled = web_view != NULL ? webkit_web_view_can_go_back (web_view) : FALSE;
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-back");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
+
+        enabled = web_view != NULL ? webkit_web_view_can_go_forward (web_view) : FALSE;
+        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-forward");
+        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 }
 
 static void
@@ -273,46 +313,6 @@ find_cb (GSimpleAction *action,
 
         gtk_search_bar_set_search_mode (priv->search_bar, TRUE);
         gtk_widget_grab_focus (GTK_WIDGET (priv->search_entry));
-}
-
-static void
-update_zoom_actions_sensitivity (DhWindow *window)
-{
-        DhWebView *web_view;
-        GAction *action;
-        gboolean enabled;
-
-        web_view = get_active_web_view (window);
-
-        enabled = dh_web_view_can_zoom_in (web_view);
-        action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-in");
-        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-
-        enabled = dh_web_view_can_zoom_out (web_view);
-        action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-out");
-        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-
-        enabled = dh_web_view_can_reset_zoom (web_view);
-        action = g_action_map_lookup_action (G_ACTION_MAP (window), "zoom-default");
-        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-}
-
-static void
-update_back_forward_actions_sensitivity (DhWindow *window)
-{
-        WebKitWebView *web_view;
-        GAction *action;
-        gboolean enabled;
-
-        web_view = WEBKIT_WEB_VIEW (get_active_web_view (window));
-
-        enabled = web_view != NULL ? webkit_web_view_can_go_back (web_view) : FALSE;
-        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-back");
-        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-
-        enabled = web_view != NULL ? webkit_web_view_can_go_forward (web_view) : FALSE;
-        action = g_action_map_lookup_action (G_ACTION_MAP (window), "go-forward");
-        g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
 }
 
 static void
@@ -735,6 +735,47 @@ dh_window_init (DhWindow *window)
         dh_sidebar_set_search_focus (priv->sidebar);
 }
 
+static void
+web_view_title_notify_cb (DhWebView  *web_view,
+                          GParamSpec *param_spec,
+                          DhWindow   *window)
+{
+        if (web_view == get_active_web_view (window))
+                update_window_title (window);
+}
+
+static void
+web_view_zoom_level_notify_cb (DhWebView  *web_view,
+                               GParamSpec *pspec,
+                               DhWindow   *window)
+{
+        if (web_view == get_active_web_view (window))
+                update_zoom_actions_sensitivity (window);
+}
+
+static gboolean
+web_view_button_press_event_cb (WebKitWebView  *web_view,
+                                GdkEventButton *event,
+                                DhWindow       *window)
+{
+        switch (event->button) {
+                /* Some mice emit button presses when the scroll wheel is tilted
+                 * to the side. Web browsers use them to navigate in history.
+                 */
+                case 8:
+                        webkit_web_view_go_back (web_view);
+                        return GDK_EVENT_STOP;
+                case 9:
+                        webkit_web_view_go_forward (web_view);
+                        return GDK_EVENT_STOP;
+
+                default:
+                        break;
+        }
+
+        return GDK_EVENT_PROPAGATE;
+}
+
 static gchar *
 find_equivalent_local_uri (const gchar *uri)
 {
@@ -858,47 +899,6 @@ web_view_load_changed_cb (WebKitWebView   *web_view,
                 uri = webkit_web_view_get_uri (web_view);
                 dh_sidebar_select_uri (priv->sidebar, uri);
         }
-}
-
-static void
-web_view_title_notify_cb (DhWebView  *web_view,
-                          GParamSpec *param_spec,
-                          DhWindow   *window)
-{
-        if (web_view == get_active_web_view (window))
-                update_window_title (window);
-}
-
-static void
-web_view_zoom_level_notify_cb (DhWebView  *web_view,
-                               GParamSpec *pspec,
-                               DhWindow   *window)
-{
-        if (web_view == get_active_web_view (window))
-                update_zoom_actions_sensitivity (window);
-}
-
-static gboolean
-web_view_button_press_event_cb (WebKitWebView  *web_view,
-                                GdkEventButton *event,
-                                DhWindow       *window)
-{
-        switch (event->button) {
-                /* Some mice emit button presses when the scroll wheel is tilted
-                 * to the side. Web browsers use them to navigate in history.
-                 */
-                case 8:
-                        webkit_web_view_go_back (web_view);
-                        return GDK_EVENT_STOP;
-                case 9:
-                        webkit_web_view_go_forward (web_view);
-                        return GDK_EVENT_STOP;
-
-                default:
-                        break;
-        }
-
-        return GDK_EVENT_PROPAGATE;
 }
 
 static void
