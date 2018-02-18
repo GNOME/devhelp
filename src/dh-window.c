@@ -3,6 +3,7 @@
  * Copyright (C) 2001-2008 Imendio AB
  * Copyright (C) 2012 Aleksander Morgado <aleksander@gnu.org>
  * Copyright (C) 2012 Thomas Bechtold <toabctl@gnome.org>
+ * Copyright (C) 2015-2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -51,9 +52,9 @@ typedef struct {
         DhLink *selected_link;
 } DhWindowPrivate;
 
-static void           window_open_new_tab            (DhWindow        *window,
-                                                      const gchar     *location,
-                                                      gboolean         switch_focus);
+static void           open_new_tab            (DhWindow        *window,
+                                               const gchar     *location,
+                                               gboolean         switch_focus);
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
@@ -151,7 +152,7 @@ new_tab_cb (GSimpleAction *action,
 {
         DhWindow *window = DH_WINDOW (user_data);
 
-        window_open_new_tab (window, NULL, TRUE);
+        open_new_tab (window, NULL, TRUE);
 }
 
 static void
@@ -275,7 +276,7 @@ find_cb (GSimpleAction *action,
 }
 
 static void
-window_update_zoom_actions_state (DhWindow *window)
+update_zoom_actions_sensitivity (DhWindow *window)
 {
         DhWebView *web_view;
         GAction *action;
@@ -297,7 +298,7 @@ window_update_zoom_actions_state (DhWindow *window)
 }
 
 static void
-window_update_back_forward_actions_sensitivity (DhWindow *window)
+update_back_forward_actions_sensitivity (DhWindow *window)
 {
         WebKitWebView *web_view;
         GAction *action;
@@ -380,7 +381,7 @@ go_forward_cb (GSimpleAction *action,
 }
 
 static void
-add_action_entries (DhWindow *window)
+add_actions (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         GPropertyAction *property_action;
@@ -620,8 +621,8 @@ notebook_switch_page_after_cb (GtkNotebook *notebook,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
         update_window_title (window);
-        window_update_zoom_actions_state (window);
-        window_update_back_forward_actions_sensitivity (window);
+        update_zoom_actions_sensitivity (window);
+        update_back_forward_actions_sensitivity (window);
         update_search_in_active_web_view (window);
 
         if (new_page != NULL) {
@@ -647,7 +648,7 @@ dh_window_init (DhWindow *window)
 
         gtk_widget_init_template (GTK_WIDGET (window));
 
-        add_action_entries (window);
+        add_actions (window);
 
         app = GTK_APPLICATION (g_application_get_default ());
         if (!gtk_application_prefers_app_menu (app)) {
@@ -728,7 +729,7 @@ dh_window_init (DhWindow *window)
                                 G_CALLBACK (notebook_switch_page_after_cb),
                                 window);
 
-        window_open_new_tab (window, NULL, TRUE);
+        open_new_tab (window, NULL, TRUE);
 
         /* Focus search in sidebar by default. */
         dh_sidebar_set_search_focus (priv->sidebar);
@@ -795,10 +796,10 @@ out:
 }
 
 static gboolean
-window_web_view_decide_policy_cb (WebKitWebView            *web_view,
-                                  WebKitPolicyDecision     *policy_decision,
-                                  WebKitPolicyDecisionType  type,
-                                  DhWindow                 *window)
+web_view_decide_policy_cb (WebKitWebView            *web_view,
+                           WebKitPolicyDecision     *policy_decision,
+                           WebKitPolicyDecisionType  type,
+                           DhWindow                 *window)
 {
         const char *uri;
         WebKitNavigationPolicyDecision *navigation_decision;
@@ -819,7 +820,7 @@ window_web_view_decide_policy_cb (WebKitWebView            *web_view,
         state = webkit_navigation_action_get_modifiers (navigation_action);
         if (button == 2 || (button == 1 && state == GDK_CONTROL_MASK)) {
                 webkit_policy_decision_ignore (policy_decision);
-                window_open_new_tab (window, uri, FALSE);
+                open_new_tab (window, uri, FALSE);
                 return GDK_EVENT_STOP;
         }
 
@@ -860,9 +861,9 @@ web_view_load_changed_cb (WebKitWebView   *web_view,
 }
 
 static void
-window_web_view_title_changed_cb (DhWebView  *web_view,
-                                  GParamSpec *param_spec,
-                                  DhWindow   *window)
+web_view_title_notify_cb (DhWebView  *web_view,
+                          GParamSpec *param_spec,
+                          DhWindow   *window)
 {
         if (web_view == get_active_web_view (window))
                 update_window_title (window);
@@ -874,13 +875,13 @@ web_view_zoom_level_notify_cb (DhWebView  *web_view,
                                DhWindow   *window)
 {
         if (web_view == get_active_web_view (window))
-                window_update_zoom_actions_state (window);
+                update_zoom_actions_sensitivity (window);
 }
 
 static gboolean
-window_web_view_button_press_event_cb (WebKitWebView  *web_view,
-                                       GdkEventButton *event,
-                                       DhWindow       *window)
+web_view_button_press_event_cb (WebKitWebView  *web_view,
+                                GdkEventButton *event,
+                                DhWindow       *window)
 {
         switch (event->button) {
                 /* Some mice emit button presses when the scroll wheel is tilted
@@ -901,9 +902,9 @@ window_web_view_button_press_event_cb (WebKitWebView  *web_view,
 }
 
 static void
-window_open_new_tab (DhWindow    *window,
-                     const gchar *location,
-                     gboolean     switch_focus)
+open_new_tab (DhWindow    *window,
+              const gchar *location,
+              gboolean     switch_focus)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         DhTab *tab;
@@ -929,7 +930,7 @@ window_open_new_tab (DhWindow    *window,
 
         g_signal_connect (web_view,
                           "notify::title",
-                          G_CALLBACK (window_web_view_title_changed_cb),
+                          G_CALLBACK (web_view_title_notify_cb),
                           window);
 
         g_signal_connect (web_view,
@@ -939,12 +940,12 @@ window_open_new_tab (DhWindow    *window,
 
         g_signal_connect (web_view,
                           "button-press-event",
-                          G_CALLBACK (window_web_view_button_press_event_cb),
+                          G_CALLBACK (web_view_button_press_event_cb),
                           window);
 
         g_signal_connect (web_view,
                           "decide-policy",
-                          G_CALLBACK (window_web_view_decide_policy_cb),
+                          G_CALLBACK (web_view_decide_policy_cb),
                           window);
 
         g_signal_connect (web_view,
@@ -955,7 +956,7 @@ window_open_new_tab (DhWindow    *window,
         back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (web_view));
         g_signal_connect_object (back_forward_list,
                                  "changed",
-                                 G_CALLBACK (window_update_back_forward_actions_sensitivity),
+                                 G_CALLBACK (update_back_forward_actions_sensitivity),
                                  window,
                                  G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
