@@ -280,6 +280,11 @@ close_cb (GSimpleAction *action,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint page_num;
 
+        /* FIXME: the code here closes the current *tab*, but in help-overlay.ui
+         * it is documented as "Close the current window". Look for example at
+         * what gedit does, or other GNOME apps with a GtkNotebook plus Ctrl+W
+         * shortcut, and do the same.
+         */
         page_num = gtk_notebook_get_current_page (priv->notebook);
         gtk_notebook_remove_page (priv->notebook, page_num);
 }
@@ -787,6 +792,10 @@ web_view_zoom_level_notify_cb (DhWebView  *web_view,
                 update_zoom_actions_sensitivity (window);
 }
 
+/* FIXME: connect to this signal on the whole DhWindow widget instead? And call
+ * webkit_web_view_go_back/forward() on the active web view. Because when the
+ * WebKitWebView doesn't have the focus, currently this callback is not called.
+ */
 static gboolean
 web_view_button_press_event_cb (WebKitWebView  *web_view,
                                 GdkEventButton *event,
