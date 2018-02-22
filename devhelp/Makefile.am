@@ -104,8 +104,7 @@ libdevhelp_3_la_SOURCES =
 
 libdevhelp_3_la_LIBADD =	\
 	libdevhelp-core.la	\
-	$(DEVHELP_LIBS)		\
-	$(LIBM)
+	$(DEVHELP_LIBS)
 
 libdevhelp_3_la_LDFLAGS =			\
 	$(AM_LDFLAGS)				\

@@ -7,8 +7,7 @@ AM_CPPFLAGS =				\
 AM_LDFLAGS = $(WARN_LDFLAGS)
 
 LDADD = $(top_builddir)/devhelp/libdevhelp-core.la	\
-	$(DEVHELP_LIBS)					\
-	$(LIBM)
+	$(DEVHELP_LIBS)
 
 UNIT_TEST_PROGS =
 
