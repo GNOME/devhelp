@@ -5,12 +5,16 @@ data/org.gnome.Devhelp.desktop.in.in
 data/org.gnome.devhelp.gschema.xml
 devhelp/dh-assistant-view.c
 devhelp/dh-book.c
+devhelp/dh-book-manager.c
 devhelp/dh-book-tree.c
 devhelp/dh-completion.c
+devhelp/dh-error.c
+devhelp/dh-init.c
 devhelp/dh-keyword-model.c
 devhelp/dh-link.c
 devhelp/dh-parser.c
 devhelp/dh-search-context.c
+devhelp/dh-settings.c
 devhelp/dh-sidebar.c
 devhelp/dh-util.c
 plugins/gedit-plugin/devhelp.plugin.desktop.in
@@ -19,6 +23,7 @@ src/dh-app.c
 src/dh-assistant.c
 src/dh-assistant.ui
 src/dh-main.c
+src/dh-preferences.c
 src/dh-preferences.ui
 src/dh-tab.c
 src/dh-tab-label.c
