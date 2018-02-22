@@ -24,7 +24,7 @@
 #define DH_BOOK_H
 
 #include <gio/gio.h>
-#include "dh-completion.h"
+#include <devhelp/dh-completion.h>
 
 G_BEGIN_DECLS
 

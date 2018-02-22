@@ -22,8 +22,8 @@
 #define DH_ASSISTANT_VIEW_H
 
 #include <webkit2/webkit2.h>
-#include "dh-book-manager.h"
-#include "dh-link.h"
+#include <devhelp/dh-book-manager.h>
+#include <devhelp/dh-link.h>
 
 G_BEGIN_DECLS
 

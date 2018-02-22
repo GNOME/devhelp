@@ -21,14 +21,14 @@
 
 /* Include all the public headers. */
 
-#include "dh-assistant-view.h"
-#include "dh-book.h"
-#include "dh-book-manager.h"
-#include "dh-book-tree.h"
-#include "dh-completion.h"
-#include "dh-init.h"
-#include "dh-keyword-model.h"
-#include "dh-link.h"
-#include "dh-sidebar.h"
+#include <devhelp/dh-assistant-view.h>
+#include <devhelp/dh-book.h>
+#include <devhelp/dh-book-manager.h>
+#include <devhelp/dh-book-tree.h>
+#include <devhelp/dh-completion.h>
+#include <devhelp/dh-init.h>
+#include <devhelp/dh-keyword-model.h>
+#include <devhelp/dh-link.h>
+#include <devhelp/dh-sidebar.h>
 
 #endif /* DEVHELP_H */

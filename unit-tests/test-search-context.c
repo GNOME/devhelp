@@ -16,7 +16,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "dh-search-context.h"
+#include "devhelp/dh-search-context.h"
 
 static gboolean
 strv_equal (GStrv strv1,

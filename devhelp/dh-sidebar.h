@@ -23,8 +23,8 @@
 #define DH_SIDEBAR_H
 
 #include <gtk/gtk.h>
-#include "dh-book-manager.h"
-#include "dh-link.h"
+#include <devhelp/dh-book-manager.h>
+#include <devhelp/dh-link.h>
 
 G_BEGIN_DECLS
 

@@ -21,7 +21,7 @@
 #define DH_KEYWORD_MODEL_H
 
 #include <glib-object.h>
-#include "dh-link.h"
+#include <devhelp/dh-link.h>
 
 G_BEGIN_DECLS
 

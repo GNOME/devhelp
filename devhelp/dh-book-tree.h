@@ -20,7 +20,7 @@
 #define DH_BOOK_TREE_H
 
 #include <gtk/gtk.h>
-#include "dh-link.h"
+#include <devhelp/dh-link.h>
 
 G_BEGIN_DECLS
 

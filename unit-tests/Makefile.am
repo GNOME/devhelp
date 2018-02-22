@@ -1,7 +1,7 @@
-AM_CPPFLAGS =				\
-	-I$(top_srcdir)/devhelp		\
-	-I$(top_builddir)/devhelp	\
-	$(WARN_CFLAGS)			\
+AM_CPPFLAGS =			\
+	-I$(top_srcdir)		\
+	-I$(top_builddir)	\
+	$(WARN_CFLAGS)		\
 	$(DEVHELP_CFLAGS)
 
 AM_LDFLAGS = $(WARN_LDFLAGS)

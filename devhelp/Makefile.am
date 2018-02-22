@@ -122,41 +122,43 @@ EXTRA_DIST =				\
 
 CLEANFILES = $(BUILT_SOURCES)
 
-# GObject Introspection
--include $(INTROSPECTION_MAKEFILE)
-INTROSPECTION_GIRS =
-INTROSPECTION_SCANNER_ARGS =			\
-	--add-include-path=$(srcdir)		\
-	--warn-all				\
-	--identifier-prefix Dh			\
-	--identifier-prefix dh			\
-	--pkg-export libdevhelp-3.0		\
-	--c-include="devhelp/devhelp.h"
-
-INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
-
 if HAVE_INTROSPECTION
-introspection_sources = 			\
-	$(libdevhelp_public_c_files)		\
-	$(libdevhelp_public_headers)		\
-	$(libdevhelp_built_public_c_files)	\
-	$(libdevhelp_built_public_headers)
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS = Devhelp-3.0.gir
 
-Devhelp-3.0.gir: libdevhelp-3.la
-Devhelp_3_0_gir_INCLUDES = Gtk-3.0 WebKit2-4.0
-Devhelp_3_0_gir_CFLAGS = $(INCLUDES)
-Devhelp_3_0_gir_LIBS = libdevhelp-3.la
-Devhelp_3_0_gir_FILES = $(introspection_sources)
+INTROSPECTION_SCANNER_ENV = CC="$(CC)"
+
+Devhelp-3.0.gir: libdevhelp-3.la $(BUILT_SOURCES)
+INTROSPECTION_SCANNER_ARGS =		\
+	-I$(top_srcdir)			\
+	-I$(top_builddir)		\
+	--identifier-prefix Dh		\
+	--identifier-prefix dh		\
+	--c-include=devhelp/devhelp.h	\
+	--warn-all
+Devhelp_3_0_gir_CFLAGS = $(DEVHELP_CFLAGS)
 Devhelp_3_0_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
-INTROSPECTION_GIRS += Devhelp-3.0.gir
+Devhelp_3_0_gir_LIBS = libdevhelp-3.la
+Devhelp_3_0_gir_FILES =				\
+	$(libdevhelp_public_headers)		\
+	$(libdevhelp_public_c_files)		\
+	$(libdevhelp_built_public_headers)	\
+	$(libdevhelp_built_public_c_files)
+
+Devhelp_3_0_gir_INCLUDES = Gtk-3.0 WebKit2-4.0
+Devhelp_3_0_gir_PACKAGES = gtk+-3.0 webkit2gtk-4.0
+Devhelp_3_0_gir_EXPORT_PACKAGES = libdevhelp-3.0
 
 girdir = $(datadir)/gir-1.0
-gir_DATA = $(INTROSPECTION_GIRS)
+gir_DATA = Devhelp-3.0.gir
 
 typelibdir = $(libdir)/girepository-1.0
-typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+typelib_DATA = Devhelp-3.0.typelib
 
-CLEANFILES += $(gir_DATA) $(typelib_DATA)
+CLEANFILES +=		\
+	$(gir_DATA)	\
+	$(typelib_DATA)
+
 endif # HAVE_INTROSPECTION
 
 -include $(top_srcdir)/git.mk

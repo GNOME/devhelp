@@ -16,7 +16,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "devhelp.h"
+#include <devhelp/devhelp.h>
 
 static void
 test_empty (void)
