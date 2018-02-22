@@ -11,6 +11,7 @@ AM_LDFLAGS =		\
 app_headers =			\
 	dh-app.h		\
 	dh-assistant.h		\
+	dh-preferences.h	\
 	dh-tab.h		\
 	dh-tab-label.h		\
 	dh-web-view.h		\
@@ -22,6 +23,7 @@ app_c_files =			\
 	dh-app.c		\
 	dh-assistant.c		\
 	dh-main.c		\
+	dh-preferences.c	\
 	dh-tab.c		\
 	dh-tab-label.c		\
 	dh-web-view.c		\

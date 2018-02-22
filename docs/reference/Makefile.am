@@ -49,7 +49,6 @@ EXTRA_HFILES = \
 IGNORE_HFILES = \
 	dh-error.h \
 	dh-parser.h \
-	dh-preferences.h \
 	dh-search-context.h \
 	dh-settings.h \
 	dh-util.h
