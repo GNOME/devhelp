@@ -18,10 +18,10 @@
 
 #include "config.h"
 #include "dh-assistant.h"
+#include <devhelp/devhelp.h>
+#include "devhelp/dh-settings.h"
+#include "devhelp/dh-util.h"
 #include "dh-window.h"
-#include "dh-util.h"
-#include "dh-assistant-view.h"
-#include "dh-settings.h"
 
 typedef struct {
         GtkWidget *view;

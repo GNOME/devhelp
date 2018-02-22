@@ -22,13 +22,11 @@
 #include "dh-window.h"
 #include <glib/gi18n.h>
 #include <webkit2/webkit2.h>
-#include "dh-book.h"
-#include "dh-book-manager.h"
-#include "dh-settings.h"
-#include "dh-sidebar.h"
+#include <devhelp/devhelp.h>
+#include "devhelp/dh-settings.h"
+#include "devhelp/dh-util.h"
 #include "dh-tab.h"
 #include "dh-tab-label.h"
-#include "dh-util.h"
 #include "dh-web-view.h"
 
 typedef struct {

@@ -1,7 +1,5 @@
 AM_CPPFLAGS = 				\
 	-I$(top_srcdir)			\
-	-I$(top_srcdir)/devhelp		\
-	-I$(top_builddir)/devhelp	\
 	-DG_LOG_DOMAIN=\"Devhelp\"	\
 	$(WARN_CFLAGS)
 

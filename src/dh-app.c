@@ -23,10 +23,10 @@
 #include "config.h"
 #include "dh-app.h"
 #include <glib/gi18n.h>
+#include "devhelp/dh-settings.h"
+#include "devhelp/dh-util.h"
 #include "dh-assistant.h"
 #include "dh-preferences.h"
-#include "dh-settings.h"
-#include "dh-util.h"
 
 G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 

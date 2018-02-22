@@ -20,13 +20,10 @@
 
 #include "config.h"
 #include "dh-preferences.h"
-
 #include <string.h>
-
-#include "dh-book.h"
-#include "dh-book-manager.h"
-#include "dh-util.h"
-#include "dh-settings.h"
+#include <devhelp/devhelp.h>
+#include "devhelp/dh-settings.h"
+#include "devhelp/dh-util.h"
 
 static GtkWidget *prefs_dialog = NULL;
 
