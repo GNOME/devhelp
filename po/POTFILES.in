@@ -27,6 +27,7 @@ src/dh-preferences.c
 src/dh-preferences.ui
 src/dh-tab.c
 src/dh-tab-label.c
+src/dh-util-app.c
 src/dh-web-view.c
 src/dh-window.c
 src/dh-window.ui

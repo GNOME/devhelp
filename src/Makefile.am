@@ -12,6 +12,7 @@ app_headers =			\
 	dh-preferences.h	\
 	dh-tab.h		\
 	dh-tab-label.h		\
+	dh-util-app.h		\
 	dh-web-view.h		\
 	dh-window.h		\
 	tepl-info-bar.h		\
@@ -24,6 +25,7 @@ app_c_files =			\
 	dh-preferences.c	\
 	dh-tab.c		\
 	dh-tab-label.c		\
+	dh-util-app.c		\
 	dh-web-view.c		\
 	dh-window.c		\
 	tepl-info-bar.c		\

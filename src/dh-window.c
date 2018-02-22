@@ -24,9 +24,9 @@
 #include <webkit2/webkit2.h>
 #include <devhelp/devhelp.h>
 #include "devhelp/dh-settings.h"
-#include "devhelp/dh-util.h"
 #include "dh-tab.h"
 #include "dh-tab-label.h"
+#include "dh-util-app.h"
 #include "dh-web-view.h"
 
 typedef struct {

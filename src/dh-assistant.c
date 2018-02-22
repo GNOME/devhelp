@@ -20,7 +20,7 @@
 #include "dh-assistant.h"
 #include <devhelp/devhelp.h>
 #include "devhelp/dh-settings.h"
-#include "devhelp/dh-util.h"
+#include "dh-util-app.h"
 #include "dh-window.h"
 
 typedef struct {

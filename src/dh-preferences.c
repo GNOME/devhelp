@@ -23,7 +23,7 @@
 #include <string.h>
 #include <devhelp/devhelp.h>
 #include "devhelp/dh-settings.h"
-#include "devhelp/dh-util.h"
+#include "dh-util-app.h"
 
 static GtkWidget *prefs_dialog = NULL;
 

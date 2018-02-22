@@ -18,30 +18,24 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_UTIL_H
-#define DH_UTIL_H
+#ifndef DH_UTIL_APP_H
+#define DH_UTIL_APP_H
 
-#include <gio/gio.h>
+#include <gtk/gtk.h>
+#include <webkit2/webkit2.h>
 
 G_BEGIN_DECLS
 
-gchar *      dh_util_build_data_filename          (const gchar *first_part,
-                                                   ...);
+void         dh_util_view_set_font                (WebKitWebView *view,
+                                                   const gchar   *font_name_fixed,
+                                                   const gchar   *font_name_variable);
 
-void         dh_util_ascii_strtitle               (gchar *str);
+void         dh_util_window_settings_save         (GtkWindow *window,
+                                                   GSettings *settings);
 
-gchar       *dh_util_create_data_uri_for_filename (const gchar *filename,
-                                                   const gchar *mime_type);
-
-void         dh_util_queue_concat                 (GQueue *q1,
-                                                   GQueue *q2);
-
-G_GNUC_INTERNAL
-void         _dh_util_free_book_tree              (GNode *book_tree);
-
-G_GNUC_INTERNAL
-GSList *     _dh_util_get_possible_index_files    (GFile *book_directory);
+void         dh_util_window_settings_restore      (GtkWindow *gtk_window,
+                                                   GSettings *settings);
 
 G_END_DECLS
 
-#endif /* DH_UTIL_H */
+#endif /* DH_UTIL_APP_H */
