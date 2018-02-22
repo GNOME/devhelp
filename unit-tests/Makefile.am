@@ -1,13 +1,13 @@
-AM_CPPFLAGS = 			\
-	-I$(top_srcdir)/src 	\
-	-I$(top_builddir)/src 	\
-	$(WARN_CFLAGS) 		\
+AM_CPPFLAGS =				\
+	-I$(top_srcdir)/devhelp		\
+	-I$(top_builddir)/devhelp	\
+	$(WARN_CFLAGS)			\
 	$(DEVHELP_CFLAGS)
 
 AM_LDFLAGS = $(WARN_LDFLAGS)
 
-LDADD = $(top_builddir)/src/libdevhelp-core.la	\
-	$(DEVHELP_LIBS)				\
+LDADD = $(top_builddir)/devhelp/libdevhelp-core.la	\
+	$(DEVHELP_LIBS)					\
 	$(LIBM)
 
 UNIT_TEST_PROGS =

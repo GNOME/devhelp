@@ -12,7 +12,7 @@ DOC_MAIN_SGML_FILE = $(DOC_MODULE)-docs.xml
 # gtk-doc will search all .c and .h files beneath these paths
 # for inline comments documenting functions and macros.
 # e.g. DOC_SOURCE_DIR=$(top_srcdir)/gtk $(top_srcdir)/gdk
-DOC_SOURCE_DIR = $(top_srcdir)/src
+DOC_SOURCE_DIR = $(top_srcdir)/devhelp
 
 # Extra options to pass to gtkdoc-scangobj. Normally not needed.
 SCANGOBJ_OPTIONS =
@@ -36,30 +36,23 @@ FIXXREF_OPTIONS =								\
 # Used for dependencies. The docs will be rebuilt if any of these change.
 # e.g. HFILE_GLOB=$(top_srcdir)/gtk/*.h
 # e.g. CFILE_GLOB=$(top_srcdir)/gtk/*.c
-HFILE_GLOB = $(top_srcdir)/src/*.h
-CFILE_GLOB = $(top_srcdir)/src/*.c
+HFILE_GLOB = $(top_srcdir)/devhelp/*.h
+CFILE_GLOB = $(top_srcdir)/devhelp/*.c
 
 # Extra header to include when scanning, which are not under DOC_SOURCE_DIR
 # e.g. EXTRA_HFILES=$(top_srcdir)/contrib/extra.h
 EXTRA_HFILES = \
-	$(top_builddir)/src/dh-enum-types.h
+	$(top_builddir)/devhelp/dh-enum-types.h
 
 # Header files or dirs to ignore when scanning. Use base file/dir names
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code
 IGNORE_HFILES = \
-	dh-app.h \
-	dh-assistant.h \
 	dh-error.h \
 	dh-parser.h \
 	dh-preferences.h \
 	dh-search-context.h \
 	dh-settings.h \
-	dh-tab.h \
-	dh-tab-label.h \
-	dh-util.h \
-	dh-web-view.h \
-	dh-window.h \
-	tepl-info-bar.h
+	dh-util.h
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png
@@ -83,12 +76,12 @@ expand_content_files =
 GTKDOC_CFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_builddir) \
-	-I$(top_builddir)/src \
+	-I$(top_builddir)/devhelp \
 	$(DEVHELP_CFLAGS) \
 	$(NULL)
 
 GTKDOC_LIBS = \
-	$(top_builddir)/src/libdevhelp-3.la \
+	$(top_builddir)/devhelp/libdevhelp-3.la \
 	$(DEVHELP_LIBS) \
 	$(NULL)
 

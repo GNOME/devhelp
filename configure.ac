@@ -97,6 +97,7 @@ AC_CONFIG_FILES([
 	data/Makefile
 	data/org.gnome.Devhelp.desktop.in
 	data/icons/Makefile
+	devhelp/Makefile
 	docs/Makefile
 	docs/reference/Makefile
 	help/Makefile
