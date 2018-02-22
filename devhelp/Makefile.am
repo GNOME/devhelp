@@ -1,12 +1,11 @@
-AM_CPPFLAGS = 						\
-	-I$(top_srcdir)					\
-	-DLOCALEDIR=\""$(localedir)"\" 	  		\
-	-DDATADIR=\""$(datadir)"\"                      \
-	-DG_LOG_DOMAIN=\"Devhelp\"			\
-	-DGDK_PIXBUF_DISABLE_SINGLE_INCLUDES		\
+AM_CPPFLAGS = 				\
+	-I$(top_srcdir)			\
+	-DLOCALEDIR=\""$(localedir)"\" 	\
+	-DDATADIR=\""$(datadir)"\"      \
+	-DG_LOG_DOMAIN=\"Devhelp\"	\
 	$(WARN_CFLAGS)
 
-AM_LDFLAGS =						\
+AM_LDFLAGS =		\
 	$(WARN_LDFLAGS)
 
 libdevhelp_public_headers =		\
