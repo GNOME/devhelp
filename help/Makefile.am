@@ -7,6 +7,6 @@ HELP_FILES =		\
 	search.page	\
 	$(NULL)
 
-HELP_LINGUAS = de hu pl pt_BR
+HELP_LINGUAS = de es hu pl pt_BR
 
 -include $(top_srcdir)/git.mk

@@ -1,0 +1,105 @@
+# Spanish translation for devhelp.
+# Copyright (C) 2018 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp master\n"
+"POT-Creation-Date: 2018-02-22 11:16+0000\n"
+"PO-Revision-Date: 2018-02-22 12:58+0100\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"Language-Team: es <gnome-es-list@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 2.91.6\n"
+
+#. (itstool) path: page/title
+#: C/index.page:4
+msgid "Devhelp User Documentation"
+msgstr "Documentación del usuario de Devhelp"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2018"
+
+#. (itstool) path: page/title
+#: C/search.page:10
+msgid "Search in the side panel"
+msgstr "Búsqueda en el panel lateral"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:13
+msgid "How the search in the side panel works."
+msgstr "Cómo funciona la búsqueda en el panel lateral."
+
+#. (itstool) path: section/title
+#: C/search.page:17
+msgid "Case sensitivity"
+msgstr "Distinguir mayúsculas y minúsculas"
+
+#. (itstool) path: section/p
+#: C/search.page:18
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/search.page:26
+msgid "Glob-style pattern matching"
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/search.page:27
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/search.page:35
+msgid "Several search terms"
+msgstr "Varios términos de búsqueda"
+
+#. (itstool) path: section/p
+#: C/search.page:36
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/search.page:41
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+"Por ejemplo, al buscar «<input>gtk window application</input>», esto "
+"coincide con «<code>gtk_window_get_application()</code>» y "
+"«<code>GtkApplicationWindow</code>» (entre otros símbolos)."
+
+#. (itstool) path: section/p
+#: C/search.page:50
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
+"Por otro lado, buscar «<input>gtk*window*application</input>» coincidirá con "
+"«<code>gtk_window_get_application()</code>» pero no con "
+"«<code>GtkApplicationWindow</code>»."
