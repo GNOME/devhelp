@@ -60,7 +60,6 @@ libdevhelp_built_public_c_files =	\
 libdevhelp_built_sources =			\
 	$(libdevhelp_built_public_headers)	\
 	$(libdevhelp_built_public_c_files)	\
-	dh-resources.c	 			\
 	$(NULL)
 
 BUILT_SOURCES = 			\
@@ -110,17 +109,6 @@ libdevhelp_3_la_LDFLAGS =			\
 	-version-info $(LIBDEVHELP_LT_VERSION)	\
 	-export-symbols-regex ^dh_
 
-resource_files =		\
-	dh-assistant.ui		\
-	dh-preferences.ui	\
-	dh-window.ui		\
-	help-overlay.ui		\
-	menus.ui		\
-	$(NULL)
-
-dh-resources.c: dh.gresource.xml $(resource_files)
-	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source --c-name dh $(srcdir)/dh.gresource.xml
-
 dh-enum-types.h: dh-enum-types.h.template $(libdevhelp_public_headers) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template dh-enum-types.h.template $(libdevhelp_public_headers)) > $@
 
@@ -130,8 +118,6 @@ dh-enum-types.c: dh-enum-types.c.template $(libdevhelp_public_headers) $(GLIB_MK
 EXTRA_DIST =				\
 	dh-enum-types.c.template	\
 	dh-enum-types.h.template	\
-	dh.gresource.xml		\
-	$(resource_files)		\
 	$(NULL)
 
 CLEANFILES = $(BUILT_SOURCES)

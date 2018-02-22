@@ -31,6 +31,14 @@ app_c_files =			\
 	tepl-info-bar.c		\
 	$(NULL)
 
+app_built_sources =	\
+	dh-resources.c	\
+	$(NULL)
+
+BUILT_SOURCES = 		\
+	$(app_built_sources)	\
+	$(NULL)
+
 # The application
 bin_PROGRAMS = devhelp
 
@@ -38,6 +46,10 @@ devhelp_SOURCES =	\
 	$(app_headers)	\
 	$(app_c_files)	\
 	$(NULL)
+
+# Do not distribute generated files.
+nodist_devhelp_SOURCES =	\
+	$(app_built_sources)
 
 devhelp_CPPFLAGS =	\
 	$(AM_CPPFLAGS)
@@ -52,5 +64,23 @@ devhelp_LDADD = 				\
 
 devhelp_LDFLAGS =	\
 	$(AM_LDFLAGS)
+
+resource_files =		\
+	dh-assistant.ui		\
+	dh-preferences.ui	\
+	dh-window.ui		\
+	help-overlay.ui		\
+	menus.ui		\
+	$(NULL)
+
+dh-resources.c: dh.gresource.xml $(resource_files)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source --c-name dh $(srcdir)/dh.gresource.xml
+
+EXTRA_DIST =			\
+	dh.gresource.xml	\
+	$(resource_files)	\
+	$(NULL)
+
+CLEANFILES = $(BUILT_SOURCES)
 
 -include $(top_srcdir)/git.mk
