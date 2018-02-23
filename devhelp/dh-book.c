@@ -343,7 +343,7 @@ dh_book_new (GFile *index_file)
          * FIXME: maybe instead of a string, have a DhLanguage object which
          * canonicalizes the string.
          */
-        dh_util_ascii_strtitle (language);
+        _dh_util_ascii_strtitle (language);
         priv->language = (language != NULL ?
                           g_strdup_printf (_("Language: %s"), language) :
                           g_strdup (_("Language: Undefined")));

@@ -483,7 +483,7 @@ search_books (SearchSettings  *settings,
                                                   max_hits - ret->length,
                                                   exact_link);
 
-                dh_util_queue_concat (ret, book_result);
+                _dh_util_queue_concat (ret, book_result);
         }
 
         g_queue_sort (ret, (GCompareDataFunc) dh_link_compare, NULL);
@@ -611,16 +611,16 @@ keyword_model_search (DhKeywordModel   *model,
          */
         if (in_book_exact_link != NULL) {
                 *exact_link = in_book_exact_link;
-                dh_util_queue_concat (out, in_book);
-                dh_util_queue_concat (out, other_books);
+                _dh_util_queue_concat (out, in_book);
+                _dh_util_queue_concat (out, other_books);
         } else if (other_books_exact_link != NULL) {
                 *exact_link = other_books_exact_link;
-                dh_util_queue_concat (out, other_books);
-                dh_util_queue_concat (out, in_book);
+                _dh_util_queue_concat (out, other_books);
+                _dh_util_queue_concat (out, in_book);
         } else {
                 *exact_link = NULL;
-                dh_util_queue_concat (out, in_book);
-                dh_util_queue_concat (out, other_books);
+                _dh_util_queue_concat (out, in_book);
+                _dh_util_queue_concat (out, other_books);
         }
 
         if (out->length >= max_hits)
@@ -637,7 +637,7 @@ keyword_model_search (DhKeywordModel   *model,
                                         max_hits - out->length,
                                         NULL);
 
-                dh_util_queue_concat (out, in_book);
+                _dh_util_queue_concat (out, in_book);
                 if (out->length >= max_hits)
                         return out;
         }
@@ -650,7 +650,7 @@ keyword_model_search (DhKeywordModel   *model,
         other_books = search_books (&settings,
                                     max_hits - out->length,
                                     NULL);
-        dh_util_queue_concat (out, other_books);
+        _dh_util_queue_concat (out, other_books);
 
         return out;
 }
@@ -718,7 +718,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
         }
 
         clear_links (model);
-        dh_util_queue_concat (&priv->links, new_links);
+        _dh_util_queue_concat (&priv->links, new_links);
         new_links = NULL;
 
         /* The content has been modified, change the stamp so that older

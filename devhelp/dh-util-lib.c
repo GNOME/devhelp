@@ -22,8 +22,8 @@
 #include "dh-link.h"
 
 gchar *
-dh_util_build_data_filename (const gchar *first_part,
-                             ...)
+_dh_util_build_data_filename (const gchar *first_part,
+                              ...)
 {
         gchar        *datadir = NULL;
         va_list       args;
@@ -65,7 +65,7 @@ dh_util_build_data_filename (const gchar *first_part,
  * Note that we modify the string in place.
  */
 void
-dh_util_ascii_strtitle (gchar *str)
+_dh_util_ascii_strtitle (gchar *str)
 {
         gboolean word_start;
 
@@ -87,8 +87,8 @@ dh_util_ascii_strtitle (gchar *str)
 }
 
 gchar *
-dh_util_create_data_uri_for_filename (const gchar *filename,
-                                      const gchar *mime_type)
+_dh_util_create_data_uri_for_filename (const gchar *filename,
+                                       const gchar *mime_type)
 {
         gchar *data;
         gsize  data_length;
@@ -109,8 +109,8 @@ dh_util_create_data_uri_for_filename (const gchar *filename,
 
 /* Adds q2 onto the end of q1, and frees q2. */
 void
-dh_util_queue_concat (GQueue *q1,
-                      GQueue *q2)
+_dh_util_queue_concat (GQueue *q1,
+                       GQueue *q2)
 {
         g_return_if_fail (q1 != NULL);
 

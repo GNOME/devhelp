@@ -355,24 +355,24 @@ dh_assistant_view_set_link (DhAssistantView *view,
                         }
                 }
 
-                stylesheet = dh_util_build_data_filename ("devhelp",
-                                                          "assistant",
-                                                          "assistant.css",
-                                                          NULL);
-                stylesheet_uri = dh_util_create_data_uri_for_filename (stylesheet,
-                                                                       "text/css");
+                stylesheet = _dh_util_build_data_filename ("devhelp",
+                                                           "assistant",
+                                                           "assistant.css",
+                                                           NULL);
+                stylesheet_uri = _dh_util_create_data_uri_for_filename (stylesheet,
+                                                                        "text/css");
                 g_free (stylesheet);
                 if (stylesheet_uri)
                         stylesheet_html = g_strdup_printf ("<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\"/>",
                                                            stylesheet_uri);
                 g_free (stylesheet_uri);
 
-                javascript = dh_util_build_data_filename ("devhelp",
-                                                          "assistant",
-                                                          "assistant.js",
-                                                          NULL);
-                javascript_uri = dh_util_create_data_uri_for_filename (javascript,
-                                                                       "application/javascript");
+                javascript = _dh_util_build_data_filename ("devhelp",
+                                                           "assistant",
+                                                           "assistant.js",
+                                                           NULL);
+                javascript_uri = _dh_util_create_data_uri_for_filename (javascript,
+                                                                        "application/javascript");
                 g_free (javascript);
 
                 if (javascript_uri)
