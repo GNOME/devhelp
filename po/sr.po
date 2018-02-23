@@ -13,9 +13,9 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-12-25 21:08+0000\n"
-"PO-Revision-Date: 2017-12-25 23:36+0100\n"
-"Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
+"POT-Creation-Date: 2018-02-10 09:48+0000\n"
+"PO-Revision-Date: 2018-02-22 18:51+0100\n"
+"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -24,21 +24,18 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
 #: data/org.gnome.Devhelp.appdata.xml.in:6
-#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:81 src/dh-app.c:407
-#: src/dh-window.c:736
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:112 src/dh-app.c:480
 msgid "Devhelp"
 msgstr "Девхелп"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7
-#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:83
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:114
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Програмерска алатка за прегледање и претраживање АПИ документације"
 
@@ -196,7 +193,7 @@ msgstr "Подршка Девхелпа"
 msgid "Show API Documentation"
 msgstr "Прикажи АПИ документацију"
 
-#: src/dh-app.c:85
+#: src/dh-app.c:116
 msgid "translator-credits"
 msgstr ""
 "Бранко Ивановић <popeye@one.ekof.bg.ac.yu>\n"
@@ -209,31 +206,31 @@ msgstr ""
 "\n"
 "http://prevod.org — превод на српски језик."
 
-#: src/dh-app.c:87
+#: src/dh-app.c:118
 msgid "Devhelp Website"
 msgstr "Веб страница Девхелпа"
 
-#: src/dh-app.c:311
+#: src/dh-app.c:384
 msgid "Opens a new Devhelp window"
 msgstr "Отвара нови прозор Девхелпа"
 
-#: src/dh-app.c:316
+#: src/dh-app.c:389
 msgid "Search for a keyword"
 msgstr "Тражи кључну реч"
 
-#: src/dh-app.c:317 src/dh-app.c:322
+#: src/dh-app.c:390 src/dh-app.c:395
 msgid "KEYWORD"
 msgstr "КЉУЧНА РЕЧ"
 
-#: src/dh-app.c:321
+#: src/dh-app.c:394
 msgid "Search and display any hit in the assistant window"
 msgstr "Претражује и приказује све резултате у прозору помоћника"
 
-#: src/dh-app.c:326
+#: src/dh-app.c:399
 msgid "Display the version and exit"
 msgstr "Приказује издање и излази"
 
-#: src/dh-app.c:331
+#: src/dh-app.c:404
 msgid "Quit any running Devhelp"
 msgstr "Затвара све прозоре Девхелпа"
 
@@ -246,12 +243,12 @@ msgstr "Девхелп — Помоћник"
 msgid "Book:"
 msgstr "Књига:"
 
-#: src/dh-book.c:349
+#: src/dh-book.c:348
 #, c-format
 msgid "Language: %s"
 msgstr "Језик: %s"
 
-#: src/dh-book.c:350
+#: src/dh-book.c:349
 msgid "Language: Undefined"
 msgstr "Језик: неодређен"
 
@@ -260,67 +257,67 @@ msgid "_Collapse All"
 msgstr "_Скупи све"
 
 #. i18n: a documentation book
-#: src/dh-link.c:559
+#: src/dh-link.c:549
 msgid "Book"
 msgstr "Књига"
 
 #. i18n: a "page" in a documentation book
-#: src/dh-link.c:563
+#: src/dh-link.c:553
 msgid "Page"
 msgstr "Страна"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: src/dh-link.c:568
+#: src/dh-link.c:558
 msgid "Keyword"
 msgstr "Кључна реч"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:574
+#: src/dh-link.c:564
 msgid "Function"
 msgstr "Функција"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:580
+#: src/dh-link.c:570
 msgid "Struct"
 msgstr "Структура"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:586
+#: src/dh-link.c:576
 msgid "Macro"
 msgstr "Макро"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:592
+#: src/dh-link.c:582
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:598
+#: src/dh-link.c:588
 msgid "Type"
 msgstr "Врста"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:604
+#: src/dh-link.c:594
 msgid "Property"
 msgstr "Својство"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: src/dh-link.c:610
+#: src/dh-link.c:600
 msgid "Signal"
 msgstr "Сигнал"
 
@@ -360,111 +357,71 @@ msgstr "_Стална ширина:"
 msgid "Fonts"
 msgstr "Словни ликови"
 
-#: src/dh-window.c:63
-msgid "50%"
-msgstr "50%"
-
-#: src/dh-window.c:64
-msgid "75%"
-msgstr "75%"
-
-#: src/dh-window.c:65
-msgid "100%"
-msgstr "100%"
-
-#: src/dh-window.c:66
-msgid "125%"
-msgstr "125%"
-
-#: src/dh-window.c:67
-msgid "150%"
-msgstr "150%"
-
-#: src/dh-window.c:68
-msgid "175%"
-msgstr "175%"
-
-#: src/dh-window.c:69
-msgid "200%"
-msgstr "200%"
-
-#: src/dh-window.c:70
-msgid "300%"
-msgstr "300%"
-
-#: src/dh-window.c:71
-msgid "400%"
-msgstr "400%"
-
-#: src/dh-window.c:960
-msgid "Error opening the requested link."
-msgstr "Грешка отварања захтеване везе."
-
-#: src/dh-window.c:1275
-msgid "_Close"
-msgstr "_Затвори"
-
-#: src/dh-window.c:1293 src/dh-window.c:1474
+#: src/dh-window.c:161 src/dh-window.c:1006 src/dh-window.c:1139
 msgid "Empty Page"
 msgstr "Празна страница"
 
-#: src/dh-window.ui:7
-msgid "Side _Panel"
-msgstr "Бочна _површ"
+#: src/dh-window.c:892
+msgid "Error opening the requested link."
+msgstr "Грешка отварања захтеване везе."
 
-#: src/dh-window.ui:14 src/dh-window.ui:53
-msgid "_Print"
-msgstr "_Штампај"
-
-#: src/dh-window.ui:18 src/dh-window.ui:57
-msgid "_Find"
-msgstr "_Нађи"
-
-#: src/dh-window.ui:24 src/dh-window.ui:63
-msgid "_Larger Text"
-msgstr "_Већи текст"
-
-#: src/dh-window.ui:28 src/dh-window.ui:67
-msgid "S_maller Text"
-msgstr "_Мањи текст"
-
-#: src/dh-window.ui:32 src/dh-window.ui:71
-msgid "_Normal Size"
-msgstr "_Обична величина"
-
-#: src/dh-window.ui:40 src/menus.ui:30
-msgid "New _Window"
-msgstr "Нови _прозор"
-
-#: src/dh-window.ui:46
+#: src/dh-window.ui:7 src/dh-window.ui:45
 msgid "_Side Panel"
 msgstr "Бочна _површ"
 
-#: src/dh-window.ui:77 src/menus.ui:36
+#: src/dh-window.ui:13 src/dh-window.ui:51
+msgid "_Print"
+msgstr "_Штампај"
+
+#: src/dh-window.ui:17 src/dh-window.ui:55
+msgid "_Find"
+msgstr "_Нађи"
+
+#: src/dh-window.ui:23 src/dh-window.ui:61
+msgid "_Larger Text"
+msgstr "_Већи текст"
+
+#: src/dh-window.ui:27 src/dh-window.ui:65
+msgid "S_maller Text"
+msgstr "_Мањи текст"
+
+#: src/dh-window.ui:31 src/dh-window.ui:69
+msgid "_Normal Size"
+msgstr "_Обична величина"
+
+#: src/dh-window.ui:39 src/menus.ui:30
+msgid "New _Window"
+msgstr "Нови _прозор"
+
+#: src/dh-window.ui:75 src/menus.ui:36
 msgid "_Preferences"
 msgstr "_Поставке"
 
-#: src/dh-window.ui:83 src/menus.ui:42
+#: src/dh-window.ui:81 src/menus.ui:42
 msgid "_Keyboard Shortcuts"
 msgstr "Пречице на та_статури"
 
-#: src/dh-window.ui:87
+#: src/dh-window.ui:85 src/menus.ui:46
+msgid "_Help"
+msgstr "_Помоћ"
+
+#: src/dh-window.ui:89
 msgid "_About Devhelp"
 msgstr "_О Девхелпу"
 
-#: src/dh-window.ui:91 src/menus.ui:50
+#: src/dh-window.ui:93 src/menus.ui:54
 msgid "_Quit"
 msgstr "_Изађи"
 
-#: src/dh-window.ui:120
+#: src/dh-window.ui:122
 msgid "Back"
 msgstr "Назад"
 
-#: src/dh-window.ui:139
+#: src/dh-window.ui:141
 msgid "Forward"
 msgstr "Напред"
 
-#: src/dh-window.ui:186
+#: src/dh-window.ui:187
 msgid "New Tab"
 msgstr "Нови језичак"
 
@@ -543,9 +500,42 @@ msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Поново постави степен увећања"
 
-#: src/menus.ui:46
+#: src/menus.ui:50
 msgid "_About"
 msgstr "_О Девхелпу"
+
+#~ msgid "50%"
+#~ msgstr "50%"
+
+#~ msgid "75%"
+#~ msgstr "75%"
+
+#~ msgid "100%"
+#~ msgstr "100%"
+
+#~ msgid "125%"
+#~ msgstr "125%"
+
+#~ msgid "150%"
+#~ msgstr "150%"
+
+#~ msgid "175%"
+#~ msgstr "175%"
+
+#~ msgid "200%"
+#~ msgstr "200%"
+
+#~ msgid "300%"
+#~ msgstr "300%"
+
+#~ msgid "400%"
+#~ msgstr "400%"
+
+#~ msgid "_Close"
+#~ msgstr "_Затвори"
+
+#~ msgid "Side _Panel"
+#~ msgstr "Бочна _површ"
 
 #~| msgid "Developer's Help program"
 #~ msgid "Developer’s Help program"
