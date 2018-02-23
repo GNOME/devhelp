@@ -18,7 +18,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "dh-util.h"
+#include "dh-util-lib.h"
 #include "dh-link.h"
 
 gchar *

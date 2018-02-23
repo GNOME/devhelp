@@ -23,7 +23,7 @@
 #include "dh-assistant-view.h"
 #include <string.h>
 #include <glib/gi18n-lib.h>
-#include "dh-util.h"
+#include "dh-util-lib.h"
 #include "dh-book.h"
 #include "dh-book-manager.h"
 

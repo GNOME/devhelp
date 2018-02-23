@@ -25,7 +25,7 @@
 #include "dh-book.h"
 #include "dh-book-manager.h"
 #include "dh-search-context.h"
-#include "dh-util.h"
+#include "dh-util-lib.h"
 
 /**
  * SECTION:dh-keyword-model

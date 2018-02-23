@@ -24,7 +24,7 @@
 #include <string.h>
 #include "dh-error.h"
 #include "dh-link.h"
-#include "dh-util.h"
+#include "dh-util-lib.h"
 
 /* Possible things to do for the version 3 of the Devhelp index file format (if
  * one day there is a strong desire to create a new version):

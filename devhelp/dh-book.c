@@ -25,7 +25,7 @@
 #include <glib/gi18n-lib.h>
 #include "dh-link.h"
 #include "dh-parser.h"
-#include "dh-util.h"
+#include "dh-util-lib.h"
 
 /**
  * SECTION:dh-book

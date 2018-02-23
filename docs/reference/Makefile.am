@@ -51,7 +51,7 @@ IGNORE_HFILES = \
 	dh-parser.h \
 	dh-search-context.h \
 	dh-settings.h \
-	dh-util.h
+	dh-util-lib.h
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png

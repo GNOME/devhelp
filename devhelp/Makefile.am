@@ -38,7 +38,7 @@ libdevhelp_private_headers =		\
 	dh-parser.h			\
 	dh-search-context.h		\
 	dh-settings.h			\
-	dh-util.h			\
+	dh-util-lib.h			\
 	$(NULL)
 
 libdevhelp_private_c_files =		\
@@ -46,7 +46,7 @@ libdevhelp_private_c_files =		\
 	dh-parser.c			\
 	dh-search-context.c		\
 	dh-settings.c			\
-	dh-util.c			\
+	dh-util-lib.c			\
 	$(NULL)
 
 libdevhelp_built_public_headers =	\

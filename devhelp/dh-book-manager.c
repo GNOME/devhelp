@@ -25,7 +25,7 @@
 #include "dh-book-manager.h"
 #include "dh-book.h"
 #include "dh-settings.h"
-#include "dh-util.h"
+#include "dh-util-lib.h"
 
 /**
  * SECTION:dh-book-manager

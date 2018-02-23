@@ -15,7 +15,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "devhelp/dh-util.h"
+#include "devhelp/dh-util-lib.h"
 
 static void
 check_get_possible_index_files (const gchar *book_directory_path,

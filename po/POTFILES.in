@@ -16,7 +16,7 @@ devhelp/dh-parser.c
 devhelp/dh-search-context.c
 devhelp/dh-settings.c
 devhelp/dh-sidebar.c
-devhelp/dh-util.c
+devhelp/dh-util-lib.c
 plugins/gedit-plugin/devhelp.plugin.desktop.in
 plugins/gedit-plugin/devhelp.py
 src/dh-app.c

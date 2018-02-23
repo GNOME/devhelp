@@ -18,8 +18,8 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_UTIL_H
-#define DH_UTIL_H
+#ifndef DH_UTIL_LIB_H
+#define DH_UTIL_LIB_H
 
 #include <gio/gio.h>
 
@@ -44,4 +44,4 @@ GSList *     _dh_util_get_possible_index_files    (GFile *book_directory);
 
 G_END_DECLS
 
-#endif /* DH_UTIL_H */
+#endif /* DH_UTIL_LIB_H */
