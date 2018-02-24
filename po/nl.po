@@ -6,7 +6,7 @@
 # Daniel van Eeden <daniel_e@dds.nl>, 2004
 # Taco Witte <tcwitte@cs.uu.nl>, 2004, 2005
 # Wouter Bolsterlee <wbolster@gnome.org>, 2006–2012
-# Justin van Steijn <jvs@fsfe.org>, 2016
+# Justin van Steijn <jvs@fsfe.org>, 2016, 2017.
 # Nathan Follens <nthn@unseen.is>, 2017
 #
 msgid ""
@@ -14,48 +14,77 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-08-16 10:37+0000\n"
-"PO-Revision-Date: 2017-09-11 19:57+0200\n"
-"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
+"POT-Creation-Date: 2017-12-21 21:47+0000\n"
+"PO-Revision-Date: 2017-12-24 08:59+0100\n"
+"Last-Translator: Justin van Steijn <jvs@fsfe.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 1.8.11\n"
 
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
 #: data/org.gnome.Devhelp.appdata.xml.in:6
-#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:232 src/dh-app.c:537
-#: src/dh-window.c:878
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:81 src/dh-app.c:407
+#: src/dh-window.c:736
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7
-#: data/org.gnome.Devhelp.desktop.in.in:4
-msgid "Developer’s Help program"
-msgstr "Hulpprogramma voor ontwikkelaars"
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:83
+msgid "A developer tool for browsing and searching API documentation"
+msgstr ""
+"Een ontwikkelhulpmiddel voor het bladeren en zoeken door API-documentatie."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:9
 msgid ""
-"Devhelp is an API documentation browser. It provides an easy way to navigate "
-"through libraries, search by function, struct, or macro. It provides a "
-"tabbed interface and allows to print results."
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
 msgstr ""
-"Devhelp is een API-documentatie-browser. U kunt op een gemakkelijke manier "
-"door bibliotheken te bladeren, en zoeken per functie, struct of macro. Het "
-"heeft een interface met tabbladen en kan resultaten afdrukken."
+"Devhelp is een ontwikkelhulpmiddel voor het bladeren en zoeken door API-"
+"documentatie. U kunt op een gemakkelijke manier door bibliotheken bladeren, "
+"en zoeken per functie, struct of macro."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:15
+#: data/org.gnome.Devhelp.appdata.xml.in:14
 msgid ""
-"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
 msgstr ""
-"Devhelp integreert met andere toepassingen zoals Glade, Anjuta en Geany."
+"De documentatie moet lokaal worden geïnstalleerd, dus om Devhelp te "
+"gebruiken is geen internetverbinding nodig."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+"well supported. But other development platforms can be supported as well, as "
+"long as the API documentation is available in HTML and a *.devhelp2 index "
+"file is generated."
+msgstr ""
+"Devhelp werkt standaard met GTK-Doc, dus de bibliotheken van GTK+ en Gnome "
+"worden goed ondersteund. Andere ontwikkelplatforms kunnen echter ook "
+"ondersteund worden, mits de API-documentatie beschikbaar is in HTML en een *."
+"devhelp2-indexbestand is gegenereerd."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:24
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr ""
+"Devhelp integreert met andere toepassingen zoals Glade, Builder en Anjuta. "
+"Plug-ins zijn beschikbaar voor verschillende teksteditors (gedit, Vim, "
+"Emacs, Geany, …)."
 
 #: data/org.gnome.Devhelp.desktop.in.in:5
-msgid "Documentation Browser"
-msgstr "Documentatie-browser"
+#| msgid "Documentation Browser"
+msgid "API Documentation Browser"
+msgstr "API-documentatiebrowser"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Devhelp.desktop.in.in:7
@@ -94,107 +123,67 @@ msgstr "Hoogte van hoofdvenster"
 msgid "The height of the main window."
 msgstr "De hoogte van het hoofdvenster."
 
-#: data/org.gnome.devhelp.gschema.xml:33
-msgid "X position of main window"
-msgstr "X-positie van hoofdvenster"
-
-#: data/org.gnome.devhelp.gschema.xml:34
-msgid "The X position of the main window."
-msgstr "De X-positie van het hoofdvenster."
-
-#: data/org.gnome.devhelp.gschema.xml:38
-msgid "Y position of main window"
-msgstr "Y-positie van hoofdvenster"
-
-#: data/org.gnome.devhelp.gschema.xml:39
-msgid "The Y position of the main window."
-msgstr "De Y-positie van het hoofdvenster."
-
-#: data/org.gnome.devhelp.gschema.xml:45
+#: data/org.gnome.devhelp.gschema.xml:35
 msgid "Width of the index and search pane"
 msgstr "Breedte van het inhoud- en zoekvenster"
 
-#: data/org.gnome.devhelp.gschema.xml:46
+#: data/org.gnome.devhelp.gschema.xml:36
 msgid "The width of the index and search pane."
 msgstr "De breedte van het inhoud- en zoekvenster."
 
-#: data/org.gnome.devhelp.gschema.xml:52
+#: data/org.gnome.devhelp.gschema.xml:42
 msgid "Books disabled"
 msgstr "Boeken uitgeschakeld"
 
-#: data/org.gnome.devhelp.gschema.xml:53
+#: data/org.gnome.devhelp.gschema.xml:43
 msgid "List of books disabled by the user."
 msgstr "Boekenlijst is uitgeschakeld door de gebruiker."
 
-#: data/org.gnome.devhelp.gschema.xml:57
+#: data/org.gnome.devhelp.gschema.xml:47
 msgid "Group by language"
 msgstr "Groeperen op taal"
 
-#: data/org.gnome.devhelp.gschema.xml:58
+#: data/org.gnome.devhelp.gschema.xml:48
 msgid "Whether books should be grouped by language in the UI"
 msgstr "Of boeken per taal gegroepeerd moeten worden in de interface"
 
-#: data/org.gnome.devhelp.gschema.xml:67
-msgid "Whether the assistant window should be maximized"
-msgstr "Of het assistentvenster gemaximaliseerd moet zijn"
-
-#: data/org.gnome.devhelp.gschema.xml:68
-msgid "Whether the assistant window should be maximized."
-msgstr "Of het assistentvenster gemaximaliseerd moet zijn."
-
-#: data/org.gnome.devhelp.gschema.xml:72
+#: data/org.gnome.devhelp.gschema.xml:57
 msgid "Width of the assistant window"
 msgstr "Breedte van het hulpvenster"
 
-#: data/org.gnome.devhelp.gschema.xml:73
+#: data/org.gnome.devhelp.gschema.xml:58
 msgid "The width of the assistant window."
 msgstr "De breedte van het hulpvenster."
 
-#: data/org.gnome.devhelp.gschema.xml:77
+#: data/org.gnome.devhelp.gschema.xml:62
 msgid "Height of assistant window"
 msgstr "Hoogte van hulpvenster"
 
-#: data/org.gnome.devhelp.gschema.xml:78
+#: data/org.gnome.devhelp.gschema.xml:63
 msgid "The height of the assistant window."
 msgstr "De hoogte van het hulpvenster."
 
-#: data/org.gnome.devhelp.gschema.xml:82
-msgid "X position of assistant window"
-msgstr "X-positie van hulpvenster"
-
-#: data/org.gnome.devhelp.gschema.xml:83
-msgid "The X position of the assistant window."
-msgstr "De X-positie van het hulpvenster."
-
-#: data/org.gnome.devhelp.gschema.xml:87
-msgid "Y position of assistant window"
-msgstr "Y-positie van hulpvenster"
-
-#: data/org.gnome.devhelp.gschema.xml:88
-msgid "The Y position of the assistant window."
-msgstr "De Y-positie van het hulpvenster."
-
-#: data/org.gnome.devhelp.gschema.xml:94
+#: data/org.gnome.devhelp.gschema.xml:69
 msgid "Use system fonts"
 msgstr "Systeemlettertypen gebruiken"
 
-#: data/org.gnome.devhelp.gschema.xml:95
+#: data/org.gnome.devhelp.gschema.xml:70
 msgid "Use the system default fonts."
 msgstr "De systeemlettertypen gebruiken."
 
-#: data/org.gnome.devhelp.gschema.xml:99
+#: data/org.gnome.devhelp.gschema.xml:74
 msgid "Font for text"
 msgstr "Lettertype voor tekst"
 
-#: data/org.gnome.devhelp.gschema.xml:100
+#: data/org.gnome.devhelp.gschema.xml:75
 msgid "Font for text with variable width."
 msgstr "Lettertype voor tekst met variabele tekenbreedte."
 
-#: data/org.gnome.devhelp.gschema.xml:104
+#: data/org.gnome.devhelp.gschema.xml:79
 msgid "Font for fixed width text"
 msgstr "Lettertype voor vaste tekenbreedte"
 
-#: data/org.gnome.devhelp.gschema.xml:105
+#: data/org.gnome.devhelp.gschema.xml:80
 msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Lettertype voor tekst met een vaste tekenbreedte, zoals codevoorbeelden."
@@ -207,25 +196,274 @@ msgstr "Devhelp-ondersteuning"
 msgid "Show API Documentation"
 msgstr "API-documentatie tonen"
 
-#: src/devhelp-menu.ui:28 src/dh-window.ui:46
+#: src/dh-app.c:85
+msgid "translator-credits"
+msgstr ""
+"Wouter Bolsterlee\n"
+"Taco Witte\n"
+"Justin van Steijn\n"
+"Nathan Follens\n"
+"\n"
+"Meer info over Gnome-NL http://nl.gnome.org"
+
+#: src/dh-app.c:87
+msgid "Devhelp Website"
+msgstr "Devhelp-website"
+
+#: src/dh-app.c:311
+msgid "Opens a new Devhelp window"
+msgstr "Nieuw Devhelp-venster openen"
+
+#: src/dh-app.c:316
+msgid "Search for a keyword"
+msgstr "Naar een sleutelwoord zoeken"
+
+#: src/dh-app.c:317 src/dh-app.c:322
+msgid "KEYWORD"
+msgstr "ZOEKWOORD"
+
+#: src/dh-app.c:321
+msgid "Search and display any hit in the assistant window"
+msgstr "Zoeken naar resultaten en deze weergeven in het hulpvenster"
+
+#: src/dh-app.c:326
+msgid "Display the version and exit"
+msgstr "Versie tonen en afsluiten"
+
+#: src/dh-app.c:331
+msgid "Quit any running Devhelp"
+msgstr "Alle actieve Devhelp-processen afsluiten"
+
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:8
+msgid "Devhelp — Assistant"
+msgstr "Devhelp — Hulpvenster"
+
+#: src/dh-assistant-view.c:400
+msgid "Book:"
+msgstr "Boek:"
+
+#: src/dh-book.c:343
+#, c-format
+msgid "Language: %s"
+msgstr "Taal: %s"
+
+#: src/dh-book.c:344
+msgid "Language: Undefined"
+msgstr "Taal: onbekend"
+
+#: src/dh-book-tree.c:655
+msgid "_Collapse All"
+msgstr "Alles in_klappen"
+
+#. i18n: a documentation book
+#: src/dh-link.c:559
+msgid "Book"
+msgstr "Boek"
+
+#. i18n: a "page" in a documentation book
+#: src/dh-link.c:563
+msgid "Page"
+msgstr "Pagina"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: src/dh-link.c:568
+msgid "Keyword"
+msgstr "Sleutelwoord"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:574
+msgid "Function"
+msgstr "Functie"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:580
+msgid "Struct"
+msgstr "Struct"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:586
+msgid "Macro"
+msgstr "Macro"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:592
+msgid "Enum"
+msgstr "Enumeratie"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:598
+msgid "Type"
+msgstr "Type"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:604
+msgid "Property"
+msgstr "Eigenschap"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:610
+msgid "Signal"
+msgstr "Signal"
+
+#: src/dh-preferences.ui:40
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: src/dh-preferences.ui:76
+msgid "_Group by language"
+msgstr "_Groeperen op taal"
+
+#: src/dh-preferences.ui:107
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+#: src/dh-preferences.ui:122
+msgid "Title"
+msgstr "Titel"
+
+#: src/dh-preferences.ui:151
+msgid "Book Shelf"
+msgstr "Boekenplank"
+
+#: src/dh-preferences.ui:172
+msgid "_Use system fonts"
+msgstr "_Systeemlettertypen gebruiken"
+
+#: src/dh-preferences.ui:196
+msgid "_Variable width: "
+msgstr "_Variabele breedte: "
+
+#: src/dh-preferences.ui:209
+msgid "_Fixed width:"
+msgstr "_Vaste breedte:"
+
+#: src/dh-preferences.ui:270
+msgid "Fonts"
+msgstr "Lettertypen"
+
+#: src/dh-window.c:63
+msgid "50%"
+msgstr "50%"
+
+#: src/dh-window.c:64
+msgid "75%"
+msgstr "75%"
+
+#: src/dh-window.c:65
+msgid "100%"
+msgstr "100%"
+
+#: src/dh-window.c:66
+msgid "125%"
+msgstr "125%"
+
+#: src/dh-window.c:67
+msgid "150%"
+msgstr "150%"
+
+#: src/dh-window.c:68
+msgid "175%"
+msgstr "175%"
+
+#: src/dh-window.c:69
+msgid "200%"
+msgstr "200%"
+
+#: src/dh-window.c:70
+msgid "300%"
+msgstr "300%"
+
+#: src/dh-window.c:71
+msgid "400%"
+msgstr "400%"
+
+#: src/dh-window.c:960
+msgid "Error opening the requested link."
+msgstr "Fout bij het openen van de opgevraagde verwijzing."
+
+#: src/dh-window.c:1275
+msgid "_Close"
+msgstr "Sl_uiten"
+
+#: src/dh-window.c:1293 src/dh-window.c:1474
+msgid "Empty Page"
+msgstr "Lege pagina"
+
+#: src/dh-window.ui:7
+msgid "Side _Panel"
+msgstr "Zij_paneel"
+
+#: src/dh-window.ui:14 src/dh-window.ui:53
+msgid "_Print"
+msgstr "Af_drukken"
+
+#: src/dh-window.ui:18 src/dh-window.ui:57
+msgid "_Find"
+msgstr "_Zoeken"
+
+#: src/dh-window.ui:24 src/dh-window.ui:63
+msgid "_Larger Text"
+msgstr "_Grotere tekst"
+
+#: src/dh-window.ui:28 src/dh-window.ui:67
+msgid "S_maller Text"
+msgstr "_Kleinere tekst"
+
+#: src/dh-window.ui:32 src/dh-window.ui:71
+msgid "_Normal Size"
+msgstr "_Normale grootte"
+
+#: src/dh-window.ui:40 src/menus.ui:30
 msgid "New _Window"
 msgstr "Nieuw _venster"
 
-#: src/devhelp-menu.ui:35 src/dh-window.ui:89
+#: src/dh-window.ui:46
+msgid "_Side Panel"
+msgstr "_Zijpaneel"
+
+#: src/dh-window.ui:77 src/menus.ui:36
 msgid "_Preferences"
 msgstr "_Voorkeuren"
 
-#: src/devhelp-menu.ui:41 src/dh-window.ui:95
+#: src/dh-window.ui:83 src/menus.ui:42
 msgid "_Keyboard Shortcuts"
 msgstr "_Sneltoetsen"
 
-#: src/devhelp-menu.ui:45
-msgid "_About"
-msgstr "In_fo"
+#: src/dh-window.ui:87
+msgid "_About Devhelp"
+msgstr "_Over Devhelp"
 
-#: src/devhelp-menu.ui:49 src/dh-window.ui:103
+#: src/dh-window.ui:91 src/menus.ui:50
 msgid "_Quit"
 msgstr "_Afsluiten"
+
+#: src/dh-window.ui:120
+msgid "Back"
+msgstr "Terug"
+
+#: src/dh-window.ui:139
+msgid "Forward"
+msgstr "Volgende"
+
+#: src/dh-window.ui:186
+msgid "New Tab"
+msgstr "Nieuw tabblad"
 
 #: src/help-overlay.ui:14
 msgctxt "shortcut window"
@@ -302,263 +540,46 @@ msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Zoomniveau herstellen"
 
+#: src/menus.ui:46
+msgid "_About"
+msgstr "In_fo"
+
+#~ msgid "Developer’s Help program"
+#~ msgstr "Hulpprogramma voor ontwikkelaars"
+
+#~ msgid "X position of main window"
+#~ msgstr "X-positie van hoofdvenster"
+
+#~ msgid "The X position of the main window."
+#~ msgstr "De X-positie van het hoofdvenster."
+
+#~ msgid "Y position of main window"
+#~ msgstr "Y-positie van hoofdvenster"
+
+#~ msgid "The Y position of the main window."
+#~ msgstr "De Y-positie van het hoofdvenster."
+
+#~ msgid "Whether the assistant window should be maximized"
+#~ msgstr "Of het assistentvenster gemaximaliseerd moet zijn"
+
+#~ msgid "Whether the assistant window should be maximized."
+#~ msgstr "Of het assistentvenster gemaximaliseerd moet zijn."
+
+#~ msgid "X position of assistant window"
+#~ msgstr "X-positie van hulpvenster"
+
+#~ msgid "The X position of the assistant window."
+#~ msgstr "De X-positie van het hulpvenster."
+
+#~ msgid "Y position of assistant window"
+#~ msgstr "Y-positie van hulpvenster"
+
+#~ msgid "The Y position of the assistant window."
+#~ msgstr "De Y-positie van het hulpvenster."
+
 # Vrij vertaald (Wouter Bolsterlee)
-#: src/dh-app.c:234
-msgid "A developers’ help browser for GNOME"
-msgstr "Hulpbrowser voor ontwikkelaars"
-
-#: src/dh-app.c:236
-msgid "translator-credits"
-msgstr ""
-"Wouter Bolsterlee\n"
-"Taco Witte\n"
-"Justin van Steijn\n"
-"Nathan Follens\n"
-"\n"
-"Meer info over Gnome-NL http://nl.gnome.org"
-
-#: src/dh-app.c:238
-msgid "Devhelp Website"
-msgstr "Devhelp-website"
-
-#: src/dh-app.c:462
-msgid "Opens a new Devhelp window"
-msgstr "Nieuw Devhelp-venster openen"
-
-#: src/dh-app.c:467
-msgid "Search for a keyword"
-msgstr "Naar een sleutelwoord zoeken"
-
-#: src/dh-app.c:468 src/dh-app.c:473
-msgid "KEYWORD"
-msgstr "ZOEKWOORD"
-
-#: src/dh-app.c:472
-msgid "Search and display any hit in the assistant window"
-msgstr "Zoeken naar resultaten en deze weergeven in het hulpvenster"
-
-#: src/dh-app.c:477
-msgid "Display the version and exit"
-msgstr "Versie tonen en afsluiten"
-
-#: src/dh-app.c:482
-msgid "Quit any running Devhelp"
-msgstr "Alle actieve Devhelp-processen afsluiten"
-
-#. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
-msgid "Devhelp — Assistant"
-msgstr "Devhelp — Hulpvenster"
-
-#: src/dh-assistant-view.c:399
-msgid "Book:"
-msgstr "Boek:"
-
-#: src/dh-book.c:324
-#, c-format
-msgid "Language: %s"
-msgstr "Taal: %s"
-
-#: src/dh-book.c:325
-msgid "Language: Undefined"
-msgstr "Taal: onbekend"
-
-#: src/dh-book-tree.c:648
-msgid "_Collapse All"
-msgstr "Alles in_klappen"
-
-#. i18n: a documentation book
-#: src/dh-link.c:403
-msgid "Book"
-msgstr "Boek"
-
-#. i18n: a "page" in a documentation book
-#: src/dh-link.c:407
-msgid "Page"
-msgstr "Pagina"
-
-#. i18n: a search hit in the documentation, could be a
-#. * function, macro, struct, etc
-#: src/dh-link.c:412
-msgid "Keyword"
-msgstr "Sleutelwoord"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:418
-msgid "Function"
-msgstr "Functie"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:424
-msgid "Struct"
-msgstr "Struct"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:430
-msgid "Macro"
-msgstr "Macro"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:436
-msgid "Enum"
-msgstr "Enumeratie"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:442
-msgid "Type"
-msgstr "Type"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:448
-msgid "Property"
-msgstr "Eigenschap"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:454
-msgid "Signal"
-msgstr "Signal"
-
-#: src/dh-preferences.ui:40
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-#: src/dh-preferences.ui:76
-msgid "_Group by language"
-msgstr "_Groeperen op taal"
-
-#: src/dh-preferences.ui:107
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
-#: src/dh-preferences.ui:122
-msgid "Title"
-msgstr "Titel"
-
-#: src/dh-preferences.ui:151
-msgid "Book Shelf"
-msgstr "Boekenplank"
-
-#: src/dh-preferences.ui:172
-msgid "_Use system fonts"
-msgstr "_Systeemlettertypen gebruiken"
-
-#: src/dh-preferences.ui:196
-msgid "_Variable width: "
-msgstr "_Variabele breedte: "
-
-#: src/dh-preferences.ui:209
-msgid "_Fixed width:"
-msgstr "_Vaste breedte:"
-
-#: src/dh-preferences.ui:270
-msgid "Fonts"
-msgstr "Lettertypen"
-
-#: src/dh-window.c:78
-msgid "50%"
-msgstr "50%"
-
-#: src/dh-window.c:79
-msgid "75%"
-msgstr "75%"
-
-#: src/dh-window.c:80
-msgid "100%"
-msgstr "100%"
-
-#: src/dh-window.c:81
-msgid "125%"
-msgstr "125%"
-
-#: src/dh-window.c:82
-msgid "150%"
-msgstr "150%"
-
-#: src/dh-window.c:83
-msgid "175%"
-msgstr "175%"
-
-#: src/dh-window.c:84
-msgid "200%"
-msgstr "200%"
-
-#: src/dh-window.c:85
-msgid "300%"
-msgstr "300%"
-
-#: src/dh-window.c:86
-msgid "400%"
-msgstr "400%"
-
-#: src/dh-window.c:1100
-msgid "Error opening the requested link."
-msgstr "Fout bij het openen van de opgevraagde verwijzing."
-
-#: src/dh-window.c:1417
-msgid "_Close"
-msgstr "Sl_uiten"
-
-#: src/dh-window.c:1435 src/dh-window.c:1616
-msgid "Empty Page"
-msgstr "Lege pagina"
-
-#: src/dh-window.ui:7
-msgid "Side _Panel"
-msgstr "Zij_paneel"
-
-#: src/dh-window.ui:15 src/dh-window.ui:60
-msgid "_Print"
-msgstr "Af_drukken"
-
-#: src/dh-window.ui:20 src/dh-window.ui:65
-msgid "_Find"
-msgstr "_Zoeken"
-
-#: src/dh-window.ui:27 src/dh-window.ui:72
-msgid "_Larger Text"
-msgstr "_Grotere tekst"
-
-#: src/dh-window.ui:32 src/dh-window.ui:77
-msgid "S_maller Text"
-msgstr "_Kleinere tekst"
-
-#: src/dh-window.ui:37 src/dh-window.ui:82
-msgid "_Normal Size"
-msgstr "_Normale grootte"
-
-#: src/dh-window.ui:53
-msgid "_Side Panel"
-msgstr "_Zijpaneel"
-
-#: src/dh-window.ui:99
-msgid "_About Devhelp"
-msgstr "_Over Devhelp"
-
-#: src/dh-window.ui:133
-msgid "Back"
-msgstr "Terug"
-
-#: src/dh-window.ui:152
-msgid "Forward"
-msgstr "Volgende"
-
-#: src/dh-window.ui:176
-msgid "New Tab"
-msgstr "Nieuw tabblad"
+#~ msgid "A developers’ help browser for GNOME"
+#~ msgstr "Hulpbrowser voor ontwikkelaars"
 
 #~ msgid "Selected tab: \"content\" or \"search\""
 #~ msgstr "Geselecteerde tabblad: ‘content’ of ‘search’"
