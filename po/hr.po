@@ -6,14 +6,15 @@ msgstr ""
 "Project-Id-Version: devhelp 0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-16 15:56+0000\n"
-"PO-Revision-Date: 2010-12-10 05:11+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2018-02-25 00:34+0100\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2014-01-06 10:49+0000\n"
-"X-Generator: Launchpad (build 16877)\n"
+"X-Generator: Poedit 2.0.6\n"
+"Language: hr\n"
 
 #. i18n: Please don't translate "Devhelp" (it's marked as translatable
 #. * for transliteration only)
@@ -24,23 +25,23 @@ msgstr "Devhelp"
 
 #: ../data/devhelp.desktop.in.in.h:2
 msgid "Developer's Help program"
-msgstr ""
+msgstr "Program pomoći za razvijatelje programa"
 
 #: ../data/devhelp.desktop.in.in.h:3
 msgid "Documentation Browser"
-msgstr ""
+msgstr "Preglednik dokumentacije"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:1
 msgid "Main window maximized state"
-msgstr ""
+msgstr "Stanje uvećanja glavnog prozora"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:2
 msgid "Whether the main window should start maximized."
-msgstr ""
+msgstr "Treba li se glavni prozor pokrenuti uvećan."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:3
 msgid "Width of the main window"
-msgstr ""
+msgstr "Širina glavnog prozora"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:4
 msgid "The width of the main window."
@@ -48,7 +49,7 @@ msgstr "Širina glavnog prozora."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:5
 msgid "Height of main window"
-msgstr ""
+msgstr "Širina glavnog prozora."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:6
 msgid "The height of the main window."
@@ -56,265 +57,266 @@ msgstr "Visina glavnog prozora."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:7
 msgid "X position of main window"
-msgstr ""
+msgstr "Položaj glavnog prozora po x-osi"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:8
 msgid "The X position of the main window."
-msgstr ""
+msgstr "Položaj glavnog prozora po x-osi."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:9
 msgid "Y position of main window"
-msgstr ""
+msgstr "Položaj glavnog prozora po y-osi"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:10
 msgid "The Y position of the main window."
-msgstr ""
+msgstr "Položaj glavnog prozora po y-osi."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:19
 msgid "Width of the assistant window"
-msgstr ""
+msgstr "Širina prozora pomoćnika"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:20
 msgid "The width of the assistant window."
-msgstr ""
+msgstr "Širina prozora pomoćnika."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:21
 msgid "Height of assistant window"
-msgstr ""
+msgstr "Visina prozora pomoćnika"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:22
 msgid "The height of the assistant window."
-msgstr ""
+msgstr "Visina prozora pomoćnika."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:23
 msgid "X position of assistant window"
-msgstr ""
+msgstr "Položaj prozora pomoćnika po x-osi"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:24
 msgid "The X position of the assistant window."
-msgstr ""
+msgstr "Položaj prozora pomoćnika po x-osi."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:25
 msgid "Y position of assistant window"
-msgstr ""
+msgstr "Položaj prozora pomoćnika po y-osi"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:26
 msgid "The Y position of the assistant window."
-msgstr ""
+msgstr "Položaj prozora pomoćnika po y-osi."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:11
 msgid "Width of the index and search pane"
-msgstr ""
+msgstr "Širina sadržaja i panela pretrage"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:12
 msgid "The width of the index and search pane."
-msgstr ""
+msgstr "Širina sadržaja i panela pretrage."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:13
 msgid "Selected tab: \"content\" or \"search\""
-msgstr ""
+msgstr "Odabrana kartica: \"sadržaj\" ili \"pretraga\""
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:14
 msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr ""
+msgstr "Koja je kartica odabrana: \"sadržaj\" ili \"pretraga\"."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:15
 msgid "Books disabled"
-msgstr ""
+msgstr "Onemogućene knjige"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:16
 msgid "List of books disabled by the user."
-msgstr ""
+msgstr "Popis knjiga koje je onemogućio korisnik."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:17
 msgid "Group by language"
-msgstr ""
+msgstr "Grupiranje prema jeziku"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:18
 msgid "Whether books should be grouped by language in the UI"
-msgstr ""
+msgstr "Trebaju li knjige biti grupirane prema jeziku u korisničkom sučelju."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:27
 msgid "Use system fonts"
-msgstr ""
+msgstr "Koristi slova sustava"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:28
 msgid "Use the system default fonts."
-msgstr ""
+msgstr "Koristi zadana slova sustava."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:29
 msgid "Font for text"
-msgstr ""
+msgstr "Slova teksta"
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:30
 msgid "Font for text with variable width."
-msgstr ""
+msgstr "Slova za tekst s promjenjivom širinom."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:31
 msgid "Font for fixed width text"
-msgstr ""
+msgstr "Slova za tekst s nepromjenjivom širinom."
 
 #: ../data/org.gnome.devhelp.gschema.xml.h:32
 msgid "Font for text with fixed width, such as code examples."
-msgstr ""
+msgstr "Slova za tekst s nepromjenjivom širinom, poput primjera kôda."
 
 #: ../src/devhelp.ui.h:2
 msgid "Preferences"
-msgstr "Podešenja"
+msgstr "Osobitosti"
 
 #: ../src/devhelp.ui.h:11
 msgid "_Group by language"
-msgstr ""
+msgstr "_Grupiranje prema jeziku"
 
 #: ../src/devhelp.ui.h:12
 msgid "Enabled"
-msgstr ""
+msgstr "Omogućeno"
 
 #: ../src/devhelp.ui.h:13
 msgid "Title"
-msgstr ""
+msgstr "Naslov"
 
 #: ../src/devhelp.ui.h:14
 msgid "Book Shelf"
-msgstr ""
+msgstr "Polica knjiga"
 
 #: ../src/devhelp.ui.h:15
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Koristi slova sustava"
 
 #: ../src/devhelp.ui.h:16
 msgid "_Variable width: "
-msgstr ""
+msgstr "Promjenjiva širina: "
 
 #: ../src/devhelp.ui.h:17
 msgid "_Fixed width:"
-msgstr ""
+msgstr "_Nepromjenjiva širina:"
 
 #: ../src/devhelp.ui.h:18
 msgid "Fonts"
-msgstr ""
+msgstr "Slova"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:1
 msgid "Devhelp support"
-msgstr ""
+msgstr "Devhelp podrška"
 
 #: ../misc/gedit-plugin/devhelp.desktop.in.h:2
 msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr ""
+msgstr "Učini da F2 pokrene Devhelp za riječ na pokazivaču"
 
 #: ../misc/gedit-plugin/devhelp.py:69
 msgid "Show API Documentation"
-msgstr ""
+msgstr "Prikaži API dokumentaciju"
 
 #: ../misc/gedit-plugin/devhelp.py:71
 msgid "Show API Documentation for the word at the cursor"
-msgstr ""
+msgstr "Prikaži API dokumentaciju za riječ na pokazivaču"
 
 #. i18n: Please don't translate "Devhelp".
 #: ../src/dh-assistant.c:121
 msgid "Devhelp — Assistant"
-msgstr ""
+msgstr "Devhelp — Pomoćnik"
 
 #: ../src/dh-assistant-view.c:403
 msgid "Book:"
-msgstr ""
+msgstr "Knjiga:"
 
 #: ../src/dh-book.c:255
 #, c-format
 msgid "Language: %s"
-msgstr ""
+msgstr "Jezik: %s"
 
 #: ../src/dh-book.c:256
 msgid "Language: Undefined"
-msgstr ""
+msgstr "Jezik: Neodređen"
 
 #. i18n: a documentation book
 #: ../src/dh-link.c:267
 msgid "Book"
-msgstr ""
+msgstr "Knjiga"
 
 #. i18n: a "page" in a documentation book
 #: ../src/dh-link.c:270
 msgid "Page"
-msgstr ""
+msgstr "Stranica"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
 #: ../src/dh-link.c:274
 msgid "Keyword"
-msgstr ""
+msgstr "Ključna riječ"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:279
 msgid "Function"
-msgstr ""
+msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:284
 msgid "Struct"
-msgstr ""
+msgstr "Struktura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:289
 msgid "Macro"
-msgstr ""
+msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:294
 msgid "Enum"
-msgstr ""
+msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: ../src/dh-link.c:299
 msgid "Type"
-msgstr ""
+msgstr "Vrsta"
 
 #: ../src/dh-main.c:48
 msgid "Search for a keyword"
-msgstr ""
+msgstr "Pretraži ključnu riječ"
 
 #: ../src/dh-main.c:63
 msgid "Quit any running Devhelp"
-msgstr ""
+msgstr "Zatvori sve pokrenute primjerke Devhelpa"
 
 #: ../src/dh-main.c:58
 msgid "Display the version and exit"
-msgstr ""
+msgstr "Prikaži broj inačice i izađi"
 
 #: ../src/dh-main.c:53
 msgid "Focus the Devhelp window with the search field active"
-msgstr ""
+msgstr "Fokusira Devhelp prozor sa aktivnim poljem pretrage"
 
 #: ../src/dh-main.c:53
 msgid "Search and display any hit in the assistant window"
-msgstr ""
+msgstr "Pretražuje i prikazuje sve rezultate u prozoru pomoćnika"
 
 #: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
 #: ../src/dh-parser.c:273
 #, c-format
 msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr ""
+msgstr "Očekivano '%s', dobiveno '%s' u redku %d, stupcu %d"
 
 #: ../src/dh-parser.c:114
 #, c-format
 msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr ""
+msgstr "Neispravan prostor naziva '%s' u redku %d, stupcu %d"
 
 #: ../src/dh-parser.c:143
 #, c-format
 msgid ""
 "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
 msgstr ""
+"\"title\", \"name\" i \"link\" elementi su potrebni na redku %d, stupcu %d"
 
 #: ../src/dh-parser.c:218
 #, c-format
@@ -322,84 +324,82 @@ msgid ""
 "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
 "%d"
 msgstr ""
+"\"name\" i \"link\" elementi su potrebni unutar <sub> na redku %d, stupcu %d"
 
 #: ../src/dh-parser.c:298
 #, c-format
 msgid ""
 "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 msgstr ""
+"\"name\" i \"link\" elementi su potrebni unutar '%s' na redku %d, stupcu %d"
 
 #: ../src/dh-parser.c:311
 #, c-format
 msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr ""
+msgstr "\"type\" element je potreban unutar <keyword> na redku %d, stupcu %d"
 
 #: ../src/dh-parser.c:514
 #, c-format
 msgid "Cannot uncompress book '%s': %s"
-msgstr ""
+msgstr "Nemoguće raspakiravanje knjige '%s': %s"
 
 #: ../src/dh-search.c:492
 msgid "All books"
-msgstr ""
+msgstr "Sve knjige"
 
 #: ../src/dh-search.c:1110
 msgid "Search in:"
-msgstr ""
+msgstr "Pretraži u:"
 
 #: ../src/dh-window.c:86
 msgid "50%"
-msgstr ""
+msgstr "50%"
 
 #: ../src/dh-window.c:87
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: ../src/dh-window.c:88
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: ../src/dh-window.c:89
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: ../src/dh-window.c:90
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: ../src/dh-window.c:91
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: ../src/dh-window.c:92
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: ../src/dh-window.c:93
 msgid "300%"
-msgstr ""
+msgstr "300%"
 
 #: ../src/dh-window.c:94
 msgid "400%"
-msgstr ""
+msgstr "400%"
 
 #: ../src/dh-app.c:157
 msgid "translator_credits"
 msgstr ""
-"lokalizacija@linux.hr\n"
-"  Automatski Prijevod <>\n"
-"  Robert Sedak <robert.sedak@sk.t-com.hr>\n"
-"\n"
 "Launchpad Contributions:\n"
-"  Carlos Perelló Marín https://launchpad.net/~carlos"
+"  gogo https://launchpad.net/~trebelnik-stefina"
 
 #: ../src/dh-app.c:164
 msgid "A developers' help browser for GNOME"
-msgstr ""
+msgstr "GNOME preglednik pomoći za razvijatelje"
 
 #: ../src/dh-app.c:172
 msgid "DevHelp Website"
-msgstr ""
+msgstr "Devhelp web stranica"
 
 #: ../src/dh-window.c:778
 msgid "_File"
@@ -411,7 +411,7 @@ msgstr "_Uredi"
 
 #: ../data/ui/devhelp.builder.h:14
 msgid "_View"
-msgstr ""
+msgstr "_Pogled"
 
 #: ../data/ui/devhelp.builder.h:19
 msgid "_Go"
@@ -419,87 +419,87 @@ msgstr "_Idi"
 
 #: ../src/dh-window.c:782
 msgid "_Help"
-msgstr "_Pomoć"
+msgstr "_Priručnik"
 
 #. File menu
 #: ../src/dh-window.c:785
 msgid "_New Window"
-msgstr ""
+msgstr "_Novi prozor"
 
 #: ../src/devhelp.ui.h:5
 msgid "New _Tab"
-msgstr ""
+msgstr "Nova _kartica"
 
 #: ../src/dh-window.c:789
 msgid "_Print…"
-msgstr ""
+msgstr "_Ispis…"
 
 #: ../src/eggfindbar.c:342
 msgid "Find Next"
-msgstr ""
+msgstr "Pretraži sljedeće"
 
 #: ../src/eggfindbar.c:329
 msgid "Find Previous"
-msgstr ""
+msgstr "Pretraži prijašnje"
 
 #: ../data/ui/devhelp.builder.h:24
 msgid "Go to the previous page"
-msgstr ""
+msgstr "Idi na prijašnju stranicu"
 
 #: ../data/ui/devhelp.builder.h:25
 msgid "Go to the next page"
-msgstr ""
+msgstr "Idi na sljedeću stranicu"
 
 #: ../data/ui/devhelp.builder.h:23
 msgid "_Contents Tab"
-msgstr ""
+msgstr "_Kartica sadržaja"
 
 #: ../data/ui/devhelp.builder.h:22
 msgid "_Search Tab"
-msgstr ""
+msgstr "_Kartica pretrage"
 
 #. View menu
 #: ../src/dh-window.c:823
 msgid "_Larger Text"
-msgstr ""
+msgstr "_Veći tekst"
 
 #: ../data/ui/devhelp.builder.h:27
 msgid "Increase the text size"
-msgstr ""
+msgstr "Povećaj veličinu teksta"
 
 #: ../src/dh-window.c:826
 msgid "S_maller Text"
-msgstr ""
+msgstr "M_anji tekst"
 
 #: ../data/ui/devhelp.builder.h:26
 msgid "Decrease the text size"
-msgstr ""
+msgstr "Smanji veličinu teksta"
 
 #: ../src/dh-window.c:829
 msgid "_Normal Size"
-msgstr ""
+msgstr "_Izvorna veličina"
 
 #: ../src/dh-window.c:830
 msgid "Use the normal text size"
-msgstr ""
+msgstr "Koristi izvornu veličinu teksta"
 
 #: ../src/dh-window.c:839
 msgid "Leave fullscreen mode"
-msgstr ""
+msgstr "Napusti cjelozaslonski prikaz"
 
 #: ../src/dh-window.c:846
 msgid "Display in full screen"
-msgstr ""
+msgstr "Prikažu preko cijelog zaslona"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:966
 msgid "Larger"
-msgstr ""
+msgstr "Veće"
 
 #. Translators: This refers to text size
 #: ../src/dh-window.c:969
 msgid "Smaller"
-msgstr ""
+msgstr "Manje"
 
 #: ../src/dh-window.c:1046
 msgid "Contents"
@@ -507,32 +507,32 @@ msgstr "Sadržaj"
 
 #: ../src/dh-window.c:1056
 msgid "Search"
-msgstr "&Traži"
+msgstr "Pretraga"
 
 #: ../src/dh-window.c:967
 msgid "Error opening the requested link."
-msgstr ""
+msgstr "Greška otvaranja zahtjevane poveznice."
 
 #: ../src/dh-window.c:1317 ../src/dh-window.c:1503
 msgid "Empty Page"
-msgstr ""
+msgstr "Prazna stranica"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
-msgstr ""
+msgstr "Pretraži:"
 
 #: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
 msgid "Find previous occurrence of the search string"
-msgstr ""
+msgstr "Pretraži prijašnje pojavljivanje traženog pojma"
 
 #: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
 msgid "Find next occurrence of the search string"
-msgstr ""
+msgstr "Pretraži sljedeće pojavljivanje traženog pojma"
 
 #: ../src/eggfindbar.c:358
 msgid "C_ase Sensitive"
-msgstr ""
+msgstr "R_azlikuj velika i mala slova"
 
 #: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
 msgid "Toggle case sensitive search"
-msgstr ""
+msgstr "Uklj/Isklj pretragu razlike velikih malih slova"
