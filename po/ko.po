@@ -3,7 +3,7 @@
 #
 # Kang Jeong-Hee <Keizi@mail.co.kr>, 2003.
 # Seongchong Park <spark@tapl01.kaist.ac.kr>, 2004.
-# Changwoo Ryu <cwryu@debian.org>, 2006, 2008-2017.
+# Changwoo Ryu <cwryu@debian.org>, 2006, 2008-2018.
 #
 # - 새로 번역을 업데이트하시는 분은 "translator_credits" 항목에도 추가하세요.
 #
@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-07-27 13:58+0000\n"
-"PO-Revision-Date: 2017-08-28 20:24+0900\n"
+"POT-Creation-Date: 2018-02-24 20:18+0000\n"
+"PO-Revision-Date: 2018-02-25 14:19+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -25,39 +25,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
 #: data/org.gnome.Devhelp.appdata.xml.in:6
-#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:232 src/dh-app.c:537
-#: src/dh-window.c:807
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:152 src/dh-app.c:497
 msgid "Devhelp"
 msgstr "개발 도움말"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7
-#: data/org.gnome.Devhelp.desktop.in.in:4
-msgid "Developer’s Help program"
-msgstr "개발자를 위한 도움말 프로그램"
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:154
+msgid "A developer tool for browsing and searching API documentation"
+msgstr "API 문서를 보고 검색하는 개발자 도구"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:9
 msgid ""
-"Devhelp is an API documentation browser. It provides an easy way to navigate "
-"through libraries, search by function, struct, or macro. It provides a "
-"tabbed interface and allows to print results."
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
 msgstr ""
-"개발 도움말은 API 문서 보기 프로그램입니다. 함수, 구조체, 매크로로 검색해서 "
-"라이브러리를 간단히 볼 수 있습니다. 탭 인터페이스를 사용하고 결과물을 인쇄할 "
-"수 있습니다."
+"개발 도움말은 API 문서를 보고 검색하는 개발자 도구입니다. 함수, 구조체, 매크"
+"로로 검색해서 라이브러리를 간단히 볼 수 있습니다."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:15
+#: data/org.gnome.Devhelp.appdata.xml.in:14
 msgid ""
-"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
 msgstr ""
-"개발 도움말은 글레이드, 안주타, 기니와 같은 다른 프로그램의 기능도 통합합니"
-"다."
+"문서는 로컬에 저장해야 인터넷 연결 없이도 개발 도움말을 사용할 수 있습니다."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+"well supported. But other development platforms can be supported as well, as "
+"long as the API documentation is available in HTML and a *.devhelp2 index "
+"file is generated."
+msgstr ""
+"개발 도움말은 Gtk-Doc과 같이 잘 동작합니다. 그러므로 GTK+ 및 그놈 라이브러리"
+"를 잘 지원합니다. 그 외의 개발 플랫폼도 HTML 형식의 API 문서가 있고 문서의 *."
+"devhelp2 인덱스 파일을 만들면 지원할 수 있습니다."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:24
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr ""
+"개발 도움말은 글레이드, 빌더, 안주타와 같은 다른 프로그램과도 연동됩니다. 여"
+"러 텍스트 편집기에서 (지에디트, VIM, 이맥스, 기니, …) 사용할 수 있는 플러그인"
+"도 있습니다."
 
 #: data/org.gnome.Devhelp.desktop.in.in:5
-msgid "Documentation Browser"
-msgstr "문서 보기"
+msgid "API Documentation Browser"
+msgstr "API 문서 보기"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Devhelp.desktop.in.in:7
@@ -68,7 +88,7 @@ msgstr ""
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Devhelp.desktop.in.in:12
-#: misc/gedit-plugin/devhelp.plugin.desktop.in:10
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
 msgid "devhelp"
 msgstr "devhelp"
 
@@ -96,137 +116,303 @@ msgstr "메인 창의 높이"
 msgid "The height of the main window."
 msgstr "메인 창의 높이."
 
-#: data/org.gnome.devhelp.gschema.xml:33
-msgid "X position of main window"
-msgstr "메인 창의 가로 위치"
-
-#: data/org.gnome.devhelp.gschema.xml:34
-msgid "The X position of the main window."
-msgstr "메인 창의 가로 위치."
-
-#: data/org.gnome.devhelp.gschema.xml:38
-msgid "Y position of main window"
-msgstr "메인 창의 세로 위치"
-
-#: data/org.gnome.devhelp.gschema.xml:39
-msgid "The Y position of the main window."
-msgstr "메인 창의 세로 위치."
-
-#: data/org.gnome.devhelp.gschema.xml:45
+#: data/org.gnome.devhelp.gschema.xml:35
 msgid "Width of the index and search pane"
 msgstr "색인 및 검색 창의 너비"
 
-#: data/org.gnome.devhelp.gschema.xml:46
+#: data/org.gnome.devhelp.gschema.xml:36
 msgid "The width of the index and search pane."
 msgstr "색인 및 검색 창의 너비."
 
-#: data/org.gnome.devhelp.gschema.xml:52
+#: data/org.gnome.devhelp.gschema.xml:42
 msgid "Books disabled"
 msgstr "사용하지 않는 책 목록"
 
-#: data/org.gnome.devhelp.gschema.xml:53
+#: data/org.gnome.devhelp.gschema.xml:43
 msgid "List of books disabled by the user."
 msgstr "사용자가 사용하지 않도록 표시된 책 목록."
 
-#: data/org.gnome.devhelp.gschema.xml:57
+#: data/org.gnome.devhelp.gschema.xml:47
 msgid "Group by language"
 msgstr "언어별 모음"
 
-#: data/org.gnome.devhelp.gschema.xml:58
+#: data/org.gnome.devhelp.gschema.xml:48
 msgid "Whether books should be grouped by language in the UI"
 msgstr "UI에서 문서를 언어별로 모을지 여부"
 
-#: data/org.gnome.devhelp.gschema.xml:67
-msgid "Whether the assistant window should be maximized"
-msgstr "도우미 창을 최대화할 지 여부"
-
-#: data/org.gnome.devhelp.gschema.xml:68
-msgid "Whether the assistant window should be maximized."
-msgstr "도우미 창을 최대화할 지 여부."
-
-#: data/org.gnome.devhelp.gschema.xml:72
+#: data/org.gnome.devhelp.gschema.xml:57
 msgid "Width of the assistant window"
 msgstr "도우미 창의 너비"
 
-#: data/org.gnome.devhelp.gschema.xml:73
+#: data/org.gnome.devhelp.gschema.xml:58
 msgid "The width of the assistant window."
 msgstr "도우미 창의 너비."
 
-#: data/org.gnome.devhelp.gschema.xml:77
+#: data/org.gnome.devhelp.gschema.xml:62
 msgid "Height of assistant window"
 msgstr "도우미 창의 높이"
 
-#: data/org.gnome.devhelp.gschema.xml:78
+#: data/org.gnome.devhelp.gschema.xml:63
 msgid "The height of the assistant window."
 msgstr "도우미 창의 높이."
 
-#: data/org.gnome.devhelp.gschema.xml:82
-msgid "X position of assistant window"
-msgstr "도우미 창의 가로 위치"
-
-#: data/org.gnome.devhelp.gschema.xml:83
-msgid "The X position of the assistant window."
-msgstr "도우미 창의 가로 위치."
-
-#: data/org.gnome.devhelp.gschema.xml:87
-msgid "Y position of assistant window"
-msgstr "도우미 창의 세로 위치"
-
-#: data/org.gnome.devhelp.gschema.xml:88
-msgid "The Y position of the assistant window."
-msgstr "도우미 창의 세로 위치."
-
-#: data/org.gnome.devhelp.gschema.xml:94
+#: data/org.gnome.devhelp.gschema.xml:69
 msgid "Use system fonts"
 msgstr "시스템 글꼴 사용"
 
-#: data/org.gnome.devhelp.gschema.xml:95
+#: data/org.gnome.devhelp.gschema.xml:70
 msgid "Use the system default fonts."
 msgstr "시스템 기본 글꼴을 사용합니다."
 
-#: data/org.gnome.devhelp.gschema.xml:99
+#: data/org.gnome.devhelp.gschema.xml:74
 msgid "Font for text"
 msgstr "텍스트에 사용할 글꼴"
 
-#: data/org.gnome.devhelp.gschema.xml:100
+#: data/org.gnome.devhelp.gschema.xml:75
 msgid "Font for text with variable width."
 msgstr "가변폭의 텍스트에 사용할 글꼴."
 
-#: data/org.gnome.devhelp.gschema.xml:104
+#: data/org.gnome.devhelp.gschema.xml:79
 msgid "Font for fixed width text"
 msgstr "고정폭 텍스트에 사용할 글꼴"
 
-#: data/org.gnome.devhelp.gschema.xml:105
+#: data/org.gnome.devhelp.gschema.xml:80
 msgid "Font for text with fixed width, such as code examples."
 msgstr "고정폭 텍스트에 사용할 글꼴(코드 예제 등)."
 
-#: misc/gedit-plugin/devhelp.plugin.desktop.in:6
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "개발 도움말 기능"
 
-#: misc/gedit-plugin/devhelp.py:42
+#: plugins/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "API 문서 표시"
 
-#: src/devhelp-menu.ui:28 src/dh-window.ui:46
+#: src/dh-app.c:156
+msgid "translator-credits"
+msgstr ""
+"강정희\n"
+"류창우\n"
+"박성종"
+
+#: src/dh-app.c:158
+msgid "Devhelp Website"
+msgstr "개발 도움말 웹사이트"
+
+#: src/dh-app.c:401
+msgid "Opens a new Devhelp window"
+msgstr "개발자 도움말 창을 새로 엽니다"
+
+#: src/dh-app.c:406
+msgid "Search for a keyword"
+msgstr "검색어를 검색합니다"
+
+#: src/dh-app.c:407 src/dh-app.c:412
+msgid "KEYWORD"
+msgstr "<검색어>"
+
+#: src/dh-app.c:411
+msgid "Search and display any hit in the assistant window"
+msgstr "도우미 창에 입력하자 마자 찾아서 표시합니다"
+
+#: src/dh-app.c:416
+msgid "Display the version and exit"
+msgstr "버전을 표시하고 끝냅니다"
+
+#: src/dh-app.c:421
+msgid "Quit any running Devhelp"
+msgstr "실행 중인 개발 도움말을 끝냅니다"
+
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:8
+msgid "Devhelp — Assistant"
+msgstr "개발 도움말 — 도우미"
+
+#: src/dh-assistant-view.c:400
+msgid "Book:"
+msgstr "문서:"
+
+#: src/dh-book.c:348
+#, c-format
+msgid "Language: %s"
+msgstr "언어: %s"
+
+#: src/dh-book.c:349
+msgid "Language: Undefined"
+msgstr "언어: 지정하지 않음"
+
+#: src/dh-book-tree.c:655
+msgid "_Collapse All"
+msgstr "모두 접기(_C)"
+
+#. i18n: a documentation book
+#: src/dh-link.c:549
+msgid "Book"
+msgstr "문서"
+
+#. i18n: a "page" in a documentation book
+#: src/dh-link.c:553
+msgid "Page"
+msgstr "페이지"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: src/dh-link.c:558
+msgid "Keyword"
+msgstr "키워드"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:564
+msgid "Function"
+msgstr "함수"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:570
+msgid "Struct"
+msgstr "구조체"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:576
+msgid "Macro"
+msgstr "매크로"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:582
+msgid "Enum"
+msgstr "열거형"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:588
+msgid "Type"
+msgstr "타입"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:594
+msgid "Property"
+msgstr "속성"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:600
+msgid "Signal"
+msgstr "시그널"
+
+#: src/dh-preferences.ui:40
+msgid "Preferences"
+msgstr "기본 설정"
+
+#: src/dh-preferences.ui:76
+msgid "_Group by language"
+msgstr "언어별 모음(_G)"
+
+#: src/dh-preferences.ui:107
+msgid "Enabled"
+msgstr "사용"
+
+#: src/dh-preferences.ui:122
+msgid "Title"
+msgstr "제목"
+
+#: src/dh-preferences.ui:151
+msgid "Book Shelf"
+msgstr "책장"
+
+#: src/dh-preferences.ui:172
+msgid "_Use system fonts"
+msgstr "시스템 글꼴 사용(_U)"
+
+#: src/dh-preferences.ui:196
+msgid "_Variable width: "
+msgstr "가변폭(_V):"
+
+#: src/dh-preferences.ui:209
+msgid "_Fixed width:"
+msgstr "고정폭(_F):"
+
+#: src/dh-preferences.ui:270
+msgid "Fonts"
+msgstr "글꼴"
+
+#: src/dh-tab.c:68
+msgid "Error opening the requested link."
+msgstr "요청한 링크를 여는데 오류가 발생했습니다."
+
+#: src/dh-web-view.c:201
+msgid "Empty Page"
+msgstr "빈 페이지"
+
+#: src/dh-window.ui:7 src/dh-window.ui:45
+msgid "_Side Panel"
+msgstr "가장자리 창(_S)"
+
+#: src/dh-window.ui:13 src/dh-window.ui:51
+msgid "_Print"
+msgstr "인쇄(_P)"
+
+#: src/dh-window.ui:17 src/dh-window.ui:55
+msgid "_Find"
+msgstr "찾기(_F)"
+
+#: src/dh-window.ui:23 src/dh-window.ui:61
+msgid "_Larger Text"
+msgstr "글씨 크게(_L)"
+
+#: src/dh-window.ui:27 src/dh-window.ui:65
+msgid "S_maller Text"
+msgstr "글씨 작게(_M)"
+
+#: src/dh-window.ui:31 src/dh-window.ui:69
+msgid "_Normal Size"
+msgstr "보통 크기(_N)"
+
+#: src/dh-window.ui:39 src/menus.ui:30
 msgid "New _Window"
 msgstr "새 창(_W)"
 
-#: src/devhelp-menu.ui:35 src/dh-window.ui:89
+#: src/dh-window.ui:75 src/menus.ui:36
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: src/devhelp-menu.ui:41 src/dh-window.ui:95
+#: src/dh-window.ui:81 src/menus.ui:42
 msgid "_Keyboard Shortcuts"
 msgstr "키보드 바로 가기(_K)"
 
-#: src/devhelp-menu.ui:45
-msgid "_About"
-msgstr "정보(_A)"
+#: src/dh-window.ui:85 src/menus.ui:46
+msgid "_Help"
+msgstr "도움말(_H)"
 
-#: src/devhelp-menu.ui:49 src/dh-window.ui:103
+#: src/dh-window.ui:89
+msgid "_About Devhelp"
+msgstr "개발 도움말 정보(_A)"
+
+#: src/dh-window.ui:93 src/menus.ui:54
 msgid "_Quit"
 msgstr "끝내기(_Q)"
+
+#: src/dh-window.ui:122
+msgid "Back"
+msgstr "뒤로"
+
+#: src/dh-window.ui:141
+msgid "Forward"
+msgstr "앞으로"
+
+#: src/dh-window.ui:187
+msgid "New Tab"
+msgstr "새 탭"
 
 #: src/help-overlay.ui:14
 msgctxt "shortcut window"
@@ -303,298 +489,6 @@ msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "확대/축소 초기화"
 
-#: src/dh-app.c:234
-msgid "A developers’ help browser for GNOME"
-msgstr "그놈 개발자 도움말 브라우저"
-
-#: src/dh-app.c:236
-msgid "translator-credits"
-msgstr ""
-"강정희\n"
-"류창우\n"
-"박성종"
-
-#: src/dh-app.c:238
-msgid "Devhelp Website"
-msgstr "개발 도움말 웹사이트"
-
-#: src/dh-app.c:462
-msgid "Opens a new Devhelp window"
-msgstr "개발자 도움말 창을 새로 엽니다"
-
-#: src/dh-app.c:467
-msgid "Search for a keyword"
-msgstr "검색어를 검색합니다"
-
-#: src/dh-app.c:468 src/dh-app.c:473
-msgid "KEYWORD"
-msgstr "<검색어>"
-
-#: src/dh-app.c:472
-msgid "Search and display any hit in the assistant window"
-msgstr "도우미 창에 입력하자 마자 찾아서 표시합니다"
-
-#: src/dh-app.c:477
-msgid "Display the version and exit"
-msgstr "버전을 표시하고 끝냅니다"
-
-#: src/dh-app.c:482
-msgid "Quit any running Devhelp"
-msgstr "실행 중인 개발 도움말을 끝냅니다"
-
-#. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
-msgid "Devhelp — Assistant"
-msgstr "개발 도움말 — 도우미"
-
-#: src/dh-assistant-view.c:399
-msgid "Book:"
-msgstr "문서:"
-
-#: src/dh-book.c:324
-#, c-format
-msgid "Language: %s"
-msgstr "언어: %s"
-
-#: src/dh-book.c:325
-msgid "Language: Undefined"
-msgstr "언어: 지정하지 않음"
-
-#: src/dh-book-tree.c:648
-msgid "_Collapse All"
-msgstr "모두 접기(_C)"
-
-#. i18n: a documentation book
-#: src/dh-link.c:403
-msgid "Book"
-msgstr "문서"
-
-#. i18n: a "page" in a documentation book
-#: src/dh-link.c:407
-msgid "Page"
-msgstr "페이지"
-
-#. i18n: a search hit in the documentation, could be a
-#. * function, macro, struct, etc
-#: src/dh-link.c:412
-msgid "Keyword"
-msgstr "키워드"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:418
-msgid "Function"
-msgstr "함수"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:424
-msgid "Struct"
-msgstr "구조체"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:430
-msgid "Macro"
-msgstr "매크로"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:436
-msgid "Enum"
-msgstr "열거형"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:442
-msgid "Type"
-msgstr "타입"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:448
-msgid "Property"
-msgstr "속성"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:454
-msgid "Signal"
-msgstr "시그널"
-
-#: src/dh-preferences.ui:40
-msgid "Preferences"
-msgstr "기본 설정"
-
-#: src/dh-preferences.ui:76
-msgid "_Group by language"
-msgstr "언어별 모음(_G)"
-
-#: src/dh-preferences.ui:107
-msgid "Enabled"
-msgstr "사용"
-
-#: src/dh-preferences.ui:122
-msgid "Title"
-msgstr "제목"
-
-#: src/dh-preferences.ui:151
-msgid "Book Shelf"
-msgstr "책장"
-
-#: src/dh-preferences.ui:172
-msgid "_Use system fonts"
-msgstr "시스템 글꼴 사용(_U)"
-
-#: src/dh-preferences.ui:196
-msgid "_Variable width: "
-msgstr "가변폭(_V):"
-
-#: src/dh-preferences.ui:209
-msgid "_Fixed width:"
-msgstr "고정폭(_F):"
-
-#: src/dh-preferences.ui:270
-msgid "Fonts"
-msgstr "글꼴"
-
-#: src/dh-window.c:75
-msgid "50%"
-msgstr "50%"
-
-#: src/dh-window.c:76
-msgid "75%"
-msgstr "75%"
-
-#: src/dh-window.c:77
-msgid "100%"
-msgstr "100%"
-
-#: src/dh-window.c:78
-msgid "125%"
-msgstr "125%"
-
-#: src/dh-window.c:79
-msgid "150%"
-msgstr "150%"
-
-#: src/dh-window.c:80
-msgid "175%"
-msgstr "175%"
-
-#: src/dh-window.c:81
-msgid "200%"
-msgstr "200%"
-
-#: src/dh-window.c:82
-msgid "300%"
-msgstr "300%"
-
-#: src/dh-window.c:83
-msgid "400%"
-msgstr "400%"
-
-#: src/dh-window.c:1029
-msgid "Error opening the requested link."
-msgstr "요청한 링크를 여는데 오류가 발생했습니다."
-
-#: src/dh-window.c:1346
-msgid "_Close"
-msgstr "닫기(_C)"
-
-#: src/dh-window.c:1364 src/dh-window.c:1545
-msgid "Empty Page"
-msgstr "빈 페이지"
-
-#: src/dh-window.ui:7
-msgid "Side _Panel"
-msgstr "가장자리 창(_P)"
-
-#: src/dh-window.ui:15 src/dh-window.ui:60
-msgid "_Print"
-msgstr "인쇄(_P)"
-
-#: src/dh-window.ui:20 src/dh-window.ui:65
-msgid "_Find"
-msgstr "찾기(_F)"
-
-#: src/dh-window.ui:27 src/dh-window.ui:72
-msgid "_Larger Text"
-msgstr "글씨 크게(_L)"
-
-#: src/dh-window.ui:32 src/dh-window.ui:77
-msgid "S_maller Text"
-msgstr "글씨 작게(_M)"
-
-#: src/dh-window.ui:37 src/dh-window.ui:82
-msgid "_Normal Size"
-msgstr "보통 크기(_N)"
-
-#: src/dh-window.ui:53
-msgid "_Side Panel"
-msgstr "가장자리 창(_S)"
-
-#: src/dh-window.ui:99
-msgid "_About Devhelp"
-msgstr "개발 도움말 정보(_A)"
-
-#: src/dh-window.ui:133
-msgid "Back"
-msgstr "뒤로"
-
-#: src/dh-window.ui:152
-msgid "Forward"
-msgstr "앞으로"
-
-#: src/dh-window.ui:176
-msgid "New Tab"
-msgstr "새 탭"
-
-#~ msgid "Selected tab: \"content\" or \"search\""
-#~ msgstr "선택한 탭: \"content\" 혹은 \"search\""
-
-#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
-#~ msgstr "어느 탭을 선택할 지 지정, \"content\" 혹은 \"search\"."
-
-#~ msgid "Expected '%s', got '%s' at line %d, column %d"
-#~ msgstr ""
-#~ "'%s'이(가) 와야 하지만 '%s'이(가) 나타났습니다(%d번째 줄, %d번째 열)"
-
-#~ msgid "Invalid namespace '%s' at line %d, column %d"
-#~ msgstr ""
-#~ "잘못된 네임스페이스 '%s'이(가) %d번째 줄, %d번째 열에서 발견되었습니다"
-
-#~ msgid ""
-#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
-#~ "%d"
-#~ msgstr ""
-#~ "%d번째 줄, %d번째 열에 \"title\", \"name\", \"link\" 요소가 필요합니다"
-
-# 주의: XML 아님
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "%d번째 줄, %d번째 열의 <sub>에 \"name\"과 \"link\" 요소가 필요합니다"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "%2$d번째 줄, %3$d번째 열의 '%1$s'에 \"name\"과 \"link\" 요소가 필요합니다"
-
-#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-#~ msgstr "%d번째 줄, %d번째 열의 <keyword>에 \"type\" 요소가 필요합니다"
-
-#~ msgid "Cannot uncompress book '%s': %s"
-#~ msgstr "문서 파일 '%s'을(를) 압축해제할 수 없습니다 : %s"
-
-#~ msgid "_Side pane"
-#~ msgstr "가장자리 창(_S)"
+#: src/menus.ui:50
+msgid "_About"
+msgstr "정보(_A)"
