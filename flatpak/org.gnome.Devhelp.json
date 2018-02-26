@@ -12,6 +12,8 @@
         "--share=ipc", "--socket=x11",
         /* Wayland access */
         "--socket=wayland",
+        /* OpenGL for Webkit */
+        "--device=dri",
         /* We want full fs access to see the API docs installed by traditional
          * Linux distro packages.
          */
