@@ -1,0 +1,119 @@
+# Croatian translation for devhelp.
+# Copyright (C) 2018 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp master\n"
+"POT-Creation-Date: 2018-02-22 11:16+0000\n"
+"PO-Revision-Date: 2018-02-26 16:37+0100\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. (itstool) path: page/title
+#: C/index.page:4
+msgid "Devhelp User Documentation"
+msgstr "Devhelp korisnička dokumentacija"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  gogo https://launchpad.net/~trebelnik-stefina"
+
+#. (itstool) path: page/title
+#: C/search.page:10
+msgid "Search in the side panel"
+msgstr "Pretraži u bočnom panelu"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:13
+msgid "How the search in the side panel works."
+msgstr "Kako radi pretraga u bočnom panelu."
+
+#. (itstool) path: section/title
+#: C/search.page:17
+msgid "Case sensitivity"
+msgstr "Osjetljivost na velika i mala slova"
+
+#. (itstool) path: section/p
+#: C/search.page:18
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr ""
+"Pretraga je osjetljiva na mala i velika slova kada postoje velika slova. Ako "
+"izraz pretrage sadrži sva mala slova, pretraga je osjetljiva na velika i "
+"mala slova. To je poput \"pametne\" značajke prisutne u pojedinim "
+"uređivačima teksta."
+
+#. (itstool) path: section/title
+#: C/search.page:26
+msgid "Glob-style pattern matching"
+msgstr "Podudaranje uzoraka prema globalnom izgledu"
+
+#. (itstool) path: section/p
+#: C/search.page:27
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+"Izraz pretrage može biti uzorak koji sadrži ‘*’ i ‘?’ zamjenske znakove. ‘*’ "
+"odgovara proizvoljnom, moguće praznom izrazu; a '?' odgovara proizvoljnom "
+"znaku."
+
+#. (itstool) path: section/title
+#: C/search.page:35
+msgid "Several search terms"
+msgstr "Nekoliko izraza pretrage"
+
+#. (itstool) path: section/p
+#: C/search.page:36
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+"Možete pretraživati s nekoliko izraza pretrage (odvojenim zarezom). Simbol "
+"će se samo podudarati ako se <em>svi</em> izrazi pretrage pojedinačno "
+"podudaraju (ne nužno u istom redoslijedu pojavljivanja)."
+
+#. (itstool) path: section/p
+#: C/search.page:41
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+"Zapamtite da je drugačije od pretraživanja sa ‘*’ zamjenskim znakom: ‘*’ "
+"zamjenski znak prisiljuje ključnu riječ da bude u istom redoslijedu."
+
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+"Na primjer pri pretraživanju “<input>gtk window application</input>”, "
+"podudara se oboje “<code>gtk_window_get_application()</code>” i "
+"“<code>GtkApplicationWindow</code>” (među ostalim simbolima)."
+
+#. (itstool) path: section/p
+#: C/search.page:50
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
+"U drugu ruku, pretraživanje “<input>gtk*window*application</input>” će se "
+"podudarati sa “<code>gtk_window_get_application()</code>” ali ne i sa "
+"“<code>GtkApplicationWindow</code>”."
