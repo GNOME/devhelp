@@ -7,7 +7,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2018-02-26 01:13+0000\n"
-"PO-Revision-Date: 2018-02-27 14:04+0100\n"
+"PO-Revision-Date: 2018-02-27 14:06+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "Language: hr\n"
@@ -183,8 +183,6 @@ msgid "Show API Documentation"
 msgstr "Prikaži API dokumentaciju"
 
 #: src/dh-app.c:156
-#, fuzzy
-#| msgid "translator_credits"
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
