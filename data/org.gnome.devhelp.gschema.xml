@@ -19,7 +19,7 @@
       <description>Whether the main window should start maximized.</description>
     </key>
     <key name="width" type="i">
-      <default>700</default>
+      <default>1000</default>
       <summary>Width of the main window</summary>
       <description>The width of the main window.</description>
     </key>
@@ -31,7 +31,7 @@
   </schema>
   <schema id="org.gnome.devhelp.state.main.paned" path="/org/gnome/devhelp/state/main/paned/">
     <key name="position" type="i">
-      <default>250</default>
+      <default>300</default>
       <summary>Width of the index and search pane</summary>
       <description>The width of the index and search pane.</description>
     </key>
