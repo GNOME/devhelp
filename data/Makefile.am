@@ -8,7 +8,9 @@ assistant_DATA = 		\
 	assistant.js		\
 	assistant.css
 
-gsettings_SCHEMAS = org.gnome.devhelp.gschema.xml
+gsettings_SCHEMAS =				\
+	org.gnome.devhelp.gschema.xml		\
+	org.gnome.libdevhelp-3.gschema.xml
 @GSETTINGS_RULES@
 
 appstream_in_files = org.gnome.Devhelp.appdata.xml.in

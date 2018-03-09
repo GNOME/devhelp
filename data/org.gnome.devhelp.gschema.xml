@@ -10,7 +10,6 @@
   <schema id="org.gnome.devhelp.state.main" path="/org/gnome/devhelp/state/main/">
     <child name="window" schema="org.gnome.devhelp.state.main.window"/>
     <child name="paned" schema="org.gnome.devhelp.state.main.paned"/>
-    <child name="contents" schema="org.gnome.devhelp.state.main.contents"/>
   </schema>
   <schema id="org.gnome.devhelp.state.main.window" path="/org/gnome/devhelp/state/main/window/">
     <key name="maximized" type="b">
@@ -34,18 +33,6 @@
       <default>300</default>
       <summary>Width of the index and search pane</summary>
       <description>The width of the index and search pane.</description>
-    </key>
-  </schema>
-  <schema id="org.gnome.devhelp.state.main.contents" path="/org/gnome/devhelp/state/main/contents/">
-    <key name="books-disabled" type="as">
-      <default>[]</default>
-      <summary>Books disabled</summary>
-      <description>List of books disabled by the user.</description>
-    </key>
-    <key name="group-books-by-language" type="b">
-      <default>false</default>
-      <summary>Group by language</summary>
-      <description>Whether books should be grouped by language in the UI</description>
     </key>
   </schema>
   <schema id="org.gnome.devhelp.state.assistant" path="/org/gnome/devhelp/state/assistant/">

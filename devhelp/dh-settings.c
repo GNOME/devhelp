@@ -21,9 +21,9 @@
 #include "dh-settings.h"
 
 /* Devhelp GSettings schema IDs */
+#define SETTINGS_SCHEMA_ID_CONTENTS             "org.gnome.libdevhelp-3.contents"
 #define SETTINGS_SCHEMA_ID_WINDOW               "org.gnome.devhelp.state.main.window"
 #define SETTINGS_SCHEMA_ID_PANED                "org.gnome.devhelp.state.main.paned"
-#define SETTINGS_SCHEMA_ID_CONTENTS             "org.gnome.devhelp.state.main.contents"
 #define SETTINGS_SCHEMA_ID_ASSISTANT            "org.gnome.devhelp.state.assistant.window"
 #define SETTINGS_SCHEMA_ID_FONTS                "org.gnome.devhelp.fonts"
 
@@ -119,9 +119,22 @@ dh_settings_init (DhSettings *self)
 {
         self->priv = dh_settings_get_instance_private (self);
 
+        /* The GSettings schemas provided by the libdevhelp are relocatable.
+         * Different major versions of libdevhelp must be parallel-installable,
+         * so the schema IDs must be different (they must contain the API/major
+         * version). But for users to not lose all their settings when there is
+         * a new major version of libdevhelp, the schemas – if still
+         * compatible – are relocated to an old common path.
+         *
+         * If a schema becomes incompatible, the compatible keys can be migrated
+         * with dconf, with the DhDconfMigration utility class.
+         */
+        self->priv->settings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
+                                                                  /* Must be compatible with Devhelp app version 3.28. */
+                                                                  "/org/gnome/devhelp/state/main/contents/");
+
         self->priv->settings_window = g_settings_new (SETTINGS_SCHEMA_ID_WINDOW);
         self->priv->settings_paned = g_settings_new (SETTINGS_SCHEMA_ID_PANED);
-        self->priv->settings_contents = g_settings_new (SETTINGS_SCHEMA_ID_CONTENTS);
         self->priv->settings_assistant = g_settings_new (SETTINGS_SCHEMA_ID_ASSISTANT);
         self->priv->settings_fonts = g_settings_new (SETTINGS_SCHEMA_ID_FONTS);
         self->priv->settings_desktop_interface = g_settings_new (SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE);
