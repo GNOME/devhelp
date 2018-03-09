@@ -47,6 +47,7 @@ EXTRA_HFILES = \
 # Header files or dirs to ignore when scanning. Use base file/dir names
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code
 IGNORE_HFILES = \
+	dh-dconf-migration.h \
 	dh-error.h \
 	dh-parser.h \
 	dh-search-context.h \

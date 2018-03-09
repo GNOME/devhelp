@@ -1,0 +1,4 @@
+For the future. The code in this directory is not compiled (but has been tested
+when written of course). Instead of the code bit-rotting in a forgotten branch,
+have the code on git master to ensure to have a backup. And elsewhere in the
+git repo, be able to make references to the experiments done here.
