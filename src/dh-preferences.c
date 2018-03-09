@@ -23,6 +23,7 @@
 #include <string.h>
 #include <devhelp/devhelp.h>
 #include "devhelp/dh-settings.h"
+#include "dh-settings-app.h"
 #include "dh-util-app.h"
 
 static GtkWidget *prefs_dialog = NULL;
@@ -588,7 +589,8 @@ dh_preferences_init (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv;
         DhBookManager *book_manager;
-        DhSettings *settings;
+        DhSettings *settings_lib;
+        DhSettingsApp *settings_app;
         GSettings *settings_fonts;
         GSettings *settings_contents;
 
@@ -617,9 +619,10 @@ dh_preferences_init (DhPreferences *prefs)
                                  0);
 
         /* setup GSettings bindings */
-        settings = dh_settings_get_singleton ();
-        settings_fonts = dh_settings_peek_fonts_settings (settings);
-        settings_contents = dh_settings_peek_contents_settings (settings);
+        settings_app = dh_settings_app_get_singleton ();
+        settings_fonts = dh_settings_app_peek_fonts_settings (settings_app);
+        settings_lib = dh_settings_get_singleton ();
+        settings_contents = dh_settings_peek_contents_settings (settings_lib);
         g_settings_bind (settings_fonts, "use-system-fonts",
                          priv->system_fonts_button, "active",
                          G_SETTINGS_BIND_DEFAULT);

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2012 Thomas Bechtold <toabctl@gnome.org>
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -43,10 +43,8 @@ struct _DhSettings {
 struct _DhSettingsClass {
         GObjectClass parent;
 
-        /* Signals */
-        void (*fonts_changed) (DhSettings  *settings,
-                               const gchar *font_name_fixed,
-                               const gchar *font_name_variable);
+        /* Padding for future expansion */
+        gpointer padding[12];
 };
 
 GType           dh_settings_get_type                    (void) G_GNUC_CONST;
@@ -56,19 +54,7 @@ DhSettings *    dh_settings_get_singleton               (void);
 G_GNUC_INTERNAL
 void            _dh_settings_unref_singleton            (void);
 
-GSettings *     dh_settings_peek_window_settings        (DhSettings *self);
-
-GSettings *     dh_settings_peek_paned_settings         (DhSettings *self);
-
 GSettings *     dh_settings_peek_contents_settings      (DhSettings *self);
-
-GSettings *     dh_settings_peek_assistant_settings     (DhSettings *self);
-
-GSettings *     dh_settings_peek_fonts_settings         (DhSettings *self);
-
-void            dh_settings_get_selected_fonts          (DhSettings  *self,
-                                                         gchar      **font_name_fixed,
-                                                         gchar      **font_name_variable);
 
 G_END_DECLS
 

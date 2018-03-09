@@ -23,9 +23,9 @@
 #include "config.h"
 #include "dh-app.h"
 #include <glib/gi18n.h>
-#include "devhelp/dh-settings.h"
 #include "dh-assistant.h"
 #include "dh-preferences.h"
+#include "dh-settings-app.h"
 #include "dh-util-app.h"
 
 G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
@@ -52,30 +52,30 @@ static void
 save_active_main_window_gsettings (DhApp *app)
 {
         DhWindow *active_window;
-        DhSettings *settings;
+        DhSettingsApp *settings;
 
         active_window = dh_app_get_active_main_window (app, FALSE);
         if (active_window == NULL)
                 return;
 
-        settings = dh_settings_get_singleton ();
+        settings = dh_settings_app_get_singleton ();
         dh_util_window_settings_save (GTK_WINDOW (active_window),
-                                      dh_settings_peek_window_settings (settings));
+                                      dh_settings_app_peek_window_settings (settings));
 }
 
 static void
 save_active_assistant_window_gsettings (DhApp *app)
 {
         DhAssistant *active_assistant;
-        DhSettings *settings;
+        DhSettingsApp *settings;
 
         active_assistant = get_active_assistant_window (app);
         if (active_assistant == NULL)
                 return;
 
-        settings = dh_settings_get_singleton ();
+        settings = dh_settings_app_get_singleton ();
         dh_util_window_settings_save (GTK_WINDOW (active_assistant),
-                                      dh_settings_peek_assistant_settings (settings));
+                                      dh_settings_app_peek_assistant_settings (settings));
 }
 
 static void

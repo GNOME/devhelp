@@ -19,7 +19,7 @@
 #include "config.h"
 #include "dh-assistant.h"
 #include <devhelp/devhelp.h>
-#include "devhelp/dh-settings.h"
+#include "dh-settings-app.h"
 #include "dh-util-app.h"
 #include "dh-window.h"
 
@@ -61,11 +61,11 @@ static gboolean
 dh_assistant_delete_event (GtkWidget   *widget,
                            GdkEventAny *event)
 {
-        DhSettings *settings;
+        DhSettingsApp *settings;
 
-        settings = dh_settings_get_singleton ();
+        settings = dh_settings_app_get_singleton ();
         dh_util_window_settings_save (GTK_WINDOW (widget),
-                                      dh_settings_peek_assistant_settings (settings));
+                                      dh_settings_app_peek_assistant_settings (settings));
 
         if (GTK_WIDGET_CLASS (dh_assistant_parent_class)->delete_event == NULL)
                 return GDK_EVENT_PROPAGATE;
@@ -103,16 +103,16 @@ DhAssistant *
 dh_assistant_new (DhApp *application)
 {
         DhAssistant *assistant;
-        DhSettings *settings;
+        DhSettingsApp *settings;
 
         assistant = g_object_new (DH_TYPE_ASSISTANT,
                                   "application", application,
                                   NULL);
 
-        settings = dh_settings_get_singleton ();
+        settings = dh_settings_app_get_singleton ();
         gtk_widget_realize (GTK_WIDGET (assistant));
         dh_util_window_settings_restore (GTK_WINDOW (assistant),
-                                         dh_settings_peek_assistant_settings (settings));
+                                         dh_settings_app_peek_assistant_settings (settings));
 
         return assistant;
 }

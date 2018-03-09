@@ -10,6 +10,7 @@ app_headers =			\
 	dh-app.h		\
 	dh-assistant.h		\
 	dh-preferences.h	\
+	dh-settings-app.h	\
 	dh-tab.h		\
 	dh-tab-label.h		\
 	dh-util-app.h		\
@@ -23,6 +24,7 @@ app_c_files =			\
 	dh-assistant.c		\
 	dh-main.c		\
 	dh-preferences.c	\
+	dh-settings-app.c	\
 	dh-tab.c		\
 	dh-tab-label.c		\
 	dh-util-app.c		\

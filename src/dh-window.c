@@ -23,7 +23,7 @@
 #include <glib/gi18n.h>
 #include <webkit2/webkit2.h>
 #include <devhelp/devhelp.h>
-#include "devhelp/dh-settings.h"
+#include "dh-settings-app.h"
 #include "dh-tab.h"
 #include "dh-tab-label.h"
 #include "dh-util-app.h"
@@ -70,11 +70,11 @@ static gboolean
 dh_window_delete_event (GtkWidget   *widget,
                         GdkEventAny *event)
 {
-        DhSettings *settings;
+        DhSettingsApp *settings;
 
-        settings = dh_settings_get_singleton ();
+        settings = dh_settings_app_get_singleton ();
         dh_util_window_settings_save (GTK_WINDOW (widget),
-                                      dh_settings_peek_window_settings (settings));
+                                      dh_settings_app_peek_window_settings (settings));
 
         if (GTK_WIDGET_CLASS (dh_window_parent_class)->delete_event == NULL)
                 return GDK_EVENT_PROPAGATE;
@@ -457,10 +457,10 @@ add_actions (DhWindow *window)
 }
 
 static void
-settings_fonts_changed_cb (DhSettings  *settings,
-                           const gchar *font_name_fixed,
-                           const gchar *font_name_variable,
-                           DhWindow    *window)
+settings_fonts_changed_cb (DhSettingsApp *settings,
+                           const gchar   *font_name_fixed,
+                           const gchar   *font_name_variable,
+                           DhWindow      *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint n_pages;
@@ -680,7 +680,7 @@ dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         GtkApplication *app;
-        DhSettings *settings;
+        DhSettingsApp *settings;
         GSettings *paned_settings;
 
         gtk_widget_init_template (GTK_WIDGET (window));
@@ -693,14 +693,14 @@ dh_window_init (DhWindow *window)
                                                 priv->window_menu_plus_app_menu);
         }
 
-        settings = dh_settings_get_singleton ();
+        settings = dh_settings_app_get_singleton ();
         g_signal_connect_object (settings,
                                  "fonts-changed",
                                  G_CALLBACK (settings_fonts_changed_cb),
                                  window,
                                  0);
 
-        paned_settings = dh_settings_peek_paned_settings (settings);
+        paned_settings = dh_settings_app_peek_paned_settings (settings);
         g_settings_bind (paned_settings, "position",
                          priv->hpaned, "position",
                          G_SETTINGS_BIND_DEFAULT |
@@ -950,7 +950,7 @@ open_new_tab (DhWindow    *window,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         DhTab *tab;
         DhWebView *web_view;
-        DhSettings *settings;
+        DhSettingsApp *settings;
         gchar *font_fixed = NULL;
         gchar *font_variable = NULL;
         GtkWidget *label;
@@ -963,8 +963,8 @@ open_new_tab (DhWindow    *window,
         web_view = dh_tab_get_web_view (tab);
 
         /* Set font */
-        settings = dh_settings_get_singleton ();
-        dh_settings_get_selected_fonts (settings, &font_fixed, &font_variable);
+        settings = dh_settings_app_get_singleton ();
+        dh_settings_app_get_selected_fonts (settings, &font_fixed, &font_variable);
         dh_util_view_set_font (WEBKIT_WEB_VIEW (web_view), font_fixed, font_variable);
         g_free (font_fixed);
         g_free (font_variable);
@@ -1027,7 +1027,7 @@ GtkWidget *
 dh_window_new (GtkApplication *application)
 {
         DhWindow *window;
-        DhSettings *settings;
+        DhSettingsApp *settings;
 
         g_return_val_if_fail (GTK_IS_APPLICATION (application), NULL);
 
@@ -1035,10 +1035,10 @@ dh_window_new (GtkApplication *application)
                                "application", application,
                                NULL);
 
-        settings = dh_settings_get_singleton ();
+        settings = dh_settings_app_get_singleton ();
         gtk_widget_realize (GTK_WIDGET (window));
         dh_util_window_settings_restore (GTK_WINDOW (window),
-                                         dh_settings_peek_window_settings (settings));
+                                         dh_settings_app_peek_window_settings (settings));
 
         return GTK_WIDGET (window);
 }

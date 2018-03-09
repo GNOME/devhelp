@@ -22,6 +22,7 @@
 #include <glib/gi18n.h>
 #include <devhelp/devhelp.h>
 #include "dh-app.h"
+#include "dh-settings-app.h"
 
 int
 main (int argc, char **argv)
@@ -39,6 +40,7 @@ main (int argc, char **argv)
         g_object_unref (application);
 
         dh_finalize ();
+        dh_settings_app_unref_singleton ();
 
         return status;
 }
