@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=devhelp"
 "&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-02-10 09:48+0000\n"
-"PO-Revision-Date: 2018-02-25 13:05+0200\n"
+"POT-Creation-Date: 2018-02-25 11:06+0000\n"
+"PO-Revision-Date: 2018-03-04 17:57+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -23,36 +23,32 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6
-#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:112 src/dh-app.c:480
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:152 src/dh-app.c:497
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7
-#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:114
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:154
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Rīks izstrādātājiem, ar ko pārlūkot un meklēt API dokumentāciju"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:9
-#| msgid ""
-#| "Devhelp is an API documentation browser. It provides an easy way to "
-#| "navigate through libraries, search by function, struct, or macro. It "
-#| "provides a tabbed interface and allows to print results."
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation. It "
 "provides an easy way to navigate through libraries and to search by "
 "function, struct, or macro."
 msgstr ""
-"Devhelp ir rīks izstrādātājiem, ar ko pārlūkot un meklēt API dokumentāciju."
-" Tas piedāvā vieglu veidu, kā apskatīt bibliotēkas, meklējot pēc funkcijām,"
-" struktūrām vai makrosiem."
+"Devhelp ir rīks izstrādātājiem, ar ko pārlūkot un meklēt API dokumentāciju. "
+"Tas piedāvā vieglu veidu, kā apskatīt bibliotēkas, meklējot pēc funkcijām, "
+"struktūrām vai makrosiem."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
 msgstr ""
-"Dokumentācijai ir jābūt lokāli uzinstalētais, tāpēc nav nepieciešams"
-" savienojums ar internetu, lai izmantotu Devhelp."
+"Dokumentācijai ir jābūt lokāli uzinstalētais, tāpēc nav nepieciešams "
+"savienojums ar internetu, lai izmantotu Devhelp."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
@@ -61,21 +57,22 @@ msgid ""
 "long as the API documentation is available in HTML and a *.devhelp2 index "
 "file is generated."
 msgstr ""
+"Devhelp ir pielāgots darbam ar GTK-Doc, tāpēc GTK+ un GNOME bibliotēkas ir"
+" labi atbalstītas. Arī citas izstrādes platformas var tikt atbalstītas, ja"
+" API dokumentācija ir pieejama HTML formātā un ir uzģenerēta *.devhelp2"
+" indeksu datne."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:24
-#| msgid ""
-#| "Devhelp integrates with other applications such as Glade, Anjuta, or "
-#| "Geany."
 msgid ""
 "Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr ""
-"Devhelp ir integrēts ar citām lietotnēm, piemēram, Glade, Builder, Anjuta. Ir"
-" pieejami spraudņi dažādiem teksta redaktoriem (gedit, Vim, Emacs, Geany, …)."
+"Devhelp ir integrēts ar citām lietotnēm, piemēram, Glade, Builder, Anjuta. "
+"Ir pieejami spraudņi dažādiem teksta redaktoriem (gedit, Vim, Emacs, Geany, "
+"…)."
 
 #: data/org.gnome.Devhelp.desktop.in.in:5
-#| msgid "Documentation Browser"
 msgid "API Documentation Browser"
 msgstr "API dokumentācijas pārlūks"
 
@@ -186,35 +183,35 @@ msgstr "Devhelp atbalsts"
 msgid "Show API Documentation"
 msgstr "Rādīt API dokumentāciju"
 
-#: src/dh-app.c:116
+#: src/dh-app.c:156
 msgid "translator-credits"
 msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
-#: src/dh-app.c:118
+#: src/dh-app.c:158
 msgid "Devhelp Website"
 msgstr "Devhelp tīmekļa vietne"
 
-#: src/dh-app.c:384
+#: src/dh-app.c:401
 msgid "Opens a new Devhelp window"
 msgstr "Atver jaunu Devhelp logu"
 
-#: src/dh-app.c:389
+#: src/dh-app.c:406
 msgid "Search for a keyword"
 msgstr "Meklēt atslēgvārdu"
 
-#: src/dh-app.c:390 src/dh-app.c:395
+#: src/dh-app.c:407 src/dh-app.c:412
 msgid "KEYWORD"
 msgstr "ATSLĒGVĀRDS"
 
-#: src/dh-app.c:394
+#: src/dh-app.c:411
 msgid "Search and display any hit in the assistant window"
 msgstr "Meklēt un parādīt jebkuru rezultātu asistenta logā"
 
-#: src/dh-app.c:399
+#: src/dh-app.c:416
 msgid "Display the version and exit"
 msgstr "Rādīt versiju un iziet"
 
-#: src/dh-app.c:404
+#: src/dh-app.c:421
 msgid "Quit any running Devhelp"
 msgstr "Iziet no jebkura palaista Devhelp"
 
@@ -341,13 +338,13 @@ msgstr "_Fiksēts platums:"
 msgid "Fonts"
 msgstr "Fonti"
 
-#: src/dh-window.c:161 src/dh-window.c:1006 src/dh-window.c:1139
-msgid "Empty Page"
-msgstr "Tukša lapa"
-
-#: src/dh-window.c:892
+#: src/dh-tab.c:68
 msgid "Error opening the requested link."
 msgstr "Kļūda, atverot pieprasīto saiti."
+
+#: src/dh-web-view.c:201
+msgid "Empty Page"
+msgstr "Tukša lapa"
 
 #: src/dh-window.ui:7 src/dh-window.ui:45
 msgid "_Side Panel"
@@ -487,117 +484,3 @@ msgstr "Atstatīt mērogu"
 #: src/menus.ui:50
 msgid "_About"
 msgstr "_Par"
-
-#~| msgid "Developer's Help program"
-#~ msgid "Developer’s Help program"
-#~ msgstr "Izstrādātāju palīdzības programma"
-
-#~ msgid "X position of main window"
-#~ msgstr "Galvenā loga X novietojums"
-
-#~ msgid "The X position of the main window."
-#~ msgstr "Galvenā loga X novietojums."
-
-#~ msgid "Y position of main window"
-#~ msgstr "Galvenā loga Y novietojums"
-
-#~ msgid "The Y position of the main window."
-#~ msgstr "Galvenā loga Y novietojums."
-
-#~ msgid "Whether the assistant window should be maximized"
-#~ msgstr "Vai asistenta logam pēc noklusējuma jābūt minimizētam"
-
-#~ msgid "Whether the assistant window should be maximized."
-#~ msgstr "Vai asistenta logam pēc noklusējuma jābūt minimizētam."
-
-#~ msgid "X position of assistant window"
-#~ msgstr "Asistenta loga X novietojums"
-
-#~ msgid "The X position of the assistant window."
-#~ msgstr "Asistenta loga X novietojums."
-
-#~ msgid "Y position of assistant window"
-#~ msgstr "Asistenta loga Y novietojums"
-
-#~ msgid "The Y position of the assistant window."
-#~ msgstr "Asistenta loga Y novietojums."
-
-#~| msgid "A developers' help browser for GNOME"
-#~ msgid "A developers’ help browser for GNOME"
-#~ msgstr "Izstrādātāju palīdzības pārlūks GNOME videi"
-
-#~ msgid "50%"
-#~ msgstr "50%"
-
-#~ msgid "75%"
-#~ msgstr "75%"
-
-#~ msgid "100%"
-#~ msgstr "100%"
-
-#~ msgid "125%"
-#~ msgstr "125%"
-
-#~ msgid "150%"
-#~ msgstr "150%"
-
-#~ msgid "175%"
-#~ msgstr "175%"
-
-#~ msgid "200%"
-#~ msgstr "200%"
-
-#~ msgid "300%"
-#~ msgstr "300%"
-
-#~ msgid "400%"
-#~ msgstr "400%"
-
-#~ msgid "_Close"
-#~ msgstr "_Aizvērt"
-
-#~ msgid "Side _Panel"
-#~ msgstr "Sānu _rūts"
-
-#~ msgid "Selected tab: \"content\" or \"search\""
-#~ msgstr "Izvēlētā cilne — “content” (saturs) vai “search” (meklēt)"
-
-#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
-#~ msgstr ""
-#~ "Kura no cilnēm ir izvēlēta — “content” (saturs) vai “search” (meklēt)"
-
-#~ msgid "Expected '%s', got '%s' at line %d, column %d"
-#~ msgstr "Gaidīja “%s”, saņēma “%s” rindā %d, kolonnā %d"
-
-#~ msgid "Invalid namespace '%s' at line %d, column %d"
-#~ msgstr "Nederīga vārdtelpa “%s” rindā %d, kolonnā %d"
-
-#~ msgid ""
-#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
-#~ "%d"
-#~ msgstr ""
-#~ "“title”, “name” un “link” elementi ir nepieciešami rindā %d, kolonnā %d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "“name” un “link” elementi ir nepieciešami iekš <sub> rindā %d, kolonnā %d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "“name” un “link” elementi ir nepieciešami iekš “%s” rindā %d, kolonnā %d"
-
-#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-#~ msgstr "“type” elements ir nepieciešams iekš <keyword> rindā %d, kolonnā %d"
-
-#~ msgid "Cannot uncompress book '%s': %s"
-#~ msgstr "Nevar atspiest grāmatu “%s” — %s"
-
-#~ msgid "_Side pane"
-#~ msgstr "_Sānu rūts"
-
-#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
-#~ msgstr "Nospiežot F2, atveras Devhelp vārdam, kas ir pie kursora"
