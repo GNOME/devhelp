@@ -99,3 +99,4 @@ add_global_arguments(supported_warning_cflags, language : 'c')
 ##### end CFLAGS
 
 subdir('devhelp')
+subdir('unit-tests')
