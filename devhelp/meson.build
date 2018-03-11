@@ -47,3 +47,6 @@ library('devhelp-@0@'.format(DEVHELP_API_VERSION),
         dependencies : DEVHELP_DEPS,
         include_directories : [CONFIG_H_INCLUDE_DIR, ROOT_INCLUDE_DIR],
         install : true)
+
+install_headers(libdevhelp_public_headers,
+                subdir : 'devhelp-@0@/devhelp'.format(DEVHELP_API_VERSION))
