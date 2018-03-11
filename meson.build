@@ -14,6 +14,17 @@ GNOME = import('gnome')
 # API version, used for parallel installability.
 DEVHELP_API_VERSION = '3'
 
+# Libtool version numbers, remember to change them just *before* a release.
+# A good time to update it is for the GNOME x.y.90 version, at API freeze,
+# so that packagers have the time to update the package.
+#   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
+#   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
+#   (No interfaces changed:                   REVISION++)
+lt_current=5
+lt_revision=0
+lt_age=0
+LIBDEVHELP_LT_VERSION='@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
+
 DEVHELP_DEPS = [
         dependency('gio-2.0', version : '>= 2.40'),
         dependency('gtk+-3.0', version : '>= 3.22'),

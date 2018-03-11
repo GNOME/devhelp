@@ -71,10 +71,11 @@ LIBDEVHELP_STATIC_DEP = declare_dependency(
         dependencies : DEVHELP_DEPS
 )
 
-library(
+shared_library(
         'devhelp-@0@'.format(DEVHELP_API_VERSION),
         link_with : libdevhelp_static,
-        install : true
+        install : true,
+        version : LIBDEVHELP_LT_VERSION
 )
 
 install_headers(
