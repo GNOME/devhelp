@@ -10,9 +10,14 @@ project(
 )
 
 GNOME = import('gnome')
+PKG_CONFIG = import('pkgconfig')
 
 # API version, used for parallel installability.
 DEVHELP_API_VERSION = '3'
+
+# It would be nice to get rid of this variant, to use only the short version
+# everywhere.
+DEVHELP_API_VERSION_FULL = '3.0'
 
 # Libtool version numbers, remember to change them just *before* a release.
 # A good time to update it is for the GNOME x.y.90 version, at API freeze,
@@ -25,12 +30,25 @@ lt_revision=0
 lt_age=0
 LIBDEVHELP_LT_VERSION='@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
 
-DEVHELP_DEPS = [
-        dependency('gio-2.0', version : '>= 2.40'),
-        dependency('gtk+-3.0', version : '>= 3.22'),
-        dependency('webkit2gtk-4.0', version : '>= 2.19.2'),
-        dependency('gsettings-desktop-schemas')
+libdevhelp_deps_array = [
+        ['gio-2.0', '>= 2.40'],
+        ['gtk+-3.0', '>= 3.22'],
+        ['webkit2gtk-4.0', '>= 2.19.2']
 ]
+
+LIBDEVHELP_DEPS_STR = []
+LIBDEVHELP_DEPS = []
+foreach dep : libdevhelp_deps_array
+        dep_name = dep[0]
+        dep_version = dep[1]
+        LIBDEVHELP_DEPS_STR += '@0@ @1@'.format(dep_name, dep_version)
+        LIBDEVHELP_DEPS += dependency(dep_name, version : dep_version)
+endforeach
+
+#DEVHELP_APP_DEPS = [
+#        LIBDEVHELP_DEPS,
+#        dependency('gsettings-desktop-schemas')
+#]
 
 # config.h
 
