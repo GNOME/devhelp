@@ -21,6 +21,8 @@
 
 /* Include all the public headers. */
 
+#include <devhelp/dh-enum-types.h>
+
 #include <devhelp/dh-assistant-view.h>
 #include <devhelp/dh-book.h>
 #include <devhelp/dh-book-manager.h>
