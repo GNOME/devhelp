@@ -7,6 +7,8 @@ project('devhelp', 'c',
         meson_version : '>= 0.43',
         version : '3.28.1')
 
+GNOME = import('gnome')
+
 # API version, used for parallel installability.
 DEVHELP_API_VERSION = '3'
 

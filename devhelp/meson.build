@@ -39,14 +39,25 @@ libdevhelp_private_c_files = [
         'dh-util-lib.c'
 ]
 
+install_headers_subdir = 'devhelp-@0@/devhelp'.format(DEVHELP_API_VERSION)
+install_headers_fulldir = join_paths(get_option('prefix'),
+                                     get_option('includedir'),
+                                     install_headers_subdir)
+
+libdevhelp_enums = GNOME.mkenums_simple('dh-enum-types',
+                                        sources : libdevhelp_public_headers,
+                                        install_header : true,
+                                        install_dir : install_headers_fulldir)
+
 library('devhelp-@0@'.format(DEVHELP_API_VERSION),
         [libdevhelp_public_headers,
          libdevhelp_public_c_files,
          libdevhelp_private_headers,
-         libdevhelp_private_c_files],
+         libdevhelp_private_c_files,
+         libdevhelp_enums],
         dependencies : DEVHELP_DEPS,
         include_directories : [CONFIG_H_INCLUDE_DIR, ROOT_INCLUDE_DIR],
         install : true)
 
 install_headers(libdevhelp_public_headers,
-                subdir : 'devhelp-@0@/devhelp'.format(DEVHELP_API_VERSION))
+                subdir : install_headers_subdir)
