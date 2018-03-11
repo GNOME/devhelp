@@ -40,33 +40,44 @@ libdevhelp_private_c_files = [
 ]
 
 install_headers_subdir = 'devhelp-@0@/devhelp'.format(DEVHELP_API_VERSION)
-install_headers_fulldir = join_paths(get_option('prefix'),
-                                     get_option('includedir'),
-                                     install_headers_subdir)
+install_headers_fulldir = join_paths(
+        get_option('prefix'),
+        get_option('includedir'),
+        install_headers_subdir
+)
 
-libdevhelp_enums = GNOME.mkenums_simple('dh-enum-types',
-                                        sources : libdevhelp_public_headers,
-                                        install_header : true,
-                                        install_dir : install_headers_fulldir)
+libdevhelp_enums = GNOME.mkenums_simple(
+        'dh-enum-types',
+        sources : libdevhelp_public_headers,
+        install_header : true,
+        install_dir : install_headers_fulldir
+)
 libdevhelp_enum_header = libdevhelp_enums[1]
 
-libdevhelp_static = static_library('devhelp-static',
-                                   [libdevhelp_public_c_files,
-                                    libdevhelp_private_c_files,
-                                    libdevhelp_enums],
-                                   include_directories : [CONFIG_H_INCLUDE_DIR,
-                                                          ROOT_INCLUDE_DIR],
-                                   dependencies : DEVHELP_DEPS)
+libdevhelp_static = static_library(
+        'devhelp-static',
+        [libdevhelp_public_c_files,
+         libdevhelp_private_c_files,
+         libdevhelp_enums],
+        include_directories : [CONFIG_H_INCLUDE_DIR, ROOT_INCLUDE_DIR],
+        dependencies : DEVHELP_DEPS
+)
 
 # For unit tests, to be able to test private functions.
-LIBDEVHELP_STATIC_DEP = declare_dependency(sources : libdevhelp_enum_header,
-                                           link_with : libdevhelp_static,
-                                           include_directories : [ROOT_INCLUDE_DIR],
-                                           dependencies : DEVHELP_DEPS)
-
-library('devhelp-@0@'.format(DEVHELP_API_VERSION),
+LIBDEVHELP_STATIC_DEP = declare_dependency(
+        sources : libdevhelp_enum_header,
         link_with : libdevhelp_static,
-        install : true)
+        include_directories : [ROOT_INCLUDE_DIR],
+        dependencies : DEVHELP_DEPS
+)
 
-install_headers(libdevhelp_public_headers,
-                subdir : install_headers_subdir)
+library(
+        'devhelp-@0@'.format(DEVHELP_API_VERSION),
+        link_with : libdevhelp_static,
+        install : true
+)
+
+install_headers(
+        libdevhelp_public_headers,
+        subdir : install_headers_subdir
+)

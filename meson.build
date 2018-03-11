@@ -3,9 +3,11 @@
 # - Global variables in UPPER_CASE.
 # See: https://github.com/mesonbuild/meson/issues/2607
 
-project('devhelp', 'c',
+project(
+        'devhelp', 'c',
         meson_version : '>= 0.43',
-        version : '3.28.1')
+        version : '3.28.1'
+)
 
 GNOME = import('gnome')
 
@@ -22,16 +24,24 @@ DEVHELP_DEPS = [
 # config.h
 
 config_data = configuration_data()
-config_data.set_quoted('GETTEXT_PACKAGE',
-                       meson.project_name(),
-                       description : 'Define to the gettext package name.')
-config_data.set_quoted('DATADIR',
-                       join_paths(get_option('prefix'), get_option('datadir')))
-config_data.set_quoted('LOCALEDIR',
-                       join_paths(get_option('prefix'), get_option('localedir')))
+config_data.set_quoted(
+        'GETTEXT_PACKAGE',
+        meson.project_name(),
+        description : 'Define to the gettext package name.'
+)
+config_data.set_quoted(
+        'DATADIR',
+        join_paths(get_option('prefix'), get_option('datadir'))
+)
+config_data.set_quoted(
+        'LOCALEDIR',
+        join_paths(get_option('prefix'), get_option('localedir'))
+)
 
-configure_file(output : 'config.h',
-               configuration : config_data)
+configure_file(
+        output : 'config.h',
+        configuration : config_data
+)
 
 CONFIG_H_INCLUDE_DIR = include_directories('.')
 
@@ -40,8 +50,10 @@ CONFIG_H_INCLUDE_DIR = include_directories('.')
 # For #include <devhelp/something.h>
 ROOT_INCLUDE_DIR = include_directories('.')
 
-add_global_arguments('-DG_LOG_DOMAIN="@0@"'.format(meson.project_name()),
-                     language : 'c')
+add_global_arguments(
+        '-DG_LOG_DOMAIN="@0@"'.format(meson.project_name()),
+        language : 'c'
+)
 
 #####
 # CFLAGS
