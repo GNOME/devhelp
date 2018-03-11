@@ -83,7 +83,7 @@ endif
 
 shared_library(
         'devhelp-@0@'.format(DEVHELP_API_VERSION),
-        link_with : libdevhelp_static,
+        link_whole : libdevhelp_static,
         link_args : ldflags,
         link_depends : symbol_map,
         version : LIBDEVHELP_LT_VERSION,
