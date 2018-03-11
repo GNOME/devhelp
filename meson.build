@@ -14,6 +14,27 @@ DEVHELP_DEPS = [
         dependency('gsettings-desktop-schemas')
 ]
 
+# config.h
+
+config_data = configuration_data()
+config_data.set_quoted('GETTEXT_PACKAGE',
+                       meson.project_name(),
+                       description : 'Define to the gettext package name.')
+config_data.set_quoted('DATADIR',
+                       join_paths(get_option('prefix'), get_option('datadir')))
+config_data.set_quoted('LOCALEDIR',
+                       join_paths(get_option('prefix'), get_option('localedir')))
+
+configure_file(output : 'config.h',
+               configuration : config_data)
+
+CONFIG_H_INCLUDE_DIR = include_directories('.')
+
+# Misc
+
+# For #include <devhelp/something.h>
+ROOT_INCLUDE_DIR = include_directories('.')
+
 add_global_arguments('-DG_LOG_DOMAIN="@0@"'.format(meson.project_name()),
                      language : 'c')
 
