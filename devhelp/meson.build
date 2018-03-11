@@ -39,7 +39,7 @@ libdevhelp_private_c_files = [
         'dh-util-lib.c'
 ]
 
-library('devhelp-3',
+library('devhelp-@0@'.format(DEVHELP_API_VERSION),
         [libdevhelp_public_headers,
          libdevhelp_public_c_files,
          libdevhelp_private_headers,

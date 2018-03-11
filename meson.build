@@ -7,6 +7,9 @@ project('devhelp', 'c',
         meson_version : '>= 0.43',
         version : '3.28.1')
 
+# API version, used for parallel installability.
+DEVHELP_API_VERSION = '3'
+
 DEVHELP_DEPS = [
         dependency('gio-2.0', version : '>= 2.40'),
         dependency('gtk+-3.0', version : '>= 3.22'),
