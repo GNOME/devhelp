@@ -65,7 +65,7 @@ libdevhelp_static = static_library(
 )
 
 # For unit tests, to be able to test private functions.
-LIBDEVHELP_STATIC_DEP = declare_dependency(
+STATIC_LIBDEVHELP_DECLARED_DEP = declare_dependency(
         sources : libdevhelp_enum_header,
         link_with : libdevhelp_static,
         include_directories : [ROOT_INCLUDE_DIR],
@@ -89,6 +89,13 @@ libdevhelp = shared_library(
         link_depends : symbol_map,
         version : LIBDEVHELP_LT_VERSION,
         install : true
+)
+
+SHARED_LIBDEVHELP_DECLARED_DEP = declare_dependency(
+        sources : libdevhelp_enum_header,
+        link_with : libdevhelp,
+        include_directories : [ROOT_INCLUDE_DIR, include_directories('.')],
+        dependencies : LIBDEVHELP_DEPS
 )
 
 install_headers(

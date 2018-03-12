@@ -46,10 +46,11 @@ foreach dep : libdevhelp_deps_array
         LIBDEVHELP_DEPS += dependency(dep_name, version : dep_version)
 endforeach
 
-#DEVHELP_APP_DEPS = [
-#        LIBDEVHELP_DEPS,
-#        dependency('gsettings-desktop-schemas')
-#]
+DEVHELP_APP_DEPS = [
+        LIBDEVHELP_DEPS,
+        dependency('gsettings-desktop-schemas'),
+        meson.get_compiler('c').find_library('m')
+]
 
 # config.h
 
@@ -66,6 +67,10 @@ config_data.set_quoted(
 config_data.set_quoted(
         'LOCALEDIR',
         join_paths(get_option('prefix'), get_option('localedir'))
+)
+config_data.set_quoted(
+        'PACKAGE_VERSION',
+        meson.project_version()
 )
 
 configure_file(
@@ -142,4 +147,5 @@ add_global_arguments(supported_warning_cflags, language : 'c')
 
 subdir('data')
 subdir('devhelp')
+subdir('src')
 subdir('unit-tests')
