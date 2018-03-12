@@ -1,7 +1,7 @@
 install_data(
         ['org.gnome.devhelp.gschema.xml',
          'org.gnome.libdevhelp-3.gschema.xml'],
-        install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'glib-2.0', 'schemas')
+        install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'glib-2.0/schemas')
 )
 
 appdata = 'org.gnome.Devhelp.appdata.xml'
@@ -38,7 +38,7 @@ configure_file(
 
 install_data(
         ['assistant.css', 'assistant.js'],
-        install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'devhelp', 'assistant')
+        install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'devhelp/assistant')
 )
 
 install_data(
