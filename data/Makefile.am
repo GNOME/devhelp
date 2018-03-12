@@ -21,10 +21,10 @@ $(appstream_XML): $(appstream_in_files)
 	$(AM_V_GEN) $(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
 desktopdir = $(datadir)/applications
-desktop_in_files = org.gnome.Devhelp.desktop.in
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+desktop_in_file = org.gnome.Devhelp.desktop.in
+desktop_DATA = org.gnome.Devhelp.desktop
 
-$(desktop_DATA): $(desktop_in_files)
+$(desktop_DATA): $(desktop_in_file)
 	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 dbusservicedir = $(datadir)/dbus-1/services
@@ -40,14 +40,13 @@ man_MANS = devhelp.1
 
 EXTRA_DIST =			\
 	libdevhelp-3.0.pc.in    \
-	$(desktop_in_files)	\
+	$(desktop_in_file)	\
 	$(gsettings_SCHEMAS)    \
 	$(assistant_DATA) \
 	$(man_MANS) \
 	$(appstream_in_files)
 
 CLEANFILES =			\
-	$(DESKTOP_FILES)	\
 	$(defaults_DATA)	\
 	$(desktop_DATA) 	\
 	$(dbusservice_DATA)	\
