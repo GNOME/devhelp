@@ -16,7 +16,6 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
 #include "dh-assistant.h"
 #include <devhelp/devhelp.h>
 #include "dh-settings-app.h"
