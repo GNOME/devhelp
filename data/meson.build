@@ -24,3 +24,8 @@ I18N.merge_file(
         install : true,
         install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'applications')
 )
+
+install_data(
+        ['assistant.css', 'assistant.js'],
+        install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'devhelp', 'assistant')
+)
