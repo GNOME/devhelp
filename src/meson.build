@@ -12,6 +12,11 @@ devhelp_app_sources = [
         'tepl-info-bar.c'
 ]
 
+devhelp_app_sources += GNOME.compile_resources(
+        'dh-resources',
+        'dh.gresource.xml'
+)
+
 executable(
         'devhelp',
         devhelp_app_sources,
