@@ -1,3 +1,5 @@
+subdir('icons')
+
 install_data(
         ['org.gnome.devhelp.gschema.xml',
          'org.gnome.libdevhelp-3.gschema.xml'],
