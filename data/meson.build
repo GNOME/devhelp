@@ -25,6 +25,17 @@ I18N.merge_file(
         install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'applications')
 )
 
+service_file = 'org.gnome.Devhelp.service'
+service_conf = configuration_data()
+service_conf.set('bindir', join_paths(get_option('prefix'), get_option('bindir')))
+configure_file(
+        input : service_file + '.in',
+        output : service_file,
+        configuration : service_conf,
+        install : true,
+        install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'dbus-1/services')
+)
+
 install_data(
         ['assistant.css', 'assistant.js'],
         install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'devhelp', 'assistant')
