@@ -11,6 +11,7 @@ project(
 
 GNOME = import('gnome')
 PKG_CONFIG = import('pkgconfig')
+I18N = import('i18n')
 
 # API version, used for parallel installability.
 DEVHELP_API_VERSION = '3'
