@@ -139,5 +139,6 @@ supported_warning_cflags = c_compiler.get_supported_arguments(warning_cflags)
 add_global_arguments(supported_warning_cflags, language : 'c')
 ##### end CFLAGS
 
+subdir('data')
 subdir('devhelp')
 subdir('unit-tests')
