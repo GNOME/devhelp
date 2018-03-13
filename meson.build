@@ -55,9 +55,10 @@ DEVHELP_APP_DEPS = [
 # config.h
 
 config_data = configuration_data()
+GETTEXT_PACKAGE_NAME = meson.project_name()
 config_data.set_quoted(
         'GETTEXT_PACKAGE',
-        meson.project_name(),
+        GETTEXT_PACKAGE_NAME,
         description : 'Define to the gettext package name.'
 )
 config_data.set_quoted(
@@ -146,6 +147,7 @@ add_global_arguments(supported_warning_cflags, language : 'c')
 ##### end CFLAGS
 
 subdir('data')
+subdir('po')
 subdir('devhelp')
 subdir('src')
 subdir('unit-tests')
