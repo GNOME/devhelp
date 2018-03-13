@@ -148,6 +148,7 @@ add_global_arguments(supported_warning_cflags, language : 'c')
 
 subdir('data')
 subdir('po')
+subdir('help')
 subdir('devhelp')
 subdir('src')
 subdir('unit-tests')
