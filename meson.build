@@ -69,10 +69,8 @@ config_data.set_quoted(
         'LOCALEDIR',
         join_paths(get_option('prefix'), get_option('localedir'))
 )
-config_data.set_quoted(
-        'PACKAGE_VERSION',
-        meson.project_version()
-)
+config_data.set_quoted('PACKAGE_VERSION', meson.project_version())
+config_data.set('FLATPAK_BUILD', get_option('flatpak_build'))
 
 configure_file(
         output : 'config.h',
@@ -153,3 +151,10 @@ subdir('help')
 subdir('devhelp')
 subdir('src')
 subdir('unit-tests')
+
+# Print a summary of the configuration
+output = 'Configuration:\n\n'
+output += '        Devhelp version ' + meson.project_version() + '\n\n'
+output += '        Prefix:             ' + get_option('prefix') + '\n'
+output += '        Flatpak build mode: ' + get_option('flatpak_build').to_string()
+message(output)
