@@ -36,7 +36,8 @@
     "modules": [
         {
             "name": "devhelp",
-            "config-opts": [ "--enable-flatpak-build" ],
+            "buildsystem": "meson",
+            "config-opts": [ "-Dflatpak_build=true" ],
             "sources": [
                 {
                     "type": "git",
