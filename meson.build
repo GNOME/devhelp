@@ -152,6 +152,11 @@ subdir('devhelp')
 subdir('src')
 subdir('unit-tests')
 
+meson.add_install_script(
+        'meson_post_install.py',
+        join_paths(get_option('prefix'), get_option('datadir'))
+)
+
 # Print a summary of the configuration
 output = 'Configuration:\n\n'
 output += '        Devhelp version ' + meson.project_version() + '\n\n'
