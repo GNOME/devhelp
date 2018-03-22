@@ -1,0 +1,2 @@
+<!ENTITY package_name "@PACKAGE_NAME@">
+<!ENTITY package_string "@PACKAGE_STRING@">

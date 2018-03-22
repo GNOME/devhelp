@@ -152,6 +152,10 @@ subdir('devhelp')
 subdir('src')
 subdir('unit-tests')
 
+if get_option('gtk_doc')
+        subdir('docs/reference')
+endif
+
 meson.add_install_script(
         'meson_post_install.py',
         join_paths(get_option('prefix'), get_option('datadir'))
