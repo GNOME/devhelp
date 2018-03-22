@@ -112,3 +112,20 @@ PKG_CONFIG.generate(
         subdirs : install_headers_first_subdir,
         requires : LIBDEVHELP_DEPS_STR
 )
+
+GNOME.generate_gir(
+        libdevhelp,
+        export_packages : 'libdevhelp-@0@'.format(DEVHELP_API_VERSION_FULL),
+        sources : [
+                libdevhelp_public_headers,
+                libdevhelp_public_c_files,
+                libdevhelp_enums
+        ],
+        namespace : 'Devhelp',
+        nsversion : DEVHELP_API_VERSION_FULL,
+        identifier_prefix : 'Dh',
+        includes : ['Gtk-3.0', 'WebKit2-4.0'],
+        header : 'devhelp/devhelp.h',
+        include_directories : ROOT_INCLUDE_DIR,
+        install : true
+)
