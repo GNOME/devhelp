@@ -23,14 +23,6 @@ libdevhelp_public_c_files = [
         'dh-sidebar.c'
 ]
 
-libdevhelp_private_headers = [
-        'dh-error.h',
-        'dh-parser.h',
-        'dh-search-context.h',
-        'dh-settings.h',
-        'dh-util-lib.h'
-]
-
 libdevhelp_private_c_files = [
         'dh-error.c',
         'dh-parser.c',
