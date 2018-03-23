@@ -11,8 +11,6 @@
     <title>&package_name; Reference Manual</title>
     <releaseinfo>
       For &package_string;.
-      The latest version of this documentation can be found on-line at
-      <ulink role="online-location" url="https://developer.gnome.org/devhelp/">https://developer.gnome.org/devhelp/</ulink>.
     </releaseinfo>
   </bookinfo>
 
