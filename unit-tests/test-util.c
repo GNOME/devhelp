@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
 /*
  * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
  *
