@@ -66,18 +66,10 @@ STATIC_LIBDEVHELP_DECLARED_DEP = declare_dependency(
 
 symbol_map = join_paths(meson.current_source_dir(), 'symbol.map')
 
-ldflag = '-Wl,--version-script'
-c_compiler = meson.get_compiler('c')
-
-ldflags = []
-if c_compiler.has_argument(ldflag)
-        ldflags += '@0@,@1@'.format(ldflag, symbol_map)
-endif
-
 libdevhelp = shared_library(
         'devhelp-@0@'.format(DEVHELP_API_VERSION),
         link_whole : libdevhelp_static,
-        link_args : ldflags,
+        link_args : '-Wl,--version-script,' + symbol_map,
         link_depends : symbol_map,
         version : LIBDEVHELP_LT_VERSION,
         install : true
