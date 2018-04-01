@@ -39,7 +39,7 @@ check_get_possible_index_files (const gchar *book_directory_path,
                 gchar *expected_basename;
                 gchar *basename;
                 gchar *expected_path;
-                gchar *path;
+                const gchar *path;
 
                 switch (i) {
                         case 0:
@@ -66,13 +66,12 @@ check_get_possible_index_files (const gchar *book_directory_path,
                 g_assert_cmpstr (basename, ==, expected_basename);
 
                 expected_path = g_build_filename (book_directory_path, expected_basename, NULL);
-                path = g_file_get_path (index_file);
+                path = g_file_peek_path (index_file);
                 g_assert_cmpstr (path, ==, expected_path);
 
                 g_free (expected_basename);
                 g_free (basename);
                 g_free (expected_path);
-                g_free (path);
         }
 
         g_object_unref (book_directory);

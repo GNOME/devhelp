@@ -32,7 +32,7 @@ lt_age=0
 LIBDEVHELP_LT_VERSION='@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
 
 libdevhelp_deps_array = [
-        ['gio-2.0', '>= 2.40'],
+        ['gio-2.0', '>= 2.56'],
         ['gtk+-3.0', '>= 3.22'],
         ['webkit2gtk-4.0', '>= 2.19.2']
 ]
