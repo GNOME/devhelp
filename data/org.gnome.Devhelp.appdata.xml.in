@@ -32,7 +32,10 @@
   <url type="donation">http://www.gnome.org/friends/</url>
   <screenshots>
     <screenshot type="default">
-      <image>https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&amp;do=view&amp;target=devhelp.png</image>
+      <image>https://people.gnome.org/~swilmet/devhelp/screenshot-1.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://people.gnome.org/~swilmet/devhelp/screenshot-2.png</image>
     </screenshot>
   </screenshots>
   <project_group>GNOME</project_group>
