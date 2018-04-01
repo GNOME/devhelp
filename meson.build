@@ -165,5 +165,6 @@ meson.add_install_script(
 output = 'Configuration:\n\n'
 output += '        Devhelp version ' + meson.project_version() + '\n\n'
 output += '        Prefix:             ' + get_option('prefix') + '\n'
-output += '        Flatpak build mode: ' + get_option('flatpak_build').to_string()
+output += '        API documentation:  ' + get_option('gtk_doc').to_string() + '\n'
+output += '        Flatpak build mode: ' + get_option('flatpak_build').to_string() + '\n'
 message(output)
