@@ -23,7 +23,6 @@
 #include "dh-preferences.h"
 #include <string.h>
 #include <devhelp/devhelp.h>
-#include "devhelp/dh-settings.h"
 #include "dh-settings-app.h"
 #include "dh-util-app.h"
 
