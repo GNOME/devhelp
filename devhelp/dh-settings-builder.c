@@ -28,15 +28,28 @@
  * #DhSettingsBuilder permits to build #DhSettings objects. Once a #DhSettings
  * object is created, it is immutable.
  *
- * The #GSettings schemas installed by the libdevhelp are relocatable. So the
- * paths need to be provided.
+ * The #GSettings schemas provided by the libdevhelp are relocatable. So the
+ * paths need to be provided. If a path for a certain schema is not provided to
+ * the #DhSettingsBuilder with the set function, the default path for that
+ * schema will be used. The default paths are the paths common with the Devhelp
+ * application.
+ *
+ * Why are the schemas relocatable? Because different major versions of
+ * libdevhelp must be parallel-installable, so the schema IDs must necessarily
+ * be different (they must contain the API/major version), but for users to not
+ * lose all their settings when there is a new major version of libdevhelp, the
+ * schemas – if still compatible – can be relocated to an old common path
+ * (common to several major versions of libdevhelp or to an application). If a
+ * schema becomes incompatible, the compatible keys can be migrated individually
+ * with dconf (see the DhDconfMigration utility class in the libdevhelp source
+ * code).
  */
 
 /* API design:
  *
- * Follow the builder pattern, see:
+ * It follows the builder pattern, see:
  * https://blogs.gnome.org/otte/2018/02/03/builders/
- * but implement it in a simpler way, to have less boilerplate.
+ * but it is implemented in a simpler way, to have less boilerplate.
  */
 
 struct _DhSettingsBuilderPrivate {
@@ -67,6 +80,14 @@ static void
 dh_settings_builder_init (DhSettingsBuilder *builder)
 {
         builder->priv = dh_settings_builder_get_instance_private (builder);
+
+        /* Set default paths.
+         * Use all the set functions to test those code paths, instead of
+         * calling g_strdup() directly.
+         */
+
+        // Must be compatible with Devhelp app version 3.28:
+        dh_settings_builder_set_contents_path (builder, "/org/gnome/devhelp/state/main/contents/");
 }
 
 /**
@@ -85,6 +106,11 @@ dh_settings_builder_new (void)
  * dh_settings_builder_set_contents_path:
  * @builder: a #DhSettingsBuilder.
  * @contents_path: the path for the "contents" schema.
+ *
+ * Sets the path for the "contents" schema.
+ *
+ * If this function is not called, the default path for this schema will be
+ * used.
  *
  * Since: 3.30
  */

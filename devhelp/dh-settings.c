@@ -82,18 +82,9 @@ _dh_settings_new (const gchar *contents_path)
 {
         DhSettings *object;
 
-        object = g_object_new (DH_TYPE_SETTINGS, NULL);
+        g_return_val_if_fail (contents_path != NULL, NULL);
 
-        /* The GSettings schemas provided by the libdevhelp are relocatable.
-         * Different major versions of libdevhelp must be parallel-installable,
-         * so the schema IDs must be different (they must contain the API/major
-         * version). But for users to not lose all their settings when there is
-         * a new major version of libdevhelp, the schemas – if still
-         * compatible – are relocated to an old common path.
-         *
-         * If a schema becomes incompatible, the compatible keys can be migrated
-         * with dconf, with the DhDconfMigration utility class.
-         */
+        object = g_object_new (DH_TYPE_SETTINGS, NULL);
         object->priv->settings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
                                                                     contents_path);
 
@@ -113,10 +104,6 @@ dh_settings_get_default (void)
                 DhSettingsBuilder *builder;
 
                 builder = dh_settings_builder_new ();
-
-                /* Must be compatible with Devhelp app version 3.28: */
-                dh_settings_builder_set_contents_path (builder, "/org/gnome/devhelp/state/main/contents/");
-
                 default_instance = dh_settings_builder_create_object (builder);
                 g_object_unref (builder);
         }
