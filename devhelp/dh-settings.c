@@ -21,6 +21,16 @@
 
 #include "dh-settings.h"
 
+/**
+ * SECTION:dh-settings
+ * @Title: DhSettings
+ * @Short_description: Access to the libdevhelp #GSettings objects
+ *
+ * #DhSettings permits to have access to the #GSettings objects that are part of
+ * the libdevhelp. To have the documentation about the available keys and their
+ * types, read the `*.gschema.xml` file.
+ */
+
 /* libdevhelp GSettings schema IDs */
 #define SETTINGS_SCHEMA_ID_CONTENTS             "org.gnome.libdevhelp-3.contents"
 
@@ -89,6 +99,12 @@ _dh_settings_new (const gchar *contents_path)
         return object;
 }
 
+/**
+ * dh_settings_get_default:
+ *
+ * Returns: (transfer none): the default #DhSettings object.
+ * Since: 3.30
+ */
 DhSettings *
 dh_settings_get_default (void)
 {
@@ -112,6 +128,13 @@ _dh_settings_unref_default (void)
          */
 }
 
+/**
+ * dh_settings_peek_contents_settings:
+ * @self: a #DhSettings.
+ *
+ * Returns: (transfer none): the #GSettings for the "contents" schema.
+ * Since: 3.30
+ */
 GSettings *
 dh_settings_peek_contents_settings (DhSettings *self)
 {

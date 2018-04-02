@@ -8,6 +8,7 @@ libdevhelp_public_headers = [
         'dh-init.h',
         'dh-keyword-model.h',
         'dh-link.h',
+        'dh-settings.h',
         'dh-sidebar.h'
 ]
 
@@ -20,6 +21,7 @@ libdevhelp_public_c_files = [
         'dh-init.c',
         'dh-keyword-model.c',
         'dh-link.c',
+        'dh-settings.c',
         'dh-sidebar.c'
 ]
 
@@ -27,7 +29,6 @@ libdevhelp_private_c_files = [
         'dh-error.c',
         'dh-parser.c',
         'dh-search-context.c',
-        'dh-settings.c',
         'dh-util-lib.c'
 ]
 
