@@ -20,6 +20,7 @@
  */
 
 #include "dh-settings.h"
+#include "dh-settings-builder.h"
 
 /**
  * SECTION:dh-settings
@@ -76,7 +77,7 @@ dh_settings_init (DhSettings *self)
         self->priv = dh_settings_get_instance_private (self);
 }
 
-static DhSettings *
+DhSettings *
 _dh_settings_new (const gchar *contents_path)
 {
         DhSettings *object;
@@ -109,8 +110,15 @@ DhSettings *
 dh_settings_get_default (void)
 {
         if (default_instance == NULL) {
-                default_instance = _dh_settings_new (/* Must be compatible with Devhelp app version 3.28: */
-                                                     "/org/gnome/devhelp/state/main/contents/");
+                DhSettingsBuilder *builder;
+
+                builder = dh_settings_builder_new ();
+
+                /* Must be compatible with Devhelp app version 3.28: */
+                dh_settings_builder_set_contents_path (builder, "/org/gnome/devhelp/state/main/contents/");
+
+                default_instance = dh_settings_builder_create_object (builder);
+                g_object_unref (builder);
         }
 
         return default_instance;

@@ -15,6 +15,7 @@ GNOME.gtkdoc(
                 'dh-error.h',
                 'dh-parser.h',
                 'dh-search-context.h',
+                'dh-settings-builder.h',
                 'dh-util-lib.h'
         ],
         install : true

@@ -15,6 +15,7 @@ devhelp/dh-keyword-model.c
 devhelp/dh-link.c
 devhelp/dh-parser.c
 devhelp/dh-search-context.c
+devhelp/dh-settings-builder.c
 devhelp/dh-settings.c
 devhelp/dh-sidebar.c
 devhelp/dh-util-lib.c

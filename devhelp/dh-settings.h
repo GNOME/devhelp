@@ -51,6 +51,9 @@ struct _DhSettingsClass {
 
 GType           dh_settings_get_type                    (void) G_GNUC_CONST;
 
+G_GNUC_INTERNAL
+DhSettings *    _dh_settings_new                        (const gchar *contents_path);
+
 DhSettings *    dh_settings_get_default                 (void);
 
 G_GNUC_INTERNAL
