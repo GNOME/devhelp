@@ -4,8 +4,8 @@
  *
  * Copyright (C) 2002-2003 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2002-2003 CodeFactory AB
- * Copyright (C) 2005,2008 Imendio AB
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2005, 2008 Imendio AB
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -530,13 +530,13 @@ parser_end_node_cb (GMarkupParseContext  *context,
 }
 
 gboolean
-dh_parser_read_file (GFile   *index_file,
-                     gchar  **book_title,
-                     gchar  **book_id,
-                     gchar  **book_language,
-                     GNode  **book_tree,
-                     GList  **all_links,
-                     GError **error)
+_dh_parser_read_file (GFile   *index_file,
+                      gchar  **book_title,
+                      gchar  **book_id,
+                      gchar  **book_language,
+                      GNode  **book_tree,
+                      GList  **all_links,
+                      GError **error)
 {
         DhParser *parser;
         gchar *index_file_uri;

@@ -307,13 +307,13 @@ dh_book_new (GFile *index_file)
         priv->index_file = g_object_ref (index_file);
 
         /* Parse file storing contents in the book struct. */
-        if (!dh_parser_read_file (priv->index_file,
-                                  &priv->title,
-                                  &priv->id,
-                                  &language,
-                                  &priv->tree,
-                                  &priv->links,
-                                  &error)) {
+        if (!_dh_parser_read_file (priv->index_file,
+                                   &priv->title,
+                                   &priv->id,
+                                   &language,
+                                   &priv->tree,
+                                   &priv->links,
+                                   &error)) {
                 /* It's fine if the file doesn't exist, as DhBookManager tries
                  * to create a DhBook for each possible index file in a certain
                  * book directory.
