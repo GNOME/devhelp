@@ -4,6 +4,7 @@
  *
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -19,17 +20,15 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
 #include "dh-error.h"
 
 GQuark
-dh_error_quark (void)
+_dh_error_quark (void)
 {
-        static GQuark q = 0;
+        static GQuark quark = 0;
 
-        if (q == 0) {
-                q = g_quark_from_static_string ("devhelp-error-quark");
-        }
+        if (quark == 0)
+                quark = g_quark_from_static_string ("libdevhelp-error-quark");
 
-        return q;
+        return quark;
 }
