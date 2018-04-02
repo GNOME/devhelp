@@ -65,6 +65,14 @@ static void
 dh_settings_init (DhSettings *self)
 {
         self->priv = dh_settings_get_instance_private (self);
+}
+
+static DhSettings *
+_dh_settings_new (const gchar *contents_path)
+{
+        DhSettings *object;
+
+        object = g_object_new (DH_TYPE_SETTINGS, NULL);
 
         /* The GSettings schemas provided by the libdevhelp are relocatable.
          * Different major versions of libdevhelp must be parallel-installable,
@@ -76,16 +84,19 @@ dh_settings_init (DhSettings *self)
          * If a schema becomes incompatible, the compatible keys can be migrated
          * with dconf, with the DhDconfMigration utility class.
          */
-        self->priv->settings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
-                                                                  /* Must be compatible with Devhelp app version 3.28. */
-                                                                  "/org/gnome/devhelp/state/main/contents/");
+        object->priv->settings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
+                                                                    contents_path);
+
+        return object;
 }
 
 DhSettings *
 dh_settings_get_singleton (void)
 {
-        if (singleton == NULL)
-                singleton = g_object_new (DH_TYPE_SETTINGS, NULL);
+        if (singleton == NULL) {
+                singleton = _dh_settings_new (/* Must be compatible with Devhelp app version 3.28: */
+                                              "/org/gnome/devhelp/state/main/contents/");
+        }
 
         return singleton;
 }
