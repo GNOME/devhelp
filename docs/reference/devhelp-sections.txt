@@ -169,6 +169,24 @@ dh_settings_get_type
 </SECTION>
 
 <SECTION>
+<FILE>dh-settings-builder</FILE>
+DhSettingsBuilder
+dh_settings_builder_new
+dh_settings_builder_set_contents_path
+dh_settings_builder_create_object
+<SUBSECTION Standard>
+DH_IS_SETTINGS_BUILDER
+DH_IS_SETTINGS_BUILDER_CLASS
+DH_SETTINGS_BUILDER
+DH_SETTINGS_BUILDER_CLASS
+DH_SETTINGS_BUILDER_GET_CLASS
+DH_TYPE_SETTINGS_BUILDER
+DhSettingsBuilderClass
+DhSettingsBuilderPrivate
+dh_settings_builder_get_type
+</SECTION>
+
+<SECTION>
 <FILE>dh-sidebar</FILE>
 DhSidebar
 dh_sidebar_new

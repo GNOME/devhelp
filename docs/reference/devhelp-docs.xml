@@ -21,6 +21,7 @@
       <title>General</title>
       <xi:include href="xml/init.xml"/>
       <xi:include href="xml/dh-settings.xml"/>
+      <xi:include href="xml/dh-settings-builder.xml"/>
     </chapter>
 
     <chapter id="data">

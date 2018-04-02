@@ -20,6 +20,18 @@
 
 #include "dh-settings-builder.h"
 
+/**
+ * SECTION:dh-settings-builder
+ * @Title: DhSettingsBuilder
+ * @Short_description: Builds #DhSettings objects
+ *
+ * #DhSettingsBuilder permits to build #DhSettings objects. Once a #DhSettings
+ * object is created, it is immutable.
+ *
+ * The #GSettings schemas installed by the libdevhelp are relocatable. So the
+ * paths need to be provided.
+ */
+
 /* API design:
  *
  * Follow the builder pattern, see:
@@ -57,12 +69,25 @@ dh_settings_builder_init (DhSettingsBuilder *builder)
         builder->priv = dh_settings_builder_get_instance_private (builder);
 }
 
+/**
+ * dh_settings_builder_new:
+ *
+ * Returns: (transfer full): a new #DhSettingsBuilder.
+ * Since: 3.30
+ */
 DhSettingsBuilder *
 dh_settings_builder_new (void)
 {
         return g_object_new (DH_TYPE_SETTINGS_BUILDER, NULL);
 }
 
+/**
+ * dh_settings_builder_set_contents_path:
+ * @builder: a #DhSettingsBuilder.
+ * @contents_path: the path for the "contents" schema.
+ *
+ * Since: 3.30
+ */
 void
 dh_settings_builder_set_contents_path (DhSettingsBuilder *builder,
                                        const gchar       *contents_path)
@@ -74,6 +99,13 @@ dh_settings_builder_set_contents_path (DhSettingsBuilder *builder,
         builder->priv->contents_path = g_strdup (contents_path);
 }
 
+/**
+ * dh_settings_builder_create_object:
+ * @builder: a #DhSettingsBuilder.
+ *
+ * Returns: (transfer full): the newly created #DhSettings object.
+ * Since: 3.30
+ */
 DhSettings *
 dh_settings_builder_create_object (DhSettingsBuilder *builder)
 {
