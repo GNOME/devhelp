@@ -32,6 +32,18 @@
  * types, read the `*.gschema.xml` file.
  */
 
+/* API design:
+ *
+ * There is no dh_settings_set_default() function. Because what if the default
+ * instance is changed when the app is already initialized? There is no signal
+ * to be notified. So there is only one default DhSettings possible, and it is
+ * defined by the libdevhelp (not the app).
+ *
+ * TODO implement DhProfile and add "profile" properties to classes that need to
+ * access the DhSettings. DhProfile would contain a DhSettings object, plus a
+ * DhBookSelection.
+ */
+
 /* libdevhelp GSettings schema IDs */
 #define SETTINGS_SCHEMA_ID_CONTENTS             "org.gnome.libdevhelp-3.contents"
 
