@@ -82,7 +82,7 @@ dh_finalize (void)
          */
         if (!done) {
                 _dh_book_manager_unref_singleton ();
-                _dh_settings_unref_singleton ();
+                _dh_settings_unref_default ();
                 done = TRUE;
         }
 }

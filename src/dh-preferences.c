@@ -622,7 +622,7 @@ dh_preferences_init (DhPreferences *prefs)
         /* setup GSettings bindings */
         settings_app = dh_settings_app_get_singleton ();
         settings_fonts = dh_settings_app_peek_fonts_settings (settings_app);
-        settings_lib = dh_settings_get_singleton ();
+        settings_lib = dh_settings_get_default ();
         settings_contents = dh_settings_peek_contents_settings (settings_lib);
         g_settings_bind (settings_fonts, "use-system-fonts",
                          priv->system_fonts_button, "active",

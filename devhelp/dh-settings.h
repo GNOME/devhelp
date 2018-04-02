@@ -51,10 +51,10 @@ struct _DhSettingsClass {
 
 GType           dh_settings_get_type                    (void) G_GNUC_CONST;
 
-DhSettings *    dh_settings_get_singleton               (void);
+DhSettings *    dh_settings_get_default                 (void);
 
 G_GNUC_INTERNAL
-void            _dh_settings_unref_singleton            (void);
+void            _dh_settings_unref_default              (void);
 
 GSettings *     dh_settings_peek_contents_settings      (DhSettings *self);
 

@@ -28,8 +28,7 @@ struct _DhSettingsPrivate {
         GSettings *settings_contents;
 };
 
-/* DhSettings is a singleton. */
-static DhSettings *singleton = NULL;
+static DhSettings *default_instance = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhSettings, dh_settings, G_TYPE_OBJECT);
 
@@ -46,8 +45,8 @@ dh_settings_dispose (GObject *object)
 static void
 dh_settings_finalize (GObject *object)
 {
-        if (singleton == DH_SETTINGS (object))
-                singleton = NULL;
+        if (default_instance == DH_SETTINGS (object))
+                default_instance = NULL;
 
         G_OBJECT_CLASS (dh_settings_parent_class)->finalize (object);
 }
@@ -91,23 +90,23 @@ _dh_settings_new (const gchar *contents_path)
 }
 
 DhSettings *
-dh_settings_get_singleton (void)
+dh_settings_get_default (void)
 {
-        if (singleton == NULL) {
-                singleton = _dh_settings_new (/* Must be compatible with Devhelp app version 3.28: */
-                                              "/org/gnome/devhelp/state/main/contents/");
+        if (default_instance == NULL) {
+                default_instance = _dh_settings_new (/* Must be compatible with Devhelp app version 3.28: */
+                                                     "/org/gnome/devhelp/state/main/contents/");
         }
 
-        return singleton;
+        return default_instance;
 }
 
 void
-_dh_settings_unref_singleton (void)
+_dh_settings_unref_default (void)
 {
-        if (singleton != NULL)
-                g_object_unref (singleton);
+        if (default_instance != NULL)
+                g_object_unref (default_instance);
 
-        /* singleton is not set to NULL here, it is set to NULL in
+        /* default_instance is not set to NULL here, it is set to NULL in
          * dh_settings_finalize() (i.e. when we are sure that the ref count
          * reaches 0).
          */
