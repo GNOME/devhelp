@@ -80,14 +80,6 @@ static void
 dh_settings_builder_init (DhSettingsBuilder *builder)
 {
         builder->priv = dh_settings_builder_get_instance_private (builder);
-
-        /* Set default paths.
-         * Use all the set functions to test those code paths, instead of
-         * calling g_strdup() directly.
-         */
-
-        // Must be compatible with Devhelp app version 3.28:
-        dh_settings_builder_set_contents_path (builder, "/org/gnome/devhelp/state/main/contents/");
 }
 
 /**
@@ -109,7 +101,7 @@ dh_settings_builder_new (void)
  *
  * Sets the path for the "contents" schema.
  *
- * If this function is not called, the default path for this schema will be
+ * If you don't call this function, the default path for this schema will be
  * used.
  *
  * Since: 3.30
@@ -136,6 +128,15 @@ DhSettings *
 dh_settings_builder_create_object (DhSettingsBuilder *builder)
 {
         g_return_val_if_fail (DH_IS_SETTINGS_BUILDER (builder), NULL);
+
+        /* Set default paths if needed.
+         * Use all the set functions to test them, to have the same code paths
+         * as if the set functions were already called.
+         */
+        if (builder->priv->contents_path == NULL) {
+                // Must be compatible with Devhelp app version 3.28:
+                dh_settings_builder_set_contents_path (builder, "/org/gnome/devhelp/state/main/contents/");
+        }
 
         return _dh_settings_new (builder->priv->contents_path);
 }
