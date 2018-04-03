@@ -596,7 +596,6 @@ dh_preferences_init (DhPreferences *prefs)
         DhSettings *settings_lib;
         DhSettingsApp *settings_app;
         GSettings *settings_fonts;
-        GSettings *settings_contents;
 
         priv = dh_preferences_get_instance_private (prefs);
 
@@ -626,7 +625,6 @@ dh_preferences_init (DhPreferences *prefs)
         /* setup GSettings bindings */
         settings_app = dh_settings_app_get_singleton ();
         settings_fonts = dh_settings_app_peek_fonts_settings (settings_app);
-        settings_contents = dh_settings_peek_contents_settings (settings_lib);
         g_settings_bind (settings_fonts, "use-system-fonts",
                          priv->system_fonts_button, "active",
                          G_SETTINGS_BIND_DEFAULT);
@@ -640,9 +638,9 @@ dh_preferences_init (DhPreferences *prefs)
                          priv->variable_font_button, "font-name",
                          G_SETTINGS_BIND_DEFAULT);
 
-        g_settings_bind (settings_contents, "group-books-by-language",
-                         priv->bookshelf_group_by_language_button, "active",
-                         G_SETTINGS_BIND_DEFAULT);
+        g_object_bind_property (settings_lib, "group-books-by-language",
+                                priv->bookshelf_group_by_language_button, "active",
+                                G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
         g_signal_connect (priv->bookshelf_enabled_toggle,
                           "toggled",
