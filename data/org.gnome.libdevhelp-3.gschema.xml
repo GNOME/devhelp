@@ -10,8 +10,8 @@
     </key>
     <key name="group-books-by-language" type="b">
       <default>false</default>
-      <summary>Group by language</summary>
-      <description>Whether books should be grouped by language in the UI</description>
+      <summary>Group books by language</summary>
+      <description>Whether books should be grouped by programming language in the user interface.</description>
     </key>
   </schema>
 </schemalist>
