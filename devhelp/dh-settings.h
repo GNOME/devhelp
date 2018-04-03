@@ -49,17 +49,24 @@ struct _DhSettingsClass {
         gpointer padding[12];
 };
 
-GType           dh_settings_get_type                    (void) G_GNUC_CONST;
+GType           dh_settings_get_type                            (void) G_GNUC_CONST;
 
 G_GNUC_INTERNAL
-DhSettings *    _dh_settings_new                        (const gchar *contents_path);
+DhSettings *    _dh_settings_new                                (const gchar *contents_path);
 
-DhSettings *    dh_settings_get_default                 (void);
+DhSettings *    dh_settings_get_default                         (void);
 
 G_GNUC_INTERNAL
-void            _dh_settings_unref_default              (void);
+void            _dh_settings_unref_default                      (void);
 
-GSettings *     dh_settings_peek_contents_settings      (DhSettings *self);
+GSettings *     dh_settings_peek_contents_settings              (DhSettings *self);
+
+gboolean        dh_settings_get_group_books_by_language         (DhSettings *self);
+
+void            dh_settings_set_group_books_by_language         (DhSettings *self,
+                                                                 gboolean    group_books_by_language);
+
+void            dh_settings_bind_group_books_by_language        (DhSettings *self);
 
 G_END_DECLS
 

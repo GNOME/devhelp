@@ -49,11 +49,58 @@
 
 struct _DhSettingsPrivate {
         GSettings *settings_contents;
+
+        guint group_books_by_language : 1;
 };
 
+enum {
+        PROP_0,
+        PROP_GROUP_BOOKS_BY_LANGUAGE,
+        N_PROPERTIES
+};
+
+static GParamSpec *properties[N_PROPERTIES];
 static DhSettings *default_instance = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhSettings, dh_settings, G_TYPE_OBJECT);
+
+static void
+dh_settings_get_property (GObject    *object,
+                          guint       prop_id,
+                          GValue     *value,
+                          GParamSpec *pspec)
+{
+        DhSettings *self = DH_SETTINGS (object);
+
+        switch (prop_id) {
+                case PROP_GROUP_BOOKS_BY_LANGUAGE:
+                        g_value_set_boolean (value, dh_settings_get_group_books_by_language (self));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_settings_set_property (GObject      *object,
+                          guint         prop_id,
+                          const GValue *value,
+                          GParamSpec   *pspec)
+{
+        DhSettings *self = DH_SETTINGS (object);
+
+        switch (prop_id) {
+                case PROP_GROUP_BOOKS_BY_LANGUAGE:
+                        dh_settings_set_group_books_by_language (self, g_value_get_boolean (value));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
 
 static void
 dh_settings_dispose (GObject *object)
@@ -79,8 +126,28 @@ dh_settings_class_init (DhSettingsClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+        object_class->get_property = dh_settings_get_property;
+        object_class->set_property = dh_settings_set_property;
         object_class->dispose = dh_settings_dispose;
         object_class->finalize = dh_settings_finalize;
+
+        /**
+         * DhSettings:group-books-by-language:
+         *
+         * Whether books should be grouped by programming language in the UI.
+         *
+         * Since: 3.30
+         */
+        properties[PROP_GROUP_BOOKS_BY_LANGUAGE] =
+                g_param_spec_boolean ("group-books-by-language",
+                                      "Group books by language",
+                                      "",
+                                      FALSE,
+                                      G_PARAM_READWRITE |
+                                      G_PARAM_CONSTRUCT |
+                                      G_PARAM_STATIC_STRINGS);
+
+        g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
 static void
@@ -147,4 +214,62 @@ dh_settings_peek_contents_settings (DhSettings *self)
 {
         g_return_val_if_fail (DH_IS_SETTINGS (self), NULL);
         return self->priv->settings_contents;
+}
+
+/**
+ * dh_settings_get_group_books_by_language:
+ * @self: a #DhSettings.
+ *
+ * Returns: the value of the #DhSettings:group-books-by-language property.
+ * Since: 3.30
+ */
+gboolean
+dh_settings_get_group_books_by_language (DhSettings *self)
+{
+        g_return_val_if_fail (DH_IS_SETTINGS (self), FALSE);
+
+        return self->priv->group_books_by_language;
+}
+
+/**
+ * dh_settings_set_group_books_by_language:
+ * @self: a #DhSettings.
+ * @group_books_by_language: the new value.
+ *
+ * Sets the #DhSettings:group-books-by-language property.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_set_group_books_by_language (DhSettings *self,
+                                         gboolean    group_books_by_language)
+{
+        g_return_if_fail (DH_IS_SETTINGS (self));
+
+        group_books_by_language = group_books_by_language != FALSE;
+
+        if (self->priv->group_books_by_language != group_books_by_language) {
+                self->priv->group_books_by_language = group_books_by_language;
+                g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_GROUP_BOOKS_BY_LANGUAGE]);
+        }
+}
+
+/**
+ * dh_settings_bind_group_books_by_language:
+ * @self: a #DhSettings.
+ *
+ * Binds the #DhSettings:group-books-by-language property to the corresponding
+ * #GSettings key.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_bind_group_books_by_language (DhSettings *self)
+{
+        g_return_if_fail (DH_IS_SETTINGS (self));
+
+        g_settings_bind (self->priv->settings_contents, "group-books-by-language",
+                         self, "group-books-by-language",
+                         G_SETTINGS_BIND_DEFAULT |
+                         G_SETTINGS_BIND_NO_SENSITIVITY);
 }

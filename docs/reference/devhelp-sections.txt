@@ -156,6 +156,9 @@ dh_link_type_get_type
 DhSettings
 dh_settings_get_default
 dh_settings_peek_contents_settings
+dh_settings_get_group_books_by_language
+dh_settings_set_group_books_by_language
+dh_settings_bind_group_books_by_language
 <SUBSECTION Standard>
 DH_IS_SETTINGS
 DH_IS_SETTINGS_CLASS
