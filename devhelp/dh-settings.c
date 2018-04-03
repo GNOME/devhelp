@@ -48,7 +48,7 @@
 #define SETTINGS_SCHEMA_ID_CONTENTS             "org.gnome.libdevhelp-3.contents"
 
 struct _DhSettingsPrivate {
-        GSettings *settings_contents;
+        GSettings *gsettings_contents;
 
         guint group_books_by_language : 1;
 };
@@ -70,11 +70,11 @@ dh_settings_get_property (GObject    *object,
                           GValue     *value,
                           GParamSpec *pspec)
 {
-        DhSettings *self = DH_SETTINGS (object);
+        DhSettings *settings = DH_SETTINGS (object);
 
         switch (prop_id) {
                 case PROP_GROUP_BOOKS_BY_LANGUAGE:
-                        g_value_set_boolean (value, dh_settings_get_group_books_by_language (self));
+                        g_value_set_boolean (value, dh_settings_get_group_books_by_language (settings));
                         break;
 
                 default:
@@ -89,11 +89,11 @@ dh_settings_set_property (GObject      *object,
                           const GValue *value,
                           GParamSpec   *pspec)
 {
-        DhSettings *self = DH_SETTINGS (object);
+        DhSettings *settings = DH_SETTINGS (object);
 
         switch (prop_id) {
                 case PROP_GROUP_BOOKS_BY_LANGUAGE:
-                        dh_settings_set_group_books_by_language (self, g_value_get_boolean (value));
+                        dh_settings_set_group_books_by_language (settings, g_value_get_boolean (value));
                         break;
 
                 default:
@@ -105,9 +105,9 @@ dh_settings_set_property (GObject      *object,
 static void
 dh_settings_dispose (GObject *object)
 {
-        DhSettings *self = DH_SETTINGS (object);
+        DhSettings *settings = DH_SETTINGS (object);
 
-        g_clear_object (&self->priv->settings_contents);
+        g_clear_object (&settings->priv->gsettings_contents);
 
         G_OBJECT_CLASS (dh_settings_parent_class)->dispose (object);
 }
@@ -151,9 +151,9 @@ dh_settings_class_init (DhSettingsClass *klass)
 }
 
 static void
-dh_settings_init (DhSettings *self)
+dh_settings_init (DhSettings *settings)
 {
-        self->priv = dh_settings_get_instance_private (self);
+        settings->priv = dh_settings_get_instance_private (settings);
 }
 
 DhSettings *
@@ -164,8 +164,8 @@ _dh_settings_new (const gchar *contents_path)
         g_return_val_if_fail (contents_path != NULL, NULL);
 
         object = g_object_new (DH_TYPE_SETTINGS, NULL);
-        object->priv->settings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
-                                                                    contents_path);
+        object->priv->gsettings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
+                                                                     contents_path);
 
         return object;
 }
@@ -204,36 +204,36 @@ _dh_settings_unref_default (void)
 
 /**
  * dh_settings_peek_contents_settings:
- * @self: a #DhSettings.
+ * @settings: a #DhSettings.
  *
  * Returns: (transfer none): the #GSettings for the "contents" schema.
  * Since: 3.30
  */
 GSettings *
-dh_settings_peek_contents_settings (DhSettings *self)
+dh_settings_peek_contents_settings (DhSettings *settings)
 {
-        g_return_val_if_fail (DH_IS_SETTINGS (self), NULL);
-        return self->priv->settings_contents;
+        g_return_val_if_fail (DH_IS_SETTINGS (settings), NULL);
+        return settings->priv->gsettings_contents;
 }
 
 /**
  * dh_settings_get_group_books_by_language:
- * @self: a #DhSettings.
+ * @settings: a #DhSettings.
  *
  * Returns: the value of the #DhSettings:group-books-by-language property.
  * Since: 3.30
  */
 gboolean
-dh_settings_get_group_books_by_language (DhSettings *self)
+dh_settings_get_group_books_by_language (DhSettings *settings)
 {
-        g_return_val_if_fail (DH_IS_SETTINGS (self), FALSE);
+        g_return_val_if_fail (DH_IS_SETTINGS (settings), FALSE);
 
-        return self->priv->group_books_by_language;
+        return settings->priv->group_books_by_language;
 }
 
 /**
  * dh_settings_set_group_books_by_language:
- * @self: a #DhSettings.
+ * @settings: a #DhSettings.
  * @group_books_by_language: the new value.
  *
  * Sets the #DhSettings:group-books-by-language property.
@@ -241,22 +241,22 @@ dh_settings_get_group_books_by_language (DhSettings *self)
  * Since: 3.30
  */
 void
-dh_settings_set_group_books_by_language (DhSettings *self,
+dh_settings_set_group_books_by_language (DhSettings *settings,
                                          gboolean    group_books_by_language)
 {
-        g_return_if_fail (DH_IS_SETTINGS (self));
+        g_return_if_fail (DH_IS_SETTINGS (settings));
 
         group_books_by_language = group_books_by_language != FALSE;
 
-        if (self->priv->group_books_by_language != group_books_by_language) {
-                self->priv->group_books_by_language = group_books_by_language;
-                g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_GROUP_BOOKS_BY_LANGUAGE]);
+        if (settings->priv->group_books_by_language != group_books_by_language) {
+                settings->priv->group_books_by_language = group_books_by_language;
+                g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_GROUP_BOOKS_BY_LANGUAGE]);
         }
 }
 
 /**
  * dh_settings_bind_group_books_by_language:
- * @self: a #DhSettings.
+ * @settings: a #DhSettings.
  *
  * Binds the #DhSettings:group-books-by-language property to the corresponding
  * #GSettings key.
@@ -264,12 +264,12 @@ dh_settings_set_group_books_by_language (DhSettings *self,
  * Since: 3.30
  */
 void
-dh_settings_bind_group_books_by_language (DhSettings *self)
+dh_settings_bind_group_books_by_language (DhSettings *settings)
 {
-        g_return_if_fail (DH_IS_SETTINGS (self));
+        g_return_if_fail (DH_IS_SETTINGS (settings));
 
-        g_settings_bind (self->priv->settings_contents, "group-books-by-language",
-                         self, "group-books-by-language",
+        g_settings_bind (settings->priv->gsettings_contents, "group-books-by-language",
+                         settings, "group-books-by-language",
                          G_SETTINGS_BIND_DEFAULT |
                          G_SETTINGS_BIND_NO_SENSITIVITY);
 }
