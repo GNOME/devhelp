@@ -61,6 +61,8 @@ void            _dh_settings_unref_default                      (void);
 
 GSettings *     dh_settings_peek_contents_settings              (DhSettings *settings);
 
+void            dh_settings_bind_all                            (DhSettings *settings);
+
 gboolean        dh_settings_get_group_books_by_language         (DhSettings *settings);
 
 void            dh_settings_set_group_books_by_language         (DhSettings *settings,

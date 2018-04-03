@@ -173,6 +173,9 @@ _dh_settings_new (const gchar *contents_path)
 /**
  * dh_settings_get_default:
  *
+ * Gets the default #DhSettings object. It has the default #GSettings paths (see
+ * #DhSettingsBuilder) and dh_settings_bind_all() has been called.
+ *
  * Returns: (transfer none): the default #DhSettings object.
  * Since: 3.30
  */
@@ -184,6 +187,7 @@ dh_settings_get_default (void)
 
                 builder = dh_settings_builder_new ();
                 default_instance = dh_settings_builder_create_object (builder);
+                dh_settings_bind_all (default_instance);
                 g_object_unref (builder);
         }
 
@@ -214,6 +218,22 @@ dh_settings_peek_contents_settings (DhSettings *settings)
 {
         g_return_val_if_fail (DH_IS_SETTINGS (settings), NULL);
         return settings->priv->gsettings_contents;
+}
+
+/**
+ * dh_settings_bind_all:
+ * @settings: a #DhSettings.
+ *
+ * Binds all the #DhSettings properties to their corresponding #GSettings keys.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_bind_all (DhSettings *settings)
+{
+        g_return_if_fail (DH_IS_SETTINGS (settings));
+
+        dh_settings_bind_group_books_by_language (settings);
 }
 
 /**
