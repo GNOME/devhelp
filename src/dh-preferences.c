@@ -391,11 +391,14 @@ static void
 preferences_bookshelf_populate_store (DhPreferences *prefs)
 {
         DhBookManager *book_manager;
+        DhSettings *settings;
         GList *l;
         gboolean group_by_language;
 
         book_manager = dh_book_manager_get_singleton ();
-        group_by_language = dh_book_manager_get_group_by_language (book_manager);
+
+        settings = dh_settings_get_default ();
+        group_by_language = dh_settings_get_group_books_by_language (settings);
 
         /* This list already comes ordered, but we don't care */
         for (l = dh_book_manager_get_books (book_manager);
@@ -408,9 +411,9 @@ preferences_bookshelf_populate_store (DhPreferences *prefs)
 }
 
 static void
-preferences_bookshelf_group_by_language_cb (GObject       *object,
-                                            GParamSpec    *pspec,
-                                            DhPreferences *prefs)
+preferences_bookshelf_group_books_by_language_notify_cb (DhSettings    *settings,
+                                                         GParamSpec    *pspec,
+                                                         DhPreferences *prefs)
 {
         preferences_bookshelf_clean_store (prefs);
         preferences_bookshelf_populate_store (prefs);
@@ -505,9 +508,11 @@ preferences_bookshelf_book_created_cb (DhBookManager *book_manager,
                                        DhBook        *book,
                                        DhPreferences *prefs)
 {
+        DhSettings *settings;
         gboolean group_by_language;
 
-        group_by_language = dh_book_manager_get_group_by_language (book_manager);
+        settings = dh_settings_get_default ();
+        group_by_language = dh_settings_get_group_books_by_language (settings);
         preferences_bookshelf_add_book_to_store (prefs, book, group_by_language);
 }
 
@@ -517,10 +522,10 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
                                                  DhPreferences         *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
-        DhBookManager *book_manager;
+        DhSettings *settings;
         GtkTreeIter iter;
 
-        book_manager = dh_book_manager_get_singleton ();
+        settings = dh_settings_get_default ();
 
         if (gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (priv->bookshelf_store),
                                                  &iter,
@@ -543,15 +548,14 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
                                             -1);
                         /* Now we need to look for the language group of this item,
                          * in order to set the inconsistent state if applies */
-                        if (dh_book_manager_get_group_by_language (book_manager)) {
+                        if (dh_settings_get_group_books_by_language (settings)) {
                                 preferences_bookshelf_set_language_inconsistent (prefs, dh_book_get_language (book));
                         }
-
                 } else {
                         GtkTreeIter loop_iter;
 
                         /* We should only reach this if we are grouping by language */
-                        g_assert (dh_book_manager_get_group_by_language (book_manager) == TRUE);
+                        g_assert (dh_settings_get_group_books_by_language (settings));
 
                         /* Set new status in the language group item */
                         gtk_list_store_set (priv->bookshelf_store, &iter,
@@ -612,16 +616,16 @@ dh_preferences_init (DhPreferences *prefs)
                                  prefs,
                                  0);
 
-        g_signal_connect_object (book_manager,
-                                 "notify::group-by-language",
-                                 G_CALLBACK (preferences_bookshelf_group_by_language_cb),
+        settings_lib = dh_settings_get_default ();
+        g_signal_connect_object (settings_lib,
+                                 "notify::group-books-by-language",
+                                 G_CALLBACK (preferences_bookshelf_group_books_by_language_notify_cb),
                                  prefs,
                                  0);
 
         /* setup GSettings bindings */
         settings_app = dh_settings_app_get_singleton ();
         settings_fonts = dh_settings_app_peek_fonts_settings (settings_app);
-        settings_lib = dh_settings_get_default ();
         settings_contents = dh_settings_peek_contents_settings (settings_lib);
         g_settings_bind (settings_fonts, "use-system-fonts",
                          priv->system_fonts_button, "active",

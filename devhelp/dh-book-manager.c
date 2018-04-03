@@ -7,7 +7,7 @@
  * Copyright (C) 2004-2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
  * Copyright (C) 2012 Thomas Bechtold <toabctl@gnome.org>
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -129,8 +129,6 @@ typedef struct {
 
         /* List of book IDs (gchar*) currently disabled */
         GList *books_disabled;
-
-        guint group_by_language : 1;
 } DhBookManagerPrivate;
 
 enum {
@@ -139,11 +137,6 @@ enum {
         SIGNAL_BOOK_ENABLED,
         SIGNAL_BOOK_DISABLED,
         N_SIGNALS
-};
-
-enum {
-        PROP_0,
-        PROP_GROUP_BY_LANGUAGE
 };
 
 static guint signals[N_SIGNALS] = { 0 };
@@ -182,46 +175,6 @@ new_possible_book_data_free (gpointer _data)
                 g_source_remove (data->timeout_id);
 
         g_free (data);
-}
-
-static void
-dh_book_manager_get_property (GObject    *object,
-                              guint       prop_id,
-                              GValue     *value,
-                              GParamSpec *pspec)
-{
-        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
-
-        switch (prop_id)
-        {
-        case PROP_GROUP_BY_LANGUAGE:
-                g_value_set_boolean (value, dh_book_manager_get_group_by_language (book_manager));
-                break;
-
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
-}
-
-static void
-dh_book_manager_set_property (GObject      *object,
-                              guint         prop_id,
-                              const GValue *value,
-                              GParamSpec   *pspec)
-{
-        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
-
-        switch (prop_id)
-        {
-        case PROP_GROUP_BY_LANGUAGE:
-                dh_book_manager_set_group_by_language (book_manager, g_value_get_boolean (value));
-                break;
-
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
 }
 
 static void
@@ -264,8 +217,6 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-        object_class->get_property = dh_book_manager_get_property;
-        object_class->set_property = dh_book_manager_set_property;
         object_class->dispose = dh_book_manager_dispose;
         object_class->finalize = dh_book_manager_finalize;
 
@@ -328,20 +279,6 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
                               G_TYPE_NONE,
                               1,
                               DH_TYPE_BOOK);
-
-        /**
-         * DhBookManager:group-by-language:
-         *
-         * Whether books should be grouped by programming language.
-         */
-        g_object_class_install_property (object_class,
-                                         PROP_GROUP_BY_LANGUAGE,
-                                         g_param_spec_boolean ("group-by-language",
-                                                               "Group by language",
-                                                               "",
-                                                               FALSE,
-                                                               G_PARAM_READWRITE |
-                                                               G_PARAM_STATIC_STRINGS));
 }
 
 static void
@@ -832,17 +769,7 @@ populate (DhBookManager *book_manager)
 static void
 dh_book_manager_init (DhBookManager *book_manager)
 {
-        DhSettings *settings;
-        GSettings *contents_settings;
-
         load_books_disabled (book_manager);
-
-        settings = dh_settings_get_default ();
-        contents_settings = dh_settings_peek_contents_settings (settings);
-        g_settings_bind (contents_settings, "group-books-by-language",
-                         book_manager, "group-by-language",
-                         G_SETTINGS_BIND_DEFAULT);
-
         populate (book_manager);
 }
 
@@ -918,47 +845,4 @@ dh_book_manager_get_books (DhBookManager *book_manager)
         priv = dh_book_manager_get_instance_private (book_manager);
 
         return priv->books;
-}
-
-/**
- * dh_book_manager_get_group_by_language:
- * @book_manager: a #DhBookManager.
- *
- * Returns: whether the books should be grouped by programming language.
- */
-gboolean
-dh_book_manager_get_group_by_language (DhBookManager *book_manager)
-{
-        DhBookManagerPrivate *priv;
-
-        g_return_val_if_fail (DH_IS_BOOK_MANAGER (book_manager), FALSE);
-
-        priv = dh_book_manager_get_instance_private (book_manager);
-
-        return priv->group_by_language;
-}
-
-/**
- * dh_book_manager_set_group_by_language:
- * @book_manager: a #DhBookManager.
- * @group_by_language: the new value.
- *
- * Sets whether the books should be grouped by programming language.
- */
-void
-dh_book_manager_set_group_by_language (DhBookManager *book_manager,
-                                       gboolean       group_by_language)
-{
-        DhBookManagerPrivate *priv;
-
-        g_return_if_fail (DH_IS_BOOK_MANAGER (book_manager));
-
-        priv = dh_book_manager_get_instance_private (book_manager);
-
-        group_by_language = group_by_language != FALSE;
-
-        if (priv->group_by_language != group_by_language) {
-                priv->group_by_language = group_by_language;
-                g_object_notify (G_OBJECT (book_manager), "group-by-language");
-        }
 }

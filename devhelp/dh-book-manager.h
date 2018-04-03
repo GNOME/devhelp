@@ -3,7 +3,7 @@
  * This file is part of Devhelp.
  *
  * Copyright (C) 2010 Lanedo GmbH
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -52,11 +52,6 @@ GType           dh_book_manager_get_type                (void) G_GNUC_CONST;
 DhBookManager * dh_book_manager_get_singleton           (void);
 
 GList *         dh_book_manager_get_books               (DhBookManager *book_manager);
-
-gboolean        dh_book_manager_get_group_by_language   (DhBookManager *book_manager);
-
-void            dh_book_manager_set_group_by_language   (DhBookManager *book_manager,
-                                                         gboolean       group_by_language);
 
 G_DEPRECATED
 DhBookManager * dh_book_manager_new                     (void);

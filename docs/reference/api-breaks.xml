@@ -233,4 +233,18 @@
       </listitem>
     </itemizedlist>
   </refsect1>
+
+  <refsect1>
+    <title>3.28.0 -> 3.29.1</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          The <code>DhBookManager:group-by-language</code> property has been
+          replaced by the
+          <link linkend="DhSettings--group-books-by-language">DhSettings:group-books-by-language</link>
+          property.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsect1>
 </part>

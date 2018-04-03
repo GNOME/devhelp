@@ -6,7 +6,7 @@
  * Copyright (C) 2003 CodeFactory AB
  * Copyright (C) 2008 Imendio AB
  * Copyright (C) 2010 Lanedo GmbH
- * Copyright (C) 2015, 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2015, 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -27,6 +27,7 @@
 #include <glib/gi18n-lib.h>
 #include "dh-book-manager.h"
 #include "dh-book.h"
+#include "dh-settings.h"
 
 /**
  * SECTION:dh-book-tree
@@ -137,7 +138,7 @@ book_tree_find_language_group (DhBookTree  *tree,
                                gboolean    *next_found)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhBookManager *book_manager;
+        DhSettings *settings;
         GtkTreeIter loop_iter;
 
         g_assert ((exact_iter != NULL && exact_found != NULL) ||
@@ -150,8 +151,8 @@ book_tree_find_language_group (DhBookTree  *tree,
                 *next_found = FALSE;
 
         /* If we're not doing language grouping, return not found */
-        book_manager = dh_book_manager_get_singleton ();
-        if (!dh_book_manager_get_group_by_language (book_manager))
+        settings = dh_settings_get_default ();
+        if (!dh_settings_get_group_books_by_language (settings))
                 return;
 
         if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store),
@@ -322,12 +323,12 @@ book_tree_add_book_to_store (DhBookTree *tree,
                              DhBook     *book)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhBookManager *book_manager;
+        DhSettings *settings;
         GtkTreeIter book_iter;
 
         /* If grouping by language we need to add the language categories */
-        book_manager = dh_book_manager_get_singleton ();
-        if (dh_book_manager_get_group_by_language (book_manager)) {
+        settings = dh_settings_get_default ();
+        if (dh_settings_get_group_books_by_language (settings)) {
                 GtkTreeIter  language_iter;
                 gboolean     language_iter_found;
                 GtkTreeIter  next_language_iter;
@@ -464,12 +465,14 @@ book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
                                        DhBookTree    *tree)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
+        DhSettings     *settings;
         GtkTreeIter     exact_iter;
         gboolean        exact_iter_found = FALSE;
         GtkTreeIter     language_iter;
         gboolean        language_iter_found = FALSE;
 
-        if (dh_book_manager_get_group_by_language (book_manager)) {
+        settings = dh_settings_get_default ();
+        if (dh_settings_get_group_books_by_language (settings)) {
                 GtkTreeIter first_book_iter;
 
                 book_tree_find_language_group (tree,
@@ -523,7 +526,7 @@ static void
 book_tree_init_selection (DhBookTree *tree)
 {
         DhBookTreePrivate   *priv;
-        DhBookManager    *book_manager;
+        DhSettings       *settings;
         GtkTreeSelection *selection;
         GtkTreeIter       iter;
         gboolean          iter_found = FALSE;
@@ -543,8 +546,8 @@ book_tree_init_selection (DhBookTree *tree)
                                          tree);
 
         /* If grouping by languages, get first book in the first language */
-        book_manager = dh_book_manager_get_singleton ();
-        if (dh_book_manager_get_group_by_language (book_manager)) {
+        settings = dh_settings_get_default ();
+        if (dh_settings_get_group_books_by_language (settings)) {
                 GtkTreeIter language_iter;
 
                 if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store),
@@ -607,9 +610,9 @@ book_tree_populate_tree (DhBookTree *tree)
 }
 
 static void
-book_tree_group_by_language_cb (GObject    *object,
-                                GParamSpec *pspec,
-                                DhBookTree *tree)
+group_books_by_language_notify_cb (DhSettings *settings,
+                                   GParamSpec *pspec,
+                                   DhBookTree *tree)
 {
         book_tree_populate_tree (tree);
 }
@@ -757,6 +760,7 @@ dh_book_tree_init (DhBookTree *tree)
 {
         DhBookTreePrivate *priv;
         DhBookManager *book_manager;
+        DhSettings *settings;
 
         priv = dh_book_tree_get_instance_private (tree);
 
@@ -802,9 +806,10 @@ dh_book_tree_init (DhBookTree *tree)
                                  tree,
                                  0);
 
-        g_signal_connect_object (book_manager,
-                                 "notify::group-by-language",
-                                 G_CALLBACK (book_tree_group_by_language_cb),
+        settings = dh_settings_get_default ();
+        g_signal_connect_object (settings,
+                                 "notify::group-books-by-language",
+                                 G_CALLBACK (group_books_by_language_notify_cb),
                                  tree,
                                  0);
 
