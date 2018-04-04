@@ -23,6 +23,7 @@
 #define DH_SETTINGS_H
 
 #include <gio/gio.h>
+#include <devhelp/dh-book.h>
 
 G_BEGIN_DECLS
 
@@ -69,6 +70,13 @@ void            dh_settings_set_group_books_by_language         (DhSettings *set
                                                                  gboolean    group_books_by_language);
 
 void            dh_settings_bind_group_books_by_language        (DhSettings *settings);
+
+gboolean        dh_settings_is_book_enabled                     (DhSettings *settings,
+                                                                 DhBook     *book);
+
+void            dh_settings_set_book_enabled                    (DhSettings *settings,
+                                                                 DhBook     *book,
+                                                                 gboolean    enabled);
 
 G_END_DECLS
 

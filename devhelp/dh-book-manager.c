@@ -126,9 +126,6 @@ typedef struct {
 
         /* List of NewPossibleBookData* */
         GSList *new_possible_books_data;
-
-        /* List of book IDs (gchar*) currently disabled */
-        GList *books_disabled;
 } DhBookManagerPrivate;
 
 enum {
@@ -201,12 +198,7 @@ dh_book_manager_dispose (GObject *object)
 static void
 dh_book_manager_finalize (GObject *object)
 {
-        DhBookManager *book_manager = DH_BOOK_MANAGER (object);
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-
-        g_list_free_full (priv->books_disabled, g_free);
-
-        if (singleton == book_manager)
+        if (singleton == DH_BOOK_MANAGER (object))
                 singleton = NULL;
 
         G_OBJECT_CLASS (dh_book_manager_parent_class)->finalize (object);
@@ -282,87 +274,6 @@ dh_book_manager_class_init (DhBookManagerClass *klass)
 }
 
 static void
-load_books_disabled (DhBookManager *book_manager)
-{
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        DhSettings *settings;
-        GSettings *contents_settings;
-        gchar **books_disabled_strv;
-        gint i;
-
-        g_assert (priv->books_disabled == NULL);
-
-        settings = dh_settings_get_default ();
-        contents_settings = dh_settings_peek_contents_settings (settings);
-        books_disabled_strv = g_settings_get_strv (contents_settings, "books-disabled");
-
-        if (books_disabled_strv == NULL)
-                return;
-
-        for (i = 0; books_disabled_strv[i] != NULL; i++) {
-                gchar *book_id = books_disabled_strv[i];
-                priv->books_disabled = g_list_prepend (priv->books_disabled, book_id);
-        }
-
-        priv->books_disabled = g_list_reverse (priv->books_disabled);
-
-        g_free (books_disabled_strv);
-}
-
-static void
-store_books_disabled (DhBookManager *book_manager)
-{
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        DhSettings *settings;
-        GSettings *contents_settings;
-        GVariantBuilder *builder;
-        GVariant *variant;
-        GList *l;
-
-        builder = g_variant_builder_new (G_VARIANT_TYPE_STRING_ARRAY);
-
-        for (l = priv->books_disabled; l != NULL; l = l->next) {
-                const gchar *book_id = l->data;
-                g_variant_builder_add (builder, "s", book_id);
-        }
-
-        variant = g_variant_builder_end (builder);
-        g_variant_builder_unref (builder);
-
-        settings = dh_settings_get_default ();
-        contents_settings = dh_settings_peek_contents_settings (settings);
-        g_settings_set_value (contents_settings, "books-disabled", variant);
-}
-
-static GList *
-find_book_in_disabled_list (GList  *books_disabled,
-                            DhBook *book)
-{
-        const gchar *book_id;
-        GList *node;
-
-        book_id = dh_book_get_id (book);
-
-        for (node = books_disabled; node != NULL; node = node->next) {
-                const gchar *cur_book_id = node->data;
-
-                if (g_strcmp0 (book_id, cur_book_id) == 0)
-                        return node;
-        }
-
-        return NULL;
-}
-
-static gboolean
-is_book_disabled_in_conf (DhBookManager *book_manager,
-                          DhBook        *book)
-{
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-
-        return find_book_in_disabled_list (priv->books_disabled, book) != NULL;
-}
-
-static void
 remove_book (DhBookManager *book_manager,
              DhBook        *book)
 {
@@ -410,22 +321,11 @@ static void
 book_enabled_cb (DhBook        *book,
                  DhBookManager *book_manager)
 {
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GList *node;
-        gchar *book_id;
+        DhSettings *settings;
 
-        node = find_book_in_disabled_list (priv->books_disabled, book);
-
-        /* When setting as enabled a given book, we should have it in the
-         * disabled books list!
-         */
-        g_return_if_fail (node != NULL);
-
-        book_id = node->data;
-        g_free (book_id);
-        priv->books_disabled = g_list_delete_link (priv->books_disabled, node);
-
-        store_books_disabled (book_manager);
+        settings = dh_settings_get_default ();
+        g_return_if_fail (!dh_settings_is_book_enabled (settings, book));
+        dh_settings_set_book_enabled (settings, book, TRUE);
 
         g_signal_emit (book_manager,
                        signals[SIGNAL_BOOK_ENABLED],
@@ -437,21 +337,11 @@ static void
 book_disabled_cb (DhBook        *book,
                   DhBookManager *book_manager)
 {
-        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
-        GList *node;
-        const gchar *book_id;
+        DhSettings *settings;
 
-        node = find_book_in_disabled_list (priv->books_disabled, book);
-
-        /* When setting as disabled a given book, we shouldn't have it in the
-         * disabled books list!
-         */
-        g_return_if_fail (node == NULL);
-
-        book_id = dh_book_get_id (book);
-        priv->books_disabled = g_list_append (priv->books_disabled,
-                                              g_strdup (book_id));
-        store_books_disabled (book_manager);
+        settings = dh_settings_get_default ();
+        g_return_if_fail (dh_settings_is_book_enabled (settings, book));
+        dh_settings_set_book_enabled (settings, book, FALSE);
 
         g_signal_emit (book_manager,
                        signals[SIGNAL_BOOK_DISABLED],
@@ -466,12 +356,10 @@ static gboolean
 create_book_from_index_file (DhBookManager *book_manager,
                              GFile         *index_file)
 {
-        DhBookManagerPrivate *priv;
+        DhBookManagerPrivate *priv = dh_book_manager_get_instance_private (book_manager);
         DhBook *book;
-        gboolean book_enabled;
+        DhSettings *settings;
         GList *l;
-
-        priv = dh_book_manager_get_instance_private (book_manager);
 
         /* Check if a DhBook at the same location has already been loaded. */
         for (l = priv->books; l != NULL; l = l->next) {
@@ -502,8 +390,8 @@ create_book_from_index_file (DhBookManager *book_manager,
                                             book,
                                             (GCompareFunc)dh_book_cmp_by_title);
 
-        book_enabled = !is_book_disabled_in_conf (book_manager, book);
-        dh_book_set_enabled (book, book_enabled);
+        settings = dh_settings_get_default ();
+        dh_book_set_enabled (book, dh_settings_is_book_enabled (settings, book));
 
         g_signal_connect_object (book,
                                  "deleted",
@@ -769,7 +657,6 @@ populate (DhBookManager *book_manager)
 static void
 dh_book_manager_init (DhBookManager *book_manager)
 {
-        load_books_disabled (book_manager);
         populate (book_manager);
 }
 

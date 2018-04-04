@@ -50,6 +50,9 @@
 struct _DhSettingsPrivate {
         GSettings *gsettings_contents;
 
+        /* List of book IDs (gchar*) currently disabled. */
+        GList *books_disabled;
+
         guint group_books_by_language : 1;
 };
 
@@ -63,6 +66,101 @@ static GParamSpec *properties[N_PROPERTIES];
 static DhSettings *default_instance = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhSettings, dh_settings, G_TYPE_OBJECT);
+
+static void
+load_books_disabled (DhSettings *settings)
+{
+        gchar **books_disabled_strv;
+        gint i;
+
+        g_assert (settings->priv->books_disabled == NULL);
+
+        books_disabled_strv = g_settings_get_strv (settings->priv->gsettings_contents,
+                                                   "books-disabled");
+
+        if (books_disabled_strv == NULL)
+                return;
+
+        for (i = 0; books_disabled_strv[i] != NULL; i++) {
+                gchar *book_id = books_disabled_strv[i];
+                settings->priv->books_disabled = g_list_prepend (settings->priv->books_disabled, book_id);
+        }
+
+        settings->priv->books_disabled = g_list_reverse (settings->priv->books_disabled);
+
+        g_free (books_disabled_strv);
+}
+
+static void
+store_books_disabled (DhSettings *settings)
+{
+        GVariantBuilder *builder;
+        GVariant *variant;
+        GList *l;
+
+        builder = g_variant_builder_new (G_VARIANT_TYPE_STRING_ARRAY);
+
+        for (l = settings->priv->books_disabled; l != NULL; l = l->next) {
+                const gchar *book_id = l->data;
+                g_variant_builder_add (builder, "s", book_id);
+        }
+
+        variant = g_variant_builder_end (builder);
+        g_variant_builder_unref (builder);
+
+        g_settings_set_value (settings->priv->gsettings_contents, "books-disabled", variant);
+}
+
+static GList *
+find_in_books_disabled (DhSettings  *settings,
+                        const gchar *book_id)
+{
+        GList *node;
+
+        for (node = settings->priv->books_disabled; node != NULL; node = node->next) {
+                const gchar *cur_book_id = node->data;
+
+                if (g_strcmp0 (book_id, cur_book_id) == 0)
+                        return node;
+        }
+
+        return NULL;
+}
+
+static void
+enable_book (DhSettings  *settings,
+             const gchar *book_id)
+{
+        GList *node;
+
+        node = find_in_books_disabled (settings, book_id);
+
+        /* Already enabled. */
+        if (node == NULL)
+                return;
+
+        g_free (node->data);
+        settings->priv->books_disabled = g_list_delete_link (settings->priv->books_disabled, node);
+
+        store_books_disabled (settings);
+}
+
+static void
+disable_book (DhSettings  *settings,
+              const gchar *book_id)
+{
+        GList *node;
+
+        node = find_in_books_disabled (settings, book_id);
+
+        /* Already disabled. */
+        if (node != NULL)
+                return;
+
+        settings->priv->books_disabled = g_list_append (settings->priv->books_disabled,
+                                                        g_strdup (book_id));
+        store_books_disabled (settings);
+}
 
 static void
 dh_settings_get_property (GObject    *object,
@@ -115,7 +213,11 @@ dh_settings_dispose (GObject *object)
 static void
 dh_settings_finalize (GObject *object)
 {
-        if (default_instance == DH_SETTINGS (object))
+        DhSettings *settings = DH_SETTINGS (object);
+
+        g_list_free_full (settings->priv->books_disabled, g_free);
+
+        if (default_instance == settings)
                 default_instance = NULL;
 
         G_OBJECT_CLASS (dh_settings_parent_class)->finalize (object);
@@ -159,15 +261,16 @@ dh_settings_init (DhSettings *settings)
 DhSettings *
 _dh_settings_new (const gchar *contents_path)
 {
-        DhSettings *object;
+        DhSettings *settings;
 
         g_return_val_if_fail (contents_path != NULL, NULL);
 
-        object = g_object_new (DH_TYPE_SETTINGS, NULL);
-        object->priv->gsettings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
-                                                                     contents_path);
+        settings = g_object_new (DH_TYPE_SETTINGS, NULL);
+        settings->priv->gsettings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
+                                                                       contents_path);
+        load_books_disabled (settings);
 
-        return object;
+        return settings;
 }
 
 /**
@@ -292,4 +395,58 @@ dh_settings_bind_group_books_by_language (DhSettings *settings)
                          settings, "group-books-by-language",
                          G_SETTINGS_BIND_DEFAULT |
                          G_SETTINGS_BIND_NO_SENSITIVITY);
+}
+
+/**
+ * dh_settings_is_book_enabled:
+ * @settings: a #DhSettings.
+ * @book: a #DhBook.
+ *
+ * Returns whether @book is enabled according to the "books-disabled" #GSettings
+ * key. If the @book ID is present in "books-disabled", this function returns
+ * %FALSE, otherwise %TRUE is returned.
+ *
+ * Returns: whether @book is enabled.
+ * Since: 3.30
+ */
+gboolean
+dh_settings_is_book_enabled (DhSettings *settings,
+                             DhBook     *book)
+{
+        const gchar *book_id;
+
+        g_return_val_if_fail (DH_IS_SETTINGS (settings), FALSE);
+        g_return_val_if_fail (DH_IS_BOOK (book), FALSE);
+
+        book_id = dh_book_get_id (book);
+        return find_in_books_disabled (settings, book_id) == NULL;
+}
+
+/**
+ * dh_settings_set_book_enabled:
+ * @settings: a #DhSettings.
+ * @book: a #DhBook.
+ * @enabled: the new value.
+ *
+ * Modifies the "books-disabled" #GSettings key. It adds or removes the @book ID
+ * from "books-disabled".
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_set_book_enabled (DhSettings *settings,
+                              DhBook     *book,
+                              gboolean    enabled)
+{
+        const gchar *book_id;
+
+        g_return_if_fail (DH_IS_SETTINGS (settings));
+        g_return_if_fail (DH_IS_BOOK (book));
+
+        book_id = dh_book_get_id (book);
+
+        if (enabled)
+                enable_book (settings, book_id);
+        else
+                disable_book (settings, book_id);
 }
