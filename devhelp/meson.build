@@ -8,6 +8,7 @@ libdevhelp_public_headers = [
         'dh-init.h',
         'dh-keyword-model.h',
         'dh-link.h',
+        'dh-profile.h',
         'dh-settings.h',
         'dh-settings-builder.h',
         'dh-sidebar.h'
@@ -22,6 +23,7 @@ libdevhelp_public_c_files = [
         'dh-init.c',
         'dh-keyword-model.c',
         'dh-link.c',
+        'dh-profile.c',
         'dh-settings.c',
         'dh-settings-builder.c',
         'dh-sidebar.c'

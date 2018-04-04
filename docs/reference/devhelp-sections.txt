@@ -150,6 +150,23 @@ dh_link_type_get_type
 </SECTION>
 
 <SECTION>
+<FILE>dh-profile</FILE>
+DhProfile
+dh_profile_get_default
+dh_profile_get_settings
+<SUBSECTION Standard>
+DH_IS_PROFILE
+DH_IS_PROFILE_CLASS
+DH_PROFILE
+DH_PROFILE_CLASS
+DH_PROFILE_GET_CLASS
+DH_TYPE_PROFILE
+DhProfileClass
+DhProfilePrivate
+dh_profile_get_type
+</SECTION>
+
+<SECTION>
 <FILE>dh-settings</FILE>
 DhSettings
 dh_settings_get_default

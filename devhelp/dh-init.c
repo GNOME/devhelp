@@ -23,6 +23,7 @@
 #include "dh-init.h"
 #include <glib/gi18n-lib.h>
 #include "dh-book-manager.h"
+#include "dh-profile.h"
 #include "dh-settings.h"
 
 /**
@@ -82,6 +83,7 @@ dh_finalize (void)
          */
         if (!done) {
                 _dh_book_manager_unref_singleton ();
+                _dh_profile_unref_default ();
                 _dh_settings_unref_default ();
                 done = TRUE;
         }
