@@ -57,6 +57,9 @@ struct _DhSettingsPrivate {
         GSettings *gsettings_contents;
 
         /* List of book IDs (gchar*) currently disabled. */
+        /* TODO listen to the "books-disabled" GSettings key changes, and add a
+         * ::books-disabled-changed signal or something like that.
+         */
         GList *books_disabled;
 
         guint group_books_by_language : 1;
