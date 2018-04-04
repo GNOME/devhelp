@@ -34,8 +34,22 @@
  * configuration for it in the application.
  *
  * To have the documentation about the available #GSettings keys, their types,
- * etc, read the `*.gschema.xml` file. Note that #DhSettings do not expose the
- * #GSettings objects, you should use the #DhSettings wrapper API instead.
+ * the default values, etc, read the `*.gschema.xml` file.
+ *
+ * Note that #DhSettings do not expose the #GSettings objects, you should use
+ * the #DhSettings wrapper API instead. So instead of using g_settings_bind(),
+ * you should use g_object_bind_property() with a #DhSettings property as the
+ * source. This has the small drawback that the writability of the #GSettings
+ * key cannot be bound to the "sensitive" property of the preferences widget
+ * (see g_settings_bind()), if this feature is really wanted the #DhSettings API
+ * can be changed to expose publicly the #GSettings objects (for that purpose
+ * only).
+ *
+ * If you want to save a setting, but with a different default value than the
+ * one provided by the libdevhelp #GSettings schema, the recommended thing to do
+ * is to *not* call the bind function provided by #DhSettings for that property,
+ * provide your own #GSettings schema with the same key but with a different
+ * default value, and call yourself g_settings_bind().
  */
 
 /* API design:
