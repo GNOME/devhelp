@@ -14,6 +14,7 @@ devhelp/dh-init.c
 devhelp/dh-keyword-model.c
 devhelp/dh-link.c
 devhelp/dh-parser.c
+devhelp/dh-profile-builder.c
 devhelp/dh-profile.c
 devhelp/dh-search-context.c
 devhelp/dh-settings-builder.c

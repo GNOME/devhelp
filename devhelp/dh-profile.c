@@ -19,6 +19,7 @@
  */
 
 #include "dh-profile.h"
+#include "dh-profile-builder.h"
 
 /**
  * SECTION:dh-profile
@@ -94,7 +95,11 @@ DhProfile *
 dh_profile_get_default (void)
 {
         if (default_instance == NULL) {
-                default_instance = _dh_profile_new (dh_settings_get_default ());
+                DhProfileBuilder *builder;
+
+                builder = dh_profile_builder_new ();
+                default_instance = dh_profile_builder_create_object (builder);
+                g_object_unref (builder);
         }
 
         return default_instance;

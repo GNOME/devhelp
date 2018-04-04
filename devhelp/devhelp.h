@@ -34,6 +34,7 @@
 #include <devhelp/dh-keyword-model.h>
 #include <devhelp/dh-link.h>
 #include <devhelp/dh-profile.h>
+#include <devhelp/dh-profile-builder.h>
 #include <devhelp/dh-settings.h>
 #include <devhelp/dh-settings-builder.h>
 #include <devhelp/dh-sidebar.h>
