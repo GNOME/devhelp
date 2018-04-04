@@ -46,7 +46,7 @@ struct _DhTabLabel {
 struct _DhTabLabelClass {
         GtkGridClass parent_class;
 
-	/* Padding for future expansion */
+        /* Padding for future expansion */
         gpointer padding[12];
 };
 

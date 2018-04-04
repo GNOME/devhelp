@@ -45,7 +45,7 @@ struct _DhWebView {
 struct _DhWebViewClass {
         WebKitWebViewClass parent_class;
 
-	/* Padding for future expansion */
+        /* Padding for future expansion */
         gpointer padding[12];
 };
 

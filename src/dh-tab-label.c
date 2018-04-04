@@ -178,7 +178,7 @@ create_close_button (void)
 
 static void
 close_button_clicked_cb (GtkButton  *close_button,
-			 DhTabLabel *tab_label)
+                         DhTabLabel *tab_label)
 {
         if (tab_label->priv->tab != NULL)
                 gtk_widget_destroy (GTK_WIDGET (tab_label->priv->tab));
