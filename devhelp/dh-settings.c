@@ -25,11 +25,17 @@
 /**
  * SECTION:dh-settings
  * @Title: DhSettings
- * @Short_description: Access to the libdevhelp #GSettings objects
+ * @Short_description: libdevhelp settings
  *
- * #DhSettings permits to have access to the #GSettings objects that are part of
- * the libdevhelp. To have the documentation about the available keys and their
- * types, read the `*.gschema.xml` file.
+ * #DhSettings represents the libdevhelp settings. The libdevhelp provides a
+ * #GSettings schema, but for some settings the use of #GSettings is optional:
+ * it is instead possible to set the #DhSettings property and do not bind it to
+ * the #GSettings key, to force a certain value and to not provide a user
+ * configuration for it in the application.
+ *
+ * To have the documentation about the available #GSettings keys, their types,
+ * etc, read the `*.gschema.xml` file. Note that #DhSettings do not expose the
+ * #GSettings objects, you should use the #DhSettings wrapper API instead.
  */
 
 /* API design:
@@ -307,20 +313,6 @@ _dh_settings_unref_default (void)
          * dh_settings_finalize() (i.e. when we are sure that the ref count
          * reaches 0).
          */
-}
-
-/**
- * dh_settings_peek_contents_settings:
- * @settings: a #DhSettings.
- *
- * Returns: (transfer none): the #GSettings for the "contents" schema.
- * Since: 3.30
- */
-GSettings *
-dh_settings_peek_contents_settings (DhSettings *settings)
-{
-        g_return_val_if_fail (DH_IS_SETTINGS (settings), NULL);
-        return settings->priv->gsettings_contents;
 }
 
 /**
