@@ -25,8 +25,7 @@
  * @Title: DhProfileBuilder
  * @Short_description: Builds #DhProfile objects
  *
- * #DhProfileBuilder permits to build #DhProfile objects. Once a #DhProfile
- * object is created, it is immutable.
+ * #DhProfileBuilder permits to build #DhProfile objects.
  */
 
 /* API design:

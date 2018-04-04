@@ -25,8 +25,7 @@
  * @Title: DhSettingsBuilder
  * @Short_description: Builds #DhSettings objects
  *
- * #DhSettingsBuilder permits to build #DhSettings objects. Once a #DhSettings
- * object is created, it is immutable.
+ * #DhSettingsBuilder permits to build #DhSettings objects.
  *
  * The #GSettings schemas provided by the libdevhelp are relocatable. So the
  * paths need to be provided. If a path for a certain schema is not provided to
