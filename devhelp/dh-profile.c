@@ -27,6 +27,24 @@
  * @Short_description: libdevhelp profile
  */
 
+/* Requirements:
+ *
+ * Support multiple in-process profiles (containing GSettings among other
+ * things). For example one generic profile and one profile for GNOME, to keep
+ * the Devhelp application generic and suitable for different development
+ * platforms (all that is needed is that the documentation is available in HTML
+ * with *.devhelp2 index files).
+ *
+ * Possibility to run in parallel multiple profiles in the same process, for
+ * example:
+ * - In an IDE for different projects or different programming languages, i.e.
+ *   different book selections.
+ * - In the Devhelp app with several windows.
+ *
+ * Be able to share some GSettings keys (or at least some sub-schemas) between
+ * different profiles. It's possible with DhSettings.
+ */
+
 struct _DhProfilePrivate {
         DhSettings *settings;
 };
