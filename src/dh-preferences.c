@@ -36,8 +36,8 @@ enum {
 typedef struct {
         /* Book Shelf tab */
         GtkListStore *bookshelf_store;
-        GtkCheckButton *bookshelf_group_by_language_button;
-        GtkCellRendererToggle *bookshelf_enabled_toggle;
+        GtkCheckButton *bookshelf_group_by_language_checkbutton;
+        GtkCellRendererToggle *bookshelf_cell_renderer_toggle;
 
         /* Fonts tab */
         GtkCheckButton *use_system_fonts_checkbutton;
@@ -68,8 +68,8 @@ dh_preferences_class_init (DhPreferencesClass *klass)
 
         // Book Shelf tab
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_store);
-        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_group_by_language_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_enabled_toggle);
+        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_group_by_language_checkbutton);
+        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_cell_renderer_toggle);
 
         // Fonts tab
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, use_system_fonts_checkbutton);
@@ -611,10 +611,10 @@ init_book_shelf_tab (DhPreferences *prefs)
                                  0);
 
         g_object_bind_property (settings, "group-books-by-language",
-                                priv->bookshelf_group_by_language_button, "active",
+                                priv->bookshelf_group_by_language_checkbutton, "active",
                                 G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-        g_signal_connect (priv->bookshelf_enabled_toggle,
+        g_signal_connect (priv->bookshelf_cell_renderer_toggle,
                           "toggled",
                           G_CALLBACK (bookshelf_tree_selection_toggled_cb),
                           prefs);

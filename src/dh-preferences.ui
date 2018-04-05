@@ -72,7 +72,7 @@
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
-                  <object class="GtkCheckButton" id="bookshelf_group_by_language_button">
+                  <object class="GtkCheckButton" id="bookshelf_group_by_language_checkbutton">
                     <property name="label" translatable="yes">_Group by language</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -107,7 +107,7 @@
                             <property name="title" translatable="yes">Enabled</property>
                             <property name="expand">True</property>
                             <child>
-                              <object class="GtkCellRendererToggle" id="bookshelf_enabled_toggle">
+                              <object class="GtkCellRendererToggle" id="bookshelf_cell_renderer_toggle">
                                 <property name="width">60</property>
                               </object>
                               <attributes>
