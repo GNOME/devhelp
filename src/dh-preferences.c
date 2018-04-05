@@ -75,7 +75,7 @@ dh_preferences_class_init (DhPreferencesClass *klass)
 }
 
 static void
-preferences_bookshelf_clean_store (DhPreferences *prefs)
+bookshelf_clean_store (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
 
@@ -92,13 +92,13 @@ preferences_bookshelf_clean_store (DhPreferences *prefs)
  *  - Both.
  */
 static void
-preferences_bookshelf_find_book (DhPreferences     *prefs,
-                                 DhBook            *book,
-                                 const GtkTreeIter *first,
-                                 GtkTreeIter       *exact_iter,
-                                 gboolean          *exact_found,
-                                 GtkTreeIter       *next_iter,
-                                 gboolean          *next_found)
+bookshelf_find_book (DhPreferences     *prefs,
+                     DhBook            *book,
+                     const GtkTreeIter *first,
+                     GtkTreeIter       *exact_iter,
+                     gboolean          *exact_found,
+                     GtkTreeIter       *next_iter,
+                     gboolean          *next_found)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         GtkTreeIter loop_iter;
@@ -168,12 +168,12 @@ preferences_bookshelf_find_book (DhPreferences     *prefs,
  *  - Both.
  */
 static void
-preferences_bookshelf_find_language_group (DhPreferences *prefs,
-                                           const gchar   *language,
-                                           GtkTreeIter   *exact_iter,
-                                           gboolean      *exact_found,
-                                           GtkTreeIter   *next_iter,
-                                           gboolean      *next_found)
+bookshelf_find_language_group (DhPreferences *prefs,
+                               const gchar   *language,
+                               GtkTreeIter   *exact_iter,
+                               gboolean      *exact_found,
+                               GtkTreeIter   *next_iter,
+                               gboolean      *next_found)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         GtkTreeIter loop_iter;
@@ -236,9 +236,9 @@ preferences_bookshelf_find_language_group (DhPreferences *prefs,
 }
 
 static void
-preferences_bookshelf_add_book_to_store (DhPreferences *prefs,
-                                         DhBook        *book,
-                                         gboolean       group_by_language)
+bookshelf_add_book_to_store (DhPreferences *prefs,
+                             DhBook        *book,
+                             gboolean       group_by_language)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         GtkTreeIter  book_iter;
@@ -256,12 +256,12 @@ preferences_bookshelf_add_book_to_store (DhPreferences *prefs,
                 language_title = dh_book_get_language (book);
 
                 /* Look for the proper language group */
-                preferences_bookshelf_find_language_group (prefs,
-                                                           language_title,
-                                                           &language_iter,
-                                                           &language_iter_found,
-                                                           &next_language_iter,
-                                                           &next_language_iter_found);
+                bookshelf_find_language_group (prefs,
+                                               language_title,
+                                               &language_iter,
+                                               &language_iter_found,
+                                               &next_language_iter,
+                                               &next_language_iter_found);
                 /* New language group needs to be created? */
                 if (!language_iter_found) {
                         if (!next_language_iter_found) {
@@ -318,13 +318,13 @@ preferences_bookshelf_add_book_to_store (DhPreferences *prefs,
                         gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->bookshelf_store), &first_book_iter);
 
                         /* Find next possible book in language group */
-                        preferences_bookshelf_find_book (prefs,
-                                                         book,
-                                                         &first_book_iter,
-                                                         NULL,
-                                                         NULL,
-                                                         &next_book_iter,
-                                                         &next_book_iter_found);
+                        bookshelf_find_book (prefs,
+                                             book,
+                                             &first_book_iter,
+                                             NULL,
+                                             NULL,
+                                             &next_book_iter,
+                                             &next_book_iter_found);
                         if (!next_book_iter_found) {
                                 gtk_list_store_append (priv->bookshelf_store,
                                                        &book_iter);
@@ -351,13 +351,13 @@ preferences_bookshelf_add_book_to_store (DhPreferences *prefs,
                 GtkTreeIter next_book_iter;
                 gboolean    next_book_iter_found;
 
-                preferences_bookshelf_find_book (prefs,
-                                                 book,
-                                                 NULL,
-                                                 NULL,
-                                                 NULL,
-                                                 &next_book_iter,
-                                                 &next_book_iter_found);
+                bookshelf_find_book (prefs,
+                                     book,
+                                     NULL,
+                                     NULL,
+                                     NULL,
+                                     &next_book_iter,
+                                     &next_book_iter_found);
                 if (!next_book_iter_found) {
                         gtk_list_store_append (priv->bookshelf_store,
                                                &book_iter);
@@ -378,7 +378,7 @@ preferences_bookshelf_add_book_to_store (DhPreferences *prefs,
 }
 
 static void
-preferences_bookshelf_populate_store (DhPreferences *prefs)
+bookshelf_populate_store (DhPreferences *prefs)
 {
         DhBookManager *book_manager;
         DhSettings *settings;
@@ -394,24 +394,24 @@ preferences_bookshelf_populate_store (DhPreferences *prefs)
         for (l = dh_book_manager_get_books (book_manager);
              l;
              l = g_list_next (l)) {
-                preferences_bookshelf_add_book_to_store (prefs,
-                                                         DH_BOOK (l->data),
-                                                         group_by_language);
+                bookshelf_add_book_to_store (prefs,
+                                             DH_BOOK (l->data),
+                                             group_by_language);
         }
 }
 
 static void
-preferences_bookshelf_group_books_by_language_notify_cb (DhSettings    *settings,
-                                                         GParamSpec    *pspec,
-                                                         DhPreferences *prefs)
+bookshelf_group_books_by_language_notify_cb (DhSettings    *settings,
+                                             GParamSpec    *pspec,
+                                             DhPreferences *prefs)
 {
-        preferences_bookshelf_clean_store (prefs);
-        preferences_bookshelf_populate_store (prefs);
+        bookshelf_clean_store (prefs);
+        bookshelf_populate_store (prefs);
 }
 
 static void
-preferences_bookshelf_set_language_inconsistent (DhPreferences *prefs,
-                                                 const gchar *language)
+bookshelf_set_language_inconsistent (DhPreferences *prefs,
+                                     const gchar   *language)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         GtkTreeIter loop_iter;
@@ -420,12 +420,12 @@ preferences_bookshelf_set_language_inconsistent (DhPreferences *prefs,
         gboolean    one_book_enabled = FALSE;
         gboolean    one_book_disabled = FALSE;
 
-        preferences_bookshelf_find_language_group (prefs,
-                                                   language,
-                                                   &language_iter,
-                                                   &language_iter_found,
-                                                   NULL,
-                                                   NULL);
+        bookshelf_find_language_group (prefs,
+                                       language,
+                                       &language_iter,
+                                       &language_iter_found,
+                                       NULL,
+                                       NULL);
         if (!language_iter_found) {
                 return;
         }
@@ -472,44 +472,44 @@ preferences_bookshelf_set_language_inconsistent (DhPreferences *prefs,
 }
 
 static void
-preferences_bookshelf_book_deleted_cb (DhBookManager *book_manager,
-                                       DhBook        *book,
-                                       DhPreferences *prefs)
+bookshelf_book_deleted_cb (DhBookManager *book_manager,
+                           DhBook        *book,
+                           DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         GtkTreeIter  exact_iter;
         gboolean     exact_iter_found;
 
-        preferences_bookshelf_find_book (prefs,
-                                         book,
-                                         NULL,
-                                         &exact_iter,
-                                         &exact_iter_found,
-                                         NULL,
-                                         NULL);
+        bookshelf_find_book (prefs,
+                             book,
+                             NULL,
+                             &exact_iter,
+                             &exact_iter_found,
+                             NULL,
+                             NULL);
         if (exact_iter_found) {
                 gtk_list_store_remove (priv->bookshelf_store, &exact_iter);
-                preferences_bookshelf_set_language_inconsistent (prefs, dh_book_get_language (book));
+                bookshelf_set_language_inconsistent (prefs, dh_book_get_language (book));
         }
 }
 
 static void
-preferences_bookshelf_book_created_cb (DhBookManager *book_manager,
-                                       DhBook        *book,
-                                       DhPreferences *prefs)
+bookshelf_book_created_cb (DhBookManager *book_manager,
+                           DhBook        *book,
+                           DhPreferences *prefs)
 {
         DhSettings *settings;
         gboolean group_by_language;
 
         settings = dh_settings_get_default ();
         group_by_language = dh_settings_get_group_books_by_language (settings);
-        preferences_bookshelf_add_book_to_store (prefs, book, group_by_language);
+        bookshelf_add_book_to_store (prefs, book, group_by_language);
 }
 
 static void
-preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_renderer,
-                                                 gchar                 *path,
-                                                 DhPreferences         *prefs)
+bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_renderer,
+                                     gchar                 *path,
+                                     DhPreferences         *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhSettings *settings;
@@ -539,7 +539,7 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
                         /* Now we need to look for the language group of this item,
                          * in order to set the inconsistent state if applies */
                         if (dh_settings_get_group_books_by_language (settings)) {
-                                preferences_bookshelf_set_language_inconsistent (prefs, dh_book_get_language (book));
+                                bookshelf_set_language_inconsistent (prefs, dh_book_get_language (book));
                         }
                 } else {
                         GtkTreeIter loop_iter;
@@ -595,20 +595,20 @@ dh_preferences_init (DhPreferences *prefs)
 
         g_signal_connect_object (book_manager,
                                  "book-created",
-                                 G_CALLBACK (preferences_bookshelf_book_created_cb),
+                                 G_CALLBACK (bookshelf_book_created_cb),
                                  prefs,
                                  0);
 
         g_signal_connect_object (book_manager,
                                  "book-deleted",
-                                 G_CALLBACK (preferences_bookshelf_book_deleted_cb),
+                                 G_CALLBACK (bookshelf_book_deleted_cb),
                                  prefs,
                                  0);
 
         settings_lib = dh_settings_get_default ();
         g_signal_connect_object (settings_lib,
                                  "notify::group-books-by-language",
-                                 G_CALLBACK (preferences_bookshelf_group_books_by_language_notify_cb),
+                                 G_CALLBACK (bookshelf_group_books_by_language_notify_cb),
                                  prefs,
                                  0);
 
@@ -634,10 +634,10 @@ dh_preferences_init (DhPreferences *prefs)
 
         g_signal_connect (priv->bookshelf_enabled_toggle,
                           "toggled",
-                          G_CALLBACK (preferences_bookshelf_tree_selection_toggled_cb),
+                          G_CALLBACK (bookshelf_tree_selection_toggled_cb),
                           prefs);
 
-        preferences_bookshelf_populate_store (prefs);
+        bookshelf_populate_store (prefs);
 }
 
 void
