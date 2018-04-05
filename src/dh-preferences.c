@@ -585,7 +585,7 @@ dh_preferences_init (DhPreferences *prefs)
         DhBookManager *book_manager;
         DhSettings *settings_lib;
         DhSettingsApp *settings_app;
-        GSettings *settings_fonts;
+        GSettings *fonts_settings;
 
         gtk_widget_init_template (GTK_WIDGET (prefs));
 
@@ -612,20 +612,25 @@ dh_preferences_init (DhPreferences *prefs)
                                  prefs,
                                  0);
 
-        /* setup GSettings bindings */
+        /* Bind settings */
+
         settings_app = dh_settings_app_get_singleton ();
-        settings_fonts = dh_settings_app_peek_fonts_settings (settings_app);
-        g_settings_bind (settings_fonts, "use-system-fonts",
+        fonts_settings = dh_settings_app_peek_fonts_settings (settings_app);
+
+        g_settings_bind (fonts_settings, "use-system-fonts",
                          priv->system_fonts_button, "active",
                          G_SETTINGS_BIND_DEFAULT);
-        g_settings_bind (settings_fonts, "use-system-fonts",
+
+        g_settings_bind (fonts_settings, "use-system-fonts",
                          priv->fonts_grid, "sensitive",
                          G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_INVERT_BOOLEAN);
-        g_settings_bind (settings_fonts, "fixed-font",
-                         priv->fixed_font_button, "font-name",
+
+        g_settings_bind (fonts_settings, "variable-font",
+                         priv->variable_font_button, "font",
                          G_SETTINGS_BIND_DEFAULT);
-        g_settings_bind (settings_fonts, "variable-font",
-                         priv->variable_font_button, "font-name",
+
+        g_settings_bind (fonts_settings, "fixed-font",
+                         priv->fixed_font_button, "font",
                          G_SETTINGS_BIND_DEFAULT);
 
         g_object_bind_property (settings_lib, "group-books-by-language",
