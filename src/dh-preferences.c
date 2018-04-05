@@ -621,9 +621,11 @@ dh_preferences_init (DhPreferences *prefs)
                          priv->use_system_fonts_checkbutton, "active",
                          G_SETTINGS_BIND_DEFAULT);
 
-        g_settings_bind (fonts_settings, "use-system-fonts",
-                         priv->custom_fonts_grid, "sensitive",
-                         G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_INVERT_BOOLEAN);
+        g_object_bind_property (priv->use_system_fonts_checkbutton, "active",
+                                priv->custom_fonts_grid, "sensitive",
+                                G_BINDING_DEFAULT |
+                                G_BINDING_SYNC_CREATE |
+                                G_BINDING_INVERT_BOOLEAN);
 
         g_settings_bind (fonts_settings, "variable-font",
                          priv->variable_font_button, "font",
