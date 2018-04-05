@@ -139,6 +139,9 @@ _dh_profile_unref_default (void)
  * dh_profile_get_settings:
  * @profile: a #DhProfile.
  *
+ * Gets the #DhSettings object of @profile. The returned object is guaranteed to
+ * be the same for the lifetime of @profile.
+ *
  * Returns: (transfer none): the #DhSettings of @profile.
  * Since: 3.30
  */
