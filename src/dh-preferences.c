@@ -581,15 +581,15 @@ preferences_bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_ren
 static void
 dh_preferences_init (DhPreferences *prefs)
 {
-        DhPreferencesPrivate *priv;
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhBookManager *book_manager;
         DhSettings *settings_lib;
         DhSettingsApp *settings_app;
         GSettings *settings_fonts;
 
-        priv = dh_preferences_get_instance_private (prefs);
-
         gtk_widget_init_template (GTK_WIDGET (prefs));
+
+        gtk_window_set_destroy_with_parent (GTK_WINDOW (prefs), TRUE);
 
         book_manager = dh_book_manager_get_singleton ();
 
@@ -649,7 +649,7 @@ dh_preferences_show_dialog (GtkWindow *parent)
 
         if (prefs == NULL) {
                 prefs = g_object_new (DH_TYPE_PREFERENCES,
-                                      "use-header-bar", 1,
+                                      "use-header-bar", TRUE,
                                       NULL);
 
                 g_signal_connect (prefs,
@@ -658,10 +658,8 @@ dh_preferences_show_dialog (GtkWindow *parent)
                                   &prefs);
         }
 
-        if (parent != gtk_window_get_transient_for (prefs)) {
+        if (parent != gtk_window_get_transient_for (prefs))
                 gtk_window_set_transient_for (prefs, parent);
-                gtk_window_set_destroy_with_parent (prefs, TRUE);
-        }
 
         gtk_window_present (prefs);
 }
