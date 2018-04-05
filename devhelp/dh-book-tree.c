@@ -85,6 +85,16 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhBookTree, dh_book_tree, GTK_TYPE_TREE_VIEW);
 static guint signals[N_SIGNALS] = { 0 };
 static GParamSpec *properties[N_PROPERTIES];
 
+static gboolean
+get_group_books_by_language (DhBookTree *tree)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
+        DhSettings *settings;
+
+        settings = dh_profile_get_settings (priv->profile);
+        return dh_settings_get_group_books_by_language (settings);
+}
+
 static void
 book_tree_selection_changed_cb (GtkTreeSelection *selection,
                                 DhBookTree       *tree)
@@ -146,7 +156,6 @@ book_tree_find_language_group (DhBookTree  *tree,
                                gboolean    *next_found)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhSettings *settings;
         GtkTreeIter loop_iter;
 
         g_assert ((exact_iter != NULL && exact_found != NULL) ||
@@ -159,8 +168,7 @@ book_tree_find_language_group (DhBookTree  *tree,
                 *next_found = FALSE;
 
         /* If we're not doing language grouping, return not found */
-        settings = dh_settings_get_default ();
-        if (!dh_settings_get_group_books_by_language (settings))
+        if (!get_group_books_by_language (tree))
                 return;
 
         if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store),
@@ -331,12 +339,10 @@ book_tree_add_book_to_store (DhBookTree *tree,
                              DhBook     *book)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhSettings *settings;
         GtkTreeIter book_iter;
 
         /* If grouping by language we need to add the language categories */
-        settings = dh_settings_get_default ();
-        if (dh_settings_get_group_books_by_language (settings)) {
+        if (get_group_books_by_language (tree)) {
                 GtkTreeIter  language_iter;
                 gboolean     language_iter_found;
                 GtkTreeIter  next_language_iter;
@@ -473,14 +479,12 @@ book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
                                        DhBookTree    *tree)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhSettings     *settings;
         GtkTreeIter     exact_iter;
         gboolean        exact_iter_found = FALSE;
         GtkTreeIter     language_iter;
         gboolean        language_iter_found = FALSE;
 
-        settings = dh_settings_get_default ();
-        if (dh_settings_get_group_books_by_language (settings)) {
+        if (get_group_books_by_language (tree)) {
                 GtkTreeIter first_book_iter;
 
                 book_tree_find_language_group (tree,
@@ -534,7 +538,6 @@ static void
 book_tree_init_selection (DhBookTree *tree)
 {
         DhBookTreePrivate   *priv;
-        DhSettings       *settings;
         GtkTreeSelection *selection;
         GtkTreeIter       iter;
         gboolean          iter_found = FALSE;
@@ -554,8 +557,7 @@ book_tree_init_selection (DhBookTree *tree)
                                          tree);
 
         /* If grouping by languages, get first book in the first language */
-        settings = dh_settings_get_default ();
-        if (dh_settings_get_group_books_by_language (settings)) {
+        if (get_group_books_by_language (tree)) {
                 GtkTreeIter language_iter;
 
                 if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store),
@@ -678,13 +680,53 @@ dh_book_tree_set_property (GObject      *object,
 static void
 dh_book_tree_constructed (GObject *object)
 {
-        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
+        DhBookTree *tree = DH_BOOK_TREE (object);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
+        DhBookManager *book_manager;
+        DhSettings *settings;
 
         if (G_OBJECT_CLASS (dh_book_tree_parent_class)->constructed != NULL)
                 G_OBJECT_CLASS (dh_book_tree_parent_class)->constructed (object);
 
         if (priv->profile == NULL)
                 priv->profile = g_object_ref (dh_profile_get_default ());
+
+        book_tree_setup_selection (tree);
+
+        book_manager = dh_book_manager_get_singleton ();
+
+        g_signal_connect_object (book_manager,
+                                 "book-created",
+                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (book_manager,
+                                 "book-enabled",
+                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (book_manager,
+                                 "book-deleted",
+                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
+                                 tree,
+                                 0);
+
+        g_signal_connect_object (book_manager,
+                                 "book-disabled",
+                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
+                                 tree,
+                                 0);
+
+        settings = dh_profile_get_settings (priv->profile);
+        g_signal_connect_object (settings,
+                                 "notify::group-books-by-language",
+                                 G_CALLBACK (group_books_by_language_notify_cb),
+                                 tree,
+                                 0);
+
+        book_tree_populate_tree (tree);
 }
 
 static void
@@ -850,11 +892,7 @@ book_tree_add_columns (DhBookTree *tree)
 static void
 dh_book_tree_init (DhBookTree *tree)
 {
-        DhBookTreePrivate *priv;
-        DhBookManager *book_manager;
-        DhSettings *settings;
-
-        priv = dh_book_tree_get_instance_private (tree);
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
 
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree), FALSE);
         gtk_tree_view_set_enable_search (GTK_TREE_VIEW (tree), FALSE);
@@ -870,42 +908,6 @@ dh_book_tree_init (DhBookTree *tree)
                                  GTK_TREE_MODEL (priv->store));
 
         book_tree_add_columns (tree);
-        book_tree_setup_selection (tree);
-
-        book_manager = dh_book_manager_get_singleton ();
-
-        g_signal_connect_object (book_manager,
-                                 "book-created",
-                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
-                                 tree,
-                                 0);
-
-        g_signal_connect_object (book_manager,
-                                 "book-enabled",
-                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
-                                 tree,
-                                 0);
-
-        g_signal_connect_object (book_manager,
-                                 "book-deleted",
-                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
-                                 tree,
-                                 0);
-
-        g_signal_connect_object (book_manager,
-                                 "book-disabled",
-                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
-                                 tree,
-                                 0);
-
-        settings = dh_settings_get_default ();
-        g_signal_connect_object (settings,
-                                 "notify::group-books-by-language",
-                                 G_CALLBACK (group_books_by_language_notify_cb),
-                                 tree,
-                                 0);
-
-        book_tree_populate_tree (tree);
 }
 
 /**
