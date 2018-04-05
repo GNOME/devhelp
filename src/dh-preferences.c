@@ -21,12 +21,8 @@
  */
 
 #include "dh-preferences.h"
-#include <string.h>
 #include <devhelp/devhelp.h>
 #include "dh-settings-app.h"
-#include "dh-util-app.h"
-
-static GtkWidget *prefs_dialog = NULL;
 
 enum {
         COLUMN_ENABLED = 0,
@@ -43,25 +39,20 @@ typedef struct {
         GtkGrid *fonts_grid;
         GtkFontButton *variable_font_button;
         GtkFontButton *fixed_font_button;
-        guint      use_system_fonts_id;
-        guint      system_var_id;
-        guint      system_fixed_id;
-        guint      var_id;
-        guint      fixed_id;
 
         /* Book Shelf tab */
-        GtkCellRendererToggle *bookshelf_enabled_toggle;
         GtkListStore *bookshelf_store;
         GtkCheckButton *bookshelf_group_by_language_button;
+        GtkCellRendererToggle *bookshelf_enabled_toggle;
 } DhPreferencesPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhPreferences, dh_preferences, GTK_TYPE_DIALOG)
 
 static void
-dh_preferences_response (GtkDialog *dlg,
+dh_preferences_response (GtkDialog *dialog,
                          gint       response_id)
 {
-        gtk_widget_destroy (GTK_WIDGET (dlg));
+        gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
 static void
@@ -73,8 +64,7 @@ dh_preferences_class_init (DhPreferencesClass *klass)
         dialog_class->response = dh_preferences_response;
 
         /* Bind class to template */
-        gtk_widget_class_set_template_from_resource (widget_class,
-                                                     "/org/gnome/devhelp/dh-preferences.ui");
+        gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-preferences.ui");
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, system_fonts_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, fonts_grid);
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, variable_font_button);
@@ -653,23 +643,25 @@ dh_preferences_init (DhPreferences *prefs)
 void
 dh_preferences_show_dialog (GtkWindow *parent)
 {
+        static GtkWindow *prefs = NULL;
+
         g_return_if_fail (GTK_IS_WINDOW (parent));
 
-        if (prefs_dialog == NULL) {
-                prefs_dialog = GTK_WIDGET (g_object_new (DH_TYPE_PREFERENCES,
-                                                         "use-header-bar", 1,
-                                                         NULL));
-                g_signal_connect (prefs_dialog,
+        if (prefs == NULL) {
+                prefs = g_object_new (DH_TYPE_PREFERENCES,
+                                      "use-header-bar", 1,
+                                      NULL);
+
+                g_signal_connect (prefs,
                                   "destroy",
                                   G_CALLBACK (gtk_widget_destroyed),
-                                  &prefs_dialog);
+                                  &prefs);
         }
 
-        if (parent != gtk_window_get_transient_for (GTK_WINDOW (prefs_dialog))) {
-                gtk_window_set_transient_for (GTK_WINDOW (prefs_dialog),
-                                              parent);
-                gtk_window_set_destroy_with_parent (GTK_WINDOW (prefs_dialog), TRUE);
+        if (parent != gtk_window_get_transient_for (prefs)) {
+                gtk_window_set_transient_for (prefs, parent);
+                gtk_window_set_destroy_with_parent (prefs, TRUE);
         }
 
-        gtk_window_present (GTK_WINDOW (prefs_dialog));
+        gtk_window_present (prefs);
 }

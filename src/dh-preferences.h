@@ -28,7 +28,6 @@ G_BEGIN_DECLS
 
 #define DH_TYPE_PREFERENCES                (dh_preferences_get_type ())
 #define DH_PREFERENCES(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_PREFERENCES, DhPreferences))
-#define DH_PREFERENCES_CONST(obj)          (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_PREFERENCES, DhPreferences const))
 #define DH_PREFERENCES_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_PREFERENCES, DhPreferencesClass))
 #define DH_IS_PREFERENCES(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_PREFERENCES))
 #define DH_IS_PREFERENCES_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_PREFERENCES))
@@ -37,19 +36,17 @@ G_BEGIN_DECLS
 typedef struct _DhPreferences             DhPreferences;
 typedef struct _DhPreferencesClass        DhPreferencesClass;
 
-struct _DhPreferences
-{
+struct _DhPreferences {
         GtkDialog parent;
 };
 
-struct _DhPreferencesClass
-{
+struct _DhPreferencesClass {
         GtkDialogClass parent_class;
 };
 
-GType dh_preferences_get_type (void) G_GNUC_CONST;
+GType   dh_preferences_get_type         (void);
 
-void dh_preferences_show_dialog (GtkWindow *parent);
+void    dh_preferences_show_dialog      (GtkWindow *parent);
 
 G_END_DECLS
 
