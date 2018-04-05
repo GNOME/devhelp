@@ -709,7 +709,7 @@ dh_window_init (DhWindow *window)
                          G_SETTINGS_BIND_NO_SENSITIVITY);
 
         /* Sidebar */
-        priv->sidebar = DH_SIDEBAR (dh_sidebar_new (NULL));
+        priv->sidebar = dh_sidebar_new2 (NULL);
         gtk_widget_show (GTK_WIDGET (priv->sidebar));
         gtk_container_add (GTK_CONTAINER (priv->grid_sidebar),
                            GTK_WIDGET (priv->sidebar));

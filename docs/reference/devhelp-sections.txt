@@ -229,6 +229,8 @@ dh_settings_builder_get_type
 <FILE>dh-sidebar</FILE>
 DhSidebar
 dh_sidebar_new
+dh_sidebar_new2
+dh_sidebar_get_profile
 dh_sidebar_select_uri
 dh_sidebar_set_search_string
 dh_sidebar_set_search_focus

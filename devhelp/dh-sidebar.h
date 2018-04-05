@@ -5,7 +5,7 @@
  * Copyright (C) 2001-2002 CodeFactory AB
  * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
  * Copyright (C) 2013 Aleksander Morgado <aleksander@gnu.org>
- * Copyright (C) 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -27,6 +27,7 @@
 #include <gtk/gtk.h>
 #include <devhelp/dh-book-manager.h>
 #include <devhelp/dh-link.h>
+#include <devhelp/dh-profile.h>
 
 G_BEGIN_DECLS
 
@@ -56,7 +57,12 @@ struct _DhSidebarClass {
 
 GType           dh_sidebar_get_type             (void);
 
+G_DEPRECATED_FOR (dh_sidebar_new2)
 GtkWidget *     dh_sidebar_new                  (DhBookManager *book_manager);
+
+DhSidebar *     dh_sidebar_new2                 (DhProfile *profile);
+
+DhProfile *     dh_sidebar_get_profile          (DhSidebar *sidebar);
 
 void            dh_sidebar_select_uri           (DhSidebar   *sidebar,
                                                  const gchar *uri);

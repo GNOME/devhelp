@@ -54,6 +54,8 @@
  */
 
 typedef struct {
+        DhProfile *profile;
+
         /* A GtkSearchEntry. */
         GtkEntry *entry;
 
@@ -73,15 +75,86 @@ enum {
         N_SIGNALS
 };
 
+enum {
+        PROP_0,
+        PROP_PROFILE,
+        N_PROPERTIES
+};
+
 static guint signals[N_SIGNALS] = { 0 };
+static GParamSpec *properties[N_PROPERTIES];
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhSidebar, dh_sidebar, GTK_TYPE_GRID)
+
+static void
+set_profile (DhSidebar *sidebar,
+             DhProfile *profile)
+{
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+
+        g_return_if_fail (profile == NULL || DH_IS_PROFILE (profile));
+
+        g_assert (priv->profile == NULL);
+        g_set_object (&priv->profile, profile);
+}
+
+static void
+dh_sidebar_get_property (GObject    *object,
+                         guint       prop_id,
+                         GValue     *value,
+                         GParamSpec *pspec)
+{
+        DhSidebar *sidebar = DH_SIDEBAR (object);
+
+        switch (prop_id) {
+                case PROP_PROFILE:
+                        g_value_set_object (value, dh_sidebar_get_profile (sidebar));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_sidebar_set_property (GObject      *object,
+                         guint         prop_id,
+                         const GValue *value,
+                         GParamSpec   *pspec)
+{
+        DhSidebar *sidebar = DH_SIDEBAR (object);
+
+        switch (prop_id) {
+                case PROP_PROFILE:
+                        set_profile (sidebar, g_value_get_object (value));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_sidebar_constructed (GObject *object)
+{
+        DhSidebar *sidebar = DH_SIDEBAR (object);
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+
+        if (G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed != NULL)
+                G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed (object);
+
+        if (priv->profile == NULL)
+                priv->profile = g_object_ref (dh_profile_get_default ());
+}
 
 static void
 dh_sidebar_dispose (GObject *object)
 {
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
 
+        g_clear_object (&priv->profile);
         g_clear_object (&priv->hitlist_model);
 
         if (priv->idle_complete_id != 0) {
@@ -102,6 +175,9 @@ dh_sidebar_class_init (DhSidebarClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+        object_class->get_property = dh_sidebar_get_property;
+        object_class->set_property = dh_sidebar_set_property;
+        object_class->constructed = dh_sidebar_constructed;
         object_class->dispose = dh_sidebar_dispose;
 
         /**
@@ -117,6 +193,24 @@ dh_sidebar_class_init (DhSidebarClass *klass)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, DH_TYPE_LINK);
+
+        /**
+         * DhSidebar:profile:
+         *
+         * The #DhProfile.
+         *
+         * Since: 3.30
+         */
+        properties[PROP_PROFILE] =
+                g_param_spec_object ("profile",
+                                     "Profile",
+                                     "",
+                                     DH_TYPE_PROFILE,
+                                     G_PARAM_READWRITE |
+                                     G_PARAM_CONSTRUCT_ONLY |
+                                     G_PARAM_STATIC_STRINGS);
+
+        g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
 /******************************************************************************/
@@ -599,11 +693,47 @@ dh_sidebar_init (DhSidebar *sidebar)
  * you should just pass %NULL.
  *
  * Returns: (transfer floating): a new #DhSidebar widget.
+ * Deprecated: 3.30: Use dh_sidebar_new2() instead.
  */
 GtkWidget *
 dh_sidebar_new (DhBookManager *book_manager)
 {
         return g_object_new (DH_TYPE_SIDEBAR, NULL);
+}
+
+/**
+ * dh_sidebar_new2:
+ * @profile: (nullable): a #DhProfile, or %NULL for the default profile.
+ *
+ * Returns: (transfer floating): a new #DhSidebar widget.
+ * Since: 3.30
+ */
+DhSidebar *
+dh_sidebar_new2 (DhProfile *profile)
+{
+        g_return_val_if_fail (profile == NULL || DH_IS_PROFILE (profile), NULL);
+
+        return g_object_new (DH_TYPE_SIDEBAR,
+                             "profile", profile,
+                             NULL);
+}
+
+/**
+ * dh_sidebar_get_profile:
+ * @sidebar: a #DhSidebar.
+ *
+ * Returns: (transfer none): the #DhProfile of @sidebar.
+ * Since: 3.30
+ */
+DhProfile *
+dh_sidebar_get_profile (DhSidebar *sidebar)
+{
+        DhSidebarPrivate *priv;
+
+        g_return_val_if_fail (DH_IS_SIDEBAR (sidebar), NULL);
+
+        priv = dh_sidebar_get_instance_private (sidebar);
+        return priv->profile;
 }
 
 /**
