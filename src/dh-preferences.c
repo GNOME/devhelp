@@ -99,19 +99,21 @@ bookshelf_find_book (DhPreferences     *prefs,
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         GtkTreeIter loop_iter;
 
-        g_assert ((exact_iter && exact_found) || (next_iter && next_found));
+        g_assert ((exact_iter != NULL && exact_found != NULL) ||
+                  (next_iter != NULL && next_found != NULL));
 
-        /* Reset all flags to not found */
-        if (exact_found)
+        if (exact_found != NULL)
                 *exact_found = FALSE;
-        if (next_found)
+        if (next_found != NULL)
                 *next_found = FALSE;
 
         /* Setup iteration start */
-        if (!first) {
-                /* If no first given, start iterating from the start of the model */
+        if (first == NULL) {
+                /* If no first given, start iterating from the start of the
+                 * model.
+                 */
                 if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->bookshelf_store), &loop_iter)) {
-                        /* Store is empty, not found */
+                        /* Store is empty, not found. */
                         return;
                 }
         } else {
@@ -126,25 +128,30 @@ bookshelf_find_book (DhPreferences     *prefs,
                                     COLUMN_BOOK, &in_list_book,
                                     -1);
 
-                /* We may have reached the start of the next language group here */
-                if (first && !in_list_book) {
+                /* We may have reached the start of the next language group
+                 * here.
+                 */
+                if (first != NULL && in_list_book == NULL) {
                         *next_iter = loop_iter;
                         *next_found = TRUE;
                         return;
                 }
 
-                /* We can compare pointers directly as we're playing with references
-                 * of the same object */
-                if (exact_iter &&
+                /* We can compare pointers directly as we're playing with
+                 * references of the same object.
+                 */
+                if (exact_iter != NULL &&
                     in_list_book == book) {
                         *exact_iter = loop_iter;
                         *exact_found = TRUE;
-                        if (!next_iter) {
-                                /* If we were not requested to look for the next one, end here */
+                        if (next_iter == NULL) {
+                                /* If we were not requested to look for the next
+                                 * one, end here.
+                                 */
                                 g_object_unref (in_list_book);
                                 return;
                         }
-                } else if (next_iter &&
+                } else if (next_iter != NULL &&
                            dh_book_cmp_by_title (in_list_book, book) > 0) {
                         *next_iter = loop_iter;
                         *next_found = TRUE;
@@ -152,8 +159,7 @@ bookshelf_find_book (DhPreferences     *prefs,
                         return;
                 }
 
-                if (in_list_book)
-                        g_object_unref (in_list_book);
+                g_clear_object (&in_list_book);
         } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->bookshelf_store),
                                            &loop_iter));
 }
