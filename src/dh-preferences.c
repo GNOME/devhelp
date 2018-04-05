@@ -78,14 +78,6 @@ dh_preferences_class_init (DhPreferencesClass *klass)
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, fixed_font_button);
 }
 
-static void
-bookshelf_clean_store (DhPreferences *prefs)
-{
-        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
-
-        gtk_list_store_clear (priv->bookshelf_store);
-}
-
 /* Tries to find, starting at 'first' (if given):
  *  - An exact match of the book
  *  - The book which should be just after our given book:
@@ -384,10 +376,13 @@ bookshelf_add_book_to_store (DhPreferences *prefs,
 static void
 bookshelf_populate_store (DhPreferences *prefs)
 {
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhBookManager *book_manager;
         DhSettings *settings;
         GList *l;
         gboolean group_by_language;
+
+        gtk_list_store_clear (priv->bookshelf_store);
 
         book_manager = dh_book_manager_get_singleton ();
 
@@ -409,7 +404,6 @@ bookshelf_group_books_by_language_notify_cb (DhSettings    *settings,
                                              GParamSpec    *pspec,
                                              DhPreferences *prefs)
 {
-        bookshelf_clean_store (prefs);
         bookshelf_populate_store (prefs);
 }
 
