@@ -659,7 +659,8 @@ dh_sidebar_class_init (DhSidebarClass *klass)
         /**
          * DhSidebar:profile:
          *
-         * The #DhProfile.
+         * The #DhProfile. If set to %NULL, the default profile as returned by
+         * dh_profile_get_default() is used.
          *
          * Since: 3.30
          */

@@ -851,7 +851,8 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
         /**
          * DhBookTree:profile:
          *
-         * The #DhProfile.
+         * The #DhProfile. If set to %NULL, the default profile as returned by
+         * dh_profile_get_default() is used.
          *
          * Since: 3.30
          */
