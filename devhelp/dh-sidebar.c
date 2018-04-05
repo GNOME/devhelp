@@ -136,83 +136,6 @@ dh_sidebar_set_property (GObject      *object,
         }
 }
 
-static void
-dh_sidebar_constructed (GObject *object)
-{
-        DhSidebar *sidebar = DH_SIDEBAR (object);
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-
-        if (G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed != NULL)
-                G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed (object);
-
-        if (priv->profile == NULL)
-                priv->profile = g_object_ref (dh_profile_get_default ());
-}
-
-static void
-dh_sidebar_dispose (GObject *object)
-{
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
-
-        g_clear_object (&priv->profile);
-        g_clear_object (&priv->hitlist_model);
-
-        if (priv->idle_complete_id != 0) {
-                g_source_remove (priv->idle_complete_id);
-                priv->idle_complete_id = 0;
-        }
-
-        if (priv->idle_search_id != 0) {
-                g_source_remove (priv->idle_search_id);
-                priv->idle_search_id = 0;
-        }
-
-        G_OBJECT_CLASS (dh_sidebar_parent_class)->dispose (object);
-}
-
-static void
-dh_sidebar_class_init (DhSidebarClass *klass)
-{
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-        object_class->get_property = dh_sidebar_get_property;
-        object_class->set_property = dh_sidebar_set_property;
-        object_class->constructed = dh_sidebar_constructed;
-        object_class->dispose = dh_sidebar_dispose;
-
-        /**
-         * DhSidebar::link-selected:
-         * @sidebar: a #DhSidebar.
-         * @link: the selected #DhLink.
-         */
-        signals[SIGNAL_LINK_SELECTED] =
-                g_signal_new ("link-selected",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (DhSidebarClass, link_selected),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, DH_TYPE_LINK);
-
-        /**
-         * DhSidebar:profile:
-         *
-         * The #DhProfile.
-         *
-         * Since: 3.30
-         */
-        properties[PROP_PROFILE] =
-                g_param_spec_object ("profile",
-                                     "Profile",
-                                     "",
-                                     DH_TYPE_PROFILE,
-                                     G_PARAM_READWRITE |
-                                     G_PARAM_CONSTRUCT_ONLY |
-                                     G_PARAM_STATIC_STRINGS);
-
-        g_object_class_install_properties (object_class, N_PROPERTIES, properties);
-}
-
 /******************************************************************************/
 
 static gboolean
@@ -551,17 +474,18 @@ book_tree_link_selected_cb (DhBookTree *book_tree,
 }
 
 static void
-dh_sidebar_init (DhSidebar *sidebar)
+dh_sidebar_constructed (GObject *object)
 {
+        DhSidebar *sidebar = DH_SIDEBAR (object);
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         GtkCellRenderer *cell;
         DhBookManager *book_manager;
 
-        gtk_orientable_set_orientation (GTK_ORIENTABLE (sidebar),
-                                        GTK_ORIENTATION_VERTICAL);
+        if (G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed != NULL)
+                G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed (object);
 
-        gtk_widget_set_hexpand (GTK_WIDGET (sidebar), TRUE);
-        gtk_widget_set_vexpand (GTK_WIDGET (sidebar), TRUE);
+        if (priv->profile == NULL)
+                priv->profile = g_object_ref (dh_profile_get_default ());
 
         /* Setup the search entry */
         priv->entry = GTK_ENTRY (gtk_search_entry_new ());
@@ -673,7 +597,7 @@ dh_sidebar_init (DhSidebar *sidebar)
                                         GTK_POLICY_NEVER,
                                         GTK_POLICY_AUTOMATIC);
 
-        priv->book_tree = dh_book_tree_new (NULL);
+        priv->book_tree = dh_book_tree_new (priv->profile);
         gtk_widget_show (GTK_WIDGET (priv->book_tree));
         g_signal_connect (priv->book_tree,
                           "link-selected",
@@ -685,6 +609,80 @@ dh_sidebar_init (DhSidebar *sidebar)
         gtk_container_add (GTK_CONTAINER (sidebar), GTK_WIDGET (priv->sw_book_tree));
 
         gtk_widget_show_all (GTK_WIDGET (sidebar));
+}
+
+static void
+dh_sidebar_dispose (GObject *object)
+{
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (DH_SIDEBAR (object));
+
+        g_clear_object (&priv->profile);
+        g_clear_object (&priv->hitlist_model);
+
+        if (priv->idle_complete_id != 0) {
+                g_source_remove (priv->idle_complete_id);
+                priv->idle_complete_id = 0;
+        }
+
+        if (priv->idle_search_id != 0) {
+                g_source_remove (priv->idle_search_id);
+                priv->idle_search_id = 0;
+        }
+
+        G_OBJECT_CLASS (dh_sidebar_parent_class)->dispose (object);
+}
+
+static void
+dh_sidebar_class_init (DhSidebarClass *klass)
+{
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+        object_class->get_property = dh_sidebar_get_property;
+        object_class->set_property = dh_sidebar_set_property;
+        object_class->constructed = dh_sidebar_constructed;
+        object_class->dispose = dh_sidebar_dispose;
+
+        /**
+         * DhSidebar::link-selected:
+         * @sidebar: a #DhSidebar.
+         * @link: the selected #DhLink.
+         */
+        signals[SIGNAL_LINK_SELECTED] =
+                g_signal_new ("link-selected",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (DhSidebarClass, link_selected),
+                              NULL, NULL, NULL,
+                              G_TYPE_NONE,
+                              1, DH_TYPE_LINK);
+
+        /**
+         * DhSidebar:profile:
+         *
+         * The #DhProfile.
+         *
+         * Since: 3.30
+         */
+        properties[PROP_PROFILE] =
+                g_param_spec_object ("profile",
+                                     "Profile",
+                                     "",
+                                     DH_TYPE_PROFILE,
+                                     G_PARAM_READWRITE |
+                                     G_PARAM_CONSTRUCT_ONLY |
+                                     G_PARAM_STATIC_STRINGS);
+
+        g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+}
+
+static void
+dh_sidebar_init (DhSidebar *sidebar)
+{
+        gtk_orientable_set_orientation (GTK_ORIENTABLE (sidebar),
+                                        GTK_ORIENTATION_VERTICAL);
+
+        gtk_widget_set_hexpand (GTK_WIDGET (sidebar), TRUE);
+        gtk_widget_set_vexpand (GTK_WIDGET (sidebar), TRUE);
 }
 
 /**
