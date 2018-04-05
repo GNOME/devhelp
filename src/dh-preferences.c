@@ -35,8 +35,8 @@ enum {
 
 typedef struct {
         /* Fonts tab */
-        GtkCheckButton *system_fonts_button;
-        GtkGrid *fonts_grid;
+        GtkCheckButton *use_system_fonts_checkbutton;
+        GtkGrid *custom_fonts_grid;
         GtkFontButton *variable_font_button;
         GtkFontButton *fixed_font_button;
 
@@ -65,8 +65,8 @@ dh_preferences_class_init (DhPreferencesClass *klass)
 
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-preferences.ui");
-        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, system_fonts_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, fonts_grid);
+        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, use_system_fonts_checkbutton);
+        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, custom_fonts_grid);
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, variable_font_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, fixed_font_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_store);
@@ -618,11 +618,11 @@ dh_preferences_init (DhPreferences *prefs)
         fonts_settings = dh_settings_app_peek_fonts_settings (settings_app);
 
         g_settings_bind (fonts_settings, "use-system-fonts",
-                         priv->system_fonts_button, "active",
+                         priv->use_system_fonts_checkbutton, "active",
                          G_SETTINGS_BIND_DEFAULT);
 
         g_settings_bind (fonts_settings, "use-system-fonts",
-                         priv->fonts_grid, "sensitive",
+                         priv->custom_fonts_grid, "sensitive",
                          G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_INVERT_BOOLEAN);
 
         g_settings_bind (fonts_settings, "variable-font",

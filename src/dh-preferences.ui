@@ -168,7 +168,7 @@
                     <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
-                      <object class="GtkCheckButton" id="system_fonts_button">
+                      <object class="GtkCheckButton" id="use_system_fonts_checkbutton">
                         <property name="label" translatable="yes">_Use system fonts</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -184,7 +184,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkGrid" id="fonts_grid">
+                      <object class="GtkGrid" id="custom_fonts_grid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="row_spacing">6</property>
