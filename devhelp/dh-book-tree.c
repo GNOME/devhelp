@@ -54,6 +54,7 @@ typedef struct {
 } FindURIData;
 
 typedef struct {
+        DhProfile *profile;
         GtkTreeStore *store;
         DhLink *selected_link;
         GtkMenu *context_menu;
@@ -62,6 +63,12 @@ typedef struct {
 enum {
         LINK_SELECTED,
         N_SIGNALS
+};
+
+enum {
+        PROP_0,
+        PROP_PROFILE,
+        N_PROPERTIES
 };
 
 enum {
@@ -76,6 +83,7 @@ enum {
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookTree, dh_book_tree, GTK_TYPE_TREE_VIEW);
 
 static guint signals[N_SIGNALS] = { 0 };
+static GParamSpec *properties[N_PROPERTIES];
 
 static void
 book_tree_selection_changed_cb (GtkTreeSelection *selection,
@@ -618,10 +626,73 @@ group_books_by_language_notify_cb (DhSettings *settings,
 }
 
 static void
+set_profile (DhBookTree *tree,
+             DhProfile  *profile)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
+
+        g_return_if_fail (profile == NULL || DH_IS_PROFILE (profile));
+
+        g_assert (priv->profile == NULL);
+        g_set_object (&priv->profile, profile);
+}
+
+static void
+dh_book_tree_get_property (GObject    *object,
+                           guint       prop_id,
+                           GValue     *value,
+                           GParamSpec *pspec)
+{
+        DhBookTree *tree = DH_BOOK_TREE (object);
+
+        switch (prop_id) {
+                case PROP_PROFILE:
+                        g_value_set_object (value, dh_book_tree_get_profile (tree));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_book_tree_set_property (GObject      *object,
+                           guint         prop_id,
+                           const GValue *value,
+                           GParamSpec   *pspec)
+{
+        DhBookTree *tree = DH_BOOK_TREE (object);
+
+        switch (prop_id) {
+                case PROP_PROFILE:
+                        set_profile (tree, g_value_get_object (value));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_book_tree_constructed (GObject *object)
+{
+        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
+
+        if (G_OBJECT_CLASS (dh_book_tree_parent_class)->constructed != NULL)
+                G_OBJECT_CLASS (dh_book_tree_parent_class)->constructed (object);
+
+        if (priv->profile == NULL)
+                priv->profile = g_object_ref (dh_profile_get_default ());
+}
+
+static void
 dh_book_tree_dispose (GObject *object)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (DH_BOOK_TREE (object));
 
+        g_clear_object (&priv->profile);
         g_clear_object (&priv->store);
         g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
         priv->context_menu = NULL;
@@ -713,6 +784,9 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+        object_class->get_property = dh_book_tree_get_property;
+        object_class->set_property = dh_book_tree_set_property;
+        object_class->constructed = dh_book_tree_constructed;
         object_class->dispose = dh_book_tree_dispose;
 
         widget_class->button_press_event = dh_book_tree_button_press_event;
@@ -731,6 +805,24 @@ dh_book_tree_class_init (DhBookTreeClass *klass)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, DH_TYPE_LINK);
+
+        /**
+         * DhBookTree:profile:
+         *
+         * The #DhProfile.
+         *
+         * Since: 3.30
+         */
+        properties[PROP_PROFILE] =
+                g_param_spec_object ("profile",
+                                     "Profile",
+                                     "",
+                                     DH_TYPE_PROFILE,
+                                     G_PARAM_READWRITE |
+                                     G_PARAM_CONSTRUCT_ONLY |
+                                     G_PARAM_STATIC_STRINGS);
+
+        g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
 static void
@@ -818,13 +910,36 @@ dh_book_tree_init (DhBookTree *tree)
 
 /**
  * dh_book_tree_new:
+ * @profile: (nullable): a #DhProfile, or %NULL for the default profile.
  *
  * Returns: (transfer floating): a new #DhBookTree widget.
  */
 DhBookTree *
-dh_book_tree_new (void)
+dh_book_tree_new (DhProfile *profile)
 {
-        return g_object_new (DH_TYPE_BOOK_TREE, NULL);
+        g_return_val_if_fail (profile == NULL || DH_IS_PROFILE (profile), NULL);
+
+        return g_object_new (DH_TYPE_BOOK_TREE,
+                             "profile", profile,
+                             NULL);
+}
+
+/**
+ * dh_book_tree_get_profile:
+ * @tree: a #DhBookTree.
+ *
+ * Returns: (transfer none): the #DhProfile of @tree.
+ * Since: 3.30
+ */
+DhProfile *
+dh_book_tree_get_profile (DhBookTree *tree)
+{
+        DhBookTreePrivate *priv;
+
+        g_return_val_if_fail (DH_IS_BOOK_TREE (tree), NULL);
+
+        priv = dh_book_tree_get_instance_private (tree);
+        return priv->profile;
 }
 
 static gboolean

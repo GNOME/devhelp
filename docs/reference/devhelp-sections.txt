@@ -72,6 +72,7 @@ dh_book_manager_get_type
 <FILE>dh-book-tree</FILE>
 DhBookTree
 dh_book_tree_new
+dh_book_tree_get_profile
 dh_book_tree_select_uri
 dh_book_tree_get_selected_book
 <SUBSECTION Standard>

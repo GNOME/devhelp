@@ -245,6 +245,12 @@
           property.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <link linkend="dh-book-tree-new">dh_book_tree_new()</link> now takes a
+          <link linkend="DhProfile">DhProfile</link> parameter.
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>

@@ -579,7 +579,7 @@ dh_sidebar_init (DhSidebar *sidebar)
                                         GTK_POLICY_NEVER,
                                         GTK_POLICY_AUTOMATIC);
 
-        priv->book_tree = dh_book_tree_new ();
+        priv->book_tree = dh_book_tree_new (NULL);
         gtk_widget_show (GTK_WIDGET (priv->book_tree));
         g_signal_connect (priv->book_tree,
                           "link-selected",

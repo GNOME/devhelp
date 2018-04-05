@@ -23,6 +23,7 @@
 
 #include <gtk/gtk.h>
 #include <devhelp/dh-link.h>
+#include <devhelp/dh-profile.h>
 
 G_BEGIN_DECLS
 
@@ -48,7 +49,9 @@ struct _DhBookTreeClass {
 
 GType           dh_book_tree_get_type           (void) G_GNUC_CONST;
 
-DhBookTree *    dh_book_tree_new                (void);
+DhBookTree *    dh_book_tree_new                (DhProfile *profile);
+
+DhProfile *     dh_book_tree_get_profile        (DhBookTree *tree);
 
 void            dh_book_tree_select_uri         (DhBookTree  *tree,
                                                  const gchar *uri);
