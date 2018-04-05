@@ -34,16 +34,16 @@ enum {
 };
 
 typedef struct {
+        /* Book Shelf tab */
+        GtkListStore *bookshelf_store;
+        GtkCheckButton *bookshelf_group_by_language_button;
+        GtkCellRendererToggle *bookshelf_enabled_toggle;
+
         /* Fonts tab */
         GtkCheckButton *use_system_fonts_checkbutton;
         GtkGrid *custom_fonts_grid;
         GtkFontButton *variable_font_button;
         GtkFontButton *fixed_font_button;
-
-        /* Book Shelf tab */
-        GtkListStore *bookshelf_store;
-        GtkCheckButton *bookshelf_group_by_language_button;
-        GtkCellRendererToggle *bookshelf_enabled_toggle;
 } DhPreferencesPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhPreferences, dh_preferences, GTK_TYPE_DIALOG)
@@ -65,13 +65,17 @@ dh_preferences_class_init (DhPreferencesClass *klass)
 
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-preferences.ui");
+
+        // Book Shelf tab
+        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_store);
+        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_group_by_language_button);
+        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_enabled_toggle);
+
+        // Fonts tab
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, use_system_fonts_checkbutton);
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, custom_fonts_grid);
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, variable_font_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, fixed_font_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_store);
-        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_group_by_language_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_enabled_toggle);
 }
 
 static void
@@ -579,17 +583,11 @@ bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_renderer,
 }
 
 static void
-dh_preferences_init (DhPreferences *prefs)
+init_book_shelf_tab (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhBookManager *book_manager;
-        DhSettings *settings_lib;
-        DhSettingsApp *settings_app;
-        GSettings *fonts_settings;
-
-        gtk_widget_init_template (GTK_WIDGET (prefs));
-
-        gtk_window_set_destroy_with_parent (GTK_WINDOW (prefs), TRUE);
+        DhSettings *settings;
 
         book_manager = dh_book_manager_get_singleton ();
 
@@ -605,14 +603,31 @@ dh_preferences_init (DhPreferences *prefs)
                                  prefs,
                                  0);
 
-        settings_lib = dh_settings_get_default ();
-        g_signal_connect_object (settings_lib,
+        settings = dh_settings_get_default ();
+        g_signal_connect_object (settings,
                                  "notify::group-books-by-language",
                                  G_CALLBACK (bookshelf_group_books_by_language_notify_cb),
                                  prefs,
                                  0);
 
-        /* Bind settings */
+        g_object_bind_property (settings, "group-books-by-language",
+                                priv->bookshelf_group_by_language_button, "active",
+                                G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
+
+        g_signal_connect (priv->bookshelf_enabled_toggle,
+                          "toggled",
+                          G_CALLBACK (bookshelf_tree_selection_toggled_cb),
+                          prefs);
+
+        bookshelf_populate_store (prefs);
+}
+
+static void
+init_fonts_tab (DhPreferences *prefs)
+{
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
+        DhSettingsApp *settings_app;
+        GSettings *fonts_settings;
 
         settings_app = dh_settings_app_get_singleton ();
         fonts_settings = dh_settings_app_peek_fonts_settings (settings_app);
@@ -634,17 +649,17 @@ dh_preferences_init (DhPreferences *prefs)
         g_settings_bind (fonts_settings, "fixed-font",
                          priv->fixed_font_button, "font",
                          G_SETTINGS_BIND_DEFAULT);
+}
 
-        g_object_bind_property (settings_lib, "group-books-by-language",
-                                priv->bookshelf_group_by_language_button, "active",
-                                G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
+static void
+dh_preferences_init (DhPreferences *prefs)
+{
+        gtk_widget_init_template (GTK_WIDGET (prefs));
 
-        g_signal_connect (priv->bookshelf_enabled_toggle,
-                          "toggled",
-                          G_CALLBACK (bookshelf_tree_selection_toggled_cb),
-                          prefs);
+        gtk_window_set_destroy_with_parent (GTK_WINDOW (prefs), TRUE);
 
-        bookshelf_populate_store (prefs);
+        init_book_shelf_tab (prefs);
+        init_fonts_tab (prefs);
 }
 
 void
