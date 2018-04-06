@@ -396,17 +396,18 @@ bookshelf_populate_store (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhBookManager *book_manager;
+        GList *books;
         GList *l;
 
         gtk_list_store_clear (priv->bookshelf_store);
 
         book_manager = dh_book_manager_get_singleton ();
+        books = dh_book_manager_get_books (book_manager);
 
-        /* This list already comes ordered, but we don't care */
-        for (l = dh_book_manager_get_books (book_manager);
-             l;
-             l = g_list_next (l)) {
-                bookshelf_add_book_to_store (prefs, DH_BOOK (l->data));
+        /* This list already comes ordered, but we don't care. */
+        for (l = books; l != NULL; l = l->next) {
+                DhBook *cur_book = DH_BOOK (l->data);
+                bookshelf_add_book_to_store (prefs, cur_book);
         }
 }
 
