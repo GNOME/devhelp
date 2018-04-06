@@ -283,12 +283,13 @@ remove_book (DhBookManager *book_manager,
         node = g_list_find (priv->books, book);
 
         if (node != NULL) {
+                priv->books = g_list_delete_link (priv->books, node);
+
                 g_signal_emit (book_manager,
                                signals[SIGNAL_BOOK_DELETED],
                                0,
                                book);
 
-                priv->books = g_list_delete_link (priv->books, node);
                 g_object_unref (book);
         }
 }
