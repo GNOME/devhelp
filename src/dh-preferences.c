@@ -341,6 +341,7 @@ bookshelf_sort_func (GtkTreeModel *model,
                      GtkTreeIter  *iter_b,
                      gpointer      user_data)
 {
+        DhSettings *settings;
         DhBook *book_a;
         DhBook *book_b;
         gchar *title_a;
@@ -360,6 +361,12 @@ bookshelf_sort_func (GtkTreeModel *model,
                             COLUMN_BOOK, &book_b,
                             COLUMN_TITLE, &title_b,
                             -1);
+
+        settings = dh_settings_get_default ();
+        if (!dh_settings_get_group_books_by_language (settings)) {
+                ret = dh_book_cmp_by_title (book_a, book_b);
+                goto out;
+        }
 
         if (book_a != NULL)
                 language_a = dh_book_get_language (book_a);
