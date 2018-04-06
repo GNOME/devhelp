@@ -513,9 +513,9 @@ bookshelf_book_deleted_cb (DhBookManager *book_manager,
 }
 
 static void
-bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_renderer,
-                                     gchar                 *path,
-                                     DhPreferences         *prefs)
+bookshelf_row_toggled_cb (GtkCellRendererToggle *cell_renderer,
+                          gchar                 *path,
+                          DhPreferences         *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhSettings *settings;
@@ -627,7 +627,7 @@ init_book_shelf_tab (DhPreferences *prefs)
 
         g_signal_connect (priv->bookshelf_cell_renderer_toggle,
                           "toggled",
-                          G_CALLBACK (bookshelf_tree_selection_toggled_cb),
+                          G_CALLBACK (bookshelf_row_toggled_cb),
                           prefs);
 
         bookshelf_populate_store (prefs);
