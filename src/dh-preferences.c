@@ -523,43 +523,49 @@ bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_renderer,
 
         settings = dh_settings_get_default ();
 
-        if (gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (priv->bookshelf_store),
-                                                 &iter,
-                                                 path)) {
-                gpointer book = NULL;
+        if (gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (priv->bookshelf_store), &iter, path)) {
+                DhBook *book = NULL;
                 gboolean enabled;
 
                 gtk_tree_model_get (GTK_TREE_MODEL (priv->bookshelf_store),
                                     &iter,
-                                    COLUMN_BOOK,       &book,
-                                    COLUMN_ENABLED,    &enabled,
+                                    COLUMN_BOOK, &book,
+                                    COLUMN_ENABLED, &enabled,
                                     -1);
 
-                if (book) {
-                        /* Update book conf */
+                if (book != NULL) {
+                        /* Update book conf. */
                         dh_book_set_enabled (book, !enabled);
 
-                        gtk_list_store_set (priv->bookshelf_store, &iter,
+                        gtk_list_store_set (priv->bookshelf_store,
+                                            &iter,
                                             COLUMN_ENABLED, !enabled,
                                             -1);
-                        /* Now we need to look for the language group of this item,
-                         * in order to set the inconsistent state if applies */
-                        if (dh_settings_get_group_books_by_language (settings)) {
+
+                        /* Now we need to look for the language group of this
+                         * item, in order to set the inconsistent state if
+                         * applies.
+                         */
+                        if (dh_settings_get_group_books_by_language (settings))
                                 bookshelf_set_language_inconsistent (prefs, dh_book_get_language (book));
-                        }
+
+                        g_object_unref (book);
                 } else {
                         GtkTreeIter loop_iter;
 
-                        /* We should only reach this if we are grouping by language */
+                        /* We should only reach this if we are grouping by
+                         * language.
+                         */
                         g_assert (dh_settings_get_group_books_by_language (settings));
 
-                        /* Set new status in the language group item */
-                        gtk_list_store_set (priv->bookshelf_store, &iter,
-                                            COLUMN_ENABLED,      !enabled,
+                        /* Set new status in the language group item. */
+                        gtk_list_store_set (priv->bookshelf_store,
+                                            &iter,
+                                            COLUMN_ENABLED, !enabled,
                                             COLUMN_INCONSISTENT, FALSE,
                                             -1);
 
-                        /* And set new status in all books of the same language */
+                        /* And set new status in all books of the same language. */
                         loop_iter = iter;
                         while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->bookshelf_store),
                                                          &loop_iter)) {
@@ -567,18 +573,20 @@ bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_renderer,
                                                     &loop_iter,
                                                     COLUMN_BOOK, &book,
                                                     -1);
-                                if (!book) {
-                                        /* Found next language group, finish */
+                                if (book == NULL) {
+                                        /* Found next language group, finish. */
                                         return;
                                 }
 
-                                /* Update book conf */
+                                /* Update book conf. */
                                 dh_book_set_enabled (book, !enabled);
 
                                 gtk_list_store_set (priv->bookshelf_store,
                                                     &loop_iter,
                                                     COLUMN_ENABLED, !enabled,
                                                     -1);
+
+                                g_object_unref (book);
                         }
                 }
         }
