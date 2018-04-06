@@ -79,12 +79,12 @@ dh_preferences_class_init (DhPreferencesClass *klass)
 }
 
 /* Tries to find, starting at 'first' (if given):
- *  - An exact match of the book
+ *  - An exact match of the book.
  *  - The book which should be just after our given book:
  *      - If first is set, the next book must be in the same language group
- *         as the given book.
+ *        as the given book.
  *      - If first is NOT set, we don't care about language groups as we're
- *         iterating from the beginning of the list.
+ *        iterating from the beginning of the list.
  *  - Both.
  */
 static void
@@ -165,7 +165,7 @@ bookshelf_find_book (DhPreferences     *prefs,
 }
 
 /* Tries to find:
- *  - An exact match of the language group
+ *  - An exact match of the language group.
  *  - The language group which should be just after our given language group.
  *  - Both.
  */
@@ -180,54 +180,59 @@ bookshelf_find_language_group (DhPreferences *prefs,
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         GtkTreeIter loop_iter;
 
-        g_assert ((exact_iter && exact_found) || (next_iter && next_found));
+        g_assert ((exact_iter != NULL && exact_found != NULL) ||
+                  (next_iter != NULL && next_found != NULL));
 
-        /* Reset all flags to not found */
-        if (exact_found)
+        if (exact_found != NULL)
                 *exact_found = FALSE;
-        if (next_found)
+        if (next_found != NULL)
                 *next_found = FALSE;
 
         if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->bookshelf_store),
                                             &loop_iter)) {
-                /* Store is empty, not found */
+                /* Store is empty, not found. */
                 return;
         }
 
         do {
                 DhBook *book = NULL;
-                gchar  *title = NULL;
+                gchar *title = NULL;
 
-                /* Look for language titles, which are those where there
-                 * is no book object associated in the row */
+                /* Look for language titles, which are those where there is no
+                 * DhBook object associated in the row.
+                 */
                 gtk_tree_model_get (GTK_TREE_MODEL (priv->bookshelf_store),
                                     &loop_iter,
                                     COLUMN_TITLE, &title,
-                                    COLUMN_BOOK,  &book,
+                                    COLUMN_BOOK, &book,
                                     -1);
 
-                /* If we got a book, it's not a language row */
-                if (book) {
+                /* If we got a book, it's not a language row. */
+                if (book != NULL) {
                         g_free (title);
                         g_object_unref (book);
                         continue;
                 }
 
-                if (exact_iter &&
+                if (exact_iter != NULL &&
                     g_ascii_strcasecmp (title, language) == 0) {
                         /* Exact match found! */
                         *exact_iter = loop_iter;
                         *exact_found = TRUE;
-                        if (!next_iter) {
-                                /* If we were not requested to look for the next one, end here */
+                        if (next_iter == NULL) {
+                                /* If we were not requested to look for the next
+                                 * one, end here.
+                                 */
                                 g_free (title);
                                 return;
                         }
-                } else if (next_iter &&
+                } else if (next_iter != NULL &&
                            g_ascii_strcasecmp (title, language) > 0) {
                         *next_iter = loop_iter;
                         *next_found = TRUE;
-                        /* There's no way to have an exact match after the next, so end here */
+                        /* There's no way to have an exact match after the next,
+                         * so end here.
+                         */
                         g_free (title);
                         return;
                 }
