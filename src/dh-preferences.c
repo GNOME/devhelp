@@ -420,6 +420,14 @@ bookshelf_group_books_by_language_notify_cb (DhSettings    *settings,
 }
 
 static void
+bookshelf_book_created_cb (DhBookManager *book_manager,
+                           DhBook        *book,
+                           DhPreferences *prefs)
+{
+        bookshelf_add_book_to_store (prefs, book);
+}
+
+static void
 bookshelf_set_language_inconsistent (DhPreferences *prefs,
                                      const gchar   *language)
 {
@@ -504,14 +512,6 @@ bookshelf_book_deleted_cb (DhBookManager *book_manager,
 }
 
 static void
-bookshelf_book_created_cb (DhBookManager *book_manager,
-                           DhBook        *book,
-                           DhPreferences *prefs)
-{
-        bookshelf_add_book_to_store (prefs, book);
-}
-
-static void
 bookshelf_tree_selection_toggled_cb (GtkCellRendererToggle *cell_renderer,
                                      gchar                 *path,
                                      DhPreferences         *prefs)
@@ -587,8 +587,20 @@ static void
 init_book_shelf_tab (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
-        DhBookManager *book_manager;
         DhSettings *settings;
+        DhBookManager *book_manager;
+
+        settings = dh_settings_get_default ();
+
+        g_object_bind_property (settings, "group-books-by-language",
+                                priv->bookshelf_group_by_language_checkbutton, "active",
+                                G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
+
+        g_signal_connect_object (settings,
+                                 "notify::group-books-by-language",
+                                 G_CALLBACK (bookshelf_group_books_by_language_notify_cb),
+                                 prefs,
+                                 0);
 
         book_manager = dh_book_manager_get_singleton ();
 
@@ -603,17 +615,6 @@ init_book_shelf_tab (DhPreferences *prefs)
                                  G_CALLBACK (bookshelf_book_deleted_cb),
                                  prefs,
                                  0);
-
-        settings = dh_settings_get_default ();
-        g_signal_connect_object (settings,
-                                 "notify::group-books-by-language",
-                                 G_CALLBACK (bookshelf_group_books_by_language_notify_cb),
-                                 prefs,
-                                 0);
-
-        g_object_bind_property (settings, "group-books-by-language",
-                                priv->bookshelf_group_by_language_checkbutton, "active",
-                                G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
         g_signal_connect (priv->bookshelf_cell_renderer_toggle,
                           "toggled",
