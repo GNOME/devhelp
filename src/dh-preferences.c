@@ -29,6 +29,7 @@
 enum {
         COLUMN_BOOK = 0,
         COLUMN_TITLE,
+        COLUMN_WEIGHT,
         N_COLUMNS
 };
 
@@ -238,6 +239,7 @@ bookshelf_populate_store (DhPreferences *prefs)
                 gtk_list_store_insert_with_values (priv->bookshelf_store, NULL, -1,
                                                    COLUMN_BOOK, book,
                                                    COLUMN_TITLE, title,
+                                                   COLUMN_WEIGHT, PANGO_WEIGHT_NORMAL,
                                                    -1);
 
                 g_free (indented_title);
@@ -255,6 +257,7 @@ bookshelf_populate_store (DhPreferences *prefs)
                 gtk_list_store_insert_with_values (priv->bookshelf_store, NULL, -1,
                                                    COLUMN_BOOK, NULL,
                                                    COLUMN_TITLE, language,
+                                                   COLUMN_WEIGHT, PANGO_WEIGHT_BOLD,
                                                    -1);
 
                 inserted_languages = g_slist_prepend (inserted_languages, g_strdup (language));
@@ -422,7 +425,8 @@ init_bookshelf_store (DhPreferences *prefs)
         g_assert (priv->bookshelf_store == NULL);
         priv->bookshelf_store = gtk_list_store_new (N_COLUMNS,
                                                     DH_TYPE_BOOK,
-                                                    G_TYPE_STRING); /* Title */
+                                                    G_TYPE_STRING, /* Title */
+                                                    PANGO_TYPE_WEIGHT);
 
         gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (priv->bookshelf_store),
                                                  bookshelf_sort_func,
@@ -472,42 +476,12 @@ bookshelf_cell_data_func_toggle (GtkTreeViewColumn *column,
 }
 
 static void
-bookshelf_cell_data_func_text (GtkTreeViewColumn *column,
-                               GtkCellRenderer   *cell,
-                               GtkTreeModel      *model,
-                               GtkTreeIter       *iter,
-                               gpointer           data)
-{
-        DhBook *book = NULL;
-        gchar *title = NULL;
-        PangoWeight weight;
-
-        gtk_tree_model_get (model,
-                            iter,
-                            COLUMN_BOOK, &book,
-                            COLUMN_TITLE, &title,
-                            -1);
-
-        if (book != NULL)
-                weight = PANGO_WEIGHT_NORMAL;
-        else
-                weight = PANGO_WEIGHT_BOLD; /* For the language group. */
-
-        g_object_set (cell,
-                      "text", title,
-                      "weight", weight,
-                      NULL);
-
-        g_clear_object (&book);
-        g_free (title);
-}
-
-static void
 init_bookshelf_view (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         GtkCellRenderer *cell_renderer_toggle;
         GtkCellRenderer *cell_renderer_text;
+        GtkTreeViewColumn *column;
 
         gtk_tree_view_set_model (priv->bookshelf_view,
                                  GTK_TREE_MODEL (priv->bookshelf_store));
@@ -529,12 +503,12 @@ init_bookshelf_view (DhPreferences *prefs)
 
         /* Title column */
         cell_renderer_text = gtk_cell_renderer_text_new ();
-        gtk_tree_view_insert_column_with_data_func (priv->bookshelf_view,
-                                                    -1,
-                                                    _("Title"),
-                                                    cell_renderer_text,
-                                                    bookshelf_cell_data_func_text,
-                                                    NULL, NULL);
+        column = gtk_tree_view_column_new_with_attributes (_("Title"),
+                                                           cell_renderer_text,
+                                                           "text", COLUMN_TITLE,
+                                                           "weight", COLUMN_WEIGHT,
+                                                           NULL);
+        gtk_tree_view_append_column (priv->bookshelf_view, column);
 }
 
 static void
