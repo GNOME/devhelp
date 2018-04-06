@@ -495,8 +495,8 @@ bookshelf_book_deleted_cb (DhBookManager *book_manager,
                            DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
-        GtkTreeIter  exact_iter;
-        gboolean     exact_iter_found;
+        GtkTreeIter exact_iter;
+        gboolean exact_iter_found;
 
         bookshelf_find_book (prefs,
                              book,
@@ -505,6 +505,7 @@ bookshelf_book_deleted_cb (DhBookManager *book_manager,
                              &exact_iter_found,
                              NULL,
                              NULL);
+
         if (exact_iter_found) {
                 gtk_list_store_remove (priv->bookshelf_store, &exact_iter);
                 bookshelf_set_language_inconsistent (prefs, dh_book_get_language (book));
