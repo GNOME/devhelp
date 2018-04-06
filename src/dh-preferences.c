@@ -27,8 +27,8 @@
 #include "dh-settings-app.h"
 
 enum {
-        COLUMN_TITLE = 0,
-        COLUMN_BOOK,
+        COLUMN_BOOK = 0,
+        COLUMN_TITLE,
         N_COLUMNS
 };
 
@@ -414,8 +414,8 @@ init_bookshelf_store (DhPreferences *prefs)
 
         g_assert (priv->bookshelf_store == NULL);
         priv->bookshelf_store = gtk_list_store_new (N_COLUMNS,
-                                                    G_TYPE_STRING, /* Title */
-                                                    DH_TYPE_BOOK);
+                                                    DH_TYPE_BOOK,
+                                                    G_TYPE_STRING); /* Title */
 
         gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (priv->bookshelf_store),
                                                  bookshelf_sort_func,
