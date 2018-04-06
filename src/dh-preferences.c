@@ -244,14 +244,15 @@ bookshelf_find_language_group (DhPreferences *prefs,
 
 static void
 bookshelf_add_book_to_store (DhPreferences *prefs,
-                             DhBook        *book,
-                             gboolean       group_by_language)
+                             DhBook        *book)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
-        GtkTreeIter  book_iter;
+        DhSettings *settings;
+        GtkTreeIter book_iter;
 
         /* If grouping by language we need to add the language categories */
-        if (group_by_language) {
+        settings = dh_settings_get_default ();
+        if (dh_settings_get_group_books_by_language (settings)) {
                 gchar       *indented_title;
                 GtkTreeIter  language_iter;
                 gboolean     language_iter_found;
@@ -389,24 +390,17 @@ bookshelf_populate_store (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhBookManager *book_manager;
-        DhSettings *settings;
         GList *l;
-        gboolean group_by_language;
 
         gtk_list_store_clear (priv->bookshelf_store);
 
         book_manager = dh_book_manager_get_singleton ();
 
-        settings = dh_settings_get_default ();
-        group_by_language = dh_settings_get_group_books_by_language (settings);
-
         /* This list already comes ordered, but we don't care */
         for (l = dh_book_manager_get_books (book_manager);
              l;
              l = g_list_next (l)) {
-                bookshelf_add_book_to_store (prefs,
-                                             DH_BOOK (l->data),
-                                             group_by_language);
+                bookshelf_add_book_to_store (prefs, DH_BOOK (l->data));
         }
 }
 
@@ -507,12 +501,7 @@ bookshelf_book_created_cb (DhBookManager *book_manager,
                            DhBook        *book,
                            DhPreferences *prefs)
 {
-        DhSettings *settings;
-        gboolean group_by_language;
-
-        settings = dh_settings_get_default ();
-        group_by_language = dh_settings_get_group_books_by_language (settings);
-        bookshelf_add_book_to_store (prefs, book, group_by_language);
+        bookshelf_add_book_to_store (prefs, book);
 }
 
 static void
