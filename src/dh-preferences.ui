@@ -21,20 +21,6 @@
 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
-  <object class="GtkListStore" id="bookshelf_store">
-    <columns>
-      <!-- column-name enabled -->
-      <column type="gboolean"/>
-      <!-- column-name title -->
-      <column type="gchararray"/>
-      <!-- column-name book -->
-      <column type="GObject"/>
-      <!-- column-name weight -->
-      <column type="gint"/>
-      <!-- column-name inconsistent -->
-      <column type="gboolean"/>
-    </columns>
-  </object>
   <template class="DhPreferences" parent="GtkDialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Preferences</property>
@@ -92,44 +78,11 @@
                     <property name="can_focus">True</property>
                     <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkTreeView" id="bookshelf_treeview">
+                      <object class="GtkTreeView" id="bookshelf_view">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="model">bookshelf_store</property>
                         <property name="headers_clickable">False</property>
-                        <property name="search_column">0</property>
-                        <child internal-child="selection">
-                          <object class="GtkTreeSelection" id="treeview-selection"/>
-                        </child>
-                        <child>
-                          <object class="GtkTreeViewColumn" id="treeviewcolumn1">
-                            <property name="min_width">60</property>
-                            <property name="title" translatable="yes">Enabled</property>
-                            <property name="expand">True</property>
-                            <child>
-                              <object class="GtkCellRendererToggle" id="bookshelf_cell_renderer_toggle">
-                                <property name="width">60</property>
-                              </object>
-                              <attributes>
-                                <attribute name="active">0</attribute>
-                                <attribute name="inconsistent">4</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkTreeViewColumn" id="treeviewcolumn2">
-                            <property name="title" translatable="yes">Title</property>
-                            <property name="expand">True</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="bookshelf_title_text"/>
-                              <attributes>
-                                <attribute name="text">1</attribute>
-                                <attribute name="weight">3</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                        </child>
+                        <property name="enable_search">False</property>
                       </object>
                     </child>
                   </object>

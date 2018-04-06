@@ -21,6 +21,7 @@
  */
 
 #include "dh-preferences.h"
+#include <glib/gi18n.h>
 #include <devhelp/devhelp.h>
 #include "dh-settings-app.h"
 
@@ -35,9 +36,9 @@ enum {
 
 typedef struct {
         /* Book Shelf tab */
-        GtkListStore *bookshelf_store;
         GtkCheckButton *bookshelf_group_by_language_checkbutton;
-        GtkCellRendererToggle *bookshelf_cell_renderer_toggle;
+        GtkTreeView *bookshelf_view;
+        GtkListStore *bookshelf_store;
 
         /* Fonts tab */
         GtkCheckButton *use_system_fonts_checkbutton;
@@ -49,6 +50,16 @@ typedef struct {
 G_DEFINE_TYPE_WITH_PRIVATE (DhPreferences, dh_preferences, GTK_TYPE_DIALOG)
 
 static void
+dh_preferences_dispose (GObject *object)
+{
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (DH_PREFERENCES (object));
+
+        g_clear_object (&priv->bookshelf_store);
+
+        G_OBJECT_CLASS (dh_preferences_parent_class)->dispose (object);
+}
+
+static void
 dh_preferences_response (GtkDialog *dialog,
                          gint       response_id)
 {
@@ -58,8 +69,11 @@ dh_preferences_response (GtkDialog *dialog,
 static void
 dh_preferences_class_init (DhPreferencesClass *klass)
 {
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
         GtkDialogClass *dialog_class = GTK_DIALOG_CLASS (klass);
+
+        object_class->dispose = dh_preferences_dispose;
 
         dialog_class->response = dh_preferences_response;
 
@@ -67,9 +81,8 @@ dh_preferences_class_init (DhPreferencesClass *klass)
         gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-preferences.ui");
 
         // Book Shelf tab
-        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_store);
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_group_by_language_checkbutton);
-        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_cell_renderer_toggle);
+        gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, bookshelf_view);
 
         // Fonts tab
         gtk_widget_class_bind_template_child_private (widget_class, DhPreferences, use_system_fonts_checkbutton);
@@ -593,11 +606,66 @@ bookshelf_row_toggled_cb (GtkCellRendererToggle *cell_renderer,
 }
 
 static void
-init_book_shelf_tab (DhPreferences *prefs)
+init_bookshelf_store (DhPreferences *prefs)
+{
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
+
+        g_assert (priv->bookshelf_store == NULL);
+        priv->bookshelf_store = gtk_list_store_new (N_COLUMNS,
+                                                    G_TYPE_BOOLEAN,  /* Enabled */
+                                                    G_TYPE_STRING,   /* Title */
+                                                    DH_TYPE_BOOK,
+                                                    PANGO_TYPE_WEIGHT,
+                                                    G_TYPE_BOOLEAN); /* Inconsistent */
+
+        bookshelf_populate_store (prefs);
+}
+
+static void
+init_bookshelf_view (DhPreferences *prefs)
+{
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
+        GtkCellRenderer *cell_renderer_toggle;
+        GtkCellRenderer *cell_renderer_text;
+        GtkTreeViewColumn *column;
+
+        gtk_tree_view_set_model (priv->bookshelf_view,
+                                 GTK_TREE_MODEL (priv->bookshelf_store));
+
+        /* Enabled column */
+        cell_renderer_toggle = gtk_cell_renderer_toggle_new ();
+        column = gtk_tree_view_column_new_with_attributes (_("Enabled"),
+                                                           cell_renderer_toggle,
+                                                           "active", COLUMN_ENABLED,
+                                                           "inconsistent", COLUMN_INCONSISTENT,
+                                                           NULL);
+        gtk_tree_view_append_column (priv->bookshelf_view, column);
+
+        g_signal_connect_object (cell_renderer_toggle,
+                                 "toggled",
+                                 G_CALLBACK (bookshelf_row_toggled_cb),
+                                 prefs,
+                                 0);
+
+        /* Title column */
+        cell_renderer_text = gtk_cell_renderer_text_new ();
+        column = gtk_tree_view_column_new_with_attributes (_("Title"),
+                                                           cell_renderer_text,
+                                                           "text", COLUMN_TITLE,
+                                                           "weight", COLUMN_WEIGHT,
+                                                           NULL);
+        gtk_tree_view_append_column (priv->bookshelf_view, column);
+}
+
+static void
+init_bookshelf_tab (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhSettings *settings;
         DhBookManager *book_manager;
+
+        init_bookshelf_store (prefs);
+        init_bookshelf_view (prefs);
 
         settings = dh_settings_get_default ();
 
@@ -624,13 +692,6 @@ init_book_shelf_tab (DhPreferences *prefs)
                                  G_CALLBACK (bookshelf_book_deleted_cb),
                                  prefs,
                                  0);
-
-        g_signal_connect (priv->bookshelf_cell_renderer_toggle,
-                          "toggled",
-                          G_CALLBACK (bookshelf_row_toggled_cb),
-                          prefs);
-
-        bookshelf_populate_store (prefs);
 }
 
 static void
@@ -669,7 +730,7 @@ dh_preferences_init (DhPreferences *prefs)
 
         gtk_window_set_destroy_with_parent (GTK_WINDOW (prefs), TRUE);
 
-        init_book_shelf_tab (prefs);
+        init_bookshelf_tab (prefs);
         init_fonts_tab (prefs);
 }
 
