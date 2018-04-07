@@ -267,11 +267,27 @@ bookshelf_populate_store (DhPreferences *prefs)
 }
 
 static void
+bookshelf_populate (DhPreferences *prefs)
+{
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
+
+        /* Disconnect the model from the view, it has better performances
+         * because the view doesn't listen to all the GtkTreeModel signals.
+         */
+        gtk_tree_view_set_model (priv->bookshelf_view, NULL);
+
+        bookshelf_populate_store (prefs);
+
+        gtk_tree_view_set_model (priv->bookshelf_view,
+                                 GTK_TREE_MODEL (priv->bookshelf_store));
+}
+
+static void
 bookshelf_group_books_by_language_notify_cb (DhSettings    *settings,
                                              GParamSpec    *pspec,
                                              DhPreferences *prefs)
 {
-        bookshelf_populate_store (prefs);
+        bookshelf_populate (prefs);
 }
 
 static void
@@ -279,7 +295,7 @@ bookshelf_book_created_cb (DhBookManager *book_manager,
                            DhBook        *book,
                            DhPreferences *prefs)
 {
-        bookshelf_populate_store (prefs);
+        bookshelf_populate (prefs);
 }
 
 static void
@@ -287,7 +303,7 @@ bookshelf_book_deleted_cb (DhBookManager *book_manager,
                            DhBook        *book,
                            DhPreferences *prefs)
 {
-        bookshelf_populate_store (prefs);
+        bookshelf_populate (prefs);
 }
 
 static void
@@ -434,8 +450,6 @@ init_bookshelf_store (DhPreferences *prefs)
         gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (priv->bookshelf_store),
                                               GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID,
                                               GTK_SORT_ASCENDING);
-
-        bookshelf_populate_store (prefs);
 }
 
 static void
@@ -482,9 +496,6 @@ init_bookshelf_view (DhPreferences *prefs)
         GtkCellRenderer *cell_renderer_toggle;
         GtkCellRenderer *cell_renderer_text;
         GtkTreeViewColumn *column;
-
-        gtk_tree_view_set_model (priv->bookshelf_view,
-                                 GTK_TREE_MODEL (priv->bookshelf_store));
 
         /* Enabled column */
         cell_renderer_toggle = gtk_cell_renderer_toggle_new ();
@@ -546,6 +557,8 @@ init_bookshelf_tab (DhPreferences *prefs)
                                  G_CALLBACK (bookshelf_book_deleted_cb),
                                  prefs,
                                  0);
+
+        bookshelf_populate (prefs);
 }
 
 static void
