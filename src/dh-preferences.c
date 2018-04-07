@@ -267,6 +267,29 @@ bookshelf_populate_store (DhPreferences *prefs)
 }
 
 static void
+bookshelf_scroll_to_top (DhPreferences *prefs)
+{
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
+        GtkTreePath *path;
+        GtkTreeIter iter;
+
+        path = gtk_tree_path_new_first ();
+
+        /* Check if the path exists, if the GtkTreeModel is not empty. */
+        if (gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->bookshelf_store), &iter, path)) {
+                GtkTreeViewColumn *first_column;
+
+                first_column = gtk_tree_view_get_column (priv->bookshelf_view, 0);
+
+                gtk_tree_view_scroll_to_cell (priv->bookshelf_view,
+                                              path, first_column,
+                                              TRUE, 0.0, 0.0);
+        }
+
+        gtk_tree_path_free (path);
+}
+
+static void
 bookshelf_populate (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
@@ -280,6 +303,15 @@ bookshelf_populate (DhPreferences *prefs)
 
         gtk_tree_view_set_model (priv->bookshelf_view,
                                  GTK_TREE_MODEL (priv->bookshelf_store));
+
+        /* It's maybe a bug in GtkTreeView, but if before calling this function
+         * the GtkTreeView is scrolled down, then with the new content the first
+         * row will not be completely visible (the GtkTreeView is still a bit
+         * scrolled down), even though gtk_list_store_clear() has been called.
+         *
+         * So to fix this bug, scroll explicitly to the top.
+         */
+        bookshelf_scroll_to_top (prefs);
 }
 
 static void
