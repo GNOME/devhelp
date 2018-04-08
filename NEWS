@@ -4,8 +4,12 @@ News in 3.29.1, 2018-xx-yy (not yet released)
   files needed to be split in two.
 * Switch build system from Autotools to Meson (and remove Autotools).
 * Update the license from GPLv2+ to GPLv3+.
-* AppData: update screenshots.
 * A few other small improvements.
+* Translation updates.
+
+News in 3.28.1, 2018-04-08
+--------------------------
+* AppData: update screenshots.
 * Translation updates.
 
 News in 3.28.0, 2018-03-10
