@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: "
-"http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&component=general\n"
-"POT-Creation-Date: 2010-12-21 10:07+0000\n"
-"PO-Revision-Date: 2011-03-11 11:00+0200\n"
-"Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2018-03-10 11:41+0000\n"
+"PO-Revision-Date: 2018-04-03 23:04+0300\n"
+"Last-Translator: Florentina Mușat <florentina.musat.28@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -19,547 +19,671 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.6.1\n"
+"X-Generator: Poedit 2.0.6\n"
 
-#: ../data/devhelp.desktop.in.in.h:1
-msgid "Developer's Help program"
-msgstr "Program de ajutor pentru programatori"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/devhelp.desktop.in.in.h:2 ../src/dh-main.c:281
-#: ../src/dh-window.c:740 ../src/dh-window.c:1048 ../src/dh-window.c:1880
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
+#: data/org.gnome.Devhelp.appdata.xml.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:152 src/dh-app.c:497
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/devhelp.desktop.in.in.h:3
-msgid "Documentation Browser"
-msgstr "Navigator documentație"
+#: data/org.gnome.Devhelp.appdata.xml.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:154
+msgid "A developer tool for browsing and searching API documentation"
+msgstr ""
+"O unealtă de dezvoltator pentru navigarea și căutarea în documentație API"
 
-#: ../data/devhelp.schemas.in.h:1
-msgid "Books disabled"
-msgstr "Cărți dezactivate"
+#: data/org.gnome.Devhelp.appdata.xml.in:9
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
+msgstr ""
+"Devhelp este o unealtă de dezvoltator pentru navigarea și căutarea în "
+"documentație API. Furnizează o cale simplă de navigare prin biblioteci și de "
+"căutare după funcție, structură, sau macro."
 
-#: ../data/devhelp.schemas.in.h:2
-msgid "Font for fixed width text"
-msgstr "Font pentru text cu lățime fixă"
+#: data/org.gnome.Devhelp.appdata.xml.in:14
+msgid ""
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
+msgstr ""
+"Documentația trebuie instalată local, așa că o conexiune la internet nu este "
+"necesară pentru a utiliza Devhelp."
 
-#: ../data/devhelp.schemas.in.h:3
-msgid "Font for text"
-msgstr "Font pentru text"
+#: data/org.gnome.Devhelp.appdata.xml.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+"well supported. But other development platforms can be supported as well, as "
+"long as the API documentation is available in HTML and a *.devhelp2 index "
+"file is generated."
+msgstr ""
+"Devhelp lucrează nativ cu GTK-Doc, prin urmare bibliotecile GTK+ și GNOME "
+"sunt suportate bine. Dar alte platforme de dezvoltare pot fi de asemenea "
+"suportate, atât timp cât documentația API este disponibilă în HTML și un "
+"fișier index *.devhelp2 este generat."
 
-#: ../data/devhelp.schemas.in.h:4
-msgid "Font for text with fixed width, such as code examples."
-msgstr "Font pentru text cu lățime fixă, cum ar fi exemplele de cod."
+#: data/org.gnome.Devhelp.appdata.xml.in:24
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr ""
+"Devhelp se integrează cu alte aplicații precum Glade, Builder sau Anjuta, și "
+"sunt disponibile module pentru editoare de text diferite (gedit, Vim, Emacs, "
+"Geany, …)."
 
-#: ../data/devhelp.schemas.in.h:5
-msgid "Font for text with variable width."
-msgstr "Font pentru text cu lățime variabilă"
+#: data/org.gnome.Devhelp.desktop.in.in:5
+msgid "API Documentation Browser"
+msgstr "Navigator documentație API"
 
-#: ../data/devhelp.schemas.in.h:6
-msgid "Group by language"
-msgstr "Grupează după limbă"
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in.in:7
+msgid "documentation;information;manual;developer;api;"
+msgstr ""
+"documentation;information;manual;developer;api;documentație;informație;"
+"dezvoltator;"
 
-#: ../data/devhelp.schemas.in.h:7
-msgid "Height of assistant window"
-msgstr "Înălțime ferestră asistent"
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.Devhelp.desktop.in.in:12
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
+msgid "devhelp"
+msgstr "devhelp"
 
-#: ../data/devhelp.schemas.in.h:8
-msgid "Height of main window"
-msgstr "Înălțime ferestră principală"
-
-#: ../data/devhelp.schemas.in.h:9
-msgid "List of books disabled by the user."
-msgstr "Listă de cărți dezactivate de utilizator."
-
-#: ../data/devhelp.schemas.in.h:10
+#: data/org.gnome.devhelp.gschema.xml:18
 msgid "Main window maximized state"
 msgstr "Starea ferestrei principale maximizate"
 
-#: ../data/devhelp.schemas.in.h:11
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "Tab selectat: „content” sau „search”"
-
-#: ../data/devhelp.schemas.in.h:12
-msgid "The X position of the assistant window."
-msgstr "Poziția X a ferestrei asistent."
-
-#: ../data/devhelp.schemas.in.h:13
-msgid "The X position of the main window."
-msgstr "Coordonata X a ferestrei principale"
-
-#: ../data/devhelp.schemas.in.h:14
-msgid "The Y position of the assistant window."
-msgstr "Poziția Y a ferestrei asistent."
-
-#: ../data/devhelp.schemas.in.h:15
-msgid "The Y position of the main window."
-msgstr "Coordonata Y a ferestrei principale"
-
-#: ../data/devhelp.schemas.in.h:16
-msgid "The height of the assistant window."
-msgstr "Înălțimea ferestrei asistent."
-
-#: ../data/devhelp.schemas.in.h:17
-msgid "The height of the main window."
-msgstr "Înălțimea ferestrei principale."
-
-#: ../data/devhelp.schemas.in.h:18
-msgid "The width of the assistant window."
-msgstr "Lățime ferestrei asistent."
-
-#: ../data/devhelp.schemas.in.h:19
-msgid "The width of the index and search pane."
-msgstr "Lățimea panoului pentru index și căutare."
-
-#: ../data/devhelp.schemas.in.h:20
-msgid "The width of the main window."
-msgstr "Lățimea ferestrei principale."
-
-#: ../data/devhelp.schemas.in.h:21
-msgid "Use system fonts"
-msgstr "Folosește fonturile sistemului"
-
-#: ../data/devhelp.schemas.in.h:22
-msgid "Use the system default fonts."
-msgstr "Folosește setul de fonturi implicit al sistemului."
-
-#: ../data/devhelp.schemas.in.h:23
-msgid "Whether books should be grouped by language in the UI"
-msgstr ""
-"Dacă cărțile ar trebui să fie grupate după limbă în interfața cu "
-"utilizatorul"
-
-#: ../data/devhelp.schemas.in.h:24
+#: data/org.gnome.devhelp.gschema.xml:19
 msgid "Whether the main window should start maximized."
 msgstr "Dacă fereastra principală va fi pornită maximizată."
 
-#: ../data/devhelp.schemas.in.h:25
-msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "Care din taburile alese: „content” sau „search”."
-
-#: ../data/devhelp.schemas.in.h:26
-msgid "Width of the assistant window"
-msgstr "Lățime ferestră asistent"
-
-#: ../data/devhelp.schemas.in.h:27
-msgid "Width of the index and search pane"
-msgstr "Lățimea panoului de indexare și de căutare"
-
-#: ../data/devhelp.schemas.in.h:28
+#: data/org.gnome.devhelp.gschema.xml:23
 msgid "Width of the main window"
 msgstr "Lățimea ferestrei principale"
 
-#: ../data/devhelp.schemas.in.h:29
-msgid "X position of assistant window"
-msgstr "Poziția X a ferestrei asistent"
+#: data/org.gnome.devhelp.gschema.xml:24
+msgid "The width of the main window."
+msgstr "Lățimea ferestrei principale."
 
-#: ../data/devhelp.schemas.in.h:30
-msgid "X position of main window"
-msgstr "Coordonata X a ferestrei principale"
+#: data/org.gnome.devhelp.gschema.xml:28
+msgid "Height of main window"
+msgstr "Înălțime ferestră principală"
 
-#: ../data/devhelp.schemas.in.h:31
-msgid "Y position of assistant window"
-msgstr "Poziția Y a ferestrei asistent"
+#: data/org.gnome.devhelp.gschema.xml:29
+msgid "The height of the main window."
+msgstr "Înălțimea ferestrei principale."
 
-#: ../data/devhelp.schemas.in.h:32
-msgid "Y position of main window"
-msgstr "Coordonata Y a ferestrei principale"
+#: data/org.gnome.devhelp.gschema.xml:35
+msgid "Width of the index and search pane"
+msgstr "Lățimea panoului de indexare și de căutare"
 
-#: ../data/ui/devhelp.builder.h:1
-msgid "Book Shelf"
-msgstr "Raft de cărți"
+#: data/org.gnome.devhelp.gschema.xml:36
+msgid "The width of the index and search pane."
+msgstr "Lățimea panoului pentru index și căutare."
 
-#: ../data/ui/devhelp.builder.h:2
-msgid "Fonts"
-msgstr "Fonturi"
+#: data/org.gnome.devhelp.gschema.xml:42
+msgid "Books disabled"
+msgstr "Cărți dezactivate"
 
-#: ../data/ui/devhelp.builder.h:3
-msgid "Preferences"
-msgstr "Preferințe"
+#: data/org.gnome.devhelp.gschema.xml:43
+msgid "List of books disabled by the user."
+msgstr "Listă de cărți dezactivate de utilizator."
 
-#: ../data/ui/devhelp.builder.h:4
-msgid "_Fixed width:"
-msgstr "Lățime _fixă:"
+#: data/org.gnome.devhelp.gschema.xml:47
+msgid "Group by language"
+msgstr "Grupează după limbaj"
 
-#: ../data/ui/devhelp.builder.h:5
-msgid "_Group by language"
-msgstr "_Grupează după limbă"
+#: data/org.gnome.devhelp.gschema.xml:48
+msgid "Whether books should be grouped by language in the UI"
+msgstr ""
+"Dacă ar trebui sau nu să fie grupate cărțile după limbaj în interfața cu "
+"utilizatorul"
 
-#: ../data/ui/devhelp.builder.h:6
-msgid "_Use system fonts"
-msgstr "Folosește font_urile sistemului"
+#: data/org.gnome.devhelp.gschema.xml:57
+msgid "Width of the assistant window"
+msgstr "Lățime ferestră asistent"
 
-#: ../data/ui/devhelp.builder.h:7
-msgid "_Variable width: "
-msgstr "Lățime _variabilă:"
+#: data/org.gnome.devhelp.gschema.xml:58
+msgid "The width of the assistant window."
+msgstr "Lățime ferestrei asistent."
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: data/org.gnome.devhelp.gschema.xml:62
+msgid "Height of assistant window"
+msgstr "Înălțime ferestră asistent"
+
+#: data/org.gnome.devhelp.gschema.xml:63
+msgid "The height of the assistant window."
+msgstr "Înălțimea ferestrei asistent."
+
+#: data/org.gnome.devhelp.gschema.xml:69
+msgid "Use system fonts"
+msgstr "Folosește fonturile sistemului"
+
+#: data/org.gnome.devhelp.gschema.xml:70
+msgid "Use the system default fonts."
+msgstr "Folosește setul de fonturi implicit al sistemului."
+
+#: data/org.gnome.devhelp.gschema.xml:74
+msgid "Font for text"
+msgstr "Font pentru text"
+
+#: data/org.gnome.devhelp.gschema.xml:75
+msgid "Font for text with variable width."
+msgstr "Font pentru text cu lățime variabilă."
+
+#: data/org.gnome.devhelp.gschema.xml:79
+msgid "Font for fixed width text"
+msgstr "Font pentru text cu lățime fixă"
+
+#: data/org.gnome.devhelp.gschema.xml:80
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Font pentru text cu lățime fixă, cum ar fi exemplele de cod."
+
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Asistență Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
-msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "Face ca tasta F2 să arate Devhelp pentru cuvântul de la cursor"
-
-#: ../misc/gedit-plugin/devhelp/devhelp.py:38
+#: plugins/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "Afișare documentație API"
 
-#: ../misc/gedit-plugin/devhelp/devhelp.py:40
-msgid "Show API Documentation for the word at the cursor"
-msgstr "Afișează documentația API pentru cuvântul de la cursor"
-
-#. i18n: Please don't translate "Devhelp".
-#: ../src/dh-assistant.c:74
-msgid "Devhelp — Assistant"
-msgstr "Devhelp – Asistent"
-
-#: ../src/dh-assistant-view.c:336
-msgid "Book:"
-msgstr "Carte:"
-
-#: ../src/dh-book.c:252
-#, c-format
-msgid "Language: %s"
-msgstr "Limbă: %s"
-
-#: ../src/dh-book.c:253
-msgid "Language: Undefined"
-msgstr "Limbă: nedefinită"
-
-#. i18n: a documentation book
-#: ../src/dh-link.c:267
-msgid "Book"
-msgstr "Carte"
-
-#. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:270
-msgid "Page"
-msgstr "Pagină"
-
-#. i18n: a search hit in the documentation, could be a
-#. * function, macro, struct, etc
-#: ../src/dh-link.c:274
-msgid "Keyword"
-msgstr "Cuvânt cheie"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:279
-msgid "Function"
-msgstr "Funcție"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:284
-msgid "Struct"
-msgstr "Structură"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:289
-msgid "Macro"
-msgstr "Macro"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:294
-msgid "Enum"
-msgstr "Enum"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:299
-msgid "Type"
-msgstr "Tip"
-
-#: ../src/dh-main.c:47
-msgid "Search for a keyword"
-msgstr "Caută cuvânt cheie"
-
-#: ../src/dh-main.c:52
-msgid "Quit any running Devhelp"
-msgstr "Închide orice instanță Devhelp"
-
-#: ../src/dh-main.c:57
-msgid "Display the version and exit"
-msgstr "Afișează versiunea și ieși"
-
-#: ../src/dh-main.c:62
-msgid "Focus the Devhelp window with the search field active"
-msgstr "Activează fereastra Devhelp cu câmpul de căutare activat"
-
-#: ../src/dh-main.c:67
-msgid "Search and display any hit in the assistant window"
-msgstr "Caută și afișează orice rezultat în fereastra asistent"
-
-#: ../src/dh-parser.c:97 ../src/dh-parser.c:199 ../src/dh-parser.c:263
-#: ../src/dh-parser.c:273
-#, c-format
-msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "Se aștepta „%s”, dar s-a primit „%s” la linia %d, coloana %d"
-
-#: ../src/dh-parser.c:114
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Spațiu de nume „%s” nevalid la linia %d, coloana %d"
-
-#: ../src/dh-parser.c:143
-#, c-format
-msgid ""
-"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr ""
-"elementele „title”, „name”, și „link” sunt necesare la linia %d, coloana %d"
-
-#: ../src/dh-parser.c:218
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %"
-"d"
-msgstr ""
-"elementele „name”, și „link” sunt necesare în interiorul <sub> la linia %d, "
-"coloana %d"
-
-#: ../src/dh-parser.c:298
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr ""
-"elementele „name”, și „link” sunt necesare în interiorul „%s” la linia %d, "
-"coloana %d"
-
-#: ../src/dh-parser.c:311
-#, c-format
-msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr ""
-"elementul „type” este necesar în interiorul <keyword> la linia %d, coloana %d"
-
-#: ../src/dh-parser.c:514
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "Nu se poate dezarhiva cartea „%s”: %s"
-
-#: ../src/dh-search.c:500
-msgid "All books"
-msgstr "Toate cărțile"
-
-#: ../src/dh-search.c:1117
-msgid "Search in:"
-msgstr "Caută în:"
-
-#: ../src/dh-window.c:98
-msgid "50%"
-msgstr "50%"
-
-#: ../src/dh-window.c:99
-msgid "75%"
-msgstr "75%"
-
-#: ../src/dh-window.c:100
-msgid "100%"
-msgstr "100%"
-
-#: ../src/dh-window.c:101
-msgid "125%"
-msgstr "125%"
-
-#: ../src/dh-window.c:102
-msgid "150%"
-msgstr "150%"
-
-#: ../src/dh-window.c:103
-msgid "175%"
-msgstr "175%"
-
-#: ../src/dh-window.c:104
-msgid "200%"
-msgstr "200%"
-
-#: ../src/dh-window.c:105
-msgid "300%"
-msgstr "300%"
-
-#: ../src/dh-window.c:106
-msgid "400%"
-msgstr "400%"
-
-#: ../src/dh-window.c:735
-msgid "translator_credits"
+#: src/dh-app.c:156
+msgid "translator-credits"
 msgstr ""
 "Adi Roiban\n"
 "Lucian Adrian Grijincu\n"
+"Florentina Mușat <florentina.musat.28@gmail.com>\n"
 "\n"
 "Launchpad Contributions:\n"
 "  Adi Roiban https://launchpad.net/~adiroiban\n"
 "  Ionuț Jula https://launchpad.net/~ionutjula\n"
 "  Mihai Felseghi https://launchpad.net/~mihaifelseghi"
 
-#: ../src/dh-window.c:742
-msgid "A developers' help browser for GNOME"
-msgstr "Navigator de documentație pentru GNOME"
-
-#: ../src/dh-window.c:749
-msgid "DevHelp Website"
+#: src/dh-app.c:158
+msgid "Devhelp Website"
 msgstr "Pagina web Devhelp"
 
-#: ../src/dh-window.c:773
-msgid "_File"
-msgstr "_Fișier"
+#: src/dh-app.c:401
+msgid "Opens a new Devhelp window"
+msgstr "Deschide o fereastră nouă Devhelp"
 
-#: ../src/dh-window.c:774
-msgid "_Edit"
-msgstr "_Modifică"
+#: src/dh-app.c:406
+msgid "Search for a keyword"
+msgstr "Caută cuvânt cheie"
 
-#: ../src/dh-window.c:775
-msgid "_View"
-msgstr "_Vizualizare"
+#: src/dh-app.c:407 src/dh-app.c:412
+msgid "KEYWORD"
+msgstr "CUVÂNT CHEIE"
 
-#: ../src/dh-window.c:776
-msgid "_Go"
-msgstr "_Du-te"
+#: src/dh-app.c:411
+msgid "Search and display any hit in the assistant window"
+msgstr "Caută și afișează orice rezultat în fereastra asistent"
 
-#: ../src/dh-window.c:777
-msgid "_Help"
-msgstr "_Ajutor"
+#: src/dh-app.c:416
+msgid "Display the version and exit"
+msgstr "Afișează versiunea și ieși"
 
-#. File menu
-#: ../src/dh-window.c:780
-msgid "_New Window"
-msgstr "Fereastră _nouă"
+#: src/dh-app.c:421
+msgid "Quit any running Devhelp"
+msgstr "Închide orice instanță Devhelp"
 
-#: ../src/dh-window.c:782
-msgid "New _Tab"
-msgstr "_Tab nou"
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:8
+msgid "Devhelp — Assistant"
+msgstr "Devhelp – Asistent"
 
-#: ../src/dh-window.c:784
-msgid "_Print…"
-msgstr "Ti_părește…"
+#: src/dh-assistant-view.c:400
+msgid "Book:"
+msgstr "Carte:"
 
-#: ../src/dh-window.c:796 ../src/eggfindbar.c:342
-msgid "Find Next"
-msgstr "Caută următor"
+#: src/dh-book.c:348
+#, c-format
+msgid "Language: %s"
+msgstr "Limbaj: %s"
 
-#: ../src/dh-window.c:798 ../src/eggfindbar.c:329
-msgid "Find Previous"
-msgstr "Caută precedent"
+#: src/dh-book.c:349
+msgid "Language: Undefined"
+msgstr "Limbaj: nedefinit"
 
-#: ../src/dh-window.c:805
-msgid "Go to the previous page"
-msgstr "Arată pagina precedentă"
+#: src/dh-book-tree.c:655
+msgid "_Collapse All"
+msgstr "_Restrânge toate"
 
-#: ../src/dh-window.c:808
-msgid "Go to the next page"
-msgstr "Arată pagina următoare"
+#. i18n: a documentation book
+#: src/dh-link.c:549
+msgid "Book"
+msgstr "Carte"
 
-#: ../src/dh-window.c:811
-msgid "_Contents Tab"
-msgstr "Tab _conținut"
+#. i18n: a "page" in a documentation book
+#: src/dh-link.c:553
+msgid "Page"
+msgstr "Pagină"
 
-#: ../src/dh-window.c:814
-msgid "_Search Tab"
-msgstr "Tab cău_tare"
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: src/dh-link.c:558
+msgid "Keyword"
+msgstr "Cuvânt cheie"
 
-#. View menu
-#: ../src/dh-window.c:818
-msgid "_Larger Text"
-msgstr "_Text mai mare"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:564
+msgid "Function"
+msgstr "Funcție"
 
-#: ../src/dh-window.c:819
-msgid "Increase the text size"
-msgstr "Mărește dimensiunea textului"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:570
+msgid "Struct"
+msgstr "Structură"
 
-#: ../src/dh-window.c:821
-msgid "S_maller Text"
-msgstr "Text mai _mic"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:576
+msgid "Macro"
+msgstr "Macro"
 
-#: ../src/dh-window.c:822
-msgid "Decrease the text size"
-msgstr "Micșorează dimensiunea textului"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:582
+msgid "Enum"
+msgstr "Enum"
 
-#: ../src/dh-window.c:824
-msgid "_Normal Size"
-msgstr "Dimensiune _normală"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:588
+msgid "Type"
+msgstr "Tip"
 
-#: ../src/dh-window.c:825
-msgid "Use the normal text size"
-msgstr "Utilizează dimensiunea normală a textului"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:594
+msgid "Property"
+msgstr "Proprietate"
 
-#: ../src/dh-window.c:834
-msgid "Leave fullscreen mode"
-msgstr "Părăsește modul pe tot ecranul"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: src/dh-link.c:600
+msgid "Signal"
+msgstr "Semnal"
 
-#: ../src/dh-window.c:841
-msgid "Display in full screen"
-msgstr "Afișează pe tot ecranul"
+#: src/dh-preferences.ui:40
+msgid "Preferences"
+msgstr "Preferințe"
 
-#. Translators: This refers to text size
-#: ../src/dh-window.c:961
-msgid "Larger"
-msgstr "Mai mare"
+#: src/dh-preferences.ui:76
+msgid "_Group by language"
+msgstr "_Grupează după limbaj"
 
-#. Translators: This refers to text size
-#: ../src/dh-window.c:964
-msgid "Smaller"
-msgstr "Mai mic"
+#: src/dh-preferences.ui:107
+msgid "Enabled"
+msgstr "Activat"
 
-#. i18n: please don't translate
-#. * "Devhelp", it's a name, not a
-#. * generic word.
-#: ../src/dh-window.c:1109
-msgid "About Devhelp"
-msgstr "Despre Devhelp"
+#: src/dh-preferences.ui:122
+msgid "Title"
+msgstr "Titlu"
 
-#: ../src/dh-window.c:1114
-msgid "Preferences…"
-msgstr "Preferințe…"
+#: src/dh-preferences.ui:151
+msgid "Book Shelf"
+msgstr "Raft de cărți"
 
-#: ../src/dh-window.c:1156
-msgid "Contents"
-msgstr "Conținut"
+#: src/dh-preferences.ui:172
+msgid "_Use system fonts"
+msgstr "Folosește font_urile sistemului"
 
-#: ../src/dh-window.c:1166
-msgid "Search"
-msgstr "Caută"
+#: src/dh-preferences.ui:196
+msgid "_Variable width: "
+msgstr "Lățime _variabilă: "
 
-#: ../src/dh-window.c:1344
+#: src/dh-preferences.ui:209
+msgid "_Fixed width:"
+msgstr "Lățime _fixă:"
+
+#: src/dh-preferences.ui:270
+msgid "Fonts"
+msgstr "Fonturi"
+
+#: src/dh-tab.c:68
 msgid "Error opening the requested link."
 msgstr "Eroare la deschiderea legăturii cerute."
 
-#: ../src/dh-window.c:1666 ../src/dh-window.c:1908
+#: src/dh-web-view.c:201
 msgid "Empty Page"
 msgstr "Pagina goală"
 
-#: ../src/eggfindbar.c:320
-msgid "Find:"
-msgstr "Caută:"
+#: src/dh-window.ui:7 src/dh-window.ui:45
+msgid "_Side Panel"
+msgstr "_Panou lateral"
 
-#: ../src/eggfindbar.c:333 ../src/eggfindbar.c:336
-msgid "Find previous occurrence of the search string"
-msgstr "Caută precedenta apariție a șirului de caractere căutat"
+#: src/dh-window.ui:13 src/dh-window.ui:51
+msgid "_Print"
+msgstr "Ti_părire"
 
-#: ../src/eggfindbar.c:346 ../src/eggfindbar.c:349
-msgid "Find next occurrence of the search string"
-msgstr "Caută următoarea apariție a șirului de caractere căutat"
+#: src/dh-window.ui:17 src/dh-window.ui:55
+msgid "_Find"
+msgstr "_Căutare"
 
-#: ../src/eggfindbar.c:358
-msgid "C_ase Sensitive"
-msgstr "M_ajuscule semnificative"
+#: src/dh-window.ui:23 src/dh-window.ui:61
+msgid "_Larger Text"
+msgstr "_Text mai mare"
 
-#: ../src/eggfindbar.c:362 ../src/eggfindbar.c:365
-msgid "Toggle case sensitive search"
-msgstr "Comută căutare cu majuscule semnificative"
+#: src/dh-window.ui:27 src/dh-window.ui:65
+msgid "S_maller Text"
+msgstr "Text mai _mic"
 
-#~ msgid "Enabled"
-#~ msgstr "Activat"
+#: src/dh-window.ui:31 src/dh-window.ui:69
+msgid "_Normal Size"
+msgstr "Dimensiune _normală"
 
-#~ msgid "Title"
-#~ msgstr "Titlu"
+#: src/dh-window.ui:39 src/menus.ui:30
+msgid "New _Window"
+msgstr "Fereastră _nouă"
+
+#: src/dh-window.ui:75 src/menus.ui:36
+msgid "_Preferences"
+msgstr "_Preferințe"
+
+#: src/dh-window.ui:81 src/menus.ui:42
+msgid "_Keyboard Shortcuts"
+msgstr "Scurtături _tastatură"
+
+#: src/dh-window.ui:85 src/menus.ui:46
+msgid "_Help"
+msgstr "_Ajutor"
+
+#: src/dh-window.ui:89
+msgid "_About Devhelp"
+msgstr "_Despre Devhelp"
+
+#: src/dh-window.ui:93 src/menus.ui:54
+msgid "_Quit"
+msgstr "_Ieșire"
+
+#: src/dh-window.ui:122
+msgid "Back"
+msgstr "Înapoi"
+
+#: src/dh-window.ui:141
+msgid "Forward"
+msgstr "Înainte"
+
+#: src/dh-window.ui:187
+msgid "New Tab"
+msgstr "Tab nou"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Generale"
+
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Focusează pe căutarea globală"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Caută în pagina curentă"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Deschide o fereastră nouă"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Deschide un tab nou"
+
+#: src/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "Comută vizibilitatea panoului lateral"
+
+#: src/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Navighează înapoi"
+
+#: src/help-overlay.ui:61
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Navighează înainte"
+
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Tipărire"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Închide fereastra curentă"
+
+#: src/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Închide toate ferestrele"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Focalizare"
+
+#: src/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Mărire"
+
+#: src/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Micșorare"
+
+#: src/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Resetează focalizarea"
+
+#: src/menus.ui:50
+msgid "_About"
+msgstr "_Despre"
+
+#~ msgid "Developer's Help program"
+#~ msgstr "Program de ajutor pentru programatori"
+
+#~ msgid "Selected tab: \"content\" or \"search\""
+#~ msgstr "Tab selectat: „content” sau „search”"
+
+#~ msgid "The X position of the assistant window."
+#~ msgstr "Poziția X a ferestrei asistent."
+
+#~ msgid "The X position of the main window."
+#~ msgstr "Coordonata X a ferestrei principale"
+
+#~ msgid "The Y position of the assistant window."
+#~ msgstr "Poziția Y a ferestrei asistent."
+
+#~ msgid "The Y position of the main window."
+#~ msgstr "Coordonata Y a ferestrei principale"
+
+#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
+#~ msgstr "Care din taburile alese: „content” sau „search”."
+
+#~ msgid "X position of assistant window"
+#~ msgstr "Poziția X a ferestrei asistent"
+
+#~ msgid "X position of main window"
+#~ msgstr "Coordonata X a ferestrei principale"
+
+#~ msgid "Y position of assistant window"
+#~ msgstr "Poziția Y a ferestrei asistent"
+
+#~ msgid "Y position of main window"
+#~ msgstr "Coordonata Y a ferestrei principale"
+
+#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
+#~ msgstr "Face ca tasta F2 să arate Devhelp pentru cuvântul de la cursor"
+
+#~ msgid "Show API Documentation for the word at the cursor"
+#~ msgstr "Afișează documentația API pentru cuvântul de la cursor"
+
+#~ msgid "Focus the Devhelp window with the search field active"
+#~ msgstr "Activează fereastra Devhelp cu câmpul de căutare activat"
+
+#~ msgid "Expected '%s', got '%s' at line %d, column %d"
+#~ msgstr "Se aștepta „%s”, dar s-a primit „%s” la linia %d, coloana %d"
+
+#~ msgid "Invalid namespace '%s' at line %d, column %d"
+#~ msgstr "Spațiu de nume „%s” nevalid la linia %d, coloana %d"
+
+#~ msgid ""
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
+#~ "%d"
+#~ msgstr ""
+#~ "elementele „title”, „name”, și „link” sunt necesare la linia %d, coloana "
+#~ "%d"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
+#~ "column %d"
+#~ msgstr ""
+#~ "elementele „name”, și „link” sunt necesare în interiorul <sub> la linia "
+#~ "%d, coloana %d"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
+#~ "column %d"
+#~ msgstr ""
+#~ "elementele „name”, și „link” sunt necesare în interiorul „%s” la linia "
+#~ "%d, coloana %d"
+
+#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+#~ msgstr ""
+#~ "elementul „type” este necesar în interiorul <keyword> la linia %d, "
+#~ "coloana %d"
+
+#~ msgid "Cannot uncompress book '%s': %s"
+#~ msgstr "Nu se poate dezarhiva cartea „%s”: %s"
+
+#~ msgid "All books"
+#~ msgstr "Toate cărțile"
+
+#~ msgid "Search in:"
+#~ msgstr "Caută în:"
+
+#~ msgid "50%"
+#~ msgstr "50%"
+
+#~ msgid "75%"
+#~ msgstr "75%"
+
+#~ msgid "100%"
+#~ msgstr "100%"
+
+#~ msgid "125%"
+#~ msgstr "125%"
+
+#~ msgid "150%"
+#~ msgstr "150%"
+
+#~ msgid "175%"
+#~ msgstr "175%"
+
+#~ msgid "200%"
+#~ msgstr "200%"
+
+#~ msgid "300%"
+#~ msgstr "300%"
+
+#~ msgid "400%"
+#~ msgstr "400%"
+
+#~ msgid "A developers' help browser for GNOME"
+#~ msgstr "Navigator de documentație pentru GNOME"
+
+#~ msgid "_File"
+#~ msgstr "_Fișier"
+
+#~ msgid "_Edit"
+#~ msgstr "_Modifică"
+
+#~ msgid "_View"
+#~ msgstr "_Vizualizare"
+
+#~ msgid "_Go"
+#~ msgstr "_Du-te"
+
+#~ msgid "Find Next"
+#~ msgstr "Caută următor"
+
+#~ msgid "Find Previous"
+#~ msgstr "Caută precedent"
+
+#~ msgid "Go to the previous page"
+#~ msgstr "Arată pagina precedentă"
+
+#~ msgid "Go to the next page"
+#~ msgstr "Arată pagina următoare"
+
+#~ msgid "_Contents Tab"
+#~ msgstr "Tab _conținut"
+
+#~ msgid "_Search Tab"
+#~ msgstr "Tab cău_tare"
+
+#~ msgid "Increase the text size"
+#~ msgstr "Mărește dimensiunea textului"
+
+#~ msgid "Decrease the text size"
+#~ msgstr "Micșorează dimensiunea textului"
+
+#~ msgid "Use the normal text size"
+#~ msgstr "Utilizează dimensiunea normală a textului"
+
+#~ msgid "Leave fullscreen mode"
+#~ msgstr "Părăsește modul pe tot ecranul"
+
+#~ msgid "Display in full screen"
+#~ msgstr "Afișează pe tot ecranul"
+
+#~ msgid "Larger"
+#~ msgstr "Mai mare"
+
+#~ msgid "Smaller"
+#~ msgstr "Mai mic"
+
+#~ msgid "Preferences…"
+#~ msgstr "Preferințe…"
+
+#~ msgid "Contents"
+#~ msgstr "Conținut"
+
+#~ msgid "Search"
+#~ msgstr "Caută"
+
+#~ msgid "Find previous occurrence of the search string"
+#~ msgstr "Caută precedenta apariție a șirului de caractere căutat"
+
+#~ msgid "Find next occurrence of the search string"
+#~ msgstr "Caută următoarea apariție a șirului de caractere căutat"
+
+#~ msgid "C_ase Sensitive"
+#~ msgstr "M_ajuscule semnificative"
+
+#~ msgid "Toggle case sensitive search"
+#~ msgstr "Comută căutare cu majuscule semnificative"
 
 #~ msgid "<b>Fonts</b>"
 #~ msgstr "<b>Fonturi</b>"
