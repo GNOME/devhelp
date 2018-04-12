@@ -48,6 +48,7 @@ endforeach
 
 DEVHELP_APP_DEPS = [
         LIBDEVHELP_DEPS,
+        dependency('amtk-5', version : '>= 4.99.0'),
         dependency('gsettings-desktop-schemas'),
         meson.get_compiler('c').find_library('m')
 ]

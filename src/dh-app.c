@@ -25,12 +25,49 @@
 #include "config.h"
 #include "dh-app.h"
 #include <glib/gi18n.h>
+#include <amtk/amtk.h>
 #include "dh-assistant.h"
 #include "dh-preferences.h"
 #include "dh-settings-app.h"
 #include "dh-util-app.h"
 
-G_DEFINE_TYPE (DhApp, dh_app, GTK_TYPE_APPLICATION);
+struct _DhAppPrivate {
+        AmtkActionInfoStore *action_info_store;
+};
+
+G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
+
+static void
+add_action_infos (DhApp *app)
+{
+        const AmtkActionInfoEntry entries[] = {
+                /* action, icon, label, accel */
+
+                /* App menu */
+                { "app.new-window", NULL, N_("New _Window") },
+                { "app.preferences", NULL, N_("_Preferences") },
+                { "win.show-help-overlay", NULL, N_("_Keyboard Shortcuts") },
+                { "app.help", NULL, N_("_Help") },
+                { "app.about", NULL, N_("_About") },
+                { "app.quit", NULL, N_("_Quit") },
+
+                /* Window menu */
+                { "win.show-sidebar", NULL, N_("_Side Panel") },
+                { "win.print", NULL, N_("_Print") },
+                { "win.find", NULL, N_("_Find") },
+                { "win.zoom-in", NULL, N_("_Larger Text") },
+                { "win.zoom-out", NULL, N_("S_maller Text") },
+                { "win.zoom-default", NULL, N_("_Normal Size") },
+                { NULL }
+        };
+
+        g_assert (app->priv->action_info_store == NULL);
+        app->priv->action_info_store = amtk_action_info_store_new ();
+
+        amtk_action_info_store_add_entries (app->priv->action_info_store,
+                                            entries, -1,
+                                            GETTEXT_PACKAGE);
+}
 
 static DhAssistant *
 get_active_assistant_window (DhApp *app)
@@ -384,6 +421,7 @@ dh_app_startup (GApplication *application)
         if (G_APPLICATION_CLASS (dh_app_parent_class)->startup != NULL)
                 G_APPLICATION_CLASS (dh_app_parent_class)->startup (application);
 
+        add_action_infos (app);
         add_action_entries (app);
         setup_accelerators (GTK_APPLICATION (app));
         set_app_menu_if_needed (GTK_APPLICATION (app));
@@ -480,9 +518,22 @@ dh_app_command_line (GApplication            *g_app,
 }
 
 static void
+dh_app_dispose (GObject *object)
+{
+        DhApp *app = DH_APP (object);
+
+        g_clear_object (&app->priv->action_info_store);
+
+        G_OBJECT_CLASS (dh_app_parent_class)->dispose (object);
+}
+
+static void
 dh_app_class_init (DhAppClass *klass)
 {
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
+
+        object_class->dispose = dh_app_dispose;
 
         application_class->startup = dh_app_startup;
         application_class->activate = dh_app_activate;
@@ -493,6 +544,8 @@ dh_app_class_init (DhAppClass *klass)
 static void
 dh_app_init (DhApp *app)
 {
+        app->priv = dh_app_get_instance_private (app);
+
         /* Translators: please don't translate "Devhelp" (it's marked as
          * translatable for transliteration only).
          */
