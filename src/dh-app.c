@@ -398,17 +398,38 @@ setup_accelerators (GtkApplication *app)
 }
 
 static void
-set_app_menu_if_needed (GtkApplication *app)
+create_app_menu_if_needed (GtkApplication *app)
 {
-        GMenu *manual_app_menu;
+        GMenu *app_menu;
+        GMenu *section;
+        AmtkFactory *factory;
 
-        manual_app_menu = gtk_application_get_menu_by_id (app, "manual-app-menu");
+        if (!gtk_application_prefers_app_menu (app))
+                return;
 
-        /* Have the g_return in all cases, to catch problems in all cases. */
-        g_return_if_fail (manual_app_menu != NULL);
+        app_menu = g_menu_new ();
+        factory = amtk_factory_new (app);
 
-        if (gtk_application_prefers_app_menu (app))
-                gtk_application_set_app_menu (app, G_MENU_MODEL (manual_app_menu));
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.new-window"));
+        amtk_gmenu_append_section (app_menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.preferences"));
+        amtk_gmenu_append_section (app_menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-help-overlay"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.help"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.about"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.quit"));
+        amtk_gmenu_append_section (app_menu, NULL, section);
+
+        g_object_unref (factory);
+        g_menu_freeze (app_menu);
+
+        gtk_application_set_app_menu (app, G_MENU_MODEL (app_menu));
+        g_object_unref (app_menu);
 }
 
 static void
@@ -424,7 +445,7 @@ dh_app_startup (GApplication *application)
         add_action_infos (app);
         add_action_entries (app);
         setup_accelerators (GTK_APPLICATION (app));
-        set_app_menu_if_needed (GTK_APPLICATION (app));
+        create_app_menu_if_needed (GTK_APPLICATION (app));
 }
 
 static void
