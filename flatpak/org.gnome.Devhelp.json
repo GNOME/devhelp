@@ -35,6 +35,16 @@
                 "*.la", "*.a"],
     "modules": [
         {
+            "name": "amtk",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://git.gnome.org/amtk",
+                    "branch": "master"
+                }
+            ]
+        },
+        {
             "name": "devhelp",
             "buildsystem": "meson",
             "config-opts": [ "-Dflatpak_build=true" ],
