@@ -1,100 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.8 -->
-  <menu id="window_menu_simple">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Side Panel</attribute>
-        <attribute name="action">win.show-sidebar</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Print</attribute>
-        <attribute name="action">win.print</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Find</attribute>
-        <attribute name="action">win.find</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Larger Text</attribute>
-        <attribute name="action">win.zoom-in</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">S_maller Text</attribute>
-        <attribute name="action">win.zoom-out</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Normal Size</attribute>
-        <attribute name="action">win.zoom-default</attribute>
-      </item>
-    </section>
-  </menu>
-  <menu id="window_menu_plus_app_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">New _Window</attribute>
-        <attribute name="action">app.new-window</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Side Panel</attribute>
-        <attribute name="action">win.show-sidebar</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Print</attribute>
-        <attribute name="action">win.print</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Find</attribute>
-        <attribute name="action">win.find</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Larger Text</attribute>
-        <attribute name="action">win.zoom-in</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">S_maller Text</attribute>
-        <attribute name="action">win.zoom-out</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Normal Size</attribute>
-        <attribute name="action">win.zoom-default</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
-        <attribute name="action">app.preferences</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-        <attribute name="action">win.show-help-overlay</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Help</attribute>
-        <attribute name="action">app.help</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_About Devhelp</attribute>
-        <attribute name="action">app.about</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Quit</attribute>
-        <attribute name="action">app.quit</attribute>
-      </item>
-    </section>
-  </menu>
   <template class="DhWindow" parent="GtkApplicationWindow">
     <property name="can_focus">False</property>
     <property name="has_focus">False</property>
@@ -162,7 +68,6 @@
             <property name="visible">True</property>
             <property name="valign">center</property>
             <property name="can_focus">False</property>
-            <property name="menu_model">window_menu_simple</property>
             <property name="use_popover">True</property>
             <style>
               <class name="image-button"/>

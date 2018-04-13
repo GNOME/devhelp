@@ -25,6 +25,7 @@
 #include <glib/gi18n.h>
 #include <webkit2/webkit2.h>
 #include <devhelp/devhelp.h>
+#include <amtk/amtk.h>
 #include "dh-settings-app.h"
 #include "dh-tab.h"
 #include "dh-tab-label.h"
@@ -34,7 +35,6 @@
 typedef struct {
         GtkHeaderBar *header_bar;
         GtkMenuButton *window_menu_button;
-        GMenuModel *window_menu_plus_app_menu;
 
         GtkPaned *hpaned;
 
@@ -98,7 +98,6 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-window.ui");
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_plus_app_menu);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_bar);
@@ -458,6 +457,100 @@ add_actions (DhWindow *window)
         g_object_unref (property_action);
 }
 
+static GMenuModel *
+create_window_menu_simple (void)
+{
+        GMenu *menu;
+        GMenu *section;
+        AmtkFactory *factory;
+
+        menu = g_menu_new ();
+        factory = amtk_factory_new_with_default_application ();
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-sidebar"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.print"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.find"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-in"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-out"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-default"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        g_object_unref (factory);
+        g_menu_freeze (menu);
+
+        return G_MENU_MODEL (menu);
+}
+
+static GMenuModel *
+create_window_menu_plus_app_menu (void)
+{
+        GMenu *menu;
+        GMenu *section;
+        AmtkFactory *factory;
+
+        menu = g_menu_new ();
+        factory = amtk_factory_new_with_default_application ();
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.new-window"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-sidebar"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.print"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.find"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-in"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-out"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-default"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.preferences"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-help-overlay"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.help"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.about"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.quit"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        g_object_unref (factory);
+        g_menu_freeze (menu);
+
+        return G_MENU_MODEL (menu);
+}
+
+static void
+set_window_menu (DhWindow *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        GtkApplication *app;
+        GMenuModel *window_menu;
+
+        app = GTK_APPLICATION (g_application_get_default ());
+        if (gtk_application_prefers_app_menu (app))
+                window_menu = create_window_menu_simple ();
+        else
+                window_menu = create_window_menu_plus_app_menu ();
+
+        gtk_menu_button_set_menu_model (priv->window_menu_button, window_menu);
+        g_object_unref (window_menu);
+}
+
 static void
 settings_fonts_changed_cb (DhSettingsApp *settings,
                            const gchar   *font_name_fixed,
@@ -681,19 +774,13 @@ static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        GtkApplication *app;
         DhSettingsApp *settings;
         GSettings *paned_settings;
 
         gtk_widget_init_template (GTK_WIDGET (window));
 
         add_actions (window);
-
-        app = GTK_APPLICATION (g_application_get_default ());
-        if (!gtk_application_prefers_app_menu (app)) {
-                gtk_menu_button_set_menu_model (priv->window_menu_button,
-                                                priv->window_menu_plus_app_menu);
-        }
+        set_window_menu (window);
 
         settings = dh_settings_app_get_singleton ();
         g_signal_connect_object (settings,
