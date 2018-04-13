@@ -40,24 +40,27 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 static void
 add_action_infos (DhApp *app)
 {
+        const gchar *accels[] = {NULL, NULL, NULL};
+        AmtkActionInfo *action_info;
+
         const AmtkActionInfoEntry entries[] = {
                 /* action, icon, label, accel */
 
                 /* App menu */
-                { "app.new-window", NULL, N_("New _Window") },
-                { "app.preferences", NULL, N_("_Preferences") },
-                { "win.show-help-overlay", NULL, N_("_Keyboard Shortcuts") },
-                { "app.help", NULL, N_("_Help") },
-                { "app.about", NULL, N_("_About") },
-                { "app.quit", NULL, N_("_Quit") },
+                { "app.new-window", NULL, N_("New _Window"), "<Control>n" },
+                { "app.preferences", NULL, N_("_Preferences"), NULL },
+                { "win.show-help-overlay", NULL, N_("_Keyboard Shortcuts"), NULL },
+                { "app.help", NULL, N_("_Help"), "F1" },
+                { "app.about", NULL, N_("_About"), NULL },
+                { "app.quit", NULL, N_("_Quit"), "<Control>q" },
 
                 /* Window menu */
-                { "win.show-sidebar", NULL, N_("_Side Panel") },
-                { "win.print", NULL, N_("_Print") },
-                { "win.find", NULL, N_("_Find") },
-                { "win.zoom-in", NULL, N_("_Larger Text") },
-                { "win.zoom-out", NULL, N_("S_maller Text") },
-                { "win.zoom-default", NULL, N_("_Normal Size") },
+                { "win.show-sidebar", NULL, N_("_Side Panel"), "F9" },
+                { "win.print", NULL, N_("_Print"), "<Control>p" },
+                { "win.find", NULL, N_("_Find"), "<Control>f" },
+                { "win.zoom-in", NULL, N_("_Larger Text"), NULL },
+                { "win.zoom-out", NULL, N_("S_maller Text"), "<Control>minus" },
+                { "win.zoom-default", NULL, N_("_Normal Size"), "<Control>0" },
                 { NULL }
         };
 
@@ -67,6 +70,17 @@ add_action_infos (DhApp *app)
         amtk_action_info_store_add_entries (app->priv->action_info_store,
                                             entries, -1,
                                             GETTEXT_PACKAGE);
+
+        /* For "<Control>equal": Epiphany also has this keyboard shortcut for
+         * zoom-in. On keyboards the = and + are usually on the same key, but +
+         * is less convenient to type because Shift must be pressed too.
+         * Apparently it's usual on Windows to press Ctrl+= to zoom in.
+         * https://bugzilla.gnome.org/show_bug.cgi?id=743704
+         */
+        accels[0] = "<Control>plus";
+        accels[1] = "<Control>equal";
+        action_info = amtk_action_info_store_lookup (app->priv->action_info_store, "win.zoom-in");
+        amtk_action_info_set_accels (action_info, accels);
 }
 
 static DhAssistant *
@@ -326,43 +340,17 @@ setup_go_to_tab_accelerators (GtkApplication *app)
 }
 
 static void
-setup_accelerators (GtkApplication *app)
+setup_additional_accelerators (GtkApplication *app)
 {
         const gchar *accels[] = {NULL, NULL, NULL, NULL};
 
         setup_go_to_tab_accelerators (app);
 
-        accels[0] = "<Control>0";
-        gtk_application_set_accels_for_action (app, "win.zoom-default", accels);
-
-        accels[0] = "<Control>minus";
-        gtk_application_set_accels_for_action (app, "win.zoom-out", accels);
-
-        /* For "<Control>equal": Epiphany also has this keyboard shortcut for
-         * zoom-in. On keyboards the = and + are usually on the same key, but +
-         * is less convenient to type because Shift must be pressed too.
-         * Apparently it's usual on Windows to press Ctrl+= to zoom in.
-         * https://bugzilla.gnome.org/show_bug.cgi?id=743704
-         */
-        accels[0] = "<Control>plus";
-        accels[1] = "<Control>equal";
-        gtk_application_set_accels_for_action (app, "win.zoom-in", accels);
-        accels[1] = NULL;
-
-        accels[0] = "<Control>f";
-        gtk_application_set_accels_for_action (app, "win.find", accels);
-
         accels[0] = "<Control>c";
         gtk_application_set_accels_for_action (app, "win.copy", accels);
 
-        accels[0] = "<Control>p";
-        gtk_application_set_accels_for_action (app, "win.print", accels);
-
         accels[0] = "<Control>t";
         gtk_application_set_accels_for_action (app, "win.new-tab", accels);
-
-        accels[0] = "<Control>n";
-        gtk_application_set_accels_for_action (app, "app.new-window", accels);
 
         accels[0] = "<Control>Page_Down";
         gtk_application_set_accels_for_action (app, "win.next-tab", accels);
@@ -372,15 +360,6 @@ setup_accelerators (GtkApplication *app)
 
         accels[0] = "<Control>w";
         gtk_application_set_accels_for_action (app, "win.close", accels);
-
-        accels[0] = "<Control>q";
-        gtk_application_set_accels_for_action (app, "app.quit", accels);
-
-        accels[0] = "F1";
-        gtk_application_set_accels_for_action (app, "app.help", accels);
-
-        accels[0] = "F9";
-        gtk_application_set_accels_for_action (app, "win.show-sidebar", accels);
 
         accels[0] = "F10";
         gtk_application_set_accels_for_action (app, "win.show-window-menu", accels);
@@ -446,7 +425,7 @@ dh_app_startup (GApplication *application)
 
         add_action_infos (app);
         add_action_entries (app);
-        setup_accelerators (GTK_APPLICATION (app));
+        setup_additional_accelerators (GTK_APPLICATION (app));
         create_app_menu_if_needed (GTK_APPLICATION (app));
 }
 
