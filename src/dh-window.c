@@ -465,7 +465,7 @@ create_window_menu_simple (void)
         AmtkFactory *factory;
 
         menu = g_menu_new ();
-        factory = amtk_factory_new_with_default_application ();
+        factory = amtk_factory_new (NULL);
 
         section = g_menu_new ();
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-sidebar"));
@@ -496,7 +496,7 @@ create_window_menu_plus_app_menu (void)
         AmtkFactory *factory;
 
         menu = g_menu_new ();
-        factory = amtk_factory_new_with_default_application ();
+        factory = amtk_factory_new (NULL);
 
         section = g_menu_new ();
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.new-window"));

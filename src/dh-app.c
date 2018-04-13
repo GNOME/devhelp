@@ -81,6 +81,9 @@ add_action_infos (DhApp *app)
         accels[1] = "<Control>equal";
         action_info = amtk_action_info_store_lookup (app->priv->action_info_store, "win.zoom-in");
         amtk_action_info_set_accels (action_info, accels);
+
+        amtk_action_info_store_set_all_accels_to_app (app->priv->action_info_store,
+                                                      GTK_APPLICATION (app));
 }
 
 static DhAssistant *
@@ -389,7 +392,7 @@ create_app_menu_if_needed (GtkApplication *app)
                 return;
 
         app_menu = g_menu_new ();
-        factory = amtk_factory_new (app);
+        factory = amtk_factory_new (NULL);
 
         section = g_menu_new ();
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.new-window"));
