@@ -439,10 +439,10 @@ add_actions (DhWindow *window)
                 { "go-forward", go_forward_cb },
         };
 
-        g_action_map_add_action_entries (G_ACTION_MAP (window),
-                                         win_entries,
-                                         G_N_ELEMENTS (win_entries),
-                                         window);
+        amtk_action_map_add_action_entries_check_dups (G_ACTION_MAP (window),
+                                                       win_entries,
+                                                       G_N_ELEMENTS (win_entries),
+                                                       window);
 
         property_action = g_property_action_new ("show-sidebar",
                                                  priv->grid_sidebar,

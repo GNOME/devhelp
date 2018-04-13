@@ -129,6 +129,8 @@ new_window_cb (GSimpleAction *action,
 
         new_window = dh_window_new (GTK_APPLICATION (app));
         gtk_widget_show_all (new_window);
+
+        amtk_action_info_store_check_all_used (app->priv->action_info_store);
 }
 
 static void
@@ -289,10 +291,10 @@ add_action_entries (DhApp *app)
                 { "raise", raise_cb },
         };
 
-        g_action_map_add_action_entries (G_ACTION_MAP (app),
-                                         app_entries,
-                                         G_N_ELEMENTS (app_entries),
-                                         app);
+        amtk_action_map_add_action_entries_check_dups (G_ACTION_MAP (app),
+                                                       app_entries,
+                                                       G_N_ELEMENTS (app_entries),
+                                                       app);
 }
 
 static void
