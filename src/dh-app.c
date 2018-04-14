@@ -32,44 +32,57 @@
 #include "dh-util-app.h"
 
 struct _DhAppPrivate {
-        AmtkActionInfoStore *action_info_store;
+        /* AmtkActionInfoStore for actions that are present in a menu. */
+        AmtkActionInfoStore *menu_action_info_store;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
 static void
-add_action_infos (DhApp *app)
+add_menu_action_infos (DhApp *app)
 {
         const gchar *accels[] = {NULL, NULL, NULL};
         AmtkActionInfo *action_info;
 
         const AmtkActionInfoEntry entries[] = {
-                /* action, icon, label, accel */
+                /* action, icon, label, accel, tooltip */
 
                 /* App menu */
-                { "app.new-window", NULL, N_("New _Window"), "<Control>n" },
-                { "app.preferences", NULL, N_("_Preferences"), NULL },
-                { "win.show-help-overlay", NULL, N_("_Keyboard Shortcuts"), NULL },
+                { "app.new-window", NULL, N_("New _Window"), "<Control>n",
+                  N_("Open a new window") },
+                { "app.preferences", NULL, N_("_Preferences") },
+                { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts") },
                 { "app.help", NULL, N_("_Help"), "F1" },
-                { "app.about", NULL, N_("_About"), NULL },
-                { "app.quit", NULL, N_("_Quit"), "<Control>q" },
+                { "app.about", NULL, N_("_About") },
+                { "app.quit", NULL, N_("_Quit"), "<Control>q",
+                  N_("Close all windows") },
 
                 /* Window menu */
-                { "win.show-sidebar", NULL, N_("_Side Panel"), "F9" },
+                { "win.show-sidebar", NULL, N_("_Side Panel"), "F9",
+                  N_("Toggle side panel visibility") },
                 { "win.print", NULL, N_("_Print"), "<Control>p" },
-                { "win.find", NULL, N_("_Find"), "<Control>f" },
-                { "win.zoom-in", NULL, N_("_Larger Text"), NULL },
-                { "win.zoom-out", NULL, N_("S_maller Text"), "<Control>minus" },
-                { "win.zoom-default", NULL, N_("_Normal Size"), "<Control>0" },
+                { "win.find", NULL, N_("_Find"), "<Control>f",
+                  N_("Find in current page") },
+                { "win.zoom-in", NULL, N_("_Larger Text"), NULL,
+                  N_("Zoom in") },
+                { "win.zoom-out", NULL, N_("S_maller Text"), "<Control>minus",
+                  N_("Zoom out") },
+                { "win.zoom-default", NULL, N_("_Normal Size"), "<Control>0",
+                  N_("Reset zoom") },
                 { NULL }
         };
 
-        g_assert (app->priv->action_info_store == NULL);
-        app->priv->action_info_store = amtk_action_info_store_new ();
+        g_assert (app->priv->menu_action_info_store == NULL);
+        app->priv->menu_action_info_store = amtk_action_info_store_new ();
 
-        amtk_action_info_store_add_entries (app->priv->action_info_store,
+        amtk_action_info_store_add_entries (app->priv->menu_action_info_store,
                                             entries, -1,
                                             GETTEXT_PACKAGE);
+
+        accels[0] = "<Control>F1";
+        accels[1] = "<Control>question";
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
+        amtk_action_info_set_accels (action_info, accels);
 
         /* For "<Control>equal": Epiphany also has this keyboard shortcut for
          * zoom-in. On keyboards the = and + are usually on the same key, but +
@@ -79,11 +92,58 @@ add_action_infos (DhApp *app)
          */
         accels[0] = "<Control>plus";
         accels[1] = "<Control>equal";
-        action_info = amtk_action_info_store_lookup (app->priv->action_info_store, "win.zoom-in");
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-in");
         amtk_action_info_set_accels (action_info, accels);
 
-        amtk_action_info_store_set_all_accels_to_app (app->priv->action_info_store,
+        amtk_action_info_store_set_all_accels_to_app (app->priv->menu_action_info_store,
                                                       GTK_APPLICATION (app));
+}
+
+static void
+add_other_action_infos (DhApp *app)
+{
+        AmtkActionInfoStore *store;
+        AmtkActionInfo *action_info;
+        const gchar *accels[] = {NULL, NULL, NULL, NULL};
+
+        const AmtkActionInfoEntry entries[] = {
+                /* action, icon, label, accel, tooltip */
+                { "win.new-tab", NULL, NULL, "<Control>t", N_("Open a new tab") },
+                { "win.close", NULL, NULL, "<Control>w", N_("Close the current window") },
+                { "win.go-back", NULL, NULL, NULL, N_("Go back") },
+                { "win.go-forward", NULL, NULL, NULL, N_("Go forward") },
+                { "win.focus-search", NULL, NULL, NULL, N_("Focus global search") },
+                { NULL }
+        };
+
+        store = amtk_action_info_store_new ();
+        amtk_action_info_store_add_entries (store, entries, -1, GETTEXT_PACKAGE);
+
+        accels[0] = "<Alt>Left";
+        accels[1] = "Back";
+        action_info = amtk_action_info_store_lookup (store, "win.go-back");
+        amtk_action_info_set_accels (action_info, accels);
+
+        accels[0] = "<Alt>Right";
+        accels[1] = "Forward";
+        action_info = amtk_action_info_store_lookup (store, "win.go-forward");
+        amtk_action_info_set_accels (action_info, accels);
+
+        accels[0] = "<Control>k";
+        accels[1] = "<Control>s";
+        accels[2] = "<Control>l";
+        action_info = amtk_action_info_store_lookup (store, "win.focus-search");
+        amtk_action_info_set_accels (action_info, accels);
+
+        amtk_action_info_store_set_all_accels_to_app (store, GTK_APPLICATION (app));
+        g_object_unref (store);
+}
+
+static void
+add_action_infos (DhApp *app)
+{
+        add_menu_action_infos (app);
+        add_other_action_infos (app);
 }
 
 static DhAssistant *
@@ -147,7 +207,7 @@ new_window_cb (GSimpleAction *action,
         new_window = dh_window_new (GTK_APPLICATION (app));
         gtk_widget_show_all (new_window);
 
-        amtk_action_info_store_check_all_used (app->priv->action_info_store);
+        amtk_action_info_store_check_all_used (app->priv->menu_action_info_store);
 }
 
 static void
@@ -345,15 +405,12 @@ setup_go_to_tab_accelerators (GtkApplication *app)
 static void
 setup_additional_accelerators (GtkApplication *app)
 {
-        const gchar *accels[] = {NULL, NULL, NULL, NULL};
+        const gchar *accels[] = {NULL, NULL};
 
         setup_go_to_tab_accelerators (app);
 
         accels[0] = "<Control>c";
         gtk_application_set_accels_for_action (app, "win.copy", accels);
-
-        accels[0] = "<Control>t";
-        gtk_application_set_accels_for_action (app, "win.new-tab", accels);
 
         accels[0] = "<Control>Page_Down";
         gtk_application_set_accels_for_action (app, "win.next-tab", accels);
@@ -361,24 +418,8 @@ setup_additional_accelerators (GtkApplication *app)
         accels[0] = "<Control>Page_Up";
         gtk_application_set_accels_for_action (app, "win.prev-tab", accels);
 
-        accels[0] = "<Control>w";
-        gtk_application_set_accels_for_action (app, "win.close", accels);
-
         accels[0] = "F10";
         gtk_application_set_accels_for_action (app, "win.show-window-menu", accels);
-
-        accels[0] = "<Alt>Right";
-        accels[1] = "Forward";
-        gtk_application_set_accels_for_action (app, "win.go-forward", accels);
-
-        accels[0] = "<Alt>Left";
-        accels[1] = "Back";
-        gtk_application_set_accels_for_action (app, "win.go-back", accels);
-
-        accels[0] = "<Control>k";
-        accels[1] = "<Control>s";
-        accels[2] = "<Control>l";
-        gtk_application_set_accels_for_action (app, "win.focus-search", accels);
 }
 
 static void
@@ -403,7 +444,7 @@ create_app_menu_if_needed (GtkApplication *app)
         amtk_gmenu_append_section (app_menu, NULL, section);
 
         section = g_menu_new ();
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-help-overlay"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.shortcuts-window"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.help"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.about"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.quit"));
@@ -527,7 +568,7 @@ dh_app_dispose (GObject *object)
 {
         DhApp *app = DH_APP (object);
 
-        g_clear_object (&app->priv->action_info_store);
+        g_clear_object (&app->priv->menu_action_info_store);
 
         G_OBJECT_CLASS (dh_app_parent_class)->dispose (object);
 }

@@ -279,10 +279,10 @@ close_cb (GSimpleAction *action,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint page_num;
 
-        /* FIXME: the code here closes the current *tab*, but in help-overlay.ui
-         * it is documented as "Close the current window". Look for example at
-         * what gedit does, or other GNOME apps with a GtkNotebook plus Ctrl+W
-         * shortcut, and do the same.
+        /* FIXME: the code here closes the current *tab*, but in the
+         * AmtkActionInfo it is documented as "Close the current window". Look
+         * for example at what gedit does, or other GNOME apps with a
+         * GtkNotebook plus Ctrl+W shortcut, and do the same.
          */
         page_num = gtk_notebook_get_current_page (priv->notebook);
         gtk_notebook_remove_page (priv->notebook, page_num);
@@ -410,6 +410,54 @@ go_forward_cb (GSimpleAction *action,
 }
 
 static void
+shortcuts_window_cb (GSimpleAction *action,
+                     GVariant      *parameter,
+                     gpointer       user_data)
+{
+        DhWindow *app_window = DH_WINDOW (user_data);
+        GtkShortcutsWindow *shortcuts_window;
+        GtkContainer *section;
+        GtkContainer *group;
+        AmtkFactory *factory;
+
+        shortcuts_window = amtk_shortcuts_window_new (GTK_WINDOW (app_window));
+
+        section = amtk_shortcuts_section_new (NULL);
+        g_object_set (section,
+                      "max-height", 10,
+                      NULL);
+
+        factory = amtk_factory_new (NULL);
+        amtk_factory_set_default_flags (factory, AMTK_FACTORY_IGNORE_GACTION);
+
+        /* General group */
+        group = amtk_shortcuts_group_new (_("General"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.focus-search"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.find"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.new-window"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.new-tab"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.show-sidebar"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-back"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-forward"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.print"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.close"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.quit"));
+        gtk_container_add (section, GTK_WIDGET (group));
+
+        /* Zoom group */
+        group = amtk_shortcuts_group_new (_("Zoom"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.zoom-in"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.zoom-out"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.zoom-default"));
+        gtk_container_add (section, GTK_WIDGET (group));
+
+        g_object_unref (factory);
+
+        gtk_container_add (GTK_CONTAINER (shortcuts_window), GTK_WIDGET (section));
+        gtk_widget_show_all (GTK_WIDGET (shortcuts_window));
+}
+
+static void
 add_actions (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
@@ -437,6 +485,9 @@ add_actions (DhWindow *window)
                 /* Go */
                 { "go-back", go_back_cb },
                 { "go-forward", go_forward_cb },
+
+                /* Help */
+                { "shortcuts-window", shortcuts_window_cb },
         };
 
         amtk_action_map_add_action_entries_check_dups (G_ACTION_MAP (window),
@@ -522,7 +573,7 @@ create_window_menu_plus_app_menu (void)
         amtk_gmenu_append_section (menu, NULL, section);
 
         section = g_menu_new ();
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-help-overlay"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.shortcuts-window"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.help"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.about"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.quit"));
