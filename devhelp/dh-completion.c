@@ -27,14 +27,20 @@
  * @Short_description: Support for automatic string completion
  *
  * #DhCompletion is a basic replacement for #GCompletion. #GCompletion (part of
- * GLib) is deprecated, and doesn't use a great data structure (a simple
- * #GList). #DhCompletion uses a #GSequence instead, so once the data is sorted
- * it should be faster. #DhCompletion works only with UTF-8 strings, and copies
- * the strings.
+ * GLib) is deprecated.
+ *
+ * #GCompletion is implemented with a simple #GList, while #DhCompletion uses a
+ * (sorted) #GSequence instead (or a #GList of #DhCompletion objects with
+ * dh_completion_aggregate_complete()). So #DhCompletion should scale better
+ * with more data, and #DhCompletion should be more appropriate if the same data
+ * is used several times (on the other hand if the data is used only once,
+ * #GCompletion should be faster).
+ *
+ * #DhCompletion works only with UTF-8 strings, and copies the strings.
  *
  * #DhCompletion is add-only, strings cannot be removed. But with
  * dh_completion_aggregate_complete(), a #DhCompletion object can be removed
- * from the list.
+ * from the #GList.
  */
 
 struct _DhCompletionPrivate {
