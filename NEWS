@@ -1,9 +1,17 @@
-News in 3.29.1, 2018-xx-yy (not yet released)
+News in 3.29.1, 2018-04-15
 --------------------------
-* Move library to its own directory, to separate it from the app. Some source
-  files needed to be split in two.
 * Switch build system from Autotools to Meson (and remove Autotools).
 * Update the license from GPLv2+ to GPLv3+.
+* Clear separation between the library and the app: move library to its own
+  directory (still in the same git repo), split some source files in two,
+  correctly handle GSettings in the library, and in the app use only really
+  public libdevhelp APIs.
+* Add a profile infrastructure in the library, for example to have a generic
+  profile and a GNOME profile in the future.
+* Overhaul preferences dialog implementation.
+* Use the Amtk library to create the menus and the GtkShortcutsWindow. It
+  permits to avoid information duplication, and will permit to provide a
+  higher-level libdevhelp API.
 * A few other small improvements.
 * Translation updates.
 

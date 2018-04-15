@@ -6,7 +6,7 @@
 project(
         'devhelp', 'c',
         meson_version : '>= 0.43',
-        version : '3.29.0'
+        version : '3.29.1'
 )
 
 GNOME = import('gnome')
@@ -48,7 +48,7 @@ endforeach
 
 DEVHELP_APP_DEPS = [
         LIBDEVHELP_DEPS,
-        dependency('amtk-5', version : '>= 4.99.0'),
+        dependency('amtk-5', version : '>= 4.99.1'),
         dependency('gsettings-desktop-schemas'),
         meson.get_compiler('c').find_library('m')
 ]

@@ -11,7 +11,7 @@ Dependencies
 - glib >= 2.56
 - gtk+ >= 3.22
 - webkit2gtk-4.0 >= 2.20
-- Amtk >= 4.99.0 - https://wiki.gnome.org/Projects/Amtk
+- Amtk >= 4.99.1 - https://wiki.gnome.org/Projects/Amtk
 - gsettings-desktop-schemas
 
 Description
