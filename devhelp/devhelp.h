@@ -27,6 +27,7 @@
 
 #include <devhelp/dh-assistant-view.h>
 #include <devhelp/dh-book.h>
+#include <devhelp/dh-book-list.h>
 #include <devhelp/dh-book-manager.h>
 #include <devhelp/dh-book-tree.h>
 #include <devhelp/dh-completion.h>

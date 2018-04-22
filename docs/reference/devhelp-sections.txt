@@ -51,6 +51,24 @@ dh_book_get_type
 </SECTION>
 
 <SECTION>
+<FILE>dh-book-list</FILE>
+DhBookList
+DhBookListClass
+dh_book_list_get_books
+dh_book_list_book_added
+dh_book_list_book_removed
+<SUBSECTION Standard>
+DH_BOOK_LIST
+DH_BOOK_LIST_CLASS
+DH_BOOK_LIST_GET_CLASS
+DH_IS_BOOK_LIST
+DH_IS_BOOK_LIST_CLASS
+DH_TYPE_BOOK_LIST
+DhBookListPrivate
+dh_book_list_get_type
+</SECTION>
+
+<SECTION>
 <FILE>dh-book-manager</FILE>
 DhBookManager
 dh_book_manager_new

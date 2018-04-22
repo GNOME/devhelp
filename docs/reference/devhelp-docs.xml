@@ -29,6 +29,7 @@
     <chapter id="data">
       <title>The Data</title>
       <xi:include href="xml/dh-book-manager.xml"/>
+      <xi:include href="xml/dh-book-list.xml"/>
       <xi:include href="xml/dh-book.xml"/>
       <xi:include href="xml/dh-link.xml"/>
     </chapter>
