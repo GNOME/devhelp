@@ -55,8 +55,8 @@ dh_book_get_type
 DhBookList
 DhBookListClass
 dh_book_list_get_books
-dh_book_list_book_added
-dh_book_list_book_removed
+dh_book_list_add_book
+dh_book_list_remove_book
 <SUBSECTION Standard>
 DH_BOOK_LIST
 DH_BOOK_LIST_CLASS

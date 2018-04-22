@@ -46,20 +46,20 @@ struct _DhBookList {
 /**
  * DhBookListClass:
  * @parent_class: The parent class.
- * @book_added: Virtual function pointer for the #DhBookList::book-added signal.
- * @book_removed: Virtual function pointer for the #DhBookList::book-removed
+ * @add_book: Virtual function pointer for the #DhBookList::add-book signal.
+ * @remove_book: Virtual function pointer for the #DhBookList::remove-book
  *   signal.
  * @get_books: Virtual function pointer for dh_book_list_get_books(). Returns
- *   %NULL by default.
+ *   the #DhBookList internal #GList by default.
  */
 struct _DhBookListClass {
         GObjectClass parent_class;
 
         /* Signals */
-        void    (* book_added)          (DhBookList *book_list,
+        void    (* add_book)            (DhBookList *book_list,
                                          DhBook     *book);
 
-        void    (* book_removed)        (DhBookList *book_list,
+        void    (* remove_book)         (DhBookList *book_list,
                                          DhBook     *book);
 
         /* Vfuncs */
@@ -75,10 +75,10 @@ GType   dh_book_list_get_type           (void);
 
 GList * dh_book_list_get_books          (DhBookList *book_list);
 
-void    dh_book_list_book_added         (DhBookList *book_list,
+void    dh_book_list_add_book           (DhBookList *book_list,
                                          DhBook     *book);
 
-void    dh_book_list_book_removed       (DhBookList *book_list,
+void    dh_book_list_remove_book        (DhBookList *book_list,
                                          DhBook     *book);
 
 G_END_DECLS
