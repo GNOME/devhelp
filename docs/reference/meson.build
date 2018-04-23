@@ -11,6 +11,7 @@ GNOME.gtkdoc(
                 'api-breaks.xml'
         ],
         ignore_headers : [
+                'dh-book-list-simple.h',
                 'dh-dconf-migration.h',
                 'dh-error.h',
                 'dh-parser.h',
