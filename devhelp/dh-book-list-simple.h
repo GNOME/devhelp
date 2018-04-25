@@ -54,7 +54,7 @@ G_GNUC_INTERNAL
 GType           _dh_book_list_simple_get_type   (void);
 
 G_GNUC_INTERNAL
-DhBookList *    _dh_book_list_simple_new        (GList *book_lists);
+DhBookList *    _dh_book_list_simple_new        (GList *sub_book_lists);
 
 G_END_DECLS
 

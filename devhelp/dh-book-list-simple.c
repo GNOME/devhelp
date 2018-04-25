@@ -22,7 +22,7 @@
 
 struct _DhBookListSimplePrivate {
         /* List of DhBookList*. */
-        GList *book_lists;
+        GList *sub_book_lists;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookListSimple, _dh_book_list_simple, DH_TYPE_BOOK_LIST)
@@ -32,8 +32,8 @@ dh_book_list_simple_dispose (GObject *object)
 {
         DhBookListSimple *list_simple = DH_BOOK_LIST_SIMPLE (object);
 
-        g_list_free_full (list_simple->priv->book_lists, g_object_unref);
-        list_simple->priv->book_lists = NULL;
+        g_list_free_full (list_simple->priv->sub_book_lists, g_object_unref);
+        list_simple->priv->sub_book_lists = NULL;
 
         G_OBJECT_CLASS (_dh_book_list_simple_parent_class)->dispose (object);
 }
@@ -59,7 +59,7 @@ generate_list (DhBookListSimple *list_simple)
         GList *ret = NULL;
         GList *book_list_node;
 
-        for (book_list_node = list_simple->priv->book_lists;
+        for (book_list_node = list_simple->priv->sub_book_lists;
              book_list_node != NULL;
              book_list_node = book_list_node->next) {
                 DhBookList *book_list = DH_BOOK_LIST (book_list_node->data);
@@ -69,7 +69,7 @@ generate_list (DhBookListSimple *list_simple)
                 books = dh_book_list_get_books (book_list);
 
                 /* First DhBookList, take all DhBook's. */
-                if (book_list_node == list_simple->priv->book_lists) {
+                if (book_list_node == list_simple->priv->sub_book_lists) {
                         g_assert (ret == NULL);
                         ret = g_list_copy_deep (books, (GCopyFunc) g_object_ref, NULL);
                         continue;
@@ -136,14 +136,14 @@ book_list_remove_book_cb (DhBookList       *book_list,
 }
 
 static void
-set_book_lists (DhBookListSimple *list_simple,
-                GList            *book_lists)
+set_sub_book_lists (DhBookListSimple *list_simple,
+                    GList            *sub_book_lists)
 {
         GList *l;
 
-        g_assert (list_simple->priv->book_lists == NULL);
+        g_assert (list_simple->priv->sub_book_lists == NULL);
 
-        for (l = book_lists; l != NULL; l = l->next) {
+        for (l = sub_book_lists; l != NULL; l = l->next) {
                 DhBookList *book_list;
 
                 if (!DH_IS_BOOK_LIST (l->data)) {
@@ -152,8 +152,8 @@ set_book_lists (DhBookListSimple *list_simple,
                 }
 
                 book_list = l->data;
-                list_simple->priv->book_lists = g_list_prepend (list_simple->priv->book_lists,
-                                                                g_object_ref (book_list));
+                list_simple->priv->sub_book_lists = g_list_prepend (list_simple->priv->sub_book_lists,
+                                                                    g_object_ref (book_list));
 
                 g_signal_connect_object (book_list,
                                          "add-book",
@@ -168,18 +168,18 @@ set_book_lists (DhBookListSimple *list_simple,
                                          G_CONNECT_AFTER);
         }
 
-        list_simple->priv->book_lists = g_list_reverse (list_simple->priv->book_lists);
+        list_simple->priv->sub_book_lists = g_list_reverse (list_simple->priv->sub_book_lists);
 
         repopulate (list_simple);
 }
 
 DhBookList *
-_dh_book_list_simple_new (GList *book_lists)
+_dh_book_list_simple_new (GList *sub_book_lists)
 {
         DhBookListSimple *list_simple;
 
         list_simple = g_object_new (DH_TYPE_BOOK_LIST_SIMPLE, NULL);
-        set_book_lists (list_simple, book_lists);
+        set_sub_book_lists (list_simple, sub_book_lists);
 
         return DH_BOOK_LIST (list_simple);
 }
