@@ -6,6 +6,7 @@ data/org.gnome.devhelp.gschema.xml
 data/org.gnome.libdevhelp-3.gschema.xml
 devhelp/dh-assistant-view.c
 devhelp/dh-book.c
+devhelp/dh-book-list-builder.c
 devhelp/dh-book-list.c
 devhelp/dh-book-list-simple.c
 devhelp/dh-book-manager.c

@@ -69,6 +69,24 @@ dh_book_list_get_type
 </SECTION>
 
 <SECTION>
+<FILE>dh-book-list-builder</FILE>
+DhBookListBuilder
+dh_book_list_builder_new
+dh_book_list_builder_add_sub_book_list
+dh_book_list_builder_create_object
+<SUBSECTION Standard>
+DH_BOOK_LIST_BUILDER
+DH_BOOK_LIST_BUILDER_CLASS
+DH_BOOK_LIST_BUILDER_GET_CLASS
+DH_IS_BOOK_LIST_BUILDER
+DH_IS_BOOK_LIST_BUILDER_CLASS
+DH_TYPE_BOOK_LIST_BUILDER
+DhBookListBuilderClass
+DhBookListBuilderPrivate
+dh_book_list_builder_get_type
+</SECTION>
+
+<SECTION>
 <FILE>dh-book-manager</FILE>
 DhBookManager
 dh_book_manager_new
