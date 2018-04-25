@@ -47,6 +47,15 @@ static guint signals[N_SIGNALS] = { 0 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookList, dh_book_list, G_TYPE_OBJECT)
 
+static gboolean
+book_id_present_in_list (DhBookList *book_list,
+                         DhBook     *book)
+{
+        return g_list_find_custom (book_list->priv->books,
+                                   book,
+                                   (GCompareFunc) dh_book_cmp_by_id) != NULL;
+}
+
 static void
 dh_book_list_dispose (GObject *object)
 {
@@ -62,7 +71,7 @@ static void
 dh_book_list_add_book_default (DhBookList *book_list,
                                DhBook     *book)
 {
-        g_return_if_fail (g_list_find (book_list->priv->books, book) == NULL);
+        g_return_if_fail (!book_id_present_in_list (book_list, book));
 
         book_list->priv->books = g_list_prepend (book_list->priv->books,
                                                  g_object_ref (book));
@@ -158,6 +167,9 @@ dh_book_list_init (DhBookList *book_list)
 /**
  * dh_book_list_get_books:
  * @book_list: a #DhBookList.
+ *
+ * Gets the list of #DhBook's part of @book_list. Each book ID in the list is
+ * unique (see dh_book_get_id()).
  *
  * Returns: (transfer none) (element-type DhBook): the #GList of #DhBook's part
  * of @book_list.

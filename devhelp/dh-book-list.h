@@ -50,7 +50,8 @@ struct _DhBookList {
  * @remove_book: Virtual function pointer for the #DhBookList::remove-book
  *   signal.
  * @get_books: Virtual function pointer for dh_book_list_get_books(). Returns
- *   the #DhBookList internal #GList by default.
+ *   the #DhBookList internal #GList by default. If you override this vfunc
+ *   ensure that each book ID is unique in the returned list.
  */
 struct _DhBookListClass {
         GObjectClass parent_class;
