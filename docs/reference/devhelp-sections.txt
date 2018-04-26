@@ -73,6 +73,7 @@ dh_book_list_get_type
 DhBookListBuilder
 dh_book_list_builder_new
 dh_book_list_builder_add_sub_book_list
+dh_book_list_builder_read_books_disabled_setting
 dh_book_list_builder_create_object
 <SUBSECTION Standard>
 DH_BOOK_LIST_BUILDER

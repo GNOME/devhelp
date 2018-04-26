@@ -39,6 +39,8 @@
 struct _DhBookListBuilderPrivate {
         /* List of DhBookList*. */
         GList *sub_book_lists;
+
+        DhSettings *settings;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookListBuilder, dh_book_list_builder, G_TYPE_OBJECT)
@@ -50,6 +52,8 @@ dh_book_list_builder_dispose (GObject *object)
 
         g_list_free_full (builder->priv->sub_book_lists, g_object_unref);
         builder->priv->sub_book_lists = NULL;
+
+        g_clear_object (&builder->priv->settings);
 
         G_OBJECT_CLASS (dh_book_list_builder_parent_class)->dispose (object);
 }
@@ -108,6 +112,34 @@ dh_book_list_builder_add_sub_book_list (DhBookListBuilder *builder,
 }
 
 /**
+ * dh_book_list_builder_read_books_disabled_setting:
+ * @builder: a #DhBookListBuilder.
+ * @settings: (nullable): a #DhSettings, or %NULL.
+ *
+ * Sets the #DhSettings object from which to read the "books-disabled"
+ * #GSettings key. If @settings is %NULL or if this function isn't called, then
+ * the #DhBookList object that will be created with
+ * dh_book_list_builder_create_object() will not read a "books-disabled"
+ * setting.
+ *
+ * With #DhBookListBuilder it is not possible to read the "books-disabled"
+ * settings from several #DhSettings objects and combine them. Only the last
+ * call to this function is taken into account when creating the #DhBookList
+ * with dh_book_list_builder_create_object().
+ *
+ * Since: 3.30
+ */
+void
+dh_book_list_builder_read_books_disabled_setting (DhBookListBuilder *builder,
+                                                  DhSettings        *settings)
+{
+        g_return_if_fail (DH_IS_BOOK_LIST_BUILDER (builder));
+        g_return_if_fail (settings == NULL || DH_IS_SETTINGS (settings));
+
+        g_set_object (&builder->priv->settings, settings);
+}
+
+/**
  * dh_book_list_builder_create_object:
  * @builder: a #DhBookListBuilder.
  *
@@ -122,5 +154,6 @@ dh_book_list_builder_create_object (DhBookListBuilder *builder)
 {
         g_return_val_if_fail (DH_IS_BOOK_LIST_BUILDER (builder), NULL);
 
-        return _dh_book_list_simple_new (builder->priv->sub_book_lists, NULL);
+        return _dh_book_list_simple_new (builder->priv->sub_book_lists,
+                                         builder->priv->settings);
 }

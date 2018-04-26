@@ -23,6 +23,7 @@
 
 #include <glib-object.h>
 #include <devhelp/dh-book-list.h>
+#include <devhelp/dh-settings.h>
 
 G_BEGIN_DECLS
 
@@ -56,6 +57,10 @@ DhBookListBuilder *     dh_book_list_builder_new                (void);
 
 void                    dh_book_list_builder_add_sub_book_list  (DhBookListBuilder *builder,
                                                                  DhBookList        *sub_book_list);
+
+void                    dh_book_list_builder_read_books_disabled_setting
+                                                                (DhBookListBuilder *builder,
+                                                                 DhSettings        *settings);
 
 DhBookList *            dh_book_list_builder_create_object      (DhBookListBuilder *builder);
 
