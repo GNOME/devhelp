@@ -46,6 +46,9 @@ struct _DhSettings {
 struct _DhSettingsClass {
         GObjectClass parent;
 
+        /* Signals */
+        void (* books_disabled_changed) (DhSettings *settings);
+
         /* Padding for future expansion */
         gpointer padding[12];
 };

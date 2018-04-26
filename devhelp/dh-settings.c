@@ -71,9 +71,6 @@ struct _DhSettingsPrivate {
         GSettings *gsettings_contents;
 
         /* List of book IDs (gchar*) currently disabled. */
-        /* TODO listen to the "books-disabled" GSettings key changes, and add a
-         * ::books-disabled-changed signal or something like that.
-         */
         GList *books_disabled;
 
         guint group_books_by_language : 1;
@@ -85,7 +82,13 @@ enum {
         N_PROPERTIES
 };
 
+enum {
+        SIGNAL_BOOKS_DISABLED_CHANGED,
+        N_SIGNALS
+};
+
 static GParamSpec *properties[N_PROPERTIES];
+static guint signals[N_SIGNALS] = { 0 };
 static DhSettings *default_instance = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhSettings, dh_settings, G_TYPE_OBJECT);
@@ -96,7 +99,8 @@ load_books_disabled (DhSettings *settings)
         gchar **books_disabled_strv;
         gint i;
 
-        g_assert (settings->priv->books_disabled == NULL);
+        g_list_free_full (settings->priv->books_disabled, g_free);
+        settings->priv->books_disabled = NULL;
 
         books_disabled_strv = g_settings_get_strv (settings->priv->gsettings_contents,
                                                    "books-disabled");
@@ -186,6 +190,20 @@ disable_book (DhSettings  *settings,
 }
 
 static void
+dh_settings_books_disabled_changed_default (DhSettings *settings)
+{
+        load_books_disabled (settings);
+}
+
+static void
+books_disabled_changed_cb (GSettings  *gsettings_contents,
+                           gchar      *key,
+                           DhSettings *settings)
+{
+        g_signal_emit (settings, signals[SIGNAL_BOOKS_DISABLED_CHANGED], 0);
+}
+
+static void
 dh_settings_get_property (GObject    *object,
                           guint       prop_id,
                           GValue     *value,
@@ -251,6 +269,8 @@ dh_settings_class_init (DhSettingsClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+        klass->books_disabled_changed = dh_settings_books_disabled_changed_default;
+
         object_class->get_property = dh_settings_get_property;
         object_class->set_property = dh_settings_set_property;
         object_class->dispose = dh_settings_dispose;
@@ -273,6 +293,26 @@ dh_settings_class_init (DhSettingsClass *klass)
                                       G_PARAM_STATIC_STRINGS);
 
         g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+
+        /**
+         * DhSettings::books-disabled-changed:
+         *
+         * The ::books-disabled-changed signal is emitted when the
+         * "books-disabled" #GSettings key changes.
+         *
+         * It is guaranteed that dh_settings_is_book_enabled() will return the
+         * new value only *after* the default object method handler for this
+         * signal has run (it's a %G_SIGNAL_RUN_LAST signal).
+         *
+         * Since: 3.30
+         */
+        signals[SIGNAL_BOOKS_DISABLED_CHANGED] =
+                g_signal_new ("books-disabled-changed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (DhSettingsClass, books_disabled_changed),
+                              NULL, NULL, NULL,
+                              G_TYPE_NONE, 0);
 }
 
 static void
@@ -289,8 +329,16 @@ _dh_settings_new (const gchar *contents_path)
         g_return_val_if_fail (contents_path != NULL, NULL);
 
         settings = g_object_new (DH_TYPE_SETTINGS, NULL);
+
         settings->priv->gsettings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
                                                                        contents_path);
+
+        g_signal_connect_object (settings->priv->gsettings_contents,
+                                 "changed::books-disabled",
+                                 G_CALLBACK (books_disabled_changed_cb),
+                                 settings,
+                                 0);
+
         load_books_disabled (settings);
 
         return settings;
