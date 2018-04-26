@@ -23,6 +23,9 @@
 struct _DhBookListSimplePrivate {
         /* List of DhBookList*. */
         GList *sub_book_lists;
+
+        /* For reading the "books-disabled" GSettings key. */
+        DhSettings *settings;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookListSimple, _dh_book_list_simple, DH_TYPE_BOOK_LIST)
@@ -34,6 +37,8 @@ dh_book_list_simple_dispose (GObject *object)
 
         g_list_free_full (list_simple->priv->sub_book_lists, g_object_unref);
         list_simple->priv->sub_book_lists = NULL;
+
+        g_clear_object (&list_simple->priv->settings);
 
         G_OBJECT_CLASS (_dh_book_list_simple_parent_class)->dispose (object);
 }
@@ -50,6 +55,28 @@ static void
 _dh_book_list_simple_init (DhBookListSimple *list_simple)
 {
         list_simple->priv = _dh_book_list_simple_get_instance_private (list_simple);
+}
+
+/* Returns: the new start of the list. */
+static GList *
+filter_by_books_disabled (DhBookListSimple *list_simple,
+                          GList            *list)
+{
+        GList *new_list = NULL;
+        GList *l;
+
+        if (list_simple->priv->settings == NULL)
+                return list;
+
+        for (l = list; l != NULL; l = l->next) {
+                DhBook *book = DH_BOOK (l->data);
+
+                if (dh_settings_is_book_enabled (list_simple->priv->settings, book))
+                        new_list = g_list_prepend (new_list, g_object_ref (book));
+        }
+
+        g_list_free_full (list, g_object_unref);
+        return new_list;
 }
 
 /* Returns: (transfer full) (element-type DhBook). */
@@ -84,7 +111,7 @@ generate_list (DhBookListSimple *list_simple)
                 }
         }
 
-        return ret;
+        return filter_by_books_disabled (list_simple, ret);
 }
 
 static void
@@ -169,17 +196,38 @@ set_sub_book_lists (DhBookListSimple *list_simple,
         }
 
         list_simple->priv->sub_book_lists = g_list_reverse (list_simple->priv->sub_book_lists);
+}
 
+static void
+books_disabled_changed_cb (DhSettings       *settings,
+                           DhBookListSimple *list_simple)
+{
         repopulate (list_simple);
 }
 
+/* @settings is for reading the "books-disabled" GSettings key. */
 DhBookList *
-_dh_book_list_simple_new (GList *sub_book_lists)
+_dh_book_list_simple_new (GList      *sub_book_lists,
+                          DhSettings *settings)
 {
         DhBookListSimple *list_simple;
 
+        g_return_val_if_fail (settings == NULL || DH_IS_SETTINGS (settings), NULL);
+
         list_simple = g_object_new (DH_TYPE_BOOK_LIST_SIMPLE, NULL);
         set_sub_book_lists (list_simple, sub_book_lists);
+
+        if (settings != NULL) {
+                list_simple->priv->settings = g_object_ref (settings);
+
+                g_signal_connect_object (settings,
+                                         "books-disabled-changed",
+                                         G_CALLBACK (books_disabled_changed_cb),
+                                         list_simple,
+                                         G_CONNECT_AFTER);
+        }
+
+        repopulate (list_simple);
 
         return DH_BOOK_LIST (list_simple);
 }

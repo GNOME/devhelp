@@ -122,5 +122,5 @@ dh_book_list_builder_create_object (DhBookListBuilder *builder)
 {
         g_return_val_if_fail (DH_IS_BOOK_LIST_BUILDER (builder), NULL);
 
-        return _dh_book_list_simple_new (builder->priv->sub_book_lists);
+        return _dh_book_list_simple_new (builder->priv->sub_book_lists, NULL);
 }
