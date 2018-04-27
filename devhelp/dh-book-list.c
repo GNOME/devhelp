@@ -168,8 +168,8 @@ dh_book_list_init (DhBookList *book_list)
  * dh_book_list_get_books:
  * @book_list: a #DhBookList.
  *
- * Gets the list of #DhBook's part of @book_list. Each book ID in the list is
- * unique (see dh_book_get_id()).
+ * Gets the list of #DhBook's part of @book_list, in no particular order. Each
+ * book ID in the list is unique (see dh_book_get_id()).
  *
  * Returns: (transfer none) (element-type DhBook): the #GList of #DhBook's part
  * of @book_list.
