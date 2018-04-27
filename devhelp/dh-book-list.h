@@ -72,15 +72,17 @@ struct _DhBookListClass {
         gpointer padding[12];
 };
 
-GType   dh_book_list_get_type           (void);
+GType           dh_book_list_get_type           (void);
 
-GList * dh_book_list_get_books          (DhBookList *book_list);
+DhBookList *    dh_book_list_new                (void);
 
-void    dh_book_list_add_book           (DhBookList *book_list,
-                                         DhBook     *book);
+GList *         dh_book_list_get_books          (DhBookList *book_list);
 
-void    dh_book_list_remove_book        (DhBookList *book_list,
-                                         DhBook     *book);
+void            dh_book_list_add_book           (DhBookList *book_list,
+                                                 DhBook     *book);
+
+void            dh_book_list_remove_book        (DhBookList *book_list,
+                                                 DhBook     *book);
 
 G_END_DECLS
 

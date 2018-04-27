@@ -165,6 +165,18 @@ dh_book_list_init (DhBookList *book_list)
 }
 
 /**
+ * dh_book_list_new:
+ *
+ * Returns: (transfer full): a new empty #DhBookList object.
+ * Since: 3.30
+ */
+DhBookList *
+dh_book_list_new (void)
+{
+        return g_object_new (DH_TYPE_BOOK_LIST, NULL);
+}
+
+/**
  * dh_book_list_get_books:
  * @book_list: a #DhBookList.
  *

@@ -54,6 +54,7 @@ dh_book_get_type
 <FILE>dh-book-list</FILE>
 DhBookList
 DhBookListClass
+dh_book_list_new
 dh_book_list_get_books
 dh_book_list_add_book
 dh_book_list_remove_book
