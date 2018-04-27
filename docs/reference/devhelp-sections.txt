@@ -89,6 +89,23 @@ dh_book_list_builder_get_type
 </SECTION>
 
 <SECTION>
+<FILE>dh-book-list-directory</FILE>
+DhBookListDirectory
+dh_book_list_directory_new
+dh_book_list_directory_get_directory
+<SUBSECTION Standard>
+DH_BOOK_LIST_DIRECTORY
+DH_BOOK_LIST_DIRECTORY_CLASS
+DH_BOOK_LIST_DIRECTORY_GET_CLASS
+DH_IS_BOOK_LIST_DIRECTORY
+DH_IS_BOOK_LIST_DIRECTORY_CLASS
+DH_TYPE_BOOK_LIST_DIRECTORY
+DhBookListDirectoryClass
+DhBookListDirectoryPrivate
+dh_book_list_directory_get_type
+</SECTION>
+
+<SECTION>
 <FILE>dh-book-manager</FILE>
 DhBookManager
 dh_book_manager_new

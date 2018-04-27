@@ -8,6 +8,7 @@ devhelp/dh-assistant-view.c
 devhelp/dh-book.c
 devhelp/dh-book-list-builder.c
 devhelp/dh-book-list.c
+devhelp/dh-book-list-directory.c
 devhelp/dh-book-list-simple.c
 devhelp/dh-book-manager.c
 devhelp/dh-book-tree.c
