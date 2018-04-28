@@ -38,6 +38,7 @@ typedef struct {
         GtkCheckButton *bookshelf_group_by_language_checkbutton;
         GtkTreeView *bookshelf_view;
         GtkListStore *bookshelf_store;
+        DhBookList *full_book_list;
 
         /* Fonts tab */
         GtkCheckButton *use_system_fonts_checkbutton;
@@ -54,6 +55,7 @@ dh_preferences_dispose (GObject *object)
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (DH_PREFERENCES (object));
 
         g_clear_object (&priv->bookshelf_store);
+        g_clear_object (&priv->full_book_list);
 
         G_OBJECT_CLASS (dh_preferences_parent_class)->dispose (object);
 }
@@ -91,19 +93,18 @@ dh_preferences_class_init (DhPreferencesClass *klass)
 }
 
 static gboolean
-is_language_group_active (const gchar *language)
+is_language_group_active (DhPreferences *prefs,
+                          const gchar   *language)
 {
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhSettings *settings;
-        DhBookManager *book_manager;
         GList *books;
         GList *l;
 
         g_return_val_if_fail (language != NULL, FALSE);
 
         settings = dh_settings_get_default ();
-
-        book_manager = dh_book_manager_get_singleton ();
-        books = dh_book_manager_get_books (book_manager);
+        books = dh_book_list_get_books (priv->full_book_list);
 
         for (l = books; l != NULL; l = l->next) {
                 DhBook *cur_book = DH_BOOK (l->data);
@@ -119,10 +120,11 @@ is_language_group_active (const gchar *language)
 }
 
 static gboolean
-is_language_group_inconsistent (const gchar *language)
+is_language_group_inconsistent (DhPreferences *prefs,
+                                const gchar   *language)
 {
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhSettings *settings;
-        DhBookManager *book_manager;
         GList *books;
         GList *l;
         gboolean is_first_book;
@@ -131,9 +133,7 @@ is_language_group_inconsistent (const gchar *language)
         g_return_val_if_fail (language != NULL, FALSE);
 
         settings = dh_settings_get_default ();
-
-        book_manager = dh_book_manager_get_singleton ();
-        books = dh_book_manager_get_books (book_manager);
+        books = dh_book_list_get_books (priv->full_book_list);
 
         is_first_book = TRUE;
 
@@ -160,21 +160,23 @@ is_language_group_inconsistent (const gchar *language)
 }
 
 static void
-set_language_group_enabled (const gchar *language,
-                            gboolean     enabled)
+set_language_group_enabled (DhPreferences *prefs,
+                            const gchar   *language,
+                            gboolean       enabled)
 {
-        DhBookManager *book_manager;
+        DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
+        DhSettings *settings;
         GList *books;
         GList *l;
 
-        book_manager = dh_book_manager_get_singleton ();
-        books = dh_book_manager_get_books (book_manager);
+        settings = dh_settings_get_default ();
+        books = dh_book_list_get_books (priv->full_book_list);
 
         for (l = books; l != NULL; l = l->next) {
                 DhBook *cur_book = DH_BOOK (l->data);
 
                 if (g_strcmp0 (language, dh_book_get_language (cur_book)) == 0)
-                        dh_book_set_enabled (cur_book, enabled);
+                        dh_settings_set_book_enabled (settings, cur_book, enabled);
         }
 }
 
@@ -208,7 +210,6 @@ bookshelf_populate_store (DhPreferences *prefs)
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
         DhSettings *settings;
         gboolean group_by_language;
-        DhBookManager *book_manager;
         GList *books;
         GList *l;
         GSList *inserted_languages = NULL;
@@ -218,8 +219,7 @@ bookshelf_populate_store (DhPreferences *prefs)
         settings = dh_settings_get_default ();
         group_by_language = dh_settings_get_group_books_by_language (settings);
 
-        book_manager = dh_book_manager_get_singleton ();
-        books = dh_book_manager_get_books (book_manager);
+        books = dh_book_list_get_books (priv->full_book_list);
 
         for (l = books; l != NULL; l = l->next) {
                 DhBook *book = DH_BOOK (l->data);
@@ -323,17 +323,17 @@ bookshelf_group_books_by_language_notify_cb (DhSettings    *settings,
 }
 
 static void
-bookshelf_book_created_cb (DhBookManager *book_manager,
-                           DhBook        *book,
-                           DhPreferences *prefs)
+bookshelf_add_book_cb (DhBookList    *full_book_list,
+                       DhBook        *book,
+                       DhPreferences *prefs)
 {
         bookshelf_populate (prefs);
 }
 
 static void
-bookshelf_book_deleted_cb (DhBookManager *book_manager,
-                           DhBook        *book,
-                           DhPreferences *prefs)
+bookshelf_remove_book_cb (DhBookList    *full_book_list,
+                          DhBook        *book,
+                          DhPreferences *prefs)
 {
         bookshelf_populate (prefs);
 }
@@ -361,18 +361,24 @@ bookshelf_row_toggled_cb (GtkCellRendererToggle *cell_renderer,
                             -1);
 
         if (book != NULL) {
-                dh_book_set_enabled (book, !dh_book_get_enabled (book));
+                DhSettings *settings;
+                gboolean enabled;
+
+                settings = dh_settings_get_default ();
+                enabled = dh_settings_is_book_enabled (settings, book);
+                dh_settings_set_book_enabled (settings, book, !enabled);
+
                 bookshelf_store_changed (prefs);
         } else {
                 const gchar *language = title;
                 gboolean enable;
 
-                if (is_language_group_inconsistent (language))
+                if (is_language_group_inconsistent (prefs, language))
                         enable = TRUE;
                 else
-                        enable = !is_language_group_active (language);
+                        enable = !is_language_group_active (prefs, language);
 
-                set_language_group_enabled (language, enable);
+                set_language_group_enabled (prefs, language, enable);
                 bookshelf_store_changed (prefs);
         }
 
@@ -491,6 +497,7 @@ bookshelf_cell_data_func_toggle (GtkTreeViewColumn *column,
                                  GtkTreeIter       *iter,
                                  gpointer           data)
 {
+        DhPreferences *prefs = DH_PREFERENCES (data);
         DhBook *book = NULL;
         gchar *title = NULL;
         gboolean active;
@@ -508,8 +515,8 @@ bookshelf_cell_data_func_toggle (GtkTreeViewColumn *column,
                 active = dh_settings_is_book_enabled (settings, book);
                 inconsistent = FALSE;
         } else {
-                active = is_language_group_active (title);
-                inconsistent = is_language_group_inconsistent (title);
+                active = is_language_group_active (prefs, title);
+                inconsistent = is_language_group_inconsistent (prefs, title);
         }
 
         g_object_set (cell,
@@ -536,7 +543,8 @@ init_bookshelf_view (DhPreferences *prefs)
                                                     _("Enabled"),
                                                     cell_renderer_toggle,
                                                     bookshelf_cell_data_func_toggle,
-                                                    NULL, NULL);
+                                                    prefs,
+                                                    NULL);
 
         g_signal_connect_object (cell_renderer_toggle,
                                  "toggled",
@@ -558,8 +566,18 @@ static void
 init_bookshelf_tab (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
+        DhBookListBuilder *builder;
         DhSettings *settings;
-        DhBookManager *book_manager;
+
+        g_assert (priv->full_book_list == NULL);
+
+        builder = dh_book_list_builder_new ();
+        dh_book_list_builder_add_default_sub_book_lists (builder);
+        /* Do not call dh_book_list_builder_read_books_disabled_setting(), we
+         * need the full list.
+         */
+        priv->full_book_list = dh_book_list_builder_create_object (builder);
+        g_object_unref (builder);
 
         init_bookshelf_store (prefs);
         init_bookshelf_view (prefs);
@@ -576,19 +594,17 @@ init_bookshelf_tab (DhPreferences *prefs)
                                  prefs,
                                  0);
 
-        book_manager = dh_book_manager_get_singleton ();
-
-        g_signal_connect_object (book_manager,
-                                 "book-created",
-                                 G_CALLBACK (bookshelf_book_created_cb),
+        g_signal_connect_object (priv->full_book_list,
+                                 "add-book",
+                                 G_CALLBACK (bookshelf_add_book_cb),
                                  prefs,
-                                 0);
+                                 G_CONNECT_AFTER);
 
-        g_signal_connect_object (book_manager,
-                                 "book-deleted",
-                                 G_CALLBACK (bookshelf_book_deleted_cb),
+        g_signal_connect_object (priv->full_book_list,
+                                 "remove-book",
+                                 G_CALLBACK (bookshelf_remove_book_cb),
                                  prefs,
-                                 0);
+                                 G_CONNECT_AFTER);
 
         bookshelf_populate (prefs);
 }
