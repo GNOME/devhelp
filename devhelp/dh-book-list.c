@@ -19,6 +19,8 @@
  */
 
 #include "dh-book-list.h"
+#include "dh-book-list-builder.h"
+#include "dh-settings.h"
 
 /**
  * SECTION:dh-book-list
@@ -46,6 +48,7 @@ enum {
         N_SIGNALS
 };
 
+static DhBookList *default_instance = NULL;
 static guint signals[N_SIGNALS] = { 0 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookList, dh_book_list, G_TYPE_OBJECT)
@@ -68,6 +71,15 @@ dh_book_list_dispose (GObject *object)
         book_list->priv->books = NULL;
 
         G_OBJECT_CLASS (dh_book_list_parent_class)->dispose (object);
+}
+
+static void
+dh_book_list_finalize (GObject *object)
+{
+        if (default_instance == DH_BOOK_LIST (object))
+                default_instance = NULL;
+
+        G_OBJECT_CLASS (dh_book_list_parent_class)->finalize (object);
 }
 
 static void
@@ -109,6 +121,7 @@ dh_book_list_class_init (DhBookListClass *klass)
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->dispose = dh_book_list_dispose;
+        object_class->finalize = dh_book_list_finalize;
 
         klass->add_book = dh_book_list_add_book_default;
         klass->remove_book = dh_book_list_remove_book_default;
@@ -177,6 +190,48 @@ DhBookList *
 dh_book_list_new (void)
 {
         return g_object_new (DH_TYPE_BOOK_LIST, NULL);
+}
+
+/**
+ * dh_book_list_get_default:
+ *
+ * Gets the default #DhBookList object. It is created with #DhBookListBuilder,
+ * dh_book_list_builder_add_default_sub_book_lists() is called, and
+ * dh_book_list_builder_read_books_disabled_setting() is called with the default
+ * #DhSettings object as returned by dh_settings_get_default().
+ *
+ * Returns: (transfer none): the default #DhBookList object.
+ * Since: 3.30
+ */
+DhBookList *
+dh_book_list_get_default (void)
+{
+        if (default_instance == NULL) {
+                DhSettings *default_settings;
+                DhBookListBuilder *builder;
+
+                default_settings = dh_settings_get_default ();
+
+                builder = dh_book_list_builder_new ();
+                dh_book_list_builder_add_default_sub_book_lists (builder);
+                dh_book_list_builder_read_books_disabled_setting (builder, default_settings);
+                default_instance = dh_book_list_builder_create_object (builder);
+                g_object_unref (builder);
+        }
+
+        return default_instance;
+}
+
+void
+_dh_book_list_unref_default (void)
+{
+        if (default_instance != NULL)
+                g_object_unref (default_instance);
+
+        /* default_instance is not set to NULL here, it is set to NULL in
+         * dh_book_list_finalize() (i.e. when we are sure that the ref count
+         * reaches 0).
+         */
 }
 
 /**

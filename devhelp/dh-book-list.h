@@ -76,6 +76,11 @@ GType           dh_book_list_get_type           (void);
 
 DhBookList *    dh_book_list_new                (void);
 
+DhBookList *    dh_book_list_get_default        (void);
+
+G_GNUC_INTERNAL
+void            _dh_book_list_unref_default     (void);
+
 GList *         dh_book_list_get_books          (DhBookList *book_list);
 
 void            dh_book_list_add_book           (DhBookList *book_list,
