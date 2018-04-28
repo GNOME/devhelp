@@ -172,12 +172,16 @@ set_language_group_enabled (DhPreferences *prefs,
         settings = dh_settings_get_default ();
         books = dh_book_list_get_books (priv->full_book_list);
 
+        dh_settings_freeze_books_disabled_changed (settings);
+
         for (l = books; l != NULL; l = l->next) {
                 DhBook *cur_book = DH_BOOK (l->data);
 
                 if (g_strcmp0 (language, dh_book_get_language (cur_book)) == 0)
                         dh_settings_set_book_enabled (settings, cur_book, enabled);
         }
+
+        dh_settings_thaw_books_disabled_changed (settings);
 }
 
 static gboolean
@@ -323,6 +327,13 @@ bookshelf_group_books_by_language_notify_cb (DhSettings    *settings,
 }
 
 static void
+bookshelf_books_disabled_changed_cb (DhSettings    *settings,
+                                     DhPreferences *prefs)
+{
+        bookshelf_store_changed (prefs);
+}
+
+static void
 bookshelf_add_book_cb (DhBookList    *full_book_list,
                        DhBook        *book,
                        DhPreferences *prefs)
@@ -367,8 +378,6 @@ bookshelf_row_toggled_cb (GtkCellRendererToggle *cell_renderer,
                 settings = dh_settings_get_default ();
                 enabled = dh_settings_is_book_enabled (settings, book);
                 dh_settings_set_book_enabled (settings, book, !enabled);
-
-                bookshelf_store_changed (prefs);
         } else {
                 const gchar *language = title;
                 gboolean enable;
@@ -379,7 +388,6 @@ bookshelf_row_toggled_cb (GtkCellRendererToggle *cell_renderer,
                         enable = !is_language_group_active (prefs, language);
 
                 set_language_group_enabled (prefs, language, enable);
-                bookshelf_store_changed (prefs);
         }
 
         g_clear_object (&book);
@@ -593,6 +601,12 @@ init_bookshelf_tab (DhPreferences *prefs)
                                  G_CALLBACK (bookshelf_group_books_by_language_notify_cb),
                                  prefs,
                                  0);
+
+        g_signal_connect_object (settings,
+                                 "books-disabled-changed",
+                                 G_CALLBACK (bookshelf_books_disabled_changed_cb),
+                                 prefs,
+                                 G_CONNECT_AFTER);
 
         g_signal_connect_object (priv->full_book_list,
                                  "add-book",
