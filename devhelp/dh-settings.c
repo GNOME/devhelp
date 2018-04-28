@@ -45,11 +45,22 @@
  * can be changed to expose publicly the #GSettings objects (for that purpose
  * only).
  *
- * If you want to save a setting, but with a different default value than the
- * one provided by the libdevhelp #GSettings schema, the recommended thing to do
- * is to *not* call the bind function provided by #DhSettings for that property,
- * provide your own #GSettings schema with the same key but with a different
- * default value, and call yourself g_settings_bind().
+ * # Different default value
+ *
+ * If you want to save a #DhSettings setting with #GSettings, but with a
+ * different default value than the one provided by the libdevhelp #GSettings
+ * schema, the recommended thing to do is to *not* call the bind function
+ * provided by #DhSettings for that property, provide your own #GSettings schema
+ * with the same key but with a different default value, and call yourself
+ * g_settings_bind().
+ *
+ * # GSettings keys without corresponding properties
+ *
+ * For the following #GSettings keys, the use of #GSettings is mandatory, there
+ * are no corresponding #DhSettings properties (and thus no bind function).
+ *
+ * - `"books-disabled"`: if the use of #GSettings is not wanted, a custom
+ *   #DhBookList can be created instead.
  */
 
 /* API design:
