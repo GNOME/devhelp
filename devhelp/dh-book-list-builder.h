@@ -51,18 +51,20 @@ struct _DhBookListBuilderClass {
         gpointer padding[12];
 };
 
-GType                   dh_book_list_builder_get_type           (void);
+GType           dh_book_list_builder_get_type                           (void);
 
-DhBookListBuilder *     dh_book_list_builder_new                (void);
+DhBookListBuilder *
+                dh_book_list_builder_new                                (void);
 
-void                    dh_book_list_builder_add_sub_book_list  (DhBookListBuilder *builder,
-                                                                 DhBookList        *sub_book_list);
+void            dh_book_list_builder_add_sub_book_list                  (DhBookListBuilder *builder,
+                                                                         DhBookList        *sub_book_list);
 
-void                    dh_book_list_builder_read_books_disabled_setting
-                                                                (DhBookListBuilder *builder,
-                                                                 DhSettings        *settings);
+void            dh_book_list_builder_add_default_sub_book_lists         (DhBookListBuilder *builder);
 
-DhBookList *            dh_book_list_builder_create_object      (DhBookListBuilder *builder);
+void            dh_book_list_builder_read_books_disabled_setting        (DhBookListBuilder *builder,
+                                                                         DhSettings        *settings);
+
+DhBookList *    dh_book_list_builder_create_object                      (DhBookListBuilder *builder);
 
 G_END_DECLS
 

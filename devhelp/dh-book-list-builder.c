@@ -18,7 +18,9 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "config.h"
 #include "dh-book-list-builder.h"
+#include "dh-book-list-directory.h"
 #include "dh-book-list-simple.h"
 
 /**
@@ -109,6 +111,104 @@ dh_book_list_builder_add_sub_book_list (DhBookListBuilder *builder,
 
         builder->priv->sub_book_lists = g_list_append (builder->priv->sub_book_lists,
                                                        g_object_ref (sub_book_list));
+}
+
+static void
+add_book_list_directory (DhBookListBuilder *builder,
+			 const gchar       *directory_path)
+{
+        GFile *directory;
+        DhBookListDirectory *sub_book_list;
+
+        directory = g_file_new_for_path (directory_path);
+        sub_book_list = dh_book_list_directory_new (directory);
+        g_object_unref (directory);
+
+        dh_book_list_builder_add_sub_book_list (builder, DH_BOOK_LIST (sub_book_list));
+        g_object_unref (sub_book_list);
+}
+
+static void
+add_default_sub_book_lists_in_data_dir (DhBookListBuilder *builder,
+					const gchar       *data_dir)
+{
+        gchar *dir;
+
+        g_return_if_fail (data_dir != NULL);
+
+        dir = g_build_filename (data_dir, "gtk-doc", "html", NULL);
+        add_book_list_directory (builder, dir);
+        g_free (dir);
+
+        dir = g_build_filename (data_dir, "devhelp", "books", NULL);
+        add_book_list_directory (builder, dir);
+        g_free (dir);
+}
+
+/**
+ * dh_book_list_builder_add_default_sub_book_lists:
+ * @builder: a #DhBookListBuilder.
+ *
+ * Creates the default #DhBookListDirectory's and adds them to @builder with
+ * dh_book_list_builder_add_sub_book_list().
+ *
+ * It creates and adds a #DhBookListDirectory for the following directories (in
+ * that order):
+ * - `$XDG_DATA_HOME/gtk-doc/html/`
+ * - `$XDG_DATA_HOME/devhelp/books/`
+ * - For each directory in `$XDG_DATA_DIRS`:
+ *   - `$xdg_data_dir/gtk-doc/html/`
+ *   - `$xdg_data_dir/devhelp/books/`
+ *
+ * See g_get_user_data_dir() and g_get_system_data_dirs().
+ *
+ * Additionally, if the libdevhelp has been compiled with the `flatpak_build`
+ * option, it creates and adds a #DhBookListDirectory for the following
+ * directories (in that order, after the above ones):
+ * - `/run/host/usr/share/gtk-doc/html/`
+ * - `/run/host/usr/share/devhelp/books/`
+ *
+ * The exact list of directories is subject to change, it is not part of the
+ * API.
+ *
+ * Since: 3.30
+ */
+void
+dh_book_list_builder_add_default_sub_book_lists (DhBookListBuilder *builder)
+{
+        const gchar * const *system_dirs;
+        gint i;
+
+        g_return_if_fail (DH_IS_BOOK_LIST_BUILDER (builder));
+
+        add_default_sub_book_lists_in_data_dir (builder, g_get_user_data_dir ());
+
+        system_dirs = g_get_system_data_dirs ();
+        g_return_if_fail (system_dirs != NULL);
+
+        for (i = 0; system_dirs[i] != NULL; i++)
+                add_default_sub_book_lists_in_data_dir (builder, system_dirs[i]);
+
+        /* For Flatpak, to see the books installed on the host by traditional
+         * Linux distro packages.
+         *
+         * It is not a good idea to add the directory to XDG_DATA_DIRS, see:
+         * https://github.com/flatpak/flatpak/issues/1299
+         * "all sorts of things will break if we add all host config to each
+         * app, which is totally opposite to the entire point of flatpak."
+         * "i don't think XDG_DATA_DIRS is the right thing, because all sorts of
+         * libraries will start reading files from there, like dconf, dbus,
+         * service files, mimetypes, etc. It would be preferable to have
+         * something that targeted just gtk-doc files."
+         *
+         * So instead of adapting XDG_DATA_DIRS, add the directory here, with
+         * the path hard-coded.
+         *
+         * https://bugzilla.gnome.org/show_bug.cgi?id=792068
+         */
+#ifdef FLATPAK_BUILD
+        add_default_sub_book_lists_in_data_dir (builder, "/run/host/usr/share");
+#endif
 }
 
 /**
