@@ -22,6 +22,7 @@
 #define DH_PROFILE_H
 
 #include <glib-object.h>
+#include <devhelp/dh-book-list.h>
 #include <devhelp/dh-settings.h>
 
 G_BEGIN_DECLS
@@ -53,7 +54,8 @@ struct _DhProfileClass {
 GType           dh_profile_get_type             (void);
 
 G_GNUC_INTERNAL
-DhProfile *     _dh_profile_new                 (DhSettings *settings);
+DhProfile *     _dh_profile_new                 (DhSettings *settings,
+                                                 DhBookList *book_list);
 
 DhProfile *     dh_profile_get_default          (void);
 
@@ -61,6 +63,8 @@ G_GNUC_INTERNAL
 void            _dh_profile_unref_default       (void);
 
 DhSettings *    dh_profile_get_settings         (DhProfile *profile);
+
+DhBookList *    dh_profile_get_book_list        (DhProfile *profile);
 
 G_END_DECLS
 

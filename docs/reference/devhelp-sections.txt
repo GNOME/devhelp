@@ -212,6 +212,7 @@ dh_link_type_get_type
 DhProfile
 dh_profile_get_default
 dh_profile_get_settings
+dh_profile_get_book_list
 <SUBSECTION Standard>
 DH_IS_PROFILE
 DH_IS_PROFILE_CLASS
@@ -229,6 +230,7 @@ dh_profile_get_type
 DhProfileBuilder
 dh_profile_builder_new
 dh_profile_builder_set_settings
+dh_profile_builder_set_book_list
 dh_profile_builder_create_object
 <SUBSECTION Standard>
 DH_IS_PROFILE_BUILDER

@@ -37,6 +37,7 @@
 
 struct _DhProfileBuilderPrivate {
         DhSettings *settings;
+        DhBookList *book_list;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhProfileBuilder, dh_profile_builder, G_TYPE_OBJECT)
@@ -47,6 +48,7 @@ dh_profile_builder_dispose (GObject *object)
         DhProfileBuilder *builder = DH_PROFILE_BUILDER (object);
 
         g_clear_object (&builder->priv->settings);
+        g_clear_object (&builder->priv->book_list);
 
         G_OBJECT_CLASS (dh_profile_builder_parent_class)->dispose (object);
 }
@@ -100,6 +102,28 @@ dh_profile_builder_set_settings (DhProfileBuilder *builder,
 }
 
 /**
+ * dh_profile_builder_set_book_list:
+ * @builder: a #DhProfileBuilder.
+ * @book_list: a #DhBookList.
+ *
+ * Sets the #DhBookList object.
+ *
+ * If you don't call this function, the default #DhBookList object as returned
+ * by dh_book_list_get_default() will be used.
+ *
+ * Since: 3.30
+ */
+void
+dh_profile_builder_set_book_list (DhProfileBuilder *builder,
+                                  DhBookList       *book_list)
+{
+        g_return_if_fail (DH_IS_PROFILE_BUILDER (builder));
+        g_return_if_fail (DH_IS_BOOK_LIST (book_list));
+
+        g_set_object (&builder->priv->book_list, book_list);
+}
+
+/**
  * dh_profile_builder_create_object:
  * @builder: a #DhProfileBuilder.
  *
@@ -118,5 +142,9 @@ dh_profile_builder_create_object (DhProfileBuilder *builder)
         if (builder->priv->settings == NULL)
                 dh_profile_builder_set_settings (builder, dh_settings_get_default ());
 
-        return _dh_profile_new (builder->priv->settings);
+        if (builder->priv->book_list == NULL)
+                dh_profile_builder_set_book_list (builder, dh_book_list_get_default ());
+
+        return _dh_profile_new (builder->priv->settings,
+                                builder->priv->book_list);
 }

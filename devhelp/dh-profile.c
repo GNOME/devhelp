@@ -47,6 +47,7 @@
 
 struct _DhProfilePrivate {
         DhSettings *settings;
+        DhBookList *book_list;
 };
 
 static DhProfile *default_instance = NULL;
@@ -59,6 +60,7 @@ dh_profile_dispose (GObject *object)
         DhProfile *profile = DH_PROFILE (object);
 
         g_clear_object (&profile->priv->settings);
+        g_clear_object (&profile->priv->book_list);
 
         G_OBJECT_CLASS (dh_profile_parent_class)->dispose (object);
 }
@@ -88,14 +90,17 @@ dh_profile_init (DhProfile *profile)
 }
 
 DhProfile *
-_dh_profile_new (DhSettings *settings)
+_dh_profile_new (DhSettings *settings,
+                 DhBookList *book_list)
 {
         DhProfile *profile;
 
         g_return_val_if_fail (DH_IS_SETTINGS (settings), NULL);
+        g_return_val_if_fail (DH_IS_BOOK_LIST (book_list), NULL);
 
         profile = g_object_new (DH_TYPE_PROFILE, NULL);
         profile->priv->settings = g_object_ref (settings);
+        profile->priv->book_list = g_object_ref (book_list);
 
         return profile;
 }
@@ -104,7 +109,8 @@ _dh_profile_new (DhSettings *settings)
  * dh_profile_get_default:
  *
  * Gets the default #DhProfile object. It has the default #DhSettings object as
- * returned by dh_settings_get_default().
+ * returned by dh_settings_get_default(), and the default #DhBookList object as
+ * returned by dh_book_list_get_default().
  *
  * Returns: (transfer none): the default #DhProfile object.
  * Since: 3.30
@@ -151,4 +157,22 @@ dh_profile_get_settings (DhProfile *profile)
         g_return_val_if_fail (DH_IS_PROFILE (profile), NULL);
 
         return profile->priv->settings;
+}
+
+/**
+ * dh_profile_get_book_list:
+ * @profile: a #DhProfile.
+ *
+ * Gets the #DhBookList object of @profile. The returned object is guaranteed to
+ * be the same for the lifetime of @profile.
+ *
+ * Returns: (transfer none): the #DhBookList of @profile.
+ * Since: 3.30
+ */
+DhBookList *
+dh_profile_get_book_list (DhProfile *profile)
+{
+        g_return_val_if_fail (DH_IS_PROFILE (profile), NULL);
+
+        return profile->priv->book_list;
 }

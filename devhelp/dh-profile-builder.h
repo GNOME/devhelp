@@ -22,6 +22,7 @@
 #define DH_PROFILE_BUILDER_H
 
 #include <glib-object.h>
+#include <devhelp/dh-book-list.h>
 #include <devhelp/dh-profile.h>
 #include <devhelp/dh-settings.h>
 
@@ -57,6 +58,9 @@ DhProfileBuilder *      dh_profile_builder_new                  (void);
 
 void                    dh_profile_builder_set_settings         (DhProfileBuilder *builder,
                                                                  DhSettings       *settings);
+
+void                    dh_profile_builder_set_book_list        (DhProfileBuilder *builder,
+                                                                 DhBookList       *book_list);
 
 DhProfile *             dh_profile_builder_create_object        (DhProfileBuilder *builder);
 
