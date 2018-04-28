@@ -30,6 +30,9 @@
  * The default implementation maintains an internal #GList when books are added
  * and removed with the #DhBookList::add-book and #DhBookList::remove-book
  * signals, and returns that #GList in dh_book_list_get_books().
+ *
+ * The #DhBookList base class doesn't listen to the #DhBook #DhBook::deleted and
+ * #DhBook::updated signals. It is for example handled by #DhBookListDirectory.
  */
 
 struct _DhBookListPrivate {
