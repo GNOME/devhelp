@@ -303,6 +303,7 @@ dh_settings_class_init (DhSettingsClass *klass)
 
         /**
          * DhSettings::books-disabled-changed:
+         * @settings: the #DhSettings emitting the signal.
          *
          * The ::books-disabled-changed signal is emitted when the
          * "books-disabled" #GSettings key changes.
