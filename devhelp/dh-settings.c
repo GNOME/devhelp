@@ -515,3 +515,54 @@ dh_settings_set_book_enabled (DhSettings *settings,
         else
                 disable_book (settings, book_id);
 }
+
+/**
+ * dh_settings_freeze_books_disabled_changed:
+ * @settings: a #DhSettings.
+ *
+ * Tells @settings to not emit the #DhSettings::books-disabled-changed signal
+ * until dh_settings_thaw_books_disabled_changed() is called.
+ *
+ * A bit like g_object_freeze_notify(), except that there is no freeze count.
+ *
+ * This function is useful if you call dh_settings_set_book_enabled() several
+ * times in a row.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_freeze_books_disabled_changed (DhSettings *settings)
+{
+        g_return_if_fail (DH_IS_SETTINGS (settings));
+
+        g_signal_handlers_block_by_func (settings->priv->gsettings_contents,
+                                         books_disabled_changed_cb,
+                                         settings);
+}
+
+/**
+ * dh_settings_thaw_books_disabled_changed:
+ * @settings: a #DhSettings.
+ *
+ * Stops the effect of dh_settings_freeze_books_disabled_changed(), and emits
+ * the #DhSettings::books-disabled-changed signal.
+ *
+ * A bit like g_object_thaw_notify(), except that there is no freeze count.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_thaw_books_disabled_changed (DhSettings *settings)
+{
+        g_return_if_fail (DH_IS_SETTINGS (settings));
+
+        g_signal_handlers_unblock_by_func (settings->priv->gsettings_contents,
+                                           books_disabled_changed_cb,
+                                           settings);
+
+        /* Emit the signal in any case, the implementation is simpler and good
+         * enough, it doesn't hurt to emit the signal even if the GSettings key
+         * didn't change.
+         */
+        g_signal_emit (settings, signals[SIGNAL_BOOKS_DISABLED_CHANGED], 0);
+}

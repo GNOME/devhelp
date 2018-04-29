@@ -79,6 +79,10 @@ void            dh_settings_set_book_enabled                    (DhSettings *set
                                                                  DhBook     *book,
                                                                  gboolean    enabled);
 
+void            dh_settings_freeze_books_disabled_changed       (DhSettings *settings);
+
+void            dh_settings_thaw_books_disabled_changed         (DhSettings *settings);
+
 G_END_DECLS
 
 #endif /* DH_SETTINGS_H */
