@@ -277,9 +277,9 @@ dh_book_new (GFile *index_file)
                                    &priv->tree,
                                    &priv->links,
                                    &error)) {
-                /* It's fine if the file doesn't exist, as DhBookManager tries
-                 * to create a DhBook for each possible index file in a certain
-                 * book directory.
+                /* It's fine if the file doesn't exist, because
+                 * DhBookListDirectory tries to create a DhBook for each
+                 * possible index file in a certain book directory.
                  */
                 if (error != NULL &&
                     !g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND)) {
