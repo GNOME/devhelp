@@ -382,9 +382,6 @@ _dh_search_context_match_book (DhSearchContext *search,
         g_return_val_if_fail (search != NULL, FALSE);
         g_return_val_if_fail (DH_IS_BOOK (book), FALSE);
 
-        if (!dh_book_get_enabled (book))
-                return FALSE;
-
         if (search->book_id == NULL)
                 return TRUE;
 

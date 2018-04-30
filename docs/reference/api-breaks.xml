@@ -253,4 +253,19 @@
       </listitem>
     </itemizedlist>
   </refsect1>
+
+  <refsect1>
+    <title>3.29.1 -> 3.29.2</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          The last parameter of
+          <link linkend="dh-keyword-model-filter">dh_keyword_model_filter()</link>
+          has been changed, it is no longer the language (a string, that
+          parameter was deprecated), it is a
+          <link linkend="DhProfile">DhProfile</link>.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsect1>
 </part>

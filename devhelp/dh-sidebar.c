@@ -161,7 +161,7 @@ search_idle_cb (gpointer user_data)
         exact_link = dh_keyword_model_filter (priv->hitlist_model,
                                               search_text,
                                               book_id,
-                                              NULL);
+                                              priv->profile);
 
         gtk_tree_view_set_model (priv->hitlist_view,
                                  GTK_TREE_MODEL (priv->hitlist_model));

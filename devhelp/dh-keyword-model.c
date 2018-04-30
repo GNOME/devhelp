@@ -25,7 +25,7 @@
 #include "dh-keyword-model.h"
 #include <gtk/gtk.h>
 #include "dh-book.h"
-#include "dh-book-manager.h"
+#include "dh-book-list.h"
 #include "dh-search-context.h"
 #include "dh-util-lib.h"
 
@@ -89,6 +89,7 @@ typedef struct {
 } DhKeywordModelPrivate;
 
 typedef struct {
+        DhBookList *book_list;
         DhSearchContext *search_context;
         const gchar *book_id;
         const gchar *skip_book_id;
@@ -449,15 +450,13 @@ search_books (SearchSettings  *settings,
               guint            max_hits,
               DhLink         **exact_link)
 {
-        DhBookManager *book_manager;
         GList *books;
         GList *l;
         GQueue *ret;
 
         ret = g_queue_new ();
 
-        book_manager = dh_book_manager_get_singleton ();
-        books = dh_book_manager_get_books (book_manager);
+        books = dh_book_list_get_books (settings->book_list);
 
         for (l = books;
              l != NULL && ret->length < max_hits;
@@ -493,10 +492,10 @@ search_books (SearchSettings  *settings,
 }
 
 static GQueue *
-handle_book_id_only (DhSearchContext  *search_context,
+handle_book_id_only (DhBookList       *book_list,
+                     DhSearchContext  *search_context,
                      DhLink          **exact_link)
 {
-        DhBookManager *book_manager;
         GList *books;
         GList *l;
         GQueue *ret;
@@ -509,8 +508,7 @@ handle_book_id_only (DhSearchContext  *search_context,
 
         ret = g_queue_new ();
 
-        book_manager = dh_book_manager_get_singleton ();
-        books = dh_book_manager_get_books (book_manager);
+        books = dh_book_list_get_books (book_list);
 
         for (l = books; l != NULL; l = l->next) {
                 DhBook *book = DH_BOOK (l->data);
@@ -559,6 +557,7 @@ handle_book_id_only (DhSearchContext  *search_context,
  */
 static GQueue *
 keyword_model_search (DhKeywordModel   *model,
+                      DhBookList       *book_list,
                       DhSearchContext  *search_context,
                       DhLink          **exact_link)
 {
@@ -571,12 +570,13 @@ keyword_model_search (DhKeywordModel   *model,
         DhLink *other_books_exact_link = NULL;
         GQueue *out;
 
-        out = handle_book_id_only (search_context, exact_link);
+        out = handle_book_id_only (book_list, search_context, exact_link);
         if (out != NULL)
                 return out;
 
         out = g_queue_new ();
 
+        settings.book_list = book_list;
         settings.search_context = search_context;
         settings.book_id = priv->current_book_id;
         settings.skip_book_id = NULL;
@@ -662,10 +662,10 @@ keyword_model_search (DhKeywordModel   *model,
  * @model: a #DhKeywordModel.
  * @search_string: a search query.
  * @current_book_id: (nullable): the ID of the book currently shown, or %NULL.
- * @language: (nullable): deprecated, must be %NULL.
+ * @profile: (nullable): a #DhProfile, or %NULL for the default profile.
  *
- * Searches in the #DhBookManager the list of #DhLink's that correspond to
- * @search_string, and fills the @model with that list (erasing the previous
+ * Searches in the #DhBookList of @profile the list of #DhLink's that correspond
+ * to @search_string, and fills the @model with that list (erasing the previous
  * content).
  *
  * Attention, when calling this function the @model needs to be disconnected
@@ -688,18 +688,24 @@ DhLink *
 dh_keyword_model_filter (DhKeywordModel *model,
                          const gchar    *search_string,
                          const gchar    *current_book_id,
-                         const gchar    *language)
+                         DhProfile      *profile)
 {
         DhKeywordModelPrivate *priv;
+        DhBookList *book_list;
         DhSearchContext *search_context;
         GQueue *new_links = NULL;
         DhLink *exact_link = NULL;
 
         g_return_val_if_fail (DH_IS_KEYWORD_MODEL (model), NULL);
         g_return_val_if_fail (search_string != NULL, NULL);
-        g_return_val_if_fail (language == NULL, NULL);
+        g_return_val_if_fail (profile == NULL || DH_IS_PROFILE (profile), NULL);
 
         priv = dh_keyword_model_get_instance_private (model);
+
+        if (profile == NULL)
+                profile = dh_profile_get_default ();
+
+        book_list = dh_profile_get_book_list (profile);
 
         g_free (priv->current_book_id);
         priv->current_book_id = NULL;
@@ -716,7 +722,7 @@ dh_keyword_model_filter (DhKeywordModel *model,
                 else
                         priv->current_book_id = g_strdup (current_book_id);
 
-                new_links = keyword_model_search (model, search_context, &exact_link);
+                new_links = keyword_model_search (model, book_list, search_context, &exact_link);
         }
 
         clear_links (model);

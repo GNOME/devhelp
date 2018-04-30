@@ -4,6 +4,7 @@
  *
  * Copyright (C) 2002 CodeFactory AB
  * Copyright (C) 2002 Mikael Hallendal <micke@imendio.com>
+ * Copyright (C) 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -24,6 +25,7 @@
 
 #include <glib-object.h>
 #include <devhelp/dh-link.h>
+#include <devhelp/dh-profile.h>
 
 G_BEGIN_DECLS
 
@@ -62,7 +64,7 @@ DhKeywordModel *dh_keyword_model_new       (void);
 DhLink *        dh_keyword_model_filter    (DhKeywordModel *model,
                                             const gchar    *search_string,
                                             const gchar    *current_book_id,
-                                            const gchar    *language);
+                                            DhProfile      *profile);
 
 G_END_DECLS
 
