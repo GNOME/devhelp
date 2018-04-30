@@ -23,9 +23,9 @@
 #include "dh-assistant-view.h"
 #include <string.h>
 #include <glib/gi18n-lib.h>
-#include "dh-util-lib.h"
 #include "dh-book.h"
-#include "dh-book-manager.h"
+#include "dh-book-list.h"
+#include "dh-util-lib.h"
 
 /**
  * SECTION:dh-assistant-view
@@ -435,7 +435,7 @@ dh_assistant_view_search (DhAssistantView *view,
                           const gchar     *str)
 {
         DhAssistantViewPrivate *priv;
-        DhBookManager       *book_manager;
+        DhBookList          *book_list;
         const gchar         *name;
         DhLink              *link;
         DhLink              *exact_link;
@@ -461,9 +461,12 @@ dh_assistant_view_search (DhAssistantView *view,
         prefix_link = NULL;
         exact_link = NULL;
 
-        book_manager = dh_book_manager_get_singleton ();
+        /* TODO: take a DhProfile parameter, or add a "profile" construct-only
+         * property.
+         */
+        book_list = dh_book_list_get_default ();
 
-        for (books = dh_book_manager_get_books (book_manager);
+        for (books = dh_book_list_get_books (book_list);
              !exact_link && books;
              books = g_list_next (books)) {
                 GList *l;
