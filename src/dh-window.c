@@ -964,7 +964,7 @@ find_equivalent_local_uri (const gchar *uri)
         guint n_components;
         const gchar *book_id;
         const gchar *relative_url;
-        DhBookManager *book_manager;
+        DhBookList *book_list;
         GList *books;
         GList *book_node;
         gchar *local_uri = NULL;
@@ -989,8 +989,8 @@ find_equivalent_local_uri (const gchar *uri)
                 goto out;
         }
 
-        book_manager = dh_book_manager_get_singleton ();
-        books = dh_book_manager_get_books (book_manager);
+        book_list = dh_book_list_get_default ();
+        books = dh_book_list_get_books (book_list);
 
         for (book_node = books; book_node != NULL; book_node = book_node->next) {
                 DhBook *cur_book = DH_BOOK (book_node->data);
