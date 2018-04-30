@@ -69,11 +69,6 @@ GNode *      dh_book_get_tree        (DhBook *book);
 
 DhCompletion *dh_book_get_completion (DhBook *book);
 
-gboolean     dh_book_get_enabled     (DhBook *book);
-
-void         dh_book_set_enabled     (DhBook   *book,
-                                      gboolean  enabled);
-
 gint         dh_book_cmp_by_id       (DhBook *a,
                                       DhBook *b);
 

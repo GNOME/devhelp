@@ -35,8 +35,6 @@ dh_book_get_language
 dh_book_get_links
 dh_book_get_tree
 dh_book_get_completion
-dh_book_get_enabled
-dh_book_set_enabled
 dh_book_cmp_by_id
 dh_book_cmp_by_title
 <SUBSECTION Standard>

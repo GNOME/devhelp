@@ -273,6 +273,19 @@
       </listitem>
       <listitem>
         <para>
+          Whether a <link linkend="DhBook">DhBook</link> is enabled is now
+          decoupled from <link linkend="DhBook">DhBook</link>:
+          <code>dh_book_get_enabled()</code> and
+          <code>dh_book_set_enabled()</code> have been removed, as well as the
+          <code>DhBook::enabled</code> and <code>DhBook::disabled</code>
+          signals. For a book to be enabled it now needs to be part
+          of a <link linkend="DhBookList">DhBookList</link>, which is more
+          flexible because there can be several different
+          <link linkend="DhBookList">DhBookList</link>'s in parallel.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The last parameter of
           <link linkend="dh-keyword-model-filter">dh_keyword_model_filter()</link>
           has been changed, it is no longer the language (a string, that

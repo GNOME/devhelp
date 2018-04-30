@@ -41,9 +41,9 @@
  *
  * #DhBook creates a #GFileMonitor on the index file, and emits the
  * #DhBook::updated or #DhBook::deleted signal in case the index file has
- * changed on the filesystem. #DhBookManager listens to those #DhBook signals,
- * and emits in turn the #DhBookManager::book-deleted and
- * #DhBookManager::book-created signals.
+ * changed on the filesystem. #DhBookListDirectory listens to those #DhBook
+ * signals, and emits in turn the #DhBookList #DhBookList::remove-book and
+ * #DhBookList::add-book signals.
  */
 
 /* Timeout to wait for new events on the index file so that they are merged and
@@ -52,14 +52,6 @@
 #define EVENT_MERGE_TIMEOUT_SECS (2)
 
 enum {
-        /* FIXME: a boolean property would be a better API instead of the
-         * ::enabled and ::disabled signals. Or this whole concept can be
-         * removed from DhBook, by introducing DhBookSelection, see:
-         * https://bugzilla.gnome.org/show_bug.cgi?id=784491#c3
-         */
-        SIGNAL_ENABLED,
-        SIGNAL_DISABLED,
-
         SIGNAL_UPDATED,
         SIGNAL_DELETED,
         N_SIGNALS
@@ -89,8 +81,6 @@ typedef struct {
         GFileMonitor *index_file_monitor;
         BookMonitorEvent last_monitor_event;
         guint monitor_event_timeout_id;
-
-        guint enabled : 1;
 } DhBookPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBook, dh_book, G_TYPE_OBJECT);
@@ -141,32 +131,6 @@ dh_book_class_init (DhBookClass *klass)
         object_class->finalize = dh_book_finalize;
 
         /**
-         * DhBook::enabled:
-         * @book: the #DhBook emitting the signal.
-         */
-        signals[SIGNAL_ENABLED] =
-                g_signal_new ("enabled",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              0,
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              0);
-
-        /**
-         * DhBook::disabled:
-         * @book: the #DhBook emitting the signal.
-         */
-        signals[SIGNAL_DISABLED] =
-                g_signal_new ("disabled",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              0,
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              0);
-
-        /**
          * DhBook::updated:
          * @book: the #DhBook emitting the signal.
          *
@@ -204,7 +168,6 @@ dh_book_init (DhBook *book)
 {
         DhBookPrivate *priv = dh_book_get_instance_private (book);
 
-        priv->enabled = TRUE;
         priv->last_monitor_event = BOOK_MONITOR_EVENT_NONE;
 }
 
@@ -462,9 +425,8 @@ dh_book_get_language (DhBook *book)
  * dh_book_get_links:
  * @book: a #DhBook.
  *
- * Returns: (element-type DhLink) (transfer none) (nullable): the list of
- * <emphasis>all</emphasis> #DhLink's part of @book, or %NULL if the book is
- * disabled.
+ * Returns: (element-type DhLink) (transfer none): the list of
+ * <emphasis>all</emphasis> #DhLink's part of @book.
  */
 GList *
 dh_book_get_links (DhBook *book)
@@ -475,7 +437,7 @@ dh_book_get_links (DhBook *book)
 
         priv = dh_book_get_instance_private (book);
 
-        return priv->enabled ? priv->links : NULL;
+        return priv->links;
 }
 
 /**
@@ -488,8 +450,7 @@ dh_book_get_links (DhBook *book)
  * <emphasis>all</emphasis> #DhLink's part of the book, you need to call
  * dh_book_get_links().
  *
- * Returns: (transfer none) (nullable): the tree of #DhLink's part of the @book,
- * or %NULL if the book is disabled.
+ * Returns: (transfer none): the tree of #DhLink's part of @book.
  */
 GNode *
 dh_book_get_tree (DhBook *book)
@@ -500,7 +461,7 @@ dh_book_get_tree (DhBook *book)
 
         priv = dh_book_get_instance_private (book);
 
-        return priv->enabled ? priv->tree : NULL;
+        return priv->tree;
 }
 
 /**
@@ -543,60 +504,6 @@ dh_book_get_completion (DhBook *book)
         }
 
         return priv->completion;
-}
-
-/**
- * dh_book_get_enabled:
- * @book: a #DhBook.
- *
- * Returns: whether the book is enabled.
- */
-gboolean
-dh_book_get_enabled (DhBook *book)
-{
-        DhBookPrivate *priv;
-
-        g_return_val_if_fail (DH_IS_BOOK (book), FALSE);
-
-        priv = dh_book_get_instance_private (book);
-
-        return priv->enabled;
-}
-
-/**
- * dh_book_set_enabled:
- * @book: a #DhBook.
- * @enabled: the new value.
- *
- * Enables or disables the book.
- */
-void
-dh_book_set_enabled (DhBook   *book,
-                     gboolean  enabled)
-{
-        DhBookPrivate *priv;
-
-        g_return_if_fail (DH_IS_BOOK (book));
-
-        priv = dh_book_get_instance_private (book);
-
-        enabled = enabled != FALSE;
-
-        /* Create DhCompletion, because if all the DhCompletion objects need to
-         * be created (synchronously) at the time of the first completion, it
-         * can make the GUI not responsive (measured time was for example 40ms
-         * to create the DhCompletion's for 17 books, which is not a lot of
-         * books). On application startup it is less a problem.
-         */
-        if (enabled)
-                dh_book_get_completion (book);
-
-        if (priv->enabled != enabled) {
-                priv->enabled = enabled;
-                g_signal_emit (book,
-                               enabled ? signals[SIGNAL_ENABLED] : signals[SIGNAL_DISABLED],
-                               0);
-        }
 }
 
 /**

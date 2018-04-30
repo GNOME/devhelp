@@ -184,8 +184,44 @@ setup_search_idle (DhSidebar *sidebar)
                 priv->idle_search_id = g_idle_add (search_idle_cb, sidebar);
 }
 
+/******************************************************************************/
+
+/* Create DhCompletion objects, because if all the DhCompletion objects need to
+ * be created (synchronously) at the time of the first completion, it can make
+ * the GUI not responsive (measured time was for example 40ms to create the
+ * DhCompletion's for 17 books, which is not a lot of books). On application
+ * startup it is less a problem.
+ */
 static void
-book_list_changed_cb (DhSidebar *sidebar)
+create_completion_objects (DhBookList *book_list)
+{
+        GList *books;
+        GList *l;
+
+        books = dh_book_list_get_books (book_list);
+
+        for (l = books; l != NULL; l = l->next) {
+                DhBook *cur_book = DH_BOOK (l->data);
+                dh_book_get_completion (cur_book);
+        }
+}
+
+static void
+add_book_cb (DhBookList *book_list,
+             DhBook     *book,
+             DhSidebar  *sidebar)
+{
+        /* See comment of create_completion_objects(). */
+        dh_book_get_completion (book);
+
+        /* Update current search if any. */
+        setup_search_idle (sidebar);
+}
+
+static void
+remove_book_cb (DhBookList *book_list,
+                DhBook     *book,
+                DhSidebar  *sidebar)
 {
         /* Update current search if any. */
         setup_search_idle (sidebar);
@@ -557,20 +593,21 @@ dh_sidebar_constructed (GObject *object)
         gtk_widget_set_vexpand (GTK_WIDGET (priv->sw_hitlist), TRUE);
         gtk_container_add (GTK_CONTAINER (sidebar), GTK_WIDGET (priv->sw_hitlist));
 
-        /* DhBookList changes */
+        /* DhBookList */
         book_list = dh_profile_get_book_list (priv->profile);
+        create_completion_objects (book_list);
 
         g_signal_connect_object (book_list,
                                  "add-book",
-                                 G_CALLBACK (book_list_changed_cb),
+                                 G_CALLBACK (add_book_cb),
                                  sidebar,
-                                 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
+                                 G_CONNECT_AFTER);
 
         g_signal_connect_object (book_list,
                                  "remove-book",
-                                 G_CALLBACK (book_list_changed_cb),
+                                 G_CALLBACK (remove_book_cb),
                                  sidebar,
-                                 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
+                                 G_CONNECT_AFTER);
 
         /* Setup the book tree */
         priv->sw_book_tree = GTK_SCROLLED_WINDOW (gtk_scrolled_window_new (NULL, NULL));
