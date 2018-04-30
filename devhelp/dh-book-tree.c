@@ -25,8 +25,8 @@
 #include "config.h"
 #include "dh-book-tree.h"
 #include <glib/gi18n-lib.h>
-#include "dh-book-manager.h"
 #include "dh-book.h"
+#include "dh-book-list.h"
 #include "dh-settings.h"
 
 /**
@@ -463,20 +463,17 @@ book_tree_add_book_to_store (DhBookTree *tree,
 }
 
 static void
-book_tree_book_created_or_enabled_cb (DhBookManager *book_manager,
-                                      DhBook        *book,
-                                      DhBookTree    *tree)
+add_book_cb (DhBookList *book_list,
+             DhBook     *book,
+             DhBookTree *tree)
 {
-        if (!dh_book_get_enabled (book))
-                return;
-
         book_tree_add_book_to_store (tree, book);
 }
 
 static void
-book_tree_book_deleted_or_disabled_cb (DhBookManager *book_manager,
-                                       DhBook        *book,
-                                       DhBookTree    *tree)
+remove_book_cb (DhBookList *book_list,
+                DhBook     *book,
+                DhBookTree *tree)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
         GtkTreeIter     exact_iter;
@@ -596,7 +593,7 @@ static void
 book_tree_populate_tree (DhBookTree *tree)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhBookManager *book_manager;
+        GList *books;
         GList *l;
 
         gtk_tree_view_set_model (GTK_TREE_VIEW (tree), NULL);
@@ -604,16 +601,11 @@ book_tree_populate_tree (DhBookTree *tree)
         gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
                                  GTK_TREE_MODEL (priv->store));
 
-        /* This list comes in order, but we don't really mind */
-        book_manager = dh_book_manager_get_singleton ();
-        for (l = dh_book_manager_get_books (book_manager);
-             l != NULL;
-             l = l->next) {
-                DhBook *book = DH_BOOK (l->data);
+        books = dh_book_list_get_books (dh_profile_get_book_list (priv->profile));
 
-                /* Only add enabled books to the tree */
-                if (dh_book_get_enabled (book))
-                        book_tree_add_book_to_store (tree, book);
+        for (l = books; l != NULL; l = l->next) {
+                DhBook *book = DH_BOOK (l->data);
+                book_tree_add_book_to_store (tree, book);
         }
 
         book_tree_init_selection (tree);
@@ -682,7 +674,7 @@ dh_book_tree_constructed (GObject *object)
 {
         DhBookTree *tree = DH_BOOK_TREE (object);
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        DhBookManager *book_manager;
+        DhBookList *book_list;
         DhSettings *settings;
 
         if (G_OBJECT_CLASS (dh_book_tree_parent_class)->constructed != NULL)
@@ -693,31 +685,19 @@ dh_book_tree_constructed (GObject *object)
 
         book_tree_setup_selection (tree);
 
-        book_manager = dh_book_manager_get_singleton ();
+        book_list = dh_profile_get_book_list (priv->profile);
 
-        g_signal_connect_object (book_manager,
-                                 "book-created",
-                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
+        g_signal_connect_object (book_list,
+                                 "add-book",
+                                 G_CALLBACK (add_book_cb),
                                  tree,
-                                 0);
+                                 G_CONNECT_AFTER);
 
-        g_signal_connect_object (book_manager,
-                                 "book-enabled",
-                                 G_CALLBACK (book_tree_book_created_or_enabled_cb),
+        g_signal_connect_object (book_list,
+                                 "remove-book",
+                                 G_CALLBACK (remove_book_cb),
                                  tree,
-                                 0);
-
-        g_signal_connect_object (book_manager,
-                                 "book-deleted",
-                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
-                                 tree,
-                                 0);
-
-        g_signal_connect_object (book_manager,
-                                 "book-disabled",
-                                 G_CALLBACK (book_tree_book_deleted_or_disabled_cb),
-                                 tree,
-                                 0);
+                                 G_CONNECT_AFTER);
 
         settings = dh_profile_get_settings (priv->profile);
         g_signal_connect_object (settings,
