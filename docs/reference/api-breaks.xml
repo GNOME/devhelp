@@ -259,10 +259,24 @@
     <itemizedlist>
       <listitem>
         <para>
+          <link linkend="DhBookManager">DhBookManager</link> is now completely
+          empty and entirely deprecated, the minimum amount of API is kept to
+          not break Anjuta. It has been replaced by a more flexible
+          infrastructure: <link linkend="DhProfile">DhProfile</link>,
+          <link linkend="DhSettings">DhSettings</link> and
+          <link linkend="DhBookList">DhBookList</link>. If your application uses
+          only the default libdevhelp widgets it will still work fine – even if
+          you don't adapt the code of the application – because in that case it
+          will use the default profile, which contains the same content as how
+          <link linkend="DhBookManager">DhBookManager</link> was implemented.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The last parameter of
           <link linkend="dh-keyword-model-filter">dh_keyword_model_filter()</link>
           has been changed, it is no longer the language (a string, that
-          parameter was deprecated), it is a
+          parameter was deprecated), it is a nullable
           <link linkend="DhProfile">DhProfile</link>.
         </para>
       </listitem>
