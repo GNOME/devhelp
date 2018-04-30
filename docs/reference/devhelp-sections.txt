@@ -111,9 +111,7 @@ dh_book_list_directory_get_type
 <FILE>dh-book-manager</FILE>
 DhBookManager
 dh_book_manager_new
-dh_book_manager_get_singleton
 dh_book_manager_populate
-dh_book_manager_get_books
 <SUBSECTION Standard>
 DhBookManagerClass
 DH_BOOK_MANAGER

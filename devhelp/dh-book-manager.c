@@ -24,7 +24,6 @@
  */
 
 #include "dh-book-manager.h"
-#include "dh-book.h"
 
 /**
  * SECTION:dh-book-manager
@@ -40,95 +39,11 @@
  * </warning>
  */
 
-enum {
-        SIGNAL_BOOK_CREATED,
-        SIGNAL_BOOK_DELETED,
-        SIGNAL_BOOK_ENABLED,
-        SIGNAL_BOOK_DISABLED,
-        N_SIGNALS
-};
-
-static guint signals[N_SIGNALS] = { 0 };
-
-static DhBookManager *singleton = NULL;
-
 G_DEFINE_TYPE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
-
-static void
-dh_book_manager_finalize (GObject *object)
-{
-        if (singleton == DH_BOOK_MANAGER (object))
-                singleton = NULL;
-
-        G_OBJECT_CLASS (dh_book_manager_parent_class)->finalize (object);
-}
 
 static void
 dh_book_manager_class_init (DhBookManagerClass *klass)
 {
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-        object_class->finalize = dh_book_manager_finalize;
-
-        /**
-         * DhBookManager::book-created:
-         * @book_manager: the #DhBookManager.
-         * @book: the created #DhBook.
-         */
-        signals[SIGNAL_BOOK_CREATED] =
-                g_signal_new ("book-created",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              0,
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1,
-                              DH_TYPE_BOOK);
-
-        /**
-         * DhBookManager::book-deleted:
-         * @book_manager: the #DhBookManager.
-         * @book: the deleted #DhBook.
-         */
-        signals[SIGNAL_BOOK_DELETED] =
-                g_signal_new ("book-deleted",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              0,
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1,
-                              DH_TYPE_BOOK);
-
-        /**
-         * DhBookManager::book-enabled:
-         * @book_manager: the #DhBookManager.
-         * @book: the enabled #DhBook.
-         */
-        signals[SIGNAL_BOOK_ENABLED] =
-                g_signal_new ("book-enabled",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              0,
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1,
-                              DH_TYPE_BOOK);
-
-        /**
-         * DhBookManager::book-disabled:
-         * @book_manager: the #DhBookManager.
-         * @book: the disabled #DhBook.
-         */
-        signals[SIGNAL_BOOK_DISABLED] =
-                g_signal_new ("book-disabled",
-                              G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
-                              0,
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1,
-                              DH_TYPE_BOOK);
 }
 
 static void
@@ -149,33 +64,6 @@ dh_book_manager_new (void)
 }
 
 /**
- * dh_book_manager_get_singleton:
- *
- * Returns: (transfer none): the #DhBookManager singleton instance.
- * Since: 3.26
- */
-DhBookManager *
-dh_book_manager_get_singleton (void)
-{
-        if (singleton == NULL)
-                singleton = g_object_new (DH_TYPE_BOOK_MANAGER, NULL);
-
-        return singleton;
-}
-
-void
-_dh_book_manager_unref_singleton (void)
-{
-        if (singleton != NULL)
-                g_object_unref (singleton);
-
-        /* singleton is not set to NULL here, it is set to NULL in
-         * dh_book_manager_finalize() (i.e. when we are sure that the ref count
-         * reaches 0).
-         */
-}
-
-/**
  * dh_book_manager_populate:
  * @book_manager: a #DhBookManager.
  *
@@ -184,17 +72,4 @@ _dh_book_manager_unref_singleton (void)
 void
 dh_book_manager_populate (DhBookManager *book_manager)
 {
-}
-
-/**
- * dh_book_manager_get_books:
- * @book_manager: a #DhBookManager.
- *
- * Returns: (element-type DhBook) (transfer none): the list of all #DhBook's
- * found.
- */
-GList *
-dh_book_manager_get_books (DhBookManager *book_manager)
-{
-        return NULL;
 }
