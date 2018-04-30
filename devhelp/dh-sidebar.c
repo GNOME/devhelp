@@ -185,7 +185,7 @@ setup_search_idle (DhSidebar *sidebar)
 }
 
 static void
-book_manager_changed_cb (DhSidebar *sidebar)
+book_list_changed_cb (DhSidebar *sidebar)
 {
         /* Update current search if any. */
         setup_search_idle (sidebar);
@@ -348,24 +348,19 @@ complete_idle_cb (gpointer user_data)
 {
         DhSidebar *sidebar = DH_SIDEBAR (user_data);
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-        DhBookManager *book_manager;
         GList *books;
         GList *l;
         GList *completion_objects = NULL;
         const gchar *search_text;
         gchar *completed;
 
-        book_manager = dh_book_manager_get_singleton ();
-        books = dh_book_manager_get_books (book_manager);
+        books = dh_book_list_get_books (dh_profile_get_book_list (priv->profile));
         for (l = books; l != NULL; l = l->next) {
                 DhBook *cur_book = DH_BOOK (l->data);
+                DhCompletion *completion;
 
-                if (dh_book_get_enabled (cur_book)) {
-                        DhCompletion *completion;
-
-                        completion = dh_book_get_completion (cur_book);
-                        completion_objects = g_list_prepend (completion_objects, completion);
-                }
+                completion = dh_book_get_completion (cur_book);
+                completion_objects = g_list_prepend (completion_objects, completion);
         }
 
         search_text = gtk_entry_get_text (priv->entry);
@@ -479,7 +474,7 @@ dh_sidebar_constructed (GObject *object)
         DhSidebar *sidebar = DH_SIDEBAR (object);
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         GtkCellRenderer *cell;
-        DhBookManager *book_manager;
+        DhBookList *book_list;
 
         if (G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed != NULL)
                 G_OBJECT_CLASS (dh_sidebar_parent_class)->constructed (object);
@@ -562,32 +557,20 @@ dh_sidebar_constructed (GObject *object)
         gtk_widget_set_vexpand (GTK_WIDGET (priv->sw_hitlist), TRUE);
         gtk_container_add (GTK_CONTAINER (sidebar), GTK_WIDGET (priv->sw_hitlist));
 
-        /* Setup book manager */
-        book_manager = dh_book_manager_get_singleton ();
+        /* DhBookList changes */
+        book_list = dh_profile_get_book_list (priv->profile);
 
-        g_signal_connect_object (book_manager,
-                                 "book-created",
-                                 G_CALLBACK (book_manager_changed_cb),
+        g_signal_connect_object (book_list,
+                                 "add-book",
+                                 G_CALLBACK (book_list_changed_cb),
                                  sidebar,
-                                 G_CONNECT_SWAPPED);
+                                 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
-        g_signal_connect_object (book_manager,
-                                 "book-enabled",
-                                 G_CALLBACK (book_manager_changed_cb),
+        g_signal_connect_object (book_list,
+                                 "remove-book",
+                                 G_CALLBACK (book_list_changed_cb),
                                  sidebar,
-                                 G_CONNECT_SWAPPED);
-
-        g_signal_connect_object (book_manager,
-                                 "book-deleted",
-                                 G_CALLBACK (book_manager_changed_cb),
-                                 sidebar,
-                                 G_CONNECT_SWAPPED);
-
-        g_signal_connect_object (book_manager,
-                                 "book-disabled",
-                                 G_CALLBACK (book_manager_changed_cb),
-                                 sidebar,
-                                 G_CONNECT_SWAPPED);
+                                 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
         /* Setup the book tree */
         priv->sw_book_tree = GTK_SCROLLED_WINDOW (gtk_scrolled_window_new (NULL, NULL));
