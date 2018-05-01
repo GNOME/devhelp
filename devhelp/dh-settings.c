@@ -308,16 +308,12 @@ dh_settings_class_init (DhSettingsClass *klass)
          * The ::books-disabled-changed signal is emitted when the
          * "books-disabled" #GSettings key changes.
          *
-         * It is guaranteed that dh_settings_is_book_enabled() will return the
-         * new value only *after* the default object method handler for this
-         * signal has run (it's a %G_SIGNAL_RUN_LAST signal).
-         *
          * Since: 3.30
          */
         signals[SIGNAL_BOOKS_DISABLED_CHANGED] =
                 g_signal_new ("books-disabled-changed",
                               G_TYPE_FROM_CLASS (klass),
-                              G_SIGNAL_RUN_LAST,
+                              G_SIGNAL_RUN_FIRST,
                               G_STRUCT_OFFSET (DhSettingsClass, books_disabled_changed),
                               NULL, NULL, NULL,
                               G_TYPE_NONE, 0);

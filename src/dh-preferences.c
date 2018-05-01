@@ -606,7 +606,7 @@ init_bookshelf_tab (DhPreferences *prefs)
                                  "books-disabled-changed",
                                  G_CALLBACK (bookshelf_books_disabled_changed_cb),
                                  prefs,
-                                 G_CONNECT_AFTER);
+                                 0);
 
         g_signal_connect_object (priv->full_book_list,
                                  "add-book",
