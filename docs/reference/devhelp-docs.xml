@@ -28,7 +28,6 @@
 
     <chapter id="data">
       <title>The Data</title>
-      <xi:include href="xml/dh-book-manager.xml"/>
       <xi:include href="xml/dh-book-list.xml"/>
       <xi:include href="xml/dh-book-list-directory.xml"/>
       <xi:include href="xml/dh-book-list-builder.xml"/>
@@ -51,6 +50,11 @@
     <chapter id="misc">
       <title>Misc</title>
       <xi:include href="xml/dh-completion.xml"/>
+    </chapter>
+
+    <chapter id="deprecated">
+      <title>Deprecated</title>
+      <xi:include href="xml/dh-book-manager.xml"/>
     </chapter>
   </part>
 
