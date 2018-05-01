@@ -25,24 +25,27 @@
  * SECTION:dh-profile
  * @Title: DhProfile
  * @Short_description: libdevhelp profile
- */
-
-/* Requirements:
  *
- * Support multiple in-process profiles (containing GSettings among other
- * things). For example one generic profile and one profile for GNOME, to keep
- * the Devhelp application generic and suitable for different development
- * platforms (all that is needed is that the documentation is available in HTML
- * with *.devhelp2 index files).
+ * #DhProfile permits to configure other libdevhelp objects. For example
+ * #DhSidebar has the #DhSidebar:profile construct-only property. A #DhProfile
+ * contains a #DhSettings object and a #DhBookList object. As a convention for
+ * other libdevhelp classes that use #DhProfile, if the #DhProfile is not
+ * provided (i.e. it is set to %NULL), then the default profile is used, see
+ * dh_profile_get_default().
  *
- * Possibility to run in parallel multiple profiles in the same process, for
- * example:
- * - In an IDE for different projects or different programming languages, i.e.
- *   different book selections.
- * - In the Devhelp app with several windows.
+ * There is the possibility to run in parallel multiple profiles in the same
+ * process, for example:
+ * - In an IDE for different projects or different programming languages.
+ * - In different #GtkWindow's of the API browser application.
  *
- * Be able to share some GSettings keys (or at least some sub-schemas) between
- * different profiles. It's possible with DhSettings.
+ * With #DhSettings it's possible to share some #GSettings keys between
+ * different profiles.
+ *
+ * A possible use-case is to have one "generic" profile, which corresponds to
+ * the default profile as returned by dh_profile_get_default(). And another
+ * profile tailored to a specific development platform (for example GNOME),
+ * providing additional features useful for that development platform (for
+ * example to download the latest API documentation, have a start page, etc).
  */
 
 struct _DhProfilePrivate {
