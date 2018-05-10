@@ -30,6 +30,13 @@ struct _DhBookListSimplePrivate {
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhBookListSimple, _dh_book_list_simple, DH_TYPE_BOOK_LIST)
 
+static gpointer
+book_copy_func (gconstpointer src,
+                gpointer      data)
+{
+        return g_object_ref ((gpointer) src);
+}
+
 static void
 dh_book_list_simple_dispose (GObject *object)
 {
@@ -98,7 +105,7 @@ generate_list (DhBookListSimple *list_simple)
                 /* First DhBookList, take all DhBook's. */
                 if (book_list_node == list_simple->priv->sub_book_lists) {
                         g_assert (ret == NULL);
-                        ret = g_list_copy_deep (books, (GCopyFunc) g_object_ref, NULL);
+                        ret = g_list_copy_deep (books, book_copy_func, NULL);
                         continue;
                 }
 
@@ -124,7 +131,7 @@ repopulate (DhBookListSimple *list_simple)
         GList *new_node;
 
         old_list = dh_book_list_get_books (DH_BOOK_LIST (list_simple));
-        old_list_copy = g_list_copy_deep (old_list, (GCopyFunc) g_object_ref, NULL);
+        old_list_copy = g_list_copy_deep (old_list, book_copy_func, NULL);
 
         new_list = generate_list (list_simple);
 
