@@ -445,6 +445,14 @@ search_single_book (DhBook          *book,
         return ret;
 }
 
+static gint
+link_compare (gconstpointer a,
+              gconstpointer b,
+              gpointer      user_data)
+{
+        return dh_link_compare (a, b);
+}
+
 static GQueue *
 search_books (SearchSettings  *settings,
               guint            max_hits,
@@ -487,7 +495,7 @@ search_books (SearchSettings  *settings,
                 _dh_util_queue_concat (ret, book_result);
         }
 
-        g_queue_sort (ret, (GCompareDataFunc) dh_link_compare, NULL);
+        g_queue_sort (ret, link_compare, NULL);
         return ret;
 }
 
