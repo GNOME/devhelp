@@ -22,7 +22,6 @@
 #include <math.h>
 #include <glib/gi18n.h>
 #include "dh-settings-app.h"
-#include "dh-util-app.h"
 
 struct _DhWebViewPrivate {
         gchar *search_text;
@@ -139,6 +138,45 @@ chain_up:
 }
 
 static void
+set_fonts (WebKitWebView *view,
+           const gchar   *font_name_fixed,
+           const gchar   *font_name_variable)
+{
+        PangoFontDescription *font_desc_fixed;
+        PangoFontDescription *font_desc_variable;
+        guint font_size_fixed;
+        guint font_size_variable;
+        guint font_size_fixed_px;
+        guint font_size_variable_px;
+        WebKitSettings *settings;
+
+        g_return_if_fail (font_name_fixed != NULL);
+        g_return_if_fail (font_name_variable != NULL);
+
+        /* Get the font size. */
+        font_desc_fixed = pango_font_description_from_string (font_name_fixed);
+        font_desc_variable = pango_font_description_from_string (font_name_variable);
+        font_size_fixed = pango_font_description_get_size (font_desc_fixed) / PANGO_SCALE;
+        font_size_variable = pango_font_description_get_size (font_desc_variable) / PANGO_SCALE;
+        font_size_fixed_px = webkit_settings_font_size_to_pixels (font_size_fixed);
+        font_size_variable_px = webkit_settings_font_size_to_pixels (font_size_variable);
+
+        /* Set the fonts. */
+        settings = webkit_web_view_get_settings (view);
+        webkit_settings_set_zoom_text_only (settings, TRUE);
+        webkit_settings_set_monospace_font_family (settings, font_name_fixed);
+        webkit_settings_set_default_monospace_font_size (settings, font_size_fixed_px);
+        webkit_settings_set_serif_font_family (settings, font_name_variable);
+        webkit_settings_set_default_font_size (settings, font_size_variable_px);
+
+        g_debug ("Set font-fixed to '%s' (%i) and font-variable to '%s' (%i).",
+                 font_name_fixed, font_size_fixed_px, font_name_variable, font_size_variable_px);
+
+        pango_font_description_free (font_desc_fixed);
+        pango_font_description_free (font_desc_variable);
+}
+
+static void
 update_fonts (DhWebView *view)
 {
         DhSettingsApp *settings;
@@ -148,7 +186,7 @@ update_fonts (DhWebView *view)
         settings = dh_settings_app_get_singleton ();
         dh_settings_app_get_selected_fonts (settings, &font_fixed, &font_variable);
 
-        dh_util_view_set_font (WEBKIT_WEB_VIEW (view), font_fixed, font_variable);
+        set_fonts (WEBKIT_WEB_VIEW (view), font_fixed, font_variable);
 
         g_free (font_fixed);
         g_free (font_variable);

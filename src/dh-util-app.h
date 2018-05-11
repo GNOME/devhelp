@@ -24,13 +24,8 @@
 #define DH_UTIL_APP_H
 
 #include <gtk/gtk.h>
-#include <webkit2/webkit2.h>
 
 G_BEGIN_DECLS
-
-void         dh_util_view_set_font                (WebKitWebView *view,
-                                                   const gchar   *font_name_fixed,
-                                                   const gchar   *font_name_variable);
 
 void         dh_util_window_settings_save         (GtkWindow *window,
                                                    GSettings *settings);
