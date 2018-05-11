@@ -46,9 +46,7 @@ struct _DhSettingsAppClass {
         GObjectClass parent;
 
         /* Signals */
-        void (*fonts_changed) (DhSettingsApp *settings,
-                               const gchar   *font_name_fixed,
-                               const gchar   *font_name_variable);
+        void (*fonts_changed) (DhSettingsApp *settings);
 };
 
 GType           dh_settings_app_get_type                    (void);

@@ -89,27 +89,15 @@ dh_settings_app_class_init (DhSettingsAppClass *klass)
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (DhSettingsAppClass, fonts_changed),
                               NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              2,
-                              G_TYPE_STRING,
-                              G_TYPE_STRING);
+                              G_TYPE_NONE, 0);
 }
 
 static void
-fonts_changed_cb (GSettings *gsettings,
-                  gchar     *key,
-                  gpointer   user_data)
+fonts_changed_cb (GSettings     *gsettings,
+                  gchar         *key,
+                  DhSettingsApp *self)
 {
-        DhSettingsApp *self = DH_SETTINGS_APP (user_data);
-        gchar *fixed_font = NULL;
-        gchar *variable_font = NULL;
-
-        dh_settings_app_get_selected_fonts (self, &fixed_font, &variable_font);
-
-        g_signal_emit (self, signals[FONTS_CHANGED], 0, fixed_font, variable_font);
-
-        g_free (fixed_font);
-        g_free (variable_font);
+        g_signal_emit (self, signals[FONTS_CHANGED], 0);
 }
 
 static void

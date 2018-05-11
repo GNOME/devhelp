@@ -156,8 +156,6 @@ update_fonts (DhWebView *view)
 
 static void
 settings_fonts_changed_cb (DhSettingsApp *settings,
-                           const gchar   *font_name_fixed,
-                           const gchar   *font_name_variable,
                            DhWebView     *view)
 {
         update_fonts (view);
