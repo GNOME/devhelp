@@ -21,6 +21,8 @@
 #include "dh-web-view.h"
 #include <math.h>
 #include <glib/gi18n.h>
+#include "dh-settings-app.h"
+#include "dh-util-app.h"
 
 struct _DhWebViewPrivate {
         gchar *search_text;
@@ -137,19 +139,54 @@ chain_up:
 }
 
 static void
+update_fonts (DhWebView *view)
+{
+        DhSettingsApp *settings;
+        gchar *font_fixed = NULL;
+        gchar *font_variable = NULL;
+
+        settings = dh_settings_app_get_singleton ();
+        dh_settings_app_get_selected_fonts (settings, &font_fixed, &font_variable);
+
+        dh_util_view_set_font (WEBKIT_WEB_VIEW (view), font_fixed, font_variable);
+
+        g_free (font_fixed);
+        g_free (font_variable);
+}
+
+static void
+settings_fonts_changed_cb (DhSettingsApp *settings,
+                           const gchar   *font_name_fixed,
+                           const gchar   *font_name_variable,
+                           DhWebView     *view)
+{
+        update_fonts (view);
+}
+
+static void
 dh_web_view_constructed (GObject *object)
 {
-        WebKitWebView *view = WEBKIT_WEB_VIEW (object);
+        DhWebView *view = DH_WEB_VIEW (object);
         WebKitSettings *settings;
+        DhSettingsApp *settings_app;
 
         if (G_OBJECT_CLASS (dh_web_view_parent_class)->constructed != NULL)
                 G_OBJECT_CLASS (dh_web_view_parent_class)->constructed (object);
 
         /* Disable some things we have no need for. */
-        settings = webkit_web_view_get_settings (view);
+        settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
         webkit_settings_set_enable_html5_database (settings, FALSE);
         webkit_settings_set_enable_html5_local_storage (settings, FALSE);
         webkit_settings_set_enable_plugins (settings, FALSE);
+
+        settings_app = dh_settings_app_get_singleton ();
+        g_signal_connect_object (settings_app,
+                                 "fonts-changed",
+                                 G_CALLBACK (settings_fonts_changed_cb),
+                                 view,
+                                 0);
+
+        update_fonts (view);
 }
 
 static void

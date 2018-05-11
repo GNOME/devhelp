@@ -603,28 +603,6 @@ set_window_menu (DhWindow *window)
 }
 
 static void
-settings_fonts_changed_cb (DhSettingsApp *settings,
-                           const gchar   *font_name_fixed,
-                           const gchar   *font_name_variable,
-                           DhWindow      *window)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        gint n_pages;
-        gint page_num;
-
-        n_pages = gtk_notebook_get_n_pages (priv->notebook);
-
-        for (page_num = 0; page_num < n_pages; page_num++) {
-                DhTab *tab;
-                WebKitWebView *web_view;
-
-                tab = DH_TAB (gtk_notebook_get_nth_page (priv->notebook, page_num));
-                web_view = WEBKIT_WEB_VIEW (dh_tab_get_web_view (tab));
-                dh_util_view_set_font (web_view, font_name_fixed, font_name_variable);
-        }
-}
-
-static void
 sidebar_link_selected_cb (DhSidebar *sidebar,
                           DhLink    *link,
                           DhWindow  *window)
@@ -834,12 +812,6 @@ dh_window_init (DhWindow *window)
         set_window_menu (window);
 
         settings = dh_settings_app_get_singleton ();
-        g_signal_connect_object (settings,
-                                 "fonts-changed",
-                                 G_CALLBACK (settings_fonts_changed_cb),
-                                 window,
-                                 0);
-
         paned_settings = dh_settings_app_peek_paned_settings (settings);
         g_settings_bind (paned_settings, "position",
                          priv->hpaned, "position",
@@ -1090,9 +1062,6 @@ open_new_tab (DhWindow    *window,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         DhTab *tab;
         DhWebView *web_view;
-        DhSettingsApp *settings;
-        gchar *font_fixed = NULL;
-        gchar *font_variable = NULL;
         GtkWidget *label;
         gint page_num;
         WebKitBackForwardList *back_forward_list;
@@ -1101,13 +1070,6 @@ open_new_tab (DhWindow    *window,
         gtk_widget_show (GTK_WIDGET (tab));
 
         web_view = dh_tab_get_web_view (tab);
-
-        /* Set font */
-        settings = dh_settings_app_get_singleton ();
-        dh_settings_app_get_selected_fonts (settings, &font_fixed, &font_variable);
-        dh_util_view_set_font (WEBKIT_WEB_VIEW (web_view), font_fixed, font_variable);
-        g_free (font_fixed);
-        g_free (font_variable);
 
         g_signal_connect (web_view,
                           "notify::title",
