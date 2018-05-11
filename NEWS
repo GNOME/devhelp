@@ -1,10 +1,23 @@
 News in 3.29.2, 2018-xx-yy (not yet released)
 --------------------------
-* Decouple book selection from DhBook: remove DhBook "enabled" property,
-  introduce DhBookList base class, DhBookListSimple and DhBookListBuilder.
-* Allow custom search paths to load DhBooks: add DhBookListDirectory, remove
-  DhBookManager implementation.
-* DhProfile: add a DhBookList.
+* A new and more flexible book management architecture in the libdevhelp:
+
+ - DhBookManager is now completely empty and entirely deprecated, the minimum
+   amount of API is kept to not break Anjuta. It has been replaced by a more
+   flexible infrastructure: DhProfile, DhSettings and DhBookList. If an
+   application uses only the default libdevhelp widgets it will still work fine
+   – even if the code of the application is not adapted – because in that case
+   it will use the default DhProfile, which contains the same content as how
+   DhBookManager was implemented.
+
+ - Whether a DhBook is enabled/selected is now decoupled from DhBook:
+   dh_book_get_enabled() and dh_book_set_enabled() have been removed, as well
+   as the DhBook::enabled and DhBook::disabled signals. For a book to be
+   enabled it now needs to be part of a DhBookList, which is more flexible
+   because there can be several different DhBookLists in parallel.
+
+ - Allow custom search paths to load DhBooks, with DhBookListDirectory.
+
 * Listen to external changes to the "books-disabled" GSettings key.
 * Port other Devhelp classes to DhProfile and DhBookList.
 

@@ -40,14 +40,15 @@
           <link linkend="DhBookList">DhBookList</link>. If your application uses
           only the default libdevhelp widgets it will still work fine – even if
           you don't adapt the code of the application – because in that case it
-          will use the default profile, which contains the same content as how
+          will use the default <link linkend="DhProfile">DhProfile</link>, which
+          contains the same content as how
           <link linkend="DhBookManager">DhBookManager</link> was implemented.
         </para>
       </listitem>
       <listitem>
         <para>
-          Whether a <link linkend="DhBook">DhBook</link> is enabled is now
-          decoupled from <link linkend="DhBook">DhBook</link>:
+          Whether a <link linkend="DhBook">DhBook</link> is enabled/selected is
+          now decoupled from <link linkend="DhBook">DhBook</link>:
           <code>dh_book_get_enabled()</code> and
           <code>dh_book_set_enabled()</code> have been removed, as well as the
           <code>DhBook::enabled</code> and <code>DhBook::disabled</code>
