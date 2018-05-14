@@ -1025,7 +1025,7 @@ web_view_decide_policy_cb (WebKitWebView            *web_view,
         local_uri = find_equivalent_local_uri (uri);
         if (local_uri != NULL) {
                 webkit_policy_decision_ignore (policy_decision);
-                _dh_window_display_uri (window, local_uri);
+                webkit_web_view_load_uri (web_view, local_uri);
                 g_free (local_uri);
                 return GDK_EVENT_STOP;
         }
