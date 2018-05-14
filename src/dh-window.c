@@ -995,7 +995,7 @@ web_view_decide_policy_cb (WebKitWebView            *web_view,
                            WebKitPolicyDecisionType  type,
                            DhWindow                 *window)
 {
-        const char *uri;
+        const gchar *uri;
         WebKitNavigationPolicyDecision *navigation_decision;
         WebKitNavigationAction *navigation_action;
         gchar *local_uri;
@@ -1008,6 +1008,7 @@ web_view_decide_policy_cb (WebKitWebView            *web_view,
         navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (policy_decision);
         navigation_action = webkit_navigation_policy_decision_get_navigation_action (navigation_decision);
         uri = webkit_uri_request_get_uri (webkit_navigation_action_get_request (navigation_action));
+        g_return_val_if_fail (uri != NULL, GDK_EVENT_PROPAGATE);
 
         /* middle click or ctrl-click -> new tab */
         button = webkit_navigation_action_get_mouse_button (navigation_action);
@@ -1018,9 +1019,8 @@ web_view_decide_policy_cb (WebKitWebView            *web_view,
                 return GDK_EVENT_STOP;
         }
 
-        if (g_str_equal (uri, "about:blank")) {
+        if (g_str_equal (uri, "about:blank"))
                 return GDK_EVENT_PROPAGATE;
-        }
 
         local_uri = find_equivalent_local_uri (uri);
         if (local_uri != NULL) {
@@ -1031,8 +1031,18 @@ web_view_decide_policy_cb (WebKitWebView            *web_view,
         }
 
         if (!g_str_has_prefix (uri, "file://")) {
+                GError *error = NULL;
+
                 webkit_policy_decision_ignore (policy_decision);
-                gtk_show_uri_on_window (GTK_WINDOW (window), uri, GDK_CURRENT_TIME, NULL);
+                gtk_show_uri_on_window (GTK_WINDOW (window), uri, GDK_CURRENT_TIME, &error);
+
+                if (error != NULL) {
+                        g_warning ("Error when opening URI “%s” externally: %s",
+                                   uri,
+                                   error->message);
+                        g_clear_error (&error);
+                }
+
                 return GDK_EVENT_STOP;
         }
 
