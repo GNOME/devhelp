@@ -1173,18 +1173,14 @@ void
 _dh_window_display_uri (DhWindow    *window,
                         const gchar *uri)
 {
-        DhWindowPrivate *priv;
         DhWebView *web_view;
 
         g_return_if_fail (DH_IS_WINDOW (window));
         g_return_if_fail (uri != NULL);
-
-        priv = dh_window_get_instance_private (window);
 
         web_view = get_active_web_view (window);
         if (web_view == NULL)
                 return;
 
         webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), uri);
-        dh_sidebar_select_uri (priv->sidebar, uri);
 }
