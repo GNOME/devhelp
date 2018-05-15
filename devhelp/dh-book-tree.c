@@ -966,10 +966,15 @@ void
 dh_book_tree_select_uri (DhBookTree  *tree,
                          const gchar *uri)
 {
-        DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
+        DhBookTreePrivate *priv;
         GtkTreeSelection *selection;
         FindURIData data;
         DhLink *link;
+
+        g_return_if_fail (DH_IS_BOOK_TREE (tree));
+        g_return_if_fail (uri != NULL);
+
+        priv = dh_book_tree_get_instance_private (tree);
 
         data.found = FALSE;
         data.uri = uri;
@@ -1029,6 +1034,8 @@ dh_book_tree_get_selected_book (DhBookTree *tree)
         GtkTreeSelection *selection;
         GtkTreeModel *model;
         GtkTreeIter iter;
+
+        g_return_val_if_fail (DH_IS_BOOK_TREE (tree), NULL);
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
         if (!gtk_tree_selection_get_selected (selection, &model, &iter))
