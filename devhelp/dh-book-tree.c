@@ -1024,9 +1024,9 @@ out:
  * dh_book_tree_get_selected_book:
  * @tree: a #DhBookTree.
  *
- * Returns: (nullable) (transfer full): the #DhLink of the selected book, or
- * %NULL if there is no selection. Unref with dh_link_unref() when no longer
- * needed.
+ * Returns: (nullable) (transfer full): the #DhLink of type %DH_LINK_TYPE_BOOK
+ * of the selected book, or %NULL if there is no selection. Unref with
+ * dh_link_unref() when no longer needed.
  */
 DhLink *
 dh_book_tree_get_selected_book (DhBookTree *tree)
