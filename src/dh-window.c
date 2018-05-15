@@ -1050,16 +1050,17 @@ web_view_decide_policy_cb (WebKitWebView            *web_view,
 }
 
 static void
-web_view_load_changed_cb (WebKitWebView   *web_view,
+web_view_load_changed_cb (DhWebView       *web_view,
                           WebKitLoadEvent  load_event,
                           DhWindow        *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
-        if (load_event == WEBKIT_LOAD_COMMITTED) {
+        if (load_event == WEBKIT_LOAD_COMMITTED &&
+            web_view == get_active_web_view (window)) {
                 const gchar *uri;
 
-                uri = webkit_web_view_get_uri (web_view);
+                uri = webkit_web_view_get_uri (WEBKIT_WEB_VIEW (web_view));
                 dh_sidebar_select_uri (priv->sidebar, uri);
         }
 }
