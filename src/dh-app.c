@@ -109,7 +109,7 @@ add_other_action_infos (DhApp *app)
         const AmtkActionInfoEntry entries[] = {
                 /* action, icon, label, accel, tooltip */
                 { "win.new-tab", NULL, NULL, "<Control>t", N_("Open a new tab") },
-                { "win.close", NULL, NULL, "<Control>w", N_("Close the current window") },
+                { "win.close-tab", NULL, NULL, "<Control>w", N_("Close the current tab") },
                 { "win.go-back", NULL, NULL, NULL, N_("Go back") },
                 { "win.go-forward", NULL, NULL, NULL, N_("Go forward") },
                 { "win.focus-search", NULL, NULL, NULL, N_("Focus global search") },

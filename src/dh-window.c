@@ -271,19 +271,14 @@ print_cb (GSimpleAction *action,
 }
 
 static void
-close_cb (GSimpleAction *action,
-          GVariant      *parameter,
-          gpointer       user_data)
+close_tab_cb (GSimpleAction *action,
+              GVariant      *parameter,
+              gpointer       user_data)
 {
         DhWindow *window = DH_WINDOW (user_data);
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint page_num;
 
-        /* FIXME: the code here closes the current *tab*, but in the
-         * AmtkActionInfo it is documented as "Close the current window". Look
-         * for example at what gedit does, or other GNOME apps with a
-         * GtkNotebook plus Ctrl+W shortcut, and do the same.
-         */
         page_num = gtk_notebook_get_current_page (priv->notebook);
         gtk_notebook_remove_page (priv->notebook, page_num);
 }
@@ -440,7 +435,7 @@ shortcuts_window_cb (GSimpleAction *action,
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-back"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-forward"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.print"));
-        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.close"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.close-tab"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.quit"));
         gtk_container_add (section, GTK_WIDGET (group));
 
@@ -470,7 +465,7 @@ add_actions (DhWindow *window)
                 { "prev-tab", prev_tab_cb },
                 { "go-to-tab", go_to_tab_cb, "q" },
                 { "print", print_cb },
-                { "close", close_cb },
+                { "close-tab", close_tab_cb },
 
                 /* Edit */
                 { "copy", copy_cb },
