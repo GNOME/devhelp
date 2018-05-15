@@ -925,11 +925,12 @@ dh_book_tree_get_profile (DhBookTree *tree)
 }
 
 static gboolean
-book_tree_find_uri_foreach (GtkTreeModel *model,
-                            GtkTreePath  *path,
-                            GtkTreeIter  *iter,
-                            FindURIData  *data)
+book_tree_find_uri_foreach_func (GtkTreeModel *model,
+                                 GtkTreePath  *path,
+                                 GtkTreeIter  *iter,
+                                 gpointer      _data)
 {
+        FindURIData *data = _data;
         DhLink *link;
 
         gtk_tree_model_get (model, iter,
@@ -980,7 +981,7 @@ dh_book_tree_select_uri (DhBookTree  *tree,
         data.uri = uri;
 
         gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
-                                (GtkTreeModelForeachFunc) book_tree_find_uri_foreach,
+                                book_tree_find_uri_foreach_func,
                                 &data);
 
         if (!data.found)
