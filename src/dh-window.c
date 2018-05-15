@@ -606,8 +606,10 @@ sidebar_link_selected_cb (DhSidebar *sidebar,
         gchar *uri;
         DhWebView *web_view;
 
-        g_clear_pointer (&priv->selected_link, (GDestroyNotify) dh_link_unref);
-        priv->selected_link = dh_link_ref (link);
+        if (priv->selected_link != link) {
+                g_clear_pointer (&priv->selected_link, (GDestroyNotify) dh_link_unref);
+                priv->selected_link = dh_link_ref (link);
+        }
 
         uri = dh_link_get_uri (link);
         if (uri == NULL)
