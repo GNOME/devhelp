@@ -897,33 +897,6 @@ web_view_zoom_level_notify_cb (DhWebView  *web_view,
                 update_zoom_actions_sensitivity (window);
 }
 
-/* FIXME: connect to this signal on the whole DhWindow widget instead? And call
- * webkit_web_view_go_back/forward() on the active web view. Because when the
- * WebKitWebView doesn't have the focus, currently this callback is not called.
- */
-static gboolean
-web_view_button_press_event_cb (WebKitWebView  *web_view,
-                                GdkEventButton *event,
-                                DhWindow       *window)
-{
-        switch (event->button) {
-                /* Some mice emit button presses when the scroll wheel is tilted
-                 * to the side. Web browsers use them to navigate in history.
-                 */
-                case 8:
-                        webkit_web_view_go_back (web_view);
-                        return GDK_EVENT_STOP;
-                case 9:
-                        webkit_web_view_go_forward (web_view);
-                        return GDK_EVENT_STOP;
-
-                default:
-                        break;
-        }
-
-        return GDK_EVENT_PROPAGATE;
-}
-
 static gchar *
 find_equivalent_local_uri (const gchar *uri)
 {
@@ -1085,11 +1058,6 @@ open_new_tab (DhWindow    *window,
         g_signal_connect (web_view,
                           "notify::zoom-level",
                           G_CALLBACK (web_view_zoom_level_notify_cb),
-                          window);
-
-        g_signal_connect (web_view,
-                          "button-press-event",
-                          G_CALLBACK (web_view_button_press_event_cb),
                           window);
 
         g_signal_connect (web_view,

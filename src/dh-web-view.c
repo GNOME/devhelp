@@ -137,6 +137,33 @@ chain_up:
         return GTK_WIDGET_CLASS (dh_web_view_parent_class)->scroll_event (widget, scroll_event);
 }
 
+static gboolean
+dh_web_view_button_press_event (GtkWidget      *widget,
+				GdkEventButton *event)
+{
+        WebKitWebView *view = WEBKIT_WEB_VIEW (widget);
+
+        switch (event->button) {
+                /* Some mice emit button presses when the scroll wheel is tilted
+                 * to the side. Web browsers use them to navigate in history.
+                 */
+                case 8:
+                        webkit_web_view_go_back (view);
+                        return GDK_EVENT_STOP;
+                case 9:
+                        webkit_web_view_go_forward (view);
+                        return GDK_EVENT_STOP;
+
+                default:
+                        break;
+        }
+
+        if (GTK_WIDGET_CLASS (dh_web_view_parent_class)->button_press_event == NULL)
+                return GDK_EVENT_PROPAGATE;
+
+        return GTK_WIDGET_CLASS (dh_web_view_parent_class)->button_press_event (widget, event);
+}
+
 static void
 set_fonts (WebKitWebView *view,
            const gchar   *font_name_fixed,
@@ -245,6 +272,7 @@ dh_web_view_class_init (DhWebViewClass *klass)
         object_class->finalize = dh_web_view_finalize;
 
         widget_class->scroll_event = dh_web_view_scroll_event;
+        widget_class->button_press_event = dh_web_view_button_press_event;
 }
 
 static void
