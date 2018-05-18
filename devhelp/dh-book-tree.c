@@ -100,26 +100,19 @@ book_tree_selection_changed_cb (GtkTreeSelection *selection,
                                 DhBookTree       *tree)
 {
         DhBookTreePrivate *priv = dh_book_tree_get_instance_private (tree);
-        GtkTreeIter iter;
+        DhLink *link;
 
-        if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
-                DhLink *link;
+        link = dh_book_tree_get_selected_link (tree);
 
-                gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
-                                    &iter,
-                                    COL_LINK, &link,
-                                    -1);
-
-                if (link != NULL &&
-                    link != priv->selected_link) {
-                        g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
-                        priv->selected_link = dh_link_ref (link);
-                        g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
-                }
-
-                if (link != NULL)
-                        dh_link_unref (link);
+        if (link != NULL &&
+            link != priv->selected_link) {
+                g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
+                priv->selected_link = dh_link_ref (link);
+                g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
         }
+
+        if (link != NULL)
+                dh_link_unref (link);
 }
 
 static void
@@ -922,6 +915,36 @@ dh_book_tree_get_profile (DhBookTree *tree)
 
         priv = dh_book_tree_get_instance_private (tree);
         return priv->profile;
+}
+
+/**
+ * dh_book_tree_get_selected_link:
+ * @tree: a #DhBookTree.
+ *
+ * Returns: (transfer full) (nullable): the currently selected #DhLink in @tree,
+ * or %NULL if the selection is empty or if a language group row is selected.
+ * Unref with dh_link_unref() when no longer needed.
+ * Since: 3.30
+ */
+DhLink *
+dh_book_tree_get_selected_link (DhBookTree *tree)
+{
+        GtkTreeSelection *selection;
+        GtkTreeModel *model;
+        GtkTreeIter iter;
+        DhLink *link;
+
+        g_return_val_if_fail (DH_IS_BOOK_TREE (tree), NULL);
+
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
+        if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+                return NULL;
+
+        gtk_tree_model_get (model, &iter,
+                            COL_LINK, &link,
+                            -1);
+
+        return link;
 }
 
 static gboolean
