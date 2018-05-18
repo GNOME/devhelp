@@ -1024,12 +1024,16 @@ dh_book_tree_select_uri (DhBookTree  *tree,
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
 
-        /* Do not re-select/expand/scroll if already there. */
+        /* Do not re-expand/select/scroll if already there. */
         if (gtk_tree_selection_iter_is_selected (selection, &data.iter))
                 goto out;
 
+        /* The order is important here: select_iter() doesn't work if the row is
+         * hidden.
+         */
         gtk_tree_view_expand_to_path (GTK_TREE_VIEW (tree), data.path);
         gtk_tree_selection_select_iter (selection, &data.iter);
+
         gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (tree),
                                       data.path, NULL,
                                       FALSE, 0.0, 0.0);
