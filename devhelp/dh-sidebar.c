@@ -145,15 +145,15 @@ search_idle_cb (gpointer user_data)
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
         const gchar *search_text;
         const gchar *book_id;
-        DhLink *book_link;
+        DhLink *selected_link;
         DhLink *exact_link;
 
         priv->idle_search_id = 0;
 
         search_text = gtk_entry_get_text (priv->entry);
 
-        book_link = dh_book_tree_get_selected_book (priv->book_tree);
-        book_id = book_link != NULL ? dh_link_get_book_id (book_link) : NULL;
+        selected_link = dh_book_tree_get_selected_link (priv->book_tree);
+        book_id = selected_link != NULL ? dh_link_get_book_id (selected_link) : NULL;
 
         /* Disconnect the model, see the doc of dh_keyword_model_filter(). */
         gtk_tree_view_set_model (priv->hitlist_view, NULL);
@@ -169,8 +169,8 @@ search_idle_cb (gpointer user_data)
         if (exact_link != NULL)
                 g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, exact_link);
 
-        if (book_link != NULL)
-                dh_link_unref (book_link);
+        if (selected_link != NULL)
+                dh_link_unref (selected_link);
 
         return G_SOURCE_REMOVE;
 }
