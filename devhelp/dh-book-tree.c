@@ -995,7 +995,9 @@ book_tree_find_uri_foreach_func (GtkTreeModel *model,
  * @tree: a #DhBookTree.
  * @uri: the URI to select.
  *
- * Selects the given @uri.
+ * Selects the row corresponding to @uri. It searches in the tree a #DhLink
+ * being at @uri (if it's an exact match), or containing @uri (if @uri contains
+ * an anchor).
  */
 void
 dh_book_tree_select_uri (DhBookTree  *tree,
@@ -1023,8 +1025,7 @@ dh_book_tree_select_uri (DhBookTree  *tree,
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
 
-        /* Do not re-select (which will expand current additionally) if already
-         * there. */
+        /* Do not re-select/expand/scroll if already there. */
         if (gtk_tree_selection_iter_is_selected (selection, &data.iter))
                 goto out;
 
@@ -1045,7 +1046,9 @@ dh_book_tree_select_uri (DhBookTree  *tree,
         priv->selected_link = link;
         gtk_tree_selection_select_iter (selection, &data.iter);
 
-        gtk_tree_view_set_cursor (GTK_TREE_VIEW (tree), data.path, NULL, 0);
+        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (tree),
+                                      data.path, NULL,
+                                      FALSE, 0.0, 0.0);
 
         g_signal_handlers_unblock_by_func (selection,
                                            book_tree_selection_changed_cb,
