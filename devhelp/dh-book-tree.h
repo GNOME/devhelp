@@ -59,8 +59,6 @@ DhLink *        dh_book_tree_get_selected_link  (DhBookTree *tree);
 void            dh_book_tree_select_uri         (DhBookTree  *tree,
                                                  const gchar *uri);
 
-DhLink *        dh_book_tree_get_selected_book  (DhBookTree *tree);
-
 G_END_DECLS
 
 #endif /* DH_BOOK_TREE_H */
