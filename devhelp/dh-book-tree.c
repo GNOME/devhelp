@@ -534,11 +534,22 @@ book_tree_init_selection (DhBookTree *tree)
         priv = dh_book_tree_get_instance_private (tree);
 
         /* Mark the first item as selected, or it would get automatically
-         * selected when the treeview will get focus; but that's not even
-         * enough as a selection changed would still be emitted when there
-         * is no change, hence the manual tracking of selection in
-         * selected_link.
-         *   https://bugzilla.gnome.org/show_bug.cgi?id=492206
+         * selected when the treeview will get focus (a behavior that we want to
+         * avoid); but that's not even enough as a selection ::changed would
+         * still be emitted when there is no change, hence the manual tracking
+         * of selection with priv->selected_link.
+         *
+         * If there is no manual tracking with selected_link, there is this bug:
+         * 1. Open Devhelp.
+         * 2. The first book is initially selected (thanks to this function),
+         *    OK.
+         * 3. Click on the arrow of another book to expand it.
+         * --> The other book gets correctly expanded (and not selected), but
+         *     the selection ::changed signal is emitted for the *first* book
+         *     (even though it was already selected, strange).
+         *
+         * https://bugzilla.gnome.org/show_bug.cgi?id=492206 - GtkTreeView bug
+         * https://bugzilla.gnome.org/show_bug.cgi?id=603040 - Devhelp bug
          */
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
         g_signal_handlers_block_by_func (selection,
@@ -568,12 +579,12 @@ book_tree_init_selection (DhBookTree *tree)
                                     COL_LINK, &link,
                                     -1);
 
+                if (link == NULL || dh_link_get_link_type (link) != DH_LINK_TYPE_BOOK)
+                        g_warn_if_reached ();
+
                 g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
                 priv->selected_link = link;
                 gtk_tree_selection_select_iter (selection, &iter);
-
-                if (dh_link_get_link_type (link) != DH_LINK_TYPE_BOOK)
-                        g_warn_if_reached ();
         }
 
         g_signal_handlers_unblock_by_func (selection,
@@ -876,7 +887,7 @@ dh_book_tree_init (DhBookTree *tree)
                                           DH_TYPE_BOOK,
                                           PANGO_TYPE_WEIGHT,
                                           PANGO_TYPE_UNDERLINE);
-        priv->selected_link = NULL;
+
         gtk_tree_view_set_model (GTK_TREE_VIEW (tree),
                                  GTK_TREE_MODEL (priv->store));
 
