@@ -1006,7 +1006,6 @@ dh_book_tree_select_uri (DhBookTree  *tree,
         DhBookTreePrivate *priv;
         GtkTreeSelection *selection;
         FindURIData data;
-        DhLink *link;
 
         g_return_if_fail (DH_IS_BOOK_TREE (tree));
         g_return_if_fail (uri != NULL);
@@ -1029,30 +1028,11 @@ dh_book_tree_select_uri (DhBookTree  *tree,
         if (gtk_tree_selection_iter_is_selected (selection, &data.iter))
                 goto out;
 
-        /* FIXME: it's strange to block the signal here. The signal handler
-         * should probably be blocked in DhWindow instead.
-         */
-        g_signal_handlers_block_by_func (selection,
-                                         book_tree_selection_changed_cb,
-                                         tree);
-
         gtk_tree_view_expand_to_path (GTK_TREE_VIEW (tree), data.path);
-
-        gtk_tree_model_get (GTK_TREE_MODEL (priv->store),
-                            &data.iter,
-                            COL_LINK, &link,
-                            -1);
-        g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
-        priv->selected_link = link;
         gtk_tree_selection_select_iter (selection, &data.iter);
-
         gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (tree),
                                       data.path, NULL,
                                       FALSE, 0.0, 0.0);
-
-        g_signal_handlers_unblock_by_func (selection,
-                                           book_tree_selection_changed_cb,
-                                           tree);
 
 out:
         gtk_tree_path_free (data.path);

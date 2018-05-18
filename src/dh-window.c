@@ -623,6 +623,28 @@ sidebar_link_selected_cb (DhSidebar *sidebar,
 }
 
 static void
+sync_active_web_view_uri_to_sidebar (DhWindow *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        DhWebView *web_view;
+        const gchar *uri = NULL;
+
+        g_signal_handlers_block_by_func (priv->sidebar,
+                                         sidebar_link_selected_cb,
+                                         window);
+
+        web_view = get_active_web_view (window);
+        if (web_view != NULL)
+                uri = webkit_web_view_get_uri (WEBKIT_WEB_VIEW (web_view));
+        if (uri != NULL)
+                dh_sidebar_select_uri (priv->sidebar, uri);
+
+        g_signal_handlers_unblock_by_func (priv->sidebar,
+                                           sidebar_link_selected_cb,
+                                           window);
+}
+
+static void
 update_search_in_web_view (DhWindow  *window,
                            DhWebView *view)
 {
@@ -776,24 +798,11 @@ notebook_switch_page_after_cb (GtkNotebook *notebook,
                                guint        new_page_num,
                                DhWindow    *window)
 {
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-
         update_window_title (window);
         update_zoom_actions_sensitivity (window);
         update_back_forward_actions_sensitivity (window);
         update_search_in_active_web_view (window);
-
-        if (new_page != NULL) {
-                DhWebView *web_view;
-                const gchar *uri;
-
-                web_view = dh_tab_get_web_view (DH_TAB (new_page));
-
-                /* Sync the book tree */
-                uri = webkit_web_view_get_uri (WEBKIT_WEB_VIEW (web_view));
-                if (uri != NULL)
-                        dh_sidebar_select_uri (priv->sidebar, uri);
-        }
+        sync_active_web_view_uri_to_sidebar (window);
 }
 
 static void
@@ -1024,14 +1033,9 @@ web_view_load_changed_cb (DhWebView       *web_view,
                           WebKitLoadEvent  load_event,
                           DhWindow        *window)
 {
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-
         if (load_event == WEBKIT_LOAD_COMMITTED &&
             web_view == get_active_web_view (window)) {
-                const gchar *uri;
-
-                uri = webkit_web_view_get_uri (WEBKIT_WEB_VIEW (web_view));
-                dh_sidebar_select_uri (priv->sidebar, uri);
+                sync_active_web_view_uri_to_sidebar (window);
         }
 }
 
