@@ -248,41 +248,6 @@ hitlist_selection_changed_cb (GtkTreeSelection *selection,
         }
 }
 
-/* Make it possible to jump back to the currently selected item, useful when the
- * html view has been scrolled away.
- */
-static gboolean
-hitlist_button_press_cb (GtkTreeView    *hitlist_view,
-                         GdkEventButton *event,
-                         DhSidebar      *sidebar)
-{
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-        GtkTreePath *path;
-        GtkTreeIter iter;
-        DhLink *link;
-
-        gtk_tree_view_get_path_at_pos (hitlist_view, event->x, event->y, &path,
-                                       NULL, NULL, NULL);
-        if (path == NULL)
-                return GDK_EVENT_PROPAGATE;
-
-        gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->hitlist_model), &iter, path);
-        gtk_tree_path_free (path);
-
-        gtk_tree_model_get (GTK_TREE_MODEL (priv->hitlist_model),
-                            &iter,
-                            DH_KEYWORD_MODEL_COL_LINK, &link,
-                            -1);
-
-        g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
-        dh_link_unref (link);
-
-        /* Always propagate the event so the tree view can update
-         * the selection etc.
-         */
-        return GDK_EVENT_PROPAGATE;
-}
-
 static gboolean
 entry_key_press_event_cb (GtkEntry    *entry,
                           GdkEventKey *event,
@@ -509,6 +474,7 @@ dh_sidebar_constructed (GObject *object)
 {
         DhSidebar *sidebar = DH_SIDEBAR (object);
         DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+        GtkTreeSelection *selection;
         GtkCellRenderer *cell;
         DhBookList *book_list;
 
@@ -559,12 +525,15 @@ dh_sidebar_constructed (GObject *object)
         gtk_tree_view_set_enable_search (priv->hitlist_view, FALSE);
         gtk_widget_show (GTK_WIDGET (priv->hitlist_view));
 
-        g_signal_connect (priv->hitlist_view,
-                          "button-press-event",
-                          G_CALLBACK (hitlist_button_press_cb),
-                          sidebar);
+        selection = gtk_tree_view_get_selection (priv->hitlist_view);
 
-        g_signal_connect (gtk_tree_view_get_selection (priv->hitlist_view),
+        /* Set BROWSE mode. When clicking again on the same (already selected)
+         * row, it re-emits the ::changed signal, which is convenient to come
+         * back to that symbol when the HTML view has been scrolled away.
+         */
+        gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
+
+        g_signal_connect (selection,
                           "changed",
                           G_CALLBACK (hitlist_selection_changed_cb),
                           sidebar);
