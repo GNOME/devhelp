@@ -759,6 +759,8 @@ dh_sidebar_get_profile (DhSidebar *sidebar)
  * dh_sidebar_select_uri:
  * @sidebar: a #DhSidebar.
  * @uri: the URI to select.
+ *
+ * Calls dh_book_tree_select_uri().
  */
 void
 dh_sidebar_select_uri (DhSidebar   *sidebar,
