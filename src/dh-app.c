@@ -64,11 +64,11 @@ add_menu_action_infos (DhApp *app)
                 { "win.find", NULL, N_("_Find"), "<Control>f",
                   N_("Find in current page") },
                 { "win.zoom-in", NULL, N_("_Larger Text"), NULL,
-                  N_("Zoom in") },
+                  N_("Larger text") },
                 { "win.zoom-out", NULL, N_("S_maller Text"), "<Control>minus",
-                  N_("Zoom out") },
+                  N_("Smaller text") },
                 { "win.zoom-default", NULL, N_("_Normal Size"), "<Control>0",
-                  N_("Reset zoom") },
+                  N_("Normal size") },
                 { NULL }
         };
 
