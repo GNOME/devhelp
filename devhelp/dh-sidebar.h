@@ -64,6 +64,8 @@ DhSidebar *     dh_sidebar_new2                 (DhProfile *profile);
 
 DhProfile *     dh_sidebar_get_profile          (DhSidebar *sidebar);
 
+DhLink *        dh_sidebar_get_selected_link    (DhSidebar *sidebar);
+
 void            dh_sidebar_select_uri           (DhSidebar   *sidebar,
                                                  const gchar *uri);
 

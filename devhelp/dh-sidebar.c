@@ -47,10 +47,9 @@
  * #GtkTreeView. The two #GtkTreeView's cannot be both visible at the same time,
  * it's either one or the other.
  *
- * The #DhSidebar::link-selected signal is emitted when one element in one of
- * the #GtkTreeView's is selected. When that happens, the Devhelp application
- * opens the link in a #WebKitWebView shown at the right side of the main
- * window.
+ * #DhSidebar emits the #DhSidebar::link-selected signal. When that happens, the
+ * Devhelp application opens the #DhLink in a #WebKitWebView shown at the right
+ * side of the main window.
  */
 
 typedef struct {
@@ -229,20 +228,36 @@ remove_book_cb (DhBookList *book_list,
 
 /******************************************************************************/
 
+/* Returns: (transfer full) (nullable): */
+static DhLink *
+hitlist_get_selected_link (DhSidebar *sidebar)
+{
+        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
+        GtkTreeSelection *selection;
+        GtkTreeModel *model;
+        GtkTreeIter iter;
+        DhLink *link;
+
+        selection = gtk_tree_view_get_selection (priv->hitlist_view);
+        if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+                return NULL;
+
+        gtk_tree_model_get (model, &iter,
+                            DH_KEYWORD_MODEL_COL_LINK, &link,
+                            -1);
+
+        return link;
+}
+
 static void
 hitlist_selection_changed_cb (GtkTreeSelection *selection,
                               DhSidebar        *sidebar)
 {
-        DhSidebarPrivate *priv = dh_sidebar_get_instance_private (sidebar);
-        GtkTreeIter iter;
+        DhLink *link;
 
-        if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {
-                DhLink *link;
+        link = hitlist_get_selected_link (sidebar);
 
-                gtk_tree_model_get (GTK_TREE_MODEL (priv->hitlist_model), &iter,
-                                    DH_KEYWORD_MODEL_COL_LINK, &link,
-                                    -1);
-
+        if (link != NULL) {
                 g_signal_emit (sidebar, signals[SIGNAL_LINK_SELECTED], 0, link);
                 dh_link_unref (link);
         }
@@ -635,6 +650,17 @@ dh_sidebar_class_init (DhSidebarClass *klass)
          * DhSidebar::link-selected:
          * @sidebar: a #DhSidebar.
          * @link: the selected #DhLink.
+         *
+         * The ::link-selected signal is emitted when:
+         * 1. One row in one of the #GtkTreeView's is selected and contains a
+         *    #DhLink (i.e. when the row is not a language group);
+         * 2. Or if there is an exact match returned by
+         *    dh_keyword_model_filter() when a search occurs.
+         *
+         * Note that dh_sidebar_get_selected_link() takes into account only the
+         * former, not the latter. So the last @link emitted with this signal is
+         * not necessarily the same as the current return value of
+         * dh_sidebar_get_selected_link().
          */
         signals[SIGNAL_LINK_SELECTED] =
                 g_signal_new ("link-selected",
@@ -722,6 +748,43 @@ dh_sidebar_get_profile (DhSidebar *sidebar)
 
         priv = dh_sidebar_get_instance_private (sidebar);
         return priv->profile;
+}
+
+/**
+ * dh_sidebar_get_selected_link:
+ * @sidebar: a #DhSidebar.
+ *
+ * Note: the return value of this function is not necessarily the same as the
+ * last #DhLink emitted by the #DhSidebar::link-selected signal. See the
+ * documentation of #DhSidebar::link-selected.
+ *
+ * Returns: (transfer full) (nullable): the currently selected #DhLink in the
+ * visible #GtkTreeView of @sidebar, or %NULL if the selection is empty or if a
+ * language group row is selected. Unref with dh_link_unref() when no longer
+ * needed.
+ * Since: 3.30
+ */
+DhLink *
+dh_sidebar_get_selected_link (DhSidebar *sidebar)
+{
+        DhSidebarPrivate *priv;
+        gboolean book_tree_visible;
+        gboolean hitlist_visible;
+
+        g_return_val_if_fail (DH_IS_SIDEBAR (sidebar), NULL);
+
+        priv = dh_sidebar_get_instance_private (sidebar);
+
+        book_tree_visible = gtk_widget_get_visible (GTK_WIDGET (priv->sw_book_tree));
+        hitlist_visible = gtk_widget_get_visible (GTK_WIDGET (priv->sw_hitlist));
+
+        g_return_val_if_fail ((book_tree_visible || hitlist_visible) &&
+                              !(book_tree_visible && hitlist_visible), NULL);
+
+        if (book_tree_visible)
+                return dh_book_tree_get_selected_link (priv->book_tree);
+
+        return hitlist_get_selected_link (sidebar);
 }
 
 /**
