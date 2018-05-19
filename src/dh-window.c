@@ -48,8 +48,6 @@ typedef struct {
         GtkButton *search_prev_button;
         GtkButton *search_next_button;
         GtkNotebook *notebook;
-
-        DhLink *selected_link;
 } DhWindowPrivate;
 
 static void open_new_tab (DhWindow    *window,
@@ -57,16 +55,6 @@ static void open_new_tab (DhWindow    *window,
                           gboolean     switch_focus);
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
-
-static void
-dh_window_dispose (GObject *object)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (DH_WINDOW (object));
-
-        g_clear_pointer (&priv->selected_link, (GDestroyNotify) dh_link_unref);
-
-        G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
-}
 
 static gboolean
 dh_window_delete_event (GtkWidget   *widget,
@@ -87,10 +75,7 @@ dh_window_delete_event (GtkWidget   *widget,
 static void
 dh_window_class_init (DhWindowClass *klass)
 {
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-
-        object_class->dispose = dh_window_dispose;
 
         widget_class->delete_event = dh_window_delete_event;
 
@@ -297,13 +282,17 @@ copy_cb (GSimpleAction *action,
         if (GTK_IS_EDITABLE (widget)) {
                 gtk_editable_copy_clipboard (GTK_EDITABLE (widget));
         } else if (GTK_IS_TREE_VIEW (widget) &&
-                   gtk_widget_is_ancestor (widget, GTK_WIDGET (priv->sidebar)) &&
-                   priv->selected_link != NULL) {
-                GtkClipboard *clipboard;
-                clipboard = gtk_widget_get_clipboard (widget, GDK_SELECTION_CLIPBOARD);
-                gtk_clipboard_set_text (clipboard,
-                                        dh_link_get_name (priv->selected_link),
-                                        -1);
+                   gtk_widget_is_ancestor (widget, GTK_WIDGET (priv->sidebar))) {
+                DhLink *link;
+
+                link = dh_sidebar_get_selected_link (priv->sidebar);
+                if (link != NULL) {
+                        GtkClipboard *clipboard;
+
+                        clipboard = gtk_widget_get_clipboard (widget, GDK_SELECTION_CLIPBOARD);
+                        gtk_clipboard_set_text (clipboard, dh_link_get_name (link), -1);
+                        dh_link_unref (link);
+                }
         } else {
                 DhWebView *web_view;
 
@@ -602,14 +591,8 @@ sidebar_link_selected_cb (DhSidebar *sidebar,
                           DhLink    *link,
                           DhWindow  *window)
 {
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gchar *uri;
         DhWebView *web_view;
-
-        if (priv->selected_link != link) {
-                g_clear_pointer (&priv->selected_link, (GDestroyNotify) dh_link_unref);
-                priv->selected_link = dh_link_ref (link);
-        }
 
         uri = dh_link_get_uri (link);
         if (uri == NULL)
