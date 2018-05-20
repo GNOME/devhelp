@@ -21,7 +21,7 @@
 #include "dh-web-view.h"
 #include <math.h>
 #include <glib/gi18n.h>
-#include "dh-settings-app.h"
+#include <devhelp/devhelp.h>
 
 struct _DhWebViewPrivate {
         gchar *search_text;
@@ -166,62 +166,59 @@ dh_web_view_button_press_event (GtkWidget      *widget,
 
 static void
 set_fonts (WebKitWebView *view,
-           const gchar   *font_name_fixed,
-           const gchar   *font_name_variable)
+           const gchar   *font_name_variable,
+           const gchar   *font_name_fixed)
 {
-        PangoFontDescription *font_desc_fixed;
         PangoFontDescription *font_desc_variable;
-        guint font_size_fixed;
+        PangoFontDescription *font_desc_fixed;
         guint font_size_variable;
-        guint font_size_fixed_px;
+        guint font_size_fixed;
         guint font_size_variable_px;
+        guint font_size_fixed_px;
         WebKitSettings *settings;
 
-        g_return_if_fail (font_name_fixed != NULL);
         g_return_if_fail (font_name_variable != NULL);
+        g_return_if_fail (font_name_fixed != NULL);
 
         /* Get the font size. */
-        font_desc_fixed = pango_font_description_from_string (font_name_fixed);
         font_desc_variable = pango_font_description_from_string (font_name_variable);
-        font_size_fixed = pango_font_description_get_size (font_desc_fixed) / PANGO_SCALE;
+        font_desc_fixed = pango_font_description_from_string (font_name_fixed);
         font_size_variable = pango_font_description_get_size (font_desc_variable) / PANGO_SCALE;
-        font_size_fixed_px = webkit_settings_font_size_to_pixels (font_size_fixed);
+        font_size_fixed = pango_font_description_get_size (font_desc_fixed) / PANGO_SCALE;
         font_size_variable_px = webkit_settings_font_size_to_pixels (font_size_variable);
+        font_size_fixed_px = webkit_settings_font_size_to_pixels (font_size_fixed);
 
         /* Set the fonts. */
         settings = webkit_web_view_get_settings (view);
         webkit_settings_set_zoom_text_only (settings, TRUE);
-        webkit_settings_set_monospace_font_family (settings, font_name_fixed);
-        webkit_settings_set_default_monospace_font_size (settings, font_size_fixed_px);
         webkit_settings_set_serif_font_family (settings, font_name_variable);
         webkit_settings_set_default_font_size (settings, font_size_variable_px);
+        webkit_settings_set_monospace_font_family (settings, font_name_fixed);
+        webkit_settings_set_default_monospace_font_size (settings, font_size_fixed_px);
 
-        g_debug ("Set font-fixed to '%s' (%i) and font-variable to '%s' (%i).",
-                 font_name_fixed, font_size_fixed_px, font_name_variable, font_size_variable_px);
-
-        pango_font_description_free (font_desc_fixed);
         pango_font_description_free (font_desc_variable);
+        pango_font_description_free (font_desc_fixed);
 }
 
 static void
 update_fonts (DhWebView *view)
 {
-        DhSettingsApp *settings;
-        gchar *font_fixed = NULL;
-        gchar *font_variable = NULL;
+        DhSettings *settings;
+        gchar *variable_font = NULL;
+        gchar *fixed_font = NULL;
 
-        settings = dh_settings_app_get_singleton ();
-        dh_settings_app_get_selected_fonts (settings, &font_fixed, &font_variable);
+        settings = dh_settings_get_default ();
+        dh_settings_get_selected_fonts (settings, &variable_font, &fixed_font);
 
-        set_fonts (WEBKIT_WEB_VIEW (view), font_fixed, font_variable);
+        set_fonts (WEBKIT_WEB_VIEW (view), variable_font, fixed_font);
 
-        g_free (font_fixed);
-        g_free (font_variable);
+        g_free (variable_font);
+        g_free (fixed_font);
 }
 
 static void
-settings_fonts_changed_cb (DhSettingsApp *settings,
-                           DhWebView     *view)
+settings_fonts_changed_cb (DhSettings *settings,
+                           DhWebView  *view)
 {
         update_fonts (view);
 }
@@ -230,20 +227,20 @@ static void
 dh_web_view_constructed (GObject *object)
 {
         DhWebView *view = DH_WEB_VIEW (object);
-        WebKitSettings *settings;
-        DhSettingsApp *settings_app;
+        WebKitSettings *webkit_settings;
+        DhSettings *dh_settings;
 
         if (G_OBJECT_CLASS (dh_web_view_parent_class)->constructed != NULL)
                 G_OBJECT_CLASS (dh_web_view_parent_class)->constructed (object);
 
         /* Disable some things we have no need for. */
-        settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
-        webkit_settings_set_enable_html5_database (settings, FALSE);
-        webkit_settings_set_enable_html5_local_storage (settings, FALSE);
-        webkit_settings_set_enable_plugins (settings, FALSE);
+        webkit_settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
+        webkit_settings_set_enable_html5_database (webkit_settings, FALSE);
+        webkit_settings_set_enable_html5_local_storage (webkit_settings, FALSE);
+        webkit_settings_set_enable_plugins (webkit_settings, FALSE);
 
-        settings_app = dh_settings_app_get_singleton ();
-        g_signal_connect_object (settings_app,
+        dh_settings = dh_settings_get_default ();
+        g_signal_connect_object (dh_settings,
                                  "fonts-changed",
                                  G_CALLBACK (settings_fonts_changed_cb),
                                  view,

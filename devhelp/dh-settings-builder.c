@@ -53,6 +53,7 @@
 
 struct _DhSettingsBuilderPrivate {
         gchar *contents_path;
+        gchar *fonts_path;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhSettingsBuilder, dh_settings_builder, G_TYPE_OBJECT)
@@ -63,6 +64,7 @@ dh_settings_builder_finalize (GObject *object)
         DhSettingsBuilder *builder = DH_SETTINGS_BUILDER (object);
 
         g_free (builder->priv->contents_path);
+        g_free (builder->priv->fonts_path);
 
         G_OBJECT_CLASS (dh_settings_builder_parent_class)->finalize (object);
 }
@@ -117,6 +119,29 @@ dh_settings_builder_set_contents_path (DhSettingsBuilder *builder,
 }
 
 /**
+ * dh_settings_builder_set_fonts_path:
+ * @builder: a #DhSettingsBuilder.
+ * @fonts_path: the path for the "fonts" schema.
+ *
+ * Sets the path for the "fonts" schema.
+ *
+ * If you don't call this function, the default path for this schema will be
+ * used.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_builder_set_fonts_path (DhSettingsBuilder *builder,
+                                    const gchar       *fonts_path)
+{
+        g_return_if_fail (DH_IS_SETTINGS_BUILDER (builder));
+        g_return_if_fail (fonts_path != NULL);
+
+        g_free (builder->priv->fonts_path);
+        builder->priv->fonts_path = g_strdup (fonts_path);
+}
+
+/**
  * dh_settings_builder_create_object:
  * @builder: a #DhSettingsBuilder.
  *
@@ -136,6 +161,11 @@ dh_settings_builder_create_object (DhSettingsBuilder *builder)
                 // Must be compatible with Devhelp app version 3.28:
                 dh_settings_builder_set_contents_path (builder, "/org/gnome/devhelp/state/main/contents/");
         }
+        if (builder->priv->fonts_path == NULL) {
+                // Must be compatible with Devhelp app version 3.28:
+                dh_settings_builder_set_fonts_path (builder, "/org/gnome/devhelp/fonts/");
+        }
 
-        return _dh_settings_new (builder->priv->contents_path);
+        return _dh_settings_new (builder->priv->contents_path,
+                                 builder->priv->fonts_path);
 }

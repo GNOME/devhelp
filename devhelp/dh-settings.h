@@ -48,6 +48,7 @@ struct _DhSettingsClass {
 
         /* Signals */
         void (* books_disabled_changed) (DhSettings *settings);
+        void (* fonts_changed)          (DhSettings *settings);
 
         /* Padding for future expansion */
         gpointer padding[12];
@@ -56,7 +57,8 @@ struct _DhSettingsClass {
 GType           dh_settings_get_type                            (void) G_GNUC_CONST;
 
 G_GNUC_INTERNAL
-DhSettings *    _dh_settings_new                                (const gchar *contents_path);
+DhSettings *    _dh_settings_new                                (const gchar *contents_path,
+                                                                 const gchar *fonts_path);
 
 DhSettings *    dh_settings_get_default                         (void);
 
@@ -82,6 +84,27 @@ void            dh_settings_set_book_enabled                    (DhSettings *set
 void            dh_settings_freeze_books_disabled_changed       (DhSettings *settings);
 
 void            dh_settings_thaw_books_disabled_changed         (DhSettings *settings);
+
+void            dh_settings_get_selected_fonts                  (DhSettings  *settings,
+                                                                 gchar      **variable_font,
+                                                                 gchar      **fixed_font);
+
+gboolean        dh_settings_get_use_system_fonts                (DhSettings *settings);
+
+void            dh_settings_set_use_system_fonts                (DhSettings *settings,
+                                                                 gboolean    use_system_fonts);
+
+const gchar *   dh_settings_get_variable_font                   (DhSettings *settings);
+
+void            dh_settings_set_variable_font                   (DhSettings  *settings,
+                                                                 const gchar *variable_font);
+
+const gchar *   dh_settings_get_fixed_font                      (DhSettings *settings);
+
+void            dh_settings_set_fixed_font                      (DhSettings  *settings,
+                                                                 const gchar *fixed_font);
+
+void            dh_settings_bind_fonts                          (DhSettings *settings);
 
 G_END_DECLS
 

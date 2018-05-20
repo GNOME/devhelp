@@ -58,6 +58,9 @@ DhSettingsBuilder *
 void            dh_settings_builder_set_contents_path   (DhSettingsBuilder *builder,
                                                          const gchar       *contents_path);
 
+void            dh_settings_builder_set_fonts_path      (DhSettingsBuilder *builder,
+                                                         const gchar       *fonts_path);
+
 DhSettings *    dh_settings_builder_create_object       (DhSettingsBuilder *builder);
 
 G_END_DECLS

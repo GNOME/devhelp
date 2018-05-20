@@ -627,15 +627,13 @@ static void
 init_fonts_tab (DhPreferences *prefs)
 {
         DhPreferencesPrivate *priv = dh_preferences_get_instance_private (prefs);
-        DhSettingsApp *settings_app;
-        GSettings *fonts_settings;
+        DhSettings *settings;
 
-        settings_app = dh_settings_app_get_singleton ();
-        fonts_settings = dh_settings_app_peek_fonts_settings (settings_app);
+        settings = dh_settings_get_default ();
 
-        g_settings_bind (fonts_settings, "use-system-fonts",
-                         priv->use_system_fonts_checkbutton, "active",
-                         G_SETTINGS_BIND_DEFAULT);
+        g_object_bind_property (settings, "use-system-fonts",
+                                priv->use_system_fonts_checkbutton, "active",
+                                G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
         g_object_bind_property (priv->use_system_fonts_checkbutton, "active",
                                 priv->custom_fonts_grid, "sensitive",
@@ -643,13 +641,13 @@ init_fonts_tab (DhPreferences *prefs)
                                 G_BINDING_SYNC_CREATE |
                                 G_BINDING_INVERT_BOOLEAN);
 
-        g_settings_bind (fonts_settings, "variable-font",
-                         priv->variable_font_button, "font",
-                         G_SETTINGS_BIND_DEFAULT);
+        g_object_bind_property (settings, "variable-font",
+                                priv->variable_font_button, "font",
+                                G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-        g_settings_bind (fonts_settings, "fixed-font",
-                         priv->fixed_font_button, "font",
-                         G_SETTINGS_BIND_DEFAULT);
+        g_object_bind_property (settings, "fixed-font",
+                                priv->fixed_font_button, "font",
+                                G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 }
 
 static void

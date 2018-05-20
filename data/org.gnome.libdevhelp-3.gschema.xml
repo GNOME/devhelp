@@ -1,6 +1,7 @@
 <schemalist gettext-domain="devhelp">
   <schema id="org.gnome.libdevhelp-3">
     <child name="contents" schema="org.gnome.libdevhelp-3.contents"/>
+    <child name="fonts" schema="org.gnome.libdevhelp-3.fonts"/>
   </schema>
   <schema id="org.gnome.libdevhelp-3.contents">
     <key name="books-disabled" type="as">
@@ -12,6 +13,23 @@
       <default>false</default>
       <summary>Group books by language</summary>
       <description>Whether books should be grouped by programming language in the user interface.</description>
+    </key>
+  </schema>
+  <schema id="org.gnome.libdevhelp-3.fonts">
+    <key name="use-system-fonts" type="b">
+      <default>true</default>
+      <summary>Use system fonts</summary>
+      <description>Use the system default fonts.</description>
+    </key>
+    <key name="variable-font" type="s">
+      <default>'Sans 12'</default>
+      <summary>Font for text</summary>
+      <description>Font for text with variable width.</description>
+    </key>
+    <key name="fixed-font" type="s">
+      <default>'Monospace 12'</default>
+      <summary>Font for fixed width text</summary>
+      <description>Font for text with fixed width, such as code examples.</description>
     </key>
   </schema>
 </schemalist>

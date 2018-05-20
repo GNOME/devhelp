@@ -252,6 +252,14 @@ dh_settings_is_book_enabled
 dh_settings_set_book_enabled
 dh_settings_freeze_books_disabled_changed
 dh_settings_thaw_books_disabled_changed
+dh_settings_get_selected_fonts
+dh_settings_get_use_system_fonts
+dh_settings_set_use_system_fonts
+dh_settings_get_variable_font
+dh_settings_set_variable_font
+dh_settings_get_fixed_font
+dh_settings_set_fixed_font
+dh_settings_bind_fonts
 <SUBSECTION Standard>
 DH_IS_SETTINGS
 DH_IS_SETTINGS_CLASS
@@ -269,6 +277,7 @@ dh_settings_get_type
 DhSettingsBuilder
 dh_settings_builder_new
 dh_settings_builder_set_contents_path
+dh_settings_builder_set_fonts_path
 dh_settings_builder_create_object
 <SUBSECTION Standard>
 DH_IS_SETTINGS_BUILDER

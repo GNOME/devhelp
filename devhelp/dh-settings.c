@@ -73,24 +73,40 @@
 
 /* libdevhelp GSettings schema IDs */
 #define SETTINGS_SCHEMA_ID_CONTENTS             "org.gnome.libdevhelp-3.contents"
+#define SETTINGS_SCHEMA_ID_FONTS                "org.gnome.libdevhelp-3.fonts"
+
+/* Provided by the gsettings-desktop-schemas module. */
+#define SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE    "org.gnome.desktop.interface"
+#define SYSTEM_FIXED_FONT_KEY                   "monospace-font-name"
+#define SYSTEM_VARIABLE_FONT_KEY                "font-name"
 
 struct _DhSettingsPrivate {
         GSettings *gsettings_contents;
+        GSettings *gsettings_fonts;
+        GSettings *gsettings_desktop_interface;
 
         /* List of book IDs (gchar*) currently disabled. */
         GList *books_disabled;
 
+        gchar *variable_font;
+        gchar *fixed_font;
+
         guint group_books_by_language : 1;
+        guint use_system_fonts : 1;
 };
 
 enum {
         PROP_0,
         PROP_GROUP_BOOKS_BY_LANGUAGE,
+        PROP_USE_SYSTEM_FONTS,
+        PROP_VARIABLE_FONT,
+        PROP_FIXED_FONT,
         N_PROPERTIES
 };
 
 enum {
         SIGNAL_BOOKS_DISABLED_CHANGED,
+        SIGNAL_FONTS_CHANGED,
         N_SIGNALS
 };
 
@@ -223,6 +239,18 @@ dh_settings_get_property (GObject    *object,
                         g_value_set_boolean (value, dh_settings_get_group_books_by_language (settings));
                         break;
 
+                case PROP_USE_SYSTEM_FONTS:
+                        g_value_set_boolean (value, dh_settings_get_use_system_fonts (settings));
+                        break;
+
+                case PROP_VARIABLE_FONT:
+                        g_value_set_string (value, dh_settings_get_variable_font (settings));
+                        break;
+
+                case PROP_FIXED_FONT:
+                        g_value_set_string (value, dh_settings_get_fixed_font (settings));
+                        break;
+
                 default:
                         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                         break;
@@ -242,6 +270,18 @@ dh_settings_set_property (GObject      *object,
                         dh_settings_set_group_books_by_language (settings, g_value_get_boolean (value));
                         break;
 
+                case PROP_USE_SYSTEM_FONTS:
+                        dh_settings_set_use_system_fonts (settings, g_value_get_boolean (value));
+                        break;
+
+                case PROP_VARIABLE_FONT:
+                        dh_settings_set_variable_font (settings, g_value_get_string (value));
+                        break;
+
+                case PROP_FIXED_FONT:
+                        dh_settings_set_fixed_font (settings, g_value_get_string (value));
+                        break;
+
                 default:
                         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                         break;
@@ -254,6 +294,8 @@ dh_settings_dispose (GObject *object)
         DhSettings *settings = DH_SETTINGS (object);
 
         g_clear_object (&settings->priv->gsettings_contents);
+        g_clear_object (&settings->priv->gsettings_fonts);
+        g_clear_object (&settings->priv->gsettings_desktop_interface);
 
         G_OBJECT_CLASS (dh_settings_parent_class)->dispose (object);
 }
@@ -264,6 +306,8 @@ dh_settings_finalize (GObject *object)
         DhSettings *settings = DH_SETTINGS (object);
 
         g_list_free_full (settings->priv->books_disabled, g_free);
+        g_free (settings->priv->variable_font);
+        g_free (settings->priv->fixed_font);
 
         if (default_instance == settings)
                 default_instance = NULL;
@@ -299,6 +343,58 @@ dh_settings_class_init (DhSettingsClass *klass)
                                       G_PARAM_CONSTRUCT |
                                       G_PARAM_STATIC_STRINGS);
 
+        /**
+         * DhSettings:use-system-fonts:
+         *
+         * Whether to use the system default fonts.
+         *
+         * Since: 3.30
+         */
+        properties[PROP_USE_SYSTEM_FONTS] =
+                g_param_spec_boolean ("use-system-fonts",
+                                      "use-system-fonts",
+                                      "",
+                                      TRUE,
+                                      G_PARAM_READWRITE |
+                                      G_PARAM_CONSTRUCT |
+                                      G_PARAM_STATIC_STRINGS);
+
+        /**
+         * DhSettings:variable-font:
+         *
+         * Font for text with variable width.
+         *
+         * This property is independent of #DhSettings:use-system-fonts.
+         *
+         * Since: 3.30
+         */
+        properties[PROP_VARIABLE_FONT] =
+                g_param_spec_string ("variable-font",
+                                     "variable-font",
+                                     "",
+                                     "Sans 12",
+                                     G_PARAM_READWRITE |
+                                     G_PARAM_CONSTRUCT |
+                                     G_PARAM_STATIC_STRINGS);
+
+        /**
+         * DhSettings:fixed-font:
+         *
+         * Font for text with fixed width, such as code examples.
+         *
+         * This property is independent of #DhSettings:use-system-fonts.
+         *
+         * Since: 3.30
+         */
+        properties[PROP_FIXED_FONT] =
+                g_param_spec_string ("fixed-font",
+                                     "fixed-font",
+                                     "",
+                                     "Monospace 12",
+                                     G_PARAM_READWRITE |
+                                     G_PARAM_CONSTRUCT |
+                                     G_PARAM_STATIC_STRINGS);
+
         g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
         /**
@@ -317,16 +413,57 @@ dh_settings_class_init (DhSettingsClass *klass)
                               G_STRUCT_OFFSET (DhSettingsClass, books_disabled_changed),
                               NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
+
+        /**
+         * DhSettings::fonts-changed:
+         * @settings: the #DhSettings emitting the signal.
+         *
+         * The ::fonts-changed signal is emitted when the return values of
+         * dh_settings_get_selected_fonts() have potentially changed.
+         *
+         * Since: 3.30
+         */
+        signals[SIGNAL_FONTS_CHANGED] =
+                g_signal_new ("fonts-changed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_FIRST,
+                              G_STRUCT_OFFSET (DhSettingsClass, fonts_changed),
+                              NULL, NULL, NULL,
+                              G_TYPE_NONE, 0);
+}
+
+static void
+system_font_changed_cb (GSettings  *gsettings,
+                        gchar      *key,
+                        DhSettings *settings)
+{
+        if (settings->priv->use_system_fonts)
+                g_signal_emit (settings, signals[SIGNAL_FONTS_CHANGED], 0);
 }
 
 static void
 dh_settings_init (DhSettings *settings)
 {
         settings->priv = dh_settings_get_instance_private (settings);
+
+        settings->priv->gsettings_desktop_interface = g_settings_new (SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE);
+
+        g_signal_connect_object (settings->priv->gsettings_desktop_interface,
+                                 "changed::" SYSTEM_FIXED_FONT_KEY,
+                                 G_CALLBACK (system_font_changed_cb),
+                                 settings,
+                                 0);
+
+        g_signal_connect_object (settings->priv->gsettings_desktop_interface,
+                                 "changed::" SYSTEM_VARIABLE_FONT_KEY,
+                                 G_CALLBACK (system_font_changed_cb),
+                                 settings,
+                                 0);
 }
 
 DhSettings *
-_dh_settings_new (const gchar *contents_path)
+_dh_settings_new (const gchar *contents_path,
+                  const gchar *fonts_path)
 {
         DhSettings *settings;
 
@@ -336,6 +473,8 @@ _dh_settings_new (const gchar *contents_path)
 
         settings->priv->gsettings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
                                                                        contents_path);
+        settings->priv->gsettings_fonts = g_settings_new_with_path (SETTINGS_SCHEMA_ID_FONTS,
+                                                                    fonts_path);
 
         g_signal_connect_object (settings->priv->gsettings_contents,
                                  "changed::books-disabled",
@@ -398,6 +537,7 @@ dh_settings_bind_all (DhSettings *settings)
         g_return_if_fail (DH_IS_SETTINGS (settings));
 
         dh_settings_bind_group_books_by_language (settings);
+        dh_settings_bind_fonts (settings);
 }
 
 /**
@@ -561,4 +701,198 @@ dh_settings_thaw_books_disabled_changed (DhSettings *settings)
          * didn't change.
          */
         g_signal_emit (settings, signals[SIGNAL_BOOKS_DISABLED_CHANGED], 0);
+}
+
+/**
+ * dh_settings_get_selected_fonts:
+ * @settings: a #DhSettings.
+ * @variable_font: (out): location to store the font name for text with variable
+ *   width. Free with g_free().
+ * @fixed_font: (out): location to store the font name for text with fixed
+ *   width. Free with g_free().
+ *
+ * If #DhSettings:use-system-fonts is %TRUE, returns the system fonts. Otherwise
+ * returns the values of the #DhSettings:variable-font and
+ * #DhSettings:fixed-font properties.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_get_selected_fonts (DhSettings  *settings,
+                                gchar      **variable_font,
+                                gchar      **fixed_font)
+{
+        g_return_if_fail (DH_IS_SETTINGS (settings));
+        g_return_if_fail (variable_font != NULL && *variable_font == NULL);
+        g_return_if_fail (fixed_font != NULL && *fixed_font == NULL);
+
+        if (settings->priv->use_system_fonts) {
+                *variable_font = g_settings_get_string (settings->priv->gsettings_desktop_interface,
+                                                        SYSTEM_VARIABLE_FONT_KEY);
+                *fixed_font = g_settings_get_string (settings->priv->gsettings_desktop_interface,
+                                                     SYSTEM_FIXED_FONT_KEY);
+        } else {
+                *variable_font = g_strdup (settings->priv->variable_font);
+                *fixed_font = g_strdup (settings->priv->fixed_font);
+        }
+}
+
+/**
+ * dh_settings_get_use_system_fonts:
+ * @settings: a #DhSettings.
+ *
+ * Returns: the value of the #DhSettings:use-system-fonts property.
+ * Since: 3.30
+ */
+gboolean
+dh_settings_get_use_system_fonts (DhSettings *settings)
+{
+        g_return_val_if_fail (DH_IS_SETTINGS (settings), FALSE);
+
+        return settings->priv->use_system_fonts;
+}
+
+/**
+ * dh_settings_set_use_system_fonts:
+ * @settings: a #DhSettings.
+ * @use_system_fonts: the new value.
+ *
+ * Sets the #DhSettings:use-system-fonts property.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_set_use_system_fonts (DhSettings *settings,
+                                  gboolean    use_system_fonts)
+{
+        g_return_if_fail (DH_IS_SETTINGS (settings));
+
+        use_system_fonts = use_system_fonts != FALSE;
+
+        if (settings->priv->use_system_fonts != use_system_fonts) {
+                settings->priv->use_system_fonts = use_system_fonts;
+                g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_USE_SYSTEM_FONTS]);
+
+                g_signal_emit (settings, signals[SIGNAL_FONTS_CHANGED], 0);
+        }
+}
+
+/**
+ * dh_settings_get_variable_font:
+ * @settings: a #DhSettings.
+ *
+ * Warning: you probably want to use the dh_settings_get_selected_fonts()
+ * function instead, to take into account the #DhSettings:use-system-fonts
+ * property.
+ *
+ * Returns: the value of the #DhSettings:variable-font property.
+ * Since: 3.30
+ */
+const gchar *
+dh_settings_get_variable_font (DhSettings *settings)
+{
+        g_return_val_if_fail (DH_IS_SETTINGS (settings), NULL);
+
+        return settings->priv->variable_font;
+}
+
+/**
+ * dh_settings_set_variable_font:
+ * @settings: a #DhSettings.
+ * @variable_font: the new value.
+ *
+ * Sets the #DhSettings:variable-font property.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_set_variable_font (DhSettings  *settings,
+                               const gchar *variable_font)
+{
+        g_return_if_fail (DH_IS_SETTINGS (settings));
+        g_return_if_fail (variable_font != NULL);
+
+        if (g_strcmp0 (settings->priv->variable_font, variable_font) != 0) {
+                g_free (settings->priv->variable_font);
+                settings->priv->variable_font = g_strdup (variable_font);
+                g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_VARIABLE_FONT]);
+
+                if (!settings->priv->use_system_fonts)
+                        g_signal_emit (settings, signals[SIGNAL_FONTS_CHANGED], 0);
+        }
+}
+
+/**
+ * dh_settings_get_fixed_font:
+ * @settings: a #DhSettings.
+ *
+ * Warning: you probably want to use the dh_settings_get_selected_fonts()
+ * function instead, to take into account the #DhSettings:use-system-fonts
+ * property.
+ *
+ * Returns: the value of the #DhSettings:fixed-font property.
+ * Since: 3.30
+ */
+const gchar *
+dh_settings_get_fixed_font (DhSettings *settings)
+{
+        g_return_val_if_fail (DH_IS_SETTINGS (settings), NULL);
+
+        return settings->priv->fixed_font;
+}
+
+/**
+ * dh_settings_set_fixed_font:
+ * @settings: a #DhSettings.
+ * @fixed_font: the new value.
+ *
+ * Sets the #DhSettings:fixed-font property.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_set_fixed_font (DhSettings  *settings,
+                            const gchar *fixed_font)
+{
+        g_return_if_fail (DH_IS_SETTINGS (settings));
+        g_return_if_fail (fixed_font != NULL);
+
+        if (g_strcmp0 (settings->priv->fixed_font, fixed_font) != 0) {
+                g_free (settings->priv->fixed_font);
+                settings->priv->fixed_font = g_strdup (fixed_font);
+                g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_FIXED_FONT]);
+
+                if (!settings->priv->use_system_fonts)
+                        g_signal_emit (settings, signals[SIGNAL_FONTS_CHANGED], 0);
+        }
+}
+
+/**
+ * dh_settings_bind_fonts:
+ * @settings: a #DhSettings.
+ *
+ * Binds the #DhSettings:use-system-fonts, #DhSettings:variable-font and
+ * #DhSettings:fixed-font properties to their corresponding #GSettings keys.
+ *
+ * Since: 3.30
+ */
+void
+dh_settings_bind_fonts (DhSettings *settings)
+{
+        g_return_if_fail (DH_IS_SETTINGS (settings));
+
+        g_settings_bind (settings->priv->gsettings_fonts, "use-system-fonts",
+                         settings, "use-system-fonts",
+                         G_SETTINGS_BIND_DEFAULT |
+                         G_SETTINGS_BIND_NO_SENSITIVITY);
+
+        g_settings_bind (settings->priv->gsettings_fonts, "variable-font",
+                         settings, "variable-font",
+                         G_SETTINGS_BIND_DEFAULT |
+                         G_SETTINGS_BIND_NO_SENSITIVITY);
+
+        g_settings_bind (settings->priv->gsettings_fonts, "fixed-font",
+                         settings, "fixed-font",
+                         G_SETTINGS_BIND_DEFAULT |
+                         G_SETTINGS_BIND_NO_SENSITIVITY);
 }

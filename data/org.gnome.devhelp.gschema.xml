@@ -1,7 +1,6 @@
 <schemalist gettext-domain="devhelp">
   <schema id="org.gnome.devhelp" path="/org/gnome/devhelp/">
     <child name="state" schema="org.gnome.devhelp.state"/>
-    <child name="fonts" schema="org.gnome.devhelp.fonts"/>
   </schema>
   <schema id="org.gnome.devhelp.state" path="/org/gnome/devhelp/state/">
     <child name="main" schema="org.gnome.devhelp.state.main"/>
@@ -48,23 +47,6 @@
       <default>400</default>
       <summary>Height of assistant window</summary>
       <description>The height of the assistant window.</description>
-    </key>
-  </schema>
-  <schema id="org.gnome.devhelp.fonts" path="/org/gnome/devhelp/fonts/">
-    <key name="use-system-fonts" type="b">
-      <default>true</default>
-      <summary>Use system fonts</summary>
-      <description>Use the system default fonts.</description>
-    </key>
-    <key name="variable-font" type="s">
-      <default>'Sans 12'</default>
-      <summary>Font for text</summary>
-      <description>Font for text with variable width.</description>
-    </key>
-    <key name="fixed-font" type="s">
-      <default>'Monospace 12'</default>
-      <summary>Font for fixed width text</summary>
-      <description>Font for text with fixed width, such as code examples.</description>
     </key>
   </schema>
 </schemalist>

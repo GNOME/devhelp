@@ -44,9 +44,6 @@ struct _DhSettingsApp {
 
 struct _DhSettingsAppClass {
         GObjectClass parent;
-
-        /* Signals */
-        void (*fonts_changed) (DhSettingsApp *settings);
 };
 
 GType           dh_settings_app_get_type                    (void);
@@ -60,12 +57,6 @@ GSettings *     dh_settings_app_peek_window_settings        (DhSettingsApp *self
 GSettings *     dh_settings_app_peek_paned_settings         (DhSettingsApp *self);
 
 GSettings *     dh_settings_app_peek_assistant_settings     (DhSettingsApp *self);
-
-GSettings *     dh_settings_app_peek_fonts_settings         (DhSettingsApp *self);
-
-void            dh_settings_app_get_selected_fonts          (DhSettingsApp  *self,
-                                                             gchar         **font_name_fixed,
-                                                             gchar         **font_name_variable);
 
 G_END_DECLS
 
