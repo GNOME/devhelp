@@ -68,23 +68,26 @@ documentation. You can read more about that specification here:
 The list of locations searched for devhelp books is:
 
 $XDG_DATA_HOME/devhelp/books
-   e.g. /home/ross/.local/share/devhelp/books/glib-2.0/glib-2.0.devhelp2
+   e.g. ~/.local/share/devhelp/books/glib/glib.devhelp2
+   or with Flatpak: ~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2
 
 $XDG_DATA_HOME/gtk-doc/html
-   e.g. /home/ross/.local/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp2
+   e.g. ~/.local/share/gtk-doc/html/glib/glib.devhelp2
+   or with Flatpak: ~/.var/app/org.gnome.Devhelp/data/gtk-doc/html/glib/glib.devhelp2
 
 $XDG_DATA_DIRS/devhelp/books
-   e.g. /usr/local/share/devhelp/books/glib-2.0/glib-2.0.devhelp2
+   e.g. /usr/share/devhelp/books/glib/glib.devhelp2
 
 $XDG_DATA_DIRS/gtk-doc/html
-   e.g. /usr/local/share/gtk-doc/html/glib-2.0/glib-2.0.devhelp2
+   e.g. /usr/share/gtk-doc/html/glib/glib.devhelp2
 
 Note that the two latter consist of :-separated lists of directories to
 look for. Those environment variables are normally set up by the
 desktop environment or distribution.
 
-Note that the name of the directory the *.devhelp2 file is in and the
-name of the *.devhelp2 file (minus the extension) must match.
+Note that the name of the directory the *.devhelp2 file is in and the name of
+the *.devhelp2 file (minus the extension) must match ("glib" in the above
+examples).
 
 The first version of the index file format (with the *.devhelp file
 extension) is deprecated and its support will probably be removed in a
