@@ -1,6 +1,6 @@
-News in 3.29.2, 2018-xx-yy (not yet released)
+News in 3.29.2, 2018-05-21
 --------------------------
-* A new and more flexible book management architecture in the libdevhelp:
+* A new, more flexible book management architecture in the libdevhelp:
 
  - DhBookManager is now completely empty and entirely deprecated, the minimum
    amount of API is kept to not break Anjuta. It has been replaced by a more
@@ -18,8 +18,11 @@ News in 3.29.2, 2018-xx-yy (not yet released)
 
  - Allow custom search paths to load DhBooks, with DhBookListDirectory.
 
-* Listen to external changes to the "books-disabled" GSettings key.
 * Port other Devhelp classes to DhProfile and DhBookList.
+* Listen to external changes to the "books-disabled" GSettings key.
+* Some code cleanup and minor bug fixes.
+* Flatpak: convert manifest to YAML.
+* Translation updates.
 
 News in 3.29.1, 2018-04-15
 --------------------------
