@@ -1,7 +1,6 @@
 # devhelp simplified chinese translation
-# Copyright (C) 2002, 2004, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
+# Copyright (C) 2002-2018 devhelp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
-#
 # Zipeco <Zipeco@btamail.net.cn>, 2002.
 # Funda Wang <fundawang@linux.net.cn>, 2004.
 # Yang Zhang <zyangmath@gmail.com>, 2007.
@@ -12,308 +11,407 @@
 # Cheng Lu <chenglu1990@gmail.com>, 2012.
 # Sphinx Jiang <yishanj13@gmail.com>, 2013.
 # YunQiang Su <wzssyqa@gmail.com>, 2015.
-# Jeff Bai <jeffbai@aosc.xyz>, 2016.
+# Mingcong Bai <jeffbai@aosc.xyz>, 2016, 2017.
+# Dingzhong Chen <wsxy162@@gmail.com>, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-18 16:24+0000\n"
-"PO-Revision-Date: 2016-02-19 02:44+0100\n"
-"Last-Translator: Mingye Wang (Arthur2e5) <arthur200126@gmail.com>\n"
-"Language-Team: 汉语 <i18n-zh@googlegroups.com>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=devhelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2018-05-21 07:57+0000\n"
+"PO-Revision-Date: 2018-05-21 22:47+0800\n"
+"Last-Translator: Dingzhong Chen <wsxy162@@gmail.com>\n"
+"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
-#: ../src/dh-app.c:557 ../src/dh-window.c:797
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
+#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
+#: src/dh-app.c:270 src/dh-app.c:598
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "开发者帮助程序"
+#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
+#: src/dh-app.c:272
+msgid "A developer tool for browsing and searching API documentation"
+msgstr "一款用于浏览和搜索 API 文档的开发工具"
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
+#: data/org.gnome.Devhelp.appdata.xml.in:9
 msgid ""
-"Devhelp is an API documentation browser. It provides an easy way to navigate "
-"through libraries, search by function, struct, or macro. It provides a "
-"tabbed interface and allows to print results."
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
 msgstr ""
-"Devhelp 是一款 API 文档浏览器。它提供了简便的查看库，搜索函数、结构体或宏的功"
-"能。它拥有标签页式的界面，并可以打印结果。"
+"Devhelp 是一款用于浏览和搜索 API 文档的开发工具。它提供了一种简便的方法来浏览"
+"库和按功能、结构体或宏进行搜索。"
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
+#: data/org.gnome.Devhelp.appdata.xml.in:14
 msgid ""
-"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
-msgstr "Devhelp 与 Glade、Anjuta 或 Geany 等软件实现了集成。"
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
+msgstr "文档必须在本地安装，所以使用 Devhelp 不需要互联网连接。"
 
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
-msgid "Documentation Browser"
-msgstr "文档浏览器"
+#: data/org.gnome.Devhelp.appdata.xml.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+"well supported. But other development platforms can be supported as well, as "
+"long as the API documentation is available in HTML and a *.devhelp2 index "
+"file is generated."
+msgstr ""
+"Devhelp 原生地使用了 GTK-Doc，所以能够很好的支持 GTK+ 和 GNOME 库。但其他开发"
+"平台也可以被很好的支持，只要其 API 文档有可用的 HTML 格式且生成了 *.devhelp2 "
+"索引文件。"
 
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
+#: data/org.gnome.Devhelp.appdata.xml.in:24
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr ""
+"Devhelp 与 Glade、Builder 或 Anjuta 等软件实现了集成，而且其他文本编辑器 "
+"(gedit, Vim, Emacs, Geany, …) 也有可用的插件。"
+
+#: data/org.gnome.Devhelp.desktop.in:5
+msgid "API Documentation Browser"
+msgstr "API 文档浏览器"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
-msgstr "documentation;information;manual;developer;api;文档;信息;说明书;开发;"
+msgstr ""
+"documentation;information;manual;developer;api;文档;信息;手册;说明书;开发;"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:1
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.Devhelp.desktop.in:12
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
+msgid "devhelp"
+msgstr "devhelp"
+
+#: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
 msgstr "主窗口最大化"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:2
+#: data/org.gnome.devhelp.gschema.xml:17
 msgid "Whether the main window should start maximized."
 msgstr "是否以最大化启动主窗口。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:3
+#: data/org.gnome.devhelp.gschema.xml:21
 msgid "Width of the main window"
 msgstr "主窗口宽度"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:4
+#: data/org.gnome.devhelp.gschema.xml:22
 msgid "The width of the main window."
 msgstr "主窗口宽度。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:5
+#: data/org.gnome.devhelp.gschema.xml:26
 msgid "Height of main window"
 msgstr "主窗口高度"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:6
+#: data/org.gnome.devhelp.gschema.xml:27
 msgid "The height of the main window."
 msgstr "主窗口高度。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:7
-msgid "X position of main window"
-msgstr "主窗口的 X 坐标"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:8
-msgid "The X position of the main window."
-msgstr "主窗口的 X 坐标。"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:9
-msgid "Y position of main window"
-msgstr "主窗口的 Y 坐标"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:10
-msgid "The Y position of the main window."
-msgstr "主窗口的 Y 坐标。"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:11
+#: data/org.gnome.devhelp.gschema.xml:33
 msgid "Width of the index and search pane"
 msgstr "索引和搜索面板宽度"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:12
+#: data/org.gnome.devhelp.gschema.xml:34
 msgid "The width of the index and search pane."
 msgstr "索引和搜索面板宽度。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:13
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "所选的标签，是“内容”还是“搜索”"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:14
-msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "选中哪个标签，“内容”还是“搜索”？"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:15
-msgid "Books disabled"
-msgstr "已禁用的书籍"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:16
-msgid "List of books disabled by the user."
-msgstr "用户禁用的书籍列表。"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:17
-msgid "Group by language"
-msgstr "按语言分组"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:18
-msgid "Whether books should be grouped by language in the UI"
-msgstr "在界面上是否应按语言将书分组"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:19
-msgid "Whether the assistant window should be maximized"
-msgstr "是否最大化辅助窗口。"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:20
-msgid "Whether the assistant window should be maximized."
-msgstr "是否最大化显示辅助窗口。"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:21
+#: data/org.gnome.devhelp.gschema.xml:43
 msgid "Width of the assistant window"
 msgstr "辅助窗口宽度"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:22
+#: data/org.gnome.devhelp.gschema.xml:44
 msgid "The width of the assistant window."
 msgstr "辅助窗口宽度。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:23
+#: data/org.gnome.devhelp.gschema.xml:48
 msgid "Height of assistant window"
 msgstr "辅助窗口高度"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:24
+#: data/org.gnome.devhelp.gschema.xml:49
 msgid "The height of the assistant window."
 msgstr "辅助窗口高度。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:25
-msgid "X position of assistant window"
-msgstr "辅助窗口的 X 坐标"
+#: data/org.gnome.libdevhelp-3.gschema.xml:9
+msgid "Books disabled"
+msgstr "已禁用的书籍"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:26
-msgid "The X position of the assistant window."
-msgstr "辅助窗口的 X 坐标。"
+#: data/org.gnome.libdevhelp-3.gschema.xml:10
+msgid "List of books disabled by the user."
+msgstr "用户禁用的书籍列表。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:27
-msgid "Y position of assistant window"
-msgstr "辅助窗口的 Y 坐标"
+#: data/org.gnome.libdevhelp-3.gschema.xml:14
+#, fuzzy
+#| msgid "Group by language"
+msgid "Group books by language"
+msgstr "按语言分组"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:28
-msgid "The Y position of the assistant window."
-msgstr "辅助窗口的 Y 坐标。"
+#: data/org.gnome.libdevhelp-3.gschema.xml:15
+#, fuzzy
+#| msgid "Whether books should be grouped by language in the UI"
+msgid ""
+"Whether books should be grouped by programming language in the user "
+"interface."
+msgstr "在界面上是否应按语言将书分组"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:29
+#: data/org.gnome.libdevhelp-3.gschema.xml:21
 msgid "Use system fonts"
 msgstr "使用系统字体"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:30
+#: data/org.gnome.libdevhelp-3.gschema.xml:22
 msgid "Use the system default fonts."
 msgstr "使用系统默认字体。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:31
+#: data/org.gnome.libdevhelp-3.gschema.xml:26
 msgid "Font for text"
 msgstr "普通文本字体"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:32
+#: data/org.gnome.libdevhelp-3.gschema.xml:27
 msgid "Font for text with variable width."
 msgstr "变动宽度文本使用的字体。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:33
+#: data/org.gnome.libdevhelp-3.gschema.xml:31
 msgid "Font for fixed width text"
 msgstr "固定宽度文本字体"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:34
+#: data/org.gnome.libdevhelp-3.gschema.xml:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "固定宽度文本使用的字体，例如示例代码。"
 
-#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:1
+#: devhelp/dh-assistant-view.c:400
+msgid "Book:"
+msgstr "书籍："
+
+#: devhelp/dh-book.c:313
+#, c-format
+msgid "Language: %s"
+msgstr "语言：%s"
+
+#: devhelp/dh-book.c:314
+msgid "Language: Undefined"
+msgstr "语言：未定义"
+
+#: devhelp/dh-book-tree.c:755
+msgid "_Collapse All"
+msgstr "收起全部(_C)"
+
+#. i18n: a documentation book
+#: devhelp/dh-link.c:551
+msgid "Book"
+msgstr "书籍"
+
+#. i18n: a "page" in a documentation book
+#: devhelp/dh-link.c:555
+msgid "Page"
+msgstr "页面"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: devhelp/dh-link.c:560
+msgid "Keyword"
+msgstr "关键词"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:566
+msgid "Function"
+msgstr "函数"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:572
+msgid "Struct"
+msgstr "结构体"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:578
+msgid "Macro"
+msgstr "宏"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:584
+msgid "Enum"
+msgstr "枚举"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:590
+msgid "Type"
+msgstr "类型"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:596
+msgid "Property"
+msgstr "属性"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:602
+msgid "Signal"
+msgstr "信号"
+
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Devhelp 支持"
 
-#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
-msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "使用 F2 为光标处单词启动 Devhelp"
-
-#: ../misc/gedit-plugin/devhelp.py:42
+#: plugins/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "显示 API 文档"
 
-#. ex:ts=4:et:
-#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
+#. action, icon, label, accel, tooltip
+#. App menu
+#: src/dh-app.c:51
 msgid "New _Window"
 msgstr "新建窗口(_W)"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
-msgid "_Preferences"
-msgstr "首选项(_P)"
-
-#: ../src/devhelp-menu.ui.h:3
-msgid "_Keyboard Shortcuts"
-msgstr "键盘快捷键(_K)"
-
-#: ../src/devhelp-menu.ui.h:4
-msgid "_About"
-msgstr "关于(_A)"
-
-#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
-msgid "_Quit"
-msgstr "退出(_Q)"
-
-#: ../src/help-overlay.ui.h:1
-msgctxt "shortcut window"
-msgid "General"
-msgstr "常规"
-
-#: ../src/help-overlay.ui.h:2
-msgctxt "shortcut window"
-msgid "Focus global search"
-msgstr "聚焦到全局搜索"
-
-#: ../src/help-overlay.ui.h:3
-msgctxt "shortcut window"
-msgid "Find in current page"
-msgstr "在当前页面查找"
-
-#: ../src/help-overlay.ui.h:4
-msgctxt "shortcut window"
+#: src/dh-app.c:52
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Open a new window"
 msgid "Open a new window"
 msgstr "新建窗口"
 
-#: ../src/help-overlay.ui.h:5
-msgctxt "shortcut window"
-msgid "Open a new tab"
-msgstr "新建标签页"
+#: src/dh-app.c:53
+msgid "_Preferences"
+msgstr "首选项(_P)"
 
-#: ../src/help-overlay.ui.h:6
-msgctxt "shortcut window"
-msgid "Toggle sidebar visibility"
-msgstr "切换侧边栏可见性"
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr "键盘快捷键(_K)"
 
-#: ../src/help-overlay.ui.h:7
-msgctxt "shortcut window"
-msgid "Go back"
-msgstr "后退"
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "帮助(_H)"
 
-#: ../src/help-overlay.ui.h:8
-msgctxt "shortcut window"
-msgid "Go forward"
-msgstr "前进"
+#: src/dh-app.c:56
+msgid "_About"
+msgstr "关于(_A)"
 
-#: ../src/help-overlay.ui.h:9
-msgctxt "shortcut window"
-msgid "Print"
-msgstr "打印"
+#: src/dh-app.c:57
+msgid "_Quit"
+msgstr "退出(_Q)"
 
-#: ../src/help-overlay.ui.h:10
-msgctxt "shortcut window"
-msgid "Close the current window"
-msgstr "关闭当前窗口"
-
-#: ../src/help-overlay.ui.h:11
-msgctxt "shortcut window"
+#: src/dh-app.c:58
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Close all windows"
 msgid "Close all windows"
 msgstr "关闭所有窗口"
 
-#: ../src/help-overlay.ui.h:12
-msgctxt "shortcut window"
-msgid "Zoom"
-msgstr "缩放"
+#. Window menu
+#: src/dh-app.c:61
+msgid "_Side Panel"
+msgstr "侧面板(_S)"
 
-#: ../src/help-overlay.ui.h:13
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "放大"
+#: src/dh-app.c:62
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Toggle side panel visibility"
+msgid "Toggle side panel visibility"
+msgstr "切换侧边栏可见性"
 
-#: ../src/help-overlay.ui.h:14
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "缩小"
+#: src/dh-app.c:63
+msgid "_Print"
+msgstr "打印(_P)"
 
-#: ../src/help-overlay.ui.h:15
-msgctxt "shortcut window"
-msgid "Reset Zoom"
-msgstr "重置缩放"
+#: src/dh-app.c:64
+msgid "_Find"
+msgstr "查找(_F)"
 
-#: ../src/dh-app.c:249
-msgid "A developers' help browser for GNOME"
-msgstr "GNOME 开发者帮助浏览器"
+#: src/dh-app.c:65
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Find in current page"
+msgid "Find in current page"
+msgstr "在当前页面查找"
 
-#: ../src/dh-app.c:251
+#: src/dh-app.c:66
+msgid "_Larger Text"
+msgstr "放大文本(_L)"
+
+#: src/dh-app.c:67
+#, fuzzy
+#| msgid "_Larger Text"
+msgid "Larger text"
+msgstr "放大文本(_L)"
+
+#: src/dh-app.c:68
+msgid "S_maller Text"
+msgstr "缩小文本(_M)"
+
+#: src/dh-app.c:69
+#, fuzzy
+#| msgid "S_maller Text"
+msgid "Smaller text"
+msgstr "缩小文本(_M)"
+
+#: src/dh-app.c:70
+msgid "_Normal Size"
+msgstr "正常大小(_N)"
+
+#: src/dh-app.c:71
+#, fuzzy
+#| msgid "_Normal Size"
+msgid "Normal size"
+msgstr "正常大小(_N)"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Open a new tab"
+msgid "Open a new tab"
+msgstr "新建标签页"
+
+#: src/dh-app.c:112
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Close the current window"
+msgid "Close the current tab"
+msgstr "关闭当前窗口"
+
+#: src/dh-app.c:113
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Go back"
+msgid "Go back"
+msgstr "后退"
+
+#: src/dh-app.c:114
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Go forward"
+msgid "Go forward"
+msgstr "前进"
+
+#: src/dh-app.c:115
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Focus global search"
+msgid "Focus global search"
+msgstr "聚焦到全局搜索"
+
+#: src/dh-app.c:274
 msgid "translator-credits"
 msgstr ""
 "Zipeco <Zipeco@btamail.net.cn>, 2002\n"
@@ -325,282 +423,240 @@ msgstr ""
 "Aron Xu <aronxu@gnome.org>, 2010\n"
 "Cheng Lu <chenglu1990@gmail.com>, 2012\n"
 "Sphinx Jiang <yishanj13@gmail.com>, 2013\n"
-"Jeff Bai <jeffbai@aosc.xyz>, 2016"
+"Mingcong Bai <jeffbai@aosc.xyz>, 2016, 2017\n"
+"Dingzhong Chen <wsxy162@gmail.com>, 2018"
 
-#: ../src/dh-app.c:253
+#: src/dh-app.c:276
 msgid "Devhelp Website"
-msgstr "DevHelp 网站"
+msgstr "Devhelp 网站"
 
-#: ../src/dh-app.c:482
+#: src/dh-app.c:487
 msgid "Opens a new Devhelp window"
 msgstr "打开新的 Devhelp 窗口"
 
-#: ../src/dh-app.c:487
+#: src/dh-app.c:492
 msgid "Search for a keyword"
 msgstr "搜索一个关键词"
 
-#: ../src/dh-app.c:488 ../src/dh-app.c:493
+#: src/dh-app.c:493 src/dh-app.c:498
 msgid "KEYWORD"
 msgstr "关键字"
 
-#: ../src/dh-app.c:492
+#: src/dh-app.c:497
 msgid "Search and display any hit in the assistant window"
 msgstr "在辅助窗口中搜索并显示任何命中内容"
 
-#: ../src/dh-app.c:497
+#: src/dh-app.c:502
 msgid "Display the version and exit"
 msgstr "显示版本后退出"
 
-#: ../src/dh-app.c:502
+#: src/dh-app.c:507
 msgid "Quit any running Devhelp"
 msgstr "退出正在运行的 Devhelp"
 
-#. Please don
-#: ../src/dh-assistant.ui.h:2
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:8
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - 助手"
 
-#: ../src/dh-assistant-view.c:372
-msgid "Book:"
-msgstr "书籍："
-
-#: ../src/dh-book.c:254
-#, c-format
-msgid "Language: %s"
-msgstr "语言：%s"
-
-#: ../src/dh-book.c:255
-msgid "Language: Undefined"
-msgstr "语言：未定义"
-
-#. i18n: a documentation book
-#: ../src/dh-link.c:289
-msgid "Book"
-msgstr "书籍"
-
-#. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:292
-msgid "Page"
-msgstr "页面"
-
-#. i18n: a search hit in the documentation, could be a
-#. * function, macro, struct, etc
-#: ../src/dh-link.c:296
-msgid "Keyword"
-msgstr "关键词"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:301
-msgid "Function"
-msgstr "函数"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:306
-msgid "Struct"
-msgstr "结构体"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:311
-msgid "Macro"
-msgstr "宏"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:316
-msgid "Enum"
-msgstr "枚举"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:321
-msgid "Type"
-msgstr "类型"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:326
-msgid "Property"
-msgstr "属性"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:331
-msgid "Signal"
-msgstr "信号"
-
-#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
-#: ../src/dh-parser.c:271
-#, c-format
-msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "需要“%s”但得到“%s”(第%d行，第%d列)"
-
-#: ../src/dh-parser.c:113
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "非法命名空间“%s”(第%d行，第%d列)"
-
-#: ../src/dh-parser.c:142
-#, c-format
-msgid ""
-"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr "在第%d行，第%d列，需要指定元素“title”，“name”，和“link”"
-
-#: ../src/dh-parser.c:216
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
-"%d"
-msgstr "在<sub>内第%d行，第%d列，需要指定元素“name”和“link”"
-
-#: ../src/dh-parser.c:296
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr "在“%s”内第%d行，第%d列，需要指定元素“name”和“link”"
-
-#: ../src/dh-parser.c:309
-#, c-format
-msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "在 <keyword> 内第%d行，第%d列，需要指定元素“name”和“link”"
-
-#: ../src/dh-parser.c:516
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "无法解压缩书籍“%s”：%s"
-
-#: ../src/dh-preferences.ui.h:1
-msgid "Preferences"
-msgstr "首选项"
-
-#: ../src/dh-preferences.ui.h:2
-msgid "_Group by language"
-msgstr "按语言分组(_G)"
-
-#: ../src/dh-preferences.ui.h:3
+#: src/dh-preferences.c:551
 msgid "Enabled"
 msgstr "已启用"
 
-#: ../src/dh-preferences.ui.h:4
+#: src/dh-preferences.c:565
 msgid "Title"
 msgstr "标题"
 
-#: ../src/dh-preferences.ui.h:5
+#: src/dh-preferences.ui:26
+msgid "Preferences"
+msgstr "首选项"
+
+#: src/dh-preferences.ui:62
+msgid "_Group by language"
+msgstr "按语言分组(_G)"
+
+#: src/dh-preferences.ui:104
 msgid "Book Shelf"
 msgstr "书架"
 
-#: ../src/dh-preferences.ui.h:6
+#: src/dh-preferences.ui:125
 msgid "_Use system fonts"
 msgstr "使用系统字体(_U)"
 
-#: ../src/dh-preferences.ui.h:7
+#: src/dh-preferences.ui:149
 msgid "_Variable width: "
 msgstr "变宽字体(_V)："
 
-#: ../src/dh-preferences.ui.h:8
+#: src/dh-preferences.ui:162
 msgid "_Fixed width:"
 msgstr "等宽字体(_F)："
 
-#: ../src/dh-preferences.ui.h:9
+#: src/dh-preferences.ui:223
 msgid "Fonts"
 msgstr "字体"
 
-#: ../src/dh-window.c:76
-msgid "50%"
-msgstr "50%"
-
-#: ../src/dh-window.c:77
-msgid "75%"
-msgstr "75%"
-
-#: ../src/dh-window.c:78
-msgid "100%"
-msgstr "100%"
-
-#: ../src/dh-window.c:79
-msgid "125%"
-msgstr "125%"
-
-#: ../src/dh-window.c:80
-msgid "150%"
-msgstr "150%"
-
-#: ../src/dh-window.c:81
-msgid "175%"
-msgstr "175%"
-
-#: ../src/dh-window.c:82
-msgid "200%"
-msgstr "200%"
-
-#: ../src/dh-window.c:83
-msgid "300%"
-msgstr "300%"
-
-#: ../src/dh-window.c:84
-msgid "400%"
-msgstr "400%"
-
-#: ../src/dh-window.c:1024
+#: src/dh-tab.c:70
 msgid "Error opening the requested link."
 msgstr "在打开需要的链接时出错。"
 
-#: ../src/dh-window.c:1282
-msgid "_Close"
-msgstr "关闭(_C)"
-
-#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
+#: src/dh-web-view.c:301
 msgid "Empty Page"
 msgstr "空白页"
 
-#: ../src/dh-window.ui.h:1
-msgid "New _Tab"
-msgstr "新建标签(_T)"
+#. General group
+#: src/dh-window.c:418
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "General"
+msgid "General"
+msgstr "常规"
 
-#: ../src/dh-window.ui.h:2
-msgid "_Print"
-msgstr "打印(_P)"
+#. Zoom group
+#: src/dh-window.c:432
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Zoom"
+msgid "Zoom"
+msgstr "缩放"
 
-#: ../src/dh-window.ui.h:3
-msgid "_Find"
-msgstr "查找(_F)"
-
-#: ../src/dh-window.ui.h:4
-msgid "_Larger Text"
-msgstr "放大文本(_L)"
-
-#: ../src/dh-window.ui.h:5
-msgid "S_maller Text"
-msgstr "缩小文本(_M)"
-
-#: ../src/dh-window.ui.h:6
-msgid "_Normal Size"
-msgstr "正常大小(_N)"
-
-#: ../src/dh-window.ui.h:8
-msgid "_Side pane"
-msgstr "侧面板(_S)"
-
-#: ../src/dh-window.ui.h:10
-msgid "_About Devhelp"
-msgstr "关于 Devhelp(_A)"
-
-#: ../src/dh-window.ui.h:12
+#: src/dh-window.ui:28
 msgid "Back"
 msgstr "后退"
 
-#: ../src/dh-window.ui.h:13
+#: src/dh-window.ui:47
 msgid "Forward"
 msgstr "前进"
+
+#: src/dh-window.ui:92
+msgid "New Tab"
+msgstr "新标签页"
+
+#~ msgid "_About Devhelp"
+#~ msgstr "关于 Devhelp(_A)"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Print"
+#~ msgstr "打印"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom in"
+#~ msgstr "放大"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom out"
+#~ msgstr "缩小"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Reset Zoom"
+#~ msgstr "重置缩放"
+
+#~ msgid "Developer’s Help program"
+#~ msgstr "为开发者设计的帮助程序"
+
+#~ msgid "X position of main window"
+#~ msgstr "主窗口的 X 坐标"
+
+#~ msgid "The X position of the main window."
+#~ msgstr "主窗口的 X 坐标。"
+
+#~ msgid "Y position of main window"
+#~ msgstr "主窗口的 Y 坐标"
+
+#~ msgid "The Y position of the main window."
+#~ msgstr "主窗口的 Y 坐标。"
+
+#~ msgid "Whether the assistant window should be maximized"
+#~ msgstr "是否最大化辅助窗口。"
+
+#~ msgid "Whether the assistant window should be maximized."
+#~ msgstr "是否最大化显示辅助窗口。"
+
+#~ msgid "X position of assistant window"
+#~ msgstr "辅助窗口的 X 坐标"
+
+#~ msgid "The X position of the assistant window."
+#~ msgstr "辅助窗口的 X 坐标。"
+
+#~ msgid "Y position of assistant window"
+#~ msgstr "辅助窗口的 Y 坐标"
+
+#~ msgid "The Y position of the assistant window."
+#~ msgstr "辅助窗口的 Y 坐标。"
+
+#~ msgid "A developers’ help browser for GNOME"
+#~ msgstr "GNOME 开发者帮助浏览器"
+
+#~ msgid "50%"
+#~ msgstr "50%"
+
+#~ msgid "75%"
+#~ msgstr "75%"
+
+#~ msgid "100%"
+#~ msgstr "100%"
+
+#~ msgid "125%"
+#~ msgstr "125%"
+
+#~ msgid "150%"
+#~ msgstr "150%"
+
+#~ msgid "175%"
+#~ msgstr "175%"
+
+#~ msgid "200%"
+#~ msgstr "200%"
+
+#~ msgid "300%"
+#~ msgstr "300%"
+
+#~ msgid "400%"
+#~ msgstr "400%"
+
+#~ msgid "_Close"
+#~ msgstr "关闭(_C)"
+
+#~ msgid "Side _Panel"
+#~ msgstr "侧面板(_P)"
+
+#~ msgid "Selected tab: \"content\" or \"search\""
+#~ msgstr "所选的标签，是“内容”还是“搜索”"
+
+#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
+#~ msgstr "选中哪个标签，“内容”还是“搜索”？"
+
+#~ msgid "Expected '%s', got '%s' at line %d, column %d"
+#~ msgstr "需要“%s”但得到“%s”（第 %d 行，第 %d 列）"
+
+#~ msgid "Invalid namespace '%s' at line %d, column %d"
+#~ msgstr "非法命名空间“%s”（第 %d 行，第 %d 列）"
+
+#~ msgid ""
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
+#~ "%d"
+#~ msgstr "在第%d行，第%d列，需要指定元素“title”，“name”，和“link”"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
+#~ "column %d"
+#~ msgstr "在<sub>内第%d行，第%d列，需要指定元素“name”和“link”"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
+#~ "column %d"
+#~ msgstr "在“%s”内第%d行，第%d列，需要指定元素“name”和“link”"
+
+#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+#~ msgstr "在 <keyword> 内第%d行，第%d列，需要指定元素“name”和“link”"
+
+#~ msgid "Cannot uncompress book '%s': %s"
+#~ msgstr "无法解压缩书籍“%s”：%s"
+
+#~ msgid "_Side pane"
+#~ msgstr "侧面板(_S)"
+
+#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
+#~ msgstr "使用 F2 为光标处单词启动 Devhelp"
 
 #~ msgid ""
 #~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
@@ -695,9 +751,6 @@ msgstr "前进"
 
 #~ msgid "_File"
 #~ msgstr "文件(_F)"
-
-#~ msgid "_Help"
-#~ msgstr "帮助(_H)"
 
 #~ msgid "Use the normal text size"
 #~ msgstr "使用正常文本大小"
