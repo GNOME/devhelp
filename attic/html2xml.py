@@ -17,7 +17,7 @@ def walk (dict, level=0, parent=None):
 	list = dict['order']
     else:
 	list = dict.keys()
-			    
+
     for key in list:
 	if key in ['name', 'order', 'link']:
 	    continue
@@ -26,14 +26,14 @@ def walk (dict, level=0, parent=None):
 	    link = dict[key]['link']
 	else:
 	    link = ""
-	    
+
 	if level:
 	    print '*' * level, key, '-', link
 	else:
 	    print key, '-', link
 
 	walk (dict[key], level + 1, dict)
-		
+
 class BookParser (sgmllib.SGMLParser):
     def __init__ (self):
 	sgmllib.SGMLParser.__init__ (self)
@@ -50,32 +50,32 @@ class BookParser (sgmllib.SGMLParser):
 		if attr[0] == "href":
 		    self.link = attr[1]
 		    break
-		
+
 	if tag in ['dd', 'ul']:
 	    self.parents.append (self.last)
 	    self.level = self.level + 1
-	
+
     def unknown_endtag (self, tag):
 	if tag == 'a':
 	    self.is_a = 0
-	    
+
 	if tag in ['dd', 'ul']:
 	    self.level = self.level - 1
 	    self.parents.pop()
-	
+
     def handle_data (self, data):
 	data = string.strip (data)
 	if not data or data in [ ">", "<" ]:
 	    return
-	
+
 	if self.first:
 	    self.dict['name'] = data
 	    self.first = 0
 	    return
-	    
+
 	if data == self.dict['name'] or data in [ "Next Page", "Previous Page", "Home", "Next"]:
 	    return
-	
+
 	if len (self.parents) == 0:
 	    dict = self.dict
 	elif len (self.parents) == 1:
@@ -86,18 +86,18 @@ class BookParser (sgmllib.SGMLParser):
 	    dict = self.dict[self.parents[0]][self.parents[1]][self.parents[2]]
 	else:
 	    dict = None
-	    
+
 	if self.is_a:
 	    if dict == None:
 		return
-	    
+
 	    if not dict.has_key (data):
-		dict[data] = {}		    
+		dict[data] = {}
 	    if not dict.has_key ('order'):
 		dict['order'] = []
 	    dict['order'].append (data)
 	    dict[data]['link'] = self.link
-	    
+
 	    self.last = data
 
 def parse_book (url):
@@ -110,7 +110,7 @@ def parse_book (url):
     else:
 	print "Error; Can't find an index :("
 	raise SystemExit
-    
+
     fd = open (filename)
     p = BookParser()
     p.feed (fd.read())
@@ -131,16 +131,16 @@ for chap in dict['order']:
         for sub in dict[chap]['order']:
             if not does_dict_have_keys (dict[chap][sub], ['link']):
                 print '    <sub name="%s" link="%s">' % (sub, dict[chap][sub]['link'])
-	    
+
                 for sub2 in dict[chap][sub]['order']:
                     print '      <sub name="%s" link="%s"/>' % (sub2, dict[chap][sub][sub2]['link'])
                 print '    </sub>'
             else:
                 print '    <sub name="%s" link="%s"/>' % (sub, dict[chap][sub]['link'])
-                    
+
     print '  </sub>'
     print
-    
+
 print '</chapters>'
 print
 print '</book>'

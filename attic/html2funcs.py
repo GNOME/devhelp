@@ -29,7 +29,7 @@ class HTMLParser (htmllib.HTMLParser):
 
         if self.link[:2] == "..":
             return
-            
+
         if self.is_a and self.link:
             self.a.append ((data, self.link))
 
@@ -55,7 +55,7 @@ for file in files:
 
     print "parsing", file
     links = parse_file (dirname + "/" + file, bookname)
-	
+
     for link in links:
 	if not link in funcs:
 	    funcs.append (link)
