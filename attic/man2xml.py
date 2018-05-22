@@ -3,8 +3,13 @@ import os
 import os.path
 import string
 
+# Generates a *.devhelp index file (old format) for man pages.
+# Just the index file, this script doesn't generate HTML pages for each man
+# page.
+
 # Add $GNOME_PATH/man too
-MAN_PATH = ["/usr/man", "/usr/share/man", "/usr/local/man"]
+#MAN_PATH = ["/usr/man", "/usr/share/man", "/usr/local/man"]
+MAN_PATH = ["/usr/share/man"]
 MAN_SUBS = ["man1", "man2", "man3", "man4", "man5",
             "man6", "man7", "man8", "man9"]
 
