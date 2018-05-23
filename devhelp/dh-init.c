@@ -65,7 +65,7 @@ dh_init (void)
  * gobject-list [1] correctly reports that all Dh* objects have been finalized
  * when quitting the application. On the other hand a DSO destructor runs after
  * the gobject-list's last output, so it's much less convenient, see:
- * https://git.gnome.org/browse/gtksourceview/commit/?id=e761de9c2bee90c232875bbc41e6e73e1f63e145
+ * https://gitlab.gnome.org/GNOME/gtksourceview/commit/e761de9c2bee90c232875bbc41e6e73e1f63e145
  *
  * [1] A tool for debugging the lifetime of GObjects:
  * https://github.com/danni/gobject-list

@@ -44,7 +44,7 @@ modules:
   - name: amtk
     sources:
       - type: git
-        url: git://git.gnome.org/amtk
+        url: https://gitlab.gnome.org/GNOME/amtk.git
         branch: master
 
   - name: devhelp
