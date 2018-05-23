@@ -28,7 +28,7 @@
     </p>
   </description>
   <url type="homepage">https://wiki.gnome.org/Apps/Devhelp/</url>
-  <url type="bugtracker">https://bugzilla.gnome.org/browse.cgi?product=devhelp</url>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/devhelp/issues</url>
   <url type="donation">http://www.gnome.org/friends/</url>
   <screenshots>
     <screenshot type="default">

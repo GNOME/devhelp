@@ -28,7 +28,7 @@ Emacs, Geany, …).
   <homepage rdf:resource="https://wiki.gnome.org/Apps/Devhelp" />
   <mailing-list rdf:resource="https://mail.gnome.org/mailman/listinfo/gnome-devtools" />
   <download-page rdf:resource="https://download.gnome.org/sources/devhelp/" />
-  <bug-database rdf:resource="https://bugzilla.gnome.org/browse.cgi?product=devhelp" />
+  <bug-database rdf:resource="https://gitlab.gnome.org/GNOME/devhelp/issues" />
   <category rdf:resource="http://api.gnome.org/doap-extensions#apps" />
   <programming-language>C</programming-language>
 
