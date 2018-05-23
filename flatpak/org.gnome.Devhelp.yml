@@ -52,5 +52,5 @@ modules:
     config-opts: [ "-Dflatpak_build=true" ]
     sources:
       - type: git
-        url: git://git.gnome.org/devhelp
+        url: https://gitlab.gnome.org/GNOME/devhelp.git
         branch: master
