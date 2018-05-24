@@ -44,22 +44,6 @@ dh_tab_class_init (DhTabClass *klass)
         object_class->dispose = dh_tab_dispose;
 }
 
-static gboolean
-web_view_load_failed_cb (WebKitWebView   *web_view,
-                         WebKitLoadEvent  load_event,
-                         const gchar     *failing_uri,
-                         GError          *error,
-                         DhTab           *tab)
-{
-        /* Ignore cancellation errors, which happen when typing fast in the
-         * search entry.
-         */
-        if (g_error_matches (error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
-                return GDK_EVENT_STOP;
-
-        return GDK_EVENT_PROPAGATE;
-}
-
 static void
 dh_tab_init (DhTab *tab)
 {
@@ -70,11 +54,6 @@ dh_tab_init (DhTab *tab)
         tab->priv->web_view = dh_web_view_new ();
         gtk_widget_show (GTK_WIDGET (tab->priv->web_view));
         gtk_container_add (GTK_CONTAINER (tab), GTK_WIDGET (tab->priv->web_view));
-
-        g_signal_connect (tab->priv->web_view,
-                          "load-failed",
-                          G_CALLBACK (web_view_load_failed_cb),
-                          tab);
 }
 
 DhTab *

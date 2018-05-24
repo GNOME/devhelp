@@ -164,6 +164,27 @@ dh_web_view_button_press_event (GtkWidget      *widget,
         return GTK_WIDGET_CLASS (dh_web_view_parent_class)->button_press_event (widget, event);
 }
 
+static gboolean
+dh_web_view_load_failed (WebKitWebView   *web_view,
+                         WebKitLoadEvent  load_event,
+                         const gchar     *failing_uri,
+                         GError          *error)
+{
+        /* Ignore cancellation errors, which happen when typing fast in the
+         * search entry.
+         */
+        if (g_error_matches (error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
+                return GDK_EVENT_STOP;
+
+        if (WEBKIT_WEB_VIEW_CLASS (dh_web_view_parent_class)->load_failed == NULL)
+                return GDK_EVENT_PROPAGATE;
+
+        return WEBKIT_WEB_VIEW_CLASS (dh_web_view_parent_class)->load_failed (web_view,
+                                                                              load_event,
+                                                                              failing_uri,
+                                                                              error);
+}
+
 static void
 set_fonts (WebKitWebView *view,
            const gchar   *font_name_variable,
@@ -264,12 +285,15 @@ dh_web_view_class_init (DhWebViewClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+        WebKitWebViewClass *webkit_class = WEBKIT_WEB_VIEW_CLASS (klass);
 
         object_class->constructed = dh_web_view_constructed;
         object_class->finalize = dh_web_view_finalize;
 
         widget_class->scroll_event = dh_web_view_scroll_event;
         widget_class->button_press_event = dh_web_view_button_press_event;
+
+        webkit_class->load_failed = dh_web_view_load_failed;
 }
 
 static void
