@@ -20,12 +20,8 @@
 
 #include "dh-tab.h"
 #include <glib/gi18n.h>
-#include "tepl-info-bar.h"
-
-/* A DhWebView with a possible TeplInfoBar on top. */
 
 struct _DhTabPrivate {
-        TeplInfoBar *info_bar;
         DhWebView *web_view;
 };
 
@@ -36,7 +32,6 @@ dh_tab_dispose (GObject *object)
 {
         DhTab *tab = DH_TAB (object);
 
-        tab->priv->info_bar = NULL;
         tab->priv->web_view = NULL;
 
         G_OBJECT_CLASS (dh_tab_parent_class)->dispose (object);
@@ -63,46 +58,6 @@ web_view_load_failed_cb (WebKitWebView   *web_view,
         if (g_error_matches (error, WEBKIT_NETWORK_ERROR, WEBKIT_NETWORK_ERROR_CANCELLED))
                 return GDK_EVENT_STOP;
 
-        if (tab->priv->info_bar != NULL)
-                gtk_widget_destroy (GTK_WIDGET (tab->priv->info_bar));
-
-        tab->priv->info_bar = tepl_info_bar_new_simple (GTK_MESSAGE_ERROR,
-                                                        _("Error opening the requested link."),
-                                                        error->message);
-        tepl_info_bar_add_close_button (tab->priv->info_bar);
-
-        g_signal_connect (tab->priv->info_bar,
-                          "destroy",
-                          G_CALLBACK (gtk_widget_destroyed),
-                          &tab->priv->info_bar);
-
-        gtk_grid_attach_next_to (GTK_GRID (tab),
-                                 GTK_WIDGET (tab->priv->info_bar),
-                                 GTK_WIDGET (tab->priv->web_view),
-                                 GTK_POS_TOP,
-                                 1, 1);
-
-        gtk_widget_show (GTK_WIDGET (tab->priv->info_bar));
-
-        return GDK_EVENT_STOP;
-}
-
-static gboolean
-web_view_decide_policy_cb (WebKitWebView            *web_view,
-                           WebKitPolicyDecision     *decision,
-                           WebKitPolicyDecisionType  decision_type,
-                           DhTab                    *tab)
-{
-        if (decision_type == WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION &&
-            tab->priv->info_bar != NULL) {
-                /* The error is no longer relevant. Do it here, not in
-                 * ::load-changed, so that it works when clicking on a link to
-                 * an anchor inside the same page too, not only when loading a
-                 * different page.
-                 */
-                gtk_widget_destroy (GTK_WIDGET (tab->priv->info_bar));
-        }
-
         return GDK_EVENT_PROPAGATE;
 }
 
@@ -120,16 +75,6 @@ dh_tab_init (DhTab *tab)
         g_signal_connect (tab->priv->web_view,
                           "load-failed",
                           G_CALLBACK (web_view_load_failed_cb),
-                          tab);
-
-        /* Other ::decide-policy signal handlers that return GDK_EVENT_STOP must
-         * be connected *after* this one. This code relies on the fact that
-         * GObject executes the handlers in the same order than the connection
-         * order (for all the handlers belonging to the same emission stage).
-         */
-        g_signal_connect (tab->priv->web_view,
-                          "decide-policy",
-                          G_CALLBACK (web_view_decide_policy_cb),
                           tab);
 }
 

@@ -40,4 +40,3 @@ src/dh-util-app.c
 src/dh-web-view.c
 src/dh-window.c
 src/dh-window.ui
-src/tepl-info-bar.c

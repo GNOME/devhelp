@@ -8,8 +8,7 @@ devhelp_app_sources = [
         'dh-tab-label.c',
         'dh-util-app.c',
         'dh-web-view.c',
-        'dh-window.c',
-        'tepl-info-bar.c'
+        'dh-window.c'
 ]
 
 devhelp_app_sources += GNOME.compile_resources(
