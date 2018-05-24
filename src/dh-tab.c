@@ -19,7 +19,6 @@
  */
 
 #include "dh-tab.h"
-#include <glib/gi18n.h>
 
 struct _DhTabPrivate {
         DhWebView *web_view;
