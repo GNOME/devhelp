@@ -1,8 +1,8 @@
 How to contribute to Devhelp
 ============================
 
-Devhelp is hosted on the GNOME GitLab instance, you can fork the
-repository and then do a merge request:
+Devhelp is hosted on the GNOME GitLab instance, you can fork the repository and
+then do a merge request:
 
     https://gitlab.gnome.org/GNOME/devhelp
 
