@@ -31,6 +31,7 @@ src/dh-app.c
 src/dh-assistant.c
 src/dh-assistant.ui
 src/dh-main.c
+src/dh-notebook.c
 src/dh-preferences.c
 src/dh-preferences.ui
 src/dh-settings-app.c
