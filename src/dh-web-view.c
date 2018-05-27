@@ -264,9 +264,10 @@ dh_web_view_decide_policy (WebKitWebView            *web_view,
         WebKitNavigationPolicyDecision *navigation_decision;
         WebKitNavigationAction *navigation_action;
         const gchar *uri;
-        gchar *local_uri;
+        gchar *local_uri = NULL;
         gint button;
         gint state;
+        gboolean open_new_tab = FALSE;
 
         if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
                 goto chain_up;
@@ -282,27 +283,20 @@ dh_web_view_decide_policy (WebKitWebView            *web_view,
         /* middle click or ctrl-click -> new tab */
         button = webkit_navigation_action_get_mouse_button (navigation_action);
         state = webkit_navigation_action_get_modifiers (navigation_action);
-        if (button == 2 || (button == 1 && state == GDK_CONTROL_MASK)) {
-                /* FIXME: must not do this if gtk_show_uri_on_window() will be
-                 * called.
-                 */
-                webkit_policy_decision_ignore (policy_decision);
-                g_signal_emit (web_view, signals[SIGNAL_OPEN_NEW_TAB], 0, uri);
-                return GDK_EVENT_STOP;
-        }
+        open_new_tab = (button == 2 || (button == 1 && state == GDK_CONTROL_MASK));
 
         if (g_str_equal (uri, "about:blank"))
-                goto chain_up;
+                goto handle_open_new_tab;
 
         local_uri = find_equivalent_local_uri (uri);
-        if (local_uri != NULL) {
+        if (local_uri != NULL && !open_new_tab) {
                 webkit_policy_decision_ignore (policy_decision);
                 webkit_web_view_load_uri (web_view, local_uri);
                 g_free (local_uri);
                 return GDK_EVENT_STOP;
         }
 
-        if (!g_str_has_prefix (uri, "file://")) {
+        if (local_uri == NULL && !g_str_has_prefix (uri, "file://")) {
                 GtkWidget *toplevel;
                 GtkWindow *window = NULL;
                 GError *error = NULL;
@@ -325,7 +319,19 @@ dh_web_view_decide_policy (WebKitWebView            *web_view,
                 return GDK_EVENT_STOP;
         }
 
+handle_open_new_tab:
+        if (open_new_tab) {
+                webkit_policy_decision_ignore (policy_decision);
+                g_signal_emit (web_view,
+                               signals[SIGNAL_OPEN_NEW_TAB], 0,
+                               local_uri != NULL ? local_uri : uri);
+                g_free (local_uri);
+                return GDK_EVENT_STOP;
+        }
+
 chain_up:
+        g_free (local_uri);
+
         if (WEBKIT_WEB_VIEW_CLASS (dh_web_view_parent_class)->decide_policy == NULL)
                 return GDK_EVENT_PROPAGATE;
 
