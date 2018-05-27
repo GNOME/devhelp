@@ -642,17 +642,17 @@ static void
 update_search_in_all_web_views (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        gint n_pages;
-        gint page_num;
+        GList *web_views;
+        GList *l;
 
-        n_pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
+        web_views = dh_notebook_get_all_web_views (priv->notebook);
 
-        for (page_num = 0; page_num < n_pages; page_num++) {
-                DhTab *tab;
-
-                tab = DH_TAB (gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), page_num));
-                update_search_in_web_view (window, dh_tab_get_web_view (tab));
+        for (l = web_views; l != NULL; l = l->next) {
+                DhWebView *web_view = DH_WEB_VIEW (l->data);
+                update_search_in_web_view (window, web_view);
         }
+
+        g_list_free (web_views);
 }
 
 static void

@@ -100,3 +100,25 @@ dh_notebook_get_active_web_view (DhNotebook *notebook)
         tab = dh_notebook_get_active_tab (notebook);
         return tab != NULL ? dh_tab_get_web_view (tab) : NULL;
 }
+
+/* Returns: (transfer container): */
+GList *
+dh_notebook_get_all_web_views (DhNotebook *notebook)
+{
+        gint n_pages;
+        gint page_num;
+        GList *list = NULL;
+
+        g_return_val_if_fail (DH_IS_NOTEBOOK (notebook), NULL);
+
+        n_pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook));
+
+        for (page_num = 0; page_num < n_pages; page_num++) {
+                DhTab *tab;
+
+                tab = DH_TAB (gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), page_num));
+                list = g_list_prepend (list, dh_tab_get_web_view (tab));
+        }
+
+        return g_list_reverse (list);
+}
