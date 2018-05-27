@@ -623,6 +623,86 @@ sync_active_web_view_uri_to_sidebar (DhWindow *window)
 }
 
 static void
+web_view_title_notify_cb (DhWebView  *web_view,
+                          GParamSpec *param_spec,
+                          DhWindow   *window)
+{
+        if (web_view == get_active_web_view (window))
+                update_window_title (window);
+}
+
+static void
+web_view_zoom_level_notify_cb (DhWebView  *web_view,
+                               GParamSpec *pspec,
+                               DhWindow   *window)
+{
+        if (web_view == get_active_web_view (window))
+                update_zoom_actions_sensitivity (window);
+}
+
+static void
+web_view_load_changed_cb (DhWebView       *web_view,
+                          WebKitLoadEvent  load_event,
+                          DhWindow        *window)
+{
+        if (load_event == WEBKIT_LOAD_COMMITTED &&
+            web_view == get_active_web_view (window)) {
+                sync_active_web_view_uri_to_sidebar (window);
+        }
+}
+
+static void
+web_view_open_new_tab_cb (DhWebView   *web_view,
+                          const gchar *uri,
+                          DhWindow    *window)
+{
+        open_new_tab (window, uri, FALSE);
+}
+
+static void
+notebook_page_added_after_cb (GtkNotebook *notebook,
+                              GtkWidget   *child,
+                              guint        page_num,
+                              DhWindow    *window)
+{
+        DhTab *tab;
+        DhWebView *web_view;
+        WebKitBackForwardList *back_forward_list;
+
+        g_return_if_fail (DH_IS_TAB (child));
+
+        tab = DH_TAB (child);
+        web_view = dh_tab_get_web_view (tab);
+
+        g_signal_connect (web_view,
+                          "notify::title",
+                          G_CALLBACK (web_view_title_notify_cb),
+                          window);
+
+        g_signal_connect (web_view,
+                          "notify::zoom-level",
+                          G_CALLBACK (web_view_zoom_level_notify_cb),
+                          window);
+
+        g_signal_connect (web_view,
+                          "load-changed",
+                          G_CALLBACK (web_view_load_changed_cb),
+                          window);
+
+        g_signal_connect (web_view,
+                          "open-new-tab",
+                          G_CALLBACK (web_view_open_new_tab_cb),
+                          window);
+
+        back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (web_view));
+        g_signal_connect_object (back_forward_list,
+                                 "changed",
+                                 G_CALLBACK (update_back_forward_actions_sensitivity),
+                                 window,
+                                 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
+}
+
+static void
 notebook_page_removed_after_cb (GtkNotebook *notebook,
                                 GtkWidget   *child,
                                 guint        page_num,
@@ -678,6 +758,11 @@ dh_window_init (DhWindow *window)
         gtk_widget_show (GTK_WIDGET (priv->notebook));
 
         g_signal_connect_after (priv->notebook,
+                                "page-added",
+                                G_CALLBACK (notebook_page_added_after_cb),
+                                window);
+
+        g_signal_connect_after (priv->notebook,
                                 "page-removed",
                                 G_CALLBACK (notebook_page_removed_after_cb),
                                 window);
@@ -705,43 +790,6 @@ dh_window_init (DhWindow *window)
 }
 
 static void
-web_view_title_notify_cb (DhWebView  *web_view,
-                          GParamSpec *param_spec,
-                          DhWindow   *window)
-{
-        if (web_view == get_active_web_view (window))
-                update_window_title (window);
-}
-
-static void
-web_view_zoom_level_notify_cb (DhWebView  *web_view,
-                               GParamSpec *pspec,
-                               DhWindow   *window)
-{
-        if (web_view == get_active_web_view (window))
-                update_zoom_actions_sensitivity (window);
-}
-
-static void
-web_view_load_changed_cb (DhWebView       *web_view,
-                          WebKitLoadEvent  load_event,
-                          DhWindow        *window)
-{
-        if (load_event == WEBKIT_LOAD_COMMITTED &&
-            web_view == get_active_web_view (window)) {
-                sync_active_web_view_uri_to_sidebar (window);
-        }
-}
-
-static void
-web_view_open_new_tab_cb (DhWebView   *web_view,
-                          const gchar *uri,
-                          DhWindow    *window)
-{
-        open_new_tab (window, uri, FALSE);
-}
-
-static void
 open_new_tab (DhWindow    *window,
               const gchar *location,
               gboolean     switch_focus)
@@ -749,42 +797,13 @@ open_new_tab (DhWindow    *window,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         DhTab *tab;
         DhWebView *web_view;
-        WebKitBackForwardList *back_forward_list;
 
         tab = dh_tab_new ();
         gtk_widget_show (GTK_WIDGET (tab));
 
-        web_view = dh_tab_get_web_view (tab);
-
-        g_signal_connect (web_view,
-                          "notify::title",
-                          G_CALLBACK (web_view_title_notify_cb),
-                          window);
-
-        g_signal_connect (web_view,
-                          "notify::zoom-level",
-                          G_CALLBACK (web_view_zoom_level_notify_cb),
-                          window);
-
-        g_signal_connect (web_view,
-                          "load-changed",
-                          G_CALLBACK (web_view_load_changed_cb),
-                          window);
-
-        g_signal_connect (web_view,
-                          "open-new-tab",
-                          G_CALLBACK (web_view_open_new_tab_cb),
-                          window);
-
-        back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (web_view));
-        g_signal_connect_object (back_forward_list,
-                                 "changed",
-                                 G_CALLBACK (update_back_forward_actions_sensitivity),
-                                 window,
-                                 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
-
         dh_notebook_append_tab (priv->notebook, tab, switch_focus);
 
+        web_view = dh_tab_get_web_view (tab);
         if (location != NULL)
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), location);
         else
