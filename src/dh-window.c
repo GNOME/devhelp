@@ -27,6 +27,7 @@
 #include <devhelp/devhelp.h>
 #include <amtk/amtk.h>
 #include "dh-notebook.h"
+#include "dh-search-bar.h"
 #include "dh-settings-app.h"
 #include "dh-tab.h"
 #include "dh-util-app.h"
@@ -44,10 +45,7 @@ typedef struct {
 
         /* Right side of the @hpaned. */
         GtkGrid *grid_documents;
-        GtkSearchBar *search_bar;
-        GtkSearchEntry *search_entry;
-        GtkButton *search_prev_button;
-        GtkButton *search_next_button;
+        DhSearchBar *search_bar;
         DhNotebook *notebook;
 } DhWindowPrivate;
 
@@ -79,6 +77,7 @@ dh_window_dispose (GObject *object)
         DhWindowPrivate *priv = dh_window_get_instance_private (DH_WINDOW (object));
 
         priv->sidebar = NULL;
+        priv->search_bar = NULL;
         priv->notebook = NULL;
 
         G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
@@ -101,10 +100,6 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_documents);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_bar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_entry);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_prev_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_next_button);
 }
 
 /* Can return NULL during initialization and finalization, so it's better to
@@ -314,8 +309,7 @@ find_cb (GSimpleAction *action,
         DhWindow *window = DH_WINDOW (user_data);
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
-        gtk_search_bar_set_search_mode (priv->search_bar, TRUE);
-        gtk_widget_grab_focus (GTK_WIDGET (priv->search_entry));
+        gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
 }
 
 static void
@@ -629,119 +623,6 @@ sync_active_web_view_uri_to_sidebar (DhWindow *window)
 }
 
 static void
-update_search_in_web_view (DhWindow  *window,
-                           DhWebView *view)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        const gchar *search_text = NULL;
-
-        if (gtk_search_bar_get_search_mode (priv->search_bar))
-                search_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
-
-        dh_web_view_set_search_text (view, search_text);
-}
-
-static void
-update_search_in_active_web_view (DhWindow *window)
-{
-        DhWebView *web_view;
-
-        web_view = get_active_web_view (window);
-        if (web_view != NULL)
-                update_search_in_web_view (window, web_view);
-}
-
-static void
-update_search_in_all_web_views (DhWindow *window)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        GList *web_views;
-        GList *l;
-
-        web_views = dh_notebook_get_all_web_views (priv->notebook);
-
-        for (l = web_views; l != NULL; l = l->next) {
-                DhWebView *web_view = DH_WEB_VIEW (l->data);
-                update_search_in_web_view (window, web_view);
-        }
-
-        g_list_free (web_views);
-}
-
-static void
-search_previous_in_active_web_view (DhWindow *window)
-{
-        DhWebView *web_view;
-
-        web_view = get_active_web_view (window);
-        if (web_view == NULL)
-                return;
-
-        update_search_in_web_view (window, web_view);
-        dh_web_view_search_previous (web_view);
-}
-
-static void
-search_next_in_active_web_view (DhWindow *window)
-{
-        DhWebView *web_view;
-
-        web_view = get_active_web_view (window);
-        if (web_view == NULL)
-                return;
-
-        update_search_in_web_view (window, web_view);
-        dh_web_view_search_next (web_view);
-}
-
-static void
-search_mode_enabled_notify_cb (GtkSearchBar *search_bar,
-                               GParamSpec   *pspec,
-                               DhWindow     *window)
-{
-        if (gtk_search_bar_get_search_mode (search_bar))
-                update_search_in_active_web_view (window);
-        else
-                update_search_in_all_web_views (window);
-}
-
-static void
-search_changed_cb (GtkEntry *entry,
-                   DhWindow *window)
-{
-        /* Note that this callback is called after a small delay. */
-        update_search_in_active_web_view (window);
-}
-
-static void
-search_previous_match_cb (GtkSearchEntry *entry,
-                          DhWindow       *window)
-{
-        search_previous_in_active_web_view (window);
-}
-
-static void
-search_next_match_cb (GtkSearchEntry *entry,
-                      DhWindow       *window)
-{
-        search_next_in_active_web_view (window);
-}
-
-static void
-search_prev_button_clicked_cb (GtkButton *search_prev_button,
-                               DhWindow  *window)
-{
-        search_previous_in_active_web_view (window);
-}
-
-static void
-search_next_button_clicked_cb (GtkButton *search_next_button,
-                               DhWindow  *window)
-{
-        search_next_in_active_web_view (window);
-}
-
-static void
 notebook_page_removed_after_cb (GtkNotebook *notebook,
                                 GtkWidget   *child,
                                 guint        page_num,
@@ -760,7 +641,6 @@ notebook_switch_page_after_cb (GtkNotebook *notebook,
         update_window_title (window);
         update_zoom_actions_sensitivity (window);
         update_back_forward_actions_sensitivity (window);
-        update_search_in_active_web_view (window);
         sync_active_web_view_uri_to_sidebar (window);
 }
 
@@ -796,8 +676,6 @@ dh_window_init (DhWindow *window)
         /* HTML tabs GtkNotebook */
         priv->notebook = dh_notebook_new ();
         gtk_widget_show (GTK_WIDGET (priv->notebook));
-        gtk_container_add (GTK_CONTAINER (priv->grid_documents),
-                           GTK_WIDGET (priv->notebook));
 
         g_signal_connect_after (priv->notebook,
                                 "page-removed",
@@ -810,37 +688,13 @@ dh_window_init (DhWindow *window)
                                 window);
 
         /* Search bar above GtkNotebook */
-        gtk_search_bar_connect_entry (priv->search_bar, GTK_ENTRY (priv->search_entry));
+        priv->search_bar = dh_search_bar_new (priv->notebook);
+        gtk_widget_show (GTK_WIDGET (priv->search_bar));
 
-        g_signal_connect (priv->search_bar,
-                          "notify::search-mode-enabled",
-                          G_CALLBACK (search_mode_enabled_notify_cb),
-                          window);
-
-        g_signal_connect (priv->search_entry,
-                          "search-changed",
-                          G_CALLBACK (search_changed_cb),
-                          window);
-
-        g_signal_connect (priv->search_entry,
-                          "previous-match",
-                          G_CALLBACK (search_previous_match_cb),
-                          window);
-
-        g_signal_connect (priv->search_entry,
-                          "next-match",
-                          G_CALLBACK (search_next_match_cb),
-                          window);
-
-        g_signal_connect (priv->search_prev_button,
-                          "clicked",
-                          G_CALLBACK (search_prev_button_clicked_cb),
-                          window);
-
-        g_signal_connect (priv->search_next_button,
-                          "clicked",
-                          G_CALLBACK (search_next_button_clicked_cb),
-                          window);
+        gtk_container_add (GTK_CONTAINER (priv->grid_documents),
+                           GTK_WIDGET (priv->search_bar));
+        gtk_container_add (GTK_CONTAINER (priv->grid_documents),
+                           GTK_WIDGET (priv->notebook));
 
         add_actions (window);
 
