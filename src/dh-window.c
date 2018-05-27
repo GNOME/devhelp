@@ -729,38 +729,13 @@ search_next_button_clicked_cb (GtkButton *search_next_button,
 }
 
 static void
-show_or_hide_notebook_tabs (DhWindow *window)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        gint n_pages;
-
-        n_pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
-        gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), n_pages > 1);
-}
-
-static void
-notebook_page_added_after_cb (GtkNotebook *notebook,
-                              GtkWidget   *child,
-                              guint        page_num,
-                              DhWindow    *window)
-{
-        show_or_hide_notebook_tabs (window);
-}
-
-static void
 notebook_page_removed_after_cb (GtkNotebook *notebook,
                                 GtkWidget   *child,
                                 guint        page_num,
                                 DhWindow    *window)
 {
-        gint n_pages;
-
-        n_pages = gtk_notebook_get_n_pages (notebook);
-
-        if (n_pages == 0)
+        if (gtk_notebook_get_n_pages (notebook) == 0)
                 gtk_window_close (GTK_WINDOW (window));
-        else
-                show_or_hide_notebook_tabs (window);
 }
 
 static void
@@ -810,11 +785,6 @@ dh_window_init (DhWindow *window)
         gtk_widget_show (GTK_WIDGET (priv->notebook));
         gtk_container_add (GTK_CONTAINER (priv->grid_documents),
                            GTK_WIDGET (priv->notebook));
-
-        g_signal_connect_after (priv->notebook,
-                                "page-added",
-                                G_CALLBACK (notebook_page_added_after_cb),
-                                window);
 
         g_signal_connect_after (priv->notebook,
                                 "page-removed",

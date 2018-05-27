@@ -23,8 +23,43 @@
 G_DEFINE_TYPE (DhNotebook, dh_notebook, GTK_TYPE_NOTEBOOK)
 
 static void
+show_or_hide_tabs (GtkNotebook *notebook)
+{
+        gint n_pages;
+
+        n_pages = gtk_notebook_get_n_pages (notebook);
+        gtk_notebook_set_show_tabs (notebook, n_pages > 1);
+}
+
+static void
+dh_notebook_page_added (GtkNotebook *notebook,
+                        GtkWidget   *child,
+                        guint        page_num)
+{
+        if (GTK_NOTEBOOK_CLASS (dh_notebook_parent_class)->page_added != NULL)
+                GTK_NOTEBOOK_CLASS (dh_notebook_parent_class)->page_added (notebook, child, page_num);
+
+        show_or_hide_tabs (notebook);
+}
+
+static void
+dh_notebook_page_removed (GtkNotebook *notebook,
+                          GtkWidget   *child,
+                          guint        page_num)
+{
+        if (GTK_NOTEBOOK_CLASS (dh_notebook_parent_class)->page_removed != NULL)
+                GTK_NOTEBOOK_CLASS (dh_notebook_parent_class)->page_removed (notebook, child, page_num);
+
+        show_or_hide_tabs (notebook);
+}
+
+static void
 dh_notebook_class_init (DhNotebookClass *klass)
 {
+        GtkNotebookClass *gtk_notebook_class = GTK_NOTEBOOK_CLASS (klass);
+
+        gtk_notebook_class->page_added = dh_notebook_page_added;
+        gtk_notebook_class->page_removed = dh_notebook_page_removed;
 }
 
 static void
