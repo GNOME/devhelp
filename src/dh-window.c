@@ -74,11 +74,25 @@ dh_window_delete_event (GtkWidget   *widget,
 }
 
 static void
+dh_window_dispose (GObject *object)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (DH_WINDOW (object));
+
+        priv->sidebar = NULL;
+        priv->notebook = NULL;
+
+        G_OBJECT_CLASS (dh_window_parent_class)->dispose (object);
+}
+
+static void
 dh_window_class_init (DhWindowClass *klass)
 {
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         widget_class->delete_event = dh_window_delete_event;
+
+        object_class->dispose = dh_window_dispose;
 
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-window.ui");
