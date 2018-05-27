@@ -649,16 +649,6 @@ web_view_load_changed_cb (DhWebView       *web_view,
 }
 
 static void
-web_view_open_new_tab_cb (DhWebView   *web_view,
-                          const gchar *uri,
-                          DhWindow    *window)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-
-        dh_notebook_open_new_tab (priv->notebook, uri, FALSE);
-}
-
-static void
 notebook_page_added_after_cb (GtkNotebook *notebook,
                               GtkWidget   *child,
                               guint        page_num,
@@ -686,11 +676,6 @@ notebook_page_added_after_cb (GtkNotebook *notebook,
         g_signal_connect (web_view,
                           "load-changed",
                           G_CALLBACK (web_view_load_changed_cb),
-                          window);
-
-        g_signal_connect (web_view,
-                          "open-new-tab",
-                          G_CALLBACK (web_view_open_new_tab_cb),
                           window);
 
         back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (web_view));

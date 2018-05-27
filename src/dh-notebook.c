@@ -79,6 +79,14 @@ dh_notebook_new (void)
         return g_object_new (DH_TYPE_NOTEBOOK, NULL);
 }
 
+static void
+web_view_open_new_tab_cb (DhWebView   *web_view,
+                          const gchar *uri,
+                          DhNotebook  *notebook)
+{
+        dh_notebook_open_new_tab (notebook, uri, FALSE);
+}
+
 void
 dh_notebook_open_new_tab (DhNotebook  *notebook,
                           const gchar *uri,
@@ -93,6 +101,12 @@ dh_notebook_open_new_tab (DhNotebook  *notebook,
 
         tab = dh_tab_new ();
         gtk_widget_show (GTK_WIDGET (tab));
+
+        web_view = dh_tab_get_web_view (tab);
+        g_signal_connect (web_view,
+                          "open-new-tab",
+                          G_CALLBACK (web_view_open_new_tab_cb),
+                          notebook);
 
         label = dh_tab_label_new (tab);
         gtk_widget_show (label);
@@ -110,7 +124,7 @@ dh_notebook_open_new_tab (DhNotebook  *notebook,
         if (switch_focus)
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), page_num);
 
-        web_view = dh_tab_get_web_view (tab);
+
         if (uri != NULL)
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), uri);
         else
