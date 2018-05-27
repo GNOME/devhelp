@@ -34,6 +34,7 @@ src/dh-main.c
 src/dh-notebook.c
 src/dh-preferences.c
 src/dh-preferences.ui
+src/dh-search-bar.c
 src/dh-settings-app.c
 src/dh-tab.c
 src/dh-tab-label.c
