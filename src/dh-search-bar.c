@@ -20,6 +20,17 @@
 
 #include "dh-search-bar.h"
 
+/* #DhSearchBar is a subclass of #GtkSearchBar, meant to be shown above a
+ * #DhNotebook. There is only one #DhSearchBar for the whole #DhNotebook, it
+ * applies the same search text to all the #DhWebView's (lazily, when the tab is
+ * shown).
+ *
+ * (A different way to implement the search for the #DhWebView's would be to
+ * have a different #GtkSearchEntry for each #DhWebView, with the
+ * #GtkSearchEntry shown inside the #DhTab; in that case #DhSearchBar won't help
+ * you).
+ */
+
 struct _DhSearchBarPrivate {
         DhNotebook *notebook;
         GtkSearchEntry *search_entry;

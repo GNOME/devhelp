@@ -23,6 +23,10 @@
 #include <glib/gi18n.h>
 #include <devhelp/devhelp.h>
 
+/* #DhWebView is a subclass of #WebKitWebView, to have a higher-level API for
+ * some features.
+ */
+
 struct _DhWebViewPrivate {
         gchar *search_text;
         gdouble total_scroll_delta_y;

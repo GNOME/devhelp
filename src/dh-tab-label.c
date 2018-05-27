@@ -21,6 +21,8 @@
 #include "dh-tab-label.h"
 #include "dh-web-view.h"
 
+/* The #DhTabLabel widget is used for the tab labels in #DhNotebook. */
+
 struct _DhTabLabelPrivate {
         /* Weak ref */
         DhTab *tab;

@@ -20,6 +20,13 @@
 
 #include "dh-tab.h"
 
+/* #DhTab is meant to be the content of one tab in a #DhNotebook. Currently it
+ * contains only one element: a #DhWebView.
+ *
+ * So #DhTab is not really useful right now, but it is planned to move it to the
+ * libdevhelp, where it makes sense to have more flexibility.
+ */
+
 struct _DhTabPrivate {
         DhWebView *web_view;
 };

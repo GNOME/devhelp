@@ -21,6 +21,10 @@
 #include "dh-notebook.h"
 #include "dh-tab-label.h"
 
+/* #DhNotebook is a subclass of #GtkNotebook. The content of the tabs are
+ * #DhTab's, and the tab labels are #DhTabLabel's.
+ */
+
 G_DEFINE_TYPE (DhNotebook, dh_notebook, GTK_TYPE_NOTEBOOK)
 
 static void
