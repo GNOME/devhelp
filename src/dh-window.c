@@ -49,10 +49,6 @@ typedef struct {
         DhNotebook *notebook;
 } DhWindowPrivate;
 
-static void open_new_tab (DhWindow    *window,
-                          const gchar *location,
-                          gboolean     switch_focus);
-
 G_DEFINE_TYPE_WITH_PRIVATE (DhWindow, dh_window, GTK_TYPE_APPLICATION_WINDOW);
 
 static gboolean
@@ -178,8 +174,9 @@ new_tab_cb (GSimpleAction *action,
             gpointer       user_data)
 {
         DhWindow *window = DH_WINDOW (user_data);
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
-        open_new_tab (window, NULL, TRUE);
+        dh_notebook_open_new_tab (priv->notebook, NULL, TRUE);
 }
 
 static void
@@ -656,7 +653,9 @@ web_view_open_new_tab_cb (DhWebView   *web_view,
                           const gchar *uri,
                           DhWindow    *window)
 {
-        open_new_tab (window, uri, FALSE);
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+
+        dh_notebook_open_new_tab (priv->notebook, uri, FALSE);
 }
 
 static void
@@ -783,31 +782,10 @@ dh_window_init (DhWindow *window)
 
         add_actions (window);
 
-        open_new_tab (window, NULL, TRUE);
+        dh_notebook_open_new_tab (priv->notebook, NULL, TRUE);
 
         /* Focus search in sidebar by default. */
         dh_sidebar_set_search_focus (priv->sidebar);
-}
-
-static void
-open_new_tab (DhWindow    *window,
-              const gchar *location,
-              gboolean     switch_focus)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        DhTab *tab;
-        DhWebView *web_view;
-
-        tab = dh_tab_new ();
-        gtk_widget_show (GTK_WIDGET (tab));
-
-        dh_notebook_append_tab (priv->notebook, tab, switch_focus);
-
-        web_view = dh_tab_get_web_view (tab);
-        if (location != NULL)
-                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), location);
-        else
-                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), "about:blank");
 }
 
 GtkWidget *

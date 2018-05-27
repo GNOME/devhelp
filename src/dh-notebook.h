@@ -52,9 +52,9 @@ GType           dh_notebook_get_type                    (void);
 
 DhNotebook *    dh_notebook_new                         (void);
 
-void            dh_notebook_append_tab                  (DhNotebook *notebook,
-                                                         DhTab      *tab,
-                                                         gboolean    set_as_current_page);
+void            dh_notebook_open_new_tab                (DhNotebook  *notebook,
+                                                         const gchar *uri,
+                                                         gboolean     switch_focus);
 
 DhTab *         dh_notebook_get_active_tab              (DhNotebook *notebook);
 

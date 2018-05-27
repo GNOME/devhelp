@@ -80,15 +80,19 @@ dh_notebook_new (void)
 }
 
 void
-dh_notebook_append_tab (DhNotebook *notebook,
-                        DhTab      *tab,
-                        gboolean    set_as_current_page)
+dh_notebook_open_new_tab (DhNotebook  *notebook,
+                          const gchar *uri,
+                          gboolean     switch_focus)
 {
+        DhTab *tab;
+        DhWebView *web_view;
         GtkWidget *label;
         gint page_num;
 
         g_return_if_fail (DH_IS_NOTEBOOK (notebook));
-        g_return_if_fail (DH_IS_TAB (tab));
+
+        tab = dh_tab_new ();
+        gtk_widget_show (GTK_WIDGET (tab));
 
         label = dh_tab_label_new (tab);
         gtk_widget_show (label);
@@ -103,8 +107,14 @@ dh_notebook_append_tab (DhNotebook *notebook,
                                  "reorderable", TRUE,
                                  NULL);
 
-        if (set_as_current_page)
+        if (switch_focus)
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), page_num);
+
+        web_view = dh_tab_get_web_view (tab);
+        if (uri != NULL)
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), uri);
+        else
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), "about:blank");
 }
 
 /* Returns: (transfer none) (nullable): */
