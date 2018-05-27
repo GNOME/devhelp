@@ -29,7 +29,6 @@
 #include "dh-notebook.h"
 #include "dh-settings-app.h"
 #include "dh-tab.h"
-#include "dh-tab-label.h"
 #include "dh-util-app.h"
 #include "dh-web-view.h"
 
@@ -994,8 +993,6 @@ open_new_tab (DhWindow    *window,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         DhTab *tab;
         DhWebView *web_view;
-        GtkWidget *label;
-        gint page_num;
         WebKitBackForwardList *back_forward_list;
 
         tab = dh_tab_new ();
@@ -1030,26 +1027,12 @@ open_new_tab (DhWindow    *window,
                                  window,
                                  G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
-        label = dh_tab_label_new (tab);
-        gtk_widget_show (label);
-
-        page_num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-                                             GTK_WIDGET (tab),
-                                             label);
-
-        gtk_container_child_set (GTK_CONTAINER (priv->notebook),
-                                 GTK_WIDGET (tab),
-                                 "tab-expand", TRUE,
-                                 "reorderable", TRUE,
-                                 NULL);
+        dh_notebook_append_tab (priv->notebook, tab, switch_focus);
 
         if (location != NULL)
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), location);
         else
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), "about:blank");
-
-        if (switch_focus)
-                gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), page_num);
 }
 
 GtkWidget *

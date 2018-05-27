@@ -19,6 +19,7 @@
  */
 
 #include "dh-notebook.h"
+#include "dh-tab-label.h"
 
 G_DEFINE_TYPE (DhNotebook, dh_notebook, GTK_TYPE_NOTEBOOK)
 
@@ -72,6 +73,34 @@ DhNotebook *
 dh_notebook_new (void)
 {
         return g_object_new (DH_TYPE_NOTEBOOK, NULL);
+}
+
+void
+dh_notebook_append_tab (DhNotebook *notebook,
+                        DhTab      *tab,
+                        gboolean    set_as_current_page)
+{
+        GtkWidget *label;
+        gint page_num;
+
+        g_return_if_fail (DH_IS_NOTEBOOK (notebook));
+        g_return_if_fail (DH_IS_TAB (tab));
+
+        label = dh_tab_label_new (tab);
+        gtk_widget_show (label);
+
+        page_num = gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+                                             GTK_WIDGET (tab),
+                                             label);
+
+        gtk_container_child_set (GTK_CONTAINER (notebook),
+                                 GTK_WIDGET (tab),
+                                 "tab-expand", TRUE,
+                                 "reorderable", TRUE,
+                                 NULL);
+
+        if (set_as_current_page)
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), page_num);
 }
 
 /* Returns: (transfer none) (nullable): */

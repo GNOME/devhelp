@@ -52,6 +52,10 @@ GType           dh_notebook_get_type                    (void);
 
 DhNotebook *    dh_notebook_new                         (void);
 
+void            dh_notebook_append_tab                  (DhNotebook *notebook,
+                                                         DhTab      *tab,
+                                                         gboolean    set_as_current_page);
+
 DhTab *         dh_notebook_get_active_tab              (DhNotebook *notebook);
 
 DhWebView *     dh_notebook_get_active_web_view         (DhNotebook *notebook);
