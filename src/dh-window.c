@@ -26,6 +26,7 @@
 #include <webkit2/webkit2.h>
 #include <devhelp/devhelp.h>
 #include <amtk/amtk.h>
+#include "dh-notebook.h"
 #include "dh-settings-app.h"
 #include "dh-tab.h"
 #include "dh-tab-label.h"
@@ -43,11 +44,12 @@ typedef struct {
         DhSidebar *sidebar;
 
         /* Right side of the @hpaned. */
+        GtkGrid *grid_documents;
         GtkSearchBar *search_bar;
         GtkSearchEntry *search_entry;
         GtkButton *search_prev_button;
         GtkButton *search_next_button;
-        GtkNotebook *notebook;
+        DhNotebook *notebook;
 } DhWindowPrivate;
 
 static void open_new_tab (DhWindow    *window,
@@ -85,36 +87,22 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
+        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_documents);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_bar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_entry);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_prev_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, search_next_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, notebook);
 }
 
 /* Can return NULL during initialization and finalization, so it's better to
  * handle the NULL case with the return value of this function.
  */
-static DhTab *
-get_active_tab (DhWindow *window)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        gint page_num;
-
-        page_num = gtk_notebook_get_current_page (priv->notebook);
-        if (page_num == -1)
-                return NULL;
-
-        return DH_TAB (gtk_notebook_get_nth_page (priv->notebook, page_num));
-}
-
 static DhWebView *
 get_active_web_view (DhWindow *window)
 {
-        DhTab *tab;
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
-        tab = get_active_tab (window);
-        return tab != NULL ? dh_tab_get_web_view (tab) : NULL;
+        return dh_notebook_get_active_web_view (priv->notebook);
 }
 
 static void
@@ -196,14 +184,14 @@ next_tab_cb (GSimpleAction *action,
         gint current_page;
         gint n_pages;
 
-        current_page = gtk_notebook_get_current_page (priv->notebook);
-        n_pages = gtk_notebook_get_n_pages (priv->notebook);
+        current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
+        n_pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
 
         if (current_page < n_pages - 1)
-                gtk_notebook_next_page (priv->notebook);
+                gtk_notebook_next_page (GTK_NOTEBOOK (priv->notebook));
         else
                 /* Wrap around to the first tab. */
-                gtk_notebook_set_current_page (priv->notebook, 0);
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), 0);
 }
 
 static void
@@ -215,13 +203,13 @@ prev_tab_cb (GSimpleAction *action,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint current_page;
 
-        current_page = gtk_notebook_get_current_page (priv->notebook);
+        current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
 
         if (current_page > 0)
-                gtk_notebook_prev_page (priv->notebook);
+                gtk_notebook_prev_page (GTK_NOTEBOOK (priv->notebook));
         else
                 /* Wrap around to the last tab. */
-                gtk_notebook_set_current_page (priv->notebook, -1);
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), -1);
 }
 
 static void
@@ -234,7 +222,7 @@ go_to_tab_cb (GSimpleAction *action,
         guint16 tab_num;
 
         tab_num = g_variant_get_uint16 (parameter);
-        gtk_notebook_set_current_page (priv->notebook, tab_num);
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), tab_num);
 }
 
 static void
@@ -264,8 +252,8 @@ close_tab_cb (GSimpleAction *action,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint page_num;
 
-        page_num = gtk_notebook_get_current_page (priv->notebook);
-        gtk_notebook_remove_page (priv->notebook, page_num);
+        page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
+        gtk_notebook_remove_page (GTK_NOTEBOOK (priv->notebook), page_num);
 }
 
 static void
@@ -657,12 +645,12 @@ update_search_in_all_web_views (DhWindow *window)
         gint n_pages;
         gint page_num;
 
-        n_pages = gtk_notebook_get_n_pages (priv->notebook);
+        n_pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
 
         for (page_num = 0; page_num < n_pages; page_num++) {
                 DhTab *tab;
 
-                tab = DH_TAB (gtk_notebook_get_nth_page (priv->notebook, page_num));
+                tab = DH_TAB (gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), page_num));
                 update_search_in_web_view (window, dh_tab_get_web_view (tab));
         }
 }
@@ -746,8 +734,8 @@ show_or_hide_notebook_tabs (DhWindow *window)
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint n_pages;
 
-        n_pages = gtk_notebook_get_n_pages (priv->notebook);
-        gtk_notebook_set_show_tabs (priv->notebook, n_pages > 1);
+        n_pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (priv->notebook));
+        gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), n_pages > 1);
 }
 
 static void
@@ -797,7 +785,6 @@ dh_window_init (DhWindow *window)
 
         gtk_widget_init_template (GTK_WIDGET (window));
 
-        add_actions (window);
         set_window_menu (window);
 
         settings = dh_settings_app_get_singleton ();
@@ -817,6 +804,27 @@ dh_window_init (DhWindow *window)
                           "link-selected",
                           G_CALLBACK (sidebar_link_selected_cb),
                           window);
+
+        /* HTML tabs GtkNotebook */
+        priv->notebook = dh_notebook_new ();
+        gtk_widget_show (GTK_WIDGET (priv->notebook));
+        gtk_container_add (GTK_CONTAINER (priv->grid_documents),
+                           GTK_WIDGET (priv->notebook));
+
+        g_signal_connect_after (priv->notebook,
+                                "page-added",
+                                G_CALLBACK (notebook_page_added_after_cb),
+                                window);
+
+        g_signal_connect_after (priv->notebook,
+                                "page-removed",
+                                G_CALLBACK (notebook_page_removed_after_cb),
+                                window);
+
+        g_signal_connect_after (priv->notebook,
+                                "switch-page",
+                                G_CALLBACK (notebook_switch_page_after_cb),
+                                window);
 
         /* Search bar above GtkNotebook */
         gtk_search_bar_connect_entry (priv->search_bar, GTK_ENTRY (priv->search_entry));
@@ -851,21 +859,7 @@ dh_window_init (DhWindow *window)
                           G_CALLBACK (search_next_button_clicked_cb),
                           window);
 
-        /* HTML tabs GtkNotebook */
-        g_signal_connect_after (priv->notebook,
-                                "page-added",
-                                G_CALLBACK (notebook_page_added_after_cb),
-                                window);
-
-        g_signal_connect_after (priv->notebook,
-                                "page-removed",
-                                G_CALLBACK (notebook_page_removed_after_cb),
-                                window);
-
-        g_signal_connect_after (priv->notebook,
-                                "switch-page",
-                                G_CALLBACK (notebook_switch_page_after_cb),
-                                window);
+        add_actions (window);
 
         open_new_tab (window, NULL, TRUE);
 
@@ -1069,7 +1063,7 @@ open_new_tab (DhWindow    *window,
         label = dh_tab_label_new (tab);
         gtk_widget_show (label);
 
-        page_num = gtk_notebook_append_page (priv->notebook,
+        page_num = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
                                              GTK_WIDGET (tab),
                                              label);
 
@@ -1085,7 +1079,7 @@ open_new_tab (DhWindow    *window,
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), "about:blank");
 
         if (switch_focus)
-                gtk_notebook_set_current_page (priv->notebook, page_num);
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), page_num);
 }
 
 GtkWidget *
