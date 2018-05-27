@@ -21,5 +21,9 @@ Devhelp follows the Linux kernel coding style, with some exceptions:
          * Second line.
          */
 
+GObject classes must not be created with a G_DECLARE macro, it causes more
+problems than it solves:
+https://blogs.gnome.org/swilmet/2015/10/10/changing-quickly-between-a-final-and-derivable-gobject-class/
+
 See also:
 https://developer.gnome.org/programming-guidelines/unstable/
