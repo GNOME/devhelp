@@ -32,6 +32,13 @@ struct _DhWebViewPrivate {
         gdouble total_scroll_delta_y;
 };
 
+enum {
+        SIGNAL_OPEN_NEW_TAB,
+        N_SIGNALS
+};
+
+static guint signals[N_SIGNALS];
+
 static const gdouble zoom_levels[] = {
         0.5,            /* 50% */
         0.8408964152,   /* 75% */
@@ -189,6 +196,144 @@ dh_web_view_load_failed (WebKitWebView   *web_view,
                                                                               error);
 }
 
+static gchar *
+find_equivalent_local_uri (const gchar *uri)
+{
+        gchar **components;
+        guint n_components;
+        const gchar *book_id;
+        const gchar *relative_url;
+        DhBookList *book_list;
+        GList *books;
+        GList *book_node;
+        gchar *local_uri = NULL;
+
+        g_return_val_if_fail (uri != NULL, NULL);
+
+        components = g_strsplit (uri, "/", 0);
+        n_components = g_strv_length (components);
+
+        if ((g_str_has_prefix (uri, "http://library.gnome.org/devel/") ||
+             g_str_has_prefix (uri, "https://library.gnome.org/devel/")) &&
+            n_components >= 7) {
+                book_id = components[4];
+                relative_url = components[6];
+        } else if ((g_str_has_prefix (uri, "http://developer.gnome.org/") ||
+                    g_str_has_prefix (uri, "https://developer.gnome.org/")) &&
+                   n_components >= 6) {
+                /* E.g. http://developer.gnome.org/gio/stable/ch02.html */
+                book_id = components[3];
+                relative_url = components[5];
+        } else {
+                goto out;
+        }
+
+        book_list = dh_book_list_get_default ();
+        books = dh_book_list_get_books (book_list);
+
+        for (book_node = books; book_node != NULL; book_node = book_node->next) {
+                DhBook *cur_book = DH_BOOK (book_node->data);
+                GList *links;
+                GList *link_node;
+
+                if (g_strcmp0 (dh_book_get_id (cur_book), book_id) != 0)
+                        continue;
+
+                links = dh_book_get_links (cur_book);
+
+                for (link_node = links; link_node != NULL; link_node = link_node->next) {
+                        DhLink *cur_link = link_node->data;
+
+                        if (dh_link_match_relative_url (cur_link, relative_url)) {
+                                local_uri = dh_link_get_uri (cur_link);
+                                goto out;
+                        }
+                }
+        }
+
+out:
+        g_strfreev (components);
+        return local_uri;
+}
+
+static gboolean
+dh_web_view_decide_policy (WebKitWebView            *web_view,
+                           WebKitPolicyDecision     *policy_decision,
+                           WebKitPolicyDecisionType  type)
+{
+        WebKitNavigationPolicyDecision *navigation_decision;
+        WebKitNavigationAction *navigation_action;
+        const gchar *uri;
+        gchar *local_uri;
+        gint button;
+        gint state;
+
+        if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
+                goto chain_up;
+
+        navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (policy_decision);
+        navigation_action = webkit_navigation_policy_decision_get_navigation_action (navigation_decision);
+        uri = webkit_uri_request_get_uri (webkit_navigation_action_get_request (navigation_action));
+        if (uri == NULL) {
+                g_warn_if_reached ();
+                goto chain_up;
+        }
+
+        /* middle click or ctrl-click -> new tab */
+        button = webkit_navigation_action_get_mouse_button (navigation_action);
+        state = webkit_navigation_action_get_modifiers (navigation_action);
+        if (button == 2 || (button == 1 && state == GDK_CONTROL_MASK)) {
+                /* FIXME: must not do this if gtk_show_uri_on_window() will be
+                 * called.
+                 */
+                webkit_policy_decision_ignore (policy_decision);
+                g_signal_emit (web_view, signals[SIGNAL_OPEN_NEW_TAB], 0, uri);
+                return GDK_EVENT_STOP;
+        }
+
+        if (g_str_equal (uri, "about:blank"))
+                goto chain_up;
+
+        local_uri = find_equivalent_local_uri (uri);
+        if (local_uri != NULL) {
+                webkit_policy_decision_ignore (policy_decision);
+                webkit_web_view_load_uri (web_view, local_uri);
+                g_free (local_uri);
+                return GDK_EVENT_STOP;
+        }
+
+        if (!g_str_has_prefix (uri, "file://")) {
+                GtkWidget *toplevel;
+                GtkWindow *window = NULL;
+                GError *error = NULL;
+
+                webkit_policy_decision_ignore (policy_decision);
+
+                toplevel = gtk_widget_get_toplevel (GTK_WIDGET (web_view));
+                if (GTK_IS_WINDOW (toplevel))
+                        window = GTK_WINDOW (toplevel);
+
+                gtk_show_uri_on_window (window, uri, GDK_CURRENT_TIME, &error);
+
+                if (error != NULL) {
+                        g_warning ("Error when opening URI “%s” externally: %s",
+                                   uri,
+                                   error->message);
+                        g_clear_error (&error);
+                }
+
+                return GDK_EVENT_STOP;
+        }
+
+chain_up:
+        if (WEBKIT_WEB_VIEW_CLASS (dh_web_view_parent_class)->decide_policy == NULL)
+                return GDK_EVENT_PROPAGATE;
+
+        return WEBKIT_WEB_VIEW_CLASS (dh_web_view_parent_class)->decide_policy (web_view,
+                                                                                policy_decision,
+                                                                                type);
+}
+
 static void
 set_fonts (WebKitWebView *view,
            const gchar   *font_name_variable,
@@ -298,6 +443,24 @@ dh_web_view_class_init (DhWebViewClass *klass)
         widget_class->button_press_event = dh_web_view_button_press_event;
 
         webkit_class->load_failed = dh_web_view_load_failed;
+        webkit_class->decide_policy = dh_web_view_decide_policy;
+
+        /**
+         * DhWebView::open-new-tab:
+         * @view: the #DhWebView emitting the signal.
+         * @uri: the URI to open.
+         *
+         * The ::open-new-tab signal is emitted when a URI needs to be opened in
+         * a new #DhWebView.
+         */
+        signals[SIGNAL_OPEN_NEW_TAB] =
+                g_signal_new ("open-new-tab",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (DhWebViewClass, open_new_tab),
+                              NULL, NULL, NULL,
+                              G_TYPE_NONE,
+                              1, G_TYPE_STRING);
 }
 
 static void

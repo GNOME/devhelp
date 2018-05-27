@@ -45,6 +45,10 @@ struct _DhWebView {
 struct _DhWebViewClass {
         WebKitWebViewClass parent_class;
 
+        /* Signals */
+        void    (* open_new_tab)        (DhWebView   *view,
+                                         const gchar *uri);
+
         /* Padding for future expansion */
         gpointer padding[12];
 };

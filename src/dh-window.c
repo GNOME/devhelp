@@ -722,126 +722,6 @@ web_view_zoom_level_notify_cb (DhWebView  *web_view,
                 update_zoom_actions_sensitivity (window);
 }
 
-static gchar *
-find_equivalent_local_uri (const gchar *uri)
-{
-        gchar **components;
-        guint n_components;
-        const gchar *book_id;
-        const gchar *relative_url;
-        DhBookList *book_list;
-        GList *books;
-        GList *book_node;
-        gchar *local_uri = NULL;
-
-        g_return_val_if_fail (uri != NULL, NULL);
-
-        components = g_strsplit (uri, "/", 0);
-        n_components = g_strv_length (components);
-
-        if ((g_str_has_prefix (uri, "http://library.gnome.org/devel/") ||
-             g_str_has_prefix (uri, "https://library.gnome.org/devel/")) &&
-            n_components >= 7) {
-                book_id = components[4];
-                relative_url = components[6];
-        } else if ((g_str_has_prefix (uri, "http://developer.gnome.org/") ||
-                    g_str_has_prefix (uri, "https://developer.gnome.org/")) &&
-                   n_components >= 6) {
-                /* E.g. http://developer.gnome.org/gio/stable/ch02.html */
-                book_id = components[3];
-                relative_url = components[5];
-        } else {
-                goto out;
-        }
-
-        book_list = dh_book_list_get_default ();
-        books = dh_book_list_get_books (book_list);
-
-        for (book_node = books; book_node != NULL; book_node = book_node->next) {
-                DhBook *cur_book = DH_BOOK (book_node->data);
-                GList *links;
-                GList *link_node;
-
-                if (g_strcmp0 (dh_book_get_id (cur_book), book_id) != 0)
-                        continue;
-
-                links = dh_book_get_links (cur_book);
-
-                for (link_node = links; link_node != NULL; link_node = link_node->next) {
-                        DhLink *cur_link = link_node->data;
-
-                        if (dh_link_match_relative_url (cur_link, relative_url)) {
-                                local_uri = dh_link_get_uri (cur_link);
-                                goto out;
-                        }
-                }
-        }
-
-out:
-        g_strfreev (components);
-        return local_uri;
-}
-
-static gboolean
-web_view_decide_policy_cb (WebKitWebView            *web_view,
-                           WebKitPolicyDecision     *policy_decision,
-                           WebKitPolicyDecisionType  type,
-                           DhWindow                 *window)
-{
-        const gchar *uri;
-        WebKitNavigationPolicyDecision *navigation_decision;
-        WebKitNavigationAction *navigation_action;
-        gchar *local_uri;
-        gint button;
-        gint state;
-
-        if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
-                return GDK_EVENT_PROPAGATE;
-
-        navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (policy_decision);
-        navigation_action = webkit_navigation_policy_decision_get_navigation_action (navigation_decision);
-        uri = webkit_uri_request_get_uri (webkit_navigation_action_get_request (navigation_action));
-        g_return_val_if_fail (uri != NULL, GDK_EVENT_PROPAGATE);
-
-        /* middle click or ctrl-click -> new tab */
-        button = webkit_navigation_action_get_mouse_button (navigation_action);
-        state = webkit_navigation_action_get_modifiers (navigation_action);
-        if (button == 2 || (button == 1 && state == GDK_CONTROL_MASK)) {
-                webkit_policy_decision_ignore (policy_decision);
-                open_new_tab (window, uri, FALSE);
-                return GDK_EVENT_STOP;
-        }
-
-        if (g_str_equal (uri, "about:blank"))
-                return GDK_EVENT_PROPAGATE;
-
-        local_uri = find_equivalent_local_uri (uri);
-        if (local_uri != NULL) {
-                webkit_policy_decision_ignore (policy_decision);
-                webkit_web_view_load_uri (web_view, local_uri);
-                g_free (local_uri);
-                return GDK_EVENT_STOP;
-        }
-
-        if (!g_str_has_prefix (uri, "file://")) {
-                GError *error = NULL;
-
-                webkit_policy_decision_ignore (policy_decision);
-                gtk_show_uri_on_window (GTK_WINDOW (window), uri, GDK_CURRENT_TIME, &error);
-
-                if (error != NULL) {
-                        g_warning ("Error when opening URI “%s” externally: %s",
-                                   uri,
-                                   error->message);
-                        g_clear_error (&error);
-                }
-
-                return GDK_EVENT_STOP;
-        }
-
-        return GDK_EVENT_PROPAGATE;
-}
-
 static void
 web_view_load_changed_cb (DhWebView       *web_view,
                           WebKitLoadEvent  load_event,
@@ -851,6 +731,14 @@ web_view_load_changed_cb (DhWebView       *web_view,
             web_view == get_active_web_view (window)) {
                 sync_active_web_view_uri_to_sidebar (window);
         }
+}
+
+static void
+web_view_open_new_tab_cb (DhWebView   *web_view,
+                          const gchar *uri,
+                          DhWindow    *window)
+{
+        open_new_tab (window, uri, FALSE);
 }
 
 static void
@@ -879,13 +767,13 @@ open_new_tab (DhWindow    *window,
                           window);
 
         g_signal_connect (web_view,
-                          "decide-policy",
-                          G_CALLBACK (web_view_decide_policy_cb),
+                          "load-changed",
+                          G_CALLBACK (web_view_load_changed_cb),
                           window);
 
         g_signal_connect (web_view,
-                          "load-changed",
-                          G_CALLBACK (web_view_load_changed_cb),
+                          "open-new-tab",
+                          G_CALLBACK (web_view_open_new_tab_cb),
                           window);
 
         back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (web_view));
