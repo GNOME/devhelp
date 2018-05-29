@@ -42,6 +42,7 @@ cleanup:
 
 modules:
   - name: amtk
+    run-tests: false
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/amtk.git
@@ -50,6 +51,7 @@ modules:
   - name: devhelp
     buildsystem: meson
     config-opts: [ "-Dflatpak_build=true" ]
+    run-tests: true
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/devhelp.git
