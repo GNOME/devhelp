@@ -42,7 +42,7 @@ cleanup:
 
 modules:
   - name: amtk
-    run-tests: false
+    run-tests: true
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/amtk.git
