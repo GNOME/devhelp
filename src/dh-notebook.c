@@ -124,7 +124,6 @@ dh_notebook_open_new_tab (DhNotebook  *notebook,
         if (switch_focus)
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), page_num);
 
-
         if (uri != NULL)
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), uri);
         else
