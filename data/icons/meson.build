@@ -9,7 +9,7 @@ icon_sizes = [
 
 foreach icon_size : icon_sizes
         install_data(
-                join_paths(icon_size, 'devhelp.png'),
+                join_paths(icon_size, 'org.gnome.Devhelp.png'),
                 install_dir : join_paths(
                         get_option('prefix'),
                         get_option('datadir'),
@@ -21,7 +21,7 @@ foreach icon_size : icon_sizes
 endforeach
 
 install_data(
-        'symbolic/devhelp-symbolic.svg',
+        'symbolic/org.gnome.Devhelp-symbolic.svg',
         install_dir : join_paths(
                 get_option('prefix'),
                 get_option('datadir'),

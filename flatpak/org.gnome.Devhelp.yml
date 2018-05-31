@@ -3,7 +3,6 @@ runtime: org.gnome.Sdk
 runtime-version: master
 sdk: org.gnome.Sdk
 command: devhelp
-rename-icon: devhelp
 tags:
   - nightly
 desktop-file-name-prefix: "(Nightly) "

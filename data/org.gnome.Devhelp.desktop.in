@@ -8,7 +8,7 @@ Exec=devhelp
 Terminal=false
 Type=Application
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-Icon=devhelp
+Icon=org.gnome.Devhelp
 Categories=GNOME;GTK;Development;
 StartupNotify=true
 DBusActivatable=true

@@ -6,6 +6,6 @@ Name=Devhelp support
 Description=Makes F2 bring up Devhelp for the word at the cursor
 Authors=Richard Hult
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-Icon=devhelp
+Icon=org.gnome.Devhelp
 Copyright=Copyright © 2006 Richard Hult
 Website=https://wiki.gnome.org/Apps/Devhelp

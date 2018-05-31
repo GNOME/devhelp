@@ -274,7 +274,7 @@ about_cb (GSimpleAction *action,
                                "translator-credits", _("translator-credits"),
                                "website", "https://wiki.gnome.org/Apps/Devhelp",
                                "website-label", _("Devhelp Website"),
-                               "logo-icon-name", "devhelp",
+                               "logo-icon-name", "org.gnome.Devhelp",
                                "license-type", GTK_LICENSE_GPL_3_0,
                                "copyright", "Copyright 2001-2018 – the Devhelp team",
                                NULL);
@@ -596,7 +596,7 @@ dh_app_init (DhApp *app)
          * translatable for transliteration only).
          */
         g_set_application_name (_("Devhelp"));
-        gtk_window_set_default_icon_name ("devhelp");
+        gtk_window_set_default_icon_name ("org.gnome.Devhelp");
 
         g_application_add_main_option_entries (G_APPLICATION (app), options);
 }
