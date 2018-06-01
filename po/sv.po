@@ -12,10 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-05-21 16:43+0000\n"
-"PO-Revision-Date: 2018-05-23 23:54+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2018-05-31 14:03+0000\n"
+"PO-Revision-Date: 2018-06-01 23:52+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -90,8 +89,8 @@ msgstr "dokumentation;information;manual;utvecklare;api;"
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Devhelp.desktop.in:12
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "devhelp"
-msgstr "devhelp"
+msgid "org.gnome.Devhelp"
+msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -457,35 +456,37 @@ msgstr "_Fast bredd:"
 msgid "Fonts"
 msgstr "Typsnitt"
 
-#: src/dh-tab.c:70
-msgid "Error opening the requested link."
-msgstr "Fel vid öppnandet av begärd länk."
-
-#: src/dh-web-view.c:301
+#: src/dh-web-view.c:498
 msgid "Empty Page"
 msgstr "Tom sida"
 
 #. General group
-#: src/dh-window.c:418
+#: src/dh-window.c:410
 msgid "General"
 msgstr "Allmänt"
 
 #. Zoom group
-#: src/dh-window.c:432
+#: src/dh-window.c:424
 msgid "Zoom"
 msgstr "Zooma"
 
-#: src/dh-window.ui:28
+#: src/dh-window.ui:27
 msgid "Back"
 msgstr "Bakåt"
 
-#: src/dh-window.ui:47
+#: src/dh-window.ui:46
 msgid "Forward"
 msgstr "Framåt"
 
-#: src/dh-window.ui:92
+#: src/dh-window.ui:91
 msgid "New Tab"
 msgstr "Ny flik"
+
+#~ msgid "devhelp"
+#~ msgstr "devhelp"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "Fel vid öppnandet av begärd länk."
 
 #~ msgid "_About Devhelp"
 #~ msgstr "_Om Devhelp"
