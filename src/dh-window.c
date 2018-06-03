@@ -579,47 +579,6 @@ set_window_menu (DhWindow *window)
 }
 
 static void
-sidebar_link_selected_cb (DhSidebar *sidebar,
-                          DhLink    *link,
-                          DhWindow  *window)
-{
-        gchar *uri;
-        DhWebView *web_view;
-
-        uri = dh_link_get_uri (link);
-        if (uri == NULL)
-                return;
-
-        web_view = get_active_web_view (window);
-        if (web_view != NULL)
-                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), uri);
-
-        g_free (uri);
-}
-
-static void
-sync_active_web_view_uri_to_sidebar (DhWindow *window)
-{
-        DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        DhWebView *web_view;
-        const gchar *uri = NULL;
-
-        g_signal_handlers_block_by_func (priv->sidebar,
-                                         sidebar_link_selected_cb,
-                                         window);
-
-        web_view = get_active_web_view (window);
-        if (web_view != NULL)
-                uri = webkit_web_view_get_uri (WEBKIT_WEB_VIEW (web_view));
-        if (uri != NULL)
-                dh_sidebar_select_uri (priv->sidebar, uri);
-
-        g_signal_handlers_unblock_by_func (priv->sidebar,
-                                           sidebar_link_selected_cb,
-                                           window);
-}
-
-static void
 web_view_title_notify_cb (DhWebView  *web_view,
                           GParamSpec *param_spec,
                           DhWindow   *window)
@@ -635,17 +594,6 @@ web_view_zoom_level_notify_cb (DhWebView  *web_view,
 {
         if (web_view == get_active_web_view (window))
                 update_zoom_actions_sensitivity (window);
-}
-
-static void
-web_view_load_changed_cb (DhWebView       *web_view,
-                          WebKitLoadEvent  load_event,
-                          DhWindow        *window)
-{
-        if (load_event == WEBKIT_LOAD_COMMITTED &&
-            web_view == get_active_web_view (window)) {
-                sync_active_web_view_uri_to_sidebar (window);
-        }
 }
 
 static void
@@ -671,11 +619,6 @@ notebook_page_added_after_cb (GtkNotebook *notebook,
         g_signal_connect (web_view,
                           "notify::zoom-level",
                           G_CALLBACK (web_view_zoom_level_notify_cb),
-                          window);
-
-        g_signal_connect (web_view,
-                          "load-changed",
-                          G_CALLBACK (web_view_load_changed_cb),
                           window);
 
         back_forward_list = webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (web_view));
@@ -705,7 +648,6 @@ notebook_switch_page_after_cb (GtkNotebook *notebook,
         update_window_title (window);
         update_zoom_actions_sensitivity (window);
         update_back_forward_actions_sensitivity (window);
-        sync_active_web_view_uri_to_sidebar (window);
 }
 
 static void
@@ -732,14 +674,11 @@ dh_window_init (DhWindow *window)
         gtk_container_add (GTK_CONTAINER (priv->grid_sidebar),
                            GTK_WIDGET (priv->sidebar));
 
-        g_signal_connect (priv->sidebar,
-                          "link-selected",
-                          G_CALLBACK (sidebar_link_selected_cb),
-                          window);
-
         /* HTML tabs GtkNotebook */
         priv->notebook = dh_notebook_new ();
         gtk_widget_show (GTK_WIDGET (priv->notebook));
+
+        dh_util_bind_sidebar_and_notebook (priv->sidebar, priv->notebook);
 
         g_signal_connect_after (priv->notebook,
                                 "page-added",

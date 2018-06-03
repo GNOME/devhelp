@@ -24,14 +24,19 @@
 #define DH_UTIL_APP_H
 
 #include <gtk/gtk.h>
+#include <devhelp/devhelp.h>
+#include "dh-notebook.h"
 
 G_BEGIN_DECLS
 
-void         dh_util_window_settings_save         (GtkWindow *window,
-                                                   GSettings *settings);
+void    dh_util_window_settings_save            (GtkWindow *window,
+                                                 GSettings *settings);
 
-void         dh_util_window_settings_restore      (GtkWindow *gtk_window,
-                                                   GSettings *settings);
+void    dh_util_window_settings_restore         (GtkWindow *gtk_window,
+                                                 GSettings *settings);
+
+void    dh_util_bind_sidebar_and_notebook       (DhSidebar  *sidebar,
+                                                 DhNotebook *notebook);
 
 G_END_DECLS
 
