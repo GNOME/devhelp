@@ -52,7 +52,7 @@ struct _DhTabClass {
 
 GType           dh_tab_get_type         (void);
 
-DhTab *         dh_tab_new              (void);
+DhTab *         dh_tab_new              (DhWebView *web_view);
 
 DhWebView *     dh_tab_get_web_view     (DhTab *tab);
 

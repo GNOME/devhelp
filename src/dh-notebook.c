@@ -92,17 +92,19 @@ dh_notebook_open_new_tab (DhNotebook  *notebook,
                           const gchar *uri,
                           gboolean     switch_focus)
 {
-        DhTab *tab;
         DhWebView *web_view;
+        DhTab *tab;
         GtkWidget *label;
         gint page_num;
 
         g_return_if_fail (DH_IS_NOTEBOOK (notebook));
 
-        tab = dh_tab_new ();
+        web_view = dh_web_view_new ();
+        gtk_widget_show (GTK_WIDGET (web_view));
+
+        tab = dh_tab_new (web_view);
         gtk_widget_show (GTK_WIDGET (tab));
 
-        web_view = dh_tab_get_web_view (tab);
         g_signal_connect (web_view,
                           "open-new-tab",
                           G_CALLBACK (web_view_open_new_tab_cb),
