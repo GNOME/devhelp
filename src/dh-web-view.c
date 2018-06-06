@@ -204,7 +204,8 @@ dh_web_view_load_failed (WebKitWebView   *web_view,
 }
 
 static gchar *
-find_equivalent_local_uri (const gchar *uri)
+find_equivalent_local_uri (DhWebView   *view,
+                           const gchar *uri)
 {
         gchar **components;
         guint n_components;
@@ -235,7 +236,7 @@ find_equivalent_local_uri (const gchar *uri)
                 goto out;
         }
 
-        book_list = dh_book_list_get_default ();
+        book_list = dh_profile_get_book_list (view->priv->profile);
         books = dh_book_list_get_books (book_list);
 
         for (book_node = books; book_node != NULL; book_node = book_node->next) {
@@ -295,7 +296,7 @@ dh_web_view_decide_policy (WebKitWebView            *web_view,
         if (g_str_equal (uri, "about:blank"))
                 goto handle_open_new_tab;
 
-        local_uri = find_equivalent_local_uri (uri);
+        local_uri = find_equivalent_local_uri (DH_WEB_VIEW (web_view), uri);
         if (local_uri != NULL && !open_new_tab) {
                 webkit_policy_decision_ignore (policy_decision);
                 webkit_web_view_load_uri (web_view, local_uri);
@@ -441,7 +442,7 @@ update_fonts (DhWebView *view)
         gchar *variable_font = NULL;
         gchar *fixed_font = NULL;
 
-        settings = dh_settings_get_default ();
+        settings = dh_profile_get_settings (view->priv->profile);
         dh_settings_get_selected_fonts (settings, &variable_font, &fixed_font);
 
         set_fonts (WEBKIT_WEB_VIEW (view), variable_font, fixed_font);
@@ -476,7 +477,7 @@ dh_web_view_constructed (GObject *object)
         if (view->priv->profile == NULL)
                 set_profile (view, dh_profile_get_default ());
 
-        dh_settings = dh_settings_get_default ();
+        dh_settings = dh_profile_get_settings (view->priv->profile);
         g_signal_connect_object (dh_settings,
                                  "fonts-changed",
                                  G_CALLBACK (settings_fonts_changed_cb),
