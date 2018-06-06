@@ -25,7 +25,92 @@
  * #DhTab's, and the tab labels are #DhTabLabel's.
  */
 
-G_DEFINE_TYPE (DhNotebook, dh_notebook, GTK_TYPE_NOTEBOOK)
+struct _DhNotebookPrivate {
+        DhProfile *profile;
+};
+
+enum {
+        PROP_0,
+        PROP_PROFILE,
+        N_PROPERTIES
+};
+
+static GParamSpec *properties[N_PROPERTIES];
+
+G_DEFINE_TYPE_WITH_PRIVATE (DhNotebook, dh_notebook, GTK_TYPE_NOTEBOOK)
+
+static void
+set_profile (DhNotebook *notebook,
+             DhProfile  *profile)
+{
+        if (profile == NULL)
+                return;
+
+        g_return_if_fail (DH_IS_PROFILE (profile));
+
+        g_assert (notebook->priv->profile == NULL);
+        notebook->priv->profile = g_object_ref (profile);
+}
+
+static void
+dh_notebook_get_property (GObject    *object,
+                          guint       prop_id,
+                          GValue     *value,
+                          GParamSpec *pspec)
+{
+        DhNotebook *notebook = DH_NOTEBOOK (object);
+
+        switch (prop_id) {
+                case PROP_PROFILE:
+                        g_value_set_object (value, dh_notebook_get_profile (notebook));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_notebook_set_property (GObject      *object,
+                          guint         prop_id,
+                          const GValue *value,
+                          GParamSpec   *pspec)
+{
+        DhNotebook *notebook = DH_NOTEBOOK (object);
+
+        switch (prop_id) {
+                case PROP_PROFILE:
+                        set_profile (notebook, g_value_get_object (value));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_notebook_constructed (GObject *object)
+{
+        DhNotebook *notebook = DH_NOTEBOOK (object);
+
+        if (G_OBJECT_CLASS (dh_notebook_parent_class)->constructed != NULL)
+                G_OBJECT_CLASS (dh_notebook_parent_class)->constructed (object);
+
+        if (notebook->priv->profile == NULL)
+                set_profile (notebook, dh_profile_get_default ());
+}
+
+static void
+dh_notebook_dispose (GObject *object)
+{
+        DhNotebook *notebook = DH_NOTEBOOK (object);
+
+        g_clear_object (&notebook->priv->profile);
+
+        G_OBJECT_CLASS (dh_notebook_parent_class)->dispose (object);
+}
 
 static void
 show_or_hide_tabs (GtkNotebook *notebook)
@@ -61,22 +146,53 @@ dh_notebook_page_removed (GtkNotebook *notebook,
 static void
 dh_notebook_class_init (DhNotebookClass *klass)
 {
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
         GtkNotebookClass *gtk_notebook_class = GTK_NOTEBOOK_CLASS (klass);
+
+        object_class->get_property = dh_notebook_get_property;
+        object_class->set_property = dh_notebook_set_property;
+        object_class->constructed = dh_notebook_constructed;
+        object_class->dispose = dh_notebook_dispose;
 
         gtk_notebook_class->page_added = dh_notebook_page_added;
         gtk_notebook_class->page_removed = dh_notebook_page_removed;
+
+        properties[PROP_PROFILE] =
+                g_param_spec_object ("profile",
+                                     "profile",
+                                     "",
+                                     DH_TYPE_PROFILE,
+                                     G_PARAM_READWRITE |
+                                     G_PARAM_CONSTRUCT_ONLY |
+                                     G_PARAM_STATIC_STRINGS);
+
+        g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
 static void
 dh_notebook_init (DhNotebook *notebook)
 {
+        notebook->priv = dh_notebook_get_instance_private (notebook);
+
         gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
 }
 
 DhNotebook *
-dh_notebook_new (void)
+dh_notebook_new (DhProfile *profile)
 {
-        return g_object_new (DH_TYPE_NOTEBOOK, NULL);
+        g_return_val_if_fail (profile == NULL || DH_IS_PROFILE (profile), NULL);
+
+        return g_object_new (DH_TYPE_NOTEBOOK,
+                             "profile", profile,
+                             NULL);
+}
+
+DhProfile *
+dh_notebook_get_profile (DhNotebook *notebook)
+{
+        g_return_val_if_fail (DH_IS_NOTEBOOK (notebook), NULL);
+
+        return notebook->priv->profile;
 }
 
 static void
@@ -99,8 +215,7 @@ dh_notebook_open_new_tab (DhNotebook  *notebook,
 
         g_return_if_fail (DH_IS_NOTEBOOK (notebook));
 
-        /* TODO: add "profile" property and use it here. */
-        web_view = dh_web_view_new (NULL);
+        web_view = dh_web_view_new (notebook->priv->profile);
         gtk_widget_show (GTK_WIDGET (web_view));
 
         tab = dh_tab_new (web_view);

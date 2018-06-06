@@ -675,7 +675,7 @@ dh_window_init (DhWindow *window)
                            GTK_WIDGET (priv->sidebar));
 
         /* HTML tabs GtkNotebook */
-        priv->notebook = dh_notebook_new ();
+        priv->notebook = dh_notebook_new (NULL);
         gtk_widget_show (GTK_WIDGET (priv->notebook));
 
         dh_util_bind_sidebar_and_notebook (priv->sidebar, priv->notebook);

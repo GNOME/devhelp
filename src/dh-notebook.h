@@ -22,6 +22,7 @@
 #define DH_NOTEBOOK_H
 
 #include <gtk/gtk.h>
+#include <devhelp/devhelp.h>
 #include "dh-tab.h"
 #include "dh-web-view.h"
 
@@ -36,9 +37,12 @@ G_BEGIN_DECLS
 
 typedef struct _DhNotebook         DhNotebook;
 typedef struct _DhNotebookClass    DhNotebookClass;
+typedef struct _DhNotebookPrivate  DhNotebookPrivate;
 
 struct _DhNotebook {
         GtkNotebook parent;
+
+        DhNotebookPrivate *priv;
 };
 
 struct _DhNotebookClass {
@@ -50,7 +54,9 @@ struct _DhNotebookClass {
 
 GType           dh_notebook_get_type                    (void);
 
-DhNotebook *    dh_notebook_new                         (void);
+DhNotebook *    dh_notebook_new                         (DhProfile *profile);
+
+DhProfile *     dh_notebook_get_profile                 (DhNotebook *notebook);
 
 void            dh_notebook_open_new_tab                (DhNotebook  *notebook,
                                                          const gchar *uri,
