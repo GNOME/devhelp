@@ -21,15 +21,21 @@
 #include "dh-web-view.h"
 #include <math.h>
 #include <glib/gi18n.h>
-#include <devhelp/devhelp.h>
 
 /* #DhWebView is a subclass of #WebKitWebView, to have a higher-level API for
  * some features.
  */
 
 struct _DhWebViewPrivate {
+        DhProfile *profile;
         gchar *search_text;
         gdouble total_scroll_delta_y;
+};
+
+enum {
+        PROP_0,
+        PROP_PROFILE,
+        N_PROPERTIES
 };
 
 enum {
@@ -37,6 +43,7 @@ enum {
         N_SIGNALS
 };
 
+static GParamSpec *properties[N_PROPERTIES];
 static guint signals[N_SIGNALS];
 
 static const gdouble zoom_levels[] = {
@@ -341,6 +348,57 @@ chain_up:
 }
 
 static void
+set_profile (DhWebView *view,
+             DhProfile *profile)
+{
+        if (profile == NULL)
+                return;
+
+        g_return_if_fail (DH_IS_PROFILE (profile));
+
+        g_assert (view->priv->profile == NULL);
+        view->priv->profile = g_object_ref (profile);
+}
+
+static void
+dh_web_view_get_property (GObject    *object,
+                          guint       prop_id,
+                          GValue     *value,
+                          GParamSpec *pspec)
+{
+        DhWebView *view = DH_WEB_VIEW (object);
+
+        switch (prop_id) {
+                case PROP_PROFILE:
+                        g_value_set_object (value, dh_web_view_get_profile (view));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
+dh_web_view_set_property (GObject      *object,
+                          guint         prop_id,
+                          const GValue *value,
+                          GParamSpec   *pspec)
+{
+        DhWebView *view = DH_WEB_VIEW (object);
+
+        switch (prop_id) {
+                case PROP_PROFILE:
+                        set_profile (view, g_value_get_object (value));
+                        break;
+
+                default:
+                        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                        break;
+        }
+}
+
+static void
 set_fonts (WebKitWebView *view,
            const gchar   *font_name_variable,
            const gchar   *font_name_fixed)
@@ -415,6 +473,9 @@ dh_web_view_constructed (GObject *object)
         webkit_settings_set_enable_html5_local_storage (webkit_settings, FALSE);
         webkit_settings_set_enable_plugins (webkit_settings, FALSE);
 
+        if (view->priv->profile == NULL)
+                set_profile (view, dh_profile_get_default ());
+
         dh_settings = dh_settings_get_default ();
         g_signal_connect_object (dh_settings,
                                  "fonts-changed",
@@ -423,6 +484,16 @@ dh_web_view_constructed (GObject *object)
                                  0);
 
         update_fonts (view);
+}
+
+static void
+dh_web_view_dispose (GObject *object)
+{
+        DhWebView *view = DH_WEB_VIEW (object);
+
+        g_clear_object (&view->priv->profile);
+
+        G_OBJECT_CLASS (dh_web_view_parent_class)->dispose (object);
 }
 
 static void
@@ -442,7 +513,10 @@ dh_web_view_class_init (DhWebViewClass *klass)
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
         WebKitWebViewClass *webkit_class = WEBKIT_WEB_VIEW_CLASS (klass);
 
+        object_class->get_property = dh_web_view_get_property;
+        object_class->set_property = dh_web_view_set_property;
         object_class->constructed = dh_web_view_constructed;
+        object_class->dispose = dh_web_view_dispose;
         object_class->finalize = dh_web_view_finalize;
 
         widget_class->scroll_event = dh_web_view_scroll_event;
@@ -450,6 +524,17 @@ dh_web_view_class_init (DhWebViewClass *klass)
 
         webkit_class->load_failed = dh_web_view_load_failed;
         webkit_class->decide_policy = dh_web_view_decide_policy;
+
+        properties[PROP_PROFILE] =
+                g_param_spec_object ("profile",
+                                     "profile",
+                                     "",
+                                     DH_TYPE_PROFILE,
+                                     G_PARAM_READWRITE |
+                                     G_PARAM_CONSTRUCT_ONLY |
+                                     G_PARAM_STATIC_STRINGS);
+
+        g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
         /**
          * DhWebView::open-new-tab:
@@ -480,9 +565,21 @@ dh_web_view_init (DhWebView *view)
 }
 
 DhWebView *
-dh_web_view_new (void)
+dh_web_view_new (DhProfile *profile)
 {
-        return g_object_new (DH_TYPE_WEB_VIEW, NULL);
+        g_return_val_if_fail (profile == NULL || DH_IS_PROFILE (profile), NULL);
+
+        return g_object_new (DH_TYPE_WEB_VIEW,
+                             "profile", profile,
+                             NULL);
+}
+
+DhProfile *
+dh_web_view_get_profile (DhWebView *view)
+{
+        g_return_val_if_fail (DH_IS_WEB_VIEW (view), NULL);
+
+        return view->priv->profile;
 }
 
 const gchar *

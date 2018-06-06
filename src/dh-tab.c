@@ -105,7 +105,7 @@ dh_tab_constructed (GObject *object)
         if (tab->priv->web_view == NULL) {
                 DhWebView *web_view;
 
-                web_view = dh_web_view_new ();
+                web_view = dh_web_view_new (NULL);
                 gtk_widget_show (GTK_WIDGET (web_view));
                 set_web_view (tab, web_view);
         }

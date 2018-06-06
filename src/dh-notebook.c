@@ -99,7 +99,8 @@ dh_notebook_open_new_tab (DhNotebook  *notebook,
 
         g_return_if_fail (DH_IS_NOTEBOOK (notebook));
 
-        web_view = dh_web_view_new ();
+        /* TODO: add "profile" property and use it here. */
+        web_view = dh_web_view_new (NULL);
         gtk_widget_show (GTK_WIDGET (web_view));
 
         tab = dh_tab_new (web_view);
