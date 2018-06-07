@@ -23,7 +23,6 @@
 
 #include <gtk/gtk.h>
 #include <devhelp/devhelp.h>
-#include "dh-tab.h"
 
 G_BEGIN_DECLS
 

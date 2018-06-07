@@ -6,7 +6,6 @@ devhelp_app_sources = [
         'dh-preferences.c',
         'dh-search-bar.c',
         'dh-settings-app.c',
-        'dh-tab.c',
         'dh-tab-label.c',
         'dh-util-app.c',
         'dh-window.c'

@@ -29,7 +29,6 @@
 #include "dh-notebook.h"
 #include "dh-search-bar.h"
 #include "dh-settings-app.h"
-#include "dh-tab.h"
 #include "dh-util-app.h"
 
 typedef struct {

@@ -22,7 +22,7 @@
 #define DH_TAB_LABEL_H
 
 #include <gtk/gtk.h>
-#include "dh-tab.h"
+#include <devhelp/devhelp.h>
 
 G_BEGIN_DECLS
 

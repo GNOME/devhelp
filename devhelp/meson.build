@@ -16,6 +16,7 @@ libdevhelp_public_headers = [
         'dh-settings.h',
         'dh-settings-builder.h',
         'dh-sidebar.h',
+        'dh-tab.h',
         'dh-web-view.h'
 ]
 
@@ -36,6 +37,7 @@ libdevhelp_public_c_files = [
         'dh-settings.c',
         'dh-settings-builder.c',
         'dh-sidebar.c',
+        'dh-tab.c',
         'dh-web-view.c'
 ]
 
