@@ -312,6 +312,23 @@ dh_sidebar_get_type
 </SECTION>
 
 <SECTION>
+<FILE>dh-tab</FILE>
+DhTab
+dh_tab_new
+dh_tab_get_web_view
+<SUBSECTION Standard>
+DH_IS_TAB
+DH_IS_TAB_CLASS
+DH_TAB
+DH_TAB_CLASS
+DH_TAB_GET_CLASS
+DH_TYPE_TAB
+DhTabClass
+DhTabPrivate
+dh_tab_get_type
+</SECTION>
+
+<SECTION>
 <FILE>dh-web-view</FILE>
 DhWebView
 dh_web_view_new

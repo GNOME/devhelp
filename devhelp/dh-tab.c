@@ -20,11 +20,17 @@
 
 #include "dh-tab.h"
 
-/* #DhTab is meant to be the content of one tab in a #DhNotebook. Currently it
- * contains only one element: a #DhWebView.
+/**
+ * SECTION:dh-tab
+ * @Title: DhTab
+ * @Short_description: Subclass of #GtkGrid containing a #DhWebView
  *
- * So #DhTab is not really useful right now, but it is planned to move it to the
- * libdevhelp, where it makes sense to have more flexibility.
+ * #DhTab is a subclass of #GtkGrid, it is meant to be the content of one tab in
+ * a #GtkNotebook. It contains by default only one element: a #DhWebView. But
+ * applications can add more widgets to the #GtkGrid.
+ */
+/* TODO Replace above GtkNotebook -> DhNotebook when it exists in the
+ * libdevhelp.
  */
 
 struct _DhTabPrivate {
@@ -131,6 +137,14 @@ dh_tab_class_init (DhTabClass *klass)
         object_class->constructed = dh_tab_constructed;
         object_class->dispose = dh_tab_dispose;
 
+        /**
+         * DhTab:web-view:
+         *
+         * The #DhWebView of the tab. If set to %NULL a #DhWebView is created
+         * with the default #DhProfile.
+         *
+         * Since: 3.30
+         */
         properties[PROP_WEB_VIEW] =
                 g_param_spec_object ("web-view",
                                      "web-view",
@@ -151,6 +165,14 @@ dh_tab_init (DhTab *tab)
         gtk_orientable_set_orientation (GTK_ORIENTABLE (tab), GTK_ORIENTATION_VERTICAL);
 }
 
+/**
+ * dh_tab_new:
+ * @web_view: (nullable): a #DhWebView, or %NULL to create a #DhWebView with the
+ *   default #DhProfile.
+ *
+ * Returns: (transfer floating): a new #DhTab.
+ * Since: 3.30
+ */
 DhTab *
 dh_tab_new (DhWebView *web_view)
 {
@@ -161,6 +183,13 @@ dh_tab_new (DhWebView *web_view)
                              NULL);
 }
 
+/**
+ * dh_tab_get_web_view:
+ * @tab: a #DhTab.
+ *
+ * Returns: (transfer none): the #DhTab:web-view.
+ * Since: 3.30
+ */
 DhWebView *
 dh_tab_get_web_view (DhTab *tab)
 {
