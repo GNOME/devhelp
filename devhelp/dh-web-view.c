@@ -24,9 +24,20 @@
 #include <glib/gi18n-lib.h>
 #include "dh-link.h"
 
-/* #DhWebView is a subclass of #WebKitWebView, to have a higher-level API for
+/**
+ * SECTION:dh-web-view
+ * @Title: DhWebView
+ * @Short_description: Subclass of #WebKitWebView
+ *
+ * #DhWebView is a subclass of #WebKitWebView, to have a higher-level API for
  * some features.
+ *
+ * The #DhProfile is used for:
+ * - Applying the #DhSettings fonts.
+ * - When trying to load a remote URL from developer.gnome.org, find in the
+ *   #DhBookList if there is an equivalent local link.
  */
+/* TODO document all the features. */
 
 struct _DhWebViewPrivate {
         DhProfile *profile;
@@ -528,6 +539,14 @@ dh_web_view_class_init (DhWebViewClass *klass)
         webkit_class->load_failed = dh_web_view_load_failed;
         webkit_class->decide_policy = dh_web_view_decide_policy;
 
+        /**
+         * DhWebView:profile:
+         *
+         * The #DhProfile. If set to %NULL, the default profile as returned by
+         * dh_profile_get_default() is used.
+         *
+         * Since: 3.30
+         */
         properties[PROP_PROFILE] =
                 g_param_spec_object ("profile",
                                      "profile",
@@ -545,7 +564,10 @@ dh_web_view_class_init (DhWebViewClass *klass)
          * @uri: the URI to open.
          *
          * The ::open-new-tab signal is emitted when a URI needs to be opened in
-         * a new #DhWebView.
+         * a new #DhWebView. This happens when doing Ctrl+click or middle click
+         * on a link.
+         *
+         * Since: 3.30
          */
         signals[SIGNAL_OPEN_NEW_TAB] =
                 g_signal_new ("open-new-tab",
@@ -567,6 +589,13 @@ dh_web_view_init (DhWebView *view)
         gtk_widget_set_vexpand (GTK_WIDGET (view), TRUE);
 }
 
+/**
+ * dh_web_view_new:
+ * @profile: (nullable): a #DhProfile, or %NULL for the default profile.
+ *
+ * Returns: (transfer floating): a new #DhWebView widget.
+ * Since: 3.30
+ */
 DhWebView *
 dh_web_view_new (DhProfile *profile)
 {
@@ -577,6 +606,13 @@ dh_web_view_new (DhProfile *profile)
                              NULL);
 }
 
+/**
+ * dh_web_view_get_profile:
+ * @view: a #DhWebView.
+ *
+ * Returns: (transfer none): the #DhWebView:profile.
+ * Since: 3.30
+ */
 DhProfile *
 dh_web_view_get_profile (DhWebView *view)
 {
@@ -585,6 +621,13 @@ dh_web_view_get_profile (DhWebView *view)
         return view->priv->profile;
 }
 
+/**
+ * dh_web_view_get_devhelp_title:
+ * @view: a #DhWebView.
+ *
+ * Returns: the @view title suitable for a tab label or window title.
+ * Since: 3.30
+ */
 const gchar *
 dh_web_view_get_devhelp_title (DhWebView *view)
 {
@@ -600,7 +643,7 @@ dh_web_view_get_devhelp_title (DhWebView *view)
         return title;
 }
 
-/*
+/**
  * dh_web_view_set_search_text:
  * @view: a #DhWebView.
  * @search_text: (nullable): the search string, or %NULL.
@@ -609,6 +652,8 @@ dh_web_view_get_devhelp_title (DhWebView *view)
  * @search_text is not empty, it calls webkit_find_controller_search() if not
  * already done. If @search_text is empty or %NULL, it calls
  * webkit_find_controller_search_finish().
+ *
+ * Since: 3.30
  */
 void
 dh_web_view_set_search_text (DhWebView   *view,
@@ -647,6 +692,15 @@ dh_web_view_set_search_text (DhWebView   *view,
         }
 }
 
+/**
+ * dh_web_view_search_next:
+ * @view: a #DhWebView.
+ *
+ * Like webkit_find_controller_search_next(), but takes into account whether
+ * dh_web_view_set_search_text() has been called.
+ *
+ * Since: 3.30
+ */
 void
 dh_web_view_search_next (DhWebView *view)
 {
@@ -661,6 +715,15 @@ dh_web_view_search_next (DhWebView *view)
         webkit_find_controller_search_next (find_controller);
 }
 
+/**
+ * dh_web_view_search_previous:
+ * @view: a #DhWebView.
+ *
+ * Like webkit_find_controller_search_previous(), but takes into account whether
+ * dh_web_view_set_search_text() has been called.
+ *
+ * Since: 3.30
+ */
 void
 dh_web_view_search_previous (DhWebView *view)
 {
@@ -675,6 +738,13 @@ dh_web_view_search_previous (DhWebView *view)
         webkit_find_controller_search_previous (find_controller);
 }
 
+/**
+ * dh_web_view_can_zoom_in:
+ * @view: a #DhWebView.
+ *
+ * Returns: whether calling dh_web_view_zoom_in() will have an effect.
+ * Since: 3.30
+ */
 gboolean
 dh_web_view_can_zoom_in (DhWebView *view)
 {
@@ -686,6 +756,13 @@ dh_web_view_can_zoom_in (DhWebView *view)
         return zoom_level_index < ((gint)n_zoom_levels - 1);
 }
 
+/**
+ * dh_web_view_can_zoom_out:
+ * @view: a #DhWebView.
+ *
+ * Returns: whether calling dh_web_view_zoom_out() will have an effect.
+ * Since: 3.30
+ */
 gboolean
 dh_web_view_can_zoom_out (DhWebView *view)
 {
@@ -697,6 +774,13 @@ dh_web_view_can_zoom_out (DhWebView *view)
         return zoom_level_index > 0;
 }
 
+/**
+ * dh_web_view_can_reset_zoom:
+ * @view: a #DhWebView.
+ *
+ * Returns: whether calling dh_web_view_reset_zoom() will have an effect.
+ * Since: 3.30
+ */
 gboolean
 dh_web_view_can_reset_zoom (DhWebView *view)
 {
@@ -708,6 +792,14 @@ dh_web_view_can_reset_zoom (DhWebView *view)
         return zoom_levels[zoom_level_index] != ZOOM_DEFAULT;
 }
 
+/**
+ * dh_web_view_zoom_in:
+ * @view: a #DhWebView.
+ *
+ * Makes the text larger.
+ *
+ * Since: 3.30
+ */
 void
 dh_web_view_zoom_in (DhWebView *view)
 {
@@ -716,6 +808,14 @@ dh_web_view_zoom_in (DhWebView *view)
         bump_zoom_level (view, 1);
 }
 
+/**
+ * dh_web_view_zoom_out:
+ * @view: a #DhWebView.
+ *
+ * Makes the text smaller.
+ *
+ * Since: 3.30
+ */
 void
 dh_web_view_zoom_out (DhWebView *view)
 {
@@ -724,6 +824,14 @@ dh_web_view_zoom_out (DhWebView *view)
         bump_zoom_level (view, -1);
 }
 
+/**
+ * dh_web_view_reset_zoom:
+ * @view: a #DhWebView.
+ *
+ * Reset the text size to the normal size.
+ *
+ * Since: 3.30
+ */
 void
 dh_web_view_reset_zoom (DhWebView *view)
 {

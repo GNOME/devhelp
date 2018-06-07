@@ -42,6 +42,11 @@
       <xi:include href="xml/dh-keyword-model.xml"/>
     </chapter>
 
+    <chapter id="viewing-html-pages">
+      <title>Viewing HTML Pages</title>
+      <xi:include href="xml/dh-web-view.xml"/>
+    </chapter>
+
     <chapter id="assistant">
       <title>Assistant</title>
       <xi:include href="xml/dh-assistant-view.xml"/>
