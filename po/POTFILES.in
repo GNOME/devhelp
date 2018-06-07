@@ -25,6 +25,7 @@ devhelp/dh-settings-builder.c
 devhelp/dh-settings.c
 devhelp/dh-sidebar.c
 devhelp/dh-util-lib.c
+devhelp/dh-web-view.c
 plugins/gedit-plugin/devhelp.plugin.desktop.in
 plugins/gedit-plugin/devhelp.py
 src/dh-app.c
@@ -39,6 +40,5 @@ src/dh-settings-app.c
 src/dh-tab.c
 src/dh-tab-label.c
 src/dh-util-app.c
-src/dh-web-view.c
 src/dh-window.c
 src/dh-window.ui
