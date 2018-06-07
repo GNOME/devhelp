@@ -329,6 +329,23 @@ dh_tab_get_type
 </SECTION>
 
 <SECTION>
+<FILE>dh-tab-label</FILE>
+DhTabLabel
+dh_tab_label_new
+dh_tab_label_get_tab
+<SUBSECTION Standard>
+DH_IS_TAB_LABEL
+DH_IS_TAB_LABEL_CLASS
+DH_TAB_LABEL
+DH_TAB_LABEL_CLASS
+DH_TAB_LABEL_GET_CLASS
+DH_TYPE_TAB_LABEL
+DhTabLabelClass
+DhTabLabelPrivate
+dh_tab_label_get_type
+</SECTION>
+
+<SECTION>
 <FILE>dh-web-view</FILE>
 DhWebView
 dh_web_view_new

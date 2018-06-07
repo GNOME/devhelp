@@ -21,7 +21,13 @@
 #include "dh-tab-label.h"
 #include "dh-web-view.h"
 
-/* The #DhTabLabel widget is used for the tab labels in #DhNotebook. */
+/**
+ * SECTION:dh-tab-label
+ * @Title: DhTabLabel
+ * @Short_description: A #DhTab label, to use with #GtkNotebook
+ */
+/* XXX: The #DhTabLabel widget is used for the tab labels in #DhNotebook.
+ */
 
 struct _DhTabLabelPrivate {
         /* Weak ref */
@@ -149,6 +155,14 @@ dh_tab_label_class_init (DhTabLabelClass *klass)
         object_class->set_property = dh_tab_label_set_property;
         object_class->dispose = dh_tab_label_dispose;
 
+        /**
+         * DhTabLabel:tab:
+         *
+         * The associated #DhTab. #DhTabLabel has a weak reference to the
+         * #DhTab.
+         *
+         * Since: 3.30
+         */
         properties[PROP_TAB] =
                 g_param_spec_object ("tab",
                                      "tab",
@@ -220,6 +234,13 @@ dh_tab_label_init (DhTabLabel *tab_label)
         gtk_container_add (GTK_CONTAINER (tab_label), close_button);
 }
 
+/**
+ * dh_tab_label_new:
+ * @tab: the associated #DhTab.
+ *
+ * Returns: (transfer floating): a new #DhTabLabel.
+ * Since: 3.30
+ */
 GtkWidget *
 dh_tab_label_new (DhTab *tab)
 {
@@ -230,7 +251,13 @@ dh_tab_label_new (DhTab *tab)
                              NULL);
 }
 
-/* Returns: (transfer none) (nullable): the #DhTabLabel:tab. */
+/**
+ * dh_tab_label_get_tab:
+ * @tab_label: a #DhTabLabel.
+ *
+ * Returns: (transfer none) (nullable): the #DhTabLabel:tab.
+ * Since: 3.30
+ */
 DhTab *
 dh_tab_label_get_tab (DhTabLabel *tab_label)
 {
