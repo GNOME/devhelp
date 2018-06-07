@@ -22,7 +22,7 @@
 #define DH_SEARCH_BAR_H
 
 #include <gtk/gtk.h>
-#include <devhelp/devhelp.h>
+#include <devhelp/dh-notebook.h>
 
 G_BEGIN_DECLS
 

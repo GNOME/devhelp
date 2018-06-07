@@ -39,6 +39,7 @@
 #include <devhelp/dh-notebook.h>
 #include <devhelp/dh-profile.h>
 #include <devhelp/dh-profile-builder.h>
+#include <devhelp/dh-search-bar.h>
 #include <devhelp/dh-settings.h>
 #include <devhelp/dh-settings-builder.h>
 #include <devhelp/dh-sidebar.h>

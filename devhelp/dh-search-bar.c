@@ -19,6 +19,7 @@
  */
 
 #include "dh-search-bar.h"
+#include "dh-web-view.h"
 
 /* #DhSearchBar is a subclass of #GtkSearchBar, meant to be shown above a
  * #DhNotebook. There is only one #DhSearchBar for the whole #DhNotebook, it

@@ -26,7 +26,6 @@
 #include <webkit2/webkit2.h>
 #include <devhelp/devhelp.h>
 #include <amtk/amtk.h>
-#include "dh-search-bar.h"
 #include "dh-settings-app.h"
 #include "dh-util-app.h"
 
