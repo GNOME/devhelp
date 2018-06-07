@@ -15,7 +15,8 @@ libdevhelp_public_headers = [
         'dh-profile-builder.h',
         'dh-settings.h',
         'dh-settings-builder.h',
-        'dh-sidebar.h'
+        'dh-sidebar.h',
+        'dh-web-view.h'
 ]
 
 libdevhelp_public_c_files = [
@@ -34,7 +35,8 @@ libdevhelp_public_c_files = [
         'dh-profile-builder.c',
         'dh-settings.c',
         'dh-settings-builder.c',
-        'dh-sidebar.c'
+        'dh-sidebar.c',
+        'dh-web-view.c'
 ]
 
 libdevhelp_private_c_files = [

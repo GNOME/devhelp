@@ -31,7 +31,6 @@
 #include "dh-settings-app.h"
 #include "dh-tab.h"
 #include "dh-util-app.h"
-#include "dh-web-view.h"
 
 typedef struct {
         GtkHeaderBar *header_bar;

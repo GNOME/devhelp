@@ -38,7 +38,7 @@ libdevhelp_deps_array = [
 ]
 
 LIBDEVHELP_DEPS_STR = []
-LIBDEVHELP_DEPS = []
+LIBDEVHELP_DEPS = [meson.get_compiler('c').find_library('m')]
 foreach dep : libdevhelp_deps_array
         dep_name = dep[0]
         dep_version = dep[1]
@@ -50,7 +50,6 @@ DEVHELP_APP_DEPS = [
         LIBDEVHELP_DEPS,
         dependency('amtk-5', version : '>= 4.99.1'),
         dependency('gsettings-desktop-schemas'),
-        meson.get_compiler('c').find_library('m')
 ]
 
 # config.h

@@ -18,9 +18,11 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "config.h"
 #include "dh-web-view.h"
 #include <math.h>
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
+#include "dh-link.h"
 
 /* #DhWebView is a subclass of #WebKitWebView, to have a higher-level API for
  * some features.

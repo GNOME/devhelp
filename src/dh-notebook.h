@@ -24,7 +24,6 @@
 #include <gtk/gtk.h>
 #include <devhelp/devhelp.h>
 #include "dh-tab.h"
-#include "dh-web-view.h"
 
 G_BEGIN_DECLS
 

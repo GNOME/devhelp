@@ -19,7 +19,7 @@
  */
 
 #include "dh-tab-label.h"
-#include "dh-web-view.h"
+#include <devhelp/devhelp.h>
 
 /* The #DhTabLabel widget is used for the tab labels in #DhNotebook. */
 

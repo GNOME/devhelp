@@ -22,7 +22,7 @@
 #define DH_TAB_H
 
 #include <gtk/gtk.h>
-#include "dh-web-view.h"
+#include <devhelp/devhelp.h>
 
 G_BEGIN_DECLS
 
