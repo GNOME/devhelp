@@ -21,7 +21,12 @@
 #include "dh-search-bar.h"
 #include "dh-web-view.h"
 
-/* #DhSearchBar is a subclass of #GtkSearchBar, meant to be shown above a
+/**
+ * SECTION:dh-search-bar
+ * @Title: DhSearchBar
+ * @Short_description: Subclass of #GtkSearchBar to search in #DhWebView's
+ *
+ * #DhSearchBar is a subclass of #GtkSearchBar, meant to be shown above a
  * #DhNotebook. There is only one #DhSearchBar for the whole #DhNotebook, it
  * applies the same search text to all the #DhWebView's (lazily, when the tab is
  * shown).
@@ -302,6 +307,14 @@ dh_search_bar_class_init (DhSearchBarClass *klass)
         object_class->set_property = dh_search_bar_set_property;
         object_class->dispose = dh_search_bar_dispose;
 
+        /**
+         * DhSearchBar:notebook:
+         *
+         * The associated #DhNotebook. #DhSearchBar has a strong reference to
+         * the #DhNotebook.
+         *
+         * Since: 3.30
+         */
         properties[PROP_NOTEBOOK] =
                 g_param_spec_object ("notebook",
                                      "notebook",
@@ -320,6 +333,13 @@ dh_search_bar_init (DhSearchBar *search_bar)
         search_bar->priv = dh_search_bar_get_instance_private (search_bar);
 }
 
+/**
+ * dh_search_bar_new:
+ * @notebook: a #DhNotebook.
+ *
+ * Returns: (transfer floating): a new #DhSearchBar.
+ * Since: 3.30
+ */
 DhSearchBar *
 dh_search_bar_new (DhNotebook *notebook)
 {
@@ -330,7 +350,13 @@ dh_search_bar_new (DhNotebook *notebook)
                              NULL);
 }
 
-/* Returns: (transfer none): */
+/**
+ * dh_search_bar_get_notebook:
+ * @search_bar: a #DhSearchBar.
+ *
+ * Returns: (transfer none): the #DhSearchBar:notebook.
+ * Since: 3.30
+ */
 DhNotebook *
 dh_search_bar_get_notebook (DhSearchBar *search_bar)
 {
