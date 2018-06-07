@@ -44,6 +44,7 @@
 
     <chapter id="viewing-html-pages">
       <title>Viewing HTML Pages</title>
+      <xi:include href="xml/dh-notebook.xml"/>
       <xi:include href="xml/dh-tab.xml"/>
       <xi:include href="xml/dh-tab-label.xml"/>
       <xi:include href="xml/dh-web-view.xml"/>

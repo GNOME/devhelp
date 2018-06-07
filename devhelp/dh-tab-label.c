@@ -24,9 +24,9 @@
 /**
  * SECTION:dh-tab-label
  * @Title: DhTabLabel
- * @Short_description: A #DhTab label, to use with #GtkNotebook
- */
-/* XXX: The #DhTabLabel widget is used for the tab labels in #DhNotebook.
+ * @Short_description: A #DhTab label, used by #DhNotebook
+ *
+ * The #DhTabLabel widget is used for the tab labels in #DhNotebook.
  */
 
 struct _DhTabLabelPrivate {

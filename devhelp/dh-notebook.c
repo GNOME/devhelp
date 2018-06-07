@@ -21,7 +21,12 @@
 #include "dh-notebook.h"
 #include "dh-tab-label.h"
 
-/* #DhNotebook is a subclass of #GtkNotebook. The content of the tabs are
+/**
+ * SECTION:dh-notebook
+ * @Title: DhNotebook
+ * @Short_description: Subclass of #GtkNotebook
+ *
+ * #DhNotebook is a subclass of #GtkNotebook. The content of the tabs are
  * #DhTab's, and the tab labels are #DhTabLabel's.
  */
 
@@ -157,6 +162,14 @@ dh_notebook_class_init (DhNotebookClass *klass)
         gtk_notebook_class->page_added = dh_notebook_page_added;
         gtk_notebook_class->page_removed = dh_notebook_page_removed;
 
+        /**
+         * DhNotebook:profile:
+         *
+         * The #DhProfile. If set to %NULL, the default profile as returned by
+         * dh_profile_get_default() is used.
+         *
+         * Since: 3.30
+         */
         properties[PROP_PROFILE] =
                 g_param_spec_object ("profile",
                                      "profile",
@@ -177,6 +190,13 @@ dh_notebook_init (DhNotebook *notebook)
         gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
 }
 
+/**
+ * dh_notebook_new:
+ * @profile: (nullable): a #DhProfile, or %NULL for the default profile.
+ *
+ * Returns: (transfer floating): a new #DhNotebook.
+ * Since: 3.30
+ */
 DhNotebook *
 dh_notebook_new (DhProfile *profile)
 {
@@ -187,6 +207,13 @@ dh_notebook_new (DhProfile *profile)
                              NULL);
 }
 
+/**
+ * dh_notebook_get_profile:
+ * @notebook: a #DhNotebook.
+ *
+ * Returns: (transfer none): the #DhNotebook:profile.
+ * Since: 3.30
+ */
 DhProfile *
 dh_notebook_get_profile (DhNotebook *notebook)
 {
@@ -203,6 +230,19 @@ web_view_open_new_tab_cb (DhWebView   *web_view,
         dh_notebook_open_new_tab (notebook, uri, FALSE);
 }
 
+/**
+ * dh_notebook_open_new_tab:
+ * @notebook: a #DhNotebook.
+ * @uri: (nullable): the URI to open, or %NULL for a blank page.
+ * @switch_focus: whether to call gtk_notebook_set_current_page() on the new
+ *   tab.
+ *
+ * Creates a new #DhTab and #DhTabLabel and appends them to the #GtkNotebook.
+ *
+ * The #DhWebView will have the same #DhProfile as @notebook.
+ *
+ * Since: 3.30
+ */
 void
 dh_notebook_open_new_tab (DhNotebook  *notebook,
                           const gchar *uri,
@@ -248,7 +288,13 @@ dh_notebook_open_new_tab (DhNotebook  *notebook,
                 webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), "about:blank");
 }
 
-/* Returns: (transfer none) (nullable): */
+/**
+ * dh_notebook_get_active_tab:
+ * @notebook: a #DhNotebook.
+ *
+ * Returns: (transfer none) (nullable): the #DhTab currently shown in @notebook.
+ * Since: 3.30
+ */
 DhTab *
 dh_notebook_get_active_tab (DhNotebook *notebook)
 {
@@ -263,7 +309,13 @@ dh_notebook_get_active_tab (DhNotebook *notebook)
         return DH_TAB (gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), page_num));
 }
 
-/* Returns: (transfer none) (nullable): */
+/**
+ * dh_notebook_get_active_web_view:
+ * @notebook: a #DhNotebook.
+ *
+ * Returns: (transfer none) (nullable): the #DhWebView of the active tab.
+ * Since: 3.30
+ */
 DhWebView *
 dh_notebook_get_active_web_view (DhNotebook *notebook)
 {
@@ -275,7 +327,14 @@ dh_notebook_get_active_web_view (DhNotebook *notebook)
         return tab != NULL ? dh_tab_get_web_view (tab) : NULL;
 }
 
-/* Returns: (transfer container): */
+/**
+ * dh_notebook_get_all_web_views:
+ * @notebook: a #DhNotebook.
+ *
+ * Returns: (transfer container) (element-type DhWebView): a #GList of all
+ *   #DhWebView's contained in @notebook.
+ * Since: 3.30
+ */
 GList *
 dh_notebook_get_all_web_views (DhNotebook *notebook)
 {

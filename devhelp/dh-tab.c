@@ -26,11 +26,8 @@
  * @Short_description: Subclass of #GtkGrid containing a #DhWebView
  *
  * #DhTab is a subclass of #GtkGrid, it is meant to be the content of one tab in
- * a #GtkNotebook. It contains by default only one element: a #DhWebView. But
+ * a #DhNotebook. It contains by default only one element: a #DhWebView. But
  * applications can add more widgets to the #GtkGrid.
- */
-/* TODO Replace above GtkNotebook -> DhNotebook when it exists in the
- * libdevhelp.
  */
 
 struct _DhTabPrivate {

@@ -204,6 +204,27 @@ dh_link_type_get_type
 </SECTION>
 
 <SECTION>
+<FILE>dh-notebook</FILE>
+DhNotebook
+dh_notebook_new
+dh_notebook_get_profile
+dh_notebook_open_new_tab
+dh_notebook_get_active_tab
+dh_notebook_get_active_web_view
+dh_notebook_get_all_web_views
+<SUBSECTION Standard>
+DH_IS_NOTEBOOK
+DH_IS_NOTEBOOK_CLASS
+DH_NOTEBOOK
+DH_NOTEBOOK_CLASS
+DH_NOTEBOOK_GET_CLASS
+DH_TYPE_NOTEBOOK
+DhNotebookClass
+DhNotebookPrivate
+dh_notebook_get_type
+</SECTION>
+
+<SECTION>
 <FILE>dh-profile</FILE>
 DhProfile
 dh_profile_get_default
