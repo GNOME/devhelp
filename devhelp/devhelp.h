@@ -42,6 +42,7 @@
 #include <devhelp/dh-settings-builder.h>
 #include <devhelp/dh-sidebar.h>
 #include <devhelp/dh-tab.h>
+#include <devhelp/dh-tab-label.h>
 #include <devhelp/dh-web-view.h>
 
 #endif /* DEVHELP_H */

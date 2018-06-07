@@ -19,7 +19,7 @@
  */
 
 #include "dh-notebook.h"
-#include "dh-tab-label.h"
+#include <devhelp/devhelp.h>
 
 /* #DhNotebook is a subclass of #GtkNotebook. The content of the tabs are
  * #DhTab's, and the tab labels are #DhTabLabel's.
