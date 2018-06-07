@@ -2,7 +2,6 @@ devhelp_app_sources = [
         'dh-app.c',
         'dh-assistant.c',
         'dh-main.c',
-        'dh-notebook.c',
         'dh-preferences.c',
         'dh-search-bar.c',
         'dh-settings-app.c',

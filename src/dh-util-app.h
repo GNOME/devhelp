@@ -25,7 +25,6 @@
 
 #include <gtk/gtk.h>
 #include <devhelp/devhelp.h>
-#include "dh-notebook.h"
 
 G_BEGIN_DECLS
 

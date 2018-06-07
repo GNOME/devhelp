@@ -22,7 +22,9 @@
 #define DH_NOTEBOOK_H
 
 #include <gtk/gtk.h>
-#include <devhelp/devhelp.h>
+#include <devhelp/dh-profile.h>
+#include <devhelp/dh-tab.h>
+#include <devhelp/dh-web-view.h>
 
 G_BEGIN_DECLS
 

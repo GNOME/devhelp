@@ -17,6 +17,7 @@ devhelp/dh-error.c
 devhelp/dh-init.c
 devhelp/dh-keyword-model.c
 devhelp/dh-link.c
+devhelp/dh-notebook.c
 devhelp/dh-parser.c
 devhelp/dh-profile-builder.c
 devhelp/dh-profile.c
@@ -34,7 +35,6 @@ src/dh-app.c
 src/dh-assistant.c
 src/dh-assistant.ui
 src/dh-main.c
-src/dh-notebook.c
 src/dh-preferences.c
 src/dh-preferences.ui
 src/dh-search-bar.c
