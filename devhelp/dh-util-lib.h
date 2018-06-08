@@ -24,6 +24,8 @@
 #define DH_UTIL_LIB_H
 
 #include <gio/gio.h>
+#include "dh-notebook.h"
+#include "dh-sidebar.h"
 
 G_BEGIN_DECLS
 
@@ -47,6 +49,10 @@ void            _dh_util_free_book_tree                 (GNode *book_tree);
 
 G_GNUC_INTERNAL
 GSList *        _dh_util_get_possible_index_files       (GFile *book_directory);
+
+G_GNUC_INTERNAL
+void            _dh_util_bind_sidebar_and_notebook      (DhSidebar  *sidebar,
+                                                         DhNotebook *notebook);
 
 G_END_DECLS
 

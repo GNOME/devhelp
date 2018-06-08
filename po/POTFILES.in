@@ -30,6 +30,7 @@ devhelp/dh-tab.c
 devhelp/dh-tab-label.c
 devhelp/dh-util-lib.c
 devhelp/dh-web-view.c
+devhelp/dh-window.c
 plugins/gedit-plugin/devhelp.plugin.desktop.in
 plugins/gedit-plugin/devhelp.py
 src/dh-app.c

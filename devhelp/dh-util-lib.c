@@ -216,3 +216,133 @@ _dh_util_get_possible_index_files (GFile *book_directory)
         g_free (directory_name);
         return list;
 }
+
+static void
+sidebar_link_selected_cb (DhSidebar  *sidebar,
+                          DhLink     *link,
+                          DhNotebook *notebook)
+{
+        gchar *uri;
+        DhWebView *web_view;
+
+        uri = dh_link_get_uri (link);
+        if (uri == NULL)
+                return;
+
+        web_view = dh_notebook_get_active_web_view (notebook);
+        if (web_view != NULL)
+                webkit_web_view_load_uri (WEBKIT_WEB_VIEW (web_view), uri);
+
+        g_free (uri);
+}
+
+static void
+sync_active_web_view_uri_to_sidebar (DhNotebook *notebook,
+                                     DhSidebar  *sidebar)
+{
+        DhWebView *web_view;
+        const gchar *uri = NULL;
+
+        g_signal_handlers_block_by_func (sidebar,
+                                         sidebar_link_selected_cb,
+                                         notebook);
+
+        web_view = dh_notebook_get_active_web_view (notebook);
+        if (web_view != NULL)
+                uri = webkit_web_view_get_uri (WEBKIT_WEB_VIEW (web_view));
+        if (uri != NULL)
+                dh_sidebar_select_uri (sidebar, uri);
+
+        g_signal_handlers_unblock_by_func (sidebar,
+                                           sidebar_link_selected_cb,
+                                           notebook);
+}
+
+static DhNotebook *
+get_notebook_containing_web_view (DhWebView *web_view)
+{
+        GtkWidget *widget;
+
+        widget = GTK_WIDGET (web_view);
+
+        while (widget != NULL) {
+                widget = gtk_widget_get_parent (widget);
+
+                if (DH_IS_NOTEBOOK (widget))
+                        return DH_NOTEBOOK (widget);
+        }
+
+        g_return_val_if_reached (NULL);
+}
+
+static void
+web_view_load_changed_cb (DhWebView       *web_view,
+                          WebKitLoadEvent  load_event,
+                          DhSidebar       *sidebar)
+{
+        DhNotebook *notebook;
+
+        notebook = get_notebook_containing_web_view (web_view);
+
+        if (load_event == WEBKIT_LOAD_COMMITTED &&
+            web_view == dh_notebook_get_active_web_view (notebook)) {
+                sync_active_web_view_uri_to_sidebar (notebook, sidebar);
+        }
+}
+
+static void
+notebook_page_added_after_cb (GtkNotebook *notebook,
+                              GtkWidget   *child,
+                              guint        page_num,
+                              DhSidebar   *sidebar)
+{
+        DhTab *tab;
+        DhWebView *web_view;
+
+        g_return_if_fail (DH_IS_TAB (child));
+
+        tab = DH_TAB (child);
+        web_view = dh_tab_get_web_view (tab);
+
+        g_signal_connect_object (web_view,
+                                 "load-changed",
+                                 G_CALLBACK (web_view_load_changed_cb),
+                                 sidebar,
+                                 0);
+}
+
+static void
+notebook_switch_page_after_cb (DhNotebook *notebook,
+                               GtkWidget  *new_page,
+                               guint       new_page_num,
+                               DhSidebar  *sidebar)
+{
+        sync_active_web_view_uri_to_sidebar (notebook, sidebar);
+}
+
+void
+_dh_util_bind_sidebar_and_notebook (DhSidebar  *sidebar,
+                                    DhNotebook *notebook)
+{
+        g_return_if_fail (DH_IS_SIDEBAR (sidebar));
+        g_return_if_fail (DH_IS_NOTEBOOK (notebook));
+        g_return_if_fail (dh_notebook_get_active_tab (notebook) == NULL);
+
+        g_signal_connect_object (sidebar,
+                                 "link-selected",
+                                 G_CALLBACK (sidebar_link_selected_cb),
+                                 notebook,
+                                 0);
+
+        g_signal_connect_object (notebook,
+                                 "page-added",
+                                 G_CALLBACK (notebook_page_added_after_cb),
+                                 sidebar,
+                                 G_CONNECT_AFTER);
+
+        g_signal_connect_object (notebook,
+                                 "switch-page",
+                                 G_CALLBACK (notebook_switch_page_after_cb),
+                                 sidebar,
+                                 G_CONNECT_AFTER);
+}

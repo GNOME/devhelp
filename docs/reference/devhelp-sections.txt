@@ -409,3 +409,8 @@ DhWebViewClass
 DhWebViewPrivate
 dh_web_view_get_type
 </SECTION>
+
+<SECTION>
+<FILE>dh-window</FILE>
+dh_window_bind_sidebar_and_notebook
+</SECTION>

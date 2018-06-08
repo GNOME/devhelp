@@ -2,9 +2,7 @@
 /*
  * This file is part of Devhelp.
  *
- * Copyright (C) 2001-2002 Mikael Hallendal <micke@imendio.com>
- * Copyright (C) 2004,2008 Imendio AB
- * Copyright (C) 2015, 2017 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2018 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -20,19 +18,18 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_UTIL_APP_H
-#define DH_UTIL_APP_H
+#ifndef DH_WINDOW_LIB_H
+#define DH_WINDOW_LIB_H
 
-#include <gtk/gtk.h>
+#include <glib.h>
+#include <devhelp/dh-notebook.h>
+#include <devhelp/dh-sidebar.h>
 
 G_BEGIN_DECLS
 
-void    dh_util_window_settings_save            (GtkWindow *window,
-                                                 GSettings *settings);
-
-void    dh_util_window_settings_restore         (GtkWindow *gtk_window,
-                                                 GSettings *settings);
+void    dh_window_bind_sidebar_and_notebook     (DhSidebar  *sidebar,
+                                                 DhNotebook *notebook);
 
 G_END_DECLS
 
-#endif /* DH_UTIL_APP_H */
+#endif /* DH_WINDOW_LIB_H */

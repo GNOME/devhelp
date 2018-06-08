@@ -674,7 +674,7 @@ dh_window_init (DhWindow *window)
         priv->notebook = dh_notebook_new (NULL);
         gtk_widget_show (GTK_WIDGET (priv->notebook));
 
-        dh_util_bind_sidebar_and_notebook (priv->sidebar, priv->notebook);
+        dh_window_bind_sidebar_and_notebook (priv->sidebar, priv->notebook);
 
         g_signal_connect_after (priv->notebook,
                                 "page-added",
