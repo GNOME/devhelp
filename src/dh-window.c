@@ -68,6 +68,8 @@ dh_window_dispose (GObject *object)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (DH_WINDOW (object));
 
+        priv->header_bar = NULL;
+        priv->window_menu_button = NULL;
         priv->sidebar = NULL;
         priv->search_bar = NULL;
         priv->notebook = NULL;
@@ -87,8 +89,6 @@ dh_window_class_init (DhWindowClass *klass)
 
         /* Bind class to template */
         gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-window.ui");
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_button);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_documents);
@@ -558,11 +558,44 @@ create_window_menu_plus_app_menu (void)
 }
 
 static void
-set_window_menu (DhWindow *window)
+init_header_bar (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        GtkWidget *back_forward_hgrid;
+        GtkStyleContext *style_context;
+        GtkWidget *back_button;
+        GtkWidget *forward_button;
         GtkApplication *app;
         GMenuModel *window_menu;
+        GtkWidget *new_tab_button;
+
+        g_assert (priv->header_bar == NULL);
+        g_assert (priv->window_menu_button == NULL);
+
+        priv->header_bar = GTK_HEADER_BAR (gtk_header_bar_new ());
+        gtk_header_bar_set_show_close_button (priv->header_bar, TRUE);
+
+        /* Back/forward buttons */
+        back_forward_hgrid = gtk_grid_new ();
+        style_context = gtk_widget_get_style_context (back_forward_hgrid);
+        gtk_style_context_add_class (style_context, GTK_STYLE_CLASS_LINKED);
+
+        back_button = gtk_button_new_from_icon_name ("go-previous-symbolic", GTK_ICON_SIZE_BUTTON);
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (back_button), "win.go-back");
+        gtk_widget_set_tooltip_text (back_button, _("Back"));
+
+        forward_button = gtk_button_new_from_icon_name ("go-next-symbolic", GTK_ICON_SIZE_BUTTON);
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (forward_button), "win.go-forward");
+        gtk_widget_set_tooltip_text (forward_button, _("Forward"));
+
+        gtk_container_add (GTK_CONTAINER (back_forward_hgrid), back_button);
+        gtk_container_add (GTK_CONTAINER (back_forward_hgrid), forward_button);
+        gtk_header_bar_pack_start (priv->header_bar, back_forward_hgrid);
+
+        /* Menu */
+        priv->window_menu_button = GTK_MENU_BUTTON (gtk_menu_button_new ());
+        gtk_menu_button_set_direction (priv->window_menu_button, GTK_ARROW_NONE);
+        gtk_header_bar_pack_end (priv->header_bar, GTK_WIDGET (priv->window_menu_button));
 
         app = GTK_APPLICATION (g_application_get_default ());
         if (gtk_application_prefers_app_menu (app))
@@ -572,6 +605,14 @@ set_window_menu (DhWindow *window)
 
         gtk_menu_button_set_menu_model (priv->window_menu_button, window_menu);
         g_object_unref (window_menu);
+
+        /* New tab button */
+        new_tab_button = gtk_button_new_from_icon_name ("tab-new-symbolic", GTK_ICON_SIZE_BUTTON);
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (new_tab_button), "win.new-tab");
+        gtk_widget_set_tooltip_text (new_tab_button, _("New Tab"));
+        gtk_header_bar_pack_end (priv->header_bar, new_tab_button);
+
+        gtk_widget_show_all (GTK_WIDGET (priv->header_bar));
 }
 
 static void
@@ -655,7 +696,8 @@ dh_window_init (DhWindow *window)
 
         gtk_widget_init_template (GTK_WIDGET (window));
 
-        set_window_menu (window);
+        init_header_bar (window);
+        gtk_window_set_titlebar (GTK_WINDOW (window), GTK_WIDGET (priv->header_bar));
 
         settings = dh_settings_app_get_singleton ();
         paned_settings = dh_settings_app_peek_paned_settings (settings);
