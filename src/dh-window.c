@@ -33,14 +33,7 @@ typedef struct {
         GtkHeaderBar *header_bar;
         GtkMenuButton *window_menu_button;
 
-        GtkPaned *hpaned;
-
-        /* Left side of the @hpaned. */
-        GtkWidget *grid_sidebar;
         DhSidebar *sidebar;
-
-        /* Right side of the @hpaned. */
-        GtkGrid *grid_documents;
         DhSearchBar *search_bar;
         DhNotebook *notebook;
 } DhWindowPrivate;
@@ -86,12 +79,6 @@ dh_window_class_init (DhWindowClass *klass)
         widget_class->delete_event = dh_window_delete_event;
 
         object_class->dispose = dh_window_dispose;
-
-        /* Bind class to template */
-        gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-window.ui");
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_documents);
 }
 
 /* Can return NULL during initialization and finalization, so it's better to
@@ -468,7 +455,7 @@ add_actions (DhWindow *window)
                                                        window);
 
         property_action = g_property_action_new ("show-sidebar",
-                                                 priv->grid_sidebar,
+                                                 priv->sidebar,
                                                  "visible");
         g_action_map_add_action (G_ACTION_MAP (window), G_ACTION (property_action));
         g_object_unref (property_action);
@@ -691,30 +678,34 @@ static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        GtkPaned *hpaned;
         DhSettingsApp *settings;
         GSettings *paned_settings;
+        GtkWidget *contents_vgrid;
 
-        gtk_widget_init_template (GTK_WIDGET (window));
-
+        /* Header bar */
         init_header_bar (window);
         gtk_window_set_titlebar (GTK_WINDOW (window), GTK_WIDGET (priv->header_bar));
+
+        /* Horizontal paned */
+        hpaned = GTK_PANED (gtk_paned_new (GTK_ORIENTATION_HORIZONTAL));
 
         settings = dh_settings_app_get_singleton ();
         paned_settings = dh_settings_app_peek_paned_settings (settings);
         g_settings_bind (paned_settings, "position",
-                         priv->hpaned, "position",
+                         hpaned, "position",
                          G_SETTINGS_BIND_DEFAULT |
                          G_SETTINGS_BIND_NO_SENSITIVITY);
 
-        /* Sidebar */
+        /* Left side of hpaned */
         priv->sidebar = dh_sidebar_new2 (NULL);
-        gtk_widget_show (GTK_WIDGET (priv->sidebar));
-        gtk_container_add (GTK_CONTAINER (priv->grid_sidebar),
-                           GTK_WIDGET (priv->sidebar));
 
-        /* HTML tabs GtkNotebook */
+        /* Right side of hpaned */
+        contents_vgrid = gtk_grid_new ();
+        gtk_orientable_set_orientation (GTK_ORIENTABLE (contents_vgrid), GTK_ORIENTATION_VERTICAL);
+
+        // DhNotebook
         priv->notebook = dh_notebook_new (NULL);
-        gtk_widget_show (GTK_WIDGET (priv->notebook));
 
         dh_window_bind_sidebar_and_notebook (priv->sidebar, priv->notebook);
 
@@ -733,14 +724,18 @@ dh_window_init (DhWindow *window)
                                 G_CALLBACK (notebook_switch_page_after_cb),
                                 window);
 
-        /* Search bar above GtkNotebook */
+        // DhSearchBar
         priv->search_bar = dh_search_bar_new (priv->notebook);
-        gtk_widget_show (GTK_WIDGET (priv->search_bar));
 
-        gtk_container_add (GTK_CONTAINER (priv->grid_documents),
+        /* Packing */
+        gtk_container_add (GTK_CONTAINER (contents_vgrid),
                            GTK_WIDGET (priv->search_bar));
-        gtk_container_add (GTK_CONTAINER (priv->grid_documents),
+        gtk_container_add (GTK_CONTAINER (contents_vgrid),
                            GTK_WIDGET (priv->notebook));
+        gtk_paned_pack1 (hpaned, GTK_WIDGET (priv->sidebar), FALSE, FALSE);
+        gtk_paned_add2 (hpaned, contents_vgrid);
+        gtk_widget_show_all (GTK_WIDGET (hpaned));
+        gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (hpaned));
 
         add_actions (window);
 
