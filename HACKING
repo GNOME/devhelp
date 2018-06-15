@@ -27,3 +27,15 @@ https://blogs.gnome.org/swilmet/2015/10/10/changing-quickly-between-a-final-and-
 
 See also:
 https://developer.gnome.org/programming-guidelines/unstable/
+
+Flatpak
+-------
+
+The Devhelp maintainers maintain both the nightly and the stable versions of
+the Devhelp Flatpak.
+
+The nightly version is in flatpak/ and the gnome-apps-nightly module:
+https://gitlab.gnome.org/GNOME/gnome-apps-nightly
+
+The stable version is on Flathub:
+https://github.com/flathub/org.gnome.Devhelp
