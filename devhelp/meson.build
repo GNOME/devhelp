@@ -57,7 +57,7 @@ libdevhelp_private_c_files = [
         'dh-util-lib.c'
 ]
 
-install_headers_first_subdir = 'devhelp-@0@'.format(DEVHELP_API_VERSION)
+install_headers_first_subdir = 'devhelp-@0@'.format(LIBDEVHELP_API_VERSION)
 install_headers_subdir = join_paths(install_headers_first_subdir, 'devhelp')
 install_headers_fulldir = join_paths(
         get_option('prefix'),
@@ -93,7 +93,7 @@ STATIC_LIBDEVHELP_DECLARED_DEP = declare_dependency(
 symbol_map = join_paths(meson.current_source_dir(), 'symbol.map')
 
 libdevhelp = shared_library(
-        'devhelp-@0@'.format(DEVHELP_API_VERSION),
+        'devhelp-@0@'.format(LIBDEVHELP_API_VERSION),
         link_whole : libdevhelp_static,
         link_args : '-Wl,--version-script,' + symbol_map,
         link_depends : symbol_map,
@@ -114,7 +114,7 @@ install_headers(
 )
 
 PKG_CONFIG.generate(
-        filebase : 'libdevhelp-@0@'.format(DEVHELP_API_VERSION_FULL),
+        filebase : 'libdevhelp-@0@'.format(LIBDEVHELP_API_VERSION_FULL),
         name : meson.project_name(),
         description : meson.project_name(),
         version : meson.project_version(),
@@ -125,14 +125,14 @@ PKG_CONFIG.generate(
 
 GNOME.generate_gir(
         libdevhelp,
-        export_packages : 'libdevhelp-@0@'.format(DEVHELP_API_VERSION_FULL),
+        export_packages : 'libdevhelp-@0@'.format(LIBDEVHELP_API_VERSION_FULL),
         sources : [
                 libdevhelp_public_headers,
                 libdevhelp_public_c_files,
                 libdevhelp_enums
         ],
         namespace : 'Devhelp',
-        nsversion : DEVHELP_API_VERSION_FULL,
+        nsversion : LIBDEVHELP_API_VERSION_FULL,
         identifier_prefix : 'Dh',
         includes : ['Gtk-3.0', 'WebKit2-4.0'],
         header : 'devhelp/devhelp.h',

@@ -14,11 +14,11 @@ PKG_CONFIG = import('pkgconfig')
 I18N = import('i18n')
 
 # API version, used for parallel installability.
-DEVHELP_API_VERSION = '3'
+LIBDEVHELP_API_VERSION = '3'
 
 # It would be nice to get rid of this variant, to use only the short version
 # everywhere.
-DEVHELP_API_VERSION_FULL = '3.0'
+LIBDEVHELP_API_VERSION_FULL = '3.0'
 
 # Libtool version numbers, remember to change them just *before* a release.
 # A good time to update it is for the GNOME x.y.90 version, at API freeze,
