@@ -20,7 +20,7 @@
 
 #include <devhelp/devhelp.h>
 
-#define DEVHELP_BOOK_BASE_PATH "/usr/share/gtk-doc/html/devhelp-3"
+#define DEVHELP_BOOK_BASE_PATH "/usr/share/gtk-doc/html/devhelp"
 
 static void
 check_belongs_to_page_book_link (DhLink *book_link)

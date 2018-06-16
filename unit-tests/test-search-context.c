@@ -183,7 +183,7 @@ check_link_simple (const gchar *search_string,
         search_context = _dh_search_context_new (search_string);
         g_assert (search_context != NULL);
 
-        book_link = dh_link_new_book ("/usr/share/gtk-doc/html/devhelp-3",
+        book_link = dh_link_new_book ("/usr/share/gtk-doc/html/devhelp",
                                       "devhelp",
                                       "Devhelp Reference Manual",
                                       "index.html");
