@@ -70,6 +70,7 @@ config_data.set_quoted(
         join_paths(get_option('prefix'), get_option('localedir'))
 )
 config_data.set_quoted('PACKAGE_VERSION', meson.project_version())
+config_data.set_quoted('LIBDEVHELP_API_VERSION', LIBDEVHELP_API_VERSION)
 config_data.set('FLATPAK_BUILD', get_option('flatpak_build'))
 
 configure_file(

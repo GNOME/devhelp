@@ -19,6 +19,7 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "config.h"
 #include "dh-settings.h"
 #include "dh-settings-builder.h"
 
@@ -72,8 +73,9 @@
  */
 
 /* libdevhelp GSettings schema IDs */
-#define SETTINGS_SCHEMA_ID_CONTENTS             "org.gnome.libdevhelp-3.contents"
-#define SETTINGS_SCHEMA_ID_FONTS                "org.gnome.libdevhelp-3.fonts"
+#define LIBDEVHELP_GSCHEMA_PREFIX       "org.gnome.libdevhelp-" LIBDEVHELP_API_VERSION
+#define SETTINGS_SCHEMA_ID_CONTENTS     LIBDEVHELP_GSCHEMA_PREFIX ".contents"
+#define SETTINGS_SCHEMA_ID_FONTS        LIBDEVHELP_GSCHEMA_PREFIX ".fonts"
 
 /* Provided by the gsettings-desktop-schemas module. */
 #define SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE    "org.gnome.desktop.interface"
