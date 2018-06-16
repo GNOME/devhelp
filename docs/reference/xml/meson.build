@@ -1,6 +1,7 @@
 gtkdocentities_conf_data = configuration_data()
 gtkdocentities_conf_data.set('PACKAGE_NAME', 'Devhelp')
 gtkdocentities_conf_data.set('PACKAGE_STRING', 'Devhelp @0@'.format(meson.project_version()))
+gtkdocentities_conf_data.set('PACKAGE_API_VERSION', LIBDEVHELP_API_VERSION)
 
 gtkdocentities_filename = 'gtkdocentities.ent'
 

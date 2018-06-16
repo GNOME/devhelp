@@ -8,7 +8,7 @@
 ]>
 <book id="index">
   <bookinfo>
-    <title>&package_name; Reference Manual</title>
+    <title>&package_name; &package_api_version; Reference Manual</title>
     <releaseinfo>
       For &package_string;.
     </releaseinfo>
