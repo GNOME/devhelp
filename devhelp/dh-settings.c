@@ -41,8 +41,8 @@
  * the #DhSettings wrapper API instead. So instead of using g_settings_bind(),
  * you should use g_object_bind_property() with a #DhSettings property as the
  * source. This has the small drawback that the writability of the #GSettings
- * key cannot be bound to the "sensitive" property of the preferences widget
- * (see g_settings_bind()), if this feature is really wanted the #DhSettings API
+ * keys are not exposed, it is assumed that all keys are writable; if knowing
+ * the writability of the #GSettings keys is really wanted, the #DhSettings API
  * can be changed to expose publicly the #GSettings objects (for that purpose
  * only).
  *
