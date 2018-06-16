@@ -3,7 +3,7 @@
 data/org.gnome.Devhelp.appdata.xml.in
 data/org.gnome.Devhelp.desktop.in
 data/org.gnome.devhelp.gschema.xml
-data/org.gnome.libdevhelp-3.gschema.xml
+data/org.gnome.libdevhelp.gschema.xml.in
 devhelp/dh-assistant-view.c
 devhelp/dh-book.c
 devhelp/dh-book-list-builder.c
