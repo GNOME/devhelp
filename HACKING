@@ -25,6 +25,13 @@ GObject classes must not be created with a G_DECLARE macro, it causes more
 problems than it solves:
 https://blogs.gnome.org/swilmet/2015/10/10/changing-quickly-between-a-final-and-derivable-gobject-class/
 
+g_auto macros are not used, because:
+1. It makes debugging more difficult in case of a memory handling problem.
+2. It breaks the uniformity of memory handling in C. Uniformity is an important
+   principle for programming language design, as explained in the book
+   “The Psychology of Computer Programming”:
+   https://www.amazon.com/Psychology-Computer-Programming-Silver-Anniversary/dp/0932633420/
+
 See also:
 https://developer.gnome.org/programming-guidelines/unstable/
 
