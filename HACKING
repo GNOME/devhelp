@@ -31,6 +31,9 @@ g_auto macros are not used, because:
    principle for programming language design, as explained in the book
    “The Psychology of Computer Programming”:
    https://www.amazon.com/Psychology-Computer-Programming-Silver-Anniversary/dp/0932633420/
+3. The developer needs to be very careful when using g_auto in certain
+   circumstances:
+   https://blog.fishsoup.net/2015/11/05/attributecleanup-mixed-declarations-and-code-and-goto/
 
 See also:
 https://developer.gnome.org/programming-guidelines/unstable/
