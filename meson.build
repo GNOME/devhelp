@@ -26,10 +26,10 @@ LIBDEVHELP_API_VERSION_FULL = '3.0'
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
 #   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
 #   (No interfaces changed:                   REVISION++)
-lt_current=5
-lt_revision=0
-lt_age=0
-LIBDEVHELP_LT_VERSION='@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
+lt_current = 5
+lt_revision = 0
+lt_age = 0
+LIBDEVHELP_LT_VERSION = '@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
 
 WEBKITGTK_DEP_STR = 'webkit2gtk-4.0'
 libdevhelp_deps_array = [
