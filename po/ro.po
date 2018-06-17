@@ -7,10 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-04-14 14:35+0000\n"
-"PO-Revision-Date: 2018-04-29 11:53+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2018-05-31 14:03+0000\n"
+"PO-Revision-Date: 2018-06-17 21:47+0300\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
 "com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
@@ -20,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.8\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
@@ -90,94 +89,70 @@ msgstr ""
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Devhelp.desktop.in:12
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "devhelp"
-msgstr "devhelp"
+msgid "org.gnome.Devhelp"
+msgstr "org.gnome.Devhelp"
 
-#: data/org.gnome.devhelp.gschema.xml:17
+#: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
 msgstr "Starea ferestrei principale maximizate"
 
-#: data/org.gnome.devhelp.gschema.xml:18
+#: data/org.gnome.devhelp.gschema.xml:17
 msgid "Whether the main window should start maximized."
 msgstr "Dacă fereastra principală va fi pornită maximizată."
 
-#: data/org.gnome.devhelp.gschema.xml:22
+#: data/org.gnome.devhelp.gschema.xml:21
 msgid "Width of the main window"
 msgstr "Lățimea ferestrei principale"
 
-#: data/org.gnome.devhelp.gschema.xml:23
+#: data/org.gnome.devhelp.gschema.xml:22
 msgid "The width of the main window."
 msgstr "Lățimea ferestrei principale."
 
-#: data/org.gnome.devhelp.gschema.xml:27
+#: data/org.gnome.devhelp.gschema.xml:26
 msgid "Height of main window"
 msgstr "Înălțime ferestră principală"
 
-#: data/org.gnome.devhelp.gschema.xml:28
+#: data/org.gnome.devhelp.gschema.xml:27
 msgid "The height of the main window."
 msgstr "Înălțimea ferestrei principale."
 
-#: data/org.gnome.devhelp.gschema.xml:34
+#: data/org.gnome.devhelp.gschema.xml:33
 msgid "Width of the index and search pane"
 msgstr "Lățimea panoului de indexare și de căutare"
 
-#: data/org.gnome.devhelp.gschema.xml:35
+#: data/org.gnome.devhelp.gschema.xml:34
 msgid "The width of the index and search pane."
 msgstr "Lățimea panoului pentru index și căutare."
 
-#: data/org.gnome.devhelp.gschema.xml:44
+#: data/org.gnome.devhelp.gschema.xml:43
 msgid "Width of the assistant window"
 msgstr "Lățime ferestră asistent"
 
-#: data/org.gnome.devhelp.gschema.xml:45
+#: data/org.gnome.devhelp.gschema.xml:44
 msgid "The width of the assistant window."
 msgstr "Lățime ferestrei asistent."
 
-#: data/org.gnome.devhelp.gschema.xml:49
+#: data/org.gnome.devhelp.gschema.xml:48
 msgid "Height of assistant window"
 msgstr "Înălțime ferestră asistent"
 
-#: data/org.gnome.devhelp.gschema.xml:50
+#: data/org.gnome.devhelp.gschema.xml:49
 msgid "The height of the assistant window."
 msgstr "Înălțimea ferestrei asistent."
 
-#: data/org.gnome.devhelp.gschema.xml:56
-msgid "Use system fonts"
-msgstr "Folosește fonturile sistemului"
-
-#: data/org.gnome.devhelp.gschema.xml:57
-msgid "Use the system default fonts."
-msgstr "Folosește setul de fonturi implicit al sistemului."
-
-#: data/org.gnome.devhelp.gschema.xml:61
-msgid "Font for text"
-msgstr "Font pentru text"
-
-#: data/org.gnome.devhelp.gschema.xml:62
-msgid "Font for text with variable width."
-msgstr "Font pentru text cu lățime variabilă."
-
-#: data/org.gnome.devhelp.gschema.xml:66
-msgid "Font for fixed width text"
-msgstr "Font pentru text cu lățime fixă"
-
-#: data/org.gnome.devhelp.gschema.xml:67
-msgid "Font for text with fixed width, such as code examples."
-msgstr "Font pentru text cu lățime fixă, cum ar fi exemplele de cod."
-
-#: data/org.gnome.libdevhelp-3.gschema.xml:8
+#: data/org.gnome.libdevhelp-3.gschema.xml:9
 msgid "Books disabled"
 msgstr "Cărți dezactivate"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:9
+#: data/org.gnome.libdevhelp-3.gschema.xml:10
 msgid "List of books disabled by the user."
 msgstr "Listă de cărți dezactivate de utilizator."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:13
+#: data/org.gnome.libdevhelp-3.gschema.xml:14
 msgid "Group books by language"
 msgstr "Grupează cărțile după limbaj"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:14
+#: data/org.gnome.libdevhelp-3.gschema.xml:15
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
@@ -185,20 +160,44 @@ msgstr ""
 "Dacă ar trebui sau nu să fie grupate cărțile după limbajul de programare în "
 "interfața pentru utilizator."
 
+#: data/org.gnome.libdevhelp-3.gschema.xml:21
+msgid "Use system fonts"
+msgstr "Folosește fonturile sistemului"
+
+#: data/org.gnome.libdevhelp-3.gschema.xml:22
+msgid "Use the system default fonts."
+msgstr "Folosește setul de fonturi implicit al sistemului."
+
+#: data/org.gnome.libdevhelp-3.gschema.xml:26
+msgid "Font for text"
+msgstr "Font pentru text"
+
+#: data/org.gnome.libdevhelp-3.gschema.xml:27
+msgid "Font for text with variable width."
+msgstr "Font pentru text cu lățime variabilă."
+
+#: data/org.gnome.libdevhelp-3.gschema.xml:31
+msgid "Font for fixed width text"
+msgstr "Font pentru text cu lățime fixă"
+
+#: data/org.gnome.libdevhelp-3.gschema.xml:32
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Font pentru text cu lățime fixă, cum ar fi exemplele de cod."
+
 #: devhelp/dh-assistant-view.c:400
 msgid "Book:"
 msgstr "Carte:"
 
-#: devhelp/dh-book.c:350
+#: devhelp/dh-book.c:313
 #, c-format
 msgid "Language: %s"
 msgstr "Limbaj: %s"
 
-#: devhelp/dh-book.c:351
+#: devhelp/dh-book.c:314
 msgid "Language: Undefined"
 msgstr "Limbaj: nedefinit"
 
-#: devhelp/dh-book-tree.c:773
+#: devhelp/dh-book-tree.c:755
 msgid "_Collapse All"
 msgstr "_Restrânge toate"
 
@@ -335,24 +334,24 @@ msgid "_Larger Text"
 msgstr "_Text mai mare"
 
 #: src/dh-app.c:67
-msgid "Zoom in"
-msgstr "Mărește"
+msgid "Larger text"
+msgstr "Text mai mare"
 
 #: src/dh-app.c:68
 msgid "S_maller Text"
 msgstr "Text mai _mic"
 
 #: src/dh-app.c:69
-msgid "Zoom out"
-msgstr "Micșorează"
+msgid "Smaller text"
+msgstr "Text mai mic"
 
 #: src/dh-app.c:70
 msgid "_Normal Size"
 msgstr "Dimensiune _normală"
 
 #: src/dh-app.c:71
-msgid "Reset zoom"
-msgstr "Resetează focalizarea"
+msgid "Normal size"
+msgstr "Dimensiune normală"
 
 #. action, icon, label, accel, tooltip
 #: src/dh-app.c:111
@@ -360,8 +359,8 @@ msgid "Open a new tab"
 msgstr "Deschide un tab nou"
 
 #: src/dh-app.c:112
-msgid "Close the current window"
-msgstr "Închide fereastra curentă"
+msgid "Close the current tab"
+msgstr "Închide tabul curent"
 
 #: src/dh-app.c:113
 msgid "Go back"
@@ -420,11 +419,11 @@ msgstr "Închide orice instanță Devhelp"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp – Asistent"
 
-#: src/dh-preferences.c:536
+#: src/dh-preferences.c:551
 msgid "Enabled"
 msgstr "Activat"
 
-#: src/dh-preferences.c:549
+#: src/dh-preferences.c:565
 msgid "Title"
 msgstr "Titlu"
 
@@ -456,35 +455,46 @@ msgstr "Lățime _fixă:"
 msgid "Fonts"
 msgstr "Fonturi"
 
-#: src/dh-tab.c:70
-msgid "Error opening the requested link."
-msgstr "Eroare la deschiderea legăturii cerute."
-
-#: src/dh-web-view.c:203
+#: src/dh-web-view.c:498
 msgid "Empty Page"
 msgstr "Pagina goală"
 
 #. General group
-#: src/dh-window.c:434
+#: src/dh-window.c:410
 msgid "General"
 msgstr "Generale"
 
 #. Zoom group
-#: src/dh-window.c:448
+#: src/dh-window.c:424
 msgid "Zoom"
 msgstr "Focalizare"
 
-#: src/dh-window.ui:28
+#: src/dh-window.ui:27
 msgid "Back"
 msgstr "Înapoi"
 
-#: src/dh-window.ui:47
+#: src/dh-window.ui:46
 msgid "Forward"
 msgstr "Înainte"
 
-#: src/dh-window.ui:92
+#: src/dh-window.ui:91
 msgid "New Tab"
 msgstr "Tab nou"
+
+#~ msgid "devhelp"
+#~ msgstr "devhelp"
+
+#~ msgid "Zoom in"
+#~ msgstr "Mărește"
+
+#~ msgid "Zoom out"
+#~ msgstr "Micșorează"
+
+#~ msgid "Reset zoom"
+#~ msgstr "Resetează focalizarea"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "Eroare la deschiderea legăturii cerute."
 
 #~ msgid "_About Devhelp"
 #~ msgstr "_Despre Devhelp"
