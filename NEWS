@@ -1,3 +1,27 @@
+News in 3.29.3, 2018-06-17
+--------------------------
+* Devhelp has moved to the GNOME GitLab instance. The bugzilla tickets have not
+  yet been migrated to the GitLab issues, so before filing a new issue on
+  GitLab, please search the bugzilla first. All links are available as usual
+  on:
+  https://wiki.gnome.org/Apps/Devhelp
+
+* Finally write a HACKING file.
+* Do not show a GtkInfoBar on error, use the WebKitWebView default
+  implementation to simplify the code.
+* Code refactorings: from DhWindow extract DhNotebook, DhSearchBar and
+  bind_sidebar_and_notebook() function, and delegate more work to DhWebView.
+* Make the following classes re-usable and move them to the libdevhelp:
+  DhWebView, DhTab, DhTabLabel, DhNotebook and DhSearchBar.
+  And move dh_window_bind_sidebar_and_notebook() to the libdevhelp.
+* Flatpak: run Amtk and Devhelp unit tests after building those modules.
+* Application icons: rename filenames to org.gnome.Devhelp.*, to simplify the
+  Flatpak manifest.
+* Build system: fix the remaining places where the libdevhelp API/major version
+  was hardcoded, use the variable instead, to easily bump it in the future.
+* Other small improvements.
+* Translation updates.
+
 News in 3.29.2, 2018-05-21
 --------------------------
 * A new, more flexible book management architecture in the libdevhelp:
