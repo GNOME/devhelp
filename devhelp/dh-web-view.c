@@ -30,14 +30,21 @@
  * @Short_description: Subclass of #WebKitWebView
  *
  * #DhWebView is a subclass of #WebKitWebView, to have a higher-level API for
- * some features.
+ * some features, and with some customizations for the libdevhelp use-case.
+ *
+ * Features:
+ * - Ctrl+scroll to zoom in/zoom out.
+ * - Sending the #DhWebView::open-new-tab signal on middle click or Ctrl+click
+ *   on a link (#DhNotebook handles that signal).
+ * - Calls gtk_show_uri_on_window() when opening a non-local link (for example a
+ *   `http://` URL).
  *
  * The #DhProfile is used for:
  * - Applying the #DhSettings fonts.
  * - When trying to load a remote URL from developer.gnome.org, find in the
- *   #DhBookList if there is an equivalent local link.
+ *   #DhBookList if there is an equivalent local link to load it instead of
+ *   opening the URL with gtk_show_uri_on_window().
  */
-/* TODO document all the features. */
 
 struct _DhWebViewPrivate {
         DhProfile *profile;
@@ -625,7 +632,11 @@ dh_web_view_get_profile (DhWebView *view)
  * dh_web_view_get_devhelp_title:
  * @view: a #DhWebView.
  *
- * Returns: the @view title suitable for a tab label or window title.
+ * An enhanced getter function for the #WebKitWebView:title property: when that
+ * property is the empty string or %NULL, this function returns “Empty Page”
+ * (translated).
+ *
+ * Returns: the title of @view, suitable for a tab label or window title.
  * Since: 3.30
  */
 const gchar *

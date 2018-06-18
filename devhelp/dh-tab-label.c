@@ -27,6 +27,9 @@
  * @Short_description: A #DhTab label, used by #DhNotebook
  *
  * The #DhTabLabel widget is used for the tab labels in #DhNotebook.
+ *
+ * It contains the title as returned by dh_web_view_get_devhelp_title(), plus a
+ * close button.
  */
 
 struct _DhTabLabelPrivate {

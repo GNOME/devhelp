@@ -28,6 +28,9 @@
  *
  * #DhNotebook is a subclass of #GtkNotebook. The content of the tabs are
  * #DhTab's, and the tab labels are #DhTabLabel's.
+ *
+ * #DhNotebook handles the #DhWebView::open-new-tab signal by appending a new
+ * #DhTab.
  */
 
 struct _DhNotebookPrivate {
