@@ -8,6 +8,11 @@ dh_finalize
 </SECTION>
 
 <SECTION>
+<FILE>dh-application-window</FILE>
+dh_application_window_bind_sidebar_and_notebook
+</SECTION>
+
+<SECTION>
 <FILE>dh-assistant-view</FILE>
 DhAssistantView
 dh_assistant_view_new
@@ -408,9 +413,4 @@ DH_WEB_VIEW_GET_CLASS
 DhWebViewClass
 DhWebViewPrivate
 dh_web_view_get_type
-</SECTION>
-
-<SECTION>
-<FILE>dh-window</FILE>
-dh_window_bind_sidebar_and_notebook
 </SECTION>

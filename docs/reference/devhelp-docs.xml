@@ -53,7 +53,7 @@
 
     <chapter id="putting-it-all-together">
       <title>Putting It All Together</title>
-      <xi:include href="xml/dh-window.xml"/>
+      <xi:include href="xml/dh-application-window.xml"/>
     </chapter>
 
     <chapter id="assistant">

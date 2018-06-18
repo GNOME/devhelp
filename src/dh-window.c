@@ -707,7 +707,7 @@ dh_window_init (DhWindow *window)
         // DhNotebook
         priv->notebook = dh_notebook_new (NULL);
 
-        dh_window_bind_sidebar_and_notebook (priv->sidebar, priv->notebook);
+        dh_application_window_bind_sidebar_and_notebook (priv->sidebar, priv->notebook);
 
         g_signal_connect_after (priv->notebook,
                                 "page-added",

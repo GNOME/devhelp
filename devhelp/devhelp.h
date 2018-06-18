@@ -25,6 +25,7 @@
 
 #include <devhelp/dh-enum-types.h>
 
+#include <devhelp/dh-application-window.h>
 #include <devhelp/dh-assistant-view.h>
 #include <devhelp/dh-book.h>
 #include <devhelp/dh-book-list.h>
@@ -46,6 +47,5 @@
 #include <devhelp/dh-tab.h>
 #include <devhelp/dh-tab-label.h>
 #include <devhelp/dh-web-view.h>
-#include <devhelp/dh-window.h>
 
 #endif /* DEVHELP_H */

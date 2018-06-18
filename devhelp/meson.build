@@ -1,5 +1,6 @@
 libdevhelp_public_headers = [
         'devhelp.h',
+        'dh-application-window.h',
         'dh-assistant-view.h',
         'dh-book.h',
         'dh-book-list.h',
@@ -20,11 +21,11 @@ libdevhelp_public_headers = [
         'dh-sidebar.h',
         'dh-tab.h',
         'dh-tab-label.h',
-        'dh-web-view.h',
-        'dh-window.h'
+        'dh-web-view.h'
 ]
 
 libdevhelp_public_c_files = [
+        'dh-application-window.c',
         'dh-assistant-view.c',
         'dh-book.c',
         'dh-book-list.c',
@@ -45,8 +46,7 @@ libdevhelp_public_c_files = [
         'dh-sidebar.c',
         'dh-tab.c',
         'dh-tab-label.c',
-        'dh-web-view.c',
-        'dh-window.c'
+        'dh-web-view.c'
 ]
 
 libdevhelp_private_c_files = [

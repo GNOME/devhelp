@@ -18,19 +18,19 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "dh-window.h"
+#include "dh-application-window.h"
 #include "dh-util-lib.h"
 
 /**
- * SECTION:dh-window
- * @Title: DhWindow
+ * SECTION:dh-application-window
+ * @Title: DhApplicationWindow
  * @Short_description: For the main application window
  *
  * Functions for the main application window.
  */
 
 /**
- * dh_window_bind_sidebar_and_notebook:
+ * dh_application_window_bind_sidebar_and_notebook:
  * @sidebar: a #DhSidebar.
  * @notebook: an empty #DhNotebook.
  *
@@ -50,17 +50,17 @@
  * Since: 3.30
  */
 void
-dh_window_bind_sidebar_and_notebook (DhSidebar  *sidebar,
-                                     DhNotebook *notebook)
+dh_application_window_bind_sidebar_and_notebook (DhSidebar  *sidebar,
+                                                 DhNotebook *notebook)
 {
         g_return_if_fail (DH_IS_SIDEBAR (sidebar));
         g_return_if_fail (DH_IS_NOTEBOOK (notebook));
         g_return_if_fail (dh_notebook_get_active_tab (notebook) == NULL);
 
-        /* Have the implementation separate from dh-window, because it is
-         * planned to have a real DhWindow class in the libdevhelp that will
-         * have similar signal handlers, it would be confusing to have two times
-         * the same signal handlers.
+        /* Have the implementation separate from dh-application-window, because
+         * it is planned to have a real DhApplicationWindow class in the
+         * libdevhelp that will have similar signal handlers, it would be
+         * confusing to have two times the same signal handlers.
          *
          * API design:
          * But the public function belongs to the window, since the window is

@@ -21,8 +21,8 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_WINDOW_APP_H
-#define DH_WINDOW_APP_H
+#ifndef DH_WINDOW_H
+#define DH_WINDOW_H
 
 #include <gtk/gtk.h>
 
@@ -58,4 +58,4 @@ void            _dh_window_display_uri          (DhWindow    *window,
 
 G_END_DECLS
 
-#endif /* DH_WINDOW_APP_H */
+#endif /* DH_WINDOW_H */
