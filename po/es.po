@@ -9,10 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-05-21 16:43+0000\n"
-"PO-Revision-Date: 2018-05-22 09:49+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2018-05-31 14:03+0000\n"
+"PO-Revision-Date: 2018-06-21 09:52+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -89,8 +88,8 @@ msgstr "documentación;información;manual;desarrollador;api;"
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Devhelp.desktop.in:12
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "devhelp"
-msgstr "devhelp"
+msgid "org.gnome.Devhelp"
+msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -335,7 +334,6 @@ msgid "_Larger Text"
 msgstr "Texto más _grande"
 
 #: src/dh-app.c:67
-#| msgid "_Larger Text"
 msgid "Larger text"
 msgstr "Texto más grande"
 
@@ -344,7 +342,6 @@ msgid "S_maller Text"
 msgstr "Texto más _pequeño"
 
 #: src/dh-app.c:69
-#| msgid "S_maller Text"
 msgid "Smaller text"
 msgstr "Texto más pequeño"
 
@@ -353,7 +350,6 @@ msgid "_Normal Size"
 msgstr "Tamaño _normal"
 
 #: src/dh-app.c:71
-#| msgid "_Normal Size"
 msgid "Normal size"
 msgstr "Tamaño normal"
 
@@ -363,7 +359,6 @@ msgid "Open a new tab"
 msgstr "Abrir una pestaña nueva"
 
 #: src/dh-app.c:112
-#| msgid "Close the current window"
 msgid "Close the current tab"
 msgstr "Cerrar la pestaña actual"
 
@@ -455,35 +450,37 @@ msgstr "Anchura _fija:"
 msgid "Fonts"
 msgstr "Tipografías"
 
-#: src/dh-tab.c:70
-msgid "Error opening the requested link."
-msgstr "Error al abrir el enlace solicitado."
-
-#: src/dh-web-view.c:301
+#: src/dh-web-view.c:498
 msgid "Empty Page"
 msgstr "Página vacía"
 
 #. General group
-#: src/dh-window.c:418
+#: src/dh-window.c:410
 msgid "General"
 msgstr "General"
 
 #. Zoom group
-#: src/dh-window.c:432
+#: src/dh-window.c:424
 msgid "Zoom"
 msgstr "Ampliación"
 
-#: src/dh-window.ui:28
+#: src/dh-window.ui:27
 msgid "Back"
 msgstr "Atrás"
 
-#: src/dh-window.ui:47
+#: src/dh-window.ui:46
 msgid "Forward"
 msgstr "Adelante"
 
-#: src/dh-window.ui:92
+#: src/dh-window.ui:91
 msgid "New Tab"
 msgstr "Pestaña nueva"
+
+#~ msgid "devhelp"
+#~ msgstr "devhelp"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "Error al abrir el enlace solicitado."
 
 #~| msgctxt "shortcut window"
 #~| msgid "Zoom in"
