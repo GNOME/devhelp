@@ -6,7 +6,7 @@
 project(
         'devhelp', 'c',
         meson_version : '>= 0.43',
-        version : '3.29.4'
+        version : '3.30.0'
 )
 
 GNOME = import('gnome')
@@ -26,7 +26,7 @@ LIBDEVHELP_API_VERSION_FULL = '3.0'
 #   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
 #   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
 #   (No interfaces changed:                   REVISION++)
-lt_current = 5
+lt_current = 6
 lt_revision = 0
 lt_age = 0
 LIBDEVHELP_LT_VERSION = '@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
@@ -49,7 +49,7 @@ endforeach
 
 DEVHELP_APP_DEPS = [
         LIBDEVHELP_DEPS,
-        dependency('amtk-5', version : '>= 4.99.1'),
+        dependency('amtk-5', version : '>= 5.0'),
         dependency('gsettings-desktop-schemas'),
 ]
 
