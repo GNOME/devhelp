@@ -36,11 +36,9 @@ G_BEGIN_DECLS
 
 typedef struct _DhApp        DhApp;
 typedef struct _DhAppClass   DhAppClass;
-typedef struct _DhAppPrivate DhAppPrivate;
 
 struct _DhApp {
         GtkApplication parent_instance;
-        DhAppPrivate *priv;
 };
 
 struct _DhAppClass {

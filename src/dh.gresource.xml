@@ -3,5 +3,10 @@
   <gresource prefix="/org/gnome/devhelp">
     <file preprocess="xml-stripblanks">dh-assistant.ui</file>
     <file preprocess="xml-stripblanks">dh-preferences.ui</file>
+    <file preprocess="xml-stripblanks">dh-window.ui</file>
+  </gresource>
+  <gresource prefix="/org/gnome/devhelp/gtk">
+    <file preprocess="xml-stripblanks">help-overlay.ui</file>
+    <file preprocess="xml-stripblanks">menus.ui</file>
   </gresource>
 </gresources>
