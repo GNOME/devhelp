@@ -38,17 +38,6 @@
     ],
     "modules" : [
         {
-            "name" : "amtk",
-            "run-tests" : true,
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/amtk.git",
-                    "branch" : "master"
-                }
-            ]
-        },
-        {
             "name" : "devhelp",
             "buildsystem" : "meson",
             "config-opts" : [
