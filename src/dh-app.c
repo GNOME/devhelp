@@ -31,16 +31,17 @@
 #include "dh-settings-app.h"
 #include "dh-util-app.h"
 
-struct _DhAppPrivate {
+typedef struct {
         /* AmtkActionInfoStore for actions that are present in a menu. */
         AmtkActionInfoStore *menu_action_info_store;
-};
+} DhAppPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
 static void
-add_menu_action_infos (DhApp *app)
+add_menu_action_infos (DhApp *self)
 {
+        DhAppPrivate *priv = dh_app_get_instance_private (self);
         const gchar *accels[] = {NULL, NULL, NULL};
         AmtkActionInfo *action_info;
 
@@ -72,16 +73,16 @@ add_menu_action_infos (DhApp *app)
                 { NULL }
         };
 
-        g_assert (app->priv->menu_action_info_store == NULL);
-        app->priv->menu_action_info_store = amtk_action_info_store_new ();
+        g_assert (priv->menu_action_info_store == NULL);
+        priv->menu_action_info_store = amtk_action_info_store_new ();
 
-        amtk_action_info_store_add_entries (app->priv->menu_action_info_store,
+        amtk_action_info_store_add_entries (priv->menu_action_info_store,
                                             entries, -1,
                                             GETTEXT_PACKAGE);
 
         accels[0] = "<Control>F1";
         accels[1] = "<Control>question";
-        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
+        action_info = amtk_action_info_store_lookup (priv->menu_action_info_store, "win.shortcuts-window");
         amtk_action_info_set_accels (action_info, accels);
 
         /* For "<Control>equal": Epiphany also has this keyboard shortcut for
@@ -92,11 +93,11 @@ add_menu_action_infos (DhApp *app)
          */
         accels[0] = "<Control>plus";
         accels[1] = "<Control>equal";
-        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-in");
+        action_info = amtk_action_info_store_lookup (priv->menu_action_info_store, "win.zoom-in");
         amtk_action_info_set_accels (action_info, accels);
 
-        amtk_action_info_store_set_all_accels_to_app (app->priv->menu_action_info_store,
-                                                      GTK_APPLICATION (app));
+        amtk_action_info_store_set_all_accels_to_app (priv->menu_action_info_store,
+                                                      GTK_APPLICATION (self));
 }
 
 static void
@@ -199,15 +200,16 @@ new_window_cb (GSimpleAction *action,
                GVariant      *parameter,
                gpointer       user_data)
 {
-        DhApp *app = DH_APP (user_data);
+        DhApp *self = DH_APP (user_data);
+        DhAppPrivate *priv = dh_app_get_instance_private (self);
         GtkWidget *new_window;
 
-        save_active_main_window_gsettings (app);
+        save_active_main_window_gsettings (self);
 
-        new_window = dh_window_new (GTK_APPLICATION (app));
+        new_window = dh_window_new (GTK_APPLICATION (self));
         gtk_widget_show_all (new_window);
 
-        amtk_action_info_store_check_all_used (app->priv->menu_action_info_store);
+        amtk_action_info_store_check_all_used (priv->menu_action_info_store);
 }
 
 static void
@@ -566,9 +568,10 @@ dh_app_command_line (GApplication            *g_app,
 static void
 dh_app_dispose (GObject *object)
 {
-        DhApp *app = DH_APP (object);
+        DhApp *self = DH_APP (object);
+        DhAppPrivate *priv = dh_app_get_instance_private (self);
 
-        g_clear_object (&app->priv->menu_action_info_store);
+        g_clear_object (&priv->menu_action_info_store);
 
         G_OBJECT_CLASS (dh_app_parent_class)->dispose (object);
 }
@@ -590,8 +593,6 @@ dh_app_class_init (DhAppClass *klass)
 static void
 dh_app_init (DhApp *app)
 {
-        app->priv = dh_app_get_instance_private (app);
-
         /* Translators: please don't translate "Devhelp" (it's marked as
          * translatable for transliteration only).
          */

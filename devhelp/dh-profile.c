@@ -47,11 +47,14 @@
  * providing additional features useful for that development platform (for
  * example to download the latest API documentation, have a start page, etc).
  */
+struct _DhProfile {
+        GObject parent_instance;
+};
 
-struct _DhProfilePrivate {
+typedef struct {
         DhSettings *settings;
         DhBookList *book_list;
-};
+} DhProfilePrivate;
 
 static DhProfile *default_instance = NULL;
 
@@ -61,9 +64,10 @@ static void
 dh_profile_dispose (GObject *object)
 {
         DhProfile *profile = DH_PROFILE (object);
+        DhProfilePrivate *priv = dh_profile_get_instance_private (profile);
 
-        g_clear_object (&profile->priv->settings);
-        g_clear_object (&profile->priv->book_list);
+        g_clear_object (&priv->settings);
+        g_clear_object (&priv->book_list);
 
         G_OBJECT_CLASS (dh_profile_parent_class)->dispose (object);
 }
@@ -89,7 +93,6 @@ dh_profile_class_init (DhProfileClass *klass)
 static void
 dh_profile_init (DhProfile *profile)
 {
-        profile->priv = dh_profile_get_instance_private (profile);
 }
 
 DhProfile *
@@ -97,13 +100,15 @@ _dh_profile_new (DhSettings *settings,
                  DhBookList *book_list)
 {
         DhProfile *profile;
+        DhProfilePrivate *priv;
 
         g_return_val_if_fail (DH_IS_SETTINGS (settings), NULL);
         g_return_val_if_fail (DH_IS_BOOK_LIST (book_list), NULL);
 
         profile = g_object_new (DH_TYPE_PROFILE, NULL);
-        profile->priv->settings = g_object_ref (settings);
-        profile->priv->book_list = g_object_ref (book_list);
+        priv = dh_profile_get_instance_private (profile);
+        priv->settings = g_object_ref (settings);
+        priv->book_list = g_object_ref (book_list);
 
         return profile;
 }
@@ -157,9 +162,10 @@ _dh_profile_unref_default (void)
 DhSettings *
 dh_profile_get_settings (DhProfile *profile)
 {
+        DhProfilePrivate *priv = dh_profile_get_instance_private (profile);
         g_return_val_if_fail (DH_IS_PROFILE (profile), NULL);
 
-        return profile->priv->settings;
+        return priv->settings;
 }
 
 /**
@@ -175,7 +181,8 @@ dh_profile_get_settings (DhProfile *profile)
 DhBookList *
 dh_profile_get_book_list (DhProfile *profile)
 {
+        DhProfilePrivate *priv = dh_profile_get_instance_private (profile);
         g_return_val_if_fail (DH_IS_PROFILE (profile), NULL);
 
-        return profile->priv->book_list;
+        return priv->book_list;
 }
