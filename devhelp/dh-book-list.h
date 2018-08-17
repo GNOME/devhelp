@@ -18,8 +18,7 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_BOOK_LIST_H
-#define DH_BOOK_LIST_H
+#pragma once
 
 #include <glib-object.h>
 #include <devhelp/dh-book.h>
@@ -27,21 +26,7 @@
 G_BEGIN_DECLS
 
 #define DH_TYPE_BOOK_LIST             (dh_book_list_get_type ())
-#define DH_BOOK_LIST(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_BOOK_LIST, DhBookList))
-#define DH_BOOK_LIST_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_BOOK_LIST, DhBookListClass))
-#define DH_IS_BOOK_LIST(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_BOOK_LIST))
-#define DH_IS_BOOK_LIST_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_BOOK_LIST))
-#define DH_BOOK_LIST_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), DH_TYPE_BOOK_LIST, DhBookListClass))
-
-typedef struct _DhBookList         DhBookList;
-typedef struct _DhBookListClass    DhBookListClass;
-typedef struct _DhBookListPrivate  DhBookListPrivate;
-
-struct _DhBookList {
-        GObject parent;
-
-        DhBookListPrivate *priv;
-};
+G_DECLARE_DERIVABLE_TYPE (DhBookList, dh_book_list, DH, BOOK_LIST, GObject)
 
 /**
  * DhBookListClass:
@@ -59,36 +44,24 @@ struct _DhBookListClass {
         /* Signals */
         void    (* add_book)            (DhBookList *book_list,
                                          DhBook     *book);
-
         void    (* remove_book)         (DhBookList *book_list,
                                          DhBook     *book);
-
         /* Vfuncs */
         GList * (* get_books)           (DhBookList *book_list);
-
-        /*< private >*/
 
         /* Padding for future expansion */
         gpointer padding[12];
 };
 
-GType           dh_book_list_get_type           (void);
-
-DhBookList *    dh_book_list_new                (void);
-
-DhBookList *    dh_book_list_get_default        (void);
-
+DhBookList *dh_book_list_new            (void);
+DhBookList *dh_book_list_get_default    (void);
 G_GNUC_INTERNAL
-void            _dh_book_list_unref_default     (void);
-
-GList *         dh_book_list_get_books          (DhBookList *book_list);
-
-void            dh_book_list_add_book           (DhBookList *book_list,
-                                                 DhBook     *book);
-
-void            dh_book_list_remove_book        (DhBookList *book_list,
-                                                 DhBook     *book);
+void        _dh_book_list_unref_default (void);
+GList      *dh_book_list_get_books      (DhBookList *book_list);
+void        dh_book_list_add_book       (DhBookList *book_list,
+                                         DhBook     *book);
+void        dh_book_list_remove_book    (DhBookList *book_list,
+                                         DhBook     *book);
 
 G_END_DECLS
 
-#endif /* DH_BOOK_LIST_H */

@@ -18,8 +18,7 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_APPLICATION_WINDOW_H
-#define DH_APPLICATION_WINDOW_H
+#pragma once
 
 #include <glib.h>
 #include <devhelp/dh-notebook.h>
@@ -32,4 +31,3 @@ void    dh_application_window_bind_sidebar_and_notebook         (DhSidebar  *sid
 
 G_END_DECLS
 
-#endif /* DH_APPLICATION_WINDOW_H */
