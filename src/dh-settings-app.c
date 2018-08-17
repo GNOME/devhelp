@@ -26,11 +26,11 @@
 #define SETTINGS_SCHEMA_ID_PANED                "org.gnome.devhelp.state.main.paned"
 #define SETTINGS_SCHEMA_ID_ASSISTANT            "org.gnome.devhelp.state.assistant.window"
 
-struct _DhSettingsAppPrivate {
+typedef struct {
         GSettings *settings_window;
         GSettings *settings_paned;
         GSettings *settings_assistant;
-};
+} DhSettingsAppPrivate;
 
 /* DhSettingsApp is a singleton. */
 static DhSettingsApp *singleton = NULL;
@@ -41,10 +41,11 @@ static void
 dh_settings_app_dispose (GObject *object)
 {
         DhSettingsApp *self = DH_SETTINGS_APP (object);
+        DhSettingsAppPrivate *priv = dh_settings_app_get_instance_private (self);
 
-        g_clear_object (&self->priv->settings_window);
-        g_clear_object (&self->priv->settings_paned);
-        g_clear_object (&self->priv->settings_assistant);
+        g_clear_object (&priv->settings_window);
+        g_clear_object (&priv->settings_paned);
+        g_clear_object (&priv->settings_assistant);
 
         G_OBJECT_CLASS (dh_settings_app_parent_class)->dispose (object);
 }
@@ -70,11 +71,12 @@ dh_settings_app_class_init (DhSettingsAppClass *klass)
 static void
 dh_settings_app_init (DhSettingsApp *self)
 {
-        self->priv = dh_settings_app_get_instance_private (self);
+        DhSettingsAppPrivate *priv = dh_settings_app_get_instance_private (self);
+        priv = dh_settings_app_get_instance_private (self);
 
-        self->priv->settings_window = g_settings_new (SETTINGS_SCHEMA_ID_WINDOW);
-        self->priv->settings_paned = g_settings_new (SETTINGS_SCHEMA_ID_PANED);
-        self->priv->settings_assistant = g_settings_new (SETTINGS_SCHEMA_ID_ASSISTANT);
+        priv->settings_window = g_settings_new (SETTINGS_SCHEMA_ID_WINDOW);
+        priv->settings_paned = g_settings_new (SETTINGS_SCHEMA_ID_PANED);
+        priv->settings_assistant = g_settings_new (SETTINGS_SCHEMA_ID_ASSISTANT);
 }
 
 DhSettingsApp *
@@ -101,20 +103,29 @@ dh_settings_app_unref_singleton (void)
 GSettings *
 dh_settings_app_peek_window_settings (DhSettingsApp *self)
 {
+        DhSettingsAppPrivate *priv = dh_settings_app_get_instance_private (self);
+
         g_return_val_if_fail (DH_IS_SETTINGS_APP (self), NULL);
-        return self->priv->settings_window;
+
+        return priv->settings_window;
 }
 
 GSettings *
 dh_settings_app_peek_paned_settings (DhSettingsApp *self)
 {
+        DhSettingsAppPrivate *priv = dh_settings_app_get_instance_private (self);
+
         g_return_val_if_fail (DH_IS_SETTINGS_APP (self), NULL);
-        return self->priv->settings_paned;
+
+        return priv->settings_paned;
 }
 
 GSettings *
 dh_settings_app_peek_assistant_settings (DhSettingsApp *self)
 {
+        DhSettingsAppPrivate *priv = dh_settings_app_get_instance_private (self);
+
         g_return_val_if_fail (DH_IS_SETTINGS_APP (self), NULL);
-        return self->priv->settings_assistant;
+
+        return priv->settings_assistant;
 }

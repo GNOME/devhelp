@@ -51,20 +51,22 @@
  * but it is implemented in a simpler way, to have less boilerplate.
  */
 
-struct _DhSettingsBuilderPrivate {
+struct _DhSettingsBuilder {
+        GObject parent_instance;
+
         gchar *contents_path;
         gchar *fonts_path;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (DhSettingsBuilder, dh_settings_builder, G_TYPE_OBJECT)
+G_DEFINE_TYPE (DhSettingsBuilder, dh_settings_builder, G_TYPE_OBJECT)
 
 static void
 dh_settings_builder_finalize (GObject *object)
 {
         DhSettingsBuilder *builder = DH_SETTINGS_BUILDER (object);
 
-        g_free (builder->priv->contents_path);
-        g_free (builder->priv->fonts_path);
+        g_free (builder->contents_path);
+        g_free (builder->fonts_path);
 
         G_OBJECT_CLASS (dh_settings_builder_parent_class)->finalize (object);
 }
@@ -80,7 +82,7 @@ dh_settings_builder_class_init (DhSettingsBuilderClass *klass)
 static void
 dh_settings_builder_init (DhSettingsBuilder *builder)
 {
-        builder->priv = dh_settings_builder_get_instance_private (builder);
+        builder = dh_settings_builder_get_instance_private (builder);
 }
 
 /**
@@ -114,8 +116,8 @@ dh_settings_builder_set_contents_path (DhSettingsBuilder *builder,
         g_return_if_fail (DH_IS_SETTINGS_BUILDER (builder));
         g_return_if_fail (contents_path != NULL);
 
-        g_free (builder->priv->contents_path);
-        builder->priv->contents_path = g_strdup (contents_path);
+        g_free (builder->contents_path);
+        builder->contents_path = g_strdup (contents_path);
 }
 
 /**
@@ -137,8 +139,8 @@ dh_settings_builder_set_fonts_path (DhSettingsBuilder *builder,
         g_return_if_fail (DH_IS_SETTINGS_BUILDER (builder));
         g_return_if_fail (fonts_path != NULL);
 
-        g_free (builder->priv->fonts_path);
-        builder->priv->fonts_path = g_strdup (fonts_path);
+        g_free (builder->fonts_path);
+        builder->fonts_path = g_strdup (fonts_path);
 }
 
 /**
@@ -157,15 +159,15 @@ dh_settings_builder_create_object (DhSettingsBuilder *builder)
          * Use all the set functions to test them, to have the same code paths
          * as if the set functions were already called.
          */
-        if (builder->priv->contents_path == NULL) {
+        if (builder->contents_path == NULL) {
                 // Must be compatible with Devhelp app version 3.28:
                 dh_settings_builder_set_contents_path (builder, "/org/gnome/devhelp/state/main/contents/");
         }
-        if (builder->priv->fonts_path == NULL) {
+        if (builder->fonts_path == NULL) {
                 // Must be compatible with Devhelp app version 3.28:
                 dh_settings_builder_set_fonts_path (builder, "/org/gnome/devhelp/fonts/");
         }
 
-        return _dh_settings_new (builder->priv->contents_path,
-                                 builder->priv->fonts_path);
+        return _dh_settings_new (builder->contents_path,
+                                 builder->fonts_path);
 }

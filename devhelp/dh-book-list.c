@@ -37,10 +37,10 @@
  * #DhBook::updated signals. It is for example handled by #DhBookListDirectory.
  */
 
-struct _DhBookListPrivate {
+typedef struct {
         /* The list of DhBook's. */
         GList *books;
-};
+} DhBookListPrivate;
 
 enum {
         SIGNAL_ADD_BOOK,
@@ -57,7 +57,8 @@ static gboolean
 book_id_present_in_list (DhBookList *book_list,
                          DhBook     *book)
 {
-        return g_list_find_custom (book_list->priv->books,
+        DhBookListPrivate *priv = dh_book_list_get_instance_private (book_list);
+        return g_list_find_custom (priv->books,
                                    book,
                                    (GCompareFunc) dh_book_cmp_by_id) != NULL;
 }
@@ -66,9 +67,10 @@ static void
 dh_book_list_dispose (GObject *object)
 {
         DhBookList *book_list = DH_BOOK_LIST (object);
+        DhBookListPrivate *priv = dh_book_list_get_instance_private (book_list);
 
-        g_list_free_full (book_list->priv->books, g_object_unref);
-        book_list->priv->books = NULL;
+        g_list_free_full (priv->books, g_object_unref);
+        priv->books = NULL;
 
         G_OBJECT_CLASS (dh_book_list_parent_class)->dispose (object);
 }
@@ -86,24 +88,26 @@ static void
 dh_book_list_add_book_default (DhBookList *book_list,
                                DhBook     *book)
 {
+        DhBookListPrivate *priv = dh_book_list_get_instance_private (book_list);
         g_return_if_fail (!book_id_present_in_list (book_list, book));
 
-        book_list->priv->books = g_list_prepend (book_list->priv->books,
-                                                 g_object_ref (book));
+        priv->books = g_list_prepend (priv->books,
+                                      g_object_ref (book));
 }
 
 static void
 dh_book_list_remove_book_default (DhBookList *book_list,
                                   DhBook     *book)
 {
+        DhBookListPrivate *priv = dh_book_list_get_instance_private (book_list);
         GList *node;
 
-        node = g_list_find (book_list->priv->books, book);
+        node = g_list_find (priv->books, book);
         g_return_if_fail (node != NULL);
 
-        book_list->priv->books = g_list_delete_link (book_list->priv->books, node);
+        priv->books = g_list_delete_link (priv->books, node);
 
-        if (g_list_find (book_list->priv->books, book) != NULL)
+        if (g_list_find (priv->books, book) != NULL)
                 g_warning ("The same DhBook was inserted several times.");
 
         g_object_unref (book);
@@ -112,7 +116,10 @@ dh_book_list_remove_book_default (DhBookList *book_list,
 static GList *
 dh_book_list_get_books_default (DhBookList *book_list)
 {
-        return book_list->priv->books;
+        DhBookListPrivate *priv = dh_book_list_get_instance_private (book_list);
+        g_return_val_if_fail (DH_IS_BOOK_LIST (book_list), NULL);
+
+        return priv->books;
 }
 
 static void
@@ -177,7 +184,6 @@ dh_book_list_class_init (DhBookListClass *klass)
 static void
 dh_book_list_init (DhBookList *book_list)
 {
-        book_list->priv = dh_book_list_get_instance_private (book_list);
 }
 
 /**
