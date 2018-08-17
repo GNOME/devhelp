@@ -21,8 +21,7 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_SIDEBAR_H
-#define DH_SIDEBAR_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include <devhelp/dh-book-manager.h>
@@ -32,17 +31,7 @@
 G_BEGIN_DECLS
 
 #define DH_TYPE_SIDEBAR            (dh_sidebar_get_type ())
-#define DH_SIDEBAR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_SIDEBAR, DhSidebar))
-#define DH_SIDEBAR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_SIDEBAR, DhSidebarClass))
-#define DH_IS_SIDEBAR(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_SIDEBAR))
-#define DH_IS_SIDEBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_SIDEBAR))
-
-typedef struct _DhSidebar        DhSidebar;
-typedef struct _DhSidebarClass   DhSidebarClass;
-
-struct _DhSidebar {
-        GtkGrid parent_instance;
-};
+G_DECLARE_DERIVABLE_TYPE (DhSidebar, dh_sidebar, DH, SIDEBAR, GtkGrid)
 
 struct _DhSidebarClass {
         GtkGridClass parent_class;
@@ -54,8 +43,6 @@ struct _DhSidebarClass {
         /* Padding for future expansion */
         gpointer padding[12];
 };
-
-GType           dh_sidebar_get_type             (void);
 
 G_DEPRECATED_FOR (dh_sidebar_new2)
 GtkWidget *     dh_sidebar_new                  (DhBookManager *book_manager);
@@ -76,4 +63,3 @@ void            dh_sidebar_set_search_focus     (DhSidebar *sidebar);
 
 G_END_DECLS
 
-#endif /* DH_SIDEBAR_H */

@@ -608,8 +608,8 @@ dh_window_search (DhWindow    *window,
 
 /* Only call this with a URI that is known to be in the docs. */
 void
-_dh_window_display_uri (DhWindow    *window,
-                        const gchar *uri)
+dh_window_display_uri (DhWindow    *window,
+                       const gchar *uri)
 {
         DhWebView *web_view;
 

@@ -20,8 +20,7 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_PARSER_H
-#define DH_PARSER_H
+#pragma once
 
 #include <gio/gio.h>
 
@@ -38,4 +37,3 @@ gboolean _dh_parser_read_file (GFile   *index_file,
 
 G_END_DECLS
 
-#endif /* DH_PARSER_H */

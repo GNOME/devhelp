@@ -18,8 +18,7 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_ASSISTANT_VIEW_H
-#define DH_ASSISTANT_VIEW_H
+#pragma once
 
 #include <webkit2/webkit2.h>
 #include <devhelp/dh-link.h>
@@ -27,18 +26,7 @@
 G_BEGIN_DECLS
 
 #define DH_TYPE_ASSISTANT_VIEW         (dh_assistant_view_get_type ())
-#define DH_ASSISTANT_VIEW(i)           (G_TYPE_CHECK_INSTANCE_CAST ((i), DH_TYPE_ASSISTANT_VIEW, DhAssistantView))
-#define DH_ASSISTANT_VIEW_CLASS(c)     (G_TYPE_CHECK_CLASS_CAST ((c), DH_TYPE_ASSISTANT_VIEW, DhAssistantViewClass))
-#define DH_IS_ASSISTANT_VIEW(i)        (G_TYPE_CHECK_INSTANCE_TYPE ((i), DH_TYPE_ASSISTANT_VIEW))
-#define DH_IS_ASSISTANT_VIEW_CLASS(c)  (G_TYPE_CHECK_CLASS_TYPE ((c), DH_ASSISTANT_VIEW))
-#define DH_ASSISTANT_VIEW_GET_CLASS(i) (G_TYPE_INSTANCE_GET_CLASS ((i), DH_TYPE_ASSISTANT_VIEW, DhAssistantView))
-
-typedef struct _DhAssistantView      DhAssistantView;
-typedef struct _DhAssistantViewClass DhAssistantViewClass;
-
-struct _DhAssistantView {
-        WebKitWebView parent_instance;
-};
+G_DECLARE_DERIVABLE_TYPE (DhAssistantView, dh_assistant_view, DH, ASSISTANT_VIEW, WebKitWebView)
 
 struct _DhAssistantViewClass {
         WebKitWebViewClass parent_class;
@@ -47,16 +35,10 @@ struct _DhAssistantViewClass {
         gpointer padding[12];
 };
 
-GType           dh_assistant_view_get_type              (void) G_GNUC_CONST;
-
-GtkWidget *     dh_assistant_view_new                   (void);
-
-gboolean        dh_assistant_view_set_link              (DhAssistantView *view,
-                                                         DhLink          *link);
-
-gboolean        dh_assistant_view_search                (DhAssistantView *view,
-                                                         const gchar     *str);
-
+GtkWidget *dh_assistant_view_new      (void);
+gboolean   dh_assistant_view_set_link (DhAssistantView *view,
+                                       DhLink          *link);
+gboolean   dh_assistant_view_search   (DhAssistantView *view,
+                                       const gchar     *str);
 G_END_DECLS
 
-#endif /* DH_ASSISTANT_VIEW_H */

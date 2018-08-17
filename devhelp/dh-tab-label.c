@@ -32,7 +32,9 @@
  * close button.
  */
 
-struct _DhTabLabelPrivate {
+struct _DhTabLabel {
+        GtkGrid parent_instance;
+
         /* Weak ref */
         DhTab *tab;
 
@@ -47,7 +49,7 @@ enum {
 
 static GParamSpec *properties[N_PROPERTIES];
 
-G_DEFINE_TYPE_WITH_PRIVATE (DhTabLabel, dh_tab_label, GTK_TYPE_GRID)
+G_DEFINE_TYPE (DhTabLabel, dh_tab_label, GTK_TYPE_GRID)
 
 static void
 update_label (DhTabLabel *tab_label)
@@ -55,12 +57,12 @@ update_label (DhTabLabel *tab_label)
         DhWebView *web_view;
         const gchar *title;
 
-        if (tab_label->priv->tab == NULL)
+        if (tab_label->tab == NULL)
                 return;
 
-        web_view = dh_tab_get_web_view (tab_label->priv->tab);
+        web_view = dh_tab_get_web_view (tab_label->tab);
         title = dh_web_view_get_devhelp_title (web_view);
-        gtk_label_set_text (tab_label->priv->label, title);
+        gtk_label_set_text (tab_label->label, title);
 }
 
 static void
@@ -82,10 +84,10 @@ set_tab (DhTabLabel *tab_label,
 
         g_return_if_fail (DH_IS_TAB (tab));
 
-        g_assert (tab_label->priv->tab == NULL);
-        tab_label->priv->tab = tab;
-        g_object_add_weak_pointer (G_OBJECT (tab_label->priv->tab),
-                                   (gpointer *) &tab_label->priv->tab);
+        g_assert (tab_label->tab == NULL);
+        tab_label->tab = tab;
+        g_object_add_weak_pointer (G_OBJECT (tab_label->tab),
+                                   (gpointer *) &tab_label->tab);
 
         web_view = dh_tab_get_web_view (tab);
         g_signal_connect_object (web_view,
@@ -140,10 +142,10 @@ dh_tab_label_dispose (GObject *object)
 {
         DhTabLabel *tab_label = DH_TAB_LABEL (object);
 
-        if (tab_label->priv->tab != NULL) {
-                g_object_remove_weak_pointer (G_OBJECT (tab_label->priv->tab),
-                                              (gpointer *) &tab_label->priv->tab);
-                tab_label->priv->tab = NULL;
+        if (tab_label->tab != NULL) {
+                g_object_remove_weak_pointer (G_OBJECT (tab_label->tab),
+                                              (gpointer *) &tab_label->tab);
+                tab_label->tab = NULL;
         }
 
         G_OBJECT_CLASS (dh_tab_label_parent_class)->dispose (object);
@@ -199,8 +201,8 @@ static void
 close_button_clicked_cb (GtkButton  *close_button,
                          DhTabLabel *tab_label)
 {
-        if (tab_label->priv->tab != NULL)
-                gtk_widget_destroy (GTK_WIDGET (tab_label->priv->tab));
+        if (tab_label->tab != NULL)
+                gtk_widget_destroy (GTK_WIDGET (tab_label->tab));
 }
 
 static void
@@ -208,21 +210,19 @@ dh_tab_label_init (DhTabLabel *tab_label)
 {
         GtkWidget *close_button;
 
-        tab_label->priv = dh_tab_label_get_instance_private (tab_label);
-
         gtk_grid_set_column_spacing (GTK_GRID (tab_label), 4);
 
         /* Label */
 
-        tab_label->priv->label = GTK_LABEL (gtk_label_new (NULL));
-        gtk_widget_set_hexpand (GTK_WIDGET (tab_label->priv->label), TRUE);
-        gtk_widget_set_vexpand (GTK_WIDGET (tab_label->priv->label), TRUE);
-        gtk_widget_set_halign (GTK_WIDGET (tab_label->priv->label), GTK_ALIGN_CENTER);
-        gtk_label_set_ellipsize (tab_label->priv->label, PANGO_ELLIPSIZE_END);
+        tab_label->label = GTK_LABEL (gtk_label_new (NULL));
+        gtk_widget_set_hexpand (GTK_WIDGET (tab_label->label), TRUE);
+        gtk_widget_set_vexpand (GTK_WIDGET (tab_label->label), TRUE);
+        gtk_widget_set_halign (GTK_WIDGET (tab_label->label), GTK_ALIGN_CENTER);
+        gtk_label_set_ellipsize (tab_label->label, PANGO_ELLIPSIZE_END);
 
-        gtk_widget_show (GTK_WIDGET (tab_label->priv->label));
+        gtk_widget_show (GTK_WIDGET (tab_label->label));
         gtk_container_add (GTK_CONTAINER (tab_label),
-                           GTK_WIDGET (tab_label->priv->label));
+                           GTK_WIDGET (tab_label->label));
 
         /* Close button */
 
@@ -266,5 +266,5 @@ dh_tab_label_get_tab (DhTabLabel *tab_label)
 {
         g_return_val_if_fail (DH_IS_TAB_LABEL (tab_label), NULL);
 
-        return tab_label->priv->tab;
+        return tab_label->tab;
 }
