@@ -20,8 +20,7 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DH_KEYWORD_MODEL_H
-#define DH_KEYWORD_MODEL_H
+#pragma once
 
 #include <glib-object.h>
 #include <devhelp/dh-link.h>
@@ -30,25 +29,7 @@
 G_BEGIN_DECLS
 
 #define DH_TYPE_KEYWORD_MODEL            (dh_keyword_model_get_type ())
-#define DH_KEYWORD_MODEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModel))
-#define DH_KEYWORD_MODEL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
-#define DH_IS_KEYWORD_MODEL(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), DH_TYPE_KEYWORD_MODEL))
-#define DH_IS_KEYWORD_MODEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), DH_TYPE_KEYWORD_MODEL))
-#define DH_KEYWORD_MODEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), DH_TYPE_KEYWORD_MODEL, DhKeywordModelClass))
-
-typedef struct _DhKeywordModel      DhKeywordModel;
-typedef struct _DhKeywordModelClass DhKeywordModelClass;
-
-struct _DhKeywordModel {
-        GObject parent_instance;
-};
-
-struct _DhKeywordModelClass {
-        GObjectClass parent_class;
-
-        /* Padding for future expansion */
-        gpointer padding[12];
-};
+G_DECLARE_FINAL_TYPE (DhKeywordModel, dh_keyword_model, DH, KEYWORD_MODEL, GObject)
 
 enum {
         DH_KEYWORD_MODEL_COL_NAME,
@@ -57,15 +38,11 @@ enum {
         DH_KEYWORD_MODEL_NUM_COLS
 };
 
-GType           dh_keyword_model_get_type  (void);
-
-DhKeywordModel *dh_keyword_model_new       (void);
-
-DhLink *        dh_keyword_model_filter    (DhKeywordModel *model,
-                                            const gchar    *search_string,
-                                            const gchar    *current_book_id,
-                                            DhProfile      *profile);
+DhKeywordModel *dh_keyword_model_new    (void);
+DhLink         *dh_keyword_model_filter (DhKeywordModel *model,
+                                         const gchar    *search_string,
+                                         const gchar    *current_book_id,
+                                         DhProfile      *profile);
 
 G_END_DECLS
 
-#endif /* DH_KEYWORD_MODEL_H */

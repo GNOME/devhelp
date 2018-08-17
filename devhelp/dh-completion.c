@@ -43,10 +43,10 @@
  * from the #GList.
  */
 
-struct _DhCompletionPrivate {
+typedef struct {
         /* Element types: gchar*, owned. */
         GSequence *sequence;
-};
+} DhCompletionPrivate;
 
 typedef struct {
         const gchar *prefix;
@@ -86,8 +86,9 @@ static void
 dh_completion_finalize (GObject *object)
 {
         DhCompletion *completion = DH_COMPLETION (object);
+        DhCompletionPrivate *priv = dh_completion_get_instance_private (completion);
 
-        g_sequence_free (completion->priv->sequence);
+        g_sequence_free (priv->sequence);
 
         G_OBJECT_CLASS (dh_completion_parent_class)->finalize (object);
 }
@@ -103,9 +104,8 @@ dh_completion_class_init (DhCompletionClass *klass)
 static void
 dh_completion_init (DhCompletion *completion)
 {
-        completion->priv = dh_completion_get_instance_private (completion);
-
-        completion->priv->sequence = g_sequence_new (g_free);
+        DhCompletionPrivate *priv = dh_completion_get_instance_private (completion);
+        priv->sequence = g_sequence_new (g_free);
 }
 
 /**
@@ -135,10 +135,12 @@ void
 dh_completion_add_string (DhCompletion *completion,
                           const gchar  *str)
 {
+        DhCompletionPrivate *priv = dh_completion_get_instance_private (completion);
+
         g_return_if_fail (DH_IS_COMPLETION (completion));
         g_return_if_fail (str != NULL);
 
-        g_sequence_append (completion->priv->sequence, g_strdup (str));
+        g_sequence_append (priv->sequence, g_strdup (str));
 }
 
 /**
@@ -153,9 +155,11 @@ dh_completion_add_string (DhCompletion *completion,
 void
 dh_completion_sort (DhCompletion *completion)
 {
+        DhCompletionPrivate *priv = dh_completion_get_instance_private (completion);
+
         g_return_if_fail (DH_IS_COMPLETION (completion));
 
-        g_sequence_sort (completion->priv->sequence,
+        g_sequence_sort (priv->sequence,
                          compare_func,
                          NULL);
 }
@@ -256,6 +260,7 @@ do_complete (DhCompletion *completion,
              const gchar  *prefix,
              gboolean     *found_string_with_prefix)
 {
+        DhCompletionPrivate *priv = dh_completion_get_instance_private (completion);
         GSequenceIter *iter;
         CompletionData data;
 
@@ -265,7 +270,7 @@ do_complete (DhCompletion *completion,
         g_return_val_if_fail (DH_IS_COMPLETION (completion), NULL);
         g_return_val_if_fail (prefix != NULL, NULL);
 
-        iter = g_sequence_search (completion->priv->sequence,
+        iter = g_sequence_search (priv->sequence,
                                   (gpointer) prefix,
                                   compare_func,
                                   NULL);

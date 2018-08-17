@@ -734,7 +734,7 @@ dh_window_init (DhWindow *window)
                            GTK_WIDGET (priv->notebook));
         gtk_paned_pack1 (hpaned, GTK_WIDGET (priv->sidebar), FALSE, FALSE);
         gtk_paned_add2 (hpaned, contents_vgrid);
-        gtk_widget_show_all (GTK_WIDGET (hpaned));
+        gtk_widget_show (GTK_WIDGET (hpaned));
         gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (hpaned));
 
         add_actions (window);
@@ -780,8 +780,8 @@ dh_window_search (DhWindow    *window,
 
 /* Only call this with a URI that is known to be in the docs. */
 void
-_dh_window_display_uri (DhWindow    *window,
-                        const gchar *uri)
+dh_window_display_uri (DhWindow    *window,
+                       const gchar *uri)
 {
         DhWebView *web_view;
 
