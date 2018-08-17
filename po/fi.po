@@ -13,10 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-01-28 17:56+0000\n"
-"PO-Revision-Date: 2018-02-06 23:49+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2018-05-31 14:03+0000\n"
+"PO-Revision-Date: 2018-08-17 20:49+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -24,22 +23,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-02-19 15:17:00+0000\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: data/org.gnome.Devhelp.appdata.xml.in:6
-#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:112 src/dh-app.c:450
-#: src/dh-window.c:608
+#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
+#: src/dh-app.c:270 src/dh-app.c:598
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:7
-#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:114
+#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
+#: src/dh-app.c:272
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Kehittäjätyökalu rajapintadokumentaation selaamiseen ja hakemiseen"
 
@@ -83,112 +79,196 @@ msgstr ""
 "Anjutaan, ja liitännäisiä on saatavilla eri tekstimuokkaimille (gedit, Vim, "
 "Emacs, Geany, …)."
 
-#: data/org.gnome.Devhelp.desktop.in.in:5
+#: data/org.gnome.Devhelp.desktop.in:5
 msgid "API Documentation Browser"
 msgstr "Rajapintojen dokumentaatioselain"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Devhelp.desktop.in.in:7
+#: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr ""
 "documentation;information;manual;developer;api;dokumentaatio;käsikirja;ohje;"
 "kehittäjä;kehitys;ohjelmointirajapinta;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in.in:12
+#: data/org.gnome.Devhelp.desktop.in:12
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "devhelp"
-msgstr "devhelp"
+msgid "org.gnome.Devhelp"
+msgstr "org.gnome.Devhelp"
 
-#: data/org.gnome.devhelp.gschema.xml:18
+#: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
 msgstr "Pääikkunan suurennettu tila"
 
-#: data/org.gnome.devhelp.gschema.xml:19
+#: data/org.gnome.devhelp.gschema.xml:17
 msgid "Whether the main window should start maximized."
 msgstr "Näytetäänkö pääikkuna käynnistettäessä suurennettuna."
 
-#: data/org.gnome.devhelp.gschema.xml:23
+#: data/org.gnome.devhelp.gschema.xml:21
 msgid "Width of the main window"
 msgstr "Pääikkunan leveys"
 
-#: data/org.gnome.devhelp.gschema.xml:24
+#: data/org.gnome.devhelp.gschema.xml:22
 msgid "The width of the main window."
 msgstr "Pääikkunan leveys."
 
-#: data/org.gnome.devhelp.gschema.xml:28
+#: data/org.gnome.devhelp.gschema.xml:26
 msgid "Height of main window"
 msgstr "Pääikkunan korkeus"
 
-#: data/org.gnome.devhelp.gschema.xml:29
+#: data/org.gnome.devhelp.gschema.xml:27
 msgid "The height of the main window."
 msgstr "Pääikkunan korkeus."
 
-#: data/org.gnome.devhelp.gschema.xml:35
+#: data/org.gnome.devhelp.gschema.xml:33
 msgid "Width of the index and search pane"
 msgstr "Sisällysluettelo- ja hakupaneelin leveys"
 
-#: data/org.gnome.devhelp.gschema.xml:36
+#: data/org.gnome.devhelp.gschema.xml:34
 msgid "The width of the index and search pane."
 msgstr "Sisällysluettelo- ja hakupaneelin leveys."
 
-#: data/org.gnome.devhelp.gschema.xml:42
-msgid "Books disabled"
-msgstr "Piilotetut kirjat"
-
 #: data/org.gnome.devhelp.gschema.xml:43
-msgid "List of books disabled by the user."
-msgstr "Luettelo käyttäjän piilottamista kirjoista."
-
-#: data/org.gnome.devhelp.gschema.xml:47
-msgid "Group by language"
-msgstr "Ryhmittele kielen mukaan"
-
-#: data/org.gnome.devhelp.gschema.xml:48
-msgid "Whether books should be grouped by language in the UI"
-msgstr "Ryhmitelläänkö kirjat kielen mukaan käyttöliittymässä"
-
-#: data/org.gnome.devhelp.gschema.xml:57
 msgid "Width of the assistant window"
 msgstr "Apuikkunan leveys"
 
-#: data/org.gnome.devhelp.gschema.xml:58
+#: data/org.gnome.devhelp.gschema.xml:44
 msgid "The width of the assistant window."
 msgstr "Apuikkunan leveys."
 
-#: data/org.gnome.devhelp.gschema.xml:62
+#: data/org.gnome.devhelp.gschema.xml:48
 msgid "Height of assistant window"
 msgstr "Apuikkunan korkeus"
 
-#: data/org.gnome.devhelp.gschema.xml:63
+#: data/org.gnome.devhelp.gschema.xml:49
 msgid "The height of the assistant window."
 msgstr "Apuikkunan korkeus."
 
-#: data/org.gnome.devhelp.gschema.xml:69
+#: data/org.gnome.libdevhelp-3.gschema.xml:9
+msgid "Books disabled"
+msgstr "Piilotetut kirjat"
+
+#: data/org.gnome.libdevhelp-3.gschema.xml:10
+msgid "List of books disabled by the user."
+msgstr "Luettelo käyttäjän piilottamista kirjoista."
+
+#: data/org.gnome.libdevhelp-3.gschema.xml:14
+msgid "Group books by language"
+msgstr "Ryhmittele kirjat kielen mukaan"
+
+#: data/org.gnome.libdevhelp-3.gschema.xml:15
+msgid ""
+"Whether books should be grouped by programming language in the user "
+"interface."
+msgstr "Ryhmitelläänkö kirjat ohjelmointikielen mukaan käyttöliittymässä."
+
+#: data/org.gnome.libdevhelp-3.gschema.xml:21
 msgid "Use system fonts"
 msgstr "Käytä järjestelmän fontteja"
 
-#: data/org.gnome.devhelp.gschema.xml:70
+#: data/org.gnome.libdevhelp-3.gschema.xml:22
 msgid "Use the system default fonts."
 msgstr "Käytä järjestelmän oletusfontteja."
 
-#: data/org.gnome.devhelp.gschema.xml:74
+#: data/org.gnome.libdevhelp-3.gschema.xml:26
 msgid "Font for text"
 msgstr "Tekstin fontti"
 
-#: data/org.gnome.devhelp.gschema.xml:75
+#: data/org.gnome.libdevhelp-3.gschema.xml:27
 msgid "Font for text with variable width."
 msgstr "Fontti vaihtelevan levyistä fonttia käyttäville teksteille."
 
-#: data/org.gnome.devhelp.gschema.xml:79
+#: data/org.gnome.libdevhelp-3.gschema.xml:31
 msgid "Font for fixed width text"
 msgstr "Tasalevyisen tekstin fontti"
 
-#: data/org.gnome.devhelp.gschema.xml:80
+#: data/org.gnome.libdevhelp-3.gschema.xml:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Fontti tasalevyistä fonttia käyttäville teksteille kuten esimerkiksi "
 "koodiesimerkeille."
+
+#: devhelp/dh-assistant-view.c:400
+msgid "Book:"
+msgstr "Kirja:"
+
+#: devhelp/dh-book.c:313
+#, c-format
+msgid "Language: %s"
+msgstr "Kieli: %s"
+
+#: devhelp/dh-book.c:314
+msgid "Language: Undefined"
+msgstr "Kieli: määrittelemätön"
+
+#: devhelp/dh-book-tree.c:755
+msgid "_Collapse All"
+msgstr "_Supista kaikki"
+
+#. i18n: a documentation book
+#: devhelp/dh-link.c:551
+msgid "Book"
+msgstr "Kirja"
+
+#. i18n: a "page" in a documentation book
+#: devhelp/dh-link.c:555
+msgid "Page"
+msgstr "Sivu"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: devhelp/dh-link.c:560
+msgid "Keyword"
+msgstr "Avainsana"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:566
+msgid "Function"
+msgstr "Funktio"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:572
+msgid "Struct"
+msgstr "Struct"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:578
+msgid "Macro"
+msgstr "Macro"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:584
+msgid "Enum"
+msgstr "Enum"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:590
+msgid "Type"
+msgstr "Type"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:596
+msgid "Property"
+msgstr "Ominaisuus"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:602
+msgid "Signal"
+msgstr "Signaali"
 
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
@@ -198,7 +278,107 @@ msgstr "Devhelp-tuki"
 msgid "Show API Documentation"
 msgstr "Näytä API-dokumentaatio"
 
-#: src/dh-app.c:116
+#. action, icon, label, accel, tooltip
+#. App menu
+#: src/dh-app.c:51
+msgid "New _Window"
+msgstr "_Uusi ikkuna"
+
+#: src/dh-app.c:52
+msgid "Open a new window"
+msgstr "Avaa uusi ikkuna"
+
+#: src/dh-app.c:53
+msgid "_Preferences"
+msgstr "_Asetukset"
+
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr "_Pikanpääimet"
+
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "_Ohje"
+
+#: src/dh-app.c:56
+msgid "_About"
+msgstr "_Tietoja"
+
+#: src/dh-app.c:57
+msgid "_Quit"
+msgstr "_Lopeta"
+
+#: src/dh-app.c:58
+msgid "Close all windows"
+msgstr "Sulje kaikki ikkunat"
+
+#. Window menu
+#: src/dh-app.c:61
+msgid "_Side Panel"
+msgstr "_Sivupaneeli"
+
+#: src/dh-app.c:62
+msgid "Toggle side panel visibility"
+msgstr "Sivupaneeli päällä/pois"
+
+#: src/dh-app.c:63
+msgid "_Print"
+msgstr "_Tulosta"
+
+#: src/dh-app.c:64
+msgid "_Find"
+msgstr "_Etsi"
+
+#: src/dh-app.c:65
+msgid "Find in current page"
+msgstr "Etsi nykyiseltä sivulta"
+
+#: src/dh-app.c:66
+msgid "_Larger Text"
+msgstr "_Suurempi teksti"
+
+#: src/dh-app.c:67
+msgid "Larger text"
+msgstr "Suurempi teksti"
+
+#: src/dh-app.c:68
+msgid "S_maller Text"
+msgstr "_Pienempi teksti"
+
+#: src/dh-app.c:69
+msgid "Smaller text"
+msgstr "Pienempi teksti"
+
+#: src/dh-app.c:70
+msgid "_Normal Size"
+msgstr "_Tavallinen koko"
+
+#: src/dh-app.c:71
+msgid "Normal size"
+msgstr "Tavallinen koko"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+msgid "Open a new tab"
+msgstr "Avaa uusi välilehti"
+
+#: src/dh-app.c:112
+msgid "Close the current tab"
+msgstr "Sulje nykyinen välilehti"
+
+#: src/dh-app.c:113
+msgid "Go back"
+msgstr "Siirry taaksepäin"
+
+#: src/dh-app.c:114
+msgid "Go forward"
+msgstr "Siirry eteenpäin"
+
+#: src/dh-app.c:115
+msgid "Focus global search"
+msgstr "Kohdista yleishakuun"
+
+#: src/dh-app.c:274
 msgid "translator-credits"
 msgstr ""
 "Jiri Grönroos 2012-2018\n"
@@ -207,31 +387,31 @@ msgstr ""
 "\n"
 "https://l10n.gnome.org/teams/fi/"
 
-#: src/dh-app.c:118
+#: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Devhelp-verkkosivusto"
 
-#: src/dh-app.c:354
+#: src/dh-app.c:487
 msgid "Opens a new Devhelp window"
 msgstr "Avaa uuden Devhelp-ikkunan"
 
-#: src/dh-app.c:359
+#: src/dh-app.c:492
 msgid "Search for a keyword"
 msgstr "Etsi avainsanalla"
 
-#: src/dh-app.c:360 src/dh-app.c:365
+#: src/dh-app.c:493 src/dh-app.c:498
 msgid "KEYWORD"
 msgstr "AVAINSANA"
 
-#: src/dh-app.c:364
+#: src/dh-app.c:497
 msgid "Search and display any hit in the assistant window"
 msgstr "Etsi ja näytä osumat apuikkunassa"
 
-#: src/dh-app.c:369
+#: src/dh-app.c:502
 msgid "Display the version and exit"
 msgstr "Näytä versio ja lopeta"
 
-#: src/dh-app.c:374
+#: src/dh-app.c:507
 msgid "Quit any running Devhelp"
 msgstr "Sulje avoinna olevat Devhelp-ohjelmat"
 
@@ -240,310 +420,122 @@ msgstr "Sulje avoinna olevat Devhelp-ohjelmat"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — apuikkuna"
 
-#: src/dh-assistant-view.c:400
-msgid "Book:"
-msgstr "Kirja:"
-
-#: src/dh-book.c:348
-#, c-format
-msgid "Language: %s"
-msgstr "Kieli: %s"
-
-#: src/dh-book.c:349
-msgid "Language: Undefined"
-msgstr "Kieli: määrittelemätön"
-
-#: src/dh-book-tree.c:655
-msgid "_Collapse All"
-msgstr "_Supista kaikki"
-
-#. i18n: a documentation book
-#: src/dh-link.c:549
-msgid "Book"
-msgstr "Kirja"
-
-#. i18n: a "page" in a documentation book
-#: src/dh-link.c:553
-msgid "Page"
-msgstr "Sivu"
-
-#. i18n: a search hit in the documentation, could be a
-#. * function, macro, struct, etc
-#: src/dh-link.c:558
-msgid "Keyword"
-msgstr "Avainsana"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:564
-msgid "Function"
-msgstr "Funktio"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:570
-msgid "Struct"
-msgstr "Struct"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:576
-msgid "Macro"
-msgstr "Macro"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:582
-msgid "Enum"
-msgstr "Enum"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:588
-msgid "Type"
-msgstr "Type"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:594
-msgid "Property"
-msgstr "Ominaisuus"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: src/dh-link.c:600
-msgid "Signal"
-msgstr "Signaali"
-
-#: src/dh-preferences.ui:40
-msgid "Preferences"
-msgstr "Asetukset"
-
-#: src/dh-preferences.ui:76
-msgid "_Group by language"
-msgstr "_Ryhmittele kielen mukaan"
-
-#: src/dh-preferences.ui:107
+#: src/dh-preferences.c:551
 msgid "Enabled"
 msgstr "Käytössä"
 
-#: src/dh-preferences.ui:122
+#: src/dh-preferences.c:565
 msgid "Title"
 msgstr "Otsikko"
 
-#: src/dh-preferences.ui:151
+#: src/dh-preferences.ui:26
+msgid "Preferences"
+msgstr "Asetukset"
+
+#: src/dh-preferences.ui:62
+msgid "_Group by language"
+msgstr "_Ryhmittele kielen mukaan"
+
+#: src/dh-preferences.ui:104
 msgid "Book Shelf"
 msgstr "Kirjahylly"
 
-#: src/dh-preferences.ui:172
+#: src/dh-preferences.ui:125
 msgid "_Use system fonts"
 msgstr "_Käytä järjestelmän fontteja"
 
-#: src/dh-preferences.ui:196
+#: src/dh-preferences.ui:149
 msgid "_Variable width: "
 msgstr "_Vaihtelevan levyinen: "
 
-#: src/dh-preferences.ui:209
+#: src/dh-preferences.ui:162
 msgid "_Fixed width:"
 msgstr "_Tasalevyinen:"
 
-#: src/dh-preferences.ui:270
+#: src/dh-preferences.ui:223
 msgid "Fonts"
 msgstr "Fontit"
 
-#: src/dh-window.c:60
-msgid "50%"
-msgstr "50 %"
-
-#: src/dh-window.c:61
-msgid "75%"
-msgstr "75 %"
-
-#: src/dh-window.c:62
-msgid "100%"
-msgstr "100 %"
-
-#: src/dh-window.c:63
-msgid "125%"
-msgstr "125 %"
-
-#: src/dh-window.c:64
-msgid "150%"
-msgstr "150 %"
-
-#: src/dh-window.c:65
-msgid "175%"
-msgstr "175 %"
-
-#: src/dh-window.c:66
-msgid "200%"
-msgstr "200 %"
-
-#: src/dh-window.c:67
-msgid "300%"
-msgstr "300 %"
-
-#: src/dh-window.c:68
-msgid "400%"
-msgstr "400 %"
-
-#: src/dh-window.c:832
-msgid "Error opening the requested link."
-msgstr "Linkin avaaminen epäonnistui."
-
-#: src/dh-window.c:1147
-msgid "_Close"
-msgstr "_Sulje"
-
-#: src/dh-window.c:1165 src/dh-window.c:1346
+#: src/dh-web-view.c:498
 msgid "Empty Page"
 msgstr "Tyhjä sivu"
 
-#: src/dh-window.ui:7 src/dh-window.ui:45
-msgid "_Side Panel"
-msgstr "_Sivupaneeli"
-
-#: src/dh-window.ui:13 src/dh-window.ui:51
-msgid "_Print"
-msgstr "_Tulosta"
-
-#: src/dh-window.ui:17 src/dh-window.ui:55
-msgid "_Find"
-msgstr "_Etsi"
-
-#: src/dh-window.ui:23 src/dh-window.ui:61
-msgid "_Larger Text"
-msgstr "_Suurempi teksti"
-
-#: src/dh-window.ui:27 src/dh-window.ui:65
-msgid "S_maller Text"
-msgstr "_Pienempi teksti"
-
-#: src/dh-window.ui:31 src/dh-window.ui:69
-msgid "_Normal Size"
-msgstr "_Tavallinen koko"
-
-#: src/dh-window.ui:39 src/menus.ui:30
-msgid "New _Window"
-msgstr "_Uusi ikkuna"
-
-#: src/dh-window.ui:75 src/menus.ui:36
-msgid "_Preferences"
-msgstr "_Asetukset"
-
-#: src/dh-window.ui:81 src/menus.ui:42
-msgid "_Keyboard Shortcuts"
-msgstr "_Pikanpääimet"
-
-#: src/dh-window.ui:85 src/menus.ui:46
-msgid "_Help"
-msgstr "_Ohje"
-
-#: src/dh-window.ui:89
-msgid "_About Devhelp"
-msgstr "_Tietoja - Devhelp"
-
-#: src/dh-window.ui:93 src/menus.ui:54
-msgid "_Quit"
-msgstr "_Lopeta"
-
-#: src/dh-window.ui:122
-msgid "Back"
-msgstr "Edellinen"
-
-#: src/dh-window.ui:141
-msgid "Forward"
-msgstr "Seuraava"
-
-#: src/dh-window.ui:188
-msgid "New Tab"
-msgstr "Uusi välilehti"
-
-#: src/help-overlay.ui:14
-msgctxt "shortcut window"
+#. General group
+#: src/dh-window.c:410
 msgid "General"
 msgstr "Yleiset"
 
-#: src/help-overlay.ui:19
-msgctxt "shortcut window"
-msgid "Focus global search"
-msgstr "Kohdista yleishakuun"
-
-#: src/help-overlay.ui:26
-msgctxt "shortcut window"
-msgid "Find in current page"
-msgstr "Etsi nykyiseltä sivulta"
-
-#: src/help-overlay.ui:33
-msgctxt "shortcut window"
-msgid "Open a new window"
-msgstr "Avaa uusi ikkuna"
-
-#: src/help-overlay.ui:40
-msgctxt "shortcut window"
-msgid "Open a new tab"
-msgstr "Avaa uusi välilehti"
-
-#: src/help-overlay.ui:47
-msgctxt "shortcut window"
-msgid "Toggle side panel visibility"
-msgstr "Sivupalkki päällä/pois"
-
-#: src/help-overlay.ui:54
-msgctxt "shortcut window"
-msgid "Go back"
-msgstr "Siirry taaksepäin"
-
-#: src/help-overlay.ui:61
-msgctxt "shortcut window"
-msgid "Go forward"
-msgstr "Siirry eteenpäin"
-
-#: src/help-overlay.ui:68
-msgctxt "shortcut window"
-msgid "Print"
-msgstr "Tulosta"
-
-#: src/help-overlay.ui:75
-msgctxt "shortcut window"
-msgid "Close the current window"
-msgstr "Sulje nykyinen ikkuna"
-
-#: src/help-overlay.ui:82
-msgctxt "shortcut window"
-msgid "Close all windows"
-msgstr "Sulje kaikki ikkunat"
-
-#: src/help-overlay.ui:90
-msgctxt "shortcut window"
+#. Zoom group
+#: src/dh-window.c:424
 msgid "Zoom"
 msgstr "Mittakaava"
 
-#: src/help-overlay.ui:95
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "Lähennä"
+#: src/dh-window.ui:27
+msgid "Back"
+msgstr "Edellinen"
 
-#: src/help-overlay.ui:102
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "Loitonna"
+#: src/dh-window.ui:46
+msgid "Forward"
+msgstr "Seuraava"
 
-#: src/help-overlay.ui:109
-msgctxt "shortcut window"
-msgid "Reset Zoom"
-msgstr "Palauta mittakaava"
+#: src/dh-window.ui:91
+msgid "New Tab"
+msgstr "Uusi välilehti"
 
-#: src/menus.ui:50
-msgid "_About"
-msgstr "_Tietoja"
+#~ msgid "devhelp"
+#~ msgstr "devhelp"
+
+#~ msgid "50%"
+#~ msgstr "50 %"
+
+#~ msgid "75%"
+#~ msgstr "75 %"
+
+#~ msgid "100%"
+#~ msgstr "100 %"
+
+#~ msgid "125%"
+#~ msgstr "125 %"
+
+#~ msgid "150%"
+#~ msgstr "150 %"
+
+#~ msgid "175%"
+#~ msgstr "175 %"
+
+#~ msgid "200%"
+#~ msgstr "200 %"
+
+#~ msgid "300%"
+#~ msgstr "300 %"
+
+#~ msgid "400%"
+#~ msgstr "400 %"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "Linkin avaaminen epäonnistui."
+
+#~ msgid "_Close"
+#~ msgstr "_Sulje"
+
+#~ msgid "_About Devhelp"
+#~ msgstr "_Tietoja - Devhelp"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Print"
+#~ msgstr "Tulosta"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom in"
+#~ msgstr "Lähennä"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom out"
+#~ msgstr "Loitonna"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Reset Zoom"
+#~ msgstr "Palauta mittakaava"
 
 #~ msgid "Developer’s Help program"
 #~ msgstr "Kehittäjien ohje"
