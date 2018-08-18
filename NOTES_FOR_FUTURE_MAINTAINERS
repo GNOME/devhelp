@@ -1,0 +1,69 @@
+Notes for future maintainers
+============================
+
+Normally all the codebase is in a good state, except DhAssistant because I
+don't use it (and I think it's sometimes broken).
+
+Some stuff that I was planning to do:
+
+Improve DhBookList API
+----------------------
+
+Make it easier to create a custom DhBookList. Maybe expose publicly
+DhBookListSimple and be able to subclass it.
+
+Have man-pages for the lib C
+----------------------------
+
+https://bugzilla.gnome.org/show_bug.cgi?id=616509#c6
+
+Create a software product line
+------------------------------
+
+By moving almost all the code to the libdevhelp (so the software product line
+is implemented by developing a library, using classic OOP design patterns).
+
+Same idea as Tepl, but applied to a smaller codebase. See:
+https://developer.gnome.org/tepl/unstable/intro.html
+https://www.amazon.com/Feature-Oriented-Software-Product-Lines-Implementation/dp/3642375200/
+
+In Devhelp it's almost done. What remains is DhApplicationWindow, DhApplication
+(see how it is done in Tepl) and a toolkit to build a preferences dialog (my
+plan was to at least factor out a DhBookChooser widget from DhPreferences).
+
+Then with the software product line, different API browser products can be
+created: a generic one (same as current Devhelp), one specific for GNOME, etc.
+See also the roadmap on the wiki.
+
+Improve DhSettings
+------------------
+
+For the software product line, one thing that is not present in Tepl (so I
+needed to do the first iteration in Devhelp), is DhSettings to handle the
+GSettings in a library. The goal is of course to have the minimum amount of
+code or work to do in the applications.
+
+But I'm not entirely satisfied by the current DhSettings. But to make it better
+it would require lots of boilerplate code, so I was maybe thinking about a code
+generation tool that reads the GSettings XML schema and creates a GObject class
+with some properties and functions for each key. Then DhSettings would come on
+top of that generated class (either as a subclass or using it by composition)
+to add more specific functions like is_book_enabled(), set_book_enabled(), etc.
+
+The code generation tool would do something along those lines:
+- Add a property of type GVariant for each GSettings key.
+- Add getters/setters for the GVariant properties (bonus if for simple types
+  like integers, strings, booleans, the getters/setters use the appropriate
+  GLib type, not GVariant. Or find a way to make it convenient to use GVariant
+  to get/set the properties).
+- Add bind_to_key() functions, to bind a GVariant property to its corresponding
+  GSettings key.
+- For each key, add another property of type boolean to know whether the
+  GVariant property has been bound to the GSettings key. Same name as the
+  GVariant property, but with the -bound suffix.
+- Add one bind() wrapper function with an API like g_settings_bind(), but calls
+  g_object_bind_property() if -bound property is FALSE, and calls
+  g_settings_bind() if -bound property is TRUE, to take advantage of the
+  writability of the GSettings key.
+- If more flexibility is needed, add getters to get the GSettings objects,
+  those can be used for the keys where the -bound property is TRUE.
