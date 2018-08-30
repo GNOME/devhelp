@@ -86,7 +86,6 @@ new_window_cb (GSimpleAction *action,
                gpointer       user_data)
 {
         DhApp *self = DH_APP (user_data);
-        DhAppPrivate *priv = dh_app_get_instance_private (self);
         GtkWidget *new_window;
 
         save_active_main_window_gsettings (self);
