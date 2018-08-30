@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-05-31 14:03+0000\n"
-"PO-Revision-Date: 2018-07-16 16:50+0200\n"
+"POT-Creation-Date: 2018-08-30 18:43+0000\n"
+"PO-Revision-Date: 2018-08-30 20:55+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -28,12 +28,12 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:154 src/dh-app.c:499
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:156
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Narzędzie dla programistów do przeglądania i przeszukiwania dokumentacji API"
@@ -143,19 +143,19 @@ msgstr "Wysokość okna asystenta"
 msgid "The height of the assistant window."
 msgstr "Wysokość okna asystenta."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:9
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
 msgid "Books disabled"
 msgstr "Wyłączone książki"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:10
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
 msgstr "Lista książek wyłączonych przez użytkownika."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:14
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
 msgstr "Grupowanie książek według języka"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:15
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
@@ -163,27 +163,27 @@ msgstr ""
 "Czy książki mają być grupowane według języka programowania w interfejsie "
 "użytkownika."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:21
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
 msgstr "Użycie czcionek systemowych"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:22
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
 msgstr "Użycie domyślnych czcionek systemu."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:26
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
 msgstr "Czcionka tekstu"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:27
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
 msgstr "Czcionka tekstu o zmiennej szerokości."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:31
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
 msgstr "Czcionka tekstu o stałej szerokości"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:32
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Czcionka tekstu o stałej szerokości, takiego jak przykłady kodu źródłowego."
@@ -270,6 +270,10 @@ msgstr "Właściwość"
 msgid "Signal"
 msgstr "Sygnał"
 
+#: devhelp/dh-web-view.c:652
+msgid "Empty Page"
+msgstr "Pusta strona"
+
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Obsługa programu Devhelp"
@@ -278,107 +282,7 @@ msgstr "Obsługa programu Devhelp"
 msgid "Show API Documentation"
 msgstr "Wyświetlanie dokumentacji API"
 
-#. action, icon, label, accel, tooltip
-#. App menu
-#: src/dh-app.c:51
-msgid "New _Window"
-msgstr "Nowe _okno"
-
-#: src/dh-app.c:52
-msgid "Open a new window"
-msgstr "Otwiera nowe okno"
-
-#: src/dh-app.c:53
-msgid "_Preferences"
-msgstr "_Preferencje"
-
-#: src/dh-app.c:54
-msgid "_Keyboard Shortcuts"
-msgstr "_Skróty klawiszowe"
-
-#: src/dh-app.c:55
-msgid "_Help"
-msgstr "Pomo_c"
-
-#: src/dh-app.c:56
-msgid "_About"
-msgstr "_O programie"
-
-#: src/dh-app.c:57
-msgid "_Quit"
-msgstr "Za_kończ"
-
-#: src/dh-app.c:58
-msgid "Close all windows"
-msgstr "Zamyka wszystkie okna"
-
-#. Window menu
-#: src/dh-app.c:61
-msgid "_Side Panel"
-msgstr "Panel _boczny"
-
-#: src/dh-app.c:62
-msgid "Toggle side panel visibility"
-msgstr "Przełącza widoczność bocznego panelu"
-
-#: src/dh-app.c:63
-msgid "_Print"
-msgstr "Wy_drukuj"
-
-#: src/dh-app.c:64
-msgid "_Find"
-msgstr "_Znajdź"
-
-#: src/dh-app.c:65
-msgid "Find in current page"
-msgstr "Wyszukuje na bieżącej stronie"
-
-#: src/dh-app.c:66
-msgid "_Larger Text"
-msgstr "_Większy tekst"
-
-#: src/dh-app.c:67
-msgid "Larger text"
-msgstr "Powiększa tekst"
-
-#: src/dh-app.c:68
-msgid "S_maller Text"
-msgstr "_Mniejszy tekst"
-
-#: src/dh-app.c:69
-msgid "Smaller text"
-msgstr "Pomniejsza tekst"
-
-#: src/dh-app.c:70
-msgid "_Normal Size"
-msgstr "Zwykły _rozmiar"
-
-#: src/dh-app.c:71
-msgid "Normal size"
-msgstr "Ustawia zwykły rozmiar"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
-msgid "Open a new tab"
-msgstr "Otwiera nową kartę"
-
-#: src/dh-app.c:112
-msgid "Close the current tab"
-msgstr "Zamyka bieżącą kartę"
-
-#: src/dh-app.c:113
-msgid "Go back"
-msgstr "Przechodzi wstecz"
-
-#: src/dh-app.c:114
-msgid "Go forward"
-msgstr "Przechodzi dalej"
-
-#: src/dh-app.c:115
-msgid "Focus global search"
-msgstr "Aktywuje globalne wyszukiwanie"
-
-#: src/dh-app.c:274
+#: src/dh-app.c:158
 msgid "translator-credits"
 msgstr ""
 "Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>, 2001-2003\n"
@@ -389,31 +293,31 @@ msgstr ""
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014\n"
 "Aviary.pl <community-poland@mozilla.org>, 2007-2018"
 
-#: src/dh-app.c:276
+#: src/dh-app.c:160
 msgid "Devhelp Website"
 msgstr "Witryna programu Devhelp"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:403
 msgid "Opens a new Devhelp window"
 msgstr "Otwiera nowe okno programu Devhelp"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:408
 msgid "Search for a keyword"
 msgstr "Wyszukuje słowo kluczowe"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:409 src/dh-app.c:414
 msgid "KEYWORD"
 msgstr "SŁOWO-KLUCZOWE"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:413
 msgid "Search and display any hit in the assistant window"
 msgstr "Wyszukuje i wyświetla każde trafienie w oknie asystenta"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:418
 msgid "Display the version and exit"
 msgstr "Wyświetla wersję i kończy działanie"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:423
 msgid "Quit any running Devhelp"
 msgstr "Kończy wszystkie uruchomione wystąpienia programu Devhelp"
 
@@ -458,28 +362,141 @@ msgstr "_Stała szerokość:"
 msgid "Fonts"
 msgstr "Czcionki"
 
-#: src/dh-web-view.c:498
-msgid "Empty Page"
-msgstr "Pusta strona"
+#: src/dh-window.ui:7 src/dh-window.ui:45
+msgid "_Side Panel"
+msgstr "Panel _boczny"
 
-#. General group
-#: src/dh-window.c:410
-msgid "General"
-msgstr "Ogólne"
+#: src/dh-window.ui:13 src/dh-window.ui:51
+msgid "_Print"
+msgstr "Wy_drukuj"
 
-#. Zoom group
-#: src/dh-window.c:424
-msgid "Zoom"
-msgstr "Powiększanie"
+#: src/dh-window.ui:17 src/dh-window.ui:55
+msgid "_Find"
+msgstr "_Znajdź"
 
-#: src/dh-window.ui:27
+#: src/dh-window.ui:23 src/dh-window.ui:61
+msgid "_Larger Text"
+msgstr "_Większy tekst"
+
+#: src/dh-window.ui:27 src/dh-window.ui:65
+msgid "S_maller Text"
+msgstr "_Mniejszy tekst"
+
+#: src/dh-window.ui:31 src/dh-window.ui:69
+msgid "_Normal Size"
+msgstr "Zwykły _rozmiar"
+
+#: src/dh-window.ui:39 src/menus.ui:29
+msgid "New _Window"
+msgstr "Nowe _okno"
+
+#: src/dh-window.ui:75 src/menus.ui:35
+msgid "_Preferences"
+msgstr "_Preferencje"
+
+#: src/dh-window.ui:81 src/menus.ui:41
+msgid "_Keyboard Shortcuts"
+msgstr "_Skróty klawiszowe"
+
+#: src/dh-window.ui:85 src/menus.ui:45
+msgid "_Help"
+msgstr "Pomo_c"
+
+#: src/dh-window.ui:89
+msgid "_About Devhelp"
+msgstr "_O programie"
+
+#: src/dh-window.ui:93 src/menus.ui:53
+msgid "_Quit"
+msgstr "Za_kończ"
+
+#: src/dh-window.ui:121
 msgid "Back"
 msgstr "Wstecz"
 
-#: src/dh-window.ui:46
+#: src/dh-window.ui:140
 msgid "Forward"
 msgstr "Dalej"
 
-#: src/dh-window.ui:91
+#: src/dh-window.ui:186
 msgid "New Tab"
 msgstr "Nowa karta"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Ogólne"
+
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Aktywacja globalnego wyszukiwania"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Wyszukiwanie na bieżącej stronie"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Otwarcie nowego okna"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Otwarcie nowej karty"
+
+#: src/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "Przełączenie widoczności panelu bocznego"
+
+#: src/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Przejście wstecz"
+
+#: src/help-overlay.ui:61
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Przejście dalej"
+
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Wydrukowanie"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Zamknięcie bieżącego okna"
+
+#: src/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Zamknięcie wszystkich okien"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Powiększanie"
+
+#: src/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Powiększenie"
+
+#: src/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Pomniejszenie"
+
+#: src/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Przywrócenie domyślnego powiększenia"
+
+#: src/menus.ui:49
+msgid "_About"
+msgstr "_O programie"
