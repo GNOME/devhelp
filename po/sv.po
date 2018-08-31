@@ -13,26 +13,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-05-31 14:03+0000\n"
-"PO-Revision-Date: 2018-06-01 23:52+0200\n"
+"POT-Creation-Date: 2018-08-30 18:43+0000\n"
+"PO-Revision-Date: 2018-08-31 20:17+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:154 src/dh-app.c:499
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:156
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Ett utvecklingsverktyg för att bläddra genom samt söka i API-dokumentation"
@@ -140,19 +140,19 @@ msgstr "Höjd på assistentfönstret"
 msgid "The height of the assistant window."
 msgstr "Höjden på assistentfönstret."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:9
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
 msgid "Books disabled"
 msgstr "Böcker inaktiverade"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:10
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
 msgstr "Lista över böcker som inaktiverats av användaren."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:14
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
 msgstr "Gruppera böcker efter språk"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:15
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
@@ -160,27 +160,27 @@ msgstr ""
 "Huruvida böcker ska grupperas efter programmeringsspråk i "
 "användargränssnittet."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:21
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
 msgstr "Använd systemtypsnitt"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:22
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
 msgstr "Använd systemets standardtypsnitt."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:26
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
 msgstr "Typsnitt för text"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:27
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
 msgstr "Typsnitt för text med variabel bredd."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:31
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
 msgstr "Typsnitt för text med fast bredd"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:32
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Typsnitt för text med fast bredd, som kodexempel."
 
@@ -266,6 +266,10 @@ msgstr "Egenskap"
 msgid "Signal"
 msgstr "Signal"
 
+#: devhelp/dh-web-view.c:652
+msgid "Empty Page"
+msgstr "Tom sida"
+
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Stöd för Devhelp"
@@ -274,107 +278,7 @@ msgstr "Stöd för Devhelp"
 msgid "Show API Documentation"
 msgstr "Visa API-dokumentation"
 
-#. action, icon, label, accel, tooltip
-#. App menu
-#: src/dh-app.c:51
-msgid "New _Window"
-msgstr "Nytt _fönster"
-
-#: src/dh-app.c:52
-msgid "Open a new window"
-msgstr "Öppna ett nytt fönster"
-
-#: src/dh-app.c:53
-msgid "_Preferences"
-msgstr "_Inställningar"
-
-#: src/dh-app.c:54
-msgid "_Keyboard Shortcuts"
-msgstr "_Tangentbordsgenvägar"
-
-#: src/dh-app.c:55
-msgid "_Help"
-msgstr "_Hjälp"
-
-#: src/dh-app.c:56
-msgid "_About"
-msgstr "_Om"
-
-#: src/dh-app.c:57
-msgid "_Quit"
-msgstr "_Avsluta"
-
-#: src/dh-app.c:58
-msgid "Close all windows"
-msgstr "Stäng alla fönster"
-
-#. Window menu
-#: src/dh-app.c:61
-msgid "_Side Panel"
-msgstr "Sido_panel"
-
-#: src/dh-app.c:62
-msgid "Toggle side panel visibility"
-msgstr "Växla synlighet för sidopanel"
-
-#: src/dh-app.c:63
-msgid "_Print"
-msgstr "_Skriv ut"
-
-#: src/dh-app.c:64
-msgid "_Find"
-msgstr "Sö_k"
-
-#: src/dh-app.c:65
-msgid "Find in current page"
-msgstr "Sök i aktuell sida"
-
-#: src/dh-app.c:66
-msgid "_Larger Text"
-msgstr "S_törre text"
-
-#: src/dh-app.c:67
-msgid "Larger text"
-msgstr "Större text"
-
-#: src/dh-app.c:68
-msgid "S_maller Text"
-msgstr "_Mindre text"
-
-#: src/dh-app.c:69
-msgid "Smaller text"
-msgstr "Mindre text"
-
-#: src/dh-app.c:70
-msgid "_Normal Size"
-msgstr "_Normal storlek"
-
-#: src/dh-app.c:71
-msgid "Normal size"
-msgstr "Normal storlek"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
-msgid "Open a new tab"
-msgstr "Öppna en ny flik"
-
-#: src/dh-app.c:112
-msgid "Close the current tab"
-msgstr "Stäng aktuell flik"
-
-#: src/dh-app.c:113
-msgid "Go back"
-msgstr "Gå bakåt"
-
-#: src/dh-app.c:114
-msgid "Go forward"
-msgstr "Gå framåt"
-
-#: src/dh-app.c:115
-msgid "Focus global search"
-msgstr "Fokusera global sökning"
-
-#: src/dh-app.c:274
+#: src/dh-app.c:158
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -387,31 +291,31 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/dh-app.c:276
+#: src/dh-app.c:160
 msgid "Devhelp Website"
 msgstr "Webbplatsen för Devhelp"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:403
 msgid "Opens a new Devhelp window"
 msgstr "Öppnar ett nytt Devhelp-fönster"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:408
 msgid "Search for a keyword"
 msgstr "Sök efter ett nyckelord"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:409 src/dh-app.c:414
 msgid "KEYWORD"
 msgstr "NYCKELORD"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:413
 msgid "Search and display any hit in the assistant window"
 msgstr "Sök och visa eventuell träff i assistentfönstret"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:418
 msgid "Display the version and exit"
 msgstr "Visa versionen och avsluta"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:423
 msgid "Quit any running Devhelp"
 msgstr "Avsluta alla körande Devhelp"
 
@@ -456,56 +360,159 @@ msgstr "_Fast bredd:"
 msgid "Fonts"
 msgstr "Typsnitt"
 
-#: src/dh-web-view.c:498
-msgid "Empty Page"
-msgstr "Tom sida"
+#: src/dh-window.ui:7 src/dh-window.ui:45
+msgid "_Side Panel"
+msgstr "Sido_panel"
 
-#. General group
-#: src/dh-window.c:410
-msgid "General"
-msgstr "Allmänt"
+#: src/dh-window.ui:13 src/dh-window.ui:51
+msgid "_Print"
+msgstr "_Skriv ut"
 
-#. Zoom group
-#: src/dh-window.c:424
-msgid "Zoom"
-msgstr "Zooma"
+#: src/dh-window.ui:17 src/dh-window.ui:55
+msgid "_Find"
+msgstr "Sö_k"
 
-#: src/dh-window.ui:27
+#: src/dh-window.ui:23 src/dh-window.ui:61
+msgid "_Larger Text"
+msgstr "S_törre text"
+
+#: src/dh-window.ui:27 src/dh-window.ui:65
+msgid "S_maller Text"
+msgstr "_Mindre text"
+
+#: src/dh-window.ui:31 src/dh-window.ui:69
+msgid "_Normal Size"
+msgstr "_Normal storlek"
+
+#: src/dh-window.ui:39 src/menus.ui:29
+msgid "New _Window"
+msgstr "Nytt _fönster"
+
+#: src/dh-window.ui:75 src/menus.ui:35
+msgid "_Preferences"
+msgstr "_Inställningar"
+
+#: src/dh-window.ui:81 src/menus.ui:41
+msgid "_Keyboard Shortcuts"
+msgstr "_Tangentbordsgenvägar"
+
+#: src/dh-window.ui:85 src/menus.ui:45
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: src/dh-window.ui:89
+msgid "_About Devhelp"
+msgstr "_Om Devhelp"
+
+#: src/dh-window.ui:93 src/menus.ui:53
+msgid "_Quit"
+msgstr "_Avsluta"
+
+#: src/dh-window.ui:121
 msgid "Back"
 msgstr "Bakåt"
 
-#: src/dh-window.ui:46
+#: src/dh-window.ui:140
 msgid "Forward"
 msgstr "Framåt"
 
-#: src/dh-window.ui:91
+#: src/dh-window.ui:186
 msgid "New Tab"
 msgstr "Ny flik"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Allmänt"
+
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Fokusera global sökning"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Sök i aktuell sida"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Öppna ett nytt fönster"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Öppna en ny flik"
+
+#: src/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "Växla synlighet för sidopanel"
+
+#: src/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Gå bakåt"
+
+#: src/help-overlay.ui:61
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Gå framåt"
+
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Skriv ut"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Stäng aktuellt fönster"
+
+#: src/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Stäng alla fönster"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Zooma"
+
+#: src/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Zooma in"
+
+#: src/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Zooma ut"
+
+#: src/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Återställ zoom"
+
+#: src/menus.ui:49
+msgid "_About"
+msgstr "_Om"
+
+#~ msgid "Larger text"
+#~ msgstr "Större text"
+
+#~ msgid "Smaller text"
+#~ msgstr "Mindre text"
+
+#~ msgid "Normal size"
+#~ msgstr "Normal storlek"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
 
 #~ msgid "Error opening the requested link."
 #~ msgstr "Fel vid öppnandet av begärd länk."
-
-#~ msgid "_About Devhelp"
-#~ msgstr "_Om Devhelp"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Print"
-#~ msgstr "Skriv ut"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom in"
-#~ msgstr "Zooma in"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom out"
-#~ msgstr "Zooma ut"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Reset Zoom"
-#~ msgstr "Återställ zoom"
 
 #~ msgid "50%"
 #~ msgstr "50%"
