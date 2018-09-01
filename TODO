@@ -1,10 +1,10 @@
-Notes for future maintainers
-============================
+Possible things to do in Devhelp
+================================
 
 Normally all the codebase is in a good state, except DhAssistant because I
 don't use it (and I think it's sometimes broken).
 
-Some stuff that I was planning to do:
+Some stuff that can be done:
 
 Improve DhBookList API
 ----------------------
