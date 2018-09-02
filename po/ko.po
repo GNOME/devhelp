@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-05-31 14:03+0000\n"
-"PO-Revision-Date: 2018-08-27 11:39+0900\n"
+"POT-Creation-Date: 2018-08-30 18:43+0000\n"
+"PO-Revision-Date: 2018-09-02 18:14+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -28,12 +28,12 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:154 src/dh-app.c:499
 msgid "Devhelp"
 msgstr "개발 도움말"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:156
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "API 문서를 보고 검색하는 개발자 도구"
 
@@ -139,45 +139,45 @@ msgstr "도우미 창의 높이"
 msgid "The height of the assistant window."
 msgstr "도우미 창의 높이."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:9
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
 msgid "Books disabled"
 msgstr "사용하지 않는 책 목록"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:10
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
 msgstr "사용자가 사용하지 않도록 표시된 책 목록."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:14
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
 msgstr "언어별로 문서를 모으기"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:15
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
 msgstr "UI에서 문서를 프로그래밍 언어별로 모을지 여부."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:21
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
 msgstr "시스템 글꼴 사용"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:22
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
 msgstr "시스템 기본 글꼴을 사용합니다."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:26
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
 msgstr "텍스트에 사용할 글꼴"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:27
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
 msgstr "가변폭의 텍스트에 사용할 글꼴."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:31
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
 msgstr "고정폭 텍스트에 사용할 글꼴"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:32
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "고정폭 텍스트에 사용할 글꼴(코드 예제 등)."
 
@@ -263,6 +263,10 @@ msgstr "속성"
 msgid "Signal"
 msgstr "시그널"
 
+#: devhelp/dh-web-view.c:652
+msgid "Empty Page"
+msgstr "빈 페이지"
+
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "개발 도움말 기능"
@@ -271,138 +275,38 @@ msgstr "개발 도움말 기능"
 msgid "Show API Documentation"
 msgstr "API 문서 표시"
 
-#. action, icon, label, accel, tooltip
-#. App menu
-#: src/dh-app.c:51
-msgid "New _Window"
-msgstr "새 창(_W)"
-
-#: src/dh-app.c:52
-msgid "Open a new window"
-msgstr "새 창 열기"
-
-#: src/dh-app.c:53
-msgid "_Preferences"
-msgstr "기본 설정(_P)"
-
-#: src/dh-app.c:54
-msgid "_Keyboard Shortcuts"
-msgstr "키보드 바로 가기(_K)"
-
-#: src/dh-app.c:55
-msgid "_Help"
-msgstr "도움말(_H)"
-
-#: src/dh-app.c:56
-msgid "_About"
-msgstr "정보(_A)"
-
-#: src/dh-app.c:57
-msgid "_Quit"
-msgstr "끝내기(_Q)"
-
-#: src/dh-app.c:58
-msgid "Close all windows"
-msgstr "모든 창 닫기"
-
-#. Window menu
-#: src/dh-app.c:61
-msgid "_Side Panel"
-msgstr "가장자리 창(_S)"
-
-#: src/dh-app.c:62
-msgid "Toggle side panel visibility"
-msgstr "가장자리 창 보기 토글"
-
-#: src/dh-app.c:63
-msgid "_Print"
-msgstr "인쇄(_P)"
-
-#: src/dh-app.c:64
-msgid "_Find"
-msgstr "찾기(_F)"
-
-#: src/dh-app.c:65
-msgid "Find in current page"
-msgstr "현재 페이지에서 찾기"
-
-#: src/dh-app.c:66
-msgid "_Larger Text"
-msgstr "글씨 크게(_L)"
-
-#: src/dh-app.c:67
-msgid "Larger text"
-msgstr "글씨 크게"
-
-#: src/dh-app.c:68
-msgid "S_maller Text"
-msgstr "글씨 작게(_M)"
-
-#: src/dh-app.c:69
-msgid "Smaller text"
-msgstr "글씨 작게"
-
-#: src/dh-app.c:70
-msgid "_Normal Size"
-msgstr "보통 크기(_N)"
-
-#: src/dh-app.c:71
-msgid "Normal size"
-msgstr "보통 크기"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
-msgid "Open a new tab"
-msgstr "새 탭 열기"
-
-#: src/dh-app.c:112
-msgid "Close the current tab"
-msgstr "현재 탭 닫기"
-
-#: src/dh-app.c:113
-msgid "Go back"
-msgstr "뒤로 이동"
-
-#: src/dh-app.c:114
-msgid "Go forward"
-msgstr "앞으로 이동"
-
-#: src/dh-app.c:115
-msgid "Focus global search"
-msgstr "전체 검색 포커스"
-
-#: src/dh-app.c:274
+#: src/dh-app.c:158
 msgid "translator-credits"
 msgstr ""
 "강정희\n"
 "류창우\n"
 "박성종"
 
-#: src/dh-app.c:276
+#: src/dh-app.c:160
 msgid "Devhelp Website"
 msgstr "개발 도움말 웹사이트"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:403
 msgid "Opens a new Devhelp window"
 msgstr "개발자 도움말 창을 새로 엽니다"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:408
 msgid "Search for a keyword"
 msgstr "검색어를 검색합니다"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:409 src/dh-app.c:414
 msgid "KEYWORD"
 msgstr "<검색어>"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:413
 msgid "Search and display any hit in the assistant window"
 msgstr "도우미 창에 입력하자 마자 찾아서 표시합니다"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:418
 msgid "Display the version and exit"
 msgstr "버전을 표시하고 끝냅니다"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:423
 msgid "Quit any running Devhelp"
 msgstr "실행 중인 개발 도움말을 끝냅니다"
 
@@ -447,53 +351,156 @@ msgstr "고정폭(_F):"
 msgid "Fonts"
 msgstr "글꼴"
 
-#: src/dh-web-view.c:498
-msgid "Empty Page"
-msgstr "빈 페이지"
+#: src/dh-window.ui:7 src/dh-window.ui:45
+msgid "_Side Panel"
+msgstr "가장자리 창(_S)"
 
-#. General group
-#: src/dh-window.c:410
-msgid "General"
-msgstr "일반"
+#: src/dh-window.ui:13 src/dh-window.ui:51
+msgid "_Print"
+msgstr "인쇄(_P)"
 
-#. Zoom group
-#: src/dh-window.c:424
-msgid "Zoom"
-msgstr "확대/축소"
+#: src/dh-window.ui:17 src/dh-window.ui:55
+msgid "_Find"
+msgstr "찾기(_F)"
 
-#: src/dh-window.ui:27
+#: src/dh-window.ui:23 src/dh-window.ui:61
+msgid "_Larger Text"
+msgstr "글씨 크게(_L)"
+
+#: src/dh-window.ui:27 src/dh-window.ui:65
+msgid "S_maller Text"
+msgstr "글씨 작게(_M)"
+
+#: src/dh-window.ui:31 src/dh-window.ui:69
+msgid "_Normal Size"
+msgstr "보통 크기(_N)"
+
+#: src/dh-window.ui:39 src/menus.ui:29
+msgid "New _Window"
+msgstr "새 창(_W)"
+
+#: src/dh-window.ui:75 src/menus.ui:35
+msgid "_Preferences"
+msgstr "기본 설정(_P)"
+
+#: src/dh-window.ui:81 src/menus.ui:41
+msgid "_Keyboard Shortcuts"
+msgstr "키보드 바로 가기(_K)"
+
+#: src/dh-window.ui:85 src/menus.ui:45
+msgid "_Help"
+msgstr "도움말(_H)"
+
+#: src/dh-window.ui:89
+msgid "_About Devhelp"
+msgstr "개발 도움말 정보(_A)"
+
+#: src/dh-window.ui:93 src/menus.ui:53
+msgid "_Quit"
+msgstr "끝내기(_Q)"
+
+#: src/dh-window.ui:121
 msgid "Back"
 msgstr "뒤로"
 
-#: src/dh-window.ui:46
+#: src/dh-window.ui:140
 msgid "Forward"
 msgstr "앞으로"
 
-#: src/dh-window.ui:91
+#: src/dh-window.ui:186
 msgid "New Tab"
 msgstr "새 탭"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "일반"
+
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "전체 검색 포커스"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "현재 페이지에서 찾기"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "새 창 열기"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "새 탭 열기"
+
+#: src/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "가장자리 창 보기 토글"
+
+#: src/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "뒤로 이동"
+
+#: src/help-overlay.ui:61
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "앞으로 이동"
+
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "인쇄"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "현재 탭 닫기"
+
+#: src/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "모든 창 닫기"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "확대/축소"
+
+#: src/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "확대"
+
+#: src/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "축소"
+
+#: src/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "확대/축소 초기화"
+
+#: src/menus.ui:49
+msgid "_About"
+msgstr "정보(_A)"
+
+#~ msgid "Larger text"
+#~ msgstr "글씨 크게"
+
+#~ msgid "Smaller text"
+#~ msgstr "글씨 작게"
+
+#~ msgid "Normal size"
+#~ msgstr "보통 크기"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
 
 #~ msgid "Error opening the requested link."
 #~ msgstr "요청한 링크를 여는데 오류가 발생했습니다."
-
-#~ msgid "_About Devhelp"
-#~ msgstr "개발 도움말 정보(_A)"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Print"
-#~ msgstr "인쇄"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom in"
-#~ msgstr "확대"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom out"
-#~ msgstr "축소"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Reset Zoom"
-#~ msgstr "확대/축소 초기화"
