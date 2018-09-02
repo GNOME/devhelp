@@ -4,10 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-04-14 14:35+0000\n"
-"PO-Revision-Date: 2018-04-16 14:42+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2018-08-30 18:43+0000\n"
+"PO-Revision-Date: 2018-09-02 18:43+0200\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "Language: hr\n"
@@ -15,18 +14,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2014-01-06 10:49+0000\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:154 src/dh-app.c:499
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:156
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Devhelp je alat razvijatelja za pregledavanje i pretraživanje API "
@@ -83,94 +82,70 @@ msgstr "dokumentacija;informacija;priručnik;razvijatelj;api;"
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Devhelp.desktop.in:12
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "devhelp"
-msgstr "devhelp"
+msgid "org.gnome.Devhelp"
+msgstr "org.gnome.Devhelp"
 
-#: data/org.gnome.devhelp.gschema.xml:17
+#: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
 msgstr "Stanje uvećanja glavnog prozora"
 
-#: data/org.gnome.devhelp.gschema.xml:18
+#: data/org.gnome.devhelp.gschema.xml:17
 msgid "Whether the main window should start maximized."
 msgstr "Treba li se glavni prozor pokrenuti uvećan."
 
-#: data/org.gnome.devhelp.gschema.xml:22
+#: data/org.gnome.devhelp.gschema.xml:21
 msgid "Width of the main window"
 msgstr "Širina glavnog prozora"
 
-#: data/org.gnome.devhelp.gschema.xml:23
+#: data/org.gnome.devhelp.gschema.xml:22
 msgid "The width of the main window."
 msgstr "Širina glavnog prozora."
 
-#: data/org.gnome.devhelp.gschema.xml:27
+#: data/org.gnome.devhelp.gschema.xml:26
 msgid "Height of main window"
 msgstr "Širina glavnog prozora"
 
-#: data/org.gnome.devhelp.gschema.xml:28
+#: data/org.gnome.devhelp.gschema.xml:27
 msgid "The height of the main window."
 msgstr "Visina glavnog prozora."
 
-#: data/org.gnome.devhelp.gschema.xml:34
+#: data/org.gnome.devhelp.gschema.xml:33
 msgid "Width of the index and search pane"
 msgstr "Širina sadržaja i panela pretrage"
 
-#: data/org.gnome.devhelp.gschema.xml:35
+#: data/org.gnome.devhelp.gschema.xml:34
 msgid "The width of the index and search pane."
 msgstr "Širina sadržaja i panela pretrage."
 
-#: data/org.gnome.devhelp.gschema.xml:44
+#: data/org.gnome.devhelp.gschema.xml:43
 msgid "Width of the assistant window"
 msgstr "Širina prozora pomoćnika"
 
-#: data/org.gnome.devhelp.gschema.xml:45
+#: data/org.gnome.devhelp.gschema.xml:44
 msgid "The width of the assistant window."
 msgstr "Širina prozora pomoćnika."
 
-#: data/org.gnome.devhelp.gschema.xml:49
+#: data/org.gnome.devhelp.gschema.xml:48
 msgid "Height of assistant window"
 msgstr "Visina prozora pomoćnika"
 
-#: data/org.gnome.devhelp.gschema.xml:50
+#: data/org.gnome.devhelp.gschema.xml:49
 msgid "The height of the assistant window."
 msgstr "Visina prozora pomoćnika."
 
-#: data/org.gnome.devhelp.gschema.xml:56
-msgid "Use system fonts"
-msgstr "Koristi slova sustava"
-
-#: data/org.gnome.devhelp.gschema.xml:57
-msgid "Use the system default fonts."
-msgstr "Koristi zadana slova sustava."
-
-#: data/org.gnome.devhelp.gschema.xml:61
-msgid "Font for text"
-msgstr "Slova teksta"
-
-#: data/org.gnome.devhelp.gschema.xml:62
-msgid "Font for text with variable width."
-msgstr "Slova za tekst s promjenjivom širinom."
-
-#: data/org.gnome.devhelp.gschema.xml:66
-msgid "Font for fixed width text"
-msgstr "Slova za tekst s nepromjenjivom širinom"
-
-#: data/org.gnome.devhelp.gschema.xml:67
-msgid "Font for text with fixed width, such as code examples."
-msgstr "Slova za tekst s nepromjenjivom širinom, poput primjera kôda."
-
-#: data/org.gnome.libdevhelp-3.gschema.xml:8
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
 msgid "Books disabled"
 msgstr "Onemogućene knjige"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:9
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
 msgstr "Popis knjiga koje je onemogućio korisnik."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:13
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
 msgstr "Grupiranje knjiga prema jeziku"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:14
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
@@ -178,20 +153,44 @@ msgstr ""
 "Trebaju li knjige biti grupirane prema jeziku programiranja u korisničkom "
 "sučelju."
 
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
+msgid "Use system fonts"
+msgstr "Koristi slova sustava"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
+msgid "Use the system default fonts."
+msgstr "Koristi zadana slova sustava."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
+msgid "Font for text"
+msgstr "Slova teksta"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
+msgid "Font for text with variable width."
+msgstr "Slova za tekst s promjenjivom širinom."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
+msgid "Font for fixed width text"
+msgstr "Slova za tekst s nepromjenjivom širinom"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Slova za tekst s nepromjenjivom širinom, poput primjera kôda."
+
 #: devhelp/dh-assistant-view.c:400
 msgid "Book:"
 msgstr "Knjiga:"
 
-#: devhelp/dh-book.c:350
+#: devhelp/dh-book.c:313
 #, c-format
 msgid "Language: %s"
 msgstr "Jezik: %s"
 
-#: devhelp/dh-book.c:351
+#: devhelp/dh-book.c:314
 msgid "Language: Undefined"
 msgstr "Jezik: Neodređen"
 
-#: devhelp/dh-book-tree.c:773
+#: devhelp/dh-book-tree.c:755
 msgid "_Collapse All"
 msgstr "_Suzi sve"
 
@@ -260,6 +259,10 @@ msgstr "Svojstvo"
 msgid "Signal"
 msgstr "Signal"
 
+#: devhelp/dh-web-view.c:652
+msgid "Empty Page"
+msgstr "Prazna stranica"
+
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Devhelp podrška"
@@ -268,137 +271,37 @@ msgstr "Devhelp podrška"
 msgid "Show API Documentation"
 msgstr "Prikaži API dokumentaciju"
 
-#. action, icon, label, accel, tooltip
-#. App menu
-#: src/dh-app.c:51
-msgid "New _Window"
-msgstr "Novi _prozor"
-
-#: src/dh-app.c:52
-msgid "Open a new window"
-msgstr "Otvori novi prozor"
-
-#: src/dh-app.c:53
-msgid "_Preferences"
-msgstr "_Osobitosti"
-
-#: src/dh-app.c:54
-msgid "_Keyboard Shortcuts"
-msgstr "_Prečaci tipkovnice"
-
-#: src/dh-app.c:55
-msgid "_Help"
-msgstr "_Priručnik"
-
-#: src/dh-app.c:56
-msgid "_About"
-msgstr "_O programu"
-
-#: src/dh-app.c:57
-msgid "_Quit"
-msgstr "_Zatvori"
-
-#: src/dh-app.c:58
-msgid "Close all windows"
-msgstr "Zatvori sve prozore"
-
-#. Window menu
-#: src/dh-app.c:61
-msgid "_Side Panel"
-msgstr "_Bočni panel"
-
-#: src/dh-app.c:62
-msgid "Toggle side panel visibility"
-msgstr "Uklj/Isklj vidljivost bočnog panela"
-
-#: src/dh-app.c:63
-msgid "_Print"
-msgstr "_Ispis"
-
-#: src/dh-app.c:64
-msgid "_Find"
-msgstr "_Pretraži"
-
-#: src/dh-app.c:65
-msgid "Find in current page"
-msgstr "Potraži u trenutnoj stranici"
-
-#: src/dh-app.c:66
-msgid "_Larger Text"
-msgstr "_Veći tekst"
-
-#: src/dh-app.c:67
-msgid "Zoom in"
-msgstr "Uvećaj"
-
-#: src/dh-app.c:68
-msgid "S_maller Text"
-msgstr "M_anji tekst"
-
-#: src/dh-app.c:69
-msgid "Zoom out"
-msgstr "Umanji"
-
-#: src/dh-app.c:70
-msgid "_Normal Size"
-msgstr "_Izvorna veličina"
-
-#: src/dh-app.c:71
-msgid "Reset zoom"
-msgstr "Izvorno uvećanje"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
-msgid "Open a new tab"
-msgstr "Otvori novu karticu"
-
-#: src/dh-app.c:112
-msgid "Close the current window"
-msgstr "Zatvori trenutni prozor"
-
-#: src/dh-app.c:113
-msgid "Go back"
-msgstr "Idi natrag"
-
-#: src/dh-app.c:114
-msgid "Go forward"
-msgstr "Idi naprijed"
-
-#: src/dh-app.c:115
-msgid "Focus global search"
-msgstr "Fokusiraj globalnu pretragu"
-
-#: src/dh-app.c:274
+#: src/dh-app.c:158
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  gogo https://launchpad.net/~trebelnik-stefina"
 
-#: src/dh-app.c:276
+#: src/dh-app.c:160
 msgid "Devhelp Website"
 msgstr "Devhelp web stranica"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:403
 msgid "Opens a new Devhelp window"
 msgstr "Otvara novi Devhelp prozor"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:408
 msgid "Search for a keyword"
 msgstr "Pretraži ključnu riječ"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:409 src/dh-app.c:414
 msgid "KEYWORD"
 msgstr "KLJUČNA RIJEČ"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:413
 msgid "Search and display any hit in the assistant window"
 msgstr "Pretražuje i prikazuje sve rezultate u prozoru pomoćnika"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:418
 msgid "Display the version and exit"
 msgstr "Prikaži broj inačice i izađi"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:423
 msgid "Quit any running Devhelp"
 msgstr "Zatvori sve pokrenute primjerke Devhelpa"
 
@@ -407,11 +310,11 @@ msgstr "Zatvori sve pokrenute primjerke Devhelpa"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Pomoćnik"
 
-#: src/dh-preferences.c:536
+#: src/dh-preferences.c:551
 msgid "Enabled"
 msgstr "Omogućeno"
 
-#: src/dh-preferences.c:549
+#: src/dh-preferences.c:565
 msgid "Title"
 msgstr "Naslov"
 
@@ -443,42 +346,150 @@ msgstr "_Nepromjenjiva širina:"
 msgid "Fonts"
 msgstr "Slova"
 
-#: src/dh-tab.c:70
-msgid "Error opening the requested link."
-msgstr "Greška otvaranja zahtjevane poveznice."
+#: src/dh-window.ui:7 src/dh-window.ui:45
+msgid "_Side Panel"
+msgstr "_Bočni panel"
 
-#: src/dh-web-view.c:203
-msgid "Empty Page"
-msgstr "Prazna stranica"
+#: src/dh-window.ui:13 src/dh-window.ui:51
+msgid "_Print"
+msgstr "_Ispis"
 
-#. General group
-#: src/dh-window.c:434
-msgid "General"
-msgstr "Općenito"
+#: src/dh-window.ui:17 src/dh-window.ui:55
+msgid "_Find"
+msgstr "_Pretraži"
 
-#. Zoom group
-#: src/dh-window.c:448
-msgid "Zoom"
-msgstr "Uvećanje"
+#: src/dh-window.ui:23 src/dh-window.ui:61
+msgid "_Larger Text"
+msgstr "_Veći tekst"
 
-#: src/dh-window.ui:28
+#: src/dh-window.ui:27 src/dh-window.ui:65
+msgid "S_maller Text"
+msgstr "M_anji tekst"
+
+#: src/dh-window.ui:31 src/dh-window.ui:69
+msgid "_Normal Size"
+msgstr "_Izvorna veličina"
+
+#: src/dh-window.ui:39 src/menus.ui:29
+msgid "New _Window"
+msgstr "Novi _prozor"
+
+#: src/dh-window.ui:75 src/menus.ui:35
+msgid "_Preferences"
+msgstr "_Osobitosti"
+
+#: src/dh-window.ui:81 src/menus.ui:41
+msgid "_Keyboard Shortcuts"
+msgstr "_Prečaci tipkovnice"
+
+#: src/dh-window.ui:85 src/menus.ui:45
+msgid "_Help"
+msgstr "_Priručnik"
+
+#: src/dh-window.ui:89
+msgid "_About Devhelp"
+msgstr "_O Devhelpu"
+
+#: src/dh-window.ui:93 src/menus.ui:53
+msgid "_Quit"
+msgstr "_Zatvori"
+
+#: src/dh-window.ui:121
 msgid "Back"
 msgstr "Prijašnje"
 
-#: src/dh-window.ui:47
+#: src/dh-window.ui:140
 msgid "Forward"
 msgstr "Sljedeće"
 
-#: src/dh-window.ui:92
+#: src/dh-window.ui:186
 msgid "New Tab"
 msgstr "Nova kartica"
 
-#~ msgid "_About Devhelp"
-#~ msgstr "_O Devhelpu"
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Općenito"
 
-#~ msgctxt "shortcut window"
-#~ msgid "Print"
-#~ msgstr "Ispis"
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Fokusiraj globalnu pretragu"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Potraži u trenutnoj stranici"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Otvori novi prozor"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Otvori novu karticu"
+
+#: src/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "Uklj/Isklj vidljivost bočnog panela"
+
+#: src/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Idi natrag"
+
+#: src/help-overlay.ui:61
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Idi naprijed"
+
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Ispis"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Zatvori trenutni prozor"
+
+#: src/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Zatvori sve prozore"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Uvećanje"
+
+#: src/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Uvećaj"
+
+#: src/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Umanji"
+
+#: src/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Izvorno uvećanje"
+
+#: src/menus.ui:49
+msgid "_About"
+msgstr "_O programu"
+
+#~ msgid "devhelp"
+#~ msgstr "devhelp"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "Greška otvaranja zahtjevane poveznice."
 
 #~ msgid "Developer's Help program"
 #~ msgstr "Program pomoći za razvijatelje programa"
