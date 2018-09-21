@@ -42,6 +42,3 @@ src/dh-preferences.ui
 src/dh-settings-app.c
 src/dh-util-app.c
 src/dh-window.c
-src/dh-window.ui
-src/help-overlay.ui
-src/menus.ui

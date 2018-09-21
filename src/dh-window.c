@@ -25,17 +25,13 @@
 #include <glib/gi18n.h>
 #include <webkit2/webkit2.h>
 #include <devhelp/devhelp.h>
+#include <amtk/amtk.h>
 #include "dh-settings-app.h"
 #include "dh-util-app.h"
 
 typedef struct {
         GtkHeaderBar *header_bar;
         GtkMenuButton *window_menu_button;
-        GMenuModel *window_menu_plus_app_menu;
-
-        GtkPaned *hpaned;
-        GtkWidget *grid_sidebar;
-        GtkWidget *grid_documents;
 
         DhSidebar *sidebar;
         DhSearchBar *search_bar;
@@ -65,6 +61,8 @@ dh_window_dispose (GObject *object)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (DH_WINDOW (object));
 
+        priv->header_bar = NULL;
+        priv->window_menu_button = NULL;
         priv->sidebar = NULL;
         priv->search_bar = NULL;
         priv->notebook = NULL;
@@ -81,15 +79,6 @@ dh_window_class_init (DhWindowClass *klass)
         widget_class->delete_event = dh_window_delete_event;
 
         object_class->dispose = dh_window_dispose;
-
-        /* Bind class to template */
-        gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-window.ui");
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_plus_app_menu);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_documents);
 }
 
 /* Can return NULL during initialization and finalization, so it's better to
@@ -251,13 +240,8 @@ close_tab_cb (GSimpleAction *action,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
         gint page_num;
 
-        /* FIXME: the code here closes the current *tab*, but in help-overlay.ui
-         * it is documented as "Close the current window". Look for example at
-         * what gedit does, or other GNOME apps with a GtkNotebook plus Ctrl+W
-         * shortcut, and do the same.
-         */
-        page_num = gtk_notebook_get_current_page (priv->notebook);
-        gtk_notebook_remove_page (priv->notebook, page_num);
+        page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
+        gtk_notebook_remove_page (GTK_NOTEBOOK (priv->notebook), page_num);
 }
 
 static void
@@ -385,6 +369,54 @@ go_forward_cb (GSimpleAction *action,
 }
 
 static void
+shortcuts_window_cb (GSimpleAction *action,
+                     GVariant      *parameter,
+                     gpointer       user_data)
+{
+        DhWindow *app_window = DH_WINDOW (user_data);
+        GtkShortcutsWindow *shortcuts_window;
+        GtkContainer *section;
+        GtkContainer *group;
+        AmtkFactory *factory;
+
+        shortcuts_window = amtk_shortcuts_window_new (GTK_WINDOW (app_window));
+
+        section = amtk_shortcuts_section_new (NULL);
+        g_object_set (section,
+                      "max-height", 10,
+                      NULL);
+
+        factory = amtk_factory_new (NULL);
+        amtk_factory_set_default_flags (factory, AMTK_FACTORY_IGNORE_GACTION);
+
+        /* General group */
+        group = amtk_shortcuts_group_new (_("General"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.focus-search"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.find"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.new-window"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.new-tab"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.show-sidebar"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-back"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-forward"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.print"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.close-tab"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.quit"));
+        gtk_container_add (section, GTK_WIDGET (group));
+
+        /* Zoom group */
+        group = amtk_shortcuts_group_new (_("Zoom"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.zoom-in"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.zoom-out"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.zoom-default"));
+        gtk_container_add (section, GTK_WIDGET (group));
+
+        g_object_unref (factory);
+
+        gtk_container_add (GTK_CONTAINER (shortcuts_window), GTK_WIDGET (section));
+        gtk_widget_show_all (GTK_WIDGET (shortcuts_window));
+}
+
+static void
 add_actions (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
@@ -412,15 +444,18 @@ add_actions (DhWindow *window)
                 /* Go */
                 { "go-back", go_back_cb },
                 { "go-forward", go_forward_cb },
+
+                /* Help */
+                { "shortcuts-window", shortcuts_window_cb },
         };
 
-        g_action_map_add_action_entries (G_ACTION_MAP (window),
-                                         win_entries,
-                                         G_N_ELEMENTS (win_entries),
-                                         window);
+        amtk_action_map_add_action_entries_check_dups (G_ACTION_MAP (window),
+                                                       win_entries,
+                                                       G_N_ELEMENTS (win_entries),
+                                                       window);
 
         property_action = g_property_action_new ("show-sidebar",
-                                                 priv->grid_sidebar,
+                                                 priv->sidebar,
                                                  "visible");
         g_action_map_add_action (G_ACTION_MAP (window), G_ACTION (property_action));
         g_object_unref (property_action);
@@ -430,6 +465,141 @@ add_actions (DhWindow *window)
                                                  "active");
         g_action_map_add_action (G_ACTION_MAP (window), G_ACTION (property_action));
         g_object_unref (property_action);
+}
+
+static GMenuModel *
+create_window_menu_simple (void)
+{
+        GMenu *menu;
+        GMenu *section;
+        AmtkFactory *factory;
+
+        menu = g_menu_new ();
+        factory = amtk_factory_new (NULL);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-sidebar"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.print"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.find"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-in"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-out"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-default"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        g_object_unref (factory);
+        g_menu_freeze (menu);
+
+        return G_MENU_MODEL (menu);
+}
+
+static GMenuModel *
+create_window_menu_plus_app_menu (void)
+{
+        GMenu *menu;
+        GMenu *section;
+        AmtkFactory *factory;
+
+        menu = g_menu_new ();
+        factory = amtk_factory_new (NULL);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.new-window"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-sidebar"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.print"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.find"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-in"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-out"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-default"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.preferences"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        section = g_menu_new ();
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.shortcuts-window"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.help"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.about"));
+        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.quit"));
+        amtk_gmenu_append_section (menu, NULL, section);
+
+        g_object_unref (factory);
+        g_menu_freeze (menu);
+
+        return G_MENU_MODEL (menu);
+}
+
+static void
+init_header_bar (DhWindow *window)
+{
+        DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        GtkWidget *back_forward_hgrid;
+        GtkStyleContext *style_context;
+        GtkWidget *back_button;
+        GtkWidget *forward_button;
+        GtkApplication *app;
+        GMenuModel *window_menu;
+        GtkWidget *new_tab_button;
+
+        g_assert (priv->header_bar == NULL);
+        g_assert (priv->window_menu_button == NULL);
+
+        priv->header_bar = GTK_HEADER_BAR (gtk_header_bar_new ());
+        gtk_header_bar_set_show_close_button (priv->header_bar, TRUE);
+
+        /* Back/forward buttons */
+        back_forward_hgrid = gtk_grid_new ();
+        style_context = gtk_widget_get_style_context (back_forward_hgrid);
+        gtk_style_context_add_class (style_context, GTK_STYLE_CLASS_LINKED);
+
+        back_button = gtk_button_new_from_icon_name ("go-previous-symbolic", GTK_ICON_SIZE_BUTTON);
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (back_button), "win.go-back");
+        gtk_widget_set_tooltip_text (back_button, _("Back"));
+
+        forward_button = gtk_button_new_from_icon_name ("go-next-symbolic", GTK_ICON_SIZE_BUTTON);
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (forward_button), "win.go-forward");
+        gtk_widget_set_tooltip_text (forward_button, _("Forward"));
+
+        gtk_container_add (GTK_CONTAINER (back_forward_hgrid), back_button);
+        gtk_container_add (GTK_CONTAINER (back_forward_hgrid), forward_button);
+        gtk_header_bar_pack_start (priv->header_bar, back_forward_hgrid);
+
+        /* Menu */
+        priv->window_menu_button = GTK_MENU_BUTTON (gtk_menu_button_new ());
+        gtk_menu_button_set_direction (priv->window_menu_button, GTK_ARROW_NONE);
+        gtk_header_bar_pack_end (priv->header_bar, GTK_WIDGET (priv->window_menu_button));
+
+        app = GTK_APPLICATION (g_application_get_default ());
+        if (gtk_application_prefers_app_menu (app))
+                window_menu = create_window_menu_simple ();
+        else
+                window_menu = create_window_menu_plus_app_menu ();
+
+        gtk_menu_button_set_menu_model (priv->window_menu_button, window_menu);
+        g_object_unref (window_menu);
+
+        /* New tab button */
+        new_tab_button = gtk_button_new_from_icon_name ("tab-new-symbolic", GTK_ICON_SIZE_BUTTON);
+        gtk_actionable_set_action_name (GTK_ACTIONABLE (new_tab_button), "win.new-tab");
+        gtk_widget_set_tooltip_text (new_tab_button, _("New Tab"));
+        gtk_header_bar_pack_end (priv->header_bar, new_tab_button);
+
+        gtk_widget_show_all (GTK_WIDGET (priv->header_bar));
 }
 
 static void
@@ -508,36 +678,34 @@ static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        GtkApplication *app;
+        GtkPaned *hpaned;
         DhSettingsApp *settings;
         GSettings *paned_settings;
+        GtkWidget *contents_vgrid;
 
-        gtk_widget_init_template (GTK_WIDGET (window));
+        /* Header bar */
+        init_header_bar (window);
+        gtk_window_set_titlebar (GTK_WINDOW (window), GTK_WIDGET (priv->header_bar));
 
-        add_actions (window);
-
-        app = GTK_APPLICATION (g_application_get_default ());
-        if (!gtk_application_prefers_app_menu (app)) {
-                gtk_menu_button_set_menu_model (priv->window_menu_button,
-                                                priv->window_menu_plus_app_menu);
-        }
+        /* Horizontal paned */
+        hpaned = GTK_PANED (gtk_paned_new (GTK_ORIENTATION_HORIZONTAL));
 
         settings = dh_settings_app_get_singleton ();
         paned_settings = dh_settings_app_peek_paned_settings (settings);
         g_settings_bind (paned_settings, "position",
-                         priv->hpaned, "position",
+                         hpaned, "position",
                          G_SETTINGS_BIND_DEFAULT |
                          G_SETTINGS_BIND_NO_SENSITIVITY);
 
-        /* Sidebar */
+        /* Left side of hpaned */
         priv->sidebar = dh_sidebar_new2 (NULL);
-        gtk_widget_show (GTK_WIDGET (priv->sidebar));
-        gtk_container_add (GTK_CONTAINER (priv->grid_sidebar),
-                           GTK_WIDGET (priv->sidebar));
+
+        /* Right side of hpaned */
+        contents_vgrid = gtk_grid_new ();
+        gtk_orientable_set_orientation (GTK_ORIENTABLE (contents_vgrid), GTK_ORIENTATION_VERTICAL);
 
         // DhNotebook
         priv->notebook = dh_notebook_new (NULL);
-        gtk_widget_show (GTK_WIDGET (priv->notebook));
 
         dh_application_window_bind_sidebar_and_notebook (priv->sidebar, priv->notebook);
 
@@ -558,12 +726,16 @@ dh_window_init (DhWindow *window)
 
         // DhSearchBar
         priv->search_bar = dh_search_bar_new (priv->notebook);
-        gtk_widget_show (GTK_WIDGET (priv->search_bar));
 
-        gtk_container_add (GTK_CONTAINER (priv->grid_documents),
+        /* Packing */
+        gtk_container_add (GTK_CONTAINER (contents_vgrid),
                            GTK_WIDGET (priv->search_bar));
-        gtk_container_add (GTK_CONTAINER (priv->grid_documents),
+        gtk_container_add (GTK_CONTAINER (contents_vgrid),
                            GTK_WIDGET (priv->notebook));
+        gtk_paned_pack1 (hpaned, GTK_WIDGET (priv->sidebar), FALSE, FALSE);
+        gtk_paned_add2 (hpaned, contents_vgrid);
+        gtk_widget_show_all (GTK_WIDGET (hpaned));
+        gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (hpaned));
 
         add_actions (window);
 
