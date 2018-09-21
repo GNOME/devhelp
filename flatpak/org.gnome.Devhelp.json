@@ -1,4 +1,8 @@
 {
+    /* The official Flatpak manifest is the *.yml one, not this one.
+     * This one is for gnome-builder, temporarily until gnome-builder supports
+     * the YAML format.
+     */
     "app-id" : "org.gnome.Devhelp",
     "runtime" : "org.gnome.Sdk",
     "runtime-version" : "master",
