@@ -20,7 +20,8 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#ifndef DH_UTIL_LIB_H
+#define DH_UTIL_LIB_H
 
 #include <gio/gio.h>
 #include "dh-notebook.h"
@@ -55,3 +56,4 @@ void            _dh_util_bind_sidebar_and_notebook      (DhSidebar  *sidebar,
 
 G_END_DECLS
 
+#endif /* DH_UTIL_LIB_H */

@@ -29,7 +29,7 @@
 int
 main (int argc, char **argv)
 {
-        g_autoptr(DhApp) application;
+        DhApp *application;
         gint status;
 
         setlocale (LC_ALL, "");
@@ -39,6 +39,7 @@ main (int argc, char **argv)
 
         application = dh_app_new ();
         status = g_application_run (G_APPLICATION (application), argc, argv);
+        g_object_unref (application);
 
         dh_finalize ();
         dh_settings_app_unref_singleton ();

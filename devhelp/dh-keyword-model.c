@@ -75,10 +75,6 @@
  * affect the case sensitivity for the other search terms.
  */
 
-struct _DhKeywordModel {
-        GObject parent_instance;
-};
-
 typedef struct {
         gchar *current_book_id;
 

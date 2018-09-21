@@ -33,9 +33,9 @@
  * #DhTab.
  */
 
-typedef struct {
+struct _DhNotebookPrivate {
         DhProfile *profile;
-} DhNotebookPrivate;
+};
 
 enum {
         PROP_0,
@@ -51,14 +51,13 @@ static void
 set_profile (DhNotebook *notebook,
              DhProfile  *profile)
 {
-        DhNotebookPrivate *priv = dh_notebook_get_instance_private (notebook);
         if (profile == NULL)
                 return;
 
         g_return_if_fail (DH_IS_PROFILE (profile));
 
-        g_assert (priv->profile == NULL);
-        priv->profile = g_object_ref (profile);
+        g_assert (notebook->priv->profile == NULL);
+        notebook->priv->profile = g_object_ref (profile);
 }
 
 static void
@@ -103,12 +102,11 @@ static void
 dh_notebook_constructed (GObject *object)
 {
         DhNotebook *notebook = DH_NOTEBOOK (object);
-        DhNotebookPrivate *priv = dh_notebook_get_instance_private (notebook);
 
         if (G_OBJECT_CLASS (dh_notebook_parent_class)->constructed != NULL)
                 G_OBJECT_CLASS (dh_notebook_parent_class)->constructed (object);
 
-        if (priv->profile == NULL)
+        if (notebook->priv->profile == NULL)
                 set_profile (notebook, dh_profile_get_default ());
 }
 
@@ -116,9 +114,8 @@ static void
 dh_notebook_dispose (GObject *object)
 {
         DhNotebook *notebook = DH_NOTEBOOK (object);
-        DhNotebookPrivate *priv = dh_notebook_get_instance_private (notebook);
 
-        g_clear_object (&priv->profile);
+        g_clear_object (&notebook->priv->profile);
 
         G_OBJECT_CLASS (dh_notebook_parent_class)->dispose (object);
 }
@@ -191,6 +188,8 @@ dh_notebook_class_init (DhNotebookClass *klass)
 static void
 dh_notebook_init (DhNotebook *notebook)
 {
+        notebook->priv = dh_notebook_get_instance_private (notebook);
+
         gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
 }
 
@@ -221,10 +220,9 @@ dh_notebook_new (DhProfile *profile)
 DhProfile *
 dh_notebook_get_profile (DhNotebook *notebook)
 {
-        DhNotebookPrivate *priv = dh_notebook_get_instance_private (notebook);
         g_return_val_if_fail (DH_IS_NOTEBOOK (notebook), NULL);
 
-        return priv->profile;
+        return notebook->priv->profile;
 }
 
 static void
@@ -257,11 +255,10 @@ dh_notebook_open_new_tab (DhNotebook  *notebook,
         DhTab *tab;
         GtkWidget *label;
         gint page_num;
-        DhNotebookPrivate *priv = dh_notebook_get_instance_private (notebook);
 
         g_return_if_fail (DH_IS_NOTEBOOK (notebook));
 
-        web_view = dh_web_view_new (priv->profile);
+        web_view = dh_web_view_new (notebook->priv->profile);
         gtk_widget_show (GTK_WIDGET (web_view));
 
         tab = dh_tab_new (web_view);

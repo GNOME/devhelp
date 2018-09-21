@@ -85,12 +85,12 @@ new_window_cb (GSimpleAction *action,
                GVariant      *parameter,
                gpointer       user_data)
 {
-        DhApp *self = DH_APP (user_data);
+        DhApp *app = DH_APP (user_data);
         GtkWidget *new_window;
 
-        save_active_main_window_gsettings (self);
+        save_active_main_window_gsettings (app);
 
-        new_window = dh_window_new (GTK_APPLICATION (self));
+        new_window = dh_window_new (GTK_APPLICATION (app));
         gtk_widget_show_all (new_window);
 }
 

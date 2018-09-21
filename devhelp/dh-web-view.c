@@ -46,11 +46,11 @@
  *   opening the URL with gtk_show_uri_on_window().
  */
 
-typedef struct {
+struct _DhWebViewPrivate {
         DhProfile *profile;
         gchar *search_text;
         gdouble total_scroll_delta_y;
-} DhWebViewPrivate;
+};
 
 enum {
         PROP_0,
@@ -129,7 +129,6 @@ dh_web_view_scroll_event (GtkWidget      *widget,
                           GdkEventScroll *scroll_event)
 {
         DhWebView *view = DH_WEB_VIEW (widget);
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
         gdouble delta_y;
 
         if ((scroll_event->state & GDK_CONTROL_MASK) == 0)
@@ -150,17 +149,17 @@ dh_web_view_scroll_event (GtkWidget      *widget,
 
                 case GDK_SCROLL_SMOOTH:
                         gdk_event_get_scroll_deltas ((GdkEvent *)scroll_event, NULL, &delta_y);
-                        priv->total_scroll_delta_y += delta_y;
+                        view->priv->total_scroll_delta_y += delta_y;
 
                         /* Avoiding direct float comparison.
                          * -1 and 1 are the thresholds for bumping the zoom level,
                          * which can be adjusted for taste.
                          */
-                        if ((gint)priv->total_scroll_delta_y <= -1) {
-                                priv->total_scroll_delta_y = 0.f;
+                        if ((gint)view->priv->total_scroll_delta_y <= -1) {
+                                view->priv->total_scroll_delta_y = 0.f;
                                 bump_zoom_level (view, 1);
-                        } else if ((gint)priv->total_scroll_delta_y >= 1) {
-                                priv->total_scroll_delta_y = 0.f;
+                        } else if ((gint)view->priv->total_scroll_delta_y >= 1) {
+                                view->priv->total_scroll_delta_y = 0.f;
                                 bump_zoom_level (view, -1);
                         }
                         return GDK_EVENT_STOP;
@@ -236,7 +235,6 @@ find_equivalent_local_uri (DhWebView   *view,
         GList *books;
         GList *book_node;
         gchar *local_uri = NULL;
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
 
         g_return_val_if_fail (uri != NULL, NULL);
 
@@ -258,7 +256,7 @@ find_equivalent_local_uri (DhWebView   *view,
                 goto out;
         }
 
-        book_list = dh_profile_get_book_list (priv->profile);
+        book_list = dh_profile_get_book_list (view->priv->profile);
         books = dh_book_list_get_books (book_list);
 
         for (book_node = books; book_node != NULL; book_node = book_node->next) {
@@ -374,15 +372,13 @@ static void
 set_profile (DhWebView *view,
              DhProfile *profile)
 {
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
-
         if (profile == NULL)
                 return;
 
         g_return_if_fail (DH_IS_PROFILE (profile));
 
-        g_assert (priv->profile == NULL);
-        priv->profile = g_object_ref (profile);
+        g_assert (view->priv->profile == NULL);
+        view->priv->profile = g_object_ref (profile);
 }
 
 static void
@@ -465,9 +461,8 @@ update_fonts (DhWebView *view)
         DhSettings *settings;
         gchar *variable_font = NULL;
         gchar *fixed_font = NULL;
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
 
-        settings = dh_profile_get_settings (priv->profile);
+        settings = dh_profile_get_settings (view->priv->profile);
         dh_settings_get_selected_fonts (settings, &variable_font, &fixed_font);
 
         set_fonts (WEBKIT_WEB_VIEW (view), variable_font, fixed_font);
@@ -489,7 +484,6 @@ dh_web_view_constructed (GObject *object)
         DhWebView *view = DH_WEB_VIEW (object);
         WebKitSettings *webkit_settings;
         DhSettings *dh_settings;
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
 
         if (G_OBJECT_CLASS (dh_web_view_parent_class)->constructed != NULL)
                 G_OBJECT_CLASS (dh_web_view_parent_class)->constructed (object);
@@ -500,10 +494,10 @@ dh_web_view_constructed (GObject *object)
         webkit_settings_set_enable_html5_local_storage (webkit_settings, FALSE);
         webkit_settings_set_enable_plugins (webkit_settings, FALSE);
 
-        if (priv->profile == NULL)
+        if (view->priv->profile == NULL)
                 set_profile (view, dh_profile_get_default ());
 
-        dh_settings = dh_profile_get_settings (priv->profile);
+        dh_settings = dh_profile_get_settings (view->priv->profile);
         g_signal_connect_object (dh_settings,
                                  "fonts-changed",
                                  G_CALLBACK (settings_fonts_changed_cb),
@@ -517,9 +511,8 @@ static void
 dh_web_view_dispose (GObject *object)
 {
         DhWebView *view = DH_WEB_VIEW (object);
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
 
-        g_clear_object (&priv->profile);
+        g_clear_object (&view->priv->profile);
 
         G_OBJECT_CLASS (dh_web_view_parent_class)->dispose (object);
 }
@@ -528,9 +521,8 @@ static void
 dh_web_view_finalize (GObject *object)
 {
         DhWebView *view = DH_WEB_VIEW (object);
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
 
-        g_free (priv->search_text);
+        g_free (view->priv->search_text);
 
         G_OBJECT_CLASS (dh_web_view_parent_class)->finalize (object);
 }
@@ -597,8 +589,8 @@ dh_web_view_class_init (DhWebViewClass *klass)
 static void
 dh_web_view_init (DhWebView *view)
 {
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
-        priv->total_scroll_delta_y = 0.f;
+        view->priv = dh_web_view_get_instance_private (view);
+        view->priv->total_scroll_delta_y = 0.f;
 
         gtk_widget_set_hexpand (GTK_WIDGET (view), TRUE);
         gtk_widget_set_vexpand (GTK_WIDGET (view), TRUE);
@@ -631,10 +623,9 @@ dh_web_view_new (DhProfile *profile)
 DhProfile *
 dh_web_view_get_profile (DhWebView *view)
 {
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
         g_return_val_if_fail (DH_IS_WEB_VIEW (view), NULL);
 
-        return priv->profile;
+        return view->priv->profile;
 }
 
 /**
@@ -680,15 +671,14 @@ dh_web_view_set_search_text (DhWebView   *view,
                              const gchar *search_text)
 {
         WebKitFindController *find_controller;
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
 
         g_return_if_fail (DH_IS_WEB_VIEW (view));
 
-        if (g_strcmp0 (priv->search_text, search_text) == 0)
+        if (g_strcmp0 (view->priv->search_text, search_text) == 0)
                 return;
 
-        g_free (priv->search_text);
-        priv->search_text = g_strdup (search_text);
+        g_free (view->priv->search_text);
+        view->priv->search_text = g_strdup (search_text);
 
         find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (view));
 
@@ -726,11 +716,10 @@ void
 dh_web_view_search_next (DhWebView *view)
 {
         WebKitFindController *find_controller;
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
 
         g_return_if_fail (DH_IS_WEB_VIEW (view));
 
-        if (priv->search_text == NULL || priv->search_text[0] == '\0')
+        if (view->priv->search_text == NULL || view->priv->search_text[0] == '\0')
                 return;
 
         find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (view));
@@ -750,11 +739,10 @@ void
 dh_web_view_search_previous (DhWebView *view)
 {
         WebKitFindController *find_controller;
-        DhWebViewPrivate *priv = dh_web_view_get_instance_private (view);
 
         g_return_if_fail (DH_IS_WEB_VIEW (view));
 
-        if (priv->search_text == NULL || priv->search_text[0] == '\0')
+        if (view->priv->search_text == NULL || view->priv->search_text[0] == '\0')
                 return;
 
         find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (view));

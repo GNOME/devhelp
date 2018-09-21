@@ -82,7 +82,7 @@
 #define SYSTEM_FIXED_FONT_KEY                   "monospace-font-name"
 #define SYSTEM_VARIABLE_FONT_KEY                "font-name"
 
-typedef struct {
+struct _DhSettingsPrivate {
         GSettings *gsettings_contents;
         GSettings *gsettings_fonts;
         GSettings *gsettings_desktop_interface;
@@ -95,7 +95,7 @@ typedef struct {
 
         guint group_books_by_language : 1;
         guint use_system_fonts : 1;
-} DhSettingsPrivate;
+};
 
 enum {
         PROP_0,
@@ -121,14 +121,13 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhSettings, dh_settings, G_TYPE_OBJECT);
 static void
 load_books_disabled (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         gchar **books_disabled_strv;
         gint i;
 
-        g_list_free_full (priv->books_disabled, g_free);
-        priv->books_disabled = NULL;
+        g_list_free_full (settings->priv->books_disabled, g_free);
+        settings->priv->books_disabled = NULL;
 
-        books_disabled_strv = g_settings_get_strv (priv->gsettings_contents,
+        books_disabled_strv = g_settings_get_strv (settings->priv->gsettings_contents,
                                                    "books-disabled");
 
         if (books_disabled_strv == NULL)
@@ -136,10 +135,10 @@ load_books_disabled (DhSettings *settings)
 
         for (i = 0; books_disabled_strv[i] != NULL; i++) {
                 gchar *book_id = books_disabled_strv[i];
-                priv->books_disabled = g_list_prepend (priv->books_disabled, book_id);
+                settings->priv->books_disabled = g_list_prepend (settings->priv->books_disabled, book_id);
         }
 
-        priv->books_disabled = g_list_reverse (priv->books_disabled);
+        settings->priv->books_disabled = g_list_reverse (settings->priv->books_disabled);
 
         g_free (books_disabled_strv);
 }
@@ -147,14 +146,13 @@ load_books_disabled (DhSettings *settings)
 static void
 store_books_disabled (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         GVariantBuilder *builder;
         GVariant *variant;
         GList *l;
 
         builder = g_variant_builder_new (G_VARIANT_TYPE_STRING_ARRAY);
 
-        for (l = priv->books_disabled; l != NULL; l = l->next) {
+        for (l = settings->priv->books_disabled; l != NULL; l = l->next) {
                 const gchar *book_id = l->data;
                 g_variant_builder_add (builder, "s", book_id);
         }
@@ -162,17 +160,16 @@ store_books_disabled (DhSettings *settings)
         variant = g_variant_builder_end (builder);
         g_variant_builder_unref (builder);
 
-        g_settings_set_value (priv->gsettings_contents, "books-disabled", variant);
+        g_settings_set_value (settings->priv->gsettings_contents, "books-disabled", variant);
 }
 
 static GList *
 find_in_books_disabled (DhSettings  *settings,
                         const gchar *book_id)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         GList *node;
 
-        for (node = priv->books_disabled; node != NULL; node = node->next) {
+        for (node = settings->priv->books_disabled; node != NULL; node = node->next) {
                 const gchar *cur_book_id = node->data;
 
                 if (g_strcmp0 (book_id, cur_book_id) == 0)
@@ -186,7 +183,6 @@ static void
 enable_book (DhSettings  *settings,
              const gchar *book_id)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         GList *node;
 
         node = find_in_books_disabled (settings, book_id);
@@ -196,7 +192,7 @@ enable_book (DhSettings  *settings,
                 return;
 
         g_free (node->data);
-        priv->books_disabled = g_list_delete_link (priv->books_disabled, node);
+        settings->priv->books_disabled = g_list_delete_link (settings->priv->books_disabled, node);
 
         store_books_disabled (settings);
 }
@@ -205,7 +201,6 @@ static void
 disable_book (DhSettings  *settings,
               const gchar *book_id)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         GList *node;
 
         node = find_in_books_disabled (settings, book_id);
@@ -214,8 +209,8 @@ disable_book (DhSettings  *settings,
         if (node != NULL)
                 return;
 
-        priv->books_disabled = g_list_append (priv->books_disabled,
-                                              g_strdup (book_id));
+        settings->priv->books_disabled = g_list_append (settings->priv->books_disabled,
+                                                        g_strdup (book_id));
         store_books_disabled (settings);
 }
 
@@ -299,11 +294,10 @@ static void
 dh_settings_dispose (GObject *object)
 {
         DhSettings *settings = DH_SETTINGS (object);
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
 
-        g_clear_object (&priv->gsettings_contents);
-        g_clear_object (&priv->gsettings_fonts);
-        g_clear_object (&priv->gsettings_desktop_interface);
+        g_clear_object (&settings->priv->gsettings_contents);
+        g_clear_object (&settings->priv->gsettings_fonts);
+        g_clear_object (&settings->priv->gsettings_desktop_interface);
 
         G_OBJECT_CLASS (dh_settings_parent_class)->dispose (object);
 }
@@ -312,11 +306,10 @@ static void
 dh_settings_finalize (GObject *object)
 {
         DhSettings *settings = DH_SETTINGS (object);
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
 
-        g_list_free_full (priv->books_disabled, g_free);
-        g_free (priv->variable_font);
-        g_free (priv->fixed_font);
+        g_list_free_full (settings->priv->books_disabled, g_free);
+        g_free (settings->priv->variable_font);
+        g_free (settings->priv->fixed_font);
 
         if (default_instance == settings)
                 default_instance = NULL;
@@ -446,24 +439,24 @@ system_font_changed_cb (GSettings  *gsettings,
                         gchar      *key,
                         DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
-        if (priv->use_system_fonts)
+        if (settings->priv->use_system_fonts)
                 g_signal_emit (settings, signals[SIGNAL_FONTS_CHANGED], 0);
 }
 
 static void
 dh_settings_init (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
-        priv->gsettings_desktop_interface = g_settings_new (SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE);
+        settings->priv = dh_settings_get_instance_private (settings);
 
-        g_signal_connect_object (priv->gsettings_desktop_interface,
+        settings->priv->gsettings_desktop_interface = g_settings_new (SETTINGS_SCHEMA_ID_DESKTOP_INTERFACE);
+
+        g_signal_connect_object (settings->priv->gsettings_desktop_interface,
                                  "changed::" SYSTEM_FIXED_FONT_KEY,
                                  G_CALLBACK (system_font_changed_cb),
                                  settings,
                                  0);
 
-        g_signal_connect_object (priv->gsettings_desktop_interface,
+        g_signal_connect_object (settings->priv->gsettings_desktop_interface,
                                  "changed::" SYSTEM_VARIABLE_FONT_KEY,
                                  G_CALLBACK (system_font_changed_cb),
                                  settings,
@@ -475,19 +468,17 @@ _dh_settings_new (const gchar *contents_path,
                   const gchar *fonts_path)
 {
         DhSettings *settings;
-        DhSettingsPrivate *priv;
 
         g_return_val_if_fail (contents_path != NULL, NULL);
 
         settings = g_object_new (DH_TYPE_SETTINGS, NULL);
-        priv = dh_settings_get_instance_private (settings);
 
-        priv->gsettings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
-                                                             contents_path);
-        priv->gsettings_fonts = g_settings_new_with_path (SETTINGS_SCHEMA_ID_FONTS,
-                                                          fonts_path);
+        settings->priv->gsettings_contents = g_settings_new_with_path (SETTINGS_SCHEMA_ID_CONTENTS,
+                                                                       contents_path);
+        settings->priv->gsettings_fonts = g_settings_new_with_path (SETTINGS_SCHEMA_ID_FONTS,
+                                                                    fonts_path);
 
-        g_signal_connect_object (priv->gsettings_contents,
+        g_signal_connect_object (settings->priv->gsettings_contents,
                                  "changed::books-disabled",
                                  G_CALLBACK (books_disabled_changed_cb),
                                  settings,
@@ -561,10 +552,9 @@ dh_settings_bind_all (DhSettings *settings)
 gboolean
 dh_settings_get_group_books_by_language (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_val_if_fail (DH_IS_SETTINGS (settings), FALSE);
 
-        return priv->group_books_by_language;
+        return settings->priv->group_books_by_language;
 }
 
 /**
@@ -580,13 +570,12 @@ void
 dh_settings_set_group_books_by_language (DhSettings *settings,
                                          gboolean    group_books_by_language)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_if_fail (DH_IS_SETTINGS (settings));
 
         group_books_by_language = group_books_by_language != FALSE;
 
-        if (priv->group_books_by_language != group_books_by_language) {
-                priv->group_books_by_language = group_books_by_language;
+        if (settings->priv->group_books_by_language != group_books_by_language) {
+                settings->priv->group_books_by_language = group_books_by_language;
                 g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_GROUP_BOOKS_BY_LANGUAGE]);
         }
 }
@@ -603,10 +592,9 @@ dh_settings_set_group_books_by_language (DhSettings *settings,
 void
 dh_settings_bind_group_books_by_language (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_if_fail (DH_IS_SETTINGS (settings));
 
-        g_settings_bind (priv->gsettings_contents, "group-books-by-language",
+        g_settings_bind (settings->priv->gsettings_contents, "group-books-by-language",
                          settings, "group-books-by-language",
                          G_SETTINGS_BIND_DEFAULT |
                          G_SETTINGS_BIND_NO_SENSITIVITY);
@@ -683,10 +671,9 @@ dh_settings_set_book_enabled (DhSettings *settings,
 void
 dh_settings_freeze_books_disabled_changed (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_if_fail (DH_IS_SETTINGS (settings));
 
-        g_signal_handlers_block_by_func (priv->gsettings_contents,
+        g_signal_handlers_block_by_func (settings->priv->gsettings_contents,
                                          books_disabled_changed_cb,
                                          settings);
 }
@@ -705,10 +692,9 @@ dh_settings_freeze_books_disabled_changed (DhSettings *settings)
 void
 dh_settings_thaw_books_disabled_changed (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_if_fail (DH_IS_SETTINGS (settings));
 
-        g_signal_handlers_unblock_by_func (priv->gsettings_contents,
+        g_signal_handlers_unblock_by_func (settings->priv->gsettings_contents,
                                            books_disabled_changed_cb,
                                            settings);
 
@@ -738,19 +724,18 @@ dh_settings_get_selected_fonts (DhSettings  *settings,
                                 gchar      **variable_font,
                                 gchar      **fixed_font)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_if_fail (DH_IS_SETTINGS (settings));
         g_return_if_fail (variable_font != NULL && *variable_font == NULL);
         g_return_if_fail (fixed_font != NULL && *fixed_font == NULL);
 
-        if (priv->use_system_fonts) {
-                *variable_font = g_settings_get_string (priv->gsettings_desktop_interface,
+        if (settings->priv->use_system_fonts) {
+                *variable_font = g_settings_get_string (settings->priv->gsettings_desktop_interface,
                                                         SYSTEM_VARIABLE_FONT_KEY);
-                *fixed_font = g_settings_get_string (priv->gsettings_desktop_interface,
+                *fixed_font = g_settings_get_string (settings->priv->gsettings_desktop_interface,
                                                      SYSTEM_FIXED_FONT_KEY);
         } else {
-                *variable_font = g_strdup (priv->variable_font);
-                *fixed_font = g_strdup (priv->fixed_font);
+                *variable_font = g_strdup (settings->priv->variable_font);
+                *fixed_font = g_strdup (settings->priv->fixed_font);
         }
 }
 
@@ -764,10 +749,9 @@ dh_settings_get_selected_fonts (DhSettings  *settings,
 gboolean
 dh_settings_get_use_system_fonts (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_val_if_fail (DH_IS_SETTINGS (settings), FALSE);
 
-        return priv->use_system_fonts;
+        return settings->priv->use_system_fonts;
 }
 
 /**
@@ -783,13 +767,12 @@ void
 dh_settings_set_use_system_fonts (DhSettings *settings,
                                   gboolean    use_system_fonts)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_if_fail (DH_IS_SETTINGS (settings));
 
         use_system_fonts = use_system_fonts != FALSE;
 
-        if (priv->use_system_fonts != use_system_fonts) {
-                priv->use_system_fonts = use_system_fonts;
+        if (settings->priv->use_system_fonts != use_system_fonts) {
+                settings->priv->use_system_fonts = use_system_fonts;
                 g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_USE_SYSTEM_FONTS]);
 
                 g_signal_emit (settings, signals[SIGNAL_FONTS_CHANGED], 0);
@@ -810,10 +793,9 @@ dh_settings_set_use_system_fonts (DhSettings *settings,
 const gchar *
 dh_settings_get_variable_font (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_val_if_fail (DH_IS_SETTINGS (settings), NULL);
 
-        return priv->variable_font;
+        return settings->priv->variable_font;
 }
 
 /**
@@ -829,16 +811,15 @@ void
 dh_settings_set_variable_font (DhSettings  *settings,
                                const gchar *variable_font)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_if_fail (DH_IS_SETTINGS (settings));
         g_return_if_fail (variable_font != NULL);
 
-        if (g_strcmp0 (priv->variable_font, variable_font) != 0) {
-                g_free (priv->variable_font);
-                priv->variable_font = g_strdup (variable_font);
+        if (g_strcmp0 (settings->priv->variable_font, variable_font) != 0) {
+                g_free (settings->priv->variable_font);
+                settings->priv->variable_font = g_strdup (variable_font);
                 g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_VARIABLE_FONT]);
 
-                if (!priv->use_system_fonts)
+                if (!settings->priv->use_system_fonts)
                         g_signal_emit (settings, signals[SIGNAL_FONTS_CHANGED], 0);
         }
 }
@@ -857,10 +838,9 @@ dh_settings_set_variable_font (DhSettings  *settings,
 const gchar *
 dh_settings_get_fixed_font (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_val_if_fail (DH_IS_SETTINGS (settings), NULL);
 
-        return priv->fixed_font;
+        return settings->priv->fixed_font;
 }
 
 /**
@@ -876,16 +856,15 @@ void
 dh_settings_set_fixed_font (DhSettings  *settings,
                             const gchar *fixed_font)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_if_fail (DH_IS_SETTINGS (settings));
         g_return_if_fail (fixed_font != NULL);
 
-        if (g_strcmp0 (priv->fixed_font, fixed_font) != 0) {
-                g_free (priv->fixed_font);
-                priv->fixed_font = g_strdup (fixed_font);
+        if (g_strcmp0 (settings->priv->fixed_font, fixed_font) != 0) {
+                g_free (settings->priv->fixed_font);
+                settings->priv->fixed_font = g_strdup (fixed_font);
                 g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_FIXED_FONT]);
 
-                if (!priv->use_system_fonts)
+                if (!settings->priv->use_system_fonts)
                         g_signal_emit (settings, signals[SIGNAL_FONTS_CHANGED], 0);
         }
 }
@@ -902,20 +881,19 @@ dh_settings_set_fixed_font (DhSettings  *settings,
 void
 dh_settings_bind_fonts (DhSettings *settings)
 {
-        DhSettingsPrivate *priv = dh_settings_get_instance_private (settings);
         g_return_if_fail (DH_IS_SETTINGS (settings));
 
-        g_settings_bind (priv->gsettings_fonts, "use-system-fonts",
+        g_settings_bind (settings->priv->gsettings_fonts, "use-system-fonts",
                          settings, "use-system-fonts",
                          G_SETTINGS_BIND_DEFAULT |
                          G_SETTINGS_BIND_NO_SENSITIVITY);
 
-        g_settings_bind (priv->gsettings_fonts, "variable-font",
+        g_settings_bind (settings->priv->gsettings_fonts, "variable-font",
                          settings, "variable-font",
                          G_SETTINGS_BIND_DEFAULT |
                          G_SETTINGS_BIND_NO_SENSITIVITY);
 
-        g_settings_bind (priv->gsettings_fonts, "fixed-font",
+        g_settings_bind (settings->priv->gsettings_fonts, "fixed-font",
                          settings, "fixed-font",
                          G_SETTINGS_BIND_DEFAULT |
                          G_SETTINGS_BIND_NO_SENSITIVITY);

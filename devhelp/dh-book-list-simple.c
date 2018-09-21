@@ -20,15 +20,15 @@
 
 #include "dh-book-list-simple.h"
 
-typedef struct {
+struct _DhBookListSimplePrivate {
         /* List of DhBookList*. */
         GList *sub_book_lists;
 
         /* For reading the "books-disabled" GSettings key. */
         DhSettings *settings;
-} DhBookListSimplePrivate;
+};
 
-G_DEFINE_TYPE_WITH_PRIVATE (DhBookListSimple, dh_book_list_simple, DH_TYPE_BOOK_LIST)
+G_DEFINE_TYPE_WITH_PRIVATE (DhBookListSimple, _dh_book_list_simple, DH_TYPE_BOOK_LIST)
 
 static gpointer
 book_copy_func (gconstpointer src,
@@ -41,18 +41,17 @@ static void
 dh_book_list_simple_dispose (GObject *object)
 {
         DhBookListSimple *list_simple = DH_BOOK_LIST_SIMPLE (object);
-        DhBookListSimplePrivate *priv = dh_book_list_simple_get_instance_private (list_simple);
 
-        g_list_free_full (priv->sub_book_lists, g_object_unref);
-        priv->sub_book_lists = NULL;
+        g_list_free_full (list_simple->priv->sub_book_lists, g_object_unref);
+        list_simple->priv->sub_book_lists = NULL;
 
-        g_clear_object (&priv->settings);
+        g_clear_object (&list_simple->priv->settings);
 
-        G_OBJECT_CLASS (dh_book_list_simple_parent_class)->dispose (object);
+        G_OBJECT_CLASS (_dh_book_list_simple_parent_class)->dispose (object);
 }
 
 static void
-dh_book_list_simple_class_init (DhBookListSimpleClass *klass)
+_dh_book_list_simple_class_init (DhBookListSimpleClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -60,8 +59,9 @@ dh_book_list_simple_class_init (DhBookListSimpleClass *klass)
 }
 
 static void
-dh_book_list_simple_init (DhBookListSimple *list_simple)
+_dh_book_list_simple_init (DhBookListSimple *list_simple)
 {
+        list_simple->priv = _dh_book_list_simple_get_instance_private (list_simple);
 }
 
 /* Returns: the new start of the list. */
@@ -69,17 +69,16 @@ static GList *
 filter_by_books_disabled (DhBookListSimple *list_simple,
                           GList            *list)
 {
-        DhBookListSimplePrivate *priv = dh_book_list_simple_get_instance_private (list_simple);
         GList *new_list = NULL;
         GList *l;
 
-        if (priv->settings == NULL)
+        if (list_simple->priv->settings == NULL)
                 return list;
 
         for (l = list; l != NULL; l = l->next) {
                 DhBook *book = DH_BOOK (l->data);
 
-                if (dh_settings_is_book_enabled (priv->settings, book))
+                if (dh_settings_is_book_enabled (list_simple->priv->settings, book))
                         new_list = g_list_prepend (new_list, g_object_ref (book));
         }
 
@@ -93,9 +92,8 @@ generate_list (DhBookListSimple *list_simple)
 {
         GList *ret = NULL;
         GList *book_list_node;
-        DhBookListSimplePrivate *priv = dh_book_list_simple_get_instance_private (list_simple);
 
-        for (book_list_node = priv->sub_book_lists;
+        for (book_list_node = list_simple->priv->sub_book_lists;
              book_list_node != NULL;
              book_list_node = book_list_node->next) {
                 DhBookList *book_list = DH_BOOK_LIST (book_list_node->data);
@@ -105,7 +103,7 @@ generate_list (DhBookListSimple *list_simple)
                 books = dh_book_list_get_books (book_list);
 
                 /* First DhBookList, take all DhBook's. */
-                if (book_list_node == priv->sub_book_lists) {
+                if (book_list_node == list_simple->priv->sub_book_lists) {
                         g_assert (ret == NULL);
                         ret = g_list_copy_deep (books, book_copy_func, NULL);
                         continue;
@@ -175,10 +173,9 @@ static void
 set_sub_book_lists (DhBookListSimple *list_simple,
                     GList            *sub_book_lists)
 {
-        DhBookListSimplePrivate *priv = dh_book_list_simple_get_instance_private (list_simple);
         GList *l;
 
-        g_assert (priv->sub_book_lists == NULL);
+        g_assert (list_simple->priv->sub_book_lists == NULL);
 
         for (l = sub_book_lists; l != NULL; l = l->next) {
                 DhBookList *book_list;
@@ -189,8 +186,8 @@ set_sub_book_lists (DhBookListSimple *list_simple,
                 }
 
                 book_list = l->data;
-                priv->sub_book_lists = g_list_prepend (priv->sub_book_lists,
-                                                       g_object_ref (book_list));
+                list_simple->priv->sub_book_lists = g_list_prepend (list_simple->priv->sub_book_lists,
+                                                                    g_object_ref (book_list));
 
                 g_signal_connect_object (book_list,
                                          "add-book",
@@ -205,7 +202,7 @@ set_sub_book_lists (DhBookListSimple *list_simple,
                                          G_CONNECT_AFTER);
         }
 
-        priv->sub_book_lists = g_list_reverse (priv->sub_book_lists);
+        list_simple->priv->sub_book_lists = g_list_reverse (list_simple->priv->sub_book_lists);
 }
 
 static void
@@ -221,16 +218,14 @@ _dh_book_list_simple_new (GList      *sub_book_lists,
                           DhSettings *settings)
 {
         DhBookListSimple *list_simple;
-        DhBookListSimplePrivate *priv;
 
         g_return_val_if_fail (settings == NULL || DH_IS_SETTINGS (settings), NULL);
 
         list_simple = g_object_new (DH_TYPE_BOOK_LIST_SIMPLE, NULL);
-        priv = dh_book_list_simple_get_instance_private (list_simple);
         set_sub_book_lists (list_simple, sub_book_lists);
 
         if (settings != NULL) {
-                priv->settings = g_object_ref (settings);
+                list_simple->priv->settings = g_object_ref (settings);
 
                 g_signal_connect_object (settings,
                                          "books-disabled-changed",

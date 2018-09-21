@@ -61,13 +61,13 @@ typedef struct {
         guint timeout_id;
 } NewPossibleBookData;
 
-typedef struct {
+struct _DhBookListDirectoryPrivate {
         GFile *directory;
         GFileMonitor *directory_monitor;
 
         /* List of NewPossibleBookData* */
         GSList *new_possible_books_data;
-} DhBookListDirectoryPrivate;
+};
 
 enum {
         PROP_0,
@@ -219,7 +219,7 @@ static gboolean
 new_possible_book_timeout_cb (gpointer user_data)
 {
         NewPossibleBookData *data = user_data;
-        DhBookListDirectoryPrivate *priv = dh_book_list_directory_get_instance_private (data->list_directory);
+        DhBookListDirectoryPrivate *priv = data->list_directory->priv;
 
         data->timeout_id = 0;
 
@@ -238,7 +238,7 @@ books_directory_changed_cb (GFileMonitor        *directory_monitor,
                             GFileMonitorEvent    event_type,
                             DhBookListDirectory *list_directory)
 {
-        DhBookListDirectoryPrivate *priv = dh_book_list_directory_get_instance_private (list_directory);
+        DhBookListDirectoryPrivate *priv = list_directory->priv;
         NewPossibleBookData *data;
 
         /* With the GFileMonitor here we only handle events for new directories
@@ -266,18 +266,17 @@ static void
 monitor_books_directory (DhBookListDirectory *list_directory)
 {
         GError *error = NULL;
-        DhBookListDirectoryPrivate *priv = dh_book_list_directory_get_instance_private (list_directory);
 
-        g_assert (priv->directory_monitor == NULL);
-        priv->directory_monitor = g_file_monitor_directory (priv->directory,
-                                                            G_FILE_MONITOR_NONE,
-                                                            NULL,
-                                                            &error);
+        g_assert (list_directory->priv->directory_monitor == NULL);
+        list_directory->priv->directory_monitor = g_file_monitor_directory (list_directory->priv->directory,
+                                                                            G_FILE_MONITOR_NONE,
+                                                                            NULL,
+                                                                            &error);
 
         if (error != NULL) {
                 gchar *parse_name;
 
-                parse_name = g_file_get_parse_name (priv->directory);
+                parse_name = g_file_get_parse_name (list_directory->priv->directory);
 
                 g_warning ("Failed to create file monitor on directory “%s”: %s",
                            parse_name,
@@ -287,8 +286,8 @@ monitor_books_directory (DhBookListDirectory *list_directory)
                 g_clear_error (&error);
         }
 
-        if (priv->directory_monitor != NULL) {
-                g_signal_connect_object (priv->directory_monitor,
+        if (list_directory->priv->directory_monitor != NULL) {
+                g_signal_connect_object (list_directory->priv->directory_monitor,
                                          "changed",
                                          G_CALLBACK (books_directory_changed_cb),
                                          list_directory,
@@ -301,9 +300,8 @@ find_books (DhBookListDirectory *list_directory)
 {
         GFileEnumerator *enumerator;
         GError *error = NULL;
-        DhBookListDirectoryPrivate *priv = dh_book_list_directory_get_instance_private (list_directory);
 
-        enumerator = g_file_enumerate_children (priv->directory,
+        enumerator = g_file_enumerate_children (list_directory->priv->directory,
                                                 G_FILE_ATTRIBUTE_STANDARD_NAME,
                                                 G_FILE_QUERY_INFO_NONE,
                                                 NULL,
@@ -317,7 +315,7 @@ find_books (DhBookListDirectory *list_directory)
         if (error != NULL) {
                 gchar *parse_name;
 
-                parse_name = g_file_get_parse_name (priv->directory);
+                parse_name = g_file_get_parse_name (list_directory->priv->directory);
 
                 g_warning ("Error when reading directory '%s': %s",
                            parse_name,
@@ -338,7 +336,7 @@ find_books (DhBookListDirectory *list_directory)
                 if (error != NULL) {
                         gchar *parse_name;
 
-                        parse_name = g_file_get_parse_name (priv->directory);
+                        parse_name = g_file_get_parse_name (list_directory->priv->directory);
 
                         g_warning ("Error when enumerating directory '%s': %s",
                                    parse_name,
@@ -363,11 +361,10 @@ static void
 set_directory (DhBookListDirectory *list_directory,
                GFile               *directory)
 {
-        DhBookListDirectoryPrivate *priv = dh_book_list_directory_get_instance_private (list_directory);
-        g_assert (priv->directory == NULL);
+        g_assert (list_directory->priv->directory == NULL);
         g_return_if_fail (G_IS_FILE (directory));
 
-        priv->directory = g_object_ref (directory);
+        list_directory->priv->directory = g_object_ref (directory);
         find_books (list_directory);
 }
 
@@ -413,13 +410,12 @@ static void
 dh_book_list_directory_dispose (GObject *object)
 {
         DhBookListDirectory *list_directory = DH_BOOK_LIST_DIRECTORY (object);
-        DhBookListDirectoryPrivate *priv = dh_book_list_directory_get_instance_private (list_directory);
 
-        g_clear_object (&priv->directory);
-        g_clear_object (&priv->directory_monitor);
+        g_clear_object (&list_directory->priv->directory);
+        g_clear_object (&list_directory->priv->directory_monitor);
 
-        g_slist_free_full (priv->new_possible_books_data, new_possible_book_data_free);
-        priv->new_possible_books_data = NULL;
+        g_slist_free_full (list_directory->priv->new_possible_books_data, new_possible_book_data_free);
+        list_directory->priv->new_possible_books_data = NULL;
 
         G_OBJECT_CLASS (dh_book_list_directory_parent_class)->dispose (object);
 }
@@ -466,6 +462,8 @@ dh_book_list_directory_class_init (DhBookListDirectoryClass *klass)
 static void
 dh_book_list_directory_init (DhBookListDirectory *list_directory)
 {
+        list_directory->priv = dh_book_list_directory_get_instance_private (list_directory);
+
         instances = g_list_prepend (instances, list_directory);
 }
 
@@ -495,10 +493,9 @@ dh_book_list_directory_new (GFile *directory)
 
         for (l = instances; l != NULL; l = l->next) {
                 DhBookListDirectory *cur_list_directory = DH_BOOK_LIST_DIRECTORY (l->data);
-                DhBookListDirectoryPrivate *priv = dh_book_list_directory_get_instance_private (cur_list_directory);
 
-                if (priv->directory != NULL &&
-                    g_file_equal (priv->directory, directory))
+                if (cur_list_directory->priv->directory != NULL &&
+                    g_file_equal (cur_list_directory->priv->directory, directory))
                         return g_object_ref (cur_list_directory);
         }
 
@@ -517,9 +514,7 @@ dh_book_list_directory_new (GFile *directory)
 GFile *
 dh_book_list_directory_get_directory (DhBookListDirectory *list_directory)
 {
-        DhBookListDirectoryPrivate *priv = dh_book_list_directory_get_instance_private (list_directory);
-
         g_return_val_if_fail (DH_IS_BOOK_LIST_DIRECTORY (list_directory), NULL);
 
-        return priv->directory;
+        return list_directory->priv->directory;
 }

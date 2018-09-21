@@ -39,10 +39,6 @@
  * </warning>
  */
 
-struct _DhBookManager {
-        GObject parent_instance;
-};
-
 G_DEFINE_TYPE (DhBookManager, dh_book_manager, G_TYPE_OBJECT);
 
 static void

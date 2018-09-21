@@ -20,7 +20,8 @@
  * along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#ifndef DH_LINK_H
+#define DH_LINK_H
 
 #include <glib-object.h>
 
@@ -112,3 +113,4 @@ const gchar *dh_link_type_to_string     (DhLinkType     link_type);
 
 G_END_DECLS
 
+#endif /* DH_LINK_H */
