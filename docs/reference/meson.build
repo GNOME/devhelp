@@ -3,7 +3,7 @@ subdir('xml')
 configure_file(
         input : 'devhelp-sections.txt',
         output : 'devhelp-@0@-sections.txt'.format(LIBDEVHELP_API_VERSION),
-        configuration : configuration_data() # TODO use "copy : true" when Meson 0.47 is released.
+        copy : true
 )
 
 gtkdoc_module_name = 'devhelp-@0@'.format(LIBDEVHELP_API_VERSION)

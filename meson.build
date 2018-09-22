@@ -5,7 +5,7 @@
 
 project(
         'devhelp', 'c',
-        meson_version : '>= 0.43',
+        meson_version : '>= 0.47',
         version : '3.30.0'
 )
 
