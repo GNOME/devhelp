@@ -11,15 +11,15 @@
 # Taylon Silmer <taylonsilva@gmail.com>, 2008.
 # Leonardo Ferreira Fontenelle <leonardof@gnome.org>, 2009.
 # Jonh Wendell <jwendell@gnome.org>, 2010.
-# Enrico Nicoletto <liverig@gmail.com>, 2013, 2014, 2017.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2012-2014, 2017, 2018.
 # Bruno Lopes da Silva <brunolopesbldsb@gmail.com>, 2018.
+# Enrico Nicoletto <liverig@gmail.com>, 2013, 2014, 2017, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-08-30 18:43+0000\n"
-"PO-Revision-Date: 2018-08-30 21:12-0200\n"
+"POT-Creation-Date: 2018-09-21 13:52+0000\n"
+"PO-Revision-Date: 2018-09-22 12:07-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -27,19 +27,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Virtaal 1.0.0-beta1\n"
+"X-Generator: Poedit 2.0.8\n"
 "X-Project-Style: gnome\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:154 src/dh-app.c:499
+#: src/dh-app.c:270 src/dh-app.c:598
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:156
+#: src/dh-app.c:272
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Uma ferramenta de desenvolvimento para navegar e pesquisar documentação de "
@@ -288,7 +288,116 @@ msgstr "Suporte do Devhelp"
 msgid "Show API Documentation"
 msgstr "Mostrar documentação da API"
 
-#: src/dh-app.c:158
+#. action, icon, label, accel, tooltip
+#. App menu
+#: src/dh-app.c:51
+msgid "New _Window"
+msgstr "Nova _janela"
+
+# shortcut window
+#: src/dh-app.c:52
+msgid "Open a new window"
+msgstr "Abrir uma nova janela"
+
+#: src/dh-app.c:53
+msgid "_Preferences"
+msgstr "_Preferências"
+
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr "Atalhos de _teclado"
+
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "Aj_uda"
+
+#: src/dh-app.c:56
+msgid "_About"
+msgstr "S_obre"
+
+#: src/dh-app.c:57
+msgid "_Quit"
+msgstr "_Sair"
+
+# shortcut window
+#: src/dh-app.c:58
+msgid "Close all windows"
+msgstr "Fechar todas as janelas"
+
+#. Window menu
+#: src/dh-app.c:61
+msgid "_Side Panel"
+msgstr "Painel _lateral"
+
+# shortcut window
+#: src/dh-app.c:62
+msgid "Toggle side panel visibility"
+msgstr "Alternar a visibilidade do painel lateral"
+
+#: src/dh-app.c:63
+msgid "_Print"
+msgstr "Im_primir"
+
+#: src/dh-app.c:64
+msgid "_Find"
+msgstr "_Localizar"
+
+# shortcut window
+#: src/dh-app.c:65
+msgid "Find in current page"
+msgstr "Localizar na página atual"
+
+#: src/dh-app.c:66
+msgid "_Larger Text"
+msgstr "Texto m_aior"
+
+#: src/dh-app.c:67
+msgid "Larger text"
+msgstr "Texto maior"
+
+#: src/dh-app.c:68
+msgid "S_maller Text"
+msgstr "Texto _menor"
+
+#: src/dh-app.c:69
+msgid "Smaller text"
+msgstr "Texto menor"
+
+# Apesar do "size", a tradução "texto" segue o padrão das outras duas mensagens acima.
+#: src/dh-app.c:70
+msgid "_Normal Size"
+msgstr "Texto _normal"
+
+# Apesar do "size", a tradução "texto" segue o padrão das outras duas mensagens acima.
+#: src/dh-app.c:71
+msgid "Normal size"
+msgstr "Texto normal"
+
+# shortcut window
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+msgid "Open a new tab"
+msgstr "Abrir uma nova aba"
+
+# shortcut window
+#: src/dh-app.c:112
+msgid "Close the current tab"
+msgstr "Fechar a aba atual"
+
+#: src/dh-app.c:113
+msgid "Go back"
+msgstr "Retornar"
+
+#: src/dh-app.c:114
+msgid "Go forward"
+msgstr "Avançar"
+
+# shortcut window
+#: src/dh-app.c:115
+msgid "Focus global search"
+msgstr "Focar na pesquisa global"
+
+#: src/dh-app.c:274
 msgid "translator-credits"
 msgstr ""
 "Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
@@ -302,37 +411,37 @@ msgstr ""
 "Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Enrico Nicoletto <liverig@gmail.com>"
 
-#: src/dh-app.c:160
+#: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Site do Devhelp"
 
 # Descrição de linha de comando do --help
-#: src/dh-app.c:403
+#: src/dh-app.c:487
 msgid "Opens a new Devhelp window"
 msgstr "Abre uma nova janela de Devhelp"
 
 # Descrição de linha de comando do --help
 # Neste caso, "procurar" fica melhor que "pesquisar"
-#: src/dh-app.c:408
+#: src/dh-app.c:492
 msgid "Search for a keyword"
 msgstr "Procura por uma palavra-chave"
 
-#: src/dh-app.c:409 src/dh-app.c:414
+#: src/dh-app.c:493 src/dh-app.c:498
 msgid "KEYWORD"
 msgstr "PALAVRA"
 
 # Descrição de linha de comando do --help
-#: src/dh-app.c:413
+#: src/dh-app.c:497
 msgid "Search and display any hit in the assistant window"
 msgstr "Pesquisa e exibe resultados no assistente"
 
 # Descrição de linha de comando do --help
-#: src/dh-app.c:418
+#: src/dh-app.c:502
 msgid "Display the version and exit"
 msgstr "Exibe a versão e sai"
 
 # Descrição de linha de comando do --help
-#: src/dh-app.c:423
+#: src/dh-app.c:507
 msgid "Quit any running Devhelp"
 msgstr "Sai de qualquer Devhelp em execução"
 
@@ -377,173 +486,46 @@ msgstr "Largura _fixa:"
 msgid "Fonts"
 msgstr "Fontes"
 
-#: src/dh-window.ui:7 src/dh-window.ui:45
-msgid "_Side Panel"
-msgstr "Painel _lateral"
-
-#: src/dh-window.ui:13 src/dh-window.ui:51
-msgid "_Print"
-msgstr "Im_primir"
-
-#: src/dh-window.ui:17 src/dh-window.ui:55
-msgid "_Find"
-msgstr "_Localizar"
-
-#: src/dh-window.ui:23 src/dh-window.ui:61
-msgid "_Larger Text"
-msgstr "Texto m_aior"
-
-#: src/dh-window.ui:27 src/dh-window.ui:65
-msgid "S_maller Text"
-msgstr "Texto _menor"
-
-# Apesar do "size", a tradução "texto" segue o padrão das outras duas mensagens acima.
-#: src/dh-window.ui:31 src/dh-window.ui:69
-msgid "_Normal Size"
-msgstr "Texto _normal"
-
-#: src/dh-window.ui:39 src/menus.ui:29
-msgid "New _Window"
-msgstr "Nova _janela"
-
-#: src/dh-window.ui:75 src/menus.ui:35
-msgid "_Preferences"
-msgstr "_Preferências"
-
-#: src/dh-window.ui:81 src/menus.ui:41
-msgid "_Keyboard Shortcuts"
-msgstr "Atalhos de _teclado"
-
-#: src/dh-window.ui:85 src/menus.ui:45
-msgid "_Help"
-msgstr "Aj_uda"
-
-#: src/dh-window.ui:89
-msgid "_About Devhelp"
-msgstr "S_obre o Devhelp"
-
-#: src/dh-window.ui:93 src/menus.ui:53
-msgid "_Quit"
-msgstr "_Sair"
-
-#: src/dh-window.ui:121
-msgid "Back"
-msgstr "Retroceder"
-
-#: src/dh-window.ui:140
-msgid "Forward"
-msgstr "Avançar"
-
-#: src/dh-window.ui:186
-msgid "New Tab"
-msgstr "Nova aba"
-
-#: src/help-overlay.ui:14
-#| msgid "General"
-msgctxt "shortcut window"
+#. General group
+#: src/dh-window.c:393
 msgid "General"
 msgstr "Geral"
 
-# shortcut window
-#: src/help-overlay.ui:19
-#| msgid "Focus global search"
-msgctxt "shortcut window"
-msgid "Focus global search"
-msgstr "Foco na pesquisa global"
-
-# shortcut window
-#: src/help-overlay.ui:26
-#| msgid "Find in current page"
-msgctxt "shortcut window"
-msgid "Find in current page"
-msgstr "Localiza na página atual"
-
-# shortcut window
-#: src/help-overlay.ui:33
-#| msgid "Open a new window"
-msgctxt "shortcut window"
-msgid "Open a new window"
-msgstr "Abre uma nova janela"
-
-# shortcut window
-#: src/help-overlay.ui:40
-#| msgid "Open a new tab"
-msgctxt "shortcut window"
-msgid "Open a new tab"
-msgstr "Abre uma nova aba"
-
-# shortcut window
-#: src/help-overlay.ui:47
-#| msgid "Toggle side panel visibility"
-msgctxt "shortcut window"
-msgid "Toggle side panel visibility"
-msgstr "Alterna a visibilidade do painel lateral"
-
-#: src/help-overlay.ui:54
-#| msgid "Go back"
-msgctxt "shortcut window"
-msgid "Go back"
-msgstr "Volta"
-
-#: src/help-overlay.ui:61
-#| msgid "Go forward"
-msgctxt "shortcut window"
-msgid "Go forward"
-msgstr "Avança"
-
-#: src/help-overlay.ui:68
-msgctxt "shortcut window"
-msgid "Print"
-msgstr "Imprimir"
-
-# shortcut window
-#: src/help-overlay.ui:75
-#| msgid "Close the current tab"
-msgctxt "shortcut window"
-msgid "Close the current window"
-msgstr "Fecha a janela atual"
-
-# shortcut window
-#: src/help-overlay.ui:82
-#| msgid "Close all windows"
-msgctxt "shortcut window"
-msgid "Close all windows"
-msgstr "Fecha todas as janelas"
-
-#: src/help-overlay.ui:90
-#| msgid "Zoom"
-msgctxt "shortcut window"
+#. Zoom group
+#: src/dh-window.c:407
 msgid "Zoom"
 msgstr "Ampliação"
 
-#: src/help-overlay.ui:95
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "Ampliar"
+#: src/dh-window.c:572
+msgid "Back"
+msgstr "Retroceder"
 
-#: src/help-overlay.ui:102
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "Reduzir"
+#: src/dh-window.c:576
+msgid "Forward"
+msgstr "Avançar"
 
-#: src/help-overlay.ui:109
-msgctxt "shortcut window"
-msgid "Reset Zoom"
-msgstr "Restaurar"
+#: src/dh-window.c:599
+msgid "New Tab"
+msgstr "Nova aba"
 
-#: src/menus.ui:49
-msgid "_About"
-msgstr "S_obre"
+#~ msgid "_About Devhelp"
+#~ msgstr "S_obre o Devhelp"
 
-#~ msgid "Larger text"
-#~ msgstr "Texto maior"
+#~ msgctxt "shortcut window"
+#~ msgid "Print"
+#~ msgstr "Imprimir"
 
-#~ msgid "Smaller text"
-#~ msgstr "Texto menor"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom in"
+#~ msgstr "Ampliar"
 
-# Apesar do "size", a tradução "texto" segue o padrão das outras duas mensagens acima.
-#~ msgid "Normal size"
-#~ msgstr "Texto normal"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom out"
+#~ msgstr "Reduzir"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Reset Zoom"
+#~ msgstr "Restaurar"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
