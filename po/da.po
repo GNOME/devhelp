@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-02 19:43+0000\n"
-"PO-Revision-Date: 2018-09-02 23:34+0200\n"
+"POT-Creation-Date: 2018-09-21 13:52+0000\n"
+"PO-Revision-Date: 2018-09-24 00:07+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -31,12 +31,12 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:154 src/dh-app.c:499
+#: src/dh-app.c:270 src/dh-app.c:598
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:156
+#: src/dh-app.c:272
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Et udviklerværktøj til at gennemse og søge i API-dokumentation"
 
@@ -201,7 +201,7 @@ msgstr "Sprog: %s"
 msgid "Language: Undefined"
 msgstr "Sprog: udefineret"
 
-#: devhelp/dh-book-tree.c:759
+#: devhelp/dh-book-tree.c:755
 msgid "_Collapse All"
 msgstr "_Sammenfold alle"
 
@@ -270,7 +270,7 @@ msgstr "Egenskab"
 msgid "Signal"
 msgstr "Signal"
 
-#: devhelp/dh-web-view.c:661
+#: devhelp/dh-web-view.c:652
 msgid "Empty Page"
 msgstr "Tom side"
 
@@ -282,7 +282,108 @@ msgstr "Hjælp til Devhelp"
 msgid "Show API Documentation"
 msgstr "Vis API-dokumentation"
 
-#: src/dh-app.c:158
+#. action, icon, label, accel, tooltip
+#. App menu
+#: src/dh-app.c:51
+msgid "New _Window"
+msgstr "Nyt _vindue"
+
+#: src/dh-app.c:52
+msgid "Open a new window"
+msgstr "Åbn et nyt vindue"
+
+#: src/dh-app.c:53
+msgid "_Preferences"
+msgstr "_Indstillinger"
+
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr "_Tastaturgenveje"
+
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "_Hjælp"
+
+#: src/dh-app.c:56
+msgid "_About"
+msgstr "_Om"
+
+#: src/dh-app.c:57
+msgid "_Quit"
+msgstr "_Afslut"
+
+#: src/dh-app.c:58
+msgid "Close all windows"
+msgstr "Luk alle vinduer"
+
+# scootergrisen: måske "_Siderude"
+#. Window menu
+#: src/dh-app.c:61
+msgid "_Side Panel"
+msgstr "Side_panel"
+
+#: src/dh-app.c:62
+msgid "Toggle side panel visibility"
+msgstr "Gør sidepanelet synligt/usynligt"
+
+#: src/dh-app.c:63
+msgid "_Print"
+msgstr "_Udskriv"
+
+#: src/dh-app.c:64
+msgid "_Find"
+msgstr "_Find"
+
+#: src/dh-app.c:65
+msgid "Find in current page"
+msgstr "Find på nuværende side"
+
+#: src/dh-app.c:66
+msgid "_Larger Text"
+msgstr "_Større tekst"
+
+#: src/dh-app.c:67
+msgid "Larger text"
+msgstr "Større tekst"
+
+#: src/dh-app.c:68
+msgid "S_maller Text"
+msgstr "_Mindre tekst"
+
+#: src/dh-app.c:69
+msgid "Smaller text"
+msgstr "Mindre tekst"
+
+#: src/dh-app.c:70
+msgid "_Normal Size"
+msgstr "_Normal størrelse"
+
+#: src/dh-app.c:71
+msgid "Normal size"
+msgstr "Normal størrelse"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+msgid "Open a new tab"
+msgstr "Åbn et nyt faneblad"
+
+#: src/dh-app.c:112
+msgid "Close the current tab"
+msgstr "Luk det nuværende faneblad"
+
+#: src/dh-app.c:113
+msgid "Go back"
+msgstr "Gå tilbage"
+
+#: src/dh-app.c:114
+msgid "Go forward"
+msgstr "Gå fremad"
+
+#: src/dh-app.c:115
+msgid "Focus global search"
+msgstr "Giv fokus til global søgning"
+
+#: src/dh-app.c:274
 msgid "translator-credits"
 msgstr ""
 "Ole Laursen\n"
@@ -293,31 +394,31 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: src/dh-app.c:160
+#: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Hjemmeside for Devhelp"
 
-#: src/dh-app.c:403
+#: src/dh-app.c:487
 msgid "Opens a new Devhelp window"
 msgstr "Åbner et nyt Devhelp-vindue"
 
-#: src/dh-app.c:408
+#: src/dh-app.c:492
 msgid "Search for a keyword"
 msgstr "Søg efter et nøgleord"
 
-#: src/dh-app.c:409 src/dh-app.c:414
+#: src/dh-app.c:493 src/dh-app.c:498
 msgid "KEYWORD"
 msgstr "NØGLEORD"
 
-#: src/dh-app.c:413
+#: src/dh-app.c:497
 msgid "Search and display any hit in the assistant window"
 msgstr "Søg og vis resultater i hjælpervinduet"
 
-#: src/dh-app.c:418
+#: src/dh-app.c:502
 msgid "Display the version and exit"
 msgstr "Vis versionsnummeret og afslut"
 
-#: src/dh-app.c:423
+#: src/dh-app.c:507
 msgid "Quit any running Devhelp"
 msgstr "Afslut enhver kørende Devhelp"
 
@@ -362,154 +463,46 @@ msgstr "_Fast bredde:"
 msgid "Fonts"
 msgstr "Skifttyper"
 
-# scootergrisen: måske "_Siderude"
-#: src/dh-window.ui:7 src/dh-window.ui:45
-msgid "_Side Panel"
-msgstr "Side_panel"
-
-#: src/dh-window.ui:13 src/dh-window.ui:51
-msgid "_Print"
-msgstr "_Udskriv"
-
-#: src/dh-window.ui:17 src/dh-window.ui:55
-msgid "_Find"
-msgstr "_Find"
-
-#: src/dh-window.ui:23 src/dh-window.ui:61
-msgid "_Larger Text"
-msgstr "_Større tekst"
-
-#: src/dh-window.ui:27 src/dh-window.ui:65
-msgid "S_maller Text"
-msgstr "_Mindre tekst"
-
-#: src/dh-window.ui:31 src/dh-window.ui:69
-msgid "_Normal Size"
-msgstr "_Normal størrelse"
-
-#: src/dh-window.ui:39 src/menus.ui:29
-msgid "New _Window"
-msgstr "Nyt _vindue"
-
-#: src/dh-window.ui:75 src/menus.ui:35
-msgid "_Preferences"
-msgstr "_Indstillinger"
-
-#: src/dh-window.ui:81 src/menus.ui:41
-msgid "_Keyboard Shortcuts"
-msgstr "_Tastaturgenveje"
-
-#: src/dh-window.ui:85 src/menus.ui:45
-msgid "_Help"
-msgstr "_Hjælp"
-
-#: src/dh-window.ui:89
-msgid "_About Devhelp"
-msgstr "_Om Devhelp"
-
-#: src/dh-window.ui:93 src/menus.ui:53
-msgid "_Quit"
-msgstr "_Afslut"
-
-#: src/dh-window.ui:121
-msgid "Back"
-msgstr "Tilbage"
-
-#: src/dh-window.ui:140
-msgid "Forward"
-msgstr "Fremad"
-
-#: src/dh-window.ui:186
-msgid "New Tab"
-msgstr "Nyt faneblad"
-
-#: src/help-overlay.ui:14
-msgctxt "shortcut window"
+#. General group
+#: src/dh-window.c:393
 msgid "General"
 msgstr "Generelle"
 
-#: src/help-overlay.ui:19
-msgctxt "shortcut window"
-msgid "Focus global search"
-msgstr "Giv fokus til global søgning"
-
-#: src/help-overlay.ui:26
-msgctxt "shortcut window"
-msgid "Find in current page"
-msgstr "Find på nuværende side"
-
-#: src/help-overlay.ui:33
-msgctxt "shortcut window"
-msgid "Open a new window"
-msgstr "Åbn et nyt vindue"
-
-#: src/help-overlay.ui:40
-msgctxt "shortcut window"
-msgid "Open a new tab"
-msgstr "Åbn et nyt faneblad"
-
-#: src/help-overlay.ui:47
-msgctxt "shortcut window"
-msgid "Toggle side panel visibility"
-msgstr "Gør sidepanelet synligt/usynligt"
-
-#: src/help-overlay.ui:54
-msgctxt "shortcut window"
-msgid "Go back"
-msgstr "Gå tilbage"
-
-#: src/help-overlay.ui:61
-msgctxt "shortcut window"
-msgid "Go forward"
-msgstr "Gå fremad"
-
-#: src/help-overlay.ui:68
-msgctxt "shortcut window"
-msgid "Print"
-msgstr "Udskriv"
-
-#: src/help-overlay.ui:75
-msgctxt "shortcut window"
-msgid "Close the current window"
-msgstr "Luk det nuværende vindue"
-
-#: src/help-overlay.ui:82
-msgctxt "shortcut window"
-msgid "Close all windows"
-msgstr "Luk alle vinduer"
-
-#: src/help-overlay.ui:90
-msgctxt "shortcut window"
+#. Zoom group
+#: src/dh-window.c:407
 msgid "Zoom"
 msgstr "Zoom"
 
-#: src/help-overlay.ui:95
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "Zoom ind"
+#: src/dh-window.c:572
+msgid "Back"
+msgstr "Tilbage"
 
-#: src/help-overlay.ui:102
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "Zoom ud"
+#: src/dh-window.c:576
+msgid "Forward"
+msgstr "Fremad"
 
-#: src/help-overlay.ui:109
-msgctxt "shortcut window"
-msgid "Reset Zoom"
-msgstr "Nulstil zoom"
+#: src/dh-window.c:599
+msgid "New Tab"
+msgstr "Nyt faneblad"
 
-#: src/menus.ui:49
-msgid "_About"
-msgstr "_Om"
+#~ msgid "_About Devhelp"
+#~ msgstr "_Om Devhelp"
 
-#~ msgid "Larger text"
-#~ msgstr "Større tekst"
+#~ msgctxt "shortcut window"
+#~ msgid "Print"
+#~ msgstr "Udskriv"
 
-#~ msgid "Smaller text"
-#~ msgstr "Mindre tekst"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom in"
+#~ msgstr "Zoom ind"
 
-#~ msgid "Normal size"
-#~ msgstr "Normal størrelse"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom out"
+#~ msgstr "Zoom ud"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Reset Zoom"
+#~ msgstr "Nulstil zoom"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
