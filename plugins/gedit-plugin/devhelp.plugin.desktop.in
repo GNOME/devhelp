@@ -3,7 +3,7 @@ Loader=python3
 Module=devhelp
 IAge=3
 Name=Devhelp support
-Description=Makes F2 bring up Devhelp for the word at the cursor
+Description=Makes F2 bring up Devhelp for the word at the cursor, and <Shift>F2 will open a search on https://codesearch.debian.net/ for the function/macro definition of the word at cursor.
 Authors=Richard Hult
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=org.gnome.Devhelp

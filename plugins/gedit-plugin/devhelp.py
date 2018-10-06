@@ -21,7 +21,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import GObject, Gio, Gtk, Gedit
+from gi.repository import GObject, Gio, Gtk, Gedit, Gdk
 import os
 import gettext
 
@@ -34,6 +34,7 @@ class DevhelpAppActivatable(GObject.Object, Gedit.AppActivatable):
 
     def do_activate(self):
         self.app.add_accelerator("F2", "win.devhelp", None)
+        self.app.add_accelerator("<Shift>F2", "win.codesearch", None)
 
         # Translate actions below, hardcoding domain here to avoid complications now
         _ = lambda s: gettext.dgettext('devhelp', s)
@@ -41,9 +42,12 @@ class DevhelpAppActivatable(GObject.Object, Gedit.AppActivatable):
         self.menu_ext = self.extend_menu("tools-section")
         item = Gio.MenuItem.new(_("Show API Documentation"), "win.devhelp")
         self.menu_ext.prepend_menu_item(item)
+        item = Gio.MenuItem.new(_("Find source on codesearch.debian.net"), "win.codesearch")
+        self.menu_ext.prepend_menu_item(item)
 
     def do_deactivate(self):
         self.app.remove_accelerator("win.devhelp", None)
+        self.app.remove_accelerator("win.codesearch", None)
         self.menu_ext = None
 
 class DevhelpWindowActivatable(GObject.Object, Gedit.WindowActivatable):
@@ -57,17 +61,28 @@ class DevhelpWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         action = Gio.SimpleAction(name="devhelp")
         action.connect('activate', lambda a, p: self.do_devhelp(self.window.get_active_document()))
         self.window.add_action(action)
+        action = Gio.SimpleAction(name="codesearch")
+        action.connect('activate', lambda a, p: self.do_devhelp(self.window.get_active_document(), True))
+        self.window.add_action(action)
 
     def do_deactivate(self):
         self.window.remove_action("devhelp")
+        self.window.remove_action("codesearch")
 
     def do_update_state(self):
         self.window.lookup_action("devhelp").set_enabled(self.window.get_active_document() is not None)
+        self.window.lookup_action("codesearch").set_enabled(self.window.get_active_document() is not None)
 
     def _is_word_separator(self, c):
         return not (c.isalnum() or c == '_')
 
-    def do_devhelp(self, document):
+    def code_search(self, text):
+        # Regex is (?mi:^(?:#define\s+)?text)\s*\((?m:([^;]+)$)
+        # it matches both function and macro definitions
+        uri = "https://codesearch.debian.net/search?q=%28%3Fmi%3A%5E%28%3F%3A%23define%5Cs%2B%29%3F"+text+"%29%5Cs*%5C%28%28%3Fm%3A%28%5B%5E%3B%5D%2B%29%24%29"
+        Gtk.show_uri_on_window(self.window, uri, Gdk.CURRENT_TIME)
+
+    def do_devhelp(self, document, is_codesearch = False):
         # Get the word at the cursor
         start = document.get_iter_at_mark(document.get_insert())
         end = start.copy()
@@ -99,6 +114,9 @@ class DevhelpWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         if end.compare(start) > 0:
             text = document.get_text(start,end,False).strip()
             if text:
+                if is_codesearch:
+                    self.code_search(text)
+                    return;
                 # FIXME: We need a dbus interface for devhelp soon...
                 os.spawnlp(os.P_NOWAIT, 'devhelp', 'devhelp', '-s', text)
 
