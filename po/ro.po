@@ -8,9 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-08-30 18:43+0000\n"
-"PO-Revision-Date: 2018-09-03 18:40+0200\n"
-"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
+"POT-Creation-Date: 2018-09-21 13:52+0000\n"
+"PO-Revision-Date: 2018-09-27 17:38+0300\n"
+"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
+"com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -24,12 +25,12 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:154 src/dh-app.c:499
+#: src/dh-app.c:270 src/dh-app.c:598
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:156
+#: src/dh-app.c:272
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "O unealtă de dezvoltator pentru navigarea și căutarea în documentație API"
@@ -277,7 +278,107 @@ msgstr "Asistență Devhelp"
 msgid "Show API Documentation"
 msgstr "Afișare documentație API"
 
-#: src/dh-app.c:158
+#. action, icon, label, accel, tooltip
+#. App menu
+#: src/dh-app.c:51
+msgid "New _Window"
+msgstr "Fereastră _nouă"
+
+#: src/dh-app.c:52
+msgid "Open a new window"
+msgstr "Deschide o fereastră nouă"
+
+#: src/dh-app.c:53
+msgid "_Preferences"
+msgstr "_Preferințe"
+
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr "Scurtături _tastatură"
+
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "_Ajutor"
+
+#: src/dh-app.c:56
+msgid "_About"
+msgstr "_Despre"
+
+#: src/dh-app.c:57
+msgid "_Quit"
+msgstr "_Ieșire"
+
+#: src/dh-app.c:58
+msgid "Close all windows"
+msgstr "Închide toate ferestrele"
+
+#. Window menu
+#: src/dh-app.c:61
+msgid "_Side Panel"
+msgstr "_Panou lateral"
+
+#: src/dh-app.c:62
+msgid "Toggle side panel visibility"
+msgstr "Comută vizibilitatea panoului lateral"
+
+#: src/dh-app.c:63
+msgid "_Print"
+msgstr "Ti_părire"
+
+#: src/dh-app.c:64
+msgid "_Find"
+msgstr "_Căutare"
+
+#: src/dh-app.c:65
+msgid "Find in current page"
+msgstr "Caută în pagina curentă"
+
+#: src/dh-app.c:66
+msgid "_Larger Text"
+msgstr "_Text mai mare"
+
+#: src/dh-app.c:67
+msgid "Larger text"
+msgstr "Text mai mare"
+
+#: src/dh-app.c:68
+msgid "S_maller Text"
+msgstr "Text mai _mic"
+
+#: src/dh-app.c:69
+msgid "Smaller text"
+msgstr "Text mai mic"
+
+#: src/dh-app.c:70
+msgid "_Normal Size"
+msgstr "Dimensiune _normală"
+
+#: src/dh-app.c:71
+msgid "Normal size"
+msgstr "Dimensiune normală"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+msgid "Open a new tab"
+msgstr "Deschide un tab nou"
+
+#: src/dh-app.c:112
+msgid "Close the current tab"
+msgstr "Închide tabul curent"
+
+#: src/dh-app.c:113
+msgid "Go back"
+msgstr "Înapoi"
+
+#: src/dh-app.c:114
+msgid "Go forward"
+msgstr "Înainte"
+
+#: src/dh-app.c:115
+msgid "Focus global search"
+msgstr "Focalizează căutarea globală"
+
+#: src/dh-app.c:274
 msgid "translator-credits"
 msgstr ""
 "Adi Roiban\n"
@@ -289,31 +390,31 @@ msgstr ""
 "  Ionuț Jula https://launchpad.net/~ionutjula\n"
 "  Mihai Felseghi https://launchpad.net/~mihaifelseghi"
 
-#: src/dh-app.c:160
+#: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Pagina web Devhelp"
 
-#: src/dh-app.c:403
+#: src/dh-app.c:487
 msgid "Opens a new Devhelp window"
 msgstr "Deschide o fereastră nouă Devhelp"
 
-#: src/dh-app.c:408
+#: src/dh-app.c:492
 msgid "Search for a keyword"
 msgstr "Caută cuvânt cheie"
 
-#: src/dh-app.c:409 src/dh-app.c:414
+#: src/dh-app.c:493 src/dh-app.c:498
 msgid "KEYWORD"
 msgstr "CUVÂNT CHEIE"
 
-#: src/dh-app.c:413
+#: src/dh-app.c:497
 msgid "Search and display any hit in the assistant window"
 msgstr "Caută și afișează orice rezultat în fereastra asistent"
 
-#: src/dh-app.c:418
+#: src/dh-app.c:502
 msgid "Display the version and exit"
 msgstr "Afișează versiunea și ieși"
 
-#: src/dh-app.c:423
+#: src/dh-app.c:507
 msgid "Quit any running Devhelp"
 msgstr "Închide orice instanță Devhelp"
 
@@ -358,153 +459,46 @@ msgstr "Lățime _fixă:"
 msgid "Fonts"
 msgstr "Fonturi"
 
-#: src/dh-window.ui:7 src/dh-window.ui:45
-msgid "_Side Panel"
-msgstr "_Panou lateral"
+#. General group
+#: src/dh-window.c:393
+msgid "General"
+msgstr "General"
 
-#: src/dh-window.ui:13 src/dh-window.ui:51
-msgid "_Print"
-msgstr "Ti_părire"
+#. Zoom group
+#: src/dh-window.c:407
+msgid "Zoom"
+msgstr "Focalizare"
 
-#: src/dh-window.ui:17 src/dh-window.ui:55
-msgid "_Find"
-msgstr "_Căutare"
-
-#: src/dh-window.ui:23 src/dh-window.ui:61
-msgid "_Larger Text"
-msgstr "_Text mai mare"
-
-#: src/dh-window.ui:27 src/dh-window.ui:65
-msgid "S_maller Text"
-msgstr "Text mai _mic"
-
-#: src/dh-window.ui:31 src/dh-window.ui:69
-msgid "_Normal Size"
-msgstr "Dimensiune _normală"
-
-#: src/dh-window.ui:39 src/menus.ui:29
-msgid "New _Window"
-msgstr "Fereastră _nouă"
-
-#: src/dh-window.ui:75 src/menus.ui:35
-msgid "_Preferences"
-msgstr "_Preferințe"
-
-#: src/dh-window.ui:81 src/menus.ui:41
-msgid "_Keyboard Shortcuts"
-msgstr "Scurtături _tastatură"
-
-#: src/dh-window.ui:85 src/menus.ui:45
-msgid "_Help"
-msgstr "_Ajutor"
-
-#: src/dh-window.ui:89
-msgid "_About Devhelp"
-msgstr "_Despre Devhelp"
-
-#: src/dh-window.ui:93 src/menus.ui:53
-msgid "_Quit"
-msgstr "_Ieșire"
-
-#: src/dh-window.ui:121
+#: src/dh-window.c:572
 msgid "Back"
 msgstr "Înapoi"
 
-#: src/dh-window.ui:140
+#: src/dh-window.c:576
 msgid "Forward"
 msgstr "Înainte"
 
-#: src/dh-window.ui:186
+#: src/dh-window.c:599
 msgid "New Tab"
 msgstr "Tab nou"
 
-#: src/help-overlay.ui:14
-msgctxt "shortcut window"
-msgid "General"
-msgstr "Generale"
+#~ msgid "_About Devhelp"
+#~ msgstr "_Despre Devhelp"
 
-#: src/help-overlay.ui:19
-msgctxt "shortcut window"
-msgid "Focus global search"
-msgstr "Focalizează căutarea globală"
+#~ msgctxt "shortcut window"
+#~ msgid "Print"
+#~ msgstr "Tipărire"
 
-#: src/help-overlay.ui:26
-msgctxt "shortcut window"
-msgid "Find in current page"
-msgstr "Caută în pagina curentă"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom in"
+#~ msgstr "Mărește"
 
-#: src/help-overlay.ui:33
-msgctxt "shortcut window"
-msgid "Open a new window"
-msgstr "Deschide o fereastră nouă"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom out"
+#~ msgstr "Micșorează"
 
-#: src/help-overlay.ui:40
-msgctxt "shortcut window"
-msgid "Open a new tab"
-msgstr "Deschide un tab nou"
-
-#: src/help-overlay.ui:47
-msgctxt "shortcut window"
-msgid "Toggle side panel visibility"
-msgstr "Comută vizibilitatea panoului lateral"
-
-#: src/help-overlay.ui:54
-msgctxt "shortcut window"
-msgid "Go back"
-msgstr "Navighează înapoi"
-
-#: src/help-overlay.ui:61
-msgctxt "shortcut window"
-msgid "Go forward"
-msgstr "Navighează înainte"
-
-#: src/help-overlay.ui:68
-msgctxt "shortcut window"
-msgid "Print"
-msgstr "Tipărire"
-
-#: src/help-overlay.ui:75
-msgctxt "shortcut window"
-msgid "Close the current window"
-msgstr "Închide fereastra curentă"
-
-#: src/help-overlay.ui:82
-msgctxt "shortcut window"
-msgid "Close all windows"
-msgstr "Închide toate ferestrele"
-
-#: src/help-overlay.ui:90
-msgctxt "shortcut window"
-msgid "Zoom"
-msgstr "Zoom"
-
-#: src/help-overlay.ui:95
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "Mărește"
-
-#: src/help-overlay.ui:102
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "Micșorează"
-
-#: src/help-overlay.ui:109
-msgctxt "shortcut window"
-msgid "Reset Zoom"
-msgstr "Restabilește zoom"
-
-#: src/menus.ui:49
-msgid "_About"
-msgstr "_Despre"
-
-#~ msgid "Larger text"
-#~ msgstr "Text mai mare"
-
-#~ msgid "Smaller text"
-#~ msgstr "Text mai mic"
-
-#~ msgid "Normal size"
-#~ msgstr "Dimensiune normală"
+#~ msgctxt "shortcut window"
+#~ msgid "Reset Zoom"
+#~ msgstr "Restabilește zoom"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
