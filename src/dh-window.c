@@ -31,7 +31,7 @@
 
 typedef struct {
         GtkHeaderBar *header_bar;
-        GtkMenuButton *window_menu_button;
+        GtkMenuButton *menu_button;
 
         DhSidebar *sidebar;
         DhSearchBar *search_bar;
@@ -62,7 +62,7 @@ dh_window_dispose (GObject *object)
         DhWindowPrivate *priv = dh_window_get_instance_private (DH_WINDOW (object));
 
         priv->header_bar = NULL;
-        priv->window_menu_button = NULL;
+        priv->menu_button = NULL;
         priv->sidebar = NULL;
         priv->search_bar = NULL;
         priv->notebook = NULL;
@@ -461,7 +461,7 @@ add_actions (DhWindow *window)
         g_object_unref (property_action);
 
         property_action = g_property_action_new ("show-window-menu",
-                                                 priv->window_menu_button,
+                                                 priv->menu_button,
                                                  "active");
         g_action_map_add_action (G_ACTION_MAP (window), G_ACTION (property_action));
         g_object_unref (property_action);
@@ -525,7 +525,7 @@ init_header_bar (DhWindow *window)
         GtkWidget *new_tab_button;
 
         g_assert (priv->header_bar == NULL);
-        g_assert (priv->window_menu_button == NULL);
+        g_assert (priv->menu_button == NULL);
 
         priv->header_bar = GTK_HEADER_BAR (gtk_header_bar_new ());
         gtk_header_bar_set_show_close_button (priv->header_bar, TRUE);
@@ -548,12 +548,12 @@ init_header_bar (DhWindow *window)
         gtk_header_bar_pack_start (priv->header_bar, back_forward_hgrid);
 
         /* Menu */
-        priv->window_menu_button = GTK_MENU_BUTTON (gtk_menu_button_new ());
-        gtk_menu_button_set_direction (priv->window_menu_button, GTK_ARROW_NONE);
-        gtk_header_bar_pack_end (priv->header_bar, GTK_WIDGET (priv->window_menu_button));
+        priv->menu_button = GTK_MENU_BUTTON (gtk_menu_button_new ());
+        gtk_menu_button_set_direction (priv->menu_button, GTK_ARROW_NONE);
+        gtk_header_bar_pack_end (priv->header_bar, GTK_WIDGET (priv->menu_button));
 
         menu = create_menu ();
-        gtk_menu_button_set_menu_model (priv->window_menu_button, menu);
+        gtk_menu_button_set_menu_model (priv->menu_button, menu);
         g_object_unref (menu);
 
         /* New tab button */
