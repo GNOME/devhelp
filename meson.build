@@ -6,7 +6,7 @@
 project(
         'devhelp', 'c',
         meson_version : '>= 0.47',
-        version : '3.30.0'
+        version : '3.31.0'
 )
 
 GNOME = import('gnome')
