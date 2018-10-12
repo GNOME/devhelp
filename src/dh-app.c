@@ -47,7 +47,7 @@ add_menu_action_infos (DhApp *app)
         const AmtkActionInfoEntry entries[] = {
                 /* action, icon, label, accel, tooltip */
 
-                /* App menu */
+                /* Actions related to the whole application */
                 { "app.new-window", NULL, N_("New _Window"), "<Control>n",
                   N_("Open a new window") },
                 { "app.preferences", NULL, N_("_Preferences") },
@@ -57,7 +57,7 @@ add_menu_action_infos (DhApp *app)
                 { "app.quit", NULL, N_("_Quit"), "<Control>q",
                   N_("Close all windows") },
 
-                /* Window menu */
+                /* Actions related to the current main window */
                 { "win.show-sidebar", NULL, N_("_Side Panel"), "F9",
                   N_("Toggle side panel visibility") },
                 { "win.print", NULL, N_("_Print"), "<Control>p" },
@@ -423,41 +423,6 @@ setup_additional_accelerators (GtkApplication *app)
 }
 
 static void
-create_app_menu_if_needed (GtkApplication *app)
-{
-        GMenu *app_menu;
-        GMenu *section;
-        AmtkFactory *factory;
-
-        if (!gtk_application_prefers_app_menu (app))
-                return;
-
-        app_menu = g_menu_new ();
-        factory = amtk_factory_new (NULL);
-
-        section = g_menu_new ();
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.new-window"));
-        amtk_gmenu_append_section (app_menu, NULL, section);
-
-        section = g_menu_new ();
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.preferences"));
-        amtk_gmenu_append_section (app_menu, NULL, section);
-
-        section = g_menu_new ();
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.shortcuts-window"));
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.help"));
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.about"));
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.quit"));
-        amtk_gmenu_append_section (app_menu, NULL, section);
-
-        g_object_unref (factory);
-        g_menu_freeze (app_menu);
-
-        gtk_application_set_app_menu (app, G_MENU_MODEL (app_menu));
-        g_object_unref (app_menu);
-}
-
-static void
 dh_app_startup (GApplication *application)
 {
         DhApp *app = DH_APP (application);
@@ -470,7 +435,6 @@ dh_app_startup (GApplication *application)
         add_action_infos (app);
         add_action_entries (app);
         setup_additional_accelerators (GTK_APPLICATION (app));
-        create_app_menu_if_needed (GTK_APPLICATION (app));
 }
 
 static void

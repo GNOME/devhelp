@@ -468,38 +468,7 @@ add_actions (DhWindow *window)
 }
 
 static GMenuModel *
-create_window_menu_simple (void)
-{
-        GMenu *menu;
-        GMenu *section;
-        AmtkFactory *factory;
-
-        menu = g_menu_new ();
-        factory = amtk_factory_new (NULL);
-
-        section = g_menu_new ();
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.show-sidebar"));
-        amtk_gmenu_append_section (menu, NULL, section);
-
-        section = g_menu_new ();
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.print"));
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.find"));
-        amtk_gmenu_append_section (menu, NULL, section);
-
-        section = g_menu_new ();
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-in"));
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-out"));
-        amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.zoom-default"));
-        amtk_gmenu_append_section (menu, NULL, section);
-
-        g_object_unref (factory);
-        g_menu_freeze (menu);
-
-        return G_MENU_MODEL (menu);
-}
-
-static GMenuModel *
-create_window_menu_plus_app_menu (void)
+create_menu (void)
 {
         GMenu *menu;
         GMenu *section;
@@ -552,8 +521,7 @@ init_header_bar (DhWindow *window)
         GtkStyleContext *style_context;
         GtkWidget *back_button;
         GtkWidget *forward_button;
-        GtkApplication *app;
-        GMenuModel *window_menu;
+        GMenuModel *menu;
         GtkWidget *new_tab_button;
 
         g_assert (priv->header_bar == NULL);
@@ -584,14 +552,9 @@ init_header_bar (DhWindow *window)
         gtk_menu_button_set_direction (priv->window_menu_button, GTK_ARROW_NONE);
         gtk_header_bar_pack_end (priv->header_bar, GTK_WIDGET (priv->window_menu_button));
 
-        app = GTK_APPLICATION (g_application_get_default ());
-        if (gtk_application_prefers_app_menu (app))
-                window_menu = create_window_menu_simple ();
-        else
-                window_menu = create_window_menu_plus_app_menu ();
-
-        gtk_menu_button_set_menu_model (priv->window_menu_button, window_menu);
-        g_object_unref (window_menu);
+        menu = create_menu ();
+        gtk_menu_button_set_menu_model (priv->window_menu_button, menu);
+        g_object_unref (menu);
 
         /* New tab button */
         new_tab_button = gtk_button_new_from_icon_name ("tab-new-symbolic", GTK_ICON_SIZE_BUTTON);
