@@ -501,6 +501,21 @@ create_menu (void)
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.shortcuts-window"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.help"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.about"));
+        /* Keep the Quit menu item. The GNOME goal recommends to remove it:
+         * https://gitlab.gnome.org/GNOME/Initiatives/wikis/App-Menu-Retirement
+         * “There is no need for the Quit menu item and the recommendation is to
+         * remove it from all locations.”
+         * In Devhelp, there *is* a need for the Quit menu item: after
+         * installing/uninstalling books on the filesystem, it may be necessary
+         * to restart Devhelp because the file monitoring is not perfect, see
+         * the class description of DhBookListDirectory. Instead of closing the
+         * Devhelp windows one by one, it's simpler to quit the whole
+         * application at once. But this can be fixed by adding a “reload books”
+         * action.
+         * Another use-case with the Quit menu item is when the app bugs, just
+         * restarting the app will most probably fix the problem (and then the
+         * user needs to avoid repeating the actions that make the app to bug).
+         */
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.quit"));
         amtk_gmenu_append_section (menu, NULL, section);
 
