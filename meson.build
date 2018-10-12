@@ -50,6 +50,14 @@ endforeach
 DEVHELP_APP_DEPS = [
         LIBDEVHELP_DEPS,
         dependency('amtk-5', version : '>= 5.0'),
+        # TODO: move gsettings-desktop-schemas dep for the libdevhelp, in the
+        # *.pc file it must be a private dep. With meson 0.47 there is no clean
+        # and generic way to do it :-( Clean: no information duplication (to
+        # create both the list of dependency objects plus creating the *.pc
+        # file). Generic: declare the dependencies public/private, with/without
+        # version requirements. Without the need to copy/paste a chunk of build
+        # code from one project to another (i.e. have something short and
+        # simple, like with the AX_PKG_CHECK_MODULES Autotools macro).
         dependency('gsettings-desktop-schemas'),
 ]
 
