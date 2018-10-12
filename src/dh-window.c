@@ -498,9 +498,6 @@ create_menu (void)
 
         section = g_menu_new ();
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.preferences"));
-        amtk_gmenu_append_section (menu, NULL, section);
-
-        section = g_menu_new ();
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "win.shortcuts-window"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.help"));
         amtk_gmenu_append_item (section, amtk_factory_create_gmenu_item (factory, "app.about"));
