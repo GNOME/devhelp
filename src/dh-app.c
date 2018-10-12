@@ -53,7 +53,7 @@ add_menu_action_infos (DhApp *app)
                 { "app.preferences", NULL, N_("_Preferences") },
                 { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts") },
                 { "app.help", NULL, N_("_Help"), "F1" },
-                { "app.about", NULL, N_("_About") },
+                { "app.about", NULL, N_("_About Devhelp") },
                 { "app.quit", NULL, N_("_Quit"), "<Control>q",
                   N_("Close all windows") },
 
