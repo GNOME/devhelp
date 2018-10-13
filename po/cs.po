@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-21 13:52+0000\n"
-"PO-Revision-Date: 2018-09-21 19:54+0200\n"
+"POT-Creation-Date: 2018-10-12 12:52+0000\n"
+"PO-Revision-Date: 2018-10-13 09:45+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -27,7 +27,7 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "DevHelp"
 
@@ -278,7 +278,7 @@ msgid "Show API Documentation"
 msgstr "Zobrazit dokumentaci API"
 
 #. action, icon, label, accel, tooltip
-#. App menu
+#. Actions related to the whole application
 #: src/dh-app.c:51
 msgid "New _Window"
 msgstr "Nové _okno"
@@ -300,8 +300,8 @@ msgid "_Help"
 msgstr "Nápo_věda"
 
 #: src/dh-app.c:56
-msgid "_About"
-msgstr "O _aplikaci"
+msgid "_About Devhelp"
+msgstr "O _aplikaci DevHelp"
 
 #: src/dh-app.c:57
 msgid "_Quit"
@@ -311,7 +311,7 @@ msgstr "U_končit"
 msgid "Close all windows"
 msgstr "Zavřít všechna okna"
 
-#. Window menu
+#. Actions related to the current main window
 #: src/dh-app.c:61
 msgid "_Side Panel"
 msgstr "Po_stranní panel"
@@ -388,27 +388,27 @@ msgstr ""
 msgid "Devhelp Website"
 msgstr "Webové stránky Devhelp"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Otevřít nové okno Devhelp"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "Hledat klíčové slovo"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "KLÍČOVÉ_SLOVO"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "Vyhledat a zobrazit každý výskyt v asistenčním okně"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "Zobrazit verzi a skončit"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Ukončit všechny běžící instance DevHelp"
 
@@ -463,14 +463,14 @@ msgstr "Obecné"
 msgid "Zoom"
 msgstr "Přiblížení"
 
-#: src/dh-window.c:572
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "Zpět"
 
-#: src/dh-window.c:576
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "Vpřed"
 
-#: src/dh-window.c:599
+#: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Nová karta"
