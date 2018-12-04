@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-04 08:26+0000\n"
-"PO-Revision-Date: 2018-09-05 11:04+0200\n"
+"POT-Creation-Date: 2018-11-10 00:50+0000\n"
+"PO-Revision-Date: 2018-12-04 15:26+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -25,12 +25,12 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:154 src/dh-app.c:499
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "DevHelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:156
+#: src/dh-app.c:272
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Una herramienta para desarrolladores que sirve para explorar y buscar "
@@ -197,7 +197,7 @@ msgstr "lenguaje: %s"
 msgid "Language: Undefined"
 msgstr "Lenguaje: indefinido"
 
-#: devhelp/dh-book-tree.c:759
+#: devhelp/dh-book-tree.c:755
 msgid "_Collapse All"
 msgstr "_Contraer todo"
 
@@ -266,7 +266,7 @@ msgstr "Propiedad"
 msgid "Signal"
 msgstr "Señal"
 
-#: devhelp/dh-web-view.c:661
+#: devhelp/dh-web-view.c:652
 msgid "Empty Page"
 msgstr "Página vacía"
 
@@ -278,38 +278,156 @@ msgstr "Soporte para DevHelp"
 msgid "Show API Documentation"
 msgstr "Mostrar la documentación de la API"
 
-#: src/dh-app.c:158
+#. action, icon, label, accel, tooltip
+#. Actions related to the whole application
+#: src/dh-app.c:51
+msgid "New _Window"
+msgstr "_Ventana nueva"
+
+#: src/dh-app.c:52
+#| msgctxt "shortcut window"
+#| msgid "Open a new window"
+msgid "Open a new window"
+msgstr "Abrir una ventana nueva"
+
+#: src/dh-app.c:53
+msgid "_Preferences"
+msgstr "Prefere_ncias"
+
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr "_Atajos del teclado"
+
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "Ay_uda"
+
+#: src/dh-app.c:56
+msgid "_About Devhelp"
+msgstr "_Acerca de DevHelp"
+
+#: src/dh-app.c:57
+msgid "_Quit"
+msgstr "_Salir"
+
+#: src/dh-app.c:58
+#| msgctxt "shortcut window"
+#| msgid "Close all windows"
+msgid "Close all windows"
+msgstr "Cerrar todas las ventanas"
+
+#. Actions related to the current main window
+#: src/dh-app.c:61
+msgid "_Side Panel"
+msgstr "_Panel lateral"
+
+#: src/dh-app.c:62
+#| msgctxt "shortcut window"
+#| msgid "Toggle side panel visibility"
+msgid "Toggle side panel visibility"
+msgstr "Conmutar la visibilidad del panel lateral"
+
+#: src/dh-app.c:63
+msgid "_Print"
+msgstr "_Imprimir"
+
+#: src/dh-app.c:64
+msgid "_Find"
+msgstr "_Buscar"
+
+#: src/dh-app.c:65
+#| msgctxt "shortcut window"
+#| msgid "Find in current page"
+msgid "Find in current page"
+msgstr "Buscar en la página actual"
+
+#: src/dh-app.c:66
+msgid "_Larger Text"
+msgstr "Texto más _grande"
+
+#: src/dh-app.c:67
+msgid "Larger text"
+msgstr "Texto más grande"
+
+#: src/dh-app.c:68
+msgid "S_maller Text"
+msgstr "Texto más _pequeño"
+
+#: src/dh-app.c:69
+msgid "Smaller text"
+msgstr "Texto más pequeño"
+
+#: src/dh-app.c:70
+msgid "_Normal Size"
+msgstr "Tamaño _normal"
+
+#: src/dh-app.c:71
+msgid "Normal size"
+msgstr "Tamaño normal"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+#| msgctxt "shortcut window"
+#| msgid "Open a new tab"
+msgid "Open a new tab"
+msgstr "Abrir una pestaña nueva"
+
+#: src/dh-app.c:112
+#| msgctxt "shortcut window"
+#| msgid "Close the current window"
+msgid "Close the current tab"
+msgstr "Cerrar la pestaña actual"
+
+#: src/dh-app.c:113
+#| msgctxt "shortcut window"
+#| msgid "Go back"
+msgid "Go back"
+msgstr "Atrás"
+
+#: src/dh-app.c:114
+#| msgctxt "shortcut window"
+#| msgid "Go forward"
+msgid "Go forward"
+msgstr "Adelante"
+
+#: src/dh-app.c:115
+#| msgctxt "shortcut window"
+#| msgid "Focus global search"
+msgid "Focus global search"
+msgstr "Dar el foco a la búsqueda global"
+
+#: src/dh-app.c:274
 msgid "translator-credits"
 msgstr ""
 "Daniel Mustieles <daniel.mustieles@gmail.com>, 2014\n"
 "Jorge González <jorgegonz@svn.gnome.org>, 2007-2009\n"
 "Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2006"
 
-#: src/dh-app.c:160
+#: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Página web de Devhelp"
 
-#: src/dh-app.c:403
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Abre una ventana de Devhelp nueva"
 
-#: src/dh-app.c:408
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "Buscar una palabra clave"
 
-#: src/dh-app.c:409 src/dh-app.c:414
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "PALABRACLAVE"
 
-#: src/dh-app.c:413
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "Buscar y mostrar cualquier coincidencia en la ventana del asistente"
 
-#: src/dh-app.c:418
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "Muestra la versión y sale"
 
-#: src/dh-app.c:423
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Termina cualquier DevHelp en ejecución"
 
@@ -354,167 +472,53 @@ msgstr "Anchura _fija:"
 msgid "Fonts"
 msgstr "Tipografías"
 
-#: src/dh-window.ui:7 src/dh-window.ui:45
-msgid "_Side Panel"
-msgstr "_Panel lateral"
-
-#: src/dh-window.ui:13 src/dh-window.ui:51
-msgid "_Print"
-msgstr "_Imprimir"
-
-#: src/dh-window.ui:17 src/dh-window.ui:55
-msgid "_Find"
-msgstr "_Buscar"
-
-#: src/dh-window.ui:23 src/dh-window.ui:61
-msgid "_Larger Text"
-msgstr "Texto más _grande"
-
-#: src/dh-window.ui:27 src/dh-window.ui:65
-msgid "S_maller Text"
-msgstr "Texto más _pequeño"
-
-#: src/dh-window.ui:31 src/dh-window.ui:69
-msgid "_Normal Size"
-msgstr "Tamaño _normal"
-
-#: src/dh-window.ui:39 src/menus.ui:29
-msgid "New _Window"
-msgstr "_Ventana nueva"
-
-#: src/dh-window.ui:75 src/menus.ui:35
-msgid "_Preferences"
-msgstr "Prefere_ncias"
-
-#: src/dh-window.ui:81 src/menus.ui:41
-msgid "_Keyboard Shortcuts"
-msgstr "_Atajos del teclado"
-
-#: src/dh-window.ui:85 src/menus.ui:45
-msgid "_Help"
-msgstr "Ay_uda"
-
-#: src/dh-window.ui:89
-msgid "_About Devhelp"
-msgstr "_Acerca de DevHelp"
-
-#: src/dh-window.ui:93 src/menus.ui:53
-msgid "_Quit"
-msgstr "_Salir"
-
-#: src/dh-window.ui:121
-msgid "Back"
-msgstr "Atrás"
-
-#: src/dh-window.ui:140
-msgid "Forward"
-msgstr "Adelante"
-
-#: src/dh-window.ui:186
-msgid "New Tab"
-msgstr "Pestaña nueva"
-
-#: src/help-overlay.ui:14
+#. General group
+#: src/dh-window.c:393
+#| msgctxt "shortcut window"
 #| msgid "General"
-msgctxt "shortcut window"
 msgid "General"
 msgstr "General"
 
-#: src/help-overlay.ui:19
-#| msgid "Focus global search"
-msgctxt "shortcut window"
-msgid "Focus global search"
-msgstr "Dar el foco a la búsqueda global"
-
-#: src/help-overlay.ui:26
-#| msgid "Find in current page"
-msgctxt "shortcut window"
-msgid "Find in current page"
-msgstr "Buscar en la página actual"
-
-#: src/help-overlay.ui:33
-#| msgid "Open a new window"
-msgctxt "shortcut window"
-msgid "Open a new window"
-msgstr "Abrir una ventana nueva"
-
-#: src/help-overlay.ui:40
-#| msgid "Open a new tab"
-msgctxt "shortcut window"
-msgid "Open a new tab"
-msgstr "Abrir una pestaña nueva"
-
-#: src/help-overlay.ui:47
-#| msgid "Toggle side panel visibility"
-msgctxt "shortcut window"
-msgid "Toggle side panel visibility"
-msgstr "Conmutar la visibilidad del panel lateral"
-
-#: src/help-overlay.ui:54
-#| msgid "Go back"
-msgctxt "shortcut window"
-msgid "Go back"
-msgstr "Atrás"
-
-#: src/help-overlay.ui:61
-#| msgid "Go forward"
-msgctxt "shortcut window"
-msgid "Go forward"
-msgstr "Adelante"
-
-#: src/help-overlay.ui:68
-msgctxt "shortcut window"
-msgid "Print"
-msgstr "Imprimir"
-
-#: src/help-overlay.ui:75
-#| msgid "Close the current tab"
-msgctxt "shortcut window"
-msgid "Close the current window"
-msgstr "Cerrar la ventana actual"
-
-#: src/help-overlay.ui:82
-#| msgid "Close all windows"
-msgctxt "shortcut window"
-msgid "Close all windows"
-msgstr "Cerrar todas las ventanas"
-
-#: src/help-overlay.ui:90
+#. Zoom group
+#: src/dh-window.c:407
+#| msgctxt "shortcut window"
 #| msgid "Zoom"
-msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Ampliación"
 
-#: src/help-overlay.ui:95
-#| msgid "Zoom in"
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "Acercar"
+#: src/dh-window.c:552
+msgid "Back"
+msgstr "Atrás"
 
-#: src/help-overlay.ui:102
-#| msgid "Zoom out"
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "Alejar"
+#: src/dh-window.c:556
+msgid "Forward"
+msgstr "Adelante"
 
-#: src/help-overlay.ui:109
-#| msgid "Reset zoom"
-msgctxt "shortcut window"
-msgid "Reset Zoom"
-msgstr "Restaurar nivel de ampliación"
+#: src/dh-window.c:574
+msgid "New Tab"
+msgstr "Pestaña nueva"
 
-#: src/menus.ui:49
-msgid "_About"
-msgstr "_Acerca de"
+#~ msgctxt "shortcut window"
+#~ msgid "Print"
+#~ msgstr "Imprimir"
 
-#~ msgid "Larger text"
-#~ msgstr "Texto más grande"
+#~| msgid "Zoom in"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom in"
+#~ msgstr "Acercar"
 
-#~ msgid "Smaller text"
-#~ msgstr "Texto más pequeño"
+#~| msgid "Zoom out"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom out"
+#~ msgstr "Alejar"
 
-#~ msgid "Normal size"
-#~ msgstr "Tamaño normal"
+#~| msgid "Reset zoom"
+#~ msgctxt "shortcut window"
+#~ msgid "Reset Zoom"
+#~ msgstr "Restaurar nivel de ampliación"
+
+#~ msgid "_About"
+#~ msgstr "_Acerca de"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
