@@ -14,14 +14,14 @@
 # Bruno Brouard <annoa.b@gmail.com>, 2010,2012
 # Alain Lojewski <allomervan@gmail.com>, 2012, 2016.
 # Guillaume Bernard <contact.guib@laposte.net>, 2016.
-# Charles Monzat <charles.monzat@numericable.fr>, 2017, 2018.
+# Charles Monzat <charles.monzat@numericable.fr>, 2017-2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-21 13:52+0000\n"
-"PO-Revision-Date: 2018-10-06 11:22+0200\n"
+"POT-Creation-Date: 2018-10-12 13:18+0000\n"
+"PO-Revision-Date: 2018-11-16 10:39+0100\n"
 "Last-Translator: Charles Monzat <charles.monzat@numericable.fr>\n"
 "Language-Team: français <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.30.0\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
@@ -85,7 +85,7 @@ msgid ""
 msgstr ""
 "Devhelp s’intègre avec d’autres applications, telles que Glade, Builder ou "
 "Anjuta, et des greffons sont disponibles pour différents éditeurs de texte "
-"(gedit, Vim, Emacs, Geany, …)."
+"(gedit, Vim, Emacs, Geany…)."
 
 #: data/org.gnome.Devhelp.desktop.in:5
 msgid "API Documentation Browser"
@@ -295,8 +295,6 @@ msgid "New _Window"
 msgstr "Nouvelle _fenêtre"
 
 #: src/dh-app.c:52
-#| msgctxt "shortcut window"
-#| msgid "Open a new window"
 msgid "Open a new window"
 msgstr "Ouvrir une nouvelle fenêtre"
 
@@ -321,8 +319,6 @@ msgid "_Quit"
 msgstr "_Quitter"
 
 #: src/dh-app.c:58
-#| msgctxt "shortcut window"
-#| msgid "Close all windows"
 msgid "Close all windows"
 msgstr "Fermer toutes les fenêtres"
 
@@ -332,8 +328,6 @@ msgid "_Side Panel"
 msgstr "_Panneau latéral"
 
 #: src/dh-app.c:62
-#| msgctxt "shortcut window"
-#| msgid "Toggle side panel visibility"
 msgid "Toggle side panel visibility"
 msgstr "Afficher ou masquer le panneau latéral"
 
@@ -346,8 +340,6 @@ msgid "_Find"
 msgstr "Re_chercher"
 
 #: src/dh-app.c:65
-#| msgctxt "shortcut window"
-#| msgid "Find in current page"
 msgid "Find in current page"
 msgstr "Rechercher dans la page actuelle"
 
@@ -377,32 +369,22 @@ msgstr "Taille normale"
 
 #. action, icon, label, accel, tooltip
 #: src/dh-app.c:111
-#| msgctxt "shortcut window"
-#| msgid "Open a new tab"
 msgid "Open a new tab"
 msgstr "Ouvrir un nouvel onglet"
 
 #: src/dh-app.c:112
-#| msgctxt "shortcut window"
-#| msgid "Close the current window"
 msgid "Close the current tab"
 msgstr "Fermer l’onglet actuel"
 
 #: src/dh-app.c:113
-#| msgctxt "shortcut window"
-#| msgid "Go back"
 msgid "Go back"
 msgstr "Précédent"
 
 #: src/dh-app.c:114
-#| msgctxt "shortcut window"
-#| msgid "Go forward"
 msgid "Go forward"
 msgstr "Suivant"
 
 #: src/dh-app.c:115
-#| msgctxt "shortcut window"
-#| msgid "Focus global search"
 msgid "Focus global search"
 msgstr "Aller au champ de recherche global"
 
@@ -490,15 +472,11 @@ msgstr "Polices"
 
 #. General group
 #: src/dh-window.c:393
-#| msgctxt "shortcut window"
-#| msgid "General"
 msgid "General"
 msgstr "Général"
 
 #. Zoom group
 #: src/dh-window.c:407
-#| msgctxt "shortcut window"
-#| msgid "Zoom"
 msgid "Zoom"
 msgstr "Zoom"
 
