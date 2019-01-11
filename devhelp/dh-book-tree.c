@@ -106,7 +106,9 @@ book_tree_selection_changed_cb (GtkTreeSelection *selection,
 
         if (link != NULL &&
             link != priv->selected_link) {
-                g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
+                if (priv->selected_link != NULL)
+                        dh_link_unref (priv->selected_link);
+
                 priv->selected_link = dh_link_ref (link);
                 g_signal_emit (tree, signals[LINK_SELECTED], 0, link);
         }
@@ -581,7 +583,9 @@ book_tree_init_selection (DhBookTree *tree)
                 if (link == NULL || dh_link_get_link_type (link) != DH_LINK_TYPE_BOOK)
                         g_warn_if_reached ();
 
-                g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
+                if (priv->selected_link != NULL)
+                        dh_link_unref (priv->selected_link);
+
                 priv->selected_link = link;
                 gtk_tree_selection_select_iter (selection, &iter);
         }
@@ -718,8 +722,12 @@ dh_book_tree_dispose (GObject *object)
 
         g_clear_object (&priv->profile);
         g_clear_object (&priv->store);
-        g_clear_pointer (&priv->selected_link, (GDestroyNotify)dh_link_unref);
         priv->context_menu = NULL;
+
+        if (priv->selected_link != NULL) {
+                dh_link_unref (priv->selected_link);
+                priv->selected_link = NULL;
+        }
 
         G_OBJECT_CLASS (dh_book_tree_parent_class)->dispose (object);
 }
