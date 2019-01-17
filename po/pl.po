@@ -1,20 +1,20 @@
 # Polish translation for devhelp.
-# Copyright © 2001-2018 the devhelp authors.
+# Copyright © 2001-2019 the devhelp authors.
 # This file is distributed under the same license as the devhelp package.
 # Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>, 2001-2003.
 # Artur Flinta <aflinta@at.kernel.pl>, 2003.
 # Wadim Dziedzic <wdziedzic@aviary.pl>, 2007.
 # Tomasz Dominikowski <dominikowski@gmail.com>, 2008-2009.
-# Piotr Drąg <piotrdrag@gmail.com>, 2009-2018.
+# Piotr Drąg <piotrdrag@gmail.com>, 2009-2019.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014.
-# Aviary.pl <community-poland@mozilla.org>, 2007-2018.
+# Aviary.pl <community-poland@mozilla.org>, 2007-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-21 13:52+0000\n"
-"PO-Revision-Date: 2018-09-21 16:37+0200\n"
+"POT-Creation-Date: 2018-10-12 12:52+0000\n"
+"PO-Revision-Date: 2019-01-17 11:58+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -28,7 +28,7 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -283,7 +283,7 @@ msgid "Show API Documentation"
 msgstr "Wyświetlanie dokumentacji API"
 
 #. action, icon, label, accel, tooltip
-#. App menu
+#. Actions related to the whole application
 #: src/dh-app.c:51
 msgid "New _Window"
 msgstr "Nowe _okno"
@@ -305,7 +305,7 @@ msgid "_Help"
 msgstr "Pomo_c"
 
 #: src/dh-app.c:56
-msgid "_About"
+msgid "_About Devhelp"
 msgstr "_O programie"
 
 #: src/dh-app.c:57
@@ -316,7 +316,7 @@ msgstr "Za_kończ"
 msgid "Close all windows"
 msgstr "Zamyka wszystkie okna"
 
-#. Window menu
+#. Actions related to the current main window
 #: src/dh-app.c:61
 msgid "_Side Panel"
 msgstr "Panel _boczny"
@@ -389,35 +389,35 @@ msgstr ""
 "Artur Flinta <aflinta@at.kernel.pl>, 2003\n"
 "Wadim Dziedzic <wdziedzic@aviary.pl>, 2007\n"
 "Tomasz Dominikowski <dominikowski@gmail.com>, 2008-2009\n"
-"Piotr Drąg <piotrdrag@gmail.com>, 2009-2018\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2009-2019\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014\n"
-"Aviary.pl <community-poland@mozilla.org>, 2007-2018"
+"Aviary.pl <community-poland@mozilla.org>, 2007-2019"
 
 #: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Witryna programu Devhelp"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Otwiera nowe okno programu Devhelp"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "Wyszukuje słowo kluczowe"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "SŁOWO-KLUCZOWE"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "Wyszukuje i wyświetla każde trafienie w oknie asystenta"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "Wyświetla wersję i kończy działanie"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Kończy wszystkie uruchomione wystąpienia programu Devhelp"
 
@@ -472,14 +472,14 @@ msgstr "Ogólne"
 msgid "Zoom"
 msgstr "Powiększanie"
 
-#: src/dh-window.c:572
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "Wstecz"
 
-#: src/dh-window.c:576
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "Dalej"
 
-#: src/dh-window.c:599
+#: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Nowa karta"
