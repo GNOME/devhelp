@@ -32,15 +32,16 @@
 /**
  * SECTION:dh-book-tree
  * @Title: DhBookTree
- * @Short_description: A #GtkTreeView containing the tree structure of all
- * enabled #DhBook's
+ * @Short_description: A #GtkTreeView containing the tree structure of a
+ * #DhBookList
  *
  * #DhBookTree is a #GtkTreeView (showing a tree, not a list) containing the
- * general tree structure of all enabled #DhBook's.
+ * general tree structure of the #DhBook's contained in a #DhBookList (the
+ * #DhBookList part of the provided #DhProfile).
  *
- * The dh_book_get_tree() function is called to get the tree structure of a
- * #DhBook. As such the tree contains only #DhLink's of type %DH_LINK_TYPE_BOOK
- * or %DH_LINK_TYPE_PAGE.
+ * #DhBookTree calls the dh_book_get_tree() function to get the tree structure
+ * of a #DhBook. As such the tree contains only #DhLink's of type
+ * %DH_LINK_TYPE_BOOK or %DH_LINK_TYPE_PAGE.
  *
  * When an element is selected, the #DhBookTree::link-selected signal is
  * emitted. Only one element can be selected at a time.
