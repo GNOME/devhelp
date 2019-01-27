@@ -72,6 +72,44 @@
  * defined by the libdevhelp (not the app).
  */
 
+/* TODO Possible DhSettings improvements:
+ *
+ * GSettings is usually used only in an application, not in a library. The
+ * purpose of DhSettings is to have the minimum amount of code or work to do in
+ * the applications, with the goal to create a software product line for
+ * Devhelp (create several similar products based on the libdevhelp).
+ *
+ * But I'm not entirely satisfied by the current DhSettings. But to make it better
+ * it would require lots of boilerplate code, so I was maybe thinking about a code
+ * generation tool that reads the GSettings XML schema and creates a GObject class
+ * with some properties and functions for each key. Then DhSettings would come on
+ * top of that generated class (either as a subclass or using it by composition)
+ * to add more specific functions like is_book_enabled(), set_book_enabled(), etc.
+ *
+ * The code generation tool would do something along those lines:
+ * - Add a property of type GVariant for each GSettings key.
+ * - Add getters/setters for the GVariant properties (bonus if for simple types
+ *   like integers, strings, booleans, the getters/setters use the appropriate
+ *   GLib type, not GVariant. Or find a way to make it convenient to use GVariant
+ *   to get/set the properties).
+ * - Add bind_to_key() functions, to bind a GVariant property to its corresponding
+ *   GSettings key.
+ * - For each key, add another property of type boolean to know whether the
+ *   GVariant property has been bound to the GSettings key. Same name as the
+ *   GVariant property, but with the -bound suffix.
+ * - Add one bind() wrapper function with an API like g_settings_bind(), but calls
+ *   g_object_bind_property() if -bound property is FALSE, and calls
+ *   g_settings_bind() if -bound property is TRUE, to take advantage of the
+ *   writability of the GSettings key.
+ * - If more flexibility is needed, add getters to get the GSettings objects,
+ *   those can be used for the keys where the -bound property is TRUE.
+ *
+ * That code generation tool would be useful outside Devhelp, for any project
+ * that wants to use GSettings in a library or software product line, basically.
+ * More generally, there needs to be a reflection on how best to use GSettings
+ * in a library.
+ */
+
 /* libdevhelp GSettings schema IDs */
 #define LIBDEVHELP_GSCHEMA_PREFIX       "org.gnome.libdevhelp-" LIBDEVHELP_API_VERSION
 #define SETTINGS_SCHEMA_ID_CONTENTS     LIBDEVHELP_GSCHEMA_PREFIX ".contents"
