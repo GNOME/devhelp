@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-08-30 18:43+0000\n"
-"PO-Revision-Date: 2018-09-01 01:48+0300\n"
+"POT-Creation-Date: 2018-10-12 12:52+0000\n"
+"PO-Revision-Date: 2019-02-05 22:11+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -30,12 +30,12 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:154 src/dh-app.c:499
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:156
+#: src/dh-app.c:272
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Kehittäjätyökalu rajapintadokumentaation selaamiseen ja hakemiseen"
 
@@ -282,40 +282,140 @@ msgstr "Devhelp-tuki"
 msgid "Show API Documentation"
 msgstr "Näytä API-dokumentaatio"
 
-#: src/dh-app.c:158
+#. action, icon, label, accel, tooltip
+#. Actions related to the whole application
+#: src/dh-app.c:51
+msgid "New _Window"
+msgstr "_Uusi ikkuna"
+
+#: src/dh-app.c:52
+msgid "Open a new window"
+msgstr "Avaa uusi ikkuna"
+
+#: src/dh-app.c:53
+msgid "_Preferences"
+msgstr "_Asetukset"
+
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr "_Pikanpääimet"
+
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "_Ohje"
+
+#: src/dh-app.c:56
+msgid "_About Devhelp"
+msgstr "_Tietoja - Devhelp"
+
+#: src/dh-app.c:57
+msgid "_Quit"
+msgstr "_Lopeta"
+
+#: src/dh-app.c:58
+msgid "Close all windows"
+msgstr "Sulje kaikki ikkunat"
+
+#. Actions related to the current main window
+#: src/dh-app.c:61
+msgid "_Side Panel"
+msgstr "_Sivupaneeli"
+
+#: src/dh-app.c:62
+msgid "Toggle side panel visibility"
+msgstr "Sivupaneeli päällä/pois"
+
+#: src/dh-app.c:63
+msgid "_Print"
+msgstr "_Tulosta"
+
+#: src/dh-app.c:64
+msgid "_Find"
+msgstr "_Etsi"
+
+#: src/dh-app.c:65
+msgid "Find in current page"
+msgstr "Etsi nykyiseltä sivulta"
+
+#: src/dh-app.c:66
+msgid "_Larger Text"
+msgstr "_Suurempi teksti"
+
+#: src/dh-app.c:67
+msgid "Larger text"
+msgstr "Suurempi teksti"
+
+#: src/dh-app.c:68
+msgid "S_maller Text"
+msgstr "_Pienempi teksti"
+
+#: src/dh-app.c:69
+msgid "Smaller text"
+msgstr "Pienempi teksti"
+
+#: src/dh-app.c:70
+msgid "_Normal Size"
+msgstr "_Tavallinen koko"
+
+#: src/dh-app.c:71
+msgid "Normal size"
+msgstr "Tavallinen koko"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+msgid "Open a new tab"
+msgstr "Avaa uusi välilehti"
+
+#: src/dh-app.c:112
+msgid "Close the current tab"
+msgstr "Sulje nykyinen välilehti"
+
+#: src/dh-app.c:113
+msgid "Go back"
+msgstr "Siirry taaksepäin"
+
+#: src/dh-app.c:114
+msgid "Go forward"
+msgstr "Siirry eteenpäin"
+
+#: src/dh-app.c:115
+msgid "Focus global search"
+msgstr "Kohdista yleishakuun"
+
+#: src/dh-app.c:274
 msgid "translator-credits"
 msgstr ""
-"Jiri Grönroos 2012-2018\n"
+"Jiri Grönroos 2012-2019\n"
 "Tommi Vainikainen, 2010-2011\n"
 "Ilkka Tuohela, 2004-2005\n"
 "\n"
 "https://l10n.gnome.org/teams/fi/"
 
-#: src/dh-app.c:160
+#: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Devhelp-verkkosivusto"
 
-#: src/dh-app.c:403
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Avaa uuden Devhelp-ikkunan"
 
-#: src/dh-app.c:408
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "Etsi avainsanalla"
 
-#: src/dh-app.c:409 src/dh-app.c:414
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "AVAINSANA"
 
-#: src/dh-app.c:413
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "Etsi ja näytä osumat apuikkunassa"
 
-#: src/dh-app.c:418
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "Näytä versio ja lopeta"
 
-#: src/dh-app.c:423
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Sulje avoinna olevat Devhelp-ohjelmat"
 
@@ -360,153 +460,46 @@ msgstr "_Tasalevyinen:"
 msgid "Fonts"
 msgstr "Fontit"
 
-#: src/dh-window.ui:7 src/dh-window.ui:45
-msgid "_Side Panel"
-msgstr "_Sivupaneeli"
-
-#: src/dh-window.ui:13 src/dh-window.ui:51
-msgid "_Print"
-msgstr "_Tulosta"
-
-#: src/dh-window.ui:17 src/dh-window.ui:55
-msgid "_Find"
-msgstr "_Etsi"
-
-#: src/dh-window.ui:23 src/dh-window.ui:61
-msgid "_Larger Text"
-msgstr "_Suurempi teksti"
-
-#: src/dh-window.ui:27 src/dh-window.ui:65
-msgid "S_maller Text"
-msgstr "_Pienempi teksti"
-
-#: src/dh-window.ui:31 src/dh-window.ui:69
-msgid "_Normal Size"
-msgstr "_Tavallinen koko"
-
-#: src/dh-window.ui:39 src/menus.ui:29
-msgid "New _Window"
-msgstr "_Uusi ikkuna"
-
-#: src/dh-window.ui:75 src/menus.ui:35
-msgid "_Preferences"
-msgstr "_Asetukset"
-
-#: src/dh-window.ui:81 src/menus.ui:41
-msgid "_Keyboard Shortcuts"
-msgstr "_Pikanpääimet"
-
-#: src/dh-window.ui:85 src/menus.ui:45
-msgid "_Help"
-msgstr "_Ohje"
-
-#: src/dh-window.ui:89
-msgid "_About Devhelp"
-msgstr "_Tietoja - Devhelp"
-
-#: src/dh-window.ui:93 src/menus.ui:53
-msgid "_Quit"
-msgstr "_Lopeta"
-
-#: src/dh-window.ui:121
-msgid "Back"
-msgstr "Edellinen"
-
-#: src/dh-window.ui:140
-msgid "Forward"
-msgstr "Seuraava"
-
-#: src/dh-window.ui:186
-msgid "New Tab"
-msgstr "Uusi välilehti"
-
-#: src/help-overlay.ui:14
-msgctxt "shortcut window"
+#. General group
+#: src/dh-window.c:393
 msgid "General"
 msgstr "Yleiset"
 
-#: src/help-overlay.ui:19
-msgctxt "shortcut window"
-msgid "Focus global search"
-msgstr "Kohdista yleishakuun"
-
-#: src/help-overlay.ui:26
-msgctxt "shortcut window"
-msgid "Find in current page"
-msgstr "Etsi nykyiseltä sivulta"
-
-#: src/help-overlay.ui:33
-msgctxt "shortcut window"
-msgid "Open a new window"
-msgstr "Avaa uusi ikkuna"
-
-#: src/help-overlay.ui:40
-msgctxt "shortcut window"
-msgid "Open a new tab"
-msgstr "Avaa uusi välilehti"
-
-#: src/help-overlay.ui:47
-msgctxt "shortcut window"
-msgid "Toggle side panel visibility"
-msgstr "Sivupaneeli päällä/pois"
-
-#: src/help-overlay.ui:54
-msgctxt "shortcut window"
-msgid "Go back"
-msgstr "Siirry taaksepäin"
-
-#: src/help-overlay.ui:61
-msgctxt "shortcut window"
-msgid "Go forward"
-msgstr "Siirry eteenpäin"
-
-#: src/help-overlay.ui:68
-msgctxt "shortcut window"
-msgid "Print"
-msgstr "Tulosta"
-
-#: src/help-overlay.ui:75
-msgctxt "shortcut window"
-msgid "Close the current window"
-msgstr "Sulje nykyinen ikkuna"
-
-#: src/help-overlay.ui:82
-msgctxt "shortcut window"
-msgid "Close all windows"
-msgstr "Sulje kaikki ikkunat"
-
-#: src/help-overlay.ui:90
-msgctxt "shortcut window"
+#. Zoom group
+#: src/dh-window.c:407
 msgid "Zoom"
 msgstr "Mittakaava"
 
-#: src/help-overlay.ui:95
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "Lähennä"
+#: src/dh-window.c:552
+msgid "Back"
+msgstr "Edellinen"
 
-#: src/help-overlay.ui:102
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "Loitonna"
+#: src/dh-window.c:556
+msgid "Forward"
+msgstr "Seuraava"
 
-#: src/help-overlay.ui:109
-msgctxt "shortcut window"
-msgid "Reset Zoom"
-msgstr "Palauta mittakaava"
+#: src/dh-window.c:574
+msgid "New Tab"
+msgstr "Uusi välilehti"
 
-#: src/menus.ui:49
-msgid "_About"
-msgstr "_Tietoja"
+#~ msgctxt "shortcut window"
+#~ msgid "Print"
+#~ msgstr "Tulosta"
 
-#~ msgid "Larger text"
-#~ msgstr "Suurempi teksti"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom in"
+#~ msgstr "Lähennä"
 
-#~ msgid "Smaller text"
-#~ msgstr "Pienempi teksti"
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom out"
+#~ msgstr "Loitonna"
 
-#~ msgid "Normal size"
-#~ msgstr "Tavallinen koko"
+#~ msgctxt "shortcut window"
+#~ msgid "Reset Zoom"
+#~ msgstr "Palauta mittakaava"
+
+#~ msgid "_About"
+#~ msgstr "_Tietoja"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
