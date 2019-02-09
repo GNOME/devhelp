@@ -494,6 +494,11 @@ dh_web_view_constructed (GObject *object)
         webkit_settings_set_enable_html5_local_storage (webkit_settings, FALSE);
         webkit_settings_set_enable_plugins (webkit_settings, FALSE);
 
+#if WEBKIT_CHECK_VERSION(2, 23, 4)
+        /* Enable navigation gesture */
+        webkit_settings_set_enable_back_forward_navigation_gestures (webkit_settings, TRUE);
+#endif
+
         if (view->priv->profile == NULL)
                 set_profile (view, dh_profile_get_default ());
 
