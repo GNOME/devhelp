@@ -1,3 +1,13 @@
+News in 3.32.0, 2019-03-10, “Milky Way” (the song I'm currently listening to)
+-----------------------------------------------------------------------------
+* GNOME goal “App menu retirement”:
+  https://gitlab.gnome.org/GNOME/Initiatives/issues/4
+* GNOME goal “App Icon Redesign”:
+  https://gitlab.gnome.org/GNOME/Initiatives/issues/2
+  (yes Devhelp has a new icon now).
+* A few minor and irrelevant improvements to the code.
+* A pile of translation updates as usual.
+
 News in 3.30.1, 2018-10-24
 --------------------------
 * Build: requires Meson >= 0.47.
