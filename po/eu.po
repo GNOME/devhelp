@@ -3,424 +3,528 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2011, 2013, 2014, 2015, 2016, 2017.
+# Asier Sarasua Garmendia  <asier.sarasua@gmail.com>, 2019.
+#
 msgid ""
-msgstr ""
-"Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-09-09 14:23+0200\n"
-"PO-Revision-Date: 2017-07-25 16:11+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+msgstr "Project-Id-Version: devhelp master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2019-03-26 11:48+0000\n"
+"PO-Revision-Date: 2019-04-03 10:00+0100\n"
+"Last-Translator: Asier Sarasua Garmendia <asier.sarasua@gmail.com>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:1
-msgid "Main window maximized state"
-msgstr "Maximizatutako leiho nagusiaren egoera"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:2
-msgid "Whether the main window should start maximized."
-msgstr "Leiho nagusia maximizatuta ireki behar den ala ez adierazten du."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:3
-msgid "Width of the main window"
-msgstr "Leiho nagusiaren zabalera"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:4
-msgid "The width of the main window."
-msgstr "Leiho nagusiaren zabalera."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:5
-msgid "Height of main window"
-msgstr "Leiho nagusiaren altuera"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:6
-msgid "The height of the main window."
-msgstr "Leiho nagusiaren altuera."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:7
-msgid "X position of main window"
-msgstr "Leiho nagusiaren X posizioa"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:8
-msgid "The X position of the main window."
-msgstr "Leiho nagusiaren X posizioa."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:9
-msgid "Y position of main window"
-msgstr "Leiho nagusiaren Y posizioa"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:10
-msgid "The Y position of the main window."
-msgstr "Leiho nagusiaren Y posizioa."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:11
-msgid "Width of the index and search pane"
-msgstr "Indexazio- eta bilaketa-panelaren zabalera"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:12
-msgid "The width of the index and search pane."
-msgstr "Indexazio- eta bilaketa-panelaren zabalera."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:13
-msgid "Books disabled"
-msgstr "Liburuak desgaituta"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:14
-msgid "List of books disabled by the user."
-msgstr "Erabiltzaileak desgaitutako liburuen zerrenda."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:15
-msgid "Group by language"
-msgstr "Elkartu hizkuntzaren arabera"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:16
-msgid "Whether books should be grouped by language in the UI"
-msgstr "Liburuak hizkuntzaren arabera elkartu behar diren interfazean edo ez"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:17
-msgid "Whether the assistant window should be maximized"
-msgstr "Laguntzailearen leihoa maximizatuta behar den ala ez adierazten du"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:18
-msgid "Whether the assistant window should be maximized."
-msgstr "Laguntzailearen leihoa maximizatuta behar den ala ez adierazten du."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:19
-msgid "Width of the assistant window"
-msgstr "Leiho laguntzailearen zabalera"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:20
-msgid "The width of the assistant window."
-msgstr "Leiho laguntzailearen zabalera."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:21
-msgid "Height of assistant window"
-msgstr "Leiho laguntzailearen altuera"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:22
-msgid "The height of the assistant window."
-msgstr "Leiho laguntzailearen altuera."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:23
-msgid "X position of assistant window"
-msgstr "Leiho laguntzailearen X posizioa"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:24
-msgid "The X position of the assistant window."
-msgstr "Leiho laguntzailearen X posizioa."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:25
-msgid "Y position of assistant window"
-msgstr "Leiho laguntzailearen Y posizioa"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:26
-msgid "The Y position of the assistant window."
-msgstr "Leiho laguntzailearen Y posizioa."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:27
-msgid "Use system fonts"
-msgstr "Erabili sistemako letra-tipoak"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:28
-msgid "Use the system default fonts."
-msgstr "Erabili sistemaren letra-tipo lehenetsiak."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:29
-msgid "Font for text"
-msgstr "Testuaren letra-tipoa"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:30
-msgid "Font for text with variable width."
-msgstr "Zabalera aldakorreko testuaren letra-tipoa."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:31
-msgid "Font for fixed width text"
-msgstr "Zabalera finkoko testuaren letra-tipoa"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:32
-msgid "Font for text with fixed width, such as code examples."
-msgstr ""
-"Zabalera finkoko testuaren letra-tipoa, kode-adibideen testuarena, esate "
-"baterako."
-
-#: ../misc/gedit-plugin/devhelp.py:42
-msgid "Show API Documentation"
-msgstr "Erakutsi API dokumentazioa"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../src/dh-app.c:232 ../src/dh-app.c:537 ../src/dh-window.c:878
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
+#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../src/dh-app.c:234
-msgid "A developers’ help browser for GNOME"
-msgstr "GNOMErako garatzaileen laguntza-arakatzailea"
+#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
+#: src/dh-app.c:272
+msgid "A developer tool for browsing and searching API documentation"
+msgstr "API dokumentazioa arakatu eta bilatzeko garatzaile-tresna bat"
 
-#: ../src/dh-app.c:236
-msgid "translator-credits"
-msgstr ""
-"Hizkuntza Politikarako SailburuordetzaIñaki Larrañaga Murgoitio "
-"<dooteo@zundan.com>"
+#: data/org.gnome.Devhelp.appdata.xml.in:9
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
+msgstr "Devhelp API dokumentazioa arakatzeko eta bilatzeko garatzaile-tresna bat da. Liburutegien artean erraz nabigatzea uzten dizu, baita funtzioen, egituren edo makroen arabera bilaketak egitea ere."
 
-#: ../src/dh-app.c:238
-msgid "Devhelp Website"
-msgstr "Devhelp-en webgunea"
+#: data/org.gnome.Devhelp.appdata.xml.in:14
+msgid ""
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
+msgstr "Dokumentazioak gailuan instalatuta egon behar duenez, ez da derrigorrezkoa interneteko konexiorik izatea Devhelp erabiltzeko."
 
-#: ../src/dh-app.c:462
-msgid "Opens a new Devhelp window"
-msgstr "Devhelp-en leiho berria irekitzen du"
+#: data/org.gnome.Devhelp.appdata.xml.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+"well supported. But other development platforms can be supported as well, as "
+"long as the API documentation is available in HTML and a *.devhelp2 index "
+"file is generated."
+msgstr "Devhelp-ek GTK-Doc tresnarekin egiten du lan, beraz GTK+ eta GNOME liburutegiak ongi onartzen ditu. Beste garapen-plataforma batzuk ere onartzen ditu, haiek API dokumentazioa HTML formatuan badute eta *.devhelp2 indize-fitxategi bat sortuta badago."
 
-#: ../src/dh-app.c:467
-msgid "Search for a keyword"
-msgstr "Gako-hitz bat bilatzen du"
+#: data/org.gnome.Devhelp.appdata.xml.in:24
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr "Glade, Anjuta, Geany eta beste aplikazio batzuekin integratzen da Devhelp, eta hainbat testu-editoretarako (gedit, Vim, Emacs, Geany…) pluginak ditu."
 
-#: ../src/dh-app.c:468 ../src/dh-app.c:473
-msgid "KEYWORD"
-msgstr "GAKO-HITZA"
+#: data/org.gnome.Devhelp.desktop.in:5
+msgid "API Documentation Browser"
+msgstr "API dokumentazioaren arakatzailea"
 
-#: ../src/dh-app.c:472
-msgid "Search and display any hit in the assistant window"
-msgstr "Bilatu eta erakutsi leiho laguntzaileko atzipen guztiak"
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in:7
+msgid "documentation;information;manual;developer;api;"
+msgstr "dokumentazioa;informazioa;eskuliburua;garatzailea;APIa;"
 
-#: ../src/dh-app.c:477
-msgid "Display the version and exit"
-msgstr "Bistaratu bertsioa eta irten"
+#: data/org.gnome.devhelp.gschema.xml:16
+msgid "Main window maximized state"
+msgstr "Maximizatutako leiho nagusiaren egoera"
 
-#: ../src/dh-app.c:482
-msgid "Quit any running Devhelp"
-msgstr "Irten exekutatzen ari diren Devhelp guztiak"
+#: data/org.gnome.devhelp.gschema.xml:17
+msgid "Whether the main window should start maximized."
+msgstr "Leiho nagusia maximizatuta ireki behar den ala ez adierazten du."
 
-#: ../src/dh-assistant-view.c:399
+#: data/org.gnome.devhelp.gschema.xml:21
+msgid "Width of the main window"
+msgstr "Leiho nagusiaren zabalera"
+
+#: data/org.gnome.devhelp.gschema.xml:22
+msgid "The width of the main window."
+msgstr "Leiho nagusiaren zabalera."
+
+#: data/org.gnome.devhelp.gschema.xml:26
+msgid "Height of main window"
+msgstr "Leiho nagusiaren altuera"
+
+#: data/org.gnome.devhelp.gschema.xml:27
+msgid "The height of the main window."
+msgstr "Leiho nagusiaren altuera."
+
+#: data/org.gnome.devhelp.gschema.xml:33
+msgid "Width of the index and search pane"
+msgstr "Indexazio- eta bilaketa-panelaren zabalera"
+
+#: data/org.gnome.devhelp.gschema.xml:34
+msgid "The width of the index and search pane."
+msgstr "Indexazio- eta bilaketa-panelaren zabalera."
+
+#: data/org.gnome.devhelp.gschema.xml:43
+msgid "Width of the assistant window"
+msgstr "Leiho laguntzailearen zabalera"
+
+#: data/org.gnome.devhelp.gschema.xml:44
+msgid "The width of the assistant window."
+msgstr "Leiho laguntzailearen zabalera."
+
+#: data/org.gnome.devhelp.gschema.xml:48
+msgid "Height of assistant window"
+msgstr "Leiho laguntzailearen altuera"
+
+#: data/org.gnome.devhelp.gschema.xml:49
+msgid "The height of the assistant window."
+msgstr "Leiho laguntzailearen altuera."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
+msgid "Books disabled"
+msgstr "Liburuak desgaituta"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
+msgid "List of books disabled by the user."
+msgstr "Erabiltzaileak desgaitutako liburuen zerrenda."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
+msgid "Group books by language"
+msgstr "Elkartu liburuak lengoaiaren arabera"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
+msgid ""
+"Whether books should be grouped by programming language in the user "
+"interface."
+msgstr "Liburuak programazio-lengoaiaren arabera elkartu behar diren ala ez erabiltzaile-interfazean."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
+msgid "Use system fonts"
+msgstr "Erabili sistemako letra-tipoak"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
+msgid "Use the system default fonts."
+msgstr "Erabili sistemaren letra-tipo lehenetsiak."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
+msgid "Font for text"
+msgstr "Testuaren letra-tipoa"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
+msgid "Font for text with variable width."
+msgstr "Zabalera aldakorreko testuaren letra-tipoa."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
+msgid "Font for fixed width text"
+msgstr "Zabalera finkoko testuaren letra-tipoa"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Zabalera finkoko testuaren letra-tipoa, kode-adibideen testuarena, esate baterako."
+
+#: devhelp/dh-assistant-view.c:400
 msgid "Book:"
 msgstr "Liburua:"
 
-#: ../src/dh-book.c:324
+#: devhelp/dh-book.c:313
 #, c-format
 msgid "Language: %s"
 msgstr "Hizkuntza: %s"
 
-#: ../src/dh-book.c:325
+#: devhelp/dh-book.c:314
 msgid "Language: Undefined"
 msgstr "Hizkuntza: definitu gabea"
 
-#: ../src/dh-book-tree.c:648
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "_Tolestu dena"
 
 #. i18n: a documentation book
-#: ../src/dh-link.c:403
+#: devhelp/dh-link.c:551
 msgid "Book"
 msgstr "Liburua"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:407
+#: devhelp/dh-link.c:555
 msgid "Page"
-msgstr "Orria"
+msgstr "Page"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:412
+#: devhelp/dh-link.c:560
 msgid "Keyword"
 msgstr "Gako-hitza"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:418
+#: devhelp/dh-link.c:566
 msgid "Function"
 msgstr "Funtzioa"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:424
+#: devhelp/dh-link.c:572
 msgid "Struct"
 msgstr "Egitura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:430
+#: devhelp/dh-link.c:578
 msgid "Macro"
 msgstr "Makroa"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:436
+#: devhelp/dh-link.c:584
 msgid "Enum"
 msgstr "Zenbakitzea"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:442
+#: devhelp/dh-link.c:590
 msgid "Type"
 msgstr "Mota"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:448
+#: devhelp/dh-link.c:596
 msgid "Property"
 msgstr "Propietatea"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:454
+#: devhelp/dh-link.c:602
 msgid "Signal"
 msgstr "Seinalea"
 
-#: ../src/dh-window.c:78
-msgid "50%"
-msgstr "50%"
-
-#: ../src/dh-window.c:79
-msgid "75%"
-msgstr "75%"
-
-#: ../src/dh-window.c:80
-msgid "100%"
-msgstr "100%"
-
-#: ../src/dh-window.c:81
-msgid "125%"
-msgstr "125%"
-
-#: ../src/dh-window.c:82
-msgid "150%"
-msgstr "150%"
-
-#: ../src/dh-window.c:83
-msgid "175%"
-msgstr "175%"
-
-#: ../src/dh-window.c:84
-msgid "200%"
-msgstr "200%"
-
-#: ../src/dh-window.c:85
-msgid "300%"
-msgstr "300%"
-
-#: ../src/dh-window.c:86
-msgid "400%"
-msgstr "400%"
-
-#: ../src/dh-window.c:1100
-msgid "Error opening the requested link."
-msgstr "Errorea eskatutako esteka irekitzean."
-
-#: ../src/dh-window.c:1417
-msgid "_Close"
-msgstr "_Itxi"
-
-#: ../src/dh-window.c:1435 ../src/dh-window.c:1616
+#: devhelp/dh-web-view.c:652
 msgid "Empty Page"
 msgstr "Orri hutsa"
+
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
+msgid "Devhelp support"
+msgstr "Devhelp-en laguntza"
+
+#: plugins/gedit-plugin/devhelp.py:42
+msgid "Show API Documentation"
+msgstr "Erakutsi API dokumentazioa"
+
+#. action, icon, label, accel, tooltip
+#. Actions related to the whole application
+#: src/dh-app.c:51
+msgid "New _Window"
+msgstr "Leiho _berria"
+
+#: src/dh-app.c:52
+msgid "Open a new window"
+msgstr "Ireki leiho berria"
+
+#: src/dh-app.c:53
+msgid "_Preferences"
+msgstr "_Hobespenak"
+
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr "Las_ter-teklak"
+
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "_Laguntza"
+
+#: src/dh-app.c:56
+msgid "_About Devhelp"
+msgstr "_Devhelp-i buruz"
+
+#: src/dh-app.c:57
+msgid "_Quit"
+msgstr "I_rten"
+
+#: src/dh-app.c:58
+msgid "Close all windows"
+msgstr "Itxi leiho guztiak"
+
+#. Actions related to the current main window
+#: src/dh-app.c:61
+msgid "_Side Panel"
+msgstr "Albo-_panela"
+
+#: src/dh-app.c:62
+msgid "Toggle side panel visibility"
+msgstr "Txandakatu alboko panelaren ikusgaitasuna"
+
+#: src/dh-app.c:63
+msgid "_Print"
+msgstr "I_nprimatu"
+
+#: src/dh-app.c:64
+msgid "_Find"
+msgstr "_Bilatu"
+
+#: src/dh-app.c:65
+msgid "Find in current page"
+msgstr "Bilatu uneko orrian"
+
+#: src/dh-app.c:66
+msgid "_Larger Text"
+msgstr "Testu _handiagoa"
+
+#: src/dh-app.c:67
+msgid "Larger text"
+msgstr "Testu handiagoa"
+
+#: src/dh-app.c:68
+msgid "S_maller Text"
+msgstr "Testu _txikiagoa"
+
+#: src/dh-app.c:69
+msgid "Smaller text"
+msgstr "Testu txikiagoa"
+
+#: src/dh-app.c:70
+msgid "_Normal Size"
+msgstr "Tamaina _normala"
+
+#: src/dh-app.c:71
+msgid "Normal size"
+msgstr "Tamaina normala"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+msgid "Open a new tab"
+msgstr "Fitxa berria irekitzen du"
+
+#: src/dh-app.c:112
+msgid "Close the current tab"
+msgstr "Itxi uneko fitxa"
+
+#: src/dh-app.c:113
+msgid "Go back"
+msgstr "Joan atzera"
+
+#: src/dh-app.c:114
+msgid "Go forward"
+msgstr "Joan aurrera"
+
+#: src/dh-app.c:115
+msgid "Focus global search"
+msgstr "Fokua bilaketa globalean"
+
+#: src/dh-app.c:274
+msgid "translator-credits"
+msgstr "Asier Sarasua Garmendia <asier.sarasua@gmail.com>"
+
+#: src/dh-app.c:276
+msgid "Devhelp Website"
+msgstr "Devhelp-en webgunea"
+
+#: src/dh-app.c:451
+msgid "Opens a new Devhelp window"
+msgstr "Devhelp-en leiho berria irekitzen du"
+
+#: src/dh-app.c:456
+msgid "Search for a keyword"
+msgstr "Gako-hitz bat bilatzen du"
+
+#: src/dh-app.c:457 src/dh-app.c:462
+msgid "KEYWORD"
+msgstr "GAKO-HITZA"
+
+#: src/dh-app.c:461
+msgid "Search and display any hit in the assistant window"
+msgstr "Bilatu eta erakutsi leiho laguntzaileko atzipen guztiak"
+
+#: src/dh-app.c:466
+msgid "Display the version and exit"
+msgstr "Bistaratu bertsioa eta irten"
+
+#: src/dh-app.c:471
+msgid "Quit any running Devhelp"
+msgstr "Irten exekutatzen ari diren Devhelp guztiak"
+
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:8
+msgid "Devhelp — Assistant"
+msgstr "Devhelp — Laguntzailea"
+
+#: src/dh-preferences.c:551
+msgid "Enabled"
+msgstr "Gaituta"
+
+#: src/dh-preferences.c:565
+msgid "Title"
+msgstr "Titulua"
+
+#: src/dh-preferences.ui:26
+msgid "Preferences"
+msgstr "Hobespenak"
+
+#: src/dh-preferences.ui:62
+msgid "_Group by language"
+msgstr "_Elkartu hizkuntzaren arabera"
+
+#: src/dh-preferences.ui:104
+msgid "Book Shelf"
+msgstr "Liburutegia"
+
+#: src/dh-preferences.ui:125
+msgid "_Use system fonts"
+msgstr "_Erabili sistemaren letra-tipoak"
+
+#: src/dh-preferences.ui:149
+msgid "_Variable width: "
+msgstr "Zabalera _aldakorra: "
+
+#: src/dh-preferences.ui:162
+msgid "_Fixed width:"
+msgstr "Zabalera _finkatua:"
+
+#: src/dh-preferences.ui:223
+msgid "Fonts"
+msgstr "Letra-tipoak"
+
+#. General group
+#: src/dh-window.c:393
+msgid "General"
+msgstr "Orokorra"
+
+#. Zoom group
+#: src/dh-window.c:407
+msgid "Zoom"
+msgstr "Zooma"
+
+#: src/dh-window.c:552
+msgid "Back"
+msgstr "Atzera"
+
+#: src/dh-window.c:556
+msgid "Forward"
+msgstr "Aurrera"
+
+#: src/dh-window.c:574
+msgid "New Tab"
+msgstr "Fitxa berria"
+
+#~ msgid "X position of main window"
+#~ msgstr "Leiho nagusiaren X posizioa"
+
+#~ msgid "The X position of the main window."
+#~ msgstr "Leiho nagusiaren X posizioa."
+
+#~ msgid "Y position of main window"
+#~ msgstr "Leiho nagusiaren Y posizioa"
+
+#~ msgid "The Y position of the main window."
+#~ msgstr "Leiho nagusiaren Y posizioa."
+
+#~ msgid "Whether the assistant window should be maximized"
+#~ msgstr "Laguntzailearen leihoa maximizatuta behar den ala ez adierazten du"
+
+#~ msgid "Whether the assistant window should be maximized."
+#~ msgstr "Laguntzailearen leihoa maximizatuta behar den ala ez adierazten du."
+
+#~ msgid "X position of assistant window"
+#~ msgstr "Leiho laguntzailearen X posizioa"
+
+#~ msgid "The X position of the assistant window."
+#~ msgstr "Leiho laguntzailearen X posizioa."
+
+#~ msgid "Y position of assistant window"
+#~ msgstr "Leiho laguntzailearen Y posizioa"
+
+#~ msgid "The Y position of the assistant window."
+#~ msgstr "Leiho laguntzailearen Y posizioa."
+
+#~ msgid "A developers’ help browser for GNOME"
+#~ msgstr "GNOMErako garatzaileen laguntza-arakatzailea"
+
+#~ msgid "50%"
+#~ msgstr "50%"
+
+#~ msgid "75%"
+#~ msgstr "75%"
+
+#~ msgid "100%"
+#~ msgstr "100%"
+
+#~ msgid "125%"
+#~ msgstr "125%"
+
+#~ msgid "150%"
+#~ msgstr "150%"
+
+#~ msgid "175%"
+#~ msgstr "175%"
+
+#~ msgid "200%"
+#~ msgstr "200%"
+
+#~ msgid "300%"
+#~ msgstr "300%"
+
+#~ msgid "400%"
+#~ msgstr "400%"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "Errorea eskatutako esteka irekitzean."
+
+#~ msgid "_Close"
+#~ msgstr "_Itxi"
 
 #~ msgid "Developer’s Help program"
 #~ msgstr "Garatzaileen Laguntza-programa"
 
-#~ msgid ""
-#~ "Devhelp is an API documentation browser. It provides an easy way to "
-#~ "navigate through libraries, search by function, struct, or macro. It "
-#~ "provides a tabbed interface and allows to print results."
-#~ msgstr ""
-#~ "Devhelp APIen dokumentazioaren arakatzaile  bat da. Liburutegien artean "
-#~ "erraz nabigatzea uzten dizu, baita funtzioen, egituren edo makroen "
-#~ "arabera bilaketak egitea ere. Fitxetan banatutako interfazea eskaintzen "
-#~ "du emaitzak erakusteko."
-
-#~ msgid ""
-#~ "Devhelp integrates with other applications such as Glade, Anjuta, or "
-#~ "Geany."
-#~ msgstr ""
-#~ "Glade, Anjuta, edo Geany bezalako aplikazio batzuekin bateratzen da "
-#~ "Devhelp."
-
-#~ msgid "Documentation Browser"
-#~ msgstr "Dokumentazio-arakatzailea"
-
-#~ msgid "documentation;information;manual;developer;api;"
-#~ msgstr "dokumentazioa;informazioa;eskuliburua;garatzailea;APIa;"
-
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
-
-#~ msgid "Devhelp support"
-#~ msgstr "Devhelp-en laguntza"
-
-#~ msgid "New _Window"
-#~ msgstr "Leiho _berria"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Hobespenak"
-
-#~ msgid "_Keyboard Shortcuts"
-#~ msgstr "_Laster-teklak"
 
 #~ msgid "_About"
 #~ msgstr "Honi _buruz"
 
-#~ msgid "_Quit"
-#~ msgstr "I_rten"
-
-#~ msgctxt "shortcut window"
-#~ msgid "General"
-#~ msgstr "Orokorra"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Focus global search"
-#~ msgstr "Fokua bilaketa globalean"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Find in current page"
-#~ msgstr "Bilatu uneko orrialdean"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Open a new window"
-#~ msgstr "Ireki leiho berria"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Open a new tab"
-#~ msgstr "Ireki fitxa berria"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Toggle side panel visibility"
-#~ msgstr "Txandakatu albo-panelaren ikusgaitasuna"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Go back"
-#~ msgstr "Joan atzera"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Go forward"
-#~ msgstr "Joan aurrera"
-
 #~ msgctxt "shortcut window"
 #~ msgid "Print"
 #~ msgstr "Inprimatu"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Close the current window"
-#~ msgstr "Itxi uneko leihoa"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Close all windows"
-#~ msgstr "Itxi leiho guztiak"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom"
-#~ msgstr "Zooma"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Zoom in"
@@ -434,68 +538,8 @@ msgstr "Orri hutsa"
 #~ msgid "Reset Zoom"
 #~ msgstr "Berrezarri zooma"
 
-#~ msgid "Devhelp — Assistant"
-#~ msgstr "Devhelp — Laguntzailea"
-
-#~ msgid "Preferences"
-#~ msgstr "Hobespenak"
-
-#~ msgid "_Group by language"
-#~ msgstr "_Elkartu hizkuntzaren arabera"
-
-#~ msgid "Enabled"
-#~ msgstr "Gaituta"
-
-#~ msgid "Title"
-#~ msgstr "Titulua"
-
-#~ msgid "Book Shelf"
-#~ msgstr "Liburutegia"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Erabili sistemako letra-tipoak"
-
-#~ msgid "_Variable width: "
-#~ msgstr "Zabalera _aldakorra: "
-
-#~ msgid "_Fixed width:"
-#~ msgstr "Zabalera _finkatua:"
-
-#~ msgid "Fonts"
-#~ msgstr "Letra-tipoak"
-
 #~ msgid "Side _Panel"
 #~ msgstr "Albo-_panela"
-
-#~ msgid "_Print"
-#~ msgstr "_Inprimatu"
-
-#~ msgid "_Find"
-#~ msgstr "_Bilatu"
-
-#~ msgid "_Larger Text"
-#~ msgstr "Testu _handiagoa"
-
-#~ msgid "S_maller Text"
-#~ msgstr "Testu _txikiagoa"
-
-#~ msgid "_Normal Size"
-#~ msgstr "Tamaina _normala"
-
-#~ msgid "_Side Panel"
-#~ msgstr "Albo-_panela"
-
-#~ msgid "_About Devhelp"
-#~ msgstr "_Devhelp-i buruz"
-
-#~ msgid "Back"
-#~ msgstr "Atzera"
-
-#~ msgid "Forward"
-#~ msgstr "Aurrera"
-
-#~ msgid "New Tab"
-#~ msgstr "Fitxa berria"
 
 #~ msgid "Selected tab: \"content\" or \"search\""
 #~ msgstr "Hautatutako fitxa: \"edukia\" edo \"bilatu\""
@@ -597,9 +641,6 @@ msgstr "Orri hutsa"
 
 #~ msgid "_Go"
 #~ msgstr "_Joan"
-
-#~ msgid "_Help"
-#~ msgstr "_Laguntza"
 
 #~ msgid "Go to the previous page"
 #~ msgstr "Joan aurreko orrira"
