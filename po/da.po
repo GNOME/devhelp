@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-21 13:52+0000\n"
+"POT-Creation-Date: 2019-03-26 11:48+0000\n"
 "PO-Revision-Date: 2018-09-24 00:07+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -31,7 +31,7 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -67,8 +67,8 @@ msgid ""
 msgstr ""
 "Devhelp er skrevet til GTK-Doc, så bibliotekerne til GTK+ og GNOME har god "
 "understøttelse. Andre udviklingsplatforme kan også understøttes, så længe "
-"API-dokumentationen er tilgængelig i HTML og der genereres en *.devhelp2-"
-"indeksfil."
+"API-dokumentationen er tilgængelig i HTML og der genereres en "
+"*.devhelp2-indeksfil."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:24
 msgid ""
@@ -88,12 +88,6 @@ msgstr "API-dokumentationsfremviser"
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentation;information;oplysninger;manual;håndbog;udvikler;api;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -201,7 +195,7 @@ msgstr "Sprog: %s"
 msgid "Language: Undefined"
 msgstr "Sprog: udefineret"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "_Sammenfold alle"
 
@@ -283,7 +277,7 @@ msgid "Show API Documentation"
 msgstr "Vis API-dokumentation"
 
 #. action, icon, label, accel, tooltip
-#. App menu
+#. Actions related to the whole application
 #: src/dh-app.c:51
 msgid "New _Window"
 msgstr "Nyt _vindue"
@@ -305,8 +299,8 @@ msgid "_Help"
 msgstr "_Hjælp"
 
 #: src/dh-app.c:56
-msgid "_About"
-msgstr "_Om"
+msgid "_About Devhelp"
+msgstr "_Om Devhelp"
 
 #: src/dh-app.c:57
 msgid "_Quit"
@@ -317,7 +311,7 @@ msgid "Close all windows"
 msgstr "Luk alle vinduer"
 
 # scootergrisen: måske "_Siderude"
-#. Window menu
+#. Actions related to the current main window
 #: src/dh-app.c:61
 msgid "_Side Panel"
 msgstr "Side_panel"
@@ -391,34 +385,35 @@ msgstr ""
 "Ask Hjorth Larsen\n"
 "scootergrisen\n"
 "\n"
-"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
-"Mere info: http://www.dansk-gruppen.dk"
+"Dansk-gruppen\n"
+"Websted <http://dansk-gruppen.dk>\n"
+"E-mail <dansk@dansk-gruppen.dk>"
 
 #: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Hjemmeside for Devhelp"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Åbner et nyt Devhelp-vindue"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "Søg efter et nøgleord"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "NØGLEORD"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "Søg og vis resultater i hjælpervinduet"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "Vis versionsnummeret og afslut"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Afslut enhver kørende Devhelp"
 
@@ -473,20 +468,23 @@ msgstr "Generelle"
 msgid "Zoom"
 msgstr "Zoom"
 
-#: src/dh-window.c:572
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "Tilbage"
 
-#: src/dh-window.c:576
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "Fremad"
 
-#: src/dh-window.c:599
+#: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Nyt faneblad"
 
-#~ msgid "_About Devhelp"
-#~ msgstr "_Om Devhelp"
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
+
+#~ msgid "_About"
+#~ msgstr "_Om"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Print"
@@ -576,11 +574,11 @@ msgstr "Nyt faneblad"
 #~ msgid "_Close"
 #~ msgstr "_Luk"
 
-# scootergrisen: måske "_Siderude"
+#~ # scootergrisen: måske "_Siderude"
 #~ msgid "Side _Panel"
 #~ msgstr "Side_panel"
 
-# Kan også betyde "faneblad valgt", men at dømme efter en senere msgid (which of the tabs that is selected), er dette ikke tilfældet
+#~ # Kan også betyde "faneblad valgt", men at dømme efter en senere msgid (which of the tabs that is selected), er dette ikke tilfældet
 #~ msgid "Selected tab: \"content\" or \"search\""
 #~ msgstr "Valgt faneblad: “indhold” eller “søg”"
 
@@ -594,21 +592,17 @@ msgstr "Nyt faneblad"
 #~ msgstr "Ugyldigt navnerum “%s” på linje %d, kolonne %d"
 
 #~ msgid ""
-#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
+#~ msgstr "Elementerne “title”, “name” og “link” kræves på linje %d, kolonne %d"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, column "
 #~ "%d"
 #~ msgstr ""
-#~ "Elementerne “title”, “name” og “link” kræves på linje %d, kolonne %d"
+#~ "Elementerne \"name\" og \"link\" kræves inden i <sub> på linje %d, kolonne %d"
 
 #~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "Elementerne \"name\" og \"link\" kræves inden i <sub> på linje %d, "
-#~ "kolonne %d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
-#~ "column %d"
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
 #~ msgstr ""
 #~ "Elementerne “name” og “link” kræves inden i “%s” på linje %d, kolonne %d"
 
@@ -618,9 +612,10 @@ msgstr "Nyt faneblad"
 #~ msgid "Cannot uncompress book '%s': %s"
 #~ msgstr "Kan ikke udpakke bogen “%s”: %s"
 
-# scootergrisen: måske "_Siderude"
+#~ # scootergrisen: måske "_Siderude"
 #~ msgid "_Side pane"
 #~ msgstr "_Sidepanel"
 
 #~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
 #~ msgstr "Får F2 til at starte Devhelp for ordet ved markøren"
+
