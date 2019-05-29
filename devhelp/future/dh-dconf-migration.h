@@ -2,7 +2,7 @@
 /*
  * This file is part of Devhelp.
  *
- * Copyright (C) 2018 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2018, 2019 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -28,16 +28,16 @@ G_BEGIN_DECLS
 typedef struct _DhDconfMigration DhDconfMigration;
 
 G_GNUC_INTERNAL
-DhDconfMigration *      _dh_dconf_migration_new         (void);
+DhDconfMigration *      _dh_dconf_migration_new                 (void);
 
 G_GNUC_INTERNAL
-void                    _dh_dconf_migration_free        (DhDconfMigration *migration);
+void                    _dh_dconf_migration_migrate_key         (DhDconfMigration *migration,
+                                                                 const gchar      *new_key_path,
+                                                                 const gchar      *first_old_key_path,
+                                                                 ...);
 
 G_GNUC_INTERNAL
-void                    _dh_dconf_migration_migrate_key (DhDconfMigration *migration,
-                                                         const gchar      *new_key_path,
-                                                         const gchar      *first_old_key_path,
-                                                         ...);
+void                    _dh_dconf_migration_sync_and_free       (DhDconfMigration *migration);
 
 G_END_DECLS
 

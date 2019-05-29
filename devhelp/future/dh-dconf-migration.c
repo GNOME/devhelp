@@ -2,7 +2,7 @@
 /*
  * This file is part of Devhelp.
  *
- * Copyright (C) 2018 Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2018, 2019 Sébastien Wilmet <swilmet@gnome.org>
  *
  * Devhelp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
@@ -61,18 +61,6 @@ _dh_dconf_migration_new (void)
         migration->client = dconf_client_new ();
 
         return migration;
-}
-
-void
-_dh_dconf_migration_free (DhDconfMigration *migration)
-{
-        if (migration == NULL)
-                return;
-
-        dconf_client_sync (migration->client);
-
-        g_object_unref (migration->client);
-        g_free (migration);
 }
 
 /*
@@ -139,4 +127,16 @@ _dh_dconf_migration_migrate_key (DhDconfMigration *migration,
         }
 
         va_end (old_key_paths);
+}
+
+void
+_dh_dconf_migration_sync_and_free (DhDconfMigration *migration)
+{
+        if (migration == NULL)
+                return;
+
+        dconf_client_sync (migration->client);
+
+        g_object_unref (migration->client);
+        g_free (migration);
 }
