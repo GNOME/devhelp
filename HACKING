@@ -10,6 +10,34 @@ Read the following wiki page to know the conventions for the commit messages:
 
     https://wiki.gnome.org/Git/CommitMessages
 
+Devhelp philosophy
+------------------
+
+The tool is generic and can be used by other development communities, as long
+as the API documentation is available in HTML and a *.devhelp2 index file is
+generated. It's important to keep the door open to other development
+communities, to increase diversity.
+
+If you want to make the Devhelp application GNOME-specific, for example to have
+a start page specific to GNOME libraries, or to download API references from
+gnome.org, read the next paragraph.
+
+Sébastien Wilmet has done a lot of refactorings to the code, to follow the
+“as a library” philosophy, like for the LLVM project [1]. Almost all the code
+is written as a flexible library. With a DAG (Directed Acyclic Graph) of
+classes for the containment hierarchy. With the goal to create a software
+product line [2] for Devhelp: keep the Devhelp application generic, and create
+a new application specific to GNOME, with both applications having a really
+small codebase (the GNOME-specific features would be written as a configurable
+library as well).
+
+[1] “a corpus of functionality built as a set of libraries that can be sliced
+    and remixed in different ways per the needs of different use-cases”
+    (Chris Lattner, original co-author of LLVM),
+    http://lists.llvm.org/pipermail/llvm-dev/2019-June/133274.html
+
+[2] https://www.amazon.com/Feature-Oriented-Software-Product-Lines-Implementation/dp/3642375200/
+
 C code conventions
 ------------------
 
