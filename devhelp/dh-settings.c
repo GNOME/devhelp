@@ -79,12 +79,32 @@
  * the applications, with the goal to create a software product line for
  * Devhelp (create several similar products based on the libdevhelp).
  *
- * But I'm not entirely satisfied by the current DhSettings. But to make it better
- * it would require lots of boilerplate code, so I was maybe thinking about a code
- * generation tool that reads the GSettings XML schema and creates a GObject class
- * with some properties and functions for each key. Then DhSettings would come on
- * top of that generated class (either as a subclass or using it by composition)
- * to add more specific functions like is_book_enabled(), set_book_enabled(), etc.
+ * But I'm not entirely satisfied by the current DhSettings API (it is the first
+ * implementation iteration with the GSettings schema being in the library).
+ * Here are some thoughts to make it better.
+ *
+ * -----
+ *
+ * Idea: leverage other GSettings backends instead of using the default one? For
+ * example the memory GSettings backend, see g_memory_settings_backend_new().
+ * Have both backends, the default GSettings backend plus the memory backend,
+ * and do optional binding between the two with g_settings_bind()?
+ *
+ * -----
+ *
+ * Have access to all GSettings features, be able to choose a different backend
+ * etc.
+ *
+ * -----
+ *
+ * To continue in the same direction as the current DhSettings* implementation:
+ *
+ * To make it better, it would require lots of boilerplate code, so I was maybe
+ * thinking about a code generation tool that reads the GSettings XML schema and
+ * creates a GObject class with some properties and functions for each key. Then
+ * DhSettings would come on top of that generated class (either as a subclass or
+ * using it by composition) to add more specific functions like
+ * is_book_enabled(), set_book_enabled(), etc.
  *
  * The code generation tool would do something along those lines:
  * - Add a property of type GVariant for each GSettings key.
