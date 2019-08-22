@@ -88,7 +88,7 @@
  * Idea: leverage other GSettings backends instead of using the default one? For
  * example the memory GSettings backend, see g_memory_settings_backend_new().
  * Have both backends, the default GSettings backend plus the memory backend,
- * and do optional binding between the two with g_settings_bind()?
+ * and optionally bind the keys between the two?
  *
  * -----
  *
