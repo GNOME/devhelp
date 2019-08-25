@@ -16,7 +16,8 @@ Devhelp philosophy
 The tool is generic and can be used by other development communities, as long
 as the API documentation is available in HTML and a *.devhelp2 index file is
 generated. It's important to keep the door open to other development
-communities, to increase diversity.
+communities, to increase diversity, and maybe bring more funding to develop
+developer tools.
 
 If you want to make the Devhelp application GNOME-specific, for example to have
 a start page specific to GNOME libraries, or to download API references from
