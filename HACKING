@@ -29,7 +29,7 @@ classes for the containment hierarchy. With the goal to create a software
 product line [2] for Devhelp: keep the Devhelp application generic, and create
 a new application specific to GNOME, with both applications having a really
 small codebase (the GNOME-specific features would be written as a configurable
-library as well).
+library as well). For more information see also [3].
 
 [1] “a corpus of functionality built as a set of libraries that can be sliced
     and remixed in different ways per the needs of different use-cases”
@@ -37,6 +37,8 @@ library as well).
     http://lists.llvm.org/pipermail/llvm-dev/2019-June/133274.html
 
 [2] https://www.amazon.com/Feature-Oriented-Software-Product-Lines-Implementation/dp/3642375200/
+
+[3] https://swilmet.be/blog/2019/08/18/10-years-later/
 
 C code conventions
 ------------------
