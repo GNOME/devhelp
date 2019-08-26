@@ -41,6 +41,19 @@ library as well). For more information see also [3].
 
 [3] https://swilmet.be/blog/2019/08/18/10-years-later/
 
+Source code locations
+---------------------
+
+The library (libdevhelp) is in the `devhelp/` directory so that an `#include`
+like the following works when compiling the code:\
+`#include <devhelp/[…].h>`
+
+The application is in `src/`. (Not `src-app/` or something like it). Rationale:
+it is planned to split the Git repository in two in the future, to separate the
+library from the application. When there will only be the application in a git
+repository, `src/` is the usual name. And historically all the source code (lib
+and app) was in `src/`.
+
 C code conventions
 ------------------
 
