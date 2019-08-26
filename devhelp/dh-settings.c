@@ -97,6 +97,14 @@
  *
  * -----
  *
+ * Probably the best idea: make DhSettings an interface and provide the current
+ * implementation in a class with another name, e.g. DhSettingsSimple plus
+ * DhSettingsSimpleBuilder. For more complex needs, when wanting to access all
+ * GSettings features, the app can implement a custom implementation of the
+ * interface.
+ *
+ * -----
+ *
  * To continue in the same direction as the current DhSettings* implementation:
  *
  * To make it better, it would require lots of boilerplate code, so I was maybe
