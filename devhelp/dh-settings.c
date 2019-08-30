@@ -83,6 +83,9 @@
  * implementation iteration with the GSettings schema being in the library).
  * Here are some thoughts to make it better.
  *
+ * More generally, there needs to be a reflection on how best to use GSettings
+ * in a library. And maybe there is a very simple solution that I didn't see.
+ *
  * -----
  *
  * Idea: leverage other GSettings backends instead of using the default one? For
@@ -97,11 +100,20 @@
  *
  * -----
  *
- * Probably the best idea: make DhSettings an interface and provide the current
- * implementation in a class with another name, e.g. DhSettingsSimple plus
- * DhSettingsSimpleBuilder. For more complex needs, when wanting to access all
- * GSettings features, the app can implement a custom implementation of the
- * interface.
+ * Thing not to forget: it's also possible to create _interfaces_, of course, in
+ * addition to classes.
+ *
+ * Maybe having one or two interfaces would help: an app can have a custom
+ * implementation. But the purpose of DhSettings is that it's used by the other
+ * libdevhelp classes, and it would be nice for the other libdevhelp classes to
+ * have access to all GSettings features. So providing an interface, with the
+ * need to implement a custom implementation in order to access all GSettings
+ * features, may not help in all cases for the other libdevhelp classes to
+ * access those features (the other libdevhelp classes would depend only on the
+ * DhSettingsSomethingInterface, not the custom app implementation, of course).
+ *
+ * But maybe an interface would help for DhSettingsBuilder, to have more control
+ * when creating the GSettings objects.
  *
  * -----
  *
@@ -133,9 +145,15 @@
  *   those can be used for the keys where the -bound property is TRUE.
  *
  * That code generation tool would be useful outside Devhelp, for any project
- * that wants to use GSettings in a library or software product line, basically.
- * More generally, there needs to be a reflection on how best to use GSettings
- * in a library.
+ * that wants to use GSettings in a library or software product line. But it can
+ * be prototyped in the libdevhelp.
+ *
+ * -----
+ *
+ * Another solution is to improve GSettings itself by contributing to GIO,
+ * instead of trying to find a solution outside with the existing GSettings API.
+ * Yes, it's always possible to externally add another layer of indirection, but
+ * it would be a bit stupid to end up duplicating the whole GSettings API.
  */
 
 /* libdevhelp GSettings schema IDs */
