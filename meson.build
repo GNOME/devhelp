@@ -6,7 +6,7 @@
 project(
         'devhelp', 'c',
         meson_version : '>= 0.47',
-        version : '3.32.0'
+        version : '3.34.0'
 )
 
 GNOME = import('gnome')
@@ -27,7 +27,7 @@ LIBDEVHELP_API_VERSION_FULL = '3.0'
 #   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
 #   (No interfaces changed:                   REVISION++)
 lt_current = 6
-lt_revision = 1
+lt_revision = 2
 lt_age = 0
 LIBDEVHELP_LT_VERSION = '@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
 
