@@ -7,7 +7,6 @@ install_data(
   )
 )
 
-
 install_data(
   'symbolic/org.gnome.Devhelp-symbolic.svg',
   install_dir : join_paths(
