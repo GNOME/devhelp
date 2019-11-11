@@ -94,7 +94,7 @@ CONFIG_H_INCLUDE_DIR = include_directories('.')
 # For #include <devhelp/something.h>
 ROOT_INCLUDE_DIR = include_directories('.')
 
-add_global_arguments(
+add_project_arguments(
   '-DG_LOG_DOMAIN="@0@"'.format(meson.project_name()),
   language : 'c'
 )
@@ -151,7 +151,7 @@ warning_cflags = [
 
 c_compiler = meson.get_compiler('c')
 supported_warning_cflags = c_compiler.get_supported_arguments(warning_cflags)
-add_global_arguments(supported_warning_cflags, language : 'c')
+add_project_arguments(supported_warning_cflags, language : 'c')
 ##### end CFLAGS
 
 subdir('data')
