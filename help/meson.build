@@ -1,9 +1,9 @@
 pages = [
-        'index.page',
-        'search.page'
+  'index.page',
+  'search.page'
 ]
 
 GNOME.yelp(
-        'devhelp',
-        sources : pages
+  'devhelp',
+  sources : pages
 )
