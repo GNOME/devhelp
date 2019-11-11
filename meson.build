@@ -68,7 +68,7 @@ GETTEXT_PACKAGE_NAME = meson.project_name()
 config_data.set_quoted(
   'GETTEXT_PACKAGE',
   GETTEXT_PACKAGE_NAME,
-  description : 'Define to the gettext package name.'
+  description : 'gettext package name.'
 )
 config_data.set_quoted(
   'DATADIR',
