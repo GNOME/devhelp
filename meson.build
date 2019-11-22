@@ -7,7 +7,6 @@ project(
   'devhelp', 'c',
   meson_version : '>= 0.50',
   version : '3.34.0',
-  default_options : ['warning_level=2']
 )
 
 GNOME = import('gnome')
@@ -100,14 +99,61 @@ add_project_arguments(
   language : 'c'
 )
 
-# Additional CFLAGS.
+#####
+# CFLAGS
+# Try to mimic the AX_COMPILER_FLAGS Autotools macro.
+# Some flags are missing when using only the builtin warning_level meson option,
+# even at the maximum level.
+
 warning_cflags = [
+  '-fno-strict-aliasing',
+  '-Wall',
+  '-Wextra',
+  '-Wundef',
+  '-Wnested-externs',
+  '-Wwrite-strings',
+  '-Wpointer-arith',
+  '-Wmissing-declarations',
+  '-Wmissing-prototypes',
+  '-Wstrict-prototypes',
+  '-Wredundant-decls',
   '-Wno-unused-parameter',
   '-Wno-missing-field-initializers',
+  '-Wdeclaration-after-statement',
+  '-Wformat=2',
+  '-Wold-style-definition',
+  '-Wcast-align',
+  '-Wformat-nonliteral',
+  '-Wformat-security',
+  '-Wsign-compare',
+  '-Wstrict-aliasing',
+  '-Wshadow',
+  '-Winline',
+  '-Wpacked',
+  '-Wmissing-format-attribute',
+  '-Wmissing-noreturn',
+  '-Winit-self',
+  '-Wredundant-decls',
+  '-Wmissing-include-dirs',
+  '-Wunused-but-set-variable',
+  '-Warray-bounds',
+  '-Wimplicit-function-declaration',
+  '-Wreturn-type',
+  '-Wswitch-enum',
+  '-Wswitch-default',
+  '-Wduplicated-cond',
+  '-Wduplicated-branches',
+  '-Wlogical-op',
+  '-Wrestrict',
+  '-Wnull-dereference',
+  '-Wjump-misses-init',
+  '-Wdouble-promotion'
 ]
+
 c_compiler = meson.get_compiler('c')
 supported_warning_cflags = c_compiler.get_supported_arguments(warning_cflags)
 add_project_arguments(supported_warning_cflags, language : 'c')
+##### end CFLAGS
 
 subdir('data')
 subdir('plugins/gedit-plugin')
