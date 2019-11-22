@@ -7,6 +7,7 @@ project(
   'devhelp', 'c',
   meson_version : '>= 0.50',
   version : '3.34.0',
+  default_options : ['warning_level=2']
 )
 
 GNOME = import('gnome')
@@ -104,11 +105,10 @@ add_project_arguments(
 # Try to mimic the AX_COMPILER_FLAGS Autotools macro.
 # Some flags are missing when using only the builtin warning_level meson option,
 # even at the maximum level.
+# The following warning_cflags suppose that warning_level=2.
 
 warning_cflags = [
   '-fno-strict-aliasing',
-  '-Wall',
-  '-Wextra',
   '-Wundef',
   '-Wnested-externs',
   '-Wwrite-strings',
