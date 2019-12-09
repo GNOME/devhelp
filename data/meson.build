@@ -52,7 +52,4 @@ install_data(
   install_dir : join_paths(get_option('prefix'), get_option('datadir'), 'devhelp/assistant')
 )
 
-install_data(
-  'devhelp.1',
-  install_dir : join_paths(get_option('prefix'), get_option('mandir'), 'man1')
-)
+install_man('devhelp.1')
