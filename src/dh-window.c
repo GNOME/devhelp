@@ -290,6 +290,7 @@ find_cb (GSimpleAction *action,
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
         gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
+        dh_search_bar_grab_focus_to_search_entry (priv->search_bar);
 }
 
 static void
