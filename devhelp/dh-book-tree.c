@@ -754,7 +754,7 @@ do_popup_menu (DhBookTree     *tree,
                  * GtkMenuShell::deactivate signal to call gtk_widget_destroy().
                  * But GtkMenuShell::deactivate is emitted before
                  * collapse_all_activate_cb(), so collapse_all_activate_cb() was
-                 * never called... It's maybe a GTK+ bug.
+                 * never called... It's maybe a GTK bug.
                  */
                 priv->context_menu = GTK_MENU (gtk_menu_new ());
 

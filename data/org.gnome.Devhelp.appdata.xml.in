@@ -16,7 +16,7 @@
       not needed to use Devhelp.
     </p>
     <p>
-      Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are
+      Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are
       well supported. But other development platforms can be supported as well,
       as long as the API documentation is available in HTML and a *.devhelp2
       index file is generated.

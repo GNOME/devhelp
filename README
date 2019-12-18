@@ -18,8 +18,8 @@ See the HACKING file.
 Dependencies
 ------------
 
-- glib >= 2.56
-- gtk+ >= 3.22
+- GLib >= 2.56
+- GTK >= 3.22
 - webkit2gtk-4.0 >= 2.20
 - Amtk >= 5.0 - https://wiki.gnome.org/Projects/Amtk
 - gsettings-desktop-schemas
@@ -34,7 +34,7 @@ function, struct, or macro.
 The documentation must be installed locally, so an internet connection is
 not needed to use Devhelp.
 
-Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are
+Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are
 well supported. But other development platforms can be supported as well,
 as long as the API documentation is available in HTML and a *.devhelp2
 index file is generated.
@@ -51,7 +51,7 @@ Devhelp provides some command line options, such as --search and
 `devhelp --search function_name` when a keyboard shortcut is pressed, with the
 function_name under the cursor.
 
-Devhelp also provides a shared library, to integrate the GTK+ widgets inside an
+Devhelp also provides a shared library, to integrate the GTK widgets inside an
 IDE. It is used for example by Builder and Anjuta.
 
 For the --search command line option, see the class description of

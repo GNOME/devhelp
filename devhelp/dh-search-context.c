@@ -442,7 +442,7 @@ _dh_search_context_match_link (DhSearchContext *search,
          *   keywords, it would be impossible to match the DhLink name (except
          *   if all the keywords are equal for example, but it doesn't make
          *   sense to do such a search).
-         * - At least with the GTK+/GNOME APIs, normally all the symbols start
+         * - At least with the GTK/GNOME APIs, normally all the symbols start
          *   with the namespace of the library. So when we search symbols, if we
          *   know in which library the symbol(s) is located, we can type the
          *   namespace as first keyword. With prefix=TRUE, this will match the

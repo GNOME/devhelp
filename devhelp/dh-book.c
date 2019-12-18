@@ -35,7 +35,7 @@
  * @Short_description: A book, usually the documentation for one library
  *
  * A #DhBook usually contains the documentation for one library (or
- * application), for example GLib or GTK+. A #DhBook corresponds to one index
+ * application), for example GLib or GTK. A #DhBook corresponds to one index
  * file. An index file is a file with the extension `*.devhelp`, `*.devhelp2`,
  * `*.devhelp.gz` or `*.devhelp2.gz`.
  *
