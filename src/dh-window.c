@@ -289,7 +289,13 @@ find_cb (GSimpleAction *action,
         DhWindow *window = DH_WINDOW (user_data);
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
 
-        gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
+        gboolean search_mode = gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (priv->search_bar));
+        if (search_mode) {
+            gtk_widget_grab_focus (GTK_WIDGET (priv->search_bar->search_entry));
+            gtk_editable_select_region (GTK_EDITABLE (priv->search_bar->search_entry), 0, -1);
+        } else {
+            gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
+        }
 }
 
 static void
