@@ -18,10 +18,10 @@ See the HACKING file.
 Dependencies
 ------------
 
-- GLib >= 2.56
-- GTK >= 3.22
-- webkit2gtk-4.0 >= 2.20
-- Amtk >= 5.0 - https://wiki.gnome.org/Projects/Amtk
+- GLib
+- GTK
+- WebKitGTK
+- Amtk - https://wiki.gnome.org/Projects/Amtk
 - gsettings-desktop-schemas
 
 Description
