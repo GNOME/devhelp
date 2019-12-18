@@ -50,11 +50,13 @@ struct _DhSearchBarClass {
         gpointer padding[12];
 };
 
-GType           dh_search_bar_get_type          (void);
+GType           dh_search_bar_get_type                   (void);
 
-DhSearchBar *   dh_search_bar_new               (DhNotebook *notebook);
+DhSearchBar *   dh_search_bar_new                        (DhNotebook *notebook);
 
-DhNotebook *    dh_search_bar_get_notebook      (DhSearchBar *search_bar);
+DhNotebook *    dh_search_bar_get_notebook               (DhSearchBar *search_bar);
+
+void            dh_search_bar_grab_focus_to_search_entry (DhSearchBar *search_bar);
 
 G_END_DECLS
 
