@@ -2,4 +2,10 @@
       type="guide"
       id="index">
 <title>Devhelp User Documentation</title>
+
+<synopsis>
+  <p>
+    Devhelp is a developer tool for browsing and searching API documentation.
+  </p>
+</synopsis>
 </page>
