@@ -364,3 +364,18 @@ dh_search_bar_get_notebook (DhSearchBar *search_bar)
 
         return search_bar->priv->notebook;
 }
+
+/**
+ * dh_search_bar_grab_focus_to_search_entry:
+ * @search_bar: a #DhSearchBar.
+ *
+ * Grabs the focus of #DhSearchBar search entry and selects its text
+ */
+void
+dh_search_bar_grab_focus_to_search_entry (DhSearchBar *search_bar)
+{
+        g_return_if_fail (DH_IS_SEARCH_BAR (search_bar));
+
+        gtk_widget_grab_focus (GTK_WIDGET (search_bar->priv->search_entry));
+        gtk_editable_select_region (GTK_EDITABLE (search_bar->priv->search_entry), 0, -1);
+}

@@ -271,6 +271,7 @@ dh_profile_builder_get_type
 DhSearchBar
 dh_search_bar_new
 dh_search_bar_get_notebook
+dh_search_bar_grab_focus_to_search_entry
 <SUBSECTION Standard>
 DH_IS_SEARCH_BAR
 DH_IS_SEARCH_BAR_CLASS
