@@ -39,7 +39,6 @@
 
 struct _DhSearchBarPrivate {
         DhNotebook *notebook;
-        GtkSearchEntry *search_entry;
 };
 
 enum {
@@ -59,7 +58,7 @@ update_search_in_web_view (DhSearchBar *search_bar,
         const gchar *search_text = NULL;
 
         if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (search_bar)))
-                search_text = gtk_entry_get_text (GTK_ENTRY (search_bar->priv->search_entry));
+                search_text = gtk_entry_get_text (GTK_ENTRY (search_bar->search_entry));
 
         dh_web_view_set_search_text (view, search_text);
 }
@@ -191,22 +190,22 @@ dh_search_bar_constructed (GObject *object)
         gtk_style_context_add_class (style_context, GTK_STYLE_CLASS_LINKED);
 
         /* Search entry */
-        search_bar->priv->search_entry = GTK_SEARCH_ENTRY (gtk_search_entry_new ());
-        gtk_widget_set_size_request (GTK_WIDGET (search_bar->priv->search_entry), 300, -1);
+        search_bar->search_entry = GTK_SEARCH_ENTRY (gtk_search_entry_new ());
+        gtk_widget_set_size_request (GTK_WIDGET (search_bar->search_entry), 300, -1);
         gtk_container_add (GTK_CONTAINER (hgrid),
-                           GTK_WIDGET (search_bar->priv->search_entry));
+                           GTK_WIDGET (search_bar->search_entry));
 
-        g_signal_connect (search_bar->priv->search_entry,
+        g_signal_connect (search_bar->search_entry,
                           "search-changed",
                           G_CALLBACK (search_changed_cb),
                           search_bar);
 
-        g_signal_connect (search_bar->priv->search_entry,
+        g_signal_connect (search_bar->search_entry,
                           "previous-match",
                           G_CALLBACK (previous_match_cb),
                           search_bar);
 
-        g_signal_connect (search_bar->priv->search_entry,
+        g_signal_connect (search_bar->search_entry,
                           "next-match",
                           G_CALLBACK (next_match_cb),
                           search_bar);
@@ -244,7 +243,7 @@ dh_search_bar_constructed (GObject *object)
         gtk_container_add (GTK_CONTAINER (search_bar), hgrid);
 
         gtk_search_bar_connect_entry (GTK_SEARCH_BAR (search_bar),
-                                      GTK_ENTRY (search_bar->priv->search_entry));
+                                      GTK_ENTRY (search_bar->search_entry));
 }
 
 static void
@@ -292,7 +291,7 @@ dh_search_bar_dispose (GObject *object)
         DhSearchBar *search_bar = DH_SEARCH_BAR (object);
 
         g_clear_object (&search_bar->priv->notebook);
-        search_bar->priv->search_entry = NULL;
+        search_bar->search_entry = NULL;
 
         G_OBJECT_CLASS (dh_search_bar_parent_class)->dispose (object);
 }

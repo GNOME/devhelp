@@ -39,6 +39,7 @@ typedef struct _DhSearchBarPrivate  DhSearchBarPrivate;
 
 struct _DhSearchBar {
         GtkSearchBar parent;
+        GtkSearchEntry *search_entry;
 
         DhSearchBarPrivate *priv;
 };
