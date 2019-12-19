@@ -369,7 +369,9 @@ dh_search_bar_get_notebook (DhSearchBar *search_bar)
  * dh_search_bar_grab_focus_to_search_entry:
  * @search_bar: a #DhSearchBar.
  *
- * Grabs the focus of #DhSearchBar search entry and selects its text
+ * Grabs the focus to the #DhSearchBar search entry and selects its text.
+ *
+ * Since: 3.36
  */
 void
 dh_search_bar_grab_focus_to_search_entry (DhSearchBar *search_bar)
