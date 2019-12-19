@@ -86,7 +86,7 @@
   <p>
     It follows the book format supported by <app>Devhelp</app>. So by using
     GTK-Doc, the API reference can be browsed in <app>Devhelp</app>
-    automatically.
+    automatically (once installed in the right location, that is).
   </p>
 </section>
 </page>
