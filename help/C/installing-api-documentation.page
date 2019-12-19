@@ -1,0 +1,118 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="topic"
+      id="installing-api-documentation">
+
+<info>
+  <link type="guide" xref="index" />
+</info>
+
+<title>Installing API documentation</title>
+
+<synopsis>
+  <p>How <app>Devhelp</app> finds the API documentation.</p>
+</synopsis>
+
+<links type="section" />
+
+<section id="book-format">
+  <title>Book format</title>
+  <p>
+    An API documentation – or book – needs to follow a certain format in order
+    for <app>Devhelp</app> to read it and to add it to its book shelf.
+  </p>
+  <p>
+    The content of a book is placed in one directory. It is comprised of:
+  </p>
+  <list>
+    <item><p>
+      HTML pages, plus possibly CSS files, images, etc;
+    </p></item>
+    <item><p>
+      A file with the <file>.devhelp2</file> file extension. It is the index
+      file, it contains the book structure plus a list of symbols (functions,
+      types, macros, signals, properties, …) that contains links to the HTML
+      files to reach those pages or symbols. In <app>Devhelp</app> the book
+      structure is shown in the side panel. And the
+      <link xref="search">search in the side panel</link> shows results found
+      in the index files.
+    </p></item>
+  </list>
+  <p>
+    Restriction: the name of the directory the <file>*.devhelp2</file> file is
+    in and the name of the <file>*.devhelp2</file> file (minus the extension)
+    must match. In other words, if the book directory is called
+    <code>$book_name</code>, then the absolute path to the index file should
+    end with <code>$book_name/$book_name.devhelp2</code>. That way, when
+    <app>Devhelp</app> knows the directory name, it directly knows the location
+    to the index file.
+  </p>
+</section>
+
+<section id="books-locations">
+  <title>Books locations</title>
+  <p>
+    Once a book follows the right format, its directory needs to be installed
+    at a location where <app>Devhelp</app> will find it.
+  </p>
+  <p>
+    <app>Devhelp</app> uses the
+    <link href="https://specifications.freedesktop.org/basedir-spec/latest/">XDG Base Directory Specification</link>
+    to find the books. The list of locations searched is:
+  </p>
+  <list its:translate="no">
+    <item><p><code>$XDG_DATA_HOME/devhelp/books/</code></p></item>
+    <item><p><code>$XDG_DATA_HOME/gtk-doc/html/</code></p></item>
+    <item><p><code>$XDG_DATA_DIRS/devhelp/books/</code></p></item>
+    <item><p><code>$XDG_DATA_DIRS/gtk-doc/html/</code></p></item>
+  </list>
+  <p>
+    Note that the two latter consist of :-separated lists of directories to
+    look for. Those environment variables are normally set up by the desktop
+    environment or distribution.
+  </p>
+  <p>
+    Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a
+    typical system:
+  </p>
+  <list>
+    <item its:translate="no"><p>
+      <file>~/.local/share/devhelp/books/glib/glib.devhelp2</file>
+    </p></item>
+    <item><p>
+      <file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</file>
+      if <app>Devhelp</app> is launched with
+      <link href="https://flatpak.org/">Flatpak</link>.
+    </p></item>
+  </list>
+  <p>
+    Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on
+    a typical system:
+  </p>
+  <list>
+    <item its:translate="no"><p>
+      <file>/usr/share/gtk-doc/html/glib/glib.devhelp2</file>
+    </p></item>
+  </list>
+</section>
+
+<section id="gtk-doc">
+  <title>GTK-Doc</title>
+  <p>
+    <link href="https://www.gtk.org/gtk-doc/">GTK-Doc</link> is a tool to
+    generate API documentation from comments added to C code. It is used by
+    GLib, GTK and GNOME libraries and applications.
+  </p>
+  <p>
+    GTK-Doc installs the API reference of a module into:
+  </p>
+  <p its:translate="no">
+    <code>$datadir/gtk-doc/html/$module_name/</code>
+  </p>
+  <p>
+    It follows the book format supported by <app>Devhelp</app>. So by using
+    GTK-Doc, the API reference can be browsed in <app>Devhelp</app>
+    automatically.
+  </p>
+</section>
+</page>

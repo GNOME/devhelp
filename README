@@ -58,46 +58,8 @@ For the --search command line option, see the class description of
 DhKeywordModel, the search string supports additional features useful for IDEs
 or other developer tools.
 
-How it finds the API documentation
-----------------------------------
-
-When you build (or install) a GNOME library, GTK-Doc will build an API
-reference for you and install it into:
-
-  $datadir/gtk-doc/html/$PACKAGE/
-
-Along with the HTML files, a *.devhelp and/or *.devhelp2 index file is
-also generated automatically. Thus Devhelp can simply scan that folder
-for those index files and display the books they represent.
-
-Devhelp uses the "XDG Base Directory Specification" to find
-documentation. You can read more about that specification here:
-
-  https://specifications.freedesktop.org/basedir-spec/latest/
-
-The list of locations searched for devhelp books is:
-
-$XDG_DATA_HOME/devhelp/books
-   e.g. ~/.local/share/devhelp/books/glib/glib.devhelp2
-   or with Flatpak: ~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2
-
-$XDG_DATA_HOME/gtk-doc/html
-   e.g. ~/.local/share/gtk-doc/html/glib/glib.devhelp2
-   or with Flatpak: ~/.var/app/org.gnome.Devhelp/data/gtk-doc/html/glib/glib.devhelp2
-
-$XDG_DATA_DIRS/devhelp/books
-   e.g. /usr/share/devhelp/books/glib/glib.devhelp2
-
-$XDG_DATA_DIRS/gtk-doc/html
-   e.g. /usr/share/gtk-doc/html/glib/glib.devhelp2
-
-Note that the two latter consist of :-separated lists of directories to
-look for. Those environment variables are normally set up by the
-desktop environment or distribution.
-
-Note that the name of the directory the *.devhelp2 file is in and the name of
-the *.devhelp2 file (minus the extension) must match ("glib" in the above
-examples).
+Misc notes
+----------
 
 The first version of the index file format (with the *.devhelp file
 extension) is deprecated and its support will probably be removed in a
