@@ -18,8 +18,9 @@
 </synopsis>
 
 <p>
-  The content of a book is placed in one directory. That directory is
-  comprised of:
+  The content of a book is placed in one directory (that directory contains
+  only one book, it cannot contain several books). The directory is comprised
+  of:
 </p>
 <list>
   <item><p>
