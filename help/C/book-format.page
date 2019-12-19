@@ -27,13 +27,7 @@
     HTML pages, plus possibly CSS files, images, etc;
   </p></item>
   <item><p>
-    A file with the <file>.devhelp2</file> file extension. It is the index
-    file, it contains the book structure plus a list of symbols (functions,
-    types, macros, signals, properties, …) that contains links to the HTML
-    files to reach those pages or symbols. In <app>Devhelp</app> the book
-    structure is shown in the side panel. And the
-    <link xref="search">search in the side panel</link> shows results found
-    in the index files.
+    An index file, see <link xref="index-file-format" /> for more information.
   </p></item>
 </list>
 <p>

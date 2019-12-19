@@ -1,0 +1,68 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="topic"
+      id="index-file-format">
+
+<info>
+  <link type="guide" xref="index" />
+</info>
+
+<title>Index file format</title>
+
+<synopsis>
+  <p>
+    This page describes the purpose and the format of <file>*.devhelp2</file>
+    index files.
+  </p>
+</synopsis>
+
+<p>
+  A book (see <link xref="book-format" />) contains one index file. The index
+  file has the extension <file>.devhelp2</file> and has an XML format.
+</p>
+
+<note>
+  <p>
+    The “2” in the <file>*.devhelp2</file> file extension is because it is the
+    second version of the file format. The first version of the format, with
+    the <file>*.devhelp</file> file extension, is deprecated and its support in
+    <app>Devhelp</app> may be removed in the future. On application startup,
+    when <app>Devhelp</app> scans the filesystem to find books, it emits a
+    warning message in the terminal for each book that uses a deprecated
+    format.
+  </p>
+</note>
+
+<p>
+  The index file mainly contains:
+</p>
+<list>
+  <item><p>
+    The book structure (like a table of contents).
+  </p></item>
+  <item><p>
+    A list of symbols (functions, types, macros, signals, properties, …).
+  </p></item>
+</list>
+<p>
+  These contain links to the HTML files to reach the corresponding pages and
+  symbols.
+</p>
+<p>
+  In <app>Devhelp</app> the book structure is shown in the side panel. And the
+  <link xref="search">search in the side panel</link> shows results found in
+  the index files.
+</p>
+
+<section id="devhelp2-index-format">
+  <title>Specification of the <file>*.devhelp2</file> XML file format</title>
+  <p>
+    Unfortunately the <file>*.devhelp2</file> XML file format is not well
+    documented. There is still some hope that it will be fixed in the near
+    future. In the meantime, we recommend to look at what
+    <link xref="installing-api-documentation#gtk-doc">GTK-Doc</link> generates.
+    For the most precise definition of what <app>Devhelp</app> supports, read
+    the parser source code and the <app>Devhelp</app> API reference.
+  </p>
+</section>
+</page>
