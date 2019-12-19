@@ -58,10 +58,12 @@ For the --search command line option, see the class description of
 DhKeywordModel, the search string supports additional features useful for IDEs
 or other developer tools.
 
-Misc notes
-----------
+Other documentation
+-------------------
 
-The first version of the index file format (with the *.devhelp file
-extension) is deprecated and its support will probably be removed in a
-future version. You should use the second version, with the *.devhelp2
-file extension.
+- There is user documentation written in the Mallard format in the `help/C/`
+  directory. You can open that documentation with the `yelp help/C/` command,
+  or pressing F1 in the Devhelp application.
+
+- There is an API reference manual for the libdevhelp that can be built with
+  GTK-Doc, see the `gtk_doc` build option.
