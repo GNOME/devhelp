@@ -378,6 +378,9 @@ dh_search_bar_grab_focus_to_search_entry (DhSearchBar *search_bar)
 {
         g_return_if_fail (DH_IS_SEARCH_BAR (search_bar));
 
+	if (search_bar->priv->search_entry == NULL)
+		return;
+
         gtk_widget_grab_focus (GTK_WIDGET (search_bar->priv->search_entry));
         gtk_editable_select_region (GTK_EDITABLE (search_bar->priv->search_entry), 0, -1);
 }
