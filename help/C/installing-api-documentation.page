@@ -18,34 +18,8 @@
 <section id="book-format">
   <title>Book format</title>
   <p>
-    An API documentation – or book – needs to follow a certain format in order
-    for <app>Devhelp</app> to read it and to add it to its book shelf.
-  </p>
-  <p>
-    The content of a book is placed in one directory. It is comprised of:
-  </p>
-  <list>
-    <item><p>
-      HTML pages, plus possibly CSS files, images, etc;
-    </p></item>
-    <item><p>
-      A file with the <file>.devhelp2</file> file extension. It is the index
-      file, it contains the book structure plus a list of symbols (functions,
-      types, macros, signals, properties, …) that contains links to the HTML
-      files to reach those pages or symbols. In <app>Devhelp</app> the book
-      structure is shown in the side panel. And the
-      <link xref="search">search in the side panel</link> shows results found
-      in the index files.
-    </p></item>
-  </list>
-  <p>
-    Restriction: the name of the directory the <file>*.devhelp2</file> file is
-    in and the name of the <file>*.devhelp2</file> file (minus the extension)
-    must match. In other words, if the book directory is called
-    <code>$book_name</code>, then the absolute path to the index file should
-    end with <code>$book_name/$book_name.devhelp2</code>. That way, when
-    <app>Devhelp</app> knows the directory name, it directly knows the location
-    to the index file.
+    See <link xref="book-format" /> for information on the API documentation
+    format that <app>Devhelp</app> recognizes.
   </p>
 </section>
 
