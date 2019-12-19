@@ -12,8 +12,8 @@
 <synopsis>
   <p>
     A “book” in <app>Devhelp</app> is the API documentation for one module, or
-    package. A book needs to follow a certain format in order for
-    <app>Devhelp</app> to recognize it.
+    package (usually a library). This page describes the format that a book
+    needs to follow in order for <app>Devhelp</app> to recognize it.
   </p>
 </synopsis>
 
@@ -27,16 +27,19 @@
     HTML pages, plus possibly CSS files, images, etc;
   </p></item>
   <item><p>
-    An index file, see <link xref="index-file-format" /> for more information.
+    An index file with the <file>*.devhelp2</file> file extension, see
+    <link xref="index-file-format" /> for more information.
   </p></item>
 </list>
-<p>
-  Restriction: the name of the directory the <file>*.devhelp2</file> file is
-  in and the name of the <file>*.devhelp2</file> file (minus the extension)
-  must match. In other words, if the book directory is called
-  <code>$book_name</code>, then the absolute path to the index file should
-  end with <code>$book_name/$book_name.devhelp2</code>. That way, when
-  <app>Devhelp</app> knows the directory name, it directly knows the location
-  to the index file.
-</p>
+<note>
+  <p>
+    Restriction: the name of the directory the <file>*.devhelp2</file> file is
+    in and the name of the <file>*.devhelp2</file> file (minus the extension)
+    must match. In other words, if the book directory is called
+    <code>$book_name</code>, then the absolute path to the index file should
+    end with <code>$book_name/$book_name.devhelp2</code>. That way, when
+    <app>Devhelp</app> knows the directory name, it directly knows the location
+    to the index file.
+  </p>
+</note>
 </page>
