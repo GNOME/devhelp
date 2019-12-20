@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This file is part of Devhelp.
+
+  SPDX-FileCopyrightText: 2013 Ignacio Casal Quinteiro <ignacio.casal@nice-software.com>
+  SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+
+  SPDX-License-Identifier: GPL-3.0-or-later
+-->
 <interface>
   <!-- interface-requires gtk+ 3.8 -->
   <template class="DhAssistant" parent="GtkApplicationWindow">
