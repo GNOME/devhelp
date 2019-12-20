@@ -1,3 +1,7 @@
+# This file is part of Devhelp.
+# SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 devhelp_app_sources = [
   'dh-app.c',
   'dh-assistant.c',

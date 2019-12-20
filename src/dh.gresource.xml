@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This file is part of Devhelp.
+
+  SPDX-FileCopyrightText: 2013 Ignacio Casal Quinteiro <ignacio.casal@nice-software.com>
+  SPDX-FileCopyrightText: 2013 Thomas Bechtold <thomasbechtold@jpberlin.de>
+  SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+
+  SPDX-License-Identifier: GPL-3.0-or-later
+-->
 <gresources>
   <gresource prefix="/org/gnome/devhelp">
     <file preprocess="xml-stripblanks">dh-assistant.ui</file>
