@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 unit_tests = [
   'test-completion',
   'test-link',
