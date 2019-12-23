@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 libdevhelp_public_headers = [
   'devhelp.h',
   'dh-application-window.h',
