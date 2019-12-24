@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+/* SPDX-FileCopyrightText: 2018-2019 Sébastien Wilmet <swilmet@gnome.org>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -69,9 +68,7 @@ set_tab (DhTabLabel *tab_label,
         g_return_if_fail (DH_IS_TAB (tab));
 
         g_assert (tab_label->priv->tab == NULL);
-        tab_label->priv->tab = tab;
-        g_object_add_weak_pointer (G_OBJECT (tab_label->priv->tab),
-                                   (gpointer *) &tab_label->priv->tab);
+        g_set_weak_pointer (&tab_label->priv->tab, tab);
 
         web_view = dh_tab_get_web_view (tab);
         g_signal_connect_object (web_view,
@@ -126,11 +123,7 @@ dh_tab_label_dispose (GObject *object)
 {
         DhTabLabel *tab_label = DH_TAB_LABEL (object);
 
-        if (tab_label->priv->tab != NULL) {
-                g_object_remove_weak_pointer (G_OBJECT (tab_label->priv->tab),
-                                              (gpointer *) &tab_label->priv->tab);
-                tab_label->priv->tab = NULL;
-        }
+        g_clear_weak_pointer (&tab_label->priv->tab);
 
         G_OBJECT_CLASS (dh_tab_label_parent_class)->dispose (object);
 }
