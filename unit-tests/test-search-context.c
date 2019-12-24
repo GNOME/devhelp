@@ -1,32 +1,19 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+/* SPDX-FileCopyrightText: 2018-2019 Sébastien Wilmet <swilmet@gnome.org>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 #include "devhelp/dh-search-context.h"
 
 static gboolean
-strv_equal (GStrv strv1,
-            GStrv strv2)
+strv_equal_nullsafe (GStrv strv1,
+                     GStrv strv2)
 {
-        gint i1;
-        gint i2;
-
         if (strv1 == NULL || strv2 == NULL)
                 return strv1 == NULL && strv2 == NULL;
 
-        for (i1 = 0, i2 = 0;
-             strv1[i1] != NULL && strv2[i2] != NULL;
-             i1++, i2++) {
-                const gchar *cur_str1 = strv1[i1];
-                const gchar *cur_str2 = strv2[i2];
-
-                if (!g_str_equal (cur_str1, cur_str2))
-                        return FALSE;
-        }
-
-        return strv1[i1] == NULL && strv2[i2] == NULL;
+        return g_strv_equal ((const gchar * const *) strv1,
+                             (const gchar * const *) strv2);
 }
 
 static void
@@ -50,7 +37,7 @@ check_process_search_string (const gchar *search_string,
 
         g_assert_cmpstr (_dh_search_context_get_book_id (search_context), ==, expected_book_id);
         g_assert_cmpstr (_dh_search_context_get_page_id (search_context), ==, expected_page_id);
-        g_assert (strv_equal (_dh_search_context_get_keywords (search_context), expected_keywords));
+        g_assert (strv_equal_nullsafe (_dh_search_context_get_keywords (search_context), expected_keywords));
 
         _dh_search_context_free (search_context);
 }
