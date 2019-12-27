@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp-master-po-gl-1953\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-21 13:52+0000\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
 "PO-Revision-Date: 2018-09-30 18:23+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician\n"
@@ -31,7 +31,7 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -61,11 +61,17 @@ msgstr ""
 "unha conexión a internet para usar Devhelp."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
+#, fuzzy
+#| msgid ""
+#| "Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+#| "well supported. But other development platforms can be supported as well, "
+#| "as long as the API documentation is available in HTML and a *.devhelp2 "
+#| "index file is generated."
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
 "Devhelp funciona de forma nativa con GTK-Doc, polo que as bibliotecas de GTK"
 "+ e GNOME son compatíbeis. Pero calquera plataforma de devenvolvemento pode "
@@ -90,12 +96,6 @@ msgstr "Explorador de documentación de API"
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "documentación;información;manual;desenvolvedor;api;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -203,7 +203,7 @@ msgstr "Idioma: %s"
 msgid "Language: Undefined"
 msgstr "Idioma: non definido"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "_Contraer todo"
 
@@ -272,7 +272,7 @@ msgstr "Propiedade"
 msgid "Signal"
 msgstr "Sinal"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:657
 msgid "Empty Page"
 msgstr "Páxina baleira"
 
@@ -285,14 +285,12 @@ msgid "Show API Documentation"
 msgstr "Mostrar a documentación da API"
 
 #. action, icon, label, accel, tooltip
-#. App menu
+#. Actions related to the whole application
 #: src/dh-app.c:51
 msgid "New _Window"
 msgstr "Nova _xanela"
 
 #: src/dh-app.c:52
-#| msgctxt "shortcut window"
-#| msgid "Open a new window"
 msgid "Open a new window"
 msgstr "Abrir unha nova xanela"
 
@@ -309,27 +307,23 @@ msgid "_Help"
 msgstr "_Axuda"
 
 #: src/dh-app.c:56
-msgid "_About"
-msgstr "_Sobre"
+msgid "_About Devhelp"
+msgstr "Sobre _Devhelp"
 
 #: src/dh-app.c:57
 msgid "_Quit"
 msgstr "_Saír"
 
 #: src/dh-app.c:58
-#| msgctxt "shortcut window"
-#| msgid "Close all windows"
 msgid "Close all windows"
 msgstr "Pechar todas as xanelas"
 
-#. Window menu
+#. Actions related to the current main window
 #: src/dh-app.c:61
 msgid "_Side Panel"
 msgstr "Panel _lateral"
 
 #: src/dh-app.c:62
-#| msgctxt "shortcut window"
-#| msgid "Toggle side panel visibility"
 msgid "Toggle side panel visibility"
 msgstr "Trocar a visibilidade do panel lateral"
 
@@ -342,8 +336,6 @@ msgid "_Find"
 msgstr "_Buscar"
 
 #: src/dh-app.c:65
-#| msgctxt "shortcut window"
-#| msgid "Find in current page"
 msgid "Find in current page"
 msgstr "Buscar na páxina actual"
 
@@ -373,32 +365,22 @@ msgstr "Tamaño normal"
 
 #. action, icon, label, accel, tooltip
 #: src/dh-app.c:111
-#| msgctxt "shortcut window"
-#| msgid "Open a new tab"
 msgid "Open a new tab"
 msgstr "Abrir unha nova lapela"
 
 #: src/dh-app.c:112
-#| msgctxt "shortcut window"
-#| msgid "Close the current window"
 msgid "Close the current tab"
 msgstr "Pechar a xanela actual"
 
 #: src/dh-app.c:113
-#| msgctxt "shortcut window"
-#| msgid "Go back"
 msgid "Go back"
 msgstr "Ir atrás"
 
 #: src/dh-app.c:114
-#| msgctxt "shortcut window"
-#| msgid "Go forward"
 msgid "Go forward"
 msgstr "Ir adiante"
 
 #: src/dh-app.c:115
-#| msgctxt "shortcut window"
-#| msgid "Focus global search"
 msgid "Focus global search"
 msgstr "Enfocar a busca global"
 
@@ -418,27 +400,27 @@ msgstr ""
 msgid "Devhelp Website"
 msgstr "Sitio web de DevHelp"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Abre unha nova xanela de Devhelp"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "Buscar unha palabra chave"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "PALABRA CLAVE"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "Buscar e mostrar calquera coincidencia na xanela do asistente"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "Mostrar a versión e saír"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Saír de calquera Devhelp en execución"
 
@@ -485,32 +467,31 @@ msgstr "Tipos de fonte"
 
 #. General group
 #: src/dh-window.c:393
-#| msgctxt "shortcut window"
-#| msgid "General"
 msgid "General"
 msgstr "Xeral"
 
 #. Zoom group
 #: src/dh-window.c:407
-#| msgctxt "shortcut window"
-#| msgid "Zoom"
 msgid "Zoom"
 msgstr "Ampliación"
 
-#: src/dh-window.c:572
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "Atrás"
 
-#: src/dh-window.c:576
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "Adiante"
 
-#: src/dh-window.c:599
+#: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Nova lapela"
 
-#~ msgid "_About Devhelp"
-#~ msgstr "Sobre _Devhelp"
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
+
+#~ msgid "_About"
+#~ msgstr "_Sobre"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Print"
