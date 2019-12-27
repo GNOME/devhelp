@@ -15,28 +15,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp-master-po-gl-1953\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2019-12-18 18:00+0000\n"
-"PO-Revision-Date: 2018-09-30 18:23+0200\n"
-"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
+"POT-Creation-Date: 2019-12-27 13:10+0000\n"
+"PO-Revision-Date: 2019-12-27 15:19+0100\n"
+"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Project-Style: gnome\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:562
+#: src/dh-app.c:256 src/dh-app.c:548
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:258
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Unha ferramenta de desenvolvemento para explorar e buscar documentación de "
@@ -61,12 +61,6 @@ msgstr ""
 "unha conexión a internet para usar Devhelp."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
-#, fuzzy
-#| msgid ""
-#| "Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-#| "well supported. But other development platforms can be supported as well, "
-#| "as long as the API documentation is available in HTML and a *.devhelp2 "
-#| "index file is generated."
 msgid ""
 "Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
 "supported. But other development platforms can be supported as well, as long "
@@ -74,9 +68,9 @@ msgid ""
 "generated."
 msgstr ""
 "Devhelp funciona de forma nativa con GTK-Doc, polo que as bibliotecas de GTK"
-"+ e GNOME son compatíbeis. Pero calquera plataforma de devenvolvemento pode "
-"ser compatíbel tamén, así como documentación de API dispoñíbel en HTLM e "
-"está xerado un ficheiro de índice *.devhelp2"
+"+ e GNOME son compatíbeis. Pero calquera plataforma de desenvolvemento pode "
+"ser compatíbel tamén, así como documentación de API dispoñíbel en HTML e "
+"está xerado un ficheiro de índice *.devhelp2."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:24
 msgid ""
@@ -84,8 +78,8 @@ msgid ""
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr ""
-"Devhelp intégrase con outros aplicativos como Glade, Builder ou Anjuta, e "
-"hai dispoñíbeis engadidos para variso editores de texto (gedit, Vim, Emacs, "
+"Devhelp intégrase con outras aplicacións como Glade, Builder ou Anjuta, e "
+"hai dispoñíbeis engadidos para varios editores de texto (gedit, Vim, Emacs, "
 "Geany, …)."
 
 #: data/org.gnome.Devhelp.desktop.in:5
@@ -151,7 +145,7 @@ msgstr "Libros desactivados"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
-msgstr "Lista de libros desactivados polo usuario"
+msgstr "Lista de libros desactivados polo usuario."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
@@ -190,89 +184,89 @@ msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Tipo de letra para o texto de ancho fixo, tal como os exemplos de código."
 
-#: devhelp/dh-assistant-view.c:400
+#: devhelp/dh-assistant-view.c:386
 msgid "Book:"
 msgstr "Libro:"
 
-#: devhelp/dh-book.c:313
+#: devhelp/dh-book.c:299
 #, c-format
 msgid "Language: %s"
 msgstr "Idioma: %s"
 
-#: devhelp/dh-book.c:314
+#: devhelp/dh-book.c:300
 msgid "Language: Undefined"
 msgstr "Idioma: non definido"
 
-#: devhelp/dh-book-tree.c:764
+#: devhelp/dh-book-tree.c:750
 msgid "_Collapse All"
 msgstr "_Contraer todo"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:551
+#: devhelp/dh-link.c:537
 msgid "Book"
 msgstr "Libro"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:555
+#: devhelp/dh-link.c:541
 msgid "Page"
 msgstr "Páxina"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:560
+#: devhelp/dh-link.c:546
 msgid "Keyword"
 msgstr "Palabra chave"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:566
+#: devhelp/dh-link.c:552
 msgid "Function"
 msgstr "Función"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:572
+#: devhelp/dh-link.c:558
 msgid "Struct"
 msgstr "Estrutura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:578
+#: devhelp/dh-link.c:564
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:584
+#: devhelp/dh-link.c:570
 msgid "Enum"
 msgstr "Enumerado"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:590
+#: devhelp/dh-link.c:576
 msgid "Type"
 msgstr "Tipo"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:596
+#: devhelp/dh-link.c:582
 msgid "Property"
 msgstr "Propiedade"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:602
+#: devhelp/dh-link.c:588
 msgid "Signal"
 msgstr "Sinal"
 
-#: devhelp/dh-web-view.c:657
+#: devhelp/dh-web-view.c:640
 msgid "Empty Page"
 msgstr "Páxina baleira"
 
@@ -286,109 +280,109 @@ msgstr "Mostrar a documentación da API"
 
 #. action, icon, label, accel, tooltip
 #. Actions related to the whole application
-#: src/dh-app.c:51
+#: src/dh-app.c:37
 msgid "New _Window"
 msgstr "Nova _xanela"
 
-#: src/dh-app.c:52
+#: src/dh-app.c:38
 msgid "Open a new window"
 msgstr "Abrir unha nova xanela"
 
-#: src/dh-app.c:53
+#: src/dh-app.c:39
 msgid "_Preferences"
 msgstr "_Preferencias"
 
-#: src/dh-app.c:54
+#: src/dh-app.c:40
 msgid "_Keyboard Shortcuts"
 msgstr "Atallos de _teclado"
 
-#: src/dh-app.c:55
+#: src/dh-app.c:41
 msgid "_Help"
 msgstr "_Axuda"
 
-#: src/dh-app.c:56
+#: src/dh-app.c:42
 msgid "_About Devhelp"
 msgstr "Sobre _Devhelp"
 
-#: src/dh-app.c:57
+#: src/dh-app.c:43
 msgid "_Quit"
 msgstr "_Saír"
 
-#: src/dh-app.c:58
+#: src/dh-app.c:44
 msgid "Close all windows"
 msgstr "Pechar todas as xanelas"
 
 #. Actions related to the current main window
-#: src/dh-app.c:61
+#: src/dh-app.c:47
 msgid "_Side Panel"
 msgstr "Panel _lateral"
 
-#: src/dh-app.c:62
+#: src/dh-app.c:48
 msgid "Toggle side panel visibility"
 msgstr "Trocar a visibilidade do panel lateral"
 
-#: src/dh-app.c:63
+#: src/dh-app.c:49
 msgid "_Print"
 msgstr "Im_primir"
 
-#: src/dh-app.c:64
+#: src/dh-app.c:50
 msgid "_Find"
 msgstr "_Buscar"
 
-#: src/dh-app.c:65
+#: src/dh-app.c:51
 msgid "Find in current page"
 msgstr "Buscar na páxina actual"
 
-#: src/dh-app.c:66
+#: src/dh-app.c:52
 msgid "_Larger Text"
 msgstr "Texto máis _grande"
 
-#: src/dh-app.c:67
+#: src/dh-app.c:53
 msgid "Larger text"
 msgstr "Texto máis grande"
 
-#: src/dh-app.c:68
+#: src/dh-app.c:54
 msgid "S_maller Text"
 msgstr "Texto máis _pequeno"
 
-#: src/dh-app.c:69
+#: src/dh-app.c:55
 msgid "Smaller text"
 msgstr "Texto máis pequeno"
 
-#: src/dh-app.c:70
+#: src/dh-app.c:56
 msgid "_Normal Size"
 msgstr "Tamaño _normal"
 
-#: src/dh-app.c:71
+#: src/dh-app.c:57
 msgid "Normal size"
 msgstr "Tamaño normal"
 
 #. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
+#: src/dh-app.c:97
 msgid "Open a new tab"
 msgstr "Abrir unha nova lapela"
 
-#: src/dh-app.c:112
+#: src/dh-app.c:98
 msgid "Close the current tab"
 msgstr "Pechar a xanela actual"
 
-#: src/dh-app.c:113
+#: src/dh-app.c:99
 msgid "Go back"
 msgstr "Ir atrás"
 
-#: src/dh-app.c:114
+#: src/dh-app.c:100
 msgid "Go forward"
 msgstr "Ir adiante"
 
-#: src/dh-app.c:115
+#: src/dh-app.c:101
 msgid "Focus global search"
 msgstr "Enfocar a busca global"
 
 # (pofilter) accelerators: accelerator _ is missing from translation
-#: src/dh-app.c:274
+#: src/dh-app.c:260
 msgid "translator-credits"
 msgstr ""
-"Fran Dieguez <frandieguez@gnome.org>, 2009-2018\n"
+"Fran Diéguez <frandieguez@gnome.org>, 2009-2020\n"
 "Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010\n"
 "Antón Méixome <meixome@mancomun.org>, 2009\n"
 "Mancomún <g11n@mancomun.org>, 2009\n"
@@ -396,354 +390,93 @@ msgstr ""
 "\n"
 "Proxecto Trasno http://trasno.net"
 
-#: src/dh-app.c:276
+#: src/dh-app.c:262
 msgid "Devhelp Website"
 msgstr "Sitio web de DevHelp"
 
-#: src/dh-app.c:451
+#: src/dh-app.c:437
 msgid "Opens a new Devhelp window"
 msgstr "Abre unha nova xanela de Devhelp"
 
-#: src/dh-app.c:456
+#: src/dh-app.c:442
 msgid "Search for a keyword"
 msgstr "Buscar unha palabra chave"
 
-#: src/dh-app.c:457 src/dh-app.c:462
+#: src/dh-app.c:443 src/dh-app.c:448
 msgid "KEYWORD"
 msgstr "PALABRA CLAVE"
 
-#: src/dh-app.c:461
+#: src/dh-app.c:447
 msgid "Search and display any hit in the assistant window"
 msgstr "Buscar e mostrar calquera coincidencia na xanela do asistente"
 
-#: src/dh-app.c:466
+#: src/dh-app.c:452
 msgid "Display the version and exit"
 msgstr "Mostrar a versión e saír"
 
-#: src/dh-app.c:471
+#: src/dh-app.c:457
 msgid "Quit any running Devhelp"
 msgstr "Saír de calquera Devhelp en execución"
 
 #. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
+#: src/dh-assistant.ui:13
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Asistente"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:537
 msgid "Enabled"
 msgstr "Activada"
 
-#: src/dh-preferences.c:565
+#: src/dh-preferences.c:551
 msgid "Title"
 msgstr "Título"
 
-#: src/dh-preferences.ui:26
+#: src/dh-preferences.ui:12
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: src/dh-preferences.ui:62
+#: src/dh-preferences.ui:48
 msgid "_Group by language"
 msgstr "A_grupar por idioma"
 
-#: src/dh-preferences.ui:104
+#: src/dh-preferences.ui:90
 msgid "Book Shelf"
 msgstr "Biblioteca"
 
-#: src/dh-preferences.ui:125
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
 msgstr "_Usar os tipos de letra do sistema"
 
-#: src/dh-preferences.ui:149
+#: src/dh-preferences.ui:135
 msgid "_Variable width: "
-msgstr "Anchura _variábel:"
+msgstr "Anchura _variábel: "
 
-#: src/dh-preferences.ui:162
+#: src/dh-preferences.ui:148
 msgid "_Fixed width:"
 msgstr "Anchura _fixa:"
 
-#: src/dh-preferences.ui:223
+#: src/dh-preferences.ui:209
 msgid "Fonts"
 msgstr "Tipos de fonte"
 
 #. General group
-#: src/dh-window.c:393
+#: src/dh-window.c:380
 msgid "General"
 msgstr "Xeral"
 
 #. Zoom group
-#: src/dh-window.c:407
+#: src/dh-window.c:394
 msgid "Zoom"
 msgstr "Ampliación"
 
-#: src/dh-window.c:552
+#: src/dh-window.c:539
 msgid "Back"
 msgstr "Atrás"
 
-#: src/dh-window.c:556
+#: src/dh-window.c:543
 msgid "Forward"
 msgstr "Adiante"
 
-#: src/dh-window.c:574
+#: src/dh-window.c:561
 msgid "New Tab"
 msgstr "Nova lapela"
-
-#~ msgid "org.gnome.Devhelp"
-#~ msgstr "org.gnome.Devhelp"
-
-#~ msgid "_About"
-#~ msgstr "_Sobre"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Print"
-#~ msgstr "Imprimir"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom in"
-#~ msgstr "Ampliar"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom out"
-#~ msgstr "Afastar"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Reset Zoom"
-#~ msgstr "Restabelecer ampliación"
-
-#~ msgid "devhelp"
-#~ msgstr "devhelp"
-
-#~ msgid "Error opening the requested link."
-#~ msgstr "Produciuse un erro ao abrir a ligazón solicitada."
-
-#~| msgid "Developer's Help program"
-#~ msgid "Developer’s Help program"
-#~ msgstr "Programa de axuda do desenvolvedor"
-
-#~ msgid "X position of main window"
-#~ msgstr "Posición X da xanela principal"
-
-#~ msgid "The X position of the main window."
-#~ msgstr "A posición X da xanela principal."
-
-#~ msgid "Y position of main window"
-#~ msgstr "Posición Y da xanela principal"
-
-#~ msgid "The Y position of the main window."
-#~ msgstr "A posición Y da xanela principal."
-
-#~ msgid "Whether the assistant window should be maximized"
-#~ msgstr "Indica se a xanela asistente debería estar maximizada."
-
-#~ msgid "Whether the assistant window should be maximized."
-#~ msgstr "Indica se a xanela asistente debería estar maximizada."
-
-#~ msgid "X position of assistant window"
-#~ msgstr "Posición X da xanela do asistente"
-
-#~ msgid "The X position of the assistant window."
-#~ msgstr "A posición X da xanela do asistente."
-
-#~ msgid "Y position of assistant window"
-#~ msgstr "Posición Y da xanela do asistente"
-
-#~ msgid "The Y position of the assistant window."
-#~ msgstr "A posición Y da xanela do asistente."
-
-#~| msgid "A developers' help browser for GNOME"
-#~ msgid "A developers’ help browser for GNOME"
-#~ msgstr "Un visor de axuda para desenvolvedores de GNOME"
-
-#~ msgid "50%"
-#~ msgstr "50%"
-
-#~ msgid "75%"
-#~ msgstr "75%"
-
-#~ msgid "100%"
-#~ msgstr "100%"
-
-#~ msgid "125%"
-#~ msgstr "125%"
-
-#~ msgid "150%"
-#~ msgstr "150%"
-
-#~ msgid "175%"
-#~ msgstr "175%"
-
-#~ msgid "200%"
-#~ msgstr "200%"
-
-#~ msgid "300%"
-#~ msgstr "300%"
-
-#~ msgid "400%"
-#~ msgstr "400%"
-
-#~ msgid "_Close"
-#~ msgstr "Pe_char"
-
-#~ msgid "Side _Panel"
-#~ msgstr "Panel _lateral"
-
-# (pofilter) gconf: do not translate gconf attribute: "content", "search"
-#~ msgid "Selected tab: \"content\" or \"search\""
-#~ msgstr "A lapela seleccionada: «content» (contido) ou «search» (busca)"
-
-# (pofilter) gconf: do not translate gconf attribute: "content", "search"
-#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
-#~ msgstr ""
-#~ "Cal das lapela está seleccionada: «content» (contidos) ou "
-#~ "«search» (busca)."
-
-#~ msgid "Expected '%s', got '%s' at line %d, column %d"
-#~ msgstr "Esperábase «%s» e obtívose «%s» na liña %d, columna %d"
-
-#~ msgid "Invalid namespace '%s' at line %d, column %d"
-#~ msgstr "O espazo de nomes incorrecto '%s' na liña %d, columna %d"
-
-#~ msgid ""
-#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
-#~ "%d"
-#~ msgstr ""
-#~ "Requírense os elementos «título», «nome» e «ligazón» na liña %d, columna "
-#~ "%d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "requírense os elementos «nome» e «ligazón» dentro de <sub> na liña %d, "
-#~ "columna %d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "requírense os elementos «nome» e «ligazón» dentro de «%s» na liña %d, "
-#~ "columna %d"
-
-#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-#~ msgstr ""
-#~ "requírese o elemento «tipo» dentro de <keyword> na liña %d, columna %d"
-
-#~ msgid "Cannot uncompress book '%s': %s"
-#~ msgstr "Non foi posíbel descomprimir o libro «%s»: %s"
-
-#~ msgid "_Side pane"
-#~ msgstr "Panel _lateral"
-
-#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
-#~ msgstr "Fai que a tecla F2 inicie Devhelp para a palabra onde está o cursor"
-
-#~ msgid ""
-#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-#~ "target=devhelp.png"
-#~ msgstr ""
-#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-#~ "target=devhelp.png"
-
-#~ msgid "Show API Documentation for the word at the cursor"
-#~ msgstr "Mostra a documentación da API para a palabra onde está o cursor"
-
-#~ msgid "Current"
-#~ msgstr "Actual"
-
-#~ msgid "All Books"
-#~ msgstr "Todos os libros"
-
-#~ msgid "Find:"
-#~ msgstr "Buscar:"
-
-#~ msgid "Find Previous"
-#~ msgstr "Buscar anterior"
-
-#~ msgid "Find previous occurrence of the search string"
-#~ msgstr "Buscar a anterior aparición da cadea de busca"
-
-#~ msgid "Find Next"
-#~ msgstr "Buscar seguinte"
-
-#~ msgid "Find next occurrence of the search string"
-#~ msgstr "Buscar a seguinte coincidencia da cadea buscada"
-
-#~ msgid "C_ase Sensitive"
-#~ msgstr "Coincidir con c_apitalización"
-
-#~ msgid "Toggle case sensitive search"
-#~ msgstr "Activar/desactivar a busca discriminando a capitalización"
-
-#~ msgid "_Window"
-#~ msgstr "_Xanela"
-
-#~ msgid "_Edit"
-#~ msgstr "E_ditar"
-
-#~ msgid "_Copy"
-#~ msgstr "_Copiar"
-
-#~ msgid "Find _Next"
-#~ msgstr "Buscar _seguinte"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Buscar _anterior"
-
-#~ msgid "_View"
-#~ msgstr "Ver"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Pantalla completa"
-
-#~ msgid "_Go"
-#~ msgstr "_Ir"
-
-#~ msgid "_Search Tab"
-#~ msgstr "Lapela de _busca"
-
-#~ msgid "_Contents Tab"
-#~ msgstr "Lapela de _contido"
-
-#~ msgid "Go to the previous page"
-#~ msgstr "Ir á páxina anterior"
-
-#~ msgid "Go to the next page"
-#~ msgstr "Ir á páxina seguinte"
-
-#~ msgid "Decrease the text size"
-#~ msgstr "Diminuír o tamaño do texto"
-
-#~ msgid "Increase the text size"
-#~ msgstr "Aumentar o tamaño do texto"
-
-#~ msgid "Focus the Devhelp window with the search field active"
-#~ msgstr "Enfocar a xanela do devhelp co campo de busca activo"
-
-#~ msgid "Search in:"
-#~ msgstr "Buscar en:"
-
-#~ msgid "Contents"
-#~ msgstr "Contido"
-
-#~ msgid "Search"
-#~ msgstr "Buscar"
-
-#~ msgid "_File"
-#~ msgstr "_Ficheiro"
-
-#~ msgid "Use the normal text size"
-#~ msgstr "Usar o tamaño de texto normal"
-
-#~ msgid "Leave fullscreen mode"
-#~ msgstr "Saír do modo a pantalla completa"
-
-#~ msgid "Display in full screen"
-#~ msgstr "Ver a pantalla completa"
-
-#~ msgid "Larger"
-#~ msgstr "Máis grande"
-
-#~ msgid "Smaller"
-#~ msgstr "Máis pequeno"
-
-#~ msgid "Preferences…"
-#~ msgstr "Preferencias…"
