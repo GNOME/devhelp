@@ -4,21 +4,21 @@
 # Spanish/Spain translation of devhelp.
 # Copyright (C) 2001,2003, 2004, 2006, 2007, 2008 Free Software Foundation, Inc.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2009, 2010, 2011.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-11-10 00:50+0000\n"
-"PO-Revision-Date: 2018-12-04 15:26+0100\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
+"PO-Revision-Date: 2019-12-30 12:10+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: es <gnome-es-list@gnome.org>\n"
-"Language: es\n"
+"Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.34.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
@@ -55,14 +55,19 @@ msgstr ""
 "una conexión a Internet para usar Devhelp."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
+#| msgid ""
+#| "Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+#| "well supported. But other development platforms can be supported as well, "
+#| "as long as the API documentation is available in HTML and a *.devhelp2 "
+#| "index file is generated."
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
 "Devhelp funciona de manera nativa con GTK-Doc,por lo que las bibliotecas de "
-"GTK+ y GNOME están soportadas, pero también se soportan otras plataformas de "
+"GTK y GNOME están soportadas, pero también se soportan otras plataformas de "
 "desarrollo siempre que tengan la documentación de la API disponible en HTML "
 "y se genere un archivo índice *.devhelp2."
 
@@ -84,12 +89,6 @@ msgstr "Explorador de documentación de la API"
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "documentación;información;manual;desarrollador;api;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -197,7 +196,7 @@ msgstr "lenguaje: %s"
 msgid "Language: Undefined"
 msgstr "Lenguaje: indefinido"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "_Contraer todo"
 
@@ -266,7 +265,7 @@ msgstr "Propiedad"
 msgid "Signal"
 msgstr "Señal"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:657
 msgid "Empty Page"
 msgstr "Página vacía"
 
@@ -285,8 +284,6 @@ msgid "New _Window"
 msgstr "_Ventana nueva"
 
 #: src/dh-app.c:52
-#| msgctxt "shortcut window"
-#| msgid "Open a new window"
 msgid "Open a new window"
 msgstr "Abrir una ventana nueva"
 
@@ -311,8 +308,6 @@ msgid "_Quit"
 msgstr "_Salir"
 
 #: src/dh-app.c:58
-#| msgctxt "shortcut window"
-#| msgid "Close all windows"
 msgid "Close all windows"
 msgstr "Cerrar todas las ventanas"
 
@@ -322,8 +317,6 @@ msgid "_Side Panel"
 msgstr "_Panel lateral"
 
 #: src/dh-app.c:62
-#| msgctxt "shortcut window"
-#| msgid "Toggle side panel visibility"
 msgid "Toggle side panel visibility"
 msgstr "Conmutar la visibilidad del panel lateral"
 
@@ -336,8 +329,6 @@ msgid "_Find"
 msgstr "_Buscar"
 
 #: src/dh-app.c:65
-#| msgctxt "shortcut window"
-#| msgid "Find in current page"
 msgid "Find in current page"
 msgstr "Buscar en la página actual"
 
@@ -367,32 +358,22 @@ msgstr "Tamaño normal"
 
 #. action, icon, label, accel, tooltip
 #: src/dh-app.c:111
-#| msgctxt "shortcut window"
-#| msgid "Open a new tab"
 msgid "Open a new tab"
 msgstr "Abrir una pestaña nueva"
 
 #: src/dh-app.c:112
-#| msgctxt "shortcut window"
-#| msgid "Close the current window"
 msgid "Close the current tab"
 msgstr "Cerrar la pestaña actual"
 
 #: src/dh-app.c:113
-#| msgctxt "shortcut window"
-#| msgid "Go back"
 msgid "Go back"
 msgstr "Atrás"
 
 #: src/dh-app.c:114
-#| msgctxt "shortcut window"
-#| msgid "Go forward"
 msgid "Go forward"
 msgstr "Adelante"
 
 #: src/dh-app.c:115
-#| msgctxt "shortcut window"
-#| msgid "Focus global search"
 msgid "Focus global search"
 msgstr "Dar el foco a la búsqueda global"
 
@@ -474,15 +455,11 @@ msgstr "Tipografías"
 
 #. General group
 #: src/dh-window.c:393
-#| msgctxt "shortcut window"
-#| msgid "General"
 msgid "General"
 msgstr "General"
 
 #. Zoom group
 #: src/dh-window.c:407
-#| msgctxt "shortcut window"
-#| msgid "Zoom"
 msgid "Zoom"
 msgstr "Ampliación"
 
@@ -497,6 +474,9 @@ msgstr "Adelante"
 #: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Pestaña nueva"
+
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Print"
