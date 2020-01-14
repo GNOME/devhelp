@@ -5,14 +5,15 @@
 # Dirgita <dirgitadevina@gmail.com>, 2010.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010.
 # Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013, 2014, 2015.
+# Sucipto <sucipto@pm.me>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-21 13:52+0000\n"
-"PO-Revision-Date: 2018-09-21 22:23+0700\n"
-"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
+"PO-Revision-Date: 2020-01-14 17:53+0700\n"
+"Last-Translator: Sucipto <sucipto@pm.me>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -20,13 +21,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Gtranslator 3.34.0\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -54,13 +55,18 @@ msgstr ""
 "diperlukan untuk menggunakan Devhelp."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
+#| msgid ""
+#| "Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+#| "well supported. But other development platforms can be supported as well, "
+#| "as long as the API documentation is available in HTML and a *.devhelp2 "
+#| "index file is generated."
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
-"Devhelp bekerja secara native dengan GTK-Doc, jadi pustaka GTK+ dan GNOME "
+"Devhelp bekerja secara native dengan GTK-Doc, jadi pustaka GTK dan GNOME "
 "didukung dengan baik. Tapi platform pengembangan lainnya dapat didukung "
 "juga, selama dokumentasi API tersedia di HTML dan berkas indeks *.devhelp2 "
 "dihasilkan."
@@ -83,12 +89,6 @@ msgstr "Peramban Dokumentasi API"
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentasi;informasi;manual;pengembang;api;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -195,7 +195,7 @@ msgstr "Bahasa: %s"
 msgid "Language: Undefined"
 msgstr "Bahasa: Tak didefinisikan"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "_Kuncupkan Semua"
 
@@ -264,7 +264,7 @@ msgstr "Properti"
 msgid "Signal"
 msgstr "Sinyal"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:657
 msgid "Empty Page"
 msgstr "Halaman Kosong"
 
@@ -277,7 +277,7 @@ msgid "Show API Documentation"
 msgstr "Tunjukkan Dokumentasi API"
 
 #. action, icon, label, accel, tooltip
-#. App menu
+#. Actions related to the whole application
 #: src/dh-app.c:51
 msgid "New _Window"
 msgstr "_Jendela Baru"
@@ -299,8 +299,8 @@ msgid "_Help"
 msgstr "Ba_ntuan"
 
 #: src/dh-app.c:56
-msgid "_About"
-msgstr "Tent_ang"
+msgid "_About Devhelp"
+msgstr "Tent_ang Devhelp"
 
 #: src/dh-app.c:57
 msgid "_Quit"
@@ -310,7 +310,7 @@ msgstr "_Keluar"
 msgid "Close all windows"
 msgstr "Tutup semua jendela"
 
-#. Window menu
+#. Actions related to the current main window
 #: src/dh-app.c:61
 msgid "_Side Panel"
 msgstr "Panel _Sisi"
@@ -388,27 +388,27 @@ msgstr ""
 msgid "Devhelp Website"
 msgstr "Situs Web Devhelp"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Buka jendela Devhelp baru"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "Mencari kata kunci"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "KATA KUNCI"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "Mencari dan menampilkan semua hasil di jendela pembantu"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "Menampilkan versi dan keluar"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Keluar dari semua Devhelp yang sedang berjalan"
 
@@ -463,20 +463,23 @@ msgstr "Umum"
 msgid "Zoom"
 msgstr "Zum"
 
-#: src/dh-window.c:572
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "Mundur"
 
-#: src/dh-window.c:576
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "Maju"
 
-#: src/dh-window.c:599
+#: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Tab Baru"
 
-#~ msgid "_About Devhelp"
-#~ msgstr "Tent_ang Devhelp"
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
+
+#~ msgid "_About"
+#~ msgstr "Tent_ang"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Print"
