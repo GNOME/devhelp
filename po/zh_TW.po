@@ -12,21 +12,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 2.91.6\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-06-08 16:23+0000\n"
-"PO-Revision-Date: 2018-06-13 21:32+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
+"PO-Revision-Date: 2020-01-21 17:26+0800\n"
+"Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -52,13 +52,13 @@ msgstr "此文件必須於本機安裝，所以使用 Devhelp 不需要網路連
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
-"Devhelp 原生與 GTK-Doc 運作，所以 GTK+ 與 GNOME 函式庫得到了良好的支援。而其"
-"他的開發平台同樣也能取得很好的支援，只需要讓 API 文件支援 HTML 並建立 *."
+"Devhelp 原生與 GTK-Doc 運作，所以 GTK 與 GNOME 函式庫得到了良好的支援。而其他"
+"的開發平台同樣也能取得很好的支援，只需要讓 API 文件支援 HTML 並建立 *."
 "devhelp2 索引檔案。"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:24
@@ -78,12 +78,6 @@ msgstr "API 文件瀏覽器"
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "documentation;information;manual;developer;api;文件;資訊;手冊;開發者;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -133,45 +127,45 @@ msgstr "助理視窗高度"
 msgid "The height of the assistant window."
 msgstr "助理視窗的高度。"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:9
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
 msgid "Books disabled"
 msgstr "已停用書籍"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:10
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
 msgstr "被使用者停用的書籍清單。"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:14
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
 msgstr "以語言分類書籍"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:15
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
 msgstr "書本在使用者介面中是否應以程式語言做為群組。"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:21
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
 msgstr "使用系統字型"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:22
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
 msgstr "使用系統預設字型。"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:26
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
 msgstr "普通文字字型"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:27
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
 msgstr "可變寬度文字所使用的字型。"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:31
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
 msgstr "固定寬度字型"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:32
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "固定寬度文字所使用的字型，例如源碼範例。"
 
@@ -188,7 +182,7 @@ msgstr "語言：%s"
 msgid "Language: Undefined"
 msgstr "語言：未定義"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "全部收縮(_C)"
 
@@ -257,7 +251,7 @@ msgstr "屬性"
 msgid "Signal"
 msgstr "信號"
 
-#: devhelp/dh-web-view.c:641
+#: devhelp/dh-web-view.c:657
 msgid "Empty Page"
 msgstr "空白頁面"
 
@@ -270,7 +264,7 @@ msgid "Show API Documentation"
 msgstr "顯示 API 文件"
 
 #. action, icon, label, accel, tooltip
-#. App menu
+#. Actions related to the whole application
 #: src/dh-app.c:51
 msgid "New _Window"
 msgstr "新增視窗(_W)"
@@ -292,8 +286,8 @@ msgid "_Help"
 msgstr "求助(_H)"
 
 #: src/dh-app.c:56
-msgid "_About"
-msgstr "關於(_A)"
+msgid "_About Devhelp"
+msgstr "關於 Devhelp(_A)"
 
 #: src/dh-app.c:57
 msgid "_Quit"
@@ -303,7 +297,7 @@ msgstr "結束(_Q)"
 msgid "Close all windows"
 msgstr "關閉所有視窗"
 
-#. Window menu
+#. Actions related to the current main window
 #: src/dh-app.c:61
 msgid "_Side Panel"
 msgstr "側邊窗格(_S)"
@@ -380,27 +374,27 @@ msgstr ""
 msgid "Devhelp Website"
 msgstr "Devhelp 網站"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "開啟新的 Devhelp 視窗"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "搜尋關鍵字"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "KEYWORD"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "在助理視窗中搜尋並顯示任何提示"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "顯示版本號及離開"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "結束所有執行中的 Devhelp 進程"
 
@@ -455,17 +449,23 @@ msgstr "一般"
 msgid "Zoom"
 msgstr "縮放"
 
-#: src/dh-window.c:572
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "上一頁"
 
-#: src/dh-window.c:576
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "下一頁"
 
-#: src/dh-window.c:599
+#: src/dh-window.c:574
 msgid "New Tab"
 msgstr "新增分頁"
+
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
+
+#~ msgid "_About"
+#~ msgstr "關於(_A)"
 
 #~ msgid "Developer's Help program"
 #~ msgstr "程式開發者的說明書瀏覽程式"
@@ -591,9 +591,6 @@ msgstr "新增分頁"
 
 #~ msgid "_Side pane"
 #~ msgstr "側邊窗格(_S)"
-
-#~ msgid "_About Devhelp"
-#~ msgstr "關於 Devhelp(_A)"
 
 #~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
 #~ msgstr "使得按 F2 會以游標所在的文字啟動 Devhelp"
