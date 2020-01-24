@@ -1,16 +1,19 @@
 # devhelp ja.po.
-# Copyright (C) 2001-2011 devhelp's COPYRIGHT HOLDE
+# Copyright (C) 2001-2020 devhelp's COPYRIGHT HOLDE
 # Takeshi Aihana <takeshi.aihana@gmail.com>, 2001-2009.
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010.
+# OKANO Takayoshi <kano@na.rim.or.jp>, 2011-2012.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2011-2015.
+# Shinichirou Yamada <yamada_strong_yamada_nice_64bit@yahoo.co.jp>, 2017.
+# sicklylife <translation@sicklylife.jp>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
 "POT-Creation-Date: 2019-12-18 18:00+0000\n"
-"PO-Revision-Date: 2015-09-15 01:20+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"PO-Revision-Date: 2020-01-25 01:00+0900\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -31,19 +34,11 @@ msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 
 #: data/org.gnome.Devhelp.appdata.xml.in:9
-#, fuzzy
-#| msgid ""
-#| "Devhelp is an API documentation browser. It provides an easy way to "
-#| "navigate through libraries, search by function, struct, or macro. It "
-#| "provides a tabbed interface and allows to print results."
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation. It "
 "provides an easy way to navigate through libraries and to search by "
 "function, struct, or macro."
 msgstr ""
-"Devhelp は、API ドキュメントブラウザーです。ライブラリの API を簡単に調べるこ"
-"とができ、関数や構造体、マクロなどを検索することもできます。ユーザーインター"
-"フェースはタブ表示が可能で、ドキュメントの印刷機能も備えています。"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:14
 msgid ""
@@ -60,23 +55,18 @@ msgid ""
 msgstr ""
 
 #: data/org.gnome.Devhelp.appdata.xml.in:24
-#, fuzzy
-#| msgid ""
-#| "Devhelp integrates with other applications such as Glade, Anjuta, or "
-#| "Geany."
 msgid ""
 "Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr ""
-"Devhelp では他のアプリケーションとの統合も実現されており、Glade や、Anjuta、"
-"Geany などと連携して使用することができます。"
+"Devhelp は Glade や Builder、Anjuta など他のアプリケーションとの統合も実現さ"
+"れており、gedit、Vim、Emacs、Geany などのテキストエディターではプラグインを利"
+"用できます。"
 
 #: data/org.gnome.Devhelp.desktop.in:5
-#, fuzzy
-#| msgid "Documentation Browser"
 msgid "API Documentation Browser"
-msgstr "ドキュメントブラウザー"
+msgstr "API ドキュメントブラウザー"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Devhelp.desktop.in:7
@@ -142,22 +132,18 @@ msgid "List of books disabled by the user."
 msgstr "ユーザーによって無効化されたブックの一覧"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:14
-#, fuzzy
-#| msgid "Group by language"
 msgid "Group books by language"
-msgstr "言語別に分類する"
+msgstr ""
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:15
-#, fuzzy
-#| msgid "Whether books should be grouped by language in the UI"
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
-msgstr "ブックを言語別に分類して表示するかどうかの設定です。"
+msgstr "ブックをプログラミング言語別に分類して表示するかどうかの設定です。"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
-msgstr "システムフォントを使う"
+msgstr "システムフォントを使用する"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
@@ -195,7 +181,7 @@ msgstr "言語: 未定義"
 
 #: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
-msgstr ""
+msgstr "すべて畳む(_C)"
 
 #. i18n: a documentation book
 #: devhelp/dh-link.c:551
@@ -253,14 +239,14 @@ msgstr "型"
 #. * untranslated.
 #: devhelp/dh-link.c:596
 msgid "Property"
-msgstr ""
+msgstr "プロパティ"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: devhelp/dh-link.c:602
 msgid "Signal"
-msgstr ""
+msgstr "シグナル"
 
 #: devhelp/dh-web-view.c:657
 msgid "Empty Page"
@@ -281,10 +267,8 @@ msgid "New _Window"
 msgstr "新しいウィンドウ(_W)"
 
 #: src/dh-app.c:52
-#, fuzzy
-#| msgid "Opens a new Devhelp window"
 msgid "Open a new window"
-msgstr "Devhelp の新しいウィンドウを開く"
+msgstr "新しいウィンドウを開く"
 
 #: src/dh-app.c:53
 msgid "_Preferences"
@@ -292,7 +276,7 @@ msgstr "設定(_P)"
 
 #: src/dh-app.c:54
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "キーボードショートカット(_K)"
 
 #: src/dh-app.c:55
 msgid "_Help"
@@ -300,7 +284,7 @@ msgstr "ヘルプ(_H)"
 
 #: src/dh-app.c:56
 msgid "_About Devhelp"
-msgstr "このアプリケーションについて(_A)"
+msgstr "Devhelp について(_A)"
 
 #: src/dh-app.c:57
 msgid "_Quit"
@@ -308,18 +292,16 @@ msgstr "終了(_Q)"
 
 #: src/dh-app.c:58
 msgid "Close all windows"
-msgstr ""
+msgstr "すべてのウィンドウを閉じる"
 
 #. Actions related to the current main window
 #: src/dh-app.c:61
-#, fuzzy
-#| msgid "_Side pane"
 msgid "_Side Panel"
-msgstr "サイドペイン(_S)"
+msgstr "サイドパネル(_S)"
 
 #: src/dh-app.c:62
 msgid "Toggle side panel visibility"
-msgstr ""
+msgstr "サイドパネルの表示を切り替える"
 
 #: src/dh-app.c:63
 msgid "_Print"
@@ -331,68 +313,63 @@ msgstr "検索(_F)"
 
 #: src/dh-app.c:65
 msgid "Find in current page"
-msgstr ""
+msgstr "現在のページを検索する"
 
 #: src/dh-app.c:66
 msgid "_Larger Text"
 msgstr "文字を大きくする(_L)"
 
 #: src/dh-app.c:67
-#, fuzzy
-#| msgid "_Larger Text"
 msgid "Larger text"
-msgstr "文字を大きくする(_L)"
+msgstr "文字を大きくする"
 
 #: src/dh-app.c:68
 msgid "S_maller Text"
 msgstr "文字を小さくする(_M)"
 
 #: src/dh-app.c:69
-#, fuzzy
-#| msgid "S_maller Text"
 msgid "Smaller text"
-msgstr "文字を小さくする(_M)"
+msgstr "文字を小さくする"
 
 #: src/dh-app.c:70
 msgid "_Normal Size"
 msgstr "通常の大きさ(_N)"
 
 #: src/dh-app.c:71
-#, fuzzy
-#| msgid "_Normal Size"
 msgid "Normal size"
-msgstr "通常の大きさ(_N)"
+msgstr "通常の大きさ"
 
 #. action, icon, label, accel, tooltip
 #: src/dh-app.c:111
 msgid "Open a new tab"
-msgstr ""
+msgstr "新しいタブを開く"
 
 #: src/dh-app.c:112
 msgid "Close the current tab"
-msgstr ""
+msgstr "現在のタブを閉じる"
 
 #: src/dh-app.c:113
 msgid "Go back"
-msgstr ""
+msgstr "前に戻る"
 
 #: src/dh-app.c:114
-#, fuzzy
-#| msgid "Forward"
 msgid "Go forward"
-msgstr "進む"
+msgstr "次に進む"
 
 #: src/dh-app.c:115
 msgid "Focus global search"
-msgstr ""
+msgstr "グローバル検索欄にフォーカスする"
 
 #: src/dh-app.c:274
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
+"日本 GNOME ユーザー会 <http://www.gnome.gr.jp/>\n"
 "松澤 二郎 <jmatsuzawa@gnome.org>\n"
-"日本GNOMEユーザー会 <http://www.gnome.gr.jp/>"
+"OKANO Takayoshi <kano@na.rim.or.jp>\n"
+"Shinichirou Yamada <yamada_strong_yamada_nice_64bit@yahoo.co.jp>\n"
+"sicklylife <translation@sicklylife.jp>"
 
 #: src/dh-app.c:276
 msgid "Devhelp Website"
@@ -449,7 +426,7 @@ msgstr "本棚"
 
 #: src/dh-preferences.ui:125
 msgid "_Use system fonts"
-msgstr "システムフォントを使う(_U)"
+msgstr "システムフォントを使用する(_U)"
 
 #: src/dh-preferences.ui:149
 msgid "_Variable width: "
@@ -466,12 +443,12 @@ msgstr "フォント"
 #. General group
 #: src/dh-window.c:393
 msgid "General"
-msgstr ""
+msgstr "全般"
 
 #. Zoom group
 #: src/dh-window.c:407
 msgid "Zoom"
-msgstr ""
+msgstr "ズーム"
 
 #: src/dh-window.c:552
 msgid "Back"
@@ -482,10 +459,8 @@ msgid "Forward"
 msgstr "進む"
 
 #: src/dh-window.c:574
-#, fuzzy
-#| msgid "New _Tab"
 msgid "New Tab"
-msgstr "新しいタブ(_T)"
+msgstr "新しいタブ"
 
 #~ msgid ""
 #~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
