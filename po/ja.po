@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-14 15:21+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
 "PO-Revision-Date: 2015-09-15 01:20+0900\n"
 "Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -17,207 +17,376 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
-msgid "Devhelp is an API documentation browser. It provides an easy way to navigate through libraries, search by function, struct, or macro. It provides a tabbed interface and allows to print results."
-msgstr "Devhelp は、API ドキュメントブラウザーです。ライブラリの API を簡単に調べることができ、関数や構造体、マクロなどを検索することもできます。ユーザーインターフェースはタブ表示が可能で、ドキュメントの印刷機能も備えています。"
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
-msgid "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
-msgstr "Devhelp では他のアプリケーションとの統合も実現されており、Glade や、Anjuta、Geany などと連携して使用することができます。"
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
-msgid "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;target=devhelp.png"
-msgstr "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;target=devhelp.png"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:507 ../src/dh-window.c:753
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
+#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "開発者向けのヘルプブラウザーです"
+#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
+#: src/dh-app.c:272
+msgid "A developer tool for browsing and searching API documentation"
+msgstr ""
 
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
-msgid "Documentation Browser"
+#: data/org.gnome.Devhelp.appdata.xml.in:9
+#, fuzzy
+#| msgid ""
+#| "Devhelp is an API documentation browser. It provides an easy way to "
+#| "navigate through libraries, search by function, struct, or macro. It "
+#| "provides a tabbed interface and allows to print results."
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
+msgstr ""
+"Devhelp は、API ドキュメントブラウザーです。ライブラリの API を簡単に調べるこ"
+"とができ、関数や構造体、マクロなどを検索することもできます。ユーザーインター"
+"フェースはタブ表示が可能で、ドキュメントの印刷機能も備えています。"
+
+#: data/org.gnome.Devhelp.appdata.xml.in:14
+msgid ""
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
+msgstr ""
+
+#: data/org.gnome.Devhelp.appdata.xml.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
+msgstr ""
+
+#: data/org.gnome.Devhelp.appdata.xml.in:24
+#, fuzzy
+#| msgid ""
+#| "Devhelp integrates with other applications such as Glade, Anjuta, or "
+#| "Geany."
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr ""
+"Devhelp では他のアプリケーションとの統合も実現されており、Glade や、Anjuta、"
+"Geany などと連携して使用することができます。"
+
+#: data/org.gnome.Devhelp.desktop.in:5
+#, fuzzy
+#| msgid "Documentation Browser"
+msgid "API Documentation Browser"
 msgstr "ドキュメントブラウザー"
 
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
-msgstr "documentation;information;manual;developer;api;ドキュメンテーション;ドキュメント;情報;リファレンスマニュアル;開発者;"
+msgstr ""
+"documentation;information;manual;developer;api;ドキュメンテーション;ドキュメ"
+"ント;情報;リファレンスマニュアル;開発者;"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:1
+#: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
 msgstr "メインウィンドウの最大化"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:2
+#: data/org.gnome.devhelp.gschema.xml:17
 msgid "Whether the main window should start maximized."
 msgstr "メインウィンドウを最大サイズで起動するかどうかです。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:3
+#: data/org.gnome.devhelp.gschema.xml:21
 msgid "Width of the main window"
 msgstr "メインウィンドウの幅"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:4
+#: data/org.gnome.devhelp.gschema.xml:22
 msgid "The width of the main window."
 msgstr "メインウィンドウの幅です。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:5
+#: data/org.gnome.devhelp.gschema.xml:26
 msgid "Height of main window"
 msgstr "メインウィンドウの高さ"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:6
+#: data/org.gnome.devhelp.gschema.xml:27
 msgid "The height of the main window."
 msgstr "メインウィンドウの高さです。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:7
-msgid "X position of main window"
-msgstr "メインウィンドウの位置X"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:8
-msgid "The X position of the main window."
-msgstr "メインウィンドウを表示するX座標です。"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:9
-msgid "Y position of main window"
-msgstr "メインウィンドウの位置Y"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:10
-msgid "The Y position of the main window."
-msgstr "メインウィンドウを表示するY座標です。"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:11
+#: data/org.gnome.devhelp.gschema.xml:33
 msgid "Width of the index and search pane"
 msgstr "目次と検索ウィンドウの幅"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:12
+#: data/org.gnome.devhelp.gschema.xml:34
 msgid "The width of the index and search pane."
 msgstr "目次と検索ウィンドウの幅です。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:13
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "選択したタブ: \"content\" または \"search\""
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:14
-msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "どちらのタブが選択されたか: \"content\" または \"search\""
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:15
-msgid "Books disabled"
-msgstr "無効化されたブック"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:16
-msgid "List of books disabled by the user."
-msgstr "ユーザーによって無効化されたブックの一覧"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:17
-msgid "Group by language"
-msgstr "言語別に分類する"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:18
-msgid "Whether books should be grouped by language in the UI"
-msgstr "ブックを言語別に分類して表示するかどうかの設定です。"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:19
-msgid "Whether the assistant window should be maximized"
-msgstr "アシスタントウィンドウを最大サイズにする"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:20
-msgid "Whether the assistant window should be maximized."
-msgstr "アシスタントウィンドウを最大サイズにするかどうかの設定です。"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:21
+#: data/org.gnome.devhelp.gschema.xml:43
 msgid "Width of the assistant window"
 msgstr "アシスタントウィンドウの幅"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:22
+#: data/org.gnome.devhelp.gschema.xml:44
 msgid "The width of the assistant window."
 msgstr "アシスタントウィンドウの幅です。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:23
+#: data/org.gnome.devhelp.gschema.xml:48
 msgid "Height of assistant window"
 msgstr "アシスタントウィンドウの高さ"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:24
+#: data/org.gnome.devhelp.gschema.xml:49
 msgid "The height of the assistant window."
 msgstr "アシスタントウィンドウの高さです。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:25
-msgid "X position of assistant window"
-msgstr "アシスタントウィンドウの位置X"
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
+msgid "Books disabled"
+msgstr "無効化されたブック"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:26
-msgid "The X position of the assistant window."
-msgstr "アシスタントウィンドウを表示するX座標です。"
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
+msgid "List of books disabled by the user."
+msgstr "ユーザーによって無効化されたブックの一覧"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:27
-msgid "Y position of assistant window"
-msgstr "アシスタントウィンドウの位置Y"
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
+#, fuzzy
+#| msgid "Group by language"
+msgid "Group books by language"
+msgstr "言語別に分類する"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:28
-msgid "The Y position of the assistant window."
-msgstr "アシスタントウィンドウを表示するY座標です。"
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
+#, fuzzy
+#| msgid "Whether books should be grouped by language in the UI"
+msgid ""
+"Whether books should be grouped by programming language in the user "
+"interface."
+msgstr "ブックを言語別に分類して表示するかどうかの設定です。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:29
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
 msgstr "システムフォントを使う"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:30
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
-msgstr "デスクトップで設定したデフォルトのフォントを使用するかどうかの設定です。"
+msgstr ""
+"デスクトップで設定したデフォルトのフォントを使用するかどうかの設定です。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:31
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
 msgstr "文章のフォント"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:32
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
 msgstr "可変幅の文を表示する際に使用するフォントです。"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:33
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
 msgstr "等幅のフォント"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:34
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "等幅 (固定幅) のフォントで、主にサンプルコードで使用します。"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
+#: devhelp/dh-assistant-view.c:400
+msgid "Book:"
+msgstr "ブック:"
+
+#: devhelp/dh-book.c:313
+#, c-format
+msgid "Language: %s"
+msgstr "言語: %s"
+
+#: devhelp/dh-book.c:314
+msgid "Language: Undefined"
+msgstr "言語: 未定義"
+
+#: devhelp/dh-book-tree.c:764
+msgid "_Collapse All"
+msgstr ""
+
+#. i18n: a documentation book
+#: devhelp/dh-link.c:551
+msgid "Book"
+msgstr "ブック"
+
+#. i18n: a "page" in a documentation book
+#: devhelp/dh-link.c:555
+msgid "Page"
+msgstr "ページ"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: devhelp/dh-link.c:560
+msgid "Keyword"
+msgstr "キーワード"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:566
+msgid "Function"
+msgstr "関数"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:572
+msgid "Struct"
+msgstr "構造体"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:578
+msgid "Macro"
+msgstr "マクロ"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:584
+msgid "Enum"
+msgstr "列挙子"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:590
+msgid "Type"
+msgstr "型"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:596
+msgid "Property"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:602
+msgid "Signal"
+msgstr ""
+
+#: devhelp/dh-web-view.c:657
+msgid "Empty Page"
+msgstr "空のページ"
+
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Devhelp のサポート"
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
-msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "[F2] キーを押してカーソル位置にある単語を Devhelp から検索します"
-
-#: ../misc/gedit-plugin/devhelp.py:42
+#: plugins/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "API ドキュメントの参照"
 
-#. ex:ts=4:et:
-#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
+#. action, icon, label, accel, tooltip
+#. Actions related to the whole application
+#: src/dh-app.c:51
 msgid "New _Window"
 msgstr "新しいウィンドウ(_W)"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
+#: src/dh-app.c:52
+#, fuzzy
+#| msgid "Opens a new Devhelp window"
+msgid "Open a new window"
+msgstr "Devhelp の新しいウィンドウを開く"
+
+#: src/dh-app.c:53
 msgid "_Preferences"
 msgstr "設定(_P)"
 
-#: ../src/devhelp-menu.ui.h:3
-msgid "_About"
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: src/dh-app.c:56
+msgid "_About Devhelp"
 msgstr "このアプリケーションについて(_A)"
 
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
+#: src/dh-app.c:57
 msgid "_Quit"
 msgstr "終了(_Q)"
 
-#: ../src/dh-app.c:213
-msgid "A developers' help browser for GNOME"
-msgstr "GNOME の開発者用ヘルプブラウザー"
+#: src/dh-app.c:58
+msgid "Close all windows"
+msgstr ""
 
-#: ../src/dh-app.c:215
+#. Actions related to the current main window
+#: src/dh-app.c:61
+#, fuzzy
+#| msgid "_Side pane"
+msgid "_Side Panel"
+msgstr "サイドペイン(_S)"
+
+#: src/dh-app.c:62
+msgid "Toggle side panel visibility"
+msgstr ""
+
+#: src/dh-app.c:63
+msgid "_Print"
+msgstr "印刷(_P)"
+
+#: src/dh-app.c:64
+msgid "_Find"
+msgstr "検索(_F)"
+
+#: src/dh-app.c:65
+msgid "Find in current page"
+msgstr ""
+
+#: src/dh-app.c:66
+msgid "_Larger Text"
+msgstr "文字を大きくする(_L)"
+
+#: src/dh-app.c:67
+#, fuzzy
+#| msgid "_Larger Text"
+msgid "Larger text"
+msgstr "文字を大きくする(_L)"
+
+#: src/dh-app.c:68
+msgid "S_maller Text"
+msgstr "文字を小さくする(_M)"
+
+#: src/dh-app.c:69
+#, fuzzy
+#| msgid "S_maller Text"
+msgid "Smaller text"
+msgstr "文字を小さくする(_M)"
+
+#: src/dh-app.c:70
+msgid "_Normal Size"
+msgstr "通常の大きさ(_N)"
+
+#: src/dh-app.c:71
+#, fuzzy
+#| msgid "_Normal Size"
+msgid "Normal size"
+msgstr "通常の大きさ(_N)"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+msgid "Open a new tab"
+msgstr ""
+
+#: src/dh-app.c:112
+msgid "Close the current tab"
+msgstr ""
+
+#: src/dh-app.c:113
+msgid "Go back"
+msgstr ""
+
+#: src/dh-app.c:114
+#, fuzzy
+#| msgid "Forward"
+msgid "Go forward"
+msgstr "進む"
+
+#: src/dh-app.c:115
+msgid "Focus global search"
+msgstr ""
+
+#: src/dh-app.c:274
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
@@ -225,262 +394,214 @@ msgstr ""
 "松澤 二郎 <jmatsuzawa@gnome.org>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp/>"
 
-#: ../src/dh-app.c:217
+#: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Devhelp のウェブサイト"
 
-#: ../src/dh-app.c:432
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Devhelp の新しいウィンドウを開く"
 
-#: ../src/dh-app.c:437
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "キーワードを検索する"
 
-#: ../src/dh-app.c:438 ../src/dh-app.c:443
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "KEYWORD"
 
-#: ../src/dh-app.c:442
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "検索結果をアシスタントウィンドウの中に表示する"
 
-#: ../src/dh-app.c:447
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "バージョンを表示して終了する"
 
-#: ../src/dh-app.c:452
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Devhelp を終了する"
 
 #. Please don't translate "Devhelp"
-#: ../src/dh-assistant.ui.h:2
+#: src/dh-assistant.ui:8
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — アシスタント"
 
-#: ../src/dh-assistant-view.c:372
-msgid "Book:"
-msgstr "ブック:"
-
-#: ../src/dh-book.c:254
-#, c-format
-msgid "Language: %s"
-msgstr "言語: %s"
-
-#: ../src/dh-book.c:255
-msgid "Language: Undefined"
-msgstr "言語: 未定義"
-
-#. i18n: a documentation book
-#: ../src/dh-link.c:289
-msgid "Book"
-msgstr "ブック"
-
-#. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:292
-msgid "Page"
-msgstr "ページ"
-
-#. i18n: a search hit in the documentation, could be a
-#. * function, macro, struct, etc
-#: ../src/dh-link.c:296
-msgid "Keyword"
-msgstr "キーワード"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:301
-msgid "Function"
-msgstr "関数"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:306
-msgid "Struct"
-msgstr "構造体"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:311
-msgid "Macro"
-msgstr "マクロ"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:316
-msgid "Enum"
-msgstr "列挙子"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:321
-msgid "Type"
-msgstr "型"
-
-#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
-#: ../src/dh-parser.c:271
-#, c-format
-msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "'%s' を期待しましたが '%s' を受け取りました (%d 行 %d 桁)"
-
-#: ../src/dh-parser.c:113
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "名前空間 '%s' が正しくありません (%d 行 %d 桁)"
-
-#: ../src/dh-parser.c:142
-#, c-format
-msgid "\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr "要素 \"title\" と \"name\" と \"link\" が %d 行 %d 桁で要求されました"
-
-#: ../src/dh-parser.c:216
-#, c-format
-msgid "\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
-msgstr "\"name\" と \"link\" が <sub> の中の %d 行 %d 桁で要求されました"
-
-#: ../src/dh-parser.c:296
-#, c-format
-msgid "\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr "\"name\" と \"link\" が '%s' の中の %d 行 %d 桁で要求されました"
-
-#: ../src/dh-parser.c:309
-#, c-format
-msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "\"type\" が <keyword> の中の %d 行 %d 桁で要求されました"
-
-#: ../src/dh-parser.c:501
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "'%s' というブックを展開できません: %s"
-
-#: ../src/dh-preferences.ui.h:1
-msgid "Preferences"
-msgstr "設定"
-
-#: ../src/dh-preferences.ui.h:2
-msgid "_Group by language"
-msgstr "言語別に分類する(_G)"
-
-#: ../src/dh-preferences.ui.h:3
+#: src/dh-preferences.c:551
 msgid "Enabled"
 msgstr "有効"
 
-#: ../src/dh-preferences.ui.h:4
+#: src/dh-preferences.c:565
 msgid "Title"
 msgstr "タイトル"
 
-#: ../src/dh-preferences.ui.h:5
+#: src/dh-preferences.ui:26
+msgid "Preferences"
+msgstr "設定"
+
+#: src/dh-preferences.ui:62
+msgid "_Group by language"
+msgstr "言語別に分類する(_G)"
+
+#: src/dh-preferences.ui:104
 msgid "Book Shelf"
 msgstr "本棚"
 
-#: ../src/dh-preferences.ui.h:6
+#: src/dh-preferences.ui:125
 msgid "_Use system fonts"
 msgstr "システムフォントを使う(_U)"
 
-#: ../src/dh-preferences.ui.h:7
+#: src/dh-preferences.ui:149
 msgid "_Variable width: "
 msgstr "可変幅(_V): "
 
-#: ../src/dh-preferences.ui.h:8
+#: src/dh-preferences.ui:162
 msgid "_Fixed width:"
 msgstr "固定幅(_F):"
 
-#: ../src/dh-preferences.ui.h:9
+#: src/dh-preferences.ui:223
 msgid "Fonts"
 msgstr "フォント"
 
-#: ../src/dh-window.c:86
-msgid "50%"
-msgstr "50%"
+#. General group
+#: src/dh-window.c:393
+msgid "General"
+msgstr ""
 
-#: ../src/dh-window.c:87
-msgid "75%"
-msgstr "75%"
+#. Zoom group
+#: src/dh-window.c:407
+msgid "Zoom"
+msgstr ""
 
-#: ../src/dh-window.c:88
-msgid "100%"
-msgstr "100%"
-
-#: ../src/dh-window.c:89
-msgid "125%"
-msgstr "125%"
-
-#: ../src/dh-window.c:90
-msgid "150%"
-msgstr "150%"
-
-#: ../src/dh-window.c:91
-msgid "175%"
-msgstr "175%"
-
-#: ../src/dh-window.c:92
-msgid "200%"
-msgstr "200%"
-
-#: ../src/dh-window.c:93
-msgid "300%"
-msgstr "300%"
-
-#: ../src/dh-window.c:94
-msgid "400%"
-msgstr "400%"
-
-#: ../src/dh-window.c:975
-msgid "Error opening the requested link."
-msgstr "要求されたリンクを開くのに失敗しました。"
-
-#: ../src/dh-window.c:1246
-msgid "_Close"
-msgstr "閉じる(_C)"
-
-#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
-msgid "Empty Page"
-msgstr "空のページ"
-
-#: ../src/dh-window.ui.h:1
-msgid "New _Tab"
-msgstr "新しいタブ(_T)"
-
-#: ../src/dh-window.ui.h:2
-msgid "_Print"
-msgstr "印刷(_P)"
-
-#: ../src/dh-window.ui.h:3
-msgid "_Find"
-msgstr "検索(_F)"
-
-#: ../src/dh-window.ui.h:4
-msgid "_Larger Text"
-msgstr "文字を大きくする(_L)"
-
-#: ../src/dh-window.ui.h:5
-msgid "S_maller Text"
-msgstr "文字を小さくする(_M)"
-
-#: ../src/dh-window.ui.h:6
-msgid "_Normal Size"
-msgstr "通常の大きさ(_N)"
-
-#: ../src/dh-window.ui.h:8
-msgid "_Side pane"
-msgstr "サイドペイン(_S)"
-
-#: ../src/dh-window.ui.h:10
-msgid "_About Devhelp"
-msgstr "このアプリケーションについて(_A)"
-
-#: ../src/dh-window.ui.h:12
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "戻る"
 
-#: ../src/dh-window.ui.h:13
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "進む"
+
+#: src/dh-window.c:574
+#, fuzzy
+#| msgid "New _Tab"
+msgid "New Tab"
+msgstr "新しいタブ(_T)"
+
+#~ msgid ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
+#~ msgstr ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
+
+#~ msgid "Developer's Help program"
+#~ msgstr "開発者向けのヘルプブラウザーです"
+
+#~ msgid "X position of main window"
+#~ msgstr "メインウィンドウの位置X"
+
+#~ msgid "The X position of the main window."
+#~ msgstr "メインウィンドウを表示するX座標です。"
+
+#~ msgid "Y position of main window"
+#~ msgstr "メインウィンドウの位置Y"
+
+#~ msgid "The Y position of the main window."
+#~ msgstr "メインウィンドウを表示するY座標です。"
+
+#~ msgid "Selected tab: \"content\" or \"search\""
+#~ msgstr "選択したタブ: \"content\" または \"search\""
+
+#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
+#~ msgstr "どちらのタブが選択されたか: \"content\" または \"search\""
+
+#~ msgid "Whether the assistant window should be maximized"
+#~ msgstr "アシスタントウィンドウを最大サイズにする"
+
+#~ msgid "Whether the assistant window should be maximized."
+#~ msgstr "アシスタントウィンドウを最大サイズにするかどうかの設定です。"
+
+#~ msgid "X position of assistant window"
+#~ msgstr "アシスタントウィンドウの位置X"
+
+#~ msgid "The X position of the assistant window."
+#~ msgstr "アシスタントウィンドウを表示するX座標です。"
+
+#~ msgid "Y position of assistant window"
+#~ msgstr "アシスタントウィンドウの位置Y"
+
+#~ msgid "The Y position of the assistant window."
+#~ msgstr "アシスタントウィンドウを表示するY座標です。"
+
+#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
+#~ msgstr "[F2] キーを押してカーソル位置にある単語を Devhelp から検索します"
+
+#~ msgid "_About"
+#~ msgstr "このアプリケーションについて(_A)"
+
+#~ msgid "A developers' help browser for GNOME"
+#~ msgstr "GNOME の開発者用ヘルプブラウザー"
+
+#~ msgid "Expected '%s', got '%s' at line %d, column %d"
+#~ msgstr "'%s' を期待しましたが '%s' を受け取りました (%d 行 %d 桁)"
+
+#~ msgid "Invalid namespace '%s' at line %d, column %d"
+#~ msgstr "名前空間 '%s' が正しくありません (%d 行 %d 桁)"
+
+#~ msgid ""
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
+#~ "%d"
+#~ msgstr ""
+#~ "要素 \"title\" と \"name\" と \"link\" が %d 行 %d 桁で要求されました"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
+#~ "column %d"
+#~ msgstr "\"name\" と \"link\" が <sub> の中の %d 行 %d 桁で要求されました"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
+#~ "column %d"
+#~ msgstr "\"name\" と \"link\" が '%s' の中の %d 行 %d 桁で要求されました"
+
+#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+#~ msgstr "\"type\" が <keyword> の中の %d 行 %d 桁で要求されました"
+
+#~ msgid "Cannot uncompress book '%s': %s"
+#~ msgstr "'%s' というブックを展開できません: %s"
+
+#~ msgid "50%"
+#~ msgstr "50%"
+
+#~ msgid "75%"
+#~ msgstr "75%"
+
+#~ msgid "100%"
+#~ msgstr "100%"
+
+#~ msgid "125%"
+#~ msgstr "125%"
+
+#~ msgid "150%"
+#~ msgstr "150%"
+
+#~ msgid "175%"
+#~ msgstr "175%"
+
+#~ msgid "200%"
+#~ msgstr "200%"
+
+#~ msgid "300%"
+#~ msgstr "300%"
+
+#~ msgid "400%"
+#~ msgstr "400%"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "要求されたリンクを開くのに失敗しました。"
+
+#~ msgid "_Close"
+#~ msgstr "閉じる(_C)"
 
 #~ msgid "Show API Documentation for the word at the cursor"
 #~ msgstr "カーソル位置にある文字列に対応する API ドキュメントを表示します"
@@ -568,9 +689,6 @@ msgstr "進む"
 
 #~ msgid "_File"
 #~ msgstr "ファイル(_F)"
-
-#~ msgid "_Help"
-#~ msgstr "ヘルプ(_H)"
 
 #~ msgid "Use the normal text size"
 #~ msgstr "文字を標準の大きさにリセットします"
