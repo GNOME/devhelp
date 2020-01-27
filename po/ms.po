@@ -5,229 +5,529 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: besar\n"
-"POT-Creation-Date: 2004-03-16 23:25+0100\n"
-"PO-Revision-Date: 2003-07-24 00:12+0800\n"
-"Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
-"Language-Team: Projek Gabai <gabai-penyumbang@lists.sourceforge.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2020-01-21 14:55+0000\n"
+"PO-Revision-Date: 2020-01-27 04:34+0800\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
+"Language-Team: Pasukan Terjemahan GNOME Malaysia\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 2.0.6\n"
 
-#: devhelp.desktop.in.h:1
-msgid "Developer's Help program"
-msgstr "Program Bantuan Pembangun"
-
-#: devhelp.desktop.in.h:2 ui/devhelp.glade.h:4
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
+#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
+#: src/dh-app.c:256 src/dh-app.c:548
 msgid "Devhelp"
 msgstr "DevHelp"
 
-#: devhelp.keys.in.h:1
-msgid "Devhelp Book"
-msgstr "Buku DevHelp"
+#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
+#: src/dh-app.c:258
+msgid "A developer tool for browsing and searching API documentation"
+msgstr "Satu alat pembangun untuk melayar dan menggelintar dokumentasi API"
 
-#: devhelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr ""
-
-#: devhelp.schemas.in.h:2
-msgid "Font for text"
-msgstr ""
-
-#: devhelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr ""
-
-#: devhelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr ""
-
-#: devhelp.schemas.in.h:5
-msgid "Height of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:6
-msgid "Location of the paned"
-msgstr ""
-
-#: devhelp.schemas.in.h:7
-msgid "The X position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:8
-msgid "The Y position of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:9
-msgid "The height of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:10
-msgid "The location of the paned separator."
-msgstr ""
-
-#: devhelp.schemas.in.h:11
-msgid "The width of the main window."
-msgstr ""
-
-#: devhelp.schemas.in.h:12
-msgid "Use system fonts"
-msgstr ""
-
-#: devhelp.schemas.in.h:13
-msgid "Use the system default fonts."
-msgstr ""
-
-#: devhelp.schemas.in.h:14
-msgid "Width of the main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:15
-msgid "X position of main window"
-msgstr ""
-
-#: devhelp.schemas.in.h:16
-msgid "Y position of main window"
-msgstr ""
-
-#: src/dh-main.c:259
-msgid "Specify the size and location of the window"
-msgstr "Nyatakan saiz dan lokasi bagi tetingkap"
-
-#: src/dh-main.c:260
-msgid "WIDTHxHEIGHT+XOFF+YOFF"
-msgstr "WIDTHxHEIGHT+XOFF+YOFF"
-
-#: src/dh-main.c:268
-msgid "Search for a function"
-msgstr "Cari satu fungsi"
-
-#: src/dh-main.c:277
-msgid "Quit any running Devhelp"
-msgstr "Hentikan semua Devhelp yg terlaksana"
-
-#: src/dh-parser.c:104 src/dh-parser.c:181 src/dh-parser.c:228
-#, c-format
-msgid "Expected '%s' got '%s' at line %d, column %d"
-msgstr "Dijangka '%s' dapat '%s' pada baris %d, kolum %d"
-
-#: src/dh-parser.c:120
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "ruangnama tak sah '%s' pada baris %d, kolum %d"
-
-#: src/dh-parser.c:149
-#, c-format
-msgid "title, name, and link elements are required at line %d, column %d"
-msgstr "unsur tajuk, nama, dan pautan diperlukan pada baris %d, kolum %d"
-
-#: src/dh-parser.c:202
-#, c-format
-msgid "name and link elements are required inside <sub> on line %d, column %d"
-msgstr ""
-"unsur nama dan pautan diperlukan di dalam <sub> pada baris %d, kolum %d"
-
-#: src/dh-parser.c:250
-#, c-format
+#: data/org.gnome.Devhelp.appdata.xml.in:9
 msgid ""
-"name and link elements are required inside <function> on line %d, column %d"
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
 msgstr ""
-"unsur nama dan pautan diperlukan di dalam <function> pada baris %d, kolum %d"
+"Devhelp ialah satu alat pembangun untuk melayar dan menggelintar dokumentasi "
+"API. Ia menawarkan satu cara mudah untuk menavigasi pustaka dan menggelintar "
+"berdasarkan fungsi, struct, atau macro."
 
-#: src/dh-parser.c:337 src/dh-parser.c:423
-msgid "Could not create book parser"
-msgstr "Tak dapat mencipta penghantar buku"
+#: data/org.gnome.Devhelp.appdata.xml.in:14
+msgid ""
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
+msgstr ""
+"Dokumentasi mesti dipasang secara setempat, supaya sambungan internet tidak "
+"diperlukan untuk menggunakan Devhelp."
 
-#: src/dh-parser.c:347 src/dh-parser.c:433
-msgid "Could not create markup parser"
-msgstr "Tak dapat mencipta penghantar markup"
+#: data/org.gnome.Devhelp.appdata.xml.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
+msgstr ""
+"Devhelp berfungsi secara tabii dengan GTK-Doc, supaya pustaka-pustaka GTK "
+"dan GNOME disokong dengan baik. Tetapi lain-lain platform pembangunan juga "
+"disokong, asalkan dokumentasi API tersedia dalam HTML dan satu fail indeks *."
+"devhelp2 akan dijanakan."
 
-#: src/dh-parser.c:479
+#: data/org.gnome.Devhelp.appdata.xml.in:24
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr ""
+"Devhelp disepadukan dengan lain-lain aplikasi seperti Glade, Builder atau "
+"Anjuta, dan pemalam-pemalam yang tersedia untuk penyunting teks berbeza "
+"(gedit, Vim, Emacs, Geany, …)."
+
+#: data/org.gnome.Devhelp.desktop.in:5
+msgid "API Documentation Browser"
+msgstr "Pelayar Dokumentasi API"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in:7
+msgid "documentation;information;manual;developer;api;"
+msgstr "dokumentasi;maklumat;panduan;pembangun;api;"
+
+#: data/org.gnome.devhelp.gschema.xml:16
+msgid "Main window maximized state"
+msgstr "Keadaan tetingkap utama dimaksimumkan"
+
+#: data/org.gnome.devhelp.gschema.xml:17
+msgid "Whether the main window should start maximized."
+msgstr "Sama ada tetingkap utama sepatutnya dimulakan secara maksimum."
+
+#: data/org.gnome.devhelp.gschema.xml:21
+msgid "Width of the main window"
+msgstr "Lebar tetingkap utama"
+
+#: data/org.gnome.devhelp.gschema.xml:22
+msgid "The width of the main window."
+msgstr "Lebar bagi tetingkap utama."
+
+#: data/org.gnome.devhelp.gschema.xml:26
+msgid "Height of main window"
+msgstr "Tinggi tetingkap utama"
+
+#: data/org.gnome.devhelp.gschema.xml:27
+msgid "The height of the main window."
+msgstr "Tinggi bagi tetingkap utama."
+
+#: data/org.gnome.devhelp.gschema.xml:33
+msgid "Width of the index and search pane"
+msgstr "Lebar anak tetingkap indek dan gelintar"
+
+#: data/org.gnome.devhelp.gschema.xml:34
+msgid "The width of the index and search pane."
+msgstr "Lebar bagi anak tetingkap indek dan gelintar."
+
+#: data/org.gnome.devhelp.gschema.xml:43
+msgid "Width of the assistant window"
+msgstr "Lebar tetingkap pembantu"
+
+#: data/org.gnome.devhelp.gschema.xml:44
+msgid "The width of the assistant window."
+msgstr "Lebar bagi tetingkap pembantu."
+
+#: data/org.gnome.devhelp.gschema.xml:48
+msgid "Height of assistant window"
+msgstr "Tinggi tetingkap pembantu"
+
+#: data/org.gnome.devhelp.gschema.xml:49
+msgid "The height of the assistant window."
+msgstr "Tinggi bagi tetingkap pembantu."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
+msgid "Books disabled"
+msgstr "Buku dilumpuhkan"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
+msgid "List of books disabled by the user."
+msgstr "Senarai buku yang dilumpuhkan oleh pengguna."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
+msgid "Group books by language"
+msgstr "Kelompok buku mengikut bahasa"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
+msgid ""
+"Whether books should be grouped by programming language in the user "
+"interface."
+msgstr ""
+"Sama ada buku patut dikelompok mengikut bahasa pengaturcaraan dalam antara "
+"muka pengguna."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
+msgid "Use system fonts"
+msgstr "Guna fon-fon sistem"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
+msgid "Use the system default fonts."
+msgstr "Guna fon-fon lalai sistem."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
+msgid "Font for text"
+msgstr "Fon untuk teks"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
+msgid "Font for text with variable width."
+msgstr "Fon untuk teks dengan lebar pembolehubah."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
+msgid "Font for fixed width text"
+msgstr "Fon untuk teks lebar tetap"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
+msgid "Font for text with fixed width, such as code examples."
+msgstr "Fon untuk teks lebar tetap, seperti contoh-contoh kod."
+
+#: devhelp/dh-assistant-view.c:386
+msgid "Book:"
+msgstr "Buku:"
+
+#: devhelp/dh-book.c:299
 #, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "Tak dapat nyahmampat buku '%s': %s"
+msgid "Language: %s"
+msgstr "Bahasa: %s"
 
-#: src/dh-search.c:417
-msgid "_Search:"
-msgstr "_Cari:"
+#: devhelp/dh-book.c:300
+msgid "Language: Undefined"
+msgstr "Bahasa: Tidak ditakrif"
+
+#: devhelp/dh-book-tree.c:750
+msgid "_Collapse All"
+msgstr "_Kuncupkan Semua"
+
+#. i18n: a documentation book
+#: devhelp/dh-link.c:537
+msgid "Book"
+msgstr "Buku"
+
+#. i18n: a "page" in a documentation book
+#: devhelp/dh-link.c:541
+msgid "Page"
+msgstr "Halaman"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: devhelp/dh-link.c:546
+msgid "Keyword"
+msgstr "Kata kunci"
 
 # kadang2 'Saat'
-#: src/dh-search.c:461
-msgid "Section"
-msgstr "Seksyen"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:552
+#| msgid "Section"
+msgid "Function"
+msgstr "Fungsi"
 
-#: src/dh-window.c:111
-msgid "_File"
-msgstr "_Fail"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:558
+msgid "Struct"
+msgstr "Struct"
 
-#: src/dh-window.c:112
-msgid "_Edit"
-msgstr ""
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:564
+msgid "Macro"
+msgstr "Macro"
 
-#: src/dh-window.c:113 ui/devhelp.glade.h:10
-msgid "_Go"
-msgstr "_Pergi"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:570
+msgid "Enum"
+msgstr "Enum"
 
-#: src/dh-window.c:114
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:576
+msgid "Type"
+msgstr "Jenis"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:582
+msgid "Property"
+msgstr "Sifat"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:588
+msgid "Signal"
+msgstr "Isyarat"
+
+#: devhelp/dh-web-view.c:640
+msgid "Empty Page"
+msgstr "Halaman Kosong"
+
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
+#| msgid "Devhelp Book"
+msgid "Devhelp support"
+msgstr "Sokongan Devhelp"
+
+#: plugins/gedit-plugin/devhelp.py:42
+msgid "Show API Documentation"
+msgstr "Tunjuk Dokumentasi API"
+
+#. action, icon, label, accel, tooltip
+#. Actions related to the whole application
+#: src/dh-app.c:37
+msgid "New _Window"
+msgstr "Tetingkap _Baharu"
+
+#: src/dh-app.c:38
+msgid "Open a new window"
+msgstr "Buka satu tetingkap baharu"
+
+#: src/dh-app.c:39
+msgid "_Preferences"
+msgstr "Ke_utamaan"
+
+#: src/dh-app.c:40
+msgid "_Keyboard Shortcuts"
+msgstr "Pintasan Papan _Kekunci"
+
+#: src/dh-app.c:41
 msgid "_Help"
 msgstr "_Bantuan"
 
-#: src/dh-window.c:292
-#, c-format
-msgid "Cannot set UI: %s"
-msgstr ""
+#: src/dh-app.c:42
+#| msgid "Devhelp"
+msgid "_About Devhelp"
+msgstr "Perih_al Devhelp"
 
-#: src/dh-window.c:352 ui/devhelp.glade.h:3
-msgid "Contents"
-msgstr "Kandungan"
+#: src/dh-app.c:43
+msgid "_Quit"
+msgstr "Ke_luar"
 
-#: src/dh-window.c:363
-msgid "Search"
-msgstr "Cari"
+#: src/dh-app.c:44
+msgid "Close all windows"
+msgstr "Tutup semua tetingkap"
 
-#: src/dh-window.c:446
-msgid "A developer's help browser for GNOME 2"
-msgstr "Pelungsur bantuan pembangun untuk GNOME 2"
+#. Actions related to the current main window
+#: src/dh-app.c:47
+msgid "_Side Panel"
+msgstr "Panel _Sisi"
 
-#: src/dh-window.c:462
-msgid "Devhelp project page"
-msgstr "Halaman projek devhelp"
+#: src/dh-app.c:48
+msgid "Toggle side panel visibility"
+msgstr "Togol ketampakan panel sisi"
 
-#: src/dh-window.c:466
-msgid "Bug report Devhelp"
-msgstr "Lapor pepijat Devhelp"
+#: src/dh-app.c:49
+msgid "_Print"
+msgstr "_Cetak"
 
-#: ui/devhelp.glade.h:1
-msgid "    "
-msgstr ""
+#: src/dh-app.c:50
+msgid "_Find"
+msgstr "_Cari"
 
-#: ui/devhelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr ""
+#: src/dh-app.c:51
+msgid "Find in current page"
+msgstr "Cari dalam halaman semasa"
 
-#: ui/devhelp.glade.h:5
-msgid "Fixed width:"
-msgstr ""
+#: src/dh-app.c:52
+msgid "_Larger Text"
+msgstr "Teks _Lebih Besar"
 
-#: ui/devhelp.glade.h:6
+#: src/dh-app.c:53
+msgid "Larger text"
+msgstr "Teks lebih besar"
+
+#: src/dh-app.c:54
+msgid "S_maller Text"
+msgstr "Teks Lebih _Kecil"
+
+#: src/dh-app.c:55
+msgid "Smaller text"
+msgstr "Teks lebih kecil"
+
+#: src/dh-app.c:56
+msgid "_Normal Size"
+msgstr "Saiz _Biasa"
+
+#: src/dh-app.c:57
+msgid "Normal size"
+msgstr "Saiz biasa"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:97
+msgid "Open a new tab"
+msgstr "Buka satu tab baharu"
+
+#: src/dh-app.c:98
+msgid "Close the current tab"
+msgstr "Tutup tab semasa"
+
+#: src/dh-app.c:99
+msgid "Go back"
+msgstr "Kembali"
+
+#: src/dh-app.c:100
+msgid "Go forward"
+msgstr "Maju"
+
+#: src/dh-app.c:101
+msgid "Focus global search"
+msgstr "Fokus gelintar sejagat"
+
+#: src/dh-app.c:260
+msgid "translator-credits"
+msgstr "abuyop"
+
+#: src/dh-app.c:262
+#| msgid "Devhelp"
+msgid "Devhelp Website"
+msgstr "Tapak Sesawang Devhelp"
+
+#: src/dh-app.c:437
+msgid "Opens a new Devhelp window"
+msgstr "Buka satu tetingkap Devhelp baharu"
+
+#: src/dh-app.c:442
+#| msgid "Search for a function"
+msgid "Search for a keyword"
+msgstr "Gelintar satu kata kunci"
+
+#: src/dh-app.c:443 src/dh-app.c:448
+msgid "KEYWORD"
+msgstr "KATAKUNCI"
+
+#: src/dh-app.c:447
+msgid "Search and display any hit in the assistant window"
+msgstr "Gelintar dan papar apa-apa yang kena dalam tetingkap pembantu"
+
+#: src/dh-app.c:452
+msgid "Display the version and exit"
+msgstr "Tunjuk versi kemudian keluar"
+
+#: src/dh-app.c:457
+msgid "Quit any running Devhelp"
+msgstr "Keluar mana-mana Devhelp yang masih berjalan"
+
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:13
+msgid "Devhelp — Assistant"
+msgstr "Devhelp — Pembantu"
+
+#: src/dh-preferences.c:537
+msgid "Enabled"
+msgstr "Dibenarkan"
+
+#: src/dh-preferences.c:551
+msgid "Title"
+msgstr "Tajuk"
+
+#: src/dh-preferences.ui:12
 msgid "Preferences"
-msgstr ""
+msgstr "Keutamaan"
 
-#: ui/devhelp.glade.h:7
-msgid "Variable width: "
-msgstr ""
+#: src/dh-preferences.ui:48
+msgid "_Group by language"
+msgstr "_Kelompok mengikut bahasa"
 
-#: ui/devhelp.glade.h:8
-msgid "_Back"
-msgstr ""
+#: src/dh-preferences.ui:90
+msgid "Book Shelf"
+msgstr "Para Buku"
 
-#: ui/devhelp.glade.h:9
-msgid "_Forward"
-msgstr ""
-
-#: ui/devhelp.glade.h:11
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
-msgstr ""
+msgstr "_Guna fon-fon sistem"
+
+#: src/dh-preferences.ui:135
+msgid "_Variable width: "
+msgstr "_Lebar pembolehubah: "
+
+#: src/dh-preferences.ui:148
+msgid "_Fixed width:"
+msgstr "Lebar _tetap:"
+
+#: src/dh-preferences.ui:209
+msgid "Fonts"
+msgstr "Fon"
+
+#. General group
+#: src/dh-window.c:380
+msgid "General"
+msgstr "Am"
+
+#. Zoom group
+#: src/dh-window.c:394
+msgid "Zoom"
+msgstr "Zum"
+
+#: src/dh-window.c:539
+msgid "Back"
+msgstr "Undur"
+
+#: src/dh-window.c:543
+msgid "Forward"
+msgstr "Maju"
+
+#: src/dh-window.c:561
+msgid "New Tab"
+msgstr "Tab Baharu"
+
+#~ msgid "Developer's Help program"
+#~ msgstr "Program Bantuan Pembangun"
+
+#~ msgid "Specify the size and location of the window"
+#~ msgstr "Nyatakan saiz dan lokasi bagi tetingkap"
+
+#~ msgid "WIDTHxHEIGHT+XOFF+YOFF"
+#~ msgstr "WIDTHxHEIGHT+XOFF+YOFF"
+
+#~ msgid "Expected '%s' got '%s' at line %d, column %d"
+#~ msgstr "Dijangka '%s' dapat '%s' pada baris %d, kolum %d"
+
+#~ msgid "Invalid namespace '%s' at line %d, column %d"
+#~ msgstr "ruangnama tak sah '%s' pada baris %d, kolum %d"
+
+#~ msgid "title, name, and link elements are required at line %d, column %d"
+#~ msgstr "unsur tajuk, nama, dan pautan diperlukan pada baris %d, kolum %d"
+
+#~ msgid ""
+#~ "name and link elements are required inside <sub> on line %d, column %d"
+#~ msgstr ""
+#~ "unsur nama dan pautan diperlukan di dalam <sub> pada baris %d, kolum %d"
+
+#~ msgid ""
+#~ "name and link elements are required inside <function> on line %d, column "
+#~ "%d"
+#~ msgstr ""
+#~ "unsur nama dan pautan diperlukan di dalam <function> pada baris %d, kolum "
+#~ "%d"
+
+#~ msgid "Could not create book parser"
+#~ msgstr "Tak dapat mencipta penghantar buku"
+
+#~ msgid "Could not create markup parser"
+#~ msgstr "Tak dapat mencipta penghantar markup"
+
+#~ msgid "Cannot uncompress book '%s': %s"
+#~ msgstr "Tak dapat nyahmampat buku '%s': %s"
+
+#~ msgid "_Search:"
+#~ msgstr "_Cari:"
+
+#~ msgid "_File"
+#~ msgstr "_Fail"
+
+#~ msgid "_Go"
+#~ msgstr "_Pergi"
+
+#~ msgid "Contents"
+#~ msgstr "Kandungan"
+
+#~ msgid "Search"
+#~ msgstr "Cari"
+
+#~ msgid "A developer's help browser for GNOME 2"
+#~ msgstr "Pelungsur bantuan pembangun untuk GNOME 2"
+
+#~ msgid "Devhelp project page"
+#~ msgstr "Halaman projek devhelp"
+
+#~ msgid "Bug report Devhelp"
+#~ msgstr "Lapor pepijat Devhelp"
 
 #~ msgid ""
 #~ "Select a subject in the contents to the left or switch to the search tab "
