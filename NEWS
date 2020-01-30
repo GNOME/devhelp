@@ -1,11 +1,22 @@
+News in 3.35.90, 2020-01-30
+---------------------------
+* Create page about professional services for Devhelp.
+* A few improvements to the build system.
+* Write more user documentation.
+* Fix a minor bug with the Ctrl+F keyboard shortcut.
+* Start to apply REUSE recommendations for copyright and license information.
+  https://reuse.software/
+* Use a few new GLib APIs.
+* Translation updates.
+
 News in 3.34.0, 2019-09-09
 --------------------------
 * Enable back-forward swipe gesture in the HTML pages.
 * Write more contributor docs.
 * Translation updates.
 
-News in 3.32.0, 2019-03-10, “Milky Way” (the song I'm currently listening to)
------------------------------------------------------------------------------
+News in 3.32.0, 2019-03-10
+--------------------------
 * GNOME goal “App menu retirement”:
   https://gitlab.gnome.org/GNOME/Initiatives/issues/4
 * GNOME goal “App Icon Redesign”:
