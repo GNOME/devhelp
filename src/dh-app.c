@@ -262,7 +262,7 @@ about_cb (GSimpleAction *action,
                                "website-label", _("Devhelp Website"),
                                "logo-icon-name", "org.gnome.Devhelp",
                                "license-type", GTK_LICENSE_GPL_3_0,
-                               "copyright", "Copyright 2001-2019 – the Devhelp team",
+                               "copyright", "Copyright 2001-2020 – the Devhelp team",
                                NULL);
 }
 
