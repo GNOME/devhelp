@@ -379,6 +379,7 @@ shortcuts_window_cb (GSimpleAction *action,
         /* General group */
         group = amtk_shortcuts_group_new (_("General"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.help"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.show-window-menu"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.shortcuts-window"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.focus-search"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.find"));

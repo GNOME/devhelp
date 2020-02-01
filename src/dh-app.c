@@ -106,6 +106,7 @@ add_other_action_infos (DhApp *app)
                 { "win.go-back", NULL, NULL, NULL, N_("Go back") },
                 { "win.go-forward", NULL, NULL, NULL, N_("Go forward") },
                 { "win.focus-search", NULL, NULL, NULL, N_("Focus global search") },
+                { "win.show-window-menu", NULL, NULL, "F10", N_("Show menu") },
                 { NULL }
         };
 
