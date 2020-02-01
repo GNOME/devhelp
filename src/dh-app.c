@@ -52,7 +52,7 @@ add_menu_action_infos (DhApp *app)
                   N_("Find in current page") },
                 { "win.zoom-in", NULL, N_("_Larger Text"), NULL,
                   N_("Larger text") },
-                { "win.zoom-out", NULL, N_("S_maller Text"), "<Control>minus",
+                { "win.zoom-out", NULL, N_("S_maller Text"), NULL,
                   N_("Smaller text") },
                 { "win.zoom-default", NULL, N_("_Normal Size"), "<Control>0",
                   N_("Normal size") },
@@ -79,7 +79,13 @@ add_menu_action_infos (DhApp *app)
          */
         accels[0] = "<Control>plus";
         accels[1] = "<Control>equal";
+        accels[2] = "<Control>KP_Add";
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-in");
+        amtk_action_info_set_accels (action_info, accels);
+        
+        accels[0] = "<Control>minus";
+        accels[1] = "<Control>KP_Subtract";
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-out");
         amtk_action_info_set_accels (action_info, accels);
 
         amtk_action_info_store_set_all_accels_to_app (app->priv->menu_action_info_store,
