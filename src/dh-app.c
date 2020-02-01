@@ -37,8 +37,9 @@ add_menu_action_infos (DhApp *app)
                 { "app.new-window", NULL, N_("New _Window"), "<Control>n",
                   N_("Open a new window") },
                 { "app.preferences", NULL, N_("_Preferences") },
-                { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts") },
-                { "app.help", NULL, N_("_Help"), "F1" },
+                { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts"), 
+                  NULL, N_("Keyboard shortcuts") }, 
+                { "app.help", NULL, N_("_Help"), "F1", NULL, N_("Show help") },
                 { "app.about", NULL, N_("_About Devhelp") },
                 { "app.quit", NULL, N_("_Quit"), "<Control>q",
                   N_("Close all windows") },
@@ -65,8 +66,7 @@ add_menu_action_infos (DhApp *app)
                                             entries, -1,
                                             GETTEXT_PACKAGE);
 
-        accels[0] = "<Control>F1";
-        accels[1] = "<Control>question";
+        accels[0] = "<Control>question";
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
         amtk_action_info_set_accels (action_info, accels);
 
