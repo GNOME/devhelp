@@ -106,6 +106,7 @@ add_other_action_infos (DhApp *app)
                 { "win.go-back", NULL, NULL, NULL, N_("Go back") },
                 { "win.go-forward", NULL, NULL, NULL, N_("Go forward") },
                 { "win.focus-search", NULL, NULL, NULL, N_("Focus global search") },
+                { "win.show-window-menu", NULL, NULL, NULL, N_("Show menu") },
                 { NULL }
         };
 
@@ -126,6 +127,10 @@ add_other_action_infos (DhApp *app)
         accels[1] = "<Control>s";
         accels[2] = "<Control>l";
         action_info = amtk_action_info_store_lookup (store, "win.focus-search");
+        amtk_action_info_set_accels (action_info, accels);
+
+        accels[0] = "F10";
+        action_info = amtk_action_info_store_lookup (store, "win.show-window-menu");
         amtk_action_info_set_accels (action_info, accels);
 
         amtk_action_info_store_set_all_accels_to_app (store, GTK_APPLICATION (app));
