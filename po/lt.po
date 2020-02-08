@@ -6,29 +6,29 @@
 #
 # Gintautas Miliauskas <gintas@akl.lt>, 2007, 2008.
 # Vytautas Liuolia <vytautas.liuolia@gmail.com>, 2007, 2010.
-# Aurimas Černius <aurisc4@gmail.com>, 2010, 2013, 2014, 2015, 2017, 2018.
+# Aurimas Černius <aurisc4@gmail.com>, 2010-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-05-31 14:03+0000\n"
-"PO-Revision-Date: 2018-07-29 23:28+0300\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
+"PO-Revision-Date: 2020-02-08 14:28+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.34.0\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -56,13 +56,18 @@ msgstr ""
 "interneto ryšys nėra reikalingas."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
+#| msgid ""
+#| "Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+#| "well supported. But other development platforms can be supported as well, "
+#| "as long as the API documentation is available in HTML and a *.devhelp2 "
+#| "index file is generated."
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
-"Devhelp veikia savu būdu su GTK-Doc, taigi GTK+ ir GNOME bibliotekos yra "
+"Devhelp veikia savu būdu su GTK-Doc, taigi GTK ir GNOME bibliotekos yra "
 "gerai palaikomos. Tačiau gali būti palaikomos ir kitos kūrimo platformos "
 "tol, kol API dokumentacija yra prieinama HTML pavidalu ir yra generuojamas *."
 "devhelp2 indekso failas."
@@ -85,12 +90,6 @@ msgstr "API dokumentacijos naršyklė"
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentacija;informacija;vadovas;kūrėjas;api;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -140,21 +139,19 @@ msgstr "Pagalbinio lango aukštis"
 msgid "The height of the assistant window."
 msgstr "Pagalbinio lango aukštis."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:9
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
 msgid "Books disabled"
 msgstr "Knygos išjungtos"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:10
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
 msgstr "Knygų sąrašas išjungtas naudotojo."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:14
-#| msgid "Group by language"
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
 msgstr "Grupuoti knygas pagal kalbą"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:15
-#| msgid "Whether books should be grouped by language in the UI"
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
@@ -162,27 +159,27 @@ msgstr ""
 "Ar knygos turėtų būti grupuojamos pagal programavimo kalbą naudotojo "
 "sąsajoje."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:21
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
 msgstr "Naudoti sisteminius šriftus"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:22
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
 msgstr "Naudoti sistemos standartinius šriftus."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:26
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
 msgstr "Šriftas tekstui"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:27
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
 msgstr "Šriftas kintamo pločio tekstui."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:31
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
 msgstr "Šriftas fiksuoto pločio tekstui"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:32
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Šriftas fiksuoto pločio tekstui, pavyzdžiui kodo pavyzdžiams."
 
@@ -199,7 +196,7 @@ msgstr "Kalba: %s"
 msgid "Language: Undefined"
 msgstr "Kalba: Nenurodyta"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "Suskleisti _viską"
 
@@ -268,6 +265,10 @@ msgstr "Savybė"
 msgid "Signal"
 msgstr "Signalas"
 
+#: devhelp/dh-web-view.c:657
+msgid "Empty Page"
+msgstr "Tuščias puslapis"
+
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Devhelp palaikymas"
@@ -277,14 +278,12 @@ msgid "Show API Documentation"
 msgstr "Rodyti API dokumentaciją"
 
 #. action, icon, label, accel, tooltip
-#. App menu
+#. Actions related to the whole application
 #: src/dh-app.c:51
 msgid "New _Window"
 msgstr "Naujas _langas"
 
 #: src/dh-app.c:52
-#| msgctxt "shortcut window"
-#| msgid "Open a new window"
 msgid "Open a new window"
 msgstr "Atverti naują langą"
 
@@ -301,27 +300,23 @@ msgid "_Help"
 msgstr "Ž_inynas"
 
 #: src/dh-app.c:56
-msgid "_About"
-msgstr "_Apie"
+msgid "_About Devhelp"
+msgstr "_Apie Devhelp"
 
 #: src/dh-app.c:57
 msgid "_Quit"
 msgstr "Iš_eiti"
 
 #: src/dh-app.c:58
-#| msgctxt "shortcut window"
-#| msgid "Close all windows"
 msgid "Close all windows"
 msgstr "Užverti visus langus"
 
-#. Window menu
+#. Actions related to the current main window
 #: src/dh-app.c:61
 msgid "_Side Panel"
 msgstr "Šoninis _skydelis"
 
 #: src/dh-app.c:62
-#| msgctxt "shortcut window"
-#| msgid "Toggle side panel visibility"
 msgid "Toggle side panel visibility"
 msgstr "Perjungti šoninės juostos matomumą"
 
@@ -334,8 +329,6 @@ msgid "_Find"
 msgstr "_Ieškoti"
 
 #: src/dh-app.c:65
-#| msgctxt "shortcut window"
-#| msgid "Find in current page"
 msgid "Find in current page"
 msgstr "Rasti esamame puslapyje"
 
@@ -344,7 +337,6 @@ msgid "_Larger Text"
 msgstr "_Didesnis tekstas"
 
 #: src/dh-app.c:67
-#| msgid "_Larger Text"
 msgid "Larger text"
 msgstr "Didesnis tekstas"
 
@@ -353,7 +345,6 @@ msgid "S_maller Text"
 msgstr "_Mažesnis tekstas"
 
 #: src/dh-app.c:69
-#| msgid "S_maller Text"
 msgid "Smaller text"
 msgstr "Mažesnis tekstas"
 
@@ -362,38 +353,27 @@ msgid "_Normal Size"
 msgstr "Į_prastinis dydis"
 
 #: src/dh-app.c:71
-#| msgid "_Normal Size"
 msgid "Normal size"
 msgstr "Įprastinis dydis"
 
 #. action, icon, label, accel, tooltip
 #: src/dh-app.c:111
-#| msgctxt "shortcut window"
-#| msgid "Open a new tab"
 msgid "Open a new tab"
 msgstr "Atverti naują kortelę"
 
 #: src/dh-app.c:112
-#| msgctxt "shortcut window"
-#| msgid "Close the current window"
 msgid "Close the current tab"
 msgstr "Užverti dabartinę kortelę"
 
 #: src/dh-app.c:113
-#| msgctxt "shortcut window"
-#| msgid "Go back"
 msgid "Go back"
 msgstr "Grįžti atgal"
 
 #: src/dh-app.c:114
-#| msgctxt "shortcut window"
-#| msgid "Go forward"
 msgid "Go forward"
 msgstr "Eiti pirmyn"
 
 #: src/dh-app.c:115
-#| msgctxt "shortcut window"
-#| msgid "Focus global search"
 msgid "Focus global search"
 msgstr "Fokusuoti visuotinę paiešką"
 
@@ -408,27 +388,27 @@ msgstr ""
 msgid "Devhelp Website"
 msgstr "DevHelp žiniatinklis"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Atveria naują Devhelp langą"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "Ieškoti raktažodžio"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "RAKTINIS ŽODIS"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "Ieškoti ir rodyti bet kokį sutapimą pagalbiniame lange"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "Parodyti versijos informaciją ir išeiti"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Uždaryti paleistus Devhelp"
 
@@ -473,44 +453,39 @@ msgstr "_Fiksuoto pločio šriftas:"
 msgid "Fonts"
 msgstr "Šriftai"
 
-#: src/dh-web-view.c:498
-msgid "Empty Page"
-msgstr "Tuščias puslapis"
-
 #. General group
-#: src/dh-window.c:410
-#| msgctxt "shortcut window"
-#| msgid "General"
+#: src/dh-window.c:393
 msgid "General"
 msgstr "Bendra"
 
 #. Zoom group
-#: src/dh-window.c:424
-#| msgctxt "shortcut window"
-#| msgid "Zoom"
+#: src/dh-window.c:407
 msgid "Zoom"
 msgstr "Mastelis"
 
-#: src/dh-window.ui:27
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "Atgal"
 
-#: src/dh-window.ui:46
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "Pirmyn"
 
-#: src/dh-window.ui:91
+#: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Nauja kortelė"
+
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
+
+#~ msgid "_About"
+#~ msgstr "_Apie"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
 
 #~ msgid "Error opening the requested link."
 #~ msgstr "Klaida atveriant nuorodą."
-
-#~ msgid "_About Devhelp"
-#~ msgstr "_Apie Devhelp"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Print"
