@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2011, 2013, 2014, 2015, 2016, 2017.
-# Asier Sarasua Garmendia  <asier.sarasua@gmail.com>, 2019.
+# Asier Sarasua Garmendia  <asier.sarasua@gmail.com>, 2019, 2020.
 #
 msgid ""
 msgstr "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2019-03-26 11:48+0000\n"
-"PO-Revision-Date: 2019-04-03 10:00+0100\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
+"PO-Revision-Date: 2020-02-15 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asier.sarasua@gmail.com>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -46,11 +46,11 @@ msgstr "Dokumentazioak gailuan instalatuta egon behar duenez, ez da derrigorrezk
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
-msgstr "Devhelp-ek GTK-Doc tresnarekin egiten du lan, beraz GTK+ eta GNOME liburutegiak ongi onartzen ditu. Beste garapen-plataforma batzuk ere onartzen ditu, haiek API dokumentazioa HTML formatuan badute eta *.devhelp2 indize-fitxategi bat sortuta badago."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
+msgstr "Devhelp-ek GTK-Doc tresnarekin egiten du lan, beraz GTK eta GNOME liburutegiak ongi onartzen ditu. Beste garapen-plataforma batzuk ere onartzen ditu, haiek API dokumentazioa HTML formatuan badute eta *.devhelp2 indize-fitxategi bat sortuta badago."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:24
 msgid ""
@@ -183,7 +183,7 @@ msgstr "Liburua"
 #. i18n: a "page" in a documentation book
 #: devhelp/dh-link.c:555
 msgid "Page"
-msgstr "Page"
+msgstr "Orrialdea"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
@@ -240,7 +240,7 @@ msgstr "Propietatea"
 msgid "Signal"
 msgstr "Seinalea"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:657
 msgid "Empty Page"
 msgstr "Orri hutsa"
 
@@ -301,7 +301,7 @@ msgstr "I_nprimatu"
 
 #: src/dh-app.c:64
 msgid "_Find"
-msgstr "_Bilatu"
+msgstr "A_urkitu"
 
 #: src/dh-app.c:65
 msgid "Find in current page"
@@ -354,7 +354,7 @@ msgstr "Fokua bilaketa globalean"
 
 #: src/dh-app.c:274
 msgid "translator-credits"
-msgstr "Asier Sarasua Garmendia <asier.sarasua@gmail.com>"
+msgstr "translator-credits"
 
 #: src/dh-app.c:276
 msgid "Devhelp Website"
