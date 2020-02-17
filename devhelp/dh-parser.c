@@ -518,7 +518,7 @@ parser_end_node_cb (GMarkupParseContext  *context,
         }
 }
 
-gboolean
+static gboolean
 parser_read_docset   (GFile   *index_file,
                       gchar  **book_title,
                       gchar  **book_id,
@@ -530,6 +530,7 @@ parser_read_docset   (GFile   *index_file,
         DocsetFile *docset;
         DocsetCursor *cursor;
         GList *entries = NULL;
+        GList *entries_head = NULL;
         DhLink *link = NULL;
         DhLinkType link_type;
         DhLink *book_link = NULL;
@@ -559,8 +560,9 @@ parser_read_docset   (GFile   *index_file,
 
         *book_tree = g_node_new (dh_link_ref (book_link));
         *all_links = g_list_prepend(*all_links, dh_link_ref (book_link));
+        entries_head = docset_cursor_get_entries(cursor);
 
-        for (entries = docset_cursor_get_entries(cursor);
+        for (entries = entries_head;
                         entries != NULL;
                         entries = entries->next) {
                 entry = entries->data;
@@ -577,10 +579,9 @@ parser_read_docset   (GFile   *index_file,
                 }
 
                 dh_link_unref (link);
-                docset_entry_free (entry);
         }
 
-        g_list_free(entries);
+        g_list_free_full(entries_head, (GDestroyNotify)docset_entry_free);
         g_node_reverse_children (*book_tree);
         dh_link_unref (book_link);
 
@@ -589,7 +590,7 @@ exit:
         return ok;
 }
 
-gboolean
+static gboolean
 parser_read_devhelp  (GFile   *index_file,
                       gchar  **book_title,
                       gchar  **book_id,
