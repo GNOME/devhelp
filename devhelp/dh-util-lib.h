@@ -12,6 +12,8 @@
 #include <gio/gio.h>
 #include "dh-notebook.h"
 #include "dh-sidebar.h"
+#include "dh-link.h"
+#include <libdocset/docset-entry-type.h>
 
 G_BEGIN_DECLS
 
@@ -39,6 +41,9 @@ GSList *        _dh_util_get_possible_index_files       (GFile *book_directory);
 G_GNUC_INTERNAL
 void            _dh_util_bind_sidebar_and_notebook      (DhSidebar  *sidebar,
                                                          DhNotebook *notebook);
+
+G_GNUC_INTERNAL
+DhLinkType      _dh_util_link_type_for_docset_type      (DocsetEntryTypeId type);
 
 G_END_DECLS
 
