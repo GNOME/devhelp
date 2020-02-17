@@ -1,0 +1,134 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
+/*
+ * SPDX-FileCopyrightText: 2020 Ayman Bagabas <ayman.bagabas@gmail.com>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+#ifndef __DH_DOCSET_H__
+#define __DH_DOCSET_H__
+
+#include <glib-object.h>
+#include <gio/gio.h>
+#include "dh-link.h"
+
+G_BEGIN_DECLS
+
+typedef enum {
+    DOCSET_ENTRY_TYPE_ID_ANNOTATION,
+    DOCSET_ENTRY_TYPE_ID_ATTRIBUTE,
+    DOCSET_ENTRY_TYPE_ID_BINDING,
+    DOCSET_ENTRY_TYPE_ID_BUILTIN,
+    DOCSET_ENTRY_TYPE_ID_CALLBACK,
+    DOCSET_ENTRY_TYPE_ID_CATEGORY,
+    DOCSET_ENTRY_TYPE_ID_CLASS,
+    DOCSET_ENTRY_TYPE_ID_COMMAND,
+    DOCSET_ENTRY_TYPE_ID_COMPONENT,
+    DOCSET_ENTRY_TYPE_ID_CONSTANT,
+    DOCSET_ENTRY_TYPE_ID_CONSTRUCTOR,
+    DOCSET_ENTRY_TYPE_ID_DEFINE,
+    DOCSET_ENTRY_TYPE_ID_DELEGATE,
+    DOCSET_ENTRY_TYPE_ID_DIAGRAM,
+    DOCSET_ENTRY_TYPE_ID_DIRECTIVE,
+    DOCSET_ENTRY_TYPE_ID_ELEMENT,
+    DOCSET_ENTRY_TYPE_ID_ENTRY,
+    DOCSET_ENTRY_TYPE_ID_ENUM,
+    DOCSET_ENTRY_TYPE_ID_ENVIRONMENT,
+    DOCSET_ENTRY_TYPE_ID_ERROR,
+    DOCSET_ENTRY_TYPE_ID_EVENT,
+    DOCSET_ENTRY_TYPE_ID_EXCEPTION,
+    DOCSET_ENTRY_TYPE_ID_EXTENSION,
+    DOCSET_ENTRY_TYPE_ID_FIELD,
+    DOCSET_ENTRY_TYPE_ID_FILE,
+    DOCSET_ENTRY_TYPE_ID_FILTER,
+    DOCSET_ENTRY_TYPE_ID_FRAMEWORK,
+    DOCSET_ENTRY_TYPE_ID_FUNCTION,
+    DOCSET_ENTRY_TYPE_ID_GLOBAL,
+    DOCSET_ENTRY_TYPE_ID_GUIDE,
+    DOCSET_ENTRY_TYPE_ID_HOOK,
+    DOCSET_ENTRY_TYPE_ID_INSTANCE,
+    DOCSET_ENTRY_TYPE_ID_INSTRUCTION,
+    DOCSET_ENTRY_TYPE_ID_INTERFACE,
+    DOCSET_ENTRY_TYPE_ID_KEYWORD,
+    DOCSET_ENTRY_TYPE_ID_LIBRARY,
+    DOCSET_ENTRY_TYPE_ID_LITERAL,
+    DOCSET_ENTRY_TYPE_ID_MACRO,
+    DOCSET_ENTRY_TYPE_ID_METHOD,
+    DOCSET_ENTRY_TYPE_ID_MIXIN,
+    DOCSET_ENTRY_TYPE_ID_MODIFIER,
+    DOCSET_ENTRY_TYPE_ID_MODULE,
+    DOCSET_ENTRY_TYPE_ID_NAMESPACE,
+    DOCSET_ENTRY_TYPE_ID_NOTATION,
+    DOCSET_ENTRY_TYPE_ID_OBJECT,
+    DOCSET_ENTRY_TYPE_ID_OPERATOR,
+    DOCSET_ENTRY_TYPE_ID_OPTION,
+    DOCSET_ENTRY_TYPE_ID_PACKAGE,
+    DOCSET_ENTRY_TYPE_ID_PARAMETER,
+    DOCSET_ENTRY_TYPE_ID_PLUGIN,
+    DOCSET_ENTRY_TYPE_ID_PROCEDURE,
+    DOCSET_ENTRY_TYPE_ID_PROPERTY,
+    DOCSET_ENTRY_TYPE_ID_PROTOCOL,
+    DOCSET_ENTRY_TYPE_ID_PROVIDER,
+    DOCSET_ENTRY_TYPE_ID_PROVISIONER,
+    DOCSET_ENTRY_TYPE_ID_QUERY,
+    DOCSET_ENTRY_TYPE_ID_RECORD,
+    DOCSET_ENTRY_TYPE_ID_RESOURCE,
+    DOCSET_ENTRY_TYPE_ID_SAMPLE,
+    DOCSET_ENTRY_TYPE_ID_SECTION,
+    DOCSET_ENTRY_TYPE_ID_SERVICE,
+    DOCSET_ENTRY_TYPE_ID_SETTING,
+    DOCSET_ENTRY_TYPE_ID_SHORTCUT,
+    DOCSET_ENTRY_TYPE_ID_STATEMENT,
+    DOCSET_ENTRY_TYPE_ID_STRUCT,
+    DOCSET_ENTRY_TYPE_ID_STYLE,
+    DOCSET_ENTRY_TYPE_ID_SUBROUTINE,
+    DOCSET_ENTRY_TYPE_ID_TAG,
+    DOCSET_ENTRY_TYPE_ID_TEST,
+    DOCSET_ENTRY_TYPE_ID_TRAIT,
+    DOCSET_ENTRY_TYPE_ID_TYPE,
+    DOCSET_ENTRY_TYPE_ID_UNION,
+    DOCSET_ENTRY_TYPE_ID_VALUE,
+    DOCSET_ENTRY_TYPE_ID_VARIABLE,
+    DOCSET_ENTRY_TYPE_ID_WORD
+} DhDocsetType;
+
+typedef struct _DhDocset DhDocset;
+typedef struct _DhDocsetClass DhDocsetClass;
+typedef struct _DhDocsetPrivate DhDocsetPrivate;
+
+#define DH_TYPE_DOCSET (dh_docset_get_type())
+#define DH_DOCSET(obj)                                                         \
+        (G_TYPE_CHECK_INSTANCE_CAST((obj), DH_TYPE_DOCSET, DhDocset))
+#define DH_DOCSET_CLASS(klass)                                                 \
+        (G_TYPE_CHECK_CLASS_CAST((klass), DH_TYPE_DOCSET, DhDocsetClass))
+#define DH_IS_DOCSET(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), DH_TYPE_DOCSET))
+#define DH_IS_DOCSET_CLASS(klass)                                              \
+        (G_TYPE_CHECK_CLASS_TYPE((klass), DH_TYPE_DOCSET))
+#define DH_DOCSET_GET_CLASS(obj)                                               \
+        (G_TYPE_INSTANCE_GET_CLASS((obj), DH_TYPE_DOCSET, DhDocsetClass))
+
+struct _DhDocsetClass {
+        GObjectClass parent_class;
+
+        /* Padding for future expansion */
+        gpointer padding[12];
+};
+
+struct _DhDocset {
+        GObject parent_instance;
+
+        DhDocsetPrivate *priv;
+};
+
+GType dh_docset_get_type(void);
+
+DhDocset *dh_docset_new(const gchar *path);
+
+DhLinkType dh_docset_link_type (DhDocsetType type);
+
+GList *dh_docset_find (const gchar *pattern);
+
+GList *dh_docset_get_entries(DhDocset *self);
+
+G_END_DECLS
+
+#endif /* #ifndef __DH_DOCSET_H__*/

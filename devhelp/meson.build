@@ -24,7 +24,7 @@ libdevhelp_public_headers = [
   'dh-sidebar.h',
   'dh-tab.h',
   'dh-tab-label.h',
-  'dh-web-view.h'
+  'dh-web-view.h',
 ]
 
 libdevhelp_public_c_files = [
@@ -49,7 +49,7 @@ libdevhelp_public_c_files = [
   'dh-sidebar.c',
   'dh-tab.c',
   'dh-tab-label.c',
-  'dh-web-view.c'
+  'dh-web-view.c',
 ]
 
 libdevhelp_private_c_files = [

@@ -186,19 +186,28 @@ static void
 create_book_from_book_directory (DhBookListDirectory *list_directory,
                                  GFile               *book_directory)
 {
+    gchar *book_name;
+
+    book_name = g_file_get_basename(book_directory);
+    if (g_str_has_suffix(book_name, ".docset")) {
+        create_book_from_index_file(list_directory, book_directory);
+    } else {
         GSList *possible_index_files;
         GSList *l;
 
         possible_index_files = _dh_util_get_possible_index_files (book_directory);
 
         for (l = possible_index_files; l != NULL; l = l->next) {
-                GFile *index_file = G_FILE (l->data);
+            GFile *index_file = G_FILE (l->data);
 
-                if (create_book_from_index_file (list_directory, index_file))
-                        break;
+            if (create_book_from_index_file (list_directory, index_file))
+                break;
         }
 
         g_slist_free_full (possible_index_files, g_object_unref);
+    }
+
+    g_free(book_name);
 }
 
 static gboolean
