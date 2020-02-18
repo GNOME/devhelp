@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the devhelp package.
 # Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012, 2013, 2015.
 # Mahyar Moghimi <mahyar.moqimi@gmail.com>, 2011.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-16 15:21+0000\n"
-"PO-Revision-Date: 2015-09-16 23:30+0430\n"
-"Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
+"PO-Revision-Date: 2020-02-18 13:37+0000\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -19,484 +19,572 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 2.2.4\n"
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
-msgid ""
-"Devhelp is an API documentation browser. It provides an easy way to navigate "
-"through libraries, search by function, struct, or macro. It provides a tabbed "
-"interface and allows to print results."
-msgstr ""
-"برنامه Devhelp یک مرورگر مستندات API است. این برنامه راهی ساده برای حرکت بین "
-"کتابخانه‌ها، جستجو بر اساس تابع، struct یا ماکرو را فراهم می‌کند. از امکان ایجاد "
-"زبانه برخوردار است و اجازه چاپ نتایج را می‌دهد."
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
-msgid "Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
-msgstr "برنامه Devhelp با سایر برنامه‌ها نظیر Glade، Anjuta و Geany یکپارچه می‌شود."
-
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
-msgid ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-msgstr ""
-"https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-"target=devhelp.png"
-
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:211
-#: ../src/dh-app.c:507 ../src/dh-window.c:753
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
+#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
-msgstr "Devhelp"
+msgstr "دوهلپ"
 
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "برنامه‌ی راهنمای توسعه‌دهندگان"
+#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
+#: src/dh-app.c:272
+msgid "A developer tool for browsing and searching API documentation"
+msgstr "یک ابزار توسعه برای مرور و جست‌وجوی مستندات API"
 
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
-msgid "Documentation Browser"
-msgstr "مرورگر مستندات"
+#: data/org.gnome.Devhelp.appdata.xml.in:9
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
+msgstr ""
+"دوهلپ یک ابزار توسعه برای مرورگر و جست‌جوی مستندات API است. این برنامه راهی "
+"ساده برای حرکت بین کتابخانه‌ها و جست‌وجو بر اساس تابع، ساختار یا ماکرو را "
+"فراهم می‌کند."
 
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
+#: data/org.gnome.Devhelp.appdata.xml.in:14
+msgid ""
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
+msgstr ""
+"مستندات باید به صورت محلّی نصب‌شده باشند، پس برای استفاده از دوهلپ نیازی به "
+"اتّصال اینترنتی نیست."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
+msgstr ""
+"دوهلپ به صورت بومی با GTK-Doc کار می‌کند؛ پس GTK و کتابخانه‌های گنوم به خوبی "
+"پشتیبانی می‌شوند. ولی دیگر بن‌سازه‌های توسعه نیز می‌توانند تا وقتی که مستندات "
+"API در قالب HTML موجود بوده و یک پروندهٔ نمایهٔ ‪*.devhelp2‬ ایجاد شود، به همان "
+"خوبی پشتیبانی شوند."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:24
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr ""
+"دوهلپ با سایر برنامه‌ها نظیر گلید، Anjuta و ‌سازندهٔ گنوم یکپارچه شده و "
+"افزایه‌هایی برای ویرایشگر متن‌های مختلف (جی‌ادیت، ویم، ای‌مکس، جینی و…) دارد."
+
+#: data/org.gnome.Devhelp.desktop.in:5
+msgid "API Documentation Browser"
+msgstr "مرورگر مستندات API"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
-msgstr "مستندات;اطلاعات;راهنما;توسعه‌دهنده;api;"
+msgstr ""
+"documentation;information;manual;developer;api;مستندات;اطلاعات;راهنما;"
+"توسعه‌دهنده;api;"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:1
+#: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
-msgstr "وضعیت بیشینه‌ی پنجره اصلی"
+msgstr "حالت بیشینهٔ پنجرهٔ اصلی"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:2
+#: data/org.gnome.devhelp.gschema.xml:17
 msgid "Whether the main window should start maximized."
 msgstr "این‌که آیا پنجره اصلی در هنگام آغاز به کار بیشینه باشد یا خیر."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:3
+#: data/org.gnome.devhelp.gschema.xml:21
 msgid "Width of the main window"
-msgstr "پهنای پنجره اصلی"
+msgstr "پهنای پنجرهٔ اصلی"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:4
+#: data/org.gnome.devhelp.gschema.xml:22
 msgid "The width of the main window."
-msgstr "پهنای پنجره اصلی."
+msgstr "پهنای پنجرهٔ اصلی."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:5
+#: data/org.gnome.devhelp.gschema.xml:26
 msgid "Height of main window"
-msgstr "ارتفاع پنجره‌ی اصلی"
+msgstr "بلندای پنجرهٔ اصلی"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:6
+#: data/org.gnome.devhelp.gschema.xml:27
 msgid "The height of the main window."
-msgstr "ارتفاع پنجره‌ی اصلی."
+msgstr "بلندای پنجرهٔ اصلی."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:7
-msgid "X position of main window"
-msgstr "موقعیت X پنجره‌ی اصلی"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:8
-msgid "The X position of the main window."
-msgstr "موقعیت X پنجره‌ی اصلی."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:9
-msgid "Y position of main window"
-msgstr "موقعیت Y پنجره‌ی اصلی"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:10
-msgid "The Y position of the main window."
-msgstr "موقعیت Y پنجره‌ی اصلی"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:11
+#: data/org.gnome.devhelp.gschema.xml:33
 msgid "Width of the index and search pane"
-msgstr "پهنای قاب فهرست و جستجو"
+msgstr "پهنای تابلوی جست‌وجو و نمایه"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:12
+#: data/org.gnome.devhelp.gschema.xml:34
 msgid "The width of the index and search pane."
-msgstr "پهنای قاب نمایه و جستجو."
+msgstr "پهنای تابلوی جست‌وجو و نمایه."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:13
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "زبانه انتخاب شده: «content» یا «search»"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:14
-msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "کدام یک از زبانه‌ها انتخاب شده است: «content» یا «search»."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:15
-msgid "Books disabled"
-msgstr "کتابها غیرفعال شد"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:16
-msgid "List of books disabled by the user."
-msgstr "لیست کتابهایی که توسط کاربر غیرفعال شده است."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:17
-msgid "Group by language"
-msgstr "گروه‌بندی براساس زبان"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:18
-msgid "Whether books should be grouped by language in the UI"
-msgstr "این‌که آیا کتابها بر اساس زبان در رابط کاربری گروه‌بندی بشوند یا خیر"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:19
-msgid "Whether the assistant window should be maximized"
-msgstr "این‌که آیا پنجره کمکی بیشینه باشد یا خیر."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:20
-msgid "Whether the assistant window should be maximized."
-msgstr "این‌که آیا پنجره کمکی بیشینه باشد یا خیر."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:21
+#: data/org.gnome.devhelp.gschema.xml:43
 msgid "Width of the assistant window"
-msgstr "پهنای پنجره دستیار"
+msgstr "پهنای پنجرهٔ دستیار"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:22
+#: data/org.gnome.devhelp.gschema.xml:44
 msgid "The width of the assistant window."
-msgstr "پهنای پنجره‌ی دستیار."
+msgstr "پهنای پنجرهٔ دستیار."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:23
+#: data/org.gnome.devhelp.gschema.xml:48
 msgid "Height of assistant window"
-msgstr "ارتفاع پنجره‌ی دستیار"
+msgstr "بلندای پنجرهٔ دستیار"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:24
+#: data/org.gnome.devhelp.gschema.xml:49
 msgid "The height of the assistant window."
-msgstr "ارتفاع پنجره‌ی دستیار."
+msgstr "بلندای پنجرهٔ دستیار."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:25
-msgid "X position of assistant window"
-msgstr "موقعیت X پنجره‌ی دستیار"
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
+msgid "Books disabled"
+msgstr "کتاب‌ها از کار افتاد"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:26
-msgid "The X position of the assistant window."
-msgstr "موقعیت X پنجره‌ی دستیار."
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
+msgid "List of books disabled by the user."
+msgstr "فهرست کتاب‌های از کار افتاده به دست کاربر."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:27
-msgid "Y position of assistant window"
-msgstr "موقعیت Y پنجره‌ی دستیار"
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
+msgid "Group books by language"
+msgstr "گروه‌بندی کتاب‌ها بر اساس زبان"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:28
-msgid "The Y position of the assistant window."
-msgstr "موقعیت Y پنجره‌ی دستیار."
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
+msgid ""
+"Whether books should be grouped by programming language in the user "
+"interface."
+msgstr ""
+"این‌که کتاب‌ها باید در رابط کاربری بر اساس زبان برنامه‌نویسی گروه‌بندی شوند یا "
+"خیر."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:29
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
-msgstr "استفاده از قلم‌های سیستم"
+msgstr "استفاده از قلم‌های سامانه"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:30
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
-msgstr "استفاده از قلم‌های پیش‌فرض سیستم."
+msgstr "استفاده از قلم‌های پیش‌گزیدهٔ سامانه."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:31
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
 msgstr "قلم برای متن"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:32
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
 msgstr "قلم برای متن با پهنای متغیر."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:33
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
-msgstr "قلم برای متن‌هایی با پهنا ثابت"
+msgstr "قلم برای متن‌هایی با پهنای ثابت"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:34
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "قلم برای متن با پهنای ثابت، مثل کدهای مثال."
 
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:1
-msgid "Devhelp support"
-msgstr "پشتیبانی DevHelp"
-
-#: ../misc/gedit-plugin/devhelp.desktop.in.h:2
-msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr ""
-"کاری می‌کند تا F2 باعث بالا آمدن DevHelp برای کلمه مشخص شده توسط مکان‌نما شود"
-
-#: ../misc/gedit-plugin/devhelp.py:42
-msgid "Show API Documentation"
-msgstr "نمایش مستندات API"
-
-#. ex:ts=4:et:
-#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
-msgid "New _Window"
-msgstr "_پنجره جدید"
-
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
-msgid "_Preferences"
-msgstr "_ترجیحات"
-
-#: ../src/devhelp-menu.ui.h:3
-msgid "_About"
-msgstr "_درباره"
-
-#: ../src/devhelp-menu.ui.h:4 ../src/dh-window.ui.h:11
-msgid "_Quit"
-msgstr "_خروج"
-
-#: ../src/dh-app.c:213
-msgid "A developers' help browser for GNOME"
-msgstr "یک مرورگر راهنما برای توسعه‌دهنده‌گان گنوم"
-
-#: ../src/dh-app.c:215
-msgid "translator-credits"
-msgstr ""
-"آرش موسوی <mousavi.arash@gmail.com> \n"
-"مهیار مقیمی <mahyar .moqimi@gmail.com>"
-
-#: ../src/dh-app.c:217
-msgid "Devhelp Website"
-msgstr "پایگاه وب Devhelp"
-
-#: ../src/dh-app.c:432
-msgid "Opens a new Devhelp window"
-msgstr "یک پنجره جدید Devhelp باز می‌کند"
-
-#: ../src/dh-app.c:437
-msgid "Search for a keyword"
-msgstr "کلیدواژه برای جستجو"
-
-#: ../src/dh-app.c:438 ../src/dh-app.c:443
-msgid "KEYWORD"
-msgstr "KEYWORD"
-
-#: ../src/dh-app.c:442
-msgid "Search and display any hit in the assistant window"
-msgstr "جستجو و نمایش هر نوع نتیجه در پنجره دستیار"
-
-#: ../src/dh-app.c:447
-msgid "Display the version and exit"
-msgstr "نمایش نسخه و خروج"
-
-#: ../src/dh-app.c:452
-msgid "Quit any running Devhelp"
-msgstr "خروج از هر DevHelp درحال اجر"
-
-#. Please don't translate "Devhelp"
-#: ../src/dh-assistant.ui.h:2
-msgid "Devhelp — Assistant"
-msgstr "Devhelp — دستیار"
-
-#: ../src/dh-assistant-view.c:372
+#: devhelp/dh-assistant-view.c:400
 msgid "Book:"
 msgstr "کتاب:"
 
-#: ../src/dh-book.c:254
+#: devhelp/dh-book.c:313
 #, c-format
 msgid "Language: %s"
 msgstr "زبان: %s"
 
-#: ../src/dh-book.c:255
+#: devhelp/dh-book.c:314
 msgid "Language: Undefined"
 msgstr "زبان: تعریف نشده"
 
+#: devhelp/dh-book-tree.c:764
+msgid "_Collapse All"
+msgstr "_جمع کردن همه"
+
 #. i18n: a documentation book
-#: ../src/dh-link.c:289
+#: devhelp/dh-link.c:551
 msgid "Book"
 msgstr "کتاب"
 
 #. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:292
+#: devhelp/dh-link.c:555
 msgid "Page"
 msgstr "صفحه"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: ../src/dh-link.c:296
+#: devhelp/dh-link.c:560
 msgid "Keyword"
 msgstr "کلیدواژه"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:301
+#: devhelp/dh-link.c:566
 msgid "Function"
-msgstr "Function"
+msgstr "تابع"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:306
+#: devhelp/dh-link.c:572
 msgid "Struct"
-msgstr "Struct"
+msgstr "ساختار"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:311
+#: devhelp/dh-link.c:578
 msgid "Macro"
-msgstr "Macro"
+msgstr "ماکرو"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:316
+#: devhelp/dh-link.c:584
 msgid "Enum"
-msgstr "Enum"
+msgstr "ای‌نام"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: ../src/dh-link.c:321
+#: devhelp/dh-link.c:590
 msgid "Type"
-msgstr "Type"
+msgstr "گونه"
 
-#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
-#: ../src/dh-parser.c:271
-#, c-format
-msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "یک «%s» مورد انتظار بود که به جای آن «%s»در خط %Id، ستون %Id دریافت شده"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:596
+msgid "Property"
+msgstr "ویژگی"
 
-#: ../src/dh-parser.c:113
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "فضای‌نام نامعتبر «%s» در خط %Id، ستون %Id"
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:602
+msgid "Signal"
+msgstr "سیگنال"
 
-#: ../src/dh-parser.c:142
-#, c-format
-msgid ""
-"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr "عناصر «title»، «name» و «link» در خط %Id، ستون %Id لازم است"
+#: devhelp/dh-web-view.c:657
+msgid "Empty Page"
+msgstr "صفحهٔ خالی"
 
-#: ../src/dh-parser.c:216
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column %d"
-msgstr "عناصر «name» و «link» درون <sub> در خط %Id، ستون %Id لازم است"
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
+msgid "Devhelp support"
+msgstr "پشتیبانی DevHelp"
 
-#: ../src/dh-parser.c:296
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr "عناصر «name» و «link» درون «%s» در خط %Id، ستون %Id لازم است"
+#: plugins/gedit-plugin/devhelp.py:42
+msgid "Show API Documentation"
+msgstr "نمایش مستندات API"
 
-#: ../src/dh-parser.c:309
-#, c-format
-msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "عنصر «type» درون <keyword> در خط %Id، ستون %Id لازم است"
+#. action, icon, label, accel, tooltip
+#. Actions related to the whole application
+#: src/dh-app.c:51
+msgid "New _Window"
+msgstr "پنجرهٔ _جدید"
 
-#: ../src/dh-parser.c:501
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "عدم امکان در نافشرده کتاب «%s»: %s"
+#: src/dh-app.c:52
+msgid "Open a new window"
+msgstr "گشودن پنجره‌ای جدید"
 
-#: ../src/dh-preferences.ui.h:1
-msgid "Preferences"
-msgstr "ترجیح‌ها"
+#: src/dh-app.c:53
+msgid "_Preferences"
+msgstr "_ترجیحات"
 
-#: ../src/dh-preferences.ui.h:2
-msgid "_Group by language"
-msgstr "_گروه‌بندی بر اساس زبان"
+#: src/dh-app.c:54
+msgid "_Keyboard Shortcuts"
+msgstr "میان‌برهای _صفحه‌کلید"
 
-#: ../src/dh-preferences.ui.h:3
-msgid "Enabled"
-msgstr "فعال شد"
+#: src/dh-app.c:55
+msgid "_Help"
+msgstr "_راهنما"
 
-#: ../src/dh-preferences.ui.h:4
-msgid "Title"
-msgstr "عنوان"
+#: src/dh-app.c:56
+msgid "_About Devhelp"
+msgstr "_دربارهٔ دوهلپ"
 
-#: ../src/dh-preferences.ui.h:5
-msgid "Book Shelf"
-msgstr "قفسه‌ی کتاب"
-
-#: ../src/dh-preferences.ui.h:6
-msgid "_Use system fonts"
-msgstr "_استفاده از قلم‌های سیستم"
-
-#: ../src/dh-preferences.ui.h:7
-msgid "_Variable width: "
-msgstr "_پهنای متغیر: "
-
-#: ../src/dh-preferences.ui.h:8
-msgid "_Fixed width:"
-msgstr "_پهنای ثابت:"
-
-#: ../src/dh-preferences.ui.h:9
-msgid "Fonts"
-msgstr "قلم‌ها"
-
-#: ../src/dh-window.c:86
-msgid "50%"
-msgstr "۵۰٪"
-
-#: ../src/dh-window.c:87
-msgid "75%"
-msgstr "۷۵٪"
-
-#: ../src/dh-window.c:88
-msgid "100%"
-msgstr "۱۰۰٪"
-
-#: ../src/dh-window.c:89
-msgid "125%"
-msgstr "۱۲۵٪"
-
-#: ../src/dh-window.c:90
-msgid "150%"
-msgstr "۱۵۰٪"
-
-#: ../src/dh-window.c:91
-msgid "175%"
-msgstr "۱۷۵٪"
-
-#: ../src/dh-window.c:92
-msgid "200%"
-msgstr "۲۰۰٪"
-
-#: ../src/dh-window.c:93
-msgid "300%"
-msgstr "۳۰۰٪"
-
-#: ../src/dh-window.c:94
-msgid "400%"
-msgstr "۴۰۰٪"
-
-#: ../src/dh-window.c:975
-msgid "Error opening the requested link."
-msgstr "خطا در هنگام بازکردن لینک درخواست شده."
-
-#: ../src/dh-window.c:1246
-msgid "_Close"
+#: src/dh-app.c:57
+msgid "_Quit"
 msgstr "_خروج"
 
-#: ../src/dh-window.c:1274 ../src/dh-window.c:1446
-msgid "Empty Page"
-msgstr "صفحه‌ی خالی"
+#: src/dh-app.c:58
+msgid "Close all windows"
+msgstr "بستن تمام پنجره‌ها"
 
-#: ../src/dh-window.ui.h:1
-msgid "New _Tab"
-msgstr "_زبانه‌ی جدید"
+#. Actions related to the current main window
+#: src/dh-app.c:61
+msgid "_Side Panel"
+msgstr "_تابلوی کناری"
 
-#: ../src/dh-window.ui.h:2
+#: src/dh-app.c:62
+msgid "Toggle side panel visibility"
+msgstr "تغییر وضعیت نمایانی تابلوی کناری"
+
+#: src/dh-app.c:63
 msgid "_Print"
 msgstr "_چاپ"
 
-#: ../src/dh-window.ui.h:3
+#: src/dh-app.c:64
 msgid "_Find"
-msgstr "_پیدا کردن"
+msgstr "_یافتن"
 
-#: ../src/dh-window.ui.h:4
+#: src/dh-app.c:65
+msgid "Find in current page"
+msgstr "یافتن در صفحهٔ کنونی"
+
+#: src/dh-app.c:66
 msgid "_Larger Text"
-msgstr "_متن بزرگتر"
+msgstr "متن _بزرگ‌تر"
 
-#: ../src/dh-window.ui.h:5
+#: src/dh-app.c:67
+msgid "Larger text"
+msgstr "متن بزرگ‌تر"
+
+#: src/dh-app.c:68
 msgid "S_maller Text"
-msgstr "م_تن کوچکتر"
+msgstr "متن _کوچک‌تر"
 
-#: ../src/dh-window.ui.h:6
+#: src/dh-app.c:69
+msgid "Smaller text"
+msgstr "متن کوچک‌تر"
+
+#: src/dh-app.c:70
 msgid "_Normal Size"
-msgstr "اندازه‌ی _عادی"
+msgstr "اندازهٔ _عادی"
 
-#: ../src/dh-window.ui.h:8
-msgid "_Side pane"
-msgstr "_نوار کناری"
+#: src/dh-app.c:71
+msgid "Normal size"
+msgstr "اندازهٔ عادی"
 
-#: ../src/dh-window.ui.h:10
-msgid "_About Devhelp"
-msgstr "درباره‌ی Devhelp"
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:111
+msgid "Open a new tab"
+msgstr "گشودن زبانه‌ای جدید"
 
-#: ../src/dh-window.ui.h:12
+#: src/dh-app.c:112
+msgid "Close the current tab"
+msgstr "بستن زبانهٔ کنونی"
+
+#: src/dh-app.c:113
+msgid "Go back"
+msgstr "برگشتن"
+
+#: src/dh-app.c:114
+msgid "Go forward"
+msgstr "جلو رفتن"
+
+#: src/dh-app.c:115
+msgid "Focus global search"
+msgstr "تمرکز روی جست‌وجوی جهانی"
+
+#: src/dh-app.c:274
+msgid "translator-credits"
+msgstr ""
+"آرش موسوی <mousavi.arash@gmail.com> \n"
+"دانیال بهزادی <dani.behzi@ubuntu.com>\n"
+"مهیار مقیمی <mahyar .moqimi@gmail.com>"
+
+#: src/dh-app.c:276
+msgid "Devhelp Website"
+msgstr "پایگاه وب دوهلپ"
+
+#: src/dh-app.c:451
+msgid "Opens a new Devhelp window"
+msgstr "یک پنجره جدید دوهلپ باز می‌کند"
+
+#: src/dh-app.c:456
+msgid "Search for a keyword"
+msgstr "کلیدواژه برای جست‌وجو"
+
+#: src/dh-app.c:457 src/dh-app.c:462
+msgid "KEYWORD"
+msgstr "KEYWORD"
+
+#: src/dh-app.c:461
+msgid "Search and display any hit in the assistant window"
+msgstr "جست‌وجو و نمایش هر نوع نتیجه در پنجره دستیار"
+
+#: src/dh-app.c:466
+msgid "Display the version and exit"
+msgstr "نمایش نگارش و خروج"
+
+#: src/dh-app.c:471
+msgid "Quit any running Devhelp"
+msgstr "خروج از هر DevHelp درحال اجر"
+
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:8
+msgid "Devhelp — Assistant"
+msgstr "دوهلپ — دستیار"
+
+#: src/dh-preferences.c:551
+msgid "Enabled"
+msgstr "به کار افتاده"
+
+#: src/dh-preferences.c:565
+msgid "Title"
+msgstr "عنوان"
+
+#: src/dh-preferences.ui:26
+msgid "Preferences"
+msgstr "ترجیحات"
+
+#: src/dh-preferences.ui:62
+msgid "_Group by language"
+msgstr "_گروه‌بندی بر اساس زبان"
+
+#: src/dh-preferences.ui:104
+msgid "Book Shelf"
+msgstr "قفسهٔ کتاب"
+
+#: src/dh-preferences.ui:125
+msgid "_Use system fonts"
+msgstr "_استفاده از قلم‌های سامانه"
+
+#: src/dh-preferences.ui:149
+msgid "_Variable width: "
+msgstr "پهنای _متغیر: "
+
+#: src/dh-preferences.ui:162
+msgid "_Fixed width:"
+msgstr "پهنای _ثابت:"
+
+#: src/dh-preferences.ui:223
+msgid "Fonts"
+msgstr "قلم‌ها"
+
+#. General group
+#: src/dh-window.c:393
+msgid "General"
+msgstr "عمومی"
+
+#. Zoom group
+#: src/dh-window.c:407
+msgid "Zoom"
+msgstr "بزرگ‌نمایی"
+
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "عقب"
 
-#: ../src/dh-window.ui.h:13
+#: src/dh-window.c:556
 msgid "Forward"
-msgstr "جلو"
+msgstr "پیشروی"
+
+#: src/dh-window.c:574
+msgid "New Tab"
+msgstr "زبانهٔ جدید"
+
+#~ msgid ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
+#~ msgstr ""
+#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
+#~ "target=devhelp.png"
+
+#~ msgid "Developer's Help program"
+#~ msgstr "برنامه‌ی راهنمای توسعه‌دهندگان"
+
+#~ msgid "X position of main window"
+#~ msgstr "موقعیت X پنجره‌ی اصلی"
+
+#~ msgid "The X position of the main window."
+#~ msgstr "موقعیت X پنجره‌ی اصلی."
+
+#~ msgid "Y position of main window"
+#~ msgstr "موقعیت Y پنجره‌ی اصلی"
+
+#~ msgid "The Y position of the main window."
+#~ msgstr "موقعیت Y پنجره‌ی اصلی"
+
+#~ msgid "Selected tab: \"content\" or \"search\""
+#~ msgstr "زبانه انتخاب شده: «content» یا «search»"
+
+#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
+#~ msgstr "کدام یک از زبانه‌ها انتخاب شده است: «content» یا «search»."
+
+#~ msgid "Whether the assistant window should be maximized"
+#~ msgstr "این‌که آیا پنجره کمکی بیشینه باشد یا خیر."
+
+#~ msgid "Whether the assistant window should be maximized."
+#~ msgstr "این‌که آیا پنجره کمکی بیشینه باشد یا خیر."
+
+#~ msgid "X position of assistant window"
+#~ msgstr "موقعیت X پنجره‌ی دستیار"
+
+#~ msgid "The X position of the assistant window."
+#~ msgstr "موقعیت X پنجره‌ی دستیار."
+
+#~ msgid "Y position of assistant window"
+#~ msgstr "موقعیت Y پنجره‌ی دستیار"
+
+#~ msgid "The Y position of the assistant window."
+#~ msgstr "موقعیت Y پنجره‌ی دستیار."
+
+#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
+#~ msgstr ""
+#~ "کاری می‌کند تا F2 باعث بالا آمدن DevHelp برای کلمه مشخص شده توسط مکان‌نما "
+#~ "شود"
+
+#~ msgid "_About"
+#~ msgstr "_درباره"
+
+#~ msgid "A developers' help browser for GNOME"
+#~ msgstr "یک مرورگر راهنما برای توسعه‌دهنده‌گان گنوم"
+
+#~ msgid "Expected '%s', got '%s' at line %d, column %d"
+#~ msgstr ""
+#~ "یک «%s» مورد انتظار بود که به جای آن «%s»در خط %Id، ستون %Id دریافت شده"
+
+#~ msgid "Invalid namespace '%s' at line %d, column %d"
+#~ msgstr "فضای‌نام نامعتبر «%s» در خط %Id، ستون %Id"
+
+#~ msgid ""
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
+#~ "%d"
+#~ msgstr "عناصر «title»، «name» و «link» در خط %Id، ستون %Id لازم است"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
+#~ "column %d"
+#~ msgstr "عناصر «name» و «link» درون <sub> در خط %Id، ستون %Id لازم است"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
+#~ "column %d"
+#~ msgstr "عناصر «name» و «link» درون «%s» در خط %Id، ستون %Id لازم است"
+
+#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+#~ msgstr "عنصر «type» درون <keyword> در خط %Id، ستون %Id لازم است"
+
+#~ msgid "Cannot uncompress book '%s': %s"
+#~ msgstr "عدم امکان در نافشرده کتاب «%s»: %s"
+
+#~ msgid "50%"
+#~ msgstr "۵۰٪"
+
+#~ msgid "75%"
+#~ msgstr "۷۵٪"
+
+#~ msgid "100%"
+#~ msgstr "۱۰۰٪"
+
+#~ msgid "125%"
+#~ msgstr "۱۲۵٪"
+
+#~ msgid "150%"
+#~ msgstr "۱۵۰٪"
+
+#~ msgid "175%"
+#~ msgstr "۱۷۵٪"
+
+#~ msgid "200%"
+#~ msgstr "۲۰۰٪"
+
+#~ msgid "300%"
+#~ msgstr "۳۰۰٪"
+
+#~ msgid "400%"
+#~ msgstr "۴۰۰٪"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "خطا در هنگام بازکردن لینک درخواست شده."
+
+#~ msgid "_Close"
+#~ msgstr "_خروج"
 
 #~ msgid "Show API Documentation for the word at the cursor"
 #~ msgstr "نمایش مستندات API برای کلمه مشخص شده توسط مکان‌نما"
@@ -546,9 +634,6 @@ msgstr "جلو"
 
 #~ msgid "_Go"
 #~ msgstr "_رفتن"
-
-#~ msgid "_Help"
-#~ msgstr "_راهنما"
 
 #~ msgid "Go to the previous page"
 #~ msgstr "رفتن به صفحه‌ی پیشین"
