@@ -1,17 +1,17 @@
 # Italian translation for devhelp.
-# Copyright (C) 2001 - 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Free Software Foundation, Inc.
+# Copyright (C) 2001 - 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020 Free Software Foundation, Inc.
 # Copyright (C) 2012 the devhelp copyright holders.
 # This file is distributed under the same license as the devhelp package.
 # Alessio Frusciante <algol@firenze.linux.it>, 2001, 2002, 2003.
 # Francesco Marletta <francesco.marletta@tiscali.it>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011.
-# Milo Casagrande <milo@milo.name>, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
+# Milo Casagrande <milo@milo.name>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-21 13:52+0000\n"
-"PO-Revision-Date: 2018-10-09 08:36+0200\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
+"PO-Revision-Date: 2020-02-07 13:43+0100\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -56,15 +56,15 @@ msgstr ""
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
-"Lavora nativamente con GTK-Doc in modo da supportare automaticamente le "
-"librerie di GNOME e GTK+. Altre piattaforme di sviluppo possono essere "
-"supportare facilmente: è sufficiente che la documentazione delle API sia "
-"disponibile in formato HTML e che sia presente un file *.devhelp2."
+"È integrato con GTK-Doc in modo da supportare automaticamente le librerie di "
+"GNOME e GTK. Altre piattaforme di sviluppo possono essere supportate "
+"facilmente: è sufficiente che la documentazione delle API sia disponibile in "
+"formato HTML e che sia presente un file indice *.devhelp2."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:24
 msgid ""
@@ -84,12 +84,6 @@ msgstr "Esplorazione documentazione API"
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "documentazione;informazioni;manuale;manuali;sviluppo;api;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -196,7 +190,7 @@ msgstr "Linguaggio: %s"
 msgid "Language: Undefined"
 msgstr "Linguaggio: non definito"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "Ridu_ci tutti"
 
@@ -265,7 +259,7 @@ msgstr "Proprietà"
 msgid "Signal"
 msgstr "Segnale"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:657
 msgid "Empty Page"
 msgstr "Pagina vuota"
 
@@ -279,7 +273,7 @@ msgid "Show API Documentation"
 msgstr "Mostra documentazione API"
 
 #. action, icon, label, accel, tooltip
-#. App menu
+#. Actions related to the whole application
 #: src/dh-app.c:51
 msgid "New _Window"
 msgstr "Nuova _finestra"
@@ -301,8 +295,8 @@ msgid "_Help"
 msgstr "A_iuto"
 
 #: src/dh-app.c:56
-msgid "_About"
-msgstr "I_nformazioni"
+msgid "_About Devhelp"
+msgstr "I_nformazioni su Devhelp"
 
 #: src/dh-app.c:57
 msgid "_Quit"
@@ -312,7 +306,7 @@ msgstr "_Esci"
 msgid "Close all windows"
 msgstr "Chiude tutte le finestre"
 
-#. Window menu
+#. Actions related to the current main window
 #: src/dh-app.c:61
 msgid "_Side Panel"
 msgstr "Ri_quadro laterale"
@@ -388,27 +382,27 @@ msgstr ""
 msgid "Devhelp Website"
 msgstr "Sito web di DevHelp"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "Apre una nuova finestra di Devhelp"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "Cerca per parola chiave"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "PAROLACHIAVE"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "Cerca e mostra ogni corrispondenza nella finestra assistente"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "Mostra la versione ed esce"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "Termina ogni Devhelp in esecuzione"
 
@@ -463,164 +457,14 @@ msgstr "Generale"
 msgid "Zoom"
 msgstr "Ingrandimento"
 
-#: src/dh-window.c:572
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "Indietro"
 
-#: src/dh-window.c:576
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "Avanti"
 
-#: src/dh-window.c:599
+#: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Nuova scheda"
-
-#~ msgid "_About Devhelp"
-#~ msgstr "I_nformazioni su Devhelp"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Print"
-#~ msgstr "Stampa"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom in"
-#~ msgstr "Aumenta l'ingrandimento"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom out"
-#~ msgstr "Riduce l'ingrandimento"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Reset Zoom"
-#~ msgstr "Ripristina l'ingrandimento"
-
-#~ msgid "devhelp"
-#~ msgstr "devhelp"
-
-#~ msgid "Error opening the requested link."
-#~ msgstr "Errore nell'aprire il collegamento richiesto."
-
-#~ msgid "Developer’s Help program"
-#~ msgstr "Programma di aiuto per sviluppatori"
-
-#~ msgid "X position of main window"
-#~ msgstr "Posizione X della finestra principale"
-
-#~ msgid "The X position of the main window."
-#~ msgstr "La posizione X della finestra principale."
-
-#~ msgid "Y position of main window"
-#~ msgstr "Posizione Y della finestra principale"
-
-#~ msgid "The Y position of the main window."
-#~ msgstr "La posizione Y della finestra principale."
-
-#~ msgid "Whether the assistant window should be maximized"
-#~ msgstr "Massimizza la finestra dell'assistente"
-
-#~ msgid "Whether the assistant window should be maximized."
-#~ msgstr "Indica se la finestra dell'assistente deve essere massimizzata."
-
-#~ msgid "X position of assistant window"
-#~ msgstr "Posizione X della finestra assistente"
-
-#~ msgid "The X position of the assistant window."
-#~ msgstr "La posizione X della finestra assistente."
-
-#~ msgid "Y position of assistant window"
-#~ msgstr "Posizione Y della finestra assistente"
-
-#~ msgid "The Y position of the assistant window."
-#~ msgstr "La posizione Y della finestra assistente."
-
-#~ msgid "A developers’ help browser for GNOME"
-#~ msgstr "Un visualizzatore per la documentazione di sviluppo per GNOME"
-
-#~ msgid "50%"
-#~ msgstr "50%"
-
-#~ msgid "75%"
-#~ msgstr "75%"
-
-#~ msgid "100%"
-#~ msgstr "100%"
-
-#~ msgid "125%"
-#~ msgstr "125%"
-
-#~ msgid "150%"
-#~ msgstr "150%"
-
-#~ msgid "175%"
-#~ msgstr "175%"
-
-#~ msgid "200%"
-#~ msgstr "200%"
-
-#~ msgid "300%"
-#~ msgstr "300%"
-
-#~ msgid "400%"
-#~ msgstr "400%"
-
-#~ msgid "_Close"
-#~ msgstr "_Chiudi"
-
-#~ msgid "Side _Panel"
-#~ msgstr "Ri_quadro laterale"
-
-# GNOME-2-22
-#~ msgid "Selected tab: \"content\" or \"search\""
-#~ msgstr "Scheda selezionata: \"content\" (contenuto) o \"search\" (ricerca)"
-
-# GNOME-2-22
-#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
-#~ msgstr ""
-#~ "Quale delle schede è selezionata: \"content\" (contenuto) o \"search"
-#~ "\" (ricerca)."
-
-#~ msgid "Expected '%s', got '%s' at line %d, column %d"
-#~ msgstr ""
-#~ "Era atteso «%s», invece è stato trovato «%s» alla riga %d, colonna %d"
-
-# [NdT] è una guida per sviluppatori quindi si presume che si sappia cos'è
-#       un namespace
-#~ msgid "Invalid namespace '%s' at line %d, column %d"
-#~ msgstr "Namespace «%s» non valido alla riga %d, colonna %d"
-
-#~ msgid ""
-#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
-#~ "%d"
-#~ msgstr ""
-#~ "Gli elementi «title», «name» e «link» devono essere presenti alla riga "
-#~ "%d, colonna %d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "Gli elementi «name» e «link» devono essere presenti dentro il tag <sub> "
-#~ "alla riga %d, colonna %d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "Gli elementi «name» e «link» devono essere presenti dentro il tag «%s» "
-#~ "alla riga %d, colonna %d"
-
-#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-#~ msgstr ""
-#~ "Gli elementi «name» e «link» devono essere presenti dentro il tag "
-#~ "<keyword> alla riga %d, colonna %d"
-
-#~ msgid "Cannot uncompress book '%s': %s"
-#~ msgstr "Impossibile decomprimere il libro «%s»: %s"
-
-#~ msgid "_Side pane"
-#~ msgstr "Ri_quadro laterale"
-
-#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
-#~ msgstr ""
-#~ "Imposta F2 come attivatore di Devhelp per la parola dove si trova il "
-#~ "cursore"
