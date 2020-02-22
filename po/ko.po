@@ -3,7 +3,7 @@
 #
 # Kang Jeong-Hee <Keizi@mail.co.kr>, 2003.
 # Seongchong Park <spark@tapl01.kaist.ac.kr>, 2004.
-# Changwoo Ryu <cwryu@debian.org>, 2006, 2008-2019.
+# Changwoo Ryu <cwryu@debian.org>, 2006, 2008-2020.
 #
 # - 새로 번역을 업데이트하시는 분은 "translator_credits" 항목에도 추가하세요.
 #
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-10-12 12:52+0000\n"
-"PO-Revision-Date: 2019-02-23 16:39+0900\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
+"PO-Revision-Date: 2020-02-17 11:20+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -55,12 +55,12 @@ msgstr ""
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
-"개발 도움말은 Gtk-Doc과 같이 잘 동작합니다. 그러므로 GTK+ 및 그놈 라이브러리"
+"개발 도움말은 Gtk-Doc과 같이 잘 동작합니다. 그러므로 GTK 및 그놈 라이브러리"
 "를 잘 지원합니다. 그 외의 개발 플랫폼도 HTML 형식의 API 문서가 있고 문서의 *."
 "devhelp2 인덱스 파일을 만들면 지원할 수 있습니다."
 
@@ -84,12 +84,6 @@ msgid "documentation;information;manual;developer;api;"
 msgstr ""
 "documentation;문서;information;정보;manual;설명서;매뉴얼;developer;개발자;"
 "api;레퍼런스;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -194,7 +188,7 @@ msgstr "언어: %s"
 msgid "Language: Undefined"
 msgstr "언어: 지정하지 않음"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "모두 접기(_C)"
 
@@ -263,7 +257,7 @@ msgstr "속성"
 msgid "Signal"
 msgstr "시그널"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:657
 msgid "Empty Page"
 msgstr "빈 페이지"
 
