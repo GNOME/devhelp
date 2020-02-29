@@ -2,14 +2,14 @@
 # Copyright (C) 2005-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 #
-# Matej Urbančič <mateju@svn.gnome.org>, 2007–2018.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007–2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-10-25 10:52+0000\n"
-"PO-Revision-Date: 2018-10-25 20:41+0200\n"
+"POT-Creation-Date: 2020-02-25 19:46+0000\n"
+"PO-Revision-Date: 2020-02-29 21:20+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -19,18 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:562
+#: src/dh-app.c:256 src/dh-app.c:548
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:258
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Brskalnik dokumentacije API, namenjen razvijalcem programske opreme."
 
@@ -54,12 +54,12 @@ msgstr ""
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
-"Program Devhelp uporablja izvorno sistem GTK-Doc, zato so knjižnice GTK+ in "
+"Program Devhelp uporablja izvorno sistem GTK-Doc, zato so knjižnice GTK in "
 "GNOME odlično podprte. Podprte pa so lahko tudi druga razvojna okolja, če je "
 "le dokumentacija API na voljo v zapisu HTML in je ustvarjena datoteka kazala "
 "*.devhelp2."
@@ -82,12 +82,6 @@ msgstr "Pregledovalnik dokumentacije API"
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentacija;podrobnosti;podatki;priročnik;razvoj;api;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -181,89 +175,89 @@ msgstr "Pisava z določeno širino"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Pisava za besedilo z določeno širino, kot so vzorci kode."
 
-#: devhelp/dh-assistant-view.c:400
+#: devhelp/dh-assistant-view.c:386
 msgid "Book:"
 msgstr "Knjiga:"
 
-#: devhelp/dh-book.c:313
+#: devhelp/dh-book.c:299
 #, c-format
 msgid "Language: %s"
 msgstr "Jezik: %s"
 
-#: devhelp/dh-book.c:314
+#: devhelp/dh-book.c:300
 msgid "Language: Undefined"
 msgstr "Jezik: nedoločen"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:750
 msgid "_Collapse All"
 msgstr "_Zloži vse"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:551
+#: devhelp/dh-link.c:537
 msgid "Book"
 msgstr "Knjiga"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:555
+#: devhelp/dh-link.c:541
 msgid "Page"
 msgstr "Stran"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:560
+#: devhelp/dh-link.c:546
 msgid "Keyword"
 msgstr "Ključna beseda"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:566
+#: devhelp/dh-link.c:552
 msgid "Function"
 msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:572
+#: devhelp/dh-link.c:558
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:578
+#: devhelp/dh-link.c:564
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:584
+#: devhelp/dh-link.c:570
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:590
+#: devhelp/dh-link.c:576
 msgid "Type"
 msgstr "Vrsta"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:596
+#: devhelp/dh-link.c:582
 msgid "Property"
 msgstr "Lastnost"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:602
+#: devhelp/dh-link.c:588
 msgid "Signal"
 msgstr "Signal"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:640
 msgid "Empty Page"
 msgstr "Prazna stran"
 
@@ -277,198 +271,201 @@ msgstr "Pokaži API dokumentacijo"
 
 #. action, icon, label, accel, tooltip
 #. Actions related to the whole application
-#: src/dh-app.c:51
+#: src/dh-app.c:37
 msgid "New _Window"
 msgstr "Novo _okno"
 
-#: src/dh-app.c:52
+#: src/dh-app.c:38
 msgid "Open a new window"
 msgstr "Odpri novo okno"
 
-#: src/dh-app.c:53
+#: src/dh-app.c:39
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: src/dh-app.c:54
+#: src/dh-app.c:40
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice"
 
-#: src/dh-app.c:55
+#: src/dh-app.c:41
 msgid "_Help"
 msgstr "Pomo_č"
 
-#: src/dh-app.c:56
+#: src/dh-app.c:42
 msgid "_About Devhelp"
 msgstr "_O programu"
 
-#: src/dh-app.c:57
+#: src/dh-app.c:43
 msgid "_Quit"
 msgstr "_Končaj"
 
-#: src/dh-app.c:58
+#: src/dh-app.c:44
 msgid "Close all windows"
 msgstr "Zapri vsa okna"
 
 #. Actions related to the current main window
-#: src/dh-app.c:61
+#: src/dh-app.c:47
 msgid "_Side Panel"
 msgstr "Bočno _okno"
 
-#: src/dh-app.c:62
+#: src/dh-app.c:48
 msgid "Toggle side panel visibility"
 msgstr "Preklopi vidnost stranskega okna"
 
-#: src/dh-app.c:63
+#: src/dh-app.c:49
 msgid "_Print"
 msgstr "_Natisni"
 
-#: src/dh-app.c:64
+#: src/dh-app.c:50
 msgid "_Find"
 msgstr "_Najdi"
 
-#: src/dh-app.c:65
+#: src/dh-app.c:51
 msgid "Find in current page"
 msgstr "Najdi na trenutni strani"
 
-#: src/dh-app.c:66
+#: src/dh-app.c:52
 msgid "_Larger Text"
 msgstr "_Večja pisava"
 
-#: src/dh-app.c:67
+#: src/dh-app.c:53
 msgid "Larger text"
 msgstr "Večja pisava"
 
-#: src/dh-app.c:68
+#: src/dh-app.c:54
 msgid "S_maller Text"
 msgstr "_Manjša pisava"
 
-#: src/dh-app.c:69
+#: src/dh-app.c:55
 msgid "Smaller text"
 msgstr "Manjša pisava"
 
-#: src/dh-app.c:70
+#: src/dh-app.c:56
 msgid "_Normal Size"
 msgstr "_Običajna pisava"
 
-#: src/dh-app.c:71
+#: src/dh-app.c:57
 msgid "Normal size"
 msgstr "Običajna velikost"
 
 #. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
+#: src/dh-app.c:97
 msgid "Open a new tab"
 msgstr "Odpri nov zavihek"
 
-#: src/dh-app.c:112
+#: src/dh-app.c:98
 msgid "Close the current tab"
 msgstr "Zapri trenutni zavihek"
 
-#: src/dh-app.c:113
+#: src/dh-app.c:99
 msgid "Go back"
 msgstr "Nazaj"
 
-#: src/dh-app.c:114
+#: src/dh-app.c:100
 msgid "Go forward"
 msgstr "Naprej"
 
-#: src/dh-app.c:115
+#: src/dh-app.c:101
 msgid "Focus global search"
 msgstr "Osredotoči se na splošno iskanje"
 
-#: src/dh-app.c:274
+#: src/dh-app.c:260
 msgid "translator-credits"
 msgstr "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: src/dh-app.c:276
+#: src/dh-app.c:262
 msgid "Devhelp Website"
 msgstr "Spletišče DevHelp"
 
-#: src/dh-app.c:451
+#: src/dh-app.c:437
 msgid "Opens a new Devhelp window"
 msgstr "Odpre novo okno Devhelp"
 
-#: src/dh-app.c:456
+#: src/dh-app.c:442
 msgid "Search for a keyword"
 msgstr "Iskanje ključne besede"
 
-#: src/dh-app.c:457 src/dh-app.c:462
+#: src/dh-app.c:443 src/dh-app.c:448
 msgid "KEYWORD"
 msgstr "Ključna beseda"
 
-#: src/dh-app.c:461
+#: src/dh-app.c:447
 msgid "Search and display any hit in the assistant window"
 msgstr "Poišči in prikaži vse zadetke v oknu pomočnika"
 
-#: src/dh-app.c:466
+#: src/dh-app.c:452
 msgid "Display the version and exit"
 msgstr "Pokaži pomoč in končaj program"
 
-#: src/dh-app.c:471
+#: src/dh-app.c:457
 msgid "Quit any running Devhelp"
 msgstr "Končaj zagnani Devhelp"
 
 #. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
+#: src/dh-assistant.ui:13
 msgid "Devhelp — Assistant"
 msgstr "Devhelp - pomočnik"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:537
 msgid "Enabled"
 msgstr "Omogočeno"
 
-#: src/dh-preferences.c:565
+#: src/dh-preferences.c:551
 msgid "Title"
 msgstr "Naslov"
 
-#: src/dh-preferences.ui:26
+#: src/dh-preferences.ui:12
 msgid "Preferences"
 msgstr "Možnosti"
 
-#: src/dh-preferences.ui:62
+#: src/dh-preferences.ui:48
 msgid "_Group by language"
 msgstr "_Združi po jeziku"
 
-#: src/dh-preferences.ui:104
+#: src/dh-preferences.ui:90
 msgid "Book Shelf"
 msgstr "Knjižna polica"
 
-#: src/dh-preferences.ui:125
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
 msgstr "_Uporabi sistemske pisave"
 
-#: src/dh-preferences.ui:149
+#: src/dh-preferences.ui:135
 msgid "_Variable width: "
 msgstr "_Spremenljiva širina: "
 
-#: src/dh-preferences.ui:162
+#: src/dh-preferences.ui:148
 msgid "_Fixed width:"
 msgstr "_Določena širina:"
 
-#: src/dh-preferences.ui:223
+#: src/dh-preferences.ui:209
 msgid "Fonts"
 msgstr "Pisave"
 
 #. General group
-#: src/dh-window.c:393
+#: src/dh-window.c:380
 msgid "General"
 msgstr "Splošno"
 
 #. Zoom group
-#: src/dh-window.c:407
+#: src/dh-window.c:394
 msgid "Zoom"
 msgstr "Približanje"
 
-#: src/dh-window.c:552
+#: src/dh-window.c:539
 msgid "Back"
 msgstr "Nazaj"
 
-#: src/dh-window.c:556
+#: src/dh-window.c:543
 msgid "Forward"
 msgstr "Naprej"
 
-#: src/dh-window.c:574
+#: src/dh-window.c:561
 msgid "New Tab"
 msgstr "Nov _zavihek"
+
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
 
 #~ msgid "_About"
 #~ msgstr "_O programu"
