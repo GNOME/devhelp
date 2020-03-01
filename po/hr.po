@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2019-03-17 19:35+0000\n"
-"PO-Revision-Date: 2019-03-26 12:47+0100\n"
-"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"POT-Creation-Date: 2019-12-18 18:00+0000\n"
+"PO-Revision-Date: 2020-03-01 16:56+0100\n"
+"Last-Translator: gogo <linux.hr@protonmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -51,12 +51,12 @@ msgstr ""
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
-"Devhelp radi izvorno sa GTK-Doc, stoga GTK+ i GNOME biblioteke su dobro "
+"Devhelp radi izvorno sa GTK-Doc, stoga GTK i GNOME biblioteke su dobro "
 "podržane. Ali i ostale razvojne platforme mogu biti isto tako podržane, sve "
 "dok je API dokumentacija dostupna u HTML-u i *.devhelp2 sadržaj je generiran."
 
@@ -78,12 +78,6 @@ msgstr "API preglednik dokumentacije"
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentacija;informacija;priručnik;razvijatelj;api;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -259,7 +253,7 @@ msgstr "Svojstvo"
 msgid "Signal"
 msgstr "Signal"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:657
 msgid "Empty Page"
 msgstr "Prazna stranica"
 
@@ -467,6 +461,9 @@ msgstr "Sljedeće"
 #: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Nova kartica"
+
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Print"
