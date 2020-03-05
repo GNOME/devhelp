@@ -37,7 +37,8 @@ add_menu_action_infos (DhApp *app)
                 { "app.new-window", NULL, N_("New _Window"), "<Control>n",
                   N_("Open a new window") },
                 { "app.preferences", NULL, N_("_Preferences") },
-                { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts") },
+                { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts"), 
+                  "<Control>question", N_("Keyboard shortcuts") }, 
                 { "app.help", NULL, N_("_Help"), "F1", NULL, N_("Show help") },
                 { "app.about", NULL, N_("_About Devhelp") },
                 { "app.quit", NULL, N_("_Quit"), "<Control>q",
@@ -64,11 +65,6 @@ add_menu_action_infos (DhApp *app)
         amtk_action_info_store_add_entries (app->priv->menu_action_info_store,
                                             entries, -1,
                                             GETTEXT_PACKAGE);
-
-        accels[0] = "<Control>F1";
-        accels[1] = "<Control>question";
-        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
-        amtk_action_info_set_accels (action_info, accels);
 
         /* For "<Control>equal": Epiphany also has this keyboard shortcut for
          * zoom-in. On keyboards the = and + are usually on the same key, but +
