@@ -384,6 +384,8 @@ shortcuts_window_cb (GSimpleAction *action,
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.find"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.new-window"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.new-tab"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.prev-tab"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.next-tab"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.show-sidebar"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-back"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-forward"));
