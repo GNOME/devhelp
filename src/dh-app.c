@@ -37,8 +37,9 @@ add_menu_action_infos (DhApp *app)
                 { "app.new-window", NULL, N_("New _Window"), "<Control>n",
                   N_("Open a new window") },
                 { "app.preferences", NULL, N_("_Preferences") },
-                { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts") },
-                { "app.help", NULL, N_("_Help"), "F1" },
+                { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts"), 
+                  NULL, N_("Keyboard shortcuts") }, 
+                { "app.help", NULL, N_("_Help"), "F1", NULL, N_("Show help") },
                 { "app.about", NULL, N_("_About Devhelp") },
                 { "app.quit", NULL, N_("_Quit"), "<Control>q",
                   N_("Close all windows") },
@@ -51,7 +52,7 @@ add_menu_action_infos (DhApp *app)
                   N_("Find in current page") },
                 { "win.zoom-in", NULL, N_("_Larger Text"), NULL,
                   N_("Larger text") },
-                { "win.zoom-out", NULL, N_("S_maller Text"), "<Control>minus",
+                { "win.zoom-out", NULL, N_("S_maller Text"), NULL,
                   N_("Smaller text") },
                 { "win.zoom-default", NULL, N_("_Normal Size"), "<Control>0",
                   N_("Normal size") },
@@ -65,8 +66,8 @@ add_menu_action_infos (DhApp *app)
                                             entries, -1,
                                             GETTEXT_PACKAGE);
 
-        accels[0] = "<Control>F1";
-        accels[1] = "<Control>question";
+        accels[0] = "<Control>question";
+        accels[1] = "<Control>F1";
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
         amtk_action_info_set_accels (action_info, accels);
 
@@ -78,7 +79,13 @@ add_menu_action_infos (DhApp *app)
          */
         accels[0] = "<Control>plus";
         accels[1] = "<Control>equal";
+        accels[2] = "<Control>KP_Add";
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-in");
+        amtk_action_info_set_accels (action_info, accels);
+        
+        accels[0] = "<Control>minus";
+        accels[1] = "<Control>KP_Subtract";
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-out");
         amtk_action_info_set_accels (action_info, accels);
 
         amtk_action_info_store_set_all_accels_to_app (app->priv->menu_action_info_store,
@@ -99,6 +106,9 @@ add_other_action_infos (DhApp *app)
                 { "win.go-back", NULL, NULL, NULL, N_("Go back") },
                 { "win.go-forward", NULL, NULL, NULL, N_("Go forward") },
                 { "win.focus-search", NULL, NULL, NULL, N_("Focus global search") },
+                { "win.show-window-menu", NULL, NULL, "F10", N_("Show menu") },
+                { "win.prev-tab", NULL, NULL, "<Control>Page_Up", N_("Previous tab") },
+                { "win.next-tab", NULL, NULL, "<Control>Page_Down", N_("Next tab") },
                 { NULL }
         };
 
