@@ -2,31 +2,311 @@
 # Copyright (C) 2018 devhelp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Marek Černocký <marek@manet.cz>, 2018.
+# Marek Černocký <marek@manet.cz>, 2018, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2018-02-27 13:07+0000\n"
-"PO-Revision-Date: 2018-03-03 07:41+0100\n"
+"POT-Creation-Date: 2019-12-19 15:16+0000\n"
+"PO-Revision-Date: 2020-03-09 10:57+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Gtranslator 2.91.7\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Marek Černocký <marek@manet.cz>"
+
+#. (itstool) path: page/title
+#. (itstool) path: section/title
+#: C/book-format.page:10 C/installing-api-documentation.page:19
+msgid "Book format"
+msgstr "Formát knihy"
+
+#. (itstool) path: synopsis/p
+#: C/book-format.page:13
+msgid ""
+"A “book” in <app>Devhelp</app> is the API documentation for one module, or "
+"package (usually a library). This page describes the format that a book "
+"needs to follow in order for <app>Devhelp</app> to recognize it."
+msgstr ""
+"Knihou se v pojetí aplikace <app>Devhelp</app> míní dokumentace k API pro "
+"jeden modul nebo balíček (obvykle knihovnu). Tato stránka popisuje formát "
+"takovéto knihy, kterého je zapotřebí se držet, aby ji <app>Devhelp</app> "
+"rozpoznal."
+
+#. (itstool) path: page/p
+#: C/book-format.page:20
+msgid ""
+"The content of a book is placed in one directory (that directory contains "
+"only one book, it cannot contain several books). The directory is comprised "
+"of:"
+msgstr ""
+"Obsah knihy je umístěný v jedné složce (tato složka obsahuje právě jednu "
+"knihu, nemůže jich obsahovat více). Obsah této složky sestává z:"
+
+#. (itstool) path: item/p
+#: C/book-format.page:26
+msgid "HTML pages, plus possibly CSS files, images, etc;"
+msgstr "stránek HTML, plus soubory CSS, obrázky atd."
+
+#. (itstool) path: item/p
+#: C/book-format.page:29
+msgid ""
+"An index file with the <file>*.devhelp2</file> file extension, see <link "
+"xref=\"index-file-format\"/> for more information."
+msgstr ""
+"indexového souboru s příponou <file>*.devhelp2</file>, více informací viz "
+"<link xref=\"index-file-format\"/>"
+
+#. (itstool) path: note/p
+#: C/book-format.page:35
+msgid ""
+"Restriction: the name of the directory the <file>*.devhelp2</file> file is "
+"in and the name of the <file>*.devhelp2</file> file (minus the extension) "
+"must match. In other words, if the book directory is called <code>"
+"$book_name</code>, then the absolute path to the index file should end with "
+"<code>$book_name/$book_name.devhelp2</code>. That way, when <app>Devhelp</"
+"app> knows the directory name, it directly knows the location to the index "
+"file."
+msgstr ""
+"Omezení: název složky se souborem <file>*.devhelp2</file> a název samotného "
+"souboru <file>*.devhelp2</file> musí být stejné (myšleno bez přípony). Jinak "
+"řečeno, pokus se složka knihy nazývá <code>$nazev_knihy</code>, pak absolutní "
+"cesta k indexovému souboru by měla končit <code>$nazev_knihy/$nazev_knihy."
+"devhelp2</code>. Díky tomu, když <app>Devhelp</app> zná název složky, zná i "
+"přímo umístění indexového souboru."
+
+#. (itstool) path: page/title
+#: C/index-file-format.page:10
+msgid "Index file format"
+msgstr "Formát indexového souboru"
+
+#. (itstool) path: synopsis/p
+#: C/index-file-format.page:13
+msgid ""
+"This page describes the purpose and the format of <file>*.devhelp2</file> "
+"index files."
+msgstr ""
+"Tato stránka popisuje účel a formát indexových souborů <file>*.devhelp2"
+"</file>."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:19
+msgid ""
+"A book (see <link xref=\"book-format\"/>) contains one index file. The index "
+"file has the extension <file>.devhelp2</file> and has an XML format."
+msgstr ""
+"Kniha (viz <link xref=\"book-format\"/>) obsahuje jeden indexový soubr. "
+"Indexový soubor má příponu <file>.devhelp2</file> a formát  XML."
+
+#. (itstool) path: note/p
+#: C/index-file-format.page:25
+msgid ""
+"The “2” in the <file>*.devhelp2</file> file extension is because it is the "
+"second version of the file format. The first version of the format, with the "
+"<file>*.devhelp</file> file extension, is deprecated and its support in "
+"<app>Devhelp</app> may be removed in the future. On application startup, "
+"when <app>Devhelp</app> scans the filesystem to find books, it emits a "
+"warning message in the terminal for each book that uses a deprecated format."
+msgstr ""
+"„2“ v příponě souboru <file>*.devhelp2</file> je proto, že se jedná o druhou "
+"verzi tohoto souborového formátu. První verze s příponou <file>*.devhelp"
+"</file> je označená za zastaralou a její podpora v aplikaci <app>Devhelp"
+"</app> může být v budoucnu odstraněna. Při spuštění aplikace, kdy <app>Devhelp"
+"</app> prohledává souborový systém na výskyt knih, vysílá do terminálu "
+"varovné zprávy pro každou knihu, která používá zastaralý formát."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:36
+msgid "The index file mainly contains:"
+msgstr "Indexový soubor obsahuje zejména:"
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:40
+msgid "The book structure (like a table of contents)."
+msgstr "Strukturu knihy (obdoba obsahu knihy)."
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:43
+msgid "A list of symbols (functions, types, macros, signals, properties, …)."
+msgstr "Seznam symbolů (funkce, typy, makra, signály, vlastnosti, …)."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:47
+msgid ""
+"These contain links to the HTML files to reach the corresponding pages and "
+"symbols."
+msgstr ""
+"Ty pak obsahují odkazy na jednotlivé soubory HTML, díky čemuž se dá dostat na "
+"příslušnou stránku a symbol."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:51
+msgid ""
+"In <app>Devhelp</app> the book structure is shown in the side panel. And the "
+"<link xref=\"search\">search in the side panel</link> shows results found in "
+"the index files."
+msgstr ""
+"Struktura knihy je v aplikaci <app>Devhelp</app> zobrazená v postranním "
+"panelu. A <link xref=\"search\">hledání v postranním panelu</link> zobrazuje výsledky nalezené v indexovém souboru."
+
+#. (itstool) path: section/title
+#: C/index-file-format.page:58
+msgid "Specification of the <file>*.devhelp2</file> XML file format"
+msgstr "Specifikace souborového formátu XML <file>*.devhelp2</file>."
+
+#. (itstool) path: section/p
+#: C/index-file-format.page:59
+msgid ""
+"Unfortunately the <file>*.devhelp2</file> XML file format is not well "
+"documented. There is still some hope that it will be fixed in the near "
+"future. In the meantime, we recommend to look at what <link xref="
+"\"installing-api-documentation#gtk-doc\">GTK-Doc</link> generates. For the "
+"most precise definition of what <app>Devhelp</app> supports, read the parser "
+"source code and the <app>Devhelp</app> API reference."
+msgstr ""
+"Naneštěstí souborový formát XML <file>*.devhelp2</file> není příliš dobře "
+"zdokumentován. Je tu ale šance, že se to do budoucna zlepší. Než se tak "
+"stane, doporučujeme podívat se, co generuje <link xref=\"installing-api-"
+"documentation#gtk-doc\">GTK-Doc</link>. Podrobnější definice, co <app>Devhelp"
+"</app> podporuje, pak můžete zjistit čtením jeho zdrojového kódu a referenční "
+"příručky k API <app>Devhelp</app>."
 
 #. (itstool) path: page/title
 #: C/index.page:4
 msgid "Devhelp User Documentation"
 msgstr "Uživatelská dokumentace k aplikaci Devhelp"
 
-#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
-msgctxt "_"
-msgid "translator-credits"
-msgstr "Marek Černocký <marek@manet.cz>"
+#. (itstool) path: synopsis/p
+#: C/index.page:7
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation."
+msgstr ""
+"Devhelp je vývojářský nástroj pro procházení a prohledávání dokumentace k API."
+
+#. (itstool) path: page/title
+#: C/installing-api-documentation.page:10
+msgid "Installing API documentation"
+msgstr "Instalace dokumentace k API"
+
+#. (itstool) path: synopsis/p
+#: C/installing-api-documentation.page:13
+msgid "How <app>Devhelp</app> finds the API documentation."
+msgstr "Jak <app>Devhelp</app> hledá v dokumentaci API."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:20
+msgid ""
+"See <link xref=\"book-format\"/> for information on the API documentation "
+"format that <app>Devhelp</app> recognizes."
+msgstr ""
+"Viz <link xref=\"book-format\"/> ohledně informací o formátu dokumentace k "
+"API, který <app>Devhelp</app> rozpoznává."
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:27
+msgid "Books locations"
+msgstr "Umístění knih"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:28
+msgid ""
+"Once a book follows the right format, its directory needs to be installed at "
+"a location where <app>Devhelp</app> will find it."
+msgstr ""
+"Jakmile má kniha správný formát, musí být její složka nainstalována do "
+"umístění, ve kterém ji <app>Devhelp</app> najde."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:32
+msgid ""
+"<app>Devhelp</app> uses the <link href=\"https://specifications.freedesktop."
+"org/basedir-spec/latest/\">XDG Base Directory Specification</link> to find "
+"the books. The list of locations searched is:"
+msgstr ""
+"<app>Devhelp</app> používá k nalezení knih link href=\"https://specifications."
+"freedesktop.org/basedir-spec/latest/\">Specifikaci základních složek XDG"
+"</link> (odkaz je v angličtině). Zde je seznam prohledávaných umístění:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:43
+msgid ""
+"Note that the two latter consist of :-separated lists of directories to look "
+"for. Those environment variables are normally set up by the desktop "
+"environment or distribution."
+msgstr ""
+"Všimněte si, že dvě poslední jsou ve skutečnosti seznamy složek oddělených "
+"dvojtečkou, ve kterých se hledá. Tyto proměnné prostředí normálně nastaví "
+"pracovní prostředí nebo distribuce."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:48
+msgid ""
+"Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
+"typical system:"
+msgstr ""
+"Příklad umístění pro indexové soubory s <code>$XDG_DATA_HOME</code> na "
+"typickém systému:"
+
+#. (itstool) path: item/p
+#: C/installing-api-documentation.page:56
+msgid ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
+"file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
+"org/\">Flatpak</link>."
+msgstr ""
+"Soubor <file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib."
+"devhelp2</file>, pokud je <app>Devhelp</app> spuštěný v izolovaném prostředí "
+"<link href=\"https://flatpak.org/\">Flatpak</link>."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:62
+msgid ""
+"Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
+"typical system:"
+msgstr ""
+"Příklad umístění pro indexové soubory s <code>$XDG_DATA_HOME</code> na "
+"typickém systému:"
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:74
+msgid "GTK-Doc"
+msgstr "GTK-Doc"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:75
+msgid ""
+"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
+"generate API documentation from comments added to C code. It is used by "
+"GLib, GTK and GNOME libraries and applications."
+msgstr ""
+"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> je nástroj pro "
+"generování dokumentace k API z komentářů ve zdrojových kódech jazyka C. "
+"Používají jej GLib, GTK a knihovny a aplikace GNOME"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:80
+msgid "GTK-Doc installs the API reference of a module into:"
+msgstr "GTK-Doc instaluje referenční příručku k API modulu do:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:86
+msgid ""
+"It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
+"Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
+"(once installed in the right location, that is)."
+msgstr ""
+"Řídí se formátem knihy, který podporuje <app>Devhelp</app>. Takže, když "
+"použijete GTK-Doc, lze pak automaticky referenční příručku k API procházet "
+"pomocí aplikace <app>Devhelp</app> (za předpokladu, že je nainstalována ve "
+"správném umístění)."
 
 #. (itstool) path: page/title
 #: C/search.page:10
