@@ -8,10 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-21 13:52+0000\n"
-"PO-Revision-Date: 2018-09-27 17:38+0300\n"
-"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
-"com>\n"
+"POT-Creation-Date: 2019-12-27 13:10+0000\n"
+"PO-Revision-Date: 2020-03-19 12:27+0100\n"
+"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -19,18 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.3\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:256 src/dh-app.c:548
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:258
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "O unealtă de dezvoltator pentru navigarea și căutarea în documentație API"
@@ -55,12 +54,12 @@ msgstr ""
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
-"Devhelp lucrează nativ cu GTK-Doc, prin urmare bibliotecile GTK+ și GNOME "
+"Devhelp lucrează nativ cu GTK-Doc, prin urmare bibliotecile GTK și GNOME "
 "sunt suportate bine. Dar alte platforme de dezvoltare pot fi de asemenea "
 "suportate, atât timp cât documentația API este disponibilă în HTML și un "
 "fișier index *.devhelp2 este generat."
@@ -85,12 +84,6 @@ msgid "documentation;information;manual;developer;api;"
 msgstr ""
 "documentation;information;manual;developer;api;documentație;informație;"
 "dezvoltator;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -184,89 +177,89 @@ msgstr "Font pentru text cu lățime fixă"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Font pentru text cu lățime fixă, cum ar fi exemplele de cod."
 
-#: devhelp/dh-assistant-view.c:400
+#: devhelp/dh-assistant-view.c:386
 msgid "Book:"
 msgstr "Carte:"
 
-#: devhelp/dh-book.c:313
+#: devhelp/dh-book.c:299
 #, c-format
 msgid "Language: %s"
 msgstr "Limbaj: %s"
 
-#: devhelp/dh-book.c:314
+#: devhelp/dh-book.c:300
 msgid "Language: Undefined"
 msgstr "Limbaj: nedefinit"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:750
 msgid "_Collapse All"
 msgstr "_Restrânge toate"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:551
+#: devhelp/dh-link.c:537
 msgid "Book"
 msgstr "Carte"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:555
+#: devhelp/dh-link.c:541
 msgid "Page"
 msgstr "Pagină"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:560
+#: devhelp/dh-link.c:546
 msgid "Keyword"
 msgstr "Cuvânt cheie"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:566
+#: devhelp/dh-link.c:552
 msgid "Function"
 msgstr "Funcție"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:572
+#: devhelp/dh-link.c:558
 msgid "Struct"
 msgstr "Structură"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:578
+#: devhelp/dh-link.c:564
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:584
+#: devhelp/dh-link.c:570
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:590
+#: devhelp/dh-link.c:576
 msgid "Type"
 msgstr "Tip"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:596
+#: devhelp/dh-link.c:582
 msgid "Property"
 msgstr "Proprietate"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:602
+#: devhelp/dh-link.c:588
 msgid "Signal"
 msgstr "Semnal"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:640
 msgid "Empty Page"
 msgstr "Pagina goală"
 
@@ -279,109 +272,108 @@ msgid "Show API Documentation"
 msgstr "Afișare documentație API"
 
 #. action, icon, label, accel, tooltip
-#. App menu
-#: src/dh-app.c:51
+#. Actions related to the whole application
+#: src/dh-app.c:37
 msgid "New _Window"
 msgstr "Fereastră _nouă"
 
-#: src/dh-app.c:52
+#: src/dh-app.c:38
 msgid "Open a new window"
 msgstr "Deschide o fereastră nouă"
 
-#: src/dh-app.c:53
+#: src/dh-app.c:39
 msgid "_Preferences"
 msgstr "_Preferințe"
 
-#: src/dh-app.c:54
+#: src/dh-app.c:40
 msgid "_Keyboard Shortcuts"
 msgstr "Scurtături _tastatură"
 
-#: src/dh-app.c:55
+#: src/dh-app.c:41
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: src/dh-app.c:56
-msgid "_About"
-msgstr "_Despre"
+#: src/dh-app.c:42
+msgid "_About Devhelp"
+msgstr "_Despre Devhelp"
 
-#: src/dh-app.c:57
+#: src/dh-app.c:43
 msgid "_Quit"
 msgstr "_Ieșire"
 
-#: src/dh-app.c:58
+#: src/dh-app.c:44
 msgid "Close all windows"
 msgstr "Închide toate ferestrele"
 
-#. Window menu
-#: src/dh-app.c:61
+#. Actions related to the current main window
+#: src/dh-app.c:47
 msgid "_Side Panel"
 msgstr "_Panou lateral"
 
-#: src/dh-app.c:62
+#: src/dh-app.c:48
 msgid "Toggle side panel visibility"
 msgstr "Comută vizibilitatea panoului lateral"
 
-#: src/dh-app.c:63
+#: src/dh-app.c:49
 msgid "_Print"
 msgstr "Ti_părire"
 
-#: src/dh-app.c:64
+#: src/dh-app.c:50
 msgid "_Find"
 msgstr "_Căutare"
 
-#: src/dh-app.c:65
+#: src/dh-app.c:51
 msgid "Find in current page"
 msgstr "Caută în pagina curentă"
 
-#: src/dh-app.c:66
+#: src/dh-app.c:52
 msgid "_Larger Text"
 msgstr "_Text mai mare"
 
-#: src/dh-app.c:67
+#: src/dh-app.c:53
 msgid "Larger text"
 msgstr "Text mai mare"
 
-#: src/dh-app.c:68
+#: src/dh-app.c:54
 msgid "S_maller Text"
 msgstr "Text mai _mic"
 
-#: src/dh-app.c:69
+#: src/dh-app.c:55
 msgid "Smaller text"
 msgstr "Text mai mic"
 
-#: src/dh-app.c:70
+#: src/dh-app.c:56
 msgid "_Normal Size"
 msgstr "Dimensiune _normală"
 
-#: src/dh-app.c:71
+#: src/dh-app.c:57
 msgid "Normal size"
 msgstr "Dimensiune normală"
 
 #. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
+#: src/dh-app.c:97
 msgid "Open a new tab"
 msgstr "Deschide un tab nou"
 
-#: src/dh-app.c:112
+#: src/dh-app.c:98
 msgid "Close the current tab"
 msgstr "Închide tabul curent"
 
-#: src/dh-app.c:113
+#: src/dh-app.c:99
 msgid "Go back"
 msgstr "Înapoi"
 
-#: src/dh-app.c:114
+#: src/dh-app.c:100
 msgid "Go forward"
 msgstr "Înainte"
 
-#: src/dh-app.c:115
+#: src/dh-app.c:101
 msgid "Focus global search"
 msgstr "Focalizează căutarea globală"
 
-#: src/dh-app.c:274
+#: src/dh-app.c:260
 msgid "translator-credits"
 msgstr ""
-"Adi Roiban\n"
 "Lucian Adrian Grijincu\n"
 "Florentina Mușat <florentina.musat.28 [at] gmail [dot] com>, 2018\n"
 "\n"
@@ -390,99 +382,102 @@ msgstr ""
 "  Ionuț Jula https://launchpad.net/~ionutjula\n"
 "  Mihai Felseghi https://launchpad.net/~mihaifelseghi"
 
-#: src/dh-app.c:276
+#: src/dh-app.c:262
 msgid "Devhelp Website"
 msgstr "Pagina web Devhelp"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:437
 msgid "Opens a new Devhelp window"
 msgstr "Deschide o fereastră nouă Devhelp"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:442
 msgid "Search for a keyword"
 msgstr "Caută cuvânt cheie"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:443 src/dh-app.c:448
 msgid "KEYWORD"
 msgstr "CUVÂNT CHEIE"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:447
 msgid "Search and display any hit in the assistant window"
 msgstr "Caută și afișează orice rezultat în fereastra asistent"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:452
 msgid "Display the version and exit"
 msgstr "Afișează versiunea și ieși"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:457
 msgid "Quit any running Devhelp"
 msgstr "Închide orice instanță Devhelp"
 
 #. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
+#: src/dh-assistant.ui:13
 msgid "Devhelp — Assistant"
 msgstr "Devhelp – Asistent"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:537
 msgid "Enabled"
 msgstr "Activat"
 
-#: src/dh-preferences.c:565
+#: src/dh-preferences.c:551
 msgid "Title"
 msgstr "Titlu"
 
-#: src/dh-preferences.ui:26
+#: src/dh-preferences.ui:12
 msgid "Preferences"
 msgstr "Preferințe"
 
-#: src/dh-preferences.ui:62
+#: src/dh-preferences.ui:48
 msgid "_Group by language"
 msgstr "_Grupează după limbaj"
 
-#: src/dh-preferences.ui:104
+#: src/dh-preferences.ui:90
 msgid "Book Shelf"
 msgstr "Raft de cărți"
 
-#: src/dh-preferences.ui:125
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
 msgstr "Folosește font_urile sistemului"
 
-#: src/dh-preferences.ui:149
+#: src/dh-preferences.ui:135
 msgid "_Variable width: "
 msgstr "Lățime _variabilă: "
 
-#: src/dh-preferences.ui:162
+#: src/dh-preferences.ui:148
 msgid "_Fixed width:"
 msgstr "Lățime _fixă:"
 
-#: src/dh-preferences.ui:223
+#: src/dh-preferences.ui:209
 msgid "Fonts"
 msgstr "Fonturi"
 
 #. General group
-#: src/dh-window.c:393
+#: src/dh-window.c:380
 msgid "General"
 msgstr "General"
 
 #. Zoom group
-#: src/dh-window.c:407
+#: src/dh-window.c:394
 msgid "Zoom"
 msgstr "Focalizare"
 
-#: src/dh-window.c:572
+#: src/dh-window.c:539
 msgid "Back"
 msgstr "Înapoi"
 
-#: src/dh-window.c:576
+#: src/dh-window.c:543
 msgid "Forward"
 msgstr "Înainte"
 
-#: src/dh-window.c:599
+#: src/dh-window.c:561
 msgid "New Tab"
 msgstr "Tab nou"
 
-#~ msgid "_About Devhelp"
-#~ msgstr "_Despre Devhelp"
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
+
+#~ msgid "_About"
+#~ msgstr "_Despre"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Print"
