@@ -42,4 +42,7 @@
   <project_group>GNOME</project_group>
   <translation type="gettext">devhelp</translation>
   <update_contact>swilmet@gnome.org</update_contact>
+  <releases>
+    <release version="3.36.0" date="2020-03-05" />
+  </releases>
 </component>
