@@ -332,3 +332,39 @@ _dh_util_bind_sidebar_and_notebook (DhSidebar  *sidebar,
                                  sidebar,
                                  G_CONNECT_AFTER);
 }
+
+DhLinkType
+_dh_util_link_type_for_docset_type (DocsetEntryTypeId type)
+{
+    switch (type) {
+        case DOCSET_ENTRY_TYPE_ID_ENUM:
+            return DH_LINK_TYPE_ENUM;
+        case DOCSET_ENTRY_TYPE_ID_FUNCTION:
+        case DOCSET_ENTRY_TYPE_ID_INSTRUCTION:
+        case DOCSET_ENTRY_TYPE_ID_METHOD:
+        case DOCSET_ENTRY_TYPE_ID_PROCEDURE:
+            return DH_LINK_TYPE_FUNCTION;
+        case DOCSET_ENTRY_TYPE_ID_MACRO:
+            return DH_LINK_TYPE_MACRO;
+        case DOCSET_ENTRY_TYPE_ID_CATEGORY:
+        case DOCSET_ENTRY_TYPE_ID_GUIDE:
+        case DOCSET_ENTRY_TYPE_ID_LIBRARY:
+        case DOCSET_ENTRY_TYPE_ID_MODULE:
+        case DOCSET_ENTRY_TYPE_ID_NAMESPACE:
+        case DOCSET_ENTRY_TYPE_ID_PACKAGE:
+        case DOCSET_ENTRY_TYPE_ID_SECTION:
+            return DH_LINK_TYPE_PAGE;
+        case DOCSET_ENTRY_TYPE_ID_PROPERTY:
+            return DH_LINK_TYPE_PROPERTY;
+        case DOCSET_ENTRY_TYPE_ID_CLASS:
+        case DOCSET_ENTRY_TYPE_ID_INTERFACE:
+        case DOCSET_ENTRY_TYPE_ID_INSTANCE:
+        case DOCSET_ENTRY_TYPE_ID_STRUCT:
+        case DOCSET_ENTRY_TYPE_ID_OBJECT:
+            return DH_LINK_TYPE_STRUCT;
+        case DOCSET_ENTRY_TYPE_ID_TYPE:
+            return DH_LINK_TYPE_TYPEDEF;
+        default:
+            return DH_LINK_TYPE_KEYWORD;
+    }
+}

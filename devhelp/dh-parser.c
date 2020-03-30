@@ -13,6 +13,7 @@
 #include "dh-error.h"
 #include "dh-link.h"
 #include "dh-util-lib.h"
+#include <libdocset/docset.h>
 
 /* Possible things to do for the version 3 of the Devhelp index file format (if
  * one day there is a strong desire to create a new version):
@@ -51,7 +52,9 @@ typedef enum {
         /* The main change is that version 2 uses <keyword> instead of
          * <function>.
          */
-        FORMAT_VERSION_2
+        FORMAT_VERSION_2,
+        /* Docset support */
+        FORMAT_DOCSET
 } FormatVersion;
 
 typedef struct {
@@ -515,8 +518,80 @@ parser_end_node_cb (GMarkupParseContext  *context,
         }
 }
 
-gboolean
-_dh_parser_read_file (GFile   *index_file,
+static gboolean
+parser_read_docset   (GFile   *index_file,
+                      gchar  **book_title,
+                      gchar  **book_id,
+                      gchar  **book_language,
+                      GNode  **book_tree,
+                      GList  **all_links,
+                      GError **error)
+{
+        DocsetFile *docset;
+        DocsetCursor *cursor;
+        GList *entries = NULL;
+        GList *entries_head = NULL;
+        DhLink *link = NULL;
+        DhLinkType link_type;
+        DhLink *book_link = NULL;
+        GNode *book_node = NULL;
+        gchar *book_base = NULL;
+        DocsetEntry *entry = NULL;
+        gboolean ok = TRUE;
+
+        docset = docset_file_new (g_object_ref (index_file));
+        if (!DOCSET_IS_FILE (docset)) {
+                ok = FALSE;
+                goto exit;
+        }
+
+        cursor = docset_file_get_cursor (docset);
+
+        *book_title = g_strdup (docset_file_get_props_bundle_name (docset));
+        *book_id = g_strdup (docset_file_get_props_bundle_id (docset));
+        *book_language = g_strdup (docset_file_get_props_platform_family (docset));
+
+        book_base = docset_file_get_document_path(docset);
+        book_link = dh_link_new_book (book_base,
+                                      *book_id,
+                                      *book_title,
+                                      docset_file_get_props_index_filepath(docset));
+        g_free (book_base);
+
+        *book_tree = g_node_new (dh_link_ref (book_link));
+        *all_links = g_list_prepend(*all_links, dh_link_ref (book_link));
+        entries_head = docset_cursor_get_entries(cursor);
+
+        for (entries = entries_head;
+                        entries != NULL;
+                        entries = entries->next) {
+                entry = entries->data;
+                link_type = _dh_util_link_type_for_docset_type(entry->type->id);
+                link = dh_link_new (link_type,
+                                    book_link,
+                                    entry->name,
+                                    entry->path);
+
+                *all_links = g_list_prepend (*all_links, dh_link_ref (link));
+                if (link_type == DH_LINK_TYPE_PAGE) {
+                        book_node = g_node_new (dh_link_ref (link));
+                        g_node_prepend(*book_tree, book_node);
+                }
+
+                dh_link_unref (link);
+        }
+
+        g_list_free_full(entries_head, (GDestroyNotify)docset_entry_free);
+        g_node_reverse_children (*book_tree);
+        dh_link_unref (book_link);
+
+exit:
+        g_clear_object (&docset);
+        return ok;
+}
+
+static gboolean
+parser_read_devhelp  (GFile   *index_file,
                       gchar  **book_title,
                       gchar  **book_id,
                       gchar  **book_language,
@@ -530,14 +605,6 @@ _dh_parser_read_file (GFile   *index_file,
         GFileInputStream *file_input_stream = NULL;
         GInputStream *input_stream = NULL;
         gboolean ok = TRUE;
-
-        g_return_val_if_fail (G_IS_FILE (index_file), FALSE);
-        g_return_val_if_fail (book_title != NULL && *book_title == NULL, FALSE);
-        g_return_val_if_fail (book_id != NULL && *book_id == NULL, FALSE);
-        g_return_val_if_fail (book_language != NULL && *book_language == NULL, FALSE);
-        g_return_val_if_fail (book_tree != NULL && *book_tree == NULL, FALSE);
-        g_return_val_if_fail (all_links != NULL && *all_links == NULL, FALSE);
-        g_return_val_if_fail (error != NULL && *error == NULL, FALSE);
 
         parser = g_new0 (DhParser, 1);
 
@@ -650,4 +717,35 @@ exit:
         dh_parser_free (parser);
 
         return ok;
+}
+
+gboolean
+_dh_parser_read_file (GFile   *index_file,
+                      gchar  **book_title,
+                      gchar  **book_id,
+                      gchar  **book_language,
+                      GNode  **book_tree,
+                      GList  **all_links,
+                      GError **error)
+{
+        gchar *index_file_uri;
+        gboolean is_docset;
+
+        g_return_val_if_fail (G_IS_FILE (index_file), FALSE);
+        g_return_val_if_fail (book_title != NULL && *book_title == NULL, FALSE);
+        g_return_val_if_fail (book_id != NULL && *book_id == NULL, FALSE);
+        g_return_val_if_fail (book_language != NULL && *book_language == NULL, FALSE);
+        g_return_val_if_fail (book_tree != NULL && *book_tree == NULL, FALSE);
+        g_return_val_if_fail (all_links != NULL && *all_links == NULL, FALSE);
+        g_return_val_if_fail (error != NULL && *error == NULL, FALSE);
+
+        index_file_uri = g_file_get_uri (index_file);
+        is_docset = g_str_has_suffix (index_file_uri, ".docset");
+        g_free (index_file_uri);
+
+        if (is_docset) {
+                return parser_read_docset (index_file, book_title, book_id, book_language, book_tree, all_links, error);
+        } else {
+                return parser_read_devhelp (index_file, book_title, book_id, book_language, book_tree, all_links, error);
+        }
 }

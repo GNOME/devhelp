@@ -36,7 +36,8 @@ WEBKITGTK_DEP_STR = 'webkit2gtk-4.0'
 libdevhelp_deps_array = [
   ['gio-2.0', '>= 2.60'],
   ['gtk+-3.0', '>= 3.22'],
-  [WEBKITGTK_DEP_STR, '>= 2.24']
+  [WEBKITGTK_DEP_STR, '>= 2.24'],
+  ['libdocset', '>= 0.1.0']
 ]
 
 LIBDEVHELP_DEPS_STR = []
