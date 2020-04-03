@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2008 Sven Herzberg
+/* SPDX-FileCopyrightText: 2008 Sven Herzberg
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 

@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2001-2002 CodeFactory AB
+/* SPDX-FileCopyrightText: 2001-2002 CodeFactory AB
  * SPDX-FileCopyrightText: 2001-2002 Mikael Hallendal <micke@imendio.com>
  * SPDX-FileCopyrightText: 2013 Aleksander Morgado <aleksander@gnu.org>
  * SPDX-FileCopyrightText: 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>

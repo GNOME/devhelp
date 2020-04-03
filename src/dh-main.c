@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2001-2003 CodeFactory AB
+/* SPDX-FileCopyrightText: 2001-2003 CodeFactory AB
  * SPDX-FileCopyrightText: 2001-2008 Imendio AB
  * SPDX-License-Identifier: GPL-3.0-or-later
  */

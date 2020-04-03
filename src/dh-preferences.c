@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2004-2008 Imendio AB
+/* SPDX-FileCopyrightText: 2004-2008 Imendio AB
  * SPDX-FileCopyrightText: 2010 Lanedo GmbH
  * SPDX-FileCopyrightText: 2012 Thomas Bechtold <toabctl@gnome.org>
  * SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>

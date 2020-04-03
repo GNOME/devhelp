@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2004-2008 Imendio AB
+/* SPDX-FileCopyrightText: 2004-2008 Imendio AB
  * SPDX-FileCopyrightText: 2010 Lanedo GmbH
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
