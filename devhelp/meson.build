@@ -123,7 +123,8 @@ PKG_CONFIG.generate(
   version : meson.project_version(),
   libraries : libdevhelp,
   subdirs : install_headers_first_subdir,
-  requires : LIBDEVHELP_DEPS_STR
+  requires : LIBDEVHELP_PUBLIC_DEPS,
+  requires_private : LIBDEVHELP_PRIVATE_DEPS
 )
 
 GNOME.generate_gir(
