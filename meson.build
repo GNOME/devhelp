@@ -32,11 +32,10 @@ lt_revision = 2
 lt_age = 0
 LIBDEVHELP_LT_VERSION = '@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
 
-WEBKITGTK_DEP_STR = 'webkit2gtk-4.0'
 libdevhelp_deps_array = [
   ['gio-2.0', '>= 2.64'],
   ['gtk+-3.0', '>= 3.22'],
-  [WEBKITGTK_DEP_STR, '>= 2.26']
+  ['webkit2gtk-4.0', '>= 2.26']
 ]
 
 LIBDEVHELP_DEPS_STR = []

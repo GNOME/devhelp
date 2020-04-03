@@ -7,10 +7,13 @@ configure_file(
 )
 
 gtkdoc_module_name = 'devhelp-@0@'.format(LIBDEVHELP_API_VERSION)
-html_dir = join_paths(get_option('prefix'), GNOME.gtkdoc_html_dir(gtkdoc_module_name))
+html_dir = get_option('prefix') / GNOME.gtkdoc_html_dir(gtkdoc_module_name)
 
-webkitgtk_dep = dependency(WEBKITGTK_DEP_STR)
-webkitgtk_prefix = webkitgtk_dep.get_pkgconfig_variable('prefix')
+glib_docpath = dependency('glib-2.0').get_pkgconfig_variable('prefix') / 'share/gtk-doc/html/glib'
+gobject_docpath = dependency('gobject-2.0').get_pkgconfig_variable('prefix') / 'share/gtk-doc/html/gobject'
+gio_docpath = dependency('gio-2.0').get_pkgconfig_variable('prefix') / 'share/gtk-doc/html/gio'
+gtk_docpath = dependency('gtk+-3.0').get_pkgconfig_variable('prefix') / 'share/gtk-doc/html/gtk3'
+webkitgtk_docpath = dependency('webkit2gtk-4.0').get_pkgconfig_variable('prefix') / 'share/gtk-doc/html/webkit2gtk-4.0'
 
 GNOME.gtkdoc(
   gtkdoc_module_name,
@@ -21,7 +24,11 @@ GNOME.gtkdoc(
   gobject_typesfile : 'devhelp-@0@.types'.format(LIBDEVHELP_API_VERSION),
   fixxref_args : [
     '--html-dir=@0@'.format(html_dir),
-    '--extra-dir=@0@/share/gtk-doc/html/@1@'.format(webkitgtk_prefix, WEBKITGTK_DEP_STR)
+    '--extra-dir=@0@'.format(glib_docpath),
+    '--extra-dir=@0@'.format(gobject_docpath),
+    '--extra-dir=@0@'.format(gio_docpath),
+    '--extra-dir=@0@'.format(gtk_docpath),
+    '--extra-dir=@0@'.format(webkitgtk_docpath)
   ],
   content_files : [
     'api-breaks.xml'
