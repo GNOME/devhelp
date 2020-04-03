@@ -45,9 +45,10 @@ SPDX-License-Identifier: CC-BY-SA-4.0
     <item><p><code>$XDG_DATA_DIRS/gtk-doc/html/</code></p></item>
   </list>
   <p>
-    Note that the two latter consist of :-separated lists of directories to
-    look for. Those environment variables are normally set up by the desktop
-    environment or distribution.
+    Note that the two latter consist of lists of directories to look for.
+    Directory values are separated by <code>:</code> characters. Those
+    environment variables are normally set up by the desktop environment or
+    distribution.
   </p>
   <p>
     Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a
