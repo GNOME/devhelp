@@ -1,9 +1,8 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2001-2008 Imendio AB
+/* SPDX-FileCopyrightText: 2001-2008 Imendio AB
  * SPDX-FileCopyrightText: 2012 Aleksander Morgado <aleksander@gnu.org>
  * SPDX-FileCopyrightText: 2012 Thomas Bechtold <toabctl@gnome.org>
- * SPDX-FileCopyrightText: 2015-2018 Sébastien Wilmet <swilmet@gnome.org>
+ * SPDX-FileCopyrightText: 2015-2020 Sébastien Wilmet <swilmet@gnome.org>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -516,7 +515,7 @@ static void
 init_header_bar (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        GtkWidget *back_forward_hgrid;
+        GtkWidget *back_forward_hbox;
         GtkStyleContext *style_context;
         GtkWidget *back_button;
         GtkWidget *forward_button;
@@ -530,8 +529,9 @@ init_header_bar (DhWindow *window)
         gtk_header_bar_set_show_close_button (priv->header_bar, TRUE);
 
         /* Back/forward buttons */
-        back_forward_hgrid = gtk_grid_new ();
-        style_context = gtk_widget_get_style_context (back_forward_hgrid);
+        back_forward_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+        style_context = gtk_widget_get_style_context (back_forward_hbox);
+        // Test also in RTL (right-to-left) text. It needs to be a GtkBox.
         gtk_style_context_add_class (style_context, GTK_STYLE_CLASS_LINKED);
 
         back_button = gtk_button_new_from_icon_name ("go-previous-symbolic", GTK_ICON_SIZE_BUTTON);
@@ -542,9 +542,9 @@ init_header_bar (DhWindow *window)
         gtk_actionable_set_action_name (GTK_ACTIONABLE (forward_button), "win.go-forward");
         gtk_widget_set_tooltip_text (forward_button, _("Forward"));
 
-        gtk_container_add (GTK_CONTAINER (back_forward_hgrid), back_button);
-        gtk_container_add (GTK_CONTAINER (back_forward_hgrid), forward_button);
-        gtk_header_bar_pack_start (priv->header_bar, back_forward_hgrid);
+        gtk_container_add (GTK_CONTAINER (back_forward_hbox), back_button);
+        gtk_container_add (GTK_CONTAINER (back_forward_hbox), forward_button);
+        gtk_header_bar_pack_start (priv->header_bar, back_forward_hbox);
 
         /* Menu */
         priv->menu_button = GTK_MENU_BUTTON (gtk_menu_button_new ());
