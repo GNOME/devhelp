@@ -1,13 +1,13 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2012 Aleksander Morgado <aleksander@gnu.org>
- * SPDX-FileCopyrightText: 2017 Sébastien Wilmet <swilmet@gnome.org>
+/* SPDX-FileCopyrightText: 2012 Aleksander Morgado <aleksander@gnu.org>
+ * SPDX-FileCopyrightText: 2017-2020 Sébastien Wilmet <swilmet@gnome.org>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 #include "config.h"
 #include "dh-init.h"
 #include <glib/gi18n-lib.h>
+#include <webkit2/webkit2.h>
 #include "dh-book-list.h"
 #include "dh-profile.h"
 #include "dh-settings.h"
@@ -19,6 +19,9 @@
  *
  * This function can be called several times, but is meant to be called at the
  * beginning of main(), before any other Devhelp function call.
+ *
+ * Since version 3.38, this function enables the WebKitGTK sandbox by calling
+ * webkit_web_context_set_sandbox_enabled() on the default #WebKitWebContext.
  */
 void
 dh_init (void)
@@ -26,8 +29,14 @@ dh_init (void)
         static gboolean done = FALSE;
 
         if (!done) {
+                WebKitWebContext *webkit_context;
+
                 bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
                 bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
+                webkit_context = webkit_web_context_get_default ();
+                webkit_web_context_set_sandbox_enabled (webkit_context, TRUE);
+
                 done = TRUE;
         }
 }

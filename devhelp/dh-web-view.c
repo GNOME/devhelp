@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+/* SPDX-FileCopyrightText: 2018-2020 Sébastien Wilmet <swilmet@gnome.org>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -468,11 +467,16 @@ static void
 dh_web_view_constructed (GObject *object)
 {
         DhWebView *view = DH_WEB_VIEW (object);
+        WebKitWebContext *webkit_context;
         WebKitSettings *webkit_settings;
         DhSettings *dh_settings;
 
         if (G_OBJECT_CLASS (dh_web_view_parent_class)->constructed != NULL)
                 G_OBJECT_CLASS (dh_web_view_parent_class)->constructed (object);
+
+        webkit_context = webkit_web_view_get_context (WEBKIT_WEB_VIEW (view));
+        if (!webkit_web_context_get_sandbox_enabled (webkit_context))
+                g_warning_once ("WebKitWebContext is not sandboxed.");
 
         webkit_settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
         webkit_settings_set_enable_back_forward_navigation_gestures (webkit_settings, TRUE);
