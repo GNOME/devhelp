@@ -21,12 +21,26 @@ LIBDEVHELP_API_VERSION = '3'
 # everywhere.
 LIBDEVHELP_API_VERSION_FULL = '3.0'
 
-# Libtool version numbers, remember to change them just *before* a release.
-# A good time to update it is for the GNOME x.y.90 version, at API freeze,
-# so that packagers have the time to update the package.
-#   (Interfaces removed:    CURRENT++, AGE=0, REVISION=0)
-#   (Interfaces added:      CURRENT++, AGE++, REVISION=0)
-#   (No interfaces changed:                   REVISION++)
+# Libtool versioning
+#
+# A good time to update it is for the GNOME x.y.90 version, at API freeze, so
+# that packagers have the time to update the package. For other development
+# releases (if the minor package version is odd), keep the same Libtool
+# version.
+#
+# To update the Libtool version, apply the following algorithm step by step:
+# 1. If the library source code has changed at all since the last
+#    update, then increment REVISION.
+# 2. If any exported functions or data have been added, removed, or
+#    changed since the last update, increment CURRENT and set REVISION
+#    to 0.
+# 3. If any exported functions or data have been added since the last
+#    public release, increment AGE.
+# 4. If any exported functions or data have been removed since the last
+#    public release, set AGE to 0.
+#
+# When incrementing the API version (usually for a new major package version),
+# set CURRENT, REVISION and AGE to 0 since it's like a new library.
 lt_current = 6
 lt_revision = 2
 lt_age = 0
