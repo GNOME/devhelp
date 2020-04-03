@@ -231,7 +231,7 @@ msgid ""
 "org/basedir-spec/latest/\">XDG Base Directory Specification</link> to find "
 "the books. The list of locations searched is:"
 msgstr ""
-"<app>Devhelp</app> používá k nalezení knih link href=\"https://specifications."
+"<app>Devhelp</app> používá k nalezení knih <link href=\"https://specifications."
 "freedesktop.org/basedir-spec/latest/\">Specifikaci základních složek XDG"
 "</link> (odkaz je v angličtině). Zde je seznam prohledávaných umístění:"
 
