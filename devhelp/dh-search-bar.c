@@ -1,6 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/*
- * SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+/* SPDX-FileCopyrightText: 2018-2020 Sébastien Wilmet <swilmet@gnome.org>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -162,7 +161,7 @@ static void
 dh_search_bar_constructed (GObject *object)
 {
         DhSearchBar *search_bar = DH_SEARCH_BAR (object);
-        GtkWidget *hgrid;
+        GtkWidget *hbox;
         GtkStyleContext *style_context;
         GtkWidget *prev_button;
         GtkWidget *next_button;
@@ -172,14 +171,15 @@ dh_search_bar_constructed (GObject *object)
 
         gtk_search_bar_set_show_close_button (GTK_SEARCH_BAR (search_bar), TRUE);
 
-        hgrid = gtk_grid_new ();
-        style_context = gtk_widget_get_style_context (hgrid);
+        hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+        style_context = gtk_widget_get_style_context (hbox);
+        // Test also in RTL (right-to-left) text. It needs to be a GtkBox.
         gtk_style_context_add_class (style_context, GTK_STYLE_CLASS_LINKED);
 
         /* Search entry */
         search_bar->priv->search_entry = GTK_SEARCH_ENTRY (gtk_search_entry_new ());
         gtk_widget_set_size_request (GTK_WIDGET (search_bar->priv->search_entry), 300, -1);
-        gtk_container_add (GTK_CONTAINER (hgrid),
+        gtk_container_add (GTK_CONTAINER (hbox),
                            GTK_WIDGET (search_bar->priv->search_entry));
 
         g_signal_connect (search_bar->priv->search_entry,
@@ -199,10 +199,10 @@ dh_search_bar_constructed (GObject *object)
 
         /* Prev/next buttons */
         prev_button = gtk_button_new_from_icon_name ("go-up-symbolic", GTK_ICON_SIZE_BUTTON);
-        gtk_container_add (GTK_CONTAINER (hgrid), prev_button);
+        gtk_container_add (GTK_CONTAINER (hbox), prev_button);
 
         next_button = gtk_button_new_from_icon_name ("go-down-symbolic", GTK_ICON_SIZE_BUTTON);
-        gtk_container_add (GTK_CONTAINER (hgrid), next_button);
+        gtk_container_add (GTK_CONTAINER (hbox), next_button);
 
         g_signal_connect (prev_button,
                           "clicked",
@@ -226,8 +226,8 @@ dh_search_bar_constructed (GObject *object)
                                  search_bar,
                                  G_CONNECT_AFTER);
 
-        gtk_widget_show_all (hgrid);
-        gtk_container_add (GTK_CONTAINER (search_bar), hgrid);
+        gtk_widget_show_all (hbox);
+        gtk_container_add (GTK_CONTAINER (search_bar), hbox);
 
         gtk_search_bar_connect_entry (GTK_SEARCH_BAR (search_bar),
                                       GTK_ENTRY (search_bar->priv->search_entry));
