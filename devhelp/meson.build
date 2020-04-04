@@ -70,9 +70,9 @@ install_headers_fulldir = join_paths(
 
 libdevhelp_enums = GNOME.mkenums_simple(
   'dh-enum-types',
-  sources : libdevhelp_public_headers,
-  install_header : true,
-  install_dir : install_headers_fulldir
+  sources: libdevhelp_public_headers,
+  install_header: true,
+  install_dir: install_headers_fulldir
 )
 libdevhelp_enum_header = libdevhelp_enums[1]
 
@@ -81,65 +81,65 @@ libdevhelp_static = static_library(
   [libdevhelp_public_c_files,
    libdevhelp_private_c_files,
    libdevhelp_enums],
-  include_directories : [CONFIG_H_INCLUDE_DIR, ROOT_INCLUDE_DIR],
-  dependencies : LIBDEVHELP_DEPS
+  include_directories: [CONFIG_H_INCLUDE_DIR, ROOT_INCLUDE_DIR],
+  dependencies: LIBDEVHELP_DEPS
 )
 
 # For unit tests, to be able to test private functions.
 STATIC_LIBDEVHELP_DECLARED_DEP = declare_dependency(
-  sources : libdevhelp_enum_header,
-  link_with : libdevhelp_static,
-  include_directories : [ROOT_INCLUDE_DIR],
-  dependencies : LIBDEVHELP_DEPS
+  sources: libdevhelp_enum_header,
+  link_with: libdevhelp_static,
+  include_directories: [ROOT_INCLUDE_DIR],
+  dependencies: LIBDEVHELP_DEPS
 )
 
 symbol_map = join_paths(meson.current_source_dir(), 'symbol.map')
 
 libdevhelp = shared_library(
   'devhelp-@0@'.format(LIBDEVHELP_API_VERSION),
-  link_whole : libdevhelp_static,
-  link_args : '-Wl,--version-script,' + symbol_map,
-  link_depends : symbol_map,
-  version : LIBDEVHELP_LT_VERSION,
-  install : true
+  link_whole: libdevhelp_static,
+  link_args: '-Wl,--version-script,' + symbol_map,
+  link_depends: symbol_map,
+  version: LIBDEVHELP_LT_VERSION,
+  install: true
 )
 
 SHARED_LIBDEVHELP_DECLARED_DEP = declare_dependency(
-  sources : libdevhelp_enum_header,
-  link_with : libdevhelp,
-  include_directories : [ROOT_INCLUDE_DIR, include_directories('.')],
-  dependencies : LIBDEVHELP_DEPS
+  sources: libdevhelp_enum_header,
+  link_with: libdevhelp,
+  include_directories: [ROOT_INCLUDE_DIR, include_directories('.')],
+  dependencies: LIBDEVHELP_DEPS
 )
 
 install_headers(
   libdevhelp_public_headers,
-  subdir : install_headers_subdir
+  subdir: install_headers_subdir
 )
 
 PKG_CONFIG.generate(
-  filebase : 'libdevhelp-@0@'.format(LIBDEVHELP_API_VERSION_FULL),
-  name : meson.project_name(),
-  description : meson.project_name(),
-  version : meson.project_version(),
-  libraries : libdevhelp,
-  subdirs : install_headers_first_subdir,
-  requires : LIBDEVHELP_PUBLIC_DEPS,
-  requires_private : LIBDEVHELP_PRIVATE_DEPS
+  filebase: 'libdevhelp-@0@'.format(LIBDEVHELP_API_VERSION_FULL),
+  name: meson.project_name(),
+  description: meson.project_name(),
+  version: meson.project_version(),
+  libraries: libdevhelp,
+  subdirs: install_headers_first_subdir,
+  requires: LIBDEVHELP_PUBLIC_DEPS,
+  requires_private: LIBDEVHELP_PRIVATE_DEPS
 )
 
 GNOME.generate_gir(
   libdevhelp,
-  export_packages : 'libdevhelp-@0@'.format(LIBDEVHELP_API_VERSION_FULL),
-  sources : [
+  export_packages: 'libdevhelp-@0@'.format(LIBDEVHELP_API_VERSION_FULL),
+  sources: [
     libdevhelp_public_headers,
     libdevhelp_public_c_files,
     libdevhelp_enums
   ],
-  namespace : 'Devhelp',
-  nsversion : LIBDEVHELP_API_VERSION_FULL,
-  identifier_prefix : 'Dh',
-  includes : ['Gtk-3.0', 'WebKit2-4.0'],
-  header : 'devhelp/devhelp.h',
-  include_directories : ROOT_INCLUDE_DIR,
-  install : true
+  namespace: 'Devhelp',
+  nsversion: LIBDEVHELP_API_VERSION_FULL,
+  identifier_prefix: 'Dh',
+  includes: ['Gtk-3.0', 'WebKit2-4.0'],
+  header: 'devhelp/devhelp.h',
+  include_directories: ROOT_INCLUDE_DIR,
+  install: true
 )

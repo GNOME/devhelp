@@ -12,8 +12,8 @@ foreach unit_test : unit_tests
   exe = executable(
     unit_test,
     unit_test + '.c',
-    include_directories : ROOT_INCLUDE_DIR,
-    dependencies : [LIBDEVHELP_DEPS, STATIC_LIBDEVHELP_DECLARED_DEP]
+    include_directories: ROOT_INCLUDE_DIR,
+    dependencies: [LIBDEVHELP_DEPS, STATIC_LIBDEVHELP_DECLARED_DEP]
   )
 
   test(unit_test, exe)

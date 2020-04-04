@@ -1,9 +1,9 @@
 subdir('xml')
 
 configure_file(
-  input : 'devhelp-sections.txt',
-  output : 'devhelp-@0@-sections.txt'.format(LIBDEVHELP_API_VERSION),
-  copy : true
+  input: 'devhelp-sections.txt',
+  output: 'devhelp-@0@-sections.txt'.format(LIBDEVHELP_API_VERSION),
+  copy: true
 )
 
 gtkdoc_module_name = 'devhelp-@0@'.format(LIBDEVHELP_API_VERSION)
@@ -17,12 +17,12 @@ webkitgtk_docpath = dependency('webkit2gtk-4.0').get_pkgconfig_variable('prefix'
 
 GNOME.gtkdoc(
   gtkdoc_module_name,
-  main_xml : 'devhelp-docs.xml',
-  src_dir : include_directories('../../devhelp/'),
-  dependencies : SHARED_LIBDEVHELP_DECLARED_DEP,
-  scan_args : ['--rebuild-types'],
-  gobject_typesfile : 'devhelp-@0@.types'.format(LIBDEVHELP_API_VERSION),
-  fixxref_args : [
+  main_xml: 'devhelp-docs.xml',
+  src_dir: include_directories('../../devhelp/'),
+  dependencies: SHARED_LIBDEVHELP_DECLARED_DEP,
+  scan_args: ['--rebuild-types'],
+  gobject_typesfile: 'devhelp-@0@.types'.format(LIBDEVHELP_API_VERSION),
+  fixxref_args: [
     '--html-dir=@0@'.format(html_dir),
     '--extra-dir=@0@'.format(glib_docpath),
     '--extra-dir=@0@'.format(gobject_docpath),
@@ -30,10 +30,10 @@ GNOME.gtkdoc(
     '--extra-dir=@0@'.format(gtk_docpath),
     '--extra-dir=@0@'.format(webkitgtk_docpath)
   ],
-  content_files : [
+  content_files: [
     'api-breaks.xml'
   ],
-  ignore_headers : [
+  ignore_headers: [
     'dh-book-list-simple.h',
     'dh-dconf-migration.h',
     'dh-error.h',
@@ -41,5 +41,5 @@ GNOME.gtkdoc(
     'dh-search-context.h',
     'dh-util-lib.h'
   ],
-  install : true
+  install: true
 )

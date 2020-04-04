@@ -8,5 +8,5 @@ pages = [
 
 GNOME.yelp(
   'devhelp',
-  sources : pages
+  sources: pages
 )

@@ -5,9 +5,9 @@
 
 project(
   'devhelp', 'c',
-  meson_version : '>= 0.50',
-  version : '3.37.0',
-  default_options : ['warning_level=2']
+  meson_version: '>= 0.50',
+  version: '3.37.0',
+  default_options: ['warning_level=2']
 )
 
 GNOME = import('gnome')
@@ -72,7 +72,7 @@ GETTEXT_PACKAGE_NAME = meson.project_name()
 config_data.set_quoted(
   'GETTEXT_PACKAGE',
   GETTEXT_PACKAGE_NAME,
-  description : 'gettext package name.'
+  description: 'gettext package name.'
 )
 config_data.set_quoted(
   'DATADIR',
@@ -87,8 +87,8 @@ config_data.set_quoted('LIBDEVHELP_API_VERSION', LIBDEVHELP_API_VERSION)
 config_data.set('FLATPAK_BUILD', get_option('flatpak_build'))
 
 configure_file(
-  output : 'config.h',
-  configuration : config_data
+  output: 'config.h',
+  configuration: config_data
 )
 
 CONFIG_H_INCLUDE_DIR = include_directories('.')
@@ -100,7 +100,7 @@ ROOT_INCLUDE_DIR = include_directories('.')
 
 add_project_arguments(
   '-DG_LOG_DOMAIN="@0@"'.format(meson.project_name()),
-  language : 'c'
+  language: 'c'
 )
 
 #####
@@ -155,7 +155,7 @@ warning_cflags = [
 
 c_compiler = meson.get_compiler('c')
 supported_warning_cflags = c_compiler.get_supported_arguments(warning_cflags)
-add_project_arguments(supported_warning_cflags, language : 'c')
+add_project_arguments(supported_warning_cflags, language: 'c')
 ##### end CFLAGS
 
 subdir('data')
