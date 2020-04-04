@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
-/* SPDX-FileCopyrightText: 2018 Sébastien Wilmet <swilmet@gnome.org>
+/* SPDX-FileCopyrightText: 2018-2020 Sébastien Wilmet <swilmet@gnome.org>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -191,7 +191,7 @@ dh_book_list_builder_add_default_sub_book_lists (DhBookListBuilder *builder)
          *
          * https://bugzilla.gnome.org/show_bug.cgi?id=792068
          */
-#ifdef FLATPAK_BUILD
+#if FLATPAK_BUILD
         add_default_sub_book_lists_in_data_dir (builder, "/run/host/usr/share");
 #endif
 }
