@@ -81,7 +81,7 @@ libdevhelp_static = static_library(
   [libdevhelp_public_c_files,
    libdevhelp_private_c_files,
    libdevhelp_enums],
-  include_directories: [CONFIG_H_INCLUDE_DIR, ROOT_INCLUDE_DIR],
+  include_directories: ROOT_INCLUDE_DIR,
   dependencies: LIBDEVHELP_DEPS
 )
 

@@ -69,19 +69,9 @@ DEVHELP_APP_DEPS = [
 
 config_data = configuration_data()
 GETTEXT_PACKAGE_NAME = meson.project_name()
-config_data.set_quoted(
-  'GETTEXT_PACKAGE',
-  GETTEXT_PACKAGE_NAME,
-  description: 'gettext package name.'
-)
-config_data.set_quoted(
-  'DATADIR',
-  join_paths(get_option('prefix'), get_option('datadir'))
-)
-config_data.set_quoted(
-  'LOCALEDIR',
-  join_paths(get_option('prefix'), get_option('localedir'))
-)
+config_data.set_quoted('GETTEXT_PACKAGE', GETTEXT_PACKAGE_NAME)
+config_data.set_quoted('DATADIR', get_option('prefix') / get_option('datadir'))
+config_data.set_quoted('LOCALEDIR', get_option('prefix') / get_option('localedir'))
 config_data.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_data.set_quoted('LIBDEVHELP_API_VERSION', LIBDEVHELP_API_VERSION)
 config_data.set('FLATPAK_BUILD', get_option('flatpak_build'))
@@ -90,8 +80,6 @@ configure_file(
   output: 'config.h',
   configuration: config_data
 )
-
-CONFIG_H_INCLUDE_DIR = include_directories('.')
 
 # Misc
 
