@@ -36,8 +36,9 @@ add_menu_action_infos (DhApp *app)
                 { "app.new-window", NULL, N_("New _Window"), "<Control>n",
                   N_("Open a new window") },
                 { "app.preferences", NULL, N_("_Preferences") },
-                { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts") },
-                { "app.help", NULL, N_("_Help"), "F1" },
+                { "win.shortcuts-window", NULL, N_("_Keyboard Shortcuts"), 
+                  NULL, N_("Keyboard shortcuts") }, 
+                { "app.help", NULL, N_("_Help"), "F1", N_("Show help") },
                 { "app.about", NULL, N_("_About Devhelp") },
                 { "app.quit", NULL, N_("_Quit"), "<Control>q",
                   N_("Close all windows") },
@@ -64,8 +65,8 @@ add_menu_action_infos (DhApp *app)
                                             entries, -1,
                                             GETTEXT_PACKAGE);
 
-        accels[0] = "<Control>F1";
-        accels[1] = "<Control>question";
+        accels[0] = "<Control>question";
+        accels[1] = "<Control>F1";
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
         amtk_action_info_set_accels (action_info, accels);
 
@@ -98,6 +99,9 @@ add_other_action_infos (DhApp *app)
                 { "win.go-back", NULL, NULL, NULL, N_("Go back") },
                 { "win.go-forward", NULL, NULL, NULL, N_("Go forward") },
                 { "win.focus-search", NULL, NULL, NULL, N_("Focus global search") },
+                { "win.show-window-menu", NULL, NULL, "F10", N_("Show menu") },
+                { "win.prev-tab", NULL, NULL, "<Control>Page_Up", N_("Previous tab") },
+                { "win.next-tab", NULL, NULL, "<Control>Page_Down", N_("Next tab") },
                 { NULL }
         };
 
