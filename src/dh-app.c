@@ -26,7 +26,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 static void
 add_menu_action_infos (DhApp *app)
 {
-        const gchar *accels[] = {NULL, NULL, NULL};
+        const gchar *accels[] = {NULL, NULL, NULL, NULL};
         AmtkActionInfo *action_info;
 
         const AmtkActionInfoEntry entries[] = {
@@ -50,9 +50,9 @@ add_menu_action_infos (DhApp *app)
                   N_("Find in current page") },
                 { "win.zoom-in", NULL, N_("_Larger Text"), NULL,
                   N_("Larger text") },
-                { "win.zoom-out", NULL, N_("S_maller Text"), "<Control>minus",
+                { "win.zoom-out", NULL, N_("S_maller Text"), NULL,
                   N_("Smaller text") },
-                { "win.zoom-default", NULL, N_("_Normal Size"), "<Control>0",
+                { "win.zoom-default", NULL, N_("_Normal Size"), NULL,
                   N_("Normal size") },
                 { NULL }
         };
@@ -66,6 +66,7 @@ add_menu_action_infos (DhApp *app)
 
         accels[0] = "<Control>F1";
         accels[1] = "<Control>question";
+        accels[2] = NULL;
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
         amtk_action_info_set_accels (action_info, accels);
 
@@ -77,9 +78,22 @@ add_menu_action_infos (DhApp *app)
          */
         accels[0] = "<Control>plus";
         accels[1] = "<Control>equal";
+        accels[2] = "<Control>KP_Add";
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-in");
         amtk_action_info_set_accels (action_info, accels);
 
+        accels[0] = "<Control>minus";
+        accels[1] = "<Control>KP_Subtract";
+        accels[2] = NULL;
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-out");
+        amtk_action_info_set_accels (action_info, accels);
+        
+        accels[0] = "<Control>0";
+        accels[1] = "<Control>KP_0";
+        accels[2] = NULL;
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-default");
+        amtk_action_info_set_accels (action_info, accels);
+        
         amtk_action_info_store_set_all_accels_to_app (app->priv->menu_action_info_store,
                                                       GTK_APPLICATION (app));
 }
