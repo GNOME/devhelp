@@ -122,6 +122,7 @@ PKG_CONFIG.generate(
   description: meson.project_name(),
   version: meson.project_version(),
   libraries: libdevhelp,
+  libraries_private: '-lm',
   subdirs: install_headers_first_subdir,
   requires: LIBDEVHELP_PUBLIC_DEPS,
   requires_private: LIBDEVHELP_PRIVATE_DEPS
