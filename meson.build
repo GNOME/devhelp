@@ -83,7 +83,7 @@ configure_file(
 
 # Misc
 
-# For #include <devhelp/something.h>
+# For #include <devhelp/something.h> or #include "config.h".
 ROOT_INCLUDE_DIR = include_directories('.')
 
 add_project_arguments(
