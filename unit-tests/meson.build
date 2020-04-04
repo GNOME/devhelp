@@ -8,13 +8,11 @@ unit_tests = [
   'test-util'
 ]
 
-foreach unit_test : unit_tests
-  exe = executable(
-    unit_test,
-    unit_test + '.c',
-    include_directories: ROOT_INCLUDE_DIR,
-    dependencies: [LIBDEVHELP_DEPS, STATIC_LIBDEVHELP_DECLARED_DEP]
+foreach test_name : unit_tests
+  test_exe = executable(
+    test_name,
+    test_name + '.c',
+    dependencies: LIBDEVHELP_STATIC_DEP
   )
-
-  test(unit_test, exe)
+  test(test_name, test_exe)
 endforeach

@@ -19,7 +19,6 @@ devhelp_app_sources += GNOME.compile_resources(
 executable(
   'devhelp',
   devhelp_app_sources,
-  include_directories: ROOT_INCLUDE_DIR,
-  dependencies: [DEVHELP_APP_DEPS, SHARED_LIBDEVHELP_DECLARED_DEP],
+  dependencies: [DEVHELP_APP_DEPS, LIBDEVHELP_SHARED_LIB_DEP],
   install: true
 )
