@@ -5,7 +5,7 @@
 
 project(
   'devhelp', 'c',
-  meson_version: '>= 0.50',
+  meson_version: '>= 0.53',
   version: '3.37.0',
   default_options: ['warning_level=2']
 )
@@ -163,10 +163,6 @@ meson.add_install_script(
   join_paths(get_option('prefix'), get_option('datadir'))
 )
 
-# Print a summary of the configuration
-output = 'Configuration:\n\n'
-output += '        Devhelp version ' + meson.project_version() + '\n\n'
-output += '        Prefix:             ' + get_option('prefix') + '\n'
-output += '        API documentation:  ' + get_option('gtk_doc').to_string() + '\n'
-output += '        Flatpak build mode: ' + get_option('flatpak_build').to_string() + '\n'
-message(output)
+summary('Prefix', get_option('prefix'))
+summary('API documentation', get_option('gtk_doc'))
+summary('Flatpak build mode', get_option('flatpak_build'))
