@@ -66,8 +66,8 @@ add_menu_action_infos (DhApp *app)
                                             entries, -1,
                                             GETTEXT_PACKAGE);
 
-        accels[0] = "<Control>F1";
-        accels[1] = "<Control>question";
+        accels[0] = "<Control>question";
+        accels[1] = "<Control>F1";
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
         amtk_action_info_set_accels (action_info, accels);
 
