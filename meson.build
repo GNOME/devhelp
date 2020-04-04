@@ -160,7 +160,7 @@ endif
 
 meson.add_install_script(
   'meson_post_install.py',
-  join_paths(get_option('prefix'), get_option('datadir'))
+  get_option('prefix') / get_option('datadir')
 )
 
 summary('Prefix', get_option('prefix'))

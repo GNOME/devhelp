@@ -1,4 +1,4 @@
-gedit_plugin_dir = join_paths(get_option('prefix'), get_option('libdir'), 'gedit/plugins')
+gedit_plugin_dir = get_option('libdir') / 'gedit/plugins'
 
 install_data(
   'devhelp.py',

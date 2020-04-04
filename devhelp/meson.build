@@ -61,12 +61,8 @@ libdevhelp_private_c_files = [
 ]
 
 install_headers_first_subdir = 'devhelp-@0@'.format(LIBDEVHELP_API_VERSION)
-install_headers_subdir = join_paths(install_headers_first_subdir, 'devhelp')
-install_headers_fulldir = join_paths(
-  get_option('prefix'),
-  get_option('includedir'),
-  install_headers_subdir
-)
+install_headers_subdir = install_headers_first_subdir / 'devhelp'
+install_headers_fulldir = get_option('prefix') / get_option('includedir') / install_headers_subdir
 
 libdevhelp_enums = GNOME.mkenums_simple(
   'dh-enum-types',
@@ -93,7 +89,7 @@ STATIC_LIBDEVHELP_DECLARED_DEP = declare_dependency(
   dependencies: LIBDEVHELP_DEPS
 )
 
-symbol_map = join_paths(meson.current_source_dir(), 'symbol.map')
+symbol_map = meson.current_source_dir() / 'symbol.map'
 
 libdevhelp = shared_library(
   'devhelp-@0@'.format(LIBDEVHELP_API_VERSION),
