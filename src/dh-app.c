@@ -26,7 +26,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 static void
 add_menu_action_infos (DhApp *app)
 {
-        const gchar *accels[] = {NULL, NULL, NULL};
+        const gchar *accels[] = {NULL, NULL, NULL, NULL};
         AmtkActionInfo *action_info;
 
         const AmtkActionInfoEntry entries[] = {
@@ -50,9 +50,9 @@ add_menu_action_infos (DhApp *app)
                   N_("Find in current page") },
                 { "win.zoom-in", NULL, N_("_Larger Text"), NULL,
                   N_("Larger text") },
-                { "win.zoom-out", NULL, N_("S_maller Text"), "<Control>minus",
+                { "win.zoom-out", NULL, N_("S_maller Text"), NULL,
                   N_("Smaller text") },
-                { "win.zoom-default", NULL, N_("_Normal Size"), "<Control>0",
+                { "win.zoom-default", NULL, N_("_Normal Size"), NULL,
                   N_("Normal size") },
                 { NULL }
         };
@@ -69,6 +69,18 @@ add_menu_action_infos (DhApp *app)
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
         amtk_action_info_set_accels (action_info, accels);
 
+        /* The same as in Epiphany. */
+        accels[0] = "<Control>minus";
+        accels[1] = "<Control>KP_Subtract";
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-out");
+        amtk_action_info_set_accels (action_info, accels);
+
+        /* The same as in Epiphany. */
+        accels[0] = "<Control>0";
+        accels[1] = "<Control>KP_0";
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-default");
+        amtk_action_info_set_accels (action_info, accels);
+
         /* For "<Control>equal": Epiphany also has this keyboard shortcut for
          * zoom-in. On keyboards the = and + are usually on the same key, but +
          * is less convenient to type because Shift must be pressed too.
@@ -77,6 +89,7 @@ add_menu_action_infos (DhApp *app)
          */
         accels[0] = "<Control>plus";
         accels[1] = "<Control>equal";
+        accels[2] = "<Control>KP_Add";
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-in");
         amtk_action_info_set_accels (action_info, accels);
 
