@@ -66,6 +66,7 @@ add_menu_action_infos (DhApp *app)
 
         accels[0] = "<Control>F1";
         accels[1] = "<Control>question";
+        accels[2] = NULL;
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.shortcuts-window");
         amtk_action_info_set_accels (action_info, accels);
 
@@ -93,6 +94,18 @@ add_menu_action_infos (DhApp *app)
         action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-in");
         amtk_action_info_set_accels (action_info, accels);
 
+        accels[0] = "<Control>minus";
+        accels[1] = "<Control>KP_Subtract";
+        accels[2] = NULL;
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-out");
+        amtk_action_info_set_accels (action_info, accels);
+        
+        accels[0] = "<Control>0";
+        accels[1] = "<Control>KP_0";
+        accels[2] = NULL;
+        action_info = amtk_action_info_store_lookup (app->priv->menu_action_info_store, "win.zoom-default");
+        amtk_action_info_set_accels (action_info, accels);
+        
         amtk_action_info_store_set_all_accels_to_app (app->priv->menu_action_info_store,
                                                       GTK_APPLICATION (app));
 }
