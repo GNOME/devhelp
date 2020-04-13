@@ -677,7 +677,7 @@ dh_web_view_set_search_text (DhWebView   *view,
         if (search_text != NULL && search_text[0] != '\0') {
                 /* If webkit_find_controller_search() is called a second time
                  * with the same parameters it's not a NOP, it launches a new
-                 * search, apparently, which screws up search_next() and
+                 * search, apparently, which ruins search_next() and
                  * search_previous(). So we must call it only once for the same
                  * search string.
                  */
