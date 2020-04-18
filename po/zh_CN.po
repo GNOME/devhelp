@@ -1,5 +1,5 @@
 # devhelp simplified chinese translation
-# Copyright (C) 2002-2018 devhelp's COPYRIGHT HOLDER
+# Copyright (C) 2002-2019 devhelp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
 # Zipeco <Zipeco@btamail.net.cn>, 2002.
 # Funda Wang <fundawang@linux.net.cn>, 2004.
@@ -11,17 +11,16 @@
 # Cheng Lu <chenglu1990@gmail.com>, 2012.
 # Sphinx Jiang <yishanj13@gmail.com>, 2013.
 # YunQiang Su <wzssyqa@gmail.com>, 2015.
-# Mingcong Bai <jeffbai@aosc.xyz>, 2016, 2017.
-# Dingzhong Chen <wsxy162@@gmail.com>, 2018.
+# Mingcong Bai <jeffbai@aosc.xyz>, 2016, 2017, 2018.
+# Dingzhong Chen <wsxy162@gmail.com>, 2018, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=devhelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-05-21 07:57+0000\n"
-"PO-Revision-Date: 2018-05-21 22:47+0800\n"
-"Last-Translator: Dingzhong Chen <wsxy162@@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2019-03-26 11:48+0000\n"
+"PO-Revision-Date: 2019-04-10 17:16+0800\n"
+"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +33,7 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -88,12 +87,6 @@ msgid "documentation;information;manual;developer;api;"
 msgstr ""
 "documentation;information;manual;developer;api;文档;信息;手册;说明书;开发;"
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "devhelp"
-msgstr "devhelp"
-
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
 msgstr "主窗口最大化"
@@ -142,49 +135,45 @@ msgstr "辅助窗口高度"
 msgid "The height of the assistant window."
 msgstr "辅助窗口高度。"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:9
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
 msgid "Books disabled"
 msgstr "已禁用的书籍"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:10
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
 msgstr "用户禁用的书籍列表。"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:14
-#, fuzzy
-#| msgid "Group by language"
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
-msgstr "按语言分组"
+msgstr "按语言分组书籍"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:15
-#, fuzzy
-#| msgid "Whether books should be grouped by language in the UI"
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
-msgstr "在界面上是否应按语言将书分组"
+msgstr "在界面上是否按照语言分组书籍."
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:21
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
 msgstr "使用系统字体"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:22
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
 msgstr "使用系统默认字体。"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:26
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
 msgstr "普通文本字体"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:27
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
 msgstr "变动宽度文本使用的字体。"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:31
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
 msgstr "固定宽度文本字体"
 
-#: data/org.gnome.libdevhelp-3.gschema.xml:32
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "固定宽度文本使用的字体，例如示例代码。"
 
@@ -201,7 +190,7 @@ msgstr "语言：%s"
 msgid "Language: Undefined"
 msgstr "语言：未定义"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:764
 msgid "_Collapse All"
 msgstr "收起全部(_C)"
 
@@ -270,6 +259,10 @@ msgstr "属性"
 msgid "Signal"
 msgstr "信号"
 
+#: devhelp/dh-web-view.c:652
+msgid "Empty Page"
+msgstr "空白页"
+
 #: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "Devhelp 支持"
@@ -279,15 +272,12 @@ msgid "Show API Documentation"
 msgstr "显示 API 文档"
 
 #. action, icon, label, accel, tooltip
-#. App menu
+#. Actions related to the whole application
 #: src/dh-app.c:51
 msgid "New _Window"
 msgstr "新建窗口(_W)"
 
 #: src/dh-app.c:52
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Open a new window"
 msgid "Open a new window"
 msgstr "新建窗口"
 
@@ -304,29 +294,23 @@ msgid "_Help"
 msgstr "帮助(_H)"
 
 #: src/dh-app.c:56
-msgid "_About"
-msgstr "关于(_A)"
+msgid "_About Devhelp"
+msgstr "关于 Devhelp(_A)"
 
 #: src/dh-app.c:57
 msgid "_Quit"
 msgstr "退出(_Q)"
 
 #: src/dh-app.c:58
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Close all windows"
 msgid "Close all windows"
 msgstr "关闭所有窗口"
 
-#. Window menu
+#. Actions related to the current main window
 #: src/dh-app.c:61
 msgid "_Side Panel"
 msgstr "侧面板(_S)"
 
 #: src/dh-app.c:62
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Toggle side panel visibility"
 msgid "Toggle side panel visibility"
 msgstr "切换侧边栏可见性"
 
@@ -339,9 +323,6 @@ msgid "_Find"
 msgstr "查找(_F)"
 
 #: src/dh-app.c:65
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Find in current page"
 msgid "Find in current page"
 msgstr "在当前页面查找"
 
@@ -350,64 +331,43 @@ msgid "_Larger Text"
 msgstr "放大文本(_L)"
 
 #: src/dh-app.c:67
-#, fuzzy
-#| msgid "_Larger Text"
 msgid "Larger text"
-msgstr "放大文本(_L)"
+msgstr "放大文本"
 
 #: src/dh-app.c:68
 msgid "S_maller Text"
-msgstr "缩小文本(_M)"
+msgstr "缩小文本"
 
 #: src/dh-app.c:69
-#, fuzzy
-#| msgid "S_maller Text"
 msgid "Smaller text"
-msgstr "缩小文本(_M)"
+msgstr "缩小文本"
 
 #: src/dh-app.c:70
 msgid "_Normal Size"
 msgstr "正常大小(_N)"
 
 #: src/dh-app.c:71
-#, fuzzy
-#| msgid "_Normal Size"
 msgid "Normal size"
-msgstr "正常大小(_N)"
+msgstr "正常大小"
 
 #. action, icon, label, accel, tooltip
 #: src/dh-app.c:111
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Open a new tab"
 msgid "Open a new tab"
 msgstr "新建标签页"
 
 #: src/dh-app.c:112
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Close the current window"
 msgid "Close the current tab"
-msgstr "关闭当前窗口"
+msgstr "关闭当前标签页"
 
 #: src/dh-app.c:113
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Go back"
 msgid "Go back"
 msgstr "后退"
 
 #: src/dh-app.c:114
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Go forward"
 msgid "Go forward"
 msgstr "前进"
 
 #: src/dh-app.c:115
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Focus global search"
 msgid "Focus global search"
 msgstr "聚焦到全局搜索"
 
@@ -423,34 +383,34 @@ msgstr ""
 "Aron Xu <aronxu@gnome.org>, 2010\n"
 "Cheng Lu <chenglu1990@gmail.com>, 2012\n"
 "Sphinx Jiang <yishanj13@gmail.com>, 2013\n"
-"Mingcong Bai <jeffbai@aosc.xyz>, 2016, 2017\n"
+"Mingcong Bai <jeffbai@aosc.xyz>, 2016, 2017, 2018\n"
 "Dingzhong Chen <wsxy162@gmail.com>, 2018"
 
 #: src/dh-app.c:276
 msgid "Devhelp Website"
 msgstr "Devhelp 网站"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:451
 msgid "Opens a new Devhelp window"
 msgstr "打开新的 Devhelp 窗口"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:456
 msgid "Search for a keyword"
 msgstr "搜索一个关键词"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:457 src/dh-app.c:462
 msgid "KEYWORD"
 msgstr "关键字"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:461
 msgid "Search and display any hit in the assistant window"
 msgstr "在辅助窗口中搜索并显示任何命中内容"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:466
 msgid "Display the version and exit"
 msgstr "显示版本后退出"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:471
 msgid "Quit any running Devhelp"
 msgstr "退出正在运行的 Devhelp"
 
@@ -495,44 +455,36 @@ msgstr "等宽字体(_F)："
 msgid "Fonts"
 msgstr "字体"
 
-#: src/dh-tab.c:70
-msgid "Error opening the requested link."
-msgstr "在打开需要的链接时出错。"
-
-#: src/dh-web-view.c:301
-msgid "Empty Page"
-msgstr "空白页"
-
 #. General group
-#: src/dh-window.c:418
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "General"
+#: src/dh-window.c:393
 msgid "General"
 msgstr "常规"
 
 #. Zoom group
-#: src/dh-window.c:432
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Zoom"
+#: src/dh-window.c:407
 msgid "Zoom"
 msgstr "缩放"
 
-#: src/dh-window.ui:28
+#: src/dh-window.c:552
 msgid "Back"
 msgstr "后退"
 
-#: src/dh-window.ui:47
+#: src/dh-window.c:556
 msgid "Forward"
 msgstr "前进"
 
-#: src/dh-window.ui:92
+#: src/dh-window.c:574
 msgid "New Tab"
 msgstr "新标签页"
 
-#~ msgid "_About Devhelp"
-#~ msgstr "关于 Devhelp(_A)"
+#~ msgid "devhelp"
+#~ msgstr "devhelp"
+
+#~ msgid "_About"
+#~ msgstr "关于(_A)"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "在打开需要的链接时出错。"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Print"
