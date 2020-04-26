@@ -3,17 +3,17 @@ Devhelp
 
 The Devhelp web page:
 
-    https://wiki.gnome.org/Apps/Devhelp
+https://wiki.gnome.org/Apps/Devhelp
 
 Professional services
 ---------------------
 
-See the file: docs/professional-services.md
+See the file: [docs/professional-services.md](docs/professional-services.md)
 
 How to contribute
 -----------------
 
-See the HACKING file.
+See the [HACKING](HACKING) file.
 
 Dependencies
 ------------
@@ -21,7 +21,7 @@ Dependencies
 - GLib
 - GTK
 - WebKitGTK
-- Amtk - https://wiki.gnome.org/Projects/Amtk
+- [Amtk](https://wiki.gnome.org/Projects/Amtk)
 - gsettings-desktop-schemas
 
 Description
@@ -36,7 +36,7 @@ not needed to use Devhelp.
 
 Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are
 well supported. But other development platforms can be supported as well,
-as long as the API documentation is available in HTML and a *.devhelp2
+as long as the API documentation is available in HTML and a `*.devhelp2`
 index file is generated.
 
 Devhelp integrates with other applications such as Glade, Builder or
@@ -46,15 +46,15 @@ Emacs, Geany, …).
 Integration with other developer tools
 --------------------------------------
 
-Devhelp provides some command line options, such as --search and
---search-assistant. A text editor plugin can for example launch the command
+Devhelp provides some command line options, such as `--search` and
+`--search-assistant`. A text editor plugin can for example launch the command
 `devhelp --search function_name` when a keyboard shortcut is pressed, with the
-function_name under the cursor.
+`function_name` under the cursor.
 
 Devhelp also provides a shared library, to integrate the GTK widgets inside an
 IDE. It is used for example by Builder and Anjuta.
 
-For the --search command line option, see the class description of
+For the `--search` command line option, see the class description of
 DhKeywordModel, the search string supports additional features useful for IDEs
 or other developer tools.
 
