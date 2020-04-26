@@ -10,6 +10,19 @@ Professional services
 
 See the file: [docs/professional-services.md](docs/professional-services.md)
 
+Installation of the Devhelp Flatpak
+-----------------------------------
+
+### Stable version
+
+- [Devhelp on Flathub](https://flathub.org/apps/details/org.gnome.Devhelp)
+
+### Nightly, development version
+
+```
+$ flatpak install https://gitlab.gnome.org/GNOME/gnome-apps-nightly/raw/master/devhelp.flatpakref
+```
+
 How to contribute
 -----------------
 
