@@ -1,3 +1,11 @@
+News in 3.37.1, 2020-xx-yy (not yet released)
+--------------------------
+* Enable WebKitGTK sandbox.
+* Add more keyboard shortcuts to zoom actions.
+* Improvements to the build system.
+* Improvement to the Flatpak.
+* Translation updates.
+
 News in 3.36.2, 2020-04-25
 --------------------------
 * Fix RTL (right-to-left text locale) bug.
