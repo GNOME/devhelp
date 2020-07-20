@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2019-12-30 11:45+0000\n"
-"PO-Revision-Date: 2020-03-03 10:09-0300\n"
+"POT-Creation-Date: 2020-05-29 13:32+0000\n"
+"PO-Revision-Date: 2020-07-19 23:55-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.32.0\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -241,17 +241,23 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:47
+#| msgid ""
+#| "Note that the two latter consist of :-separated lists of directories to "
+#| "look for. Those environment variables are normally set up by the desktop "
+#| "environment or distribution."
 msgid ""
-"Note that the two latter consist of :-separated lists of directories to look "
-"for. Those environment variables are normally set up by the desktop "
-"environment or distribution."
+"Note that the two latter consist of lists of directories to look for. "
+"Directory values are separated by <code>:</code> characters. Those "
+"environment variables are normally set up by the desktop environment or "
+"distribution."
 msgstr ""
-"Observe que os dois últimos consistem em listas de diretórios separados por "
-"“:” a serem procurados. Essas variáveis de ambiente são normalmente "
-"configuradas pelo ambiente ou distribuição da área de trabalho."
+"Observe que os dois últimos consistem em listas de diretórios a serem "
+"procurados. Os valores de diretórios são separados por caracteres <code>:</"
+"code>. Estas variáveis de ambiente são normalmente configuradas pelo "
+"ambiente gráfico ou pela distribuição."
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:52
+#: C/installing-api-documentation.page:53
 msgid ""
 "Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
 "typical system:"
@@ -260,7 +266,7 @@ msgstr ""
 "um sistema típico:"
 
 #. (itstool) path: item/p
-#: C/installing-api-documentation.page:60
+#: C/installing-api-documentation.page:61
 msgid ""
 "<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
 "file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
@@ -271,7 +277,7 @@ msgstr ""
 "org/\">Flatpak</link>."
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:66
+#: C/installing-api-documentation.page:67
 msgid ""
 "Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
 "typical system:"
@@ -280,12 +286,12 @@ msgstr ""
 "code> em um sistema típico:"
 
 #. (itstool) path: section/title
-#: C/installing-api-documentation.page:78
+#: C/installing-api-documentation.page:79
 msgid "GTK-Doc"
 msgstr "GTK-Doc"
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:79
+#: C/installing-api-documentation.page:80
 msgid ""
 "<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
 "generate API documentation from comments added to C code. It is used by "
@@ -296,12 +302,12 @@ msgstr ""
 "C. É usado pelas bibliotecas e aplicativos GLib, GTK e GNOME."
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:84
+#: C/installing-api-documentation.page:85
 msgid "GTK-Doc installs the API reference of a module into:"
 msgstr "GTK-Doc instala a referência de API de um módulo para:"
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:90
+#: C/installing-api-documentation.page:91
 msgid ""
 "It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
 "Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
