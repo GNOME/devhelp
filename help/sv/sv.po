@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2019-12-27 13:10+0000\n"
-"PO-Revision-Date: 2020-03-29 21:25+0200\n"
+"POT-Creation-Date: 2020-05-29 13:32+0000\n"
+"PO-Revision-Date: 2020-07-31 00:47+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Project-Style: gnome\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
@@ -248,16 +248,17 @@ msgstr ""
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:47
 msgid ""
-"Note that the two latter consist of :-separated lists of directories to look "
-"for. Those environment variables are normally set up by the desktop "
-"environment or distribution."
+"Note that the two latter consist of lists of directories to look for. "
+"Directory values are separated by <code>:</code> characters. Those "
+"environment variables are normally set up by the desktop environment or "
+"distribution."
 msgstr ""
-"Observera att de två senare består av :-separerade listor av kataloger att "
-"söka efter. Dessa miljövariabler ställs vanligen in av skrivbordsmiljön "
-"eller distributionen."
+"Observera att de två senare består av listor av kataloger att söka efter. "
+"Katalogvärden separeras av tecknet <code>:</code>. Dessa miljövariabler "
+"ställs vanligen in av skrivbordsmiljön eller distributionen."
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:52
+#: C/installing-api-documentation.page:53
 msgid ""
 "Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
 "typical system:"
@@ -266,7 +267,7 @@ msgstr ""
 "typiskt system:"
 
 #. (itstool) path: item/p
-#: C/installing-api-documentation.page:60
+#: C/installing-api-documentation.page:61
 msgid ""
 "<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
 "file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
@@ -277,7 +278,7 @@ msgstr ""
 "\">Flatpak</link>."
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:66
+#: C/installing-api-documentation.page:67
 msgid ""
 "Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
 "typical system:"
@@ -286,12 +287,12 @@ msgstr ""
 "typiskt system:"
 
 #. (itstool) path: section/title
-#: C/installing-api-documentation.page:78
+#: C/installing-api-documentation.page:79
 msgid "GTK-Doc"
 msgstr "GTK-Doc"
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:79
+#: C/installing-api-documentation.page:80
 msgid ""
 "<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
 "generate API documentation from comments added to C code. It is used by "
@@ -302,12 +303,12 @@ msgstr ""
 "GTK samt GNOME-bibliotek och GNOME-program."
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:84
+#: C/installing-api-documentation.page:85
 msgid "GTK-Doc installs the API reference of a module into:"
 msgstr "GTK-Doc installerar API-referensen för en modul till:"
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:90
+#: C/installing-api-documentation.page:91
 msgid ""
 "It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
 "Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
