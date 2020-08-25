@@ -1,13 +1,13 @@
 # Spanish translation for devhelp.
 # Copyright (C) 2018 devhelp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2019.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2019-12-31 08:35+0000\n"
-"PO-Revision-Date: 2019-12-31 09:33+0100\n"
+"POT-Creation-Date: 2020-05-29 13:32+0000\n"
+"PO-Revision-Date: 2020-08-25 13:40+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.34.0\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2018"
+msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2020"
 
 #. (itstool) path: page/title
 #. (itstool) path: section/title
@@ -241,17 +241,22 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:47
+#| msgid ""
+#| "Note that the two latter consist of :-separated lists of directories to "
+#| "look for. Those environment variables are normally set up by the desktop "
+#| "environment or distribution."
 msgid ""
-"Note that the two latter consist of :-separated lists of directories to look "
-"for. Those environment variables are normally set up by the desktop "
-"environment or distribution."
+"Note that the two latter consist of lists of directories to look for. "
+"Directory values are separated by <code>:</code> characters. Those "
+"environment variables are normally set up by the desktop environment or "
+"distribution."
 msgstr ""
-"Tenga en cuenta que las dos últimas son listas de carpetas separadas por :- "
-"en las que buscar. Normalmente estas variables de entorno las configura el "
-"entorno de escritorio o la distribución."
+"Tenga en cuenta que las dos últimas son listas de carpetas separadas por "
+"<code>:</code> en las que buscar. Normalmente estas variables de entorno las "
+"configura el entorno de escritorio o la distribución."
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:52
+#: C/installing-api-documentation.page:53
 msgid ""
 "Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
 "typical system:"
@@ -260,7 +265,7 @@ msgstr ""
 "en un sistema habitual:"
 
 #. (itstool) path: item/p
-#: C/installing-api-documentation.page:60
+#: C/installing-api-documentation.page:61
 msgid ""
 "<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
 "file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
@@ -271,7 +276,7 @@ msgstr ""
 "\">Flatpak</link>."
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:66
+#: C/installing-api-documentation.page:67
 msgid ""
 "Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
 "typical system:"
@@ -280,12 +285,12 @@ msgstr ""
 "en un sistema habitual:"
 
 #. (itstool) path: section/title
-#: C/installing-api-documentation.page:78
+#: C/installing-api-documentation.page:79
 msgid "GTK-Doc"
 msgstr "GTK-Doc"
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:79
+#: C/installing-api-documentation.page:80
 msgid ""
 "<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
 "generate API documentation from comments added to C code. It is used by "
@@ -296,12 +301,12 @@ msgstr ""
 "código en C. Se usa en GLib y en bibliotecas y aplicaciones de GNOME."
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:84
+#: C/installing-api-documentation.page:85
 msgid "GTK-Doc installs the API reference of a module into:"
 msgstr "GTK-Doc instala la referencia de la API de un módulo en:"
 
 #. (itstool) path: section/p
-#: C/installing-api-documentation.page:90
+#: C/installing-api-documentation.page:91
 msgid ""
 "It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
 "Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
