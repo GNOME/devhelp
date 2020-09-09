@@ -1,0 +1,402 @@
+# Catalan translation for devhelp.
+# Copyright (C) 2020 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# Miniàngel <miquel.angel.burgos@gmail.com>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp master\n"
+"POT-Creation-Date: 2020-09-08 07:59+0000\n"
+"PO-Revision-Date: 2020-09-08 22:35+0200\n"
+"Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
+"Last-Translator: Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail."
+"com>\n"
+"X-Generator: Poedit 2.3\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail.com>, 2020"
+
+#. (itstool) path: page/title
+#. (itstool) path: section/title
+#: C/book-format.page:14 C/installing-api-documentation.page:23
+msgid "Book format"
+msgstr "Format del llibre"
+
+#. (itstool) path: synopsis/p
+#: C/book-format.page:17
+msgid ""
+"A “book” in <app>Devhelp</app> is the API documentation for one module, or "
+"package (usually a library). This page describes the format that a book "
+"needs to follow in order for <app>Devhelp</app> to recognize it."
+msgstr ""
+"Al <app>Devhelp<app>, un «llibre» és la documentació de l'API d'un mòdul o "
+"paquet (normalment, una biblioteca). Aquesta pàgina descriu el format que un "
+"llibre ha de seguir perquè el <app>Devhelp</app> el reconegui."
+
+#. (itstool) path: page/p
+#: C/book-format.page:24
+msgid ""
+"The content of a book is placed in one directory (that directory contains "
+"only one book, it cannot contain several books). The directory is comprised "
+"of:"
+msgstr ""
+"El contingut d'un llibre es col·loca en un directori (aquest directori conté "
+"un sol llibre, no pot contenir-ne diversos). El directori es compon de:"
+
+#. (itstool) path: item/p
+#: C/book-format.page:30
+msgid "HTML pages, plus possibly CSS files, images, etc;"
+msgstr "pàgines HTML amb possibles fitxers CSS, imatges, etc., i"
+
+#. (itstool) path: item/p
+#: C/book-format.page:33
+msgid ""
+"An index file with the <file>*.devhelp2</file> file extension, see <link "
+"xref=\"index-file-format\"/> for more information."
+msgstr ""
+"un fitxer d'índex amb l'extensió de fitxer <file>*.devhelp2</file>. Vegeu "
+"<link xref=\"index-file-format\"/> per a més informació."
+
+#. (itstool) path: note/p
+#: C/book-format.page:39
+msgid ""
+"Restriction: the name of the directory the <file>*.devhelp2</file> file is "
+"in and the name of the <file>*.devhelp2</file> file (minus the extension) "
+"must match. In other words, if the book directory is called <code>"
+"$book_name</code>, then the absolute path to the index file should end with "
+"<code>$book_name/$book_name.devhelp2</code>. That way, when <app>Devhelp</"
+"app> knows the directory name, it directly knows the location to the index "
+"file."
+msgstr ""
+"Restricció: el nom del directori on és el fitxer <file>*.devhelp2</file> i "
+"el nom del fitxer <file>*.devhelp2</file> (sense l'extensió) han de "
+"coincidir. En altres paraules, si el directori del llibre s'anomena <code>"
+"$book_name</code>, el camí absolut al fitxer d'índex ha d'acabar amb <code>"
+"$book_name/$book_name.devhelp2</code>. D'aquesta manera, quan el "
+"<app>Devhelp</app> coneix el nom del directori, també coneix directament la "
+"ubicació del fitxer d'índex."
+
+#. (itstool) path: page/title
+#: C/index-file-format.page:14
+msgid "Index file format"
+msgstr "Format del fitxer d'índex"
+
+#. (itstool) path: synopsis/p
+#: C/index-file-format.page:17
+msgid ""
+"This page describes the purpose and the format of <file>*.devhelp2</file> "
+"index files."
+msgstr ""
+"Aquesta pàgina descriu el propòsit i el format dels fitxers d'índex <file>*."
+"devhelp2</file>."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:23
+msgid ""
+"A book (see <link xref=\"book-format\"/>) contains one index file. The index "
+"file has the extension <file>.devhelp2</file> and has an XML format."
+msgstr ""
+"Un llibre (vegeu <link xref=\"book-format\"/>) conté un fitxer d'índex. El "
+"fitxer d'índex té l'extensió <file>.devhelp2</file> i format XML."
+
+#. (itstool) path: note/p
+#: C/index-file-format.page:29
+msgid ""
+"The “2” in the <file>*.devhelp2</file> file extension is because it is the "
+"second version of the file format. The first version of the format, with the "
+"<file>*.devhelp</file> file extension, is deprecated and its support in "
+"<app>Devhelp</app> may be removed in the future. On application startup, "
+"when <app>Devhelp</app> scans the filesystem to find books, it emits a "
+"warning message in the terminal for each book that uses a deprecated format."
+msgstr ""
+"El «2» de l'extensió de fitxer <file>*.devhelp2</file> es deu a que és la "
+"segona versió del format de fitxers. La primera versió del format, amb "
+"l'extensió de fitxer <file>*.devhelp</file>, és obsoleta i pot deixar de "
+"tenir compatibilitat al <app>Devhelp</app> en el futur. En iniciar "
+"l'aplicació, quan el <app>Devhelp</app> escaneja el sistema de fitxers "
+"cercant llibres, emet un missatge d'avís al terminal per cada llibre que "
+"utilitza un format obsolet."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:40
+msgid "The index file mainly contains:"
+msgstr "El fitxer d'índex conté principalment:"
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:44
+msgid "The book structure (like a table of contents)."
+msgstr "l'estructura del llibre (una mena de taula de continguts), i"
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:47
+msgid "A list of symbols (functions, types, macros, signals, properties, …)."
+msgstr ""
+"una llista de símbols (funcions, tipus, macros, senyals, propietats, etc.)."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:51
+msgid ""
+"These contain links to the HTML files to reach the corresponding pages and "
+"symbols."
+msgstr ""
+"Aquests elements contenen enllaços als fitxers HTML per a arribar a les "
+"pàgines i símbols corresponents."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:55
+msgid ""
+"In <app>Devhelp</app> the book structure is shown in the side panel. And the "
+"<link xref=\"search\">search in the side panel</link> shows results found in "
+"the index files."
+msgstr ""
+"Al <app>Devhelp</app>, l'estructura del llibre es mostra al quadre lateral. "
+"I la <link xref=\"search\">cerca al quadre lateral</link> mostra resultats "
+"trobats als fitxers d'índex."
+
+#. (itstool) path: section/title
+#: C/index-file-format.page:62
+msgid "Specification of the <file>*.devhelp2</file> XML file format"
+msgstr "Especificació del format de fitxer XML <file>*.devhelp2</file>"
+
+#. (itstool) path: section/p
+#: C/index-file-format.page:63
+msgid ""
+"Unfortunately the <file>*.devhelp2</file> XML file format is not well "
+"documented. There is still some hope that it will be fixed in the near "
+"future. In the meantime, we recommend to look at what <link xref="
+"\"installing-api-documentation#gtk-doc\">GTK-Doc</link> generates. For the "
+"most precise definition of what <app>Devhelp</app> supports, read the parser "
+"source code and the <app>Devhelp</app> API reference."
+msgstr ""
+"Malauradament, el format de fitxer XML <file>*.devhelp2</file> no està ben "
+"documentat. Encara hi ha alguna esperança que això s'arregli en un futur "
+"pròxim. Mentrestant, recomanem consultar el que genera <link xref="
+"\"installing-api-documentation#gtk-doc\">GTK-Doc</link>. Per a la definició "
+"més precisa de què és compatible amb el <app>Devhelp</app>, llegiu el codi "
+"font de l'analitzador i la referència API del <app>Devhelp<app>."
+
+#. (itstool) path: page/title
+#: C/index.page:8
+msgid "Devhelp User Documentation"
+msgstr "Documentació d'usuari del Devhelp"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:11
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation."
+msgstr ""
+"El Devhelp és una eina de desenvolupament de navegació i cerca de "
+"documentació d'API."
+
+#. (itstool) path: page/title
+#: C/installing-api-documentation.page:14
+msgid "Installing API documentation"
+msgstr "Instal·lació de documentació d'API"
+
+#. (itstool) path: synopsis/p
+#: C/installing-api-documentation.page:17
+msgid "How <app>Devhelp</app> finds the API documentation."
+msgstr "Com troba el <app>Devhelp</app> la documentació d'API."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:24
+msgid ""
+"See <link xref=\"book-format\"/> for information on the API documentation "
+"format that <app>Devhelp</app> recognizes."
+msgstr ""
+"Vegeu <link xref=\"book-format\"/> per a informació sobre el format de "
+"documentació d'API que el <app>Devhelp</app> reconeix."
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:31
+msgid "Books locations"
+msgstr "Ubicacions dels llibres"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:32
+msgid ""
+"Once a book follows the right format, its directory needs to be installed at "
+"a location where <app>Devhelp</app> will find it."
+msgstr ""
+"Un cop que un llibre té el format correcte, el seu directori s'ha "
+"d'instal·lar en una ubicació on el <app>Devhelp</app> pugui trobar-lo."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:36
+msgid ""
+"<app>Devhelp</app> uses the <link href=\"https://specifications.freedesktop."
+"org/basedir-spec/latest/\">XDG Base Directory Specification</link> to find "
+"the books. The list of locations searched is:"
+msgstr ""
+"El <app>Devhelp</app> utilitza l'<link href=\"https://specifications."
+"freedesktop.org/basedir-spec/latest/\">especificació del directori base XDG</"
+"link> per a trobar els llibres. La llista d'ubicacions on es cerca és:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:47
+msgid ""
+"Note that the two latter consist of lists of directories to look for. "
+"Directory values are separated by <code>:</code> characters. Those "
+"environment variables are normally set up by the desktop environment or "
+"distribution."
+msgstr ""
+"Tingueu en compte que les dues darreres consisteixen en llistes de "
+"directoris on cercar. Els directoris se separen amb el caràcter <code>:</"
+"code>. Aquestes variables d'entorn solen venir configurades per l'entorn "
+"d'escriptori o la distribució."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:53
+msgid ""
+"Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
+"typical system:"
+msgstr ""
+"Exemple d'ubicacions de fitxers d'índex amb <code>$XDG_DATA_HOME</code> en "
+"un sistema típic:"
+
+#. (itstool) path: item/p
+#: C/installing-api-documentation.page:61
+msgid ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
+"file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
+"org/\">Flatpak</link>."
+msgstr ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
+"file> si el <app>Devhelp</app> s'inicia amb el <link href=\"https://flatpak."
+"org/\">Flatpak</link>."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:67
+msgid ""
+"Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
+"typical system:"
+msgstr ""
+"Exemple d'una ubicació d'un fitxer d'índex amb <code>$XDG_DATA_DIRS</code> "
+"en un sistema típic:"
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:79
+msgid "GTK-Doc"
+msgstr "GTK-Doc"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:80
+msgid ""
+"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
+"generate API documentation from comments added to C code. It is used by "
+"GLib, GTK and GNOME libraries and applications."
+msgstr ""
+"El <link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> és una eina "
+"per a generar documentació d'API a partir de comentaris afegits a codi C. "
+"L'utilitzen les biblioteques i aplicacions del GLib, el GTK i el GNOME."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:85
+msgid "GTK-Doc installs the API reference of a module into:"
+msgstr "El GTK-Doc instal·la la referència API d'un mòdul a:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:91
+msgid ""
+"It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
+"Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
+"(once installed in the right location, that is)."
+msgstr ""
+"Segueix el format de llibre compatible amb el <app>Devhelp</app>. Per tant, "
+"mitjançant el GTK-Doc, es pot navegar automàticament per la referència API "
+"al <app>Devhelp</app> (un cop instal·lada a la ubicació correcta, és clar)."
+
+#. (itstool) path: page/title
+#: C/search.page:14
+msgid "Search in the side panel"
+msgstr "Cerca al quadre lateral"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:17
+msgid "How the search in the side panel works."
+msgstr "Com funciona la cerca al panel lateral."
+
+#. (itstool) path: section/title
+#: C/search.page:21
+msgid "Case sensitivity"
+msgstr "Distinció entre majúscules i minúscules"
+
+#. (itstool) path: section/p
+#: C/search.page:22
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr ""
+"La cerca distingeix entre majúscules i minúscules quan hi ha una lletra "
+"majúscula. Si els termes de cerca són tots en minúscules, la cerca no "
+"distingeix entre majúscules i minúscules. És com la característica "
+"«smartcase» present en alguns editors de text."
+
+#. (itstool) path: section/title
+#: C/search.page:30
+msgid "Glob-style pattern matching"
+msgstr "Coincidència de patrons a l'estil del Glob"
+
+#. (itstool) path: section/p
+#: C/search.page:31
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+"Un terme de cerca pot ser un patró que contingui els comodins «*» i «?». «*» "
+"coincideix amb una cadena arbitrària i possiblement buida, i «?» coincideix "
+"amb un caràcter arbitrari."
+
+#. (itstool) path: section/title
+#: C/search.page:39
+msgid "Several search terms"
+msgstr "Diversos termes de cerca"
+
+#. (itstool) path: section/p
+#: C/search.page:40
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+"Podeu cercar amb diversos termes de cerca (separats per espais). Un símbol "
+"només coincidirà si <em>tots</em> els termes de cerca coincideixen "
+"individualment (no necessàriament en el mateix ordre d'aparició)."
+
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+"Tingueu en compte que és diferent de la cerca amb el comodí «*»: amb el "
+"comodí «*», les paraules clau han d'estar en el mateix ordre."
+
+#. (itstool) path: section/p
+#: C/search.page:49
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+"Per exemple, la cerca de «<input>aplicació finestra gtk</input>» coincideix "
+"tant amb «<code>obtenir_aplicació_finestra_gtk()</code>» com amb "
+"«<code>FinestraAplicacióGtk</code>» (entre altes símbols)."
+
+#. (itstool) path: section/p
+#: C/search.page:54
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
+"D'altra banda, la cerca de «<input>aplicació*finestra*gtk</input>» "
+"coincidirà amb «<code>obtenir_aplicació_finestra_gtk()</code>» però no amb "
+"«<code>FinestraAplicacióGtk</code>»."
