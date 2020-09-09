@@ -35,7 +35,7 @@ msgid ""
 "package (usually a library). This page describes the format that a book "
 "needs to follow in order for <app>Devhelp</app> to recognize it."
 msgstr ""
-"Al <app>Devhelp<app>, un «llibre» és la documentació de l'API d'un mòdul o "
+"Al <app>Devhelp</app>, un «llibre» és la documentació de l'API d'un mòdul o "
 "paquet (normalment, una biblioteca). Aquesta pàgina descriu el format que un "
 "llibre ha de seguir perquè el <app>Devhelp</app> el reconegui."
 
@@ -179,7 +179,7 @@ msgstr ""
 "pròxim. Mentrestant, recomanem consultar el que genera <link xref="
 "\"installing-api-documentation#gtk-doc\">GTK-Doc</link>. Per a la definició "
 "més precisa de què és compatible amb el <app>Devhelp</app>, llegiu el codi "
-"font de l'analitzador i la referència API del <app>Devhelp<app>."
+"font de l'analitzador i la referència API del <app>Devhelp</app>."
 
 #. (itstool) path: page/title
 #: C/index.page:8
