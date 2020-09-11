@@ -38,9 +38,9 @@ modules:
   - name: amtk
     run-tests: true
     sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/amtk.git
-        branch: master
+      - type: archive
+        url: https://download.gnome.org/sources/amtk/5.2/amtk-5.2.0.tar.xz
+        sha256: 820545bb4cf87ecebc2c3638d6b6e58b8dbd60a419a9b43cf020124e5dad7078
 
   - name: devhelp
     buildsystem: meson
