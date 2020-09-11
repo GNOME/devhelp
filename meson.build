@@ -6,7 +6,7 @@
 project(
   'devhelp', 'c',
   meson_version: '>= 0.53',
-  version: '3.37.2',
+  version: '3.38.0',
   default_options: ['warning_level=2']
 )
 
@@ -42,7 +42,7 @@ LIBDEVHELP_API_VERSION_FULL = '3.0'
 # When incrementing the API version (usually for a new major package version),
 # set CURRENT, REVISION and AGE to 0 since it's like a new library.
 lt_current = 6
-lt_revision = 2
+lt_revision = 3
 lt_age = 0
 LIBDEVHELP_LT_VERSION = '@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
 
