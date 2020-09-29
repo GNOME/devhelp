@@ -2,308 +2,402 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2003
-# Yosef Or Boczko <yoseforb@gnome.org>, 2014, 2016.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2014-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: sss.txt\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-02 12:59+0200\n"
-"PO-Revision-Date: 2016-03-02 13:01+0200\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gnome.org>\n"
-"Language-Team: עברית <>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2020-05-29 13:31+0000\n"
+"PO-Revision-Date: 2020-09-29 11:36+0300\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.7\n"
-"Plural-Forms: nplurals=2; plural= (n!=1);\n"
+"X-Generator: Gtranslator 3.36.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#. i18n: Please don't translate "Devhelp" (it's marked as translatable
-#. * for transliteration only)
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:1
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:1 ../src/dh-app.c:247
-#: ../src/dh-app.c:557 ../src/dh-window.c:797
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
+#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
+#: src/dh-app.c:268 src/dh-app.c:560
 msgid "Devhelp"
 msgstr "DevHelp"
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:2
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:2
-msgid "Developer's Help program"
-msgstr "תכנית עזרה למפתחים"
+#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
+#: src/dh-app.c:270
+msgid "A developer tool for browsing and searching API documentation"
+msgstr "כלי פיתוח לדפדוף וחיפוש תיעוד API"
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:3
+#: data/org.gnome.Devhelp.appdata.xml.in:9
+#| msgid ""
+#| "Devhelp is an API documentation browser. It provides an easy way to "
+#| "navigate through libraries, search by function, struct, or macro. It "
+#| "provides a tabbed interface and allows to print results."
 msgid ""
-"Devhelp is an API documentation browser. It provides an easy way to navigate "
-"through libraries, search by function, struct, or macro. It provides a "
-"tabbed interface and allows to print results."
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
 msgstr ""
-"‏DevHelp הוא דפדפן תיעוד API. הוא מספק דרך קלה לנווט בספריות, לחפש פונקציות, "
-"מבנים או הגדרות מקרו. הוא מספק ממשק לשוניות ומאפשר להדפיס תוצאות."
+"‏DevHelp הוא כלי פיתוח לדפדוף וחיפוש תיעוד API. הוא מספק דרך קלה לנווט "
+"בספריות, לחפש פונקציות, מבנים או הגדרות מקרו."
 
-#: ../data/org.gnome.Devhelp.appdata.xml.in.h:4
+#: data/org.gnome.Devhelp.appdata.xml.in:14
 msgid ""
-"Devhelp integrates with other applications such as Glade, Anjuta, or Geany."
-msgstr "‏DevHelp משולב עם יישומים נוספים כגון Glade, Anjuta או Geany."
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
+msgstr ""
+"המסמכים חייבים להיות מותקנים באופן מקומי, לכן אין צורך בחיבור לרשת על מנת "
+"להשתמש ב־DevHelp."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
+msgstr ""
+"‏DevHelp עובד בצורה טבעית עם GTK-Doc, כך שספריות GTK ו־GNOME נתמכות היטב. "
+"ואמנם מסדת פיתוח אחרות נתמכות גם כן, כל עוד תיעוד ה־API זמין ב־HTML וקובץ "
+"מפתח עניינים ‎*.devhelp2 נוצר."
+
+#: data/org.gnome.Devhelp.appdata.xml.in:24
+#| msgid ""
+#| "Devhelp integrates with other applications such as Glade, Anjuta, or "
+#| "Geany."
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr ""
+"‏DevHelp משולב עם יישומים נוספים כגון Glade, Builder או Anjuta, ותוספים "
+"זמינים עבור עורכי טקסט שונים (gedit, Vim, Emacs, Geany, …)."
 
 # בכל מקרה עם י כי המילה המקורית מופיע עם חיריק ודגש ב־ת
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:3
-msgid "Documentation Browser"
-msgstr "דפדפן תיעוד"
+#: data/org.gnome.Devhelp.desktop.in:5
+#| msgid "Documentation Browser"
+msgid "API Documentation Browser"
+msgstr "דפדפן תיעוד API"
 
-#: ../data/org.gnome.Devhelp.desktop.in.in.h:4
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "תיעוד;מידע;פרטים;הדרכה;מדריך;פיתוח;תכנות;מפתח;מתכנת;api;"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:1
+#: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
 msgstr "Main window maximized state"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:2
+#: data/org.gnome.devhelp.gschema.xml:17
 msgid "Whether the main window should start maximized."
 msgstr "Whether the main window should start maximized."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:3
+#: data/org.gnome.devhelp.gschema.xml:21
 msgid "Width of the main window"
 msgstr "Width of the main window"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:4
+#: data/org.gnome.devhelp.gschema.xml:22
 msgid "The width of the main window."
 msgstr "The width of the main window."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:5
+#: data/org.gnome.devhelp.gschema.xml:26
 msgid "Height of main window"
 msgstr "Height of main window"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:6
+#: data/org.gnome.devhelp.gschema.xml:27
 msgid "The height of the main window."
 msgstr "The height of the main window."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:7
-msgid "X position of main window"
-msgstr "X position of main window"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:8
-msgid "The X position of the main window."
-msgstr "The X position of the main window."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:9
-msgid "Y position of main window"
-msgstr "Y position of main window"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:10
-msgid "The Y position of the main window."
-msgstr "The Y position of the main window."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:11
+#: data/org.gnome.devhelp.gschema.xml:33
 msgid "Width of the index and search pane"
 msgstr "Width of the index and search pane"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:12
+#: data/org.gnome.devhelp.gschema.xml:34
 msgid "The width of the index and search pane."
 msgstr "The width of the index and search pane."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:13
-msgid "Selected tab: \"content\" or \"search\""
-msgstr "Selected tab: \"content\" or \"search\""
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:14
-msgid "Which of the tabs is selected: \"content\" or \"search\"."
-msgstr "Which of the tabs is selected: \"content\" or \"search\"."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:15
-msgid "Books disabled"
-msgstr "Books disabled"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:16
-msgid "List of books disabled by the user."
-msgstr "List of books disabled by the user."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:17
-msgid "Group by language"
-msgstr "Group by language"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:18
-msgid "Whether books should be grouped by language in the UI"
-msgstr "Whether books should be grouped by language in the UI"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:19
-msgid "Whether the assistant window should be maximized"
-msgstr "Whether the assistant window should be maximixed"
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:20
-msgid "Whether the assistant window should be maximized."
-msgstr "Whether the assistant window should be maximixed."
-
-#: ../data/org.gnome.devhelp.gschema.xml.h:21
+#: data/org.gnome.devhelp.gschema.xml:43
 msgid "Width of the assistant window"
 msgstr "Width of the assistant window"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:22
+#: data/org.gnome.devhelp.gschema.xml:44
 msgid "The width of the assistant window."
 msgstr "The width of the assistant window."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:23
+#: data/org.gnome.devhelp.gschema.xml:48
 msgid "Height of assistant window"
 msgstr "Height of assistant window"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:24
+#: data/org.gnome.devhelp.gschema.xml:49
 msgid "The height of the assistant window."
 msgstr "The height of the assistant window."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:25
-msgid "X position of assistant window"
-msgstr "X position of assistant window"
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
+msgid "Books disabled"
+msgstr "Books disabled"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:26
-msgid "The X position of the assistant window."
-msgstr "The X position of the assistant window."
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
+msgid "List of books disabled by the user."
+msgstr "List of books disabled by the user."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:27
-msgid "Y position of assistant window"
-msgstr "Y position of assistant window"
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
+#| msgid "Group by language"
+msgid "Group books by language"
+msgstr "Group books by language"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:28
-msgid "The Y position of the assistant window."
-msgstr "The Y position of the assistant window."
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
+#| msgid "Whether books should be grouped by language in the UI"
+msgid ""
+"Whether books should be grouped by programming language in the user "
+"interface."
+msgstr ""
+"Whether books should be grouped by programming language in the user "
+"interface."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:29
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
 msgstr "Use system fonts"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:30
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
 msgstr "Use the system default fonts."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:31
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
 msgstr "Font for text"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:32
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
 msgstr "Font for text with variable width."
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:33
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
 msgstr "Font for fixed width text"
 
-#: ../data/org.gnome.devhelp.gschema.xml.h:34
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Font for text with fixed width, such as code examples."
 
-#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:1
+#: devhelp/dh-assistant-view.c:385
+msgid "Book:"
+msgstr "ספר:"
+
+#: devhelp/dh-book.c:298
+#, c-format
+msgid "Language: %s"
+msgstr "שפה: %s"
+
+#: devhelp/dh-book.c:299
+msgid "Language: Undefined"
+msgstr "שפה: בלתי מוגדרת"
+
+#: devhelp/dh-book-tree.c:749
+msgid "_Collapse All"
+msgstr "_קיפול הכל"
+
+#. i18n: a documentation book
+#: devhelp/dh-link.c:536
+msgid "Book"
+msgstr "ספר"
+
+#. i18n: a "page" in a documentation book
+#: devhelp/dh-link.c:540
+msgid "Page"
+msgstr "עמוד"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: devhelp/dh-link.c:545
+msgid "Keyword"
+msgstr "מילת מפתח"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:551
+msgid "Function"
+msgstr "פונקציה"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:557
+msgid "Struct"
+msgstr "מבנה"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:563
+msgid "Macro"
+msgstr "מקרו"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:569
+msgid "Enum"
+msgstr "מניה"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:575
+msgid "Type"
+msgstr "סוג"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:581
+msgid "Property"
+msgstr "מאפיין"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:587
+msgid "Signal"
+msgstr "אות"
+
+#: devhelp/dh-web-view.c:644
+msgid "Empty Page"
+msgstr "דף ריק"
+
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
 msgid "Devhelp support"
 msgstr "תמיכת Devhelp"
 
-#: ../misc/gedit-plugin/devhelp.plugin.desktop.in.h:2
-msgid "Makes F2 bring up Devhelp for the word at the cursor"
-msgstr "גורם ל־F2 להעלות את Devhelp עבור המילה תחת הסמן"
-
-#: ../misc/gedit-plugin/devhelp.py:42
+#: plugins/gedit-plugin/devhelp.py:42
 msgid "Show API Documentation"
 msgstr "הצגת תיעוד API"
 
-#. ex:ts=4:et:
-#: ../src/devhelp-menu.ui.h:1 ../src/dh-window.ui.h:7
+#. action, icon, label, accel, tooltip
+#. Actions related to the whole application
+#: src/dh-app.c:36
 msgid "New _Window"
 msgstr "חלון _חדש"
 
-#: ../src/devhelp-menu.ui.h:2 ../src/dh-window.ui.h:9
-msgid "_Preferences"
-msgstr "ה_עדפות"
-
-#: ../src/devhelp-menu.ui.h:3
-msgid "_Keyboard Shortcuts"
-msgstr "_צירופי מקשים"
-
-#: ../src/devhelp-menu.ui.h:4
-msgid "_About"
-msgstr "על _אודות"
-
-#: ../src/devhelp-menu.ui.h:5 ../src/dh-window.ui.h:11
-msgid "_Quit"
-msgstr "י_ציאה"
-
-#: ../src/help-overlay.ui.h:1
-msgctxt "shortcut window"
-msgid "General"
-msgstr "כללי"
-
-#: ../src/help-overlay.ui.h:2
-msgctxt "shortcut window"
-msgid "Focus global search"
-msgstr "התמקדות בחיפוש הכללי"
-
-#: ../src/help-overlay.ui.h:3
-msgctxt "shortcut window"
-msgid "Find in current page"
-msgstr "חיפוש בעמוד הנוכחי"
-
-#: ../src/help-overlay.ui.h:4
-msgctxt "shortcut window"
+#: src/dh-app.c:37
+#| msgctxt "shortcut window"
+#| msgid "Open a new window"
 msgid "Open a new window"
 msgstr "פתיחת חלון חדש"
 
-#: ../src/help-overlay.ui.h:5
-msgctxt "shortcut window"
-msgid "Open a new tab"
-msgstr "פתיחת לשונית חדשה"
+#: src/dh-app.c:38
+msgid "_Preferences"
+msgstr "ה_עדפות"
 
-#: ../src/help-overlay.ui.h:6
-msgctxt "shortcut window"
-msgid "Toggle sidebar visibility"
-msgstr "הצגה/הסתרת הסרגל הצדי"
+#: src/dh-app.c:39
+msgid "_Keyboard Shortcuts"
+msgstr "_צירופי מקשים"
 
-#: ../src/help-overlay.ui.h:7
-msgctxt "shortcut window"
-msgid "Go back"
-msgstr "אחורה"
+#: src/dh-app.c:40
+msgid "_Help"
+msgstr "ע_זרה"
 
-#: ../src/help-overlay.ui.h:8
-msgctxt "shortcut window"
-msgid "Go forward"
-msgstr "קדימה"
+#: src/dh-app.c:41
+msgid "_About Devhelp"
+msgstr "על _אודות DevHelp"
 
-#: ../src/help-overlay.ui.h:9
-msgctxt "shortcut window"
-msgid "Print"
-msgstr "הדפסה"
+#: src/dh-app.c:42
+msgid "_Quit"
+msgstr "י_ציאה"
 
-#: ../src/help-overlay.ui.h:10
-msgctxt "shortcut window"
-msgid "Close the current window"
-msgstr "סגירת החלון הנוכחי"
-
-#: ../src/help-overlay.ui.h:11
-msgctxt "shortcut window"
+#: src/dh-app.c:43
+#| msgctxt "shortcut window"
+#| msgid "Close all windows"
 msgid "Close all windows"
 msgstr "סגירת כל החלונות"
 
-#: ../src/help-overlay.ui.h:12
-msgctxt "shortcut window"
-msgid "Zoom"
-msgstr "תקריב"
+#. Actions related to the current main window
+#: src/dh-app.c:46
+#| msgid "_Side pane"
+msgid "_Side Panel"
+msgstr "חלונית ה_צד"
 
-#: ../src/help-overlay.ui.h:13
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "התקרבות"
+#: src/dh-app.c:47
+#| msgctxt "shortcut window"
+#| msgid "Toggle sidebar visibility"
+msgid "Toggle side panel visibility"
+msgstr "הצגה/הסתרת חלונית הצד"
 
-#: ../src/help-overlay.ui.h:14
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "התרחקות"
+#: src/dh-app.c:48
+msgid "_Print"
+msgstr "ה_דפסה"
 
-#: ../src/help-overlay.ui.h:15
-msgctxt "shortcut window"
-msgid "Reset Zoom"
-msgstr "איפוס התקריב"
+#: src/dh-app.c:49
+msgid "_Find"
+msgstr "_חיפוש"
 
-#: ../src/dh-app.c:249
-msgid "A developers' help browser for GNOME"
-msgstr "דפדפן עזרה למפתחים עבור GNOME"
+#: src/dh-app.c:50
+#| msgctxt "shortcut window"
+#| msgid "Find in current page"
+msgid "Find in current page"
+msgstr "חיפוש בעמוד הנוכחי"
 
-#: ../src/dh-app.c:251
+#: src/dh-app.c:51
+msgid "_Larger Text"
+msgstr "ה_גדלת הטקסט"
+
+#: src/dh-app.c:52
+#| msgid "_Larger Text"
+msgid "Larger text"
+msgstr "הגדלת הטקסט"
+
+#: src/dh-app.c:53
+msgid "S_maller Text"
+msgstr "ה_קטנת הטקסט"
+
+#: src/dh-app.c:54
+#| msgid "S_maller Text"
+msgid "Smaller text"
+msgstr "הקטנת הטקסט"
+
+#: src/dh-app.c:55
+msgid "_Normal Size"
+msgstr "גודל _רגיל"
+
+#: src/dh-app.c:56
+#| msgid "_Normal Size"
+msgid "Normal size"
+msgstr "גודל רגיל"
+
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:109
+#| msgctxt "shortcut window"
+#| msgid "Open a new tab"
+msgid "Open a new tab"
+msgstr "פתיחת לשונית חדשה"
+
+#: src/dh-app.c:110
+#| msgctxt "shortcut window"
+#| msgid "Close the current window"
+msgid "Close the current tab"
+msgstr "סגירת הלשונית הנוכחית"
+
+#: src/dh-app.c:111
+#| msgctxt "shortcut window"
+#| msgid "Go back"
+msgid "Go back"
+msgstr "אחורה"
+
+#: src/dh-app.c:112
+#| msgctxt "shortcut window"
+#| msgid "Go forward"
+msgid "Go forward"
+msgstr "קדימה"
+
+#: src/dh-app.c:113
+#| msgctxt "shortcut window"
+#| msgid "Focus global search"
+msgid "Focus global search"
+msgstr "התמקדות בחיפוש הכללי"
+
+#: src/dh-app.c:272
 msgid "translator-credits"
 msgstr ""
 "יאיר הרשקוביץ  <yairhr@gmail.com>\n"
@@ -313,284 +407,231 @@ msgstr ""
 "פרויקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/dh-app.c:253
+#: src/dh-app.c:274
 msgid "Devhelp Website"
 msgstr "אתר האינטרנט של DevHelp"
 
-#: ../src/dh-app.c:482
+#: src/dh-app.c:449
 msgid "Opens a new Devhelp window"
 msgstr "פתיחת חלון חדש של Devhelp"
 
-#: ../src/dh-app.c:487
+#: src/dh-app.c:454
 msgid "Search for a keyword"
 msgstr "Search for a keyword"
 
-#: ../src/dh-app.c:488 ../src/dh-app.c:493
+#: src/dh-app.c:455 src/dh-app.c:460
 msgid "KEYWORD"
 msgstr "KEYWORD"
 
-#: ../src/dh-app.c:492
+#: src/dh-app.c:459
 msgid "Search and display any hit in the assistant window"
 msgstr "Search and display any hit in the assistant window"
 
-#: ../src/dh-app.c:497
+#: src/dh-app.c:464
 msgid "Display the version and exit"
 msgstr "Display the version and exit"
 
-#: ../src/dh-app.c:502
+#: src/dh-app.c:469
 msgid "Quit any running Devhelp"
 msgstr "Quit any running Devhelp"
 
-#. Please don
-#: ../src/dh-assistant.ui.h:2
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:13
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — המסייע"
 
-#: ../src/dh-assistant-view.c:372
-msgid "Book:"
-msgstr "ספר:"
-
-#: ../src/dh-book.c:254
-#, c-format
-msgid "Language: %s"
-msgstr "שפה: %s"
-
-#: ../src/dh-book.c:255
-msgid "Language: Undefined"
-msgstr "שפה: בלתי מוגדרת"
-
-#. i18n: a documentation book
-#: ../src/dh-link.c:289
-msgid "Book"
-msgstr "ספר"
-
-#. i18n: a "page" in a documentation book
-#: ../src/dh-link.c:292
-msgid "Page"
-msgstr "עמוד"
-
-#. i18n: a search hit in the documentation, could be a
-#. * function, macro, struct, etc
-#: ../src/dh-link.c:296
-msgid "Keyword"
-msgstr "מילת מפתח"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:301
-msgid "Function"
-msgstr "פונקציה"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:306
-msgid "Struct"
-msgstr "מבנה"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:311
-msgid "Macro"
-msgstr "מקרו"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:316
-msgid "Enum"
-msgstr "מניה"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:321
-msgid "Type"
-msgstr "סוג"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:326
-msgid "Property"
-msgstr "מאפיין"
-
-#. i18n: in the programming language context, if you don't
-#. * have an ESTABLISHED term for it, leave it
-#. * untranslated.
-#: ../src/dh-link.c:331
-msgid "Signal"
-msgstr "אות"
-
-#: ../src/dh-parser.c:96 ../src/dh-parser.c:197 ../src/dh-parser.c:261
-#: ../src/dh-parser.c:271
-#, c-format
-msgid "Expected '%s', got '%s' at line %d, column %d"
-msgstr "Expected '%s', got '%s' at line %d, column %d"
-
-#: ../src/dh-parser.c:113
-#, c-format
-msgid "Invalid namespace '%s' at line %d, column %d"
-msgstr "Invalid namespace '%s' at line %d, column %d"
-
-#: ../src/dh-parser.c:142
-#, c-format
-msgid ""
-"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-msgstr ""
-"\"title\", \"name\" and \"link\" elements are required at line %d, column %d"
-
-#: ../src/dh-parser.c:216
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
-"%d"
-msgstr ""
-"\"name\" and \"link\" elements are required inside <sub> on line %d, column "
-"%d"
-
-#: ../src/dh-parser.c:296
-#, c-format
-msgid ""
-"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-msgstr ""
-"\"name\" and \"link\" elements are required inside '%s' on line %d, column %d"
-
-#: ../src/dh-parser.c:309
-#, c-format
-msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-msgstr "\"type\" element is required inside <keyword> on line %d, column %d"
-
-#: ../src/dh-parser.c:516
-#, c-format
-msgid "Cannot uncompress book '%s': %s"
-msgstr "Cannot uncompress book '%s': %s"
-
-#: ../src/dh-preferences.ui.h:1
-msgid "Preferences"
-msgstr "העדפות"
-
-#: ../src/dh-preferences.ui.h:2
-msgid "_Group by language"
-msgstr "_קיבוץ לפי שפה"
-
-#: ../src/dh-preferences.ui.h:3
+#: src/dh-preferences.c:536
 msgid "Enabled"
 msgstr "פעיל"
 
-#: ../src/dh-preferences.ui.h:4
+#: src/dh-preferences.c:550
 msgid "Title"
 msgstr "כותרת"
 
-#: ../src/dh-preferences.ui.h:5
+#: src/dh-preferences.ui:12
+msgid "Preferences"
+msgstr "העדפות"
+
+#: src/dh-preferences.ui:48
+msgid "_Group by language"
+msgstr "_קיבוץ לפי שפה"
+
+#: src/dh-preferences.ui:90
 msgid "Book Shelf"
 msgstr "מדף ספרים"
 
-#: ../src/dh-preferences.ui.h:6
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
 msgstr "שימוש ב_גופני המערכת"
 
-#: ../src/dh-preferences.ui.h:7
+#: src/dh-preferences.ui:135
 msgid "_Variable width: "
 msgstr "רוחב _משתנה: "
 
-#: ../src/dh-preferences.ui.h:8
+#: src/dh-preferences.ui:148
 msgid "_Fixed width:"
 msgstr "_רוחב קבוע:"
 
-#: ../src/dh-preferences.ui.h:9
+#: src/dh-preferences.ui:209
 msgid "Fonts"
 msgstr "גופנים"
 
-#: ../src/dh-window.c:76
-msgid "50%"
-msgstr "50%"
+#. General group
+#: src/dh-window.c:379
+#| msgctxt "shortcut window"
+#| msgid "General"
+msgid "General"
+msgstr "כללי"
 
-#: ../src/dh-window.c:77
-msgid "75%"
-msgstr "75%"
+#. Zoom group
+#: src/dh-window.c:393
+#| msgctxt "shortcut window"
+#| msgid "Zoom"
+msgid "Zoom"
+msgstr "תקריב"
 
-#: ../src/dh-window.c:78
-msgid "100%"
-msgstr "100%"
-
-#: ../src/dh-window.c:79
-msgid "125%"
-msgstr "125%"
-
-#: ../src/dh-window.c:80
-msgid "150%"
-msgstr "150%"
-
-#: ../src/dh-window.c:81
-msgid "175%"
-msgstr "175%"
-
-#: ../src/dh-window.c:82
-msgid "200%"
-msgstr "200%"
-
-#: ../src/dh-window.c:83
-msgid "300%"
-msgstr "300%"
-
-#: ../src/dh-window.c:84
-msgid "400%"
-msgstr "400%"
-
-#: ../src/dh-window.c:1024
-msgid "Error opening the requested link."
-msgstr "שגיאה בפתיחת הקישור המבוקש."
-
-#: ../src/dh-window.c:1282
-msgid "_Close"
-msgstr "_סגירה"
-
-#: ../src/dh-window.c:1300 ../src/dh-window.c:1471
-msgid "Empty Page"
-msgstr "דף ריק"
-
-#: ../src/dh-window.ui.h:1
-msgid "New _Tab"
-msgstr "_לשונית חדשה"
-
-#: ../src/dh-window.ui.h:2
-msgid "_Print"
-msgstr "ה_דפסה"
-
-#: ../src/dh-window.ui.h:3
-msgid "_Find"
-msgstr "_חיפוש"
-
-#: ../src/dh-window.ui.h:4
-msgid "_Larger Text"
-msgstr "ה_גדלת הטקסט"
-
-#: ../src/dh-window.ui.h:5
-msgid "S_maller Text"
-msgstr "ה_קטנת טקסט"
-
-#: ../src/dh-window.ui.h:6
-msgid "_Normal Size"
-msgstr "גודל _רגיל"
-
-#: ../src/dh-window.ui.h:8
-msgid "_Side pane"
-msgstr "חלונית ה_צד"
-
-#: ../src/dh-window.ui.h:10
-msgid "_About Devhelp"
-msgstr "על _אודות DevHelp"
-
-#: ../src/dh-window.ui.h:12
+#: src/dh-window.c:539
 msgid "Back"
 msgstr "חזרה"
 
-#: ../src/dh-window.ui.h:13
+#: src/dh-window.c:543
 msgid "Forward"
 msgstr "קדימה"
+
+#: src/dh-window.c:561
+#| msgid "New _Tab"
+msgid "New Tab"
+msgstr "לשונית חדשה"
+
+#~ msgid "Developer's Help program"
+#~ msgstr "תכנית עזרה למפתחים"
+
+#~ msgid "X position of main window"
+#~ msgstr "X position of main window"
+
+#~ msgid "The X position of the main window."
+#~ msgstr "The X position of the main window."
+
+#~ msgid "Y position of main window"
+#~ msgstr "Y position of main window"
+
+#~ msgid "The Y position of the main window."
+#~ msgstr "The Y position of the main window."
+
+#~ msgid "Selected tab: \"content\" or \"search\""
+#~ msgstr "Selected tab: \"content\" or \"search\""
+
+#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
+#~ msgstr "Which of the tabs is selected: \"content\" or \"search\"."
+
+#~ msgid "Whether the assistant window should be maximized"
+#~ msgstr "Whether the assistant window should be maximixed"
+
+#~ msgid "Whether the assistant window should be maximized."
+#~ msgstr "Whether the assistant window should be maximixed."
+
+#~ msgid "X position of assistant window"
+#~ msgstr "X position of assistant window"
+
+#~ msgid "The X position of the assistant window."
+#~ msgstr "The X position of the assistant window."
+
+#~ msgid "Y position of assistant window"
+#~ msgstr "Y position of assistant window"
+
+#~ msgid "The Y position of the assistant window."
+#~ msgstr "The Y position of the assistant window."
+
+#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
+#~ msgstr "גורם ל־F2 להעלות את Devhelp עבור המילה תחת הסמן"
+
+#~ msgid "_About"
+#~ msgstr "על _אודות"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Print"
+#~ msgstr "הדפסה"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom in"
+#~ msgstr "התקרבות"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Zoom out"
+#~ msgstr "התרחקות"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Reset Zoom"
+#~ msgstr "איפוס התקריב"
+
+#~ msgid "A developers' help browser for GNOME"
+#~ msgstr "דפדפן עזרה למפתחים עבור GNOME"
+
+#~ msgid "Expected '%s', got '%s' at line %d, column %d"
+#~ msgstr "Expected '%s', got '%s' at line %d, column %d"
+
+#~ msgid "Invalid namespace '%s' at line %d, column %d"
+#~ msgstr "Invalid namespace '%s' at line %d, column %d"
+
+#~ msgid ""
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
+#~ "%d"
+#~ msgstr ""
+#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
+#~ "%d"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
+#~ "column %d"
+#~ msgstr ""
+#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
+#~ "column %d"
+
+#~ msgid ""
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
+#~ "column %d"
+#~ msgstr ""
+#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
+#~ "column %d"
+
+#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
+#~ msgstr "\"type\" element is required inside <keyword> on line %d, column %d"
+
+#~ msgid "Cannot uncompress book '%s': %s"
+#~ msgstr "Cannot uncompress book '%s': %s"
+
+#~ msgid "50%"
+#~ msgstr "50%"
+
+#~ msgid "75%"
+#~ msgstr "75%"
+
+#~ msgid "100%"
+#~ msgstr "100%"
+
+#~ msgid "125%"
+#~ msgstr "125%"
+
+#~ msgid "150%"
+#~ msgstr "150%"
+
+#~ msgid "175%"
+#~ msgstr "175%"
+
+#~ msgid "200%"
+#~ msgstr "200%"
+
+#~ msgid "300%"
+#~ msgstr "300%"
+
+#~ msgid "400%"
+#~ msgstr "400%"
+
+#~ msgid "Error opening the requested link."
+#~ msgstr "שגיאה בפתיחת הקישור המבוקש."
+
+#~ msgid "_Close"
+#~ msgstr "_סגירה"
 
 #~ msgid ""
 #~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
@@ -685,9 +726,6 @@ msgstr "קדימה"
 
 #~ msgid "_File"
 #~ msgstr "_קובץ"
-
-#~ msgid "_Help"
-#~ msgstr "ע_זרה"
 
 #~ msgid "Use the normal text size"
 #~ msgstr "שימוש בגודל הטקסט הרגיל"
