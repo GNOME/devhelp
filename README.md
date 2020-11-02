@@ -5,11 +5,6 @@ The Devhelp web page:
 
 https://wiki.gnome.org/Apps/Devhelp
 
-Professional services
----------------------
-
-See the file: [docs/professional-services.md](docs/professional-services.md)
-
 Installation of the Devhelp Flatpak
 -----------------------------------
 
