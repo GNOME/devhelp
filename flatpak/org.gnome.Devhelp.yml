@@ -22,7 +22,6 @@ finish-args:
 build-options:
   cflags: -O2 -g
   cxxflags: -O2 -g
-  env: { V: '1' }
 
 cleanup:
   - /share/man
