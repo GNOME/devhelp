@@ -10,7 +10,7 @@
   <bookinfo>
     <title>&package_name; &package_api_version; Reference Manual</title>
     <releaseinfo>
-      For &package_string;.
+      For &package_string; (API version: &package_api_version;).
     </releaseinfo>
   </bookinfo>
 
