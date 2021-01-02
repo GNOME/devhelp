@@ -24,7 +24,6 @@ msgstr ""
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
-#.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
 #: src/dh-app.c:270 src/dh-app.c:562
 msgid "Devhelp"
@@ -34,7 +33,7 @@ msgstr "Devhelp"
 #: src/dh-app.c:272
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
-"Una eina de desenvolupament per navegar i cercar documentació de l'API"
+"Una eina de desenvolupament per a navegar i cercar documentació de l'API"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:9
 msgid ""
@@ -43,7 +42,8 @@ msgid ""
 "function, struct, or macro."
 msgstr ""
 "El Devhelp és una eina de desenvolupament que serveix per a navegar i cercar "
-"documentació de l'API. Facilita la navegació per biblioteques, cercar funcions, estructures o macros."
+"documentació de l'API. Facilita la navegació per biblioteques, cercar "
+"funcions, estructures o macros."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:14
 msgid ""
@@ -51,7 +51,7 @@ msgid ""
 "not needed to use Devhelp."
 msgstr ""
 "La documentació s'ha d'instal·lar localment, de manera que no cal una "
-"connexió a Internet per utilitzar Devhelp."
+"connexió a Internet per a utilitzar Devhelp."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
@@ -63,8 +63,7 @@ msgstr ""
 "Devhelp funciona de manera nativa amb GTK-Doc, de manera que les "
 "biblioteques de GTK i GNOME són compatibles. Però també es poden donar "
 "suport a altres plataformes de desenvolupament, sempre que la documentació "
-"de l'API estigui disponible en HTML i es generi un fitxer d'índex *."
-"devhelp2."
+"de l'API estigui disponible en HTML i es generi un fitxer d'índex *.devhelp2."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:24
 msgid ""
@@ -72,15 +71,16 @@ msgid ""
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr ""
-"El Devhelp s'integra amb altres aplicacions com el Glade, el Builder o l'Anjuta."
-"Hi ha connectors disponibles per diversos editors de text (gedit, Vim, Emacs,"
-"Geany, …)."
+"El Devhelp s'integra amb altres aplicacions com el Glade, el Builder o "
+"l'Anjuta.Hi ha connectors disponibles per diversos editors de text (gedit, "
+"Vim, Emacs,Geany, …)."
 
 #: data/org.gnome.Devhelp.desktop.in:5
 msgid "API Documentation Browser"
 msgstr "Navegador de documentació de l'API"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Devhelp.desktop.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "documentació;informació;manual;desenvolupador;api;"
@@ -150,7 +150,8 @@ msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
 msgstr ""
-"Si a la interfície d'usuari els llibres s'haurien d'agrupar per llenguatge de programació."
+"Si a la interfície d'usuari els llibres s'haurien d'agrupar per llenguatge "
+"de programació."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
@@ -363,11 +364,11 @@ msgstr "Tanca la finestra actual"
 
 #: src/dh-app.c:113
 msgid "Go back"
-msgstr "Vés enrere"
+msgstr "Ves enrere"
 
 #: src/dh-app.c:114
 msgid "Go forward"
-msgstr "Vés endavant"
+msgstr "Ves endavant"
 
 #: src/dh-app.c:115
 msgid "Focus global search"
@@ -471,4 +472,3 @@ msgstr "Endavant"
 #: src/dh-window.c:574
 msgid "New Tab"
 msgstr "Pestanya nova"
-
