@@ -147,7 +147,7 @@ add_project_arguments(supported_warning_cflags, language: 'c')
 ##### end CFLAGS
 
 subdir('data')
-subdir('plugins/gedit-plugin')
+subdir('plugins')
 subdir('po')
 subdir('help')
 subdir('devhelp')
