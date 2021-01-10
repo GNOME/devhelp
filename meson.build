@@ -166,3 +166,6 @@ meson.add_install_script(
 summary('Prefix', get_option('prefix'))
 summary('API documentation', get_option('gtk_doc'))
 summary('Flatpak build mode', get_option('flatpak_build'))
+summary('Plugin for Emacs', get_option('plugin_emacs'))
+summary('Plugin for gedit', get_option('plugin_gedit'))
+summary('Plugin for Vim', get_option('plugin_vim'))

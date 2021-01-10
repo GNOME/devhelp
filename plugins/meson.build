@@ -1,11 +1,17 @@
-subdir('gedit-plugin')
+if get_option('plugin_gedit')
+  subdir('gedit-plugin')
+endif
 
-install_data(
-  'devhelp.el',
-  install_dir: get_option('datadir') / 'emacs/site-lisp'
-)
+if get_option('plugin_emacs')
+  install_data(
+    'devhelp.el',
+    install_dir: get_option('datadir') / 'emacs/site-lisp'
+  )
+endif
 
-install_data(
-  'devhelp.vim',
-  install_dir: get_option('datadir') / 'vim/vimfiles/plugin'
-)
+if get_option('plugin_vim')
+  install_data(
+    'devhelp.vim',
+    install_dir: get_option('datadir') / 'vim/vimfiles/plugin'
+  )
+endif

@@ -9,3 +9,21 @@ option(
   type: 'boolean', value: false,
   description: 'Build the API reference'
 )
+
+option(
+  'plugin_emacs',
+  type: 'boolean', value: false,
+  description: 'Install the Emacs plugin'
+)
+
+option(
+  'plugin_gedit',
+  type: 'boolean', value: false,
+  description: 'Install the gedit plugin'
+)
+
+option(
+  'plugin_vim',
+  type: 'boolean', value: false,
+  description: 'Install the Vim plugin'
+)
