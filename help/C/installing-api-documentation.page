@@ -78,9 +78,9 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 <section id="gtk-doc">
   <title>GTK-Doc</title>
   <p>
-    <link href="https://www.gtk.org/gtk-doc/">GTK-Doc</link> is a tool to
-    generate API documentation from comments added to C code. It is used by
-    GLib, GTK and GNOME libraries and applications.
+    <link href="https://gitlab.gnome.org/GNOME/gtk-doc">GTK-Doc</link> is a
+    tool to generate API documentation from comments added to C code. It is
+    used by GLib, GTK and GNOME libraries and applications.
   </p>
   <p>
     GTK-Doc installs the API reference of a module into:
