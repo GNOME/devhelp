@@ -40,7 +40,7 @@ add_menu_action_infos (DhApp *app)
                 { "app.help", NULL, N_("_Help"), "F1" },
                 { "app.about", NULL, N_("_About Devhelp") },
                 { "app.quit", NULL, N_("_Quit"), "<Control>q",
-                  N_("Close all windows") },
+                  N_("Close all windows (quit the application)") },
 
                 /* Actions related to the current main window */
                 { "win.show-sidebar", NULL, N_("_Side Panel"), "F9",
