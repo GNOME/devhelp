@@ -375,25 +375,32 @@ shortcuts_window_cb (GSimpleAction *action,
         factory = amtk_factory_new (NULL);
         amtk_factory_set_default_flags (factory, AMTK_FACTORY_IGNORE_GACTION);
 
-        /* General group */
-        group = amtk_shortcuts_group_new (_("General"));
+        group = amtk_shortcuts_group_new (_("Search"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.focus-search"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.find"));
-        gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.new-window"));
-        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.new-tab"));
-        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.show-sidebar"));
-        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-back"));
-        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-forward"));
-        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.print"));
-        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.close-tab"));
-        gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.quit"));
         gtk_container_add (section, GTK_WIDGET (group));
 
-        /* Zoom group */
+        group = amtk_shortcuts_group_new (_("History"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-back"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.go-forward"));
+        gtk_container_add (section, GTK_WIDGET (group));
+
         group = amtk_shortcuts_group_new (_("Zoom"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.zoom-in"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.zoom-out"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.zoom-default"));
+        gtk_container_add (section, GTK_WIDGET (group));
+
+        group = amtk_shortcuts_group_new (_("Tabs and Windows"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.new-tab"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.new-window"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.close-tab"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.quit"));
+        gtk_container_add (section, GTK_WIDGET (group));
+
+        group = amtk_shortcuts_group_new (_("Miscellaneous"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.print"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.show-sidebar"));
         gtk_container_add (section, GTK_WIDGET (group));
 
         g_object_unref (factory);
