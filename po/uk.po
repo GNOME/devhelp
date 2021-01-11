@@ -5,13 +5,13 @@
 # Maxim Dziumanenko <dziumanenko@gmail.com>, 2007-2010, 2011.
 # Korostil Daniel <ted.korostiled@gmail.com>, 2011, 2012.
 # Daniel Korostil <ted.korostiled@gmail.com>, 2014.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2019-12-27 14:43+0000\n"
-"PO-Revision-Date: 2020-03-12 09:04+0200\n"
+"POT-Creation-Date: 2021-01-10 20:43+0000\n"
+"PO-Revision-Date: 2021-01-11 08:47+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -20,45 +20,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
 "=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 20.03.70\n"
+"X-Generator: Lokalize 20.11.70\n"
 "X-Project-Style: gnome\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:256 src/dh-app.c:548
+#: src/dh-app.c:265 src/dh-app.c:557
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:258
+#: src/dh-app.c:267
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
-"Інструмент розробника для навігації і пошуку у документації із програмних"
-" інтерфейсів"
+"Інструмент розробника для навігації і пошуку у документації із програмних "
+"інтерфейсів"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:9
-#| msgid ""
-#| "Devhelp is an API documentation browser. It provides an easy way to "
-#| "navigate through libraries, search by function, struct, or macro. It "
-#| "provides a tabbed interface and allows to print results."
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation. It "
 "provides an easy way to navigate through libraries and to search by "
 "function, struct, or macro."
 msgstr ""
-"Devhelp — інструмент розробника для навігації і пошуку документацією з"
-" програмного інтерфейсу. Він надає легкий спосіб переміщатись "
-"між бібліотеками, шукати функції, структури і макроси."
+"Devhelp — інструмент розробника для навігації і пошуку документацією з "
+"програмного інтерфейсу. Він надає легкий спосіб переміщатись між "
+"бібліотеками, шукати функції, структури і макроси."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
 msgstr ""
-"Документацію має бути встановлено локально, тому інтернет-з'єднання для"
-" користування Devhelp не є необхідним."
+"Документацію має бути встановлено локально, тому інтернет-з'єднання для "
+"користування Devhelp не є необхідним."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
 msgid ""
@@ -67,26 +63,22 @@ msgid ""
 "as the API documentation is available in HTML and a *.devhelp2 index file is "
 "generated."
 msgstr ""
-"Devhelp, природно, працює із GTK-Doc, тому підтримка бібліотек GTK і GNOME є"
-" доволі якісною. Втім, передбачено підтримку інших платформ для розробки,"
-" якщо документація із програмного інтерфейсу доступна у форматі HTML і"
-" створено файл покажчика *.devhelp2."
+"Devhelp, природно, працює із GTK-Doc, тому підтримка бібліотек GTK і GNOME є "
+"доволі якісною. Втім, передбачено підтримку інших платформ для розробки, "
+"якщо документація із програмного інтерфейсу доступна у форматі HTML і "
+"створено файл покажчика *.devhelp2."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:24
-#| msgid ""
-#| "Devhelp integrates with other applications such as Glade, Anjuta, or "
-#| "Geany."
 msgid ""
 "Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr ""
-"Devhelp інтегровано з іншими програмами, зокрема Glade, Builder або Anjuta."
-" Передбачено додатки для різних текстових редакторів (gedit, Vim, Emacs, "
+"Devhelp інтегровано з іншими програмами, зокрема Glade, Builder або Anjuta. "
+"Передбачено додатки для різних текстових редакторів (gedit, Vim, Emacs, "
 "Geany, …)."
 
 #: data/org.gnome.Devhelp.desktop.in:5
-#| msgid "Documentation Browser"
 msgid "API Documentation Browser"
 msgstr "Переглядач документації з програмного інтерфейсу"
 
@@ -152,12 +144,10 @@ msgid "List of books disabled by the user."
 msgstr "Список книг вимкнено користувачем."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:14
-#| msgid "Group by language"
 msgid "Group books by language"
 msgstr "Групувати книги за мовами"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:15
-#| msgid "Whether books should be grouped by language in the UI"
 msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
@@ -187,89 +177,89 @@ msgstr "Шрифт для фіксованого тексту"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Шрифт для тексту із фіксованою шириною, для прикладів програм."
 
-#: devhelp/dh-assistant-view.c:386
+#: devhelp/dh-assistant-view.c:385
 msgid "Book:"
 msgstr "Книга:"
 
-#: devhelp/dh-book.c:299
+#: devhelp/dh-book.c:298
 #, c-format
 msgid "Language: %s"
 msgstr "Мова: %s"
 
-#: devhelp/dh-book.c:300
+#: devhelp/dh-book.c:299
 msgid "Language: Undefined"
 msgstr "Мова: Невизначена"
 
-#: devhelp/dh-book-tree.c:750
+#: devhelp/dh-book-tree.c:749
 msgid "_Collapse All"
 msgstr "З_горнути усе"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:537
+#: devhelp/dh-link.c:536
 msgid "Book"
 msgstr "Книга"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:541
+#: devhelp/dh-link.c:540
 msgid "Page"
 msgstr "Сторінка"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:546
+#: devhelp/dh-link.c:545
 msgid "Keyword"
 msgstr "Ключове слово"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:552
+#: devhelp/dh-link.c:551
 msgid "Function"
 msgstr "Функція"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:558
+#: devhelp/dh-link.c:557
 msgid "Struct"
 msgstr "Структура"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:564
+#: devhelp/dh-link.c:563
 msgid "Macro"
 msgstr "Макрос"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:570
+#: devhelp/dh-link.c:569
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:576
+#: devhelp/dh-link.c:575
 msgid "Type"
 msgstr "Тип"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:582
+#: devhelp/dh-link.c:581
 msgid "Property"
 msgstr "Властивість"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:588
+#: devhelp/dh-link.c:587
 msgid "Signal"
 msgstr "Сигнал"
 
-#: devhelp/dh-web-view.c:640
+#: devhelp/dh-web-view.c:644
 msgid "Empty Page"
 msgstr "Порожня сторінка"
 
@@ -283,142 +273,145 @@ msgstr "Показати документацію з API"
 
 #. action, icon, label, accel, tooltip
 #. Actions related to the whole application
-#: src/dh-app.c:37
+#: src/dh-app.c:36
 msgid "New _Window"
 msgstr "Створити _вікно"
 
-#: src/dh-app.c:38
-#| msgid "Opens a new Devhelp window"
+#: src/dh-app.c:37
 msgid "Open a new window"
 msgstr "Відкрити нове вікно"
 
-#: src/dh-app.c:39
+#: src/dh-app.c:38
 msgid "_Preferences"
 msgstr "_Параметри"
 
-#: src/dh-app.c:40
+#: src/dh-app.c:39
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
+
+#: src/dh-app.c:40
+#| msgid "_Keyboard Shortcuts"
+msgid "Show keyboard shortcuts"
+msgstr "Показати клавіатурні скорочення"
 
 #: src/dh-app.c:41
 msgid "_Help"
 msgstr "_Довідка"
 
 #: src/dh-app.c:42
+msgid "Show help"
+msgstr "Показати довідку"
+
+#: src/dh-app.c:43
 msgid "_About Devhelp"
 msgstr "_Про Devhelp"
 
-#: src/dh-app.c:43
+#: src/dh-app.c:44
 msgid "_Quit"
 msgstr "Ви_йти"
 
-#: src/dh-app.c:44
-msgid "Close all windows"
-msgstr "Закрити всі вікна"
+#: src/dh-app.c:45
+msgid "Close all windows (quit the application)"
+msgstr "Закрити усі вікна (вийти з програми)"
 
 #. Actions related to the current main window
-#: src/dh-app.c:47
+#: src/dh-app.c:48
 msgid "_Side Panel"
 msgstr "_Бічна панель"
 
-#: src/dh-app.c:48
+#: src/dh-app.c:49
 msgid "Toggle side panel visibility"
 msgstr "Увімкнути або вимкнути видимість бічної панелі"
 
-#: src/dh-app.c:49
+#: src/dh-app.c:50
 msgid "_Print"
 msgstr "_Надрукувати"
 
-#: src/dh-app.c:50
+#: src/dh-app.c:51
 msgid "_Find"
 msgstr "З_найти"
 
-#: src/dh-app.c:51
+#: src/dh-app.c:52
 msgid "Find in current page"
 msgstr "Знайти на поточній сторінці"
 
-#: src/dh-app.c:52
+#: src/dh-app.c:53
 msgid "_Larger Text"
 msgstr "_Більший шрифт"
 
-#: src/dh-app.c:53
-#| msgid "_Larger Text"
+#: src/dh-app.c:54
 msgid "Larger text"
 msgstr "Більший текст"
 
-#: src/dh-app.c:54
+#: src/dh-app.c:55
 msgid "S_maller Text"
 msgstr "_Менший шрифт"
 
-#: src/dh-app.c:55
-#| msgid "S_maller Text"
+#: src/dh-app.c:56
 msgid "Smaller text"
 msgstr "Менший текст"
 
-#: src/dh-app.c:56
+#: src/dh-app.c:57
 msgid "_Normal Size"
 msgstr "_Звичайний розмір"
 
-#: src/dh-app.c:57
-#| msgid "_Normal Size"
+#: src/dh-app.c:58
 msgid "Normal size"
 msgstr "Звичайний розмір"
 
 #. action, icon, label, accel, tooltip
-#: src/dh-app.c:97
+#: src/dh-app.c:106
 msgid "Open a new tab"
 msgstr "Відкрити нову вкладку"
 
-#: src/dh-app.c:98
+#: src/dh-app.c:107
 msgid "Close the current tab"
 msgstr "Закрити поточну вкладку"
 
-#: src/dh-app.c:99
+#: src/dh-app.c:108
 msgid "Go back"
 msgstr "Повернутися"
 
-#: src/dh-app.c:100
-#| msgid "Forward"
+#: src/dh-app.c:109
 msgid "Go forward"
 msgstr "Перейти вперед"
 
-#: src/dh-app.c:101
+#: src/dh-app.c:110
 msgid "Focus global search"
 msgstr "Фокусувати поле загального пошуку"
 
-#: src/dh-app.c:260
+#: src/dh-app.c:269
 msgid "translator-credits"
 msgstr ""
 "Yuriy Syrota <rasta@cvs.gnome.org>\n"
 "Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Daniel Korostil <ted.korostiled@gmail.com>"
 
-#: src/dh-app.c:262
-#| msgid "DevHelp Website"
+#: src/dh-app.c:271
 msgid "Devhelp Website"
 msgstr "Сайт Devhelp"
 
-#: src/dh-app.c:437
+#: src/dh-app.c:446
 msgid "Opens a new Devhelp window"
 msgstr "Відкриває нове вікно Devhelp"
 
-#: src/dh-app.c:442
+#: src/dh-app.c:451
 msgid "Search for a keyword"
 msgstr "Знайти ключове слово"
 
-#: src/dh-app.c:443 src/dh-app.c:448
+#: src/dh-app.c:452 src/dh-app.c:457
 msgid "KEYWORD"
 msgstr "ФРАЗА"
 
-#: src/dh-app.c:447
+#: src/dh-app.c:456
 msgid "Search and display any hit in the assistant window"
 msgstr "Шукати та показувати будь-які відповідності у вікні помічника"
 
-#: src/dh-app.c:452
+#: src/dh-app.c:461
 msgid "Display the version and exit"
 msgstr "Показати версію та вийти"
 
-#: src/dh-app.c:457
+#: src/dh-app.c:466
 msgid "Quit any running Devhelp"
 msgstr "Вийти з Devhelp"
 
@@ -427,11 +420,11 @@ msgstr "Вийти з Devhelp"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Помічник"
 
-#: src/dh-preferences.c:537
+#: src/dh-preferences.c:536
 msgid "Enabled"
 msgstr "Увімкнуто"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:550
 msgid "Title"
 msgstr "Заголовок"
 
@@ -463,26 +456,40 @@ msgstr "_Фіксована ширина:"
 msgid "Fonts"
 msgstr "Шрифти"
 
-#. General group
-#: src/dh-window.c:380
-msgid "General"
-msgstr "Загальна"
+#: src/dh-window.c:378
+msgid "Search"
+msgstr "Пошук"
 
-#. Zoom group
-#: src/dh-window.c:394
+#: src/dh-window.c:383
+msgid "History"
+msgstr "Журнал"
+
+#: src/dh-window.c:388
 msgid "Zoom"
 msgstr "Масштаб"
 
-#: src/dh-window.c:539
+#: src/dh-window.c:394
+#| msgid "Close all windows"
+msgid "Tabs and Windows"
+msgstr "Вкладки і вікна"
+
+#: src/dh-window.c:401
+msgid "Miscellaneous"
+msgstr "Інше"
+
+#: src/dh-window.c:406
+msgid "General"
+msgstr "Загальна"
+
+#: src/dh-window.c:551
 msgid "Back"
 msgstr "Назад"
 
-#: src/dh-window.c:543
+#: src/dh-window.c:555
 msgid "Forward"
 msgstr "Далі"
 
-#: src/dh-window.c:561
-#| msgid "New _Tab"
+#: src/dh-window.c:573
 msgid "New Tab"
 msgstr "Нова вкладка"
 
@@ -675,9 +682,6 @@ msgstr "Нова вкладка"
 
 #~ msgid "Contents"
 #~ msgstr "Зміст"
-
-#~ msgid "Search"
-#~ msgstr "Пошук"
 
 #~ msgid "Find previous occurrence of the search string"
 #~ msgstr "Знайти попереднє місце знаходження рядка"
