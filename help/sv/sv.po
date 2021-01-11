@@ -1,16 +1,16 @@
 # Swedish translation for devhelp.
-# Copyright © 2018, 2020 Free Software Foundation, Inc.
+# Copyright © 2018-2021 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 # Sebastian Rasmussen <sebras@gmail.com>, 2018.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2020-05-29 13:32+0000\n"
-"PO-Revision-Date: 2020-07-31 00:47+0200\n"
+"POT-Creation-Date: 2021-01-10 15:36+0000\n"
+"PO-Revision-Date: 2021-01-10 22:29+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Project-Style: gnome\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
@@ -294,13 +294,13 @@ msgstr "GTK-Doc"
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:80
 msgid ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
-"generate API documentation from comments added to C code. It is used by "
-"GLib, GTK and GNOME libraries and applications."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
 msgstr ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> är ett verktyg "
-"för att skapa API-dokumentation som lagts till i C-kod. Det används av GLib, "
-"GTK samt GNOME-bibliotek och GNOME-program."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> är ett "
+"verktyg för att skapa API-dokumentation från kommentarer som lagts till i C-"
+"kod. Det används av GLib, GTK samt GNOME-bibliotek och GNOME-program."
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:85
