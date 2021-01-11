@@ -151,6 +151,8 @@ add_no_gaction_action_infos (void)
         const AmtkActionInfoEntry entries[] = {
                 /* action, icon, label, accel, tooltip */
                 { "no-gaction-open-menu", NULL, NULL, "F10", N_("Open the menu") },
+                { "no-gaction-prev-tab", NULL, NULL, "<Control>Page_Up", N_("Previous tab") },
+                { "no-gaction-next-tab", NULL, NULL, "<Control>Page_Down", N_("Next tab") },
                 { NULL }
         };
 

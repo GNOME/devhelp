@@ -394,6 +394,8 @@ shortcuts_window_cb (GSimpleAction *action,
         group = amtk_shortcuts_group_new (_("Tabs and Windows"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.new-tab"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.new-window"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "no-gaction-prev-tab"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "no-gaction-next-tab"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.close-tab"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.quit"));
         gtk_container_add (section, GTK_WIDGET (group));
