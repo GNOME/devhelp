@@ -23,6 +23,9 @@ struct _DhAppPrivate {
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhApp, dh_app, GTK_TYPE_APPLICATION);
 
+/* This function adds the AmtkActionInfo's for the GActions that are present in
+ * a menu.
+ */
 static void
 add_menu_action_infos (DhApp *app)
 {
@@ -94,6 +97,9 @@ add_menu_action_infos (DhApp *app)
                                                       GTK_APPLICATION (app));
 }
 
+/* This function adds the AmtkActionInfo's for other GActions (GActions that are
+ * not present in a menu).
+ */
 static void
 add_other_action_infos (DhApp *app)
 {
@@ -134,11 +140,31 @@ add_other_action_infos (DhApp *app)
         g_object_unref (store);
 }
 
+/* This function adds the AmtkActionInfo's for things that have no related
+ * GActions.
+ */
+static void
+add_no_gaction_action_infos (void)
+{
+        AmtkActionInfoStore *store;
+
+        const AmtkActionInfoEntry entries[] = {
+                /* action, icon, label, accel, tooltip */
+                { "no-gaction-open-menu", NULL, NULL, "F10", N_("Open the menu") },
+                { NULL }
+        };
+
+        store = amtk_action_info_store_new ();
+        amtk_action_info_store_add_entries (store, entries, -1, GETTEXT_PACKAGE);
+        g_object_unref (store);
+}
+
 static void
 add_action_infos (DhApp *app)
 {
         add_menu_action_infos (app);
         add_other_action_infos (app);
+        add_no_gaction_action_infos ();
 }
 
 static DhAssistant *

@@ -405,6 +405,7 @@ shortcuts_window_cb (GSimpleAction *action,
 
         group = amtk_shortcuts_group_new (_("General"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "app.help"));
+        gtk_container_add (group, amtk_factory_create_shortcut (factory, "no-gaction-open-menu"));
         gtk_container_add (group, amtk_factory_create_shortcut (factory, "win.shortcuts-window"));
         gtk_container_add (section, GTK_WIDGET (group));
 
