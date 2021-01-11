@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-01-10 20:43+0000\n"
-"PO-Revision-Date: 2021-01-11 08:47+0200\n"
+"POT-Creation-Date: 2021-01-11 08:26+0000\n"
+"PO-Revision-Date: 2021-01-11 12:06+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -27,12 +27,12 @@ msgstr ""
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:265 src/dh-app.c:557
+#: src/dh-app.c:293 src/dh-app.c:585
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:267
+#: src/dh-app.c:295
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Інструмент розробника для навігації і пошуку у документації із програмних "
@@ -273,145 +273,158 @@ msgstr "Показати документацію з API"
 
 #. action, icon, label, accel, tooltip
 #. Actions related to the whole application
-#: src/dh-app.c:36
+#: src/dh-app.c:39
 msgid "New _Window"
 msgstr "Створити _вікно"
 
-#: src/dh-app.c:37
+#: src/dh-app.c:40
 msgid "Open a new window"
 msgstr "Відкрити нове вікно"
 
-#: src/dh-app.c:38
+#: src/dh-app.c:41
 msgid "_Preferences"
 msgstr "_Параметри"
 
-#: src/dh-app.c:39
+#: src/dh-app.c:42
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
-#: src/dh-app.c:40
-#| msgid "_Keyboard Shortcuts"
+#: src/dh-app.c:43
 msgid "Show keyboard shortcuts"
 msgstr "Показати клавіатурні скорочення"
 
-#: src/dh-app.c:41
+#: src/dh-app.c:44
 msgid "_Help"
 msgstr "_Довідка"
 
-#: src/dh-app.c:42
+#: src/dh-app.c:45
 msgid "Show help"
 msgstr "Показати довідку"
 
-#: src/dh-app.c:43
+#: src/dh-app.c:46
 msgid "_About Devhelp"
 msgstr "_Про Devhelp"
 
-#: src/dh-app.c:44
+#: src/dh-app.c:47
 msgid "_Quit"
 msgstr "Ви_йти"
 
-#: src/dh-app.c:45
+#: src/dh-app.c:48
 msgid "Close all windows (quit the application)"
 msgstr "Закрити усі вікна (вийти з програми)"
 
 #. Actions related to the current main window
-#: src/dh-app.c:48
+#: src/dh-app.c:51
 msgid "_Side Panel"
 msgstr "_Бічна панель"
 
-#: src/dh-app.c:49
+#: src/dh-app.c:52
 msgid "Toggle side panel visibility"
 msgstr "Увімкнути або вимкнути видимість бічної панелі"
 
-#: src/dh-app.c:50
+#: src/dh-app.c:53
 msgid "_Print"
 msgstr "_Надрукувати"
 
-#: src/dh-app.c:51
+#: src/dh-app.c:54
 msgid "_Find"
 msgstr "З_найти"
 
-#: src/dh-app.c:52
+#: src/dh-app.c:55
 msgid "Find in current page"
 msgstr "Знайти на поточній сторінці"
 
-#: src/dh-app.c:53
+#: src/dh-app.c:56
 msgid "_Larger Text"
 msgstr "_Більший шрифт"
 
-#: src/dh-app.c:54
+#: src/dh-app.c:57
 msgid "Larger text"
 msgstr "Більший текст"
 
-#: src/dh-app.c:55
+#: src/dh-app.c:58
 msgid "S_maller Text"
 msgstr "_Менший шрифт"
 
-#: src/dh-app.c:56
+#: src/dh-app.c:59
 msgid "Smaller text"
 msgstr "Менший текст"
 
-#: src/dh-app.c:57
+#: src/dh-app.c:60
 msgid "_Normal Size"
 msgstr "_Звичайний розмір"
 
-#: src/dh-app.c:58
+#: src/dh-app.c:61
 msgid "Normal size"
 msgstr "Звичайний розмір"
 
 #. action, icon, label, accel, tooltip
-#: src/dh-app.c:106
+#: src/dh-app.c:112
 msgid "Open a new tab"
 msgstr "Відкрити нову вкладку"
 
-#: src/dh-app.c:107
+#: src/dh-app.c:113
 msgid "Close the current tab"
 msgstr "Закрити поточну вкладку"
 
-#: src/dh-app.c:108
+#: src/dh-app.c:114
 msgid "Go back"
 msgstr "Повернутися"
 
-#: src/dh-app.c:109
+#: src/dh-app.c:115
 msgid "Go forward"
 msgstr "Перейти вперед"
 
-#: src/dh-app.c:110
+#: src/dh-app.c:116
 msgid "Focus global search"
 msgstr "Фокусувати поле загального пошуку"
 
-#: src/dh-app.c:269
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:153
+msgid "Open the menu"
+msgstr "Відкрити меню"
+
+#: src/dh-app.c:154
+#| msgid "Find Previous"
+msgid "Previous tab"
+msgstr "Попередня вкладка"
+
+#: src/dh-app.c:155
+msgid "Next tab"
+msgstr "Наступна вкладка"
+
+#: src/dh-app.c:297
 msgid "translator-credits"
 msgstr ""
 "Yuriy Syrota <rasta@cvs.gnome.org>\n"
 "Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Daniel Korostil <ted.korostiled@gmail.com>"
 
-#: src/dh-app.c:271
+#: src/dh-app.c:299
 msgid "Devhelp Website"
 msgstr "Сайт Devhelp"
 
-#: src/dh-app.c:446
+#: src/dh-app.c:474
 msgid "Opens a new Devhelp window"
 msgstr "Відкриває нове вікно Devhelp"
 
-#: src/dh-app.c:451
+#: src/dh-app.c:479
 msgid "Search for a keyword"
 msgstr "Знайти ключове слово"
 
-#: src/dh-app.c:452 src/dh-app.c:457
+#: src/dh-app.c:480 src/dh-app.c:485
 msgid "KEYWORD"
 msgstr "ФРАЗА"
 
-#: src/dh-app.c:456
+#: src/dh-app.c:484
 msgid "Search and display any hit in the assistant window"
 msgstr "Шукати та показувати будь-які відповідності у вікні помічника"
 
-#: src/dh-app.c:461
+#: src/dh-app.c:489
 msgid "Display the version and exit"
 msgstr "Показати версію та вийти"
 
-#: src/dh-app.c:466
+#: src/dh-app.c:494
 msgid "Quit any running Devhelp"
 msgstr "Вийти з Devhelp"
 
@@ -469,27 +482,26 @@ msgid "Zoom"
 msgstr "Масштаб"
 
 #: src/dh-window.c:394
-#| msgid "Close all windows"
 msgid "Tabs and Windows"
 msgstr "Вкладки і вікна"
 
-#: src/dh-window.c:401
+#: src/dh-window.c:403
 msgid "Miscellaneous"
 msgstr "Інше"
 
-#: src/dh-window.c:406
+#: src/dh-window.c:408
 msgid "General"
 msgstr "Загальна"
 
-#: src/dh-window.c:551
+#: src/dh-window.c:554
 msgid "Back"
 msgstr "Назад"
 
-#: src/dh-window.c:555
+#: src/dh-window.c:558
 msgid "Forward"
 msgstr "Далі"
 
-#: src/dh-window.c:573
+#: src/dh-window.c:576
 msgid "New Tab"
 msgstr "Нова вкладка"
 
@@ -643,9 +655,6 @@ msgstr "Нова вкладка"
 
 #~ msgid "Find Next"
 #~ msgstr "Зайти наступне"
-
-#~ msgid "Find Previous"
-#~ msgstr "Знайти попереднє"
 
 #~ msgid "Go to the previous page"
 #~ msgstr "Перейти до попередньої сторінки"
