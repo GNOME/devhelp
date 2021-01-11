@@ -43,11 +43,8 @@
   <translation type="gettext">devhelp</translation>
   <update_contact>swilmet@gnome.org</update_contact>
   <releases>
+    <release version="40.alpha" date="2021-01-11" />
     <release version="3.38.1" date="2020-11-20" />
     <release version="3.38.0" date="2020-09-11" />
-    <release version="3.37.1" date="2020-05-29" />
-    <release version="3.36.2" date="2020-04-25" />
-    <release version="3.36.1" date="2020-03-26" />
-    <release version="3.36.0" date="2020-03-05" />
   </releases>
 </component>
