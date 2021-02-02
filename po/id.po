@@ -6,14 +6,15 @@
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010.
 # Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013, 2014, 2015.
 # Sucipto <sucipto@pm.me>, 2020.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2019-12-18 18:00+0000\n"
-"PO-Revision-Date: 2020-01-14 17:53+0700\n"
-"Last-Translator: Sucipto <sucipto@pm.me>\n"
+"POT-Creation-Date: 2021-01-11 08:26+0000\n"
+"PO-Revision-Date: 2021-02-02 19:12+0700\n"
+"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -21,18 +22,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Gtranslator 3.34.0\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:562
+#: src/dh-app.c:293 src/dh-app.c:585
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:295
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Alat pengembang untuk meramban dan mencari dokumentasi API"
 
@@ -55,11 +56,6 @@ msgstr ""
 "diperlukan untuk menggunakan Devhelp."
 
 #: data/org.gnome.Devhelp.appdata.xml.in:18
-#| msgid ""
-#| "Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-#| "well supported. But other development platforms can be supported as well, "
-#| "as long as the API documentation is available in HTML and a *.devhelp2 "
-#| "index file is generated."
 msgid ""
 "Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
 "supported. But other development platforms can be supported as well, as long "
@@ -182,89 +178,89 @@ msgstr "Fonta untuk teks dengan lebar tetap"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Fonta untuk teks lebar tetap, seperti contoh kode."
 
-#: devhelp/dh-assistant-view.c:400
+#: devhelp/dh-assistant-view.c:385
 msgid "Book:"
 msgstr "Buku:"
 
-#: devhelp/dh-book.c:313
+#: devhelp/dh-book.c:298
 #, c-format
 msgid "Language: %s"
 msgstr "Bahasa: %s"
 
-#: devhelp/dh-book.c:314
+#: devhelp/dh-book.c:299
 msgid "Language: Undefined"
 msgstr "Bahasa: Tak didefinisikan"
 
-#: devhelp/dh-book-tree.c:764
+#: devhelp/dh-book-tree.c:749
 msgid "_Collapse All"
 msgstr "_Kuncupkan Semua"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:551
+#: devhelp/dh-link.c:536
 msgid "Book"
 msgstr "Buku"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:555
+#: devhelp/dh-link.c:540
 msgid "Page"
 msgstr "Halaman"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:560
+#: devhelp/dh-link.c:545
 msgid "Keyword"
 msgstr "Kata Kunci"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:566
+#: devhelp/dh-link.c:551
 msgid "Function"
 msgstr "Fungsi"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:572
+#: devhelp/dh-link.c:557
 msgid "Struct"
 msgstr "Struktur"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:578
+#: devhelp/dh-link.c:563
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:584
+#: devhelp/dh-link.c:569
 msgid "Enum"
 msgstr "Enumerasi"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:590
+#: devhelp/dh-link.c:575
 msgid "Type"
 msgstr "Jenis"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:596
+#: devhelp/dh-link.c:581
 msgid "Property"
 msgstr "Properti"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:602
+#: devhelp/dh-link.c:587
 msgid "Signal"
 msgstr "Sinyal"
 
-#: devhelp/dh-web-view.c:657
+#: devhelp/dh-web-view.c:644
 msgid "Empty Page"
 msgstr "Halaman Kosong"
 
@@ -278,200 +274,235 @@ msgstr "Tunjukkan Dokumentasi API"
 
 #. action, icon, label, accel, tooltip
 #. Actions related to the whole application
-#: src/dh-app.c:51
+#: src/dh-app.c:39
 msgid "New _Window"
 msgstr "_Jendela Baru"
 
-#: src/dh-app.c:52
+#: src/dh-app.c:40
 msgid "Open a new window"
 msgstr "Buka jendela baru"
 
-#: src/dh-app.c:53
+#: src/dh-app.c:41
 msgid "_Preferences"
 msgstr "_Preferensi"
 
-#: src/dh-app.c:54
+#: src/dh-app.c:42
 msgid "_Keyboard Shortcuts"
 msgstr "Pintasan Papan Ti_k"
 
-#: src/dh-app.c:55
+#: src/dh-app.c:43
+msgid "Show keyboard shortcuts"
+msgstr "Tampilkan pintasan papan tik"
+
+#: src/dh-app.c:44
 msgid "_Help"
 msgstr "Ba_ntuan"
 
-#: src/dh-app.c:56
+#: src/dh-app.c:45
+msgid "Show help"
+msgstr "Tampilkan bantuan"
+
+#: src/dh-app.c:46
 msgid "_About Devhelp"
 msgstr "Tent_ang Devhelp"
 
-#: src/dh-app.c:57
+#: src/dh-app.c:47
 msgid "_Quit"
 msgstr "_Keluar"
 
-#: src/dh-app.c:58
-msgid "Close all windows"
-msgstr "Tutup semua jendela"
+#: src/dh-app.c:48
+msgid "Close all windows (quit the application)"
+msgstr "Tutup semua jendela (keluar dari aplikasi)"
 
 #. Actions related to the current main window
-#: src/dh-app.c:61
+#: src/dh-app.c:51
 msgid "_Side Panel"
 msgstr "Panel _Sisi"
 
-#: src/dh-app.c:62
+#: src/dh-app.c:52
 msgid "Toggle side panel visibility"
 msgstr "Jungkitkan kenampakan bilah sisi"
 
-#: src/dh-app.c:63
+#: src/dh-app.c:53
 msgid "_Print"
 msgstr "_Cetak"
 
-#: src/dh-app.c:64
+#: src/dh-app.c:54
 msgid "_Find"
 msgstr "C_ari"
 
-#: src/dh-app.c:65
+#: src/dh-app.c:55
 msgid "Find in current page"
 msgstr "Temukan di halaman saat ini"
 
-#: src/dh-app.c:66
+#: src/dh-app.c:56
 msgid "_Larger Text"
 msgstr "Teks Lebih _Besar"
 
-#: src/dh-app.c:67
+#: src/dh-app.c:57
 msgid "Larger text"
 msgstr "Teks lebih besar"
 
-#: src/dh-app.c:68
+#: src/dh-app.c:58
 msgid "S_maller Text"
 msgstr "Teks Lebih _Kecil"
 
-#: src/dh-app.c:69
+#: src/dh-app.c:59
 msgid "Smaller text"
 msgstr "Teks lebih kecil"
 
-#: src/dh-app.c:70
+#: src/dh-app.c:60
 msgid "_Normal Size"
 msgstr "Ukuran _Normal"
 
-#: src/dh-app.c:71
+#: src/dh-app.c:61
 msgid "Normal size"
 msgstr "Ukuran normal"
 
 #. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
+#: src/dh-app.c:112
 msgid "Open a new tab"
 msgstr "Buka tab baru"
 
-#: src/dh-app.c:112
+#: src/dh-app.c:113
 msgid "Close the current tab"
 msgstr "Tutup tab ini"
 
-#: src/dh-app.c:113
+#: src/dh-app.c:114
 msgid "Go back"
 msgstr "Mundur"
 
-#: src/dh-app.c:114
+#: src/dh-app.c:115
 msgid "Go forward"
 msgstr "Maju"
 
-#: src/dh-app.c:115
+#: src/dh-app.c:116
 msgid "Focus global search"
 msgstr "Fokus pencarian global"
 
-#: src/dh-app.c:274
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:153
+msgid "Open the menu"
+msgstr "Buka menu"
+
+#: src/dh-app.c:154
+msgid "Previous tab"
+msgstr "Tab sebelumnya"
+
+#: src/dh-app.c:155
+msgid "Next tab"
+msgstr "Tab selanjutnya"
+
+#: src/dh-app.c:297
 msgid "translator-credits"
 msgstr ""
 "Mikiya <eien.mihoshi@gmail.com>, 2010.\n"
 "Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013, 2014.\n"
 "Dirgita <dirgitadevina@yahoo.co.id>, 2010.\n"
-"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018."
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018, 2021."
 
-#: src/dh-app.c:276
+#: src/dh-app.c:299
 msgid "Devhelp Website"
 msgstr "Situs Web Devhelp"
 
-#: src/dh-app.c:451
+#: src/dh-app.c:474
 msgid "Opens a new Devhelp window"
 msgstr "Buka jendela Devhelp baru"
 
-#: src/dh-app.c:456
+#: src/dh-app.c:479
 msgid "Search for a keyword"
 msgstr "Mencari kata kunci"
 
-#: src/dh-app.c:457 src/dh-app.c:462
+#: src/dh-app.c:480 src/dh-app.c:485
 msgid "KEYWORD"
 msgstr "KATA KUNCI"
 
-#: src/dh-app.c:461
+#: src/dh-app.c:484
 msgid "Search and display any hit in the assistant window"
 msgstr "Mencari dan menampilkan semua hasil di jendela pembantu"
 
-#: src/dh-app.c:466
+#: src/dh-app.c:489
 msgid "Display the version and exit"
 msgstr "Menampilkan versi dan keluar"
 
-#: src/dh-app.c:471
+#: src/dh-app.c:494
 msgid "Quit any running Devhelp"
 msgstr "Keluar dari semua Devhelp yang sedang berjalan"
 
 #. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
+#: src/dh-assistant.ui:13
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Pembantu"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:536
 msgid "Enabled"
 msgstr "Diaktifkan"
 
-#: src/dh-preferences.c:565
+#: src/dh-preferences.c:550
 msgid "Title"
 msgstr "Judul"
 
-#: src/dh-preferences.ui:26
+#: src/dh-preferences.ui:12
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: src/dh-preferences.ui:62
+#: src/dh-preferences.ui:48
 msgid "_Group by language"
 msgstr "_Kelompokkan menurut bahasa"
 
-#: src/dh-preferences.ui:104
+#: src/dh-preferences.ui:90
 msgid "Book Shelf"
 msgstr "Rak Buku"
 
-#: src/dh-preferences.ui:125
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
 msgstr "G_unakan fonta sistem"
 
-#: src/dh-preferences.ui:149
+#: src/dh-preferences.ui:135
 msgid "_Variable width: "
 msgstr "Lebar _variabel: "
 
-#: src/dh-preferences.ui:162
+#: src/dh-preferences.ui:148
 msgid "_Fixed width:"
 msgstr "_Lebar tetap:"
 
-#: src/dh-preferences.ui:223
+#: src/dh-preferences.ui:209
 msgid "Fonts"
 msgstr "Fonta"
 
-#. General group
-#: src/dh-window.c:393
-msgid "General"
-msgstr "Umum"
+#: src/dh-window.c:378
+msgid "Search"
+msgstr "Cari"
 
-#. Zoom group
-#: src/dh-window.c:407
+#: src/dh-window.c:383
+msgid "History"
+msgstr "Riwayat"
+
+#: src/dh-window.c:388
 msgid "Zoom"
 msgstr "Zum"
 
-#: src/dh-window.c:552
+#: src/dh-window.c:394
+msgid "Tabs and Windows"
+msgstr "Tab dan Jendeka"
+
+#: src/dh-window.c:403
+msgid "Miscellaneous"
+msgstr "Rupa-rupa"
+
+#: src/dh-window.c:408
+msgid "General"
+msgstr "Umum"
+
+#: src/dh-window.c:554
 msgid "Back"
 msgstr "Mundur"
 
-#: src/dh-window.c:556
+#: src/dh-window.c:558
 msgid "Forward"
 msgstr "Maju"
 
-#: src/dh-window.c:574
+#: src/dh-window.c:576
 msgid "New Tab"
 msgstr "Tab Baru"
 
