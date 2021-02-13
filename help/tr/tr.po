@@ -1,0 +1,403 @@
+# Turkish translation for devhelp.
+# Copyright (C) 2020 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+#
+# Sabri Ünal <libreajans@gmail.com>, 2020.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp master\n"
+"POT-Creation-Date: 2021-01-10 15:36+0000\n"
+"PO-Revision-Date: 2021-02-13 23:09+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr ""
+"Sabri Ünal <libreajans@gmail.com>, 2020\n"
+"Emin Tufan Çetin <etcetin@gmail.com>, 2021."
+
+#. (itstool) path: page/title
+#. (itstool) path: section/title
+#: C/book-format.page:14 C/installing-api-documentation.page:23
+msgid "Book format"
+msgstr "Kitap biçimi"
+
+#. (itstool) path: synopsis/p
+#: C/book-format.page:17
+msgid ""
+"A “book” in <app>Devhelp</app> is the API documentation for one module, or "
+"package (usually a library). This page describes the format that a book "
+"needs to follow in order for <app>Devhelp</app> to recognize it."
+msgstr ""
+"<app>Devhelp</app>'teki “kitap”, bir modül veya paket (genellikle kütüphane) "
+"için API belgeleridir. Bu sayfada, <app>Devhelp</app>ʼin tanıması için bir "
+"kitabın izlemesi gereken biçim açıklanmaktadır."
+
+#. (itstool) path: page/p
+#: C/book-format.page:24
+msgid ""
+"The content of a book is placed in one directory (that directory contains "
+"only one book, it cannot contain several books). The directory is comprised "
+"of:"
+msgstr ""
+"Kitabın içeriği bir dizine yerleştirilir (bu dizin yalnızca tek bir kitap "
+"içerir, birden çok kitap içeremez). Dizin aşağıdakileri içerebilir:"
+
+#. (itstool) path: item/p
+#: C/book-format.page:30
+msgid "HTML pages, plus possibly CSS files, images, etc;"
+msgstr "HTML sayfaları, olası CSS dosyaları, görüntüler, vs.;"
+
+#. (itstool) path: item/p
+#: C/book-format.page:33
+msgid ""
+"An index file with the <file>*.devhelp2</file> file extension, see <link "
+"xref=\"index-file-format\"/> for more information."
+msgstr ""
+"<file>*.devhelp2</file> dosya uzantılı indeks, daha çok bilgi için bakınız: "
+"<link xref=\"index-file-format\"/>."
+
+#. (itstool) path: note/p
+#: C/book-format.page:39
+msgid ""
+"Restriction: the name of the directory the <file>*.devhelp2</file> file is "
+"in and the name of the <file>*.devhelp2</file> file (minus the extension) "
+"must match. In other words, if the book directory is called <code>"
+"$book_name</code>, then the absolute path to the index file should end with "
+"<code>$book_name/$book_name.devhelp2</code>. That way, when <app>Devhelp</"
+"app> knows the directory name, it directly knows the location to the index "
+"file."
+msgstr ""
+"Kısıtlama: <file>*.devhelp2</file> dosyasının bulunduğu dizinin adı ve "
+"<file>*.devhelp2</file> dosyasının (uzantı hariç) adı aynı olmalıdır. Diğer "
+"deyişle, kitap dizini <code>$kitap_adi</code> olarak adlandırılırsa, indeks "
+"dosyasının mutlak yolu ve dosya uzantısı <code>$kitap_adi/$kitap_adi."
+"devhelp2</code> olmalıdır. Böylece, <app>Devhelp</app> dizin adını "
+"bildiğinde, indeksin konumunu da doğrudan bilir."
+
+#. (itstool) path: page/title
+#: C/index-file-format.page:14
+msgid "Index file format"
+msgstr "İndeks dosya biçimi"
+
+#. (itstool) path: synopsis/p
+#: C/index-file-format.page:17
+msgid ""
+"This page describes the purpose and the format of <file>*.devhelp2</file> "
+"index files."
+msgstr ""
+"Bu sayfada, <file>*.devhelp2</file> indeks dosyalarının amacı ve biçimi "
+"açıklanmaktadır."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:23
+msgid ""
+"A book (see <link xref=\"book-format\"/>) contains one index file. The index "
+"file has the extension <file>.devhelp2</file> and has an XML format."
+msgstr ""
+"Her kitap (bkz. <link xref=\"book-format\"/>) indeks dosyası içerir. İndeks "
+"dosyası <file> .devhelp2 </file> uzantılıdır ve XML biçimindedir."
+
+#. (itstool) path: note/p
+#: C/index-file-format.page:29
+msgid ""
+"The “2” in the <file>*.devhelp2</file> file extension is because it is the "
+"second version of the file format. The first version of the format, with the "
+"<file>*.devhelp</file> file extension, is deprecated and its support in "
+"<app>Devhelp</app> may be removed in the future. On application startup, "
+"when <app>Devhelp</app> scans the filesystem to find books, it emits a "
+"warning message in the terminal for each book that uses a deprecated format."
+msgstr ""
+"<file>*.devhelp2</file> dosya uzantısındaki “2”, dosya biçiminin ikinci "
+"sürümü olduğunu belirtir. Biçimin <file>* .devhelp</file> dosya uzantılı ilk "
+"sürümü kullanımdan kaldırılmıştır ve <app>Devhelp</app> içindeki desteği "
+"gelecekte kaldırılabilir. Uygulama başlatıldığında, <app>Devhelp</app> "
+"kitapları bulmak için dosya sistemini tarar ve kullanımdan kaldırılmış biçim "
+"kullanan her kitap için uçbirimde uyarı iletisi yayımlar."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:40
+msgid "The index file mainly contains:"
+msgstr "İndeks dosyası temel olarak şunları içerir:"
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:44
+msgid "The book structure (like a table of contents)."
+msgstr "Kitap yapısı (içindekiler tablosu gibi)."
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:47
+msgid "A list of symbols (functions, types, macros, signals, properties, …)."
+msgstr ""
+"Simge listesi (fonksiyonlar, türler, makrolar, sinyaller, özellikler, …)."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:51
+msgid ""
+"These contain links to the HTML files to reach the corresponding pages and "
+"symbols."
+msgstr ""
+"Bunlar, karşılık gelen sayfalara ve simgelere ulaşmak için HTML dosyalarına "
+"bağlantılar içerir."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:55
+msgid ""
+"In <app>Devhelp</app> the book structure is shown in the side panel. And the "
+"<link xref=\"search\">search in the side panel</link> shows results found in "
+"the index files."
+msgstr ""
+"<app>Devhelp</app>ʼte kitap yapısı yan bölmede gösterilir. Ve <link xref="
+"\"search\">yan bölmede ara</link>, indeks dosyalarında bulunan sonuçları "
+"gösterir."
+
+#. (itstool) path: section/title
+#: C/index-file-format.page:62
+msgid "Specification of the <file>*.devhelp2</file> XML file format"
+msgstr "<file>*.devhelp2</file> XML dosya biçiminin özellikleri"
+
+#. (itstool) path: section/p
+#: C/index-file-format.page:63
+msgid ""
+"Unfortunately the <file>*.devhelp2</file> XML file format is not well "
+"documented. There is still some hope that it will be fixed in the near "
+"future. In the meantime, we recommend to look at what <link xref="
+"\"installing-api-documentation#gtk-doc\">GTK-Doc</link> generates. For the "
+"most precise definition of what <app>Devhelp</app> supports, read the parser "
+"source code and the <app>Devhelp</app> API reference."
+msgstr ""
+"<file>*.devhelp2</file> XML dosya biçimi tümüyle belgelendirilmemiştir. "
+"Yakın gelecekte düzeltilmesi yönünde umut var. Bu açığı kapatmak için, <link "
+"xref=\"installing-api-documentation#gtk-doc\">GTK-Doc</link>ʼun ne "
+"ürettiğine bakmanızı öneririz. <app>Devhelp</app>ʼin daha  neyi "
+"desteklediğinin en kesin tanımı için ayrıştırıcı kaynak kodunu ve "
+"<app>Devhelp</app> API referansını okuyun."
+
+#. (itstool) path: page/title
+#: C/index.page:8
+msgid "Devhelp User Documentation"
+msgstr "Devhelp Kullanıcı Belgelendirmesi"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:11
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation."
+msgstr ""
+"Devhelp, API belgelendirmesini tarama ve aramada kullanılan geliştirici "
+"aracıdır."
+
+#. (itstool) path: page/title
+#: C/installing-api-documentation.page:14
+msgid "Installing API documentation"
+msgstr "API belgelendirmesinin kurulması"
+
+#. (itstool) path: synopsis/p
+#: C/installing-api-documentation.page:17
+msgid "How <app>Devhelp</app> finds the API documentation."
+msgstr "<app>Devhelp</app>, API belgelendirmelerini nasıl bulur?"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:24
+msgid ""
+"See <link xref=\"book-format\"/> for information on the API documentation "
+"format that <app>Devhelp</app> recognizes."
+msgstr ""
+"<app>Devhelp</app>ʼin tanıdığı API belgelendirme biçimleriyle ilgili bilgi "
+"almak için bakınız: <link xref=\"book-format\"/>."
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:31
+msgid "Books locations"
+msgstr "Kitapların konumları"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:32
+msgid ""
+"Once a book follows the right format, its directory needs to be installed at "
+"a location where <app>Devhelp</app> will find it."
+msgstr ""
+"Kitap doğru biçimi izlediğinde, dizininin de <app>Devhelp</app>ʼin bulacağı "
+"konuma kurulması gerekir."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:36
+msgid ""
+"<app>Devhelp</app> uses the <link href=\"https://specifications.freedesktop."
+"org/basedir-spec/latest/\">XDG Base Directory Specification</link> to find "
+"the books. The list of locations searched is:"
+msgstr ""
+"<app>Devhelp</app> kitapları bulmak için <link href=\"https://specifications."
+"freedesktop.org/basedir-spec/latest/\">XDG Temel Dizin Tanımlaması</link>'nı "
+"kullanır. Aranan konumların listesi:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:47
+msgid ""
+"Note that the two latter consist of lists of directories to look for. "
+"Directory values are separated by <code>:</code> characters. Those "
+"environment variables are normally set up by the desktop environment or "
+"distribution."
+msgstr ""
+"Son ikisinin aranacak dizinlerin listelerinden oluştuğunu unutmayın. Dizin "
+"değerleri <code>:</code> karakterleriyle ayrılmıştır. Bu ortam değişkenleri "
+"genellikle masaüstü ortamı veya dağıtımca ayarlanır."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:53
+msgid ""
+"Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
+"typical system:"
+msgstr ""
+"Tipik bir sistemde <code>$XDG_DATA_HOME</code> ile birlikte indeks "
+"dosyalarının konum örnekleri:"
+
+#. (itstool) path: item/p
+#: C/installing-api-documentation.page:61
+msgid ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
+"file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
+"org/\">Flatpak</link>."
+msgstr ""
+"Eğer <app>Devhelp</app> <link href=\"https://flatpak.org/\">Flatpak</link> "
+"ile başlatılmışsa <file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/"
+"glib.devhelp2</file>."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:67
+msgid ""
+"Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
+"typical system:"
+msgstr ""
+"Tipik bir sistemde <code>$XDG_DATA_DIRS</code> ile birlikte indeks "
+"dosyasının konum örneği:"
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:79
+msgid "GTK-Doc"
+msgstr "GTK-Doc"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:80
+msgid ""
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
+msgstr ""
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link>, C "
+"koduna eklenen yorumlardan API belgeleri oluşturmak için araçtır. GLib, GTK "
+"ve GNOME kütüphaneleri ve uygulamalarınca kullanılır."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:85
+msgid "GTK-Doc installs the API reference of a module into:"
+msgstr "GTK-Doc, modülün API referansını şuraya kurar:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:91
+msgid ""
+"It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
+"Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
+"(once installed in the right location, that is)."
+msgstr ""
+"<app>Devhelp</app>ʼin desteklediği kitap biçimine uyar. GTK-Doc "
+"kullanılarak, (doğru konuma kurulduktan sonra) API referansı <app>Devhelp</"
+"app> ile kendiliğinden taranabilir."
+
+#. (itstool) path: page/title
+#: C/search.page:14
+msgid "Search in the side panel"
+msgstr "Yan bölmede ara"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:17
+msgid "How the search in the side panel works."
+msgstr "Yan bölmede arama nasıl çalışır?"
+
+#. (itstool) path: section/title
+#: C/search.page:21
+msgid "Case sensitivity"
+msgstr "Büyük/küçük harf duyarlı"
+
+#. (itstool) path: section/p
+#: C/search.page:22
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr ""
+"Büyük harf içeriyorsa, arama büyük/küçük harf duyarlıdır. Arama terimlerinin "
+"tümü küçük harflerle yazılmışsa, arama büyük/küçük harf duyarlı değildir. "
+"Bazı metin düzenleyicilerdeki “smartcase” (akıllı büyük/küçük) özelliği gibi "
+"çalışır."
+
+#. (itstool) path: section/title
+#: C/search.page:30
+msgid "Glob-style pattern matching"
+msgstr "Küremsi desen eşleştirmesi"
+
+#. (itstool) path: section/p
+#: C/search.page:31
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+"Arama terimi ‘*’ ve ‘?’ joker karakterlerini içeren desen olabilir. ‘*’ "
+"seçimlik ve boş olabilen dizgeyle eşleşir; ‘?’ seçimlik bir karakterle "
+"eşleşir."
+
+#. (itstool) path: section/title
+#: C/search.page:39
+msgid "Several search terms"
+msgstr "Türlü arama terimleri"
+
+#. (itstool) path: section/p
+#: C/search.page:40
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+"Türlü arama terimleriyle (boşlukla ayırarak) arama yapabilirsiniz. Bir simge "
+"yalnızca <em>tüm</em> arama terimleriyle tek tek eşleşmesi durumunda eşleşir "
+"(aynı görünüm sırasında olması gerekmez)."
+
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+"Bunun, ‘*’ joker karakteriyle arama yapmaktan farklı olduğunu unutmayın: ‘*’ "
+"joker karakteri, anahtar sözcükleri aynı sırada olmaya zorlar."
+
+#. (itstool) path: section/p
+#: C/search.page:49
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+"Örneğin, “<input>gtk window application</input>” araması, hem "
+"“<code>gtk_window_get_application()</code>”, hem de (diğer simgelerle "
+"birlikte) “<code>GtkApplicationWindow</code>” ile eşleşir."
+
+#. (itstool) path: section/p
+#: C/search.page:54
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
+"Diğer yandan, “<input>gtk*window*application</input>” araması "
+"“<code>gtk_window_get_application()</code>” ile eşleşir ancak "
+"“<code>GtkApplicationWindow</code>” ile eşleşmez."
