@@ -1,13 +1,13 @@
 # Brazilian Portuguese translation for devhelp.
-# Copyright (C) 2020 devhelp's COPYRIGHT HOLDER
+# Copyright (C) 2021 devhelp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
-# Rafael Fontenelle <rafaelff@gnome.org>, 2018-2020.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2018-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2020-05-29 13:32+0000\n"
-"PO-Revision-Date: 2020-07-19 23:55-0300\n"
+"POT-Creation-Date: 2021-01-10 15:36+0000\n"
+"PO-Revision-Date: 2021-02-28 22:23-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Rafael Fontenelle <rafaelff@gnome.org>, 2018-2020"
+msgstr "Rafael Fontenelle <rafaelff@gnome.org>, 2018-2021"
 
 #. (itstool) path: page/title
 #. (itstool) path: section/title
@@ -241,10 +241,6 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:47
-#| msgid ""
-#| "Note that the two latter consist of :-separated lists of directories to "
-#| "look for. Those environment variables are normally set up by the desktop "
-#| "environment or distribution."
 msgid ""
 "Note that the two latter consist of lists of directories to look for. "
 "Directory values are separated by <code>:</code> characters. Those "
@@ -292,14 +288,19 @@ msgstr "GTK-Doc"
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:80
+#| msgid ""
+#| "<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
+#| "generate API documentation from comments added to C code. It is used by "
+#| "GLib, GTK and GNOME libraries and applications."
 msgid ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
-"generate API documentation from comments added to C code. It is used by "
-"GLib, GTK and GNOME libraries and applications."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
 msgstr ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> é uma ferramenta "
-"para gerar documentação de API a partir de comentários adicionados ao código "
-"C. É usado pelas bibliotecas e aplicativos GLib, GTK e GNOME."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> é uma "
+"ferramenta para gerar documentação de API a partir de comentários "
+"adicionados ao código C. É usado pelas bibliotecas e aplicativos GLib, GTK e "
+"GNOME."
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:85
