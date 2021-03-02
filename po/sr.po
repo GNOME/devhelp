@@ -1,20 +1,20 @@
 # Serbian translation of devhelp
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2017.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2021.
 # This file is distributed under the same license as the devhelp package.
 # Бранко Ивановић <popeye@one.ekof.bg.ac.yu>
 # Данило Шеган <danilo@prevod.org>, 2004-03-26
 # Горан Ракић <grakic@devbase.net>
 # Бранко Кокановић <branko.kokanovic@gmail.com>, 2009-09-13
 # Милош Поповић <gpopac@gmail.com>, 2010, 2011.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2017
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2021.
 # Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail.com, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2019-12-27 14:43+0000\n"
-"PO-Revision-Date: 2020-02-09 11:34+0100\n"
-"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
+"POT-Creation-Date: 2021-01-11 08:26+0000\n"
+"PO-Revision-Date: 2021-03-02 21:43+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -23,18 +23,17 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
-"X-Generator: Poedit 2.2.4\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:256 src/dh-app.c:548
+#: src/dh-app.c:293 src/dh-app.c:585
 msgid "Devhelp"
 msgstr "Девхелп"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:258
+#: src/dh-app.c:295
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Програмерска алатка за прегледање и претраживање АПИ документације"
 
@@ -180,89 +179,89 @@ msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Словни лик за текст утврђене ширине, као што су примери програмског кода."
 
-#: devhelp/dh-assistant-view.c:386
+#: devhelp/dh-assistant-view.c:385
 msgid "Book:"
 msgstr "Књига:"
 
-#: devhelp/dh-book.c:299
+#: devhelp/dh-book.c:298
 #, c-format
 msgid "Language: %s"
 msgstr "Језик: %s"
 
-#: devhelp/dh-book.c:300
+#: devhelp/dh-book.c:299
 msgid "Language: Undefined"
 msgstr "Језик: неодређен"
 
-#: devhelp/dh-book-tree.c:750
+#: devhelp/dh-book-tree.c:749
 msgid "_Collapse All"
 msgstr "_Скупи све"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:537
+#: devhelp/dh-link.c:536
 msgid "Book"
 msgstr "Књига"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:541
+#: devhelp/dh-link.c:540
 msgid "Page"
 msgstr "Страна"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:546
+#: devhelp/dh-link.c:545
 msgid "Keyword"
 msgstr "Кључна реч"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:552
+#: devhelp/dh-link.c:551
 msgid "Function"
 msgstr "Функција"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:558
+#: devhelp/dh-link.c:557
 msgid "Struct"
 msgstr "Структура"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:564
+#: devhelp/dh-link.c:563
 msgid "Macro"
 msgstr "Макро"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:570
+#: devhelp/dh-link.c:569
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:576
+#: devhelp/dh-link.c:575
 msgid "Type"
 msgstr "Врста"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:582
+#: devhelp/dh-link.c:581
 msgid "Property"
 msgstr "Својство"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:588
+#: devhelp/dh-link.c:587
 msgid "Signal"
 msgstr "Сигнал"
 
-#: devhelp/dh-web-view.c:640
+#: devhelp/dh-web-view.c:644
 msgid "Empty Page"
 msgstr "Празна страница"
 
@@ -276,105 +275,127 @@ msgstr "Прикажи АПИ документацију"
 
 #. action, icon, label, accel, tooltip
 #. Actions related to the whole application
-#: src/dh-app.c:37
+#: src/dh-app.c:39
 msgid "New _Window"
 msgstr "Нови _прозор"
 
-#: src/dh-app.c:38
+#: src/dh-app.c:40
 msgid "Open a new window"
 msgstr "Отвори нови прозор"
 
-#: src/dh-app.c:39
+#: src/dh-app.c:41
 msgid "_Preferences"
 msgstr "_Поставке"
 
-#: src/dh-app.c:40
+#: src/dh-app.c:42
 msgid "_Keyboard Shortcuts"
 msgstr "Пречице на та_статури"
 
-#: src/dh-app.c:41
+#: src/dh-app.c:43
+#| msgid "_Keyboard Shortcuts"
+msgid "Show keyboard shortcuts"
+msgstr "Прикжите пречице на тастатури"
+
+#: src/dh-app.c:44
 msgid "_Help"
 msgstr "_Помоћ"
 
-#: src/dh-app.c:42
+#: src/dh-app.c:45
+msgid "Show help"
+msgstr "Прикажите помоћ"
+
+#: src/dh-app.c:46
 msgid "_About Devhelp"
 msgstr "_О Девхелпу"
 
-#: src/dh-app.c:43
+#: src/dh-app.c:47
 msgid "_Quit"
 msgstr "_Изађи"
 
-#: src/dh-app.c:44
-msgid "Close all windows"
-msgstr "Затвори све прозоре"
+#: src/dh-app.c:48
+msgid "Close all windows (quit the application)"
+msgstr "Затворите све прозоре (изађите из програма)"
 
 #. Actions related to the current main window
-#: src/dh-app.c:47
+#: src/dh-app.c:51
 msgid "_Side Panel"
 msgstr "Бочна _површ"
 
-#: src/dh-app.c:48
+#: src/dh-app.c:52
 msgid "Toggle side panel visibility"
 msgstr "Промени видљивост бочне површи"
 
-#: src/dh-app.c:49
+#: src/dh-app.c:53
 msgid "_Print"
 msgstr "_Штампај"
 
-#: src/dh-app.c:50
+#: src/dh-app.c:54
 msgid "_Find"
 msgstr "_Нађи"
 
-#: src/dh-app.c:51
+#: src/dh-app.c:55
 msgid "Find in current page"
 msgstr "Нађи на тренутној страници"
 
-#: src/dh-app.c:52
+#: src/dh-app.c:56
 msgid "_Larger Text"
 msgstr "_Већи текст"
 
-#: src/dh-app.c:53
+#: src/dh-app.c:57
 msgid "Larger text"
 msgstr "Већи текст"
 
-#: src/dh-app.c:54
+#: src/dh-app.c:58
 msgid "S_maller Text"
 msgstr "_Мањи текст"
 
-#: src/dh-app.c:55
+#: src/dh-app.c:59
 msgid "Smaller text"
 msgstr "Мањи текст"
 
-#: src/dh-app.c:56
+#: src/dh-app.c:60
 msgid "_Normal Size"
 msgstr "_Обична величина"
 
-#: src/dh-app.c:57
+#: src/dh-app.c:61
 msgid "Normal size"
 msgstr "Обична величина"
 
 #. action, icon, label, accel, tooltip
-#: src/dh-app.c:97
+#: src/dh-app.c:112
 msgid "Open a new tab"
 msgstr "Отвори нови језичак"
 
-#: src/dh-app.c:98
+#: src/dh-app.c:113
 msgid "Close the current tab"
 msgstr "Затвори тренутни језичак"
 
-#: src/dh-app.c:99
+#: src/dh-app.c:114
 msgid "Go back"
 msgstr "Иди назад"
 
-#: src/dh-app.c:100
+#: src/dh-app.c:115
 msgid "Go forward"
 msgstr "Иди напред"
 
-#: src/dh-app.c:101
+#: src/dh-app.c:116
 msgid "Focus global search"
 msgstr "Стави општу претрагу у фокус"
 
-#: src/dh-app.c:260
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:153
+msgid "Open the menu"
+msgstr "Отворите изборник"
+
+#: src/dh-app.c:154
+msgid "Previous tab"
+msgstr "Претходни језичак"
+
+#: src/dh-app.c:155
+msgid "Next tab"
+msgstr "Следећи језичак"
+
+#: src/dh-app.c:297
 msgid "translator-credits"
 msgstr ""
 "Бранко Ивановић <popeye@one.ekof.bg.ac.yu>\n"
@@ -387,31 +408,31 @@ msgstr ""
 "\n"
 "http://prevod.org — превод на српски језик."
 
-#: src/dh-app.c:262
+#: src/dh-app.c:299
 msgid "Devhelp Website"
 msgstr "Веб страница Девхелпа"
 
-#: src/dh-app.c:437
+#: src/dh-app.c:474
 msgid "Opens a new Devhelp window"
 msgstr "Отвара нови прозор Девхелпа"
 
-#: src/dh-app.c:442
+#: src/dh-app.c:479
 msgid "Search for a keyword"
 msgstr "Тражи кључну реч"
 
-#: src/dh-app.c:443 src/dh-app.c:448
+#: src/dh-app.c:480 src/dh-app.c:485
 msgid "KEYWORD"
 msgstr "КЉУЧНА РЕЧ"
 
-#: src/dh-app.c:447
+#: src/dh-app.c:484
 msgid "Search and display any hit in the assistant window"
 msgstr "Претражује и приказује све резултате у прозору помоћника"
 
-#: src/dh-app.c:452
+#: src/dh-app.c:489
 msgid "Display the version and exit"
 msgstr "Приказује издање и излази"
 
-#: src/dh-app.c:457
+#: src/dh-app.c:494
 msgid "Quit any running Devhelp"
 msgstr "Затвара све прозоре Девхелпа"
 
@@ -420,11 +441,11 @@ msgstr "Затвара све прозоре Девхелпа"
 msgid "Devhelp — Assistant"
 msgstr "Девхелп — Помоћник"
 
-#: src/dh-preferences.c:537
+#: src/dh-preferences.c:536
 msgid "Enabled"
 msgstr "Укључено"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:550
 msgid "Title"
 msgstr "Наслов"
 
@@ -456,25 +477,40 @@ msgstr "_Стална ширина:"
 msgid "Fonts"
 msgstr "Словни ликови"
 
-#. General group
-#: src/dh-window.c:380
-msgid "General"
-msgstr "Опште"
+#: src/dh-window.c:378
+msgid "Search"
+msgstr "Претрага"
 
-#. Zoom group
-#: src/dh-window.c:394
+#: src/dh-window.c:383
+msgid "History"
+msgstr "Историјат"
+
+#: src/dh-window.c:388
 msgid "Zoom"
 msgstr "Увећавање и умањивање"
 
-#: src/dh-window.c:539
+#: src/dh-window.c:394
+#| msgid "Close all windows"
+msgid "Tabs and Windows"
+msgstr "Језичци и прозори"
+
+#: src/dh-window.c:403
+msgid "Miscellaneous"
+msgstr "Разно"
+
+#: src/dh-window.c:408
+msgid "General"
+msgstr "Опште"
+
+#: src/dh-window.c:554
 msgid "Back"
 msgstr "Назад"
 
-#: src/dh-window.c:543
+#: src/dh-window.c:558
 msgid "Forward"
 msgstr "Напред"
 
-#: src/dh-window.c:561
+#: src/dh-window.c:576
 msgid "New Tab"
 msgstr "Нови језичак"
 
