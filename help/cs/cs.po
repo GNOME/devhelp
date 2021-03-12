@@ -1,14 +1,14 @@
 # Czech translation for devhelp.
 # Copyright (C) 2018 devhelp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Marek Černocký <marek@manet.cz>, 2018, 2020.
+#
+# Marek Černocký <marek@manet.cz>, 2018, 2020, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2020-07-04 17:10+0000\n"
-"PO-Revision-Date: 2020-09-08 08:44+0200\n"
+"POT-Creation-Date: 2021-01-10 15:36+0000\n"
+"PO-Revision-Date: 2021-03-12 23:11+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -287,13 +287,13 @@ msgstr "GTK-Doc"
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:80
 msgid ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
-"generate API documentation from comments added to C code. It is used by "
-"GLib, GTK and GNOME libraries and applications."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
 msgstr ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> je nástroj pro "
-"generování dokumentace k API z komentářů ve zdrojových kódech jazyka C. "
-"Používají jej GLib, GTK a knihovny a aplikace GNOME"
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> je "
+"nástroj pro generování dokumentace k API z komentářů ve zdrojových kódech "
+"jazyka C. Používají jej GLib, GTK a knihovny a aplikace GNOME"
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:85
@@ -399,3 +399,4 @@ msgstr ""
 "Na druhou stranu, hledání „<input>gtk*window*application</input>“ bude "
 "vyhovovat „<code>gtk_window_get_application()</code>“, ale "
 "„<code>GtkApplicationWindow</code>“ už ne."
+
