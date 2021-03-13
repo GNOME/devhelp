@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp-help\n"
-"POT-Creation-Date: 2020-05-29 13:32+0000\n"
+"POT-Creation-Date: 2021-01-10 15:36+0000\n"
 "PO-Revision-Date: 2020-08-16 13:02+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
@@ -288,13 +288,13 @@ msgstr "GTK-Doc"
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:80
 msgid ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
-"generate API documentation from comments added to C code. It is used by "
-"GLib, GTK and GNOME libraries and applications."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
 msgstr ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> to narzędzie do "
-"tworzenia dokumentacji API z komentarzy dodanych do kodu w języki C. Jest "
-"używane przez biblioteki GLib, GTK i programy GNOME."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> to "
+"narzędzie do tworzenia dokumentacji API z komentarzy dodanych do kodu "
+"w języku C. Jest używane przez biblioteki GLib, GTK i programy GNOME."
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:85
