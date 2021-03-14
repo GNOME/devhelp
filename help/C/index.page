@@ -3,9 +3,21 @@ SPDX-FileCopyrightText: 2018-2019 Sébastien Wilmet <swilmet@gnome.org>
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 <page xmlns="http://projectmallard.org/1.0/"
-      type="guide"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="task"
       id="index">
-<title>Devhelp User Documentation</title>
+  <info>
+    <title type="link" role="trail">Devhelp User Documentation</title>
+    <title type="text">Devhelp User Documentation</title>
+    <title type="link">Devhelp User Documentation</title>
+
+    <desc>Devhelp User Documentation</desc>
+
+  </info>
+<title>
+    <media type="image" width="48px" height="48px" its:translate="no"
+    src="figures/org.gnome.Devhelp.svg" />Devhelp User Documentation
+</title>
 
 <synopsis>
   <p>

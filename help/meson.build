@@ -6,7 +6,12 @@ pages = [
   'search.page'
 ]
 
+figures = [
+  'figures/org.gnome.Devhelp.svg'
+]
+
 GNOME.yelp(
   'devhelp',
-  sources: pages
+  sources: pages,
+  media: figures
 )
