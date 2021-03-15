@@ -1,17 +1,17 @@
 # Italian translation for devhelp.
-# Copyright (C) 2001 - 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020 Free Software Foundation, Inc.
+# Copyright (C) 2001 - 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020, 2021 Free Software Foundation, Inc.
 # Copyright (C) 2012 the devhelp copyright holders.
 # This file is distributed under the same license as the devhelp package.
 # Alessio Frusciante <algol@firenze.linux.it>, 2001, 2002, 2003.
 # Francesco Marletta <francesco.marletta@tiscali.it>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011.
-# Milo Casagrande <milo@milo.name>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020.
+# Milo Casagrande <milo@milo.name>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2019-12-18 18:00+0000\n"
-"PO-Revision-Date: 2020-02-07 13:43+0100\n"
+"POT-Creation-Date: 2021-01-11 08:26+0000\n"
+"PO-Revision-Date: 2021-03-15 10:39+0100\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -19,18 +19,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:562
+#: src/dh-app.c:293 src/dh-app.c:585
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:295
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Uno strumento per sviluppatori per esplorare e cercare la documentazione "
@@ -177,89 +177,89 @@ msgid "Font for text with fixed width, such as code examples."
 msgstr ""
 "Tipo di carattere per il testo ad ampiezza fissa, come esempi di codice."
 
-#: devhelp/dh-assistant-view.c:400
+#: devhelp/dh-assistant-view.c:385
 msgid "Book:"
 msgstr "Libro:"
 
-#: devhelp/dh-book.c:313
+#: devhelp/dh-book.c:298
 #, c-format
 msgid "Language: %s"
 msgstr "Linguaggio: %s"
 
-#: devhelp/dh-book.c:314
+#: devhelp/dh-book.c:299
 msgid "Language: Undefined"
 msgstr "Linguaggio: non definito"
 
-#: devhelp/dh-book-tree.c:764
+#: devhelp/dh-book-tree.c:749
 msgid "_Collapse All"
 msgstr "Ridu_ci tutti"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:551
+#: devhelp/dh-link.c:536
 msgid "Book"
 msgstr "Libro"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:555
+#: devhelp/dh-link.c:540
 msgid "Page"
 msgstr "Pagina"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:560
+#: devhelp/dh-link.c:545
 msgid "Keyword"
 msgstr "Parola chiave"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:566
+#: devhelp/dh-link.c:551
 msgid "Function"
 msgstr "Function"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:572
+#: devhelp/dh-link.c:557
 msgid "Struct"
 msgstr "Struct"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:578
+#: devhelp/dh-link.c:563
 msgid "Macro"
 msgstr "Macro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:584
+#: devhelp/dh-link.c:569
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:590
+#: devhelp/dh-link.c:575
 msgid "Type"
 msgstr "Type"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:596
+#: devhelp/dh-link.c:581
 msgid "Property"
 msgstr "Proprietà"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:602
+#: devhelp/dh-link.c:587
 msgid "Signal"
 msgstr "Segnale"
 
-#: devhelp/dh-web-view.c:657
+#: devhelp/dh-web-view.c:644
 msgid "Empty Page"
 msgstr "Pagina vuota"
 
@@ -274,197 +274,232 @@ msgstr "Mostra documentazione API"
 
 #. action, icon, label, accel, tooltip
 #. Actions related to the whole application
-#: src/dh-app.c:51
+#: src/dh-app.c:39
 msgid "New _Window"
 msgstr "Nuova _finestra"
 
-#: src/dh-app.c:52
+#: src/dh-app.c:40
 msgid "Open a new window"
 msgstr "Apre una nuova finestra"
 
-#: src/dh-app.c:53
+#: src/dh-app.c:41
 msgid "_Preferences"
 msgstr "Preferen_ze"
 
-#: src/dh-app.c:54
+#: src/dh-app.c:42
 msgid "_Keyboard Shortcuts"
 msgstr "_Scorciatoie da tastiera"
 
-#: src/dh-app.c:55
+#: src/dh-app.c:43
+msgid "Show keyboard shortcuts"
+msgstr "Mostra scorciatoie da tastiera"
+
+#: src/dh-app.c:44
 msgid "_Help"
 msgstr "A_iuto"
 
-#: src/dh-app.c:56
+#: src/dh-app.c:45
+msgid "Show help"
+msgstr "Mostra l’aiuto"
+
+#: src/dh-app.c:46
 msgid "_About Devhelp"
 msgstr "I_nformazioni su Devhelp"
 
-#: src/dh-app.c:57
+#: src/dh-app.c:47
 msgid "_Quit"
 msgstr "_Esci"
 
-#: src/dh-app.c:58
-msgid "Close all windows"
-msgstr "Chiude tutte le finestre"
+#: src/dh-app.c:48
+msgid "Close all windows (quit the application)"
+msgstr "Chiude tutte le finestre (chiude l'applicazione)"
 
 #. Actions related to the current main window
-#: src/dh-app.c:61
+#: src/dh-app.c:51
 msgid "_Side Panel"
 msgstr "Ri_quadro laterale"
 
-#: src/dh-app.c:62
+#: src/dh-app.c:52
 msgid "Toggle side panel visibility"
 msgstr "Attiva/Disattiva la barra laterale"
 
-#: src/dh-app.c:63
+#: src/dh-app.c:53
 msgid "_Print"
 msgstr "Stam_pa"
 
-#: src/dh-app.c:64
+#: src/dh-app.c:54
 msgid "_Find"
 msgstr "Tr_ova"
 
-#: src/dh-app.c:65
+#: src/dh-app.c:55
 msgid "Find in current page"
 msgstr "Trova nella pagina attuale"
 
-#: src/dh-app.c:66
+#: src/dh-app.c:56
 msgid "_Larger Text"
 msgstr "Testo più _grande"
 
-#: src/dh-app.c:67
+#: src/dh-app.c:57
 msgid "Larger text"
 msgstr "Testo più grande"
 
-#: src/dh-app.c:68
+#: src/dh-app.c:58
 msgid "S_maller Text"
 msgstr "Testo più _piccolo"
 
-#: src/dh-app.c:69
+#: src/dh-app.c:59
 msgid "Smaller text"
 msgstr "Testo più _piccolo"
 
-#: src/dh-app.c:70
+#: src/dh-app.c:60
 msgid "_Normal Size"
 msgstr "Dimensione _normale"
 
-#: src/dh-app.c:71
+#: src/dh-app.c:61
 msgid "Normal size"
 msgstr "Dimensione _normale"
 
 #. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
+#: src/dh-app.c:112
 msgid "Open a new tab"
 msgstr "Apre una nuova scheda"
 
-#: src/dh-app.c:112
+#: src/dh-app.c:113
 msgid "Close the current tab"
 msgstr "Chiude la finestra attuale"
 
-#: src/dh-app.c:113
+#: src/dh-app.c:114
 msgid "Go back"
 msgstr "Va indietro"
 
-#: src/dh-app.c:114
+#: src/dh-app.c:115
 msgid "Go forward"
 msgstr "Va avanti"
 
-#: src/dh-app.c:115
+#: src/dh-app.c:116
 msgid "Focus global search"
 msgstr "Focus sulla ricerca globale"
 
-#: src/dh-app.c:274
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:153
+msgid "Open the menu"
+msgstr "Apre il menù"
+
+#: src/dh-app.c:154
+msgid "Previous tab"
+msgstr "Scheda precedente"
+
+#: src/dh-app.c:155
+msgid "Next tab"
+msgstr "Scheda successiva"
+
+#: src/dh-app.c:297
 msgid "translator-credits"
 msgstr ""
 "Milo Casagrande <milo@milo.name>\n"
 "Francesco Marletta <francesco.marletta@tiscali.it>"
 
-#: src/dh-app.c:276
+#: src/dh-app.c:299
 msgid "Devhelp Website"
 msgstr "Sito web di DevHelp"
 
-#: src/dh-app.c:451
+#: src/dh-app.c:474
 msgid "Opens a new Devhelp window"
 msgstr "Apre una nuova finestra di Devhelp"
 
-#: src/dh-app.c:456
+#: src/dh-app.c:479
 msgid "Search for a keyword"
 msgstr "Cerca per parola chiave"
 
-#: src/dh-app.c:457 src/dh-app.c:462
+#: src/dh-app.c:480 src/dh-app.c:485
 msgid "KEYWORD"
 msgstr "PAROLACHIAVE"
 
-#: src/dh-app.c:461
+#: src/dh-app.c:484
 msgid "Search and display any hit in the assistant window"
 msgstr "Cerca e mostra ogni corrispondenza nella finestra assistente"
 
-#: src/dh-app.c:466
+#: src/dh-app.c:489
 msgid "Display the version and exit"
 msgstr "Mostra la versione ed esce"
 
-#: src/dh-app.c:471
+#: src/dh-app.c:494
 msgid "Quit any running Devhelp"
 msgstr "Termina ogni Devhelp in esecuzione"
 
 #. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
+#: src/dh-assistant.ui:13
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Assistente"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:536
 msgid "Enabled"
 msgstr "Abilitato"
 
-#: src/dh-preferences.c:565
+#: src/dh-preferences.c:550
 msgid "Title"
 msgstr "Titolo"
 
-#: src/dh-preferences.ui:26
+#: src/dh-preferences.ui:12
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: src/dh-preferences.ui:62
+#: src/dh-preferences.ui:48
 msgid "_Group by language"
 msgstr "Ra_ggruppare per linguaggio"
 
-#: src/dh-preferences.ui:104
+#: src/dh-preferences.ui:90
 msgid "Book Shelf"
 msgstr "Raccolta libri"
 
-#: src/dh-preferences.ui:125
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
 msgstr "_Usare i tipi di carattere di sistema"
 
-#: src/dh-preferences.ui:149
+#: src/dh-preferences.ui:135
 msgid "_Variable width: "
 msgstr "Larghezza _variabile: "
 
-#: src/dh-preferences.ui:162
+#: src/dh-preferences.ui:148
 msgid "_Fixed width:"
 msgstr "Larghezza _fissa:"
 
-#: src/dh-preferences.ui:223
+#: src/dh-preferences.ui:209
 msgid "Fonts"
 msgstr "Tipi di carattere"
 
-#. General group
-#: src/dh-window.c:393
-msgid "General"
-msgstr "Generale"
+#: src/dh-window.c:378
+msgid "Search"
+msgstr "Ricerca"
 
-#. Zoom group
-#: src/dh-window.c:407
+#: src/dh-window.c:383
+msgid "History"
+msgstr "Cronologia"
+
+#: src/dh-window.c:388
 msgid "Zoom"
 msgstr "Ingrandimento"
 
-#: src/dh-window.c:552
+#: src/dh-window.c:394
+msgid "Tabs and Windows"
+msgstr "Schede e finestre"
+
+#: src/dh-window.c:403
+msgid "Miscellaneous"
+msgstr "Varie"
+
+#: src/dh-window.c:408
+msgid "General"
+msgstr "Generale"
+
+#: src/dh-window.c:554
 msgid "Back"
 msgstr "Indietro"
 
-#: src/dh-window.c:556
+#: src/dh-window.c:558
 msgid "Forward"
 msgstr "Avanti"
 
-#: src/dh-window.c:574
+#: src/dh-window.c:576
 msgid "New Tab"
 msgstr "Nuova scheda"
