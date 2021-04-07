@@ -488,6 +488,12 @@ dh_web_view_constructed (GObject *object)
         /* Plugins are always disabled with WebKit >= 2.32 */
         webkit_settings_set_enable_plugins (webkit_settings, FALSE);
 #endif
+
+        /* Set the User-Agent to something tools can match */
+        webkit_settings_set_user_agent_with_application_details (webkit_settings,
+                                                                 "DevHelp",
+                                                                 LIBDEVHELP_API_VERSION);
+
         if (view->priv->profile == NULL)
                 set_profile (view, dh_profile_get_default ());
 
