@@ -35,6 +35,7 @@ struct _DhWebViewPrivate {
         DhProfile *profile;
         gchar *search_text;
         gdouble total_scroll_delta_y;
+        WebKitUserStyleSheet *style_sheet;
 };
 
 enum {
@@ -66,6 +67,8 @@ static const gdouble zoom_levels[] = {
 static const guint n_zoom_levels = G_N_ELEMENTS (zoom_levels);
 
 #define ZOOM_DEFAULT (zoom_levels[2])
+
+#define DEVHELP_STYLE_SHEET     ".devhelp-hidden { display: none; }"
 
 G_DEFINE_TYPE_WITH_PRIVATE (DhWebView, dh_web_view, WEBKIT_TYPE_WEB_VIEW)
 
@@ -469,6 +472,7 @@ dh_web_view_constructed (GObject *object)
         DhWebView *view = DH_WEB_VIEW (object);
         WebKitWebContext *webkit_context;
         WebKitSettings *webkit_settings;
+        WebKitUserContentManager *ucm;
         DhSettings *dh_settings;
 
         if (G_OBJECT_CLASS (dh_web_view_parent_class)->constructed != NULL)
@@ -494,6 +498,15 @@ dh_web_view_constructed (GObject *object)
                                                                  "DevHelp",
                                                                  LIBDEVHELP_API_VERSION);
 
+        /* Inject our own style sheet */
+        view->priv->style_sheet =
+                webkit_user_style_sheet_new (DEVHELP_STYLE_SHEET,
+                                             WEBKIT_USER_CONTENT_INJECT_ALL_FRAMES,
+                                             WEBKIT_USER_STYLE_LEVEL_USER,
+                                             NULL, NULL);
+        ucm = webkit_web_view_get_user_content_manager (WEBKIT_WEB_VIEW (view));
+        webkit_user_content_manager_add_style_sheet (ucm, view->priv->style_sheet);
+
         if (view->priv->profile == NULL)
                 set_profile (view, dh_profile_get_default ());
 
@@ -513,6 +526,15 @@ dh_web_view_dispose (GObject *object)
         DhWebView *view = DH_WEB_VIEW (object);
 
         g_clear_object (&view->priv->profile);
+
+        if (view->priv->style_sheet != NULL) {
+                WebKitUserContentManager *ucm;
+
+                ucm = webkit_web_view_get_user_content_manager (WEBKIT_WEB_VIEW (view));
+
+                webkit_user_content_manager_remove_all_style_sheets (ucm);
+                g_clear_pointer (&view->priv->style_sheet, webkit_user_style_sheet_unref);
+        }
 
         G_OBJECT_CLASS (dh_web_view_parent_class)->dispose (object);
 }
