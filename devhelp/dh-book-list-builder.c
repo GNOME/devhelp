@@ -121,6 +121,10 @@ add_default_sub_book_lists_in_data_dir (DhBookListBuilder *builder,
 
         g_return_if_fail (data_dir != NULL);
 
+        dir = g_build_filename (data_dir, "doc", NULL);
+        add_book_list_directory (builder, dir);
+        g_free (dir);
+
         dir = g_build_filename (data_dir, "gtk-doc", "html", NULL);
         add_book_list_directory (builder, dir);
         g_free (dir);
@@ -139,9 +143,11 @@ add_default_sub_book_lists_in_data_dir (DhBookListBuilder *builder,
  *
  * It creates and adds a #DhBookListDirectory for the following directories (in
  * that order):
+ * - `$XDG_DATA_HOME/doc/`
  * - `$XDG_DATA_HOME/gtk-doc/html/`
  * - `$XDG_DATA_HOME/devhelp/books/`
  * - For each directory in `$XDG_DATA_DIRS`:
+ *   - `$xdg_data_dir/doc/`
  *   - `$xdg_data_dir/gtk-doc/html/`
  *   - `$xdg_data_dir/devhelp/books/`
  *
@@ -150,6 +156,7 @@ add_default_sub_book_lists_in_data_dir (DhBookListBuilder *builder,
  * Additionally, if the libdevhelp has been compiled with the `flatpak_build`
  * option, it creates and adds a #DhBookListDirectory for the following
  * directories (in that order, after the above ones):
+ * - `/run/host/usr/share/doc/`
  * - `/run/host/usr/share/gtk-doc/html/`
  * - `/run/host/usr/share/devhelp/books/`
  *
