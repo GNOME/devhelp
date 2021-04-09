@@ -62,7 +62,7 @@ LIBDEVHELP_DEPS = [
 
 DEVHELP_APP_DEPS = [
   LIBDEVHELP_DEPS,
-  dependency('amtk-5', version: '>= 5.0'),
+  dependency('gsettings-desktop-schemas'),
 ]
 
 # config.h

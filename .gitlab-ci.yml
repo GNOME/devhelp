@@ -12,7 +12,7 @@ flatpak:
   stage: build
   extends: .flatpak
   variables:
-    MANIFEST_PATH: "flatpak/org.gnome.Devhelp.yml"
+    MANIFEST_PATH: "flatpak/org.gnome.Devhelp.json"
     FLATPAK_MODULE: "devhelp"
     APP_ID: "org.gnome.Devhelp"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"

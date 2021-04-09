@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.8 -->
+  <menu id="window_menu_simple">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Side Panel</attribute>
+        <attribute name="action">win.show-sidebar</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Print</attribute>
+        <attribute name="action">win.print</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Find</attribute>
+        <attribute name="action">win.find</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Larger Text</attribute>
+        <attribute name="action">win.zoom-in</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">S_maller Text</attribute>
+        <attribute name="action">win.zoom-out</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Normal Size</attribute>
+        <attribute name="action">win.zoom-default</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="window_menu_plus_app_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">New _Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Side Panel</attribute>
+        <attribute name="action">win.show-sidebar</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Print</attribute>
+        <attribute name="action">win.print</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Find</attribute>
+        <attribute name="action">win.find</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Larger Text</attribute>
+        <attribute name="action">win.zoom-in</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">S_maller Text</attribute>
+        <attribute name="action">win.zoom-out</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Normal Size</attribute>
+        <attribute name="action">win.zoom-default</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Help</attribute>
+        <attribute name="action">app.help</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About Devhelp</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Quit</attribute>
+        <attribute name="action">app.quit</attribute>
+      </item>
+    </section>
+  </menu>
+  <template class="DhWindow" parent="GtkApplicationWindow">
+    <property name="can_focus">False</property>
+    <property name="has_focus">False</property>
+    <property name="is_focus">False</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header_bar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="vexpand">False</property>
+        <property name="show_close_button">True</property>
+        <child>
+          <object class="GtkBox" id="box">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="can_focus">False</property>
+            <style>
+              <class name="linked"/>
+            </style>
+            <child>
+              <object class="GtkButton" id="back_button">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Back</property>
+                <property name="action_name">win.go-back</property>
+                <style>
+                  <class name="image-button"/>
+                </style>
+                <child>
+                  <object class="GtkImage" id="back_button_image">
+                    <property name="visible">True</property>
+                    <property name="icon_size">1</property>
+                    <property name="icon_name">go-previous-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="forward_button">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Forward</property>
+                <property name="action_name">win.go-forward</property>
+                <style>
+                  <class name="image-button"/>
+                </style>
+                <child>
+                  <object class="GtkImage" id="forward_button_image">
+                    <property name="visible">True</property>
+                    <property name="icon_size">1</property>
+                    <property name="icon_name">go-next-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">start</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="window_menu_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="can_focus">False</property>
+            <property name="menu_model">window_menu_simple</property>
+            <property name="use_popover">True</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="window_menu_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+                <property name="icon_name">open-menu-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="new_tab_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">New Tab</property>
+            <property name="action_name">win.new-tab</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="new_tab_button_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+                <property name="icon_name">tab-new-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkGrid" id="grid">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="has_focus">False</property>
+        <property name="is_focus">False</property>
+        <child>
+          <object class="GtkPaned" id="hpaned">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="has_focus">False</property>
+            <property name="is_focus">False</property>
+            <child>
+              <object class="GtkGrid" id="grid_sidebar">
+                <property name="visible">True</property>
+                <style>
+                  <class name="sidebar"/>
+                </style>
+              </object>
+              <packing>
+		<property name="shrink">False</property>
+	      </packing>
+            </child>
+            <child>
+              <object class="GtkGrid" id="grid_documents">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

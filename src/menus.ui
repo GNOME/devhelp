@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This file is part of Devhelp.
+
+  Copyright (C) 2010 Imendio AB
+  Copyright (C) 2012 Aleksander Morgado <aleksander@gnu.org>
+  Copyright (C) 2017, 2018 Sébastien Wilmet <swilmet@gnome.org>
+
+  Devhelp is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published
+  by the Free Software Foundation, either version 3 of the License,
+  or (at your option) any later version.
+
+  Devhelp is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Devhelp.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<interface>
+  <requires lib="gtk+" version="3.0"/>
+  <!-- The app menu is set manually if needed. -->
+  <menu id="manual-app-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">New _Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Help</attribute>
+        <attribute name="action">app.help</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Quit</attribute>
+        <attribute name="action">app.quit</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
