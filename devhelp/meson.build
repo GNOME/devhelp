@@ -134,5 +134,9 @@ GNOME.generate_gir(
     libdevhelp_public_headers,
     libdevhelp_public_c_files,
     libdevhelp_enum_types
-  ]
+  ],
+  extra_args: [
+    '--warn-all',
+    '--quiet',
+  ],
 )
