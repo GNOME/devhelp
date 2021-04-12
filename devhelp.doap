@@ -34,16 +34,9 @@ Emacs, Geany, …).
 
   <maintainer>
     <foaf:Person>
-      <foaf:name>Frederic Peters</foaf:name>
-      <foaf:mbox rdf:resource="mailto:fpeters@0d.be" />
-      <gnome:userid>fpeters</gnome:userid>
-    </foaf:Person>
-  </maintainer>
-  <maintainer>
-    <foaf:Person>
-      <foaf:name>Sébastien Wilmet</foaf:name>
-      <foaf:mbox rdf:resource="mailto:swilmet@gnome.org" />
-      <gnome:userid>swilmet</gnome:userid>
+      <foaf:name>Emmanuele Bassi</foaf:name>
+      <foaf:mbox rdf:resource="mailto:ebassi@gnome.org"/>
+      <gnome:userid>ebassi</gnome:userid>
     </foaf:Person>
   </maintainer>
 </Project>
