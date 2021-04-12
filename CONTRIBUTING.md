@@ -1,95 +1,200 @@
-How to contribute to Devhelp
-============================
+# Contribution guidelines
 
-Devhelp is hosted on the GNOME GitLab instance, you can fork the repository and
-then do a merge request:
+Thank you for considering contributing to the Devhelp project!
 
-    https://gitlab.gnome.org/GNOME/devhelp
+These guidelines are meant for new contributors, regardless of their level
+of proficiency; following them allows the maintainers of the Devhelp project
+to more effectively evaluate your contribution, and provide prompt feedback
+to you. Additionally, by following these guidelines you clearly communicate
+that you respect the time and effort that the people developing Devhelp put
+into managing the project.
 
-Read the following wiki page to know the conventions for the commit messages:
+Devhelp would not exist without contributions from the free and open source
+software community. There are many things that we value:
 
-    https://wiki.gnome.org/Git/CommitMessages
+ - bug reporting and fixing
+ - documentation and examples
+ - tests
+ - new features
 
-Devhelp philosophy
-------------------
+Please, do not use the issue tracker for support questions. If you have
+questions on how to use Devhelp effectively, you can use:
 
-The tool is generic and can be used by other development communities, as long
-as the API documentation is available in HTML and a *.devhelp2 index file is
-generated. It's important to keep the door open to other development
-communities, to increase diversity, and maybe bring more funding to develop
-developer tools.
+ - the [devhelp tag on the GNOME Discourse instance](https://discourse.gnome.org/tag/devhelp)
 
-If you want to make the Devhelp application GNOME-specific, for example to have
-a start page specific to GNOME libraries, or to download API references from
-gnome.org, read the next paragraph.
 
-Sébastien Wilmet has done a lot of refactorings to the code, to follow the
-“as a library” philosophy, like for the LLVM project [1]. Almost all the code
-is written as a flexible library. With a DAG (Directed Acyclic Graph) of
-classes for the containment hierarchy. With the goal to create a software
-product line [2] for Devhelp: keep the Devhelp application generic, and create
-a new application specific to GNOME, with both applications having a really
-small codebase (the GNOME-specific features would be written as a configurable
-library as well). For more information see also [3].
+The issue tracker is meant to be used for actionable issues only.
 
-[1] “a corpus of functionality built as a set of libraries that can be sliced
-    and remixed in different ways per the needs of different use-cases”
-    (Chris Lattner, original co-author of LLVM),
-    http://lists.llvm.org/pipermail/llvm-dev/2019-June/133274.html
+## How to report bugs
 
-[2] https://www.amazon.com/Feature-Oriented-Software-Product-Lines-Implementation/dp/3642375200/
+### Security issues
 
-[3] https://swilmet.be/blog/2019/08/18/10-years-later/
+If you wish to report a security-related issue, please follow the
+instructions available on the [GNOME security
+website](https://security.gnome.org).
 
-Source code locations
----------------------
+### Bug reports
 
-The library (libdevhelp) is in the `devhelp/` directory so that an `#include`
-like the following works when compiling the code:\
-`#include <devhelp/[…].h>`
+If you're reporting a bug make sure to list:
 
-The application is in `src/`. (Not `src-app/` or something like it). Rationale:
-it is planned to split the Git repository in two in the future, to separate the
-library from the application. When there will only be the application in a git
-repository, `src/` is the usual name. And historically all the source code (lib
-and app) was in `src/`.
+ 0. which version of Devhelp are you using?
+ 0. which operating system are you using?
+ 0. the necessary steps to reproduce the issue
+ 0. the expected outcome
+ 0. a description of the behavior; screenshots are also welcome
 
-C code conventions
-------------------
+If the issue includes a crash, you should also include:
 
-Devhelp follows the Linux kernel coding style, with some exceptions:
-- Indentation: 8 spaces, not tabs.
-- One space before *each* opening parenthesis.
-- Multi-line comments must be like this:
-        /* First line.
-         * Second line.
-         */
+ 0. the eventual warnings printed on the terminal
+ 0. a backtrace, obtained with tools such as GDB or LLDB
 
-GObject classes must not be created with a G_DECLARE macro, it causes more
-problems than it solves:
-https://blogs.gnome.org/swilmet/2015/10/10/changing-quickly-between-a-final-and-derivable-gobject-class/
+It is fine to include screenshots of screen recordings to demonstrate
+an issue that is best to understand visually, but please don't just
+dump screen recordings without further details into issues. It is
+essential that the problem is described in enough detail to reproduce
+it without watching a video.
 
-g_auto macros are not used, because:
-1. It makes debugging more difficult in case of a memory handling problem.
-2. It breaks the uniformity of memory handling in C. Uniformity is an important
-   principle for programming language design, as explained in the book
-   “The Psychology of Computer Programming”:
-   https://www.amazon.com/Psychology-Computer-Programming-Silver-Anniversary/dp/0932633420/
-3. The developer needs to be very careful when using g_auto in certain
-   circumstances:
-   https://blog.fishsoup.net/2015/11/05/attributecleanup-mixed-declarations-and-code-and-goto/
+For small issues, such as:
 
-See also:
-https://developer.gnome.org/programming-guidelines/unstable/
+ - spelling/grammar fixes in the documentation
+ - typo correction
+ - comment clean ups
+ - changes to metadata files (CI, `.gitignore`)
+ - build system changes
+ - source tree clean ups and reorganizations
 
-Flatpak
--------
+You should directly open a merge request instead of filing a new issue.
 
-The Devhelp maintainers maintain both the nightly and the stable versions of
-the Devhelp Flatpak.
+### Features and enhancements
 
-The nightly version is in flatpak/ and the gnome-apps-nightly module:
-https://gitlab.gnome.org/GNOME/gnome-apps-nightly
+Feature discussion can be open ended and require high bandwidth channels; if
+you are proposing a new feature on the issue tracker, make sure to make
+an actionable proposal, and list:
 
-The stable version is on Flathub:
-https://github.com/flathub/org.gnome.Devhelp
+ 0. what you're trying to achieve
+ 0. prior art, in other toolkits or applications
+ 0. design and theming changes
+
+If you're proposing the integration of new features it helps to have
+multiple applications using shared or similar code, especially if they have
+iterated over it various times.
+
+Each feature should also come fully documented, and with tests.
+
+## Your first contribution
+
+### Prerequisites
+
+If you want to contribute to the Devhelp project, you will need to have the
+development tools appropriate for your operating system, including:
+
+ - Python 3.x
+ - Meson
+ - Ninja
+ - Gettext (19.7 or newer)
+ - a [C99 compatible compiler](https://wiki.gnome.org/Projects/GLib/CompilerRequirements)
+
+Up-to-date instructions about developing GNOME applications and libraries
+can be found on [the GNOME Developer Center](https://developer.gnome.org).
+
+The Devhelp project uses GitLab for code hosting and for tracking issues. More
+information about using GitLab can be found [on the GNOME wiki](https://wiki.gnome.org/GitLab).
+
+### Dependencies
+
+Devhelp depends on various libraries that are part of the GNOME application
+development platform:
+
+ - GTK
+ - WebKitGTK
+
+Additionally, you will need the following settings module installed:
+
+ - gsettings-desktop-schemas
+
+### Getting started
+
+You should start by forking the Devhelp repository from the GitLab web UI, and
+cloning from your fork:
+
+```sh
+$ git clone https://gitlab.gnome.org/yourusername/devhelp.git
+```
+
+We recommend using [GNOME Builder](https://wiki.gnome.org/Apps/Builder),
+which will automatically use the Flatpak manifest and build Devhelp in a
+containerized environment.
+
+To compile the Git version of Devhelp on your system, you will need to
+configure your build using Meson:
+
+```sh
+$ meson setup _builddir .
+$ meson compile -C _builddir
+```
+
+Typically, you should work on your own branch:
+
+```sh
+$ git switch -C your-branch
+```
+
+Once you've finished working on the bug fix or feature, push the branch
+to the Git repository and open a new merge request, to let the Devhelp
+maintainers review your contribution.
+
+### Code reviews
+
+Each contribution is reviewed by the maintainers of the Devhelp project.
+
+Just remember that the maintainers are volunteers just like you, so they
+might take some time to review your contributions. Please, be patient.
+
+### Commit messages
+
+The expected format for git commit messages is as follows:
+
+```plain
+Short explanation of the commit
+
+Longer explanation explaining exactly what's changed, whether any
+external or private interfaces changed, what bugs were fixed (with bug
+tracker reference if applicable) and so forth. Be concise but not too
+brief.
+
+Closes #1234
+```
+
+ - Always add a brief description of the commit to the _first_ line of
+ the commit and terminate by two newlines (it will work without the
+ second newline, but that is not nice for the interfaces).
+
+ - First line (the brief description) must only be one sentence and
+ should start with a capital letter unless it starts with a lowercase
+ symbol or identifier. Don't use a trailing period either. Don't exceed
+ 72 characters.
+
+ - The main description (the body) is normal prose and should use normal
+ punctuation and capital letters where appropriate. Consider the commit
+ message as an email sent to the developers (or yourself, six months
+ down the line) detailing **why** you changed something. There's no need
+ to specify the **how**: the changes can be inlined.
+
+ - When committing code on behalf of others use the `--author` option, e.g.
+ `git commit -a --author "Awesome Coder <awesome@coder.org>"` and `--signoff`.
+
+ - If your commit is addressing an issue, use the
+ [GitLab syntax](https://docs.gitlab.com/ce/user/project/issues/automatic_issue_closing.html)
+ to automatically close the issue when merging the commit with the upstream
+ repository:
+
+```plain
+Closes #1234
+Fixes #1234
+Closes: https://gitlab.gnome.org/GNOME/devhelp/issues/1234
+```
+
+ - If you have a merge request with multiple commits and none of them
+ completely fixes an issue, you should add a reference to the issue in
+ the commit message, e.g. `Bug: #1234`, and use the automatic issue
+ closing syntax in the description of the merge request.
