@@ -1,9 +1,0 @@
-TODO Devhelp attic
-==================
-
-Triage the files, remove what is no longer needed, and better document what is
-still useful (if it's still useful it can be moved to another directory).
-
-For describing the index file format, a *.rng file would be better. The
-devhelp-1.dtd seems to describe the index file format version 1, which is
-deprecated. What are the other *.dtd files?
