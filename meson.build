@@ -6,7 +6,7 @@
 project(
   'devhelp', 'c',
   meson_version: '>= 0.53',
-  version: '40.beta',
+  version: '40.0',
   default_options: ['warning_level=2']
 )
 
