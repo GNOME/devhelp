@@ -36,6 +36,15 @@ I18N.merge_file(
   install_dir: get_option('datadir') / 'applications'
 )
 
+desktop_file_validate = find_program('desktop-file-validate', required: false)
+if desktop_file_validate.found()
+  test('validate-desktop',
+    desktop_file_validate,
+    args: desktop_file,
+    workdir: meson.current_build_dir(),
+  )
+endif
+
 service_file = 'org.gnome.Devhelp.service'
 service_conf = configuration_data()
 service_conf.set('bindir', get_option('prefix') / get_option('bindir'))
