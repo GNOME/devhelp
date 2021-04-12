@@ -16,7 +16,6 @@
 typedef struct {
         GtkHeaderBar *header_bar;
         GtkMenuButton *window_menu_button;
-        GMenuModel *window_menu_plus_app_menu;
 
         GtkPaned *hpaned;
         GtkWidget *grid_sidebar;
@@ -73,7 +72,6 @@ dh_window_class_init (DhWindowClass *klass)
         gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/devhelp/dh-window.ui");
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, header_bar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_button);
-        gtk_widget_class_bind_template_child_private (widget_class, DhWindow, window_menu_plus_app_menu);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, hpaned);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_sidebar);
         gtk_widget_class_bind_template_child_private (widget_class, DhWindow, grid_documents);
@@ -496,19 +494,12 @@ static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
-        GtkApplication *app;
         DhSettingsApp *settings;
         GSettings *paned_settings;
 
         gtk_widget_init_template (GTK_WIDGET (window));
 
         add_actions (window);
-
-        app = GTK_APPLICATION (g_application_get_default ());
-        if (!gtk_application_prefers_app_menu (app)) {
-                gtk_menu_button_set_menu_model (priv->window_menu_button,
-                                                priv->window_menu_plus_app_menu);
-        }
 
         settings = dh_settings_app_get_singleton ();
         paned_settings = dh_settings_app_peek_paned_settings (settings);
