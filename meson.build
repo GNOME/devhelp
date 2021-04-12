@@ -159,8 +159,8 @@ if get_option('gtk_doc')
 endif
 
 meson.add_install_script(
-  'meson_post_install.py',
-  get_option('prefix') / get_option('datadir')
+  find_program('build-aux/meson/meson_post_install.py'),
+  get_option('prefix') / get_option('datadir'),
 )
 
 summary('Prefix', get_option('prefix'))
