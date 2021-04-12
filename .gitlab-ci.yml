@@ -1,0 +1,26 @@
+include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+
+stages:
+  - build
+  - deploy
+
+variables:
+  BUNDLE: "org.gnome.Devhelp.flatpak"
+
+flatpak:
+  image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
+  stage: build
+  extends: .flatpak
+  variables:
+    MANIFEST_PATH: "flatpak/org.gnome.Devhelp.yml"
+    FLATPAK_MODULE: "devhelp"
+    APP_ID: "org.gnome.Devhelp"
+    RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+    CONFIG_OPTS: >-
+      -Dflatpak_build=true
+      -Dgtk_doc=false
+
+nightly:
+  extends: .publish_nightly
+  dependencies: ['flatpak']
+  needs: ['flatpak']
