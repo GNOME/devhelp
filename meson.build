@@ -164,8 +164,14 @@ meson.add_install_script(
 )
 
 summary('Prefix', get_option('prefix'))
-summary('API documentation', get_option('gtk_doc'))
-summary('Flatpak build mode', get_option('flatpak_build'))
-summary('Plugin for Emacs', get_option('plugin_emacs'))
-summary('Plugin for gedit', get_option('plugin_gedit'))
-summary('Plugin for Vim', get_option('plugin_vim'))
+summary('Libdir', get_option('prefix') / get_option('libdir'))
+summary('Datadir', get_option('prefix') / get_option('datadir'))
+
+summary('Debug', get_option('debug'), section: 'Build')
+summary('Optimization', get_option('optimization'), section: 'Build')
+summary('API documentation', get_option('gtk_doc'), section: 'Build')
+summary('Flatpak build mode', get_option('flatpak_build'), section: 'Build')
+
+summary('Plugin for Emacs', get_option('plugin_emacs'), section: 'Plugins')
+summary('Plugin for gedit', get_option('plugin_gedit'), section: 'Plugins')
+summary('Plugin for Vim', get_option('plugin_vim'), section: 'Plugins')
