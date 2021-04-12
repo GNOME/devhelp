@@ -484,8 +484,10 @@ dh_web_view_constructed (GObject *object)
         /* Disable some things we have no need for. */
         webkit_settings_set_enable_html5_database (webkit_settings, FALSE);
         webkit_settings_set_enable_html5_local_storage (webkit_settings, FALSE);
+#if !WEBKIT_CHECK_VERSION(2, 31, 0)
+        /* Plugins are always disabled with WebKit >= 2.32 */
         webkit_settings_set_enable_plugins (webkit_settings, FALSE);
-
+#endif
         if (view->priv->profile == NULL)
                 set_profile (view, dh_profile_get_default ());
 
