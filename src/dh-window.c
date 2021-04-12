@@ -243,8 +243,8 @@ close_tab_cb (GSimpleAction *action,
          * what gedit does, or other GNOME apps with a GtkNotebook plus Ctrl+W
          * shortcut, and do the same.
          */
-        page_num = gtk_notebook_get_current_page (priv->notebook);
-        gtk_notebook_remove_page (priv->notebook, page_num);
+        page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
+        gtk_notebook_remove_page (GTK_NOTEBOOK (priv->notebook), page_num);
 }
 
 static void
