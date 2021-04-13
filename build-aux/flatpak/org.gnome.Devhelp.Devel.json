@@ -1,5 +1,5 @@
 {
-    "app-id" : "org.gnome.Devhelp",
+    "app-id" : "org.gnome.Devhelp.Devel",
     "runtime" : "org.gnome.Sdk",
     "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
@@ -7,7 +7,7 @@
     "tags" : [
         "nightly"
     ],
-    "desktop-file-name-prefix" : "(Nightly) ",
+    "desktop-file-name-prefix" : "(Development) ",
     "finish-args" : [
         "--share=ipc",
         "--socket=x11",
@@ -31,7 +31,7 @@
             "buildsystem" : "meson",
             "config-opts" : [
                 "-Dflatpak_build=true",
-                "-Dprofile=stable",
+                "-Dprofile=devel",
                 "-Dgtk_doc=false"
             ],
             "run-tests" : true,

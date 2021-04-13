@@ -1,7 +1,9 @@
 Flatpak for Devhelp
 ===================
 
- - `org.gnome.Devhelp.json`: the Flatpak-builder manifest for Devhelp
+ - `org.gnome.Devhelp.json`: the Flatpak manifest for Devhelp
+ - `org.gnome.Devhelp.Devel.json`: The Flatpak manifest for Devhelp's
+   development profile
  - `run-flatpak.sh`: a utility script for building, running, and uninstalling
    the Devhelp Flatpak
 
