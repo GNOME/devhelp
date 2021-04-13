@@ -65,6 +65,16 @@ DEVHELP_APP_DEPS = [
   dependency('gsettings-desktop-schemas'),
 ]
 
+devhelp_version = meson.project_version().split('.')
+devhelp_is_devel = devhelp_version[1] in ['alpha', 'beta', 'rc']
+devel_build = get_option('profile') == 'devel' or devhelp_is_devel
+
+if devel_build
+  APPLICATION_ID = 'org.gnome.Devhelp.Devel'
+else
+  APPLICATION_ID = 'org.gnome.Devhelp'
+endif
+
 # config.h
 
 config_data = configuration_data()
@@ -74,6 +84,8 @@ config_data.set_quoted('DATADIR', get_option('prefix') / get_option('datadir'))
 config_data.set_quoted('LOCALEDIR', get_option('prefix') / get_option('localedir'))
 config_data.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_data.set_quoted('LIBDEVHELP_API_VERSION', LIBDEVHELP_API_VERSION)
+config_data.set_quoted('APPLICATION_ID', APPLICATION_ID)
+config_data.set10('DEVEL_BUILD', devel_build)
 config_data.set10('FLATPAK_BUILD', get_option('flatpak_build'))
 
 configure_file(
@@ -171,6 +183,7 @@ summary('Debug', get_option('debug'), section: 'Build')
 summary('Optimization', get_option('optimization'), section: 'Build')
 summary('API documentation', get_option('gtk_doc'), section: 'Build')
 summary('Flatpak build mode', get_option('flatpak_build'), section: 'Build')
+summary('Development build', devel_build, section: 'Build')
 
 summary('Plugin for Emacs', get_option('plugin_emacs'), section: 'Plugins')
 summary('Plugin for gedit', get_option('plugin_gedit'), section: 'Plugins')

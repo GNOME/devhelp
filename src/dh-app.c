@@ -136,14 +136,16 @@ about_cb (GSimpleAction *action,
                                /* Translators: please don't translate "Devhelp" (it's marked as
                                 * translatable for transliteration only).
                                 */
-                               "name", _("Devhelp"),
+                               "program-name", dh_util_is_devel_build ()
+                                        ? _("Devhelp (development build)")
+                                        : _("Devhelp"),
                                "version", PACKAGE_VERSION,
                                "comments", _("A developer tool for browsing and searching API documentation"),
                                "authors", authors,
                                "translator-credits", _("translator-credits"),
                                "website", "https://wiki.gnome.org/Apps/Devhelp",
                                "website-label", _("Devhelp Website"),
-                               "logo-icon-name", "org.gnome.Devhelp",
+                               "logo-icon-name", APPLICATION_ID,
                                "license-type", GTK_LICENSE_GPL_3_0,
                                "copyright", "Copyright 2001-2021 – the Devhelp team",
                                NULL);
@@ -482,7 +484,7 @@ dh_app_init (DhApp *app)
          * translatable for transliteration only).
          */
         g_set_application_name (_("Devhelp"));
-        gtk_window_set_default_icon_name ("org.gnome.Devhelp");
+        gtk_window_set_default_icon_name (APPLICATION_ID);
 
         g_application_add_main_option_entries (G_APPLICATION (app), options);
 }
@@ -491,7 +493,7 @@ DhApp *
 dh_app_new (void)
 {
         return g_object_new (DH_TYPE_APP,
-                             "application-id", "org.gnome.Devhelp",
+                             "application-id", APPLICATION_ID,
                              "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
                              NULL);
 }

@@ -12,11 +12,13 @@
 
 G_BEGIN_DECLS
 
-void    dh_util_window_settings_save            (GtkWindow *window,
-                                                 GSettings *settings);
+void            dh_util_window_settings_save            (GtkWindow *window,
+                                                         GSettings *settings);
 
-void    dh_util_window_settings_restore         (GtkWindow *gtk_window,
-                                                 GSettings *settings);
+void            dh_util_window_settings_restore         (GtkWindow *gtk_window,
+                                                         GSettings *settings);
+
+gboolean        dh_util_is_devel_build                  (void);
 
 G_END_DECLS
 

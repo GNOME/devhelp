@@ -15,21 +15,33 @@ configure_file(
   install_dir: get_option('datadir') / 'glib-2.0/schemas'
 )
 
-appdata = 'org.gnome.Devhelp.appdata.xml'
+appdata_conf = configuration_data()
+appdata_conf.set('application_id', APPLICATION_ID)
+appdata = APPLICATION_ID + '.appdata.xml'
 I18N.merge_file(
   appdata,
-  input: appdata + '.in',
+  input: configure_file(
+    input: 'org.gnome.Devhelp.appdata.xml.in.in',
+    output: APPLICATION_ID + '.appdata.xml.in',
+    configuration: appdata_conf,
+  ),
   output: appdata,
   po_dir: '../po/',
   install: true,
   install_dir: get_option('datadir') / 'metainfo'
 )
 
-desktop_file = 'org.gnome.Devhelp.desktop'
+desktop_conf = configuration_data()
+desktop_conf.set('application_id', APPLICATION_ID)
+desktop_file = APPLICATION_ID + '.desktop'
 I18N.merge_file(
   desktop_file,
   type: 'desktop',
-  input: desktop_file + '.in',
+  input: configure_file(
+    input: 'org.gnome.Devhelp.desktop.in.in',
+    output: APPLICATION_ID + '.desktop.in',
+    configuration: desktop_conf,
+  ),
   output: desktop_file,
   po_dir: '../po/',
   install: true,
@@ -45,19 +57,22 @@ if desktop_file_validate.found()
   )
 endif
 
-service_file = 'org.gnome.Devhelp.service'
+service_file = APPLICATION_ID + '.service'
 service_conf = configuration_data()
+service_conf.set('application_id', APPLICATION_ID)
 service_conf.set('bindir', get_option('prefix') / get_option('bindir'))
 configure_file(
-  input: service_file + '.in',
+  input: 'org.gnome.Devhelp.service.in',
   output: service_file,
   configuration: service_conf,
   install: true,
   install_dir: get_option('datadir') / 'dbus-1/services'
 )
 
-install_data(
-  ['assistant.css', 'assistant.js'],
+install_data([
+    'assistant.css',
+    'assistant.js',
+  ],
   install_dir: get_option('datadir') / 'devhelp/assistant'
 )
 

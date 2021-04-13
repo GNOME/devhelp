@@ -5,6 +5,8 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+#include "config.h"
+
 #include "dh-util-app.h"
 
 static void
@@ -109,4 +111,14 @@ dh_util_window_settings_restore (GtkWindow *gtk_window,
 
         if (has_maximized_key && g_settings_get_boolean (settings, "maximized"))
                 gtk_window_maximize (gtk_window);
+}
+
+gboolean
+dh_util_is_devel_build (void)
+{
+#if DEVEL_BUILD
+        return TRUE;
+#else
+        return FALSE;
+#endif
 }

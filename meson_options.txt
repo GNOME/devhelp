@@ -27,3 +27,11 @@ option(
   type: 'boolean', value: false,
   description: 'Install the Vim plugin'
 )
+
+option(
+  'profile',
+  type: 'combo',
+  choices: ['stable', 'devel'],
+  value: 'stable',
+  description: 'The build profile',
+)

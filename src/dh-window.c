@@ -494,10 +494,16 @@ static void
 dh_window_init (DhWindow *window)
 {
         DhWindowPrivate *priv = dh_window_get_instance_private (window);
+        GtkWidget *widget = GTK_WIDGET (window);
         DhSettingsApp *settings;
         GSettings *paned_settings;
 
-        gtk_widget_init_template (GTK_WIDGET (window));
+        gtk_widget_init_template (widget);
+
+        if (dh_util_is_devel_build ()) {
+                GtkStyleContext *context = gtk_widget_get_style_context (widget);
+                gtk_style_context_add_class (context, "devel");
+        }
 
         add_actions (window);
 
