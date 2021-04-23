@@ -18,7 +18,7 @@ configure_file(
 appdata_conf = configuration_data()
 appdata_conf.set('application_id', APPLICATION_ID)
 appdata = APPLICATION_ID + '.appdata.xml'
-I18N.merge_file(
+appdata_file = I18N.merge_file(
   appdata,
   input: configure_file(
     input: 'org.gnome.Devhelp.appdata.xml.in.in',
@@ -33,16 +33,16 @@ I18N.merge_file(
 
 desktop_conf = configuration_data()
 desktop_conf.set('application_id', APPLICATION_ID)
-desktop_file = APPLICATION_ID + '.desktop'
-I18N.merge_file(
-  desktop_file,
+desktop = APPLICATION_ID + '.desktop'
+desktop_file = I18N.merge_file(
+  desktop,
   type: 'desktop',
   input: configure_file(
     input: 'org.gnome.Devhelp.desktop.in.in',
     output: APPLICATION_ID + '.desktop.in',
     configuration: desktop_conf,
   ),
-  output: desktop_file,
+  output: desktop,
   po_dir: '../po/',
   install: true,
   install_dir: get_option('datadir') / 'applications'
@@ -52,8 +52,9 @@ desktop_file_validate = find_program('desktop-file-validate', required: false)
 if desktop_file_validate.found()
   test('validate-desktop',
     desktop_file_validate,
-    args: desktop_file,
+    args: desktop,
     workdir: meson.current_build_dir(),
+    depends: desktop_file,
   )
 endif
 
