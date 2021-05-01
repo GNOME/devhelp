@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-04-13 16:44+0000\n"
-"PO-Revision-Date: 2021-04-15 09:18+0300\n"
+"POT-Creation-Date: 2021-04-23 17:33+0000\n"
+"PO-Revision-Date: 2021-05-01 16:47+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -25,19 +25,19 @@ msgstr ""
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
-#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:139 src/dh-app.c:484
+#: data/org.gnome.Devhelp.appdata.xml.in.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:141 src/dh-app.c:486
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:141
+#: data/org.gnome.Devhelp.appdata.xml.in.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:143
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Інструмент розробника для навігації і пошуку у документації із програмних "
 "інтерфейсів"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:9
+#: data/org.gnome.Devhelp.appdata.xml.in.in:9
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation. It "
 "provides an easy way to navigate through libraries and to search by "
@@ -47,7 +47,7 @@ msgstr ""
 "програмного інтерфейсу. Він надає легкий спосіб переміщатись між "
 "бібліотеками, шукати функції, структури і макроси."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:14
+#: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
@@ -55,7 +55,7 @@ msgstr ""
 "Документацію має бути встановлено локально, тому інтернет-з'єднання для "
 "користування Devhelp не є необхідним."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:18
+#: data/org.gnome.Devhelp.appdata.xml.in.in:18
 msgid ""
 "Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
 "supported. But other development platforms can be supported as well, as long "
@@ -67,7 +67,7 @@ msgstr ""
 "якщо документація із програмного інтерфейсу доступна у форматі HTML і "
 "створено файл покажчика *.devhelp2."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:24
+#: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
 "Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
@@ -77,12 +77,12 @@ msgstr ""
 "Передбачено додатки для різних текстових редакторів (gedit, Vim, Emacs, "
 "Geany, …)."
 
-#: data/org.gnome.Devhelp.desktop.in:5
+#: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "API Documentation Browser"
 msgstr "Переглядач документації з програмного інтерфейсу"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Devhelp.desktop.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "документація;інформація;посібник;розробник;api;"
 
@@ -270,38 +270,43 @@ msgstr "Підказки Devhelp"
 msgid "Show API Documentation"
 msgstr "Показати документацію з API"
 
-#: src/dh-app.c:143
+#: src/dh-app.c:140
+msgid "Devhelp (development build)"
+msgstr ""
+"Devhelp (тестова збірка)"
+
+#: src/dh-app.c:145
 msgid "translator-credits"
 msgstr ""
 "Yuriy Syrota <rasta@cvs.gnome.org>\n"
 "Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Daniel Korostil <ted.korostiled@gmail.com>"
 
-#: src/dh-app.c:145
+#: src/dh-app.c:147
 msgid "Devhelp Website"
 msgstr "Сайт Devhelp"
 
-#: src/dh-app.c:388
+#: src/dh-app.c:390
 msgid "Opens a new Devhelp window"
 msgstr "Відкриває нове вікно Devhelp"
 
-#: src/dh-app.c:393
+#: src/dh-app.c:395
 msgid "Search for a keyword"
 msgstr "Знайти ключове слово"
 
-#: src/dh-app.c:394 src/dh-app.c:399
+#: src/dh-app.c:396 src/dh-app.c:401
 msgid "KEYWORD"
 msgstr "ФРАЗА"
 
-#: src/dh-app.c:398
+#: src/dh-app.c:400
 msgid "Search and display any hit in the assistant window"
 msgstr "Шукати та показувати будь-які відповідності у вікні помічника"
 
-#: src/dh-app.c:403
+#: src/dh-app.c:405
 msgid "Display the version and exit"
 msgstr "Показати версію та вийти"
 
-#: src/dh-app.c:408
+#: src/dh-app.c:410
 msgid "Quit any running Devhelp"
 msgstr "Вийти з Devhelp"
 
@@ -403,19 +408,16 @@ msgid "New Tab"
 msgstr "Нова вкладка"
 
 #: src/help-overlay.ui:14
-#| msgid "General"
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Загальне"
 
 #: src/help-overlay.ui:19
-#| msgid "Focus global search"
 msgctxt "shortcut window"
 msgid "Focus global search"
 msgstr "Фокусувати поле загального пошуку"
 
 #: src/help-overlay.ui:26
-#| msgid "Find in current page"
 msgctxt "shortcut window"
 msgid "Find in current page"
 msgstr "Знайти на поточній сторінці"
@@ -423,77 +425,64 @@ msgstr "Знайти на поточній сторінці"
 #: src/help-overlay.ui:33
 msgctxt "shortcut window"
 msgid "Find the next match"
-msgstr ""
-"Знайти наступний збіг"
+msgstr "Знайти наступний збіг"
 
 #: src/help-overlay.ui:40
-#| msgid "Go to the previous page"
 msgctxt "shortcut window"
 msgid "Find the previous match"
 msgstr "Знайти попередній збіг"
 
 #: src/help-overlay.ui:48
-#| msgid "Open a new window"
 msgctxt "shortcut window"
 msgid "Open a new window"
 msgstr "Відкрити нове вікно"
 
 #: src/help-overlay.ui:55
-#| msgid "Open a new tab"
 msgctxt "shortcut window"
 msgid "Open a new tab"
 msgstr "Відкрити нову вкладку"
 
 #: src/help-overlay.ui:62
-#| msgid "Toggle side panel visibility"
 msgctxt "shortcut window"
 msgid "Toggle side panel visibility"
 msgstr "Увімкнути або вимкнути видимість бічної панелі"
 
 #: src/help-overlay.ui:69
-#| msgid "Go back"
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Перейти назад"
 
 #: src/help-overlay.ui:76
-#| msgid "Go forward"
 msgctxt "shortcut window"
 msgid "Go forward"
 msgstr "Перейти вперед"
 
 #: src/help-overlay.ui:83
-#| msgid "_Print"
 msgctxt "shortcut window"
 msgid "Print"
 msgstr "Надрукувати"
 
 #: src/help-overlay.ui:90
-#| msgid "Close the current tab"
 msgctxt "shortcut window"
 msgid "Close the current window"
 msgstr "Закрити поточне вікно"
 
 #: src/help-overlay.ui:97
-#| msgid "Tabs and Windows"
 msgctxt "shortcut window"
 msgid "Close all windows"
 msgstr "Закрити всі вікна"
 
 #: src/help-overlay.ui:105
-#| msgid "Zoom"
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Масштаб"
 
 #: src/help-overlay.ui:110
-#| msgid "Zoom"
 msgctxt "shortcut window"
 msgid "Zoom in"
 msgstr "Збільшити"
 
 #: src/help-overlay.ui:117
-#| msgid "Zoom"
 msgctxt "shortcut window"
 msgid "Zoom out"
 msgstr "Зменшити"
@@ -501,8 +490,7 @@ msgstr "Зменшити"
 #: src/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Reset Zoom"
-msgstr ""
-"Відновити масштаб"
+msgstr "Відновити масштаб"
 
 #: src/menus.ui:49
 msgid "_About"
