@@ -1,28 +1,6 @@
 Devhelp
 =======
 
-The Devhelp web page:
-
-https://wiki.gnome.org/Apps/Devhelp
-
-Installation of the Devhelp Flatpak
------------------------------------
-
-- [Devhelp on Flathub](https://flathub.org/apps/details/org.gnome.Devhelp)
-
-How to contribute
------------------
-
-See the [HACKING](HACKING) file.
-
-Dependencies
-------------
-
-- GLib
-- GTK
-- WebKitGTK
-- gsettings-desktop-schemas
-
 Description
 -----------
 
@@ -33,14 +11,32 @@ function, struct, or macro.
 The documentation must be installed locally, so an internet connection is
 not needed to use Devhelp.
 
-Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are
-well supported. But other development platforms can be supported as well,
-as long as the API documentation is available in HTML and a `*.devhelp2`
-index file is generated.
+Devhelp works natively with the documentation generators used by the GNOME
+project libraries. Other development platforms can be supported as well, as
+long as the API documentation is available in HTML and a `*.devhelp2` index
+file is generated.
 
 Devhelp integrates with other applications such as Glade, Builder or
 Anjuta, and plugins are available for different text editors (gedit, Vim,
 Emacs, Geany, …).
+
+Installation of the Devhelp Flatpak
+-----------------------------------
+
+- [Devhelp on Flathub](https://flathub.org/apps/details/org.gnome.Devhelp)
+
+How to contribute
+-----------------
+
+See the [contribution guide](CONTRIBUTING.md).
+
+Dependencies
+------------
+
+- GLib
+- GTK
+- WebKitGTK
+- gsettings-desktop-schemas
 
 Integration with other developer tools
 --------------------------------------
@@ -54,7 +50,7 @@ Devhelp also provides a shared library, to integrate the GTK widgets inside an
 IDE. It is used for example by Builder and Anjuta.
 
 For the `--search` command line option, see the class description of
-DhKeywordModel, the search string supports additional features useful for IDEs
+`DhKeywordModel`, the search string supports additional features useful for IDEs
 or other developer tools.
 
 Other documentation
