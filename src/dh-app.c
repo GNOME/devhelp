@@ -348,20 +348,6 @@ setup_accelerators (GtkApplication *app)
 }
 
 static void
-set_app_menu_if_needed (GtkApplication *app)
-{
-        GMenu *manual_app_menu;
-
-        manual_app_menu = gtk_application_get_menu_by_id (app, "manual-app-menu");
-
-        /* Have the g_return in all cases, to catch problems in all cases. */
-        g_return_if_fail (manual_app_menu != NULL);
-
-        if (gtk_application_prefers_app_menu (app))
-                gtk_application_set_app_menu (app, G_MENU_MODEL (manual_app_menu));
-}
-
-static void
 dh_app_startup (GApplication *application)
 {
         DhApp *app = DH_APP (application);
@@ -373,7 +359,6 @@ dh_app_startup (GApplication *application)
 
         add_action_entries (app);
         setup_accelerators (GTK_APPLICATION (app));
-        set_app_menu_if_needed (GTK_APPLICATION (app));
 }
 
 static void
