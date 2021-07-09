@@ -31,6 +31,16 @@ appdata_file = I18N.merge_file(
   install_dir: get_option('datadir') / 'metainfo'
 )
 
+appstream_util = find_program('appstream-util', required: false)
+if appstream_util.found()
+  test('validate-appdata',
+    appstream_util,
+    args: ['validate-relax', appdata_file],
+    workdir: meson.current_build_dir(),
+    depends: appdata_file,
+  )
+endif
+
 desktop_conf = configuration_data()
 desktop_conf.set('application_id', APPLICATION_ID)
 desktop = APPLICATION_ID + '.desktop'
