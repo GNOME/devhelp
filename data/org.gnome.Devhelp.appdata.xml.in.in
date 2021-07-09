@@ -2,7 +2,7 @@
 <component type="desktop">
   <id>@application_id@.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <name>Devhelp</name>
   <summary>A developer tool for browsing and searching API documentation</summary>
   <description>
@@ -32,18 +32,31 @@
   <url type="donation">http://www.gnome.org/friends/</url>
   <screenshots>
     <screenshot type="default">
-      <image>https://people.gnome.org/~swilmet/devhelp/screenshot-1.png</image>
+      <image>https://people.gnome.org/~ebassi/screenshots/devhelp/devhelp-41-1.png</image>
+      <caption>Devhelp's main window, showing a list of books in the side panel.</caption>
     </screenshot>
     <screenshot>
-      <image>https://people.gnome.org/~swilmet/devhelp/screenshot-2.png</image>
+      <image>https://people.gnome.org/~ebassi/screenshots/devhelp/devhelp-41-2.png</image>
+      <caption>Devhelp's main window, showing an open book.</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://people.gnome.org/~ebassi/screenshots/devhelp/devhelp-41-3.png</image>
+      <caption>Devhelp supports opening multiple books within the same window.</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://people.gnome.org/~ebassi/screenshots/devhelp/devhelp-41-4.png</image>
+      <caption>Devhelp supports HTML documentation formats, including gi-docgen and gtk-doc.</caption>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1" />
   <project_group>GNOME</project_group>
   <translation type="gettext">devhelp</translation>
-  <update_contact>swilmet@gnome.org</update_contact>
+  <provides>
+    <binary>devhelp</binary>
+  </provides>
   <releases>
-    <release version="40.alpha" date="2021-01-11" />
+    <release type="development" version="41-alpha" date="2021-07-09" />
+    <release version="40.0" date="2021-04-12" />
     <release version="3.38.1" date="2020-11-20" />
     <release version="3.38.0" date="2020-09-11" />
   </releases>

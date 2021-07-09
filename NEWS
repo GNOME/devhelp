@@ -1,3 +1,16 @@
+News in 41.alpha, 2021-07-09
+----------------------------
+* Translation updates
+* Drop the dependency on AMTK
+* Build fixes with newer versions of various dependencies
+* Follow the HIG best practices for the main menu button
+* Drop the old "simple" menu fallback
+* Display find shortcuts in the Keyboard Shortcuts dialog [#27]
+* Search for Devhelp files under `$datadir/doc` [#29]
+* Set the User Agent for client-side detection [#28]
+* Add a custom CSS to allow documentation generators to control the
+  rendering under Devhelp
+
 News in 40.0, 2021-04-12
 ------------------------
 * Translation updates.
