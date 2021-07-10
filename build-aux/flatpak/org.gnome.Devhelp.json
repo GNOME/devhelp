@@ -39,7 +39,7 @@
                 {
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/GNOME/devhelp.git",
-                    "branch" : "master"
+                    "branch" : "main"
                 }
             ]
         }
