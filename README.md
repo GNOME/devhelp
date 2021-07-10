@@ -62,3 +62,20 @@ Other documentation
 
 - There is an API reference manual for the libdevhelp that can be built with
   GTK-Doc, see the `gtk_doc` build option.
+
+Default development branch
+--------------------------
+
+The default development branch of Devhelp has been renamed to `main`. If you
+have just cloned the Devhelp repository, you don't need to change anything.
+If you have an older local checkout, you can use these commands to switch
+from the old default branch name to the new one:
+
+```
+git switch master
+git branch -m master main
+git fetch
+git branch --unset-upstream
+git branch -u origin/main
+git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
+```
