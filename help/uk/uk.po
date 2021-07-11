@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp gnome-3-36\n"
-"POT-Creation-Date: 2021-04-12 13:09+0000\n"
-"PO-Revision-Date: 2021-04-15 09:22+0300\n"
+"POT-Creation-Date: 2021-07-09 17:23+0000\n"
+"PO-Revision-Date: 2021-07-11 16:17+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -181,21 +181,18 @@ msgstr ""
 
 #. (itstool) path: info/title
 #: C/index.page:10
-#| msgid "Devhelp User Documentation"
 msgctxt "link:trail"
 msgid "Devhelp User Documentation"
 msgstr "Документація користувача Devhelp"
 
 #. (itstool) path: info/title
 #: C/index.page:11
-#| msgid "Devhelp User Documentation"
 msgctxt "text"
 msgid "Devhelp User Documentation"
 msgstr "Документація користувача Devhelp"
 
 #. (itstool) path: info/title
 #: C/index.page:12
-#| msgid "Devhelp User Documentation"
 msgctxt "link"
 msgid "Devhelp User Documentation"
 msgstr "Документація користувача Devhelp"
@@ -207,9 +204,9 @@ msgstr "Документація користувача Devhelp"
 
 #. (itstool) path: page/title
 #: C/index.page:17
-#| msgid "Devhelp User Documentation"
-msgid "<_:media-1/>Devhelp User Documentation"
-msgstr "<_:media-1/>Документація користувача Devhelp"
+#| msgid "<_:media-1/>Devhelp User Documentation"
+msgid "<_:media-1/> Devhelp User Documentation"
+msgstr "<_:media-1/> Документація користувача Devhelp"
 
 #. (itstool) path: synopsis/p
 #: C/index.page:23
