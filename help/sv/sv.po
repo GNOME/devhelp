@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=devhelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2021-04-23 17:33+0000\n"
-"PO-Revision-Date: 2021-06-03 13:34+0200\n"
+"POT-Creation-Date: 2021-07-09 17:23+0000\n"
+"PO-Revision-Date: 2021-07-12 11:23+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -213,8 +213,8 @@ msgstr "Användardokumentation för Devhelp"
 
 #. (itstool) path: page/title
 #: C/index.page:17
-msgid "<_:media-1/>Devhelp User Documentation"
-msgstr "<_:media-1/>Användardokumentation för Devhelp"
+msgid "<_:media-1/> Devhelp User Documentation"
+msgstr "<_:media-1/> Användardokumentation för Devhelp"
 
 #. (itstool) path: synopsis/p
 #: C/index.page:23
