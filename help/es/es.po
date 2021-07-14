@@ -1,13 +1,13 @@
 # Spanish translation for devhelp.
 # Copyright (C) 2018 devhelp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2020.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2020-05-29 13:32+0000\n"
-"PO-Revision-Date: 2020-08-25 13:40+0200\n"
+"POT-Creation-Date: 2021-07-14 11:19+0000\n"
+"PO-Revision-Date: 2021-07-14 13:20+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2020"
+msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2018-2021"
 
 #. (itstool) path: page/title
 #. (itstool) path: section/title
@@ -182,13 +182,40 @@ msgstr ""
 "lo que soporta <app>Devhelp</app> lea el código fuente del analizador y la "
 "referencia de la API de <app>Devhelp</app>."
 
-#. (itstool) path: page/title
-#: C/index.page:8
+#. (itstool) path: info/title
+#: C/index.page:10
+#| msgid "Devhelp User Documentation"
+msgctxt "link:trail"
 msgid "Devhelp User Documentation"
 msgstr "Documentación del usuario de Devhelp"
 
-#. (itstool) path: synopsis/p
+#. (itstool) path: info/title
 #: C/index.page:11
+#| msgid "Devhelp User Documentation"
+msgctxt "text"
+msgid "Devhelp User Documentation"
+msgstr "Documentación del usuario de Devhelp"
+
+#. (itstool) path: info/title
+#: C/index.page:12
+#| msgid "Devhelp User Documentation"
+msgctxt "link"
+msgid "Devhelp User Documentation"
+msgstr "Documentación del usuario de Devhelp"
+
+#. (itstool) path: info/desc
+#: C/index.page:14
+msgid "Devhelp User Documentation"
+msgstr "Documentación del usuario de Devhelp"
+
+#. (itstool) path: page/title
+#: C/index.page:17
+#| msgid "Devhelp User Documentation"
+msgid "<_:media-1/> Devhelp User Documentation"
+msgstr "<_:media-1/> Documentación del usuario de Devhelp"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:23
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation."
 msgstr ""
@@ -241,10 +268,6 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:47
-#| msgid ""
-#| "Note that the two latter consist of :-separated lists of directories to "
-#| "look for. Those environment variables are normally set up by the desktop "
-#| "environment or distribution."
 msgid ""
 "Note that the two latter consist of lists of directories to look for. "
 "Directory values are separated by <code>:</code> characters. Those "
@@ -291,10 +314,15 @@ msgstr "GTK-Doc"
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:80
+#, fuzzy
+#| msgid ""
+#| "<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
+#| "generate API documentation from comments added to C code. It is used by "
+#| "GLib, GTK and GNOME libraries and applications."
 msgid ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
-"generate API documentation from comments added to C code. It is used by "
-"GLib, GTK and GNOME libraries and applications."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
 msgstr ""
 "<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> es una "
 "herramienta para generar documentación de la API a partir de comentarios al "
