@@ -2,6 +2,7 @@ include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_
 
 stages:
   - build
+  - docs
   - deploy
 
 variables:
@@ -21,3 +22,94 @@ nightly:
   extends: .publish_nightly
   dependencies: ['flatpak']
   needs: ['flatpak']
+
+.build-default:
+  image: fedora:34
+  before_script:
+    - dnf install -y ${FEDORA_DEPS}
+    - pip install --user meson==${MESON_VERSION}
+    - export PATH="$PATH:$HOME/.local/bin"
+  script:
+    - meson setup ${MESON_EXTRA_FLAGS} --prefix /usr _build .
+    - meson compile -C _build
+    - meson test -C _build
+  artifacts:
+    when: always
+    name: "devhelp-${CI_COMMIT_REF_NAME}"
+    paths:
+      - "${CI_PROJECT_DIR}/_build/meson-logs"
+
+fedora_x86_64:
+  extends: .build-default
+  stage: build
+  needs: []
+  variables:
+    FEDORA_DEPS:
+      chrpath
+      desktop-file-utils
+      gcc
+      gettext
+      git
+      glib2-devel
+      gobject-introspection-devel
+      gsettings-desktop-schemas-devel
+      gtk3-devel
+      itstool
+      libappstream-glib
+      ninja-build
+      python3
+      python3-pip
+      python3-wheel
+      redhat-rpm-config
+      webkit2gtk3-devel
+    MESON_VERSION: "0.55.3"
+
+reference:
+  extends: .build-default
+  stage: docs
+  needs: []
+  variables:
+    FEDORA_DEPS:
+      chrpath
+      desktop-file-utils
+      gcc
+      gettext
+      git
+      glib2-devel
+      gobject-introspection-devel
+      graphviz
+      gsettings-desktop-schemas-devel
+      gtk3-devel
+      itstool
+      libappstream-glib
+      ninja-build
+      python3
+      python3-jinja2
+      python3-markdown
+      python3-markupsafe
+      python3-pip
+      python3-pygments
+      python3-toml
+      python3-typogrify
+      python3-wheel
+      redhat-rpm-config
+      webkit2gtk3-devel
+    MESON_VERSION: "0.55.3"
+    MESON_EXTRA_FLAGS: "-Dgtk_doc=true"
+  after_script:
+    - mkdir _reference
+    - mv _build/docs/reference/devhelp-3/ _reference/
+  artifacts:
+    paths:
+      - _reference
+
+pages:
+  stage: deploy
+  needs: ['reference']
+  script:
+    - mv _reference public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
