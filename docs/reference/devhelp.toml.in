@@ -33,3 +33,6 @@ base_url = "https://gitlab.gnome.org/GNOME/devhelp/-/blob/HEAD/devhelp/"
 content_files = [
   "api-breaks.md",
 ]
+content_images = [
+  "devhelp.svg",
+]
