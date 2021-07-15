@@ -120,7 +120,7 @@ PKG_CONFIG.generate(
   requires_private: LIBDEVHELP_PRIVATE_DEPS
 )
 
-GNOME.generate_gir(
+libdevhelp_gir = GNOME.generate_gir(
   libdevhelp_shared_lib,
   export_packages: 'libdevhelp-@0@'.format(LIBDEVHELP_API_VERSION_FULL),
   header: 'devhelp/devhelp.h',
