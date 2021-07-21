@@ -16,4 +16,7 @@
   <gresource prefix="/org/gnome/devhelp/gtk">
     <file preprocess="xml-stripblanks">help-overlay.ui</file>
   </gresource>
+  <gresource prefix="/org/gnome/devhelp/icons">
+    <file  preprocess="xml-stripblanks" alias="scalable/actions/view-left-pane-symbolic.svg">../data/icons/view-left-pane-symbolic.svg</file>
+  </gresource>
 </gresources>

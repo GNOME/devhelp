@@ -119,6 +119,26 @@
           </packing>
         </child>
         <child>
+          <object class="GtkToggleButton" id="sidebar_button">
+            <property name="active">True</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Toggle Side Panel</property>
+            <property name="action_name">win.show-sidebar</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="sidebar_button_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+                <property name="icon_name">view-left-pane-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
           <object class="GtkMenuButton" id="window_menu_button">
             <property name="visible">True</property>
             <property name="valign">center</property>
