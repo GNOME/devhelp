@@ -21,8 +21,8 @@
  *
  * A #DhBook usually contains the documentation for one library (or
  * application), for example GLib or GTK. A #DhBook corresponds to one index
- * file. An index file is a file with the extension `*.devhelp`, `*.devhelp2`,
- * `*.devhelp.gz` or `*.devhelp2.gz`.
+ * file. An index file is a file with the extension `*.devhelp2` or
+ * `*.devhelp2.gz`.
  *
  * #DhBook creates a #GFileMonitor on the index file, and emits the
  * #DhBook::updated or #DhBook::deleted signal in case the index file has

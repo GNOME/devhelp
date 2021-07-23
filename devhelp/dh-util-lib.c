@@ -167,8 +167,6 @@ _dh_util_get_possible_index_files (GFile *book_directory)
         const gchar *extensions[] = {
                 ".devhelp2",
                 ".devhelp2.gz",
-                ".devhelp",
-                ".devhelp.gz",
                 NULL
         };
         gchar *directory_name;

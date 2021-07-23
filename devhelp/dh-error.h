@@ -15,7 +15,8 @@ G_BEGIN_DECLS
 #define DH_ERROR _dh_error_quark ()
 
 typedef enum {
-        DH_ERROR_MALFORMED_BOOK
+        DH_ERROR_MALFORMED_BOOK,
+        DH_ERROR_UNSUPPORTED_FORMAT
 } DhError;
 
 G_GNUC_INTERNAL

@@ -45,7 +45,7 @@
 #define BYTES_PER_READ 4096
 
 typedef enum {
-        FORMAT_VERSION_1,
+        FORMAT_VERSION_INVALID,
 
         /* The main change is that version 2 uses <keyword> instead of
          * <function>.
@@ -301,15 +301,6 @@ parser_start_node_keyword (DhParser             *parser,
                              "Expected <keyword> element, got <%s> at line %d, column %d.",
                              node_name, line, col);
                 return;
-        } else if (parser->version == FORMAT_VERSION_1 &&
-                   g_ascii_strcasecmp (node_name, "function") != 0) {
-                g_markup_parse_context_get_position (context, &line, &col);
-                g_set_error (error,
-                             DH_ERROR,
-                             DH_ERROR_MALFORMED_BOOK,
-                             "Expected <function> element, got <%s> at line %d, column %d.",
-                             node_name, line, col);
-                return;
         }
 
         for (attr_num = 0; attribute_names[attr_num] != NULL; attr_num++) {
@@ -545,14 +536,11 @@ _dh_parser_read_file (GFile   *index_file,
         if (g_str_has_suffix (index_file_uri, ".devhelp2")) {
                 parser->version = FORMAT_VERSION_2;
                 gz = FALSE;
-        } else if (g_str_has_suffix (index_file_uri, ".devhelp")) {
-                parser->version = FORMAT_VERSION_1;
-                gz = FALSE;
         } else if (g_str_has_suffix (index_file_uri, ".devhelp2.gz")) {
                 parser->version = FORMAT_VERSION_2;
                 gz = TRUE;
         } else {
-                parser->version = FORMAT_VERSION_1;
+                parser->version = FORMAT_VERSION_INVALID;
                 gz = TRUE;
         }
 
@@ -573,12 +561,12 @@ _dh_parser_read_file (GFile   *index_file,
         /* At this point we know that the file exists, the G_IO_ERROR_NOT_FOUND
          * has been catched earlier. So print warning.
          */
-        if (parser->version == FORMAT_VERSION_1)
-                g_warning ("The file '%s' uses the Devhelp index file format version 1, "
-                           "which is deprecated. A future version of Devhelp may remove "
-                           "the support for the format version 1. The index file should "
-                           "be ported to the Devhelp index file format version 2.",
-                           index_file_uri);
+        if (parser->version == FORMAT_VERSION_INVALID) {
+                g_set_error_literal (error, DH_ERROR, DH_ERROR_UNSUPPORTED_FORMAT,
+                                     "Unsupported Devhelp index file format");
+                ok = FALSE;
+                goto exit;
+        }
 
         if (gz) {
                 GZlibDecompressor *zlib_decompressor;

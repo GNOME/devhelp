@@ -17,7 +17,7 @@ check_get_possible_index_files (const gchar *book_directory_path,
         book_directory = g_file_new_for_path (book_directory_path);
         list = _dh_util_get_possible_index_files (book_directory);
 
-        g_assert_cmpint (g_slist_length (list), ==, 4);
+        g_assert_cmpint (g_slist_length (list), ==, 2);
 
         for (l = list, i = 0; l != NULL; l = l->next, i++) {
                 GFile *index_file = G_FILE (l->data);
@@ -33,14 +33,6 @@ check_get_possible_index_files (const gchar *book_directory_path,
 
                         case 1:
                                 expected_basename = g_strconcat (book_basename, ".devhelp2.gz", NULL);
-                                break;
-
-                        case 2:
-                                expected_basename = g_strconcat (book_basename, ".devhelp", NULL);
-                                break;
-
-                        case 3:
-                                expected_basename = g_strconcat (book_basename, ".devhelp.gz", NULL);
                                 break;
 
                         default:
