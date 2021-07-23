@@ -10,12 +10,6 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">_Side Panel</attribute>
-        <attribute name="action">win.show-sidebar</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
         <attribute name="label" translatable="yes">_Print</attribute>
         <attribute name="action">win.print</attribute>
       </item>
