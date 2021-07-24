@@ -46,10 +46,15 @@ lt_revision = 3
 lt_age = 0
 LIBDEVHELP_LT_VERSION = '@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
 
+webkit_dep = dependency('webkit2gtk-4.1', required : false)
+if not webkit_dep.found()
+  webkit_dep = dependency('webkit2gtk-4.0')
+endif
+
 LIBDEVHELP_PUBLIC_DEPS = [
   dependency('gio-2.0', version: '>= 2.64'),
   dependency('gtk+-3.0', version: '>= 3.22'),
-  dependency('webkit2gtk-4.0', version: '>= 2.26'),
+  webkit_dep,
 ]
 LIBDEVHELP_PRIVATE_DEPS = [
   dependency('gsettings-desktop-schemas'),
