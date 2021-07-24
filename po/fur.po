@@ -7,30 +7,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-01-11 08:26+0000\n"
-"PO-Revision-Date: 2021-01-21 07:37+0100\n"
+"POT-Creation-Date: 2021-07-19 13:26+0000\n"
+"PO-Revision-Date: 2021-07-24 10:29+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
-#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:293 src/dh-app.c:585
+#: data/org.gnome.Devhelp.appdata.xml.in.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:141 src/dh-app.c:471
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:295
+#: data/org.gnome.Devhelp.appdata.xml.in.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:143
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Un strument di svilupadôrs par navigâ e cirî la documentazion des API"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:9
+#: data/org.gnome.Devhelp.appdata.xml.in.in:9
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation. It "
 "provides an easy way to navigate through libraries and to search by "
@@ -40,7 +40,7 @@ msgstr ""
 "API. Al permet di esplorâ, in maniere facile, lis librariis e di eseguî "
 "ricercjis par funzions, struturis o macro."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:14
+#: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
@@ -48,7 +48,7 @@ msgstr ""
 "La documentazion e scugne jessi instalade in locâl, duncje une conession a "
 "internet no covente par doprâ Devhelp."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:18
+#: data/org.gnome.Devhelp.appdata.xml.in.in:18
 msgid ""
 "Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
 "supported. But other development platforms can be supported as well, as long "
@@ -60,7 +60,7 @@ msgstr ""
 "puedin jessi supuartadis, al baste che la documentazion de API e sedi "
 "disponibile in HTML e un file di tabele *.devhelp2 al sedi gjenerât."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:24
+#: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
 "Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
@@ -70,12 +70,33 @@ msgstr ""
 "plugin a son disponibii par diferents editôrs di test (gedit, Vim, Emacs, "
 "Geany, …)."
 
-#: data/org.gnome.Devhelp.desktop.in:5
+#: data/org.gnome.Devhelp.appdata.xml.in.in:36
+msgid "Devhelp's main window, showing a list of books in the side panel."
+msgstr ""
+"Barcon principâl di Devhelp, che al mostre une liste di libris tal panel "
+"laterâl."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:40
+msgid "Devhelp's main window, showing an open book."
+msgstr "Barcon principâl di Devhelp, che al mostre un libri viert."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:44
+msgid "Devhelp supports opening multiple books within the same window."
+msgstr "Devhelp al supuarte la vierzidure di plui libris tal stes barcon."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:48
+msgid ""
+"Devhelp supports HTML documentation formats, including gi-docgen and gtk-doc."
+msgstr ""
+"Devhelp al supuarte i formâts di documentazion HTML, includûts gi-docgen e "
+"gtk-doc."
+
+#: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "API Documentation Browser"
 msgstr "Navigadôr di documentazion API"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Devhelp.desktop.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "documentazion;informazion;manuâl;svilupadôr;api;"
 
@@ -253,7 +274,7 @@ msgstr "Proprietât"
 msgid "Signal"
 msgstr "Segnâl"
 
-#: devhelp/dh-web-view.c:644
+#: devhelp/dh-web-view.c:674
 msgid "Empty Page"
 msgstr "Pagjine vueide"
 
@@ -265,156 +286,39 @@ msgstr "Supuart Devhelp"
 msgid "Show API Documentation"
 msgstr "Mostre documentazion API"
 
-#. action, icon, label, accel, tooltip
-#. Actions related to the whole application
-#: src/dh-app.c:39
-msgid "New _Window"
-msgstr "Gnûf _barcon"
+#: src/dh-app.c:140
+msgid "Devhelp (development build)"
+msgstr "Devhelp (version di disvilup)"
 
-#: src/dh-app.c:40
-msgid "Open a new window"
-msgstr "Vierç un gnûf barcon"
-
-#: src/dh-app.c:41
-msgid "_Preferences"
-msgstr "_Preferencis"
-
-#: src/dh-app.c:42
-msgid "_Keyboard Shortcuts"
-msgstr "_Scurtis di tastiere"
-
-#: src/dh-app.c:43
-msgid "Show keyboard shortcuts"
-msgstr "Mostre scurtis di tastiere"
-
-#: src/dh-app.c:44
-msgid "_Help"
-msgstr "_Jutori"
-
-#: src/dh-app.c:45
-msgid "Show help"
-msgstr "Mostre jutori"
-
-#: src/dh-app.c:46
-msgid "_About Devhelp"
-msgstr "I_nformazions su Devhelp"
-
-#: src/dh-app.c:47
-msgid "_Quit"
-msgstr "_Jes"
-
-#: src/dh-app.c:48
-msgid "Close all windows (quit the application)"
-msgstr "Siere ducj barcons (jes de aplicazion)"
-
-#. Actions related to the current main window
-#: src/dh-app.c:51
-msgid "_Side Panel"
-msgstr "Panel _laterâl"
-
-#: src/dh-app.c:52
-msgid "Toggle side panel visibility"
-msgstr "Comute la visibilitât dal panel laterâl"
-
-#: src/dh-app.c:53
-msgid "_Print"
-msgstr "_Stampe"
-
-#: src/dh-app.c:54
-msgid "_Find"
-msgstr "_Cjate"
-
-#: src/dh-app.c:55
-msgid "Find in current page"
-msgstr "Cjate te pagjine atuâl"
-
-#: src/dh-app.c:56
-msgid "_Larger Text"
-msgstr "Test plui _grant"
-
-#: src/dh-app.c:57
-msgid "Larger text"
-msgstr "Test plui grant"
-
-#: src/dh-app.c:58
-msgid "S_maller Text"
-msgstr "Test plui _piçul"
-
-#: src/dh-app.c:59
-msgid "Smaller text"
-msgstr "Test plui piçul"
-
-#: src/dh-app.c:60
-msgid "_Normal Size"
-msgstr "Dimension _normâl"
-
-#: src/dh-app.c:61
-msgid "Normal size"
-msgstr "Dimension normâl"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:112
-msgid "Open a new tab"
-msgstr "Vierç une gnove schede"
-
-#: src/dh-app.c:113
-msgid "Close the current tab"
-msgstr "Siere la schede atuâl"
-
-#: src/dh-app.c:114
-msgid "Go back"
-msgstr "Torne indaûr"
-
-#: src/dh-app.c:115
-msgid "Go forward"
-msgstr "Va Indenant"
-
-#: src/dh-app.c:116
-msgid "Focus global search"
-msgstr "Met a fûc la ricercje globâl"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:153
-msgid "Open the menu"
-msgstr "Vierç il menù"
-
-#: src/dh-app.c:154
-msgid "Previous tab"
-msgstr "Schede precedente"
-
-#: src/dh-app.c:155
-msgid "Next tab"
-msgstr "Schede sucessive"
-
-#: src/dh-app.c:297
+#: src/dh-app.c:145
 msgid "translator-credits"
 msgstr "Fabio Tomat <f.t.public@gmail.com>"
 
-#: src/dh-app.c:299
+#: src/dh-app.c:147
 msgid "Devhelp Website"
 msgstr "Sît web di Devhelp"
 
-#: src/dh-app.c:474
+#: src/dh-app.c:375
 msgid "Opens a new Devhelp window"
 msgstr "Vierç un gnûf barcon di Devhelp"
 
-#: src/dh-app.c:479
+#: src/dh-app.c:380
 msgid "Search for a keyword"
 msgstr "Cîr par peraule clâf"
 
-#: src/dh-app.c:480 src/dh-app.c:485
+#: src/dh-app.c:381 src/dh-app.c:386
 msgid "KEYWORD"
 msgstr "PERAULECLÂF"
 
-#: src/dh-app.c:484
+#: src/dh-app.c:385
 msgid "Search and display any hit in the assistant window"
 msgstr "Cîr e mostre ogni corispuindince tal barcon assistent"
 
-#: src/dh-app.c:489
+#: src/dh-app.c:390
 msgid "Display the version and exit"
 msgstr "Mostre la version e jes"
 
-#: src/dh-app.c:494
+#: src/dh-app.c:395
 msgid "Quit any running Devhelp"
 msgstr "Jes di ogni Devhelp in esecuzion"
 
@@ -459,63 +363,191 @@ msgstr "Largjece _fisse:"
 msgid "Fonts"
 msgstr "Caratars"
 
-#: src/dh-window.c:378
-msgid "Search"
-msgstr "Cîr"
+#: src/dh-window.ui:7
+msgid "New _Window"
+msgstr "Gnûf _barcon"
 
-#: src/dh-window.c:383
-msgid "History"
-msgstr "Cronologjie"
+#: src/dh-window.ui:13
+msgid "_Side Panel"
+msgstr "Panel _laterâl"
 
-#: src/dh-window.c:388
-msgid "Zoom"
-msgstr "Ingrandiment"
+#: src/dh-window.ui:19
+msgid "_Print"
+msgstr "_Stampe"
 
-#: src/dh-window.c:394
-msgid "Tabs and Windows"
-msgstr "Schedis e barcons"
+#: src/dh-window.ui:23
+msgid "_Find"
+msgstr "_Cjate"
 
-#: src/dh-window.c:403
-msgid "Miscellaneous"
-msgstr "Variis"
+#: src/dh-window.ui:29
+msgid "_Larger Text"
+msgstr "Test plui _grant"
 
-#: src/dh-window.c:408
-msgid "General"
-msgstr "Gjenerâl"
+#: src/dh-window.ui:33
+msgid "S_maller Text"
+msgstr "Test plui _piçul"
 
-#: src/dh-window.c:554
+#: src/dh-window.ui:37
+msgid "_Normal Size"
+msgstr "Dimension _normâl"
+
+#: src/dh-window.ui:43
+msgid "_Preferences"
+msgstr "_Preferencis"
+
+#: src/dh-window.ui:47
+msgid "_Keyboard Shortcuts"
+msgstr "_Scurtis di tastiere"
+
+#: src/dh-window.ui:51
+msgid "_Help"
+msgstr "_Jutori"
+
+#: src/dh-window.ui:55
+msgid "_About Devhelp"
+msgstr "I_nformazions su Devhelp"
+
+#: src/dh-window.ui:83
 msgid "Back"
 msgstr "Indaûr"
 
-#: src/dh-window.c:558
+#: src/dh-window.ui:102
 msgid "Forward"
 msgstr "Indenant"
 
-#: src/dh-window.c:576
+#: src/dh-window.ui:148
 msgid "New Tab"
 msgstr "Gnove schede"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Gjenerâl"
+
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Met a fûc la ricercje globâl"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Cjate in cheste pagjine"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Find the next match"
+msgstr "Cjate il câs sucessîf"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Find the previous match"
+msgstr "Cjate il câs precedent"
+
+#: src/help-overlay.ui:48
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Vierç un gnûf barcon"
+
+#: src/help-overlay.ui:55
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Vierç une gnove schede"
+
+#: src/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "Comute la visibilitât dal panel laterâl"
+
+#: src/help-overlay.ui:69
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Torne indaûr"
+
+#: src/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Va Indenant"
+
+#: src/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Stampe"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Siere chest barcon"
+
+#: src/help-overlay.ui:97
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Siere ducj i barcons"
+
+#: src/help-overlay.ui:105
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Ingrandiment"
+
+#: src/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Ingrandìs"
+
+#: src/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Impiçulìs"
+
+#: src/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Azerâ ingrandiment"
+
+#~ msgid "Show keyboard shortcuts"
+#~ msgstr "Mostre scurtis di tastiere"
+
+#~ msgid "Show help"
+#~ msgstr "Mostre jutori"
+
+#~ msgid "_Quit"
+#~ msgstr "_Jes"
+
+#~ msgid "Close all windows (quit the application)"
+#~ msgstr "Siere ducj barcons (jes de aplicazion)"
+
+#~ msgid "Larger text"
+#~ msgstr "Test plui grant"
+
+#~ msgid "Smaller text"
+#~ msgstr "Test plui piçul"
+
+#~ msgid "Normal size"
+#~ msgstr "Dimension normâl"
+
+#~ msgid "Open the menu"
+#~ msgstr "Vierç il menù"
+
+#~ msgid "Previous tab"
+#~ msgstr "Schede precedente"
+
+#~ msgid "Next tab"
+#~ msgstr "Schede sucessive"
+
+#~ msgid "Search"
+#~ msgstr "Cîr"
+
+#~ msgid "History"
+#~ msgstr "Cronologjie"
+
+#~ msgid "Miscellaneous"
+#~ msgstr "Variis"
 
 #~ msgid "org.gnome.Devhelp"
 #~ msgstr "org.gnome.Devhelp"
 
 #~ msgid "_About"
 #~ msgstr "_Informazions"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Print"
-#~ msgstr "Stampe"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom in"
-#~ msgstr "Ingrandìs"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom out"
-#~ msgstr "Impiçulìs"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Reset Zoom"
-#~ msgstr "Azerâ ingrandiment"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
