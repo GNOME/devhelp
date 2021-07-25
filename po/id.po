@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-07-14 11:19+0000\n"
-"PO-Revision-Date: 2021-07-17 21:48+0700\n"
+"POT-Creation-Date: 2021-07-24 08:30+0000\n"
+"PO-Revision-Date: 2021-07-25 20:55+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
@@ -376,54 +376,54 @@ msgid "New _Window"
 msgstr "_Jendela Baru"
 
 #: src/dh-window.ui:13
-msgid "_Side Panel"
-msgstr "Panel _Sisi"
-
-#: src/dh-window.ui:19
 msgid "_Print"
 msgstr "_Cetak"
 
-#: src/dh-window.ui:23
+#: src/dh-window.ui:17
 msgid "_Find"
 msgstr "C_ari"
 
-#: src/dh-window.ui:29
+#: src/dh-window.ui:23
 msgid "_Larger Text"
 msgstr "Teks Lebih _Besar"
 
-#: src/dh-window.ui:33
+#: src/dh-window.ui:27
 msgid "S_maller Text"
 msgstr "Teks Lebih _Kecil"
 
-#: src/dh-window.ui:37
+#: src/dh-window.ui:31
 msgid "_Normal Size"
 msgstr "Ukuran _Normal"
 
-#: src/dh-window.ui:43
+#: src/dh-window.ui:37
 msgid "_Preferences"
 msgstr "_Preferensi"
 
-#: src/dh-window.ui:47
+#: src/dh-window.ui:41
 msgid "_Keyboard Shortcuts"
 msgstr "Pintasan Papan Ti_k"
 
-#: src/dh-window.ui:51
+#: src/dh-window.ui:45
 msgid "_Help"
 msgstr "Ba_ntuan"
 
-#: src/dh-window.ui:55
+#: src/dh-window.ui:49
 msgid "_About Devhelp"
 msgstr "Tent_ang Devhelp"
 
-#: src/dh-window.ui:83
+#: src/dh-window.ui:77
 msgid "Back"
 msgstr "Mundur"
 
-#: src/dh-window.ui:102
+#: src/dh-window.ui:96
 msgid "Forward"
 msgstr "Maju"
 
-#: src/dh-window.ui:148
+#: src/dh-window.ui:121
+msgid "Toggle Side Panel"
+msgstr "JUngkitkan Panel Sisi"
+
+#: src/dh-window.ui:162
 msgid "New Tab"
 msgstr "Tab Baru"
 
