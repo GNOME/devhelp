@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-07-14 22:40+0000\n"
-"PO-Revision-Date: 2021-07-15 15:57+0200\n"
+"POT-Creation-Date: 2021-08-07 16:52+0000\n"
+"PO-Revision-Date: 2021-08-09 21:05+0200\n"
 "Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -367,54 +367,54 @@ msgid "New _Window"
 msgstr "Novo _okno"
 
 #: src/dh-window.ui:13
-msgid "_Side Panel"
-msgstr "Bočno _okno"
-
-#: src/dh-window.ui:19
 msgid "_Print"
 msgstr "_Natisni"
 
-#: src/dh-window.ui:23
+#: src/dh-window.ui:17
 msgid "_Find"
 msgstr "_Najdi"
 
-#: src/dh-window.ui:29
+#: src/dh-window.ui:23
 msgid "_Larger Text"
 msgstr "_Večja pisava"
 
-#: src/dh-window.ui:33
+#: src/dh-window.ui:27
 msgid "S_maller Text"
 msgstr "_Manjša pisava"
 
-#: src/dh-window.ui:37
+#: src/dh-window.ui:31
 msgid "_Normal Size"
 msgstr "_Običajna pisava"
 
-#: src/dh-window.ui:43
+#: src/dh-window.ui:37
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: src/dh-window.ui:47
+#: src/dh-window.ui:41
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice"
 
-#: src/dh-window.ui:51
+#: src/dh-window.ui:45
 msgid "_Help"
 msgstr "Pomo_č"
 
-#: src/dh-window.ui:55
+#: src/dh-window.ui:49
 msgid "_About Devhelp"
 msgstr "_O programu"
 
-#: src/dh-window.ui:83
+#: src/dh-window.ui:77
 msgid "Back"
 msgstr "Nazaj"
 
-#: src/dh-window.ui:102
+#: src/dh-window.ui:96
 msgid "Forward"
 msgstr "Naprej"
 
-#: src/dh-window.ui:148
+#: src/dh-window.ui:121
+msgid "Toggle Side Panel"
+msgstr "Preklopi stransko okno"
+
+#: src/dh-window.ui:162
 msgid "New Tab"
 msgstr "Nov zavihek"
 
