@@ -29,7 +29,7 @@
   </description>
   <url type="homepage">https://wiki.gnome.org/Apps/Devhelp/</url>
   <url type="bugtracker">https://gitlab.gnome.org/GNOME/devhelp/issues</url>
-  <url type="donation">http://www.gnome.org/friends/</url>
+  <url type="donation">https://www.gnome.org/donate/</url>
   <screenshots>
     <screenshot type="default">
       <image>https://people.gnome.org/~ebassi/screenshots/devhelp/devhelp-41-1.png</image>
