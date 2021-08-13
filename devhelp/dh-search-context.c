@@ -6,6 +6,10 @@
 #include "dh-search-context.h"
 #include <string.h>
 
+#if !GLIB_CHECK_VERSION(2, 69, 0)
+#define g_pattern_spec_match_string(spec,str)   g_pattern_match_string(spec,str)
+#endif
+
 /* DhSearchContext is a helper class for a search instance, with the search
  * string as data.
  */
@@ -445,10 +449,10 @@ _dh_search_context_match_link (DhSearchContext *search,
                 if (data->is_first) {
                         if (data->has_glob) {
                                 if (prefix) {
-                                        match = g_pattern_match_string (data->pattern_spec_prefix, link_name);
+                                        match = g_pattern_spec_match_string (data->pattern_spec_prefix, link_name);
                                 } else {
-                                        match = (!g_pattern_match_string (data->pattern_spec_prefix, link_name) &&
-                                                 g_pattern_match_string (data->pattern_spec_anywhere, link_name));
+                                        match = (!g_pattern_spec_match_string (data->pattern_spec_prefix, link_name) &&
+                                                 g_pattern_spec_match_string (data->pattern_spec_anywhere, link_name));
                                 }
                         } else {
                                 if (prefix) {
@@ -460,7 +464,7 @@ _dh_search_context_match_link (DhSearchContext *search,
                         }
                 } else {
                         if (data->has_glob) {
-                                match = g_pattern_match_string (data->pattern_spec_anywhere, link_name);
+                                match = g_pattern_spec_match_string (data->pattern_spec_anywhere, link_name);
                         } else {
                                 match = strstr (link_name, data->keyword) != NULL;
                         }
