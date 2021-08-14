@@ -1,3 +1,14 @@
+News in 41.beta, 2021-08-14
+---------------------------
+* Translation updates
+* Fix build in sandboxed environments with no network
+* Update list of translatable files [#47]
+* Switch to gi-docgen to build the libdevhelp API reference
+* Move the "Show side panel" action from the menu to the header bar [!36]
+* Fix donation link in the appdata information [!39]
+* Build against WebKitGTK 4.1 [!38]
+* Build against GLib 2.70 [!40]
+
 News in 41.alpha, 2021-07-09
 ----------------------------
 * Translation updates
