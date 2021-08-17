@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-07-14 07:19+0000\n"
-"PO-Revision-Date: 2021-07-14 10:10+0200\n"
+"POT-Creation-Date: 2021-07-24 08:30+0000\n"
+"PO-Revision-Date: 2021-08-17 13:30+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -378,54 +378,55 @@ msgid "New _Window"
 msgstr "_Ventana nueva"
 
 #: src/dh-window.ui:13
-msgid "_Side Panel"
-msgstr "_Panel lateral"
-
-#: src/dh-window.ui:19
 msgid "_Print"
 msgstr "_Imprimir"
 
-#: src/dh-window.ui:23
+#: src/dh-window.ui:17
 msgid "_Find"
 msgstr "_Buscar"
 
-#: src/dh-window.ui:29
+#: src/dh-window.ui:23
 msgid "_Larger Text"
 msgstr "Texto más _grande"
 
-#: src/dh-window.ui:33
+#: src/dh-window.ui:27
 msgid "S_maller Text"
 msgstr "Texto más _pequeño"
 
-#: src/dh-window.ui:37
+#: src/dh-window.ui:31
 msgid "_Normal Size"
 msgstr "Tamaño _normal"
 
-#: src/dh-window.ui:43
+#: src/dh-window.ui:37
 msgid "_Preferences"
 msgstr "Prefere_ncias"
 
-#: src/dh-window.ui:47
+#: src/dh-window.ui:41
 msgid "_Keyboard Shortcuts"
 msgstr "_Atajos del teclado"
 
-#: src/dh-window.ui:51
+#: src/dh-window.ui:45
 msgid "_Help"
 msgstr "Ay_uda"
 
-#: src/dh-window.ui:55
+#: src/dh-window.ui:49
 msgid "_About Devhelp"
 msgstr "_Acerca de DevHelp"
 
-#: src/dh-window.ui:83
+#: src/dh-window.ui:77
 msgid "Back"
 msgstr "Atrás"
 
-#: src/dh-window.ui:102
+#: src/dh-window.ui:96
 msgid "Forward"
 msgstr "Adelante"
 
-#: src/dh-window.ui:148
+#: src/dh-window.ui:121
+#| msgid "_Side Panel"
+msgid "Toggle Side Panel"
+msgstr "Conmutar el panel lateral"
+
+#: src/dh-window.ui:162
 msgid "New Tab"
 msgstr "Pestaña nueva"
 
