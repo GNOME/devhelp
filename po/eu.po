@@ -8,8 +8,8 @@
 msgid ""
 msgstr "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-04-23 17:33+0000\n"
-"PO-Revision-Date: 2021-07-09 10:00+0100\n"
+"POT-Creation-Date: 2021-07-24 08:30+0000\n"
+"PO-Revision-Date: 2021-08-18 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -22,7 +22,7 @@ msgstr "Project-Id-Version: devhelp master\n"
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in.in:6
-#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:141 src/dh-app.c:486
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:141 src/dh-app.c:471
 msgid "Devhelp"
 msgstr "Devhelp"
 
@@ -58,6 +58,23 @@ msgid ""
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr "Glade, Anjuta, Geany eta beste aplikazio batzuekin integratzen da Devhelp, eta hainbat testu-editoretarako (gedit, Vim, Emacs, Geany…) pluginak ditu."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:36
+msgid "Devhelp's main window, showing a list of books in the side panel."
+msgstr "Devhelp aplikazioaren leiho nagusia, alboko panelean liburuen zerrenda bat erakusten duela."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:40
+msgid "Devhelp's main window, showing an open book."
+msgstr "Devhelp-en leiho nagusia, liburu ireki bat erakusten duela."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:44
+msgid "Devhelp supports opening multiple books within the same window."
+msgstr "Devhelp aplikazioak liburu anitz ireki ditzake leiho berean."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:48
+msgid ""
+"Devhelp supports HTML documentation formats, including gi-docgen and gtk-doc."
+msgstr "Devhelp-el HTML dokumentazio-formatuak onartzen ditu, gi-docgen eta gtk-doc barne."
 
 #: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "API Documentation Browser"
@@ -240,7 +257,7 @@ msgstr "Propietatea"
 msgid "Signal"
 msgstr "Seinalea"
 
-#: devhelp/dh-web-view.c:646
+#: devhelp/dh-web-view.c:674
 msgid "Empty Page"
 msgstr "Orri hutsa"
 
@@ -264,27 +281,27 @@ msgstr "translator-credits"
 msgid "Devhelp Website"
 msgstr "Devhelp-en webgunea"
 
-#: src/dh-app.c:390
+#: src/dh-app.c:375
 msgid "Opens a new Devhelp window"
 msgstr "Devhelp-en leiho berria irekitzen du"
 
-#: src/dh-app.c:395
+#: src/dh-app.c:380
 msgid "Search for a keyword"
 msgstr "Gako-hitz bat bilatzen du"
 
-#: src/dh-app.c:396 src/dh-app.c:401
+#: src/dh-app.c:381 src/dh-app.c:386
 msgid "KEYWORD"
 msgstr "GAKO-HITZA"
 
-#: src/dh-app.c:400
+#: src/dh-app.c:385
 msgid "Search and display any hit in the assistant window"
 msgstr "Bilatu eta erakutsi leiho laguntzaileko atzipen guztiak"
 
-#: src/dh-app.c:405
+#: src/dh-app.c:390
 msgid "Display the version and exit"
 msgstr "Bistaratu bertsioa eta irten"
 
-#: src/dh-app.c:410
+#: src/dh-app.c:395
 msgid "Quit any running Devhelp"
 msgstr "Irten exekutatzen ari diren Devhelp guztiak"
 
@@ -329,59 +346,59 @@ msgstr "Zabalera _finkatua:"
 msgid "Fonts"
 msgstr "Letra-tipoak"
 
-#: src/dh-window.ui:7 src/menus.ui:29
+#: src/dh-window.ui:7
 msgid "New _Window"
 msgstr "Leiho _berria"
 
 #: src/dh-window.ui:13
-msgid "_Side Panel"
-msgstr "Albo-_panela"
-
-#: src/dh-window.ui:19
 msgid "_Print"
 msgstr "I_nprimatu"
 
-#: src/dh-window.ui:23
+#: src/dh-window.ui:17
 msgid "_Find"
 msgstr "A_urkitu"
 
-#: src/dh-window.ui:29
+#: src/dh-window.ui:23
 msgid "_Larger Text"
 msgstr "Testu _handiagoa"
 
-#: src/dh-window.ui:33
+#: src/dh-window.ui:27
 msgid "S_maller Text"
 msgstr "Testu _txikiagoa"
 
-#: src/dh-window.ui:37
+#: src/dh-window.ui:31
 msgid "_Normal Size"
 msgstr "Tamaina _normala"
 
-#: src/dh-window.ui:43 src/menus.ui:35
+#: src/dh-window.ui:37
 msgid "_Preferences"
 msgstr "_Hobespenak"
 
-#: src/dh-window.ui:47 src/menus.ui:41
+#: src/dh-window.ui:41
 msgid "_Keyboard Shortcuts"
 msgstr "Las_ter-teklak"
 
-#: src/dh-window.ui:51 src/menus.ui:45
+#: src/dh-window.ui:45
 msgid "_Help"
 msgstr "_Laguntza"
 
-#: src/dh-window.ui:55
+#: src/dh-window.ui:49
 msgid "_About Devhelp"
 msgstr "_Devhelp-i buruz"
 
-#: src/dh-window.ui:83
+#: src/dh-window.ui:77
 msgid "Back"
 msgstr "Atzera"
 
-#: src/dh-window.ui:102
+#: src/dh-window.ui:96
 msgid "Forward"
 msgstr "Aurrera"
 
-#: src/dh-window.ui:148
+#: src/dh-window.ui:121
+msgid "Toggle Side Panel"
+msgstr "Txandakatu alboko panela"
+
+#: src/dh-window.ui:162
 msgid "New Tab"
 msgstr "Fitxa berria"
 
@@ -470,13 +487,11 @@ msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Berrezarri zooma"
 
-#: src/menus.ui:49
-msgid "_About"
-msgstr "Honi _buruz"
+#~ msgid "_About"
+#~ msgstr "Honi _buruz"
 
-#: src/menus.ui:53
-msgid "_Quit"
-msgstr "I_rten"
+#~ msgid "_Quit"
+#~ msgstr "I_rten"
 
 #~ msgid "Show keyboard shortcuts"
 #~ msgstr "Erakutsi lasterbideak"
