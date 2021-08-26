@@ -41,9 +41,10 @@
   <content_rating type="oars-1.1" />
   <project_group>GNOME</project_group>
   <translation type="gettext">devhelp</translation>
-  <update_contact>swilmet@gnome.org</update_contact>
+  <update_contact>ebassi@gnome.org</update_contact>
   <releases>
-    <release version="40.alpha" date="2021-01-11" />
+    <release version="40.1" date="2021-08-26" />
+    <release version="40.0" date="2021-04-12" />
     <release version="3.38.1" date="2020-11-20" />
     <release version="3.38.0" date="2020-09-11" />
   </releases>
