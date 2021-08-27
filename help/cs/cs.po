@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2021-01-10 15:36+0000\n"
-"PO-Revision-Date: 2021-03-12 23:11+0100\n"
+"POT-Creation-Date: 2021-07-19 13:27+0000\n"
+"PO-Revision-Date: 2021-08-27 09:26+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -180,17 +180,40 @@ msgstr ""
 "<app>Devhelp</app> podporuje, pak můžete zjistit čtením jeho zdrojového kódu "
 "a referenční příručky k API <app>Devhelp</app>."
 
-#. (itstool) path: page/title
-#: C/index.page:8
+#. (itstool) path: info/title
+#: C/index.page:10
+msgctxt "link:trail"
 msgid "Devhelp User Documentation"
 msgstr "Uživatelská dokumentace k aplikaci Devhelp"
 
-#. (itstool) path: synopsis/p
+#. (itstool) path: info/title
 #: C/index.page:11
+msgctxt "text"
+msgid "Devhelp User Documentation"
+msgstr "Uživatelská dokumentace k aplikaci Devhelp"
+
+#. (itstool) path: info/title
+#: C/index.page:12
+msgctxt "link"
+msgid "Devhelp User Documentation"
+msgstr "Uživatelská dokumentace k aplikaci Devhelp"
+
+#. (itstool) path: info/desc
+#: C/index.page:14
+msgid "Devhelp User Documentation"
+msgstr "Uživatelská dokumentace k aplikaci Devhelp"
+
+#. (itstool) path: page/title
+#: C/index.page:17
+msgid "<_:media-1/> Devhelp User Documentation"
+msgstr "<_:media-1/> Uživatelská dokumentace k aplikaci Devhelp"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:23
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation."
 msgstr ""
-"Devhelp je vývojářský nástroj pro procházení a prohledávání dokumentace k "
+"Devhelp je vývojářský nástroj pro procházení a vyhledávání v dokumentaci k "
 "API."
 
 #. (itstool) path: page/title
