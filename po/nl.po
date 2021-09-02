@@ -7,37 +7,37 @@
 # Taco Witte <tcwitte@cs.uu.nl>, 2004, 2005
 # Wouter Bolsterlee <wbolster@gnome.org>, 2006–2012
 # Justin van Steijn <jvs@fsfe.org>, 2016, 2017.
-# Nathan Follens <nthn@unseen.is>, 2017, 2019-2021.
+# Nathan Follens <nfollens@gnome.org>, 2017, 2019-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-01-11 08:26+0000\n"
-"PO-Revision-Date: 2021-04-01 21:21+0200\n"
-"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
+"POT-Creation-Date: 2021-07-24 08:30+0000\n"
+"PO-Revision-Date: 2021-09-02 19:56+0200\n"
+"Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
-#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:293 src/dh-app.c:585
+#: data/org.gnome.Devhelp.appdata.xml.in.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:141 src/dh-app.c:471
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:295
+#: data/org.gnome.Devhelp.appdata.xml.in.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:143
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Een ontwikkelhulpmiddel voor het bladeren en zoeken door API-documentatie"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:9
+#: data/org.gnome.Devhelp.appdata.xml.in.in:9
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation. It "
 "provides an easy way to navigate through libraries and to search by "
@@ -47,7 +47,7 @@ msgstr ""
 "documentatie. U kunt op een gemakkelijke manier door bibliotheken bladeren, "
 "en zoeken per functie, struct of macro."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:14
+#: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
@@ -55,7 +55,7 @@ msgstr ""
 "De documentatie moet lokaal worden geïnstalleerd, dus om Devhelp te "
 "gebruiken is geen internetverbinding nodig."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:18
+#: data/org.gnome.Devhelp.appdata.xml.in.in:18
 msgid ""
 "Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
 "supported. But other development platforms can be supported as well, as long "
@@ -67,7 +67,7 @@ msgstr ""
 "ondersteund worden, mits de API-documentatie beschikbaar is in HTML en een *."
 "devhelp2-indexbestand gegenereerd is."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:24
+#: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
 "Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
@@ -77,12 +77,33 @@ msgstr ""
 "Plug-ins zijn beschikbaar voor verschillende teksteditors (gedit, Vim, "
 "Emacs, Geany, …)."
 
-#: data/org.gnome.Devhelp.desktop.in:5
+#: data/org.gnome.Devhelp.appdata.xml.in.in:36
+msgid "Devhelp's main window, showing a list of books in the side panel."
+msgstr ""
+"Het hoofdvenster van Devhelp, met een lijst van boeken in het zijpaneel."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:40
+msgid "Devhelp's main window, showing an open book."
+msgstr "Het hoofdvenster van Devhelp, met een geopend boek."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:44
+msgid "Devhelp supports opening multiple books within the same window."
+msgstr ""
+"Devhelp ondersteunt het openen van meerdere boeken binnen hetzelfde venster."
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:48
+msgid ""
+"Devhelp supports HTML documentation formats, including gi-docgen and gtk-doc."
+msgstr ""
+"Devhelp ondersteunt HTML-documentatieformaten, inclusief gi-docgen en gtk-"
+"doc."
+
+#: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "API Documentation Browser"
 msgstr "API-documentatiebrowser"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Devhelp.desktop.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr ""
 "documentation;information;manual;developer;documentatie;informatie;"
@@ -262,7 +283,7 @@ msgstr "Eigenschap"
 msgid "Signal"
 msgstr "Signal"
 
-#: devhelp/dh-web-view.c:644
+#: devhelp/dh-web-view.c:674
 msgid "Empty Page"
 msgstr "Lege pagina"
 
@@ -274,162 +295,45 @@ msgstr "Devhelp-ondersteuning"
 msgid "Show API Documentation"
 msgstr "API-documentatie tonen"
 
-#. action, icon, label, accel, tooltip
-#. Actions related to the whole application
-#: src/dh-app.c:39
-msgid "New _Window"
-msgstr "Nieuw _venster"
+#: src/dh-app.c:140
+msgid "Devhelp (development build)"
+msgstr "Devhelp (ontwikkelingsversie)"
 
-#: src/dh-app.c:40
-msgid "Open a new window"
-msgstr "Nieuw venster openen"
-
-#: src/dh-app.c:41
-msgid "_Preferences"
-msgstr "_Voorkeuren"
-
-#: src/dh-app.c:42
-msgid "_Keyboard Shortcuts"
-msgstr "_Sneltoetsen"
-
-#: src/dh-app.c:43
-msgid "Show keyboard shortcuts"
-msgstr "Sneltoetsen tonen"
-
-#: src/dh-app.c:44
-msgid "_Help"
-msgstr "_Hulp"
-
-#: src/dh-app.c:45
-msgid "Show help"
-msgstr "Hulp tonen"
-
-#: src/dh-app.c:46
-msgid "_About Devhelp"
-msgstr "_Over Devhelp"
-
-#: src/dh-app.c:47
-msgid "_Quit"
-msgstr "_Afsluiten"
-
-#: src/dh-app.c:48
-msgid "Close all windows (quit the application)"
-msgstr "Alle vensters sluiten (de toepassing afsluiten)"
-
-#. Actions related to the current main window
-#: src/dh-app.c:51
-msgid "_Side Panel"
-msgstr "_Zijpaneel"
-
-#: src/dh-app.c:52
-msgid "Toggle side panel visibility"
-msgstr "Zijpaneel in-/uitschakelen"
-
-#: src/dh-app.c:53
-msgid "_Print"
-msgstr "Af_drukken"
-
-#: src/dh-app.c:54
-msgid "_Find"
-msgstr "_Zoeken"
-
-#: src/dh-app.c:55
-msgid "Find in current page"
-msgstr "In huidige pagina zoeken"
-
-#: src/dh-app.c:56
-msgid "_Larger Text"
-msgstr "_Grotere tekst"
-
-#: src/dh-app.c:57
-msgid "Larger text"
-msgstr "Grotere tekst"
-
-#: src/dh-app.c:58
-msgid "S_maller Text"
-msgstr "_Kleinere tekst"
-
-#: src/dh-app.c:59
-msgid "Smaller text"
-msgstr "Kleinere tekst"
-
-#: src/dh-app.c:60
-msgid "_Normal Size"
-msgstr "_Normale grootte"
-
-#: src/dh-app.c:61
-msgid "Normal size"
-msgstr "Normale grootte"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:112
-msgid "Open a new tab"
-msgstr "Nieuw tabblad openen"
-
-#: src/dh-app.c:113
-msgid "Close the current tab"
-msgstr "Het huidige tabblad sluiten"
-
-#: src/dh-app.c:114
-msgid "Go back"
-msgstr "Vorige"
-
-#: src/dh-app.c:115
-msgid "Go forward"
-msgstr "Volgende"
-
-#: src/dh-app.c:116
-msgid "Focus global search"
-msgstr "Overal zoeken"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:153
-msgid "Open the menu"
-msgstr "Menu openen"
-
-#: src/dh-app.c:154
-msgid "Previous tab"
-msgstr "Vorig tabblad"
-
-#: src/dh-app.c:155
-msgid "Next tab"
-msgstr "Volgend tabblad"
-
-#: src/dh-app.c:297
+#: src/dh-app.c:145
 msgid "translator-credits"
 msgstr ""
 "Wouter Bolsterlee\n"
 "Taco Witte\n"
 "Justin van Steijn\n"
-"Nathan Follens\n"
+"Nathan Follens <nfollens@gnome.org>\n"
 "\n"
 "Meer info over Gnome-NL http://nl.gnome.org"
 
-#: src/dh-app.c:299
+#: src/dh-app.c:147
 msgid "Devhelp Website"
 msgstr "Devhelp-website"
 
-#: src/dh-app.c:474
+#: src/dh-app.c:375
 msgid "Opens a new Devhelp window"
 msgstr "Nieuw Devhelp-venster openen"
 
-#: src/dh-app.c:479
+#: src/dh-app.c:380
 msgid "Search for a keyword"
 msgstr "Naar een sleutelwoord zoeken"
 
-#: src/dh-app.c:480 src/dh-app.c:485
+#: src/dh-app.c:381 src/dh-app.c:386
 msgid "KEYWORD"
 msgstr "ZOEKWOORD"
 
-#: src/dh-app.c:484
+#: src/dh-app.c:385
 msgid "Search and display any hit in the assistant window"
 msgstr "Zoeken naar resultaten en deze weergeven in het hulpvenster"
 
-#: src/dh-app.c:489
+#: src/dh-app.c:390
 msgid "Display the version and exit"
 msgstr "Versie tonen en afsluiten"
 
-#: src/dh-app.c:494
+#: src/dh-app.c:395
 msgid "Quit any running Devhelp"
 msgstr "Alle actieve Devhelp-processen afsluiten"
 
@@ -474,41 +378,185 @@ msgstr "_Vaste breedte:"
 msgid "Fonts"
 msgstr "Lettertypen"
 
-#: src/dh-window.c:378
-msgid "Search"
-msgstr "Zoeken"
+#: src/dh-window.ui:7
+msgid "New _Window"
+msgstr "Nieuw _venster"
 
-#: src/dh-window.c:383
-msgid "History"
-msgstr "Geschiedenis"
+#: src/dh-window.ui:13
+msgid "_Print"
+msgstr "Af_drukken"
 
-#: src/dh-window.c:388
-msgid "Zoom"
-msgstr "Zoomen"
+#: src/dh-window.ui:17
+msgid "_Find"
+msgstr "_Zoeken"
 
-#: src/dh-window.c:394
-msgid "Tabs and Windows"
-msgstr "Tabbladen en vensters"
+#: src/dh-window.ui:23
+msgid "_Larger Text"
+msgstr "_Grotere tekst"
 
-#: src/dh-window.c:403
-msgid "Miscellaneous"
-msgstr "Overige"
+#: src/dh-window.ui:27
+msgid "S_maller Text"
+msgstr "_Kleinere tekst"
 
-#: src/dh-window.c:408
-msgid "General"
-msgstr "Algemeen"
+#: src/dh-window.ui:31
+msgid "_Normal Size"
+msgstr "_Normale grootte"
 
-#: src/dh-window.c:554
+#: src/dh-window.ui:37
+msgid "_Preferences"
+msgstr "_Voorkeuren"
+
+#: src/dh-window.ui:41
+msgid "_Keyboard Shortcuts"
+msgstr "_Sneltoetsen"
+
+#: src/dh-window.ui:45
+msgid "_Help"
+msgstr "_Hulp"
+
+#: src/dh-window.ui:49
+msgid "_About Devhelp"
+msgstr "_Over Devhelp"
+
+#: src/dh-window.ui:77
 msgid "Back"
 msgstr "Terug"
 
-#: src/dh-window.c:558
+#: src/dh-window.ui:96
 msgid "Forward"
 msgstr "Volgende"
 
-#: src/dh-window.c:576
+#: src/dh-window.ui:121
+msgid "Toggle Side Panel"
+msgstr "Zijpaneel in-/uitschakelen"
+
+#: src/dh-window.ui:162
 msgid "New Tab"
 msgstr "Nieuw tabblad"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Algemeen"
+
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Overal zoeken"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "In huidige pagina zoeken"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Find the next match"
+msgstr "De volgende overeenkomst tonen"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Find the previous match"
+msgstr "De vorige overeenkomst tonen"
+
+#: src/help-overlay.ui:48
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Een nieuw venster openen"
+
+#: src/help-overlay.ui:55
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Een nieuw tabblad openen"
+
+#: src/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "Zijpaneel in-/uitschakelen"
+
+#: src/help-overlay.ui:69
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Ga terug"
+
+#: src/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Ga verder"
+
+#: src/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Afdrukken"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Het huidige venster sluiten"
+
+#: src/help-overlay.ui:97
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Alle vensters sluiten"
+
+#: src/help-overlay.ui:105
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Zoomen"
+
+#: src/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Inzoomen"
+
+#: src/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Uitzoomen"
+
+#: src/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Zoomniveau herstellen"
+
+#~ msgid "Show keyboard shortcuts"
+#~ msgstr "Sneltoetsen tonen"
+
+#~ msgid "Show help"
+#~ msgstr "Hulp tonen"
+
+#~ msgid "_Quit"
+#~ msgstr "_Afsluiten"
+
+#~ msgid "Close all windows (quit the application)"
+#~ msgstr "Alle vensters sluiten (de toepassing afsluiten)"
+
+#~ msgid "Larger text"
+#~ msgstr "Grotere tekst"
+
+#~ msgid "Smaller text"
+#~ msgstr "Kleinere tekst"
+
+#~ msgid "Normal size"
+#~ msgstr "Normale grootte"
+
+#~ msgid "Open the menu"
+#~ msgstr "Menu openen"
+
+#~ msgid "Previous tab"
+#~ msgstr "Vorig tabblad"
+
+#~ msgid "Next tab"
+#~ msgstr "Volgend tabblad"
+
+#~ msgid "Search"
+#~ msgstr "Zoeken"
+
+#~ msgid "History"
+#~ msgstr "Geschiedenis"
+
+#~ msgid "Miscellaneous"
+#~ msgstr "Overige"
 
 #~ msgid "org.gnome.Devhelp"
 #~ msgstr "org.gnome.Devhelp"
@@ -551,22 +599,6 @@ msgstr "Nieuw tabblad"
 
 #~ msgid "Side _Panel"
 #~ msgstr "Zij_paneel"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Print"
-#~ msgstr "Afdrukken"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom in"
-#~ msgstr "Inzoomen"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom out"
-#~ msgstr "Uitzoomen"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Reset Zoom"
-#~ msgstr "Zoomniveau herstellen"
 
 #~ msgid "_About"
 #~ msgstr "In_fo"
@@ -678,9 +710,6 @@ msgstr "Nieuw tabblad"
 
 #~ msgid "_Contents Tab"
 #~ msgstr "In_houdtabblad"
-
-#~ msgid "Go to the previous page"
-#~ msgstr "Terug naar de vorige pagina"
 
 #~ msgid "Go to the next page"
 #~ msgstr "Vooruit naar de volgende pagina"
