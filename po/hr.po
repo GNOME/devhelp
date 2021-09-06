@@ -5,27 +5,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp 0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2019-12-18 18:00+0000\n"
-"PO-Revision-Date: 2020-03-01 16:56+0100\n"
-"Last-Translator: gogo <linux.hr@protonmail.com>\n"
+"POT-Creation-Date: 2021-08-26 12:33+0000\n"
+"PO-Revision-Date: 2021-09-06 10:17+0200\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2014-01-06 10:49+0000\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
 #: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:562
+#: src/dh-app.c:293 src/dh-app.c:585
 msgid "Devhelp"
 msgstr "Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: src/dh-app.c:295
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Devhelp je alat razvijatelja za pregledavanje i pretraživanje API "
@@ -171,89 +171,89 @@ msgstr "Slova za tekst s nepromjenjivom širinom"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Slova za tekst s nepromjenjivom širinom, poput primjera kôda."
 
-#: devhelp/dh-assistant-view.c:400
+#: devhelp/dh-assistant-view.c:385
 msgid "Book:"
 msgstr "Knjiga:"
 
-#: devhelp/dh-book.c:313
+#: devhelp/dh-book.c:298
 #, c-format
 msgid "Language: %s"
 msgstr "Jezik: %s"
 
-#: devhelp/dh-book.c:314
+#: devhelp/dh-book.c:299
 msgid "Language: Undefined"
 msgstr "Jezik: Neodređen"
 
-#: devhelp/dh-book-tree.c:764
+#: devhelp/dh-book-tree.c:749
 msgid "_Collapse All"
 msgstr "_Suzi sve"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:551
+#: devhelp/dh-link.c:536
 msgid "Book"
 msgstr "Knjiga"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:555
+#: devhelp/dh-link.c:540
 msgid "Page"
 msgstr "Stranica"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:560
+#: devhelp/dh-link.c:545
 msgid "Keyword"
 msgstr "Ključna riječ"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:566
+#: devhelp/dh-link.c:551
 msgid "Function"
 msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:572
+#: devhelp/dh-link.c:557
 msgid "Struct"
 msgstr "Struktura"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:578
+#: devhelp/dh-link.c:563
 msgid "Macro"
 msgstr "Makro"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:584
+#: devhelp/dh-link.c:569
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:590
+#: devhelp/dh-link.c:575
 msgid "Type"
 msgstr "Vrsta"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:596
+#: devhelp/dh-link.c:581
 msgid "Property"
 msgstr "Svojstvo"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:602
+#: devhelp/dh-link.c:587
 msgid "Signal"
 msgstr "Signal"
 
-#: devhelp/dh-web-view.c:657
+#: devhelp/dh-web-view.c:644
 msgid "Empty Page"
 msgstr "Prazna stranica"
 
@@ -267,198 +267,233 @@ msgstr "Prikaži API dokumentaciju"
 
 #. action, icon, label, accel, tooltip
 #. Actions related to the whole application
-#: src/dh-app.c:51
+#: src/dh-app.c:39
 msgid "New _Window"
 msgstr "Novi _prozor"
 
-#: src/dh-app.c:52
+#: src/dh-app.c:40
 msgid "Open a new window"
 msgstr "Otvori novi prozor"
 
-#: src/dh-app.c:53
+#: src/dh-app.c:41
 msgid "_Preferences"
 msgstr "_Osobitosti"
 
-#: src/dh-app.c:54
+#: src/dh-app.c:42
 msgid "_Keyboard Shortcuts"
 msgstr "_Prečaci tipkovnice"
 
-#: src/dh-app.c:55
+#: src/dh-app.c:43
+msgid "Show keyboard shortcuts"
+msgstr "Prikaži prečace tipkovnice"
+
+#: src/dh-app.c:44
 msgid "_Help"
 msgstr "_Priručnik"
 
-#: src/dh-app.c:56
+#: src/dh-app.c:45
+msgid "Show help"
+msgstr "Prikaži pomoć"
+
+#: src/dh-app.c:46
 msgid "_About Devhelp"
 msgstr "_O Devhelpu"
 
-#: src/dh-app.c:57
+#: src/dh-app.c:47
 msgid "_Quit"
 msgstr "_Zatvori"
 
-#: src/dh-app.c:58
-msgid "Close all windows"
-msgstr "Zatvori sve prozore"
+#: src/dh-app.c:48
+msgid "Close all windows (quit the application)"
+msgstr "Zatvori sve prozore (zatvori aplikaciju)"
 
 #. Actions related to the current main window
-#: src/dh-app.c:61
+#: src/dh-app.c:51
 msgid "_Side Panel"
 msgstr "_Bočni panel"
 
-#: src/dh-app.c:62
+#: src/dh-app.c:52
 msgid "Toggle side panel visibility"
 msgstr "Uklj/Isklj vidljivost bočnog panela"
 
-#: src/dh-app.c:63
+#: src/dh-app.c:53
 msgid "_Print"
 msgstr "_Ispis"
 
-#: src/dh-app.c:64
+#: src/dh-app.c:54
 msgid "_Find"
 msgstr "_Pretraži"
 
-#: src/dh-app.c:65
+#: src/dh-app.c:55
 msgid "Find in current page"
 msgstr "Potraži u trenutnoj stranici"
 
-#: src/dh-app.c:66
+#: src/dh-app.c:56
 msgid "_Larger Text"
 msgstr "_Veći tekst"
 
-#: src/dh-app.c:67
+#: src/dh-app.c:57
 msgid "Larger text"
 msgstr "Veći tekst"
 
-#: src/dh-app.c:68
+#: src/dh-app.c:58
 msgid "S_maller Text"
 msgstr "M_anji tekst"
 
-#: src/dh-app.c:69
+#: src/dh-app.c:59
 msgid "Smaller text"
 msgstr "Manji tekst"
 
-#: src/dh-app.c:70
+#: src/dh-app.c:60
 msgid "_Normal Size"
 msgstr "_Izvorna veličina"
 
-#: src/dh-app.c:71
+#: src/dh-app.c:61
 msgid "Normal size"
 msgstr "Izvorna veličina"
 
 #. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
+#: src/dh-app.c:112
 msgid "Open a new tab"
 msgstr "Otvori novu karticu"
 
-#: src/dh-app.c:112
+#: src/dh-app.c:113
 msgid "Close the current tab"
 msgstr "Zatvori trenutni prozor"
 
-#: src/dh-app.c:113
+#: src/dh-app.c:114
 msgid "Go back"
 msgstr "Idi natrag"
 
-#: src/dh-app.c:114
+#: src/dh-app.c:115
 msgid "Go forward"
 msgstr "Idi naprijed"
 
-#: src/dh-app.c:115
+#: src/dh-app.c:116
 msgid "Focus global search"
 msgstr "Fokusiraj globalnu pretragu"
 
-#: src/dh-app.c:274
+#. action, icon, label, accel, tooltip
+#: src/dh-app.c:153
+msgid "Open the menu"
+msgstr "Otvori izbornik"
+
+#: src/dh-app.c:154
+msgid "Previous tab"
+msgstr "Prijašnja kartica"
+
+#: src/dh-app.c:155
+msgid "Next tab"
+msgstr "Sljedeća kartica"
+
+#: src/dh-app.c:297
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  gogo https://launchpad.net/~trebelnik-stefina"
 
-#: src/dh-app.c:276
+#: src/dh-app.c:299
 msgid "Devhelp Website"
 msgstr "Devhelp web stranica"
 
-#: src/dh-app.c:451
+#: src/dh-app.c:474
 msgid "Opens a new Devhelp window"
 msgstr "Otvara novi Devhelp prozor"
 
-#: src/dh-app.c:456
+#: src/dh-app.c:479
 msgid "Search for a keyword"
 msgstr "Pretraži ključnu riječ"
 
-#: src/dh-app.c:457 src/dh-app.c:462
+#: src/dh-app.c:480 src/dh-app.c:485
 msgid "KEYWORD"
 msgstr "KLJUČNA RIJEČ"
 
-#: src/dh-app.c:461
+#: src/dh-app.c:484
 msgid "Search and display any hit in the assistant window"
 msgstr "Pretražuje i prikazuje sve rezultate u prozoru pomoćnika"
 
-#: src/dh-app.c:466
+#: src/dh-app.c:489
 msgid "Display the version and exit"
 msgstr "Prikaži broj inačice i izađi"
 
-#: src/dh-app.c:471
+#: src/dh-app.c:494
 msgid "Quit any running Devhelp"
 msgstr "Zatvori sve pokrenute primjerke Devhelpa"
 
 #. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
+#: src/dh-assistant.ui:13
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — Pomoćnik"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:536
 msgid "Enabled"
 msgstr "Omogućeno"
 
-#: src/dh-preferences.c:565
+#: src/dh-preferences.c:550
 msgid "Title"
 msgstr "Naslov"
 
-#: src/dh-preferences.ui:26
+#: src/dh-preferences.ui:12
 msgid "Preferences"
 msgstr "Osobitosti"
 
-#: src/dh-preferences.ui:62
+#: src/dh-preferences.ui:48
 msgid "_Group by language"
 msgstr "_Grupiranje prema jeziku"
 
-#: src/dh-preferences.ui:104
+#: src/dh-preferences.ui:90
 msgid "Book Shelf"
 msgstr "Polica knjiga"
 
-#: src/dh-preferences.ui:125
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
 msgstr "_Koristi slova sustava"
 
-#: src/dh-preferences.ui:149
+#: src/dh-preferences.ui:135
 msgid "_Variable width: "
 msgstr "Promjenjiva širina: "
 
-#: src/dh-preferences.ui:162
+#: src/dh-preferences.ui:148
 msgid "_Fixed width:"
 msgstr "_Nepromjenjiva širina:"
 
-#: src/dh-preferences.ui:223
+#: src/dh-preferences.ui:209
 msgid "Fonts"
 msgstr "Slova"
 
-#. General group
-#: src/dh-window.c:393
-msgid "General"
-msgstr "Općenito"
+#: src/dh-window.c:378
+msgid "Search"
+msgstr "Pretraga"
 
-#. Zoom group
-#: src/dh-window.c:407
+#: src/dh-window.c:383
+msgid "History"
+msgstr "Povijest"
+
+#: src/dh-window.c:388
 msgid "Zoom"
 msgstr "Uvećanje"
 
-#: src/dh-window.c:552
+#: src/dh-window.c:394
+msgid "Tabs and Windows"
+msgstr "Kartice i prozori"
+
+#: src/dh-window.c:403
+msgid "Miscellaneous"
+msgstr "Ostalo"
+
+#: src/dh-window.c:408
+msgid "General"
+msgstr "Općenito"
+
+#: src/dh-window.c:554
 msgid "Back"
 msgstr "Prijašnje"
 
-#: src/dh-window.c:556
+#: src/dh-window.c:558
 msgid "Forward"
 msgstr "Sljedeće"
 
-#: src/dh-window.c:574
+#: src/dh-window.c:576
 msgid "New Tab"
 msgstr "Nova kartica"
 
@@ -616,9 +651,6 @@ msgstr "Nova kartica"
 #~ msgid "Find Next"
 #~ msgstr "Pretraži sljedeće"
 
-#~ msgid "Find Previous"
-#~ msgstr "Pretraži prijašnje"
-
 #~ msgid "Go to the previous page"
 #~ msgstr "Idi na prijašnju stranicu"
 
@@ -654,9 +686,6 @@ msgstr "Nova kartica"
 
 #~ msgid "Contents"
 #~ msgstr "Sadržaj"
-
-#~ msgid "Search"
-#~ msgstr "Pretraga"
 
 #~ msgid "Find previous occurrence of the search string"
 #~ msgstr "Pretraži prijašnje pojavljivanje traženog pojma"
