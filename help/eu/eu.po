@@ -1,0 +1,341 @@
+# Basque translation for devhelp.
+# Copyright (C) 2021 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2021.
+#
+msgid ""
+msgstr "Project-Id-Version: devhelp main\n"
+"POT-Creation-Date: 2021-09-06 08:19+0000\n"
+"PO-Revision-Date: 2021-09-06 08:19+0000\n"
+"Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
+"Language-Team: Basque <librezale@librezale.eus>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: eu\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "translator-credits"
+
+#. (itstool) path: page/title
+#. (itstool) path: section/title
+#: C/book-format.page:14 C/installing-api-documentation.page:23
+msgid "Book format"
+msgstr "Liburu-formatua"
+
+#. (itstool) path: synopsis/p
+#: C/book-format.page:17
+msgid ""
+"A “book” in <app>Devhelp</app> is the API documentation for one module, or "
+"package (usually a library). This page describes the format that a book "
+"needs to follow in order for <app>Devhelp</app> to recognize it."
+msgstr "<app>Devhelp</app> aplikazioan, “liburu“ bat modulu edo pakete (normalean liburutegi bat) baten API dokumentazioa da. Orri honek liburu batek izan behar duen formatua deskribatzen du <app>Devhelp</app> aplikazioak hura ezagutu dezan."
+
+#. (itstool) path: page/p
+#: C/book-format.page:24
+msgid ""
+"The content of a book is placed in one directory (that directory contains "
+"only one book, it cannot contain several books). The directory is comprised "
+"of:"
+msgstr "Liburu baten edukia direktorio batean kokatzen da (direktorio horrek liburu bakarra da, ezin ditu liburu anitz eduki). Direktorioak honako elementuak ditu:"
+
+#. (itstool) path: item/p
+#: C/book-format.page:30
+msgid "HTML pages, plus possibly CSS files, images, etc;"
+msgstr "HTML orriak, balizko CSS fitxategiak, irudiak, etab.;"
+
+#. (itstool) path: item/p
+#: C/book-format.page:33
+msgid ""
+"An index file with the <file>*.devhelp2</file> file extension, see <link "
+"xref=\"index-file-format\"/> for more information."
+msgstr "<file>*.devhelp2</file> fitxategi-luzapena duen indize-fitxategi bat, ikus <link xref=\"index-file-format\"/> informazio gehiagorako."
+
+#. (itstool) path: note/p
+#: C/book-format.page:39
+msgid ""
+"Restriction: the name of the directory the <file>*.devhelp2</file> file is "
+"in and the name of the <file>*.devhelp2</file> file (minus the extension) "
+"must match. In other words, if the book directory is called <code>"
+"$book_name</code>, then the absolute path to the index file should end with "
+"<code>$book_name/$book_name.devhelp2</code>. That way, when <app>Devhelp</"
+"app> knows the directory name, it directly knows the location to the index "
+"file."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/index-file-format.page:14
+msgid "Index file format"
+msgstr "Indizearen fitxategi-formatua"
+
+#. (itstool) path: synopsis/p
+#: C/index-file-format.page:17
+msgid ""
+"This page describes the purpose and the format of <file>*.devhelp2</file> "
+"index files."
+msgstr "Orri honek <file>*.devhelp2</file> indize-fitxategien xedea eta formatua deskribatzen ditu."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:23
+msgid ""
+"A book (see <link xref=\"book-format\"/>) contains one index file. The index "
+"file has the extension <file>.devhelp2</file> and has an XML format."
+msgstr "Liburu batek (ikus <link xref=\"book-format\"/>) indize-fitxategi bat du. Indize-fitxategiak <file>.devhelp2</file> luzapena du eta XML formatuko da."
+
+#. (itstool) path: note/p
+#: C/index-file-format.page:29
+msgid ""
+"The “2” in the <file>*.devhelp2</file> file extension is because it is the "
+"second version of the file format. The first version of the format, with the "
+"<file>*.devhelp</file> file extension, is deprecated and its support in "
+"<app>Devhelp</app> may be removed in the future. On application startup, "
+"when <app>Devhelp</app> scans the filesystem to find books, it emits a "
+"warning message in the terminal for each book that uses a deprecated format."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:40
+msgid "The index file mainly contains:"
+msgstr "Indize-fitxategiak honakoak ditu gehien bat:"
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:44
+msgid "The book structure (like a table of contents)."
+msgstr "Liburuaren egitura (aurkibide antzeko bat)."
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:47
+msgid "A list of symbols (functions, types, macros, signals, properties, …)."
+msgstr "Ikurren zerrenda bat (funtzioak, motak, makroak, seinaleak, propietateak...)."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:51
+msgid ""
+"These contain links to the HTML files to reach the corresponding pages and "
+"symbols."
+msgstr "Honek HTML fitxategien estekak ditu, bakoitzari dagokion orria edo ikurra atzitzeko."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:55
+msgid ""
+"In <app>Devhelp</app> the book structure is shown in the side panel. And the "
+"<link xref=\"search\">search in the side panel</link> shows results found in "
+"the index files."
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/index-file-format.page:62
+msgid "Specification of the <file>*.devhelp2</file> XML file format"
+msgstr "<file>*.devhelp2</file> XML fitxategi-formatuaren espezifikazioa"
+
+#. (itstool) path: section/p
+#: C/index-file-format.page:63
+msgid ""
+"Unfortunately the <file>*.devhelp2</file> XML file format is not well "
+"documented. There is still some hope that it will be fixed in the near "
+"future. In the meantime, we recommend to look at what <link xref="
+"\"installing-api-documentation#gtk-doc\">GTK-Doc</link> generates. For the "
+"most precise definition of what <app>Devhelp</app> supports, read the parser "
+"source code and the <app>Devhelp</app> API reference."
+msgstr ""
+
+#. (itstool) path: info/title
+#: C/index.page:10
+msgctxt "link:trail"
+msgid "Devhelp User Documentation"
+msgstr "Devhelp erabiltzailearen dokumentazioa"
+
+#. (itstool) path: info/title
+#: C/index.page:11
+msgctxt "text"
+msgid "Devhelp User Documentation"
+msgstr "Devhelp erabiltzailearen dokumentazioa"
+
+#. (itstool) path: info/title
+#: C/index.page:12
+msgctxt "link"
+msgid "Devhelp User Documentation"
+msgstr "Devhelp erabiltzailearen dokumentazioa"
+
+#. (itstool) path: info/desc
+#: C/index.page:14
+msgid "Devhelp User Documentation"
+msgstr "Devhelp erabiltzailearen dokumentazioa"
+
+#. (itstool) path: page/title
+#: C/index.page:17
+msgid "<_:media-1/> Devhelp User Documentation"
+msgstr "<_:media-1/> Devhelp erabiltzailearen dokumentazioa"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:23
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation."
+msgstr "Devhelp API dokumentazioa arakatu eta bilatzeko garatzaile-tresna bat da."
+
+#. (itstool) path: page/title
+#: C/installing-api-documentation.page:14
+msgid "Installing API documentation"
+msgstr "API dokumentazioa instalatzen"
+
+#. (itstool) path: synopsis/p
+#: C/installing-api-documentation.page:17
+msgid "How <app>Devhelp</app> finds the API documentation."
+msgstr "Nola <app>Devhelp</app> aplikazioak aurkitzen duen API dokumentazioa."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:24
+msgid ""
+"See <link xref=\"book-format\"/> for information on the API documentation "
+"format that <app>Devhelp</app> recognizes."
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:31
+msgid "Books locations"
+msgstr "Liburuen kokalekuak"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:32
+msgid ""
+"Once a book follows the right format, its directory needs to be installed at "
+"a location where <app>Devhelp</app> will find it."
+msgstr "Liburu batek formatu zuzena badu, bere direktorioa <app>Devhelp</app> aplikazioak aurkituko duen toki batean instalatu behar da."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:36
+msgid ""
+"<app>Devhelp</app> uses the <link href=\"https://specifications.freedesktop."
+"org/basedir-spec/latest/\">XDG Base Directory Specification</link> to find "
+"the books. The list of locations searched is:"
+msgstr "<app>Devhelp</app> aplikazioak <link href=\"https://specifications.freedesktop.org/basedir-spec/latest/\">XDG Base Directory Specification</link> erabiltzen du liburuak aurkitzeko. Arakatutako kokalekuen zerrenda honakoa da:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:47
+msgid ""
+"Note that the two latter consist of lists of directories to look for. "
+"Directory values are separated by <code>:</code> characters. Those "
+"environment variables are normally set up by the desktop environment or "
+"distribution."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:53
+msgid ""
+"Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
+"typical system:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/installing-api-documentation.page:61
+msgid ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
+"file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
+"org/\">Flatpak</link>."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:67
+msgid ""
+"Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
+"typical system:"
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:79
+msgid "GTK-Doc"
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:80
+msgid ""
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:85
+msgid "GTK-Doc installs the API reference of a module into:"
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:91
+msgid ""
+"It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
+"Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
+"(once installed in the right location, that is)."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/search.page:14
+msgid "Search in the side panel"
+msgstr "Bilatu alboko panelean"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:17
+msgid "How the search in the side panel works."
+msgstr "Nola funtzionatzen duen alboko paneleko bilaketak."
+
+#. (itstool) path: section/title
+#: C/search.page:21
+msgid "Case sensitivity"
+msgstr "Maiuskulak/minuskulak"
+
+#. (itstool) path: section/p
+#: C/search.page:22
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr "Bilaketan maiuskulak/minuskulak kontuan hartzen dira maiuskula bat badago. Bilatutako terminoa osorik minuskuletan badago, ez dira maiuskulak/minuskulak kontuan hartuko. Zenbait testu-editorek duten “smartcase” eginbidearen antzekoa da."
+
+#. (itstool) path: section/title
+#: C/search.page:30
+msgid "Glob-style pattern matching"
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/search.page:31
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/search.page:39
+msgid "Several search terms"
+msgstr "Termino anitz bilatzea"
+
+#. (itstool) path: section/p
+#: C/search.page:40
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/search.page:49
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/search.page:54
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
