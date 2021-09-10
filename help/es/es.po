@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2021-07-14 11:19+0000\n"
-"PO-Revision-Date: 2021-07-14 13:20+0200\n"
+"POT-Creation-Date: 2021-09-06 08:19+0000\n"
+"PO-Revision-Date: 2021-09-10 15:29+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Poedit 3.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -184,21 +184,18 @@ msgstr ""
 
 #. (itstool) path: info/title
 #: C/index.page:10
-#| msgid "Devhelp User Documentation"
 msgctxt "link:trail"
 msgid "Devhelp User Documentation"
 msgstr "Documentación del usuario de Devhelp"
 
 #. (itstool) path: info/title
 #: C/index.page:11
-#| msgid "Devhelp User Documentation"
 msgctxt "text"
 msgid "Devhelp User Documentation"
 msgstr "Documentación del usuario de Devhelp"
 
 #. (itstool) path: info/title
 #: C/index.page:12
-#| msgid "Devhelp User Documentation"
 msgctxt "link"
 msgid "Devhelp User Documentation"
 msgstr "Documentación del usuario de Devhelp"
@@ -210,7 +207,6 @@ msgstr "Documentación del usuario de Devhelp"
 
 #. (itstool) path: page/title
 #: C/index.page:17
-#| msgid "Devhelp User Documentation"
 msgid "<_:media-1/> Devhelp User Documentation"
 msgstr "<_:media-1/> Documentación del usuario de Devhelp"
 
@@ -314,19 +310,14 @@ msgstr "GTK-Doc"
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:80
-#, fuzzy
-#| msgid ""
-#| "<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
-#| "generate API documentation from comments added to C code. It is used by "
-#| "GLib, GTK and GNOME libraries and applications."
 msgid ""
 "<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
 "tool to generate API documentation from comments added to C code. It is used "
 "by GLib, GTK and GNOME libraries and applications."
 msgstr ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> es una "
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> es una "
 "herramienta para generar documentación de la API a partir de comentarios al "
-"código en C. Se usa en GLib y en bibliotecas y aplicaciones de GNOME."
+"código en C. Se usa en GLib, GTK y en bibliotecas y aplicaciones de GNOME."
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:85
