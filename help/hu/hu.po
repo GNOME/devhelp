@@ -1,49 +1,338 @@
 # Hungarian translation for devhelp.
-# Copyright (C) 2018 Free Software Foundation, Inc.
+# Copyright (C) 2018, 2021 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
 #
-# Balázs Úr <urbalazs at gmail dot com>, 2018.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2018, 2021.
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2018-01-28 17:56+0000\n"
-"PO-Revision-Date: 2018-01-28 20:29+0100\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
-"Language-Team: Hungarian <gnome-hu-list@gnome.org>\n"
+"Project-Id-Version: devhelp gnome-38\n"
+"POT-Creation-Date: 2021-01-02 13:13+0000\n"
+"PO-Revision-Date: 2021-09-16 01:28+0200\n"
+"Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.2\n"
-
-#. (itstool) path: page/title
-#: C/index.page:4
-msgid "Devhelp User Documentation"
-msgstr "Devhelp felhasználói dokumentáció"
+"X-Generator: Lokalize 19.12.3\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Úr Balázs <urbalazs at gmail dot com>, 2018."
+msgstr "Úr Balázs <ur dot balazs at fsf dot hu>, 2018, 2021."
 
 #. (itstool) path: page/title
-#: C/search.page:10
+#. (itstool) path: section/title
+#: C/book-format.page:14 C/installing-api-documentation.page:23
+msgid "Book format"
+msgstr "Könyvformátum"
+
+#. (itstool) path: synopsis/p
+#: C/book-format.page:17
+msgid ""
+"A “book” in <app>Devhelp</app> is the API documentation for one module, or "
+"package (usually a library). This page describes the format that a book "
+"needs to follow in order for <app>Devhelp</app> to recognize it."
+msgstr ""
+"A „könyv” a <app>Devhelp</app> alkalmazásban egy modul vagy csomag (általában"
+" egy programkönyvtár) API-dokumentációja. Ez az oldal leírja azt a"
+" formátumot, amelyet egy könyvnek követnie kell ahhoz, hogy a <app>Devhelp<"
+"/app> felismerje azt."
+
+#. (itstool) path: page/p
+#: C/book-format.page:24
+msgid ""
+"The content of a book is placed in one directory (that directory contains "
+"only one book, it cannot contain several books). The directory is comprised "
+"of:"
+msgstr ""
+"Egy könyv tartalma egy könyvtárba kerül (ez a könyvtár csak egy könyvet"
+" tartalmaz, több könyvet nem tartalmazhat). A könyvtár a következőkből áll:"
+
+#. (itstool) path: item/p
+#: C/book-format.page:30
+msgid "HTML pages, plus possibly CSS files, images, etc;"
+msgstr "HTML-oldalak, illetve esetlegesen CSS-fájlok, képek stb."
+
+#. (itstool) path: item/p
+#: C/book-format.page:33
+msgid ""
+"An index file with the <file>*.devhelp2</file> file extension, see <link "
+"xref=\"index-file-format\"/> for more information."
+msgstr ""
+"Egy <file>*.devhelp2</file> fájlkiterjesztéssel rendelkező indexfájl. További"
+" információkért nézze meg az <link xref=\"index-file-format\"/> fejezetet."
+
+#. (itstool) path: note/p
+#: C/book-format.page:39
+msgid ""
+"Restriction: the name of the directory the <file>*.devhelp2</file> file is "
+"in and the name of the <file>*.devhelp2</file> file (minus the extension) "
+"must match. In other words, if the book directory is called <code>"
+"$book_name</code>, then the absolute path to the index file should end with "
+"<code>$book_name/$book_name.devhelp2</code>. That way, when <app>Devhelp</"
+"app> knows the directory name, it directly knows the location to the index "
+"file."
+msgstr ""
+"Korlátozás: a <file>*.devhelp2</file> fájlt tartalmazó könyvtár nevének és a"
+" <file>*.devhelp2</file> fájl nevének (a kiterjesztés nélkül) meg kell"
+" egyeznie. Más szóval, ha a könyv könyvtárának neve <code>$book_name</code>,"
+" akkor az indexfájl abszolút elérési útjának a <code"
+">$book_name/$book_name.devhelp2</code> névvel kell végződnie. Így amikor a <"
+"app>Devhelp</app> megismeri a könyvtár nevét, közvetlenül tudja az indexfájl"
+" helyét."
+
+#. (itstool) path: page/title
+#: C/index-file-format.page:14
+msgid "Index file format"
+msgstr "Az indexfájl formátuma"
+
+#. (itstool) path: synopsis/p
+#: C/index-file-format.page:17
+msgid ""
+"This page describes the purpose and the format of <file>*.devhelp2</file> "
+"index files."
+msgstr ""
+"Ez az oldal a <file>*.devhelp2</file> indexfájlok célját és formátumát"
+" mutatja be."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:23
+msgid ""
+"A book (see <link xref=\"book-format\"/>) contains one index file. The index "
+"file has the extension <file>.devhelp2</file> and has an XML format."
+msgstr ""
+"Egy könyv (lásd: <link xref=\"book-format\"/>) egy indexfájlt tartalmaz. Az"
+" indexfájl <file>.devhelp2</file> kiterjesztéssel rendelkezik és"
+" XML-formátumú."
+
+#. (itstool) path: note/p
+#: C/index-file-format.page:29
+msgid ""
+"The “2” in the <file>*.devhelp2</file> file extension is because it is the "
+"second version of the file format. The first version of the format, with the "
+"<file>*.devhelp</file> file extension, is deprecated and its support in "
+"<app>Devhelp</app> may be removed in the future. On application startup, "
+"when <app>Devhelp</app> scans the filesystem to find books, it emits a "
+"warning message in the terminal for each book that uses a deprecated format."
+msgstr ""
+"A „2” a <file>*.devhelp2</file> fájlkiterjesztésben azért van, mert ez a"
+" fájlformátum második verziója. A formátum első verziója a <file>*.devhelp<"
+"/file> fájlkiterjesztéssel elavult, és a jövőben a támogatása eltávolításra"
+" kerülhet a <app>Devhelp</app> alkalmazásból. Az alkalmazás indításakor,"
+" amikor a <app>Devhelp</app> átvizsgálja a fájlrendszert a könyvek"
+" kereséséhez, egy figyelmeztető üzenetet ad ki a terminálban minden olyan"
+" könyvnél, amely elavult formátumot használ."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:40
+msgid "The index file mainly contains:"
+msgstr "Az indexfájlban főként a következők találhatók:"
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:44
+msgid "The book structure (like a table of contents)."
+msgstr "A könyv szerkezete (egy tartalomjegyzékhez hasonlóan)."
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:47
+msgid "A list of symbols (functions, types, macros, signals, properties, …)."
+msgstr ""
+"Szimbólumok listája (függvények, típusok, makrók, szignálok, tulajdonságok,"
+" …)."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:51
+msgid ""
+"These contain links to the HTML files to reach the corresponding pages and "
+"symbols."
+msgstr ""
+"Ezek tartalmazzák a HTML-fájlokra mutató hivatkozásokat a megfelelő oldalak"
+" és szimbólumok eléréséhez."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:55
+msgid ""
+"In <app>Devhelp</app> the book structure is shown in the side panel. And the "
+"<link xref=\"search\">search in the side panel</link> shows results found in "
+"the index files."
+msgstr ""
+"A <app>Devhelp</app> alkalmazásban a könyv szerkezete az oldalsó panelen"
+" látható. A <link xref=\"search\">keresés az oldalsó panelen</link> pedig az"
+" indexfájlokban talált eredményeket jeleníti meg."
+
+#. (itstool) path: section/title
+#: C/index-file-format.page:62
+msgid "Specification of the <file>*.devhelp2</file> XML file format"
+msgstr "A <file>*.devhelp2</file> XML-fájlformátum specifikációja"
+
+#. (itstool) path: section/p
+#: C/index-file-format.page:63
+msgid ""
+"Unfortunately the <file>*.devhelp2</file> XML file format is not well "
+"documented. There is still some hope that it will be fixed in the near "
+"future. In the meantime, we recommend to look at what <link xref="
+"\"installing-api-documentation#gtk-doc\">GTK-Doc</link> generates. For the "
+"most precise definition of what <app>Devhelp</app> supports, read the parser "
+"source code and the <app>Devhelp</app> API reference."
+msgstr ""
+"Sajnos a <file>*.devhelp2</file> XML-fájlformátum nem jól dokumentált. Még"
+" van némi remény, hogy a közeljövőben javítani fogják. Addig azt javasoljuk,"
+" hogy nézze meg, amit a <link xref=\"installing-api-documentation#gtk-doc\""
+">GTK-Doc</link> előállít. A legpontosabb meghatározásához annak, hogy a <app"
+">Devhelp</app> mit támogat, olvassa el a feldolgozó forráskódját és a <app"
+">Devhelp</app> API-hivatkozását."
+
+#. (itstool) path: page/title
+#: C/index.page:8
+msgid "Devhelp User Documentation"
+msgstr "Devhelp felhasználói dokumentáció"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:11
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation."
+msgstr ""
+"A Devhelp egy fejlesztői eszköz az API-dokumentáció böngészéséhez és"
+" kereséséhez."
+
+#. (itstool) path: page/title
+#: C/installing-api-documentation.page:14
+msgid "Installing API documentation"
+msgstr "Az API-dokumentáció telepítése"
+
+#. (itstool) path: synopsis/p
+#: C/installing-api-documentation.page:17
+msgid "How <app>Devhelp</app> finds the API documentation."
+msgstr "Hogyan találja meg a <app>Devhelp</app> az API-dokumentációt."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:24
+msgid ""
+"See <link xref=\"book-format\"/> for information on the API documentation "
+"format that <app>Devhelp</app> recognizes."
+msgstr ""
+"A <app>Devhelp</app> által felismert API-dokumentáció formátumról szóló"
+" információkért nézze meg a <link xref=\"book-format\"/> fejezetet."
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:31
+msgid "Books locations"
+msgstr "Könyvek helyei"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:32
+msgid ""
+"Once a book follows the right format, its directory needs to be installed at "
+"a location where <app>Devhelp</app> will find it."
+msgstr ""
+"Miután a könyv a megfelelő formátumot követi, a könyvtárát olyan helyre kell"
+" telepíteni, ahol a <app>Devhelp</app> megtalálja."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:36
+msgid ""
+"<app>Devhelp</app> uses the <link href=\"https://specifications.freedesktop."
+"org/basedir-spec/latest/\">XDG Base Directory Specification</link> to find "
+"the books. The list of locations searched is:"
+msgstr ""
+"A <app>Devhelp</app> az <link href=\"https://specifications.freedesktop.org/ba"
+"sedir-spec/latest/\">XDG alapkönyvtár specifikációját</link> használja a"
+" könyvek kereséséhez. A keresett helyek listája:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:47
+msgid ""
+"Note that the two latter consist of lists of directories to look for. "
+"Directory values are separated by <code>:</code> characters. Those "
+"environment variables are normally set up by the desktop environment or "
+"distribution."
+msgstr ""
+"Vegye észre, hogy a két utóbbi a keresendő könyvtárak listájából áll. A"
+" könyvtárak értékeit <code>:</code> karakterek választják el egymástól."
+" Ezeket a környezeti változókat általában az asztali környezet vagy a"
+" disztribúció állítja be."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:53
+msgid ""
+"Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
+"typical system:"
+msgstr ""
+"Példák a <code>$XDG_DATA_HOME</code> útvonallal rendelkező indexfájlok"
+" helyeire egy tipikus rendszeren:"
+
+#. (itstool) path: item/p
+#: C/installing-api-documentation.page:61
+msgid ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
+"file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
+"org/\">Flatpak</link>."
+msgstr ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</file"
+">, ha a <app>Devhelp</app> alkalmazást <link href=\"https://flatpak.org/\""
+">Flatpak</link> használatával indították."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:67
+msgid ""
+"Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
+"typical system:"
+msgstr ""
+"Példa egy <code>$XDG_DATA_DIRS</code> útvonallal rendelkező indexfájl helyére"
+" egy tipikus rendszeren:"
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:79
+msgid "GTK-Doc"
+msgstr "GTK-Doc"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:80
+msgid ""
+"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
+"generate API documentation from comments added to C code. It is used by "
+"GLib, GTK and GNOME libraries and applications."
+msgstr ""
+"A <link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> egy olyan"
+" eszköz, amely API-dokumentációt állít elő a C kódhoz hozzáadott"
+" megjegyzésekből. A GLib, a GTK és a GNOME programkönyvtárak és alkalmazások"
+" használják."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:85
+msgid "GTK-Doc installs the API reference of a module into:"
+msgstr "A GTK-Doc egy modul API-hivatkozását ide telepíti:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:91
+msgid ""
+"It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
+"Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
+"(once installed in the right location, that is)."
+msgstr ""
+"A <app>Devhelp</app> által támogatott könyvformátumot követi. Így a GTK-Doc"
+" használatával az API-hivatkozás automatikusan böngészhető a <app>Devhelp<"
+"/app> alkalmazásban (miután a megfelelő helyre lett telepítve)."
+
+#. (itstool) path: page/title
+#: C/search.page:14
 msgid "Search in the side panel"
 msgstr "Keresés az oldalpanelen"
 
 #. (itstool) path: synopsis/p
-#: C/search.page:13
+#: C/search.page:17
 msgid "How the search in the side panel works."
 msgstr "Hogyan működik a keresés az oldalpanelen."
 
 #. (itstool) path: section/title
-#: C/search.page:17
+#: C/search.page:21
 msgid "Case sensitivity"
 msgstr "Kis- és nagybetű érzékenység"
 
 #. (itstool) path: section/p
-#: C/search.page:18
+#: C/search.page:22
 msgid ""
 "The search is case sensitive when there is an uppercase letter. If the "
 "search terms are all in lowercase, the search is case insensitive. It's like "
@@ -55,12 +344,12 @@ msgstr ""
 "néhány szövegszerkesztőben."
 
 #. (itstool) path: section/title
-#: C/search.page:26
+#: C/search.page:30
 msgid "Glob-style pattern matching"
 msgstr "Glob-stílusú mintaillesztés"
 
 #. (itstool) path: section/p
-#: C/search.page:27
+#: C/search.page:31
 msgid ""
 "A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
 "an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
@@ -70,12 +359,12 @@ msgstr ""
 "tetszőleges karakterre illeszkedik."
 
 #. (itstool) path: section/title
-#: C/search.page:35
+#: C/search.page:39
 msgid "Several search terms"
 msgstr "Több keresési kifejezés"
 
 #. (itstool) path: section/p
-#: C/search.page:36
+#: C/search.page:40
 msgid ""
 "You can search with several search terms (separated by spaces). A symbol "
 "will match only if <em>all</em> the search terms individually match (not "
@@ -87,7 +376,7 @@ msgstr ""
 "legyen)."
 
 #. (itstool) path: section/p
-#: C/search.page:41
+#: C/search.page:45
 msgid ""
 "Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
 "wildcard it forces the keywords to be in the same order."
@@ -97,7 +386,7 @@ msgstr ""
 "ugyanolyan sorrendben legyenek."
 
 #. (itstool) path: section/p
-#: C/search.page:45
+#: C/search.page:49
 msgid ""
 "For example when searching “<input>gtk window application</input>”, it "
 "matches both “<code>gtk_window_get_application()</code>” and "
@@ -109,13 +398,12 @@ msgstr ""
 "mellett)."
 
 #. (itstool) path: section/p
-#: C/search.page:50
+#: C/search.page:54
 msgid ""
 "On the other hand, searching “<input>gtk*window*application</input>” will "
 "match “<code>gtk_window_get_application()</code>” but not "
 "“<code>GtkApplicationWindow</code>”."
 msgstr ""
-"Másrészről a „<input>gtk*window*application</input>” keresése illeszkedni fog "
-"a „<code>gtk_window_get_application()</code>” szövegre, de nem illeszkedik a "
-"„<code>GtkApplicationWindow</code>” szövegre."
-
+"Másrészről a „<input>gtk*window*application</input>” keresése illeszkedni "
+"fog a „<code>gtk_window_get_application()</code>” szövegre, de nem "
+"illeszkedik a „<code>GtkApplicationWindow</code>” szövegre."
