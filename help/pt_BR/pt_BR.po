@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
-"POT-Creation-Date: 2021-01-10 15:36+0000\n"
-"PO-Revision-Date: 2021-02-28 22:23-0300\n"
+"POT-Creation-Date: 2021-07-19 13:27+0000\n"
+"PO-Revision-Date: 2021-09-17 06:41-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -182,13 +182,40 @@ msgstr ""
 "definição mais precisa do que o <app>Devhelp</app> suporta, leia o código-"
 "fonte do analisador e a referência da API do <app>Devhelp</app>."
 
-#. (itstool) path: page/title
-#: C/index.page:8
+#. (itstool) path: info/title
+#: C/index.page:10
+#| msgid "Devhelp User Documentation"
+msgctxt "link:trail"
 msgid "Devhelp User Documentation"
 msgstr "Documentação do usuário do Devhelp"
 
-#. (itstool) path: synopsis/p
+#. (itstool) path: info/title
 #: C/index.page:11
+#| msgid "Devhelp User Documentation"
+msgctxt "text"
+msgid "Devhelp User Documentation"
+msgstr "Documentação do usuário do Devhelp"
+
+#. (itstool) path: info/title
+#: C/index.page:12
+#| msgid "Devhelp User Documentation"
+msgctxt "link"
+msgid "Devhelp User Documentation"
+msgstr "Documentação do usuário do Devhelp"
+
+#. (itstool) path: info/desc
+#: C/index.page:14
+msgid "Devhelp User Documentation"
+msgstr "Documentação do usuário do Devhelp"
+
+#. (itstool) path: page/title
+#: C/index.page:17
+#| msgid "Devhelp User Documentation"
+msgid "<_:media-1/> Devhelp User Documentation"
+msgstr "<_:media-1/> Documentação do usuário do Devhelp"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:23
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation."
 msgstr ""
@@ -288,10 +315,6 @@ msgstr "GTK-Doc"
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:80
-#| msgid ""
-#| "<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
-#| "generate API documentation from comments added to C code. It is used by "
-#| "GLib, GTK and GNOME libraries and applications."
 msgid ""
 "<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
 "tool to generate API documentation from comments added to C code. It is used "
