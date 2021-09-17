@@ -62,8 +62,6 @@
         <p>Many localization updates.</p>
       </description>
     </release>
-    <release type="development" version="41-beta" date="2021-08-14" />
-    <release type="development" version="41-alpha" date="2021-07-09" />
     <release version="40.0" date="2021-04-12" />
     <release version="3.38.1" date="2020-11-20" />
     <release version="3.38.0" date="2020-09-11" />
