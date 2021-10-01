@@ -16,7 +16,7 @@ dependencies = ["Gtk-3.0",]
   description = "The GTK toolkit"
   docs_url = "https://developer.gnome.org/gtk3/stable/"
 
-  [dependencies."WebKit2-4.0"]
+  [dependencies."WebKit2-@webkit_abi@"]
   name = "WebKitGTK 2"
   description = "WebKit rendering widget for GTK"
   docs_url = "https://webkitgtk.org/reference/webkit2gtk/stable/"

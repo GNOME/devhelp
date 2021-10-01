@@ -14,6 +14,7 @@ gidocgen = find_program('gi-docgen', required: get_option('gtk_doc'))
 if get_option('gtk_doc')
   toml_data = configuration_data()
   toml_data.set('version', meson.project_version())
+  toml_data.set('webkit_abi', webkit_abi)
 
   devhelp_toml = configure_file(
     input: 'devhelp.toml.in',

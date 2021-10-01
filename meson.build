@@ -47,7 +47,9 @@ lt_age = 0
 LIBDEVHELP_LT_VERSION = '@0@.@1@.@2@'.format(lt_current, lt_revision, lt_age)
 
 webkit_dep = dependency('webkit2gtk-4.1', required : false)
+webkit_abi = '4.1'
 if not webkit_dep.found()
+  webkit_abi = '4.0'
   webkit_dep = dependency('webkit2gtk-4.0')
 endif
 
