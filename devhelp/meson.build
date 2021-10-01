@@ -126,7 +126,7 @@ libdevhelp_gir = GNOME.generate_gir(
   header: 'devhelp/devhelp.h',
   identifier_prefix: 'Dh',
   include_directories: ROOT_INCLUDE_DIR,
-  includes: ['Gtk-3.0', 'WebKit2-4.0'],
+  includes: ['Gtk-3.0', 'WebKit2-' + webkit_abi],
   install: true,
   namespace: 'Devhelp',
   nsversion: LIBDEVHELP_API_VERSION_FULL,
