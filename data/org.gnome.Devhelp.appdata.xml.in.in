@@ -49,6 +49,7 @@
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1" />
+  <update_contact>ebassi@gnome.org</update_contact>
   <project_group>GNOME</project_group>
   <translation type="gettext">devhelp</translation>
   <provides>
