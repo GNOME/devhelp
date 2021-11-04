@@ -1,37 +1,37 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Rudolfs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020.
+# Rudolfs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2020-03-26 20:58+0000\n"
-"PO-Revision-Date: 2020-04-04 18:30+0300\n"
+"POT-Creation-Date: 2021-10-01 17:28+0000\n"
+"PO-Revision-Date: 2021-11-04 11:50+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 21.08.1\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
 " 2);\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
-#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:256 src/dh-app.c:548
+#: data/org.gnome.Devhelp.appdata.xml.in.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:141 src/dh-app.c:471
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:258
+#: data/org.gnome.Devhelp.appdata.xml.in.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:143
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Rīks izstrādātājiem, ar ko pārlūkot un meklēt API dokumentāciju"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:9
+#: data/org.gnome.Devhelp.appdata.xml.in.in:9
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation. It "
 "provides an easy way to navigate through libraries and to search by "
@@ -41,7 +41,7 @@ msgstr ""
 "Tas piedāvā vieglu veidu, kā apskatīt bibliotēkas, meklējot pēc funkcijām, "
 "struktūrām vai makrosiem."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:14
+#: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
@@ -49,12 +49,7 @@ msgstr ""
 "Dokumentācijai ir jābūt lokāli uzinstalētais, tāpēc nav nepieciešams "
 "savienojums ar internetu, lai izmantotu Devhelp."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:18
-#| msgid ""
-#| "Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-#| "well supported. But other development platforms can be supported as well, "
-#| "as long as the API documentation is available in HTML and a *.devhelp2 "
-#| "index file is generated."
+#: data/org.gnome.Devhelp.appdata.xml.in.in:18
 msgid ""
 "Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
 "supported. But other development platforms can be supported as well, as long "
@@ -66,7 +61,7 @@ msgstr ""
 "API dokumentācija ir pieejama HTML formātā un ir uzģenerēta *.devhelp2 "
 "indeksu datne."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:24
+#: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
 "Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
@@ -76,12 +71,29 @@ msgstr ""
 "Ir pieejami spraudņi dažādiem teksta redaktoriem (gedit, Vim, Emacs, Geany, "
 "…)."
 
-#: data/org.gnome.Devhelp.desktop.in:5
+#: data/org.gnome.Devhelp.appdata.xml.in.in:36
+#| msgid "Height of main window"
+msgid "Devhelp's main window"
+msgstr "Devhelp galvenais logs"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:40
+msgid "Devhelp's main window with an open book"
+msgstr "Devhelp galvenais logs ar atvērtu grāmatu"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:44
+msgid "Devhelp supports opening multiple books"
+msgstr "Devhelp atbalsta vairāku grāmatu atvēršanu"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:48
+msgid "Devhelp supports HTML documentation formats"
+msgstr "Devhelp atbalsta HTML dokumentācijas formātu"
+
+#: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "API Documentation Browser"
 msgstr "API dokumentācijas pārlūks"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Devhelp.desktop.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentācija;informācija;rokasgrāmata;izstrāde;api;"
 
@@ -176,89 +188,89 @@ msgstr "Fonts fiksēta platuma tekstam"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Fonts tekstam ar fiksētu platumu, teiksim, koda piemēriem."
 
-#: devhelp/dh-assistant-view.c:386
+#: devhelp/dh-assistant-view.c:385
 msgid "Book:"
 msgstr "Grāmata:"
 
-#: devhelp/dh-book.c:299
+#: devhelp/dh-book.c:298
 #, c-format
 msgid "Language: %s"
 msgstr "Valoda: %s"
 
-#: devhelp/dh-book.c:300
+#: devhelp/dh-book.c:299
 msgid "Language: Undefined"
 msgstr "Valoda: nedefinēta"
 
-#: devhelp/dh-book-tree.c:750
+#: devhelp/dh-book-tree.c:749
 msgid "_Collapse All"
 msgstr "_Sakļaut visu"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:537
+#: devhelp/dh-link.c:536
 msgid "Book"
 msgstr "Grāmata"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:541
+#: devhelp/dh-link.c:540
 msgid "Page"
 msgstr "Lapa"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:546
+#: devhelp/dh-link.c:545
 msgid "Keyword"
 msgstr "Atslēgvārds"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:552
+#: devhelp/dh-link.c:551
 msgid "Function"
 msgstr "Funkcija"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:558
+#: devhelp/dh-link.c:557
 msgid "Struct"
 msgstr "Struktūra"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:564
+#: devhelp/dh-link.c:563
 msgid "Macro"
 msgstr "Makross"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:570
+#: devhelp/dh-link.c:569
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:576
+#: devhelp/dh-link.c:575
 msgid "Type"
 msgstr "Tips"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:582
+#: devhelp/dh-link.c:581
 msgid "Property"
 msgstr "Īpašība"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:588
+#: devhelp/dh-link.c:587
 msgid "Signal"
 msgstr "Signāls"
 
-#: devhelp/dh-web-view.c:640
+#: devhelp/dh-web-view.c:674
 msgid "Empty Page"
 msgstr "Tukša lapa"
 
@@ -270,135 +282,39 @@ msgstr "Devhelp atbalsts"
 msgid "Show API Documentation"
 msgstr "Rādīt API dokumentāciju"
 
-#. action, icon, label, accel, tooltip
-#. Actions related to the whole application
-#: src/dh-app.c:37
-msgid "New _Window"
-msgstr "Jauns _logs"
+#: src/dh-app.c:140
+msgid "Devhelp (development build)"
+msgstr "Devhelp (izstrādes būvējums)"
 
-#: src/dh-app.c:38
-msgid "Open a new window"
-msgstr "Atvērt jaunu logu"
-
-#: src/dh-app.c:39
-msgid "_Preferences"
-msgstr "_Iestatījumi"
-
-#: src/dh-app.c:40
-msgid "_Keyboard Shortcuts"
-msgstr "_Tastatūras īsinājumtaustiņi"
-
-#: src/dh-app.c:41
-msgid "_Help"
-msgstr "_Palīdzība"
-
-#: src/dh-app.c:42
-msgid "_About Devhelp"
-msgstr "P_ar Devhelp"
-
-#: src/dh-app.c:43
-msgid "_Quit"
-msgstr "I_ziet"
-
-#: src/dh-app.c:44
-msgid "Close all windows"
-msgstr "Aizvērt visus logus"
-
-#. Actions related to the current main window
-#: src/dh-app.c:47
-msgid "_Side Panel"
-msgstr "_Sānu rūts"
-
-#: src/dh-app.c:48
-msgid "Toggle side panel visibility"
-msgstr "Pārslēgt sānu rūts redzamību"
-
-#: src/dh-app.c:49
-msgid "_Print"
-msgstr "_Drukāt"
-
-#: src/dh-app.c:50
-msgid "_Find"
-msgstr "_Meklēt"
-
-#: src/dh-app.c:51
-msgid "Find in current page"
-msgstr "Meklēt šajā lapā"
-
-#: src/dh-app.c:52
-msgid "_Larger Text"
-msgstr "_Lielāks teksts"
-
-#: src/dh-app.c:53
-msgid "Larger text"
-msgstr "Lielāks teksts"
-
-#: src/dh-app.c:54
-msgid "S_maller Text"
-msgstr "_Mazāks teksts"
-
-#: src/dh-app.c:55
-msgid "Smaller text"
-msgstr "Mazāks teksts"
-
-#: src/dh-app.c:56
-msgid "_Normal Size"
-msgstr "_Normāls izmērs"
-
-#: src/dh-app.c:57
-msgid "Normal size"
-msgstr "Normāls izmērs"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:97
-msgid "Open a new tab"
-msgstr "Atvērt jaunu cilni"
-
-#: src/dh-app.c:98
-msgid "Close the current tab"
-msgstr "Aizvērt pašreizējo cilni"
-
-#: src/dh-app.c:99
-msgid "Go back"
-msgstr "Iet atpakaļ"
-
-#: src/dh-app.c:100
-msgid "Go forward"
-msgstr "Iet uz priekšu"
-
-#: src/dh-app.c:101
-msgid "Focus global search"
-msgstr "Fokusēt globālo meklēšanu"
-
-#: src/dh-app.c:260
+#: src/dh-app.c:145
 msgid "translator-credits"
 msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
-#: src/dh-app.c:262
+#: src/dh-app.c:147
 msgid "Devhelp Website"
 msgstr "Devhelp tīmekļa vietne"
 
-#: src/dh-app.c:437
+#: src/dh-app.c:375
 msgid "Opens a new Devhelp window"
 msgstr "Atver jaunu Devhelp logu"
 
-#: src/dh-app.c:442
+#: src/dh-app.c:380
 msgid "Search for a keyword"
 msgstr "Meklēt atslēgvārdu"
 
-#: src/dh-app.c:443 src/dh-app.c:448
+#: src/dh-app.c:381 src/dh-app.c:386
 msgid "KEYWORD"
 msgstr "ATSLĒGVĀRDS"
 
-#: src/dh-app.c:447
+#: src/dh-app.c:385
 msgid "Search and display any hit in the assistant window"
 msgstr "Meklēt un parādīt jebkuru rezultātu asistenta logā"
 
-#: src/dh-app.c:452
+#: src/dh-app.c:390
 msgid "Display the version and exit"
 msgstr "Rādīt versiju un iziet"
 
-#: src/dh-app.c:457
+#: src/dh-app.c:395
 msgid "Quit any running Devhelp"
 msgstr "Iziet no jebkura palaista Devhelp"
 
@@ -407,11 +323,11 @@ msgstr "Iziet no jebkura palaista Devhelp"
 msgid "Devhelp — Assistant"
 msgstr "Devhelp — asistents"
 
-#: src/dh-preferences.c:537
+#: src/dh-preferences.c:536
 msgid "Enabled"
 msgstr "Aktivēts"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:550
 msgid "Title"
 msgstr "Nosaukums"
 
@@ -443,49 +359,176 @@ msgstr "_Fiksēts platums:"
 msgid "Fonts"
 msgstr "Fonti"
 
-#. General group
-#: src/dh-window.c:380
-msgid "General"
-msgstr "Vispārīgi"
+#: src/dh-window.ui:7
+msgid "New _Window"
+msgstr "Jauns _logs"
 
-#. Zoom group
-#: src/dh-window.c:394
-msgid "Zoom"
-msgstr "Mērogs"
+#: src/dh-window.ui:13
+msgid "_Print"
+msgstr "_Drukāt"
 
-#: src/dh-window.c:539
+#: src/dh-window.ui:17
+msgid "_Find"
+msgstr "_Meklēt"
+
+#: src/dh-window.ui:23
+msgid "_Larger Text"
+msgstr "_Lielāks teksts"
+
+#: src/dh-window.ui:27
+msgid "S_maller Text"
+msgstr "_Mazāks teksts"
+
+#: src/dh-window.ui:31
+msgid "_Normal Size"
+msgstr "_Normāls izmērs"
+
+#: src/dh-window.ui:37
+msgid "_Preferences"
+msgstr "_Iestatījumi"
+
+#: src/dh-window.ui:41
+msgid "_Keyboard Shortcuts"
+msgstr "_Tastatūras īsinājumtaustiņi"
+
+#: src/dh-window.ui:45
+msgid "_Help"
+msgstr "_Palīdzība"
+
+#: src/dh-window.ui:49
+msgid "_About Devhelp"
+msgstr "P_ar Devhelp"
+
+#: src/dh-window.ui:77
 msgid "Back"
 msgstr "Atpakaļ"
 
-#: src/dh-window.c:543
+#: src/dh-window.ui:96
 msgid "Forward"
 msgstr "Uz priekšu"
 
-#: src/dh-window.c:561
+#: src/dh-window.ui:121
+#| msgid "_Side Panel"
+msgid "Toggle Side Panel"
+msgstr "Pārslēgt sānu paneli"
+
+#: src/dh-window.ui:162
 msgid "New Tab"
 msgstr "Jauna cilne"
+
+#: src/help-overlay.ui:14
+#| msgid "General"
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Vispārīgi"
+
+#: src/help-overlay.ui:19
+#| msgid "Focus global search"
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Fokusēt globālo meklēšanu"
+
+#: src/help-overlay.ui:26
+#| msgid "Find in current page"
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Meklēt šajā lapā"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Find the next match"
+msgstr "Meklēt nākamo atbilstību"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Find the previous match"
+msgstr "Skatīt iepriekšējo atbilstību"
+
+#: src/help-overlay.ui:48
+#| msgid "Open a new window"
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Atvērt jaunu logu"
+
+#: src/help-overlay.ui:55
+#| msgid "Open a new tab"
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Atvērt jaunu cilni"
+
+#: src/help-overlay.ui:62
+#| msgid "Toggle side panel visibility"
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "Pārslēgt sānu rūts redzamību"
+
+#: src/help-overlay.ui:69
+#| msgid "Go back"
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Iet atpakaļ"
+
+#: src/help-overlay.ui:76
+#| msgid "Go forward"
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Iet uz priekšu"
+
+#: src/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Drukāt"
+
+#: src/help-overlay.ui:90
+#| msgid "Close the current tab"
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Aizvērt pašreizējo logu"
+
+#: src/help-overlay.ui:97
+#| msgid "Close all windows"
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Aizvērt visus logus"
+
+#: src/help-overlay.ui:105
+#| msgid "Zoom"
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Tuvināt"
+
+#: src/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Tuvināt"
+
+#: src/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Tālināt"
+
+#: src/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Atstatīt mērogu"
+
+#~ msgid "_Quit"
+#~ msgstr "I_ziet"
+
+#~ msgid "Larger text"
+#~ msgstr "Lielāks teksts"
+
+#~ msgid "Smaller text"
+#~ msgstr "Mazāks teksts"
+
+#~ msgid "Normal size"
+#~ msgstr "Normāls izmērs"
 
 #~ msgid "org.gnome.Devhelp"
 #~ msgstr "org.gnome.Devhelp"
 
 #~ msgid "_About"
 #~ msgstr "_Par"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Print"
-#~ msgstr "Drukāt"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom in"
-#~ msgstr "Tuvināt"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Zoom out"
-#~ msgstr "Tālināt"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Reset Zoom"
-#~ msgstr "Atstatīt mērogu"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
