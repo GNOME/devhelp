@@ -7,7 +7,6 @@ install_data(
 
 plugin_info_file = 'devhelp.plugin'
 I18N.merge_file(
-  plugin_info_file,
   type: 'desktop',
   input: plugin_info_file + '.desktop.in',
   output: plugin_info_file,
