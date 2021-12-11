@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp gnome-3-30\n"
-"POT-Creation-Date: 2021-01-02 13:13+0000\n"
-"PO-Revision-Date: 2021-01-08 16:11+0100\n"
+"POT-Creation-Date: 2021-11-07 13:38+0000\n"
+"PO-Revision-Date: 2021-11-08 16:51+0100\n"
 "Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -80,8 +80,8 @@ msgstr ""
 "l’extension) doivent correspondre. En d’autres termes, si le répertoire du "
 "livre se nomme <code>$book_name</code>, alors le chemin absolu vers le "
 "fichier de sommaire doit se terminer par <code>$book_name/$book_name."
-"devhelp2</code>. De cette façon, lorsque <app>Devhelp</app> connaît le nom du "
-"répertoire, il peut directement en déduire le nom du fichier sommaire." 
+"devhelp2</code>. De cette façon, lorsque <app>Devhelp</app> connaît le nom "
+"du répertoire, il peut directement en déduire le nom du fichier sommaire."
 
 #. (itstool) path: page/title
 #: C/index-file-format.page:14
@@ -117,8 +117,8 @@ msgid ""
 "when <app>Devhelp</app> scans the filesystem to find books, it emits a "
 "warning message in the terminal for each book that uses a deprecated format."
 msgstr ""
-"Le chiffre « 2 » dans l’extension de fichier <file>*.devhelp2</file> "
-"est dû au fait qu’il s’agit de la deuxième version du format de fichier. La "
+"Le chiffre « 2 » dans l’extension de fichier <file>*.devhelp2</file> est dû "
+"au fait qu’il s’agit de la deuxième version du format de fichier. La "
 "première version du format, comportant l’extension de fichier <file>*."
 "devhelp</file>, est obsolète et sa prise en charge dans <app>Devhelp</app> "
 "peut être supprimée à l’avenir. Au démarrage de l’application, lorsque "
@@ -185,13 +185,40 @@ msgstr ""
 "lisez le code source de l’analyseur et la référence d’API de <app>Devhelp</"
 "app>."
 
-#. (itstool) path: page/title
-#: C/index.page:8
+#. (itstool) path: info/title
+#: C/index.page:10
+#| msgid "Devhelp User Documentation"
+msgctxt "link:trail"
 msgid "Devhelp User Documentation"
 msgstr "Documentation utilisateur de Devhelp"
 
-#. (itstool) path: synopsis/p
+#. (itstool) path: info/title
 #: C/index.page:11
+#| msgid "Devhelp User Documentation"
+msgctxt "text"
+msgid "Devhelp User Documentation"
+msgstr "Documentation utilisateur de Devhelp"
+
+#. (itstool) path: info/title
+#: C/index.page:12
+#| msgid "Devhelp User Documentation"
+msgctxt "link"
+msgid "Devhelp User Documentation"
+msgstr "Documentation utilisateur de Devhelp"
+
+#. (itstool) path: info/desc
+#: C/index.page:14
+msgid "Devhelp User Documentation"
+msgstr "Documentation utilisateur de Devhelp"
+
+#. (itstool) path: page/title
+#: C/index.page:17
+#| msgid "Devhelp User Documentation"
+msgid "<_:media-1/> Devhelp User Documentation"
+msgstr "<_:media-1/> Documentation utilisateur de Devhelp"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:23
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation."
 msgstr ""
@@ -294,15 +321,19 @@ msgstr "GTK-Doc"
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:80
+#| msgid ""
+#| "<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
+#| "generate API documentation from comments added to C code. It is used by "
+#| "GLib, GTK and GNOME libraries and applications."
 msgid ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> is a tool to "
-"generate API documentation from comments added to C code. It is used by "
-"GLib, GTK and GNOME libraries and applications."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
 msgstr ""
-"<link href=\"https://www.gtk.org/gtk-doc/\">GTK-Doc</link> est un outil qui "
-"permet de générer une documentation d’API à partir des commentaires ajoutés au "
-"code C. Il est utilisé par les bibliothèques et applications GLib, GTK et "
-"GNOME."
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> est un "
+"outil qui permet de générer une documentation d’API à partir des "
+"commentaires ajoutés au code C. Il est utilisé par les bibliothèques et "
+"applications GLib, GTK et GNOME."
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:85
