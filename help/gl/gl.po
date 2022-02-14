@@ -1,0 +1,432 @@
+# Galician translation for devhelp.
+# Copyright (C) 2022 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Fran Dieguez <frandieguez@gnome.org>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp main\n"
+"POT-Creation-Date: 2022-02-10 23:31+0000\n"
+"PO-Revision-Date: 2022-02-14 23:16+0100\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: gl\n"
+"X-DL-Team: gl\n"
+"X-DL-Module: devhelp\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: help\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 40.0\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Fran Diéguez <frandieguez@gnome.org>, 2022"
+
+#. (itstool) path: page/title
+#. (itstool) path: section/title
+#: C/book-format.page:14 C/installing-api-documentation.page:23
+msgid "Book format"
+msgstr "Formato de libro"
+
+#. (itstool) path: synopsis/p
+#: C/book-format.page:17
+msgid ""
+"A “book” in <app>Devhelp</app> is the API documentation for one module, or "
+"package (usually a library). This page describes the format that a book "
+"needs to follow in order for <app>Devhelp</app> to recognize it."
+msgstr ""
+"Un «libro» in <app>Devhelp</app> é unha documentación de API para un módulo, "
+"ou paquete (normalmente unha biblioteca). Esta páxina describe o formato que "
+"un libre precisa para seguir para que <app>Devhelp</app> o recoñeza."
+
+#. (itstool) path: page/p
+#: C/book-format.page:24
+msgid ""
+"The content of a book is placed in one directory (that directory contains "
+"only one book, it cannot contain several books). The directory is comprised "
+"of:"
+msgstr ""
+"O contido dun libro móstrase nun cartafol (ese cartafol contén só un libro, "
+"non pode conter varios libros). O cartafol está composto por:"
+
+#. (itstool) path: item/p
+#: C/book-format.page:30
+msgid "HTML pages, plus possibly CSS files, images, etc;"
+msgstr "As páxinas HTML, así como os ficheiros CSS, imaxes, etc;"
+
+#. (itstool) path: item/p
+#: C/book-format.page:33
+msgid ""
+"An index file with the <file>*.devhelp2</file> file extension, see <link "
+"xref=\"index-file-format\"/> for more information."
+msgstr ""
+"Un ficheiro de índice coa extensión de ficheiro <file>*.devhelp2</file>, "
+"vexa <link xref=\"index-file-format\"/> para obter máis información."
+
+#. (itstool) path: note/p
+#: C/book-format.page:39
+msgid ""
+"Restriction: the name of the directory the <file>*.devhelp2</file> file is "
+"in and the name of the <file>*.devhelp2</file> file (minus the extension) "
+"must match. In other words, if the book directory is called <code>"
+"$book_name</code>, then the absolute path to the index file should end with "
+"<code>$book_name/$book_name.devhelp2</code>. That way, when <app>Devhelp</"
+"app> knows the directory name, it directly knows the location to the index "
+"file."
+msgstr ""
+"Restrición: o nome do cartafol do ficheiro <file>*.devhelp2</file> está no "
+"nome do ficheiro e o nome do ficheiro <file>*.devhelp2</file> (salvo a "
+"extensión) deben coincidir. Noutras palabras, se o cartafol do libro chámase "
+"<code>$nome_libro</code>, entón a ruta absoluta do ficheiro de índice "
+"debería rematar con <code>$nome_libro/$nome_libro.devhelp2</code>. Desta "
+"forma, cando <app>Devhelp</app> coñece o nome do cartafol, directamente sabe "
+"a localización do ficheiro de índice."
+
+#. (itstool) path: page/title
+#: C/index-file-format.page:14
+msgid "Index file format"
+msgstr "Formato de ficheiro de índice"
+
+#. (itstool) path: synopsis/p
+#: C/index-file-format.page:17
+msgid ""
+"This page describes the purpose and the format of <file>*.devhelp2</file> "
+"index files."
+msgstr ""
+"Esta páxina describe o propósito e o formato dos ficheiros de índice <file>*."
+"devhelp2</file>."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:23
+msgid ""
+"A book (see <link xref=\"book-format\"/>) contains one index file. The index "
+"file has the extension <file>.devhelp2</file> and has an XML format."
+msgstr ""
+"Un libro (vexa <link xref=\"book-format\"/>) contén un ficheiro de índice. O "
+"ficheiro de índice ten unha extensión <file>.devhelp2</file> e un formato "
+"XML."
+
+#. (itstool) path: note/p
+#: C/index-file-format.page:29
+msgid ""
+"The “2” in the <file>*.devhelp2</file> file extension is because it is the "
+"second version of the file format. The first version of the format, with the "
+"<file>*.devhelp</file> file extension, is deprecated and its support in "
+"<app>Devhelp</app> may be removed in the future. On application startup, "
+"when <app>Devhelp</app> scans the filesystem to find books, it emits a "
+"warning message in the terminal for each book that uses a deprecated format."
+msgstr ""
+"O «2» na extensión de ficheiro <file>*.devhelp2</file> está porque é a "
+"segunda versión do formato de ficheiro. A primeira versión do formato, coa "
+"extensión de ficheiro <file>*.devhelp</file>, está obsoleto e a "
+"compatibilidade en <app>Devhelp</app> podería retirarse no futuro. Ao inicio "
+"da aplicación, cando <app>Devhelp</app> analiza o sistema de ficheiros para "
+"buscar libros, emite un mensaxe de aviso na terminal para cada libro que use "
+"o formato obsoleto."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:40
+msgid "The index file mainly contains:"
+msgstr "Un ficheiro de índice contén principalmente:"
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:44
+msgid "The book structure (like a table of contents)."
+msgstr "A estrutura dun libro (como unha táboa de contidos)."
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:47
+msgid "A list of symbols (functions, types, macros, signals, properties, …)."
+msgstr ""
+"Unha lista de símbolos (función, tipos, macros, sinais, propiedades, …)."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:51
+msgid ""
+"These contain links to the HTML files to reach the corresponding pages and "
+"symbols."
+msgstr ""
+"Estes conteñen ligazóns a ficheiros HTML para chegar ás páxinas e símbolos "
+"correspondentes."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:55
+msgid ""
+"In <app>Devhelp</app> the book structure is shown in the side panel. And the "
+"<link xref=\"search\">search in the side panel</link> shows results found in "
+"the index files."
+msgstr ""
+"En <app>Devhelp</app> a estrutura dun libro móstrase no panel lateral. E a "
+"<link xref=\"search\">busca no panel lateral</link> mostra os resultados "
+"atopados nos ficheiros de índice."
+
+#. (itstool) path: section/title
+#: C/index-file-format.page:62
+msgid "Specification of the <file>*.devhelp2</file> XML file format"
+msgstr "A especificación do formato de ficheiro XML <file>*.devhelp2</file>"
+
+#. (itstool) path: section/p
+#: C/index-file-format.page:63
+msgid ""
+"Unfortunately the <file>*.devhelp2</file> XML file format is not well "
+"documented. There is still some hope that it will be fixed in the near "
+"future. In the meantime, we recommend to look at what <link xref="
+"\"installing-api-documentation#gtk-doc\">GTK-Doc</link> generates. For the "
+"most precise definition of what <app>Devhelp</app> supports, read the parser "
+"source code and the <app>Devhelp</app> API reference."
+msgstr ""
+"Desafortunadamente o formato de ficheiro XML de <file>*.devhelp2</file> non "
+"está ben documentado. Aínda hai esperanza que isto se arranxe no futuro "
+"cercano. Namentres, recomendámoslle mirar o que xera <link xref=\"installing-"
+"api-documentation#gtk-doc\">GTK-Doc</link>. Para unha definición máis "
+"precisa do que <app>Devhelp</app> admite, lea o código fonte do analizador e "
+"a referencia da API de <app>Devhelp</app>."
+
+#. (itstool) path: info/title
+#: C/index.page:10
+msgctxt "link:trail"
+msgid "Devhelp User Documentation"
+msgstr "Documentación de usuario de Devhelp"
+
+#. (itstool) path: info/title
+#: C/index.page:11
+msgctxt "text"
+msgid "Devhelp User Documentation"
+msgstr "Documentación de usuario de Devhelp"
+
+#. (itstool) path: info/title
+#: C/index.page:12
+msgctxt "link"
+msgid "Devhelp User Documentation"
+msgstr "Documentación de usuario de Devhelp"
+
+#. (itstool) path: info/desc
+#: C/index.page:14
+msgid "Devhelp User Documentation"
+msgstr "Documentación de usuario de Devhelp"
+
+#. (itstool) path: page/title
+#: C/index.page:17
+msgid "<_:media-1/> Devhelp User Documentation"
+msgstr "<_:media-1/> Documentación de usuario de Devhelp"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:23
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation."
+msgstr ""
+"Devhelp é unha ferramenta de desenvolvemento para explroar e buscar "
+"documentación de APIs."
+
+#. (itstool) path: page/title
+#: C/installing-api-documentation.page:14
+msgid "Installing API documentation"
+msgstr "Instalando documentación de API"
+
+#. (itstool) path: synopsis/p
+#: C/installing-api-documentation.page:17
+msgid "How <app>Devhelp</app> finds the API documentation."
+msgstr "Como atopa a documentación de APIs <app>Devhelp</app>"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:24
+msgid ""
+"See <link xref=\"book-format\"/> for information on the API documentation "
+"format that <app>Devhelp</app> recognizes."
+msgstr ""
+"Vexa <link xref=\"book-format\"/> para obter máis información sobre o "
+"formato de documentación que recoñece <app>Devhelp</app>."
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:31
+msgid "Books locations"
+msgstr "Localizacións de libros"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:32
+msgid ""
+"Once a book follows the right format, its directory needs to be installed at "
+"a location where <app>Devhelp</app> will find it."
+msgstr ""
+"Se un libro segue o formato correcto, o seu cartafol precisa instalarse "
+"nunha localización onde <app>Devhelp</app> o poida atopar."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:36
+msgid ""
+"<app>Devhelp</app> uses the <link href=\"https://specifications.freedesktop."
+"org/basedir-spec/latest/\">XDG Base Directory Specification</link> to find "
+"the books. The list of locations searched is:"
+msgstr ""
+"<app>Devhelp</app> usa a  <link href=\"https://specifications.freedesktop."
+"org/basedir-spec/latest/\">Especificación de cartafol Base de XDG</link> "
+"para atopar os libros. A lista de localizacións é:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:47
+msgid ""
+"Note that the two latter consist of lists of directories to look for. "
+"Directory values are separated by <code>:</code> characters. Those "
+"environment variables are normally set up by the desktop environment or "
+"distribution."
+msgstr ""
+"Teña en conta que os dous últimos consisten en listas de cartafoles onde "
+"buscar. Os valores de cartafoles están separados por caracteres. Esas "
+"variábeis de ambiente configúranse normalmente polo ambiente de escritorio "
+"ou distribución."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:53
+msgid ""
+"Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
+"typical system:"
+msgstr ""
+"Exemplos de localizacións de ficheiros de índices con <code>$XDG_DATA_HOME</"
+"code> nun sistema típico:"
+
+#. (itstool) path: item/p
+#: C/installing-api-documentation.page:61
+msgid ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
+"file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
+"org/\">Flatpak</link>."
+msgstr ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
+"file> se <app>Devhelp</app> se inicia con <link href=\"https://flatpak.org/"
+"\">Flatpak</link>."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:67
+msgid ""
+"Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
+"typical system:"
+msgstr ""
+"Exemplo dunha localización dun ficheiro de índice con <code>$XDG_DATA_DIRS</"
+"code> nun sistema típico:"
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:79
+msgid "GTK-Doc"
+msgstr "GTK-Doc"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:80
+msgid ""
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
+msgstr ""
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> é unha "
+"ferramenta para xerar documentación de APIs desde os comentarios engadidos "
+"ao código C. Úsano as aplicacións e bibliotecas de GNOME Glib, GTK."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:85
+msgid "GTK-Doc installs the API reference of a module into:"
+msgstr "GTK-Doc instala a referencia de API dun módulo en:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:91
+msgid ""
+"It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
+"Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
+"(once installed in the right location, that is)."
+msgstr ""
+"Segue o formato de libro admitido por <app>Devhelp</app>. Polo que usando "
+"GTK-Doc, a referencia de API pode explorarse con <app>Devhelp</app> "
+"automaticamente (en canto se instale no lugar correcto)."
+
+#. (itstool) path: page/title
+#: C/search.page:14
+msgid "Search in the side panel"
+msgstr "Busca no panel lateral"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:17
+msgid "How the search in the side panel works."
+msgstr "Cómo funciona a busca do panel lateral."
+
+#. (itstool) path: section/title
+#: C/search.page:21
+msgid "Case sensitivity"
+msgstr "Diferenciar capitalización"
+
+#. (itstool) path: section/p
+#: C/search.page:22
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr ""
+"A busca é sensíbel á capitalización cando hai unha letra en maiúscula. Se os "
+"termos de busca están todos en minúsculas, a busca non revisa a "
+"capitalización. É como unha característica de «capitalización intelixente» "
+"presente en varios editores de texto."
+
+#. (itstool) path: section/title
+#: C/search.page:30
+msgid "Glob-style pattern matching"
+msgstr "Coincidencia de patróns de estilo Glob"
+
+#. (itstool) path: section/p
+#: C/search.page:31
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+"Un termo de busca pode conter un patrón con comodíns como «*» e «?». «*» "
+"coincidirá con calquera cadea arbitraria, incluso baleira; e «?» coincide "
+"con un carácter arbitrario."
+
+#. (itstool) path: section/title
+#: C/search.page:39
+msgid "Several search terms"
+msgstr "Varios termos de busca"
+
+#. (itstool) path: section/p
+#: C/search.page:40
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+"Pode buscar por varios termos de busca (separados por espacios). Un símbolo "
+"só coincidirá se <em>todos</em> os termos de busca individuais coinciden "
+"(non necesariamente na mesma orde de aparición)."
+
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+"Teña en conta que é diferente buscar con un comodín «*»: co comodín «*» "
+"fórzase que as palabras chave estean na mesma orde."
+
+#. (itstool) path: section/p
+#: C/search.page:49
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+"Por exemplo ao buscar “<input>gtk window application</input>”, coincide "
+"tanto «<code>gtk_window_get_application()</code>» como "
+"«<code>GtkApplicationWindow</code>» (entre outros símbolos)."
+
+#. (itstool) path: section/p
+#: C/search.page:54
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
+"Por outro lado, se busca «<input>gtk*window*application</input>» coincidirá "
+"con «<code>gtk_window_get_application()</code>» pero non con "
+"«<code>GtkApplicationWindow</code>»."
