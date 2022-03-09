@@ -1,18 +1,18 @@
 # devhelp ja.po.
-# Copyright (C) 2001-2020 devhelp's COPYRIGHT HOLDE
+# Copyright (C) 2001-2015, 2017, 2020, 2022 devhelp's COPYRIGHT HOLDE
 # Takeshi Aihana <takeshi.aihana@gmail.com>, 2001-2009.
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010.
 # OKANO Takayoshi <kano@na.rim.or.jp>, 2011-2012.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2011-2015.
 # Shinichirou Yamada <yamada_strong_yamada_nice_64bit@yahoo.co.jp>, 2017.
-# sicklylife <translation@sicklylife.jp>, 2020.
+# sicklylife <translation@sicklylife.jp>, 2020, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
 "POT-Creation-Date: 2021-10-01 17:28+0000\n"
-"PO-Revision-Date: 2020-01-25 01:00+0900\n"
+"PO-Revision-Date: 2022-03-09 20:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -65,10 +65,8 @@ msgstr ""
 "用できます。"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:36
-#, fuzzy
-#| msgid "Height of main window"
 msgid "Devhelp's main window"
-msgstr "メインウィンドウの高さ"
+msgstr "Devhelp のメインウィンドウ"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:40
 msgid "Devhelp's main window with an open book"
@@ -411,32 +409,24 @@ msgid "Forward"
 msgstr "進む"
 
 #: src/dh-window.ui:121
-#, fuzzy
-#| msgid "_Side Panel"
 msgid "Toggle Side Panel"
-msgstr "サイドパネル(_S)"
+msgstr "サイドパネルを切り替え"
 
 #: src/dh-window.ui:162
 msgid "New Tab"
 msgstr "新しいタブ"
 
 #: src/help-overlay.ui:14
-#, fuzzy
-#| msgid "General"
 msgctxt "shortcut window"
 msgid "General"
 msgstr "全般"
 
 #: src/help-overlay.ui:19
-#, fuzzy
-#| msgid "Focus global search"
 msgctxt "shortcut window"
 msgid "Focus global search"
 msgstr "グローバル検索欄にフォーカスする"
 
 #: src/help-overlay.ui:26
-#, fuzzy
-#| msgid "Find in current page"
 msgctxt "shortcut window"
 msgid "Find in current page"
 msgstr "現在のページを検索する"
@@ -444,96 +434,72 @@ msgstr "現在のページを検索する"
 #: src/help-overlay.ui:33
 msgctxt "shortcut window"
 msgid "Find the next match"
-msgstr ""
+msgstr "次の一致語句を探す"
 
 #: src/help-overlay.ui:40
-#, fuzzy
-#| msgid "Find Previous"
 msgctxt "shortcut window"
 msgid "Find the previous match"
-msgstr "前を検索"
+msgstr "前の一致語句を探す"
 
 #: src/help-overlay.ui:48
-#, fuzzy
-#| msgid "Open a new window"
 msgctxt "shortcut window"
 msgid "Open a new window"
 msgstr "新しいウィンドウを開く"
 
 #: src/help-overlay.ui:55
-#, fuzzy
-#| msgid "Open a new tab"
 msgctxt "shortcut window"
 msgid "Open a new tab"
 msgstr "新しいタブを開く"
 
 #: src/help-overlay.ui:62
-#, fuzzy
-#| msgid "Toggle side panel visibility"
 msgctxt "shortcut window"
 msgid "Toggle side panel visibility"
 msgstr "サイドパネルの表示を切り替える"
 
 #: src/help-overlay.ui:69
-#, fuzzy
-#| msgid "Go back"
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "前に戻る"
 
 #: src/help-overlay.ui:76
-#, fuzzy
-#| msgid "Go forward"
 msgctxt "shortcut window"
 msgid "Go forward"
 msgstr "次に進む"
 
 #: src/help-overlay.ui:83
-#, fuzzy
-#| msgid "_Print"
 msgctxt "shortcut window"
 msgid "Print"
-msgstr "印刷(_P)"
+msgstr "印刷する"
 
 #: src/help-overlay.ui:90
-#, fuzzy
-#| msgid "Close the current tab"
 msgctxt "shortcut window"
 msgid "Close the current window"
-msgstr "現在のタブを閉じる"
+msgstr "現在のウィンドウを閉じる"
 
 #: src/help-overlay.ui:97
-#, fuzzy
-#| msgid "Close all windows"
 msgctxt "shortcut window"
 msgid "Close all windows"
 msgstr "すべてのウィンドウを閉じる"
 
 #: src/help-overlay.ui:105
-#, fuzzy
-#| msgid "Zoom"
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "ズーム"
 
 #: src/help-overlay.ui:110
-#, fuzzy
-#| msgid "Zoom"
 msgctxt "shortcut window"
 msgid "Zoom in"
-msgstr "ズーム"
+msgstr "拡大する"
 
 #: src/help-overlay.ui:117
-#, fuzzy
-#| msgid "Zoom"
 msgctxt "shortcut window"
 msgid "Zoom out"
-msgstr "ズーム"
+msgstr "縮小する"
 
 #: src/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Reset Zoom"
-msgstr ""
+msgstr "縮小/拡大を元に戻す"
 
 #~ msgid "_Quit"
 #~ msgstr "終了(_Q)"
