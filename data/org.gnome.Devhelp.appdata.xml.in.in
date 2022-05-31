@@ -32,20 +32,20 @@
   <url type="donation">https://www.gnome.org/donate/</url>
   <screenshots>
     <screenshot type="default">
-      <image>https://people.gnome.org/~ebassi/screenshots/devhelp/devhelp-41-1.png</image>
+      <image>https://static.gnome.org/appdata/devhelp/devhelp-41-1.png</image>
       <caption>Devhelp's main window</caption>
     </screenshot>
     <screenshot>
-      <image>https://people.gnome.org/~ebassi/screenshots/devhelp/devhelp-41-2.png</image>
+      <image>https://static.gnome.org/appdata/devhelp/devhelp-41-2.png</image>
       <caption>Devhelp's main window with an open book</caption>
     </screenshot>
     <screenshot>
-      <image>https://people.gnome.org/~ebassi/screenshots/devhelp/devhelp-41-3.png</image>
+      <image>https://static.gnome.org/appdata/devhelp/devhelp-41-3.png</image>
       <caption>Devhelp supports opening multiple books</caption>
     </screenshot>
     <screenshot>
-      <image>https://people.gnome.org/~ebassi/screenshots/devhelp/devhelp-41-4.png</image>
-      <caption>Devhelp supports HTML documentation formats</caption>
+      <image>https://static.gnome.org/appdata/devhelp/devhelp-41-4.png</image>
+      <caption>Devhelp supports various HTML documentation generators</caption>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1" />
