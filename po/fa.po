@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-10-01 17:28+0000\n"
-"PO-Revision-Date: 2021-10-07 02:24+0330\n"
+"POT-Creation-Date: 2022-05-31 13:23+0000\n"
+"PO-Revision-Date: 2022-05-31 17:59+0430\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
@@ -85,8 +85,8 @@ msgid "Devhelp supports opening multiple books"
 msgstr "دوهلپ از گشودن چندین کتاب پشتیبانی می‌کند"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:48
-msgid "Devhelp supports HTML documentation formats"
-msgstr "دوهلپ از قالب‌های مستندات HTML پشتیبانی می‌کند"
+msgid "Devhelp supports various HTML documentation generators"
+msgstr "دوهلپ از ایجادکننده‌های مستندات HTML پشتیبانی می‌کند"
 
 #: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "API Documentation Browser"
