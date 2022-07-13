@@ -484,6 +484,7 @@ dh_web_view_constructed (GObject *object)
 
         webkit_settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view));
         webkit_settings_set_enable_back_forward_navigation_gestures (webkit_settings, TRUE);
+        webkit_settings_set_hardware_acceleration_policy (webkit_settings, WEBKIT_HARDWARE_ACCELERATION_POLICY_NEVER);
 
         /* Disable some things we have no need for. */
         webkit_settings_set_enable_html5_database (webkit_settings, FALSE);
