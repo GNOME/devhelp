@@ -1,3 +1,9 @@
+News in 43.alpha, 2022-07-13
+----------------------------
+* Temporarily disable hardware accelerated rendering [#60]
+* Fix build with newer versions of Meson [#59]
+* Translation updates
+
 News in 41.2, 2021-10-01
 ------------------------
 * More appdata fixes
@@ -1525,7 +1531,7 @@ NEW in 0.18:
 
 - Use proper size icon for close buttons in tabs (bug #510984, Luca Ferretti)
 - Polish the new Zoom UI (bugs #508510 and #508513, Wouter Bolsterlee)
-- Updated translations: be, ca, de, es, et, gl, he, ja, nb, sv, th, uk 
+- Updated translations: be, ca, de, es, et, gl, he, ja, nb, sv, th, uk
 
 Many thanks to the translators: Ihar Hrachyshka, Gil Forcada, Andre
 Klapper, Jorge Gonzalez, Priit Laes, Ignacio Casal Quinteiro, Yair
@@ -1747,7 +1753,7 @@ Devhelp 0.10:
 * Fixed crash when searching (Ray Strode)
 * Plugged memory leak in the gecko bindings (Paolo Borelli)
 * New translations (hu, rw)
-* Updated translations 
+* Updated translations
   (el, en_CA, de, cs, ca, sk, sv, en_GB)
 
 Devhelp 0.9.3:
@@ -1764,7 +1770,7 @@ Devhelp 0.9.2:
 * Bacon-love for IPC
 * Support searching for substrings "gtk new" (Nickolay V. Shmyrev)
 * New translations (nb, gu, mk)
-* Updated translations 
+* Updated translations
   (sq, no, fi, pt, sq, da, be, nb, fr, it, zh_TW)
 
 Devhelp 0.9.1:
@@ -1772,11 +1778,11 @@ Devhelp 0.9.1:
 * Save maximized state
 * Support for Mozilla 1.7
 * Show direct hits directly.
-* Make sure that the window has a minimum width even if GConf setup isn't 
+* Make sure that the window has a minimum width even if GConf setup isn't
   working properly.
 * Make sure user installed documentation is shown before system installed.
 * New translations (en_GB, en_CA)
-* Updated translations 
+* Updated translations
   (ja, cs, nl, hr, sk, sr, es, en_GB, uk, is, pt_BR, sv,fi, es, sq)
 
 Devhelp 0.9:
@@ -1797,7 +1803,7 @@ Devhelp 0.8:
   into a program. Used by Anjuta.
 * Build fix for FreeBSD
 * New translations (tr, ca)
-* Updated translations 
+* Updated translations
   (cs, sv, ja, sk, nl, de, es, pl, is, ms, pt, no, da, fr, az)
 
 Devhelp 0.7:
@@ -1821,7 +1827,7 @@ Devhelp 0.6:
 * Fixes to searched paths                           (Ross)
 * Added gnome-vfs MIME support                      (Ross)
 * New and updated translations, thanks to Kang Jeong-Hee, Vincent van Adrighem,
-  Duarte Loreto, Zbigniew Chyla, Takeshi AIHANA, Metin Amiroff, 
+  Duarte Loreto, Zbigniew Chyla, Takeshi AIHANA, Metin Amiroff,
   Samúel Jón Gunnarsson, Guntupalli Karunakar.
 
 Devhelp 0.5:
@@ -1833,7 +1839,7 @@ Devhelp 0.5:
 * Support for gtk-doc built .devhelp files (Mikael)
   (Thanks Jamesh!!)
 
-Devhelp 0.4: 
+Devhelp 0.4:
 ------------
 * Raise minimized window (Richard)
 * Bug fixes              (Mikael, Richard)
@@ -1846,8 +1852,8 @@ Devhelp 0.3:
 * Debian and Red Hat packages now availible. (Johan)
 * Devhelp can now handle different versions of the same book
   much better. (Johan)
-* New and updated translations, Thanks goes to Ismael Olea, 
-  Joe Man, Marcel Telka, Alessio Frusciante, Kjartan Maraas, 
+* New and updated translations, Thanks goes to Ismael Olea,
+  Joe Man, Marcel Telka, Alessio Frusciante, Kjartan Maraas,
   Christophe Fergeau, Zbigniew Chyla, Ole Laursen and
   Christian Rose.
 
@@ -1861,7 +1867,7 @@ Devhelp 0.2:
 * Code-cleanups, Cleaned up the code to make it more
   maintainable. (Mikael Hallendal).
 
-Devhelp 0.1.1: 
+Devhelp 0.1.1:
 --------------
 * A few bugfixes. Should compile with non cvs version of libxml now.
 

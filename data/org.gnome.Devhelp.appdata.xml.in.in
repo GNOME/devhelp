@@ -56,6 +56,15 @@
     <binary>devhelp</binary>
   </provides>
   <releases>
+    <release version="43~alpha" date="2022-07-13">
+      <description>
+        <p>A new cycle begins.</p>
+        <ul>
+          <li>Build against latest GNOME run time</li>
+          <li>Localization updates</li>
+        </ul>
+      </description>
+    </release>
     <release version="41.2" date="2021-10-01" />
     <release version="41.1" date="2021-09-17" />
     <release version="41.0" date="2021-09-17">
