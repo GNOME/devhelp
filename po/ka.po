@@ -1,0 +1,487 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
+"POT-Creation-Date: 2022-07-25 12:53+0000\n"
+"PO-Revision-Date: 2022-07-26 08:33+0200\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: \n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. Translators: please don't translate "Devhelp" (it's marked as
+#. * translatable for transliteration only).
+#.
+#: data/org.gnome.Devhelp.appdata.xml.in.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:141 src/dh-app.c:471
+msgid "Devhelp"
+msgstr "Devhelp"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:143
+msgid "A developer tool for browsing and searching API documentation"
+msgstr ""
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:9
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation. It "
+"provides an easy way to navigate through libraries and to search by "
+"function, struct, or macro."
+msgstr ""
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:14
+msgid ""
+"The documentation must be installed locally, so an internet connection is "
+"not needed to use Devhelp."
+msgstr ""
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:18
+msgid ""
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
+msgstr ""
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:24
+msgid ""
+"Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
+"and plugins are available for different text editors (gedit, Vim, Emacs, "
+"Geany, …)."
+msgstr ""
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:36
+msgid "Devhelp's main window"
+msgstr "Devhelp-ის მთავარი ფანჯარა"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:40
+msgid "Devhelp's main window with an open book"
+msgstr ""
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:44
+msgid "Devhelp supports opening multiple books"
+msgstr ""
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:48
+msgid "Devhelp supports HTML documentation formats"
+msgstr ""
+
+#: data/org.gnome.Devhelp.desktop.in.in:5
+msgid "API Documentation Browser"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Devhelp.desktop.in.in:7
+msgid "documentation;information;manual;developer;api;"
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:16
+msgid "Main window maximized state"
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:17
+msgid "Whether the main window should start maximized."
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:21
+msgid "Width of the main window"
+msgstr "მთავარი ფანჯრის სიგანე"
+
+#: data/org.gnome.devhelp.gschema.xml:22
+msgid "The width of the main window."
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:26
+msgid "Height of main window"
+msgstr "მთავარი ფანჯრის სიმაღლე"
+
+#: data/org.gnome.devhelp.gschema.xml:27
+msgid "The height of the main window."
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:33
+msgid "Width of the index and search pane"
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:34
+msgid "The width of the index and search pane."
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:43
+msgid "Width of the assistant window"
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:44
+msgid "The width of the assistant window."
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:48
+msgid "Height of assistant window"
+msgstr ""
+
+#: data/org.gnome.devhelp.gschema.xml:49
+msgid "The height of the assistant window."
+msgstr ""
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:9
+msgid "Books disabled"
+msgstr ""
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:10
+msgid "List of books disabled by the user."
+msgstr ""
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:14
+msgid "Group books by language"
+msgstr ""
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:15
+msgid ""
+"Whether books should be grouped by programming language in the user "
+"interface."
+msgstr ""
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:21
+msgid "Use system fonts"
+msgstr "სისტემური ფონტების გამოყენება"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:22
+msgid "Use the system default fonts."
+msgstr "ნაგულისხმები სისტემური ფონტების გამოყენება."
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:26
+msgid "Font for text"
+msgstr "ტექსტის ფონტი"
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:27
+msgid "Font for text with variable width."
+msgstr ""
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:31
+msgid "Font for fixed width text"
+msgstr ""
+
+#: data/org.gnome.libdevhelp.gschema.xml.in:32
+msgid "Font for text with fixed width, such as code examples."
+msgstr ""
+
+#: devhelp/dh-assistant-view.c:385
+msgid "Book:"
+msgstr "წიგნი:"
+
+#: devhelp/dh-book.c:298
+#, c-format
+msgid "Language: %s"
+msgstr "ენა: %s"
+
+#: devhelp/dh-book.c:299
+msgid "Language: Undefined"
+msgstr "ენა: გაურკვეველი"
+
+#: devhelp/dh-book-tree.c:749
+msgid "_Collapse All"
+msgstr "_ყველას ჩაკეცვა"
+
+#. i18n: a documentation book
+#: devhelp/dh-link.c:536
+msgid "Book"
+msgstr "წიგნი"
+
+#. i18n: a "page" in a documentation book
+#: devhelp/dh-link.c:540
+msgid "Page"
+msgstr "გვერდი"
+
+#. i18n: a search hit in the documentation, could be a
+#. * function, macro, struct, etc
+#: devhelp/dh-link.c:545
+msgid "Keyword"
+msgstr "საკვანძო სიტყვა"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:551
+msgid "Function"
+msgstr "ფუნქცია"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:557
+msgid "Struct"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:563
+msgid "Macro"
+msgstr "მაკრო"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:569
+msgid "Enum"
+msgstr ""
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:575
+msgid "Type"
+msgstr "ტიპი"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:581
+msgid "Property"
+msgstr "თვისება"
+
+#. i18n: in the programming language context, if you don't
+#. * have an ESTABLISHED term for it, leave it
+#. * untranslated.
+#: devhelp/dh-link.c:587
+msgid "Signal"
+msgstr "სიგნალი"
+
+#: devhelp/dh-web-view.c:675
+msgid "Empty Page"
+msgstr "ცარიელი გვერდი"
+
+#: plugins/gedit-plugin/devhelp.plugin.desktop.in:6
+msgid "Devhelp support"
+msgstr ""
+
+#: plugins/gedit-plugin/devhelp.py:42
+msgid "Show API Documentation"
+msgstr ""
+
+#: src/dh-app.c:140
+msgid "Devhelp (development build)"
+msgstr ""
+
+#: src/dh-app.c:145
+msgid "translator-credits"
+msgstr "თარგმანი-შესრულებულია"
+
+#: src/dh-app.c:147
+msgid "Devhelp Website"
+msgstr ""
+
+#: src/dh-app.c:375
+msgid "Opens a new Devhelp window"
+msgstr ""
+
+#: src/dh-app.c:380
+msgid "Search for a keyword"
+msgstr ""
+
+#: src/dh-app.c:381 src/dh-app.c:386
+msgid "KEYWORD"
+msgstr "KEYWORD"
+
+#: src/dh-app.c:385
+msgid "Search and display any hit in the assistant window"
+msgstr ""
+
+#: src/dh-app.c:390
+msgid "Display the version and exit"
+msgstr ""
+
+#: src/dh-app.c:395
+msgid "Quit any running Devhelp"
+msgstr ""
+
+#. Please don't translate "Devhelp"
+#: src/dh-assistant.ui:13
+msgid "Devhelp — Assistant"
+msgstr ""
+
+#: src/dh-preferences.c:536
+msgid "Enabled"
+msgstr "ჩაირთო"
+
+#: src/dh-preferences.c:550
+msgid "Title"
+msgstr "სათაური"
+
+#: src/dh-preferences.ui:12
+msgid "Preferences"
+msgstr "პარამეტრები"
+
+#: src/dh-preferences.ui:48
+msgid "_Group by language"
+msgstr ""
+
+#: src/dh-preferences.ui:90
+msgid "Book Shelf"
+msgstr ""
+
+#: src/dh-preferences.ui:111
+msgid "_Use system fonts"
+msgstr ""
+
+#: src/dh-preferences.ui:135
+msgid "_Variable width: "
+msgstr ""
+
+#: src/dh-preferences.ui:148
+msgid "_Fixed width:"
+msgstr ""
+
+#: src/dh-preferences.ui:209
+msgid "Fonts"
+msgstr "ფონტები"
+
+#: src/dh-window.ui:7
+msgid "New _Window"
+msgstr "ახალი _ფანჯარა"
+
+#: src/dh-window.ui:13
+msgid "_Print"
+msgstr "_ბეჭდვა"
+
+#: src/dh-window.ui:17
+msgid "_Find"
+msgstr "_ძებნა"
+
+#: src/dh-window.ui:23
+msgid "_Larger Text"
+msgstr "_უფრო დიდი ტექსტი"
+
+#: src/dh-window.ui:27
+msgid "S_maller Text"
+msgstr "უფრო _პატარა ტექსტი"
+
+#: src/dh-window.ui:31
+msgid "_Normal Size"
+msgstr "_ნორმალური ზომა"
+
+#: src/dh-window.ui:37
+msgid "_Preferences"
+msgstr "_მორგება"
+
+#: src/dh-window.ui:41
+msgid "_Keyboard Shortcuts"
+msgstr "კლავიატურის მალსახმობები"
+
+#: src/dh-window.ui:45
+msgid "_Help"
+msgstr "_დახმარება"
+
+#: src/dh-window.ui:49
+msgid "_About Devhelp"
+msgstr ""
+
+#: src/dh-window.ui:77
+msgid "Back"
+msgstr "უკან"
+
+#: src/dh-window.ui:96
+msgid "Forward"
+msgstr "წინ"
+
+#: src/dh-window.ui:121
+msgid "Toggle Side Panel"
+msgstr ""
+
+#: src/dh-window.ui:162
+msgid "New Tab"
+msgstr "ახალი ჩანართი"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "ძირითადი"
+
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "გლობალური ძებნა"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "მიმდინარე გვერდში ძებნა"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Find the next match"
+msgstr "შემდეგ დამთხვევაზე გადასვლა"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Find the previous match"
+msgstr "წინა დამთხვევაზე გადასვლა"
+
+#: src/help-overlay.ui:48
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "ახალ ფანჯრის გახსნა"
+
+#: src/help-overlay.ui:55
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "ახალი ჩანართის გახსნა"
+
+#: src/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "გვერდითი პანელის ჩვენების ჩართ/გამორთ"
+
+#: src/help-overlay.ui:69
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "უკან დაბრუნება"
+
+#: src/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "წინ გადასვლა"
+
+#: src/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "დაბეჭდვა"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "მიმდინარე ფანჯრის დახურვა"
+
+#: src/help-overlay.ui:97
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "ყველა ფანჯრის დახურვა"
+
+#: src/help-overlay.ui:105
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "გადიდება"
+
+#: src/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "&გადიდება"
+
+#: src/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "დაპატარავება"
+
+#: src/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "გადიდების საწყისი პარამეტრები"
