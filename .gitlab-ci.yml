@@ -9,7 +9,6 @@ variables:
   BUNDLE: "org.gnome.Devhelp.flatpak"
 
 flatpak:
-  image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
   stage: build
   extends: .flatpak
   variables:
