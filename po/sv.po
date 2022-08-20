@@ -1,11 +1,11 @@
 # Swedish messages for Devhelp.
-# Copyright © 2001-2021 Free Software Foundation, Inc.
+# Copyright © 2001-2022 Free Software Foundation, Inc.
 # Richard Hult <richard@imendio.com>, 2001, 2004.
 # Johan Dahlin <zilch.am@home.se>, 2001.
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2008, 2009, 2010, 2011, 2012.
 # Sebastian Rasmussen <sebras@gmail.com>, 2014.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2016, 2017, 2018, 2020, 2021.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2016, 2017, 2018, 2020, 2021, 2022.
 # Luna Jernberg <droidbittin@gmail.com>, 2021.
 #
 # Översätt inte "Devhelp", det är ett namn.
@@ -14,15 +14,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-10-01 17:28+0000\n"
-"PO-Revision-Date: 2021-10-01 19:35+0200\n"
-"Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
+"POT-Creation-Date: 2022-07-13 21:12+0000\n"
+"PO-Revision-Date: 2022-08-20 20:13+0200\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
@@ -74,7 +74,7 @@ msgid ""
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr ""
-"Devhelp integrerar med andra program så som Glade, Builder eller Anjuta, och "
+"Devhelp integrerar med andra program såsom Glade, Builder eller Anjuta, och "
 "insticksmoduler finns tillgängliga för olika textredigerare (gedit, Vim, "
 "Emacs, Geany, …)."
 
@@ -277,7 +277,7 @@ msgstr "Egenskap"
 msgid "Signal"
 msgstr "Signal"
 
-#: devhelp/dh-web-view.c:674
+#: devhelp/dh-web-view.c:675
 msgid "Empty Page"
 msgstr "Tom sida"
 
