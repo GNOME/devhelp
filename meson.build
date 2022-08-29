@@ -5,7 +5,7 @@
 
 project(
   'devhelp', 'c',
-  meson_version: '>= 0.55',
+  meson_version: '>= 0.57',
   version: '43.rc',
   default_options: ['warning_level=2']
 )
@@ -177,9 +177,9 @@ if get_option('gtk_doc')
   subdir('docs/reference')
 endif
 
-meson.add_install_script(
-  find_program('build-aux/meson/meson_post_install.py'),
-  get_option('prefix') / get_option('datadir'),
+GNOME.post_install(
+  glib_compile_schemas: true,
+  gtk_update_icon_cache: true,
 )
 
 summary('Prefix', get_option('prefix'))

@@ -61,7 +61,7 @@ fedora_x86_64:
       python3-wheel
       redhat-rpm-config
       webkit2gtk3-devel
-    MESON_VERSION: "0.55.3"
+    MESON_VERSION: "0.57.2"
 
 reference:
   extends: .build-default
@@ -93,7 +93,7 @@ reference:
       python3-wheel
       redhat-rpm-config
       webkit2gtk3-devel
-    MESON_VERSION: "0.55.3"
+    MESON_VERSION: "0.57.2"
     MESON_EXTRA_FLAGS: "-Dgtk_doc=true"
   after_script:
     - mkdir _reference
