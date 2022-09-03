@@ -1,3 +1,8 @@
+News in 43.rc, 2022-09-03
+-------------------------
+* Use Meson's gnome.post_install() [!49]
+* Translation updates
+
 News in 43.beta, 2022-08-10
 ---------------------------
 * Translation updates
