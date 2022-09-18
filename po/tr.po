@@ -1,6 +1,7 @@
 # Turkish translation of devhelp
-# This file is distributed under the same license as the devhelp package.
 # Copyright (C) 2007-2012 Free Software Foundation, Inc.
+# Copyright (C) 2013-2022 devlep's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
 #
 # Baris Cicek <baris@teamforce.name.tr>, 2007, 2008, 2009.
 # Necdet Yücel <necdetyucel@gmail.com>, 2014.
@@ -13,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-10-01 17:28+0000\n"
+"POT-Creation-Date: 2022-08-26 16:26+0000\n"
 "PO-Revision-Date: 2021-10-03 10:10+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
@@ -276,7 +277,7 @@ msgstr "Özellik"
 msgid "Signal"
 msgstr "Sinyal"
 
-#: devhelp/dh-web-view.c:674
+#: devhelp/dh-web-view.c:675
 msgid "Empty Page"
 msgstr "Boş Sayfa"
 
@@ -509,244 +510,3 @@ msgstr "Uzaklaştır"
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Yakınlaştırmayı sıfırla"
-
-#~ msgid "Devhelp's main window, showing a list of books in the side panel."
-#~ msgstr ""
-#~ "Devhelpʼin ana penceresi, yan bölmede kitapların listesini gösteriyor."
-
-#~ msgid "Show keyboard shortcuts"
-#~ msgstr "Klavye kısayollarını göster"
-
-#~ msgid "Show help"
-#~ msgstr "Yardımı göster"
-
-#~ msgid "_Quit"
-#~ msgstr "_Çıkış"
-
-#~ msgid "Close all windows (quit the application)"
-#~ msgstr "Tüm pencereleri kapat (uygulamadan çıkar)"
-
-#~ msgid "Larger text"
-#~ msgstr "Daha büyük metin"
-
-#~ msgid "Smaller text"
-#~ msgstr "Daha küçük metin"
-
-#~ msgid "Normal size"
-#~ msgstr "Olağan boyut"
-
-#~ msgid "Open the menu"
-#~ msgstr "Menüyü aç"
-
-#~ msgid "Previous tab"
-#~ msgstr "Önceki sekme"
-
-#~ msgid "Next tab"
-#~ msgstr "Sonraki sekme"
-
-#~ msgid "Search"
-#~ msgstr "Ara"
-
-#~ msgid "History"
-#~ msgstr "Geçmiş"
-
-#~ msgid "Miscellaneous"
-#~ msgstr "Türlü"
-
-#~ msgid "org.gnome.Devhelp"
-#~ msgstr "org.gnome.Devhelp"
-
-#~ msgid "_About"
-#~ msgstr "_Hakkında"
-
-#~ msgid "devhelp"
-#~ msgstr "devhelp"
-
-#~ msgid "Error opening the requested link."
-#~ msgstr "İstenen bağlantı açılırken hata oluştu."
-
-#~ msgid "Developer’s Help program"
-#~ msgstr "Geliştirici Yardım programı"
-
-#~ msgid "X position of main window"
-#~ msgstr "Ana pencerenin X konumu"
-
-#~ msgid "The X position of the main window."
-#~ msgstr "Ana pencerenin X pozisyonu."
-
-#~ msgid "Y position of main window"
-#~ msgstr "Ana pencerenin Y konumu"
-
-#~ msgid "The Y position of the main window."
-#~ msgstr "Ana pencerenin Y pozisyonu."
-
-#~ msgid "Whether the assistant window should be maximized"
-#~ msgstr "Yardımcı pencerenin boyutunun büyültülüp büyütülmeyeceği"
-
-#~ msgid "Whether the assistant window should be maximized."
-#~ msgstr "Yardımcı pencerenin boyutunun büyültülüp büyütülmeyeceği."
-
-#~ msgid "X position of assistant window"
-#~ msgstr "Yardımcı pencerenin X konumu"
-
-#~ msgid "The X position of the assistant window."
-#~ msgstr "Yardımcı pencerenin X pozisyonu."
-
-#~ msgid "Y position of assistant window"
-#~ msgstr "Yardımcı pencerenin Y konumu"
-
-#~ msgid "The Y position of the assistant window."
-#~ msgstr "Yardımcı pencerenin Y pozisyonu."
-
-#~ msgid "A developers’ help browser for GNOME"
-#~ msgstr "GNOME için, geliştiricinin yardım tarayıcısı"
-
-#~ msgid "50%"
-#~ msgstr "%%50"
-
-#~ msgid "75%"
-#~ msgstr "%%75"
-
-#~ msgid "100%"
-#~ msgstr "%%100"
-
-#~ msgid "125%"
-#~ msgstr "%%125"
-
-#~ msgid "150%"
-#~ msgstr "%%150"
-
-#~ msgid "175%"
-#~ msgstr "%%175"
-
-#~ msgid "200%"
-#~ msgstr "%%200"
-
-#~ msgid "300%"
-#~ msgstr "%%300"
-
-#~ msgid "400%"
-#~ msgstr "%%400"
-
-#~ msgid "_Close"
-#~ msgstr "_Kapat"
-
-#~ msgid "Side _Panel"
-#~ msgstr "Yan _Panel"
-
-#~ msgid ""
-#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-#~ "target=devhelp.png"
-#~ msgstr ""
-#~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
-#~ "target=devhelp.png"
-
-#~ msgid "Selected tab: \"content\" or \"search\""
-#~ msgstr "Seçilen sekme: \"content\" (içerik) ya da \"search\" (arama)"
-
-#~ msgid "Which of the tabs is selected: \"content\" or \"search\"."
-#~ msgstr "Hangi sekme seçili: \"content\" (içerik) ya da \"search\" (arama)."
-
-#~ msgid "Makes F2 bring up Devhelp for the word at the cursor"
-#~ msgstr "F2 imlecin bulunduğu kelimede Devhelp'i getirir"
-
-#~ msgid "Expected '%s', got '%s' at line %d, column %d"
-#~ msgstr "Beklenen '%s', alınan '%s', satır %d, sütun %d"
-
-#~ msgid "Invalid namespace '%s' at line %d, column %d"
-#~ msgstr "'%s' geçersiz isim alanı; satır %d, sütun %d"
-
-#~ msgid ""
-#~ "\"title\", \"name\" and \"link\" elements are required at line %d, column "
-#~ "%d"
-#~ msgstr "\"title\", \"name\" ve \"link\" öğeleri gerekli; satır %d, sütun %d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside <sub> on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "<sub> içinde \"name\" ve \"link\" öğeleri gerekli; satır %d, sütun %d"
-
-#~ msgid ""
-#~ "\"name\" and \"link\" elements are required inside '%s' on line %d, "
-#~ "column %d"
-#~ msgstr ""
-#~ "'%s' içinde \"isim\" ve \"link\" öğeleri gerekli; satır %d, sütun %d"
-
-#~ msgid "\"type\" element is required inside <keyword> on line %d, column %d"
-#~ msgstr "<keyword> içinde \"type\" öğesi gerekli; satır %d, sütun %d"
-
-#~ msgid "Cannot uncompress book '%s': %s"
-#~ msgstr "'%s' kitabı sıkıştırması açılamadı: %s"
-
-#~ msgid "Show API Documentation for the word at the cursor"
-#~ msgstr "İmlecin bulunduğu kelime için API belgelendirmesini göster"
-
-#~ msgid "Focus the Devhelp window with the search field active"
-#~ msgstr "Devhelp penceresini arama alanı aktif şekilde odakla"
-
-#~ msgid "All books"
-#~ msgstr "Tüm kitaplar"
-
-#~ msgid "Search in:"
-#~ msgstr "Arama yeri:"
-
-#~ msgid "_File"
-#~ msgstr "_Dosya"
-
-#~ msgid "_Edit"
-#~ msgstr "_Düzenle"
-
-#~ msgid "_View"
-#~ msgstr "_Görünüm"
-
-#~ msgid "_Go"
-#~ msgstr "_Git"
-
-#~ msgid "Find Next"
-#~ msgstr "Sonrakini Bul"
-
-#~ msgid "Go to the next page"
-#~ msgstr "Sonraki sayfaya git"
-
-#~ msgid "_Contents Tab"
-#~ msgstr "İçi_ndekiler Sekmesi"
-
-#~ msgid "_Search Tab"
-#~ msgstr "_Arama Sekmesi"
-
-#~ msgid "Increase the text size"
-#~ msgstr "Metin boyutunu büyült"
-
-#~ msgid "Decrease the text size"
-#~ msgstr "Metin boyutunu küçült"
-
-#~ msgid "Use the normal text size"
-#~ msgstr "Normal metin boyutunu kullan"
-
-#~ msgid "Leave fullscreen mode"
-#~ msgstr "Tam ekran kipinden çık"
-
-#~ msgid "Display in full screen"
-#~ msgstr "Tam ekranda göster"
-
-#~ msgid "Larger"
-#~ msgstr "Daha Büyük"
-
-#~ msgid "Smaller"
-#~ msgstr "Daha Küçük"
-
-#~ msgid "Contents"
-#~ msgstr "İçindekiler"
-
-#~ msgid "Find previous occurrence of the search string"
-#~ msgstr "Arama dizgisinin bir önceki geçtiği yeri bul"
-
-#~ msgid "Find next occurrence of the search string"
-#~ msgstr "Arama dizgisinin bir sonraki geçtiği yeri bul"
-
-#~ msgid "C_ase Sensitive"
-#~ msgstr "_Büyük Küçük Harf Duyarlı"
-
-#~ msgid "Toggle case sensitive search"
-#~ msgstr "Harf duyarlı aramayı aç ya da kapat"
