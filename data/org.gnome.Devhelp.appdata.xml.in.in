@@ -56,21 +56,28 @@
     <binary>devhelp</binary>
   </provides>
   <releases>
-    <release version="43~rc" date="2022-09-03">
+    <release version="43.0" date="2022-09-20" type="development">
       <description>
         <ul>
           <li>Localization updates</li>
         </ul>
       </description>
     </release>
-    <release version="43~beta" date="2022-08-10">
+    <release version="43~rc" date="2022-09-03" type="development">
       <description>
         <ul>
           <li>Localization updates</li>
         </ul>
       </description>
     </release>
-    <release version="43~alpha" date="2022-07-13">
+    <release version="43~beta" date="2022-08-10" type="development">
+      <description>
+        <ul>
+          <li>Localization updates</li>
+        </ul>
+      </description>
+    </release>
+    <release version="43~alpha" date="2022-07-13" type="development">
       <description>
         <p>A new cycle begins.</p>
         <ul>
