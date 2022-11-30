@@ -11,7 +11,7 @@
   "Searches for the current work in the Devhelp assistant"
   (interactive)
   (setq w (current-word))
-  (start-process-shell-command "devhelp" nil (concat "devhelp -s " w))
+  (start-process-shell-command "devhelp" nil (concat "devhelp -a " w))
   (set-process-query-on-exit-flag (get-process "devhelp") nil)
   )
 
