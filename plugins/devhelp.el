@@ -4,14 +4,14 @@
 (defun devhelp-word-at-point ()
   "Searches for the current word in Devhelp"
   (interactive)
-  (start-process-shell-command "devhelp" nil "devhelp" "-s" (current-word))
+  (start-process-shell-command "devhelp" nil (concat "devhelp -s " (current-word)))
   (set-process-query-on-exit-flag (get-process "devhelp") nil)
   )
 (defun devhelp-assistant-word-at-point ()
   "Searches for the current work in the Devhelp assistant"
   (interactive)
   (setq w (current-word))
-  (start-process-shell-command "devhelp" nil "devhelp" "-a" w)
+  (start-process-shell-command "devhelp" nil (concat "devhelp -s " w))
   (set-process-query-on-exit-flag (get-process "devhelp") nil)
   )
 
