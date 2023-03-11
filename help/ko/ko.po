@@ -1,0 +1,416 @@
+# Korean translation for devhelp.
+# Copyright (C) 2023 devhelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the devhelp package.
+# Seong-ho Cho <shcho@gnome.org>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devhelp main\n"
+"POT-Creation-Date: 2023-01-25 16:07+0000\n"
+"PO-Revision-Date: 2023-03-11 12:25+0900\n"
+"Language-Team: Korean <gnome-kr@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "조성호 <shcho@gnome.org>, 2023"
+
+#. (itstool) path: page/title
+#. (itstool) path: section/title
+#: C/book-format.page:14 C/installing-api-documentation.page:23
+msgid "Book format"
+msgstr "책 형식"
+
+#. (itstool) path: synopsis/p
+#: C/book-format.page:17
+msgid ""
+"A “book” in <app>Devhelp</app> is the API documentation for one module, or "
+"package (usually a library). This page describes the format that a book "
+"needs to follow in order for <app>Devhelp</app> to recognize it."
+msgstr ""
+"<app>개발 도움말</app>의 “책”은 하나의 모듈 또는 패키지(보통 라이브러리)의 "
+"API 문서입니다. 이 페이지에서는 <app>개발 도움말</app>을 이해할 수 있도록 따"
+"라가는 책 형식을 설명하겠습니다."
+
+#. (itstool) path: page/p
+#: C/book-format.page:24
+msgid ""
+"The content of a book is placed in one directory (that directory contains "
+"only one book, it cannot contain several books). The directory is comprised "
+"of:"
+msgstr ""
+"책의 내용은 디렉터리 하나에 들어있습니다(이 디렉터리는 책에 하나만 들어있으"
+"며 여러 책이 들어갈 수 없습니다). 디렉터리는 다음의 내용이 들어있습니다:"
+
+#. (itstool) path: item/p
+#: C/book-format.page:30
+msgid "HTML pages, plus possibly CSS files, images, etc;"
+msgstr "HTML 페이지, 가능하다면 CSS 파일, 그림, 등."
+
+#. (itstool) path: item/p
+#: C/book-format.page:33
+msgid ""
+"An index file with the <file>*.devhelp2</file> file extension, see <link "
+"xref=\"index-file-format\"/> for more information."
+msgstr ""
+"<file>*.devhelp2</file> 파일 확장자를 가진 색인 파일의 자세한 내용은 <link "
+"xref=\"index-file-format\"/> 링크에서 살펴보십시오."
+
+#. (itstool) path: note/p
+#: C/book-format.page:39
+msgid ""
+"Restriction: the name of the directory the <file>*.devhelp2</file> file is "
+"in and the name of the <file>*.devhelp2</file> file (minus the extension) "
+"must match. In other words, if the book directory is called "
+"<code>$book_name</code>, then the absolute path to the index file should end "
+"with <code>$book_name/$book_name.devhelp2</code>. That way, when "
+"<app>Devhelp</app> knows the directory name, it directly knows the location "
+"to the index file."
+msgstr ""
+"제한: <file>*.devhelp2</file> 파일이 들어간 디렉터리의 이름과 (확장자를 뺀) "
+"<file>*.devhelp2</file> 파일의 이름은 반드시 일치해야 합니다. 다시 말해, 책 "
+"디렉터리 이름이 <code>$book_name</code>이면, 색인 파일 절대 경로는 "
+"<code>$book_name/$book_name.devhelp2</code>로 끝나야 합니다. 이런 방식으로 "
+"<app>개발 도움말</app>에서 디렉터리 이름을 알아내고 색인 파일의 위치를 바로 "
+"알아냅니다."
+
+#. (itstool) path: page/title
+#: C/index-file-format.page:14
+msgid "Index file format"
+msgstr "색인 파일 형식"
+
+#. (itstool) path: synopsis/p
+#: C/index-file-format.page:17
+msgid ""
+"This page describes the purpose and the format of <file>*.devhelp2</file> "
+"index files."
+msgstr ""
+"이 페이지에서는 <file>*.devhelp2</file> 색인 파일의 존재 목적과 구성 형식을 "
+"설명합니다."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:23
+msgid ""
+"A book (see <link xref=\"book-format\"/>) contains one index file. The index "
+"file has the extension <file>.devhelp2</file> and has an XML format."
+msgstr ""
+"책(<link xref=\"book-format\"/> 참고)에는 색인 파일 하나가 들어있습니다. 색"
+"인 파일은 <file>.devhelp2</file> 확장자가 붙으며 XML 형식의 내용이 들어있습니"
+"다."
+
+#. (itstool) path: note/p
+#: C/index-file-format.page:29
+msgid ""
+"The “2” in the <file>*.devhelp2</file> file extension is because it is the "
+"second version of the file format. The first version of the format, with the "
+"<file>*.devhelp</file> file extension, is deprecated and its support in "
+"<app>Devhelp</app> may be removed in the future. On application startup, "
+"when <app>Devhelp</app> scans the filesystem to find books, it emits a "
+"warning message in the terminal for each book that uses a deprecated format."
+msgstr ""
+"<file>*.devhelp2</file> 파일 확장자의 숫자 “2”는 파일 형식의 두번째 버전이기 "
+"떄문에 붙었습니다. <file>*.devhelp</file> 파일 확장자가 붙은 첫번째 형식 버전"
+"은 오래되어 <app>개발 도움말</app>에서 앞으로 제거할 예정입니다. 앱을 시작할 "
+"때, <app>개발 도움말</app>은 파일 시스템을 검사하여 책을 찾으며, 오래된 형식"
+"을 사용하는 책을 찾을 때마다 터미널에 경고 메시지를 출력합니다."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:40
+msgid "The index file mainly contains:"
+msgstr "색인 파일에는 주로 다음 내용이 있습니다:"
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:44
+msgid "The book structure (like a table of contents)."
+msgstr "책 구조(목차와 유사)."
+
+#. (itstool) path: item/p
+#: C/index-file-format.page:47
+msgid "A list of symbols (functions, types, macros, signals, properties, …)."
+msgstr "심볼 목록(함수, 형식, 매크로, 시그널, 속성, 등)."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:51
+msgid ""
+"These contain links to the HTML files to reach the corresponding pages and "
+"symbols."
+msgstr "관련 페이지와 심볼 설명을 보는 HTML 파일 링크가 들어있습니다."
+
+#. (itstool) path: page/p
+#: C/index-file-format.page:55
+msgid ""
+"In <app>Devhelp</app> the book structure is shown in the side panel. And the "
+"<link xref=\"search\">search in the side panel</link> shows results found in "
+"the index files."
+msgstr ""
+"<app>개발 도움말</app> 책 구조는 가장 자리 창에 나타납니다. 그리고 <link "
+"xref=\"search\">가장자리 창에서 검색</link> 결과는 색인 파일에서 찾을 수 "
+"있습니다."
+
+#. (itstool) path: section/title
+#: C/index-file-format.page:62
+msgid "Specification of the <file>*.devhelp2</file> XML file format"
+msgstr "<file>*.devhelp2</file> XML 파일 형식 명세"
+
+#. (itstool) path: section/p
+#: C/index-file-format.page:63
+msgid ""
+"Unfortunately the <file>*.devhelp2</file> XML file format is not well "
+"documented. There is still some hope that it will be fixed in the near "
+"future. In the meantime, we recommend to look at what <link "
+"xref=\"installing-api-documentation#gtk-doc\">GTK-Doc</link> generates. For "
+"the most precise definition of what <app>Devhelp</app> supports, read the "
+"parser source code and the <app>Devhelp</app> API reference."
+msgstr ""
+"불행하게도 <file>*.devhelp2</file> XML 파일 형식에 대한 제대로 된 설명 문서"
+"가 없습니다. 앞으로도 계속 수정해나가야 할 부분이 있습니다. 그동안 <link "
+"xref=\"installing-api-documentation#gtk-doc\">GTK 문서</link> 에서 만드는 내"
+"용이 무엇인지 확인해보시길 추천합니다. <app>개발 도움말</app>의 실제 지원 정"
+"의를 알아보시려면 파서 소스 코드와 <app>개발 도움말</app> API 참고서를 읽으십"
+"시오."
+
+#. (itstool) path: info/title
+#: C/index.page:10
+msgctxt "link:trail"
+msgid "Devhelp User Documentation"
+msgstr "개발 도움말 사용자 문서"
+
+#. (itstool) path: info/title
+#: C/index.page:11
+msgctxt "text"
+msgid "Devhelp User Documentation"
+msgstr "개발 도움말 사용자 문서"
+
+#. (itstool) path: info/title
+#: C/index.page:12
+msgctxt "link"
+msgid "Devhelp User Documentation"
+msgstr "개발 도움말 사용자 문서"
+
+#. (itstool) path: info/desc
+#: C/index.page:14
+msgid "Devhelp User Documentation"
+msgstr "개발 도움말 사용자 문서"
+
+#. (itstool) path: page/title
+#: C/index.page:17
+msgid "<_:media-1/> Devhelp User Documentation"
+msgstr "<_:media-1/> 개발 도움말 사용자 문서"
+
+#. (itstool) path: synopsis/p
+#: C/index.page:23
+msgid ""
+"Devhelp is a developer tool for browsing and searching API documentation."
+msgstr "개발 도움말은 API 문서를 탐색하고 검색하는 개발자 도구입니다."
+
+#. (itstool) path: page/title
+#: C/installing-api-documentation.page:14
+msgid "Installing API documentation"
+msgstr "API 문서 설치"
+
+#. (itstool) path: synopsis/p
+#: C/installing-api-documentation.page:17
+msgid "How <app>Devhelp</app> finds the API documentation."
+msgstr "<app>개발 도움말</app>이 API 문서를 찾는 방법입니다."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:24
+msgid ""
+"See <link xref=\"book-format\"/> for information on the API documentation "
+"format that <app>Devhelp</app> recognizes."
+msgstr ""
+"<app>개발 도움말</app>에서 인식하는 API 문서 형식의 내용은 <link xref=\"book-"
+"format\"/>에서 확인해보십시오."
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:31
+msgid "Books locations"
+msgstr "책 위치"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:32
+msgid ""
+"Once a book follows the right format, its directory needs to be installed at "
+"a location where <app>Devhelp</app> will find it."
+msgstr ""
+"책은 올바른 형식을 따르며, <app>개발 도움말</app>이 찾는 위치에 책 디렉터리"
+"를 설치해야 합니다."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:36
+msgid ""
+"<app>Devhelp</app> uses the <link href=\"https://specifications.freedesktop."
+"org/basedir-spec/latest/\">XDG Base Directory Specification</link> to find "
+"the books. The list of locations searched is:"
+msgstr ""
+"<app>개발 도움말</app>에서는 책을 찾을 때 <link href=\"https://"
+"specifications.freedesktop.org/basedir-spec/latest/\">XDG 기반 디렉터리 명세"
+"</link>를 따릅니다. 검색 위치 목록은 다음과 같습니다:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:47
+msgid ""
+"Note that the two latter consist of lists of directories to look for. "
+"Directory values are separated by <code>:</code> characters. Those "
+"environment variables are normally set up by the desktop environment or "
+"distribution."
+msgstr ""
+"디렉터리 마지막의 두 항목이 찾을 대상입니다. 디렉터리 값은 <code>:</code> 문"
+"자로 구분합니다. 이 환경변수는 데스크톱 환경 또는 배포판에서 설정합니다."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:53
+msgid ""
+"Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
+"typical system:"
+msgstr ""
+"일반 시스템에서의 <code>$XDG_DATA_HOME</code> 변수의 색인 파일 위치값 예제는 "
+"다음과 같습니다:"
+
+#. (itstool) path: item/p
+#: C/installing-api-documentation.page:61
+msgid ""
+"<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
+"file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
+"org/\">Flatpak</link>."
+msgstr ""
+"<app>개발 도움말</app>을 <link href=\"https://flatpak.org/\">Flatpak</link>으"
+"로 실행하면 <file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib."
+"devhelp2</file> 입니다."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:67
+msgid ""
+"Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
+"typical system:"
+msgstr ""
+"일반 시스템에서의 <code>$XDG_DATA_DIRS</code> 변수의 색인 파일 위치값 예제는 "
+"다음과 같습니다:"
+
+#. (itstool) path: section/title
+#: C/installing-api-documentation.page:79
+msgid "GTK-Doc"
+msgstr "GTK 문서"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:80
+msgid ""
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
+"tool to generate API documentation from comments added to C code. It is used "
+"by GLib, GTK and GNOME libraries and applications."
+msgstr ""
+"<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK 문서</link>는 C코드"
+"에 추가한 주석 내용을 추려내어 API 문서로 만드는 도구입니다. Glib, GTK, 그놈 "
+"라이브러리 및 프로그램에서 사용합니다."
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:85
+msgid "GTK-Doc installs the API reference of a module into:"
+msgstr "GTK 문서는 모듈의 API 문서를 다음 경로에 설치합니다:"
+
+#. (itstool) path: section/p
+#: C/installing-api-documentation.page:91
+msgid ""
+"It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
+"Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
+"(once installed in the right location, that is)."
+msgstr ""
+"<app>개발 도움말</app>에서 지원하는 책 형식을 따릅니다. GTK 문서를 사용하면 "
+"<app>개발 도움말</app>에서 API 문서를 알아서 탐색합니다(제대로 된 위치에 한"
+"번 설치하면 그렇습니다)."
+
+#. (itstool) path: page/title
+#: C/search.page:14
+msgid "Search in the side panel"
+msgstr "가장자리 창 검색"
+
+#. (itstool) path: synopsis/p
+#: C/search.page:17
+msgid "How the search in the side panel works."
+msgstr "가장자리 창에서 검색이 동작하는 방식입니다."
+
+#. (itstool) path: section/title
+#: C/search.page:21
+msgid "Case sensitivity"
+msgstr "대소문자 구별"
+
+#. (itstool) path: section/p
+#: C/search.page:22
+msgid ""
+"The search is case sensitive when there is an uppercase letter. If the "
+"search terms are all in lowercase, the search is case insensitive. It's like "
+"the “smartcase” feature present in some text editors."
+msgstr ""
+"대문자가 있을 경우 대소문자를 구별하여 검색합니다. 모두 소문자만 있다면, 대소"
+"문자를 따로 구별하지 않습니다. 일부 텍스트 편집기에 있는 “스마트케이스” 기능"
+"과 유사합니다."
+
+#. (itstool) path: section/title
+#: C/search.page:30
+msgid "Glob-style pattern matching"
+msgstr "글롭 방식 패턴 일치"
+
+#. (itstool) path: section/p
+#: C/search.page:31
+msgid ""
+"A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
+"an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
+msgstr ""
+"검색 단어는 ‘*’과 ‘?’ 와일드 카드 문자가 들어간 패턴일 수 있습니다. ‘*’ 문자"
+"는 빈 문자열 또한 해당하는 임의 문자열에 대응하며, ‘?’ 문자는 임의 문자 하나"
+"에 대응합니다."
+
+#. (itstool) path: section/title
+#: C/search.page:39
+msgid "Several search terms"
+msgstr "다양한 검색 단어"
+
+#. (itstool) path: section/p
+#: C/search.page:40
+msgid ""
+"You can search with several search terms (separated by spaces). A symbol "
+"will match only if <em>all</em> the search terms individually match (not "
+"necessarily in the same order of appearance)."
+msgstr ""
+"여러 검색 단어(공백 문자로 구분)로 검색할 수 있습니다. <em>모든</em> 검색 단"
+"어가 각각 일치할 경우에만 대상 심볼이 나타납니다(나타나는 순서대로 단어를 적"
+"을 필요는 없습니다)."
+
+#. (itstool) path: section/p
+#: C/search.page:45
+msgid ""
+"Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
+"wildcard it forces the keywords to be in the same order."
+msgstr ""
+"‘*’ 와일드카드 문자로 검색할 때는 다릅니다: ‘*’ 와일드카드 문자를 쓰는 경우 "
+"사용 위치에 따라 키워드 배치 순서를 강제로 정합니다."
+
+#. (itstool) path: section/p
+#: C/search.page:49
+msgid ""
+"For example when searching “<input>gtk window application</input>”, it "
+"matches both “<code>gtk_window_get_application()</code>” and "
+"“<code>GtkApplicationWindow</code>” (among other symbols)."
+msgstr ""
+"예를 들어 “<input>gtk window application</input>”을 검색한다면, "
+"“<code>gtk_window_get_application()</code>” 결과와 "
+"“<code>GtkApplicationWindow</code>” 결과 모두에 일치합니다(다른 심볼에도 해"
+"당)."
+
+#. (itstool) path: section/p
+#: C/search.page:54
+msgid ""
+"On the other hand, searching “<input>gtk*window*application</input>” will "
+"match “<code>gtk_window_get_application()</code>” but not "
+"“<code>GtkApplicationWindow</code>”."
+msgstr ""
+"반면에, “<input>gtk*window*application</input>”을 검색한다면 "
+"“<code>gtk_window_get_application()</code>” 결과와는 일치하지만 "
+"“<code>GtkApplicationWindow</code>” 결과에는 일치하지 않습니다."
