@@ -10,7 +10,7 @@
     "desktop-file-name-prefix" : "(Development) ",
     "finish-args" : [
         "--share=ipc",
-        "--socket=x11",
+        "--socket=fallback-x11",
         "--socket=wayland",
         "--device=dri",
         "--filesystem=host:ro"
