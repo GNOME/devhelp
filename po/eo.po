@@ -1,38 +1,39 @@
 # Esperanto translation for devhelp.
 # Copyright (C) 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the devhelp package.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2009, 2011, 2015, 2018.
 # Carmen Bianca BAKKER <carmen@carmenbianca.eu>, 2018.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2009-2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-10-12 13:18+0000\n"
-"PO-Revision-Date: 2018-11-10 01:49+0200\n"
+"POT-Creation-Date: 2023-09-21 05:34+0000\n"
+"PO-Revision-Date: 2023-09-24 01:58+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 42.0\n"
 "X-Project-Style: gnome\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
-#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:270 src/dh-app.c:598
+#: data/org.gnome.Devhelp.appdata.xml.in.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:141 src/dh-app.c:471
 msgid "Devhelp"
 msgstr "Devhelpo"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:272
+#: data/org.gnome.Devhelp.appdata.xml.in.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:143
 msgid "A developer tool for browsing and searching API documentation"
 msgstr "Programista ilo por foliumi kaj serĉi API dokumtaron"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:9
+#: data/org.gnome.Devhelp.appdata.xml.in.in:9
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation. It "
 "provides an easy way to navigate through libraries and to search by "
@@ -42,7 +43,7 @@ msgstr ""
 "provizas facilan manieron por navigi tra bibliotekojn kaj serĉi laŭ funkcio, "
 "struct, aŭ makroo."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:14
+#: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
@@ -50,19 +51,19 @@ msgstr ""
 "La dokumentaron oni devas instali loke, do retkonekto ne necesas por uzi "
 "Devhelpo."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:18
+#: data/org.gnome.Devhelp.appdata.xml.in.in:18
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
-"Devhelpo funkcias indiĝene kun GTK-Doc, do la GTK+ kaj GNOME-bibliotekoj "
-"estas bone subtenitaj. Sed aliajn programistajn platformojn oni ankaŭ povas "
-"subteni, se la API dokumentaro disponeblas per HTML, kaj se *.devhelp2 "
-"indeksa dosiero generiĝas."
+"Devhelpo funkcias origine kun GTK-Doc, do la bibliotekoj GTK kaj GNOME estas "
+"bone subtenataj. Sed ankaŭ aliaj programistaj platformoj povas esti "
+"subtenataj, se la API-dokumentaro estas havebla en HTML kaj *.devhelp2-"
+"indeksa dosiero estas generita."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:24
+#: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
 "Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
@@ -72,20 +73,30 @@ msgstr ""
 "Anjuta, kaj kromprogramoj disponeblas por diversaj tekstredaktiloj (gedit, "
 "Vim, Emacs, Geany, …)."
 
-#: data/org.gnome.Devhelp.desktop.in:5
+#: data/org.gnome.Devhelp.appdata.xml.in.in:36
+msgid "Devhelp's main window"
+msgstr "Ĉefa fenestro de Devhelpo"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:40
+msgid "Devhelp's main window with an open book"
+msgstr "La ĉefa fenestro de Devhelpo kun malfermita libro"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:44
+msgid "Devhelp supports opening multiple books"
+msgstr "Devhelpo subtenas malfermi plurajn librojn"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:48
+msgid "Devhelp supports HTML documentation formats"
+msgstr "Devhelpo subtenas HTML-dokumentarformatojn"
+
+#: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "API Documentation Browser"
 msgstr "API dokumentara foliumilo"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Devhelp.desktop.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr "dokumentaro;informo;manlibro;programisto;verkisto;helpo;api;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -177,89 +188,89 @@ msgstr "Tiparo por teksto kun fiksita larĝo"
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Tiparo por teksto kun fiksita larĝo. kiel ĉe kodekzemploj."
 
-#: devhelp/dh-assistant-view.c:400
+#: devhelp/dh-assistant-view.c:385
 msgid "Book:"
 msgstr "Libro:"
 
-#: devhelp/dh-book.c:313
+#: devhelp/dh-book.c:298
 #, c-format
 msgid "Language: %s"
 msgstr "Lingvo: %s"
 
-#: devhelp/dh-book.c:314
+#: devhelp/dh-book.c:299
 msgid "Language: Undefined"
 msgstr "Lingvo: nedifinite"
 
-#: devhelp/dh-book-tree.c:755
+#: devhelp/dh-book-tree.c:749
 msgid "_Collapse All"
 msgstr "_Maletendi ĉiujn"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:551
+#: devhelp/dh-link.c:536
 msgid "Book"
 msgstr "Libro"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:555
+#: devhelp/dh-link.c:540
 msgid "Page"
 msgstr "Paĝo"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:560
+#: devhelp/dh-link.c:545
 msgid "Keyword"
 msgstr "Ŝlosilvorto"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:566
+#: devhelp/dh-link.c:551
 msgid "Function"
 msgstr "Funkcio"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:572
+#: devhelp/dh-link.c:557
 msgid "Struct"
 msgstr "Strukturo"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:578
+#: devhelp/dh-link.c:563
 msgid "Macro"
 msgstr "Makroo"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:584
+#: devhelp/dh-link.c:569
 msgid "Enum"
 msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:590
+#: devhelp/dh-link.c:575
 msgid "Type"
 msgstr "Tipo"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:596
+#: devhelp/dh-link.c:581
 msgid "Property"
 msgstr "Eco"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:602
+#: devhelp/dh-link.c:587
 msgid "Signal"
 msgstr "Signalo"
 
-#: devhelp/dh-web-view.c:652
+#: devhelp/dh-web-view.c:675
 msgid "Empty Page"
 msgstr "Malplena paĝo"
 
@@ -271,202 +282,243 @@ msgstr "Devhelp-subteno"
 msgid "Show API Documentation"
 msgstr "Montri la API-dokumentadon"
 
-#. action, icon, label, accel, tooltip
-#. App menu
-#: src/dh-app.c:51
-msgid "New _Window"
-msgstr "Nova _fenestro"
+#: src/dh-app.c:140
+msgid "Devhelp (development build)"
+msgstr "Devhelpo (evoluokonstruaĵo)"
 
-#: src/dh-app.c:52
-msgid "Open a new window"
-msgstr "Malfermi novan fenestron"
-
-#: src/dh-app.c:53
-msgid "_Preferences"
-msgstr "_Agordoj"
-
-#: src/dh-app.c:54
-msgid "_Keyboard Shortcuts"
-msgstr "_Klavkombinoj"
-
-#: src/dh-app.c:55
-msgid "_Help"
-msgstr "_Helpo"
-
-#: src/dh-app.c:56
-msgid "_About"
-msgstr "_Pri"
-
-#: src/dh-app.c:57
-msgid "_Quit"
-msgstr "Ĉ_esi"
-
-#: src/dh-app.c:58
-msgid "Close all windows"
-msgstr "Fermi ĉiujn fenestrojn"
-
-#. Window menu
-#: src/dh-app.c:61
-msgid "_Side Panel"
-msgstr "Flanka _panelo"
-
-#: src/dh-app.c:62
-msgid "Toggle side panel visibility"
-msgstr "Baskuligi videblecon de flanka panelo"
-
-#: src/dh-app.c:63
-msgid "_Print"
-msgstr "_Presi"
-
-#: src/dh-app.c:64
-msgid "_Find"
-msgstr "_Serĉi"
-
-#: src/dh-app.c:65
-msgid "Find in current page"
-msgstr "Serĉi en aktuala paĝo"
-
-#: src/dh-app.c:66
-msgid "_Larger Text"
-msgstr "Pli _granda teksto"
-
-#: src/dh-app.c:67
-msgid "Larger text"
-msgstr "Pli granda teksto"
-
-#: src/dh-app.c:68
-msgid "S_maller Text"
-msgstr "Pli _malgranda teksto"
-
-#: src/dh-app.c:69
-msgid "Smaller text"
-msgstr "Pli malgranda teksto"
-
-#: src/dh-app.c:70
-msgid "_Normal Size"
-msgstr "_Normala grando"
-
-#: src/dh-app.c:71
-msgid "Normal size"
-msgstr "Normala grando"
-
-#. action, icon, label, accel, tooltip
-#: src/dh-app.c:111
-msgid "Open a new tab"
-msgstr "Malfermi novan langeton"
-
-#: src/dh-app.c:112
-msgid "Close the current tab"
-msgstr "Fermi aktualan langeton"
-
-#: src/dh-app.c:113
-msgid "Go back"
-msgstr "Reen"
-
-#: src/dh-app.c:114
-msgid "Go forward"
-msgstr "Antaŭen"
-
-#: src/dh-app.c:115
-msgid "Focus global search"
-msgstr "Fokusi ĝeneralan serĉon"
-
-#: src/dh-app.c:274
+#: src/dh-app.c:145
 msgid "translator-credits"
 msgstr ""
 "Kristjan SCHMIDT\n"
 "Carmen Bianca BAKKER <carmen@carmenbianca.eu>"
 
-#: src/dh-app.c:276
+#: src/dh-app.c:147
 msgid "Devhelp Website"
 msgstr "Devhelp-retejo"
 
-#: src/dh-app.c:487
+#: src/dh-app.c:375
 msgid "Opens a new Devhelp window"
 msgstr "Malfermas novan Devhelp-fenestron"
 
-#: src/dh-app.c:492
+#: src/dh-app.c:380
 msgid "Search for a keyword"
 msgstr "Serĉi slosilvorton"
 
-#: src/dh-app.c:493 src/dh-app.c:498
+#: src/dh-app.c:381 src/dh-app.c:386
 msgid "KEYWORD"
 msgstr "ŜLOSILVORTO"
 
-#: src/dh-app.c:497
+#: src/dh-app.c:385
 msgid "Search and display any hit in the assistant window"
 msgstr "Serĉi kaj montri ĉiun trafon en la asistanta fenestro"
 
-#: src/dh-app.c:502
+#: src/dh-app.c:390
 msgid "Display the version and exit"
 msgstr "Montri la version kaj eliri"
 
-#: src/dh-app.c:507
+#: src/dh-app.c:395
 msgid "Quit any running Devhelp"
 msgstr "Ĉesi ĉiujn aperojn de Devhelp"
 
 #. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
+#: src/dh-assistant.ui:13
 msgid "Devhelp — Assistant"
-msgstr "Devhelp — Asistanto"
+msgstr "Devhelpo — Asistanto"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:536
 msgid "Enabled"
 msgstr "Ŝaltita"
 
-#: src/dh-preferences.c:565
+#: src/dh-preferences.c:550
 msgid "Title"
 msgstr "Titolo"
 
-#: src/dh-preferences.ui:26
+#: src/dh-preferences.ui:12
 msgid "Preferences"
 msgstr "Agordoj"
 
-#: src/dh-preferences.ui:62
+#: src/dh-preferences.ui:48
 msgid "_Group by language"
 msgstr "_Grupigi laŭ lingvo"
 
-#: src/dh-preferences.ui:104
+#: src/dh-preferences.ui:90
 msgid "Book Shelf"
 msgstr "Libraro"
 
-#: src/dh-preferences.ui:125
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
 msgstr "_Uzi sistemajn tiparojn"
 
-#: src/dh-preferences.ui:149
+#: src/dh-preferences.ui:135
 msgid "_Variable width: "
 msgstr "_Variebla larĝo: "
 
-#: src/dh-preferences.ui:162
+#: src/dh-preferences.ui:148
 msgid "_Fixed width:"
 msgstr "_Fiksa larĝo:"
 
-#: src/dh-preferences.ui:223
+#: src/dh-preferences.ui:209
 msgid "Fonts"
 msgstr "Tiparoj"
 
-#. General group
-#: src/dh-window.c:393
-msgid "General"
-msgstr "Ĝenerala"
+#: src/dh-window.ui:7
+msgid "New _Window"
+msgstr "Nova _fenestro"
 
-#. Zoom group
-#: src/dh-window.c:407
-msgid "Zoom"
-msgstr "Zomo"
+#: src/dh-window.ui:13
+msgid "_Print"
+msgstr "_Presi"
 
-#: src/dh-window.c:572
+#: src/dh-window.ui:17
+msgid "_Find"
+msgstr "_Serĉi"
+
+#: src/dh-window.ui:23
+msgid "_Larger Text"
+msgstr "Pli _granda teksto"
+
+#: src/dh-window.ui:27
+msgid "S_maller Text"
+msgstr "Pli _malgranda teksto"
+
+#: src/dh-window.ui:31
+msgid "_Normal Size"
+msgstr "_Normala grando"
+
+#: src/dh-window.ui:37
+msgid "_Preferences"
+msgstr "_Agordoj"
+
+#: src/dh-window.ui:41
+msgid "_Keyboard Shortcuts"
+msgstr "_Klavkombinoj"
+
+#: src/dh-window.ui:45
+msgid "_Help"
+msgstr "_Helpo"
+
+#: src/dh-window.ui:49
+msgid "_About Devhelp"
+msgstr "_Pri Devhelp"
+
+#: src/dh-window.ui:77
 msgid "Back"
 msgstr "Reen"
 
-#: src/dh-window.c:576
+#: src/dh-window.ui:96
 msgid "Forward"
 msgstr "Antaŭen"
 
-#: src/dh-window.c:599
+#: src/dh-window.ui:121
+msgid "Toggle Side Panel"
+msgstr "Baskuligi flankan panelon"
+
+#: src/dh-window.ui:162
 msgid "New Tab"
 msgstr "Nova langeto"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Ĝenerala"
+
+#: src/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "Focus global search"
+msgstr "Fokusi ĝeneralan serĉon"
+
+#: src/help-overlay.ui:26
+msgctxt "shortcut window"
+msgid "Find in current page"
+msgstr "Trovi en la aktuala paĝo"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Find the next match"
+msgstr "Trovi la sekvan kongruaĵon"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Find the previous match"
+msgstr "Trovi la antaŭan kongruaĵon"
+
+#: src/help-overlay.ui:48
+msgctxt "shortcut window"
+msgid "Open a new window"
+msgstr "Malfermi novan fenestron"
+
+#: src/help-overlay.ui:55
+msgctxt "shortcut window"
+msgid "Open a new tab"
+msgstr "Malfermi novan langeton"
+
+#: src/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Toggle side panel visibility"
+msgstr "Baskuligi videblecon de flanka panelo"
+
+#: src/help-overlay.ui:69
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Reen"
+
+#: src/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Go forward"
+msgstr "Antaŭen"
+
+#: src/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Print"
+msgstr "Presi-klavo"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Close the current window"
+msgstr "Fermi la aktualan fenestron"
+
+#: src/help-overlay.ui:97
+msgctxt "shortcut window"
+msgid "Close all windows"
+msgstr "Fermi ĉiujn fenestrojn"
+
+#: src/help-overlay.ui:105
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Zomo"
+
+#: src/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Enzomi"
+
+#: src/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Malzomi"
+
+#: src/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Reagordi zomon"
+
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
+
+#~ msgid "_About"
+#~ msgstr "_Pri"
+
+#~ msgid "_Quit"
+#~ msgstr "Ĉ_esi"
+
+#~ msgid "Larger text"
+#~ msgstr "Pli granda teksto"
+
+#~ msgid "Smaller text"
+#~ msgstr "Pli malgranda teksto"
+
+#~ msgid "Normal size"
+#~ msgstr "Normala grando"
 
 #~ msgid ""
 #~ "https://wiki.gnome.org/Apps/Devhelp?action=AttachFile&#x26;do=view&#x26;"
@@ -587,10 +639,6 @@ msgstr "Nova langeto"
 #~ msgid "_Close"
 #~ msgstr "_Fermi"
 
-#~| msgid "About Devhelp"
-#~ msgid "_About Devhelp"
-#~ msgstr "_Pri Devhelp"
-
 #~ msgid "Show API Documentation for the word at the cursor"
 #~ msgstr "Montri la API-dokumentadon pri la vorto ĉe la kursoro"
 
@@ -617,9 +665,6 @@ msgstr "Nova langeto"
 
 #~ msgid "Find Next"
 #~ msgstr "Trovi la sekvan"
-
-#~ msgid "Find Previous"
-#~ msgstr "Trovi la antaŭan"
 
 #~ msgid "Go to the previous page"
 #~ msgstr "Iri al la antaŭa paĝo"
