@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2023-01-25 16:07+0000\n"
-"PO-Revision-Date: 2023-09-21 07:31+0200\n"
+"POT-Creation-Date: 2023-09-21 05:34+0000\n"
+"PO-Revision-Date: 2023-09-30 15:24+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -37,12 +37,17 @@ msgid ""
 "provides an easy way to navigate through libraries and to search by "
 "function, struct, or macro."
 msgstr ""
+"Devhelp პროგრამისტის დამხმარე პროგრამაა API-ის დოკუმენტაციაში ძებნისთვის. ის "
+"უზრუნველყოფს ადვილ გზას, რათა გაერკვეთ ბიბლიოთეკებში და მოძებნოთ ფუნქციით, "
+"სტრუქტურით ან მაკროთი."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
 msgstr ""
+"დოკუმენტაცია ლოკალურად უნდა იყოს დაყენებული. ასე რომ Devhelp-ის "
+"გამოსაყენებლად ინტერნეტთან მიერთება აუცილებელი არაა."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:18
 msgid ""
@@ -51,6 +56,10 @@ msgid ""
 "as the API documentation is available in HTML and a *.devhelp2 index file is "
 "generated."
 msgstr ""
+"Devhelp-ს GTK-Doc-თან მუშაობა პირდაპირ შეუძლია, ასე რომ, GTK-ის და GNOME-ის "
+"ბიბლიოთეკები კარგადაა მხარდაჭერილი. მაგრამ სხვა პროგრამირების პლატფორმებიც "
+"მხარდაჭერილია, თუ API-ის დოკუმენტაცია HTML-შია ხელმისაწვდომი და *.devhelp2 "
+"ინდექსის ფაილი არსებობს."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
@@ -58,6 +67,9 @@ msgid ""
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr ""
+"Devhelp ინტეგრირებულია ისეთ აპლიკაციებთან, როგორიცაა Glade, Builder და "
+"Anjduta და მისი დამატებები ხელმისაწვდომია ისეთი რედაქტორებისთვის, როგორიცაა "
+"gedit, vim, emacs, geany და ა.შ."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:36
 msgid "Devhelp's main window"
@@ -151,6 +163,8 @@ msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
 msgstr ""
+"დაჯგუფდება მომხმარებლის ინტერფეისში წიგნები პროგრამირების ენის მიხედვით, თუ "
+"არა."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
@@ -297,7 +311,7 @@ msgstr "KEYWORD"
 
 #: src/dh-app.c:385
 msgid "Search and display any hit in the assistant window"
-msgstr ""
+msgstr "ძებნა და ყველა დამთხვევის მოძებნა დამხმარე ფანჯარაში"
 
 #: src/dh-app.c:390
 msgid "Display the version and exit"
@@ -305,7 +319,7 @@ msgstr "ვერსიის ჩვენება და გასვლა"
 
 #: src/dh-app.c:395
 msgid "Quit any running Devhelp"
-msgstr ""
+msgstr "გამოდით ყველა გაშვებული Devhelp-დან"
 
 #. Please don't translate "Devhelp"
 #: src/dh-assistant.ui:13
