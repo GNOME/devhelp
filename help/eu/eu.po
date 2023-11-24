@@ -1,18 +1,18 @@
 # Basque translation for devhelp.
 # Copyright (C) 2021 devhelp's COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2021.
+# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2021, 2023.
 #
 msgid ""
 msgstr "Project-Id-Version: devhelp main\n"
-"POT-Creation-Date: 2021-09-06 08:19+0000\n"
-"PO-Revision-Date: 2021-09-06 08:19+0000\n"
+"POT-Creation-Date: 2023-01-25 16:07+0000\n"
+"PO-Revision-Date: 2023-11-24 08:19+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: eu\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -63,7 +63,7 @@ msgid ""
 "<code>$book_name/$book_name.devhelp2</code>. That way, when <app>Devhelp</"
 "app> knows the directory name, it directly knows the location to the index "
 "file."
-msgstr ""
+msgstr "Muga: <file>*.devhelp2</file> fitxategia dagoen direktorioaren izenak eta <file>*.devhelp2</file> fitxategiarenak (luzapena kenduta) bat etorri behar dute. Liburu-direktorioaren izena <code>$liburu_izena</code> bada, orduan indize-fitxategiaren bide-izen absolutuaren amaierak <code>$liburu_izena/$liburu_izena.devhelp2</code> izan behar du. Horrela, <app>Devhelp</app> aplikazioak direktorioaren izena ezagutzen badu, indize-fitxategiaren kokalekua ezagutuko du."
 
 #. (itstool) path: page/title
 #: C/index-file-format.page:14
@@ -93,7 +93,7 @@ msgid ""
 "<app>Devhelp</app> may be removed in the future. On application startup, "
 "when <app>Devhelp</app> scans the filesystem to find books, it emits a "
 "warning message in the terminal for each book that uses a deprecated format."
-msgstr ""
+msgstr "<file>*.devhelp2</file> fitxategi-luzapeneko “2” zenbakiak esan nahi du fitxategi-formatuaren bigarren bertsioa dela. Formatuaren lehen bertsioa, <file>*.devhelp</file> luzapena duena, zaharkituta dago eta etorkizunean desagertu egin daiteke <app>Devhelp</app> aplikazioan. Abioan, <app>Devhelp</app> aplikazioak fitxategi-sistema eskaneatzen du liburuak aurkitzeko. Abisu bat igortzen du terminalean formatu zaharkitua erabiltzen duen liburu bakoitzeko."
 
 #. (itstool) path: page/p
 #: C/index-file-format.page:40
@@ -123,7 +123,7 @@ msgid ""
 "In <app>Devhelp</app> the book structure is shown in the side panel. And the "
 "<link xref=\"search\">search in the side panel</link> shows results found in "
 "the index files."
-msgstr ""
+msgstr "<app>Devhelp</app>-en liburu-egitura alboko panelean erakusten da, eta <link xref=\"search\">alboko paneleko bilaketek</link> indize-fitxategietan aurkitutako emaitzak erakusten dituzte."
 
 #. (itstool) path: section/title
 #: C/index-file-format.page:62
@@ -139,7 +139,7 @@ msgid ""
 "\"installing-api-documentation#gtk-doc\">GTK-Doc</link> generates. For the "
 "most precise definition of what <app>Devhelp</app> supports, read the parser "
 "source code and the <app>Devhelp</app> API reference."
-msgstr ""
+msgstr "Zoritxarrez, <file>*.devhelp2</file> XML fitxategi-formatua ez dago ongi dokumentatuta. Espero dugu etorkizunean arazo hori konponduko dela. Bitartean, begiratu  <link xref=\"installing-api-documentation#gtk-doc\">GTK-Doc</link> dokumentazio-sortzaileak zer sortzen duen. <app>Devhelp</app> aplikazioak zer onartzen duen zehatz jakitzeko, irakurri analizatzailearen iturburu-kodea eta <app>Devhelp</app> API erreferentzia."
 
 #. (itstool) path: info/title
 #: C/index.page:10
@@ -190,7 +190,7 @@ msgstr "Nola <app>Devhelp</app> aplikazioak aurkitzen duen API dokumentazioa."
 msgid ""
 "See <link xref=\"book-format\"/> for information on the API documentation "
 "format that <app>Devhelp</app> recognizes."
-msgstr ""
+msgstr "Ikusi <link xref=\"book-format\"/> esteka <app>Devhelp</app> aplikazioak ezagutzen duen API dokumentazio-formatuari buruzko informazio gehiagorako."
 
 #. (itstool) path: section/title
 #: C/installing-api-documentation.page:31
@@ -219,14 +219,14 @@ msgid ""
 "Directory values are separated by <code>:</code> characters. Those "
 "environment variables are normally set up by the desktop environment or "
 "distribution."
-msgstr ""
+msgstr "Kontuan izan azken biak aztertuko diren direktorio-zerrendak direla. Direktorio-balioak <code>:</code> karaktereekin daude bereizita. Ingurun-aldagai horiek normalean mahaigainak edo banaketak konfiguratzen ditu."
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:53
 msgid ""
 "Examples of locations to index files with <code>$XDG_DATA_HOME</code> on a "
 "typical system:"
-msgstr ""
+msgstr "<code>$XDG_DATA_HOME</code> kodea duten indize-fitxategiak sistema tipiko batean eduki ditzaketen kokalekuen adibideak:"
 
 #. (itstool) path: item/p
 #: C/installing-api-documentation.page:61
@@ -234,19 +234,19 @@ msgid ""
 "<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</"
 "file> if <app>Devhelp</app> is launched with <link href=\"https://flatpak."
 "org/\">Flatpak</link>."
-msgstr ""
+msgstr "<file>~/.var/app/org.gnome.Devhelp/data/devhelp/books/glib/glib.devhelp2</file>, <app>Devhelp</app> aplikazioa <link href=\"https://flatpak.org/\">Flatpak</link> bidez abiarazten bada."
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:67
 msgid ""
 "Example of a location to an index file with <code>$XDG_DATA_DIRS</code> on a "
 "typical system:"
-msgstr ""
+msgstr "<code>$XDG_DATA_HOME</code> kodea duen indize-fitxategi batek sistema tipiko batean duen kokalekuaren adibideak:"
 
 #. (itstool) path: section/title
 #: C/installing-api-documentation.page:79
 msgid "GTK-Doc"
-msgstr ""
+msgstr "GTK-Doc"
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:80
@@ -254,12 +254,12 @@ msgid ""
 "<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> is a "
 "tool to generate API documentation from comments added to C code. It is used "
 "by GLib, GTK and GNOME libraries and applications."
-msgstr ""
+msgstr "<link href=\"https://gitlab.gnome.org/GNOME/gtk-doc\">GTK-Doc</link> C kodeari gehitutako iruzkinetatik abiatzu API dokumentazio sortzen duen tresna bat da. GLib, GTK eta GNOME liburutegi eta aplikazioetan erabiltzen da."
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:85
 msgid "GTK-Doc installs the API reference of a module into:"
-msgstr ""
+msgstr "GTK-Doc tresnak moduluen API erreferentziak hemen instalatzen ditu:"
 
 #. (itstool) path: section/p
 #: C/installing-api-documentation.page:91
@@ -267,7 +267,7 @@ msgid ""
 "It follows the book format supported by <app>Devhelp</app>. So by using GTK-"
 "Doc, the API reference can be browsed in <app>Devhelp</app> automatically "
 "(once installed in the right location, that is)."
-msgstr ""
+msgstr "<app>Devhelp</app>-ek onartutako liburu-formatua jarraitzen du. GTK-Doc erabiliz, beraz, API erreferentzia <app>Devhelp</app>-en automatikoki arakatu daiteke (kokaleku zuzenean instalatu ondoren)."
 
 #. (itstool) path: page/title
 #: C/search.page:14
@@ -295,14 +295,14 @@ msgstr "Bilaketan maiuskulak/minuskulak kontuan hartzen dira maiuskula bat badag
 #. (itstool) path: section/title
 #: C/search.page:30
 msgid "Glob-style pattern matching"
-msgstr ""
+msgstr "Estilo globaleko ereduen bat-etortzea"
 
 #. (itstool) path: section/p
 #: C/search.page:31
 msgid ""
 "A search term can be a pattern containing ‘*’ and ‘?’ wildcards. ‘*’ matches "
 "an arbitrary, possibly empty, string; and ‘?’ matches an arbitrary character."
-msgstr ""
+msgstr "Bilaketa-termino batek ‘*’ eta ‘?’ komodinak eduki ditzake. ‘*’ karakterea ausazko kate edo kate huts batekin bat dator; ‘?’ karakterea ausazko karatere batekin bat dator."
 
 #. (itstool) path: section/title
 #: C/search.page:39
@@ -315,14 +315,14 @@ msgid ""
 "You can search with several search terms (separated by spaces). A symbol "
 "will match only if <em>all</em> the search terms individually match (not "
 "necessarily in the same order of appearance)."
-msgstr ""
+msgstr "Bilaketa-termino anitz erabili daitezke (zuriunez bereizita). Ikur bat bat etortzeko, bilaketa-termino <em>guztiek</em> etorri behar dute bat banan-banan (ez du zertan ordena berean izan behar)."
 
 #. (itstool) path: section/p
 #: C/search.page:45
 msgid ""
 "Note that it is different than searching with the ‘*’ wildcard: with the ‘*’ "
 "wildcard it forces the keywords to be in the same order."
-msgstr ""
+msgstr "Kontuan izan ‘*’ komodinarekin bilaketa egitea desberdina dela: ‘*’ komodinarekin, gako-hitzek ordena berean egon behar dute."
 
 #. (itstool) path: section/p
 #: C/search.page:49
@@ -330,7 +330,7 @@ msgid ""
 "For example when searching “<input>gtk window application</input>”, it "
 "matches both “<code>gtk_window_get_application()</code>” and "
 "“<code>GtkApplicationWindow</code>” (among other symbols)."
-msgstr ""
+msgstr "Adibidez, “<input>gtk window application</input>” bilatzean, bat dator bai “<code>gtk_window_get_application()</code>” bai “<code>GtkApplicationWindow</code>” kateekin(besteak beste)."
 
 #. (itstool) path: section/p
 #: C/search.page:54
@@ -338,4 +338,4 @@ msgid ""
 "On the other hand, searching “<input>gtk*window*application</input>” will "
 "match “<code>gtk_window_get_application()</code>” but not "
 "“<code>GtkApplicationWindow</code>”."
-msgstr ""
+msgstr "Bestalde, “<input>gtk*window*application</input>” bilatzen bada, “<code>gtk_window_get_application()</code>” katearekin bat etorriko da baina ez “<code>GtkApplicationWindow</code>” katearekin."
