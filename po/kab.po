@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: devhelp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
 "POT-Creation-Date: 2024-02-25 00:10+0000\n"
-"PO-Revision-Date: 2024-03-20 22:07+0100\n"
+"PO-Revision-Date: 2024-03-27 19:36+0100\n"
 "Last-Translator: sa\n"
 "Language-Team: Kabyle <kab@li.org>\n"
 "Language: kab\n"
@@ -36,12 +36,17 @@ msgid ""
 "provides an easy way to navigate through libraries and to search by "
 "function, struct, or macro."
 msgstr ""
+"Devhelp d afecku n usneflay i tunigin akked unadi deg tsemlit API. Yettmuddu "
+"abrid fessusen i tunigin deg temkarḍiyin akked unadi almend n twuri, n "
+"tɣessa neɣ macro."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
 msgstr ""
+"Tisemlit yewwi-d ad tettwasbedd s wudem adigan, ur tesriḍ ara tuqqna "
+"internet i useqdec n Devhelp."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:18
 msgid ""
@@ -50,6 +55,10 @@ msgid ""
 "as the API documentation is available in HTML and a *.devhelp2 index file is "
 "generated."
 msgstr ""
+"Devhelp iteddu akked GTK-Doc, ɣef waya timkerḍiyin n GTK d GNOME "
+"ttusefrakent akken iwata. Maca tiɣerɣarin niḍen n usnefli zemrent ad "
+"ttusfarkent, ad tili kan tsemlit API deg HTML akked ufaylu n usmiter *."
+"devhelp2 ad yili yettusirew."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
@@ -57,6 +66,9 @@ msgid ""
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr ""
+"Devhelp yettusleɣ s yisnasen niḍen am Glade, Builder neɣ Anjuta, akked "
+"yizegrar i yellan i yimaẓragen n yiḍrisen yemgaraden (gedit, Vim, Emacs, "
+"Geany, …)."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:36
 msgid "Devhelp's main window"
@@ -148,6 +160,7 @@ msgid ""
 "Whether books should be grouped by programming language in the user "
 "interface."
 msgstr ""
+"Ma yella idlisen ilaq ad ttusgarwen s tutlat n usihel deg ugrudem n useqdac."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
@@ -232,7 +245,7 @@ msgstr "Amɣer"
 #. * untranslated.
 #: devhelp/dh-link.c:569
 msgid "Enum"
-msgstr ""
+msgstr "Siḍen"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -269,7 +282,7 @@ msgstr "Sken tisemlit n API"
 
 #: src/dh-app.c:140
 msgid "Devhelp (development build)"
-msgstr "Devhelp (lebni n tneflit)"
+msgstr "Devhelp (lebni n usnefli)"
 
 #: src/dh-app.c:145
 msgid "translator-credits"
@@ -438,7 +451,7 @@ msgstr "Ldi iccer amaynut"
 #: src/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Toggle side panel visibility"
-msgstr ""
+msgstr "Ldi/Mdel abani n ugalis adisan"
 
 #: src/help-overlay.ui:69
 msgctxt "shortcut window"
