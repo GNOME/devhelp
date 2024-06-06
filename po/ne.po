@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-10-01 17:28+0000\n"
-"PO-Revision-Date: 2022-05-04 12:06+0545\n"
+"POT-Creation-Date: 2023-01-25 16:07+0000\n"
+"PO-Revision-Date: 2024-06-06 12:08+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
@@ -34,7 +34,7 @@ msgstr "विकासकर्ताको मद्दत"
 #: data/org.gnome.Devhelp.appdata.xml.in.in:7
 #: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:143
 msgid "A developer tool for browsing and searching API documentation"
-msgstr ""
+msgstr "एपीआई कागजात हरू ब्राउज गर्न र खोजी गर्नका लागि विकासकर्ता उपकरण"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:9
 msgid ""
@@ -42,12 +42,16 @@ msgid ""
 "provides an easy way to navigate through libraries and to search by function, "
 "struct, or macro."
 msgstr ""
+"डेभहेल्प एपीआई कागजातहरू ब्राउज गर्न र खोजी गर्नका लागि एक विकासकर्ता उपकरण हो। यसले "
+"पुस्तकालयहरू मार्फत नेभिगेट गर्न र प्रकार्य, संरचना, वा म्याक्रो द्वारा खोजी गर्न सजिलो "
+"तरिका प्रदान गर्दछ।"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is not "
 "needed to use Devhelp."
 msgstr ""
+"कागजातहरू स्थानीय रूपमा स्थापना हुनुपर्दछ, त्यसैले डेभहेल्प प्रयोग गर्न इन्टरनेट जडान आवश्यक छैन।"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:18
 msgid ""
@@ -56,6 +60,9 @@ msgid ""
 "as the API documentation is available in HTML and a *.devhelp2 index file is "
 "generated."
 msgstr ""
+"डेभहेल्पले जीटीके-डकसँग मूल रूपमा काम गर्दछ, त्यसैले जीटीके र जिनोम लाइब्रेरीहरू राम्रोसँग "
+"समर्थित छन्। तर अन्य विकास प्लेटफर्महरू पनि समर्थन गर्न सकिन्छ, जबसम्म एपीआई "
+"कागजातएचटीएमएलमा उपलब्ध छ र *.डेभहेल्प २ अनुक्रमणिका फाइल उत्पन्न हुन्छ।"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
@@ -63,46 +70,41 @@ msgid ""
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
 "Geany, …)."
 msgstr ""
+"डेभहेल्पले ग्लेड, बिल्डर वा अन्जुटा जस्ता अन्य अनुप्रयोगहरूसँग एकीकृत गर्दछ, र प्लगइनहरू विभिन्न "
+"पाठ सम्पादकहरू (गीडिट, भिम, एम्याक्स, गेनी, ...) का लागि उपलब्ध छन्।"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:36
-#, fuzzy
-#| msgid "Height of main window"
 msgid "Devhelp's main window"
-msgstr "मुख्य सञ्झ्यालको उचाइ"
+msgstr "डेभहेल्पको मुख्य सञ्झ्याल"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:40
-#, fuzzy
 msgid "Devhelp's main window with an open book"
-msgstr "अधिकतम स्थितिमा मुख्य सञ्झ्याल खोल्नुहोस्"
+msgstr "खुला पुस्तकभएको डेभहेल्पको मुख्य सञ्झ्याल"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:44
 msgid "Devhelp supports opening multiple books"
-msgstr ""
+msgstr "डेभहेल्पले बहुविध पुस्तकहरू खोल्न समर्थन गर्दछ"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:48
 msgid "Devhelp supports HTML documentation formats"
-msgstr ""
+msgstr "डेभहेल्पले HTML कागजात ढाँचाहरूलाई समर्थन गर्दछ"
 
 #: data/org.gnome.Devhelp.desktop.in.in:5
-#, fuzzy
-#| msgid "Documentation Browser"
 msgid "API Documentation Browser"
-msgstr "अभिलेखीकरण"
+msgstr "API कागजात ब्राउजर"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Devhelp.desktop.in.in:7
 msgid "documentation;information;manual;developer;api;"
-msgstr "अभिलेखीकरण;सूचना;मैनुअल;मद्दत;API"
+msgstr "अभिलेखीकरण;सूचना;मैनुअल;मद्दत;API."
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
 msgstr "मुख्य सञ्झ्यालको अधिकतम स्थिति"
 
 #: data/org.gnome.devhelp.gschema.xml:17
-#, fuzzy
-#| msgid "Whether the main window should start maximized or not."
 msgid "Whether the main window should start maximized."
-msgstr "अधिकतम स्थितिमा मुख्य सञ्झ्याल खोल्नुहोस्"
+msgstr "मुख्य सञ्झ्याल अधिकतम सुरु गर्नुपर्छ कि।"
 
 #: data/org.gnome.devhelp.gschema.xml:21
 msgid "Width of the main window"
@@ -110,7 +112,7 @@ msgstr "मुख्य सञ्झ्यालको चौडाइ"
 
 #: data/org.gnome.devhelp.gschema.xml:22
 msgid "The width of the main window."
-msgstr "मुख्य सञ्झ्यालको चौडाइ ।"
+msgstr "मुख्य सञ्झ्यालको चौडाइ ।."
 
 #: data/org.gnome.devhelp.gschema.xml:26
 msgid "Height of main window"
@@ -118,7 +120,7 @@ msgstr "मुख्य सञ्झ्यालको उचाइ"
 
 #: data/org.gnome.devhelp.gschema.xml:27
 msgid "The height of the main window."
-msgstr "मुख्य सञ्झ्यालको उचाइ ।"
+msgstr "मुख्य सञ्झ्यालको उचाइ ।."
 
 #: data/org.gnome.devhelp.gschema.xml:33
 msgid "Width of the index and search pane"
@@ -126,7 +128,7 @@ msgstr "अनुक्रमणिका र खोजी फलकको च�
 
 #: data/org.gnome.devhelp.gschema.xml:34
 msgid "The width of the index and search pane."
-msgstr "अनुक्रमणिका वा खोजी फलकको चौडाइ ।"
+msgstr "अनुक्रमणिका वा खोजी फलकको चौडाइ ।."
 
 #: data/org.gnome.devhelp.gschema.xml:43
 msgid "Width of the assistant window"
@@ -134,7 +136,7 @@ msgstr "सहायक सञ्झ्यालको चौडाइ"
 
 #: data/org.gnome.devhelp.gschema.xml:44
 msgid "The width of the assistant window."
-msgstr "सहायक सञ्झ्यालको चौडाइ"
+msgstr "सहायक सञ्झ्यालको चौडाइ."
 
 #: data/org.gnome.devhelp.gschema.xml:48
 msgid "Height of assistant window"
@@ -142,7 +144,7 @@ msgstr "सहायक सञ्झ्यालको उचाइ"
 
 #: data/org.gnome.devhelp.gschema.xml:49
 msgid "The height of the assistant window."
-msgstr "सहायक सञ्झ्यालको उचाइ"
+msgstr "सहायक सञ्झ्यालको उचाइ."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:9
 msgid "Books disabled"
@@ -150,7 +152,7 @@ msgstr "किताबहरू असक्षम गर्नुहोस्"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
-msgstr "असक्षम किताबहरूको सूची"
+msgstr "असक्षम किताबहरूको सूची."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
@@ -159,7 +161,7 @@ msgstr "भाषा द्धारा पुस्तक समूह"
 #: data/org.gnome.libdevhelp.gschema.xml.in:15
 msgid ""
 "Whether books should be grouped by programming language in the user interface."
-msgstr ""
+msgstr "प्रयोगकर्ता इन्टरफेसमा प्रोग्रामिङ भाषाद्वारा पुस्तकहरूलाई समूहबद्ध गर्नुपर्छ कि पर्दैन।"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
@@ -167,7 +169,7 @@ msgstr "प्रणाली फन्ट प्रयोग गर्नुह
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:22
 msgid "Use the system default fonts."
-msgstr "प्रणालीको पूर्वनिर्धारित फन्ट प्रयोग गर्नुहोस् ।"
+msgstr "प्रणालीको पूर्वनिर्धारित फन्ट प्रयोग गर्नुहोस् ।."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:26
 msgid "Font for text"
@@ -175,7 +177,7 @@ msgstr "पाठका लागि फन्ट"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:27
 msgid "Font for text with variable width."
-msgstr "अनिश्चित चौडाइ भएको पाठका लागि फन्ट"
+msgstr "अनिश्चित चौडाइ भएको पाठका लागि फन्ट."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:31
 msgid "Font for fixed width text"
@@ -183,7 +185,7 @@ msgstr "स्थिर चौडाइ पाटको लागि फन्�
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:32
 msgid "Font for text with fixed width, such as code examples."
-msgstr "स्थिर चौडाइ पाटको लागि फन्ट, जस्तै:कोड गर्न"
+msgstr "स्थिर चौडाइ पाठको लागि फन्ट, जस्तै:कोड गर्न."
 
 #: devhelp/dh-assistant-view.c:385
 msgid "Book:"
@@ -199,9 +201,8 @@ msgid "Language: Undefined"
 msgstr "भाषा : अपरिभाषित"
 
 #: devhelp/dh-book-tree.c:749
-#, fuzzy
 msgid "_Collapse All"
-msgstr "सबै थ्रेडहरू संक्षिप्त गर्नुहोस्"
+msgstr "सङ्कुचन गर्नुहोस्"
 
 #. i18n: a documentation book
 #: devhelp/dh-link.c:536
@@ -244,9 +245,8 @@ msgstr "म्याक्रो"
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
 #: devhelp/dh-link.c:569
-#, fuzzy
 msgid "Enum"
-msgstr "विशेषता %s का लागि अज्ञात इनुम मान '%s'"
+msgstr "Enum"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -269,7 +269,7 @@ msgstr "विशेषता"
 msgid "Signal"
 msgstr "सङ्केत"
 
-#: devhelp/dh-web-view.c:674
+#: devhelp/dh-web-view.c:675
 msgid "Empty Page"
 msgstr "खाली पृष्ठ"
 
@@ -278,15 +278,12 @@ msgid "Devhelp support"
 msgstr "विकासकर्ता मद्दत समर्थन"
 
 #: plugins/gedit-plugin/devhelp.py:42
-#, fuzzy
-#| msgid "Documentation Browser"
 msgid "Show API Documentation"
-msgstr "अभिलेखीकरण"
+msgstr "API कागजात देखाउनुहोस्"
 
 #: src/dh-app.c:140
-#, fuzzy
 msgid "Devhelp (development build)"
-msgstr "निर्माण गर्नुहोस्"
+msgstr "डेभहेल्प (विकास निर्माण)"
 
 #: src/dh-app.c:145
 msgid "translator-credits"
@@ -310,7 +307,7 @@ msgstr "शब्दकुञ्जी"
 
 #: src/dh-app.c:385
 msgid "Search and display any hit in the assistant window"
-msgstr ""
+msgstr "सहायक सञ्झ्यालमा कुनै पनि हिट खोजी गर्नुहोस् र प्रदर्शन गर्नुहोस्"
 
 #: src/dh-app.c:390
 msgid "Display the version and exit"
@@ -331,7 +328,7 @@ msgstr "सक्षम पारिएको"
 
 #: src/dh-preferences.c:550
 msgid "Title"
-msgstr "शीर्षक:"
+msgstr "शीर्षक"
 
 #: src/dh-preferences.ui:12
 msgid "Preferences"
@@ -410,10 +407,8 @@ msgid "Forward"
 msgstr "पठाउनुहोस्"
 
 #: src/dh-window.ui:121
-#, fuzzy
-#| msgid "_Side Panel"
 msgid "Toggle Side Panel"
-msgstr "छेउ प्यानल"
+msgstr "छेउ प्यानल टगल गर्नुहोस्"
 
 #: src/dh-window.ui:162
 msgid "New Tab"
@@ -455,10 +450,9 @@ msgid "Open a new tab"
 msgstr "नयाँ टयाब खोल्नुहोस्"
 
 #: src/help-overlay.ui:62
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Toggle side panel visibility"
-msgstr "छेउपट्टी देखाउनुहोस्"
+msgstr "साइड प्यानल दृश्यता टगल गर्नुहोस्"
 
 #: src/help-overlay.ui:69
 msgctxt "shortcut window"
@@ -488,7 +482,7 @@ msgstr "सबै सञझ्याल बन्द गर्नुहोस्
 #: src/help-overlay.ui:105
 msgctxt "shortcut window"
 msgid "Zoom"
-msgstr "जुम "
+msgstr "जुम"
 
 #: src/help-overlay.ui:110
 msgctxt "shortcut window"
