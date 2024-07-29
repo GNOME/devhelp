@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2018-09-04 08:26+0000\n"
+"POT-Creation-Date: 2023-01-25 16:07+0000\n"
 "PO-Revision-Date: 2018-09-06 01:14+0300\n"
-"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"Last-Translator: Giannis Antypas <gianni.antypas@gmail.com>\n"
 "Language-Team: Ελληνικά <>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -29,19 +29,19 @@ msgstr ""
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
 #.
-#: data/org.gnome.Devhelp.appdata.xml.in:6 data/org.gnome.Devhelp.desktop.in:3
-#: src/dh-app.c:154 src/dh-app.c:499
+#: data/org.gnome.Devhelp.appdata.xml.in.in:6
+#: data/org.gnome.Devhelp.desktop.in.in:3 src/dh-app.c:141 src/dh-app.c:471
 msgid "Devhelp"
 msgstr "Devhelp"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:7 data/org.gnome.Devhelp.desktop.in:4
-#: src/dh-app.c:156
+#: data/org.gnome.Devhelp.appdata.xml.in.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:143
 msgid "A developer tool for browsing and searching API documentation"
 msgstr ""
 "Ένα εργαλείο προγραμματιστών για την περιήγηση και την αναζήτηση τεκμηρίωσης "
 "API"
 
-#: data/org.gnome.Devhelp.appdata.xml.in:9
+#: data/org.gnome.Devhelp.appdata.xml.in.in:9
 msgid ""
 "Devhelp is a developer tool for browsing and searching API documentation. It "
 "provides an easy way to navigate through libraries and to search by "
@@ -51,7 +51,7 @@ msgstr ""
 "αναζήτηση τεκμηρίωσης API. Παρέχει έναν εύκολο τρόπο να περιηγηθείτε στις "
 "βιβλιοθήκες και να αναζητήσετε ανά λειτουργία, δομή ή μακροεντολή."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:14
+#: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
@@ -59,19 +59,25 @@ msgstr ""
 "Η τεκμηρίωση πρέπει να εγκατασταθεί τοπικά, οπότε δεν απαιτείται σύνδεση στο "
 "διαδίκτυο για τη χρήση του Devhelp."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:18
+#: data/org.gnome.Devhelp.appdata.xml.in.in:18
+#, fuzzy
+#| msgid ""
+#| "Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
+#| "well supported. But other development platforms can be supported as well, "
+#| "as long as the API documentation is available in HTML and a *.devhelp2 "
+#| "index file is generated."
 msgid ""
-"Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-"well supported. But other development platforms can be supported as well, as "
-"long as the API documentation is available in HTML and a *.devhelp2 index "
-"file is generated."
+"Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
+"supported. But other development platforms can be supported as well, as long "
+"as the API documentation is available in HTML and a *.devhelp2 index file is "
+"generated."
 msgstr ""
 "Το Devhelp λειτουργεί εγγενώς με το GTK-Doc, έτσι ώστε οι βιβλιοθήκες GTK + "
 "και GNOME υποστηρίζονται καλά. Ωστόσο, μπορούν να υποστηριχθούν και άλλες "
 "πλατφόρμες ανάπτυξης, εφόσον η τεκμηρίωση API είναι διαθέσιμη σε HTML και "
 "δημιουργείται ένα αρχείο ευρετηρίου * .devhelp2."
 
-#: data/org.gnome.Devhelp.appdata.xml.in:24
+#: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
 "Devhelp integrates with other applications such as Glade, Builder or Anjuta, "
 "and plugins are available for different text editors (gedit, Vim, Emacs, "
@@ -81,22 +87,34 @@ msgstr ""
 "και προσφέρονται πρόσθετα για διαφορετικούς επεξεργαστές κειμένου (gedit, "
 "Vim, Emacs, Geany, …)."
 
-#: data/org.gnome.Devhelp.desktop.in:5
+#: data/org.gnome.Devhelp.appdata.xml.in.in:36
+#, fuzzy
+#| msgid "Height of main window"
+msgid "Devhelp's main window"
+msgstr "Ύψος κύριου παραθύρου"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:40
+msgid "Devhelp's main window with an open book"
+msgstr "Το κύριο παράθυρο του Devhelp με ένα ανοιχτό βιβλίο"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:44
+msgid "Devhelp supports opening multiple books"
+msgstr "Το Devhelp υποστηρίζει το άνοιγμα πολλαπλών βιβλίων"
+
+#: data/org.gnome.Devhelp.appdata.xml.in.in:48
+msgid "Devhelp supports HTML documentation formats"
+msgstr "Το Devhelp υποστηρίζει μορφές τεκμηρίωσης HTML"
+
+#: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "API Documentation Browser"
 msgstr "Περιηγητής τεκμηρίωσης API"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Devhelp.desktop.in:7
+#: data/org.gnome.Devhelp.desktop.in.in:7
 msgid "documentation;information;manual;developer;api;"
 msgstr ""
 "τεκμηρίωση;πληροφορίες;εγχειρίδιο;ανάπτυξη;api;documentation;information;"
 "manual;developer;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Devhelp.desktop.in:12
-#: plugins/gedit-plugin/devhelp.plugin.desktop.in:10
-msgid "org.gnome.Devhelp"
-msgstr "org.gnome.Devhelp"
 
 #: data/org.gnome.devhelp.gschema.xml:16
 msgid "Main window maximized state"
@@ -190,89 +208,89 @@ msgstr "Γραμματοσειρά για κείμενο σταθερού πλά
 msgid "Font for text with fixed width, such as code examples."
 msgstr "Γραμματοσειρά κειμένου με σταθερό πλάτος, όπως τα παραδείγματα κώδικα."
 
-#: devhelp/dh-assistant-view.c:400
+#: devhelp/dh-assistant-view.c:385
 msgid "Book:"
 msgstr "Βιβλίο:"
 
-#: devhelp/dh-book.c:313
+#: devhelp/dh-book.c:298
 #, c-format
 msgid "Language: %s"
 msgstr "Γλώσσα: %s"
 
-#: devhelp/dh-book.c:314
+#: devhelp/dh-book.c:299
 msgid "Language: Undefined"
 msgstr "Γλώσσα: δεν ορίσθηκε"
 
-#: devhelp/dh-book-tree.c:759
+#: devhelp/dh-book-tree.c:749
 msgid "_Collapse All"
 msgstr "_Σύμπτυξη όλων"
 
 #. i18n: a documentation book
-#: devhelp/dh-link.c:551
+#: devhelp/dh-link.c:536
 msgid "Book"
 msgstr "Βιβλίο"
 
 #. i18n: a "page" in a documentation book
-#: devhelp/dh-link.c:555
+#: devhelp/dh-link.c:540
 msgid "Page"
 msgstr "Σελίδα"
 
 #. i18n: a search hit in the documentation, could be a
 #. * function, macro, struct, etc
-#: devhelp/dh-link.c:560
+#: devhelp/dh-link.c:545
 msgid "Keyword"
 msgstr "Λέξη κλειδί"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:566
+#: devhelp/dh-link.c:551
 msgid "Function"
 msgstr "Συνάρτηση:"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:572
+#: devhelp/dh-link.c:557
 msgid "Struct"
 msgstr "Δομή"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:578
+#: devhelp/dh-link.c:563
 msgid "Macro"
 msgstr "Μακροεντολή"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:584
+#: devhelp/dh-link.c:569
 msgid "Enum"
 msgstr "Απαρίθμηση"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:590
+#: devhelp/dh-link.c:575
 msgid "Type"
 msgstr "Τύπος"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:596
+#: devhelp/dh-link.c:581
 msgid "Property"
 msgstr "Ιδιότητα"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
 #. * untranslated.
-#: devhelp/dh-link.c:602
+#: devhelp/dh-link.c:587
 msgid "Signal"
 msgstr "Σήμα"
 
-#: devhelp/dh-web-view.c:661
+#: devhelp/dh-web-view.c:675
 msgid "Empty Page"
 msgstr "Κενή σελίδα"
 
@@ -284,7 +302,11 @@ msgstr "Υποστήριξη Devhelp"
 msgid "Show API Documentation"
 msgstr "Εμφάνιση τεκμηρίωσης API"
 
-#: src/dh-app.c:158
+#: src/dh-app.c:140
+msgid "Devhelp (development build)"
+msgstr "Devhelp (δομή ανάπτυξης)"
+
+#: src/dh-app.c:145
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -299,132 +321,130 @@ msgstr ""
 "Για περισσότερες πληροφορίες, επισκεφθείτε την σελίδα\n"
 "http://gnome.gr/"
 
-#: src/dh-app.c:160
+#: src/dh-app.c:147
 msgid "Devhelp Website"
 msgstr "Ιστότοπος Devhelp"
 
-#: src/dh-app.c:403
+#: src/dh-app.c:375
 msgid "Opens a new Devhelp window"
 msgstr "Ανοίγει ένα νέο παράθυρου του Devhelp"
 
-#: src/dh-app.c:408
+#: src/dh-app.c:380
 msgid "Search for a keyword"
 msgstr "Αναζήτηση λέξης κλειδί"
 
-#: src/dh-app.c:409 src/dh-app.c:414
+#: src/dh-app.c:381 src/dh-app.c:386
 msgid "KEYWORD"
 msgstr "ΛΕΞΗ ΚΛΕΙΔΙ"
 
-#: src/dh-app.c:413
+#: src/dh-app.c:385
 msgid "Search and display any hit in the assistant window"
 msgstr "Αναζητήστε και δείξτε κάθε επιλογή στο βοηθητικό παράθυρο"
 
-#: src/dh-app.c:418
+#: src/dh-app.c:390
 msgid "Display the version and exit"
 msgstr "Εμφάνιση της έκδοσης και έξοδος"
 
-#: src/dh-app.c:423
+#: src/dh-app.c:395
 msgid "Quit any running Devhelp"
 msgstr "Έξοδος από όλα τα εκτελούμενα Devhelp"
 
 #. Please don't translate "Devhelp"
-#: src/dh-assistant.ui:8
+#: src/dh-assistant.ui:13
 msgid "Devhelp — Assistant"
 msgstr "Βοηθός — Devhelp"
 
-#: src/dh-preferences.c:551
+#: src/dh-preferences.c:536
 msgid "Enabled"
 msgstr "Ενεργοποιημένο"
 
-#: src/dh-preferences.c:565
+#: src/dh-preferences.c:550
 msgid "Title"
 msgstr "Τίτλος"
 
-#: src/dh-preferences.ui:26
+#: src/dh-preferences.ui:12
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: src/dh-preferences.ui:62
+#: src/dh-preferences.ui:48
 msgid "_Group by language"
 msgstr "Ο_μαδοποίηση κατά γλώσσα"
 
-#: src/dh-preferences.ui:104
+#: src/dh-preferences.ui:90
 msgid "Book Shelf"
 msgstr "Ράφι βιβλίων"
 
-#: src/dh-preferences.ui:125
+#: src/dh-preferences.ui:111
 msgid "_Use system fonts"
 msgstr "_Χρήση γραμματοσειρών συστήματος"
 
-#: src/dh-preferences.ui:149
+#: src/dh-preferences.ui:135
 msgid "_Variable width: "
 msgstr "_Μεταβλητό πλάτος: "
 
-#: src/dh-preferences.ui:162
+#: src/dh-preferences.ui:148
 msgid "_Fixed width:"
 msgstr "_Σταθερό πλάτος:"
 
-#: src/dh-preferences.ui:223
+#: src/dh-preferences.ui:209
 msgid "Fonts"
 msgstr "Γραμματοσειρές"
 
-#: src/dh-window.ui:7 src/dh-window.ui:45
-msgid "_Side Panel"
-msgstr "_Πλευρικός πίνακας"
-
-#: src/dh-window.ui:13 src/dh-window.ui:51
-msgid "_Print"
-msgstr "Ε_κτύπωση"
-
-#: src/dh-window.ui:17 src/dh-window.ui:55
-msgid "_Find"
-msgstr "_Εύρεση"
-
-#: src/dh-window.ui:23 src/dh-window.ui:61
-msgid "_Larger Text"
-msgstr "_Μεγαλύτερο κείμενο"
-
-#: src/dh-window.ui:27 src/dh-window.ui:65
-msgid "S_maller Text"
-msgstr "Μικ_ρότερο κείμενο"
-
-#: src/dh-window.ui:31 src/dh-window.ui:69
-msgid "_Normal Size"
-msgstr "_Κανονικό μέγεθος"
-
-#: src/dh-window.ui:39 src/menus.ui:29
+#: src/dh-window.ui:7
 msgid "New _Window"
 msgstr "Νέο _παράθυρο"
 
-#: src/dh-window.ui:75 src/menus.ui:35
+#: src/dh-window.ui:13
+msgid "_Print"
+msgstr "Ε_κτύπωση"
+
+#: src/dh-window.ui:17
+msgid "_Find"
+msgstr "_Εύρεση"
+
+#: src/dh-window.ui:23
+msgid "_Larger Text"
+msgstr "_Μεγαλύτερο κείμενο"
+
+#: src/dh-window.ui:27
+msgid "S_maller Text"
+msgstr "Μικ_ρότερο κείμενο"
+
+#: src/dh-window.ui:31
+msgid "_Normal Size"
+msgstr "_Κανονικό μέγεθος"
+
+#: src/dh-window.ui:37
 msgid "_Preferences"
 msgstr "Π_ροτιμήσεις"
 
-#: src/dh-window.ui:81 src/menus.ui:41
+#: src/dh-window.ui:41
 msgid "_Keyboard Shortcuts"
 msgstr "Συντομεύσεις _πληκτρολογίου"
 
-#: src/dh-window.ui:85 src/menus.ui:45
+#: src/dh-window.ui:45
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: src/dh-window.ui:89
+#: src/dh-window.ui:49
 msgid "_About Devhelp"
 msgstr "_Περί Devhelp"
 
-#: src/dh-window.ui:93 src/menus.ui:53
-msgid "_Quit"
-msgstr "Έ_ξοδος"
-
-#: src/dh-window.ui:121
+#: src/dh-window.ui:77
 msgid "Back"
 msgstr "Πίσω"
 
-#: src/dh-window.ui:140
+#: src/dh-window.ui:96
 msgid "Forward"
 msgstr "Μπροστά"
 
-#: src/dh-window.ui:186
+#: src/dh-window.ui:121
+#, fuzzy
+#| msgid "_Side Panel"
+msgid "Toggle Side Panel"
+msgstr "_Πλευρικός πίνακας"
+
+#: src/dh-window.ui:162
 msgid "New Tab"
 msgstr "Νέα καρτέλα"
 
@@ -445,67 +465,84 @@ msgstr "Εύρεση στην τρέχουσα σελίδα"
 
 #: src/help-overlay.ui:33
 msgctxt "shortcut window"
+msgid "Find the next match"
+msgstr "Αναζήτηση της επόμενης αντιστοιχίας"
+
+#: src/help-overlay.ui:40
+#, fuzzy
+#| msgid "Find Previous"
+msgctxt "shortcut window"
+msgid "Find the previous match"
+msgstr "Εύρεση προηγούμενου"
+
+#: src/help-overlay.ui:48
+msgctxt "shortcut window"
 msgid "Open a new window"
 msgstr "Άνοιγμα νέου παραθύρου"
 
-#: src/help-overlay.ui:40
+#: src/help-overlay.ui:55
 msgctxt "shortcut window"
 msgid "Open a new tab"
 msgstr "Άνοιγμα νέας καρτέλας"
 
-#: src/help-overlay.ui:47
+#: src/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Toggle side panel visibility"
 msgstr "Αλλαγή της ορατότητας της πλευρικής στήλης"
 
-#: src/help-overlay.ui:54
+#: src/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Μετάβαση πίσω"
 
-#: src/help-overlay.ui:61
+#: src/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Go forward"
 msgstr "Μετάβαση εμπρός"
 
-#: src/help-overlay.ui:68
+#: src/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Print"
 msgstr "Εκτύπωση"
 
-#: src/help-overlay.ui:75
+#: src/help-overlay.ui:90
 msgctxt "shortcut window"
 msgid "Close the current window"
 msgstr "Κλείσιμο του τρέχοντος παραθύρου"
 
-#: src/help-overlay.ui:82
+#: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Close all windows"
 msgstr "Κλείσιμο όλων των παραθύρων"
 
-#: src/help-overlay.ui:90
+#: src/help-overlay.ui:105
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Εστίαση"
 
-#: src/help-overlay.ui:95
+#: src/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Zoom in"
 msgstr "Μεγέθυνση"
 
-#: src/help-overlay.ui:102
+#: src/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Zoom out"
 msgstr "Σμίκρυνση"
 
-#: src/help-overlay.ui:109
+#: src/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Επαναφορά εστίασης"
 
-#: src/menus.ui:49
-msgid "_About"
-msgstr "_Περί"
+#~ msgid "org.gnome.Devhelp"
+#~ msgstr "org.gnome.Devhelp"
+
+#~ msgid "_Quit"
+#~ msgstr "Έ_ξοδος"
+
+#~ msgid "_About"
+#~ msgstr "_Περί"
 
 #~ msgid "devhelp"
 #~ msgstr "devhelp"
@@ -655,9 +692,6 @@ msgstr "_Περί"
 
 #~ msgid "Find:"
 #~ msgstr "Εύρεση:"
-
-#~ msgid "Find Previous"
-#~ msgstr "Εύρεση προηγούμενου"
 
 #~ msgid "Find previous occurrence of the search string"
 #~ msgstr "Εύρεση προηγούμενης εμφάνισης του ζητούμενου αλφαριθμητικού"
