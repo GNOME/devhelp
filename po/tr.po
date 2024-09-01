@@ -1,6 +1,6 @@
 # Turkish translation of devhelp
 # Copyright (C) 2007-2012 Free Software Foundation, Inc.
-# Copyright (C) 2013-2023 devlep's COPYRIGHT HOLDER
+# Copyright (C) 2013-2024 devlep's COPYRIGHT HOLDER
 # This file is distributed under the same license as the devhelp package.
 #
 # Baris Cicek <baris@teamforce.name.tr>, 2007, 2008, 2009.
@@ -8,13 +8,13 @@
 # Osman Karagöz <osmank3@gmail.com>, 2017.
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2012, 2014, 2015, 2018.
 # Çağrı Dolaz <dolazcagri@gmail.com>, 2018.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2018, 2021.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2018, 2021, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: devhelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2023-01-25 16:07+0000\n"
+"POT-Creation-Date: 2024-07-29 23:20+0000\n"
 "PO-Revision-Date: 2021-10-03 10:10+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
