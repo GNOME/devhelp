@@ -14,16 +14,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2023-01-25 16:07+0000\n"
-"PO-Revision-Date: 2018-09-06 01:14+0300\n"
-"Last-Translator: Giannis Antypas <gianni.antypas@gmail.com>\n"
+"POT-Creation-Date: 2024-07-29 23:20+0000\n"
+"PO-Revision-Date: 2024-09-05 23:15+0300\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Ελληνικά <>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Project-Style: gnome\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
@@ -60,22 +60,16 @@ msgstr ""
 "διαδίκτυο για τη χρήση του Devhelp."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:18
-#, fuzzy
-#| msgid ""
-#| "Devhelp works natively with GTK-Doc, so the GTK+ and GNOME libraries are "
-#| "well supported. But other development platforms can be supported as well, "
-#| "as long as the API documentation is available in HTML and a *.devhelp2 "
-#| "index file is generated."
 msgid ""
 "Devhelp works natively with GTK-Doc, so the GTK and GNOME libraries are well "
 "supported. But other development platforms can be supported as well, as long "
 "as the API documentation is available in HTML and a *.devhelp2 index file is "
 "generated."
 msgstr ""
-"Το Devhelp λειτουργεί εγγενώς με το GTK-Doc, έτσι ώστε οι βιβλιοθήκες GTK + "
-"και GNOME υποστηρίζονται καλά. Ωστόσο, μπορούν να υποστηριχθούν και άλλες "
-"πλατφόρμες ανάπτυξης, εφόσον η τεκμηρίωση API είναι διαθέσιμη σε HTML και "
-"δημιουργείται ένα αρχείο ευρετηρίου * .devhelp2."
+"Το Devhelp λειτουργεί εγγενώς με το GTK-Doc, οπότε οι βιβλιοθήκες GTK και "
+"GNOME υποστηρίζονται καλά. Μπορούν όμως να υποστηριχθούν και άλλες "
+"πλατφόρμες ανάπτυξης, αρκεί η τεκμηρίωση του API να είναι διαθέσιμη σε HTML "
+"και να δημιουργείται ένα αρχείο ευρετηρίου *.devhelp2."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
@@ -88,10 +82,8 @@ msgstr ""
 "Vim, Emacs, Geany, …)."
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:36
-#, fuzzy
-#| msgid "Height of main window"
 msgid "Devhelp's main window"
-msgstr "Ύψος κύριου παραθύρου"
+msgstr "Το κύριο παράθυρο του Devhelp"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:40
 msgid "Devhelp's main window with an open book"
@@ -182,7 +174,7 @@ msgid ""
 "interface."
 msgstr ""
 "Εάν τα βιβλία θα πρέπει να ομαδοποιούνται κατά γλώσσα προγραμματισμού στη "
-"διεπαφή χρήστη"
+"διεπαφή χρήστη."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:21
 msgid "Use system fonts"
@@ -246,7 +238,7 @@ msgstr "Λέξη κλειδί"
 #. * untranslated.
 #: devhelp/dh-link.c:551
 msgid "Function"
-msgstr "Συνάρτηση:"
+msgstr "Συνάρτηση"
 
 #. i18n: in the programming language context, if you don't
 #. * have an ESTABLISHED term for it, leave it
@@ -439,10 +431,8 @@ msgid "Forward"
 msgstr "Μπροστά"
 
 #: src/dh-window.ui:121
-#, fuzzy
-#| msgid "_Side Panel"
 msgid "Toggle Side Panel"
-msgstr "_Πλευρικός πίνακας"
+msgstr "Εναλλαγή πλευρικού πίνακα"
 
 #: src/dh-window.ui:162
 msgid "New Tab"
@@ -469,11 +459,9 @@ msgid "Find the next match"
 msgstr "Αναζήτηση της επόμενης αντιστοιχίας"
 
 #: src/help-overlay.ui:40
-#, fuzzy
-#| msgid "Find Previous"
 msgctxt "shortcut window"
 msgid "Find the previous match"
-msgstr "Εύρεση προηγούμενου"
+msgstr "Εύρεση της προηγούμενης αντιστοιχίας"
 
 #: src/help-overlay.ui:48
 msgctxt "shortcut window"
