@@ -30,11 +30,11 @@ appdata_file = I18N.merge_file(
   install_dir: get_option('datadir') / 'metainfo'
 )
 
-appstream_util = find_program('appstream-util', required: false)
+appstream_util = find_program('appstreamcli', required: false)
 if appstream_util.found()
   test('validate-appdata',
     appstream_util,
-    args: ['validate-relax', '--nonet', appdata_file],
+    args: ['validate', '--no-net', '--explain', appdata_file],
     workdir: meson.current_build_dir(),
     depends: appdata_file,
   )
