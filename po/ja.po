@@ -1,20 +1,20 @@
 # devhelp ja.po.
-# Copyright (C) 2001-2015, 2017, 2020, 2022 devhelp's COPYRIGHT HOLDE
+# Copyright (C) 2001-2015, 2017, 2020, 2022, 2025 devhelp's COPYRIGHT HOLDE
 # Takeshi Aihana <takeshi.aihana@gmail.com>, 2001-2009.
-# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010.
-# OKANO Takayoshi <kano@na.rim.or.jp>, 2011-2012.
+# Kusano Takayuki <gnome-l10n@tkusano.jp>, 2010, 2025.
+# OKANO Takayoshi <kano@na.rim.or.jp>, 2011-2012, 2025.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2011-2015.
 # Shinichirou Yamada <yamada_strong_yamada_nice_64bit@yahoo.co.jp>, 2017.
 # sicklylife <translation@sicklylife.jp>, 2020, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: devhelp master\n"
+"Project-Id-Version: devhelp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2021-10-01 17:28+0000\n"
-"PO-Revision-Date: 2022-03-09 20:00+0900\n"
-"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
-"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"POT-Creation-Date: 2025-04-10 11:42+0000\n"
+"PO-Revision-Date: 2025-05-07 01:34+0900\n"
+"Last-Translator: Kusano Takayuki <gnome-l10n@tkusano.jp>\n"
+"Language-Team: Japanese <https://l10n.gnome.org/teams/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr "Devhelp"
 #: data/org.gnome.Devhelp.appdata.xml.in.in:7
 #: data/org.gnome.Devhelp.desktop.in.in:4 src/dh-app.c:143
 msgid "A developer tool for browsing and searching API documentation"
-msgstr ""
+msgstr "API ドキュメントを参照、検索するための開発者向けツール"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:9
 msgid ""
@@ -39,12 +39,16 @@ msgid ""
 "provides an easy way to navigate through libraries and to search by "
 "function, struct, or macro."
 msgstr ""
+"Devhelp は API ドキュメントを参照、検索するための開発者向けツールです。ライブ"
+"ラリを簡単にナビゲートしたり、関数や構造体、マクロを検索することができます。"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:14
 msgid ""
 "The documentation must be installed locally, so an internet connection is "
 "not needed to use Devhelp."
 msgstr ""
+"ドキュメントはローカルにインストールされなければならないため、Devhelp を使用"
+"するのにインターネット接続は必要ありません。"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:18
 msgid ""
@@ -53,6 +57,10 @@ msgid ""
 "as the API documentation is available in HTML and a *.devhelp2 index file is "
 "generated."
 msgstr ""
+"Devhelp は GTK-Doc を直に使用しているため、GTK および GNOME ライブラリのサ"
+"ポートは万全です。しかし、API ドキュメントが HTML 形式で利用でき、*.devhelp2 "
+"インデックスファイルが生成されている場合は、他の開発プラットフォームも "
+"Devhelp で利用できます。"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:24
 msgid ""
@@ -70,15 +78,15 @@ msgstr "Devhelp のメインウィンドウ"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:40
 msgid "Devhelp's main window with an open book"
-msgstr ""
+msgstr "ブックを開いた Devhelp のメインウィンドウ"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:44
 msgid "Devhelp supports opening multiple books"
-msgstr ""
+msgstr "複数のブックを開くことができます"
 
 #: data/org.gnome.Devhelp.appdata.xml.in.in:48
 msgid "Devhelp supports HTML documentation formats"
-msgstr ""
+msgstr "HTML ドキュメント形式をサポートしています"
 
 #: data/org.gnome.Devhelp.desktop.in.in:5
 msgid "API Documentation Browser"
@@ -149,7 +157,7 @@ msgstr "ユーザーによって無効化されたブックの一覧"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
-msgstr ""
+msgstr "ブックを言語別に分類する"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:15
 msgid ""
@@ -264,7 +272,7 @@ msgstr "プロパティ"
 msgid "Signal"
 msgstr "シグナル"
 
-#: devhelp/dh-web-view.c:674
+#: devhelp/dh-web-view.c:675
 msgid "Empty Page"
 msgstr "空のページ"
 
@@ -278,14 +286,14 @@ msgstr "API ドキュメントの参照"
 
 #: src/dh-app.c:140
 msgid "Devhelp (development build)"
-msgstr ""
+msgstr "Devhelp (開発ビルド)"
 
 #: src/dh-app.c:145
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
-"草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
-"日本 GNOME ユーザー会 <http://www.gnome.gr.jp/>\n"
+"Kusano Takayuki <gnome-l10n@tkusano.jp>\n"
+"Japanese Team https://l10n.gnome.org/teams/ja/\n"
 "松澤 二郎 <jmatsuzawa@gnome.org>\n"
 "OKANO Takayoshi <kano@na.rim.or.jp>\n"
 "Shinichirou Yamada <yamada_strong_yamada_nice_64bit@yahoo.co.jp>\n"
