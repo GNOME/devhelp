@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: devhelp main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/devhelp/issues\n"
-"POT-Creation-Date: 2025-02-10 19:36+0000\n"
-"PO-Revision-Date: 2025-02-12 17:10-0300\n"
+"POT-Creation-Date: 2025-05-10 11:38+0000\n"
+"PO-Revision-Date: 2025-07-09 14:42-0400\n"
 "Last-Translator: Emilio Sepúlveda <emism.translations@gmail.com>\n"
 "Language-Team: Interlingua <softinterlingua@gmail.com>\n"
 "Language: ia\n"
@@ -21,8 +21,9 @@ msgstr ""
 "X-DL-Module: devhelp\n"
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
-"X-DL-State: Translating\n"
-"X-Generator: Gtranslator 47.1\n"
+"X-DL-State: None\n"
+"X-Generator: Gtranslator 48.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. Translators: please don't translate "Devhelp" (it's marked as
 #. * translatable for transliteration only).
@@ -154,11 +155,11 @@ msgstr "Le altor del fenestra de assistente"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:9
 msgid "Books disabled"
-msgstr "Libros dishabilitate"
+msgstr "Libros disactivate"
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:10
 msgid "List of books disabled by the user."
-msgstr "Lista de libros dishabilitate per le usator."
+msgstr "Lista de libros disactivate per le usator."
 
 #: data/org.gnome.libdevhelp.gschema.xml.in:14
 msgid "Group books by language"
@@ -198,7 +199,7 @@ msgstr "Typo de litteras pro texto con largor fixate, como exemplos de codice."
 
 #: devhelp/dh-assistant-view.c:385
 msgid "Book:"
-msgstr "Book:"
+msgstr "Libro:"
 
 #: devhelp/dh-book.c:298
 #, c-format
@@ -320,7 +321,7 @@ msgstr "Cercar e monstrar qualcunque coincidentia in le fenestra de assistente"
 
 #: src/dh-app.c:390
 msgid "Display the version and exit"
-msgstr "Monstrar le version e sortir"
+msgstr "Monstrar le version e exir"
 
 #: src/dh-app.c:395
 msgid "Quit any running Devhelp"
@@ -333,7 +334,7 @@ msgstr "Devhelp — Assistente"
 
 #: src/dh-preferences.c:536
 msgid "Enabled"
-msgstr "Habilitate"
+msgstr "Activate"
 
 #: src/dh-preferences.c:550
 msgid "Title"
@@ -397,7 +398,7 @@ msgstr "_Preferentias"
 
 #: src/dh-window.ui:41
 msgid "_Keyboard Shortcuts"
-msgstr "_Commandos curte de claviero"
+msgstr "Vias breve de _claviero"
 
 #: src/dh-window.ui:45
 msgid "_Help"
@@ -436,17 +437,17 @@ msgstr "Focalisar cerca global"
 #: src/help-overlay.ui:26
 msgctxt "shortcut window"
 msgid "Find in current page"
-msgstr "Trovar in le pagina actual"
+msgstr "Cercar in le pagina actual"
 
 #: src/help-overlay.ui:33
 msgctxt "shortcut window"
 msgid "Find the next match"
-msgstr "Trovar le proxime coincidentia"
+msgstr "Cercar le proxime coincidentia"
 
 #: src/help-overlay.ui:40
 msgctxt "shortcut window"
 msgid "Find the previous match"
-msgstr "Trovar le previe coincidentia"
+msgstr "Cercar le previe coincidentia"
 
 #: src/help-overlay.ui:48
 msgctxt "shortcut window"
@@ -501,7 +502,7 @@ msgstr "Aggrandir"
 #: src/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Zoom out"
-msgstr "REducer"
+msgstr "Reducer"
 
 #: src/help-overlay.ui:124
 msgctxt "shortcut window"
