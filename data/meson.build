@@ -15,16 +15,16 @@ configure_file(
   install_dir: get_option('datadir') / 'glib-2.0/schemas'
 )
 
-appdata_conf = configuration_data()
-appdata_conf.set('application_id', APPLICATION_ID)
-appdata = APPLICATION_ID + '.appdata.xml'
-appdata_file = I18N.merge_file(
+metainfo_conf = configuration_data()
+metainfo_conf.set('application_id', APPLICATION_ID)
+metainfo = APPLICATION_ID + '.metainfo.xml'
+metainfo_file = I18N.merge_file(
   input: configure_file(
-    input: 'org.gnome.Devhelp.appdata.xml.in.in',
-    output: APPLICATION_ID + '.appdata.xml.in',
-    configuration: appdata_conf,
+    input: 'org.gnome.Devhelp.metainfo.xml.in.in',
+    output: APPLICATION_ID + '.metainfo.xml.in',
+    configuration: metainfo_conf,
   ),
-  output: appdata,
+  output: metainfo,
   po_dir: '../po/',
   install: true,
   install_dir: get_option('datadir') / 'metainfo'
@@ -32,11 +32,11 @@ appdata_file = I18N.merge_file(
 
 appstream_util = find_program('appstreamcli', required: false)
 if appstream_util.found()
-  test('validate-appdata',
+  test('validate-metainfo',
     appstream_util,
-    args: ['validate', '--no-net', '--explain', appdata_file],
+    args: ['validate', '--no-net', '--explain', metainfo_file],
     workdir: meson.current_build_dir(),
-    depends: appdata_file,
+    depends: metainfo_file,
   )
 endif
 
